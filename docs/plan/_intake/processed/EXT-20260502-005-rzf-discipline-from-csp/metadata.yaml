@@ -1,0 +1,52 @@
+extraction_id: EXT-20260502-005
+parent_input_id: EXT-20260502-005
+source_type: AI_OTHER
+origin: other-app
+origin_detail: csp-platform-S333-knowledge-transfer
+received_at_iso: 2026-05-02T20:00:00Z
+received_via: chat-paste-document-block
+raw_byte_size: ~32000
+content_hash: pending-runtime
+risk_profile: low
+trust_tier: tenant_authored
+submitted_by: user
+title: "REAL_ZERO_FINDINGS_DISCIPLINE_from_CSP_S333.md — comprehensive RZF transfer"
+provenance: CSP S333 — explicit Csps-targeted knowledge-transfer doc; tier-authored L1/L2/L3 per CC-083
+is_multi_section: true
+section_count: 23
+sub_ids:
+  - EXT-20260502-005-A    # L1 quick-reference + 3 check types (MECHANICAL/SEMANTIC/PROPAGATION)
+  - EXT-20260502-005-B    # L2.1 origin incidents (S132 / S184 / S227 / S278 / S332 / S333)
+  - EXT-20260502-005-C    # L2.2 three check types full definitions
+  - EXT-20260502-005-D    # L2.3 cycle structure + ZF-0 declaration rules
+  - EXT-20260502-005-E    # L2.4 when RZF fires (7 triggers)
+  - EXT-20260502-005-F    # L2.5 behavioral contract layer (B_DONE / B_HANDSHAKE / B_QUALITY_AUDIT_STANDING)
+  - EXT-20260502-005-G    # L2.6 memory engravings (8 RZF-related memories)
+  - EXT-20260502-005-H    # L2.7 Csps porting guide (4th check type: USER-VISIBLE OUTCOME)
+  - EXT-20260502-005-I    # L2.8 anti-patterns + failure modes (8 cataloged)
+  - EXT-20260502-005-J    # L2.9 hooks (UserPromptSubmit RZF state surfacing)
+  - EXT-20260502-005-K    # L2.10 standing-authorization integration (12 audit kinds)
+  - EXT-20260502-005-L    # L3.1 RZF state machine + forbidden transitions
+  - EXT-20260502-005-M    # L3.2 evidence block format
+  - EXT-20260502-005-N    # L3.3 validator-spec hardening (FP class prevention)
+  - EXT-20260502-005-O    # L3.4 forward-only grandfather mechanism
+  - EXT-20260502-005-P    # L3.5 audit-of-audits (meta-RZF)
+  - EXT-20260502-005-Q    # L3.6 composition with sister disciplines
+  - EXT-20260502-005-R    # L3.7 failure modes RZF protects against
+  - EXT-20260502-005-S    # L3.8 real S333 evidence (AID-001 / 002 / 003)
+  - EXT-20260502-005-T    # L3.9 RZF in cross-chat handshake integration
+  - EXT-20260502-005-U    # L3.10 anti-patterns checklist (printable)
+  - EXT-20260502-005-V    # L3.11 12-step implementation checklist for adopting platforms
+  - EXT-20260502-005-W    # L3.12 open research questions
+  - EXT-20260502-005-X    # USER EXTENSION (S002 turn 10): Complete Extraction Cycle (CEC) — positive branch of zero-findings; walk platform after every new principle/insight to extract un-applied propagation opportunities
+session: S002
+schema_gap_signal: false                # CSPS has audit-runner + behavioral-contracts framework; absorbs as P-META-006 + B_RZF + B_CEC
+push_back_recorded: |
+  AI's S002 turn 10 push-back: user's framing folds RZF (defect verification) + CEC (complete extraction)
+  under one term. Per B_AI_PROFESSIONAL_VOICE + P-ARCH-016 vocabulary-friction principle: separate them
+  under "Zero-Findings Discipline" umbrella with RZF + CEC as two named halves. Both share cycle-count-is-measurement
+  + re-run-is-proof mechanics. User retains "0 findings" framing for both.
+purpose: |
+  Constitutional addition to CSPS — Zero-Findings Discipline (RZF + CEC). RZF imported verbatim from
+  CSP S333 (330+ sessions of evolution); CEC is the CSPS-specific extension addressing AI's universal
+  failure pattern of "negative-only validation, ignoring complete extraction."

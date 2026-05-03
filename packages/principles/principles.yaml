@@ -1,0 +1,936 @@
+# ============================================================================
+# CSPS Principles Registry
+# ============================================================================
+# THIS FILE IS THE SINGLE SOURCE OF TRUTH FOR ALL PRINCIPLES IN CSPS.
+#
+# Downstream artifacts are GENERATED from this file via `pnpm principles:codegen`:
+#   - AGENTS.md (root)                              — AI instruction surface
+#   - .vale/styles/CSPS/principles.txt              — prose lint
+#   - eslint-config-csps/principle-rules.js         — code lint
+#   - .claude/hooks/*.sh                            — runtime AI blocks
+#   - packages/skills/*/SKILL.md                    — invokable AI behaviors
+#   - packages/principles-mcp/src/resources.ts      — MCP resource definitions
+#   - libs/audits/checks/principle-coverage.ts      — meta-audit (every principle has enforcers)
+#   - docs/plan/pillar-0-governance/principles.md   — human reference
+#
+# Edit this file, regenerate, commit both. CI fails on any drift between source and generated output.
+# ============================================================================
+
+apiVersion: csps.dev/v1
+kind: PrinciplesRegistry
+version: 1.0.0
+generated_at: 2026-05-01
+owner: group:finky
+license: internal-only
+lifecycle_state: active                # P-META-004 stewardship state — registry-wide active
+
+# ============================================================================
+# CATEGORIES
+# ============================================================================
+categories:
+  - id: meta
+    name: Meta-Principles
+    description: How we work; principles about principles themselves; enforcement architecture
+  - id: operating
+    name: Operating Principles
+    description: Cognitive-load-aware human-AI collaboration patterns (FWWS, PCR, reuse-first, batched execution)
+  - id: architecture
+    name: Architecture Principles
+    description: How CSPS itself is built (the 27 architectural rules)
+
+# ============================================================================
+# SEVERITY → DEFENSE-IN-DEPTH ENFORCER COUNTS
+# ============================================================================
+# Every principle must have ≥ N independent mechanical enforcers based on severity.
+# The AI layer (instruction-file, ai-prompt-addendum) counts but is treated as the LEAST reliable.
+# Critical principles need at least one non-AI enforcer.
+severity_enforcer_minimums:
+  critical: 4   # at least 4 enforcers, at least 2 must be non-AI
+  error:    3   # at least 3 enforcers, at least 1 must be non-AI
+  warn:     2
+  info:     1
+
+# Recognized enforcer layers (closed enum; new layers require principle P-META-001 update + ADR)
+enforcer_layers:
+  - instruction-file       # AGENTS.md, CLAUDE.md, .cursor/rules/*.mdc
+  - skill                  # packages/skills/<name>/SKILL.md (invokable AI behavior)
+  - ai-prompt-addendum     # in CLAUDE.md, agent system prompts
+  - hook                   # Claude Code PreToolUse/PostToolUse/Stop hooks
+  - pre-commit             # husky / lefthook git hooks
+  - pr-bot                 # Danger.js
+  - ci-check               # GitHub Actions running audit-runner
+  - frontmatter-contract   # Zod-validated frontmatter (validate-frontmatter.mjs)
+  - eslint-rule            # custom ESLint rule
+  - nx-tag-rule            # @nx/enforce-module-boundaries with tag depConstraints
+  - opa-policy             # OPA/Rego policy on config files
+  - zenstack-policy        # ZenStack @@allow / @@deny in ZModel
+  - audit-metric           # libs/audits/checks/* (displayed, not gated)
+  - scorecard              # Backstage-style scorecard fact (trend over time)
+  - mcp-resource           # exposed via packages/principles-mcp
+  - mcp-tool               # callable MCP tool that consults policy before acting
+  - generator-prompt       # nx g <generator> catalog-first UX
+  - meta-audit             # audit-the-audits check
+  - generator              # the artifact IS generated, encoding the principle
+
+# ============================================================================
+# PRINCIPLES
+# ============================================================================
+principles:
+
+  # ==========================================================================
+  # OPERATING PRINCIPLES (4 fully-defined)
+  # ==========================================================================
+
+  - id: P-OP-001
+    name: reuse-first
+    aliases: [check-what-exists]
+    category: operating
+    severity: critical
+    statement: |
+      Check what exists. Enhance the ratified thing. Create new only with a justification.
+    counterweight: |
+      Enhance the ratified thing — UNLESS the ratified thing is the wrong abstraction.
+      Inline-and-redecide is always available.
+    industry_lineage:
+      - Andy Hunt + Dave Thomas, Pragmatic Programmer (1999) — DRY: "Every piece of knowledge must have a single, unambiguous, authoritative representation"
+      - Sandi Metz, "The Wrong Abstraction" (2016) — "duplication is far cheaper than the wrong abstraction"
+      - Kent C. Dodds — AHA: "Avoid Hasty Abstractions"
+      - Don Roberts (via Martin Fowler, Refactoring 1999) — Rule of Three
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                      description: "Stated as cardinal principle #1; references /reuse-check skill" }
+      - { layer: skill,                location: "packages/skills/reuse-check/SKILL.md",           description: "Slash command queries catalog, returns top-5 matches with similarity scores" }
+      - { layer: ai-prompt-addendum,   location: "AGENTS.md",                                      description: "AI MUST query catalog before proposing any artifact creation" }
+      - { layer: hook,                 location: ".claude/hooks/pre-tool-use-write.sh",            description: "PreToolUse on Write/Edit greps catalog for similar artifacts; warns or blocks" }
+      - { layer: frontmatter-contract, location: "tools/validators/validate-frontmatter.mjs",      description: "Every artifact has either `enhances:` or `created-new-because:`; CI fails if neither" }
+      - { layer: pr-bot,               location: "tools/danger/check-existing-thing-considered.ts", description: "PR template includes 'Existing thing considered' field; Danger fails PR if empty on artifact-creating PRs" }
+      - { layer: ci-check,             location: "libs/audits/checks/duplicate-detection.ts",       description: "jscpd runs in CI with min-tokens 50, threshold 0.5%; fails on regression" }
+      - { layer: audit-metric,         location: "libs/audits/checks/reuse-rate.ts",                description: "Tracks % of new artifacts in last 30d with `enhances:` set vs `created-new-because:` (displayed, not gated; Goodhart)" }
+      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",        description: "Exposed as principles://reuse-first; queryable by any agent" }
+      - { layer: mcp-tool,             location: "packages/principles-mcp/src/tools/check-reuse.ts", description: "Tool callable by any agent: returns existing-match candidates for a proposed artifact" }
+    enforcer_count: 10
+    cross_references: [P-OP-002, P-OP-003, P-OP-004, P-META-001]
+    anti_patterns:
+      - god-objects (incremental "enhance existing" without splitting)
+      - wrong-abstraction lock-in (Metz)
+      - frankenstein-components (flags-on-flags)
+      - coupling-growth (every reuse couples another caller)
+      - conway-violating reuse (forcing two services that should be independent to share)
+      - premature-graduation-conflict (CSPS apps depending on platform internals)
+
+  - id: P-OP-002
+    name: finish-what-we-started
+    aliases: [FWWS]
+    category: operating
+    severity: critical
+    statement: |
+      Finish What We Started. Resist drift to new work while in-flight work is incomplete.
+    counterweight: |
+      Unless completing creates more debt than abandoning. Park threads explicitly with stated reason —
+      do not leave them silently in-flight.
+    industry_lineage:
+      - David J. Anderson, Kanban (2010) — "Stop Starting, Start Finishing"; WIP limits as enabling constraint
+      - Eliyahu Goldratt, The Goal (1984) — Theory of Constraints; finish bottleneck before adding more
+      - Scrum — Definition of Done as completion contract
+      - Lean / Toyota — single-piece flow
+      - Cal Newport, Deep Work — completion under sustained attention; "shiny object" as the enemy
+    config:
+      max_in_flight_slices: 3
+      max_in_flight_apps: 2
+      stale_threshold_days: 14
+      park_requires_reason: true
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md",                                          description: "Stated as cardinal principle #2; references /wip-check skill" }
+      - { layer: skill,            location: "packages/skills/wip-check/SKILL.md",                  description: "Slash command queries in-flight ledger; reports threshold status" }
+      - { layer: hook,             location: ".claude/hooks/pre-tool-use-new-slice.sh",             description: "PreToolUse blocks new slice creation if WIP exceeds threshold; offers /wip-check or explicit park" }
+      - { layer: pre-commit,       location: ".husky/pre-commit (lefthook)",                        description: "Blocks commits that add new slices/apps when WIP exceeded" }
+      - { layer: pr-bot,           location: "tools/danger/check-wip-limit.ts",                     description: "Comments on PR if violation slipped through" }
+      - { layer: ci-check,         location: "libs/audits/checks/wip-limit.ts",                     description: "Hard-fails build if WIP exceeded" }
+      - { layer: scorecard,        location: "libs/audits/scorecards/wip-trend.ts",                 description: "WIP count per app, trend over time, displayed in admin dashboard" }
+      - { layer: mcp-resource,     location: "packages/principles-mcp/src/resources.ts",            description: "Exposed as principles://fwws; in-flight ledger as principles://wip-ledger" }
+    enforcer_count: 8
+    cross_references: [P-OP-001, P-OP-004, P-META-001]
+    anti_patterns:
+      - perpetual-pivot (start everything, finish nothing — Goldratt's bottleneck collapse)
+      - silent-park (threads abandoned without explicit park + reason)
+      - shiny-object-syndrome (new work always preferred to in-flight closure)
+
+  - id: P-OP-003
+    name: pcr
+    aliases: [PCR, pros-cons-recommendation]
+    category: operating
+    severity: warn
+    statement: |
+      When presenting decisions, use **P**ros, **C**ons, & **R**ecommendation format.
+      Present the option set + trade-offs + recommended path as a chunked decision package.
+    scope_note: |
+      Apply to decisions with non-trivial trade-space.
+      For trivial reversible choices (two-way doors at low cost), just decide.
+    industry_lineage:
+      - MADR (Markdown Architectural Decision Records) — Considered Options + Pros/Cons + Decision Outcome (the structural ancestor)
+      - BLUF (Bottom Line Up Front) — US Army Regulation 25-50 (2001) — recommendation-first communication
+      - John Sweller, Cognitive Load Theory (1988) — chunking for decisions; working memory ~4 chunks
+      - Amazon 6-pager / PR-FAQ (Bezos 2004) — narrative trade-space document
+      - McKinsey Rule of Three — structuring recommendations as exactly three MECE alternatives
+    format_spec: |
+      A PCR has three blocks in this order:
+      1. **Options** — table or bulleted list of N alternatives (typically 2–4)
+      2. **Pros / Cons** — per-option trade-offs (table format preferred)
+      3. **Recommendation** — chosen option + one-paragraph reasoning + open questions
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Cardinal principle #3; default format for decision-shaped questions" }
+      - { layer: skill,            location: "packages/skills/pcr/SKILL.md", description: "Slash command /pcr <topic> produces canonical 3-block output" }
+      - { layer: ai-prompt-addendum, location: "AGENTS.md", description: "Decision-shaped questions trigger PCR by default; trivial reversible choices skip it" }
+      - { layer: mcp-resource,     location: "packages/principles-mcp/src/resources.ts", description: "Exposed as principles://pcr with format spec for any agent" }
+    enforcer_count: 4
+    cross_references: [P-OP-004]
+    anti_patterns:
+      - recommendation-without-options (no trade-space exposed; reader can't evaluate)
+      - options-without-recommendation (analysis paralysis; decision punted back)
+      - false-balance (pros/cons rigged to support a predetermined recommendation)
+
+  - id: P-OP-004
+    name: batched-execution
+    aliases: [acceptance-criteria-batched-execution, mission-command-batching]
+    category: operating
+    severity: warn
+    statement: |
+      For N similar units of work: agree acceptance criteria upfront, batch the execution,
+      deliver a single comprehensive completion summary. No mechanical micro-stops.
+    industry_lineage:
+      - Mission Command (Auftragstaktik) — Prussian/German military doctrine; NATO keystone — commander's intent + decentralized execution + trust + mutual understanding
+      - Scrum — Definition of Done + acceptance criteria; agreement before execution starts
+      - Bezos (Amazon) — two-way doors: reversible decisions don't need escalation
+      - Lean / Kanban — pull-based work (executor pulls when ready)
+      - GitLab handbook — async-first, batched-review pattern
+    config:
+      threshold_n: 3                    # 3+ similar operations triggers batched mode
+      max_batch_size: 25                # cap before mid-checkpoint suggested
+      escape_hatch_required: true
+    escape_hatch: |
+      When the executor mid-batch discovers acceptance criteria were wrong, pause + re-confirm with user.
+      Do NOT silently adjust scope. Mission Command "disciplined initiative" applies.
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md",                                       description: "Cardinal principle #4; explicit workflow for N≥3 similar operations" }
+      - { layer: skill,            location: "packages/skills/batched-plan/SKILL.md",            description: "Slash command /batched-plan structures the upfront-acceptance proposal" }
+      - { layer: hook,             location: ".claude/hooks/pre-tool-use-batch-detect.sh",       description: "Detects N similar pending operations; prompts to consolidate into batched-acceptance flow" }
+      - { layer: ai-prompt-addendum, location: "AGENTS.md",                                     description: "AI explicitly instructed: detect N>1 → propose criteria once → batch → single summary" }
+    enforcer_count: 4
+    cross_references: [P-OP-002, P-OP-003]
+    anti_patterns:
+      - micro-approval-drag (per-item approval requests; ~20-40% velocity loss per Code Climate research)
+      - silent-scope-creep (mid-batch adjustments without re-confirmation)
+      - batch-too-large (N > max_batch_size without intermediate checkpoint)
+
+  # ==========================================================================
+  # ARCHITECTURE PRINCIPLES (27 — STUBS; full content + enforcer maps migrated during pillar-1 migration)
+  # ==========================================================================
+
+  - id: P-ARCH-001
+    name: nothing-stands-alone
+    category: architecture
+    severity: critical
+    statement: "Every artifact lives in exactly one slice. The slice owns DB + admin + customer + tests + audit."
+    status: stub
+    migration_target: docs/plan/pillar-0-governance/architecture-principles.md (principle 1)
+
+  - id: P-ARCH-002
+    name: mechanical-over-procedural
+    category: architecture
+    severity: critical
+    statement: "Every rule that matters is enforced by a linter, CI gate, generator, or runtime check. Rules in a README rot."
+    status: stub
+    migration_target: docs/plan/pillar-0-governance/architecture-principles.md (principle 2)
+
+  - id: P-ARCH-003
+    name: files-are-truth-db-is-index
+    category: architecture
+    severity: critical
+    statement: "Skills/agents/plugins/catalog live in the monorepo as files; Payload + Postgres mirror them for fast querying and admin UX. Files always win on conflict."
+    status: stub
+
+  - id: P-ARCH-004
+    name: one-source-of-truth-per-concern
+    category: architecture
+    severity: critical
+    statement: "ZModel = schema. Glossary = vocabulary. Stripe = entitlements. Catalog = artifacts. Principles.yaml = principles. No concern has two homes."
+    status: stub
+
+  - id: P-ARCH-005
+    name: three-layer-composition-only
+    category: architecture
+    severity: error
+    statement: "Tools (leaves) → Skills (use tools + sub-agents) → Agents (use skills, tools, other agents through named supervisor). Skill→skill calls forbidden at registry level."
+    enforcers:
+      - { layer: eslint-rule, location: "tools/validators/eslint-rules/no-skill-to-skill-import.ts", description: "Skills cannot import other Skills" }
+      - { layer: ci-check, location: "tools/validators/validate-skill-capabilities.mjs", description: "allowed_subagents declared per skill; skill→skill not allowed" }
+      - { layer: runtime, location: "libs/agents/dispatcher-middleware.ts", description: "Mastra dispatcher runtime check at agent invocation" }
+    enforcer_count: 3
+    cross_references: [P-ARCH-027]
+
+  # ==========================================================================
+  # GROUP B — TRUTH & SOURCES (P-ARCH-006 to P-ARCH-010)
+  # ==========================================================================
+
+  - id: P-ARCH-006
+    name: slice-contract-90-percent-to-merge
+    category: architecture
+    severity: critical
+    statement: "Every slice scores ≥90% to merge, 100% = gold. Slice contract is 16 checks; total 113 points; ≥102 to merge."
+    enforcers:
+      - { layer: ci-check, location: "tools/audit-runner/slice-score.ts", description: "nx run-many -t slice-score --check fails build below 90%" }
+      - { layer: pre-commit, location: ".husky/pre-commit (lefthook)", description: "Slice-score runs on changed slices; warns locally" }
+      - { layer: scorecard, location: "apps/admin/payload/collections/SliceHealth.ts", description: "Read-only computed Payload collection; admin dashboard surface" }
+    enforcer_count: 3
+    cross_references: [P-ARCH-001, P-ARCH-022]
+
+  - id: P-ARCH-007
+    name: soft-delete-by-default
+    category: architecture
+    severity: error
+    statement: "Every entity inherits soft-delete via the Base mixin's deletedAt. Hard delete requires explicit @hardDelete annotation + an explicit @@allow('delete', ...) policy."
+    enforcers:
+      - { layer: zenstack-policy, location: "libs/policies/base.zmodel", description: "Base mixin's @@deny('delete', true) — ZenStack-level enforcement" }
+      - { layer: ci-check, location: "tools/validators/validate-zmodel-naming.mjs", description: "Flags @@allow('delete', ...) without @hardDelete annotation" }
+      - { layer: ci-check, location: "tools/validators/validate-migration-safety.ts", description: "Migration linter — partial unique indexes added for soft-delete uniqueness" }
+    enforcer_count: 3
+    cross_references: [P-ARCH-008]
+
+  - id: P-ARCH-008
+    name: audit-by-trigger-not-app-code
+    category: architecture
+    severity: critical
+    statement: "Postgres triggers fire on every write to every entity table. App-level audit middleware is bypassable; triggers are not."
+    enforcers:
+      - { layer: ci-check, location: "libs/audits/checks/audit-trigger-coverage.ts", description: "Slice contract check #4 — every table has a trigger calling audit.record()" }
+      - { layer: ci-check, location: "libs/audits/checks/audit-log-integrity.ts", description: "No >5-min gap per tenant in audit.events" }
+      - { layer: ci-check, location: "libs/audits/checks/pg-trigger-introspection.ts", description: "Verifies triggers present at the DB layer via pg_trigger" }
+      - { layer: zenstack-policy, location: "libs/policies/slices/public/audit.zmodel", description: "RLS policy on audit.events — append-only, no UPDATE/DELETE" }
+    enforcer_count: 4
+    cross_references: [P-ARCH-010]
+
+  - id: P-ARCH-009
+    name: one-generation-layer-leverage-three-collapse
+    category: architecture
+    severity: warn
+    statement: "Generators that compose, not generators that generate generators. Stop at 2 levels of meta. (Judgment call; not auto-enforceable, but visible at architecture review.)"
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Cardinal architecture principle; ADR template requires meta-level justification for any 'generator that generates a generator'" }
+      - { layer: pr-bot, location: "tools/danger/check-meta-generator.ts", description: "Architecture review at code-review time (manual; flagged by reviewer)" }
+    enforcer_count: 2
+    cross_references: [P-ARCH-005]
+
+  - id: P-ARCH-010
+    name: defense-in-depth-authz
+    category: architecture
+    severity: critical
+    statement: "ZenStack @@allow is the gate; Postgres RLS is the backstop. Every critical authz check exists at multiple independent layers."
+    enforcers:
+      - { layer: ci-check, location: "libs/audits/checks/rls-coverage.ts", description: "Every tenant-scoped table has rowsecurity=true at the Postgres layer" }
+      - { layer: ci-check, location: "libs/audits/checks/permission-policy-drift.ts", description: "Declared @@allow policies match effective grants in pg_policies" }
+      - { layer: ci-check, location: "libs/audits/checks/audit-log-integrity.ts", description: "Trigger-level audit catches what app might bypass" }
+      - { layer: meta-audit, location: "libs/audits/checks/principle-coverage.ts", description: "P-META-001 enforcer — every critical principle has ≥2 non-AI enforcers" }
+    enforcer_count: 4
+    cross_references: [P-META-001, P-ARCH-027]
+
+  # ==========================================================================
+  # GROUP C — COMPOSITION & GENERATION (P-ARCH-011 to P-ARCH-015)
+  # ==========================================================================
+
+  - id: P-ARCH-011
+    name: filter-by-entitlement-before-catalog-load
+    category: architecture
+    severity: error
+    statement: "Token cost + security. The model never wastes context on capabilities the user can't use."
+    enforcers:
+      - { layer: runtime, location: "packages/catalog/src/load-catalog-for-user.ts", description: "loadCatalogForUser(userId) filters by entitlements before returning" }
+      - { layer: meta-audit, location: "libs/audits/checks/audit-of-audit.ts", description: "Verifies catalog-loading endpoints all use the entitlement-filtered loader" }
+      - { layer: eslint-rule, location: "tools/validators/eslint-rules/no-unfiltered-catalog-load.ts", description: "Flags direct catalog reads bypassing the helper" }
+    enforcer_count: 3
+    cross_references: [P-ARCH-025]
+
+  - id: P-ARCH-012
+    name: persona-orthogonal-to-agent
+    category: architecture
+    severity: error
+    statement: "One parameterized agent runtime, N personas via composition. Mastra Dynamic Agents pattern."
+    enforcers:
+      - { layer: ci-check, location: "libs/audits/checks/mastra-agent-count.ts", description: "personaChatAgent is one instance; loadPersona(id) is the parameterization" }
+      - { layer: pr-bot, location: "tools/danger/check-new-mastra-agent.ts", description: "Architecture review — adding a new Mastra agent for a 'different persona' is rejected" }
+      - { layer: frontmatter-contract, location: "tools/validators/validate-frontmatter.mjs", description: "Persona slices declare agent: personaChatAgent (not their own agent)" }
+    enforcer_count: 3
+    cross_references: [P-ARCH-013]
+
+  - id: P-ARCH-013
+    name: universal-traits-trunk-domain-overlays
+    category: architecture
+    severity: error
+    statement: "Layered system-prompt assembly — PLATFORM_CONSTITUTION → DOMAIN_OVERLAYS → traits → renderPersonaBlock → persona.systemPrompt → GUARDRAIL_BUNDLES → postHistoryInstructions."
+    enforcers:
+      - { layer: runtime, location: "libs/personas/compose.ts", description: "Persona compose function — single source of truth for assembly order" }
+      - { layer: frontmatter-contract, location: "libs/policies/slices/public/persona.zmodel", description: "Every persona declares domain (validated against PersonaDomain enum)" }
+    enforcer_count: 2
+    cross_references: [P-ARCH-012, P-ARCH-014]
+
+  - id: P-ARCH-014
+    name: crisis-escalation-load-bearing-v1
+    category: architecture
+    severity: critical
+    statement: "Crisis detection + escalation paths + output validator + CrisisEvent rows. Inherited by every persona; not a per-persona feature."
+    enforcers:
+      - { layer: runtime, location: "libs/personas/compose.ts", description: "Persona compose function always appends GUARDRAIL_BUNDLES[persona.riskClass] (which includes crisis bundles)" }
+      - { layer: runtime, location: "libs/crisis/detector.ts", description: "Pre-LLM input filter runs before any persona LLM call" }
+      - { layer: runtime, location: "libs/crisis/output-validator.ts", description: "Output validator on CRISIS_ELIGIBLE risk class — runs after every persona response" }
+      - { layer: ci-check, location: "tools/audit-runner/slice-score.ts", description: "Crisis slice meets all 16 checks itself (slice contract)" }
+    enforcer_count: 4
+    cross_references: [P-ARCH-013, P-ARCH-015]
+
+  - id: P-ARCH-015
+    name: audit-system-is-itself-a-slice
+    category: architecture
+    severity: error
+    statement: "Self-auditable. The audit system meets the same slice contract as everything else."
+    enforcers:
+      - { layer: ci-check, location: "tools/audit-runner/self-score.ts", description: "nx run audit-runner:slice-score — the audit slice itself scores ≥90%" }
+      - { layer: meta-audit, location: "libs/audits/checks/audit-of-audit.ts", description: "Meta-check that every audit ran in its expected interval" }
+    enforcer_count: 2
+    cross_references: [P-ARCH-006, P-ARCH-002]
+
+  # ==========================================================================
+  # GROUP D — AI ARCHITECTURE (P-ARCH-016 to P-ARCH-020)
+  # ==========================================================================
+
+  - id: P-ARCH-016
+    name: universal-terms-first
+    category: architecture
+    severity: warn
+    statement: "Adopt cross-system industry-standard terms. Invent locally only when no industry-convergent term exists."
+    enforcers:
+      - { layer: ci-check, location: "libs/audits/checks/vale-prose.ts", description: "Vale prose linter — auto-generated from glossary; flags forbidden synonyms" }
+      - { layer: eslint-rule, location: "eslint-config-csps/forbidden-identifiers.js", description: "ESLint id-denylist — auto-generated from glossary; flags forbidden identifiers" }
+      - { layer: pr-bot, location: "tools/danger/check-glossary-additions.ts", description: "Glossary review at PR — new term proposals require justification of why no industry term fits" }
+    enforcer_count: 3
+    cross_references: [P-ARCH-019]
+
+  - id: P-ARCH-017
+    name: template-first-reuse-first
+    category: architecture
+    severity: critical
+    statement: "Every page composes from a registered template in packages/templates/. Bespoke pages require a template-request PR before merge. No wild builders."
+    enforcers:
+      - { layer: ci-check, location: "tools/validators/validate-template-usage.mjs", description: "Slice contract check #12 — every page imports from @csps/templates" }
+      - { layer: eslint-rule, location: "eslint.config.ts (no-restricted-imports)", description: "Blocks raw @radix-ui/*, @tremor/react, @csps/ui/* outside @csps/templates" }
+      - { layer: generator, location: "tools/generators/page/index.ts", description: "platform:page generator refuses unknown templates" }
+      - { layer: ci-check, location: "libs/audits/checks/storybook-coverage.ts", description: "Storybook + Chromatic — visual regression on every PR" }
+    enforcer_count: 4
+    cross_references: [P-OP-001]
+
+  - id: P-ARCH-018
+    name: schema-per-app
+    category: architecture
+    severity: critical
+    statement: "Shared kernel in public; each app's domain entities in app_<slug>. Use fully-qualified table names; never search_path with transaction pooling."
+    enforcers:
+      - { layer: ci-check, location: "tools/validators/validate-app-schema.mjs", description: "Slice contract check #13 — App slice → @@schema('app_<slug>')" }
+      - { layer: eslint-rule, location: "tools/validators/eslint-rules/no-search-path-set.ts", description: "Forbids SET search_path in app code" }
+      - { layer: generator, location: "tools/migrate-multi-schema/migrate.ts", description: "Multi-schema migration tool templates schema names per app" }
+    enforcer_count: 3
+    cross_references: [P-ARCH-022]
+
+  - id: P-ARCH-019
+    name: glossary-owns-vocabulary
+    category: architecture
+    severity: error
+    statement: "All terms generate downstream. No naked synonyms in code, prose, schemas, or UI."
+    enforcers:
+      - { layer: ci-check, location: "libs/audits/checks/glossary-codegen-fresh.ts", description: "Regenerated artifacts must match committed" }
+      - { layer: ci-check, location: "libs/audits/checks/vale-prose.ts", description: "Vale prose linter (auto-generated from glossary)" }
+      - { layer: eslint-rule, location: "eslint-config-csps/forbidden-identifiers.js", description: "ESLint id-denylist (auto-generated from glossary)" }
+      - { layer: ci-check, location: "libs/audits/checks/db-column-vs-glossary.ts", description: "Every DB column name resolves to a glossary canonical term" }
+    enforcer_count: 4
+    cross_references: [P-ARCH-004, P-ARCH-016]
+
+  - id: P-ARCH-020
+    name: live-drift-detection
+    category: architecture
+    severity: error
+    statement: "Alignment is a continuous signal, not a one-time check. Nightly diff: introspected DB ↔ ZModel, Payload ↔ ZModel, Vale dict ↔ glossary, page files ↔ template catalog."
+    enforcers:
+      - { layer: ci-check, location: "libs/audits/checks/schema-prisma-db-drift.ts", description: "Nightly Prisma migrate status against each environment" }
+      - { layer: ci-check, location: "libs/audits/checks/schema-payload-vs-zmodel.ts", description: "Nightly Payload collections match ZModel" }
+      - { layer: ci-check, location: "libs/audits/checks/glossary-codegen-fresh.ts", description: "PR-time glossary codegen freshness check" }
+      - { layer: ci-check, location: "libs/audits/checks/principles-codegen-fresh.ts", description: "PR-time principles codegen freshness check" }
+      - { layer: scorecard, location: "apps/admin/app/(admin)/audits/drift/page.tsx", description: "Live drift dashboard visualizes all drift signals" }
+    enforcer_count: 5
+    cross_references: [P-ARCH-002, P-ARCH-003, P-ARCH-004]
+
+  # ==========================================================================
+  # GROUP E — MULTI-TENANCY & EXTRACTION (P-ARCH-021 to P-ARCH-023)
+  # ==========================================================================
+
+  - id: P-ARCH-021
+    name: ratchet-pattern
+    category: architecture
+    severity: error
+    statement: "Don't try to fix existing files. Block any change that makes a complexity/size metric worse on the diff. New code obeys; old code only gets cleaned when it's touched."
+    enforcers:
+      - { layer: ci-check, location: ".github/workflows/audit-pr.yml", description: "eslint --max-warnings 0 against changed files only" }
+      - { layer: pre-commit, location: ".husky/pre-commit (lint-staged)", description: "Same checks on staged files" }
+      - { layer: ci-check, location: "libs/audits/checks/file-size-ratchet.ts", description: "File size cannot regress on diff" }
+      - { layer: ci-check, location: "libs/audits/checks/cognitive-complexity.ts", description: "Function complexity cannot regress on diff" }
+    enforcer_count: 4
+    cross_references: [P-ARCH-022]
+
+  - id: P-ARCH-022
+    name: module-folder-mandatory-above-thresholds
+    category: architecture
+    severity: error
+    statement: "When any single file >500 LOC OR slice total >2,500 LOC OR cognitive complexity >15 OR context.md can no longer summarise in <400 lines → split into the module-folder mini-tree."
+    enforcers:
+      - { layer: ci-check, location: "libs/audits/checks/file-size-ratchet.ts", description: "Blocks PR if file exceeds 500 LOC" }
+      - { layer: ci-check, location: "libs/audits/checks/module-folder-trigger.ts", description: "Nightly — flags slices crossing thresholds; suggests nx g platform:split" }
+      - { layer: generator, location: "tools/generators/split/index.ts", description: "nx g platform:split — mechanical decomposition tool" }
+    enforcer_count: 3
+    cross_references: [P-ARCH-021]
+
+  - id: P-ARCH-023
+    name: variants-cascade-defaults-explicit-overrides-win
+    category: architecture
+    severity: warn
+    statement: "Common context flows from glob-matched variants; per-file frontmatter declares only what's specific. The anti-tagging-tax that makes small files viable."
+    enforcers:
+      - { layer: ci-check, location: "tools/validators/validate-frontmatter.mjs", description: "Applies variants resolution before validation; reports effective frontmatter" }
+      - { layer: instruction-file, location: "tools/catalog/variants.ts", description: "Single source of truth for cascading defaults" }
+    enforcer_count: 2
+    cross_references: [P-ARCH-024]
+
+  # ==========================================================================
+  # GROUP F — THIRD-PARTY TRUST & ENFORCEMENT SPINE (P-ARCH-024 to P-ARCH-027)
+  # ==========================================================================
+
+  - id: P-ARCH-024
+    name: small-files-ok-iff-three-preconditions
+    category: architecture
+    severity: warn
+    statement: "Small files are OK iff (a) machine-parseable frontmatter, (b) connectivity layer (links + variant-inherited tags + context.md reference), (c) retrieval layer (catalog index + MCP resource exposure)."
+    enforcers:
+      - { layer: ci-check, location: "tools/validators/validate-frontmatter.mjs", description: "Precondition (a) — machine-parseable frontmatter" }
+      - { layer: ci-check, location: "libs/audits/checks/orphan-file-detection.ts", description: "Weekly — flags files without links AND without bundle membership (precondition b)" }
+      - { layer: ci-check, location: "libs/audits/checks/catalog-coverage.ts", description: "Catalog scan verifies every file is indexed (precondition c)" }
+    enforcer_count: 3
+    cross_references: [P-ARCH-023]
+
+  - id: P-ARCH-025
+    name: third-party-trust-default-deny
+    category: architecture
+    severity: critical
+    statement: "Imported skills/plugins/agents start with the minimum permission set (Read/Grep/Glob, mock KB only). Promotion to higher tiers requires explicit review."
+    enforcers:
+      - { layer: runtime, location: "apps/skill-eval-worker/src/index.ts", description: "Sandbox runner — quarantine-tier skills run only here" }
+      - { layer: ci-check, location: "tools/validators/validate-skill-capabilities.mjs", description: "Banned tools per tier (PR check)" }
+      - { layer: hook, location: ".claude/hooks/pre-tool-use.sh", description: "Runtime permission check via PreToolUse" }
+      - { layer: runtime, location: "libs/agents/dispatcher-middleware.ts", description: "Mastra dispatcher middleware — independent runtime check (defense in depth)" }
+    enforcer_count: 4
+    cross_references: [P-ARCH-026, P-ARCH-027]
+
+  - id: P-ARCH-026
+    name: verbatim-vendor-preserved-rewritten-platform-owned
+    category: architecture
+    severity: error
+    statement: "Third-party content lives in two places: untouched in vendor/ (provenance + audit trail), normalized in libs/ (production loadable). Updates upstream do NOT auto-flow."
+    enforcers:
+      - { layer: eslint-rule, location: "tools/validators/eslint-rules/vendor-readonly.ts", description: "vendor/ is read-only outside tools/skill-importer/" }
+      - { layer: ci-check, location: "tools/validators/validate-skill-integrity.mjs", description: "SHA-pin verification; tag-pin forbidden" }
+      - { layer: frontmatter-contract, location: "skills.lock.yaml", description: "Every adopted skill has full SHA + integrity hash + capabilities digest" }
+    enforcer_count: 3
+    cross_references: [P-ARCH-025, P-ARCH-027]
+
+  - id: P-ARCH-027
+    name: capability-declaration-dispatcher-enforcement
+    category: architecture
+    severity: critical
+    statement: "Manifest declares intent; runtime enforces. Both PreToolUse hook AND Mastra dispatcher check capabilities (defense-in-depth)."
+    enforcers:
+      - { layer: hook, location: ".claude/hooks/pre-tool-use-capability.sh", description: "PreToolUse hook reads per-skill permission set; exits non-zero on mismatch" }
+      - { layer: runtime, location: "libs/agents/dispatcher-middleware.ts", description: "Mastra dispatcher middleware — independent check at agent invocation" }
+      - { layer: ci-check, location: "tools/validators/validate-skill-capabilities.mjs", description: "Banned tools detected at static-analysis time" }
+      - { layer: ci-check, location: "libs/audits/checks/skill-capability-drift.ts", description: "Weekly — declared capabilities haven't expanded since last review" }
+    enforcer_count: 4
+    cross_references: [P-ARCH-005, P-ARCH-010, P-ARCH-025]
+
+  # ==========================================================================
+  # META-PRINCIPLES (about principles themselves)
+  # ==========================================================================
+
+  - id: P-META-001
+    name: defense-in-depth-enforcement
+    category: meta
+    severity: critical
+    statement: |
+      Every principle must have at least N independent mechanical enforcers, where N is sized to severity.
+      The AI layer is treated as the LEAST reliable enforcer, not the only one.
+      Critical principles must have at least 2 non-AI enforcers.
+    industry_lineage:
+      - AGENTS.md / CLAUDE.md cross-vendor convergence (2025-2026)
+      - Anthropic Skills + Claude Code Hooks
+      - MCP cross-vendor enforcement protocol (Linux Foundation 2025)
+      - Backstage Tech Insights (Facts/Checks/Scorecards)
+      - OPA/Rego + Conftest for non-AI policy
+    config:
+      uses: severity_enforcer_minimums      # the table at the top of this file
+      non_ai_layers: [hook, pre-commit, pr-bot, ci-check, frontmatter-contract, eslint-rule, nx-tag-rule, opa-policy, zenstack-policy, audit-metric, scorecard, mcp-tool, generator]
+      ai_layers: [instruction-file, skill, ai-prompt-addendum]
+    enforcers:
+      - { layer: meta-audit, location: "libs/audits/checks/principle-coverage.ts", description: "For every principle, asserts ≥ min_enforcers per severity AND ≥ 2 non-AI enforcers for critical; CI fails if any principle is under-enforced" }
+      - { layer: meta-audit, location: "libs/audits/checks/enforcer-orphans.ts", description: "For every // @enforces: P-XXX-NNN annotation in source, asserts the principle exists; fails on dangling refs" }
+      - { layer: ci-check,   location: "libs/audits/checks/codegen-fresh.ts", description: "Regenerate AGENTS.md + skills + hooks from principles.yaml; CI fails if git diff non-empty" }
+    enforcer_count: 3
+    cross_references: [P-META-002, P-OP-001]
+
+  - id: P-META-002
+    name: principles-travel-with-artifacts
+    category: meta
+    severity: error
+    statement: |
+      When an app graduates from CSPS as a standalone product, the principles registry + audit-runner + MCP server
+      travel with it as vendored copies. The graduated app stays self-contained but provably descended from a known principle set.
+    enforcers:
+      - { layer: generator,  location: "tools/generators/extract-app/index.ts", description: "extract-app generator embeds principles.yaml + vendored audit-runner + vendored MCP server in extracted repo; stamps commit with principles version hash" }
+      - { layer: ci-check,   location: "libs/audits/checks/principles-version-known.ts", description: "Extracted apps verify their principles.yaml has a known version hash from the platform's release history" }
+      - { layer: scorecard,  location: "libs/audits/scorecards/principles-currency.ts", description: "Tracks how far behind extracted apps are from the platform's current principles version" }
+    enforcer_count: 3
+    cross_references: [P-META-001]
+
+  - id: P-META-003
+    name: inheritance-via-shared-runtime
+    category: meta
+    severity: error
+    statement: |
+      Platform principles propagate to hosted apps, customer-facing AI, and sub-agents through four reinforcing channels:
+      AGENTS.md cascade + shared MCP server + Mastra BaseAgent + audit-runner package. NOT through copy-paste or ad-hoc memory.
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Documents the cascade; per-app/per-package AGENTS.md extends, never overrides" }
+      - { layer: mcp-resource,     location: "packages/principles-mcp/", description: "Single MCP server every agent in every app connects to" }
+      - { layer: generator,        location: "tools/generators/agent/index.ts", description: "Mastra agent generator scaffolds extends BaseAgent; BaseAgent pulls platform principles from MCP at construction" }
+      - { layer: ci-check,         location: "libs/audits/checks/inheritance-coverage.ts", description: "Every Mastra agent extends BaseAgent; every app has AGENTS.md cascade; every app's audit-runner is the platform's vendored copy" }
+    enforcer_count: 4
+    cross_references: [P-META-001, P-META-002]
+
+  - id: P-META-004
+    name: stored-content-lifecycle
+    aliases: [stewardship-protocol, content-lifecycle, no-orphan-saves]
+    category: meta
+    severity: critical
+    statement: |
+      Every saved artifact (handoff, vault entry, legacy archive, open question, ADR proposal,
+      draft doc, intake item, third-party skill, rule, audit finding) must declare a
+      lifecycle_state and have a recurring trigger that advances it. Saved-without-trigger =
+      orphan-in-waiting. The default state for newly-saved-without-process is `pending-protocol`,
+      which itself triggers a protocol-creation flow.
+    industry_lineage:
+      - Scrum / Kanban — backlog grooming as recurring stewardship of saved items
+      - Linear / Jira / Shortcut — issue triage loop with state-machine + SLA per state
+      - Eric Evans, Domain-Driven Design (2003) — Stewardship as ownership of bounded-context artifacts
+      - Atlassian "Inbox Zero" + David Allen GTD — every captured input must have a next-action or be archived
+      - Tiago Forte, Building a Second Brain — PARA method (Project / Area / Resource / Archive)
+      - SharePoint Managed Metadata — quarterly review of open-tag values for promotion/retirement
+      - Backstage Catalog lifecycle (experimental → production → deprecated) — recurring lifecycle reviews
+    config:
+      lifecycle_states: [active, pending-review, pending-protocol, promoted, resolved, deprecated]
+      default_state_for_unprocessed: pending-protocol
+      review_cadence_pending: per-session       # every fresh-chat reviews pending-* items
+      review_cadence_active_stale_days: 90      # `active` artifacts beyond this since last review get flagged
+      sla_pending_review_days: 14
+      sla_pending_protocol_days: 30
+      sla_legacy_archive_review_days: 90
+    state_transitions:
+      pending-protocol:    [active, deprecated]                        # protocol created OR item rejected
+      pending-review:      [active, deprecated, promoted]              # human-reviewed; accepted, rejected, or promoted-to-canonical
+      active:              [pending-review, promoted, resolved, deprecated]
+      promoted:            [active, deprecated]                        # promoted-to-canonical can be re-reviewed
+      resolved:            [deprecated]                                # closed items eventually retired
+      deprecated:          []                                          # terminal
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                          description: "Stated as cardinal meta-principle; references /stewardship-review skill" }
+      - { layer: frontmatter-contract, location: "tools/validators/validate-frontmatter.mjs",                          description: "Every artifact has `lifecycle_state` (closed enum); `next_review_at` required when state != active" }
+      - { layer: ci-check,             location: "libs/audits/checks/stewardship/orphan-without-lifecycle-state.ts",   description: "PR check — every artifact has lifecycle_state declared (or inherited via variants)" }
+      - { layer: ci-check,             location: "libs/audits/checks/stewardship/stale-pending-review.ts",             description: "PR + nightly — items in pending-review past SLA flagged" }
+      - { layer: ci-check,             location: "libs/audits/checks/stewardship/stale-pending-protocol.ts",           description: "Nightly — items in pending-protocol past SLA flagged for protocol creation" }
+      - { layer: ci-check,             location: "libs/audits/checks/stewardship/legacy-archive-review-due.ts",        description: "Weekly — _legacy/ items past their next_review_at flagged for review or retirement" }
+      - { layer: skill,                location: "packages/skills/stewardship-review/SKILL.md",                        description: "Slash command surfaces all pending-* + active-stale items for current-session triage" }
+      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                           description: "Exposed as principles://stewardship-protocol with state machine + cadences" }
+    enforcer_count: 8
+    cross_references: [P-META-001, P-META-005, P-OP-002, P-ARCH-001]
+    anti_patterns:
+      - silent-save (artifact persisted without lifecycle_state — the orphan-in-waiting)
+      - perpetual-pending (state stuck in pending-* indefinitely; SLA audit catches)
+      - orphan-archive (_legacy items never re-reviewed)
+      - knowledge-graveyard (Confluence-rot equivalent — saved-but-unread, no recurring trigger)
+      - state-without-transition (lifecycle_state declared but no trigger advances it; treated as bug)
+      - stewardship-theater (running the review without actually advancing or retiring items)
+
+  - id: P-META-005
+    name: learning-loop
+    aliases: [closed-loop-learning, observe-orient-decide-act, OODA, no-write-only-graveyard]
+    category: meta
+    severity: critical
+    statement: |
+      Every input stream into CSPS — chat conversations, error logs, audit failures, user feedback,
+      AI-extracted insights, near-misses — is routed through a single intake → triage → routing →
+      permanent-fix → validation pipeline. Inputs that escape the loop trigger a self-healing audit
+      that identifies the gap, applies a permanent control, and validates the gap is closed.
+      Saving is not the goal; permanent system improvement is.
+    industry_lineage:
+      - John Boyd, OODA Loop (1976) — Observe → Orient → Decide → Act; tempo as competitive advantage
+      - Google SRE Book + Workbook — blameless postmortem culture + action-item SLOs + FixIt weeks (industry close-rate ~30% without forcing functions; Google targets 80%+ within 30d)
+      - Toyota Kata + Five Whys (Mike Rother, "Toyota Kata", 2009) — daily improvement cadence + Five-Whys → A3 escalation when problem cross-functional or recurring (the documented K=2 → ADR pattern)
+      - Lean / Kaizen — continuous improvement as built-in process, not project
+      - DORA / DevOps Research and Assessment — change failure rate, MTTR, lead time as the four meta-metrics
+      - Linear Triage + Triage Intelligence (2025) — auto-routing, SLA-as-trigger, two-tier confidence gate (~90% routing accuracy)
+      - OpenTelemetry GenAI semantic conventions — gen_ai.evaluation.result event for AI-extracted insight provenance
+      - RLHF / Active Learning literature — three-band confidence gate (auto-accept ≥0.90, review 0.75–0.90, discard <0.75); target 1–5% in human review band
+      - Knowledge management failure literature (Nick Milton 7 failure modes; Mark Burgess "Failure of KM"; Confluence-rot case studies) — the antidote: capture-in-flow + pull-based discovery + visible feedback loops + forcing-function closure
+    config:
+      pipeline_states: [observed, triaged, routed, fixing, validated, closed]
+      sla_observed_to_triaged_hours:
+        P0: 1
+        P1: 4
+        P2: 24
+        P3: 72
+      sla_triaged_to_routed_hours: 48
+      sla_fixing_days:
+        P1: 30
+        P2: 90
+        P3: 180
+      ai_confidence_thresholds:
+        auto_accept: 0.90       # AI-extracted insight enters `triaged` directly
+        human_review_band_lo: 0.75
+        human_review_band_hi: 0.90
+        discard_below: 0.75
+      target_human_review_rate_pct: [1, 5]    # operating point — outside this band, recalibrate
+      recurrence_check_days_default: 90
+      recurrence_check_days_critical: 30
+      repeat_issue_auto_adr_threshold_K: 2     # K=2 within 90d → auto-ADR for permanent fix (Toyota documented + Google SRE 30/60/90 conventions)
+      repeat_issue_window_days: 90
+      repeat_issue_lifetime_threshold_K: 3     # K=3 over lifetime catches slow-burn recurrences
+      meta_loop_trend_window_days: 90          # rolling window for resolution-cycle-time degradation detection
+      meta_loop_eval_cadence: weekly
+      meta_loop_degradation_pct_trigger_adr: 20   # >20% cycle-time degradation over the window → file ADR
+      otel_evaluation_event: gen_ai.evaluation.result    # OTel GenAI conv — provenance event for AI-extracted insights
+    pipeline_transitions:
+      observed:    [triaged, closed]                              # closed = false-positive auto-discard (below confidence threshold)
+      triaged:     [routed, closed]                                # closed = duplicate / dismissed with reason
+      routed:      [fixing, closed]                                # closed = wont-fix with stated reason
+      fixing:      [validated, closed]                             # closed = abandoned (rare; requires reason)
+      validated:   [closed, fixing]                                # fixing = re-opened (validation failed)
+      closed:      [observed]                                      # re-opened by recurrence-check trigger
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                              description: "Stated as cardinal meta-principle; references /learning-loop-extract skill; includes hard NO 'Never close a chat without running learning-loop:extract or marking no insights with reason'" }
+      - { layer: skill,                location: "packages/skills/learning-loop-extract/SKILL.md",                          description: "Mastra skill — scans session log for insights/errors/gaps/decisions; routes to LearningLoopItem inbox with confidence-gated bands" }
+      - { layer: hook,                 location: ".claude/hooks/post-stop-learning-loop.sh",                                description: "PostStop hook — auto-triggers extractor at session end" }
+      - { layer: ci-check,             location: "libs/audits/checks/learning-loop/coverage.ts",                            description: "Per-session — every session produced ≥1 extracted item OR explicit no-insights with reason" }
+      - { layer: ci-check,             location: "libs/audits/checks/learning-loop/repeat-issue-detection.ts",              description: "Weekly — same gap in ≥K=2 sessions within 90d auto-creates ADR; the killer enforcer" }
+      - { layer: ci-check,             location: "libs/audits/checks/learning-loop/unresolved-observation-stale.ts",        description: "Nightly — items in `observed` past their priority-tier SLA escalate" }
+      - { layer: ci-check,             location: "libs/audits/checks/learning-loop/fix-without-validation.ts",              description: "Nightly — items in `fixing` >SLA without `validated` flagged (prevents closure-theater)" }
+      - { layer: ci-check,             location: "libs/audits/checks/learning-loop/validation-without-recurrence-check.ts", description: "Weekly — `closed` items get a 30/90-day recurrence check based on tier; reopen if recurs" }
+      - { layer: ci-check,             location: "libs/audits/checks/learning-loop/meta-loop-audit.ts",                     description: "Monthly — resolution-cycle-time trend over 90-day rolling window; degradation >20% files ADR" }
+      - { layer: zenstack-policy,      location: "libs/policies/slices/public/learning-loop-item.zmodel",                   description: "LearningLoopItem Foundation slice — schema for the pipeline state machine; @@deny on bypass" }
+      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                                description: "Exposed as principles://learning-loop with state machine + cadences + thresholds" }
+    enforcer_count: 11
+    cross_references: [P-META-001, P-META-002, P-META-004, P-META-006, P-OP-001, P-ARCH-014]
+    anti_patterns:
+      - knowledge-graveyard (write-only insight capture; what KM systems fail at; antidote = closure-as-forcing-function)
+      - confidence-cliff (binary auto-accept threshold without review band — loses RLHF signal)
+      - closure-theater (items marked closed without validation; fix-without-validation audit catches)
+      - silent-escape (insight observed but no one noticed; weekly rescan + per-session coverage audit catches)
+      - loop-fatigue (too many low-confidence items reach review queue — confidence gate calibration; target 1-5% review rate)
+      - meta-loop-rot (resolution-cycle-time degrades silently; meta-loop-audit catches at >20% over 90d)
+      - false-positive-flood (extraction precision degrades; weekly extraction-precision audit catches)
+      - insight-without-owner (no one accountable; SLA escalation routes; orphans are routing failures)
+
+  - id: P-META-006
+    name: zero-findings-discipline
+    aliases: [RZF, CEC, complete-extraction-cycle, real-zero-findings, evidence-based-completion]
+    category: meta
+    severity: critical
+    statement: |
+      Every artifact reaching DONE / COMPLETE / RATIFIED status must emit an evidence block
+      proving (1) RZF — re-run validators returned ZERO findings across all check types
+      (mechanical / semantic / propagation / user-visible-outcome-when-applicable), AND
+      (2) CEC — Complete Extraction Cycle walked the platform until ZERO new application
+      opportunities. Cycle count is MEASUREMENT not TARGET; re-run IS the proof; partial-extraction
+      normalized as "good enough" is the universal AI failure pattern this principle catches.
+    industry_lineage:
+      - CSP S333 Real Zero Findings discipline (330+ sessions of evolution; treasure #5 EXT-20260502-005)
+      - Toyota Kata + Five Whys → A3 escalation (cycle-as-measurement)
+      - Google SRE postmortem culture (action-items-with-evidence not feeling)
+      - Backstage Tech Insights (Facts/Checks/Scorecards mechanical layer)
+      - User S002 turn 10 — explicit extension to Complete Extraction (positive branch addressing AI's negative-only-validation default)
+    config:
+      # RZF — defect verification (negative branch)
+      rzf_check_types: [mechanical, semantic, propagation, user-visible-outcome]
+      rzf_required_check_types: [mechanical, semantic, propagation]   # user-visible-outcome only when customer-facing change
+      rzf_cycle_count_is_target: false                                # explicit: count is MEASUREMENT not TARGET
+      rzf_evidence_block_required: true
+      # CEC — value verification (positive branch — CSPS extension S002 turn 10)
+      cec_walk_scope:
+        - principles.yaml
+        - pillar-0/*.md
+        - pillar-1/*.md
+        - pillar-2/*.md
+        - pillar-3/*.md
+        - pillar-4/*.md (when migrated)
+        - pillar-5/*.md (when migrated)
+        - pillar-6/*.md (when migrated)
+        - _handoff/VAULT/*.md
+        - _intake/*.md
+        - behavioral-contracts.md
+        - ai-behavior-spine.md
+        - memory/*.md
+        - AGENTS.md
+      cec_walk_trail_required: true
+      cec_termination_condition: "same-cycle-zero-new-opportunities"
+      cec_essence_must_be_distilled_in_one_sentence: true             # forces clarity; fuzzy essence = bad walks
+      # Anti-compression rule
+      compressed_zero_findings_under_context_pressure: forbidden       # defer to next session, do NOT compress
+      # Trigger cadence
+      mandatory_at:
+        - every principle ratification
+        - every leaf migration
+        - every batch close
+        - every chat boundary (close + open)
+        - every ADR landing
+        - every external input ratified into platform
+        - every behavioral contract addition
+        - every audit-runner check addition (RZF only; CEC not applicable to audit infrastructure itself per CSP precedent)
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                          description: "3 new hard NOs binding both RZF + CEC; bind to closing-protocol + ratification triggers" }
+      - { layer: ci-check,             location: "libs/audits/checks/zero-findings/rzf-coverage.ts",                    description: "PR-blocking: every artifact reaching DONE has RZF evidence block; missing = fail (planned week 4)" }
+      - { layer: ci-check,             location: "libs/audits/checks/zero-findings/cec-walk-trail-completeness.ts",     description: "PR-blocking warn: every ratified principle/leaf has CEC walk-trail; missing = warn (planned week 4)" }
+      - { layer: ci-check,             location: "libs/audits/checks/zero-findings/audit-of-audits.ts",                 description: "Per CSP precedent: verify audit registry itself is healthy; result files exist; no ABANDONED state (planned week 4)" }
+      - { layer: ci-check,             location: "libs/audits/checks/zero-findings/cycle-count-as-target-detection.ts", description: "Detect language pattern 'run N cycles' or 'predetermined cycles'; fail with anti-pattern flag (planned week 4)" }
+      - { layer: hook,                 location: ".claude/hooks/post-stop-zero-findings.sh",                            description: "PostStop: auto-fire CEC walk on session-close for any new principle/leaf ratified this session (planned week 4)" }
+      - { layer: hook,                 location: ".claude/hooks/user-prompt-submit-zero-findings.sh",                   description: "UserPromptSubmit: surface RZF + CEC state at session-open (banner — open ZF-pending / open CEC-walks)" }
+      - { layer: skill,                location: "packages/skills/rzf-cycle-runner/SKILL.md",                           description: "Slash command /rzf-cycle <scope> orchestrates full cycle: run validators → collect → fix → re-run → emit evidence block" }
+      - { layer: skill,                location: "packages/skills/cec-walk/SKILL.md",                                   description: "Slash command /cec-walk <ratified-artifact> walks platform per scope; emits walk-trail" }
+      - { layer: frontmatter-contract, location: "tools/validators/validate-frontmatter.mjs",                           description: "Artifacts at lifecycle_state: validated|closed require evidence-block reference" }
+      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                            description: "Exposed as principles://zero-findings-discipline with full state-machine + evidence-block format + walk-trail format" }
+    enforcer_count: 11
+    cross_references: [P-META-001, P-META-004, P-META-005, P-OP-001, P-OP-003, P-ARCH-006]
+    anti_patterns:
+      # RZF anti-patterns (from CSP S333)
+      - validator-pass-cited-without-rerun (S132 / S184 / S227 incidents)
+      - mechanical-only-declared-as-rzf (S332 — skipping semantic + propagation)
+      - total-zero-hides-sub-findings (S184 — TOTAL=0 in summary; 11 hidden)
+      - baseline-not-zero-counted-as-clean (S278 — drift normalized)
+      - rerun-skipped-after-fix (S132 — fixing is necessary not sufficient)
+      - cycle-count-as-target (S227 — process-driven not result-driven)
+      - compressed-rzf-under-context-pressure (defer not compress)
+      # CEC anti-patterns (CSPS S002 turn 10)
+      - negative-only-validation (the universal AI failure pattern this principle exists to cure)
+      - run-forward-bias (moving to next priority without walking platform for essence-applications)
+      - partial-extraction-normalized-as-complete (applying to 2 obvious + skipping 5 non-obvious)
+      - walk-without-iteration (one walk → apply → declare CEC-0 without re-walking on EXTENDED state)
+      - premature-cec-zero (declaring "no further opportunities" without explicit walk-trail evidence)
+      - essence-extraction-unstated (applying without distilling 1-sentence core; subsequent walks miss applications)
+      - ai-default-moving-on (the dominant failure mode; counteracted only by mechanical CEC-trigger at every ratification)
+
+  - id: P-META-007
+    name: five-surface-engraving
+    aliases: [FSE, five-element-pattern, discipline-propagation, catch-pipeline]
+    category: meta
+    severity: critical
+    statement: |
+      When AI detects any catch (gap / trap / anti-pattern / failure-mode / missing-execution),
+      engraving must hit ALL 5 surfaces — schema + validator + hook + memory + contract — atomically
+      in the same response/commit. Below 2 surfaces = single-surface-engraving anti-pattern;
+      5/5 = full mechanical engraving. The mechanism IS the platform's compounding-returns moat:
+      every session inherits prior engravings; re-discovery cost approaches zero.
+    industry_lineage:
+      - CSP S333 AI_BEHAVIOR_AUTONOMY_AUDIT (treasure #1 EXT-20260502-002) — original 5-element pattern; 330+ sessions of evolution
+      - User S002 turn 16 — formalization request + mechanical-trigger requirement + strategic-value framing (stability / scalability / uniqueness)
+      - B_CATCH_TO_ENGRAVING (S002 turn 15) — the contract this principle operationalizes
+    config:
+      surfaces:
+        - schema             # frontmatter / ZModel / closed-enum / state-machine / template-required-header
+        - validator          # audit-runner / linter / Postgres-trigger
+        - hook               # .claude/hooks/* (PreToolUse / PostToolUse / Stop / PostStop / UserPromptSubmit)
+        - memory             # ~/.claude/.../memory/feedback_*.md + MEMORY.md index
+        - contract           # behavioral-contracts.md § B_* + AGENTS.md hard NO + canonical leaf doc + spine row
+      completeness_levels:
+        single-surface: 1     # ANTI-PATTERN — never acceptable
+        minimal: 2            # memory + AGENTS.md NO; acceptable only when other 3 are planned-week-4
+        partial: 3-4
+        full: 5
+        augmented: 5+ audit-of-audits
+      atomic_application_required: true   # all surfaces in same response/commit
+      meta_rzf_verification_required: true # cycle on the engraving itself
+      below_2_surfaces_severity: error    # PR-blocking
+      below_5_surfaces_severity: warn     # explicit deferral note required
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                          description: "Hard NO: catch-language patterns trigger immediate 5-surface engraving in same response" }
+      - { layer: frontmatter-contract, location: "_handoff/VAULT/closing-summary-template.md",                          description: "§10.13b mandatory header — every catch enumerates 5-surface delta" }
+      - { layer: ci-check,             location: "libs/audits/checks/zero-findings/catch-engraving-completeness.ts",     description: "PR-blocking warn — flags surfaces_count < 2" }
+      - { layer: ci-check,             location: "libs/audits/checks/zero-findings/single-surface-engraving-anti-pattern.ts", description: "PR-blocking error — flags new disciplines at 1/5" }
+      - { layer: ci-check,             location: "libs/audits/checks/zero-findings/audit-of-audits.ts",                  description: "Meta-RZF on the engraving registry itself; verifies 5-surface registry health" }
+      - { layer: hook,                 location: ".claude/hooks/post-stop-five-surface-engraving.sh",                    description: "PostStop scans session log for catch-language; verifies 5-surface artifacts created" }
+      - { layer: memory,               location: "~/.claude/projects/.../memory/feedback_five_surface_engraving.md",     description: "Cognitive layer; loaded at session-start" }
+      - { layer: skill,                location: "packages/skills/five-surface-engraving/SKILL.md",                      description: "Slash command /engrave <catch> orchestrates the 7-stage cycle (planned)" }
+      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                             description: "Exposed as principles://five-surface-engraving with full 7-stage pipeline + evidence-block format" }
+    enforcer_count: 9
+    cross_references: [P-META-001, P-META-006, P-OP-001]
+    anti_patterns:
+      - single-surface-engraving (memory only OR contract only — fails per CSP)
+      - sequential-engraving (memory now, contract later — must be atomic)
+      - engraving-without-completeness-verification (no FSE evidence block emitted)
+      - silent-below-2-surfaces (without explicit deferral note)
+      - "I'll engrave if it comes up again" (N=2 already costs re-discovery)
+      - catches-noted-not-engraved (B_CATCH_TO_ENGRAVING violation; this principle prevents)
+
+# ============================================================================
+# AUDIT META-CHECK ALGORITHM
+# ============================================================================
+# This is the audit-the-audits check. Run via `pnpm nx run audit-runner:meta-check`.
+audit_meta_check:
+  description: |
+    Verifies every principle has the required number of enforcers per its severity class,
+    every enforcer location resolves to a real file, and every // @enforces: annotation
+    in source references a real principle.
+  algorithm: |
+    1. Parse principles.yaml.
+    2. For each principle:
+       - Look up min_enforcers per severity from severity_enforcer_minimums.
+       - Count enforcers in the principle's enforcers list.
+       - Verify count >= min.
+       - For each enforcer, verify the location file exists OR is in the codegen output set.
+       - For critical principles, verify >= 2 non-AI enforcers.
+       - Fail if any check fails.
+    3. Inverse check (orphan-enforcer audit):
+       - Grep all source for `// @enforces: P-` annotations.
+       - For each annotation, verify the principle ID exists in principles.yaml.
+       - Fail if any annotation references a missing principle.
+    4. Codegen-fresh check:
+       - Re-run `pnpm principles:codegen` in a clean tree.
+       - Fail if git diff produces any output (drift between source and generated).
+    5. Output: report per-principle coverage; flag under-enforced; non-zero exit on any failure.
+
+# ============================================================================
+# CHANGE PROTOCOL
+# ============================================================================
+change_protocol: |
+  1. Edit principles.yaml.
+  2. If adding/removing/modifying a principle: write or update an ADR in docs/adr/
+     (the principle's ADR field references the ADR id).
+  3. Run `pnpm principles:codegen` — this updates AGENTS.md + skills + hooks + MCP resources + audit checks.
+  4. Run `pnpm nx run audit-runner:meta-check` locally — verify no orphans.
+  5. Commit principles.yaml + all generated files together.
+  6. CI re-runs codegen + meta-check; rejects if drift.
+  7. Merge → all downstream consumers (Claude Code, Cursor, Mastra agents, CI gates) pick up the change.
+
+# ============================================================================
+# OPEN QUESTIONS
+# ============================================================================
+open_questions:
+  - "Should principles.yaml be split into per-category files (operating.yaml, architecture.yaml, meta.yaml) once it grows past ~500 lines?"
+  - "How do we version individual principles (semver on the principle level vs the registry level)?"
+  - "When a principle is deprecated, do its enforcers get a grace period or are they removed atomically?"
+  - "Should AI-proposed principles (drafted by Claude) require human review before merge? Recommend yes — add proposed_by: ai|human field on next iteration."

@@ -1,0 +1,166 @@
+// ============================================================================
+// ExternalInput — Foundation slice for the External-Input Intake plane
+// ============================================================================
+// The raw-capture record for every external input into CSPS.
+// Pairs with LearningLoopItem (P-META-005) — ExternalInput is the front door;
+// LearningLoopItem is the closed-loop pipeline that consumes the gate's output.
+//
+// Source of truth doc: docs/plan/_intake/README.md
+// Lifecycle: experimental (pending user review of single-gate vs distributed architecture)
+// ============================================================================
+
+import "../base"
+
+@@meta(
+  id: "csps.public.external-input",
+  domain: "governance",
+  type: "schema",
+  audience: "developer",
+  enforces: ["P-META-005", "P-ARCH-025"],
+  lifecycle: "experimental",
+  lifecycle_state: "pending-review"
+)
+
+enum ExternalInputSource {
+  // Tier 1: Human direct
+  HUMAN_CHAT
+  HUMAN_VOICE
+  HUMAN_FORM
+  HUMAN_NEAR_MISS
+
+  // Tier 2: URL content
+  URL_VIDEO_TRANSCRIPT
+  URL_PDF
+  URL_POWERPOINT
+  URL_GOOGLE_DOC
+  URL_GOOGLE_SHEET
+  URL_GOOGLE_SLIDES
+  URL_WEBPAGE
+  URL_X_THREAD
+  URL_REDDIT_THREAD
+
+  // Tier 3: File uploads
+  FILE_PDF
+  FILE_DOCX
+  FILE_PPTX
+  FILE_XLSX
+  FILE_CSV
+  FILE_JSON
+  FILE_IMAGE
+  FILE_AUDIO
+  FILE_TXT
+  FILE_MARKDOWN
+
+  // Tier 4: AI app exports
+  AI_CLAUDE_CODE_TRANSCRIPT
+  AI_LOVABLE_SESSION
+  AI_CHATGPT_EXPORT
+  AI_CURSOR_SESSION
+  AI_ANTIGRAVITY_EXPORT
+  AI_OTHER
+}
+
+enum ExternalInputRiskProfile {
+  low
+  medium
+  high
+}
+
+enum ExternalInputGateState {
+  received           // raw capture; no scan yet
+  scanning           // prompt-injection scan in progress
+  sanitized          // scan passed; safe to extract
+  quarantined        // scan failed; manual review or auto-discard
+  extracting         // extractor running
+  routed             // extracted + fanned out to LearningLoopItem(s)
+  failed             // extraction error; needs ops attention
+}
+
+model ExternalInput extends Base {
+  source                  ExternalInputSource
+  source_url              String?                                // for URL_* sources
+  uploader_user_id        String?                                // for HUMAN_* and FILE_* sources
+  raw_content             Bytes?                                 // for FILE_* sources (encrypted at rest if PII)
+  raw_content_url         String?                                // for URL_* sources (resolved to canonical form)
+  content_hash            String                                 @unique  // SHA-256 of canonical content
+  byte_size               Int
+
+  risk_profile            ExternalInputRiskProfile
+  gate_state              ExternalInputGateState                 @default(received)
+
+  // Prompt-injection scan results
+  scan_score              Float?                                 @gte(0) @lte(1)   // 0=clean, 1=definitely-injected
+  scan_evaluator          String?                                                  // OTel evaluator name
+  scan_evidence           Json?                                                    // structured detail
+  sanitized_content       Bytes?                                                   // post-sanitization content (for medium/high risk)
+
+  // Extraction
+  extractor_name          String?                                                  // tools/extractors/<name>
+  extracted_at            DateTime?
+  extraction_confidence   Float?                                @gte(0) @lte(1)
+  extracted_summary       String?                               @length(1, 1024)
+
+  // Fan-out (links to N LearningLoopItem rows where parent_input_id = this.id)
+  fanout_count            Int                                   @default(0)
+  fanout_completed_at     DateTime?
+
+  // Provenance (OTel-aligned)
+  otel_trace_id           String?
+  otel_span_id            String?
+  ingested_at             DateTime                              @default(now())
+
+  // Relationships
+  learning_loop_items     LearningLoopItem[]                    @relation("ExternalInputFanout", fields: [], references: [])
+
+  @@schema("public")
+  @@allow('read', auth().staffRole != null)
+  @@allow('create', auth().role == "system" || auth().staffRole != null)
+  @@allow('update', auth().staffRole != null)
+  @@deny('delete', true)                                          // append-only
+  @@deny('update', gate_state in ['routed', 'failed'])             // immutable post-routing
+
+  @@index([gate_state, ingested_at])
+  @@index([source, ingested_at])
+  @@index([uploader_user_id, ingested_at])
+  @@index([content_hash])                                          // dedupe lookup
+
+  // State machine (enforced via Postgres trigger)
+  // received   → scanning | quarantined | failed
+  // scanning   → sanitized | quarantined | failed
+  // sanitized  → extracting | failed
+  // extracting → routed | failed
+  // quarantined → received (after manual override) | (terminal)
+  // routed     → (terminal)
+  // failed     → (terminal — ops investigates)
+}
+
+// ============================================================================
+// Extension to LearningLoopItem — add parent_input_id link
+// ============================================================================
+// (Add this field to libs/policies/slices/public/learning-loop-item.zmodel
+// in a follow-up edit; declared here for documentation)
+//
+// model LearningLoopItem extends Base {
+//   ...
+//   parent_input_id  String?
+//   parent_input     ExternalInput?  @relation("ExternalInputFanout", fields: [parent_input_id], references: [id])
+//   ...
+// }
+
+// ============================================================================
+// Computed views (powered by daily refresh job)
+// ============================================================================
+
+model ExternalInputBacklog extends Base {
+  // Aggregate of gate_state counts per source × risk_profile
+  source                  ExternalInputSource
+  risk_profile            ExternalInputRiskProfile
+  gate_state              ExternalInputGateState
+  item_count              Int
+  oldest_ingested_at      DateTime?
+  refreshed_at            DateTime                              @default(now())
+
+  @@schema("public")
+  @@allow('read', auth().staffRole != null)
+  @@deny('create,update,delete', true)
+}

@@ -1,0 +1,19 @@
+extraction_id: EXT-20260502-001
+parent_input_id: EXT-20260502-001
+source_type: HUMAN_CHAT
+received_at: 2026-05-02T15:00:00Z
+received_via: chat-paste
+raw_byte_size: 1850
+content_hash: pending-hash-once-runtime-ships    # SHA-256 will be computed mechanically week 1+
+risk_profile: low                                # tenant-authored chat from authenticated user
+trust_tier: tenant_authored
+submitted_by: user
+is_multi_section: true
+section_count: 4
+sub_ids:
+  - EXT-20260502-001-A    # intent-to-impact validation proposal
+  - EXT-20260502-001-B    # two-sided handshake proposal
+  - EXT-20260502-001-C    # constitutional reference (memory-alone-doesn't-change-behavior)
+  - EXT-20260502-001-D    # dev frontend dashboard request
+schema_gap_signal: true                         # see provenance.md
+session: S002

@@ -1,0 +1,26 @@
+extraction_id: EXT-20260502-003
+parent_input_id: EXT-20260502-003
+source_type: AI_OTHER                # CSP-platform doc
+origin: other-app
+origin_detail: csp-platform
+received_at_iso: 2026-05-02T16:31:00Z
+received_via: chat-paste-document-block
+raw_byte_size: ~22000
+content_hash: pending-runtime
+risk_profile: low
+trust_tier: tenant_authored
+submitted_by: user
+title: "Session Lifecycle Protocol — Cross-Chat Continuity for Claude Code Apps"
+provenance: CSP build; distilled patterns from hundreds of Claude Code sessions
+is_multi_section: true
+section_count: 7
+sub_ids:
+  - EXT-20260502-003-A    # 7-step session close protocol
+  - EXT-20260502-003-B    # 6-step session open protocol
+  - EXT-20260502-003-C    # Two-sided handshake — 4-phase mutual confirmation (continuity manifest + opening receipt + user mediation)
+  - EXT-20260502-003-D    # Step 5b intent-to-impact tagging (validates protocols.md §16 v1.2)
+  - EXT-20260502-003-E    # Anti-patterns catalogue (mirror trap + silent drop + ready-when-you-are + premature close + validator-cited-not-rerun + reading-whole-handoff + conversation-only-decisions)
+  - EXT-20260502-003-F    # Standardized state-declaration at session-open (token budget / validator state / pending count / open findings / scope confidence)
+  - EXT-20260502-003-G    # Multi-AI dispatch protocol (PROMPT_TARGET_MATCHED + DIVERGE-then-CONVERGE + cruel-critic discipline)
+session: S002
+schema_gap_signal: false             # CSPS protocols.md v1.2 already has the structural shape; this doc VALIDATES + ENHANCES with continuity-manifest format

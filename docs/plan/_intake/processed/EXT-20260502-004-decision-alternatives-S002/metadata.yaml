@@ -1,0 +1,27 @@
+extraction_id: EXT-20260502-004
+parent_input_id: EXT-20260502-004
+source_type: AI_EXTRACTION
+origin: internal-csps
+origin_detail: ai-self-extraction-S002-turn-8-pcr-non-recommended-options
+received_at_iso: 2026-05-02T18:00:00Z
+received_via: chat-paste                # AI's PCR analysis was emitted in chat output
+raw_byte_size: ~7500
+content_hash: pending-runtime
+risk_profile: low                       # AI-generated content from authenticated session
+trust_tier: tenant_authored
+submitted_by: ai-S002-turn-8
+title: "S002 Decision Alternatives — non-recommended PCR options for 7 BLKs"
+provenance: AI's PCR analysis turn 8; user accepted recommended option per BLK; non-recommended options saved here per user directive turn 9 ("save all the parts not included for future assessments as 'inputs'")
+is_multi_section: true
+section_count: 7                        # one per BLK that had alternatives
+sub_ids:
+  - EXT-20260502-004-BLK005    # protocols.md v1.2 alternatives (B modify, C reject, D defer)
+  - EXT-20260502-004-BLK008    # precedent step 0 alternatives (B mid-protocol, C no step, D different)
+  - EXT-20260502-004-BLK001    # intake architecture alternatives (A single gate, B distributed, D different)
+  - EXT-20260502-004-BLK002    # AIBehavior slice alternatives (A week 4, B extend AuditCheck, D never)
+  - EXT-20260502-004-BLK006    # input-assessment alternatives (A all 43, C <20, D different)
+  - EXT-20260502-004-BLK003    # connector cohort alternatives (A drafted order, C different)
+  - EXT-20260502-004-BLK007    # spine naming alternatives (B constitution, C registry, D engraving matrix, E different)
+session: S002
+schema_gap_signal: false
+purpose: Future-session-assessment input. Captured non-recommended options so they're not silent-dropped; can be re-evaluated if circumstances change.

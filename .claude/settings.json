@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:tag-app-delivery.cncf.io)",
+      "WebFetch(domain:arc42.org)",
+      "WebFetch(domain:sandimetz.com)",
+      "WebFetch(domain:docs.cloud.google.com)"
+    ]
+  }
+}

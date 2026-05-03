@@ -1,0 +1,114 @@
+// ============================================================================
+// LearningLoopItem — Foundation slice for P-META-005 Learning Loop
+// ============================================================================
+// Schema for the closed-loop improvement pipeline state machine.
+// Lives in `public` schema (kernel; available to all apps).
+// Source of truth for the principle: packages/principles/principles.yaml#P-META-005
+// Canonical doc: docs/plan/pillar-0-governance/learning-loop.md
+// ============================================================================
+
+import "../base"   // Base mixin: id, createdAt, updatedAt, deletedAt, tenant_id
+
+@@meta(
+  id: "csps.public.learning-loop-item",
+  domain: "governance",
+  type: "schema",
+  audience: "developer",
+  enforces: ["P-META-005"],
+  lifecycle: "production",
+  lifecycle_state: "active"
+)
+
+enum LearningLoopSource {
+  CHAT             // chat conversation (session transcript)
+  AUDIT            // audit-runner check failure
+  ERROR_LOG        // application error log
+  FEEDBACK         // user-submitted feedback
+  NEAR_MISS        // human-reported near-miss
+  AI_EXTRACTION    // AI-extracted insight (carries OTel gen_ai.evaluation.result event)
+}
+
+enum LearningLoopState {
+  observed
+  triaged
+  routed
+  fixing
+  validated
+  closed
+}
+
+enum LearningLoopPriorityTier {
+  P0    // critical — observed → triaged in 1h, fixing 30d
+  P1    // high     — triaged in 4h
+  P2    // normal   — triaged in 24h, fixing 90d
+  P3    // low      — triaged in 72h, fixing 180d
+}
+
+enum LearningLoopClosedReason {
+  fixed              // permanent fix shipped + validated + recurrence-check passed
+  duplicate          // duplicate of another item; merged via parent_item_id
+  wont_fix           // explicit decision not to fix; reason recorded in evidence
+  auto_discard       // confidence below threshold (AI-extraction below 0.75)
+  abandoned          // started fixing but abandoned; rare, requires reason
+}
+
+model LearningLoopItem extends Base {
+  source                  LearningLoopSource
+  source_ref              String?                                // session-id, audit-run-id, error-id, feedback-id
+  summary                 String                                 @length(1, 512)
+  evidence                Json                                   // structured detail; for AI-extraction includes OTel gen_ai.evaluation.result event
+  pipeline_state          LearningLoopState                      @default(observed)
+  priority_tier           LearningLoopPriorityTier
+  confidence              Float?                                 @gte(0) @lte(1)   // present for AI-extracted items only
+  evaluator_name          String?                                                  // OTel evaluator name (e.g., "extraction_confidence")
+  owner                   String?                                                  // group:<handle> | user:<handle>; null when in `observed`
+  sla_minutes             Int?                                                     // computed per state + tier
+  state_transitioned_at   DateTime                               @default(now())
+  routed_to               String?                                                  // slice / ADR / skill / generator slug the fix targets
+  fixing_pr_url           String?
+  validated_at            DateTime?
+  recurrence_check_at     DateTime?                                                // scheduled recurrence check
+  recurrence_count        Int                                    @default(0)
+  permanent_fix_ref       String?                                                  // link to ratified ADR or merged PR
+  closed_reason           LearningLoopClosedReason?                                // required when state == closed
+  parent_item_id          String?                                                  // for recurrence-reopened items, points to original
+
+  parent                  LearningLoopItem?                      @relation("RecurrenceChain", fields: [parent_item_id], references: [id])
+  reopens                 LearningLoopItem[]                     @relation("RecurrenceChain")
+
+  @@schema("public")
+  @@allow('read', auth().staffRole != null)
+  @@allow('create', auth().role == "system" || auth().staffRole != null)
+  @@allow('update', auth().staffRole != null)
+  @@deny('delete', true)                              // append-only ledger; closed items become deprecated, not deleted
+
+  @@index([pipeline_state, priority_tier])
+  @@index([owner, pipeline_state])
+  @@index([recurrence_check_at])                      // weekly job scans for due checks
+
+  // State machine constraints (enforced via Postgres trigger; see audit-triggers.md)
+  // observed   → triaged | closed
+  // triaged    → routed  | closed
+  // routed     → fixing  | closed
+  // fixing     → validated | closed
+  // validated  → closed | fixing  (fixing = re-opened)
+  // closed     → observed (only via recurrence-check trigger; auto-creates new item with parent_item_id)
+}
+
+// ============================================================================
+// Computed views (read-only; consumed by audit-runner + admin dashboard)
+// ============================================================================
+
+model LearningLoopBacklog extends Base {
+  // Materialized aggregate of pipeline_state counts per priority_tier
+  // Refreshed nightly + on-demand; powers admin /audits/learning-loop dashboard
+  pipeline_state          LearningLoopState
+  priority_tier           LearningLoopPriorityTier
+  item_count              Int
+  oldest_observed_at      DateTime?
+  refreshed_at            DateTime                               @default(now())
+
+  @@schema("public")
+  @@allow('read', auth().staffRole != null)
+  @@deny('create,update,delete', true)                // computed; refreshed by job
+}

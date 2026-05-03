@@ -1,0 +1,27 @@
+extraction_id: EXT-20260502-002
+parent_input_id: EXT-20260502-002
+source_type: AI_OTHER                # CSP-platform doc
+origin: other-app                    # NEW required field per S002 turn 7 — origin enum
+origin_detail: csp-platform          # NEW field — specific app
+received_at_iso: 2026-05-02T16:30:00Z   # second-precision ISO 8601
+received_via: chat-paste-document-block
+raw_byte_size: ~24500
+content_hash: pending-runtime
+risk_profile: low                   # tenant-authored doc from prior platform; user-curated
+trust_tier: tenant_authored
+submitted_by: user
+title: "AI Behavior Autonomy Audit — Reducing Confirmation-Asks Without Losing Trust"
+provenance: CSP build, multi-month, multi-session-332-equivalent reference
+is_multi_section: true
+section_count: 8
+sub_ids:
+  - EXT-20260502-002-A    # 4 conditions for autonomous execution
+  - EXT-20260502-002-B    # 8 categories requiring explicit approval
+  - EXT-20260502-002-C    # 5-element engraving pattern (schema + validator + hook + memory + contract)
+  - EXT-20260502-002-D    # Trust calibration (grows / shrinks)
+  - EXT-20260502-002-E    # Anti-patterns catalogue
+  - EXT-20260502-002-F    # Trust as resource managed bidirectionally
+  - EXT-20260502-002-G    # 8 practical guidelines for AI builders
+  - EXT-20260502-002-H    # Test of fitness — ask-rate metric
+session: S002
+schema_gap_signal: false             # CSPS has comparable structures (operating-principles + AGENTS.md hard NOs) but missing explicit framework — see ai-behavior-spine.md

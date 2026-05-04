@@ -5,7 +5,9 @@ description: Handoff from Session 003 to Session 004. Per protocols.md v1.8 (int
 version: 1.0
 owner: group:finky
 lifecycle: production
-lifecycle_state: active
+lifecycle_state: resolved
+superseded_by: csps.handoff.S004-to-S005
+resolved_at: 2026-05-04T00:19:22Z
 tags:
   - domain:governance
   - type:reference

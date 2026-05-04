@@ -315,6 +315,21 @@ The substantive content from v1.3 is being migrated into per-pillar leaf documen
 | **MODIFIED extended-S003** | `pillar-0-governance/audit-runner.md` | +66 audit checks across 14 new categories (~91 total; was 47); closes audit-registry dangling-ref debt |
 | **MODIFIED extended-S003** | `pillar-4-developer-experience/skills-package.md` | +future-artifact-references warning section (Gap 2 §C3.6) |
 | **MODIFIED extended-S003** | `pillar-5-ai-systems/mastra-setup.md` | +future-artifact-references warning section (Gap 2 §C3.6) |
+| **NEW S004** | `_handoff/VAULT/blockers-S004.md` | 🟢 created (zero blockers) |
+| **NEW S004** | `_handoff/VAULT/validation-pass-S004.md` | 🟢 created (3 perspectives clean; moderate-but-ratified drift documented) |
+| **NEW S004** | `_handoff/VAULT/gaps-and-duplications-S004.md` | 🟢 created (0 dup; 2 deferred gaps — Supabase REST 401 + dev-keys.txt teardown) |
+| **NEW S004** | `_handoff/VAULT/chat-jump-prompt-S004-to-S005.md` | 🟢 created (minimal paste-target) |
+| **NEW S004** | `_handoff/VAULT/chat-jump-prompt-S004-to-S005-detailed.md` | 🟢 created (~250 word standalone) |
+| **NEW S004** | `_handoff/HANDOFF-S004-to-S005.md` | 🟢 created (Zone A/B/C/D; second application of CSP carry-forward) |
+| **NEW S004** | `.gitignore` (workspace root) | 🟢 created (Node.js / Next.js / Nx exclusions + .claude/settings.local.json + secrets/*) |
+| **MILESTONE S004** | First git push to GitHub remote | 🚀 post-git mode active — github.com/CommarkG/csps (private) |
+| **MODIFIED S004** | `_handoff/HANDOFF-S003-to-S004.md` | lifecycle_state: active → resolved + superseded_by csps.handoff.S004-to-S005 |
+| **CONFIG S004** | `~/.claude/settings.json` (global) | +"PowerShell" allow rule (auto-approves all PS calls; matches "Bash"+"Read" pattern) |
+| **MEMORY S004** | `feedback_clipboard_clobber_pattern.md` | 🟢 created (S004 catch — 3× hit before engraving) |
+| **MEMORY S004** | `feedback_leaked_secrets_rotation_discipline.md` | 🟢 created (S004 catch — Clerk + Supabase rotated mid-session) |
+| **EXTERNAL S004** | 4 services provisioned + verified live | Clerk + Supabase csps-prod (eu-central-1) + Stripe test-mode + Cloudflare (csps-* naming on shared account) |
+| **EXTERNAL S004** | Bitwarden + CSPS Dev Keys secure note | created; replaces password-manager prerequisite |
+| **EXTERNAL S004** | 2 dev keys rotated (post-leak-detection) | Clerk secret (csps-bootstrap key replaces deleted default) + Supabase DB password (16-char, 3-slot consistency) |
 | **NEW S002** | `docs/adr/0001-0021` | 🟢 21 ADRs written (18 seed + 3 enhancement) |
 | **NEW S002** | `libs/policies/slices/public/learning-loop-item.zmodel` | 🟢 created (P-META-005 schema) |
 | **NEW S002** | `libs/policies/slices/public/external-input.zmodel` | 🟢 created (intake plane schema) |

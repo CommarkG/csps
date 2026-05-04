@@ -333,4 +333,93 @@ This file is the first concrete artifact of L1 (template-first dogfooding: it ci
 
 ---
 
-**Topic-plan signature:** `S006-AI-topic-plan-2026-05-04T14:00:00Z-s006-governance-foundation`
+## §11 Topic-plan CLOSURE attestation (S006 L5 final — added at governance-foundation closure)
+
+```yaml
+topic_plan_closure:
+  closed_at: 2026-05-04T21:00:00Z
+  closure_session: S006
+
+  level_exit_status:
+    L1_foundation_primitives: CLOSED (commit eb4c958 + 51c0354 + 41b64f2 + 1106876)
+    L2_foundation_composition: CLOSED (commits 309ac94 + 22591d4 + 41b64f2; 5/5 FSE atomic for all 7 disciplines + 5 sealed L1_CORE files)
+    L3_core: CLOSED (commit 63faaf5; audit-hub Pipeline 10 + 4 LIVE templates + ratchet protocol)
+    L4_integration: CLOSED (commit 1106876 + this-turn; 16 L2_DOMAIN + 5 L3_INSTANCES + governor-prompts/S006.md log + PE findings-boost + spine-attribution-history.jsonl + user-intents.md S006 cardinals)
+    L5_polish: CLOSED (this turn; continuous-drift-log seeded with 16 entries + closure attestation)
+
+  artifacts_landed:
+    new_principles: 7 (P-META-015 to 019 + P-ARCH-028 + P-OPER-001)
+    new_b_star_contracts: 7 (B_TEMPLATE_FIRST + B_GRADUAL_BUILD + B_CSPS_ALIGNMENT + B_PE_GUARDIAN + B_STRUCTURAL_PREVENTION + B_CORE_SPINE + B_ZERO_LAPTOP)
+    new_AGENTS_hard_NOs: 12
+    new_spine_matrix_rows: 7
+    new_memory_entries: 10 (8 disciplines + 2 meta — file-content-narration + settings-edits)
+    new_pillar_leaves: 4 (csps-core-manifest + element-reviews/README + inner-ai-defaults/README + topic-plans/README)
+    new_l1_core_sealed_files: 5 (GVRN/ARCH/AI/OPER/VALD)
+    new_l2_domain_files: 16 (3-4 per spine)
+    new_l3_instances_files: 5 (one per spine)
+    new_templates_authored: 5 LIVE (gradual-build-plan + chat-jump-prompt + b-star-contract + memory-entry + audit-row + l1-core-sealed-doctrine + priority-engine.schema.yaml)
+    new_audit_registrations: 27 atomic per FSE in audit-hub Pipeline 10
+    new_topic_plans: 2 (s006-governance-foundation + zero-laptop-dependency-setup sibling)
+    new_element_reviews: 1 (csps-core-spines-S006)
+    new_vault_subdirectories: 4 (topic-plans + element-reviews + inner-ai-defaults + governor-prompts/S006.md log)
+    new_jsonl_audit_trails: 2 (pe-history + spine-attribution-history)
+    new_validators_atomic_registered: 27 (impl deferred week-4 audit-runner ship)
+
+  fse_5_of_5_atomic_per_discipline: 7/7 (all complete)
+  3_layer_doctrine_model_complete: yes (L0 manifest + L1 sealed × 5 + L2 domain × 16 + L3 instances × 5)
+
+  cycle_evidence:
+    pnpm_verify_at_close:
+      ran_at: 2026-05-04T21:00:00Z
+      exit_code: 0
+      cycles_passed: 5 active-mechanical (typecheck + principles_validate + frontmatter + aap_frontmatter + principle_count_staleness)
+      cycles_deferred: 2 (pnpm_install_frozen --skip-install + audit_runner_full_pass week-4)
+
+    rzf_aggregate:
+      cycles_run: 1 per L1-L5 transition
+      total_findings: 1 (YAML quote drift in P-META-017 anti_patterns; fixed mid-batch L2a; logged as enhancement candidate)
+      status: ZF-0-ACHIEVED across all 5 levels
+
+    cec_aggregate:
+      ratified_artifacts: 7 P-META + P-ARCH-028 + P-OPER-001 + 7 B_* + element-review pattern
+      walk_scope: csps-core-manifest + 5 L1_CORE + 16 L2_DOMAIN + 5 L3_INSTANCES + behavioral-contracts + AGENTS.md + ai-behavior-spine + audit-runner + audit-hub + closing-summary-template + 4 pillar leaves
+      cycles_walked: 1-2 per artifact
+      result: 0 new opportunities surfaced (CEC-0)
+
+    fse_per_discipline:
+      P-META-015: 5/5 atomic (schema yaml + memory + contract + AGENTS NO + spine row + audit registration)
+      P-META-016: 5/5 atomic
+      P-META-017: 5/5 atomic
+      P-META-018: 5/5 atomic (CONSTITUTIONAL)
+      P-META-019: 5/5 atomic
+      P-ARCH-028: 5/5 atomic + L1_CORE files (additional 3-layer doctrine layer)
+      P-OPER-001: 5/5 atomic
+
+  enhancement_proposals_S006:
+    yaml-anti-pattern-quoting: K=1 (logged in continuous-drift-log; structural fix = yaml-lint pre-write hook; queued)
+    settings-edits-trigger-prompts: K=1 (memory engraved S006 turn 23; structural fix = AGENTS NO + memory; closed)
+    file-content-narration: K=1 (memory engraved S006 turn 22; structural fix = AGENTS NO + memory; closed)
+
+  carry_forwards_to_S007:
+    - id: foundation-slices-week-2
+      type: substantive-build
+      reason: governance-foundation closure unblocks foundation-slice topic-plan
+      target_session: S007
+    - id: zero-laptop-dependency-setup-execution
+      type: operational-setup
+      reason: sibling topic-plan opens after governance-foundation L2 close (NOW unblocked)
+      target_session: S007 OR S008
+    - id: cnst-gvrn-split-decision
+      type: ADR-0025-candidate
+      reason: foundation-stability discipline (just engraved 5 spines L1; cardinality change requires ratified ADR)
+      target_session: S008+
+      tracked_in: element-reviews/csps-core-spines-S006.md gap_id "cnst-gvrn-split-decision"
+
+  governance_foundation_topic_plan_status: CLOSED
+
+  signature: S006-AI-topic-plan-CLOSURE-2026-05-04T21:00:00Z-s006-governance-foundation
+```
+
+---
+
+**Topic-plan signature (close):** `S006-AI-topic-plan-CLOSURE-2026-05-04T21:00:00Z-s006-governance-foundation`

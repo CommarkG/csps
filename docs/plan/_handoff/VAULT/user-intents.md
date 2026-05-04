@@ -141,6 +141,29 @@ Per S002 handoff §20.5 — engraved into memory + AGENTS.md NO + canonical cont
 > *"Lets call is Geverner prompts i want all i wright each time to be reviwed each time a session is closing and saved in a specific place you must create now in the schema. Each content must be deeply understood and distributed according to the SCHEMA structure !!"* + *"on each handsoff creation i want it to be enforced you go over the whole session and see what should be enforced and was not + what should be a part of the schema aligned auditing and is not and complete them all"*
 > — S005 turn 25 (Governor Prompts comprehensive tracking + Handoff Pre-Flight Audit; engraved as P-META-012 + B_GOVERNOR_PROMPTS + P-META-013 + B_HANDOFF_PRE_FLIGHT_AUDIT; this very vault entry IS the propagation; GP-S005-20)
 
+## S006 cardinal directives (verbatim — propagated from governor-prompts/S006.md per B_GOVERNOR_PROMPTS cardinal cross-link mandate)
+
+> *"the Core is the universal fundamental undebatable things of each core spine"*
+> — S006 turn 7 (load-bearing architectural framing for Core Spines; engraved as P-ARCH-028 csps-core-spines + csps-core-manifest.md + 5 sealed L1_CORE files + 16 L2_DOMAIN + 5 L3_INSTANCES; GP-S006-04)
+
+> *"develop a gradual build methodology to be engraved into the multi session plan way of creation and updating. Mechanically enforce this atitude of gradual phases on any givven topic. Placing the foundations allowing the rest of the system to benefit from it"*
+> — S006 turn 5 (gradual-build mandate; depth 3/4/5 schema; per-layer ZF gates; foundation-stability-before-layer-N; engraved as P-META-016 + B_GRADUAL_BUILD_BY_FOUNDATIONS + gradual-build-plan template + topic-plans vault; GP-S006-03)
+
+> *"you must formalize now the collection and saving of your inner coding and create a system of considering it all the time !!"*
+> — S006 turn 6 (inner-AI-defaults registry; per-session leak detection + per-week drift + per-major-model-update full re-registration; engraved as P-META-017 + B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS + inner-ai-defaults vault with 5 categories + continuous-drift-log; GP-S006-03)
+
+> *"if an enforment was skipped system will mandatory find enhacement to prevent this from happening. the philosophy is to enhance the system constantly !! not to do things with low standards and be able to fix and align them !!"*
+> — S006 turn 8 (Q-2 tweak ratification — Structural-Prevention; engraved as P-META-019 + B_STRUCTURAL_PREVENTION_DISCIPLINE + closing-summary §10.0j mandatory header + AGENTS hard NO; GP-S006-05)
+
+> *"We have thhe SCHEMA as the one source of truth of what exists - are you aligned with it!!! and we build the grdual approach so we will have the Pillars built using the Core spine defined structure"*
+> — S006 turn 7 (schema-as-source-of-truth + pillars-built-using-core-spine framing; engraved through Core Spines architecture + frontmatter convention amendment — core_spine singular + core_spines plural + schema_anchor REQUIRED; GP-S006-04)
+
+> *"I trust you to do all in optimal way as a top expert focused on building in optimal order so all you do will be supporting the next steps"*
+> — S006 turn 10 (autonomous-execution authority grant for L2-L4 sequencing; resulted in optimal sub-batching schema → cognitive → contract+AGENTS+spine+audit → L1_CORE → L2_DOMAIN → L3_INSTANCES; GP-S006-07)
+
+> *"stop presenting file content unless you are asked"* + *"STOP PRESENTING THESE artifacts PERMANENTLY. ENFORCE IT PERMANENTLY. I need you to implement things that do not require my constant permissions continuasly"*
+> — S006 turns 22-23 (no-narration + no-permission-loop discipline; engraved as feedback_no_file_content_narration.md + feedback_no_settings_edits_unless_asked.md memory entries + .claude/settings.local.json permission patterns; GP-S006-09)
+
 ## How to use this vault
 
 Future session encountering a B_* / P-META-* / mechanism citation: trace back to its source quote here. The mechanism may have evolved through engraving cycles; the source quote shows the original intent.

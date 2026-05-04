@@ -395,4 +395,43 @@ authority:
     - PE_ALIGNMENT_GUARDIAN templates: ADR (CONSTITUTIONAL)
     - Validator slugs: atomic per FSE; implementation deferrable
 
-schema_signature: S006-AI-priority-engine-schema-2026-05-04T15:45:00Z
+# ============================================================
+# §13 Spine findings boost (S006 L4 — CSP CC-051 ADD-20 absorption)
+# ============================================================
+# When a Core Spine accumulates ≥3 OPEN findings, items attributed to that
+# spine receive PE +2.0 boost on their next PE_FULL recompute. This wakes
+# up the priority engine when a spine's health degrades.
+spine_findings_boost:
+  status: HEURISTIC
+  registered_in: calibration_registry
+  review_cadence_sessions: 10
+  threshold_open_findings: 3
+  boost_amount: 2.0
+  bias_guard: |
+    Boost stacks with COMPLETION_PROXIMITY_BOOST and B/D/Bn/PAS dimensions
+    but capped at 10.0 max PE_SCORE. Spine boost cannot promote
+    NS-PROTECTIVE items above Band 2 cap (per CSP CC-020A).
+  formula_extension: |
+    PE_SCORE_with_spine_boost(item) = PE_SCORE(item) +
+      sum(2.0 for spine in item.core_spines if spine.open_findings_count >= 3)
+  source: CSP CC-051 ADD-20 (PE consumes spine state)
+
+# ============================================================
+# §14 Spine attribution history audit trail (S006 L4 — CSP §9.8 absorption)
+# ============================================================
+# Append-only log of every artifact's core_spine field change across sessions.
+# Sister to pe-history.jsonl (PE fire log). Catches silent re-attribution.
+spine_attribution_history:
+  log_path: docs/plan/_handoff/VAULT/spine-attribution-history.jsonl
+  format: JSONL (append-only)
+  entry_schema:
+    session: S<NNN>
+    changed_at: ISO-8601-UTC
+    artifact_path: <path>
+    field_changed: core_spine | core_spines
+    old_value: <old> | null (initial declaration)
+    new_value: <new>
+    reason: <commit message OR governance change>
+  audit: spine-attribution-history-completeness (registered atomically; impl deferred week-4)
+
+schema_signature: S006-AI-priority-engine-schema-2026-05-04T20:50:00Z (v1.1 — §13 + §14 added L4)

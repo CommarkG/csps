@@ -47,6 +47,66 @@ The CSPS CORE consists of **5 Core Spines**. Each spine has:
 
 The 5 Core Spines are **CONSTITUTIONAL** — they are L0 peers; none is a child of another. They compose orthogonally to the 7 Pillars (which are domain-organized for navigation). Every persisted CSPS artifact maps to ≥1 Core Spine via `core_spines:` frontmatter.
 
+## Precedence ordering (S006 turn 9 — adopted from CSP precedent)
+
+```
+GVRN > VALD > ARCH > AI > OPER
+```
+
+**The lower-defers-to-higher rule:** when an artifact tagged with multiple spines has cross-cutting governance disputes, the higher-precedence spine adjudicates. Per CSP CSP_CORE.md DO-1 (adopted): *"When two spines conflict, lower precedence defers."*
+
+| Precedence reasoning | Why |
+|---|---|
+| **GVRN beats VALD** | Governor (user) has sovereign override authority via documented reason; PE Rule 3 — sequence-vs-whether distinction |
+| **VALD beats ARCH** | Broken validation = structure cannot be trusted regardless of architectural preference |
+| **ARCH beats AI** | AI agents BUILD ON architecture; agents must not violate slice contracts; CCA QGs do not override slice integrity |
+| **AI beats OPER** | AI design (CCA Quality Gates / AAP / inner-defaults override) takes precedence over operational pace |
+| **OPER is most adaptive** | Operations must flex to honor everything above; workflow adapts to architecture, not the other way around |
+
+**Mechanical enforcement:** `spine-precedence-conflict-detector` validator (registered atomically per FSE; impl deferred week-4) — scans for artifacts declaring multiple `governed_by:` references and flags YELLOW finding when lower-precedence overrides higher.
+
+**Deferred decision (S006 element-review queued):** CSP precedent splits Constitutional (CNST) from Governance (GVRN); CSPS currently treats CNST as embedded INSIDE GVRN's CORE. Whether to split GVRN → CNST + GVRN (= 6 spines) is documented in [element-reviews/csps-core-spines-S006.md](../_handoff/VAULT/element-reviews/csps-core-spines-S006.md) for future ADR decision. Deferred per P-META-016 (foundation stability before amendment) — just engraved 5 spines in L1; changing cardinality immediately violates gradual-build discipline.
+
+## 3-Layer doctrine model (S006 turn 9 — adopted from CSP S331 Bundle 1 Scope A)
+
+This manifest IS L0 (the root doctrine; analog to CSP's CSP_CORE.md). Each Core Spine then decomposes into 3 layers per CSP precedent:
+
+| Layer | Files | Purpose | Amendment protocol |
+|---|---|---|---|
+| **L0 (THIS file)** | csps-core-manifest.md | Root doctrine — children = [GVRN, ARCH, AI, OPER, VALD]; precedence ordering; cross-cutting principles | ADR + ratification (CONSTITUTIONAL change) |
+| **L1 sealed core** | `.claude/core-spines/L1_CORE_<SPINE>.md` (5 files) | Permanent essence of each spine — pure prose; no examples; no cross-references; no decomposition | ADR + ratification ("CC-equivalent" — sealed text changes require ratification) |
+| **L2 domain decomposition** | `.claude/core-spines/L2_DOMAIN_<SPINE>_<DOMAIN>.md` (~16 files; 3-4 per spine) | How each spine breaks into governable domains — operationally concrete | Normal review (PCR + amendment) |
+| **L3 instance registry** | `.claude/core-spines/L3_INSTANCES_<SPINE>.md` (5 files) | Which actual artifacts CURRENTLY instantiate the spine — populated per-session | Per-session edit (no formal amendment) |
+
+**Why 3 layers** (per CSP §3.2): single-layer monolithic spine docs conflate "what permanently means" + "how decomposes" + "what currently instantiates." Conflating these makes amendment risky (touch one paragraph, accidentally amend constitutional text), instance lists go stale, and cross-spine consistency becomes impossible.
+
+**Sealed L1 discipline (`do_not_expand` list):** every L1_CORE_*.md file declares an explicit `do_not_expand:` list:
+- "No examples in this file"
+- "No cross-references to other artifacts in this file"
+- "No domain decomposition (L2 owns that)"
+
+Validator: `L1_DO_NOT_EXPAND_VIOLATION` (registered atomic; impl deferred) — scans L1 files for example blocks, cross-reference patterns, decomposition headers; flags violations.
+
+**Sequencing:** L1 files authored as part of S006 governance-foundation L2 (Foundation composition). L2 domain files authored in L3 (Core). L3 instance registries auto-populated via `instance-registry-populator.mjs` in L4 (Integration).
+
+## Frontmatter convention (S006 turn 9 — adopted from CSP)
+
+Every governed artifact declares:
+
+```yaml
+core_spine: <SPINE>          # singular primary owner — REQUIRED
+core_spines: [<SPINE>, ...]  # plural cross-cutting list — optional
+schema_anchor: <table-id>    # which schema governs this artifact — REQUIRED
+```
+
+**Routing certainty:** when an artifact needs adjudication, ONE spine owns the decision (`core_spine:`); cross-cutting spines (`core_spines:` plural) are interested parties.
+
+**Validators (registered atomically per FSE; impl L4):**
+- `nothing_stands_alone_audit` — RED on `ORPHAN_NO_CORE_SPINE` (singular missing) OR `ORPHAN_NO_SCHEMA_ANCHOR` (schema missing)
+- `corespine_layer_compliance` — checks `core_spine:` value ∈ {GVRN, ARCH, AI, OPER, VALD} canonical set + L1_CORE_<X>.md exists
+
+**Backward compat:** existing CSPS artifacts with only `core_spines:` plural are grandfathered until L4 sweep adds `core_spine:` singular per artifact (opportunistic backfill discipline per P-META-001).
+
 ---
 
 ## The 5 CSPS Core Spines

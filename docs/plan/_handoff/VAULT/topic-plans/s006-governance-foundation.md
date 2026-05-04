@@ -116,7 +116,9 @@ muv_audit:
 | Memory | **feedback_core_spine_discipline.md** (NEW) | ADD (5 spines; CORE outward; pillar mapping) |
 | Memory | **feedback_zero_laptop_dependency.md** (NEW) | ADD (Q-1 ratification + multi-device discipline) |
 | Memory | **feedback_structural_prevention_discipline.md** (NEW) | ADD (Q-2 tweak — enhance system always, never settle for patches) |
-| MEMORY.md | 7 index entries | ADD |
+| Memory | **feedback_csp_core_spine_absorptions.md** (NEW S006 turn 9) | ADD (precedence ordering + 3-layer model + frontmatter convention) |
+| MEMORY.md | 8 index entries | ADD |
+| Sealed L1 doctrine files | **`.claude/core-spines/L1_CORE_<SPINE>.md` × 5** (NEW S006 turn 9 — CSP absorption #1+#7) | AUTHOR (sealed; do_not_expand list per CSP §3.1; CC-equivalent amendment protocol) |
 
 **Exit criteria (L2 → L3 gate):**
 
@@ -127,6 +129,17 @@ muv_audit:
 - [ ] All 6 AGENTS.md hard NOs append correctly + cascade pattern preserved
 
 ---
+
+### CSP Core Spine Absorptions integrated into L2 (S006 turn 9)
+
+| Absorption | Surface | L2 work |
+|---|---|---|
+| **3-layer doctrine model** (CSP §3.2) | csps-core-manifest amended; 5 L1_CORE files authored | csps-core-manifest amended (this turn); L1_CORE × 5 authored as part of L2 engraving |
+| **Precedence ordering** (CSP DO-1) | GVRN > VALD > ARCH > AI > OPER documented in csps-core-manifest | Already amended this turn |
+| **`core_spine:` singular primary** + **`schema_anchor:`** frontmatter | New B_CORE_SPINE_DISCIPLINE contract section | Authored in L2 contract engraving |
+| **Sealed L1 with `do_not_expand` list** | 5 L1_CORE files have classification: SEALED + do_not_expand frontmatter | Authored as part of L1_CORE × 5 |
+| **`L1_DO_NOT_EXPAND_VIOLATION` validator** | Atomic registration in audit-runner.md per FSE | Registered as part of L2 audit registrations |
+| **Validator ratchet protocol (ADVISORY → FAIL_CLOSED with min-5-fires)** | New section in audit-hub.md | Amended in L3 audit-hub Pipeline 10 |
 
 ## §3 Core — Audits + Validators + Templates (Level 3)
 
@@ -141,6 +154,7 @@ muv_audit:
 | Validator skeletons | `tools/validators/validate-template-citation.mjs` / `tools/validators/validate-inner-default-leaks.mjs` / `tools/validators/validate-gradual-build-plan-coverage.mjs` / `tools/validators/validate-priority-engine-inputs.mjs` (registration mandatory atomic; implementation may defer) |
 | Templates (4 highest-leverage authored) | `tools/templates/chat-jump-prompt.template.md` (absorbs Option C identity-confirmation) + `tools/templates/b-star-contract.template.md` + `tools/templates/memory-entry.template.md` + `tools/templates/audit-row.template.md` |
 | Identity-confirmation Option C | Absorbed as 2 entries in template-registry.md (writer-side: chat-jump-prompt template; reader-side: session-receipt-signature format) — NO separate validator needed; falls out of universal template-first |
+| **CSP-absorbed validators (NEW S006 turn 9)** | `corespine_layer_compliance` + `nothing_stands_alone_audit` + `L1_DO_NOT_EXPAND_VIOLATION` + `spine-precedence-conflict-detector` registered atomically per FSE in audit-hub Pipeline 1 (governance-integrity) — implementation deferred week-4 |
 
 **Exit criteria (L3 → L4 gate):**
 
@@ -161,6 +175,10 @@ muv_audit:
 | Action |
 |---|
 | Element-review place: 1 reference review file (e.g., `_handoff/VAULT/element-reviews/foundation-zmodel-S006.md`) demonstrating the depth-3 review pattern |
+| **CSP-absorbed: `spine_attribution_history.jsonl`** (NEW S006 turn 9 — CSP absorption #9) — append-only log when artifact `core_spine:` field changes; sister to pe-history.jsonl |
+| **CSP-absorbed: PE findings boost integration** (NEW S006 turn 9 — CSP absorption #11) — amend [priority-engine.schema.yaml](../../../../tools/templates/priority-engine.schema.yaml) §1 with formula amendment: spines with ≥3 OPEN findings get PE +2.0 boost on items attributed to those spines |
+| **CSP-absorbed: Author 16 L2_DOMAIN files** (NEW S006 turn 9 — CSP absorption #1 cont.) — 3-4 domains per spine per CSP §6.2: GVRN gets 3 (decision-rights / accountability / challenge-protocol), ARCH gets 4 (composition / layer-separation / structural-integrity / traceability), AI gets 3 (alignment-protocol / cognitive-context / inner-defaults-override), OPER gets 3 (workflow-integrity / pace-discipline / reality-grounding), VALD gets 3 (coverage / evidence-specificity / result-driven-verification) |
+| **CSP-absorbed: Author 5 L3_INSTANCES files + populator script** (NEW S006 turn 9 — CSP absorption #1 cont.) — `tools/scripts/instance-registry-populator.mjs` scans corpus for `core_spine:` declarations + writes per-spine instance lists |
 | Cross-pipeline integration in audit-hub: Pipeline 10 dependencies (template-first depends on schema-integrity; gradual-build depends on engraving-completeness; CSPS-alignment depends on agent-alignment) |
 | Bidirectional cross-references audit run: every new principle's enforcers reference real audit slugs; every new audit references backed_by_principle |
 | Governor-prompts S006 log: GP-S006-01 (chat-jump-prompt + initial alignment answers) + GP-S006-02 (template + scaling + Q-B questions) + GP-S006-03 (this directive — develop and engrave all) entries with full distribution targets |

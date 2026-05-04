@@ -921,6 +921,184 @@ Step 7: ITERATE until alignment-confirmed-explicit (no more clarifications neede
 - `P-OP-004 batched-execution` — boundary type 5 (context batches) directly extends the batched-execution counterweight
 - `P-META-013 HPFA` — pre-handoff audit; MUV is the cross-handoff iteration discipline (HPFA verifies the handoff is COMPLETE; MUV verifies the handoff is UNDERSTOOD)
 
+## B_TEMPLATE_FIRST_CREATION — every commitment-layer output passes templated discovery gate (S006 turn 5-7)
+
+**Canonical:** Every commitment-layer output AI produces — persisted artifacts, code, prose patterns, decision frames, reasoning structures, tooling discipline — passes through a templated discovery gate before authoring. Template registry at [_handoff/VAULT/template-registry.md](../_handoff/VAULT/template-registry.md) is the single source of truth. Entries register validator slugs atomically per FSE; implementation may defer. Escape hatch: `template_status: novel-pending-pattern-evaluation` with K=2 promotion to stable.
+
+**Counterweight:** Native AI thinking-layer (mid-conversation reasoning, exploratory analysis, debugging walks, creative synthesis) is NOT gated. Templates apply at commitment-layer (persisted, structurally recurring) — not at thinking-layer.
+
+**Source:** S006 turn 5-7 user directives — "have a template structure aligned to the schema" + "we have the SCHEMA as the one source of truth of what exists".
+
+**Anti-patterns:**
+- free-write-on-recurring-artifact-type (template exists but not cited)
+- silent-skip-of-discovery-gate (artifact bypasses registry consultation)
+- novel-pending-pattern-evaluation-staleness (entry sits novel-pending >5 sessions)
+- thinking-layer-templates-imposed (templates applied to native reasoning — kills creativity)
+
+**Mechanical surfaces (5/5 declared S006 L2):**
+- schema: [template-registry.md](../_handoff/VAULT/template-registry.md) + per-artifact `template_used:` frontmatter field
+- validator (atomic registration): `template-citation-on-creation` + `template-registry-coverage` + `novel-pending-pattern-evaluation-staleness` (impl week-4)
+- hook: `.claude/hooks/pre-tool-use-template-citation.sh` (week-4)
+- memory: [feedback_universal_template_first.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_universal_template_first.md)
+- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-015`
+
+**Cross-references:** P-META-015 / P-META-007 (FSE — 5 surfaces are themselves templates) / P-OP-001 (reuse-first applied recursively to template selection) / P-META-016 (gradual-build-plan IS a template) / P-ARCH-028 (Core Spine attribution requires schema_anchor + core_spine fields per template).
+
+---
+
+## B_GRADUAL_BUILD_BY_FOUNDATIONS — every multi-session topic enters via templated gradual-build-plan (S006 turn 5-7)
+
+**Canonical:** Every multi-session topic entering CSPS goes through a templated gradual-build-plan instance at `_handoff/VAULT/topic-plans/<topic-id>.md`. Depth chosen ∈ {3, 4, 5} with rationale (free-form N rejected by validator). Levels enumerated; ZF gate per level; foundation-stability-before-layer-N enforced. Priority engine sequences via 5-dimension formula + 4 bands + PE TRAJECTORY lookahead.
+
+**Counterweight:** Single-turn reversible work (typo fix, single-line edit, mechanical refactor confined to one file) doesn't require gradual-build-plan instance. Discipline targets work that (a) requires >1 session arc, OR (b) depends on >2 foundation-stable elements, OR (c) crosses >1 Core Spine, OR (d) is cross-actor.
+
+**Source:** S006 turn 5-7 user directive — "develop a gradual build methodology to be engraved into the multi session plan way of creation and updating. Mechanically enforce this attitude of gradual phases on any given topic".
+
+**Anti-patterns:**
+- finish-fast-urge (multi-session topic completed in one turn; foundations skipped)
+- arbitrary-N-part-split (split into 7 parts without rationale; depth not 3/4/5)
+- skip-foundation-shortcut (jump to feature-build without ZF on foundation)
+- tunnel-vision-single-next-item (no PE TRAJECTORY emitted; only next item)
+- unrelated-batching (multiple disciplines batched without composition rationale)
+
+**Mechanical surfaces (5/5 declared S006 L2):**
+- schema: [gradual-build-plan.template.md](../../../tools/templates/gradual-build-plan.template.md) + [priority-engine.schema.yaml](../../../tools/templates/priority-engine.schema.yaml)
+- validator (atomic registration): `gradual-build-plan-coverage` + `priority-engine-depth-respected` + `foundation-stability-before-layer-N` + `humble-batching-required` + `priority-engine-inputs-complete` + `backtrack-trigger-coverage` (impl week-4)
+- hook: `.claude/hooks/user-prompt-submit-multi-session-detector.sh` (week-4)
+- memory: [feedback_gradual_build_by_foundations.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_gradual_build_by_foundations.md)
+- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-016`
+
+**Cross-references:** P-META-016 / P-META-008 (cycle-mandatory-in-plan — gradual-build IS the cycle structure) / P-META-015 (gradual-build-plan is itself templated) / P-META-018 (PE_ALIGNMENT_GUARDIAN respects gradual-build sequencing) / P-ARCH-028 (each level maps to Core Spine layers).
+
+---
+
+## B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS — every AI output gated by alignment registry (S006 turn 6)
+
+**Canonical:** Every AI output is gated by alignment against the inner-AI-defaults registry at [_handoff/VAULT/inner-ai-defaults/](../_handoff/VAULT/inner-ai-defaults/). 5 categories: code / prose / reasoning / tooling / output. Training defaults: `keep` (compose well) / `override` (full replacement) / `adjust` (partial modification with `adjust_specifics`). Continuous validation: per-session leak detector + per-week drift comparison + per-quarter coverage audit + per-major-model-update full re-registration.
+
+**Counterweight:** Training defaults that align with CSPS DNA (e.g., parallel tool calls when independent, BLUF responses, structured tables) are kept — disposition: `keep`. Override is selective, not blanket.
+
+**Source:** S006 turn 6 user directive — "you must formalize now the collection and saving of your inner coding and create a system of considering it all the time. see if the way you distribute content and context is driven by your inner defaults or aligned to CSPS".
+
+**Anti-patterns:**
+- sycophantic-affirmation (Great-question prefix)
+- reflexive-try-catch (wraps every external call without semantic reason)
+- narrative-comments (explains WHAT code does instead of WHY non-obvious)
+- confirmation-seeking-tail (Should-I-proceed without 4-condition gate)
+- mock-by-default-in-integration-tests (CSPS aligned uses real DB)
+
+**Mechanical surfaces (5/5 declared S006 L2):**
+- schema: [inner-ai-defaults/README.md](../_handoff/VAULT/inner-ai-defaults/README.md) per-entry schema + 5 category files + continuous-drift-log
+- validator (atomic registration): `inner-default-leak-detector` + `alignment-citation-on-substantial-output` + `alignment-drift-over-time` (impl week-4)
+- hook: `.claude/hooks/pre-output-alignment-check.sh` (week-4 — sampling-based for prose)
+- memory: [feedback_csps_alignment_over_inner_defaults.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_csps_alignment_over_inner_defaults.md)
+- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-017` + closing-summary §10.0h + §10.0i mandatory headers
+
+**Cross-references:** P-META-017 / P-META-007 (FSE applies recursively to inner-defaults engraving) / P-META-009 (CCA composes — Quality Gates discipline overrides AI training defaults of cost-minimization) / P-META-015 (inner-defaults registry IS templated).
+
+---
+
+## B_PE_ALIGNMENT_GUARDIAN — anti-sycophancy structured deflection (S006 turn 9 — CONSTITUTIONAL)
+
+**Canonical:** When ANY human input enters CSPS with intent that misaligns with PE current top-priority AND does NOT meet ESSENTIAL-bar against in-flight topic-plan completion debt → AI MUST RESPOND WITH STRUCTURED 3-STEP DEFLECTION: (1) Acknowledge value / (2) Offer two paths (SWIFT it OR Vault to GOVERNOR_INPUT_VAULT) / (3) Anchor focus to specific current top-PE item. Verdicts: PROCEED / DEFLECT_SWIFT / DEFLECT_VAULT / BLOCK.
+
+**Counterweight:** ESSENTIAL-bar override — when human input is genuinely critical (security incident, production breakage, time-sensitive opportunity with real cost-of-delay), AI may proceed without deflection but MUST cite ESSENTIAL evidence in the proceeding response.
+
+**Source:** S006 turn 9 absorbing CSP P-GOV-25 (Governor S317 SWIFT — CONSTITUTIONAL; CSP differentiator) per user directive — "develop this and allow it permanently to pushback on wanting to finish fast or split things up to X parts or anything from your inner coding".
+
+**Anti-patterns (FORBIDDEN responses — sycophancy class):**
+- silent-pivot (mid-completion switch to new request without deflection)
+- reflexive-yes ("Sure, let me do that" without alignment check)
+- enthusiasm-misread (Governor enthusiasm interpreted as priority elevation)
+- positive-only-framing (response acknowledges only positives when misalignment is real)
+
+**Mechanical surfaces (5/5 declared S006 L2):**
+- schema: [priority-engine.schema.yaml §7](../../../tools/templates/priority-engine.schema.yaml) — PE_ALIGNMENT_GUARDIAN spec + verdicts + deflection template
+- validator (atomic registration): `pe-alignment-guardian-coverage` + `pe-trajectory-emitted-on-fire` + `pe-history-completeness` (impl week-4)
+- hook: `.claude/hooks/user-prompt-submit-pe-alignment-check.sh` (week-4)
+- memory: [feedback_pe_alignment_guardian.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_pe_alignment_guardian.md)
+- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-018`
+
+**Cross-references:** P-META-018 / P-META-014 (MUV — verdict citation IS communication-boundary closure) / P-META-016 (gradual-build sequencing IS what PE protects) / P-META-006 (RZF — PE recompute IS an RZF cycle for prioritization) / P-META-009 (CCA — anti-sycophancy is part of Top Expert Colleague Voice).
+
+---
+
+## B_STRUCTURAL_PREVENTION_DISCIPLINE — enhance system constantly, never patch instance (S006 turn 8 — Q-2 tweak)
+
+**Canonical:** When an enforcement is skipped, late, or partial — fix the STRUCTURE that allowed the skip, not the instance. Every closing-summary §10.0j header captures enhancement proposals from any enforcement gap discovered this session. Silent empty proposals forbidden — explicit `zero_proposals_declaration` with reason required when no gaps found. Philosophy: enhance the system constantly; never settle for low standards + manual recovery.
+
+**Counterweight:** Trivial single-instance gaps that don't recur (typo in one file; unique config drift caused by external tool change) may be fixed-in-place WITHOUT structural enhancement proposal — but MUST be logged in continuous-drift-log with K=1 status. K=2 promotes to mandatory structural fix.
+
+**Source:** S006 turn 8 user directive verbatim (Q-2 tweak) — "if an enforment was skipped system will mandatory find enhacement to prevent this from happening. the philosophy is to enhance the system constantly".
+
+**Anti-patterns:**
+- silent-skip-of-enhancement-scan (§10.0j header missing or zero_proposals without explicit declaration)
+- patch-the-instance-without-structural-fix (recurring pattern fixed only in current instance)
+- low-standards-acceptance (settling for "we'll fix it later" instead of system enhancement)
+- K2-recurring-pattern-not-promoted-to-engraving
+
+**Mechanical surfaces (5/5 declared S006 L2):**
+- schema: [closing-summary-template.md §10.0j](../_handoff/VAULT/closing-summary-template.md) — mandatory header with proposal schema + zero_proposals_declaration discipline
+- validator (atomic registration): `enhancement-proposal-coverage` + `structural-fix-vs-instance-fix-discipline` (impl week-4)
+- hook: `.claude/hooks/post-stop-enhancement-scan.sh` (week-4)
+- memory: [feedback_structural_prevention_discipline.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_structural_prevention_discipline.md)
+- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-019` + element-reviews place
+
+**Cross-references:** P-META-019 / P-META-007 (FSE — the structural-fix surfaces typically span all 5) / P-META-013 (HPFA — checks engraving completeness; this contract makes gaps surface as enhancements) / P-META-016 (gradual-build absorbs structural enhancements as new topic-plan candidates) / P-META-006 (RZF — structural fix discipline IS RZF applied to enforcement coverage).
+
+---
+
+## B_CORE_SPINE_DISCIPLINE — every artifact maps to ≥1 spine; outward layering enforced (S006 turn 7-9)
+
+**Canonical:** CSPS architecture organized around 5 Core Spines (GVRN/ARCH/AI/OPER/VALD) with precedence ordering GVRN > VALD > ARCH > AI > OPER (lower-defers-to-higher). Every governed artifact declares primary spine via `core_spine:` (singular; REQUIRED) + optional cross-cutting list via `core_spines:` (plural) + `schema_anchor:` (REQUIRED). 3-layer doctrine model: L0 csps-core-manifest (root) / L1 sealed core (5 files; CC-equivalent amendment; do_not_expand list) / L2 domain decomposition (~16 files; normal review) / L3 instance registries (5 files; per-session populated).
+
+**Counterweight:** Cross-cutting concerns may declare multiple spines via `core_spines:` plural; primary spine via `core_spine:` singular owns adjudication. Pillars (7 domain-organized) compose orthogonally to spines (5 responsibility-organized) — pillar leaves declare both.
+
+**Source:** S006 turn 7-9 user directive — "the Core is the universal fundamental undebatable things of each core spine" + CSP PLTF_CORE_SPINE_COMPREHENSIVE_GUIDE_S335 absorption (CSP CC-015 + CC-048-A + S331 Bundle 1 Scope A precedent).
+
+**Anti-patterns:**
+- missing-core-spine-frontmatter (governed artifact without core_spine field — ORPHAN)
+- missing-schema-anchor (governed artifact without schema_anchor — ORPHAN)
+- L1-do-not-expand-violation (sealed L1 file gains examples or cross-references)
+- spine-precedence-violated (lower-precedence spine overrides higher without ADR)
+- cross-spine-collision (artifact citing 2+ spines with conflicting CORE rules)
+
+**Mechanical surfaces (5/5 declared S006 L2):**
+- schema: [csps-core-manifest.md](./csps-core-manifest.md) (L0 root) + 5 L1_CORE_<SPINE>.md sealed files (L2c authored) + `core_spine:` / `core_spines:` / `schema_anchor:` frontmatter convention
+- validator (atomic registration): `corespine-layer-compliance` + `nothing-stands-alone-audit` + `L1-do-not-expand-violation` + `spine-precedence-conflict-detector` (impl week-4)
+- hook: `.claude/hooks/pre-tool-use-spine-citation.sh` (week-4 — refuses Edit/Write to governed artifact without core_spine field)
+- memory: [feedback_csp_core_spine_absorptions.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_csp_core_spine_absorptions.md)
+- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-ARCH-028`
+
+**Cross-references:** P-ARCH-028 / P-ARCH-013 (universal-traits-trunk-domain-overlays — generalized from persona prompts to all topics) / P-META-007 (FSE — 5 surfaces map to L0/L1/L2 layers) / P-META-015 (template-first applies recursively — every artifact cites template_used) / P-META-016 (gradual-build levels map to spine outward layers).
+
+---
+
+## B_ZERO_LAPTOP_DEPENDENCY — Git canonical + Codespaces + Android (S006 turn 8 — Hybrid C ratified)
+
+**Canonical:** Every CSPS artifact lives in cloud-canonical (Git remote at github.com/CommarkG/csps) before any session closes. No work depends on a single physical machine. Multi-device + Android workflows first-class. Hybrid mode (Q-1 ratified S006 turn 8): Git canonical + GitHub Codespaces on-demand + Android read-mostly via GitHub mobile + Chromium for occasional edit. Auto-push enforced at session-close gate (Q-2 ratified B; not commit-time A) — composes with HPFA + pre-close verify.
+
+**Counterweight:** Pre-close auto-push gate (B option) is the discipline; commit-time auto-push (A option) was rejected as too aggressive. Local commits OK during session; push must clear before handoff write. Secrets stay in 1Password/Bitwarden — NOT in repo.
+
+**Source:** S006 turn 8 user directive — "i want files saved locally but i wat 0 dependency on my laptop. i want to be able to work from other comuters as well + remote from my android".
+
+**Anti-patterns:**
+- local-only-work (commits on laptop never pushed to remote)
+- per-machine-divergence (different pnpm/node versions across machines)
+- secrets-committed-to-repo (.env or credentials.json in git)
+- android-locked-out (no defined workflow for Android access)
+
+**Mechanical surfaces (5/5 declared S006 L2; setup work in [zero-laptop-dependency-setup topic-plan](../_handoff/VAULT/topic-plans/zero-laptop-dependency-setup.md)):**
+- schema: `.devcontainer/devcontainer.json` (authored L1 of setup topic-plan) + tools/bootstrap.ps1 parity
+- validator (atomic registration): `git-pushed-state-clean` + `devcontainer-config-valid` + `bootstrap-script-fresh` + `no-local-only-secrets-in-repo` + `multi-machine-parity-spec` + `android-workflow-documented` (impl week-4)
+- hook: `.claude/hooks/post-stop-git-push-required.sh` (week-4 — refuses session-close until git log origin..HEAD empty)
+- memory: [feedback_zero_laptop_dependency.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_zero_laptop_dependency.md)
+- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-OPER-001`
+
+**Cross-references:** P-OPER-001 / P-META-008 (cycle-mandatory-in-plan — git-pushed-state IS a pre-close cycle) / P-META-013 (HPFA — adds check #8 git-pushed-state-clean) / P-META-015 (devcontainer.json IS templated) / P-ARCH-028 (P-OPER-001 maps to OPER spine — the lowest-precedence-most-adaptive spine).
+
+---
+
 ## How to add a new contract
 
 1. Append a new section here with the same shape (canonical wording + counterweight + source + anti-patterns + mechanical-surfaces).

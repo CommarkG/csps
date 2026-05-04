@@ -164,6 +164,15 @@ Per S002 handoff §20.5 — engraved into memory + AGENTS.md NO + canonical cont
 > *"stop presenting file content unless you are asked"* + *"STOP PRESENTING THESE artifacts PERMANENTLY. ENFORCE IT PERMANENTLY. I need you to implement things that do not require my constant permissions continuasly"*
 > — S006 turns 22-23 (no-narration + no-permission-loop discipline; engraved as feedback_no_file_content_narration.md + feedback_no_settings_edits_unless_asked.md memory entries + .claude/settings.local.json permission patterns; GP-S006-09)
 
+> *"we must do something with the naming policy. you must make it mechanically enforced that names are simple and clear for human users while using industry standard vocabulary"*
+> — S006 turn 24 (engraved as P-ARCH-029 + B_NAMING_POLICY 5/5 atomic per FSE; naming-policy.md leaf authored; quick-context-S006-L1.md → quick-context.md → OVERVIEW.md rename chain demonstrating ALL-rules-during-rename mandate; GP-S006-21)
+
+> *"give special attention and iteration on the chat transfer!! do not let nothing be left out. iterate more than once until zf"*
+> — S006 turn 29 (chat-transfer 12-item NOTHING-LEFT-OUT register engraved in token-optimization.md §15 + ZF 6-pass evidence in §16; meta-RZF achieved; GP-S006-29)
+
+> *"close s006 / prepare all so if i just past this to next chat all will be clear automatically"*
+> — S006 turn 30 (session close directive with paste-target self-contained mandate; engraved through chat-jump-prompt-S006-to-S007 minimal + detailed + HANDOFF Zone A self-contained; GP-S006-30)
+
 ## How to use this vault
 
 Future session encountering a B_* / P-META-* / mechanism citation: trace back to its source quote here. The mechanism may have evolved through engraving cycles; the source quote shows the original intent.

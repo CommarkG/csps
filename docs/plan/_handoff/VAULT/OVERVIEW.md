@@ -2,9 +2,10 @@
 id: csps.handoff.vault.overview
 name: OVERVIEW
 description: CSPS platform overview — the canonical entry-point for understanding platform state. Single file; BLUF-formatted; self-contained; clickable GitHub URLs to canonical sources. Always-current (per naming-policy Rule 1; version tracked in frontmatter). Read in ~3 minutes for full picture. Token-optimal by design — tables over prose, lazy-loaded references, audience-routing matrix. Renamed from quick-context-S006-L1.md (S006 turn 24) → quick-context.md (turn 24 partial fix) → OVERVIEW.md (turn 25 full fix per industry-standard vocabulary rule). Industry-standard "OVERVIEW" replaces invented "quick-context" term.
-version: 2.2
+version: 2.3
 last_update_session: S006
-last_update_turn: 25
+last_update_turn: 30
+last_update: S006-CLOSE
 owner: group:finky
 lifecycle: production
 lifecycle_state: active

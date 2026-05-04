@@ -236,6 +236,69 @@ The orchestration layer above [`audit-runner.md`](./audit-runner.md) registry. D
 
 **Schema connection:** runtime audits map to ADR-0007 (postgres-trigger-based-audit) + ADR-0008 (one Mastra agent) + crisis-escalation slice.
 
+### Pipeline 10 — `csps-alignment-over-inner-defaults` (B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS + B_TEMPLATE_FIRST_CREATION + B_GRADUAL_BUILD_BY_FOUNDATIONS + B_PE_ALIGNMENT_GUARDIAN + B_STRUCTURAL_PREVENTION_DISCIPLINE + B_CORE_SPINE_DISCIPLINE + B_ZERO_LAPTOP_DEPENDENCY + P-META-015/016/017/018/019 + P-ARCH-028 + P-OPER-001 — NEW S006 turn 9)
+
+**Purpose:** the cross-cutting pipeline for the 7 disciplines engraved S006 governance-foundation. Catches drift on template-first creation / gradual-build / inner-defaults / PE-alignment / structural-prevention / Core-Spine / zero-laptop-dependency disciplines.
+
+**Trigger:** PR + per-session close + per-week drift + per-quarter coverage + per-major-model-update full re-registration.
+
+**Audits in pipeline (27 atomic-registered S006 L2b; impl deferred week-4):**
+
+```
+Template-first (3):
+1. template-citation-on-creation         ─── every commitment artifact cites template_used:
+2. template-registry-coverage            ─── registered templates have file paths
+3. novel-pending-pattern-evaluation-staleness ─── entries staleness >5 sessions
+
+Gradual-build (6):
+4. gradual-build-plan-coverage           ─── multi-session topic without plan file
+5. priority-engine-depth-respected       ─── depth ∉ {3,4,5} rejected
+6. foundation-stability-before-layer-N   ─── L+1 work blocked without L ZF
+7. humble-batching-required              ─── batch without composition rationale
+8. priority-engine-inputs-complete       ─── plan PE inputs all 6 fields populated
+9. backtrack-trigger-coverage            ─── topic without registered triggers
+
+Inner-defaults alignment (3):
+10. inner-default-leak-detector          ─── chat transcript scan for known training-defaults
+11. alignment-citation-on-substantial-output ─── §10.0i citations match substantive outputs
+12. alignment-drift-over-time            ─── weekly snapshot diff for evolved-default emergence
+
+PE alignment (3):
+13. pe-alignment-guardian-coverage       ─── responses cite PROCEED/DEFLECT_SWIFT/DEFLECT_VAULT/BLOCK
+14. pe-trajectory-emitted-on-fire        ─── multi-step lookahead on every PE fire
+15. pe-history-completeness              ─── pe-history.jsonl has entries for known fires
+
+Structural prevention (2):
+16. enhancement-proposal-coverage        ─── §10.0j proposals OR zero_proposals_declaration
+17. structural-fix-vs-instance-fix-discipline ─── K=2 recurring → structural fix not patch
+
+Core Spine (4):
+18. corespine-layer-compliance           ─── declared core_spine ∈ {GVRN,ARCH,AI,OPER,VALD} + L1 exists
+19. nothing-stands-alone-audit           ─── ORPHAN_NO_CORE_SPINE / ORPHAN_NO_SCHEMA_ANCHOR
+20. L1-do-not-expand-violation           ─── sealed L1 stays sealed (no examples / refs / decomposition)
+21. spine-precedence-conflict-detector   ─── multi-spine artifacts with conflicting governance
+
+Zero-laptop-dependency (6):
+22. git-pushed-state-clean               ─── git log origin/main..HEAD empty before close
+23. devcontainer-config-valid            ─── devcontainer.json valid per spec
+24. bootstrap-script-fresh               ─── bootstrap.ps1 last-tested <90 days
+25. no-local-only-secrets-in-repo        ─── no .env/credentials.json/*.pem committed
+26. multi-machine-parity-spec            ─── devcontainer + bootstrap produce same versions
+27. android-workflow-documented          ─── android-workflow.md exists + last_validated <90 days
+
+Element-review (2 — supports B_STRUCTURAL_PREVENTION_DISCIPLINE):
+28. element-review-required-sections     ─── reviews have §1/§2/§3/§4 structure
+29. element-review-staleness             ─── element not reviewed in 90+ days
+```
+
+**Handling:** ERROR → Linear ticket auto-created + blocks PR; WARN → dashboard fact + weekly digest; per-session ERROR also blocks HPFA + handoff write.
+
+**Schema connection:** every audit row in this pipeline references the backing principle/contract via `principles.yaml#P-*` or `behavioral-contracts.md#B_*`. The bidirectional graph is enforced by `audit-principle-bidirectional` validator (Pipeline 5 — engraving-completeness).
+
+**Validator ratchet protocol (S006 L3 amendment per CSP cargo-cult-prevention precedent):**
+
+Every new validator runs ADVISORY for ≥5 fires before ratchet review for FAIL_CLOSED promotion. The min-5-fires gate prevents ratcheting validators that produce false positives at high rates from blocking PRs prematurely. Ratchet review is a manual decision (PR + ADR-equivalent rationale) following the AID-006 ADVISORY_RATCHET_REVIEW pattern. Without min-5-fires evidence, ratchet to FAIL_CLOSED is rejected.
+
 ## Orchestration architecture
 
 ```

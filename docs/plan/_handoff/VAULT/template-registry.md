@@ -46,11 +46,11 @@ Templates organized by output category per inner-AI-defaults registry alignment.
 
 | Template ID | Applicability trigger | Validator | File path | Implementation status |
 |---|---|---|---|---|
-| `gradual-build-plan` | Multi-session topic entering platform | `gradual-build-plan-coverage` | `tools/templates/gradual-build-plan.template.md` | registered-pending-author (L1.4 of S006 governance topic) |
-| `b-star-contract` | New B_* behavioral contract | `b-star-contract-format` | `tools/templates/b-star-contract.template.md` | registered-pending-author (L3 of S006 governance topic) |
-| `memory-entry` | New memory file in `~/.claude/projects/.../memory/` | `memory-entry-format` | `tools/templates/memory-entry.template.md` | registered-pending-author (L3) |
-| `audit-row` | New audit registered in audit-runner.md or audit-hub.md | `audit-row-format` | `tools/templates/audit-row.template.md` | registered-pending-author (L3) |
-| `chat-jump-prompt` | Cross-chat handshake at session boundary (per B_MUV) | `chat-jump-prompt-identity-banner-present` + `session-receipt-signature-format` | `tools/templates/chat-jump-prompt.template.md` | registered-pending-author (L3 — absorbs S006 turn 4 Option C identity-confirmation as 2 entries here) |
+| `gradual-build-plan` | Multi-session topic entering platform | `gradual-build-plan-coverage` | [`tools/templates/gradual-build-plan.template.md`](../../../../tools/templates/gradual-build-plan.template.md) | **LIVE (S006 L1.4 — authored)** |
+| `b-star-contract` | New B_* behavioral contract | `b-star-contract-format` | [`tools/templates/b-star-contract.template.md`](../../../../tools/templates/b-star-contract.template.md) | **LIVE (S006 L3 — authored)** |
+| `memory-entry` | New memory file in `~/.claude/projects/.../memory/` | `memory-entry-format` + `memory-entry-3-block-structure` + `memory-index-completeness` | [`tools/templates/memory-entry.template.md`](../../../../tools/templates/memory-entry.template.md) | **LIVE (S006 L3 — authored)** |
+| `audit-row` | New audit registered in audit-runner.md or audit-hub.md | `audit-row-format` + `audit-row-backing-principle-cross-reference-required` + `audit-row-cadence-severity-closed-enum` | [`tools/templates/audit-row.template.md`](../../../../tools/templates/audit-row.template.md) | **LIVE (S006 L3 — authored)** |
+| `chat-jump-prompt` | Cross-chat handshake at session boundary (per B_MUV) | `chat-jump-prompt-identity-banner-present` + `session-receipt-signature-format` + `chat-jump-prompt-8-mandatory-sections` + `alignment-questions-section-required-on-high-stakes` | [`tools/templates/chat-jump-prompt.template.md`](../../../../tools/templates/chat-jump-prompt.template.md) | **LIVE (S006 L3 — authored; absorbs S006 turn 4 Option C identity-confirmation as 2 validators atomic per FSE)** |
 | `closing-summary` | Session-close closing-summary | `closing-summary-checklist-completeness` | [closing-summary-template.md](./closing-summary-template.md) | LIVE (canonical; pre-existing) |
 | `handoff` | Session→session handoff document | `handoff-zone-structure-present` | (extracted from handoff-S005-to-S006.md pattern) | registered-pending-author |
 | `adr` | Architecture Decision Record | `adr-madr-format` | (per [ADR-0023](../../adr/0023-hybrid-frontmatter-schema-universal-core-plus-per-file-type.md) MADR) | LIVE |

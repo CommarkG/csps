@@ -1,8 +1,10 @@
 ---
-id: csps.handoff.vault.quick-context-s006-governance-foundation-close
-name: quick-context-S006-governance-foundation-close
-description: Token-optimal entry-point for understanding CSPS platform state at S006 governance-foundation topic-plan CLOSURE. Single file; BLUF-formatted; self-contained; clickable GitHub URLs to canonical sources. Read this in ~3 minutes for full picture. Per S006 turn 8 user directive "the best optimization of token consumption you have and its alignment with the way Csps is built". Aligned with CSPS DNA — frontmatter + Core Spines + clickable links + no-narration + Diataxis-typed reference.
-version: 2.0
+id: csps.handoff.vault.quick-context
+name: quick-context
+description: Token-optimal entry-point for understanding CSPS platform state. Single file; BLUF-formatted; self-contained; clickable GitHub URLs to canonical sources. Always-current (per naming-policy Rule 1 — no session/version/level suffix; version tracked in frontmatter). Read in ~3 minutes for full picture. Per S006 turn 8 user directive "the best optimization of token consumption you have and its alignment with the way Csps is built" + S006 turn 24 user directive "names are simple and clear for human users while using industry standard vocabulary". Aligned with CSPS DNA — frontmatter + Core Spines + clickable links + no-narration + Diataxis-typed reference.
+version: 2.1
+last_update_session: S006
+last_update_turn: 24
 owner: group:finky
 lifecycle: production
 lifecycle_state: active

@@ -1099,6 +1099,31 @@ Step 7: ITERATE until alignment-confirmed-explicit (no more clarifications neede
 
 ---
 
+## B_NAMING_POLICY — names are simple + clear + industry-standard (S006 turn 24)
+
+**Canonical:** CSPS artifacts MUST be named per the 4-rule naming policy at [naming-policy.md](./naming-policy.md): (1) always-current artifacts have no session/version/level suffix in filename — version goes in frontmatter; (2) per-session artifacts include `S<NNN>` suffix; (3) per-topic artifacts use topic-id only; (4) layer-prefixed governance artifacts (L1_CORE / L2_DOMAIN / L3_INSTANCES) preserve load-bearing layer identity. English words preferred over abbreviations except engraved canonical terms (P-META / B_ / FSE / RZF / CEC / HPFA / MUV / AAP / CCA / ZModel / BaseAgent / RLS / PCR preserved). Industry-standard vocabulary preferred (slice / template / audit / validator / registry / manifest / schema / pillar). Renaming requires `git mv` + frontmatter update + grep-and-update inbound references in same commit.
+
+**Counterweight:** Engraved canonical terms (the closed enum above) MUST be preserved — renaming them = constitutional change requiring ADR. Legacy artifacts authored before this engraving (S006 turn 24) are grandfathered until next opportunistic-touch backfill per P-META-006 Layer 1 grandfather protocol; corpus-wide compliance walk queued S007 element-review.
+
+**Source:** S006 turn 24 user directive verbatim — "we must do something with the naming policy. you must make it mechanically enforced that names are simple and clear for human users while using industry standard vocabulary". Triggered by recurring filename suffix drift (e.g., `quick-context-S006-L1.md` mixed always-current-state + session + level — should be `quick-context.md`).
+
+**Anti-patterns:**
+- always-current-with-session-suffix (file represents latest state but filename includes -S<NNN>)
+- layer-number-in-non-layer-artifact (-L1 / -L2 in filename when artifact is not part of 3-layer doctrine model)
+- abbreviation-when-english-word-clearer (tmpl-reg.md instead of template-registry.md)
+- synonym-drift (introducing module / feature / component for slice concept)
+- canonical-term-renamed-without-adr (renaming P-META-* / B_* / FSE / etc. without ratified ADR)
+- forbidden-suffixes (-final / -latest / -current / -new / -old in filename)
+
+**Mechanical surfaces (5/5 declared S006 turn 24):**
+- schema: [naming-policy.md](./naming-policy.md) (canonical 4-rule spec) + frontmatter `name:` field on every artifact
+- validator (atomic registration): `naming-policy-compliance` (impl week-4)
+- hook: `.claude/hooks/pre-tool-use-naming-policy.sh` (PreToolUse — refuses Write/Edit on filenames violating policy; week-4)
+- memory: [feedback_naming_policy.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_naming_policy.md)
+- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-ARCH-029`
+
+**Cross-references:** P-ARCH-029 / P-META-007 (FSE — naming-policy itself uses 5/5 atomic engraving) / P-META-015 (template-first — naming-policy IS a template for filenames) / P-META-019 (structural-prevention — naming inconsistency caught → fix the policy not the instance) / P-ARCH-013 (universal-traits-trunk-domain-overlays — naming convention IS a universal trait) / P-ARCH-028 (Core Spine — naming-policy ARCH spine primary).
+
 ## How to add a new contract
 
 1. Append a new section here with the same shape (canonical wording + counterweight + source + anti-patterns + mechanical-surfaces).

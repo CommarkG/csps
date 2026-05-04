@@ -173,6 +173,20 @@ Per S002 handoff §20.5 — engraved into memory + AGENTS.md NO + canonical cont
 > *"close s006 / prepare all so if i just past this to next chat all will be clear automatically"*
 > — S006 turn 30 (session close directive with paste-target self-contained mandate; engraved through chat-jump-prompt-S006-to-S007 minimal + detailed + HANDOFF Zone A self-contained; GP-S006-30)
 
+## S007 cardinal directives (verbatim — propagated from governor-prompts/S007.md per B_GOVERNOR_PROMPTS cardinal cross-link mandate)
+
+> *"i ratify all"*
+> — S007 turn 4 (B_TOKEN_BUDGET 5 operating rules R1-R5 ratification — extends P-META-009 CCA per token-optimization.md v0.3 §14.4; engraved 5/5 atomic per FSE in commit 9b4a409; 5 audits atomic-registered in audit-hub Pipeline 10; GP-S007-05)
+
+> *"I ratify all"*
+> — S007 turn 6 (K=2-then-Phase-4 sequence ratification after AI overcautious-close-recommendation push-back; engraved K=2 closed-enum drift structural fix 5/5 atomic + Phase 4 AGENTS.md slim 77% + 9 SKILL.md + .claudeignore + 5.7% measured savings in commits 9d37064 + 680fb68; GP-S007-06)
+
+> *"have you aready started using the token optimization?"*
+> — S007 turn 6 (user-as-Governor self-audit prompt that triggered AI honest-self-audit revealing R3 violation — no /compact at Phase 1→2→3 IMPL_BATCH boundaries within the very session that engraved B_TOKEN_BUDGET; demonstrates that ENGRAVING does not auto-comply, NEEDS operational reinforcement; queued §10.0j enhancement-proposal #1 for Phase 5 hook migration to add post-stop-impl-batch-compact-prompt.sh; GP-S007-06)
+
+> *"Sorry but we have 607,000 available tokens. Re-evaluate"*
+> — S007 turn 6 push-back on AI overcautious close-recommendation; AI conflated "auto-compact prevention" (R3 purpose) with "context-pressure" (non-issue at 35% utilization); user push-back demonstrates B_PE_ALIGNMENT_GUARDIAN works in BOTH directions (anti-AI-conservatism counterweight to anti-sycophancy); logged §10.0h inner-default leak overcautious-close-recommendation-when-headroom-ample (1-LEAK-CAUGHT-BY-USER); GP-S007-06)
+
 ## How to use this vault
 
 Future session encountering a B_* / P-META-* / mechanism citation: trace back to its source quote here. The mechanism may have evolved through engraving cycles; the source quote shows the original intent.

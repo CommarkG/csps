@@ -2,10 +2,10 @@
 id: csps.handoff.vault.overview
 name: OVERVIEW
 description: CSPS platform overview — the canonical entry-point for understanding platform state. Single file; BLUF-formatted; self-contained; clickable GitHub URLs to canonical sources. Always-current (per naming-policy Rule 1; version tracked in frontmatter). Read in ~3 minutes for full picture. Token-optimal by design — tables over prose, lazy-loaded references, audience-routing matrix. Renamed from quick-context-S006-L1.md (S006 turn 24) → quick-context.md (turn 24 partial fix) → OVERVIEW.md (turn 25 full fix per industry-standard vocabulary rule). Industry-standard "OVERVIEW" replaces invented "quick-context" term.
-version: 2.3
-last_update_session: S006
-last_update_turn: 30
-last_update: S006-CLOSE
+version: 2.4
+last_update_session: S007
+last_update_turn: 6
+last_update: S007-CLOSE
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -35,9 +35,32 @@ generated_at: 2026-05-04T21:05:00Z
 
 > **Canonical entry-point for the platform.** Read this in ~3 minutes for the full picture. Always-current — filename stable across sessions per [naming-policy.md](../../pillar-0-governance/naming-policy.md). Version + last-update tracked in frontmatter.
 >
-> **Latest update:** S006 turn 25 — governance-foundation topic-plan CLOSED + naming-policy engraved + this file renamed to industry-standard `OVERVIEW.md`.
+> **Latest update:** S007 turn 6 — token-optimization Phases 1-4 of 10 closed + B_TOKEN_BUDGET 5/5 atomic engraved (extends P-META-009 CCA) + K=2 closed-enum drift structural fix + AGENTS.md slim 77% (206→143 lines / 6001→1377 words) + 9 SKILL.md at .claude/skills/ + .claudeignore + 5.7% measured savings (cruel-critic Critique 1 honestly applied: 60-80% target is end-state across 10 phases).
 
-## (S006 Governance-Foundation Close — context for current state)
+## (S007 Token-Optimization Phases 1-4 Close — context for current state)
+
+**S007 close metrics (Δ vs S006 close):**
+
+| Surface | S006 close | S007 close | Δ |
+|---|---|---|---|
+| Principles validated | 53 | 53 | 0 (P-META-009 EXTENDED via subsection; no new principle) |
+| B_* contracts | 26 | **27** | +1 (B_TOKEN_BUDGET) |
+| AGENTS.md hard NOs | 48+ | **50+** | +2 |
+| AGENTS.md size (lines/words) | 206 / 6001 | **143 / 1377** | -30.6% lines / -77% words |
+| Audit registry slugs | ~140+ | **~146+** | +6 (5 token-budget + 1 closed-enum-drift-prevention) |
+| Topic-plans active | 0 | **1** (token-optimization Phases 1-4 done; Phase 5 next) | +1 |
+| Element-reviews | 1 | **2** (+token-optimization-S007) | +1 |
+| `.claude/skills/` SKILL.md (Claude Code auto-load) | 0 | **9** | NEW |
+| Tools (measurement) | 0 | **1** (`tools/measure-token-cost.mjs`) | NEW |
+| Scenario JSONs | 0 | **8** | NEW |
+| `.claudeignore` | absent | **present** | NEW |
+| Hook stubs | 0 | **2** | NEW |
+| Memory entries | 40 | **42** | +2 |
+| Pillar-0 leaves | csps-core-manifest + naming-policy + token-optimization | **+ frontmatter-closed-enums** | +1 |
+| First measured savings | n/a | **5.7% aggregate** (565K → 532K tokens) | empirical baseline anchored |
+| Commits this session | 14 (S006) | **6** (S007: 5 phases + close) | (per-session) |
+
+## (S006 Governance-Foundation Close — context for prior state)
 
 > **Read this file (~3 min) for full platform picture.** All references clickable GitHub URLs. Self-contained.
 

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-04T19:43:40.049Z
-- finished_at: 2026-05-04T19:43:42.435Z
+- ran_at: 2026-05-04T19:54:01.272Z
+- finished_at: 2026-05-04T19:54:03.711Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-04T19:43:40.049Z",
-    "finished_at": "2026-05-04T19:43:42.435Z",
+    "ran_at": "2026-05-04T19:54:01.272Z",
+    "finished_at": "2026-05-04T19:54:03.711Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.3,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.7,
         "principles_loaded": 53,
         "findings_total": 0
       },
@@ -40,10 +40,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 135,
+        "scanned": 137,
         "errors": 0,
         "warnings": 5,
-        "exempt": 70
+        "exempt": 72
       },
       {
         "name": "aap_frontmatter_coverage",

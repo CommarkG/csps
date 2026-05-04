@@ -1124,6 +1124,19 @@ Step 7: ITERATE until alignment-confirmed-explicit (no more clarifications neede
 
 **Cross-references:** P-ARCH-029 / P-META-007 (FSE — naming-policy itself uses 5/5 atomic engraving) / P-META-015 (template-first — naming-policy IS a template for filenames) / P-META-019 (structural-prevention — naming inconsistency caught → fix the policy not the instance) / P-ARCH-013 (universal-traits-trunk-domain-overlays — naming convention IS a universal trait) / P-ARCH-028 (Core Spine — naming-policy ARCH spine primary).
 
+### S007 turn 5 amendment — K=2 closed-enum drift structural fix (Q-2 K=2 promotion)
+
+**K-promotion fired:** B_STRUCTURAL_PREVENTION_DISCIPLINE Q-2 mandate triggered by closed-enum drift recurrence: K=1 was S006 §10.0j #1 (`lifecycle_state: draft` drift on a topic-plan); K=2 was S007 turn 2 (`maturity: active` drift on token-optimization topic-plan). Same anti-pattern (AI guessing closed-enum value from "common pattern" instead of consulting source); different fields. Per Q-2 verbatim — "if an enforment was skipped system will mandatory find enhacement to prevent this from happening" — K=2 mandates **structural engraving, not patch-the-instance**.
+
+**Structural fix engraved S007 turn 5 (5/5 atomic per FSE):**
+- **Schema:** new canonical reference [`frontmatter-closed-enums.md`](./frontmatter-closed-enums.md) — mirrors `validate-frontmatter.mjs` constants for pre-write AI consultation
+- **Validator (atomic registration):** `frontmatter-closed-enum-drift-prevention` registered in [`audit-runner.md`](./audit-runner.md) Meta section (PR + per-session); composes with existing `frontmatter_validate` post-write detection; impl week-4
+- **Hook:** stub [`.claude/hooks/pre-tool-use-frontmatter-enum-check.sh`](../../../.claude/hooks/pre-tool-use-frontmatter-enum-check.sh); week-4 active enforcement
+- **Memory:** [`feedback_frontmatter_closed_enum_drift.md`](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_frontmatter_closed_enum_drift.md) + MEMORY.md index entry
+- **Contract:** this amendment + AGENTS.md hard NO sub-bullet under B_STRUCTURAL_PREVENTION_DISCIPLINE + ai-behavior-spine.md row update
+
+**Going forward:** AI authoring frontmatter MUST consult [`frontmatter-closed-enums.md`](./frontmatter-closed-enums.md) OR `validate-frontmatter.mjs` constants BEFORE Write/Edit on closed-enum fields. The 7 closed-enum surfaces are: `lifecycle:` / `lifecycle_state:` (top-level) + `domain:` / `type:` / `tier:` / `audience:` / `maturity:` (tag dimensions). Composition-only catch (existing discipline + new mechanical surface) — no new B_* contract needed per b-star-contract template escape hatch.
+
 ## B_TOKEN_BUDGET — 5 operating rules extending P-META-009 CCA (S007 turn 4)
 
 **Canonical:** Every CSPS AI session honors 5 operating rules governing recurring token consumption: **R1** default depth L1 (quick) only — L2/L3 require explicit trigger; **R2** default model tiering — Sonnet for build/edit, Haiku for subagents (read-only Task tool ops), **Opus for engraving + PCR + ZF synthesis + architectural decisions** (CCA QG1 immutable); no mid-task model switching (cache is model-specific); **R3** default at IMPL_BATCH boundary `/compact <focus>` — strategic compaction with focus instructions replaces auto-compact's content-loss pattern; CSPS analog: at L<N>→L<N+1> topic-plan transitions OR commit-worthy boundaries; **R4** default between unrelated tasks `/clear` + new session — stale context from unrelated tasks does not pay rent; CSPS analog: chat-vs-session distinction (P-META-014); **R5** default for tool output: summary first; full log path-linked — validator + command + file-read returns `status + findings_count + top_5 + evidence_paths + full_log_path`. **B_TOKEN_BUDGET extends P-META-009 CCA — does NOT introduce a new principle.**

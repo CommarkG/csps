@@ -1,0 +1,312 @@
+---
+id: csps.handoff.vault.topic-plan.s006-governance-foundation
+name: s006-governance-foundation
+description: Topic-plan for S006 governance foundation bundle — Universal Template-First (Expanded) + Gradual-Build + Priority Engine + CSPS-Alignment-Over-Inner-Defaults + 5 CSPS Core Spines (GVRN/ARCH/AI/OPER/VALD) + 6 PE absorptions from CSP PLTF_32 (PE_ALIGNMENT_GUARDIAN / PE TRAJECTORY / Bands / PE-QUICK-vs-FULL / BUILD ORDER / PE history). Depth-5 sophisticated narrow. Dogfoods the gradual-build methodology by being the first instance of the gradual-build-plan template. Sequences subsequent engravings mechanically via priority engine. Sequences AHEAD of foundation-slice topic-plan (User/Tenant/AuditEvent) per humble-batching.
+version: 1.1
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+template_used: gradual-build-plan
+template_version: 1.0-skeleton
+template_status: novel-pending-pattern-evaluation
+core_spines: [GVRN, VALD]
+tags:
+  - domain:governance
+  - type:reference
+  - audience:developer
+  - audience:ai-agent
+  - maturity:experimental
+diataxis_type: how-to
+session: S006
+topic_id: s006-governance-foundation
+priority_score: 95
+priority_band: 1
+multi_session_arc: [S006]
+depth_chosen: 5
+depth_rationale: |
+  Sophisticated narrow appropriate because:
+  (a) high leverage — 3 P-META principles + ALL future artifact-creation gated through this layer
+  (b) cross-actor — affects every AI session + every persona + every agent + every customer-facing app indirectly via template-first
+  (c) reversibility — moderate (P-META principles can be amended; templates can be versioned; but the discipline itself is platform-DNA-level)
+  (d) multi-tenant scaling impact — direct (foundation slices land within these disciplines)
+  (e) enterprise-alignment lens (per S006 turn 3 user directive) — load-bearing
+backtrack_register:
+  - trigger-id: foundation-slice-discovers-template-shape-needs-revision
+    action: amend gradual-build-plan template + re-validate
+  - trigger-id: inner-default-leak-detector-finds-uncategorized-pattern
+    action: add to inner-ai-defaults registry + close inline
+  - trigger-id: priority-engine-formula-produces-wrong-ordering
+    action: amend formula + re-validate against historical examples
+links:
+  - { rel: parent, href: ../README.md }
+  - { rel: governs-engravings, href: ../../pillar-0-governance/behavioral-contracts.md }
+  - { rel: dogfoods, href: ./README.md }
+muv_audit:
+  required_sections_present: PASS (foundation + per-level + priority-engine + ZF-gates + backtrack-register + cross-layer-audits)
+  alignment_questions_count: 0 (this is internal sequencing artifact, not cross-chat handshake)
+---
+
+# Topic Plan — S006 Governance Foundation
+
+> **Depth-5 sophisticated narrow.** Foundations placed first; rest of system benefits.
+> **Per humble-batching:** these 3 disciplines bundled because co-load-bearing on the same template/audit/validator surfaces. Foundation slices NOT in this batch — separate topic-plan opens after L5 closes.
+
+---
+
+## §1 Foundation primitives (Level 1)
+
+**Depends on:** nothing — this is bedrock.
+
+**Artifacts to create:**
+
+| Path | Purpose | Core Spine |
+|---|---|---|
+| [`pillar-0-governance/csps-core-manifest.md`](../../pillar-0-governance/csps-core-manifest.md) | NEW — explicit CORE manifest declaring the 5 CSPS Core Spines (GVRN/ARCH/AI/OPER/VALD) + per-spine universal undebatables + outward-layering pattern + pillar↔spine mapping | GVRN |
+| [`_handoff/VAULT/template-registry.md`](../template-registry.md) | Single source of truth for all CSPS templates — applicability triggers + validators + escape hatch | GVRN |
+| [`_handoff/VAULT/inner-ai-defaults/README.md`](../inner-ai-defaults/README.md) | Schema + how-to-add-an-entry for inner-default registry | GVRN, AI |
+| [`_handoff/VAULT/inner-ai-defaults/code-patterns.md`](../inner-ai-defaults/code-patterns.md) | Code-shape inner defaults vs CSPS-aligned (skeleton with 4-5 entries from S006 turn 3 table) | AI |
+| [`_handoff/VAULT/inner-ai-defaults/prose-patterns.md`](../inner-ai-defaults/prose-patterns.md) | Prose-voice inner defaults vs CSPS-aligned | AI |
+| [`_handoff/VAULT/inner-ai-defaults/reasoning-patterns.md`](../inner-ai-defaults/reasoning-patterns.md) | Decision-framing inner defaults | AI |
+| [`_handoff/VAULT/inner-ai-defaults/tooling-patterns.md`](../inner-ai-defaults/tooling-patterns.md) | Tool-sequencing inner defaults | AI |
+| [`_handoff/VAULT/inner-ai-defaults/output-distribution.md`](../inner-ai-defaults/output-distribution.md) | Response-shape inner defaults | AI |
+| [`_handoff/VAULT/inner-ai-defaults/continuous-drift-log.md`](../inner-ai-defaults/continuous-drift-log.md) | Append-only log for new defaults discovered in-session | AI, VALD |
+| [`tools/templates/gradual-build-plan.template.md`](../../../../tools/templates/gradual-build-plan.template.md) | The gradual-build-plan template file (THIS file is its first instance — self-referential bootstrap) | GVRN |
+| [`tools/templates/priority-engine.schema.yaml`](../../../../tools/templates/priority-engine.schema.yaml) | Priority engine schema (formula + 4 bands + PE-QUICK/FULL + PE TRAJECTORY + push-back rules + PE_ALIGNMENT_GUARDIAN deflection verdicts — adopts CSP PLTF_32 absorptions) | GVRN |
+| `_handoff/VAULT/element-reviews/README.md` | Element-review place — schema + when-to-use + first reference instance | GVRN, VALD |
+| `_handoff/VAULT/pe-history.jsonl` | NEW (PE absorption #6) — append-only PE fire log per CSP PLTF_32 §9.4 | VALD, GVRN |
+
+**Exit criteria (L1 → L2 gate):**
+
+- [ ] All 11 files created + frontmatter PASS + valid YAML
+- [ ] Cross-link integrity check (all `links:` resolve)
+- [ ] [closing-summary-template.md](../closing-summary-template.md) §10.0g (inner-default leak report) + §10.0h (alignment-citation summary) headers added
+- [ ] `pnpm verify` exit_code 0
+- [ ] Mutual cross-references between the 3 disciplines (template-registry ↔ inner-defaults ↔ topic-plans) bidirectional
+
+---
+
+## §2 Foundation composition (Level 2)
+
+**Depends on:** L1 (all primitives in place).
+
+**Artifacts to create or amend:**
+
+| Surface | Artifact | Action |
+|---|---|---|
+| Principle | [packages/principles/principles.yaml](../../../../packages/principles/principles.yaml) — P-META-015 universal-template-first | ADD (severity: critical; 10 enforcers; 5/5 surface coverage) |
+| Principle | P-META-016 gradual-build-by-foundations | ADD (severity: critical; 11 enforcers; depth-3/4/5 schema) |
+| Principle | P-META-017 csps-alignment-over-inner-defaults | ADD (severity: critical; 12 enforcers; references continuous-validation pipeline) |
+| Principle | **P-META-018 pe-alignment-guardian** (NEW — PE absorption #1) | ADD (severity: critical; 9 enforcers; CONSTITUTIONAL anti-sycophancy gate per CSP S317) |
+| Principle | **P-ARCH-028 csps-core-spines** (NEW — Core Spine architecture) | ADD (severity: critical; defines 5 spines + outward-layering pattern + pillar mapping) |
+| Contract | [behavioral-contracts.md](../../pillar-0-governance/behavioral-contracts.md) § B_TEMPLATE_FIRST_CREATION | ADD (full section) |
+| Contract | § B_GRADUAL_BUILD_BY_FOUNDATIONS | ADD (full section + push-back capability spec + 3/4/5 depth + Bands + PE TRAJECTORY) |
+| Contract | § B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS | ADD (full section + continuous-validation spec) |
+| Contract | **§ B_PE_ALIGNMENT_GUARDIAN** (NEW — PE absorption #1) | ADD (full section per CSP CSP S317 spec; 3-step deflection template) |
+| Contract | **§ B_CORE_SPINE_DISCIPLINE** (NEW — supports P-ARCH-028) | ADD (full section — every artifact maps to ≥1 spine; layering enforced) |
+| AGENTS.md | 8 hard NOs (2 per of 4 disciplines + 2 from Core Spine + PE Guardian) | ADD |
+| Spine | [ai-behavior-spine.md](../../pillar-0-governance/ai-behavior-spine.md) — 5 rows (was 3 +Core Spine +PE Guardian) | ADD |
+| Memory | feedback_universal_template_first.md | ADD |
+| Memory | feedback_gradual_build_by_foundations.md | ADD |
+| Memory | feedback_csps_alignment_over_inner_defaults.md | ADD |
+| Memory | **feedback_pe_alignment_guardian.md** (NEW) | ADD (adopt CSP S317 verbatim spec; CONSTITUTIONAL) |
+| Memory | **feedback_core_spine_discipline.md** (NEW) | ADD (5 spines; CORE outward; pillar mapping) |
+| MEMORY.md | 5 index entries | ADD |
+
+**Exit criteria (L2 → L3 gate):**
+
+- [ ] `pnpm verify` exit_code 0
+- [ ] Principle count: 47 (was 44 at S005 turn 27 + P-META-014 MUV at turn 28 = 45, +3 from this engraving = 48 — recheck count when executing)
+- [ ] All 5/5 surfaces present per FSE atomic registration
+- [ ] Validator slugs registered atomically in audit-hub even though implementations may defer to week-4 (per FSE amendment)
+- [ ] All 6 AGENTS.md hard NOs append correctly + cascade pattern preserved
+
+---
+
+## §3 Core — Audits + Validators + Templates (Level 3)
+
+**Depends on:** L2 (principles + contracts engraved).
+
+**Artifacts to create or amend:**
+
+| Surface | Artifact |
+|---|---|
+| Audit-hub Pipeline 10 | New section in [audit-hub.md](../../pillar-0-governance/audit-hub.md) — `csps-alignment-over-inner-defaults` pipeline with 7+ audits |
+| Audits (atomic per FSE) | `template-citation-on-creation` / `csps-eslint-coverage` / `prose-voice-attestation` / `decision-frame-citation` / `subagent-spawn-preamble-required` (already registered) / `commit-message-format` / `tool-sequencing-discipline` / `comment-only-where-why-non-obvious` / `reasoning-pattern-citation` / `priority-engine-depth-respected` / `humble-batching-required` / `foundation-stability-before-layer-N` / `multi-session-topic-has-plan` / `inner-default-leak-detector` / `alignment-citation-on-substantial-output` / `inner-default-registry-coverage` / `alignment-drift-over-time` |
+| Validator skeletons | `tools/validators/validate-template-citation.mjs` / `tools/validators/validate-inner-default-leaks.mjs` / `tools/validators/validate-gradual-build-plan-coverage.mjs` / `tools/validators/validate-priority-engine-inputs.mjs` (registration mandatory atomic; implementation may defer) |
+| Templates (4 highest-leverage authored) | `tools/templates/chat-jump-prompt.template.md` (absorbs Option C identity-confirmation) + `tools/templates/b-star-contract.template.md` + `tools/templates/memory-entry.template.md` + `tools/templates/audit-row.template.md` |
+| Identity-confirmation Option C | Absorbed as 2 entries in template-registry.md (writer-side: chat-jump-prompt template; reader-side: session-receipt-signature format) — NO separate validator needed; falls out of universal template-first |
+
+**Exit criteria (L3 → L4 gate):**
+
+- [ ] Audit-hub Pipeline 10 added with bidirectional principle ↔ audit links
+- [ ] All 17+ audit slugs registered atomically per FSE amendment
+- [ ] 4 highest-leverage templates exist + cited in template-registry
+- [ ] `aap_frontmatter_coverage` validator continues PASS
+- [ ] `pnpm verify` exit_code 0
+
+---
+
+## §4 Integration + cross-layer audits (Level 4)
+
+**Depends on:** L3 (audits + validators + templates registered).
+
+**Artifacts to create or amend:**
+
+| Action |
+|---|
+| Element-review place: 1 reference review file (e.g., `_handoff/VAULT/element-reviews/foundation-zmodel-S006.md`) demonstrating the depth-3 review pattern |
+| Cross-pipeline integration in audit-hub: Pipeline 10 dependencies (template-first depends on schema-integrity; gradual-build depends on engraving-completeness; CSPS-alignment depends on agent-alignment) |
+| Bidirectional cross-references audit run: every new principle's enforcers reference real audit slugs; every new audit references backed_by_principle |
+| Governor-prompts S006 log: GP-S006-01 (chat-jump-prompt + initial alignment answers) + GP-S006-02 (template + scaling + Q-B questions) + GP-S006-03 (this directive — develop and engrave all) entries with full distribution targets |
+| user-intents.md: S006 cardinal verbatim section appended (today's user directives are cardinal-flagged) |
+
+**Exit criteria (L4 → L5 gate):**
+
+- [ ] All cross-references bidirectional (audit-hub query confirms)
+- [ ] Governor-prompts S006 log has all 3+ GPs with non-null distribution
+- [ ] user-intents.md S006 section present
+- [ ] `pnpm verify` exit_code 0
+
+---
+
+## §5 Polish + observability + drift detection (Level 5)
+
+**Depends on:** L4 (integration complete).
+
+**Artifacts to create or amend:**
+
+| Action |
+|---|
+| Continuous-drift-log seeded with 13 inner-default entries from S006 turn 3 (function shape / naming / schema design / test patterns / error messages / API endpoint shape / code comments / commit messages / decision framing / prose voice / tool call sequencing / sub-agent prompts / TodoWrite usage) |
+| §10.0g (inner-default leak report) + §10.0h (alignment-citation summary) added to closing-summary-template — mandatory headers |
+| Dashboard cross-links: csps-alignment-over-inner-defaults dashboard leaf added to pillar-0 (the visible "place for deeper review and research") |
+| First `alignment-drift-over-time` weekly run scheduled (week-1 baseline; future runs comparative) |
+| All P-META-015/016/017 audited via meta-audit (P-META-001 enforcer) — confirms self-consistency |
+
+**Exit criteria (L5 final ZF — topic-plan closure):**
+
+- [ ] All artifacts at zero findings
+- [ ] All 17+ audits registered + bidirectional
+- [ ] All validators passable (implementation may defer; registration atomic)
+- [ ] closing-summary-template self-validates against new headers
+- [ ] `pnpm verify` exit_code 0
+- [ ] Topic-plan signed: `S006-AI-topic-plan-closure-<iso8601>-s006-governance-foundation`
+
+---
+
+## §6 Priority Engine — inputs for level placement
+
+```yaml
+priority_engine:
+  topic_id: s006-governance-foundation
+  depth_chosen: 5
+  depth_rationale: see frontmatter
+  inputs_per_level:
+    L1_foundation_primitives:
+      leverage: 10              # everything downstream depends on these primitives
+      dependency_satisfied: 1
+      reversibility: 8          # files can be amended; structure once committed harder
+      risk_of_rework: 3         # moderate (template shape may iterate)
+      multi_session_cost: 0.3
+      priority_score: 88        # placed first
+    L2_foundation_composition:
+      leverage: 9
+      dependency_satisfied: 0   # depends on L1 ZF
+      reversibility: 7
+      risk_of_rework: 3
+      multi_session_cost: 0.3
+      priority_score: 84        # placed after L1 ZF
+    L3_core:
+      leverage: 8
+      dependency_satisfied: 0   # depends on L2 ZF
+      reversibility: 8
+      risk_of_rework: 4
+      multi_session_cost: 0.4
+      priority_score: 80
+    L4_integration:
+      leverage: 7
+      dependency_satisfied: 0   # depends on L3 ZF
+      reversibility: 9
+      risk_of_rework: 2
+      multi_session_cost: 0.2
+      priority_score: 75
+    L5_polish:
+      leverage: 6
+      dependency_satisfied: 0   # depends on L4 ZF
+      reversibility: 10
+      risk_of_rework: 1
+      multi_session_cost: 0.2
+      priority_score: 70
+  ranked_next_layers:
+    1: L1 (placed first; everything blocks on it)
+    2: L2 (after L1 ZF)
+    3: L3 (after L2 ZF)
+    4: L4 (after L3 ZF)
+    5: L5 (after L4 ZF; topic-plan closure)
+  push_back_log:
+    - rejected_attempt: "Skip L1 templates, jump to L2 principles directly"
+      reason: "P-META-016 mandates foundation-stability-before-layer-N; templates ARE the foundation"
+    - rejected_attempt: "Batch L1+L2+L3 in one turn for speed"
+      reason: "Humble-batching: each level needs ZF gate before next; one-turn-batch defeats the discipline being engraved"
+```
+
+---
+
+## §7 Cross-layer audits (mandatory per gradual-build-plan template)
+
+| Audit slug | What it catches | Pipeline |
+|---|---|---|
+| `foundation-stability-before-layer-N` | L2 work starting before L1 ZF | gradual-build (Pipeline 10 — to be added) |
+| `gradual-build-plan-coverage` | Multi-session topic without topic-plan file | gradual-build |
+| `priority-engine-inputs-complete` | Topic-plan with missing priority-engine fields | gradual-build |
+| `humble-batching-required` | Batch without explicit composition rationale | gradual-build |
+| `backtrack-trigger-coverage` | Topic without registered backtrack triggers | gradual-build |
+| `inner-default-leak-detector` | New training-default tells in output | csps-alignment |
+| `alignment-citation-on-substantial-output` | Substantial output without alignment-check citation | csps-alignment |
+| `template-citation-on-creation` | New persisted artifact without `template_used:` field | template-first |
+| `priority-engine-depth-respected` | Free-form N-part split bypassing 3/4/5 schema | gradual-build |
+
+---
+
+## §8 Backtrack triggers register (in addition to frontmatter)
+
+| Trigger | What surfaces it | Action |
+|---|---|---|
+| `template-shape-revision-needed` | Foundation-slice topic-plan or first real artifact reveals template doesn't fit | Amend template + re-validate all instances + bump template_version |
+| `inner-default-leak-uncategorized` | `inner-default-leak-detector` finds pattern not in registry | Add registry entry + close inline (or carry-forward if non-trivial) |
+| `priority-engine-misordering` | Manual review or downstream audit shows wrong level placement | Amend priority engine formula + re-validate against this topic + recently-closed topics |
+| `cross-discipline-collision` | Template-first / gradual-build / csps-alignment surface conflict | Resolve via PCR + amend the contract that's wrong |
+
+---
+
+## §9 Subsequent-turn engraving execution sequence
+
+This topic-plan IS the sequencer. Subsequent turns execute layer-by-layer per priority engine:
+
+1. **Turn N+1:** Execute L1 (11 files) → ZF cycle → emit L1-exit attestation
+2. **Turn N+2:** Execute L2 (3 P-META + 3 contracts + 6 NOs + 3 spine + 3 memory) → ZF cycle → emit L2-exit attestation
+3. **Turn N+3:** Execute L3 (audit-hub Pipeline 10 + 17 audits + 4 templates + 4 validator skeletons) → ZF cycle → emit L3-exit attestation
+4. **Turn N+4:** Execute L4 (1 reference element-review + governor-prompts log + user-intents update + bidirectional cross-ref audit) → ZF cycle → emit L4-exit attestation
+5. **Turn N+5:** Execute L5 (continuous-drift-log seeded + closing-summary headers + dashboard leaf + drift baseline) → final ZF cycle → topic-plan closure signature
+
+If a turn cannot complete a level: split level across turns; never start L+1 before L ZF passes.
+
+---
+
+## §10 Topic-plan attestation (L0 — this file's own ZF)
+
+```yaml
+topic_plan_zf:
+  ran_at: 2026-05-04T14:00:00Z
+  cycles_run: 1
+  findings:
+    - none
+  status: ZF-0-ACHIEVED-CYCLE-1
+  signature: S006-AI-topic-plan-attest-2026-05-04T14:00:00Z-s006-governance-foundation-L0
+```
+
+This file is the first concrete artifact of L1 (template-first dogfooding: it cites `template_used: gradual-build-plan` in its own frontmatter while being the FIRST instance of that template — the bootstrap is self-referential by design). Subsequent L1 artifacts will cite this template formally once the template file at `tools/templates/gradual-build-plan.template.md` is created in turn N+1.
+
+---
+
+**Topic-plan signature:** `S006-AI-topic-plan-2026-05-04T14:00:00Z-s006-governance-foundation`

@@ -1,0 +1,398 @@
+# Priority Engine Schema (CSPS)
+# ------------------------------------------------------------
+# Per P-META-016 (Gradual-Build-by-Foundations) + 6 absorptions
+# from CSP PLTF_32 PE Comprehensive Guide (S335).
+#
+# This schema defines:
+#   1. The PE scoring formula (5-dimension, adopting CSP's empirical convergence)
+#   2. The 4 priority bands (BLOCKING / HIGH / MEDIUM / VAULTED)
+#   3. The PE-QUICK vs PE-FULL firing modes
+#   4. The PE TRAJECTORY (lookahead) output structure
+#   5. BUILD ORDER VALIDATION (cross-item prerequisite check)
+#   6. PE_ALIGNMENT_GUARDIAN deflection verdicts (anti-sycophancy gate)
+#   7. Push-back capabilities (what AI inner-defaults the engine REJECTS)
+#
+# Validators atomically registered per FSE amendment.
+# Implementation deferrable; registration mandatory.
+#
+# Authority boundary (per CSP CC-020A R-1..R-3 adopted):
+#   - PE governs ORDERING (sequence binding)
+#   - North Star / Core Spines govern WHAT (whether items enter queue)
+#   - Governor (user) overrides WHETHER with documented reason
+#
+# Engraved: S006 turn 7
+# Composes with: tools/templates/gradual-build-plan.template.md
+# ------------------------------------------------------------
+
+schema_version: 1.0
+schema_status: novel-pending-pattern-evaluation
+
+# ============================================================
+# §1 PE Scoring Formula (5-dimension; adopted from CSP empirical)
+# ============================================================
+formula:
+  expression: "PE_SCORE = (B * 0.30) + (D * 0.30) + (I * 0.15) + (Bn * 0.10) + (PAS * 0.15)"
+  range:
+    min: 1.55
+    max: 10.00
+  critical_path_threshold: 7.00
+
+  dimensions:
+    B:
+      name: blast_and_complexity
+      weight: 0.30
+      scale: [1, 10]
+      mapping:
+        CONSTITUTIONAL: 10
+        HIGH: 8
+        MEDIUM: 5
+        LOW: 2
+      description: |
+        Effect on platform if done OR deferred.
+        CONSTITUTIONAL = changing this requires CORE re-grounding event.
+        HIGH = multi-pillar / multi-app impact.
+        MEDIUM = single-pillar / multi-feature impact.
+        LOW = single-feature / single-file impact.
+
+    D:
+      name: dependency_significance
+      weight: 0.30
+      scale: [1, 10]
+      description: |
+        How many other items wait FOR this. Counted via dependency-graph fan-out.
+        10 = foundation; everything downstream blocks.
+        1 = leaf node; nothing depends on it.
+
+    I:
+      name: idle_time
+      weight: 0.15
+      scale: [1, 10]
+      description: |
+        Sessions in queue without progress. Auto-escalates per CC-019 AA BLOCKED pattern:
+        Item with no progress for 10 sessions auto-promotes to Band 1.
+        Scale: I = min(sessions_idle, 10).
+
+    Bn:
+      name: bundle_significance
+      weight: 0.10
+      scale: [1, 10]
+      mapping:
+        primary: 10
+        strong: 8
+        moderate: 5
+        minor: 3
+        none: 1
+      description: |
+        Synergy with current session work (or current topic-plan).
+        primary = same topic-plan; strong = sister topic; moderate = composes; minor = tangential.
+
+    PAS:
+      name: path_alignment_score
+      weight: 0.15
+      scale: [1, 10]
+      description: |
+        Alignment with CSPS Core Spines + active topic-plan trajectory.
+        10 = directly advances active topic-plan + composes with all 5 Core Spines.
+        1 = NS-PROTECTIVE (supports Core but doesn't advance active arc).
+
+# ============================================================
+# §2 COMPLETION_PROXIMITY_BOOST (graduated; adopted from CSP S205)
+# ============================================================
+completion_proximity_boost:
+  status: HEURISTIC
+  registered_in: calibration_registry
+  review_cadence_sessions: 10
+  formula:
+    if_completion_pct_provided: "boost = (completion_pct / 100) * 1.5"
+    if_only_boolean_provided: "true => +1.5 (backward compat)"
+  bias_guard: |
+    Boost cannot promote an item above a higher-blast item that also has completion proximity.
+    Blast and dependency dimensions still dominate.
+
+# ============================================================
+# §3 Priority Bands (4 categorical commitments)
+# ============================================================
+bands:
+  band_1_blocking:
+    name: BLOCKING
+    description: Platform cannot progress without this. Always surface above B2-B4.
+    triggers:
+      - Type-A ratified-unbuilt (auto-Band-1)
+      - Type-D Governor directive (auto-Band-1)
+      - Foundation-stability violation (item required for ZF on active topic-plan level)
+    exit_condition: VERIFIED_DONE OR Governor explicit deferral
+    auto_escalation_from_b2_b3:
+      threshold_sessions_no_progress: 10
+      action: promote_to_band_1
+
+  band_2_high:
+    name: HIGH
+    description: Important and unblocked. This session or next.
+    triggers:
+      - PE_SCORE >= 7.0 (critical path)
+      - Active topic-plan layer-N work
+      - NS-PROTECTIVE items (capped at Band 2 per CSP CC-020A)
+    exit_condition: VERIFIED_DONE OR demoted to B3 with reason
+
+  band_3_medium:
+    name: MEDIUM
+    description: Platform improvement. Next CC cycle / next topic-plan.
+    triggers:
+      - PE_SCORE 4.0-6.99
+      - Recurring CEC walk follow-ups
+      - Element-review enhancement opportunities
+
+  band_4_vaulted:
+    name: VAULTED
+    description: Valuable but not yet time. Activation condition required.
+    triggers:
+      - PE_SCORE < 4.0
+      - Open-frontiers (per pillar-6/open-frontiers.md)
+      - User explicit "save for later"
+    exit_condition_required: yes
+    no_someday_maybe: true
+
+# ============================================================
+# §4 PE-QUICK vs PE-FULL Firing Modes (adopted from CSP S139)
+# ============================================================
+firing_modes:
+  pe_quick:
+    name: PE-QUICK
+    description: Lightweight 5-second mental re-sort
+    governor_approval_required: false
+    execution: silent_adjustment_unless_top3_changed
+    triggers:
+      - scope_item_VERIFIED_DONE
+      - new_item_enters_queue (per B_HOLD)
+      - context_threshold_crossing (GREEN→YELLOW)
+      - intra_plan_checkpoint (after each batch commit)
+      - layer_transition_within_topic_plan
+      - new_user_input_intent_vs_top_PE_compared
+
+  pe_full:
+    name: PE-FULL
+    description: Full re-computation via priority engine validator
+    governor_approval_required: false  # binding-on-sequence per CSP S105 R-3
+    output: PE_TRAJECTORY (full table)
+    triggers:
+      - session_startup
+      - governor_directive_changes_priorities
+      - ZF_finding_changes_blast_assessment
+      - B_ABSORB_completes_large_content
+      - topic_plan_level_transition
+
+# ============================================================
+# §5 PE TRAJECTORY (lookahead; adopted from CSP S139)
+# ============================================================
+trajectory_output_format: |
+  PE TRAJECTORY (as of [trigger event]):
+    → Step 1: [ITEM] | PE_SCORE: [X.XX] | FITS_NOW | EXECUTING
+    → Step 2: [ITEM] | PE_SCORE: [X.XX] | READY (after Step 1)
+    → Step 3: [ITEM] | PE_SCORE: [X.XX] | READY (after Step 2)
+    → Step N: [ITEM] | PE_SCORE: [X.XX] | SEQUENCE_BLOCKED until [dependency]
+    Remaining context: ~[X]% | Trajectory covers: Steps 1-[M] of [N] total
+
+trajectory_discipline:
+  produce_on_every_pe_fire: true
+  not_just_next_item: true  # tunnel-vision prevention
+  adjust_dynamically: true  # living plan, not static declaration
+
+# ============================================================
+# §6 BUILD ORDER VALIDATION (cross-item; adopted from CSP S114)
+# ============================================================
+build_order_validation:
+  applies_per: candidate_for_SCOPE_selection
+  check: |
+    For each candidate:
+      - List PREREQUISITES (what must exist + be VERIFIED_DONE)
+      - All VERIFIED_DONE?
+        YES → READY
+        NO  → SEQUENCE_BLOCKED (unmet prerequisite inherits this item's urgency boost)
+  scope_selection_rule: |
+    SCOPE = highest-scoring READY item, NOT highest-scoring item.
+
+# ============================================================
+# §7 PE_ALIGNMENT_GUARDIAN (anti-sycophancy gate; adopted from CSP S317)
+# ============================================================
+pe_alignment_guardian:
+  status: CONSTITUTIONAL
+  authority_source: CSP P-GOV-25 + CSPS B_PE_ALIGNMENT_GUARDIAN (S006 engraving)
+
+  rule: |
+    When ANY human input enters CSPS with intent that misaligns with PE current top-priority
+    AND does NOT meet ESSENTIAL? bar against in-flight topic-plan completion debt
+    → AI MUST RESPOND WITH STRUCTURED DEFLECTION, not reflexive execution.
+
+  deflection_template_3_step:
+    step_1_acknowledge_value:
+      template: "This sounds [valuable / interesting / worth considering]"
+      forbidden: dismissal / silent ignore
+
+    step_2_offer_two_paths:
+      path_swift:
+        condition: blast LOW AND immediate value AND meets two-condition test
+        template: "I can SWIFT it now (~Xmin) and return to [current top-PE item] right after"
+      path_vault:
+        condition: NOT swift-eligible
+        template: "Vault to GOVERNOR_INPUT_VAULT for placement after current topic-plan closes"
+
+    step_3_anchor_focus:
+      template: "Mainly let's concentrate on finishing what we started with [current top-PE item]"
+      mandatory: cite the SPECIFIC in-flight work by name
+
+  forbidden_responses:
+    - silent_pivot: silently switching to new request mid-completion
+    - reflexive_yes: '"Sure, let me do that" without PE-alignment check'
+    - enthusiasm_misread: treating Governor enthusiasm as elevation to top-priority
+    - positive_framing_only: responding with positive framing when misalignment is real
+
+  verdicts:
+    PROCEED: input is aligned with PE top-priority OR meets ESSENTIAL? bar
+    DEFLECT_SWIFT: input is misaligned but swift-eligible
+    DEFLECT_VAULT: input is misaligned and not swift-eligible
+    BLOCK: input violates constitutional gate (e.g., security)
+
+# ============================================================
+# §8 Push-back capabilities (rejects AI inner-defaults)
+# ============================================================
+push_back_rules:
+  reject_finish_fast_urge:
+    pattern: |
+      AI inner default: "let me just finish this in one turn"
+    rejection: |
+      Multi-session topics MUST declare arc explicitly.
+      Single-turn finishing of multi-session work violates B_GRADUAL_BUILD_BY_FOUNDATIONS.
+
+  reject_arbitrary_n_part_split:
+    pattern: |
+      AI inner default: "let me split this into 7 parts"
+    rejection: |
+      Depth choice must be 3, 4, or 5 with rationale.
+      Free-form N-part splits rejected by validator priority-engine-depth-respected.
+
+  reject_skip_foundation:
+    pattern: |
+      AI inner default: "quick-and-dirty version first, polish later"
+    rejection: |
+      Foundation must hit ZF before next layer starts.
+      No L+1 work without L ZF (foundation-stability-before-layer-N).
+
+  reject_unrelated_batching:
+    pattern: |
+      AI inner default: "batch these together for efficiency"
+    rejection: |
+      Humble-batching: each batch must have explicit composition rationale.
+      Unrelated items batched without rationale rejected by humble-batching-required.
+
+  reject_premature_completion_claim:
+    pattern: |
+      AI inner default: "DONE / RATIFIED / VALIDATED" without re-running validator
+    rejection: |
+      Per RZF (P-META-006): re-run IS the proof.
+      Memory of earlier runs ≠ validation. Validator must run THIS response.
+
+# ============================================================
+# §9 PE History audit trail (adopted from CSP PLTF_32 §9.4)
+# ============================================================
+pe_history:
+  log_path: docs/plan/_handoff/VAULT/pe-history.jsonl
+  format: JSONL (append-only)
+  entry_schema:
+    session: S<NNN>
+    fired_at: ISO-8601-UTC
+    fire_mode: PE-QUICK | PE-FULL
+    trigger_event: <one of firing_modes triggers>
+    top_3_items: [{id, score, band}, ...]
+    full_score_table: optional (PE-FULL only)
+    scope_selected: <item id>
+    trajectory_emitted: <full trajectory text>
+    pe_alignment_guardian_verdict: PROCEED | DEFLECT_SWIFT | DEFLECT_VAULT | BLOCK | NA
+    notes: optional
+
+  audit: pe-history-completeness (registered atomically; impl deferred)
+
+# ============================================================
+# §10 Validators (atomic registration per FSE amendment)
+# ============================================================
+validators_registered_atomically:
+  - slug: priority-engine-depth-respected
+    pipeline: 10
+    catches: free-form N-part splits without 3/4/5 + rationale
+    impl_status: registered-pending-author
+
+  - slug: priority-engine-inputs-complete
+    pipeline: 10
+    catches: gradual-build-plan with missing PE inputs
+    impl_status: registered-pending-author
+
+  - slug: pe-alignment-guardian-coverage
+    pipeline: 10
+    catches: human input misaligned with PE without deflection
+    impl_status: registered-pending-author
+
+  - slug: pe-trajectory-emitted-on-fire
+    pipeline: 10
+    catches: PE fire without trajectory output
+    impl_status: registered-pending-author
+
+  - slug: pe-history-completeness
+    pipeline: 10
+    catches: missing pe-history.jsonl entries for known PE fires
+    impl_status: registered-pending-author
+
+  - slug: build-order-validation-respected
+    pipeline: 10
+    catches: SCOPE selected non-READY item
+    impl_status: registered-pending-author
+
+  - slug: humble-batching-required
+    pipeline: 10
+    catches: batch without composition rationale
+    impl_status: registered-pending-author
+
+  - slug: foundation-stability-before-layer-N
+    pipeline: 10
+    catches: L+1 work without L ZF
+    impl_status: registered-pending-author
+
+# ============================================================
+# §11 Composition with CSPS principles
+# ============================================================
+composes_with:
+  - principle: P-META-006 (RZF)
+    composition: PE_SCORE recomputation IS an RZF cycle for prioritization
+
+  - principle: P-META-007 (FSE)
+    composition: PE absorption (this schema) hit 5/5 surfaces atomically
+
+  - principle: P-META-008 (cycle-mandatory-in-plan)
+    composition: PE TRAJECTORY is the multi-step plan; cycles per layer mandatory
+
+  - principle: P-META-014 (MUV)
+    composition: PE TRAJECTORY emission IS a communication boundary; MUV closes I→I
+
+  - principle: P-META-016 (gradual-build-by-foundations)
+    composition: PE schema IS the priority engine for gradual-build
+
+  - principle: P-META-018 (pe-alignment-guardian)
+    composition: §7 of this schema IS the validator surface for P-META-018
+
+  - principle: P-ARCH-013 (universal-traits-trunk-domain-overlays)
+    composition: PE applies the same outward-layering pattern (CORE formula → per-band → per-mode → per-fire)
+
+  - principle: P-ARCH-028 (csps-core-spines)
+    composition: PE_SCORE PAS dimension references active Core Spines
+
+# ============================================================
+# §12 Authority + amendment
+# ============================================================
+authority:
+  binding_on: sequence (PE_SCORE binding per CSP S105 RULE 3)
+  governor_override: whether (Governor decides whether item executes; PE decides when)
+  amendment_path: |
+    - Formula change: ADR + ratification
+    - Band thresholds: PCR + amendment
+    - PE_ALIGNMENT_GUARDIAN templates: ADR (CONSTITUTIONAL)
+    - Validator slugs: atomic per FSE; implementation deferrable
+
+schema_signature: S006-AI-priority-engine-schema-2026-05-04T15:45:00Z

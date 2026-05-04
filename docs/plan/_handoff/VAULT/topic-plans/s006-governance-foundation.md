@@ -15,7 +15,7 @@ tags:
   - type:reference
   - audience:developer
   - audience:ai-agent
-  - maturity:experimental
+  - maturity:draft
 diataxis_type: how-to
 session: S006
 topic_id: s006-governance-foundation
@@ -98,19 +98,25 @@ muv_audit:
 | Principle | P-META-017 csps-alignment-over-inner-defaults | ADD (severity: critical; 12 enforcers; references continuous-validation pipeline) |
 | Principle | **P-META-018 pe-alignment-guardian** (NEW — PE absorption #1) | ADD (severity: critical; 9 enforcers; CONSTITUTIONAL anti-sycophancy gate per CSP S317) |
 | Principle | **P-ARCH-028 csps-core-spines** (NEW — Core Spine architecture) | ADD (severity: critical; defines 5 spines + outward-layering pattern + pillar mapping) |
+| Principle | **P-OPER-001 zero-laptop-dependency** (NEW — Q-1 ratified S006 turn 8) | ADD (severity: critical; OPER spine; canonical-in-cloud + auto-push-at-session-close-gate + multi-machine parity) |
+| Principle | **P-META-019 structural-prevention-discipline** (NEW — Q-2 tweak ratified S006 turn 8) | ADD (severity: critical; when enforcement skipped/late/partial → mandatory structural fix, never patch-the-instance; closing-summary §10.0i mandatory) |
 | Contract | [behavioral-contracts.md](../../pillar-0-governance/behavioral-contracts.md) § B_TEMPLATE_FIRST_CREATION | ADD (full section) |
 | Contract | § B_GRADUAL_BUILD_BY_FOUNDATIONS | ADD (full section + push-back capability spec + 3/4/5 depth + Bands + PE TRAJECTORY) |
 | Contract | § B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS | ADD (full section + continuous-validation spec) |
 | Contract | **§ B_PE_ALIGNMENT_GUARDIAN** (NEW — PE absorption #1) | ADD (full section per CSP CSP S317 spec; 3-step deflection template) |
 | Contract | **§ B_CORE_SPINE_DISCIPLINE** (NEW — supports P-ARCH-028) | ADD (full section — every artifact maps to ≥1 spine; layering enforced) |
-| AGENTS.md | 8 hard NOs (2 per of 4 disciplines + 2 from Core Spine + PE Guardian) | ADD |
-| Spine | [ai-behavior-spine.md](../../pillar-0-governance/ai-behavior-spine.md) — 5 rows (was 3 +Core Spine +PE Guardian) | ADD |
+| Contract | **§ B_ZERO_LAPTOP_DEPENDENCY** (NEW — supports P-OPER-001) | ADD (full section — Git canonical + auto-push-at-close + multi-machine parity + Android workflow) |
+| Contract | **§ B_STRUCTURAL_PREVENTION_DISCIPLINE** (NEW — supports P-META-019) | ADD (full section — skip → mandatory enhancement, never patch; §10.0i closing-summary discipline) |
+| AGENTS.md | 12 hard NOs (2 per of 7 disciplines: template-first / gradual-build / CSPS-alignment / Core Spine / PE Guardian / Zero-Laptop-Dependency / Structural-Prevention) | ADD |
+| Spine | [ai-behavior-spine.md](../../pillar-0-governance/ai-behavior-spine.md) — 7 rows | ADD |
 | Memory | feedback_universal_template_first.md | ADD |
 | Memory | feedback_gradual_build_by_foundations.md | ADD |
 | Memory | feedback_csps_alignment_over_inner_defaults.md | ADD |
 | Memory | **feedback_pe_alignment_guardian.md** (NEW) | ADD (adopt CSP S317 verbatim spec; CONSTITUTIONAL) |
 | Memory | **feedback_core_spine_discipline.md** (NEW) | ADD (5 spines; CORE outward; pillar mapping) |
-| MEMORY.md | 5 index entries | ADD |
+| Memory | **feedback_zero_laptop_dependency.md** (NEW) | ADD (Q-1 ratification + multi-device discipline) |
+| Memory | **feedback_structural_prevention_discipline.md** (NEW) | ADD (Q-2 tweak — enhance system always, never settle for patches) |
+| MEMORY.md | 7 index entries | ADD |
 
 **Exit criteria (L2 → L3 gate):**
 

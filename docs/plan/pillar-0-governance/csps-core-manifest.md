@@ -16,7 +16,7 @@ tags:
   - type:explanation
   - audience:developer
   - audience:ai-agent
-  - maturity:experimental
+  - maturity:draft
 crosscutting:
   - reliability
   - observability

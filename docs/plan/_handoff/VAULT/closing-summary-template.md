@@ -202,6 +202,99 @@ muv_results:
 
 If overall_status: FAIL on any boundary, surface findings in HANDOFF §C carry-forward + address before close.
 
+### §10.0h Inner-default leak report (B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS — S006 turn 6 — MANDATORY)
+
+> **Every substantive output this session was gated by alignment against the inner-AI-defaults registry. Leaks (training-default patterns that slipped through) reported here. Per P-META-017.**
+
+```yaml
+inner_default_leak_report:
+  ran_at: <iso8601-utc>
+  registry_consulted: docs/plan/_handoff/VAULT/inner-ai-defaults/
+  sessions_substantive_outputs: <N>
+  category_scan_results:
+    code_patterns:
+      registered_entries_checked: <N>
+      leaks_detected: <N>
+      leaks: [<{id, instance_path, line, evidence}>]
+    prose_patterns:
+      registered_entries_checked: <N>
+      leaks_detected: <N>
+      leaks: [<{id, instance_path, line, evidence}>]
+    reasoning_patterns:
+      registered_entries_checked: <N>
+      leaks_detected: <N>
+      leaks: [<{id, instance_path, line, evidence}>]
+    tooling_patterns:
+      registered_entries_checked: <N>
+      leaks_detected: <N>
+      leaks: [<{id, instance_path, line, evidence}>]
+    output_distribution:
+      registered_entries_checked: <N>
+      leaks_detected: <N>
+      leaks: [<{id, instance_path, line, evidence}>]
+  novel_patterns_for_continuous_drift_log: <N>   # appended to inner-ai-defaults/continuous-drift-log.md
+  overall_status: CLEAN | LEAKS_DETECTED
+```
+
+If overall_status: LEAKS_DETECTED — surface in §10.0j enhancement proposals (per Q-2 tweak): each leak that should have been caught by an existing validator becomes a structural-fix proposal.
+
+### §10.0i Alignment-citation summary (B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS — MANDATORY)
+
+> **Every substantive output cites which alignment-checks it passed. Mandatory header captures the citations + verifies coverage.**
+
+```yaml
+alignment_citation_summary:
+  ran_at: <iso8601-utc>
+  substantive_outputs_emitted: <N>
+  outputs_with_alignment_citation: <N>   # MUST equal substantive_outputs_emitted for PASS
+  alignment_checks_cited:
+    - top-expert-colleague-voice: <count>
+    - pcr-decision-frame: <count>
+    - pe-alignment-deflection: <count>
+    - frontmatter-required: <count>
+    - clickable-links: <count>
+    - rzf-validate-before-claim: <count>
+    - other: [<list>]
+  uncited_outputs: <N>   # MUST be 0
+  status: PASS | FAIL
+```
+
+### §10.0j Enhancement proposals from skipped/late/partial enforcements (B_STRUCTURAL_PREVENTION_DISCIPLINE — S006 turn 8 — MANDATORY)
+
+> **Per P-META-019 (Q-2 tweak ratified S006 turn 8):** when an enforcement is skipped, late, or partial — fix the STRUCTURE that allowed the skip, not the instance. Each gap surfaces here as a structural enhancement proposal. Philosophy: enhance the system constantly; never settle for low standards + manual recovery.
+>
+> **If empty:** explicit `zero_proposals_declaration` with reason. Silent empty = anti-pattern.
+
+```yaml
+enhancement_proposals:
+  ran_at: <iso8601-utc>
+  scan_scope: all_enforcements_that_fired_this_session + all_enforcements_that_should_have_fired_but_didnt
+
+  proposals:
+    - skipped_enforcement: <discipline-id (B_* or P-META or audit-slug)>
+      what_was_skipped: <concrete instance>
+      why_existing_mechanism_failed: <root cause analysis — declared-but-no-validator / validator-too-narrow / hook-not-wired / pattern-not-registered>
+      structural_fix_proposal:
+        type: new-validator | new-hook | schema-field | contract-amendment | template-addition | registry-entry
+        description: <what to build>
+        surfaces_to_engrave_atomically: [memory, contract, AGENTS, spine, audit]
+        estimated_leverage: 0-10
+        estimated_session_cost: <0.X-N>
+      K_promotion_status: K=1 | K=2 (recurring → must engrave NOW) | K=3+
+      priority_score: <0-100 from priority engine>
+      promoted_to_topic_plan: <topic-plan-id> | pending | not-required-K=1
+
+  zero_proposals_declaration: |
+    (if proposals empty)
+    All enforcements that fired this session ran clean.
+    No skips/late/partial catches detected.
+    No structural fixes warranted.
+
+  overall_status: PROPOSALS_REGISTERED | ZERO_PROPOSALS_DECLARED | SKIPS_NOT_AUDITED (anti-pattern)
+```
+
+If overall_status: SKIPS_NOT_AUDITED — handoff write BLOCKED. Per B_STRUCTURAL_PREVENTION_DISCIPLINE, silent skipping of the enhancement-proposal scan is forbidden — the philosophy mandates that EVERY session improves the system.
+
 ### §10.1 Stewardship review (P-META-004)
 
 **Run `/stewardship-review`:**

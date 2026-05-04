@@ -14,7 +14,7 @@ tags:
   - type:reference
   - audience:developer
   - audience:ai-agent
-  - maturity:experimental
+  - maturity:draft
 diataxis_type: reference
 links:
   - { rel: parent, href: ./README.md }

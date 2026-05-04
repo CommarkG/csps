@@ -14,6 +14,24 @@ references_future_artifact: true
 lifecycle: experimental
 lifecycle_state: active
 next_review_at: 2026-08-01
+# ─── AAP frontmatter (S005 turn 26 retrofit per P-META-010 + B_AGENT_ALIGNMENT_PROTOCOL) ───
+csps_aligned: true
+aap_version: 1.0
+agent_class: A
+acknowledged_contracts:
+  - B_AI_PROFESSIONAL_VOICE       # banned-phrase list applies (no per-item confirmation in batch)
+  - B_VALIDATE_BEFORE_ASSUME
+respects_quality_gates: [QG1, QG2, QG3, QG4]
+output_contract:
+  returns: structured-batch-proposal
+  max_tokens: 1500
+  no_synthesis_outside_main: true
+  no_ratification_claims: true
+trust_tier: platform-owned
+eval_baseline:
+  test_corpus_path: tests/skills/batched-plan/test-fixtures.json
+  expected_pass_rate: 0.95
+preflight_check_required: true
 ---
 
 # /batched-plan — Upfront-acceptance batch execution proposal

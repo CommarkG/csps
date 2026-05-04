@@ -27,7 +27,7 @@ Content that affects:
 - The trunk index itself (`MASTER_PLAN.md`)
 - Brand decisions (e.g., the "CSPS" name, tier vocabulary)
 - Pillar architecture (adding/renaming pillars)
-- Fundamental cross-pillar conventions (the 4 operating principles, 7 meta-principles)
+- Fundamental cross-pillar conventions (the operating principles, the meta-principles)
 - Trunk-level renames (e.g., S001's 8 vocabulary renames)
 
 This is the **highest-impact tier**. Every entry here triggers an ADR.

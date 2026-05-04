@@ -14,6 +14,25 @@ references_future_artifact: true
 lifecycle: experimental
 lifecycle_state: active
 next_review_at: 2026-08-01
+# ─── AAP frontmatter (S005 turn 26 retrofit per P-META-010 + B_AGENT_ALIGNMENT_PROTOCOL) ───
+csps_aligned: true
+aap_version: 1.0
+agent_class: A
+acknowledged_contracts:
+  - B_AI_PROFESSIONAL_VOICE
+  - B_VALIDATE_BEFORE_ASSUME
+  - B_BLOCKER_NO_SILENT_DROP    # parking requires reason; silent-drop is the anti-pattern
+respects_quality_gates: [QG1, QG2, QG3, QG4]
+output_contract:
+  returns: structured-wip-report
+  max_tokens: 600
+  no_synthesis_outside_main: true
+  no_ratification_claims: true
+trust_tier: platform-owned
+eval_baseline:
+  test_corpus_path: tests/skills/wip-check/test-fixtures.json
+  expected_pass_rate: 0.95
+preflight_check_required: true
 ---
 
 # /wip-check — Finish What We Started threshold gate

@@ -494,11 +494,20 @@ The composite produces **gradual + organic + momentum-preserving** backfill. Bet
 2. Surface aged findings in fresh-chat opening
 3. Triage before substantive work
 
+## S005 turn 22 amendment — composition with B_POSITIVE_VALUE_EXTRACTION + B_PRE_CLOSE_VERIFICATION
+
+The QC audit system's NEG/POS taxonomy now composes mechanically with two new contracts (S005 engravings):
+
+- **B_PRE_CLOSE_VERIFICATION** ([behavioral-contracts.md](./behavioral-contracts.md#B_PRE_CLOSE_VERIFICATION)) — the QC scan at session close runs THROUGH `tools/verify.mjs` orchestrator now (per closing-summary §10.0 mandatory header). The orchestrator's structured cycle output IS the QC scan input for that session; nominal QC claims are mechanically impossible.
+- **B_POSITIVE_VALUE_EXTRACTION** ([behavioral-contracts.md](./behavioral-contracts.md#B_POSITIVE_VALUE_EXTRACTION)) — the POS taxonomy's "un-extracted-value" findings now route through B_POSITIVE_VALUE_EXTRACTION cycles when the trigger is a significant positive event (insight / user-directive / improvement / EXT-ID / bug-fix / AI-self-correction / generator-output / meta-finding). POS findings outside ratification scope no longer silently drop.
+
+**Composition with K=2 promotion** (per [learning-loop.md](./learning-loop.md) amendment): when a POS-finding (un-extracted-value) recurs across N sessions, K=2 mechanism fires for the meta-pattern; opportunity-recurrence triggers ADR/principle/leaf promotion. The full chain: positive event → B_POSITIVE_VALUE_EXTRACTION cycle → walk-trail in §10.11b → if recurrence-detected → K=2 auto-ADR.
+
 ## Cross-references
 
 - `pillar-0-governance/zero-findings-discipline.md` — the WHAT (this doc is the HOW)
 - `pillar-0-governance/audit-runner.md` — the engine
-- `pillar-0-governance/behavioral-contracts.md` § B_RZF + B_CEC — the binding contracts
-- `_intake/proactive-completion.md` F9 — the forcing function
+- `pillar-0-governance/behavioral-contracts.md` § B_RZF + B_CEC + B_PRE_CLOSE_VERIFICATION + B_POSITIVE_VALUE_EXTRACTION — the binding contracts
+- `_intake/proactive-completion.md` F9 — the forcing function (positive-event branch)
 - `_handoff/VAULT/protocols.md` §10 + §19 + §20 — the session-protocol integration
 - `_handoff/VAULT/qc-audit-results-S002.md` — the FIRST RUN of this system on S002 artifacts

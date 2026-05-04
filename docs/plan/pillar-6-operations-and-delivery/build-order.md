@@ -54,6 +54,22 @@ Before week 1 begins:
 
 Per pillar-6 README + MASTER_PLAN tomorrow's-checklist. Without these, the bootstrap script (per `bootstrap-script.md`) fails on first run.
 
+## Per-week cycle requirements (P-META-008 + B_PRE_CLOSE_VERIFICATION — S005 turn 19)
+
+> **EVERY week's deliverables list ends with mandatory cycles to run before declaring the week complete.** This is plan-mechanical: the week is not "done" until these cycles all PASS or are explicitly DEFERRED-WITH-REASON. Per P-META-008 cycle-mandatory-in-plan.
+
+The cycle list per-week is the same orchestrator (`tools/verify.mjs` via `pnpm verify`) plus week-specific additions as new validators ship:
+
+| Week | Always-on cycles | Week-specific cycles added |
+|---|---|---|
+| 1 | `pnpm install --frozen-lockfile` + `pnpm -r typecheck` + `principles validate` + `frontmatter validate` | (none — these ARE week-1's introductions) |
+| 2 | + above | + `glossary codegen-fresh` + `principles codegen-fresh` (full impl) + `stripe-clerk-wiring smoke test` |
+| 3 | + above | + `slice-scorecard` + `dual-registration-drift` + `generator-test-coverage` |
+| 4 | + above | + `pnpm audit:run --strict` (full audit-runner ships; this becomes always-on from week-4 onward) + `audit-of-audits` + `pre-close-cycle-coverage` (the §10.0 enforcer audit itself) |
+| 5+ | + above | + week-specific per cohort/slice/persona |
+
+**No week is "complete" with any cycle in FAIL or silent-skip state.** Either fix, defer-with-explicit-reason carried to next-session blockers, or block the week's close. Plans that depend on AI cooperation to trigger cycles produce nominal-not-actual claims (CSPS S002→S005 evidence).
+
 ## The 12 weeks
 
 ### Week 1 — Foundation

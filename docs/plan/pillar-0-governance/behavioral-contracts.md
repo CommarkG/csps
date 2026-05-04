@@ -536,6 +536,391 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 - memory: `feedback_always_git_links.md` (NEW S002 turn 19)
 - contract: this entry + AGENTS.md hard NO (turn 19) + `ai-behavior-spine.md` row (engraving status: 4/5 declared; ~2/5 mechanical — memory + AGENTS.md NO + contract active; validator + hook deferred week 4)
 
+## B_PCR_FOR_DECISIONS — every non-trivial decision in chat triggers PCR 3-block (S005 turn 5)
+
+**Canonical wording:**
+
+> When the AI presents any non-trivial decision in chat output (architectural fork / scope choice / tool-selection / migration-strategy / phasing / multi-option proposal), the response MUST contain a Pros/Cons/Recommendation 3-block in canonical order: **Options table → Pros/Cons per option → Recommendation**. The Recommendation block names the load-bearing factor (the one variable that drove the choice) AND a "what would flip the recommendation" clause (the assumption that, if false, would invert it). Trivial-reversibles skip — but the skip itself is an explicit one-line note ("trivial-reversible — choosing X because <reason>"); silent skip is the failure mode.
+
+**Counterweight (P-OP-003 scope-note, retained):**
+
+> Trivial reversible choices (two-way doors at low cost — variable naming when both clear / comment phrasing / file location when both paths valid / colors in a draft) skip PCR. Overhead on tiny decisions is friction without benefit. The discipline is: ask "does this decision have non-trivial trade-space?" — if yes, PCR; if no, decide + state the choice + brief reason.
+
+**Source:** S005 turn 5 user directive — *"create mechanical solutions making you present pros cons and recommendations"* (decoded from Hebrew-keyboard mistype). User had to surface this explicitly because PCR was being applied inconsistently — proof that 4 declarative enforcers (AGENTS.md cardinal + /pcr SKILL.md + AI prompt addendum + MCP resource) without paired memory + contract + hook + validator left the discipline AI-cooperation-dependent. Strengthens P-OP-003 from 2/5 declared / 1/5 mechanical to 5/5 declared / 3/5 mechanical (validator + hook deferred week-4 with explicit declaration).
+
+**Trigger patterns (PCR fires automatically):**
+
+- "should we...", "should I...", "X vs Y", "which option", "decide between"
+- Headers / paragraphs containing "options:", "alternatives:", "approaches:", "paths:"
+- 2+ alternatives presented with non-trivial trade-space
+- Architectural forks (which framework / which schema / which protocol)
+- Scope choices (this session vs next; carry-forward vs in-flight; defer vs ship)
+- Tool / library selection
+- Migration strategies
+- Phasing decisions
+
+**Skip patterns (counterweight applies):**
+
+- Variable naming when both names are clear
+- Comment phrasing
+- File location when both paths obviously valid
+- Color choices in a draft
+- Two-way doors at low cost (Bezos terminology)
+- Single-option presentations (no trade-space exists)
+
+**Anti-patterns:**
+
+- **Recommendation-without-options** — no trade-space exposed; reader can't evaluate quality of choice
+- **Options-without-recommendation** — analysis paralysis; decision punted back to human
+- **Recommendation-before-pros/cons** — BLUF violation per AGENTS.md hard NO #9; trade-space is what makes the recommendation legible
+- **False balance** — pros/cons rigged to support a predetermined recommendation; pros/cons must be honest trade-off exposure
+- **Symmetric pros/cons** — "A is fast / B is slow + B is correct / A is incorrect" signals lazy analysis; non-symmetric framing reveals the actual decision-relevant axis
+- **Silent skip** — judging "trivial-reversible" without stating the skip + reason; reader can't audit whether the skip was warranted
+- **Recommendation without load-bearing factor** — "I recommend X" without naming WHY produces opaque decisions; future review can't reconstruct rationale
+- **Missing what-would-flip clause** — without it, silent-criteria-shift later is undetectable
+
+**Mechanical surfaces:**
+
+- schema: `_handoff/VAULT/closing-summary-template.md` §10.13d (decisions-presented mandatory header) + `principles.yaml#P-OP-003.triggers` config block (detection + skip patterns)
+- validator: `pcr-completeness-on-decisions` audit (Stop-hook scan for trigger-phrases without paired 3-block; PR-blocking warn) — registered in `principles.yaml#P-OP-003.enforcers`; build deferred week-4
+- hook: `.claude/hooks/post-stop-pcr-check.sh` (Stop-hook output scan) + UserPromptSubmit reminder when user message contains decision-asking patterns — registered; build deferred week-4
+- memory: `feedback_pcr_for_decisions.md` (S005 turn 5) — counterweight composes with `feedback_obvious_answer_execute.md` (CSP carry-forward — when path converges, just decide)
+- contract: this entry + `AGENTS.md` hard NO (S005 turn 5) + `ai-behavior-spine.md` P-OP-003 row updated + `principles.yaml#P-OP-003` enforcer_count 4 → 8
+
+## B_PRE_CLOSE_VERIFICATION — every closing summary RZF block requires §10.0 cycle evidence (S005 turn 19)
+
+**Canonical wording:**
+
+> Before emitting any closing-summary §10.10 RZF / §10.11 CEC / §10.13c FSE evidence block, the AI MUST run `pnpm verify` (orchestrator at `tools/verify.mjs`) and paste the structured stdout into §10.0 of the closing summary. RZF claims without §10.0 cycle evidence are **NOMINAL-not-actual**; latent bugs accumulate silently across sessions until forced collision. Each cycle in §10.0 carries one of three statuses: **PASS** (validator ran, exit 0), **FAIL** (validator ran, exit non-zero — close blocked + BLK-S<NNN>-* surfaced), **DEFERRED-WITH-REASON** (cycle's implementation not yet shipped — week-4 etc. — explicit reason in inline). **Silent skip is forbidden.** Plans (build-order.md week-N + protocols.md §10 + closing-summary-template §10.0 + HANDOFF §17) MUST enumerate cycles per-step in plan text — never context-dependent AI memory.
+
+**Counterweight:**
+
+> Trivial in-flight microsteps (single-line edit / typo fix / linting auto-fix) don't trigger the full cycle; the cycle is the next batch boundary's responsibility. Discipline targets BATCH/STEP/SESSION boundaries where DONE/RATIFIED claims are emitted. The cost of running `pnpm verify` (~30s for the 4 ship-now cycles) is the price; the cost of nominal-RZF accumulating across N sessions is far higher (S005 evidence: 4 latent bugs from S002 turn 17 took 2+ sessions to surface; would have taken N more without the cycle).
+
+**Source:** S005 turn 19 user directive — *"the way we plan thing [most important — make recurring mandatory things specifically written in the plans, not context dependent — make it mechanical]"*. Triggered by S005 turn 18+ verification cycle finding: 4 latent bugs from S002 turn 17 (YAML quote bug + 2 missing enforcer_layers + isMain check) had been carrying ~2 sessions because the validator never ran. Engraves P-META-008 cycle-mandatory-in-plan as the meta-principle; this contract is its session-close instantiation.
+
+**Anti-patterns:**
+
+- **Nominal-not-actual RZF** — emitting "ZF-0 ACHIEVED" RZF block when the cited validator was never run this session (THE meta-pattern this contract exists to cure)
+- **Context-dependent cycle** — plan says "AI should run X"; AI forgets; debt accumulates (P-META-008 anti-pattern)
+- **Latent bug because validator never ran** — S002→S005 example: YAML parse failure + missing enforcer_layers latent 2+ sessions; surfaced only because user-directed verification cycle forced it
+- **§10.0 empty or missing** — closing summary INCOMPLETE per closing-summary-template required-header rule
+- **Silent skip of cycle** — must be PASS / FAIL / DEFERRED-WITH-REASON; "audit-runner not ready" without DEFERRED-WITH-REASON tag = anti-pattern
+- **Pre-close cycle ran ON OLD STATE** — must run AFTER all session edits land; cycle on stale tree gives false PASS
+
+**Mechanical surfaces (all 5; per FSE amendment atomic-validator-registration):**
+
+- schema: `_handoff/VAULT/closing-summary-template.md` §10.0 (NEW S005 turn 19) mandatory header with structured YAML schema for cycle evidence
+- validator: `pre-close-cycle-coverage` audit (PR-blocking error; planned week-4) + `nominal-rzf-detection` audit (PR-blocking warn; scans session log for RZF blocks not preceded by §10.0 cycle output) — registered atomically in `audit-runner.md` Meta category per FSE amendment
+- hook: `.claude/hooks/post-stop-zf-cycle.sh` (planned week-4) — auto-runs `pnpm verify` at session-close; failure prevents close
+- memory: `feedback_pre_close_verification.md` (S005 turn 19) — counterweight composes with `feedback_re_run_is_proof.md` (S002 turn 10) — re-run IS the proof; `pnpm verify` IS the re-run mechanism
+- contract: this entry + `AGENTS.md` hard NO (S005 turn 19) + `ai-behavior-spine.md` row + `principles.yaml#P-META-008` + `tools/verify.mjs` orchestrator
+
+## B_POSITIVE_VALUE_EXTRACTION — every significant positive event triggers an iterative cycle (S005 turn 20)
+
+**Canonical wording:**
+
+> When a significant positive event occurs in CSPS work — informal insight / user directive / improvement landed / EXT-ID processed / bug fix integrated / AI self-correction / generator or wizard output batch / meta-finding surfaced — the AI MUST iterate cycles to extract maximum value across all relevant artifacts. CEC (Complete Extraction Cycle) is no longer scoped to FORMAL ratifications only (principle/leaf/ADR/contract); its trigger set extends to all significant positive events (per P-META-006 trigger-cadence amendment turn 20). Each triggered cycle emits a structured walk-trail entry in the closing summary §10.11b "Positive value extracted this session" — same shape as CEC: extracted_essence (1 sentence) + cycles_walked + walk_scope + applications_made + not_applicable + needs_human_judgment + signature.
+
+**Counterweight:**
+
+> Trivial events (single-line edit / typo fix / casual comment) don't trigger the full cycle. The discipline targets SIGNIFICANT events where positive value extraction would otherwise be left on the table. Significance is judgment-based but biased toward OVER-trigger — the cost of an unneeded walk-trail entry is small (~5 lines of yaml); the cost of missed-value-because-not-walked is unbounded (insights silently drop; user directives apply to 1 place when they should have applied to 10).
+
+**Source:** S005 turn 20 user directive — *"add it to insight processing — when you handle a significant improvement, go over the whole up in iterative cycles and enhancing all relevant things; use handling gaps and errors but also to see maximum value is extracted when positive things happen — engrave it in our ai behavior and principles and protocols and wizards and make it mechanical in all places so it will be triggered each time"*.
+
+**Why this matters (the gap closed):**
+
+P-META-006 originally framed CEC as firing on FORMAL ratifications. In practice, AI sessions surface MANY positive events that aren't formal ratifications:
+- User directives (substantial behavior shift; should walk every place the directive applies)
+- Insights surfaced mid-flight (not yet formalized; still applicable platform-wide)
+- Bug fixes (the same bug pattern likely exists elsewhere)
+- AI self-corrections (the same error likely was made earlier in the session)
+- Generator output (the validator should run on the batch; positive-value extraction means cataloging the new artifacts)
+- Meta-findings (e.g., S005 §C3.1 — FSE produces dangling refs by default; this should walk all B_* engravings for instances; without B_POSITIVE_VALUE_EXTRACTION the walk doesn't fire)
+
+S005 evidence: when the FSE-produces-dangling-refs meta-finding was surfaced at turn 9, it triggered ONE backfill (the §C3.1 30-ref documentation). It did NOT walk all B_* contracts to identify instances; that would have been the proper CEC walk on the meta-finding. Result: 30-ref backlog documented but not exhaustively traced. This contract corrects that pattern going forward.
+
+**Cycle pattern per event type:**
+
+| Trigger event | Walk scope | Required output |
+|---|---|---|
+| Significant insight | principles.yaml + behavioral-contracts + memory + AGENTS hard NOs + every active pillar leaf + closing-summary-template | walk-trail entry; apply / extend / cite |
+| User directive | principles + protocols + behavioral-contracts + AGENTS + spine matrix + relevant pillar leaves | identify all places it applies; engrave per FSE 5-surface where applicable |
+| Improvement landed | similar-pattern detection across platform | apply or document not-applicable-with-reason |
+| EXT-ID processed | manual-protocol.md walk + extraction-ledger update + cross-pillar cite | route + extract + walk-trail |
+| Bug fix integrated | grep for similar patterns in codebase + docs | apply same fix or document one-off |
+| AI self-correction | scan session log for similar errors already made | self-correction walk-trail |
+| Generator/wizard output | RZF-style cycle on the produced artifacts | structured cycle output |
+| Meta-finding surfaced | walk all places where the same meta-pattern applies | exhaustive instance list + engraving-applied count |
+
+**Anti-patterns:**
+
+- **only-RZF-no-CEC-on-positive-events** — defects walked but positive value left unwalked
+- **ratification-only-CEC** — CEC fires only on formal ratifications; informal insights silently drop (the failure mode this contract cures)
+- **one-cycle-and-done** — apply to obvious places; declare cycle complete without iterating on the EXTENDED state
+- **fuzzy-essence-no-walk** — insight not distilled to 1-sentence; subsequent walks miss applications because essence-statement is too vague
+- **closing-summary-§10.11b-empty** — section forbidden empty; either list walks or explicit `NO_POSITIVE_EVENTS_THIS_SESSION` declaration
+- **ai-default-moving-on** — the dominant failure mode (AI's universal "ratify, move on" pattern; counteracted only by mechanical trigger)
+
+**Mechanical surfaces (5/5; per FSE atomic-validator-registration amendment):**
+
+- schema: `_handoff/VAULT/closing-summary-template.md` §10.11b (NEW S005 turn 20) mandatory header — every closing summary lists positive-event walk-trails OR explicit NO_POSITIVE_EVENTS declaration
+- validator: `positive-value-extraction-coverage` audit (PR-blocking warn; planned week-4) — registered atomically in `audit-runner.md` Catch+Engraving category
+- hook: `.claude/hooks/post-stop-positive-cycle.sh` (planned week-4) — scans session log for positive-event language; verifies §10.11b coverage
+- memory: `feedback_positive_value_extraction.md` (S005 turn 20) + MEMORY.md index entry
+- contract: this entry + `AGENTS.md` hard NO (S005 turn 20) + `ai-behavior-spine.md` row + `principles.yaml#P-META-006` trigger-cadence amendment
+
+**Composes with:**
+
+- `B_PRE_CLOSE_VERIFICATION` — both mandate §10.X sections in closing summary (§10.0 cycles + §10.11b positive walks)
+- `B_RZF` + `B_CEC` — same shape; positive-value branch of the same discipline
+- `P-META-008 cycle-mandatory-in-plan` — the umbrella that says "cycles in plan text, not memory"
+- `B_FIVE_SURFACE_ENGRAVING` — when meta-finding surfaces (cycle output), the walk may identify need for new engraving; FSE applies
+
+## B_COGNITIVE_CONTEXT_DISCIPLINE — every AI session uses the 5-layer architecture with 4 Quality Gates immutable (S005 turn 24)
+
+**Canonical wording:**
+
+> Every CSPS AI session organizes context across 5 layers (Permanent Constitution / Session Contract / Active Work Context / On-Demand Structural Queries via MCP / Subagent-Delegated). Each layer has a defined purpose, lifecycle, and invalidation pattern documented in [`cognitive-context-architecture.md`](./cognitive-context-architecture.md). **Tokens are an investment in reasoning quality, not a budget to minimize.** Four Quality Gates are immutable: QG1 hard reasoning never downgrades from Opus 4.7 (engraving / PCR-non-trivial / ZF-synthesis / architectural decisions / honest self-audit); QG2 synthesis stays in main context (subagents do focused search/fetch/log work only — never PCR / ratification / synthesis); QG3 mid-session edited files re-read mandatorily before subsequent reasoning depends on them; QG4 cache invalidates on content change (no nominal-cache snapshots that drift from disk).
+
+**Counterweight:**
+
+> Trivial verifications (file-existence / "did this string change?") may use Haiku tier; mechanical edits (find-replace / lifecycle bumps) may use Sonnet tier; subagent forks reuse parent's prompt cache for efficiency. The discipline targets HARD-REASONING tasks where decision quality compounds into platform integrity — not every keystroke. The four QGs apply only when the work-type matches their guarded scope (per `principles.yaml#P-META-009.config.quality_gates`).
+
+**Source:** S005 turn 24 user directive — *"There are some who value savings... I am not. I prioritize quality and holistic context and solutions serving me for the long run over immediate saving — create the solution accordingly with a dedicated dashboard showing exactly how it is arranged + how it is schema aligned + reasoning next to each part + general philosophy of how it works."* Composed with industry-validated primitives (Anthropic Prompt Caching + Sub-Agents + MCP + model tier pricing) into a quality-first architecture.
+
+**Why this matters (long-run framing):**
+
+Without the discipline, the AI's failure modes accumulate: nominal-RZF from caching wrong things; nominal-quality decisions from downgrading Opus on ratification; lost synthesis quality from delegating PCR to subagents; drift-from-disk from assuming-edited-content. Each failure compounds across sessions — the platform inherits debt that's invisible until forced collision (S005 turn 18 was such a collision; the verify orchestrator forced it).
+
+With the discipline, every AI session organizes context to **maximize reasoning quality at every decision point**. The cost of the discipline (caching writes; coordination overhead) is far lower than the cost of nominal decisions compounding. The architecture scales to 100× growth without re-design — Layer 4 MCP queries return precise structural answers as the platform grows; Layer 1 caches the index, not the content.
+
+**Anti-patterns:**
+
+- **tokens-as-budget-to-minimize** — the meta-pattern this contract cures; user S005 turn 24 explicit
+- **downgrading-Opus-on-ratification** (QG1 violation) — produces nominal-quality decisions; platform debt compounds
+- **delegating-synthesis-to-subagent** (QG2 violation) — subagent doesn't have full context; can't synthesize
+- **assume-content-from-memory-of-last-write** (QG3 violation) — produces nominal-RZF; mid-session edits drift invisibly
+- **nominal-cache-where-snapshot-drifts-from-disk** (QG4 violation) — AGENTS.md changed; cached snapshot serves stale
+- **all-Opus-without-routing** — right-tool-for-job; Haiku adequate for lookups
+- **all-Sonnet-without-escalation** — mirror failure; ratification needs Opus depth
+- **parallel-subagents-when-serial-suffices** — 5× cost for marginal speed; only when wall-clock dominates
+- **cache-on-volatile-content** — Layer 3 cached at 1h = stale-content quality regression
+
+**Mechanical surfaces (5/5; per FSE atomic-validator-registration amendment):**
+
+- schema: [`cognitive-context-architecture.md`](./cognitive-context-architecture.md) (NEW S005 turn 24 — the dashboard leaf with per-layer spec + 4 QG definitions) + `principles.yaml#P-META-009.config` (structured layer + quality_gate + model_routing config blocks)
+- validator: 3 audits registered atomically in `audit-runner.md` Meta category — `cognitive-context-discipline-coverage` (PR-blocking warn) + `model-routing-on-ratification` (PR-blocking error — QG1 enforcer) + `cache-content-hash-fresh` (PR-blocking warn — QG4 enforcer); planned week-4 build
+- hook: `.claude/hooks/post-tool-edit-reread-required.sh` (PostToolUse — QG3 enforcer; planned week-4)
+- memory: `feedback_cognitive_context_architecture.md` (S005 turn 24) + MEMORY.md index entry
+- contract: this entry + AGENTS.md 4 hard NOs (1 per Quality Gate) + `ai-behavior-spine.md` row + `principles.yaml#P-META-009` + `cognitive-context-architecture.md` dashboard
+
+**Composes with:**
+
+- `B_PRE_CLOSE_VERIFICATION` (S005 turn 19) — the verify orchestrator runs ON Layer 3 active state; QG3 ensures it runs on actual files not nominal cache
+- `B_POSITIVE_VALUE_EXTRACTION` (S005 turn 20) — Layer 4 MCP queries support the cycle; Layer 5 subagents execute walks; main synthesizes per QG2
+- `B_FIVE_SURFACE_ENGRAVING` (S005 turn 17) — engraving = Layer 3 work; QG1 keeps it on Opus
+- `B_PCR_FOR_DECISIONS` (S005 turn 5) — PCR rendering = Layer 3 work; QG1 keeps it on Opus
+- `B_VALIDATE_BEFORE_ASSUME` (S002 turn 7 + 15) — the tool-call sandwich IS QG3's enforcement at AI-cooperation level
+- `P-META-006 RZF + CEC` — QG3 + QG4 prevent the nominal-not-actual failure modes
+
+## B_AGENT_ALIGNMENT_PROTOCOL — every agent passes AAP before invocation; no wildcards (S005 turn 25)
+
+**Canonical wording:**
+
+> Every agent (CSPS-built skill / claude-code-builtin subagent / Mastra runtime agent / third-party-imported skill) used in CSPS work MUST pass the Agent Alignment Protocol (AAP) before invocation. **No wildcards — no agent enters the system without alignment.** Class A (CSPS-built skills, e.g., `/pcr` `/wip-check`) declares via SKILL.md frontmatter (`csps_aligned: true` + `aap_version` + `acknowledged_contracts` + `respects_quality_gates` + `output_contract` + `trust_tier`). Class B (claude-code-builtin: Explore / Plan / general-purpose / claude-code-guide / statusline-setup) wraps via mandatory **alignment preamble** injected as the first content block of the spawn prompt — preamble cites the universal-required B_* subset (B_AI_PROFESSIONAL_VOICE + B_VALIDATE_BEFORE_ASSUME) + Quality Gate constraints + output-contract limits. Class C (Mastra runtime agents, week-6+) enforces at construction via BaseAgent middleware. Class D (third-party imports) tier-gates Quarantine → Vendored → Platform-owned per pillar-3/sandboxed-skill-governance + AAP at every tier transition.
+
+**Counterweight:**
+
+> Trivial Class B invocations for one-shot lookup (single-shot grep / file existence check) may use abbreviated preamble citing the universal-required B_* subset only. The discipline targets **invocations with work scope** — agents that produce output the main session reasons over. The cost of an unnecessary preamble (~150 tokens) is far below the cost of a wildcard subagent producing nominal-quality output that compounds into platform debt.
+
+**Source:** S005 turn 25 user directive — *"No agents created out of CSPS are allowed into the system and any agent you created + mechanically create an alignment protocol — a strong and detailed one covering all major parts of the schema — to be enforced on existing and future agents and skills. If we do not do that we will be creating gaps and problems with our own hands."*
+
+**Why this matters (the wildcard gap):**
+
+CSPS uses claude-code-builtin subagents (Explore / Plan / general-purpose / claude-code-guide) extensively — they're invoked for grep walks, research, planning, code review. These subagents **are NOT CSPS-defined** and have no inherent CSPS-rule awareness: they don't know about AGENTS.md hard NOs, B_* contracts, Quality Gates, or principles. **Without AAP, every Class B invocation is a wildcard** — the subagent operates per its own training, not CSPS discipline. Even when CSPS is rigorous, the subagent's output bypasses that rigor unless aligned. AAP closes this gap by making alignment per-invocation mechanical, not optional.
+
+**Same gap for Class A**: existing CSPS-built skills declare capability sets (allowed_tools / sensitive_data_access / etc.) but lack mechanical AAP frontmatter (`csps_aligned` / `acknowledged_contracts` / `respects_quality_gates` / `output_contract`). The fields exist in the principle's config; the retrofit lands in S006.
+
+**Anti-patterns:**
+
+- **agent-invocation-without-alignment** (the meta-pattern this contract cures)
+- **Class B builtin spawn without preamble** (Explore/Plan/general-purpose invoked without alignment-preamble = wildcard)
+- **Class A skill without AAP frontmatter** (csps_aligned/acknowledged_contracts/respects_quality_gates fields missing)
+- **subagent receives synthesis task** (QG2 violation; agent doesn't see full context)
+- **capability creep without redeclaration** (allowed_tools expanded silently between invocations)
+- **trust tier bypass** (third-party skill invoked at Quarantine tier for Vendored-tier work)
+- **eval baseline stale** (last-eval >30 days for non-trivial agent)
+- **output contract violation** (agent returns more than declared max_tokens or wrong shape)
+- **preflight check skipped because trivial** (every invocation needs preflight; no exceptions)
+
+**Mechanical surfaces (5/5; per FSE atomic-validator-registration amendment):**
+
+- schema: [`agent-alignment-protocol.md`](./agent-alignment-protocol.md) (NEW S005 turn 25 — the dashboard leaf with full 9-check spec + per-class table + alignment-preamble template) + `principles.yaml#P-META-010.config` (structured agent_classes + mandatory_check_set + universal_required_b_star_acknowledgments) + new SKILL.md frontmatter fields (`csps_aligned` / `aap_version` / `acknowledged_contracts` / `respects_quality_gates` / `output_contract` / `trust_tier` / `eval_baseline`)
+- validator: 2 audits registered atomically — `agent-alignment-coverage` (PR-blocking error — Class A frontmatter check) + `subagent-spawn-preamble-required` (PR-blocking warn — Class B preamble check); planned week-4 build
+- hook: `.claude/hooks/pre-tool-use-agent-aap.sh` (PreToolUse on Agent tool — intercepts invocations; verifies preamble OR injects it auto for Class B; planned week-4)
+- memory: `feedback_agent_alignment_protocol.md` (S005 turn 25) + MEMORY.md index
+- contract: this entry + AGENTS.md hard NO (S005 turn 25) + `ai-behavior-spine.md` row + `principles.yaml#P-META-010` + `agent-alignment-protocol.md` dashboard
+
+**Composes with:**
+
+- `B_COGNITIVE_CONTEXT_DISCIPLINE` (S005 turn 24) — AAP enforces QG2 (synthesis stays in main) at the agent-invocation level
+- `B_VALIDATE_BEFORE_ASSUME` — universal-required acknowledgment for every agent
+- `B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK` — agents that propose new patterns acknowledge this
+- `B_INTAKE_DISCIPLINE` — agents that process EXT-IDs acknowledge this
+- `pillar-3/sandboxed-skill-governance` — three-tier trust model + capability declaration
+- `pillar-5/persona-composition` — eval baseline pattern (extended to skills)
+- `P-META-002 principles-travel-with-artifacts` — alignment preamble IS the traveling principles in subagent context
+
+## B_GOVERNOR_PROMPTS — every user prompt is governance-tracked (S005 turn 27)
+
+**Canonical wording:**
+
+> Every user prompt in CSPS chat sessions MUST be governance-tracked: assigned `GP-S<NNN>-<NN>` ID; captured verbatim with chat/session/date/hour timestamp; tagged with schema-aligned closed-enum dimensions (`domain:` / `type:` / `audience:` / `cardinal:` / `engraving:` / `audit:` / `decision:` / `drop:` / `question:` / `confirmation:`); distributed per SCHEMA structure to relevant pillar leaves / behavioral contracts / principles / cognitive-context-architecture / audits / ADRs; re-reviewed at every session-close. Storage: [`_handoff/VAULT/governor-prompts/S<NNN>.md`](../_handoff/VAULT/governor-prompts/) per session. Cardinal-flagged GPs cross-link to [user-intents.md](../_handoff/VAULT/user-intents.md) (preserves verbatim across sessions). Composes with B_INTAKE_DISCIPLINE (different surface — chat-channel vs external-input EXT-IDs).
+
+**Counterweight:**
+
+> Single-word / trivial conversational prompts ("ok", "thanks", "yes", "go", "proceed") may use abbreviated GP entries (timestamp + verbatim + status: `confirmation`; distribution targets may be null). The discipline targets SUBSTANTIVE prompts — directives, decisions, questions, drops — where governance tracking enables future-session re-derivation. AI judgment classifies; biased toward over-track (false-positive cost is minimal log entry; missed-track cost is lost institutional memory).
+
+**Source:** S005 turn 27 user directive — *"add a mandatory instruction into the handoffs. Let's call it Governer prompts. I want all I write each time to be reviewed each time a session is closing and saved in a specific place... Each content must be deeply understood and distributed according to the SCHEMA structure! Even if content is addressing UX and token optimization it must be saved and tagged and mention the chat and the session and the date and the hour."*
+
+**Why this matters (the gap closed):**
+
+Pre-S005-turn-27, CSPS captured load-bearing user-intent quotes in [user-intents.md](../_handoff/VAULT/user-intents.md) but ONLY for cardinal directives. Substantive non-cardinal prompts (UX feedback / token optimization questions / "drop it" dismissals / scope confirmations) were applied locally and lost. **Without comprehensive prompt governance, mid-session pattern detection is impossible** (e.g., 3 prompts about caching across 3 sessions = caching is a recurring concern → engrave; without GP log, the pattern is invisible). With B_GOVERNOR_PROMPTS, every prompt tracked → patterns surface → engravings happen.
+
+**Anti-patterns:**
+
+- **cardinal-prompt-without-user-intents-cross-link** — cardinal flag set but verbatim not propagated to user-intents.md
+- **prompt-without-gp-entry** — substantive prompt skipped session log
+- **distribution-targets-null-without-explicit-drop** — lazy entry; not real governance
+- **gp-entries-batch-at-close-only** — should be continuous; close is review-not-creation
+- **verbatim-paraphrased** — paraphrase loses load-bearing wording; verbatim is mandatory for cardinal
+- **tags-arbitrary-not-schema-aligned** — must use closed-enum dimensions per frontmatter-standard
+
+**Mechanical surfaces (5/5; per FSE atomic-validator-registration amendment):**
+
+- schema: [`_handoff/VAULT/governor-prompts/README.md`](../_handoff/VAULT/governor-prompts/README.md) (NEW S005 turn 27) + per-session `S<NNN>.md` format spec + closing-summary-template.md §10.0e mandatory header (NEW)
+- validator: 2 audits registered atomically — `governor-prompt-coverage` (per-session error: every substantive prompt has GP entry) + `governor-prompt-distribution-complete` (PR-blocking warn: distribution_targets non-null except explicit drops); planned week-4 build
+- hook: `.claude/hooks/post-stop-governor-prompts.sh` (PostStop: aggregates session GPs + cross-links cardinals to user-intents.md; planned week-4)
+- memory: `feedback_governor_prompts.md` (S005 turn 27) + MEMORY.md index
+- contract: this entry + AGENTS.md hard NO (S005 turn 27) + `ai-behavior-spine.md` row + `principles.yaml#P-META-012` + dashboard leaf [pillar-0/governor-prompts.md](./governor-prompts.md)
+
+## B_HANDOFF_PRE_FLIGHT_AUDIT — every handoff creation is preceded by whole-session audit (S005 turn 27)
+
+**Canonical wording:**
+
+> Every `HANDOFF-S<NNN>-to-S<NNN+1>.md` creation MUST be preceded by a Handoff Pre-Flight Audit (HPFA) — a whole-session walk that identifies (1) catches that should have been engraved but were not (B_CATCH_TO_ENGRAVING violation candidates), (2) disciplines that should be schema-audited but are not registered (FSE atomic-validator-registration violations), (3) governor-prompts missing entries (B_GOVERNOR_PROMPTS gaps), (4) cycles that should have run but didn't (B_PRE_CLOSE_VERIFICATION evidence absent), (5) cross-ref integrity gaps (P-ARCH-001 nothing-stands-alone violations), (6) distribution targets unpopulated on GP entries. Findings either (a) addressed in-session before handoff write, or (b) carried-forward with explicit reason. **No silent gaps allowed.** HPFA blocks handoff write until pass.
+
+**Counterweight:**
+
+> For sessions explicitly designated NO-NEW-WORK (verification-only / read-only browsing / retro-investigation), HPFA is reduced scope — only verifies governor-prompts coverage + schema integrity. Full HPFA fires on substantive sessions where engraving / cycle / audit work happened. The classification is explicit at session-open (per HANDOFF §0 step list).
+
+**Source:** S005 turn 27 user directive — *"on each handoff creation I want it to be enforced — you go over the whole session and see what should be enforced and was not + what should be a part of the schema-aligned auditing and is not, and complete them all."*
+
+**Why this matters:**
+
+Pre-S005-turn-27, HANDOFF creation was a procedural step in [protocols.md §10](../_handoff/VAULT/protocols.md). Compliance was AI-cooperation: AI walks the closing-summary-template headers; missing items get filled. **But there was no whole-session-walk** specifically scanning for unrecognized catches / unregistered audits / missing governor-prompts. Gaps could persist: a catch noticed mid-session but not engraved would slip through if AI forgot at close; an audit declared in principle but not registered atomically would slip through if FSE amendment wasn't applied. **HPFA closes this gap by making whole-session-walk mandatory + structured.**
+
+**Composes with:**
+- B_PROTOCOL_LITERAL_EXECUTION (closing-summary template required headers; HPFA is meta-walk above headers)
+- B_CATCH_TO_ENGRAVING (HPFA cycle 1 explicitly checks for un-engraved catches)
+- B_FIVE_SURFACE_ENGRAVING (HPFA cycle 2 explicitly checks for atomic-validator-registration)
+- B_PRE_CLOSE_VERIFICATION (HPFA runs after pre-close-verification; verify must pass first)
+- B_GOVERNOR_PROMPTS (HPFA cycle 3 explicitly checks GP coverage)
+
+**Anti-patterns:**
+
+- **handoff-written-without-hpfa** — handoff produced; whole-session not walked
+- **hpfa-findings-silently-skipped** — gaps surfaced but not addressed AND not carried-forward with reason
+- **hpfa-checks-cherry-picked** — only governor-prompts coverage checked; engraving + cycle + schema skipped
+- **whole-session-walk-superficial** — walk says "looks fine" without examining specific catches/engravings/audits
+
+**Mechanical surfaces (5/5; per FSE atomic-validator-registration amendment):**
+
+- schema: closing-summary-template.md §10.0f mandatory header (HPFA results); protocols.md §10 mandatory step inserted (NEW)
+- validator: `hpfa-pre-handoff-coverage` audit (PR-blocking error; planned week-4)
+- hook: `.claude/hooks/pre-handoff-write-hpfa.sh` (refuses handoff write if HPFA gaps un-addressed; planned week-4)
+- memory: `feedback_handoff_pre_flight_audit.md` (S005 turn 27) + MEMORY.md index
+- contract: this entry + AGENTS.md hard NO (S005 turn 27) + spine row + `principles.yaml#P-META-013`
+
+## B_MUTUAL_UNDERSTANDING_VALIDATION — every AI communication boundary closes the I→I loop (S005 turn 28)
+
+**Canonical wording:**
+
+> Every AI communication boundary MUST close the Intent-to-Impact loop via two-sided handshake. Asymmetric one-shot communication is forbidden for high-stakes boundaries. **Five boundary types**: (1) **chat-to-chat handoff** — current AI generates mechanical-audited chat-jump prompt with explicit alignment-questions; user pastes; new AI responds with attestation per protocols.md §17; user brings response back; current AI audits response against intent + refines prompt template if gaps + replies-with-clarifications until alignment confirmed; (2) **AI-to-AI subagent** — main spawns with AAP preamble + declared output_contract; main verifies returned summary matches contract on return; re-spawns with clarification on mismatch; (3) **AI-to-human** — substantive output emits implicit/explicit "did this land?" check; high-stakes outputs include explicit alignment-question at end; (4) **AI-to-persona** (week-7+) — persona-composition output validated against expected persona-shape; fail-closed on mismatch; (5) **context batches within session** — batch-close validates intent-to-impact drift before next batch begins; >threshold drift pauses + reconfirms with user. **Without MUV, intent leaks at every interface and gaps accumulate invisibly across boundaries.**
+
+**Counterweight:**
+
+> Trivial single-turn responses (factual lookup / one-line confirmation / "ok" / "thanks") don't need full handshake — sender's output is unambiguous + receiver's acknowledgment is sufficient. The discipline targets HIGH-STAKES boundaries: ratification / engraving / session-handoff / cross-pillar synthesis / multi-step plans / scope-changing decisions. Significance is judgment-based but **biased toward over-handshake** — false-positive cost is one extra round-trip; missed-handshake cost is silent gap propagation across boundaries that the system can never catch.
+
+**Source:** S005 turn 28 user directive — *"i defined a process in which i past the prompt and bring back the response from the new chat and: 1 you improve the instructions on how this prompt should be wrriten by mechanically enforcing it. 2 you answer the new chat and invite it to go over all and ask for alignment and clarifications !! This makes sure you I to I is completed!! Intent to impact !! right? other wize almost always there will be gaps we will never know off !!! Engrave this understanding now in multiple places: AI behavior between context batches / AI between chats / AI and human comunicatin must include validation that what was provided as output was received and understood !! / AI to extrnal ai elements / AI to internal personas.. it is a huge principple"*
+
+**Why this matters (the gap closed):**
+
+Pre-S005-turn-28, two-sided handshake existed at protocols.md §17 (between sessions, attestation-only) and B_TWO_SIDED_HANDSHAKE (the contract). But:
+- **Chat-jump prompts had NO MECHANICAL audit** at generation — sender produced "good enough" prompt; receiver got it; if ambiguous, gaps surfaced 3 sessions later (or never)
+- **Cross-chat ITERATION** was not specified — once the chat-jump prompt was pasted, the loop conceptually ended; user bringing the response BACK to current chat for refinement was implicit, not mandatory
+- **Subagent returns** were accepted at face value (no mechanical output_contract check)
+- **AI-to-human substantive outputs** had no validation-hook discipline — user might catch misalignment in their next prompt, but the AI didn't proactively check
+- **Context-batch boundaries within session** had no intent-to-impact drift validation
+
+MUV closes all five gaps with mechanical handshake protocols per boundary type.
+
+**Anti-patterns:**
+
+- **asymmetric-one-shot-communication-on-high-stakes-boundary** — the meta-pattern this contract cures
+- **chat-jump-prompt-without-alignment-questions** — new chat receives instructions but has no mechanical way to surface ambiguity; gaps propagate silently across sessions
+- **subagent-return-not-output-contract-verified** — main accepts returned summary at face value; mismatch with declared shape goes unnoticed
+- **ai-human-output-without-validation-hook** — AI emits long synthesis; no mechanism for user to flag misalignment; intent leaks
+- **cross-chat-handshake-not-iterated** — one round-trip insufficient; alignment-confirmed-explicit needs explicit user OR new-chat affirmation
+- **silent-context-batch-close** — batch ends without validating intent-to-impact drift
+- **intent-to-impact-completion-claimed-without-receiver-acknowledgment** — sender declares done; receiver never confirmed; gap
+
+**The chat-jump-prompt mechanical audit (boundary type 1 specific):**
+
+Every `chat-jump-prompt-S<NNN>-to-S<NNN+1>-detailed.md` MUST contain:
+
+1. **HANDOFF §0 paste-target** (self-contained per protocols.md §11)
+2. **Post-close addenda references** — §24-§N (every amendment after original close cited)
+3. **Governor-prompts log pointer** — `_handoff/VAULT/governor-prompts/S<NNN>.md` for prompt context
+4. **HPFA evidence block pointer** — closing-summary §10.0f
+5. **All carry-forwards** with explicit reasons (no silent skipping)
+6. **All cardinal directives verbatim** (cross-link to user-intents.md S<NNN> section)
+7. **`pnpm verify` orchestrator state** — exit_code summary + cycle results
+8. **EXPLICIT ALIGNMENT-QUESTIONS section** for new chat to answer back — this is the load-bearing innovation; without it, the cross-chat handshake has no mechanical anchor for receiver-side ambiguity surfacing
+
+**The cross-chat handshake protocol (the iteration loop the user defined):**
+
+```
+Step 1: current AI generates chat-jump-prompt with mechanical audit (8 mandatory sections above)
+Step 2: user pastes to new chat
+Step 3: new AI responds with §17 attestation (per-line ✓ or ❓→BLK-S<NNN+1>-*) + ALIGNMENT-QUESTIONS answers
+Step 4: USER brings response back to current chat (the bridge step)
+Step 5: current AI audits new-chat response against original intent:
+  - Does the new AI's understanding match what was meant?
+  - Are alignment-questions answered correctly?
+  - Are there gaps in the prompt template that surfaced?
+  - If gaps: REFINE the prompt template MECHANICALLY (the audit becomes a feedback loop on prompt-template quality)
+Step 6: current AI generates response-to-new-chat with clarifications OR alignment-confirmed acknowledgment; USER pastes to new chat
+Step 7: ITERATE until alignment-confirmed-explicit (no more clarifications needed; new AI proceeds with §3 work)
+```
+
+**Mechanical surfaces (5/5; per FSE atomic-validator-registration amendment):**
+
+- schema: dashboard leaf [pillar-0/mutual-understanding-validation.md](./mutual-understanding-validation.md) (NEW S005 turn 28) + closing-summary-template §10.0g (NEW) + protocols.md §17 amendment + every per-AI-boundary spec inline
+- validator: 3 audits registered atomically — `muv-chat-jump-prompt-completeness` (PR-blocking error) + `muv-subagent-output-contract-verification` (PR-blocking warn per-session) + `muv-cross-chat-handshake-completion` (per-session warn; tracks handshake iteration completion); planned week-4
+- hook: 2 hooks declared — `pre-subagent-spawn-aap-preamble.sh` + `post-subagent-return-verify.sh`; planned week-4
+- memory: `feedback_mutual_understanding_validation.md` (S005 turn 28) + MEMORY.md index
+- contract: this entry + AGENTS.md hard NO (S005 turn 28) + `ai-behavior-spine.md` row + `principles.yaml#P-META-014` + dashboard leaf
+
+**Composes with:**
+
+- `B_TWO_SIDED_HANDSHAKE` (S002 turn 6-7) — the original session-handoff contract; MUV universalizes to all 5 boundary types + adds iteration loop
+- `B_INTENT_TO_IMPACT` (S002 turn 6-7) — pending/impact field discipline; MUV operationalizes the loop closure
+- `B_AGENT_ALIGNMENT_PROTOCOL` (S005 turn 25) — boundary type 2 (AI-to-AI subagent) is exactly AAP's domain; MUV adds output_contract verification on return
+- `P-OP-004 batched-execution` — boundary type 5 (context batches) directly extends the batched-execution counterweight
+- `P-META-013 HPFA` — pre-handoff audit; MUV is the cross-handoff iteration discipline (HPFA verifies the handoff is COMPLETE; MUV verifies the handoff is UNDERSTOOD)
+
 ## How to add a new contract
 
 1. Append a new section here with the same shape (canonical wording + counterweight + source + anti-patterns + mechanical-surfaces).
@@ -543,3 +928,38 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 3. Schedule any missing surface (memory entry / hook / validator / schema field).
 4. Cross-reference in AGENTS.md if the contract introduces a hard NO.
 5. The audit `discipline-engraving-completeness` (planned week 4) will pick up the new row at next PR.
+
+### S005 amendment — atomic validator-surface registration (B_FIVE_SURFACE_ENGRAVING strengthening)
+
+**Surfaced by S005 §C3.1 audit-registry validation pass:** the 5-surface engraving cycle was producing **dangling validator references by default**. When a B_* contract was engraved with "validator surface deferred week-4", the validator slug landed in `principles.yaml#<P-*>.enforcers` + `ai-behavior-spine.md` matrix row + memory + AGENTS.md NO + this contracts file — but NEVER in `audit-runner.md` registry. S005's cross-check found 30 such dangling refs accumulated across sessions; the count was monotonically growing because every new B_* engraving added another.
+
+**Amendment (mandatory for new B_* contracts going forward):**
+
+When the validator-surface delta is designed in step 3 of "How to add a new contract" above, the slug **MUST** be registered in `audit-runner.md` in the **same response/commit** as the rest of the engraving — even if the actual implementation file (`libs/audits/checks/<slug>.ts`) is deferred. The split:
+
+- **REGISTRATION (mandatory atomic):** `audit-runner.md` table row in the appropriate category (Meta / AI Behavior / Catch+Engraving / Status / etc.) with slug + cadence + severity + 1-line description + cross-reference back to the principle/contract.
+- **IMPLEMENTATION (deferral allowed):** `libs/audits/checks/<slug>.ts` + actual scanner logic + test fixtures. Marker `(planned week-4)` or specific session deferral in the description.
+
+**Why this matters (compounding-vs-incremental):**
+
+Without atomic registration, every B_* engraving structurally produces a dangling ref. Across 100 sessions × N new contracts each, that's a monotonically-growing audit-registry debt that requires its own bulk-fix sessions to drain. Atomic registration means the debt never accumulates. **This is the single highest-leverage stability fix from S005 — every future engraving inherits the discipline without manual sync.**
+
+**Procedure (engraving cycle update):**
+
+The old step 3 ("Schedule any missing surface") is replaced with:
+
+3a. **Surface 1 — Schema:** add closed-enum value / frontmatter field / state-machine transition.
+3b. **Surface 2 — Validator REGISTRATION** (atomic; required this commit): add row to `audit-runner.md` registry table.
+3c. **Surface 2' — Validator IMPLEMENTATION** (deferral allowed; mark with deferral note): add file at `libs/audits/checks/<slug>.ts` OR mark "deferred week-4" in description.
+3d. **Surface 3 — Hook:** add `.claude/hooks/*.sh` (or mark deferred).
+3e. **Surface 4 — Memory:** add `feedback_<slug>.md` + MEMORY.md index entry.
+3f. **Surface 5 — Contract:** add section here + cross-reference in AGENTS.md hard NO + spine matrix row.
+
+The 5-surface cycle remains; what changes is that **3b cannot be deferred** — the registry entry is the proof that the surface is "engraved" rather than only "intended". Registration is cheap (10-line table row); implementation is expensive (audit logic + tests). Decoupling them protects the registry as the always-current source of truth.
+
+**Source:** S005 §C3.1 finding documented in [gaps-and-duplications-S005.md](../../_handoff/VAULT/gaps-and-duplications-S005.md). Engraved S005 turn 18 per the user's "completion + stability + scalability" review-and-close directive.
+
+**Forward-prevention:**
+
+- New B_* contracts in S006+ that violate 3b are caught by `audit-of-audits-fse` (planned week-4 — when audit-runner ships, will scan for `principles.yaml#<P>.enforcers` ci-check entries pointing to slugs absent from `audit-runner.md` tables).
+- The 30 dangling refs from gaps-and-duplications-S005.md are the BACKFILL bulk-fix; addressing them in S006 §C3.1 + this amendment together close the structural compounding.

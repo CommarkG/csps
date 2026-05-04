@@ -333,6 +333,18 @@ When a CEC walk surfaces the SAME application-opportunity pattern across multipl
 
 This composition makes Learning Loop's K=2 mechanism a backstop for CEC walks: even if individual walks miss applications, the recurrence-detection across walks catches the pattern.
 
+## Composition with B_POSITIVE_VALUE_EXTRACTION (added S005 turn 22)
+
+Per `B_POSITIVE_VALUE_EXTRACTION` ([behavioral-contracts.md](./behavioral-contracts.md#B_POSITIVE_VALUE_EXTRACTION)) + amended P-META-006 trigger-cadence: the Learning Loop's `observed → triaged → routed → fixing → validated → closed` pipeline now ALSO fires the positive-value-extraction cycle whenever an `observed`-state input surfaces a significant insight (not just defect/gap). The two pipelines are **parallel-but-composable**:
+
+| Trigger | Learning Loop pipeline | B_POSITIVE_VALUE_EXTRACTION cycle |
+|---|---|---|
+| Defect / gap / error in `observed` state | observed → triaged → routed → fixing → validated → closed (with K=2 recurrence-check) | (does NOT fire — defect-class) |
+| Insight surfaced in `observed` state | observed → triaged → routed → validated (no fixing needed) → closed | **fires** — walk platform for max value extraction; emit walk-trail in closing-summary §10.11b |
+| Positive event outside the standard 6-state pipeline (e.g., user directive, AI self-correction, generator output) | (not Learning Loop scope) | **fires** — same walk-trail discipline |
+
+**Why the parity matters:** P-META-005's K=2-within-90-days mechanism applies to **defect recurrence** (K=2 same-bug → auto-ADR). The B_POSITIVE_VALUE_EXTRACTION amendment to P-META-006 means: positive-value walks ALSO trigger K=2 when the SAME opportunity-shape keeps emerging across walks → recurrence-detection promotes the pattern to ADR/principle/leaf. So K=2 mechanism now backstops BOTH defect-recurrence (Learning Loop) AND opportunity-recurrence (positive-value-extraction walks).
+
 ## Cross-references
 
 - **Within principles.yaml**: `P-META-004` (Stewardship — sibling; handles things saved while Learning Loop handles things to-be-saved), `P-META-001` (audit-the-audits ensures Learning Loop's enforcers exist), `P-META-002` (Learning Loop travels with graduated apps), `P-OP-001` (reuse-first; Learning Loop surfaces prior items at observe-time = pull-based discovery), `P-ARCH-014` (crisis escalation as a parallel always-on pipeline; Learning Loop is its non-crisis sibling).

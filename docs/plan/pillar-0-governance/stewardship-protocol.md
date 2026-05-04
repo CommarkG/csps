@@ -255,6 +255,20 @@ The `state_transitioned_at` timestamp + `cycles_run` value together form the aud
 - `validated → closed`: **RZF mandatory** (terminal state — evidence block becomes the audit record)
 - `closed → deprecated`: optional RZF (terminal cleanup)
 
+## Composition with B_POSITIVE_VALUE_EXTRACTION (added S005 turn 22)
+
+Per amended P-META-006 trigger-cadence + `B_POSITIVE_VALUE_EXTRACTION` ([behavioral-contracts.md](./behavioral-contracts.md#B_POSITIVE_VALUE_EXTRACTION)): every state transition that represents POSITIVE progress (not just terminal-state RZF requirement) is a candidate trigger for the positive-value-extraction cycle:
+
+| Transition | RZF required? | Positive-value cycle fires? | Why |
+|---|---|---|---|
+| `pending-review → active` | optional | **fires when activation surfaces an insight** | Activation is positive progress; if the activated artifact's essence applies to neighbors, walk |
+| `active → validated` | **mandatory** | **mandatory** (already covered by P-META-006 CEC original trigger set — every ratification → CEC walk) | Ratification = formal positive event |
+| `pending-protocol → promoted` | optional | **fires** — promotion to a permanent leaf is significant positive progress | Walk platform for places the new leaf's essence applies |
+| `validated → closed` | **mandatory** | typically not (terminal cleanup; no new value to extract) | Closure isn't a positive event in the sense the contract targets |
+| `closed → deprecated` | optional | (rare; only if deprecation reveals a class-level lesson) | One-off |
+
+**Composition with K=2 promotion:** when a `pending-protocol` item promotes to a permanent leaf (per `_intake/unknown-path-protocol.md` K=2 mechanism), promotion = positive significant event = B_POSITIVE_VALUE_EXTRACTION cycle fires. The walk surfaces all places where the newly-promoted leaf's essence applies; outcome captured in closing-summary §10.11b.
+
 ## Cross-references
 
 - **Within principles.yaml**: `P-META-001` (the audit-the-audits meta-check that verifies P-META-004's enforcers are present), `P-META-005` (Learning Loop — the sibling that handles things that *should be* saved), `P-OP-002` (FWWS — Stewardship is the long-horizon companion to FWWS's session-scope completion discipline), `P-ARCH-001` (nothing-stands-alone — Stewardship is the recursive application of this principle to AI outputs).

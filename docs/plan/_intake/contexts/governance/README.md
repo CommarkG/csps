@@ -37,7 +37,7 @@ links:
 
 ## Routing rules
 
-Content lands here when the input concerns: principles (any), the ADR archive, the rule registry, audit-runner checks, fitness functions, the planning playground itself, mechanical-enforcement architecture, the 4 operating principles, the 7 meta-principles (defense-in-depth, principles-travel, inheritance, stewardship, learning-loop, zero-findings-discipline, five-surface-engraving), or any cross-pillar governance-class concern.
+Content lands here when the input concerns: principles (any), the ADR archive, the rule registry, audit-runner checks, fitness functions, the planning playground itself, mechanical-enforcement architecture, the operating principles, the meta-principles (defense-in-depth, principles-travel, inheritance, stewardship, learning-loop, zero-findings-discipline, five-surface-engraving), or any cross-pillar governance-class concern.
 
 ## SLA tier
 

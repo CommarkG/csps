@@ -1,0 +1,386 @@
+#!/usr/bin/env node
+/**
+ * @csps-id csps.tools.validators.validate-frontmatter
+ * @csps-name validate-frontmatter
+ * @csps-description Build-time frontmatter validator. Parses every .md artifact, validates against pillar-1/frontmatter-standard.md schema, fails CI on missing required fields, closed-enum violations, missing reuse-first declaration, missing next_review_at when lifecycle_state != active. Per P-OP-001 reuse-first enforcer #5 (frontmatter contract); per P-META-004 stewardship (lifecycle_state required); per AGENTS.md hard NO #11 (saved-without-lifecycle_state = orphan-in-waiting). PR-blocking via `pnpm lint:frontmatter`.
+ * @csps-version 0.1.0
+ * @csps-owner group:finky
+ * @csps-lifecycle experimental
+ * @csps-lifecycle-state active
+ * @csps-tags type:util domain:dx audience:developer
+ * @csps-enforces P-OP-001 P-META-004 frontmatter-completeness
+ */
+
+import { readdir, readFile, stat } from 'node:fs/promises';
+import { join, extname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(__dirname, '../..');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Schema (per pillar-1/frontmatter-standard.md)
+// ─────────────────────────────────────────────────────────────────────────────
+
+const REQUIRED_FIELDS = ['id', 'name', 'description', 'version', 'owner', 'lifecycle', 'lifecycle_state'];
+
+const CLOSED_DIMENSIONS = {
+  domain: ['billing', 'persona', 'bookings', 'auth', 'admin', 'ai', 'infra', 'shared', 'crisis', 'audit', 'governance', 'architecture', 'data', 'dx', 'ops', 'planning', 'ui', 'platform'],
+  type: ['feature', 'ui', 'data-access', 'util', 'schema', 'doc', 'skill', 'agent', 'bundle', 'template', 'reference', 'tutorial', 'how-to', 'explanation'],
+  tier: ['free', 'pro', 'business', 'enterprise', 'internal'],
+  audience: ['end-user', 'admin', 'developer', 'ai-agent'],
+  maturity: ['draft', 'review', 'stable', 'frozen', 'deprecated'],
+};
+
+const LIFECYCLE_VALUES = ['experimental', 'beta', 'production', 'deprecated'];
+const LIFECYCLE_STATE_VALUES = ['active', 'pending-review', 'pending-protocol', 'promoted', 'resolved', 'deprecated', 'validated', 'closed'];
+
+const TERMINAL_STATES = new Set(['validated', 'closed']);
+
+const SCAN_PATHS = ['docs', 'packages', 'libs', 'apps', 'tools'];
+const SKIP_DIRS = new Set(['node_modules', '.git', '.claude', 'dist', 'build', '.next', 'tmp', 'coverage']);
+// Snapshot/historical files exempt from full schema (intentionally frozen point-in-time records)
+const EXEMPT_PATH_GLOBS = [
+  /_handoff[\/\\]VAULT[\/\\]chat-jump-prompt-/,
+  /_handoff[\/\\]VAULT[\/\\]qc-audit-results-/,
+  /_handoff[\/\\]VAULT[\/\\]validation-pass-/,
+  /_handoff[\/\\]VAULT[\/\\]gaps-and-duplications-/,
+  /_handoff[\/\\]VAULT[\/\\]blockers-/,
+  /_legacy[\/\\]/,
+  // ADRs use MADR frontmatter (id/title/status/date/deciders/tags) — distinct from universal CSPS
+  // frontmatter (id/name/description/version/owner). Carry-forward to S006: decide whether to
+  // unify schemas (Option A) or accept per-file-type schema split (Option B). Skeleton tier
+  // exempts ADRs to avoid spurious failures on ADR-001..0022 lacking universal fields.
+  /docs[\/\\]adr[\/\\]\d{4}-/,
+  // AGENTS.md is the cross-vendor agents.md spec convention (no frontmatter expected). Root +
+  // per-package cascade entries follow that spec. Per-app AGENTS.md cascade audit
+  // (`agents-md-cascade-completeness`) verifies presence/inheritance, not frontmatter.
+  /(^|[\/\\])AGENTS\.md$/,
+  // SKILL.md uses agentskills.io spec extended with CSPS dimensions. Same per-file-type schema
+  // decision pending as ADR (carry to S006). Skeleton tier exempts to unblock skeleton work.
+  /packages[\/\\]skills[\/\\][^\/\\]+[\/\\]SKILL\.md$/,
+  // tools/verify.mjs orchestrator emits transient state; verify-last-run.md auto-generated each run.
+  /tools[\/\\]verify-last-run\.md$/,
+  // bootstrap.ps1 emits tools/bootstrap-readiness.md as transient run report.
+  /tools[\/\\]bootstrap-readiness\.md$/,
+  // EXT-processed intake files: provenance.md / raw.md / scan-passed.md are auto-generated
+  // intake markers; raw.md is verbatim copy of external content (no CSPS frontmatter wraps it).
+  // Per ADR-0023 exempt list — auto-generated transient files. Frontmatter applies to the
+  // PARENT extraction-note (per _intake/manual-protocol.md) not to these provenance files.
+  /_intake[\/\\]processed[\/\\][^\/\\]+[\/\\](provenance|raw|scan-passed)\.md$/,
+  // EXT-routed context files: extraction-note frontmatter lives in the canonical processed/
+  // folder; routed-context files inherit via reference. Match any depth under _intake/contexts/
+  // with EXT- prefix on the file. Per _intake/manual-protocol.md.
+  /_intake[\/\\]contexts[\/\\].*EXT-[^\/\\]+\.md$/,
+  // Governor prompts vault — per-session logs use custom frontmatter (session_date / chat_session_id /
+  // total_substantive_prompts) per B_GOVERNOR_PROMPTS schema; not the universal CSPS frontmatter shape.
+  /_handoff[\/\\]VAULT[\/\\]governor-prompts[\/\\]/,
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Frontmatter extraction + minimal YAML parser
+// ─────────────────────────────────────────────────────────────────────────────
+
+function extractFrontmatter(content) {
+  if (!content.startsWith('---\n') && !content.startsWith('---\r\n')) return null;
+  const end = content.indexOf('\n---', 4);
+  if (end === -1) return null;
+  return content.slice(content.indexOf('\n') + 1, end);
+}
+
+/**
+ * Minimal YAML parser for shallow frontmatter (CSPS pattern).
+ * Handles: key: value | key: \n  - item | key: { rel: x, href: y } | nested 1 level.
+ * Returns flat object; arrays preserved as arrays; inline objects parsed lossily.
+ */
+function parseSimpleYaml(yaml) {
+  const out = {};
+  const lines = yaml.split(/\r?\n/);
+  let i = 0;
+  let currentKey = null;
+  let currentList = null;
+  let inBlockScalar = false;
+  let blockScalarLines = [];
+  let blockScalarIndent = 0;
+
+  const flushBlockScalar = () => {
+    if (currentKey && inBlockScalar) {
+      out[currentKey] = blockScalarLines.join('\n').trim();
+    }
+    inBlockScalar = false;
+    blockScalarLines = [];
+  };
+
+  while (i < lines.length) {
+    const raw = lines[i];
+    const line = raw.replace(/\s+$/, '');
+
+    if (inBlockScalar) {
+      if (line.length === 0 || raw.startsWith(' '.repeat(blockScalarIndent))) {
+        blockScalarLines.push(raw.slice(blockScalarIndent));
+        i++;
+        continue;
+      } else {
+        flushBlockScalar();
+      }
+    }
+
+    if (line.length === 0) { i++; continue; }
+
+    // top-level: key: value | key: | key: |
+    const topMatch = line.match(/^([a-zA-Z_][a-zA-Z0-9_-]*)\s*:\s*(.*)$/);
+    if (topMatch && !line.startsWith(' ') && !line.startsWith('\t')) {
+      currentKey = topMatch[1];
+      currentList = null;
+      const val = topMatch[2].trim();
+      if (val === '|' || val === '|-') {
+        inBlockScalar = true;
+        blockScalarLines = [];
+        blockScalarIndent = 2;
+        i++;
+        continue;
+      }
+      if (val === '') {
+        // expect a list or nested object on following lines
+        out[currentKey] = [];
+        currentList = out[currentKey];
+        i++;
+        continue;
+      }
+      out[currentKey] = stripQuotes(val);
+      i++;
+      continue;
+    }
+
+    // list item: '  - value' or '  - { ... }'
+    const listMatch = line.match(/^\s+-\s*(.*)$/);
+    if (listMatch && currentKey) {
+      const item = listMatch[1].trim();
+      if (!Array.isArray(out[currentKey])) out[currentKey] = [];
+      currentList = out[currentKey];
+      if (item.startsWith('{') && item.endsWith('}')) {
+        currentList.push(parseInlineObject(item));
+      } else {
+        currentList.push(stripQuotes(item));
+      }
+      i++;
+      continue;
+    }
+
+    // nested key under top-level (1 level): '  key: value'
+    const nestedMatch = line.match(/^\s+([a-zA-Z_][a-zA-Z0-9_-]*)\s*:\s*(.*)$/);
+    if (nestedMatch && currentKey) {
+      if (typeof out[currentKey] !== 'object' || Array.isArray(out[currentKey])) {
+        out[currentKey] = {};
+      }
+      out[currentKey][nestedMatch[1]] = stripQuotes(nestedMatch[2].trim());
+      i++;
+      continue;
+    }
+
+    // unrecognized line — skip
+    i++;
+  }
+  flushBlockScalar();
+  return out;
+}
+
+function stripQuotes(s) {
+  if (!s) return s;
+  if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
+    return s.slice(1, -1);
+  }
+  return s;
+}
+
+function parseInlineObject(s) {
+  const inner = s.slice(1, -1);
+  const obj = {};
+  for (const part of inner.split(',')) {
+    const [k, ...vparts] = part.split(':');
+    if (!k) continue;
+    obj[k.trim()] = stripQuotes(vparts.join(':').trim());
+  }
+  return obj;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Validation rules
+// ─────────────────────────────────────────────────────────────────────────────
+
+function validateOne(file, fm, errors, warnings, idIndex) {
+  const ctx = (msg) => `${file}: ${msg}`;
+
+  // Required fields
+  for (const f of REQUIRED_FIELDS) {
+    if (fm[f] === undefined || fm[f] === '' || fm[f] === null) {
+      errors.push(ctx(`missing required field "${f}"`));
+    }
+  }
+
+  // ID uniqueness
+  if (fm.id) {
+    if (idIndex.has(fm.id)) {
+      errors.push(ctx(`duplicate id "${fm.id}" (also at ${idIndex.get(fm.id)})`));
+    } else {
+      idIndex.set(fm.id, file);
+    }
+    // ID format: dotted, lowercase
+    if (typeof fm.id === 'string' && !/^[a-z][a-z0-9.-]*[a-z0-9]$/.test(fm.id)) {
+      warnings.push(ctx(`id "${fm.id}" does not match dotted-lowercase convention`));
+    }
+  }
+
+  // Description length cap
+  if (fm.description && typeof fm.description === 'string' && fm.description.length > 1024) {
+    errors.push(ctx(`description ${fm.description.length} chars > 1024 cap (per Anthropic RAG router constraint)`));
+  }
+
+  // Owner format
+  if (fm.owner && typeof fm.owner === 'string' && !/^(group|user):[a-zA-Z0-9_-]+$/.test(fm.owner)) {
+    errors.push(ctx(`owner "${fm.owner}" must match group:<handle> or user:<handle>`));
+  }
+
+  // lifecycle closed enum
+  if (fm.lifecycle && !LIFECYCLE_VALUES.includes(fm.lifecycle)) {
+    errors.push(ctx(`lifecycle "${fm.lifecycle}" not in {${LIFECYCLE_VALUES.join('|')}}`));
+  }
+
+  // lifecycle_state closed enum
+  if (fm.lifecycle_state && !LIFECYCLE_STATE_VALUES.includes(fm.lifecycle_state)) {
+    errors.push(ctx(`lifecycle_state "${fm.lifecycle_state}" not in {${LIFECYCLE_STATE_VALUES.join('|')}}`));
+  }
+
+  // next_review_at required when lifecycle_state != active
+  if (fm.lifecycle_state && fm.lifecycle_state !== 'active' && !fm.next_review_at) {
+    if (!TERMINAL_STATES.has(fm.lifecycle_state) && fm.lifecycle_state !== 'resolved' && fm.lifecycle_state !== 'deprecated') {
+      errors.push(ctx(`next_review_at required when lifecycle_state="${fm.lifecycle_state}" (per P-META-004)`));
+    }
+  }
+
+  // RZF + CEC refs required for terminal states (P-META-006)
+  if (TERMINAL_STATES.has(fm.lifecycle_state)) {
+    if (!fm.evidence_block_ref) {
+      errors.push(ctx(`evidence_block_ref required when lifecycle_state="${fm.lifecycle_state}" (P-META-006 RZF)`));
+    }
+    if (!fm.cec_walk_trail_ref) {
+      warnings.push(ctx(`cec_walk_trail_ref recommended when lifecycle_state="${fm.lifecycle_state}" (P-META-006 CEC)`));
+    }
+  }
+
+  // Tag closed-dimension validation
+  if (Array.isArray(fm.tags)) {
+    for (const tag of fm.tags) {
+      if (typeof tag !== 'string' || !tag.includes(':')) {
+        errors.push(ctx(`tag "${tag}" not in dimension:value format`));
+        continue;
+      }
+      const [dim, val] = tag.split(':', 2);
+      if (CLOSED_DIMENSIONS[dim] && !CLOSED_DIMENSIONS[dim].includes(val)) {
+        errors.push(ctx(`tag "${tag}" — value "${val}" not in closed enum for dimension "${dim}" {${CLOSED_DIMENSIONS[dim].join('|')}}`));
+      }
+    }
+  }
+
+  // Reuse-first contract: enhances OR created-new-because (warn — not all files need; skeleton tier soft-checks)
+  // Per pillar-1/frontmatter-standard.md "Reuse-first frontmatter fields" — strict in CI; soft in skeleton.
+  // Comment retained for week-4 strictness ratchet.
+  // if (!fm.enhances && !fm['created-new-because']) {
+  //   warnings.push(ctx(`neither enhances: nor created-new-because: declared (P-OP-001 reuse-first)`));
+  // }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Walker
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function walkDir(dir, accum = []) {
+  let entries;
+  try { entries = await readdir(dir, { withFileTypes: true }); }
+  catch { return accum; }
+  for (const entry of entries) {
+    if (SKIP_DIRS.has(entry.name)) continue;
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) await walkDir(full, accum);
+    else if (entry.isFile() && extname(entry.name) === '.md') accum.push(full);
+  }
+  return accum;
+}
+
+function isExempt(path) {
+  return EXEMPT_PATH_GLOBS.some((rx) => rx.test(path));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Main
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function main() {
+  const args = process.argv.slice(2);
+  const strict = args.includes('--strict');
+  const verbose = args.includes('--verbose');
+
+  const errors = [];
+  const warnings = [];
+  const skipped = [];
+  const idIndex = new Map();
+  let scanned = 0;
+
+  for (const sub of SCAN_PATHS) {
+    const root = resolve(ROOT, sub);
+    try { await stat(root); } catch { continue; }
+    const files = await walkDir(root);
+    for (const file of files) {
+      const rel = file.replace(ROOT, '').replace(/\\/g, '/').replace(/^\//, '');
+      if (isExempt(file)) {
+        skipped.push(rel);
+        continue;
+      }
+      let content;
+      try { content = await readFile(file, 'utf8'); }
+      catch { errors.push(`${rel}: read failed`); continue; }
+      const fmText = extractFrontmatter(content);
+      if (!fmText) {
+        errors.push(`${rel}: no frontmatter detected`);
+        continue;
+      }
+      let fm;
+      try { fm = parseSimpleYaml(fmText); }
+      catch (e) { errors.push(`${rel}: yaml parse failed (${e.message})`); continue; }
+      validateOne(rel, fm, errors, warnings, idIndex);
+      scanned++;
+    }
+  }
+
+  const summary = `\n[validate-frontmatter] scanned=${scanned} errors=${errors.length} warnings=${warnings.length} exempt=${skipped.length}`;
+
+  if (verbose && skipped.length > 0) {
+    console.log(`\nExempt (snapshot/historical):`);
+    skipped.slice(0, 10).forEach((p) => console.log(`  · ${p}`));
+    if (skipped.length > 10) console.log(`  · ... and ${skipped.length - 10} more`);
+  }
+
+  if (warnings.length > 0) {
+    console.warn(`\n${warnings.length} warning(s):`);
+    warnings.slice(0, 30).forEach((w) => console.warn(`  ⚠ ${w}`));
+    if (warnings.length > 30) console.warn(`  ⚠ ... and ${warnings.length - 30} more`);
+  }
+
+  if (errors.length > 0) {
+    console.error(`\n${errors.length} error(s):`);
+    errors.slice(0, 50).forEach((e) => console.error(`  ✗ ${e}`));
+    if (errors.length > 50) console.error(`  ✗ ... and ${errors.length - 50} more`);
+    console.error(summary);
+    if (strict || errors.length > 0) process.exit(1);
+  }
+
+  console.log(summary);
+  if (warnings.length > 0 && strict) process.exit(1);
+  process.exit(0);
+}
+
+main().catch((err) => {
+  console.error('[validate-frontmatter] fatal:', err);
+  process.exit(2);
+});

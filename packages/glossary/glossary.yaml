@@ -1,0 +1,82 @@
+# CSPS Glossary — single source of truth for vocabulary
+# Per P-ARCH-016 vocabulary-audit: industry-standard names over CSPS-invented; renamed per ADR-0013.
+# Codegens to: Vale prose dict / ESLint id-denylist / Payload select options / ZModel @@meta.
+apiVersion: csps.glossary/v1
+kind: Glossary
+version: 0.0.1
+generated_at: 2026-05-04T04:00:00Z
+
+# Canonical terms — preferred form across all CSPS prose + code
+terms:
+  - canonical: platform
+    description: The CSPS multi-tenant kernel that hosts apps until graduation
+    aliases: []
+    reject: [Cambium]   # ADR-0013 rename
+    domain: architecture
+
+  - canonical: app
+    description: A product hosted inside CSPS; graduates to standalone when it hits PMF
+    aliases: [tenant-app, product]
+    reject: []
+    domain: architecture
+
+  - canonical: slice
+    description: A vertical kernel feature (DB + admin + customer + tests + audit; per P-ARCH-001)
+    aliases: []
+    reject: []
+    domain: architecture
+
+  - canonical: module-folder
+    description: The folder pattern for slice/feature scoping (per P-ARCH-018)
+    aliases: []
+    reject: [bone-block, manifested-slice]   # ADR-0013 rename + migration v1.6 rename
+    domain: architecture
+
+  - canonical: persona
+    description: A composed AI agent personality (composition function + memory + crisis-escalation slice)
+    aliases: []
+    reject: []
+    domain: ai
+
+  - canonical: agent
+    description: One Mastra agent runtime serves all personas via Dynamic Agents pattern (per ADR-0008)
+    aliases: []
+    reject: []
+    domain: ai
+
+  - canonical: skill
+    description: Invokable AI behavior with declared capability set; passes through Quarantine→Vendored→Platform-owned tiers
+    aliases: []
+    reject: []
+    domain: ai
+
+  - canonical: bundle
+    description: Curated grouping of slices/personas/skills queried by tag-tuple
+    aliases: []
+    reject: []
+    domain: architecture
+
+  - canonical: customer-kit
+    description: Reusable primitives consumed by every customer-facing app (per pillar-3/customer-kit.md)
+    aliases: []
+    reject: []
+    domain: architecture
+
+  - canonical: template
+    description: One of the 22 page templates in @csps/templates; the ONLY UI primitives apps consume
+    aliases: []
+    reject: []
+    domain: architecture
+
+  - canonical: graduation
+    description: Process of extracting an app from CSPS into standalone product when it hits PMF
+    aliases: [extraction]
+    reject: []
+    domain: ops
+
+  - canonical: tier
+    description: Customer subscription level (closed enum per ADR-0003)
+    aliases: []
+    reject: []
+    values: [free, pro, business, enterprise, internal]
+    domain: billing

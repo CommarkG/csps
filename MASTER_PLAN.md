@@ -40,7 +40,7 @@ CSPS is a multi-tenant SaaS platform that hosts 30–75 apps. Each app starts in
 
 ---
 
-## The 4 operating principles (always-on)
+## The operating principles (always-on)
 
 Cognitive-load-aware human-AI collaboration. All four live in `packages/principles/principles.yaml` (entries P-OP-001 through P-OP-004) as the single source of truth, with full enforcer maps + industry lineage. Detailed in [pillar 0 / operating-principles.md](docs/plan/pillar-0-governance/operating-principles.md).
 

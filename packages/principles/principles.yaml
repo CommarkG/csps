@@ -71,6 +71,10 @@ enforcer_layers:
   - generator-prompt       # nx g <generator> catalog-first UX
   - meta-audit             # audit-the-audits check
   - generator              # the artifact IS generated, encoding the principle
+  - memory                 # ~/.claude/.../memory/feedback_*.md cognitive layer (the 4th of 5 surfaces in P-META-007 FSE)
+  - contract               # docs/plan/pillar-0-governance/behavioral-contracts.md § B_* + AGENTS.md hard NO + canonical leaf doc (the 5th of 5 surfaces in P-META-007 FSE)
+  - ai-behavior-spine      # ai-behavior-spine.md discipline matrix row (composes the 5 surfaces into auditable index)
+  - runtime                # Mastra dispatcher / capability-check / runtime invariant guards (per P-ARCH-005 + P-ARCH-027)
 
 # ============================================================================
 # PRINCIPLES
@@ -175,18 +179,51 @@ principles:
       A PCR has three blocks in this order:
       1. **Options** — table or bulleted list of N alternatives (typically 2–4)
       2. **Pros / Cons** — per-option trade-offs (table format preferred)
-      3. **Recommendation** — chosen option + one-paragraph reasoning + open questions
+      3. **Recommendation** — chosen option + one-paragraph reasoning naming the load-bearing factor + "what would flip the recommendation" clause
+    triggers:
+      # Patterns that fire PCR automatically (added S005 turn 5 — B_PCR_FOR_DECISIONS strengthening)
+      fire_patterns:
+        - 'phrase: should we... / should I...'
+        - 'phrase: X vs Y / which option / decide between'
+        - 'header containing options: / alternatives: / approaches: / paths:'
+        - 2+ alternatives with non-trivial trade-space
+        - 'architectural forks (framework / schema / protocol selection)'
+        - 'scope choices (this-session vs next / carry-forward vs in-flight / defer vs ship)'
+        - 'tool / library selection'
+        - migration strategies
+        - phasing decisions
+      skip_patterns:
+        # Trivial-reversibles per P-OP-003 counterweight (two-way doors at low cost — Bezos)
+        - variable naming when both names clear
+        - comment phrasing
+        - file location when both paths obviously valid
+        - color choices in draft
+        - single-option presentations (no trade-space)
+      skip_requires_explicit_note: true   # silent skip is the failure mode B_PCR_FOR_DECISIONS targets
     enforcers:
-      - { layer: instruction-file, location: "AGENTS.md", description: "Cardinal principle #3; default format for decision-shaped questions" }
-      - { layer: skill,            location: "packages/skills/pcr/SKILL.md", description: "Slash command /pcr <topic> produces canonical 3-block output" }
-      - { layer: ai-prompt-addendum, location: "AGENTS.md", description: "Decision-shaped questions trigger PCR by default; trivial reversible choices skip it" }
-      - { layer: mcp-resource,     location: "packages/principles-mcp/src/resources.ts", description: "Exposed as principles://pcr with format spec for any agent" }
-    enforcer_count: 4
-    cross_references: [P-OP-004]
+      - { layer: instruction-file,     location: "AGENTS.md",                                                                                                                description: "Cardinal principle #3; default format for decision-shaped questions" }
+      - { layer: instruction-file,     location: "AGENTS.md",                                                                                                                description: "Hard NO — never present non-trivial decision without PCR 3-block (S005 turn 5)" }
+      - { layer: skill,                location: "packages/skills/pcr/SKILL.md",                                                                                              description: "Slash command /pcr <topic> produces canonical 3-block output" }
+      - { layer: ai-prompt-addendum,   location: "AGENTS.md",                                                                                                                description: "Decision-shaped questions trigger PCR by default; trivial reversible choices skip it" }
+      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                                                                                  description: "Exposed as principles://pcr with format spec for any agent" }
+      - { layer: contract,             location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_PCR_FOR_DECISIONS",                                                  description: "B_PCR_FOR_DECISIONS canonical contract — strengthens P-OP-003 to mechanical (S005 turn 5)" }
+      - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_pcr_for_decisions.md",                            description: "Cognitive layer; loaded at session-start (S005 turn 5)" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/closing-summary-template.md#§10.13d",                                                              description: "Mandatory header — every non-trivial decision presented this session enumerated with PCR-3-block check (S005 turn 5)" }
+      - { layer: ci-check,             location: "libs/audits/checks/pcr-completeness-on-decisions.ts",                                                                       description: "Stop-hook scan for trigger-phrases without paired 3-block; PR-blocking warn (planned week 4)" }
+      - { layer: hook,                 location: ".claude/hooks/post-stop-pcr-check.sh",                                                                                       description: "Stop-hook output scan for decision-presenting language without PCR blocks (planned week 4)" }
+      - { layer: hook,                 location: ".claude/hooks/user-prompt-submit-pcr-reminder.sh",                                                                           description: "UserPromptSubmit reminder when user message contains decision-asking patterns (planned week 4)" }
+      - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                                                         description: "Discipline matrix row updated S005 turn 5: 2/5 declared 1/5 mechanical → 5/5 declared 3/5 mechanical" }
+    enforcer_count: 12
+    cross_references: [P-OP-004, P-META-007]
     anti_patterns:
       - recommendation-without-options (no trade-space exposed; reader can't evaluate)
       - options-without-recommendation (analysis paralysis; decision punted back)
       - false-balance (pros/cons rigged to support a predetermined recommendation)
+      - recommendation-before-pros-cons (BLUF violation; AGENTS.md hard NO #9)
+      - symmetric-pros-cons (lazy framing; "A fast / B slow + B correct / A wrong" signals missing axis)
+      - silent-skip (judging "trivial-reversible" without stating the skip + reason; reader can't audit)
+      - recommendation-without-load-bearing-factor (opaque decision; future review can't reconstruct rationale)
+      - missing-what-would-flip-clause (silent-criteria-shift later is undetectable)
 
   - id: P-OP-004
     name: batched-execution
@@ -280,7 +317,8 @@ principles:
       - { layer: ci-check, location: "tools/audit-runner/slice-score.ts", description: "nx run-many -t slice-score --check fails build below 90%" }
       - { layer: pre-commit, location: ".husky/pre-commit (lefthook)", description: "Slice-score runs on changed slices; warns locally" }
       - { layer: scorecard, location: "apps/admin/payload/collections/SliceHealth.ts", description: "Read-only computed Payload collection; admin dashboard surface" }
-    enforcer_count: 3
+      - { layer: generator-prompt, location: "tools/generators/slice/", description: "Nx slice generator emits scaffold scoring 100% by default; PreToolUse hook refuses Write of slice files when projected score <90%" }
+    enforcer_count: 4
     cross_references: [P-ARCH-001, P-ARCH-022]
 
   - id: P-ARCH-007
@@ -368,7 +406,8 @@ principles:
     enforcers:
       - { layer: runtime, location: "libs/personas/compose.ts", description: "Persona compose function — single source of truth for assembly order" }
       - { layer: frontmatter-contract, location: "libs/policies/slices/public/persona.zmodel", description: "Every persona declares domain (validated against PersonaDomain enum)" }
-    enforcer_count: 2
+      - { layer: ci-check, location: "libs/audits/checks/persona-overlay-completeness.ts", description: "Per-persona domain overlay check: personas with domain ∈ {clinical/legal/medical/financial/spiritual} carry the matching non-counsel disclaimer overlay (registered audit slug; planned week-4)" }
+    enforcer_count: 3
     cross_references: [P-ARCH-012, P-ARCH-014]
 
   - id: P-ARCH-014
@@ -392,7 +431,8 @@ principles:
     enforcers:
       - { layer: ci-check, location: "tools/audit-runner/self-score.ts", description: "nx run audit-runner:slice-score — the audit slice itself scores ≥90%" }
       - { layer: meta-audit, location: "libs/audits/checks/audit-of-audit.ts", description: "Meta-check that every audit ran in its expected interval" }
-    enforcer_count: 2
+      - { layer: meta-audit, location: "libs/audits/checks/zero-findings/audit-of-audits.ts", description: "Per CSP precedent — RZF discipline applied recursively to RZF infrastructure itself; verifies audit registry health, no ABANDONED state, audit-frequency matches declared cadence (registered slug; planned week-4)" }
+    enforcer_count: 3
     cross_references: [P-ARCH-006, P-ARCH-002]
 
   # ==========================================================================
@@ -433,7 +473,8 @@ principles:
       - { layer: ci-check, location: "tools/validators/validate-app-schema.mjs", description: "Slice contract check #13 — App slice → @@schema('app_<slug>')" }
       - { layer: eslint-rule, location: "tools/validators/eslint-rules/no-search-path-set.ts", description: "Forbids SET search_path in app code" }
       - { layer: generator, location: "tools/migrate-multi-schema/migrate.ts", description: "Multi-schema migration tool templates schema names per app" }
-    enforcer_count: 3
+      - { layer: zenstack-policy, location: "libs/policies/base.zmodel", description: "Base ZModel datasource declaration scopes schemas array — schema-per-app boundary enforced at ZenStack codegen + Prisma multi-schema preview-feature; runtime queries use fully-qualified names per ADR-0002" }
+    enforcer_count: 4
     cross_references: [P-ARCH-022]
 
   - id: P-ARCH-019
@@ -583,8 +624,9 @@ principles:
       - { layer: meta-audit, location: "libs/audits/checks/principle-coverage.ts", description: "For every principle, asserts ≥ min_enforcers per severity AND ≥ 2 non-AI enforcers for critical; CI fails if any principle is under-enforced" }
       - { layer: meta-audit, location: "libs/audits/checks/enforcer-orphans.ts", description: "For every // @enforces: P-XXX-NNN annotation in source, asserts the principle exists; fails on dangling refs" }
       - { layer: ci-check,   location: "libs/audits/checks/codegen-fresh.ts", description: "Regenerate AGENTS.md + skills + hooks from principles.yaml; CI fails if git diff non-empty" }
-    enforcer_count: 3
-    cross_references: [P-META-002, P-OP-001]
+      - { layer: ci-check,   location: "libs/audits/checks/principle-count-staleness.ts", description: "Greps for hardcoded principle-count text (e.g. 'N meta-principles', 'P-META-001 through P-META-NNN', 'N operating principles', 'P-OP-001 through P-OP-NNN') in active prose; compares against current `^  - id: P-META-` and `^  - id: P-OP-` row counts in principles.yaml; warn on drift; lists offending lines. Exempts snapshot/historical files via audit_exempt_paths (HANDOFF-S*.md, qc-audit-results-S*.md, validation-pass-S*.md, chat-jump-prompt-*.md, principles-snapshot.md). Registered S005 turn 8 per ADR-0022 K=2 auto-ADR; build deferred week-4." }
+    enforcer_count: 4
+    cross_references: [P-META-002, P-OP-001, P-META-005]
 
   - id: P-META-002
     name: principles-travel-with-artifacts
@@ -792,8 +834,9 @@ principles:
       cec_essence_must_be_distilled_in_one_sentence: true             # forces clarity; fuzzy essence = bad walks
       # Anti-compression rule
       compressed_zero_findings_under_context_pressure: forbidden       # defer to next session, do NOT compress
-      # Trigger cadence
+      # Trigger cadence (extended S005 turn 20 per user directive — CEC fires on ALL significant positive events, not just formal ratifications)
       mandatory_at:
+        # Formal ratifications (original CEC trigger set)
         - every principle ratification
         - every leaf migration
         - every batch close
@@ -802,6 +845,15 @@ principles:
         - every external input ratified into platform
         - every behavioral contract addition
         - every audit-runner check addition (RZF only; CEC not applicable to audit infrastructure itself per CSP precedent)
+        # NEW S005 turn 20 — positive significant events (B_POSITIVE_VALUE_EXTRACTION trigger set)
+        - every significant insight surfaced by AI or user (even informal — not just ratified principles)
+        - every improvement landed (bug fix / feature ship / discipline strengthening)
+        - every user directive integrated (walk platform for all places it should apply)
+        - every EXT-ID processed (positive value extraction beyond just routing)
+        - every bug-fix integrated (search for similar patterns elsewhere)
+        - every AI self-correction (walk session for similar errors already made)
+        - every generator/wizard output batch (cycle on the produced artifacts)
+        - every meta-finding surfaced (e.g., FSE produces dangling refs by default — walk for all instances)
     enforcers:
       - { layer: instruction-file,     location: "AGENTS.md",                                                          description: "3 new hard NOs binding both RZF + CEC; bind to closing-protocol + ratification triggers" }
       - { layer: ci-check,             location: "libs/audits/checks/zero-findings/rzf-coverage.ts",                    description: "PR-blocking: every artifact reaching DONE has RZF evidence block; missing = fail (planned week 4)" }
@@ -883,8 +935,506 @@ principles:
       - sequential-engraving (memory now, contract later — must be atomic)
       - engraving-without-completeness-verification (no FSE evidence block emitted)
       - silent-below-2-surfaces (without explicit deferral note)
-      - "I'll engrave if it comes up again" (N=2 already costs re-discovery)
+      - "I'll engrave if it comes up again (N=2 already costs re-discovery)"
       - catches-noted-not-engraved (B_CATCH_TO_ENGRAVING violation; this principle prevents)
+
+  - id: P-META-014
+    name: mutual-understanding-validation
+    aliases: [MUV, intent-to-impact-loop, two-sided-handshake-comprehensive, closed-loop-communication, I-to-I]
+    category: meta
+    severity: critical
+    statement: |
+      Every AI communication boundary MUST close the Intent-to-Impact loop via two-sided
+      handshake. Asymmetric one-shot communication is forbidden for high-stakes boundaries.
+      The 5 boundary types: (1) chat-to-chat handoff — current AI generates mechanical-audited
+      chat-jump prompt; new AI receives + responds; user brings response back; current AI
+      improves prompt instructions mechanically + replies-with-clarifications until alignment
+      confirmed; (2) AI-to-AI subagent — main spawns with AAP preamble; subagent returns;
+      main verifies output matches declared output_contract; loops back on mismatch; (3) AI-to-
+      human — every substantive output includes "did this land?" check; user feedback feeds
+      next-turn refinement; (4) AI-to-persona (week-7+) — persona-composition output validated
+      against expected persona-shape; fail-closed; (5) context batches within session — batch-
+      close validates intent vs impact before next batch begins. Without MUV, intent leaks at
+      every communication interface and gaps accumulate invisibly.
+    counterweight: |
+      Trivial single-turn responses (factual lookup / one-line confirmation / "ok" reply) don't
+      need the full handshake — sender's output is unambiguous + receiver's acknowledgment is
+      sufficient. The discipline targets HIGH-STAKES boundaries: ratification / engraving /
+      session-handoff / cross-pillar synthesis / multi-step plans. Significance is judgment-
+      based but biased toward over-handshake (false-positive cost is small extra round-trip;
+      missed-handshake cost is silent gap propagation across boundaries).
+    industry_lineage:
+      - Hubspot loop closure pattern (sales/customer feedback loops require explicit ack)
+      - Aviation pilot-to-tower readback (tower says X; pilot reads back X verbatim; tower confirms or corrects — closed-loop verbal protocol; 100% mandatory)
+      - Surgical timeout / WHO surgical safety checklist (every team member acknowledges before incision)
+      - TCP three-way handshake (SYN / SYN-ACK / ACK — formalized closed-loop network communication)
+      - Toyota TPS jidoka (autonomation with mutual-understanding pause-the-line on anomaly)
+      - User S005 turn 28 directive — "AI between chats / AI to external AI elements / AI to internal personas / AI-human communication must include validation that what was provided as output was received and understood"
+    config:
+      boundary_types:
+        chat_to_chat_handoff:
+          mechanism: chat-jump-prompt with mechanical-audited content + explicit alignment-questions section
+          handshake_protocol:
+            - step_1_current_ai_generates_prompt_with_audit
+            - step_2_user_pastes_to_new_chat
+            - step_3_new_ai_responds_with_attestation_per_protocols_§17
+            - step_4_user_brings_response_back_to_current_chat
+            - step_5_current_ai_audits_response_against_intent_+_refines_prompt_template_if_gaps
+            - step_6_current_ai_replies_to_new_chat_via_user_with_clarifications_or_alignment_confirmed
+            - step_7_iterate_until_alignment_confirmed_explicit
+        ai_to_ai_subagent:
+          mechanism: AAP preamble + output_contract verification on return
+          handshake_protocol:
+            - step_1_spawn_with_aap_preamble
+            - step_2_subagent_executes_within_scope
+            - step_3_main_verifies_returned_output_matches_declared_output_contract
+            - step_4_main_re-spawns_with_clarification_if_mismatch
+        ai_to_human:
+          mechanism: substantive output emits implicit/explicit "did this land?" check
+          handshake_protocol:
+            - step_1_ai_emits_output
+            - step_2_user_acknowledges_or_corrects
+            - step_3_ai_refines_based_on_correction_OR_proceeds
+            - step_4_high_stakes_outputs_explicit_alignment_question_at_end
+        ai_to_persona:
+          mechanism: persona-composition output validated against persona-shape (week-7+)
+          handshake_protocol:
+            - step_1_persona_dispatched
+            - step_2_output_validated_against_expected_shape
+            - step_3_fail_closed_on_mismatch
+        context_batches_within_session:
+          mechanism: batch-close validates intent vs impact
+          handshake_protocol:
+            - step_1_batch_proposed_with_acceptance_criteria_upfront_per_p_op_004
+            - step_2_user_approves_once
+            - step_3_batch_executes
+            - step_4_batch_close_validates_intent_to_impact_drift
+            - step_5_drift_>_threshold_pauses_+_reconfirms_with_user
+      chat_jump_prompt_mandatory_contents:
+        - handoff_§0_paste_target_self_contained
+        - post_close_addenda_references_§24_through_§32
+        - governor_prompts_log_pointer_S005_md
+        - hpfa_evidence_block_pointer
+        - all_carry_forwards_with_explicit_reasons
+        - all_cardinal_directives_verbatim
+        - verify_orchestrator_state_exit_code_summary
+        - explicit_alignment_questions_for_new_chat_to_answer_back
+      iteration_termination: alignment_confirmed_explicit_by_user_OR_new_chat
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                                                            description: "Hard NO — never close session without mechanical chat-jump prompt audit + explicit alignment-questions; never spawn subagent without verifying return; never emit substantive AI-human output without validation hook" }
+      - { layer: contract,             location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_MUTUAL_UNDERSTANDING_VALIDATION",                description: "Canonical contract — 5 boundary types + per-boundary handshake protocol" }
+      - { layer: frontmatter-contract, location: "docs/plan/pillar-0-governance/mutual-understanding-validation.md",                                      description: "Dashboard / spec leaf — full per-boundary specification + chat-jump-prompt mechanical-audit checklist + alignment-question template" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/closing-summary-template.md",                                                  description: "§10.0g MUV evidence header (NEW) — chat-jump-prompt audit results + alignment-questions emitted + (post-handshake) alignment-confirmed status" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/protocols.md",                                                                 description: "§17 amended (the §17 attestation extends with cross-chat handshake iteration steps 4-7); §11b new step for receiving-AI alignment confirmation" }
+      - { layer: ci-check,             location: "libs/audits/checks/muv-chat-jump-prompt-completeness.ts",                                                description: "PR-blocking error: every chat-jump-prompt-S<NNN>-to-S<NNN+1>-detailed.md has mandatory sections (handoff §0 + post-close addenda + governor-prompts pointer + HPFA pointer + carry-forwards + cardinals + verify state + alignment-questions); planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/muv-subagent-output-contract-verification.ts",                                        description: "PR-blocking warn (per-session): every Agent tool invocation has paired output verification (does returned summary match output_contract?); planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/muv-cross-chat-handshake-completion.ts",                                              description: "Per-session warn: tracks chat-jump prompts across sessions; flags handshakes without iteration-to-alignment confirmation within 7 sessions; planned week-4" }
+      - { layer: hook,                 location: ".claude/hooks/pre-subagent-spawn-aap-preamble.sh",                                                       description: "PreToolUse on Agent: injects AAP preamble + output_contract spec; planned week-4" }
+      - { layer: hook,                 location: ".claude/hooks/post-subagent-return-verify.sh",                                                           description: "PostToolUse on Agent return: verifies returned summary matches output_contract; flags drift; planned week-4" }
+      - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_mutual_understanding_validation.md", description: "Cognitive layer; loaded session-start" }
+      - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                                      description: "Discipline matrix row — composes B_TWO_SIDED_HANDSHAKE + B_INTENT_TO_IMPACT (S002 turn 6-7 origin contracts; this principle is the universalization to all 5 boundary types)" }
+    enforcer_count: 12
+    cross_references: [P-META-001, P-META-006, P-META-008, P-META-010, P-META-013, P-OP-003, P-OP-004]
+    anti_patterns:
+      - 'asymmetric-one-shot-communication-on-high-stakes-boundary (the meta-pattern this principle exists to cure)'
+      - 'chat-jump-prompt-without-alignment-questions (new chat receives instructions but has no mechanical way to surface ambiguity; gaps propagate silently)'
+      - 'subagent-return-not-output-contract-verified (main accepts returned summary at face value; mismatch with declared shape goes unnoticed)'
+      - 'ai-human-output-without-validation-hook (AI emits long synthesis; no mechanism for user to flag misalignment; intent leaks)'
+      - 'cross-chat-handshake-not-iterated (one round-trip insufficient; alignment-confirmed-explicit needs explicit user OR new-chat affirmation)'
+      - 'silent-context-batch-close (batch ends without validating intent-to-impact drift)'
+      - 'intent-to-impact-completion-claimed-without-receiver-acknowledgment (sender declares done; receiver never confirmed; gap)'
+
+  - id: P-META-012
+    name: governor-prompts
+    aliases: [GP, user-prompt-governance, prompt-vault, comprehensive-prompt-tracking]
+    category: meta
+    severity: critical
+    statement: |
+      Every user prompt in CSPS chat sessions MUST be governance-tracked: assigned GP-S<NNN>-<NN>
+      ID; captured verbatim with chat/session/date/hour timestamp; tagged with schema-aligned
+      closed-enum dimensions (domain / type / audience / cardinal flag / engraving discipline /
+      audit scope / decision topic / drop reason); distributed per SCHEMA structure to relevant
+      pillar leaves / behavioral contracts / principles / cognitive-context-architecture / audits /
+      ADRs; re-reviewed at every session-close. Storage: docs/plan/_handoff/VAULT/governor-prompts/
+      S<NNN>.md per session. Composes with user-intents.md (cardinal-only verbatim) — Governor
+      Prompts is COMPREHENSIVE; user-intents is curated subset of cardinal-flagged GPs.
+    counterweight: |
+      Single-word or trivial conversational prompts ("ok", "thanks", "yes", "go") may use
+      abbreviated GP entries (just timestamp + verbatim + status: confirmation; distribution
+      targets may be null). The discipline targets SUBSTANTIVE prompts — directives, decisions,
+      questions, drops — where governance tracking enables future-session re-derivation.
+    industry_lineage:
+      - Linear / Asana issue-tracker per-comment audit trails
+      - GitHub PR conversation thread preservation (every comment timestamp + author)
+      - Jira backlog grooming with directive-traceability
+      - User S005 turn 27 directive — "all I write each time reviewed each time session closing and saved in specific place"
+    config:
+      gp_id_format: "GP-S<NNN>-<NN>"
+      gp_id_zero_padded: true
+      mandatory_fields:
+        - gp_id
+        - timestamp_iso8601_utc
+        - chat_session_id
+        - turn_number
+        - verbatim_content
+        - tags
+        - cardinal_flag
+        - distribution_targets
+        - implementation_status
+      storage_path: docs/plan/_handoff/VAULT/governor-prompts/S<NNN>.md
+      readme_path: docs/plan/_handoff/VAULT/governor-prompts/README.md
+      cross_link_to_user_intents: true   # cardinal-flagged GPs propagate to user-intents.md
+      session_close_review_mandatory: true
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                                                            description: "Hard NO — never close session without reviewing every substantive user prompt + creating GP entries + cross-linking cardinals to user-intents.md" }
+      - { layer: contract,             location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_GOVERNOR_PROMPTS",                              description: "Canonical contract" }
+      - { layer: frontmatter-contract, location: "docs/plan/pillar-0-governance/governor-prompts.md",                                                    description: "The dashboard / spec leaf — full schema-aligned distribution rules + format spec" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/governor-prompts/README.md",                                                  description: "Vault README + per-session storage convention" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/closing-summary-template.md",                                                 description: "§10.0e mandatory header (NEW) — every closing summary references the session GP log + aggregate metrics" }
+      - { layer: ci-check,             location: "libs/audits/checks/governor-prompt-coverage.ts",                                                       description: "Per-session error: every substantive prompt in session log has GP entry; planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/governor-prompt-distribution-complete.ts",                                          description: "PR-blocking warn: every GP entry has distribution_targets populated (null only for explicit drops); planned week-4" }
+      - { layer: hook,                 location: ".claude/hooks/post-stop-governor-prompts.sh",                                                          description: "PostStop: aggregates session GPs + verifies coverage + cross-links cardinals to user-intents.md; planned week-4" }
+      - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_governor_prompts.md",       description: "Cognitive layer; loaded session-start" }
+      - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                                    description: "Discipline matrix row — composes with B_INTAKE_DISCIPLINE (different surface: chat-channel vs external-input)" }
+    enforcer_count: 10
+    cross_references: [P-META-005, P-META-001, P-META-008, P-META-011]
+    anti_patterns:
+      - 'cardinal-prompt-without-user-intents-cross-link (cardinal flag set but verbatim not propagated)'
+      - 'prompt-without-gp-entry (substantive prompt skipped session log)'
+      - 'distribution-targets-null-without-explicit-drop (lazy entry; not real governance)'
+      - 'gp-entries-batch-at-close-only (should be continuous; close is review-not-creation)'
+      - 'verbatim-paraphrased (paraphrase loses load-bearing wording; verbatim is mandatory for cardinal)'
+      - 'tags-arbitrary-not-schema-aligned (must use closed-enum dimensions per frontmatter-standard)'
+
+  - id: P-META-013
+    name: handoff-pre-flight-audit
+    aliases: [HPFA, pre-handoff-audit, session-completeness-gate]
+    category: meta
+    severity: critical
+    statement: |
+      Every handoff creation MUST be preceded by a Handoff Pre-Flight Audit (HPFA) — a
+      whole-session walk that identifies what should have been engraved but was not, what
+      should be schema-audited but is not registered, what governor-prompts are missing
+      entries, and what cycles should have run but didn't. Findings either (a) addressed
+      in-session before handoff, or (b) carried-forward with explicit reason. No silent
+      gaps allowed. Composes with B_PROTOCOL_LITERAL_EXECUTION (closing-summary template
+      mandatory headers) + B_CATCH_TO_ENGRAVING (catches engraved before close) +
+      B_PRE_CLOSE_VERIFICATION (verify orchestrator before close).
+    counterweight: |
+      For sessions explicitly designated NO-NEW-WORK (verification-only / read-only browsing /
+      retro-investigation), HPFA is reduced scope — only verifies governor-prompts coverage
+      + schema integrity. The full HPFA fires on substantive sessions where engraving / cycle /
+      audit work happened.
+    industry_lineage:
+      - Aviation pre-flight checklist (every flight; no exceptions; mechanical)
+      - Surgical timeout / WHO surgical safety checklist (Atul Gawande)
+      - Toyota TPS andon-cord (stop-the-line before defects propagate downstream)
+      - User S005 turn 27 directive — "on each handoff creation enforce going over the whole session and see what should be enforced and was not + what should be part of schema-aligned auditing and is not — complete them all"
+    config:
+      mandatory_check_set:
+        - governor_prompts_coverage           # every substantive prompt has GP entry
+        - engraving_completeness              # every catch produced 5-surface artifacts
+        - audit_registration_completeness     # every B_*/P-META-* validator registered atomically
+        - cycle_evidence_presence             # every DONE/RATIFIED claim has evidence block
+        - schema_dynamic_connections          # cross-refs bidirectional + maintained
+        - distribution_targets_populated      # GP distribution targets non-null (except drops)
+        - carry_forward_explicit              # gaps carried have explicit reason
+      hpfa_runs_after: pre_close_verification    # depends on verify orchestrator passing first
+      hpfa_blocks_handoff_write: true            # cannot write HANDOFF-S<NNN>-to-S<NNN+1>.md without HPFA pass
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                                            description: "Hard NO — never write HANDOFF-S<NNN>-to-S<NNN+1>.md without HPFA pass + findings addressed or carried explicit" }
+      - { layer: contract,             location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_HANDOFF_PRE_FLIGHT_AUDIT",      description: "Canonical contract" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/closing-summary-template.md",                                  description: "§10.0f HPFA results header (NEW) — mandatory" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/protocols.md",                                                 description: "§10 chat-closing protocol §10.0f added — HPFA mandatory before handoff write" }
+      - { layer: ci-check,             location: "libs/audits/checks/hpfa-pre-handoff-coverage.ts",                                       description: "PR-blocking error: every HANDOFF-S<NNN>-to-S<NNN+1>.md has HPFA evidence block; missing or empty fails PR; planned week-4" }
+      - { layer: hook,                 location: ".claude/hooks/pre-handoff-write-hpfa.sh",                                              description: "Pre-handoff hook: runs HPFA cycle; refuses handoff write if HPFA returns gaps un-addressed; planned week-4" }
+      - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_handoff_pre_flight_audit.md", description: "Cognitive layer" }
+      - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                    description: "Discipline matrix row — composes with B_PRE_CLOSE_VERIFICATION + B_CATCH_TO_ENGRAVING + B_PROTOCOL_LITERAL_EXECUTION" }
+    enforcer_count: 8
+    cross_references: [P-META-006, P-META-007, P-META-008, P-META-012]
+    anti_patterns:
+      - 'handoff-written-without-hpfa (handoff produced; whole-session not walked)'
+      - 'hpfa-findings-silently-skipped (gaps surfaced but not addressed AND not carried-forward with reason)'
+      - 'hpfa-checks-cherry-picked (only governor-prompts coverage checked; engraving + cycle + schema skipped)'
+      - 'whole-session-walk-superficial (walk says "looks fine" without examining specific catches/engravings/audits)'
+
+  - id: P-META-011
+    name: audit-orchestration
+    aliases: [audit-hub, pipeline-discipline, orchestration]
+    category: meta
+    severity: error
+    statement: |
+      The audit-runner.md registry (slug-level audits) operates UNDER the audit-hub.md
+      orchestration layer (pipelines + triggers + handling + dashboard). Every audit
+      belongs to exactly one pipeline; every pipeline has explicit triggers + handling
+      matrix + dependency graph. Severity routing is uniform (info=log; warn=dashboard
+      + digest; error=Linear ticket + PR block; critical=Slack page + incident-on-real-time).
+      Dynamic schema connections: every audit has bidirectional principle linkage
+      (backed_by_principle ↔ enforcer reference); cross-ref-resolution audit verifies.
+    counterweight: |
+      Ad-hoc one-off audit invocations (debugging a specific failure; investigating an
+      incident) may bypass the pipeline structure with explicit reason. The discipline
+      targets RECURRING audit execution (PR / per-session / nightly / weekly).
+    industry_lineage:
+      - Backstage Tech Insights (Facts/Checks/Scorecards/Runs primitives)
+      - Cortex Scorecards-as-Code (pipeline-as-code)
+      - Spotify Soundcheck (the original; Tech Insights origin)
+      - User S005 turn 26 directive — audit hub creation
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                                                  description: "Hard NO — every recurring audit invocation goes through a defined pipeline; ad-hoc OK with explicit reason" }
+      - { layer: contract,             location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_AUDIT_ORCHESTRATION",                  description: "Canonical contract" }
+      - { layer: frontmatter-contract, location: "docs/plan/pillar-0-governance/audit-hub.md",                                                  description: "The orchestration leaf — 9 pipelines + triggers + handling + dashboard spec + dynamic schema connections" }
+      - { layer: ci-check,             location: "libs/audits/checks/pipeline-coverage.ts",                                                     description: "PR-blocking error: every audit slug in registry assigned to exactly one pipeline; orphan audits flagged; planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/audit-principle-bidirectional.ts",                                          description: "PR-blocking error: every audit references backed_by_principle; every principle's enforcers reference real audit slugs; bidirectional graph integrity; planned week-4" }
+      - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                            description: "Discipline matrix row — composes with B_PRE_CLOSE_VERIFICATION + B_RZF + B_QC_AUDIT (the hub orchestrates these)" }
+      - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_audit_orchestration.md", description: "Cognitive layer; loaded session-start" }
+      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                                                    description: "Exposed as principles://audit-orchestration with full pipeline list" }
+    enforcer_count: 8
+    cross_references: [P-META-001, P-META-006, P-META-008, P-ARCH-001, P-ARCH-004]
+    anti_patterns:
+      - 'audit-without-pipeline-membership (orphan audit)'
+      - 'pipeline-without-trigger-definition (ad-hoc; not orchestrated)'
+      - 'audit-without-bidirectional-principle-link (schema graph integrity violation)'
+      - 'severity-routing-mismatch (audit declared error but routed only to log)'
+      - 'dashboard-divergence (run results not visible in any dashboard)'
+
+  - id: P-META-010
+    name: agent-alignment-protocol
+    aliases: [AAP, no-wildcards, agent-alignment, mechanical-agent-discipline]
+    category: meta
+    severity: critical
+    statement: |
+      Every agent (CSPS-built skill / claude-code-builtin subagent / Mastra runtime agent /
+      third-party-imported skill) used in CSPS work MUST pass through the Agent Alignment Protocol
+      (AAP) before invocation. NO WILDCARDS — no agent enters the system without alignment.
+      AAP enforces 9 mandatory checks: identity / schema compliance / B_* contract acknowledgment /
+      Quality Gate respect / capability set / trust tier / output contract / eval baseline /
+      pre-flight check + alignment preamble. Class A (CSPS-built) declares via frontmatter; Class B
+      (claude-code-builtin) wraps via spawn-prompt alignment preamble; Class C (Mastra) enforces
+      at construction; Class D (third-party) at Quarantine→Vendored→Platform-owned promotion.
+    counterweight: |
+      Trivial Class B built-in invocations for one-shot lookup (single grep / single file read)
+      may use abbreviated preamble (universal-required B_* subset only). The discipline targets
+      INVOCATIONS WITH WORK SCOPE — agents that produce output the main session reasons over.
+    industry_lineage:
+      - Snyk ToxicSkills (13.4% malicious AI agent skills measured) — empirical default-deny justification
+      - Anthropic Agent SDK + Sub-Agents docs — context isolation pattern
+      - agents.md cross-vendor spec — preamble convention target
+      - agentskills.io Class A frontmatter convention
+      - CSP B_AUTONOMY_4_CONDITIONS + B_CHECKPOINT_8_CATEGORIES (CSP carry-forwards) — alignment preamble subset
+      - User S005 turn 25 directive — "no agents created out of CSPS allowed... mechanically create alignment protocol"
+    config:
+      agent_classes:
+        A_csps_built:
+          source: packages/skills/<name>/SKILL.md or libs/agents/<name>
+          alignment_mode: frontmatter-declaration
+          preflight: csps_aligned + aap_version + acknowledged_contracts + respects_quality_gates + output_contract + trust_tier fields
+        B_claude_code_builtin:
+          source: harness-provided (Explore / Plan / general-purpose / claude-code-guide / statusline-setup)
+          alignment_mode: spawn-prompt-alignment-preamble
+          preflight: AAP preamble injected as first content block before task description
+        C_mastra_runtime:
+          source: libs/agents/<name> per pillar-5/mastra-setup.md
+          alignment_mode: BaseAgent-middleware-injection-at-construction
+          preflight: agent.zmodel AAP fields + Mastra middleware enforces preamble in systemPrompt
+        D_third_party_imported:
+          source: nx g platform:skill-import
+          alignment_mode: tier-gated (Quarantine → Vendored → Platform-owned) + per-invocation AAP
+          preflight: trust_tier appropriate + AAP at every tier transition
+      mandatory_check_set:
+        - identity-declaration
+        - schema-compliance
+        - b-star-contract-acknowledgment
+        - quality-gate-respect
+        - capability-set
+        - trust-tier
+        - output-contract
+        - eval-baseline
+        - preflight-check-and-alignment-preamble
+      universal_required_b_star_acknowledgments:
+        - B_AI_PROFESSIONAL_VOICE
+        - B_VALIDATE_BEFORE_ASSUME
+      no_wildcards: true
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                                                                          description: "Hard NO — never invoke agent (Class A/B/C/D) without AAP alignment (frontmatter for A/C/D; preamble for B) — S005 turn 25" }
+      - { layer: contract,             location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_AGENT_ALIGNMENT_PROTOCOL",                                    description: "Canonical contract — operationalizes 9-check protocol + per-class alignment mode" }
+      - { layer: frontmatter-contract, location: "docs/plan/pillar-0-governance/agent-alignment-protocol.md",                                                          description: "The dashboard leaf — full 9-check spec + per-class table + alignment preamble template + schema alignment" }
+      - { layer: ci-check,             location: "libs/audits/checks/agent-alignment-coverage.ts",                                                                     description: "PR-blocking error — every SKILL.md/agent.zmodel has csps_aligned + aap_version + acknowledged_contracts + respects_quality_gates + output_contract + trust_tier; missing fields fail PR; planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/subagent-spawn-preamble-required.ts",                                                              description: "PR-blocking warn (per-session) — scans session log for Agent tool invocations; verifies spawn prompt contains AAP alignment preamble for Class B; flags missing; planned week-4" }
+      - { layer: hook,                 location: ".claude/hooks/pre-tool-use-agent-aap.sh",                                                                            description: "PreToolUse on Agent tool — intercepts invocations; verifies preamble OR injects it auto for Class B; planned week-4" }
+      - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_agent_alignment_protocol.md",             description: "Cognitive layer — loaded session-start" }
+      - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                                                 description: "Discipline matrix row — composes B_VALIDATE_BEFORE_ASSUME + B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK + B_INTAKE_DISCIPLINE for the per-invocation alignment" }
+      - { layer: generator-prompt,     location: "tools/generators/skill/files/AAP-frontmatter.template",                                                              description: "nx g platform:skill template injects AAP frontmatter scaffolding; new skills cannot ship without; week-3+" }
+      - { layer: runtime,              location: "libs/agents/dispatcher-middleware.ts",                                                                                description: "Mastra BaseAgent middleware enforces AAP at construction; preamble auto-injected into agent.systemPrompt; week-6+" }
+      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                                                                            description: "Exposed as principles://agent-alignment-protocol with full 9-check spec + alignment-preamble template" }
+    enforcer_count: 11
+    cross_references: [P-META-001, P-META-002, P-META-006, P-META-009, P-ARCH-025, P-OP-001]
+    anti_patterns:
+      - 'agent-invocation-without-alignment (the meta-pattern this principle exists to cure)'
+      - 'class-B-builtin-spawn-without-preamble (Explore/Plan/general-purpose/etc. invoked without alignment-preamble = wildcard)'
+      - 'class-A-skill-without-AAP-frontmatter (csps_aligned/acknowledged_contracts/respects_quality_gates fields missing)'
+      - 'subagent-receives-synthesis-task (QG2 violation; agent doesn''t see full context)'
+      - 'capability-creep-without-redeclaration (allowed_tools expanded silently between invocations)'
+      - 'trust-tier-bypass (third-party skill invoked at Quarantine tier for Vendored-tier work)'
+      - 'eval-baseline-stale (last-eval >30 days for non-trivial agent)'
+      - 'output-contract-violation (agent returns more than declared max_tokens or wrong shape)'
+      - 'preflight-check-skipped-because-trivial (every invocation needs preflight; no exceptions)'
+
+  - id: P-META-009
+    name: cognitive-context-architecture
+    aliases: [CCA, quality-first-context-discipline, context-purity]
+    category: meta
+    severity: critical
+    statement: |
+      Every CSPS AI session uses the 5-layer Cognitive Context Architecture: Layer 1 Permanent
+      Constitution (cached 1h) + Layer 2 Session Contract (cached 1h) + Layer 3 Active Work
+      Context (5min/no-cache; mid-session edits force re-read) + Layer 4 On-Demand Structural
+      Queries (MCP) + Layer 5 Subagent-Delegated (isolated; never enters main). Tokens are an
+      INVESTMENT in reasoning quality, not a budget to minimize. Four immutable Quality Gates
+      protect against optimization-induced regression: QG1 hard reasoning never downgrades
+      (Opus mandatory for ratification/engraving/ZF synthesis); QG2 synthesis stays in main
+      context (subagents do focused work only); QG3 mid-session edited files re-read mandatorily;
+      QG4 cache invalidates on content change.
+    counterweight: |
+      Trivial verifications (file-existence checks; "did this string change?") may use Haiku
+      tier; mechanical edits (find-replace; lifecycle bumps) may use Sonnet tier. The discipline
+      targets HARD-REASONING tasks (ratification / engraving / ZF synthesis / architectural
+      decisions / honest-self-audit) — these never downgrade.
+    industry_lineage:
+      - Anthropic Prompt Caching (90% savings on cached input via 5min/1h TTL; min Opus 4.7 4096 tokens)
+      - Anthropic Sub-Agents (Claude Code) — context isolation pattern; subagent summary returns to parent
+      - Model Context Protocol (Linux Foundation 2025) — structural-query layer
+      - Claude Sonnet 4.6 / Opus 4.7 / Haiku 4.5 model tier pricing (May 2026)
+      - codebase-memory-mcp 120x token reduction measurement (DEV.to 2026)
+      - User S005 turn 24 directive — quality + holistic + long-run over immediate savings
+    config:
+      layers:
+        layer_1_permanent_constitution:
+          ttl: 1-hour
+          content: [AGENTS.md, principles.yaml summary, behavioral-contracts.md TOC, ai-behavior-spine.md index]
+          invalidation: source-content-change
+          breakpoint: 1
+        layer_2_session_contract:
+          ttl: 1-hour
+          content: [HANDOFF §0, active §3 scope, open BLK-* registry, user-intents]
+          invalidation: session-end OR explicit ratification
+          breakpoint: 2
+        layer_3_active_work:
+          ttl: 5-min OR no-cache
+          content: [currently-edited files, recent tool outputs, current reasoning thread]
+          invalidation: file-edit OR turn-rollover
+          breakpoint: 3
+        layer_4_mcp_queries:
+          ttl: server-side
+          content: [principles-mcp resources, catalog-mcp resources, codebase-memory-mcp]
+          invalidation: per-query (always fresh from data store)
+          breakpoint: n/a
+        layer_5_subagent:
+          ttl: inherits-parent-cache (fork pattern)
+          content: [search/grep walks, log processing, web research, parallel-independent reads]
+          invalidation: per-subagent-invocation
+          breakpoint: n/a
+      quality_gates:
+        QG1_hard_reasoning_never_downgraded:
+          enforced_for: [engraving, PCR-rendering, ZF-synthesis, architectural-decisions, honest-self-audit]
+          required_model: Opus-4.7
+          downgrade_allowed: false
+        QG2_synthesis_stays_in_main:
+          subagent_scope: [search, grep, log-processing, fetch, parallel-independent-reads]
+          subagent_forbidden_scope: [PCR-rendering, ratification, engraving, ZF-synthesis]
+        QG3_mid_session_edited_files_reread:
+          trigger: any Edit or Write tool call
+          required_action: re-read (Read or Grep) before reasoning about edited content
+          anti_pattern: assume-content-from-memory-of-last-write
+        QG4_cache_invalidates_on_content_change:
+          mechanism: content-hash-based (Anthropic side)
+          csps_audit: cache-content-hash-fresh (planned week-4)
+          anti_pattern: nominal-cache-where-snapshot-drifts-from-disk
+      model_routing:
+        opus_4_7_required: [engraving, PCR-non-trivial, ZF-synthesis, ADR-authoring, cross-pillar-synthesis, honest-self-audit]
+        sonnet_4_6_acceptable: [mechanical-edits, drafting-from-template, routine-validation-analysis, subagent-default]
+        haiku_4_5_acceptable: [file-existence-checks, simple-grep, did-this-change-verifications]
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                                                                                description: "4 hard NOs binding Quality Gates QG1-QG4 (S005 turn 24)" }
+      - { layer: contract,             location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_COGNITIVE_CONTEXT_DISCIPLINE",                                       description: "Canonical contract — operationalizes the 5-layer architecture + 4 Quality Gates" }
+      - { layer: frontmatter-contract, location: "docs/plan/pillar-0-governance/cognitive-context-architecture.md",                                                          description: "The dashboard leaf — schema-aligned visual + per-layer specification + per-layer quality gates" }
+      - { layer: ci-check,             location: "libs/audits/checks/cognitive-context-discipline-coverage.ts",                                                              description: "PR-blocking warn: every closing summary references which layers were active + quality-gate compliance per session; planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/model-routing-on-ratification.ts",                                                                      description: "PR-blocking error: scans session log for ratification/engraving/ZF-synthesis events; verifies model used was Opus 4.7; flags downgrade as QG1 violation; planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/cache-content-hash-fresh.ts",                                                                           description: "PR-blocking warn: verifies cache breakpoint placements correspond to stable-content boundaries; flags dynamic content cached at 1h TTL; planned week-4" }
+      - { layer: hook,                 location: ".claude/hooks/post-tool-edit-reread-required.sh",                                                                          description: "PostToolUse hook: after Edit/Write, scans next AI reasoning for assertions about edited content without paired re-read; surfaces QG3 violation candidates; planned week-4" }
+      - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_cognitive_context_architecture.md",             description: "Cognitive layer; loaded session-start" }
+      - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                                                       description: "Discipline matrix row — composes B_RZF + B_PRE_CLOSE_VERIFICATION + B_POSITIVE_VALUE_EXTRACTION (the 4 Quality Gates form the cognitive layer of those disciplines)" }
+      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                                                                                  description: "Exposed as principles://cognitive-context-architecture with full 5-layer spec + 4 Quality Gate definitions" }
+    enforcer_count: 10
+    cross_references: [P-META-001, P-META-006, P-META-007, P-META-008, P-OP-001, P-OP-003, P-OP-004]
+    anti_patterns:
+      - tokens-as-budget-to-minimize (the meta-pattern this principle exists to cure; quality + holistic + long-run > savings per user S005 turn 24)
+      - downgrading-opus-on-ratification (QG1 violation; produces nominal-quality decisions that compound into platform debt)
+      - delegating-synthesis-to-subagent (QG2 violation; subagent doesn't see your full context; can't synthesize correctly)
+      - assume-content-from-memory-of-last-write (QG3 violation; produces nominal-RZF; mid-session-edited files MUST be re-read)
+      - nominal-cache-where-snapshot-drifts-from-disk (QG4 violation; AGENTS.md changed but cached snapshot serves stale)
+      - all-opus-without-routing (right-tool-for-job — Haiku adequate for lookups; using Opus everywhere is over-spend without quality gain)
+      - all-sonnet-without-escalation (mirror failure mode; ratification needs Opus depth)
+      - parallel-subagents-when-serial-suffices (5x cost for marginal speed; only when wall-clock dominates)
+      - cache-on-volatile-content (Layer 3 active work cached at 1h = stale-content quality regression)
+
+  - id: P-META-008
+    name: cycle-mandatory-in-plan
+    aliases: [CMP, mechanical-cycles-in-plans, no-context-dependent-discipline]
+    category: meta
+    severity: critical
+    statement: |
+      Every plan, protocol, build-step, engraving cycle, and session boundary MUST enumerate
+      its mandatory verification cycles WITHIN THE PLAN ITSELF — not in context-dependent
+      AI memory or "the AI should know to run X". Plans that depend on AI cooperation to
+      trigger cycles produce nominal-not-actual claims (DONE blocks emitted without the
+      validators ever running). Plans that enumerate cycles per-step + require evidence
+      per-step are mechanically robust.
+    counterweight: |
+      Trivial in-flight microsteps (single-line edit / typo fix / linting auto-fix) don't
+      require enumerated cycles in their step description; the cycle is the next batch
+      boundary's responsibility. The discipline targets BATCH/STEP/SESSION boundaries
+      where DONE/RATIFIED claims are emitted.
+    industry_lineage:
+      - John Boyd OODA loop — observe-orient-decide-act with mandatory iteration; the cycle is the loop
+      - Toyota Production System — andon-cord stops the line; cycle is mechanical, not procedural
+      - Continuous Integration (Fowler 2006) — the build script IS the discipline; runs every commit; can't skip
+      - GitOps (Weaveworks 2017) — desired state in git + reconciliation loop; cycle is the artifact, not memory
+      - User S005 turn 19 directive — "make recurring mandatory things specifically written in the plans, not context dependent"
+    config:
+      cycle_enumeration_required: true
+      evidence_per_step_required: true
+      context_dependent_cycles_forbidden: true
+      cycle_types:
+        - rzf                      # Real Zero Findings (defect verification)
+        - cec                      # Complete Extraction Cycle (value verification)
+        - fse                      # Five-Surface Engraving (discipline propagation)
+        - pre_close_verification   # build chain + cross-refs + validators run before any close-summary RZF block
+        - per_step_validation      # per build-order.md week-N step
+        - per_engraving_atomic_5_surface  # per new B_* contract
+      anti_patterns:
+        - 'nominal-not-actual (RZF block emitted but the cited validator was never run this session)'
+        - 'context-dependent-cycle (plan says AI should run X; AI forgets; debt accumulates)'
+        - 'latent-bug-because-validator-never-ran (CSPS S002 to S005 example — YAML quote bug + missing enforcer_layers latent 2+ sessions)'
+        - 'cycle-enumerated-but-not-evidence-required (plan says run X; doesn''t say exit 1 if X fails or evidence required in close-summary)'
+    enforcers:
+      - { layer: instruction-file,     location: "AGENTS.md",                                                                                                       description: "Hard NO — never claim DONE/RATIFIED without paired pre-close verification cycle evidence" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/closing-summary-template.md#§10.0",                                                       description: "Mandatory §10.0 'Pre-close verification cycle results' header — every close summary lists each cycle that ran + its exit-code + evidence path" }
+      - { layer: contract,             location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_PRE_CLOSE_VERIFICATION",                                   description: "B_PRE_CLOSE_VERIFICATION canonical contract — strengthens RZF + CEC + FSE with mandatory pre-close gate" }
+      - { layer: ci-check,             location: "libs/audits/checks/pre-close-cycle-coverage.ts",                                                                   description: "Scans every closing-summary-S<NNN>.md for §10.0; fails if missing OR if any cycle marked DEFERRED-without-reason; PR-blocking error (planned week-4)" }
+      - { layer: ci-check,             location: "libs/audits/checks/nominal-rzf-detection.ts",                                                                      description: "Detects RZF claims without paired tool-call evidence in same session log; PR-blocking warn (planned week-4)" }
+      - { layer: hook,                 location: ".claude/hooks/post-stop-zf-cycle.sh",                                                                              description: "PostStop hook runs `pnpm verify` automatically at session-close; fails close if exit code non-zero (planned week-4)" }
+      - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_pre_close_verification.md",             description: "Cognitive layer; loaded session-start" }
+      - { layer: generator,            location: "tools/verify.mjs",                                                                                                 description: "Build orchestrator: runs pnpm install --frozen-lockfile + typecheck + frontmatter validate + principles validate + (week-4) audit-runner; emits structured ZF evidence block to stdout; exit 1 on any cycle failure" }
+      - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                                                description: "Discipline matrix row — composes with B_RZF + B_CEC + B_PROTOCOL_LITERAL_EXECUTION (the trio that makes actual-not-nominal claims mechanical)" }
+    enforcer_count: 9
+    cross_references: [P-META-006, P-META-007, P-META-005, P-META-001]
+    anti_patterns:
+      - nominal-not-actual-rzf (the meta-pattern this principle exists to cure)
+      - cycles-in-memory-not-in-plans (every plan must enumerate; AI memory is augmenting not load-bearing)
+      - 'per-step-validators-undocumented (plans say do X step; don''t say evidence required Y; exit code Z)'
+      - close-summary-skips-cycle-evidence-section (closing-summary-template §10.0 is mandatory)
+      - 'latent-bug-because-validator-never-ran (S002 to S005 evidence)'
 
 # ============================================================================
 # AUDIT META-CHECK ALGORITHM

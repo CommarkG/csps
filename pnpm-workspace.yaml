@@ -1,0 +1,13 @@
+# CSPS pnpm workspace declaration
+# Per pillar-1/repo-layout.md + tech-stack.md (Nx + pnpm)
+#
+# Workspace packages cascade:
+#   packages/* — shared platform code (principles + principles-mcp + catalog + glossary + skills + templates + customer-kit)
+#   libs/*     — shared libraries (audits + agents + policies)
+#   apps/*     — runnable applications (admin + customer-shell + skill-eval-worker + per-app instances)
+#   tools/*    — build-time tooling (generators + validators + audit-runner + bootstrap)
+packages:
+  - "packages/*"
+  - "libs/*"
+  - "apps/*"
+  - "tools/*"

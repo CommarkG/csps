@@ -1,0 +1,76 @@
+// =============================================================================
+// CSPS Base ZModel — foundation mixin for every entity
+// Per pillar-2/foundation-zmodel.md + ADR-0007 (audit triggers) + P-ARCH-007
+// (soft-delete-by-default) + P-ARCH-002 (schema-per-app).
+// =============================================================================
+//
+// Every entity in CSPS extends this Base mixin. Provides:
+//   - id (UUID v7, time-ordered)
+//   - createdAt / updatedAt timestamps
+//   - deletedAt soft-delete (hard delete denied by default per P-ARCH-007)
+//   - @@audit annotation hook (ZenStack codegens audit.attach_trigger calls)
+//
+// Skeleton tier: types + Base mixin only. Foundation slices (User, Tenant,
+// AuditEvent) ship in week-2 alongside Stripe + Clerk wiring.
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+  schemas = ["public"]
+}
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+  output = "../../node_modules/.zmodel/zod"
+}
+
+// -----------------------------------------------------------------------------
+// Base mixin — every entity extends this
+// -----------------------------------------------------------------------------
+
+abstract model Base {
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?                       // soft-delete (P-ARCH-007)
+
+  // Soft-delete: hard delete denied by default per P-ARCH-007.
+  // Override only with explicit @hardDelete + paired @@allow('delete', ...) policy.
+  @@deny('delete', true)
+
+  // Soft-delete-aware unique constraints: include deletedAt in unique indexes
+  // OR use partial unique index per validate-migration-safety.ts audit.
+}
+
+// -----------------------------------------------------------------------------
+// Common types referenced across slices
+// -----------------------------------------------------------------------------
+
+enum ActorKind {
+  user
+  admin
+  system
+  agent
+}
+
+enum LifecycleState {
+  active
+  pendingReview     @map("pending-review")
+  pendingProtocol   @map("pending-protocol")
+  promoted
+  resolved
+  deprecated
+  validated
+  closed
+}
+
+// =============================================================================
+// Foundation slices (User / Tenant / AuditEvent) ship in libs/policies/foundation/
+// per build-order.md week 2. This file is the shared mixin only.
+// =============================================================================

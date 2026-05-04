@@ -225,6 +225,18 @@ F7 monthly meta-loop trend → if degrading, ADR for loop config itself
 
 **The point:** every forcing function has a pre-runtime manual mode AND a post-runtime automated mode. Continuity is preserved across the runtime-ship boundary; the migration is a one-shot port of ledger entries into the runtime tables (per `tools/intake/migrate-manual-ledger.ts` planned week 6).
 
+## F9 — B_POSITIVE_VALUE_EXTRACTION (added S005 turn 22)
+
+Per `B_POSITIVE_VALUE_EXTRACTION` ([behavioral-contracts.md](../pillar-0-governance/behavioral-contracts.md#B_POSITIVE_VALUE_EXTRACTION)) + amended P-META-006 trigger-cadence: the proactive-completion forcing-function family extends with a 9th function that fires on every significant POSITIVE event (not just defects/gaps F1-F8 cover):
+
+| Function | Pre-runtime | Post-runtime |
+|---|---|---|
+| **F9 positive-value-extraction cycle** | AI runs CEC walk on every significant positive event (insight / user-directive / improvement / EXT-ID / bug-fix / AI-self-correction / generator-output / meta-finding); walk-trail entry in closing-summary §10.11b | `.claude/hooks/post-stop-positive-cycle.sh` (planned week-4) auto-fires; `positive-value-extraction-coverage` audit (per-session warn) catches missing §10.11b |
+
+**Composes with F1-F8:** F1 (SLA breach) → also a positive trigger ("breach detected" is an insight); F3 (K=2 auto-ADR) → ADR is a ratification → CEC walk per existing P-META-006; F8 (Discovery-queue review) → resurfacing is itself a positive event for previously-deferred items. F9 is the EXPLICIT positive-branch counterpart to F1-F8's defect-recurrence focus.
+
+**Why F9 added:** S005 turn 20-22 surfaced that the original CEC scope (formal ratifications only) left informal positive events unwalked. F9 closes the gap without redundantly firing for trivial events (counterweight: significance-judged; biased toward over-trigger).
+
 ## Cross-references
 
 - [manual-protocol.md](./manual-protocol.md) — the per-upload protocol

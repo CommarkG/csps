@@ -14,6 +14,28 @@ references_future_artifact: true
 lifecycle: experimental
 lifecycle_state: active
 next_review_at: 2026-08-01
+# ─── AAP frontmatter (S005 turn 26 retrofit per P-META-010 + B_AGENT_ALIGNMENT_PROTOCOL) ───
+csps_aligned: true
+aap_version: 1.0
+agent_class: A
+acknowledged_contracts:
+  - B_AI_PROFESSIONAL_VOICE
+  - B_VALIDATE_BEFORE_ASSUME
+  - B_RZF                         # this skill runs the audit cycle
+  - B_CEC                         # walks platform for completeness
+  - B_CATCH_TO_ENGRAVING         # surfaces gaps for engraving
+  - B_FIVE_SURFACE_ENGRAVING      # verifies 5-surface coverage on B_* contracts
+respects_quality_gates: [QG1, QG2, QG3, QG4]
+output_contract:
+  returns: structured-audit-report
+  max_tokens: 1500
+  no_synthesis_outside_main: true
+  no_ratification_claims: true
+trust_tier: platform-owned
+eval_baseline:
+  test_corpus_path: tests/skills/audit-self/test-fixtures.json
+  expected_pass_rate: 0.95
+preflight_check_required: true
 ---
 
 # /audit-self — The audit-the-audits meta-check

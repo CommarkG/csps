@@ -35,6 +35,173 @@ links:
 ```markdown
 ## Closing summary — Session S<NNN>
 
+### §10.0 Pre-close verification cycle results (P-META-008 — MANDATORY GATE)
+
+> **This section MUST come first. RZF/CEC/FSE evidence blocks elsewhere in the close summary
+> are NOMINAL until validated by the cycles in this section. Empty section = AGENTS.md violation
+> + closing summary INCOMPLETE.**
+
+Run `pnpm verify` (orchestrator at `tools/verify.mjs`). Capture stdout. Paste structured output here:
+
+```yaml
+pre_close_verification:
+  ran_at: <iso8601-utc>
+  orchestrator: tools/verify.mjs
+  cycles:
+    pnpm_install_frozen:
+      command: pnpm install --frozen-lockfile
+      status: PASS | FAIL | SKIP-with-reason
+      duration_seconds: N
+      packages_resolved: N
+    typecheck_recursive:
+      command: pnpm -r typecheck
+      status: PASS | FAIL | SKIP-with-reason
+      packages_checked: [@csps/principles, @csps/principles-mcp, ...]
+      errors_per_package: { @csps/principles: 0, @csps/principles-mcp: 0 }
+    principles_validate:
+      command: pnpm --filter @csps/principles validate
+      status: PASS | FAIL | SKIP-with-reason
+      principles_loaded: N
+      under_enforced_principles: [<list>]
+    frontmatter_validate:
+      command: pnpm lint:frontmatter
+      status: PASS | FAIL | SKIP-with-reason
+      scanned: N
+      errors: N
+      exempt: N
+    audit_runner_full_pass:
+      command: pnpm audit:run --strict (planned week-4)
+      status: PASS | FAIL | SKIP-with-reason | DEFERRED-WITH-REASON
+  exit_code: 0 | non-zero
+  evidence_path: tools/bootstrap-readiness.md OR similar
+```
+
+If ANY cycle has `status: FAIL`: closing summary cannot proceed; surface as BLK-S<NNN>-* + fix OR explicit defer-with-reason carried to next-session blocker file.
+
+If a cycle is `SKIP-with-reason`: state the reason explicitly (e.g., `audit_runner_full_pass: DEFERRED-WITH-REASON: audit-runner ships week-4`).
+
+**No silent skip allowed.** Every cycle either PASS, FAIL, or DEFERRED-WITH-REASON.
+
+### §10.0e Governor Prompts session log (B_GOVERNOR_PROMPTS — S005 turn 27 — MANDATORY)
+
+> **Every substantive user prompt this session has a GP-S<NNN>-<NN> entry in [`_handoff/VAULT/governor-prompts/S<NNN>.md`](../_handoff/VAULT/governor-prompts/). Cross-references the per-session log; aggregates metrics here.**
+
+```yaml
+governor_prompts_summary:
+  session: S<NNN>
+  log_path: docs/plan/_handoff/VAULT/governor-prompts/S<NNN>.md
+  total_substantive_prompts: <N>
+  cardinal_flagged: <N>
+  cardinal_cross_links_propagated_to_user_intents: <N>   # MUST equal cardinal_flagged
+  by_status:
+    completed: <N>
+    in-progress: <N>
+    carry-forward: <N>
+    dropped: <N>
+  by_distribution_target:
+    principle_engravings: <N>
+    contract_engravings: <N>
+    leaf_amendments: <N>
+    audit_registrations: <N>
+    adr_filings: <N>
+    decisions_via_PCR: <N>
+    explicit_drops: <N>
+  null_distribution_targets_outside_drops: 0   # MUST be 0 (else governor-prompt-distribution-complete fails)
+```
+
+If 0 substantive prompts (rare; e.g., autonomous-overnight session): state `NO_SUBSTANTIVE_PROMPTS_THIS_SESSION` explicitly with reason. Empty section forbidden.
+
+### §10.0f Handoff Pre-Flight Audit results (B_HANDOFF_PRE_FLIGHT_AUDIT — S005 turn 27 — MANDATORY)
+
+> **Whole-session walk before handoff write. 7 mandatory checks. Findings either addressed in-session OR carried-forward explicit. No silent gaps.**
+
+```yaml
+hpfa_results:
+  ran_at: <iso8601-utc>
+  ran_after_pre_close_verification: true   # depends on §10.0 verify exit_code 0
+  session_classification: SUBSTANTIVE | NO-NEW-WORK   # NO-NEW-WORK uses reduced scope
+  checks:
+    1_governor_prompts_coverage:
+      status: PASS | FAIL
+      total_prompts_scanned: <N>
+      missing_gp_entries: <N>   # must be 0 for PASS
+    2_engraving_completeness:
+      status: PASS | FAIL
+      catches_detected: <N>
+      catches_engraved_5_surfaces: <N>   # must equal catches_detected for PASS
+      below_2_surfaces_anti_pattern_flags: <N>   # must be 0
+    3_audit_registration_completeness:
+      status: PASS | FAIL
+      new_b_star_contracts: <N>
+      new_p_meta_principles: <N>
+      validators_registered_atomically: <N>   # must equal new contracts × required validators
+    4_cycle_evidence_presence:
+      status: PASS | FAIL
+      done_ratified_claims: <N>
+      paired_evidence_blocks: <N>   # must equal done_ratified_claims
+    5_schema_dynamic_connections:
+      status: PASS | FAIL
+      cross_refs_checked: <N>
+      bidirectional_integrity: <N>   # cross-refs that resolve both directions
+      gaps: <list>
+    6_distribution_targets_populated:
+      status: PASS | FAIL
+      gp_entries_with_null_targets_outside_drops: <N>   # must be 0
+    7_carry_forward_explicit:
+      status: PASS | FAIL
+      carry_forwards: <N>
+      with_explicit_reason: <N>   # must equal carry_forwards
+  overall_status: PASS | FAIL
+  silent_gaps: 0   # MUST be 0 to write handoff
+  findings_addressed_in_session: <list>
+  findings_carried_forward_with_reason: <list>
+```
+
+If overall_status: FAIL, handoff write is BLOCKED. Address in-session OR carry-forward with explicit reason; re-run HPFA. NO-NEW-WORK sessions use reduced scope (only checks 1 + 5).
+
+**NO_GAPS_THIS_SESSION** declaration acceptable when all 7 checks PASS with zero findings.
+
+### §10.0g Mutual Understanding Validation results (B_MUTUAL_UNDERSTANDING_VALIDATION — S005 turn 28 — MANDATORY)
+
+> **Every AI communication boundary in this session closed the I→I loop. Five boundary types tracked. Chat-jump-prompt audited mechanically before paste.**
+
+```yaml
+muv_results:
+  ran_at: <iso8601-utc>
+  boundary_1_chat_to_chat:
+    chat_jump_prompt_8_mandatory_sections_present: PASS | FAIL
+    sections_audited:
+      handoff_§0_paste_target: present | missing
+      post_close_addenda_references: present | missing
+      governor_prompts_log_pointer: present | missing
+      hpfa_evidence_block_pointer: present | missing
+      carry_forwards_with_reasons: present | missing
+      cardinals_verbatim_cross_link: present | missing
+      verify_orchestrator_state: present | missing
+      explicit_alignment_questions: present | missing
+    alignment_questions_count: <N>
+    cross_chat_iteration_status: pending-paste | pending-response | iterating | alignment-confirmed-explicit
+  boundary_2_ai_to_ai_subagent:
+    subagent_invocations_this_session: <N>
+    output_contract_verifications_paired: <N>   # MUST equal invocations for PASS
+    contract_mismatches_detected: <N>
+    re_spawns_for_clarification: <N>
+  boundary_3_ai_to_human:
+    substantive_outputs_emitted: <N>
+    validation_hooks_present_or_implicit: <N>
+    high_stakes_outputs_with_explicit_alignment_question: <N>
+  boundary_4_ai_to_persona:
+    status: NOT-APPLICABLE-WITH-REASON (persona-composition ships week-7+)
+  boundary_5_context_batches:
+    batches_executed_this_session: <N>
+    batch_close_intent_to_impact_drift_validated: <N>   # MUST equal batches for PASS
+    drift_threshold_pause_re_confirms: <N>
+  overall_status: PASS | FAIL
+  asymmetric_one_shot_violations: 0   # MUST be 0
+```
+
+If overall_status: FAIL on any boundary, surface findings in HANDOFF §C carry-forward + address before close.
+
 ### §10.1 Stewardship review (P-META-004)
 
 **Run `/stewardship-review`:**
@@ -136,6 +303,33 @@ For each EXT-ID processed this session:
 - Ceiling-deferrals: <count carried to next session>
 - Oldest-grandfather-age: <days> + alert level (none / warn at >30d / error at >180d)
 
+### §10.11b Positive value extracted this session (B_POSITIVE_VALUE_EXTRACTION — S005 turn 20)
+
+For each significant positive event triggered this session (insight / user-directive / improvement / EXT-ID / bug-fix / AI-self-correction / generator-output / meta-finding), emit one walk-trail entry:
+
+```yaml
+positive_value_walks:
+  - event_id: PVE-S<NNN>-<NN>
+    event_type: insight | user-directive | improvement | ext-id | bug-fix | ai-self-correction | generator-output | meta-finding
+    event_description: <1-2 sentence: what happened>
+    extracted_essence: <1 sentence: the core insight / mechanism / lesson>
+    cycles_walked: <integer>
+    opportunities_per_cycle:
+      - cycle_1: <integer>
+      - ...
+      - cycle_N: 0
+    walk_scope: <list of categories scanned>
+    applications_made: <list of paths-modified + diff summary>
+    not_applicable: <list of paths-scanned-but-no-application + reason>
+    needs_human_judgment: <list of paths flagged>
+    final_status: CEC-0 ACHIEVED Cycle N | open-opportunities:<list>
+    signature: <ai-id>@<iso-timestamp>
+```
+
+If 0 positive events: state `NO_POSITIVE_EVENTS_THIS_SESSION` explicitly (with brief reason — e.g., "session was pure verification cycle; no new insights emerged"). Empty section forbidden.
+
+Trivial events (single-line typo / casual edit) excluded with explicit one-line skip note. Significance is judgment-based but biased toward over-trigger.
+
 ### §10.13 Self-audit (B_AI_PROFESSIONAL_VOICE check)
 
 - Did AI assume without validating? <list with examples + remedies>
@@ -179,6 +373,20 @@ fse_evidence:
 ```
 
 If 0 new disciplines engraved: state `NO_NEW_DISCIPLINES_THIS_SESSION` explicitly. Surfaces_count_active < 2 surfaces a B_FIVE_SURFACE_ENGRAVING anti-pattern; cannot close session without either reaching 2/5 minimum OR explicit deferral with rationale carried to next-session blocker registry.
+
+### §10.13d Decisions presented this session (B_PCR_FOR_DECISIONS — S005 turn 5)
+
+For each non-trivial decision the AI presented to the user this session in chat output:
+
+| Decision (1-line) | Turn N | Options enumerated (count) | Pros/Cons table emitted | Recommendation present | Load-bearing factor named | What-would-flip clause | Surfaces hit |
+|---|---|---|---|---|---|---|---|
+| <description> | turn N | Y/N (count) | Y/N | Y/N | Y/N | Y/N | <surfaces e.g. "all 5 PCR blocks present"> |
+
+If 0 decisions: state `NO_DECISIONS_PRESENTED_THIS_SESSION` explicitly. Empty section forbidden.
+
+Trivial-reversibles (per P-OP-003 counterweight: variable-naming / comment-phrasing / file-location-when-both-valid / color-in-draft / two-way-doors-at-low-cost) excluded from the table. List excluded items inline with brief skip-reason — silent skip is the anti-pattern this section catches.
+
+Audit `pcr-completeness-on-decisions` (PR-blocking warn; planned week 4) parses this section + cross-checks against session log; flags decision-presenting language outside this table without a corresponding row.
 
 ### §10.14 TodoWrite final state
 

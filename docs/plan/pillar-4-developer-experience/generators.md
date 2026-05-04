@@ -164,6 +164,16 @@ Nx generators delegate template rendering to Hygen for the actual file content. 
 - `behavioral-contracts.md#B_ATOMIC_DUAL_REGISTRATION` (the contract this leaf encodes)
 - `AGENTS.md` (the "Generators are the only sanctioned scaffolding path" hard NO)
 
+## Generator-output triggers B_POSITIVE_VALUE_EXTRACTION cycle (added S005 turn 22)
+
+Per `B_POSITIVE_VALUE_EXTRACTION` ([behavioral-contracts.md](../pillar-0-governance/behavioral-contracts.md#B_POSITIVE_VALUE_EXTRACTION)) + amended P-META-006 trigger-cadence: **every generator/wizard output batch is a "generator-output" positive-significant event** that triggers the cycle. Generator emits N artifacts → cycle fires:
+
+1. **RZF on the produced batch** — validators run on the generated artifacts (slice-score / frontmatter / dual-registration-drift / etc.). Output: structured cycle evidence.
+2. **CEC walk for cross-pillar applications** — does the new artifact's essence apply elsewhere? E.g., new persona generated → walk for places that should reference the persona's domain overlay.
+3. **Walk-trail entry in closing-summary §10.11b** — every generator invocation surfaced this session has a walk-trail row.
+
+**Why this matters:** generators are the canonical artifact-emission point in CSPS. Skipping the cycle on generator output means: a generator emits 25 files; those files might fail audits OR might enable cross-pillar applications that go un-walked. The amended P-META-006 explicitly names "generator/wizard output batch" as a trigger; this leaf documents the integration point. Forward-prevention: `generator-test-coverage` audit (already registered) extended week-3+ to also verify post-generation cycle ran.
+
 ## Sources
 
 - [Nx Generators](https://nx.dev/extending-nx/recipes/local-generators)

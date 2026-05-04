@@ -1,0 +1,19 @@
+{
+  "name": "@csps/glossary",
+  "version": "0.0.1",
+  "description": "Single source of truth for CSPS vocabulary (canonical terms + aliases + reject list). Codegens Vale prose dict + ESLint id-denylist + Payload select options + ZModel @@meta. Per P-ARCH-004 one-source-of-truth-per-concern + P-ARCH-016 vocabulary-audit (industry-standard names over CSPS-invented).",
+  "private": true,
+  "type": "module",
+  "files": ["dist", "glossary.yaml", "README.md"],
+  "scripts": {
+    "codegen": "echo 'TODO week-2: emit Vale dict + ESLint id-denylist + Payload options' && exit 0",
+    "typecheck": "echo 'skeleton-tier: no .ts yet (week-2 wires the codegen)' && exit 0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.0.0",
+    "js-yaml": "^4.1.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": { "node": ">=20" }
+}

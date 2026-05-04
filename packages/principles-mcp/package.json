@@ -1,0 +1,35 @@
+{
+  "name": "@csps/principles-mcp",
+  "version": "0.0.1",
+  "description": "MCP server exposing principles.yaml as queryable resources for cross-vendor agent inheritance. Per P-META-002 (principles travel with artifacts) + P-META-003 (inheritance via shared runtime). Vendored into graduated apps so they descend provably from CSPS.",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "csps-principles-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "AGENTS.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "dev": "tsc -p tsconfig.json --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

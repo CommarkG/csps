@@ -1,0 +1,37 @@
+{
+  "name": "@csps/principles",
+  "version": "0.0.1",
+  "description": "Single source of truth for CSPS principles (P-OP-* + P-ARCH-* + P-META-*). Hosts principles.yaml + codegen.ts pipeline. Per P-META-003 codegen-source-of-truth.",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./principles.yaml": "./principles.yaml"
+  },
+  "files": [
+    "dist",
+    "principles.yaml",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "codegen": "node --import tsx codegen.ts",
+    "codegen:check": "node --import tsx codegen.ts --check",
+    "validate": "node --import tsx codegen.ts --validate-only",
+    "validate:all": "node --import tsx codegen.ts --validate-only --enumerate-all",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

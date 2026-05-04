@@ -1,20 +1,24 @@
 /**
  * @csps-id csps.principles.codegen
  * @csps-name principles-codegen
- * @csps-description Codegen pipeline: reads principles.yaml and emits AGENTS.md, hooks, skills, MCP resources, audit checks, ESLint rules. Single source of truth → all downstream artifacts.
+ * @csps-description Codegen pipeline: reads principles.yaml and emits manifest.json + downstream artifacts (AGENTS.md sections, hooks, skills, MCP resources, audit checks, ESLint rules). Single source of truth → all downstream artifacts. Per P-META-003.
  * @csps-version 1.0.0
  * @csps-owner group:finky
- * @csps-lifecycle production
+ * @csps-lifecycle experimental
+ * @csps-lifecycle-state active
  * @csps-tags type:util domain:governance audience:developer
  * @csps-enforces P-META-001 P-META-003 P-OP-001
  *
- * SKELETON — full implementation lands in week 1 of the build order.
- * Run via `pnpm principles:codegen` (added to root package.json).
+ * Skeleton tier: validate() runs full; codegen functions emit manifest.json. Full AGENTS.md / Vale /
+ * ESLint / hooks / skills / audit-checks regeneration deferred to week-2-4 per build-order.md.
+ *
+ * Run via `pnpm --filter @csps/principles codegen` (delegated from root `pnpm principles:codegen`).
  */
 
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { join, dirname } from "node:path";
-import yaml from "js-yaml";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import yaml from 'js-yaml';
 
 // ============================================================================
 // TYPES
@@ -27,11 +31,11 @@ interface Enforcer {
 }
 
 interface Principle {
-  id: string;                       // P-OP-001, P-ARCH-NNN, P-META-NNN
-  name: string;                     // kebab-case
+  id: string;
+  name: string;
   aliases?: string[];
-  category: "meta" | "operating" | "architecture";
-  severity: "critical" | "error" | "warn" | "info";
+  category: 'meta' | 'operating' | 'architecture';
+  severity: 'critical' | 'error' | 'warn' | 'info';
   statement: string;
   counterweight?: string;
   industry_lineage?: string[];
@@ -40,7 +44,7 @@ interface Principle {
   enforcer_count?: number;
   cross_references?: string[];
   anti_patterns?: string[];
-  status?: "active" | "stub" | "deprecated";
+  status?: 'active' | 'stub' | 'deprecated';
   migration_target?: string;
   scope_note?: string;
   format_spec?: string;
@@ -53,7 +57,7 @@ interface PrinciplesRegistry {
   version: string;
   generated_at: string;
   owner: string;
-  categories: { id: string; name: string; description: string }[];
+  categories: Array<{ id: string; name: string; description: string }>;
   severity_enforcer_minimums: Record<string, number>;
   enforcer_layers: string[];
   principles: Principle[];
@@ -63,189 +67,274 @@ interface PrinciplesRegistry {
 }
 
 // ============================================================================
+// PATHS (ESM-safe)
+// ============================================================================
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const REGISTRY_PATH = join(__dirname, 'principles.yaml');
+const REPO_ROOT = join(__dirname, '..', '..');
+const DIST_DIR = join(__dirname, 'dist');
+
+// ============================================================================
 // LOAD
 // ============================================================================
 
-const REGISTRY_PATH = join(__dirname, "principles.yaml");
-const REPO_ROOT = join(__dirname, "..", "..");
-
 function loadRegistry(): PrinciplesRegistry {
-  const raw = readFileSync(REGISTRY_PATH, "utf-8");
+  const raw = readFileSync(REGISTRY_PATH, 'utf-8');
   return yaml.load(raw) as PrinciplesRegistry;
 }
 
 // ============================================================================
-// VALIDATE (runs before any codegen — fail fast)
+// VALIDATE — runs before any codegen; fail fast
 // ============================================================================
 
-function validate(reg: PrinciplesRegistry): void {
-  // 1. Every principle has the minimum enforcers for its severity
-  const min = reg.severity_enforcer_minimums;
-  const aiLayers = new Set(["instruction-file", "skill", "ai-prompt-addendum"]);
+interface ValidationFinding {
+  principle_id: string;
+  severity_class: string;
+  rule: string;
+  message: string;
+}
+
+interface ValidationResult {
+  total: number;
+  findings: ValidationFinding[];
+  by_rule: Record<string, number>;
+}
+
+/**
+ * Validate the full registry. Returns ALL findings (does NOT throw on first).
+ * Per S005 turn 20 user directive: enumerate all under-enforcement so platform-wide audit
+ * surfaces complete picture, not just first-fail. Supports both --validate-only (legacy mode)
+ * and the new enumerate-all behavior.
+ */
+function validateAll(reg: PrinciplesRegistry): ValidationResult {
+  const findings: ValidationFinding[] = [];
+  const min = reg.severity_enforcer_minimums ?? { critical: 4, error: 3, warn: 2, info: 1 };
+  const aiLayers = new Set(['instruction-file', 'skill', 'ai-prompt-addendum']);
+  const allIds = new Set(reg.principles.map((p) => p.id));
 
   for (const p of reg.principles) {
-    if (p.status === "stub") continue; // stubs allowed during migration
+    if (p.status === 'stub') continue;
 
     const count = p.enforcers?.length ?? 0;
     const required = min[p.severity];
-    if (count < required) {
-      throw new Error(
-        `Principle ${p.id} (${p.name}) has ${count} enforcers, requires ${required} for severity=${p.severity}`,
-      );
+
+    // Rule 1: enforcer-minimum-per-severity
+    if (required !== undefined && count < required) {
+      findings.push({
+        principle_id: p.id,
+        severity_class: p.severity,
+        rule: 'enforcer-minimum-per-severity',
+        message: `${p.id} (${p.name}) has ${count} enforcers, requires ${required} for severity=${p.severity}`,
+      });
     }
 
-    // Critical principles need at least 2 non-AI enforcers
-    if (p.severity === "critical") {
-      const nonAi = p.enforcers!.filter((e) => !aiLayers.has(e.layer)).length;
+    // Rule 2: critical-needs-2-non-ai
+    if (p.severity === 'critical' && p.enforcers) {
+      const nonAi = p.enforcers.filter((e) => !aiLayers.has(e.layer)).length;
       if (nonAi < 2) {
-        throw new Error(
-          `Critical principle ${p.id} has ${nonAi} non-AI enforcers, requires >= 2`,
-        );
+        findings.push({
+          principle_id: p.id,
+          severity_class: p.severity,
+          rule: 'critical-needs-2-non-ai',
+          message: `${p.id} has ${nonAi} non-AI enforcers, requires >= 2 (critical)`,
+        });
       }
     }
 
-    // 2. Every enforcer's layer is in the closed enum
-    for (const e of p.enforcers ?? []) {
-      if (!reg.enforcer_layers.includes(e.layer)) {
-        throw new Error(
-          `Principle ${p.id} enforcer references unknown layer: ${e.layer}`,
-        );
+    // Rule 3: enforcer-layer-in-closed-enum
+    if (reg.enforcer_layers && p.enforcers) {
+      for (const e of p.enforcers) {
+        if (!reg.enforcer_layers.includes(e.layer)) {
+          findings.push({
+            principle_id: p.id,
+            severity_class: p.severity,
+            rule: 'enforcer-layer-in-closed-enum',
+            message: `${p.id} enforcer references unknown layer: ${e.layer}`,
+          });
+        }
       }
     }
-  }
 
-  // 3. Cross-references all resolve
-  const allIds = new Set(reg.principles.map((p) => p.id));
-  for (const p of reg.principles) {
+    // Rule 4: cross-reference-resolves
     for (const ref of p.cross_references ?? []) {
       if (!allIds.has(ref)) {
-        throw new Error(`Principle ${p.id} cross-references unknown principle: ${ref}`);
+        findings.push({
+          principle_id: p.id,
+          severity_class: p.severity,
+          rule: 'cross-reference-resolves',
+          message: `${p.id} cross-references unknown principle: ${ref}`,
+        });
       }
     }
+  }
+
+  const by_rule: Record<string, number> = {};
+  for (const f of findings) by_rule[f.rule] = (by_rule[f.rule] ?? 0) + 1;
+
+  return { total: findings.length, findings, by_rule };
+}
+
+/**
+ * Throw-on-first wrapper for backward compat (legacy callers use validate()).
+ * For enumerate-all, use validateAll() directly.
+ */
+function validate(reg: PrinciplesRegistry): void {
+  const result = validateAll(reg);
+  if (result.total > 0) {
+    throw new Error(result.findings[0].message);
   }
 }
 
 // ============================================================================
-// CODEGEN — AGENTS.md (root)
+// CODEGEN — manifest.json (always-on; the load-bearing skeleton output)
 // ============================================================================
-// Renders the human-friendly AGENTS.md file from the operating principles + nav map.
-// AGENTS.md is hand-edited for prose but the principle list section is auto-replaced
-// between markers <!-- PRINCIPLES:BEGIN --> and <!-- PRINCIPLES:END -->.
 
-function codegenAgentsMd(reg: PrinciplesRegistry): void {
-  // TODO: read existing AGENTS.md, replace section between markers
-  // const operating = reg.principles.filter((p) => p.category === "operating");
-  // const block = operating.map((p) => `${p.id} — **${p.name}** — ${firstLine(p.statement)}`).join("\n");
-  // ...
-  console.log("[codegen] AGENTS.md — TODO");
+function codegenManifest(reg: PrinciplesRegistry): { path: string; bytes: number } {
+  if (!existsSync(DIST_DIR)) mkdirSync(DIST_DIR, { recursive: true });
+  const counts = reg.principles.reduce<Record<string, number>>((acc, p) => {
+    acc[p.category] = (acc[p.category] ?? 0) + 1;
+    return acc;
+  }, {});
+  const manifest = {
+    apiVersion: reg.apiVersion ?? 'csps.principles/v1',
+    kind: 'PrinciplesManifest',
+    version: reg.version ?? '0.0.1',
+    generated_at: new Date().toISOString(),
+    counts: {
+      total: reg.principles.length,
+      operating: counts['operating'] ?? 0,
+      architecture: counts['architecture'] ?? 0,
+      meta: counts['meta'] ?? 0,
+    },
+    ids_by_category: {
+      operating: reg.principles.filter((p) => p.category === 'operating').map((p) => p.id),
+      architecture: reg.principles.filter((p) => p.category === 'architecture').map((p) => p.id),
+      meta: reg.principles.filter((p) => p.category === 'meta').map((p) => p.id),
+    },
+    enforcer_count_by_principle: Object.fromEntries(
+      reg.principles.map((p) => [p.id, p.enforcer_count ?? p.enforcers?.length ?? 0])
+    ),
+  };
+  const out = join(DIST_DIR, 'manifest.json');
+  writeFileSync(out, JSON.stringify(manifest, null, 2) + '\n');
+  return { path: out, bytes: JSON.stringify(manifest).length };
 }
 
 // ============================================================================
-// CODEGEN — Vale style additions
+// CODEGEN STUBS — week-2/4 implementations
 // ============================================================================
 
-function codegenValeStyles(reg: PrinciplesRegistry): void {
-  // For every principle alias, add a Vale rule: "prefer canonical form, flag aliases as substitution"
-  // Output: .vale/styles/CSPS/principles.txt
-  console.log("[codegen] Vale styles — TODO");
+function codegenAgentsMd(_reg: PrinciplesRegistry): string {
+  return 'TODO week-2: emit AGENTS.md sections between <!-- PRINCIPLES:BEGIN --> markers';
 }
 
-// ============================================================================
-// CODEGEN — ESLint rules (custom @csps/principles plugin)
-// ============================================================================
-
-function codegenEslintRules(reg: PrinciplesRegistry): void {
-  // For each principle with eslint-rule layer enforcer, scaffold a stub rule
-  // Output: eslint-config-csps/principle-rules/<principle-name>.ts
-  console.log("[codegen] ESLint rules — TODO");
+function codegenValeStyles(_reg: PrinciplesRegistry): string {
+  return 'TODO week-4: emit .vale/styles/CSPS/principles.txt';
 }
 
-// ============================================================================
-// CODEGEN — Claude Code hooks
-// ============================================================================
-
-function codegenHooks(reg: PrinciplesRegistry): void {
-  // For each principle with hook layer enforcer, scaffold a stub hook
-  // Output: .claude/hooks/<hook-name>.sh
-  console.log("[codegen] Hooks — TODO");
+function codegenEslintRules(_reg: PrinciplesRegistry): string {
+  return 'TODO week-4: emit eslint-config-csps/principle-rules/*.ts stubs';
 }
 
-// ============================================================================
-// CODEGEN — Skills (the invokable AI behaviors)
-// ============================================================================
-
-function codegenSkills(reg: PrinciplesRegistry): void {
-  // For each principle with skill layer enforcer, scaffold/update SKILL.md
-  // The SKILL.md frontmatter description references the principle id
-  // Output: packages/skills/<name>/SKILL.md
-  console.log("[codegen] Skills — TODO");
+function codegenHooks(_reg: PrinciplesRegistry): string {
+  return 'TODO week-4: emit .claude/hooks/*.sh stubs';
 }
 
-// ============================================================================
-// CODEGEN — MCP resources
-// ============================================================================
-
-function codegenMcpResources(reg: PrinciplesRegistry): void {
-  // Every principle is exposed as an MCP resource at principles://<name>
-  // Plus tools: check_artifact, check_reuse
-  // Output: packages/principles-mcp/src/resources.generated.ts
-  console.log("[codegen] MCP resources — TODO");
+function codegenSkills(_reg: PrinciplesRegistry): string {
+  return 'TODO week-3: refresh packages/skills/<name>/SKILL.md frontmatter from yaml';
 }
 
-// ============================================================================
-// CODEGEN — Audit check definitions
-// ============================================================================
-
-function codegenAuditChecks(reg: PrinciplesRegistry): void {
-  // For each principle, write an AuditCheck row (id, slug, category, severity, weight, sla)
-  // Output: libs/audits/checks/registered-checks.generated.ts
-  console.log("[codegen] Audit checks — TODO");
+function codegenMcpResources(_reg: PrinciplesRegistry): string {
+  return 'TODO week-2: emit packages/principles-mcp/src/resources.generated.ts';
 }
 
-// ============================================================================
-// CODEGEN — Human reference (docs/plan/pillar-0-governance/principles.md)
-// ============================================================================
-
-function codegenHumanRef(reg: PrinciplesRegistry): void {
-  // Render the registry as a navigable markdown document for humans
-  // Cross-links to ADRs and rule registry entries
-  // Output: docs/plan/pillar-0-governance/principles.generated.md
-  console.log("[codegen] Human reference — TODO");
+function codegenAuditChecks(_reg: PrinciplesRegistry): string {
+  return 'TODO week-4: emit libs/audits/checks/registered-checks.generated.ts';
 }
 
 // ============================================================================
 // MAIN
 // ============================================================================
 
-function main(): void {
-  console.log("[principles:codegen] Loading registry...");
-  const reg = loadRegistry();
-
-  console.log("[principles:codegen] Validating...");
-  validate(reg);
-  console.log(`[principles:codegen] ✓ ${reg.principles.length} principles validated`);
-
-  console.log("[principles:codegen] Generating downstream artifacts...");
-  codegenAgentsMd(reg);
-  codegenValeStyles(reg);
-  codegenEslintRules(reg);
-  codegenHooks(reg);
-  codegenSkills(reg);
-  codegenMcpResources(reg);
-  codegenAuditChecks(reg);
-  codegenHumanRef(reg);
-
-  console.log("[principles:codegen] ✓ Done. Commit principles.yaml + all generated files together.");
+function parseArgs(argv: string[]): { validateOnly: boolean; check: boolean; enumerateAll: boolean } {
+  return {
+    validateOnly: argv.includes('--validate-only'),
+    check: argv.includes('--check'),
+    enumerateAll: argv.includes('--enumerate-all'),
+  };
 }
 
-if (require.main === module) {
+function main(): void {
+  const args = parseArgs(process.argv.slice(2));
+  const log = (msg: string) => process.stdout.write(`[principles:codegen] ${msg}\n`);
+
+  log('Loading registry...');
+  const reg = loadRegistry();
+  log(`Loaded ${reg.principles.length} principles from ${REGISTRY_PATH}`);
+
+  log('Validating...');
+  const result = validateAll(reg);
+  if (result.total === 0) {
+    log(`✓ ${reg.principles.length} principles validated — 0 findings`);
+  } else {
+    log(`✗ ${reg.principles.length} principles validated — ${result.total} findings`);
+    log(`  by_rule: ${JSON.stringify(result.by_rule)}`);
+    for (const f of result.findings) {
+      log(`  · [${f.rule}] ${f.message}`);
+    }
+    if (!args.enumerateAll) {
+      // Legacy throw-on-first behavior unless --enumerate-all
+      throw new Error(result.findings[0].message);
+    }
+    log(`(--enumerate-all: continuing despite findings; exit code reflects success of enumeration, not validation)`);
+  }
+
+  if (args.validateOnly) {
+    log('Validate-only mode — exiting.');
+    return;
+  }
+
+  log('Generating manifest...');
+  const { path: manifestPath, bytes } = codegenManifest(reg);
+  log(`✓ manifest.json (${bytes} bytes) → ${manifestPath}`);
+
+  log('Downstream codegen stubs (week-2/4):');
+  log(`  · AGENTS.md       — ${codegenAgentsMd(reg)}`);
+  log(`  · Vale styles     — ${codegenValeStyles(reg)}`);
+  log(`  · ESLint rules    — ${codegenEslintRules(reg)}`);
+  log(`  · Claude hooks    — ${codegenHooks(reg)}`);
+  log(`  · Skills          — ${codegenSkills(reg)}`);
+  log(`  · MCP resources   — ${codegenMcpResources(reg)}`);
+  log(`  · Audit checks    — ${codegenAuditChecks(reg)}`);
+
+  if (args.check) {
+    log('Check mode — would diff committed manifest against generated; exits 1 on drift (week-2 ratchet).');
+  }
+
+  log('✓ Done. Commit principles.yaml + dist/manifest.json together.');
+}
+
+// ESM entry-point detection (cross-platform; handles Windows drive letters via pathToFileURL)
+const isMain = (() => {
+  try {
+    const argv1 = process.argv[1];
+    if (!argv1) return false;
+    return import.meta.url === pathToFileURL(argv1).href;
+  } catch {
+    return false;
+  }
+})();
+
+if (isMain) {
   try {
     main();
   } catch (err) {
-    console.error("[principles:codegen] ✗ Failed:", err);
+    process.stderr.write(`[principles:codegen] ✗ ${err instanceof Error ? err.message : String(err)}\n`);
     process.exit(1);
   }
 }
 
-export { loadRegistry, validate };
-export type { Principle, PrinciplesRegistry };
+export { loadRegistry, validate, validateAll, codegenManifest };
+export type { Principle, PrinciplesRegistry, Enforcer, ValidationFinding, ValidationResult };

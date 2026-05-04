@@ -8,6 +8,26 @@ allowed_subagents: []
 enforces: [P-META-005]
 lifecycle: production
 lifecycle_state: active
+# ─── AAP frontmatter (S005 turn 26 retrofit per P-META-010 + B_AGENT_ALIGNMENT_PROTOCOL) ───
+csps_aligned: true
+aap_version: 1.0
+agent_class: A
+acknowledged_contracts:
+  - B_AI_PROFESSIONAL_VOICE
+  - B_VALIDATE_BEFORE_ASSUME
+  - B_INTAKE_DISCIPLINE
+  - B_POSITIVE_VALUE_EXTRACTION       # this skill IS positive-value extraction
+respects_quality_gates: [QG1, QG2, QG3, QG4]
+output_contract:
+  returns: structured-extraction-summary
+  max_tokens: 1500
+  no_synthesis_outside_main: true
+  no_ratification_claims: true
+trust_tier: platform-owned
+eval_baseline:
+  test_corpus_path: tests/skills/learning-loop-extract/test-fixtures.json
+  expected_pass_rate: 0.95
+preflight_check_required: true
 ---
 
 # /learning-loop-extract — Closed-loop insight capture

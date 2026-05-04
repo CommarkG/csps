@@ -182,7 +182,7 @@ Each row in this table corresponds to an `AuditCheck` row registered at bootstra
 | `fk-orphan-scan` | nightly | warn | Orphan-row scan per FK; cascading-delete leakage |
 | `orphan-entity-scan` | weekly | info | Skills/agents/personas with zero usage in 30 days flagged for deprecation |
 
-### Meta (4 — the audit-the-audits checks, P-META-001 enforcers)
+### Meta (19 — the audit-the-audits checks, P-META-001 enforcers; +2 S005 turn 19 for B_PRE_CLOSE_VERIFICATION; +3 S005 turn 24 for B_COGNITIVE_CONTEXT_DISCIPLINE; +2 S005 turn 25 for B_AGENT_ALIGNMENT_PROTOCOL; +3 S005 turn 27 for B_GOVERNOR_PROMPTS + B_HANDOFF_PRE_FLIGHT_AUDIT; +3 S005 turn 28 for B_MUTUAL_UNDERSTANDING_VALIDATION; +1 S005 turn 30 for chat-vs-session distinction)
 
 | Slug | Cadence | Severity | What it checks |
 |---|---|---|---|
@@ -190,6 +190,21 @@ Each row in this table corresponds to an `AuditCheck` row registered at bootstra
 | `principle-coverage` | PR | critical | Every principle in `principles.yaml` has ≥ N enforcers per its severity (P-META-001 enforcer) |
 | `enforcer-orphans` | PR | error | Every `// @enforces:` annotation in source references a real principle |
 | `principles-codegen-fresh` | PR | error | Regenerated AGENTS.md + skills + hooks + MCP resources from `principles.yaml` must match committed |
+| `principle-count-staleness` | PR + nightly | warn | Greps for hardcoded principle-count text (`\b\d+ meta-principle`, `\b\d+ operating principle`, `P-META-001 through P-META-\d+`, `P-OP-001 through P-OP-\d+`) in active prose; compares against current `^  - id: P-META-` / `^  - id: P-OP-` row counts in principles.yaml; warn on drift; lists offending lines. `audit_exempt_paths` glob: HANDOFF-S*.md / qc-audit-results-S*.md / validation-pass-S*.md / chat-jump-prompt-*.md / principles-snapshot.md / decisions-snapshot.md / pending-work.md / user-intents.md / blockers-S*.md / gaps-and-duplications-S*.md / VAULT/insights.md + ADR self-references where the ADR documents the fix (ADR-0021 amendment line + ADR-0022). **Registered S005 turn 8 per ADR-0022 K=2 auto-ADR.** |
+| `pre-close-cycle-coverage` | PR + per-session | error | Scans every closing-summary-S<NNN>.md (and HANDOFF §10/§17) for §10.0 "Pre-close verification cycle results" header; fails if missing OR if any cycle marked DEFERRED without explicit reason field; PR-blocking error. Per P-META-008 + B_PRE_CLOSE_VERIFICATION. **Registered S005 turn 19 atomically with B_PRE_CLOSE_VERIFICATION engraving (per FSE amendment atomic-validator-registration mandate). Build deferred week-4.** |
+| `nominal-rzf-detection` | PR | warn | Scans session log + closing summaries for RZF/CEC/FSE evidence blocks not preceded by paired `pnpm verify` stdout in same session. Detects nominal-not-actual claim pattern (validator cited but never run). Per P-META-008. **Registered S005 turn 19 atomically. Build deferred week-4.** |
+| `cognitive-context-discipline-coverage` | per-session | warn | Scans every closing summary for evidence that the 5-layer Cognitive Context Architecture was used: Layer 1 cache loaded? Layer 2 contract referenced? Layer 3 mid-session edits paired with re-reads? Layer 4 MCP queries used vs whole-file reads? Layer 5 subagents used for grep-heavy work? Per B_COGNITIVE_CONTEXT_DISCIPLINE + P-META-009. **Registered S005 turn 24 atomically per FSE amendment. Build deferred week-4.** |
+| `model-routing-on-ratification` | PR | error | QG1 enforcer: scans session log for ratification / engraving (B_*, P-META-*) / ZF-synthesis / architectural-decision / honest-self-audit events; verifies model used was Opus 4.7; flags downgrade as QG1 violation (PR-blocking error). Per B_COGNITIVE_CONTEXT_DISCIPLINE QG1 + P-META-009. **Registered S005 turn 24 atomically. Build deferred week-4.** |
+| `cache-content-hash-fresh` | nightly | warn | QG4 enforcer: verifies cache breakpoint placements (in claude-code session config) correspond to stable-content boundaries (Layer 1 + Layer 2 surfaces only); flags dynamic content (Layer 3 active work) cached at 1h TTL as anti-pattern. Per B_COGNITIVE_CONTEXT_DISCIPLINE QG4 + P-META-009. **Registered S005 turn 24 atomically. Build deferred week-4.** |
+| `agent-alignment-coverage` | PR | error | Class A enforcer: every SKILL.md (`packages/skills/*/SKILL.md`) + agent.zmodel (`libs/agents/*`) has AAP frontmatter populated — `csps_aligned: true` + `aap_version` + `acknowledged_contracts: [...]` (universal-required: B_AI_PROFESSIONAL_VOICE + B_VALIDATE_BEFORE_ASSUME) + `respects_quality_gates: [QG1, QG2, QG3, QG4]` + `output_contract` + `trust_tier`. Missing fields fail PR. Per B_AGENT_ALIGNMENT_PROTOCOL + P-META-010. **Registered S005 turn 25 atomically per FSE amendment. Build deferred week-4.** |
+| `subagent-spawn-preamble-required` | per-session | warn | Class B enforcer: scans session log for Agent tool invocations (Explore/Plan/general-purpose/claude-code-guide/statusline-setup); verifies spawn prompt contains AAP alignment preamble as first content block before task description; flags missing preambles as wildcard violations. Per B_AGENT_ALIGNMENT_PROTOCOL + P-META-010. **Registered S005 turn 25 atomically. Build deferred week-4.** |
+| `governor-prompt-coverage` | per-session | error | Per-session enforcer: every substantive user prompt in session log has GP-S<NNN>-<NN> entry in `_handoff/VAULT/governor-prompts/S<NNN>.md`; missing entries fail PR. Per B_GOVERNOR_PROMPTS + P-META-012. **Registered S005 turn 27 atomically per FSE amendment. Build deferred week-4.** |
+| `governor-prompt-distribution-complete` | PR | warn | PR-blocking warn: every GP entry has `distribution_targets` populated (principle / contract / leaf / audit / ADR / decision); null targets allowed only when status is `dropped` with explicit drop reason. Per B_GOVERNOR_PROMPTS + P-META-012. **Registered S005 turn 27 atomically. Build deferred week-4.** |
+| `hpfa-pre-handoff-coverage` | PR | error | PR-blocking error: every `HANDOFF-S<NNN>-to-S<NNN+1>.md` has Handoff Pre-Flight Audit evidence block in closing-summary §10.0f covering 7 mandatory checks (governor_prompts / engraving / audit_registration / cycle_evidence / schema_dynamic / distribution_targets / carry_forward_explicit); missing or empty fails. Per B_HANDOFF_PRE_FLIGHT_AUDIT + P-META-013. **Registered S005 turn 27 atomically. Build deferred week-4.** |
+| `muv-chat-jump-prompt-completeness` | PR | error | PR-blocking error: every `chat-jump-prompt-S<NNN>-to-S<NNN+1>-detailed.md` has 8 mandatory sections (handoff §0 / post-close addenda / governor-prompts pointer / HPFA pointer / carry-forwards-with-reasons / cardinals-verbatim / verify state / EXPLICIT ALIGNMENT-QUESTIONS section); missing or empty section fails. Per B_MUTUAL_UNDERSTANDING_VALIDATION + P-META-014. **Registered S005 turn 28 atomically per FSE amendment. Build deferred week-4.** |
+| `muv-subagent-output-contract-verification` | per-session | warn | Per-session enforcer: every Agent tool invocation has paired output verification (returned summary matches declared output_contract — max_tokens within limit / shape matches `returns:` / no-synthesis-claims / no-ratification-claims). Per B_MUTUAL_UNDERSTANDING_VALIDATION boundary type 2 + P-META-014. **Registered S005 turn 28 atomically. Build deferred week-4.** |
+| `muv-cross-chat-handshake-completion` | per-session | warn | Per-session enforcer: tracks chat-jump prompts across sessions; flags handshakes that haven't reached alignment-confirmed-explicit within 7 sessions (the iteration loop is mandatory; abandoned handshakes are gap propagation). Per B_MUTUAL_UNDERSTANDING_VALIDATION boundary type 1 + P-META-014. **Registered S005 turn 28 atomically. Build deferred week-4.** |
+| `chat-vs-session-id-discipline` | PR | error | PR-blocking error: scans artifacts for chat/session conflation — flags (a) any handoff/governor-prompts entry without `S<NNN>-C<n>` chat-segment ID; (b) any artifact citing "chat" where session is meant or vice versa per §12 definitions; (c) any post-close same-chat addendum without explicit `§24+ post-close addendum` tag; (d) detection of N:1 violation (S<NNN+1> work begun in same chat as closed S<NNN>). Per protocols.md v1.10 §12 + AGENTS.md hard NO. **Registered S005 turn 30 atomically per FSE amendment. Build deferred week-4.** |
 
 ### Stewardship (4 — P-META-004 Stored Content Lifecycle enforcers)
 
@@ -293,7 +308,7 @@ Per [generators.md](../pillar-4-developer-experience/generators.md) + [skill-ing
 | `skill-lock-drift` | PR | error | `packages/skills.lock.yaml` mutated outside generator invocation; CI fails |
 | `catalog-coverage` | PR | warn | Every leaf-level artifact has a catalog entry (not just files Glob-walks find but explicitly registered) |
 
-### AI Behavior (3 — added S003 extended)
+### AI Behavior (4 — added S003 extended; +1 S005 turn 8)
 
 Per [ai-behavior-instructions.md](../pillar-4-developer-experience/ai-behavior-instructions.md) + the meta-engraving-of-itself principle.
 
@@ -302,6 +317,7 @@ Per [ai-behavior-instructions.md](../pillar-4-developer-experience/ai-behavior-i
 | `agents-md-cascade-completeness` | PR | error | Every `apps/<name>/` directory has an `AGENTS.md` extending the root contract |
 | `session-open-reading-order` | per-session | warn | Session log shows the AI loaded the reading-order files in the spec'd sequence (per `pillar-4/ai-behavior-instructions.md`) |
 | `audit-of-audits-fse` | nightly | warn | Meta-RZF on the discipline-engraving system itself: every B_* contract has its 5 surfaces accounted for (active / declared / deferred / n/a-with-reason) per FSE block; surfaces_count_active < 2 = error |
+| `pcr-completeness-on-decisions` | PR | warn | Stop-hook scan over AI chat output: detects decision-presenting language (trigger patterns per `principles.yaml#P-OP-003.triggers.fire_patterns`) without paired Pros/Cons/Recommendation 3-block. Counterweight skip patterns: trivial-reversibles per `principles.yaml#P-OP-003.triggers.skip_patterns`. Skip without explicit one-line note = anti-pattern (silent-skip). Recommendation must NAME load-bearing factor + include "what would flip" clause. Registered S005 turn 8 per B_PCR_FOR_DECISIONS strengthening (S005 turn 5 user directive). |
 
 ### Intake-Plane Extensions (10 — added S003 §3.5.c, sourced from `_intake/tag-status-contract.md`)
 
@@ -379,7 +395,7 @@ Per [closing-summary-template.md](../_handoff/VAULT/closing-summary-template.md)
 |---|---|---|---|
 | `closing-summary-checklist-completeness` | per-session | error | Closing summary emits all required §10.1-§10.14 + §10.13b + §10.13c sections; empty section = `NOT_APPLICABLE_WITH_REASON` declared explicitly |
 
-### Catch + Engraving (2 — added S002 turn 15+17)
+### Catch + Engraving (3 — added S002 turn 15+17; +1 S005 turn 20)
 
 Per [behavioral-contracts.md](./behavioral-contracts.md) § B_CATCH_TO_ENGRAVING + § B_FIVE_SURFACE_ENGRAVING.
 
@@ -387,8 +403,51 @@ Per [behavioral-contracts.md](./behavioral-contracts.md) § B_CATCH_TO_ENGRAVING
 |---|---|---|---|
 | `catch-engraving-completeness` | per-session | warn | Closing summary §10.13b "Catches engraved this session" has entries OR explicit `NO_CATCHES_THIS_SESSION` declaration |
 | `single-surface-engraving-anti-pattern` | PR | error | New B_* contract introduced without ≥2 of 5 surfaces (schema/validator/hook/memory/contract) hit atomically |
+| `positive-value-extraction-coverage` | per-session | warn | Closing summary §10.11b "Positive value extracted this session" has walk-trail entries for every significant positive event (insight/user-directive/improvement/ext-id/bug-fix/ai-self-correction/generator-output/meta-finding) OR explicit `NO_POSITIVE_EVENTS_THIS_SESSION` declaration. Per B_POSITIVE_VALUE_EXTRACTION + P-META-006 trigger-cadence amendment. **Registered S005 turn 20 atomically per FSE amendment. Build deferred week-4.** |
 
-**Total: ~91 checks** (was 47 at S002 close; +8 AI-runtime +5 persona-crisis +7 ops +5 bootstrap+dashboard +7 generator+skill +3 ai-behavior +10 intake-transition +5 tag +6 status +3 source-modality +1 handshake +3 grandfather +1 closing-summary +2 catch-engraving = +66 from extended-S003 audit registry consolidation; some overlap counts adjusted). Counts continue to grow as principles add enforcers.
+**Total: ~99 checks in semantic categories** (was 47 at S002 close; +66 from extended-S003 consolidation = 91 at S004 close; +5 from S005 = 96). S005 additions: `principle-count-staleness` (Meta 4 → 5; per ADR-0022 turn 8) + `pcr-completeness-on-decisions` (AI Behavior 3 → 4; per B_PCR_FOR_DECISIONS turn 5) + `pre-close-cycle-coverage` (Meta 5 → 6; per B_PRE_CLOSE_VERIFICATION turn 19) + `nominal-rzf-detection` (Meta 6 → 7; per B_PRE_CLOSE_VERIFICATION turn 19) + `positive-value-extraction-coverage` (Catch+Engraving 2 → 3; per B_POSITIVE_VALUE_EXTRACTION turn 20). Plus +30 from §C3.1 bulk-registration (S005 turn 21) — see "Behavioral Discipline Validators" consolidated section below. **Grand total: ~126 checks.**
+
+### Behavioral Discipline Validators (consolidated S005 turn 21 — bulk-registration of refs accumulated S001-S005)
+
+Audits that pillar leaves + behavioral-contracts.md + ai-behavior-spine.md cited by slug but had never been canonically registered in this leaf. The §C3.1 audit-registry validation pass surfaced these as dangling references; this section closes the dangling-ref backlog. Future PRs may promote entries to their semantic category (Meta / AI Behavior / Status / etc.) as build-out evolves; the registration here is the load-bearing fact (per FSE atomic-validator-registration amendment — registration mandatory atomic; implementation deferrable).
+
+| Slug | Cadence | Severity | What it checks | Backing principle / contract |
+|---|---|---|---|---|
+| `active-stale` | nightly | warn | Items with `lifecycle_state: active` past 90-day inactivity flagged; per [tag-status-contract.md](../_intake/tag-status-contract.md) | P-META-004 stewardship |
+| `assertion-without-evidence` | PR | error | Stop-hook scan: AI assertions of state ("I checked X" / "X is present") without paired tool-call output in same response | B_VALIDATE_BEFORE_ASSUME |
+| `assertion-without-preceding-tool-call` | PR | error | Tool-call sandwich validator: `[tool-call invocation]` → `[verbatim output]` → `[assertion]` literal sequence required (turn 15 strengthening) | B_VALIDATE_BEFORE_ASSUME (turn 15) |
+| `assumption-without-evidence` | PR | warn | AI assumes scope/intent without explicit ratification; surfaces in self-audit | B_VALIDATE_BEFORE_ASSUME family |
+| `canonical-phrasing-drift` | PR | error | The 4 operating principles + new meta-principles byte-match across the documented places (template-governance + per-app docs) | P-META-003 + ADR-0013 |
+| `catch-engraving-coverage` | per-session | warn | Closing summary §10.13b "Catches engraved this session" has entries OR explicit NO_CATCHES_THIS_SESSION declaration | B_CATCH_TO_ENGRAVING |
+| `compressed-zero-findings-detection` | PR | error | Detects RZF compression under context pressure (e.g., closing-summary §10.10 with cycles_run < 1; abbreviated coverage tokens) | P-META-006 RZF anti-pattern |
+| `concern-duplication` | PR | warn | Two artifacts claiming overlapping concern (e.g., two SKILL.md files claiming reuse-check) flagged for consolidation | P-OP-001 reuse-first |
+| `cross-ref-resolution` | PR | error | Every `principles.yaml#P-XXX-NNN` / `audit-runner.md#<slug>` / `[link](path)` reference resolves to an existing artifact | P-META-001 |
+| `discipline-engraving-completeness` | PR | warn | Iterates spine matrix; flags rows with surfaces_count < 4 (warn) or < 2 (error) | P-META-007 FSE |
+| `enforcer-implementation-status` | nightly | info | Tracks per-enforcer build status (declared / implemented / under-test / deprecated); exposes dashboard | P-META-001 |
+| `field-parity` | PR | error | Schema fields named in validator code exist in schema files (Zod ↔ ZModel ↔ Payload ↔ ts) | P-ARCH-003 + P-ARCH-004 |
+| `force-fit-detection` | PR | warn | Extraction routed to nearest-existing leaf without `discovery_origin: true` flag when no clear path exists | B_NO_FORCE_FIT + unknown-path-protocol |
+| `handoff-attestation-and-handshake-present` | per-session | error | Every handoff has paired §17 attestation + opening receipt within 7 days OR explicit unreceived-with-reason declaration | B_TWO_SIDED_HANDSHAKE |
+| `handoff-section-zero-present` | per-session | error | Every handoff has §0 PASTE-TARGET BLOCK self-contained per protocols.md §11 | protocols.md §11 step 0 |
+| `handshake-completion` | per-session | warn | Two-sided handshake: prior-session attestation has paired next-session receipt; absence flagged after 7 days | B_TWO_SIDED_HANDSHAKE |
+| `inheritance-coverage` | nightly | warn | Per P-META-003: every app dir has principles inheritance via shared MCP / AGENTS.md cascade / Mastra BaseAgent | P-META-003 |
+| `intent-to-impact-validation` | per-session | warn | Handoff §16 has prior-session-stated-intent + this-session-actual-impact + drift_assessment; warn when impact: pending > 3 sessions without rationale change | B_INTENT_TO_IMPACT |
+| `manual-protocol-skipped` | PR | error | EXT-IDs surfaced in session log without paired manual-protocol.md walk + extraction-ledger entry | B_INTAKE_DISCIPLINE |
+| `mastra-agent-count` | PR | error | Per ADR-0008: exactly ONE Mastra agent runtime exists; static-analysis catches additional Agent class instantiations | ADR-0008 + P-ARCH-020 |
+| `memory-index-completeness` | per-session | warn | Every memory file in `~/.claude/.../memory/feedback_*.md` has corresponding entry in MEMORY.md index | P-META-007 FSE memory-surface |
+| `precedent-check-coverage` | PR | error | Every new artifact carries `precedent_checked:` frontmatter field (closed enum: existing-csps / csp-carry-forward / industry-research / declared-novel) | B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK |
+| `principles-version-known` | PR | error | Every graduate's vendored principles.yaml has version + hash that traces to a CSPS commit | P-META-002 |
+| `schema-gap-promotion-eligibility` | weekly | warn | Schema-gap registry entries with K=2 within 90 days auto-promote per learning-loop.md K=2 mechanism | _intake/unknown-path-protocol.md + P-META-005 |
+| `single-surface-registration` | PR | error | Every "I built X" claim lands in TWO surfaces in same commit (file + catalog manifest); orphan files OR orphan catalog entries flagged | B_ATOMIC_DUAL_REGISTRATION |
+| `state-declaration-format` | per-session | warn | Session-open AI emits fixed-format state block (token budget / validator state / pending count / open findings / scope confidence) | B_STATE_DECLARATION_AT_OPEN |
+| `tag-status-mismatch` | PR | warn | Cross-validation: `pipeline_state: closed` AND `maturity: draft` is contradiction; per [tag-status-contract.md](../_intake/tag-status-contract.md) | tag-status-contract |
+| `unanswered-questions-blocker` | per-session | error | Every question AI asked user without explicit reply (yes / no / drop / superseded) becomes BLK-S<NNN>-* row in blockers-S<NNN>.md; close blocked while open | B_BLOCKER_NO_SILENT_DROP |
+| `validator-claim-without-rerun` | PR | error | RZF claim ("ZF-0 ACHIEVED") without paired this-session validator output; memory of earlier run ≠ validation | B_DONE / B_RZF |
+| `wip-enforcer-tracking` | nightly | warn | Per P-OP-002 FWWS: `principles.yaml#P-OP-002.config.max_in_flight_slices` enforcement tracked across actual slice ledger | P-OP-002 FWWS |
+| `wip-limit` | PR | error | New slice creation refused when WIP exceeded (3 slices / 2 apps default); pre-commit blocks; CI hard-fails | P-OP-002 FWWS |
+
+**30 audit slugs registered atomically.** All previously cited in pillar leaves / behavioral-contracts.md / ai-behavior-spine.md but never registered here; this batch closes the dangling-ref backlog (S005 turn 21 §C3.1 carry-forward closure). Implementation deferred week-4 audit-runner ship per the existing pattern; registration is the load-bearing fact per FSE atomic-validator-registration amendment.
+
+> **§C3.1 audit-registry validation pass finding (S005 turn 8):** cross-check via `grep + diff` of pillar-leaf citations vs registry entries surfaced **32 dangling references** — audit slugs cited in pillar leaves with no canonical entry in this registry. Most are behavioral-discipline audits referenced in `ai-behavior-spine.md` / `behavioral-contracts.md` / `_intake/tag-status-contract.md`. Bulk-registration deferred as its own work item (carry to S006 §3); registering 32 entries cleanly per-category requires its own batch with PCR for category placements. See gaps-and-duplications-S005.md (created at session close) for full enumeration. The +66 extended-S003 consolidation closed dangling-ref debt for the audits IT ADDED, but did NOT consolidate the broader behavioral-discipline citations that pre-date S003 or were added in S002 turn 7 / 10 / 14 / 15 / 17 alongside spine-matrix engraving without registry entries.
 
 > **Note: registry consolidation provenance.** The +66 audits added to this leaf in extended-S003 were already CITED in pillar leaves but had no canonical definition. The consolidation closes the dangling-reference debt that gaps-and-duplications-S003.md original-Gap-1 was a precursor to. Each new audit was sourced verbatim from the cited leaf's enforcement section (the leaf is the requirements doc; this leaf is the registry).
 

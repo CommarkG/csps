@@ -2,7 +2,7 @@
 id: csps.handoff.vault.protocols
 name: handoff-vault-protocols
 description: Canonical closing/fresh-chat/session-naming protocols for CSPS. Every per-session handoff (HANDOFF-S<NNN>-to-S<NNN+1>.md) references THIS file rather than re-stating the protocols inline. v1.2 adds intent-to-impact validation (§10/§16) + two-sided handshake attestation (§11b) + blocker registry surfacing (§11 step 7) — all per user directive S002 turn 6. Source of truth — handoff files are the per-session derivative.
-version: 1.8                   # S003 §3.5.e: §11b.1 signature + §11b.2 receipt + continuity-manifest fields formalized (closes EXT-20260502-003-C CSP carry-forward)
+version: 1.10                  # S005 turn 30: §12 expanded with chat ≠ session mechanical distinction (Definitions table + cardinality rules + N:1 forbidden + chat-segment IDs S<NNN>-C<n> + continuity-manifest + post-close-addendum legitimacy + HPFA check #8). Per user directive "make sure chats and session numbering are treated separately".
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -37,11 +37,23 @@ This file's `version: 1.1` reflects the addition of P-META-004 Stewardship + P-M
 
 Run this exact sequence when context budget drops below 15%:
 
+- [ ] **§10.0 PRE-CLOSE VERIFICATION CYCLE (P-META-008 + B_PRE_CLOSE_VERIFICATION — added S005 turn 19; MANDATORY GATE).** Run `pnpm verify` (orchestrator at `tools/verify.mjs`); paste structured stdout into §10.0 of the closing summary BEFORE emitting any §10.10 RZF / §10.11 CEC / §10.13c FSE evidence block. Each cycle status is **PASS** / **FAIL** / **DEFERRED-WITH-REASON** — silent skip forbidden. **Any FAIL blocks close** + surface as `BLK-S<NNN>-*` OR explicit carry-forward to next-session blockers file. Cycles enumerated:
+  - `pnpm install --frozen-lockfile` — verify monorepo bootstraps from committed lockfile
+  - `pnpm -r typecheck` — verify all package TS code compiles
+  - `pnpm --filter @csps/principles validate` — verify principles.yaml parses + cross-refs resolve + enforcer minimums met
+  - `pnpm lint:frontmatter` — verify frontmatter schema across artifacts
+  - `pnpm audit:run --strict` — DEFERRED-WITH-REASON until week-4 audit-runner ship
+  - **The cycle list above MUST grow when new validators ship; this is THE PLAN, not a guideline.** Per P-META-008: cycles enumerated in plan text, never context-dependent AI memory.
+
+- [ ] **§10.0e Governor Prompts review (B_GOVERNOR_PROMPTS + P-META-012 — added S005 turn 27; MANDATORY).** Verify every substantive user prompt this session has a `GP-S<NNN>-<NN>` entry in [`_handoff/VAULT/governor-prompts/S<NNN>.md`](./governor-prompts/). Continuous tracking expected during session — close is review-not-creation. Cardinal-flagged GPs propagated to [user-intents.md](./user-intents.md) verbatim. Aggregate metrics emitted to closing-summary §10.0e. Anti-pattern: batch-at-close (should be continuous).
+
+- [ ] **§10.0f Handoff Pre-Flight Audit (B_HANDOFF_PRE_FLIGHT_AUDIT + P-META-013 — added S005 turn 27; MANDATORY GATE — runs AFTER pre-close-verification §10.0).** Whole-session walk covering 7 mandatory checks: (1) governor_prompts_coverage / (2) engraving_completeness / (3) audit_registration_completeness / (4) cycle_evidence_presence / (5) schema_dynamic_connections / (6) distribution_targets_populated / (7) carry_forward_explicit. **HPFA blocks handoff write until pass.** Findings either addressed in-session OR carried-forward with explicit reason. Silent gaps forbidden. NO-NEW-WORK sessions use reduced scope (checks 1 + 5 only). Evidence emitted to closing-summary §10.0f.
+
 - [ ] **Stop new substantive work; switch to closing mode.**
 - [ ] **Run `/stewardship-review`** (P-META-004 enforcer) — surface every `pending-protocol`, `pending-review`, and `active`-stale item. Either advance state OR extend `next_review_at` with a stated reason. Never silent-park.
 - [ ] **Run `/learning-loop-extract`** (P-META-005 enforcer) — capture insights, errors, gaps, decisions, near-misses from the session. Verify ≥1 item routed OR explicitly mark "no insights, reason: <X>" in the closing summary. The PostStop hook (`.claude/hooks/post-stop-learning-loop.sh`) auto-fires this; the AI must reference its output in the closing summary.
 - [ ] Write `docs/plan/_handoff/HANDOFF-S<NNN>-to-S<NNN+1>.md` (use the latest existing handoff as template). Required sections:
-  - [ ] §0 — Paste-target block: "You are S<NNN+1>. S<NNN> is complete." + What was accomplished + What S<NNN+1> must do (numbered list, in order) + Hard rules + Cardinal directives (verbatim quotes preserved). **The §0 block must be self-contained** — a fresh AI reading ONLY §0 should know exactly what to do.
+  - [ ] §0 — Paste-target block. **MANDATORY FIRST LINE (markdown H1 banner with emoji)** in this exact shape: `# 🎯 YOU ARE S<NNN+1> — Session <NNN+1> of the CSPS planning project.` (added v1.9 per S005 turn 29 user directive — explicit identity banner is load-bearing per B_MUTUAL_UNDERSTANDING_VALIDATION; the new AI must confirm in first reply: "✅ I am S<NNN+1>, picking up from S<NNN>-close at <iso8601-utc>"). Then: prior-session close summary (1 sentence) + What was accomplished + What S<NNN+1> must do (numbered list, in order) + Hard rules + Cardinal directives (verbatim quotes preserved). **The §0 block must be self-contained** — a fresh AI reading ONLY §0 should know exactly who they are and what to do. Identity-banner check is part of HPFA pre-handoff audit.
   - [ ] §0.5 — Protocol contract for ALL future handoffs (this canonical shape, by reference)
   - [ ] §1 Priority-zero actions for next chat (in execution order)
   - [ ] §2 User intent verbatim quotes (ALL load-bearing intents from this session)
@@ -95,7 +107,7 @@ The fresh chat then runs:
 1. **Read the handoff §0 paste-target block** (self-contained instructions).
 2. **Read MASTER_PLAN.md** (trunk index).
 3. **Read AGENTS.md** (AI contract).
-4. **Read principles.yaml** (single source of truth — 4 operating + 27 architecture + 5 meta principles).
+4. **Read principles.yaml** (single source of truth — operating + architecture + meta principles; counts dynamic per yaml row count; never cite hardcoded counts in narrative — see ADR-0022 + audit `principle-count-staleness`).
 5. **Read pillar-0/operating-principles.md** (FWWS, PCR, reuse-first, batched-execution definitions).
 6. **Read pillar-0/mechanical-enforcement.md** (the 4-layer enforcement spine).
 7. **Read `_handoff/VAULT/blockers-S<NNN>.md`** (added v1.2) — list every `state: open` blocker; surface in fresh-chat's first response. Re-ask for resolution OR carry to new session's blocker file.
@@ -280,28 +292,61 @@ The new session validates this on open:
 
 ## §12 Session + chat naming / numbering protocol
 
-### Session numbering
+### Definitions (chat ≠ session — mechanically distinct)
 
-`S001`, `S002`, `S003`, … (sequential, no gaps, never reused).
+**Per S005 turn 30 user directive: "make sure chats and session numbering are treated separately".** The two concepts must NOT be conflated; they have different lifecycles, different identifiers, and different governance.
+
+| | **Session** | **Chat** |
+|---|---|---|
+| **Nature** | Logical unit of governance work | Physical conversation container (one Claude Code window / browser tab / API conversation) |
+| **Identifier** | `S<NNN>` (S001, S002, …, sequential, no gaps) | `S<NNN>-C<n>` (S005-C1, S005-C2, …, sequential within a session) |
+| **Lifecycle markers** | Open: handoff §0 paste-target read · Close: HPFA + RZF + handoff written | Open: chat tab created · Close: tab closed / autocompact catastrophic / context saturated |
+| **Survives across** | Sub-chats (continuation chat keeps same session) | A single physical conversation only |
+| **Has its own** | Handoff · governor-prompts log · §10 closing protocol · HPFA · §17 attestation · RZF/CEC evidence | Context buffer · autocompact buffer · single transcript |
+| **Cardinality with the other** | 1 session : N chats (continuation OK) | NEVER N sessions : 1 chat (forbidden — see below) |
+
+### Cardinality rules (mechanical)
+
+1. **1 session : 1 chat (default normal case).** Open new chat → run S<NNN> → close S<NNN> → close chat.
+2. **1 session : N chats (continuation OK).** Mid-session, if context saturates / autocompact-degrades-fidelity / browser crashes → open S<NNN>-C2 in a new chat tab via continuity-manifest. Same session, new chat segment. Handoff filename remains `HANDOFF-S<NNN>-to-S<NNN+1>.md`. Per-chat-segment continuity passed via `continuity-manifest-S<NNN>-C<n>-to-C<n+1>.md`.
+3. **N sessions : 1 chat (FORBIDDEN MECHANICALLY).** Once `S<NNN>` is closed (handoff written + HPFA passed + final `pnpm verify exit_code 0` recorded), the chat that hosted it is **CLOSED FOR NEW-SESSION GOVERNANCE**. Starting `S<NNN+1>` work in the same chat tab is forbidden. Reasons: (a) governor-prompts logging ambiguous (which file?); (b) handoff §17 attestation can't fire across same-chat boundary; (c) MUV boundary type 1 (chat-to-chat) never exercises; (d) autocompact will eventually compress S<NNN>'s post-close detail into S<NNN+1>'s context, corrupting both.
+
+### What a "post-close" same-chat addendum looks like (the only legitimate same-chat use after session close)
+
+After S<NNN> closes, the same chat MAY:
+- Append minor corrections to S<NNN>'s engravings (typos, tightening prose)
+- Add post-close addenda to `HANDOFF-S<NNN>-to-S<NNN+1>.md` (§24, §25, … — must be EXPLICITLY tagged "post-close addendum, not new session")
+- Apply emergency hot-fixes that materialize after close
+
+It MUST NOT:
+- Begin S<NNN+1>'s §3 substantive work
+- Open new directives that should be governor-prompts entries (those go in S<NNN+1>.md governor log)
+- Use S<NNN>'s closed status as a reason to skip MUV cross-chat handshake
 
 ### Chat tab title convention
 
-- **Single-session chat:** `S<NNN> <topic>` — e.g., `S002 pillar-3-migration`
-- **Continuation chat** (when one session spans multiple conversations): `S<NNN> [continues] <topic>` — e.g., `S002 [continues] pillar-3-migration`
-- **Fresh-session chat (first message):** `S<NNN> [continues S<NNN-1>]` — e.g., `S002 [continues S001]`
+- **Session-opening chat:** `S<NNN>-C1 <topic>` — e.g., `S006-C1 foundation-slices` (was previously written `S<NNN> <topic>`; updated v1.10 for chat-segment clarity)
+- **Continuation chat (same session):** `S<NNN>-C<n> [continues S<NNN>-C<n-1>] <topic>` — e.g., `S005-C2 [continues S005-C1] post-compact-recovery`
+- **Fresh session chat (first message after prior close):** `S<NNN>-C1 [continues S<NNN-1>]` — e.g., `S006-C1 [continues S005]`
 
-### Why session number, not chat number
+### Why session number, not chat number, anchors governance
 
-Sessions are the meaningful unit (a logical work-stream); chats are the technical container. Multiple chats may belong to one session. The session number is what links them and what the handoff filename references.
+Sessions are the meaningful unit (a logical work-stream); chats are the technical container. Multiple chats may belong to one session. The session number is what links them and what the handoff filename references. **But chat-segment ID (`-C<n>`) is mandatory for traceability** — it identifies which physical context produced which engraving, which matters when autocompact has fired (post-compact engravings carry `-C<n+1>` provenance distinct from pre-compact `-C<n>`).
 
 ### When to start a new session vs. continue
 
-- **New session:** significant scope shift (e.g., S001 → S002 = pillar 2 done → pillar 3 starting)
-- **Continuation chat (same session):** same scope, context exhausted mid-batch (e.g., S002 chat 1 → S002 chat 2 [same pillar 3 batch])
+- **New session:** significant scope shift (e.g., S001 → S002 = pillar 2 done → pillar 3 starting), OR previous session formally closed (handoff + HPFA + verify exit_code 0)
+- **Continuation chat (same session, new chat segment):** same scope, same session NOT yet closed, context exhausted mid-batch — open `S<NNN>-C<n+1>` in new tab
 
 ### Per-session handoff is mandatory
 
-Every session has a `HANDOFF-S<NNN>-to-S<NNN+1>.md` even if it's a continuation chat. For intra-session continuations: `HANDOFF-S<NNN>-chat<N>-to-chat<N+1>.md` is acceptable, but the session-level handoff (S<NNN>-to-S<NNN+1>) is the canonical end-of-session record.
+Every session has a `HANDOFF-S<NNN>-to-S<NNN+1>.md`. For intra-session chat-segment continuations: `continuity-manifest-S<NNN>-C<n>-to-C<n+1>.md` is the per-chat-segment artifact; the session-level handoff (`S<NNN>-to-S<NNN+1>`) is the canonical end-of-session record and aggregates all chat-segment work.
+
+### Governance enforcement (mechanical hooks)
+
+- AGENTS.md hard NO covers N:1 (multiple sessions in same chat)
+- HPFA check #8 (added v1.10): `chat_segment_id_present_in_handoff` — every engraving in a session-handoff cites the `-C<n>` segment that produced it
+- Audit `chat-vs-session-id-discipline` (registered in audit-runner.md) — PR-blocking on any artifact citing chat where session is meant or vice versa
 
 ## Where the protocols come from (provenance)
 

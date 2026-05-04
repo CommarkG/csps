@@ -1,0 +1,77 @@
+# verify last run
+
+- ran_at: 2026-05-04T09:43:47.039Z
+- finished_at: 2026-05-04T09:43:50.039Z
+- exit_code: 0
+
+```yaml
+{
+  "pre_close_verification": {
+    "ran_at": "2026-05-04T09:43:47.039Z",
+    "finished_at": "2026-05-04T09:43:50.039Z",
+    "orchestrator": "tools/verify.mjs",
+    "cycles": [
+      {
+        "name": "pnpm_install_frozen",
+        "command": "pnpm install --frozen-lockfile",
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "flag --skip-install"
+      },
+      {
+        "name": "typecheck_recursive",
+        "command": "pnpm -r --filter \"./packages/**\" typecheck",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 1.7,
+        "ts_errors": 0
+      },
+      {
+        "name": "principles_validate",
+        "command": "pnpm --filter @csps/principles validate:all",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 1.1,
+        "principles_loaded": 45,
+        "findings_total": 0
+      },
+      {
+        "name": "frontmatter_validate",
+        "command": "node tools/validators/validate-frontmatter.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "scanned": 108,
+        "errors": 0,
+        "warnings": 5,
+        "exempt": 66
+      },
+      {
+        "name": "aap_frontmatter_coverage",
+        "command": "node tools/validators/validate-aap-frontmatter.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "skills_scanned": 7,
+        "missing_aap": 0,
+        "aligned": 7
+      },
+      {
+        "name": "principle_count_staleness",
+        "command": "node tools/validators/validate-principle-count-staleness.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "stale_count_files": 0
+      },
+      {
+        "name": "audit_runner_full_pass",
+        "command": "pnpm audit:run --strict",
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "audit-runner ships week-4 (planned per build-order.md week 4)"
+      }
+    ],
+    "exit_code": 0,
+    "strict_mode": false
+  }
+}
+```

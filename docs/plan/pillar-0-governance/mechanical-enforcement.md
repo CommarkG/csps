@@ -262,7 +262,7 @@ This eliminates the "rules are theater" problem. A principle without enforcers f
 
 | Week | Mechanical enforcement milestone |
 |---|---|
-| 1 | `packages/principles/principles.yaml` with 4 operating principles + 5 architecture stubs + 3 meta principles. Bootstrap script provisions `packages/principles/`, `packages/principles-mcp/`, `packages/skills/`. |
+| 1 | `packages/principles/principles.yaml` with the operating + architecture stubs + meta principles populated (counts dynamic per yaml row count; see [audit-runner.md#principle-count-staleness](./audit-runner.md) for the audit that prevents stale narrative counts; per ADR-0022). Bootstrap script provisions `packages/principles/`, `packages/principles-mcp/`, `packages/skills/`. |
 | 2 | `packages/principles/codegen.ts` full implementation: emits AGENTS.md sections, Vale rules, ESLint rules, hook stubs, skill stubs, MCP resource definitions. CI gate: `audit-glossary-fresh`-style check on principles codegen freshness. |
 | 3 | First skills shipped: `/pcr`, `/wip-check`, `/reuse-check`. First hooks shipped: PreToolUse on Write (catalog lookup). |
 | 4 | Audit runner integrates the meta-check (`libs/audits/checks/principle-coverage.ts`). MCP server (`packages/principles-mcp/`) shipped and registered. |

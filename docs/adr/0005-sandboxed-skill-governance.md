@@ -7,7 +7,7 @@ deciders: group:finky
 consulted: solo-dev (Finky)
 informed: future-CSPS-developers, AI-runtime-operators
 tags:
-  - domain:ai-systems
+  - domain:ai
   - type:explanation
   - audience:developer
   - audience:ai-agent

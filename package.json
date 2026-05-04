@@ -1,0 +1,35 @@
+{
+  "name": "csps",
+  "version": "0.0.1",
+  "description": "CoreSights Platform Services — multi-tenant SaaS app foundry hosting 30–75 apps. App foundry pattern: each app starts inside CSPS, grows paying customers, graduates as standalone product when it hits PMF.",
+  "private": true,
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CommarkG/csps.git"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "principles:codegen": "node packages/principles/codegen.ts",
+    "glossary:codegen": "echo 'TODO week-2: implement pnpm glossary:codegen' && exit 0",
+    "catalog:search": "echo 'TODO week-1: implement pnpm catalog:search' && exit 0",
+    "lint:frontmatter": "node tools/validators/validate-frontmatter.mjs",
+    "verify": "node tools/verify.mjs",
+    "verify:strict": "node tools/verify.mjs --strict",
+    "verify:fast": "node tools/verify.mjs --skip-install",
+    "audit:run": "echo 'TODO week-4: audit-runner v1' && exit 0",
+    "test": "echo 'TODO: tests ship per slice in week-3+' && exit 0",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md,yaml,yml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md,yaml,yml}\""
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "prettier": "^3.4.0",
+    "@types/node": "^20.0.0"
+  }
+}

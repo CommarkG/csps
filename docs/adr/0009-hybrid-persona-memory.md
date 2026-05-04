@@ -7,7 +7,7 @@ deciders: group:finky
 consulted: solo-dev (Finky)
 informed: persona-authors, end-users
 tags:
-  - domain:ai-systems
+  - domain:ai
   - type:explanation
   - audience:developer
   - audience:end-user

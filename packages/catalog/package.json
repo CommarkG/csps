@@ -1,0 +1,20 @@
+{
+  "name": "@csps/catalog",
+  "version": "0.0.1",
+  "description": "File metadata + tags + bundles registry. Indexed by frontmatter scan; queried via MCP resources. Per P-OP-001 reuse-first (catalog-first generator UX).",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "files": ["dist", "catalog.json", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "scan": "echo 'TODO week-3: scan workspace + emit catalog.json' && exit 0",
+    "search": "echo 'TODO week-3: implement catalog search CLI' && exit 0",
+    "typecheck": "echo 'skeleton-tier: no .ts yet (week-3 wires the scanner)' && exit 0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": { "node": ">=20" }
+}

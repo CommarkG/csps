@@ -1,0 +1,10 @@
+{
+  "$schema": "./catalog.schema.json",
+  "apiVersion": "csps.catalog/v1",
+  "kind": "Catalog",
+  "version": "0.0.1",
+  "generated_at": "2026-05-04T04:00:00Z",
+  "scan_root": ".",
+  "scan_paths": ["packages", "libs", "apps", "tools", "docs/plan", "docs/adr"],
+  "entries": []
+}

@@ -186,6 +186,20 @@ If the input being processed leads to ratifying a NEW principle / leaf / ADR / b
 
 This step is the recursive application of the input being absorbed: if the input itself proposes a discipline, AI must apply that discipline to the very absorption process.
 
+### Step 6c — B_POSITIVE_VALUE_EXTRACTION cycle on the EXT-ID (added S005 turn 22)
+
+Per `B_POSITIVE_VALUE_EXTRACTION` ([behavioral-contracts.md](../pillar-0-governance/behavioral-contracts.md#B_POSITIVE_VALUE_EXTRACTION)) + amended P-META-006 trigger-cadence: **every EXT-ID processed is a positive-significant event**. After step 5 (extract + classify) and step 6 (ledger append), but BEFORE step 7 (closing-summary surfacing), the AI runs the positive-value-extraction walk:
+
+1. Distill the extracted essence in 1 sentence (forces clarity)
+2. Walk every relevant CSPS category for places the essence applies (per P-META-006 walk_scope: principles + pillar leaves + behavioral-contracts + memory + AGENTS)
+3. Apply / mark not-applicable-with-reason / flag needs-human-judgment per artifact
+4. Iterate until same cycle returns 0 new opportunities
+5. Emit walk-trail entry in closing-summary §10.11b "Positive value extracted this session"
+
+**Why this step is distinct from step 6b (which fires only when input ratifies a new principle/leaf/contract):** EXT-IDs that DON'T promote to formal ratification still carry positive value (insights / patterns / lessons / examples). Step 6b's CEC fires on formal ratification only; step 6c's B_POSITIVE_VALUE_EXTRACTION fires on EVERY EXT-ID regardless of promotion path.
+
+**Counterweight:** trivial conversational EXT-IDs ("thanks for the context") skip with explicit one-line note in §10.11b. Significance is judgment-based but biased toward over-trigger.
+
 ### Step 7 — Surface to user EXPLICITLY in closing summary
 
 In the chat closing summary (per `protocols.md` §10):
@@ -194,8 +208,9 @@ In the chat closing summary (per `protocols.md` §10):
 2. For each, list the contexts it routed into.
 3. For each, list the recommended downstream action (which leaf doc / ADR / etc. should absorb).
 4. Flag any EXT-ID in `observed` state that needs the user's clarification before next session.
+5. **NEW S005 turn 22:** for each EXT-ID, list the positive-value walk-trail entry (essence + walk_scope + applications_made) per step 6c — fed into closing-summary §10.11b.
 
-The user reading the closing summary IS the manual subscriber-side acknowledgement. If they don't see an EXT-ID they uploaded, that's a P-META-005 escape — flag it.
+The user reading the closing summary IS the manual subscriber-side acknowledgement. If they don't see an EXT-ID they uploaded, that's a P-META-005 escape — flag it. If they don't see a positive-value walk-trail for an EXT-ID, that's a B_POSITIVE_VALUE_EXTRACTION violation — flag it.
 
 ## Anti-patterns this protocol resists
 

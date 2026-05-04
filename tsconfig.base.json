@@ -1,0 +1,40 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "bundler",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@csps/principles": ["packages/principles/src/index.ts"],
+      "@csps/principles-mcp": ["packages/principles-mcp/src/index.ts"],
+      "@csps/catalog": ["packages/catalog/src/index.ts"],
+      "@csps/glossary": ["packages/glossary/src/index.ts"],
+      "@csps/templates": ["packages/templates/src/index.ts"],
+      "@csps/customer-kit": ["packages/customer-kit/src/index.ts"],
+      "@csps/skills": ["packages/skills/src/index.ts"]
+    },
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true
+  },
+  "exclude": ["node_modules", "tmp", "dist", "build"]
+}

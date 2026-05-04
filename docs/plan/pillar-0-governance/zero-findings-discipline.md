@@ -363,6 +363,34 @@ The user's S002 turn 10 directive explicitly named four AI failures:
 
 These four failures are NOT CSPS-specific or even Claude-specific. They are universal AI defaults. Mechanical enforcement is the only durable counter.
 
+## S005 amendments — extended trigger set + B_POSITIVE_VALUE_EXTRACTION + B_PRE_CLOSE_VERIFICATION
+
+User S005 turn 19-22 surfaced two structural failure modes the original P-META-006 framing didn't fully cover:
+
+### Failure mode A — Nominal-not-actual RZF (S005 turn 18-19)
+
+Even with the original RZF discipline, RZF claims could be NOMINAL (validator cited but never re-run this session). Latent bugs accumulate silently across N sessions. Demonstrated S002→S005: YAML quote bug + 4 missing enforcer_layers + isMain bug latent ~2 sessions because validator never ran.
+
+**Cure:** [`B_PRE_CLOSE_VERIFICATION`](./behavioral-contracts.md#B_PRE_CLOSE_VERIFICATION) + [P-META-008 cycle-mandatory-in-plan](../../../packages/principles/principles.yaml). Plans (closing-summary-template §10.0 + protocols.md §10 + build-order.md per-week) MUST enumerate cycles in plan text — never context-dependent AI memory. The orchestrator [`tools/verify.mjs`](../../../tools/verify.mjs) runs cycles mechanically; § 10.0 captures structured evidence; nominal-RZF is mechanically impossible.
+
+### Failure mode B — Ratification-only-CEC (S005 turn 20-22)
+
+CEC's original trigger set was FORMAL ratifications only (principle / leaf / ADR / behavioral contract / pattern / insight / lesson). Informal positive events (insights surfaced mid-flight / user directives / improvements landed / EXT-IDs / bug-fixes / AI self-corrections / generator-output / meta-findings) didn't trigger systematic walk → value left on the table.
+
+**Cure:** [`B_POSITIVE_VALUE_EXTRACTION`](./behavioral-contracts.md#B_POSITIVE_VALUE_EXTRACTION) + extended P-META-006 trigger-cadence. The `mandatory_at` config now includes 8 new positive-event triggers in addition to the original ratification triggers. Closing-summary §10.11b "Positive value extracted this session" mandatory header captures walk-trails. The discipline composes with:
+
+- **manual-protocol.md step 6c** — every EXT-ID processed triggers the cycle (intake-time positive event)
+- **proactive-completion.md F9** — 9th forcing function (positive-event branch parallel to F1-F8 defect-recurrence)
+- **learning-loop.md** — positive-events fire walk; K=2 mechanism backstops opportunity-recurrence
+- **stewardship-protocol.md** — state transitions that represent positive progress fire the cycle
+- **generators.md** — generator/wizard output batches trigger RZF + walk-trail in §10.11b
+
+### Failure mode C — Partial-extraction-self-cured-by-cycling
+
+The S005 turn 22 self-audit surfaced this one: even with the discipline engraved, AI declared B_POSITIVE_VALUE_EXTRACTION "done" after 5-surface engraving + did NOT walk to manual-protocol / proactive-completion / learning-loop / stewardship / generators. The user-prompted re-walk found 5 missing-reference files; cycle-2 found 1 more (this very leaf — zero-findings-discipline.md). The fix is meta-recursive: **the cure for partial-extraction is iterating cycles until the same cycle returns 0 new opportunities, not declaring done after the first walk**.
+
+This S005 turn 22 amendment is cycle 3 on the B_POSITIVE_VALUE_EXTRACTION engraving itself; cycle 4 (next) verifies zero new opportunities.
+
 ## Sources
 
 - [CSP S333 RZF discipline doc](../_intake/processed/EXT-20260502-005-rzf-discipline-from-csp/raw.md) — verbatim treasure #5

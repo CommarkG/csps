@@ -31,7 +31,7 @@ S002 §3.2 quality-perspective validation revealed: free-form "does this respect
 **Chosen:** validation passes include a per-category table:
 - **Operating principles** (P-OP-001 through 004) — checked via 4-row table
 - **Architecture principles** (P-ARCH-001 through 027) — checked via category-of-principle table (8 architecture sub-categories from architecture-principles.md)
-- **Meta principles** (P-META-001 through 005) — checked via 5-row table
+- **Meta principles** — checked via row-table sized to current count of P-META-* entries in `principles.yaml` (was hardcoded "P-META-001 through 005" + "5-row table"; updated per ADR-0022 to eliminate decorative count staleness)
 
 Each row: principle name + status (yes / partial / no) + evidence-link or limit-statement.
 

@@ -177,6 +177,23 @@ append_only: true
   session: S006
 ```
 
+### S006 turn 25 — Rename partial-fix drift caught by user
+
+```yaml
+- id: reasoning-rename-partial-fix-rule-1-only
+  observed_at: 2026-05-04T22:00:00Z
+  observed_by: user-surfaced
+  category: reasoning
+  default_pattern: When renaming to fix naming-policy violation, fix the most-obvious rule (Rule 1 suffix) but leave the original name's vocabulary unchanged
+  csps_aligned_pattern: Apply ALL 4 rules + vocabulary preferences during rename — suffix removal alone is incomplete; industry-standard term must replace invented term in same commit
+  k_count: 1
+  promotion_status: pending (K=2 promotes to reasoning-patterns.md)
+  session: S006
+  structural_fix_proposal: naming-policy.md §"Renaming protocol" amended turn 25 with explicit ALL-rules-application step + validator naming-policy-compliance week-4 detects partial-fix renames by classifying both old + new filenames against all 4 rules + vocabulary rules
+  example_partial_fix: quick-context-S006-L1.md → quick-context.md (Rule 1 fixed; vocabulary "quick-context" remained invented)
+  example_full_fix: quick-context.md → OVERVIEW.md (industry-standard universal term replaces invented term)
+```
+
 ### S006 self-detected drift (S006 turns 21-23)
 
 ```yaml

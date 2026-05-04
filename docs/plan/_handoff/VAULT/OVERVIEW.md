@@ -1,10 +1,10 @@
 ---
-id: csps.handoff.vault.quick-context
-name: quick-context
-description: Token-optimal entry-point for understanding CSPS platform state. Single file; BLUF-formatted; self-contained; clickable GitHub URLs to canonical sources. Always-current (per naming-policy Rule 1 — no session/version/level suffix; version tracked in frontmatter). Read in ~3 minutes for full picture. Per S006 turn 8 user directive "the best optimization of token consumption you have and its alignment with the way Csps is built" + S006 turn 24 user directive "names are simple and clear for human users while using industry standard vocabulary". Aligned with CSPS DNA — frontmatter + Core Spines + clickable links + no-narration + Diataxis-typed reference.
-version: 2.1
+id: csps.handoff.vault.overview
+name: OVERVIEW
+description: CSPS platform overview — the canonical entry-point for understanding platform state. Single file; BLUF-formatted; self-contained; clickable GitHub URLs to canonical sources. Always-current (per naming-policy Rule 1; version tracked in frontmatter). Read in ~3 minutes for full picture. Token-optimal by design — tables over prose, lazy-loaded references, audience-routing matrix. Renamed from quick-context-S006-L1.md (S006 turn 24) → quick-context.md (turn 24 partial fix) → OVERVIEW.md (turn 25 full fix per industry-standard vocabulary rule). Industry-standard "OVERVIEW" replaces invented "quick-context" term.
+version: 2.2
 last_update_session: S006
-last_update_turn: 24
+last_update_turn: 25
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -30,7 +30,13 @@ session: S006
 generated_at: 2026-05-04T21:05:00Z
 ---
 
-# CSPS Quick-Context — S006 Governance-Foundation CLOSE
+# CSPS Overview
+
+> **Canonical entry-point for the platform.** Read this in ~3 minutes for the full picture. Always-current — filename stable across sessions per [naming-policy.md](../../pillar-0-governance/naming-policy.md). Version + last-update tracked in frontmatter.
+>
+> **Latest update:** S006 turn 25 — governance-foundation topic-plan CLOSED + naming-policy engraved + this file renamed to industry-standard `OVERVIEW.md`.
+
+## (S006 Governance-Foundation Close — context for current state)
 
 > **Read this file (~3 min) for full platform picture.** All references clickable GitHub URLs. Self-contained.
 

@@ -134,12 +134,19 @@ For each modified artifact filename:
 
 ## Renaming protocol
 
-When renaming an existing artifact:
-1. `git mv <old-path> <new-path>` (preserves history)
-2. Update internal frontmatter `id:` and `name:` fields
-3. Grep for inbound references; update each cross-reference in same commit
-4. Add entry to `_handoff/VAULT/spine-attribution-history.jsonl` if `core_spine:` field changed
-5. Validator must PASS before commit
+When renaming an existing artifact, ALL applicable rules must apply — not just the one most-obviously-violated:
+
+1. **Apply ALL 4 rules + vocabulary rules** (not just suffix removal). A rename that fixes Rule 1 (suffix) but leaves the original name's vocabulary unchanged is a partial fix — Q-2 tweak (B_STRUCTURAL_PREVENTION_DISCIPLINE) catches this as enforcement gap.
+2. `git mv <old-path> <new-path>` (preserves history)
+3. Update internal frontmatter `id:` and `name:` fields to match new filename semantics
+4. Grep for inbound references; update each cross-reference in same commit
+5. Add entry to `_handoff/VAULT/spine-attribution-history.jsonl` if `core_spine:` field changed
+6. Validator must PASS before commit
+7. Document the rename chain in frontmatter description if the artifact was renamed multiple times (e.g., "Renamed from X.md → Y.md → Z.md (rationale per turn)")
+
+### Renaming-protocol gap caught S006 turn 25 (structural-prevention engraving)
+
+`quick-context-S006-L1.md` → `quick-context.md` (turn 24) was a Rule-1-only fix; the vocabulary "quick-context" was invented (not industry-standard). User caught this turn 25; rename completed `quick-context.md` → `OVERVIEW.md` (turn 25). **Structural fix:** this section's step 1 above explicitly mandates ALL-rules application during rename. Validator `naming-policy-compliance` (impl week-4) will detect partial-fix renames by classifying both old and new filenames against all rules.
 
 ## Carry-forward — walk all CSPS files for compliance (queued S007)
 

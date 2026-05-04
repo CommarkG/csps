@@ -1,10 +1,10 @@
 ---
 id: csps.pillar-0-governance.token-optimization
 name: token-optimization
-description: Comprehensive analysis + multi-session plan for token consumption optimization in CSPS. Covers models in use / dynamic adjustment / recurring cycles / file optimization (monolithic vs depth-aware) / orchestrator design / platform integration / phased rollout. Authored S006 turn 26 user directive. DRAFT — awaits external content + insights before ratification + topic-plan opening. Per CCA P-META-009 (Cognitive Context Architecture) + CSPS DNA "quality + holistic context > immediate savings" framing.
-version: 0.1
+description: Comprehensive analysis + multi-session plan for token consumption optimization in CSPS. Covers models in use / dynamic adjustment / recurring cycles / file optimization (monolithic vs depth-aware) / orchestrator design / platform integration / phased rollout. Authored S006 turn 26; v0.2 absorbs CSP_STANDARD_TOKEN_BUDGET_GOVERNANCE (S006 turn 27) — synthesizing 4 council inputs (Perplexity backbone + GPT B_TOKEN_BUDGET architecture + Gemini prompt-caching + Claude AI hooks-replacing-injection) per CSP S335 standard. DRAFT — awaits Governor ratification before topic-plan opening. Per CCA P-META-009 + CSPS DNA "quality + holistic context > immediate savings".
+version: 0.2
 last_update_session: S006
-last_update_turn: 26
+last_update_turn: 27
 owner: group:finky
 authored_by: AI (Claude Opus 4.7 main thread) at user direction S006 turn 26
 creator: Yariv Fink (platform owner; CSPS architect)
@@ -546,6 +546,158 @@ token_optimization_topic_plan:
 
 - Governor Prompts S006 — [GP-S006-25 token-optimization-analysis-directive](../_handoff/VAULT/governor-prompts/S006.md)
 - User S006 turn 26 directive: *"prepare a comprehensive md draft file on this matter and optimization in this platform"* + *"include detailed plan !! with all content and context covering all aspects and with optimal order"*
+
+---
+
+## §14 v0.2 — Absorbed insights from CSP_STANDARD_TOKEN_BUDGET_GOVERNANCE (S006 turn 27)
+
+User S006 turn 27 provided CSP standard authored by Claude AI council member synthesizing Perplexity + GPT + Gemini + Claude AI inputs. Absorbed insights below; CSP↔CSPS mapping in §14.4.
+
+### §14.1 The 5 operating rules — proposed B_TOKEN_BUDGET contract (DRAFT)
+
+The following 5 rules form a candidate B_TOKEN_BUDGET behavioral contract. **Status: DRAFT proposal**; engraving as full B_* requires Governor ratification + 5/5 atomic engraving pass per FSE.
+
+| # | Rule | Operationalization |
+|---|---|---|
+| 1 | **Default depth: L1 (quick) only.** L2/L3 require explicit trigger | L2 escalation triggers: validator failure cites L2 / implementation needs exact section / ambiguity unresolved at L1. L3 escalation: ratification dispute / ZF semantic failure / constitutional wording required |
+| 2 | **Default model tiering** | Sonnet for build/edit/standard / Haiku for subagents (read-only ops via Task tool) / Opus for engraving + PCR + ZF synthesis + architectural decisions (CCA QG1 immutable). **No mid-task model switching** (cache is model-specific). |
+| 3 | **Default at IMPL_BATCH boundary: `/compact <focus>`** | Strategic compaction with focus instructions replaces auto-compact's content-loss pattern. CSPS analog: at L<N>→L<N+1> topic-plan transitions OR at any commit-worthy boundary |
+| 4 | **Default between unrelated tasks: `/clear` + new session** | Stale context from unrelated tasks does not pay rent. CSPS analog: per chat-vs-session distinction (P-META-014 + memory entry) — when domain changes, session-boundary required |
+| 5 | **Default for tool output: summary first, full log path-linked** | Validator + command + file-read returns: status + findings_count + top_5 + evidence_paths + full_log_path. AI reads summary first; full log on demand. Prevents validator outputs from accumulating as 5K-10K token blobs |
+
+### §14.2 The 7 strategies — RANKED BY IMPACT (replaces my unranked list in §6)
+
+| # | Strategy | Layer affected | Estimated savings | Quality risk |
+|---|---|---|---|---|
+| 1 | **Shrink AGENTS.md/CLAUDE.md to <500 tokens; move detail to skills** | Layer 1 → Layer 2 | **60-80% baseline** (the dominant lever) | Low (mitigated by 10-scenario over-compression test §14.5) |
+| 2 | **Move deterministic rules from AGENTS.md cascade to hooks** | Layer 1 → Layer 4 | 2,000-4,000 tok/turn | None — quality improves (hooks = Tier 0 mechanical; cannot be ignored) |
+| 3 | **Use subagents (Haiku) for heavy operations** | Main → Layer 3 isolated | 40-60% mid-session | Low — clear instructions required |
+| 4 | **Strategic /compact at IMPL_BATCH boundary** | Session lifecycle | 20-30% waste reduction | None — quality improves |
+| 5 | **`.claudeignore` excluding historical/archived files** | Layer 1 | 5,000-20,000 tok/session | None |
+| 6 | **Three-tier model strategy (Sonnet/Haiku/Opus)** | Per-task | 30-50% on routed tasks | Low — match model to task type per CCA QG1 |
+| 7 | **Reduce MCP server overhead (disable unused)** | Layer 1 | 5,000-15,000 tok/server | None |
+
+### §14.3 4-Layer Context Architecture (CSPS-adapted)
+
+CSP framing of context loading clarifies CSPS's existing CCA 5-layer architecture. Mapping:
+
+| Layer | Lives in | Loads when | Context cost | CSPS today |
+|---|---|---|---|---|
+| **Layer 1 — Always-resident** | `AGENTS.md` (currently ~9.5K tokens; target <500 = ~10K → ~500) + per-pillar AGENTS.md | Every session-open | Constant baseline | ⚠️ AGENTS.md is currently 193 lines (~9.5K); could shrink with skill extraction |
+| **Layer 2 — On-demand (skills)** | `packages/skills/<name>/SKILL.md` + frontmatter `description:` field | Task description matches skill | ~100 tok startup; full-load 500-2000 when invoked | ✅ Pattern exists (7 SKILL.md aligned per AAP); ⚠️ skill triggers not optimized for description-matching auto-load |
+| **Layer 3 — Isolated (subagents)** | Task tool invocation; `model: haiku` for read-only | Heavy operation invoked | Returns summary only (200-500 tokens) | ⚠️ Available but not yet disciplined; B_AGENT_ALIGNMENT_PROTOCOL Class B governs but no auto-routing |
+| **Layer 4 — Outside context (hooks)** | `.claude/hooks/*.sh` | Deterministic enforcement | Zero context cost | ⚠️ Hooks declared in many engravings; impl deferred week-4 |
+
+**Top-expert observation:** the framing "Layer 4 = zero context cost = Tier 0 mechanical" is a sharper articulation than CSPS had. Hooks aren't just enforcement — they're context-saving infrastructure. Every rule moved from AGENTS.md (Layer 1) to hooks (Layer 4) saves 150-300 tokens × every session for the rest of the platform's life.
+
+### §14.4 Hooks-replace-injection migration table (concrete)
+
+CSP standard provides specific migration mapping. CSPS-adapted:
+
+| Rule (currently in AGENTS.md cascade) | Move to hook | Hook event | Token saving per turn |
+|---|---|---|---|
+| B_VALIDATE_BEFORE_ASSUME (tool-call sandwich) | `.claude/hooks/post-tool-use-validate-before-assume.sh` | PostToolUse | ~200 tokens |
+| B_RZF re-run-is-the-proof on DONE claims | `.claude/hooks/pre-tool-use-rzf-evidence-gate.sh` | PreToolUse on commit | ~250 tokens |
+| B_PCR_FOR_DECISIONS trigger detection | `.claude/hooks/post-stop-pcr-check.sh` | PostStop | ~200 tokens |
+| B_ALWAYS_GIT_LINKS path-mention scan | `.claude/hooks/post-stop-link-discipline.sh` | PostStop | ~150 tokens |
+| B_NO_CONFIRMATION_SEEKING phrase scan | `.claude/hooks/post-stop-banned-phrase.sh` | PostStop | ~100 tokens |
+| B_GOVERNOR_PROMPTS auto-log | `.claude/hooks/user-prompt-submit-governor-prompts.sh` | UserPromptSubmit | ~50 tokens (already cheap) |
+| B_PRE_CLOSE_VERIFICATION pnpm verify | `.claude/hooks/post-stop-pnpm-verify.sh` | PostStop on session-close | ~300 tokens |
+
+**Total savings per turn from 7 hook migrations: ~1,250 tokens.** Cumulative over a session: substantial.
+
+### §14.5 The 10-scenario over-compression test (NEW exit criteria for Phase 1)
+
+**Why this test matters:** A failed skill trigger means AI proceeds without governance context it needs, then asks clarification questions, then loads the skill anyway. Clarification turns cost more than the original AGENTS.md context would have.
+
+**The 10 representative session-start scenarios** (CSPS-adapted from CSP):
+
+1. "Run pnpm verify on the current branch" → expects `validate-self` skill loads (or equivalent)
+2. "Help me compose a new B_* contract" → expects `engraving-discipline` skill loads (or equivalent)
+3. "What are the AGENTS.md hard NOs?" → expects `behavioral-contracts-skill` loads
+4. "Process responses from the user about <topic>" → expects `governor-prompts` skill loads
+5. "Update the handoff before session close" → expects `handoff-skill` loads
+6. "Apply CSPS frontmatter to this file" → expects `frontmatter-skill` loads
+7. "What does P-META-018 mean?" → expects `principles-mcp` query OR `principles-skill` loads
+8. "Engrave a new B_* at 5/5 surfaces" → expects `five-surface-engraving-skill` loads
+9. "Run an element-review on <element>" → expects `element-review-skill` loads
+10. "Continue from last session" → expects `session-open` skill loads (HANDOFF Zone A reading)
+
+**PASS criterion:** ≥9/10 scenarios load the correct skill. <9/10 = skill descriptions too vague; rewrite descriptions before declaring Phase 1 complete.
+
+### §14.6 The 5-mode validator (NEW concrete design for Phase 8)
+
+`tools/validators/validate-token-budget.mjs` (proposed; design absorbed from CSP):
+
+| Mode | Check | FAIL action |
+|---|---|---|
+| 1 | AGENTS.md word count check (<500 tokens, <200 lines) | YELLOW finding; remediation = move detail to skills |
+| 2 | Skills directory completeness (every governance domain has skill) | YELLOW finding; list missing |
+| 3 | Hook presence verification (declared rules have backing hook scripts) | YELLOW finding; list undeclared rules |
+| 4 | /compact frequency check in session logs (≥1 per IMPL_BATCH boundary) | YELLOW finding when ratio <0.8 |
+| 5 | Prompt cache continuity (no mid-session model switch) | YELLOW finding; surface offending session |
+
+**Ratchet eligibility (FAIL_CLOSED):** ≥10 sessions with measured token savings ≥50% vs baseline. Pre-validator-ratchet ADVISORY warn-only per ratchet protocol engraved S006 turn 9.
+
+### §14.7 Slash commands quick reference (CSPS-curated)
+
+| Command | When to use | Effect |
+|---|---|---|
+| `/usage` | Session start, IMPL_BATCH boundaries, session close | Token + cost measurement |
+| `/compact <focus>` | At commit-worthy boundary; before context exceeds 65% | Strategic compaction with preservation rules |
+| `/clear` | Between unrelated tasks; after ZF-0 + handoff written | Resets context; new session from AGENTS.md |
+| `/model <tier>` | Task boundary only (NEVER mid-task) | Switches model; rebuilds cache |
+| `/mcp` | Session start; never mid-session | Enable/disable MCP servers |
+
+### §14.8 Cruel-critic 5 amendments (preemptively absorbed)
+
+CSP standard's cruel-critic flagged 5 amendments before Governor seal. All adopted preemptively into CSPS plan:
+
+| # | CSP critique | CSPS application |
+|---|---|---|
+| 1 | "60-80% savings claim is unverified" | §1 BLUF marks as ESTIMATED with measurement obligation; Phase 1 baseline measurement required before any claim |
+| 2 | "Hooks-replacing-injection assumes hook reliability" | §14.4 migration includes SessionStart self-test hook (`verify-hooks-functional.sh` per CSP Appendix B) |
+| 3 | "Over-compression test is necessary but not sufficient" | §14.5 10-scenario test registered as RECURRING per quarterly cadence (alongside `alignment-drift-over-time`) — not one-time |
+| 4 | "Three-tier model strategy assumes task classification accuracy" | §14.1 Rule 2 mandates explicit task classification rules in AGENTS.md (not judgment-driven) — task-class table per AAP frontmatter |
+| 5 | "4-session implementation sequence is optimistic" | §9 phases are estimated arc 4-6 sessions; explicit "may take 1-2 calendar sessions per phase" caveat added |
+
+### §14.9 CSP ↔ CSPS architectural mapping (for cross-reference)
+
+| CSP element | CSPS equivalent | Disposition |
+|---|---|---|
+| CC-072 Universal Depth Mandate | 3-layer doctrine model (P-ARCH-028) | Same concept; CSPS scope wider (all spines) |
+| CC-058 Lifecycle Gate hooks | Per-layer ZF gates (P-META-016 + B_GRADUAL_BUILD_BY_FOUNDATIONS) | Same concept; different naming |
+| CC-060 File Split (weighted_lines) | Not yet in CSPS — Phase 3 introduces | CSP has formal formula CSPS could adopt |
+| CC-083 Depth-Tier Writing (L1/L2/L3) | **TERM COLLISION** with CSPS L1/L2/L3 doctrine model | Resolution: rename CSP concept to "document depth" {Quick/Element/Canonical} for CSPS |
+| CC-045 Dynamic Loading Depth | Orchestrator design proposed in §7 | CSPS hadn't named this pattern; CSP confirms |
+| SACRED rules | B_AI_PROFESSIONAL_VOICE + B_VALIDATE_BEFORE_ASSUME + B_NO_FALSE_RATIFICATION | Different naming; equivalent intent |
+| B_DONE evidence gate | B_RZF (re-run-IS-the-proof) | CSPS stronger (paired tool-call evidence mandatory) |
+| `context_inject.ps1` | AGENTS.md cascade + per-pillar AGENTS.md | Different injection mechanism; same intent |
+| 5 spines (CNST/GVRN/VALD/ARCH/OPER) | 5 spines (GVRN/ARCH/AI/OPER/VALD) | Different sets; CSPS pending CNST/GVRN split decision (ADR-0025 candidate) |
+
+### §14.10 What CSPS retains that CSP standard doesn't displace
+
+These remain load-bearing CSPS strengths post-absorption:
+
+- **CCA 4 Quality Gates (CONSTITUTIONAL immutable)** — stronger than CSP SACRED equivalent
+- **B_PE_ALIGNMENT_GUARDIAN** — anti-sycophancy gate; CSP has P-GOV-25 but CSPS engraving is more recent + tied to PE schema §7
+- **B_STRUCTURAL_PREVENTION_DISCIPLINE (Q-2 tweak)** — composes with CSP cruel-critic discipline
+- **B_NAMING_POLICY (4 rules)** — CSP standard didn't surface naming as concern; CSPS has it engraved
+- **5 Core Spines explicit (GVRN/ARCH/AI/OPER/VALD)** — different set than CSP; CNST/GVRN split decision pending
+- **3-layer doctrine model with sealed L1 do_not_expand list** — CSPS-specific structural mechanism
+
+### §14.11 Recommendations (concrete next-actions per absorption)
+
+| # | Action | Type | Session target | Authority needed |
+|---|---|---|---|---|
+| 1 | Open `_handoff/VAULT/topic-plans/token-optimization.md` (depth-4) | New topic-plan | S007 | User ratification of token-optimization scope |
+| 2 | Author measurement script (Phase 1 of plan) | Mechanical | S007 turn 1 | None (within token-optimization scope) |
+| 3 | Engrave B_TOKEN_BUDGET as full B_* contract (5/5 atomic per FSE) | New contract engraving | S007 OR S008 | User ratification of B_TOKEN_BUDGET as new contract |
+| 4 | Engrave new principle (P-OPER-002 token-budget-governance OR extend P-META-009) | New principle | S007 OR S008 | User decision: new P-OPER-002 vs amend P-META-009 |
+| 5 | Update token-optimization.md once measurement baseline captured | Document update | S007 | None |
+| 6 | Open companion topic-plan: 7-hooks migration (independent of file-splitting) | New sibling topic-plan | S008 | User ratification |
+| 7 | CSPS-specific skills inventory authoring (10 governance skills like CSP) | Skills authoring | S007-S008 | User ratification of skill list |
+| 8 | Element-review of CSPS skill triggers (10-scenario test with current 7 SKILL.md) | Quality measurement | S008 | None (within scope) |
 
 ---
 

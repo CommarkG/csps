@@ -1,0 +1,18 @@
+{
+  "scenario_id": "session-open",
+  "task_class": "session-open",
+  "description": "Files a fresh AI loads at session-open per chat-jump-prompt + HANDOFF §0 step list. Represents Layer 1 always-resident cost + priority-zero on-demand reads.",
+  "frequency_per_session": 1,
+  "loaded_artifacts": [
+    { "path": "AGENTS.md", "depth": "full", "rationale": "Layer 1 always-resident — every session-open" },
+    { "path": "docs/plan/_handoff/HANDOFF-S006-to-S007.md", "depth": "full", "rationale": "Priority-zero handoff §0 step list" },
+    { "path": "docs/plan/_handoff/VAULT/chat-jump-prompt-S006-to-S007-detailed.md", "depth": "full", "rationale": "Detailed standalone with 12 alignment-questions" },
+    { "path": "docs/plan/_handoff/VAULT/closing-summary-S006.md", "depth": "full", "rationale": "§17 attestation acknowledgement target" },
+    { "path": "docs/plan/_handoff/VAULT/OVERVIEW.md", "depth": "full", "rationale": "Token-optimal entry-point per design" },
+    { "path": "packages/principles/principles.yaml", "depth": "full", "rationale": "Source-of-truth principle registry" },
+    { "path": "docs/plan/_handoff/VAULT/protocols.md", "depth": "full", "rationale": "Fresh-chat §11 step 0 reference" },
+    { "path": "docs/plan/pillar-0-governance/csps-core-manifest.md", "depth": "full", "rationale": "5 Core Spines + 3-layer doctrine" },
+    { "path": "docs/plan/pillar-0-governance/naming-policy.md", "depth": "full", "rationale": "Naming-policy 4 rules" },
+    { "path": "docs/plan/_handoff/VAULT/governor-prompts/S006.md", "depth": "full", "rationale": "Prior-session cardinals + GP context" }
+  ]
+}

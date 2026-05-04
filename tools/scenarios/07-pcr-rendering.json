@@ -1,0 +1,11 @@
+{
+  "scenario_id": "pcr-rendering",
+  "task_class": "decision-frame",
+  "description": "Files an AI loads when rendering a Pros/Cons/Recommendation 3-block per B_PCR_FOR_DECISIONS. Represents the cost of every multi-option decision call.",
+  "frequency_per_session": "3-12",
+  "loaded_artifacts": [
+    { "path": "AGENTS.md", "depth": "full", "rationale": "Layer 1 resident" },
+    { "path": "docs/plan/pillar-0-governance/behavioral-contracts.md", "depth": "full", "rationale": "B_PCR_FOR_DECISIONS contract definition" },
+    { "path": "packages/principles/principles.yaml", "depth": "full", "rationale": "Principle citations in pros/cons" }
+  ]
+}

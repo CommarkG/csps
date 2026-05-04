@@ -1,0 +1,16 @@
+{
+  "scenario_id": "engraving",
+  "task_class": "engraving-new-discipline",
+  "description": "Files an AI loads when authoring a new B_* contract at 5/5 atomic FSE (e.g., the upcoming B_TOKEN_BUDGET extending P-META-009). Composes per FSE amendment S005 turn 18 — atomic registration mandatory.",
+  "frequency_per_session": "0-3 (varies by session work)",
+  "loaded_artifacts": [
+    { "path": "AGENTS.md", "depth": "full", "rationale": "Hard NO list — must check no collision" },
+    { "path": "packages/principles/principles.yaml", "depth": "full", "rationale": "Add new P-* row OR amend existing config block" },
+    { "path": "docs/plan/pillar-0-governance/behavioral-contracts.md", "depth": "full", "rationale": "Add B_* section + cross-references" },
+    { "path": "docs/plan/pillar-0-governance/audit-runner.md", "depth": "full", "rationale": "Atomic validator registration per FSE" },
+    { "path": "docs/plan/pillar-0-governance/ai-behavior-spine.md", "depth": "full", "rationale": "Spine matrix row addition" },
+    { "path": "docs/plan/pillar-0-governance/audit-hub.md", "depth": "full", "rationale": "Pipeline placement for new validators" },
+    { "path": "tools/templates/b-star-contract.template.md", "depth": "full", "rationale": "B_* contract template (B_TEMPLATE_FIRST_CREATION)" },
+    { "path": "docs/plan/_handoff/VAULT/template-registry.md", "depth": "full", "rationale": "Template usage tracking" }
+  ]
+}

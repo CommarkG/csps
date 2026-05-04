@@ -1,0 +1,15 @@
+{
+  "scenario_id": "architectural-decision",
+  "task_class": "adr-drafting",
+  "description": "Files an AI loads when drafting an ADR (e.g., ADR-0025 candidate CNST/GVRN split). Represents high-cost rare cycle. Composes P-ARCH-028 csps-core-spines + P-META-016 foundation-stability.",
+  "frequency_per_session": "0-2",
+  "loaded_artifacts": [
+    { "path": "AGENTS.md", "depth": "full", "rationale": "Resident layer 1" },
+    { "path": "docs/adr/0023-hybrid-frontmatter-schema-universal-core-plus-per-file-type.md", "depth": "full", "rationale": "Recent ADR as template reference" },
+    { "path": "docs/plan/pillar-0-governance/csps-core-manifest.md", "depth": "full", "rationale": "Spine architecture under review" },
+    { "path": "packages/principles/principles.yaml", "depth": "full", "rationale": "Affected principles" },
+    { "path": "docs/plan/pillar-0-governance/audit-hub.md", "depth": "full", "rationale": "Pipelines affected by spine cardinality" },
+    { "path": "docs/plan/_handoff/VAULT/element-reviews/csps-core-spines-S006.md", "depth": "full", "rationale": "Prior element-review with gap_id cnst-gvrn-split" },
+    { "path": "docs/plan/pillar-0-governance/behavioral-contracts.md", "depth": "full", "rationale": "B_CORE_SPINE_DISCIPLINE definition" }
+  ]
+}

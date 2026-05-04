@@ -1,0 +1,18 @@
+{
+  "scenario_id": "handoff-write",
+  "task_class": "session-close-handoff",
+  "description": "Files an AI loads when authoring HANDOFF + closing-summary at session close. Composes B_HANDOFF_PRE_FLIGHT_AUDIT (P-META-013) + B_PRE_CLOSE_VERIFICATION (P-META-008) + chat-transfer 12-item register (token-optimization.md §15). High-token-cost recurring cycle.",
+  "frequency_per_session": 1,
+  "loaded_artifacts": [
+    { "path": "AGENTS.md", "depth": "full", "rationale": "Hard NOs check at close" },
+    { "path": "docs/plan/_handoff/HANDOFF-S005-to-S006.md", "depth": "full", "rationale": "Prior HANDOFF as template reference" },
+    { "path": "docs/plan/_handoff/VAULT/closing-summary-S006.md", "depth": "full", "rationale": "Prior closing-summary as template reference" },
+    { "path": "docs/plan/_handoff/VAULT/protocols.md", "depth": "full", "rationale": "§10 chat-closing protocol" },
+    { "path": "docs/plan/_handoff/VAULT/governor-prompts/S007.md", "depth": "full", "rationale": "Current session GP log" },
+    { "path": "docs/plan/pillar-0-governance/behavioral-contracts.md", "depth": "full", "rationale": "B_* contracts cited in close blocks" },
+    { "path": "packages/principles/principles.yaml", "depth": "full", "rationale": "Principles state at close" },
+    { "path": "docs/plan/_handoff/VAULT/user-intents.md", "depth": "full", "rationale": "Cardinal cross-link target" },
+    { "path": "docs/plan/_handoff/VAULT/template-registry.md", "depth": "full", "rationale": "Template usage tracking" },
+    { "path": "tools/templates/chat-jump-prompt.template.md", "depth": "full", "rationale": "Chat-jump-prompt 8-section spec" }
+  ]
+}

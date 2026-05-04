@@ -1,0 +1,14 @@
+{
+  "scenario_id": "verify",
+  "task_class": "pre-close-verification",
+  "description": "Files the pnpm verify orchestrator + validators read on every cycle. Represents the cost of the §10.0 mandatory gate per B_PRE_CLOSE_VERIFICATION.",
+  "frequency_per_session": "1-5",
+  "loaded_artifacts": [
+    { "path": "tools/verify.mjs", "depth": "full", "rationale": "Orchestrator script" },
+    { "path": "packages/principles/principles.yaml", "depth": "full", "rationale": "principles_validate cycle target" },
+    { "path": "tools/validators/validate-frontmatter.mjs", "depth": "full", "rationale": "Frontmatter validator" },
+    { "path": "tools/validators/validate-aap-frontmatter.mjs", "depth": "full", "rationale": "AAP coverage validator" },
+    { "path": "tools/validators/validate-principle-count-staleness.mjs", "depth": "full", "rationale": "Stale-count validator" },
+    { "path": "tools/verify-last-run.md", "depth": "full", "rationale": "Output artifact pre-close-snapshot" }
+  ]
+}

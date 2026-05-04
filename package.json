@@ -24,12 +24,14 @@
     "audit:run": "echo 'TODO week-4: audit-runner v1' && exit 0",
     "test": "echo 'TODO: tests ship per slice in week-3+' && exit 0",
     "typecheck": "tsc --noEmit",
+    "tokens:measure": "node tools/measure-token-cost.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md,yaml,yml}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md,yaml,yml}\""
   },
   "devDependencies": {
     "typescript": "^5.7.0",
     "prettier": "^3.4.0",
-    "@types/node": "^20.0.0"
+    "@types/node": "^20.0.0",
+    "gpt-tokenizer": "^3.4.0"
   }
 }

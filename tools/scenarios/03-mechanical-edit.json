@@ -1,0 +1,13 @@
+{
+  "scenario_id": "mechanical-edit",
+  "task_class": "leaf-amendment",
+  "description": "Typical mid-session edit: amend a pillar leaf (frontmatter touch + section addition) + re-run frontmatter validator. Representative of bulk routine work.",
+  "frequency_per_session": "5-15",
+  "loaded_artifacts": [
+    { "path": "AGENTS.md", "depth": "full", "rationale": "Resident; cited for hard NOs check" },
+    { "path": "docs/plan/pillar-0-governance/cognitive-context-architecture.md", "depth": "full", "rationale": "Representative target leaf (medium size)" },
+    { "path": "docs/plan/pillar-0-governance/README.md", "depth": "full", "rationale": "Pillar parent for cross-link verification" },
+    { "path": "tools/validators/validate-frontmatter.mjs", "depth": "full", "rationale": "Frontmatter validator runs on edit" },
+    { "path": "docs/adr/0023-hybrid-frontmatter-schema-universal-core-plus-per-file-type.md", "depth": "full", "rationale": "Frontmatter schema source" }
+  ]
+}

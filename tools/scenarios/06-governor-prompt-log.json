@@ -1,0 +1,11 @@
+{
+  "scenario_id": "governor-prompt-log",
+  "task_class": "governance-tracking",
+  "description": "Files an AI loads when adding a GP entry mid-session per B_GOVERNOR_PROMPTS (P-META-012). Represents the per-prompt overhead.",
+  "frequency_per_session": "5-30 (per substantive user prompt)",
+  "loaded_artifacts": [
+    { "path": "docs/plan/_handoff/VAULT/governor-prompts/S007.md", "depth": "full", "rationale": "Current session log (append-target)" },
+    { "path": "docs/plan/_handoff/VAULT/user-intents.md", "depth": "full", "rationale": "Cardinal cross-link" },
+    { "path": "AGENTS.md", "depth": "full", "rationale": "Resident layer 1" }
+  ]
+}

@@ -2,7 +2,7 @@
 /**
  * @csps-id csps.tools.validators.validate-aap-frontmatter
  * @csps-name validate-aap-frontmatter
- * @csps-description Per B_AGENT_ALIGNMENT_PROTOCOL Class A enforcer (active-mechanical S005 turn 26). Scans every packages/skills/<name>/SKILL.md and libs/agents/<name>/agent.zmodel for AAP frontmatter coverage: csps_aligned + aap_version + agent_class + acknowledged_contracts (universal-required B_AI_PROFESSIONAL_VOICE + B_VALIDATE_BEFORE_ASSUME minimum) + respects_quality_gates + output_contract + trust_tier. Missing fields fail; reports scanned/missing/aligned counts.
+ * @csps-description Per B_AGENT_ALIGNMENT_PROTOCOL Class A enforcer (active-mechanical S005 turn 26; multi-location coverage S007 §24+ post-close addendum). Scans EVERY SKILL.md location across CSPS — `packages/skills/<name>/SKILL.md` (platform skills) AND `.claude/skills/<name>/SKILL.md` (Claude Code auto-load skills) AND `libs/agents/<name>/agent.zmodel` (Mastra runtime; week-6+) — for AAP frontmatter coverage: csps_aligned + aap_version + agent_class + acknowledged_contracts (universal-required B_AI_PROFESSIONAL_VOICE + B_VALIDATE_BEFORE_ASSUME minimum) + respects_quality_gates + output_contract + trust_tier. Missing fields fail; reports scanned/missing/aligned counts. **No-wildcards mandate:** any SKILL.md location not in coverage glob = wildcard hazard (per S007 §24+ user directive: "non aligned agent and skills are wild cards that could destroy and damage a lot of what we built here").
  * @csps-version 0.1.0
  * @csps-owner group:finky
  * @csps-lifecycle experimental
@@ -26,7 +26,14 @@ import { dirname, resolve } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '../..');
 
-const SKILL_PATHS = ['packages/skills'];
+// All SKILL.md authoring locations in CSPS — every location scanned per B_AGENT_ALIGNMENT_PROTOCOL no-wildcards mandate.
+// S007 §24+ post-close addendum: '.claude/skills' added (Claude Code auto-load location for 9 skills authored S007 turn 6).
+// Adding a new SKILL.md location requires:
+//   1. add path here
+//   2. update audit-runner.md agent-alignment-coverage description
+//   3. amend behavioral-contracts.md § B_AGENT_ALIGNMENT_PROTOCOL location enumeration
+//   4. add to AGENTS.md hard NO scope statement
+const SKILL_PATHS = ['packages/skills', '.claude/skills'];
 
 // Universal-required B_* acknowledgments (per AAP — every Class A skill must include these minimum)
 const UNIVERSAL_REQUIRED_CONTRACTS = ['B_AI_PROFESSIONAL_VOICE', 'B_VALIDATE_BEFORE_ASSUME'];

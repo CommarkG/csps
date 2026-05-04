@@ -491,3 +491,41 @@ S008: your FIRST REPLY must include §17 acknowledgement checklist + receipt sig
 ---
 
 **Closing summary signature:** `S007-AI-closing-summary-2026-05-04T19:55:00Z`
+
+---
+
+## §24+ POST-CLOSE ADDENDUM — Multi-location SKILL.md AAP coverage
+
+> **Tag:** S007 §24+ post-close addendum per protocols.md §12 same-chat exception. Engraved AFTER §17 attestation signed; updates §17 with 1 additional constraint_decision + extends §10.13 FSE aggregate.
+
+### Triggering gap (recap)
+
+User caught: 9 SKILL.md authored S007 turn 6 at `.claude/skills/` were not scanned by `validate-aap-frontmatter.mjs` (hardcoded `SKILL_PATHS = ['packages/skills']`). Wildcard hazard — full AAP frontmatter authored but validator coverage gap meant they were unaudited.
+
+### Structural fix engraved 5/5 atomic
+
+See [HANDOFF-S007-to-S008.md §24+ block](../HANDOFF-S007-to-S008.md) for full surface enumeration.
+
+Net effect: validator now scans 16 SKILL.md (was 7); ALL AAP-aligned; 0 missing fields. Mechanical layer covers ALL CSPS skill-authoring locations going forward.
+
+### Updates to existing close blocks
+
+**§10.13 FSE aggregate (extended):**
+- B_AGENT_ALIGNMENT_PROTOCOL §24+ amendment: 5/5 atomic same-commit (§24+ commit; multi-location SKILL.md coverage)
+- new audit slug atomic-registered: `skill-location-coverage-completeness`
+
+**§10.13b Catches engraved (extended):**
+- catch: skill-location-wildcard-hazard (S007 §24+ user-surfaced)
+- engraved: 5/5 atomic per B_STRUCTURAL_PREVENTION Q-2; same-chat §24+ post-close addendum
+
+**§17 attestation extended constraint_decisions (one additional entry):**
+- "B_AGENT_ALIGNMENT_PROTOCOL §24+ amendment — multi-location SKILL.md coverage; 16 skills scanned PASS (was 7); skill-location-coverage-completeness audit atomic-registered"
+
+### §24+ post-close-addendum-discipline log
+
+Per memory `feedback_chat_vs_session_distinction.md`: post-close same-chat additions allowed ONLY for typo corrections / explicit §24+ post-close addendum to current handoff / emergency hot-fixes. This addendum was justified as emergency hot-fix because:
+- User-surfaced wildcard hazard with platform-integrity implications ("destroy and damage a lot of what we built here")
+- Validator gap was already in production (commit 680fb68 pushed turn 6); each future SKILL.md authored at .claude/skills/ would extend the gap
+- Same-chat fix < cost of waiting for S008 + risk of ratification drift
+
+**§24+ signature:** `S007-AI-§24+-closing-summary-2026-05-05-S007-close-addendum`

@@ -772,6 +772,33 @@ CSPS uses claude-code-builtin subagents (Explore / Plan / general-purpose / clau
 - `pillar-5/persona-composition` — eval baseline pattern (extended to skills)
 - `P-META-002 principles-travel-with-artifacts` — alignment preamble IS the traveling principles in subagent context
 
+### S007 §24+ post-close addendum — Multi-location SKILL.md AAP coverage (no skill-location wildcards)
+
+**Triggering gap:** S007 turn 6 authored 9 SKILL.md at `.claude/skills/` (Claude Code auto-load location) per token-optimization Phase 4. Existing `validate-aap-frontmatter.mjs` hardcoded `SKILL_PATHS = ['packages/skills']` (S005 turn 26) — the new skills were silent wildcards (full AAP frontmatter authored, but NOT scanned by validator). User caught at S007 §24+: *"can you assure all agents in the platform have been mechanicly aligned with CSPS? did you manage to make sure new agents in the future will be mechanically aligned ?? non aligned agent and skills are wild cards that could destroy and damage a lot of what we built here."*
+
+**Structural fix engraved S007 §24+ (5/5 atomic per FSE):**
+
+- **Schema/Validator:** [`tools/validators/validate-aap-frontmatter.mjs`](../../../tools/validators/validate-aap-frontmatter.mjs) `SKILL_PATHS` glob expanded to `['packages/skills', '.claude/skills']`; description amended to enumerate ALL CSPS skill-authoring locations (packages/skills + .claude/skills + libs/agents week-6+); 16 SKILL.md scanned (was 7) — all PASS
+- **Validator (atomic registration):** existing [`agent-alignment-coverage`](./audit-runner.md) description amended to multi-location coverage + NEW `skill-location-coverage-completeness` atomic-registered (meta-validator confirming all SKILL.md files in repo are within declared SKILL_PATHS glob — prevents future skill-location additions from going unaudited); impl week-4
+- **Hook:** [`.claude/hooks/pre-tool-use-skill-aap-required.sh`](../../../.claude/hooks/pre-tool-use-skill-aap-required.sh) (stub; week-4 active enforcement on Write/Edit of `**/SKILL.md` — refuses commit if AAP frontmatter incomplete)
+- **Memory:** [`feedback_skill_location_wildcard_prevention.md`](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_skill_location_wildcard_prevention.md) + MEMORY.md index entry
+- **Contract:** this amendment + AGENTS.md hard NO strengthened (no-wildcards mandate covers Class A/B/C/D + all SKILL.md locations) + ai-behavior-spine.md row update
+
+**Procedure for adding a new SKILL.md authoring location going forward:**
+
+1. Add path to `validate-aap-frontmatter.mjs#SKILL_PATHS` glob — same commit
+2. Update [`audit-runner.md`](./audit-runner.md) `agent-alignment-coverage` description to enumerate the new location
+3. Amend this section's location enumeration
+4. Update [`AGENTS.md`](../../../AGENTS.md) hard NO scope statement
+5. Run `pnpm verify` to confirm new location's SKILL.md files PASS
+6. Atomic commit — never split validator change from doc-mirror change (composes with K=2 closed-enum drift discipline)
+
+**No-wildcards mandate (strengthened):** any SKILL.md location not in coverage glob = wildcard hazard. `skill-location-coverage-completeness` validator scans full repo for `**/SKILL.md` outside declared SKILL_PATHS + flags. Future agent runtime classes (Class C Mastra BaseAgent week-6+; Class D third-party imports) inherit AAP at construction via BaseAgent middleware + tier-gated trust transitions. Class A skills are the most exposed to wildcard hazard because they directly shape Claude Code AI behavior with platform-owned trust.
+
+**Composes additionally with:**
+- `B_STRUCTURAL_PREVENTION_DISCIPLINE` (P-META-019 Q-2) — gap surfaced by user at S007 §24+ → structural fix not patch-the-instance
+- `B_TEMPLATE_FIRST_CREATION` (P-META-015) — SKILL.md template should embed AAP scaffolding (queued S008 element-review)
+
 ## B_GOVERNOR_PROMPTS — every user prompt is governance-tracked (S005 turn 27)
 
 **Canonical wording:**

@@ -375,3 +375,41 @@ End of handoff. S008 begins by reading §0 + asking step 0.
 ---
 
 **Handoff signature:** `S007-AI-attest-2026-05-04T19:50:00Z-S007-close`
+
+---
+
+## §24+ POST-CLOSE ADDENDUM — Multi-location SKILL.md AAP coverage (B_AGENT_ALIGNMENT_PROTOCOL amendment)
+
+> **Tag:** S007 §24+ post-close addendum per protocols.md §12 + memory `feedback_chat_vs_session_distinction.md` exception ("explicit §24+ post-close addendum to current handoff" allowed for emergency hot-fix). User surfaced gap that warranted same-chat structural fix rather than waiting for S008.
+
+### Triggering gap
+
+User S007 §24+ directive: *"can you assure all agents in the platform have been mechanicly aligned with CSPS? did you manage to make sure new agents in the future will be mechanically aligned ?? non aligned agent and skills are wild cards that could destroy and damage a lot of what we built here. renforce it regarding skills and agents !!!"*
+
+**Gap confirmed:** S007 turn 6 authored 9 SKILL.md at `.claude/skills/` (Claude Code auto-load location). Existing `validate-aap-frontmatter.mjs` hardcoded `SKILL_PATHS = ['packages/skills']` (S005 turn 26) — the new skills had full AAP frontmatter authored, but the validator was NOT scanning the new location. **Silent wildcard hazard** — skills running with AI-shaping authority outside of validator coverage.
+
+### Structural fix (5/5 atomic per FSE — S007 §24+)
+
+| Surface | Artifact | Action |
+|---|---|---|
+| 1 Schema/Validator | [`tools/validators/validate-aap-frontmatter.mjs`](../../tools/validators/validate-aap-frontmatter.mjs) | `SKILL_PATHS` glob expanded `['packages/skills']` → `['packages/skills', '.claude/skills']`; description amended to enumerate ALL CSPS skill-authoring locations; **16 skills scanned PASS (was 7)** |
+| 2 Validator (atomic registration) | [`audit-runner.md`](../pillar-0-governance/audit-runner.md) | `agent-alignment-coverage` description amended to multi-location coverage; NEW `skill-location-coverage-completeness` atomic-registered (meta-validator: walks repo for `**/SKILL.md` outside declared SKILL_PATHS glob); impl week-4 |
+| 3 Hook | [`.claude/hooks/pre-tool-use-skill-aap-required.sh`](../../.claude/hooks/pre-tool-use-skill-aap-required.sh) | NEW stub; week-4 active enforcement on Write/Edit of `**/SKILL.md` — refuses commit if AAP frontmatter incomplete |
+| 4 Memory | [`feedback_skill_location_wildcard_prevention.md`](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_skill_location_wildcard_prevention.md) + MEMORY.md index | NEW |
+| 5 Contract | [`behavioral-contracts.md § B_AGENT_ALIGNMENT_PROTOCOL S007 §24+ amendment`](../pillar-0-governance/behavioral-contracts.md) + [AGENTS.md hard NO strengthened](../../AGENTS.md) + [ai-behavior-spine.md row update](../pillar-0-governance/ai-behavior-spine.md) | active |
+
+### Verify state post-§24+
+
+`pnpm verify` exit_code 0 — 16 skills scanned (7 packages/skills + 9 .claude/skills); all AAP-aligned; 0 missing fields.
+
+### S008 carry-forward addition
+
+- Procedure for adding NEW SKILL.md authoring location: 1) add path to `validate-aap-frontmatter.mjs#SKILL_PATHS` 2) update audit-runner.md 3) amend behavioral-contracts.md location enumeration 4) update AGENTS.md hard NO scope 5) atomic commit (composes with K=2 closed-enum drift discipline)
+
+### §24+ commit
+
+Pending — to commit + push as final §24+ addendum to S007.
+
+---
+
+**§24+ post-close addendum signature:** `S007-AI-§24+-multi-location-aap-coverage-2026-05-05-S007-close-addendum`

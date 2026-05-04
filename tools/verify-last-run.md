@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-04T19:54:01.272Z
-- finished_at: 2026-05-04T19:54:03.711Z
+- ran_at: 2026-05-04T21:10:31.453Z
+- finished_at: 2026-05-04T21:10:33.975Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-04T19:54:01.272Z",
-    "finished_at": "2026-05-04T19:54:03.711Z",
+    "ran_at": "2026-05-04T21:10:31.453Z",
+    "finished_at": "2026-05-04T21:10:33.975Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -51,9 +51,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "skills_scanned": 7,
+        "skills_scanned": 16,
         "missing_aap": 0,
-        "aligned": 7
+        "aligned": 16
       },
       {
         "name": "principle_count_staleness",

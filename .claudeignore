@@ -1,0 +1,44 @@
+# .claudeignore — exclude historical/transient artifacts from Claude Code session-open context load
+# Per token-optimization.md v0.3 §9.5 (Phase 4) + B_TOKEN_BUDGET R1 (default depth L1; on-demand only)
+# Engraved S007 turn 6 — files matching these patterns are NOT loaded by default; explicit Read still works.
+
+# === Historical session artifacts (point-in-time records; load on-demand only) ===
+# Per naming-policy Rule 2 (per-session = immutable historical). S001-S005 closing-summaries
+# and governor-prompts are reference-only after S006+; current session's logs always loaded.
+docs/plan/_handoff/VAULT/qc-audit-results-S00*.md
+docs/plan/_handoff/VAULT/validation-pass-S00*.md
+docs/plan/_handoff/VAULT/blockers-S00*.md
+docs/plan/_handoff/VAULT/gaps-and-duplications-S00*.md
+
+# === Intake processed (extraction artifacts; load on-demand via EXT-ID) ===
+# Per ADR-0023 exempt list. raw.md is verbatim copy of external content; provenance/scan-passed
+# are auto-generated markers. Frontmatter applies to PARENT extraction-note in canonical processed/.
+_intake/processed/*/raw.md
+_intake/processed/*/provenance.md
+_intake/processed/*/scan-passed.md
+
+# === Auto-generated transient files ===
+tools/verify-last-run.md
+tools/bootstrap-readiness.md
+
+# === AGENTS.md backup (reference; not active rules) ===
+AGENTS.md.original
+
+# === Standard exclusions (defensive; Claude Code may already ignore) ===
+node_modules/
+.git/
+.next/
+dist/
+build/
+coverage/
+.turbo/
+*.tsbuildinfo
+
+# === Logs + temp ===
+*.log
+.DS_Store
+tmp/
+.cache/
+
+# Note: per B_TOKEN_BUDGET R5, full file content is on-demand. Excluded files remain accessible
+# via explicit Read tool; this file only governs auto-context-load at session-open.

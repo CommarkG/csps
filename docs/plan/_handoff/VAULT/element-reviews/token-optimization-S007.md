@@ -265,6 +265,55 @@ Per [token-optimization.md v0.3 §9.4](../../../pillar-0-governance/token-optimi
 
 ---
 
+## §3.5 Phase 4 measured savings (S007 turn 6 — first empirical data point)
+
+**Re-measurement after Phase 4 sub-batches a/b/c (AGENTS.md slim + 9 new SKILL.md files at .claude/skills/ + .claudeignore):**
+
+| Scenario | S007 turn 2 | S007 turn 6 | Δ tokens | % savings |
+|---|---:|---:|---:|---:|
+| session-open | 86,005 | 79,647 | -6,358 | **-7.4%** |
+| engraving | 110,287 | 107,448 | -2,839 | -2.6% |
+| mechanical-edit | 25,818 | 17,843 | -7,975 | **-30.9%** |
+| verify | 46,703 | 48,320 | +1,617 | +3.5% |
+| handoff-write | 116,870 | 114,589 | -2,281 | -2.0% |
+| governor-prompt-log | 16,418 | 10,571 | -5,847 | **-35.6%** |
+| pcr-rendering | 72,585 | 68,176 | -4,409 | -6.1% |
+| architectural-decision | 90,477 | 86,276 | -4,201 | -4.6% |
+| **AGGREGATE** | **565,163** | **532,870** | **-32,293** | **-5.7%** |
+
+### §3.5.1 Insights
+
+**Strongest savings (Phase 4 directly targeted):**
+- `mechanical-edit` -30.9% — AGENTS.md is dominant contributor; 77% slim shows up directly
+- `governor-prompt-log` -35.6% — AGENTS.md is 1 of 3 files; high relative impact
+
+**Modest savings (AGENTS.md is 1 of N files):**
+- `session-open` -7.4% — AGENTS.md is 1 of 10; bulk still in HANDOFF + chat-jump-detailed + closing-summary
+- `pcr-rendering` -6.1% — principles.yaml + behavioral-contracts dominate (not yet split)
+- `architectural-decision` -4.6% — principles + manifest + audit-hub dominate
+
+**Neutral or slight regression:**
+- `verify` +3.5% — principles.yaml grew by B_TOKEN_BUDGET extension (~80 lines added in P-META-009 config); explains the small increase
+- `handoff-write` -2.0% — AGENTS.md is 1 of 10 files; bulk is principles + behavioral-contracts + closing-summary
+- `engraving` -2.6% — principles.yaml + behavioral-contracts + audit-runner dominate (Phase 7 file-splits target this)
+
+### §3.5.2 Empirical confirmation of cruel-critic Critique 1
+
+**Cruel-critic prediction (token-optimization.md §14.8):** "60-80% savings claim is unverified".
+
+**S007 turn 6 measured:** 5.7% aggregate from Phase 4 alone. The 60-80% target is **end-state across all 10 phases** — not Phase 4 alone. Confirmed: Phase 4 slim is necessary but far from sufficient.
+
+**Phase 7 file-splits remain dominant lever** — `principles.yaml` + `behavioral-contracts.md` + `audit-runner.md` dominate 6/8 scenarios (per Phase 1 baseline §1.4). Splitting these to per-entry slices is where the next ~30-40% reduction lives.
+
+### §3.5.3 Per-strategy scoring update (PE re-evaluation post-Phase-4)
+
+| # | Strategy | Pre-Phase-4 PE | Post-Phase-4 PE | Notes |
+|---|---|---:|---:|---|
+| 1 | File splits | 7.30 | 7.30 (unchanged) | dependency_satisfied still 0 (depends on Phase 5+6) |
+| 2 | AGENTS.md slim | 7.15 | **EXECUTED** (5.7% measured) | partial; Phase 5 hook migration completes the discipline |
+| 3 | principles-mcp build | 5.65 | 5.65 (unchanged) | still pending Phase 7 splits |
+| 4 | Hook migration | 5.20 | **5.50** (slight raise) | Phase 1 measurement re-confirms ~1,250 tokens/turn savings target; AGENTS.md slim provides the cascade items to migrate |
+
 ## §4 Element-review attestation (Phase 2 close — L1→L2 ZF gate)
 
 ```yaml

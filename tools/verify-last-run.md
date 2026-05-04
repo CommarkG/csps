@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-04T19:28:18.868Z
-- finished_at: 2026-05-04T19:28:21.371Z
+- ran_at: 2026-05-04T19:43:40.049Z
+- finished_at: 2026-05-04T19:43:42.435Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-04T19:28:18.868Z",
-    "finished_at": "2026-05-04T19:28:21.371Z",
+    "ran_at": "2026-05-04T19:43:40.049Z",
+    "finished_at": "2026-05-04T19:43:42.435Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {

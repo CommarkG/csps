@@ -74,10 +74,10 @@ muv_audit:
 
 | Phase | Focus | Depends on | Est. session cost | Status |
 |---|---|---|---|---|
-| 1 | Baseline measurement | nothing | 0.3-0.5 | ✅ DONE S007 turn 2 |
-| 2 | Element-review (gap analysis + priority placement) | Phase 1 | 0.3 | ✅ DONE S007 turn 3 |
-| 3 | B_TOKEN_BUDGET 5/5 atomic engraving (CONTRACT-FIRST) | Phase 2 | 0.5-0.7 | ⏳ AWAITS RATIFICATION (5 rules per element-review §3.4) |
-| 4 | AGENTS.md slim + 10 skills + .claudeignore | Phase 3 | 1-2 | pending |
+| 1 | Baseline measurement | nothing | 0.3-0.5 | ✅ DONE S007 turn 2 (565K aggregate; 0/52 missing) |
+| 2 | Element-review (gap analysis + priority placement) | Phase 1 | 0.3 | ✅ DONE S007 turn 3 (9 strategies PE-scored; 4 bands) |
+| 3 | B_TOKEN_BUDGET 5/5 atomic engraving (CONTRACT-FIRST) | Phase 2 | 0.5-0.7 | ✅ DONE S007 turn 4 (commit 9b4a409; extends P-META-009; 5 audits + AGENTS.md NO atomic) |
+| 4 | AGENTS.md slim + 9 skills + .claudeignore | Phase 3 | 1-2 | ✅ DONE S007 turn 6 (143 lines / 1377 words AGENTS.md; -77% words; 9 SKILL.md at .claude/skills/; .claudeignore; **5.7% aggregate savings measured** vs Phase 1 baseline) |
 | 5 | Hook migration (7 hooks per migration table) | Phase 4 | 1 | pending |
 | 6 | Subagent + Haiku tiering | Phase 5 | 0.5-1 | pending |
 | 7 | File splitting (principles.yaml + behavioral-contracts + audit-runner + ai-behavior-spine) | Phase 4 + 6 | 4-8 | pending |

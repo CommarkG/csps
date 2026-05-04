@@ -1,5 +1,5 @@
 {
-  "measured_at": "2026-05-04T18:42:40.902Z",
+  "measured_at": "2026-05-04T19:42:20.152Z",
   "session": "S007",
   "tokenizer": "gpt-tokenizer cl100k_base",
   "tokenizer_version": "3.4.0",
@@ -10,7 +10,7 @@
       "scenario_id": "session-open",
       "description": "Files a fresh AI loads at session-open per chat-jump-prompt + HANDOFF §0 step list. Represents Layer 1 always-resident cost + priority-zero on-demand reads.",
       "task_class": "session-open",
-      "total_tokens": 86005,
+      "total_tokens": 79647,
       "artifact_count": 10,
       "missing_count": 0,
       "artifacts": [
@@ -19,10 +19,10 @@
           "depth": "full",
           "rationale": "Layer 1 always-resident — every session-open",
           "exists": true,
-          "tokens": 11276,
-          "chars": 45785,
-          "lines": 206,
-          "bytes": 46293
+          "tokens": 3301,
+          "chars": 12106,
+          "lines": 144,
+          "bytes": 12267
         },
         {
           "path": "docs/plan/_handoff/HANDOFF-S006-to-S007.md",
@@ -69,10 +69,10 @@
           "depth": "full",
           "rationale": "Source-of-truth principle registry",
           "exists": true,
-          "tokens": 36738,
-          "chars": 158359,
-          "lines": 1927,
-          "bytes": 159106
+          "tokens": 38355,
+          "chars": 165460,
+          "lines": 1980,
+          "bytes": 166215
         },
         {
           "path": "docs/plan/_handoff/VAULT/protocols.md",
@@ -120,7 +120,7 @@
       "scenario_id": "engraving",
       "description": "Files an AI loads when authoring a new B_* contract at 5/5 atomic FSE (e.g., the upcoming B_TOKEN_BUDGET extending P-META-009). Composes per FSE amendment S005 turn 18 — atomic registration mandatory.",
       "task_class": "engraving-new-discipline",
-      "total_tokens": 110287,
+      "total_tokens": 107448,
       "artifact_count": 8,
       "missing_count": 0,
       "artifacts": [
@@ -129,60 +129,60 @@
           "depth": "full",
           "rationale": "Hard NO list — must check no collision",
           "exists": true,
-          "tokens": 11276,
-          "chars": 45785,
-          "lines": 206,
-          "bytes": 46293
+          "tokens": 3301,
+          "chars": 12106,
+          "lines": 144,
+          "bytes": 12267
         },
         {
           "path": "packages/principles/principles.yaml",
           "depth": "full",
           "rationale": "Add new P-* row OR amend existing config block",
           "exists": true,
-          "tokens": 36738,
-          "chars": 158359,
-          "lines": 1927,
-          "bytes": 159106
+          "tokens": 38355,
+          "chars": 165460,
+          "lines": 1980,
+          "bytes": 166215
         },
         {
           "path": "docs/plan/pillar-0-governance/behavioral-contracts.md",
           "depth": "full",
           "rationale": "Add B_* section + cross-references",
           "exists": true,
-          "tokens": 24571,
-          "chars": 102247,
-          "lines": 1169,
-          "bytes": 102991
+          "tokens": 26520,
+          "chars": 109856,
+          "lines": 1206,
+          "bytes": 110659
         },
         {
           "path": "docs/plan/pillar-0-governance/audit-runner.md",
           "depth": "full",
           "rationale": "Atomic validator registration per FSE",
           "exists": true,
-          "tokens": 15292,
-          "chars": 59429,
-          "lines": 622,
-          "bytes": 59686
+          "tokens": 16009,
+          "chars": 62159,
+          "lines": 628,
+          "bytes": 62423
         },
         {
           "path": "docs/plan/pillar-0-governance/ai-behavior-spine.md",
           "depth": "full",
           "rationale": "Spine matrix row addition",
           "exists": true,
-          "tokens": 10584,
-          "chars": 38918,
-          "lines": 204,
-          "bytes": 39245
+          "tokens": 11229,
+          "chars": 41189,
+          "lines": 205,
+          "bytes": 41539
         },
         {
           "path": "docs/plan/pillar-0-governance/audit-hub.md",
           "depth": "full",
           "rationale": "Pipeline placement for new validators",
           "exists": true,
-          "tokens": 6693,
-          "chars": 26001,
-          "lines": 447,
-          "bytes": 28240
+          "tokens": 6901,
+          "chars": 26726,
+          "lines": 454,
+          "bytes": 29002
         },
         {
           "path": "tools/templates/b-star-contract.template.md",
@@ -210,7 +210,7 @@
       "scenario_id": "mechanical-edit",
       "description": "Typical mid-session edit: amend a pillar leaf (frontmatter touch + section addition) + re-run frontmatter validator. Representative of bulk routine work.",
       "task_class": "leaf-amendment",
-      "total_tokens": 25818,
+      "total_tokens": 17843,
       "artifact_count": 5,
       "missing_count": 0,
       "artifacts": [
@@ -219,10 +219,10 @@
           "depth": "full",
           "rationale": "Resident; cited for hard NOs check",
           "exists": true,
-          "tokens": 11276,
-          "chars": 45785,
-          "lines": 206,
-          "bytes": 46293
+          "tokens": 3301,
+          "chars": 12106,
+          "lines": 144,
+          "bytes": 12267
         },
         {
           "path": "docs/plan/pillar-0-governance/cognitive-context-architecture.md",
@@ -270,7 +270,7 @@
       "scenario_id": "verify",
       "description": "Files the pnpm verify orchestrator + validators read on every cycle. Represents the cost of the §10.0 mandatory gate per B_PRE_CLOSE_VERIFICATION.",
       "task_class": "pre-close-verification",
-      "total_tokens": 46703,
+      "total_tokens": 48320,
       "artifact_count": 6,
       "missing_count": 0,
       "artifacts": [
@@ -289,10 +289,10 @@
           "depth": "full",
           "rationale": "principles_validate cycle target",
           "exists": true,
-          "tokens": 36738,
-          "chars": 158359,
-          "lines": 1927,
-          "bytes": 159106
+          "tokens": 38355,
+          "chars": 165460,
+          "lines": 1980,
+          "bytes": 166215
         },
         {
           "path": "tools/validators/validate-frontmatter.mjs",
@@ -340,7 +340,7 @@
       "scenario_id": "handoff-write",
       "description": "Files an AI loads when authoring HANDOFF + closing-summary at session close. Composes B_HANDOFF_PRE_FLIGHT_AUDIT (P-META-013) + B_PRE_CLOSE_VERIFICATION (P-META-008) + chat-transfer 12-item register (token-optimization.md §15). High-token-cost recurring cycle.",
       "task_class": "session-close-handoff",
-      "total_tokens": 116870,
+      "total_tokens": 114589,
       "artifact_count": 10,
       "missing_count": 0,
       "artifacts": [
@@ -349,10 +349,10 @@
           "depth": "full",
           "rationale": "Hard NOs check at close",
           "exists": true,
-          "tokens": 11276,
-          "chars": 45785,
-          "lines": 206,
-          "bytes": 46293
+          "tokens": 3301,
+          "chars": 12106,
+          "lines": 144,
+          "bytes": 12267
         },
         {
           "path": "docs/plan/_handoff/HANDOFF-S005-to-S006.md",
@@ -389,30 +389,30 @@
           "depth": "full",
           "rationale": "Current session GP log",
           "exists": true,
-          "tokens": 1230,
-          "chars": 4311,
-          "lines": 89,
-          "bytes": 4354
+          "tokens": 3358,
+          "chars": 11748,
+          "lines": 183,
+          "bytes": 11862
         },
         {
           "path": "docs/plan/pillar-0-governance/behavioral-contracts.md",
           "depth": "full",
           "rationale": "B_* contracts cited in close blocks",
           "exists": true,
-          "tokens": 24571,
-          "chars": 102247,
-          "lines": 1169,
-          "bytes": 102991
+          "tokens": 26520,
+          "chars": 109856,
+          "lines": 1206,
+          "bytes": 110659
         },
         {
           "path": "packages/principles/principles.yaml",
           "depth": "full",
           "rationale": "Principles state at close",
           "exists": true,
-          "tokens": 36738,
-          "chars": 158359,
-          "lines": 1927,
-          "bytes": 159106
+          "tokens": 38355,
+          "chars": 165460,
+          "lines": 1980,
+          "bytes": 166215
         },
         {
           "path": "docs/plan/_handoff/VAULT/user-intents.md",
@@ -450,7 +450,7 @@
       "scenario_id": "governor-prompt-log",
       "description": "Files an AI loads when adding a GP entry mid-session per B_GOVERNOR_PROMPTS (P-META-012). Represents the per-prompt overhead.",
       "task_class": "governance-tracking",
-      "total_tokens": 16418,
+      "total_tokens": 10571,
       "artifact_count": 3,
       "missing_count": 0,
       "artifacts": [
@@ -459,10 +459,10 @@
           "depth": "full",
           "rationale": "Current session log (append-target)",
           "exists": true,
-          "tokens": 1230,
-          "chars": 4311,
-          "lines": 89,
-          "bytes": 4354
+          "tokens": 3358,
+          "chars": 11748,
+          "lines": 183,
+          "bytes": 11862
         },
         {
           "path": "docs/plan/_handoff/VAULT/user-intents.md",
@@ -479,10 +479,10 @@
           "depth": "full",
           "rationale": "Resident layer 1",
           "exists": true,
-          "tokens": 11276,
-          "chars": 45785,
-          "lines": 206,
-          "bytes": 46293
+          "tokens": 3301,
+          "chars": 12106,
+          "lines": 144,
+          "bytes": 12267
         }
       ]
     },
@@ -490,7 +490,7 @@
       "scenario_id": "pcr-rendering",
       "description": "Files an AI loads when rendering a Pros/Cons/Recommendation 3-block per B_PCR_FOR_DECISIONS. Represents the cost of every multi-option decision call.",
       "task_class": "decision-frame",
-      "total_tokens": 72585,
+      "total_tokens": 68176,
       "artifact_count": 3,
       "missing_count": 0,
       "artifacts": [
@@ -499,30 +499,30 @@
           "depth": "full",
           "rationale": "Layer 1 resident",
           "exists": true,
-          "tokens": 11276,
-          "chars": 45785,
-          "lines": 206,
-          "bytes": 46293
+          "tokens": 3301,
+          "chars": 12106,
+          "lines": 144,
+          "bytes": 12267
         },
         {
           "path": "docs/plan/pillar-0-governance/behavioral-contracts.md",
           "depth": "full",
           "rationale": "B_PCR_FOR_DECISIONS contract definition",
           "exists": true,
-          "tokens": 24571,
-          "chars": 102247,
-          "lines": 1169,
-          "bytes": 102991
+          "tokens": 26520,
+          "chars": 109856,
+          "lines": 1206,
+          "bytes": 110659
         },
         {
           "path": "packages/principles/principles.yaml",
           "depth": "full",
           "rationale": "Principle citations in pros/cons",
           "exists": true,
-          "tokens": 36738,
-          "chars": 158359,
-          "lines": 1927,
-          "bytes": 159106
+          "tokens": 38355,
+          "chars": 165460,
+          "lines": 1980,
+          "bytes": 166215
         }
       ]
     },
@@ -530,7 +530,7 @@
       "scenario_id": "architectural-decision",
       "description": "Files an AI loads when drafting an ADR (e.g., ADR-0025 candidate CNST/GVRN split). Represents high-cost rare cycle. Composes P-ARCH-028 csps-core-spines + P-META-016 foundation-stability.",
       "task_class": "adr-drafting",
-      "total_tokens": 90477,
+      "total_tokens": 86276,
       "artifact_count": 7,
       "missing_count": 0,
       "artifacts": [
@@ -539,10 +539,10 @@
           "depth": "full",
           "rationale": "Resident layer 1",
           "exists": true,
-          "tokens": 11276,
-          "chars": 45785,
-          "lines": 206,
-          "bytes": 46293
+          "tokens": 3301,
+          "chars": 12106,
+          "lines": 144,
+          "bytes": 12267
         },
         {
           "path": "docs/adr/0023-hybrid-frontmatter-schema-universal-core-plus-per-file-type.md",
@@ -569,20 +569,20 @@
           "depth": "full",
           "rationale": "Affected principles",
           "exists": true,
-          "tokens": 36738,
-          "chars": 158359,
-          "lines": 1927,
-          "bytes": 159106
+          "tokens": 38355,
+          "chars": 165460,
+          "lines": 1980,
+          "bytes": 166215
         },
         {
           "path": "docs/plan/pillar-0-governance/audit-hub.md",
           "depth": "full",
           "rationale": "Pipelines affected by spine cardinality",
           "exists": true,
-          "tokens": 6693,
-          "chars": 26001,
-          "lines": 447,
-          "bytes": 28240
+          "tokens": 6901,
+          "chars": 26726,
+          "lines": 454,
+          "bytes": 29002
         },
         {
           "path": "docs/plan/_handoff/VAULT/element-reviews/csps-core-spines-S006.md",
@@ -599,18 +599,18 @@
           "depth": "full",
           "rationale": "B_CORE_SPINE_DISCIPLINE definition",
           "exists": true,
-          "tokens": 24571,
-          "chars": 102247,
-          "lines": 1169,
-          "bytes": 102991
+          "tokens": 26520,
+          "chars": 109856,
+          "lines": 1206,
+          "bytes": 110659
         }
       ]
     }
   },
   "summary": {
     "total_scenarios": 8,
-    "total_tokens_aggregate": 565163,
-    "max_scenario_tokens": 116870,
+    "total_tokens_aggregate": 532870,
+    "max_scenario_tokens": 114589,
     "max_scenario_id": "handoff-write",
     "total_artifacts_scanned": 52,
     "total_missing_artifacts": 0

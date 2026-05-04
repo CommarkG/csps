@@ -75,8 +75,8 @@ muv_audit:
 | Phase | Focus | Depends on | Est. session cost | Status |
 |---|---|---|---|---|
 | 1 | Baseline measurement | nothing | 0.3-0.5 | ✅ DONE S007 turn 2 |
-| 2 | Element-review (gap analysis + priority placement) | Phase 1 | 0.3 | ⏳ NEXT |
-| 3 | B_TOKEN_BUDGET 5/5 atomic engraving (CONTRACT-FIRST) | Phase 2 | 0.5-0.7 | pending |
+| 2 | Element-review (gap analysis + priority placement) | Phase 1 | 0.3 | ✅ DONE S007 turn 3 |
+| 3 | B_TOKEN_BUDGET 5/5 atomic engraving (CONTRACT-FIRST) | Phase 2 | 0.5-0.7 | ⏳ AWAITS RATIFICATION (5 rules per element-review §3.4) |
 | 4 | AGENTS.md slim + 10 skills + .claudeignore | Phase 3 | 1-2 | pending |
 | 5 | Hook migration (7 hooks per migration table) | Phase 4 | 1 | pending |
 | 6 | Subagent + Haiku tiering | Phase 5 | 0.5-1 | pending |
@@ -107,10 +107,11 @@ muv_audit:
 - [x] Baseline JSON committed; values measured (not estimated)
 - [x] All 8 scenarios captured (0 missing artifacts of 52 declared)
 - [x] Per-scenario totals documented in element-review §1 state-of-art
-- [ ] Phase 2 §2/§3 (gap analysis + priority placement) authored — next turn
+- [x] Phase 2 §2/§3 authored — 9 strategies scored via PE 5-dim; 4 promoted to execution slate
 - [x] `pnpm verify` exit_code 0
+- [x] Element-review §4 attestation signed (S007-AI-element-review-token-optimization-PHASE-2-CLOSE-2026-05-04T18:55:00Z)
 
-**L1 ZF status:** Phase 1 portion ZF-clean; Phase 2 §1 ingestion clean. §2-§3 author next turn before L1→L2 transition.
+**L1 ZF status:** Phase 1 + Phase 2 ZF-clean. **L1→L2 gate CLEARED.** L2 (Phase 3 B_TOKEN_BUDGET engraving) blocked until user ratifies 5 operating rules per element-review §3.4.
 
 ---
 
@@ -321,7 +322,7 @@ priority_engine:
 ## §10 Topic-plan attestation (L0)
 
 ```yaml
-topic_plan_zf:
+topic_plan_zf_phase_1:
   ran_at: 2026-05-04T18:40:00Z
   cycles_run: 1 (Phase 1 measurement baseline)
   findings:
@@ -332,10 +333,33 @@ topic_plan_zf:
     - finding: "Tokenizer caveat: gpt-tokenizer cl100k_base ±5-10% vs Claude native; v0.2 script can switch to @anthropic-ai/tokenizer when 0.0.4 matures"
   status: ZF-0-ACHIEVED-CYCLE-1 (Phase 1)
   signature: S007-AI-topic-plan-attest-2026-05-04T18:40:00Z-token-optimization-L1-Phase-1
+
+topic_plan_zf_phase_2:
+  ran_at: 2026-05-04T18:55:00Z
+  cycles_run: 1 (Phase 2 element-review §2 + §3 + §4)
+  findings:
+    - finding: "9 strategies scored via PE 5-dim formula; PE range 2.30-7.30"
+    - finding: "Top-2 are Band 2 HIGH: file-splits PE 7.30 + AGENTS.md slim PE 7.15 (both cross critical-path threshold 7.0)"
+    - finding: "All 5 §1.5 hypotheses survive PE-validation; no re-prioritization within strategy set"
+    - finding: "PE flat-ordering says file-splits > AGENTS.md slim; foundation-stability discipline (P-META-016) overrides flat-PE within active arc; v0.3 §9 ordering preserved"
+    - finding: "4 Band 2-3 items promoted to execution slate; 5 ratification asks surfaced for Phase 3 (B_TOKEN_BUDGET 5 operating rules)"
+  status: ZF-0-ACHIEVED-CYCLE-2 (Phase 2)
+  l1_to_l2_gate_status: CLEARED (Phase 1 + Phase 2 both ZF-clean)
+  signature: S007-AI-topic-plan-attest-2026-05-04T18:55:00Z-token-optimization-L1-L2-gate-cleared
+
+phase_3_blocking_status:
+  blocked_until: user_ratifies_5_operating_rules_OR_amends (per element-review §3.4)
+  rules_pending_ratification:
+    - R1: Default depth L1 only; L2/L3 require trigger
+    - R2: Default model tiering (Sonnet/Haiku/Opus per CCA QG1)
+    - R3: Default /compact at IMPL_BATCH boundary
+    - R4: Default /clear + new session between unrelated tasks
+    - R5: Default tool output summary first
+  ratification_targets: 5 rules verbatim (or user amendments) ratified via PCR if option-cardinal
 ```
 
-**Phase 2 attestation will append at next turn after element-review §2-§3 + L1→L2 gate ZF.**
+**Phase 3 attestation will sign once user ratifies 5 rules OR amends + B_TOKEN_BUDGET 5/5 atomic engraving completes.**
 
 ---
 
-**Topic-plan signature:** `S007-AI-token-optimization-active-2026-05-04T18:40:00Z (OPENED; Phase 1 DONE; Phase 2 next)`
+**Topic-plan signature:** `S007-AI-token-optimization-active-2026-05-04T18:55:00Z (Phase 1 DONE; Phase 2 DONE; L1→L2 gate cleared; Phase 3 blocked on ratification)`

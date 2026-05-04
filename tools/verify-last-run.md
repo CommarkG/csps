@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-04T18:47:16.652Z
-- finished_at: 2026-05-04T18:47:18.928Z
+- ran_at: 2026-05-04T18:55:57.335Z
+- finished_at: 2026-05-04T18:55:59.526Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-04T18:47:16.652Z",
-    "finished_at": "2026-05-04T18:47:18.928Z",
+    "ran_at": "2026-05-04T18:55:57.335Z",
+    "finished_at": "2026-05-04T18:55:59.526Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {

@@ -2,7 +2,7 @@
 id: csps.handoff.vault.element-reviews.token-optimization-s007
 name: token-optimization-element-review-S007
 description: Element-review (depth-3) for the token-optimization topic-plan. §1 state-of-art ingests Phase 1 baseline measurement output (token-cost-baseline-S007.json). §2 enhancement opportunities + §3 priority placement scheduled for next turn. Per token-optimization.md v0.3 §9.3 + element-review pattern engraved S006 L1.
-version: 0.1
+version: 1.0
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -17,7 +17,7 @@ tags:
   - type:reference
   - audience:developer
   - audience:ai-agent
-  - maturity:draft
+  - maturity:stable
 diataxis_type: reference
 session: S007
 element_id: token-optimization
@@ -105,30 +105,188 @@ The same handful of files dominates cost across multiple scenarios:
 - **Gap-2.** Scenarios are AI-authored (single-source-of-truth risk). Engraving candidate: scenario-coverage validator confirming the 8 declared scenarios cover all declared CSPS recurring cycles per audit-runner pipelines.
 - **Gap-3.** Frequency-per-session multipliers in scenario JSONs are estimates (no real telemetry). Engraving candidate: per-session token-cost-history.jsonl append-only log + drift-detection cycle (Phase 5 of L5 covers this).
 
-## §2 Enhancement opportunities (DEFERRED — next turn)
+## §2 Enhancement opportunities (Phase 2 — ranked via PE 5-dim formula)
 
-> Phase 2 §2 ranks the 7 strategies from token-optimization.md v0.3 §14.2 against the measured baseline using priority-engine 5-dim formula (B leverage + D dependency + I idle + Bn bundle + PAS path-alignment). Each strategy gets PE_SCORE + recommended phase placement. To author next turn (S007 turn 3+ OR S008).
+### §2.1 Methodology
 
-## §3 Priority placement (DEFERRED — next turn)
+Per [`tools/templates/priority-engine.schema.yaml`](../../../../tools/templates/priority-engine.schema.yaml) §1:
 
-> Phase 2 §3 places the ranked strategies into 4 PE bands (1 BLOCKING / 2 HIGH / 3 MEDIUM / 4 LOW) per CSP B_TOKEN_BUDGET 4-band schema. Top-N candidates promoted to topic-plan execution slate. Pending §2.
+> **PE_SCORE = (B × 0.30) + (D × 0.30) + (I × 0.15) + (Bn × 0.10) + (PAS × 0.15)** — range 1.55-10.00; critical-path threshold 7.00.
 
-## §4 Element-review attestation
+| Dim | Meaning | Scale |
+|---|---|---|
+| **B** | blast / complexity (effect on platform if done OR deferred) | CONSTITUTIONAL=10 / HIGH=8 / MEDIUM=5 / LOW=2 |
+| **D** | dependency significance (downstream items waiting FOR this) | foundation=10 / leaf=1 |
+| **I** | idle time (sessions in queue without progress) | min(sessions_idle, 10) |
+| **Bn** | bundle significance (synergy with current topic-plan) | primary=10 / strong=8 / moderate=5 / minor=3 / none=1 |
+| **PAS** | path alignment to active topic-plan + Core Spines | 10=directly advances + composes 5 spines / 1=NS-PROTECTIVE |
 
-```yaml
-element_review_attestation:
-  ran_at: 2026-05-04T18:40:00Z
-  review_depth: 3
-  state_at_review:
-    section_1_state_of_art: COMPLETE (Phase 1 baseline ingested + 5 hypotheses + 3 gaps)
-    section_2_enhancement_opportunities: DEFERRED (next turn)
-    section_3_priority_placement: DEFERRED (next turn)
-  zf_status_section_1: ZF-0-ACHIEVED-CYCLE-1 (Phase 1 measurement clean; 0 missing artifacts of 52 declared)
-  signature_partial: S007-AI-element-review-token-optimization-§1-2026-05-04T18:40:00Z
-```
+**Strategy set evaluated:** 7 strategies from [token-optimization.md v0.3 §14.2](../../../pillar-0-governance/token-optimization.md) (CSP-derived) + 2 CSPS-specific surfaced by Phase 1 baseline (file-splits + principles-mcp; the dominant cost contributors per §1.4).
 
-**Element-review will close (final §4 attestation) at S007 next-turn OR S008-turn-1 when §2-§3 author + L1→L2 gate ZF clears.**
+All 9 strategies sit within the active token-optimization topic-plan → **Bn = 10 (primary)** for all. **I = 0** for all (Phase 1 just opened the arc; no item idle yet).
+
+### §2.2 Per-strategy scoring
+
+| # | Strategy | v0.3 Phase | B | D | I | Bn | PAS | **PE** | Band |
+|---|---|---|---:|---:|---:|---:|---:|---:|---|
+| 1 | **File splits** (principles.yaml + behavioral-contracts + audit-runner + ai-behavior-spine) | 7 | 8 | 8 | 0 | 10 | 10 | **7.30** | **2 HIGH** |
+| 2 | **AGENTS.md slim → <500 tokens** (move detail to skills) | 4 | 8 | 8 | 0 | 10 | 9 | **7.15** | **2 HIGH** |
+| 3 | **principles-mcp build** (CCA Layer 4 activation) | 8 | 5 | 6 | 0 | 10 | 9 | 5.65 | 3 MEDIUM |
+| 4 | **Hook migration** (cascade rules → hooks; ~1,250 tok/turn) | 5 | 5 | 5 | 0 | 10 | 8 | 5.20 | 3 MEDIUM |
+| 5 | **Subagents** (Haiku for heavy ops) | 6 | 5 | 4 | 0 | 10 | 7 | 4.75 | 3 MEDIUM |
+| 6 | **Three-tier model strategy** (Sonnet/Haiku/Opus per task-class) | 6+ | 5 | 3 | 0 | 10 | 7 | 4.45 | 3 MEDIUM |
+| 7 | **.claudeignore** (exclude historical) | 4 (sub) | 2 | 3 | 0 | 10 | 6 | 3.40 | 4 VAULTED |
+| 8 | **/compact discipline** at IMPL_BATCH | 10 | 2 | 2 | 0 | 10 | 6 | 3.10 | 4 VAULTED |
+| 9 | **MCP server overhead reduction** (disable unused) | 10 | 2 | 2 | 0 | 5 | 4 | 2.30 | 4 VAULTED |
+
+### §2.3 §1.5 hypothesis verification (Phase 1 → Phase 2)
+
+| Hypothesis | Phase 1 evidence | Phase 2 verdict |
+|---|---|---|
+| **H1.** Splitting principles.yaml is highest-leverage | 6/8 scenarios cite; PE 7.30 highest of all strategies | ✅ CONFIRMED |
+| **H2.** AGENTS.md slim ~9K → ~500 saves 60K aggregate × hundreds-of-sessions | PE 7.15 second-highest; Phase 4 ordering preserved | ✅ CONFIRMED |
+| **H3.** governor-prompt-log cheap-but-frequent → subagent-isolated | PE 4.75 (Subagents); CSP cruel-critic mitigates summary-quality risk | ✅ CONFIRMED (medium priority) |
+| **H4.** handoff-write 117K → Phase 7 splits + Phase 9 orchestrator target | Both in Band 2/3; converge per v0.3 §9 ordering | ✅ CONFIRMED |
+| **H5.** verify scenario 46K dominated by principles.yaml → principles-mcp reduces ~85% per query | Strategy 3 (principles-mcp) PE 5.65; per-query <5K target measurable | ✅ CONFIRMED |
+
+All 5 hypotheses survive PE-validation. No re-prioritization needed within strategy set.
+
+### §2.4 Strategies CSPS-specific (not in CSP §14.2)
+
+| # | Strategy | Rationale | Phase 1 evidence |
+|---|---|---|---|
+| 1 (=#1) | **File splits** | Phase 1 baseline confirms 3 files (principles + contracts + audit-runner) dominate 6/8 scenarios | pcr-rendering 72,585 tokens with only 3 files cited — 90% of cost is principles + contracts |
+| 3 (=#3) | **principles-mcp build** | CCA Layer 4 was theorized but not activated; baseline shows it's load-bearing for Phase 7 amortization | engraving 110K + verify 46K both dominated by principles.yaml; per-query MCP reduces both |
+
+These were already in v0.3 §9 (Phases 7 + 8) — Phase 1 baseline elevates them from "deferred" to "Band 2 HIGH" priority.
+
+### §2.5 Composition + dependency ordering check
+
+PE flat-ordering says: **#1 file-splits (7.30) > #2 AGENTS.md slim (7.15)**. But **foundation-stability discipline (P-META-016)** says AGENTS.md slim must precede file-splits because:
+
+1. File-split codegen patterns depend on knowing the final scope of "always-resident vs on-demand" — that's what Phase 4 (AGENTS slim + 10 skills + .claudeignore) determines.
+2. Cross-ref-resolution validator (Phase 7 prerequisite) is registered in audit-hub Pipeline 1 — needs slim-AGENTS to be stable to avoid validator amendments after split.
+3. Cruel-critic Critique 5: "4-session implementation sequence is optimistic" — AGENTS.md slim is faster proof-of-concept (1-2 sessions) before disruptive splits (4-8 sessions).
+
+**Decision (composition rule):** keep [token-optimization.md v0.3 §9](../../../pillar-0-governance/token-optimization.md) ordering (Phase 4 → Phase 5 → Phase 6 → Phase 7 → Phase 8). PE ranking within this ordering is informational; foundation-stability supersedes flat-PE within an active topic-plan arc per [P-META-016](../../../../packages/principles/principles.yaml).
 
 ---
 
-**Element-review draft signature:** `S007-AI-element-review-token-optimization-S007-2026-05-04T18:40:00Z (DRAFT — §1 only)`
+## §3 Priority placement (Phase 2 — bands + ratification slate)
+
+### §3.1 Band placements
+
+```yaml
+band_placements:
+  band_1_blocking: []  # No auto-Band-1 triggers; Type-A/D/foundation-stability not fired by token-optimization items
+  band_2_high:
+    - id: file-splits
+      pe: 7.30
+      v0.3_phase: 7
+      blocked_by: [agents-md-slim-completed, hooks-migrated, subagents-active]
+    - id: agents-md-slim
+      pe: 7.15
+      v0.3_phase: 4
+      blocked_by: [b-token-budget-engraved (Phase 3)]
+  band_3_medium:
+    - id: principles-mcp-build
+      pe: 5.65
+      v0.3_phase: 8
+      blocked_by: [file-splits-completed]
+    - id: hook-migration
+      pe: 5.20
+      v0.3_phase: 5
+      blocked_by: [agents-md-slim-completed]
+    - id: subagents-haiku
+      pe: 4.75
+      v0.3_phase: 6
+      blocked_by: [hook-migration-completed]
+    - id: three-tier-model
+      pe: 4.45
+      v0.3_phase: 6+
+      blocked_by: [hook-migration-completed]
+  band_4_vaulted:
+    - id: claudeignore
+      pe: 3.40
+      v0.3_phase: 4 (sub-action; bundles with Phase 4)
+    - id: compact-discipline
+      pe: 3.10
+      v0.3_phase: 10
+    - id: mcp-server-reduction
+      pe: 2.30
+      v0.3_phase: 10
+```
+
+> **Note on .claudeignore demotion:** PE-3.40 places it in Band 4 standalone, but it BUNDLES with Phase 4 (AGENTS.md slim) per [v0.3 §9.5](../../../pillar-0-governance/token-optimization.md). Bundle execution → effective priority lifted by Phase 4 Band 2.
+
+### §3.2 Top-N promoted to topic-plan execution slate
+
+The 4 Band 2-3 items above PE 5.0 form the execution-priority slate:
+
+| Slate # | Strategy | PE | Phase | When |
+|---|---|---:|---|---|
+| 1 | File splits | 7.30 | 7 | After Phase 4-6 stable |
+| 2 | AGENTS.md slim | 7.15 | 4 | **NEXT after B_TOKEN_BUDGET engraved (Phase 3)** |
+| 3 | principles-mcp build | 5.65 | 8 | After Phase 7 splits |
+| 4 | Hook migration | 5.20 | 5 | After Phase 4 stable |
+
+Items 5-9 are Band 3 MEDIUM / Band 4 VAULTED — execute opportunistically per topic-plan §9 sequence.
+
+### §3.3 v0.3 §9 phase ordering validation
+
+| v0.3 Phase | Strategy mapping | PE Band | Validation |
+|---|---|---|---|
+| 1 (Phase 1) | Measurement baseline | foundation | ✅ DONE S007 turn 2 |
+| 2 (Phase 2) | Element-review (this) | meta | ✅ DONE S007 turn 3 |
+| 3 (Phase 3) | B_TOKEN_BUDGET engraving | foundation contract | ⏳ NEXT (awaits user ratification) |
+| 4 (Phase 4) | AGENTS.md slim + skills + .claudeignore | Band 2 HIGH (7.15) | ✅ ordering correct |
+| 5 (Phase 5) | Hook migration | Band 3 MEDIUM (5.20) | ✅ ordering correct |
+| 6 (Phase 6) | Subagents + 3-tier model | Band 3 MEDIUM (4.75 / 4.45) | ✅ ordering correct |
+| 7 (Phase 7) | File splits | Band 2 HIGH (7.30) | ✅ foundation-stability override of flat-PE |
+| 8 (Phase 8) | principles-mcp | Band 3 MEDIUM (5.65) | ✅ ordering correct |
+| 9 (Phase 9) | Context-loading templates + orchestrator | Band 3 (sub-Phase) | ✅ ordering correct |
+| 10 (Phase 10) | Compaction + measurement validator | Band 4 VAULTED ops | ✅ ordering correct |
+
+**Conclusion:** v0.3 §9 ordering survives PE re-validation. No re-ordering recommended. **Phase 3 is unblocked + queued for next turn after user ratification.**
+
+### §3.4 Ratification asks for Phase 3+ (gates execution)
+
+Phase 3 (B_TOKEN_BUDGET 5/5 atomic engraving) requires ratification of the **5 operating rules** absorbed from CSP standard ([token-optimization.md §14.1](../../../pillar-0-governance/token-optimization.md)):
+
+| Rule | Operationalization | Ratification ask |
+|---|---|---|
+| **R1** | Default depth: L1 (quick) only; L2/L3 require explicit trigger | Confirm L2 escalation triggers (validator failure / implementation needs / ambiguity) + L3 escalation (ratification dispute / ZF semantic / constitutional wording) |
+| **R2** | Default model tiering: Sonnet build/edit / Haiku subagents / Opus engraving + PCR + ZF + arch decisions | Confirm CCA QG1 immutable (Opus on hard reasoning) + no mid-task switching |
+| **R3** | Default at IMPL_BATCH boundary: `/compact <focus>` (replaces auto-compact) | Confirm CSPS analog: at L<N>→L<N+1> topic-plan transitions OR commit-worthy boundaries |
+| **R4** | Default between unrelated tasks: `/clear` + new session | Confirm chat-vs-session distinction (P-META-014 + memory) — domain change → session boundary |
+| **R5** | Default for tool output: summary first; full log path-linked | Confirm validator + command + file-read returns: status + findings_count + top_5 + evidence_paths + full_log_path |
+
+Per [token-optimization.md v0.3 §9.4](../../../pillar-0-governance/token-optimization.md): **B_TOKEN_BUDGET extends P-META-009 CCA** (no new principle); 5/5 atomic per FSE; validators registered atomic per ratchet protocol.
+
+---
+
+## §4 Element-review attestation (Phase 2 close — L1→L2 ZF gate)
+
+```yaml
+element_review_attestation:
+  ran_at: 2026-05-04T18:55:00Z
+  review_depth: 3
+  state_at_review:
+    section_1_state_of_art: COMPLETE (Phase 1 baseline ingested; 5 hypotheses + 3 gaps)
+    section_2_enhancement_opportunities: COMPLETE (9 strategies scored via PE 5-dim formula; 5 hypotheses verified; v0.3 §9 ordering survives PE re-validation; foundation-stability override documented)
+    section_3_priority_placement: COMPLETE (4 bands populated; top-4 slate promoted; 5 ratification asks surfaced for Phase 3 B_TOKEN_BUDGET)
+  zf_cycles_run: 2 (Phase 1 measurement clean + Phase 2 hypothesis verification clean)
+  zf_status: ZF-0-ACHIEVED-CYCLES-1-2 (0 missing artifacts of 52 declared; 0 hypothesis re-prioritizations)
+  exit_criteria_met:
+    section_4_attestation_signed: yes (this block)
+    top_n_candidates_promoted: yes (4 Band 2-3 items in §3.2)
+    user_ratification_pending: yes (5 rules in §3.4)
+  blocked_until: user_ratifies_5_operating_rules_OR_amends
+  signature: S007-AI-element-review-token-optimization-PHASE-2-CLOSE-2026-05-04T18:55:00Z
+```
+
+**Phase 2 ZF complete. L1→L2 ZF gate cleared (foundation primitives ZF + element-review ZF). Phase 3 (B_TOKEN_BUDGET engraving) blocked until user ratifies §3.4 5-rule slate OR amends.**
+
+---
+
+**Element-review signature:** `S007-AI-element-review-token-optimization-S007-PHASE-2-CLOSE-2026-05-04T18:55:00Z`

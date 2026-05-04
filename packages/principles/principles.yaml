@@ -37,6 +37,9 @@ categories:
   - id: architecture
     name: Architecture Principles
     description: How CSPS itself is built (the 27 architectural rules)
+  - id: operations
+    name: Operations Principles
+    description: Infrastructure + deployment + observability + multi-machine + handoff disciplines (added S006 turn 8 — OPER Core Spine)
 
 # ============================================================================
 # SEVERITY → DEFENSE-IN-DEPTH ENFORCER COUNTS
@@ -1435,6 +1438,365 @@ principles:
       - 'per-step-validators-undocumented (plans say do X step; don''t say evidence required Y; exit code Z)'
       - close-summary-skips-cycle-evidence-section (closing-summary-template §10.0 is mandatory)
       - 'latent-bug-because-validator-never-ran (S002 to S005 evidence)'
+
+  - id: P-META-015
+    name: universal-template-first
+    aliases: [template-first, template-discovery-gate, commitment-layer-template-required]
+    category: meta
+    severity: critical
+    statement: |
+      Every commitment-layer output AI produces — persisted artifacts (.md/.yaml), code,
+      prose patterns, decision frames, reasoning structures, tooling discipline — passes
+      through a templated discovery gate before authoring. The template registry at
+      `_handoff/VAULT/template-registry.md` is the single source of truth; entries register
+      validators atomically per FSE (registration mandatory; implementation may defer).
+      Escape hatch: `template_status: novel-pending-pattern-evaluation` with K=2 promotion
+      to stable template after 2 successful uses.
+    counterweight: |
+      Native AI thinking (mid-conversation reasoning, exploratory analysis, debugging walks,
+      creative synthesis) is NOT gated. Templates apply at COMMITMENT-LAYER (persisted,
+      structurally recurring) — not at THINKING-LAYER (in-conversation native).
+    industry_lineage:
+      - Spring Framework — bean templates + composition patterns
+      - Rails generators — scaffolding-as-policy
+      - CSP S331 ADR-0004 — template-only-page-creation; 22-template UI catalog
+      - User S006 turn 5 directive — "have a template structure aligned to the schema"
+    config:
+      template_registry_path: docs/plan/_handoff/VAULT/template-registry.md
+      output_categories: [persisted-artifact, code, prose, reasoning-tooling, agent-persona]
+      escape_hatch_status: novel-pending-pattern-evaluation
+      K_promotion_threshold: 2
+      fail_closed_when_template_known: true
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Hard NO — never create persisted commitment-layer artifact without template_used: field" }
+      - { layer: contract, location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_TEMPLATE_FIRST_CREATION", description: "B_TEMPLATE_FIRST_CREATION canonical contract" }
+      - { layer: memory, location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_universal_template_first.md", description: "Cognitive layer; loaded session-start" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/template-registry.md", description: "Single source of truth for all templates" }
+      - { layer: ci-check, location: "libs/audits/checks/template-citation-on-creation.ts", description: "Validator — every commitment artifact has template_used: field (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/template-registry-coverage.ts", description: "Validator — registered templates have file paths (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/novel-pending-pattern-evaluation-staleness.ts", description: "Validator — entries staleness >5 sessions (registered atomic; impl week-4)" }
+      - { layer: ai-behavior-spine, location: "docs/plan/pillar-0-governance/ai-behavior-spine.md", description: "Discipline matrix row — composes with B_FIVE_SURFACE_ENGRAVING (5 surfaces themselves are templates)" }
+      - { layer: hook, location: ".claude/hooks/pre-tool-use-template-citation.sh", description: "PreToolUse — refuses Edit/Write to commitment artifact-types without template citation (planned week-4)" }
+    enforcer_count: 9
+    cross_references: [P-OP-001, P-META-007, P-META-016, P-META-017, P-ARCH-028]
+    anti_patterns:
+      - free-write-on-recurring-artifact-type (template exists but not cited)
+      - silent-skip-of-discovery-gate (artifact created bypassing template registry consultation)
+      - novel-pending-pattern-evaluation-staleness-ignored (entry sits novel-pending >5 sessions)
+      - thinking-layer-templates-imposed (templates applied to mid-conversation native reasoning — kills creativity)
+
+  - id: P-META-016
+    name: gradual-build-by-foundations
+    aliases: [gradual-build, foundation-first, depth-3-4-5-discipline, priority-engine-driven]
+    category: meta
+    severity: critical
+    statement: |
+      Every multi-session topic enters CSPS via a templated gradual-build-plan instance
+      that identifies foundations, enumerates 3/4/5 levels (free-form N rejected), places
+      levels via priority engine (5-dimension formula + 4 bands), sets per-layer ZF gates
+      (foundation-stability-before-layer-N), registers backtrack triggers, and spans
+      explicit session arcs. Topics that bypass this discipline produce cascading rework
+      from skipped foundations + arbitrary N-part splits + tunnel-vision single-next-item
+      execution.
+    counterweight: |
+      Single-turn reversible work (typo fix, single-line edit, mechanical refactor confined
+      to one file) doesn't require gradual-build-plan instance. Discipline targets work that
+      (a) requires >1 session arc, OR (b) depends on >2 foundation-stable elements, OR
+      (c) crosses >1 Core Spine, OR (d) is cross-actor (affects persona/agent/customer).
+    industry_lineage:
+      - Toyota Production System — sequential dependent operations; never start downstream until upstream proves stable
+      - John Boyd OODA — iterate; foundation observation before orient before decide before act
+      - CSP S114 BUILD ORDER VALIDATION (Governor directive) — cross-item prerequisite check before SCOPE
+      - CSP S139 PE TRAJECTORY — multi-step lookahead instead of single-next-item myopia
+      - User S006 turn 5 directive — "develop a gradual build methodology engraved into the multi session plan"
+    config:
+      depth_schema: [3, 4, 5]
+      free_form_N_rejected: true
+      depth_3_levels: [foundation, build, polish]
+      depth_4_levels: [foundation, core, integration, polish]
+      depth_5_levels: [foundation-primitives, foundation-composition, core, integration-and-cross-layer-audits, polish-and-observability]
+      ZF_gate_per_level: mandatory
+      foundation_stability_required: true
+      priority_engine_schema: tools/templates/priority-engine.schema.yaml
+      topic_plans_path: docs/plan/_handoff/VAULT/topic-plans/
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Hard NO — never start multi-session topic without templated gradual-build-plan instance" }
+      - { layer: contract, location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_GRADUAL_BUILD_BY_FOUNDATIONS", description: "B_GRADUAL_BUILD_BY_FOUNDATIONS canonical contract" }
+      - { layer: memory, location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_gradual_build_by_foundations.md", description: "Cognitive layer; loaded session-start" }
+      - { layer: frontmatter-contract, location: "tools/templates/gradual-build-plan.template.md", description: "Canonical template; required frontmatter fields enforced" }
+      - { layer: frontmatter-contract, location: "tools/templates/priority-engine.schema.yaml", description: "Priority engine schema — formula + bands + push-back rules" }
+      - { layer: ci-check, location: "libs/audits/checks/gradual-build-plan-coverage.ts", description: "Validator — multi-session topic in handoff/governor-prompts without plan file (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/priority-engine-depth-respected.ts", description: "Validator — depth ∉ {3,4,5} rejected (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/foundation-stability-before-layer-N.ts", description: "Validator — L+1 work without L ZF blocked (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/humble-batching-required.ts", description: "Validator — batch without composition rationale flagged (registered atomic; impl week-4)" }
+      - { layer: ai-behavior-spine, location: "docs/plan/pillar-0-governance/ai-behavior-spine.md", description: "Discipline matrix row" }
+      - { layer: hook, location: ".claude/hooks/user-prompt-submit-multi-session-detector.sh", description: "Pattern-match user prompt for multi-session indicators; emit reminder if no topic-plan (planned week-4)" }
+    enforcer_count: 11
+    cross_references: [P-OP-001, P-META-008, P-META-015, P-META-018, P-ARCH-028]
+    anti_patterns:
+      - finish-fast-urge (multi-session topic completed in one turn; foundations skipped)
+      - arbitrary-N-part-split (split into 7 parts without rationale; depth not 3/4/5)
+      - skip-foundation-shortcut (jump to feature-build without ZF on foundation)
+      - tunnel-vision-single-next-item (no PE TRAJECTORY emitted; only next item)
+
+  - id: P-META-017
+    name: csps-alignment-over-inner-defaults
+    aliases: [inner-defaults-override, csps-alignment-discipline, training-defaults-overridden]
+    category: meta
+    severity: critical
+    statement: |
+      Every AI output is gated by alignment against the inner-AI-defaults registry
+      at `_handoff/VAULT/inner-ai-defaults/`. Training-baked defaults (sycophantic prose,
+      reflexive try/catch, narrative comments, generic naming, finish-fast urge, etc.)
+      that conflict with CSPS are overridden; defaults that compose well are kept;
+      partials are adjusted. Continuous-drift-log captures new defaults as discovered
+      (per-session leak detector + per-week drift comparison + per-major-model-update
+      full re-registration sweep). The registry IS the override map.
+    counterweight: |
+      Training defaults that align with CSPS DNA (e.g., parallel tool calls when
+      independent, BLUF responses, structured tables) are kept — disposition: keep.
+      The override is selective, not blanket.
+    industry_lineage:
+      - Airbnb Airflow — config-as-code overrides defaults; defaults visible via tooling
+      - PolicyAsCode (OPA/Rego) — defaults declared explicitly; overrides traceable
+      - User S006 turn 6 directive — "you must formalize now the collection and saving of your inner coding"
+    config:
+      registry_path: docs/plan/_handoff/VAULT/inner-ai-defaults/
+      categories: [code, prose, reasoning, tooling, output]
+      dispositions: [keep, override, adjust]
+      validation_cadence:
+        per_session: inner-default-leak-detector
+        per_week: alignment-drift-over-time
+        per_quarter: inner-default-registry-coverage
+        per_major_model_update: mandatory-full-re-registration
+      K_promotion_threshold: 2
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Hard NO — never emit substantial output without alignment-check against inner-defaults registry" }
+      - { layer: contract, location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS", description: "B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS canonical contract" }
+      - { layer: memory, location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_csps_alignment_over_inner_defaults.md", description: "Cognitive layer; loaded session-start" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/inner-ai-defaults/README.md", description: "Per-entry schema; registry index" }
+      - { layer: ci-check, location: "libs/audits/checks/inner-default-leak-detector.ts", description: "Validator — scans chat transcript + edited files for known-default tells (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/alignment-citation-on-substantial-output.ts", description: "Validator — substantial outputs cite §10.0i alignment-checks (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/alignment-drift-over-time.ts", description: "Validator — weekly drift detection (registered atomic; impl week-4)" }
+      - { layer: ai-behavior-spine, location: "docs/plan/pillar-0-governance/ai-behavior-spine.md", description: "Discipline matrix row" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/closing-summary-template.md#§10.0h", description: "Mandatory §10.0h inner-default leak report at every session close" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/closing-summary-template.md#§10.0i", description: "Mandatory §10.0i alignment-citation summary at every session close" }
+    enforcer_count: 10
+    cross_references: [P-META-006, P-META-007, P-META-009, P-META-015, P-META-018]
+    anti_patterns:
+      - 'sycophantic-affirmation (training default: Great-question prefix)'
+      - 'reflexive-try-catch (training default wraps every external call)'
+      - 'narrative-comments (training default explains WHAT code does instead of WHY non-obvious)'
+      - 'confirmation-seeking-tail (training default Should-I-proceed without 4-condition gate)'
+      - 'mock-by-default-in-integration-tests (CSPS aligned uses real DB only; mocks for unit tests)'
+
+  - id: P-META-018
+    name: pe-alignment-guardian
+    aliases: [pe-alignment, anti-sycophancy-gate, structured-deflection]
+    category: meta
+    severity: critical
+    statement: |
+      When ANY human input enters CSPS with intent that misaligns with PE current top-priority
+      AND does NOT meet ESSENTIAL-bar against in-flight topic-plan completion debt,
+      AI MUST RESPOND WITH STRUCTURED 3-STEP DEFLECTION (Acknowledge value / Offer SWIFT-or-Vault /
+      Anchor focus to current top-PE), not reflexive execution. Forbidden responses include
+      silent pivot mid-completion, "Sure let me do that" without alignment check, treating
+      Governor enthusiasm as elevation to top-priority, and positive-only framing when
+      misalignment is real.
+    counterweight: |
+      ESSENTIAL-bar override: when human input is genuinely critical (security incident,
+      production breakage, time-sensitive opportunity with real cost-of-delay), AI may proceed
+      without deflection — but MUST cite ESSENTIAL evidence in the proceeding response.
+    industry_lineage:
+      - CSP P-GOV-25 PE_ALIGNMENT_GUARDIAN (Governor S317 SWIFT — CONSTITUTIONAL; CSPS differentiator)
+      - "Most AI products optimize for satisfy-the-immediate-request (sycophancy as feature); CSPS optimizes for honor-the-stated-long-term-intent"
+      - User S006 turn 9 directive — "develop this and allow it permanently to pushback on wanting to finish fast"
+    config:
+      verdicts: [PROCEED, DEFLECT_SWIFT, DEFLECT_VAULT, BLOCK]
+      deflection_template_steps:
+        - acknowledge_value
+        - offer_swift_or_vault_path
+        - anchor_focus_to_current_top_pe
+      forbidden_responses:
+        - silent_pivot_mid_completion
+        - reflexive_yes_without_alignment_check
+        - enthusiasm_misread_as_elevation
+        - positive_framing_only_when_misalignment_real
+      pe_top_priority_source: tools/templates/priority-engine.schema.yaml
+      essential_bar_override: documented_with_evidence
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Hard NO — never reflexively execute new request when PE top-priority is mid-flight" }
+      - { layer: contract, location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_PE_ALIGNMENT_GUARDIAN", description: "B_PE_ALIGNMENT_GUARDIAN canonical contract; CONSTITUTIONAL" }
+      - { layer: memory, location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_pe_alignment_guardian.md", description: "Cognitive layer; loaded session-start" }
+      - { layer: frontmatter-contract, location: "tools/templates/priority-engine.schema.yaml#§7", description: "PE schema §7 PE_ALIGNMENT_GUARDIAN spec — verdicts + deflection template" }
+      - { layer: ci-check, location: "libs/audits/checks/pe-alignment-guardian-coverage.ts", description: "Validator — substantial responses cite PE_ALIGNMENT verdict (registered atomic; impl week-4)" }
+      - { layer: ai-behavior-spine, location: "docs/plan/pillar-0-governance/ai-behavior-spine.md", description: "Discipline matrix row" }
+      - { layer: hook, location: ".claude/hooks/user-prompt-submit-pe-alignment-check.sh", description: "UserPromptSubmit hook — compares input intent vs current top-PE; emits deflection-required reminder (planned week-4)" }
+    enforcer_count: 7
+    cross_references: [P-META-006, P-META-009, P-META-014, P-META-016, P-META-017]
+    anti_patterns:
+      - silent-pivot (mid-completion switch to new request without deflection)
+      - reflexive-yes (Sure-let-me-do-that without alignment check)
+      - enthusiasm-misread (Governor enthusiasm interpreted as priority elevation)
+      - positive-only-framing (response acknowledges only positives when misalignment is real)
+
+  - id: P-META-019
+    name: structural-prevention-discipline
+    aliases: [enhancement-over-recovery, prevention-over-patch, system-enhancement-constantly]
+    category: meta
+    severity: critical
+    statement: |
+      When an enforcement is skipped, late, or partial — fix the STRUCTURE that allowed
+      the skip, not the instance. Every closing-summary §10.0j header captures enhancement
+      proposals from any enforcement gap discovered this session. Silent empty proposals
+      forbidden — explicit zero_proposals_declaration with reason required. Philosophy:
+      enhance the system constantly; never settle for low standards + manual recovery.
+    counterweight: |
+      Trivial single-instance gaps that don't recur (typo in one file; unique config drift
+      caused by external tool change) may be fixed-in-place without structural enhancement
+      proposal — but MUST be logged in continuous-drift-log with K=1 status. K=2 promotes
+      to mandatory structural fix.
+    industry_lineage:
+      - Toyota Production System — andon-cord triggers root-cause analysis, not workaround
+      - Sidney Dekker (safety-II) — investigate why-system-allowed not why-actor-failed
+      - CSP B_STRUCTURAL_PREVENTION (engraved S006 turn 8 absorption)
+      - User S006 turn 8 directive verbatim — "if an enforment was skipped system will mandatory find enhacement to prevent this from happening. the philosophy is to enhance the system constantly"
+    config:
+      gap_categories: [skipped-enforcement, late-catch, partial-coverage]
+      proposal_required_fields:
+        - skipped_enforcement
+        - what_was_skipped
+        - why_existing_mechanism_failed
+        - structural_fix_proposal
+        - K_promotion_status
+        - priority_score
+      K_promotion_threshold: 2
+      silent_empty_proposals_forbidden: true
+      zero_proposals_declaration_required_when_empty: true
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Hard NO — never close session without §10.0j enhancement-proposals scan (silent skipping forbidden)" }
+      - { layer: contract, location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_STRUCTURAL_PREVENTION_DISCIPLINE", description: "B_STRUCTURAL_PREVENTION_DISCIPLINE canonical contract" }
+      - { layer: memory, location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_structural_prevention_discipline.md", description: "Cognitive layer; loaded session-start" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/closing-summary-template.md#§10.0j", description: "Mandatory §10.0j enhancement proposals header at every session close" }
+      - { layer: ci-check, location: "libs/audits/checks/enhancement-proposal-coverage.ts", description: "Validator — every skipped/late/partial enforcement detected this session has paired proposal (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/structural-fix-vs-instance-fix-discipline.ts", description: "Validator — K=2 recurring patterns produce structural fix not instance patch (registered atomic; impl week-4)" }
+      - { layer: ai-behavior-spine, location: "docs/plan/pillar-0-governance/ai-behavior-spine.md", description: "Discipline matrix row" }
+      - { layer: frontmatter-contract, location: "docs/plan/_handoff/VAULT/element-reviews/README.md", description: "Element-review pattern is the depth-3 mechanism for structural-fix proposals" }
+    enforcer_count: 8
+    cross_references: [P-META-006, P-META-007, P-META-013, P-META-016]
+    anti_patterns:
+      - silent-skip-of-enhancement-scan (§10.0j header missing or zero_proposals without explicit declaration)
+      - patch-the-instance-without-structural-fix (recurring pattern fixed only in current instance)
+      - low-standards-acceptance (settling for "we'll fix it later" instead of system enhancement)
+      - K2-recurring-pattern-not-promoted-to-engraving
+
+  - id: P-ARCH-028
+    name: csps-core-spines
+    aliases: [core-spine-discipline, 5-spine-architecture, outward-layering]
+    category: architecture
+    severity: critical
+    statement: |
+      CSPS architecture is organized around 5 Core Spines (GVRN/ARCH/AI/OPER/VALD) with
+      precedence ordering GVRN > VALD > ARCH > AI > OPER (lower-defers-to-higher).
+      Every governed artifact declares a primary spine via `core_spine:` (singular)
+      frontmatter + optional cross-cutting list via `core_spines:` (plural). 3-layer
+      doctrine model: L0 csps-core-manifest (root) / L1 sealed core (5 files; CC-equivalent
+      amendment) / L2 domain decomposition (~16 files) / L3 instance registries (5 files;
+      per-session populated). DNA stays consistent from CORE outward to specific instances
+      because every layer enforces the layer beneath it.
+    counterweight: |
+      Cross-cutting concerns may declare multiple spines via `core_spines:` plural; primary
+      spine via `core_spine:` singular owns adjudication. Pillars (7 domain-organized) compose
+      orthogonally to spines (5 responsibility-organized) — pillar leaves declare both.
+    industry_lineage:
+      - CSP CC-015 + CC-048-A — 5-spine canonical set (S206; PHIL retired); precedence DO-1
+      - CSP S331 Bundle 1 Scope A — 3-layer doctrine model (L1 sealed + L2 domain + L3 instances)
+      - OpenAI Model Spec hierarchy — universal-at-trunk + domain-overlays-at-extension
+      - User S006 turn 7 directive — "the Core is the universal fundamental undebatable things of each core spine"
+    config:
+      canonical_spines: [GVRN, ARCH, AI, OPER, VALD]
+      precedence_ordering: [GVRN, VALD, ARCH, AI, OPER]
+      precedence_rule: lower-defers-to-higher
+      layers:
+        L0: docs/plan/pillar-0-governance/csps-core-manifest.md
+        L1: .claude/core-spines/L1_CORE_<SPINE>.md
+        L2: .claude/core-spines/L2_DOMAIN_<SPINE>_<DOMAIN>.md
+        L3: .claude/core-spines/L3_INSTANCES_<SPINE>.md
+      L1_amendment_protocol: ADR + ratification (CC-equivalent; sealed text)
+      L2_amendment_protocol: normal review (PCR + amendment)
+      L3_amendment_protocol: per-session edit (no formal amendment)
+      frontmatter_singular_required: core_spine
+      frontmatter_plural_optional: core_spines
+      schema_anchor_required: true
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Hard NO — never create governed artifact without core_spine: singular field" }
+      - { layer: contract, location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_CORE_SPINE_DISCIPLINE", description: "B_CORE_SPINE_DISCIPLINE canonical contract" }
+      - { layer: memory, location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_csp_core_spine_absorptions.md", description: "Cognitive layer; loaded session-start" }
+      - { layer: frontmatter-contract, location: "docs/plan/pillar-0-governance/csps-core-manifest.md", description: "L0 root doctrine; precedence + 3-layer model + frontmatter convention" }
+      - { layer: ci-check, location: "libs/audits/checks/corespine-layer-compliance.ts", description: "Validator — declared spine ∈ canonical 5-set + L1_CORE_<X>.md exists (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/nothing-stands-alone-audit.ts", description: "Validator — RED on ORPHAN_NO_CORE_SPINE or ORPHAN_NO_SCHEMA_ANCHOR (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/L1-do-not-expand-violation.ts", description: "Validator — L1_CORE files don't violate do_not_expand list (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/spine-precedence-conflict-detector.ts", description: "Validator — multi-spine artifacts with conflicting governance flagged (registered atomic; impl week-4)" }
+      - { layer: ai-behavior-spine, location: "docs/plan/pillar-0-governance/ai-behavior-spine.md", description: "Discipline matrix row" }
+      - { layer: generator, location: "tools/scripts/instance-registry-populator.mjs", description: "Auto-populates L3_INSTANCES_<SPINE>.md from corpus core_spine declarations (planned L4 of governance-foundation)" }
+    enforcer_count: 10
+    cross_references: [P-ARCH-013, P-META-007, P-META-015, P-META-016]
+    anti_patterns:
+      - missing-core-spine-frontmatter (governed artifact without core_spine field — ORPHAN)
+      - missing-schema-anchor (governed artifact without schema_anchor — ORPHAN)
+      - L1-do-not-expand-violation (sealed L1 file gains examples or cross-references)
+      - spine-precedence-violated (lower-precedence spine overrides higher without ADR)
+      - cross-spine-collision (artifact citing 2+ spines with conflicting CORE rules)
+
+  - id: P-OPER-001
+    name: zero-laptop-dependency
+    aliases: [git-canonical, multi-machine-parity, android-accessible, auto-push-at-session-close]
+    category: operations
+    severity: critical
+    statement: |
+      Every CSPS artifact lives in cloud-canonical (Git remote) before any session closes;
+      no work depends on a single physical machine; multi-device + Android workflows are
+      first-class supported paths. Hybrid mode (Q-1 ratified S006 turn 8): Git canonical +
+      GitHub Codespaces on-demand + Android read-mostly via GitHub mobile + Chromium.
+      Auto-push enforced at session-close gate (Q-2 ratified S006 turn 8 — composes with
+      HPFA + pre-close verify). Multi-machine parity via devcontainer.json + bootstrap.ps1.
+    counterweight: |
+      Pre-close auto-push gate (B option) is the discipline; commit-time auto-push (A option)
+      was rejected as too aggressive. Local commits OK during session; push must clear before
+      handoff write. Secrets stay in 1Password/Bitwarden — NOT in repo.
+    industry_lineage:
+      - GitOps (Weaveworks 2017) — git as source of truth; reconciliation loop
+      - GitHub Codespaces / Gitpod — cloud-dev replacing per-machine setup
+      - "12-factor app methodology — config in env, code in repo"
+      - User S006 turn 8 directive — "0 dependency on my laptop; work from other computers + remote from android"
+    config:
+      hybrid_mode_components:
+        local_dev: laptop with bootstrap.ps1
+        cloud_dev: GitHub Codespaces via .devcontainer/devcontainer.json
+        android_read: GitHub mobile app + GitHub web
+        android_edit: Codespaces in Chromium (small-screen-OK)
+      auto_push_mode: session-close-gate (B; not commit-time A)
+      multi_machine_parity_required: pnpm + node versions match across devcontainer + bootstrap.ps1
+      no_local_only_secrets: true
+      secret_storage: 1Password or Bitwarden (NOT in repo)
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Hard NO — never close session without `git push` confirming all commits are on remote" }
+      - { layer: contract, location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_ZERO_LAPTOP_DEPENDENCY", description: "B_ZERO_LAPTOP_DEPENDENCY canonical contract" }
+      - { layer: memory, location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_zero_laptop_dependency.md", description: "Cognitive layer; loaded session-start" }
+      - { layer: frontmatter-contract, location: ".devcontainer/devcontainer.json", description: "GitHub Codespaces config; multi-machine parity enforced (planned L1 of zero-laptop-dependency-setup topic-plan)" }
+      - { layer: ci-check, location: "libs/audits/checks/git-pushed-state-clean.ts", description: "Validator — `git log origin/main..HEAD` empty before session-close (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/devcontainer-config-valid.ts", description: "Validator — devcontainer.json present + valid per spec (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/no-local-only-secrets-in-repo.ts", description: "Validator — .env/credentials.json/*.pem not committed (registered atomic; impl week-4)" }
+      - { layer: ci-check, location: "libs/audits/checks/multi-machine-parity-spec.ts", description: "Validator — devcontainer + bootstrap produce same versions (registered atomic; impl week-4)" }
+      - { layer: ai-behavior-spine, location: "docs/plan/pillar-0-governance/ai-behavior-spine.md", description: "Discipline matrix row" }
+      - { layer: generator, location: "tools/bootstrap.ps1", description: "Bootstrap script; first-machine setup parity with devcontainer" }
+    enforcer_count: 10
+    cross_references: [P-META-008, P-META-013, P-META-015, P-ARCH-028]
+    anti_patterns:
+      - local-only-work (commits on laptop never pushed to remote)
+      - per-machine-divergence (different pnpm/node versions across machines)
+      - secrets-committed-to-repo (.env or credentials.json in git)
+      - android-locked-out (no defined workflow for Android access)
 
 # ============================================================================
 # AUDIT META-CHECK ALGORITHM

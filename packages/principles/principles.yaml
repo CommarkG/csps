@@ -1357,19 +1357,67 @@ principles:
         opus_4_7_required: [engraving, PCR-non-trivial, ZF-synthesis, ADR-authoring, cross-pillar-synthesis, honest-self-audit]
         sonnet_4_6_acceptable: [mechanical-edits, drafting-from-template, routine-validation-analysis, subagent-default]
         haiku_4_5_acceptable: [file-existence-checks, simple-grep, did-this-change-verifications]
+      token_budget_operating_rules:
+        # NEW S007 turn 4 (B_TOKEN_BUDGET extension; ratified by user; absorbed from CSP_STANDARD_TOKEN_BUDGET_GOVERNANCE).
+        # Extends P-META-009 CCA — does NOT introduce a new principle. 5 operating rules govern recurring token consumption.
+        ratified_at_session: S007
+        ratified_at_turn: 4
+        ratified_signature: S007-AI-b-token-budget-engraving-2026-05-04T18:55:00Z
+        absorbs_from: CSP_STANDARD_TOKEN_BUDGET_GOVERNANCE (4-council synthesis Perplexity + GPT + Gemini + Claude AI)
+        rules:
+          R1_default_depth_l1_only:
+            statement: "Default depth: L1 (quick) only. L2 / L3 require explicit trigger."
+            l2_escalation_triggers: [validator-failure-cites-L2, implementation-needs-exact-section, ambiguity-unresolved-at-L1]
+            l3_escalation_triggers: [ratification-dispute, ZF-semantic-failure, constitutional-wording-required]
+          R2_default_model_tiering:
+            statement: "Default model tiering: Sonnet for build/edit/standard; Haiku for subagents (read-only ops via Task tool); Opus for engraving + PCR + ZF synthesis + architectural decisions."
+            opus_immutable_scope: [engraving, PCR-non-trivial, ZF-synthesis, ADR-authoring, cross-pillar-synthesis, honest-self-audit]  # mirrors model_routing.opus_4_7_required + CCA QG1
+            sonnet_default_scope: [build-edit, mechanical-edits, drafting-from-template, routine-validation-analysis, standard-work]
+            haiku_default_scope: [subagent-read-only-ops, file-existence-checks, simple-grep, did-this-change-verifications]
+            no_mid_task_switching: true  # cache is model-specific
+            composes_with: P-META-009.config.quality_gates.QG1
+          R3_compact_at_impl_batch_boundary:
+            statement: "Default at IMPL_BATCH boundary: /compact <focus>. Strategic compaction with focus instructions replaces auto-compact's content-loss pattern."
+            csps_analog: at-L<N>-to-L<N+1>-topic-plan-transitions OR commit-worthy-boundaries
+            anti_pattern: silent-auto-compact-mid-session (loses governance context)
+          R4_clear_between_unrelated_tasks:
+            statement: "Default between unrelated tasks: /clear + new session. Stale context from unrelated tasks does not pay rent."
+            csps_analog: chat-vs-session-distinction (P-META-014 + memory-feedback_chat_vs_session_distinction.md)
+            trigger: domain-change OR completed-topic-plan-arc
+          R5_tool_output_summary_first:
+            statement: "Default for tool output: summary first; full log path-linked. Validator + command + file-read returns structured summary."
+            required_summary_fields: [status, findings_count, top_5, evidence_paths, full_log_path]
+            anti_pattern: 5K-10K-tool-output-blob-accumulating-as-context (unstructured spew)
+            mechanical_target: validator-output-tooling-conforms (Phase 10 of token-optimization topic-plan)
+        engraving_status:
+          schema: this subsection (active)
+          validator: 5 audit slugs registered atomic in audit-runner.md (impl week-4)
+          hook: .claude/hooks/verify-hooks-functional.sh (SessionStart self-test stub; S007 turn 4)
+          memory: feedback_token_budget.md (S007 turn 4)
+          contract: behavioral-contracts.md § B_TOKEN_BUDGET + AGENTS.md hard NO + ai-behavior-spine.md row (S007 turn 4)
+        composes_with: P-META-009 (extends; no new principle) + B_COGNITIVE_CONTEXT_DISCIPLINE (extends) + B_GRADUAL_BUILD_BY_FOUNDATIONS (foundation-stability discipline applied to optimization phasing)
     enforcers:
-      - { layer: instruction-file,     location: "AGENTS.md",                                                                                                                description: "4 hard NOs binding Quality Gates QG1-QG4 (S005 turn 24)" }
+      - { layer: instruction-file,     location: "AGENTS.md",                                                                                                                description: "4 hard NOs binding Quality Gates QG1-QG4 (S005 turn 24) + 1 hard NO binding B_TOKEN_BUDGET 5 operating rules (S007 turn 4)" }
       - { layer: contract,             location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_COGNITIVE_CONTEXT_DISCIPLINE",                                       description: "Canonical contract — operationalizes the 5-layer architecture + 4 Quality Gates" }
+      - { layer: contract,             location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_TOKEN_BUDGET",                                                       description: "Extension contract — operationalizes 5 operating rules (R1 default depth L1 / R2 model tiering / R3 /compact / R4 /clear / R5 summary first); ratified S007 turn 4" }
       - { layer: frontmatter-contract, location: "docs/plan/pillar-0-governance/cognitive-context-architecture.md",                                                          description: "The dashboard leaf — schema-aligned visual + per-layer specification + per-layer quality gates" }
+      - { layer: frontmatter-contract, location: "docs/plan/pillar-0-governance/token-optimization.md",                                                                       description: "The dashboard leaf for B_TOKEN_BUDGET — v0.3 OPTIMAL ORDER 10-phase plan + 5 operating rules absorption + chat-transfer 12-item register + 6-pass ZF" }
       - { layer: ci-check,             location: "libs/audits/checks/cognitive-context-discipline-coverage.ts",                                                              description: "PR-blocking warn: every closing summary references which layers were active + quality-gate compliance per session; planned week-4" }
       - { layer: ci-check,             location: "libs/audits/checks/model-routing-on-ratification.ts",                                                                      description: "PR-blocking error: scans session log for ratification/engraving/ZF-synthesis events; verifies model used was Opus 4.7; flags downgrade as QG1 violation; planned week-4" }
       - { layer: ci-check,             location: "libs/audits/checks/cache-content-hash-fresh.ts",                                                                           description: "PR-blocking warn: verifies cache breakpoint placements correspond to stable-content boundaries; flags dynamic content cached at 1h TTL; planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/token-budget-claude-md-size.ts",                                                                         description: "PR-blocking warn: AGENTS.md word count <500 / line count <200 (R1 enforcer); per token-optimization Phase 4 target; planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/token-budget-skills-completeness.ts",                                                                    description: "PR-blocking warn: every governance domain has backing skill (R1 enforcer); planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/token-budget-hook-presence.ts",                                                                          description: "PR-blocking warn: every declared rule has backing hook script (R5 enforcer); planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/token-budget-compact-frequency.ts",                                                                      description: "Per-session warn: ratio of /compact invocations to IMPL_BATCH boundaries <0.8 fires (R3 enforcer); planned week-4" }
+      - { layer: ci-check,             location: "libs/audits/checks/token-budget-cache-continuity.ts",                                                                       description: "Per-session warn: detects mid-session model switch (R2 enforcer; cache is model-specific); planned week-4" }
       - { layer: hook,                 location: ".claude/hooks/post-tool-edit-reread-required.sh",                                                                          description: "PostToolUse hook: after Edit/Write, scans next AI reasoning for assertions about edited content without paired re-read; surfaces QG3 violation candidates; planned week-4" }
+      - { layer: hook,                 location: ".claude/hooks/verify-hooks-functional.sh",                                                                                  description: "SessionStart self-test stub (cruel-critic Critique 2 mitigation per token-optimization.md §14.8); week-4 full implementation; stub authored S007 turn 4" }
       - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_cognitive_context_architecture.md",             description: "Cognitive layer; loaded session-start" }
-      - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                                                       description: "Discipline matrix row — composes B_RZF + B_PRE_CLOSE_VERIFICATION + B_POSITIVE_VALUE_EXTRACTION (the 4 Quality Gates form the cognitive layer of those disciplines)" }
-      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                                                                                  description: "Exposed as principles://cognitive-context-architecture with full 5-layer spec + 4 Quality Gate definitions" }
-    enforcer_count: 10
-    cross_references: [P-META-001, P-META-006, P-META-007, P-META-008, P-OP-001, P-OP-003, P-OP-004]
+      - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_token_budget.md",                               description: "Cognitive layer for B_TOKEN_BUDGET extension; ratified S007 turn 4" }
+      - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                                                       description: "Discipline matrix row — composes B_RZF + B_PRE_CLOSE_VERIFICATION + B_POSITIVE_VALUE_EXTRACTION (the 4 Quality Gates form the cognitive layer of those disciplines) + B_TOKEN_BUDGET row added S007 turn 4" }
+      - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                                                                                  description: "Exposed as principles://cognitive-context-architecture with full 5-layer spec + 4 Quality Gate definitions + 5 token-budget operating rules" }
+    enforcer_count: 18
+    cross_references: [P-META-001, P-META-006, P-META-007, P-META-008, P-META-015, P-META-016, P-META-019, P-OP-001, P-OP-003, P-OP-004]
     anti_patterns:
       - tokens-as-budget-to-minimize (the meta-pattern this principle exists to cure; quality + holistic + long-run > savings per user S005 turn 24)
       - downgrading-opus-on-ratification (QG1 violation; produces nominal-quality decisions that compound into platform debt)
@@ -1380,6 +1428,11 @@ principles:
       - all-sonnet-without-escalation (mirror failure mode; ratification needs Opus depth)
       - parallel-subagents-when-serial-suffices (5x cost for marginal speed; only when wall-clock dominates)
       - cache-on-volatile-content (Layer 3 active work cached at 1h = stale-content quality regression)
+      - default-l3-depth-where-l1-suffices (R1 violation; over-fetching context for simple work)
+      - mid-task-model-switch (R2 violation; invalidates cache; rebuilds prompt-cache from scratch)
+      - silent-auto-compact-mid-session (R3 violation; loses governance context; manual /compact preserves intent)
+      - context-bleed-between-unrelated-tasks (R4 violation; stale context wastes per-turn rent)
+      - tool-output-blob-no-summary (R5 violation; 5K-10K log spew accumulating as raw context vs structured summary)
 
   - id: P-META-008
     name: cycle-mandatory-in-plan

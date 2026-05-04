@@ -236,13 +236,13 @@ The orchestration layer above [`audit-runner.md`](./audit-runner.md) registry. D
 
 **Schema connection:** runtime audits map to ADR-0007 (postgres-trigger-based-audit) + ADR-0008 (one Mastra agent) + crisis-escalation slice.
 
-### Pipeline 10 — `csps-alignment-over-inner-defaults` (B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS + B_TEMPLATE_FIRST_CREATION + B_GRADUAL_BUILD_BY_FOUNDATIONS + B_PE_ALIGNMENT_GUARDIAN + B_STRUCTURAL_PREVENTION_DISCIPLINE + B_CORE_SPINE_DISCIPLINE + B_ZERO_LAPTOP_DEPENDENCY + P-META-015/016/017/018/019 + P-ARCH-028 + P-OPER-001 — NEW S006 turn 9)
+### Pipeline 10 — `csps-alignment-over-inner-defaults` (B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS + B_TEMPLATE_FIRST_CREATION + B_GRADUAL_BUILD_BY_FOUNDATIONS + B_PE_ALIGNMENT_GUARDIAN + B_STRUCTURAL_PREVENTION_DISCIPLINE + B_CORE_SPINE_DISCIPLINE + B_ZERO_LAPTOP_DEPENDENCY + B_TOKEN_BUDGET + P-META-015/016/017/018/019 + P-ARCH-028 + P-OPER-001 — NEW S006 turn 9; +B_TOKEN_BUDGET S007 turn 4)
 
-**Purpose:** the cross-cutting pipeline for the 7 disciplines engraved S006 governance-foundation. Catches drift on template-first creation / gradual-build / inner-defaults / PE-alignment / structural-prevention / Core-Spine / zero-laptop-dependency disciplines.
+**Purpose:** the cross-cutting pipeline for the 7 disciplines engraved S006 governance-foundation + B_TOKEN_BUDGET extension engraved S007 turn 4. Catches drift on template-first creation / gradual-build / inner-defaults / PE-alignment / structural-prevention / Core-Spine / zero-laptop-dependency / token-budget operating rules.
 
 **Trigger:** PR + per-session close + per-week drift + per-quarter coverage + per-major-model-update full re-registration.
 
-**Audits in pipeline (27 atomic-registered S006 L2b; impl deferred week-4):**
+**Audits in pipeline (27 atomic-registered S006 L2b + 5 token-budget atomic-registered S007 turn 4; impl deferred week-4):**
 
 ```
 Template-first (3):
@@ -289,6 +289,13 @@ Zero-laptop-dependency (6):
 Element-review (2 — supports B_STRUCTURAL_PREVENTION_DISCIPLINE):
 28. element-review-required-sections     ─── reviews have §1/§2/§3/§4 structure
 29. element-review-staleness             ─── element not reviewed in 90+ days
+
+Token-budget (5 — NEW S007 turn 4 — B_TOKEN_BUDGET extends P-META-009 CCA per v0.3 §14.4):
+30. token-budget-claude-md-size          ─── AGENTS.md <500 tokens / <200 lines (R1)
+31. token-budget-skills-completeness     ─── every governance domain has backing skill (R1)
+32. token-budget-hook-presence           ─── declared mechanical rules have backing hook script (R5)
+33. token-budget-compact-frequency       ─── ratio /compact:IMPL_BATCH boundaries ≥0.8 (R3)
+34. token-budget-cache-continuity        ─── no mid-session model switch (R2; cache is model-specific)
 ```
 
 **Handling:** ERROR → Linear ticket auto-created + blocks PR; WARN → dashboard fact + weekly digest; per-session ERROR also blocks HPFA + handoff write.

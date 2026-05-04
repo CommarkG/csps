@@ -1124,6 +1124,30 @@ Step 7: ITERATE until alignment-confirmed-explicit (no more clarifications neede
 
 **Cross-references:** P-ARCH-029 / P-META-007 (FSE — naming-policy itself uses 5/5 atomic engraving) / P-META-015 (template-first — naming-policy IS a template for filenames) / P-META-019 (structural-prevention — naming inconsistency caught → fix the policy not the instance) / P-ARCH-013 (universal-traits-trunk-domain-overlays — naming convention IS a universal trait) / P-ARCH-028 (Core Spine — naming-policy ARCH spine primary).
 
+## B_TOKEN_BUDGET — 5 operating rules extending P-META-009 CCA (S007 turn 4)
+
+**Canonical:** Every CSPS AI session honors 5 operating rules governing recurring token consumption: **R1** default depth L1 (quick) only — L2/L3 require explicit trigger; **R2** default model tiering — Sonnet for build/edit, Haiku for subagents (read-only Task tool ops), **Opus for engraving + PCR + ZF synthesis + architectural decisions** (CCA QG1 immutable); no mid-task model switching (cache is model-specific); **R3** default at IMPL_BATCH boundary `/compact <focus>` — strategic compaction with focus instructions replaces auto-compact's content-loss pattern; CSPS analog: at L<N>→L<N+1> topic-plan transitions OR commit-worthy boundaries; **R4** default between unrelated tasks `/clear` + new session — stale context from unrelated tasks does not pay rent; CSPS analog: chat-vs-session distinction (P-META-014); **R5** default for tool output: summary first; full log path-linked — validator + command + file-read returns `status + findings_count + top_5 + evidence_paths + full_log_path`. **B_TOKEN_BUDGET extends P-META-009 CCA — does NOT introduce a new principle.**
+
+**Counterweight:** Trivial verifications (file-existence checks; "did this string change?") may use Haiku tier; mechanical edits (find-replace; lifecycle bumps) may use Sonnet tier — these don't violate R2. R3 `/compact` not required at micro-boundaries (single-line edit / typo fix); the IMPL_BATCH boundary (commit-worthy / level-transition) is the trigger. R5 summary-first does not apply when full log is short (≤50 lines); the discipline targets large blob outputs (>500 tokens) accumulating as raw context. The discipline targets RECURRING boundaries where defaults compound; one-off exceptions documented inline are acceptable.
+
+**Source:** S007 turn 4 user directive verbatim — "i ratify all" (after Phase 2 element-review §3.4 surfaced 5-rule slate per [token-optimization.md v0.3 §14.1](./token-optimization.md)). Originated from CSP_STANDARD_TOKEN_BUDGET_GOVERNANCE (Claude AI council member synthesizing Perplexity + GPT + Gemini + Claude AI inputs); absorbed S006 turn 27 into token-optimization.md v0.2 §14; v0.3 elevated to engraving-candidate slate. Phase 1 measurement (S007 turn 2) confirmed un-optimized typical-session ceiling ~700K-2.9M tokens — strong empirical motivation for mechanical defaults.
+
+**Anti-patterns:**
+- default-l3-depth-where-l1-suffices (R1 violation; over-fetching context for simple work; the canonical anti-pattern v0.3 §14.2 strategy 1 targets)
+- mid-task-model-switch (R2 violation; invalidates Anthropic prompt cache; rebuilds 1h cache from scratch; CSPS Opus QG1 immutable composes)
+- silent-auto-compact-mid-session (R3 violation; loses governance context; manual `/compact <focus>` preserves intent + structure)
+- context-bleed-between-unrelated-tasks (R4 violation; stale context wastes per-turn rent; chat-vs-session distinction P-META-014 violated when domain changes within same chat)
+- tool-output-blob-no-summary (R5 violation; 5K-10K log spew accumulating as raw context vs structured summary; multiplies across recurring validator runs)
+
+**Mechanical surfaces (5/5 declared S007 turn 4):**
+- schema: [`principles.yaml#P-META-009.config.token_budget_operating_rules`](../../../packages/principles/principles.yaml) (5 rules verbatim + escalation triggers + composes_with metadata; ratified_at_session: S007 / ratified_at_turn: 4)
+- validator (atomic registration): `token-budget-claude-md-size` (R1) + `token-budget-skills-completeness` (R1) + `token-budget-hook-presence` (R5) + `token-budget-compact-frequency` (R3) + `token-budget-cache-continuity` (R2) — all 5 registered in [audit-runner.md](./audit-runner.md) Meta section + [audit-hub.md Pipeline 10](./audit-hub.md); impl week-4
+- hook: [`.claude/hooks/verify-hooks-functional.sh`](../../../.claude/hooks/verify-hooks-functional.sh) (SessionStart self-test stub per cruel-critic Critique 2 mitigation; week-4 promotes to active enforcement once 7 hook scripts ship per token-optimization.md §14.4 Phase 5)
+- memory: [`feedback_token_budget.md`](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_token_budget.md) + [MEMORY.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\MEMORY.md) index entry (S007 turn 4)
+- contract: this entry + AGENTS.md hard NO (S007 turn 4 — covers all 5 operating rules) + ai-behavior-spine.md matrix row (S007 turn 4) + [`principles.yaml#P-META-009`](../../../packages/principles/principles.yaml) (extension) + [`token-optimization.md v0.3`](./token-optimization.md) (dashboard leaf — full 10-phase plan + chat-transfer + ZF 6-pass)
+
+**Cross-references:** P-META-009 (extends; no new principle — B_TOKEN_BUDGET IS the operating-rules subsection of CCA) / P-META-006 (RZF — Phase 1 measurement IS the proof per "re-run IS the proof"; B_TOKEN_BUDGET claims about 60-80% savings remain ESTIMATED until measured) / P-META-008 (cycle-mandatory-in-plan — every phase has explicit ZF gate; pnpm verify exit 0 required) / P-META-016 (gradual-build — R3 IMPL_BATCH boundaries align with L<N>→L<N+1> topic-plan transitions per foundation-stability) / P-META-019 (structural-prevention — Phase 1 measurement gaps surface as §10.0j enhancement-proposals not patches) / B_COGNITIVE_CONTEXT_DISCIPLINE (foundation; R2 directly enforces QG1) / B_GRADUAL_BUILD_BY_FOUNDATIONS (R3 boundary alignment).
+
 ## How to add a new contract
 
 1. Append a new section here with the same shape (canonical wording + counterweight + source + anti-patterns + mechanical-surfaces).

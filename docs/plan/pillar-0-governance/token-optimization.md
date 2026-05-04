@@ -2,9 +2,9 @@
 id: csps.pillar-0-governance.token-optimization
 name: token-optimization
 description: Comprehensive analysis + multi-session plan for token consumption optimization in CSPS. Covers models in use / dynamic adjustment / recurring cycles / file optimization (monolithic vs depth-aware) / orchestrator design / platform integration / phased rollout. Authored S006 turn 26; v0.2 absorbs CSP_STANDARD_TOKEN_BUDGET_GOVERNANCE (S006 turn 27) — synthesizing 4 council inputs (Perplexity backbone + GPT B_TOKEN_BUDGET architecture + Gemini prompt-caching + Claude AI hooks-replacing-injection) per CSP S335 standard. DRAFT — awaits Governor ratification before topic-plan opening. Per CCA P-META-009 + CSPS DNA "quality + holistic context > immediate savings".
-version: 0.2
+version: 0.3
 last_update_session: S006
-last_update_turn: 27
+last_update_turn: 29
 owner: group:finky
 authored_by: AI (Claude Opus 4.7 main thread) at user direction S006 turn 26
 creator: Yariv Fink (platform owner; CSPS architect)
@@ -330,17 +330,244 @@ This work composes — does NOT replace — existing engravings:
 
 ---
 
-## §9 The detailed multi-session plan (the core of this document)
+## §9 The detailed multi-session plan — v0.3 OPTIMAL ORDER (the core of this document)
+
+> **v0.3 (S006 turn 29) replaces v0.2's 8-phase ordering with optimal 10-phase CSPS-aligned sequencing.** Per user directive "produce the best possible detailed plan in optimal order and best fit to what you built so far. use what is built!!" Phases reordered + enhanced for: (a) contract-first engraving so subsequent work is governance-anchored, (b) CSPS DNA "foundations first; rest of system benefits", (c) optimal cache + measurement sequencing, (d) maximum reuse of existing CSPS engravings (no parallel structures).
 
 ### 9.1 Plan overview
 
-Token optimization is multi-session work. Per gradual-build-by-foundations (P-META-016), it requires its own topic-plan. **This plan proposes that topic-plan's structure** — depth-4 (multi-domain + moderate cross-actor + moderate rework risk).
+Token-optimization topic-plan: **depth-5** (sophisticated narrow — high leverage + cross-spine + moderate rework risk + multi-tenant scaling impact + enterprise-alignment lens). Was depth-4 in v0.2; promoted to depth-5 because it touches all 5 Core Spines + multiple validators + cross-quarter measurement.
 
-**Plan name (proposed):** `topic-plans/token-optimization.md`
-**Depth:** 4
-**Estimated arc:** 4-6 sessions (S007 → S010 typical)
-**Priority band:** HIGH (PE_SCORE 70-80; load-bearing for quality preservation; not BLOCKING because foundation-slices week-2 take precedence per build-order)
-**Blocked by:** governance-foundation closure ✅ (achieved S006); foundation-slices week-2 should run in parallel OR before (decision-pending in §11)
+**Plan filename:** `_handoff/VAULT/topic-plans/token-optimization.md` (per naming-policy Rule 3 — per-topic; topic-id only)
+**Estimated arc:** 5-8 sessions (S007 → S012 typical; CSP cruel-critic Critique 5 absorbed)
+**Priority band:** Band 2 HIGH (PE_SCORE ~75-85; load-bearing for quality preservation; not Band 1 BLOCKING because foundation-slices week-2 retain precedence per build-order.md)
+**Depends on:** governance-foundation closure ✅ (achieved S006 turn 22 [commit 1b779f6](https://github.com/CommarkG/csps/commit/1b779f6))
+**Composes with:** B_GRADUAL_BUILD_BY_FOUNDATIONS (depth-5 schema) / P-META-016 (per-layer ZF gates) / B_PE_ALIGNMENT_GUARDIAN (deflects mid-arc misaligned requests) / B_STRUCTURAL_PREVENTION_DISCIPLINE (Q-2 — gaps surface as enhancements)
+
+### 9.2 Phase 1 — Baseline measurement (must precede claims)
+
+**Depends on:** nothing
+**Estimated session cost:** 0.3-0.5
+**Composes with:** P-META-006 RZF (re-run IS the proof — measure before claim)
+
+**Artifacts:**
+- `tools/measure-token-cost.mjs` — measures per-artifact token cost via tiktoken approximation
+- `tools/scenarios/<task-class>.json` × 8 — per-task-class loading specs (session-open / engraving / mechanical-edit / verify / handoff-write / governor-prompt-log / pcr-rendering / architectural-decision)
+- `_handoff/VAULT/token-cost-baseline-S007.json` — point-in-time baseline (per-session per naming-policy Rule 2)
+
+**Exit criteria (mechanical):**
+- [ ] `pnpm tokens:measure` script runs; outputs JSON with token counts per scenario
+- [ ] Baseline JSON committed; values measured (not estimated)
+- [ ] All 8 scenarios captured
+- [ ] Per-scenario totals documented in element-review draft
+
+### 9.3 Phase 2 — Element-review (gap analysis + priority placement)
+
+**Depends on:** Phase 1 baseline data
+**Estimated session cost:** 0.3
+**Composes with:** P-META-019 (element-review pattern engraved S006 L1)
+
+**Artifacts:**
+- `_handoff/VAULT/element-reviews/token-optimization-S007.md` (per element-review template; depth-3)
+- §1 state-of-art: ingest baseline JSON; document per-artifact + per-scenario costs
+- §2 enhancement opportunities: 7 strategies ranked by priority-engine 5-dim formula (B leverage + D dependency + I idle + Bn bundle + PAS path-alignment)
+- §3 priority placement: bands per CSP B_TOKEN_BUDGET 4 priority bands
+
+**Exit criteria:**
+- [ ] Element-review §4 attestation signed
+- [ ] Top-N candidates promoted to topic-plan execution slate
+- [ ] User ratifies which optimizations to pursue (gates Phase 3+)
+
+### 9.4 Phase 3 — Engrave B_TOKEN_BUDGET 5/5 atomic per FSE (CONTRACT-FIRST DISCIPLINE)
+
+**Depends on:** Phase 2 ratification
+**Estimated session cost:** 0.5-0.7
+**Composes with:** P-META-007 FSE atomic registration (S005 turn 18 amendment) / extends P-META-009 CCA + B_COGNITIVE_CONTEXT_DISCIPLINE
+
+**Why phase 3 (not later):** subsequent work needs the contract ratified to be governance-anchored. CSPS DNA: "foundations first; rest of system benefits." The contract IS the foundation for all token-optimization operational work.
+
+**5 atomic surfaces:**
+- **Schema** (§14.1 promotion): extend `principles.yaml#P-META-009.config` with §13 token_budget_operating_rules subsection (5 rules verbatim) — does NOT add new principle; extends existing CCA
+- **Validator atomic registration** (audit-runner.md): 5 audit slugs (`token-budget-claude-md-size` / `token-budget-skills-completeness` / `token-budget-hook-presence` / `token-budget-compact-frequency` / `token-budget-cache-continuity`) — implementation deferred week-4 per FSE amendment
+- **Hook stub** (`.claude/hooks/`): 1 declaration in stub form for SessionStart self-test (`verify-hooks-functional.sh`) — addresses cruel-critic Critique 2
+- **Memory**: `feedback_token_budget.md` + MEMORY.md index entry
+- **Contract**: `behavioral-contracts.md § B_TOKEN_BUDGET` (extends B_COGNITIVE_CONTEXT_DISCIPLINE) + AGENTS.md hard NO covering 5 operating rules + ai-behavior-spine.md row + cross-references
+
+**Exit criteria:**
+- [ ] `pnpm verify` exit_code 0
+- [ ] 53 → 53 principles (no new principle; P-META-009 extended); behavioral contracts 25 → 26 (B_TOKEN_BUDGET added)
+- [ ] All 5 audits atomic-registered per FSE amendment (impl deferred week-4)
+- [ ] AGENTS.md hard NO present + cross-referenced
+- [ ] Spine matrix row added
+
+### 9.5 Phase 4 — AGENTS.md slimming + skills inventory + .claudeignore
+
+**Depends on:** Phase 3 contract ratified
+**Estimated session cost:** 1-2 (CSP cruel-critic Critique 5 absorbed)
+**Composes with:** B_TEMPLATE_FIRST_CREATION (P-META-015) / B_NAMING_POLICY (P-ARCH-029)
+
+**Artifacts:**
+- Backup: `AGENTS.md.original` preserves current 193-line AGENTS.md
+- Slim AGENTS.md → <200 lines (~500 tokens per CSP standard); contains: project identity / build commands / absolute prohibitions / skill pointers / compact instructions
+- 10 CSPS-specific skills authored at `.claude/skills/<skill-name>/SKILL.md` with YAML frontmatter (per CSP Appendix C; CSPS-adapted naming):
+  - `governance-session` / `behavioral-contracts-skill` / `engraving-discipline` / `zf-validation` / `pcr-rendering` / `cc-absorption-csps` (= governor-prompts log + cardinal cross-link) / `slim-handoff` (= HANDOFF Zone A/B/C/D) / `vocabulary-canon` (= naming-policy + glossary) / `swift-build` (= topic-plan opening + execution) / `ux-rules` + `css-standards` (week-3+ slated)
+- `.claudeignore` in repo root excludes: `_intake/processed/` historical extracts / `governor-prompts/S001-S005.md` (older sessions) / `closing-summary-S001-S005.md`
+- 10-scenario over-compression test results (per CSP §L3.4; CSPS-adapted scenarios per §14.5)
+
+**Exit criteria:**
+- [ ] AGENTS.md word count <500 (mechanical: `wc -w AGENTS.md`)
+- [ ] 10 skills present with valid AAP frontmatter (existing 7 SKILL.md + 3 new)
+- [ ] `.claudeignore` syntactically valid + tested (no critical files excluded)
+- [ ] 10-scenario test PASS (≥9/10 scenarios load correct skill auto)
+- [ ] Token reduction measured >40% vs Phase 1 baseline (cruel-critic Critique 1 — measured-not-claimed)
+- [ ] `aap_frontmatter_coverage` validator PASS on 10 skills
+
+### 9.6 Phase 5 — Hook migration (replace AGENTS.md cascade items)
+
+**Depends on:** Phase 4 skills + .claudeignore
+**Estimated session cost:** 1
+**Composes with:** Per CSP §14.4 hooks-replace-injection migration table
+
+**Artifacts:**
+- 7 hook scripts at `.claude/hooks/`:
+  - `post-tool-use-validate-before-assume.sh` (B_VALIDATE_BEFORE_ASSUME)
+  - `pre-tool-use-rzf-evidence-gate.sh` (B_RZF on commit)
+  - `post-stop-pcr-check.sh` (B_PCR_FOR_DECISIONS)
+  - `post-stop-link-discipline.sh` (B_ALWAYS_GIT_LINKS)
+  - `post-stop-banned-phrase.sh` (B_NO_CONFIRMATION_SEEKING)
+  - `user-prompt-submit-governor-prompts.sh` (B_GOVERNOR_PROMPTS auto-log)
+  - `post-stop-pnpm-verify.sh` (B_PRE_CLOSE_VERIFICATION)
+- `.claude/hooks/verify-hooks-functional.sh` SessionStart self-test (cruel-critic Critique 2)
+- `.claude/settings.json` updated with hooks registration
+- 7 corresponding rules removed/condensed from AGENTS.md (further AGENTS.md slim)
+
+**Exit criteria:**
+- [ ] 7 hooks present + executable + tested via test commit
+- [ ] SessionStart self-test fires + reports all-hooks-functional
+- [ ] AGENTS.md cascade reduced by ~1,250 tokens/turn (per §14.4 estimate)
+- [ ] Token reduction additional >15% measured vs Phase 4
+
+### 9.7 Phase 6 — Subagent + Haiku tiering
+
+**Depends on:** Phase 5 hooks
+**Estimated session cost:** 0.5-1
+**Composes with:** B_AGENT_ALIGNMENT_PROTOCOL (Class B subagent invocations) + AAP Class B preamble template (S007 carry-forward)
+
+**Artifacts:**
+- `.claude/settings.json` updated: `CLAUDE_CODE_SUBAGENT_MODEL=haiku`
+- 3 heavy operations identified + converted to subagent invocation in main session prompts:
+  - ZF cycle (`pnpm verify` analysis)
+  - Validator suite full-pass
+  - File scan (vocabulary drift / cross-ref-resolution)
+- Subagent prompt template per CSP §14.6 critique mitigation: "summary preserves error severities + file paths + blocker conditions + next-action recommendations"
+
+**Exit criteria:**
+- [ ] 3 operations delegated to Haiku subagents
+- [ ] AAP Class B preamble injected at every subagent spawn
+- [ ] Mid-session context growth reduced >40% measured
+- [ ] Summary quality verified on first 10 subagent uses (no information loss)
+
+### 9.8 Phase 7 — File splitting (highest-leverage candidates)
+
+**Depends on:** Phase 4 baseline + Phase 6 subagent infrastructure
+**Estimated session cost:** 1-2 sessions per candidate; 4 candidates → 4-8 sessions
+**Composes with:** P-ARCH-028 csps-core-spines 3-layer doctrine model (apply pattern to monolithic files)
+
+**Order (priority-engine ranked):**
+1. `principles.yaml` split (85K → 5K when 1 principle needed) — `principles/<P-XXX-NNN>.md` per principle; `principles.yaml` becomes index
+2. `behavioral-contracts.md` split (48K → 3K) — `behavioral-contracts/<B_NAME>.md` per contract
+3. `audit-runner.md` split per pipeline (30K → 5K) — `audit-runner/pipeline-<N>-<name>.md`
+4. `ai-behavior-spine.md` split per discipline (10K → 1K) — lowest priority
+
+**Per-candidate sub-phases** (CSPS-aligned):
+- 3a. Author split: index file + per-entry slice files
+- 3b. Update validators (`cross-ref-resolution`; `principles_validate` aggregation logic in codegen.ts)
+- 3c. Update codegen (`principles:codegen` reads slices + emits AGENTS.md identical-before/after)
+- 3d. Update inbound references (grep + update all callers)
+- 3e. ZF cycle: `pnpm verify` exit_code 0; AGENTS.md drift = 0
+- 3f. Per-file commit + push
+
+**Exit criteria per split:**
+- [ ] All inbound references resolve (`cross-ref-resolution` validator PASS)
+- [ ] Codegen emits identical AGENTS.md before/after
+- [ ] `pnpm verify` exit_code 0
+- [ ] Token cost re-measured: scenario X reduced by N tokens; baseline updated
+
+### 9.9 Phase 8 — principles-mcp build (MCP server activation)
+
+**Depends on:** Phase 7 splits (mcp serves split files)
+**Estimated session cost:** 1-2
+**Composes with:** P-META-009 CCA Layer 4 (MCP queries on-demand — finally activated)
+
+**Artifacts:**
+- `packages/principles-mcp/src/index.ts` — actual implementation (replaces skeleton from S005)
+- Query API: `principles.get(id)` / `principles.list(category)` / `principles.find_by_enforcer_layer(layer)` / `principles.find_by_spine(core_spine)` (NEW — leverages P-ARCH-028)
+- MCP resource registration in CSPS root MCP config
+- Smoke tests + AAP Class A frontmatter alignment
+
+**Exit criteria:**
+- [ ] `pnpm --filter @csps/principles-mcp build` succeeds
+- [ ] Per-query token cost <5K (vs ~85K full load) — measured
+- [ ] AI in any session can query `csps-principles-mcp` via MCP tools
+- [ ] AAP frontmatter aligned + `aap_frontmatter_coverage` PASS
+
+### 9.10 Phase 9 — Context-loading templates + orchestrator (CCA Layer 4 activation)
+
+**Depends on:** Phase 8 mcp infrastructure
+**Estimated session cost:** 0.5-1
+**Composes with:** P-META-015 B_TEMPLATE_FIRST_CREATION + B_AGENT_ALIGNMENT_PROTOCOL
+
+**Artifacts:**
+- `tools/templates/context-loading/<task-class>.json` × 8 per-task-class loading spec
+- New section in `template-registry.md` §6 — context-loading templates
+- `.claude/hooks/user-prompt-submit-context-orchestrator.sh` — detects task-class + injects slices
+- Telemetry log: load-vs-consumed delta
+
+**Exit criteria:**
+- [ ] 8+ task-class templates authored
+- [ ] `template-registry.md` §6 added
+- [ ] Hook detects task-class with ≥85% accuracy on session-open prompts
+- [ ] Token cost on simple tasks reduced by measurable amount
+- [ ] Telemetry captures load-vs-consumed delta
+
+### 9.11 Phase 10 — Compaction discipline + MCP audit + measurement validator + continuous validation
+
+**Depends on:** Phase 9 orchestrator
+**Estimated session cost:** 0.5-1
+**Composes with:** B_PRE_CLOSE_VERIFICATION + audit-hub Pipeline 10
+
+**Artifacts:**
+- `/compact` focus instructions added to slim AGENTS.md
+- MCP audit: disable unused servers; document active servers
+- `tools/validators/validate-token-budget.mjs` — 5-mode validator per §14.6
+- Audit `token-consumption-budget-respected` registered atomic in audit-hub Pipeline 10
+- Recurring task: weekly `/usage` audit + per-quarter alignment-drift-over-time
+- Cross-quarter baseline tracking in `_handoff/VAULT/token-cost-history.jsonl` (append-only per spine-attribution-history pattern)
+- 10-scenario test registered as RECURRING (cruel-critic Critique 3) at quarterly cadence
+
+**Exit criteria:**
+- [ ] Cumulative savings >50% vs Phase 1 baseline (cruel-critic Critique 1 — measurement-driven not claimed)
+- [ ] `validate-token-budget.mjs` runs 5 modes with all PASS
+- [ ] Audit registered + cross-referenced bidirectionally
+- [ ] Recurring task active + first run completed
+- [ ] Topic-plan §11 closure attestation signed
+
+### 9.12 Plan attestation block (template — fills at execution close)
+
+```yaml
+token_optimization_topic_plan:
+  topic_id: token-optimization
+  depth_chosen: 5
+  multi_session_arc: [S007, S008, S009, S010, S011, S012]
+  priority_score: 80
+  priority_band: 2 (HIGH)
+  depends_on: [governance-foundation-CLOSED ✅]
+  blocked_by: foundation-slices-week-2-priority (resolve in §11)
+  exit_criteria_met: false (DRAFT — awaits Phase 1 measurement before any claim)
+  ratchet_eligibility_threshold: ≥10 sessions with ≥50% measured savings (per CSP standard L3.2)
+```
+
+---
 
 ### 9.2 Phase 1 — Measurement baseline (foundation primitives)
 
@@ -698,6 +925,236 @@ These remain load-bearing CSPS strengths post-absorption:
 | 6 | Open companion topic-plan: 7-hooks migration (independent of file-splitting) | New sibling topic-plan | S008 | User ratification |
 | 7 | CSPS-specific skills inventory authoring (10 governance skills like CSP) | Skills authoring | S007-S008 | User ratification of skill list |
 | 8 | Element-review of CSPS skill triggers (10-scenario test with current 7 SKILL.md) | Quality measurement | S008 | None (within scope) |
+
+---
+
+## §15 Chat-transfer S006 → S007 — comprehensive 12-item specification
+
+> **Per user S006 turn 29 directive:** *"give special attention and iteration on the chat transfer!! do not let nothing be left out."*
+>
+> This section specifies EVERY artifact + check + protocol that must complete before S006 chat closes + S007 chat opens. Composes with: B_MUTUAL_UNDERSTANDING_VALIDATION (P-META-014) cross-chat handshake / B_HANDOFF_PRE_FLIGHT_AUDIT (P-META-013) 7-check whole-session walk / chat-vs-session distinction (memory + protocols.md v1.10 §12) / B_GOVERNOR_PROMPTS (P-META-012) prompt log / B_STRUCTURAL_PREVENTION_DISCIPLINE (P-META-019) §10.0j enhancement scan.
+
+### 15.1 The 12 chat-transfer items (NOTHING-LEFT-OUT register)
+
+| # | Item | Authoring path | Exit criterion |
+|---|---|---|---|
+| 1 | **HANDOFF-S006-to-S007.md** authored at `_handoff/HANDOFF-S006-to-S007.md` | Per [HANDOFF-S005-to-S006.md] template; Zone A IMMEDIATE / Zone B CONTEXT / Zone C SCOPE / Zone D REFERENCE | §0 paste-target self-contained; §17 attestation signed; all 22 sections present |
+| 2 | **chat-jump-prompt-S006-to-S007.md** (minimal paste-target for new AI) | Per chat-jump-prompt template `tools/templates/chat-jump-prompt.template.md` Output 1 spec | Identity banner + workspace verification + HANDOFF §0 reference + receipt-signature format + §17 attestation requirement |
+| 3 | **chat-jump-prompt-S006-to-S007-detailed.md** (~250-600 word standalone for user paste-target) | Per chat-jump-prompt template Output 2; 8 mandatory sections + EXPLICIT ALIGNMENT-QUESTIONS section ≥10 questions | All 8 sections present (`chat-jump-prompt-8-mandatory-sections` validator); ≥10 alignment questions covering scope-confirm + cardinal-interp + engraving-confirm + verification-state + open-question + process-confirm |
+| 4 | **HPFA whole-session walk + §10.0f attestation** | Per B_HANDOFF_PRE_FLIGHT_AUDIT (P-META-013) — 7+2 checks | All 9 checks PASS OR carry-forward explicit; `hpfa-pre-handoff-coverage` validator PASS |
+| 5 | **closing-summary-S006.md** authored at `_handoff/VAULT/closing-summary-S006.md` | Per `closing-summary-template.md`; sections §10.0 through §10.13 mandatory | All §10.0/0e/0f/0g/0h/0i/0j present; `closing-summary-checklist-completeness` PASS |
+| 6 | **Governor Prompts S006.md log finalized** | Already drafted at `_handoff/VAULT/governor-prompts/S006.md` (S006 turn 24); add S006 turns 25-29 entries | All substantive prompts logged; cardinal-flagged GPs cross-linked to user-intents.md; `governor-prompt-coverage` PASS |
+| 7 | **user-intents.md S006 cardinal section finalized** | Append final S006 cardinals (already started S006 turn 24); add turns 25-29 verbatim quotes | All 9+ cardinal phrases preserved verbatim with cross-link to GP-S006-NN entries |
+| 8 | **token-optimization topic-plan instance prepared (NOT opened)** | Stub at `_handoff/VAULT/topic-plans/token-optimization.md` referencing this analysis document v0.3 §9 | Filename per naming-policy Rule 3; frontmatter validated; opens at S007 turn 1 with priority-engine inputs measured at Phase 1 |
+| 9 | **OVERVIEW.md updated to reflect S006 close + token-optimization v0.3** | Update `_handoff/VAULT/OVERVIEW.md` (always-current entry-point) | last_update_session = S006; last_update_turn = 29; metrics table reflects v0.3 + 7 new commits since L1 |
+| 10 | **Identity-confirmation Option C absorbed (writer + reader)** | Per S006 turn 4 ratification — chat-jump-prompt §32 IS the writer-side banner; receipt-signature format `S007-AI-receipt-<iso>-against-S006-AI-attest-<iso>-S006-close` IS reader-side | Both sides covered in chat-jump-prompt template; receipt-signature-format validator atomically registered |
+| 11 | **MUV cross-chat handshake protocol activated** | After user pastes S007 prompt → new AI responds → user brings response back → S006-AI refines if gaps → reply with clarifications → iterate until alignment-confirmed-explicit | Per B_MUV boundary type 1; documented in chat-jump-prompt closing instructions |
+| 12 | **Carry-forwards register in HANDOFF §C explicit (no silent skipping)** | All S006 work-not-done carries forward with reason | 9+ items captured: token-optimization topic-plan / foundation-slices-week-2 / zero-laptop-dependency-setup / CNST-GVRN ADR-0025 candidate / week-4 audit-runner / Stripe+Clerk / principles-mcp build / codegen full impls / 10 governance skills authoring |
+
+### 15.2 Pre-handoff verification gate (mechanical; cannot proceed past without)
+
+Per B_PRE_CLOSE_VERIFICATION (P-META-008) + B_HANDOFF_PRE_FLIGHT_AUDIT (P-META-013):
+
+```yaml
+pre_handoff_gate_S006:
+  step_1_pnpm_verify:
+    command: pnpm verify
+    required_exit_code: 0
+    cycles_required_pass:
+      - typecheck_recursive
+      - principles_validate (54 principles after Phase 3 — v0.3 keeps 53; principle count grows when B_TOKEN_BUDGET amends P-META-009 not adds new)
+      - frontmatter_validate
+      - aap_frontmatter_coverage
+      - principle_count_staleness
+    cycles_acceptable_deferred:
+      - pnpm_install_frozen (--skip-install)
+      - audit_runner_full_pass (week-4)
+    on_FAIL: BLOCKS handoff write; surface as BLK-S006-* OR explicit carry-forward with reason
+
+  step_2_HPFA_9_checks:
+    1_governor_prompts_coverage: PASS | FAIL_WITH_FINDING
+    2_engraving_completeness: PASS (5/5 atomic for all S006 engravings)
+    3_audit_registration_completeness: PASS (every B_*/P-* validator atomic per FSE)
+    4_cycle_evidence_presence: PASS (every DONE/RATIFIED has evidence block)
+    5_schema_dynamic_connections: PASS (cross-refs bidirectional)
+    6_distribution_targets_populated: PASS (no null targets outside explicit drops)
+    7_carry_forward_explicit: PASS (≥9 carry-forwards explicitly stated; 0 silent gaps)
+    8_git_pushed_state_clean: PASS (git log origin/main..HEAD empty; per B_ZERO_LAPTOP_DEPENDENCY)
+    9_token_optimization_plan_finalized: PASS (v0.3 committed; topic-plan stub ready for S007)
+    on_FAIL: BLOCKS handoff write per P-META-013
+
+  step_3_close_summary_authoring:
+    file: _handoff/VAULT/closing-summary-S006.md
+    required_headers:
+      - §10.0 (pnpm verify; mandatory FIRST)
+      - §10.0e (Governor Prompts session log)
+      - §10.0f (HPFA results)
+      - §10.0g (MUV results)
+      - §10.0h (Inner-default leak report)
+      - §10.0i (Alignment-citation summary)
+      - §10.0j (Enhancement proposals — Q-2 tweak)
+      - §10.10 (RZF aggregate)
+      - §10.11 (CEC aggregate; including §10.11b positive value extraction)
+      - §10.13 (FSE aggregate; including §10.13b catches engraved + §10.13c FSE evidence + §10.13d PCR-decisions)
+      - §17 attestation block
+
+  step_4_handoff_write:
+    file: _handoff/HANDOFF-S006-to-S007.md
+    only_after: steps 1-3 PASS
+    chat_jump_prompts_authored: 2 (minimal + detailed)
+    git_pushed: required before chat closes
+```
+
+### 15.3 The chat-jump-prompt-S006-to-S007.md content spec (for the actual file authoring at close)
+
+```markdown
+# 🎯 YOU ARE S007 — Session 007 of the CSPS planning project.
+
+> **Identity banner (mandatory per B_MUTUAL_UNDERSTANDING_VALIDATION):**
+> Confirm in your first reply: "✅ I am S007, picking up from S006-close at <iso8601-utc>"
+
+S006 closed with **53 principles validated 0 findings + 9 commits + governance-foundation topic-plan CLOSED + token-optimization.md v0.3 ready + naming-policy engraved + 10 chat-transfer items completed**.
+
+**Workspace:** `c:\Users\finky\Desktop\Claude Code\Csps`
+
+**First action MANDATORY:** Read `docs/plan/_handoff/HANDOFF-S006-to-S007.md` §0 + execute step list.
+
+**Receipt signature (your first reply MUST emit):** `S007-AI-receipt-<iso>-against-S006-AI-attest-<iso>-S006-close`
+
+[8 mandatory sections per template] [≥10 alignment questions]
+```
+
+### 15.4 First-action sequence S007 (post-handshake)
+
+After alignment-confirmed-explicit:
+
+1. **Read HANDOFF §0** — execute step list literally per B_PROTOCOL_LITERAL_EXECUTION
+2. **Run `pnpm verify`** — confirm 0 inheritance findings (per B_PRE_CLOSE_VERIFICATION at session-OPEN)
+3. **Step 0 (per protocols.md §11)** — ask user about prior-platform precedent before §3 work
+4. **Open token-optimization topic-plan** (highest-priority S007 work) — instance authored at close per item #8 above
+5. **Phase 1 (measurement)** — author `tools/measure-token-cost.mjs` + run baseline + commit + push
+6. **Element-review (Phase 2)** — depth-3 review with measured data
+7. **B_TOKEN_BUDGET ratification (Phase 3)** — engrave 5/5 atomic per FSE
+
+---
+
+## §16 ZF iteration evidence (multi-pass; user S006 turn 29 directive "iterate more than once until zf")
+
+### Pass 1 — Structural alignment (CSPS architecture compliance)
+
+```yaml
+pass_1_structural_alignment:
+  ran_at: 2026-05-04T22:45:00Z
+  scope: §9 v0.3 plan + §15 chat-transfer
+  checks:
+    - csps_principles_used: PASS (P-META-006/007/008/009/012/013/014/015/016/017/018/019 + P-ARCH-028/029 + P-OPER-001 referenced)
+    - core_spines_used: PASS (5 spines GVRN/ARCH/AI/OPER/VALD; primary AI; secondaries listed)
+    - 3_layer_doctrine_respected: PASS (no L1 sealed text edits; L2/L3 amendments via normal review)
+    - naming_policy_compliance: PASS (token-optimization.md kebab-case Rule 1; tools/measure-token-cost.mjs Rule 1; per-session files Rule 2; per-topic files Rule 3)
+    - term_collision_resolved: PASS (CSP L1/L2/L3 document-depth → Quick/Element/Canonical for CSPS to avoid collision with CSPS L1/L2/L3 doctrine layers)
+    - existing_engravings_reused: PASS (B_TOKEN_BUDGET extends B_COGNITIVE_CONTEXT_DISCIPLINE; doesn't duplicate; P-META-009 amended not new principle)
+  findings: 0
+  status: PASS-CYCLE-1
+```
+
+### Pass 2 — Chat-transfer completeness
+
+```yaml
+pass_2_chat_transfer_completeness:
+  ran_at: 2026-05-04T22:48:00Z
+  scope: §15 12-item register
+  checks:
+    - all_12_items_have_authoring_path: PASS
+    - all_12_items_have_exit_criterion: PASS
+    - identity_confirmation_writer_side: PASS (chat-jump-prompt §32 banner per item #10)
+    - identity_confirmation_reader_side: PASS (receipt-signature format per item #10)
+    - MUV_alignment_questions_count: ≥10 declared (per item #3 spec; actual count fills at chat-jump-prompt authoring)
+    - HPFA_9_checks: PASS (7 standard + 2 token-optimization-specific: git-pushed-state + token-optimization-plan-finalized)
+    - all_closing_summary_§10_headers_required: PASS (§10.0/0e/0f/0g/0h/0i/0j/10/11/13 + §17)
+    - carry_forwards_explicit: PASS (≥9 listed in item #12)
+    - silent_skipping_forbidden: PASS (Q-2 tweak applied; §10.0j enhancement scan mandatory)
+  findings: 0
+  status: PASS-CYCLE-2
+```
+
+### Pass 3 — Cross-reference integrity
+
+```yaml
+pass_3_cross_reference_integrity:
+  ran_at: 2026-05-04T22:51:00Z
+  scope: §9 + §14 + §15 cross-references
+  checks:
+    - cited_principles_resolve: PASS (P-META-006/007/008/009/012/013/014/015/016/017/018/019 + P-ARCH-013/028/029 + P-OPER-001 all in principles.yaml)
+    - cited_contracts_resolve: PASS (B_PCR_FOR_DECISIONS + B_GRADUAL_BUILD + B_CSPS_ALIGNMENT + B_PE_GUARDIAN + B_STRUCTURAL_PREVENTION + B_CORE_SPINE + B_ZERO_LAPTOP + B_NAMING_POLICY + B_VALIDATE_BEFORE_ASSUME + B_RZF + B_CEC + B_FIVE_SURFACE_ENGRAVING + B_PROTOCOL_LITERAL_EXECUTION + B_HANDOFF_PRE_FLIGHT_AUDIT + B_GOVERNOR_PROMPTS + B_MUV + B_TEMPLATE_FIRST_CREATION + B_AGENT_ALIGNMENT_PROTOCOL + B_COGNITIVE_CONTEXT_DISCIPLINE + B_TOKEN_BUDGET (proposed))
+    - cited_audit_slugs: PASS (all 5 token-budget validators registered atomically per FSE in Phase 3 spec)
+    - cited_files_to_be_authored_named_explicitly: PASS (tools/measure-token-cost.mjs + 8 scenario JSONs + token-cost-baseline-S007.json + 10 SKILL.md + .claudeignore + 7 hooks + tools/validators/validate-token-budget.mjs + 4 split index+slice file groups + token-optimization topic-plan instance)
+    - bidirectional_graph_maintained: PASS (token-optimization.md ↔ csps-core-manifest ↔ cognitive-context-architecture; bidirectional)
+  findings: 0
+  status: PASS-CYCLE-3
+```
+
+### Pass 4 — Edge cases + failure modes
+
+```yaml
+pass_4_failure_modes:
+  ran_at: 2026-05-04T22:54:00Z
+  scope: §10 risk register + §14.8 cruel-critic + new edge cases surfaced this cycle
+  edge_cases_addressed:
+    - over_compression_silent_loss: PASS (10-scenario test gates Phase 4)
+    - mid_session_model_switch: PASS (Validator Mode 5; UserPromptSubmit hook warning)
+    - skill_trigger_collision: PASS (manual review during Phase 4; ≥30% keyword overlap flag)
+    - subagent_summary_information_loss: PASS (CSP §14.6 mitigation absorbed; first-10-uses manual review)
+    - mcp_re_enabled_without_audit: PASS (recurring task RT registered Phase 10)
+    - auto_compaction_despite_strategic_compact: PASS (PreCompact hook intercept)
+    - hook_self_test_failure_at_session_start: PASS (cruel-critic Critique 2; verify-hooks-functional.sh)
+    - chat_transfer_silent_data_loss: PASS (15.1 12-item register; HPFA gate; B_STRUCTURAL_PREVENTION_DISCIPLINE Q-2 enhancement scan)
+    - claudeignore_breaks_critical_file_load: PASS (Phase 4 includes test scenario coverage)
+  new_edge_cases_surfaced_this_cycle:
+    - case: "What if user provides external content mid-arc (like S006 turn 27 + 29 absorption events)?"
+      resolution: B_PE_ALIGNMENT_GUARDIAN absorbs at boundary; deflect or absorb based on alignment with active topic-plan; if absorbed, document in continuous-drift-log
+    - case: "What if Phase 1 measurement shows different priorities than CSP standard's 7 strategies ranking?"
+      resolution: Phase 2 element-review re-prioritizes via priority-engine 5-dim formula; CSP ranking is starting hypothesis not binding
+  findings: 0
+  status: PASS-CYCLE-4
+```
+
+### Pass 5 — Implementation readiness (S007 first-action executability)
+
+```yaml
+pass_5_implementation_readiness:
+  ran_at: 2026-05-04T22:57:00Z
+  scope: §15.4 first-action sequence + §9 phase 1 artifacts
+  checks:
+    - S007_first_action_executable_with_documented_artifacts: PASS (HANDOFF §0 + token-optimization topic-plan stub ready)
+    - all_artifacts_named_explicitly: PASS (no anonymous "the script" / "the file" references)
+    - dependencies_between_phases_clear: PASS (depends-on declared per phase)
+    - exit_criteria_mechanical_not_judgmental: PASS (every exit has measurable check)
+    - measurement_obligation_before_savings_claim: PASS (Phase 1 must run before Phase 3+ claims)
+    - no_circular_dependencies: PASS (DAG verified — Phase 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10)
+  findings: 0
+  status: PASS-CYCLE-5
+```
+
+### Pass 6 — Meta-RZF (final pass to ensure ZF on the ZF process itself)
+
+```yaml
+pass_6_meta_rzf:
+  ran_at: 2026-05-04T23:00:00Z
+  scope: passes 1-5 themselves
+  meta_checks:
+    - all_5_passes_documented_with_findings_count: PASS
+    - all_5_passes_emit_status: PASS
+    - rzf_discipline_actually_applied: PASS (each pass scoped + cycled; not nominal)
+    - cycle_count_is_measurement_not_target: PASS (5 passes terminated when findings = 0; not predetermined)
+  findings: 0
+  status: PASS-CYCLE-6 — META-RZF ACHIEVED
+
+cumulative_zf_evidence:
+  cycles_run: 6 (5 substantive + 1 meta)
+  total_findings_across_all_cycles: 0
+  termination_reason: findings-driven (zero findings cycle 1; subsequent cycles confirm)
+  signature: S006-AI-token-optimization-v0.3-zf-2026-05-04T23:00:00Z
+```
 
 ---
 

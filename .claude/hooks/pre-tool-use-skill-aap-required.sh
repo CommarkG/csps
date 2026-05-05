@@ -18,11 +18,16 @@
 # STUB BEHAVIOR (current):
 #   Reports check would have run on $TARGET_FILE if active. Always exits 0.
 #
-# WEEK-4 PROMOTION CRITERIA:
+# WEEK-4 PROMOTION CRITERIA (extended S010 — 9-field AAP amendment per B_AGENT_ALIGNMENT_PROTOCOL):
 #   - Parses frontmatter of $TARGET_FILE
-#   - Validates AAP fields (csps_aligned + aap_version + agent_class + acknowledged_contracts +
-#     respects_quality_gates + output_contract + trust_tier + universal-required B_*-acks)
-#   - Exit 1 if AAP incomplete; user can override via env var CSPS_ALLOW_SKILL_WILDCARD=1 (with audit log)
+#   - Phase 1 ERROR-level (7 original fields): csps_aligned + aap_version + agent_class +
+#     acknowledged_contracts (universal-required B_AI_PROFESSIONAL_VOICE + B_VALIDATE_BEFORE_ASSUME) +
+#     respects_quality_gates [QG1-QG4] + output_contract + trust_tier — exit 1 if missing
+#   - Phase 1 WARN-level (2 new fields S010 amendment): principle_compliance (P-* IDs; minimum
+#     P-META-010 + P-META-002) + consolidation_cross_refs (artifact paths per B_CONSOLIDATION_PASS) —
+#     log warning but exit 0 (preserves verify continuity for 16 existing SKILL.md)
+#   - Phase 2 (S012 target): warn → error after S011 backfill pass; new SKILL.md REQUIRED to declare 9 fields
+#   - Override original 7: env var CSPS_ALLOW_SKILL_WILDCARD=1 (with audit log)
 #   - Registered as PreToolUse hook in .claude/settings.json with matchers: Write|Edit on **/SKILL.md
 #
 # Manual invocation: bash .claude/hooks/pre-tool-use-skill-aap-required.sh <target-file>

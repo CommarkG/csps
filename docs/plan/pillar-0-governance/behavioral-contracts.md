@@ -799,6 +799,43 @@ CSPS uses claude-code-builtin subagents (Explore / Plan / general-purpose / clau
 - `B_STRUCTURAL_PREVENTION_DISCIPLINE` (P-META-019 Q-2) — gap surfaced by user at S007 §24+ → structural fix not patch-the-instance
 - `B_TEMPLATE_FIRST_CREATION` (P-META-015) — SKILL.md template authored at S007 §24++ post-close addendum: [`tools/templates/skill.template.md`](../../../tools/templates/skill.template.md) (LIVE; embeds full AAP scaffolding for Class A skills at any location; closes wildcard-at-write-time gap; validator catches after-write, template prevents at write-time)
 
+### S010 amendment — 9-element AAP frontmatter (Phase 1: OPTIONAL warn-level; Phase 2 S012: REQUIRED error-level)
+
+**Triggering source:** [EXT-20260505-002-B](../_intake/contexts/governance/agent-discipline/EXT-20260505-002-B-9-element-dna-gate-triple-check-frontmatter-rigidity.md) — CSP enforces a 9-element DNA gate on every skill / subagent template / hook script / external-input artifact (vocab / naming / SCHEMA / core_spines / spheres-RETIRED / pillars / principles / depth_levels / PE / +LAYER 10th). CSPS adapts: drop `spheres-RETIRED` (CSP-specific concept; CSPS doesn't have spheres) + add 2 new fields covering CSP elements not in CSPS AAP-7. **Per S010 turn 6c (Phase 6 of token-optimization §9.7).**
+
+**Two new AAP frontmatter fields (added to existing 7 → total 9):**
+
+| # | Field | Purpose | Phase 1 (S010) | Phase 2 (S012) |
+|---|---|---|---|---|
+| 8 | `principle_compliance` | Array of P-* IDs this agent acknowledges compliance with (per [P-META-002 principles-travel-with-artifacts](../../../packages/principles/principles.yaml)). Always includes `P-META-010` (AAP itself) + `P-META-002`; agent-specific principles append. | **OPTIONAL** (warn) | **REQUIRED** (error) |
+| 9 | `consolidation_cross_refs` | Array of artifact paths whose content this agent's discipline overlaps with — per [B_CONSOLIDATION_PASS](#b_consolidation_pass) (S009 L1.3). Empty array `[]` valid for genuinely-novel agents; populated for any agent whose scope intersects existing canonical homes. | **OPTIONAL** (warn) | **REQUIRED** (error) |
+
+**Why Phase 1 OPTIONAL not REQUIRED immediately (Q3=A precedent applied; load-bearing factor):** all 16 existing SKILL.md (7 packages/skills + 9 .claude/skills) currently have only the 7-field AAP shape. Promoting to REQUIRED in S010 would break `pnpm verify` exit_code 0 across the entire platform until 16 retrofits land — large blast radius contradicts S009 Q3=A minimum-blast-radius decision (B_SAVINGS_AND_SSOT_UNIFIED anchored to existing P-META-009 vs new principle). Phase 1 **OPTIONAL warn-level** preserves verify continuity; new SKILL.md authored S010+ get guidance to populate the 2 new fields immediately; existing 16 retrofitted in S011 dedicated backfill pass; Phase 2 promotes validator to error-level S012.
+
+**What-would-flip:** Governor directive to retrofit all 16 SKILL.md in same S010 close window before promotion → Option A (immediate REQUIRED) becomes feasible. Currently scope is too large for single-session S010.
+
+**Anti-patterns added (composes with prior anti-pattern list):**
+- **AAP-7-shape lockout** (authoring new SKILL.md with only 7 fields after S010 — should include 9; warn fires)
+- **principle-compliance-empty-or-missing** (every agent acknowledges at minimum P-META-010 + P-META-002; empty list signals AAP not absorbed)
+- **consolidation-cross-refs-skipped** (claiming "no overlaps exist" without a B_CONSOLIDATION_PASS 5-step protocol pass — silent skip anti-pattern)
+
+**Mechanical surfaces (5/5; per FSE atomic-validator-registration):**
+- **schema:** this section + [`agent-alignment-protocol.md` §3](./agent-alignment-protocol.md) extended (mandatory-checks 7→9 fields with Phase 1/2 markers) + [`principles.yaml#P-META-010.config`](../../../packages/principles/principles.yaml) extended (`optional_field_set_phase_1` + `mandatory_field_set_phase_2_target`) + [`tools/templates/skill.template.md`](../../../tools/templates/skill.template.md) AAP frontmatter section extended with 2 new fields + comments + [`tools/templates/class-b-agent-spawn-preamble.template.md`](../../../tools/templates/class-b-agent-spawn-preamble.template.md) (S010 6a/6b/6d) preamble references
+- **validator:** [`tools/validators/validate-aap-frontmatter.mjs`](../../../tools/validators/validate-aap-frontmatter.mjs) extended — 2 new optional-field warn-level checks (`principle_compliance` + `consolidation_cross_refs`); does NOT fail PR in Phase 1 (only warns); error-level promotion gated S012 backfill complete; new audit slug `aap-9-field-coverage` registered atomically (warn-level Phase 1; error-level Phase 2 target)
+- **hook:** [`.claude/hooks/pre-tool-use-skill-aap-required.sh`](../../../.claude/hooks/pre-tool-use-skill-aap-required.sh) WEEK-4 PROMOTION CRITERIA extended to check 9 fields (warn on 2 new; error on original 7); STUB tier preserved
+- **memory:** new memory entry `feedback_aap_9_field_extension.md` + MEMORY.md index entry
+- **contract:** this section + [AGENTS.md](../../../AGENTS.md) hard NO row strengthened (warn-level Phase 1; error-level Phase 2 target) + [audit-runner.md](./audit-runner.md) `aap-9-field-coverage` slug registration
+
+**Backfill plan (S011 → S012 trajectory):**
+1. **S010 (this session):** OPTIONAL fields added; new SKILL.md author guidance enabled; 16 existing untouched
+2. **S011:** dedicated backfill pass — retrofit all 16 SKILL.md with `principle_compliance` + `consolidation_cross_refs` fields (parallel-friendly; Sonnet-appropriate mechanical work)
+3. **S012:** validator promotion warn → error; `aap-9-field-coverage` audit slug status updated; verify all 16 PASS at REQUIRED level
+
+**Composes additionally with (S010 amendment):**
+- `B_CONSOLIDATION_PASS` (P-META-007 + S009 L1.3) — `consolidation_cross_refs` is the per-agent surface of the consolidation discipline
+- `B_SAVINGS_AND_SSOT_UNIFIED` (S009 L1.4) — extending existing B_AGENT_ALIGNMENT_PROTOCOL (not new B_*) preserves the savings + SSoT axis; same Q3=A minimum-blast-radius pattern as S009
+- `B_GRADUAL_BUILD_BY_FOUNDATIONS` (P-META-016) — Phase 1 → Phase 2 phased adoption is itself a gradual-build trajectory at validator-enforcement-tier scale
+
 ## B_GOVERNOR_PROMPTS — every user prompt is governance-tracked (S005 turn 27)
 
 **Canonical wording:**

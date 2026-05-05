@@ -292,6 +292,63 @@ For Class C/D (Mastra agents + third-party imported), the alignment preamble is 
 | Alignment preamble | P-META-002 principles-travel-with-artifacts (preamble IS the traveling principles in subagent context) |
 | Whole protocol | P-META-008 cycle-mandatory-in-plan (AAP IS the plan-mechanical for agent invocation) |
 
+## S010 amendment — 9-field AAP frontmatter (Phase 1: OPTIONAL warn / Phase 2 S012: REQUIRED error)
+
+> **Per S010 turn 6c (Phase 6 of token-optimization §9.7) + [EXT-20260505-002-B](../_intake/contexts/governance/agent-discipline/EXT-20260505-002-B-9-element-dna-gate-triple-check-frontmatter-rigidity.md).** CSPS adapts CSP's 9-element DNA gate (drops `spheres-RETIRED` CSP-specific; adds `principle_compliance` + `consolidation_cross_refs`). The existing 9 mandatory CHECKS above are categories of compliance; the AAP FRONTMATTER FIELDS extend from 7 → 9 to cover 2 elements not previously in the SKILL.md schema.
+
+### Two new AAP frontmatter fields
+
+| # | Field | Purpose | Phase 1 (S010) | Phase 2 (S012 target) |
+|---|---|---|---|---|
+| 8 | `principle_compliance` | Array of P-* IDs this agent acknowledges compliance with — per [P-META-002 principles-travel-with-artifacts](../../../packages/principles/principles.yaml). MUST always include `P-META-010` (AAP) + `P-META-002` (PTA); agent-specific principles append. | OPTIONAL (warn) | REQUIRED (error) |
+| 9 | `consolidation_cross_refs` | Array of artifact paths whose discipline this agent overlaps with — per [B_CONSOLIDATION_PASS](./behavioral-contracts.md) (S009 L1.3). Empty array `[]` valid for genuinely-novel agents; populated for any agent intersecting existing canonical homes. | OPTIONAL (warn) | REQUIRED (error) |
+
+### Frontmatter scaffold (added to Class A SKILL.md template)
+
+```yaml
+# === existing 7 AAP fields above (unchanged) ===
+csps_aligned: true
+aap_version: 1.0
+agent_class: A
+acknowledged_contracts: [...]
+respects_quality_gates: [QG1, QG2, QG3, QG4]
+output_contract: {...}
+trust_tier: platform-owned
+
+# === S010 amendment — Phase 1 OPTIONAL (warn-level); Phase 2 S012 REQUIRED (error-level) ===
+principle_compliance:                   # array of P-* IDs; minimum: P-META-010 + P-META-002
+  - P-META-010                          # AAP itself (universal-required)
+  - P-META-002                          # principles-travel-with-artifacts (universal-required)
+  # - <additional P-* per agent's scope>
+consolidation_cross_refs:               # array of artifact paths whose discipline this agent overlaps with
+  - docs/plan/pillar-0-governance/<canonical-home>.md   # per B_CONSOLIDATION_PASS 5-step protocol
+  # - <additional paths> OR [] for genuinely-novel agents
+```
+
+### Why phased (Phase 1 OPTIONAL → Phase 2 REQUIRED)
+
+All 16 existing SKILL.md (7 packages/skills + 9 .claude/skills) currently have only the 7-field AAP shape. Immediate REQUIRED promotion would break `pnpm verify` exit_code 0 across the entire platform until 16 retrofits land — Q3=A minimum-blast-radius precedent (S009) applied: phased adoption preserves verify continuity. New SKILL.md authored S010+ get guidance to populate the 2 new fields immediately; existing 16 retrofitted in S011 dedicated backfill pass; Phase 2 promotes validator warn → error in S012.
+
+### Validator behavior
+
+**[`tools/validators/validate-aap-frontmatter.mjs`](../../../tools/validators/validate-aap-frontmatter.mjs) S010 amendment:**
+- Phase 1: 2 new fields scanned; missing → warn (logged but exit_code 0); existing 7 fields → error (exit_code 1) unchanged
+- Phase 2 S012: warn → error; missing 2 new fields → exit_code 1
+
+### Backfill plan trajectory
+
+1. **S010 (this engraving):** schema + validator + hook + memory + contract surfaces updated atomically (5/5 FSE); 16 existing SKILL.md untouched
+2. **S011 backfill pass:** retrofit all 16 SKILL.md with `principle_compliance` + `consolidation_cross_refs` fields populated (parallel-friendly; Sonnet-appropriate mechanical work)
+3. **S012 promotion:** validator warn → error; `aap-9-field-coverage` audit slug status promoted; verify all 16 PASS at REQUIRED level
+4. **Forward:** all new agents (Class A SKILL.md / Class B spawn templates / Class C zmodel / Class D imports) declare 9 fields from authoring time
+
+### Composes with
+
+- `B_CONSOLIDATION_PASS` (P-META-007 + S009 L1.3) — `consolidation_cross_refs` IS the per-agent surface of the consolidation discipline
+- `B_SAVINGS_AND_SSOT_UNIFIED` (S009 L1.4) — extending existing B_AGENT_ALIGNMENT_PROTOCOL (no new B_*) preserves the savings + SSoT axis
+- `B_GRADUAL_BUILD_BY_FOUNDATIONS` (P-META-016) — Phase 1 → Phase 2 phased adoption is gradual-build at validator-enforcement-tier scale
+- `B_STRUCTURAL_PREVENTION_DISCIPLINE` Q-2 (P-META-019) — K=1 catch S010; K=2 promotion path = principle-compliance-empty + consolidation-cross-refs-skipped fires (then locks in error-level pre-S012)
+
 ## Sources
 
 - [pillar-3/sandboxed-skill-governance.md](../pillar-3-platform-services/sandboxed-skill-governance.md) — three-tier trust model

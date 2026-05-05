@@ -71,3 +71,6 @@ lerna-debug.log*
 tmp/
 temp/
 *.tmp
+
+# === VS Code workspace utilities (auto-generated; not governance artifacts) ===
+"CSPS contents.txt"

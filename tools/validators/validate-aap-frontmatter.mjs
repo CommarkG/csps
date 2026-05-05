@@ -2,7 +2,7 @@
 /**
  * @csps-id csps.tools.validators.validate-aap-frontmatter
  * @csps-name validate-aap-frontmatter
- * @csps-description Per B_AGENT_ALIGNMENT_PROTOCOL Class A enforcer (active-mechanical S005 turn 26; multi-location coverage S007 §24+ post-close addendum). Scans EVERY SKILL.md location across CSPS — `packages/skills/<name>/SKILL.md` (platform skills) AND `.claude/skills/<name>/SKILL.md` (Claude Code auto-load skills) AND `libs/agents/<name>/agent.zmodel` (Mastra runtime; week-6+) — for AAP frontmatter coverage: csps_aligned + aap_version + agent_class + acknowledged_contracts (universal-required B_AI_PROFESSIONAL_VOICE + B_VALIDATE_BEFORE_ASSUME minimum) + respects_quality_gates + output_contract + trust_tier. Missing fields fail; reports scanned/missing/aligned counts. **No-wildcards mandate:** any SKILL.md location not in coverage glob = wildcard hazard (per S007 §24+ user directive: "non aligned agent and skills are wild cards that could destroy and damage a lot of what we built here").
+ * @csps-description Per B_AGENT_ALIGNMENT_PROTOCOL Class A enforcer (active-mechanical S005 turn 26; multi-location coverage S007 §24+ post-close addendum; 9-field amendment S010 turn 6c). Scans EVERY SKILL.md location across CSPS — `packages/skills/<name>/SKILL.md` (platform skills) AND `.claude/skills/<name>/SKILL.md` (Claude Code auto-load skills) AND `libs/agents/<name>/agent.zmodel` (Mastra runtime; week-6+) — for AAP frontmatter coverage. **Phase 1 (S010) error-level fields (7 — fail PR if missing):** csps_aligned + aap_version + agent_class + acknowledged_contracts (universal-required B_AI_PROFESSIONAL_VOICE + B_VALIDATE_BEFORE_ASSUME minimum) + respects_quality_gates + output_contract + trust_tier. **Phase 1 (S010) warn-level fields (2 — log but do NOT fail PR):** principle_compliance (P-* IDs; minimum P-META-010 + P-META-002) + consolidation_cross_refs (artifact paths per B_CONSOLIDATION_PASS). **Phase 2 (S012 target):** warn → error after S011 backfill pass retrofits all 16 SKILL.md. **No-wildcards mandate:** any SKILL.md location not in coverage glob = wildcard hazard (per S007 §24+ user directive). Per EXT-20260505-002-B 9-element DNA gate (CSPS adapts: drops spheres-RETIRED CSP-specific; adds 2 new fields).
  * @csps-version 0.1.0
  * @csps-owner group:finky
  * @csps-lifecycle experimental
@@ -38,7 +38,7 @@ const SKILL_PATHS = ['packages/skills', '.claude/skills'];
 // Universal-required B_* acknowledgments (per AAP — every Class A skill must include these minimum)
 const UNIVERSAL_REQUIRED_CONTRACTS = ['B_AI_PROFESSIONAL_VOICE', 'B_VALIDATE_BEFORE_ASSUME'];
 
-// AAP mandatory fields per agent_class A
+// AAP mandatory fields per agent_class A (Phase 1 — error-level; missing → exit_code 1)
 const AAP_REQUIRED_FIELDS = [
   'csps_aligned',
   'aap_version',
@@ -48,6 +48,19 @@ const AAP_REQUIRED_FIELDS = [
   'output_contract',
   'trust_tier',
 ];
+
+// S010 amendment — 9-field AAP frontmatter (Phase 1: OPTIONAL warn-level; Phase 2 S012: REQUIRED error-level).
+// Per behavioral-contracts.md § B_AGENT_ALIGNMENT_PROTOCOL S010 amendment + EXT-20260505-002-B 9-element DNA gate.
+// CSPS adapts: drop spheres-RETIRED CSP-specific; add 2 new fields covering principle compliance + consolidation cross-refs.
+// Phase 1 (S010): missing → warn (does NOT fail PR; preserves verify continuity for 16 existing SKILL.md).
+// Phase 2 (S012): warn → error after S011 backfill pass retrofits all 16 SKILL.md with these fields.
+const AAP_OPTIONAL_FIELDS_PHASE_1 = [
+  'principle_compliance',       // array of P-* IDs; minimum: P-META-010 + P-META-002
+  'consolidation_cross_refs',   // array of artifact paths per B_CONSOLIDATION_PASS
+];
+
+// Universal-required principle compliance entries (when principle_compliance present, MUST include these)
+const UNIVERSAL_REQUIRED_PRINCIPLES = ['P-META-010', 'P-META-002'];
 
 const QG_FULL_SET = ['QG1', 'QG2', 'QG3', 'QG4'];
 
@@ -60,8 +73,9 @@ function extractFrontmatter(content) {
 
 function checkAap(fmText) {
   const errors = [];
+  const warnings = [];
 
-  // Field presence
+  // Field presence (Phase 1 — error-level for original 7 fields)
   for (const f of AAP_REQUIRED_FIELDS) {
     if (!new RegExp(`^${f}\\s*:`, 'm').test(fmText)) {
       errors.push(`missing field "${f}"`);
@@ -96,7 +110,24 @@ function checkAap(fmText) {
   const tier = fmText.match(/^trust_tier\s*:\s*(quarantine|vendored|platform-owned)/m);
   if (!tier) errors.push('trust_tier must be quarantine | vendored | platform-owned');
 
-  return errors;
+  // ─── S010 amendment — Phase 1 OPTIONAL warn-level checks ───
+  // Per B_AGENT_ALIGNMENT_PROTOCOL S010 amendment (9-field AAP). Phase 2 S012 promotes warn → error.
+  for (const f of AAP_OPTIONAL_FIELDS_PHASE_1) {
+    if (!new RegExp(`^${f}\\s*:`, 'm').test(fmText)) {
+      warnings.push(`[Phase 1 OPTIONAL] missing field "${f}" — recommended now; REQUIRED in S012 (Phase 2)`);
+    }
+  }
+
+  // If principle_compliance present, verify it includes universal-required entries
+  if (/^principle_compliance\s*:/m.test(fmText)) {
+    for (const p of UNIVERSAL_REQUIRED_PRINCIPLES) {
+      if (!fmText.includes(p)) {
+        warnings.push(`[Phase 1 OPTIONAL] principle_compliance present but missing universal-required "${p}"`);
+      }
+    }
+  }
+
+  return { errors, warnings };
 }
 
 async function findSkillMdFiles(rootRel) {
@@ -123,8 +154,10 @@ async function main() {
   }
 
   const reports = [];
+  const warningReports = [];
   let aligned = 0;
   let missing = 0;
+  let phase1WarnCount = 0;
 
   for (const file of allSkillFiles) {
     const rel = file.replace(ROOT, '').replace(/\\/g, '/').replace(/^\//, '');
@@ -135,16 +168,29 @@ async function main() {
       missing++;
       continue;
     }
-    const errors = checkAap(fmText);
+    const { errors, warnings } = checkAap(fmText);
     if (errors.length === 0) {
       aligned++;
     } else {
       reports.push({ file: rel, errors });
       missing++;
     }
+    if (warnings.length > 0) {
+      warningReports.push({ file: rel, warnings });
+      phase1WarnCount += warnings.length;
+    }
   }
 
-  const summary = `[validate-aap-frontmatter] scanned=${allSkillFiles.length} missing=${missing} aligned=${aligned}`;
+  const summary = `[validate-aap-frontmatter] scanned=${allSkillFiles.length} missing=${missing} aligned=${aligned} phase1_warns=${phase1WarnCount}`;
+
+  // Phase 1 warnings — log but do NOT fail PR (preserves verify continuity for 16 existing SKILL.md)
+  if (warningReports.length > 0) {
+    console.warn(`\n${warningReports.length} SKILL.md file(s) with Phase 1 OPTIONAL field warnings (S010 amendment; REQUIRED Phase 2 S012):`);
+    for (const r of warningReports) {
+      console.warn(`\n  ⚠ ${r.file}:`);
+      for (const w of r.warnings) console.warn(`      · ${w}`);
+    }
+  }
 
   if (missing > 0) {
     console.error(`\n${missing} SKILL.md file(s) missing AAP frontmatter:`);
@@ -156,7 +202,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`✓ all ${aligned} SKILL.md files AAP-aligned`);
+  console.log(`✓ all ${aligned} SKILL.md files AAP-aligned (Phase 1 — 7 required fields)`);
   console.log(summary);
   process.exit(0);
 }

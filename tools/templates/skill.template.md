@@ -83,6 +83,17 @@ eval_baseline:
   test_corpus_path: tests/skills/<name>/test-fixtures.json   # planned with skill-eval-Worker
   expected_pass_rate: <0.0-1.0>
 preflight_check_required: true
+# ─── S010 amendment — 9-field AAP frontmatter (Phase 1: OPTIONAL warn-level; Phase 2 S012: REQUIRED error-level) ───
+# Per B_AGENT_ALIGNMENT_PROTOCOL S010 amendment + EXT-20260505-002-B 9-element DNA gate.
+# New SKILL.md authored S010+ SHOULD include these 2 fields immediately (OPTIONAL warn-level Phase 1).
+# 16 existing SKILL.md retrofitted in S011 backfill pass; validator promotes warn → error in S012.
+principle_compliance:                    # array of P-* IDs; minimum: P-META-010 + P-META-002 (universal-required)
+  - P-META-010                           # AAP itself (universal-required for every Class A)
+  - P-META-002                           # principles-travel-with-artifacts (universal-required)
+  # - <additional P-* per skill's scope, e.g., P-META-007 for engraving-discipline / P-META-015 for template skills>
+consolidation_cross_refs:                # array of artifact paths whose discipline this skill overlaps with — per B_CONSOLIDATION_PASS
+  - docs/plan/pillar-0-governance/<canonical-home>.md   # cross-reference per 5-step protocol
+  # - <additional paths> OR [] for genuinely-novel skills with no canonical-home overlap
 ---
 
 # /<skill-name> — <one-line-description>
@@ -110,9 +121,11 @@ preflight_check_required: true
 <P-XXX-NNN> + <B_XXX> + <full canonical doc path>
 ```
 
-## AAP fields — non-negotiable
+## AAP fields — 9-field shape per S010 amendment
 
-Every Class A SKILL.md MUST have ALL 7 AAP-required fields populated. Missing any field = `agent-alignment-coverage` validator FAIL = PR-blocking error.
+Per B_AGENT_ALIGNMENT_PROTOCOL Phase 1 (S010): 7 fields are REQUIRED (PR-blocking error if missing); 2 fields are OPTIONAL warn-level (S010 amendment — REQUIRED in Phase 2 S012 after S011 backfill).
+
+### Phase 1 REQUIRED (error-level; missing fails PR via `agent-alignment-coverage` validator)
 
 | Field | Purpose | Closed enum / format |
 |---|---|---|
@@ -123,6 +136,15 @@ Every Class A SKILL.md MUST have ALL 7 AAP-required fields populated. Missing an
 | `respects_quality_gates` | which CCA QGs binding | MUST include all 4: `[QG1, QG2, QG3, QG4]` |
 | `output_contract` | output shape declaration | object with `returns` + `max_tokens` + `no_synthesis_outside_main` + `no_ratification_claims` |
 | `trust_tier` | Quarantine→Vendored→Platform-owned tier | closed enum: `quarantine` \| `vendored` \| `platform-owned` |
+
+### Phase 1 OPTIONAL warn-level (S010 amendment; Phase 2 S012 promotes to REQUIRED error-level)
+
+| Field | Purpose | Format / minimum |
+|---|---|---|
+| `principle_compliance` | Array of P-* IDs this skill acknowledges compliance with | Array; MUST include `P-META-010` + `P-META-002` minimum (universal-required); agent-specific principles append |
+| `consolidation_cross_refs` | Array of artifact paths whose discipline this skill overlaps with — per [B_CONSOLIDATION_PASS](../../docs/plan/pillar-0-governance/behavioral-contracts.md) | Array of paths (cross-references); empty `[]` valid for genuinely-novel skills |
+
+**Phase 1 → Phase 2 trajectory:** Per [B_AGENT_ALIGNMENT_PROTOCOL S010 amendment](../../docs/plan/pillar-0-governance/behavioral-contracts.md). New SKILL.md authored S010+ should include the 2 new fields immediately (warn fires if missing); 16 existing SKILL.md retrofitted in S011 dedicated backfill pass; S012 validator promotes warn → error and 9 fields become PR-blocking.
 
 ## Universal-required acknowledged_contracts
 

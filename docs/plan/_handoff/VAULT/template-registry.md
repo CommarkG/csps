@@ -96,7 +96,7 @@ Templates organized by output category per inner-AI-defaults registry alignment.
 | `fse-engraving` | New B_* contract or principle | (P-META-007 FSE enforcers) | `templates/reasoning/fse.md` | registered-pending-author |
 | `4-condition-gate` | Decision whether to execute autonomously | (P-OP-002 enforcers) | `templates/reasoning/4-condition-gate.md` | registered-pending-author |
 | `parallel-when-independent` | Multi-tool call planning | `tool-sequencing-discipline` (sampling) | `templates/tooling/parallel-when-independent.md` | registered-pending-author |
-| `aap-class-b-preamble` | Sub-agent spawn (Class B: Explore/Plan/general-purpose) | `subagent-spawn-preamble-required` | `tools/templates/aap-class-b-preamble.md` | registered-pending-author (S006 carry-forward #1) |
+| `class-b-agent-spawn-preamble` | Sub-agent spawn (Class B: Explore/Plan/general-purpose/claude-code-guide/statusline-setup) | `agent-alignment-coverage` + `subagent-spawn-preamble-required` | [`tools/templates/class-b-agent-spawn-preamble.template.md`](../../../../tools/templates/class-b-agent-spawn-preamble.template.md) | **LIVE (S010 Phase 6 6a+6b+6d — T2.0 scaffold + T2.1 ZF cycle + T2.2 validator full-pass + T2.3 file scan; depth-discipline fields declared per S009 L1.1; extends governed-artifact-frontmatter.template.md S009 L1.2)** |
 
 ### §5 Agent/persona templates
 

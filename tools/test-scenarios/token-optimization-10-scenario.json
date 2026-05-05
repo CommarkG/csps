@@ -5,8 +5,12 @@
     "pass_criterion": "≥9/10 scenarios trigger correct skill/context-loading template",
     "cadence": "quarterly OR after major skill/context changes",
     "first_authored": "S011 Phase 9",
-    "status": "AWAITING_USER_VERIFICATION",
-    "note": "Scenarios are defined; actual trigger verification requires user to test in live Claude Code session and record results in 'result' field per scenario."
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-05-05T18:52:00Z",
+    "verified_by": "Governor Yariv Fink — same-chat test (S011 §24++ context)",
+    "score": "9/10",
+    "pass_criterion_met": true,
+    "note": "S-07 FAIL: 'What does P-META-018 mean?' answered from training memory — no MCP call, no skill. Root cause: principles-mcp not registered as active MCP server in settings.json; no principles-skill SKILL.md exists. Fix: create principles-skill or register MCP server. All other 9 scenarios triggered correct skill."
   },
   "scenarios": [
     {
@@ -15,8 +19,8 @@
       "expected_trigger": "zf-validation skill OR context-loading/qc-validation.json",
       "expected_skill": ".claude/skills/zf-validation/SKILL.md",
       "expected_context_template": "tools/templates/context-loading/qc-validation.json",
-      "result": "PENDING",
-      "notes": "Should trigger ZF validation context (B_PRE_CLOSE_VERIFICATION + P-META-006)"
+      "result": "PASS",
+      "notes": "pnpm verify executed; zf-validation context loaded"
     },
     {
       "id": "S-02",
@@ -24,8 +28,8 @@
       "expected_trigger": "engraving-discipline skill OR context-loading/engraving.json",
       "expected_skill": ".claude/skills/engraving-discipline/SKILL.md",
       "expected_context_template": "tools/templates/context-loading/engraving.json",
-      "result": "PENDING",
-      "notes": "Should trigger FSE engraving context (P-META-007 + B_FIVE_SURFACE_ENGRAVING)"
+      "result": "PASS",
+      "notes": "engraving-discipline skill banner confirmed"
     },
     {
       "id": "S-03",
@@ -33,8 +37,8 @@
       "expected_trigger": "behavioral-contracts-skill skill",
       "expected_skill": ".claude/skills/behavioral-contracts-skill/SKILL.md",
       "expected_context_template": null,
-      "result": "PENDING",
-      "notes": "Should trigger behavioral-contracts-skill for B_* lookup"
+      "result": "PASS",
+      "notes": "behavioral-contracts-skill loaded; AGENTS.md hard NOs listed"
     },
     {
       "id": "S-04",
@@ -42,8 +46,8 @@
       "expected_trigger": "governance-session skill OR context-loading/session-open.json",
       "expected_skill": ".claude/skills/governance-session/SKILL.md",
       "expected_context_template": "tools/templates/context-loading/session-open.json",
-      "result": "PENDING",
-      "notes": "Should trigger governance-session for session-level governance context"
+      "result": "PASS",
+      "notes": "governance-session loaded; heavy session management executed"
     },
     {
       "id": "S-05",
@@ -51,8 +55,8 @@
       "expected_trigger": "slim-handoff skill OR context-loading/session-close.json",
       "expected_skill": ".claude/skills/slim-handoff/SKILL.md",
       "expected_context_template": "tools/templates/context-loading/session-close.json",
-      "result": "PENDING",
-      "notes": "Should trigger slim-handoff for HPFA + §17 attestation + closing-summary"
+      "result": "PASS",
+      "notes": "slim-handoff loaded twice; executed HANDOFF updates, GP-S011-03, §24+++ addendum, commit a763426"
     },
     {
       "id": "S-06",
@@ -60,8 +64,8 @@
       "expected_trigger": "vocabulary-canon skill OR context-loading/frontmatter-authoring.json",
       "expected_skill": ".claude/skills/vocabulary-canon/SKILL.md",
       "expected_context_template": "tools/templates/context-loading/frontmatter-authoring.json",
-      "result": "PENDING",
-      "notes": "Should trigger vocabulary-canon for naming + frontmatter closed-enum compliance"
+      "result": "PASS",
+      "notes": "vocabulary-canon loaded; asked for file target — correct behavior (needs context)"
     },
     {
       "id": "S-07",
@@ -70,8 +74,8 @@
       "expected_skill": null,
       "expected_mcp_tool": "get_principle(id='P-META-018', depth='L1')",
       "expected_context_template": "tools/templates/context-loading/mcp-query.json",
-      "result": "PENDING",
-      "notes": "Should trigger principles-mcp get_principle (Phase 8 ACTIVE); L1 = ~200 tokens not 85K"
+      "result": "FAIL",
+      "notes": "Answered from training memory. No MCP call, no skill. Root cause: principles-mcp not wired in settings.json; no principles-skill SKILL.md. Fix: create principles-skill"
     },
     {
       "id": "S-08",
@@ -79,8 +83,8 @@
       "expected_trigger": "engraving-discipline skill",
       "expected_skill": ".claude/skills/engraving-discipline/SKILL.md",
       "expected_context_template": "tools/templates/context-loading/engraving.json",
-      "result": "PENDING",
-      "notes": "Should trigger engraving-discipline for FSE Detect→Classify→Design→Apply→Verify cycle"
+      "result": "PASS",
+      "notes": "engraving-discipline skill banner confirmed"
     },
     {
       "id": "S-09",
@@ -88,8 +92,8 @@
       "expected_trigger": "pcr-rendering skill OR context-loading/pcr.json",
       "expected_skill": ".claude/skills/pcr-rendering/SKILL.md",
       "expected_context_template": "tools/templates/context-loading/pcr.json",
-      "result": "PENDING",
-      "notes": "Multi-option decision → PCR 3-block mandatory per B_PCR_FOR_DECISIONS"
+      "result": "PASS",
+      "notes": "pcr-rendering skill loaded; asked for Option A/B definition — correct behavior"
     },
     {
       "id": "S-10",
@@ -97,8 +101,8 @@
       "expected_trigger": "governance-session skill OR context-loading/session-open.json",
       "expected_skill": ".claude/skills/governance-session/SKILL.md",
       "expected_context_template": "tools/templates/context-loading/session-open.json",
-      "result": "PENDING",
-      "notes": "Session-open pattern → load HANDOFF §0 + OVERVIEW.md L1"
+      "result": "PASS",
+      "notes": "governance-session loaded; full session-open protocol executed, receipt emitted"
     }
   ],
   "verification_instructions": "To run this test: open a fresh Claude Code chat, paste each scenario prompt one at a time, observe which skill(s) auto-load (shown in .claude/skills/ SKILL.md activations), record PASS/FAIL in each scenario's 'result' field. Update 'status' to 'VERIFIED_PASS' or 'VERIFIED_FAIL'. Submit results to Governor for Phase 4d completion attestation.",

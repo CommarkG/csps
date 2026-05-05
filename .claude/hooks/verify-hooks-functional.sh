@@ -27,9 +27,12 @@ set -euo pipefail
 readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 readonly HOOKS_DIR="${REPO_ROOT}/.claude/hooks"
 
-# Declared hooks per token-optimization.md §14.4 migration table (Phase 5 ship list).
-# 7 hooks + this self-test = 8 total expected at week-4 close.
+# Declared hooks per token-optimization.md §14.4 migration table (Phase 5 ship list)
+# + S007 §24+ existing stubs + S007 production hooks. Updated S008 turn 5 (unified-intake topic-plan
+# L1 foundation): all 7 §14.4 stubs authored + verify-hooks-functional updated to enumerate full set.
+# 10 stubs (week-4 promotion targets) + 2 production = 12 total expected at week-4 close.
 readonly -a DECLARED_HOOKS=(
+  # 7 §14.4 Phase 5 migration stubs (authored S008 turn 5)
   "post-tool-use-validate-before-assume.sh"
   "pre-tool-use-rzf-evidence-gate.sh"
   "post-stop-pcr-check.sh"
@@ -37,12 +40,19 @@ readonly -a DECLARED_HOOKS=(
   "post-stop-banned-phrase.sh"
   "user-prompt-submit-governor-prompts.sh"
   "post-stop-pnpm-verify.sh"
+  # Self-test hook (this file; S007 turn 4)
   "verify-hooks-functional.sh"
+  # S007 §24+ existing stubs (frontmatter-enum-check + skill-aap-required)
+  "pre-tool-use-frontmatter-enum-check.sh"
+  "pre-tool-use-skill-aap-required.sh"
+  # S007 production hooks (active enforcement; not stubs)
+  "user-prompt-submit-intake.sh"
+  "post-stop-learning-loop.sh"
 )
 
 echo "[verify-hooks-functional] STUB — token-optimization.md §14.8 cruel-critic Critique 2 mitigation"
 echo "[verify-hooks-functional] hooks_dir: ${HOOKS_DIR}"
-echo "[verify-hooks-functional] declared: ${#DECLARED_HOOKS[@]} hooks (7 functional + 1 self-test)"
+echo "[verify-hooks-functional] declared: ${#DECLARED_HOOKS[@]} hooks (10 stubs week-4 promotion + 2 production)"
 echo ""
 
 declare -i present=0

@@ -797,7 +797,7 @@ CSPS uses claude-code-builtin subagents (Explore / Plan / general-purpose / clau
 
 **Composes additionally with:**
 - `B_STRUCTURAL_PREVENTION_DISCIPLINE` (P-META-019 Q-2) — gap surfaced by user at S007 §24+ → structural fix not patch-the-instance
-- `B_TEMPLATE_FIRST_CREATION` (P-META-015) — SKILL.md template should embed AAP scaffolding (queued S008 element-review)
+- `B_TEMPLATE_FIRST_CREATION` (P-META-015) — SKILL.md template authored at S007 §24++ post-close addendum: [`tools/templates/skill.template.md`](../../../tools/templates/skill.template.md) (LIVE; embeds full AAP scaffolding for Class A skills at any location; closes wildcard-at-write-time gap; validator catches after-write, template prevents at write-time)
 
 ## B_GOVERNOR_PROMPTS — every user prompt is governance-tracked (S005 turn 27)
 

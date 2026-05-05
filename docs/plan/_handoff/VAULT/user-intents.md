@@ -187,6 +187,34 @@ Per S002 handoff §20.5 — engraved into memory + AGENTS.md NO + canonical cont
 > *"Sorry but we have 607,000 available tokens. Re-evaluate"*
 > — S007 turn 6 push-back on AI overcautious close-recommendation; AI conflated "auto-compact prevention" (R3 purpose) with "context-pressure" (non-issue at 35% utilization); user push-back demonstrates B_PE_ALIGNMENT_GUARDIAN works in BOTH directions (anti-AI-conservatism counterweight to anti-sycophancy); logged §10.0h inner-default leak overcautious-close-recommendation-when-headroom-ample (1-LEAK-CAUGHT-BY-USER); GP-S007-06)
 
+## S009 cardinal directives (verbatim — propagated from governor-prompts/S009.md per B_GOVERNOR_PROMPTS cardinal cross-link mandate)
+
+> *"all recommendations confirmed - proceed with completion in optimal order"*
+> — S009 turn 4 (4-PCR Step 0 ratification Q1=A Q2=B Q3=A Q4=B; L1 foundation-first batch execution authorized; GP-S009-04)
+
+> *"i trust your optimal order and it is more important to keep consistency even it is a bit costly"*
+> — S009 turn 7 (quality-over-immediate-savings reaffirmation; composes with P-META-009 CCA "tokens are investment in reasoning quality"; GP-S009-07)
+
+> *"add a dashboard showing exactly the mechanism of dynamic model changes so i could see and create templates and adjust the reasoning"*
+> — S009 turn 7 (model-routing-dashboard.md canonical leaf authored; user-facing routing state + decision tree + 4 templates; GP-S009-07 — engraved S009 turn 7 same-session)
+
+> *"i give you full mandate to decide on these this time"*
+> — S009 turn 7 (delegation of decision on 4 PCR options to AI; composes with 4-condition autonomous gate; GP-S009-07)
+
+## S010 cardinal directives (verbatim — propagated from governor-prompts/S010.md per B_GOVERNOR_PROMPTS cardinal cross-link mandate)
+
+> *"proceed in optimal order aligned with pe and the plan!!"*
+> — S010 turn 7 (Phase 7 all-4-candidates execution mandate; delivered 130 slice files across principles + behavioral-contracts + audit-runner + ai-behavior-spine; GP-S010-05)
+
+> *"I aproove moving on with phase 8 and 9 + all that is needed to complete the plan"*
+> — S010 turn 9 (Phase 8 + Phase 9 full mandate; principles-mcp implementation + validate-token-budget.mjs 5-mode validator; GP-S010-07)
+
+> *"When finished i want you to perform deep sanity qc and alignment checks and present your findings + local fixes + what essenials can you extract and enhance relevant things all over the platform like ai behavior and more"*
+> — S010 turn 9 (Deep sanity QC + alignment mandate + CEC walk across AI behavior and platform; delivery target: after Phase 8+9 complete in S011+; GP-S010-07)
+
+> *"you can save an summeri all - you decide on how and when aligned with protocols"*
+> — S010 turn 9 (session-close autonomy — AI decides timing/format per protocol; engraved as lean close + HANDOFF Zone A; GP-S010-07)
+
 ## How to use this vault
 
 Future session encountering a B_* / P-META-* / mechanism citation: trace back to its source quote here. The mechanism may have evolved through engraving cycles; the source quote shows the original intent.

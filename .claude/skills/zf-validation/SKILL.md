@@ -28,6 +28,11 @@ output_contract:
   no_ratification_claims: true
 trust_tier: platform-owned
 preflight_check_required: true
+principle_compliance:
+  - P-META-010    # AAP — operates under agent-alignment-protocol
+  - P-META-002    # principles-travel-with-artifacts
+consolidation_cross_refs: []    # empty = genuinely-novel skill per B_CONSOLIDATION_PASS
+
 ---
 
 # /zf-validation — Zero-Findings Discipline Reference

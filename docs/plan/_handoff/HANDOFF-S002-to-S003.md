@@ -1,5 +1,5 @@
 ---
-id: csps.handoff.S002-to-S003
+id: csps.handoff.s002-to-s003
 name: handoff-S002-to-S003
 description: Handoff from Session 002 to Session 003. Per protocols.md v1.4 (intent-to-impact + two-sided handshake + step 0 precedent check + §19 RZF evidence + §20 CEC walk-trails). S002 absorbed CSP carry-forwards (treasures #1+#2+#3+#5) + built P-META-004 Stewardship + P-META-005 Learning Loop + P-META-006 Zero-Findings Discipline (RZF + CEC) + AI Behavior Spine + Behavioral Contracts + External-Input Intake plane + 21 ADRs + Pillar 3 migration. ALL 8 BLOCKERS RESOLVED. Pillar 4-6 migration (12 leaves) deferred to S003 with explicit rationale.
 version: 1.4                # bumped turn 10 (Zero-Findings) → turn 11 (QC audit) → turn 12 (Grandfather Backfill) → turn 13 (Detailed paste-prompt) → turn 14 (B_PROTOCOL_LITERAL_EXECUTION + closing-summary-template)

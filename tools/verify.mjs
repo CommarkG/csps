@@ -136,6 +136,30 @@ const CYCLES = [
     },
   },
   {
+    // NEW S011 §24++ — node --check syntax validation for all tools/**/*.mjs (prevents ESM bugs like require-in-esm)
+    name: 'mjs_syntax_check',
+    command: 'node --check tools/verify.mjs tools/pe-compute.mjs tools/validators/validate-aap-frontmatter.mjs tools/validators/validate-token-budget.mjs tools/validators/validate-corespine-depth-markers.mjs tools/validators/validate-audit-slug-coverage.mjs tools/validators/validate-frontmatter.mjs',
+    parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
+  },
+  {
+    // NEW S011 §24++ — session-artifact-sync: HANDOFF phase claims match token-optimization.md
+    name: 'session_artifact_sync',
+    command: 'node tools/validators/validate-session-artifact-sync.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checks=(\d+)\s+warnings=(\d+)/);
+      return m ? { checks: Number(m[1]), warnings: Number(m[2]) } : {};
+    },
+  },
+  {
+    // NEW S011 §24++ — audit-slug-coverage: every validator has a registered slug in audit-runner.md
+    name: 'audit_slug_coverage',
+    command: 'node tools/validators/validate-audit-slug-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/validators_checked=(\d+)\s+orphans=(\d+)\s+registered=(\d+)/);
+      return m ? { validators_checked: Number(m[1]), orphans: Number(m[2]), registered: Number(m[3]) } : {};
+    },
+  },
+  {
     // NEW S011 Phase 9 9a — 5-mode token-budget validator (ADVISORY window; per §14.6 + EXT-002-A)
     name: 'token_budget_validate',
     command: 'node tools/validators/validate-token-budget.mjs',

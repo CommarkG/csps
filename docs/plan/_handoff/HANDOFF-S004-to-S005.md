@@ -1,5 +1,5 @@
 ---
-id: csps.handoff.S004-to-S005
+id: csps.handoff.s004-to-s005
 name: handoff-S004-to-S005
 description: Handoff from Session 004 to Session 005. Per protocols.md v1.8 (intent-to-impact + two-sided handshake + step 0 precedent + §19 RZF + §20 CEC + §21 Grandfather Backfill + §11b.1 signature + §11b.2 continuity-manifest). S004 was a provisioning + first-git-push + rotation-discipline session. ALL 0 BLK-S004-* (zero blockers raised). Original S003-suggested §3 partially addressed (item 5 prerequisite done; items 4, 6, 7 carry forward). Significant in-session expansion (Option B + Option D + PS auto-approval) all user-ratified at boundaries — drift_severity moderate-but-ratified. Post-git mode active — first-ever GitHub URLs in this handoff. Handoff structured per Zone A/B/C/D (per S003 first application of EXT-20260502-003-A CSP carry-forward).
 version: 1.0

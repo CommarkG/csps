@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-05T17:22:45.210Z
-- finished_at: 2026-05-05T17:22:48.192Z
+- ran_at: 2026-05-05T18:15:18.060Z
+- finished_at: 2026-05-05T18:15:20.873Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-05T17:22:45.210Z",
-    "finished_at": "2026-05-05T17:22:48.192Z",
+    "ran_at": "2026-05-05T18:15:18.060Z",
+    "finished_at": "2026-05-05T18:15:20.873Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.6,
         "principles_loaded": 53,
         "findings_total": 0
       },
@@ -42,7 +42,7 @@
         "duration_seconds": 0.1,
         "scanned": 156,
         "errors": 0,
-        "warnings": 5,
+        "warnings": 0,
         "exempt": 199
       },
       {
@@ -98,6 +98,33 @@
         "duration_seconds": 0.1,
         "source_ids": 53,
         "missing_slices": 0
+      },
+      {
+        "name": "mjs_syntax_check",
+        "command": "node --check tools/verify.mjs tools/pe-compute.mjs tools/validators/validate-aap-frontmatter.mjs tools/validators/validate-token-budget.mjs tools/validators/validate-corespine-depth-markers.mjs tools/validators/validate-audit-slug-coverage.mjs tools/validators/validate-frontmatter.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "syntax_ok": true
+      },
+      {
+        "name": "session_artifact_sync",
+        "command": "node tools/validators/validate-session-artifact-sync.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checks": 3,
+        "warnings": 0
+      },
+      {
+        "name": "audit_slug_coverage",
+        "command": "node tools/validators/validate-audit-slug-coverage.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "validators_checked": 11,
+        "orphans": 0,
+        "registered": 11
       },
       {
         "name": "token_budget_validate",

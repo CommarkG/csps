@@ -1,5 +1,5 @@
 ---
-id: csps.handoff.S005-to-S006
+id: csps.handoff.s005-to-s006
 name: handoff-S005-to-S006
 description: Handoff from Session 005 to Session 006. S005 was a build + governance session — engraved B_PCR_FOR_DECISIONS at 5 surfaces / filed ADR-0022 K=2 fix / completed §C3.1 audit-registry validation pass with 30-ref carry-forward / scaffolded week-1 monorepo (Steps A+C+D+D'+E+F+G+B). ZERO BLK-S005-* raised. 4 documented carry-forwards to S006. drift_severity moderate-but-user-ratified per "proceed without stopping i approve all" turn-13 ratification. Zone A/B/C/D structured per CSP carry-forward.
 version: 1.0

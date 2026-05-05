@@ -1,5 +1,5 @@
 ---
-id: csps.handoff.S001-to-S002
+id: csps.handoff.s001-to-s002
 name: handoff-S001-to-S002
 description: Handoff from Session 001 (Cambium-rename through Pillar 2 migration) to Session 002. The vault, the protocols, the FWWS-pending work, the validation passes. Read top-to-bottom before doing anything in S002.
 version: 1.0

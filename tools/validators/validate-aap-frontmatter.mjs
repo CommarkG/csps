@@ -49,12 +49,10 @@ const AAP_REQUIRED_FIELDS = [
   'trust_tier',
 ];
 
-// S010 amendment — 9-field AAP frontmatter (Phase 1: OPTIONAL warn-level; Phase 2 S012: REQUIRED error-level).
-// Per behavioral-contracts.md § B_AGENT_ALIGNMENT_PROTOCOL S010 amendment + EXT-20260505-002-B 9-element DNA gate.
-// CSPS adapts: drop spheres-RETIRED CSP-specific; add 2 new fields covering principle compliance + consolidation cross-refs.
-// Phase 1 (S010): missing → warn (does NOT fail PR; preserves verify continuity for 16 existing SKILL.md).
-// Phase 2 (S012): warn → error after S011 backfill pass retrofits all 16 SKILL.md with these fields.
-const AAP_OPTIONAL_FIELDS_PHASE_1 = [
+// S010 amendment → S011 Phase 2 promotion: 9-field AAP now fully REQUIRED (error-level).
+// S011 backfill pass completed all 16 SKILL.md; Phase 1 warn promoted to Phase 2 error.
+// Per behavioral-contracts.md § B_AGENT_ALIGNMENT_PROTOCOL S010 amendment + S011 §24++ amendment.
+const AAP_OPTIONAL_FIELDS_PHASE_1 = [  // name kept for compatibility; semantics = REQUIRED since S011
   'principle_compliance',       // array of P-* IDs; minimum: P-META-010 + P-META-002
   'consolidation_cross_refs',   // array of artifact paths per B_CONSOLIDATION_PASS
 ];
@@ -110,11 +108,11 @@ function checkAap(fmText) {
   const tier = fmText.match(/^trust_tier\s*:\s*(quarantine|vendored|platform-owned)/m);
   if (!tier) errors.push('trust_tier must be quarantine | vendored | platform-owned');
 
-  // ─── S010 amendment — Phase 1 OPTIONAL warn-level checks ───
-  // Per B_AGENT_ALIGNMENT_PROTOCOL S010 amendment (9-field AAP). Phase 2 S012 promotes warn → error.
+  // ─── S011 amendment — Phase 2 REQUIRED error-level checks (promoted from Phase 1 warn) ───
+  // S011 backfill pass completed all 16 SKILL.md; Phase 2 promoted per B_AGENT_ALIGNMENT_PROTOCOL.
   for (const f of AAP_OPTIONAL_FIELDS_PHASE_1) {
     if (!new RegExp(`^${f}\\s*:`, 'm').test(fmText)) {
-      warnings.push(`[Phase 1 OPTIONAL] missing field "${f}" — recommended now; REQUIRED in S012 (Phase 2)`);
+      errors.push(`[Phase 2 REQUIRED] missing field "${f}" — mandatory since S011 backfill; run batch-patcher`);
     }
   }
 
@@ -122,7 +120,7 @@ function checkAap(fmText) {
   if (/^principle_compliance\s*:/m.test(fmText)) {
     for (const p of UNIVERSAL_REQUIRED_PRINCIPLES) {
       if (!fmText.includes(p)) {
-        warnings.push(`[Phase 1 OPTIONAL] principle_compliance present but missing universal-required "${p}"`);
+        errors.push(`[Phase 2 REQUIRED] principle_compliance missing universal-required "${p}"`);
       }
     }
   }
@@ -181,7 +179,7 @@ async function main() {
     }
   }
 
-  const summary = `[validate-aap-frontmatter] scanned=${allSkillFiles.length} missing=${missing} aligned=${aligned} phase1_warns=${phase1WarnCount}`;
+  const summary = `[validate-aap-frontmatter] scanned=${allSkillFiles.length} missing=${missing} aligned=${aligned} phase2_errors_would_be=${phase1WarnCount}`;
 
   // Phase 1 warnings — log but do NOT fail PR (preserves verify continuity for 16 existing SKILL.md)
   if (warningReports.length > 0) {
@@ -202,7 +200,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`✓ all ${aligned} SKILL.md files AAP-aligned (Phase 1 — 7 required fields)`);
+  console.log(`✓ all ${aligned} SKILL.md files AAP-aligned (Phase 2 — 9 required fields (S011 backfill complete))`);
   console.log(summary);
   process.exit(0);
 }

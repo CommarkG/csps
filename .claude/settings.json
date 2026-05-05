@@ -14,7 +14,8 @@
         "hooks": [
           {"type": "command", "command": ".claude/hooks/user-prompt-submit-intake.sh"},
           {"type": "command", "command": ".claude/hooks/user-prompt-submit-governor-prompts.sh"},
-          {"type": "command", "command": ".claude/hooks/verify-hooks-functional.sh"}
+          {"type": "command", "command": ".claude/hooks/verify-hooks-functional.sh"},
+          {"type": "command", "command": ".claude/hooks/user-prompt-submit-context-orchestrator.sh"}
         ]
       }
     ],

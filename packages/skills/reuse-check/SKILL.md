@@ -34,6 +34,11 @@ eval_baseline:
   test_corpus_path: tests/skills/reuse-check/test-fixtures.json
   expected_pass_rate: 0.95
 preflight_check_required: true
+principle_compliance:
+  - P-META-010    # AAP — operates under agent-alignment-protocol
+  - P-META-002    # principles-travel-with-artifacts
+consolidation_cross_refs: []    # empty = genuinely-novel skill per B_CONSOLIDATION_PASS
+
 ---
 
 # /reuse-check — Catalog similarity search

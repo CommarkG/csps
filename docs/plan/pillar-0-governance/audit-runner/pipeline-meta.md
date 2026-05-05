@@ -48,3 +48,5 @@
 | `schema-index-coverage` | PR | warn | NEW S011 Phase 9: schema-bearing files in schema-index.md exist on disk; orphan schemas detected. **Registered S011 Phase 9 atomically. Build deferred week-4.** |
 | `pe-read-budget-token-estimate` | per-session | info | NEW S011 Phase 9: pe-compute.mjs read_budget output per task-class. **Registered S011 Phase 9 atomically. Build ACTIVE (tools/pe-compute.mjs).** |
 | `10-scenario-test-verification` | quarterly | warn | NEW S011 Phase 9: 10-scenario over-compression test. **Registered S011 Phase 9 atomically. Build ACTIVE spec (AWAITING_USER_VERIFICATION).** |
+| `session-artifact-sync` | PR + per-session | warn | NEW S011 §24++ gap-fix: HANDOFF phase claims / verify count / post-close tagging sync check. **Registered S011 §24++ atomically. Build ACTIVE (tools/validators/validate-session-artifact-sync.mjs in pnpm verify).** |
+| `audit-slug-coverage` | PR | warn | NEW S011 §24++ gap-fix: orphan validator detection. **Registered S011 §24++ atomically. Build ACTIVE (tools/validators/validate-audit-slug-coverage.mjs in pnpm verify).** |

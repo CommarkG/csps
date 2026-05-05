@@ -1,5 +1,5 @@
 ---
-id: csps.handoff.S003-to-S004
+id: csps.handoff.s003-to-s004
 name: handoff-S003-to-S004
 description: Handoff from Session 003 to Session 004. Per protocols.md v1.8 (intent-to-impact + two-sided handshake + step 0 precedent + §19 RZF + §20 CEC + §21 Grandfather Backfill + §11b.1 signature + §11b.2 continuity-manifest). S003 was an autonomous overnight run that completed all of S002's deferred §3 + 5 deferred enhancements + closing-protocol artifacts. ALL 0 BLK-S003-* (zero blockers raised). Pillar 4 + Pillar 5 + Pillar 6 migrations complete (12 leaves) + 4 vault snapshots + 4 enhancements applied. Handoff structured per Zone A/B/C/D (CSP carry-forward EXT-20260502-003-A; first application).
 version: 1.0

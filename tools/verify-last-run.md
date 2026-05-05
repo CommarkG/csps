@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-05T12:41:15.859Z
-- finished_at: 2026-05-05T12:41:18.752Z
+- ran_at: 2026-05-05T14:19:50.051Z
+- finished_at: 2026-05-05T14:19:52.528Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-05T12:41:15.859Z",
-    "finished_at": "2026-05-05T12:41:18.752Z",
+    "ran_at": "2026-05-05T14:19:50.051Z",
+    "finished_at": "2026-05-05T14:19:52.528Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.6,
         "principles_loaded": 53,
         "findings_total": 0
       },
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "scanned": 151,
         "errors": 0,
         "warnings": 5,
@@ -60,8 +60,17 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "stale_count_files": 0
+      },
+      {
+        "name": "principle_slices_sync",
+        "command": "node tools/validators/validate-principle-slices.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "source_ids": 53,
+        "missing_slices": 0
       },
       {
         "name": "audit_runner_full_pass",

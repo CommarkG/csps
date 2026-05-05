@@ -360,18 +360,27 @@ S009 — FOUNDATION-FIRST BATCH (BLOCKING for Phase 6)
 ├── L1.5 Engrave D1-D10 catalog memory + 5 known FP classes leaf (EXT-002-D)
 └── L1.6 ASK governor permission for: (a) settings.json hook registration (12 stubs → active) (b) depth-marker-creation-gate hook addition (per popup discipline THIS BATCH)
 
-S010 — PHASE 6 (Subagent + Haiku tiering) — uses S009 templates
-├── 6a. Class B subagent spawn templates use governed-artifact-frontmatter.template.md (S009 L1.2)
-├── 6b. Spawn templates declare depth-discipline fields per EXT-004-A semantics
-├── 6c. AAP frontmatter extended 7→9 fields per EXT-002-B (CSPS-adapted)
-└── 6d. 3 heavy ops delegated to Haiku per existing §9.7 + measure mid-session context growth
+S010 — PHASE 6 COMPLETE ✅ + PHASE 7 Candidate #1 COMPLETE ✅
+├── 6a. Class B subagent spawn templates ✅ tools/templates/class-b-agent-spawn-preamble.template.md
+├── 6b. Spawn templates declare depth-discipline fields ✅
+├── 6c. AAP frontmatter extended 7→9 fields per EXT-002-B ✅ 5/5 FSE atomic
+├── 6d. 3 heavy ops delegated to Haiku ✅ T2.1 ZF + T2.2 validator + T2.3 file scan
+├── 7a. principles.yaml split ✅ COMPLETED S010 (not S011 — Governor accelerated pace)
+│   ├── 53 slice files at packages/principles/principles/P-XXX-NNN.yaml ✅
+│   ├── Lightweight index at packages/principles/principles-index.yaml ✅
+│   ├── Generator at packages/principles/split.mjs + pnpm principles:split ✅
+│   ├── Sync validator validate-principle-slices.mjs ACTIVE + verify cycle PASS ✅
+│   └── pnpm verify exit_code 0 confirmed ✅ (principle_slices_sync PASS source_ids=53 missing=0)
+│   Note: codegen.ts continues reading monolith (unchanged); slices for AI context loading
+│   Deferred: cross-ref-resolution validator (week-4) + token cost measurement (Phase 9 S013)
+│   Deferred: L1_CORE_*.md depth-markers (files 45-66 lines; <300 threshold; not required)
 
-S011 — PHASE 7 (File splits) — atomic per split: split + file_depth_markers + Consolidation Pass check
-├── 7a. principles.yaml split (per existing §9.8 order #1) + add file_depth_markers atomic
+S011 — PHASE 7 Candidates #2-#4 + any S010 overflows
 ├── 7b. behavioral-contracts.md split (per §9.8 order #2) + file_depth_markers atomic
 ├── 7c. audit-runner.md split (per §9.8 order #3) + file_depth_markers atomic
 ├── 7d. ai-behavior-spine.md split (per §9.8 order #4) + file_depth_markers atomic
-└── 7e. Add file_depth_markers to 5 L1_CORE_<SPINE>.md files (~1hr lite version of CSP Improvement #6)
+├── 7e. AAP 9-field backfill for 16 existing SKILL.md (principle_compliance + consolidation_cross_refs)
+└── 7f. PE engine model-routing integration topic-plan (S010 §10 PE alignment carry-forward)
 
 S012 — PHASE 8 (principles-mcp build) — PE.read_budget integration ATOMIC
 ├── 8a. principles-mcp impl per existing §9.9

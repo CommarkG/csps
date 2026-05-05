@@ -100,6 +100,15 @@ const CYCLES = [
     },
   },
   {
+    // NEW S010 Phase 7 Candidate #1 — verifies all 53 principle slice files are present and valid
+    name: 'principle_slices_sync',
+    command: 'node tools/validators/validate-principle-slices.mjs',
+    parse_output: (out) => {
+      const m  = out.match(/source_ids=(\d+)\s+missing=(\d+)/);
+      return m ? { source_ids: Number(m[1]), missing_slices: Number(m[2]) } : { source_ids: null };
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

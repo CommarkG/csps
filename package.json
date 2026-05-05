@@ -15,6 +15,7 @@
   "packageManager": "pnpm@9.15.0",
   "scripts": {
     "principles:codegen": "node packages/principles/codegen.ts",
+    "principles:split": "pnpm --filter @csps/principles split",
     "glossary:codegen": "echo 'TODO week-2: implement pnpm glossary:codegen' && exit 0",
     "catalog:search": "echo 'TODO week-1: implement pnpm catalog:search' && exit 0",
     "lint:frontmatter": "node tools/validators/validate-frontmatter.mjs",

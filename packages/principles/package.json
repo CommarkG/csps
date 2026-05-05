@@ -20,7 +20,8 @@
     "codegen:check": "node --import tsx codegen.ts --check",
     "validate": "node --import tsx codegen.ts --validate-only",
     "validate:all": "node --import tsx codegen.ts --validate-only --enumerate-all",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "split": "node split.mjs"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"

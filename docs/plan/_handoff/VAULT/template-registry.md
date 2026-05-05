@@ -62,6 +62,7 @@ Templates organized by output category per inner-AI-defaults registry alignment.
 | `governor-prompt-entry` | Governor prompt log entry | `governor-prompt-entry-format` | (extracted from governor-prompts/README.md schema) | registered-pending-author |
 | `element-review` | Platform element deep-review | `element-review-required-sections` | `_handoff/VAULT/element-reviews/README.md` (template embedded) | registered-pending-author (L1.5) |
 | `topic-plan-attestation` | Per-level exit attestation block | `attestation-signature-format` | (embedded in gradual-build-plan template) | registered-pending-author |
+| `governed-artifact-frontmatter` | ANY new governed artifact (.md) — pillar leaves / vault files / topic-plans / element-reviews / canonical leaves; specialized templates EXTEND this base | `depth_marker_creation_gate` + `frontmatter_validate` + `frontmatter-closed-enum-drift-prevention` + `corespine-layer-compliance` + `nothing-stands-alone-audit` + `placeholder-staleness-detection` + `template-citation-on-creation` | [`tools/templates/governed-artifact-frontmatter.template.md`](../../../../tools/templates/governed-artifact-frontmatter.template.md) | **LIVE (S009 L1.2 — authored)** — per EXT-20260505-004-B mechanical creation gate; pre-includes depth fields (S009 L1.1) + closed-enum compliance + AAP extension hooks |
 
 ### §2 Code-output templates (TypeScript / SQL / config)
 

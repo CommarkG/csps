@@ -1201,6 +1201,103 @@ Step 7: ITERATE until alignment-confirmed-explicit (no more clarifications neede
 
 **Cross-references:** P-META-009 (extends; no new principle — B_TOKEN_BUDGET IS the operating-rules subsection of CCA) / P-META-006 (RZF — Phase 1 measurement IS the proof per "re-run IS the proof"; B_TOKEN_BUDGET claims about 60-80% savings remain ESTIMATED until measured) / P-META-008 (cycle-mandatory-in-plan — every phase has explicit ZF gate; pnpm verify exit 0 required) / P-META-016 (gradual-build — R3 IMPL_BATCH boundaries align with L<N>→L<N+1> topic-plan transitions per foundation-stability) / P-META-019 (structural-prevention — Phase 1 measurement gaps surface as §10.0j enhancement-proposals not patches) / B_COGNITIVE_CONTEXT_DISCIPLINE (foundation; R2 directly enforces QG1) / B_GRADUAL_BUILD_BY_FOUNDATIONS (R3 boundary alignment).
 
+## B_CONSOLIDATION_PASS — single canonical home + cross-reference protocol
+
+**Canonical wording:**
+
+> Each fact / list / definition / rule / example / procedure lives in ONE canonical home; every other mention cross-references via path-link rather than restates content. Duplication ≥3 occurrences of multi-line fact = consolidation candidate (Detect → Identify canonical home → Replace duplicates with cross-references → Verify content preserved → Smoke test). The 6 duplication patterns ranked by drift-cost: List (A) > Rule (B) > Definition (C) > Example (D) > Cross-section reference (F) > Citation (E). Cross-reference cost > duplication cost ONLY when occurrences <3; below that threshold, leave alone.
+
+**The 5-step Consolidation Pass protocol:**
+
+1. **Detect** — grep + structural review for duplicate facts/lists/definitions across governed artifacts
+2. **Identify canonical home** — pick the natural single source-of-truth section (existing leaf preferred; new leaf only if no natural home)
+3. **Replace duplicates with cross-references** — `see [FILE.md](path) §X` markdown link format
+4. **Verify content preserved** — re-read; no information loss; cross-references resolve
+5. **Smoke test** — confirm L1/L2/L3 read protocols still work; no broken pointers (per [depth-discipline.md](./depth-discipline.md) S009 L1.1)
+
+**The 6 duplication patterns (severity ranked):**
+
+| Pattern | Type | Drift severity | Detection |
+|---|---|---|---|
+| **A** | List duplication | HIGH (drift on update; visible only after fact) | grep multi-line tabular content |
+| **B** | Rule duplication | MEDIUM (drift on policy change; high-cost late) | grep imperative phrases ("MUST" / "Never" / "Always") |
+| **C** | Definition duplication | MEDIUM (drift on refactor; subtle accumulates) | grep noun-phrase definitions |
+| **D** | Example duplication | LOW freq + high-cost per drift | grep code blocks + sample data |
+| **F** | Cross-section reference duplication | LOW (silent drift; only validator-caught) | resolve-and-compare cross-refs |
+| **E** | Citation duplication | LOWEST (least drift-prone) | grep external links + ADR references |
+
+**Trigger points (when to fire 5-step pass):**
+
+- After every comprehensive guide >500 lines authored (same-batch)
+- At every reassessment trigger (per [EXT-20260505-001-D](../_handoff/VAULT/contexts/governance/priority-engine/EXT-20260505-001-D-7-reassessment-triggers.md) — 5 CSPS-adapted triggers)
+- At every weekly `tag-status-deep-audit` cron firing (S008 turn 8 5/5 atomic — composes per recurring-detection mechanism)
+- When K=2 duplication-pattern fires (per [B_STRUCTURAL_PREVENTION_DISCIPLINE](#b_structural_prevention_discipline) Q-2 promotion)
+
+**Counterweight:**
+
+> When duplication is intentional (rigid-vs-flex per [EXT-20260505-002-F](../_handoff/VAULT/contexts/governance/operational-discipline/EXT-20260505-002-F-4-batch-close-file-depth-rigid-flex-5-prevention-10-scenario.md)) — e.g., glossary terms restated for accessibility / governing principles re-cited at batch boundaries / safety-critical instructions repeated for redundancy — declare `consolidation_exempt: true` in frontmatter with reason. Counter-cases per [EXT-20260505-003-D](../_handoff/VAULT/contexts/governance/anti-duplication/EXT-20260505-003-D-when-NOT-to-consolidate-counter-cases.md) override the single-canonical-home rule.
+
+**Source:** EXT-20260505-003-A (CSP file #3 §2 single rule + §3 6 patterns + §4 5-step protocol). Q2=B confirmed S009 — CSPS-native shape (cross-references EXT source rather than copies CSP phrasing verbatim). Engraved S009 L1.3 atomic per FSE.
+
+**Anti-patterns:**
+
+- Authoring new comprehensive guide that restates content from existing leaves (Pattern A/C drift seed)
+- Adding "see also" reference instead of cross-reference link (silent drift; Pattern F)
+- Restating depth-discipline rules across multiple docs (Pattern B; per [depth-discipline.md §5](./depth-discipline.md) anti-patterns)
+- Mass-backfill consolidation pass triggering bulk edits during active development (per counter-case 6: apply going-forward; backfill at next-touch-anyway)
+- Cross-reference cost exceeds duplication cost (occurrences <3) — leave alone; over-consolidation = anti-pattern
+- Engraving a parallel canonical home when existing leaf could be extended (per [P-OP-001 reuse-first](../../../packages/principles/principles.yaml) recursive)
+
+**Mechanical surfaces (5/5 atomic per FSE — S009 L1.3):**
+
+- **schema:** `consolidation_exempt: bool` + `consolidation_cross_refs: [<path>...]` frontmatter fields (extension week-4)
+- **validator:** [`consolidation-pass-coverage` audit slug](./audit-runner.md) — registered S009 L1.3 atomic; impl week-4 — grep-based duplicate detection ≥3 occurrences flags consolidation candidates
+- **hook:** [`.claude/hooks/post-stop-consolidation-pass.sh`](../../../.claude/hooks/post-stop-consolidation-pass.sh) — STUB; PostStop scan after comprehensive-guide commits (DEFERRED to L1.6 governor-permission ASK batch per popup discipline memory entry 44)
+- **memory:** [`feedback_consolidation_pass.md`](../../../C:/Users/finky/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_consolidation_pass.md) + MEMORY.md index entry — engraved S009 L1.3
+- **contract:** this entry + AGENTS.md "Engraving + ratification" hard-NO row (S009 L1.3 amendment) + cross-reference at [depth-discipline.md §5](./depth-discipline.md) anti-patterns table
+
+**Cross-references:** P-OP-001 reuse-first (composes; B_CONSOLIDATION_PASS is operational application of reuse-first to fact-content not just artifacts) / B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK (sister discipline; precedent-check-before-create + consolidation-pass-after-discover-duplicate) / B_STRUCTURAL_PREVENTION_DISCIPLINE Q-2 (K=2 duplication promotion mechanism) / B_TEMPLATE_FIRST_CREATION (templates pre-include cross-ref fields) / EXT-20260505-003-A through 003-D (4 source extracts).
+
+## B_SAVINGS_AND_SSOT_UNIFIED — savings and SSoT are the same discipline
+
+**Canonical wording:**
+
+> Savings (avoid redundant token spend) and SSoT (avoid redundant content) share ONE root: no duplication of effort or data. If a fact lives in N places, both savings AND integrity suffer (N reads cost N× tokens; N updates risk drift). The unified rule: *each fact lives in ONE canonical home; cross-reference everywhere else; canonical home is a SCHEMA field where possible; bundling orchestrator consumes; validator enforces.* Treating savings and SSoT as ONE discipline yields ONE mechanical layer addressing both axes simultaneously — one validator pass measures both; one recurring discipline at Phase 10; one umbrella under existing P-META-009 Cognitive Context Architecture.
+
+**Counterweight:**
+
+> When intentional duplication serves quality (per [B_CONSOLIDATION_PASS counterweight](#b_consolidation_pass) + [EXT-20260505-003-D counter-cases](../_handoff/VAULT/contexts/governance/anti-duplication/EXT-20260505-003-D-when-NOT-to-consolidate-counter-cases.md)) — glossary terms restated for accessibility / safety-critical instructions repeated for redundancy / cardinal directives re-cited at batch boundaries — declare `consolidation_exempt: true` + reason. The unification doesn't override quality counter-cases; it surfaces them more visibly because EVERY duplication now has a single reason-to-justify rather than separate token-budget vs SSoT justifications.
+
+**The unification map:**
+
+| Axis | Existing CSPS discipline | Composition under B_SAVINGS_AND_SSOT_UNIFIED |
+|---|---|---|
+| **Savings** (token-budget reduction) | [B_TOKEN_BUDGET](#b_token_budget) (P-META-009 extension; S007 turn 4) — 5 operating rules R1-R5 | R1 (default L1 depth) + R2 (model tiering) + R5 (tool-output-summary-first) ARE savings expressions of the unified rule |
+| **SSoT** (single canonical home) | [B_CONSOLIDATION_PASS](#b_consolidation_pass) (S009 L1.3) — 5-step pass + 6 patterns | The 5-step protocol IS SSoT-axis enforcement of the unified rule |
+| **Schema** (canonical home as data) | [frontmatter-closed-enums.md](./frontmatter-closed-enums.md) (S007 turn 5) — closed-enum constants in validate-frontmatter.mjs | Canonical-home-as-SCHEMA-field IS the highest-leverage unification mechanism per EXT-005-A §2 |
+| **Bundling orchestrator** (consumer) | [PE.read_budget extension](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-C-bundling-orchestrator-pe-read-budget-extension.md) (Phase 8 / S012 build) | Consumes per-artifact depth declarations + cross-refs to bundle reads |
+| **Validator** (enforcer) | [`consolidation-pass-coverage` audit](./audit-runner.md) + [`token-budget-*` 5 audits](./audit-runner.md) (S007 + S009 atomic) | One Phase 9 measurement validator measures BOTH axes per pass |
+
+**Source:** EXT-20260505-005-A (CSP file #5 §2 unified principle + §5 single rule). Q3=A confirmed S009 — new B_* contract anchored to existing P-META-009 (NO principle amendment; minimum-blast-radius). Engraved S009 L1.4 atomic per FSE.
+
+**Anti-patterns:**
+
+- Treating savings and SSoT as separate disciplines (the pre-S009 CSPS state — token-optimization topic-plan + Anti-Duplication EXT independent)
+- Building separate Phase 9 validators for token-budget vs duplication detection (one pass should measure both)
+- Justifying duplication on token-budget grounds without SSoT counter-case (or vice versa) — both axes must clear together
+- Engraving new B_* under different principle (this contract anchors to P-META-009; other principle = drift)
+- Mass-backfill SSoT cleanup mid-development (per [B_CONSOLIDATION_PASS](#b_consolidation_pass) counter-case 6: apply going-forward; backfill at next-touch)
+
+**Mechanical surfaces (5/5 atomic per FSE — S009 L1.4):**
+
+- **schema:** `consolidation_exempt: bool` + `consolidation_exempt_reason:` frontmatter (shared with B_CONSOLIDATION_PASS) + `canonical_home_field: <path>` declaration field for unified-rule SCHEMA-as-canonical-home semantic (extension week-4)
+- **validator:** [`savings-ssot-coverage` audit slug](./audit-runner.md) — registered S009 L1.4 atomic; impl Phase 9 (S013) — single-pass measurement of both axes per pre-comprehensive-guide commit + weekly cron
+- **hook:** [`.claude/hooks/post-stop-savings-ssot-coverage.sh`](../../../.claude/hooks/post-stop-savings-ssot-coverage.sh) — STUB; PostStop measurement bridge (DEFERRED to L1.6 governor-permission ASK batch per popup discipline)
+- **memory:** [`feedback_savings_ssot_unified.md`](../../../C:/Users/finky/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_savings_ssot_unified.md) + MEMORY.md index entry — engraved S009 L1.4
+- **contract:** this entry + AGENTS.md "Engraving + ratification" hard-NO row addition (S009 L1.4 amendment) + cross-references at [B_TOKEN_BUDGET](#b_token_budget) + [B_CONSOLIDATION_PASS](#b_consolidation_pass) (composition declarations same-batch)
+
+**Cross-references:** P-META-009 Cognitive Context Architecture (parent principle; B_SAVINGS_AND_SSOT_UNIFIED extends; NO new principle per Q3=A) / B_TOKEN_BUDGET (savings axis; sister contract) / B_CONSOLIDATION_PASS (SSoT axis; sister contract; S009 L1.3) / B_COGNITIVE_CONTEXT_DISCIPLINE (parent at P-META-009; both children compose) / B_STRUCTURAL_PREVENTION_DISCIPLINE Q-2 (drives recurring detection) / EXT-20260505-005-A (source) + EXT-20260505-005-B (7 disciplines + 4 architectural elements catalog) + EXT-20260505-005-C (schema-of-schemas index — Phase 8/9 extension).
+
 ## How to add a new contract
 
 1. Append a new section here with the same shape (canonical wording + counterweight + source + anti-patterns + mechanical-surfaces).

@@ -63,18 +63,20 @@ Each pain has a stable PAIN-* ID. Plans reference by ID.
 
 ### Class A — AI cognitive failure modes (D1-D10 from CSP file #2 §11)
 
-| ID | Pain | Cause | Mitigation |
-|---|---|---|---|
-| **PAIN-D1** | Time-pressure → declare schema, defer validator | "I'll implement the validator next batch" thinking | Mechanical-completion is FIRST batch; do FEWER things FULLY |
-| **PAIN-D2** | Doctrine-completion-feels-like-completion | Authoring docs FEELS like work done; execution stalls | BATCH_CLOSE checklist requires 5-element-pattern citation |
-| **PAIN-D3** | Sequential not parallel | Authoring 5 surfaces across 5 commits | Author all 5 elements same humble batch |
-| **PAIN-D4** | Governor-said-mechanical-so-call-it-mechanical | Claiming BUILT without all 4 conditions | All 4 conditions: validator runs + emits findings + wired hook + not blocked |
-| **PAIN-D5** | Continuity-bias (replicate prior patterns without question) | Copy-paste convention without asking "does this need to enforce anything?" | At every CD authoring: ask "is this required to enforce anything?" |
-| **PAIN-D6** | 5-element-pattern as checklist not gate | Marking BUILT after authoring 3 of 5 surfaces | Refuse `BUILT` unless all 5 verified end-to-end |
-| **PAIN-D7** | Honest-acknowledgment-substitutes-for-mechanical-fix | "I noticed the gap" without fixing it | Honest acknowledgment + completion deadline required |
-| **PAIN-D8** | Future-session-defer-default | "I'll do this next session" without registering completion debt | Register completion debt with target session + auto-fire mechanical reminder |
-| **PAIN-D9** | Cite-honesty-in-prose-substitutes-for-data-correction | Note in prose about a stale value vs editing the value | Every cite-honesty observation produces CD-NNN entry |
-| **PAIN-D10** | Patched-because-Governor-asked-not-fully-fixed | Fixing the specific instance Governor named without closing the class | Distinguish respond-to-question from close-the-class-gap |
+> **Per S009 L1.5 fleshed atomic per FSE (Q4=B reuse-first — extends this leaf rather than authoring parallel d1-d10-catalog.md per EXT-20260505-002-D §10).** Each row maps to canonical CSPS memory entry where one exists; D1/D3/D4/D5/D9/D10 are NEW for CSPS catalog. Self-monitoring discipline at [`feedback_d1_d10_self_monitoring.md`](memory) — AI-internal continuous catch.
+
+| ID | Pain | Cause | Mitigation | Maps to canonical CSPS |
+|---|---|---|---|---|
+| **PAIN-D1** | Time-pressure → declare schema, defer validator | "I'll implement the validator next batch" thinking | Mechanical-completion is FIRST batch; do FEWER things FULLY | NEW S009 L1.5 — `feedback_d1_d10_self_monitoring.md` D1 entry |
+| **PAIN-D2** | Doctrine-completion-feels-like-completion | Authoring docs FEELS like work done; execution stalls | BATCH_CLOSE checklist requires 5-element-pattern citation | [`feedback_protocol_compression_is_skipping.md`](memory) (memory entry 11; CSPS analog) |
+| **PAIN-D3** | Sequential not parallel | Authoring 5 surfaces across 5 commits | Author all 5 elements same humble batch | [`feedback_five_surface_engraving.md`](memory) (memory entry 14; FSE atomic mandate) + NEW S009 L1.5 D3 entry |
+| **PAIN-D4** | Governor-said-mechanical-so-call-it-mechanical | Claiming BUILT without all 4 conditions | All 4 conditions: validator runs + emits findings + wired hook + not blocked | NEW S009 L1.5 — composes with [`feedback_re_run_is_proof.md`](memory) (RZF) |
+| **PAIN-D5** | Continuity-bias (replicate prior patterns without question) | Copy-paste convention without asking "does this need to enforce anything?" | At every CD authoring: ask "is this required to enforce anything?" | NEW S009 L1.5 — directly mitigated by [`depth-discipline.md §5`](./depth-discipline.md) anti-pattern table (Phase 6 spawn templates) |
+| **PAIN-D6** | 5-element-pattern as checklist not gate | Marking BUILT after authoring 3 of 5 surfaces | Refuse `BUILT` unless all 5 verified end-to-end | [`feedback_five_surface_engraving.md`](memory) (memory entry 14) — 2/5 anti-pattern clause |
+| **PAIN-D7** | Honest-acknowledgment-substitutes-for-mechanical-fix | "I noticed the gap" without fixing it | Honest acknowledgment + completion deadline required | [`feedback_catch_to_engraving.md`](memory) (memory entry 13) |
+| **PAIN-D8** | Future-session-defer-default | "I'll do this next session" without registering completion debt | Register completion debt with target session + auto-fire mechanical reminder | [`feedback_catch_to_engraving.md`](memory) (memory entry 13) "default-to-engrave when uncertain" |
+| **PAIN-D9** | Cite-honesty-in-prose-substitutes-for-data-correction | Note in prose about a stale value vs editing the value | Every cite-honesty observation produces CD-NNN entry | NEW S009 L1.5 — composes with `principle-count-staleness` audit (S005 turn 8) |
+| **PAIN-D10** | Patched-because-Governor-asked-not-fully-fixed | Fixing the specific instance Governor named without closing the class | Distinguish respond-to-question from close-the-class-gap | NEW S009 L1.5 — composes with [`B_STRUCTURAL_PREVENTION_DISCIPLINE`](./behavioral-contracts.md) Q-2 (instance-vs-structural) |
 
 ### Class B — Token / context-budget pains
 
@@ -112,6 +114,18 @@ Each pain has a stable PAIN-* ID. Plans reference by ID.
 | **PAIN-FALSE-ZF-0** | Claiming ZF-0 without re-running validator | Memory of earlier run ≠ validation | Per memory entry 7 + B_RZF re-run-IS-the-proof |
 | **PAIN-NOMINAL-RZF** | Closing summary RZF block without §10.0 verify ran | "I think it passed" without running | Per memory entry 20 + B_PRE_CLOSE_VERIFICATION mandatory gate |
 | **PAIN-SKILL-WILDCARD** | New SKILL.md location not in validate-aap-frontmatter SKILL_PATHS | New skill folder not added to glob | Per memory entry 42 + multi-location AAP coverage |
+
+### Class F — Validator false-positive (FP) classes (5 known per CSP file #2 §10)
+
+> **NEW S009 L1.5 per Q4=B reuse-first — engraved here as Class F instead of standalone false-positive-classes.md leaf.** Per [EXT-20260505-002-D §10](../_handoff/VAULT/contexts/governance/mechanical-completion/EXT-20260505-002-D-mechanical-completion-directive-D1-D10-false-lexicon.md) verbatim. Mandatory consultation BEFORE authoring any new validator (Phase 9 measurement validator S013 + future).
+
+| ID | FP Class | Trigger | Mitigation template |
+|---|---|---|---|
+| **PAIN-FP1** | Documentation context FP | Validator flags retired token IN A DOC that documents what's retired (e.g., `frontmatter-closed-enums.md` mentions `lifecycle_state: draft` as the K=2 catch — validator scans and flags its own documentation) | Line-level scan ±2 lines for documentation indicators (markdown header context / code block / "as the catch" phrase / etc.); skip flag if context indicates documentation purpose |
+| **PAIN-FP2** | Path-prefix vs entity-ID FP | Lowercase entity ID in file path is convention not violation (e.g., `extraction_id: EXT-20260505-001-A` flagged as "lowercase ID violation" when path itself has the ID) | Path-prefix exclusion regex; entity-ID-in-path is canonical not violation |
+| **PAIN-FP3** | Multi-line vs single-line regex FP | Pattern matches across lines unintentionally (e.g., `\bdraft\b` matches `lifecycle_state:` on one line + `draft` on next line in YAML continuation) | Multi-line flag `(?m)` discipline + explicit line-anchor regex when single-line scan intended |
+| **PAIN-FP4** | Brace escape FP | Curly braces in regex requiring escape for literal match (e.g., ripgrep `interface{}` requires `interface\{\}`) | ripgrep-pattern documentation in tool prompts + regex-literal-discipline at validator authoring |
+| **PAIN-FP5** | Validator-on-validator self-reference FP | Validator's own commit body / frontmatter triggers its own checks (e.g., `frontmatter-closed-enum-drift-prevention` validator's own commit message mentions `lifecycle_state: draft` and triggers itself) | Same documentation-context exclusion as FP1; validator-self-exclusion path-glob (`tools/validators/**`) |
 
 ## §3 — How plans use this catalog
 

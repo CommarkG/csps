@@ -5,7 +5,7 @@ description: Handoff from Session 008 to Session 009. S008 = the CSP-DNA-absorpt
 version: 1.0
 owner: group:finky
 lifecycle: production
-lifecycle_state: active
+lifecycle_state: resolved
 template_used: handoff
 template_status: stable
 core_spine: GVRN

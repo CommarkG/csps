@@ -1,0 +1,38 @@
+---
+extraction_id: EXT-20260505-003
+source_type: AI_OTHER
+received_at: 2026-05-05T04:30:00Z
+received_via: chat-paste
+raw_byte_size_estimated: 31000
+content_hash_sha256: pending-compute
+risk_profile: low
+submitted_by: user
+trust_tier: external_ai_export
+audience: [developer, ai-agent]
+domain: [governance, anti-duplication, schema, architecture]
+session_received_in: S008
+session_turn_received: 8
+gp_entry: GP-S008-07
+parent_input_id: null
+sub_extractions:
+  - EXT-20260505-003-A: single-rule-6-duplication-patterns-5-step-consolidation-pass-protocol
+  - EXT-20260505-003-B: 4-invocation-triggers-composition-with-PE-and-reassessment
+  - EXT-20260505-003-C: schema-and-core-spines-as-canonical-home-architecture
+  - EXT-20260505-003-D: when-NOT-to-consolidate-counter-cases-rigid-flex-application
+multi_section: true
+sister_csp_files:
+  - EXT-20260505-001 (PE report; same series; PE invocation point #8 IS Consolidation Pass)
+  - EXT-20260505-002 (QC report; same series; rigid-vs-flex composition principle informs §14)
+csps_already_absorbed_cross_ref:
+  - "§8 5-element-pattern composition → CSPS B_FIVE_SURFACE_ENGRAVING (memory entry 14)"
+  - "§9 PE invocation point #8 → CSPS PE-equivalent in topic-plan §6 (per gradual-build-plan template)"
+self_demonstrating: |
+  This report applied its own discipline to PE Report v1→v2 (commit f123768f) and QC Report v1→v2
+  (commit cd009466) within the same CSP S337-prep session. CSPS receives v2 versions.
+notes: |
+  Per user S008 turn 8 directive — same as EXT-002:
+  - Apply mini-tree split (L1/L2/L3 markers in extract frontmatter)
+  - Schedule deep-dive (deep_dive_schedule field)
+  - Cross-reference EXT-001 + EXT-002 instead of duplicating concepts
+  - Priority for 10-phase completion (priority_for_10_phase_completion field)
+---

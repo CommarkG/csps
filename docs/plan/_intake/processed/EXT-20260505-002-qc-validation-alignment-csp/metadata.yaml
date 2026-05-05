@@ -1,0 +1,38 @@
+---
+extraction_id: EXT-20260505-002
+source_type: AI_OTHER
+received_at: 2026-05-05T04:30:00Z
+received_via: chat-paste
+raw_byte_size_estimated: 46000
+content_hash_sha256: pending-compute
+risk_profile: low
+submitted_by: user
+trust_tier: external_ai_export
+audience: [developer, ai-agent]
+domain: [governance, validation, audit, architecture]
+session_received_in: S008
+session_turn_received: 8
+gp_entry: GP-S008-07
+parent_input_id: null
+sub_extractions:
+  - EXT-20260505-002-A: validator-class-structure-smoke-test-severity-taxonomy
+  - EXT-20260505-002-B: nine-element-dna-gate-triple-check-frontmatter-rigidity
+  - EXT-20260505-002-C: quality-audit-framework-AID-system-standing-authorizations
+  - EXT-20260505-002-D: mechanical-completion-directive-D1-D10-false-lexicon-fp-classes
+  - EXT-20260505-002-E: ivp-l3-expert-panel-cruel-critic-review-discipline
+  - EXT-20260505-002-F: 4-batch-close-file-depth-markers-rigid-flex-5-prevention-10-scenario
+multi_section: true
+sister_csp_files:
+  - EXT-20260505-001 (PE report; preceded this in S008 turn 7)
+  - EXT-20260505-003 (Anti-Duplication report; same turn paste)
+csps_already_absorbed_cross_ref:
+  - "§2 5-element-pattern → CSPS B_FIVE_SURFACE_ENGRAVING (memory entry 14)"
+  - "§17 Alignment Round → CSPS B_MUTUAL_UNDERSTANDING_VALIDATION (memory entry 23)"
+  - "§19 Hooks-replacing-injection → CSPS Phase 5 stubs at .claude/hooks/ (S008 turn 5 commit 433eb74)"
+  - "§23 Humble-batch discipline → CSPS P-OP-004 batched execution"
+notes: |
+  Per user S008 turn 8 directive: "extract critical and save it and schedule it to future deep dive!!"
+  All sub-IDs include `deep_dive_schedule` field per pipeline-enhancement directive.
+  All sub-IDs include `mini_tree_layer` field per mini-tree split directive.
+  All sub-IDs include `priority_for_10_phase_completion` field per PE alignment.
+---

@@ -193,6 +193,7 @@ The orchestration layer above [`audit-runner.md`](./audit-runner.md) registry. D
 8. validation-without-recurrence-check   ─── closed-items get 30/90-day recurrence check
 9. meta-loop-audit                       ─── resolution-cycle-time trend monthly
 10. schema-gap-promotion-eligibility     ─── K=2 schema-gap promotion mechanism
+11. tag-status-deep-audit                ─── weekly recurring scan ALL governed artifacts (S008 turn 8)
 ```
 
 **Handling:** ERROR blocks merge; WARN dashboard; INFO log only.

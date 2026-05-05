@@ -123,6 +123,10 @@ All run catalog-first search. `--new` requires `created-new-because:` justificat
 | [`packages/skills/`](packages/skills/) | Existing platform skills (7) |
 | [`.claude/skills/`](.claude/skills/) | Claude Code skill auto-load (Phase 4 NEW; 9 skills) |
 | [`tools/`](tools/) | Generators, audit-runner, validators, measure-token-cost |
+| [`docs/plan/pillar-0-governance/plan-creation-protocol.md`](docs/plan/pillar-0-governance/plan-creation-protocol.md) | **NEW S008** — canonical "how plans get made" 5-step protocol; consult before authoring any plan |
+| [`docs/plan/pillar-0-governance/context-loss-pains.md`](docs/plan/pillar-0-governance/context-loss-pains.md) | **NEW S008** — SSoT 22-pain catalog; every plan REFERENCES (not restates) via Context-Loss Prevention Checklist |
+| [`docs/plan/pillar-0-governance/csps-platform-dna.md`](docs/plan/pillar-0-governance/csps-platform-dna.md) | **NEW S008** — 13 CSPS DNA elements + process integration map; consulted at plan-creation Step 2 DNA gate |
+| [`docs/plan/_intake/contexts/INDEX.md`](docs/plan/_intake/contexts/INDEX.md) | **NEW S008** — extraction notes index (55 sub-IDs across 11 EXT IDs); entry point for consuming absorbed external inputs |
 
 ## Per-directory cascade + update workflow
 

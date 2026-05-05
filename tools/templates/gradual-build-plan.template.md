@@ -181,6 +181,33 @@ priority_engine:
 
 **Discipline:** if a turn cannot complete a level, split level across turns; never start L+1 before L ZF passes.
 
+### §9.5 Context-Loss Prevention Checklist (mandatory; references canonical catalog)
+
+**Per [plan-creation-protocol.md §3 Step 4](../../docs/plan/pillar-0-governance/plan-creation-protocol.md):** every multi-session plan declares applicable pains from [context-loss-pains.md](../../docs/plan/pillar-0-governance/context-loss-pains.md) (single canonical catalog; don't restate).
+
+```yaml
+context_loss_prevention:
+  consulted: docs/plan/pillar-0-governance/context-loss-pains.md
+  applies_to_this_plan:
+    # Cite PAIN-* IDs most-relevant to this topic-plan; per-Class guidance below.
+    # Class A (D1-D10 cognitive failure modes) — cite 2-3 most-relevant
+    - PAIN-D2: <how this plan prevents doctrine-completion-feels-like-completion>
+    # Class B (token / context-budget) — multi-session always cites these
+    - PAIN-AUTO-COMPACT: <how this plan handles /compact at L<N>→L<N+1> transitions>
+    - PAIN-MODEL-SWITCH: <how this plan respects task-boundary model switches>
+    # Class C (cross-session / cross-chat) — multi-session always cites
+    - PAIN-CHAT-JUMP-DEGRADATION: <how chat-jump-prompt LEAN ensures continuity>
+    - PAIN-PROTOCOL-COMPRESSION: <how every protocol item transcribed to TodoWrite>
+    # Class D (operational friction) — cite if plan touches .claude/* or settings.json
+    - PAIN-PERMISSION-POPUP: <if plan authors hooks/skills, diff-first-ask discipline>
+    # Class E (validation / drift) — cite if plan introduces engravings
+    - PAIN-FALSE-ZF-0: <how RZF re-runs evidenced same-batch>
+  not_applicable:
+    - PAIN-X: <reason this pain doesn't apply to this plan>
+```
+
+**Validator** `plan-context-loss-section-present` (week-4) audits this section non-empty.
+
 ### §10 Topic-plan attestation (L0)
 
 ```yaml

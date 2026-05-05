@@ -142,6 +142,42 @@ const CYCLES = [
     parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
   },
   {
+    // NEW S011 unified-intake L3 — source-class coverage: all 4 source classes have normalizers
+    name: 'intake_source_class_coverage',
+    command: 'node tools/validators/validate-source-class-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/source_classes=(\d+)\s+errors=(\d+)/);
+      return m ? { source_classes: Number(m[1]), errors: Number(m[2]) } : {};
+    },
+  },
+  {
+    // NEW S011 unified-intake L3 — intake-event schema validation on JSONL rows
+    name: 'intake_event_validate',
+    command: 'node tools/validators/validate-intake-event.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files=(\d+)\s+rows=(\d+)\s+errors=(\d+)/);
+      return m ? { files: Number(m[1]), rows: Number(m[2]), errors: Number(m[3]) } : { files: 0, rows: 0 };
+    },
+  },
+  {
+    // NEW S011 zero-laptop L1 — git-pushed-state: all governed-path changes pushed to remote
+    name: 'git_pushed_state',
+    command: 'node tools/validators/validate-git-pushed-state.mjs',
+    parse_output: (out) => {
+      const m = out.match(/warnings=(\d+)/);
+      return m ? { warnings: Number(m[1]), advisory: true } : { advisory: true };
+    },
+  },
+  {
+    // NEW S011 §24++ — topic-plan-progress: active plans not orphaned (arc expired without closure)
+    name: 'topic_plan_progress',
+    command: 'node tools/validators/validate-topic-plan-progress.mjs',
+    parse_output: (out) => {
+      const m = out.match(/plans_checked=(\d+)\s+warnings=(\d+)/);
+      return m ? { plans_checked: Number(m[1]), warnings: Number(m[2]) } : {};
+    },
+  },
+  {
     // NEW S011 §24++ — session-artifact-sync: HANDOFF phase claims match token-optimization.md
     name: 'session_artifact_sync',
     command: 'node tools/validators/validate-session-artifact-sync.mjs',

@@ -24,7 +24,7 @@ session: S008
 topic_id: unified-intake
 priority_score: 8.85
 priority_band: 1
-multi_session_arc: [S008, S009, S010]
+multi_session_arc: [S008, S009, S010, S011]
 depth_chosen: 3
 depth_rationale: |
   Sufficient for foundation (hooks) + composition (envelope schema + umbrella amendment) + core (universal router + audit pipeline build).
@@ -252,3 +252,30 @@ topic_plan_zf:
 ---
 
 **Topic-plan signature (L1 open):** `S008-AI-topic-plan-unified-intake-2026-05-05-L1-open`
+
+---
+
+## §11 Closure attestation (S011 §24++ completion)
+
+**Status:** ALL LEVELS COMPLETE — L1 (S008) + L2 (S011) + L3 (S011)
+
+**L2 deliverables built S011 §24++ (2026-05-05):**
+- [x] `packages/schemas/intake-event.ts` — IntakeEvent typed envelope (4 source classes, route targets, state machine) ✅
+- [x] `docs/plan/_handoff/VAULT/intake-log/README.md` — append-only JSONL log structure ✅
+- [x] `docs/plan/pillar-0-governance/intake-normalizers.md` — 4 normalizer specs (chat-channel / external-content / agent-output / inner-default-leak) ✅
+- [x] `behavioral-contracts.md § B_INTAKE_DISCIPLINE` umbrella amendment — 4 source-class contracts now chapters under umbrella ✅
+- [x] `pnpm verify` exit_code 0 ✅
+
+**L3 deliverables built S011 §24++ (2026-05-05):**
+- [x] `tools/validators/validate-intake-event.mjs` — JSONL row schema validation ✅
+- [x] `tools/validators/validate-source-class-coverage.mjs` — 4-class coverage check ✅
+- [x] `tools/intake-router.mjs` — universal router (SWIFT_EXECUTE / COUNCIL_REVIEW / VAULT_DEFER / DROP) ✅
+- [x] All validators integrated into `pnpm verify` ✅
+
+**Carry-forwards (not blocking closure):**
+- Audit Pipeline 7 full activation → week-4 batch (10 audits registered; build deferred)
+- All 10 hooks → active enforcement promotion → week-4 batch
+- ZModel version of IntakeEvent schema → week-6 Mastra runtime
+- 5-source-class round-trip test → S012 integration test
+
+**Closure attestation:** `S011-AI-unified-intake-ALL-LEVELS-COMPLETE-2026-05-05T19:30:00Z`

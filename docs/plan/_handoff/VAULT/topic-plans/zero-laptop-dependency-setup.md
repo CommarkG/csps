@@ -21,7 +21,7 @@ session: S006
 topic_id: zero-laptop-dependency-setup
 priority_score: 75
 priority_band: 2
-multi_session_arc: [S006, S007]
+multi_session_arc: [S006, S007, S011]
 depth_chosen: 3
 depth_rationale: |
   Depth-3 basic appropriate because:
@@ -211,3 +211,22 @@ topic_plan_zf:
 ---
 
 **Topic-plan signature:** `S006-AI-topic-plan-2026-05-04T16:20:00Z-zero-laptop-dependency-setup`
+
+---
+
+## §11 Progress attestation (S011 §24++ resurrection)
+
+**Status:** L1 COMPLETE — L2/L3 require physical device testing (deferred to Governor)
+
+**L1 deliverables built S011 §24++ (2026-05-05):**
+- [x] `.devcontainer/devcontainer.json` — Codespaces config (Node 20 + pnpm + postCreate) ✅
+- [x] `.devcontainer/postCreate.sh` — pnpm install + verify setup script ✅
+- [x] `docs/plan/pillar-6-operations-and-delivery/android-workflow.md` — workflows A/B/C ✅
+- [x] `docs/plan/pillar-6-operations-and-delivery/multi-machine-parity.md` — version pins + troubleshooting ✅
+- [x] `tools/validators/validate-git-pushed-state.mjs` — integrated into pnpm verify (advisory) ✅
+
+**L2 carry-forward:** Codespaces boot test + Android Chromium session require physical device — defer to Governor when next using Codespaces.
+
+**L3 carry-forward:** Audit Pipeline 4 ops slugs + B_ZERO_LAPTOP validator activation — defer to week-4 batch.
+
+**Attestation:** `S011-AI-zero-laptop-L1-complete-2026-05-05T19:30:00Z`

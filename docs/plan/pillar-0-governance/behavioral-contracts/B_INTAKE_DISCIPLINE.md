@@ -15,9 +15,21 @@
 
 **Source:** S002 turns 4-7. AGENTS.md hard NOs binding.
 
+**S011 umbrella amendment (unified-intake topic-plan L2):** B_INTAKE_DISCIPLINE is the **umbrella** for all 4 CSPS input source classes. Each class normalizes to `IntakeEvent` envelope (schema: `packages/schemas/intake-event.ts`):
+- `chat-channel` → handled by B_GOVERNOR_PROMPTS (user prompts)
+- `external-content` → handled by B_INTAKE_DISCIPLINE (this contract; EXT-IDs)
+- `agent-output` → handled by B_AGENT_ALIGNMENT_PROTOCOL (subagent results)
+- `inner-default-leak` → handled by B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS (AI defaults)
+
+All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/intake-log/S<NNN>.jsonl` (append-only). Normalizer specs: `docs/plan/pillar-0-governance/intake-normalizers.md`.
+
 **Mechanical surfaces:**
+- schema: `packages/schemas/intake-event.ts` (IntakeEvent envelope — unified-intake L2; S011)
 - schema: ExternalInput ZModel + extraction-note frontmatter
 - validator: `manual-protocol-skipped` audit
+- validator: `validate-intake-event.mjs` (S011 unified-intake L3)
+- validator: `validate-source-class-coverage.mjs` (S011 unified-intake L3)
 - hook: UserPromptSubmit-intake hook (built S002 turn 7)
+- router: `tools/intake-router.mjs` (S011 unified-intake L3)
 - memory: `feedback_intake_discipline.md`
 - contract: this entry + AGENTS.md hard NOs

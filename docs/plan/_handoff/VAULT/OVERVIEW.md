@@ -2,10 +2,10 @@
 id: csps.handoff.vault.overview
 name: OVERVIEW
 description: CSPS platform overview — the canonical entry-point for understanding platform state. Single file; BLUF-formatted; self-contained; clickable GitHub URLs to canonical sources. Always-current (per naming-policy Rule 1; version tracked in frontmatter). Read in ~3 minutes for full picture. Token-optimal by design — tables over prose, lazy-loaded references, audience-routing matrix. Renamed from quick-context-S006-L1.md (S006 turn 24) → quick-context.md (turn 24 partial fix) → OVERVIEW.md (turn 25 full fix per industry-standard vocabulary rule). Industry-standard "OVERVIEW" replaces invented "quick-context" term.
-version: 2.4
-last_update_session: S007
-last_update_turn: 6
-last_update: S007-CLOSE
+version: 3.0
+last_update_session: S010
+last_update_turn: S011-open
+last_update: S011-OPEN
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -23,21 +23,76 @@ tags:
 diataxis_type: reference
 links:
   - { rel: parent, href: ./README.md }
-  - { rel: handoff, href: ../HANDOFF-S005-to-S006.md }
+  - { rel: handoff, href: ../HANDOFF-S010-to-S011.md }
   - { rel: closed-topic-plan, href: ./topic-plans/s006-governance-foundation.md }
   - { rel: core-manifest, href: ../../pillar-0-governance/csps-core-manifest.md }
   - { rel: master-plan, href: ../../../../MASTER_PLAN.md }
 session: S006
-generated_at: 2026-05-04T21:05:00Z
+generated_at: 2026-05-05T15:44:00Z
 ---
 
 # CSPS Overview
 
 > **Canonical entry-point for the platform.** Read this in ~3 minutes for the full picture. Always-current — filename stable across sessions per [naming-policy.md](../../pillar-0-governance/naming-policy.md). Version + last-update tracked in frontmatter.
 >
-> **Latest update:** S007 turn 6 — token-optimization Phases 1-4 of 10 closed + B_TOKEN_BUDGET 5/5 atomic engraved (extends P-META-009 CCA) + K=2 closed-enum drift structural fix + AGENTS.md slim 77% (206→143 lines / 6001→1377 words) + 9 SKILL.md at .claude/skills/ + .claudeignore + 5.7% measured savings (cruel-critic Critique 1 honestly applied: 60-80% target is end-state across 10 phases).
+> **Latest update (S011-open):** S008-S010 platform-acceleration arc COMPLETE. S008 = CSP DNA absorption (11 EXT IDs + 3 new canonical leaves). S009 = foundation-first batch (B_CONSOLIDATION_PASS + B_SAVINGS_AND_SSOT_UNIFIED + model-routing-dashboard + depth-discipline). S010 = platform-acceleration 3× mandate: Phase 6 COMPLETE + Phase 7 ALL 4 DONE (130 slices) + B_AAP 7→9 5/5 FSE + 15 hooks LIVE + Lever 1 (Sonnet[1m] default). S011 PRIMARY = Phase 8 principles-mcp upgrade.
 
-## (S007 Token-Optimization Phases 1-4 Close — context for current state)
+## (S008-S010 Platform-Acceleration Arc — CURRENT STATE)
+
+**S008 (CSP DNA Absorption + Foundation Leaves):**
+
+| Surface | S007 close | S008 close | Δ |
+|---|---|---|---|
+| Principles validated | 53 | 53 | 0 |
+| B_* contracts | 27 | 27 | 0 (disciplines engraved at leaf level; no new B_* rows) |
+| New canonical leaves | — | **+3** | plan-creation-protocol.md + context-loss-pains.md + csps-platform-dna.md |
+| EXT IDs cataloged | 0 | **11 (55 sub-IDs)** | CSP DNA absorption — 5 CSP files + edge-case note |
+| Memory entries | 42 | **48** | +6 (weekly-audit + diff-protect + plan-protocol + depth + consolidation + savings) |
+| Hook stubs | 2 | **5** | +3 (depth-marker-gate + consolidation-pass + savings-ssot-coverage) |
+| pnpm verify | exit 0 | exit 0 | stable |
+
+**S009 (Foundation-First Batch — L1.1→L1.6):**
+
+| Surface | S008 close | S009 close | Δ |
+|---|---|---|---|
+| Principles validated | 53 | 53 | 0 (B_SAVINGS_AND_SSOT_UNIFIED extends P-META-009; no new row) |
+| B_* contracts | 27 | **29** | +2 (B_CONSOLIDATION_PASS + B_SAVINGS_AND_SSOT_UNIFIED) |
+| LIVE templates | 8 | **8** | +1 governed-artifact-frontmatter (counted S009; 8 total pre-S010) |
+| New canonical leaves | — | **+2** | depth-discipline.md + model-routing-dashboard.md |
+| Audit registry slugs | ~146+ | **~155+** | +9 (4 depth-discipline + 2 B_CONSOLIDATION_PASS + 2 B_SAVINGS_AND_SSOT_UNIFIED + 1) |
+| PCR decisions ratified | — | **4** | Q1=A Q2=B Q3=A Q4=B (Step 0) |
+| Memory entries | 48 | **52** | +4 |
+| pnpm verify | exit 0 | exit 0 | stable |
+
+**S010 (Platform-Acceleration — Phase 6 + Phase 7 ALL 4 + Lever 1):**
+
+| Surface | S009 close | S010 close | Δ |
+|---|---|---|---|
+| Principles validated | 53 | **53** | 0 |
+| B_* contracts | 29 | **29** | 0 (B_AAP 7→9 = extension; not new B_*) |
+| LIVE templates | 8 | **9** | +1 class-b-agent-spawn-preamble.template.md |
+| Slice files | 0 | **130** | +130 (53 principles + 39 contracts + 28 audit-runner + 10 ai-behavior-spine) |
+| Sync validators (active) | 0 | **4** | principle + contract + audit-runner + ai-behavior-spine slices |
+| Registered audit slugs | ~155+ | **~163+** | +6 (4 slice-sync + model-routing-profile-consistency + aap-9-field-coverage) |
+| settings.json hooks | 0 | **15 LIVE** | 12/12 stubs promoted + 3 active; all verified UserPromptSubmit |
+| Model-routing profiles | 0 | **3** | development-balanced DEFAULT / quality-first / cost-optimized |
+| Session default model | manual | **Sonnet[1m]** | Lever 1 — settings.json "model" field |
+| Split generators | 0 | **4** | split-principles + split-behavioral-contracts + split-audit-runner + split-ai-behavior-spine |
+| Memory entries | 52 | **53** | +1 (feedback_aap_9_field_extension.md) |
+| Commits S010 | — | **7** | Phase 6 + Lever1/dashboard + Phase 7 ×4 |
+| pnpm verify | exit 0 | **exit 0** | stable; all 9 active validators PASS |
+
+**Aggregate S008-S010 (3 sessions, 2026-05-05):**
+- Platform went from monolith-loading to slice-loading architecture in ONE session arc
+- Every future AI session loads only the slice(s) it needs (130 files → O(1) context cost vs O(N))
+- 15 hooks LIVE — every chat auto-validates governance at UserPromptSubmit + PostStop
+- model-routing-dashboard.md + Lever 1 = Governor-level controls on AI session cost
+
+**Verify state at S010 close:** pnpm verify exit_code 0; 9 active cycles PASS; ZF achieved. Commit [371bcdc](https://github.com/CommarkG/csps/commit/371bcdc) — S010 CLOSE.
+
+---
+
+## (S007 Token-Optimization Phases 1-4 Close — context for prior state)
 
 **S007 close metrics (Δ vs S006 close):**
 
@@ -110,11 +165,14 @@ generated_at: 2026-05-04T21:05:00Z
 
 ### 3. SCHEMA — single source of truth
 
-- Principle registry: [packages/principles/principles.yaml](https://github.com/CommarkG/csps/blob/main/packages/principles/principles.yaml) (52 principles validated 0 findings)
-- Audit registry: [audit-runner.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/audit-runner.md) (~140+ audits)
-- Audit-hub orchestration: [audit-hub.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/audit-hub.md) (10 pipelines; Pipeline 10 = csps-alignment NEW S006)
+- Principle registry: [packages/principles/principles.yaml](https://github.com/CommarkG/csps/blob/main/packages/principles/principles.yaml) (53 principles validated 0 findings) + [53 slice files](https://github.com/CommarkG/csps/tree/main/packages/principles/principles/) (P-XXX-NNN.yaml — load only what you need)
+- Audit registry: [audit-runner.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/audit-runner.md) (~163+ audits) + [28 pipeline slices](https://github.com/CommarkG/csps/tree/main/docs/plan/pillar-0-governance/audit-runner/)
+- Audit-hub orchestration: [audit-hub.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/audit-hub.md) (10 pipelines; Pipeline 10 = csps-alignment)
+- Behavioral contracts: [behavioral-contracts.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/behavioral-contracts.md) (29 B_* contracts) + [39 slice files](https://github.com/CommarkG/csps/tree/main/docs/plan/pillar-0-governance/behavioral-contracts/) (B_NAME.md — load only what you need)
+- AI behavior spine: [ai-behavior-spine.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/ai-behavior-spine.md) + [10 section slices](https://github.com/CommarkG/csps/tree/main/docs/plan/pillar-0-governance/ai-behavior-spine/)
 - Frontmatter schema: [ADR-0023](https://github.com/CommarkG/csps/blob/main/docs/adr/0023-hybrid-frontmatter-schema-universal-core-plus-per-file-type.md)
-- Template registry: [template-registry.md](https://github.com/CommarkG/csps/blob/main/docs/plan/_handoff/VAULT/template-registry.md) (5 LIVE templates)
+- Template registry: [template-registry.md](https://github.com/CommarkG/csps/blob/main/docs/plan/_handoff/VAULT/template-registry.md) (9 LIVE templates)
+- Model-routing dashboard: [model-routing-dashboard.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/model-routing-dashboard.md) (3 configuration profiles; §10 developer-controls)
 - Inner-AI-defaults registry: [inner-ai-defaults/](https://github.com/CommarkG/csps/tree/main/docs/plan/_handoff/VAULT/inner-ai-defaults) (5 categories + continuous-drift-log)
 
 ---
@@ -180,24 +238,34 @@ generated_at: 2026-05-04T21:05:00Z
 
 | Audience | Read order |
 |---|---|
-| **New AI session opening cold** | This file → [HANDOFF-S005-to-S006.md](https://github.com/CommarkG/csps/blob/main/docs/plan/_handoff/HANDOFF-S005-to-S006.md) §0 → [closed topic-plan](https://github.com/CommarkG/csps/blob/main/docs/plan/_handoff/VAULT/topic-plans/s006-governance-foundation.md) §11 closure attestation → start S007 §3 work |
+| **New AI session opening cold** | This file → [HANDOFF-S010-to-S011.md](https://github.com/CommarkG/csps/blob/main/docs/plan/_handoff/HANDOFF-S010-to-S011.md) §0 → [closing-summary-S010.md](https://github.com/CommarkG/csps/blob/main/docs/plan/_handoff/VAULT/closing-summary-S010.md) §10.0 state delta → proceed with S011 work |
 | **New human contributor** | This file → [csps-core-manifest.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/csps-core-manifest.md) → pillar READMEs of interest |
 | **Auditor / vendor-risk reviewer** | This file → [audit-hub.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/audit-hub.md) → [csps-core-manifest.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/csps-core-manifest.md) §"Mechanical enforcement" |
 | **Returning developer** | This file → [closed topic-plan](https://github.com/CommarkG/csps/blob/main/docs/plan/_handoff/VAULT/topic-plans/s006-governance-foundation.md) §11 + carry-forwards-to-S007 |
 
 ---
 
-## What's next (S007+)
+## What's next (S011+)
 
-**Carry-forwards from S006 close:**
+**S011 PRIMARY carry-forwards (per HANDOFF-S010-to-S011):**
 
-1. **Foundation slices week-2** — User / Tenant / AuditEvent in `libs/policies/foundation/` per [foundation-zmodel.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-2-data-and-schema/foundation-zmodel.md). New topic-plan opens at S007.
-2. **Zero-laptop-dependency-setup** — sibling [topic-plan](https://github.com/CommarkG/csps/blob/main/docs/plan/_handoff/VAULT/topic-plans/zero-laptop-dependency-setup.md) opens NOW unblocked (governance-foundation L2 closed). Devcontainer + Codespaces + Android workflow.
-3. **CNST/GVRN split decision** — ADR-0025 candidate per [element-reviews/csps-core-spines-S006.md](https://github.com/CommarkG/csps/blob/main/docs/plan/_handoff/VAULT/element-reviews/csps-core-spines-S006.md) gap_id `cnst-gvrn-split-decision`. Foundation-stability discipline blocks immediate cardinality change; ratified ADR required.
-4. **Week-4 audit-runner ship** — implements 27+ deferred validators (impl deferred per atomic registration discipline).
-5. **Stripe Entitlements + Clerk Organizations** wiring per [build-order.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-6-operations-and-delivery/build-order.md) week-2.
-6. **principles-mcp build** + smoke test (per build-order week-2).
-7. **glossary + principles codegen** full implementations.
+1. **Phase 8 — principles-mcp upgrade** (S011 PRIMARY): upgrade `packages/principles-mcp/src/index.ts` from skeleton to slice-reading + 4 query methods (`principles.get` / `principles.list` / `principles.find_by_enforcer_layer` / `principles.find_by_spine`). Exit: build PASS + per-query token cost <5K.
+2. **Deep sanity QC + alignment checks + local fixes** (GP-S010-07 cardinal): full platform scan — frontmatter, B_* contract alignment, dead-reference detection, AAP coverage. Fix findings inline.
+3. **CEC walk** — extract S010 essence → propagate across AI behavior + model-routing + agent alignment.
+4. **OVERVIEW.md** — this update ✅ (K1_S010-1 resolved).
+5. **16 SKILL.md AAP 9-field backfill** — principle_compliance + consolidation_cross_refs (Phase 1 OPTIONAL; S011 S.L.A.).
+6. **CronCreate weekly-tag-status-deep-audit** — pending since S008 turn 8.
+7. **Phase 9** (S011 if context / S012): context-loading templates × 8 + `validate-token-budget.mjs`.
+8. **Phase 10** (S012/S013): continuous validation engine — depends on Phase 9.
+9. **Foundation slices week-2** — User / Tenant / AuditEvent (parallel candidate; S011 or S012).
+10. **ADR-0025 CNST/GVRN split** — multi-session arc; blocked on ADR ratification.
+11. **Week-4 audit-runner ship** — ~163+ deferred validators; build-order week-4.
+
+**Hard rules from S010 (NEW — all S011+ sessions must respect):**
+- Never load behavioral-contracts.md monolith when only 1 B_* needed — use slice `behavioral-contracts/B_NAME.md`
+- Never load principles.yaml monolith when only 1 principle needed — use `principles/principles/P-XXX-NNN.yaml`
+- Never edit slice files directly — edit monolith + run `pnpm <source>:split`
+- New SKILL.md must use 9-field AAP shape (csps_aligned + 6 existing + principle_compliance + consolidation_cross_refs)
 
 ---
 
@@ -225,4 +293,4 @@ For absolute-shortest-context: read just §"What CSPS is" (30 seconds) + §"S006
 
 ---
 
-**Quick-context signature:** `S006-AI-quick-context-2026-05-04T21:05:00Z-governance-foundation-close`
+**Quick-context signature:** `S011-AI-quick-context-2026-05-05T15:44:00Z-platform-acceleration-arc-close`

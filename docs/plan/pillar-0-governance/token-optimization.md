@@ -447,6 +447,14 @@ Token-optimization topic-plan: **depth-5** (sophisticated narrow — high levera
 - [ ] AGENTS.md cascade reduced by ~1,250 tokens/turn (per §14.4 estimate)
 - [ ] Token reduction additional >15% measured vs Phase 4
 
+**Status:** L1 stub batch landed S008 turn 5 ([commit 433eb74](https://github.com/CommarkG/csps/commit/433eb74)) — 7 new + 3 existing stubs at `.claude/hooks/` with `@csps-*` headers + WEEK-4 PROMOTION CRITERIA; all 12 hooks now executable. Stub→active enforcement deferred to L3 work (composes with unified-intake topic-plan).
+
+**CSP cross-references (S008 absorption — post-execution validation + week-4 promotion guidance):**
+- [EXT-20260505-001-E SWIFT/CC/Vault routing](../_handoff/VAULT/contexts/governance/intake/EXT-20260505-001-E-swift-cc-vault-routing-and-cross-cc-bundling.md) — IntakeEvent envelope `route_to` enum design composes with hook layer (UserPromptSubmit / PreToolUse / PostToolUse / PostStop hooks ARE the source-class catch-points feeding the envelope)
+- [EXT-20260505-002-A validator class structure](../_handoff/VAULT/contexts/governance/validators/EXT-20260505-002-A-validator-class-structure-smoke-test-severity-taxonomy.md) — apply 6-commitment structure (STATEFUL / COMPOSABLE / EXIT-CODED / PIPELINED / SELF-DESCRIBING / GRADUATION-AWARE) + RED/YELLOW/GREEN/INFO/LEGACY severity when promoting stubs week-4
+- [EXT-20260505-002-D D1-D10 catalog](../_handoff/VAULT/contexts/governance/mechanical-completion/EXT-20260505-002-D-mechanical-completion-directive-D1-D10-false-lexicon.md) — D6 "5-element-pattern as gate not checklist": refuse `BUILT` until validator runs + emits findings + wired hook + not blocked
+- [EXT-20260505-004-B mechanical-creation discipline](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-B-mechanical-creation-discipline-with-placeholders.md) — Phase 5+ extension: add 13th hook `pre-tool-use-depth-marker-creation-gate.sh` (CSP file #4 Improvement #4)
+
 ### 9.7 Phase 6 — Subagent + Haiku tiering
 
 **Depends on:** Phase 5 hooks
@@ -466,6 +474,13 @@ Token-optimization topic-plan: **depth-5** (sophisticated narrow — high levera
 - [ ] AAP Class B preamble injected at every subagent spawn
 - [ ] Mid-session context growth reduced >40% measured
 - [ ] Summary quality verified on first 10 subagent uses (no information loss)
+
+**CSP cross-references (S008 absorption — informs Phase 6 design):**
+- 🔥 **PREREQUISITE (S009 foundation work BEFORE Phase 6 spawn templates authored):** [EXT-20260505-004-A 4 depth-level semantics](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-A-four-distinct-depth-level-semantics-and-unified-principle.md) — author `docs/plan/pillar-1-architecture-and-stack/depth-discipline.md` canonical leaf disambiguating CSPS 5 depth semantics; without this, Phase 6 spawn templates use wrong field semantics → re-architecting cost
+- 🔥 **PREREQUISITE (S009 foundation work):** [EXT-20260505-004-B mechanical-creation discipline](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-B-mechanical-creation-discipline-with-placeholders.md) — `tools/templates/governed-artifact-frontmatter.template.md` provides spawn-template base with depth markers + AAP fields + placeholder values
+- [EXT-20260505-001-A PE formula + IMPL_IN_PROGRESS_boost](../_handoff/VAULT/contexts/governance/priority-engine/EXT-20260505-001-A-pe-formula-validation-and-divergence.md) + [EXT-20260505-001-B](../_handoff/VAULT/contexts/governance/priority-engine/EXT-20260505-001-B-impl-in-progress-boost.md) — informs subagent dispatch scoring (which work item warrants subagent delegation vs main session)
+- [EXT-20260505-002-B 9-element DNA gate](../_handoff/VAULT/contexts/governance/agent-discipline/EXT-20260505-002-B-9-element-dna-gate-triple-check-frontmatter-rigidity.md) — extends current AAP 7-fields → 9-fields for spawn templates (CSPS-adapted: drop spheres-RETIRED CSP-specific; add principle_compliance + consolidation_cross_refs)
+- [EXT-20260505-002-E IVP 5+1 + L3 Expert Panel](../_handoff/VAULT/contexts/governance/review-discipline/EXT-20260505-002-E-ivp-l3-expert-panel-cruel-critic.md) — candidates for Class B subagent personas (Architect / Engineer / Ops / Security / UX); defer specific instantiation to S010-S011 first CONSTITUTIONAL change per foundation-stability discipline
 
 ### 9.8 Phase 7 — File splitting (highest-leverage candidates)
 
@@ -493,6 +508,13 @@ Token-optimization topic-plan: **depth-5** (sophisticated narrow — high levera
 - [ ] `pnpm verify` exit_code 0
 - [ ] Token cost re-measured: scenario X reduced by N tokens; baseline updated
 
+**CSP cross-references (S008 absorption — informs Phase 7 file-split discipline):**
+- 🔥 [EXT-20260505-002-F file_depth_markers](../_handoff/VAULT/contexts/governance/operational-discipline/EXT-20260505-002-F-4-batch-close-file-depth-rigid-flex-5-prevention-10-scenario.md) — IMMEDIATELY adopted; **backfill markers as PART of split discipline** (split + add markers = atomic)
+- [EXT-20260505-003-C HUB-per-spine](../_handoff/VAULT/contexts/governance/anti-duplication/EXT-20260505-003-C-schema-and-core-spines-as-canonical-home-architecture.md) — CSPS L1_CORE_<SPINE>.md files at `.claude/core-spines/` ARE the HUB-per-spine equivalent; **just add `file_depth_markers` to them** (saves CSP's projected 10-15hr; CSPS-specific 1hr work)
+- [EXT-20260505-004-D Improvement #3 + #6](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-D-composition-with-schema-corespines-and-9-improvements.md) — top 10 offender backfill list (CSPS top: behavioral-contracts.md ~1300 lines / token-optimization.md / topic-plans / element-reviews) is biggest token-saving lever per file
+- [EXT-20260505-003-A Consolidation Pass](../_handoff/VAULT/contexts/governance/anti-duplication/EXT-20260505-003-A-single-rule-6-duplication-patterns-5-step-consolidation-pass.md) — 5-step protocol: each split must check existing canonical home BEFORE creating new file (avoid duplicating already-canonical content)
+- [EXT-20260505-003-D when NOT to consolidate](../_handoff/VAULT/contexts/governance/anti-duplication/EXT-20260505-003-D-when-NOT-to-consolidate-counter-cases.md) — counter-case 1 (don't consolidate if canonical home becomes too large for L1 scan) directly applies to split decisions
+
 ### 9.9 Phase 8 — principles-mcp build (MCP server activation)
 
 **Depends on:** Phase 7 splits (mcp serves split files)
@@ -510,6 +532,11 @@ Token-optimization topic-plan: **depth-5** (sophisticated narrow — high levera
 - [ ] Per-query token cost <5K (vs ~85K full load) — measured
 - [ ] AI in any session can query `csps-principles-mcp` via MCP tools
 - [ ] AAP frontmatter aligned + `aap_frontmatter_coverage` PASS
+
+**CSP cross-references (S008 absorption — informs Phase 8 MCP design):**
+- [EXT-20260505-004-C PE.read_budget extension](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-C-bundling-orchestrator-pe-read-budget-extension.md) — MCP queries return L1 by default; escalate L2/L3 only on follow-up (depth-aware MCP responses)
+- [EXT-20260505-002-C AID-NNN audit registry](../_handoff/VAULT/contexts/governance/audit-orchestration/EXT-20260505-002-C-quality-audit-framework-AID-system-standing-authorizations.md) — every MCP query = audit instance with `audit_kind: MCP_QUERY` + cost + findings (composes with audit-runner registration)
+- [EXT-20260505-001-E IntakeEvent envelope](../_handoff/VAULT/contexts/governance/intake/EXT-20260505-001-E-swift-cc-vault-routing-and-cross-cc-bundling.md) — `route_to` enum applies to MCP routing: SWIFT_EXECUTE = direct query / COUNCIL_REVIEW = surface to user / VAULT_DEFER = cache for later
 
 ### 9.10 Phase 9 — Context-loading templates + orchestrator (CCA Layer 4 activation)
 
@@ -529,6 +556,14 @@ Token-optimization topic-plan: **depth-5** (sophisticated narrow — high levera
 - [ ] Hook detects task-class with ≥85% accuracy on session-open prompts
 - [ ] Token cost on simple tasks reduced by measurable amount
 - [ ] Telemetry captures load-vs-consumed delta
+
+**CSP cross-references (S008 absorption — informs Phase 9 measurement validator + orchestrator design):**
+- 🔥 [EXT-20260505-004-C PE.read_budget](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-C-bundling-orchestrator-pe-read-budget-extension.md) — IS the orchestrator extension authored this phase; `tools/pe-compute.mjs` + `tools/pe-context-cache.json` (CSPS analogs of CSP `pe_compute.ps1` + cache)
+- [EXT-20260505-001-C 7 PE invocation points](../_handoff/VAULT/contexts/governance/priority-engine/EXT-20260505-001-C-7-mandatory-invocation-points.md) — mechanical PE compute layer pattern; CSPS-adapted to 5 invocation points + 6th = Consolidation Pass + 7th = read_budget refresh
+- [EXT-20260505-002-A validator class structure](../_handoff/VAULT/contexts/governance/validators/EXT-20260505-002-A-validator-class-structure-smoke-test-severity-taxonomy.md) — apply 6-commitment structure when authoring `validate-token-budget.mjs`
+- [EXT-20260505-002-F file_depth_markers + 10-scenario test + rigid-vs-flex + 5-prevention](../_handoff/VAULT/contexts/governance/operational-discipline/EXT-20260505-002-F-4-batch-close-file-depth-rigid-flex-5-prevention-10-scenario.md) — un-defer Phase 4d 10-scenario test HERE; rigid-vs-flex + 5-prevention catalog inform validator behavior
+- [EXT-20260505-004-D Improvements #5 + #8 + #9](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-D-composition-with-schema-corespines-and-9-improvements.md) — concrete validators authored Phase 9 (PE.read_budget + corespine_layer_compliance extension + depth_marker_creation_template_validator)
+- [EXT-20260505-002-B 9-element DNA gate Triple-check](../_handoff/VAULT/contexts/governance/agent-discipline/EXT-20260505-002-B-9-element-dna-gate-triple-check-frontmatter-rigidity.md) — Pre-adoption + Mid-implementation + Post-implementation pattern for context-loading templates
 
 ### 9.11 Phase 10 — Compaction discipline + MCP audit + measurement validator + continuous validation
 
@@ -551,6 +586,14 @@ Token-optimization topic-plan: **depth-5** (sophisticated narrow — high levera
 - [ ] Audit registered + cross-referenced bidirectionally
 - [ ] Recurring task active + first run completed
 - [ ] Topic-plan §11 closure attestation signed
+
+**CSP cross-references (S008 absorption — informs Phase 10 continuous validation):**
+- 🔥 [EXT-20260505-003-A Consolidation Pass](../_handoff/VAULT/contexts/governance/anti-duplication/EXT-20260505-003-A-single-rule-6-duplication-patterns-5-step-consolidation-pass.md) + [EXT-20260505-003-B 4 invocation triggers](../_handoff/VAULT/contexts/governance/anti-duplication/EXT-20260505-003-B-4-invocation-triggers-pe-composition-reassessment.md) — 5-step Consolidation Pass discipline = continuous content-validation mechanism alongside token-budget validation
+- 🔥 **Weekly tag-status-deep-audit** ([cron-weekly-tag-status-deep-audit.sh](../../../.claude/hooks/cron-weekly-tag-status-deep-audit.sh) — registered S008 turn 8 5/5 atomic per FSE) — extends to depth-marker drift detection + IntakeEvent state-machine compliance
+- [EXT-20260505-002-D D1-D10 catalog](../_handoff/VAULT/contexts/governance/mechanical-completion/EXT-20260505-002-D-mechanical-completion-directive-D1-D10-false-lexicon.md) — continuous AI self-monitoring framework; "false" lexicon (false-FP / false-ZF-0 / false-ratification / FAKE_PROGRESS) flags claims-without-evidence
+- [EXT-20260505-004-D 9-improvement plan](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-D-composition-with-schema-corespines-and-9-improvements.md) — Phase 10 validates all 9 improvements landed (completion checkpoint)
+- [EXT-20260505-001-D 5 reassessment triggers](../_handoff/VAULT/contexts/governance/priority-engine/EXT-20260505-001-D-7-reassessment-triggers.md) — Phase 10 close fires P-GOV-24-equivalent reassessment + topic-plan §11 closure
+- ⚠️ **HONEST CALIBRATION OBLIGATION:** CSP empirical 60-75% reference-read reduction estimate must be CSPS-MEASURED at Phase 10 close BEFORE propagating any number (per cruel-critic discipline + EXT-002-E)
 
 ### 9.12 Plan attestation block (template — fills at execution close)
 

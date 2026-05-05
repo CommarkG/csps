@@ -99,8 +99,15 @@ muv_audit:
 - [ ] All 4 source-class contracts updated to cite umbrella + envelope normalizer
 - [ ] Each normalizer spec authored with input → IntakeEvent transformation rules
 - [ ] `pnpm verify` exit_code 0
-- [ ] CSP-file insights documented (extract optimal / reject not-applicable per item) in `docs/plan/_handoff/VAULT/csp-extracts/unified-intake-S00X.md`
+- [ ] CSP-file insights documented (extract optimal / reject not-applicable per item) — **DONE S008 turn 7-9: 4 EXT IDs + 20 sub-IDs at `docs/plan/_intake/contexts/governance/`** (see CSP cross-references below)
 - [ ] No closed-enum drift on new IntakeEvent fields (per `frontmatter-closed-enums.md` consultation)
+
+**CSP cross-references (S008 absorption — informs L2 envelope schema design):**
+- 🔥 [EXT-20260505-001-E SWIFT/CC/Vault routing](../contexts/governance/intake/EXT-20260505-001-E-swift-cc-vault-routing-and-cross-cc-bundling.md) — DIRECT L2 IMPACT: `IntakeEvent.route_to` enum design = `{SWIFT_EXECUTE, COUNCIL_REVIEW, VAULT_DEFER}` per CSP-precedent + CSPS 4-condition autonomous gate
+- [EXT-20260505-001-B IMPL_IN_PROGRESS_boost](../contexts/governance/priority-engine/EXT-20260505-001-B-impl-in-progress-boost.md) — composes with envelope `priority_band` field (active-implementation items get +1.5 to +3.0 boost in router prioritization)
+- [EXT-20260505-002-B 9-element DNA gate](../contexts/governance/agent-discipline/EXT-20260505-002-B-9-element-dna-gate-triple-check-frontmatter-rigidity.md) — envelope alignment fields (`csps_aligned`, `aap_version`, `acknowledged_contracts`, etc.) MUST be present for source-class normalizers
+- 🔥 **PREREQUISITE for envelope schema:** [EXT-20260505-004-A depth-discipline](../contexts/governance/depth-discipline/EXT-20260505-004-A-four-distinct-depth-level-semantics-and-unified-principle.md) — envelope `mini_tree_layer` + `deep_dive_schedule` fields MUST follow CSPS depth-discipline canonical leaf semantics (S009 prerequisite)
+- [EXT-20260505-003-A Consolidation Pass](../contexts/governance/anti-duplication/EXT-20260505-003-A-single-rule-6-duplication-patterns-5-step-consolidation-pass.md) — envelope `consolidation_cross_refs` field IS canonical-home cross-reference mechanism per CSP file #3 §6
 
 ## §3 Core (Level 3) — depends on: L2
 
@@ -121,6 +128,14 @@ muv_audit:
 - [ ] `pnpm verify` exit_code 0 with new validators passing
 - [ ] B_INTAKE_DISCIPLINE umbrella ratified + 4 chapters operational
 - [ ] §10 topic-plan attestation L0 signed
+
+**CSP cross-references (S008 absorption — informs L3 universal router design):**
+- 🔥 [EXT-20260505-004-C PE.read_budget extension](../contexts/governance/depth-discipline/EXT-20260505-004-C-bundling-orchestrator-pe-read-budget-extension.md) — universal router IS bundling orchestrator; consumes depth markers from referenced artifacts; recommends L1/L2/L3 read strategy per task; bundles co-located reads + caches L1 across sessions
+- [EXT-20260505-001-C 7 PE invocation points](../contexts/governance/priority-engine/EXT-20260505-001-C-7-mandatory-invocation-points.md) — router fires at each invocation point (plan auth / reassessment / completion-vs-new / session start / mid-stream change / Consolidation Pass); composes with router `route_to` enum
+- [EXT-20260505-002-C AID-NNN audit registry](../contexts/governance/audit-orchestration/EXT-20260505-002-C-quality-audit-framework-AID-system-standing-authorizations.md) — every router output becomes audit instance with `audit_kind: ROUTER_DECISION` + cost + findings (composes with audit-runner registration)
+- [EXT-20260505-002-A validator class structure](../contexts/governance/validators/EXT-20260505-002-A-validator-class-structure-smoke-test-severity-taxonomy.md) — apply 6-commitment structure when authoring `tools/validators/validate-intake-event.mjs` + `validate-source-class-coverage.mjs`
+- [EXT-20260505-002-D D1-D10 catalog](../contexts/governance/mechanical-completion/EXT-20260505-002-D-mechanical-completion-directive-D1-D10-false-lexicon.md) — D6 5-element-pattern as gate: refuse `B_INTAKE umbrella RATIFIED` until all 4 source-class chapters operational + envelope schema validated + router routes verified
+- [Weekly tag-status-deep-audit](../../../../.claude/hooks/cron-weekly-tag-status-deep-audit.sh) (S008 turn 8 5/5 atomic) — extends to monitor IntakeEvent state-machine compliance + envelope drift detection
 
 ## §4 Integration + cross-layer audits
 

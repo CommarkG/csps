@@ -50,7 +50,7 @@ S007 was a **deep token-optimization-execution session** that:
 - **Slimmed AGENTS.md** from 206 lines / 6001 words → 143 lines / 1377 words (-77% words; backup at `AGENTS.md.original`)
 - **Authored `.claudeignore`** excluding historical session artifacts + intake transients
 - **Measured first empirical savings: 5.7% aggregate** (565,163 → 532,870 tokens vs Phase 1 baseline)
-- **5 commits pushed:** [357478b](https://github.com/CommarkG/csps/commit/357478b) / [7c24b29](https://github.com/CommarkG/csps/commit/7c24b29) / [9b4a409](https://github.com/CommarkG/csps/commit/9b4a409) / [9d37064](https://github.com/CommarkG/csps/commit/9d37064) / [680fb68](https://github.com/CommarkG/csps/commit/680fb68)
+- **8 commits pushed:** [357478b](https://github.com/CommarkG/csps/commit/357478b) Phase 1 / [7c24b29](https://github.com/CommarkG/csps/commit/7c24b29) Phase 2 / [9b4a409](https://github.com/CommarkG/csps/commit/9b4a409) Phase 3 B_TOKEN_BUDGET / [9d37064](https://github.com/CommarkG/csps/commit/9d37064) K=2 closed-enum drift / [680fb68](https://github.com/CommarkG/csps/commit/680fb68) Phase 4 / [172608e](https://github.com/CommarkG/csps/commit/172608e) S007 CLOSE / [ce835bf](https://github.com/CommarkG/csps/commit/ce835bf) §24+ multi-location AAP coverage / [0c8475e](https://github.com/CommarkG/csps/commit/0c8475e) §24++ SKILL.md template (+this §24+++ refinement)
 - **ZERO blockers raised.**
 
 **ZERO BLOCKERS CARRY TO S008. Clean slate.**
@@ -71,7 +71,7 @@ S007 was a **deep token-optimization-execution session** that:
 5. **Read [`governor-prompts/S007.md`](docs/plan/_handoff/VAULT/governor-prompts/S007.md)** for 6 GP entries + 2 cardinal-flagged
 6. **Run §1.1 verification command** (Zone D §1.1)
 7. **Verify intent-to-impact** (Zone D §16)
-8. **Emit §17 attestation as FIRST REPLY** with receipt signature: `S008-AI-receipt-<iso8601-utc>-against-S007-AI-attest-<iso>-S007-close`
+8. **Emit §17 attestation as FIRST REPLY** with receipt signature: `S008-AI-receipt-<your-iso8601-utc-now>-against-S007-AI-attest-2026-05-04T19:55:00Z-S007-close` (the prior-session attest timestamp `2026-05-04T19:55:00Z` is FIXED; only your current-time iso8601 is variable)
 9. **Surface S008 §3** to user (recommended: open Phase 5 hook migration — 7 hooks per §14.4 migration table; OR foundation-slices week-2; user decides)
 
 ### Hard rules (extends from S001-S006 + new S007 additions)
@@ -95,15 +95,16 @@ All 50+ AGENTS.md hard NOs apply. **NEW S007 hard NOs:**
 
 ## §B1 What S007 accomplished
 
-| Surface | S006 close | S007 close | Δ |
+| Surface | S006 close | S007 close (incl §24+/++/+++) | Δ |
 |---|---|---|---|
 | Principles validated | 53 | **53** | 0 (P-META-009 EXTENDED via subsection; no new principle per design) |
 | Core Spines | 5 | 5 | 0 |
 | ADRs | 24 | 24 | 0 (ADR-0025 candidate still queued) |
-| B_* contracts | 26 | **27** | +1 (B_TOKEN_BUDGET) |
-| AGENTS.md hard NOs | 48+ | **50+** | +2 (B_TOKEN_BUDGET + closed-enum drift K=2 sub-rule) |
-| AGENTS.md size (lines/words) | 206 / ~6001 | **143 / 1377** | -30.6% lines / -77% words |
-| Audit registry slugs | ~140+ | **~146+** | +6 (5 token-budget + 1 closed-enum-drift-prevention) |
+| B_* contracts | 26 | **27** (B_AGENT_ALIGNMENT_PROTOCOL amended §24+ multi-location + §24++ template) | +1 (B_TOKEN_BUDGET) |
+| AGENTS.md hard NOs | 48+ | **51+** | +3 (B_TOKEN_BUDGET + closed-enum drift K=2 + §24+ multi-location AAP strengthened) |
+| AGENTS.md size (lines/words) | 206 / ~6001 | **143 / ~1500** | -30.6% lines / -75% words (slim plus §24+ strengthening) |
+| Audit registry slugs | ~140+ | **~147+** | +7 (5 token-budget + 1 closed-enum-drift-prevention + 1 skill-location-coverage-completeness) |
+| Templates LIVE | 5 | **7** | +2 (closing-summary canonical + skill-aap §24++) |
 | Audit-hub pipelines | 10 | 10 | 0 (B_TOKEN_BUDGET added to Pipeline 10) |
 | Active-mechanical `pnpm verify` cycles | 5 | 5 | 0 |
 | LIVE templates | 5 | 5 | 0 |
@@ -118,8 +119,9 @@ All 50+ AGENTS.md hard NOs apply. **NEW S007 hard NOs:**
 | `.claudeignore` | absent | **present** | NEW |
 | Token-cost baselines | 0 | **1** (`token-cost-baseline-S007.json` — re-measured) | NEW |
 | Hook stubs | 0 | **2** (verify-hooks-functional + pre-tool-use-frontmatter-enum-check) | NEW |
-| Governor-prompts (S007) | 30 (S006) | **6 substantive + 1 AI-self-catch** | (per-session) |
-| Cardinal-flagged GPs | 13 (S006) | **2** (S007: GP-05 + GP-06) | (per-session) |
+| Governor-prompts (S007) | 30 (S006) | **6 substantive + 1 AI-self-catch + post-close §24+/++/+++ user directives** | (per-session) |
+| Cardinal-flagged GPs | 13 (S006) | **2 + post-close cardinals** ("non aligned agent and skills are wild cards" §24+ user directive) | (per-session) |
+| Commits this session | 14 (S006) | **8 + 2 §24+ post-close addenda + 1 §24+++ refinement = 11 total** | (per-session) |
 
 ## §B2 Key locked decisions (S007)
 
@@ -223,8 +225,8 @@ Get-ChildItem -Path "docs\plan\pillar-*\README.md" | Measure-Object | ForEach-Ob
 $pmeta = (Select-String -Path "packages\principles\principles.yaml" -Pattern "^  - id: P-").Count
 "Principles: $pmeta (expect 53)"
 
-# Vault files (expect >=38)
-Get-ChildItem -Path "docs\plan\_handoff\VAULT\" -Filter "*.md" | Measure-Object | ForEach-Object { "Vault files: $($_.Count) (expect >=38)" }
+# Vault files (expect >=40 after S007 §24+/++/+++ refinements)
+Get-ChildItem -Path "docs\plan\_handoff\VAULT\" -Filter "*.md" | Measure-Object | ForEach-Object { "Vault files: $($_.Count) (expect >=40)" }
 
 # ADRs (expect 24)
 Get-ChildItem -Path "docs\adr\" -Filter "*.md" | Measure-Object | ForEach-Object { "ADRs: $($_.Count) (expect 24)" }
@@ -238,8 +240,12 @@ Get-ChildItem -Path ".claude\core-spines\L2_DOMAIN_*.md" | Measure-Object | ForE
 # Topic-plans (expect 4: README + governance-foundation + zero-laptop-dependency-setup + token-optimization)
 Get-ChildItem -Path "docs\plan\_handoff\VAULT\topic-plans\*.md" | Measure-Object | ForEach-Object { "Topic-plans: $($_.Count) (expect 4)" }
 
-# Skills auto-load (expect 9)
+# Skills auto-load (expect 9 at .claude/skills/ + 7 at packages/skills/ = 16 total scanned by validate-aap-frontmatter.mjs after S007 §24+ multi-location coverage)
 Get-ChildItem -Path ".claude\skills\*\SKILL.md" | Measure-Object | ForEach-Object { "Auto-load skills: $($_.Count) (expect 9)" }
+Get-ChildItem -Path "packages\skills\*\SKILL.md" | Measure-Object | ForEach-Object { "Platform skills: $($_.Count) (expect 7)" }
+
+# Templates LIVE (expect 7 — gradual-build-plan + b-star-contract + memory-entry + audit-row + chat-jump-prompt + closing-summary + skill-aap [S007 §24++])
+Get-ChildItem -Path "tools\templates\*.md" | Measure-Object | ForEach-Object { "Templates: $($_.Count) (expect 7)" }
 
 # AGENTS.md slim (expect <200 lines)
 $agents = (Get-Content AGENTS.md | Measure-Object -Line).Lines
@@ -247,6 +253,9 @@ $agents = (Get-Content AGENTS.md | Measure-Object -Line).Lines
 
 # Token cost baselines (expect 1)
 Get-ChildItem -Path "docs\plan\_handoff\VAULT\token-cost-baseline-*.json" | Measure-Object | ForEach-Object { "Token baselines: $($_.Count) (expect 1)" }
+
+# Commits S007 (expect 11: 8 main + 2 §24+ post-close + 1 §24+++ refinement)
+git log --oneline 32dcd30..HEAD | Measure-Object | ForEach-Object { "S007 commits since S006-CLOSE: $($_.Count) (expect 11)" }
 
 # Git status
 git status --short

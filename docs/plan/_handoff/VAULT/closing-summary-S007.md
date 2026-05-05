@@ -529,3 +529,23 @@ Per memory `feedback_chat_vs_session_distinction.md`: post-close same-chat addit
 - Same-chat fix < cost of waiting for S008 + risk of ratification drift
 
 **§24+ signature:** `S007-AI-§24+-closing-summary-2026-05-05-S007-close-addendum`
+
+---
+
+## §24++ post-close addendum — SKILL.md template authored (write-time wildcard prevention)
+
+**Engraved S007 §24++ post-close:** [`tools/templates/skill.template.md`](../../../tools/templates/skill.template.md) NEW — closes the "wildcard-at-write-time" gap. Validator catches AFTER write; template prevents at write-time. Composes with B_TEMPLATE_FIRST_CREATION (P-META-015). Registered in [template-registry.md](./template-registry.md) §1. Commit [0c8475e](https://github.com/CommarkG/csps/commit/0c8475e). Templates LIVE: 6 → 7.
+
+**Net B_AGENT_ALIGNMENT_PROTOCOL chain:** WRITE-TIME (template §24++) + AFTER-WRITE (validator §24+) + RUNTIME (hook stub §24+; week-4 active) + GOVERNANCE (contract amendment §24+ + AGENTS.md hard NO + spine row + memory) + AUDIT (2 atomic-registered slugs §24+).
+
+**§24++ signature:** `S007-AI-§24++-skill-template-2026-05-05-S007-close-addendum`
+
+---
+
+## §24+++ post-close addendum — close-protocol refinements (stale-metric updates + receipt-signature placeholder fix)
+
+**Engraved S007 §24+++ post-close:** stale metrics in HANDOFF §B1 + closing-summary §17 + chat-jump-prompt-detailed Section 4 updated to reflect post-§24+/++ state. Receipt signature `<iso>` placeholder in HANDOFF §0 step 8 filled with FIXED prior-session attest timestamp `2026-05-04T19:55:00Z`. §1.1 verification command expectations refreshed (vault files ≥40; templates LIVE 7; commits 11). Element-review §3.5 + cardinal cross-links pending separate addendum if user surfaces gap.
+
+**Justification (per protocols.md §12 emergency-hot-fix exception):** stale close-artifact metrics would cause new AI in S008 first-reply to false-positive ❓→BLK-S008-* against §17 attestation per-line walk + receipt-signature confusion. §24+++ refinement closes this protocol-correctness gap structurally. Same-chat fix < cost of letting S008 hit false-positive blocker on first reply.
+
+**§24+++ signature:** `S007-AI-§24+++-close-refinement-2026-05-05-S007-close-addendum`

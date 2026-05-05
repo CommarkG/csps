@@ -84,7 +84,7 @@ Each pain has a stable PAIN-* ID. Plans reference by ID.
 |---|---|---|---|
 | **PAIN-AUTO-COMPACT** | Auto-compaction at 95% context with default content-loss | Reaching 95% without strategic /compact | Strategic `/compact <focus>` at IMPL_BATCH boundaries proactively per B_TOKEN_BUDGET R3 |
 | **PAIN-MODEL-SWITCH** | Mid-task model switch breaks Anthropic prompt cache | `/model opus` mid-task | Switch only at task boundary OR after `/clear` per B_TOKEN_BUDGET R2 |
-| **PAIN-OVERREAD** | Reading large files at full size when L1 sufficient | No file_depth_markers on referenced artifacts | Per [EXT-20260505-004-A](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-A-four-distinct-depth-level-semantics-and-unified-principle.md) — depth-discipline + PE.read_budget |
+| **PAIN-OVERREAD** | Reading large files at full size when L1 sufficient | No file_depth_markers on referenced artifacts | Per [EXT-20260505-004-A](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-A-four-distinct-depth-level-semantics-and-unified-principle.md) — depth-discipline + PE.read_budget. **Active mitigations (S011):** principles-mcp get_principle depth=L1 (~200 tokens vs 85K monolith); principle slices `packages/principles/principles/P-XXX-NNN.yaml` (~2K vs 85K); behavioral-contract slices `behavioral-contracts/B_NAME.md` (~3K vs 48K) |
 | **PAIN-TOKEN-R-VIOLATION** | Violating B_TOKEN_BUDGET R1-R5 (default L1 / model tier / /compact / /clear / tool-output-summary-first) | AI ignores rules under load | Per [B_TOKEN_BUDGET](./behavioral-contracts.md) memory entry 40 |
 
 ### Class C — Cross-session / cross-chat pains

@@ -72,7 +72,7 @@ Per EXT-20260505-004-A §5 verbatim:
 > *Per-session aggregation — at session start + per-task, the bundling orchestrator aggregates depth declarations across all referenced/loaded artifacts. Dynamic; computed per task per session.*
 > *Why coordinated: without per-artifact declaration, the orchestrator has no input data. Without per-session aggregation, per-artifact declarations sit unused.*
 
-**Both layers required for energy optimization to materialize.** L1.1 covers Layer 1 (per-artifact declaration); Layer 2 (bundling orchestrator) lands at Phase 8 (S012) per token-optimization.md §9.9 + EXT-004-C.
+**Both layers required for energy optimization to materialize.** L1.1 covers Layer 1 (per-artifact declaration); Layer 2 (bundling orchestrator = PE.read_budget) lands at Phase 9 (S012) per token-optimization.md §9.0 + EXT-004-C. **NOTE: Phase 8 (S011 ✅ COMPLETE) = principles-mcp slice-reading + depth-aware L1/L2/L3 query tools; Phase 9 = bundling orchestrator.**
 
 ## §3 — Mechanical creation gate (placeholders allowed)
 
@@ -82,7 +82,7 @@ Per EXT-20260505-004-B §6 — 5-step mechanical-creation process. **Authored at
 2. **Pre-tool-use hook check** — `.claude/hooks/depth-marker-creation-gate.sh` (STUB; activation L1.6 batch per popup discipline) — fires on Write of governed artifacts; warns if >300 lines + missing `file_depth_markers`
 3. **Author fills placeholders before content stabilizes** — at first refactor / first reassessment, placeholders MUST be filled with real values
 4. **Validator catches stale placeholders** — flags artifacts with `TBD-S<NNN>` patterns AND age >5 sessions; forces backfill
-5. **Bundling orchestrator consumes real values** — once placeholders are real, PE.read_budget starts using them for energy optimization (S012 Phase 8)
+5. **Bundling orchestrator consumes real values** — once placeholders are real, PE.read_budget starts using them for energy optimization (Phase 9 S012 — EXT-004-C)
 
 **Why placeholders OK:** content structure isn't stable until first refactor. Pre-stabilization, real depth markers would be wrong. Placeholders signal *"depth discipline acknowledged; values pending stabilization."*
 
@@ -100,7 +100,7 @@ Per EXT-20260505-004-B §6 — 5-step mechanical-creation process. **Authored at
 | 8 Templates | L1.2 `governed-artifact-frontmatter.template.md` pre-includes all 4 depth fields |
 | 9 FSE | This engraving IS 5/5 atomic per FSE: schema (this leaf) + validator (`depth_marker_creation_gate` audit slug) + hook (`.claude/hooks/depth-marker-creation-gate.sh` STUB; L1.6 batch) + memory (`feedback_depth_discipline.md`) + contract surface (AGENTS.md "Where things live" row) |
 | 10 Depth Levels | THIS ELEMENT — canonical home declared |
-| 11 Priority Engine | `depth_chosen` semantic 5 is gradual-build-plan input; PE.read_budget consumes semantic 1+2 outputs (Phase 8) |
+| 11 Priority Engine | `depth_chosen` semantic 5 is gradual-build-plan input; PE.read_budget consumes semantic 1+2 outputs (Phase 9 S012) |
 | 12 Context-Loss Discipline | PAIN-OVERREAD + PAIN-D5 mitigated via depth markers enabling L1-only default reads |
 
 ## §5 — Anti-patterns
@@ -129,8 +129,8 @@ Per EXT-20260505-004-B §6 — 5-step mechanical-creation process. **Authored at
 Per EXT-004-A + EXT-004-B open Qs — declared NOT resolved this batch:
 
 1. **Audit-depth semantic (#3)** engrave NOW or defer? — DEFERRED S010-S011 per EXT-002-E (audit-depth is constitutional change; foundation-stability per B_GRADUAL_BUILD)
-2. **5 semantics OR consolidate to 3?** — KEPT 5 this batch; reassess at Phase 8 once bundling orchestrator empirically validates (S012)
-3. **300-line threshold CSPS-calibration** — DEFERRED Phase 9 measurement validator (S013)
+2. **5 semantics OR consolidate to 3?** — KEPT 5 this batch; reassess at Phase 9 once bundling orchestrator empirically validates (S012)
+3. **300-line threshold CSPS-calibration** — DEFERRED Phase 10 measurement validator (S013)
 4. **5-session staleness window CSPS-calibration** — DEFERRED first K=2 stale-placeholder fire
 5. **Pre-push hook OR pre-tool-use OR both?** — DECIDED both: pre-tool-use catches AI-authored (this batch); pre-push catches commit-time (week-4 layered defense)
 

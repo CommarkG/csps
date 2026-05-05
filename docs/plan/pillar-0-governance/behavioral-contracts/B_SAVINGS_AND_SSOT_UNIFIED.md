@@ -20,7 +20,7 @@
 | **Savings** (token-budget reduction) | [B_TOKEN_BUDGET](#b_token_budget) (P-META-009 extension; S007 turn 4) — 5 operating rules R1-R5 | R1 (default L1 depth) + R2 (model tiering) + R5 (tool-output-summary-first) ARE savings expressions of the unified rule |
 | **SSoT** (single canonical home) | [B_CONSOLIDATION_PASS](#b_consolidation_pass) (S009 L1.3) — 5-step pass + 6 patterns | The 5-step protocol IS SSoT-axis enforcement of the unified rule |
 | **Schema** (canonical home as data) | [frontmatter-closed-enums.md](./frontmatter-closed-enums.md) (S007 turn 5) — closed-enum constants in validate-frontmatter.mjs | Canonical-home-as-SCHEMA-field IS the highest-leverage unification mechanism per EXT-005-A §2 |
-| **Bundling orchestrator** (consumer) | [PE.read_budget extension](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-C-bundling-orchestrator-pe-read-budget-extension.md) (Phase 8 / S012 build) | Consumes per-artifact depth declarations + cross-refs to bundle reads |
+| **Bundling orchestrator** (consumer) | [PE.read_budget extension](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-C-bundling-orchestrator-pe-read-budget-extension.md) (Phase 9 / S012 build) | Consumes per-artifact depth declarations + cross-refs to bundle reads |
 | **Validator** (enforcer) | [`consolidation-pass-coverage` audit](./audit-runner.md) + [`token-budget-*` 5 audits](./audit-runner.md) (S007 + S009 atomic) | One Phase 9 measurement validator measures BOTH axes per pass |
 
 **Source:** EXT-20260505-005-A (CSP file #5 §2 unified principle + §5 single rule). Q3=A confirmed S009 — new B_* contract anchored to existing P-META-009 (NO principle amendment; minimum-blast-radius). Engraved S009 L1.4 atomic per FSE.

@@ -56,7 +56,7 @@ links:
 |---|---|---|---|
 | Main thread — default | **Sonnet 4.6[1m]** | Lever 1 active — balanced cost/quality; ~80% CSPS work is Sonnet-appropriate | `settings.json "model": "claude-sonnet-4-6[1m]"` — set S010 per Governor approval |
 | Main thread — engraving moments | **Opus 4.7[1m]** | QG1 IMMUTABLE — hard reasoning never downgrades | Manual `/model default` at IMPL_BATCH boundary; max 2 switches per session (development-balanced profile) |
-| Class A skills (CSPS-built; 16 with AAP) | inherit from main OR per-skill `model:` in SKILL.md frontmatter | Right-tool-for-job per work-class | Frontmatter declaration; runtime consumption Phase 8 (S012) |
+| Class A skills (CSPS-built; 16 with AAP) | inherit from main OR per-skill `model:` in SKILL.md frontmatter | Right-tool-for-job per work-class | Frontmatter declaration; runtime consumption Phase 9 (S012) |
 | Class B subagents (Explore / Plan / general-purpose) | **Haiku 4.5** | Cheapest-tool-for-job; T2.x contracts declare model explicitly | `Agent(model="haiku", ...)` in every T2.x spawn per [class-b-agent-spawn-preamble.template.md](../../tools/templates/class-b-agent-spawn-preamble.template.md) — Phase 6 SHIPPED S010 |
 | Mastra BaseAgent (Class C runtime) | not built (week-6+) | Runtime authoring deferred per build-order.md | AAP runtime enforcement at agent construction |
 | Third-party imported skills (Class D) | not yet integrated | Quarantine→Vendored→Platform-owned ladder | Tier-gated; future |
@@ -208,7 +208,7 @@ Anti-pattern guards:
 Model-routing is now **mechanical** via the following delivered surfaces:
 
 1. ✅ **Spawn templates declare model** — [class-b-agent-spawn-preamble.template.md](../../tools/templates/class-b-agent-spawn-preamble.template.md) has explicit `model: haiku` in every T2.x contract (T2.1 ZF cycle / T2.2 validator full-pass / T2.3 file scan)
-2. ✅ **Per-skill `model:` field in SKILL.md** — [skill.template.md](../../tools/templates/skill.template.md) updated; field available for population; runtime consumption Phase 8 (S012)
+2. ✅ **Per-skill `model:` field in SKILL.md** — [skill.template.md](../../tools/templates/skill.template.md) updated; field available for population; runtime consumption Phase 9 (S012)
 3. ✅ **AAP 9-field preamble** — every Class B spawn declares `principle_compliance` + `consolidation_cross_refs` (S010 6c engraving; [behavioral-contracts.md § B_AGENT_ALIGNMENT_PROTOCOL S010 amendment](./behavioral-contracts.md))
 4. ✅ **Auto-tier decision logic** — work-class → model mapping deterministic per §2 decision tree; T2.x contracts pre-wire Haiku for all file/verify/scan ops
 5. ✅ **Validators enforce** — `model-routing-on-ratification` (S005 turn 24 atomic; QG1 enforcer) flags any Sonnet/Haiku ratification attempt; `aap-9-field-coverage` (S010 atomic; Phase 1 warn → Phase 2 S012 error)
@@ -218,9 +218,10 @@ Model-routing is now **mechanical** via the following delivered surfaces:
 
 | Phase | What ships | Status |
 |---|---|---|
-| Phase 7 (S011) | File splits → L1-only reads become real; per-file depth markers backfilled | Carry-forward |
-| Phase 8 (S012) | Bundling orchestrator reads `depth_levels_invoked` → aggregates per-task budget → auto-selects tier | Carry-forward |
-| Phase 9 (S013) | Measurement validator — empirical savings vs projected | Carry-forward |
+| Phase 7 (S010) | File splits → L1-only reads become real; per-file depth markers backfilled | ✅ COMPLETE S010 — 130 slices |
+| Phase 8 (S011) | principles-mcp slice-reading + 4 query tools (get/list/find_by_layer/find_by_spine) + depth-aware L1/L2/L3 | ✅ COMPLETE S011 — L1 ~200 tokens/principle vs 85K monolith |
+| Phase 9 (S012) | Bundling orchestrator (PE.read_budget; EXT-004-C) + validate-token-budget.mjs 5-mode + context-loading templates × 8 | Carry-forward |
+| Phase 10 (S013) | Measurement validator — empirical savings vs projected; continuous validation active | Carry-forward |
 | S012 Lever 2 promotion | validator `model-routing-profile-consistency` checks settings.json model matches active profile default | Registered |
 
 ## §10 — Configuration Profiles (Template Groups)
@@ -485,7 +486,7 @@ Per [audit-runner.md](./audit-runner.md). All registered atomic; impl tracked:
 - [token-optimization.md](./token-optimization.md) §3 + §9.7 — model selection criteria + Phase 7 auto-tiering spec
 - [behavioral-contracts.md](./behavioral-contracts.md) — B_TOKEN_BUDGET (5 operating rules R1-R5) + B_COGNITIVE_CONTEXT_DISCIPLINE + B_SAVINGS_AND_SSOT_UNIFIED (S009 L1.4)
 - [csps-platform-dna.md](./csps-platform-dna.md) — DNA Element 7 (Quality Gates immutable)
-- [depth-discipline.md](./depth-discipline.md) — depth markers consumed by PE.read_budget (Phase 8 / S012)
+- [depth-discipline.md](./depth-discipline.md) — depth markers consumed by PE.read_budget (Phase 9 / S012)
 - [audit-runner.md](./audit-runner.md) — 8 validators registered atomic (S005 + S007 + S009)
 - [Anthropic prompt caching docs](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) — 5-min TTL + cache breakpoint mechanics (referenced; not refetched this session)
 - EXT-20260505-005-A — CSP file #5 unified principle (savings + SSoT)

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-05T14:47:14.247Z
-- finished_at: 2026-05-05T14:47:17.271Z
+- ran_at: 2026-05-05T15:11:37.439Z
+- finished_at: 2026-05-05T15:11:40.015Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-05T14:47:14.247Z",
-    "finished_at": "2026-05-05T14:47:17.271Z",
+    "ran_at": "2026-05-05T15:11:37.439Z",
+    "finished_at": "2026-05-05T15:11:40.015Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.6,
         "principles_loaded": 53,
         "findings_total": 0
       },
@@ -39,11 +39,11 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "scanned": 151,
         "errors": 0,
         "warnings": 5,
-        "exempt": 186
+        "exempt": 196
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -62,6 +62,15 @@
         "exit_code": 0,
         "duration_seconds": 0.2,
         "stale_count_files": 0
+      },
+      {
+        "name": "ai_behavior_spine_slices_sync",
+        "command": "node tools/validators/validate-ai-behavior-spine-slices.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "source_sections": 10,
+        "missing_slices": 0
       },
       {
         "name": "audit_runner_slices_sync",

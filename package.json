@@ -18,6 +18,7 @@
     "principles:split": "pnpm --filter @csps/principles split",
     "contracts:split": "node tools/generators/split-behavioral-contracts.mjs",
     "audit-runner:split": "node tools/generators/split-audit-runner.mjs",
+    "ai-behavior-spine:split": "node tools/generators/split-ai-behavior-spine.mjs",
     "glossary:codegen": "echo 'TODO week-2: implement pnpm glossary:codegen' && exit 0",
     "catalog:search": "echo 'TODO week-1: implement pnpm catalog:search' && exit 0",
     "lint:frontmatter": "node tools/validators/validate-frontmatter.mjs",

@@ -82,6 +82,7 @@ const EXEMPT_PATH_GLOBS = [
   // Per token-optimization §9.8 Phase 7 Candidate #2 + #3 (S010).
   /pillar-0-governance[\/\\]behavioral-contracts[\/\\]/,
   /pillar-0-governance[\/\\]audit-runner[\/\\]/,
+  /pillar-0-governance[\/\\]ai-behavior-spine[\/\\]/,
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -100,6 +100,15 @@ const CYCLES = [
     },
   },
   {
+    // NEW S010 Phase 7 Candidate #4 — verifies all 10 ai-behavior-spine section slices are present
+    name: 'ai_behavior_spine_slices_sync',
+    command: 'node tools/validators/validate-ai-behavior-spine-slices.mjs',
+    parse_output: (out) => {
+      const m = out.match(/source_sections=(\d+)\s+missing=(\d+)/);
+      return m ? { source_sections: Number(m[1]), missing_slices: Number(m[2]) } : { source_sections: null };
+    },
+  },
+  {
     // NEW S010 Phase 7 Candidate #3 — verifies all 28 audit-runner pipeline slice files are present
     name: 'audit_runner_slices_sync',
     command: 'node tools/validators/validate-audit-runner-slices.mjs',

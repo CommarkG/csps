@@ -387,8 +387,14 @@ S010 — PHASE 6 COMPLETE ✅ + PHASE 7 Candidate #1 COMPLETE ✅
 │   └── Sync validator + verify cycle: audit_runner_slices_sync PASS 28/28 ✅
 │   Note: frontmatter-validate exemptions added for generated slice dirs (not governed artifacts)
 
-S011 — PHASE 7 Candidate #4 + carry-forwards
-├── 7d. ai-behavior-spine.md split (per §9.8 order #4 — lowest priority; 204 lines; defer if PE ranks lower)
+├── 7d. ai-behavior-spine.md split ✅ COMPLETED S010
+│   ├── 10 section slices at docs/plan/pillar-0-governance/ai-behavior-spine/<slug>.md ✅
+│   ├── Index at ai-behavior-spine-index.yaml ✅
+│   ├── Generator tools/generators/split-ai-behavior-spine.mjs + pnpm ai-behavior-spine:split ✅
+│   └── Sync validator + verify cycle: ai_behavior_spine_slices_sync PASS 10/10 ✅
+
+S011 — PHASE 7 COMPLETE — carry-forwards
+├── PHASE 7 ALL 4 CANDIDATES DONE ✅ — principles (53) + behavioral-contracts (39) + audit-runner (28) + ai-behavior-spine (10) = 130 total slice files
 ├── 7e. AAP 9-field backfill for 16 existing SKILL.md (principle_compliance + consolidation_cross_refs)
 └── 7f. PE engine model-routing integration topic-plan (S010 §10 PE alignment carry-forward)
 

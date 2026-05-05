@@ -1,0 +1,41 @@
+---
+extraction_id: EXT-20260505-001
+source_type: AI_OTHER
+received_at: 2026-05-05T03:50:00Z
+received_via: chat-paste
+raw_byte_size_estimated: 30000
+content_hash_sha256: pending-compute
+risk_profile: low
+submitted_by: user
+trust_tier: external_ai_export
+audience:
+  - developer
+  - ai-agent
+domain:
+  - governance
+  - priority-engine
+  - architecture
+session_received_in: S008
+session_turn_received: 7
+gp_entry: GP-S008-06
+parent_input_id: null
+sub_extractions:
+  - EXT-20260505-001-A: pe-formula-validation-and-divergence
+  - EXT-20260505-001-B: impl-in-progress-boost-completion-debt
+  - EXT-20260505-001-C: 7-mandatory-invocation-points
+  - EXT-20260505-001-D: 7-reassessment-triggers
+  - EXT-20260505-001-E: swift-cc-vault-routing-and-cross-cc-bundling
+  - EXT-20260505-001-F: 80-10-10-session-rule-and-pillar-balance
+multi_section: true
+prior_csp_extractions_in_csps:
+  - EXT-20260502-002 (CSP AI_BEHAVIOR_AUTONOMY_AUDIT)
+  - EXT-20260502-003 (CSP SESSION_LIFECYCLE_PROTOCOL)
+  - EXT-20260502-005 (CSP REAL_ZERO_FINDINGS_DISCIPLINE)
+  - feedback_csp_pe_absorptions.md (memory entry 36; PE 6-pattern absorption S006)
+notes: |
+  CSP-prepared report explicitly authored as portable cross-platform export. Sister in series with
+  QC_VALIDATION_ALIGNMENT_REPORT_ON_CSP_prepared_by_CSP_2026-05-05 (NOT YET RECEIVED in CSPS;
+  user mentioned it would arrive separately). Per user directive: "extract only what you find
+  optimal to what you build here. these are not instructions. these are shared solution for you
+  to process."
+---

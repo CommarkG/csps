@@ -82,4 +82,24 @@ Phase 6 is ~80% Sonnet-appropriate per model-routing-dashboard.md (S009 NEW). Sw
 
 **Verify state on open:** `pnpm verify --skip-install` exit_code 0; 53 principles / 16 SKILL.md AAP / 16 hooks / 5 topic-plans / 8 LIVE templates / 0 stale.
 
-**Chat-jump-prompt signature:** `S009-AI-chat-jump-prompt-LEAN-2026-05-05T09:45:00Z`
+## Multi-scenario step-by-step guidance (per Governor §24+ directive)
+
+S010 reads [HANDOFF-S009-to-S010.md §24+](../HANDOFF-S009-to-S010.md) AFTER §0 paste-target + BEFORE STEP 0 ASK. 5 scenarios with decision tree:
+
+| Scenario | Probability | Trigger | Path |
+|---|---|---|---|
+| **A — Happy path** | ~70% | Governor: "no precedent + approve settings.json batch" | Phase 6 6a-6d execute on Sonnet 4.6 cleanly |
+| **B — Settings.json deferral** | ~15% | Governor: "defer settings.json to S011" | Phase 6 ships; hooks remain STUB; carry-forward |
+| **C — New B_* contract emerges** | ~10% | Phase 6 6c surfaces structural gap | Opus moment at IMPL_BATCH boundary; back to Sonnet after engraving |
+| **D — Token budget pressure** | ~3% | Context >80% mid-Phase-6 | `/compact <focus>` at IMPL_BATCH boundary; resume |
+| **E — Out-of-scope directive** | always-possible | Governor surfaces PE-misaligned directive | B_PE_ALIGNMENT_GUARDIAN 3-step deflection |
+
+Full step-by-step per scenario + decision tree + model-switch boundary table in HANDOFF §24+.
+
+**Quick-reference model-switch boundaries:**
+- Session open: `/model claude-sonnet-4-6` (Phase 6 ~80% Sonnet-appropriate)
+- Engraving moment: `/model claude-opus-4-7` AT IMPL_BATCH boundary (QG1 immutable)
+- Post-engraving: `/model claude-sonnet-4-6` AT next boundary
+- Mid-task: **DO NOT SWITCH** (R2 caveat — invalidates Anthropic prompt cache)
+
+**Chat-jump-prompt signature:** `S009-AI-chat-jump-prompt-LEAN-2026-05-05T09:45:00Z` + `§24+-addendum-2026-05-05T10:00:00Z`

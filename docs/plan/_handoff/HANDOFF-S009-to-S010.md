@@ -400,3 +400,185 @@ End of handoff. S010 begins by reading §0 + asking step 0 + switching to `/mode
 ---
 
 **Handoff signature:** `S009-AI-attest-2026-05-05T09:40:00Z-S009-close`
+
+---
+
+## §24+ POST-CLOSE ADDENDUM — S010 multi-scenario step-by-step guidance
+
+> **Per Governor S009 §24+ post-close directive:** *"you must have S010 to guide me step by step including more then one scenarios."* Authored after S009 close commit `468a050` per protocols.md §12 same-chat post-close-addendum legitimacy. NOT new S009 work; augments handoff for S010 robustness.
+
+### How to use this section
+
+S010 reads §24+ AFTER §0 paste-target + before STEP 0 ASK. Each scenario specifies: **Trigger** → **What S010 does** → **What Governor sees / does** → **Outcome**. Scenarios are mutually exclusive at decision points; S010 picks the matching scenario based on Governor response or system signal.
+
+**Always-applicable principles:**
+- Per [B_VALIDATE_BEFORE_ASSUME](../pillar-0-governance/behavioral-contracts.md): every state-claim cites tool-call evidence in same response
+- Per [B_PE_ALIGNMENT_GUARDIAN](../pillar-0-governance/behavioral-contracts.md): when input misaligns with PE top-priority, 3-step deflection (acknowledge / SWIFT-or-Vault / anchor focus)
+- Per [model-routing-dashboard.md Template T4](../pillar-0-governance/model-routing-dashboard.md): announce session model-budget plan at session-open (which model handles which sub-batch)
+
+---
+
+### Scenario A — Happy path (most likely; ~70% probability)
+
+**Trigger:** Governor responds to STEP 0 with "no prior precedent — proceed" + approves L1.6 settings.json batch.
+
+**S010 step-by-step:**
+
+1. `/model claude-sonnet-4-6` confirmed at chat-open per chat-jump-prompt
+2. Read [HANDOFF-S009-to-S010.md](../HANDOFF-S009-to-S010.md) §0 paste-target
+3. Run §1.1 verification (Sonnet-appropriate — file-existence checks)
+4. Emit §17 attestation as FIRST REPLY: 13 constraint-decisions + 8 open-items + 8 evidence per-line ✅/❓ + receipt signature `S010-AI-receipt-<iso>-against-S009-AI-attest-2026-05-05T09:40:00Z-S009-close`
+5. Verify intent-to-impact (S009 stated intent vs actual delivery — both 100% in-scope + 1 cardinal-ratified addition)
+6. ASK STEP 0 — prior-platform precedent for Phase 6 (subagent + Haiku tiering work)
+7. **WAIT for Governor response.**
+8. After Governor confirms no precedent OR shares precedent: ASK L1.6 settings.json batch (3 NEW + 12 existing pre-active hook stubs; present diff inline)
+9. **WAIT for explicit "yes".**
+10. After approval: Edit `.claude/settings.json` registering all 15 hooks in `hooks.PreToolUse + hooks.PostToolUse + hooks.Stop` sections
+11. Run pnpm verify exit_code 0 confirmation
+12. **Begin Phase 6 execution** (Sonnet 4.6 throughout):
+    - **6a.** Author Class B subagent spawn templates extending [governed-artifact-frontmatter.template.md](../../tools/templates/governed-artifact-frontmatter.template.md) (S009 L1.2)
+    - **6b.** Spawn templates declare depth-discipline fields per [depth-discipline.md §1 5-semantic table](../pillar-0-governance/depth-discipline.md) (S009 L1.1)
+    - **6c.** AAP frontmatter extended 7→9 fields per [EXT-20260505-002-B](../_intake/contexts/governance/agent-discipline/EXT-20260505-002-B-9-element-dna-gate-triple-check-frontmatter-rigidity.md) (CSPS-adapted)
+    - **6d.** 3 heavy ops delegated to Haiku per [token-optimization.md §9.7](../pillar-0-governance/token-optimization.md) — measure mid-session context growth
+13. Mid-Phase-6 pnpm verify (RZF gate)
+14. Commit "S010 Phase 6 execution"
+15. S010 close per protocols.md §10 (full §10.0/0e/0f/0g/0h/0i/0j blocks + §17 attestation)
+
+**What Governor sees:** clean Sonnet-tier execution; cost-efficient; Phase 6 ships in single session.
+
+**Outcome:** Phase 7 (S011) prerequisites complete; auto-tiering mechanism LIVE.
+
+---
+
+### Scenario B — Settings.json deferral (~15% probability)
+
+**Trigger:** Governor responds to L1.6 settings.json batch ASK with "defer to S011" OR "not now" OR similar deferral signal.
+
+**S010 step-by-step:**
+
+1-7. Same as Scenario A.
+8. ASK L1.6 settings.json batch (Option B continuity).
+9. **Governor signals defer.**
+10. **NO settings.json edit.** Hook stubs remain STUB tier; not active.
+11. Update §10.0j enhancement-proposals to log deferral as K1_S010-1 with explicit reason.
+12. **Continue with Phase 6 work that doesn't require active hooks** — spawn templates + AAP 7→9 fields + Haiku migration are all mechanical authoring; hooks fire week-4 anyway.
+13. Phase 6 sub-steps 6a-6d execute without hook-activation dependency.
+14. S010 close per §10 protocol; carry-forward L1.6 settings.json batch to S011 OR LATER.
+
+**What Governor sees:** S010 respects defer signal cleanly; no friction; Phase 6 still ships.
+
+**Outcome:** Phase 6 LIVE on Sonnet; settings.json carry-forward to S011; functional equivalence to Scenario A except hooks remain STUB until activation batch.
+
+---
+
+### Scenario C — New B_* contract emerges mid-Phase-6 (~10% probability)
+
+**Trigger:** Authoring 6c (AAP 7→9 fields) surfaces a structural gap requiring new B_AAP_CLASS_B contract — e.g., spawn-template inheritance rules need formal contract status not just AAP frontmatter.
+
+**S010 step-by-step:**
+
+1-12. Same as Scenario A through Phase 6 6a/6b.
+13. During 6c authoring: detect that adding `acknowledged_contracts` + `principle_compliance` + `consolidation_cross_refs` fields without contract-level discipline = single-surface engraving anti-pattern.
+14. **PCR rendering** (Opus moment — rendering decision frame requires synthesis): Pros/Cons/Recommendation 3-block — author B_AAP_CLASS_B as new B_* contract (Option A) vs extend existing B_AGENT_ALIGNMENT_PROTOCOL (Option B) vs defer engraving + use AAP frontmatter only (Option C).
+15. **At IMPL_BATCH boundary** (between 6b and 6c): `/model claude-opus-4-7` for engraving moment.
+16. Engrave 5/5 atomic per FSE if Option A or B confirmed by Governor.
+17. **`/model claude-sonnet-4-6`** at next boundary (after engraving commit).
+18. Continue 6c-6d on Sonnet.
+19. S010 close per §10 protocol.
+
+**What Governor sees:** AI surfaces gap proactively; PCR rendered; engraving on Opus; mechanical work resumes on Sonnet — quality preserved + cost-efficient.
+
+**Outcome:** Phase 6 LIVE + 1 new B_* contract added to constellation. Principle count may change if new principle warranted (rare; B_* extension preferred per Q3=A precedent).
+
+**Cost note:** 1 Opus engraving moment ≈ 1-2 Opus turn-cost; remainder of session stays on Sonnet. Net session cost <50% of full-Opus run.
+
+---
+
+### Scenario D — Token budget pressure mid-session (~3% probability with model-routing-dashboard adoption)
+
+**Trigger:** Context approaches 80% mid-Phase-6 (model-routing-dashboard.md drove R1+R2+R3 compliance — should be rare, but possible if AAP 7→9 authoring touches large EXT extracts).
+
+**S010 step-by-step:**
+
+1-12. Phase 6 work proceeding.
+13. Detect context approaching 80% (cognitive layer continuous self-monitoring per CCA Layer 3).
+14. **At IMPL_BATCH boundary:** `/compact <focus>` per B_TOKEN_BUDGET R3.
+15. Focus argument example: "preserve B_CONSOLIDATION_PASS + B_SAVINGS_AND_SSOT_UNIFIED engraving state + Phase 6 6a-6d sub-step progress + governor-prompts log + active scope-confirmation"
+16. After /compact: cache rebuilds; Layer 1+2 stable artifacts re-cached; Layer 3 active work compressed.
+17. Resume Phase 6 work.
+18. If pressure persists: open S010-C2 continuation chat per protocols.md §12 (same session, new chat segment); continuity-manifest authored.
+
+**What Governor sees:** AI proactively manages context; no autocompact emergency; scope preserved.
+
+**Outcome:** Phase 6 ships in same session OR splits across S010-C1 + S010-C2 (legitimate continuation; same session number).
+
+---
+
+### Scenario E — Out-of-scope Governor directive (always-possible)
+
+**Trigger:** Governor surfaces new directive mid-Phase-6 misaligned with PE top-priority (e.g., "let's also tackle ADR-0025 CNST/GVRN split" mid-Phase-6).
+
+**S010 step-by-step:**
+
+1-N. Phase 6 work in progress.
+N+1. Detect directive misaligns with PE top-priority (current top-priority = Phase 6 execution per token-optimization §9.0 + foundation-stability per B_GRADUAL_BUILD_BY_FOUNDATIONS).
+N+2. **Apply [B_PE_ALIGNMENT_GUARDIAN](../pillar-0-governance/behavioral-contracts.md) 3-step deflection** (per memory entry 31):
+    - **Step 1 — Acknowledge:** *"Heard — new directive on ADR-0025."*
+    - **Step 2 — SWIFT/Vault routing:** SWIFT (4-condition autonomous gate passes — execute + document + surface) OR VAULT (cardinal-ratified at boundary; engraves to user-intents.md S010 section + carry-forward to S011) OR DEFLECT (ESSENTIAL-bar not met; current Phase 6 priority confirmed)
+    - **Step 3 — Anchor focus:** *"Phase 6 priority confirmed per §9.0 + B_GRADUAL_BUILD foundation-stability. Recommend: complete Phase 6 first; ADR-0025 → S011 OR S012 multi-session arc per existing carry-forward register §B4. If you want to switch priority, confirm explicitly + I'll re-anchor."*
+N+3. **WAIT for Governor explicit ratification or de-escalation.**
+N+4. If Governor confirms switch: log GP-S010-NN cardinal + re-anchor + execute new directive (potentially with model-switch back to Opus for ADR-0025 engraving).
+N+5. If Governor de-escalates: continue Phase 6 unchanged; carry-forward S011.
+
+**What Governor sees:** AI surfaces alignment friction explicitly; doesn't silently pivot (P-GOV-25 anti-sycophancy); doesn't blindly execute (PE alignment respected).
+
+**Outcome:** Either re-prioritized cleanly OR Phase 6 continues; both paths logged in governor-prompts/S010.md.
+
+**Anti-pattern guard:** Silent pivot (drop Phase 6 + start ADR-0025 without explicit ratification) = forbidden per B_PE_ALIGNMENT_GUARDIAN. Reflexive yes = sycophancy anti-pattern.
+
+---
+
+### Decision tree summary (which scenario am I in?)
+
+```
+S010 chat opens
+├── /model claude-sonnet-4-6 confirmed
+├── §17 attestation emitted
+├── STEP 0 ASKed
+│
+└── Governor responds
+    ├── "no precedent — proceed" → Scenario A or B
+    │   └── L1.6 settings.json batch ASK
+    │       ├── "yes / approve" → Scenario A (HAPPY PATH)
+    │       └── "defer / not now" → Scenario B (DEFERRAL)
+    │
+    ├── shares precedent + ratifies → Scenario A or B (with precedent context)
+    │
+    └── surfaces out-of-scope directive → Scenario E (PE ALIGNMENT GUARDIAN)
+
+Mid-session triggers (independent of opening scenario):
+├── New B_* gap surfaces → Scenario C (Opus moment for engraving)
+└── Context >80% → Scenario D (/compact at IMPL_BATCH boundary)
+```
+
+### Quick-reference: model-switch boundaries S010
+
+| Boundary | Action | Rationale |
+|---|---|---|
+| Session open | `/model claude-sonnet-4-6` | Phase 6 ~80% Sonnet (chat-jump-prompt instruction) |
+| Engraving moment | `/model claude-opus-4-7` (at IMPL_BATCH boundary) | QG1 hard reasoning never downgrades |
+| Post-engraving | `/model claude-sonnet-4-6` (next IMPL_BATCH boundary) | Resume mechanical work efficiently |
+| File-existence check | `/model claude-haiku-4-5-20251001` (at task boundary) | Cheapest-tool-for-job; rare in Phase 6 |
+| Mid-task | **DO NOT SWITCH** | R2 caveat — invalidates Anthropic prompt cache |
+| `/compact` boundary | OK to switch (cache rebuilds anyway) | R3 + R4 compliance |
+
+### Always-on safety rails (S010 inherits from S001-S009)
+
+- ❌ Never engrave on Sonnet/Haiku (QG1 — `model-routing-on-ratification` audit catches)
+- ❌ Never delegate synthesis to subagents (QG2 — synthesis stays in main)
+- ❌ Never assume mid-session edited content (QG3 — re-read mandatory)
+- ❌ Never write `.claude/**` paths without diff-inline + ASK + WAIT (popup discipline memory entry 44)
+- ❌ Never claim DONE/RATIFIED without §10.0 verify exit_code 0 cited (B_PRE_CLOSE_VERIFICATION)
+- ❌ Never start S<NNN+1> work in same chat as S010 close (N:1 forbidden per §12)
+
+**§24+ post-close addendum signature:** `S009-AI-§24+-multi-scenario-2026-05-05T10:00:00Z`

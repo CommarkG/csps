@@ -1,0 +1,39 @@
+---
+extraction_id: EXT-20260505-004
+source_type: AI_OTHER
+received_at: 2026-05-05T05:00:00Z
+received_via: chat-paste
+raw_byte_size_estimated: 37000
+content_hash_sha256: pending-compute
+risk_profile: low
+submitted_by: user
+trust_tier: external_ai_export
+audience: [developer, ai-agent]
+domain: [governance, architecture, ops, validation]
+session_received_in: S008
+session_turn_received: 9
+gp_entry: GP-S008-08
+parent_input_id: null
+sub_extractions:
+  - EXT-20260505-004-A: four-distinct-depth-level-semantics-and-unified-principle
+  - EXT-20260505-004-B: mechanical-creation-discipline-with-placeholders
+  - EXT-20260505-004-C: bundling-orchestrator-wiring-PE-read-budget-extension
+  - EXT-20260505-004-D: composition-with-schema-corespines-and-9-improvements
+multi_section: true
+sister_csp_files:
+  - EXT-20260505-001 (PE Report — series #2; PE = the bundling orchestrator)
+  - EXT-20260505-002 (QC Report — series #1; validators check depth markers)
+  - EXT-20260505-003 (Anti-Duplication Report — series #3; depth markers ARE canonical-home declarations)
+csps_already_absorbed_cross_ref:
+  - "§5 unified principle composes with EXT-002-F file_depth_markers (already extracted)"
+  - "§7 PE.read_budget extension composes with EXT-001-A PE formula + EXT-001-C 7 invocation points"
+  - "§8 SCHEMA composition composes with EXT-003-C schema-as-canonical-home (already extracted; CSPS strongly adopts)"
+  - "§9 per-spine HUB composes with EXT-003-C HUB-per-spine (already extracted; CSPS L1_CORE files are equivalent)"
+  - "§10 mutual-support architecture composes with EXT-002-A 5-element-pattern + EXT-003 anti-duplication"
+csps_completes_series: true
+notes: |
+  FINAL CSP file in series. User confirmed "one last file and we move on to completion of the 10 phases".
+  All sub-IDs apply pipeline-enhancement frontmatter (mini_tree_layer / deep_dive_schedule /
+  priority_for_10_phase_completion / consolidation_cross_refs).
+  After absorption, S008 pivots to Phase 6 token-optimization work informed by all 4 CSP files.
+---

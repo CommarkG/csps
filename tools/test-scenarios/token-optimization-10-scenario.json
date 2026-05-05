@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "id": "token-optimization-10-scenario",
+    "description": "10-scenario over-compression test per token-optimization.md §14.5. PASS criterion: ≥9/10 scenarios trigger the correct skill or context-loading template. Recurring: run at every P-GOV-24-equivalent reassessment (per EXT-002-F discipline 5 + cruel-critic Critique 3). Un-deferred Phase 4d carry-forward from S007.",
+    "pass_criterion": "≥9/10 scenarios trigger correct skill/context-loading template",
+    "cadence": "quarterly OR after major skill/context changes",
+    "first_authored": "S011 Phase 9",
+    "status": "AWAITING_USER_VERIFICATION",
+    "note": "Scenarios are defined; actual trigger verification requires user to test in live Claude Code session and record results in 'result' field per scenario."
+  },
+  "scenarios": [
+    {
+      "id": "S-01",
+      "prompt": "Run pnpm verify on the current branch",
+      "expected_trigger": "zf-validation skill OR context-loading/qc-validation.json",
+      "expected_skill": ".claude/skills/zf-validation/SKILL.md",
+      "expected_context_template": "tools/templates/context-loading/qc-validation.json",
+      "result": "PENDING",
+      "notes": "Should trigger ZF validation context (B_PRE_CLOSE_VERIFICATION + P-META-006)"
+    },
+    {
+      "id": "S-02",
+      "prompt": "Help me compose a new B_* contract",
+      "expected_trigger": "engraving-discipline skill OR context-loading/engraving.json",
+      "expected_skill": ".claude/skills/engraving-discipline/SKILL.md",
+      "expected_context_template": "tools/templates/context-loading/engraving.json",
+      "result": "PENDING",
+      "notes": "Should trigger FSE engraving context (P-META-007 + B_FIVE_SURFACE_ENGRAVING)"
+    },
+    {
+      "id": "S-03",
+      "prompt": "What are the AGENTS.md hard NOs?",
+      "expected_trigger": "behavioral-contracts-skill skill",
+      "expected_skill": ".claude/skills/behavioral-contracts-skill/SKILL.md",
+      "expected_context_template": null,
+      "result": "PENDING",
+      "notes": "Should trigger behavioral-contracts-skill for B_* lookup"
+    },
+    {
+      "id": "S-04",
+      "prompt": "Process responses from the user about token optimization",
+      "expected_trigger": "governance-session skill OR context-loading/session-open.json",
+      "expected_skill": ".claude/skills/governance-session/SKILL.md",
+      "expected_context_template": "tools/templates/context-loading/session-open.json",
+      "result": "PENDING",
+      "notes": "Should trigger governance-session for session-level governance context"
+    },
+    {
+      "id": "S-05",
+      "prompt": "Update the handoff before session close",
+      "expected_trigger": "slim-handoff skill OR context-loading/session-close.json",
+      "expected_skill": ".claude/skills/slim-handoff/SKILL.md",
+      "expected_context_template": "tools/templates/context-loading/session-close.json",
+      "result": "PENDING",
+      "notes": "Should trigger slim-handoff for HPFA + §17 attestation + closing-summary"
+    },
+    {
+      "id": "S-06",
+      "prompt": "Apply CSPS frontmatter to this file",
+      "expected_trigger": "vocabulary-canon skill OR context-loading/frontmatter-authoring.json",
+      "expected_skill": ".claude/skills/vocabulary-canon/SKILL.md",
+      "expected_context_template": "tools/templates/context-loading/frontmatter-authoring.json",
+      "result": "PENDING",
+      "notes": "Should trigger vocabulary-canon for naming + frontmatter closed-enum compliance"
+    },
+    {
+      "id": "S-07",
+      "prompt": "What does P-META-018 mean?",
+      "expected_trigger": "principles-mcp MCP query OR behavioral-contracts-skill",
+      "expected_skill": null,
+      "expected_mcp_tool": "get_principle(id='P-META-018', depth='L1')",
+      "expected_context_template": "tools/templates/context-loading/mcp-query.json",
+      "result": "PENDING",
+      "notes": "Should trigger principles-mcp get_principle (Phase 8 ACTIVE); L1 = ~200 tokens not 85K"
+    },
+    {
+      "id": "S-08",
+      "prompt": "Engrave a new B_* at 5/5 surfaces",
+      "expected_trigger": "engraving-discipline skill",
+      "expected_skill": ".claude/skills/engraving-discipline/SKILL.md",
+      "expected_context_template": "tools/templates/context-loading/engraving.json",
+      "result": "PENDING",
+      "notes": "Should trigger engraving-discipline for FSE Detect→Classify→Design→Apply→Verify cycle"
+    },
+    {
+      "id": "S-09",
+      "prompt": "I need to decide between Option A and Option B for the new architecture",
+      "expected_trigger": "pcr-rendering skill OR context-loading/pcr.json",
+      "expected_skill": ".claude/skills/pcr-rendering/SKILL.md",
+      "expected_context_template": "tools/templates/context-loading/pcr.json",
+      "result": "PENDING",
+      "notes": "Multi-option decision → PCR 3-block mandatory per B_PCR_FOR_DECISIONS"
+    },
+    {
+      "id": "S-10",
+      "prompt": "Continue from last session",
+      "expected_trigger": "governance-session skill OR context-loading/session-open.json",
+      "expected_skill": ".claude/skills/governance-session/SKILL.md",
+      "expected_context_template": "tools/templates/context-loading/session-open.json",
+      "result": "PENDING",
+      "notes": "Session-open pattern → load HANDOFF §0 + OVERVIEW.md L1"
+    }
+  ],
+  "verification_instructions": "To run this test: open a fresh Claude Code chat, paste each scenario prompt one at a time, observe which skill(s) auto-load (shown in .claude/skills/ SKILL.md activations), record PASS/FAIL in each scenario's 'result' field. Update 'status' to 'VERIFIED_PASS' or 'VERIFIED_FAIL'. Submit results to Governor for Phase 4d completion attestation.",
+  "pass_evidence_required": "Update result fields with PASS/FAIL + timestamp + notes. Status → VERIFIED_PASS when ≥9/10 PASS."
+}

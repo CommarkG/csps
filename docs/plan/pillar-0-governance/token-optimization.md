@@ -405,23 +405,15 @@ S011 — PHASE 8 COMPLETE ✅ (principles-mcp build)
 ├── 8d. Build PASS ✅ — pnpm --filter @csps/principles-mcp build 0 errors; smoke test 53 principles indexed
 └── 8e. NOTE: PE.read_budget extension (EXT-004-C) DEFERRED to Phase 9 (depends on pe-compute.mjs which is Phase 9)
 
-S011/S012 — PHASE 9 (Context-loading templates + measurement validator) — PARTIAL S011
-├── 9a. validate-token-budget.mjs 5-mode per existing §9.10 — DEFERRED S012
-├── 9b. Apply 6-commitment validator class structure (EXT-002-A) — DEFERRED S012
-├── 9c. Un-defer Phase 4d 10-scenario test (carry-forward from S007) — DEFERRED S012
-├── 9d. Author schema-index.md (EXT-005-C Improvement #8 CSPS analog) — DEFERRED S012
-├── 9e. corespine_layer_compliance extension for HUB depth markers (EXT-004-D Improvement #8) — DEFERRED S012
-├── 9f. PE.read_budget extension (EXT-004-C; tools/pe-compute.mjs + pe-context-cache.json) — DEFERRED S012
-└── 9g. 8 context-loading task-class templates ✅ COMPLETED S011
-    ├── tools/templates/context-loading/session-open.json ✅
-    ├── tools/templates/context-loading/engraving.json ✅
-    ├── tools/templates/context-loading/qc-validation.json ✅
-    ├── tools/templates/context-loading/session-close.json ✅
-    ├── tools/templates/context-loading/pcr.json ✅
-    ├── tools/templates/context-loading/mcp-query.json ✅
-    ├── tools/templates/context-loading/agent-spawn.json ✅
-    ├── tools/templates/context-loading/frontmatter-authoring.json ✅
-    └── template-registry.md §6 added ✅
+S011 — PHASE 9 COMPLETE ✅ (Context-loading templates + measurement validator)
+├── 9a. tools/validators/validate-token-budget.mjs ✅ — 5-mode validator (EXT-002-A 6-commitment structure; advisory window; pnpm verify PASS)
+├── 9b. tools/test-scenarios/token-optimization-10-scenario.json ✅ — 10-scenario test un-deferred; AWAITING_USER_VERIFICATION
+├── 9c. tools/pe-compute.mjs ✅ — PE.read_budget computation tool (EXT-004-C; reads file_depth_markers; outputs read_budget JSON)
+├── 9d. tools/pe-context-cache.json ✅ — cross-session L1 artifact cache structure
+├── 9e. docs/plan/pillar-0-governance/schema-index.md ✅ — 24-row schema-of-schemas index (EXT-005-C Improvement #8)
+├── 9f. tools/validators/validate-corespine-depth-markers.mjs ✅ — HUB depth markers validator (EXT-004-D Improvement #8); all 5 L1_CORE files backfilled
+├── 9g. 8 context-loading task-class templates ✅ (tools/templates/context-loading/)
+└── NOTE: 10-scenario user verification + user-prompt-submit-context-orchestrator.sh hook deferred S012
 
 S013 — PHASE 10 (Continuous validation) — ACTIVATE recurring disciplines  <!-- was S014 pre-S011 -->
 ├── 10a. Activate weekly tag-status-deep-audit hook (EXT-005 + S008 turn 8 5/5 atomic; activation = settings.json edit per Pattern G)
@@ -433,7 +425,7 @@ S013 — PHASE 10 (Continuous validation) — ACTIVATE recurring disciplines  <!
 
 **Why this order (top-expert rationale):**
 - **Foundation-first (S009 L1.1-L1.5):** all subsequent phases consume foundation primitives — depth-discipline, frontmatter template, B_CONSOLIDATION_PASS, B_SAVINGS+SSoT umbrella, D1-D10 self-monitoring. Building these BEFORE Phase 6 prevents D5 continuity-bias (Phase 6 spawn templates would use wrong field semantics without depth-discipline canonical leaf).
-- **Layer-by-layer support (each phase depends on prior):** S010 Phase 6 templates → S011 Phase 7 splits use templates → **S011 Phase 8 MCP serves split files ✅** → S012 Phase 9 validates the orchestrator → S013 Phase 10 continuous validation closes the loop.
+- **Layer-by-layer support (each phase depends on prior):** S010 Phase 6 templates → S011 Phase 7 splits use templates → **S011 Phase 8 MCP serves split files ✅** → **S011 Phase 9 measurement validator + orchestrator foundations ✅** → S012 Phase 10 continuous validation closes the loop.
 - **Reuse-first applied exhaustively:** every Phase 6+ deliverable consults existing CSPS engravings (5/5 patterns + L1_CORE files + tag-status-contract.md + frontmatter-closed-enums.md) BEFORE authoring new. CSP's 9 improvements already mapped to existing CSPS infrastructure (e.g., HUB-per-spine = L1_CORE files, no new HUB authoring).
 - **Mutual-support architecture preserved (per CSP file #4 §10):** depth markers + bundling orchestrator + SCHEMA + Core Spines deployed as ONE consolidated set; removing any layer breaks the others.
 

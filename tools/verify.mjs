@@ -136,6 +136,28 @@ const CYCLES = [
     },
   },
   {
+    // NEW S011 Phase 9 9a — 5-mode token-budget validator (ADVISORY window; per §14.6 + EXT-002-A)
+    name: 'token_budget_validate',
+    command: 'node tools/validators/validate-token-budget.mjs',
+    parse_output: (out) => {
+      const m = out.match(/modes=(\d+)\s+red=(\d+)\s+yellow=(\d+)\s+info=(\d+)/);
+      return m
+        ? { modes: Number(m[1]), red: Number(m[2]), yellow: Number(m[3]), info: Number(m[4]), advisory_window: true }
+        : { advisory_window: true };
+    },
+  },
+  {
+    // NEW S011 Phase 9 9f — L1_CORE HUB file_depth_markers validator (EXT-004-D Improvement #8)
+    name: 'corespine_depth_markers',
+    command: 'node tools/validators/validate-corespine-depth-markers.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+l1_core=(\d+)\/5\s+l2_domain=(\d+)\s+l3_instances=(\d+)\s+errors=(\d+)\s+warnings=(\d+)/);
+      return m
+        ? { checked: Number(m[1]), l1_core: Number(m[2]), l2_domain: Number(m[3]), l3_instances: Number(m[4]), errors: Number(m[5]), warnings: Number(m[6]) }
+        : {};
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

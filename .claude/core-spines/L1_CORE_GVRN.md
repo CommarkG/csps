@@ -18,6 +18,11 @@ do_not_expand:
   - Sealed prose only — every word load-bearing
 template_used: l1-core-sealed-doctrine
 template_status: novel-pending-pattern-evaluation
+file_depth_markers:
+  l1_lines: "1-end"
+  l2_lines: "N/A"
+  l3_lines: "N/A"
+  read_protocol: "L1 = full file (~45 lines); no L2/L3 split — sealed doctrine; every word load-bearing"
 core_spine: GVRN
 schema_anchor: core_spines_l1_doctrine
 tags:

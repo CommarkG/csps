@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "description": "Cross-session L1 artifact cache for pe-compute.mjs. Per EXT-20260505-004-C §7. Stable L1 reads cached here to avoid re-reading unchanged artifacts. Invalidated on mtime change. Authored Phase 9 S011.",
+  "invalidation_strategy": "mtime-based (re-read artifact if mtime changed since cached_at)",
+  "cache_eligible_criteria": [
+    "depth === L1 (L2/L3 reads NOT cached — too volatile)",
+    "artifact path does NOT contain session-specific patterns (S0NNN)",
+    "artifact is in stable category: OVERVIEW/AGENTS.md/L1_CORE_*/principles-index/template-registry"
+  ],
+  "entries": {}
+}

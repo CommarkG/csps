@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-05T18:15:18.060Z
-- finished_at: 2026-05-05T18:15:20.873Z
+- ran_at: 2026-05-05T18:30:27.231Z
+- finished_at: 2026-05-05T18:30:30.935Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-05T18:15:18.060Z",
-    "finished_at": "2026-05-05T18:15:20.873Z",
+    "ran_at": "2026-05-05T18:30:27.231Z",
+    "finished_at": "2026-05-05T18:30:30.935Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.3,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 0.8,
         "principles_loaded": 53,
         "findings_total": 0
       },
@@ -86,7 +86,7 @@
         "command": "node tools/validators/validate-behavioral-contract-slices.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.3,
         "source_contracts": 39,
         "missing_slices": 0
       },

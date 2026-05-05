@@ -1,7 +1,7 @@
 ---
 id: csps.handoff.s011-to-s012
 name: handoff-S011-to-S012
-description: "Handoff from Session 011 to Session 012. S011 = Phase 8 COMPLETE + Phase 9 COMPLETE (§24++ post-close addendum) + OVERVIEW.md v3.0 + deep sanity QC + CEC. S011 delivered: validate-token-budget.mjs (5-mode) + pe-compute.mjs + pe-context-cache.json + schema-index.md + validate-corespine-depth-markers.mjs + 8 context-loading templates + 5 Phase 9 audit slugs registered. pnpm verify: 13 validators PASS. S012 PRIMARY = Phase 10 activation + 10-scenario user-verification + context-orchestrator hook."
+description: "Handoff from Session 011 to Session 012. S011 = Phase 8 COMPLETE + Phase 9 COMPLETE (§24++ post-close addendum) + OVERVIEW.md v3.0 + deep sanity QC + CEC. S011 delivered: validate-token-budget.mjs (5-mode) + pe-compute.mjs + pe-context-cache.json + schema-index.md + validate-corespine-depth-markers.mjs + 8 context-loading templates + 5 Phase 9 audit slugs registered. pnpm verify: 14 validators PASS; 0 frontmatter warnings; 0 AAP warnings. S012 PRIMARY = Phase 10 activation + 10-scenario user-verification + context-orchestrator hook."
 version: 1.0
 owner: group:finky
 lifecycle: production
@@ -62,7 +62,7 @@ links:
 ### What S012 must do, in order
 
 1. **Emit §17 receipt** as FIRST REPLY: `S012-AI-receipt-<iso>-against-S011-AI-attest-2026-05-05T16:50:00Z-S011-close`
-2. **Verify state**: `pnpm verify --skip-install` exit_code 0; 53 principles / 17 templates / 130 slices / **13** active validators
+2. **Verify state**: `pnpm verify --skip-install` exit_code 0; 53 principles / 17 templates / 130 slices / **14** active validators; 0 frontmatter warnings; 0 AAP warnings
 3. **10-scenario user-verification** — run [tools/test-scenarios/token-optimization-10-scenario.json](tools/test-scenarios/token-optimization-10-scenario.json) manually; record PASS/FAIL; Phase 4d complete when ≥9/10 PASS
 4. **Phase 10 PRIMARY** — per token-optimization.md §9.11: activate weekly-tag-status-deep-audit hook + HONEST CALIBRATION + topic-plan §11 closure
 5. **user-prompt-submit-context-orchestrator.sh** hook — task-class detection making context-loading templates mechanical
@@ -117,11 +117,11 @@ links:
 | 3 | schema-index.md | ✅ COMPLETE (§24++ S011 — docs/plan/pillar-0-governance/schema-index.md) | DONE |
 | 4 | corespine_layer_compliance extension | ✅ COMPLETE (§24++ S011 — tools/validators/validate-corespine-depth-markers.mjs + L1_CORE backfill) | DONE |
 | 5 | 10-scenario test (Phase 4d) | ⚠️ SPEC COMPLETE; AWAITING_USER_VERIFICATION (tools/test-scenarios/token-optimization-10-scenario.json) | S012 |
-| 6 | 16 SKILL.md AAP 9-field backfill | Phase 1 OPTIONAL; K1_S011-1 | S012 |
+| 6 | 16 SKILL.md AAP 9-field backfill | ✅ DONE (§24+++ — validate-aap-frontmatter: 0 warns confirmed 2026-05-05T18:28:55Z) | DONE |
 | 7 | CronCreate weekly-tag-status-deep-audit | Pending since S008; K3_S011-3 | S012 |
 | 8 | user-prompt-submit-context-orchestrator.sh | Depends on context-loading templates (done) | S012 |
 | 9 | Phase 10 continuous validation | Depends on Phase 9 | S012 PRIMARY |
-| 10 | Legacy HANDOFF ID casing (5 warnings) | Low priority; K5_S011-5 | S012+ |
+| 10 | Legacy HANDOFF ID casing (5 warnings) | ✅ DONE (§24+++ — frontmatter_validate: 0 warnings confirmed 2026-05-05T18:28:55Z) | DONE |
 
 ---
 

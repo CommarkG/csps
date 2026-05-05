@@ -283,3 +283,43 @@ handoff_attestation:
 - user-prompt-submit-context-orchestrator.sh: DEFERRED S012 (makes templates mechanical)
 - 16 SKILL.md AAP 9-field backfill: OPTIONAL warns = 32; S012
 - CronCreate weekly-tag-status-deep-audit: S012
+
+---
+
+## §24+++ Post-Close Addendum — Final Handoff Update (GP-S011-03)
+
+> Per protocols.md v1.10 §12: post-close same-chat work tagged `§24+++`. S011 §17 attestation unchanged. This addendum documents final handoff reconciliation in response to GP-S011-03 ("Update the handoff before session close").
+
+**GP-S011-03:** "Update the handoff before session close" (2026-05-05T18:28:16Z) — logged at [governor-prompts/S011.md](./governor-prompts/S011.md).
+
+**Final pnpm verify — 2026-05-05T18:28:55Z:**
+
+```yaml
+final_verify_S011:
+  ran_at: 2026-05-05T18:28:55Z
+  exit_code: 0
+  active_pass: 14
+  frontmatter_warnings: 0   # was 5 at formal close; §24++ legacy ID fixes resolved all
+  aap_warnings: 0           # was 32 at formal close; §24++ 9-field backfill resolved all
+  key_counts:
+    principles: 53
+    templates: 17
+    slices: 130
+    behavioral_contracts_source: 39
+    corespine_checked: 26
+    audit_slug_validators: 11
+```
+
+**§B4 rows now DONE (confirmed by final verify):**
+- Row 6: 16 SKILL.md AAP 9-field backfill → ✅ DONE (0 AAP warnings confirmed)
+- Row 10: Legacy HANDOFF ID casing → ✅ DONE (0 frontmatter warnings confirmed)
+
+**Artifacts updated this addendum:**
+- [governor-prompts/S011.md](./governor-prompts/S011.md) — GP-S011-03 logged ✅
+- [HANDOFF-S011-to-S012.md](../HANDOFF-S011-to-S012.md) — validator count 14; §B4 rows 6+10 DONE ✅
+- [chat-jump-prompt-S011-to-S012.md](./chat-jump-prompt-S011-to-S012.md) — final state reflected ✅
+
+**S011 final honest_gaps (all §24+ amendments consolidated):**
+- 10-scenario test: AWAITING_USER_VERIFICATION (tools/test-scenarios/token-optimization-10-scenario.json)
+- user-prompt-submit-context-orchestrator.sh: DEFERRED S012
+- CronCreate weekly-tag-status-deep-audit: DEFERRED S012

@@ -121,7 +121,7 @@ All 50+ AGENTS.md hard NOs apply. **NEW S007 hard NOs:**
 | Hook stubs | 0 | **2** (verify-hooks-functional + pre-tool-use-frontmatter-enum-check) | NEW |
 | Governor-prompts (S007) | 30 (S006) | **6 substantive + 1 AI-self-catch + post-close §24+/++/+++ user directives** | (per-session) |
 | Cardinal-flagged GPs | 13 (S006) | **2 + post-close cardinals** ("non aligned agent and skills are wild cards" §24+ user directive) | (per-session) |
-| Commits this session | 14 (S006) | **8 + 2 §24+ post-close addenda + 1 §24+++ refinement = 11 total** | (per-session) |
+| Commits this session | 14 (S006) | **6 main (5 turns + close) + 3 post-close addenda (§24+ / §24++ / §24+++) = 9 total** | (per-session) |
 
 ## §B2 Key locked decisions (S007)
 
@@ -254,8 +254,8 @@ $agents = (Get-Content AGENTS.md | Measure-Object -Line).Lines
 # Token cost baselines (expect 1)
 Get-ChildItem -Path "docs\plan\_handoff\VAULT\token-cost-baseline-*.json" | Measure-Object | ForEach-Object { "Token baselines: $($_.Count) (expect 1)" }
 
-# Commits S007 (expect 11: 8 main + 2 §24+ post-close + 1 §24+++ refinement)
-git log --oneline 32dcd30..HEAD | Measure-Object | ForEach-Object { "S007 commits since S006-CLOSE: $($_.Count) (expect 11)" }
+# Commits S007 (expect 9: 6 main [5 turns + close] + 3 post-close addenda [§24+ / §24++ / §24+++])
+git log --oneline 32dcd30..HEAD | Measure-Object | ForEach-Object { "S007 commits since S006-CLOSE: $($_.Count) (expect 9)" }
 
 # Git status
 git status --short

@@ -334,6 +334,73 @@ This work composes — does NOT replace — existing engravings:
 
 > **v0.3 (S006 turn 29) replaces v0.2's 8-phase ordering with optimal 10-phase CSPS-aligned sequencing.** Per user directive "produce the best possible detailed plan in optimal order and best fit to what you built so far. use what is built!!" Phases reordered + enhanced for: (a) contract-first engraving so subsequent work is governance-anchored, (b) CSPS DNA "foundations first; rest of system benefits", (c) optimal cache + measurement sequencing, (d) maximum reuse of existing CSPS engravings (no parallel structures).
 
+### §9.0 Post-CSP-absorption synthesized order (S008 turn 11 amendment)
+
+> **Per user S008 turn 11 directive:** *"Go over the multisession plan and optimize order .. do it like a top expert in building sufisticated platforms layer by layer with each one supporting the next and with special attention to going over what exists before even thinking."*
+
+After absorbing all 5 CSP series files + edge-case operational note (S008 turns 7-11; 6 EXT IDs / 25 sub-IDs / 40 cross-refs already integrated into Phase 5-10 specs per S008 turn 10 commit `d672b6f`), this **synthesized order** PRECEDES §9.1 with a foundation-first pre-Phase-6 batch. **§9.1-§9.11 phase content unchanged** (CSP cross-refs already added per Phase). This block sequences which work happens at which session boundary.
+
+**Reuse-first inventory (per "see what exists before even thinking"):**
+- ✅ Phase 1-4 closed (S007)
+- ✅ Phase 5 hook stubs landed S008 turn 5 (commit 433eb74) — 12 hooks at `.claude/hooks/*` with `@csps-*` headers + WEEK-4 PROMOTION CRITERIA + +x normalized
+- ✅ Weekly tag-status-deep-audit registered 5/5 atomic per FSE S008 turn 8 (commit 35bd7be)
+- ✅ 25 EXT extraction notes saved + cross-referenced (S008 turns 7-11)
+- ✅ 40 EXT cross-refs integrated into Phase 5-10 specs (S008 turn 10 commit d672b6f)
+- ✅ Permission-popup discipline engraved S008 turn 11 (memory entry per user explicit directive)
+- ✅ CSPS L1_CORE files at `.claude/core-spines/` ARE HUB-per-spine equivalent (saves CSP's projected 10-15hr work; CSPS 1hr lite-version per Improvement #6)
+
+**Synthesized execution sequence:**
+
+```
+S009 — FOUNDATION-FIRST BATCH (BLOCKING for Phase 6)
+├── L1.1 Engrave depth-discipline.md canonical leaf (EXT-004-A) — disambiguates 5 CSPS depth semantics
+├── L1.2 Author tools/templates/governed-artifact-frontmatter.template.md (EXT-004-B Improvement #1)
+├── L1.3 Engrave B_CONSOLIDATION_PASS contract 5/5 atomic (EXT-003-A)
+├── L1.4 Engrave B_SAVINGS_AND_SSOT_UNIFIED principle/contract OR P-META-009 amendment (EXT-005-A)
+├── L1.5 Engrave D1-D10 catalog memory + 5 known FP classes leaf (EXT-002-D)
+└── L1.6 ASK governor permission for: (a) settings.json hook registration (12 stubs → active) (b) depth-marker-creation-gate hook addition (per popup discipline THIS BATCH)
+
+S010 — PHASE 6 (Subagent + Haiku tiering) — uses S009 templates
+├── 6a. Class B subagent spawn templates use governed-artifact-frontmatter.template.md (S009 L1.2)
+├── 6b. Spawn templates declare depth-discipline fields per EXT-004-A semantics
+├── 6c. AAP frontmatter extended 7→9 fields per EXT-002-B (CSPS-adapted)
+└── 6d. 3 heavy ops delegated to Haiku per existing §9.7 + measure mid-session context growth
+
+S011 — PHASE 7 (File splits) — atomic per split: split + file_depth_markers + Consolidation Pass check
+├── 7a. principles.yaml split (per existing §9.8 order #1) + add file_depth_markers atomic
+├── 7b. behavioral-contracts.md split (per §9.8 order #2) + file_depth_markers atomic
+├── 7c. audit-runner.md split (per §9.8 order #3) + file_depth_markers atomic
+├── 7d. ai-behavior-spine.md split (per §9.8 order #4) + file_depth_markers atomic
+└── 7e. Add file_depth_markers to 5 L1_CORE_<SPINE>.md files (~1hr lite version of CSP Improvement #6)
+
+S012 — PHASE 8 (principles-mcp build) — PE.read_budget integration ATOMIC
+├── 8a. principles-mcp impl per existing §9.9
+├── 8b. PE.read_budget extension authored same-batch (EXT-004-C; tools/pe-compute.mjs CSPS analog)
+└── 8c. MCP queries return L1 by default; escalate L2/L3 on follow-up (depth-aware MCP)
+
+S013 — PHASE 9 (Context-loading templates + measurement validator) — apply validator class structure
+├── 9a. validate-token-budget.mjs 5-mode per existing §9.10
+├── 9b. Apply 6-commitment validator class structure (EXT-002-A)
+├── 9c. Un-defer Phase 4d 10-scenario test (carry-forward from S007)
+├── 9d. Author schema-index.md (EXT-005-C Improvement #8 CSPS analog)
+└── 9e. corespine_layer_compliance extension for HUB depth markers (EXT-004-D Improvement #8)
+
+S014 — PHASE 10 (Continuous validation) — ACTIVATE recurring disciplines
+├── 10a. Activate weekly tag-status-deep-audit hook (EXT-005 + S008 turn 8 5/5 atomic; activation = settings.json edit per Pattern G)
+├── 10b. Consolidation Pass discipline ACTIVE per B_CONSOLIDATION_PASS (S009 L1.3)
+├── 10c. D1-D10 self-monitoring continuous per memory (S009 L1.5)
+├── 10d. HONEST CALIBRATION: measure CSP empirical 60-75% claim CSPS-empirically before propagating
+└── 10e. Topic-plan §11 closure attestation signed
+```
+
+**Why this order (top-expert rationale):**
+- **Foundation-first (S009 L1.1-L1.5):** all subsequent phases consume foundation primitives — depth-discipline, frontmatter template, B_CONSOLIDATION_PASS, B_SAVINGS+SSoT umbrella, D1-D10 self-monitoring. Building these BEFORE Phase 6 prevents D5 continuity-bias (Phase 6 spawn templates would use wrong field semantics without depth-discipline canonical leaf).
+- **Layer-by-layer support (each phase depends on prior):** S010 Phase 6 templates → S011 Phase 7 splits use templates → S012 Phase 8 MCP serves split files → S013 Phase 9 validates the orchestrator → S014 Phase 10 continuous validation closes the loop.
+- **Reuse-first applied exhaustively:** every Phase 6+ deliverable consults existing CSPS engravings (5/5 patterns + L1_CORE files + tag-status-contract.md + frontmatter-closed-enums.md) BEFORE authoring new. CSP's 9 improvements already mapped to existing CSPS infrastructure (e.g., HUB-per-spine = L1_CORE files, no new HUB authoring).
+- **Mutual-support architecture preserved (per CSP file #4 §10):** depth markers + bundling orchestrator + SCHEMA + Core Spines deployed as ONE consolidated set; removing any layer breaks the others.
+
+**Estimated arc:** S009 → S014 (6 sessions; consistent with original §9 estimate 5-8 sessions S007→S012). CSP-informed approach reduces re-architecting risk.
+
 ### 9.1 Plan overview
 
 Token-optimization topic-plan: **depth-5** (sophisticated narrow — high leverage + cross-spine + moderate rework risk + multi-tenant scaling impact + enterprise-alignment lens). Was depth-4 in v0.2; promoted to depth-5 because it touches all 5 Core Spines + multiple validators + cross-quarter measurement.

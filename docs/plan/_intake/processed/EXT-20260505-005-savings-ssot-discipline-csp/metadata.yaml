@@ -1,0 +1,37 @@
+---
+extraction_id: EXT-20260505-005
+source_type: AI_OTHER
+received_at: 2026-05-05T05:30:00Z
+received_via: chat-paste
+raw_byte_size_estimated: 26000
+risk_profile: low
+submitted_by: user
+trust_tier: external_ai_export
+audience: [developer, ai-agent]
+domain: [governance, architecture, anti-duplication, savings]
+session_received_in: S008
+session_turn_received: 11
+gp_entry: GP-S008-09
+parent_input_id: null
+sub_extractions:
+  - EXT-20260505-005-A: unified-principle-savings-and-ssot-same-discipline
+  - EXT-20260505-005-B: 7-disciplines-and-4-architectural-elements
+  - EXT-20260505-005-C: schema-of-schemas-index-and-hub-per-spine-composition
+multi_section: true
+sister_csp_files:
+  - EXT-20260505-001 through 004 (CSP series #1-4; this is #5 closing the set)
+csps_already_absorbed_cross_ref:
+  - "§3 Discipline 1 token economy → CSPS B_TOKEN_BUDGET memory entry 40 (already engraved S007)"
+  - "§3 Discipline 2 anti-duplication → EXT-20260505-003 (already extracted)"
+  - "§3 Discipline 3 depth levels → EXT-20260505-004 (already extracted)"
+  - "§3 Discipline 4 5-element-pattern → CSPS B_FIVE_SURFACE_ENGRAVING memory entry 14"
+  - "§3 Discipline 5 HUB-per-spine → EXT-20260505-003-C + EXT-20260505-004-D (already extracted; CSPS L1_CORE files = equivalent)"
+  - "§4 PE bundling orchestrator → EXT-20260505-001 (already extracted)"
+  - "§4 Validators → EXT-20260505-002-A (already extracted)"
+csps_completes_series: true
+notes: |
+  CLOSES CSP DNA export 5-document set. Per Consolidation Pass discipline (CSP file #3) applied:
+  this extract is HEAVILY cross-referential to EXT-001/002/003/004 — most §3 disciplines already
+  absorbed; this report's CONTRIBUTION is the unified-principle synthesis (savings + SSoT same
+  discipline) which is genuinely new. 3 sub-IDs sufficient.
+---

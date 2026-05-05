@@ -1,0 +1,32 @@
+---
+extraction_id: EXT-20260505-006
+source_type: AI_OTHER
+received_at: 2026-05-05T05:30:00Z
+received_via: chat-paste
+raw_byte_size_estimated: 13000
+risk_profile: low
+submitted_by: user
+trust_tier: external_ai_export
+audience: [developer, ai-agent]
+domain: [governance, ops, validation]
+session_received_in: S008
+session_turn_received: 11
+gp_entry: GP-S008-09
+parent_input_id: null
+sub_extractions:
+  - EXT-20260505-006-A: 5-specific-edge-cases-encountered-and-resolutions
+  - EXT-20260505-006-B: 7-forward-going-patterns-and-single-rule-edge-cases-as-signals
+multi_section: true
+sister_csp_files:
+  - EXT-20260505-005 (received same turn; series #5 CLOSES set)
+  - EXT-20260505-001 through 004 (composes with — operational note references all 5 series reports)
+csps_already_absorbed_cross_ref:
+  - "§3 Pattern A permission popup → IMMEDIATELY engraved as feedback_diff_before_protected_path_writes.md (S008 turn 11)"
+  - "§3 Pattern G settings.json → CSPS feedback_no_settings_edits_unless_asked.md (memory entry 38; already engraved)"
+  - "§3 Pattern F TodoWrite reminders → CSPS recurring system-reminder pattern (already known)"
+  - "§3 Pattern B validator findings → CSPS B_PRE_CLOSE_VERIFICATION + B_RZF disciplines"
+notes: |
+  Operational note (not series). 5 specific cases + 7 forward patterns + single rule.
+  CSPS-IMMEDIATE: Pattern A engraved THIS BATCH per user explicit directive.
+  2 sub-IDs sufficient (5 cases cluster; 7 patterns cluster).
+---

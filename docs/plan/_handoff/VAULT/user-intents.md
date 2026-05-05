@@ -215,6 +215,11 @@ Per S002 handoff §20.5 — engraved into memory + AGENTS.md NO + canonical cont
 > *"you can save an summeri all - you decide on how and when aligned with protocols"*
 > — S010 turn 9 (session-close autonomy — AI decides timing/format per protocol; engraved as lean close + HANDOFF Zone A; GP-S010-07)
 
+## S011 cardinal directives (verbatim — propagated from governor-prompts/S011.md per B_GOVERNOR_PROMPTS cardinal cross-link mandate)
+
+> *"open c:\Users\finky\Desktop\Claude Code\Csps\docs\plan\_handoff\HANDOFF-S010-to-S011.md and execute every instruction in it literally"*
+> — S011 turn 1 (full mandate execution: Phase 8 + QC + CEC + Phase 9; GP-S011-01; delivered Phase 8 COMPLETE + 8 context-loading templates + OVERVIEW v3.0 + CEC 7 surfaces)
+
 ## How to use this vault
 
 Future session encountering a B_* / P-META-* / mechanism citation: trace back to its source quote here. The mechanism may have evolved through engraving cycles; the source quote shows the original intent.

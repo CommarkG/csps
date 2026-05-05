@@ -375,10 +375,20 @@ S010 — PHASE 6 COMPLETE ✅ + PHASE 7 Candidate #1 COMPLETE ✅
 │   Deferred: cross-ref-resolution validator (week-4) + token cost measurement (Phase 9 S013)
 │   Deferred: L1_CORE_*.md depth-markers (files 45-66 lines; <300 threshold; not required)
 
-S011 — PHASE 7 Candidates #2-#4 + any S010 overflows
-├── 7b. behavioral-contracts.md split (per §9.8 order #2) + file_depth_markers atomic
-├── 7c. audit-runner.md split (per §9.8 order #3) + file_depth_markers atomic
-├── 7d. ai-behavior-spine.md split (per §9.8 order #4) + file_depth_markers atomic
+├── 7b. behavioral-contracts.md split ✅ COMPLETED S010
+│   ├── 39 slice files at docs/plan/pillar-0-governance/behavioral-contracts/B_NAME.md ✅
+│   ├── Index at behavioral-contracts-index.yaml ✅
+│   ├── Generator tools/generators/split-behavioral-contracts.mjs + pnpm contracts:split ✅
+│   └── Sync validator + verify cycle: behavioral_contract_slices_sync PASS 39/39 ✅
+├── 7c. audit-runner.md split ✅ COMPLETED S010
+│   ├── 28 pipeline slice files at docs/plan/pillar-0-governance/audit-runner/pipeline-<slug>.md ✅
+│   ├── Index at audit-runner-index.yaml ✅
+│   ├── Generator tools/generators/split-audit-runner.mjs + pnpm audit-runner:split ✅
+│   └── Sync validator + verify cycle: audit_runner_slices_sync PASS 28/28 ✅
+│   Note: frontmatter-validate exemptions added for generated slice dirs (not governed artifacts)
+
+S011 — PHASE 7 Candidate #4 + carry-forwards
+├── 7d. ai-behavior-spine.md split (per §9.8 order #4 — lowest priority; 204 lines; defer if PE ranks lower)
 ├── 7e. AAP 9-field backfill for 16 existing SKILL.md (principle_compliance + consolidation_cross_refs)
 └── 7f. PE engine model-routing integration topic-plan (S010 §10 PE alignment carry-forward)
 

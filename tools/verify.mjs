@@ -100,6 +100,24 @@ const CYCLES = [
     },
   },
   {
+    // NEW S010 Phase 7 Candidate #3 — verifies all 28 audit-runner pipeline slice files are present
+    name: 'audit_runner_slices_sync',
+    command: 'node tools/validators/validate-audit-runner-slices.mjs',
+    parse_output: (out) => {
+      const m = out.match(/source_pipelines=(\d+)\s+missing=(\d+)/);
+      return m ? { source_pipelines: Number(m[1]), missing_slices: Number(m[2]) } : { source_pipelines: null };
+    },
+  },
+  {
+    // NEW S010 Phase 7 Candidate #2 — verifies all 39 behavioral contract slice files are present
+    name: 'behavioral_contract_slices_sync',
+    command: 'node tools/validators/validate-behavioral-contract-slices.mjs',
+    parse_output: (out) => {
+      const m = out.match(/source_contracts=(\d+)\s+missing=(\d+)/);
+      return m ? { source_contracts: Number(m[1]), missing_slices: Number(m[2]) } : { source_contracts: null };
+    },
+  },
+  {
     // NEW S010 Phase 7 Candidate #1 — verifies all 53 principle slice files are present and valid
     name: 'principle_slices_sync',
     command: 'node tools/validators/validate-principle-slices.mjs',

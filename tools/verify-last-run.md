@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-05T14:19:50.051Z
-- finished_at: 2026-05-05T14:19:52.528Z
+- ran_at: 2026-05-05T14:47:14.247Z
+- finished_at: 2026-05-05T14:47:17.271Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-05T14:19:50.051Z",
-    "finished_at": "2026-05-05T14:19:52.528Z",
+    "ran_at": "2026-05-05T14:47:14.247Z",
+    "finished_at": "2026-05-05T14:47:17.271Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 0.8,
         "principles_loaded": 53,
         "findings_total": 0
       },
@@ -39,11 +39,11 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "scanned": 151,
         "errors": 0,
         "warnings": 5,
-        "exempt": 120
+        "exempt": 186
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -60,8 +60,26 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
+      },
+      {
+        "name": "audit_runner_slices_sync",
+        "command": "node tools/validators/validate-audit-runner-slices.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "source_pipelines": 28,
+        "missing_slices": 0
+      },
+      {
+        "name": "behavioral_contract_slices_sync",
+        "command": "node tools/validators/validate-behavioral-contract-slices.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "source_contracts": 39,
+        "missing_slices": 0
       },
       {
         "name": "principle_slices_sync",

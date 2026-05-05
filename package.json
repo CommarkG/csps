@@ -16,6 +16,8 @@
   "scripts": {
     "principles:codegen": "node packages/principles/codegen.ts",
     "principles:split": "pnpm --filter @csps/principles split",
+    "contracts:split": "node tools/generators/split-behavioral-contracts.mjs",
+    "audit-runner:split": "node tools/generators/split-audit-runner.mjs",
     "glossary:codegen": "echo 'TODO week-2: implement pnpm glossary:codegen' && exit 0",
     "catalog:search": "echo 'TODO week-1: implement pnpm catalog:search' && exit 0",
     "lint:frontmatter": "node tools/validators/validate-frontmatter.mjs",

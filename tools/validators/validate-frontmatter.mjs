@@ -76,6 +76,12 @@ const EXEMPT_PATH_GLOBS = [
   // Governor prompts vault — per-session logs use custom frontmatter (session_date / chat_session_id /
   // total_substantive_prompts) per B_GOVERNOR_PROMPTS schema; not the universal CSPS frontmatter shape.
   /_handoff[\/\\]VAULT[\/\\]governor-prompts[\/\\]/,
+  // Phase 7 generated slice directories — auto-generated from monolith sources via split generators.
+  // Canonical SSoT = source monolith (behavioral-contracts.md / audit-runner.md); slices are
+  // generated views for AI context loading. Not governed artifacts; frontmatter lives on monolith.
+  // Per token-optimization §9.8 Phase 7 Candidate #2 + #3 (S010).
+  /pillar-0-governance[\/\\]behavioral-contracts[\/\\]/,
+  /pillar-0-governance[\/\\]audit-runner[\/\\]/,
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -250,3 +250,36 @@ handoff_attestation:
 ```
 
 **Session attestation signature:** `S011-AI-attest-2026-05-05T16:50:00Z-S011-close`
+
+---
+
+## §24++ Post-Close Addendum — Phase 9 COMPLETE (same chat; after formal S011 close)
+
+> Per protocols.md v1.10 §12: post-close same-chat work tagged `§24+` per B_CHAT_VS_SESSION_DISTINCT. The S011 §17 attestation above reflects state at S011 formal close; this addendum documents work completed in response to GP-S011-02 ("cpmplete phase 9") in the same chat after session close.
+
+**GP-S011-02:** "cpmplete phase 9" (2026-05-05T17:14:41Z) — logged at governor-prompts/S011.md.
+
+**Phase 9 artifacts delivered post-close:**
+- [tools/validators/validate-token-budget.mjs](../../../tools/validators/validate-token-budget.mjs) — 5-mode 6-commitment validator; advisory window; pnpm verify PASS ✅
+- [tools/test-scenarios/token-optimization-10-scenario.json](../../../tools/test-scenarios/token-optimization-10-scenario.json) — Phase 4d un-deferred; AWAITING_USER_VERIFICATION ✅
+- [tools/pe-compute.mjs](../../../tools/pe-compute.mjs) — PE.read_budget tool; mtime cache; ESM statSync fix ✅
+- [tools/pe-context-cache.json](../../../tools/pe-context-cache.json) — L1 cross-session cache structure ✅
+- [docs/plan/pillar-0-governance/schema-index.md](../../../docs/plan/pillar-0-governance/schema-index.md) — 24-row schema-of-schemas index ✅
+- [tools/validators/validate-corespine-depth-markers.mjs](../../../tools/validators/validate-corespine-depth-markers.mjs) + 5 L1_CORE files backfilled with file_depth_markers ✅
+- [audit-runner.md](../../../docs/plan/pillar-0-governance/audit-runner.md) — 5 Phase 9 audit slugs registered atomically ✅
+
+**Deep audit findings resolved:**
+- GP-S011-02 logged ✅
+- pe-compute.mjs ESM statSync bug fixed ✅
+- HANDOFF §B4 carry-forward register updated ✅
+- chat-jump-prompt updated to Phase 9 COMPLETE ✅
+- OVERVIEW.md v3.1 (Phase 9 addendum) ✅
+
+**pnpm verify post-addendum:** 11 active validators PASS (was 9 at formal close).
+
+**Corrected honest_gaps (replaces §17 honest_gaps above):**
+- Phase 9 9a-9f: ✅ COMPLETE (see above)
+- 10-scenario test: AWAITING_USER_VERIFICATION (Phase 4d pending user testing)
+- user-prompt-submit-context-orchestrator.sh: DEFERRED S012 (makes templates mechanical)
+- 16 SKILL.md AAP 9-field backfill: OPTIONAL warns = 32; S012
+- CronCreate weekly-tag-status-deep-audit: S012

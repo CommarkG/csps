@@ -1,7 +1,7 @@
 ---
 id: csps.handoff.s011-to-s012
 name: handoff-S011-to-S012
-description: Handoff from Session 011 to Session 012. S011 = implementation session — Phase 8 COMPLETE (principles-mcp slice-reading + 4 query tools) + OVERVIEW.md v3.0 + deep sanity QC + CEC walk (7 surfaces) + Phase 9 PARTIAL (8 context-loading templates). S012 PRIMARY = Phase 9 completion (9a-9f: validate-token-budget.mjs + pe-compute.mjs + bundling orchestrator + 10-scenario test + schema-index.md).
+description: "Handoff from Session 011 to Session 012. S011 = Phase 8 COMPLETE + Phase 9 COMPLETE (§24++ post-close addendum) + OVERVIEW.md v3.0 + deep sanity QC + CEC. S011 delivered: validate-token-budget.mjs (5-mode) + pe-compute.mjs + pe-context-cache.json + schema-index.md + validate-corespine-depth-markers.mjs + 8 context-loading templates + 5 Phase 9 audit slugs registered. pnpm verify: 11 validators PASS. S012 PRIMARY = Phase 10 activation + 10-scenario user-verification + context-orchestrator hook."
 version: 1.0
 owner: group:finky
 lifecycle: production
@@ -42,42 +42,38 @@ links:
 
 # YOU ARE S012 — Session 012 of the CSPS planning project.
 
-**S011 CLOSED. S011 was the Phase 8 + QC + Phase 9 partial session.**
+**S011 CLOSED + PHASE 9 COMPLETE (§24++ post-close addendum in same chat).**
 
 **Phase 8 COMPLETE:**
-- [packages/principles-mcp/src/index.ts](packages/principles-mcp/src/index.ts) — slice-reading implementation; loads `principles-index.yaml` at boot; lazy-loads individual `P-XXX-NNN.yaml` slices on demand
-- 6 tools: `get_principle` / `list_principles` / `find_by_enforcer_layer` / `find_by_spine` + legacy `check_reuse` + `list_principles_by_category`
-- Depth-aware: L1 default (~200 tokens/principle) / L2 (+counterweight+enforcers) / L3 (full)
-- Build PASS; smoke test: 53 principles indexed; slice-reading mode active
+- [packages/principles-mcp/src/index.ts](packages/principles-mcp/src/index.ts) — slice-reading; 6 query tools; depth L1/L2/L3; ~200 tokens/principle vs 85K monolith ✅
 
-**Phase 9 PARTIAL — 9g COMPLETE; 9a-9f DEFERRED:**
-- 8 context-loading task-class templates at [tools/templates/context-loading/](tools/templates/context-loading/) ✅
-- [template-registry.md §6](docs/plan/_handoff/VAULT/template-registry.md) added ✅
-- Remaining: validate-token-budget.mjs + pe-compute.mjs + bundling orchestrator + 10-scenario test + schema-index.md
+**Phase 9 COMPLETE (§24++ post-close addendum):**
+- [tools/validators/validate-token-budget.mjs](tools/validators/validate-token-budget.mjs) — 5-mode 6-commitment validator ✅
+- [tools/test-scenarios/token-optimization-10-scenario.json](tools/test-scenarios/token-optimization-10-scenario.json) — 10-scenario spec (AWAITING_USER_VERIFICATION) ✅
+- [tools/pe-compute.mjs](tools/pe-compute.mjs) — PE.read_budget computation; mtime cache ✅
+- [tools/pe-context-cache.json](tools/pe-context-cache.json) — L1 cross-session cache ✅
+- [docs/plan/pillar-0-governance/schema-index.md](docs/plan/pillar-0-governance/schema-index.md) — 24-row schema-of-schemas ✅
+- [tools/validators/validate-corespine-depth-markers.mjs](tools/validators/validate-corespine-depth-markers.mjs) + 5 L1_CORE backfilled ✅
+- 8 context-loading templates + template-registry §6 + 5 audit slugs registered ✅
+- pnpm verify: **11 active validators PASS** (was 9)
 
-**OVERVIEW.md v3.0, QC sweep, CEC walk all COMPLETE. ZERO BLOCKERS. pnpm verify exit_code 0.**
+**OVERVIEW.md v3.0, QC sweep, CEC walk, audit-runner registration all COMPLETE. ZERO BLOCKERS. pnpm verify exit_code 0.**
 
 ### What S012 must do, in order
 
 1. **Emit §17 receipt** as FIRST REPLY: `S012-AI-receipt-<iso>-against-S011-AI-attest-2026-05-05T16:50:00Z-S011-close`
-2. **Verify state**: `pnpm verify --skip-install` exit_code 0; 53 principles / 17 templates / 130 slices / 9 active validators
-3. **Phase 9 PRIMARY** (9a-9f): complete the 6 deferred items:
-   - 9a. `tools/validators/validate-token-budget.mjs` — 5-mode validator per §14.6 + EXT-002-A 6-commitment structure
-   - 9b. Un-defer Phase 4d 10-scenario test (carry-forward from S007)
-   - 9c. `tools/pe-compute.mjs` — CSPS analog of CSP `pe_compute.ps1`; includes read_budget computation; consumes `file_depth_markers`
-   - 9d. `tools/pe-context-cache.json` — cross-session L1 cache for stable artifacts
-   - 9e. `schema-index.md` — EXT-005-C Improvement #8 CSPS analog
-   - 9f. `corespine_layer_compliance` extension for HUB depth markers (EXT-004-D Improvement #8)
-4. **16 SKILL.md AAP 9-field backfill** — `principle_compliance` + `consolidation_cross_refs` (K1_S011-1; OPTIONAL warns = 32)
-5. **CronCreate** for `cron-weekly-tag-status-deep-audit.sh` (pending since S008 turn 8)
-6. **user-prompt-submit-context-orchestrator.sh** hook — task-class detection using context-loading templates
-7. **Phase 10 if context permits** (S013): continuous validation activation
+2. **Verify state**: `pnpm verify --skip-install` exit_code 0; 53 principles / 17 templates / 130 slices / **11** active validators
+3. **10-scenario user-verification** — run [tools/test-scenarios/token-optimization-10-scenario.json](tools/test-scenarios/token-optimization-10-scenario.json) manually; record PASS/FAIL; Phase 4d complete when ≥9/10 PASS
+4. **Phase 10 PRIMARY** — per token-optimization.md §9.11: activate weekly-tag-status-deep-audit hook + HONEST CALIBRATION + topic-plan §11 closure
+5. **user-prompt-submit-context-orchestrator.sh** hook — task-class detection making context-loading templates mechanical
+6. **16 SKILL.md AAP 9-field backfill** — `principle_compliance` + `consolidation_cross_refs` (32 OPTIONAL warns)
+7. **CronCreate** for `cron-weekly-tag-status-deep-audit.sh` (pending since S008 turn 8)
 
 ### Model recommendation S012
 
 - Open on **Sonnet** (Lever 1 default)
-- Switch to **Opus** for: Phase 9 architecture decisions (pe-compute.mjs design) + validate-token-budget.mjs 5-mode design
-- Back to **Sonnet** for: SKILL.md backfill (mechanical) + hook authoring
+- Switch to **Opus** for: Phase 10 honest-calibration measurement + topic-plan closure attestation
+- Back to **Sonnet** for: hook authoring + SKILL.md backfill (mechanical)
 
 ### Hard rules (S012 inherits all S001-S011 hard NOs)
 
@@ -112,35 +108,39 @@ links:
 
 ## §B4 What S011 did NOT do (carry-forward register)
 
-| # | Item | Reason | SLA |
+> ⚠️ **§24++ POST-CLOSE AMENDMENT:** Rows 1-5 below were completed as post-close addendum to S011. Updated status shown.
+
+| # | Item | Status | SLA |
 |---|---|---|---|
-| 1 | validate-token-budget.mjs 5-mode | Context limit; Phase 9 9a | S012 PRIMARY |
-| 2 | pe-compute.mjs + pe-context-cache.json | Context limit; Phase 9 9c+9d | S012 PRIMARY |
-| 3 | schema-index.md | Context limit; Phase 9 9e | S012 |
-| 4 | corespine_layer_compliance extension | Context limit; Phase 9 9f | S012 |
-| 5 | 10-scenario test (Phase 4d) | Context limit; Phase 9 9b | S012 |
+| 1 | validate-token-budget.mjs 5-mode | ✅ COMPLETE (§24++ S011 — tools/validators/validate-token-budget.mjs) | DONE |
+| 2 | pe-compute.mjs + pe-context-cache.json | ✅ COMPLETE (§24++ S011 — tools/pe-compute.mjs + tools/pe-context-cache.json) | DONE |
+| 3 | schema-index.md | ✅ COMPLETE (§24++ S011 — docs/plan/pillar-0-governance/schema-index.md) | DONE |
+| 4 | corespine_layer_compliance extension | ✅ COMPLETE (§24++ S011 — tools/validators/validate-corespine-depth-markers.mjs + L1_CORE backfill) | DONE |
+| 5 | 10-scenario test (Phase 4d) | ⚠️ SPEC COMPLETE; AWAITING_USER_VERIFICATION (tools/test-scenarios/token-optimization-10-scenario.json) | S012 |
 | 6 | 16 SKILL.md AAP 9-field backfill | Phase 1 OPTIONAL; K1_S011-1 | S012 |
 | 7 | CronCreate weekly-tag-status-deep-audit | Pending since S008; K3_S011-3 | S012 |
 | 8 | user-prompt-submit-context-orchestrator.sh | Depends on context-loading templates (done) | S012 |
-| 9 | Phase 10 continuous validation | Depends on Phase 9 | S013 |
+| 9 | Phase 10 continuous validation | Depends on Phase 9 | S012 PRIMARY |
 | 10 | Legacy HANDOFF ID casing (5 warnings) | Low priority; K5_S011-5 | S012+ |
 
 ---
 
 ## ═══ ZONE C — SCOPE ═══
 
-## §C1 S012 PRIMARY — Phase 9 completion
+## §C1 S012 PRIMARY — Phase 10 activation
 
-See §9.10 in [token-optimization.md](docs/plan/pillar-0-governance/token-optimization.md#910-phase-9--context-loading-templates--orchestrator-cca-layer-4-activation) for full Phase 9 spec.
+Phase 9 is COMPLETE (§24++ S011 addendum). S012 PRIMARY = Phase 10.
 
-**Critical dependency:** Phase 9 9c (pe-compute.mjs) requires reading EXT-20260505-004-C for the bundling orchestrator design before authoring.
+See §9.11 in [token-optimization.md](docs/plan/pillar-0-governance/token-optimization.md) for full Phase 10 spec.
 
-**Exit criteria (Phase 9 complete):**
-- `validate-token-budget.mjs` runs 5 modes PASS
-- `tools/pe-compute.mjs` exists + computes `read_budget` from `file_depth_markers`
-- `tools/pe-context-cache.json` exists + has L1 cache structure
-- `pnpm --filter @csps/principles-mcp build` still PASS (no regression)
+**Phase 10 exit criteria:**
+- Weekly tag-status-deep-audit hook ACTIVE (settings.json edit per Pattern G)
+- HONEST CALIBRATION: measure CSP 60-75% savings claim CSPS-empirically (cruel-critic obligation)
+- Topic-plan §11 closure attestation signed
+- user-prompt-submit-context-orchestrator.sh hook ACTIVE (makes Phase 9 templates mechanical)
 - `pnpm verify --skip-install` exit_code 0
+
+**SECONDARY:** 10-scenario user-verification (tools/test-scenarios/token-optimization-10-scenario.json) — run manually ≥9/10 PASS.
 
 ## §C2 S012 SECONDARY — SKILL.md backfill + CronCreate + hook
 

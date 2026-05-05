@@ -2,10 +2,10 @@
 id: csps.handoff.vault.overview
 name: OVERVIEW
 description: CSPS platform overview — the canonical entry-point for understanding platform state. Single file; BLUF-formatted; self-contained; clickable GitHub URLs to canonical sources. Always-current (per naming-policy Rule 1; version tracked in frontmatter). Read in ~3 minutes for full picture. Token-optimal by design — tables over prose, lazy-loaded references, audience-routing matrix. Renamed from quick-context-S006-L1.md (S006 turn 24) → quick-context.md (turn 24 partial fix) → OVERVIEW.md (turn 25 full fix per industry-standard vocabulary rule). Industry-standard "OVERVIEW" replaces invented "quick-context" term.
-version: 3.0
-last_update_session: S010
-last_update_turn: S011-open
-last_update: S011-OPEN
+version: 3.1
+last_update_session: S011
+last_update_turn: S011-24pp-close
+last_update: S011-CLOSE-PHASE9-ADDENDUM
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -35,7 +35,7 @@ generated_at: 2026-05-05T15:44:00Z
 
 > **Canonical entry-point for the platform.** Read this in ~3 minutes for the full picture. Always-current — filename stable across sessions per [naming-policy.md](../../pillar-0-governance/naming-policy.md). Version + last-update tracked in frontmatter.
 >
-> **Latest update (S011-open):** S008-S010 platform-acceleration arc COMPLETE. S008 = CSP DNA absorption (11 EXT IDs + 3 new canonical leaves). S009 = foundation-first batch (B_CONSOLIDATION_PASS + B_SAVINGS_AND_SSOT_UNIFIED + model-routing-dashboard + depth-discipline). S010 = platform-acceleration 3× mandate: Phase 6 COMPLETE + Phase 7 ALL 4 DONE (130 slices) + B_AAP 7→9 5/5 FSE + 15 hooks LIVE + Lever 1 (Sonnet[1m] default). S011 PRIMARY = Phase 8 principles-mcp upgrade.
+> **Latest update (S011-close + §24++ Phase 9 addendum):** S011 delivered Phase 8 COMPLETE (principles-mcp slice-reading; ~200 tokens/principle vs 85K monolith; CCA Layer 4 activated) + Phase 9 COMPLETE (validate-token-budget.mjs 5-mode + pe-compute.mjs PE.read_budget + schema-index.md 24 rows + validate-corespine-depth-markers + 8 context-loading templates + 5 L1_CORE backfilled). pnpm verify: 11 active validators PASS. S012 PRIMARY = Phase 10 activation.
 
 ## (S008-S010 Platform-Acceleration Arc — CURRENT STATE)
 

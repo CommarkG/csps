@@ -18,7 +18,7 @@
  *   HIGH → L1+L2+L3 (CSPS: constitutional/engraving/ADR work)
  */
 
-import { readFileSync, existsSync, writeFileSync } from 'node:fs';
+import { readFileSync, existsSync, writeFileSync, statSync } from 'node:fs';
 import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -89,16 +89,19 @@ function computeArtifactBudget(artifactPath, requestedDepth = 'L1', cache) {
     return { path: artifactPath, status: 'NOT_FOUND', depth: requestedDepth, estimated_tokens: 0 };
   }
 
-  // Check cache for L1 stable artifacts
+  // Check cache for L1 stable artifacts; invalidate on mtime change
   const cacheKey = artifactPath;
-  const { mtimeMs } = (() => {
-    try {
-      const { statSync } = require ? undefined : null; // ESM workaround
-      return { mtimeMs: Date.now() }; // simplified: always read
-    } catch {
-      return { mtimeMs: 0 };
-    }
-  })() ?? { mtimeMs: 0 };
+  let mtimeMs = 0;
+  try { mtimeMs = statSync(absPath).mtimeMs; } catch { /* non-fatal */ }
+
+  // Cache hit — return stored L1 estimate if mtime unchanged
+  const cached = cache.entries[cacheKey];
+  if (requestedDepth === 'L1' && cached && cached.mtime_ms === mtimeMs && cached.estimated_tokens_l1 > 0) {
+    return {
+      path: artifactPath, status: 'FOUND', depth: requestedDepth,
+      has_depth_markers: cached.has_depth_markers, estimated_tokens: cached.estimated_tokens_l1, cache_hit: true,
+    };
+  }
 
   const text = readFileSync(absPath, 'utf8');
   const markers = parseDepthMarkers(text);
@@ -123,6 +126,7 @@ function computeArtifactBudget(artifactPath, requestedDepth = 'L1', cache) {
     cache.entries[cacheKey] = {
       estimated_tokens_l1: estimatedTokens,
       has_depth_markers: markers !== null,
+      mtime_ms: mtimeMs,
       cached_at: new Date().toISOString(),
     };
   }

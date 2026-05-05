@@ -106,6 +106,23 @@ Templates organized by output category per inner-AI-defaults registry alignment.
 | `mastra-base-agent` | New Mastra agent (Class C) | `agent-alignment-coverage` | (week-6 build) | registered-pending-author |
 | `persona-system-prompt` | New persona | per [P-ARCH-013](../../pillar-0-governance/architecture-principles.md#L249) | (week-7 build) | registered-pending-author |
 
+### §6 Context-loading templates (Phase 9 S011 — CCA Layer 4 activation)
+
+Per token-optimization.md §9.10 Phase 9. Each JSON file specifies which artifacts + MCP queries to load for a given task class. Goal: replace full-monolith reads with targeted slice loads (~200-1800 tokens vs 50K-85K).
+
+| Template ID | Task class | Model tier | File path | Estimated L1 token cost |
+|---|---|---|---|---|
+| `context-loading-session-open` | Session startup (S<NNN> open, §17 receipt) | Sonnet | [`tools/templates/context-loading/session-open.json`](../../../../tools/templates/context-loading/session-open.json) | ~2,500 |
+| `context-loading-engraving` | FSE 5-surface atomic engraving | Opus | [`tools/templates/context-loading/engraving.json`](../../../../tools/templates/context-loading/engraving.json) | ~1,800 |
+| `context-loading-qc-validation` | ZF/RZF cycle + pnpm verify | Sonnet | [`tools/templates/context-loading/qc-validation.json`](../../../../tools/templates/context-loading/qc-validation.json) | ~800 |
+| `context-loading-session-close` | Handoff + HPFA + closing-summary | Sonnet | [`tools/templates/context-loading/session-close.json`](../../../../tools/templates/context-loading/session-close.json) | ~1,200 |
+| `context-loading-pcr` | PCR decision rendering | Sonnet | [`tools/templates/context-loading/pcr.json`](../../../../tools/templates/context-loading/pcr.json) | ~300 |
+| `context-loading-mcp-query` | Principle/contract lookup via principles-mcp | Haiku | [`tools/templates/context-loading/mcp-query.json`](../../../../tools/templates/context-loading/mcp-query.json) | ~200 |
+| `context-loading-agent-spawn` | Class B subagent spawn with AAP preamble | Haiku | [`tools/templates/context-loading/agent-spawn.json`](../../../../tools/templates/context-loading/agent-spawn.json) | ~600 |
+| `context-loading-frontmatter-authoring` | New governed artifact + frontmatter | Sonnet | [`tools/templates/context-loading/frontmatter-authoring.json`](../../../../tools/templates/context-loading/frontmatter-authoring.json) | ~1,000 |
+
+**Phase 9 remaining (S012):** bundling orchestrator (`tools/pe-compute.mjs`) + `user-prompt-submit-context-orchestrator.sh` hook (task-class detection) + `validate-token-budget.mjs` 5-mode (Phase 10).
+
 ---
 
 ## Escape hatch — `template_status: novel-pending-pattern-evaluation`

@@ -1,0 +1,23 @@
+{
+  "task_class": "engraving",
+  "description": "FSE 5-surface atomic engraving — new B_* contract, principle, or canonical leaf",
+  "triggers": ["engrave", "5-surface", "FSE", "new B_", "new principle", "atomic", "ratify discipline"],
+  "model_tier": "Opus",
+  "required_artifacts": [
+    { "path": "packages/principles/principles/P-META-007.yaml", "depth": "L2", "why": "FSE 5-surface discipline reference" },
+    { "path": "packages/principles/principles/P-META-006.yaml", "depth": "L1", "why": "ZF discipline — engraving must exit ZF" },
+    { "path": "tools/templates/b-star-contract.template.md", "depth": "L1", "why": "B_* contract template" }
+  ],
+  "mcp_queries": [
+    { "tool": "check_reuse", "args": { "description": "<proposed discipline>" }, "why": "P-OP-001 reuse-first before new B_*" },
+    { "tool": "find_by_enforcer_layer", "args": { "layer": "contract", "depth": "L1" }, "why": "check existing contracts before adding" }
+  ],
+  "optional_artifacts": [
+    { "path": "docs/plan/pillar-0-governance/behavioral-contracts/B_FIVE_SURFACE_ENGRAVING.md", "depth": "L1", "trigger": "B_* contract specifically" },
+    { "path": ".claude/core-spines/L1_CORE_GVRN.md", "depth": "L1", "trigger": "GVRN spine discipline needed" }
+  ],
+  "estimated_token_cost_L1": 1800,
+  "estimated_token_cost_L2": 6000,
+  "phase": 9,
+  "template_status": "stable"
+}

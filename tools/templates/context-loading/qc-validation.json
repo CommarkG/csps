@@ -1,0 +1,21 @@
+{
+  "task_class": "qc-validation",
+  "description": "ZF/RZF cycle, pnpm verify, pre-close verification — no DONE claim without this context",
+  "triggers": ["pnpm verify", "ZF", "RZF", "CEC", "pre-close", "exit_code 0", "validation", "DONE", "RATIFIED"],
+  "model_tier": "Sonnet",
+  "required_artifacts": [
+    { "path": "packages/principles/principles/P-META-006.yaml", "depth": "L2", "why": "ZF discipline — every DONE claim cites this" },
+    { "path": "packages/principles/principles/P-META-008.yaml", "depth": "L1", "why": "cycle-mandatory-in-plan" }
+  ],
+  "mcp_queries": [
+    { "tool": "get_principle", "args": { "id": "P-META-006", "depth": "L2" }, "why": "ZF discipline + RZF + CEC definitions" }
+  ],
+  "optional_artifacts": [
+    { "path": "docs/plan/pillar-0-governance/audit-runner/pipeline-meta.md", "depth": "L1", "trigger": "specific audit pipeline context needed" },
+    { "path": "docs/plan/pillar-0-governance/context-loss-pains.md", "depth": "L1", "trigger": "PAIN-NOMINAL-RZF risk present" }
+  ],
+  "estimated_token_cost_L1": 800,
+  "estimated_token_cost_L2": 3000,
+  "phase": 9,
+  "template_status": "stable"
+}

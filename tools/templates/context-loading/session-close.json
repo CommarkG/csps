@@ -1,0 +1,21 @@
+{
+  "task_class": "session-close",
+  "description": "Session close — handoff, HPFA, closing-summary, governor-prompts log, §17 attestation",
+  "triggers": ["session close", "closing summary", "handoff", "HPFA", "§10", "§17 attestation", "HANDOFF-S"],
+  "model_tier": "Sonnet",
+  "required_artifacts": [
+    { "path": "docs/plan/_handoff/VAULT/closing-summary-template.md", "depth": "L1", "why": "closing summary template" },
+    { "path": "packages/principles/principles/P-META-013.yaml", "depth": "L1", "why": "HPFA — 9-check mandate" },
+    { "path": "packages/principles/principles/P-META-012.yaml", "depth": "L1", "why": "Governor-prompts — log every substantive prompt" }
+  ],
+  "mcp_queries": [
+    { "tool": "get_principle", "args": { "id": "P-META-013", "depth": "L2" }, "why": "HPFA 9 checks reference" }
+  ],
+  "optional_artifacts": [
+    { "path": "docs/plan/_handoff/VAULT/governor-prompts/S<NNN>.md", "depth": "L1", "trigger": "governor prompts review needed" }
+  ],
+  "estimated_token_cost_L1": 1200,
+  "estimated_token_cost_L2": 4000,
+  "phase": 9,
+  "template_status": "stable"
+}

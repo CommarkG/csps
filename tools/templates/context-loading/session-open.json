@@ -1,0 +1,21 @@
+{
+  "task_class": "session-open",
+  "description": "Session startup — load governance context, verify state, open §17 receipt",
+  "triggers": ["starting session", "session open", "S0", "HANDOFF", "§17 receipt", "session opens"],
+  "model_tier": "Sonnet",
+  "required_artifacts": [
+    { "path": "docs/plan/_handoff/VAULT/OVERVIEW.md", "depth": "L1", "why": "current platform state" },
+    { "path": "docs/plan/_handoff/HANDOFF-S<NNN>-to-S<NNN+1>.md", "depth": "L1", "why": "session scope + §0 paste-target" },
+    { "path": "AGENTS.md", "depth": "L1", "why": "hard NOs + governance rules" }
+  ],
+  "mcp_queries": [
+    { "tool": "get_principle", "args": { "id": "P-META-006", "depth": "L1" }, "why": "ZF discipline — verify cycle at open" }
+  ],
+  "optional_artifacts": [
+    { "path": "docs/plan/_handoff/VAULT/closing-summary-S<NNN>.md", "depth": "L1", "trigger": "if prior-session state is unclear" }
+  ],
+  "estimated_token_cost_L1": 2500,
+  "estimated_token_cost_L2": 8000,
+  "phase": 9,
+  "template_status": "stable"
+}

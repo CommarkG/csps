@@ -1,0 +1,19 @@
+{
+  "task_class": "agent-spawn",
+  "description": "Class B subagent spawn — Explore/Plan/general-purpose; must include AAP preamble",
+  "triggers": ["spawn agent", "Agent(", "subagent", "delegate to", "Explore agent", "Plan agent"],
+  "model_tier": "Haiku",
+  "required_artifacts": [
+    { "path": "tools/templates/class-b-agent-spawn-preamble.template.md", "depth": "L1", "why": "T2.0/T2.1/T2.2/T2.3 spawn contract — mandatory for all Class B spawns" }
+  ],
+  "mcp_queries": [
+    { "tool": "get_principle", "args": { "id": "P-META-010", "depth": "L1" }, "why": "AAP 9-check — agent alignment before spawn" }
+  ],
+  "optional_artifacts": [
+    { "path": "docs/plan/pillar-0-governance/behavioral-contracts/B_AGENT_ALIGNMENT_PROTOCOL.md", "depth": "L1", "trigger": "novel agent spawn or non-standard work-class" }
+  ],
+  "estimated_token_cost_L1": 600,
+  "estimated_token_cost_L2": 2000,
+  "phase": 9,
+  "template_status": "stable"
+}

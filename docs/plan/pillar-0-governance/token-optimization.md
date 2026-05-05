@@ -405,13 +405,23 @@ S011 — PHASE 8 COMPLETE ✅ (principles-mcp build)
 ├── 8d. Build PASS ✅ — pnpm --filter @csps/principles-mcp build 0 errors; smoke test 53 principles indexed
 └── 8e. NOTE: PE.read_budget extension (EXT-004-C) DEFERRED to Phase 9 (depends on pe-compute.mjs which is Phase 9)
 
-S012 — PHASE 9 (Context-loading templates + measurement validator) — apply validator class structure
-├── 9a. validate-token-budget.mjs 5-mode per existing §9.10
-├── 9b. Apply 6-commitment validator class structure (EXT-002-A)
-├── 9c. Un-defer Phase 4d 10-scenario test (carry-forward from S007)
-├── 9d. Author schema-index.md (EXT-005-C Improvement #8 CSPS analog)
-├── 9e. corespine_layer_compliance extension for HUB depth markers (EXT-004-D Improvement #8)
-└── 9f. PE.read_budget extension (EXT-004-C; tools/pe-compute.mjs + pe-context-cache.json) — carry-forward from Phase 8
+S011/S012 — PHASE 9 (Context-loading templates + measurement validator) — PARTIAL S011
+├── 9a. validate-token-budget.mjs 5-mode per existing §9.10 — DEFERRED S012
+├── 9b. Apply 6-commitment validator class structure (EXT-002-A) — DEFERRED S012
+├── 9c. Un-defer Phase 4d 10-scenario test (carry-forward from S007) — DEFERRED S012
+├── 9d. Author schema-index.md (EXT-005-C Improvement #8 CSPS analog) — DEFERRED S012
+├── 9e. corespine_layer_compliance extension for HUB depth markers (EXT-004-D Improvement #8) — DEFERRED S012
+├── 9f. PE.read_budget extension (EXT-004-C; tools/pe-compute.mjs + pe-context-cache.json) — DEFERRED S012
+└── 9g. 8 context-loading task-class templates ✅ COMPLETED S011
+    ├── tools/templates/context-loading/session-open.json ✅
+    ├── tools/templates/context-loading/engraving.json ✅
+    ├── tools/templates/context-loading/qc-validation.json ✅
+    ├── tools/templates/context-loading/session-close.json ✅
+    ├── tools/templates/context-loading/pcr.json ✅
+    ├── tools/templates/context-loading/mcp-query.json ✅
+    ├── tools/templates/context-loading/agent-spawn.json ✅
+    ├── tools/templates/context-loading/frontmatter-authoring.json ✅
+    └── template-registry.md §6 added ✅
 
 S013 — PHASE 10 (Continuous validation) — ACTIVATE recurring disciplines  <!-- was S014 pre-S011 -->
 ├── 10a. Activate weekly tag-status-deep-audit hook (EXT-005 + S008 turn 8 5/5 atomic; activation = settings.json edit per Pattern G)

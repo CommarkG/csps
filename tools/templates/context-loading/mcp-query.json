@@ -1,0 +1,19 @@
+{
+  "task_class": "mcp-query",
+  "description": "Principle or contract lookup via MCP tools — minimal direct file loads needed",
+  "triggers": ["what does P-", "look up principle", "which principle", "check_reuse", "list principles", "find_by_spine"],
+  "model_tier": "Haiku",
+  "required_artifacts": [],
+  "mcp_queries": [
+    { "tool": "get_principle", "args": { "id": "<id>", "depth": "L1" }, "why": "default; escalate to L2 if counterweight needed" },
+    { "tool": "check_reuse", "args": { "description": "<proposed work>" }, "why": "P-OP-001 reuse-first check" }
+  ],
+  "optional_artifacts": [
+    { "path": "packages/principles/principles/<id>.yaml", "depth": "L3", "trigger": "L3 detail needed (config block, anti_patterns)" }
+  ],
+  "estimated_token_cost_L1": 200,
+  "estimated_token_cost_L2": 600,
+  "notes": "principles-mcp L1 queries are ~200 tokens each — prefer MCP over direct file reads for principles",
+  "phase": 9,
+  "template_status": "stable"
+}

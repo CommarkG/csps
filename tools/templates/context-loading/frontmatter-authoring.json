@@ -1,0 +1,20 @@
+{
+  "task_class": "frontmatter-authoring",
+  "description": "New governed artifact creation — frontmatter fields, closed-enums, template-first",
+  "triggers": ["new artifact", "create file", "Write tool", "frontmatter", "lifecycle_state", "maturity", "domain:", "type:"],
+  "model_tier": "Sonnet",
+  "required_artifacts": [
+    { "path": "tools/templates/governed-artifact-frontmatter.template.md", "depth": "L1", "why": "base template for all new governed artifacts" },
+    { "path": "docs/plan/pillar-0-governance/frontmatter-closed-enums.md", "depth": "L1", "why": "closed-enum values — consult BEFORE writing lifecycle/domain/type/maturity" }
+  ],
+  "mcp_queries": [
+    { "tool": "get_principle", "args": { "id": "P-META-015", "depth": "L1" }, "why": "template-first — load existing template before authoring" }
+  ],
+  "optional_artifacts": [
+    { "path": "docs/plan/pillar-0-governance/depth-discipline.md", "depth": "L1", "trigger": "artifact >300 lines projected — depth markers required" }
+  ],
+  "estimated_token_cost_L1": 1000,
+  "estimated_token_cost_L2": 3500,
+  "phase": 9,
+  "template_status": "stable"
+}

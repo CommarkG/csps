@@ -1,0 +1,17 @@
+{
+  "task_class": "pcr",
+  "description": "Pros/Cons/Recommendation rendering for multi-option decisions",
+  "triggers": ["should we", "X vs Y", "which option", "decide between", "options:", "alternatives", "PCR"],
+  "model_tier": "Sonnet",
+  "required_artifacts": [
+    { "path": "packages/principles/principles/P-OP-003.yaml", "depth": "L1", "why": "PCR principle — when to apply, counterweight" }
+  ],
+  "mcp_queries": [
+    { "tool": "get_principle", "args": { "id": "P-OP-003", "depth": "L1" }, "why": "PCR definition + counterweight (trivial-reversible skip)" }
+  ],
+  "optional_artifacts": [],
+  "estimated_token_cost_L1": 300,
+  "estimated_token_cost_L2": 800,
+  "phase": 9,
+  "template_status": "stable"
+}

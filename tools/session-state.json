@@ -1,36 +1,29 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-
   "current_session": "S012",
   "previous_session": "S011",
   "session_updated_at": "2026-05-06T09:05:00Z",
-
   "session_mandate": {
-    "primary": "Foundation slices L1 — User/Tenant/AuditEvent ZModel in libs/policies/slices/public/",
+    "primary": "Foundation slices L1 — User/Tenant/UserTenant/AuditEvent ZModel (VLT-S011-003 RESOLVED)",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "VLT-S011-003 (Governor decision required before any ZModel is written)"
+    "blocking_on": "VLT-S011-004 (Clerk org mapping — lower priority, can default to direct 1:1 initially)"
   },
-
   "blocking_decisions": [
-    {
-      "id": "VLT-S011-003",
-      "question": "User/Tenant relationship: 1:1 per app-instance OR 1:N (user spans multiple apps)?",
-      "context": "If 1:1 → User has tenantId FK. If 1:N → UserTenant join table.",
-      "needed_before": "Foundation slices L1 ZModel authoring",
-      "model_tier_required": "DEEP_REASONING",
-      "route_to": "COUNCIL_REVIEW",
-      "source": "docs/plan/_handoff/VAULT/topic-plans/foundation-slices.md"
-    },
     {
       "id": "VLT-S011-004",
       "question": "Clerk org → CSPS Tenant: direct 1:1 mapping or intermediate join table?",
       "needed_before": "Foundation slices L2 (Clerk wiring)",
       "model_tier_required": "DEEP_REASONING",
       "route_to": "VAULT_DEFER"
+    },
+    {
+      "id": "VLT-S011-003",
+      "status": "RESOLVED",
+      "decision": "1:N via UserTenant join table. User = person (Clerk identity). Tenant = product context. UserTenant = membership (userId + tenantId + role).",
+      "resolved_at": "2026-05-06T09:20:00Z"
     }
   ],
-
   "opus_review_pending": {
     "pending": true,
     "prompt_path": "docs/plan/_handoff/VAULT/opus-synthesis-prompt-S011.md",
@@ -39,7 +32,6 @@
     "compact_input_required": true,
     "max_input_tokens": 50000
   },
-
   "platform_state": {
     "pnpm_verify": "31 validators PASS exit_code 0",
     "complexity_score": 17.9,
@@ -50,9 +42,9 @@
     "sg_patterns": 2,
     "moat_elements": 18,
     "foundation_slices_built": false,
-    "apps_built": 0
+    "apps_built": 0,
+    "vlt_s011_003_resolved": true
   },
-
   "saas_build_arc": {
     "s012_a": {
       "mandate": "Resolve VLT-S011-003 + VLT-S011-004 (Governor decisions)",
@@ -85,7 +77,6 @@
       "unlocks": "production"
     }
   },
-
   "why_better_than_others": [
     "Governance baked into construction — not retrofitted after (18 moat elements)",
     "AI session quality tracked (EP-NNN learning — platform gets smarter after every failure)",
@@ -95,7 +86,6 @@
     "Model-tier-required in PE — optimal model for each task, not just one model for all",
     "The Threshold Gate — all inputs governed before processing"
   ],
-
   "next_session_auto_checks": [
     "pnpm verify --skip-install (confirm 31 PASS)",
     "node tools/validators/validate-session-artifact-sync.mjs (confirm 0 warnings)",

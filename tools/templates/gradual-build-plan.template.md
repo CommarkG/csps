@@ -124,6 +124,17 @@ VLT-<NNN>-001: <question>
 VLT-<NNN>-002: <question>
 ```
 
+**Q4 — Config hierarchy check (S014 canonical pattern — silent override):**
+"Does this plan touch any hierarchical configuration? (settings.json, tsconfig, ZModel extends, .env, GitHub Actions)"
+If YES: name every parent config and confirm ALL critical fields are EXPLICITLY declared at the child level.
+```
+Config: <name>
+Parent: <parent config path>
+Critical field: <field name>
+Explicitly declared at child level: yes / no
+```
+WHY: The S014 canonical instance — project settings.json had permissions{} without defaultMode. System used DEFAULT (not parent's value). Silent. Invisible. Every session ran with degraded governance. EXPLICIT OVER IMPLICIT in ALL config hierarchies.
+
 **Why this section exists:** The platform has infinite future situations. Rules enumerated for today's situations will not cover tomorrow's. The triad (context + principle + mechanical) is the only mechanism that scales. A plan that doesn't declare its triad for consequential decisions is a plan that will drift the moment a new situation appears. This section makes the governance architecture explicit — not as overhead, but as load-bearing structure.
 
 ---

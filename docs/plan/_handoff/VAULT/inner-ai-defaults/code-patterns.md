@@ -74,6 +74,44 @@ Code-shape inner defaults vs CSPS-aligned overrides. Promoted from continuous-dr
 - **status:** active
 - **discovered_in_session:** S006
 
+### code-config-silent-override
+- **default_pattern:** |
+    When creating a child configuration file in a hierarchy (user→project→local settings,
+    base→extended schemas), write the OBJECT that contains a critical field but don't
+    explicitly declare the field itself. Assume the parent value will be inherited.
+    
+    Example: write `"permissions": { "allow": [...] }` without `"defaultMode"`.
+    The system uses defaultMode's DEFAULT (not the parent's value) — silently.
+    AI never notices. User sees unexpected behavior with no obvious cause.
+    
+    This is the same pattern as: extending a class but not calling super() for a critical
+    method, or using tsconfig but not declaring paths, or using .env without DIRECT_URL.
+    
+- **csps_aligned_pattern:** |
+    EXPLICIT OVER IMPLICIT — every critical field must be explicitly declared at
+    the level where it matters. When creating any hierarchical config:
+    (1) Identify parent-level configs and their critical fields
+    (2) Explicitly copy critical fields to child level with values
+    (3) Add comment: "explicit — not relying on parent inheritance"
+    (4) Verify by reading ONLY the child config: does it stand alone?
+    
+    For .claude/settings.json: if permissions object exists → defaultMode must be explicit.
+    For tsconfig.json: if paths partial exists → @csps/integrations must be explicit.
+    For ZModel models: if extends Base → @@allow/@@deny must be explicit per model.
+    
+- **disposition:** override
+- **reason:** S014 canonical instance — user-level bypassPermissions silently overridden by
+    project-level permissions{} without defaultMode. Caused permission prompts across the
+    entire CSPS project. Root cause: AI (and developers) assume "child inherits from parent"
+    but config systems use "child field = system default when field missing."
+    The triad context for this pattern: loading the ARCH L2 config domain reveals that
+    "inheritance" in config hierarchies is ADDITIVE (child adds fields) not OVERRIDE
+    (child inherits parent values). This is counterintuitive and must be explicitly known.
+- **caught_by_validator:** config-inheritance-gaps (registered S014; impl deferred week-4)
+- **conceptual_sample_of:** ARCH L2 data/config domain — hierarchical config structure
+- **status:** active (K=1 in drift-log; promoted to code-patterns.md at K=2)
+- **discovered_in_session:** S014
+
 ## How to add new entries
 
 See [parent README §"How to add a new entry"](./README.md#how-to-add-a-new-entry).

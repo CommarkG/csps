@@ -43,6 +43,98 @@ append_only: true
 
 ## Entries (newest first)
 
+### S014 — 2 new patterns from settings + navigation discoveries (user-surfaced + AI-confirmed)
+
+```yaml
+- id: config-silent-override
+  observed_at: 2026-05-07T00:00:00Z
+  observed_by: user-surfaced + AI-confirmed
+  category: code
+  default_pattern: |
+    In any hierarchical configuration system (user→project→local settings,
+    base→extended schemas, parent→child configs), a child that EXISTS but
+    does not EXPLICITLY declare a field causes the system to use the FIELD'S
+    DEFAULT VALUE — NOT the parent's value. This is invisible: no warning,
+    no error, no indication. The parent's careful setting is silently discarded.
+    
+    Canonical example (S014): ~/.claude/settings.json had defaultMode:
+    bypassPermissions. Project .claude/settings.json had a permissions{} object
+    but no defaultMode field. Result: every session used defaultMode:"default"
+    (the system default) — not "bypassPermissions". Caused permission prompts
+    across the entire CSPS project despite explicit user-level bypass.
+    
+    Pattern recurs in: tsconfig paths, Prisma schema inheritance, ZModel
+    @@allow policies, environment variables, Next.js config, GitHub Actions
+    workflows, database connection configs.
+  csps_aligned_pattern: |
+    EXPLICIT OVER IMPLICIT: every critical field must be explicitly declared
+    at the level where it matters, never assumed inherited. When creating any
+    hierarchical configuration:
+    (1) Enumerate which parent fields are critical
+    (2) Explicitly copy them to child level
+    (3) Add comment: "explicitly set — not inherited from parent level"
+    (4) Verify by reading the CHILD config in isolation (what does it say?)
+    
+    For settings.json: any permissions subobject needs ALL relevant fields.
+    For ZModel: any model that extends Base needs to explicitly declare
+    its @allow policies — inheritance from Base is field-only, not policy.
+    For tsconfig: each app needs its own paths declaration.
+  k_count: 1
+  promotion_status: pending (K=2 → promoted to code-patterns.md)
+  session: S014
+  root_principle_violation: P-META-021 (triad — silent overrides create
+    invisible single-layer governance; the context "I set this in parent" is
+    not carried to the mechanical layer which reads only the child)
+  structural_fix_proposed: validate-config-inheritance-gaps.mjs (future)
+    pre-tool-use check: when writing a config file that has a parent, verify
+    ALL critical parent fields are explicitly present in the child
+
+- id: reasoning-single-source-navigation
+  observed_at: 2026-05-07T00:00:00Z
+  observed_by: user-surfaced + AI-confirmed
+  category: reasoning
+  default_pattern: |
+    When deciding the next action for a consequential decision, AI reads ONE
+    authoritative-seeming signal and navigates from it alone. The signal feels
+    complete. No secondary check is made.
+    
+    Canonical example (S014): AI reads session-state.json → sees "current_level: L4"
+    → proposes Phase 5. This felt correct. The single source (session-state) said
+    "Phase 5 is next." But three other signals were not consulted:
+    (1) VLT status: 5 PENDING VLTs blocking Phase 5
+    (2) validate-open-plan-levels: open items present
+    (3) PE re-assessment: priority ordering not confirmed
+    
+    The satisfaction point fires at "I found an authoritative source" rather than
+    at "I've confirmed from multiple independent sources." This is a variant of
+    reasoning-premature-completion-claim but at the NAVIGATION layer, not the
+    completion-claim layer.
+  csps_aligned_pattern: |
+    For CONSEQUENTIAL decisions (P-META-021), navigate from MULTIPLE independent
+    signals, not a single source:
+    (1) What does session-state.json say? (planned sequence)
+    (2) What do PENDING VLTs say? (unresolved blockers)
+    (3) What does open-plan-levels say? (open obligations)
+    (4) What does PE scoring say? (current priority)
+    
+    All four signals must be consulted AND MUST AGREE before proposing advance.
+    Disagreement between any two signals = consequential decision requiring
+    Governor input, not autonomous AI navigation.
+    
+    The Q5 from the 10 decision hygiene questions (session-open.sh) specifically
+    addresses this: "Is my next step based on PE scoring or on reading the
+    session-state sequence?"
+  k_count: 1
+  promotion_status: pending (K=2 → promoted to reasoning-patterns.md)
+  session: S014
+  root_principle_violation: P-META-021 (single-layer reliance —
+    using only CONTEXT layer without PRINCIPLE check and MECHANICAL verification)
+  structural_fix_proposed: post-tool-use-zf-level-gate.sh already addresses this
+    at phase boundaries by requiring Level 2 ZF which includes PE re-assessment.
+    The gap is that session-state.json mandate is a STRONG SIGNAL that satisfies
+    the AI before it checks secondary signals.
+```
+
 ### S014 — 2 new reasoning patterns (AI-self-detection + user-surfaced)
 
 ```yaml

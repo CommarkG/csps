@@ -41,7 +41,24 @@ links:
 > are NOMINAL until validated by the cycles in this section. Empty section = AGENTS.md violation
 > + closing summary INCOMPLETE.**
 
-Run `pnpm verify` (orchestrator at `tools/verify.mjs`). Capture stdout. Paste structured output here:
+Run `pnpm zf:deep` (ZF Orchestrator Level 3 at `tools/zf-orchestrator.mjs`). Per P-META-021: EVERY ZF report MUST include iteration count — it is the measurement of work richness, not overhead. Paste cycle count + final status + tools/zf-session-tracker.json summary here:
+
+```yaml
+zf_orchestrator_evidence:
+  ran_at: <iso8601-utc>
+  level: 3 (DEEP — required at session close)
+  total_verify_iterations_this_session: <from tools/zf-session-tracker.json verify_runs>
+  orchestrator_cycles: <number of orchestrator cycles>
+  final_status: ZF_ACHIEVED | ZF_ACHIEVED_WITH_ADVISORIES | BLOCKING_REMAINS
+  blocking_count: 0  # must be 0 to close session
+  advisory_count: <N>  # advisory items are tracked obligations
+  WHY_ITERATION_COUNT_MANDATORY: |
+    The iteration count proves real ZF vs nominal ZF. Zero iterations = the AI ran verify
+    once and moved on. N iterations = the platform was checked from multiple directions
+    until genuinely clean. Hiding the count = hiding the quality of the ZF work.
+```
+
+Also run `pnpm verify` standalone and paste below:
 
 ```yaml
 pre_close_verification:

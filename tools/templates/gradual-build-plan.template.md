@@ -139,8 +139,10 @@ VLT-<NNN>-002: <question>
 **Exit criteria (L1 → L2 gate):**
 - [ ] All N foundation files created + frontmatter PASS
 - [ ] Cross-link integrity check (all `links:` resolve)
-- [ ] `pnpm verify` exit_code 0
+- [ ] `pnpm zf:phase` — ZF Orchestrator Level 2 achieved (iteration count recorded in tools/zf-session-tracker.json)
 - [ ] [other criteria specific to topic]
+
+> **Per P-META-021:** `pnpm zf:phase` not `pnpm verify`. The difference: Level 2 runs pnpm verify PLUS instruction-context + extraction check + PE re-assessment. A level that only passes `pnpm verify` (Level 1) has not been properly ZF-checked. Every level boundary is a CONSEQUENTIAL decision requiring the full triad.
 
 ### §2 Foundation composition (Level 2) — depends on: L1
 

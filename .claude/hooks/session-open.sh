@@ -23,6 +23,16 @@ const fs = require('fs');
 const {join} = require('path');
 const ROOT = process.argv[1];
 
+// Read ZF tracker if exists
+let zfIterations = 0, zfBlockingTotal = 0, zfOrchestratorCycles = 0, zfLastStatus = 'not-run';
+try {
+  const t = JSON.parse(fs.readFileSync(join(ROOT, 'tools/zf-session-tracker.json'), 'utf8'));
+  zfIterations = t.verify_runs || 0;
+  zfBlockingTotal = t.blocking_found_total || 0;
+  zfOrchestratorCycles = t.orchestrator_cycles || 0;
+  zfLastStatus = t.orchestrator_last_status || 'not-run';
+} catch(e) { /* no tracker yet */ }
+
 // Read session state
 let session = '?', mandate = 'unknown', blocking = 'NONE', verifyState = 'unknown';
 try {
@@ -55,6 +65,11 @@ const context = [
   '  Blocking: ' + blocking,
   '  Platform verify: ' + verifyState,
   '  Open plan levels: ' + openLevels,
+  '',
+  'ZF ITERATION TRACKER (this session — measurement of work richness):',
+  '  verify_runs: ' + zfIterations + ' | blocking_found_total: ' + zfBlockingTotal,
+  '  orchestrator_cycles: ' + zfOrchestratorCycles + ' | last_status: ' + zfLastStatus,
+  '  Per P-META-021: iteration count is MEASUREMENT. 0 iterations = no ZF work done yet.',
   '',
   'CONCEPT-FIRST ACTIVATION PROTOCOL (P-META-020 — non-negotiable):',
   'Before processing ANY request this session, identify the governing L2 spine:',

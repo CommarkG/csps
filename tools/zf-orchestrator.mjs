@@ -212,6 +212,18 @@ async function main() {
   console.log(`  This work required ${cycle} cycle(s). Cycle cost: minutes. Skipped finding cost: sessions.`);
   console.log('═'.repeat(60));
 
+  // Write orchestrator results to session tracker
+  try {
+    const trackerPath = join(ROOT, 'tools/zf-session-tracker.json');
+    const { readFileSync: rfs, writeFileSync: wfs } = await import('node:fs');
+    const tracker = JSON.parse(rfs(trackerPath, 'utf8'));
+    tracker.orchestrator_cycles = (tracker.orchestrator_cycles || 0) + cycle;
+    tracker.orchestrator_last_level = LEVEL;
+    tracker.orchestrator_last_status = finalBlocking === 0 ? 'ZF_ACHIEVED' : 'BLOCKING_REMAINS';
+    tracker.warn_found_total = (tracker.warn_found_total || 0) + allFindingsTotal;
+    wfs(trackerPath, JSON.stringify(tracker, null, 2));
+  } catch(e) { /* non-fatal */ }
+
   process.exit(finalBlocking > 0 ? 1 : 0);
 }
 

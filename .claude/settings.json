@@ -29,6 +29,7 @@
       {
         "matcher": "Write",
         "hooks": [
+          {"type": "command", "command": ".claude/hooks/pre-tool-use-plan-coverage-gate.sh"},
           {"type": "command", "command": ".claude/hooks/pre-tool-use-frontmatter-enum-check.sh"},
           {"type": "command", "command": ".claude/hooks/pre-tool-use-skill-aap-required.sh"},
           {"type": "command", "command": ".claude/hooks/depth-marker-creation-gate.sh"}
@@ -37,6 +38,7 @@
       {
         "matcher": "Edit",
         "hooks": [
+          {"type": "command", "command": ".claude/hooks/pre-tool-use-plan-coverage-gate.sh"},
           {"type": "command", "command": ".claude/hooks/pre-tool-use-frontmatter-enum-check.sh"},
           {"type": "command", "command": ".claude/hooks/depth-marker-creation-gate.sh"}
         ]

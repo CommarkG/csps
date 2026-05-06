@@ -142,6 +142,15 @@ const CYCLES = [
     parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
   },
   {
+    // NEW S011 §24++++ B_KNOW_HOW_DISCIPLINE — plans session ≥ S011 have §KH consultation
+    name: 'plan_know_how',
+    command: 'node tools/validators/validate-plan-know-how.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+grandfathered=(\d+)\s+errors=(\d+)/);
+      return m ? { checked: Number(m[1]), grandfathered: Number(m[2]), errors: Number(m[3]) } : {};
+    },
+  },
+  {
     // NEW S011 unified-intake L3 — source-class coverage: all 4 source classes have normalizers
     name: 'intake_source_class_coverage',
     command: 'node tools/validators/validate-source-class-coverage.mjs',

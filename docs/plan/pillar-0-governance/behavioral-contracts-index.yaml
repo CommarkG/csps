@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 39
+  total_count: 40
   generated_at: '2026-05-05'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -131,3 +131,6 @@ contracts:
   - id: B_SAVINGS_AND_SSOT_UNIFIED
     desc: "savings and SSoT are the same discipline"
     path: ./behavioral-contracts/B_SAVINGS_AND_SSOT_UNIFIED.md
+  - id: B_KNOW_HOW_DISCIPLINE
+    desc: "every plan consults the know-how registry"
+    path: ./behavioral-contracts/B_KNOW_HOW_DISCIPLINE.md

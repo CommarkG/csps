@@ -44,6 +44,7 @@ const KNOWN_MAPPINGS = {
   'validate-corespine-depth-markers': ['corespine-hub-depth-markers', 'corespine_depth_markers'],
   'validate-audit-slug-coverage': ['audit-slug-coverage', 'validator-to-audit-slug-orphan-detection'],
   'validate-topic-plan-progress': ['topic-plan-progress', 'topic_plan_progress'],
+  'validate-plan-know-how': ['plan-know-how', 'plan_know_how', 'know-how-consultation'],
   'validate-git-pushed-state': ['git-pushed-state', 'git_pushed_state'],
   'validate-intake-event': ['intake-event-schema-validation', 'intake-event', 'intake_event_validate'],
   'validate-source-class-coverage': ['intake-source-class-coverage', 'source-class-coverage', 'intake_source_class_coverage'],

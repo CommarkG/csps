@@ -1,7 +1,7 @@
 ---
 id: csps.pillar-0-governance.plan-creation-protocol
 name: plan-creation-protocol
-description: Canonical protocol for how plans get created in CSPS — single-session tasks / multi-session topic-plans / element-reviews / closing-summaries / handoffs. Defines triggers + types + 5-step creation flow + multi-session-plan specifics + composition with existing disciplines + mechanical enforcement. Required reading for any AI/Governor authoring a new plan; referenced from every plan instance via the "Context-Loss Prevention Checklist" section per S008 turn 12 directive.
+description: "Canonical protocol for how plans get created in CSPS — single-session tasks / multi-session topic-plans / element-reviews / closing-summaries / handoffs. Defines triggers + types + 6-step creation flow (Step 6 = mandatory know-how consultation added S011) + multi-session-plan specifics + composition with existing disciplines + mechanical enforcement. Required reading for any AI/Governor authoring a new plan."
 version: 1.0
 owner: group:finky
 lifecycle: production
@@ -114,6 +114,24 @@ For plans that introduce/amend principles/contracts/leaves:
 
 For plans that DON'T introduce constitutional changes:
 - Skip Step 5 explicitly with note ("no engraving — operational plan only")
+
+### Step 6 — Know-How Consultation (per B_KNOW_HOW_DISCIPLINE — MANDATORY)
+
+**Added S011 §24++++ after discovering that plans were declared "done" with gaps because IMPLICIT requirements (audit slug registration, artifact propagation, smoke testing, orphan prevention) were never explicit.**
+
+Every plan MUST include a `## §KH Know-How Consultation` section in the plan body with SPECIFIC mitigations for each item in [know-how/checklists/pre-plan-creation.md](../_handoff/VAULT/know-how/checklists/pre-plan-creation.md).
+
+**Required elements in §KH section:**
+1. **Orphan prevention** — how this plan's L1 artifacts will be detected if not built (→ EP-002)
+2. **Implicit deliverables list** — audit slugs, slice regenerations, HANDOFF §B4 updates (→ EP-003)
+3. **Validator authoring checklist** — each new validator's 3-step (file + verify + slug) (→ EP-003)
+4. **Artifact propagation scope** — which HANDOFF/closing-summary sections will be updated at closure (→ EP-001)
+5. **Smoke test commands** — concrete `node <file> [args]` for each new .mjs (→ EP-006)
+6. **Persistent warning baseline** — run pnpm verify; list any warnings; fix or LEGACY_YELLOW (→ EP-005)
+
+**Skip condition:** single-turn trivial operational plans only (e.g., fixing a typo). Any plan that ships code/validators/governance artifacts MUST have §KH.
+
+**Mechanical enforcement:** `validate-plan-know-how.mjs` (in pnpm verify) — plans authored session ≥ S011 without §KH section or `know_how_consulted: true` = FAIL.
 
 ## §4 — Multi-session plan specifics (extends gradual-build-plan template)
 

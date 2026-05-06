@@ -6,7 +6,11 @@
 // intermediate join table until flexibility is proven necessary (P-OP-003).
 //
 // Stripe integration: stripeCustomerId populated in S013 (billing wiring).
+// Billing status: subscriptionStatus tracks free/paid tier per VLT-S015-002.
 // Hard delete forbidden per P-ARCH-007.
+//
+// VLT-S015-002 resolved: subscriptionStatus = free|trialing|active|cancelled (4 values).
+// Billing trigger: status changes when 2nd UserTenant joins (VLT-S014-005 free→paid).
 //
 // Source of truth: libs/policies/slices/public/foundation-design.md §VLT-S011-004
 // ============================================================================
@@ -23,11 +27,19 @@ import "../base"
   lifecycle_state: "active"
 )
 
+enum TenantSubscriptionStatus {
+  free        // solo use — free forever (VLT-S014-005)
+  trialing    // 14-day trial when 2nd member joins before paying
+  active      // paid — 2+ members, Stripe subscription active
+  cancelled   // was paid, now cancelled; read-only until reactivated
+}
+
 model Tenant extends Base {
-  slug             String   @unique                   // URL-safe identifier (e.g. "acme-corp")
-  name             String
-  clerkOrgId       String?  @unique                   // VLT-S011-004: direct Clerk org → Tenant 1:1
-  stripeCustomerId String?                            // Stripe billing (wired in S013)
+  slug                 String                    @unique
+  name                 String
+  clerkOrgId           String?                   @unique  // VLT-S011-004: direct 1:1
+  stripeCustomerId     String?                            // S013 billing wiring
+  subscriptionStatus   TenantSubscriptionStatus  @default(free)  // VLT-S015-002
 
   members          UserTenant[]
 

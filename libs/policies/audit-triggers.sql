@@ -151,3 +151,26 @@ CREATE POLICY no_direct_write ON audit.events FOR ALL
 -- - audit-log-integrity check (>5min gap = P0 — runbooks.md)
 -- - Per-table @@audit ZModel codegen → CREATE TRIGGER batch on migration
 -- =============================================================================
+
+-- =============================================================================
+-- VLT-S015-004 RESOLUTION (Governor ratified 2026-05-06):
+-- AuditEvent for Clerk webhook events (user.created, org.created, membership.created)
+--
+-- DECISION: Postgres trigger on User/Tenant/UserTenant INSERT (Option B).
+-- INTERIM: Auth events tracked in Clerk's own audit log until ZenStack installs
+--   generate per-table triggers via @@audit annotations.
+-- DEFERRED: trigger DDL for User/Tenant/UserTenant INSERT ships when ZenStack
+--   is installed and `zenstack generate` can emit typed triggers.
+--
+-- WHY trigger not app code (P-ARCH-008): app code in webhook-handler.ts creates
+-- a pattern copied to all 30 future apps. Trigger covers any insert source
+-- (webhook, admin, migration) and cannot be bypassed by careless app code.
+--
+-- WHEN READY: uncomment and run after `zenstack generate`:
+-- CREATE TRIGGER audit_user_insert AFTER INSERT ON public."User"
+--   FOR EACH ROW EXECUTE FUNCTION audit.record_change();
+-- CREATE TRIGGER audit_tenant_insert AFTER INSERT ON public."Tenant"
+--   FOR EACH ROW EXECUTE FUNCTION audit.record_change();
+-- CREATE TRIGGER audit_user_tenant_insert AFTER INSERT ON public."UserTenant"
+--   FOR EACH ROW EXECUTE FUNCTION audit.record_change();
+-- =============================================================================

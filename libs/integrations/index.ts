@@ -7,6 +7,8 @@
 export { handleClerkWebhook } from './clerk/webhook-handler'
 export type { CspsDb } from './clerk/webhook-handler'
 export type { ClerkWebhookEvent } from './clerk/types'
+export { buildSessionClaims } from './clerk/session-context'
+export type { CspsSessionClaims } from './clerk/session-context'
 
 export { createStripeCustomer, buildTenantBillingHook, NullBillingHook } from './stripe/customer-service'
 export type { StripeClient } from './stripe/customer-service'

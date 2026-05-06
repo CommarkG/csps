@@ -12,43 +12,38 @@
   "blocking_decisions": [
     {
       "id": "VLT-S015-001",
-      "status": "PENDING",
-      "question": "User.tenantId set mechanism — partial fix applied (set at org creation via webhook). Full mechanism: Clerk JWT custom claim for existing users who login to existing orgs. How to sync JWT claim → DB on login?",
-      "blocks": "Phase 5 multi-tenant page rendering for users who didn't just create an org",
-      "discovered_at": "2026-05-06T19:25:00Z",
-      "discovered_by": "cruel-critic Phase 4 ZF iteration"
+      "status": "RESOLVED",
+      "decision": "Option A: Clerk JWT custom claim. tenantId embedded in session token at login. Pattern in libs/integrations/clerk/session-context.ts (buildSessionClaims + CspsSessionClaims type). Zero DB lookup per request. Full wiring at Phase 5 app route.",
+      "resolved_at": "2026-05-06T20:47:00Z",
+      "ratified_by": "Governor"
     },
     {
       "id": "VLT-S015-002",
-      "status": "PENDING",
-      "question": "Tenant.subscriptionStatus field — enum values? free | trialing | active | cancelled. Where in schema? Needed for VLT-S014-005 billing trigger implementation.",
-      "blocks": "Phase 5 billing UI + free/paid gating",
-      "discovered_at": "2026-05-06T19:25:00Z",
-      "discovered_by": "cruel-critic Phase 4 ZF iteration"
+      "status": "RESOLVED",
+      "decision": "Option A: 4 values — free|trialing|active|cancelled. Added to tenant.zmodel + Prisma schema. Default: free. Billing trigger: status updates when Stripe subscription created (2nd UserTenant join per VLT-S014-005).",
+      "resolved_at": "2026-05-06T20:47:00Z",
+      "ratified_by": "Governor"
     },
     {
       "id": "VLT-S015-003",
-      "status": "PENDING",
-      "question": "Connection pooling strategy for Vercel serverless + Prisma. PgBouncer (self-hosted) vs Supabase transaction mode vs Prisma Accelerate vs pgbouncer flag in DATABASE_URL?",
-      "blocks": "Phase 5 production deployment — connection exhaustion without pooling",
-      "discovered_at": "2026-05-06T19:25:00Z",
-      "discovered_by": "cruel-critic Phase 4 ZF iteration"
+      "status": "RESOLVED",
+      "decision": "Option A: Supabase Supavisor transaction mode. DATABASE_URL uses pooler endpoint with ?pgbouncer=true&connection_limit=1. DIRECT_URL bypasses pooler for migrations. Documented in apps/sandbox/.env.example.",
+      "resolved_at": "2026-05-06T20:47:00Z",
+      "ratified_by": "Governor"
     },
     {
       "id": "VLT-S015-004",
-      "status": "PENDING",
-      "question": "AuditEvent for Clerk webhook events (user.created, org.created, membership.created) — should these be written as AuditEvents? P-ARCH-008 says triggers not app code, but these are sync events. Pattern: write AuditEvent from webhook handler?",
-      "blocks": "Phase 5 session-based metrics from L2 goals/personas plan",
-      "discovered_at": "2026-05-06T19:25:00Z",
-      "discovered_by": "cruel-critic Phase 4 ZF iteration"
+      "status": "RESOLVED",
+      "decision": "Option B (Postgres trigger) deferred until ZenStack install. Interim: Clerk's own audit log covers auth events. Trigger DDL documented in libs/policies/audit-triggers.sql (commented, ready to uncomment).",
+      "resolved_at": "2026-05-06T20:47:00Z",
+      "ratified_by": "Governor"
     },
     {
       "id": "VLT-S015-005",
-      "status": "PENDING",
-      "question": "Path alias strategy for cross-workspace imports. libs/integrations/index.ts barrel created. Add @csps/integrations to all consuming app tsconfigs? Or make it an npm workspace package (@csps/integrations)?",
-      "blocks": "Phase 5 import hygiene — 6-level relative imports in all future apps",
-      "discovered_at": "2026-05-06T19:25:00Z",
-      "discovered_by": "synergy-master CSEP-S014-001 RANK 2"
+      "status": "RESOLVED",
+      "decision": "Option A: tsconfig paths alias. apps/sandbox/tsconfig.json updated with @csps/integrations → ../../libs/integrations/index.ts. Each new app adds same alias. libs/integrations/index.ts barrel is the canonical export.",
+      "resolved_at": "2026-05-06T20:47:00Z",
+      "ratified_by": "Governor"
     },
     {
       "id": "VLT-S014-002",

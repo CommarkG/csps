@@ -42,16 +42,25 @@ model User {
   comments        TaskComment[] @relation("TaskCommentAuthor")
 }
 
-model Tenant {
-  id               String    @id @default(uuid())
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  deletedAt        DateTime?
+// VLT-S015-002 resolved: 4-value subscription status enum
+enum TenantSubscriptionStatus {
+  free
+  trialing
+  active
+  cancelled
+}
 
-  slug             String    @unique
-  name             String
-  clerkOrgId       String?   @unique
-  stripeCustomerId String?
+model Tenant {
+  id                   String                    @id @default(uuid())
+  createdAt            DateTime                  @default(now())
+  updatedAt            DateTime                  @updatedAt
+  deletedAt            DateTime?
+
+  slug                 String                    @unique
+  name                 String
+  clerkOrgId           String?                   @unique
+  stripeCustomerId     String?
+  subscriptionStatus   TenantSubscriptionStatus  @default(free)
 
   members          UserTenant[]
   projects         Project[]

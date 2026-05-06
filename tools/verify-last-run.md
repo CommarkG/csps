@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T20:44:28.294Z
-- finished_at: 2026-05-06T20:44:34.379Z
+- ran_at: 2026-05-06T20:51:17.112Z
+- finished_at: 2026-05-06T20:51:22.953Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T20:44:28.294Z",
-    "finished_at": "2026-05-06T20:44:34.379Z",
+    "ran_at": "2026-05-06T20:51:17.112Z",
+    "finished_at": "2026-05-06T20:51:22.953Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -199,10 +199,7 @@
         "command": "node tools/validators/validate-vlt-blocking.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
-        "vlt_total": 9,
-        "pending": 5,
-        "resolved": 4
+        "duration_seconds": 0.1
       },
       {
         "name": "instruction_context",
@@ -274,7 +271,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },

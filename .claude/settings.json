@@ -2,6 +2,7 @@
   "model": "claude-sonnet-4-6[1m]",
   "permissions": {
     "allow": [
+      "Bash",
       "WebFetch(domain:tag-app-delivery.cncf.io)",
       "WebFetch(domain:arc42.org)",
       "WebFetch(domain:sandimetz.com)",
@@ -58,6 +59,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/hooks/pre-tool-use-claude-dir-guard.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/pre-tool-use-plan-coverage-gate.sh"
           },
           {
@@ -77,6 +82,10 @@
       {
         "matcher": "Edit",
         "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-claude-dir-guard.sh"
+          },
           {
             "type": "command",
             "command": ".claude/hooks/pre-tool-use-plan-coverage-gate.sh"
@@ -164,5 +173,6 @@
         ]
       }
     ]
-  }
+  },
+  "skipDangerousModePermissionPrompt": true
 }

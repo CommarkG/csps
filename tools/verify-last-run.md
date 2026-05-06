@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T22:37:25.672Z
-- finished_at: 2026-05-06T22:37:35.312Z
+- ran_at: 2026-05-06T22:42:16.794Z
+- finished_at: 2026-05-06T22:42:26.516Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T22:37:25.672Z",
-    "finished_at": "2026-05-06T22:37:35.312Z",
+    "ran_at": "2026-05-06T22:42:16.794Z",
+    "finished_at": "2026-05-06T22:42:26.516Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3.2,
+        "duration_seconds": 2.8,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -86,7 +86,7 @@
         "command": "node tools/validators/validate-behavioral-contract-slices.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "source_contracts": 44,
         "missing_slices": 0
       },
@@ -95,7 +95,7 @@
         "command": "node tools/validators/validate-principle-slices.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "source_ids": 55,
         "missing_slices": 0
       },
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.3
       },
       {
         "name": "model_tier_currency",
@@ -140,7 +140,7 @@
         "command": "node tools/validators/validate-council-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "universal_alignment",
@@ -155,14 +155,14 @@
         "command": "node tools/validators/validate-import-quarantine.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "nothing_stands_alone",
         "command": "node tools/validators/validate-nothing-stands-alone.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "moat_coverage",
@@ -179,7 +179,7 @@
         "command": "node tools/validators/validate-impl-status.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "checked": 61,
         "with_status": 9,
         "warnings": 0
@@ -206,8 +206,8 @@
         "command": "node tools/validators/validate-instruction-context.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
-        "checked": 108,
+        "duration_seconds": 0.2,
+        "checked": 109,
         "missing_why": 29
       },
       {
@@ -215,7 +215,7 @@
         "command": "node tools/validators/validate-open-plan-levels.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "plans_checked": 10,
         "plans_with_open": 7,
         "total_open_items": 111

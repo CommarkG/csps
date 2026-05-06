@@ -156,3 +156,40 @@ Per platform-maturation-plan.md WS-5 and tools/model-tier-registry.yaml:
 | Competitor research | EXTERNAL_RESEARCH (MCP) | External knowledge required |
 
 Every plan must now include `model_tier_required: STANDARD_BUILD | DEEP_REASONING | MECHANICAL_SCAN` per work item — this is the PE formula extension for S012.
+
+## §9 — Code intent seeds (planting AI context in code)
+
+**The insight (S011 user directive):** Even if the to-do list isn't updated, intent should be planted in the CODE itself so any future AI or developer can understand WHY this code exists and what it unlocks.
+
+**The @csps-intent annotation convention:**
+
+```typescript
+// @csps-intent: User.clerkId enables Clerk webhook to find/create users on org join
+// @csps-unlocks: S013 webhook handler + Clerk-Tenant mapping
+// @csps-session: S012
+// @csps-decision: VLT-S011-004
+```
+
+These are machine-readable intent seeds that travel with the code:
+- **@csps-intent**: WHY this code exists
+- **@csps-unlocks**: what future work this enables
+- **@csps-session**: which session authored this
+- **@csps-decision**: which VLT or blocking decision this implements
+
+**Why this is a moat element:**
+Other platforms have code comments. CSPS has GOVERNANCE-LINKED intent annotations. The annotations connect code to the decision registry (VLT-S011-*), the session record (S012), and the future work it enables. When S014 opens, it can grep for `@csps-unlocks: S014` and instantly know what S012 built for it.
+
+**Mechanical enforcement:**
+- validate-code-intent-coverage.mjs (future): checks new ZModel files have @csps-intent annotations
+- The annotations are searchable: `grep -r "@csps-intent" libs/policies/`
+- They don't require a registry — they live in the code and travel forever
+
+## §10 — EP-015: The Satisfaction Point (platform-agnostic AI default)
+
+Added to know-how/error-patterns/EP-015-satisfaction-point.md.
+
+**The satisfaction point** = when AI decides "it's done" based on APPEARANCE of completion, not ZF evidence. Platform-agnostic — fires in Claude, GPT, Gemini, Lovable, Bolt, Make.
+
+The 5 triggers: output length / happy path done / context pressure / positive signals / complexity avoidance.
+
+Mechanical prevention: validate-rzf-evidence.mjs + AGENTS.md "never completeness theater" + pre-plan-close.md checklist.

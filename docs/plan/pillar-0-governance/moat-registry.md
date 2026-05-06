@@ -35,6 +35,30 @@ links:
 
 > **The definitive list of what makes CSPS non-replicable.** Every moat element has a recurring audit. Every audit has a cadence. Every cadence has mechanical enforcement. No moat element is unchecked.
 
+## §0 — Moat element schema (like all CSPS schemas — structure before content)
+
+Every moat element MUST declare these fields (schema-aligned per CSPS DNA):
+
+```yaml
+moat_element:
+  id: M-NN                           # sequential, permanent
+  name: string                       # canonical name (kebab-case noun phrase)
+  unique_because: string             # one sentence: what no other platform does
+  ring: 1 | 2 | 3 | 4               # which organism ring (session / construction / schema / vocabulary)
+  dimension: think | plan | implement | validate | cross-cutting
+  active_validators: [slug, ...]     # pnpm verify cycles covering this element
+  cadence: every-session | weekly | monthly | quarterly
+  csep_status: pending | active | integrated | not-applicable
+  first_engraved: S<NNN>             # session when this was first formalized
+  platform_agnostic: true | false    # does this apply to non-Claude AI systems?
+  model_tier_for_audit: STANDARD_BUILD | DEEP_REASONING | MECHANICAL_SCAN
+```
+
+**Why schema-aligned:** The moat is the platform's core competitive asset. Treating it as a typed schema means:
+- Validators can check moat elements have all required fields
+- The moat can be queried by dimension, ring, or cadence
+- New moat elements follow the same discipline as all other governed artifacts
+
 ## §1 — The moat registry table
 
 | # | Moat element | Unique because | Active validators | Cadence | CSEP status |

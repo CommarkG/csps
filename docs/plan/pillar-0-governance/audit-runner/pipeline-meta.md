@@ -69,3 +69,4 @@
 | `nothing-stands-alone` | PR | warn advisory | NEW S011 §24++: P-ARCH-001 — every artifact has core_spine + schema_anchor. 43 pre-S006 backfill S012. **Registered. Build ACTIVE advisory (validate-nothing-stands-alone.mjs).** |
 | `council-coverage` | PR + per-session | error | NEW S011: 24 skills all in council-registry.md. **ACTIVE (validate-council-coverage.mjs).** |
 | `universal-alignment` | pre-commit | warn | NEW S011: universal pre-alignment gate. **ACTIVE (validate-universal-alignment.mjs).** |
+| `audit-health` | per-session | warn | NEW S011: THE AUDITOR OF AUDITORS — meta-audit of the audit mechanism. **ACTIVE (validate-audit-health.mjs).** |

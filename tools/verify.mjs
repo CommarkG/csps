@@ -142,6 +142,15 @@ const CYCLES = [
     parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
   },
   {
+    // NEW S011 §24+++++++++++ — audit-health: meta-audit of the audit mechanism itself
+    name: 'audit_health',
+    command: 'node tools/validators/validate-audit-health.mjs',
+    parse_output: (out) => {
+      const m = out.match(/validators=(d+)s+cycles=(d+)s+constitutional_changes=(d+)s+warnings=(d+)/);
+      return m ? { validators: Number(m[1]), cycles: Number(m[2]), warnings: Number(m[4]) } : {};
+    },
+  },
+    {
     // NEW S011 §24+++++++++ — council-coverage: all 24 skills registered in council-registry.md
     name: 'council_coverage',
     command: 'node tools/validators/validate-council-coverage.mjs',

@@ -40,7 +40,8 @@ if [ -f "$STATE_FILE" ]; then
   # Extract key info using grep (no python/node dependency)
   SESSION=$(grep -o '"current_session": "[^"]*"' "$STATE_FILE" | grep -o '"[^"]*"$' | tr -d '"' 2>/dev/null || echo "?")
   MANDATE=$(grep -o '"primary": "[^"]*"' "$STATE_FILE" | head -1 | grep -o '"[^"]*"$' | tr -d '"' 2>/dev/null || echo "")
-  BLOCK1=$(grep -o '"id": "VLT[^"]*"' "$STATE_FILE" | head -1 | grep -o '"VLT[^"]*"' | tr -d '"' 2>/dev/null || echo "")
+  # Only show UNRESOLVED blocking decisions (skip status:RESOLVED entries)
+  BLOCK1=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('$STATE_FILE','utf8'));const b=(d.blocking_decisions||[]).filter(x=>x.status!=='RESOLVED').map(x=>x.id);if(b.length)console.log(b.join(', '));}catch(e){}" 2>/dev/null || echo "")
   
   if [ -n "$MANDATE" ]; then
     echo "[session-state] ${SESSION}: ${MANDATE}"

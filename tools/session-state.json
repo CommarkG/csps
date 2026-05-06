@@ -1,28 +1,15 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S012",
-  "previous_session": "S011",
-  "session_updated_at": "2026-05-06T09:05:00Z",
+  "current_session": "S013",
+  "previous_session": "S012",
+  "session_updated_at": "2026-05-06T10:35:22.418Z",
   "session_mandate": {
-    "primary": "Foundation slices L1 — all design decisions resolved. Build User/Tenant/UserTenant/AuditEvent ZModel. Design at libs/policies/slices/public/foundation-design.md",
+    "primary": "Clerk webhook integration + Stripe billing wiring. Foundation slices L1 COMPLETE at 36847d5.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — VLT-S011-003 and VLT-S011-004 both resolved. S012 can build immediately."
+    "blocking_on": "NONE — S013 can start immediately"
   },
-  "blocking_decisions": [
-    {
-      "id": "VLT-S011-003",
-      "status": "RESOLVED",
-      "decision": "1:N via UserTenant join table. User = person (Clerk identity). Tenant = product context. UserTenant = membership (userId + tenantId + role).",
-      "resolved_at": "2026-05-06T09:20:00Z"
-    },
-    {
-      "id": "VLT-S011-004",
-      "status": "RESOLVED",
-      "decision": "Clerk org → Tenant = direct 1:1. Tenant.clerkOrgId = Clerk org ID. Simple over flexible until flexibility proven necessary.",
-      "resolved_at": "2026-05-06T10:00:00Z"
-    }
-  ],
+  "blocking_decisions": [],
   "opus_review_pending": {
     "pending": true,
     "prompt_path": "docs/plan/_handoff/VAULT/opus-synthesis-prompt-S011.md",
@@ -40,11 +27,12 @@
     "ep_patterns": 14,
     "sg_patterns": 2,
     "moat_elements": 18,
-    "foundation_slices_built": false,
+    "foundation_slices_built": true,
     "apps_built": 0,
     "vlt_s011_003_resolved": true,
     "vlt_s011_004_resolved": true,
-    "all_blocking_resolved": true
+    "all_blocking_resolved": true,
+    "foundation_slices_commit": "36847d5"
   },
   "saas_build_arc": {
     "s012_a": {
@@ -57,7 +45,9 @@
       "mandate": "Foundation slices L1: User/Tenant/AuditEvent ZModel",
       "model_tier": "STANDARD_BUILD",
       "estimated_tokens_k": 80,
-      "unlocks": "s013"
+      "unlocks": "s013",
+      "status": "COMPLETE",
+      "commit": "36847d5"
     },
     "s013": {
       "mandate": "Clerk auth wiring + Stripe billing integration",
@@ -101,5 +91,13 @@
     "5. Build: User → Tenant → UserTenant → AuditEvent ZModel files",
     "6. Run: pnpm verify --skip-install again to confirm alignment",
     "7. Commit with: git add libs/policies/slices/public/*.zmodel && git commit"
+  ],
+  "s013_start_protocol": [
+    "1. Emit §17 receipt: S013-AI-receipt-<iso>-against-S012-close",
+    "2. Run: pnpm verify --skip-install → expect 31+ PASS exit_code 0",
+    "3. Implement Clerk webhook → creates Tenant on org creation",
+    "4. Implement Stripe customer creation → sets Tenant.stripeCustomerId",
+    "5. Wire UserTenant creation on Clerk membership add",
+    "6. Test: full user signup → tenant creation → membership → audit trail"
   ]
 }

@@ -58,6 +58,7 @@ const KNOWN_MAPPINGS = {
   'validate-council-coverage': ['council-coverage', 'council_coverage'],
   'validate-universal-alignment': ['universal-alignment', 'universal_alignment', 'universal-alignment-gate'],
   'validate-inner-ai-defaults-freshness': ['ai-defaults-freshness', 'ai_defaults_freshness', 'inner-ai-defaults-freshness'],
+  'validate-model-tier-currency': ['model-tier-currency', 'model_tier_currency', 'tier-registry-currency'],
 };
 
 function validatorBasename(filename) {

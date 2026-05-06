@@ -151,6 +151,15 @@ const CYCLES = [
     },
   },
     {
+    // NEW S011 §24+++++++++++++++ — model-tier-currency: tier vocabulary registry is current
+    name: 'model_tier_currency',
+    command: 'node tools/validators/validate-model-tier-currency.mjs',
+    parse_output: (out) => {
+      const m = out.match(/tiers=(d+)s+warnings=(d+)/);
+      return m ? { tiers: Number(m[1]), warnings: Number(m[2]) } : {};
+    },
+  },
+    {
     // NEW S011 §24++++++++++++ — ai-defaults-freshness: inner-ai-defaults registry is current for running model
     name: 'ai_defaults_freshness',
     command: 'node tools/validators/validate-inner-ai-defaults-freshness.mjs',

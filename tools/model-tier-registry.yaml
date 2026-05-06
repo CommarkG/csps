@@ -1,0 +1,185 @@
+# model-tier-registry.yaml — CSPS Model Tier Vocabulary
+# THE KEY DESIGN: vocabulary is abstracted from specific models.
+# Update current_mapping when models change; all routing still works.
+# Per platform-maturation-plan.md WS-5 (Model Routing Formalization)
+# Per B_COGNITIVE_CONTEXT_DISCIPLINE (P-META-009) QG1
+#
+# CRITICAL: This file IS the SSoT for model routing in CSPS.
+# Do NOT hard-code model IDs anywhere else — always reference via tier vocabulary.
+
+registry_version: 1.0
+last_updated: 2026-05-06
+csps_version: S011
+update_trigger: "Model version change / quarterly review / when better model discovered for a tier"
+validate_by: tools/validators/validate-model-tier-currency.mjs
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TIER VOCABULARY (intent-based, model-agnostic)
+# ─────────────────────────────────────────────────────────────────────────────
+
+tiers:
+  DEEP_REASONING:
+    description: |
+      Constitutional decisions, cross-session architectural synthesis,
+      ZF synthesis (interpreting not just running), CSEP review,
+      foundation design decisions (VLT-* blocking items),
+      when >5 sessions of work must be synthesized coherently.
+    when_to_use:
+      - Engraving new B_* contracts or principles (QG1 immutable)
+      - Opus synthesis reviews (opus-synthesis-prompt-S011.md pattern)
+      - ADR ratification
+      - Cross-session architectural coherence reviews
+      - Any task where "wrong answer compounds into platform debt"
+    pe_cost_multiplier: 10   # relative to MECHANICAL_SCAN
+    context_window_needed: large
+    current_mapping:
+      provider: anthropic
+      model_id: claude-opus-4-7
+      context_window: 200K
+    alternatives:
+      - { provider: openai, model_id: o3, notes: "deep reasoning; no streaming" }
+      - { provider: google, model_id: gemini-2.5-pro, notes: "1M context; good for cross-session" }
+    status: ACTIVE
+
+  STANDARD_BUILD:
+    description: |
+      Most session work: implementation, documentation, plan writing, §KH consultation,
+      routing, session governance, validator authoring, skill creation,
+      anything that requires reasoning BUT not cross-session synthesis.
+    when_to_use:
+      - Default for all CSPS sessions (Lever 1)
+      - PE Band 2-3 work
+      - All mechanical builds that still require judgment
+      - Reviewing code, writing plans, council dispatch
+    pe_cost_multiplier: 3   # relative to MECHANICAL_SCAN
+    context_window_needed: large   # 1M context used in CSPS
+    current_mapping:
+      provider: anthropic
+      model_id: claude-sonnet-4-6-1m
+      context_window: 1M
+    alternatives:
+      - { provider: anthropic, model_id: claude-sonnet-4-7, notes: "upgrade when available" }
+    status: ACTIVE
+
+  MECHANICAL_SCAN:
+    description: |
+      File scans, grep, log parsing, mechanical validators, batch operations,
+      counting, formatting, simple transformations. No reasoning required.
+    when_to_use:
+      - Class B subagent spawns (T2.3 file scans per class-b-agent-spawn-preamble.template.md)
+      - Running pnpm verify cycles
+      - Parallel search operations
+      - Generating structured output from templates
+    pe_cost_multiplier: 1   # baseline
+    context_window_needed: small
+    current_mapping:
+      provider: anthropic
+      model_id: claude-haiku-4-5
+      context_window: 200K
+    alternatives:
+      - { provider: openai, model_id: gpt-4o-mini, notes: "cheap; good for structured extraction" }
+      - { provider: google, model_id: gemini-1.5-flash, notes: "fast; good for bulk scanning" }
+    status: ACTIVE
+
+  EXTERNAL_RESEARCH:
+    description: |
+      Questions requiring external knowledge: competitor analysis, technology research,
+      industry patterns not in CSPS context, validation of ESTIMATED claims,
+      anything that needs to know what changed in the external world.
+    when_to_use:
+      - Competitor platform comparison (threshold-gate-v2.md §4)
+      - Validating ESTIMATED claims (cruel-critic Amendment 1)
+      - Research questions vaulted as VAULT_DEFER
+      - When inner-ai-defaults need external validation
+    pe_cost_multiplier: variable
+    context_window_needed: variable
+    current_mapping:
+      provider: mcp   # uses whatever MCP servers are available
+      model_id: null  # determined by available MCPs in session
+      context_window: null
+    alternatives:
+      - { provider: perplexity, model_id: sonar-pro, notes: "web search + reasoning" }
+      - { provider: anthropic, model_id: claude-opus-4-7, notes: "fallback if no MCP" }
+    status: AVAILABLE_VIA_MCP
+
+  FAST_ITERATION:
+    description: |
+      Quick back-and-forth, UI mockup generation, brainstorming, draft production,
+      low-stakes exploratory work where iteration speed beats depth.
+    when_to_use:
+      - First draft of any document (then refine with STANDARD_BUILD)
+      - Brainstorming session (vault good ideas, discard rest)
+      - Quick sanity check questions
+    pe_cost_multiplier: 1.5
+    context_window_needed: medium
+    current_mapping:
+      provider: anthropic
+      model_id: claude-sonnet-4-6   # without 1M context — faster, cheaper
+      context_window: 200K
+    alternatives:
+      - { provider: openai, model_id: gpt-4o, notes: "good for structured output fast" }
+    status: AVAILABLE
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ORCHESTRATION RULES
+# ─────────────────────────────────────────────────────────────────────────────
+
+orchestration:
+  # PE formula inputs → recommended tier
+  pe_band_to_tier:
+    Band_1: DEEP_REASONING   # constitutional decisions
+    Band_2: STANDARD_BUILD   # high value work
+    Band_3: STANDARD_BUILD   # medium value
+    Band_4: MECHANICAL_SCAN  # maintenance
+
+  # Task class → tier mapping (from context-loading templates)
+  task_class_to_tier:
+    session-open: STANDARD_BUILD
+    session-close: STANDARD_BUILD
+    engraving: DEEP_REASONING  # QG1 immutable
+    qc-validation: STANDARD_BUILD
+    pcr: STANDARD_BUILD       # PCR decisions stay in main (QG2)
+    mcp-query: MECHANICAL_SCAN
+    agent-spawn: MECHANICAL_SCAN
+    frontmatter-authoring: STANDARD_BUILD
+    cross-session-synthesis: DEEP_REASONING
+    competitor-research: EXTERNAL_RESEARCH
+
+  # Override rules (take precedence over task_class mapping)
+  overrides:
+    - condition: "involves B_* engraving OR P-META amendment"
+      tier: DEEP_REASONING
+      reason: "QG1 immutable — never downgrade hard reasoning"
+    - condition: "involves L1_CORE sealed file changes"
+      tier: DEEP_REASONING
+      reason: "Constitutional changes require maximum reasoning quality"
+    - condition: "is mechanical file scan OR grep operation"
+      tier: MECHANICAL_SCAN
+      reason: "Cheapest-tool per B_TOKEN_BUDGET R2"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DYNAMIC UPDATE PROTOCOL
+# ─────────────────────────────────────────────────────────────────────────────
+
+update_protocol:
+  # When to update current_mapping fields:
+  triggers:
+    - "New model ships from primary provider (anthropic/openai/google)"
+    - "Quarterly tier performance review"
+    - "When cruel-critic flags ESTIMATED claim about model capabilities"
+    - "When inner-ai-defaults-freshness.mjs warns about model version mismatch"
+
+  # Steps to update:
+  steps:
+    1: "Update current_mapping.model_id + context_window"
+    2: "Update last_updated date"
+    3: "Update inner-ai-defaults/README.md csps_model_version"
+    4: "Run: node tools/validators/validate-model-tier-currency.mjs"
+    5: "Run: pnpm verify --skip-install to confirm ZF"
+    6: "Log in continuous-drift-log.md what changed"
+
+  # What NOT to update:
+  invariants:
+    - "Tier vocabulary names (DEEP_REASONING etc.) — these are canonical and never change"
+    - "pe_cost_multiplier ratios — only change with Governor ratification (major platform decision)"
+    - "Orchestration rules — change via ADR (architectural decision)"

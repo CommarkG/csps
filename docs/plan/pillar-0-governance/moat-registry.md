@@ -53,6 +53,9 @@ links:
 | M-12 | **Implementation status state machine** | swift-implemented→sealed-zf tracks quality journey | `impl_status` | Every session | swift-implemented |
 | M-13 | **Core Cross-Synergy (CSEP pipeline)** | Any insight propagates to ALL relevant surfaces via Synergy Master + Cruel Critic | synergy-master skill + cruel-critic skill (19th/20th council members) | Monthly | ACTIVE — this document |
 | M-14 | **System-health organism (4 cadences)** | Daily/weekly/monthly/quarterly health scans mapped to 10 audit-hub pipelines | `validate-corespine-depth-markers` + weekly hook | 4 cadences | See system-health-plan.md |
+| M-16 | **The Threshold (universal input gate)** | Named + documented; pipeline consolidation target; every input classified to IntakeEvent | `import_quarantine` + threshold-gate.md | Per-session | swift-implemented |
+| M-17 | **Reuse-first mechanical (P-OP-001 enforced)** | §0 mandatory reuse check before any implementation; EP-012 catches skips | `plan_know_how` (§KH §0 item) + EP-012 | Every plan | swift-implemented |
+| M-18 | **Connectivity enforcement (P-ARCH-001)** | nothing-stands-alone mechanically checked; 43 pre-S006 orphans surfaced | `nothing_stands_alone` | Per-session advisory | swift-implemented |
 | M-15 | **CORE alignment enforcement** | Every artifact declares its spine; precedence order resolves conflicts | `corespine_depth_markers` + frontmatter_validate | Every session | CSEP-pending |
 
 ## §2 — Audit coverage by cadence

@@ -142,6 +142,24 @@ const CYCLES = [
     parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
   },
   {
+    // NEW S011 §24++++++++ — threshold/import-quarantine: imports have CSPS DNA
+    name: 'import_quarantine',
+    command: 'node tools/validators/validate-import-quarantine.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(d+)s+compliant=(d+)s+violations=(d+)/);
+      return m ? { checked: Number(m[1]), compliant: Number(m[2]), violations: Number(m[3]) } : {};
+    },
+  },
+  {
+    // NEW S011 §24++++++++ — nothing-stands-alone: P-ARCH-001 connectivity (advisory)
+    name: 'nothing_stands_alone',
+    command: 'node tools/validators/validate-nothing-stands-alone.mjs',
+    parse_output: (out) => {
+      const m = out.match(/governed_checked=(d+)s+orphans=(d+)/);
+      return m ? { governed_checked: Number(m[1]), orphans: Number(m[2]), advisory: true } : {};
+    },
+  },
+    {
     // NEW S011 §24+++++++ — moat-coverage: all 15 moat elements have active recurring audit coverage
     name: 'moat_coverage',
     command: 'node tools/validators/validate-moat-coverage.mjs',

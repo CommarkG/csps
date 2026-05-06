@@ -21,6 +21,16 @@ tags:
 
 ## §KH Mandatory checks
 
+### §0 — REUSE CHECK (→ EP-012, P-OP-001) — THIS RUNS BEFORE ANYTHING ELSE
+**DON'T:** Start planning a new artifact/validator/skill/contract without searching for existing equivalents.
+**DO:** Run `check_reuse(description="<what you're planning to build>")` via principles-mcp. Search platform for similar: grep for concept keywords, check audit-runner.md slugs, check .claude/skills/, check behavioral-contracts.md.
+**CITE the result here:** "Reuse check run. Found: [nothing OR existing X that was enhanced OR pattern Y in EP-NNN]"
+**If nothing found:** State why creation is justified vs enhancement. This is the mandatory §0 that ZF is for DONE claims.
+
+**For this plan, reuse check result = ___ (MUST BE FILLED)**
+
+---
+
 ### 1. Orphan prevention (→ EP-002)
 **DON'T:** Create plan with `lifecycle_state: active` without wiring L1 artifact paths into a validator.
 **DO:** List every L1 artifact. Verify `validate-topic-plan-progress.mjs` will catch it if not built within 1 session.

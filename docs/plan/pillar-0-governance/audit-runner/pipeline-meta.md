@@ -65,3 +65,5 @@
 | `council-coverage` | PR | error | NEW S011 §24++++++: every SKILL.md must be in council-registry.md with domain+PE band+audit pipeline+recurring protocol. **Registered S011 §24++++++ atomically. Build deferred (validate-council-coverage.mjs; week-4).** |
 | `moat-coverage` | per-session | error | NEW S011 §24+++++++: 15 moat elements all have active audit coverage. **Registered S011 §24+++++++ atomically. Build ACTIVE (validate-moat-coverage.mjs in pnpm verify).** |
 | `csep-coverage` | monthly | warn | NEW S011 §24+++++++: every ratified element has a CSEP (Cross-Synergy Enhancement Plan) OR synergy-exempt declaration. **Registered S011 §24+++++++ atomically. Build deferred (validate-csep-coverage.mjs).** |
+| `import-quarantine` | PR + per-session | warn | NEW S011 §24++: CSPS DNA on all imports via The Threshold. **Registered. Build ACTIVE (validate-import-quarantine.mjs).** |
+| `nothing-stands-alone` | PR | warn advisory | NEW S011 §24++: P-ARCH-001 — every artifact has core_spine + schema_anchor. 43 pre-S006 backfill S012. **Registered. Build ACTIVE advisory (validate-nothing-stands-alone.mjs).** |

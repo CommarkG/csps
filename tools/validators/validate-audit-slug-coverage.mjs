@@ -53,6 +53,8 @@ const KNOWN_MAPPINGS = {
   'validate-no-implementation-without-plan': ['no-implementation-without-plan', 'no_implementation_without_plan', 'construction-gate'],
   'validate-impl-status': ['impl-status', 'impl_status', 'implementation-quality-state-machine'],
   'validate-moat-coverage': ['moat-coverage', 'moat_coverage', 'moat-element-audit-coverage'],
+  'validate-import-quarantine': ['import-quarantine', 'import_quarantine'],
+  'validate-nothing-stands-alone': ['nothing-stands-alone', 'nothing_stands_alone', 'nothing-stands-alone-audit'],
 };
 
 function validatorBasename(filename) {

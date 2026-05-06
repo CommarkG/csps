@@ -1,0 +1,105 @@
+{
+  "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
+  "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
+
+  "current_session": "S012",
+  "previous_session": "S011",
+  "session_updated_at": "2026-05-06T09:05:00Z",
+
+  "session_mandate": {
+    "primary": "Foundation slices L1 — User/Tenant/AuditEvent ZModel in libs/policies/slices/public/",
+    "model_tier": "STANDARD_BUILD",
+    "blocking_on": "VLT-S011-003 (Governor decision required before any ZModel is written)"
+  },
+
+  "blocking_decisions": [
+    {
+      "id": "VLT-S011-003",
+      "question": "User/Tenant relationship: 1:1 per app-instance OR 1:N (user spans multiple apps)?",
+      "context": "If 1:1 → User has tenantId FK. If 1:N → UserTenant join table.",
+      "needed_before": "Foundation slices L1 ZModel authoring",
+      "model_tier_required": "DEEP_REASONING",
+      "route_to": "COUNCIL_REVIEW",
+      "source": "docs/plan/_handoff/VAULT/topic-plans/foundation-slices.md"
+    },
+    {
+      "id": "VLT-S011-004",
+      "question": "Clerk org → CSPS Tenant: direct 1:1 mapping or intermediate join table?",
+      "needed_before": "Foundation slices L2 (Clerk wiring)",
+      "model_tier_required": "DEEP_REASONING",
+      "route_to": "VAULT_DEFER"
+    }
+  ],
+
+  "opus_review_pending": {
+    "pending": true,
+    "prompt_path": "docs/plan/_handoff/VAULT/opus-synthesis-prompt-S011.md",
+    "what_for": "VLT-S011-006 — real Opus architectural synthesis of S011 work",
+    "how_to_start": "Open new chat → /model default → confirm Opus 4.7 → paste prompt",
+    "compact_input_required": true,
+    "max_input_tokens": 50000
+  },
+
+  "platform_state": {
+    "pnpm_verify": "31 validators PASS exit_code 0",
+    "complexity_score": 17.9,
+    "complexity_zone": "GREEN",
+    "skills": 26,
+    "contracts": 42,
+    "ep_patterns": 14,
+    "sg_patterns": 2,
+    "moat_elements": 18,
+    "foundation_slices_built": false,
+    "apps_built": 0
+  },
+
+  "saas_build_arc": {
+    "s012_a": {
+      "mandate": "Resolve VLT-S011-003 + VLT-S011-004 (Governor decisions)",
+      "model_tier": "DEEP_REASONING",
+      "estimated_tokens_k": 20,
+      "unlocks": "s012_b"
+    },
+    "s012_b": {
+      "mandate": "Foundation slices L1: User/Tenant/AuditEvent ZModel",
+      "model_tier": "STANDARD_BUILD",
+      "estimated_tokens_k": 80,
+      "unlocks": "s013"
+    },
+    "s013": {
+      "mandate": "Clerk auth wiring + Stripe billing integration",
+      "model_tier": "STANDARD_BUILD",
+      "estimated_tokens_k": 100,
+      "unlocks": "s014"
+    },
+    "s014": {
+      "mandate": "First app slice — pick simplest concept, build end-to-end",
+      "model_tier": "STANDARD_BUILD",
+      "estimated_tokens_k": 120,
+      "unlocks": "s015"
+    },
+    "s015": {
+      "mandate": "Graduation path design + second app slice",
+      "model_tier": "STANDARD_BUILD",
+      "estimated_tokens_k": 100,
+      "unlocks": "production"
+    }
+  },
+
+  "why_better_than_others": [
+    "Governance baked into construction — not retrofitted after (18 moat elements)",
+    "AI session quality tracked (EP-NNN learning — platform gets smarter after every failure)",
+    "Multi-tenant RLS enforced from day 1 — not a retrofit risk",
+    "Graduation path designed from start — extraction-ready, not locked-in",
+    "Vocabulary alignment across 30 apps — prevents naming drift",
+    "Model-tier-required in PE — optimal model for each task, not just one model for all",
+    "The Threshold Gate — all inputs governed before processing"
+  ],
+
+  "next_session_auto_checks": [
+    "pnpm verify --skip-install (confirm 31 PASS)",
+    "node tools/validators/validate-session-artifact-sync.mjs (confirm 0 warnings)",
+    "node tools/validators/validate-moat-coverage.mjs (confirm 15/15 covered)",
+    "node tools/validators/validate-inner-ai-defaults-freshness.mjs (confirm registry current)"
+  ]
+}

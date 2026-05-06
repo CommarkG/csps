@@ -74,6 +74,14 @@ COUNCIL REGISTRY UPDATE
 | **pcr** (packages) | PCR canonical | Band 2 | P4 | pros/cons/recommendation | Per-decision |
 | **reuse-check** (packages) | P-OP-001 reuse-first check | Band 1 | P10 csps-alignment | reuse / check_reuse / existing / enhance | Pre-implementation |
 | **stewardship-review** (packages) | Lifecycle stewardship | Band 3 | P5 | stewardship / lifecycle / deprecate | Monthly |
+| **wip-check** (packages) | Work-in-progress check | Band 3 | P1 | wip / in progress / outstanding | Per-session |
+| **synergy-master** | Core Cross-Synergy analysis + CSEP production | Band 2 | P13 M-13 | synergy / cross-synergy / CSEP / how does X enhance Y | Monthly |
+| **cruel-critic** | Stability + scalability review of CSEPs | Band 1 | P13 M-13 | cruel critic / stability review / scale this to 300 / CSEP review | Per-CSEP |
+| **consolidation-expert** | See-what-exists + consolidation debt | Band 1 | P10 csps-alignment | consolidation / what exists / redundant / merge / see what exists | Pre-implementation |
+| **bottleneck-expert** | Scale projections + O(N²) detection | Band 2 | P8 complexity | bottleneck / overload / scale / 30 to 300 / at scale | Per-design-decision |
+| **ux-expert** | App UX + governance UX + AI interaction UX | Band 2-3 | P3 cognitive-context | UX / user experience / user flow / friction / DX | Per-feature |
+| **schema-expert** | ZModel + RLS + tenant isolation + foundation slices | Band 1 | P6 schema-integrity | ZModel / schema / RLS / tenant isolation / foundation slices | Per-schema-design |
+| **core-spine-expert** | Spine classification + doctrine + conflict resolution | Band 1 | P15 M-15 CORE alignment | core_spine / which spine / spine conflict / L1 sealed / spine precedence | Per-artifact-creation |
 
 ## §3 — The PE connection
 

@@ -142,6 +142,24 @@ const CYCLES = [
     parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
   },
   {
+    // NEW S011 §24+++++++++ — council-coverage: all 24 skills registered in council-registry.md
+    name: 'council_coverage',
+    command: 'node tools/validators/validate-council-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/skills_checked=(d+)s+unregistered=(d+)/);
+      return m ? { skills_checked: Number(m[1]), unregistered: Number(m[2]) } : {};
+    },
+  },
+  {
+    // NEW S011 §24+++++++++ — universal-alignment: new artifacts have full CSPS alignment
+    name: 'universal_alignment',
+    command: 'node tools/validators/validate-universal-alignment.mjs --scan-new',
+    parse_output: (out) => {
+      const m = out.match(/files=(d+)s+aligned=(d+)s+gaps=(d+)/);
+      return m ? { files: Number(m[1]), aligned: Number(m[2]), gaps: Number(m[3]) } : { files: 0 };
+    },
+  },
+    {
     // NEW S011 §24++++++++ — threshold/import-quarantine: imports have CSPS DNA
     name: 'import_quarantine',
     command: 'node tools/validators/validate-import-quarantine.mjs',

@@ -67,3 +67,5 @@
 | `csep-coverage` | monthly | warn | NEW S011 §24+++++++: every ratified element has a CSEP (Cross-Synergy Enhancement Plan) OR synergy-exempt declaration. **Registered S011 §24+++++++ atomically. Build deferred (validate-csep-coverage.mjs).** |
 | `import-quarantine` | PR + per-session | warn | NEW S011 §24++: CSPS DNA on all imports via The Threshold. **Registered. Build ACTIVE (validate-import-quarantine.mjs).** |
 | `nothing-stands-alone` | PR | warn advisory | NEW S011 §24++: P-ARCH-001 — every artifact has core_spine + schema_anchor. 43 pre-S006 backfill S012. **Registered. Build ACTIVE advisory (validate-nothing-stands-alone.mjs).** |
+| `council-coverage` | PR + per-session | error | NEW S011: 24 skills all in council-registry.md. **ACTIVE (validate-council-coverage.mjs).** |
+| `universal-alignment` | pre-commit | warn | NEW S011: universal pre-alignment gate. **ACTIVE (validate-universal-alignment.mjs).** |

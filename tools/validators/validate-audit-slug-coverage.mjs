@@ -55,6 +55,8 @@ const KNOWN_MAPPINGS = {
   'validate-moat-coverage': ['moat-coverage', 'moat_coverage', 'moat-element-audit-coverage'],
   'validate-import-quarantine': ['import-quarantine', 'import_quarantine'],
   'validate-nothing-stands-alone': ['nothing-stands-alone', 'nothing_stands_alone', 'nothing-stands-alone-audit'],
+  'validate-council-coverage': ['council-coverage', 'council_coverage'],
+  'validate-universal-alignment': ['universal-alignment', 'universal_alignment', 'universal-alignment-gate'],
 };
 
 function validatorBasename(filename) {

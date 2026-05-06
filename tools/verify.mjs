@@ -151,6 +151,15 @@ const CYCLES = [
     },
   },
     {
+    // NEW S011 §24++++++++++++ — ai-defaults-freshness: inner-ai-defaults registry is current for running model
+    name: 'ai_defaults_freshness',
+    command: 'node tools/validators/validate-inner-ai-defaults-freshness.mjs',
+    parse_output: (out) => {
+      const m = out.match(/model=([S]+)s+warnings=(d+)/);
+      return m ? { model: m[1], warnings: Number(m[2]) } : {};
+    },
+  },
+    {
     // NEW S011 §24+++++++++ — council-coverage: all 24 skills registered in council-registry.md
     name: 'council_coverage',
     command: 'node tools/validators/validate-council-coverage.mjs',

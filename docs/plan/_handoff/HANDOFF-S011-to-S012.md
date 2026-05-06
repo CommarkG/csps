@@ -55,14 +55,14 @@ links:
 - [docs/plan/pillar-0-governance/schema-index.md](docs/plan/pillar-0-governance/schema-index.md) — 24-row schema-of-schemas ✅
 - [tools/validators/validate-corespine-depth-markers.mjs](tools/validators/validate-corespine-depth-markers.mjs) + 5 L1_CORE backfilled ✅
 - 8 context-loading templates + template-registry §6 + 5 audit slugs registered ✅
-- pnpm verify: **29 active validators PASS** (was 9)
+- pnpm verify: **30 active validators PASS** (was 9)
 
 **OVERVIEW.md v3.0, QC sweep, CEC walk, audit-runner registration all COMPLETE. ZERO BLOCKERS. pnpm verify exit_code 0.**
 
 ### What S012 must do, in order
 
 1. **Emit §17 receipt** as FIRST REPLY: `S012-AI-receipt-<iso>-against-S011-AI-attest-2026-05-05T16:50:00Z-S011-close`
-2. **Verify state**: `pnpm verify --skip-install` exit_code 0; 53 principles / 17 templates / 130 slices / **29** active validators; 0 frontmatter warnings; 0 AAP warnings
+2. **Verify state**: `pnpm verify --skip-install` exit_code 0; 53 principles / 17 templates / 130 slices / **30** active validators; 0 frontmatter warnings; 0 AAP warnings
 3. **10-scenario user-verification** — run [tools/test-scenarios/token-optimization-10-scenario.json](tools/test-scenarios/token-optimization-10-scenario.json) manually; record PASS/FAIL; Phase 4d complete when ≥9/10 PASS
 4. **Phase 10 PRIMARY** — per token-optimization.md §9.11: activate weekly-tag-status-deep-audit hook + HONEST CALIBRATION + topic-plan §11 closure
 5. **user-prompt-submit-context-orchestrator.sh** hook — task-class detection making context-loading templates mechanical

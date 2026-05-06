@@ -2,10 +2,20 @@
 id: csps.handoff.vault.inner-ai-defaults
 name: inner-ai-defaults
 description: The inner-AI-defaults registry — formalized capture + saving + continuous reference of training-baked defaults that AI brings into CSPS work. Per P-META-017 (CSPS-Alignment-Over-Inner-Defaults) — for each registered default, declare disposition (keep / override / adjust); validators catch leaks at session-close + cross-session drift over time. The registry is itself a living artifact updated as new defaults discovered + as AI evolves through model upgrades. Per user S006 turn 6 directive "you must formalize now the collection and saving of your inner coding and create a system of considering it all the time".
-version: 1.0
+version: 1.1
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
+csps_model_version: claude-sonnet-4-6-1m
+calibrated_at: 2026-05-06
+calibrated_by: S011-§24+++++++++++++
+refresh_trigger: "Model version change (4.6→4.7 etc.) OR quarterly review OR when validate-inner-ai-defaults-freshness.mjs warns"
+refresh_protocol: |
+  1. Update csps_model_version field to new model
+  2. Review all 6 category files for changed behaviors
+  3. Add new entries to continuous-drift-log.md
+  4. Flag entries that may no longer apply (disposition: review)
+  5. Run pnpm verify to confirm no new EP-013 findings
 template_used: registry-canonical
 template_status: novel-pending-pattern-evaluation
 core_spines: [AI, GVRN, VALD]

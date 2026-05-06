@@ -30,7 +30,7 @@ readonly HOOKS_DIR="${REPO_ROOT}/.claude/hooks"
 # Declared hooks per token-optimization.md §14.4 migration table (Phase 5 ship list)
 # + S007 §24+ existing stubs + S007 production hooks. Updated S008 turn 5 (unified-intake topic-plan
 # L1 foundation): all 7 §14.4 stubs authored + verify-hooks-functional updated to enumerate full set.
-# 10 stubs + 2 production + 2 S012/S014 + 2 ZF-wall-to-wall + 1 ZF-mandate + 1 claude-dir-guard = 18 total.
+# 10 stubs + 2 production + 2 S012/S014 + 2 ZF-wall-to-wall + 1 ZF-mandate + 1 claude-dir-guard + 1 session-close-gate = 19 total.
 readonly -a DECLARED_HOOKS=(
   # 7 §14.4 Phase 5 migration stubs (authored S008 turn 5)
   "post-tool-use-validate-before-assume.sh"
@@ -60,6 +60,8 @@ readonly -a DECLARED_HOOKS=(
   "post-tool-use-zf-level-gate.sh"
   # S014 permanent fix — blocks Write/Edit on .claude/** and redirects to Bash/node
   "pre-tool-use-claude-dir-guard.sh"
+  # S014 governance-session close gate — detects session-close intent, injects §10 protocol
+  "post-stop-session-close-gate.sh"
 )
 
 echo "[verify-hooks-functional] STUB — token-optimization.md §14.8 cruel-critic Critique 2 mitigation"

@@ -143,6 +143,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/hooks/post-stop-session-close-gate.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/post-stop-learning-loop.sh"
           },
           {

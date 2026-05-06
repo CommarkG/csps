@@ -75,7 +75,9 @@ The orchestration layer above [`audit-runner.md`](./audit-runner.md) registry. D
 
 **Orchestrator:** `tools/verify.mjs` (LIVE — exit_code 0/1 enforces today)
 
-**Schema connection:** every cycle in this pipeline maps to a closing-summary-template required header (§10.0) + a principle (P-META-008 / P-META-006) + a contract (B_PRE_CLOSE_VERIFICATION).
+**CONCEPT_LOAD prerequisite (P-META-020):** Before this pipeline runs, the AI loads the GVRN L2 session governance conceptual frame. Validator failures in this pipeline are not just checklist failures — they indicate that the governance concept (platform closes with evidence, not claims) was not honored. Diagnostic: which concept did this validator sample? → check L2 drift → confirm L1 anchor intact.
+
+**Schema connection:** every cycle in this pipeline maps to a closing-summary-template required header (§10.0) + a principle (P-META-008 / P-META-006) + a contract (B_PRE_CLOSE_VERIFICATION) + a `conceptual_sample_of` field (GVRN L2 governance domain).
 
 ### Pipeline 2 — `agent-alignment` (B_AGENT_ALIGNMENT_PROTOCOL + P-META-010)
 

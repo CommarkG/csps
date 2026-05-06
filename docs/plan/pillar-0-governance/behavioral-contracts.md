@@ -287,6 +287,8 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - validator: `intent-to-impact-validation` audit (warn when impact: pending > 3 sessions without rationale change)
 - contract: this entry + `protocols.md` §16 + §11c + AGENTS.md hard NO
 
+**Cross-references:** P-META-020 (intent = the concept; impact = whether behavior honored the concept — B_INTENT_TO_IMPACT IS the intent-to-impact loop at the session level, which P-META-020 operates at the input level via Threshold PREAMBLE) / P-META-014 B_MUTUAL_UNDERSTANDING_VALIDATION (MUV closes the loop at communication boundaries; INTENT_TO_IMPACT closes it at session boundaries — composed, not redundant).
+
 ## B_NO_FORCE_FIT (S002 turn 7)
 
 **Canonical wording:**

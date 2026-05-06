@@ -72,6 +72,8 @@ exceptions / scope limits.>
 
 **Cross-references:** <P-XXX-NNN> / <P-OTHER> (<composition rationale>) /
 <P-OTHER> (<composition rationale>) / <up to 5 cross-refs minimum 3>.
+
+**conceptual_sample_of:** <L2 domain this contract samples — e.g. "GVRN L2 decision rights" or "AI L2 inner-defaults domain". Per P-META-020: contracts are reference samples of conceptual alignment. When this contract fires, it is confirming whether behavior honors this specific concept.>
 ```
 
 ## Required mandatory components

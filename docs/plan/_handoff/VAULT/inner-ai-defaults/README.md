@@ -39,18 +39,26 @@ session: S006
 
 > **Per P-META-017 (CSPS-Alignment-Over-Inner-Defaults):** every AI output is gated by alignment against this registry. Training-baked defaults that conflict with CSPS get overridden; defaults that compose well get kept; partials get adjusted. The registry IS the override map.
 
-## Why this exists
+## Why this exists (P-META-020 framing)
 
 AI training bakes in patterns: generic naming, reflexive try/catch, sycophantic prose, narrative comments, sequential tool calls, hedging, premature agreement, and dozens more. These patterns are MOSTLY good for general-purpose work. They drift CSPS work toward generic-AI-output rather than CSPS-DNA-aligned-output.
 
-**The registry's job:** make the drift VISIBLE + MECHANICAL to catch.
+**The registry's role under P-META-020 (Concept-First Governance):**
+This is a **calibration instrument**, not a gate. Each entry shows WHERE the AI's trained concept diverges from the CSPS concept. The disposition (keep/override/adjust) is a conceptual alignment verdict:
+- `keep` — training default honors the CSPS concept
+- `override` — training default contradicts the CSPS concept; full replacement
+- `adjust` — training default partially aligns; selective modification
+
+When the CONCEPT_LOAD preamble (Threshold) loads the AI L2 inner-defaults domain, the entries in this registry become the reference samples for that conceptual frame. A validator catching a registry violation is not reporting a rule breach — it is detecting that the active concept is not being honored in this output.
+
+**The registry does NOT enumerate all cases.** New situations not yet covered by any entry are navigated by the AI's active conceptual understanding of the platform. When the registry is consulted and a match is found, it calibrates; when no match is found, the concept navigates.
 
 For each registered default:
 - **What it is** (the training pattern with concrete example)
 - **What CSPS requires** (the aligned pattern)
-- **Disposition:** `keep` (default is fine) / `override` (full replacement) / `adjust` (partial modification)
+- **Disposition:** `keep` / `override` / `adjust` + `concept_ref:` (which L2 domain this divergence belongs to)
 - **Reason** (why this disposition; cite memory entry / contract / principle)
-- **Caught by validator** (which audit slug catches violations)
+- **Caught by validator** (which audit slug catches violations — a reference sample for this specific divergence)
 - **Examples** (default vs aligned, side-by-side)
 
 ## Per-entry schema

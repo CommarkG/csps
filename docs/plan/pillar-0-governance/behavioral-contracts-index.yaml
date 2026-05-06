@@ -15,7 +15,7 @@ meta:
 
 contracts:
   - id: B_AI_PROFESSIONAL_VOICE
-    desc: "top expert colleague"
+    desc: "B_AI_PROFESSIONAL_VOICE"
     path: ./behavioral-contracts/B_AI_PROFESSIONAL_VOICE.md
   - id: B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK
     desc: "B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK"
@@ -51,95 +51,95 @@ contracts:
     desc: "B_NO_FORCE_FIT"
     path: ./behavioral-contracts/B_NO_FORCE_FIT.md
   - id: B_RZF
-    desc: "Real Zero Findings"
+    desc: "B_RZF"
     path: ./behavioral-contracts/B_RZF.md
   - id: B_CEC
-    desc: "Complete Extraction Cycle"
+    desc: "B_CEC"
     path: ./behavioral-contracts/B_CEC.md
   - id: B_QC_AUDIT
-    desc: "QC audit-list discipline"
+    desc: "B_QC_AUDIT"
     path: ./behavioral-contracts/B_QC_AUDIT.md
   - id: B_PROTOCOL_LITERAL_EXECUTION
-    desc: "every documented protocol step gets explicit per-step execution + evidence"
+    desc: "B_PROTOCOL_LITERAL_EXECUTION"
     path: ./behavioral-contracts/B_PROTOCOL_LITERAL_EXECUTION.md
   - id: B_CATCH_TO_ENGRAVING
-    desc: "every observed gap MUST produce persistent artifact within the same session"
+    desc: "B_CATCH_TO_ENGRAVING"
     path: ./behavioral-contracts/B_CATCH_TO_ENGRAVING.md
   - id: B_VALIDATE_BEFORE_ASSUME
-    desc: "strengthened with tool-call sandwich"
+    desc: "B_VALIDATE_BEFORE_ASSUME"
     path: ./behavioral-contracts/B_VALIDATE_BEFORE_ASSUME.md
   - id: B_FIVE_SURFACE_ENGRAVING
-    desc: "every catch produces a 5-surface delta atomically"
+    desc: "B_FIVE_SURFACE_ENGRAVING"
     path: ./behavioral-contracts/B_FIVE_SURFACE_ENGRAVING.md
   - id: B_ALWAYS_GIT_LINKS
-    desc: "every path mention is a clickable link"
+    desc: "B_ALWAYS_GIT_LINKS"
     path: ./behavioral-contracts/B_ALWAYS_GIT_LINKS.md
   - id: B_PCR_FOR_DECISIONS
-    desc: "every non-trivial decision in chat triggers PCR 3-block"
+    desc: "B_PCR_FOR_DECISIONS"
     path: ./behavioral-contracts/B_PCR_FOR_DECISIONS.md
   - id: B_PRE_CLOSE_VERIFICATION
-    desc: "every closing summary RZF block requires §10.0 cycle evidence"
+    desc: "B_PRE_CLOSE_VERIFICATION"
     path: ./behavioral-contracts/B_PRE_CLOSE_VERIFICATION.md
   - id: B_POSITIVE_VALUE_EXTRACTION
-    desc: "every significant positive event triggers an iterative cycle"
+    desc: "B_POSITIVE_VALUE_EXTRACTION"
     path: ./behavioral-contracts/B_POSITIVE_VALUE_EXTRACTION.md
   - id: B_COGNITIVE_CONTEXT_DISCIPLINE
-    desc: "every AI session uses the 5-layer architecture with 4 Quality Gates immutable"
+    desc: "B_COGNITIVE_CONTEXT_DISCIPLINE"
     path: ./behavioral-contracts/B_COGNITIVE_CONTEXT_DISCIPLINE.md
   - id: B_AGENT_ALIGNMENT_PROTOCOL
-    desc: "every agent passes AAP before invocation; no wildcards"
+    desc: "B_AGENT_ALIGNMENT_PROTOCOL"
     path: ./behavioral-contracts/B_AGENT_ALIGNMENT_PROTOCOL.md
   - id: B_GOVERNOR_PROMPTS
-    desc: "every user prompt is governance-tracked"
+    desc: "B_GOVERNOR_PROMPTS"
     path: ./behavioral-contracts/B_GOVERNOR_PROMPTS.md
   - id: B_HANDOFF_PRE_FLIGHT_AUDIT
-    desc: "every handoff creation is preceded by whole-session audit"
+    desc: "B_HANDOFF_PRE_FLIGHT_AUDIT"
     path: ./behavioral-contracts/B_HANDOFF_PRE_FLIGHT_AUDIT.md
   - id: B_MUTUAL_UNDERSTANDING_VALIDATION
-    desc: "every AI communication boundary closes the I→I loop"
+    desc: "B_MUTUAL_UNDERSTANDING_VALIDATION"
     path: ./behavioral-contracts/B_MUTUAL_UNDERSTANDING_VALIDATION.md
   - id: B_TEMPLATE_FIRST_CREATION
-    desc: "every commitment-layer output passes templated discovery gate"
+    desc: "B_TEMPLATE_FIRST_CREATION"
     path: ./behavioral-contracts/B_TEMPLATE_FIRST_CREATION.md
   - id: B_GRADUAL_BUILD_BY_FOUNDATIONS
-    desc: "every multi-session topic enters via templated gradual-build-plan"
+    desc: "B_GRADUAL_BUILD_BY_FOUNDATIONS"
     path: ./behavioral-contracts/B_GRADUAL_BUILD_BY_FOUNDATIONS.md
   - id: B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS
-    desc: "every AI output gated by alignment registry"
+    desc: "B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS"
     path: ./behavioral-contracts/B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS.md
   - id: B_PE_ALIGNMENT_GUARDIAN
-    desc: "anti-sycophancy structured deflection"
+    desc: "B_PE_ALIGNMENT_GUARDIAN"
     path: ./behavioral-contracts/B_PE_ALIGNMENT_GUARDIAN.md
   - id: B_STRUCTURAL_PREVENTION_DISCIPLINE
-    desc: "enhance system constantly, never patch instance"
+    desc: "B_STRUCTURAL_PREVENTION_DISCIPLINE"
     path: ./behavioral-contracts/B_STRUCTURAL_PREVENTION_DISCIPLINE.md
   - id: B_CORE_SPINE_DISCIPLINE
-    desc: "every artifact maps to ≥1 spine; outward layering enforced"
+    desc: "B_CORE_SPINE_DISCIPLINE"
     path: ./behavioral-contracts/B_CORE_SPINE_DISCIPLINE.md
   - id: B_ZERO_LAPTOP_DEPENDENCY
-    desc: "Git canonical + Codespaces + Android"
+    desc: "B_ZERO_LAPTOP_DEPENDENCY"
     path: ./behavioral-contracts/B_ZERO_LAPTOP_DEPENDENCY.md
   - id: B_NAMING_POLICY
-    desc: "names are simple + clear + industry-standard"
+    desc: "B_NAMING_POLICY"
     path: ./behavioral-contracts/B_NAMING_POLICY.md
   - id: B_TOKEN_BUDGET
-    desc: "5 operating rules extending P-META-009 CCA"
+    desc: "B_TOKEN_BUDGET"
     path: ./behavioral-contracts/B_TOKEN_BUDGET.md
   - id: B_CONSOLIDATION_PASS
-    desc: "single canonical home + cross-reference protocol"
+    desc: "B_CONSOLIDATION_PASS"
     path: ./behavioral-contracts/B_CONSOLIDATION_PASS.md
   - id: B_SAVINGS_AND_SSOT_UNIFIED
-    desc: "savings and SSoT are the same discipline"
+    desc: "B_SAVINGS_AND_SSOT_UNIFIED"
     path: ./behavioral-contracts/B_SAVINGS_AND_SSOT_UNIFIED.md
   - id: B_KNOW_HOW_DISCIPLINE
-    desc: "every plan consults the know-how registry"
+    desc: "B_KNOW_HOW_DISCIPLINE"
     path: ./behavioral-contracts/B_KNOW_HOW_DISCIPLINE.md
   - id: B_AI_COLLABORATIVE_DISCIPLINE
-    desc: "AI as governed contributor, not just restrained executor"
+    desc: "B_AI_COLLABORATIVE_DISCIPLINE"
     path: ./behavioral-contracts/B_AI_COLLABORATIVE_DISCIPLINE.md
   - id: B_NO_AI_IMPERSONATION
-    desc: "AI must never claim to be a different model, mode, or capability"
+    desc: "B_NO_AI_IMPERSONATION"
     path: ./behavioral-contracts/B_NO_AI_IMPERSONATION.md
   - id: B_CONSENSUS_BEFORE_PROCEEDING
-    desc: "principal decisions require Governor ratification before any stage advances"
+    desc: "B_CONSENSUS_BEFORE_PROCEEDING"
     path: ./behavioral-contracts/B_CONSENSUS_BEFORE_PROCEEDING.md

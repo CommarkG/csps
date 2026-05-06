@@ -74,6 +74,7 @@ COUNCIL REGISTRY UPDATE
 | **pcr** (packages) | PCR canonical | Band 2 | P4 | pros/cons/recommendation | Per-decision |
 | **reuse-check** (packages) | P-OP-001 reuse-first check | Band 1 | P10 csps-alignment | reuse / check_reuse / existing / enhance | Pre-implementation |
 | **stewardship-review** (packages) | Lifecycle stewardship | Band 3 | P5 | stewardship / lifecycle / deprecate | Monthly |
+| **balance-expert** | Platform complexity tracking + anti-overengineering + Occam Razor + simplification backlog | Band 1 | P19 M-19 WS-2 | over-engineering / balance / simplify / complexity score / too complex / remove before adding | Per-session + Monthly |
 | **wip-check** (packages) | Work-in-progress check | Band 3 | P1 | wip / in progress / outstanding | Per-session |
 | **synergy-master** | Core Cross-Synergy analysis + CSEP production | Band 2 | P13 M-13 | synergy / cross-synergy / CSEP / how does X enhance Y | Monthly |
 | **cruel-critic** | Stability + scalability review of CSEPs | Band 1 | P13 M-13 | cruel critic / stability review / scale this to 300 / CSEP review | Per-CSEP |

@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 40
+  total_count: 41
   generated_at: '2026-05-06'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -134,3 +134,6 @@ contracts:
   - id: B_KNOW_HOW_DISCIPLINE
     desc: "every plan consults the know-how registry"
     path: ./behavioral-contracts/B_KNOW_HOW_DISCIPLINE.md
+  - id: B_AI_COLLABORATIVE_DISCIPLINE
+    desc: "AI as governed contributor, not just restrained executor"
+    path: ./behavioral-contracts/B_AI_COLLABORATIVE_DISCIPLINE.md

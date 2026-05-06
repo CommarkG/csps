@@ -72,8 +72,10 @@ function getNewFiles() {
     const output = execSync('git status --short', { cwd: ROOT, encoding: 'utf8' });
     return output.split('\n')
       .filter(l => l.trim().startsWith('?? ') || l.trim().startsWith('A  '))
-      .map(l => l.trim().replace(/^[?A]\s+/, '').replace(/^"(.+)"$/, '$1').trim())
-      .filter(f => f.endsWith('.md'));
+      .map(l => l.trim().replace(/^[?MAD ]+/, '').replace(/^"(.+)"$/, '$1').trim())
+      .filter(f => f.endsWith('.md'))
+      // Skip generated slice files (no frontmatter by design)
+      .filter(f => !f.match(/\/behavioral-contracts\/B_/) && !f.match(/\/audit-runner\/pipeline-/) && !f.match(/\/ai-behavior-spine\//) && !f.match(/\/principles\/P-/));
   } catch { return []; }
 }
 

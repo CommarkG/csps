@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T12:53:01.934Z
-- finished_at: 2026-05-06T12:53:07.712Z
+- ran_at: 2026-05-06T13:13:30.241Z
+- finished_at: 2026-05-06T13:13:36.050Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T12:53:01.934Z",
-    "finished_at": "2026-05-06T12:53:07.712Z",
+    "ran_at": "2026-05-06T13:13:30.241Z",
+    "finished_at": "2026-05-06T13:13:36.050Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.9,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -40,7 +40,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 206,
+        "scanned": 207,
         "errors": 0,
         "warnings": 0,
         "exempt": 203
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -218,7 +218,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 3,
+        "checked": 4,
         "grandfathered": 4,
         "errors": 0
       },
@@ -255,7 +255,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 7,
+        "plans_checked": 8,
         "warnings": 0
       },
       {

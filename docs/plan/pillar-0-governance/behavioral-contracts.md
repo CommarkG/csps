@@ -1072,7 +1072,7 @@ Step 7: ITERATE until alignment-confirmed-explicit (no more clarifications neede
 - memory: [feedback_csps_alignment_over_inner_defaults.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_csps_alignment_over_inner_defaults.md)
 - contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-017` + closing-summary §10.0h + §10.0i mandatory headers
 
-**Cross-references:** P-META-017 / P-META-007 (FSE applies recursively to inner-defaults engraving) / P-META-009 (CCA composes — Quality Gates discipline overrides AI training defaults of cost-minimization) / P-META-015 (inner-defaults registry IS templated).
+**Cross-references:** P-META-017 / P-META-007 (FSE applies recursively to inner-defaults engraving) / P-META-009 (CCA composes — Quality Gates discipline overrides AI training defaults of cost-minimization) / P-META-015 (inner-defaults registry IS templated) / P-META-020 (Concept-First Governance — this contract's registry is the calibration instrument under P-META-020; the inner-defaults registry IS the reference-sample map for AI L2 inner-defaults domain).
 
 ---
 

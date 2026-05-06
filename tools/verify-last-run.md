@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T18:36:13.529Z
-- finished_at: 2026-05-06T18:36:19.318Z
+- ran_at: 2026-05-06T18:43:04.330Z
+- finished_at: 2026-05-06T18:43:10.151Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T18:36:13.529Z",
-    "finished_at": "2026-05-06T18:36:19.318Z",
+    "ran_at": "2026-05-06T18:43:04.330Z",
+    "finished_at": "2026-05-06T18:43:10.151Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -255,7 +255,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },

@@ -295,6 +295,29 @@ enhancement_proposals:
 
 If overall_status: SKIPS_NOT_AUDITED — handoff write BLOCKED. Per B_STRUCTURAL_PREVENTION_DISCIPLINE, silent skipping of the enhancement-proposal scan is forbidden — the philosophy mandates that EVERY session improves the system.
 
+### §10.0k Conceptual alignment check (P-META-020 — added S014 Phase 3A CEC)
+
+> **Per P-META-020 (Concept-First Governance):** any L3 validator failure this session is a signal of conceptual drift, not just a rule violation. Walk each failure: which L2 domain was it sampling? Did my understanding of that domain drift? Is the L1 anchor still intact?
+
+```yaml
+conceptual_alignment_check:
+  ran_at: <iso8601-utc>
+  l3_failures_this_session:
+    - validator: <slug>
+      l2_domain_sampled: <GVRN|ARCH|AI|VALD|OPER L2 domain>
+      failure_indicates: <concept drift description OR "rule violation only — concept intact">
+      diagnostic_depth_reached: L3_only | L2_examined | L1_confirmed
+  
+  context_depth_check:
+    session_open_concept_loaded: <yes — which spine | no — skipped>
+    per_input_concept_loaded: <consistent | sporadic | not_observed>
+    degradation_instances: <count + descriptions if any>
+  
+  overall: CONCEPT_HONORS | DRIFT_DETECTED | NOT_CHECKED (anti-pattern)
+```
+
+If overall: NOT_CHECKED — note explicitly. Silent skip = anti-pattern (concept-load-skip in P-META-020 anti-patterns).
+
 ### §10.1 Stewardship review (P-META-004)
 
 **Run `/stewardship-review`:**

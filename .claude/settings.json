@@ -11,24 +11,44 @@
       "Bash(node tools/verify.mjs *)",
       "Bash(pnpm tokens:measure)",
       "Bash(bash .claude/hooks/verify-hooks-functional.sh)"
-    ]
+    ],
+    "defaultMode": "bypassPermissions"
   },
   "hooks": {
     "SessionStart": [
       {
         "hooks": [
-          {"type": "command", "command": ".claude/hooks/session-open.sh", "timeout": 30}
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-open.sh",
+            "timeout": 30
+          }
         ]
       }
     ],
     "UserPromptSubmit": [
       {
         "hooks": [
-          {"type": "command", "command": ".claude/hooks/user-prompt-submit-intake.sh"},
-          {"type": "command", "command": ".claude/hooks/user-prompt-submit-governor-prompts.sh"},
-          {"type": "command", "command": ".claude/hooks/verify-hooks-functional.sh"},
-          {"type": "command", "command": ".claude/hooks/user-prompt-submit-context-orchestrator.sh"},
-          {"type": "command", "command": ".claude/hooks/user-prompt-submit-next-step-reminder.sh"}
+          {
+            "type": "command",
+            "command": ".claude/hooks/user-prompt-submit-intake.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/user-prompt-submit-governor-prompts.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/verify-hooks-functional.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/user-prompt-submit-context-orchestrator.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/user-prompt-submit-next-step-reminder.sh"
+          }
         ]
       }
     ],
@@ -36,24 +56,48 @@
       {
         "matcher": "Write",
         "hooks": [
-          {"type": "command", "command": ".claude/hooks/pre-tool-use-plan-coverage-gate.sh"},
-          {"type": "command", "command": ".claude/hooks/pre-tool-use-frontmatter-enum-check.sh"},
-          {"type": "command", "command": ".claude/hooks/pre-tool-use-skill-aap-required.sh"},
-          {"type": "command", "command": ".claude/hooks/depth-marker-creation-gate.sh"}
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-plan-coverage-gate.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-frontmatter-enum-check.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-skill-aap-required.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/depth-marker-creation-gate.sh"
+          }
         ]
       },
       {
         "matcher": "Edit",
         "hooks": [
-          {"type": "command", "command": ".claude/hooks/pre-tool-use-plan-coverage-gate.sh"},
-          {"type": "command", "command": ".claude/hooks/pre-tool-use-frontmatter-enum-check.sh"},
-          {"type": "command", "command": ".claude/hooks/depth-marker-creation-gate.sh"}
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-plan-coverage-gate.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-frontmatter-enum-check.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/depth-marker-creation-gate.sh"
+          }
         ]
       },
       {
         "matcher": "Bash",
         "hooks": [
-          {"type": "command", "command": ".claude/hooks/pre-tool-use-rzf-evidence-gate.sh"}
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-rzf-evidence-gate.sh"
+          }
         ]
       }
     ],
@@ -61,28 +105,62 @@
       {
         "matcher": "Write|Edit",
         "hooks": [
-          {"type": "command", "command": ".claude/hooks/post-tool-use-validate-before-assume.sh"},
-          {"type": "command", "command": ".claude/hooks/post-tool-use-cec-trigger.sh"},
-          {"type": "command", "command": ".claude/hooks/post-tool-use-zf-level-gate.sh"}
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-tool-use-validate-before-assume.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-tool-use-cec-trigger.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-tool-use-zf-level-gate.sh"
+          }
         ]
       },
       {
         "matcher": ".*",
         "hooks": [
-          {"type": "command", "command": ".claude/hooks/post-tool-use-validate-before-assume.sh"}
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-tool-use-validate-before-assume.sh"
+          }
         ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          {"type": "command", "command": ".claude/hooks/post-stop-learning-loop.sh"},
-          {"type": "command", "command": ".claude/hooks/post-stop-pcr-check.sh"},
-          {"type": "command", "command": ".claude/hooks/post-stop-link-discipline.sh"},
-          {"type": "command", "command": ".claude/hooks/post-stop-banned-phrase.sh"},
-          {"type": "command", "command": ".claude/hooks/post-stop-pnpm-verify.sh", "timeout": 60},
-          {"type": "command", "command": ".claude/hooks/post-stop-consolidation-pass.sh"},
-          {"type": "command", "command": ".claude/hooks/post-stop-savings-ssot-coverage.sh"}
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-learning-loop.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-pcr-check.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-link-discipline.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-banned-phrase.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-pnpm-verify.sh",
+            "timeout": 60
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-consolidation-pass.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-savings-ssot-coverage.sh"
+          }
         ]
       }
     ]

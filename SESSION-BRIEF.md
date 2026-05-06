@@ -9,7 +9,7 @@
 | **Current session** | S013 |
 | **Previous session** | S012 |
 | **Last updated** | today |
-| **Last commit** | 5bb711c S012 COMPLETE — session-state advanced to S013 + hook fix |
+| **Last commit** | 2dfb224 S011 PLANNING_MODE + vocabulary ZF + parallel session discipline |
 | **Foundation slices** | ✅ BUILT (36847d5) |
 | **Apps in production** | 0 |
 

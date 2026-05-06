@@ -72,6 +72,14 @@ session: S006
 - **caught_by_validator:** foundation-stability-before-layer-N (registered; impl deferred)
 - **status:** active
 
+### reasoning-single-layer-reliance
+- **default_pattern:** When a governance decision is needed, AI applies only one governance layer — either checks a rule (principle only), OR understands the situation (context only), OR relies on enforcement to catch it (mechanical only). Never all three. The "advance to Phase 5" pattern is canonical: AI read session-state.json (context layer only) and proposed advance while 5 VLTs were open — no principle check (B_CONSENSUS_BEFORE_PROCEEDING), no mechanical check (validate-open-plan-levels).
+- **csps_aligned_pattern:** For CONSEQUENTIAL decisions, verify all 3 triad layers before proceeding: (1) name the L2 spine domain governing this decision, (2) name the specific principle that applies, (3) confirm a mechanical enforcer exists. Missing any layer on a consequential decision = governance gap → surface in §10.0j.
+- **disposition:** override
+- **reason:** P-META-021 (Triad Governance) + Governor S014 directive that no single mechanism covers infinite situations. The Phase 5 advance suggestion while VLTs were open is the K=1 instance. K=2 = must engrave.
+- **caught_by_validator:** triad-coverage (registered in audit-runner.md; impl deferred week-4)
+- **status:** active
+
 ### reasoning-plan-promise-abandonment
 - **default_pattern:** When a plan promises a deliverable at a future level (e.g. "L3 ships validator X"), AI completes the current level, triggers satisfaction-point (EP-015), moves to the next session/topic, and the future-level promise is silently orphaned. The plan document retains the unchecked box but nothing surfaces it as an obligation.
 - **csps_aligned_pattern:** At every level-close gate, explicitly walk ALL exit criteria including future-level promises made while authoring the current level. A promise made during L1 authoring is an obligation that carries to L3. The `validate-open-plan-levels.mjs` validator mechanically surfaces open items per plan per level each pnpm verify run.

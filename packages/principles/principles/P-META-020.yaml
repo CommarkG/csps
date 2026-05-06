@@ -89,6 +89,7 @@ cross_references:
   - P-META-019
   - P-META-009
   - P-ARCH-028
+  - P-META-021
 anti_patterns:
   - rule-violation-patching (L3 fails → patch artifact without L2/L1 diagnostic)
   - context-depth-degradation (understanding degrades to checkbox; new situations handled by rule lookup)

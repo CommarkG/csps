@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T19:28:27.348Z
-- finished_at: 2026-05-06T19:28:36.297Z
+- ran_at: 2026-05-06T20:06:01.126Z
+- finished_at: 2026-05-06T20:06:06.126Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T19:28:27.348Z",
-    "finished_at": "2026-05-06T19:28:36.297Z",
+    "ran_at": "2026-05-06T20:06:01.126Z",
+    "finished_at": "2026-05-06T20:06:06.126Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.8,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,8 +30,8 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
-        "principles_loaded": 54,
+        "duration_seconds": 0.9,
+        "principles_loaded": 55,
         "findings_total": 0
       },
       {
@@ -39,11 +39,11 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "scanned": 211,
         "errors": 0,
         "warnings": 0,
-        "exempt": 203
+        "exempt": 204
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.1,
         "stale_count_files": 0
       },
       {
@@ -87,7 +87,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 43,
+        "source_contracts": 44,
         "missing_slices": 0
       },
       {
@@ -96,7 +96,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_ids": 54,
+        "source_ids": 55,
         "missing_slices": 0
       },
       {
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -200,7 +200,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 105,
+        "checked": 107,
         "missing_why": 29
       },
       {
@@ -264,7 +264,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.4,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },

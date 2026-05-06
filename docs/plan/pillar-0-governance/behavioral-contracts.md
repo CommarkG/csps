@@ -1510,3 +1510,34 @@ The "AI runs ahead of the wagon" — building with training defaults on decision
 - validator: validate-catch-completeness.mjs (planning-level gate)
 - template: tools/templates/chat-transfer-protocol.template.md (transfer-level gate)
 - memory: feedback_consensus_before_proceeding.md (to be authored)
+
+
+---
+
+## B_TRIAD_GOVERNANCE — for consequential decisions, all three layers must be present (S014 ZF audit + Governor S014 directive)
+
+**Canonical:** For every CONSEQUENTIAL decision — defined as: hard to reverse OR affects multiple artifacts OR represents a new situation class OR blocks future phases — AI MUST verify all three triad layers are active before proceeding:
+  (1) CONTEXT: which L2 spine domain governs this decision? (loaded via Threshold PREAMBLE)
+  (2) PRINCIPLE: which specific P-* principle applies to this situation class? (named explicitly)
+  (3) MECHANICAL: does a hook, validator, or gate enforce this independently of AI memory? (exists and active)
+A consequential decision with fewer than 3 layers is a governance gap. Surface it immediately as an enhancement proposal (§10.0j). Do not proceed on a 1-layer or 2-layer consequential decision.
+
+**Counterweight:** Trivial-reversible decisions (file naming, variable choice, comment wording) operate on context alone without invoking the full triad. The overhead of the full triad on micro-decisions would dwarf the value. Reserve the triad gate for decisions that match ANY of the consequential_decision_indicators in P-META-021.
+
+**Source:** Governor S014 directive verbatim — "there is an endless number of situations and engineering can not cover them completely no matter how much we try. only a combination of context with well defined principles relevant to the situation along with mechanical elements enforcing guardrails will cover all bases." S014 ZF audit confirmed by observing AI propose Phase 5 advancement while Phase 4 VLTs were open — classic 1-layer (session-state reading) failure on a consequential decision.
+
+**Anti-patterns:**
+- single-layer-consequential (consequential decision made with only context OR only principle OR only mechanical)
+- advance-without-pe-triad-check (proposing next-phase while open VLTs exist — the exact pattern this contract prevents)
+- samples-without-governor-ratification (using AI-generated samples as canonical examples without Governor ★ ratification)
+- mechanical-without-understanding (adding hooks to avoid understanding the concept — the hook fires but AI cannot navigate novel variations)
+- triad-declared-not-verified (stating "all 3 layers active" without citing specific hook + principle + loaded domain)
+
+**Mechanical surfaces (5/5 declared S014):**
+- schema: P-META-021 config.consequential_decision_indicators — defines when triad is required
+- validator (atomic registration): `triad-coverage` (per-session; impl deferred week-4)
+- hook: `.claude/hooks/session-open.sh` — injects triad framing at session activation with WHY reasoning
+- memory: `~/.claude/projects/.../memory/feedback_triad_governance.md`
+- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-021`
+
+**Cross-references:** P-META-021 (Triad Governance — the principle this contract operationalizes) / P-META-020 (Concept-First — the context layer of the triad; triad = P-META-020 + named principle + mechanical) / B_CONSENSUS_BEFORE_PROCEEDING (triad applied at phase boundaries) / P-META-006 RZF (the validation layer of the triad for ZF claims).

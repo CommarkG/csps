@@ -168,3 +168,44 @@ When an outer-sphere concern requires a change to the core schema, it is a conce
 | `context-depth-degradation` | Rich understanding at decision point degrades to checkbox across session boundary | Threshold PREAMBLE loads concept per-input; session-open loads L1 per-session |
 | `validator-proliferation` | Adding validators as substitute for concept depth | Validators must declare `conceptual_sample_of`; new validators require existing L2 coverage before adding L3 |
 | `concept-load-skip` | Processing input before loading conceptual frame | PREAMBLE is mandatory; Threshold routes only after CONCEPT_LOAD |
+
+## §7 — The Triad: Context + Principle + Mechanical (P-META-021)
+
+> P-META-020 establishes that context is the compass. P-META-021 completes the model: context alone is not sufficient. The minimum viable governance stack for consequential decisions requires all three layers.
+
+```
+CONTEXT    (P-META-020) = load the conceptual frame (WHAT to navigate toward)
+PRINCIPLE  (P-META-021) = name the specific rule that applies (WHERE the boundary is)
+MECHANICAL (P-META-021) = enforce independently of AI memory (HOW it holds across sessions)
+```
+
+**Why each layer alone fails:**
+
+| Layer alone | Failure mode |
+|---|---|
+| Context only | Navigates correctly when fresh; degrades across sessions; novel situations find no named boundary |
+| Principle only | Rules are finite; cases are infinite; new situations fall through the long tail |
+| Mechanical only | Catches named failures; silent on unnamed ones; without understanding, workarounds emerge |
+
+**The feedback loop that makes the triad compound:**
+
+```
+Mechanical fires → finding named → enters drift-log → enriches context → better navigation next session
+                                  ↓
+                             Principle cited → context understands WHY boundary exists
+```
+
+This is why CSPS gets better at governance over time rather than accumulating governance debt. Each firing of a mechanical element is a lesson that, if extracted (positive ZF), improves the conceptual frame for the next session.
+
+**Governor-ratified samples (★ = ratified | ⏳ = pending ratification):**
+
+| Situation | Context layer | Principle layer | Mechanical layer | Triad verdict | Status |
+|---|---|---|---|---|---|
+| Phase advance while VLTs open | GVRN L2: VLTs are open obligations | B_CONSENSUS_BEFORE_PROCEEDING | validate-open-plan-levels.mjs | BLOCK advance | ★ must-be-ratified |
+| Add more validators | AI L2: validators are samples not definitions | P-META-020: concept-first | validate-instruction-context.mjs | Deepen concept, not add rule | ★ must-be-ratified |
+| Plan promise abandoned | VALD L2: promises are obligations | P-META-006 RZF | validate-open-plan-levels.mjs | Surface obligation | ★ must-be-ratified |
+| Wild implementation | GVRN L2: no plan = no authority | B_GRADUAL_BUILD_BY_FOUNDATIONS | pre-tool-use-plan-coverage-gate.sh | BLOCK write | ★ must-be-ratified |
+| Nominal ZF claim | VALD L2: evidence specificity | P-META-006 RZF | post-stop-pnpm-verify.sh | BLOCK DONE claim | ★ must-be-ratified |
+
+> **Note:** Each sample is marked "must-be-ratified-by-governor." AI-authored samples are illustrative, not canonical, until the Governor explicitly ratifies them. Ratification converts a sample from ILLUSTRATIVE to CANONICAL — it becomes a platform reference case.
+

@@ -295,6 +295,28 @@ enhancement_proposals:
 
 If overall_status: SKIPS_NOT_AUDITED — handoff write BLOCKED. Per B_STRUCTURAL_PREVENTION_DISCIPLINE, silent skipping of the enhancement-proposal scan is forbidden — the philosophy mandates that EVERY session improves the system.
 
+### §10.0l Triad coverage check (P-META-021 — added S014 CEC)
+
+> **Per P-META-021 (Triad Governance):** for each CONSEQUENTIAL decision made this session (phase advance / DONE claim / VLT resolution / new principle / architectural choice), verify all 3 governance layers were present.
+
+```yaml
+triad_coverage_check:
+  ran_at: <iso8601-utc>
+  consequential_decisions_this_session:
+    - decision: <what was decided>
+      context_layer: <which L2 spine domain was loaded — GVRN|ARCH|AI|VALD|OPER>
+      principle_layer: <which P-* or B_* principle governed this>
+      mechanical_layer: <which hook/validator/gate enforces this>
+      all_three_present: yes | no
+      if_no_gap_declared: <which layer was missing and why — cannot be silent>
+  
+  single_layer_violations: <count — any consequential decision with <3 layers>
+  
+  overall: TRIAD_COMPLETE | VIOLATIONS_DECLARED | NOT_CHECKED (anti-pattern)
+```
+
+If overall: NOT_CHECKED — note explicitly. Any consequential decision made in single-layer mode must be logged as §10.0j enhancement proposal.
+
 ### §10.0k Conceptual alignment check (P-META-020 — added S014 Phase 3A CEC)
 
 > **Per P-META-020 (Concept-First Governance):** any L3 validator failure this session is a signal of conceptual drift, not just a rule violation. Walk each failure: which L2 domain was it sampling? Did my understanding of that domain drift? Is the L1 anchor still intact?

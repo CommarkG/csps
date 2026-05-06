@@ -30,3 +30,6 @@ The "AI runs ahead of the wagon" — building with training defaults on decision
 - validator: validate-catch-completeness.mjs (planning-level gate)
 - template: tools/templates/chat-transfer-protocol.template.md (transfer-level gate)
 - memory: feedback_consensus_before_proceeding.md (to be authored)
+
+
+---

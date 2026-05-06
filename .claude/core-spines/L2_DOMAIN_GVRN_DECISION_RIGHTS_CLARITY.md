@@ -47,8 +47,17 @@ The domain establishes that authority is binding on action — not advisory. Whe
 - `4-condition-gate-respected` (autonomous execution declares all 4 conditions met)
 - `checkpoint-category-stopped` (8 categories trigger explicit ask)
 
+## Triad Minimum Stack (P-META-021 — added S014 CEC)
+
+This domain IS the "authority" layer of the triad. For consequential decisions, the triad minimum stack requires:
+- CONTEXT (this domain): which L2 spine domain governs this decision?
+- PRINCIPLE: B_CONSENSUS_BEFORE_PROCEEDING or B_AUTONOMY_4_CONDITIONS or specific P-*
+- MECHANICAL: one of the 4 operational governance surfaces above must fire independently
+
+A consequential decision in the GVRN domain without all 3 layers active = authority bypass. The 4-conditions gate IS the mechanical layer for autonomous AI decisions. The PE_ALIGNMENT_GUARDIAN IS the mechanical layer for priority misalignment. Missing either = single-layer reliance.
+
 ## Composition
 
-Composes with L2_DOMAIN_GVRN_ACCOUNTABILITY_TRACEABILITY (decisions traceable to authority) + L2_DOMAIN_GVRN_AMENDMENT_DISCIPLINE (constitutional changes follow ratified path) + the AI Spine's COGNITIVE_CONTEXT domain (Quality Gates protect synthesis from delegation).
+Composes with L2_DOMAIN_GVRN_ACCOUNTABILITY_TRACEABILITY (decisions traceable to authority) + L2_DOMAIN_GVRN_AMENDMENT_DISCIPLINE (constitutional changes follow ratified path) + the AI Spine's COGNITIVE_CONTEXT domain (Quality Gates protect synthesis from delegation) + P-META-021 (Triad Governance — this domain IS the "context + principle" stack for GVRN decisions; mechanical is provided by 4-conditions gate and PE guardian).
 
-**Domain signature:** S006-AI-l2-domain-gvrn-decision-rights-clarity-2026-05-04T20:00:00Z
+**Domain signature:** S006-AI-l2-domain-gvrn-decision-rights-clarity-2026-05-04T20:00:00Z (amended S014 CEC: Triad minimum stack)

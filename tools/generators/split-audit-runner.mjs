@@ -12,13 +12,17 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
-const ROOT      = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
+// Windows ESM fix (S014 ZF audit): import.meta.url root resolution fails on Windows
+// when run via pnpm script — ESM url path may resolve to desktop instead of repo.
+// process.cwd() is the reliable anchor when running from repo root (which pnpm scripts do).
+// Drift-log K=1: audit-runner split generator Windows ESM ROOT miscalculation.
+const ROOT      = process.cwd();
 const SOURCE    = join(ROOT, 'docs/plan/pillar-0-governance/audit-runner.md');
 const SLICES_DIR= join(ROOT, 'docs/plan/pillar-0-governance/audit-runner');
 const INDEX_PATH= join(ROOT, 'docs/plan/pillar-0-governance/audit-runner-index.yaml');
 
 const content = readFileSync(SOURCE, 'utf8');
-const lines   = content.split('\n');
+const lines   = content.split(/\r?\n/);  // handle both LF and CRLF (Windows fix S014)
 
 // ── Parse pipeline sections (### headers) ─────────────────────────────────────
 

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T20:06:01.126Z
-- finished_at: 2026-05-06T20:06:06.126Z
+- ran_at: 2026-05-06T20:21:02.833Z
+- finished_at: 2026-05-06T20:21:07.900Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T20:06:01.126Z",
-    "finished_at": "2026-05-06T20:06:06.126Z",
+    "ran_at": "2026-05-06T20:21:02.833Z",
+    "finished_at": "2026-05-06T20:21:07.900Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -40,7 +40,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 211,
+        "scanned": 212,
         "errors": 0,
         "warnings": 0,
         "exempt": 204
@@ -195,6 +195,16 @@
         "unplanned": 0
       },
       {
+        "name": "vlt_blocking",
+        "command": "node tools/validators/validate-vlt-blocking.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "vlt_total": 9,
+        "pending": 5,
+        "resolved": 4
+      },
+      {
         "name": "instruction_context",
         "command": "node tools/validators/validate-instruction-context.mjs",
         "status": "PASS",
@@ -292,9 +302,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 32,
+        "validators_checked": 33,
         "orphans": 0,
-        "registered": 32
+        "registered": 33
       },
       {
         "name": "token_budget_validate",

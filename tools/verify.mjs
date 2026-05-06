@@ -241,6 +241,15 @@ const CYCLES = [
     },
   },
   {
+    // NEW S014 session-extraction — vlt-blocking: warns when PENDING VLTs exist (registration ≠ resolution)
+    name: 'vlt_blocking',
+    command: 'node tools/validators/validate-vlt-blocking.mjs',
+    parse_output: (out) => {
+      const m = out.match(/vlt_total=(\d+)\s+pending=(\d+)\s+resolved=(\d+)/);
+      return m ? { vlt_total: Number(m[1]), pending: Number(m[2]), resolved: Number(m[3]) } : {};
+    },
+  },
+  {
     // NEW S014 ZF audit — instruction-context: checks B_* contracts, principles, hooks have WHY reasoning (P-META-020)
     name: 'instruction_context',
     command: 'node tools/validators/validate-instruction-context.mjs',

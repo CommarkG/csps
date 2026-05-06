@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T21:26:11.619Z
-- finished_at: 2026-05-06T21:26:17.485Z
+- ran_at: 2026-05-06T21:53:28.389Z
+- finished_at: 2026-05-06T21:53:34.193Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T21:26:11.619Z",
-    "finished_at": "2026-05-06T21:26:17.485Z",
+    "ran_at": "2026-05-06T21:53:28.389Z",
+    "finished_at": "2026-05-06T21:53:34.193Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -40,7 +40,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 212,
+        "scanned": 213,
         "errors": 0,
         "warnings": 0,
         "exempt": 204
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -180,8 +180,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 60,
-        "with_status": 8,
+        "checked": 61,
+        "with_status": 9,
         "warnings": 0
       },
       {
@@ -207,7 +207,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 107,
+        "checked": 108,
         "missing_why": 29
       },
       {

@@ -97,11 +97,25 @@ async function runLevel1() {
 
 async function runLevel2() {
   const findings = await runLevel1();
-  console.log('\n[zf-orchestrator] Level 2 — PHASE_CLOSE: + instruction-context + extraction check');
+  console.log('\n[zf-orchestrator] Level 2 — PHASE_CLOSE: + instruction-context + PE + extraction check');
   const results = [
     run('node tools/validators/validate-instruction-context.mjs', 'instruction-context'),
   ];
   findings.push(...results.flatMap(extractFindings));
+
+  // PE re-assessment — is next action still highest priority?
+  console.log('\n  [PE RE-ASSESSMENT — per zf-mandate-protocol.md EVENT 3]:');
+  console.log('  Q: Is the proposed next phase still the highest PE-scored item?');
+  console.log('  Q: Have any new dependencies emerged that change the priority ordering?');
+  console.log('  Q: Are there PENDING VLTs that affect what comes next?');
+  const peState = JSON.parse(readFileSync(join(ROOT, 'tools/session-state.json'), 'utf8').replace(/\r\n/g,'\n'));
+  const pendingVlts = (peState.blocking_decisions||[]).filter(d=>d.status==='PENDING');
+  if (pendingVlts.length > 0) {
+    findings.push({ severity: 'BLOCKING', source: 'pe-vlt-check', count: pendingVlts.length, text: `PE blocked: ${pendingVlts.length} PENDING VLT(s) affect next phase — ${pendingVlts.map(v=>v.id).join(', ')}` });
+    console.log(`  ⚠ PE BLOCKED: ${pendingVlts.length} PENDING VLT(s) — ${pendingVlts.map(v=>v.id).join(', ')}`);
+  } else {
+    console.log('  ✓ PE check: 0 PENDING VLTs — phase advance unblocked by VLT gate');
+  }
 
   // PE check: any PENDING VLTs? (already covered by vlt-blocking)
   // Extraction check: does session extraction exist for current session?

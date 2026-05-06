@@ -48,10 +48,20 @@ If you cannot make that declaration honestly, STOP and report why.
 • [State item 1: specific fact with commit/hash if applicable]
 • [State item 2]
 • Validators: [N] PASS, exit_code 0 at [commit hash]
+• ZF: iter=[N] from tools/zf-session-tracker.json (iteration count proves real ZF)
 
 ━━━━ EXECUTE IN ORDER — NO SKIPPING, NO REORDERING ━━━━
 
-STEP 1: [specific command or action]
+STEP 0: [SENDING AI — run before handing off] `pnpm zf:phase` (Level 2 ZF)
+  → REQUIRED: ZF_ACHIEVED or ZF_ACHIEVED_WITH_ADVISORIES status
+  → REQUIRED: Paste ZF iter count from tools/zf-session-tracker.json into platform state above
+  → WHY (per zf-mandate-protocol.md EVENT 5): chat transfer is a consequential boundary.
+    Context degrades faster here than anywhere. Level 2 confirms: no blockers, insights
+    extracted, PE confirms the mandate. Nominal handoff without Level 2 = cold start for
+    the receiving AI.
+  → IF FAILS: stop. Fix blocking findings before handing off.
+
+STEP 1: [specific command or action — receiver executes after DECLARE FIRST]
   → REQUIRED OUTPUT: [exact format — e.g., "exit_code 0 AND N+ validators PASS"]
   → IF FAILS: stop. Report: "BLOCKED at step 1: [reason]. Output: [output]"
 

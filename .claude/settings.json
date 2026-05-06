@@ -62,7 +62,8 @@
         "matcher": "Write|Edit",
         "hooks": [
           {"type": "command", "command": ".claude/hooks/post-tool-use-validate-before-assume.sh"},
-          {"type": "command", "command": ".claude/hooks/post-tool-use-cec-trigger.sh"}
+          {"type": "command", "command": ".claude/hooks/post-tool-use-cec-trigger.sh"},
+          {"type": "command", "command": ".claude/hooks/post-tool-use-zf-level-gate.sh"}
         ]
       },
       {

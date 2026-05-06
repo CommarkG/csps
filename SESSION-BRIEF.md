@@ -6,32 +6,26 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S013 |
-| **Previous session** | S012 |
+| **Current session** | S014 |
+| **Previous session** | S013 |
 | **Last updated** | today |
-| **Last commit** | 2dfb224 S011 PLANNING_MODE + vocabulary ZF + parallel session discipline |
+| **Last commit** | 4dd0fa2 S014 L2 — Goals/personas/metrics + VLT ratification + session advance to S014 |
 | **Foundation slices** | ✅ BUILT (36847d5) |
 | **Apps in production** | 0 |
 
-## What S013 must do
+## What S014 must do
 
-**Clerk webhook integration + Stripe billing wiring. Foundation slices L1 COMPLETE at 36847d5.**
+**S014 L2 — Goals + personas + success metrics. L1 research COMPLETE + 4 VLTs ratified by Governor. L3 schema (Task/Project ZModel) unlocked after L2 ZF gate.**
 
-### Start protocol (copy-paste to start the session)
 
-```
-1. Emit §17 receipt: S013-AI-receipt-<iso>-against-S012-close
-2. Run: pnpm verify --skip-install → expect 31+ PASS exit_code 0
-3. Implement Clerk webhook → creates Tenant on org creation
-4. Implement Stripe customer creation → sets Tenant.stripeCustomerId
-5. Wire UserTenant creation on Clerk membership add
-6. Test: full user signup → tenant creation → membership → audit trail
-```
 
 ## Blocking decisions
 
 ### ✅ Resolved (already built)
-- None resolved yet
+- ✅ **VLT-S014-002**: Tasks + Projects (Option B). No Milestones at v1. Milestones can be added later without schema breakage.
+- ✅ **VLT-S014-003**: One workspace per tenant (Option A). Workspace IS the Tenant. Already implemented via Tenant.clerkOrgId. Multiple workspaces = create multiple Clerk orgs.
+- ✅ **VLT-S014-004**: $1K MRR graduation trigger (Option B). Measured via Stripe webhooks → AuditEvent. Governor manual override always available.
+- ✅ **VLT-S014-005**: Free solo / paid team (Option C). Free when UserTenant count = 1. Paid when 2+ members join tenant. Stripe billing triggers on second UserTenant creation.
 
 ### 🔴 Still pending (decide before proceeding)
 - None — all decisions resolved
@@ -40,10 +34,10 @@
 
 | Metric | Value |
 |---|---|
-| Validators (pnpm verify) | 31 validators PASS exit_code 0 |
+| Validators (pnpm verify) | exit_code 0 (34 validators declared, all PASS or DEFERRED-WITH-REASON) |
 | Council skills | 26 |
-| Behavioral contracts | 42 |
-| Error patterns (EP) | 14 |
+| Behavioral contracts | 43 |
+| Error patterns (EP) | 16 |
 | Moat elements | 18 |
 | Complexity score | 17.9 (GREEN < 25) |
 
@@ -51,10 +45,9 @@
 
 | Session | Mandate | Status |
 |---|---|---|
-| s012_a | Resolve VLT-S011-003 + VLT-S011-004 (Governor decisions) | ⏳ PENDING |
-| s012_b | Foundation slices L1: User/Tenant/AuditEvent ZModel | ✅ COMPLETE (36847d5) |
-| s013 | Clerk auth wiring + Stripe billing integration | ⏳ PENDING |
-| s014 | First app slice — pick simplest concept, build end-to-end | ⏳ PENDING |
+| s012_b | Foundation slices L1: User/Tenant/UserTenant/AuditEvent ZModel | ✅ COMPLETE (36847d5) |
+| s013 | Clerk auth wiring + Stripe billing service layer | ✅ COMPLETE (db31496) |
+| s014 | Task management app — depth-4 planning. L1 COMPLETE. L2 = goals/personas/metrics. L3 = Task+Project ZModel. L4 = implementation. | ⏳ PENDING |
 | s015 | Graduation path design + second app slice | ⏳ PENDING |
 
 ## Why this builds better than others
@@ -66,6 +59,7 @@
 - Vocabulary alignment across 30 apps — prevents naming drift
 - Model-tier-required in PE — optimal model for each task, not just one model for all
 - The Threshold Gate — all inputs governed before processing
+- B_CONSENSUS_BEFORE_PROCEEDING — Governor ratifies all VLTs before schema locks
 
 ## How to verify the last session's output
 

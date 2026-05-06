@@ -50,6 +50,7 @@ const KNOWN_MAPPINGS = {
   'validate-source-class-coverage': ['intake-source-class-coverage', 'source-class-coverage', 'intake_source_class_coverage'],
   'validate-rzf-evidence': ['rzf-evidence', 'rzf_evidence', 'nominal-rzf-detection'],
   'validate-slice-freshness': ['slice-freshness', 'slice_freshness', 'slice-drift-detection'],
+  'validate-no-implementation-without-plan': ['no-implementation-without-plan', 'no_implementation_without_plan', 'construction-gate'],
 };
 
 function validatorBasename(filename) {

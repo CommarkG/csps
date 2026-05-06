@@ -142,6 +142,15 @@ const CYCLES = [
     parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
   },
   {
+    // NEW S011 §24+++++ — construction gate: implementation code must have backing topic-plan (EP-011)
+    name: 'no_implementation_without_plan',
+    command: 'node tools/validators/validate-no-implementation-without-plan.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+exempt=(\d+)\s+unplanned=(\d+)/);
+      return m ? { checked: Number(m[1]), exempt: Number(m[2]), unplanned: Number(m[3]) } : {};
+    },
+  },
+  {
     // NEW S011 §24+++++ — rzf-evidence: THIS-SESSION ZF evidence in verify-last-run.md or §10.0
     name: 'rzf_evidence',
     command: 'node tools/validators/validate-rzf-evidence.mjs',

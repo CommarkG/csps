@@ -90,8 +90,20 @@ async function main() {
   if (warnings.length > 0) {
     console.warn('[validate-open-plan-levels] open exit criteria detected:');
     for (const w of warnings) console.warn(w);
-    console.warn('  → Per P-META-020: open items are obligations, not options.');
-    console.warn('  → Check each: is it actually done (update checkbox) or genuinely pending?');
+    console.warn('');
+    console.warn('  WHY THESE MATTER (P-META-021 Triad Governance):');
+    console.warn('  Open items are not just unchecked boxes — they are consequential decisions');
+    console.warn('  without all 3 governance layers confirmed. Each open item represents:');
+    console.warn('    (1) A context that was loaded when the item was written');
+    console.warn('    (2) A principle that said this must be done');
+    console.warn('    (3) A mechanical expectation that the item would be completed');
+    console.warn('  Leaving it open degrades layer (1) — the context that explained WHY.');
+    console.warn('  Per P-META-021: rules are finite; situations are infinite; only the');
+    console.warn('  combination covers all cases. Nominal completion (checkbox only, no actual');
+    console.warn('  work) = single-layer reliance = structural failure waiting to compound.');
+    console.warn('');
+    console.warn('  → For each item: is it DONE (update checkbox) or DEFERRED (document why)?');
+    console.warn('  → Neither answer is wrong. Silent neither = structural debt.');
   }
 
   const summary = `[validate-open-plan-levels] plans_checked=${plans_checked} plans_with_open=${warnings.length} total_open_items=${total_open}`;

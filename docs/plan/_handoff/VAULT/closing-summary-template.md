@@ -340,6 +340,30 @@ conceptual_alignment_check:
 
 If overall: NOT_CHECKED — note explicitly. Silent skip = anti-pattern (concept-load-skip in P-META-020 anti-patterns).
 
+### §10.0m Session extraction (B_POSITIVE_VALUE_EXTRACTION — added S014)
+
+> **Per B_POSITIVE_VALUE_EXTRACTION + session-S014-extraction.md template:** every substantive session extracts maximum value before context degrades. The extraction MUST be authored at session close using the 7-section template.
+
+```yaml
+session_extraction:
+  artifact: docs/plan/_handoff/VAULT/session-S<NNN>-extraction.md
+  status: authored | not-authored-explicit-reason
+  if_not_authored_reason: <required if not authored>
+  sections_completed:
+    - principles_confirmed: yes | no
+    - questions_generated: yes | no
+    - what_worked: yes | no
+    - what_failed: yes | no
+    - gaps_solutions: yes | no
+    - context_statements: yes | no
+  new_principles_this_session: <count + IDs>
+  new_questions_this_session: <count>
+  drift_log_entries_added: <count>
+  reasoning_patterns_promoted: <count>
+```
+
+WHY: insights not explicitly extracted are lost at session boundary. Every unextracted pattern will reappear in a future session as a more expensive problem. The session-S014-extraction.md template exists precisely because the plan-promise-abandonment pattern was invisible for 3 sessions before being named. Naming it made the structural fix (validate-open-plan-levels.mjs) possible.
+
 ### §10.1 Stewardship review (P-META-004)
 
 **Run `/stewardship-review`:**

@@ -98,6 +98,36 @@ muv_audit:
 
 ---
 
+## §0 — Triad Governance Check (P-META-021 — mandatory for all plans)
+
+> **Per P-META-021:** No single governance layer covers all situations. Plans must declare the triad for their most consequential decisions. This section is NOT optional — it is the difference between a plan that works once and a plan that navigates correctly across infinite session boundaries.
+
+**Q1 — What are the 1-3 most consequential decisions this plan will make?**
+(A decision is consequential if it is hard to reverse, affects multiple artifacts, represents a new situation class, or blocks future phases.)
+```
+Decision 1: <describe>
+Decision 2: <describe>
+Decision 3: <describe>
+```
+
+**Q2 — For each consequential decision, does the triad exist?**
+
+| Decision | Context layer (L2 spine) | Principle layer (P-* or B_*) | Mechanical layer (hook/validator) |
+|---|---|---|---|
+| <decision 1> | <which L2 domain> | <which principle> | <which enforcer> |
+| <decision 2> | | | |
+
+**Q3 — What are the VLTs (Governor decisions) this plan requires before L3 can start?**
+(List here; register in tools/session-state.json blocking_decisions; PENDING = phase advance blocked per B_CONSENSUS_BEFORE_PROCEEDING)
+```
+VLT-<NNN>-001: <question>
+VLT-<NNN>-002: <question>
+```
+
+**Why this section exists:** The platform has infinite future situations. Rules enumerated for today's situations will not cover tomorrow's. The triad (context + principle + mechanical) is the only mechanism that scales. A plan that doesn't declare its triad for consequential decisions is a plan that will drift the moment a new situation appears. This section makes the governance architecture explicit — not as overhead, but as load-bearing structure.
+
+---
+
 ## Required body sections
 
 ### §1 Foundation primitives (Level 1) — depends on: nothing

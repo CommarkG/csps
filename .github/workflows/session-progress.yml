@@ -1,0 +1,86 @@
+name: CSPS Session Progress
+
+# THE ETERNAL INTERFACE — fires on every push to main
+# Generates SESSION-BRIEF.md + validates session state + notifies Governor
+# This IS the external mechanical interface between AI sessions and human oversight
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/session-state.json'     # fires when session advances
+      - 'libs/policies/slices/**'      # fires when foundation slices change
+      - 'packages/**'                  # fires when platform packages change
+
+  schedule:
+    - cron: '23 7 * * 1'  # Monday 07:23 — weekly health summary (mirrors CronCreate job)
+
+  workflow_dispatch:                   # allow manual trigger by Governor
+
+jobs:
+  session-brief:
+    name: Generate SESSION-BRIEF + Validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        run: npm install -g pnpm@9.15.1
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate SESSION-BRIEF.md
+        run: node tools/generate-session-brief.mjs
+
+      - name: Run session validators
+        run: |
+          echo "=== Session health check ==="
+          node tools/validators/validate-session-artifact-sync.mjs || echo "WARN: session sync issues"
+          node tools/validators/validate-moat-coverage.mjs || echo "WARN: moat coverage gaps"
+          node tools/validators/validate-inner-ai-defaults-freshness.mjs || echo "WARN: AI defaults stale"
+          node tools/validators/validate-model-tier-currency.mjs || echo "WARN: tier registry stale"
+          echo "=== Construction gate ==="
+          node tools/validators/validate-no-implementation-without-plan.mjs || echo "WARN: unplanned code"
+
+      - name: Read session state
+        id: session
+        run: |
+          CURRENT=$(node -e "const d=JSON.parse(require('fs').readFileSync('tools/session-state.json','utf8')); console.log(d.current_session||'?')")
+          MANDATE=$(node -e "const d=JSON.parse(require('fs').readFileSync('tools/session-state.json','utf8')); console.log((d.session_mandate||{}).primary||'?')")
+          BLOCKING=$(node -e "const d=JSON.parse(require('fs').readFileSync('tools/session-state.json','utf8')); const b=(d.blocking_decisions||[]).filter(x=>x.status!=='RESOLVED'); console.log(b.length>0 ? 'YES: '+b.map(x=>x.id).join(', ') : 'NONE')")
+          echo "current_session=$CURRENT" >> $GITHUB_OUTPUT
+          echo "mandate=$MANDATE" >> $GITHUB_OUTPUT
+          echo "blocking=$BLOCKING" >> $GITHUB_OUTPUT
+
+      - name: Commit SESSION-BRIEF.md
+        run: |
+          git config user.email "ci@csps.platform"
+          git config user.name "CSPS Session Bot"
+          git add SESSION-BRIEF.md
+          git diff --staged --quiet || git commit -m "auto: SESSION-BRIEF.md updated for ${{ steps.session.outputs.current_session }}"
+          git push || echo "Nothing to push"
+
+      - name: Summary
+        run: |
+          echo "## CSPS Session Progress" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| Current session | ${{ steps.session.outputs.current_session }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Mandate | ${{ steps.session.outputs.mandate }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Blocking | ${{ steps.session.outputs.blocking }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "SESSION-BRIEF.md updated. See repo root." >> $GITHUB_STEP_SUMMARY

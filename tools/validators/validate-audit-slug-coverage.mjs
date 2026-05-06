@@ -59,6 +59,7 @@ const KNOWN_MAPPINGS = {
   'validate-universal-alignment': ['universal-alignment', 'universal_alignment', 'universal-alignment-gate'],
   'validate-inner-ai-defaults-freshness': ['ai-defaults-freshness', 'ai_defaults_freshness', 'inner-ai-defaults-freshness'],
   'validate-model-tier-currency': ['model-tier-currency', 'model_tier_currency', 'tier-registry-currency'],
+  'validate-session-receipt': ['session-receipt', 'session_receipt', 'receipt-chain-validation'],
 };
 
 function validatorBasename(filename) {

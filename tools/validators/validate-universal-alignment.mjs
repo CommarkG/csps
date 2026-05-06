@@ -75,7 +75,7 @@ function getNewFiles() {
       .map(l => l.trim().replace(/^[?MAD ]+/, '').replace(/^"(.+)"$/, '$1').trim())
       .filter(f => f.endsWith('.md'))
       // Skip generated slice files (no frontmatter by design)
-      .filter(f => !f.match(/\/behavioral-contracts\/B_/) && !f.match(/\/audit-runner\/pipeline-/) && !f.match(/\/ai-behavior-spine\//) && !f.match(/\/principles\/P-/));
+      .filter(f => !f.match(/\/behavioral-contracts\/B_/) && !f.match(/\/audit-runner\/pipeline-/) && !f.match(/\/ai-behavior-spine\//) && !f.match(/\/principles\/P-/) && f !== 'SESSION-BRIEF.md');
   } catch { return []; }
 }
 

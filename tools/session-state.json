@@ -99,5 +99,24 @@
     "4. Implement Stripe customer creation → sets Tenant.stripeCustomerId",
     "5. Wire UserTenant creation on Clerk membership add",
     "6. Test: full user signup → tenant creation → membership → audit trail"
-  ]
+  ],
+  "active_implementation_session": "S013",
+  "s011_role": "PLANNING_MODE",
+  "parallel_session_protocol": {
+    "rule": "When session-state.current_session > this_chat_session: this chat is PLANNING_MODE only",
+    "planning_mode_allows": [
+      "think",
+      "analyze",
+      "create prompts for new chats",
+      "spec documents",
+      "review S013 output"
+    ],
+    "planning_mode_prohibits": [
+      "implement code",
+      "write ZModel files",
+      "commit implementation",
+      "modify libs/packages/apps"
+    ],
+    "why": "Parallel sessions conflict on implementation. Planning session prepares; implementation session executes."
+  }
 }

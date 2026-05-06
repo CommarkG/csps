@@ -80,3 +80,103 @@ terms:
     reject: []
     values: [free, pro, business, enterprise, internal]
     domain: billing
+
+  # ── S011 §24++ NEW TERMS (vocabulary ZF 2026-05-06) ──────────────────────
+  # Every new canonical term that entered the platform in S011 extended sessions.
+  # Definition | Context | Position in platform
+
+  - canonical: satisfaction-point
+    description: "The moment an AI decides it has done enough based on appearance of completion, not ZF evidence. A training-baked default that fires in all LLMs."
+    aliases: [completion-satisfaction, done-feeling]
+    reject: []
+    domain: governance
+    context: "EP-015 documents this pattern. Fires in Claude, GPT, Gemini, Lovable, Bolt. Prevention: validate-rzf-evidence.mjs + AGENTS.md completeness-theater hard NO."
+    platform_position: "AI behavior gap → inner-ai-defaults registry → EP-015 → validate-rzf-evidence enforcement"
+
+  - canonical: zero-drift-template
+    description: "A structured transfer protocol with no interpretation space — explicit sender/receiver, DECLARE FIRST block, REQUIRED OUTPUT per step, BLOCKED path, exact completion format."
+    aliases: [chat-transfer-protocol, zero-interpretation-template]
+    reject: [free-form-handoff, loose-prompt]
+    domain: governance
+    context: "tools/templates/chat-transfer-protocol.template.md. Used for all AI-to-AI task transfers. EP-016 documents what happens without it."
+    platform_position: "Template registry §4 → B_MUTUAL_UNDERSTANDING_VALIDATION → session governance"
+
+  - canonical: session-seed
+    description: "A committed artifact that automatically surfaces context to any new chat. Examples: tools/session-state.json (surfaced by hook), foundation-design.md (read by protocol)."
+    aliases: [mechanical-seed, context-seed]
+    reject: []
+    domain: ops
+    context: "Seeds solve the chat-boundary context loss problem mechanically. session-state.json is the primary seed; foundation-design.md is the ZModel seed."
+    platform_position: "user-prompt-submit-intake.sh hook → session-state.json → NEXT STEP surfacing"
+
+  - canonical: internal-deep-review
+    description: "Structured Sonnet critical review — NOT Opus simulation. A Sonnet applying systematic challenge to work done, with mandatory [INTERNAL_DEEP_REVIEW — Sonnet] label."
+    aliases: [IDR, structured-sonnet-review]
+    reject: [opus-simulation, opus-mode]
+    domain: governance
+    context: "Created S011 after the Opus impersonation incident (EP-014). Produces 5-task structured review with honest limitations declared. Different from and less capable than real Opus."
+    platform_position: "internal-deep-review SKILL.md → council Band 1 → pre-session-close checklist"
+
+  - canonical: model-tier-vocabulary
+    description: "Abstract tier names (DEEP_REASONING / STANDARD_BUILD / MECHANICAL_SCAN / EXTERNAL_RESEARCH) that map to actual models. Decouples intent from implementation."
+    aliases: [tier-vocabulary, model-tiers]
+    reject: [specific-model-names, hardcoded-model-ids]
+    domain: governance
+    context: "tools/model-tier-registry.yaml. When models upgrade, update ONE file. All routing adapts. PE §15 integrates tier into scoring."
+    platform_position: "model-tier-registry.yaml → PE schema §15 → context-orchestrator → council dispatch"
+
+  - canonical: catch-completeness
+    description: "Every identified problem (catch) in §10.13b must produce all 5 surfaces: EP-NNN + §KH DON'T + AGENTS hard NO + inner-ai-defaults + validator. Not 1/5, not 3/5, all 5."
+    aliases: [five-surface-catch, catch-to-pattern]
+    reject: [instance-fix-only, local-fix]
+    domain: governance
+    context: "validate-catch-completeness.mjs enforces this. Pre-session-close checklist §Catch-to-pattern requires it. EP-015 (satisfaction point) fires when this is skipped."
+    platform_position: "validate-catch-completeness.mjs → pre-session-close checklist → B_CATCH_TO_ENGRAVING"
+
+  - canonical: planning-mode
+    description: "Session role when a newer implementation session is active in parallel. Allows: think/analyze/specify/prepare prompts. Prohibits: implement code/write ZModel/commit to libs."
+    aliases: [planning-only-mode, advance-planning-session]
+    reject: [parallel-implementation, concurrent-coding]
+    domain: governance
+    context: "Solves the parallel session conflict. When session-state.active_implementation_session ≠ this chat → PLANNING_MODE. Prevents conflicts without locks."
+    platform_position: "AGENTS.md parallel-session-role discipline → session-state.json → council role dispatch"
+
+  - canonical: code-intent-annotation
+    description: "Machine-readable @csps-intent, @csps-unlocks, @csps-session, @csps-decision comments planted in code. Intent travels with code even if governance artifacts lag."
+    aliases: [csps-intent, intent-seed, code-seed]
+    reject: [generic-comments, undocumented-code]
+    domain: architecture
+    context: "Solves the problem of future AIs not knowing WHY code exists. Grep-able: `grep -r '@csps-intent' libs/`. Connects code to VLT-* decisions and session records."
+    platform_position: "libs/policies/slices/ → @csps-intent annotations → session-state.json VLT tracking"
+
+  - canonical: vault-conversion-rate
+    description: "Ratio of vault items resolved to vault items created. Items_resolved / items_created. Target >50%. Below 50% = vault accumulating debt without producing value."
+    aliases: [vault-conversion, vlt-conversion]
+    reject: [vault-size, items-in-vault]
+    domain: governance
+    context: "Tracked by value_realized_at field in vault_pending entries. Weekly hook §6 surfaces overdue items. The health metric for the vault system."
+    platform_position: "vault-methodology.md → vault_pending field → weekly health hook §6"
+
+  - canonical: the-threshold
+    description: "The single canonical entry point for ALL CSPS inputs. Every input — chat prompts, external files, agent outputs, competitor intel — crosses The Threshold before processing."
+    aliases: [threshold-gate, universal-input-gate, intake-gate]
+    reject: [input-filter, message-handler]
+    domain: governance
+    context: "docs/plan/pillar-0-governance/threshold-gate-v2.md. 8-step pipeline: see-what-exists → normalize → classify → route → log → dispatch council → ripple-check → impact. Moat element M-16."
+    platform_position: "threshold-gate-v2.md → user-prompt-submit-intake.sh → intake-router.mjs → council dispatch"
+
+  - canonical: csep
+    description: "Cross-Synergy Enhancement Plan. Structured document produced by synergy-master skill showing how any ratified element can enhance all other platform surfaces."
+    aliases: [cross-synergy-enhancement-plan, synergy-plan]
+    reject: [generic-plan, improvement-doc]
+    domain: governance
+    context: "tools/templates/cross-synergy-enhancement-plan.template.md. Reviewed by cruel-critic before integration. CSEP-S011-001 was the first CSEP (B_KNOW_HOW_DISCIPLINE analysis)."
+    platform_position: "synergy-master skill → CSEP template → cruel-critic → integration → moat M-13"
+
+  - canonical: session-brief
+    description: "Machine-generated plain-English 2-minute summary of platform state. Generated by node tools/generate-session-brief.mjs. Committed to SESSION-BRIEF.md. Human-readable."
+    aliases: [SESSION-BRIEF, session-summary]
+    reject: [ai-jargon-brief, technical-state-dump]
+    domain: ops
+    context: "The human interface to session governance. Auto-generated on every push via .github/workflows/session-progress.yml. Governor reads in 2 minutes to verify session output."
+    platform_position: "generate-session-brief.mjs → SESSION-BRIEF.md → GitHub Action → Governor verification"

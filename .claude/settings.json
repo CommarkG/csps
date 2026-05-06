@@ -5,7 +5,12 @@
       "WebFetch(domain:tag-app-delivery.cncf.io)",
       "WebFetch(domain:arc42.org)",
       "WebFetch(domain:sandimetz.com)",
-      "WebFetch(domain:docs.cloud.google.com)"
+      "WebFetch(domain:docs.cloud.google.com)",
+      "Bash(pnpm verify *)",
+      "Bash(pnpm verify)",
+      "Bash(node tools/verify.mjs *)",
+      "Bash(pnpm tokens:measure)",
+      "Bash(bash .claude/hooks/verify-hooks-functional.sh)"
     ]
   },
   "hooks": {

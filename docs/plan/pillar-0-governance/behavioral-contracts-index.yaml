@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 42
+  total_count: 43
   generated_at: '2026-05-06'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -140,3 +140,6 @@ contracts:
   - id: B_NO_AI_IMPERSONATION
     desc: "AI must never claim to be a different model, mode, or capability"
     path: ./behavioral-contracts/B_NO_AI_IMPERSONATION.md
+  - id: B_CONSENSUS_BEFORE_PROCEEDING
+    desc: "principal decisions require Governor ratification before any stage advances"
+    path: ./behavioral-contracts/B_CONSENSUS_BEFORE_PROCEEDING.md

@@ -1480,3 +1480,31 @@ The Opus simulation incident (S011) is the canonical failure case:
 - memory: feedback_no_ai_impersonation.md (to be authored)
 - hook: post-stop-banned-phrase.sh extension (add "I am Opus", "as Opus", "Opus-quality" to banned phrases when not running Opus)
 - audit: ai-honesty-audit slug (Pipeline 10 csps-alignment)
+
+## B_CONSENSUS_BEFORE_PROCEEDING — principal decisions require Governor ratification before any stage advances (S011 §24++ final)
+
+**Canonical wording:**
+
+> At EVERY stage (thinking / assessing / planning / auditing / implementing / validating): before the stage produces output that becomes a dependency for the NEXT stage, all principal decisions for that stage MUST be resolved (status: RESOLVED in VLT registry or session-state.json blocking_decisions). AI may surface options, analyze tradeoffs, and present recommendations — but MUST NOT build, commit, or advance to the next stage on unratified decisions. This prevents the "deep coding runs ahead of the wagon" pattern where the Governor must endlessly iterate to correct AI-defaulted decisions.
+
+**The 6 stages and their consensus requirements:**
+
+| Stage | Principal decision type | VLT trigger | Proceed condition |
+|---|---|---|---|
+| **Thinking** | Which approach to explore? | Any approach that excludes alternatives | Governor selects approach |
+| **Assessing** | What does this finding imply architecturally? | Architectural implication requiring design change | Governor confirms implication |
+| **Planning** | What are the key design decisions? | Any decision that affects schema/API/graduation | Governor ratifies 3-5 key VLTs |
+| **Auditing** | What action should this finding trigger? | Findings requiring architectural change | Governor approves action |
+| **Implementing** | Does this implementation match the ratified plan? | Any deviation from ratified spec | Governor ratifies deviation or stop |
+| **Validating** | Does this validation finding require rework? | Validator findings requiring schema change | Governor approves rework scope |
+
+**Anti-pattern this prevents:**
+The "AI runs ahead of the wagon" — building with training defaults on decisions the Governor hasn't ratified, then requiring endless correction iterations.
+
+**Mechanical surfaces:**
+- contract: this entry + AGENTS.md hard DO (consensus gate per stage)
+- VLT registry: blocking_decisions in tools/session-state.json
+- validator: validate-no-implementation-without-plan.mjs (implements-level gate, already active)
+- validator: validate-catch-completeness.mjs (planning-level gate)
+- template: tools/templates/chat-transfer-protocol.template.md (transfer-level gate)
+- memory: feedback_consensus_before_proceeding.md (to be authored)

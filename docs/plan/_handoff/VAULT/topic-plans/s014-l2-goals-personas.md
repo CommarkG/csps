@@ -28,8 +28,8 @@ links:
 
 # S014 L2 — Goals, Personas, Success Metrics
 
-> **Status: DRAFTED — awaiting Governor ratification before L3 opens.**
-> One item requires Governor input (marked ★). Everything else is derived from VLT resolutions.
+> **Status: COMPLETE — Governor-ratified 2026-05-06. L3 is UNLOCKED.**
+> Pricing confirmed: $9/month flat per team (up to 5 members).
 
 ---
 
@@ -69,14 +69,9 @@ The free-to-paid transition is exactly "UserTenant count crosses 2" — the solo
 ## Differentiation Statement
 
 > **Why this instead of Notion, Todoist, or Linear:**
-> CSPS Task is the **only task manager that bills by team, not by seat** — solo use is free forever, and you pay once when your team joins, not per person. For a 3-person team: Notion = $30/mo, Linear = $30/mo, CSPS = $X/mo flat (TBD ★).
+> CSPS Task is the **only task manager that bills by team, not by seat** — solo use is free forever, and you pay once when your team joins, not per person. For a 3-person team: Notion = $30/mo, Linear = $30/mo, CSPS = $9/mo flat.
 
-★ **Governor input needed:** Monthly flat rate per team for paid tier. Options:
-- $9/month flat (up to 5 members)
-- $15/month flat (up to 10 members)
-- $8/user/month above 1 (per-seat after solo)
-
-This affects the Stripe billing implementation at L4. Default assumption: **$9/month flat per team (up to 5)** unless Governor specifies otherwise.
+**Pricing: $9/month flat per team (up to 5 members). Governor-confirmed 2026-05-06.**
 
 ---
 
@@ -126,7 +121,7 @@ This affects the Stripe billing implementation at L4. Default assumption: **$9/m
 - [x] Differentiation statement written
 - [x] Success metrics defined and measurable from AuditEvent
 - [x] Scope boundary explicit (in / out of scope at v1)
-- [ ] ★ Governor ratifies flat pricing ($9/mo or alternative)
-- [ ] pnpm verify exit_code 0
+- [x] ★ Governor confirmed: $9/mo flat per team (2026-05-06)
+- [x] pnpm verify exit_code 0
 
-**Once Governor confirms pricing, L2 is COMPLETE and L3 (Task + Project ZModel) opens.**
+**L2 COMPLETE. L3 (Task + Project ZModel) is OPEN.**

@@ -1,0 +1,41 @@
+// ============================================================================
+// Tenant — Foundation slice for product-context / multi-tenancy plane
+// ============================================================================
+// The CSPS product context. One Tenant per Clerk organization (1:1 per
+// VLT-S011-004). Tenant.clerkOrgId = Clerk org ID — direct mapping, no
+// intermediate join table until flexibility is proven necessary (P-OP-003).
+//
+// Stripe integration: stripeCustomerId populated in S013 (billing wiring).
+// Hard delete forbidden per P-ARCH-007.
+//
+// Source of truth: libs/policies/slices/public/foundation-design.md §VLT-S011-004
+// ============================================================================
+
+import "../base"
+
+@@meta(
+  id: "csps.public.tenant",
+  domain: "identity",
+  type: "schema",
+  audience: "developer",
+  enforces: ["P-ARCH-002", "P-ARCH-007"],
+  lifecycle: "production",
+  lifecycle_state: "active"
+)
+
+model Tenant extends Base {
+  slug             String   @unique                   // URL-safe identifier (e.g. "acme-corp")
+  name             String
+  clerkOrgId       String?  @unique                   // VLT-S011-004: direct Clerk org → Tenant 1:1
+  stripeCustomerId String?                            // Stripe billing (wired in S013)
+
+  members          UserTenant[]
+
+  @@schema("public")
+  @@allow("read", auth().tenantId == id)              // tenant-scoped: active session must match
+  @@allow("read", auth().staffRole != null)           // staff override
+  @@deny("delete", true)                              // soft-delete only per P-ARCH-007
+
+  @@index([slug])                                     // URL routing lookup
+  @@index([clerkOrgId])                               // Clerk org webhook lookup
+}

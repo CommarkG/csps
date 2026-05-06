@@ -1,0 +1,48 @@
+// ============================================================================
+// UserTenant — Foundation slice for membership / join-table plane
+// ============================================================================
+// The CSPS membership record. Implements VLT-S011-003 decision: 1:N via join
+// table. One UserTenant row = one person's membership in one tenant (app).
+//
+// Post-graduation: an app takes its UserTenant slice with it → extraction-ready.
+// Hard delete forbidden per P-ARCH-007 — revoked memberships soft-deleted.
+//
+// Source of truth: libs/policies/slices/public/foundation-design.md §VLT-S011-003
+// ============================================================================
+
+import "../base"
+
+@@meta(
+  id: "csps.public.user-tenant",
+  domain: "identity",
+  type: "schema",
+  audience: "developer",
+  enforces: ["P-ARCH-002", "P-ARCH-007"],
+  lifecycle: "production",
+  lifecycle_state: "active"
+)
+
+enum MembershipRole {
+  owner   // created the tenant; full control
+  admin   // invited admin; can manage members + billing
+  member  // standard member; app-level permissions only
+}
+
+model UserTenant extends Base {
+  userId   String
+  tenantId String
+  role     MembershipRole
+
+  user     User   @relation(fields: [userId],   references: [id])
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  @@unique([userId, tenantId])                        // one membership per user per tenant
+
+  @@schema("public")
+  @@allow("read", auth().id == userId || auth().tenantId == tenantId)
+  @@allow("read", auth().staffRole != null)
+  @@deny("delete", true)                              // revoke = soft-delete (deletedAt)
+
+  @@index([userId])                                   // "all my memberships" query
+  @@index([tenantId, role])                           // tenant member list + role filter
+}

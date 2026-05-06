@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-05T18:30:27.231Z
-- finished_at: 2026-05-05T18:30:30.935Z
+- ran_at: 2026-05-06T10:30:37.581Z
+- finished_at: 2026-05-06T10:30:43.058Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-05T18:30:27.231Z",
-    "finished_at": "2026-05-05T18:30:30.935Z",
+    "ran_at": "2026-05-06T10:30:37.581Z",
+    "finished_at": "2026-05-06T10:30:43.058Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 53,
         "findings_total": 0
       },
@@ -40,10 +40,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 156,
+        "scanned": 199,
         "errors": 0,
         "warnings": 0,
-        "exempt": 199
+        "exempt": 202
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -51,9 +51,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "skills_scanned": 16,
+        "skills_scanned": 26,
         "missing_aap": 0,
-        "aligned": 16
+        "aligned": 26
       },
       {
         "name": "principle_count_staleness",
@@ -86,8 +86,8 @@
         "command": "node tools/validators/validate-behavioral-contract-slices.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
-        "source_contracts": 39,
+        "duration_seconds": 0.1,
+        "source_contracts": 42,
         "missing_slices": 0
       },
       {
@@ -108,6 +108,150 @@
         "syntax_ok": true
       },
       {
+        "name": "audit_health",
+        "command": "node tools/validators/validate-audit-health.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
+      },
+      {
+        "name": "model_tier_currency",
+        "command": "node tools/validators/validate-model-tier-currency.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
+      },
+      {
+        "name": "ai_defaults_freshness",
+        "command": "node tools/validators/validate-inner-ai-defaults-freshness.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
+      },
+      {
+        "name": "council_coverage",
+        "command": "node tools/validators/validate-council-coverage.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
+      },
+      {
+        "name": "universal_alignment",
+        "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files": 0
+      },
+      {
+        "name": "import_quarantine",
+        "command": "node tools/validators/validate-import-quarantine.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
+      },
+      {
+        "name": "nothing_stands_alone",
+        "command": "node tools/validators/validate-nothing-stands-alone.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
+      },
+      {
+        "name": "moat_coverage",
+        "command": "node tools/validators/validate-moat-coverage.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "total": 15,
+        "covered": 15,
+        "critical_gaps": 0
+      },
+      {
+        "name": "impl_status",
+        "command": "node tools/validators/validate-impl-status.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 59,
+        "with_status": 7,
+        "warnings": 0
+      },
+      {
+        "name": "no_implementation_without_plan",
+        "command": "node tools/validators/validate-no-implementation-without-plan.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 4,
+        "exempt": 3,
+        "unplanned": 0
+      },
+      {
+        "name": "rzf_evidence",
+        "command": "node tools/validators/validate-rzf-evidence.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checks": 2,
+        "warnings": 0
+      },
+      {
+        "name": "slice_freshness",
+        "command": "node tools/validators/validate-slice-freshness.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "pairs_checked": 4,
+        "stale": 0
+      },
+      {
+        "name": "plan_know_how",
+        "command": "node tools/validators/validate-plan-know-how.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 1,
+        "grandfathered": 4,
+        "errors": 0
+      },
+      {
+        "name": "intake_source_class_coverage",
+        "command": "node tools/validators/validate-source-class-coverage.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "source_classes": 4,
+        "errors": 0
+      },
+      {
+        "name": "intake_event_validate",
+        "command": "node tools/validators/validate-intake-event.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files": 0,
+        "rows": 0
+      },
+      {
+        "name": "git_pushed_state",
+        "command": "node tools/validators/validate-git-pushed-state.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.2,
+        "warnings": 1,
+        "advisory": true
+      },
+      {
+        "name": "topic_plan_progress",
+        "command": "node tools/validators/validate-topic-plan-progress.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "plans_checked": 5,
+        "warnings": 0
+      },
+      {
         "name": "session_artifact_sync",
         "command": "node tools/validators/validate-session-artifact-sync.mjs",
         "status": "PASS",
@@ -122,9 +266,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 11,
+        "validators_checked": 28,
         "orphans": 0,
-        "registered": 11
+        "registered": 28
       },
       {
         "name": "token_budget_validate",

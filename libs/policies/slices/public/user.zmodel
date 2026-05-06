@@ -1,0 +1,48 @@
+// ============================================================================
+// User — Foundation slice for identity / auth plane
+// ============================================================================
+// The CSPS person record. Wraps Clerk identity (clerkId = Clerk user ID).
+// One User per physical person; one UserTenant per app-membership.
+// Hard delete forbidden per P-ARCH-007 (soft-delete only via deletedAt).
+//
+// Auth context: auth().id maps to this model's id field.
+// auth().staffRole enables staff-override reads.
+// auth().tenantId = active-tenant session context (injected at login, updated
+// on tenant switch — resolved in S013 Clerk wiring).
+//
+// Source of truth: libs/policies/slices/public/foundation-design.md §VLT-S011-003
+// ============================================================================
+
+import "../base"
+
+@@meta(
+  id: "csps.public.user",
+  domain: "identity",
+  type: "schema",
+  audience: "developer",
+  enforces: ["P-ARCH-002", "P-ARCH-007"],
+  lifecycle: "production",
+  lifecycle_state: "active"
+)
+
+model User extends Base {
+  clerkId     String      @unique                     // Clerk user ID (immutable after creation)
+  email       String      @unique
+  displayName String?
+
+  // Staff / super-admin override field — used in auth().staffRole policy checks
+  staffRole   String?                                 // null = regular user; "staff" | "admin" | "super"
+
+  // Active-tenant session context — set at login / tenant-switch (S013 Clerk wiring)
+  // Required by multi-tenant ZenStack policies that reference auth().tenantId
+  tenantId    String?                                 // current active tenant (session context)
+
+  memberships UserTenant[]
+
+  @@schema("public")
+  @@allow("read", auth().id == id || auth().staffRole != null)
+  @@deny("delete", true)                              // soft-delete only per P-ARCH-007
+
+  @@index([clerkId])                                  // Clerk webhook lookup
+  @@index([email])                                    // signup dedup
+}

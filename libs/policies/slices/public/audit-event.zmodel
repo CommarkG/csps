@@ -1,0 +1,45 @@
+// ============================================================================
+// AuditEvent — Foundation slice for the audit / compliance plane
+// ============================================================================
+// Append-only ledger of every significant action in CSPS. Created via Postgres
+// triggers (P-ARCH-008) — never written directly by application code.
+// Tenant-scoped: every event carries tenantId for RLS isolation.
+// actorId = null for system/background actions.
+//
+// Retention: free 30d / paid 365d / enterprise 7y (per audit-triggers.sql).
+// Hard delete denied — retention expiry handled by scheduled partition drop,
+// not by DELETE on individual rows.
+//
+// Source of truth: libs/policies/slices/public/foundation-design.md §AuditEvent
+// Paired with:     libs/policies/audit-triggers.sql (DDL trigger definitions)
+// ============================================================================
+
+import "../base"
+
+@@meta(
+  id: "csps.public.audit-event",
+  domain: "governance",
+  type: "schema",
+  audience: "developer",
+  enforces: ["P-ARCH-007", "P-ARCH-008"],
+  lifecycle: "production",
+  lifecycle_state: "active"
+)
+
+model AuditEvent extends Base {
+  tenantId     String                                 // RLS scope — every event belongs to a tenant
+  actorId      String?                               // null = system / background job action
+  action       String                                // dot-namespaced verb: "user.created", "invoice.paid"
+  resourceType String                                // model name: "User", "Invoice", "Tenant"
+  resourceId   String                                // PK of the affected resource
+  data         Json?                                 // snapshot of changed fields (before/after where relevant)
+
+  @@schema("public")
+  @@allow("read", auth().tenantId == tenantId)       // tenant members can read their own audit trail
+  @@allow("read", auth().staffRole != null)          // staff can read any tenant's audit trail
+  @@deny("create,update,delete", true)               // append-only per P-ARCH-008; writes via trigger only
+
+  @@index([tenantId, createdAt])                     // primary audit-trail query: tenant × time range
+  @@index([tenantId, resourceType, resourceId])      // resource-history query: "all events for Invoice #X"
+  @@index([actorId, createdAt])                      // actor-history query: "all actions by user Y"
+}

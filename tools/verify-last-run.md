@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T13:13:30.241Z
-- finished_at: 2026-05-06T13:13:36.050Z
+- ran_at: 2026-05-06T13:18:41.733Z
+- finished_at: 2026-05-06T13:18:48.170Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T13:13:30.241Z",
-    "finished_at": "2026-05-06T13:13:36.050Z",
+    "ran_at": "2026-05-06T13:18:41.733Z",
+    "finished_at": "2026-05-06T13:18:48.170Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 1.3,
         "principles_loaded": 53,
         "findings_total": 0
       },
@@ -40,7 +40,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 207,
+        "scanned": 208,
         "errors": 0,
         "warnings": 0,
         "exempt": 203
@@ -77,7 +77,7 @@
         "command": "node tools/validators/validate-audit-runner-slices.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "source_pipelines": 28,
         "missing_slices": 0
       },
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -218,7 +218,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 4,
+        "checked": 5,
         "grandfathered": 4,
         "errors": 0
       },
@@ -255,7 +255,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 8,
+        "plans_checked": 9,
         "warnings": 0
       },
       {

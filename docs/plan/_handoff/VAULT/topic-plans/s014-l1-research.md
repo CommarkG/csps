@@ -27,8 +27,9 @@ links:
 
 # S014 L1 Research — VLT Resolution + Competitor Analysis
 
-> **Status: RESEARCH COMPLETE — awaiting Governor ratification.**
-> Each VLT has a finding and a recommendation. Governor answers replace the recommendation or confirms it.
+> **Status: RATIFIED — Governor approved all 4 recommendations on 2026-05-06.**
+> VLT-002: B | VLT-003: A | VLT-004: B ($1K MRR) | VLT-005: C
+> L3 schema design is now UNLOCKED.
 
 ---
 

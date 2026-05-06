@@ -60,8 +60,9 @@ function hasCodeFiles(dirPath) {
 
 function getActivePlans() {
   const plansDir = join(ROOT, 'docs/plan/_handoff/VAULT/topic-plans');
-  if (!existsSync(plansDir)) return new Set();
+  if (!existsSync(plansDir)) return { topics: new Set(), coveredPaths: new Set() };
   const activeTopics = new Set();
+  const coveredPaths = new Set();
   const files = readdirSync(plansDir).filter(f => f.endsWith('.md') && f !== 'README.md');
   for (const f of files) {
     const text = readFileSync(join(plansDir, f), 'utf8');
@@ -72,9 +73,16 @@ function getActivePlans() {
       if (topicMatch) activeTopics.add(topicMatch[1].trim());
       if (nameMatch) activeTopics.add(nameMatch[1].trim());
       activeTopics.add(basename(f, '.md'));
+      // Check covered_paths field: covered_paths: [libs/policies/]
+      const pathsMatch = text.match(/^covered_paths:\s*\[(.+)\]/m);
+      if (pathsMatch) {
+        for (const p of pathsMatch[1].split(',')) {
+          coveredPaths.add(p.trim().replace(/['"]/g, '').replace(/\/$/, ''));
+        }
+      }
     }
   }
-  return activeTopics;
+  return { topics: activeTopics, coveredPaths };
 }
 
 function isPlatformInfra(pkgName) {
@@ -83,7 +91,7 @@ function isPlatformInfra(pkgName) {
 
 async function main() {
   const warnings = [];
-  const activePlans = getActivePlans();
+  const { topics: activePlans, coveredPaths } = getActivePlans();
   let checked = 0;
   let exempt = 0;
 
@@ -106,7 +114,13 @@ async function main() {
         continue;
       }
 
-      // Check if any active plan covers this directory
+      // Check covered_paths from topic-plans (explicit directory coverage)
+      const fullRelPath = `${implDir}/${sub}`;
+      if ([...coveredPaths].some(cp => fullRelPath.startsWith(cp) || cp.startsWith(fullRelPath))) {
+        continue; // covered by a plan via covered_paths field
+      }
+
+      // Check if any active plan name matches this directory
       const hasPlan = [...activePlans].some(plan =>
         plan.toLowerCase().includes(sub.toLowerCase()) ||
         sub.toLowerCase().includes(plan.toLowerCase())
@@ -135,6 +149,9 @@ async function main() {
       checked++;
 
       if (isPlatformInfra(pkg)) { exempt++; continue; }
+
+      const pkgRelPath = `packages/${pkg}`;
+      if ([...coveredPaths].some(cp => pkgRelPath.startsWith(cp) || cp.startsWith(pkgRelPath))) continue;
 
       const hasPlan = [...activePlans].some(plan =>
         plan.toLowerCase().includes(pkg.toLowerCase()) ||

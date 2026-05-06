@@ -75,11 +75,36 @@ function extractCatches(text) {
   return catches;
 }
 
+function extractPositiveEvents(text) {
+  // Extract §10.11b positive value extraction walk-trail
+  const section = extractSection(text, '§10.11b') || extractSection(text, 'Positive value');
+  const positives = [];
+  for (const line of section.split('\n')) {
+    if (line.trim().startsWith('-') && line.length > 20 && line.includes('✅')) {
+      positives.push(line.trim());
+    }
+    if (line.trim().startsWith('**') && line.includes(':')) {
+      positives.push(line.trim().slice(0, 120));
+    }
+  }
+  return positives;
+}
+
+function extractVaultItems(text) {
+  // Extract vault_pending items from frontmatter or body
+  const vaultItems = [];
+  for (const m of text.matchAll(/vault_pending:\s*\n([\s\S]*?)(?=\n[a-zA-Z]|\n---)/g)) {
+    vaultItems.push(m[0].trim().slice(0, 100));
+  }
+  return vaultItems;
+}
+
 function processFile(filePath) {
   const session = filePath.match(/closing-summary-(S\d+)/)?.[1] ?? 'unknown';
   const text = readFileSync(filePath, 'utf8');
   const proposals = extractEnhancementProposals(text);
   const catches = extractCatches(text);
+  const positives = extractPositiveEvents(text);
 
   const findings = [];
   for (const p of proposals) {
@@ -89,6 +114,9 @@ function processFile(filePath) {
   for (const c of catches) {
     const eps = classifyText(c);
     if (c.length > 10) findings.push({ session, type: 'catch', text: c.slice(0, 120), eps });
+  }
+  for (const pos of positives) {
+    if (pos.length > 10) findings.push({ session, type: 'positive-event', text: pos.slice(0, 120), eps: ['SG-CANDIDATE'] });
   }
   return findings;
 }
@@ -128,21 +156,47 @@ async function main() {
   }
 
   console.log('\n=== Know-How Extraction Report ===\n');
-  for (const [ep, findings] of Object.entries(byEp).sort()) {
-    const epFile = ep === 'EP-UNCLASSIFIED' ? null :
-      join(KNOW_HOW_DIR, 'error-patterns', `${ep.toLowerCase()}-*.md`);
-    console.log(`\n${ep} — ${findings.length} finding(s):`);
-    for (const f of findings) {
-      console.log(`  [${f.session}] (${f.type}) ${f.text}`);
-    }
-    if (ep !== 'EP-UNCLASSIFIED') {
-      console.log(`  → Increment recurrence_count in know-how/error-patterns/${ep.toLowerCase()}*.md`);
-    } else {
-      console.log(`  → Consider creating a new EP-NNN entry in know-how/error-patterns/`);
+
+  // Error patterns
+  const errorEntries = Object.entries(byEp).filter(([k]) => k.startsWith('EP-') || k === 'EP-UNCLASSIFIED');
+  if (errorEntries.length > 0) {
+    console.log('── ERROR PATTERNS (EP-NNN) ──');
+    for (const [ep, findings] of errorEntries.sort()) {
+      console.log(`\n${ep} — ${findings.length} finding(s):`);
+      for (const f of findings) console.log(`  [${f.session}] (${f.type}) ${f.text}`);
+      if (ep.startsWith('EP-')) {
+        console.log(`  → Increment recurrence_count in know-how/error-patterns/${ep.toLowerCase()}*.md`);
+      } else {
+        console.log(`  → Consider creating a new EP-NNN entry in know-how/error-patterns/`);
+      }
     }
   }
 
-  console.log(`\n[know-how-extractor] total=${allFindings.length} sessions=${files.length} ep_categories=${Object.keys(byEp).length}`);
+  // Success patterns
+  const sgEntries = Object.entries(byEp).filter(([k]) => k === 'SG-CANDIDATE');
+  if (sgEntries.length > 0) {
+    console.log('\n── SUCCESS PATTERNS (SG-NNN candidates) ──');
+    for (const [, findings] of sgEntries) {
+      console.log(`\nSG-CANDIDATE — ${findings.length} positive event(s) from §10.11b:`);
+      for (const f of findings) console.log(`  [${f.session}] ${f.text}`);
+      console.log(`  → Review for SG-NNN extraction → know-how/success-patterns/SG-NNN.md`);
+      console.log(`  → Add matching DO item to pre-plan-creation.md §KH checklist`);
+    }
+  }
+
+  // Unclassified (not EP, not SG)
+  const otherEntries = Object.entries(byEp).filter(([k]) => k === 'EP-UNCLASSIFIED');
+  if (otherEntries.length > 0) {
+    console.log('\n── UNCLASSIFIED ──');
+    for (const [, findings] of otherEntries) {
+      for (const f of findings) console.log(`  [${f.session}] (${f.type}) ${f.text}`);
+    }
+    console.log('  → Consider new EP-NNN or SG-NNN entry');
+  }
+
+  const sgCount = sgEntries.reduce((s, [, f]) => s + f.length, 0);
+  const epCount = errorEntries.reduce((s, [, f]) => s + f.length, 0);
+  console.log(`\n[know-how-extractor] total=${allFindings.length} ep_findings=${epCount} sg_candidates=${sgCount} sessions=${files.length}`);
 }
 
 main().catch(err => { console.error('[know-how-extractor] fatal:', err); process.exit(1); });

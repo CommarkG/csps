@@ -1,0 +1,41 @@
+// ============================================================================
+// TaskComment — Discussion thread on a task (S014)
+// ============================================================================
+// Enables team collaboration within a task — the key difference between
+// a personal TODO app and a team task tracker. Append-only by design:
+// comments can be soft-deleted (deletedAt) but not edited once posted.
+// This preserves audit trail integrity.
+//
+// Per VLT-S014-005 pricing: collaboration (comments) is the feature that
+// justifies the paid tier when a second team member joins.
+// ============================================================================
+
+import "../base"
+
+@@meta(
+  id: "csps.public.task-comment",
+  domain: "data",
+  type: "schema",
+  audience: "developer",
+  enforces: ["P-ARCH-002", "P-ARCH-007", "P-ARCH-008"],
+  lifecycle: "production",
+  lifecycle_state: "active"
+)
+
+model TaskComment extends Base {
+  taskId       String
+  authorId     String                                    // → User.id (immutable)
+  body         String         @length(1, 4096)          // markdown
+
+  // Relations
+  task         Task           @relation(fields: [taskId],   references: [id])
+  author       User           @relation("TaskCommentAuthor", fields: [authorId], references: [id])
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == task.tenantId)   // via task's tenant scope
+  @@allow("create", auth().tenantId == task.tenantId)
+  @@deny("update",  true)                               // immutable once posted
+  @@deny("delete",  true)                               // soft-delete via deletedAt only
+
+  @@index([taskId, createdAt])                          // comment thread in order
+}

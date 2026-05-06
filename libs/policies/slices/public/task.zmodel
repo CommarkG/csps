@@ -1,0 +1,82 @@
+// ============================================================================
+// Task — Core entity for the task management app (S014)
+// ============================================================================
+// The central work item. Tenant-scoped, user-assignable, project-linked.
+// State machine: todo → in_progress → done | cancelled (Postgres trigger enforces).
+// Soft-delete only per P-ARCH-007 — deleted tasks become archived, not gone.
+//
+// Graduation-ready: this slice extracts with the task management app.
+// Foundation slices (User/Tenant/UserTenant) stay shared until full standalone.
+//
+// Conceptual anchor: ARCH L2 data domain — fields must justify their existence
+// against the "small technical team lead" persona (S014 L2 goals).
+//
+// Source of truth: docs/plan/_handoff/VAULT/topic-plans/s014-l2-goals-personas.md
+// ============================================================================
+
+import "../base"
+
+@@meta(
+  id: "csps.public.task",
+  domain: "data",
+  type: "schema",
+  audience: "developer",
+  enforces: ["P-ARCH-002", "P-ARCH-007"],
+  lifecycle: "production",
+  lifecycle_state: "active"
+)
+
+enum TaskStatus {
+  todo
+  in_progress
+  done
+  cancelled   // explicit cancellation — not the same as deletion
+}
+
+enum TaskPriority {
+  none
+  low
+  medium
+  high
+  urgent
+}
+
+model Task extends Base {
+  // Identity
+  tenantId     String                                    // RLS anchor — every task belongs to a tenant
+  projectId    String?                                   // null = inbox task (no project)
+  title        String         @length(1, 512)
+  description  String?                                   // markdown supported
+
+  // Workflow
+  status       TaskStatus     @default(todo)
+  priority     TaskPriority   @default(none)
+  dueDate      DateTime?
+
+  // Ownership
+  createdById  String                                    // → User.id (immutable after creation)
+  assigneeId   String?                                   // → User.id (null = unassigned)
+
+  // Relations
+  project      Project?       @relation(fields: [projectId], references: [id])
+  createdBy    User           @relation("TaskCreatedBy", fields: [createdById], references: [id])
+  assignee     User?          @relation("TaskAssignee", fields: [assigneeId], references: [id])
+  comments     TaskComment[]
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)
+  @@allow("update", auth().tenantId == tenantId)
+  @@deny("delete",  true)                               // soft-delete via deletedAt
+
+  @@index([tenantId, status])                           // primary query: tenant's tasks by status
+  @@index([tenantId, assigneeId])                       // "my tasks" query
+  @@index([projectId, status])                          // project task list
+  @@index([tenantId, dueDate])                          // upcoming deadlines
+
+  // State machine (enforced via Postgres trigger — see audit-triggers.sql):
+  // todo        → in_progress | done | cancelled
+  // in_progress → done | cancelled | todo (re-open)
+  // done        → todo (re-open) | cancelled
+  // cancelled   → todo (re-open)
+}

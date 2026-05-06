@@ -1,0 +1,47 @@
+// ============================================================================
+// Project — Container for related tasks (S014)
+// ============================================================================
+// Groups tasks under a named, tenant-scoped context. Simple at v1 —
+// no milestones, no sub-projects (additive later without schema changes).
+//
+// VLT-S014-002 resolution: Tasks + Projects scope. Milestones deferred.
+// Milestones will add milestoneId FK on Task — no Project schema change.
+//
+// Graduation-ready: extracts with task management app.
+// ============================================================================
+
+import "../base"
+
+@@meta(
+  id: "csps.public.project",
+  domain: "data",
+  type: "schema",
+  audience: "developer",
+  enforces: ["P-ARCH-002", "P-ARCH-007"],
+  lifecycle: "production",
+  lifecycle_state: "active"
+)
+
+enum ProjectStatus {
+  active
+  archived    // soft-archived — tasks still readable; no new tasks
+}
+
+model Project extends Base {
+  tenantId     String                                    // RLS anchor
+  name         String         @length(1, 256)
+  description  String?
+  status       ProjectStatus  @default(active)
+
+  // Relations
+  tasks        Task[]
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)
+  @@allow("update", auth().tenantId == tenantId)
+  @@deny("delete",  true)                               // archive, don't delete
+
+  @@index([tenantId, status])                           // active projects list
+  @@index([tenantId, name])                             // project name search
+}

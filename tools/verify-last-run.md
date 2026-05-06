@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T17:54:01.207Z
-- finished_at: 2026-05-06T17:54:07.070Z
+- ran_at: 2026-05-06T17:55:35.823Z
+- finished_at: 2026-05-06T17:55:41.893Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T17:54:01.207Z",
-    "finished_at": "2026-05-06T17:54:07.070Z",
+    "ran_at": "2026-05-06T17:55:35.823Z",
+    "finished_at": "2026-05-06T17:55:41.893Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.8,
+        "duration_seconds": 1.9,
         "ts_errors": 0
       },
       {
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {

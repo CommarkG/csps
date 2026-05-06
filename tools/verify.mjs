@@ -169,6 +169,15 @@ const CYCLES = [
     },
   },
     {
+    // NEW S011 §24++ — catch-completeness: every §10.13b catch has a matching EP-NNN entry
+    name: 'catch_completeness',
+    command: 'node tools/validators/validate-catch-completeness.mjs',
+    parse_output: (out) => {
+      const m = out.match(/catches=(d+)s+covered=(d+)s+ep_total=(d+)s+warnings=(d+)/);
+      return m ? { catches: Number(m[1]), covered: Number(m[2]), ep_total: Number(m[3]), warnings: Number(m[4]) } : {};
+    },
+  },
+    {
     // NEW S011 §24+++++++++ — council-coverage: all 24 skills registered in council-registry.md
     name: 'council_coverage',
     command: 'node tools/validators/validate-council-coverage.mjs',

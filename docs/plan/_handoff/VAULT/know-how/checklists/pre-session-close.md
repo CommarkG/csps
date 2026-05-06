@@ -41,6 +41,14 @@ tags:
 - [ ] Run `node tools/validators/validate-audit-slug-coverage.mjs` — 0 orphans
 - [ ] Every new validator this session: slug registered in audit-runner.md
 
+### Catch-to-pattern completeness (→ EP-015 + EP-016 — CRITICAL)
+- [ ] Run `node tools/validators/validate-catch-completeness.mjs` — 0 unmatched catches
+- [ ] Every problem identified this session has produced: EP-NNN entry + §KH DON'T item + AGENTS.md hard NO (if AI behavior) + validator stub
+- [ ] ANY chat transfer prepared this session used `tools/templates/chat-transfer-protocol.template.md` (EP-016 prevention)
+- [ ] No problem was "fixed locally and skipped pattern extraction" — check §10.13b list vs EP count
+
+**This is the hardest checklist item** — EP-015 (satisfaction point) fires here. AI fixes the instance and forgets the pattern. Mechanical proof: `node tools/validators/validate-catch-completeness.mjs` must exit clean.
+
 ### Post-close addendum discipline (→ EP-004)
 - [ ] If any work was done after prior §17 attestation: §24++ addendum section in closing-summary
 - [ ] All post-close prompts have GP-S<NNN>-<NN> entries

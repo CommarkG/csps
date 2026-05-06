@@ -21,6 +21,12 @@ tags:
 
 ## §KH Mandatory checks
 
+### §00 — CATCH COMPLETENESS (→ EP-015, EP-016 — runs before §0)
+**DON'T:** Fix a problem and stop (1/5 of the work).
+**DO:** Every identified problem → EP-NNN + §KH DON'T + AGENTS hard NO + inner-ai-defaults + validator stub.
+**Mechanical proof:** node tools/validators/validate-catch-completeness.mjs → 0 unmatched catches.
+**For any chat transfer in this plan:** use tools/templates/chat-transfer-protocol.template.md (never free-form — EP-016).
+
 ### §0 — REUSE CHECK (→ EP-012, P-OP-001) — THIS RUNS BEFORE ANYTHING ELSE
 **DON'T:** Start planning a new artifact/validator/skill/contract without searching for existing equivalents.
 **DO:** Run `check_reuse(description="<what you're planning to build>")` via principles-mcp. Search platform for similar: grep for concept keywords, check audit-runner.md slugs, check .claude/skills/, check behavioral-contracts.md.

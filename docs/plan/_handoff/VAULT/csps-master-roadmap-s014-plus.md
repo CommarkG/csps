@@ -1,8 +1,8 @@
 ---
 id: csps.handoff.vault.csps-master-roadmap-s014-plus
 name: csps-master-roadmap-s014-plus
-description: Master cross-track roadmap for CSPS from S014 onward. Captures all 4 active tracks (P-META-020 concept-first governance, S014 task management app, platform mechanics fixes, long-running deferred work), their interdependencies, optimal phase ordering, and per-phase validations. Authored from S014 chat session after full-chat audit. Single source of truth for what's open, what's next, and why.
-version: 1.0
+description: Master cross-track roadmap for CSPS from S014 onward. Governed by P-META-020 (Concept-First Governance) — each phase declares its conceptual anchor before listing artifacts. Context is the compass; phases are validated by checking whether their outputs honor the governing concept, not just whether checklist items are ticked. Authored S014 from full-chat audit. Version 1.1 aligns with concept-first methodology.
+version: 1.1
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -32,6 +32,29 @@ links:
 # CSPS Master Roadmap — S014+
 
 > **This document IS the cross-track plan.** Everything open, ordered by priority, with reasoning. Read this at session-open to know where you are and what's next. Update it when phases complete.
+
+---
+
+## §0 — Governing Methodology (P-META-020)
+
+This roadmap operates under **Concept-First Governance**: context is the primary navigation tool; rigid enforcement elements (validators, hooks, contracts) are reference samples that confirm whether behavior honors the underlying concept.
+
+**How to read each phase:**
+- **Conceptual anchor** = the L1/L2 spine domain this phase is an expression of
+- **Artifacts** = the L3 instances that manifest the concept
+- **Validations** = reference samples confirming the concept was honored, not just task completion
+
+**Diagnostic path when a phase fails:**
+```
+L3 artifact fails → ask: which concept was this supposed to honor?
+                  → check: has L2 domain understanding drifted?
+                  → check: is L1 conceptual anchor still intact?
+                  → fix: the concept understanding, not just the artifact
+```
+
+**The Threshold and external inputs:**
+All external inputs (research, advisor content, platform comparisons) enter via VAULT_DEFER classification. They inform; they do not modify. Absorbed this session:
+- Gemini architectural research (S014): confirmed CSPS Onion/Core-Spine architecture is correct; CSP-vocabulary not imported; ECS pattern filed as VLT for future expansion design.
 
 ---
 
@@ -74,39 +97,41 @@ Tracks 1 and 2 are parallel but Track 2 L3+ is MORE VALUABLE once Track 1 L1 is 
 
 ## §3 — Optimal Phase Ordering
 
-### Phase 0 — THIS SESSION (already executing)
-**What:** Save plan artifacts. Drift-log entries. P-META-020 topic plan. This master roadmap.
+### Phase 0 — ✅ COMPLETE (S014, commit 331dcdf)
+**Conceptual anchor:** GVRN spine L1 — platform governs before it builds.
+**Concept honored:** Every significant insight is encoded before context degrades. Plans are not checklists — they carry the reasoning that generated them.
 
-**Why first:** Everything in Phases 1+ references these artifacts. Without them, the work has no home in the platform.
-
-**Validations:**
-- [ ] continuous-drift-log.md has 2 new entries (reasoning-plan-promise-abandonment + reasoning-context-depth-degradation)
-- [ ] p-meta-020-concept-first-governance.md committed
-- [ ] csps-master-roadmap-s014-plus.md committed (this file)
-- [ ] pnpm verify exit_code 0
-
----
-
-### Phase 1 — NEXT SESSION (first action)
-**What:** S014 L2 close — Governor confirms pricing → L2 closes → L3 Task/Project ZModel opens.
-
-**Why before Track 1 L1:** S014 L3 is one Governor answer away. Answering it costs 30 seconds and unblocks the product path. Track 1 L1 is deeper work (3 tightly-coupled artifacts) — do the fast unblock first.
-
-**Trigger:** Governor answers: $9/mo flat per team (up to 5 members) — confirm or give alternative.
-
-**Validations:**
-- [ ] s014-l2-goals-personas.md updated: ★ pricing confirmed, L2 marked COMPLETE
-- [ ] s014-task-management-app.md: L2 exit criteria all checked
-- [ ] session-state.json: s014.current_level updated to L3
-- [ ] pnpm verify exit_code 0
+**Built:**
+- [x] continuous-drift-log.md: 2 new entries (reasoning-plan-promise-abandonment + reasoning-context-depth-degradation)
+- [x] p-meta-020-concept-first-governance.md committed
+- [x] csps-master-roadmap-s014-plus.md committed (this file, v1.1)
+- [x] B_NO_WILD_IMPLEMENTATION: pre-tool-use-plan-coverage-gate.sh (commit 2564e13)
+- [x] pnpm verify exit_code 0
 
 ---
 
-### Phase 2 — SAME SESSION AS PHASE 1 OR NEXT
+### Phase 1 — ✅ COMPLETE (S014, commit a829d59)
+**Conceptual anchor:** ARCH spine L2 product domain — product decisions must be ratified before schema locks them in concrete.
+**Concept honored:** Governor decision at the point of maximum context (L2 goals/personas fully understood) prevents schema rework.
+
+**Built:**
+- [x] $9/mo flat per team confirmed by Governor
+- [x] s014-l2-goals-personas.md: L2 COMPLETE
+- [x] pnpm verify exit_code 0
+
+---
+
+### Phase 2 — CURRENT (next to execute)
+**2A Conceptual anchor:** AI spine L1 — intelligence in the platform is a managed resource governed by concept, not rule enumeration.
+**2A Concept honored:** The methodology that frames ALL future decisions must be encoded before any implementation uses it. Encoding the navigation tool before navigating.
+
 **What (2A):** Track 1 L1 — P-META-020 canonical anchor. Three artifacts atomic:
 - principles.yaml: add P-META-020
 - concept-first-governance.md: author methodology doc
 - threshold-gate-v2.md: add Step 0 CONCEPT_LOAD
+
+**2B Conceptual anchor:** ARCH spine L2 data domain — foundation slices are the metabolism of every app; schema decisions made here propagate to all 30 future apps.
+**2B Concept honored:** Seal the schema with full contextual understanding (L2 goals + L1 methodology active) so extraction at graduation is clean.
 
 **What (2B, after 2A):** S014 L3 — Task + Project ZModel. Schema decisions informed by the now-anchored concept-first methodology.
 
@@ -130,7 +155,13 @@ Tracks 1 and 2 are parallel but Track 2 L3+ is MORE VALUABLE once Track 1 L1 is 
 ---
 
 ### Phase 3 — AFTER PHASE 2
+**3A Conceptual anchor:** VALD spine — validation is meaningless if it only catches what you already named; open plan levels are obligations, not options.
+**3A Concept honored:** Structural prevention of plan-promise-abandonment — the failure mode that produced foundation-slices L3 gap.
+
 **What (3A):** Track 3 mechanics — drift-log entries promote to reasoning-patterns.md; `validate-open-plan-levels.mjs` built; post-implementation re-assessment wired.
+
+**3B Conceptual anchor:** AI spine L2 inner-defaults domain — every enforcement artifact declares what concept it is sampling, so failure triggers conceptual diagnosis not just patching.
+**3B Concept honored:** Validators become calibration instruments; contracts become crystallized conceptual commitments.
 
 **What (3B):** Track 1 L2 — wiring: B_* template + audit-runner + inner-ai-defaults README + B_INTENT_TO_IMPACT cross-ref.
 
@@ -150,6 +181,9 @@ Tracks 1 and 2 are parallel but Track 2 L3+ is MORE VALUABLE once Track 1 L1 is 
 ---
 
 ### Phase 4 — AFTER PHASE 2B
+**Conceptual anchor:** VALD spine — schema claims must be validated with real data before being locked in production; the sandbox IS the conceptual validation mechanism.
+**Concept honored:** No L4 implementation starts without empirical proof the L3 schema works end-to-end. Core elements complete before external solutions.
+
 **What:** Sandbox (`apps/sandbox/`) — validate Task/Project/UserTenant schema with real data before L4 production implementation.
 
 **Why sandbox before L4:** Schema decisions at L3 are locked before L4 code. The sandbox validates that the schema actually works in a running system (Clerk auth → Tenant creation → Task CRUD) before any L4 production code is written.

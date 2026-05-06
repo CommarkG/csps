@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T17:35:41.186Z
-- finished_at: 2026-05-06T17:35:46.125Z
+- ran_at: 2026-05-06T17:43:11.913Z
+- finished_at: 2026-05-06T17:43:17.453Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T17:35:41.186Z",
-    "finished_at": "2026-05-06T17:35:46.125Z",
+    "ran_at": "2026-05-06T17:43:11.913Z",
+    "finished_at": "2026-05-06T17:43:17.453Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "scanned": 210,
         "errors": 0,
         "warnings": 0,
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {

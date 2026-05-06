@@ -51,6 +51,13 @@ export async function createStripeCustomer(
   return customer.id
 }
 
+// NullBillingHook — use for apps that are free, in beta, or use different billing.
+// Makes the billing decision explicit at construction time (no implicit skip).
+// Usage: handleClerkWebhook(event, db, NullBillingHook)
+export const NullBillingHook = async (_tenantId: string, _tenantName: string): Promise<void> => {
+  // No-op: tenant is on free plan or billing handled elsewhere
+}
+
 // Convenience: build the onTenantCreated callback for handleClerkWebhook.
 // Usage:
 //   const onTenantCreated = buildTenantBillingHook(stripe, db)

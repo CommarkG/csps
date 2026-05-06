@@ -13,7 +13,16 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// ─── Foundation slices (from libs/policies/slices/public/) ─────────────────
+// ─── GRADUATION BOUNDARY ─────────────────────────────────────────────────────
+// At graduation (VLT-S014-004: $1K MRR trigger):
+//   STAYS SHARED (in CSPS platform): User, Tenant, UserTenant, AuditEvent
+//   EXTRACTS WITH APP:               Project, Task, TaskComment
+// The line between "Foundation slices" and "Task management slices" below IS
+// the extraction boundary. Graduating app takes its own schema.prisma minus
+// the foundation models, which it imports from the shared platform package.
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─── Foundation slices (STAYS SHARED at graduation) ──────────────────────────
 
 model User {
   id          String    @id @default(uuid())
@@ -82,7 +91,7 @@ model AuditEvent {
   tenant       Tenant @relation(fields: [tenantId], references: [id])
 }
 
-// ─── Task management slices (from libs/policies/slices/public/) ─────────────
+// ─── Task management slices (EXTRACTS WITH APP at graduation) ────────────────
 
 model Project {
   id          String        @id @default(uuid())

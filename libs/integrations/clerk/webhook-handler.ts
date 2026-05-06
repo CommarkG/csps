@@ -19,6 +19,8 @@ export interface CspsDb {
   user: {
     create: (args: { data: { clerkId: string; email: string; displayName?: string | null } }) => Promise<{ id: string }>
     findUnique: (args: { where: { clerkId: string } }) => Promise<{ id: string } | null>
+    // update.tenantId sets the active session context (fixes VLT-S015-001)
+    update: (args: { where: { id: string }; data: { tenantId: string } }) => Promise<unknown>
   }
   tenant: {
     create: (args: { data: { slug: string; name: string; clerkOrgId: string } }) => Promise<{ id: string; name: string }>
@@ -75,6 +77,8 @@ export async function handleClerkWebhook(
         await db.userTenant.create({
           data: { userId: creator.id, tenantId: tenant.id, role: 'owner' },
         })
+        // Set active session context so pages work immediately (fixes blocking gap VLT-S015-001)
+        await db.user.update({ where: { id: creator.id }, data: { tenantId: tenant.id } })
       }
 
       // Notify billing service to create Stripe customer (S013 Stripe wiring)

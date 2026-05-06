@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T19:15:03.921Z
-- finished_at: 2026-05-06T19:15:13.370Z
+- ran_at: 2026-05-06T19:28:27.348Z
+- finished_at: 2026-05-06T19:28:36.297Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T19:15:03.921Z",
-    "finished_at": "2026-05-06T19:15:13.370Z",
+    "ran_at": "2026-05-06T19:28:27.348Z",
+    "finished_at": "2026-05-06T19:28:36.297Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3,
+        "duration_seconds": 2.8,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.5,
         "principles_loaded": 54,
         "findings_total": 0
       },
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "scanned": 211,
         "errors": 0,
         "warnings": 0,
@@ -211,7 +211,7 @@
         "duration_seconds": 0.1,
         "plans_checked": 10,
         "plans_with_open": 7,
-        "total_open_items": 112
+        "total_open_items": 111
       },
       {
         "name": "rzf_evidence",
@@ -255,7 +255,7 @@
         "command": "node tools/validators/validate-intake-event.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0,
         "rows": 0
       },

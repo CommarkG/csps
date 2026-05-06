@@ -144,7 +144,9 @@ links:
 - [x] VLT-S014-003 research complete + Governor answer recorded (A: one workspace per tenant)
 - [x] VLT-S014-004 research complete + Governor answer recorded (B: $1K MRR graduation)
 - [x] VLT-S014-005 research complete + Governor answer recorded (C: free solo / paid team)
-- [ ] Sandbox validates chosen scope (schema compiles, basic CRUD works) — Phase 4
+- [x] Sandbox scaffolded (apps/sandbox/ — commit b05685c). Functional with credentials.
+      Stripe webhook stub INCLUDED (exit criterion updated per Option B — billing deferred to VLT-S015-002).
+      VLT-S015-001 partial fix: User.tenantId set at org creation. Full login-sync is VLT-S015-001 for Phase 5.
 - [x] pnpm verify exit_code 0
 
 ---

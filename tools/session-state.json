@@ -11,6 +11,46 @@
   },
   "blocking_decisions": [
     {
+      "id": "VLT-S015-001",
+      "status": "PENDING",
+      "question": "User.tenantId set mechanism — partial fix applied (set at org creation via webhook). Full mechanism: Clerk JWT custom claim for existing users who login to existing orgs. How to sync JWT claim → DB on login?",
+      "blocks": "Phase 5 multi-tenant page rendering for users who didn't just create an org",
+      "discovered_at": "2026-05-06T19:25:00Z",
+      "discovered_by": "cruel-critic Phase 4 ZF iteration"
+    },
+    {
+      "id": "VLT-S015-002",
+      "status": "PENDING",
+      "question": "Tenant.subscriptionStatus field — enum values? free | trialing | active | cancelled. Where in schema? Needed for VLT-S014-005 billing trigger implementation.",
+      "blocks": "Phase 5 billing UI + free/paid gating",
+      "discovered_at": "2026-05-06T19:25:00Z",
+      "discovered_by": "cruel-critic Phase 4 ZF iteration"
+    },
+    {
+      "id": "VLT-S015-003",
+      "status": "PENDING",
+      "question": "Connection pooling strategy for Vercel serverless + Prisma. PgBouncer (self-hosted) vs Supabase transaction mode vs Prisma Accelerate vs pgbouncer flag in DATABASE_URL?",
+      "blocks": "Phase 5 production deployment — connection exhaustion without pooling",
+      "discovered_at": "2026-05-06T19:25:00Z",
+      "discovered_by": "cruel-critic Phase 4 ZF iteration"
+    },
+    {
+      "id": "VLT-S015-004",
+      "status": "PENDING",
+      "question": "AuditEvent for Clerk webhook events (user.created, org.created, membership.created) — should these be written as AuditEvents? P-ARCH-008 says triggers not app code, but these are sync events. Pattern: write AuditEvent from webhook handler?",
+      "blocks": "Phase 5 session-based metrics from L2 goals/personas plan",
+      "discovered_at": "2026-05-06T19:25:00Z",
+      "discovered_by": "cruel-critic Phase 4 ZF iteration"
+    },
+    {
+      "id": "VLT-S015-005",
+      "status": "PENDING",
+      "question": "Path alias strategy for cross-workspace imports. libs/integrations/index.ts barrel created. Add @csps/integrations to all consuming app tsconfigs? Or make it an npm workspace package (@csps/integrations)?",
+      "blocks": "Phase 5 import hygiene — 6-level relative imports in all future apps",
+      "discovered_at": "2026-05-06T19:25:00Z",
+      "discovered_by": "synergy-master CSEP-S014-001 RANK 2"
+    },
+    {
       "id": "VLT-S014-002",
       "status": "RESOLVED",
       "decision": "Tasks + Projects (Option B). No Milestones at v1. Milestones can be added later without schema breakage.",

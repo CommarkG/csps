@@ -15,6 +15,8 @@ const dbAdapter: CspsDb = {
   user: {
     create: (args) => db.user.create(args),
     findUnique: (args) => db.user.findUnique(args),
+    // Sets User.tenantId = active session context after org creation (VLT-S015-001 fix)
+    update: (args) => db.user.update(args),
   },
   tenant: {
     create: (args) => db.tenant.create(args),

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T11:38:00.001Z
-- finished_at: 2026-05-06T11:38:04.920Z
+- ran_at: 2026-05-06T11:47:03.546Z
+- finished_at: 2026-05-06T11:47:08.370Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T11:38:00.001Z",
-    "finished_at": "2026-05-06T11:38:04.920Z",
+    "ran_at": "2026-05-06T11:47:03.546Z",
+    "finished_at": "2026-05-06T11:47:08.370Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 53,
         "findings_total": 0
       },
@@ -124,6 +124,13 @@
       {
         "name": "ai_defaults_freshness",
         "command": "node tools/validators/validate-inner-ai-defaults-freshness.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
+      },
+      {
+        "name": "catch_completeness",
+        "command": "node tools/validators/validate-catch-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1
@@ -266,9 +273,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 29,
+        "validators_checked": 30,
         "orphans": 0,
-        "registered": 29
+        "registered": 30
       },
       {
         "name": "token_budget_validate",

@@ -30,7 +30,7 @@ readonly HOOKS_DIR="${REPO_ROOT}/.claude/hooks"
 # Declared hooks per token-optimization.md §14.4 migration table (Phase 5 ship list)
 # + S007 §24+ existing stubs + S007 production hooks. Updated S008 turn 5 (unified-intake topic-plan
 # L1 foundation): all 7 §14.4 stubs authored + verify-hooks-functional updated to enumerate full set.
-# 10 stubs (week-4 promotion targets) + 2 production = 12 total expected at week-4 close.
+# 10 stubs (week-4 promotion targets) + 2 production + 1 S012 = 13 total expected at week-4 close.
 readonly -a DECLARED_HOOKS=(
   # 7 §14.4 Phase 5 migration stubs (authored S008 turn 5)
   "post-tool-use-validate-before-assume.sh"
@@ -48,11 +48,13 @@ readonly -a DECLARED_HOOKS=(
   # S007 production hooks (active enforcement; not stubs)
   "user-prompt-submit-intake.sh"
   "post-stop-learning-loop.sh"
+  # S012 production hook — B_OPTIMAL_NEXT_STEP turn discipline (user directive S012)
+  "user-prompt-submit-next-step-reminder.sh"
 )
 
 echo "[verify-hooks-functional] STUB — token-optimization.md §14.8 cruel-critic Critique 2 mitigation"
 echo "[verify-hooks-functional] hooks_dir: ${HOOKS_DIR}"
-echo "[verify-hooks-functional] declared: ${#DECLARED_HOOKS[@]} hooks (10 stubs week-4 promotion + 2 production)"
+echo "[verify-hooks-functional] declared: ${#DECLARED_HOOKS[@]} hooks (10 stubs week-4 promotion + 2 production + 1 S012)"
 echo ""
 
 declare -i present=0

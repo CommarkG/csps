@@ -142,6 +142,24 @@ const CYCLES = [
     parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
   },
   {
+    // NEW S011 §24+++++ — rzf-evidence: THIS-SESSION ZF evidence in verify-last-run.md or §10.0
+    name: 'rzf_evidence',
+    command: 'node tools/validators/validate-rzf-evidence.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checks=(\d+)\s+warnings=(\d+)/);
+      return m ? { checks: Number(m[1]), warnings: Number(m[2]) } : {};
+    },
+  },
+  {
+    // NEW S011 §24+++++ — slice-freshness: monolith files not newer than their slice dirs
+    name: 'slice_freshness',
+    command: 'node tools/validators/validate-slice-freshness.mjs',
+    parse_output: (out) => {
+      const m = out.match(/pairs_checked=(\d+)\s+stale=(\d+)/);
+      return m ? { pairs_checked: Number(m[1]), stale: Number(m[2]) } : {};
+    },
+  },
+  {
     // NEW S011 §24++++ B_KNOW_HOW_DISCIPLINE — plans session ≥ S011 have §KH consultation
     name: 'plan_know_how',
     command: 'node tools/validators/validate-plan-know-how.mjs',

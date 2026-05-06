@@ -48,6 +48,8 @@ const KNOWN_MAPPINGS = {
   'validate-git-pushed-state': ['git-pushed-state', 'git_pushed_state'],
   'validate-intake-event': ['intake-event-schema-validation', 'intake-event', 'intake_event_validate'],
   'validate-source-class-coverage': ['intake-source-class-coverage', 'source-class-coverage', 'intake_source_class_coverage'],
+  'validate-rzf-evidence': ['rzf-evidence', 'rzf_evidence', 'nominal-rzf-detection'],
+  'validate-slice-freshness': ['slice-freshness', 'slice_freshness', 'slice-drift-detection'],
 };
 
 function validatorBasename(filename) {

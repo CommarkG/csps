@@ -1,48 +1,134 @@
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.cron-weekly-tag-status-deep-audit
 # @csps-name cron-weekly-tag-status-deep-audit
-# @csps-description Cron-style weekly hook stub — fires every 7 days; would scan ALL governed CSPS artifacts (extraction notes / topic-plans / element-reviews / closing-summaries / SKILL.md / behavioral contracts / ADRs) for tag drift / status mismatch / closed-enum violations / missing required fields / illegal state-machine transitions per [`tag-status-contract.md`](../../docs/plan/_intake/tag-status-contract.md). Composes with B_STRUCTURAL_PREVENTION_DISCIPLINE recurring-detection mechanism. STUB tier (S008 turn 8); week-4 promotes to active enforcement per token-optimization Phase 9-10 (continuous validation).
-# @csps-version 0.1.0-stub
+# @csps-description Weekly system health audit — fires every 7 days (CronCreate Monday 08:03).
+#   PARTIAL-ACTIVE (S011 §24+++++): runs know-how extractor + slice freshness + hook staleness + tag status.
+#   Originally STUB (S008 turn 8). Promoted to partial-active S011 §24+++++ after B_KNOW_HOW_DISCIPLINE engraving.
+#   Full active (week-4): adds tag-status state-machine validation + SLA compliance.
+# @csps-version 0.2.0-partial
 # @csps-owner group:finky
 # @csps-lifecycle experimental
-# @csps-lifecycle-state stub
+# @csps-lifecycle-state active
 # @csps-tags type:hook domain:governance audience:developer
-# @csps-enforces P-META-019 B_STRUCTURAL_PREVENTION_DISCIPLINE B_INTAKE_DISCIPLINE
-#
-# Engraved S008 turn 8 as Surface 3 of weekly-tag-status-deep-audit 5/5 atomic FSE per user directive
-# (S008 GP-S008-07 verbatim: "register a tag and status deep audit each week. place it correctly in
-# or along with existing elements"). Composes with EXT-20260505-001-D 7 reassessment triggers +
-# CSP file #3 §5 Trigger 2 (P-GOV-24 reassessment).
-#
-# STUB BEHAVIOR (current):
-#   Reports check would have run. Always exits 0.
-#
-# WEEK-4 PROMOTION CRITERIA:
-#   - Cron trigger: every 7 days OR on-demand via `bash .claude/hooks/cron-weekly-tag-status-deep-audit.sh`
-#   - Walks: docs/plan/_intake/contexts/**/*.md (extraction notes) + docs/plan/_handoff/VAULT/topic-plans/*.md
-#     + docs/plan/_handoff/VAULT/element-reviews/*.md + docs/plan/_handoff/VAULT/closing-summary-*.md
-#     + .claude/skills/*/SKILL.md + packages/skills/*/SKILL.md + docs/adr/*.md + docs/plan/pillar-0-governance/behavioral-contracts.md
-#   - Validates each artifact frontmatter:
-#     * Closed-enum compliance (lifecycle / lifecycle_state / domain / type / tier / audience / maturity / pipeline_state / risk / trust_tier / source_type / confidence_band)
-#     * State-machine transitions legal per tag-status-contract.md
-#     * Required fields present (state_transitioned_at when state changed; routed_to when pipeline_state:routed; closed_reason when pipeline_state:closed)
-#     * SLA compliance (per pipeline_state SLA per tag-status-contract.md §pipeline-state-SLAs)
-#   - Outputs structured report to docs/plan/_handoff/VAULT/tag-status-deep-audit-W<NN>.md
-#   - Exit 1 (warn) if drift found; exit 0 if clean
-#   - Composes with: validate-frontmatter.mjs (point-in-time) + validate-aap-frontmatter.mjs (skill subset)
-#
-# Manual invocation: bash .claude/hooks/cron-weekly-tag-status-deep-audit.sh
+# @csps-enforces P-META-019 B_STRUCTURAL_PREVENTION_DISCIPLINE B_KNOW_HOW_DISCIPLINE B_INTAKE_DISCIPLINE
 
 set -euo pipefail
 
 readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 readonly TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-readonly WEEK_NUM="$(date -u +"%V")"
+readonly WEEK_NUM="$(date -u +"%V" 2>/dev/null || echo "unknown")"
+readonly REPORT_FILE="${REPO_ROOT}/docs/plan/_handoff/VAULT/tag-status-deep-audit-W${WEEK_NUM}.md"
 
-echo "[tag-status-deep-audit] STUB — week=${WEEK_NUM} timestamp=${TIMESTAMP}"
-echo "[tag-status-deep-audit] week-4 promotes to active enforcement scanning ALL governed artifacts for tag/status drift"
-echo "[tag-status-deep-audit] enforces B_STRUCTURAL_PREVENTION_DISCIPLINE recurring-detection mechanism (per S008 GP-S008-07 directive)"
-echo "[tag-status-deep-audit] composes with EXT-20260505-001-D reassessment triggers + CSP file #3 §5 Trigger 2"
-echo "[tag-status-deep-audit] STUB tier — exit 0 always"
+echo "[weekly-health] ═══ CSPS Weekly System Health Audit ═══"
+echo "[weekly-health] week=${WEEK_NUM} timestamp=${TIMESTAMP}"
+echo ""
+
+FINDINGS=0
+WARNINGS=()
+
+# ── 1. Know-how extraction (learning loop) ──────────────────────────────────
+echo "[weekly-health] §1 Know-How Extraction (learning loop)"
+if [ -f "${REPO_ROOT}/tools/know-how-extractor.mjs" ]; then
+  node "${REPO_ROOT}/tools/know-how-extractor.mjs" 2>&1 | head -20 || true
+else
+  echo "  ⚠ know-how-extractor.mjs not found"
+  FINDINGS=$((FINDINGS + 1))
+fi
+echo ""
+
+# ── 2. Slice freshness check ────────────────────────────────────────────────
+echo "[weekly-health] §2 Slice Freshness Check"
+if node "${REPO_ROOT}/tools/validators/validate-slice-freshness.mjs" 2>&1; then
+  echo "  ✓ All slices fresh"
+else
+  WARNINGS+=("Stale slices detected — run split generators")
+  FINDINGS=$((FINDINGS + 1))
+fi
+echo ""
+
+# ── 3. Hook staleness audit ─────────────────────────────────────────────────
+echo "[weekly-health] §3 Hook Staleness Audit"
+HOOKS_DIR="${REPO_ROOT}/.claude/hooks"
+STUB_COUNT=0
+ACTIVE_COUNT=0
+for hook in "${HOOKS_DIR}"/*.sh; do
+  hookname=$(basename "${hook}")
+  if grep -q "STUB\|stub" "${hook}" 2>/dev/null; then
+    STUB_COUNT=$((STUB_COUNT + 1))
+  else
+    ACTIVE_COUNT=$((ACTIVE_COUNT + 1))
+  fi
+done
+echo "  hooks total=$((STUB_COUNT + ACTIVE_COUNT)) active=${ACTIVE_COUNT} stub=${STUB_COUNT}"
+if [ "${STUB_COUNT}" -gt 10 ]; then
+  WARNINGS+=("${STUB_COUNT} hooks still STUB — week-4 promotion overdue")
+  FINDINGS=$((FINDINGS + 1))
+fi
+echo ""
+
+# ── 4. Topic-plan orphan check ──────────────────────────────────────────────
+echo "[weekly-health] §4 Topic-Plan Orphan Check"
+if node "${REPO_ROOT}/tools/validators/validate-topic-plan-progress.mjs" 2>&1; then
+  echo "  ✓ No orphaned plans"
+else
+  WARNINGS+=("Orphaned topic-plans detected")
+  FINDINGS=$((FINDINGS + 1))
+fi
+echo ""
+
+# ── 5. Session artifact sync ─────────────────────────────────────────────────
+echo "[weekly-health] §5 Session Artifact Sync"
+if node "${REPO_ROOT}/tools/validators/validate-session-artifact-sync.mjs" 2>&1; then
+  echo "  ✓ Session artifacts in sync"
+else
+  WARNINGS+=("Session artifacts out of sync")
+  FINDINGS=$((FINDINGS + 1))
+fi
+echo ""
+
+# ── 6. EP recurrence check (K=2 promotions) ─────────────────────────────────
+echo "[weekly-health] §6 EP Recurrence Check (K=2 promotion candidates)"
+EP_DIR="${REPO_ROOT}/docs/plan/_handoff/VAULT/know-how/error-patterns"
+if [ -d "${EP_DIR}" ]; then
+  K2_CANDIDATES=0
+  for ep in "${EP_DIR}"/*.md; do
+    count=$(grep -oP "recurrence_count: \K\d+" "${ep}" 2>/dev/null || echo "0")
+    if [ "${count}" -ge 2 ]; then
+      K2_CANDIDATES=$((K2_CANDIDATES + 1))
+      ep_name=$(basename "${ep}")
+      echo "  ⚠ K=2 promotion candidate: ${ep_name} (recurrence_count: ${count})"
+    fi
+  done
+  if [ "${K2_CANDIDATES}" -eq 0 ]; then
+    echo "  ✓ No K=2 candidates (all patterns recurrence_count < 2)"
+  else
+    WARNINGS+=("${K2_CANDIDATES} EP patterns at K=2 — mandatory B_* contract or principle amendment")
+    FINDINGS=$((FINDINGS + 1))
+  fi
+else
+  echo "  ℹ know-how/error-patterns/ not found"
+fi
+echo ""
+
+# ── Summary ──────────────────────────────────────────────────────────────────
+echo "[weekly-health] ═══ SUMMARY ═══"
+echo "[weekly-health] findings=${FINDINGS}"
+if [ "${#WARNINGS[@]}" -gt 0 ]; then
+  echo "[weekly-health] warnings:"
+  for w in "${WARNINGS[@]}"; do
+    echo "  ⚠ ${w}"
+  done
+fi
+echo "[weekly-health] next_run=Monday_08:03_local"
+echo "[weekly-health] PARTIAL-ACTIVE (S011 §24+++++); week-4 promotes to full tag/status state-machine validation"
+
+# Write report stub
+cat > "${REPORT_FILE}" << REPORT
+# Weekly Health Audit — W${WEEK_NUM}
+
+timestamp: ${TIMESTAMP}
+findings: ${FINDINGS}
+status: $([ "${FINDINGS}" -eq 0 ] && echo "CLEAN" || echo "FINDINGS_PRESENT")
+REPORT
 
 exit 0

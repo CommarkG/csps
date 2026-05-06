@@ -9,7 +9,7 @@
 | **Current session** | S014 |
 | **Previous session** | S013 |
 | **Last updated** | today |
-| **Last commit** | f8189d5 Phase 2A COMPLETE — P-META-020 Concept-First Governance canonical anchor |
+| **Last commit** | f5b3757 Phase 2B COMPLETE — Task/Project/TaskComment ZModel (S014 L3 schema) |
 | **Foundation slices** | ✅ BUILT (36847d5) |
 | **Apps in production** | 0 |
 

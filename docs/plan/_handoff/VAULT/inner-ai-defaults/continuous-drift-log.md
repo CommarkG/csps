@@ -63,10 +63,10 @@ append_only: true
     Until that validator exists: closing summary §10.0j must include open-plan-levels
     check with explicit deferred-with-reason for each unchecked item.
   k_count: 1
-  promotion_status: pending (promote to reasoning-patterns.md at K=2)
+  promotion_status: promoted-to-reasoning-patterns.md (S014 Phase 3A — structural fix LIVE)
   session: S014
   root_principle_violation: P-META-006 (RZF — promises are also "runs" that need evidence)
-  structural_fix_proposed: validate-open-plan-levels.mjs (planned Track 3B)
+  structural_fix_proposed: validate-open-plan-levels.mjs (LIVE in pnpm verify S014 Phase 3A)
 
 - id: reasoning-context-depth-degradation
   observed_at: 2026-05-06T17:00:00Z
@@ -86,10 +86,10 @@ append_only: true
     load the relevant conceptual frame (L1/L2 spine) before processing, so rigid elements
     serve as reference samples of an active concept, not isolated rules.
   k_count: 1
-  promotion_status: pending (promote to reasoning-patterns.md at K=2)
+  promotion_status: promoted-to-reasoning-patterns.md (S014 Phase 3A)
   session: S014
   root_principle_violation: P-META-009 (CCA — context degradation violates QG3)
-  structural_fix_proposed: P-META-020 Concept-First Governance (planned Track 1)
+  structural_fix_proposed: P-META-020 Concept-First Governance (LIVE as of S014 Phase 2A)
 ```
 
 ### S006 baseline seed — 13 inner-default patterns (user-surfaced S006 turn 3)

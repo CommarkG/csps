@@ -117,11 +117,11 @@ This was the INTENDED diagnostic path all along. It was never explicitly stated 
 **After L1:** Run `pnpm principles:codegen` → AGENTS.md regenerates with P-META-020 included.
 
 **L1 Exit Criteria:**
-- [ ] P-META-020 in principles.yaml with valid schema
-- [ ] concept-first-governance.md exists with §Background + methodology + composition map
-- [ ] threshold-gate-v2.md Step 0 added with scope boundary defined
-- [ ] `pnpm principles:codegen` succeeds — AGENTS.md updated
-- [ ] pnpm verify exit_code 0
+- [x] P-META-020 in principles.yaml with valid schema (54 principles total — commit f8189d5)
+- [x] concept-first-governance.md exists with §Background + methodology + composition map
+- [x] threshold-gate-v2.md PREAMBLE added with CCA Layer 1 scope boundary defined
+- [x] `pnpm principles:codegen` succeeds — 54 principles split + codegen PASS
+- [x] pnpm verify exit_code 0
 
 ---
 

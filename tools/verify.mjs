@@ -241,6 +241,15 @@ const CYCLES = [
     },
   },
   {
+    // NEW S014 Phase 3A — open-plan-levels: surfaces all unchecked exit criteria across active plans (P-META-020)
+    name: 'open_plan_levels',
+    command: 'node tools/validators/validate-open-plan-levels.mjs',
+    parse_output: (out) => {
+      const m = out.match(/plans_checked=(\d+)\s+plans_with_open=(\d+)\s+total_open_items=(\d+)/);
+      return m ? { plans_checked: Number(m[1]), plans_with_open: Number(m[2]), total_open_items: Number(m[3]) } : {};
+    },
+  },
+  {
     // NEW S011 §24+++++ — rzf-evidence: THIS-SESSION ZF evidence in verify-last-run.md or §10.0
     name: 'rzf_evidence',
     command: 'node tools/validators/validate-rzf-evidence.mjs',

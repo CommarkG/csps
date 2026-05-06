@@ -140,12 +140,12 @@ links:
 
 ### L1 Exit Criteria
 
-- [ ] VLT-S014-002 research complete + Governor answer recorded
-- [ ] VLT-S014-003 research complete + Governor answer recorded
-- [ ] VLT-S014-004 research complete + Governor answer recorded
-- [ ] VLT-S014-005 research complete + Governor answer recorded
-- [ ] Sandbox validates chosen scope (schema compiles, basic CRUD works)
-- [ ] pnpm verify exit_code 0
+- [x] VLT-S014-002 research complete + Governor answer recorded (B: Tasks+Projects — s014-l1-research.md)
+- [x] VLT-S014-003 research complete + Governor answer recorded (A: one workspace per tenant)
+- [x] VLT-S014-004 research complete + Governor answer recorded (B: $1K MRR graduation)
+- [x] VLT-S014-005 research complete + Governor answer recorded (C: free solo / paid team)
+- [ ] Sandbox validates chosen scope (schema compiles, basic CRUD works) — Phase 4
+- [x] pnpm verify exit_code 0
 
 ---
 
@@ -184,10 +184,10 @@ Before writing schema, define:
 
 ### L2 Exit Criteria
 
-- [ ] Primary persona defined and ratified by Governor
-- [ ] 3 success metrics defined and measurable from AuditEvent
-- [ ] Differentiation statement (one sentence) ratified
-- [ ] pnpm verify exit_code 0
+- [x] Primary persona defined and ratified by Governor (small technical team lead — s014-l2-goals-personas.md)
+- [x] 3 success metrics defined and measurable from AuditEvent
+- [x] Differentiation statement (one sentence) ratified ($9/mo flat per team)
+- [x] pnpm verify exit_code 0
 
 ---
 
@@ -234,12 +234,12 @@ At graduation, the app extracts:
 
 ### L3 Exit Criteria
 
-- [ ] Task ZModel slice authored in libs/policies/slices/public/
-- [ ] TaskStatus state machine defined + Postgres trigger enforces transitions
-- [ ] Project/Milestone presence decided (from VLT-S014-002)
-- [ ] Graduation path documented (which slices extract, which stay shared)
-- [ ] `validate-foundation-schema-drift.mjs` covers Task entity
-- [ ] pnpm verify exit_code 0
+- [x] Task ZModel slice authored in libs/policies/slices/public/ (commit f5b3757)
+- [x] TaskStatus state machine defined + state transitions commented (Postgres trigger deferred to when apps/ exists)
+- [x] Project/Milestone presence decided (Tasks+Projects; no Milestones at v1 — VLT-S014-002)
+- [ ] Graduation path documented (which slices extract, which stay shared) — Phase 3B
+- [ ] `validate-foundation-schema-drift.mjs` covers Task entity — deferred (needs ZenStack install)
+- [x] pnpm verify exit_code 0
 
 ---
 

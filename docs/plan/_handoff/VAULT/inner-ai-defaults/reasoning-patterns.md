@@ -71,3 +71,19 @@ session: S006
 - **reason:** Skipping foundation produces cascading rework + violates Core Spine outward-layering
 - **caught_by_validator:** foundation-stability-before-layer-N (registered; impl deferred)
 - **status:** active
+
+### reasoning-plan-promise-abandonment
+- **default_pattern:** When a plan promises a deliverable at a future level (e.g. "L3 ships validator X"), AI completes the current level, triggers satisfaction-point (EP-015), moves to the next session/topic, and the future-level promise is silently orphaned. The plan document retains the unchecked box but nothing surfaces it as an obligation.
+- **csps_aligned_pattern:** At every level-close gate, explicitly walk ALL exit criteria including future-level promises made while authoring the current level. A promise made during L1 authoring is an obligation that carries to L3. The `validate-open-plan-levels.mjs` validator mechanically surfaces open items per plan per level each pnpm verify run.
+- **disposition:** override
+- **reason:** Foundation-slices L3 gap: `validate-foundation-schema-drift.mjs` promised in the plan, never built, silent for 3 sessions. Discovered S014. Structural fix: validate-open-plan-levels.mjs (now LIVE in pnpm verify).
+- **caught_by_validator:** open-plan-levels-coverage (LIVE — validate-open-plan-levels.mjs)
+- **status:** active
+
+### reasoning-context-depth-degradation
+- **default_pattern:** The rich contextual understanding that generates a design decision degrades to a symbol (checkbox, slug name, commit hash) within the same session and becomes near-invisible by the next session. The symbol survives; the understanding that gave it weight does not. New situations are handled by rule lookup rather than conceptual reasoning — producing infinite-rules-growth.
+- **csps_aligned_pattern:** Context is the compass (P-META-020). At decision points with high future consequence, capture the WHY alongside the WHAT — not just what was decided but why, what risks exist without it, what would break. The Threshold PREAMBLE (CONCEPT_LOAD) loads the relevant conceptual frame before processing each input, so validators serve as reference samples of an active concept, not isolated rules.
+- **disposition:** override
+- **reason:** Root cause of validator-proliferation anti-pattern + plan-promise-abandonment. Discovered S014, resolved by P-META-020 methodology. Engrave at every session-open: load L1/L2 spine domain before processing.
+- **caught_by_validator:** concept-load-skip (registered in P-META-020 anti-patterns; impl deferred as validator)
+- **status:** active

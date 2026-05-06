@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T17:55:35.823Z
-- finished_at: 2026-05-06T17:55:41.893Z
+- ran_at: 2026-05-06T18:10:19.159Z
+- finished_at: 2026-05-06T18:10:24.828Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T17:55:35.823Z",
-    "finished_at": "2026-05-06T17:55:41.893Z",
+    "ran_at": "2026-05-06T18:10:19.159Z",
+    "finished_at": "2026-05-06T18:10:24.828Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.9,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 1,
         "principles_loaded": 54,
         "findings_total": 0
       },
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "scanned": 211,
         "errors": 0,
         "warnings": 0,
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -193,6 +193,16 @@
         "checked": 5,
         "exempt": 3,
         "unplanned": 0
+      },
+      {
+        "name": "open_plan_levels",
+        "command": "node tools/validators/validate-open-plan-levels.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "plans_checked": 10,
+        "plans_with_open": 7,
+        "total_open_items": 112
       },
       {
         "name": "rzf_evidence",
@@ -273,9 +283,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 30,
+        "validators_checked": 31,
         "orphans": 0,
-        "registered": 30
+        "registered": 31
       },
       {
         "name": "token_budget_validate",

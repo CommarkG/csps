@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T10:30:37.581Z
-- finished_at: 2026-05-06T10:30:43.058Z
+- ran_at: 2026-05-06T11:38:00.001Z
+- finished_at: 2026-05-06T11:38:04.920Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T10:30:37.581Z",
-    "finished_at": "2026-05-06T10:30:43.058Z",
+    "ran_at": "2026-05-06T11:38:00.001Z",
+    "finished_at": "2026-05-06T11:38:04.920Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.8,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -40,7 +40,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 199,
+        "scanned": 203,
         "errors": 0,
         "warnings": 0,
         "exempt": 202
@@ -266,9 +266,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 28,
+        "validators_checked": 29,
         "orphans": 0,
-        "registered": 28
+        "registered": 29
       },
       {
         "name": "token_budget_validate",

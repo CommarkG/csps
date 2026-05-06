@@ -97,6 +97,7 @@ Templates organized by output category per inner-AI-defaults registry alignment.
 | `4-condition-gate` | Decision whether to execute autonomously | (P-OP-002 enforcers) | `templates/reasoning/4-condition-gate.md` | registered-pending-author |
 | `parallel-when-independent` | Multi-tool call planning | `tool-sequencing-discipline` (sampling) | `templates/tooling/parallel-when-independent.md` | registered-pending-author |
 | `class-b-agent-spawn-preamble` | Sub-agent spawn (Class B: Explore/Plan/general-purpose/claude-code-guide/statusline-setup) | `agent-alignment-coverage` + `subagent-spawn-preamble-required` | [`tools/templates/class-b-agent-spawn-preamble.template.md`](../../../../tools/templates/class-b-agent-spawn-preamble.template.md) | **LIVE (S010 Phase 6 6a+6b+6d — T2.0 scaffold + T2.1 ZF cycle + T2.2 validator full-pass + T2.3 file scan; depth-discipline fields declared per S009 L1.1; extends governed-artifact-frontmatter.template.md S009 L1.2)** |
+| `chat-transfer-protocol` | AI-to-AI task transfer across any chat boundary (S013+) | `chat-transfer-protocol-completeness` | [`tools/templates/chat-transfer-protocol.template.md`](../../../../tools/templates/chat-transfer-protocol.template.md) | **LIVE (S012 — authored; zero-drift design: DECLARE FIRST + required-output per step + exact completion format + BLOCKED path; replaces ad-hoc cross-chat handoffs S006–S012)** |
 
 ### §5 Agent/persona templates
 
@@ -148,6 +149,7 @@ When AI encounters a genuinely novel artifact-type for which no template exists:
 | `chat-jump-prompt-identity-banner-present` | Pipeline 10 | registered (impl deferred) — absorbs identity-confirmation Option C |
 | `session-receipt-signature-format` | Pipeline 10 | registered (impl deferred) — absorbs identity-confirmation Option C reader-side |
 | `pe-alignment-guardian-coverage` | Pipeline 10 | registered (impl deferred) — NEW per CSP S317 absorption |
+| `chat-transfer-protocol-completeness` | Pipeline 10 | registered (impl deferred) — NEW S012: cross-chat task transfers must use zero-drift template |
 
 ---
 

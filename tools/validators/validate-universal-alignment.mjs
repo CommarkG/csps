@@ -51,8 +51,8 @@ function checkAlignment(filePath) {
 
   // STEP 3: Connectivity (links or consolidation_cross_refs)
   const hasLinks = /^links:$/m.test(text) || /\{ rel:/.test(text);
-  const hasCrossRefs = /^consolidation_cross_refs:/.test(text);
-  const hasPrincipleCompliance = /^principle_compliance:/.test(text);
+  const hasCrossRefs = /^consolidation_cross_refs:/m.test(text);  // multiline flag
+  const hasPrincipleCompliance = /^principle_compliance:/m.test(text);  // multiline flag
   if (!hasLinks && !hasCrossRefs && !hasPrincipleCompliance) {
     gaps.push('Missing connectivity — add links: array or consolidation_cross_refs (nothing-stands-alone)');
   }

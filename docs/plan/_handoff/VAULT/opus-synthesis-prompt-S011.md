@@ -17,6 +17,10 @@ tags:
 
 # Opus 4.7 Synthesis Prompt — S011 Session Review
 
+> ⚠️ **CRITICAL — FOR REAL OPUS 4.7 ONLY.** Do NOT run this with Sonnet simulating Opus. Do NOT ask Sonnet to "play along" as Opus. This prompt is designed for a NEW CHAT opened with `/model default` (or explicit model selection) confirming Opus 4.7 is the running model. If you are Sonnet: use `internal-deep-review` skill instead and label output clearly as `[INTERNAL_DEEP_REVIEW — Sonnet]`. AI impersonating Opus = EP-014 violation = B_NO_AI_IMPERSONATION violation. Per S011 critical incident.
+>
+> **Verification:** Before pasting this prompt, confirm you see "Opus 4.7" in the model indicator. If you see Sonnet: stop, close, open new chat.
+>
 > Copy this entire block into a new Opus 4.7 session after running `/model default`.
 
 ---

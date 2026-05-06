@@ -52,6 +52,7 @@ const KNOWN_MAPPINGS = {
   'validate-slice-freshness': ['slice-freshness', 'slice_freshness', 'slice-drift-detection'],
   'validate-no-implementation-without-plan': ['no-implementation-without-plan', 'no_implementation_without_plan', 'construction-gate'],
   'validate-impl-status': ['impl-status', 'impl_status', 'implementation-quality-state-machine'],
+  'validate-moat-coverage': ['moat-coverage', 'moat_coverage', 'moat-element-audit-coverage'],
 };
 
 function validatorBasename(filename) {

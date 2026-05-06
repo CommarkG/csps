@@ -142,6 +142,15 @@ const CYCLES = [
     parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
   },
   {
+    // NEW S011 §24+++++++ — moat-coverage: all 15 moat elements have active recurring audit coverage
+    name: 'moat_coverage',
+    command: 'node tools/validators/validate-moat-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/total=(\d+)\s+covered=(\d+)\s+critical_gaps=(\d+)/);
+      return m ? { total: Number(m[1]), covered: Number(m[2]), critical_gaps: Number(m[3]) } : {};
+    },
+  },
+  {
     // NEW S011 §24++++++ — impl-status: implementation quality state machine (swift-implemented→sealed-zf)
     name: 'impl_status',
     command: 'node tools/validators/validate-impl-status.mjs',

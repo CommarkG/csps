@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T13:18:41.733Z
-- finished_at: 2026-05-06T13:18:48.170Z
+- ran_at: 2026-05-06T17:20:59.464Z
+- finished_at: 2026-05-06T17:21:05.682Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T13:18:41.733Z",
-    "finished_at": "2026-05-06T13:18:48.170Z",
+    "ran_at": "2026-05-06T17:20:59.464Z",
+    "finished_at": "2026-05-06T17:21:05.682Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.8,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.3,
+        "duration_seconds": 0.9,
         "principles_loaded": 53,
         "findings_total": 0
       },
@@ -39,8 +39,8 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 208,
+        "duration_seconds": 0.1,
+        "scanned": 210,
         "errors": 0,
         "warnings": 0,
         "exempt": 203
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "stale_count_files": 0
       },
       {
@@ -77,7 +77,7 @@
         "command": "node tools/validators/validate-audit-runner-slices.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "source_pipelines": 28,
         "missing_slices": 0
       },
@@ -218,7 +218,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 5,
+        "checked": 6,
         "grandfathered": 4,
         "errors": 0
       },
@@ -245,8 +245,8 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
-        "warnings": 2,
+        "duration_seconds": 0.2,
+        "warnings": 1,
         "advisory": true
       },
       {
@@ -255,7 +255,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 9,
+        "plans_checked": 10,
         "warnings": 0
       },
       {

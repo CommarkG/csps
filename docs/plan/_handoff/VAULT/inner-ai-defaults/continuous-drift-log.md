@@ -43,6 +43,55 @@ append_only: true
 
 ## Entries (newest first)
 
+### S014 — 2 new reasoning patterns (AI-self-detection + user-surfaced)
+
+```yaml
+- id: reasoning-plan-promise-abandonment
+  observed_at: 2026-05-06T17:00:00Z
+  observed_by: ai-self-detection + user-surfaced
+  category: reasoning
+  default_pattern: |
+    When a plan promises a deliverable at a future level (e.g. "L3 ships validator X"),
+    AI completes the current level, experiences satisfaction-point (EP-015), moves to
+    the next session/topic, and the future-level promise is silently orphaned. The plan
+    document retains the unchecked box but nothing surfaces it as an obligation.
+  csps_aligned_pattern: |
+    At every level-close gate, explicitly walk ALL exit criteria including future-level
+    promises that were referenced at current-level authoring time. A promise made while
+    writing L1 is an obligation that carries to L3 — not optional because "we're not
+    at L3 yet." The validate-open-plan-levels.mjs (planned) mechanically surfaces this.
+    Until that validator exists: closing summary §10.0j must include open-plan-levels
+    check with explicit deferred-with-reason for each unchecked item.
+  k_count: 1
+  promotion_status: pending (promote to reasoning-patterns.md at K=2)
+  session: S014
+  root_principle_violation: P-META-006 (RZF — promises are also "runs" that need evidence)
+  structural_fix_proposed: validate-open-plan-levels.mjs (planned Track 3B)
+
+- id: reasoning-context-depth-degradation
+  observed_at: 2026-05-06T17:00:00Z
+  observed_by: ai-self-detection + user-surfaced
+  category: reasoning
+  default_pattern: |
+    The rich contextual understanding that generates a design decision degrades to a
+    symbol (a checkbox, a slug name, a commit hash) within the same session and becomes
+    near-invisible by the next session. The symbol survives; the understanding that gave
+    it weight does not. No enumerable rule set compensates for this because new specific
+    cases are infinite — they can only be caught once they've been understood.
+  csps_aligned_pattern: |
+    At decision points with high future consequence (plan level opens, VLT ratification,
+    principle engraving), capture the REASONING alongside the decision — not just what
+    was decided but why, what risks exist without it, what specifically would break.
+    The Threshold CONCEPT_LOAD (P-META-020) addresses this at input-classification level:
+    load the relevant conceptual frame (L1/L2 spine) before processing, so rigid elements
+    serve as reference samples of an active concept, not isolated rules.
+  k_count: 1
+  promotion_status: pending (promote to reasoning-patterns.md at K=2)
+  session: S014
+  root_principle_violation: P-META-009 (CCA — context degradation violates QG3)
+  structural_fix_proposed: P-META-020 Concept-First Governance (planned Track 1)
+```
+
 ### S006 baseline seed — 13 inner-default patterns (user-surfaced S006 turn 3)
 
 ```yaml

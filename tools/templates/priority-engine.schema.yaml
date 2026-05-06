@@ -435,3 +435,55 @@ spine_attribution_history:
   audit: spine-attribution-history-completeness (registered atomically; impl deferred week-4)
 
 schema_signature: S006-AI-priority-engine-schema-2026-05-04T20:50:00Z (v1.1 — §13 + §14 added L4)
+
+# ============================================================
+# §15 Model Tier Required (S011 §24+++++++++++++++ — multi-session optimization)
+# ============================================================
+# Every PE work item declares which model tier is required for execution.
+# This is the MECHANICAL enforcement of the tier vocabulary from
+# tools/model-tier-registry.yaml into the planning cycle.
+#
+# WHY this is unique: no other platform's planning system includes model-tier
+# requirements as first-class PE inputs. CSPS treats model tier as a
+# PLANNING CONSTRAINT (like cost, reversibility, dependency) not just
+# a runtime decision.
+#
+# The multi-session optimization insight:
+#   Items requiring DEEP_REASONING tier should be BATCHED into dedicated
+#   Opus sessions rather than scattered across Sonnet sessions.
+#   Items requiring MECHANICAL_SCAN should be batched into Haiku spawns.
+#   Items suitable for STANDARD_BUILD remain in the main Sonnet session.
+#
+# PE interaction: model_tier_required adds a context-budget dimension.
+#   Remaining context × tier_cost_factor = whether item fits in this session.
+model_tier_required:
+  values: [DEEP_REASONING, STANDARD_BUILD, MECHANICAL_SCAN, EXTERNAL_RESEARCH, FAST_ITERATION]
+  default: STANDARD_BUILD
+  source: tools/model-tier-registry.yaml    # SSoT for tier vocabulary
+  pe_impact: |
+    DEEP_REASONING items get +1.5 PE boost when remaining context < 200K
+    (signal: "schedule this for a fresh Opus session, not end-of-context")
+    MECHANICAL_SCAN items get -1.0 PE score (cheap; batch into Haiku spawns)
+    EXTERNAL_RESEARCH items flagged when no MCP server available
+
+  # The session-end batching rule (S011 insight):
+  # When remaining context drops below 200K:
+  #   - DEEP_REASONING items: vault for next Opus session
+  #   - STANDARD_BUILD items: vault for next Sonnet session
+  #   - MECHANICAL_SCAN items: can be run now as Haiku spawns
+  session_end_batching:
+    deep_reasoning_threshold_k: 200   # vault if below this remaining context
+    mechanical_scan_always: true       # always run mechanical scans regardless
+    vault_target: docs/plan/_handoff/VAULT/ # where to save vaulted items
+
+  item_schema_extension:
+    model_tier_required: DEEP_REASONING | STANDARD_BUILD | MECHANICAL_SCAN
+    session_placement: current | next-opus | next-sonnet | haiku-spawn
+    token_budget_estimate_k: <integer>    # expected token cost
+
+  # Mechanical enforcement:
+  # context-orchestrator.sh detects when context drops below threshold
+  # and surfaces: "N DEEP_REASONING items pending — schedule Opus session"
+  enforcement_mechanism: context-orchestrator.sh + pe-compute.mjs read_budget output
+
+schema_signature: S011-AI-pe-schema-model-tier-2026-05-06T08:50:00Z (§15 added — model tier vocabulary integration)

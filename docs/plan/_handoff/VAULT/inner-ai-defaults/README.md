@@ -139,3 +139,37 @@ When AI catches itself producing a training-default pattern that conflicts with 
 - `obsolete` when the default no longer triggers (CSPS may have absorbed enough that the pattern is no longer attempted)
 
 **Registry signature:** `S006-AI-inner-ai-defaults-registry-2026-05-04T15:30:00Z`
+
+## CSPS DNA Gap Map (S011 §24+++++++++++++++ — NEW)
+
+### Purpose
+Every AI training default creates potential gaps when it fires against CSPS DNA. This section documents WHERE each default category creates gaps and which CSPS elements close them.
+
+### Extended per-entry schema (add these fields to every entry)
+
+```yaml
+creates_gap_in:
+  - element: <P-META-* | B_* | audit-slug | skill-name>
+    how: "<how this default creates a gap in that element>"
+    closed_by: <validator | hook | contract | memory>
+    severity: CRITICAL | HIGH | MEDIUM | LOW
+    detected_by: <which session caught this — K=2 tracking>
+```
+
+### The 6 critical AI defaults + their CSPS DNA gaps
+
+| Default | Creates gap in | Closed by | Status |
+|---|---|---|---|
+| Sycophancy | B_AI_PROFESSIONAL_VOICE + B_PE_ALIGNMENT_GUARDIAN | post-stop-banned-phrase.sh | PARTIAL |
+| Narrative over concise | B_TOKEN_BUDGET R1 + AGENTS.md word limit | validate-token-budget.mjs mode 1 | PARTIAL |
+| Nominal completion | B_PRE_CLOSE_VERIFICATION + ZF discipline | validate-rzf-evidence.mjs | ACTIVE |
+| Local optimization | B_STRUCTURAL_PREVENTION_DISCIPLINE Q-2 | validate-topic-plan-progress.mjs | ACTIVE |
+| Friction avoidance | B_AI_COLLABORATIVE_DISCIPLINE + proactive registration | AGENTS.md hard NO (S011) | PARTIAL |
+| **Mode impersonation** | B_NO_AI_IMPERSONATION (NEW S011) | internal-deep-review mandatory header | PARTIAL |
+
+### Model version anchoring
+This gap map was calibrated for `csps_model_version: claude-sonnet-4-6-1m`.
+When model upgrades (4.6→4.7): re-audit each gap — model changes may close or open gaps.
+VLT-S011-007 = the Opus review of what actually changed in 4.6[1M] vs prior versions.
+
+**Updated signature:** `S011-AI-inner-ai-defaults-gap-map-2026-05-06T08:52:00Z`

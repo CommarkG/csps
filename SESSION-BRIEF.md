@@ -9,7 +9,7 @@
 | **Current session** | S014 |
 | **Previous session** | S013 |
 | **Last updated** | today |
-| **Last commit** | 4dd0fa2 S014 L2 — Goals/personas/metrics + VLT ratification + session advance to S014 |
+| **Last commit** | f8189d5 Phase 2A COMPLETE — P-META-020 Concept-First Governance canonical anchor |
 | **Foundation slices** | ✅ BUILT (36847d5) |
 | **Apps in production** | 0 |
 

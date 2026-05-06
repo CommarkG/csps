@@ -5,8 +5,8 @@
 # Source: packages/principles/principles.yaml
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
-  total_count: 53
-  generated_at: '2026-05-05'
+  total_count: 54
+  generated_at: '2026-05-06'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
   usage: >-
@@ -263,6 +263,11 @@ principles:
     category: meta
     severity: critical
     path: ./principles/P-META-019.yaml
+  - id: P-META-020
+    name: concept-first-governance
+    category: meta
+    severity: critical
+    path: ./principles/P-META-020.yaml
   - id: P-ARCH-028
     name: csps-core-spines
     category: architecture

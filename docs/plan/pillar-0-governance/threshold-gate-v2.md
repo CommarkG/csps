@@ -60,6 +60,24 @@ links:
 ```
 ANY INPUT
     ↓
+PREAMBLE: CONCEPT_LOAD (P-META-020 — mandatory before any step)
+    Load the L1/L2 spine domain most relevant to this input type.
+    This conceptual frame governs all downstream processing.
+    Validators and contracts fire as reference samples within this frame.
+
+    Input type → Spine domain:
+      user-directive / ratification  → GVRN (authority + decision rights)
+      implementation (code/schema)   → ARCH L2 data/structure domain
+      AI behavior / defaults         → AI L2 inner-defaults domain
+      validation / evidence request  → VALD L2 coverage domain
+      external-content / research    → AI L2 alignment domain (VAULT_DEFER)
+      operations / cadence           → OPER L2 reality-grounding domain
+
+    Scope: CCA Layer 1 (session-wide constitution) fires at session-open.
+           Threshold PREAMBLE selects the per-input domain. Sequential, not competing.
+
+    If CONCEPT_LOAD cannot identify a clear domain → default to GVRN → COUNCIL_REVIEW.
+    ↓
 STEP 0: SEE WHAT EXISTS (MANDATORY — consolidation-expert)
     Run check_reuse for the concept being introduced.
     If match found → ENHANCE, not CREATE → route to SWIFT_EXECUTE

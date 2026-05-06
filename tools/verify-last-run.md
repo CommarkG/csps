@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T17:43:11.913Z
-- finished_at: 2026-05-06T17:43:17.453Z
+- ran_at: 2026-05-06T17:54:01.207Z
+- finished_at: 2026-05-06T17:54:07.070Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T17:43:11.913Z",
-    "finished_at": "2026-05-06T17:43:17.453Z",
+    "ran_at": "2026-05-06T17:54:01.207Z",
+    "finished_at": "2026-05-06T17:54:07.070Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,8 +30,8 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
-        "principles_loaded": 53,
+        "duration_seconds": 1.1,
+        "principles_loaded": 54,
         "findings_total": 0
       },
       {
@@ -40,7 +40,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 210,
+        "scanned": 211,
         "errors": 0,
         "warnings": 0,
         "exempt": 203
@@ -96,7 +96,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_ids": 53,
+        "source_ids": 54,
         "missing_slices": 0
       },
       {
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -180,8 +180,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 59,
-        "with_status": 7,
+        "checked": 60,
+        "with_status": 8,
         "warnings": 0
       },
       {
@@ -245,8 +245,8 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "warnings": 2,
+        "duration_seconds": 0.3,
+        "warnings": 1,
         "advisory": true
       },
       {

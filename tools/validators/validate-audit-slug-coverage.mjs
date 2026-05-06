@@ -51,6 +51,7 @@ const KNOWN_MAPPINGS = {
   'validate-rzf-evidence': ['rzf-evidence', 'rzf_evidence', 'nominal-rzf-detection'],
   'validate-slice-freshness': ['slice-freshness', 'slice_freshness', 'slice-drift-detection'],
   'validate-no-implementation-without-plan': ['no-implementation-without-plan', 'no_implementation_without_plan', 'construction-gate'],
+  'validate-impl-status': ['impl-status', 'impl_status', 'implementation-quality-state-machine'],
 };
 
 function validatorBasename(filename) {

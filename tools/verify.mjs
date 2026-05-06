@@ -142,6 +142,15 @@ const CYCLES = [
     parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
   },
   {
+    // NEW S011 §24++++++ — impl-status: implementation quality state machine (swift-implemented→sealed-zf)
+    name: 'impl_status',
+    command: 'node tools/validators/validate-impl-status.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+with_status=(\d+)\s+warnings=(\d+)/);
+      return m ? { checked: Number(m[1]), with_status: Number(m[2]), warnings: Number(m[3]) } : {};
+    },
+  },
+  {
     // NEW S011 §24+++++ — construction gate: implementation code must have backing topic-plan (EP-011)
     name: 'no_implementation_without_plan',
     command: 'node tools/validators/validate-no-implementation-without-plan.mjs',

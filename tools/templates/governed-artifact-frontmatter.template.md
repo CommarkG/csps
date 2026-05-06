@@ -146,6 +146,11 @@ links:
 # output_contract: <description>
 # trust_tier: <internal_csps | external_partner | community_skill>
 
+# === OPTIONAL — Implementation quality status (per frontmatter-closed-enums.md §impl_status) ===
+# impl_status: swift-implemented   # swift-implemented | audit-1-complete | sealed-zf | recurring-audit-pending | architecture-pending | deprecated
+# impl_audit_batch: weekly         # weekly | monthly | quarterly — when recurring-audit-pending items are processed
+# impl_sealed_at: S<NNN>           # session when sealed-zf was achieved (evidence of quality milestone)
+
 # === OPTIONAL — Consolidation-pass exemption (per B_CONSOLIDATION_PASS) ===
 # consolidation_exempt: true
 # consolidation_exempt_reason: "<glossary-restatement | safety-critical-redundancy | batch-boundary-cite>"

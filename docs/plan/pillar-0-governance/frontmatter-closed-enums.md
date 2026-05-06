@@ -137,6 +137,20 @@ Tags follow the pattern `<dimension>:<value>`. Each dimension has a closed enum:
 | **AGENTS.md** | [`AGENTS.md`](../../../AGENTS.md) | Cross-references this doc + B_STRUCTURAL_PREVENTION |
 | **Memory** | `feedback_frontmatter_closed_enum_drift.md` | AI per-session memory layer |
 
+## impl_status — implementation quality state machine (NEW S011 §24++++++)
+
+Per S011 user directive: every implementation artifact declares its quality state.
+
+| Value | Meaning | Next state |
+|---|---|---|
+| `swift-implemented` | Built rapidly; not yet audited | `audit-1-complete` |
+| `audit-1-complete` | First audit PASS; no new EP patterns | `sealed-zf` or `architecture-pending` |
+| `sealed-zf` | ZF cycle complete; RZF evidence present | `recurring-audit-pending` |
+| `recurring-audit-pending` | Registered for weekly/monthly re-validation | `sealed-zf` (after clean re-audit) |
+| `architecture-pending` | Needs deep arch review before sealing | `audit-1-complete` |
+| `deprecated` | Superseded; terminal | — |
+
+
 ## How to add / amend an enum value
 
 1. **Edit `validate-frontmatter.mjs`** `CLOSED_DIMENSIONS` / `LIFECYCLE_*` constants

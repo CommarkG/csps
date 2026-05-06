@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T19:01:18.592Z
-- finished_at: 2026-05-06T19:01:24.293Z
+- ran_at: 2026-05-06T19:15:03.921Z
+- finished_at: 2026-05-06T19:15:13.370Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T19:01:18.592Z",
-    "finished_at": "2026-05-06T19:01:24.293Z",
+    "ran_at": "2026-05-06T19:15:03.921Z",
+    "finished_at": "2026-05-06T19:15:13.370Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 3,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 1.6,
         "principles_loaded": 54,
         "findings_total": 0
       },
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.3,
         "scanned": 211,
         "errors": 0,
         "warnings": 0,
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -193,6 +193,15 @@
         "checked": 6,
         "exempt": 3,
         "unplanned": 0
+      },
+      {
+        "name": "instruction_context",
+        "command": "node tools/validators/validate-instruction-context.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 105,
+        "missing_why": 29
       },
       {
         "name": "open_plan_levels",
@@ -246,7 +255,7 @@
         "command": "node tools/validators/validate-intake-event.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0,
         "rows": 0
       },
@@ -255,7 +264,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.4,
         "warnings": 1,
         "advisory": true
       },
@@ -283,9 +292,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 31,
+        "validators_checked": 32,
         "orphans": 0,
-        "registered": 31
+        "registered": 32
       },
       {
         "name": "token_budget_validate",
@@ -304,7 +313,7 @@
         "command": "node tools/validators/validate-corespine-depth-markers.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "checked": 26,
         "l1_core": 5,
         "l2_domain": 16,

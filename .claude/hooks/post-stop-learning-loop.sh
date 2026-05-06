@@ -1,26 +1,20 @@
 #!/usr/bin/env bash
-# ============================================================================
-# .claude/hooks/post-stop-learning-loop.sh
-# ============================================================================
-# PostStop hook — fires at session end. Auto-triggers /learning-loop-extract
-# so insights/errors/gaps/decisions captured in the session are routed into
-# the LearningLoopItem ledger before the chat closes.
-#
-# Mechanical enforcer of P-META-005 Learning Loop.
-# Source of truth: packages/principles/principles.yaml#P-META-005
-# Canonical doc:   docs/plan/pillar-0-governance/learning-loop.md
-#
-# Status: STUB. The runtime LearningLoopItem table + Mastra-side extractor
-# do not ship until weeks 2–6 (see pillar-6/build-order.md). Until they do,
-# this hook records the session-end intent to a local capture log so no
-# session ends without a learning-loop trigger fire — even if the actual
-# extraction is replayed once the runtime is online.
-#
-# Once the runtime is up:
-#   - replace the local-log path with a curl POST to /api/learning-loop/extract
-#   - the API endpoint invokes the /learning-loop-extract skill
-#   - the skill writes to public.learning_loop_item
-# ============================================================================
+# @csps-id csps.claude.hooks.post-stop-learning-loop
+# @csps-name post-stop-learning-loop
+# @csps-description PostStop hook — positive ZF pipeline: captures insights,
+#   decisions, and gap-fixes from each AI response before they degrade to
+#   invisible context. Enforces P-META-005 Learning Loop. Without this,
+#   every insight that isn't explicitly extracted is lost at session boundary,
+#   compounding into the same structural failures across sessions. Captures
+#   to local JSONL until LearningLoopItem DB ships (weeks 2-6); then routes
+#   to API. Per B_POSITIVE_VALUE_EXTRACTION: when positive events occur,
+#   extract maximum value across all artifacts.
+# @csps-version 1.1.0
+# @csps-owner group:finky
+# @csps-lifecycle production
+# @csps-lifecycle-state active
+# @csps-tags type:hook domain:governance audience:ai-agent
+# @csps-enforces P-META-005 B_POSITIVE_VALUE_EXTRACTION
 
 set -euo pipefail
 
@@ -29,17 +23,15 @@ SESSION_ID="${CLAUDE_SESSION_ID:-unknown}"
 TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 TRANSCRIPT_PATH="${CLAUDE_TRANSCRIPT_PATH:-}"
 
-mkdir -p "$(dirname "$CAPTURE_LOG")"
+mkdir -p "$(dirname "$CAPTURE_LOG")" 2>/dev/null || true
 
-# Append a session-end record. Once runtime is up, this becomes a curl POST.
-cat >> "$CAPTURE_LOG" <<EOF
-{"event":"learning-loop.post-stop","session_id":"$SESSION_ID","timestamp":"$TIMESTAMP","transcript":"$TRANSCRIPT_PATH","status":"captured-pending-extraction"}
-EOF
+# Append session-end record (becomes curl POST to /api/learning-loop/extract once DB ships)
+printf '{"event":"learning-loop.post-stop","session_id":"%s","timestamp":"%s","transcript":"%s","status":"captured-pending-extraction"}\n' \
+  "$SESSION_ID" "$TIMESTAMP" "$TRANSCRIPT_PATH" >> "$CAPTURE_LOG" 2>/dev/null || true
 
-# Stdout (visible to AI in PostStop context):
-echo "[learning-loop] Session $SESSION_ID end captured at $TIMESTAMP"
-echo "[learning-loop] Transcript: ${TRANSCRIPT_PATH:-<not provided>}"
-echo "[learning-loop] Status: pending-extraction (runtime ships weeks 2–6)"
-echo "[learning-loop] Action: AI must include either ≥1 routed insight OR explicit 'no insights, reason: <X>' in closing summary per P-META-005."
+# Inject positive ZF requirement into AI context
+printf '{
+  "systemMessage": "[positive-ZF] Learning Loop capture — session %s at %s\\n\\nPOSITIVE ZF OBLIGATION (P-META-005 + B_POSITIVE_VALUE_EXTRACTION):\\nEvery substantive session must extract ≥1 of these positive ZF outputs:\\n  A) New drift-log entry (continuous-drift-log.md) — new pattern observed\\n  B) Reasoning-patterns.md promotion — K=2 pattern reached\\n  C) Memory entry updated — insight worth carrying forward\\n  D) CEC propagation — new element enhanced existing surfaces\\n  E) VLT created — blocking decision surfaced for Governor\\n\\nIF this turn had none: add explicit declaration:\\n  \\"Positive ZF: no new patterns this turn — reason: [mechanical/routine/deferred]\\"\\n\\nWHY THIS MATTERS (not just a rule):\\nInsights that are not explicitly extracted are lost at session boundary.\\nThe plan-promise-abandonment pattern was invisible for 3 sessions because\\nno one extracted the pattern and named it. Naming it in the drift-log was\\nwhat made the structural fix (validate-open-plan-levels.mjs) possible.\\nEvery session that extracts ≥1 insight compounds the platform. Sessions\\nthat extract 0 miss the positive ZF cycle entirely."
+}' "$SESSION_ID" "$TIMESTAMP"
 
 exit 0

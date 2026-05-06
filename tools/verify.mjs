@@ -241,6 +241,15 @@ const CYCLES = [
     },
   },
   {
+    // NEW S014 ZF audit — instruction-context: checks B_* contracts, principles, hooks have WHY reasoning (P-META-020)
+    name: 'instruction_context',
+    command: 'node tools/validators/validate-instruction-context.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+missing_why=(\d+)/);
+      return m ? { checked: Number(m[1]), missing_why: Number(m[2]) } : {};
+    },
+  },
+  {
     // NEW S014 Phase 3A — open-plan-levels: surfaces all unchecked exit criteria across active plans (P-META-020)
     name: 'open_plan_levels',
     command: 'node tools/validators/validate-open-plan-levels.mjs',

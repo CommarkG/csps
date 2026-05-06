@@ -14,6 +14,13 @@
     ]
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {"type": "command", "command": ".claude/hooks/session-open.sh", "timeout": 30}
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
@@ -52,6 +59,13 @@
     ],
     "PostToolUse": [
       {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {"type": "command", "command": ".claude/hooks/post-tool-use-validate-before-assume.sh"},
+          {"type": "command", "command": ".claude/hooks/post-tool-use-cec-trigger.sh"}
+        ]
+      },
+      {
         "matcher": ".*",
         "hooks": [
           {"type": "command", "command": ".claude/hooks/post-tool-use-validate-before-assume.sh"}
@@ -65,7 +79,7 @@
           {"type": "command", "command": ".claude/hooks/post-stop-pcr-check.sh"},
           {"type": "command", "command": ".claude/hooks/post-stop-link-discipline.sh"},
           {"type": "command", "command": ".claude/hooks/post-stop-banned-phrase.sh"},
-          {"type": "command", "command": ".claude/hooks/post-stop-pnpm-verify.sh"},
+          {"type": "command", "command": ".claude/hooks/post-stop-pnpm-verify.sh", "timeout": 60},
           {"type": "command", "command": ".claude/hooks/post-stop-consolidation-pass.sh"},
           {"type": "command", "command": ".claude/hooks/post-stop-savings-ssot-coverage.sh"}
         ]

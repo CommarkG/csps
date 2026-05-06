@@ -25,7 +25,7 @@ next_session: S012
 ## MINIMAL (paste into new chat)
 
 ```
-S011 CLOSED. You are S012. Phase 8 COMPLETE + Phase 9 COMPLETE (§24++ post-close addendum). pnpm verify: 14 active validators PASS; 0 frontmatter warnings; 0 AAP warnings (final run 2026-05-05T18:28:55Z). S012 PRIMARY = Phase 10 activation (token-optimization §9.11) + 10-scenario user-verification + context-orchestrator hook. Open HANDOFF-S011-to-S012.md at docs/plan/_handoff/ for full scope. Emit §17 receipt first: S012-AI-receipt-<iso>-against-S011-AI-attest-2026-05-05T16:50:00Z-S011-close. Run pnpm verify --skip-install to confirm 14 validators PASS before proceeding.
+S011 CLOSED. You are S012. ALL BLOCKING RESOLVED (VLT-S011-003 + VLT-S011-004). pnpm verify: 31 validators PASS exit_code 0. TWO KEY DECISIONS: (1) User/Tenant = 1:N via UserTenant join table. (2) Clerk org → Tenant = direct 1:1 (Tenant.clerkOrgId). ZModel design committed at libs/policies/slices/public/foundation-design.md — READ THIS FIRST before writing any code. S012 PRIMARY = Foundation slices L1 (User/Tenant/UserTenant/AuditEvent ZModel). Step 1: emit §17 receipt. Step 2: pnpm verify --skip-install. Step 3: read foundation-design.md. Step 4: build the 4 ZModel files. §17: S012-AI-receipt-<iso>-against-S011-AI-attest-2026-05-05T16:50:00Z-S011-close
 ```
 
 ## DETAILED (~150 words — self-contained)

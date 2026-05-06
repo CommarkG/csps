@@ -1,13 +1,13 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S014",
-  "previous_session": "S013",
-  "session_updated_at": "2026-05-06T18:35:00Z",
+  "current_session": "S015",
+  "previous_session": "S014",
+  "session_updated_at": "2026-05-06T22:52:42.256Z",
   "session_mandate": {
-    "primary": "S014 Phase 5 — L4 implementation. All infrastructure phases complete. Sandbox ready. Next: full Task management app (apps/task-mgmt/ or expand apps/sandbox/ to production).",
+    "primary": "Phase 5 — L4 task management app. Phase 4 COMPLETE (ZF deep: 0 blocking). All VLTs resolved. Build apps/task-mgmt/ (or expand apps/sandbox/) with full Task CRUD, billing trigger, Clerk auth, AuditEvent instrumentation.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — all phases 2A through 4 complete. Governor direction needed for Phase 5 start."
+    "blocking_on": "NONE — all platforms, VLTs, and ZF gates clear. Start with pnpm zf:phase (Level 2 gate) before any Phase 5 implementation."
   },
   "blocking_decisions": [
     {
@@ -83,8 +83,8 @@
     "max_input_tokens": 50000
   },
   "platform_state": {
-    "pnpm_verify": "exit_code 0 (33 active validators PASS)",
-    "last_verified_commit": "b05685c",
+    "pnpm_verify": "exit_code 0 (35 active validators, ZF-iter tracked)",
+    "last_verified_commit": "58190d0",
     "complexity_score": 17.9,
     "complexity_zone": "GREEN",
     "skills": 26,
@@ -105,7 +105,18 @@
     "vlt_s014_005_resolved": true,
     "all_blocking_resolved": true,
     "s014_l1_research_complete": true,
-    "s014_l1_research_doc": "docs/plan/_handoff/VAULT/topic-plans/s014-l1-research.md"
+    "s014_l1_research_doc": "docs/plan/_handoff/VAULT/topic-plans/s014-l1-research.md",
+    "hooks_active": 18,
+    "zf_orchestrator": "LIVE — pnpm zf / pnpm zf:phase / pnpm zf:deep",
+    "phase4_zf_deep": "ACHIEVED (0 blocking, 2 advisory)",
+    "phase5_status": "OPEN",
+    "zf_mandate_protocol": "docs/plan/pillar-0-governance/zf-mandate-protocol.md",
+    "discoveries_s014": [
+      "config-silent-override (K=1)",
+      "reasoning-single-source-navigation (K=1)"
+    ],
+    "principles_count": 55,
+    "behavioral_contracts": 44
   },
   "saas_build_arc": {
     "s012_b": {
@@ -124,7 +135,7 @@
     "s014": {
       "mandate": "Task management app — depth-4 planning. ALL LEVELS L1-L3 COMPLETE. L4 = implementation (Phase 5). Sandbox built for validation.",
       "model_tier": "STANDARD_BUILD",
-      "current_level": "L4",
+      "current_level": "COMPLETE",
       "estimated_tokens_k": 150,
       "topic_plan": "docs/plan/_handoff/VAULT/topic-plans/s014-task-management-app.md",
       "l1_research": "docs/plan/_handoff/VAULT/topic-plans/s014-l1-research.md",
@@ -134,7 +145,9 @@
         "graduation": "$1K MRR",
         "pricing": "Free solo / paid team (2+ members)"
       },
-      "unlocks": "s015"
+      "unlocks": "s015",
+      "status": "COMPLETE",
+      "zf_deep": "ACHIEVED at commit 58190d0"
     },
     "s015": {
       "mandate": "Graduation path design + second app slice",
@@ -144,14 +157,13 @@
     }
   },
   "next_session_auto_checks": [
-    "pnpm verify --skip-install (confirm exit_code 0, 33 active validators)",
-    "node tools/validators/validate-session-artifact-sync.mjs (confirm 0 warnings)",
-    "node tools/validators/validate-moat-coverage.mjs (confirm coverage)",
-    "node tools/validators/validate-inner-ai-defaults-freshness.mjs (confirm registry current)",
-    "node tools/validators/validate-open-plan-levels.mjs (review open items — 112 advisory at S014 close)",
-    "Read docs/plan/_handoff/VAULT/csps-master-roadmap-s014-plus.md — current phase",
-    "CONCEPT_LOAD at session-open: identify which L2 spine domain governs S015 work (per P-META-020)",
-    "node packages/principles/codegen.ts — re-run if principles.yaml changed since last codegen"
+    "pnpm verify --skip-install (confirm 35 PASS)",
+    "node tools/validators/validate-vlt-blocking.mjs (confirm 0 PENDING)",
+    "node tools/zf-orchestrator.mjs --level 1 (ZF Level 1 session open gate)",
+    "Read docs/plan/_handoff/VAULT/csps-master-roadmap-s014-plus.md (current phase)",
+    "Read docs/plan/pillar-0-governance/zf-mandate-protocol.md (ZF mandate)",
+    "CRITICAL: NEVER use Write/Edit tools on .claude/** — use Bash+node instead (pre-tool-use-claude-dir-guard.sh blocks it with redirect message)",
+    "CONCEPT_LOAD at session-open: ARCH L2 (Phase 5 = schema/code work)"
   ],
   "why_better_than_others": [
     "Governance baked into construction — not retrofitted after (18 moat elements)",

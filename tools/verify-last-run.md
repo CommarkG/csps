@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T22:42:16.794Z
-- finished_at: 2026-05-06T22:42:26.516Z
+- ran_at: 2026-05-06T22:55:35.554Z
+- finished_at: 2026-05-06T22:55:46.306Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T22:42:16.794Z",
-    "finished_at": "2026-05-06T22:42:26.516Z",
+    "ran_at": "2026-05-06T22:55:35.554Z",
+    "finished_at": "2026-05-06T22:55:46.306Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.8,
+        "duration_seconds": 3.1,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 2.1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -43,14 +43,14 @@
         "scanned": 214,
         "errors": 0,
         "warnings": 0,
-        "exempt": 204
+        "exempt": 205
       },
       {
         "name": "aap_frontmatter_coverage",
         "command": "node tools/validators/validate-aap-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "skills_scanned": 26,
         "missing_aap": 0,
         "aligned": 26
@@ -86,7 +86,7 @@
         "command": "node tools/validators/validate-behavioral-contract-slices.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "source_contracts": 44,
         "missing_slices": 0
       },
@@ -280,7 +280,7 @@
         "command": "node tools/validators/validate-topic-plan-progress.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "plans_checked": 10,
         "warnings": 0
       },
@@ -308,7 +308,7 @@
         "command": "node tools/validators/validate-token-budget.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "modes": 5,
         "red": 0,
         "yellow": 0,

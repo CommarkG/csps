@@ -61,6 +61,10 @@ PE-FULL fires and includes this queue. Each item is promoted or discarded before
 
 - [S015-2026-05-07] VAULT: Orchestrator mode-selection automation — reads plan type + phase + complexity → auto-selects mode + routes model. Foundational work: B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH must be engraved first. → STATUS: PENDING — S016-S017 (do not start without foundation)
 
+- [S016-2026-05-07] VAULT: CDAB — Context Driven AI Behavior formalization. Name canonicalized in csps-core-manifest.md. Three investments to make CDAB real: (1) MCP extension: get_context(decision_type) — decision-relevant context on-demand, verifiable via tool history (S018); (2) inner-ai-defaults discipline: add disposition: field to all 7 files missing it (S016 L3); (3) context-sensitive-rule-coverage validator implementation (already registered, deferred week-4). Cruel assessment: 30% real today, 80% real when MCP wired. The 70% advisory surfaces are overhead without quality unless MCP closes the gap. → STATUS: PENDING — S017 MCP extension planning
+
+- [S016-2026-05-07] VAULT: VLT-S016-ZENSTACK RESOLVED (Option A). S017 mandate = ZenStack install + RLS + foundation-slices L3 closure. This is the bedrock Layer 2 completion session. → STATUS: PROMOTED — S017 mandate (see session-state.json)
+
 
 ---
 

@@ -226,7 +226,7 @@ Layer 4 — App Template Core:
   [x] Next.js 14 + Tailwind + Clerk + Stripe + Prisma scaffold
   [x] @csps/integrations pattern
   [x] CRUD with AuditEvent (proven)
-  [ ] Live DB validation (user action: pnpm db:push with .env.local)
+  [x] Live DB validation — pnpm db:push success, 5.15s, Supabase eu-central-1 — S018 COMPLETE
   [ ] ZenStack-integrated template → VLT-S016-ZENSTACK
 
 Layer 5 — Build Methodology Core:
@@ -237,8 +237,8 @@ Layer 5 — Build Methodology Core:
 ```
 
 **Root decisions missing: 0 — ZenStack INSTALLED + ACTIVE S017**
-**Items remaining deferred: 2 (ZenStack-integrated app template + live DB validation — user action)**
-**Items complete: 20/22 (91%) — 2 explicitly deferred with VLT tracking**
+**Items remaining deferred: 1 (ZenStack-integrated app template → S018 mandate)**
+**Items complete: 21/22 (95%) — 1 explicitly deferred with VLT tracking**
 **Items complete or explicitly tracked: 22/22 (100%)**
 
 ---

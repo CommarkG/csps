@@ -102,7 +102,7 @@ When bedrock is complete, an app developer can:
 | `validate-foundation-schema-drift.mjs` in pnpm verify | **⏳ VLT-S016-ZENSTACK** | Blocked by ZenStack (ZModel→Prisma generation needed) |
 | `foundation-slices-schema-drift` audit slug active | **⏳ VLT-S016-ZENSTACK** | Deferred with ZenStack |
 
-**Layer 2 status: 8/9 complete. ZenStack installed + drift validator ACTIVE. Remaining: enhance(prismaClient) wired into app routes (VLT-S017-ENHANCE). NOTE: ZenStack @@allow is ORM-layer enforcement (not Postgres RLS); policies are defined but not enforced until enhance() is wired.**
+**Layer 2 status: 9/9 COMPLETE. ✅ — S017. ZenStack installed + policies ACTIVE (enhance() wired in all routes) + drift validator active. NOTE: ZenStack @@allow is ORM-layer enforcement (not Postgres RLS) — enforcement is at application layer via enhanced PrismaClient.**
 
 ---
 
@@ -214,7 +214,7 @@ Layer 2 — Schema Security Core:
   [x] Prisma schema + application-level tenant isolation
   [x] ZenStack 2.22.1 installation + @@allow/@@deny policies DEFINED in ZModel — S017 COMPLETE
   [x] validate-foundation-schema-drift.mjs (cycle 41, ACTIVE) — S017 COMPLETE
-  [ ] enhance(prismaClient) wired into app routes (ORM-layer policy enforcement ACTIVE) → VLT-S017-ENHANCE
+  [x] enhance(prismaClient) wired into all 4 business routes (ORM-layer policy enforcement ACTIVE) — S017 COMPLETE
 
 Layer 3 — Auth + Billing Core:
   [x] Clerk auth wiring (all webhook events)
@@ -236,9 +236,9 @@ Layer 5 — Build Methodology Core:
   [x] Chat State Snapshot — S016 COMPLETE
 ```
 
-**Root decisions missing: 0 — ZenStack INSTALLED S017**
-**Items remaining deferred: 3 (enhance(prismaClient) wiring + ZenStack-integrated app template + live DB validation)**
-**Items complete: 19/22 (86%) — 3 explicitly deferred with VLT tracking**
+**Root decisions missing: 0 — ZenStack INSTALLED + ACTIVE S017**
+**Items remaining deferred: 2 (ZenStack-integrated app template + live DB validation — user action)**
+**Items complete: 20/22 (91%) — 2 explicitly deferred with VLT tracking**
 **Items complete or explicitly tracked: 22/22 (100%)**
 
 ---

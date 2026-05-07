@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T10:03:17.913Z
-- finished_at: 2026-05-07T10:03:24.803Z
+- ran_at: 2026-05-07T11:02:53.129Z
+- finished_at: 2026-05-07T11:03:04.141Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T10:03:17.913Z",
-    "finished_at": "2026-05-07T10:03:24.803Z",
+    "ran_at": "2026-05-07T11:02:53.129Z",
+    "finished_at": "2026-05-07T11:03:04.141Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.6,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -40,9 +40,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 232,
+        "scanned": 233,
         "errors": 0,
-        "warnings": 2,
+        "warnings": 3,
         "exempt": 211
       },
       {
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.5,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -162,14 +162,14 @@
         "command": "node tools/validators/validate-nothing-stands-alone.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "moat_coverage",
         "command": "node tools/validators/validate-moat-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "total": 15,
         "covered": 15,
         "critical_gaps": 0
@@ -217,8 +217,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "plans_checked": 9,
-        "plans_with_open": 5,
-        "total_open_items": 51
+        "plans_with_open": 4,
+        "total_open_items": 50
       },
       {
         "name": "rzf_evidence",
@@ -271,7 +271,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -299,9 +299,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 38,
+        "validators_checked": 39,
         "orphans": 0,
-        "registered": 38
+        "registered": 39
       },
       {
         "name": "token_budget_validate",
@@ -351,9 +351,14 @@
       {
         "name": "bedrock_completion",
         "command": "node tools/validators/validate-bedrock.mjs",
-        "status": "PASS",
+        "status": "COMPLETE",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.1,
+        "total": 22,
+        "done": 20,
+        "deferred": 2,
+        "blocking": 0,
+        "completion_pct": 100
       },
       {
         "name": "plan_age_alignment",
@@ -377,6 +382,18 @@
         "sections_checked": 8,
         "blocking": 0,
         "warnings": 1
+      },
+      {
+        "name": "foundation_schema_drift",
+        "command": "node tools/validators/validate-foundation-schema-drift.mjs",
+        "status": "CLEAN",
+        "exit_code": 0,
+        "duration_seconds": 5.7,
+        "generate_ok": true,
+        "zmodel_models": 7,
+        "app_models": 7,
+        "drift_count": 0,
+        "advisory": 0
       },
       {
         "name": "audit_runner_full_pass",

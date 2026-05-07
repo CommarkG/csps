@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T13:12:50.420Z
-- finished_at: 2026-05-07T13:13:01.276Z
+- ran_at: 2026-05-07T18:25:46.901Z
+- finished_at: 2026-05-07T18:26:01.269Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T13:12:50.420Z",
-    "finished_at": "2026-05-07T13:13:01.276Z",
+    "ran_at": "2026-05-07T18:25:46.901Z",
+    "finished_at": "2026-05-07T18:26:01.269Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 2.1,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,8 +39,8 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
-        "scanned": 236,
+        "duration_seconds": 0.2,
+        "scanned": 252,
         "errors": 0,
         "warnings": 3,
         "exempt": 212
@@ -133,7 +133,7 @@
         "command": "node tools/validators/validate-catch-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "council_coverage",
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -179,7 +179,7 @@
         "command": "node tools/validators/validate-impl-status.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "checked": 63,
         "with_status": 11,
         "warnings": 0
@@ -216,9 +216,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 9,
-        "plans_with_open": 3,
-        "total_open_items": 21
+        "plans_checked": 10,
+        "plans_with_open": 4,
+        "total_open_items": 42
       },
       {
         "name": "rzf_evidence",
@@ -244,7 +244,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 7,
+        "checked": 8,
         "grandfathered": 2,
         "errors": 0
       },
@@ -281,7 +281,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 9,
+        "plans_checked": 10,
         "warnings": 0
       },
       {
@@ -334,7 +334,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 7,
+        "plans_checked": 8,
         "missing_harvest": 0,
         "warnings": 0
       },
@@ -344,7 +344,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 7,
+        "plans_checked": 8,
         "missing_mode": 0,
         "warnings": 0
       },
@@ -366,7 +366,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 9,
+        "plans_checked": 10,
         "stale_total": 9,
         "unverified": 9,
         "verified": 0,
@@ -378,7 +378,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 9,
+        "plans_checked": 10,
         "sections_checked": 8,
         "blocking": 0,
         "warnings": 0
@@ -388,7 +388,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 5.9,
+        "duration_seconds": 7.6,
         "generate_ok": true,
         "zmodel_models": 7,
         "app_models": 7,

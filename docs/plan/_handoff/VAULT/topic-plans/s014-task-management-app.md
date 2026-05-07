@@ -20,6 +20,7 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S014
+execution_mode: deep_quality
 alignment_verified_session: S015
 topic_id: s014-task-management-app
 priority_score: 95
@@ -54,6 +55,29 @@ links:
 > **B_CONSENSUS_BEFORE_PROCEEDING is active for every level.**
 > No L<N+1> work begins until L<N> ZF gate passes AND Governor ratifies.
 > VLT items are research questions — they are ANSWERED through the L1 process, not in a chat message.
+
+---
+
+
+## §HARVEST — What this plan is designed to extract
+
+```yaml
+harvest_triggers:
+  - on: phase_gate
+    collect: [schema_design_decisions, app_template_patterns, billing_trigger_design]
+    destination: vault
+    vault_path: docs/plan/_intake/vault/task-mgmt/
+  - on: plan_close
+    collect: [first_app_extraction_template, graduation_path_lessons]
+    destination:
+      - extraction_note: docs/plan/_handoff/VAULT/session-S017-extraction.md
+      - pattern_home: docs/plan/pillar-1-product/graduation-path.md
+
+harvest_questions:
+  - "Does the task-mgmt architecture serve as a valid template for all 30 apps?"
+  - "What schema decisions here would be wrong for a different app type (e.g., booking vs task)?"
+  - "Is the billing trigger (2nd UserTenant) the right graduation trigger for all apps?"
+```
 
 ---
 

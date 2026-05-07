@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T08:00:34.252Z
-- finished_at: 2026-05-07T08:00:40.627Z
+- ran_at: 2026-05-07T08:12:48.446Z
+- finished_at: 2026-05-07T08:12:55.033Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T08:00:34.252Z",
-    "finished_at": "2026-05-07T08:00:40.627Z",
+    "ran_at": "2026-05-07T08:12:48.446Z",
+    "finished_at": "2026-05-07T08:12:55.033Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.9,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 0.9,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "scanned": 227,
         "errors": 0,
         "warnings": 1,
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -299,9 +299,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 36,
+        "validators_checked": 38,
         "orphans": 0,
-        "registered": 36
+        "registered": 38
       },
       {
         "name": "token_budget_validate",
@@ -326,6 +326,26 @@
         "l2_domain": 16,
         "l3_instances": 5,
         "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "plan_harvest_coverage",
+        "command": "node tools/validators/validate-plan-harvest-coverage.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "plans_checked": 7,
+        "missing_harvest": 0,
+        "warnings": 0
+      },
+      {
+        "name": "execution_mode_declared",
+        "command": "node tools/validators/validate-execution-mode-declared.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "plans_checked": 7,
+        "missing_mode": 0,
         "warnings": 0
       },
       {

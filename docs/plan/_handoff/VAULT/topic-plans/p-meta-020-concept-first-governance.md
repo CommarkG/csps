@@ -21,6 +21,7 @@ tags:
 diataxis_type: how-to
 know_how_consulted: true
 session: S014
+execution_mode: deep_quality
 alignment_verified_session: S015
 topic_id: p-meta-020-concept-first-governance
 priority_score: 98
@@ -88,6 +89,27 @@ L3 (instances)         = WHERE THE CONCEPT MANIFESTS (validators, contracts, rul
 L3 failure → L2 drift? → L1 concept intact?
 
 This was the INTENDED diagnostic path all along. It was never explicitly stated as the navigation methodology. P-META-020 names it, wires it to The Threshold, and makes it the governing methodology for all AI behavior in CSPS.
+
+---
+
+
+## §HARVEST — What this plan is designed to extract
+
+```yaml
+harvest_triggers:
+  - on: phase_gate
+    collect: [concept_propagation_effectiveness, conceptual_sample_of_adoption_rate]
+    destination: vault
+  - on: plan_close
+    collect: [which_rules_were_improved_by_adding_WHY, conceptual_sample_pattern_for_future_contracts]
+    destination:
+      - extraction_note: docs/plan/_handoff/VAULT/session-S017-extraction.md
+      - pattern_home: docs/plan/pillar-0-governance/behavioral-contracts.md
+
+harvest_questions:
+  - "Does adding conceptual_sample_of: to contracts actually improve AI navigation?"
+  - "Which validators most benefit from a conceptual anchor vs just a rule?"
+```
 
 ---
 

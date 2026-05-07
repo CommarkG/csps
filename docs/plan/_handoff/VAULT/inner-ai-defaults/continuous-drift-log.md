@@ -20,6 +20,7 @@ diataxis_type: reference
 links:
   - { rel: parent, href: ./README.md }
 session: S006
+disposition: adjust
 append_only: true
 ---
 

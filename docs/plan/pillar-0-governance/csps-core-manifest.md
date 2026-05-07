@@ -327,3 +327,31 @@ The 5-cardinality is also empirically validated by CSP's 330+ session evolution 
 | **Dashboard leaf** | THIS file (L1) |
 
 **Engraving signature:** `S006-AI-csps-core-manifest-2026-05-04T15:00:00Z`
+---
+
+## CDAB — Context Driven AI Behavior (canonical label — S016)
+
+**CDAB** is the name for the complete infrastructure CSPS has built to ensure AI behavior is governed by context, not by rule lookup. Built over 16 sessions without a canonical name. This section names it.
+
+**Core insight (P-META-020 alias `context-driven-navigation`):** Rules are finite. Situations are infinite. Only deep context understanding handles the long tail. AI with rules but not their WHY pattern-matches and fails at edge cases.
+
+### CDAB Infrastructure Map
+
+| Layer | Mechanism | Mechanical? |
+|---|---|---|
+| Static context | session-open.sh Q1-Q15, AGENTS.md, inner-ai-defaults/ | Soft (read once at start) |
+| Override registry | 10 inner-ai-defaults files with disposition: fields | Partial (freshness validator) |
+| Decision-time context | B_AUTONOMOUS_BATCH pre-flight Q-GATE/Q-COMPLETE/Q-GLOBAL/Q-INITIATED | Soft (format defined) |
+| Milestone context | B_HUMBLE_EXECUTOR at every phase gate | Soft (week-4 validator) |
+| Principle context | packages/principles-mcp (live MCP queries) | Mechanical ✅ |
+| Phase gate context | FOUNDATION_EXIT_GATE, bedrock, stale-plans | Mechanical ✅ |
+
+### CDAB Roadmap
+
+- ✅ S016: Name CDAB, disposition fields, plan-harvest + execution-mode validators
+- ⏳ S017+: PE mechanical computation (pe-compute.mjs as live scorer)
+- ⏳ S018: MCP dynamic context — `get_context(decision_type)` closes the measurement gap
+- ⏳ week-4: context-sensitive-rule-coverage validator (escape hatch enforcement)
+
+**Amendment:** `S016-CDAB-label-2026-05-07T00:00:00Z`
+

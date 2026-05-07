@@ -18,6 +18,7 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S006
+execution_mode: balanced
 alignment_verified_session: S015
 topic_id: zero-laptop-dependency-setup
 priority_score: 75
@@ -54,6 +55,26 @@ muv_audit:
 > **Depth-3 basic.** Operational setup for the Zero-Laptop-Dependency discipline (P-OPER-001) ratified S006 turn 8.
 > **Q-1 ratified C (Hybrid):** Git canonical + GitHub Codespaces on-demand + Android read-mostly.
 > **Q-2 ratified B + tweak:** auto-push at session-close gate; Q-2 tweak engraved as P-META-019 (Structural-Prevention-Discipline) in governance foundation L2.
+
+---
+
+
+## §HARVEST — What this plan is designed to extract
+
+```yaml
+harvest_triggers:
+  - on: phase_gate
+    collect: [codespaces_boot_time, android_workflow_friction, parity_issues]
+    destination: vault
+  - on: plan_close
+    collect: [multi_device_workflow_lessons, devcontainer_best_practices]
+    destination:
+      - extraction_note: docs/plan/_handoff/VAULT/session-S018-extraction.md
+
+harvest_questions:
+  - "Does Codespaces provide full CSPS workflow capability, or are there gaps?"
+  - "What's the minimum viable Android workflow for reviewing plans on mobile?"
+```
 
 ---
 

@@ -21,6 +21,7 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S007
+execution_mode: balanced
 alignment_verified_session: S015
 opened_at_session: S007
 opened_at_turn: 2
@@ -87,6 +88,26 @@ muv_audit:
 | 10 | Compaction discipline + MCP audit + measurement validator + continuous validation | Phase 9 | 0.5-1 | pending |
 
 **Total arc: 5-8 sessions (S007 → S012 typical; per CSP cruel-critic Critique 5 absorbed).**
+
+---
+
+
+## §HARVEST — What this plan is designed to extract
+
+```yaml
+harvest_triggers:
+  - on: phase_gate
+    collect: [measured_token_reduction_pct, which_techniques_worked, context_quality_impact]
+    destination: vault
+  - on: plan_close
+    collect: [token_budget_lessons_for_30_app_platform, mcp_integration_findings]
+    destination:
+      - extraction_note: docs/plan/_handoff/VAULT/session-S019-extraction.md
+
+harvest_questions:
+  - "Does token reduction actually maintain context quality, or does it degrade reasoning?"
+  - "Which phases (L1/L2/L3/L4) benefit most from MCP on-demand vs static context?"
+```
 
 ---
 

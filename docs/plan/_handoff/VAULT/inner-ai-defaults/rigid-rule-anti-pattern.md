@@ -14,6 +14,7 @@ tags:
   - audience:ai-agent
   - maturity:stable
 session: S016
+disposition: override
 impl_status: swift-implemented
 consolidation_cross_refs:
   - docs/plan/pillar-0-governance/behavioral-contracts.md

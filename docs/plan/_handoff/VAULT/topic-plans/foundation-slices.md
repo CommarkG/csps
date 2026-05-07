@@ -19,6 +19,7 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S011
+execution_mode: deep_quality
 alignment_verified_session: S015
 topic_id: foundation-slices
 priority_score: 95
@@ -81,6 +82,29 @@ links:
 # Topic-Plan — Foundation Slices (depth-3)
 
 > **This plan resolves EP-011** (libs/policies/ had code without a ratified plan). The metabolism of CSPS — without these 3 slices, no app can exist.
+
+
+## §HARVEST — What this plan is designed to extract
+
+```yaml
+harvest_triggers:
+  - on: phase_gate
+    collect: [zmodel_design_decisions, rls_policy_patterns, tenant_isolation_approach]
+    destination: vault
+    vault_path: docs/plan/_intake/vault/foundation-slices/
+  - on: plan_close
+    collect: [foundation_schema_lessons_for_all_30_apps, zenstack_integration_patterns]
+    destination:
+      - extraction_note: docs/plan/_handoff/VAULT/session-S017-extraction.md
+      - pattern_home: libs/policies/slices/public/
+
+harvest_questions:
+  - "Does the ZModel → Prisma → RLS pipeline generate correctly without manual intervention?"
+  - "Does application-level isolation + DB-level RLS compose cleanly or conflict?"
+  - "Is the tenant_id pattern in ZModel sufficient for all 30 app types?"
+```
+
+---
 
 ## §KH Know-How Consultation (B_KNOW_HOW_DISCIPLINE Step 6)
 

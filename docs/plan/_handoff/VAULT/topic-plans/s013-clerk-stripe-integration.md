@@ -19,6 +19,7 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S013
+execution_mode: balanced
 alignment_verified_session: S015
 topic_id: s013-clerk-stripe-integration
 priority_score: 90
@@ -39,6 +40,27 @@ links:
 ---
 
 # Topic-Plan — S013 Clerk + Stripe Integration (depth-3)
+
+
+## §HARVEST — What this plan is designed to extract
+
+```yaml
+harvest_triggers:
+  - on: phase_gate
+    collect: [auth_wiring_patterns, billing_integration_patterns]
+    destination: vault
+  - on: plan_close
+    collect: [integration_library_design_lessons, webhook_handler_reuse_pattern]
+    destination:
+      - extraction_note: docs/plan/_handoff/VAULT/session-S016-extraction.md
+      - pattern_home: libs/integrations/
+
+harvest_questions:
+  - "Does the libs/integrations pattern allow all 30 apps to wire auth+billing without reimplementation?"
+  - "Are there webhook patterns that should be generalized further?"
+```
+
+---
 
 ## §1 — Level 1: Service layer (COMPLETE — S013)
 

@@ -371,6 +371,24 @@ const CYCLES = [
     },
   },
   {
+    // S016 L3 PLAN HARVEST COVERAGE — active gradual-build-plans must have §HARVEST section
+    name: 'plan_harvest_coverage',
+    command: 'node tools/validators/validate-plan-harvest-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/plans_checked=(\d+)\s+missing_harvest=(\d+)\s+warnings=(\d+)/);
+      return m ? { plans_checked: Number(m[1]), missing_harvest: Number(m[2]), warnings: Number(m[3]) } : {};
+    },
+  },
+  {
+    // S016 L3 EXECUTION MODE DECLARED — active gradual-build-plans must declare execution_mode
+    name: 'execution_mode_declared',
+    command: 'node tools/validators/validate-execution-mode-declared.mjs',
+    parse_output: (out) => {
+      const m = out.match(/plans_checked=(\d+)\s+missing_mode=(\d+)\s+warnings=(\d+)/);
+      return m ? { plans_checked: Number(m[1]), missing_mode: Number(m[2]), warnings: Number(m[3]) } : {};
+    },
+  },
+  {
     // S016 BEDROCK COMPLETION GATE — platform core must be complete before app #2
     // Reads csps-bedrock.md §3 checklist. 2 root decisions missing = 7 downstream items gated.
     name: 'bedrock_completion',

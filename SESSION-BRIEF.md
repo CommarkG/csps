@@ -6,16 +6,16 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S017 |
-| **Previous session** | S016 |
-| **Last updated** | today |
-| **Last commit** | c47f4f0 S017: ZenStack 2.22.1 installed + foundation-slices §11 closure + ZF Level 3 ACHIEVED |
+| **Current session** | S018 |
+| **Previous session** | S017 |
+| **Last updated** | -1 day(s) ago |
+| **Last commit** | ea3facf S017→S018: HANDOFF + chat-transfer + session-state updated |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
-## What S017 must do
+## What S018 must do
 
-**ZenStack installation (Option A — install first before any new app). Unblocks: DB-level RLS policies, validate-foundation-schema-drift.mjs, foundation-slices §11 closure, ZenStack-integrated app template. Bedrock Layer 2 completion.**
+**ZenStack-integrated app template — establish canonical scaffold with enhance() wired from day one. App #2 uses this template, not apps/task-mgmt as reference.**
 
 
 
@@ -42,9 +42,9 @@
 
 | Metric | Value |
 |---|---|
-| Validators (pnpm verify) | exit_code 0 (40 active validators, ZF Level 3 achieved S016) |
+| Validators (pnpm verify) | exit_code 0 (41 active validators, ZF Level 3 achieved S017) |
 | Council skills | 26 |
-| Behavioral contracts | 46 |
+| Behavioral contracts | 48 |
 | Error patterns (EP) | 16 |
 | Moat elements | 21 |
 | Complexity score | 18.2 (GREEN < 25) |
@@ -55,7 +55,8 @@
 |---|---|---|
 | s015 | Phase 5 task management app — scaffold + CRUD + governance engraving | ✅ COMPLETE (52d35b7) |
 | s016 | Plan Methodology v2 L2 + task-mgmt live deployment | ⏳ PENDING |
-| s017 | ZenStack installation (Option A ratified) + RLS policies + validate-foundation-schema-drift.mjs + foundation-slices L3 closure. Bedrock Layer 2 completion. | ⏳ PENDING |
+| s017 | ZenStack installation (Option A ratified) + RLS policies + validate-foundation-schema-drift.mjs + foundation-slices L3 closure. Bedrock Layer 2 completion. | ✅ COMPLETE (ee98115) |
+| s018 | ZenStack-integrated app template — canonical scaffold with enhance() from day one. App #2 uses this template. Secondary: field-level drift checking + hash caching in drift validator. | ⏳ PENDING |
 
 ## Why this builds better than others
 

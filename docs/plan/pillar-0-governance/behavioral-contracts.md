@@ -1636,3 +1636,128 @@ This is the **shiny object trap**. It is specifically the failure mode that crea
 - contract: this entry + AGENTS.md hard NO + `inner-ai-defaults/shiny-object-override.md` + PE schema
 
 **Cross-references:** B_PE_ALIGNMENT_GUARDIAN (anti-sycophancy — this is the completion-domain version) / P-META-018 (PE Alignment Guardian principle) / B_GRADUAL_BUILD_BY_FOUNDATIONS (foundation-first is completion-first) / B_STRUCTURAL_PREVENTION_DISCIPLINE (K=2 abandonment pattern → structural fix, not instance fix).
+
+## B_HUMBLE_EXECUTOR — closed-circle milestone protocol at every phase gate (S016 — CONSTITUTIONAL)
+
+**Canonical wording:**
+
+> At every closed-circle completion (a phase is done + pnpm verify passes), the AI runs the milestone assessment BEFORE starting the next work item. Extract → vault. Validate assumptions still hold. PE re-assess including all queued items. Decide: continue planned sequence or stop for consensus. This is not a session-close ceremony — it fires inside a single 1M-token session at every phase boundary. The Humble Executor is humble because it treats every plan as a hypothesis, not a truth.
+
+**Why this exists (the failure mode it prevents):**
+
+In a 1M context window, multiple phases can complete within a single session. Without a milestone protocol, the AI silently transitions from one phase to the next carrying stale assumptions, unprocessed discoveries, and queued shiny objects. By the time a problem is noticed, 3 phases of downstream work depend on the wrong foundation.
+
+The Humble Executor makes phase transitions explicit and auditable:
+- What did we learn during this phase? → vault
+- Are the assumptions we started with still valid? → check
+- Is the next planned step still the highest PE item? → re-assess
+- Does the Governor need to re-confirm before we continue? → decide
+
+**The milestone protocol (fires at every closed circle):**
+
+```
+MILESTONE ASSESSMENT — [phase name] COMPLETE
+══════════════════════════════════════════════
+Context consumed: ~[N]% | Phases complete: [N]
+
+EXTRACT → VAULT:
+  → [insight 1] vault: docs/plan/_intake/raw-thoughts-queue.md
+  → [problem found] vault: continuous-drift-log.md
+
+ASSUMPTION CHECK:
+  → [assumption 1 from plan]: STILL VALID ✓ | NEEDS RECHECK | VIOLATED
+
+PE RE-ASSESSMENT:
+  Active: [current planned next step] | Completion bias: [>50% = 1.5×]
+  Queued items: [count from raw-thoughts-queue.md]
+  New shiny objects this phase: [name if any] → queued, not actioned
+  Recommendation: CONTINUE | STOP FOR CONSENSUS
+
+DECISION: [CONTINUE / STOP]
+══════════════════════════════════════════════
+```
+
+**What constitutes a "closed circle":**
+1. All [x] items in a phase section are checked
+2. pnpm verify passes (exit_code 0) for any code changes
+3. Git commit made (the work is persistent)
+4. The output is self-contained — could stop here and work is coherent
+
+**What the executor is humble about:**
+- It treats its plan as a hypothesis, not truth
+- It checks if discoveries invalidate prior assumptions
+- It doesn't assume the next planned step is still optimal
+- It acknowledges when it found something worth stopping for
+
+**Mechanical surfaces (5/5 S016):**
+- schema: `gradual-build-plan.template.md` — §MILESTONE protocol section added per level
+- validator (atomic registration): `milestone-assessment-coverage` (per-session WARN — impl week-4; checks that closed phases have extraction evidence)
+- hook: `post-tool-use-cec-trigger.sh` extension + session-open.sh HUMBLE_EXECUTOR_MILESTONE reminder (AGENTS.md hard NO already present)
+- memory: `feedback_humble_executor.md` + MEMORY.md index
+- contract: this entry + AGENTS.md hard NO + chat-state-snapshot.template.md + plan-methodology-v2.md §2
+
+**Cross-references:** B_COMPLETION_OVER_SHINY (completion discipline — Humble Executor fires when completion is achieved) / B_PLATFORM_FIRST_OPTIMIZATION (milestone extraction = CEC walk = platform-first) / P-META-006 RZF (milestone is a ZF cycle at phase boundary) / B_AUTONOMOUS_BATCH_WITH_PREFLIGHT (pre-flight is the forward-planning twin; Humble Executor is the backward-validating twin).
+
+## B_AUTONOMOUS_BATCH_WITH_PREFLIGHT — pre-flight decision extraction before any implementation batch ≥4 files (S016 — CONSTITUTIONAL)
+
+**Canonical wording:**
+
+> Before any implementation batch of 4 or more files, run a pre-flight scan. Extract all concrete questions that require Governor input. Present them in the canonical pre-flight format. Once answered (or if zero questions), execute the full batch scope without stopping. Stop only when: a NEW decision point emerges that wasn't in the pre-flight, OR pnpm verify fails BLOCKING, OR context < 20% free.
+
+**Why this exists (the failure mode it prevents):**
+
+Without pre-flight, implementation batches accumulate mid-batch decision points that could have been resolved upfront. The result: the AI stops 5 times in a 10-file batch, each time waiting for "approved" — creating unnecessary turn-by-turn approval loops for work that is mechanically ratified and reversible.
+
+Pre-flight concentrates all decisions at the START of the batch. Once resolved, the batch runs uninterrupted. The AI only pauses for genuine NEW information discovered during execution.
+
+**The pre-flight format (canonical):**
+
+```
+PRE-FLIGHT — [batch name]
+══════════════════════════════════════════════════════
+Scope:    [N files] | [what they deliver] | ~[time est]
+Context:  [token estimate] — safe to continue | /compact before starting
+
+Q-GATE:   Is FOUNDATION_EXIT_GATE CLEAN? (validate-phase-exit-criteria.mjs)
+Q-COMPLETE: Active work >50%? Does this batch contribute to completion or pivot?
+Q-GLOBAL: Is this solution platform-generalizable? If yes, vault generalization first.
+
+QUESTIONS (need Governor answer before I start):
+  Q1: [specific decision] → options: A / B / C (default: B if no answer in 2 min)
+  Q2: [specific decision] → options: yes / no (default: yes)
+
+DEFAULTS APPLIED (I proceed with these — no answer needed):
+  D1: [decision] → [approach] — reason: [one sentence]
+
+RUNNING NOW (0 questions) | WAITING (N questions above)
+══════════════════════════════════════════════════════
+```
+
+**The three execution modes (declared in plan frontmatter as `execution_mode:`):**
+
+- **velocity:** light pre-flight (scope + 0-2 questions), batch commit, verify at end. For bug fixes, config changes, known patterns.
+- **balanced:** full pre-flight (all 3 gate questions + specific Qs), verify-gated commits, milestone gates. Default for feature work.
+- **deep_quality:** full pre-flight + assumption blocks + intersection detection + Humble Executor at every phase. For schema locks, architectural decisions, CONSTITUTIONAL changes.
+
+**When pre-flight fires (≥4 files) vs not (< 4 files):**
+- 1-3 files: 4-condition gate sufficient (ratified + reversible + mechanical + no-cross-actor) → execute directly
+- ≥4 files: pre-flight required — scope declaration, gate questions, running summary
+- ≥10 files: mandatory execution_mode declaration in the pre-flight
+
+**Autonomy termination conditions (when the AI stops mid-batch):**
+1. New decision emerged not in pre-flight (genuinely new fork, not continuation)
+2. pnpm verify BLOCKING exit (not WARN — actual gate failure)
+3. TypeScript error requiring design choice (not syntax fix)
+4. Context < 20% free (hard limit)
+5. Governor explicitly interrupts
+
+**Does NOT stop for:** TypeScript typos, WARN-level validators, build config issues that don't require design choices.
+
+**Mechanical surfaces (5/5 S016):**
+- schema: `gradual-build-plan.template.md` pre-flight format added to §L-level sections
+- validator (atomic registration): `preflight-coverage` (per-session WARN — impl week-4; checks that batches ≥4 files have pre-flight evidence)
+- hook: session-open.sh Q-GATE + Q-COMPLETE + Q-GLOBAL already wired (S015); batch execution gate deferred week-4
+- memory: `feedback_autonomous_batch_preflight.md` + MEMORY.md index
+- contract: this entry + AGENTS.md no-confirmation-seeking hard NO + plan-methodology-v2.md §2
+
+**Cross-references:** B_HUMBLE_EXECUTOR (Humble Executor is the post-batch twin; B_AUTONOMOUS_BATCH is the pre-batch twin) / B_COMPLETION_OVER_SHINY (pre-flight Q-COMPLETE enforces completion bias check) / B_PLATFORM_FIRST_OPTIMIZATION (pre-flight Q-GLOBAL enforces platform generalizability check) / B_NO_CONFIRMATION_SEEKING (pre-flight replaces turn-by-turn confirmation loops).

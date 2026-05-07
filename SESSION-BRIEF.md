@@ -8,8 +8,8 @@
 |---|---|
 | **Current session** | S017 |
 | **Previous session** | S016 |
-| **Last updated** | -1 day(s) ago |
-| **Last commit** | 3421c8b S016 CLOSE: extraction + HANDOFF-S016-to-S017 + session-state → S017 |
+| **Last updated** | today |
+| **Last commit** | c47f4f0 S017: ZenStack 2.22.1 installed + foundation-slices §11 closure + ZF Level 3 ACHIEVED |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
@@ -32,6 +32,8 @@
 - ✅ **VLT-S014-004**: $1K MRR graduation trigger (Option B).
 - ✅ **VLT-S014-005**: Free solo / paid team. Billing trigger fires on 2nd UserTenant creation. Wired in apps/task-mgmt/src/app/api/webhooks/clerk/route.ts.
 - ✅ **VLT-S016-ZENSTACK**: Option A ratified by Governor S016: Install ZenStack in CSPS project as first mandate of S017, before any new app build. Rationale: platform-first — one installation protects all 30 apps. Unblocks: DB-level RLS, validate-foundation-schema-drift.mjs, foundation-slices L3 closure.
+- ✅ **VLT-S017-ENHANCE**: Deferral decision (cruel-critic CSEP-S017-001): Wire enhance(prismaClient) into apps/task-mgmt API routes in S018. ZenStack @@allow policies are DEFINED but not enforced at runtime until then. B_COMPLETION_OVER_SHINY: ZenStack install is the S017 mandate; enhance wiring is S018 first task. ZModel policies are the source of truth; enforcement wiring is the next mechanical step.
+- ✅ **VLT-S017-FLATSCHEMA**: Deferral decision (cruel-critic CSEP-S017-001): libs/policies/schema.zmodel flat assembly is temporary workaround for ZenStack circular import limitation. Migration to multi-file triggered when model count approaches 30 OR 3+ devs touch schema.zmodel in same week. No immediate action required at 7 models.
 
 ### 🔴 Still pending (decide before proceeding)
 - None — all decisions resolved

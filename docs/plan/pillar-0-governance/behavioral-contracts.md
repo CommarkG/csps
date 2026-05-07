@@ -1542,6 +1542,54 @@ A consequential decision with fewer than 3 layers is a governance gap. Surface i
 
 **Cross-references:** P-META-021 (Triad Governance — the principle this contract operationalizes) / P-META-020 (Concept-First — the context layer of the triad; triad = P-META-020 + named principle + mechanical) / B_CONSENSUS_BEFORE_PROCEEDING (triad applied at phase boundaries) / P-META-006 RZF (the validation layer of the triad for ZF claims).
 
+## B_PLATFORM_FIRST_OPTIMIZATION — every solution evaluated for platform-wide applicability before local implementation (S015 — CONSTITUTIONAL)
+
+**Canonical wording:**
+
+> Before implementing any solution, evaluate whether it generalizes to the platform. If a local fix could be a platform fix, implement at platform level first (or document the generalization as a vault item before implementing locally). Local-only solutions when a platform solution was possible = missed compounding opportunity. The value of CSPS is in the 5-8 surface propagation per insight. One insight applied to one surface = 1× value. The same insight applied to 7 surfaces = 7× value at zero additional discovery cost.
+
+**Why this exists (the compounding mechanism):**
+
+CSPS has been built over sessions by applying every insight to every relevant surface. FOUNDATION_EXIT_GATE (S015) is not just a validator — it's a session-open hook + an orchestrator gate + a PE multiplier + an inner-AI-default + an AGENTS.md rule + a memory entry. That's 7 surfaces from 1 insight. If it had been implemented as "just a validator," it would have caught one category of error once per verify run. By propagating to 7 surfaces, it catches the same category of error at every decision point in every session.
+
+This is the moat. It is built deliberately, surface by surface, through disciplined CEC (Complete Extraction Cycle) walks. B_PLATFORM_FIRST_OPTIMIZATION makes this discipline explicit and preventative — not just post-hoc.
+
+**The two-phase discipline:**
+
+**Phase 1 (BEFORE implementation):** "Can this solution be implemented at the platform level?"
+- A bug fix in one app → check if other apps have the same bug pattern
+- A new validator for one concern → check if the validator pattern applies to 3+ other concerns
+- A new behavioral rule for one AI failure mode → check if the rule applies to all AI failure modes
+- A new template for one plan type → check if the template generalizes to all plan types
+
+**Phase 2 (AFTER implementation):** CEC walk — "Where does the essence of this enhancement apply?"
+- Walk all 8 CEC surfaces (principles + contracts + audits + inner-defaults + closing-template + memory + AGENTS + L2 files)
+- For each surface: does the essence apply? If yes, propagate.
+- Iterate until 0 new opportunities found.
+
+**The three implementation rules:**
+
+**R1 — Platform scope before local scope.** When a solution applies to the platform, implement in platform infrastructure (libs/, tools/, governance/) before implementing in app-specific code (apps/). The app inherits the platform solution.
+
+**R2 — Vault the generalization.** If time/scope doesn't allow platform implementation now, write the generalization to raw-thoughts-queue or a vault entry before implementing locally. The insight must survive the local implementation session.
+
+**R3 — CEC is mandatory at phase close.** At every closed-circle milestone, the CEC walk is not optional. If no CEC evidence exists at session close, the closing-summary §10.0 block is NOMINAL. "I did the CEC" requires a named artifact per surface.
+
+**What counts as platform-generalizable:**
+- Applies to ≥3 of the 30 apps → yes
+- Applies to all AI sessions (not just this session's context) → yes
+- Addresses a failure mode that will recur across sessions → yes
+- Solves a one-time problem specific to today's code → no
+
+**Mechanical surfaces (5/5 S015):**
+- schema: PE schema — platform-generalizable solutions score higher on `D` (dependency significance) dimension
+- validator (atomic registration): `platform-first-coverage` (per-session WARN — checks if session produced any non-trivial artifacts without documented CEC walk; impl week-4)
+- hook: session-open Q13 (Q: Is this solution platform-generalizable?) + ZF orchestrator Level 2 (Q: Local-only when global possible = flag)
+- memory: `feedback_platform_first_optimization.md` + MEMORY.md index
+- contract: this entry + AGENTS.md hard NO + plan-creation-protocol.md Step 0 Gate C + `inner-ai-defaults/platform-first-optimization.md` (S016)
+
+**Cross-references:** B_COMPLETION_OVER_SHINY (both are PE-priority disciplines) / B_CONSOLIDATION_PASS (reuse before create) / synergy-master skill (CEC operationalization) / P-META-006 RZF (CEC is the positive counterpart to RZF — both ensure nothing is missed) / B_STRUCTURAL_PREVENTION_DISCIPLINE (fix class, not instance).
+
 ## B_COMPLETION_OVER_SHINY — completion of active phases beats new significant items (S015 — CONSTITUTIONAL)
 
 **Canonical wording:**

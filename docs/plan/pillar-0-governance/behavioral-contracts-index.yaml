@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 45
+  total_count: 46
   generated_at: '2026-05-07'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -146,6 +146,9 @@ contracts:
   - id: B_TRIAD_GOVERNANCE
     desc: "B_TRIAD_GOVERNANCE"
     path: ./behavioral-contracts/B_TRIAD_GOVERNANCE.md
+  - id: B_PLATFORM_FIRST_OPTIMIZATION
+    desc: "B_PLATFORM_FIRST_OPTIMIZATION"
+    path: ./behavioral-contracts/B_PLATFORM_FIRST_OPTIMIZATION.md
   - id: B_COMPLETION_OVER_SHINY
     desc: "B_COMPLETION_OVER_SHINY"
     path: ./behavioral-contracts/B_COMPLETION_OVER_SHINY.md

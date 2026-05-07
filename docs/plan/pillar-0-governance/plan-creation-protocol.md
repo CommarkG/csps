@@ -65,6 +65,20 @@ A new plan is authored when ANY of these triggers fires:
 
 Every new plan follows these 5 steps in order. Skipping ANY = plan-discipline violation (caught by `plan-creation-coverage` audit; week-4).
 
+### Step 0 — Completion + Foundation gate (CSEP-S015-001/002 — added S015)
+
+BEFORE creating ANY new plan, check three gates:
+
+**Gate A — FOUNDATION_EXIT_GATE:** Is there any active plan whose current phase has mixed-state exit criteria ([x] AND [ ] in the same section)? If yes: new plan PE = lower than resolving those exit criteria. Run `node tools/validators/validate-phase-exit-criteria.mjs` to confirm CLEAN.
+
+**Gate B — Completion bias:** Is there active work >50% complete that creating this plan might displace? Apply B_COMPLETION_OVER_SHINY: the new plan must PE-score higher than the continuation × 1.5 to justify creation now. If not: vault the new plan idea in raw-thoughts-queue, finish existing work first.
+
+**Gate C — Platform generalizability (B_PLATFORM_FIRST_OPTIMIZATION):** Is the solution this plan implements platform-generalizable? If yes — implement at platform level (libs/, tools/, governance/) before implementing locally (apps/). A local fix that could have been a platform fix is a missed compounding opportunity.
+
+**Anti-pattern:** creating a new plan while an existing plan has unchecked exit criteria or is >50% complete.
+
+---
+
 ### Step 1 — Precedent check (per [P-OP-001 reuse-first](../../../packages/principles/principles.yaml) + [B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK](./behavioral-contracts.md))
 
 BEFORE authoring:

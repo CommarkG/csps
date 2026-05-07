@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T05:04:21.129Z
-- finished_at: 2026-05-07T05:04:27.626Z
+- ran_at: 2026-05-07T05:40:05.258Z
+- finished_at: 2026-05-07T05:40:10.531Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T05:04:21.129Z",
-    "finished_at": "2026-05-07T05:04:27.626Z",
+    "ran_at": "2026-05-07T05:40:05.258Z",
+    "finished_at": "2026-05-07T05:40:10.531Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.8,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 0.8,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -43,7 +43,7 @@
         "scanned": 221,
         "errors": 0,
         "warnings": 0,
-        "exempt": 207
+        "exempt": 208
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.4,
+        "duration_seconds": 0.1,
         "stale_count_files": 0
       },
       {
@@ -87,7 +87,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 45,
+        "source_contracts": 46,
         "missing_slices": 0
       },
       {
@@ -207,7 +207,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 111,
+        "checked": 112,
         "missing_why": 29
       },
       {

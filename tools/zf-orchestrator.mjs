@@ -113,6 +113,8 @@ async function runLevel2() {
   console.log('  Q: Is the proposed next phase still the highest PE-scored item?');
   console.log('  Q: Have any new dependencies emerged that change the priority ordering?');
   console.log('  Q: Are there PENDING VLTs that affect what comes next?');
+  console.log('  Q: COMPLETION BIAS (B_COMPLETION_OVER_SHINY): Is there active work >50% complete that should score 1.5× before evaluating new items?');
+  console.log('  Q: PLATFORM-FIRST (B_PLATFORM_FIRST_OPTIMIZATION): Is the proposed next solution local-only, or could it generalize to the platform? Local-only when generalizable = missed compounding.');
   const peState = JSON.parse(readFileSync(join(ROOT, 'tools/session-state.json'), 'utf8').replace(/\r\n/g,'\n'));
   const pendingVlts = (peState.blocking_decisions||[]).filter(d=>d.status==='PENDING');
   if (pendingVlts.length > 0) {

@@ -20,6 +20,7 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S014
+alignment_verified_session: S015
 topic_id: s014-task-management-app
 priority_score: 95
 priority_band: 1

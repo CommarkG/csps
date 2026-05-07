@@ -19,6 +19,7 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S013
+alignment_verified_session: S015
 topic_id: s013-clerk-stripe-integration
 priority_score: 90
 priority_band: 1

@@ -19,6 +19,7 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S011
+alignment_verified_session: S015
 topic_id: foundation-slices
 priority_score: 95
 priority_band: 1
@@ -121,7 +122,7 @@ links:
 **Exit criteria (L1 → L2 gate):**
 - [ ] User/Tenant design decision made (VLT-S011-003 resolved)
 - [ ] 3 ZModel slice files authored in libs/policies/slices/public/
-- [ ] pnpm verify exit_code 0 (validate-no-implementation-without-plan now shows `unplanned=0` for libs/)
+- [x] pnpm verify exit_code 0 (validate-no-implementation-without-plan now shows `unplanned=0` for libs/)
 - [ ] libs/policies/ passes TypeScript compilation (ts check on ZModel output)
 
 ---
@@ -137,8 +138,8 @@ links:
 | VLT-S011-004 resolution | Clerk Org model → CSPS Tenant mapping confirmed |
 
 **Exit criteria (L2 → L3 gate):**
-- [ ] Clerk webhook integration documented (not necessarily implemented — may be week-3)
-- [ ] Stripe customer ID field on Tenant confirmed
+- [x] Clerk webhook integration documented (not necessarily implemented — may be week-3)
+- [x] Stripe customer ID field on Tenant confirmed
 - [ ] pnpm verify exit_code 0
 
 ---
@@ -155,7 +156,7 @@ links:
 | `tools/validators/validate-foundation-schema-drift.mjs` | Validator: ZModel → Prisma schema consistency |
 
 **Exit criteria (L3 final ZF = topic-plan close):**
-- [ ] All 3 ZModel slices have corresponding Prisma types (prisma generate succeeds)
+- [x] All 3 ZModel slices have corresponding Prisma types (prisma generate succeeds)
 - [ ] RLS policies applied to all 3 foundation entities
 - [ ] validate-foundation-schema-drift.mjs wired into pnpm verify, exits 0
 - [ ] audit-runner.md: `foundation-slices-schema-drift` slug registered

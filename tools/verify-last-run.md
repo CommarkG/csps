@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T00:45:32.245Z
-- finished_at: 2026-05-07T00:45:37.457Z
+- ran_at: 2026-05-07T04:02:03.730Z
+- finished_at: 2026-05-07T04:02:09.863Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T00:45:32.245Z",
-    "finished_at": "2026-05-07T00:45:37.457Z",
+    "ran_at": "2026-05-07T04:02:03.730Z",
+    "finished_at": "2026-05-07T04:02:09.863Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "scanned": 219,
         "errors": 0,
         "warnings": 0,
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -216,9 +216,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 10,
-        "plans_with_open": 6,
-        "total_open_items": 109
+        "plans_checked": 8,
+        "plans_with_open": 4,
+        "total_open_items": 54
       },
       {
         "name": "rzf_evidence",
@@ -245,7 +245,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "checked": 6,
-        "grandfathered": 4,
+        "grandfathered": 2,
         "errors": 0
       },
       {
@@ -262,7 +262,7 @@
         "command": "node tools/validators/validate-intake-event.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0,
         "rows": 0
       },
@@ -281,7 +281,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 10,
+        "plans_checked": 8,
         "warnings": 0
       },
       {
@@ -334,11 +334,11 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 10,
-        "stale_total": 6,
-        "unverified": 6,
-        "verified": 0,
-        "likely_done_items": 2
+        "plans_checked": 8,
+        "stale_total": 4,
+        "unverified": 0,
+        "verified": 4,
+        "likely_done_items": 1
       },
       {
         "name": "phase_exit_criteria",
@@ -346,7 +346,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 10,
+        "plans_checked": 8,
         "sections_checked": 4,
         "blocking": 0,
         "warnings": 0

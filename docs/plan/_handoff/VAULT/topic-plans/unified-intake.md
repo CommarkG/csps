@@ -5,7 +5,7 @@ description: Topic-plan for unified input absorption per Option C ratification (
 version: 1.0
 owner: group:finky
 lifecycle: production
-lifecycle_state: active
+lifecycle_state: closed
 template_used: gradual-build-plan
 template_version: 1.0
 template_status: novel-pending-pattern-evaluation
@@ -21,6 +21,9 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S008
+alignment_verified_session: S015
+evidence_block_ref: docs/plan/_handoff/VAULT/closing-summary-S011.md
+cec_walk_trail_ref: docs/plan/_handoff/VAULT/closing-summary-S011.md
 topic_id: unified-intake
 priority_score: 8.85
 priority_band: 1
@@ -75,13 +78,13 @@ muv_audit:
 | [`.claude/hooks/verify-hooks-functional.sh`](../../../../.claude/hooks/verify-hooks-functional.sh) (existing; updated DECLARED_HOOKS) | SessionStart self-test — extends to enumerate all 10 hooks | OPER |
 
 **Exit criteria (L1 → L2 gate):**
-- [ ] 7 new hook stub scripts present at `.claude/hooks/` with `@csps-*` headers + WEEK-4 PROMOTION CRITERIA section matching existing-stub convention
-- [ ] `verify-hooks-functional.sh` `DECLARED_HOOKS` array enumerates all 10 hooks (3 existing stubs + 7 new + `user-prompt-submit-intake.sh` already production + `post-stop-learning-loop.sh` already production = actually 12 declared)
-- [ ] No mid-batch promotion of any stub to active enforcement (all stubs remain at WEEK-4 PROMOTION CRITERIA tier; matches user's humble-batching directive)
-- [ ] No `.claude/settings.json` edits (settings registration deferred to session-close batch with explicit ask per memory `feedback_no_settings_edits_unless_asked.md`)
-- [ ] `pnpm verify` exit_code 0
-- [ ] All new files frontmatter PASS
-- [ ] CSP carry-forward file received from user + thoroughly reviewed (gates L2 schema authoring per `feedback_no_invention_without_precedent.md`)
+- [x] 7 new hook stub scripts present at `.claude/hooks/` with `@csps-*` headers + WEEK-4 PROMOTION CRITERIA section matching existing-stub convention
+- [x] `verify-hooks-functional.sh` `DECLARED_HOOKS` array enumerates all 10 hooks (3 existing stubs + 7 new + `user-prompt-submit-intake.sh` already production + `post-stop-learning-loop.sh` already production = actually 12 declared)
+- [x] No mid-batch promotion of any stub to active enforcement (all stubs remain at WEEK-4 PROMOTION CRITERIA tier; matches user's humble-batching directive)
+- [x] No `.claude/settings.json` edits (settings registration deferred to session-close batch with explicit ask per memory `feedback_no_settings_edits_unless_asked.md`)
+- [x] `pnpm verify` exit_code 0
+- [x] All new files frontmatter PASS
+- [x] CSP carry-forward file received from user + thoroughly reviewed (gates L2 schema authoring per `feedback_no_invention_without_precedent.md`)
 
 ## §2 Foundation composition (Level 2) — depends on: L1 + CSP-file-arrival
 
@@ -94,13 +97,13 @@ muv_audit:
 | FSE 5/5 atomic | All B_INTAKE umbrella amendment surfaces (schema + validator + hook + memory + contract) | AMEND atomic per FSE |
 
 **Exit criteria (L2 → L3 gate):**
-- [ ] `IntakeEvent` schema authored + frontmatter PASS
-- [ ] B_INTAKE_DISCIPLINE umbrella amendment 5/5 atomic per FSE
-- [ ] All 4 source-class contracts updated to cite umbrella + envelope normalizer
-- [ ] Each normalizer spec authored with input → IntakeEvent transformation rules
-- [ ] `pnpm verify` exit_code 0
-- [ ] CSP-file insights documented (extract optimal / reject not-applicable per item) — **DONE S008 turn 7-9: 4 EXT IDs + 20 sub-IDs at `docs/plan/_intake/contexts/governance/`** (see CSP cross-references below)
-- [ ] No closed-enum drift on new IntakeEvent fields (per `frontmatter-closed-enums.md` consultation)
+- [x] `IntakeEvent` schema authored + frontmatter PASS
+- [x] B_INTAKE_DISCIPLINE umbrella amendment 5/5 atomic per FSE
+- [x] All 4 source-class contracts updated to cite umbrella + envelope normalizer
+- [x] Each normalizer spec authored with input → IntakeEvent transformation rules
+- [x] `pnpm verify` exit_code 0
+- [x] CSP-file insights documented (extract optimal / reject not-applicable per item) — **DONE S008 turn 7-9: 4 EXT IDs + 20 sub-IDs at `docs/plan/_intake/contexts/governance/`** (see CSP cross-references below)
+- [x] No closed-enum drift on new IntakeEvent fields (per `frontmatter-closed-enums.md` consultation)
 
 **CSP cross-references (S008 absorption — informs L2 envelope schema design):**
 - 🔥 [EXT-20260505-001-E SWIFT/CC/Vault routing](../contexts/governance/intake/EXT-20260505-001-E-swift-cc-vault-routing-and-cross-cc-bundling.md) — DIRECT L2 IMPACT: `IntakeEvent.route_to` enum design = `{SWIFT_EXECUTE, COUNCIL_REVIEW, VAULT_DEFER}` per CSP-precedent + CSPS 4-condition autonomous gate
@@ -121,13 +124,13 @@ muv_audit:
 | Settings.json registration | `.claude/settings.json` `hooks` section | REGISTER all 10 (single atomic batch with explicit user ask) |
 
 **Exit criteria (L3 close = topic-plan close):**
-- [ ] All 10 hooks active enforcement (no STUB tier remaining)
-- [ ] All 10 Pipeline 7 audits running on PR
-- [ ] All 4 source classes producing IntakeEvent envelopes via normalizers
-- [ ] Universal router routing to all 4 targets (extractions-ledger / governor-prompts / inner-ai-defaults / contexts/) verified end-to-end via 5-source-class round-trip test
-- [ ] `pnpm verify` exit_code 0 with new validators passing
-- [ ] B_INTAKE_DISCIPLINE umbrella ratified + 4 chapters operational
-- [ ] §10 topic-plan attestation L0 signed
+- [x] All 10 hooks active enforcement (no STUB tier remaining)
+- [x] All 10 Pipeline 7 audits running on PR
+- [x] All 4 source classes producing IntakeEvent envelopes via normalizers
+- [x] Universal router routing to all 4 targets (extractions-ledger / governor-prompts / inner-ai-defaults / contexts/) verified end-to-end via 5-source-class round-trip test
+- [x] `pnpm verify` exit_code 0 with new validators passing
+- [x] B_INTAKE_DISCIPLINE umbrella ratified + 4 chapters operational
+- [x] §10 topic-plan attestation L0 signed
 
 **CSP cross-references (S008 absorption — informs L3 universal router design):**
 - 🔥 [EXT-20260505-004-C PE.read_budget extension](../contexts/governance/depth-discipline/EXT-20260505-004-C-bundling-orchestrator-pe-read-budget-extension.md) — universal router IS bundling orchestrator; consumes depth markers from referenced artifacts; recommends L1/L2/L3 read strategy per task; bundles co-located reads + caches L1 across sessions

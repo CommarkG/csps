@@ -21,6 +21,7 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S007
+alignment_verified_session: S015
 opened_at_session: S007
 opened_at_turn: 2
 topic_id: token-optimization

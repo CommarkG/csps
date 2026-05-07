@@ -5,7 +5,7 @@ description: Topic-plan for S006 governance foundation bundle — Universal Temp
 version: 1.1
 owner: group:finky
 lifecycle: production
-lifecycle_state: active
+lifecycle_state: closed
 template_used: gradual-build-plan
 template_version: 1.0-skeleton
 template_status: novel-pending-pattern-evaluation
@@ -18,6 +18,9 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S006
+alignment_verified_session: S015
+evidence_block_ref: docs/plan/_handoff/VAULT/closing-summary-S006.md
+cec_walk_trail_ref: docs/plan/_handoff/VAULT/closing-summary-S006.md
 topic_id: s006-governance-foundation
 priority_score: 95
 priority_band: 1
@@ -77,11 +80,11 @@ muv_audit:
 
 **Exit criteria (L1 → L2 gate):**
 
-- [ ] All 11 files created + frontmatter PASS + valid YAML
-- [ ] Cross-link integrity check (all `links:` resolve)
-- [ ] [closing-summary-template.md](../closing-summary-template.md) §10.0g (inner-default leak report) + §10.0h (alignment-citation summary) headers added
-- [ ] `pnpm verify` exit_code 0
-- [ ] Mutual cross-references between the 3 disciplines (template-registry ↔ inner-defaults ↔ topic-plans) bidirectional
+- [x] All 11 files created + frontmatter PASS + valid YAML
+- [x] Cross-link integrity check (all `links:` resolve)
+- [x] [closing-summary-template.md](../closing-summary-template.md) §10.0g (inner-default leak report) + §10.0h (alignment-citation summary) headers added
+- [x] `pnpm verify` exit_code 0
+- [x] Mutual cross-references between the 3 disciplines (template-registry ↔ inner-defaults ↔ topic-plans) bidirectional
 
 ---
 
@@ -122,11 +125,11 @@ muv_audit:
 
 **Exit criteria (L2 → L3 gate):**
 
-- [ ] `pnpm verify` exit_code 0
-- [ ] Principle count: 47 (was 44 at S005 turn 27 + P-META-014 MUV at turn 28 = 45, +3 from this engraving = 48 — recheck count when executing)
-- [ ] All 5/5 surfaces present per FSE atomic registration
-- [ ] Validator slugs registered atomically in audit-hub even though implementations may defer to week-4 (per FSE amendment)
-- [ ] All 6 AGENTS.md hard NOs append correctly + cascade pattern preserved
+- [x] `pnpm verify` exit_code 0
+- [x] Principle count: 47 (was 44 at S005 turn 27 + P-META-014 MUV at turn 28 = 45, +3 from this engraving = 48 — recheck count when executing)
+- [x] All 5/5 surfaces present per FSE atomic registration
+- [x] Validator slugs registered atomically in audit-hub even though implementations may defer to week-4 (per FSE amendment)
+- [x] All 6 AGENTS.md hard NOs append correctly + cascade pattern preserved
 
 ---
 
@@ -158,11 +161,11 @@ muv_audit:
 
 **Exit criteria (L3 → L4 gate):**
 
-- [ ] Audit-hub Pipeline 10 added with bidirectional principle ↔ audit links
-- [ ] All 17+ audit slugs registered atomically per FSE amendment
-- [ ] 4 highest-leverage templates exist + cited in template-registry
-- [ ] `aap_frontmatter_coverage` validator continues PASS
-- [ ] `pnpm verify` exit_code 0
+- [x] Audit-hub Pipeline 10 added with bidirectional principle ↔ audit links
+- [x] All 17+ audit slugs registered atomically per FSE amendment
+- [x] 4 highest-leverage templates exist + cited in template-registry
+- [x] `aap_frontmatter_coverage` validator continues PASS
+- [x] `pnpm verify` exit_code 0
 
 ---
 
@@ -186,10 +189,10 @@ muv_audit:
 
 **Exit criteria (L4 → L5 gate):**
 
-- [ ] All cross-references bidirectional (audit-hub query confirms)
-- [ ] Governor-prompts S006 log has all 3+ GPs with non-null distribution
-- [ ] user-intents.md S006 section present
-- [ ] `pnpm verify` exit_code 0
+- [x] All cross-references bidirectional (audit-hub query confirms)
+- [x] Governor-prompts S006 log has all 3+ GPs with non-null distribution
+- [x] user-intents.md S006 section present
+- [x] `pnpm verify` exit_code 0
 
 ---
 
@@ -209,12 +212,12 @@ muv_audit:
 
 **Exit criteria (L5 final ZF — topic-plan closure):**
 
-- [ ] All artifacts at zero findings
-- [ ] All 17+ audits registered + bidirectional
-- [ ] All validators passable (implementation may defer; registration atomic)
-- [ ] closing-summary-template self-validates against new headers
-- [ ] `pnpm verify` exit_code 0
-- [ ] Topic-plan signed: `S006-AI-topic-plan-closure-<iso8601>-s006-governance-foundation`
+- [x] All artifacts at zero findings
+- [x] All 17+ audits registered + bidirectional
+- [x] All validators passable (implementation may defer; registration atomic)
+- [x] closing-summary-template self-validates against new headers
+- [x] `pnpm verify` exit_code 0
+- [x] Topic-plan signed: `S006-AI-topic-plan-closure-<iso8601>-s006-governance-foundation`
 
 ---
 

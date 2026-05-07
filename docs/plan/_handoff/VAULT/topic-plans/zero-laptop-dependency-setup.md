@@ -18,6 +18,7 @@ tags:
   - maturity:draft
 diataxis_type: how-to
 session: S006
+alignment_verified_session: S015
 topic_id: zero-laptop-dependency-setup
 priority_score: 75
 priority_band: 2
@@ -69,11 +70,11 @@ muv_audit:
 
 **Exit criteria (L1 → L2 gate):**
 - [ ] `.devcontainer/devcontainer.json` valid per devcontainer JSON-schema
-- [ ] postCreate.sh executable + tested locally
+- [x] postCreate.sh executable + tested locally
 - [ ] bootstrap.ps1 + devcontainer produce same versions (`pnpm --version` + `node --version`)
-- [ ] Android workflow leaf published with concrete app links + screenshots-or-equivalent
-- [ ] Multi-machine parity leaf published
-- [ ] git-pushed-state validator integrated into `pnpm verify`
+- [x] Android workflow leaf published with concrete app links + screenshots-or-equivalent
+- [x] Multi-machine parity leaf published
+- [x] git-pushed-state validator integrated into `pnpm verify`
 - [ ] `pnpm verify` exit_code 0
 
 ---

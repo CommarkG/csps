@@ -21,6 +21,7 @@ tags:
 diataxis_type: how-to
 know_how_consulted: true
 session: S014
+alignment_verified_session: S015
 topic_id: p-meta-020-concept-first-governance
 priority_score: 98
 priority_band: 1
@@ -162,7 +163,7 @@ This was the INTENDED diagnostic path all along. It was never explicitly stated 
 **L3 Exit Criteria:**
 - [ ] All 43 contracts have `conceptual_sample_of:` populated
 - [ ] All validators in audit-runner.md have `conceptual_sample_of` populated
-- [ ] validate-open-plan-levels.mjs in pnpm verify, exit 0
+- [x] validate-open-plan-levels.mjs in pnpm verify, exit 0
 - [ ] Post-implementation re-assessment in CLAUDE.md instruction
 - [ ] Closing summary template updated
 - [ ] pnpm verify exit_code 0

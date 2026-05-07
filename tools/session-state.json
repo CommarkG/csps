@@ -1,11 +1,11 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S017",
-  "previous_session": "S016",
-  "session_updated_at": "2026-05-07T08:30:00Z",
+  "current_session": "S018",
+  "previous_session": "S017",
+  "session_updated_at": "2026-05-07T11:10:00Z",
   "session_mandate": {
-    "primary": "ZenStack installation (Option A — install first before any new app). Unblocks: DB-level RLS policies, validate-foundation-schema-drift.mjs, foundation-slices §11 closure, ZenStack-integrated app template. Bedrock Layer 2 completion.",
+    "primary": "ZenStack-integrated app template — establish canonical scaffold with enhance() wired from day one. App #2 uses this template, not apps/task-mgmt as reference.",
     "model_tier": "STANDARD_BUILD",
     "blocking_on": "NONE — all VLTs resolved, foundation gate CLEAN, 0 PENDING VLTs."
   },
@@ -102,22 +102,26 @@
     }
   ],
   "platform_state": {
-    "pnpm_verify": "exit_code 0 (40 active validators, ZF Level 3 achieved S016)",
-    "last_verified_commit": "cd1ff55",
+    "pnpm_verify": "exit_code 0 (41 active validators, ZF Level 3 achieved S017)",
+    "last_verified_commit": "ee98115",
     "complexity_score": 18.2,
     "complexity_zone": "GREEN",
     "skills": 26,
-    "contracts": 46,
+    "contracts": 48,
     "ep_patterns": 16,
     "sg_patterns": 2,
     "moat_elements": 21,
     "foundation_slices_built": true,
     "apps_built": 1,
-    "apps_task_mgmt_status": "SCAFFOLD_COMPLETE — TypeScript 0 errors. pnpm db:push pending (needs .env.local credentials).",
-    "apps_task_mgmt_commit": "954688a",
+    "zenstack_installed": true,
+    "zenstack_version": "2.22.1",
+    "zenstack_schema": "libs/policies/schema.zmodel (flat, 7 models)",
+    "zenstack_enforcement": "ACTIVE — enhance(prismaClient) wired in apps/task-mgmt (4 business routes)",
+    "apps_task_mgmt_status": "SCAFFOLD_COMPLETE + ZENSTACK_ACTIVE — ZenStack @@allow enforced. TypeScript 0 errors. pnpm db:push pending (needs .env.local credentials).",
+    "apps_task_mgmt_commit": "a633270",
     "all_blocking_resolved": true,
     "hooks_active": 19,
-    "validators_active": 40,
+    "validators_active": 41,
     "zf_orchestrator": "LIVE — pnpm zf / pnpm zf:phase / pnpm zf:deep",
     "phase5_status": "SCAFFOLD+CRUD COMPLETE — pending live DB deployment",
     "foundation_exit_gate": "CLEAN — validate-phase-exit-criteria.mjs PASS",
@@ -133,7 +137,7 @@
     "principles_count": 55,
     "behavioral_contracts": 48,
     "zf_mandate_protocol": "docs/plan/pillar-0-governance/zf-mandate-protocol.md",
-    "bedrock_completion": "67% done (14/21 items), 100% tracked. 2 root decisions: VLT-S016-ZENSTACK + plan-methodology-v2 L2 (S016). See csps-bedrock.md.",
+    "bedrock_completion": "91% done (20/22 items), 100% tracked. Layer 2: 9/9 COMPLETE (S017). 2 deferred: ZenStack-integrated template + live DB validation (user-action). See csps-bedrock.md.",
     "layer_separation": "CORE layer (libs/, tools/, governance/) = what every app inherits. APP layer (apps/*) = individual products. App-layer work (live deployment, credentials, dev server) is Governor-triggered, not AI-mandated.",
     "app_layer_permission": "EXPLICIT ONLY — AI never initiates app-layer work. Requires explicit Governor directive per specific task (not implied by approved/proceed). B_LAYER_SEPARATION escape hatch: specific permission, not blanket."
   },
@@ -173,8 +177,16 @@
     "s017": {
       "mandate": "ZenStack installation (Option A ratified) + RLS policies + validate-foundation-schema-drift.mjs + foundation-slices L3 closure. Bedrock Layer 2 completion.",
       "model_tier": "STANDARD_BUILD",
+      "status": "COMPLETE",
+      "commit": "ee98115",
+      "zf_deep": "ACHIEVED (0 blocking, S017 close)",
+      "unlocks": "bedrock Layer 2 9/9 complete → ZenStack enforcement ACTIVE → app #2 build authorized"
+    },
+    "s018": {
+      "mandate": "ZenStack-integrated app template — canonical scaffold with enhance() from day one. App #2 uses this template. Secondary: field-level drift checking + hash caching in drift validator.",
+      "model_tier": "STANDARD_BUILD",
       "estimated_tokens_k": 100,
-      "unlocks": "bedrock Layer 2 complete → app #2 build authorized"
+      "unlocks": "app #2 build on clean ZenStack foundation"
     }
   },
   "why_better_than_others": [

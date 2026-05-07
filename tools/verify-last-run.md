@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T11:02:53.129Z
-- finished_at: 2026-05-07T11:03:04.141Z
+- ran_at: 2026-05-07T11:04:03.425Z
+- finished_at: 2026-05-07T11:04:15.589Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T11:02:53.129Z",
-    "finished_at": "2026-05-07T11:03:04.141Z",
+    "ran_at": "2026-05-07T11:04:03.425Z",
+    "finished_at": "2026-05-07T11:04:15.589Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.4,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "stale_count_files": 0
       },
       {
@@ -169,7 +169,7 @@
         "command": "node tools/validators/validate-moat-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "total": 15,
         "covered": 15,
         "critical_gaps": 0
@@ -388,7 +388,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 5.7,
+        "duration_seconds": 6.7,
         "generate_ok": true,
         "zmodel_models": 7,
         "app_models": 7,

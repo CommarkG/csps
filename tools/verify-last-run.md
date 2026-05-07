@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T09:54:48.498Z
-- finished_at: 2026-05-07T09:54:54.161Z
+- ran_at: 2026-05-07T10:03:17.913Z
+- finished_at: 2026-05-07T10:03:24.803Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T09:54:48.498Z",
-    "finished_at": "2026-05-07T09:54:54.161Z",
+    "ran_at": "2026-05-07T10:03:17.913Z",
+    "finished_at": "2026-05-07T10:03:24.803Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -40,10 +40,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 231,
+        "scanned": 232,
         "errors": 0,
         "warnings": 2,
-        "exempt": 210
+        "exempt": 211
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.5,
         "stale_count_files": 0
       },
       {
@@ -87,7 +87,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 48,
+        "source_contracts": 49,
         "missing_slices": 0
       },
       {
@@ -162,7 +162,7 @@
         "command": "node tools/validators/validate-nothing-stands-alone.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "moat_coverage",
@@ -207,7 +207,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 114,
+        "checked": 115,
         "missing_why": 29
       },
       {
@@ -271,7 +271,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },

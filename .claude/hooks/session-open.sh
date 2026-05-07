@@ -171,6 +171,8 @@ const context = [
   '       AI-proactive App-layer work → vault it. Governor-directed App-layer work → execute fully.',
   '       Rules without escape hatches are rigid. Every governance rule has a Governor-override clause.',
   '       Run: node tools/validators/validate-phase-exit-criteria.mjs',
+  '  Q16: VERBATIM CHECK: Did user provide exact text to use? → copy exactly, no improvements.',
+  '       If significant gap (text would FAIL): ask "I notice [gap]. 2-3 versions?" WAIT.',
   '',
   'ACTIVE MECHANICAL ENFORCEMENT THIS SESSION:',
   '  pre-tool-use-plan-coverage-gate.sh  — blocks libs/apps writes without plan',

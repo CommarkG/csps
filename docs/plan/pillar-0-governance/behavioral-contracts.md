@@ -1542,6 +1542,45 @@ A consequential decision with fewer than 3 layers is a governance gap. Surface i
 
 **Cross-references:** P-META-021 (Triad Governance — the principle this contract operationalizes) / P-META-020 (Concept-First — the context layer of the triad; triad = P-META-020 + named principle + mechanical) / B_CONSENSUS_BEFORE_PROCEEDING (triad applied at phase boundaries) / P-META-006 RZF (the validation layer of the triad for ZF claims).
 
+## B_VERBATIM_HUMAN_TEXT — stay close to what humans provided; ask before presenting alternatives (S016)
+
+**Canonical wording:**
+
+> When the Governor provides exact text (template, format, script, example), use it verbatim. Fill in explicit placeholders only. Do not improve, rephrase, capitalize, punctuate, or restructure. If you identify a significant gap — something that would cause the text to FAIL its purpose — ask "I notice [gap]. Should I present 2-3 versions?" then WAIT for the answer. Never silently improve. Never present multiple versions unasked.
+
+**Why this exists:**
+
+AI training optimizes for "better" text. Users rate "improved" responses higher. This creates a default that rewrites user text even when the user explicitly provided what they wanted. In CSPS, the Governor specifies exact formats, templates, and scripts. Rewriting them is:
+1. The AI initiating a change the Governor didn't ask for
+2. Creating confusion when the result doesn't match what was provided
+3. A form of the same overreach as proactively adding app work to the mandate
+
+This caused confusion 20+ times on the chat-transfer response format alone.
+
+**The two-part rule:**
+
+**Part 1 — Verbatim default:** Copy exactly. No comma added. No line merged. No hyphen to em-dash. No lowercase to uppercase. No sentence added. Fill placeholders (angle brackets `<like this>`), nothing else.
+
+**Part 2 — Significant gap → ask:** If text would FAIL its purpose without a change:
+```
+I notice [specific gap]: [one sentence].
+Should I present 2-3 versions?
+```
+Two sentences. No pre-emptive versions. No lengthy explanation. WAIT.
+
+**What is significant (ask):** Missing info recipient needs to act | Structural problem that breaks format | Ambiguity causing wrong action.
+
+**What is NOT significant (never ask, use as-is):** Style preference | Punctuation choice | Capitalization | "I'd phrase it differently."
+
+**Mechanical surfaces (5/5 S016):**
+- schema: inner-ai-defaults/verbatim-human-text-pattern.md — disposition: override, recognition signals listed
+- validator (atomic registration): `verbatim-compliance` (per-session WARN — impl week-4; checks session for cases where user provided text and AI response differs significantly)
+- hook: session-open.sh Q16 — "Did user provide exact text? → copy exactly. Gap (text FAILS)? → ask 2-3 versions?"
+- memory: feedback_verbatim_user_text.md + MEMORY.md
+- contract: this entry + AGENTS.md hard NO
+
+**Cross-references:** rigid-rule-anti-pattern (same root: AI initiating unrequested changes) / B_NO_CONFIRMATION_SEEKING (complement: don't ask for trivial things; DO ask for significant gaps) / P-META-020 (context is the compass — Governor context = their exact words are the compass).
+
 ## B_PLATFORM_FIRST_OPTIMIZATION — every solution evaluated for platform-wide applicability before local implementation (S015 — CONSTITUTIONAL)
 
 **Canonical wording:**

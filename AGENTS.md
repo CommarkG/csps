@@ -86,6 +86,11 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never close any AI communication boundary without two-sided handshake (chat-to-chat / AI-to-AI subagent / AI-to-human / AI-to-persona / context-batches)
 - ❌ Never close a session without GP-S<NNN>-<NN> entries for substantive prompts + cardinal cross-link to user-intents.md (skill: `cc-absorption-csps`)
 - ❌ Never write HANDOFF without HPFA + addressing or carrying-forward findings (skill: `slim-handoff`)
+- ❌ **VERBATIM HUMAN TEXT — two-part rule (caused confusion 20+ times):**
+  When user provides exact text → copy it exactly. No commas added. No capitalization changes. No merging lines. No em-dashes for hyphens. No "improved" versions.
+  If significant gap (text would FAIL its purpose) → ask: "I notice [gap]. Should I present 2-3 versions?" — then WAIT.
+  What is NOT a gap: phrasing style, punctuation preference, "I'd write it differently."
+  (B_VERBATIM_HUMAN_TEXT — inner-ai-defaults/verbatim-human-text-pattern.md)
 - ❌ **CHAT TRANSFER — NEW AI RESPONSE FORMAT (mandatory — Governor's exact words, do not rephrase):**
   When receiving a chat-transfer, FIRST response starts with EXACTLY:
   `Hi previous chat` (no comma)

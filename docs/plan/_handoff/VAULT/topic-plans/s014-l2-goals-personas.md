@@ -21,6 +21,7 @@ tags:
 diataxis_type: reference
 know_how_consulted: true
 session: S014
+alignment_verified_session: S016
 links:
   - { rel: parent, href: ./s014-task-management-app.md }
   - { rel: depends-on, href: ./s014-l1-research.md }

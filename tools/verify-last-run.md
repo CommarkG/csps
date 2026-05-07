@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T06:14:40.515Z
-- finished_at: 2026-05-07T06:14:46.275Z
+- ran_at: 2026-05-07T07:11:41.789Z
+- finished_at: 2026-05-07T07:11:47.778Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T06:14:40.515Z",
-    "finished_at": "2026-05-07T06:14:46.275Z",
+    "ran_at": "2026-05-07T07:11:41.789Z",
+    "finished_at": "2026-05-07T07:11:47.778Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1.1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "scanned": 223,
         "errors": 0,
         "warnings": 1,
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -218,7 +218,7 @@
         "duration_seconds": 0.1,
         "plans_checked": 9,
         "plans_with_open": 5,
-        "total_open_items": 70
+        "total_open_items": 62
       },
       {
         "name": "rzf_evidence",
@@ -271,7 +271,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -336,8 +336,8 @@
         "duration_seconds": 0.1,
         "plans_checked": 9,
         "stale_total": 8,
-        "unverified": 2,
-        "verified": 6,
+        "unverified": 0,
+        "verified": 8,
         "likely_done_items": 1
       },
       {

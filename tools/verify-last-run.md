@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T11:04:03.425Z
-- finished_at: 2026-05-07T11:04:15.589Z
+- ran_at: 2026-05-07T13:12:50.420Z
+- finished_at: 2026-05-07T13:13:01.276Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T11:04:03.425Z",
-    "finished_at": "2026-05-07T11:04:15.589Z",
+    "ran_at": "2026-05-07T13:12:50.420Z",
+    "finished_at": "2026-05-07T13:13:01.276Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.6,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -40,10 +40,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 233,
+        "scanned": 236,
         "errors": 0,
         "warnings": 3,
-        "exempt": 211
+        "exempt": 212
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -87,7 +87,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 49,
+        "source_contracts": 50,
         "missing_slices": 0
       },
       {
@@ -207,7 +207,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 115,
+        "checked": 116,
         "missing_why": 29
       },
       {
@@ -217,8 +217,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "plans_checked": 9,
-        "plans_with_open": 4,
-        "total_open_items": 50
+        "plans_with_open": 3,
+        "total_open_items": 21
       },
       {
         "name": "rzf_evidence",
@@ -355,8 +355,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "total": 22,
-        "done": 20,
-        "deferred": 2,
+        "done": 21,
+        "deferred": 1,
         "blocking": 0,
         "completion_pct": 100
       },
@@ -368,9 +368,9 @@
         "duration_seconds": 0.1,
         "plans_checked": 9,
         "stale_total": 9,
-        "unverified": 7,
-        "verified": 2,
-        "likely_done_items": 1
+        "unverified": 9,
+        "verified": 0,
+        "likely_done_items": 0
       },
       {
         "name": "phase_exit_criteria",
@@ -381,14 +381,14 @@
         "plans_checked": 9,
         "sections_checked": 8,
         "blocking": 0,
-        "warnings": 1
+        "warnings": 0
       },
       {
         "name": "foundation_schema_drift",
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 6.7,
+        "duration_seconds": 5.9,
         "generate_ok": true,
         "zmodel_models": 7,
         "app_models": 7,

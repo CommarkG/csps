@@ -59,6 +59,27 @@ Observability + cost economics live here because they cut across the operational
 | [dashboards.md](dashboards.md) | 🟢 migrated S003 v1.0 (incorporates _intake/dashboard-plan.md 6 pages) | §15 |
 | [open-frontiers.md](open-frontiers.md) | 🟢 migrated S003 v1.0 | §19 |
 
+## Multi-device + Android workflow (B_ZERO_LAPTOP_DEPENDENCY — P-OPER-001)
+
+The CSPS platform is designed for zero-laptop-dependency: all work is push-to-remote-first, accessible from any device with a browser via GitHub Codespaces.
+
+| Leaf | Status | Covers |
+|---|---|---|
+| [android-workflow.md](android-workflow.md) | 🟢 active | GitHub mobile / Codespaces from Android Chromium / session workflow |
+| [multi-machine-parity.md](multi-machine-parity.md) | 🟢 active | Bootstrap parity spec / devcontainer / pnpm version alignment |
+
+**Codespaces quick start:**
+1. Open https://github.com/CommarkG/csps
+2. Click **Code** → **Codespaces** → **New codespace**
+3. Wait for devcontainer boot (Node 20 + pnpm pre-installed via postCreate.sh)
+4. Run `pnpm verify --skip-install` to confirm baseline
+
+**GitHub Free tier decision (S018):** 60 Codespace hours/month — sufficient for current solo-dev stage. Upgrade to GitHub Pro ($4/mo, 180 hours) when regularly exceeding 60 hours/month.
+
+**Android workflow:** Open Codespace URL in Chrome on Android. Keyboard + split screen works for read/review. Committing is functional though slower. GitHub mobile app for repo browsing + PR review without a keyboard.
+
+---
+
 Future leaves (post-v1) — stubs created S003-extended (lifecycle: experimental, lifecycle_state: pending-protocol, next_review_at: 2026-12-01):
 - [observability.md](observability.md) — OTel GenAI conventions, structured logging, tracing — STUB ✅
 - [cost-economics.md](cost-economics.md) — per-tenant cost attribution, tier thresholds, partition pruning — STUB ✅

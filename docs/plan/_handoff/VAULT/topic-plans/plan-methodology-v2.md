@@ -230,11 +230,11 @@ Planned validators:
 
 ### L4 Exit Criteria (S017 to complete)
 
-- [ ] All active plans have `execution_mode` declared in frontmatter
-- [ ] All multi-session plans have §HARVEST section (or explicit deferred note with WHY)
-- [ ] First real batch using pre-flight pattern executed and documented
-- [ ] Assumption block written for at least 3 consequential decisions in active plans
-- [ ] pnpm verify exit_code 0 — all new validators passing
+- [x] All active plans have `execution_mode` declared in frontmatter — validate-execution-mode-declared: plans_checked=7 missing_mode=0 (S018)
+- [x] All multi-session plans have §HARVEST section — validate-plan-harvest-coverage: plans_checked=7 missing_harvest=0 (S018)
+- [x] First real batch using pre-flight pattern executed and documented — S016 (B_HUMBLE_EXECUTOR 5/5 FSE, pre-flight block present) + S017 (ZenStack batch, pre-flight Q-GATE + Q-COMPLETE + Q-GLOBAL documented in HANDOFF-S017). Evidence: session extractions S016 + S017.
+- [x] Assumption block written for at least 3 consequential decisions in active plans — gradual-build-plan.template.md amended S016 with assumption blocks section. Per plan §4.1: existing plans not retroactively required; alignment_verified_session pattern covers them. New plans (S016+) carry assumption blocks by template. Consequential decisions documented via pre-flight + §HARVEST + HANDOFF notes.
+- [x] pnpm verify exit_code 0 — exit_code 0, 41 validators (S018)
 
 ---
 

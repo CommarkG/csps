@@ -1,7 +1,13 @@
 ---
 id: csps.handoff.vault.inner-ai-defaults
 name: inner-ai-defaults
-description: The inner-AI-defaults registry — formalized capture + saving + continuous reference of training-baked defaults that AI brings into CSPS work. Per P-META-017 (CSPS-Alignment-Over-Inner-Defaults) — for each registered default, declare disposition (keep / override / adjust); validators catch leaks at session-close + cross-session drift over time. The registry is itself a living artifact updated as new defaults discovered + as AI evolves through model upgrades. Per user S006 turn 6 directive "you must formalize now the collection and saving of your inner coding and create a system of considering it all the time".
+description: >
+  Inner-AI-defaults registry — calibration instrument for concept alignment under P-META-020.
+  Each entry maps a training-baked default to its CSPS disposition (keep/override/adjust)
+  and concept_ref (which L2 domain it belongs to). When CONCEPT_LOAD fires at Threshold,
+  entries become reference samples for the active conceptual frame. The registry does NOT
+  enumerate all cases — the concept navigates when no match exists. Per P-META-017 +
+  P-META-020. Updated when model version changes OR quarterly drift review.
 version: 1.1
 owner: group:finky
 lifecycle: production
@@ -37,7 +43,7 @@ session: S006
 
 # Inner-AI-Defaults Registry
 
-> **Per P-META-017 (CSPS-Alignment-Over-Inner-Defaults):** every AI output is gated by alignment against this registry. Training-baked defaults that conflict with CSPS get overridden; defaults that compose well get kept; partials get adjusted. The registry IS the override map.
+> **Per P-META-017 + P-META-020:** This registry is a **calibration instrument** for concept alignment. Each entry maps a training-baked default to its CSPS disposition (keep/override/adjust) + concept_ref (which L2 conceptual domain it belongs to). When CONCEPT_LOAD fires at Threshold, these entries become reference samples that calibrate whether the AI's active conceptual frame is honored in output. The registry calibrates; it does not enumerate all cases.
 
 ## Why this exists (P-META-020 framing)
 
@@ -72,6 +78,7 @@ default_pattern: |
 csps_aligned_pattern: |
   <what CSPS requires instead>
 disposition: keep | override | adjust
+concept_ref: <L2 domain this default belongs to — e.g. "AI L2 inner-defaults" / "ARCH L2 data domain" / "GVRN L2 decision rights". Per P-META-020: when this entry is consulted, it is a reference sample of whether the named L2 concept is being honored.>
 adjust_specifics: |
   <if disposition=adjust: what to keep + what to change>
 reason: |

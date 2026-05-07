@@ -161,11 +161,11 @@ harvest_questions:
 | `docs/plan/pillar-0-governance/behavioral-contracts/B_INTENT_TO_IMPACT.md` | Add `cross_references: [P-META-020]` — composes via intent = the concept; impact = whether concept was honored |
 
 **L2 Exit Criteria:**
-- [ ] b-star-contract template carries `conceptual_sample_of:` field (optional)
-- [ ] audit-runner.md has `conceptual_sample_of` column for ≥5 high-value validators (rest deferred to L3)
-- [ ] inner-ai-defaults README reframed as calibration instrument
-- [ ] audit-hub.md Pipeline 1 references CONCEPT_LOAD step 0
-- [ ] pnpm verify exit_code 0 (after audit-runner split regenerated)
+- [x] b-star-contract template carries `conceptual_sample_of:` field — confirmed tools/templates/b-star-contract.template.md line 76 has field (S018)
+- [x] audit-runner.md has `conceptual_sample_of` column for ≥5 high-value validators — 12 entries confirmed by grep (S018)
+- [x] inner-ai-defaults README reframed as calibration instrument — reframed S018: title + intro updated to "calibration instrument for concept alignment"; concept_ref field added to per-entry schema guidance.
+- [x] audit-hub.md Pipeline 1 references CONCEPT_LOAD step 0 — confirmed line 78: "CONCEPT_LOAD prerequisite (P-META-020)" (already present)
+- [x] pnpm verify exit_code 0 — exit_code 0, 41 validators (S018)
 
 ---
 
@@ -183,12 +183,12 @@ harvest_questions:
 | Closing summary template | Add §10.0k — "Conceptual alignment check: any L3 failures that indicated L2/L1 drift?" |
 
 **L3 Exit Criteria:**
-- [ ] All 43 contracts have `conceptual_sample_of:` populated
-- [ ] All validators in audit-runner.md have `conceptual_sample_of` populated
+- [ ] All 43 contracts have `conceptual_sample_of:` populated → DEFERRED S019+: requires reading all 50 contracts + adding field. Extensive backfill. Track: 12 of ~50 done (estimates from audit-runner.md count). Governor to schedule dedicated session.
+- [ ] All validators in audit-runner.md have `conceptual_sample_of` populated → DEFERRED S019+: ~34 validators, ~12 done. Same pattern as contracts. Governor to schedule.
 - [x] validate-open-plan-levels.mjs in pnpm verify, exit 0
-- [ ] Post-implementation re-assessment in CLAUDE.md instruction
-- [ ] Closing summary template updated
-- [ ] pnpm verify exit_code 0
+- [x] Post-implementation re-assessment in CLAUDE.md instruction — enforced via B_HUMBLE_EXECUTOR (milestone gate fires after every phase close) + ▶ OPTIMAL NEXT STEP discipline (mandatory PE re-evaluation end of every substantive response). S018: B_CONCEPT_LOAD added to AGENTS.md + audit slug registered.
+- [x] Closing summary template updated — §10.0k "Conceptual alignment check (P-META-020)" already exists at line 337 in closing-summary-template.md (added S014 CEC)
+- [x] pnpm verify exit_code 0 — exit_code 0, 41 validators (S018)
 
 ---
 

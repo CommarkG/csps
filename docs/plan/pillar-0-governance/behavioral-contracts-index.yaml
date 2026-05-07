@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 49
+  total_count: 50
   generated_at: '2026-05-07'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -143,6 +143,9 @@ contracts:
   - id: B_CONSENSUS_BEFORE_PROCEEDING
     desc: "B_CONSENSUS_BEFORE_PROCEEDING"
     path: ./behavioral-contracts/B_CONSENSUS_BEFORE_PROCEEDING.md
+  - id: B_CONCEPT_LOAD
+    desc: "B_CONCEPT_LOAD"
+    path: ./behavioral-contracts/B_CONCEPT_LOAD.md
   - id: B_TRIAD_GOVERNANCE
     desc: "B_TRIAD_GOVERNANCE"
     path: ./behavioral-contracts/B_TRIAD_GOVERNANCE.md

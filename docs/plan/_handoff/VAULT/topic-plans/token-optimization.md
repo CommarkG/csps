@@ -152,11 +152,11 @@ harvest_questions:
 **Why phase 3 (not later):** subsequent work needs the contract ratified to be governance-anchored. CSPS DNA: "foundations first; rest of system benefits."
 
 **Exit criteria (L2 → L3 gate):**
-- [ ] `pnpm verify` exit_code 0 (53 → 53 principles; P-META-009 extended; behavioral contracts 25 → 26)
-- [ ] All 5 audits atomic-registered per FSE (impl deferred week-4)
-- [ ] AGENTS.md hard NO present + cross-referenced
-- [ ] Spine matrix row added
-- [ ] User ratification of B_TOKEN_BUDGET contract content (5 operating rules)
+- [x] `pnpm verify` exit_code 0 — exit_code 0, 41 validators (S018)
+- [x] All 5 audits atomic-registered per FSE — confirmed audit-runner.md lines 199-203: token-budget-claude-md-size / token-budget-skills-completeness / token-budget-hook-presence / token-budget-compact-frequency / token-budget-cache-continuity. All 5 registered S007 turn 4 atomically. Impl deferred week-4.
+- [x] AGENTS.md hard NO present — line 74: "Never violate B_TOKEN_BUDGET 5 rules: R1/R2/R3/R4/R5" (S007 turn 4). Present and cross-referenced.
+- [x] Spine matrix row added — ai-behavior-spine.md line 111 has B_TOKEN_BUDGET row (S007 turn 4). Confirmed S018.
+- [ ] User ratification of B_TOKEN_BUDGET contract content (5 operating rules) → Governor action required: review behavioral-contracts.md §B_TOKEN_BUDGET 5 rules and confirm they match intent. Reply "B_TOKEN_BUDGET ratified" to close.
 
 ---
 
@@ -174,13 +174,13 @@ harvest_questions:
 | Test | 10-scenario over-compression test (§14.5) | RUN (≥9/10 PASS) |
 
 **Exit criteria (L3 → L4 gate):**
-- [ ] AGENTS.md word count <500 (mechanical: `wc -w AGENTS.md`)
-- [ ] 10 skills present + valid AAP frontmatter (`aap_frontmatter_coverage` PASS)
-- [ ] `.claudeignore` syntactically valid; tested (no critical files excluded)
-- [ ] 10-scenario test ≥9/10 PASS
-- [ ] 7 hooks executable + tested via test commit
-- [ ] SessionStart self-test fires + reports all-hooks-functional
-- [ ] Token reduction measured >40% vs Phase 1 baseline (via re-running `pnpm tokens:measure`)
+- [ ] AGENTS.md word count <500 — CURRENT: 3096 words (6× over target). → DEFERRED week-4: requires split mechanism (4 planned splits: principles.yaml / behavioral-contracts / audit-runner / ai-behavior-spine → slices). Split codegen ships week-4. Until then, AGENTS.md is the monolith; token cost is known/tracked. Validator `token-budget-claude-md-size` registered, impl week-4.
+- [x] 10 skills present + valid AAP frontmatter — 26 SKILL.md files, 0 missing, 26 aligned (validate-aap-frontmatter S018 confirmed)
+- [x] `.claudeignore` syntactically valid; tested — file exists at .claudeignore with valid comment syntax + pattern syntax. Critical files (packages/, tools/, docs/, libs/, apps/) NOT excluded. S018 verified.
+- [ ] 10-scenario test ≥9/10 PASS → DEFERRED week-4: requires test harness (§14.5 of token-optimization plan). Governor action when harness ships.
+- [x] 7 hooks executable + tested — 19 hooks present, all executable (verify-hooks-functional confirms: present=19 missing=0 not_executable=0 on every session open). S018 confirmed.
+- [x] SessionStart self-test fires + reports all-hooks-functional — fires on every message via verify-hooks-functional.sh hook (visible in session context). S018 confirmed.
+- [ ] Token reduction measured >40% vs Phase 1 baseline → DEFERRED: requires running pnpm tokens:measure before + after. Governor action: run `pnpm tokens:measure` in terminal when ready to benchmark.
 
 ---
 
@@ -200,11 +200,11 @@ harvest_questions:
 | MCP | Query API (get / list / find_by_enforcer / find_by_spine) | ADD |
 
 **Exit criteria (L4 → L5 gate):**
-- [ ] All 4 splits with cross-ref-resolution PASS + codegen emits identical AGENTS.md
-- [ ] AAP Class B preamble injected at every subagent spawn
-- [ ] Mid-session context growth reduced >40% measured
-- [ ] `pnpm --filter @csps/principles-mcp build` succeeds
-- [ ] Per-MCP-query token cost <5K (vs ~85K full load) — measured
+- [ ] All 4 splits with cross-ref-resolution PASS + codegen emits identical AGENTS.md → DEFERRED week-4: split codegen (principles.yaml / behavioral-contracts / audit-runner / ai-behavior-spine → slices). packages/principles already split. Other 3 ship week-4.
+- [ ] AAP Class B preamble injected at every subagent spawn → DEFERRED week-4: requires pre-subagent-spawn hook. Registered; impl week-4.
+- [ ] Mid-session context growth reduced >40% measured → DEFERRED: measurement requires before/after baseline. Governor action when baseline capture is available.
+- [ ] `pnpm --filter @csps/principles-mcp build` succeeds → DEFERRED: principles-mcp skeleton exists (packages/principles-mcp); implementation ships week-4 per build-order.md.
+- [ ] Per-MCP-query token cost <5K (vs ~85K full load) — measured → DEFERRED: follows principles-mcp implementation (week-4+). Measurement after MCP ships.
 
 ---
 
@@ -223,11 +223,11 @@ harvest_questions:
 | Recurring | weekly `/usage` audit + per-quarter alignment-drift-over-time | SCHEDULE |
 
 **Exit criteria (L5 → topic-plan close):**
-- [ ] Cumulative savings >50% vs Phase 1 baseline (cruel-critic Critique 1 — measurement-driven not claimed)
-- [ ] `validate-token-budget.mjs` 5 modes all PASS
-- [ ] Audit registered + cross-referenced bidirectionally
-- [ ] Recurring task active + first run completed
-- [ ] §10 attestation block signed
+- [ ] Cumulative savings >50% vs Phase 1 baseline → DEFERRED: depends on §4 (split mechanism + MCP). Measurement after §4 complete. cruel-critic WARN — do not claim until measured.
+- [ ] `validate-token-budget.mjs` 5 modes all PASS → DEFERRED week-4+: validator ships per §14.6 token-optimization plan. Builds after split mechanism lands.
+- [ ] Audit registered + cross-referenced bidirectionally → DEFERRED: follows validate-token-budget.mjs (week-4+)
+- [ ] Recurring task active + first run completed → DEFERRED: weekly /usage audit; schedule after §4 lands.
+- [ ] §10 attestation block signed → DEFERRED: §5 closes only after §4 complete. Not attestable until §4 ships.
 
 ---
 

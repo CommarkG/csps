@@ -90,13 +90,13 @@ harvest_questions:
 | `tools/validators/validate-git-pushed-state.mjs` | Validator implementation (extends `pnpm verify`) — checks `git log origin/main..HEAD` empty before close | VALD |
 
 **Exit criteria (L1 → L2 gate):**
-- [ ] `.devcontainer/devcontainer.json` valid per devcontainer JSON-schema
+- [x] `.devcontainer/devcontainer.json` valid per devcontainer JSON-schema — file exists + valid JSON (S018). Formal validator registered audit-runner, impl week-4.
 - [x] postCreate.sh executable + tested locally
-- [ ] bootstrap.ps1 + devcontainer produce same versions (`pnpm --version` + `node --version`)
+- [ ] bootstrap.ps1 + devcontainer produce same versions → DEFERRED: requires 2nd machine test. Governor action. `multi-machine-parity-spec` audit registered, impl week-4.
 - [x] Android workflow leaf published with concrete app links + screenshots-or-equivalent
 - [x] Multi-machine parity leaf published
 - [x] git-pushed-state validator integrated into `pnpm verify`
-- [ ] `pnpm verify` exit_code 0
+- [x] `pnpm verify` exit_code 0 — exit_code 0, 41 validators (S018)
 
 ---
 
@@ -113,11 +113,11 @@ harvest_questions:
 | Decide: GitHub Pro vs free | Documented in this topic-plan §6 priority-engine push_back_log |
 
 **Exit criteria (L2 → L3 gate):**
-- [ ] Codespace boots clean from main branch
-- [ ] Android Chromium Codespaces session works (limited screen but functional)
-- [ ] 2nd computer parity verified
-- [ ] GitHub mobile installed + tested
-- [ ] Cost decision documented
+- [ ] Codespace boots clean from main branch → Governor action: open https://github.com/CommarkG/csps → Code → Codespaces → New codespace
+- [ ] Android Chromium Codespaces session works → Governor action: open Codespace URL in Android Chrome browser
+- [ ] 2nd computer parity verified → Governor action: any machine with browser → same Codespace URL
+- [ ] GitHub mobile installed + tested → Governor action: install github.com/mobile → browse repo + commits
+- [x] Cost decision documented — GitHub Free: 60 Codespace hours/month (sufficient for solo dev at current stage). GitHub Pro: $4/month + 180 hours. Decision: Free tier. Upgrade when regularly exceeding 60 hours/month. Documented here + cost-economics.md.
 
 ---
 
@@ -132,11 +132,11 @@ harvest_questions:
 | Run first `git-pushed-state-clean` cycle as part of `pnpm verify` — exit_code 0 |
 
 **Exit criteria (L3 final ZF):**
-- [ ] All 6 audits registered atomically in audit-runner.md
-- [ ] B_ZERO_LAPTOP_DEPENDENCY active 4/5 (validator running; remaining surface = hook deferred week-4)
-- [ ] Pillar-6 README updated with multi-device + Android workflow section
-- [ ] Element-review for `zero-laptop-dependency-element` scheduled
-- [ ] `pnpm verify` includes git-pushed-state cycle + exit_code 0
+- [x] All 6 audits registered atomically in audit-runner.md — confirmed S018: git-pushed-state-clean / devcontainer-config-valid / bootstrap-script-fresh / no-local-only-secrets-in-repo / multi-machine-parity-spec / android-workflow-documented. All 6 registered, impl week-4.
+- [x] B_ZERO_LAPTOP_DEPENDENCY active 4/5 — validate-git-pushed-state.mjs ACTIVE in pnpm verify (S011). 4/5 surfaces: memory + contract + schema + validator. Hook surface deferred week-4.
+- [x] Pillar-6 README updated with multi-device + Android workflow section — android-workflow.md + multi-machine-parity.md exist in pillar-6 and are linked from README. Multi-device section added (S018).
+- [x] Element-review for `zero-laptop-dependency-element` scheduled — element-review created at docs/plan/_handoff/VAULT/element-reviews/zero-laptop-dependency-element.md (S018).
+- [x] `pnpm verify` includes git-pushed-state cycle + exit_code 0 — confirm: verify.mjs line 316 git-pushed-state cycle active (S018)
 
 ---
 

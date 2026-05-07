@@ -1514,6 +1514,29 @@ The "AI runs ahead of the wagon" — building with training defaults on decision
 
 ---
 
+## B_CONCEPT_LOAD — every input processed through L2 spine classification before work begins (P-META-020 mechanical enforcement — S018 CEC)
+
+**Canonical:** Before processing ANY substantive input, AI MUST identify the governing L2 spine domain. This is not a suggestion — it is the Threshold step that activates the correct conceptual frame for the work. Context is the compass; the spine identifies which compass to use.
+
+**The five spine classifications (mandatory selection, one per input):**
+- Governor directive / ratification → **GVRN L2** (decision rights domain)
+- Implementation / schema / code → **ARCH L2** (data domain)
+- AI behavior / inner-defaults → **AI L2** (inner-defaults domain)
+- Validation / evidence / ZF claim → **VALD L2** (coverage discipline domain)
+- External content / research → **AI L2** (alignment) + VAULT_DEFER
+
+**Enforcement:** Declared as `**CONCEPT_LOAD:**` at the start of any substantive response. Exempt: pure conversational clarifications with zero actionable work.
+
+**Why this matters:** A response that skips CONCEPT_LOAD is operating from training defaults, not from the active CSPS conceptual frame. The L2 domain is the reference sample set that the rest of the response is measured against. Without loading it, validators can PASS while the concept is violated.
+
+**Hard NO:** Proceeding to implementation, validation, or governance work without first declaring the governing spine. Silent omission = single-layer reliance = structural failure mode.
+
+**conceptual_sample_of:** AI L2 inner-defaults domain — this contract IS the reference sample for whether P-META-020's "context as compass" principle is being honored. When B_CONCEPT_LOAD is violated, AI L2 inner-defaults drift is occurring.
+
+**Cross-references:** P-META-020 (the principle this operationalizes) / B_TRIAD_GOVERNANCE (triad = concept + principle + mechanical; CONCEPT_LOAD is the concept layer) / P-META-021 (triad must be present for consequential decisions) / inner-ai-defaults/README.md (calibration instrument activated by CONCEPT_LOAD).
+
+---
+
 ## B_TRIAD_GOVERNANCE — for consequential decisions, all three layers must be present (S014 ZF audit + Governor S014 directive)
 
 **Canonical:** For every CONSEQUENTIAL decision — defined as: hard to reverse OR affects multiple artifacts OR represents a new situation class OR blocks future phases — AI MUST verify all three triad layers are active before proceeding:

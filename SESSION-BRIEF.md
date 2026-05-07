@@ -9,13 +9,13 @@
 | **Current session** | S016 |
 | **Previous session** | S015 |
 | **Last updated** | today |
-| **Last commit** | 72380a9 S016: CSPS Bedrock defined + validate-bedrock.mjs + VLT-S016-ZENSTACK registered |
+| **Last commit** | 1c24e8d S016 Governor directive: Core/App layer separation + mandate corrected |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
 ## What S016 must do
 
-**Plan Methodology v2 L2 — B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH_WITH_PREFLIGHT contracts (5/5 FSE each) + chat-state-snapshot template + assumption blocks in gradual-build-plan template. PARALLEL: task-mgmt live deployment (pnpm db:push with real .env.local credentials + dev server validation). FOUNDATION_EXIT_GATE CLEAN as of S015 close.**
+**Core platform: Plan Methodology v2 L3 (validators + template integration) + ZenStack installation (VLT-S016-ZENSTACK ratification). CORE LAYER ONLY — task-mgmt live deployment is Governor-triggered when .env.local credentials are ready, not an AI session mandate.**
 
 
 

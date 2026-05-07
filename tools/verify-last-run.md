@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T05:40:05.258Z
-- finished_at: 2026-05-07T05:40:10.531Z
+- ran_at: 2026-05-07T06:14:40.515Z
+- finished_at: 2026-05-07T06:14:46.275Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T05:40:05.258Z",
-    "finished_at": "2026-05-07T05:40:10.531Z",
+    "ran_at": "2026-05-07T06:14:40.515Z",
+    "finished_at": "2026-05-07T06:14:46.275Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,10 +39,10 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
-        "scanned": 221,
+        "duration_seconds": 0.2,
+        "scanned": 223,
         "errors": 0,
-        "warnings": 0,
+        "warnings": 1,
         "exempt": 208
       },
       {
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -271,7 +271,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -335,9 +335,9 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "plans_checked": 9,
-        "stale_total": 4,
-        "unverified": 0,
-        "verified": 4,
+        "stale_total": 8,
+        "unverified": 2,
+        "verified": 6,
         "likely_done_items": 1
       },
       {

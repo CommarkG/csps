@@ -1,178 +1,147 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S015",
-  "previous_session": "S014",
-  "session_updated_at": "2026-05-06T22:52:42.256Z",
+  "current_session": "S016",
+  "previous_session": "S015",
+  "session_updated_at": "2026-05-07T06:00:00Z",
   "session_mandate": {
-    "primary": "Phase 5 — L4 task management app. Phase 4 COMPLETE (ZF deep: 0 blocking). All VLTs resolved. Build apps/task-mgmt/ (or expand apps/sandbox/) with full Task CRUD, billing trigger, Clerk auth, AuditEvent instrumentation.",
+    "primary": "Plan Methodology v2 L2 — B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH_WITH_PREFLIGHT contracts (5/5 FSE each) + chat-state-snapshot template + assumption blocks in gradual-build-plan template. PARALLEL: task-mgmt live deployment (pnpm db:push with real .env.local credentials + dev server validation). FOUNDATION_EXIT_GATE CLEAN as of S015 close.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — all platforms, VLTs, and ZF gates clear. Start with pnpm zf:phase (Level 2 gate) before any Phase 5 implementation."
+    "blocking_on": "NONE — all VLTs resolved, foundation gate CLEAN, 0 PENDING VLTs. Start with pnpm zf:phase (Level 2 gate) before any implementation."
   },
   "blocking_decisions": [
     {
       "id": "VLT-S015-001",
       "status": "RESOLVED",
-      "decision": "Option A: Clerk JWT custom claim. tenantId embedded in session token at login. Pattern in libs/integrations/clerk/session-context.ts (buildSessionClaims + CspsSessionClaims type). Zero DB lookup per request. Full wiring at Phase 5 app route.",
-      "resolved_at": "2026-05-06T20:47:00Z",
+      "decision": "Option A: Clerk JWT custom claim. tenantId embedded in session token at login. Pattern in libs/integrations/clerk/session-context.ts (buildSessionClaims + CspsSessionClaims type). Wired in apps/task-mgmt/src/app/api/auth/session/route.ts.",
+      "resolved_at": "2026-05-07T00:00:00Z",
       "ratified_by": "Governor"
     },
     {
       "id": "VLT-S015-002",
       "status": "RESOLVED",
-      "decision": "Option A: 4 values — free|trialing|active|cancelled. Added to tenant.zmodel + Prisma schema. Default: free. Billing trigger: status updates when Stripe subscription created (2nd UserTenant join per VLT-S014-005).",
-      "resolved_at": "2026-05-06T20:47:00Z",
+      "decision": "Option A: 4 values — free|trialing|active|cancelled. In Prisma schema (TenantSubscriptionStatus enum). stripeSubscriptionId added to Tenant model. Billing trigger wired.",
+      "resolved_at": "2026-05-07T00:00:00Z",
       "ratified_by": "Governor"
     },
     {
       "id": "VLT-S015-003",
       "status": "RESOLVED",
-      "decision": "Option A: Supabase Supavisor transaction mode. DATABASE_URL uses pooler endpoint with ?pgbouncer=true&connection_limit=1. DIRECT_URL bypasses pooler for migrations. Documented in apps/sandbox/.env.example.",
-      "resolved_at": "2026-05-06T20:47:00Z",
+      "decision": "Supabase Supavisor transaction mode. DATABASE_URL + DIRECT_URL explicit in apps/task-mgmt/.env.example. Both URLs required at THIS level (config hierarchy warning).",
+      "resolved_at": "2026-05-07T00:00:00Z",
       "ratified_by": "Governor"
     },
     {
       "id": "VLT-S015-004",
       "status": "RESOLVED",
-      "decision": "Option B (Postgres trigger) deferred until ZenStack install. Interim: Clerk's own audit log covers auth events. Trigger DDL documented in libs/policies/audit-triggers.sql (commented, ready to uncomment).",
-      "resolved_at": "2026-05-06T20:47:00Z",
+      "decision": "Postgres trigger deferred until ZenStack install. Interim: Clerk audit log. Trigger DDL documented in libs/policies/audit-triggers.sql.",
+      "resolved_at": "2026-05-07T00:00:00Z",
       "ratified_by": "Governor"
     },
     {
       "id": "VLT-S015-005",
       "status": "RESOLVED",
-      "decision": "Option A: tsconfig paths alias. apps/sandbox/tsconfig.json updated with @csps/integrations → ../../libs/integrations/index.ts. Each new app adds same alias. libs/integrations/index.ts barrel is the canonical export.",
-      "resolved_at": "2026-05-06T20:47:00Z",
+      "decision": "tsconfig paths alias. apps/task-mgmt/tsconfig.json has @csps/integrations → ../../libs/integrations/index.ts. Used in all webhook routes via @csps/integrations import.",
+      "resolved_at": "2026-05-07T00:00:00Z",
       "ratified_by": "Governor"
     },
     {
-      "id": "VLT-S014-002",
-      "status": "RESOLVED",
-      "decision": "Tasks + Projects (Option B). No Milestones at v1. Milestones can be added later without schema breakage.",
-      "resolved_at": "2026-05-06T13:17:00Z",
-      "ratified_by": "Governor"
+      "id": "VLT-S014-002", "status": "RESOLVED",
+      "decision": "Tasks + Projects (Option B). No Milestones at v1.",
+      "resolved_at": "2026-05-06T13:17:00Z", "ratified_by": "Governor"
     },
     {
-      "id": "VLT-S014-003",
-      "status": "RESOLVED",
-      "decision": "One workspace per tenant (Option A). Workspace IS the Tenant. Already implemented via Tenant.clerkOrgId. Multiple workspaces = create multiple Clerk orgs.",
-      "resolved_at": "2026-05-06T13:17:00Z",
-      "ratified_by": "Governor"
+      "id": "VLT-S014-003", "status": "RESOLVED",
+      "decision": "One workspace per tenant (Option A). Workspace IS the Tenant.",
+      "resolved_at": "2026-05-06T13:17:00Z", "ratified_by": "Governor"
     },
     {
-      "id": "VLT-S014-004",
-      "status": "RESOLVED",
-      "decision": "$1K MRR graduation trigger (Option B). Measured via Stripe webhooks → AuditEvent. Governor manual override always available.",
-      "resolved_at": "2026-05-06T13:17:00Z",
-      "ratified_by": "Governor"
+      "id": "VLT-S014-004", "status": "RESOLVED",
+      "decision": "$1K MRR graduation trigger (Option B).",
+      "resolved_at": "2026-05-06T13:17:00Z", "ratified_by": "Governor"
     },
     {
-      "id": "VLT-S014-005",
-      "status": "RESOLVED",
-      "decision": "Free solo / paid team (Option C). Free when UserTenant count = 1. Paid when 2+ members join tenant. Stripe billing triggers on second UserTenant creation.",
-      "resolved_at": "2026-05-06T13:17:00Z",
-      "ratified_by": "Governor"
+      "id": "VLT-S014-005", "status": "RESOLVED",
+      "decision": "Free solo / paid team. Billing trigger fires on 2nd UserTenant creation. Wired in apps/task-mgmt/src/app/api/webhooks/clerk/route.ts.",
+      "resolved_at": "2026-05-06T13:17:00Z", "ratified_by": "Governor"
     }
   ],
-  "opus_review_pending": {
-    "pending": true,
-    "prompt_path": "docs/plan/_handoff/VAULT/opus-synthesis-prompt-S011.md",
-    "what_for": "VLT-S011-006 — real Opus architectural synthesis of S011 work",
-    "how_to_start": "Open new chat → /model default → confirm Opus 4.7 → paste prompt",
-    "compact_input_required": true,
-    "max_input_tokens": 50000
-  },
   "platform_state": {
-    "pnpm_verify": "exit_code 0 (35 active validators, ZF-iter tracked)",
-    "last_verified_commit": "58190d0",
-    "complexity_score": 17.9,
+    "pnpm_verify": "exit_code 0 (37 active validators, ZF Level 3 achieved S015)",
+    "last_verified_commit": "52d35b7",
+    "complexity_score": 18.2,
     "complexity_zone": "GREEN",
     "skills": 26,
-    "contracts": 43,
+    "contracts": 46,
     "ep_patterns": 16,
     "sg_patterns": 2,
-    "moat_elements": 18,
+    "moat_elements": 21,
     "foundation_slices_built": true,
-    "foundation_slices_commit": "36847d5",
-    "s013_complete": true,
-    "s013_commit": "db31496",
-    "apps_built": 0,
-    "vlt_s011_003_resolved": true,
-    "vlt_s011_004_resolved": true,
-    "vlt_s014_002_resolved": true,
-    "vlt_s014_003_resolved": true,
-    "vlt_s014_004_resolved": true,
-    "vlt_s014_005_resolved": true,
+    "apps_built": 1,
+    "apps_task_mgmt_status": "SCAFFOLD_COMPLETE — TypeScript 0 errors. pnpm db:push pending (needs .env.local credentials).",
+    "apps_task_mgmt_commit": "954688a",
     "all_blocking_resolved": true,
-    "s014_l1_research_complete": true,
-    "s014_l1_research_doc": "docs/plan/_handoff/VAULT/topic-plans/s014-l1-research.md",
-    "hooks_active": 18,
+    "hooks_active": 19,
+    "validators_active": 37,
     "zf_orchestrator": "LIVE — pnpm zf / pnpm zf:phase / pnpm zf:deep",
-    "phase4_zf_deep": "ACHIEVED (0 blocking, 2 advisory)",
-    "phase5_status": "OPEN",
-    "zf_mandate_protocol": "docs/plan/pillar-0-governance/zf-mandate-protocol.md",
-    "discoveries_s014": [
-      "config-silent-override (K=1)",
-      "reasoning-single-source-navigation (K=1)"
+    "phase5_status": "SCAFFOLD+CRUD COMPLETE — pending live DB deployment",
+    "foundation_exit_gate": "CLEAN — validate-phase-exit-criteria.mjs PASS",
+    "stale_plans": "0 unverified (alignment audit S015 complete)",
+    "open_plan_items": 70,
+    "s015_discoveries": [
+      "FOUNDATION_EXIT_GATE — core before application (7 surfaces)",
+      "B_COMPLETION_OVER_SHINY — shiny object trap prevention (6 surfaces)",
+      "B_PLATFORM_FIRST_OPTIMIZATION — platform-first prime directive (7 surfaces)",
+      "Stale plan alignment gate (4 surfaces)",
+      "Plan Methodology v2 — §HARVEST mandatory, execution_mode, 4-type taxonomy"
     ],
     "principles_count": 55,
-    "behavioral_contracts": 44
-  },
-  "saas_build_arc": {
-    "s012_b": {
-      "mandate": "Foundation slices L1: User/Tenant/UserTenant/AuditEvent ZModel",
-      "model_tier": "STANDARD_BUILD",
-      "status": "COMPLETE",
-      "commit": "36847d5"
-    },
-    "s013": {
-      "mandate": "Clerk auth wiring + Stripe billing service layer",
-      "model_tier": "STANDARD_BUILD",
-      "status": "COMPLETE",
-      "commit": "db31496",
-      "note": "Service layer in libs/integrations/. App-layer wiring (Next.js route) deferred to when apps/ exists."
-    },
-    "s014": {
-      "mandate": "Task management app — depth-4 planning. ALL LEVELS L1-L3 COMPLETE. L4 = implementation (Phase 5). Sandbox built for validation.",
-      "model_tier": "STANDARD_BUILD",
-      "current_level": "COMPLETE",
-      "estimated_tokens_k": 150,
-      "topic_plan": "docs/plan/_handoff/VAULT/topic-plans/s014-task-management-app.md",
-      "l1_research": "docs/plan/_handoff/VAULT/topic-plans/s014-l1-research.md",
-      "vlt_decisions": {
-        "scope": "Tasks + Projects (no Milestones at v1)",
-        "workspace": "One workspace per tenant",
-        "graduation": "$1K MRR",
-        "pricing": "Free solo / paid team (2+ members)"
-      },
-      "unlocks": "s015",
-      "status": "COMPLETE",
-      "zf_deep": "ACHIEVED at commit 58190d0"
-    },
-    "s015": {
-      "mandate": "Graduation path design + second app slice",
-      "model_tier": "STANDARD_BUILD",
-      "estimated_tokens_k": 100,
-      "unlocks": "production"
-    }
+    "behavioral_contracts": 46,
+    "zf_mandate_protocol": "docs/plan/pillar-0-governance/zf-mandate-protocol.md"
   },
   "next_session_auto_checks": [
-    "pnpm verify --skip-install (confirm 35 PASS)",
+    "pnpm verify --skip-install (confirm 37 PASS)",
     "node tools/validators/validate-vlt-blocking.mjs (confirm 0 PENDING)",
-    "node tools/zf-orchestrator.mjs --level 1 (ZF Level 1 session open gate)",
-    "Read docs/plan/_handoff/VAULT/csps-master-roadmap-s014-plus.md (current phase)",
-    "Read docs/plan/pillar-0-governance/zf-mandate-protocol.md (ZF mandate)",
-    "CRITICAL: NEVER use Write/Edit tools on .claude/** — use Bash+node instead (pre-tool-use-claude-dir-guard.sh blocks it with redirect message)",
-    "CONCEPT_LOAD at session-open: ARCH L2 (Phase 5 = schema/code work)"
+    "node tools/validators/validate-phase-exit-criteria.mjs (FOUNDATION_EXIT_GATE — confirm CLEAN)",
+    "node tools/validators/validate-plan-age-alignment.mjs (stale plans — confirm 0 unverified)",
+    "node tools/zf-orchestrator.mjs --level 2 (ZF Level 2 session open gate)",
+    "Read docs/plan/_handoff/VAULT/HANDOFF-S015-to-S016.md Zone A §0",
+    "CRITICAL: NEVER use Write/Edit tools on .claude/** — use Bash+node instead",
+    "S016 primary mandate: plan-methodology-v2.md L2 (B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH_WITH_PREFLIGHT)"
   ],
+  "raw_thoughts_queue_s016": [
+    "B_HUMBLE_EXECUTOR full contract (5/5 FSE) — S016 L2 primary",
+    "B_AUTONOMOUS_BATCH_WITH_PREFLIGHT full contract — S016 L2",
+    "chat-state-snapshot template — S016 L2",
+    "assumption blocks in gradual-build-plan — S016 L2-L3",
+    "validate-plan-harvest-coverage.mjs + validate-execution-mode-declared.mjs — S016 L3",
+    "slim-handoff Zone A §CORE-PILLARS update — S016",
+    "task-mgmt live: pnpm db:push + dev server validation — S016 parallel"
+  ],
+  "saas_build_arc": {
+    "s015": {
+      "mandate": "Phase 5 task management app — scaffold + CRUD + governance engraving",
+      "model_tier": "STANDARD_BUILD",
+      "status": "COMPLETE",
+      "commit": "52d35b7",
+      "zf_deep": "ACHIEVED (0 blocking, S015 close)"
+    },
+    "s016": {
+      "mandate": "Plan Methodology v2 L2 + task-mgmt live deployment",
+      "model_tier": "STANDARD_BUILD",
+      "estimated_tokens_k": 120,
+      "unlocks": "second app build (full methodology applied from session 1)"
+    }
+  },
   "why_better_than_others": [
-    "Governance baked into construction — not retrofitted after (18 moat elements)",
-    "AI session quality tracked (EP-NNN learning — platform gets smarter after every failure)",
-    "Multi-tenant RLS enforced from day 1 — not a retrofit risk",
-    "Graduation path designed from start — extraction-ready, not locked-in",
-    "Vocabulary alignment across 30 apps — prevents naming drift",
-    "Model-tier-required in PE — optimal model for each task, not just one model for all",
+    "FOUNDATION_EXIT_GATE — core before application enforced at 7 surfaces (S015)",
+    "B_COMPLETION_OVER_SHINY — shiny object trap structurally prevented (S015)",
+    "B_PLATFORM_FIRST_OPTIMIZATION — every solution evaluated for platform generalizability (S015)",
+    "Governance baked into construction — 21 moat elements, not retrofitted",
+    "AI session quality tracked — platform gets smarter after every failure",
+    "Multi-tenant RLS enforced from day 1",
+    "Graduation path designed from start — extraction-ready",
     "The Threshold Gate — all inputs governed before processing",
-    "B_CONSENSUS_BEFORE_PROCEEDING — Governor ratifies all VLTs before schema locks"
+    "Plan Methodology v2 — §HARVEST in every plan, Humble Executor at every milestone"
   ]
 }

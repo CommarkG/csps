@@ -9,7 +9,7 @@
 | **Current session** | S016 |
 | **Previous session** | S015 |
 | **Last updated** | today |
-| **Last commit** | 3b49c45 S015 CLOSE: session extraction + HANDOFF-S015-to-S016 + session-state advanced to S016 |
+| **Last commit** | 72380a9 S016: CSPS Bedrock defined + validate-bedrock.mjs + VLT-S016-ZENSTACK registered |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
@@ -33,7 +33,7 @@
 - ✅ **VLT-S014-005**: Free solo / paid team. Billing trigger fires on 2nd UserTenant creation. Wired in apps/task-mgmt/src/app/api/webhooks/clerk/route.ts.
 
 ### 🔴 Still pending (decide before proceeding)
-- None — all decisions resolved
+- 🔴 **VLT-S016-ZENSTACK**: See tools/session-state.json
 
 ## Platform health
 

@@ -1,0 +1,42 @@
+
+take all you found and optimize to what we built so far. 
+
+Lets see how the north star works and is it valuable ?
+
+is it useful to have the recuring audits tagged for models for token optimizations? 
+is there a way to enhance this usage in other places in the platform? 
+for example running deep mechanical audits with haiku ?
+
+can you also create a validation buffer for testing kind of things before approving them into the system? or maybe allowing them into the system but register a validation and have them tagged and have a status of a new thing yet to be tested?  
+
+Are there core principles in the token optimizer we built that could serve us in handling how the platform works?
+I am referring to making the orchestrator connected to depth levels and dynamic bundling to something unique and really achieving new levels of system efficiency while not only loosing quality but enhancing it significantly. 
+- let create the process of input digestion and understanding of both content and context and then how exactly will things be assed, sorted, prioritized, humble spkit to optimal parts considering length and complexity together?? 
+
+go over all you did and enforce the enforcements by using zf cycles. 
+what is not mechanically enforced is just a temp fix. 
+
+make it "our own version of what you found!!" include the detailed connections to the SCHEMA - all must be aligned dynamically to the schema with mutual updating of changes 
+
++ go over the system and make sure all relevant flows and situations include clear mechanical enforcements of identifying files and processes that get too long and too complexed!! and have a clear path of how handle them :
+* Crating the mini tree slits [confirm you have it in your system and ask if not] 
+* Updating the schema [i want you to perform through audit now on how things are dynamically connected and updating the schema] I remind you that nothing stands alone!! all must have a pace and a grid of connections to schema 
+
+what exist on what i called mega gate? 
+an exclusive entry of all inputs into Csps? including this chat !!! 
+
+
+
+
+go over all you did in this session and create an audit hub registered in the schema in the proper place and include a set of audits + various handling predefined piplined and orchestrated with a front end dashboard 
+
+see you distribute all between:
+* things that can be completed now in this chat [we have 260K tokens available]
+* things that were not completed in previous plans and things we mentioned
+* things that should be included in the multisession plan !! 
+
+Go over the way the depth level exist in the system? 
+Are they really active? 
+they were created as a default issue of everything... do we have an established way to governing all optimally? 
+managing overloads and bundling various depth layers according to each situation? 
+

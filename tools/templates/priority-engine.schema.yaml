@@ -153,6 +153,47 @@ bands:
     no_someday_maybe: true
 
 # ============================================================
+# §3b FOUNDATION_EXIT_GATE (S015 major discovery — engraved 5/5 FSE)
+# ============================================================
+foundation_exit_gate:
+  description: |
+    Core infrastructure must be complete before any application layer opens.
+    This gate is a MULTIPLICATIVE ZERO on PE scoring — if it fires, the gated
+    phase scores 0 regardless of all other PE dimensions.
+
+  trigger: |
+    validate-phase-exit-criteria.mjs returns exit code 1 (BLOCKING).
+    Condition: any active topic plan has a mixed-state "Exit Criteria" section
+    (both [x] checked and [ ] unchecked items in the same section).
+
+  effect_on_pe:
+    gated_phase_score: 0
+    override_all_dimensions: true
+    rationale: |
+      A phase built on unvalidated infrastructure validates nothing.
+      PE dimensions (blast/dependency/idle/bundle/alignment) are meaningless
+      if the foundation they assume hasn't been proven.
+
+  resolution_options:
+    a: Complete the unchecked exit criterion
+    b: Explicitly defer with documented WHY + when-unblocks
+    invalid: Silent deferral (item stays blocking; no commit escapes the gate)
+
+  validator: tools/validators/validate-phase-exit-criteria.mjs
+  wired_into:
+    - pnpm verify (cycle: phase_exit_criteria)
+    - zf-orchestrator Level 1 (runLevel1)
+    - session-open.sh (mandate override on BLOCKING)
+  agents_md_hard_no: true
+  authority_reference: S015 discovery + B_STRUCTURAL_PREVENTION_DISCIPLINE
+
+  decision_hierarchy:
+    1: validate-phase-exit-criteria (BLOCKING = override mandate)
+    2: validate-vlt-blocking (PENDING = phase blocked)
+    3: validate-open-plan-levels (open items = obligations)
+    4: session-state mandate (desired next step — lowest authority)
+
+# ============================================================
 # §4 PE-QUICK vs PE-FULL Firing Modes (adopted from CSP S139)
 # ============================================================
 firing_modes:

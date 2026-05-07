@@ -93,6 +93,8 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never close a session without `git push origin <branch>` confirming all commits on remote (B_ZERO_LAPTOP_DEPENDENCY)
 - ❌ Never compress humble-batching into unrelated-item bundling for "efficiency"
 - ❌ Never close a session without §10.13b "Catches engraved" + §10.11b "Positive value extracted" headers (silent skipping forbidden)
+- ❌ **FOUNDATION_EXIT_GATE: Never open Phase N while any active topic plan has unchecked exit criteria in Phase N-1 or earlier.** PE score for the gated phase = 0 until gate is CLEAN. Validator: `validate-phase-exit-criteria.mjs` (exit code 1 = BLOCKING). Wired into: pnpm verify + ZF orchestrator Level 1 + session-open. Options: (a) complete the criterion, (b) explicitly defer with documented WHY. Silent deferral = anti-pattern. (S015 major discovery — engraved 5/5 FSE)
+- ❌ **Never emit a HANDOFF without a §CORE-PILLARS section in Zone A** listing all 5 Core Spine statuses + FOUNDATION_EXIT_GATE result. Incoming AI reads Zone A first — infrastructure gaps invisible in Zone A = mandate bias = freestyling in the next session. (S015 companion discovery)
 
 ## Skills (auto-load on relevant trigger; full detail on-demand)
 

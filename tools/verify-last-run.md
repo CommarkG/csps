@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-06T23:17:47.248Z
-- finished_at: 2026-05-06T23:17:52.259Z
+- ran_at: 2026-05-07T00:45:32.245Z
+- finished_at: 2026-05-07T00:45:37.457Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-06T23:17:47.248Z",
-    "finished_at": "2026-05-06T23:17:52.259Z",
+    "ran_at": "2026-05-07T00:45:32.245Z",
+    "finished_at": "2026-05-07T00:45:37.457Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -40,7 +40,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 216,
+        "scanned": 219,
         "errors": 0,
         "warnings": 0,
         "exempt": 206
@@ -217,8 +217,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "plans_checked": 10,
-        "plans_with_open": 7,
-        "total_open_items": 111
+        "plans_with_open": 6,
+        "total_open_items": 109
       },
       {
         "name": "rzf_evidence",
@@ -299,9 +299,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 33,
+        "validators_checked": 35,
         "orphans": 0,
-        "registered": 33
+        "registered": 35
       },
       {
         "name": "token_budget_validate",
@@ -326,6 +326,29 @@
         "l2_domain": 16,
         "l3_instances": 5,
         "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "plan_age_alignment",
+        "command": "node tools/validators/validate-plan-age-alignment.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "plans_checked": 10,
+        "stale_total": 6,
+        "unverified": 6,
+        "verified": 0,
+        "likely_done_items": 2
+      },
+      {
+        "name": "phase_exit_criteria",
+        "command": "node tools/validators/validate-phase-exit-criteria.mjs",
+        "status": "CLEAN",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "plans_checked": 10,
+        "sections_checked": 4,
+        "blocking": 0,
         "warnings": 0
       },
       {

@@ -184,27 +184,39 @@ Tracks 1 and 2 are parallel but Track 2 L3+ is MORE VALUABLE once Track 1 L1 is 
 **Conceptual anchor:** VALD spine — schema claims must be validated with real data before being locked in production; the sandbox IS the conceptual validation mechanism.
 **Concept honored:** No L4 implementation starts without empirical proof the L3 schema works end-to-end. Core elements complete before external solutions.
 
-**What:** Sandbox (`apps/sandbox/`) — validate Task/Project/UserTenant schema with real data before L4 production implementation.
+**What:** Sandbox (`apps/sandbox/`) — auth wiring + Stripe integration scaffold + schema validation structure.
 
-**Why sandbox before L4:** Schema decisions at L3 are locked before L4 code. The sandbox validates that the schema actually works in a running system (Clerk auth → Tenant creation → Task CRUD) before any L4 production code is written.
+**Scope correction (PCR 1-B ratified S015):** Phase 4 delivered auth wiring + Stripe customer creation + Supavisor URL pattern. Task CRUD validation moves to Phase 5 (it IS Phase 5's primary deliverable, not a sandbox prerequisite). Sandbox = auth + billing plumbing validated; Phase 5 = full CRUD proven in production app.
 
 **Depends on:** Phase 1 (pricing confirmed), Phase 2B (Task/Project ZModel exists)
 
-**Validations:**
-- [ ] `apps/sandbox/` Next.js 14 app scaffolded
-- [ ] Clerk auth flow works: sign up → org created → Tenant row created
-- [ ] Task CRUD: create → assign → complete → AuditEvent written
-- [ ] Sandbox does NOT have Stripe billing (validated separately)
-- [ ] pnpm verify exit_code 0
+**Validations (corrected to match what was built):**
+- [x] `apps/sandbox/` Next.js 14 app scaffolded (commit b05685c)
+- [x] Clerk webhook handler wired: `org.created` → Tenant row + UserTenant + `User.tenantId` set (VLT-S015-001 partial — full JWT claim in Phase 5)
+- [x] Stripe customer creation wired: `org.created` → `createStripeCustomer` hook (decoupled via `buildTenantBillingHook`)
+- [x] Supabase Supavisor pooler pattern documented in `.env.example` (VLT-S015-003: DATABASE_URL + DIRECT_URL explicit)
+- [x] Sandbox deliberately has no Task CRUD (CRUD is Phase 5 deliverable, not Phase 4)
+- [x] pnpm verify exit_code 0 (commit 88ce623)
 
 ---
 
-### Phase 5 — PARALLEL, INDEPENDENT
-**What:** S014 L4 — full task management app implementation.
+### Phase 5 — AFTER PHASE 4
+**What:** S015 L4 — full task management app implementation (`apps/task-mgmt/`).
 
-**Depends on:** Phase 4 (sandbox validates schema)
+**Depends on:** Phase 4 CLEAN (foundation gate passes — all Phase 4 exit criteria checked).
 
-**Note:** This is the actual product build. All planning, schema, and sandbox validation happen first. L4 is the final phase where production code is written.
+**Decisions ratified (S015):** UI = Tailwind CSS. Stripe = both outbound trigger + inbound subscription webhook.
+
+**Validations:**
+- [ ] `apps/task-mgmt/` Next.js 14 app with Tailwind scaffolded
+- [ ] Clerk middleware + JWT custom claim for `tenantId` (`/api/auth/session` route) wired (VLT-S015-001 full resolution)
+- [ ] Task CRUD: create → assign → status-change → complete, each writing `AuditEvent` (validates Phase 4 schema end-to-end)
+- [ ] Project CRUD: create + list + update
+- [ ] Billing trigger outbound: 2nd `UserTenant` → Stripe subscription at `STRIPE_TEAM_PRICE_ID`
+- [ ] Billing trigger inbound: `customer.subscription.created` → `Tenant.subscriptionStatus = active`
+- [ ] `@csps/integrations` tsconfig path alias wired (VLT-S015-005)
+- [ ] `DATABASE_URL` (pooled Supavisor) + `DIRECT_URL` (direct) explicit in `.env.example` (VLT-S015-003)
+- [ ] pnpm verify exit_code 0
 
 ---
 

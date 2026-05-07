@@ -371,6 +371,26 @@ const CYCLES = [
     },
   },
   {
+    // S015 STALE PLAN ALIGNMENT GATE — plans written >1 session ago require alignment before execution
+    name: 'plan_age_alignment',
+    command: 'node tools/validators/validate-plan-age-alignment.mjs',
+    parse_output: (out) => {
+      const m = out.match(/plans_checked=(\d+)\s+stale_total=(\d+)\s+unverified=(\d+)\s+verified=(\d+)\s+likely_done_items=(\d+)/);
+      return m ? { plans_checked: Number(m[1]), stale_total: Number(m[2]), unverified: Number(m[3]), verified: Number(m[4]), likely_done_items: Number(m[5]) } : {};
+    },
+  },
+  {
+    // S015 FOUNDATION_EXIT_GATE — core before application (major discovery)
+    // Any active topic plan with unchecked exit criteria in a "completed" phase = BLOCKING.
+    // PE score for next phase = 0 until gate is clean. Enforces core-before-application discipline.
+    name: 'phase_exit_criteria',
+    command: 'node tools/validators/validate-phase-exit-criteria.mjs',
+    parse_output: (out) => {
+      const m = out.match(/plans_checked=(\d+)\s+sections_checked=(\d+)\s+blocking=(\d+)\s+warnings=(\d+)\s+status=(\w+)/);
+      return m ? { plans_checked: Number(m[1]), sections_checked: Number(m[2]), blocking: Number(m[3]), warnings: Number(m[4]), status: m[5] } : {};
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

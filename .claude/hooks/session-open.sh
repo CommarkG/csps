@@ -53,6 +53,48 @@ try {
   openLevels = match ? match[0] : 'see validate-open-plan-levels.mjs';
 } catch(e) { openLevels = 'validator error — run manually'; }
 
+// FOUNDATION_EXIT_GATE — S015 major discovery (session-open v1.1)
+let foundationGateStatus = 'UNKNOWN', foundationGateBLOCKING = false, foundationGateDetail = '';
+try {
+  const fOut = require('child_process').execSync('node tools/validators/validate-phase-exit-criteria.mjs', {cwd: ROOT, encoding: 'utf8', timeout: 15000});
+  foundationGateStatus = 'CLEAN';
+  foundationGateDetail = 'All exit criteria checked — phase advance unblocked.';
+} catch(fErr) {
+  foundationGateBLOCKING = true;
+  foundationGateStatus = 'BLOCKING';
+  const fo = ((fErr.stdout || '') + (fErr.stderr || ''));
+  const item = fo.split('
+').find(l => l.includes('CHECK A'));
+  foundationGateDetail = item ? item.trim().slice(0, 120) : 'Run: node tools/validators/validate-phase-exit-criteria.mjs';
+}
+const mandateOverride = foundationGateBLOCKING ? '  *** FOUNDATION_EXIT_GATE BLOCKING — MANDATE SUSPENDED — PE score for phase advance = 0 ***' : '';
+
+// RAW THOUGHTS QUEUE — surfaced at Threshold so incoming AI sees pending ideas (S015)
+let pendingThoughts = 0, pendingThoughtsSummary = '0 pending';
+try {
+  const qText = fs.readFileSync(join(ROOT, 'docs/plan/_intake/raw-thoughts-queue.md'), 'utf8');
+  const pending = qText.split('
+').filter(l => l.match(/→ STATUS: PENDING/));
+  pendingThoughts = pending.length;
+  if (pendingThoughts > 0) {
+    const previews = pending.slice(0, 2).map(l => l.replace(/^- [.*?] /, '').split(' → ')[0].trim().slice(0, 60));
+    pendingThoughtsSummary = pendingThoughts + ' pending: ' + previews.join(' | ');
+  }
+} catch(e) { pendingThoughtsSummary = 'queue not found'; }
+
+// STALE PLAN ALIGNMENT — detect plans written >1 session ago needing review (S015)
+let stalePlansUnverified = 0, stalePlansSummary = '';
+try {
+  const spOut = require('child_process').execSync('node tools/validators/validate-plan-age-alignment.mjs 2>&1', {cwd: ROOT, encoding: 'utf8', timeout: 15000});
+  const m = spOut.match(/unverified=(d+)/);
+  stalePlansUnverified = m ? Number(m[1]) : 0;
+  const likelyDone = spOut.match(/likely_done_items=(d+)/);
+  const ldCount = likelyDone ? Number(likelyDone[1]) : 0;
+  stalePlansSummary = stalePlansUnverified > 0
+    ? stalePlansUnverified + ' plans need alignment — review [ ] items before executing. Likely-done: ' + ldCount + ' items.'
+    : '0 stale unverified';
+} catch(e) { stalePlansSummary = 'validator error'; }
+
 const context = [
   '╔══════════════════════════════════════════════════════════════════╗',
   '║         CSPS SESSION ACTIVATION — CONTEXT LOAD REQUIRED         ║',
@@ -65,6 +107,9 @@ const context = [
   '  Blocking: ' + blocking,
   '  Platform verify: ' + verifyState,
   '  Open plan levels: ' + openLevels,
+  '  Foundation exit gate: ' + foundationGateStatus + mandateOverride,
+  '  Raw thoughts queue: ' + pendingThoughtsSummary,
+  '  Stale plan alignment: ' + stalePlansSummary,
   '',
   'ZF ITERATION TRACKER (this session — measurement of work richness):',
   '  verify_runs: ' + zfIterations + ' | blocking_found_total: ' + zfBlockingTotal,
@@ -117,6 +162,8 @@ const context = [
   '  Q11: Does this session touch any hierarchical config? (settings/tsconfig/ZModel/env)',
   '       If YES: are ALL critical fields EXPLICIT at the child level? (not silently inherited)',
   '       SILENT OVERRIDE PATTERN: child exists but field missing → system uses DEFAULT not parent.',
+  '  Q12: Is FOUNDATION_EXIT_GATE CLEAN? BLOCKING = PE score for phase advance = 0.',
+  '       Run: node tools/validators/validate-phase-exit-criteria.mjs',
   '',
   'ACTIVE MECHANICAL ENFORCEMENT THIS SESSION:',
   '  pre-tool-use-plan-coverage-gate.sh  — blocks libs/apps writes without plan',
@@ -124,6 +171,8 @@ const context = [
   '  user-prompt-submit-next-step-reminder — every turn: next step + triad + WHY',
   '  validate-open-plan-levels.mjs       — open items surfaced (obligations)',
   '  validate-vlt-blocking.mjs          — PENDING VLTs warn at every verify',
+  '  validate-phase-exit-criteria.mjs   — FOUNDATION_EXIT_GATE (BLOCKING if exit criteria open)',
+  '  validate-plan-age-alignment.mjs    — STALE PLAN GATE (WARN: plans >1 session old need alignment before execution)',
   '',
   '═══════════════════════════════════════════════════════════════════',
 ].join('\\n');

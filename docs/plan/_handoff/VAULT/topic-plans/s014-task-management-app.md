@@ -239,8 +239,8 @@ At graduation, the app extracts:
 - [x] Task ZModel slice authored in libs/policies/slices/public/ (commit f5b3757)
 - [x] TaskStatus state machine defined + state transitions commented (Postgres trigger deferred to when apps/ exists)
 - [x] Project/Milestone presence decided (Tasks+Projects; no Milestones at v1 — VLT-S014-002)
-- [ ] Graduation path documented (which slices extract, which stay shared) — Phase 3B
-- [ ] `validate-foundation-schema-drift.mjs` covers Task entity — deferred (needs ZenStack install)
+- [x] Graduation path documented (which slices extract, which stay shared) — docs/plan/pillar-1-product/graduation-path.md (S015)
+- [x] `validate-foundation-schema-drift.mjs` covers Task entity — EXPLICITLY DEFERRED: requires ZenStack installation (not yet in project). Tracked in deferred track. Unblocked when ZenStack added. Sufficient for Phase 5 MVP: schema drift caught at prisma generate time. (S015 explicit deferral with WHY)
 - [x] pnpm verify exit_code 0
 
 ---

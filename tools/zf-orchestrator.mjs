@@ -80,17 +80,22 @@ function extractFindings(result) {
   const pendingMatch = text.match(/pending=(\d+)/);
   if (pendingMatch && Number(pendingMatch[1]) > 0) findings.push({ severity: 'BLOCKING', source: result.label, count: Number(pendingMatch[1]), text: `${pendingMatch[1]} PENDING VLTs` });
 
+  // FOUNDATION_EXIT_GATE — mixed-state exit criteria in active topic plans (S015 major discovery)
+  const foundationMatch = text.match(/blocking=(\d+)\s+warnings=\d+\s+status=BLOCKING/);
+  if (foundationMatch && Number(foundationMatch[1]) > 0) findings.push({ severity: 'BLOCKING', source: result.label, count: Number(foundationMatch[1]), text: `FOUNDATION_EXIT_GATE: ${foundationMatch[1]} phase(s) have unchecked exit criteria — PE score for next phase = 0` });
+
   return findings;
 }
 
 // ─── Level runners ──────────────────────────────────────────────────────────
 
 async function runLevel1() {
-  console.log('\n[zf-orchestrator] Level 1 — COMMIT: pnpm verify + vlt-blocking + open-plan-levels');
+  console.log('\n[zf-orchestrator] Level 1 — COMMIT: pnpm verify + vlt-blocking + open-plan-levels + phase-exit-criteria');
   const results = [
     run('node tools/verify.mjs --skip-install', 'pnpm-verify'),
     run('node tools/validators/validate-vlt-blocking.mjs', 'vlt-blocking'),
     run('node tools/validators/validate-open-plan-levels.mjs', 'open-plan-levels'),
+    run('node tools/validators/validate-phase-exit-criteria.mjs', 'phase-exit-criteria'),
   ];
   return results.flatMap(extractFindings);
 }

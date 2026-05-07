@@ -13,6 +13,8 @@ lifecycle_state: active
 core_spine: AI
 schema_anchor: platform_audit
 enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"
 tags:
   - domain:ai
   - domain:governance
@@ -181,7 +183,9 @@ find_by_spine("AI")                        → all AI-governed elements
 
 ## §10 Current State & Evolution
 
-**Implemented today (enforcement_stage: active):**
+**Implemented today (enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"):**
 - B_TOKEN_BUDGET v2 (8 rules, Governor-ratified S018)
 - B_CONCEPT_LOAD (hard NO in AGENTS.md, audit slug registered)
 - Inner-AI-Defaults registry (10 files, concept_ref field added S018)

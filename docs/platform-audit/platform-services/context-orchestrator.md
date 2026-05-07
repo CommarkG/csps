@@ -13,6 +13,8 @@ lifecycle_state: active
 core_spine: AI
 schema_anchor: platform_audit
 enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"
 tags:
   - domain:ai
   - domain:platform
@@ -154,7 +156,9 @@ find_template("task-class")          → full JSON template for that class
 
 ## §8 Current State & Evolution
 
-**Active (enforcement_stage: active):**
+**Active (enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"):**
 - `user-prompt-submit-context-orchestrator.sh` hook fires on every prompt
 - 8 context-loading JSON templates in `tools/templates/context-loading/`
 - `context-orchestrator-last-run.json` — current task class + recommendation

@@ -12,6 +12,8 @@ lifecycle_state: active
 core_spine: GVRN
 schema_anchor: platform_audit
 enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"
 tags:
   - domain:governance
   - domain:platform

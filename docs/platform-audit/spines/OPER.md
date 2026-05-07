@@ -13,6 +13,8 @@ lifecycle_state: active
 core_spine: OPER
 schema_anchor: platform_audit
 enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"
 tags:
   - domain:ops
   - domain:platform
@@ -171,7 +173,9 @@ find_by_spine("OPER")               → all OPER-governed elements
 
 ## §10 Current State & Evolution
 
-**Implemented today (enforcement_stage: active):**
+**Implemented today (enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"):**
 - `validate-git-pushed-state.mjs` — advisory (promotes to blocking week-4)
 - `.devcontainer/devcontainer.json` — Codespaces-ready
 - Session lifecycle: session-state.json updated + pushed at every session close

@@ -12,6 +12,8 @@ lifecycle_state: active
 core_spine: GVRN
 schema_anchor: platform_audit
 enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"
 tags:
   - domain:governance
   - type:reference
@@ -185,7 +187,9 @@ find_by_spine("GVRN")              → all GVRN-governed elements
 
 ## §10 Current State & Evolution
 
-**Implemented today (enforcement_stage: active):**
+**Implemented today (enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"):**
 - 50 behavioral contracts (50 ACTIVE)
 - 41 validators in pnpm verify
 - ZF orchestrator (3 levels)

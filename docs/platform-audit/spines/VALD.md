@@ -13,6 +13,8 @@ lifecycle_state: active
 core_spine: VALD
 schema_anchor: platform_audit
 enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"
 tags:
   - domain:governance
   - domain:audit
@@ -179,7 +181,9 @@ find_by_spine("VALD")                     → all VALD-governed elements
 
 ## §10 Current State & Evolution
 
-**Implemented today (enforcement_stage: active):**
+**Implemented today (enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"):**
 - 41 active validators in pnpm verify (exit_code 0)
 - ZF orchestrator (3 levels: pnpm zf / pnpm zf:phase / pnpm zf:deep)
 - 13 audit pipelines (P1-P13) in audit-hub.md

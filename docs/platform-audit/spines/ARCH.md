@@ -12,6 +12,8 @@ lifecycle_state: active
 core_spine: ARCH
 schema_anchor: platform_audit
 enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"
 tags:
   - domain:architecture
   - domain:data
@@ -174,7 +176,9 @@ find_by_spine("ARCH")                      → all ARCH-governed elements
 
 ## §10 Current State & Evolution
 
-**Implemented today (enforcement_stage: active):**
+**Implemented today (enforcement_stage: active
+template_used: domain-card
+template_version: "1.0"):**
 - `libs/policies/schema.zmodel` — flat assembled, 7 models, zenstack generate exits 0
 - `getEnhancedDb()` — ORM-level enforcement active in 4 business routes
 - `validate-foundation-schema-drift.mjs` — Cycle 41, CLEAN

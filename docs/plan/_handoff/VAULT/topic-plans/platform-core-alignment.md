@@ -26,6 +26,7 @@ tags:
 diataxis_type: how-to
 session: S018
 execution_mode: deep_quality
+know_how_consulted: true
 topic_id: platform-core-alignment
 priority_score: 97
 priority_band: 1

@@ -6,16 +6,16 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S016 |
-| **Previous session** | S015 |
-| **Last updated** | today |
-| **Last commit** | fbe48f6 VLT-S016-ZENSTACK resolved (Option A) + S017 mandate set + app permission rule strengthened |
+| **Current session** | S017 |
+| **Previous session** | S016 |
+| **Last updated** | -1 day(s) ago |
+| **Last commit** | 3421c8b S016 CLOSE: extraction + HANDOFF-S016-to-S017 + session-state → S017 |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
-## What S016 must do
+## What S017 must do
 
-**Core platform: Plan Methodology v2 L3 (validators + template integration) + ZenStack installation (VLT-S016-ZENSTACK ratification). CORE LAYER ONLY — task-mgmt live deployment is Governor-triggered when .env.local credentials are ready, not an AI session mandate.**
+**ZenStack installation (Option A — install first before any new app). Unblocks: DB-level RLS policies, validate-foundation-schema-drift.mjs, foundation-slices §11 closure, ZenStack-integrated app template. Bedrock Layer 2 completion.**
 
 
 
@@ -40,7 +40,7 @@
 
 | Metric | Value |
 |---|---|
-| Validators (pnpm verify) | exit_code 0 (37 active validators, ZF Level 3 achieved S015) |
+| Validators (pnpm verify) | exit_code 0 (40 active validators, ZF Level 3 achieved S016) |
 | Council skills | 26 |
 | Behavioral contracts | 46 |
 | Error patterns (EP) | 16 |

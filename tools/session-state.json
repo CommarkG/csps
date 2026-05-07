@@ -5,9 +5,9 @@
   "previous_session": "S015",
   "session_updated_at": "2026-05-07T06:00:00Z",
   "session_mandate": {
-    "primary": "Plan Methodology v2 L2 — B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH_WITH_PREFLIGHT contracts (5/5 FSE each) + chat-state-snapshot template + assumption blocks in gradual-build-plan template. PARALLEL: task-mgmt live deployment (pnpm db:push with real .env.local credentials + dev server validation). FOUNDATION_EXIT_GATE CLEAN as of S015 close.",
+    "primary": "Core platform: Plan Methodology v2 L3 (validators + template integration) + ZenStack installation (VLT-S016-ZENSTACK ratification). CORE LAYER ONLY — task-mgmt live deployment is Governor-triggered when .env.local credentials are ready, not an AI session mandate.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — all VLTs resolved, foundation gate CLEAN, 0 PENDING VLTs. Start with pnpm zf:phase (Level 2 gate) before any implementation."
+    "blocking_on": "VLT-S016-ZENSTACK PENDING (ZenStack installation decision — Governor must choose Option A or B before S017 mandate can be written). Blocks: S017 start, app #2 build, bedrock completion."
   },
   "blocking_decisions": [
     {
@@ -114,7 +114,8 @@
     "principles_count": 55,
     "behavioral_contracts": 46,
     "zf_mandate_protocol": "docs/plan/pillar-0-governance/zf-mandate-protocol.md",
-    "bedrock_completion": "67% done (14/21 items), 100% tracked. 2 root decisions: VLT-S016-ZENSTACK + plan-methodology-v2 L2 (S016). See csps-bedrock.md."
+    "bedrock_completion": "67% done (14/21 items), 100% tracked. 2 root decisions: VLT-S016-ZENSTACK + plan-methodology-v2 L2 (S016). See csps-bedrock.md.",
+    "layer_separation": "CORE layer (libs/, tools/, governance/) = what every app inherits. APP layer (apps/*) = individual products. App-layer work (live deployment, credentials, dev server) is Governor-triggered, not AI-mandated."
   },
   "next_session_auto_checks": [
     "pnpm verify --skip-install (confirm 37 PASS)",

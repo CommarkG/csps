@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T07:39:02.226Z
-- finished_at: 2026-05-07T07:39:07.600Z
+- ran_at: 2026-05-07T07:44:02.001Z
+- finished_at: 2026-05-07T07:44:08.662Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T07:39:02.226Z",
-    "finished_at": "2026-05-07T07:39:07.600Z",
+    "ran_at": "2026-05-07T07:44:02.001Z",
+    "finished_at": "2026-05-07T07:44:08.662Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -40,7 +40,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 225,
+        "scanned": 226,
         "errors": 0,
         "warnings": 1,
         "exempt": 210
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -180,8 +180,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 62,
-        "with_status": 10,
+        "checked": 63,
+        "with_status": 11,
         "warnings": 0
       },
       {
@@ -274,7 +274,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },

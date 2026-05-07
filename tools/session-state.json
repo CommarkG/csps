@@ -46,24 +46,40 @@
       "ratified_by": "Governor"
     },
     {
-      "id": "VLT-S014-002", "status": "RESOLVED",
+      "id": "VLT-S014-002",
+      "status": "RESOLVED",
       "decision": "Tasks + Projects (Option B). No Milestones at v1.",
-      "resolved_at": "2026-05-06T13:17:00Z", "ratified_by": "Governor"
+      "resolved_at": "2026-05-06T13:17:00Z",
+      "ratified_by": "Governor"
     },
     {
-      "id": "VLT-S014-003", "status": "RESOLVED",
+      "id": "VLT-S014-003",
+      "status": "RESOLVED",
       "decision": "One workspace per tenant (Option A). Workspace IS the Tenant.",
-      "resolved_at": "2026-05-06T13:17:00Z", "ratified_by": "Governor"
+      "resolved_at": "2026-05-06T13:17:00Z",
+      "ratified_by": "Governor"
     },
     {
-      "id": "VLT-S014-004", "status": "RESOLVED",
+      "id": "VLT-S014-004",
+      "status": "RESOLVED",
       "decision": "$1K MRR graduation trigger (Option B).",
-      "resolved_at": "2026-05-06T13:17:00Z", "ratified_by": "Governor"
+      "resolved_at": "2026-05-06T13:17:00Z",
+      "ratified_by": "Governor"
     },
     {
-      "id": "VLT-S014-005", "status": "RESOLVED",
+      "id": "VLT-S014-005",
+      "status": "RESOLVED",
       "decision": "Free solo / paid team. Billing trigger fires on 2nd UserTenant creation. Wired in apps/task-mgmt/src/app/api/webhooks/clerk/route.ts.",
-      "resolved_at": "2026-05-06T13:17:00Z", "ratified_by": "Governor"
+      "resolved_at": "2026-05-06T13:17:00Z",
+      "ratified_by": "Governor"
+    },
+    {
+      "id": "VLT-S016-ZENSTACK",
+      "status": "PENDING",
+      "decision": "ZenStack installation in CSPS project. Unblocks: DB-level RLS policies (Postgres Row Level Security per tenant), validate-foundation-schema-drift.mjs, foundation-slices L3 closure, ZenStack-integrated app template. Unblocked by: apps/task-mgmt/ now exists (the missing dependency). Options: A) Install ZenStack S017 as first mandate before any new app. B) Defer until 2 apps exist to validate the ZModel→Prisma pipeline. Recommendation: A — platform-first, 1 install protects all 30 apps.",
+      "ratified_by": null,
+      "registered_at": "2026-05-07T00:00:00Z",
+      "unblocked_by": "apps/task-mgmt/ created S015"
     }
   ],
   "platform_state": {
@@ -82,7 +98,7 @@
     "apps_task_mgmt_commit": "954688a",
     "all_blocking_resolved": true,
     "hooks_active": 19,
-    "validators_active": 37,
+    "validators_active": 38,
     "zf_orchestrator": "LIVE — pnpm zf / pnpm zf:phase / pnpm zf:deep",
     "phase5_status": "SCAFFOLD+CRUD COMPLETE — pending live DB deployment",
     "foundation_exit_gate": "CLEAN — validate-phase-exit-criteria.mjs PASS",
@@ -97,7 +113,8 @@
     ],
     "principles_count": 55,
     "behavioral_contracts": 46,
-    "zf_mandate_protocol": "docs/plan/pillar-0-governance/zf-mandate-protocol.md"
+    "zf_mandate_protocol": "docs/plan/pillar-0-governance/zf-mandate-protocol.md",
+    "bedrock_completion": "67% done (14/21 items), 100% tracked. 2 root decisions: VLT-S016-ZENSTACK + plan-methodology-v2 L2 (S016). See csps-bedrock.md."
   },
   "next_session_auto_checks": [
     "pnpm verify --skip-install (confirm 37 PASS)",

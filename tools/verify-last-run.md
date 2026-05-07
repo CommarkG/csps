@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T07:11:41.789Z
-- finished_at: 2026-05-07T07:11:47.778Z
+- ran_at: 2026-05-07T07:27:39.361Z
+- finished_at: 2026-05-07T07:27:45.605Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T07:11:41.789Z",
-    "finished_at": "2026-05-07T07:11:47.778Z",
+    "ran_at": "2026-05-07T07:27:39.361Z",
+    "finished_at": "2026-05-07T07:27:45.605Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 0.8,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -40,7 +40,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 223,
+        "scanned": 224,
         "errors": 0,
         "warnings": 1,
         "exempt": 208
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -180,8 +180,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 61,
-        "with_status": 9,
+        "checked": 62,
+        "with_status": 10,
         "warnings": 0
       },
       {
@@ -199,7 +199,10 @@
         "command": "node tools/validators/validate-vlt-blocking.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.1,
+        "vlt_total": 10,
+        "pending": 1,
+        "resolved": 9
       },
       {
         "name": "instruction_context",
@@ -299,9 +302,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 35,
+        "validators_checked": 36,
         "orphans": 0,
-        "registered": 35
+        "registered": 36
       },
       {
         "name": "token_budget_validate",
@@ -327,6 +330,13 @@
         "l3_instances": 5,
         "errors": 0,
         "warnings": 0
+      },
+      {
+        "name": "bedrock_completion",
+        "command": "node tools/validators/validate-bedrock.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
       },
       {
         "name": "plan_age_alignment",

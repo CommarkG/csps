@@ -54,6 +54,25 @@ Without a tracker, acknowledged unknowns rot. They become tribal knowledge ("we 
 
 Per cardinal directive: *"We want to never leave anything floating or orphaned."* Frontiers are the catch-net for things that aren't quite ready to lock but cannot be dropped.
 
+## Frontier registry (S016 additions)
+
+### F-ZENSTACK — ZenStack Installation (DB-level RLS)
+
+**What:** ZenStack installation in CSPS project. Converts current app-level tenant isolation (Prisma WHERE tenantId = JWT tenantId) to DB-level Row Level Security (Postgres RLS policies generated from ZModel @@allow rules).
+
+**Why deferred:** Required apps/task-mgmt/ to exist first (ZenStack runs against a Next.js app). That dependency was met S015.
+
+**Discovery trigger:** Governor ratifies VLT-S016-ZENSTACK with timing decision (S017 first mandate vs. defer further).
+
+**Interim posture:** App-level tenant isolation IS functional and safe for development + staging. No cross-tenant data leak is possible through correct API routes. DB-level RLS adds defense-in-depth for production (SQL injection protection at DB level). Current posture = acceptable for dev; required before real user data.
+
+**Owner:** platform core (foundation-slices topic plan)
+**Next review:** S017 open
+**Tracking:** VLT-S016-ZENSTACK in session-state.json
+**Unlocks:** foundation-slices §11 closure + validate-foundation-schema-drift.mjs + 4 downstream bedrock items
+
+---
+
 ## Frontier registry (snapshot at S003 close)
 
 ### F1 — Persona drift threshold calibration

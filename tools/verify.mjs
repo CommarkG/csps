@@ -371,6 +371,16 @@ const CYCLES = [
     },
   },
   {
+    // S016 BEDROCK COMPLETION GATE — platform core must be complete before app #2
+    // Reads csps-bedrock.md §3 checklist. 2 root decisions missing = 7 downstream items gated.
+    name: 'bedrock_completion',
+    command: 'node tools/validators/validate-bedrock.mjs',
+    parse_output: (out) => {
+      const m = out.match(/total=(\d+)\s+done=(\d+)\s+deferred=(\d+)\s+blocking=(\d+)\s+completion=(\d+)%\s+status=(\w+)/);
+      return m ? { total: Number(m[1]), done: Number(m[2]), deferred: Number(m[3]), blocking: Number(m[4]), completion_pct: Number(m[5]), status: m[6] } : {};
+    },
+  },
+  {
     // S015 STALE PLAN ALIGNMENT GATE — plans written >1 session ago require alignment before execution
     name: 'plan_age_alignment',
     command: 'node tools/validators/validate-plan-age-alignment.mjs',

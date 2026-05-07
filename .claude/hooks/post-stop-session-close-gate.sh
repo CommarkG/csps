@@ -20,6 +20,10 @@
 
 set -euo pipefail
 
+# S016 REQUIREMENT: generate chat-transfer-S<NNN>-to-S<NNN+1>.md at every session close
+# Template: tools/templates/chat-transfer.template.md (12 lines max, CANONICAL — never vary)
+# Path: docs/plan/_handoff/VAULT/chat-transfer-S<NNN>-to-S<NNN+1>.md
+# This is the paste-target for the new chat. Checked by protocols.md §10.
 readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
 # Read transcript to detect session-close signals (stdin JSON)

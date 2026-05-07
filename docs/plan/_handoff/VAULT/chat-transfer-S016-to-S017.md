@@ -23,7 +23,16 @@ consolidation_cross_refs:
 
 # S016 → S017 Chat Transfer
 
-Paste this into the new chat as your first message:
+**To start S017:** Open a new Claude Code chat in this workspace. session-open.sh fires automatically. Done.
+
+**If you want to explicitly start:** Type this one line (no copy-paste):
+```
+S017: read docs/plan/_handoff/VAULT/chat-transfer-S016-to-S017.md
+```
+
+---
+
+The content below is what the AI reads (via Read tool) — not what you copy:
 
 ---
 

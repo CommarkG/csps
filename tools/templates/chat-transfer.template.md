@@ -32,12 +32,25 @@ links:
 
 # Chat Transfer Template
 
-> **This is the ONLY format.** Never vary it. If you're tempted to add sections, add them to the HANDOFF instead.
-> Generated at every session close. Pasted into new chat as the first message.
+> **Zero copy-paste required.** The Governor types one line. The AI reads the file.
+> Generated at every session close at a predictable path the AI can find directly.
 
 ---
 
-## The Format (fill in angle-brackets, keep everything else verbatim)
+## How it works
+
+**Primary path (session-open.sh fires automatically):**
+Open new Claude Code chat in the CSPS workspace → session-open.sh injects the mandate + context → AI is already briefed. Type nothing. Or just type: `proceed.`
+
+**Explicit start (one line, no copy-paste):**
+```
+S<NNN>: read docs/plan/_handoff/VAULT/chat-transfer-S<NNN-1>-to-S<NNN>.md
+```
+The AI reads the file via Read tool and proceeds. No clipboard operation.
+
+---
+
+## The File Content (what the AI reads — not what the Governor copies)
 
 ```
 CSPS <S_NEXT> — CHAT TRANSFER

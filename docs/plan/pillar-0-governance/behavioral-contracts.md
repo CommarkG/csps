@@ -1718,9 +1718,11 @@ PRE-FLIGHT — [batch name]
 Scope:    [N files] | [what they deliver] | ~[time est]
 Context:  [token estimate] — safe to continue | /compact before starting
 
-Q-GATE:   Is FOUNDATION_EXIT_GATE CLEAN? (validate-phase-exit-criteria.mjs)
-Q-COMPLETE: Active work >50%? Does this batch contribute to completion or pivot?
-Q-GLOBAL: Is this solution platform-generalizable? If yes, vault generalization first.
+Q-GATE:      Is FOUNDATION_EXIT_GATE CLEAN? (validate-phase-exit-criteria.mjs)
+Q-COMPLETE:  Active work >50%? Does this batch contribute to completion or pivot?
+Q-GLOBAL:    Is this solution platform-generalizable? If yes, vault generalization first.
+Q-INITIATED: Is this work Governor-directed or AI-proactive? If AI-proactive + App layer → vault it.
+             (B_LAYER_SEPARATION: AI-proactive app work = displaced core work. Governor-directed app work = execute fully.)
 
 QUESTIONS (need Governor answer before I start):
   Q1: [specific decision] → options: A / B / C (default: B if no answer in 2 min)

@@ -75,7 +75,9 @@ links:
 - .env.local (their credentials — Supabase, Clerk, Stripe)
 - Webhook routes (wired to libs/integrations)
 
-**App work is Governor-triggered:** Running `pnpm db:push`, setting up credentials, testing with real users, shipping features — these are product decisions made by the Governor when ready. Not AI session mandates.
+**App work is Governor-triggered by default — but Governor override always applies:** Running `pnpm db:push`, setting up credentials, testing with real users, shipping features — these are product decisions made by the Governor when ready. The AI executes them fully when directed. The separation governs who *initiates* the work, not whether the AI can help.
+
+**The concept (not the rule):** App-layer work appearing proactively in AI mandates = AI prioritizing local optimization (one app) over global optimization (platform bedrock for all 30 apps). The Governor, not the AI, decides when app investment is the right priority.
 
 ---
 

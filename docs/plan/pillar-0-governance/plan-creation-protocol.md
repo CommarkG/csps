@@ -211,4 +211,34 @@ Plans that violate this protocol exhibit one of these patterns:
 - [B_TEMPLATE_FIRST_CREATION + B_GRADUAL_BUILD + B_NO_INVENTION sections](./behavioral-contracts.md)
 - [extractions-ledger.md](../_intake/extractions-ledger.md) — full intake history
 
-**Plan creation protocol signature:** `S008-AI-plan-creation-protocol-v1.0-2026-05-05`
+---
+
+### Step 7 — Intersection Detection (pre-L4 gate — required for multi-session plans) [S016]
+
+Before any L4 (implementation) begins, scan the plan for **intersections**: places where two decisions share a dependency or where one assumption is the prerequisite for another.
+
+**The intersection detection checklist:**
+
+```
+For each pair of consequential decisions in §ASSUMPTIONS:
+  □ Do they reference the same schema entity?
+  □ Does decision A assume a behavior that decision B also modifies?
+  □ Does the timing of decision A affect the validity of decision B?
+  □ Would changing decision A require re-doing decision B?
+
+For each planned implementation step:
+  □ Does this step assume output from a previous step that isn't confirmed yet?
+  □ Does this step affect a shared resource (schema, auth, billing) used by other steps?
+```
+
+**Intersections found = STOP. Each intersection requires:**
+1. Named in the plan as an explicit intersection card
+2. Discussed with Governor until consensus reached
+3. Consensus written into the plan (Context | Chosen | Reasoning — per §ASSUMPTIONS format)
+4. Only then can L4 implementation begin
+
+**Anti-pattern:** proceeding to L4 with unresolved intersections. They surface as production bugs or architecture rewrites.
+
+---
+
+**Plan creation protocol signature:** `S016-AI-plan-creation-protocol-v1.1-2026-05-07`

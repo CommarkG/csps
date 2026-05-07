@@ -267,6 +267,27 @@ topic_plan_zf:
 
 ---
 
+## §ASSUMPTIONS — Assumption blocks for consequential decisions (S016 — deep_quality plans)
+
+> For each decision in this plan that is hard-to-reverse, multi-artifact, or cross-phase: add one ASSUMPTION block below. The block captures the WHY so that mid-execution discoveries can be checked against it.
+> Required for: `execution_mode: deep_quality`. Recommended for: `execution_mode: balanced` decisions that involve schema, auth, or billing.
+
+```
+### ASSUMPTION: [decision name]
+
+Context: [what we knew that made this seem right at planning time]
+Chosen: [what we decided]
+Reasoning: [why — the non-obvious part that isn't derivable from code alone]
+Alternatives considered: [what else was evaluated and why rejected]
+Falsified by: [what observation during implementation would invalidate this assumption]
+If falsified: [fallback path — what changes]
+Consensus: [AI proposed → Governor confirmed/modified → final agreed form]
+```
+
+*(For `execution_mode: velocity`: skip assumption blocks — the 4-condition gate + pre-flight are sufficient.)*
+
+---
+
 ## §HARVEST — Mandatory harvest section (S015 — every plan must declare this)
 
 > Every plan must answer: what is this plan designed to TEACH? Harvesting is not a session-close ceremony — it is structural. This section defines what to collect, when, and where.

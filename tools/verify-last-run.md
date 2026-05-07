@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T07:32:23.283Z
-- finished_at: 2026-05-07T07:32:29.744Z
+- ran_at: 2026-05-07T07:39:02.226Z
+- finished_at: 2026-05-07T07:39:07.600Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T07:32:23.283Z",
-    "finished_at": "2026-05-07T07:32:29.744Z",
+    "ran_at": "2026-05-07T07:39:02.226Z",
+    "finished_at": "2026-05-07T07:39:07.600Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -221,7 +221,7 @@
         "duration_seconds": 0.1,
         "plans_checked": 9,
         "plans_with_open": 5,
-        "total_open_items": 62
+        "total_open_items": 51
       },
       {
         "name": "rzf_evidence",
@@ -274,7 +274,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -359,7 +359,7 @@
         "plans_checked": 9,
         "sections_checked": 8,
         "blocking": 0,
-        "warnings": 3
+        "warnings": 1
       },
       {
         "name": "audit_runner_full_pass",

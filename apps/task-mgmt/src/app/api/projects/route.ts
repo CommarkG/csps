@@ -6,6 +6,7 @@ import { NextResponse } from 'next/server'
 import type { CspsSessionClaims } from '@csps/integrations'
 import { db } from '@/lib/db'
 import { writeAuditEvent } from '@/lib/audit'
+import { getEnhancedDb } from '@/lib/zenstack'
 
 export const dynamic = 'force-dynamic'
 
@@ -15,8 +16,13 @@ export async function GET() {
   const tenantId = (sessionClaims as CspsSessionClaims)?.tenantId
   if (!tenantId) return NextResponse.json({ error: 'No active tenant' }, { status: 403 })
 
-  const projects = await db.project.findMany({
-    where: { tenantId, deletedAt: null },
+  const cspsUser = await db.user.findUnique({ where: { clerkId: userId } })
+  if (!cspsUser) return NextResponse.json({ error: 'User not found' }, { status: 404 })
+
+  const edb = getEnhancedDb({ id: cspsUser.id, tenantId, staffRole: cspsUser.staffRole })
+
+  const projects = await edb.project.findMany({
+    where: { deletedAt: null },  // ZenStack adds tenantId filter
     include: { _count: { select: { tasks: { where: { deletedAt: null } } } } },
     orderBy: { createdAt: 'desc' },
   })
@@ -35,10 +41,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'name is required' }, { status: 400 })
   }
 
-  const user = await db.user.findUnique({ where: { clerkId: userId } })
-  if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 })
+  const cspsUser = await db.user.findUnique({ where: { clerkId: userId } })
+  if (!cspsUser) return NextResponse.json({ error: 'User not found' }, { status: 404 })
 
-  const project = await db.project.create({
+  const edb = getEnhancedDb({ id: cspsUser.id, tenantId, staffRole: cspsUser.staffRole })
+
+  const project = await edb.project.create({
     data: {
       tenantId,
       name: body.name.trim(),
@@ -49,7 +57,7 @@ export async function POST(request: Request) {
 
   await writeAuditEvent({
     tenantId,
-    actorId: user.id,
+    actorId: cspsUser.id,
     action: 'project.created',
     resourceType: 'Project',
     resourceId: project.id,

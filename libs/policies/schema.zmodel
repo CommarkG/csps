@@ -125,7 +125,12 @@ model User extends Base {
   comments     TaskComment[] @relation("TaskCommentAuthor")
 
   @@schema("public")
-  @@allow("read", auth().id == id || auth().staffRole != null)
+  // Any authenticated user (with active tenant session) can read User profiles —
+  // required for task assignee/createdBy display in team queries.
+  // Staff override: can read any user regardless of session.
+  @@allow("read", auth().tenantId != null || auth().staffRole != null)
+  @@allow("update", auth().id == id)  // users can only update their own profile
+  @@deny("create", true)              // created via Clerk webhook only (P-ARCH-008)
   @@deny("delete", true)
 
   @@index([clerkId])

@@ -6,6 +6,7 @@ import { NextResponse } from 'next/server'
 import type { CspsSessionClaims } from '@csps/integrations'
 import { db } from '@/lib/db'
 import { writeAuditEvent } from '@/lib/audit'
+import { getEnhancedDb } from '@/lib/zenstack'
 
 export const dynamic = 'force-dynamic'
 
@@ -22,8 +23,14 @@ export async function GET() {
   const tenantId = (sessionClaims as CspsSessionClaims)?.tenantId
   if (!tenantId) return forbidden()
 
-  const tasks = await db.task.findMany({
-    where: { tenantId, deletedAt: null },
+  // Bootstrap: look up CSPS user to get id + staffRole for ZenStack context
+  const cspsUser = await db.user.findUnique({ where: { clerkId: userId } })
+  if (!cspsUser) return NextResponse.json({ error: 'User not found' }, { status: 404 })
+
+  const edb = getEnhancedDb({ id: cspsUser.id, tenantId, staffRole: cspsUser.staffRole })
+
+  const tasks = await edb.task.findMany({
+    where: { deletedAt: null },  // ZenStack adds tenantId filter via @@allow("read", auth().tenantId == tenantId)
     include: {
       project: { select: { id: true, name: true } },
       assignee: { select: { id: true, displayName: true, email: true } },
@@ -47,11 +54,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'title is required' }, { status: 400 })
   }
 
-  // Get the CSPS user row for createdById
-  const user = await db.user.findUnique({ where: { clerkId: userId } })
-  if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 })
+  // Bootstrap: look up CSPS user (needed for createdById + ZenStack context)
+  const cspsUser = await db.user.findUnique({ where: { clerkId: userId } })
+  if (!cspsUser) return NextResponse.json({ error: 'User not found' }, { status: 404 })
 
-  const task = await db.task.create({
+  const edb = getEnhancedDb({ id: cspsUser.id, tenantId, staffRole: cspsUser.staffRole })
+
+  const task = await edb.task.create({
     data: {
       tenantId,
       title: body.title.trim(),
@@ -60,7 +69,7 @@ export async function POST(request: Request) {
       priority: body.priority ?? 'none',
       dueDate: body.dueDate ? new Date(body.dueDate) : null,
       projectId: body.projectId ?? null,
-      createdById: user.id,
+      createdById: cspsUser.id,
       assigneeId: body.assigneeId ?? null,
     },
     include: {
@@ -71,7 +80,7 @@ export async function POST(request: Request) {
 
   await writeAuditEvent({
     tenantId,
-    actorId: user.id,
+    actorId: cspsUser.id,
     action: 'task.created',
     resourceType: 'Task',
     resourceId: task.id,

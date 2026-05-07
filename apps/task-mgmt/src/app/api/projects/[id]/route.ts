@@ -6,10 +6,17 @@ import { NextResponse } from 'next/server'
 import type { CspsSessionClaims } from '@csps/integrations'
 import { db } from '@/lib/db'
 import { writeAuditEvent } from '@/lib/audit'
+import { getEnhancedDb } from '@/lib/zenstack'
 
 export const dynamic = 'force-dynamic'
 
 type Params = { params: { id: string } }
+
+async function resolveContext(userId: string, tenantId: string) {
+  const cspsUser = await db.user.findUnique({ where: { clerkId: userId } })
+  if (!cspsUser) return null
+  return { cspsUser, edb: getEnhancedDb({ id: cspsUser.id, tenantId, staffRole: cspsUser.staffRole }) }
+}
 
 export async function GET(_req: Request, { params }: Params) {
   const { userId, sessionClaims } = await auth()
@@ -17,8 +24,11 @@ export async function GET(_req: Request, { params }: Params) {
   const tenantId = (sessionClaims as CspsSessionClaims)?.tenantId
   if (!tenantId) return NextResponse.json({ error: 'No active tenant' }, { status: 403 })
 
-  const project = await db.project.findFirst({
-    where: { id: params.id, tenantId, deletedAt: null },
+  const ctx = await resolveContext(userId, tenantId)
+  if (!ctx) return NextResponse.json({ error: 'User not found' }, { status: 404 })
+
+  const project = await ctx.edb.project.findFirst({
+    where: { id: params.id, deletedAt: null },  // ZenStack adds tenantId filter
     include: {
       tasks: {
         where: { deletedAt: null },
@@ -38,7 +48,12 @@ export async function PUT(request: Request, { params }: Params) {
   const tenantId = (sessionClaims as CspsSessionClaims)?.tenantId
   if (!tenantId) return NextResponse.json({ error: 'No active tenant' }, { status: 403 })
 
-  const existing = await db.project.findFirst({ where: { id: params.id, tenantId, deletedAt: null } })
+  const ctx = await resolveContext(userId, tenantId)
+  if (!ctx) return NextResponse.json({ error: 'User not found' }, { status: 404 })
+
+  const existing = await ctx.edb.project.findFirst({
+    where: { id: params.id, deletedAt: null },  // ZenStack adds tenantId filter
+  })
   if (!existing) return NextResponse.json({ error: 'Not found' }, { status: 404 })
 
   const body = await request.json().catch(() => ({}))
@@ -47,12 +62,11 @@ export async function PUT(request: Request, { params }: Params) {
   if ('description' in body) updates.description = body.description
   if ('status' in body) updates.status = body.status
 
-  const project = await db.project.update({ where: { id: params.id }, data: updates })
+  const project = await ctx.edb.project.update({ where: { id: params.id }, data: updates })
 
-  const user = await db.user.findUnique({ where: { clerkId: userId } })
   await writeAuditEvent({
     tenantId,
-    actorId: user?.id ?? null,
+    actorId: ctx.cspsUser.id,
     action: 'project.updated',
     resourceType: 'Project',
     resourceId: project.id,

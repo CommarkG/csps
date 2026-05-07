@@ -50,6 +50,35 @@ consolidation_cross_refs:
 
 ---
 
+
+## §6 Personas
+
+**Default persona:** Platform operator / AI instance working in the Vocabulary domain.
+
+**AI personas operating here:**
+- **Persona 1 (Governed AI Collaborator)** — executes all Vocabulary work
+- **Persona 2 (ZF Orchestrator)** — validation cycles for this domain
+- **Persona 3 (Haiku Scout)** — mechanical scans and lookups
+- **Persona 4 (Expert Council)** — advisory reviews via skills
+
+See [ai-personas.md](../ai-personas.md) for full definitions.
+
+**AI behavior in this domain:**
+- *Spine-level:* Follows the domain's principle hierarchy
+- *Platform-level:* CONCEPT_LOAD mandatory; B_RESULT_NOT_OUTPUT governs handoffs
+- *Domain-unique:* Per §3 principles
+
+---
+
+## §7 Human Journeys
+
+**Developer journey:** Apply Build Alignment Protocol (goal → architecture → user journeys → ZF gate).
+
+**External AI advisor journey:** Receive context package → answer 3 comprehension questions → structured review → Governor review before integration.
+
+See [ai-personas.md Persona 5](../ai-personas.md).
+
+---
 ## §2 The Problem I Solve
 
 **Without Vocabulary:** AI invents new names for existing concepts. Two developers use different terms for the same thing. Governance documents use "done" in 3 different senses. Terms like "session" mean different things in different contexts (governance S<NNN> vs HTTP session). Conflicts arise not from different intentions but from different vocabulary.
@@ -134,3 +163,22 @@ find_vocabulary_by_spine("ARCH")    → terms owned by that spine
 | AI | AI behavior governed by B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK |
 | VALD | Frontmatter closed enums enforced by validate-frontmatter.mjs |
 | QC/Audits | vocabulary-canon-completeness audit in P11 pipeline |
+
+## §10 Current State & Evolution
+
+**Active:** Core functionality described in §4.
+
+**Planned (enforcement_stage: week-4 / planned):**
+- Full §8/§9 vocabulary and MCP expansion (S019)
+- AI personas integration (ai-personas.md reference active)
+
+---
+
+## §11 Connection Map
+
+| Connected to | How |
+|---|---|
+| GVRN | Governed by GVRN principles; ratification required for changes |
+| VALD | Validators enforce this domain's quality standards |
+| AI | AI personas operate in this domain per ai-personas.md |
+| Platform Services | Cross-cutting — connects to all other platform services |

@@ -26,7 +26,7 @@
  * registered: S018 — template propagation seed
  */
 
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { globSync } from 'node:fs';
@@ -68,7 +68,6 @@ function findDomainCardArtifacts() {
   // Manual glob using recursive directory search
   function walkDir(dir) {
     try {
-      const { readdirSync, statSync } = require('node:fs');
       for (const entry of readdirSync(dir)) {
         const full = join(dir, entry);
         const stat = statSync(full);

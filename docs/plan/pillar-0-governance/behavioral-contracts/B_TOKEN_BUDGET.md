@@ -3,9 +3,35 @@
 [//]: # (Source of truth: docs/plan/pillar-0-governance/behavioral-contracts.md)
 [//]: # (DO NOT edit — run `node tools/generators/split-behavioral-contracts.mjs` to regenerate)
 [//]: # (Phase 7 token-optimization §9.8 Candidate #2 S010 — load B_TOKEN_BUDGET.md instead of full ~48K monolith)
-## B_TOKEN_BUDGET — 5 operating rules extending P-META-009 CCA (S007 turn 4)
+## B_TOKEN_BUDGET — 8 operating rules extending P-META-009 CCA (v2 ratified S018 — Governor + 4-advisor consensus)
 
-**Canonical:** Every CSPS AI session honors 5 operating rules governing recurring token consumption: **R1** default depth L1 (quick) only — L2/L3 require explicit trigger; **R2** default model tiering — Sonnet for build/edit, Haiku for subagents (read-only Task tool ops), **Opus for engraving + PCR + ZF synthesis + architectural decisions** (CCA QG1 immutable); no mid-task model switching (cache is model-specific); **R3** default at IMPL_BATCH boundary `/compact <focus>` — strategic compaction with focus instructions replaces auto-compact's content-loss pattern; CSPS analog: at L<N>→L<N+1> topic-plan transitions OR commit-worthy boundaries; **R4** default between unrelated tasks `/clear` + new session — stale context from unrelated tasks does not pay rent; CSPS analog: chat-vs-session distinction (P-META-014); **R5** default for tool output: summary first; full log path-linked — validator + command + file-read returns `status + findings_count + top_5 + evidence_paths + full_log_path`. **B_TOKEN_BUDGET extends P-META-009 CCA — does NOT introduce a new principle.**
+**Canonical (v2 — 8 rules):** Every CSPS AI session honors 8 operating rules governing recurring token consumption:
+
+**R1 — Default depth L1 only (enhanced):** Every response defaults to L1. L2/L3 require explicit trigger: validator cites L2 section / implementation needs exact content / ambiguity persists after one L1 clarification turn / Governor explicitly requests.
+
+**R2 — Model discipline (two independent settings):**
+- Setting A (main session model): Default Sonnet 4.6. Opus only at task boundary for constitutional decisions / high-blast architecture / ZF deep synthesis. NEVER switch mid-task (cache is model-specific — invalidates entire prefix). If escalation needed: compact/handoff first, then switch.
+- Setting B (subagent model): `CLAUDE_CODE_SUBAGENT_MODEL=haiku` set once in settings.json. Independent of main session model — does NOT affect main cache.
+
+**R3 — /compact discipline (dual trigger + timing constraint):**
+Primary trigger: IMPL_BATCH boundary (commit-worthy / L→L+1 transition). Secondary trigger: context utilization reaches 60-65%. Timing constraint: /compact must run within 5 min of last interaction; if >5 min idle → /clear + new session is cheaper (cache rebuild avoided). Required focus phrase: current objective / files changed / blockers / decisions made / next batch / what to drop.
+
+**R4 — /clear discipline (1M context variant):**
+The conversation IS the session archive. DO NOT /clear while context < 80% used. /clear ONLY when: context >80% saturated AND task arc is completely closed. NEVER /clear for: idle time / domain switch / "fresh start" preference / under 80% context utilization. Moving to NEW CHAT costs: cache rebuild from scratch + loss of non-extracted conversation context.
+
+**R5 — Tool output (content-type aware):**
+Default for ALL tool outputs: summary (1-2 sentences) → evidence path → next action. Validator output: status + finding_count + top findings + log path — never inline raw. Grep >10 matches: count + file list. File reads: full only when file IS the work subject. Tests: failures inline; pass-counts as summary only.
+
+**R6 — /cost measurement (NEW):**
+Run /cost at: session-open (baseline) + IMPL_BATCH close (delta). Track cost-per-ZF-0-batch as the KPI (not cost-per-session). Advisory: without measurement, B_TOKEN_BUDGET is behavioral not mechanical.
+
+**R7 — Subagents for heavy isolated work (NEW):**
+Mandatory subagent for: ZF cycles / validator suite runs / file scanning >5 files / log analysis / cruel-critic passes. Subagent returns: summary + evidence_paths + blocker_status + next_action (200-500 tokens back to main). Main thread never sees: raw exploration, raw file reads, raw grep dumps.
+
+**R8 — Cache-stable static context (NEW):**
+NEVER mid-session: edit CLAUDE.md / install/remove MCP servers / add plugins / switch main session model. Always at session boundary (batched): all CLAUDE.md edits in one session (one cache rebuild, not many). Target cache hit rate: >70% after first turn.
+
+**B_TOKEN_BUDGET extends P-META-009 CCA — does NOT introduce a new principle.**
 
 **Counterweight:** Trivial verifications (file-existence checks; "did this string change?") may use Haiku tier; mechanical edits (find-replace; lifecycle bumps) may use Sonnet tier — these don't violate R2. R3 `/compact` not required at micro-boundaries (single-line edit / typo fix); the IMPL_BATCH boundary (commit-worthy / level-transition) is the trigger. R5 summary-first does not apply when full log is short (≤50 lines); the discipline targets large blob outputs (>500 tokens) accumulating as raw context. The discipline targets RECURRING boundaries where defaults compound; one-off exceptions documented inline are acceptable.
 

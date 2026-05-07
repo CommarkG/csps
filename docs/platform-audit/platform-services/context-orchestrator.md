@@ -183,3 +183,15 @@ template_version: "1.0"):**
 | GVRN | Tier 4 (main context) is where GVRN decisions happen; orchestrator protects it |
 | VALD | Subagent fan-out for validator runs (Tier 3 isolation) reduces VALD cost in main |
 | AI Behavior | Inner-AI-Defaults calibration is loaded via orchestrator context bundles |
+
+## §11 Connection Map
+
+| Connected to | How |
+|---|---|
+| AI spine | GRACE is the AI spine's operational execution layer |
+| Priority Engine | PE composition selected by orchestrator based on escalation ladder rungs |
+| QC/Audits | Escalation ladders fire on audit signals (exit_code 1, BLOCKING finding) |
+| GVRN | Tier 4 (main context) is where GVRN decisions happen; orchestrator protects it |
+| VALD | Subagent fan-out for validator runs (Tier 3 isolation) reduces VALD cost in main |
+| AI Behavior | Inner-AI-Defaults calibration is loaded via orchestrator context bundles |
+| ai-personas | Persona 6 (Context Orchestrator) is defined in ai-personas.md; governs this service |

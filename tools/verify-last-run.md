@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T18:25:46.901Z
-- finished_at: 2026-05-07T18:26:01.269Z
+- ran_at: 2026-05-07T20:14:10.573Z
+- finished_at: 2026-05-07T20:14:22.131Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T18:25:46.901Z",
-    "finished_at": "2026-05-07T18:26:01.269Z",
+    "ran_at": "2026-05-07T20:14:10.573Z",
+    "finished_at": "2026-05-07T20:14:22.131Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.1,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 1.3,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,10 +39,10 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 252,
+        "duration_seconds": 0.1,
+        "scanned": 255,
         "errors": 0,
-        "warnings": 3,
+        "warnings": 4,
         "exempt": 212
       },
       {
@@ -133,7 +133,7 @@
         "command": "node tools/validators/validate-catch-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "council_coverage",
@@ -147,7 +147,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -179,7 +179,7 @@
         "command": "node tools/validators/validate-impl-status.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "checked": 63,
         "with_status": 11,
         "warnings": 0
@@ -299,9 +299,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 39,
+        "validators_checked": 40,
         "orphans": 0,
-        "registered": 39
+        "registered": 40
       },
       {
         "name": "token_budget_validate",
@@ -388,7 +388,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 7.6,
+        "duration_seconds": 5.9,
         "generate_ok": true,
         "zmodel_models": 7,
         "app_models": 7,

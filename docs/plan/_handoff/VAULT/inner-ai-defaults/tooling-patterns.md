@@ -55,3 +55,12 @@ session: S006
 - **reason:** Reactive use means reminders override judgment; proactive shows planning
 - **caught_by_validator:** todowrite-proactive-on-multistep (sampling) — registered; impl deferred
 - **status:** active
+
+### tooling-clear-on-idle
+- **default_pattern:** Use /clear between tasks or after idle period to "start fresh"
+- **csps_aligned_pattern:** At 1M context: /clear ONLY at >80% saturation AND task arc fully closed. The conversation IS the session archive — clearing destroys live governance context that cannot be recovered.
+- **disposition:** override
+- **concept_ref:** AI L2 inner-defaults — training default is /clear as a housekeeping habit; CSPS override treats conversation history as a valuable governance artifact
+- **reason:** B_TOKEN_BUDGET R4 v2 (S018). At 1M context, cache warmth argument is minor vs archive value. Clearing at <80% wastes institutional session knowledge.
+- **caught_by_validator:** token-budget-clear-discipline (registered S018; impl deferred week-4)
+- **status:** active

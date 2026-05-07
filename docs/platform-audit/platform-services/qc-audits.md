@@ -141,3 +141,37 @@ get_active_blockers()               → current BLOCKING findings
 | ARCH | Schema drift validator (P6) monitors ARCH integrity |
 | AI | B_TOKEN_BUDGET validators (P10) monitor AI context efficiency |
 | Priority Engine | Escalation ladders signal PE composition changes |
+
+## §8 Vocabulary
+
+**Terms I own:** [Domain-specific terms — to be expanded in S019]
+
+**Terms I use:** ZF (GVRN), enforcement_stage (GVRN), CONCEPT_LOAD (AI)
+
+---
+
+## §9 MCP Surface
+
+\
+*Full MCP surface requires principles-mcp Phase 5 (S021).*
+
+---
+
+## §10 Current State & Evolution
+
+**Active:** Core functionality described in §4.
+
+**Planned (enforcement_stage: week-4 / planned):**
+- Full §8/§9 vocabulary and MCP expansion (S019)
+- AI personas integration (ai-personas.md reference active)
+
+---
+
+## §11 Connection Map
+
+| Connected to | How |
+|---|---|
+| GVRN | Governed by GVRN principles; ratification required for changes |
+| VALD | Validators enforce this domain's quality standards |
+| AI | AI personas operate in this domain per ai-personas.md |
+| Platform Services | Cross-cutting — connects to all other platform services |

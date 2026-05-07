@@ -50,6 +50,35 @@ consolidation_cross_refs:
 
 ---
 
+
+## §6 Personas
+
+**Default persona:** Platform operator / AI instance working in the Priority Engine domain.
+
+**AI personas operating here:**
+- **Persona 1 (Governed AI Collaborator)** — executes all Priority Engine work
+- **Persona 2 (ZF Orchestrator)** — validation cycles for this domain
+- **Persona 3 (Haiku Scout)** — mechanical scans and lookups
+- **Persona 4 (Expert Council)** — advisory reviews via skills
+
+See [ai-personas.md](../ai-personas.md) for full definitions.
+
+**AI behavior in this domain:**
+- *Spine-level:* Follows the domain's principle hierarchy
+- *Platform-level:* CONCEPT_LOAD mandatory; B_RESULT_NOT_OUTPUT governs handoffs
+- *Domain-unique:* Per §3 principles
+
+---
+
+## §7 Human Journeys
+
+**Developer journey:** Apply Build Alignment Protocol (goal → architecture → user journeys → ZF gate).
+
+**External AI advisor journey:** Receive context package → answer 3 comprehension questions → structured review → Governor review before integration.
+
+See [ai-personas.md Persona 5](../ai-personas.md).
+
+---
 ## §2 The Problem I Solve
 
 **Without PE:** Work is driven by what feels urgent or what the AI is excited about. Shiny new items displace 80%-complete work. Foundation items lose to features. Governance loses to coding. Each session the platform makes progress in one direction while accumulating debt in three others.
@@ -176,3 +205,22 @@ get_completion_over_shiny_status()                         → active work + 1.5
 | OPER | Build order provides the dependency graph that PE respects |
 | Context Orchestrator | PE composition selection drives context bundle selection |
 | QC/Audits | Escalation ladder signals from audits feed PE recalculation |
+
+## §10 Current State & Evolution
+
+**Active:** Core functionality described in §4.
+
+**Planned (enforcement_stage: week-4 / planned):**
+- Full §8/§9 vocabulary and MCP expansion (S019)
+- AI personas integration (ai-personas.md reference active)
+
+---
+
+## §11 Connection Map
+
+| Connected to | How |
+|---|---|
+| GVRN | Governed by GVRN principles; ratification required for changes |
+| VALD | Validators enforce this domain's quality standards |
+| AI | AI personas operate in this domain per ai-personas.md |
+| Platform Services | Cross-cutting — connects to all other platform services |

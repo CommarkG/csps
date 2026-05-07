@@ -51,6 +51,35 @@ consolidation_cross_refs:
 
 ---
 
+
+## §6 Personas
+
+**Default persona:** Platform operator / AI instance working in the AI Behavior domain.
+
+**AI personas operating here:**
+- **Persona 1 (Governed AI Collaborator)** — primary: executes all AI Behavior governance work
+- **Persona 2 (ZF Orchestrator)** — validation: runs validators relevant to this domain
+- **Persona 3 (Haiku Scout)** — mechanical: file scans, grep, log analysis for this domain
+- **Persona 4 (Expert Council)** — advisory: skill invocations (schema-expert, cruel-critic, etc.)
+
+See [ai-personas.md](../ai-personas.md) for full persona definitions.
+
+**AI behavior in this domain:**
+- *Spine-level:* Follows the spine's principle hierarchy
+- *Platform-level:* CONCEPT_LOAD mandatory; B_RESULT_NOT_OUTPUT governs all handoffs
+- *Domain-unique:* Domain-specific behavioral constraints per §3 principles
+
+---
+
+## §7 Human Journeys
+
+**Developer journey:** Work in this domain follows the Build Alignment Protocol (platform-core-alignment L3): goal definition → architecture → user journeys → spine between.
+
+**External AI advisor journey:** Receive context package with this domain card → answer comprehension check (3 questions) → provide structured review → Governor reviews findings before integration.
+
+See [ai-personas.md Persona 5](../ai-personas.md) for external advisor protocol.
+
+---
 ## §2 The Problem I Solve
 
 **Without AI Behavior calibration:** AI training defaults silently override platform conventions. Generic naming appears. Reflexive try/catch is added. Sycophantic agreement replaces principled push-back. Context is bulk-loaded instead of selectively retrieved. Each session, the drift compounds — the AI is gradually working on a different (imaginary) version of the platform.
@@ -132,6 +161,13 @@ find_behavior_by_spine("AI")           → all AI-behavioral elements
 
 ---
 
+## §10 Current State & Evolution
+
+**Active:** Inner-AI-Defaults registry (10 files) + concept_ref field added (S018) + B_CONCEPT_LOAD (hard NO + audit slug registered)
+
+**Planned:** Full MCP Layer 5 (principles-mcp extended with domain cards + ai-personas) + automatic CDAB loading via GRACE injection + dual-audience generation from domain card schema
+
+---
 ## §9 Connection Map
 
 | Connected to | How |

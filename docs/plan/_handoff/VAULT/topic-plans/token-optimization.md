@@ -24,6 +24,7 @@ session: S007
 execution_mode: balanced
 alignment_verified_session: S015
 opened_at_session: S007
+enforcement_stage: week-4
 opened_at_turn: 2
 topic_id: token-optimization
 priority_score: 80

@@ -35,6 +35,9 @@ const CLOSED_DIMENSIONS = {
 
 const LIFECYCLE_VALUES = ['experimental', 'beta', 'production', 'deprecated'];
 const LIFECYCLE_STATE_VALUES = ['active', 'pending-review', 'pending-protocol', 'promoted', 'resolved', 'deprecated', 'validated', 'closed'];
+// S018 — enforcement lifecycle for governance artifacts (validators, hooks, contracts, audits)
+// stub: shell exists, exits 0, zero cost | planned: designed, not yet built | week-4: ships in week-4 batch | active: enforcing in production
+const ENFORCEMENT_STAGE_VALUES = ['stub', 'planned', 'week-4', 'active'];
 
 const TERMINAL_STATES = new Set(['validated', 'closed']);
 
@@ -257,6 +260,12 @@ function validateOne(file, fm, errors, warnings, idIndex) {
   // lifecycle_state closed enum
   if (fm.lifecycle_state && !LIFECYCLE_STATE_VALUES.includes(fm.lifecycle_state)) {
     errors.push(ctx(`lifecycle_state "${fm.lifecycle_state}" not in {${LIFECYCLE_STATE_VALUES.join('|')}}`));
+  }
+
+  // enforcement_stage closed enum (optional — only validate if present)
+  // Applies to: governance artifacts with an enforcement progression (validators, hooks, contracts, topic plans)
+  if (fm.enforcement_stage && !ENFORCEMENT_STAGE_VALUES.includes(fm.enforcement_stage)) {
+    errors.push(ctx(`enforcement_stage "${fm.enforcement_stage}" not in {${ENFORCEMENT_STAGE_VALUES.join('|')}} — valid values: stub|planned|week-4|active`));
   }
 
   // next_review_at required when lifecycle_state != active

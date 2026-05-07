@@ -116,6 +116,27 @@ Tags follow the pattern `<dimension>:<value>`. Each dimension has a closed enum:
 
 **Note:** `active` is NOT in this enum (S007 turn 2 K=2 catch). Authors confused with `lifecycle_state:active` — `active` lives at top-level lifecycle_state, NOT in maturity tag.
 
+## `enforcement_stage:` — enforcement lifecycle for governance artifacts *(S018 — new)*
+
+**Optional field.** Applies to: validators, hooks, behavioral contracts, topic plans describing enforcement work. Tracks the progression of an enforcement surface from declaration to active production.
+
+```yaml
+enforcement_stage: stub | planned | week-4 | active
+```
+
+| Value | Meaning | Cost | Consumer |
+|---|---|---|---|
+| `stub` | Shell exists, exits 0 always, zero enforcement cost | None | verify-hooks-functional.sh |
+| `planned` | Designed + documented, not yet built | None | (cognitive only) |
+| `week-4` | Registered in audit-runner, ships in week-4 build batch | Low | build-order.md |
+| `active` | Enforcing in production — exits 1 on violation | Full | pnpm verify + ZF |
+
+**Key discipline (ratified S018):** Schema field ships WITH its consuming validator, not before. `enforcement_stage: active` requires an active consumer. `enforcement_stage: stub|planned|week-4` is valid without a consumer — it declares the intent.
+
+**Consuming validator:** `validate-enforcement-stage-progression.mjs` (week-4) — checks that artifacts marked `enforcement_stage: active` have a corresponding passing validator in `pnpm verify`.
+
+---
+
 ## Common drift patterns (K=2 catalog)
 
 | Wrong | Right | Why drift |

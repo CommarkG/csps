@@ -75,11 +75,12 @@
     },
     {
       "id": "VLT-S016-ZENSTACK",
-      "status": "PENDING",
-      "decision": "ZenStack installation in CSPS project. Unblocks: DB-level RLS policies (Postgres Row Level Security per tenant), validate-foundation-schema-drift.mjs, foundation-slices L3 closure, ZenStack-integrated app template. Unblocked by: apps/task-mgmt/ now exists (the missing dependency). Options: A) Install ZenStack S017 as first mandate before any new app. B) Defer until 2 apps exist to validate the ZModel→Prisma pipeline. Recommendation: A — platform-first, 1 install protects all 30 apps.",
-      "ratified_by": null,
+      "status": "RESOLVED",
+      "decision": "Option A ratified by Governor S016: Install ZenStack in CSPS project as first mandate of S017, before any new app build. Rationale: platform-first — one installation protects all 30 apps. Unblocks: DB-level RLS, validate-foundation-schema-drift.mjs, foundation-slices L3 closure.",
+      "ratified_by": "Governor",
       "registered_at": "2026-05-07T00:00:00Z",
-      "unblocked_by": "apps/task-mgmt/ created S015"
+      "unblocked_by": "apps/task-mgmt/ created S015",
+      "resolved_at": "2026-05-07T00:00:00Z"
     }
   ],
   "platform_state": {
@@ -115,7 +116,8 @@
     "behavioral_contracts": 46,
     "zf_mandate_protocol": "docs/plan/pillar-0-governance/zf-mandate-protocol.md",
     "bedrock_completion": "67% done (14/21 items), 100% tracked. 2 root decisions: VLT-S016-ZENSTACK + plan-methodology-v2 L2 (S016). See csps-bedrock.md.",
-    "layer_separation": "CORE layer (libs/, tools/, governance/) = what every app inherits. APP layer (apps/*) = individual products. App-layer work (live deployment, credentials, dev server) is Governor-triggered, not AI-mandated."
+    "layer_separation": "CORE layer (libs/, tools/, governance/) = what every app inherits. APP layer (apps/*) = individual products. App-layer work (live deployment, credentials, dev server) is Governor-triggered, not AI-mandated.",
+    "app_layer_permission": "EXPLICIT ONLY — AI never initiates app-layer work. Requires explicit Governor directive per specific task (not implied by approved/proceed). B_LAYER_SEPARATION escape hatch: specific permission, not blanket."
   },
   "next_session_auto_checks": [
     "pnpm verify --skip-install (confirm 37 PASS)",
@@ -149,6 +151,12 @@
       "model_tier": "STANDARD_BUILD",
       "estimated_tokens_k": 120,
       "unlocks": "second app build (full methodology applied from session 1)"
+    },
+    "s017": {
+      "mandate": "ZenStack installation (Option A ratified) + RLS policies + validate-foundation-schema-drift.mjs + foundation-slices L3 closure. Bedrock Layer 2 completion.",
+      "model_tier": "STANDARD_BUILD",
+      "estimated_tokens_k": 100,
+      "unlocks": "bedrock Layer 2 complete → app #2 build authorized"
     }
   },
   "why_better_than_others": [

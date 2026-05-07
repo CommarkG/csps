@@ -9,7 +9,7 @@
 | **Current session** | S016 |
 | **Previous session** | S015 |
 | **Last updated** | today |
-| **Last commit** | 1c24e8d S016 Governor directive: Core/App layer separation + mandate corrected |
+| **Last commit** | fbe48f6 VLT-S016-ZENSTACK resolved (Option A) + S017 mandate set + app permission rule strengthened |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
@@ -31,9 +31,10 @@
 - ✅ **VLT-S014-003**: One workspace per tenant (Option A). Workspace IS the Tenant.
 - ✅ **VLT-S014-004**: $1K MRR graduation trigger (Option B).
 - ✅ **VLT-S014-005**: Free solo / paid team. Billing trigger fires on 2nd UserTenant creation. Wired in apps/task-mgmt/src/app/api/webhooks/clerk/route.ts.
+- ✅ **VLT-S016-ZENSTACK**: Option A ratified by Governor S016: Install ZenStack in CSPS project as first mandate of S017, before any new app build. Rationale: platform-first — one installation protects all 30 apps. Unblocks: DB-level RLS, validate-foundation-schema-drift.mjs, foundation-slices L3 closure.
 
 ### 🔴 Still pending (decide before proceeding)
-- 🔴 **VLT-S016-ZENSTACK**: See tools/session-state.json
+- None — all decisions resolved
 
 ## Platform health
 
@@ -52,6 +53,7 @@
 |---|---|---|
 | s015 | Phase 5 task management app — scaffold + CRUD + governance engraving | ✅ COMPLETE (52d35b7) |
 | s016 | Plan Methodology v2 L2 + task-mgmt live deployment | ⏳ PENDING |
+| s017 | ZenStack installation (Option A ratified) + RLS policies + validate-foundation-schema-drift.mjs + foundation-slices L3 closure. Bedrock Layer 2 completion. | ⏳ PENDING |
 
 ## Why this builds better than others
 

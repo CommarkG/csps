@@ -76,6 +76,8 @@ topic_id: <kebab-case-slug>
 priority_score: <0-100 from priority engine>
 priority_band: 1 | 2 | 3 | 4
 multi_session_arc: [S<NNN>, S<NNN+1>, ...]
+alignment_verified_session: S<NNN>    # updated each session this plan is reviewed
+execution_mode: velocity | balanced | deep_quality   # S015: velocity=speed/Sonnet, balanced=verify-gated/Sonnet, deep_quality=assumption-blocks/Opus for intersections
 depth_chosen: 3 | 4 | 5
 depth_rationale: |
   <factors evaluated:
@@ -261,6 +263,39 @@ topic_plan_zf:
     - <finding> | none
   status: ZF-0-ACHIEVED-CYCLE-<N>
   signature: S<NNN>-AI-topic-plan-attest-<ISO-8601-UTC>-<topic-id>-L0
+```
+
+---
+
+## §HARVEST — Mandatory harvest section (S015 — every plan must declare this)
+
+> Every plan must answer: what is this plan designed to TEACH? Harvesting is not a session-close ceremony — it is structural. This section defines what to collect, when, and where.
+
+```yaml
+harvest_triggers:
+  - on: phase_gate                  # fires at each L<N> → L<N+1> boundary
+    collect:
+      - schema_decisions_made
+      - patterns_discovered
+      - assumption_violations
+      - simpler_approaches_found
+    destination: vault              # vault first — process at gate, distribute after review
+    vault_path: docs/plan/_intake/vault/<topic-id>/
+
+  - on: discovery                   # fires when AI finds something unexpected mid-implementation
+    collect: [divergence_from_assumption, unexpected_constraint, performance_finding]
+    destination: raw-thoughts-queue # immediate capture, low cost, processed at next gate
+
+  - on: plan_close
+    collect: [full_extraction_cycle, lessons_for_next_similar_plan, graduation_path_if_applicable]
+    destination:
+      - extraction_note: docs/plan/_handoff/VAULT/session-<NNN>-extraction.md
+      - pattern_home: <canonical destination for plan-specific patterns>
+
+harvest_questions:                  # what are we TRYING TO LEARN by executing this plan?
+  - "<specific learning question 1>"
+  - "<specific learning question 2>"
+  # These guide the extraction at each gate — not abstract, not generic.
 ```
 
 ---

@@ -6,8 +6,8 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 44
-  generated_at: '2026-05-06'
+  total_count: 45
+  generated_at: '2026-05-07'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
   usage: Load individual slice files (./behavioral-contracts/B_NAME.md) for AI session context;
@@ -144,5 +144,8 @@ contracts:
     desc: "B_CONSENSUS_BEFORE_PROCEEDING"
     path: ./behavioral-contracts/B_CONSENSUS_BEFORE_PROCEEDING.md
   - id: B_TRIAD_GOVERNANCE
-    desc: "for consequential decisions, all three layers must be present"
+    desc: "B_TRIAD_GOVERNANCE"
     path: ./behavioral-contracts/B_TRIAD_GOVERNANCE.md
+  - id: B_COMPLETION_OVER_SHINY
+    desc: "B_COMPLETION_OVER_SHINY"
+    path: ./behavioral-contracts/B_COMPLETION_OVER_SHINY.md

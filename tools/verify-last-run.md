@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T04:19:55.205Z
-- finished_at: 2026-05-07T04:20:01.294Z
+- ran_at: 2026-05-07T05:04:21.129Z
+- finished_at: 2026-05-07T05:04:27.626Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T04:19:55.205Z",
-    "finished_at": "2026-05-07T04:20:01.294Z",
+    "ran_at": "2026-05-07T05:04:21.129Z",
+    "finished_at": "2026-05-07T05:04:27.626Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 1.1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,11 +39,11 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 219,
+        "duration_seconds": 0.1,
+        "scanned": 221,
         "errors": 0,
         "warnings": 0,
-        "exempt": 206
+        "exempt": 207
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.4,
         "stale_count_files": 0
       },
       {
@@ -87,7 +87,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 44,
+        "source_contracts": 45,
         "missing_slices": 0
       },
       {
@@ -207,7 +207,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 110,
+        "checked": 111,
         "missing_why": 29
       },
       {
@@ -216,9 +216,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 8,
-        "plans_with_open": 4,
-        "total_open_items": 54
+        "plans_checked": 9,
+        "plans_with_open": 5,
+        "total_open_items": 70
       },
       {
         "name": "rzf_evidence",
@@ -244,7 +244,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 6,
+        "checked": 7,
         "grandfathered": 2,
         "errors": 0
       },
@@ -281,7 +281,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 8,
+        "plans_checked": 9,
         "warnings": 0
       },
       {
@@ -334,7 +334,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 8,
+        "plans_checked": 9,
         "stale_total": 4,
         "unverified": 0,
         "verified": 4,
@@ -346,10 +346,10 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 8,
-        "sections_checked": 4,
+        "plans_checked": 9,
+        "sections_checked": 8,
         "blocking": 0,
-        "warnings": 0
+        "warnings": 3
       },
       {
         "name": "audit_runner_full_pass",

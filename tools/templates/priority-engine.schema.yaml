@@ -527,4 +527,51 @@ model_tier_required:
   # and surfaces: "N DEEP_REASONING items pending — schedule Opus session"
   enforcement_mechanism: context-orchestrator.sh + pe-compute.mjs read_budget output
 
-schema_signature: S011-AI-pe-schema-model-tier-2026-05-06T08:50:00Z (§15 added — model tier vocabulary integration)
+# ============================================================
+# §16 COMPLETION_BIAS_PROTECTION (S015 — B_COMPLETION_OVER_SHINY)
+# ============================================================
+completion_bias_protection:
+  description: |
+    When an active phase is >50% complete, continuation items receive a structural
+    weight multiplier. This prevents the "shiny object trap" — the AI tendency to
+    abandon active work when a new, significant item enters context.
+
+    The bias is structural (not advisory): it applies regardless of how exciting the
+    new item appears. New items enter the PE queue; they don't redirect current work.
+
+  activation_condition: active_phase_completion_pct > 50
+
+  completion_weight: 1.5
+  application: "multiply base PE score of continuation items by completion_weight"
+  result: "new item must score 1.5× its own PE score to compete with phase continuation"
+
+  override_conditions:
+    - FOUNDATION_EXIT_GATE: BLOCKING (actual gate violation)
+    - VLT status: PENDING (physically blocks continuation)
+    - pnpm verify: BLOCKING exit code 1 on file required to continue
+    - Governor explicit stop directive (Governor always overrides, with documented reason)
+
+  non_override_conditions:
+    - "new item appears very important"
+    - "this changes everything"
+    - "we should address this now"
+    - "this is significant/novel/exciting"
+    note: |
+      Importance is not urgency. Significance is not a gate violation.
+      Excitement signal = DIAGNOSTIC (assess) not DIRECTIVE (act).
+
+  milestone_release_valve: |
+    At every closed-circle milestone (phase complete + verify passes), the PE
+    re-assessment includes ALL queued items. This is when new items get evaluated
+    and possibly promoted. Between milestones: no pivots, no exceptions.
+
+  ai_training_default_overridden: |
+    AI models have a novelty-salience default: new significant items generate high
+    conceptual activation and feel urgent. This default is adaptive for exploration
+    but destructive for delivery. B_COMPLETION_OVER_SHINY overrides this default
+    by treating completion of active work as the higher-salience goal.
+
+  validator: completion-bias-enforcement (atomic-registered; impl week-4)
+  authority_reference: S015 + B_COMPLETION_OVER_SHINY + P-META-018
+
+schema_signature: S015-AI-pe-schema-completion-bias-2026-05-07T00:00:00Z (§16 added — completion bias protection)

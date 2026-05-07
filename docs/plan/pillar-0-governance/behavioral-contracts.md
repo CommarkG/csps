@@ -1541,3 +1541,50 @@ A consequential decision with fewer than 3 layers is a governance gap. Surface i
 - contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-021`
 
 **Cross-references:** P-META-021 (Triad Governance — the principle this contract operationalizes) / P-META-020 (Concept-First — the context layer of the triad; triad = P-META-020 + named principle + mechanical) / B_CONSENSUS_BEFORE_PROCEEDING (triad applied at phase boundaries) / P-META-006 RZF (the validation layer of the triad for ZF claims).
+
+## B_COMPLETION_OVER_SHINY — completion of active phases beats new significant items (S015 — CONSTITUTIONAL)
+
+**Canonical wording:**
+
+> When a new significant, exciting, or novel item appears during an active implementation phase, the platform's response is: acknowledge, queue, continue. The appearance of a new item — no matter how important it seems — does not authorize abandoning an active phase. Completion of an active phase is weighted at 1.5× in PE scoring when >50% complete. New items enter the PE queue and are assessed at the next milestone gate, not immediately. The only override: an actual BLOCKING condition (a gate violation that physically prevents continuation). Intellectual excitement is not a gate violation.
+
+**Why this exists (the failure mode it prevents):**
+
+AI systems have a training-derived "novelty salience" default: new and significant items feel urgent. In context, they generate high conceptual activation. This is adaptive for exploration but destructive for delivery. The pattern it creates:
+- Active phase A is 70% done
+- New significant concept B appears
+- AI pivots to B (feels more important, more alive)
+- Phase A is abandoned mid-completion
+- B itself gets abandoned when C appears
+- Platform accretes half-finished work compounding across 30 apps
+
+This is the **shiny object trap**. It is specifically the failure mode that created 111 "open items" from plans written in S006-S011 — each plan was abandoned when a newer, more interesting plan arrived.
+
+**The three rules:**
+
+**R1 — Queue, don't pivot.** Any new item that arrives during an active phase goes directly to the PE queue or raw-thoughts-queue. It is acknowledged, not acted on. The phrase "this is important and should be addressed" is not authorization to address it now.
+
+**R2 — Completion bias is structural.** When an active phase is >50% complete, its continuation items receive a 1.5× PE multiplier. This is not a suggestion — it is a computed weight that applies regardless of how interesting the new item is. The only way a new item beats this is if its base PE score × 1.0 exceeds the continuation's base PE score × 1.5.
+
+**R3 — Milestone gates are the release valve.** At every closed-circle milestone (phase complete + verify passes), the platform runs a PE re-assessment that includes all queued items. This is when shiny objects get evaluated and possibly promoted. Between milestones: no pivots.
+
+**What counts as BLOCKING (the only valid override):**
+- A FOUNDATION_EXIT_GATE violation (actual gate — can't build on this foundation)
+- A VLT in PENDING state that physically prevents the current work
+- A BLOCKING validator (pnpm verify exit_code 1 on a new file that must be fixed to proceed)
+- Governor explicit directive to stop (Governor always overrides, documented)
+
+**What does NOT count as BLOCKING:**
+- "This is very important" (importance ≠ urgency ≠ blocker)
+- "This changes everything" (assess at milestone gate)
+- "We should address this now" (we should assess it now; address it at gate)
+- A new discovery that's interesting but doesn't break current work
+
+**Mechanical surfaces (5/5 S015):**
+- schema: PE schema `§completion_bias_protection` — completion_weight: 1.5 when phase_pct > 50
+- validator (atomic registration): `completion-bias-enforcement` (per-session WARN — impl week-4)
+- hook: `session-open.sh` + `session-open.sh` milestone gate — surfaced at every phase-complete event
+- memory: `feedback_completion_over_shiny.md` + MEMORY.md index
+- contract: this entry + AGENTS.md hard NO + `inner-ai-defaults/shiny-object-override.md` + PE schema
+
+**Cross-references:** B_PE_ALIGNMENT_GUARDIAN (anti-sycophancy — this is the completion-domain version) / P-META-018 (PE Alignment Guardian principle) / B_GRADUAL_BUILD_BY_FOUNDATIONS (foundation-first is completion-first) / B_STRUCTURAL_PREVENTION_DISCIPLINE (K=2 abandonment pattern → structural fix, not instance fix).

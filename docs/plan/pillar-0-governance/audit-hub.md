@@ -309,6 +309,42 @@ Token-budget (5 — NEW S007 turn 4 — B_TOKEN_BUDGET extends P-META-009 CCA pe
 
 Every new validator runs ADVISORY for ≥5 fires before ratchet review for FAIL_CLOSED promotion. The min-5-fires gate prevents ratcheting validators that produce false positives at high rates from blocking PRs prematurely. Ratchet review is a manual decision (PR + ADR-equivalent rationale) following the AID-006 ADVISORY_RATCHET_REVIEW pattern. Without min-5-fires evidence, ratchet to FAIL_CLOSED is rejected.
 
+---
+
+### Pipeline 11 — `vocabulary-canon` (NEW S018)
+
+**Purpose:** Platform language governance — every meta-term defined before use. Spine: GVRN L2. Trigger: PR + per-week.
+
+```
+1. vocabulary-canon-completeness  ─── meta-terms in vocabulary.md (week-4)
+2. vocabulary-term-schema-valid   ─── schema fields per entry (week-4)
+```
+
+### Pipeline 12 — `behavioral-alignment` (NEW S018)
+
+**Purpose:** Contract quality + CEC propagation — every B_* body + ≥3/8 CEC surfaces. Spine: AI L2 + GVRN L2. Trigger: PR + per-week.
+
+```
+1. behavioral-contract-body-present        ─── B_* in AGENTS.md has body (week-4)
+2. contract-cec-completeness              ─── ≥3/8 CEC surfaces (week-4)
+3. inner-ai-defaults-concept-ref-populated ─── concept_ref per entry (week-4)
+4. b-star-conceptual-sample-populated      ─── conceptual_sample_of per contract (week-4)
+5. push-back-on-conflict                   ─── detects missed push-back (future)
+```
+
+### Pipeline 13 — `threshold-gate` (NEW S018)
+
+**Purpose:** Session-open governance entry point verified. Spine: GVRN L2. Trigger: per-session.
+
+```
+1. threshold-completeness        ─── 4-check gate at session-open (week-4)
+2. session-open-sequence-verified ─── session-state + verify + VLT + CONCEPT_LOAD (week-4)
+```
+
+**Composition:** Pipeline 13 composes with Pipeline 1 (pre-close-verification) — broken Threshold means both open AND close are suspect.
+
+---
+
 ## Orchestration architecture
 
 ```

@@ -35,7 +35,7 @@ pipelines:
     name: "Cost (3)"
     path: ./audit-runner/pipeline-cost.md
   - slug: pipeline-integrity
-    name: "Integrity (3)"
+    name: "Integrity (5 — +2 S018 P8 complexity-and-hotspots)"
     path: ./audit-runner/pipeline-integrity.md
   - slug: pipeline-meta
     name: "Meta (19 — the audit-the-audits checks, P-META-001 enforcers; +2 S005 turn 19 for B_PRE_CLOSE_VERIFICATION; +3 S005 turn 24 for B_COGNITIVE_CONTEXT_DISCIPLINE; +2 S005 turn 25 for B_AGENT_ALIGNMENT_PROTOCOL; +3 S005 turn 27 for B_GOVERNOR_PROMPTS + B_HANDOFF_PRE_FLIGHT_AUDIT; +3 S005 turn 28 for B_MUTUAL_UNDERSTANDING_VALIDATION; +1 S005 turn 30 for chat-vs-session distinction; +5 S007 turn 4 for B_TOKEN_BUDGET extension of P-META-009; +1 S007 turn 5 for K=2 closed-enum drift prevention)"
@@ -44,7 +44,7 @@ pipelines:
     name: "Stewardship (4 — P-META-004 Stored Content Lifecycle enforcers)"
     path: ./audit-runner/pipeline-stewardship.md
   - slug: pipeline-zero-findings-discipline
-    name: "Zero-Findings Discipline (4 — P-META-006 enforcers, added S002 turn 10)"
+    name: "Zero-Findings Discipline (6 — P-META-006 enforcers, added S002 turn 10; +2 S018 P1/P5 promotion)"
     path: ./audit-runner/pipeline-zero-findings-discipline.md
   - slug: pipeline-learning-loop
     name: "Learning Loop (6 — P-META-005 enforcers)"
@@ -65,7 +65,7 @@ pipelines:
     name: "Generator + Skill (5 — Pillar 4 enforcers, added S003 extended)"
     path: ./audit-runner/pipeline-generator-skill.md
   - slug: pipeline-ai-behavior
-    name: "AI Behavior (4 — added S003 extended; +1 S005 turn 8)"
+    name: "AI Behavior (9 — added S003 extended; +1 S005 turn 8; +5 S018 P12 behavioral-alignment)"
     path: ./audit-runner/pipeline-ai-behavior.md
   - slug: pipeline-intake-plane-extensions
     name: "Intake-Plane Extensions (10 — added S003 §3.5.c, sourced from `_intake/tag-status-contract.md`)"

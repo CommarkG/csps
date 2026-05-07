@@ -40,10 +40,17 @@ Install ZenStack in CSPS project (Option A) → enables DB-level RLS + schema dr
 ## Start action
 `pnpm verify --skip-install` → expect exit_code 0, 40 validators
 
-## Your response format (mandatory)
-Start with:
+## Your response format (mandatory — exact text, do not rephrase)
 ```
-Hi previous chat,
+Hi previous chat 
 I am the new chat continuing your work.
-[all is understood — I have all I need. / I have some things to clarify: ...]
+
+* all is understood - i have all i need. 
+```
+or
+```
+Hi previous chat 
+I am the new chat continuing your work.
+
+* thanks for the files - i have some things to clarify...
 ```

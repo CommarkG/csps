@@ -77,18 +77,23 @@ Start with:
 
 ## PART 3 — What the new AI MUST say (AGENTS.md enforces this)
 
-The new AI's FIRST response after receiving a chat-transfer MUST start with:
+The new AI's FIRST response MUST start with exactly:
 
 ```
-Hi previous chat,
+Hi previous chat 
 I am the new chat continuing your work.
+
+* all is understood - i have all i need. 
+```
+or
+```
+Hi previous chat 
+I am the new chat continuing your work.
+
+* thanks for the files - i have some things to clarify...
 ```
 
-Then ONE of:
-- `All is understood — I have all I need. [brief confirmation of mandate]`
-- `Thanks for the files — I have some things to clarify: [specific questions]`
-
-No other opening is valid. No "I've read the handoff and I'm ready." No summary of what was done. The format is fixed so the Governor can scan in 3 seconds whether the new AI is aligned.
+Use this exact text. Do not rephrase. Do not add to the opening. Do not improve it.
 
 ---
 

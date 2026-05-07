@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T09:54:27.174Z
-- finished_at: 2026-05-07T09:54:33.579Z
+- ran_at: 2026-05-07T09:54:48.498Z
+- finished_at: 2026-05-07T09:54:54.161Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T09:54:27.174Z",
-    "finished_at": "2026-05-07T09:54:33.579Z",
+    "ran_at": "2026-05-07T09:54:48.498Z",
+    "finished_at": "2026-05-07T09:54:54.161Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "scanned": 231,
         "errors": 0,
         "warnings": 2,
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "stale_count_files": 0
       },
       {
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -271,7 +271,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },

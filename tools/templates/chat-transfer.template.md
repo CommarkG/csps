@@ -2,18 +2,15 @@
 id: csps.tools.templates.chat-transfer
 name: chat-transfer-template
 description: >
-  Canonical minimal paste-target for chat-to-chat (C<N>→C<N+1>) and session-to-session
-  (S<NNN>→S<NNN+1>) transfers. 12-line maximum. Super simple, super clear. Full state
-  in the HANDOFF document — this file is only the paste-target. Generated at every
-  session close. Lives at docs/plan/_handoff/VAULT/chat-transfer-S<NNN>-to-S<NNN+1>.md.
-  Mechanically checked by post-stop-session-close-gate.sh and validate-session-artifact-sync.mjs.
-version: 1.0
+  Canonical chat-transfer index file. Generated at every session close.
+  Contains context links + mandate + 3 rules + start action.
+  The Governor sends a 4-line prompt. The new AI reads this file. Always the same structure.
+version: 2.0
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
 template_used: meta-template
 core_spine: OPER
-core_spines: [OPER, GVRN]
 schema_anchor: templates
 tags:
   - domain:governance
@@ -23,75 +20,76 @@ tags:
 session: S016
 consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/protocols.md
-  - docs/plan/pillar-0-governance/plan-creation-protocol.md
 links:
   - { rel: parent, href: ./ }
   - { rel: registry, href: ../../docs/plan/_handoff/VAULT/template-registry.md }
-  - { rel: protocol, href: ../../docs/plan/_handoff/VAULT/protocols.md }
 ---
 
-# Chat Transfer Template
-
-> **Zero copy-paste required.** The Governor types one line. The AI reads the file.
-> Generated at every session close at a predictable path the AI can find directly.
+# Chat Transfer Template v2
 
 ---
 
-## How it works
-
-**Primary path (session-open.sh fires automatically):**
-Open new Claude Code chat in the CSPS workspace → session-open.sh injects the mandate + context → AI is already briefed. Type nothing. Or just type: `proceed.`
-
-**Explicit start (one line, no copy-paste):**
-```
-S<NNN>: read docs/plan/_handoff/VAULT/chat-transfer-S<NNN-1>-to-S<NNN>.md
-```
-The AI reads the file via Read tool and proceeds. No clipboard operation.
-
----
-
-## The File Content (what the AI reads — not what the Governor copies)
+## PART 1 — What the Governor sends (4 lines, fill session numbers)
 
 ```
-CSPS <S_NEXT> — CHAT TRANSFER
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-You are:  <S_NEXT>-AI (new chat — read this fully before responding)
-I am:     <S_CURRENT>-AI (CLOSED — last commit <COMMIT_HASH>)
+You are a new chat - your name is S<NEXT>
+I am previous chat - last session I handled was S<CURRENT>
 
-MANDATE:  <one sentence — the primary work for S_NEXT>
-START:    pnpm verify --skip-install → expect exit_code 0, <N> validators
-CONTEXT:  HANDOFF-<S_CURRENT>-to-<S_NEXT>.md → Zone A §CORE-PILLARS
+Read [docs/plan/_handoff/VAULT/chat-transfer-S<CURRENT>-to-S<NEXT>.md] and comment so I could know you have all the content and context and can make progress!
+Awaiting your comment, do not hesitate to ask for clarifications.
+```
 
-DECLARE:
-  "I am [your actual model]. S<N> mandate received: <mandate_brief>.
-   Receipt: <S_CURRENT>-AI-attest-<ISO>-<S_CURRENT>-close confirmed."
+That's it. Governor types these 4 lines. No copy-paste blocks. No ceremony.
 
-RULES: Core-layer only | No app work without explicit Governor directive | Foundation gate CLEAN required
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Full state: docs/plan/_handoff/HANDOFF-<S_CURRENT>-to-<S_NEXT>.md
+---
+
+## PART 2 — The chat-transfer file (what the new AI reads)
+
+Fill the template below and save as `docs/plan/_handoff/VAULT/chat-transfer-S<CURRENT>-to-S<NEXT>.md`
+
+```markdown
+# S<NEXT> — Context + Alignment
+
+## Read these files first
+- [Full state](HANDOFF-S<CURRENT>-to-S<NEXT>.md) — Zone A §CORE-PILLARS (mandatory)
+- [Session extraction](session-S<CURRENT>-extraction.md) — what was learned
+- [Additional context] — add any other relevant files here with one-line descriptions
+
+## S<NEXT> mandate (one sentence)
+<mandate>
+
+## Critical rules
+1. Core-layer only — no app work without explicit Governor directive per specific task
+2. Foundation gate CLEAN required before any phase advance (validate-phase-exit-criteria.mjs)
+3. B_COMPLETION_OVER_SHINY — active work >50% complete before new shiny items
+
+## Start action
+pnpm verify --skip-install → expect exit_code 0, <N> validators
+
+## Your response format (mandatory)
+Start with:
+  "Hi previous chat,
+   I am the new chat continuing your work.
+   [all is understood — I have all I need / I have some things to clarify: ...]"
 ```
 
 ---
 
-## Rules for generating this file
+## PART 3 — What the new AI MUST say (AGENTS.md enforces this)
 
-1. **Maximum 12 lines** between the two horizontal rules. No exceptions.
-2. **MANDATE** = one sentence. Not a paragraph. If you can't say it in one sentence, the mandate isn't clear yet.
-3. **DECLARE** = the exact text the new AI types back to confirm receipt. Standardized. Not creative.
-4. **RULES** = always these exact three. Never add a fourth.
-5. **Full state pointer** = always the HANDOFF path. That's where details live.
+The new AI's FIRST response after receiving a chat-transfer MUST start with:
 
-## What NOT to include
+```
+Hi previous chat,
+I am the new chat continuing your work.
+```
 
-- Do NOT include session history
-- Do NOT include the full list of open items
-- Do NOT include principles or contracts
-- Do NOT include multi-step start protocols
-- Do NOT include "critical operating rules" sections
-- Do NOT vary the format
+Then ONE of:
+- `All is understood — I have all I need. [brief confirmation of mandate]`
+- `Thanks for the files — I have some things to clarify: [specific questions]`
 
-The HANDOFF document is where everything else lives. This file is a door, not a room.
+No other opening is valid. No "I've read the handoff and I'm ready." No summary of what was done. The format is fixed so the Governor can scan in 3 seconds whether the new AI is aligned.
 
 ---
 
-**Template signature:** S016-AI-chat-transfer-template-2026-05-07T00:00:00Z
+**Template signature:** S016-AI-chat-transfer-template-v2-2026-05-07T00:00:00Z

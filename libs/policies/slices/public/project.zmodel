@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // Project — Container for related tasks (S014)
 // ============================================================================
 // Groups tasks under a named, tenant-scoped context. Simple at v1 —
@@ -10,17 +10,7 @@
 // Graduation-ready: extracts with task management app.
 // ============================================================================
 
-import "../base"
-
-@@meta(
-  id: "csps.public.project",
-  domain: "data",
-  type: "schema",
-  audience: "developer",
-  enforces: ["P-ARCH-002", "P-ARCH-007"],
-  lifecycle: "production",
-  lifecycle_state: "active"
-)
+import "../../base"
 
 enum ProjectStatus {
   active

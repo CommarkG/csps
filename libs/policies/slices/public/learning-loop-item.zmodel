@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // LearningLoopItem — Foundation slice for P-META-005 Learning Loop
 // ============================================================================
 // Schema for the closed-loop improvement pipeline state machine.
@@ -7,17 +7,7 @@
 // Canonical doc: docs/plan/pillar-0-governance/learning-loop.md
 // ============================================================================
 
-import "../base"   // Base mixin: id, createdAt, updatedAt, deletedAt, tenant_id
-
-@@meta(
-  id: "csps.public.learning-loop-item",
-  domain: "governance",
-  type: "schema",
-  audience: "developer",
-  enforces: ["P-META-005"],
-  lifecycle: "production",
-  lifecycle_state: "active"
-)
+import "../../base"   // Base mixin: id, createdAt, updatedAt, deletedAt, tenant_id
 
 enum LearningLoopSource {
   CHAT             // chat conversation (session transcript)

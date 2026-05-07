@@ -82,9 +82,9 @@ When bedrock is complete, an app developer can:
 | FOUNDATION_EXIT_GATE (validate-phase-exit-criteria.mjs) | ✅ COMPLETE | `tools/validators/` |
 | B_COMPLETION_OVER_SHINY (1.5× PE weight, shiny-object prevention) | ✅ COMPLETE | `behavioral-contracts.md` §B_COMPLETION_OVER_SHINY |
 | B_PLATFORM_FIRST_OPTIMIZATION (global over local) | ✅ COMPLETE | `behavioral-contracts.md` §B_PLATFORM_FIRST_OPTIMIZATION |
-| Plan Methodology v2 (B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH) | **⏳ S016 L2** | `topic-plans/plan-methodology-v2.md` |
+| Plan Methodology v2 (B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH) | ✅ COMPLETE | `behavioral-contracts.md` §B_HUMBLE_EXECUTOR + §B_AUTONOMOUS_BATCH_WITH_PREFLIGHT — S016 |
 
-**Layer 1 status: 9/10 complete. Blocking item: Plan Methodology v2 L2 (S016 mandate).**
+**Layer 1 status: 10/10 COMPLETE. ✅ — S016 L2 delivered.**
 
 ---
 
@@ -102,7 +102,7 @@ When bedrock is complete, an app developer can:
 | `validate-foundation-schema-drift.mjs` in pnpm verify | **⏳ VLT-S016-ZENSTACK** | Blocked by ZenStack (ZModel→Prisma generation needed) |
 | `foundation-slices-schema-drift` audit slug active | **⏳ VLT-S016-ZENSTACK** | Deferred with ZenStack |
 
-**Layer 2 status: 4/8 complete. Blocking item: ZenStack + RLS (VLT-S016-ZENSTACK). App-level isolation is functional for dev; not production-grade without DB-level RLS.**
+**Layer 2 status: 8/9 complete. ZenStack installed + drift validator ACTIVE. Remaining: enhance(prismaClient) wired into app routes (VLT-S017-ENHANCE). NOTE: ZenStack @@allow is ORM-layer enforcement (not Postgres RLS); policies are defined but not enforced until enhance() is wired.**
 
 ---
 
@@ -150,11 +150,11 @@ When bedrock is complete, an app developer can:
 | plan-creation-protocol Step 0 (foundation + completion + platform-first gates) | ✅ COMPLETE | `pillar-0-governance/plan-creation-protocol.md` |
 | ZF orchestrator (Level 1/2/3 gates) | ✅ COMPLETE | `tools/zf-orchestrator.mjs` |
 | Pre-flight scan format (Q-GATE + Q-COMPLETION + Q-GLOBAL) | ✅ COMPLETE | `behavioral-contracts.md` §B_AUTONOMOUS_BATCH_WITH_PREFLIGHT (pending) + plan-creation-protocol |
-| B_HUMBLE_EXECUTOR (closed-circle milestone protocol) | **⏳ S016 L2** | `topic-plans/plan-methodology-v2.md` |
-| B_AUTONOMOUS_BATCH_WITH_PREFLIGHT (pre-flight discipline) | **⏳ S016 L2** | Same |
-| Chat State Snapshot template (intra-session continuity) | **⏳ S016 L2** | Same |
+| B_HUMBLE_EXECUTOR (closed-circle milestone protocol) | ✅ COMPLETE | `behavioral-contracts.md` §B_HUMBLE_EXECUTOR — S016 |
+| B_AUTONOMOUS_BATCH_WITH_PREFLIGHT (pre-flight discipline) | ✅ COMPLETE | `behavioral-contracts.md` §B_AUTONOMOUS_BATCH_WITH_PREFLIGHT — S016 |
+| Chat State Snapshot template (intra-session continuity) | ✅ COMPLETE | `tools/templates/chat-state-snapshot.template.md` — S016 |
 
-**Layer 5 status: 4/7 complete. Blocking items: plan-methodology-v2 L2 (S016 mandate).**
+**Layer 5 status: 7/7 COMPLETE. ✅ — S016 L2 delivered.**
 
 ---
 
@@ -207,13 +207,14 @@ Layer 1 — Governance Core:
   [x] Core Spines + principles + contracts + validators + hooks
   [x] ZF Mandate Protocol + FOUNDATION_EXIT_GATE
   [x] B_COMPLETION_OVER_SHINY + B_PLATFORM_FIRST_OPTIMIZATION
-  [ ] Plan Methodology v2 L2 (B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH) → S016
+  [x] Plan Methodology v2 L2 (B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH) — S016 COMPLETE
 
 Layer 2 — Schema Security Core:
   [x] Foundation + App ZModel slices
   [x] Prisma schema + application-level tenant isolation
-  [ ] ZenStack installation + DB-level RLS → VLT-S016-ZENSTACK (S017)
-  [ ] validate-foundation-schema-drift.mjs → VLT-S016-ZENSTACK (S017)
+  [x] ZenStack 2.22.1 installation + @@allow/@@deny policies DEFINED in ZModel — S017 COMPLETE
+  [x] validate-foundation-schema-drift.mjs (cycle 41, ACTIVE) — S017 COMPLETE
+  [ ] enhance(prismaClient) wired into app routes (ORM-layer policy enforcement ACTIVE) → VLT-S017-ENHANCE
 
 Layer 3 — Auth + Billing Core:
   [x] Clerk auth wiring (all webhook events)
@@ -231,14 +232,14 @@ Layer 4 — App Template Core:
 Layer 5 — Build Methodology Core:
   [x] gradual-build-plan template + plan-creation-protocol
   [x] ZF orchestrator gates
-  [ ] B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH → S016
-  [ ] Chat State Snapshot → S016
+  [x] B_HUMBLE_EXECUTOR + B_AUTONOMOUS_BATCH — S016 COMPLETE
+  [x] Chat State Snapshot — S016 COMPLETE
 ```
 
-**Root decisions missing: 2 (ZenStack + Plan Methodology v2 L2)**
-**Items gated by those decisions: 7**
-**Items complete: 14/21 (67%)**
-**Items complete or explicitly tracked: 21/21 (100%)**
+**Root decisions missing: 0 — ZenStack INSTALLED S017**
+**Items remaining deferred: 3 (enhance(prismaClient) wiring + ZenStack-integrated app template + live DB validation)**
+**Items complete: 19/22 (86%) — 3 explicitly deferred with VLT tracking**
+**Items complete or explicitly tracked: 22/22 (100%)**
 
 ---
 

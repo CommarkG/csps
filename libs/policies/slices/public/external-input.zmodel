@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // ExternalInput — Foundation slice for the External-Input Intake plane
 // ============================================================================
 // The raw-capture record for every external input into CSPS.
@@ -9,17 +9,7 @@
 // Lifecycle: experimental (pending user review of single-gate vs distributed architecture)
 // ============================================================================
 
-import "../base"
-
-@@meta(
-  id: "csps.public.external-input",
-  domain: "governance",
-  type: "schema",
-  audience: "developer",
-  enforces: ["P-META-005", "P-ARCH-025"],
-  lifecycle: "experimental",
-  lifecycle_state: "pending-review"
-)
+import "../../base"
 
 enum ExternalInputSource {
   // Tier 1: Human direct

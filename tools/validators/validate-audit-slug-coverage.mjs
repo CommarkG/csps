@@ -61,6 +61,8 @@ const KNOWN_MAPPINGS = {
   'validate-model-tier-currency': ['model-tier-currency', 'model_tier_currency', 'tier-registry-currency'],
   'validate-session-receipt': ['session-receipt', 'session_receipt', 'receipt-chain-validation'],
   'validate-catch-completeness': ['catch-completeness', 'catch_completeness', 'catch-to-ep-completeness'],
+  'validate-foundation-schema-drift': ['foundation-slices-schema-drift', 'foundation-schema-drift', 'foundation_schema_drift'],
+  'validate-bedrock': ['bedrock', 'bedrock-completion', 'bedrock_completion'],
 };
 
 function validatorBasename(filename) {

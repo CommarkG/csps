@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // Task — Core entity for the task management app (S014)
 // ============================================================================
 // The central work item. Tenant-scoped, user-assignable, project-linked.
@@ -14,17 +14,7 @@
 // Source of truth: docs/plan/_handoff/VAULT/topic-plans/s014-l2-goals-personas.md
 // ============================================================================
 
-import "../base"
-
-@@meta(
-  id: "csps.public.task",
-  domain: "data",
-  type: "schema",
-  audience: "developer",
-  enforces: ["P-ARCH-002", "P-ARCH-007"],
-  lifecycle: "production",
-  lifecycle_state: "active"
-)
+import "../../base"
 
 enum TaskStatus {
   todo

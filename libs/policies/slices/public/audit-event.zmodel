@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // AuditEvent — Foundation slice for the audit / compliance plane
 // ============================================================================
 // Append-only ledger of every significant action in CSPS. Created via Postgres
@@ -14,17 +14,7 @@
 // Paired with:     libs/policies/audit-triggers.sql (DDL trigger definitions)
 // ============================================================================
 
-import "../base"
-
-@@meta(
-  id: "csps.public.audit-event",
-  domain: "governance",
-  type: "schema",
-  audience: "developer",
-  enforces: ["P-ARCH-007", "P-ARCH-008"],
-  lifecycle: "production",
-  lifecycle_state: "active"
-)
+import "../../base"
 
 model AuditEvent extends Base {
   tenantId     String                                 // RLS scope — every event belongs to a tenant

@@ -37,7 +37,7 @@ function parseBedrock(text) {
 
   for (const line of lines) {
     // Detect the checklist section
-    if (line.includes('## §3 Bedrock Completion Checklist')) {
+    if (line.includes('### Bedrock Completion Checklist')) {
       inChecklist = true;
       continue;
     }

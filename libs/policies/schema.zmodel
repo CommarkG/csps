@@ -1,0 +1,297 @@
+// =============================================================================
+// CSPS Platform Schema — ZenStack Flat Assembly
+// =============================================================================
+// Machine-processable entry point for zenstack generate.
+// Assembled from:
+//   - libs/policies/base.zmodel           (datasource + Base mixin + enums)
+//   - libs/policies/slices/public/*.zmodel (entity definitions + policies)
+//
+// Slice files remain as design documentation and source of truth for policies.
+// THIS FILE is the ZenStack-processable artifact (flat = no circular imports).
+//
+// Run:    pnpm exec zenstack generate --schema libs/policies/schema.zmodel
+// Output: libs/policies/generated/schema.prisma (for drift checking)
+// Per:    B_PLATFORM_FIRST_OPTIMIZATION — one schema for all 30 apps
+//
+// TEMPORARY FLAT ASSEMBLY (S017 cruel-critic finding CSEP-S017-001):
+//   Multi-file ZenStack import approach has circular dependency issues with
+//   bidirectional relations (User↔UserTenant↔Tenant). Flat file is the
+//   working workaround. Migration to multi-file when ZenStack resolves
+//   circular imports or we establish import-ordering protocol (~30 models
+//   is the merge-conflict threshold that forces this migration).
+//   Tracked: VLT-S017-FLATSCHEMA
+// =============================================================================
+
+// ─── Datasource ──────────────────────────────────────────────────────────────
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+  schemas  = ["public"]
+}
+
+// ─── Generators ──────────────────────────────────────────────────────────────
+
+generator client {
+  provider        = "prisma-client-js"
+  output          = "./generated/client"
+  previewFeatures = ["multiSchema"]
+}
+
+// ─── ZenStack Plugins ────────────────────────────────────────────────────────
+
+// Generates standard Prisma schema from ZModel (drift check reference)
+plugin prisma {
+  provider = '@core/prisma'
+  output   = './generated/schema.prisma'
+}
+
+// Generates enhanced Prisma client with runtime @@allow policy enforcement
+plugin enhancer {
+  provider  = '@core/enhancer'
+  withPresets = true
+}
+
+// ─── Base Mixin ──────────────────────────────────────────────────────────────
+// Every entity extends this. Provides id, timestamps, soft-delete.
+// Per P-ARCH-007: hard delete denied by default.
+
+abstract model Base {
+  id        String    @id @default(uuid()) @db.Uuid
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@deny('delete', true)
+}
+
+// ─── Common Enums ─────────────────────────────────────────────────────────────
+
+enum ActorKind {
+  user
+  admin
+  system
+  agent
+
+  @@schema("public")
+}
+
+enum LifecycleState {
+  active
+  pendingReview    @map("pending-review")
+  pendingProtocol  @map("pending-protocol")
+  promoted
+  resolved
+  deprecated
+  validated
+  closed
+
+  @@schema("public")
+}
+
+// ─── Foundation Slices — Identity / Auth / Membership / Audit ─────────────────
+
+// From: slices/public/tenant.zmodel
+enum TenantSubscriptionStatus {
+  free        // solo use — free forever (VLT-S014-005)
+  trialing    // 14-day trial when 2nd member joins before paying
+  active      // paid — 2+ members, Stripe subscription active
+  cancelled   // was paid, now cancelled; read-only until reactivated
+
+  @@schema("public")
+}
+
+// From: slices/public/user-tenant.zmodel
+enum MembershipRole {
+  owner   // created the tenant; full control
+  admin   // invited admin; can manage members + billing
+  member  // standard member; app-level permissions only
+
+  @@schema("public")
+}
+
+// From: slices/public/user.zmodel
+model User extends Base {
+  clerkId     String  @unique
+  email       String  @unique
+  displayName String?
+  staffRole   String?
+  tenantId    String?
+
+  memberships  UserTenant[]
+  tasksCreated Task[]       @relation("TaskCreatedBy")
+  tasksAssigned Task[]      @relation("TaskAssignee")
+  comments     TaskComment[] @relation("TaskCommentAuthor")
+
+  @@schema("public")
+  @@allow("read", auth().id == id || auth().staffRole != null)
+  @@deny("delete", true)
+
+  @@index([clerkId])
+  @@index([email])
+}
+
+// From: slices/public/tenant.zmodel
+model Tenant extends Base {
+  slug                 String                   @unique
+  name                 String
+  clerkOrgId           String?                  @unique
+  stripeCustomerId     String?
+  subscriptionStatus   TenantSubscriptionStatus @default(free)
+
+  members     UserTenant[]
+  projects    Project[]
+  tasks       Task[]
+  auditEvents AuditEvent[]
+
+  @@schema("public")
+  @@allow("read", auth().tenantId == id)
+  @@allow("read", auth().staffRole != null)
+  @@deny("delete", true)
+
+  @@index([slug])
+  @@index([clerkOrgId])
+}
+
+// From: slices/public/user-tenant.zmodel
+model UserTenant extends Base {
+  userId   String
+  tenantId String
+  role     MembershipRole
+
+  user   User   @relation(fields: [userId],   references: [id])
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@unique([userId, tenantId])
+
+  @@schema("public")
+  @@allow("read", auth().id == userId || auth().tenantId == tenantId)
+  @@allow("read", auth().staffRole != null)
+  @@deny("delete", true)
+
+  @@index([userId])
+  @@index([tenantId, role])
+}
+
+// From: slices/public/audit-event.zmodel
+// Append-only: write via Postgres triggers only (P-ARCH-008)
+model AuditEvent extends Base {
+  tenantId     String
+  actorId      String?
+  action       String
+  resourceType String
+  resourceId   String
+  data         Json?
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@schema("public")
+  @@allow("read", auth().tenantId == tenantId)
+  @@allow("read", auth().staffRole != null)
+  @@deny("create,update,delete", true)
+
+  @@index([tenantId, createdAt])
+  @@index([tenantId, resourceType, resourceId])
+  @@index([actorId, createdAt])
+}
+
+// ─── App Slices — Task Management ─────────────────────────────────────────────
+
+// From: slices/public/project.zmodel
+enum ProjectStatus {
+  active
+  archived
+
+  @@schema("public")
+}
+
+// From: slices/public/task.zmodel
+enum TaskStatus {
+  todo
+  in_progress
+  done
+  cancelled
+
+  @@schema("public")
+}
+
+// From: slices/public/task.zmodel
+enum TaskPriority {
+  none
+  low
+  medium
+  high
+  urgent
+
+  @@schema("public")
+}
+
+// From: slices/public/project.zmodel
+model Project extends Base {
+  tenantId    String
+  name        String
+  description String?
+  status      ProjectStatus @default(active)
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+  tasks  Task[]
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)
+  @@allow("update", auth().tenantId == tenantId)
+  @@deny("delete",  true)
+
+  @@index([tenantId, status])
+  @@index([tenantId, name])
+}
+
+// From: slices/public/task.zmodel
+model Task extends Base {
+  tenantId    String
+  projectId   String?
+  title       String
+  description String?
+  status      TaskStatus    @default(todo)
+  priority    TaskPriority  @default(none)
+  dueDate     DateTime?
+  createdById String
+  assigneeId  String?
+
+  tenant    Tenant      @relation(fields: [tenantId],    references: [id])
+  project   Project?    @relation(fields: [projectId],   references: [id])
+  createdBy User        @relation("TaskCreatedBy", fields: [createdById], references: [id])
+  assignee  User?       @relation("TaskAssignee",  fields: [assigneeId],  references: [id])
+  comments  TaskComment[]
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)
+  @@allow("update", auth().tenantId == tenantId)
+  @@deny("delete",  true)
+
+  @@index([tenantId, status])
+  @@index([tenantId, assigneeId])
+  @@index([projectId, status])
+  @@index([tenantId, dueDate])
+}
+
+// From: slices/public/task-comment.zmodel
+// Immutable once posted (no update); soft-delete via deletedAt only
+model TaskComment extends Base {
+  taskId   String
+  authorId String
+  body     String
+
+  task   Task @relation(fields: [taskId],   references: [id])
+  author User @relation("TaskCommentAuthor", fields: [authorId], references: [id])
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == task.tenantId)
+  @@allow("create", auth().tenantId == task.tenantId)
+  @@deny("update",  true)
+  @@deny("delete",  true)
+
+  @@index([taskId, createdAt])
+}

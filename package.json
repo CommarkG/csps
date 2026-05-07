@@ -33,12 +33,20 @@
     "typecheck": "tsc --noEmit",
     "tokens:measure": "node tools/measure-token-cost.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md,yaml,yml}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md,yaml,yml}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md,yaml,yml}\"",
+    "schema:generate": "zenstack generate --schema libs/policies/schema.zmodel",
+    "schema:check": "node tools/validators/validate-foundation-schema-drift.mjs"
   },
   "devDependencies": {
-    "typescript": "^5.7.0",
-    "prettier": "^3.4.0",
     "@types/node": "^20.0.0",
-    "gpt-tokenizer": "^3.4.0"
+    "@zenstackhq/runtime": "^2.22.1",
+    "gpt-tokenizer": "^3.4.0",
+    "prettier": "^3.4.0",
+    "prisma": "6.7.0",
+    "typescript": "^5.7.0",
+    "zenstack": "^2.22.1"
+  },
+  "dependencies": {
+    "@prisma/client": "6.7.0"
   }
 }

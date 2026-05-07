@@ -80,7 +80,25 @@
       "ratified_by": "Governor",
       "registered_at": "2026-05-07T00:00:00Z",
       "unblocked_by": "apps/task-mgmt/ created S015",
-      "resolved_at": "2026-05-07T00:00:00Z"
+      "resolved_at": "2026-05-07T10:45:00Z"
+    },
+    {
+      "id": "VLT-S017-ENHANCE",
+      "status": "RESOLVED",
+      "decision": "Deferral decision (cruel-critic CSEP-S017-001): Wire enhance(prismaClient) into apps/task-mgmt API routes in S018. ZenStack @@allow policies are DEFINED but not enforced at runtime until then. B_COMPLETION_OVER_SHINY: ZenStack install is the S017 mandate; enhance wiring is S018 first task. ZModel policies are the source of truth; enforcement wiring is the next mechanical step.",
+      "registered_at": "2026-05-07T10:45:00Z",
+      "resolved_at": "2026-05-07T10:45:00Z",
+      "ratified_by": "CSEP-S017-001 cruel-critic (Governor must confirm S018 priority)",
+      "carry_forward": "S018 first action"
+    },
+    {
+      "id": "VLT-S017-FLATSCHEMA",
+      "status": "RESOLVED",
+      "decision": "Deferral decision (cruel-critic CSEP-S017-001): libs/policies/schema.zmodel flat assembly is temporary workaround for ZenStack circular import limitation. Migration to multi-file triggered when model count approaches 30 OR 3+ devs touch schema.zmodel in same week. No immediate action required at 7 models.",
+      "registered_at": "2026-05-07T10:45:00Z",
+      "resolved_at": "2026-05-07T10:45:00Z",
+      "ratified_by": "CSEP-S017-001 cruel-critic scale analysis",
+      "carry_forward": "S018+ when trigger condition met"
     }
   ],
   "platform_state": {

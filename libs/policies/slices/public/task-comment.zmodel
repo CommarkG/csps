@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // TaskComment — Discussion thread on a task (S014)
 // ============================================================================
 // Enables team collaboration within a task — the key difference between
@@ -10,17 +10,7 @@
 // justifies the paid tier when a second team member joins.
 // ============================================================================
 
-import "../base"
-
-@@meta(
-  id: "csps.public.task-comment",
-  domain: "data",
-  type: "schema",
-  audience: "developer",
-  enforces: ["P-ARCH-002", "P-ARCH-007", "P-ARCH-008"],
-  lifecycle: "production",
-  lifecycle_state: "active"
-)
+import "../../base"
 
 model TaskComment extends Base {
   taskId       String

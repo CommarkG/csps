@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // UserTenant — Foundation slice for membership / join-table plane
 // ============================================================================
 // The CSPS membership record. Implements VLT-S011-003 decision: 1:N via join
@@ -10,17 +10,7 @@
 // Source of truth: libs/policies/slices/public/foundation-design.md §VLT-S011-003
 // ============================================================================
 
-import "../base"
-
-@@meta(
-  id: "csps.public.user-tenant",
-  domain: "identity",
-  type: "schema",
-  audience: "developer",
-  enforces: ["P-ARCH-002", "P-ARCH-007"],
-  lifecycle: "production",
-  lifecycle_state: "active"
-)
+import "../../base"
 
 enum MembershipRole {
   owner   // created the tenant; full control

@@ -419,6 +419,17 @@ const CYCLES = [
     },
   },
   {
+    // S017 ZENSTACK DRIFT GATE — ZModel → Prisma schema consistency
+    // Runs zenstack generate on libs/policies/schema.zmodel, compares generated
+    // model list against apps/task-mgmt/prisma/schema.prisma. Blocks on drift.
+    name: 'foundation_schema_drift',
+    command: 'node tools/validators/validate-foundation-schema-drift.mjs',
+    parse_output: (out) => {
+      const m = out.match(/generate_ok=(\w+)\s+zmodel_models=(\d+)\s+app_models=(\d+)\s+drift_count=(\d+)\s+advisory=(\d+)\s+status=(\w+)/);
+      return m ? { generate_ok: m[1] === 'true', zmodel_models: Number(m[2]), app_models: Number(m[3]), drift_count: Number(m[4]), advisory: Number(m[5]), status: m[6] } : {};
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

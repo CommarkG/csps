@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // Tenant — Foundation slice for product-context / multi-tenancy plane
 // ============================================================================
 // The CSPS product context. One Tenant per Clerk organization (1:1 per
@@ -15,17 +15,7 @@
 // Source of truth: libs/policies/slices/public/foundation-design.md §VLT-S011-004
 // ============================================================================
 
-import "../base"
-
-@@meta(
-  id: "csps.public.tenant",
-  domain: "identity",
-  type: "schema",
-  audience: "developer",
-  enforces: ["P-ARCH-002", "P-ARCH-007"],
-  lifecycle: "production",
-  lifecycle_state: "active"
-)
+import "../../base"
 
 enum TenantSubscriptionStatus {
   free        // solo use — free forever (VLT-S014-005)

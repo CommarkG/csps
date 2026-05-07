@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // User — Foundation slice for identity / auth plane
 // ============================================================================
 // The CSPS person record. Wraps Clerk identity (clerkId = Clerk user ID).
@@ -13,17 +13,7 @@
 // Source of truth: libs/policies/slices/public/foundation-design.md §VLT-S011-003
 // ============================================================================
 
-import "../base"
-
-@@meta(
-  id: "csps.public.user",
-  domain: "identity",
-  type: "schema",
-  audience: "developer",
-  enforces: ["P-ARCH-002", "P-ARCH-007"],
-  lifecycle: "production",
-  lifecycle_state: "active"
-)
+import "../../base"
 
 model User extends Base {
   clerkId     String      @unique                     // Clerk user ID (immutable after creation)

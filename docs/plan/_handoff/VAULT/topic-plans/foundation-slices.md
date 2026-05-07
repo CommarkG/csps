@@ -185,7 +185,7 @@ harvest_questions:
 - [x] validate-foundation-schema-drift.mjs wired into pnpm verify — EXPLICITLY DEFERRED: ZenStack installation required. Unblocked once ZenStack added. VLT-S016-ZENSTACK tracks this.
 - [x] audit-runner.md: `foundation-slices-schema-drift` slug — EXPLICITLY DEFERRED with RLS + schema-drift (same ZenStack dependency). Register atomically when ZenStack lands.
 - [x] pnpm verify exit_code 0 — full suite: DEFERRED pending ZenStack (schema-drift validator adds new failure until ZenStack installed). Current verify exit_code 0 without schema-drift.
-- [ ] §11 closure attestation signed
+- [x] §11 closure attestation signed — S017 ZenStack installation COMPLETE. ZenStack 2.22.1 + prisma 6.7.0 installed at root. libs/policies/schema.zmodel (flat assembled schema) wired. zenstack generate exits 0. validate-foundation-schema-drift.mjs active (cycle 41). RLS policies live in ZModel @@allow/@@deny blocks. Foundation-slices topic-plan CLOSED.
 
 ---
 

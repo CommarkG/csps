@@ -1,13 +1,13 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S016",
-  "previous_session": "S015",
-  "session_updated_at": "2026-05-07T06:00:00Z",
+  "current_session": "S017",
+  "previous_session": "S016",
+  "session_updated_at": "2026-05-07T08:30:00Z",
   "session_mandate": {
-    "primary": "Core platform: Plan Methodology v2 L3 (validators + template integration) + ZenStack installation (VLT-S016-ZENSTACK ratification). CORE LAYER ONLY — task-mgmt live deployment is Governor-triggered when .env.local credentials are ready, not an AI session mandate.",
+    "primary": "ZenStack installation (Option A — install first before any new app). Unblocks: DB-level RLS policies, validate-foundation-schema-drift.mjs, foundation-slices §11 closure, ZenStack-integrated app template. Bedrock Layer 2 completion.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "VLT-S016-ZENSTACK PENDING (ZenStack installation decision — Governor must choose Option A or B before S017 mandate can be written). Blocks: S017 start, app #2 build, bedrock completion."
+    "blocking_on": "NONE — all VLTs resolved, foundation gate CLEAN, 0 PENDING VLTs."
   },
   "blocking_decisions": [
     {
@@ -84,8 +84,8 @@
     }
   ],
   "platform_state": {
-    "pnpm_verify": "exit_code 0 (37 active validators, ZF Level 3 achieved S015)",
-    "last_verified_commit": "52d35b7",
+    "pnpm_verify": "exit_code 0 (40 active validators, ZF Level 3 achieved S016)",
+    "last_verified_commit": "cd1ff55",
     "complexity_score": 18.2,
     "complexity_zone": "GREEN",
     "skills": 26,
@@ -99,7 +99,7 @@
     "apps_task_mgmt_commit": "954688a",
     "all_blocking_resolved": true,
     "hooks_active": 19,
-    "validators_active": 38,
+    "validators_active": 40,
     "zf_orchestrator": "LIVE — pnpm zf / pnpm zf:phase / pnpm zf:deep",
     "phase5_status": "SCAFFOLD+CRUD COMPLETE — pending live DB deployment",
     "foundation_exit_gate": "CLEAN — validate-phase-exit-criteria.mjs PASS",
@@ -113,7 +113,7 @@
       "Plan Methodology v2 — §HARVEST mandatory, execution_mode, 4-type taxonomy"
     ],
     "principles_count": 55,
-    "behavioral_contracts": 46,
+    "behavioral_contracts": 48,
     "zf_mandate_protocol": "docs/plan/pillar-0-governance/zf-mandate-protocol.md",
     "bedrock_completion": "67% done (14/21 items), 100% tracked. 2 root decisions: VLT-S016-ZENSTACK + plan-methodology-v2 L2 (S016). See csps-bedrock.md.",
     "layer_separation": "CORE layer (libs/, tools/, governance/) = what every app inherits. APP layer (apps/*) = individual products. App-layer work (live deployment, credentials, dev server) is Governor-triggered, not AI-mandated.",

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-07T08:12:48.446Z
-- finished_at: 2026-05-07T08:12:55.033Z
+- ran_at: 2026-05-07T08:17:43.459Z
+- finished_at: 2026-05-07T08:17:48.897Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-07T08:12:48.446Z",
-    "finished_at": "2026-05-07T08:12:55.033Z",
+    "ran_at": "2026-05-07T08:17:43.459Z",
+    "finished_at": "2026-05-07T08:17:48.897Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.8,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -39,10 +39,10 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 227,
+        "duration_seconds": 0.1,
+        "scanned": 229,
         "errors": 0,
-        "warnings": 1,
+        "warnings": 2,
         "exempt": 210
       },
       {
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.1,
         "stale_count_files": 0
       },
       {
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -362,9 +362,9 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "plans_checked": 9,
-        "stale_total": 8,
-        "unverified": 0,
-        "verified": 8,
+        "stale_total": 9,
+        "unverified": 7,
+        "verified": 2,
         "likely_done_items": 1
       },
       {

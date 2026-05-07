@@ -34,7 +34,7 @@ depth_rationale: |
   SaaS task management) is well-understood. The depth is for VALIDATION, not novelty.
 know_how_consulted: true
 multi_session_arc: [S014, S015]
-covered_paths: [apps/sandbox/]
+covered_paths: [apps/sandbox/, apps/task-mgmt/]
 backtrack_register:
   - trigger-id: schema-not-extractable
     action: if Task entity can't be cleanly extracted from shared schema at graduation → revisit schema-per-app boundary

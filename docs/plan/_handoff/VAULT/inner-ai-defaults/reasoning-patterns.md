@@ -115,3 +115,12 @@ session: S006
 - **caught_by_validator:** B_VALIDATE_BEFORE_ASSUME (closest existing); INST-VALD-001 (canonical example)
 - **self_assessment_question:** "Is this a declaration about what I did, or a demonstration that it worked? What tool call output in this response proves the claim?"
 - **status:** active
+
+### reasoning-definitional-gap-creation
+- **default_pattern:** When defining a concept, AI anchors the definition to the CURRENT mechanism/tool/process (e.g., "INPUTS = things entering THROUGH the Threshold"). This creates a definitional gap: if the mechanism changes, or if things bypass the mechanism, they become invisible to the definition. AI satisfies itself that the definition is complete because it covers the current flow.
+- **csps_aligned_pattern:** Definitions must be SCOPE-first (what the concept covers), with mechanisms described separately. "INPUTS = everything entering or occurring in CSPS" (scope). "The Threshold processes inputs" (mechanism). The mechanism can change without breaking the definition.
+- **disposition:** override
+- **concept_ref:** GVRN L2 — definitional gaps are governance gaps; a concept that becomes undefined when its mechanism changes is not a governed concept
+- **reason:** Governor S018 correction: "Entering through the Threshold creates a gap — things not going through the Threshold are still inputs." Unclear interpretable instructions are a main reason for AI behavioral drift across sessions.
+- **self_assessment_question:** "Does my definition depend on a mechanism/tool/process that might not always apply? If I remove the mechanism reference, does the definition still cover everything it should?"
+- **status:** active

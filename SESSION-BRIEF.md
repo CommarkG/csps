@@ -6,16 +6,16 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S019 |
-| **Previous session** | S018 |
-| **Last updated** | today |
-| **Last commit** | b0a448d S019 close: wire Opus artifacts into session-open + HANDOFF + opus_pattern |
+| **Current session** | S021 |
+| **Previous session** | S020 |
+| **Last updated** | -1 day(s) ago |
+| **Last commit** | 40310ab S021 CEC: harvest + structural fixes — 51 validators, session-state S021 |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
-## What S019 must do
+## What S021 must do
 
-**S020: Execute sonnet-task-list-S020.md — start VOCAB-1 (14 new terms) → HAIKU-1 → HAIKU-2 → DRIFT-1. Enforcement rate: 6% (target 25%). Opus audit due S029. Context: S019 Opus review produced 15 lessons + 6 specification documents + 4 validators + 3 config files.**
+**S022: Both governance targets hit (enforcement_rate=29%, drift_coverage=71%). Options: (A) continue governance — promote post-stop-banned-phrase.sh STUB to active enforcement, build validate-comment-truth.mjs for documentation drift (6th/7 drift types); (B) app-layer — connect task-mgmt live DB (pnpm db:push + dev server validation). Governor chooses direction.**
 
 
 
@@ -42,7 +42,7 @@
 
 | Metric | Value |
 |---|---|
-| Validators (pnpm verify) | exit_code 0 (41 validators, ZF ACHIEVED — last run at ZERO BLOCKING) |
+| Validators (pnpm verify) | exit_code 0 (51 validators, ZF ACHIEVED — S021 CEC close) |
 | Council skills | 26 |
 | Behavioral contracts | 48 |
 | Error patterns (EP) | 16 |
@@ -57,6 +57,8 @@
 | s016 | Plan Methodology v2 L2 + task-mgmt live deployment | ⏳ PENDING |
 | s017 | ZenStack installation (Option A ratified) + RLS policies + validate-foundation-schema-drift.mjs + foundation-slices L3 closure. Bedrock Layer 2 completion. | ✅ COMPLETE (ee98115) |
 | s018 | Core Alignment + Completion — platform governance infrastructure | ✅ COMPLETE (4bc9966) |
+| s021 | enforcement-rate-uplift plan execution + CEC harvest + structural fixes from extraction | ✅ COMPLETE (committed) |
+| s020 | Execute sonnet-task-list-S020.md — VOCAB-1 + HAIKU-1/2 + DRIFT-1 + LAYER-1 + INNER-AI-1 + AUDIT-1 | ✅ COMPLETE (committed) |
 | s019 | B_RESULT_NOT_OUTPUT 5/5 FSE + CEC on 3 undiscovered items + domain card v1.1 update | ⏳ PENDING |
 
 ## Why this builds better than others

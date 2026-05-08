@@ -1,0 +1,120 @@
+# CSPS Haiku Pattern Library
+# Pre-defined pattern signatures for Haiku scout tasks.
+# Elevates Haiku from raw file scanner to pattern-aware scanner.
+# Created: S020 (spec: bottleneck-and-gradual-structures-S019.md §4)
+#
+# Usage: Sonnet includes relevant patterns from this library in every Haiku spawn prompt.
+# Format per pattern:
+#   id: unique identifier
+#   description: what this pattern detects
+#   grep_pattern: the regex to search for
+#   file_scope: glob path(s) to scan
+#   invert: if true, flag files WITHOUT the pattern (absence detection)
+#   escalate_to: which tier receives the finding (always sonnet — Haiku never decides)
+#   severity: BLOCKING | ADVISORY
+#   context: brief rationale for why this pattern matters
+
+patterns:
+
+  - id: satisfaction_point_risk
+    description: "Declarations of DONE/COMPLETE/RATIFIED/ZF-ACHIEVED without tool-output evidence"
+    grep_pattern: '\b(DONE|COMPLETE|RATIFIED|ZF ACHIEVED|ZF_ACHIEVED)\b'
+    file_scope: "*.md"
+    invert: false
+    escalate_to: sonnet
+    severity: ADVISORY
+    context: >
+      S019 P1 lesson (AGENTS.md hard NO): declarations are satisfaction points, not proofs.
+      Haiku flags these in response artifacts so Sonnet can verify tool output was cited.
+    source: opus-lessons-S019/part3-opus-triggers-and-cdab.md
+
+  - id: n_plus_one_query
+    description: "N+1 DB query pattern — findUnique by clerkId followed by enhanced client access"
+    grep_pattern: 'findUnique\(\s*\{[^}]*clerkId'
+    file_scope: "apps/*/src/app/api/**/*.ts"
+    invert: false
+    escalate_to: sonnet
+    severity: ADVISORY
+    context: >
+      Confirmed S019 bottleneck (L8): bootstrap lookup runs 2 DB queries per API request
+      where 1 would suffice. At 30 apps × 1,000 tenants this becomes O(N²) cost.
+      See: bottleneck-and-gradual-structures-S019.md Class A.
+    source: bottleneck-and-gradual-structures-S019.md
+
+  - id: layer_boundary_violation
+    description: "L0 Core (libs/) importing from L1/L2 (apps/) — reverse import direction"
+    grep_pattern: "import.*from.*['\"](\\.{0,2}/)*apps/"
+    file_scope: "libs/**/*.ts"
+    invert: false
+    escalate_to: sonnet
+    severity: BLOCKING
+    context: >
+      Platform Layer Boundaries: import flows L2→L1→L0→External ONLY.
+      libs/ is L0 Core — it must never depend on apps/.
+      BLOCKING because it inverts the dependency graph and breaks graduation isolation.
+    source: platform-layer-boundaries.yaml
+
+  - id: raw_prisma_in_business_route
+    description: "Direct PrismaClient instantiation in business API routes (bypasses ZenStack RLS)"
+    grep_pattern: "import \\{[^}]*PrismaClient[^}]*\\}|new PrismaClient\\("
+    file_scope: "apps/*/src/app/api/**"
+    invert: false
+    escalate_to: sonnet
+    severity: BLOCKING
+    context: >
+      ZenStack enforce(prismaClient) is required for RLS policy enforcement in all business
+      routes. Raw PrismaClient bypasses @@allow policies entirely — silent data leakage risk.
+      Only allowed in: pnpm db:push scripts, migration utilities, and test setup files.
+    source: opus-lessons-S019/part1-schema-and-security.md
+
+  - id: billing_logic_in_wrong_layer
+    description: "Billing trigger logic (member count, Stripe calls) in webhook handlers instead of libs/"
+    grep_pattern: "memberCount|getStripe\\(\\)|stripe\\.subscriptions\\.create|stripe\\.customers\\.create"
+    file_scope: "apps/*/src/app/api/webhooks/**"
+    invert: false
+    escalate_to: sonnet
+    severity: ADVISORY
+    context: >
+      Architectural Boundary Drift (drift-registry.yaml): billing logic in apps/task-mgmt
+      webhook handlers instead of libs/integrations/. At 30 apps, per-app billing code
+      creates 30 divergent billing implementations. Belongs in libs/integrations/billing.ts.
+      BILLING-1 task (Tier 3, requires Governor ratification) will fix the canonical gap.
+    source: bottleneck-and-gradual-structures-S019.md
+
+  - id: coverage_header_missing
+    description: "Validator files missing Coverage Levels header (✓ Level 1 / ✗ Level 2)"
+    grep_pattern: "Coverage Levels"
+    file_scope: "tools/validators/*.mjs"
+    invert: true
+    escalate_to: sonnet
+    severity: ADVISORY
+    context: >
+      Every validator must declare what it covers (positive_zf_claim) and what it does NOT
+      cover (not_proven). Missing coverage headers create false confidence: a passing run
+      may not detect higher-level drift. Invert=true flags validators WITHOUT this header.
+      See: build-verification-map.yaml required_checklist for tools/validators/*.mjs.
+    source: sonnet-capability-injection-S019.md
+
+  - id: comment_truth_risk
+    description: "Code comments citing P-ARCH-*/P-META-* principles that may not match current implementation"
+    grep_pattern: "P-ARCH-[0-9]+|P-META-[0-9]+|P-OP-[0-9]+|P-OPER-[0-9]+"
+    file_scope: "**/*.ts"
+    invert: false
+    escalate_to: sonnet
+    severity: ADVISORY
+    context: >
+      Documentation Drift (drift-registry.yaml): comments cite governance principles
+      but implementation may have evolved. Confirmed gap: AuditEvent comments claim
+      Postgres triggers; implementation uses app code. Haiku flags; Sonnet reads the
+      surrounding code to verify the mechanism matches the claim.
+    source: drift-registry.yaml
+
+# Meta
+meta:
+  total_patterns: 7
+  severity_blocking: 2
+  severity_advisory: 5
+  last_updated: S020
+  maintained_by: Governor + Sonnet
+  review_cadence: when new bottleneck classes are discovered
+  spec_source: docs/plan/_handoff/VAULT/bottleneck-and-gradual-structures-S019.md §4

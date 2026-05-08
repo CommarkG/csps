@@ -65,6 +65,7 @@ const KNOWN_MAPPINGS = {
   'validate-bedrock': ['bedrock', 'bedrock-completion', 'bedrock_completion'],
   'validate-core-seeds': ['core-seeds', 'core_seeds', 'core-seeds-coverage'],
   'validate-template-compliance': ['template-compliance', 'template_compliance', 'domain-card-template-compliance'],
+  'validate-drift-registry': ['drift-registry', 'drift_registry', 'drift-registry-coverage', 'drift_registry_coverage'],
 };
 
 function validatorBasename(filename) {

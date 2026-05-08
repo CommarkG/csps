@@ -188,6 +188,17 @@ const CYCLES = [
       return m ? { sessions_since: Number(m[1]), status: m[2] } : {};
     },
   },
+  {
+    // NEW S020 DRIFT-1 — drift-registry coverage: tracks % of 7 drift types with active validators
+    // ADVISORY when coverage < 50%; BLOCKING when < 25% AND critical drift type has no VLT
+    // Current baseline: 43% (3/7 active); target 71% (5/7) by S025
+    name: 'drift_registry_coverage',
+    command: 'node tools/validators/validate-drift-registry.mjs',
+    parse_output: (out) => {
+      const m = out.match(/total=(\d+)\s+active=(\d+).*coverage=(\d+)%\s+status=(\w+)\s+critical_unprotected=(\d+)/);
+      return m ? { total: Number(m[1]), active: Number(m[2]), coverage_pct: Number(m[3]), status: m[4], critical_unprotected: Number(m[5]) } : {};
+    },
+  },
     {
     // NEW S011 §24++ — catch-completeness: every §10.13b catch has a matching EP-NNN entry
     name: 'catch_completeness',

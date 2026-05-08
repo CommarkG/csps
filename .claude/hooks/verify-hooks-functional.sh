@@ -77,7 +77,10 @@ for hook in "${DECLARED_HOOKS[@]}"; do
   hook_path="${HOOKS_DIR}/${hook}"
   if [[ -f "${hook_path}" ]]; then
     present=$((present + 1))
-    if [[ -x "${hook_path}" ]]; then
+    # On Windows NTFS, execute bits are not preserved by the filesystem.
+    # Check git's tracked mode instead (100755 = executable in git).
+    git_mode=$(git ls-files --format='%(objectmode)' -- "${hook_path}" 2>/dev/null)
+    if [[ -x "${hook_path}" ]] || [[ "${git_mode}" == "100755" ]]; then
       printf "  ✓ %s (present + executable)\n" "${hook}"
     else
       not_executable=$((not_executable + 1))

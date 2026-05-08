@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-08T08:13:59.891Z
-- finished_at: 2026-05-08T08:14:11.780Z
+- ran_at: 2026-05-08T09:22:25.723Z
+- finished_at: 2026-05-08T09:22:36.594Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T08:13:59.891Z",
-    "finished_at": "2026-05-08T08:14:11.780Z",
+    "ran_at": "2026-05-08T09:22:25.723Z",
+    "finished_at": "2026-05-08T09:22:36.594Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.7,
+        "duration_seconds": 0.8,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -388,7 +388,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 6.8,
+        "duration_seconds": 5.9,
         "generate_ok": true,
         "zmodel_models": 7,
         "app_models": 7,

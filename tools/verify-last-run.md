@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-08T20:12:25.806Z
-- finished_at: 2026-05-08T20:12:37.786Z
+- ran_at: 2026-05-08T20:30:24.905Z
+- finished_at: 2026-05-08T20:30:37.274Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T20:12:25.806Z",
-    "finished_at": "2026-05-08T20:12:37.786Z",
+    "ran_at": "2026-05-08T20:30:24.905Z",
+    "finished_at": "2026-05-08T20:30:37.274Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -40,7 +40,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 283,
+        "scanned": 284,
         "errors": 0,
         "warnings": 18,
         "exempt": 214
@@ -252,9 +252,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 11,
-        "plans_with_open": 5,
-        "total_open_items": 60
+        "plans_checked": 12,
+        "plans_with_open": 6,
+        "total_open_items": 81
       },
       {
         "name": "rzf_evidence",
@@ -280,7 +280,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 9,
+        "checked": 10,
         "grandfathered": 2,
         "errors": 0
       },
@@ -308,7 +308,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 1,
+        "warnings": 2,
         "advisory": true
       },
       {
@@ -317,7 +317,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 11,
+        "plans_checked": 12,
         "warnings": 0
       },
       {
@@ -370,7 +370,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 9,
+        "plans_checked": 10,
         "missing_harvest": 0,
         "warnings": 0
       },
@@ -380,7 +380,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 9,
+        "plans_checked": 10,
         "missing_mode": 0,
         "warnings": 0
       },
@@ -402,7 +402,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 11,
+        "plans_checked": 12,
         "stale_total": 9,
         "unverified": 9,
         "verified": 0,
@@ -414,7 +414,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 11,
+        "plans_checked": 12,
         "sections_checked": 8,
         "blocking": 0,
         "warnings": 0
@@ -424,7 +424,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.3
+        "duration_seconds": 6.5
       },
       {
         "name": "audit_runner_full_pass",

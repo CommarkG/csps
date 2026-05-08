@@ -28,6 +28,7 @@ priority_score: 89
 priority_band: 1
 multi_session_arc: [S021]
 alignment_verified_session: S020
+know_how_consulted: true
 execution_mode: balanced
 depth_chosen: 3
 depth_rationale: |
@@ -89,6 +90,20 @@ links:
 **VLTs required:** None — all decisions are within Sonnet authority at `execution_mode: balanced`. No schema changes, no new behavioral contracts, no cross-actor impact.
 
 **Config hierarchy:** No hierarchical configs touched. EXPLICIT_OVER_IMPLICIT not triggered.
+
+---
+
+## §KH Know-How Consultation (B_KNOW_HOW_DISCIPLINE)
+
+**1. Duplication check:** Scanned existing topic-plans — no existing plan targets enforcement_rate uplift specifically. `platform-core-alignment.md` (S018) addressed CDP + GDE + infrastructure alignment but not inner-AI-defaults enforcement coverage. This plan is net-new scope.
+
+**2. Validator existence check:** `validate-inner-ai-defaults-enforcement-rate.mjs` already exists and runs in pnpm verify. This plan ADDS live validators / citation fixes to entries it monitors — not rebuilding the monitor itself. No duplication with drift-registry work (different axis: behavioral enforcement vs. structural drift).
+
+**3. Scope boundary:** Track A (citation fixes) and Track B (new validators) are complementary. Track A fixes measurement accuracy; Track B adds genuine new coverage. Both are required to hit 25% — neither duplicates the other.
+
+**4. Infrastructure needed:** No new infrastructure. All required surfaces exist: inner-AI-defaults files, enforcement-rate validator, post-stop hooks, verify.mjs pipeline, audit-runner.md. This plan wires and corrects, does not build new platform foundations.
+
+**5. Hook equivalence question:** Whether a post-stop `.sh` hook counts as "live mechanical enforcement" equivalent to a `.mjs` validator is a genuine open question addressed explicitly in L1 audit gate — resolved by reading hook content + confirming the enforcement-rate validator's LIVE_INDICATORS regex accepts it.
 
 ---
 

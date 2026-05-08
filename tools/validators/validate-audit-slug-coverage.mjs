@@ -66,6 +66,7 @@ const KNOWN_MAPPINGS = {
   'validate-core-seeds': ['core-seeds', 'core_seeds', 'core-seeds-coverage'],
   'validate-template-compliance': ['template-compliance', 'template_compliance', 'domain-card-template-compliance'],
   'validate-drift-registry': ['drift-registry', 'drift_registry', 'drift-registry-coverage', 'drift_registry_coverage'],
+  'validate-layer-boundary': ['layer-boundary', 'layer_boundary', 'layer-boundary-enforcement', 'layer_boundary_enforcement'],
 };
 
 function validatorBasename(filename) {

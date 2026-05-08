@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-08T09:22:25.723Z
-- finished_at: 2026-05-08T09:22:36.594Z
+- ran_at: 2026-05-08T20:12:25.806Z
+- finished_at: 2026-05-08T20:12:37.786Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T09:22:25.723Z",
-    "finished_at": "2026-05-08T09:22:36.594Z",
+    "ran_at": "2026-05-08T20:12:25.806Z",
+    "finished_at": "2026-05-08T20:12:37.786Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.3,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -40,9 +40,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 270,
+        "scanned": 283,
         "errors": 0,
-        "warnings": 8,
+        "warnings": 18,
         "exempt": 214
       },
       {
@@ -129,6 +129,42 @@
         "duration_seconds": 0.1
       },
       {
+        "name": "ai_defaults_enforcement_rate",
+        "command": "node tools/validators/validate-inner-ai-defaults-enforcement-rate.mjs",
+        "status": "CRITICAL",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "enforcement_rate": 6
+      },
+      {
+        "name": "opus_audit_due",
+        "command": "node tools/validators/validate-opus-audit-due.mjs",
+        "status": "OK",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "sessions_since": 0
+      },
+      {
+        "name": "layer_boundary",
+        "command": "node tools/validators/validate-layer-boundary.mjs",
+        "status": "CLEAN",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files_scanned": 5,
+        "violations": 0
+      },
+      {
+        "name": "drift_registry_coverage",
+        "command": "node tools/validators/validate-drift-registry.mjs",
+        "status": "ACCEPTABLE",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "total": 7,
+        "active": 4,
+        "coverage_pct": 57,
+        "critical_unprotected": 0
+      },
+      {
         "name": "catch_completeness",
         "command": "node tools/validators/validate-catch-completeness.mjs",
         "status": "PASS",
@@ -180,8 +216,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 70,
-        "with_status": 18,
+        "checked": 72,
+        "with_status": 20,
         "warnings": 0
       },
       {
@@ -299,9 +335,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 41,
+        "validators_checked": 45,
         "orphans": 0,
-        "registered": 41
+        "registered": 45
       },
       {
         "name": "token_budget_validate",
@@ -386,14 +422,9 @@
       {
         "name": "foundation_schema_drift",
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
-        "status": "CLEAN",
+        "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 5.9,
-        "generate_ok": true,
-        "zmodel_models": 7,
-        "app_models": 7,
-        "drift_count": 0,
-        "advisory": 0
+        "duration_seconds": 6.3
       },
       {
         "name": "audit_runner_full_pass",

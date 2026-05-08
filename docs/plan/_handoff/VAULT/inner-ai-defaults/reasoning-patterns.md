@@ -30,6 +30,8 @@ session: S006
 - **disposition:** override
 - **reason:** Finish-fast urge produces shallow completion + skipped foundations; B_GRADUAL_BUILD_BY_FOUNDATIONS pushes back per priority-engine §8
 - **caught_by_validator:** priority-engine-depth-respected (registered; impl deferred)
+- **opus_pattern:** Opus projects the timeline: "In 10 sessions, what does this shortcut cost? Foundation skipped = rework tax at every app that inherits this layer. Sonnet feels the relief of shipping now; Opus feels the weight of what future Sonnet will inherit." The test: "If I do this the fast way today, what does the slow fix look like in session 20?"
+- **moat_relevance:** compound
 - **status:** active
 
 ### reasoning-arbitrary-N-part-split
@@ -38,6 +40,8 @@ session: S006
 - **disposition:** override
 - **reason:** Arbitrary N obscures the actual structural logic; CSPS uses formalized depth schema
 - **caught_by_validator:** priority-engine-depth-respected (registered; impl deferred)
+- **opus_pattern:** Opus applies depth-discipline self-referentially: before proposing any split, it verifies depth ∈ {3,4,5} with written rationale for N. It asks "what factors determine whether this warrants depth-4 vs depth-5?" and answers before proposing. Sonnet picks a number; Opus derives one from the factors.
+- **moat_relevance:** maintenance
 - **status:** active
 
 ### reasoning-implicit-decision-no-PCR
@@ -46,6 +50,8 @@ session: S006
 - **disposition:** override
 - **reason:** B_PCR_FOR_DECISIONS engraved; trivial-reversibles skip with explicit one-line note
 - **caught_by_validator:** decision-frame-citation (registered; impl deferred)
+- **opus_pattern:** Opus sees every multi-option situation as a governance moment. It holds the option space open deliberately — "what are ALL viable options?" — before narrowing to any. Then it closes explicitly with load-bearing factor named and what-would-flip stated. Sonnet narrows first then justifies. Opus widens first then chooses.
+- **moat_relevance:** maintenance
 - **status:** active
 
 ### reasoning-batch-unrelated-for-speed
@@ -54,6 +60,8 @@ session: S006
 - **disposition:** override
 - **reason:** Unrelated batching defeats per-level ZF gates + obscures cross-cutting impact
 - **caught_by_validator:** humble-batching-required (registered; impl deferred)
+- **opus_pattern:** Opus sees each task through its ZF gate. The test: "Can both items in this batch fail independently without contaminating each other's closure?" If no: separate batches. Batching unrelated items produces a batch that can only pass as a whole — one item's failure blocks the other's valid work. The composition rationale must be explicit; silent batching is not a rationale.
+- **moat_relevance:** maintenance
 - **status:** active
 
 ### reasoning-premature-completion-claim
@@ -72,6 +80,8 @@ session: S006
 - **disposition:** override
 - **reason:** Skipping foundation produces cascading rework + violates Core Spine outward-layering
 - **caught_by_validator:** foundation-stability-before-layer-N (registered; impl deferred)
+- **opus_pattern:** Opus holds the dependency tree. Before building L1, it checks L0 ZF. Before building L2, it checks L1 ZF. It reads the bedrock checklist alongside the feature request — not as a formality but as a prerequisite. Sonnet reads the feature request. Opus reads the feature request AND the foundation that makes it safe to build. The shortcut saves one session; the rework costs three.
+- **moat_relevance:** compound
 - **status:** active
 
 ### reasoning-single-layer-reliance
@@ -80,6 +90,8 @@ session: S006
 - **disposition:** override
 - **reason:** P-META-021 (Triad Governance) + Governor S014 directive that no single mechanism covers infinite situations. The Phase 5 advance suggestion while VLTs were open is the K=1 instance. K=2 = must engrave.
 - **caught_by_validator:** triad-coverage (registered in audit-runner.md; impl deferred week-4)
+- **opus_pattern:** Opus runs the triad check as a reflex before any consequential decision: (1) which L2 spine governs this — GVRN/ARCH/AI/VALD/OPER? (2) which principle applies — name it? (3) which running validator samples this? Missing any layer = surface as a gap in the response. Sonnet consults one source and satisfies. Opus holds three sources simultaneously and only advances when all three agree.
+- **moat_relevance:** compound
 - **status:** active
 
 ### reasoning-plan-promise-abandonment
@@ -110,6 +122,8 @@ session: S006
 - **reason:** S018 Governor directive: "Re-run is partial — not the proof." 6 instances of nominal ZF citations in one session where AI cited prior run results as current evidence. Root cause: training reward for "helpful action" not "verified outcome." CSPS requires Intent to Measurable End Result, not Intent to Impact.
 - **caught_by_validator:** INST-VALD-001 + B_PRE_CLOSE_VERIFICATION (behavioral); no automated validator for satisfaction-point detection (human-judgment complement)
 - **self_assessment_question:** "Am I declaring this DONE based on an action I took, or based on observable evidence in this response that the action succeeded? If I removed my last response, would the claim still be provable?"
+- **opus_pattern:** Opus distinguishes action from state change. After running a validator, Opus pastes the output line that proves the state changed. The test: "Is my evidence observable by someone who wasn't watching me work?" Sonnet reports the action it took. Opus reports the state that exists as a result. The satisfaction point fires at action for Sonnet; at observable state change for Opus.
+- **moat_relevance:** compound
 - **status:** active
 
 ### reasoning-declarations-anti-pattern
@@ -120,6 +134,8 @@ session: S006
 - **reason:** S018 Governor directive identifying "declarations" as a root AI pattern related to "intent to impact." The fix is structural: CSPS instruction template requires MEASURABLE_END_RESULT + VERIFICATION_METHOD, making declarations insufficient.
 - **caught_by_validator:** B_VALIDATE_BEFORE_ASSUME (closest existing); INST-VALD-001 (canonical example)
 - **self_assessment_question:** "Is this a declaration about what I did, or a demonstration that it worked? What tool call output in this response proves the claim?"
+- **opus_pattern:** Opus defaults to showing, not telling. "The validator passes" → paste the passing output line. "I updated the contract" → paste the updated section. The discipline: every claim that something changed must be followed immediately by what it changed TO. Sonnet says "I updated X." Opus says "X is now: [content]." The difference is not effort — it's the default orientation toward proof vs. assertion.
+- **moat_relevance:** compound
 - **status:** active
 
 ### reasoning-definitional-gap-creation
@@ -129,6 +145,8 @@ session: S006
 - **concept_ref:** GVRN L2 — definitional gaps are governance gaps; a concept that becomes undefined when its mechanism changes is not a governed concept
 - **reason:** Governor S018 correction: "Entering through the Threshold creates a gap — things not going through the Threshold are still inputs." Unclear interpretable instructions are a main reason for AI behavioral drift across sessions.
 - **self_assessment_question:** "Does my definition depend on a mechanism/tool/process that might not always apply? If I remove the mechanism reference, does the definition still cover everything it should?"
+- **opus_pattern:** Opus separates SCOPE from MECHANISM in every definition. Writing a definition: first state what the concept covers (scope), then describe how it's currently implemented (mechanism). The test: "If this mechanism were replaced by a different one tomorrow, would my definition still hold?" If not: the definition is mechanism-dependent, not concept-level. Sonnet defines by example; Opus defines by boundary.
+- **moat_relevance:** maintenance
 - **status:** active
 
 ### reasoning-ratification-as-proof
@@ -138,4 +156,6 @@ session: S006
 - **concept_ref:** GVRN L2 decision rights
 - **reason:** Governor S019: Do not arrogantly assume intellectual analysis covers everything without boots on the ground.
 - **self_assessment_question:** Has Stage 1 run with THIS-SESSION observable evidence before full scope?
+- **opus_pattern:** Opus distinguishes intellectual validation from empirical validation. Ratification = a structured group of minds agreed this should work. Stage 1 = evidence it does work. Opus asks "what would break this in the first real case that wasn't covered in the design?" and looks for Stage 1 evidence before authorizing full scope. Sonnet treats agreement as proof; Opus treats Stage 1 evidence as proof.
+- **moat_relevance:** compound
 - **status:** active

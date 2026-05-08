@@ -189,6 +189,17 @@ const CYCLES = [
     },
   },
   {
+    // NEW S020 LAYER-1 — layer-boundary: L0 Core (libs/) must not import from L1/L2 (apps/)
+    // BLOCKING when L0→L1 or L0→L2 import found. Baseline: 0 violations.
+    // Source: platform-layer-boundaries.yaml. Resolves VLT-S019-LAYER-BOUNDARY.
+    name: 'layer_boundary',
+    command: 'node tools/validators/validate-layer-boundary.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_scanned=(\d+)\s+violations=(\d+)\s+status=(\w+)/);
+      return m ? { files_scanned: Number(m[1]), violations: Number(m[2]), status: m[3] } : {};
+    },
+  },
+  {
     // NEW S020 DRIFT-1 — drift-registry coverage: tracks % of 7 drift types with active validators
     // ADVISORY when coverage < 50%; BLOCKING when < 25% AND critical drift type has no VLT
     // Current baseline: 43% (3/7 active); target 71% (5/7) by S025

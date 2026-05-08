@@ -455,6 +455,40 @@ At every IMPL_BATCH boundary (ZF Level 2), check:
 
 If overall_status: OPEN_CHECKPOINTS — session close is advisory-blocked. Surface items and defer explicitly.
 
+### §10.0q SAP Abbreviated — Sweeps 2 + 5 (sonnet-audit-protocol.md — added S020)
+
+> **Runs at every session close.** Full 6-sweep SAP runs at complex/architectural sessions and before every Opus consultation. Spec: [sonnet-audit-protocol.md](../../../../docs/plan/pillar-0-governance/sonnet-audit-protocol.md).
+
+```yaml
+sap_abbreviated:
+  session: S<NNN>
+
+  sweep_2_drift:
+    validate_drift_registry: "<paste last line of validate-drift-registry.mjs output>"
+    drift_coverage_pct: <N>
+    drift_coverage_previous: <N>
+    coverage_delta: "advanced / unchanged / regressed"
+    enforcement_rate_pct: <N>
+    enforcement_rate_previous: <N>
+    rate_delta: "advanced / unchanged / regressed"
+
+  sweep_5_contract_enforcement:
+    validate_enforcement_rate: "<paste last line of validate-inner-ai-defaults-enforcement-rate.mjs output>"
+    live_validators: <N>
+    total_entries: <N>
+    k2_candidates: []  # entries deferred ≥2 sessions
+    vtls_created_this_session: []
+
+  session_close_invariants:
+    enforcement_rate_maintained: true  # this session >= previous session
+    drift_coverage_maintained: true    # this session >= previous session
+    regression_vlt_if_decreased: "N/A or VLT-SXXX-SLUG"
+```
+
+Run: `node tools/validators/validate-drift-registry.mjs` + `node tools/validators/validate-inner-ai-defaults-enforcement-rate.mjs` — paste last lines above.
+
+WHY: SAP Sweeps 2+5 are the minimum session-close audit. Without them, enforcement_rate and drift_coverage can silently regress across sessions without a VLT tracking the debt. The session-close invariants force the AI to declare whether coverage advanced or regressed — not assume it was unchanged.
+
 ### §10.1 Stewardship review (P-META-004)
 
 **Run `/stewardship-review`:**

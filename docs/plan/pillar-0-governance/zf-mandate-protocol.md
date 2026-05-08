@@ -40,6 +40,14 @@ links:
 
 ZF is not a checkbox at session close. It is a **continuous cycle that runs at every meaningful decision boundary**. The boundary determines the depth.
 
+> **ZF ACHIEVED — THE ONLY VALID DEFINITION (Governor S018 correction — INST-VALD-001):**
+> **THE LAST RUN PRODUCING "STATUS: ZF ACHIEVED ✅ — 0 blocking findings remain" IS THE ONLY PROOF.**
+> - A run reducing findings from 5 to 2: NOT ZF ACHIEVED
+> - A prior session's ZF result cited as current evidence: NOT ZF ACHIEVED (nominal ZF)
+> - "Only advisory warnings remain": NOT ZF ACHIEVED (zero BLOCKING is required, not zero advisories)
+> - Progress toward zero is not zero. The AI satisfaction point fires at improvement. It is not the proof.
+> Re-run is NECESSARY but NOT SUFFICIENT. Zero findings on the last run IS the proof.
+
 Per P-META-021 (Triad): each ZF mandate requires all three layers:
 - **Context** (WHY this level at this boundary)
 - **Principle** (which P-* governs this boundary)

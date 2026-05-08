@@ -1,13 +1,13 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S018",
-  "previous_session": "S017",
-  "session_updated_at": "2026-05-07T11:10:00Z",
+  "current_session": "S019",
+  "previous_session": "S018",
+  "session_updated_at": "2026-05-08T06:45:00Z",
   "session_mandate": {
-    "primary": "ZenStack-integrated app template — establish canonical scaffold with enhance() wired from day one. App #2 uses this template, not apps/task-mgmt as reference.",
+    "primary": "B_RESULT_NOT_OUTPUT 5/5 FSE engraving + CEC on 3 undiscovered S018 items (platform-audit, CDP, AI personas) + Session Question Register acknowledgments",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — all VLTs resolved, foundation gate CLEAN, 0 PENDING VLTs."
+    "blocking_on": "NONE — all VLTs resolved, ZF ACHIEVED, 0 BLOCKING (INST-VALD-001)"
   },
   "blocking_decisions": [
     {
@@ -102,8 +102,8 @@
     }
   ],
   "platform_state": {
-    "pnpm_verify": "exit_code 0 (41 active validators, ZF Level 3 achieved S017)",
-    "last_verified_commit": "ee98115",
+    "pnpm_verify": "exit_code 0 (41 validators, ZF ACHIEVED — last run at ZERO BLOCKING)",
+    "last_verified_commit": "4bc9966",
     "complexity_score": 18.2,
     "complexity_zone": "GREEN",
     "skills": 26,
@@ -139,7 +139,12 @@
     "zf_mandate_protocol": "docs/plan/pillar-0-governance/zf-mandate-protocol.md",
     "bedrock_completion": "91% done (20/22 items), 100% tracked. Layer 2: 9/9 COMPLETE (S017). 2 deferred: ZenStack-integrated template + live DB validation (user-action). See csps-bedrock.md.",
     "layer_separation": "CORE layer (libs/, tools/, governance/) = what every app inherits. APP layer (apps/*) = individual products. App-layer work (live deployment, credentials, dev server) is Governor-triggered, not AI-mandated.",
-    "app_layer_permission": "EXPLICIT ONLY — AI never initiates app-layer work. Requires explicit Governor directive per specific task (not implied by approved/proceed). B_LAYER_SEPARATION escape hatch: specific permission, not blanket."
+    "app_layer_permission": "EXPLICIT ONLY — AI never initiates app-layer work. Requires explicit Governor directive per specific task (not implied by approved/proceed). B_LAYER_SEPARATION escape hatch: specific permission, not blanket.",
+    "cdp_plan": "core-dynamic-plan.md ACTIVE (depth-4, priority 92)",
+    "gde": "gradual-depth-engine.md ACTIVE",
+    "core_seeds": "3 planted, validate-core-seeds.mjs STUB",
+    "domain_card_template": "v1.1 — depth_levels field added, 11 domain cards at v1.0 (stale)",
+    "session_question_register": "SQR ACTIVE — INPUTS and FINDINGS definitions OPEN checkpoint"
   },
   "next_session_auto_checks": [
     "pnpm verify --skip-install (confirm 37 PASS)",
@@ -183,10 +188,18 @@
       "unlocks": "bedrock Layer 2 9/9 complete → ZenStack enforcement ACTIVE → app #2 build authorized"
     },
     "s018": {
-      "mandate": "ZenStack-integrated app template — canonical scaffold with enhance() from day one. App #2 uses this template. Secondary: field-level drift checking + hash caching in drift validator.",
+      "mandate": "Core Alignment + Completion — platform governance infrastructure",
+      "status": "COMPLETE",
+      "commit": "4bc9966",
+      "zf_deep": "ACHIEVED (0 blocking — INST-VALD-001)",
+      "discoveries": 15,
+      "unlocks": "CDP + GDE + Core Seeds + SQR + Instruction Template + B_TOKEN_BUDGET v2 + 20+ audit slugs"
+    },
+    "s019": {
+      "mandate": "B_RESULT_NOT_OUTPUT 5/5 FSE + CEC on 3 undiscovered items + domain card v1.1 update",
       "model_tier": "STANDARD_BUILD",
-      "estimated_tokens_k": 100,
-      "unlocks": "app #2 build on clean ZenStack foundation"
+      "estimated_tokens_k": 150,
+      "unlocks": "Receipt validation mechanical + CDP v1.1 domain cards + GDE operational"
     }
   },
   "why_better_than_others": [

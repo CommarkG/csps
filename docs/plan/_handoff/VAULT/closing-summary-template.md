@@ -409,6 +409,34 @@ In week-4: `validate-positive-zf-evidence.mjs` checks that every discovery has `
 
 WHY: Positive ZF is the compounding mechanism. Without mechanical enforcement of CEC, platform improvements stay local (one session's insight) rather than systemic (engraved across all surfaces). The difference between a platform that learns vs one that repeats the same discoveries every session.
 
+### §10.0o Session Question Register clearance (SQR — added S018)
+
+> **Per session-question-register.md:** Every CHECKPOINT item produced during the session must be acknowledged before close. OPEN items that were not acknowledged must be explicitly deferred with a reason.
+
+```yaml
+session_question_register:
+  session: S<NNN>
+  total_checkpoint_items: <count>
+  acknowledged: <count>
+  deferred_with_reason: <count>
+  open_unaddressed: <count>  # must be 0 to close cleanly
+  
+  # List any deferred items with reasons:
+  deferred_items:
+    - id: SQR-S<NNN>-NNN
+      content: "<what was asked/defined>"
+      defer_reason: "<why deferred>"
+      carry_forward_to: S<NNN+1>
+```
+
+**Mid-session harvest check (per Governor directive S018):**
+At every IMPL_BATCH boundary (ZF Level 2), check:
+1. Positive discoveries since last harvest ≥3? → Run CEC now
+2. SQR OPEN items older than 5 turns? → Re-surface top 1 at start of next response
+3. Negative findings without engraving? → Catch-to-engraving
+
+If overall_status: OPEN_CHECKPOINTS — session close is advisory-blocked. Surface items and defer explicitly.
+
 ### §10.1 Stewardship review (P-META-004)
 
 **Run `/stewardship-review`:**

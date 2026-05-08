@@ -169,19 +169,97 @@ Milestones: M0 (close this session) → M1 (platform audit complete + external A
 
 ---
 
+## §2b Additional Major Discoveries (S018 continued — S019 context)
+
+### Discovery 8: Gradual Depth Engine (GDE)
+
+**What was identified:** The fundamental architectural principle — every element must have predefined L1/L2/L3 depth levels. Without this, systems fail via cognitive overload OR discovery failure. GDE is the infrastructure dependency for both CDP and platform-core-alignment.
+
+**Artifact created:** `docs/plan/pillar-0-governance/gradual-depth-engine.md`
+**Domain card template v1.1:** `depth_levels:` frontmatter field added (L1/L2/L3 token targets)
+**Connection:** Vault = L1 staging, Domain cards = L2 operational, Implementation = L3 specification
+
+---
+
+### Discovery 9: Core Dynamic Plan (CDP)
+
+**What was identified:** A unified lifecycle state machine for every major CSPS element. Replaces scattered lifecycle fields (lifecycle_state + impl_status + enforcement_stage + ZF evidence) with one coherent machine: raw → pipeline-intake → ratified → implementing → implemented → zf-achieved → measured → sealed.
+
+**Artifact created:** `docs/plan/_handoff/VAULT/topic-plans/core-dynamic-plan.md` (depth-4, priority 92)
+**Validated industry pattern:** Backstage.io Software Catalog (Spotify — used by Netflix, Airbnb, etc.)
+**New enum:** `cdp_status:` (9 values) added to validate-frontmatter.mjs
+
+---
+
+### Discovery 10: Core Seeds Pattern
+
+**What was identified:** Mechanical placeholders in code that know which plan they serve, what they'll grow into, and when. Makes the gap between "designed" and "implemented" VISIBLE and AUDITABLE.
+
+**Pattern:** `// @core-seed: NAME | plan: X | grows-to: Y | target: S0NN`
+**Validator created:** `tools/validators/validate-core-seeds.mjs` (STUB, exits 0)
+**Seeds planted:** ZF_POSITIVE_HARVEST / TEMPLATE_COMPLIANCE_BLOCKING / PE_CDP_STATUS_READER
+**Audit slug registered:** `core-seeds-coverage`
+
+---
+
+### Discovery 11: Mechanical Enforcement Policy + Human-Judgment Tier
+
+**What was formalized:** "If no mechanical solution works — why bother?" → 4-tier policy.
+**New enforcement_stage value:** `human-judgment` (Tier 3 — explicitly non-mechanical, self-assessment only)
+**Document:** `docs/plan/pillar-0-governance/mechanical-enforcement-policy.md`
+
+---
+
+### Discovery 12: Session Question Register (SQR)
+
+**What was identified:** S018 Governor discovery — INPUTS/FINDINGS definitions were provided but never acknowledged. Intent died on its way to impact. Three-expert analysis: Communication (gates 1-4), Systems (fire-and-forget pattern), Product/Cognitive (checkpoint vs reference distinction).
+
+**Artifact created:** `docs/plan/pillar-0-governance/session-question-register.md`
+**Protocol:** CHECKPOINT items formatted with ⚑ surface, tracked until ACKed, re-surfaced if not
+**Added to:** AGENTS.md behavioral mandate + closing-summary-template §10.0o
+
+---
+
+### Discovery 13: Instruction Template (INST-VALD-001)
+
+**What was formalized:** The canonical template for writing governance instructions with 6 required ingredients: CONTEXT + TRIGGER + ACTION + MEASURABLE_END_RESULT + VERIFICATION_METHOD + SATISFACTION_POINT_WARNING + ENFORCEMENT.
+
+**Canonical example:** INST-VALD-001 — ZF zero-findings (the only valid proof)
+**Document:** `docs/plan/pillar-0-governance/instruction-template.md`
+
+---
+
+### Discovery 14: ZF Zero-Findings Engraved in 15 Places
+
+**What was done:** "THE LAST RUN AT ZERO BLOCKING FINDINGS IS THE ONLY PROOF" engraved in:
+AGENTS.md / behavioral-contracts §B_PRE_CLOSE_VERIFICATION / inner-ai-defaults/reasoning-patterns.md / zf-orchestrator.mjs / memory / VALD spine §3 / platform-audit/README.md / qc-audits.md / ai-personas.md Persona 2 / mechanical-enforcement-policy.md / audit-hub Pipeline 4 / platform-core-alignment / instruction-template.md / audit-runner.md / zf-mandate-protocol.md (this session)
+
+---
+
+### Discovery 15: Behavioral Governor Collaboration Mandate
+
+**What was registered:** Mechanical behavioral standards for AI-Governor collaboration:
+✅ BE DIRECT | ✅ PUSH BACK WITH EVIDENCE | ✅ SORT THE SIGNAL | ✅ SAY "WE HAVE THIS" | ✅ BE PROACTIVELY CREATIVE | ❌ NEVER PRETEND COMFORT | ❌ NEVER VALIDATE ASPIRATION AS IMPLEMENTATION
+**Registered in:** AGENTS.md `### Governor Collaboration Behavioral Mandate`
+
+---
+
 ## §5 ZF Evidence Block
 
 ```
-Session: S018
-ZF Level achieved: 3 (DEEP)
-Exit code: 0 (41 validators)
+Session: S018 (continued — multiple rounds after initial extraction)
+ZF Level achieved: 3 (DEEP) — Last run: STATUS: ZF ACHIEVED ✅ — 0 blocking findings remain
+Exit code: 0 (41 validators) — INST-VALD-001 compliant
 Blocking found: 0
-Advisory remaining: 3 (pre-existing warnings)
+Advisory remaining: 3 (pre-existing tracked obligations)
 Orchestrator cycles: 5 at Level 3
-Last verified commit: 5124c67 (pre-close)
-Audit slugs registered this session: 18 total
+Last verified commit: 4bc9966 (session-open.sh executable fix)
+Audit slugs registered this session: 20+ total (18 from earlier + core-seeds + cdp-status + progress-not-completion)
 New pipelines defined: 3 (P11, P12, P13)
-Platform-audit artifacts: 14 created
-AI personas: 7 formalized
+Platform-audit artifacts: 14 created + gradual-depth-engine + session-question-register + instruction-template + mechanical-enforcement-policy
+AI personas: 7 formalized (ai-personas.md)
 B_TOKEN_BUDGET: v2 (8 rules) ratified and engraved
+CDP: core-dynamic-plan.md created (depth-4, priority 92)
+GDE: gradual-depth-engine.md created
+Core Seeds: 3 planted, validator STUB active
 ```

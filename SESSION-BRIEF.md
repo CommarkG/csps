@@ -9,7 +9,7 @@
 | **Current session** | S019 |
 | **Previous session** | S018 |
 | **Last updated** | today |
-| **Last commit** | a816dbb S018→S019 CLOSE: Session Question Register + session sweep + all dropped items fixed |
+| **Last commit** | 9a07d02 S019: Sonnet inheritance model + Opus enforcement + boundaries + gradual structures |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

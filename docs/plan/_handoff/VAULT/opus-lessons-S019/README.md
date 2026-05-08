@@ -10,7 +10,8 @@ description: >
   that builds on CSPS after this session.
 version: 1.0
 lifecycle: production
-lifecycle_state: draft
+lifecycle_state: pending-review
+next_review_at: S020
 dynamic: true
 dynamic_notice: >
   This is a LIVING DOCUMENT SET. The Governor will improve and ratify these

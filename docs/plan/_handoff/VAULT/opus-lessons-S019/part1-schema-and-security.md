@@ -7,7 +7,8 @@ description: >
   miss it, and the permanent improvement for CSPS AI builders.
 version: 1.0
 lifecycle: production
-lifecycle_state: draft
+lifecycle_state: pending-review
+next_review_at: S020
 dynamic: true
 owner: group:finky
 core_spine: ARCH
@@ -15,7 +16,7 @@ session: S019
 created_by: Claude Sonnet 4.6[1M] — Opus-designated architectural review
 tags:
   - domain:architecture
-  - domain:security
+  - domain:governance
   - type:reference
   - audience:ai-agent
   - maturity:draft

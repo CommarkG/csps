@@ -8,7 +8,8 @@ description: >
   Opus-designated review every 19 sessions.
 version: 1.0
 lifecycle: production
-lifecycle_state: draft
+lifecycle_state: pending-review
+next_review_at: S020
 dynamic: true
 owner: group:finky
 core_spine: AI

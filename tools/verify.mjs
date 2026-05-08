@@ -168,6 +168,16 @@ const CYCLES = [
       return m ? { model: m[1], warnings: Number(m[2]) } : {};
     },
   },
+  {
+    // NEW S019 L11 opus-lessons — enforcement rate: measures % of inner-AI-defaults with live validators
+    // Stage: measurement (exits 0 always) — tracks the gap; blocking stage activates S025
+    name: 'ai_defaults_enforcement_rate',
+    command: 'node tools/validators/validate-inner-ai-defaults-enforcement-rate.mjs',
+    parse_output: (out) => {
+      const m = out.match(/enforcement_rate=(\d+)%.*status=(\w+)/);
+      return m ? { enforcement_rate: Number(m[1]), status: m[2] } : {};
+    },
+  },
     {
     // NEW S011 §24++ — catch-completeness: every §10.13b catch has a matching EP-NNN entry
     name: 'catch_completeness',

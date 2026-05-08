@@ -1,0 +1,119 @@
+# CSPS Drift Detection Registry
+# Canonical registry of all drift types the platform monitors
+# Created: S019 (L1-L7 opus-lessons architectural review)
+# See: docs/plan/_handoff/VAULT/sonnet-capability-injection-S019.md Part H
+#
+# For each drift type:
+#   status: active | deferred | planned
+#   severity: CRITICAL | BLOCKING | ADVISORY
+#   validator: the specific validator that detects this (or TBD)
+#
+# Meta-validator: validate-drift-registry.mjs reads this file and reports coverage %
+# Target coverage: 5/7 active by S025, 7/7 active by S030
+
+drift_types:
+
+  - id: schema-model-drift
+    name: "Schema Model Drift"
+    description: "ZModel model names vs app Prisma schema model names"
+    status: active
+    validator: validate-foundation-schema-drift.mjs
+    coverage_level: 1
+    severity: BLOCKING
+    added_session: S017
+    spine: ARCH
+
+  - id: schema-field-drift
+    name: "Schema Field Drift"
+    description: "ZModel field names per-model vs app Prisma schema fields (per-model)"
+    status: active
+    validator: validate-foundation-schema-drift.mjs
+    coverage_level: 2
+    severity_blocking: "Field in ZModel/generated missing from app schema"
+    severity_advisory: "Field in app schema missing from ZModel"
+    added_session: S019
+    confirmed_gap: "Tenant.stripeSubscriptionId was in app schema but not ZModel"
+    spine: ARCH
+
+  - id: schema-live-db-drift
+    name: "Live Database vs Code Schema Drift"
+    description: "Prisma schema (code) vs actual live Supabase database schema"
+    status: deferred
+    vlt: VLT-S019-LIVEDB
+    validator: TBD
+    implementation_notes: "Requires Supabase schema introspection via pg_catalog queries"
+    severity: CRITICAL
+    note: "Silent production divergence — the most dangerous drift type. A migration
+           that runs on code but not on the live DB creates a gap that no code-level
+           validator can catch. Requires live DB connectivity in CI or periodic
+           offline sync check."
+    added_session: S019
+    spine: ARCH
+
+  - id: behavioral-contract-enforcement-drift
+    name: "Behavioral Contract Enforcement Drift"
+    description: "AI behavioral contracts declared vs contracts with live mechanical enforcement"
+    status: active
+    validator: validate-inner-ai-defaults-enforcement-rate.mjs
+    coverage_level: 1
+    severity: ADVISORY
+    enforcement_stage: measurement
+    current_rate: "6% (2/31 entries have live validators as of S019)"
+    target_rate: "50% by S025, 75% by S030"
+    added_session: S019
+    spine: AI
+
+  - id: conceptual-ai-drift
+    name: "AI Conceptual Drift"
+    description: "AI behavioral patterns drifting from platform conventions across sessions"
+    status: partial
+    validator: validate-inner-ai-defaults-freshness.mjs
+    coverage_notes: "Checks freshness (model version currency) but NOT behavioral quality"
+    severity: ADVISORY
+    gap: "Freshness check confirms model is current; does not confirm behavior is correct"
+    added_session: S006
+    spine: AI
+
+  - id: documentation-drift
+    name: "Documentation/Implementation Drift (Comment Truth)"
+    description: "Code comments citing P-ARCH-*/P-META-* that don't match current implementation"
+    status: planned
+    vlt: VLT-S019-COMMENT-TRUTH
+    validator: validate-comment-truth.mjs
+    implementation_notes: >
+      Scan .ts/.mjs files for inline P-ARCH-* / P-META-* citations.
+      Extract the claimed mechanism. Surface as ADVISORY for human review.
+      Cannot be fully automated — requires semantic understanding of mechanism claims.
+      Start with: grep for P-ARCH-008 mentions and verify they describe current code.
+    severity: ADVISORY
+    confirmed_gap: "AuditEvent comment claims Postgres triggers; implementation uses app code"
+    added_session: S019
+    spine: ARCH
+
+  - id: architectural-boundary-drift
+    name: "Architectural Layer Boundary Drift"
+    description: "Cross-cutting logic (billing, audit, erasure) placed in wrong layer (app vs. libs)"
+    status: planned
+    vlt: VLT-S019-LAYER-BOUNDARY
+    validator: validate-import-quarantine.mjs
+    implementation_notes: >
+      Extend validate-import-quarantine.mjs to detect:
+      - Stripe imports (new Stripe(), stripe.subscriptions) outside libs/
+      - Direct db writes in webhook handlers (should delegate to libs/integrations)
+      - AuditEvent writes outside writeAuditEvent() in libs/
+      Severity: ADVISORY for now; BLOCKING for Stripe imports in apps/ after S020
+    severity: ADVISORY
+    confirmed_gap: "Billing trigger (memberCount check) in apps/task-mgmt/api/webhooks/clerk not libs/"
+    added_session: S019
+    spine: ARCH
+
+# Summary
+meta:
+  total_drift_types: 7
+  active: 3
+  partial: 1
+  planned: 2
+  deferred: 1
+  coverage_percentage: 43
+  last_updated: S019
+  next_review: S025

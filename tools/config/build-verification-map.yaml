@@ -1,0 +1,124 @@
+# CSPS Build Verification Map
+# Maps governed file types to the validators that MUST pass after any change.
+# Created: S019 (sonnet-capability-injection-S019.md Part G)
+#
+# Purpose: Mechanical coupling between "built" and "verified"
+# Usage: After any Write/Edit to a governed file, Sonnet reads this map
+#        and runs the listed validators + checklist before declaring done.
+#
+# Format per entry:
+#   path_pattern: glob or exact path pattern
+#   required_validators: list of validators that MUST pass
+#   required_checklist: items Sonnet MUST manually verify
+#   positive_zf_claim: what exit_code 0 specifically proves
+#   not_proven: what exit_code 0 does NOT prove
+
+governed_files:
+
+  - path_pattern: "libs/policies/schema.zmodel"
+    triggers_when: modified
+    required_validators:
+      - "node tools/validators/validate-foundation-schema-drift.mjs"
+    required_checklist:
+      - "Field-level drift validator reports field_advisory=0 (no new app-only fields)"
+      - "If adding a new model: check if it should extend Base or AppendOnlyBase"
+      - "If adding a PII field (email, name, phone): document erasure path in GDPR section"
+      - "Check if stripeSubscriptionId-style field belongs in ZModel vs. BillingProfile model"
+      - "If schema deployed to Supabase: run pnpm db:push"
+    positive_zf_claim: "ZModel and app schema are field-level consistent (model + field drift = 0)"
+    not_proven:
+      - "Live Supabase database matches the schema (Level 3 drift)"
+      - "Type annotations (@db.Uuid) are consistent (Level 4 drift)"
+      - "ZenStack @@allow policies are tested against actual DB behavior"
+
+  - path_pattern: "apps/task-mgmt/prisma/schema.prisma"
+    triggers_when: modified
+    required_validators:
+      - "node tools/validators/validate-foundation-schema-drift.mjs"
+    required_checklist:
+      - "Every new field on a foundation model (User/Tenant/UserTenant/AuditEvent) is in ZModel"
+      - "New app-local fields are added to APP_ONLY_ACCEPTED_FIELDS in the drift validator"
+      - "Naming: does any new field name conflict with semantic meaning elsewhere (e.g., tenantId)?"
+    positive_zf_claim: "App schema consistent with ZModel at field level"
+    not_proven:
+      - "New app-only fields are intentionally app-local (vs. accidentally missing from ZModel)"
+
+  - path_pattern: "AGENTS.md"
+    triggers_when: modified
+    required_validators:
+      - "node tools/validators/validate-token-budget.mjs"
+      - "node tools/validators/validate-behavioral-contract-slices.mjs"
+    required_checklist:
+      - "Line count: validate-token-budget shows yellow=0 (< 200 lines)"
+      - "New hard NO: is this R1 (absolute) or should it be in inner-ai-defaults instead?"
+      - "If adding R2-R4 constraint: move to appropriate domain card §6 or inner-ai-defaults"
+    positive_zf_claim: "AGENTS.md within budget; only R1 (absolute) constraints present"
+    not_proven:
+      - "The new hard NO is actually followed by the AI (no automated validator for most)"
+      - "AGENTS.md contains only R1 constraints (AGENTS.md R1-audit is manual)"
+
+  - path_pattern: "tools/validators/*.mjs"
+    triggers_when: modified or created
+    required_validators:
+      - "pnpm verify"
+    required_checklist:
+      - "Coverage Levels header present in validator (✓ Level 1 | ✗ Level 2 → VLT)"
+      - "audit-runner.md description updated with coverage levels and VLT references"
+      - "pnpm audit-runner:split run to sync slices"
+      - "When this validator exits 0, it proves: [explicit list — must be in the commit]"
+      - "When this validator exits 0, it does NOT prove: [explicit list]"
+    positive_zf_claim: "Validator registered in pnpm verify and passing; audit-runner description current"
+    not_proven:
+      - "The validator correctly detects all instances of the pattern it claims to cover"
+      - "The validator has no false positives"
+
+  - path_pattern: "docs/plan/_handoff/VAULT/inner-ai-defaults/*.md"
+    triggers_when: modified or created
+    required_validators:
+      - "node tools/validators/validate-inner-ai-defaults-freshness.mjs"
+      - "node tools/validators/validate-inner-ai-defaults-enforcement-rate.mjs"
+    required_checklist:
+      - "New entry has caught_by_validator field populated (not blank)"
+      - "If caught_by_validator: impl deferred — create a VLT for the enforcement validator"
+      - "Enforcement rate: did adding this entry improve or worsen the enforcement_rate metric?"
+      - "Session target set in VLT for building the enforcement validator"
+    positive_zf_claim: "Entry registered; enforcement rate measured and not worse than before"
+    not_proven:
+      - "The behavioral override is actually followed by the AI"
+      - "The caught_by_validator reference actually exists (Level 3 drift — validator-exist check)"
+
+  - path_pattern: "docs/plan/pillar-0-governance/behavioral-contracts.md"
+    triggers_when: modified
+    required_validators:
+      - "node tools/validators/validate-behavioral-contract-slices.mjs"
+    required_checklist:
+      - "New contract has enforcement_stage declared (active/planned/week-4)"
+      - "If enforcement_stage: active — cite the specific validator that enforces it"
+      - "If enforcement_stage: planned — create a VLT with session target"
+      - "Contract's rigidity_level declared (R1-R5 per CDAB Rigidity Spectrum)"
+    positive_zf_claim: "Contract registered; enforcement stage declared; slices synced"
+    not_proven:
+      - "The contract is mechanically enforced (only proven when live validator exists)"
+
+  - path_pattern: "tools/config/drift-registry.yaml"
+    triggers_when: modified
+    required_validators:
+      - "node tools/validators/validate-drift-registry.mjs"
+    required_checklist:
+      - "Coverage percentage updated in meta section"
+      - "New drift types have VLTs if status is deferred or planned"
+    positive_zf_claim: "Drift registry is consistent; coverage percentage is accurate"
+    not_proven:
+      - "The listed validators actually detect the drift they claim to detect"
+
+# How to use this map:
+# 1. After any Write/Edit, check which path_pattern matches
+# 2. Run required_validators — paste their output
+# 3. Verify each required_checklist item explicitly
+# 4. Emit BUILD AUDIT SUMMARY (see sonnet-capability-injection-S019.md Part C)
+# 5. State positive_zf_claim and not_proven explicitly
+
+meta:
+  last_updated: S019
+  maintained_by: Governor + Sonnet
+  review_cadence: when new governed file types are added

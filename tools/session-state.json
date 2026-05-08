@@ -14,10 +14,22 @@
     "enforcement_rate_at_last_review": 6,
     "_note": "Updated at session-close. sessions_since_opus_review increments each session. At 10: opus_audit_due=true. Trigger classes: BPG/PEG/PIA/SIG/KCP per Part3 opus-lessons-S019."
   },
+  "s019_opus_artifacts": {
+    "_note": "Key artifacts produced by S019 Opus-designated architectural review. Read at S020 session open.",
+    "s020_task_list": "docs/plan/_handoff/VAULT/sonnet-task-list-S020.md",
+    "mental_models": "docs/plan/_handoff/VAULT/sonnet-inheritance-model-S019.md",
+    "capability_injection": "docs/plan/_handoff/VAULT/sonnet-capability-injection-S019.md",
+    "opus_lessons": "docs/plan/_handoff/VAULT/opus-lessons-S019/README.md",
+    "bottleneck_spec": "docs/plan/_handoff/VAULT/bottleneck-and-gradual-structures-S019.md",
+    "drift_registry": "tools/config/drift-registry.yaml",
+    "build_verification_map": "tools/config/build-verification-map.yaml",
+    "enforcement_rate_baseline": 6,
+    "enforcement_rate_target_S025": 25
+  },
   "session_mandate": {
-    "primary": "B_RESULT_NOT_OUTPUT 5/5 FSE engraving + CEC on 3 undiscovered S018 items (platform-audit, CDP, AI personas) + Session Question Register acknowledgments",
+    "primary": "S020: Execute sonnet-task-list-S020.md — start VOCAB-1 (14 new terms) → HAIKU-1 → HAIKU-2 → DRIFT-1. Enforcement rate: 6% (target 25%). Opus audit due S029. Context: S019 Opus review produced 15 lessons + 6 specification documents + 4 validators + 3 config files.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — all VLTs resolved, ZF ACHIEVED, 0 BLOCKING (INST-VALD-001)"
+    "blocking_on": "NONE"
   },
   "blocking_decisions": [
     {

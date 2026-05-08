@@ -62,6 +62,8 @@ session: S006
 - **disposition:** override
 - **reason:** Memory of earlier runs ≠ validation; multiple S132/S184/S227-class incidents prevented by RZF discipline
 - **caught_by_validator:** nominal-rzf-detection (registered; impl deferred)
+- **opus_pattern:** Opus never says "I ran it." It pastes the output. Satisfaction fires at action for Sonnet; Opus requires observable state change. The test: "If I removed my claim sentence, would the tool output alone convince a skeptical reader?" If no: it's a declaration, not evidence.
+- **moat_relevance:** compound
 - **status:** active
 
 ### reasoning-skip-foundation-shortcut
@@ -86,6 +88,8 @@ session: S006
 - **disposition:** override
 - **reason:** Foundation-slices L3 gap: `validate-foundation-schema-drift.mjs` promised in the plan, never built, silent for 3 sessions. Discovered S014. Structural fix: validate-open-plan-levels.mjs (now LIVE in pnpm verify).
 - **caught_by_validator:** open-plan-levels-coverage (LIVE — validate-open-plan-levels.mjs)
+- **opus_pattern:** Opus holds the full plan in context simultaneously with the current task. It reads both and asks "what did this plan promise that isn't yet delivered?" Sonnet reads the current task only. The injection: at every level-close, explicitly re-read the plan's future promises before declaring the level done.
+- **moat_relevance:** compound
 - **status:** active
 
 ### reasoning-context-depth-degradation
@@ -94,6 +98,8 @@ session: S006
 - **disposition:** override
 - **reason:** Root cause of validator-proliferation anti-pattern + plan-promise-abandonment. Discovered S014, resolved by P-META-020 methodology. Engrave at every session-open: load L1/L2 spine domain before processing.
 - **caught_by_validator:** concept-load-skip (registered in P-META-020 anti-patterns; impl deferred as validator)
+- **opus_pattern:** Opus carries the conceptual frame simultaneously with the symbol. When it writes "foundation slice," it holds the full meaning of why it matters, what breaks without it, what adjacent systems depend on it. Sonnet writes the symbol after the context decays. The injection: when making a high-consequence decision, write the WHY explicitly alongside the WHAT — not as a comment, but as a section in the plan/contract that carries the reasoning forward.
+- **moat_relevance:** compound
 - **status:** active
 
 ### reasoning-ai-satisfaction-point

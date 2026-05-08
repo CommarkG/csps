@@ -36,6 +36,7 @@ try {
 
 // Read session state
 let session = '?', mandate = 'unknown', blocking = 'NONE', verifyState = 'unknown';
+let opusStatus = 'not tracked', opusEnfRate = '', taskListRef = '', mentalModelsRef = '';
 try {
   const d = JSON.parse(fs.readFileSync(join(ROOT, 'tools/session-state.json'), 'utf8'));
   session = d.current_session || '?';
@@ -43,7 +44,23 @@ try {
   const unresolved = (d.blocking_decisions || []).filter(x => x.status !== 'RESOLVED').map(x => x.id);
   blocking = unresolved.length ? unresolved.join(', ') : 'NONE';
   verifyState = (d.platform_state || {}).pnpm_verify || 'unknown';
+
+  // Opus audit tracking — surfaced every session-open
+  const opusAudit = d.opus_audit || {};
+  const opusSince = opusAudit.sessions_since_opus_review ?? 'unknown';
+  const opusDue   = opusAudit.opus_audit_due === true;
+  const opusNext  = opusAudit.next_opus_review_due || 'unknown';
+  const opusRate  = opusAudit.enforcement_rate_at_last_review ?? 'unknown';
+  opusStatus = opusDue ? '⚠ OVERDUE — set opus_audit_due=false after review' :
+    opusSince + '/10 sessions since last review (next: ' + opusNext + ')';
+  opusEnfRate = opusRate + '% behavioral enforcement (target 25% by S025)';
+
+  // S019 opus artifacts — task list for S020+
+  const opusArtifacts = d.s019_opus_artifacts || {};
+  taskListRef = opusArtifacts.s020_task_list || 'not set';
+  mentalModelsRef = opusArtifacts.mental_models || 'not set';
 } catch(e) { /* session-state not found */ }
+
 
 // Read open-plan-levels summary
 let openLevels = 'validator not run';
@@ -111,6 +128,10 @@ const context = [
   '  Foundation exit gate: ' + foundationGateStatus + mandateOverride,
   '  Raw thoughts queue: ' + pendingThoughtsSummary,
   '  Stale plan alignment: ' + stalePlansSummary,
+  '  Opus audit: ' + opusStatus,
+  '  Behavioral enforcement rate: ' + opusEnfRate,
+  '  S020 task list: ' + taskListRef,
+  '  Mental models: ' + mentalModelsRef,
   '',
   'ZF ITERATION TRACKER (this session — measurement of work richness):',
   '  verify_runs: ' + zfIterations + ' | blocking_found_total: ' + zfBlockingTotal,

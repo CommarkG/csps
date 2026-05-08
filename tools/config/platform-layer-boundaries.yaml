@@ -1,0 +1,128 @@
+# CSPS Platform Layer Boundaries
+# Hard architectural boundaries between Core, Developer Surface, and User Surface.
+# Created: S019 — Opus-designated architectural review
+# See: sonnet-capability-injection-S019.md + sonnet-inheritance-model-S019.md
+#
+# The Three Layers:
+#
+#   LAYER 0 — PLATFORM CORE
+#     What: The governed infrastructure. Platform-owned. Not modified by app developers.
+#     Who: Governor + Sonnet building the platform (us, right now)
+#     Trust level: HIGHEST — these artifacts govern everything else
+#
+#   LAYER 1 — DEVELOPER SURFACE
+#     What: The scaffolded interface app developers touch.
+#     Who: App developers building on the platform
+#     Trust level: MEDIUM — trusted to follow platform conventions; validated by validators
+#
+#   LAYER 2 — USER SURFACE
+#     What: What end-users of the apps interact with.
+#     Who: App end-users (tenants, their members)
+#     Trust level: LOWEST — external input, validated at boundary
+
+layers:
+  platform_core:
+    id: L0
+    name: Platform Core
+    description: "Governed infrastructure. Platform-owned. Never modified by app developers."
+    paths:
+      - "libs/policies/**"           # ZModel schema, ZenStack policies
+      - "libs/integrations/**"       # Shared business logic (billing, auth, audit)
+      - "tools/**"                   # Validators, governance tooling, config
+      - "docs/plan/**"               # Governance documents, principles, contracts
+      - "AGENTS.md"                  # AI behavioral governance
+      - ".claude/**"                 # Claude Code configuration and hooks
+      - "packages/**"                # Shared packages (principles-mcp, etc.)
+    can_import_from:
+      - L0                           # Core imports from core (intra-layer)
+      - EXTERNAL                     # External services (Clerk, Stripe, Supabase SDKs)
+    CANNOT_import_from:
+      - L1                           # Core NEVER imports from app developer code
+      - L2                           # Core NEVER imports from user-facing code
+    forbidden_patterns:
+      - "import from 'apps/'"        # No core importing from apps
+      - "require('apps/')"           # No require() either
+    validation_requirement: "validate-import-quarantine.mjs"
+
+  developer_surface:
+    id: L1
+    name: Developer Surface
+    description: "Scaffolded interface. App developers build here. Inherits from Core."
+    paths:
+      - "apps/*/prisma/**"           # App-specific Prisma schemas
+      - "apps/*/src/lib/**"          # App-specific helper functions
+      - "libs/policies/slices/app/** "# App-specific ZModel slices (when extracted)
+    can_import_from:
+      - L0                           # Developer code imports from Core (correct)
+      - L1                           # Intra-layer imports fine
+      - EXTERNAL                     # External services
+    CANNOT_import_from:
+      - L2                           # Developer surface doesn't import from user routes
+    governance_requirement: "App developer code must use getEnhancedDb() — never raw PrismaClient for business queries"
+    validation_requirement: "validate-import-quarantine.mjs extension (planned)"
+    persona: "Persona 8 (App Developer AI) — governs AI tools used here"
+
+  user_surface:
+    id: L2
+    name: User Surface
+    description: "End-user facing layer. API routes, pages. Highest security scrutiny."
+    paths:
+      - "apps/*/src/app/**"          # Next.js pages and API routes
+      - "apps/*/src/components/**"   # UI components
+      - "apps/*/src/middleware.ts"   # Auth middleware
+    can_import_from:
+      - L0                           # User routes import from Core (lib/zenstack, lib/db)
+      - L1                           # User routes import from developer surface
+      - EXTERNAL                     # External services
+    security_requirements:
+      - "Every API route: auth() check before any data access"
+      - "Every data query: getEnhancedDb() not raw db for business data"
+      - "Every write: writeAuditEvent() after mutation"
+      - "User input: validated at boundary (body.name type check, etc.)"
+    validation_requirement: "validate-import-quarantine.mjs extension (planned)"
+    persona: "End users — ZenStack @@allow policies are the primary protection"
+
+# Import Direction (canonical flow):
+#
+#   L2 (User) → L1 (Developer) → L0 (Core) → External Services
+#               ↑ also direct ↑
+#   L2 (User) → L0 (Core)
+#
+# Forbidden imports:
+#   L0 → L1 or L2 (circular dependency)
+#   L1 → L2 (developer code shouldn't import from user routes)
+
+# Boundary Violations Detected S019:
+violations_found_S019:
+  - violation: "Billing trigger logic in L2 (app webhook handler) instead of L0 (libs/integrations)"
+    file: "apps/task-mgmt/src/app/api/webhooks/clerk/route.ts"
+    correct_location: "libs/integrations — should be in buildTenantBillingHook"
+    lesson: "L6 in opus-lessons-S019/part1-schema-and-security.md"
+
+  - violation: "stripeSubscriptionId in L2 app schema but not in L0 ZModel"
+    file: "apps/task-mgmt/prisma/schema.prisma"
+    resolution: "Added stripeSubscriptionId to L0 libs/policies/schema.zmodel in S019"
+    lesson: "L3 in opus-lessons-S019/part1-schema-and-security.md"
+
+# Mechanical Enforcement (current vs. planned):
+enforcement:
+  active:
+    - "ZenStack @@allow policies — enforce tenant isolation at L0 (ORM layer)"
+    - "validate-foundation-schema-drift.mjs — catches L1/L0 schema divergence"
+    - "Clerk middleware — enforces auth at L2 boundary"
+
+  planned:
+    - name: "validate-layer-boundary.mjs"
+      description: "Scans all imports across layers; flags L0→L1 or L0→L2 imports as BLOCKING"
+      vlt: "VLT-S019-LAYER-BOUNDARY"
+      priority: P9
+
+    - name: "validate-import-quarantine.mjs extension"
+      description: "Detect Stripe/billing imports in L2 outside libs/ (ADVISORY→BLOCKING)"
+      vlt: "VLT-S019-BILLING-PLACEMENT"
+      priority: P8
+
+    - name: "validate-persona-8-compliance.mjs"
+      description: "Scan L1/L2 code for ZenStack bypass patterns (raw PrismaClient in business routes)"
+      vlt: "VLT-S019-PERSONA8"
+      priority: P10

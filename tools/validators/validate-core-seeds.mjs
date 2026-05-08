@@ -43,8 +43,12 @@ import { readdirSync, statSync } from 'node:fs';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '../..');
 
-// STUB TIER — always exits 0, reports only
-const STUB_MODE = true;
+// ADVISORY TIER — exits 0 with overdue warnings; promoted from stub S019
+// Promotion rationale: 6 seeds are planted with target sessions. Stub mode made them invisible governance debt.
+// Advisory mode: reports overdue seeds but doesn't block development.
+// Blocking mode: week-4 promotion (when overdue seeds should actively block phase gates)
+const STUB_MODE = false;
+const CURRENT_SESSION = 19; // S019 — update at each session close
 
 const SEED_PATTERN = /@core-seed:\s*([A-Z_]+)/g;
 const SEED_FIELDS_PATTERN = /@core-seed:[^|]+\|\s*plan:\s*([^|]+)\|\s*grows-to:\s*([^|]+)(?:\|\s*target:\s*(\S+))?/;
@@ -99,21 +103,47 @@ async function main() {
     }
   }
 
+  // Staleness detection (advisory tier — promoted from stub in S019)
+  const overdue = [];
+  const current = [];
+  const noTarget = [];
+
   if (valid.length > 0) {
     console.log(`\nCore Seeds Registry (${valid.length} seeds):`);
     for (const s of valid) {
-      const status = s.target ? `target: ${s.target}` : 'no target set';
-      console.log(`  🌱 ${s.name} (${s.file}:${s.line}) — ${status}`);
-      console.log(`     plan: ${s.plan}`);
-      console.log(`     grows-to: ${s.growsTo}`);
+      if (!s.target) {
+        noTarget.push(s);
+        console.log(`  🌱 ${s.name} (${s.file}:${s.line}) — no target session set`);
+      } else {
+        // Parse target session number (e.g., S019 → 19)
+        const targetNum = parseInt(s.target.replace(/^S0*/, ''), 10);
+        if (!isNaN(targetNum) && targetNum < CURRENT_SESSION) {
+          overdue.push(s);
+          console.log(`  ⚠ OVERDUE ${s.name} (${s.file}:${s.line}) — target was ${s.target}, now S${String(CURRENT_SESSION).padStart(3,'0')}`);
+        } else {
+          current.push(s);
+          console.log(`  🌱 ${s.name} (${s.file}:${s.line}) — target: ${s.target}`);
+        }
+        console.log(`     plan: ${s.plan}`);
+        console.log(`     grows-to: ${s.growsTo}`);
+      }
     }
   } else if (seeds.length === 0) {
     console.log('\n[validate-core-seeds] No @core-seed markers found in codebase yet.');
     console.log('[validate-core-seeds] Plant seeds using: // @core-seed: NAME | plan: path | grows-to: description | target: S0NN');
   }
 
-  console.log(`\n[validate-core-seeds] STUB — seeds_found=${seeds.length} valid=${valid.length} malformed=${malformed.length}`);
-  console.log('[validate-core-seeds] enforcement_stage=stub — week-4 promotes to advisory with staleness detection');
+  if (overdue.length > 0) {
+    console.log(`\n⚠ OVERDUE SEEDS (${overdue.length}) — target sessions have passed:`);
+    for (const s of overdue) {
+      console.log(`  ${s.name}: was due ${s.target}, still not grown`);
+      console.log(`  Resolution: implement grows-to OR update target to a future session OR remove seed`);
+    }
+  }
+
+  const statusLabel = overdue.length > 0 ? 'ADVISORY-OVERDUE' : 'CLEAN';
+  console.log(`\n[validate-core-seeds] seeds_found=${seeds.length} valid=${valid.length} malformed=${malformed.length} overdue=${overdue.length} current=${current.length} no_target=${noTarget.length} status=${statusLabel}`);
+  console.log('[validate-core-seeds] enforcement_stage=advisory — exits 0 always; overdue seeds are advisory debt');
   process.exit(0);
 }
 

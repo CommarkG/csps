@@ -178,6 +178,16 @@ const CYCLES = [
       return m ? { enforcement_rate: Number(m[1]), status: m[2] } : {};
     },
   },
+  {
+    // NEW S019 Part3 opus-lessons — Opus audit due: mechanical trigger for Opus reviews
+    // Exits 0 when no audit overdue; exits 1 when SIG threshold hit or manual trigger set
+    name: 'opus_audit_due',
+    command: 'node tools/validators/validate-opus-audit-due.mjs',
+    parse_output: (out) => {
+      const m = out.match(/sessions_since=(\d+).*status=(\w+)/);
+      return m ? { sessions_since: Number(m[1]), status: m[2] } : {};
+    },
+  },
     {
     // NEW S011 §24++ — catch-completeness: every §10.13b catch has a matching EP-NNN entry
     name: 'catch_completeness',

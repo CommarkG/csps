@@ -83,6 +83,7 @@ The permanent fix for the meta-lesson itself: every principle implementation mus
 |---|---|---|
 | [part1-schema-and-security.md](./part1-schema-and-security.md) | L1–L8 | Schema architecture, security, billing, scale, regulatory |
 | [part2-spines-ai-and-vision.md](./part2-spines-ai-and-vision.md) | L9–L15 | Core Spines, AI behavior, Platform Self-Improvement Vision |
+| [part3-opus-triggers-and-cdab.md](./part3-opus-triggers-and-cdab.md) | Trigger criteria + Rigidity Spectrum + Living Enforcement | When to use Opus, mechanical lesson enforcement, CDAB tension resolution |
 
 ---
 

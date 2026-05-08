@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-08T05:34:47.683Z
-- finished_at: 2026-05-08T05:34:59.892Z
+- ran_at: 2026-05-08T06:07:45.438Z
+- finished_at: 2026-05-08T06:07:59.062Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T05:34:47.683Z",
-    "finished_at": "2026-05-08T05:34:59.892Z",
+    "ran_at": "2026-05-08T06:07:45.438Z",
+    "finished_at": "2026-05-08T06:07:59.062Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.7,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,8 +39,8 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 259,
+        "duration_seconds": 0.3,
+        "scanned": 260,
         "errors": 0,
         "warnings": 5,
         "exempt": 212
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -180,8 +180,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 65,
-        "with_status": 13,
+        "checked": 66,
+        "with_status": 14,
         "warnings": 0
       },
       {
@@ -388,7 +388,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 6.7,
+        "duration_seconds": 8,
         "generate_ok": true,
         "zmodel_models": 7,
         "app_models": 7,

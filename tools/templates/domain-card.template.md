@@ -9,7 +9,7 @@ description: >
   at an older schema_version and flags them for update. One template; infinite instances;
   one update propagates everywhere.
 version: 1.0
-schema_version: "1.0"
+schema_version: "1.1"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -45,6 +45,7 @@ consolidation_cross_refs:
 > `validate-template-compliance.mjs` detects all domain card artifacts at an older
 > `template_version` and surfaces them as needing review.
 > The template is the single source of truth. The artifacts are its instances.
+> **GDE (Gradual Depth Engine):** Every domain card must declare depth_levels: with L1/L2/L3 token targets. Without this, the context orchestrator cannot select the right depth, and MCP cannot serve depth-parameterized queries.
 
 ---
 
@@ -52,7 +53,27 @@ consolidation_cross_refs:
 
 | Version | What changed | Session |
 |---|---|---|
+| 1.1 | Added depth_levels: frontmatter field (GDE standard — L1/L2/L3 tokens + locations) | S018 |
 | 1.0 | Initial §1-§11 structure (Identity/Problem/Principles/HowItWorks/Dependencies+BR/Personas/Journeys/Vocabulary/MCPSurface/CurrentState/ConnectionMap) | S018 |
+
+---
+
+## depth_levels Frontmatter Field (GDE Standard)
+
+Every domain card must include in its frontmatter:
+
+```yaml
+depth_levels:
+  l1: "One sentence: what this element is and does"
+  l1_tokens: 150
+  l2: "Brief operational description — how it works"
+  l2_tokens: 1500
+  l3: "Reference to full implementation detail"
+  l3_location: "./this-file.md#section-or-subsection"
+```
+
+Required for: context orchestrator depth selection + MCP depth-parameterized queries + GDE escalation ladders.
+The orchestrator reads l1_tokens to select the L1 bundle; escalation ladder (Task Complexity, Rung 1-2) reads l2 and l3 when L1 is insufficient.
 
 ---
 

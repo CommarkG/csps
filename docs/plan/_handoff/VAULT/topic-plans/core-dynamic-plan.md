@@ -254,6 +254,17 @@ get_elements_by_status("implemented") → all elements awaiting ZF validation
 
 ---
 
+## §5 — Vault CDP Realignment (planned S019+)
+
+**Goal:** Restructure the vault from content-type organization to lifecycle-stage organization, aligned with CDP states.
+
+**Planned structure (do NOT execute without a dedicated migration session):**
+
+
+**Migration gate:** validate-no-implementation-without-plan.mjs must show 0 unplanned after restructuring. All cross-references must be updated. Dedicated migration session required.
+
+---
+
 ## §Priority Engine Inputs
 
 ```yaml

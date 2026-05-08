@@ -13,7 +13,14 @@ core_spine: ARCH
 schema_anchor: platform_audit
 enforcement_stage: active
 template_used: domain-card
-template_version: "1.0"
+template_version: "1.1"
+depth_levels:
+  l1: "The architecture spine — schema, multi-tenancy, ZenStack RLS, foundation slices"
+  l1_tokens: 120
+  l2: "ZModel → Prisma generation, @@allow policies, schema drift detection, graduation pipeline"
+  l2_tokens: 1500
+  l3: "See full document. Connection map at §11."
+  l3_location: "./ARCH.md#section"
 tags:
   - domain:architecture
   - domain:data

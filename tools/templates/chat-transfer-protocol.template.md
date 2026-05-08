@@ -43,6 +43,20 @@ I will execute steps 1-[N] in order. I will emit the completion format exactly."
 
 If you cannot make that declaration honestly, STOP and report why.
 
+━━━━ COMPREHENSION CHECK (B_RESULT_NOT_OUTPUT — required before Step 1) ━━━━
+
+Transmission ≠ receipt ≠ comprehension. Before executing, answer these 3 questions:
+
+Q1: "What is the PRIMARY goal of this transfer — what observable state will prove it succeeded?"
+Q2: "What is the ONE thing I must NOT do in this task (explicitly listed or clearly implied)?"
+Q3: "What platform state must be true at the START — and how will I verify it?"
+
+Format: A1: [answer] | A2: [answer] | A3: [answer]
+
+If you cannot answer all three from the transfer content alone: STOP. The transfer is incomplete.
+Sender: do not proceed to Step 0 until receiver has answered all three.
+(Per session-question-register.md + B_RESULT_NOT_OUTPUT — S018)
+
 ━━━━ PLATFORM STATE (verified by sender) ━━━━
 
 • [State item 1: specific fact with commit/hash if applicable]

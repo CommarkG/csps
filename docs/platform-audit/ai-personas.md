@@ -17,7 +17,14 @@ core_spine: AI
 schema_anchor: platform_audit
 enforcement_stage: planned
 template_used: domain-card
-template_version: "1.0"
+template_version: "1.1"
+depth_levels:
+  l1: "7 AI persona definitions — role, context footprint, model tier, behavioral constraints"
+  l1_tokens: 120
+  l2: "Persona 1-7 definitions, persona transition protocols, comprehension checks"
+  l2_tokens: 1500
+  l3: "See full document. Connection map at §11."
+  l3_location: "./ai-personas.md#section"
 tags:
   - domain:ai
   - domain:governance

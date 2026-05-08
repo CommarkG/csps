@@ -13,7 +13,14 @@ core_spine: VALD
 schema_anchor: platform_audit
 enforcement_stage: active
 template_used: domain-card
-template_version: "1.0"
+template_version: "1.1"
+depth_levels:
+  l1: "Quality gates — 41+ audit slugs, 13 pipelines P1-P13, 4 escalation ladders"
+  l1_tokens: 120
+  l2: "13 pipeline definitions, escalation ladder rungs, enforcement_stage progression"
+  l2_tokens: 1500
+  l3: "See full document. Connection map at §11."
+  l3_location: "./qc-audits.md#section"
 tags:
   - domain:audit
   - domain:governance

@@ -14,7 +14,14 @@ core_spine: GVRN
 schema_anchor: platform_audit
 enforcement_stage: active
 template_used: domain-card
-template_version: "1.0"
+template_version: "1.1"
+depth_levels:
+  l1: "3-dimensional PE formula, 4 compositions, continuous PE loop driven by monitor signals"
+  l1_tokens: 120
+  l2: "Work PE × Execution PE × Model PE, governance/build/growth/emergency compositions"
+  l2_tokens: 1500
+  l3: "See full document. Connection map at §11."
+  l3_location: "./priority-engine.md#section"
 tags:
   - domain:governance
   - domain:platform

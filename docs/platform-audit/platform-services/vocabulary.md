@@ -13,7 +13,14 @@ core_spine: GVRN
 schema_anchor: platform_audit
 enforcement_stage: active
 template_used: domain-card
-template_version: "1.0"
+template_version: "1.1"
+depth_levels:
+  l1: "Language as governance — every term defined before use in the canonical registry"
+  l1_tokens: 120
+  l2: "Naming policy 4 rules, frontmatter closed enums, CSPS DNA term definitions"
+  l2_tokens: 1500
+  l3: "See full document. Connection map at §11."
+  l3_location: "./vocabulary.md#section"
 tags:
   - domain:governance
   - domain:platform

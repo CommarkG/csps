@@ -14,7 +14,14 @@ core_spine: AI
 schema_anchor: platform_audit
 enforcement_stage: active
 template_used: domain-card
-template_version: "1.0"
+template_version: "1.1"
+depth_levels:
+  l1: "CDAB 6-layer calibration instrument for AI behavior across all 5 spines"
+  l1_tokens: 120
+  l2: "Inner-AI-defaults 10 category files, concept_ref fields, dual-audience design protocol"
+  l2_tokens: 1500
+  l3: "See full document. Connection map at §11."
+  l3_location: "./ai-behavior.md#section"
 tags:
   - domain:ai
   - domain:governance

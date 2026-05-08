@@ -14,7 +14,14 @@ core_spine: VALD
 schema_anchor: platform_audit
 enforcement_stage: active
 template_used: domain-card
-template_version: "1.0"
+template_version: "1.1"
+depth_levels:
+  l1: "The validation spine — 41 validators, ZF levels 1/2/3, 13 audit pipelines, evidence discipline"
+  l1_tokens: 120
+  l2: "pnpm verify orchestration, ZF orchestrator cycles, audit pipeline routing, escalation ladders"
+  l2_tokens: 1500
+  l3: "See full document. Connection map at §11."
+  l3_location: "./VALD.md#section"
 tags:
   - domain:governance
   - domain:audit

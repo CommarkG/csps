@@ -31,8 +31,22 @@ FILE_CONTENT=$(echo "$PAYLOAD" | node -e "let d='';process.stdin.on('data',c=>d+
 
 [[ -z "$FILE_PATH" && -z "$FILE_CONTENT" ]] && exit 0
 
-# Combine path + content for signal detection
-COMBINED="$FILE_PATH $FILE_CONTENT"
+# Combine path + content for signal detection.
+# S019 FIX: Only scan content for governance artifacts (handoffs, topic-plans, session-state).
+# Documentation files contain governance vocabulary as CONTENT not as SIGNALS.
+# Scanning doc content for "§11" or "L1 COMPLETE" produces false-positive ZF mandates.
+IS_GOVERNANCE_ARTIFACT=false
+if [[ "$FILE_PATH" == *"session-state"* ]] || [[ "$FILE_PATH" == *"HANDOFF-S"* ]] || \
+   [[ "$FILE_PATH" == *"closing-summary-S"* ]] || [[ "$FILE_PATH" == *"topic-plans/"* ]] || \
+   [[ "$FILE_PATH" == *"session-S"*"extraction"* ]] || [[ "$FILE_PATH" == *"chat-transfer-S"* ]]; then
+  IS_GOVERNANCE_ARTIFACT=true
+fi
+
+if [[ "$IS_GOVERNANCE_ARTIFACT" == "true" ]]; then
+  COMBINED="$FILE_PATH $FILE_CONTENT"
+else
+  COMBINED="$FILE_PATH"  # doc files: path only, not content
+fi
 
 # ─── Level 3 signals (PLAN COMPLETE) ────────────────────────────────────────
 LEVEL3_SIGNALS=(

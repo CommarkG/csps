@@ -14,7 +14,14 @@ core_spine: OPER
 schema_anchor: platform_audit
 enforcement_stage: active
 template_used: domain-card
-template_version: "1.0"
+template_version: "1.1"
+depth_levels:
+  l1: "The operations spine — build order, graduation pipeline, zero-laptop, cost management"
+  l1_tokens: 120
+  l2: "12-week build order DAG, GEP Stage 1-3, Codespaces workflow, per-tenant cost attribution"
+  l2_tokens: 1500
+  l3: "See full document. Connection map at §11."
+  l3_location: "./OPER.md#section"
 tags:
   - domain:ops
   - domain:platform

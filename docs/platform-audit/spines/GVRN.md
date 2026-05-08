@@ -13,7 +13,14 @@ core_spine: GVRN
 schema_anchor: platform_audit
 enforcement_stage: active
 template_used: domain-card
-template_version: "1.0"
+template_version: "1.1"
+depth_levels:
+  l1: "The governance spine — decision rights, ZF discipline, behavioral contracts, session protocols"
+  l1_tokens: 120
+  l2: "How the platform governs itself: Threshold entry, PE sequencing, ZF evidence, behavioral contract system"
+  l2_tokens: 1500
+  l3: "See full document. Connection map at §11."
+  l3_location: "./GVRN.md#section"
 tags:
   - domain:governance
   - type:reference

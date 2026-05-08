@@ -143,6 +143,7 @@ model Tenant extends Base {
   name                 String
   clerkOrgId           String?                  @unique
   stripeCustomerId     String?
+  stripeSubscriptionId String?
   subscriptionStatus   TenantSubscriptionStatus @default(free)
 
   members     UserTenant[]

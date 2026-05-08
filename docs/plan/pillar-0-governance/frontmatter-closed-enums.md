@@ -116,6 +116,30 @@ Tags follow the pattern `<dimension>:<value>`. Each dimension has a closed enum:
 
 **Note:** `active` is NOT in this enum (S007 turn 2 K=2 catch). Authors confused with `lifecycle_state:active` — `active` lives at top-level lifecycle_state, NOT in maturity tag.
 
+## `cdp_status:` — Core Dynamic Plan unified lifecycle state *(S018 CDP — new)*
+
+**Optional field.** When present: replaces the scattered lifecycle state tracking (lifecycle_state + impl_status + enforcement_stage conceptually unified). Applied to CDP elements — major platform artifacts that participate in the full governance lifecycle.
+
+```yaml
+cdp_status: raw | pipeline-intake | pending-ratification | ratified | implementing | implemented | zf-achieved | measured | sealed
+```
+
+| Value | Meaning | ZF required? |
+|---|---|---|
+| `raw` | Unprocessed — just arrived as an INPUT | No |
+| `pipeline-intake` | Threshold classified it, staged for review | No |
+| `pending-ratification` | Governor review complete, decision pending | No |
+| `ratified` | Governor ratified, canonical home assigned | No |
+| `implementing` | Active work in progress | No |
+| `implemented` | Work done, ZF validation pending | No |
+| `zf-achieved` | **Last ZF run = ZERO BLOCKING FINDINGS (INST-VALD-001)** | ✅ Yes — last run at zero |
+| `measured` | KPIs tracked, impact assessed | No |
+| `sealed` | Closed permanently, evidence block present | ✅ Yes — evidence_block_ref required |
+
+**The ZF precision (mandatory):** `zf-achieved` status REQUIRES that the last validator run produced "STATUS: ZF ACHIEVED ✅ — 0 blocking findings remain." No other output qualifies. This is not a declaration — it is a verified state.
+
+---
+
 ## `enforcement_stage:` — enforcement lifecycle for governance artifacts *(S018 — new)*
 
 **Optional field.** Applies to: validators, hooks, behavioral contracts, topic plans describing enforcement work. Tracks the progression of an enforcement surface from declaration to active production.

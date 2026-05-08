@@ -173,3 +173,25 @@ This vocabulary is enforced through:
 - **CI gate `audit-glossary-fresh`** — fails if glossary changes without downstream regeneration
 
 See [vocabulary-as-code.md](./vocabulary-as-code.md) for the full codegen pipeline.
+
+## CDP Vocabulary (Core Dynamic Plan — S018)
+
+These terms govern the unified governance lifecycle system.
+
+### INPUT
+**Definition:** Everything that enters the CSPS platform governance system. An INPUT is classified by the Threshold and staged into the CDP lifecycle.
+**Types:** Governor directive / ratification decision / external AI review / external research / code change / raw thought / positive event (CEC) / negative finding (catch-to-engraving)
+**Concept_ref:** GVRN L2 (decision rights — the Threshold decides what each INPUT becomes)
+**Canonical home:** core-dynamic-plan.md §1 + threshold-gate-v2.md routing protocol
+**Processing:** INPUT → Threshold → cdp_status: raw → pipeline-intake → ... (state machine)
+
+### FINDING
+**Definition:** An output of the validation/audit/ZF process. A FINDING describes a discovered state of the platform — it may be positive (CEC discovery, improvement opportunity) or negative (BLOCKING, advisory, structural gap).
+**Types:**
+- BLOCKING: stops work, emergency-mode PE, Tier 1 escalation
+- ADVISORY: tracked obligation, doesn't stop work, promotes to BLOCKING at K=2
+- POSITIVE: CEC discovery → generates new INPUT for the system
+- STRUCTURAL: K=2 pattern → mandatory engraving INPUT
+**Concept_ref:** VALD L2 (coverage discipline — findings are evidence of the platform's coverage state)
+**Canonical home:** core-dynamic-plan.md §1 + session extraction (positive) + learning-loop.md (negative)
+**Feedback loop:** FINDING → new INPUT → Threshold → CDP element (cdp_status: raw) → lifecycle continues

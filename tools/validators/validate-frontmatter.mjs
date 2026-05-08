@@ -35,6 +35,10 @@ const CLOSED_DIMENSIONS = {
 
 const LIFECYCLE_VALUES = ['experimental', 'beta', 'production', 'deprecated'];
 const LIFECYCLE_STATE_VALUES = ['active', 'pending-review', 'pending-protocol', 'promoted', 'resolved', 'deprecated', 'validated', 'closed'];
+// S018 CDP — unified lifecycle state machine
+// raw→pipeline-intake→pending-ratification→ratified→implementing→implemented→zf-achieved→measured→sealed
+const CDP_STATUS_VALUES = ['raw','pipeline-intake','pending-ratification','ratified','implementing','implemented','zf-achieved','measured','sealed'];
+
 // S018 — enforcement lifecycle for governance artifacts (validators, hooks, contracts, audits)
 // stub: shell exists, exits 0, zero cost | planned: designed, not yet built | week-4: ships in week-4 batch
 // active: enforcing in production | human-judgment: explicitly non-mechanical (Tier 3 — self-assessment only)
@@ -261,6 +265,11 @@ function validateOne(file, fm, errors, warnings, idIndex) {
   // lifecycle_state closed enum
   if (fm.lifecycle_state && !LIFECYCLE_STATE_VALUES.includes(fm.lifecycle_state)) {
     errors.push(ctx(`lifecycle_state "${fm.lifecycle_state}" not in {${LIFECYCLE_STATE_VALUES.join('|')}}`));
+  }
+
+  // cdp_status closed enum (optional — only validate if present)
+  if (fm.cdp_status && !CDP_STATUS_VALUES.includes(fm.cdp_status)) {
+    errors.push(ctx(`cdp_status "${fm.cdp_status}" not in {${CDP_STATUS_VALUES.join('|')}} — see frontmatter-closed-enums.md`));
   }
 
   // enforcement_stage closed enum (optional — only validate if present)

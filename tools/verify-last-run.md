@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-08T08:09:11.307Z
-- finished_at: 2026-05-08T08:09:27.030Z
+- ran_at: 2026-05-08T08:13:59.891Z
+- finished_at: 2026-05-08T08:14:11.780Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T08:09:11.307Z",
-    "finished_at": "2026-05-08T08:09:27.030Z",
+    "ran_at": "2026-05-08T08:13:59.891Z",
+    "finished_at": "2026-05-08T08:14:11.780Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.3,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 0.7,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "scanned": 270,
         "errors": 0,
         "warnings": 8,
@@ -199,7 +199,7 @@
         "command": "node tools/validators/validate-vlt-blocking.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "instruction_context",
@@ -207,7 +207,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 118,
+        "checked": 119,
         "missing_why": 29
       },
       {
@@ -271,7 +271,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -388,7 +388,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 9.7,
+        "duration_seconds": 6.8,
         "generate_ok": true,
         "zmodel_models": 7,
         "app_models": 7,

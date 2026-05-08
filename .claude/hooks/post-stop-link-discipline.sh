@@ -1,31 +1,20 @@
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.post-stop-link-discipline
 # @csps-name post-stop-link-discipline
-# @csps-description PostStop hook stub — fires when AI finishes responding; would scan the last AI turn for bare path mentions (file.md / packages/foo / docs/plan/...) lacking [text](path) markdown link wrapper per B_ALWAYS_GIT_LINKS. STUB tier (S008 turn 5 unified-intake topic-plan L1 foundation); week-4 promotes to active enforcement per token-optimization §14.4 Phase 5 migration.
-# @csps-version 0.1.0-stub
-# @csps-owner group:finky
-# @csps-lifecycle experimental
-# @csps-lifecycle-state stub
-# @csps-tags type:hook domain:governance audience:developer
+# @csps-version 1.0.0-active
+# @csps-lifecycle production
+# @csps-lifecycle-state active
 # @csps-enforces B_ALWAYS_GIT_LINKS
 #
-# Engraved S008 turn 5 as Surface 3 of unified-intake topic-plan L1 foundation per token-optimization.md §14.4
-# row 4 (B_ALWAYS_GIT_LINKS path-mention scan migration; ~150 tokens/turn savings target).
+# S019 UPGRADE: Active enforcement — scans last AI response for workspace-relative
+# links and emits a BLOCKING reminder to use GitHub URLs instead.
 #
-# STUB BEHAVIOR (current):
-#   Reports check would have run. Always exits 0.
+# CSPS repo: https://github.com/CommarkG/csps
+# File URL:  https://github.com/CommarkG/csps/blob/main/[path]
+# Dir URL:   https://github.com/CommarkG/csps/tree/main/[path]
 #
-# WEEK-4 PROMOTION CRITERIA:
-#   - Parses transcript JSON for last AI message body
-#   - Detects bare path tokens via regex (e.g., `\b[\w\-./]+\.(md|ts|tsx|sh|json|yaml|mjs)\b` outside markdown link syntax)
-#   - Detects bare directory tokens (e.g., `packages/skills/` not wrapped in [...](...))
-#   - Verifies each path is wrapped in `[text](path)` markdown link OR inline-code backticks (latter acceptable per AGENTS.md)
-#   - Counterweight: code blocks (```...```) and inline-code (`...`) exempt
-#   - Exit 1 (warn) if bare paths found
-#   - Override: env CSPS_ALLOW_BARE_PATHS=1 (with audit log entry)
-#   - Registered as PostStop hook in .claude/settings.json
-#
-# Manual invocation: bash .claude/hooks/post-stop-link-discipline.sh
+# DETECTS: [text](docs/...) | [text](tools/...) | [text](apps/...) | [text](libs/...) | [text](packages/...)
+# CORRECT: [text](https://github.com/CommarkG/csps/blob/main/...)
 
 set -euo pipefail
 
@@ -33,10 +22,42 @@ readonly TRANSCRIPT_PATH="${CLAUDE_TRANSCRIPT_PATH:-}"
 readonly SESSION_ID="${CLAUDE_SESSION_ID:-unknown}"
 readonly TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
-echo "[link-discipline] STUB — session=${SESSION_ID} timestamp=${TIMESTAMP}"
-echo "[link-discipline] transcript: ${TRANSCRIPT_PATH:-<not provided>}"
-echo "[link-discipline] week-4 promotes to active enforcement detecting bare paths without [text](path) wrapper"
-echo "[link-discipline] enforces B_ALWAYS_GIT_LINKS — every path mention is clickable markdown link"
-echo "[link-discipline] STUB tier — exit 0 always"
+# Check if we have a transcript to scan
+if [[ -z "$TRANSCRIPT_PATH" ]] || [[ ! -f "$TRANSCRIPT_PATH" ]]; then
+  echo "[link-discipline] no transcript available for scan — session=${SESSION_ID}"
+  exit 0
+fi
 
+# Scan last AI message for workspace-relative markdown links
+# Pattern: [any text](docs/... or tools/... or apps/... or libs/... or packages/...)
+INTERNAL_LINKS=$(python3 -c "
+import json, re, sys
+try:
+    with open('$TRANSCRIPT_PATH') as f:
+        data = json.load(f)
+    messages = data.get('messages', [])
+    last_ai = next((m for m in reversed(messages) if m.get('role') == 'assistant'), None)
+    if not last_ai: sys.exit(0)
+    content = str(last_ai.get('content', ''))
+    # Find [text](internal-path) patterns
+    pattern = r'\[([^\]]+)\]\((docs|tools|apps|libs|packages|\.claude)[^)]*\)'
+    matches = re.findall(pattern, content)
+    if matches:
+        print(str(len(matches)))
+    else:
+        print('0')
+except Exception as e:
+    print('0')
+" 2>/dev/null || echo "0")
+
+if [[ "$INTERNAL_LINKS" != "0" ]] && [[ -n "$INTERNAL_LINKS" ]]; then
+  printf '{
+    "hookSpecificOutput": {
+      "hookEventName": "PostStop",
+      "additionalContext": "B_ALWAYS_GIT_LINKS VIOLATION — %s workspace-relative link(s) detected in last response.\n\nREQUIRED: Use full GitHub URLs.\n  File: https://github.com/CommarkG/csps/blob/main/[path]\n  Dir:  https://github.com/CommarkG/csps/tree/main/[path]\n\nFORBIDDEN: [name](docs/path) or [name](tools/path) — these are NOT clickable outside the IDE.\n\nGovernor has asked for this 3+ times (K=3). This is now MECHANICAL ENFORCEMENT.\nEdit the response links to use GitHub URLs before this counts as correct."
+    }
+  }' "$INTERNAL_LINKS"
+fi
+
+echo "[link-discipline] scan complete — internal_links_found=${INTERNAL_LINKS:-0} session=${SESSION_ID} timestamp=${TIMESTAMP}"
 exit 0

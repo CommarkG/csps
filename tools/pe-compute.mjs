@@ -3,6 +3,7 @@
  * pe-compute.mjs — CSPS Priority Engine read_budget computation tool
  *
  * CSPS analog of CSP pe_compute.ps1 (EXT-20260505-004-C §7 PE.read_budget extension).
+// @core-seed: PE_CDP_STATUS_READER | plan: docs/plan/_handoff/VAULT/topic-plans/core-dynamic-plan.md §4 | grows-to: PE reads cdp_status field from CDP elements to derive holistic current-state snapshot without manual input | target: S021
  * Reads file_depth_markers from artifacts, computes per-task read_budget with
  * L1/L2/L3 strategy recommendations based on task complexity level.
  *

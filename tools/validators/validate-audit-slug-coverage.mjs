@@ -63,6 +63,7 @@ const KNOWN_MAPPINGS = {
   'validate-catch-completeness': ['catch-completeness', 'catch_completeness', 'catch-to-ep-completeness'],
   'validate-foundation-schema-drift': ['foundation-slices-schema-drift', 'foundation-schema-drift', 'foundation_schema_drift'],
   'validate-bedrock': ['bedrock', 'bedrock-completion', 'bedrock_completion'],
+  'validate-core-seeds': ['core-seeds', 'core_seeds', 'core-seeds-coverage'],
   'validate-template-compliance': ['template-compliance', 'template_compliance', 'domain-card-template-compliance'],
 };
 

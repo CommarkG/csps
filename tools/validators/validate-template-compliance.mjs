@@ -38,6 +38,7 @@ const DOCS_PATH = join(ROOT, 'docs');
 
 // STUB TIER — exits 0 always during initial deployment
 // Week-4 promotion: remove the stub block below and enable full validation
+// @core-seed: TEMPLATE_COMPLIANCE_BLOCKING | plan: docs/plan/_handoff/VAULT/topic-plans/core-dynamic-plan.md | grows-to: blocking validation when template_version < schema_version (currently exits 0 always) | target: week-4
 const STUB_MODE = true;
 
 const REQUIRED_SECTIONS = ['§1', '§2', '§3', '§4', '§5', '§6', '§7', '§8', '§9', '§10', '§11'];

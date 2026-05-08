@@ -1,3 +1,4 @@
+# @core-seed: THRESHOLD_COMPLETENESS | plan: docs/plan/_handoff/VAULT/topic-plans/platform-core-alignment.md L5 | grows-to: validate-session-open-completeness.mjs — mechanical check that Q1-Q15 ran, session-state loaded, VLTs confirmed | target: week-4
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.session-open
 # @csps-name session-open

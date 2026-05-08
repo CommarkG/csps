@@ -257,6 +257,7 @@ async function main() {
   process.exit(finalBlocking > 0 ? 1 : 0);
 }
 
+// @core-seed: ZF_POSITIVE_HARVEST | plan: docs/plan/pillar-0-governance/mechanical-enforcement-policy.md | grows-to: auto-trigger positive ZF harvest (CEC walk) when Level 3 achieves 0 BLOCKING — removes behavioral dependency | target: S019
 main().catch(err => {
   console.error('[zf-orchestrator] fatal:', err);
   process.exit(1);

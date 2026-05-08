@@ -91,7 +91,8 @@ if [ "$TASK_CLASS" = "unknown" ] || [ ! -f "$TEMPLATE_FILE" ]; then
   OUTPUT=$(printf '{"timestamp":"%s","task_class":"unknown","detected":false,"prompt_len":%d,"note":"no template match — general task; load AGENTS.md + OVERVIEW.md L1"}' \
     "$TIMESTAMP" "$PROMPT_LEN")
   echo "$OUTPUT" > "$LOG_FILE" 2>/dev/null || true
-  exit 0
+  # @core-seed: GRACE_PHASE10 | plan: docs/plan/_handoff/VAULT/topic-plans/platform-core-alignment.md §5 | grows-to: automatic context bundle injection (not just suggestion logging) | target: S020
+exit 0
 fi
 
 # Read template and extract required_artifacts

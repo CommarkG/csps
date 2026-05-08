@@ -130,8 +130,10 @@ enforcement_stage: stub | planned | week-4 | active
 | `planned` | Designed + documented, not yet built | None | (cognitive only) |
 | `week-4` | Registered in audit-runner, ships in week-4 build batch | Low | build-order.md |
 | `active` | Enforcing in production — exits 1 on violation | Full | pnpm verify + ZF |
+| `human-judgment` | Explicitly non-mechanical (Tier 3) — AI self-assessment only; no validator possible | None (by design) | Never blocks — human review only |
 
-**Key discipline (ratified S018):** Schema field ships WITH its consuming validator, not before. `enforcement_stage: active` requires an active consumer. `enforcement_stage: stub|planned|week-4` is valid without a consumer — it declares the intent.
+**Key discipline (ratified S018):** Schema field ships WITH its consuming validator, not before.
+**`human-judgment` discipline:** Every rule labeled `human-judgment` must have a SELF-ASSESSMENT QUESTION the AI asks before proceeding. It cannot be counted in ZF cycles. It is not "planned" — it is permanently non-mechanical by honest declaration. Better than pretending it's "planned" when no validator can ever be built. `enforcement_stage: active` requires an active consumer. `enforcement_stage: stub|planned|week-4` is valid without a consumer — it declares the intent.
 
 **Consuming validator:** `validate-enforcement-stage-progression.mjs` (week-4) — checks that artifacts marked `enforcement_stage: active` have a corresponding passing validator in `pnpm verify`.
 

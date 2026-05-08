@@ -381,6 +381,34 @@ session_extraction:
 
 WHY: insights not explicitly extracted are lost at session boundary. Every unextracted pattern will reappear in a future session as a more expensive problem. The session-S014-extraction.md template exists precisely because the plan-promise-abandonment pattern was invisible for 3 sessions before being named. Naming it made the structural fix (validate-open-plan-levels.mjs) possible.
 
+### §10.0n Positive ZF evidence (mechanical-enforcement-policy — added S018)
+
+> **Per mechanical-enforcement-policy.md:** positive ZF (CEC harvest) has a 50% execution rate vs negative ZF's 90%. This section closes the gap by making positive harvest explicitly evidence-driven. Every significant positive event this session must show: did CEC run? How many surfaces? Where was it vaulted?
+
+```yaml
+positive_zf_evidence:
+  session: S<NNN>
+  # List each significant positive discovery (ratification, insight, principle, new pattern)
+  # CEC is required for each. Missing CEC = advisory (S018). Week-4: promotes to blocking.
+  discoveries:
+    - event: "<what was positive — ratification / insight / new principle / breakthrough>"
+      cec_ran: yes | no | human-judgment
+      cec_surfaces_covered: <1-8 number, or "N/A — human judgment, no validator possible">
+      vault_path: "<extraction note / raw-thoughts / behavioral-contract / memory file>"
+    # Add one entry per significant positive event
+  positive_zf_completeness: COMPLETE | PARTIAL | MISSING
+  # COMPLETE: CEC ran for all discoveries (or human-judgment explicitly declared)
+  # PARTIAL: CEC ran for some; missing ones have explicit vault note
+  # MISSING: positive ZF not done — extraction-check-blocking will flag this in ZF
+  gap_notes: "<if PARTIAL: which discoveries are missing CEC and why>"
+```
+
+**Validation (advisory S018 → blocking week-4):**
+`extraction-check-blocking` checks that §10.0n exists. Content quality is advisory for now.
+In week-4: `validate-positive-zf-evidence.mjs` checks that every discovery has `cec_ran` populated.
+
+WHY: Positive ZF is the compounding mechanism. Without mechanical enforcement of CEC, platform improvements stay local (one session's insight) rather than systemic (engraved across all surfaces). The difference between a platform that learns vs one that repeats the same discoveries every session.
+
 ### §10.1 Stewardship review (P-META-004)
 
 **Run `/stewardship-review`:**

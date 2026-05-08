@@ -36,8 +36,9 @@ const CLOSED_DIMENSIONS = {
 const LIFECYCLE_VALUES = ['experimental', 'beta', 'production', 'deprecated'];
 const LIFECYCLE_STATE_VALUES = ['active', 'pending-review', 'pending-protocol', 'promoted', 'resolved', 'deprecated', 'validated', 'closed'];
 // S018 — enforcement lifecycle for governance artifacts (validators, hooks, contracts, audits)
-// stub: shell exists, exits 0, zero cost | planned: designed, not yet built | week-4: ships in week-4 batch | active: enforcing in production
-const ENFORCEMENT_STAGE_VALUES = ['stub', 'planned', 'week-4', 'active'];
+// stub: shell exists, exits 0, zero cost | planned: designed, not yet built | week-4: ships in week-4 batch
+// active: enforcing in production | human-judgment: explicitly non-mechanical (Tier 3 — self-assessment only)
+const ENFORCEMENT_STAGE_VALUES = ['stub', 'planned', 'week-4', 'active', 'human-judgment'];
 
 const TERMINAL_STATES = new Set(['validated', 'closed']);
 

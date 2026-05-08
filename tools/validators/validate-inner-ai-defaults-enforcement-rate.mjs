@@ -101,9 +101,12 @@ function parseEntries(filePath, content) {
 
     if (!catchValue) continue; // Skip sections without caught_by_validator field
 
-    // Determine if live or deferred — check against catchValue directly
-    const isDeferred = DEFERRED_INDICATORS.some(p => p.test(catchValue));
-    const isLive     = !isDeferred && LIVE_INDICATORS.some(p => p.test(catchValue));
+    // Determine if live or deferred — LIVE check TAKES PRIORITY over deferred.
+    // S021 K=1 discovery: DEFERRED_INDICATORS matched substrings like "Level 2: scan deferred"
+    // even when the dominant classification was LIVE. Fix: check LIVE first; only classify
+    // deferred when LIVE is absent. This prevents description text from overriding intent.
+    const isLive     = LIVE_INDICATORS.some(p => p.test(catchValue));
+    const isDeferred = !isLive && DEFERRED_INDICATORS.some(p => p.test(catchValue));
 
     // Check if entry is active (not deprecated/removed)
     const isActive = !statusValue || statusValue.toLowerCase() === 'active';

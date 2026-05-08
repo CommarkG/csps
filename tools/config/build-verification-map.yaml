@@ -77,6 +77,7 @@ governed_files:
     required_validators:
       - "node tools/validators/validate-inner-ai-defaults-freshness.mjs"
       - "node tools/validators/validate-inner-ai-defaults-enforcement-rate.mjs"
+      - "node tools/validators/validate-hook-lifecycle-state.mjs"
     required_checklist:
       - "New entry has caught_by_validator field populated (not blank)"
       - "If caught_by_validator: impl deferred — create a VLT for the enforcement validator"

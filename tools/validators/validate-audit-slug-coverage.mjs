@@ -71,6 +71,8 @@ const KNOWN_MAPPINGS = {
   'validate-decision-frame-citation': ['decision-frame-citation', 'decision_frame_citation'],
   'validate-concept-load-declared': ['concept-load-declared', 'concept_load_declared', 'concept-load'],
   'validate-subagent-spawn-preamble': ['subagent-spawn-preamble', 'subagent_spawn_preamble', 'spawn-preamble'],
+  'validate-hook-lifecycle-state': ['hook-lifecycle-state', 'hook_lifecycle_state', 'hook-lifecycle'],
+  'validate-session-harvest-readiness': ['session-harvest-readiness', 'session_harvest_readiness', 'harvest-readiness'],
 };
 
 function validatorBasename(filename) {

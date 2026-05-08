@@ -1,13 +1,13 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S020",
-  "previous_session": "S019",
-  "session_updated_at": "2026-05-08T20:50:00Z",
+  "current_session": "S021",
+  "previous_session": "S020",
+  "session_updated_at": "2026-05-09T00:00:00Z",
   "opus_audit": {
     "last_opus_review_session": "S019",
     "last_opus_review_date": "2026-05-08",
-    "sessions_since_opus_review": 1,
+    "sessions_since_opus_review": 2,
     "next_opus_review_due": "S029",
     "opus_audit_due": false,
     "opus_audit_trigger": null,
@@ -27,7 +27,7 @@
     "enforcement_rate_target_S025": 25
   },
   "session_mandate": {
-    "primary": "S021: Execute enforcement-rate-uplift plan (docs/plan/_handoff/VAULT/topic-plans/enforcement-rate-uplift.md) — enforcement_rate 6%→25% + drift_coverage 57%→71% in one session. L1: audit 29 deferred entries + read hooks (no writes). L2: Track A citation fixes + Track B 4 validators. L3: registries + SAP + verify + commit. Paste-target at bottom of plan file.",
+    "primary": "S022: Both governance targets hit (enforcement_rate=29%, drift_coverage=71%). Options: (A) continue governance — promote post-stop-banned-phrase.sh STUB to active enforcement, build validate-comment-truth.mjs for documentation drift (6th/7 drift types); (B) app-layer — connect task-mgmt live DB (pnpm db:push + dev server validation). Governor chooses direction.",
     "model_tier": "STANDARD_BUILD",
     "blocking_on": "NONE"
   },
@@ -124,8 +124,8 @@
     }
   ],
   "platform_state": {
-    "pnpm_verify": "exit_code 0 (45 validators, ZF ACHIEVED — S020 close commit e83470f)",
-    "last_verified_commit": "e83470f",
+    "pnpm_verify": "exit_code 0 (51 validators, ZF ACHIEVED — S021 CEC close)",
+    "last_verified_commit": "pending-S021-CEC-commit",
     "complexity_score": 18.2,
     "complexity_zone": "GREEN",
     "skills": 26,
@@ -218,6 +218,15 @@
       "zf_deep": "ACHIEVED (0 blocking — INST-VALD-001)",
       "discoveries": 15,
       "unlocks": "CDP + GDE + Core Seeds + SQR + Instruction Template + B_TOKEN_BUDGET v2 + 20+ audit slugs"
+    },
+    "s021": {
+      "mandate": "enforcement-rate-uplift plan execution + CEC harvest + structural fixes from extraction",
+      "model_tier": "STANDARD_BUILD",
+      "status": "COMPLETE",
+      "commits": ["46efa06 (S021 enforcement targets)", "pending-CEC-commit (harvest + structural fixes)"],
+      "zf_deep": "ACHIEVED (exit_code 0, 51 validators)",
+      "deliverables": "4 Track B validators, 2 Track A citations, drift-registry conceptual-drift active, validate-hook-lifecycle-state.mjs, validate-session-harvest-readiness.mjs, session-S021-extraction.md, §KH in plan template, DEFERRED_INDICATORS logic fix, two-track strategy in README",
+      "metrics_delta": "enforcement_rate 6%→29%, drift_coverage 57%→71%, validators 45→51"
     },
     "s020": {
       "mandate": "Execute sonnet-task-list-S020.md — VOCAB-1 + HAIKU-1/2 + DRIFT-1 + LAYER-1 + INNER-AI-1 + AUDIT-1",

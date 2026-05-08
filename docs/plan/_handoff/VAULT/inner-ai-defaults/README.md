@@ -129,6 +129,32 @@ status: active | superseded | obsolete
 | Per-quarter | inner-default-registry-coverage — full audit of registry entries vs current AI behavior; flags obsolete + missing |
 | Per-major-model-update | Mandatory full re-registration sweep + each entry re-validated |
 
+## Enforcement Build Strategy (S021 — two-track methodology)
+
+When closing enforcement gaps for registered entries, use the two-track approach:
+
+**Track A — Citation fix (zero code)**
+Before building a new validator, check if an existing live mechanism already covers the entry's behavioral override:
+1. Read the hook file (`@csps-lifecycle-state: active` required — STUB exits 0 and doesn't scan)
+2. Read the validator file referenced (confirm it's in pnpm verify and actually running)
+3. If covered: update `caught_by_validator` to include `(LIVE — mechanism)` with explicit coverage level
+4. Run `validate-inner-ai-defaults-enforcement-rate.mjs` to confirm the entry counts as live
+5. Caveat: avoid `deferred`, `planned`, `impl deferred` as substrings in the value (triggers deferred detector)
+
+**Track B — Build validator (new code)**
+When no live mechanism exists for the behavioral pattern:
+1. Build a minimal ADVISORY validator (exits 0 always — false positives are too high for behavioral checks)
+2. Include Coverage Levels header (✓ what it checks, ✗ what it doesn't → VLT)
+3. Wire into pnpm verify + audit-runner.md + run pnpm audit-runner:split
+4. Update `caught_by_validator` to reference `.mjs` file with `(LIVE — Level 1: …)`
+
+**Multiplier pattern:** When two entries share the same root behavioral default, build ONE validator
+for the root and wire to both entries. Saves build time and reduces validator proliferation.
+
+**STUB hook warning:** `validate-hook-lifecycle-state.mjs` reports which hooks are STUB vs active.
+Run it before estimating Track A coverage to avoid counting STUB hooks as live enforcement.
+At last audit (S021): 11/24 hooks are STUB (46%). Do NOT cite STUB hooks as live validators.
+
 ## How to add a new entry
 
 When AI catches itself producing a training-default pattern that conflicts with CSPS:

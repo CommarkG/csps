@@ -100,6 +100,22 @@ muv_audit:
 
 ---
 
+## §KH Know-How Consultation (B_KNOW_HOW_DISCIPLINE — mandatory for plans S011+)
+
+> **Required before §0.** Answers 5 questions to ensure the plan doesn't duplicate existing work, introduces no naming collisions, and respects existing infrastructure. validate-plan-know-how.mjs blocks when this section is absent.
+
+**1. Duplication check:** [Scan existing topic-plans, principles, contracts — does any existing element already address this?]
+
+**2. Naming collision check:** [Any new field/slug/artifact names — do they conflict with existing canonical terms?]
+
+**3. Scope boundary:** [Where does this plan's scope end? What adjacent concerns are explicitly out of scope?]
+
+**4. Existing infrastructure reuse:** [What existing validators, hooks, templates, contracts does this plan USE (not rebuild)?]
+
+**5. Governor decisions required before L2:** [List any VLTs or explicit approvals this plan needs before writes begin.]
+
+---
+
 ## §0 — Triad Governance Check (P-META-021 — mandatory for all plans)
 
 > **Per P-META-021:** No single governance layer covers all situations. Plans must declare the triad for their most consequential decisions. This section is NOT optional — it is the difference between a plan that works once and a plan that navigates correctly across infinite session boundaries.

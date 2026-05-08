@@ -189,6 +189,26 @@ const CYCLES = [
     },
   },
   {
+    // NEW S021 CEC — hook-lifecycle-state: surfaces STUB vs active hooks (N3 structural fix)
+    // Enables accurate Track A estimation — prevents counting STUB hooks as live enforcement
+    name: 'hook_lifecycle_state',
+    command: 'node tools/validators/validate-hook-lifecycle-state.mjs',
+    parse_output: (out) => {
+      const m = out.match(/total=(\d+)\s+active=(\d+)\s+stub=(\d+)\s+unknown=(\d+)\s+stub_rate=(\d+)%/);
+      return m ? { total: Number(m[1]), active: Number(m[2]), stub: Number(m[3]), unknown: Number(m[4]), stub_rate: Number(m[5]) } : {};
+    },
+  },
+  {
+    // NEW S021 CEC — session-harvest-readiness: fires ADVISORY when session work volume is significant
+    // Implements Governor directive: "mechanical enforcement every several turns when mature enough"
+    name: 'session_harvest_readiness',
+    command: 'node tools/validators/validate-session-harvest-readiness.mjs',
+    parse_output: (out) => {
+      const m = out.match(/session=(\S+)\s+validators=(\d+).*status=(\w+)/);
+      return m ? { session: m[1], validators: Number(m[2]), status: m[3] } : {};
+    },
+  },
+  {
     // NEW S021 enforcement-rate-uplift Track B — prose-no-confirmation-seeking (ADVISORY)
     // Covers: inner-AI-defaults prose-confirmation-seeking
     name: 'prose_no_confirmation_seeking',

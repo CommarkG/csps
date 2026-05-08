@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-08T21:02:51.272Z
-- finished_at: 2026-05-08T21:03:03.848Z
+- ran_at: 2026-05-08T21:15:31.206Z
+- finished_at: 2026-05-08T21:15:44.031Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T21:02:51.272Z",
-    "finished_at": "2026-05-08T21:03:03.848Z",
+    "ran_at": "2026-05-08T21:15:31.206Z",
+    "finished_at": "2026-05-08T21:15:44.031Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.8,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.9,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,10 +39,10 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
-        "scanned": 284,
+        "duration_seconds": 0.2,
+        "scanned": 285,
         "errors": 0,
-        "warnings": 18,
+        "warnings": 19,
         "exempt": 214
       },
       {
@@ -142,7 +142,28 @@
         "status": "OK",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "sessions_since": 1
+        "sessions_since": 2
+      },
+      {
+        "name": "hook_lifecycle_state",
+        "command": "node tools/validators/validate-hook-lifecycle-state.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "total": 24,
+        "active": 11,
+        "stub": 11,
+        "unknown": 2,
+        "stub_rate": 46
+      },
+      {
+        "name": "session_harvest_readiness",
+        "command": "node tools/validators/validate-session-harvest-readiness.mjs",
+        "status": "HARVEST_DONE",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "session": "S021",
+        "validators": 51
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -374,9 +395,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 49,
+        "validators_checked": 51,
         "orphans": 0,
-        "registered": 49
+        "registered": 51
       },
       {
         "name": "token_budget_validate",
@@ -463,7 +484,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.1
+        "duration_seconds": 6.6
       },
       {
         "name": "audit_runner_full_pass",

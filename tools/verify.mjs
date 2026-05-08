@@ -189,6 +189,46 @@ const CYCLES = [
     },
   },
   {
+    // NEW S021 enforcement-rate-uplift Track B — prose-no-confirmation-seeking (ADVISORY)
+    // Covers: inner-AI-defaults prose-confirmation-seeking
+    name: 'prose_no_confirmation_seeking',
+    command: 'node tools/validators/validate-prose-no-confirmation-seeking.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_scanned=(\d+)\s+findings=(\d+)\s+status=(\w+)/);
+      return m ? { files_scanned: Number(m[1]), findings: Number(m[2]), status: m[3] } : {};
+    },
+  },
+  {
+    // NEW S021 enforcement-rate-uplift Track B — decision-frame-citation (ADVISORY)
+    // Covers: inner-AI-defaults prose-naked-question + reasoning-implicit-decision-no-PCR
+    name: 'decision_frame_citation',
+    command: 'node tools/validators/validate-decision-frame-citation.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_scanned=(\d+)\s+with_pcr=(\d+)\s+advisory_gaps=(\d+)\s+status=(\w+)/);
+      return m ? { files_scanned: Number(m[1]), with_pcr: Number(m[2]), advisory_gaps: Number(m[3]), status: m[4] } : {};
+    },
+  },
+  {
+    // NEW S021 enforcement-rate-uplift Track B — concept-load-declared (ADVISORY)
+    // Covers: inner-AI-defaults reasoning-context-depth-degradation
+    name: 'concept_load_declared',
+    command: 'node tools/validators/validate-concept-load-declared.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_scanned=(\d+)\s+with_concept_load=(\d+)\s+advisory_gaps=(\d+)\s+status=(\w+)/);
+      return m ? { files_scanned: Number(m[1]), with_concept_load: Number(m[2]), advisory_gaps: Number(m[3]), status: m[4] } : {};
+    },
+  },
+  {
+    // NEW S021 enforcement-rate-uplift Track B — subagent-spawn-preamble (ADVISORY)
+    // Covers: inner-AI-defaults tooling-subagent-no-preamble
+    name: 'subagent_spawn_preamble',
+    command: 'node tools/validators/validate-subagent-spawn-preamble.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checks=(\d+)\s+passing=(\d+)\s+advisory_gaps=(\d+)\s+status=(\w+)/);
+      return m ? { checks: Number(m[1]), passing: Number(m[2]), advisory_gaps: Number(m[3]), status: m[4] } : {};
+    },
+  },
+  {
     // NEW S020 LAYER-1 — layer-boundary: L0 Core (libs/) must not import from L1/L2 (apps/)
     // BLOCKING when L0→L1 or L0→L2 import found. Baseline: 0 violations.
     // Source: platform-layer-boundaries.yaml. Resolves VLT-S019-LAYER-BOUNDARY.

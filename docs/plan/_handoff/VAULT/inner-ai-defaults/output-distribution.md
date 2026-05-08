@@ -37,7 +37,7 @@ session: S006
 - **csps_aligned_pattern:** Clickable markdown links: `[name](path)` for files; `[name#L42](path#L42)` for line refs
 - **disposition:** override
 - **reason:** B_ALWAYS_GIT_LINKS engraved; user-asked-twice in CSPS before engraving
-- **caught_by_validator:** prose-clickable-links-required (registered; impl deferred)
+- **caught_by_validator:** post-stop-link-discipline.sh (LIVE — Level 1: flags workspace-relative markdown links; Level 2: backtick-path conversion → validate-prose-clickable-links.mjs VLT)
 - **status:** active
 
 ### output-prose-walls-no-tables

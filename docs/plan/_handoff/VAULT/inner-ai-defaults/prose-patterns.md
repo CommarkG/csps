@@ -39,7 +39,7 @@ session: S006
 - **csps_aligned_pattern:** Execute when 4-condition gate passes (ratified ✓ reversible ✓ mechanical ✓ no-cross-actor ✓); report inline + continue
 - **disposition:** override
 - **reason:** B_NO_CONFIRMATION_SEEKING engraved S002 turn 19; user auto-approves permission prompts; chat-level confirmation wastes time
-- **caught_by_validator:** prose-no-confirmation-seeking-tail (registered; impl deferred)
+- **caught_by_validator:** validate-prose-no-confirmation-seeking.mjs (LIVE — Level 1: scan verify-last-run.md + session artifacts; Level 2: live transcript scan → VLT-S021-TRANSCRIPT-SCAN)
 - **status:** active
 
 ### prose-naked-question
@@ -47,7 +47,7 @@ session: S006
 - **csps_aligned_pattern:** Always offer PCR (options + pros/cons + recommendation + what-would-flip) per B_PCR_FOR_DECISIONS
 - **disposition:** override
 - **reason:** Naked questions transfer cognitive load to user; Top Expert Colleague Voice gives recommendations
-- **caught_by_validator:** decision-frame-citation (registered; impl deferred)
+- **caught_by_validator:** validate-decision-frame-citation.mjs (LIVE — Level 1/2: scan artifacts for multi-option without PCR; Level 3: trivial-skip violation → VLT-S021-PCR-TRIVIAL)
 - **status:** active
 
 ### prose-over-narration

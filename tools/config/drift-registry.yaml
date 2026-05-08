@@ -66,11 +66,20 @@ drift_types:
   - id: conceptual-ai-drift
     name: "AI Conceptual Drift"
     description: "AI behavioral patterns drifting from platform conventions across sessions"
-    status: partial
+    status: active
     validator: validate-inner-ai-defaults-freshness.mjs
-    coverage_notes: "Checks freshness (model version currency) but NOT behavioral quality"
+    coverage_level: 1
+    coverage_notes: >
+      Level 1: model version currency (freshness check active).
+      Level 2: behavioral enforcement rate — validate-inner-ai-defaults-enforcement-rate.mjs
+      now tracks 29% of behavioral overrides with live validators (S021 uplift: 6%→29%).
+      Level 3: behavioral quality semantic check → VLT-S021-BEHAVIORAL-QUALITY.
     severity: ADVISORY
-    gap: "Freshness check confirms model is current; does not confirm behavior is correct"
+    promoted_active_session: S021
+    promotion_rationale: >
+      S021 enforcement-rate-uplift raised enforcement_rate 6%→29%, adding 6 new live validators
+      for behavioral override patterns. Combined with freshness validator (model currency),
+      conceptual drift now has meaningful active monitoring at Level 1+2 combined.
     added_session: S006
     spine: AI
 
@@ -111,10 +120,10 @@ drift_types:
 # Summary
 meta:
   total_drift_types: 7
-  active: 4
-  partial: 1
+  active: 5
+  partial: 0
   planned: 1
   deferred: 1
-  coverage_percentage: 57
-  last_updated: S020
+  coverage_percentage: 71
+  last_updated: S021
   next_review: S025

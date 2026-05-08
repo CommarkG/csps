@@ -45,7 +45,7 @@ session: S006
 - **csps_aligned_pattern:** AAP Class B preamble template prepended to every spawn-prompt
 - **disposition:** override
 - **reason:** B_AGENT_ALIGNMENT_PROTOCOL P-META-010 — no wildcards; universal-required B_* acks present
-- **caught_by_validator:** subagent-spawn-preamble-required (registered; impl deferred — template at S006 carry #1)
+- **caught_by_validator:** validate-subagent-spawn-preamble.mjs (LIVE — Level 1/2: verify templates exist + AAP hook registered; Level 3: live spawn scan → VLT-S021-SPAWN-TRANSCRIPT)
 - **status:** active
 
 ### tooling-todowrite-reactive

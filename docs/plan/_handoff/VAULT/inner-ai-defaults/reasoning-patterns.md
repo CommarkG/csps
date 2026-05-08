@@ -49,7 +49,7 @@ session: S006
 - **csps_aligned_pattern:** Multi-option decisions trigger PCR 3-block (options + pros/cons + recommendation + load-bearing factor + what-would-flip)
 - **disposition:** override
 - **reason:** B_PCR_FOR_DECISIONS engraved; trivial-reversibles skip with explicit one-line note
-- **caught_by_validator:** decision-frame-citation (registered; impl deferred)
+- **caught_by_validator:** validate-decision-frame-citation.mjs (LIVE — Level 1/2: scan artifacts for multi-option without PCR; Level 3: trivial-skip violation → VLT-S021-PCR-TRIVIAL)
 - **opus_pattern:** Opus sees every multi-option situation as a governance moment. It holds the option space open deliberately — "what are ALL viable options?" — before narrowing to any. Then it closes explicitly with load-bearing factor named and what-would-flip stated. Sonnet narrows first then justifies. Opus widens first then chooses.
 - **moat_relevance:** maintenance
 - **status:** active
@@ -69,7 +69,7 @@ session: S006
 - **csps_aligned_pattern:** Re-run validator THIS response per RZF (P-META-006); cite tool output inline
 - **disposition:** override
 - **reason:** Memory of earlier runs ≠ validation; multiple S132/S184/S227-class incidents prevented by RZF discipline
-- **caught_by_validator:** nominal-rzf-detection (registered; impl deferred)
+- **caught_by_validator:** validate-rzf-evidence.mjs (LIVE — checks closing-summaries + verify-last-run.md for nominal-RZF; Level 2: live chat scan → VLT-S021-TRANSCRIPT-SCAN)
 - **opus_pattern:** Opus never says "I ran it." It pastes the output. Satisfaction fires at action for Sonnet; Opus requires observable state change. The test: "If I removed my claim sentence, would the tool output alone convince a skeptical reader?" If no: it's a declaration, not evidence.
 - **moat_relevance:** compound
 - **status:** active
@@ -109,7 +109,7 @@ session: S006
 - **csps_aligned_pattern:** Context is the compass (P-META-020). At decision points with high future consequence, capture the WHY alongside the WHAT — not just what was decided but why, what risks exist without it, what would break. The Threshold PREAMBLE (CONCEPT_LOAD) loads the relevant conceptual frame before processing each input, so validators serve as reference samples of an active concept, not isolated rules.
 - **disposition:** override
 - **reason:** Root cause of validator-proliferation anti-pattern + plan-promise-abandonment. Discovered S014, resolved by P-META-020 methodology. Engrave at every session-open: load L1/L2 spine domain before processing.
-- **caught_by_validator:** concept-load-skip (registered in P-META-020 anti-patterns; impl deferred as validator)
+- **caught_by_validator:** validate-concept-load-declared.mjs (LIVE — Level 1/2: scan closing-summaries for P-META-020 spine declarations; Level 3: turn-boundary checks → VLT-S021-CONCEPT-BOUNDARIES)
 - **opus_pattern:** Opus carries the conceptual frame simultaneously with the symbol. When it writes "foundation slice," it holds the full meaning of why it matters, what breaks without it, what adjacent systems depend on it. Sonnet writes the symbol after the context decays. The injection: when making a high-consequence decision, write the WHY explicitly alongside the WHAT — not as a comment, but as a section in the plan/contract that carries the reasoning forward.
 - **moat_relevance:** compound
 - **status:** active

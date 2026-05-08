@@ -67,6 +67,10 @@ const KNOWN_MAPPINGS = {
   'validate-template-compliance': ['template-compliance', 'template_compliance', 'domain-card-template-compliance'],
   'validate-drift-registry': ['drift-registry', 'drift_registry', 'drift-registry-coverage', 'drift_registry_coverage'],
   'validate-layer-boundary': ['layer-boundary', 'layer_boundary', 'layer-boundary-enforcement', 'layer_boundary_enforcement'],
+  'validate-prose-no-confirmation-seeking': ['prose-no-confirmation-seeking', 'prose_no_confirmation_seeking', 'no-confirmation-seeking'],
+  'validate-decision-frame-citation': ['decision-frame-citation', 'decision_frame_citation'],
+  'validate-concept-load-declared': ['concept-load-declared', 'concept_load_declared', 'concept-load'],
+  'validate-subagent-spawn-preamble': ['subagent-spawn-preamble', 'subagent_spawn_preamble', 'spawn-preamble'],
 };
 
 function validatorBasename(filename) {

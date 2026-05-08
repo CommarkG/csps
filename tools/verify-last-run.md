@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-08T20:51:06.540Z
-- finished_at: 2026-05-08T20:51:19.045Z
+- ran_at: 2026-05-08T21:02:51.272Z
+- finished_at: 2026-05-08T21:03:03.848Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T20:51:06.540Z",
-    "finished_at": "2026-05-08T20:51:19.045Z",
+    "ran_at": "2026-05-08T21:02:51.272Z",
+    "finished_at": "2026-05-08T21:03:03.848Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "scanned": 284,
         "errors": 0,
         "warnings": 18,
@@ -131,10 +131,10 @@
       {
         "name": "ai_defaults_enforcement_rate",
         "command": "node tools/validators/validate-inner-ai-defaults-enforcement-rate.mjs",
-        "status": "CRITICAL",
+        "status": "ADVISORY",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "enforcement_rate": 6
+        "enforcement_rate": 29
       },
       {
         "name": "opus_audit_due",
@@ -143,6 +143,45 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "sessions_since": 1
+      },
+      {
+        "name": "prose_no_confirmation_seeking",
+        "command": "node tools/validators/validate-prose-no-confirmation-seeking.mjs",
+        "status": "CLEAN",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files_scanned": 2,
+        "findings": 0
+      },
+      {
+        "name": "decision_frame_citation",
+        "command": "node tools/validators/validate-decision-frame-citation.mjs",
+        "status": "ADVISORY",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files_scanned": 3,
+        "with_pcr": 0,
+        "advisory_gaps": 1
+      },
+      {
+        "name": "concept_load_declared",
+        "command": "node tools/validators/validate-concept-load-declared.mjs",
+        "status": "ADVISORY",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files_scanned": 2,
+        "with_concept_load": 1,
+        "advisory_gaps": 1
+      },
+      {
+        "name": "subagent_spawn_preamble",
+        "command": "node tools/validators/validate-subagent-spawn-preamble.mjs",
+        "status": "CLEAN",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checks": 3,
+        "passing": 3,
+        "advisory_gaps": 0
       },
       {
         "name": "layer_boundary",
@@ -160,8 +199,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "total": 7,
-        "active": 4,
-        "coverage_pct": 57,
+        "active": 5,
+        "coverage_pct": 71,
         "critical_unprotected": 0
       },
       {
@@ -335,9 +374,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 45,
+        "validators_checked": 49,
         "orphans": 0,
-        "registered": 45
+        "registered": 49
       },
       {
         "name": "token_budget_validate",
@@ -424,7 +463,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.5
+        "duration_seconds": 6.1
       },
       {
         "name": "audit_runner_full_pass",

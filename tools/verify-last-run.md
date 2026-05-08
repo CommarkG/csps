@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-08T08:02:06.985Z
-- finished_at: 2026-05-08T08:02:18.074Z
+- ran_at: 2026-05-08T08:09:11.307Z
+- finished_at: 2026-05-08T08:09:27.030Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T08:02:06.985Z",
-    "finished_at": "2026-05-08T08:02:18.074Z",
+    "ran_at": "2026-05-08T08:09:11.307Z",
+    "finished_at": "2026-05-08T08:09:27.030Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -39,10 +39,10 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
-        "scanned": 269,
+        "duration_seconds": 0.2,
+        "scanned": 270,
         "errors": 0,
-        "warnings": 7,
+        "warnings": 8,
         "exempt": 214
       },
       {
@@ -199,7 +199,7 @@
         "command": "node tools/validators/validate-vlt-blocking.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "instruction_context",
@@ -271,7 +271,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -388,7 +388,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 6.2,
+        "duration_seconds": 9.7,
         "generate_ok": true,
         "zmodel_models": 7,
         "app_models": 7,

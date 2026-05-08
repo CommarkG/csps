@@ -9,13 +9,13 @@
 | **Current session** | S019 |
 | **Previous session** | S018 |
 | **Last updated** | today |
-| **Last commit** | 9a07d02 S019: Sonnet inheritance model + Opus enforcement + boundaries + gradual structures |
+| **Last commit** | b0a448d S019 close: wire Opus artifacts into session-open + HANDOFF + opus_pattern |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
 ## What S019 must do
 
-**B_RESULT_NOT_OUTPUT 5/5 FSE engraving + CEC on 3 undiscovered S018 items (platform-audit, CDP, AI personas) + Session Question Register acknowledgments**
+**S020: Execute sonnet-task-list-S020.md — start VOCAB-1 (14 new terms) → HAIKU-1 → HAIKU-2 → DRIFT-1. Enforcement rate: 6% (target 25%). Opus audit due S029. Context: S019 Opus review produced 15 lessons + 6 specification documents + 4 validators + 3 config files.**
 
 
 

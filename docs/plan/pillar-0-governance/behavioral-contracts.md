@@ -1726,6 +1726,25 @@ This is the **shiny object trap**. It is specifically the failure mode that crea
 
 **Cross-references:** B_PE_ALIGNMENT_GUARDIAN (anti-sycophancy — this is the completion-domain version) / P-META-018 (PE Alignment Guardian principle) / B_GRADUAL_BUILD_BY_FOUNDATIONS (foundation-first is completion-first) / B_STRUCTURAL_PREVENTION_DISCIPLINE (K=2 abandonment pattern → structural fix, not instance fix).
 
+
+---
+
+## B_DEVELOPMENT_VS_PRODUCTION — never confuse development-mode depth with production-mode efficiency (S019 — Governor directive)
+
+**Canonical:** Development Mode and Production Mode are two fundamentally different operational contexts. Development Mode optimizes for quality, correctness, and depth (tokens = investment). Production Mode optimizes for efficiency, latency, and cost (tokens = operational expense). **Confusing them in either direction is an anti-pattern:** applying production-mode efficiency constraints to development exploration stunts quality; applying development-mode governance overhead to production API serving destroys margins.
+
+**Development Mode characteristics:** Opus for ratification; L3 context depth acceptable; full ZF cycles; SQR acknowledgment required; GEP Stage 1 before full scope; CEC walks required; iterations are virtues.
+
+**Production Mode characteristics:** GRACE Tier 0-2 preferred; Haiku for classification; Sonnet for responses; Opus NEVER in production paths; L1 only; no ZF in request path; SLA-bounded; circuit breakers not SQRs.
+
+**The boundary:** A feature transitions from Development to Production only after GEP Stage 1+2 pass, enforcement_stage: active, and ZF achieved for the deployment unit.
+
+**Hard NO:** Never apply production efficiency constraints to development sessions. Never apply development governance overhead to production user requests.
+
+**conceptual_sample_of:** GVRN L2 + OPER L2 — the development/production mode distinction is the governance decision that shapes every operational choice downstream.
+
+**Cross-references:** development-vs-production-mode.md / B_HUMBLE_EXECUTION_PIPELINE (GEP applies in development before production deployment) / B_TOKEN_BUDGET (development: R1 L1-default is guideline; production: R1 is hard constraint) / GRACE architecture (designed for production; in development, depth > efficiency)
+
 ## B_HUMBLE_EXECUTION_PIPELINE — gradual execution: Stage 1 proof before Stage 3 full scope (S019 — Governor directive)
 
 **Canonical:** Before applying any ratified plan at full scope, there MUST be a Stage 1 proof: 1-3 real-world cases where the intent demonstrably becomes a measurable result (THIS-SESSION observable evidence). "Ratification ≠ Proven." Intellectual analysis cannot discover what real-world application reveals. The AI satisfaction point "ratified = ready for full scope" is a training default that CSPS overrides.

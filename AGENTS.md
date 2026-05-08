@@ -91,6 +91,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never present non-trivial decision without PCR 3-block (skill: `pcr-rendering`; or `/pcr`)
 - ❌ Never close a session without §10.0j enhancement-proposals scan; K=2 recurring → mandatory structural engraving
 - ❌ Never violate B_TOKEN_BUDGET 8 rules (v2 ratified S018): R1 L1 default (escalation triggers required for L2/L3) / R2 two independent model settings (main=Sonnet, subagent=haiku via CLAUDE_CODE_SUBAGENT_MODEL — never switch main mid-task) / R3 /compact at IMPL_BATCH boundary + 60% utilization trigger (5-min cache warmth constraint) / R4 1M context: /clear ONLY at >80% saturation — conversation IS the session archive / R5 tool output content-type-aware: summary+path for all outputs >5 lines / R6 /cost at session-open + IMPL_BATCH close (cost-per-ZF-0-batch is the KPI) / R7 subagents for ZF cycles, file scans >5 files, validator runs, log analysis (returns 200-500 tok summary) / R8 NEVER edit CLAUDE.md or add MCP servers mid-session (cache invalidation)
+- ❌ Never conflate Development Mode (depth, quality, token investment) with Production Mode (efficiency, SLA, cost). Distinct contexts. (B_DEVELOPMENT_VS_PRODUCTION)
 - ❌ Never deploy a ratified plan at full scope without Stage 1 proof (1-3 cases, THIS-SESSION evidence that intent→result). Ratification ≠ proven. (B_HUMBLE_EXECUTION_PIPELINE)
 - ❌ Never write a governance rule that cannot reach at least enforcement_stage: human-judgment. Documentation-only governance is aspiration, and aspiration drifts. Every rule must become: a validator / hook / contract / self-assessment question. If none of those work — do not write the rule. (mechanical-enforcement-policy.md — S018)
 - ❌ Never claim positive ZF complete without evidence. Every significant positive event (ratification, insight, breakthrough) must have: CEC ran? How many surfaces? Vault path? Declared in §10.0n of closing-summary. Missing = PARTIAL, not COMPLETE. (mechanical-enforcement-policy.md — S018)
@@ -195,5 +196,4 @@ Per-app (`apps/<scope>/<name>/AGENTS.md`) and per-package (`packages/<name>/AGEN
 
 - `/compact <focus>` at IMPL_BATCH boundaries; `/clear` between unrelated tasks (domain change → session boundary; P-META-014).
 - Cardinal: tokens are INVESTMENT in reasoning quality, NOT budget to minimize.
-
 ## Open frontiers — [`docs/plan/pillar-6-operations-and-delivery/open-frontiers.md`](docs/plan/pillar-6-operations-and-delivery/open-frontiers.md) tracks items not yet final. Don't lock in behavior on those without checking latest state.

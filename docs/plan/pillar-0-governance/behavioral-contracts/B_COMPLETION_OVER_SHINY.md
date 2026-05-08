@@ -49,3 +49,6 @@ This is the **shiny object trap**. It is specifically the failure mode that crea
 - contract: this entry + AGENTS.md hard NO + `inner-ai-defaults/shiny-object-override.md` + PE schema
 
 **Cross-references:** B_PE_ALIGNMENT_GUARDIAN (anti-sycophancy — this is the completion-domain version) / P-META-018 (PE Alignment Guardian principle) / B_GRADUAL_BUILD_BY_FOUNDATIONS (foundation-first is completion-first) / B_STRUCTURAL_PREVENTION_DISCIPLINE (K=2 abandonment pattern → structural fix, not instance fix).
+
+
+---

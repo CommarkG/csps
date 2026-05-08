@@ -409,6 +409,24 @@ In week-4: `validate-positive-zf-evidence.mjs` checks that every discovery has `
 
 WHY: Positive ZF is the compounding mechanism. Without mechanical enforcement of CEC, platform improvements stay local (one session's insight) rather than systemic (engraved across all surfaces). The difference between a platform that learns vs one that repeats the same discoveries every session.
 
+### §10.0p Moat harvest (validate-moat-coverage — added S019)
+
+> **Per moat-registry.md + Governor directive S019:** Moat elements = platform capabilities that compound over time and are hard for competitors to replicate. Every significant session should surface new moat candidates. The moat is LIVING — it grows with the platform.
+
+```yaml
+moat_harvest:
+  session: S<NNN>
+  existing_moat_covered: <count>/18  # from validate-moat-coverage.mjs output
+  new_candidates:
+    - name: "<new capability that compounds>"
+      why_moat: "<what makes this hard to replicate>"
+      coverage_needed: "<which validator would enforce this>"
+  promoted_to_moat_this_session: <count>
+  moat_total_after: <count>
+```
+
+Run: `node tools/validators/validate-moat-coverage.mjs` — paste output above.
+
 ### §10.0o Session Question Register clearance (SQR — added S018)
 
 > **Per session-question-register.md:** Every CHECKPOINT item produced during the session must be acknowledged before close. OPEN items that were not acknowledged must be explicitly deferred with a reason.

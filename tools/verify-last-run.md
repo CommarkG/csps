@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-08T07:22:53.498Z
-- finished_at: 2026-05-08T07:23:04.659Z
+- ran_at: 2026-05-08T07:34:54.564Z
+- finished_at: 2026-05-08T07:35:05.571Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T07:22:53.498Z",
-    "finished_at": "2026-05-08T07:23:04.659Z",
+    "ran_at": "2026-05-08T07:34:54.564Z",
+    "finished_at": "2026-05-08T07:35:05.571Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -39,11 +39,11 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 266,
+        "duration_seconds": 0.1,
+        "scanned": 267,
         "errors": 0,
         "warnings": 6,
-        "exempt": 212
+        "exempt": 213
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -87,7 +87,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 50,
+        "source_contracts": 51,
         "missing_slices": 0
       },
       {
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -170,8 +170,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 15,
-        "covered": 15,
+        "total": 18,
+        "covered": 17,
         "critical_gaps": 0
       },
       {
@@ -180,8 +180,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 68,
-        "with_status": 16,
+        "checked": 69,
+        "with_status": 17,
         "warnings": 0
       },
       {
@@ -207,7 +207,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 116,
+        "checked": 117,
         "missing_why": 29
       },
       {
@@ -271,7 +271,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -388,7 +388,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 5.8,
+        "duration_seconds": 6,
         "generate_ok": true,
         "zmodel_models": 7,
         "app_models": 7,

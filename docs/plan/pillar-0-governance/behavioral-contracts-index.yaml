@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 50
+  total_count: 51
   generated_at: '2026-05-08'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -158,6 +158,9 @@ contracts:
   - id: B_COMPLETION_OVER_SHINY
     desc: "B_COMPLETION_OVER_SHINY"
     path: ./behavioral-contracts/B_COMPLETION_OVER_SHINY.md
+  - id: B_HUMBLE_EXECUTION_PIPELINE
+    desc: "B_HUMBLE_EXECUTION_PIPELINE"
+    path: ./behavioral-contracts/B_HUMBLE_EXECUTION_PIPELINE.md
   - id: B_HUMBLE_EXECUTOR
     desc: "B_HUMBLE_EXECUTOR"
     path: ./behavioral-contracts/B_HUMBLE_EXECUTOR.md

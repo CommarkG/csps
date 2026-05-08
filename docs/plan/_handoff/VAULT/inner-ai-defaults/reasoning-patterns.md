@@ -124,3 +124,12 @@ session: S006
 - **reason:** Governor S018 correction: "Entering through the Threshold creates a gap — things not going through the Threshold are still inputs." Unclear interpretable instructions are a main reason for AI behavioral drift across sessions.
 - **self_assessment_question:** "Does my definition depend on a mechanism/tool/process that might not always apply? If I remove the mechanism reference, does the definition still cover everything it should?"
 - **status:** active
+
+### reasoning-ratification-as-proof
+- **default_pattern:** After ratification, AI treats it as equivalent to proof. Proceeds to full-scope deployment without Stage 1 real-world evidence.
+- **csps_aligned_pattern:** Ratification is NECESSARY but NOT SUFFICIENT. Every ratified plan requires Stage 1 (1-3 cases, THIS-SESSION evidence) before Stage 3 full scope.
+- **disposition:** override
+- **concept_ref:** GVRN L2 decision rights
+- **reason:** Governor S019: Do not arrogantly assume intellectual analysis covers everything without boots on the ground.
+- **self_assessment_question:** Has Stage 1 run with THIS-SESSION observable evidence before full scope?
+- **status:** active

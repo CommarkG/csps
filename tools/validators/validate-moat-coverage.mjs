@@ -102,6 +102,31 @@ const MOAT_ELEMENTS = [
     coverage_validators: ['corespine_depth_markers', 'frontmatter_validate', 'principle_slices_sync'],
     cadence: 'every-session',
   },
+  // S018-S019: New moat elements from Core Alignment sessions
+  {
+    id: 'M-16', name: 'Gradual Execution Protocol (GEP) — ratification ≠ proven',
+    description: 'Every ratified plan requires Stage 1 proof before full-scope. 3-stage: 1-3 cases → 10% → full scope. Iterations are the fast track.',
+    coverage_validators: ['behavioral_contract_slices_sync'],  // B_HUMBLE_EXECUTION_PIPELINE
+    coverage_hooks: [],
+    cadence: 'per-session',
+    advisory: true,  // enforcement_stage: planned — promoting to active when validate-execution-stages ships
+  },
+  {
+    id: 'M-17', name: 'Core Dynamic Plan (CDP) — unified lifecycle state machine',
+    description: 'Every platform element has cdp_status (raw→sealed), making governance lifecycle queryable and consistent.',
+    coverage_validators: ['frontmatter_validate'],  // cdp_status closed enum enforced
+    coverage_hooks: [],
+    cadence: 'per-session',
+    advisory: true,
+  },
+  {
+    id: 'M-18', name: 'Question Protocol — F+C+G+Q full context formula',
+    description: 'Questions as encrypted context and intents. Full context only when fundamental data + connections + goal + well-defined questions are all present.',
+    coverage_validators: [],  // validate-question-coverage.mjs planned
+    coverage_hooks: [],
+    cadence: 'per-session',
+    advisory: true,
+  },
 ];
 
 function getActiveValidatorsFromVerify() {

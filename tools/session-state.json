@@ -1,13 +1,13 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S019",
-  "previous_session": "S018",
-  "session_updated_at": "2026-05-08T06:45:00Z",
+  "current_session": "S020",
+  "previous_session": "S019",
+  "session_updated_at": "2026-05-08T20:50:00Z",
   "opus_audit": {
     "last_opus_review_session": "S019",
     "last_opus_review_date": "2026-05-08",
-    "sessions_since_opus_review": 0,
+    "sessions_since_opus_review": 1,
     "next_opus_review_due": "S029",
     "opus_audit_due": false,
     "opus_audit_trigger": null,
@@ -27,7 +27,7 @@
     "enforcement_rate_target_S025": 25
   },
   "session_mandate": {
-    "primary": "S020: Execute sonnet-task-list-S020.md — start VOCAB-1 (14 new terms) → HAIKU-1 → HAIKU-2 → DRIFT-1. Enforcement rate: 6% (target 25%). Opus audit due S029. Context: S019 Opus review produced 15 lessons + 6 specification documents + 4 validators + 3 config files.",
+    "primary": "S021: Execute enforcement-rate-uplift plan (docs/plan/_handoff/VAULT/topic-plans/enforcement-rate-uplift.md) — enforcement_rate 6%→25% + drift_coverage 57%→71% in one session. L1: audit 29 deferred entries + read hooks (no writes). L2: Track A citation fixes + Track B 4 validators. L3: registries + SAP + verify + commit. Paste-target at bottom of plan file.",
     "model_tier": "STANDARD_BUILD",
     "blocking_on": "NONE"
   },
@@ -124,8 +124,8 @@
     }
   ],
   "platform_state": {
-    "pnpm_verify": "exit_code 0 (41 validators, ZF ACHIEVED — last run at ZERO BLOCKING)",
-    "last_verified_commit": "4bc9966",
+    "pnpm_verify": "exit_code 0 (45 validators, ZF ACHIEVED — S020 close commit e83470f)",
+    "last_verified_commit": "e83470f",
     "complexity_score": 18.2,
     "complexity_zone": "GREEN",
     "skills": 26,
@@ -143,7 +143,9 @@
     "apps_task_mgmt_commit": "a633270",
     "all_blocking_resolved": true,
     "hooks_active": 19,
-    "validators_active": 41,
+    "validators_active": 45,
+    "enforcement_rate": "6% (2/31) — target 25% at S021 via enforcement-rate-uplift plan",
+    "drift_coverage": "57% (4/7 active) — target 71% at S021 via conceptual-drift promotion",
     "zf_orchestrator": "LIVE — pnpm zf / pnpm zf:phase / pnpm zf:deep",
     "phase5_status": "SCAFFOLD+CRUD COMPLETE — pending live DB deployment",
     "foundation_exit_gate": "CLEAN — validate-phase-exit-criteria.mjs PASS",
@@ -216,6 +218,15 @@
       "zf_deep": "ACHIEVED (0 blocking — INST-VALD-001)",
       "discoveries": 15,
       "unlocks": "CDP + GDE + Core Seeds + SQR + Instruction Template + B_TOKEN_BUDGET v2 + 20+ audit slugs"
+    },
+    "s020": {
+      "mandate": "Execute sonnet-task-list-S020.md — VOCAB-1 + HAIKU-1/2 + DRIFT-1 + LAYER-1 + INNER-AI-1 + AUDIT-1",
+      "model_tier": "STANDARD_BUILD",
+      "status": "COMPLETE",
+      "commits": ["4eaae6e (VOCAB+HAIKU+DRIFT first session)", "4eaae6e (LAYER+INNER-AI+AUDIT)", "5659a5c (enforcement-rate-uplift plan)", "e83470f (§KH fix)"],
+      "zf_deep": "ACHIEVED (exit_code 0, 45 validators)",
+      "deliverables": "vocabulary.md (14 terms), haiku-pattern-library.yaml (7 patterns), haiku-spawn-template.md, validate-drift-registry.mjs, validate-layer-boundary.mjs, reasoning-patterns.md (13/13 opus_pattern), sonnet-audit-protocol.md, drift-registry 43%→57%, enforcement-rate-uplift topic-plan",
+      "metrics_delta": "drift_coverage 43%→57%, validators 41→45, 13/13 reasoning entries have opus_pattern"
     },
     "s019": {
       "mandate": "B_RESULT_NOT_OUTPUT 5/5 FSE + CEC on 3 undiscovered items + domain card v1.1 update",

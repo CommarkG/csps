@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-08T20:30:24.905Z
-- finished_at: 2026-05-08T20:30:37.274Z
+- ran_at: 2026-05-08T20:51:06.540Z
+- finished_at: 2026-05-08T20:51:19.045Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T20:30:24.905Z",
-    "finished_at": "2026-05-08T20:30:37.274Z",
+    "ran_at": "2026-05-08T20:51:06.540Z",
+    "finished_at": "2026-05-08T20:51:19.045Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -39,7 +39,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "scanned": 284,
         "errors": 0,
         "warnings": 18,
@@ -142,7 +142,7 @@
         "status": "OK",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "sessions_since": 0
+        "sessions_since": 1
       },
       {
         "name": "layer_boundary",
@@ -403,10 +403,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "plans_checked": 12,
-        "stale_total": 9,
-        "unverified": 9,
+        "stale_total": 11,
+        "unverified": 11,
         "verified": 0,
-        "likely_done_items": 0
+        "likely_done_items": 1
       },
       {
         "name": "phase_exit_criteria",

@@ -54,7 +54,7 @@ consolidation_cross_refs:
 
 ## The One-Paragraph Platform Summary
 
-CSPS (Core Sights Platform Services) is a governed multi-tenant SaaS foundry. It is not a product — it is the infrastructure that makes building 30+ SaaS products systematically possible, each inheriting security, billing, auth, schema isolation, and AI governance automatically. The platform is governed by 5 Core Spines (GVRN/ARCH/AI/VALD/OPER), enforced by 41+ validators, orchestrated by a Graduated Resolution Architecture (GRACE), and sequenced by a continuous Priority Engine. Everything declared is mechanically enforced. Everything built is tested. Nothing ships without a ZF (Zero-Findings) gate.
+CSPS (Core Sights Platform Services) is a governed multi-tenant SaaS foundry. It is not a product — it is the infrastructure that makes building 30+ SaaS products systematically possible, each inheriting security, billing, auth, schema isolation, and AI governance automatically. The platform is governed by 5 Core Spines (GVRN/ARCH/AI/VALD/OPER), enforced by 41+ validators, orchestrated by a Graduated Resolution Architecture (GRACE), and sequenced by a continuous Priority Engine. Everything declared is mechanically enforced. Everything built is tested. Nothing ships without a ZF (Zero-Findings) gate. **ZF ACHIEVED = THE LAST RUN PRODUCING ZERO BLOCKING FINDINGS. No other definition. (INST-VALD-001)**
 
 ---
 

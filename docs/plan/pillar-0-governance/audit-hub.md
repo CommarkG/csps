@@ -119,7 +119,9 @@ The orchestration layer above [`audit-runner.md`](./audit-runner.md) registry. D
 
 **Schema connection:** maps to the 5-layer architecture + 4 Quality Gates per cognitive-context-architecture.md.
 
-### Pipeline 4 — `zero-findings-cycle` (P-META-006 RZF + CEC)
+### Pipeline 4 — `zero-findings-cycle`
+
+> **ZF ACHIEVED DEFINITION (canonical — INST-VALD-001):** THE LAST RUN PRODUCING "STATUS: ZF ACHIEVED ✅ — 0 blocking findings remain" IS THE ONLY PROOF. No other output. A run with fewer findings is progress — not completion. Progress-as-completion is the AI satisfaction point; zero-findings is the truth. (P-META-006 RZF + CEC)
 
 **Trigger:** every artifact reaching `lifecycle_state ∈ {validated, closed}`; every ratification (principle / leaf / ADR / B_* contract).
 

@@ -616,6 +616,7 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 **Anti-patterns:**
 
 - **Nominal-not-actual RZF** — emitting "ZF-0 ACHIEVED" RZF block when the cited validator was never run this session (THE meta-pattern this contract exists to cure)
+- **Progress-as-completion** — the AI satisfaction point: after findings decrease (from 5 to 2), declaring "ZF improving" or "only advisories remain" as if this is ZF ACHIEVED. IT IS NOT. **ZF ACHIEVED = THE LAST RUN PRODUCING "STATUS: ZF ACHIEVED ✅ — 0 blocking findings." NO OTHER OUTPUT QUALIFIES.** A run with non-zero findings — even if improved — is not ZF ACHIEVED. Memory of a prior run is not ZF ACHIEVED. Citing "ZF Level 3 was achieved earlier this session" without re-running is NOMINAL. (INST-VALD-001)
 - **Context-dependent cycle** — plan says "AI should run X"; AI forgets; debt accumulates (P-META-008 anti-pattern)
 - **Latent bug because validator never ran** — S002→S005 example: YAML parse failure + missing enforcer_layers latent 2+ sessions; surfaced only because user-directed verification cycle forced it
 - **§10.0 empty or missing** — closing summary INCOMPLETE per closing-summary-template required-header rule

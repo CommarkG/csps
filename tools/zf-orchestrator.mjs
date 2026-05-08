@@ -6,6 +6,15 @@
  *   "Making everything go through multiple directions with zero findings iterations
  *    might be the most cost-effective thing to do ever."
  *
+ * ZF ACHIEVED DEFINITION (Governor S018 correction — ONLY VALID INTERPRETATION):
+ *   THE LAST RUN THAT PRODUCES "STATUS: ZF ACHIEVED ✅ — 0 blocking findings remain"
+ *   is the ONLY proof. No other output qualifies.
+ *   - A run reducing findings from 5 to 2: NOT ZF ACHIEVED
+ *   - A prior session's ZF result cited as current: NOT ZF ACHIEVED (nominal ZF)
+ *   - "Only advisory warnings": ADVISORY IS NOT BLOCKING — zero BLOCKING is required
+ *   - Progress toward zero: NOT zero
+ *   The AI satisfaction point fires at IMPROVEMENT. Override it: zero findings IS the proof.
+ *
  * WHY THIS EXISTS:
  *   Every iterative discovery in S014 happened because the Governor manually prompted
  *   "go back and look again." Without that prompting, the platform accepted nominal ZF

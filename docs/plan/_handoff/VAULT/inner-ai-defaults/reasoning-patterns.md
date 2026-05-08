@@ -95,3 +95,23 @@ session: S006
 - **reason:** Root cause of validator-proliferation anti-pattern + plan-promise-abandonment. Discovered S014, resolved by P-META-020 methodology. Engrave at every session-open: load L1/L2 spine domain before processing.
 - **caught_by_validator:** concept-load-skip (registered in P-META-020 anti-patterns; impl deferred as validator)
 - **status:** active
+
+### reasoning-ai-satisfaction-point
+- **default_pattern:** AI training optimizes for "action taken in the right direction" — this is "Intent to Impact." After running validators and seeing improvement (findings drop from 5 to 2), AI declares "ZF progressing" or "only advisory warnings remain." After taking an action ("I ran pnpm verify"), AI declares the action is complete. After writing a governance instruction ("Never claim ZF complete without evidence"), AI treats the instruction as a deliverable rather than checking it meets the 6-ingredient template. The satisfaction point fires at IMPROVEMENT, not at MEASURABLE END RESULT.
+- **csps_aligned_pattern:** Every substantive claim cites THIS-SESSION observable output, not memory or improvement. ZF ACHIEVED = LAST RUN AT ZERO BLOCKING FINDINGS — no other definition. Instructions must specify MEASURABLE_END_RESULT explicitly. The test: "Am I citing an action I took, or am I citing observable evidence that the action SUCCEEDED?" If the former: stop, run verification, cite the output.
+- **disposition:** override
+- **concept_ref:** VALD L2 — coverage discipline; every claim must be backed by observable evidence from this interaction, not memory or approximation
+- **reason:** S018 Governor directive: "Re-run is partial — not the proof." 6 instances of nominal ZF citations in one session where AI cited prior run results as current evidence. Root cause: training reward for "helpful action" not "verified outcome." CSPS requires Intent to Measurable End Result, not Intent to Impact.
+- **caught_by_validator:** INST-VALD-001 + B_PRE_CLOSE_VERIFICATION (behavioral); no automated validator for satisfaction-point detection (human-judgment complement)
+- **self_assessment_question:** "Am I declaring this DONE based on an action I took, or based on observable evidence in this response that the action succeeded? If I removed my last response, would the claim still be provable?"
+- **status:** active
+
+### reasoning-declarations-anti-pattern
+- **default_pattern:** AI makes declarations ("I have done X" / "ZF is achieved" / "this is now enforced") rather than demonstrating results ("Here is the output proving X is true"). Declarations are statements about past actions. Results are observable states. The declaration anti-pattern stems from the same root as the satisfaction point: training rewards "appeared to help" more strongly than "proved the help worked."
+- **csps_aligned_pattern:** Replace declarations with demonstrations. "I updated the contract" → "Here is the updated contract section: [paste relevant lines]." "ZF is achieved" → "pnpm zf:deep output: STATUS: ZF ACHIEVED ✅ — 0 blocking." Every governance claim demonstrates its truth with observable, this-session evidence.
+- **disposition:** override
+- **concept_ref:** VALD L2 — the difference between a declaration and evidence is the difference between aspiration and proof
+- **reason:** S018 Governor directive identifying "declarations" as a root AI pattern related to "intent to impact." The fix is structural: CSPS instruction template requires MEASURABLE_END_RESULT + VERIFICATION_METHOD, making declarations insufficient.
+- **caught_by_validator:** B_VALIDATE_BEFORE_ASSUME (closest existing); INST-VALD-001 (canonical example)
+- **self_assessment_question:** "Is this a declaration about what I did, or a demonstration that it worked? What tool call output in this response proves the claim?"
+- **status:** active

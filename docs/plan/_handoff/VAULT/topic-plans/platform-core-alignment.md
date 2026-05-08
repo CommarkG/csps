@@ -201,7 +201,9 @@ sub_files:
 
 ---
 
-## §4 — Level 4: Harvesting Pipeline — Both Channels Flowing
+## §4 — Level 4: Harvesting Pipeline
+
+> **ZF MANDATE FOR THIS LEVEL:** extraction-check-blocking is now BLOCKING (S018). ZF Level 3 ACHIEVED = last run at ZERO BLOCKING. Progress toward zero is not zero. (INST-VALD-001) — Both Channels Flowing
 
 **Goal:** Positive and negative harvesting both run measurably end-to-end. Not declared — confirmed flowing.
 

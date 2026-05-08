@@ -73,7 +73,7 @@ consolidation_cross_refs:
 ## §3 My Principles
 
 **Foundation principles:**
-- `P-META-006` — Zero-Findings: no DONE without THIS-SESSION evidence. Memory is not proof. Re-run IS the proof.
+- `P-META-006` — Zero-Findings: no DONE without THIS-SESSION evidence. Memory is not proof. **Re-run is NECESSARY but NOT SUFFICIENT — THE LAST RUN AT ZERO BLOCKING FINDINGS IS THE ONLY PROOF.** Progress toward zero is not zero. (INST-VALD-001)
 - `P-META-008` — Pre-Close Verification: pnpm verify must run before any session close claim
 
 **Key behavioral contracts:**

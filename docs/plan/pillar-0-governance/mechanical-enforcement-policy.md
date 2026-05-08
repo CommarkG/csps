@@ -194,6 +194,12 @@ CEC QUALITY cannot be mechanically assessed. We can check that CEC ran (mechanic
 
 ---
 
+## Canonical ZF Definition (INST-VALD-001)
+
+> **THE LAST RUN PRODUCING "STATUS: ZF ACHIEVED ✅ — 0 blocking findings remain" IS THE ONLY PROOF OF ZF. No other output. No other interpretation. No other version is approved. A re-run that reduces findings from 5 to 2 is progress — it is NOT ZF ACHIEVED. Progress toward zero is not zero.**
+>
+> This is the mandatory definition. Any deviation — including citing prior-session ZF results, or treating advisory-only findings as BLOCKING-clean — is Tier 4 governance (do not write it, do not claim it).
+
 ## Hard Rule (AGENTS.md addition)
 
 > ❌ Never write a governance rule that cannot reach at least enforcement_stage: human-judgment. Documentation-only governance is not governance — it is aspiration, and aspiration drifts. If the rule matters, it becomes a gate, hook, validator, or self-assessment question. If none of those work: don't write it.

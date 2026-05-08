@@ -101,7 +101,7 @@ Each ladder monitors a specific signal, defines rungs (thresholds → actions), 
 
 ## §4 Vocabulary
 
-**Terms I own:**
+**Terms I own:** *(ZF ACHIEVED = LAST RUN AT ZERO BLOCKING FINDINGS. Progress is not zero. — INST-VALD-001)*
 - `BLOCKING` — a finding that prevents phase advance or session close
 - `Advisory` — a warning tracked but not blocking; promotes to blocking on K=2 pattern
 - `enforcement_stage` — stub | planned | week-4 | active lifecycle for validators

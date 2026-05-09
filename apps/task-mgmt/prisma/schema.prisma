@@ -84,8 +84,6 @@ model UserTenant {
 model AuditEvent {
   id           String   @id @default(uuid())
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  deletedAt    DateTime?
 
   tenantId     String
   actorId      String?
@@ -95,6 +93,10 @@ model AuditEvent {
   data         Json?
 
   tenant       Tenant @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId, createdAt])
+  @@index([tenantId, resourceType, resourceId])
+  @@index([actorId, createdAt])
 }
 
 // ─── Task management slices (EXTRACTS WITH APP at graduation) ────────────────

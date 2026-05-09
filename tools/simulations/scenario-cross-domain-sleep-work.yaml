@@ -1,0 +1,84 @@
+# Simulation Scenario: WisdomVault Cross-Domain Intelligence (Sleep → Work)
+# Coordinate: (who=solo_user, what=crosscut, how=aggregate, when=after:health+ops+wisdomvault)
+# Session: S021 | Status: gaps-found | Simulation-ZF: false
+
+simulation_id: "SIM-S021-CROSS-DOMAIN-SLEEP-WORK"
+scenario: "Platform surfaces insight: 'Your sleep quality correlates with your task completion rate'"
+coordinate:
+  who: solo_user
+  what: crosscut
+  how: aggregate
+  when: "after:personal.health.zmodel + after:WisdomEntry + after:N-100-users"
+session: S021
+status: gaps-found
+simulation_zf: false
+
+research_consulted: [RESEARCH-001, RESEARCH-002, RESEARCH-007]
+
+ccat:
+  who: "solo_user (has both health and work domains active)"
+  what: "crosscut (cross-domain aggregation: personal.health.sleep + business.operations)"
+  when: "seed (none of this infrastructure exists)"
+  where: "user (L2 surface via WisdomHub query)"
+  why: "Cross-domain AI insight is the platform's primary differentiator — no other app can surface this"
+
+what_must_exist_for_this_to_work:
+  - personal.health.zmodel (Domain Schema — doesn't exist)
+  - health.sleep data model (Tier 3 schema — doesn't exist)
+  - business.operations task completion tracking (exists in task-mgmt partially)
+  - WisdomEntry model (specced S019, not built)
+  - WisdomHub MCP server (specced S019, not built)
+  - N ≥ 100 users contributing opt-in aggregated data (0 users today)
+  - Privacy-preserving aggregation protocol (designed, not built)
+  - Cross-domain correlation algorithm (not designed)
+  - UI surface for surfacing the insight (not designed)
+
+gaps_found:
+  - id: "GAP-1"
+    severity: CRITICAL
+    description: "personal.health.zmodel does not exist"
+    remediation: "Phase F (health domain) — requires Phase B (compliance) first"
+    sessions_away: 6
+
+  - id: "GAP-2"
+    severity: CRITICAL
+    description: "WisdomEntry model not built despite being specced for 2 sessions"
+    remediation: "Phase C (WisdomVault) — requires AppendOnlyBase first (Session 1 Step 1a)"
+    sessions_away: 3
+
+  - id: "GAP-3"
+    severity: CRITICAL
+    description: "0 real users = WisdomVault has no data to aggregate"
+    remediation: "Session 1 (live DB) unblocks user acquisition"
+    sessions_away: 0  # THIS IS THE NEXT STEP
+
+  - id: "GAP-4"
+    severity: IMPORTANT
+    description: "Privacy protocol not built (how does opt-in work?)"
+    remediation: "WisdomVault privacy protocol design (Opus task OPUS-002)"
+    sessions_away: 5
+
+  - id: "GAP-5"
+    severity: IMPORTANT
+    description: "Cross-domain correlation algorithm not designed"
+    remediation: "Requires AI/ML design — which model? How aggregated?"
+    sessions_away: 8
+
+simulation_zf: false  # Every gap is blocking. Minimum 6 sessions away from Simulation-ZF.
+
+critical_path:
+  1: "Session 1: AppendOnlyBase + pnpm db:push (unblocks user acquisition)"
+  2: "Session 3: GDPR erasure (legal requirement before health domain)"
+  3: "S023: WisdomEntry model + AppendOnlyBase (Phase C start)"
+  4: "S024: HIPAA-adjacent compliance profile (required before health schema)"
+  5: "S025: personal.health.zmodel (Phase F)"
+  6: "S026: WisdomHub MCP + privacy protocol"
+  7: "S027+: 100 real users (time-bound — need marketing)"
+  8: "S030+: Cross-domain correlation surfaced to users"
+
+key_insight: >
+  This simulation reveals that the platform's primary differentiator (cross-domain AI insight)
+  is approximately 9 sessions away from even being possible.
+  This is NOT a reason to not build it — it's a reason to start NOW.
+  Every session that delays Session 1 (live DB) delays this vision by one session.
+  The critical path is dominated by real user acquisition, not technical complexity.

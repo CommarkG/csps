@@ -1,0 +1,104 @@
+# Simulation Scenario: Task Management — Live DB Connection
+# Coordinate: (who=user, what=business.operations, how=consume)
+# Session: S021 | Status: gaps-found | Simulation-ZF: false
+
+simulation_id: "SIM-S021-TASK-MGMT-LIVE"
+scenario: "First real user signs up, creates a project, adds a task, team member joins"
+coordinate:
+  who: solo_user
+  what: business.operations
+  how: consume
+  when: "after:pnpm-db-push + after:AppendOnlyBase-in-schema"
+session: S021
+status: gaps-found
+simulation_zf: false
+
+research_consulted: [RESEARCH-001, RESEARCH-005]
+
+ccat:
+  who: "solo_user (first real CSPS user)"
+  what: "business.operations (task management)"
+  when: "proven (once live DB is connected)"
+  where: "user (L2 surface)"
+  why: "First real user validates that ZenStack tenant isolation and Clerk auth work in production"
+
+scenario_definition:
+  given: "AppendOnlyBase + pnpm db:push completed. Supabase credentials in .env.local."
+  when: "User signs up via Clerk, creates first project, adds a task, invites team member"
+  then: "All operations succeed. AuditEvent records every action. ZenStack isolates tenant data."
+
+steps:
+  - step: 1
+    actor: user
+    action: "Sign up via Clerk (email + org creation)"
+    expected: "Clerk webhook fires → User + Tenant created → AuditEvent written"
+    gap: false
+
+  - step: 2
+    actor: system
+    action: "Clerk webhook: organization.created → CSPS tenant created"
+    expected: "Tenant.subscriptionStatus = free. stripeCustomerId created if Stripe configured."
+    gap: false
+
+  - step: 3
+    actor: user
+    action: "Create first project: POST /api/projects"
+    expected: "Project created with tenantId. AuditEvent: project.created. getEnhancedDb enforces isolation."
+    gap: false
+
+  - step: 4
+    actor: user
+    action: "Add a task to the project: POST /api/tasks"
+    expected: "Task created. AuditEvent: task.created. tenantId enforced by ZenStack."
+    gap: false
+
+  - step: 5
+    actor: user
+    action: "Invite a team member (second Clerk org member)"
+    expected: "Clerk webhook → UserTenant created → memberCount=2 → billing trigger fires → Stripe subscription created"
+    gap_note: "Billing trigger is in app-level webhook handler, not libs/ (L6 opus-lesson gap)"
+    gap: false  # works, but placement is wrong
+
+  - step: 6
+    actor: user
+    action: "Team member logs in and views tasks"
+    expected: "Only this tenant's tasks visible (ZenStack @@allow enforces auth().tenantId == tenantId)"
+    gap: false
+
+  - step: 7
+    actor: user
+    action: "User requests GDPR data erasure"
+    expected: "Erasure service runs, PII fields replaced, AuditEvent written, receipt returned"
+    gap: true
+    gap_description: "libs/integrations/gdpr.ts does not exist. UPDATE-005 in backlog."
+    severity: CRITICAL
+
+  - step: 8
+    actor: user
+    action: "User exports their data"
+    expected: "Data export returns all user-created content in machine-readable format"
+    gap: true
+    gap_description: "No data export endpoint exists. No data portability implementation."
+    severity: IMPORTANT
+
+gaps_found:
+  - id: "GAP-1"
+    step: 7
+    description: "GDPR erasure service missing"
+    severity: CRITICAL
+    remediation: "Build libs/integrations/gdpr.ts (UPDATE-005 in backlog)"
+    assigned_to: sonnet
+
+  - id: "GAP-2"
+    step: 8
+    description: "Data portability missing"
+    severity: IMPORTANT
+    remediation: "Build GET /api/export endpoint returning user's data as JSON"
+    assigned_to: sonnet
+
+simulation_zf: false  # GAP-1 is CRITICAL — blocks simulation-ZF
+
+remediation_sequence:
+  1: "Build libs/integrations/gdpr.ts (Session 3)"
+  2: "Build GET /api/export endpoint (after GDPR)"
+  3: "Re-simulate: expect simulation-ZF true"

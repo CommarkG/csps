@@ -1,0 +1,108 @@
+# Simulation Scenario: Solo User Onboarding Journey
+# Coordinate: (who=solo_user, what=business.operations, how=consume, when=after:task-mgmt-live)
+# Session: S021 | Status: gaps-found | Simulation-ZF: false
+
+simulation_id: "SIM-S021-ONBOARDING-SOLO"
+scenario: "Solo user discovers CSPS app, signs up, reaches first value moment within 5 minutes"
+coordinate:
+  who: solo_user
+  what: business.operations
+  how: consume
+  when: "after:task-mgmt-live + after:onboarding-wizard-built"
+session: S021
+status: gaps-found
+simulation_zf: false
+
+research_consulted: [RESEARCH-001, RESEARCH-002]
+
+ccat:
+  who: "solo_user (no team, first time)"
+  what: "business.operations (task management as entry domain)"
+  when: "seed (UI doesn't exist yet)"
+  where: "user (L2 surface)"
+  why: "A solo user who reaches their first task completion in under 5 minutes is 3× more likely to invite a team member"
+
+scenario_definition:
+  given: "Task-mgmt is live (Session 1 complete). No onboarding UI exists yet."
+  when: "A solo user arrives at the app for the first time via landing page"
+  then: "User signs up, understands the app, creates first task, feels value — all within 5 minutes"
+
+steps:
+  - step: 1
+    actor: user
+    action: "Arrives at landing page"
+    expected: "Clear value proposition, sign up CTA, domain selection"
+    gap: true
+    gap_description: "No landing page exists. No value proposition page. User sees blank."
+    severity: CRITICAL
+
+  - step: 2
+    actor: user
+    action: "Signs up (email + Clerk)"
+    expected: "Smooth Clerk sign-up flow. Org created automatically for solo user."
+    gap: false  # Clerk handles this
+
+  - step: 3
+    actor: user
+    action: "First screen after signup"
+    expected: "Onboarding wizard: 'What are you here to manage?' Domain selection."
+    gap: true
+    gap_description: "No onboarding wizard. First screen is whatever Clerk redirects to — probably blank."
+    severity: CRITICAL
+
+  - step: 4
+    actor: user
+    action: "Empty state in task list"
+    expected: "Friendly empty state: 'Create your first project' with clear CTA"
+    gap: true
+    gap_description: "No empty state design. List shows empty array."
+    severity: IMPORTANT
+
+  - step: 5
+    actor: user
+    action: "Creates first task"
+    expected: "Task form, submit, task appears in list"
+    gap: false  # API works
+
+  - step: 6
+    actor: user
+    action: "Feels value"
+    expected: "Clear indication they've accomplished something. Suggestion for next step."
+    gap: true
+    gap_description: "No celebration state, no progress indication, no 'what's next' guidance"
+    severity: ADVISORY
+
+gaps_found:
+  - id: "GAP-1"
+    severity: CRITICAL
+    description: "No landing page or marketing surface"
+    remediation: "Phase H (external surfaces) — requires domain selection wizard first"
+
+  - id: "GAP-2"
+    severity: CRITICAL
+    description: "No onboarding wizard"
+    remediation: "Phase H — requires persona_target ratification + domain taxonomy first"
+
+  - id: "GAP-3"
+    severity: IMPORTANT
+    description: "No empty states"
+    remediation: "builder.ux.states from Lovable tree — design empty state per domain"
+
+  - id: "GAP-4"
+    severity: ADVISORY
+    description: "No progress/celebration/next-step guidance"
+    remediation: "UX patterns design after onboarding wizard exists"
+
+simulation_zf: false  # 2 CRITICAL gaps
+
+key_insight: >
+  This simulation reveals that even if technical implementation is perfect,
+  the user experience is 0% complete. Session 1 (live DB) fixes the technical gap.
+  But the user-value gap requires Phase H (external surfaces) which is 8 sessions away.
+  The platform needs at minimum a basic empty-state and post-signup redirect before
+  any real user is onboarded.
+
+immediate_action: >
+  Before any real user is onboarded: implement a minimal redirect after Clerk signup
+  that shows "Your workspace is ready — create your first project" with a CTA.
+  This is 30 minutes of work and prevents the worst first impression.

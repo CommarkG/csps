@@ -189,6 +189,16 @@ const CYCLES = [
     },
   },
   {
+    // NEW S021 Governor directive — research-reuse: research registry check before new research is commissioned
+    // Stage: advisory (exits 0 always) — surfaces stale/approaching-stale entries, registry total
+    name: 'research_reuse',
+    command: 'node tools/validators/validate-research-reuse.mjs',
+    parse_output: (out) => {
+      const m = out.match(/total=(\d+)\s+active=(\d+)\s+stale=(\d+)\s+superseded=(\d+)\s+high_confidence=(\d+)\s+approaching_stale=(\d+)/);
+      return m ? { total: Number(m[1]), active: Number(m[2]), stale: Number(m[3]), high_confidence: Number(m[5]), approaching_stale: Number(m[6]) } : {};
+    },
+  },
+  {
     // NEW S021 Governor directive — completion-circle: surfaces elements missing developer/user coverage
     // Stage: measurement (exits 0 always) — defines COMPLETE as full closed circle
     name: 'completion_circle',

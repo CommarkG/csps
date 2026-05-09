@@ -247,6 +247,40 @@ that user consumes, mediated by the platform's orchestration layer."
 
 ---
 
+## Recommendation 6: Simulation as a Core Methodology
+
+The most powerful use of the Knowledge Hub is not as a taxonomy — it is as a **simulation engine**. Before implementing any node, run a structured simulation:
+
+1. Define the scenario: who does what, in which domain, by which interaction pattern
+2. Trace the input through every node it touches
+3. Find gaps: nodes referenced but empty, compliance profiles needed but missing, typed edges that don't resolve
+4. Iteration: fix gaps, re-simulate, until the simulation finds 0 gaps (Simulation-ZF)
+5. Only then: implement
+
+This connects the Knowledge Hub to a disciplined development methodology:
+- **Humble:** we simulate before assuming the architecture works
+- **Iterative:** simulate → gaps → fix → re-simulate (the spiral)
+- **ZF-complete:** don't build until simulation passes
+
+The `maturity` field tracks this: a node at `seed` hasn't been simulated. At `draft`, it's been simulated once. At `proven`, simulation-ZF achieved AND 10 real users confirmed it.
+
+**Practical addition to Lovable's schema:** Add `last_simulated_session` and `simulation_zf: true|false` to every node. A node that has never been simulated cannot be `proven`.
+
+---
+
+## Recommendation 7: Research Registry as Active Input (Not Archive)
+
+Every node in the Knowledge Hub should be backed by research. The temptation is to store research as documentation. The discipline is to treat research as **active input that is checked before any work begins**.
+
+Proposed addition to Lovable's workflow:
+- Every node has `research_ids: [RESEARCH-001, RESEARCH-004]` — references to the research that justifies it
+- Before marking any node `draft`, its research_ids must exist and be non-empty
+- A quarterly sweep surfaces nodes with stale research (the field they cover has changed since it was researched)
+
+This prevents the most common knowledge tree failure: well-structured nodes that rest on outdated or absent research.
+
+---
+
 ## One Sentence for the Top of the Knowledge Hub
 
 > "The Knowledge Hub maps three dimensions simultaneously: WHO uses each element

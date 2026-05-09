@@ -1,0 +1,164 @@
+# CSPS Research Registry
+# ALL research performed across CSPS sessions — structured, indexed, queryable.
+# This is NOT a storage archive. It is a MANDATORY CHECK before any new research.
+# Created: S021 | Governs: all planning, implementing, auditing
+#
+# Process: Before commissioning new research on ANY topic:
+#   1. Query this registry by topic/keyword
+#   2. If found: use existing findings (update if stale)
+#   3. If not found: commission research, then ADD entry here
+#   4. validate-research-reuse.mjs enforces this at plan creation
+#
+# Entry fields:
+#   id: unique research ID
+#   topic: searchable topic name
+#   keywords: for fuzzy matching (check before re-researching)
+#   session: when this was researched
+#   findings: the key findings (not the full document — the actionable summary)
+#   source_document: path to full analysis
+#   confidence: low | medium | high
+#   staleness_days: when to re-validate (research ages)
+#   status: active | stale | superseded
+
+research_items:
+
+  - id: RESEARCH-001
+    topic: "Multi-sided platform orchestration (builder + user routing)"
+    keywords: [orchestration, two-sided-market, builder-user, routing, shopify, platform]
+    session: S021
+    date: "2026-05-09"
+    findings: |
+      1. Shopify Maestro: builder composes workflow, user configures triggers, Maestro executes.
+         Static usage analysis passes only needed data to each step (not bulk context).
+         This is the closest published implementation of "builder creates, user consumes, platform executes."
+      2. AWS tenant routing: domain-driven or data-driven routing. Rich context in KV stores.
+         Middleware sets tenant context ONCE per request — downstream inherits automatically.
+         Already implemented in CSPS via ZenStack enhance(db, { user }).
+      3. Two-sided market theory (Rochet & Tirole): subsidize builder side early to attract users.
+         Governance mechanisms (verification, reputation, dispute resolution) reduce information asymmetry.
+         The CSPS behavioral contracts + validators ARE the governance layer for both sides.
+      4. Three-axis knowledge (MDPI 2024): Theme-Stage-Attribute as 3D coordinate system.
+         Any element maps to a triplet enabling precise retrieval. Research-stage, no dominant deployment yet.
+      5. Multi-armed bandit algorithms for routing exploration vs. exploitation (Azure AI patterns).
+    source_document: "docs/plan/_handoff/VAULT/three-axis-orchestration-S021.md"
+    confidence: high
+    staleness_days: 180
+    status: active
+    csps_implication: "Context Orchestrator extended to resolve (WHO, WHAT, HOW) coordinate before routing"
+
+  - id: RESEARCH-002
+    topic: "Domain taxonomy systems (universal coverage of human life + business domains)"
+    keywords: [taxonomy, domain, classification, schema-org, notion, naics, sdg, wheel-of-life]
+    session: S021
+    date: "2026-05-09"
+    findings: |
+      1. No universal taxonomy exists — every major system is either domain-biased or too shallow.
+      2. Schema.org (823 types): best for interoperability substrate. Misses personal-professional blend.
+      3. Apple App Store (~25 categories), Google Play (~32): deliberately shallow, overlapping at edges.
+      4. Notion (250+ template categories): flat cross-purpose approach. Best model for personal-professional blend.
+      5. TBM taxonomy: criticality tiers (T1=mission critical, T2=business critical, T3=productivity).
+         Orthogonal to functional taxonomy — adds governance dimension.
+      6. Recommended: 3-tier hybrid. 5-6 Tier 1 meta-domains, 35-40 Tier 2, 150+ Tier 3.
+      7. Personal-professional hybrids (freelancer, creator) are an under-served differentiator.
+    source_document: "docs/plan/_handoff/VAULT/platform-excellence-consolidated-S021.md"
+    confidence: high
+    staleness_days: 365
+    status: active
+    csps_implication: "CSPS 3-tier taxonomy: business|personal|social|knowledge|platform|crosscut"
+
+  - id: RESEARCH-003
+    topic: "Lovable Knowledge Hub tree structure analysis"
+    keywords: [lovable, knowledge-hub, builder-user-axis, crosscut, typed-edges, maturity-model]
+    session: S021
+    date: "2026-05-09"
+    findings: |
+      1. Lovable organizes by WHO (builder vs. user), CSPS by WHAT (subject matter). Complementary axes.
+      2. Lovable's typed edges (DERIVES_FROM, REFINES, DEPENDS_ON) are more machine-queryable than CSPS links.
+      3. Lovable's maturity model (seed→draft→proven→battle-tested→canonical) aligns with CSPS maturity tags.
+      4. Lovable has builder.ux.* (UX patterns library) — CSPS has zero of this.
+      5. Lovable's crosscut (accountability, intent, decision, feedback) = proposed 6th CSPS Tier 1.
+      6. Critical discovery: builder.ux.i18n mentions EN/HE/RTL — Hebrew/RTL is a requirement.
+      7. Lovable missing: knowledge meta-domain, full family lifecycle, hybrid domains, WisdomVault, compliance layer.
+    source_document: "docs/plan/_handoff/VAULT/lovable-tree-analysis-S021.md"
+    confidence: high
+    staleness_days: 90
+    status: active
+    csps_implication: "Add builder_surface field, crosscut Tier 1, typed edge system, HE/RTL VLT"
+
+  - id: RESEARCH-004
+    topic: "GDPR compliance requirements for SaaS platforms"
+    keywords: [gdpr, privacy, erasure, right-to-erasure, eu, personal-data, article-17]
+    session: S019
+    date: "2026-05-08"
+    findings: |
+      1. GDPR Article 17 (right to erasure) applies from the moment EU personal data is processed — zero-user threshold.
+      2. Erasure ≠ hard delete. Pseudonymization (replace PII with placeholder) satisfies Article 17 for most cases.
+      3. AuditEvent rows must be RETAINED even after user erasure (audit retention ≠ personal data retention).
+      4. Data portability (Article 20) also required — user can request all their data in machine-readable format.
+      5. GDPR applies to ALL personal data, not just sensitive categories. Email address is personal data.
+    source_document: "docs/plan/_handoff/VAULT/opus-lessons-S019/part1-schema-and-security.md"
+    confidence: high
+    staleness_days: 365
+    status: active
+    csps_implication: "libs/gdpr.ts erasure service required. VLT-S019-GDPR-ERASURE. Blocks EU market."
+
+  - id: RESEARCH-005
+    topic: "ZenStack ZModel architecture and ORM-layer tenant isolation"
+    keywords: [zenstack, zmodel, orm, tenant-isolation, rls, allow-policy, prisma]
+    session: S017
+    date: "2026-05-07"
+    findings: |
+      1. ZenStack enforce policies at ORM layer — WHERE tenant_id = ? is automatic, not developer-written.
+      2. The enhance(prismaClient) wrapper is the tenant context injection point.
+      3. Flat schema (single .zmodel file) required due to ZenStack circular import limitation.
+         Migration to multi-file triggered when model count approaches 30 OR 3+ devs touch schema.
+      4. Field-level drift between ZModel and app Prisma schema is invisible to model-name-only validators.
+      5. ZenStack generate must exit 0 before any schema change is considered valid.
+    source_document: "docs/plan/_handoff/VAULT/opus-lessons-S019/part1-schema-and-security.md"
+    confidence: high
+    staleness_days: 180
+    status: active
+    csps_implication: "Field-level drift validator required (implemented S019). Flat schema VLT tracked."
+
+  - id: RESEARCH-006
+    topic: "Multi-model AI council patterns (Opus + Sonnet + Haiku orchestration)"
+    keywords: [multi-model, council, orchestration, opus, sonnet, haiku, role-separation, two-tab]
+    session: S021
+    date: "2026-05-09"
+    findings: |
+      1. No published "multi-model council" protocol exists — CSPS is pioneering this approach.
+      2. Role separation is critical: Opus (strategic), Sonnet (implementation), Haiku (scanning).
+      3. File-relay protocol (tools/council/) enables tab-to-tab communication via shared filesystem.
+      4. Governor as trigger reduces to one line per turn — manageable human involvement.
+      5. Automated orchestration (CronCreate + file watcher) is achievable but complex. VLT registered.
+      6. Spine-specialized Opus councils (5 councils, one per Core Spine) is Level 2 of the vision.
+    source_document: "docs/plan/_handoff/VAULT/council-platform-concept-S021.md"
+    confidence: medium
+    staleness_days: 90
+    status: active
+    csps_implication: "CouncilOS vision. tools/council/ is the embryo. Phase Council-1 = spine configs."
+
+  - id: RESEARCH-007
+    topic: "Platform completion circle — when is a feature truly COMPLETE?"
+    keywords: [completion, closed-circle, developer-surface, user-value, wisdom-harvest, done]
+    session: S021
+    date: "2026-05-09"
+    findings: |
+      1. Conventional definition: code exists + tests pass = done.
+      2. CSPS definition: schema + logic + developer_surface + user_value + wisdom_harvested = COMPLETE.
+      3. Baseline S021: 19 implemented artifacts assessed. 19/19 missing developer_surface and user_value.
+      4. The platform is at ~5% completion circle readiness — technically sound but user-value-zero.
+      5. validate-completion-circle.mjs now runs each pnpm verify to surface this gap continuously.
+    source_document: "docs/plan/_handoff/VAULT/three-axis-orchestration-S021.md"
+    confidence: high
+    staleness_days: 90
+    status: active
+    csps_implication: "completion_circle field in frontmatter. 3 new fields: developer_surface, user_value, completion_circle."
+
+# Meta
+meta:
+  total_entries: 7
+  last_updated: S021
+  check_before_researching: true
+  enforcement: validate-research-reuse.mjs (planned — wire into plan-creation protocol)
+  staleness_check_frequency: "quarterly or when topic is re-raised"

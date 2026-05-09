@@ -1,21 +1,23 @@
 # verify last run
 
-- ran_at: 2026-05-08T21:15:31.206Z
-- finished_at: 2026-05-08T21:15:44.031Z
+- ran_at: 2026-05-09T05:12:00.143Z
+- finished_at: 2026-05-09T05:12:16.990Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-08T21:15:31.206Z",
-    "finished_at": "2026-05-08T21:15:44.031Z",
+    "ran_at": "2026-05-09T05:12:00.143Z",
+    "finished_at": "2026-05-09T05:12:16.990Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "DEFERRED-WITH-REASON",
-        "skip_reason": "flag --skip-install"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 1,
+        "packages_resolved": null
       },
       {
         "name": "typecheck_recursive",
@@ -40,9 +42,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 285,
+        "scanned": 287,
         "errors": 0,
-        "warnings": 19,
+        "warnings": 20,
         "exempt": 214
       },
       {
@@ -112,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -243,7 +245,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -302,7 +304,7 @@
         "command": "node tools/validators/validate-instruction-context.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "checked": 119,
         "missing_why": 29
       },
@@ -321,7 +323,7 @@
         "command": "node tools/validators/validate-rzf-evidence.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "checks": 2,
         "warnings": 0
       },
@@ -358,7 +360,7 @@
         "command": "node tools/validators/validate-intake-event.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0,
         "rows": 0
       },
@@ -367,7 +369,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 2,
         "advisory": true
       },
@@ -439,7 +441,7 @@
         "command": "node tools/validators/validate-execution-mode-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "plans_checked": 10,
         "missing_mode": 0,
         "warnings": 0
@@ -449,7 +451,7 @@
         "command": "node tools/validators/validate-bedrock.mjs",
         "status": "COMPLETE",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "total": 22,
         "done": 21,
         "deferred": 1,
@@ -461,7 +463,7 @@
         "command": "node tools/validators/validate-plan-age-alignment.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "plans_checked": 12,
         "stale_total": 11,
         "unverified": 11,
@@ -473,7 +475,7 @@
         "command": "node tools/validators/validate-phase-exit-criteria.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "plans_checked": 12,
         "sections_checked": 8,
         "blocking": 0,
@@ -484,7 +486,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.6
+        "duration_seconds": 7.7
       },
       {
         "name": "audit_runner_full_pass",

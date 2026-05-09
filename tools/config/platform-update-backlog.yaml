@@ -1,0 +1,547 @@
+# CSPS Platform Update Backlog
+# Machine-readable registry of all pending platform updates.
+# Read by: validate-update-backlog.mjs (wired in pnpm verify)
+# Updated by: Governor + Sonnet + Opus at session close
+# Source of truth for: what needs to happen before platform reaches excellence-tier
+#
+# Status values: pending | blocked | in-progress | done
+# Who values: governor | opus | sonnet | both
+# Priority: P1 (blocks others) | P2 (important) | P3 (valuable) | P4 (future)
+
+meta:
+  version: "1.0"
+  created_session: S021
+  last_updated: S021
+  total_items: 28
+  done_count: 0
+  blocking_count: 4
+  advisory_threshold: 10  # ADVISORY when pending > this
+  block_threshold: 20     # BLOCKING in verify when pending > this (future: week-4)
+  enforcement_stage: measurement  # measurement | advisory | blocking
+
+# ═══════════════════════════════════════════════════════════
+# GOVERNOR DECISIONS (these block everything downstream)
+# ═══════════════════════════════════════════════════════════
+
+governor_decisions:
+
+  - id: GOVDEC-001
+    description: "Ratify VLT-S022-DOMAIN-PATH: domain_path Tier 1 closed enum"
+    proposed_values: "business | personal | social | knowledge | platform"
+    who: governor
+    priority: P1
+    status: pending
+    blocks: ["UPDATE-001", "UPDATE-002", "UPDATE-012"]
+    context: >
+      Every artifact on the platform needs a machine-readable ontological position.
+      Without ratified Tier 1 values, Schema Phase A cannot run, and every subsequent
+      domain build will lack taxonomy identity.
+    reasoning: "10-minute decision that unblocks 10+ sessions of downstream work."
+
+  - id: GOVDEC-002
+    description: "Ratify VLT-S022-WISDOM-CLASS: wisdom_class closed enum"
+    proposed_values: "insight | reference | workflow | tool | benchmark | story | null"
+    who: governor
+    priority: P1
+    status: pending
+    blocks: ["UPDATE-012", "UPDATE-023"]
+    context: >
+      WisdomVault queries require wisdom_class to index artifacts. Additive enum —
+      wrong choice is low-risk (add new values later without rework).
+    reasoning: "Ratify now, zero rework risk if we add 'case_study' later."
+
+  - id: GOVDEC-003
+    description: "Ratify VLT-S022-PERSONA-TARGET: 4 of 7 persona values"
+    proposed_values: "solo_user | business_admin | business_member | developer (ratify now) | family_admin | family_member | community_leader (defer until real users)"
+    who: governor
+    priority: P1
+    status: pending
+    blocks: ["UPDATE-012"]
+    context: >
+      The 4 business/individual personas are stable and derived from current reality.
+      The 3 family/community personas need real user validation — they're speculative.
+      Sonnet's council position: defer 3 until Session 1 reveals real signup patterns.
+    reasoning: "Ratify what's stable, wait for evidence on what's speculative."
+
+  - id: GOVDEC-004
+    description: "Confirm Supabase credential availability (determines Session 1 vs Session 2 start)"
+    who: governor
+    priority: P1
+    status: pending
+    blocks: ["UPDATE-004"]
+    context: >
+      Consensus plan: Schema Phase A first if credentials not ready, Live DB first if ready.
+      This one question determines which session runs in S022.
+    reasoning: "No code — just a yes/no that routes all downstream work."
+
+  - id: GOVDEC-005
+    description: "Ratify Plan Maturity Doctrine as P-META-XXX (assign principle number)"
+    who: governor
+    priority: P2
+    status: pending
+    blocks: ["UPDATE-025"]
+    context: >
+      The doctrine exists in the consolidated plan (§10). Needs a P-META number and
+      formal ratification before validate-plan-maturity.mjs can reference it.
+    reasoning: "Once ratified, the principle number goes in the validator and AGENTS.md."
+
+# ═══════════════════════════════════════════════════════════
+# OPUS TASKS (architectural — require Opus-level thinking)
+# ═══════════════════════════════════════════════════════════
+
+opus_tasks:
+
+  - id: OPUS-001
+    description: "Classify all 52 behavioral contracts as R1-R5 (Rigidity Spectrum)"
+    who: opus
+    priority: P2
+    status: pending
+    depends_on: ["GOVDEC-005"]
+    context: >
+      The Rigidity Spectrum (R1=Absolute, R5=Training-Default-Keep) resolves the
+      AI behavioral flexibility vs. rigidity tension. Currently no contract has a
+      declared rigidity level — everything is binary (AGENTS.md hard NO or implicit R4).
+    reasoning: >
+      Without declared rigidity levels, AGENTS.md keeps growing until it hits the
+      200-line limit again. Moving R2-R4 constraints to their correct CDAB layers
+      reduces AGENTS.md to pure R1 — constitutional, immovable, ~60 lines.
+    output: "List of contracts with rigidity_level: R1|R2|R3|R4|R5 assigned"
+    sonnet_implements: "UPDATE-010 (add rigidity_level to contract frontmatter)"
+
+  - id: OPUS-002
+    description: "Define 5 Spine Council configuration files (Phase Council-1)"
+    who: opus
+    priority: P3
+    status: pending
+    depends_on: []
+    context: >
+      CouncilOS Level 2 requires each spine to have an Opus configuration:
+      what context to load, what questions to ask, what decisions to make.
+      These config files ARE the spine specialization.
+    reasoning: >
+      Cannot build CouncilOS Level 2 without defining what each Spine Advisor knows.
+      Opus writes the spec; Sonnet creates the YAML files.
+    output: "5 spec documents: gvrn-council-config.md, arch-council-config.md, etc."
+    sonnet_implements: "UPDATE-024 (create tools/council/spine-configs/ YAML files)"
+
+  - id: OPUS-003
+    description: "Audit all 12 stub hooks — classify which should be promoted to advisory/blocking"
+    who: opus
+    priority: P2
+    status: pending
+    context: >
+      12 hooks are STUB (exit 0 always). Some are correctly deferred (week-4).
+      Others were deferred without a session target and have sat for 5+ sessions.
+      Need Opus-level review to determine: which 3-4 should be promoted now?
+    reasoning: >
+      Stub hooks that remain stubs indefinitely are governance debt. Each one is
+      an enforcement gap. Some are ready to promote; identifying them is Opus work.
+    output: "List of 3-4 hooks recommended for promotion with reasoning"
+    sonnet_implements: "Specific hook promotions (individual UPDATE items)"
+
+# ═══════════════════════════════════════════════════════════
+# SONNET TASKS P1 — Must run before any new domain work
+# ═══════════════════════════════════════════════════════════
+
+sonnet_p1:
+
+  - id: UPDATE-001
+    description: "Add domain_path + persona_target + wisdom_class + use_case_class to frontmatter-closed-enums.md"
+    who: sonnet
+    priority: P1
+    status: blocked
+    blocked_by: ["GOVDEC-001", "GOVDEC-002", "GOVDEC-003"]
+    context: >
+      Schema Phase A Step 2a. The 4 new frontmatter fields unlock the domain taxonomy.
+      Without this, no artifact knows its place in the platform ontology.
+    reasoning: >
+      Everything downstream — WisdomHub queries, domain agents, CouncilOS routing —
+      reads domain_path. If the closed enum isn't defined, every build after this
+      guesses the values and creates drift.
+    verification: "node tools/validators/validate-frontmatter.mjs: errors=0 with new fields"
+
+  - id: UPDATE-002
+    description: "Stamp all 282+ platform artifacts with domain_path: 'platform'"
+    who: sonnet
+    priority: P1
+    status: blocked
+    blocked_by: ["UPDATE-001"]
+    context: >
+      Schema Phase A Step 2d. All existing governance artifacts (validators, contracts,
+      domain cards, vault documents) live in the 'platform' meta-domain.
+      Batch operation — needs a script, not manual edits.
+    reasoning: >
+      Without this stamp, the WisdomHub query 'give me all platform governance wisdom'
+      returns nothing. The batch stamp is cheapest now (282 artifacts) vs later (500+).
+    verification: >
+      grep -r 'domain_path:' docs/ | wc -l should be close to 282.
+      validate-frontmatter.mjs errors=0.
+    implementation_note: >
+      Write a script: scan all .md files in docs/, add 'domain_path: platform' if
+      domain_path not already set. Exclude: user-facing domain artifacts, council turn files.
+
+  - id: UPDATE-003
+    description: "Add impl_status field to new artifacts created in Sessions 1-4"
+    who: sonnet
+    priority: P1
+    status: pending
+    context: >
+      Sonnet flagged in council: validate-universal-alignment.mjs requires impl_status
+      on new artifacts. Sessions 1-4 create several new files (domain-taxonomy.md,
+      libs/policies/slices/README.md files, etc.) that need this field.
+    reasoning: "Missing impl_status causes validate-universal-alignment FAIL in verify."
+    verification: "pnpm verify: exit_code=0 after each session"
+
+  - id: UPDATE-004
+    description: "Session 1: AppendOnlyBase (Step 1a) → pnpm db:push → live DB validation"
+    who: sonnet
+    priority: P1
+    status: blocked
+    blocked_by: ["GOVDEC-004"]
+    context: >
+      Consensus: AppendOnlyBase MUST happen before first pnpm db:push (hard constraint).
+      Creates AuditEvent table WITHOUT updatedAt/deletedAt from day 1. Then connects
+      to live Supabase and validates real auth + CRUD + AuditEvent written.
+    reasoning: >
+      21+ sessions with zero real users. This is the highest-value action available.
+      All subsequent domain builds are validated by real-world behavior.
+    verification: >
+      pnpm verify: exit_code=0.
+      validate-foundation-schema-drift.mjs: field_advisory=0.
+      AuditEvent record visible in Supabase dashboard.
+
+  - id: UPDATE-005
+    description: "Session 3: GDPR erasure service (libs/integrations/gdpr.ts)"
+    who: sonnet
+    priority: P1
+    status: pending
+    context: >
+      GDPR Article 17 applies from the moment EU personal data is processed — zero-user
+      threshold. Function is specced in S019 L7 (opus-lessons). Uses getEnhancedDb,
+      not raw PrismaClient (Sonnet flagged in council).
+    reasoning: >
+      One EU user requesting erasure before the function exists = compliance violation.
+      Build cost: ~50 lines TypeScript. Deferral cost: legal + reputational.
+    verification: >
+      libs/integrations/gdpr.ts exported. eraseUser() test passes: PII replaced,
+      AuditEvent written. csps-bedrock.md item [x] marked.
+
+  - id: UPDATE-006
+    description: "Session 2: Schema Phase A — domain-taxonomy.md + libs/policies/slices/ structure"
+    who: sonnet
+    priority: P1
+    status: blocked
+    blocked_by: ["UPDATE-001"]
+    context: >
+      Create canonical domain taxonomy document + directory structure for domain slices.
+      This is the physical container for all future domain schema extensions.
+    reasoning: "Second app developer needs to know where to put their domain ZModel slice."
+    verification: >
+      docs/plan/pillar-0-governance/domain-taxonomy.md exists.
+      libs/policies/slices/personal/ | business/ | social/ directories exist.
+      pnpm verify: exit_code=0.
+
+# ═══════════════════════════════════════════════════════════
+# SONNET TASKS P2 — Important, not blocking domain work
+# ═══════════════════════════════════════════════════════════
+
+sonnet_p2:
+
+  - id: UPDATE-007
+    description: "Add opus_pattern + moat_relevance to ALL remaining 26 inner-AI-defaults entries"
+    who: sonnet
+    priority: P2
+    status: pending
+    context: >
+      Currently: 13 of 39 inner-AI-defaults entries have opus_pattern (all in
+      reasoning-patterns.md). 26 entries across code-patterns.md, output-distribution.md,
+      prose-patterns.md, tooling-patterns.md still need it.
+    reasoning: >
+      opus_pattern is the HOW and WHY injection that makes Sonnet reason like Opus.
+      Without it on all entries, the mental model inheritance is 33% complete.
+      A half-injected capability degrades faster than zero injection.
+    verification: >
+      grep -r 'opus_pattern:' docs/plan/_handoff/VAULT/inner-ai-defaults/*.md | wc -l
+      should equal 39 (one per entry).
+
+  - id: UPDATE-008
+    description: "Session 4: Promote post-stop-banned-phrase.sh STUB → advisory"
+    who: sonnet
+    priority: P2
+    status: pending
+    context: >
+      This hook currently exits 0 always (STUB). It should detect satisfaction-point
+      language in responses. The protected-path discipline applies: present diff +
+      ask before writing to .claude/hooks/ (Sonnet's council correction #4).
+    reasoning: >
+      P13 from opus-lessons: satisfaction point anti-pattern. The AGENTS.md hard NO
+      (P1 fix) governs the AI's self-awareness. This hook governs the artifact.
+      Two-layer enforcement.
+    verification: "hook fires on test response containing 'DONE' without tool output"
+
+  - id: UPDATE-009
+    description: "Session 4: Build validate-comment-truth.mjs (documentation drift detector)"
+    who: sonnet
+    priority: P2
+    status: pending
+    context: >
+      6th of 7 drift types. Scans .ts/.mjs files for P-ARCH-*/P-META-* citations.
+      Confirms that AuditEvent 'Postgres triggers' comment is surfaced as advisory.
+      Level 1: presence (ADVISORY). Level 2: semantic verification (future).
+    reasoning: "L2 opus-lessons: documentation drift created governance traps (AuditEvent comment)."
+    post_completion:
+      - "Update drift-registry.yaml: documentation-drift status: planned → active"
+      - "meta.active: 5 → 6, meta.coverage_percentage: 71 → 85"
+      - "Run pnpm audit-runner:split"
+    verification: "P-ARCH-008 AuditEvent citation appears in output. pnpm verify: exit_code=0."
+
+  - id: UPDATE-010
+    description: "Add rigidity_level field to all 52 behavioral contracts (after OPUS-001)"
+    who: sonnet
+    priority: P2
+    status: blocked
+    blocked_by: ["OPUS-001"]
+    context: >
+      Once Opus classifies all contracts as R1-R5, Sonnet adds the rigidity_level
+      field to each contract in behavioral-contracts.md. R2-R4 contracts then
+      migrate to their correct CDAB layer (not AGENTS.md).
+    reasoning: >
+      AGENTS.md R1-only refactor cannot happen until every contract is classified.
+      Classification is Opus work; field addition is Sonnet work.
+    verification: "grep -c 'rigidity_level:' docs/plan/pillar-0-governance/behavioral-contracts.md = 52"
+
+  - id: UPDATE-011
+    description: "AGENTS.md R1-only refactor: move R2-R4 constraints to correct CDAB layers"
+    who: sonnet
+    priority: P2
+    status: blocked
+    blocked_by: ["UPDATE-010"]
+    context: >
+      Currently AGENTS.md has R1-R4 mixed. AGENTS.md should be R1 only (~60 lines).
+      R2 → domain card §6. R3 → context-loading templates. R4 → inner-AI-defaults.
+      After refactor: AGENTS.md drops from 200 lines to ~60.
+    reasoning: >
+      200-line limit pressure will not go away unless the content is correctly classified.
+      Every new hard NO will require removing an existing one if the R2-R4 clutter stays.
+    verification: >
+      AGENTS.md line count < 100. validate-token-budget.mjs: yellow=0.
+      Every removed constraint is traceable to its new CDAB layer home.
+
+  - id: UPDATE-012
+    description: "Stamp wisdom_class + domain_path on all VAULT documents (post VLT ratification)"
+    who: sonnet
+    priority: P2
+    status: blocked
+    blocked_by: ["GOVDEC-001", "GOVDEC-002"]
+    context: >
+      All documents in docs/plan/_handoff/VAULT/ need:
+      domain_path: "platform"
+      wisdom_class: "insight" (for opus-lessons), "reference" (for specs), etc.
+      This makes the WisdomVault queryable for platform governance insights.
+    reasoning: >
+      Every governance insight produced in S019-S021 is currently machine-unqueryable.
+      WisdomHub cannot surface 'what governance principles apply to schema work?'
+      until these fields are stamped.
+    verification: "grep -r 'wisdom_class:' docs/plan/_handoff/VAULT/ | wc -l > 10"
+
+  - id: UPDATE-013
+    description: "Automate sessions_since_opus_review increment at session close"
+    who: sonnet
+    priority: P2
+    status: pending
+    context: >
+      Currently manual: someone must update session-state.json.opus_audit.sessions_since_opus_review
+      at each session close. If forgotten (K=2 already: S020, S021 both required manual update),
+      the Opus audit countdown is wrong.
+    reasoning: >
+      validate-opus-audit-due.mjs blocks at 10 sessions. If the counter isn't
+      incremented, the block never fires. The counter MUST be reliable.
+    implementation: >
+      Add to post-stop-session-close-gate.sh: read sessions_since, increment by 1,
+      write back to session-state.json. This is a simple jq/node operation.
+    verification: "sessions_since_opus_review increments by 1 after each session close"
+
+  - id: UPDATE-014
+    description: "LAYER-1: Create validate-layer-boundary.mjs (L0→L1 import boundary)"
+    who: sonnet
+    priority: P2
+    status: pending
+    context: >
+      From S020 task list (P9). Scans libs/**/*.ts for imports from apps/.
+      Exits BLOCKING if L0 Core imports from L1 Developer Surface (circular dependency).
+      platform-layer-boundaries.yaml is the source config.
+    reasoning: >
+      L6 from opus-lessons: billing trigger in wrong layer. Without this validator,
+      future developers will repeat the pattern (Persona 8 risk).
+    verification: >
+      node tools/validators/validate-layer-boundary.mjs: exits 0 (no violations).
+      Wire into pnpm verify + audit-runner.md + pnpm audit-runner:split.
+
+  - id: UPDATE-015
+    description: "Create validate-plan-maturity.mjs (Plan Maturity Doctrine enforcement)"
+    who: sonnet
+    priority: P2
+    status: blocked
+    blocked_by: ["GOVDEC-005"]
+    context: >
+      The Plan Maturity Doctrine (platform-excellence-consolidated-S021.md §10) needs
+      mechanical enforcement. Validator reads plan frontmatter, checks
+      plan_maturity_reviewed field, blocks implementation if null or same-session.
+    reasoning: >
+      The doctrine exists as a document. A doctrine without a validator is aspiration.
+      This is the enforcement mechanism that makes Plan Maturity real.
+    verification: >
+      Plans with plan_maturity_reviewed: null → validator ADVISORY.
+      Plans with plan_maturity_reviewed = current session → validator ADVISORY.
+      Plans with plan_maturity_reviewed = prior session → validator passes.
+
+  - id: UPDATE-016
+    description: "AUDIT-1: Create docs/plan/pillar-0-governance/sonnet-audit-protocol.md"
+    who: sonnet
+    priority: P2
+    status: pending
+    context: >
+      The 6-sweep Sonnet Audit Protocol (SAP) was specified in sonnet-capability-injection-S019.md
+      Part E. The formal protocol document with checkboxes needs to be created.
+      Abbreviated (Sweeps 2+5) runs at session close; full 6-sweep on architectural sessions.
+    reasoning: "Cannot add to closing-summary-template.md without the protocol document existing."
+    verification: "File exists. Session close checklist references it."
+
+# ═══════════════════════════════════════════════════════════
+# SONNET TASKS P3 — Valuable, lower urgency
+# ═══════════════════════════════════════════════════════════
+
+sonnet_p3:
+
+  - id: UPDATE-017
+    description: "Create validate-core-seeds-grows-to.mjs (check that grown seeds are removed)"
+    who: sonnet
+    priority: P3
+    status: pending
+    context: >
+      validate-core-seeds.mjs now detects overdue seeds (advisory). The next level:
+      detecting when a seed's grows-to artifact EXISTS (seed has grown) but the
+      seed marker was never removed from code. Orphaned markers create false debt signals.
+    verification: "Validator finds 0 orphaned seeds (grows-to artifact exists but marker remains)"
+
+  - id: UPDATE-018
+    description: "Add SAP Sweeps 2+5 to closing-summary-template.md §10"
+    who: sonnet
+    priority: P3
+    status: blocked
+    blocked_by: ["UPDATE-016"]
+    context: >
+      Once sonnet-audit-protocol.md exists, add abbreviated SAP reference to the
+      session-close checklist. Makes Sweeps 2 (drift) and 5 (enforcement rate) part
+      of every session close.
+    verification: "closing-summary-template.md has SAP reference in §10"
+
+  - id: UPDATE-019
+    description: "Create Session-Close Invariants section in closing-summary-template.md"
+    who: sonnet
+    priority: P3
+    status: pending
+    context: >
+      From sonnet-capability-injection-S019.md Part J: add session-close invariants
+      (enforcement_rate >= previous session, drift_coverage >= previous session).
+      If either decreases: VLT required explaining why.
+    verification: "closing-summary-template.md has Session-Close Invariants section"
+
+  - id: UPDATE-020
+    description: "Create context orchestrator accuracy tracking (sessions_accuracy.json)"
+    who: sonnet
+    priority: P3
+    status: pending
+    context: >
+      From bottleneck-and-gradual-structures-S019.md §3 ORCH-1: after each session,
+      compare orchestrator-recommended task_class vs. CONCEPT_LOAD declared spine.
+      Store mismatch rate in tools/context-orchestrator-accuracy.json.
+    verification: "tools/context-orchestrator-accuracy.json exists and accumulates data"
+
+  - id: UPDATE-021
+    description: "Create haiku-return-format.schema.yaml + validate-haiku-return-compliance.mjs"
+    who: sonnet
+    priority: P3
+    status: pending
+    context: >
+      From sonnet-capability-injection-S019.md Part F Mechanism 2. Validates that
+      Haiku subagent returns include all required haiku_scout_return fields.
+      Scans any haiku-return-*.json files in tools/ or _handoff/.
+    verification: "Validator runs without error. Finds haiku_scout_return schema in templates."
+
+  - id: UPDATE-022
+    description: "Create validate-domain-registry.mjs (when domain registry YAML is built)"
+    who: sonnet
+    priority: P3
+    status: pending
+    context: >
+      Future: when libs/domain-registry.yaml exists (Phase Council-1 or Platform Phase 1),
+      a validator should check its structural integrity. This is the meta-validator
+      for the domain registry, parallel to validate-drift-registry.mjs.
+    verification: "Validator reads domain-registry.yaml, reports coverage by domain status"
+
+  - id: UPDATE-023
+    description: "WisdomEntry model + AppendOnlyBase wired (Phase C from consolidated plan)"
+    who: sonnet
+    priority: P3
+    status: pending
+    context: >
+      Once AppendOnlyBase exists (UPDATE-004 → Session 1), WisdomEntry can extend it.
+      WisdomEntry is the core WisdomVault schema object. This is Phase C.
+    reasoning: "Cannot build WisdomHub MCP queries without WisdomEntry in the schema."
+    verification: "WisdomEntry model in schema.zmodel. validate-foundation-schema-drift.mjs: CLEAN."
+
+  - id: UPDATE-024
+    description: "Create tools/council/spine-configs/ YAML files (Phase Council-1)"
+    who: sonnet
+    priority: P3
+    status: blocked
+    blocked_by: ["OPUS-002"]
+    context: >
+      5 YAML files defining what each Spine Advisor loads: gvrn-council-config.yaml,
+      arch-council-config.yaml, ai-council-config.yaml, vald-council-config.yaml,
+      oper-council-config.yaml. Opus writes the specs; Sonnet creates the files.
+    verification: "5 files exist in tools/council/spine-configs/"
+
+  - id: UPDATE-025
+    description: "Create validate-plan-maturity-reviewed.mjs and add plan_maturity_reviewed to plan schema"
+    who: sonnet
+    priority: P3
+    status: blocked
+    blocked_by: ["GOVDEC-005"]
+    context: >
+      Once P-META-XXX is ratified (Plan Maturity Doctrine), add plan_maturity_reviewed
+      to frontmatter-closed-enums.md as a field type. Then create the validator.
+    verification: "Plans without plan_maturity_reviewed show ADVISORY in pnpm verify"
+
+  - id: UPDATE-026
+    description: "Document drift: update P-ARCH-008 comment in AuditEvent to match implementation"
+    who: sonnet
+    priority: P3
+    status: pending
+    context: >
+      L2 opus-lessons: AuditEvent comment says 'Postgres triggers' but implementation
+      uses app code. After validate-comment-truth.mjs is built (UPDATE-009), this
+      citation will be surfaced. Update the comment to be truthful.
+    verification: "AuditEvent comment matches implementation. validate-comment-truth.mjs: no false claim."
+
+  - id: UPDATE-027
+    description: "Create validate-spine-health.mjs (spine self-validation)"
+    who: sonnet
+    priority: P3
+    status: pending
+    context: >
+      L10 opus-lessons: each spine's §10 'Planned' items should have corresponding VLTs.
+      A spine with untracked planned items is a governance gap.
+    verification: "Each spine card's Planned items have VLT references"
+
+  - id: UPDATE-028
+    description: "Retire/remove all 12 stub hooks or promote each to advisory/blocking"
+    who: sonnet
+    priority: P3
+    status: blocked
+    blocked_by: ["OPUS-003"]
+    context: >
+      12 hooks exit 0 always. Opus will identify which 3-4 to promote (OPUS-003).
+      Sonnet promotes those; the rest get documented with target sessions.
+    verification: "STUB hook count drops from 12. Promoted hooks have advisory behavior."

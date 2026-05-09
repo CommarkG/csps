@@ -189,6 +189,16 @@ const CYCLES = [
     },
   },
   {
+    // NEW S021 Governor directive — update-backlog: surfaces pending platform improvements
+    // Stage: measurement (exits 0 always) — makes the backlog visible each pnpm verify
+    name: 'update_backlog',
+    command: 'node tools/validators/validate-update-backlog.mjs',
+    parse_output: (out) => {
+      const m = out.match(/total=(\d+)\s+pending=(\d+)\s+blocked=(\d+)\s+done=(\d+)/);
+      return m ? { total: Number(m[1]), pending: Number(m[2]), blocked: Number(m[3]), done: Number(m[4]) } : {};
+    },
+  },
+  {
     // NEW S021 CEC — hook-lifecycle-state: surfaces STUB vs active hooks (N3 structural fix)
     // Enables accurate Track A estimation — prevents counting STUB hooks as live enforcement
     name: 'hook_lifecycle_state',

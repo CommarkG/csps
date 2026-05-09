@@ -76,8 +76,8 @@ function getNewFiles() {
       .filter(f => f.endsWith('.md'))
       // Skip generated slice files (no frontmatter by design)
       .filter(f => !f.match(/\/behavioral-contracts\/B_/) && !f.match(/\/audit-runner\/pipeline-/) && !f.match(/\/ai-behavior-spine\//) && !f.match(/\/principles\/P-/) && f !== 'SESSION-BRIEF.md')
-      // Skip council working files (relay buffers + protocol docs — not governed artifacts)
-      .filter(f => !f.match(/tools\/council\/(opus-turn|sonnet-turn|PROTOCOL|opus-protocol)\.md/))
+      // Skip council working files (relay buffers, protocol docs, context briefs — not governed artifacts)
+      .filter(f => !f.match(/tools\/council\/(opus-turn|sonnet-turn|PROTOCOL|opus-protocol|opus-1-context|sonnet-1-context|haiku-1-context)\.md/))
       // Skip governor-comments (auto-generated append-only raw logs)
       .filter(f => !f.match(/governor-comments\//));
   } catch { return []; }

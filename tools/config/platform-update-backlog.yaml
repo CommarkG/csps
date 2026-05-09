@@ -9,12 +9,13 @@
 # Priority: P1 (blocks others) | P2 (important) | P3 (valuable) | P4 (future)
 
 meta:
-  version: "1.0"
+  version: "1.1"
   created_session: S021
-  last_updated: S021
+  last_updated: S022
   total_items: 28
-  done_count: 0
-  blocking_count: 4
+  done_count: 5
+  blocking_count: 1
+  note: "GOVDEC-001/002/003 ratified S021. GOVDEC-004 (credentials) resolved by Sonnet S022. UPDATE-004 (Session 1 Steps 1a+1b) complete — browser steps 1d-1f pending."
   advisory_threshold: 10  # ADVISORY when pending > this
   block_threshold: 20     # BLOCKING in verify when pending > this (future: week-4)
   enforcement_stage: measurement  # measurement | advisory | blocking
@@ -27,52 +28,35 @@ governor_decisions:
 
   - id: GOVDEC-001
     description: "Ratify VLT-S022-DOMAIN-PATH: domain_path Tier 1 closed enum"
-    proposed_values: "business | personal | social | knowledge | platform"
     who: governor
     priority: P1
-    status: pending
-    blocks: ["UPDATE-001", "UPDATE-002", "UPDATE-012"]
-    context: >
-      Every artifact on the platform needs a machine-readable ontological position.
-      Without ratified Tier 1 values, Schema Phase A cannot run, and every subsequent
-      domain build will lack taxonomy identity.
-    reasoning: "10-minute decision that unblocks 10+ sessions of downstream work."
+    status: done
+    resolved_session: S021
+    resolved_value: "business | personal | social | knowledge | platform | crosscut"
 
   - id: GOVDEC-002
     description: "Ratify VLT-S022-WISDOM-CLASS: wisdom_class closed enum"
-    proposed_values: "insight | reference | workflow | tool | benchmark | story | null"
     who: governor
     priority: P1
-    status: pending
-    blocks: ["UPDATE-012", "UPDATE-023"]
-    context: >
-      WisdomVault queries require wisdom_class to index artifacts. Additive enum —
-      wrong choice is low-risk (add new values later without rework).
-    reasoning: "Ratify now, zero rework risk if we add 'case_study' later."
+    status: done
+    resolved_session: S021
+    resolved_value: "insight | reference | workflow | tool | benchmark | story | null"
 
   - id: GOVDEC-003
     description: "Ratify VLT-S022-PERSONA-TARGET: 4 of 7 persona values"
-    proposed_values: "solo_user | business_admin | business_member | developer (ratify now) | family_admin | family_member | community_leader (defer until real users)"
     who: governor
     priority: P1
-    status: pending
-    blocks: ["UPDATE-012"]
-    context: >
-      The 4 business/individual personas are stable and derived from current reality.
-      The 3 family/community personas need real user validation — they're speculative.
-      Sonnet's council position: defer 3 until Session 1 reveals real signup patterns.
-    reasoning: "Ratify what's stable, wait for evidence on what's speculative."
+    status: done
+    resolved_session: S021
+    resolved_value: "solo_user | business_admin | business_member | developer (4/7 ratified)"
 
   - id: GOVDEC-004
-    description: "Confirm Supabase credential availability (determines Session 1 vs Session 2 start)"
+    description: "Confirm Supabase credential availability"
     who: governor
     priority: P1
-    status: pending
-    blocks: ["UPDATE-004"]
-    context: >
-      Consensus plan: Schema Phase A first if credentials not ready, Live DB first if ready.
-      This one question determines which session runs in S022.
-    reasoning: "No code — just a yes/no that routes all downstream work."
+    status: done
+    resolved_session: S022
+    resolved_value: "Credentials provided. pnpm db:push completed. DB live."
 
   - id: GOVDEC-005
     description: "Ratify Plan Maturity Doctrine as P-META-XXX (assign principle number)"

@@ -189,6 +189,16 @@ const CYCLES = [
     },
   },
   {
+    // NEW S021 B_NAMING_POLICY enforcement — naming-convention: filename + EXT- prefix + duplicate detection
+    // Implements the week-4 deferred naming-policy-compliance validator (S006 turn 24 origin)
+    name: 'naming_convention',
+    command: 'node tools/validators/validate-naming-convention.mjs --scan-new',
+    parse_output: (out) => {
+      const m = out.match(/issues=(\d+)\s+advisory=(\d+)\s+duplicates=(\d+)/);
+      return m ? { issues: Number(m[1]), advisory: Number(m[2]), duplicates: Number(m[3]) } : {};
+    },
+  },
+  {
     // NEW S021 Governor directive — research-reuse: research registry check before new research is commissioned
     // Stage: advisory (exits 0 always) — surfaces stale/approaching-stale entries, registry total
     name: 'research_reuse',

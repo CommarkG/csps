@@ -59,6 +59,19 @@ try {
   const opusArtifacts = d.s019_opus_artifacts || {};
   taskListRef = opusArtifacts.s020_task_list || 'not set';
   mentalModelsRef = opusArtifacts.mental_models || 'not set';
+
+  // Council state — surfaced when a council is in-progress
+  let councilStatus = '';
+  try {
+    const cState = JSON.parse(fs.readFileSync(join(ROOT, 'tools/council/council-state.json'), 'utf8'));
+    if (cState.status === 'in-progress') {
+      councilStatus = '⚠ COUNCIL IN-PROGRESS: ' + (cState.council_id || 'unknown') +
+        ' — whose turn: ' + (cState.whose_turn || 'unknown') +
+        ' | read tools/council/PROTOCOL.md';
+    } else if (cState.status === 'consensus-reached') {
+      councilStatus = '✓ Last council: ' + (cState.council_id || 'unknown') + ' — consensus reached';
+    }
+  } catch(e) { /* no council state yet */ }
 } catch(e) { /* session-state not found */ }
 
 
@@ -117,6 +130,9 @@ const context = [
   '╔══════════════════════════════════════════════════════════════════╗',
   '║         CSPS SESSION ACTIVATION — CONTEXT LOAD REQUIRED         ║',
   '║   P-META-020: Read this fully before processing any request.    ║',
+  '╠══════════════════════════════════════════════════════════════════╣',
+  '║  ROLE: SONNET BUILDER — Implementation + Execution              ║',
+  '║  (If you are in the Opus Advisor tab — you have wrong context)  ║',
   '╚══════════════════════════════════════════════════════════════════╝',
   '',
   'SESSION STATE:',
@@ -132,6 +148,8 @@ const context = [
   '  Behavioral enforcement rate: ' + opusEnfRate,
   '  S020 task list: ' + taskListRef,
   '  Mental models: ' + mentalModelsRef,
+  '  Council status: ' + (councilStatus || 'no active council'),
+  '  Council protocol: tools/council/PROTOCOL.md',
   '',
   'ZF ITERATION TRACKER (this session — measurement of work richness):',
   '  verify_runs: ' + zfIterations + ' | blocking_found_total: ' + zfBlockingTotal,

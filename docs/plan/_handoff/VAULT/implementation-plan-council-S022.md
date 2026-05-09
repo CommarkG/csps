@@ -3,12 +3,16 @@ id: csps.handoff.vault.implementation-plan-council.S022
 name: implementation-plan-council-S022
 description: >
   Detailed implementation plan for S022+, prepared by Opus-designated reviewer
-  for Governor-Sonnet mini council. Contains: full recommendation with reasoning,
-  split decision, session-by-session breakdown, Governor decisions required,
-  and council questions for Sonnet to address before consensus.
-version: 1.0
+  for Governor-Sonnet mini council. COUNCIL CONSENSUS REACHED S021-05-09.
+  Three Sonnet modifications accepted. Eight Sonnet corrections integrated.
+  This is now the ratified execution plan — pending Governor VLT ratification.
+version: 1.1
 lifecycle: production
 lifecycle_state: active
+council_consensus: reached
+council_session: S021
+sonnet_modifications_accepted: 3
+sonnet_corrections_integrated: 8
 owner: group:finky
 core_spine: GVRN
 schema_anchor: platform_plans

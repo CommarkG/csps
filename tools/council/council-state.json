@@ -1,0 +1,34 @@
+{
+  "_comment": "CSPS Multi-Model Council State — file-relay protocol for Opus-Sonnet council sessions.",
+  "_protocol": "tools/council/PROTOCOL.md",
+  "council_id": "S022-implementation-sequence",
+  "status": "consensus-reached",
+  "turn": 1,
+  "whose_turn": "governor-decision",
+  "opus_tab_role": "Architectural Advisor — strategic review, does not implement",
+  "sonnet_tab_role": "Implementation Builder — executes, has S020-S022 context",
+  "governor_role": "Trigger + Ratifier — sends one-line triggers, makes decisions",
+  "consensus": {
+    "reached": true,
+    "session": "S021",
+    "date": "2026-05-09",
+    "agreed_sequence": [
+      "GOVERNOR: Ratify domain_path (full 5 values) + wisdom_class (full 7 values) + persona_target (4/7: solo_user, business_admin, business_member, developer)",
+      "SESSION 1: AppendOnlyBase Step 1a → pnpm db:push → auth + CRUD validation (if credentials ready) OR Schema Phase A if credentials not ready",
+      "SESSION 2: The other of Session 1 alternatives",
+      "SESSION 3: GDPR erasure service (libs/integrations/gdpr.ts) — use getEnhancedDb not raw PrismaClient",
+      "SESSION 4: Governance (post-stop-banned-phrase.sh + validate-comment-truth.mjs) — non-blocking, can run concurrent"
+    ],
+    "sonnet_corrections_accepted": [
+      "AppendOnlyBase must be Step 1a in Session 1 before any pnpm db:push (hard constraint)",
+      "GDPR erasure must use getEnhancedDb not raw PrismaClient for RLS compliance",
+      "persona_target: defer family_admin, family_member, community_leader until real user data",
+      "Session plans need §KH Know-How Consultation section or validate-plan-know-how.mjs blocks",
+      "Session 4 must update drift-registry.yaml (planned→active for documentation-drift)",
+      "Session 4 must run pnpm audit-runner:split after audit-runner.md changes",
+      "New artifacts need impl_status: swift-implemented frontmatter",
+      "validate-session-harvest-readiness advisory after Session 1 is expected, not a failure"
+    ]
+  },
+  "next_council_trigger": "S029 (sessions_since_opus_review reaches 10) OR BPG/PEG/PIA/KCP trigger class fires"
+}

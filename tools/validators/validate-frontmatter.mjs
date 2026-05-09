@@ -91,6 +91,9 @@ const EXEMPT_PATH_GLOBS = [
   /pillar-0-governance[\/\\]behavioral-contracts[\/\\]/,
   /pillar-0-governance[\/\\]audit-runner[\/\\]/,
   /pillar-0-governance[\/\\]ai-behavior-spine[\/\\]/,
+  // Council turn files are ephemeral working documents (not governed artifacts).
+  // PROTOCOL.md is the governing document; turn files are relay buffers.
+  /tools[\/\\]council[\/\\](opus-turn|sonnet-turn|PROTOCOL)\.md$/,
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

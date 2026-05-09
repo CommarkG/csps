@@ -6,16 +6,16 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S021 |
-| **Previous session** | S020 |
+| **Current session** | S022 |
+| **Previous session** | S021 |
 | **Last updated** | today |
-| **Last commit** | 9992921 S021: Governor comments + Opus protocol + completion circle + role-aware session |
+| **Last commit** | c981aec S021→S022 session close: VLT ratifications + stub hook audit + mandate update |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
-## What S021 must do
+## What S022 must do
 
-**S022: Both governance targets hit (enforcement_rate=29%, drift_coverage=71%). Options: (A) continue governance — promote post-stop-banned-phrase.sh STUB to active enforcement, build validate-comment-truth.mjs for documentation drift (6th/7 drift types); (B) app-layer — connect task-mgmt live DB (pnpm db:push + dev server validation). Governor chooses direction.**
+**S022 direction: B — connect task-mgmt live DB (pnpm db:push + dev server validation). Session 1 spec: Step 1a AppendOnlyBase in schema.zmodel, then pnpm db:push. Paste all tool output as demonstration. VLTs ratified: domain_path, wisdom_class, persona_target (4/7). Schema Phase A next after Session 1.**
 
 
 

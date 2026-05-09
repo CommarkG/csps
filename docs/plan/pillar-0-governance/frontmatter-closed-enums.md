@@ -225,3 +225,110 @@ Per S011 user directive: every implementation artifact declares its quality stat
 ---
 
 **Frontmatter-closed-enums signature:** `S007-AI-frontmatter-closed-enums-2026-05-04T19:15:00Z`
+
+---
+
+## S022 VLT-Ratified Fields *(Governor ratified S021-05-09)*
+
+These fields are OPTIONAL — when present, must be in closed enum. When absent, no error.
+All are validated by `validate-frontmatter.mjs` (updated S022).
+
+### `domain_path:` — ontological position in 3-tier domain taxonomy *(VLT-S022-DOMAIN-PATH)*
+
+```yaml
+domain_path: "business"              # Tier 1 only
+domain_path: "personal.health"       # Tier 1.Tier 2
+domain_path: "business.finance.tax"  # Tier 1.Tier 2.Tier 3
+```
+
+**Tier 1 closed enum (ratified):**
+```
+business | personal | social | knowledge | platform | crosscut
+```
+
+| Value | Meaning |
+|---|---|
+| `business` | Professional and organizational activities |
+| `personal` | Individual life management and growth |
+| `social` | Community, relationships, connection |
+| `knowledge` | Learning, research, and accumulated wisdom |
+| `platform` | CSPS infrastructure and governance (internal) |
+| `crosscut` | Cross-domain concerns (accountability, goals, decisions, reflection) |
+
+**Tier 2/3:** Defined in `docs/plan/pillar-0-governance/domain-taxonomy.md` (to be created in Schema Phase A).
+
+---
+
+### `wisdom_class:` — how this artifact contributes to the WisdomVault *(VLT-S022-WISDOM-CLASS)*
+
+```yaml
+wisdom_class: insight | reference | workflow | tool | benchmark | story | null
+```
+
+| Value | Meaning |
+|---|---|
+| `insight` | A discovered pattern or principle |
+| `reference` | Template, standard, or benchmark |
+| `workflow` | A process or procedure |
+| `tool` | A usable instrument or helper |
+| `benchmark` | A measurement standard or comparison point |
+| `story` | Anonymized case study or experience pattern |
+| `null` | Default — not wisdom-vault-relevant |
+
+---
+
+### `persona_target:` — who this artifact primarily serves *(VLT-S022-PERSONA-TARGET)*
+
+**4 of 7 values ratified. 3 deferred pending real user data.**
+
+```yaml
+# RATIFIED (use now):
+persona_target: solo_user | business_admin | business_member | developer
+
+# DEFERRED (wait for real user signal before using):
+# persona_target: family_admin | family_member | community_leader
+```
+
+---
+
+### `developer_surface:` — how developers access this capability *(S021 completion circle)*
+
+```yaml
+developer_surface: api-route | lib-export | mcp-query | sdk | documented | none
+```
+
+---
+
+### `completion_circle:` — progress through the full closed circle *(S021)*
+
+```yaml
+completion_circle: schema | schema+logic | schema+logic+dev | schema+logic+dev+user | full
+```
+
+Full closed circle = schema + logic + developer_surface + user_value + wisdom_harvested.
+
+---
+
+### `builder_surface:` — who consumes this element *(S021 three-axis orchestration)*
+
+```yaml
+builder_surface: builder | user | both | platform-only
+```
+
+---
+
+### `schema_code:` — machine-routing code for orchestrator *(S021 naming convention)*
+
+```yaml
+schema_code: "ARCH-SCHM-S022"   # spine-type-session
+schema_code: "GVRN-PLAN-S021"
+schema_code: "EXT-LOVB-S021"    # external input from Lovable
+```
+
+Format: `[SPINE]-[TYPE]-S[NNN]`
+Spine codes: ARCH | GVRN | AI | VALD | OPER | PLAT | EXT
+Type codes: SCHM | PLAN | VAL | HOOK | DOC | CONF | SIM
+
+---
+
+*S022 amendment | Governor ratified VLTs: VLT-S022-DOMAIN-PATH, VLT-S022-WISDOM-CLASS, VLT-S022-PERSONA-TARGET*

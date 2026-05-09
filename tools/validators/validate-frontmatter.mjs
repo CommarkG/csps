@@ -33,6 +33,25 @@ const CLOSED_DIMENSIONS = {
   maturity: ['draft', 'review', 'stable', 'frozen', 'deprecated'],
 };
 
+// S022 VLT-ratified standalone field enums (domain_path, wisdom_class, persona_target, etc.)
+// Governor ratified S021: domain_path Tier 1 + wisdom_class + persona_target (4/7)
+// These are OPTIONAL fields — when present, must be in closed enum; when absent, no error
+const OPTIONAL_FIELD_ENUMS = {
+  // domain_path: Tier 1 values (hierarchical — check Tier 1 only)
+  domain_path_tier1: ['business', 'personal', 'social', 'knowledge', 'platform', 'crosscut'],
+  // wisdom_class: how this artifact contributes to the WisdomVault
+  wisdom_class: ['insight', 'reference', 'workflow', 'tool', 'benchmark', 'story', 'null'],
+  // developer_surface: how developers access this capability
+  developer_surface: ['api-route', 'lib-export', 'mcp-query', 'sdk', 'documented', 'none'],
+  // completion_circle: how far along the full closed circle
+  completion_circle: ['schema', 'schema+logic', 'schema+logic+dev', 'schema+logic+dev+user', 'full'],
+  // builder_surface: who consumes this element
+  builder_surface: ['builder', 'user', 'both', 'platform-only'],
+  // persona_target: ratified 4/7 (family_admin|family_member|community_leader deferred)
+  persona_target_ratified: ['solo_user', 'business_admin', 'business_member', 'developer'],
+  persona_target_deferred: ['family_admin', 'family_member', 'community_leader'],
+};
+
 const LIFECYCLE_VALUES = ['experimental', 'beta', 'production', 'deprecated'];
 const LIFECYCLE_STATE_VALUES = ['active', 'pending-review', 'pending-protocol', 'promoted', 'resolved', 'deprecated', 'validated', 'closed'];
 // S018 CDP — unified lifecycle state machine
@@ -278,6 +297,27 @@ function validateOne(file, fm, errors, warnings, idIndex) {
   // Applies to: governance artifacts with an enforcement progression (validators, hooks, contracts, topic plans)
   if (fm.enforcement_stage && !ENFORCEMENT_STAGE_VALUES.includes(fm.enforcement_stage)) {
     errors.push(ctx(`enforcement_stage "${fm.enforcement_stage}" not in {${ENFORCEMENT_STAGE_VALUES.join('|')}} — valid values: stub|planned|week-4|active`));
+  }
+
+  // S022 VLT-ratified optional field validation (when present, must be in closed enum)
+  if (fm.wisdom_class && !OPTIONAL_FIELD_ENUMS.wisdom_class.includes(fm.wisdom_class)) {
+    errors.push(ctx(`wisdom_class "${fm.wisdom_class}" not in {${OPTIONAL_FIELD_ENUMS.wisdom_class.join('|')}} — VLT-S022-WISDOM-CLASS ratified`));
+  }
+  if (fm.developer_surface && !OPTIONAL_FIELD_ENUMS.developer_surface.includes(fm.developer_surface)) {
+    errors.push(ctx(`developer_surface "${fm.developer_surface}" not in {${OPTIONAL_FIELD_ENUMS.developer_surface.join('|')}}`));
+  }
+  if (fm.completion_circle && !OPTIONAL_FIELD_ENUMS.completion_circle.includes(fm.completion_circle)) {
+    errors.push(ctx(`completion_circle "${fm.completion_circle}" not in {${OPTIONAL_FIELD_ENUMS.completion_circle.join('|')}}`));
+  }
+  if (fm.builder_surface && !OPTIONAL_FIELD_ENUMS.builder_surface.includes(fm.builder_surface)) {
+    errors.push(ctx(`builder_surface "${fm.builder_surface}" not in {${OPTIONAL_FIELD_ENUMS.builder_surface.join('|')}}`));
+  }
+  // domain_path: validate Tier 1 prefix (e.g. "business.finance.payroll" → check "business" is valid)
+  if (fm.domain_path) {
+    const tier1 = fm.domain_path.split('.')[0];
+    if (!OPTIONAL_FIELD_ENUMS.domain_path_tier1.includes(tier1)) {
+      errors.push(ctx(`domain_path Tier 1 "${tier1}" not in {${OPTIONAL_FIELD_ENUMS.domain_path_tier1.join('|')}} — VLT-S022-DOMAIN-PATH ratified`));
+    }
   }
 
   // next_review_at required when lifecycle_state != active

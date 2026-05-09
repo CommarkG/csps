@@ -189,6 +189,16 @@ const CYCLES = [
     },
   },
   {
+    // NEW S021 Governor directive — gradual-bundling: comprehensive check of all 7 bundling elements
+    // Checks: depth discipline, humble batching, core spiral, GEP enforce_stage, PE alignment
+    name: 'gradual_bundling',
+    command: 'node tools/validators/validate-gradual-bundling.mjs',
+    parse_output: (out) => {
+      const m = out.match(/active_plans=(\d+)\s+near_complete=(\d+)\s+no_depth=(\d+)\s+no_stage=(\d+)\s+backlog_pending=(\d+)/);
+      return m ? { active_plans: Number(m[1]), near_complete: Number(m[2]), no_depth: Number(m[3]), no_stage: Number(m[4]), backlog_pending: Number(m[5]) } : {};
+    },
+  },
+  {
     // NEW S021 B_NAMING_POLICY enforcement — naming-convention: filename + EXT- prefix + duplicate detection
     // Implements the week-4 deferred naming-policy-compliance validator (S006 turn 24 origin)
     name: 'naming_convention',

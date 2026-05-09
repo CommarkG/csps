@@ -66,6 +66,16 @@ abstract model Base {
   @@deny('delete', true)
 }
 
+// Append-only entities (AuditEvent): no update, no delete, no soft-delete.
+// Intentionally omits updatedAt + deletedAt — immutability by schema.
+abstract model AppendOnlyBase {
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now())
+
+  @@schema("public")
+  @@deny("update,delete", true)
+}
+
 // ─── Common Enums ─────────────────────────────────────────────────────────────
 
 enum ActorKind {
@@ -182,7 +192,7 @@ model UserTenant extends Base {
 
 // From: slices/public/audit-event.zmodel
 // Append-only: write via Postgres triggers only (P-ARCH-008)
-model AuditEvent extends Base {
+model AuditEvent extends AppendOnlyBase {
   tenantId     String
   actorId      String?
   action       String
@@ -192,10 +202,8 @@ model AuditEvent extends Base {
 
   tenant Tenant @relation(fields: [tenantId], references: [id])
 
-  @@schema("public")
   @@allow("read", auth().tenantId == tenantId)
   @@allow("read", auth().staffRole != null)
-  @@deny("create,update,delete", true)
 
   @@index([tenantId, createdAt])
   @@index([tenantId, resourceType, resourceId])

@@ -64,6 +64,18 @@ try {
   // Session role — determines which protocol applies
   sessionRole = d.session_role || 'sonnet-builder';
 
+  // Zoom-out signal — fires when PE patterns suggest strategic review needed
+  let zoomOutSignal = '';
+  try {
+    const pendingMatch = JSON.stringify(d).match(/"blocking_on":\s*"([^"]+)"/);
+    const sessionNum = parseInt((d.current_session || 'S000').replace('S', ''), 10);
+    const sessionsSince = (d.opus_audit || {}).sessions_since_opus_review || 0;
+    // Trigger zoom-out when: halfway to Opus audit, or high backlog, or 5+ sessions without reset
+    if (sessionsSince >= 5) {
+      zoomOutSignal = '⟳ ZOOM-OUT SIGNAL: ' + sessionsSince + '/10 sessions since Opus review — strategic perspective recommended';
+    }
+  } catch {}
+
   // Council state — surfaced when a council is in-progress
   let councilStatus = '';
   try {
@@ -158,6 +170,7 @@ const context = [
   '  Stale plan alignment: ' + stalePlansSummary,
   '  Opus audit: ' + opusStatus,
   '  Behavioral enforcement rate: ' + opusEnfRate,
+  zoomOutSignal ? ('  ' + zoomOutSignal) : null,
   '  S020 task list: ' + taskListRef,
   '  Mental models: ' + mentalModelsRef,
   '  Council status: ' + (councilStatus || 'no active council'),
@@ -242,7 +255,7 @@ const context = [
   '  validate-plan-age-alignment.mjs    — STALE PLAN GATE (WARN: plans >1 session old need alignment before execution)',
   '',
   '═══════════════════════════════════════════════════════════════════',
-].join('\\n');
+].filter(l => l !== null).join('\\n');
 
 process.stdout.write(JSON.stringify({
   hookSpecificOutput: {

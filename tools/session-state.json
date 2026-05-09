@@ -28,10 +28,37 @@
     "enforcement_rate_baseline": 6,
     "enforcement_rate_target_S025": 25
   },
+  "current_session": "S022",
+  "previous_session": "S021",
+  "session_role": "sonnet-builder",
+  "session_updated_at": "2026-05-09T11:20:00Z",
+  "ratified_vtls": {
+    "VLT-S022-DOMAIN-PATH": {
+      "status": "RESOLVED",
+      "decision": "domain_path Tier 1 closed enum: business | personal | social | knowledge | platform | crosscut",
+      "ratified_by": "Governor",
+      "ratified_at": "2026-05-09",
+      "session": "S021"
+    },
+    "VLT-S022-WISDOM-CLASS": {
+      "status": "RESOLVED",
+      "decision": "wisdom_class closed enum: insight | reference | workflow | tool | benchmark | story | null",
+      "ratified_by": "Governor",
+      "ratified_at": "2026-05-09",
+      "session": "S021"
+    },
+    "VLT-S022-PERSONA-TARGET": {
+      "status": "RESOLVED",
+      "decision": "persona_target closed enum (4 of 7 ratified now): solo_user | business_admin | business_member | developer. DEFERRED (3 values pending real user data): family_admin | family_member | community_leader.",
+      "ratified_by": "Governor",
+      "ratified_at": "2026-05-09",
+      "session": "S021"
+    }
+  },
   "session_mandate": {
-    "primary": "S022: Both governance targets hit (enforcement_rate=29%, drift_coverage=71%). Options: (A) continue governance — promote post-stop-banned-phrase.sh STUB to active enforcement, build validate-comment-truth.mjs for documentation drift (6th/7 drift types); (B) app-layer — connect task-mgmt live DB (pnpm db:push + dev server validation). Governor chooses direction.",
+    "primary": "S022 direction: B — connect task-mgmt live DB (pnpm db:push + dev server validation). Session 1 spec: Step 1a AppendOnlyBase in schema.zmodel, then pnpm db:push. Paste all tool output as demonstration. VLTs ratified: domain_path, wisdom_class, persona_target (4/7). Schema Phase A next after Session 1.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE"
+    "blocking_on": "NONE — VLTs resolved, credentials needed from Governor for pnpm db:push"
   },
   "blocking_decisions": [
     {

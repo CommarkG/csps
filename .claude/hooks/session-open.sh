@@ -37,6 +37,7 @@ try {
 // Read session state
 let session = '?', mandate = 'unknown', blocking = 'NONE', verifyState = 'unknown';
 let opusStatus = 'not tracked', opusEnfRate = '', taskListRef = '', mentalModelsRef = '';
+let sessionRole = 'sonnet-builder';
 try {
   const d = JSON.parse(fs.readFileSync(join(ROOT, 'tools/session-state.json'), 'utf8'));
   session = d.current_session || '?';
@@ -59,6 +60,9 @@ try {
   const opusArtifacts = d.s019_opus_artifacts || {};
   taskListRef = opusArtifacts.s020_task_list || 'not set';
   mentalModelsRef = opusArtifacts.mental_models || 'not set';
+
+  // Session role — determines which protocol applies
+  sessionRole = d.session_role || 'sonnet-builder';
 
   // Council state — surfaced when a council is in-progress
   let councilStatus = '';
@@ -126,13 +130,21 @@ try {
     : '0 stale unverified';
 } catch(e) { stalePlansSummary = 'validator error'; }
 
+const isOpus = sessionRole === 'opus-advisor';
+const roleHeader = isOpus
+  ? ['╠══════════════════════════════════════════════════════════════════╣',
+     '║  ROLE: OPUS ADVISOR — Strategic Review + Architecture            ║',
+     '║  Protocol: tools/council/opus-protocol.md (READ FIRST)          ║',
+     '║  (No implementation. No git push. Council + vault only.)         ║']
+  : ['╠══════════════════════════════════════════════════════════════════╣',
+     '║  ROLE: SONNET BUILDER — Implementation + Execution              ║',
+     '║  (If you are in the Opus Advisor tab — you have wrong context)  ║'];
+
 const context = [
   '╔══════════════════════════════════════════════════════════════════╗',
   '║         CSPS SESSION ACTIVATION — CONTEXT LOAD REQUIRED         ║',
   '║   P-META-020: Read this fully before processing any request.    ║',
-  '╠══════════════════════════════════════════════════════════════════╣',
-  '║  ROLE: SONNET BUILDER — Implementation + Execution              ║',
-  '║  (If you are in the Opus Advisor tab — you have wrong context)  ║',
+  ...roleHeader,
   '╚══════════════════════════════════════════════════════════════════╝',
   '',
   'SESSION STATE:',

@@ -50,6 +50,8 @@ readonly -a DECLARED_HOOKS=(
   "post-stop-learning-loop.sh"
   # S012 production hook — B_OPTIMAL_NEXT_STEP turn discipline (user directive S012)
   "user-prompt-submit-next-step-reminder.sh"
+  # S021 Governor directive — raw Governor comment auto-save (append-only, unchanged)
+  "user-prompt-submit-raw-comments.sh"
   # S014 production hook — B_NO_WILD_IMPLEMENTATION plan-coverage gate (user directive S014)
   "pre-tool-use-plan-coverage-gate.sh"
   # S014 ZF-wall-to-wall — mandatory context load at session activation (P-META-020)

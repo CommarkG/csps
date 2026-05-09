@@ -5,7 +5,7 @@
 
 | Slug | Cadence | Severity | What it checks |
 |---|---|---|---|
-| `frontmatter-completeness` | PR | error | Every artifact passes the Zod frontmatter schema. S021 amendment: tools/council/ turn files (opus-turn.md, sonnet-turn.md, PROTOCOL.md) are exempt as ephemeral relay buffers — not governed artifacts. |
+| `frontmatter-completeness` | PR | error | Every artifact passes the Zod frontmatter schema. S021 amendments: (1) tools/council/ turn files (opus-turn.md, sonnet-turn.md, PROTOCOL.md, opus-protocol.md) are exempt as ephemeral relay buffers — not governed artifacts. (2) governor-comments/ daily files are exempt as append-only raw logs. S021 amendment to validate-universal-alignment.mjs: council + governor-comments files exempt from scan-new check. |
 | `file-size-ratchet` | PR | error | No diff makes file size worse on changed files |
 | `cognitive-complexity` | PR | error | Cognitive complexity ≤15 on changed functions (`sonarjs/cognitive-complexity`) |
 | `hotspot-analysis` | weekly | warn | Top decile of `churn × complexity` per file; posted to dashboard |

@@ -189,6 +189,16 @@ const CYCLES = [
     },
   },
   {
+    // NEW S021 Governor directive — completion-circle: surfaces elements missing developer/user coverage
+    // Stage: measurement (exits 0 always) — defines COMPLETE as full closed circle
+    name: 'completion_circle',
+    command: 'node tools/validators/validate-completion-circle.mjs',
+    parse_output: (out) => {
+      const m = out.match(/assessed=(\d+)\s+no_dev_surface=(\d+)\s+no_user_value=(\d+)\s+incomplete=(\d+)/);
+      return m ? { assessed: Number(m[1]), no_dev_surface: Number(m[2]), no_user_value: Number(m[3]), incomplete: Number(m[4]) } : {};
+    },
+  },
+  {
     // NEW S021 Governor directive — update-backlog: surfaces pending platform improvements
     // Stage: measurement (exits 0 always) — makes the backlog visible each pnpm verify
     name: 'update_backlog',

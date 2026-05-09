@@ -4,6 +4,8 @@
   "current_session": "S021",
   "previous_session": "S020",
   "session_updated_at": "2026-05-09T00:00:00Z",
+  "session_role": "opus-advisor",
+  "_session_role_note": "opus-advisor = Opus Advisor tab (strategic, no implementation). sonnet-builder = Sonnet Builder tab (implementation). Set by Governor when opening the tab.",
   "opus_audit": {
     "last_opus_review_session": "S019",
     "last_opus_review_date": "2026-05-08",

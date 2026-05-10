@@ -5,7 +5,9 @@ description: L1 research output for S014 task management app. Competitor analysi
 version: 1.0
 owner: group:finky
 lifecycle: production
-lifecycle_state: active
+lifecycle_state: deprecated
+priority_score: 30
+priority_band: 4
 template_used: pillar-leaf
 template_status: stable
 core_spine: ARCH

@@ -120,6 +120,8 @@ links:
 ## §2 — SESSION PLAN
 
 ### Session 3 — Infrastructure Completion (CRITICAL gaps)
+**PE_SCORE: 8.05 | Band: 1-BLOCKING | Situation: STRATEGIC_COMPLETION**
+**Computation:** B=8(HIGH), D=10(all downstream blocked), I=1, Bn=10(primary), PAS=10
 **Scope:** Close all CRITICAL gaps. Required before any second app is built.
 **Estimated duration:** 1 Sonnet session (~2 hours)
 
@@ -175,6 +177,8 @@ STEP 3f — Verify
 ---
 
 ### Session 4 — Permission Enforcement + Subscription Logic
+**PE_SCORE: 7.35 | Band: 1-BLOCKING | Situation: STRATEGIC_COMPLETION**
+**Computation:** B=8(HIGH), D=8(Session 5+6 depend on role gates), I=1, Bn=9(strong), PAS=10
 **Scope:** Role-based operations + feature tier gating + trial logic.
 **Prerequisite:** Session 3 complete (ZenStack working + subscription check in place)
 
@@ -226,6 +230,8 @@ STEP 4e — Verify
 ---
 
 ### Session 5 — Audit Completeness
+**PE_SCORE: 5.60 | Band: 2-HIGH | Situation: STRATEGIC_COMPLETION**
+**Computation:** B=5(MEDIUM, no security gap), D=6(Session 6 audit API), I=1, Bn=8(strong), PAS=9
 **Scope:** Every mutation across all entities writes a consistent AuditEvent.
 **Prerequisite:** Session 3 complete (ZenStack working, writeAuditEvent pattern established)
 
@@ -263,6 +269,8 @@ STEP 5f — Verify
 ---
 
 ### Session 6 — Postgres RLS + Bedrock Closure
+**PE_SCORE: 7.75 | Band: 1-BLOCKING | Situation: STRATEGIC_COMPLETION**
+**Computation:** B=8(HIGH — closes bedrock), D=10(App#2 blocked until 22/22), I=1, Bn=7(moderate), PAS=10
 **Scope:** DB-level defense-in-depth + close bedrock 22/22.
 **Prerequisite:** Sessions 3-5 complete.
 

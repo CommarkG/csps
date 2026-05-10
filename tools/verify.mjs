@@ -447,6 +447,15 @@ const CYCLES = [
     },
   },
   {
+    // S022 — PE connectivity: active topic-plans must have priority_score + priority_band
+    name: 'pe_connectivity',
+    command: 'node tools/validators/validate-pe-connectivity.mjs',
+    parse_output: (out) => {
+      const m = out.match(/blocking=(\d+)\s+advisory=(\d+)\s+total_gaps=(\d+)/);
+      return m ? { blocking: Number(m[1]), advisory: Number(m[2]), total_gaps: Number(m[3]) } : {};
+    },
+  },
+  {
     // S022 — AI-defaults alignment: plans with ai_defaults_influence=dominant without ratification block
     name: 'plan_ai_defaults_alignment',
     command: 'node tools/validators/validate-plan-ai-defaults.mjs',

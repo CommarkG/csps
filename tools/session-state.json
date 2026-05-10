@@ -164,9 +164,15 @@
       "carry_forward": "S018+ when trigger condition met"
     }
   ],
+  "s022_session3_evidence": {
+    "S3-E1": "FAIL — ZenStack enforce path broken in pnpm monorepo. Error: Cannot find module libs/policies/generated/generated/client. RLS promoted to Session 4 STEP 4-RLS per Opus Turn 4 conditional.",
+    "S3-E7": "PASS — AuditEvent trigger fires. ERROR: P0001: AuditEvent is append-only. UPDATE and DELETE are forbidden at DB level. (2026-05-10)",
+    "S3-E2_to_E6_E8": "Code implemented. Live testing deferred — webhook round-trips require public URL (Clerk cannot call localhost). Evidence will be collected when Vercel deployment is live (Session 6).",
+    "session3_status": "CODE COMPLETE — all implementation done. 2 evidence items obtained (S3-E1 FAIL documented, S3-E7 PASS confirmed). Session 4 mandate updated: RLS first."
+  },
   "platform_state": {
-    "pnpm_verify": "exit_code 0 (51 validators, ZF ACHIEVED — S021 CEC close)",
-    "last_verified_commit": "pending-S021-CEC-commit",
+    "pnpm_verify": "exit_code 0 (58 validators, ZF ACHIEVED — S022 Session 3 complete)",
+    "last_verified_commit": "ec4e9aa",
     "complexity_score": 18.2,
     "complexity_zone": "GREEN",
     "skills": 26,
@@ -179,9 +185,14 @@
     "zenstack_installed": true,
     "zenstack_version": "2.22.1",
     "zenstack_schema": "libs/policies/schema.zmodel (flat, 7 models)",
-    "zenstack_enforcement": "ACTIVE — enhance(prismaClient) wired in apps/task-mgmt (4 business routes)",
-    "apps_task_mgmt_status": "SCAFFOLD_COMPLETE + ZENSTACK_ACTIVE — ZenStack @@allow enforced. TypeScript 0 errors. pnpm db:push pending (needs .env.local credentials).",
-    "apps_task_mgmt_commit": "a633270",
+    "zenstack_enforcement": "BYPASSED — pnpm monorepo path conflict (VLT-S022-ZENSTACK-GENERATE-PATH). Tenant isolation at application layer only (explicit tenantId in all queries).",
+    "audit_event_immutability": "DB TRIGGER ACTIVE — enforce_audit_event_immutability trigger prevents UPDATE/DELETE at Postgres level (S3-E7 confirmed 2026-05-10)",
+    "subscription_enforcement": "IMPLEMENTED — requireWriteSubscription() in apps/task-mgmt/src/lib/subscription.ts. Reads from libs/config/subscription.config.ts.",
+    "gdpr_erasure": "IMPLEMENTED — eraseUser() in libs/integrations/gdpr.ts. Exported from libs/integrations/index.ts.",
+    "clerk_webhooks": "IMPLEMENTED — 4 new handlers in libs/integrations/clerk/webhook-handler.ts: user.deleted, org.deleted, membership.updated, membership.deleted.",
+    "config_files": "CREATED — libs/config/subscription.config.ts (Q-02/03/08/09/13) + libs/config/roles.config.ts (Q-04/05/06/07/18). Flexibility doctrine applied.",
+    "apps_task_mgmt_status": "LIVE — tasks page loads, CRUD works, AuditEvents in Supabase. Session 3 code complete.",
+    "apps_task_mgmt_commit": "ec4e9aa",
     "all_blocking_resolved": true,
     "hooks_active": 19,
     "validators_active": 45,

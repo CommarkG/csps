@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-10T14:06:05.332Z
-- finished_at: 2026-05-10T14:06:21.169Z
+- ran_at: 2026-05-10T15:07:10.527Z
+- finished_at: 2026-05-10T15:07:28.264Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-10T14:06:05.332Z",
-    "finished_at": "2026-05-10T14:06:21.169Z",
+    "ran_at": "2026-05-10T15:07:10.527Z",
+    "finished_at": "2026-05-10T15:07:28.264Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -156,7 +156,7 @@
         "near_complete": 0,
         "no_depth": 0,
         "no_stage": 0,
-        "backlog_pending": 20
+        "backlog_pending": 19
       },
       {
         "name": "naming_convention",
@@ -198,9 +198,9 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "total": 36,
-        "pending": 20,
+        "pending": 19,
         "blocked": 12,
-        "done": 4
+        "done": 5
       },
       {
         "name": "hook_lifecycle_state",
@@ -268,7 +268,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_scanned": 5,
+        "files_scanned": 9,
         "violations": 0
       },
       {
@@ -344,9 +344,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 7,
+        "checked": 8,
         "exempt": 3,
-        "unplanned": 0
+        "unplanned": 1
       },
       {
         "name": "vlt_blocking",
@@ -407,7 +407,7 @@
         "command": "node tools/validators/validate-pe-connectivity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 11,
         "total_gaps": 11
@@ -420,9 +420,9 @@
         "duration_seconds": 0.1,
         "scanned": 16,
         "flagged": 1,
-        "ratified": 0,
+        "ratified": 1,
         "blocking": 0,
-        "advisory": 1
+        "advisory": 0
       },
       {
         "name": "intake_source_class_coverage",
@@ -447,7 +447,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -564,7 +564,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.3
+        "duration_seconds": 8.2
       },
       {
         "name": "audit_runner_full_pass",

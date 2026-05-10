@@ -56,11 +56,23 @@
     }
   },
   "session_mandate": {
-    "primary": "S022 direction: B — connect task-mgmt live DB (pnpm db:push + dev server validation). Session 1 spec: Step 1a AppendOnlyBase in schema.zmodel, then pnpm db:push. Paste all tool output as demonstration. VLTs ratified: domain_path, wisdom_class, persona_target (4/7). Schema Phase A next after Session 1.",
+    "primary": "STRATEGIC_COMPLETION active — Sessions 3-6 enterprise core closure. All 20 decisions ratified (Q-01–Q-20). Flexibility doctrine: all values in libs/config/, nothing hardcoded. Next: Part G done → Part B (create libs/config/subscription.config.ts + libs/config/roles.config.ts) → Part C (Session 3 implementation). See tools/council/opus-turn.md Turn 4.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — VLTs resolved, credentials needed from Governor for pnpm db:push"
+    "blocking_on": "NONE — all decisions ratified, ready for Session 3 execution",
+    "situation": "STRATEGIC_COMPLETION",
+    "opus_turn": "Turn 4 complete — see tools/council/opus-turn.md",
+    "sessions_remaining": ["S3-critical-fixes", "S4-permissions", "S5-audit", "S6-rls-bedrock"],
+    "flexibility_doctrine": "Every ratified value in config — libs/config/subscription.config.ts + libs/config/roles.config.ts"
   },
   "blocking_decisions": [
+    {
+      "id": "VLT-S022-ZENSTACK-GENERATE-PATH",
+      "status": "OPEN",
+      "decision": "PENDING — ZenStack generate path mismatch in pnpm monorepo. Option C (generate from apps/task-mgmt/) fails: Prisma version mismatch (schema.json references @prisma+client@6.7.0 but wasm-engine-edge.js missing for that version). Option A (copy script postinstall) used as workaround. Root cause: pnpm content-addressed store + ZenStack CLI uses wrong peer dependency resolution when called from sub-package directory. Error: ENOENT: no such file or directory, wasm-engine-edge.js for @prisma+client@6.7.0. Permanent fix: align Prisma version in root package.json with what pnpm resolves OR add ZenStack postinstall hook at root level.",
+      "registered_at": "2026-05-10",
+      "registered_by": "S022 Sonnet builder",
+      "workaround": "Option A: postinstall copy script + manual copy during session"
+    },
     {
       "id": "VLT-S015-001",
       "status": "RESOLVED",

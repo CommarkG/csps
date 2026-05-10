@@ -12,3 +12,7 @@ export type { CspsSessionClaims } from './clerk/session-context'
 
 export { createStripeCustomer, buildTenantBillingHook, NullBillingHook } from './stripe/customer-service'
 export type { StripeClient } from './stripe/customer-service'
+
+// S022 Session 3 additions
+export { eraseUser } from './gdpr'
+export type { ErasureReceipt, ErasureDb } from './gdpr'

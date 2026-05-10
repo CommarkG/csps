@@ -1,6 +1,10 @@
 // Stripe webhook — subscription lifecycle → Tenant.subscriptionStatus
 // Both directions (outbound: billing trigger in Clerk webhook; inbound: here)
-// Handles: customer.subscription.created → active, customer.subscription.deleted → cancelled
+// Handles: customer.subscription.created/updated → sync status
+//          customer.subscription.deleted → cancelled (→ 402 on next write via subscription.ts)
+// invoice.payment_failed: NO HANDLER — Q-02 ratified: Stripe dunning IS the grace period.
+//   Stripe retries automatically; subscription.deleted fires only on final failure.
+//   S022 STEP 3d: explicit no-op by design, not an oversight.
 
 import { headers } from 'next/headers'
 import { db } from '@/lib/db'

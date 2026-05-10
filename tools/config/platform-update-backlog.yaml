@@ -79,8 +79,11 @@ opus_tasks:
     description: "Classify all 52 behavioral contracts as R1-R5 (Rigidity Spectrum)"
     who: opus
     priority: P2
-    status: pending
-    depends_on: ["GOVDEC-005"]
+    status: done
+    depends_on: []
+    completed_session: S022
+    output: "tools/council/opus-turn.md Turn 2 — classification table (14 R1, 24 R2, 10 R3, 2 R4)"
+    note: "GOVDEC-005 dependency was incorrect — R1-R5 classification is independent of Plan Maturity Doctrine numbering"
     context: >
       The Rigidity Spectrum (R1=Absolute, R5=Training-Default-Keep) resolves the
       AI behavioral flexibility vs. rigidity tension. Currently no contract has a

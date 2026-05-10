@@ -153,6 +153,31 @@ CREATE POLICY no_direct_write ON audit.events FOR ALL
 -- =============================================================================
 
 -- =============================================================================
+-- S022 SESSION 3 — Gap A: AuditEvent immutability at DB level
+-- AppendOnlyBase + @@deny("update,delete") in ZenStack is ORM-layer only.
+-- This trigger enforces immutability at the DB level (bypasses ZenStack bypass).
+-- APPLY IN SUPABASE SQL EDITOR before any AuditEvent records exist.
+--
+-- Run this SQL in Supabase dashboard → SQL Editor:
+
+-- CREATE OR REPLACE FUNCTION prevent_audit_event_mutation()
+-- RETURNS TRIGGER AS $$
+-- BEGIN
+--   RAISE EXCEPTION 'AuditEvent is append-only. UPDATE and DELETE are forbidden at DB level.';
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- DROP TRIGGER IF EXISTS enforce_audit_event_immutability ON public."AuditEvent";
+-- CREATE TRIGGER enforce_audit_event_immutability
+--   BEFORE UPDATE OR DELETE ON public."AuditEvent"
+--   FOR EACH ROW EXECUTE FUNCTION prevent_audit_event_mutation();
+--
+-- Status: PENDING — requires manual execution in Supabase SQL editor (Governor action)
+-- VLT-S015-004 partial: this closes the AuditEvent DB-level immutability gap.
+-- Evidence for S3-E7: attempt UPDATE on AuditEvent row → EXCEPTION raised.
+-- =============================================================================
+
+-- =============================================================================
 -- VLT-S015-004 RESOLUTION (Governor ratified 2026-05-06):
 -- AuditEvent for Clerk webhook events (user.created, org.created, membership.created)
 --

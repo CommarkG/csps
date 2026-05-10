@@ -43,8 +43,11 @@ ai_defaults_declared_sections:
   - "§2 seat limits (free=1, trialing=5) — AI defaults, Q-13 pending Governor ratification"
   - "§2 role permission boundaries (admin+ for project create) — AI convention, Q-04/Q-05/Q-06/Q-07 pending ratification"
   - "§2 invoice.payment_failed → trialing (Stripe dunning) — AI Stripe knowledge, Q-10 pending ratification"
-ratification_status: PENDING_OPUS_REVIEW
-ratification_decisions_file: "Q-01 through Q-19 in S022 chat — await Governor + Opus ratification"
+ratification_status: RATIFIED
+ratification_date: "2026-05-10"
+ratification_by: "Governor + Opus Turn 4"
+ratified_decisions: "Q-01 through Q-19 ratified. Q-11/Q-12 removed (wrong layer). Q-20 added and ratified."
+flexibility_doctrine: "All ratified values implemented in config, not hardcoded. See libs/config/."
 links:
   - { rel: parent, href: ./README.md }
   - { rel: bedrock, href: ../../../../pillar-0-governance/csps-bedrock.md }
@@ -148,6 +151,8 @@ STEP 3c — Missing Clerk webhook events (30 min)
     user.deleted → soft-delete User (set deletedAt, anonymize email + displayName)
     organization.deleted → cascade soft-delete Tenant + all UserTenants
     organizationMembership.deleted → delete UserTenant row
+    organizationMembership.updated → sync UserTenant.role from Clerk event [Gap C — Opus Turn 4]
+      (Role changes in Clerk MUST propagate to DB — without this ZenStack role gates enforce wrong role)
   Wire these events in apps/task-mgmt/src/app/api/webhooks/clerk/route.ts
   Test: verify membership removal revokes access immediately
 
@@ -155,8 +160,8 @@ STEP 3d — Missing Stripe webhook events (20 min)
   Add to apps/task-mgmt/src/app/api/webhooks/stripe/route.ts:
     customer.subscription.updated → sync subscriptionStatus
     customer.subscription.deleted → subscriptionStatus = 'cancelled'
-    invoice.payment_failed → subscriptionStatus = 'trialing' (dunning period)
-  Wire subscription status changes to Clerk user metadata update (optional)
+    invoice.payment_failed → NO ACTION (Stripe dunning handles retries; subscription.deleted fires on final failure)
+  [Q-02 ratified: deliberate cancel → 402. Stripe dunning IS the grace period — no grace period logic needed]
 
 STEP 3e — GDPR erasure service (20 min)
   File: libs/integrations/gdpr.ts
@@ -212,16 +217,13 @@ STEP 4c — Trial period logic
     → set subscriptionStatus = 'cancelled'
   Wire: Stripe subscription activation sets subscriptionStatus = 'active'
 
-STEP 4d — Feature tier gating (lib)
-  Add to libs/integrations/features.ts:
-    type FeatureKey = 'team_members' | 'advanced_reporting' | 'api_access' | 'audit_log' | 'custom_branding'
-    function isFeatureEnabled(feature: FeatureKey, status: TenantSubscriptionStatus): boolean
-  Gate by tier:
-    free: team_members=false, audit_log=false, api_access=false
-    trialing: all=true (full access during trial)
-    active: all=true
-    cancelled: all=false
-  Wire in API routes: check feature gate before advanced endpoints
+STEP 4d — Platform subscription primitives [REPLACED per Opus Turn 4 Gap E]
+  [REMOVED: platform-level feature key enum — architecturally wrong for a 30-app platform]
+  [Each app defines its own feature gates using the platform primitives below]
+  Add to libs/config/subscription.config.ts (reads from SUBSCRIPTION_CONFIG):
+    function getSubscriptionTier(status: TenantSubscriptionStatus): 'free' | 'paid' | 'inactive'
+    function getMaxSeats(status: TenantSubscriptionStatus): number → reads SUBSCRIPTION_CONFIG.seats
+  These are raw platform capabilities only. Feature semantics are app-owned.
 
 STEP 4e — Verify
   pnpm verify: exit_code=0
@@ -453,10 +455,15 @@ Ready to begin Session 3 when:
   - Sonnet recommendation: **C** for MVP
 
 ### Audit
-- **Q-18:** Audit log access: A (all members) | B (admin+ only)
-  - Sonnet recommendation: **B**
-- **Q-19:** Audit retention: A (forever) | B (90 days free / unlimited paid)
-  - Sonnet recommendation: **A** (MVP, AppendOnlyBase already immutable)
+- **Q-18:** Audit log access: RATIFIED **B** — admin+ only
+- **Q-19:** Audit retention: RATIFIED **A** — forever at MVP
+- **Q-20 (NEW — Opus Turn 4):** Role in ZenStack auth() per request
+  - RATIFIED **A** — Clerk JWT custom claim (extend `buildSessionClaims` with `UserTenant.role`)
+  - DB lookup at sign-in time only — zero per-request cost
+- **Q-11/Q-12:** REMOVED — platform-level feature key enum is architecturally wrong for a 30-app platform. Apps own feature semantics. Platform provides primitives only (getMaxSeats, isTierActive).
+
+**FULL RATIFICATION STATUS:** All Q-01 through Q-20 ratified by Governor + Opus, 2026-05-10.
+**FLEXIBILITY DOCTRINE:** All values in `libs/config/`. No business logic hardcoded.
 
 ---
 
@@ -627,5 +634,6 @@ They are reasonable industry defaults but are NOT derived from CSPS Governor dec
 ---
 
 *Enterprise Core Completion Plan v1.1 | S022 | 2026-05-10*
-*Status: PENDING OPUS REVIEW + GOVERNOR RATIFICATION (19 decisions, Q-01 through Q-19)*
-*Do NOT execute Sessions 3-6 until ratification complete.*
+*Status: RATIFIED — Governor + Opus Turn 4 — 2026-05-10*
+*Q-01 through Q-20 ratified. Q-11/Q-12 removed. Flexibility doctrine applied.*
+*EXECUTE: Part G → Part B (config files) → Part C (Session 3 code).*

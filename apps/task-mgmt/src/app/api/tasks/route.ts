@@ -7,6 +7,7 @@ import type { CspsSessionClaims } from '@csps/integrations'
 import { db } from '@/lib/db'
 import { writeAuditEvent } from '@/lib/audit'
 import { getEnhancedDb } from '@/lib/zenstack'
+import { requireWriteSubscription } from '@/lib/subscription'
 
 export const dynamic = 'force-dynamic'
 
@@ -52,6 +53,10 @@ export async function POST(request: Request) {
   if (!body?.title || typeof body.title !== 'string') {
     return NextResponse.json({ error: 'title is required' }, { status: 400 })
   }
+
+  // Q-02/Q-03: subscription gate on write routes
+  const subBlock = await requireWriteSubscription(tenantId, db)
+  if (subBlock) return subBlock
 
   const cspsUser = await db.user.findUnique({ where: { clerkId: userId } })
   if (!cspsUser) return NextResponse.json({ error: 'User not found in CSPS DB' }, { status: 404 })

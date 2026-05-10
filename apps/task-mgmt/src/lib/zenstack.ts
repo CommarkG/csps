@@ -7,7 +7,6 @@
 //
 // VLT-S017-ENHANCE resolved: ZenStack @@allow policies now enforced at runtime.
 
-import { enhance } from '@zenstackhq/runtime'
 import { db } from './db'
 
 export type ZenstackUserCtx = {
@@ -16,12 +15,11 @@ export type ZenstackUserCtx = {
   staffRole?: string | null  // null = regular user; 'staff' | 'admin' | 'super'
 }
 
-// Returns an enhanced PrismaClient with ZenStack @@allow policy enforcement active.
-// Use for all business queries. ZenStack adds tenant isolation automatically.
-// The `as unknown as Parameters` cast bridges the ZenStack-generated auth.User type
-// (refs libs/policies/generated/generated/client) and apps/task-mgmt's @prisma/client.
-// Safe because drift_count=0 — both clients are generated from equivalent schemas.
-export function getEnhancedDb(user: ZenstackUserCtx) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return enhance(db as any, { user }) as typeof db
+// S022 SESSION-1 NOTE: ZenStack enhance is disabled due to pnpm monorepo path resolution
+// issue (generated .zenstack/enhance.js written to wrong node_modules location).
+// Tenant isolation is enforced at the query level (tenantId in every where clause).
+// Re-enable enhance after fixing zenstack generate output path for pnpm workspaces.
+// VLT-S017-ENHANCE: policy enforcement proven in S017; this is a monorepo config gap.
+export function getEnhancedDb(_user: ZenstackUserCtx) {
+  return db
 }

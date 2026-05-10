@@ -23,14 +23,13 @@ export async function GET() {
   const tenantId = (sessionClaims as CspsSessionClaims)?.tenantId
   if (!tenantId) return forbidden()
 
-  // Bootstrap: look up CSPS user to get id + staffRole for ZenStack context
   const cspsUser = await db.user.findUnique({ where: { clerkId: userId } })
   if (!cspsUser) return NextResponse.json({ error: 'User not found' }, { status: 404 })
 
   const edb = getEnhancedDb({ id: cspsUser.id, tenantId, staffRole: cspsUser.staffRole })
 
   const tasks = await edb.task.findMany({
-    where: { deletedAt: null },  // ZenStack adds tenantId filter via @@allow("read", auth().tenantId == tenantId)
+    where: { tenantId, deletedAt: null },
     include: {
       project: { select: { id: true, name: true } },
       assignee: { select: { id: true, displayName: true, email: true } },
@@ -54,9 +53,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'title is required' }, { status: 400 })
   }
 
-  // Bootstrap: look up CSPS user (needed for createdById + ZenStack context)
   const cspsUser = await db.user.findUnique({ where: { clerkId: userId } })
-  if (!cspsUser) return NextResponse.json({ error: 'User not found' }, { status: 404 })
+  if (!cspsUser) return NextResponse.json({ error: 'User not found in CSPS DB' }, { status: 404 })
 
   const edb = getEnhancedDb({ id: cspsUser.id, tenantId, staffRole: cspsUser.staffRole })
 

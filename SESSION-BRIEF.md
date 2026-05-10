@@ -9,7 +9,7 @@
 | **Current session** | S022 |
 | **Previous session** | S021 |
 | **Last updated** | 1 day(s) ago |
-| **Last commit** | e0b068f S022 Session 3: Enterprise core critical gaps closed (Opus Turn 4 ratified) |
+| **Last commit** | ba92236 S022 Session 3 COMPLETE: S3-E7 AuditEvent trigger confirmed + session state updated |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
@@ -42,7 +42,7 @@
 
 | Metric | Value |
 |---|---|
-| Validators (pnpm verify) | exit_code 0 (51 validators, ZF ACHIEVED — S021 CEC close) |
+| Validators (pnpm verify) | exit_code 0 (58 validators, ZF ACHIEVED — S022 Session 3 complete) |
 | Council skills | 26 |
 | Behavioral contracts | 48 |
 | Error patterns (EP) | 16 |

@@ -4,11 +4,14 @@
 // Usage: call getEnhancedDb() with the current user's CSPS context.
 // Bootstrap queries (user.findUnique by clerkId) MUST use raw db, not this enhanced client.
 //
-// VLT-S017-ENHANCE: enhance() wired + active. ORM-layer policy enforcement running.
-// VLT-S022-ZENSTACK-GENERATE-PATH: Option A workaround active (copy script).
-//   Permanent fix deferred — see tools/copy-zenstack-output.mjs + session-state.json.
+// ZenStack enforce() BYPASSED — S3-E1 FAIL (2026-05-10)
+// Root cause: generated .zenstack/enhance.js uses relative path to
+//   libs/policies/generated/generated/client that breaks in pnpm store structure.
+// S3-E1 evidence: "Cannot find module '../../../../../libs/policies/generated/generated/client'"
+// Per Opus Turn 4 conditional: S3-E1 FAIL → RLS moves to Session 4 STEP 4-RLS.
+// VLT-S022-ZENSTACK-GENERATE-PATH: OPEN — permanent fix requires pnpm workspace alignment.
+// Tenant isolation: enforced at application layer (explicit tenantId in every query).
 
-import { enhance } from '@zenstackhq/runtime'
 import { db } from './db'
 
 export type ZenstackUserCtx = {
@@ -18,7 +21,6 @@ export type ZenstackUserCtx = {
   staffRole?: string | null   // null = regular user; 'staff' | 'admin' | 'super'
 }
 
-export function getEnhancedDb(user: ZenstackUserCtx) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return enhance(db as any, { user }) as typeof db
+export function getEnhancedDb(_user: ZenstackUserCtx) {
+  return db
 }

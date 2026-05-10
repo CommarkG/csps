@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: handoff, href: ../HANDOFF-S002-to-S003.md }
   - { rel: protocols, href: ./protocols.md }
+domain_path: platform
 ---
 
 # S002 → S003 Chat-Jump Prompt (paste-target for user)

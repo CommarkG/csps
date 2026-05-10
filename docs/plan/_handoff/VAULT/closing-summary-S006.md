@@ -24,6 +24,7 @@ links:
   - { rel: handoff, href: ../HANDOFF-S006-to-S007.md }
   - { rel: governor-prompts, href: ./governor-prompts/S006.md }
   - { rel: user-intents, href: ./user-intents.md }
+domain_path: platform
 ---
 
 # Closing Summary — Session 006

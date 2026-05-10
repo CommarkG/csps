@@ -43,6 +43,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/session-question-register.md
   - docs/plan/_handoff/VAULT/topic-plans/core-dynamic-plan.md
   - AGENTS.md
+domain_path: platform
 ---
 
 # Question Protocol — CSPS

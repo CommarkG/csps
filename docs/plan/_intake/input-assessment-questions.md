@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: protocol, href: ./manual-protocol.md }
   - { rel: spine, href: ../pillar-0-governance/ai-behavior-spine.md }
+domain_path: platform
 ---
 
 # Input-Assessment Questions (LOCKED v1.0)

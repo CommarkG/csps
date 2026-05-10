@@ -32,6 +32,7 @@ created-new-because: |
   with full pre-LLM detector + escalation paths + post-LLM validator + CrisisEvent schema.
   Distinct from persona-composition (the slice every persona INHERITS from) and from the audit-
   triggers leaf (the DB layer that records events).
+domain_path: platform
 ---
 
 # Crisis Escalation (Load-Bearing for v1)

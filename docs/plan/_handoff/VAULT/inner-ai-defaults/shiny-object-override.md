@@ -18,6 +18,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/behavioral-contracts.md
   - tools/templates/priority-engine.schema.yaml
   - docs/plan/_handoff/VAULT/inner-ai-defaults/reasoning-patterns.md
+domain_path: platform
 ---
 
 # Shiny Object Override (B_COMPLETION_OVER_SHINY)

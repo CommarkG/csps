@@ -15,6 +15,7 @@ links:
   - { rel: task-list, href: ./_handoff/VAULT/sonnet-task-list-S020.md }
   - { rel: opus-lessons, href: ./_handoff/VAULT/opus-lessons-S019/README.md }
   - { rel: session-state, href: ../../tools/session-state.json }
+domain_path: platform
 ---
 
 # HANDOFF S019 → S020

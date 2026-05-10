@@ -27,6 +27,7 @@ links:
   - { rel: schema, href: ../../../packages/schemas/intake-event.ts }
   - { rel: router, href: ../../../tools/intake-router.mjs }
   - { rel: topic-plan, href: ../_handoff/VAULT/topic-plans/unified-intake.md }
+domain_path: platform
 ---
 
 # Intake Normalizers — CSPS

@@ -27,6 +27,7 @@ links:
   - { rel: topic-plan, href: ../topic-plans/token-optimization.md }
   - { rel: source-analysis, href: ../../../pillar-0-governance/token-optimization.md }
   - { rel: phase-1-baseline-data, href: ../token-cost-baseline-S007.json }
+domain_path: platform
 ---
 
 # Element Review — Token Optimization (S007)

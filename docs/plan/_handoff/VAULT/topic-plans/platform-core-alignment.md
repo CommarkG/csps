@@ -49,6 +49,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/audit-runner.md
   - docs/plan/_handoff/VAULT/inner-ai-defaults/README.md
   - AGENTS.md
+domain_path: platform
 ---
 
 # Topic-Plan — Platform Core Alignment (depth-5)

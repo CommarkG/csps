@@ -25,6 +25,7 @@ links:
   - { rel: source-types, href: ./source-types.md }
   - { rel: learning-loop, href: ../pillar-0-governance/learning-loop.md }
   - { rel: stewardship, href: ../pillar-0-governance/stewardship-protocol.md }
+domain_path: platform
 ---
 
 # CSPS External-Input Intake — Detailed Plan

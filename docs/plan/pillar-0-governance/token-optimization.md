@@ -33,6 +33,7 @@ links:
   - { rel: principles, href: ../../../packages/principles/principles.yaml }
   - { rel: priority-engine-schema, href: ../../../tools/templates/priority-engine.schema.yaml }
   - { rel: trigger-source, href: ../_handoff/VAULT/governor-prompts/S006.md }
+domain_path: platform
 ---
 
 # Token Optimization — CSPS Comprehensive Analysis + Plan

@@ -29,6 +29,7 @@ links:
   - { rel: master-plan, href: ../../../../MASTER_PLAN.md }
 session: S006
 generated_at: 2026-05-05T15:44:00Z
+domain_path: platform
 ---
 
 # CSPS Overview

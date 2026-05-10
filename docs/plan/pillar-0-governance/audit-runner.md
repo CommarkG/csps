@@ -23,6 +23,7 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: rule-registry, href: ./rule-registry.md }
   - { rel: enforcement-architecture, href: ./mechanical-enforcement.md }
+domain_path: platform
 ---
 
 # The Audit Runner System

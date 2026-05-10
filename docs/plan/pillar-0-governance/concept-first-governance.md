@@ -33,6 +33,7 @@ links:
   - { rel: l1-gvrn, href: ../../../.claude/core-spines/L1_CORE_GVRN.md }
   - { rel: inner-defaults, href: ../../_handoff/VAULT/inner-ai-defaults/README.md }
   - { rel: topic-plan, href: ../../_handoff/VAULT/topic-plans/p-meta-020-concept-first-governance.md }
+domain_path: platform
 ---
 
 # Concept-First Governance — P-META-020

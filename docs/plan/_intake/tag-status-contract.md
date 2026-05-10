@@ -24,6 +24,7 @@ links:
   - { rel: frontmatter-standard, href: ../pillar-1-architecture-and-stack/frontmatter-standard.md }
   - { rel: stewardship, href: ../pillar-0-governance/stewardship-protocol.md }
   - { rel: learning-loop, href: ../pillar-0-governance/learning-loop.md }
+domain_path: platform
 ---
 
 # Tag + Status Contract — mechanical

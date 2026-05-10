@@ -21,6 +21,7 @@ tags:
   - maturity:stable
 links:
   - { rel: hook, href: ../../../../../../.claude/hooks/user-prompt-submit-raw-comments.sh }
+domain_path: platform
 ---
 
 # Governor Raw Comments Log

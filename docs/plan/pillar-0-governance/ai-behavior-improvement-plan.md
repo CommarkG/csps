@@ -34,6 +34,7 @@ links:
   - { rel: b-no-impersonation, href: ./behavioral-contracts/B_NO_AI_IMPERSONATION.md }
   - { rel: internal-deep-review, href: ../../../.claude/skills/internal-deep-review/SKILL.md }
   - { rel: opus-prompt, href: ../_handoff/VAULT/opus-synthesis-prompt-S011.md }
+domain_path: platform
 ---
 
 # AI Behavior Improvement Plan — CSPS

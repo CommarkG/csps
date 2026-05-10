@@ -26,6 +26,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/behavioral-contracts/B_NO_AI_IMPERSONATION.md
   - tools/model-tier-registry.yaml
   - AGENTS.md
+domain_path: platform
 ---
 
 # EP-014 — AI Mode Impersonation

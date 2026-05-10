@@ -44,6 +44,7 @@ links:
   - { rel: csps-dna, href: ./csps-platform-dna.md }
   - { rel: source-cca-research, href: ./token-optimization.md }
   - { rel: source-csp-file-5, href: ../_intake/contexts/governance/savings-ssot/EXT-20260505-005-A-unified-principle-savings-and-ssot-same-discipline.md }
+domain_path: platform
 ---
 
 # Model Routing Dashboard — CSPS

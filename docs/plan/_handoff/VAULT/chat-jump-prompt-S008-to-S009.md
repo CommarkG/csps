@@ -28,6 +28,7 @@ context_loss_prevention:
   consulted: ../../pillar-0-governance/context-loss-pains.md
   applies_to_this_plan:
     - PAIN-CHAT-JUMP-DEGRADATION: "LEAN protocol per memory entry 43; pointer-sentence + Step 0 ASK; closing-AI provides simple comment when user shuttles new-AI's first reply"
+domain_path: platform
 ---
 
 # Chat-jump prompt — S008 → S009 (LEAN)

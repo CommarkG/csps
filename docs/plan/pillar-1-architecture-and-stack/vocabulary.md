@@ -20,6 +20,7 @@ links:
   - { rel: principle, href: ../pillar-0-governance/reuse-first-principle.md }
   - { rel: codegen-spec, href: ./vocabulary-as-code.md }
   - { rel: agents-md, href: ../../../AGENTS.md }
+domain_path: platform
 ---
 
 # Vocabulary (locked glossary)

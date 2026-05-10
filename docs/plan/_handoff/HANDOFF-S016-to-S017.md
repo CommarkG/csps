@@ -31,6 +31,7 @@ links:
   - { rel: session-extraction, href: ./VAULT/session-S016-extraction.md }
   - { rel: bedrock, href: ../pillar-0-governance/csps-bedrock.md }
   - { rel: layer-separation, href: ../pillar-0-governance/csps-layer-separation.md }
+domain_path: platform
 ---
 
 # HANDOFF — Session 016 → Session 017

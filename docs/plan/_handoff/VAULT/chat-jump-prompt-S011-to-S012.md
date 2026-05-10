@@ -18,6 +18,7 @@ tags:
 diataxis_type: how-to
 session: S011
 next_session: S012
+domain_path: platform
 ---
 
 # Chat-Jump Prompt — S011 → S012

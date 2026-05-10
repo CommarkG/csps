@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: protocol, href: ./manual-protocol.md }
   - { rel: contexts, href: ./contexts/README.md }
+domain_path: platform
 ---
 
 # Extractions Ledger

@@ -30,6 +30,7 @@ created-new-because: |
   consolidates them with the dual-registration discipline + catalog-first UX + per-generator
   acceptance criteria. The pillar-3 catalog-bundle-system leaf documents the catalog SIDE; this
   leaf documents the GENERATOR side that writes to it. Distinct concerns.
+domain_path: platform
 ---
 
 # Generators (the platform's golden-path scaffolders)

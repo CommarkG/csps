@@ -30,6 +30,7 @@ links:
   - { rel: generalizes, href: ./architecture-principles.md#L249 }
   - { rel: schema, href: ../../../packages/principles/principles.yaml }
   - { rel: pe-source, href: ../../_handoff/VAULT/topic-plans/s006-governance-foundation.md }
+domain_path: platform
 ---
 
 # CSPS CORE Manifest

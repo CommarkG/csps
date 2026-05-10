@@ -29,6 +29,7 @@ links:
   - { rel: vault-methodology, href: ./vault-methodology.md }
   - { rel: council-registry, href: ./council-registry.md }
   - { rel: daily-update-plan, href: ./daily-update-plan.md }
+domain_path: platform
 ---
 
 # The Threshold v2 — Universal Input Pipeline

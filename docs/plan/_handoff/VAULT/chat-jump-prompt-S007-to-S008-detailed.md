@@ -28,6 +28,7 @@ links:
   - { rel: minimal-version, href: ./chat-jump-prompt-S007-to-S008.md }
   - { rel: handoff, href: ../HANDOFF-S007-to-S008.md }
   - { rel: muv-spec, href: ../../pillar-0-governance/mutual-understanding-validation.md }
+domain_path: platform
 ---
 
 # Chat-jump prompt — S007 → S008 (detailed standalone, MUV-audited)

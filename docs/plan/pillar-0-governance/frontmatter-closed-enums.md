@@ -26,6 +26,7 @@ links:
   - { rel: principle, href: ../../../packages/principles/principles.yaml }
   - { rel: contract, href: ./behavioral-contracts.md }
   - { rel: triggered-by-K2-promotion, href: ./behavioral-contracts.md }
+domain_path: platform
 ---
 
 # Frontmatter Closed Enums — Canonical Reference

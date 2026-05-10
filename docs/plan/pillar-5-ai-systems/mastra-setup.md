@@ -32,6 +32,7 @@ created-new-because: |
   spec inline; this leaf consolidates it as a pillar-5 reference. Distinct from persona-composition
   (the system-prompt assembly logic) and from skills-package (the AI-skill catalog the dispatcher
   routes to). Mastra-setup is the GLUE.
+domain_path: platform
 ---
 
 # Mastra Setup

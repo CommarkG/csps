@@ -28,6 +28,7 @@ created-new-because: |
   script is load-bearing for week-1 + graduation-pipeline (vendored variant). This leaf locks
   the contract + readiness checklist + idempotency requirements. Distinct from build-order
   (which uses bootstrap as week-1 step 1) and graduation-pipeline (which uses --graduate-mode).
+domain_path: platform
 ---
 
 # Bootstrap Script

@@ -30,6 +30,7 @@ links:
   - { rel: csps-dna, href: ./csps-platform-dna.md }
   - { rel: gradual-build-template, href: ../../../tools/templates/gradual-build-plan.template.md }
   - { rel: dna-extracts, href: ../_handoff/VAULT/contexts/INDEX.md }
+domain_path: platform
 ---
 
 # Plan Creation Protocol — CSPS

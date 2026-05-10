@@ -50,6 +50,8 @@ const OPTIONAL_FIELD_ENUMS = {
   // persona_target: ratified 4/7 (family_admin|family_member|community_leader deferred)
   persona_target_ratified: ['solo_user', 'business_admin', 'business_member', 'developer'],
   persona_target_deferred: ['family_admin', 'family_member', 'community_leader'],
+  // use_case_class: functional category of what this artifact enables (Schema Phase A S022)
+  use_case_class: ['tracking', 'planning', 'communication', 'analysis', 'automation', 'discovery', 'creation', 'governance'],
 };
 
 const LIFECYCLE_VALUES = ['experimental', 'beta', 'production', 'deprecated'];
@@ -320,6 +322,10 @@ function validateOne(file, fm, errors, warnings, idIndex) {
     if (!OPTIONAL_FIELD_ENUMS.domain_path_tier1.includes(tier1)) {
       errors.push(ctx(`domain_path Tier 1 "${tier1}" not in {${OPTIONAL_FIELD_ENUMS.domain_path_tier1.join('|')}} — VLT-S022-DOMAIN-PATH ratified`));
     }
+  }
+  // use_case_class: functional category (Schema Phase A S022)
+  if (fm.use_case_class && !OPTIONAL_FIELD_ENUMS.use_case_class.includes(fm.use_case_class)) {
+    errors.push(ctx(`use_case_class "${fm.use_case_class}" not in {${OPTIONAL_FIELD_ENUMS.use_case_class.join('|')}} — Schema Phase A S022`));
   }
 
   // next_review_at required when lifecycle_state != active

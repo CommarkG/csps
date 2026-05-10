@@ -24,6 +24,7 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: stewardship, href: ./stewardship-protocol.md }
   - { rel: audit-runner, href: ./audit-runner.md }
+domain_path: platform
 ---
 
 # Learning Loop — P-META-005 (Closed-Loop System Improvement)

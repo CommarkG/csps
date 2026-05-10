@@ -23,6 +23,7 @@ crosscutting:
 diataxis_type: how-to
 session: S007
 next_session: S008
+domain_path: platform
 ---
 
 # HANDOFF — Session 007 → Session 008

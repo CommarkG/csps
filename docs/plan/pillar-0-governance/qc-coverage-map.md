@@ -27,6 +27,7 @@ links:
   - { rel: audit-hub, href: ./audit-hub.md }
   - { rel: system-health-plan, href: ./system-health-plan.md }
   - { rel: know-how, href: ../_handoff/VAULT/know-how/README.md }
+domain_path: platform
 ---
 
 # QC Coverage Map — CSPS

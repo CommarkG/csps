@@ -20,6 +20,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: principle, href: ./reuse-first-principle.md }
   - { rel: adr-process, href: ./adr-process.md }
+domain_path: platform
 ---
 
 # The Rule Registry

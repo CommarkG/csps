@@ -28,6 +28,7 @@ created-new-because: |
   spec + distribution rules + session-close review process. Storage of the actual logs lives
   at _handoff/VAULT/governor-prompts/ (point-in-time per-session); this leaf is the canonical
   HOW (the spec) vs the logs which are the WHAT (instances).
+domain_path: platform
 ---
 
 # Governor Prompts — dashboard

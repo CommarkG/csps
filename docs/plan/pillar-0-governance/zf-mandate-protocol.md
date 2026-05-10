@@ -27,6 +27,7 @@ links:
   - { rel: tracker, href: ../../../../tools/zf-session-tracker.json }
   - { rel: p-meta-021, href: ../../../../packages/principles/principles.yaml }
   - { rel: chat-transfer, href: ../../../plan/_handoff/VAULT/templates/chat-transfer-protocol.template.md }
+domain_path: platform
 ---
 
 # ZF Mandate Protocol

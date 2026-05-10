@@ -25,6 +25,7 @@ links:
   - { rel: spine, href: ./ai-behavior-spine.md }
   - { rel: contracts, href: ./behavioral-contracts.md }
   - { rel: source-csp, href: ../_intake/processed/EXT-20260502-005-rzf-discipline-from-csp/raw.md }
+domain_path: platform
 ---
 
 # Zero-Findings Discipline — RZF + CEC

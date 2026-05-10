@@ -24,6 +24,7 @@ links:
   - { rel: generators, href: ./generators.md }
   - { rel: adr-sandboxed, href: ../../adr/0005-sandboxed-skill-governance.md }
 enhances: csps.pillar-3.sandboxed-skill-governance
+domain_path: platform
 ---
 
 # Skill Ingestion Contract

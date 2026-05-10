@@ -28,6 +28,7 @@ mechanical_prevention: validate-inner-ai-defaults-freshness.mjs (ACTIVE in pnpm 
 consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/inner-ai-defaults/README.md
   - docs/plan/pillar-0-governance/behavioral-contracts/B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS.md
+domain_path: platform
 ---
 
 # EP-013 — AI Default Bypass

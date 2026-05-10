@@ -20,6 +20,7 @@ tags:
   - maturity:stable
 diataxis_type: how-to
 session: S011
+domain_path: platform
 ---
 
 # Daily Update Plan — CSPS

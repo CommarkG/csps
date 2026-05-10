@@ -61,6 +61,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/plan-creation-protocol.md
   - tools/templates/priority-engine.schema.yaml
   - docs/plan/_handoff/VAULT/inner-ai-defaults/shiny-object-override.md
+domain_path: platform
 ---
 
 # Topic-Plan — Plan Methodology v2 (Humble Executor + Harvest + Autonomous Batch)

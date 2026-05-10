@@ -35,6 +35,7 @@ created-new-because: |
   dependencies), or the dashboard spec for visualizing run results. User S005 turn 26 directive: "create
   an audit hub registered in the schema in the proper place and include a set of audits + various
   handling predefined pipelines and orchestrated with a front end dashboard". This hub IS that orchestration.
+domain_path: platform
 ---
 
 # Audit Hub

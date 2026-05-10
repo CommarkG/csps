@@ -36,6 +36,7 @@ links:
 consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/governor-insights/governor-insights-summary.md
   - docs/plan/pillar-0-governance/csps-platform-dna.md
+domain_path: platform
 ---
 
 # Governor Insights Archive

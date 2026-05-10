@@ -29,6 +29,7 @@ links:
   - { rel: qc-coverage-map, href: ./qc-coverage-map.md }
   - { rel: zf-moat, href: ./zf-moat.md }
   - { rel: council-registry, href: ./council-registry.md }
+domain_path: platform
 ---
 
 # Moat Registry — CSPS

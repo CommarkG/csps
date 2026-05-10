@@ -18,6 +18,7 @@ links:
   - { rel: source, href: ../../../packages/principles/principles.yaml }
   - { rel: protocols, href: ./protocols.md }
 session: S003
+domain_path: platform
 ---
 
 # Principles Snapshot — S003 close (2026-05-03)

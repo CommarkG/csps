@@ -19,6 +19,7 @@ consolidation_cross_refs:
   - tools/session-state.json
   - docs/plan/_handoff/VAULT/topic-plans/plan-methodology-v2.md
   - apps/task-mgmt/
+domain_path: platform
 ---
 
 # Session S015 — Positive ZF Extraction

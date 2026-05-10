@@ -17,6 +17,7 @@ diataxis_type: reference
 links:
   - { rel: parent, href: ./README.md }
   - { rel: learning-loop, href: ../pillar-0-governance/learning-loop.md }
+domain_path: platform
 ---
 
 # External-Input Source Types

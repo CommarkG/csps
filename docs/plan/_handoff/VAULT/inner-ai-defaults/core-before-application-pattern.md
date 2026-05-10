@@ -23,6 +23,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/inner-ai-defaults/continuous-drift-log.md
   - tools/validators/validate-phase-exit-criteria.mjs
   - tools/templates/priority-engine.schema.yaml
+domain_path: platform
 ---
 
 # Core-Before-Application Pattern (FOUNDATION_EXIT_GATE)

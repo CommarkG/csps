@@ -26,6 +26,7 @@ links:
   - { rel: source-leaf-pending, href: ./source-types.md }
   - { rel: source-leaf-pending, href: ./routing-rules.md }
   - { rel: source-leaf-pending, href: ./external-inputs-plan.md }
+domain_path: platform
 ---
 
 # External-Input Intake — the place

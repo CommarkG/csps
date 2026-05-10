@@ -19,6 +19,7 @@ links:
   - { rel: principles-snapshot, href: ./principles-snapshot.md }
   - { rel: adr-index, href: ../../../docs/adr/ }
 session: S003
+domain_path: platform
 ---
 
 # Decisions Snapshot — S003 close (2026-05-03)

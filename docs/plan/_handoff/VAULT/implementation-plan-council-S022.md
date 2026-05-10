@@ -29,6 +29,7 @@ links:
   - { rel: consolidated-plan, href: ./platform-excellence-consolidated-S021.md }
   - { rel: platform-excellence-sonnet, href: ../../platform-excellence-readiness.md }
   - { rel: session-state, href: ../../../../tools/session-state.json }
+domain_path: platform
 ---
 
 # Implementation Plan — S022+ Council Brief

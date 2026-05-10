@@ -31,6 +31,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/mechanical-enforcement-policy.md
   - AGENTS.md
   - docs/plan/pillar-0-governance/behavioral-contracts.md
+domain_path: platform
 ---
 
 # CSPS Instruction Template v1.0

@@ -30,6 +30,7 @@ links:
   - { rel: cdab, href: ../../../../platform-audit/platform-services/ai-behavior.md }
   - { rel: ai-spine, href: ../../../../platform-audit/spines/AI.md }
   - { rel: opus-brief, href: ../opus-consultation-brief-S019.md }
+domain_path: platform
 ---
 
 # Part 3: Opus Triggers, Living Lessons, and CDAB Rigidity Spectrum

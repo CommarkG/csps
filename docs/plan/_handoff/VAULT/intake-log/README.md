@@ -14,6 +14,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:stable
+domain_path: platform
 ---
 
 # Intake Log — CSPS

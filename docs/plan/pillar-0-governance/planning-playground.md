@@ -20,6 +20,7 @@ links:
   - { rel: principle, href: ./reuse-first-principle.md }
   - { rel: tree-index, href: ../README.md }
   - { rel: trunk, href: ../../../MASTER_PLAN.md }
+domain_path: platform
 ---
 
 # The Planning Playground

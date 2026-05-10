@@ -18,6 +18,7 @@ consolidation_cross_refs:
   - docs/plan/_intake/contexts/INDEX.md
   - tools/templates/priority-engine.schema.yaml
   - tools/validators/validate-phase-exit-criteria.mjs
+domain_path: platform
 ---
 
 # Raw Thoughts Queue

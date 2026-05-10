@@ -24,6 +24,7 @@ links:
   - { rel: foundation-zmodel, href: ./foundation-zmodel.md }
   - { rel: app-schema-contract, href: ./app-schema-contract.md }
   - { rel: audit-runner, href: ../pillar-0-governance/audit-runner.md }
+domain_path: platform
 ---
 
 # Audit Triggers (SQL)

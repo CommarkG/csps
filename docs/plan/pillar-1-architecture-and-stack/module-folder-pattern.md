@@ -22,6 +22,7 @@ links:
   - { rel: complexity-contract, href: ./complexity-contract.md }
   - { rel: slice-contract, href: ./slice-contract.md }
   - { rel: vocabulary, href: ./vocabulary.md }
+domain_path: platform
 ---
 
 # The Module Folder Pattern

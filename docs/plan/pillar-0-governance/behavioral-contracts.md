@@ -18,6 +18,7 @@ links:
   - { rel: spine, href: ./ai-behavior-spine.md }
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: agents-md, href: ../../../AGENTS.md }
+domain_path: platform
 ---
 
 # Behavioral Contracts (B_*)

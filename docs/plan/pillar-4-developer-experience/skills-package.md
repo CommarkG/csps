@@ -29,6 +29,7 @@ created-new-because: |
   pipeline + per-skill spec. The pillar-3 sandboxed-skill-governance leaf documents the TIER rules;
   this leaf documents the PLATFORM-OWNED skills that originate from principles.yaml. Distinct
   concerns: tier governance vs principle-backed skill catalog.
+domain_path: platform
 ---
 
 # Skills Package — `packages/skills/`

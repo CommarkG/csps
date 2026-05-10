@@ -25,6 +25,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: element-source, href: ../../pillar-0-governance/csps-core-manifest.md }
   - { rel: csp-source, href: ../topic-plans/s006-governance-foundation.md }
+domain_path: platform
 ---
 
 # Element Review — CSPS Core Spines (S006)

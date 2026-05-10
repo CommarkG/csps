@@ -48,6 +48,7 @@ links:
   - { rel: depends-on, href: ./foundation-slices.md }
   - { rel: depends-on, href: ./s013-clerk-stripe-integration.md }
   - { rel: construction-gate, href: ../../../../../tools/validators/validate-no-implementation-without-plan.mjs }
+domain_path: platform
 ---
 
 # Topic-Plan — Task Management App (depth-4)

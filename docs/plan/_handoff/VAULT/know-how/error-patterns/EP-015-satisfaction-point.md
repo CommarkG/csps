@@ -25,6 +25,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/inner-ai-defaults/README.md
   - docs/plan/pillar-0-governance/ai-behavior-improvement-plan.md
   - AGENTS.md
+domain_path: platform
 ---
 
 # EP-015 — The Satisfaction Point

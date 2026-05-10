@@ -31,6 +31,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: bedrock, href: ./csps-bedrock.md }
   - { rel: core-manifest, href: ./csps-core-manifest.md }
+domain_path: platform
 ---
 
 # CSPS Layer Separation

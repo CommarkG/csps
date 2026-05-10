@@ -19,6 +19,7 @@ diataxis_type: reference
 links:
   - { rel: parent, href: ./README.md }
   - { rel: stewardship, href: ../../pillar-0-governance/stewardship-protocol.md }
+domain_path: platform
 ---
 
 # Open Questions Ledger

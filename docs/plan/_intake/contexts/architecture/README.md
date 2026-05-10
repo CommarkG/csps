@@ -16,6 +16,7 @@ diataxis_type: reference
 links:
   - { rel: parent, href: ../README.md }
   - { rel: pillar, href: ../../pillar-1-architecture-and-stack/README.md }
+domain_path: platform
 ---
 
 # Context: Architecture & Stack (Pillar 1)

@@ -29,6 +29,7 @@ created-new-because: |
   No prior leaf documented the graduation pipeline. v1.3 §17.5 had the spec inline. The pipeline
   is load-bearing for the foundry model — if extraction takes months, the schema-per-app pattern
   fails its design goal. This leaf locks the 2-3 day extraction contract + checklist.
+domain_path: platform
 ---
 
 # Graduation Pipeline (CSPS App → Standalone Product)

@@ -22,6 +22,7 @@ links:
   - { rel: spine, href: ./ai-behavior-spine.md }
   - { rel: contracts, href: ./behavioral-contracts.md }
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
+domain_path: platform
 ---
 
 # Five-Surface Engraving — the canonical discipline-propagation pattern

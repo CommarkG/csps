@@ -21,6 +21,7 @@ file_depth_markers:
 consolidation_cross_refs:
   - apps/sandbox/prisma/schema.prisma
   - tools/session-state.json
+domain_path: platform
 ---
 
 # Graduation Path — CSPS App Extraction Design

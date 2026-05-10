@@ -18,6 +18,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: spec, href: ../../pillar-0-governance/qc-audit-system.md }
   - { rel: discipline, href: ../../pillar-0-governance/zero-findings-discipline.md }
+domain_path: platform
 ---
 
 # S002 QC Audit Results — first run

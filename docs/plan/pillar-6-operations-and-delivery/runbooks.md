@@ -26,6 +26,7 @@ created-new-because: |
   Listed in pillar-6 README future-leaves. Stubbed in extended-S003 per "nothing stands alone"
   cardinal directive. Distinct from crisis-escalation.md (the slice) and dashboards.md (the
   surface) — this leaf is the OPERATIONAL RESPONSE PLAYBOOK.
+domain_path: platform
 ---
 
 # Runbooks (stub)

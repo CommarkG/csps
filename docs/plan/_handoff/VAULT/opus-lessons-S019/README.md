@@ -31,6 +31,7 @@ links:
   - { rel: opus-brief, href: ../opus-consultation-brief-S019.md }
   - { rel: part1, href: ./part1-schema-and-security.md }
   - { rel: part2, href: ./part2-spines-ai-and-vision.md }
+domain_path: platform
 ---
 
 # CSPS Architectural Lessons — S019

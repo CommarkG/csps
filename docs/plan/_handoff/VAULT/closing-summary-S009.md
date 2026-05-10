@@ -40,6 +40,7 @@ context_loss_prevention:
     - PAIN-MODEL-SWITCH: "model-routing-dashboard.md surfaces R2 caveat + Phase 6 mechanical routing"
   not_applicable:
     - PAIN-D7-D10: "S009 is engraving session; D7-D10 cognitive failure modes self-monitored via L1.5 D1-D10 catalog"
+domain_path: platform
 ---
 
 # Closing Summary — Session 009

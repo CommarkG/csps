@@ -24,6 +24,7 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: adr-stack, href: ../../adr/0001-pick-csps-stack.md }
   - { rel: adr-tiers, href: ../../adr/0003-locked-tier-vocabulary.md }
+domain_path: platform
 ---
 
 # Stripe + Clerk Wiring

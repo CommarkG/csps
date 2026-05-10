@@ -28,6 +28,7 @@ links:
   - { rel: orchestrator, href: ../../../.claude/hooks/user-prompt-submit-context-orchestrator.sh }
   - { rel: know-how-extractor, href: ../../../tools/know-how-extractor.mjs }
   - { rel: pe-schema, href: ../../../tools/templates/priority-engine.schema.yaml }
+domain_path: platform
 ---
 
 # Council Registry — CSPS

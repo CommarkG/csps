@@ -29,6 +29,7 @@ created-new-because: |
   consolidates it as a per-pillar reference AND incorporates the BLK-S002-003 connector cohort
   shuffle (resolution at S002 turn 9 → option B). Distinct from MASTER_PLAN's brief week table
   (which is the trunk index summary).
+domain_path: platform
 ---
 
 # Build Order — 12 Weeks to v1

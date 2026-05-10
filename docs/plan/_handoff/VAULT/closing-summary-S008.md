@@ -42,6 +42,7 @@ context_loss_prevention:
     - PAIN-NOMINAL-RZF: "Pre-close verification ran 2026-05-05T06:31:02Z; not nominal"
   not_applicable:
     - PAIN-D7-D10: "Closing summary; not engraving session"
+domain_path: platform
 ---
 
 # Closing Summary — Session 008

@@ -18,6 +18,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: principle, href: ./reuse-first-principle.md }
   - { rel: rule-registry, href: ./rule-registry.md }
+domain_path: platform
 ---
 
 # Architecture Decision Records (ADR) Process

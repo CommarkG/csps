@@ -29,6 +29,7 @@ links:
   - { rel: audit-hub, href: ./audit-hub.md }
   - { rel: know-how, href: ../_handoff/VAULT/know-how/README.md }
   - { rel: weekly-hook, href: ../../../.claude/hooks/cron-weekly-tag-status-deep-audit.sh }
+domain_path: platform
 ---
 
 # System Health Plan — CSPS

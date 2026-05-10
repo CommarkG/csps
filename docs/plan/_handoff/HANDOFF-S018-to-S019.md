@@ -26,6 +26,7 @@ links:
   - { rel: prior-handoff, href: ./HANDOFF-S017-to-S018.md }
   - { rel: session-extraction, href: ./VAULT/session-S018-extraction.md }
   - { rel: platform-audit, href: ../../platform-audit/README.md }
+domain_path: platform
 ---
 
 # HANDOFF — Session 018 → Session 019

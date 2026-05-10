@@ -25,6 +25,7 @@ links:
   - { rel: part2, href: ./part2-spines-ai-and-vision.md }
   - { rel: schema, href: ../../../../libs/policies/schema.zmodel }
   - { rel: drift-validator, href: ../../../../../tools/validators/validate-foundation-schema-drift.mjs }
+domain_path: platform
 ---
 
 # Part 1: Schema, Security, Billing, Scale, Regulatory

@@ -17,6 +17,7 @@ crosscutting:
   - reliability
 links:
   - { rel: parent, href: ../README.md }
+domain_path: platform
 ---
 
 # Pillar 0 — Governance (meta-pillar)

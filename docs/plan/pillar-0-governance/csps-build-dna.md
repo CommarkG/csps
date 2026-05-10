@@ -32,6 +32,7 @@ created-new-because: |
   shows how they COMPOSE into a coherent way of building. User S005 turn 25 directive:
   "connect it all to the balanced solutions we have regarding the tension between the
   rigid and context focused ai behavior — make our DNA in building things!"
+domain_path: platform
 ---
 
 # The CSPS Way of Building — DNA

@@ -19,6 +19,7 @@ impl_status: swift-implemented
 consolidation_cross_refs:
   - docs/plan/pillar-0-governance/behavioral-contracts.md
   - docs/plan/_handoff/VAULT/inner-ai-defaults/rigid-rule-anti-pattern.md
+domain_path: platform
 ---
 
 # Verbatim Human Text Pattern

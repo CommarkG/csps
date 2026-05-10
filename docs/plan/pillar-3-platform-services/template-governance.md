@@ -21,6 +21,7 @@ links:
   - { rel: customer-kit, href: ./customer-kit.md }
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: adr-template-only, href: ../../adr/0004-template-only-page-creation.md }
+domain_path: platform
 ---
 
 # Template Governance

@@ -27,6 +27,7 @@ created-new-because: |
   Listed in pillar-6 README future-leaves. Stubbed in extended-S003 per "nothing stands alone"
   cardinal directive. Distinct from observability.md (the measurement layer) and runbooks.md
   (the response playbooks) — this leaf is the EXPECTATION CONTRACT with users.
+domain_path: platform
 ---
 
 # SLOs + Error Budgets (stub)

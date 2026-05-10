@@ -29,6 +29,7 @@ consolidation_cross_refs:
   - packages/principles/principles.yaml
   - docs/plan/_handoff/VAULT/csps-master-roadmap-s014-plus.md
   - tools/session-state.json
+domain_path: platform
 ---
 
 # Session S014 Extraction — Full Harvest

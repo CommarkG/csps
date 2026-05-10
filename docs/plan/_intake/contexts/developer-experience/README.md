@@ -15,6 +15,7 @@ diataxis_type: reference
 links:
   - { rel: parent, href: ../README.md }
   - { rel: pillar, href: ../../pillar-4-developer-experience/README.md }
+domain_path: platform
 ---
 
 # Context: Developer Experience (Pillar 4)

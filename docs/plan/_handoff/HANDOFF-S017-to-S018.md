@@ -32,6 +32,7 @@ links:
   - { rel: bedrock, href: ../pillar-0-governance/csps-bedrock.md }
   - { rel: zenstack-schema, href: ../../libs/policies/schema.zmodel }
   - { rel: zenstack-helper, href: ../../apps/task-mgmt/src/lib/zenstack.ts }
+domain_path: platform
 ---
 
 # HANDOFF — Session 017 → Session 018

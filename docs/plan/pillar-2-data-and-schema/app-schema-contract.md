@@ -23,6 +23,7 @@ links:
   - { rel: starter-slices, href: ./starter-slices.md }
   - { rel: audit-triggers, href: ./audit-triggers.md }
   - { rel: graduation-pipeline, href: ../pillar-6-operations-and-delivery/graduation-pipeline.md }
+domain_path: platform
 ---
 
 # App Schema Contract

@@ -21,6 +21,7 @@ session: S018
 links:
   - { rel: parent, href: ./README.md }
   - { rel: summary, href: ./governor-insights-summary.md }
+domain_path: platform
 ---
 
 # Governor Insights — Session S018 (Raw Archive)

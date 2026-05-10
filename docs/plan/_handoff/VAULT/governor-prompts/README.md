@@ -25,6 +25,7 @@ session_index:
   - S003 (TBD — retro-fillable)
   - S004 (TBD — retro-fillable)
   - S005 (NEW — first comprehensive log; created S005 turn 27)
+domain_path: platform
 ---
 
 # Governor Prompts Vault

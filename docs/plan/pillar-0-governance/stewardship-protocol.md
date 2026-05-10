@@ -24,6 +24,7 @@ links:
   - { rel: frontmatter-standard, href: ../pillar-1-architecture-and-stack/frontmatter-standard.md }
   - { rel: audit-runner, href: ./audit-runner.md }
   - { rel: learning-loop, href: ./learning-loop.md }
+domain_path: platform
 ---
 
 # Stewardship Protocol — P-META-004 (Stored Content Lifecycle)

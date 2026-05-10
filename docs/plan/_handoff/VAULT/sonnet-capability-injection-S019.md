@@ -28,6 +28,7 @@ links:
   - { rel: ai-behavior, href: ../../../platform-audit/platform-services/ai-behavior.md }
   - { rel: ai-personas, href: ../../../platform-audit/ai-personas.md }
   - { rel: cdab, href: ../../../platform-audit/spines/AI.md }
+domain_path: platform
 ---
 
 # Sonnet Capability Injection — S019

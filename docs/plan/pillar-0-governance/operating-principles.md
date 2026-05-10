@@ -20,6 +20,7 @@ links:
   - { rel: enforcement-architecture, href: ./mechanical-enforcement.md }
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: reuse-first-detail, href: ./reuse-first-principle.md }
+domain_path: platform
 ---
 
 # Operating Principles

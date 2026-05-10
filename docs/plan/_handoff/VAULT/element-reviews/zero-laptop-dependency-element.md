@@ -25,6 +25,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/topic-plans/zero-laptop-dependency-setup.md
   - docs/plan/pillar-6-operations-and-delivery/android-workflow.md
   - docs/plan/pillar-6-operations-and-delivery/multi-machine-parity.md
+domain_path: platform
 ---
 
 # Element Review — Zero-Laptop Dependency

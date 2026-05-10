@@ -17,6 +17,7 @@ crosscutting:
 links:
   - { rel: trunk, href: ../../MASTER_PLAN.md }
   - { rel: principle, href: ./pillar-0-governance/reuse-first-principle.md }
+domain_path: platform
 ---
 
 # CSPS Plan Tree

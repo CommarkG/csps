@@ -13,6 +13,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:stable
+domain_path: platform
 ---
 
 # Pre-Plan-Close Checklist

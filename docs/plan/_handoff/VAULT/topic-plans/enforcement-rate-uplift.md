@@ -69,6 +69,7 @@ links:
   - { rel: inner-ai-defaults, href: ../inner-ai-defaults/ }
   - { rel: drift-registry, href: ../../../../tools/config/drift-registry.yaml }
   - { rel: sap-protocol, href: ../../../plan/pillar-0-governance/sonnet-audit-protocol.md }
+domain_path: platform
 ---
 
 # Enforcement Rate Uplift Plan

@@ -20,6 +20,7 @@ crosscutting:
 links:
   - { rel: parent, href: ../README.md }
   - { rel: principle, href: ../pillar-0-governance/reuse-first-principle.md }
+domain_path: platform
 ---
 
 # Pillar 6 — Operations & Delivery

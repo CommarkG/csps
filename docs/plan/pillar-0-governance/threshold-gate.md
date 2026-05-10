@@ -30,6 +30,7 @@ links:
   - { rel: council-registry, href: ./council-registry.md }
   - { rel: schema, href: ../../../packages/schemas/intake-event.ts }
   - { rel: router, href: ../../../tools/intake-router.mjs }
+domain_path: platform
 ---
 
 # The Threshold — CSPS Universal Input Gate

@@ -29,6 +29,7 @@ links:
   - { rel: principle, href: ../../../packages/principles/principles/P-META-006.yaml }
   - { rel: system-health-plan, href: ./system-health-plan.md }
   - { rel: qc-coverage-map, href: ./qc-coverage-map.md }
+domain_path: platform
 ---
 
 # ZF as a Moat — CSPS

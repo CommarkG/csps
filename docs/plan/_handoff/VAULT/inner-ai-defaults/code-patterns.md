@@ -18,6 +18,7 @@ diataxis_type: reference
 links:
   - { rel: parent, href: ./README.md }
 session: S006
+domain_path: platform
 ---
 
 # Inner-AI-Defaults — Code Patterns

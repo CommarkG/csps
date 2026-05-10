@@ -20,6 +20,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/behavioral-contracts.md
   - docs/plan/_handoff/VAULT/inner-ai-defaults/reasoning-patterns.md
   - docs/plan/pillar-0-governance/csps-layer-separation.md
+domain_path: platform
 ---
 
 # Rigid Rule Anti-Pattern

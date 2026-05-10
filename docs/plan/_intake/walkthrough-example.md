@@ -19,6 +19,7 @@ links:
   - { rel: tag-status, href: ./tag-status-contract.md }
   - { rel: proactive-completion, href: ./proactive-completion.md }
   - { rel: contexts, href: ./contexts/README.md }
+domain_path: platform
 ---
 
 # Walkthrough — Proof of Complete Pipeline

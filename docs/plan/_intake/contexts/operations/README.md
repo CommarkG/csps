@@ -16,6 +16,7 @@ diataxis_type: reference
 links:
   - { rel: parent, href: ../README.md }
   - { rel: pillar, href: ../../pillar-6-operations-and-delivery/README.md }
+domain_path: platform
 ---
 
 # Context: Operations & Delivery (Pillar 6)

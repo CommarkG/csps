@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: protocols, href: ./protocols.md }
   - { rel: feedback, href: ../../../../.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_protocol_compression_is_skipping.md }
+domain_path: platform
 ---
 
 # Closing Summary — required-header template

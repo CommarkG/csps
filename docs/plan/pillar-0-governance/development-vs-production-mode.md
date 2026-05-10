@@ -44,6 +44,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/behavioral-contracts.md
   - docs/platform-audit/platform-services/context-orchestrator.md
   - AGENTS.md
+domain_path: platform
 ---
 
 # Development Mode vs Production Mode

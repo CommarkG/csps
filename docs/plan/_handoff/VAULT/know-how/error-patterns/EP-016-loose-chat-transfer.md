@@ -26,6 +26,7 @@ consolidation_cross_refs:
   - tools/templates/chat-transfer-protocol.template.md
   - AGENTS.md
   - docs/plan/_handoff/VAULT/know-how/checklists/pre-plan-creation.md
+domain_path: platform
 ---
 
 # EP-016 — Loose Chat Transfer

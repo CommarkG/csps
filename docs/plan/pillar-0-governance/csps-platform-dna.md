@@ -30,6 +30,7 @@ links:
   - { rel: plan-creation-protocol, href: ./plan-creation-protocol.md }
   - { rel: context-loss-pains, href: ./context-loss-pains.md }
   - { rel: csp-precedent, href: ../_handoff/VAULT/contexts/governance/agent-discipline/EXT-20260505-002-B-9-element-dna-gate-triple-check-frontmatter-rigidity.md }
+domain_path: platform
 ---
 
 # CSPS Platform DNA — Canonical Formalization

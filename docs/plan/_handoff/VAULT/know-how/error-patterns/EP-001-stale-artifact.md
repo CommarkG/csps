@@ -35,6 +35,7 @@ tags:
   - audience:ai-agent
   - maturity:stable
 diataxis_type: reference
+domain_path: platform
 ---
 
 # EP-001 — Stale Artifact Syndrome

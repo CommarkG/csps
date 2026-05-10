@@ -18,6 +18,7 @@ links:
   - { rel: protocols, href: ./protocols.md }
   - { rel: handoff, href: ../HANDOFF-S005-to-S006.md }
 session: S005
+domain_path: platform
 ---
 
 # Validation Pass — Session S005

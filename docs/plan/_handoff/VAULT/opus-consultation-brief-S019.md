@@ -23,6 +23,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: platform-audit, href: ../../../platform-audit/README.md }
   - { rel: session-state, href: ../../../../tools/session-state.json }
+domain_path: platform
 ---
 
 # Opus Expert Consultation Brief — S019

@@ -21,6 +21,7 @@ links:
   - { rel: principle, href: ../pillar-0-governance/reuse-first-principle.md }
   - { rel: slice-contract, href: ./slice-contract.md }
   - { rel: module-folder-pattern, href: ./module-folder-pattern.md }
+domain_path: platform
 ---
 
 # The Complexity Contract

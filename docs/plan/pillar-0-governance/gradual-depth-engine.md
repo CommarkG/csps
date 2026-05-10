@@ -37,6 +37,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/topic-plans/core-dynamic-plan.md
   - docs/platform-audit/platform-services/context-orchestrator.md
   - docs/plan/pillar-0-governance/depth-discipline.md
+domain_path: platform
 ---
 
 # The Gradual Depth Engine (GDE)

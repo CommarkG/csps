@@ -14,6 +14,7 @@ tags:
   - maturity:stable
 diataxis_type: reference
 session: S005
+domain_path: platform
 ---
 
 # Chat-jump prompt — S005 → S006 (minimal)

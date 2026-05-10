@@ -30,6 +30,7 @@ created-new-because: |
   source-of-truth (the matrix + the contracts). This leaf is the DX-side READING-ORDER spec for
   AI agents loading the platform — what to load, in what order, with what priority. Distinct
   concern: governance vs developer-experience surfacing of the same disciplines.
+domain_path: platform
 ---
 
 # AI Behavior Instructions (DX Surface)

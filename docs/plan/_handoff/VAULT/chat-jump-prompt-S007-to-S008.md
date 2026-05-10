@@ -23,6 +23,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: detailed-version, href: ./chat-jump-prompt-S007-to-S008-detailed.md }
   - { rel: handoff, href: ../HANDOFF-S007-to-S008.md }
+domain_path: platform
 ---
 
 # PASTE EVERYTHING BELOW THIS LINE INTO THE NEW S008 CHAT

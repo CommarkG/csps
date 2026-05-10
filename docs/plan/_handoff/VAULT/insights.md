@@ -19,6 +19,7 @@ diataxis_type: explanation
 links:
   - { rel: parent, href: ./README.md }
   - { rel: source-handoff, href: ../HANDOFF-S001-to-S002.md }
+domain_path: platform
 ---
 
 # Insights Vault

@@ -13,6 +13,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:stable
+domain_path: platform
 ---
 
 # Opus 4.7 Synthesis Prompt — S011 Session Review

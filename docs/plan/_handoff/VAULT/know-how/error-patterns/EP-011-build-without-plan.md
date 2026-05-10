@@ -21,6 +21,7 @@ source_sessions: [S011]
 applies_to: [plan-creation, implement]
 prevention_checklist_item: "Before touching libs/ apps/ packages/ (except EXEMPT platform infra), confirm an active topic-plan exists. AGENTS.md hard NO 77: Never start multi-session topic without gradual-build-plan."
 mechanical_prevention: validate-no-implementation-without-plan.mjs (ACTIVE advisory in pnpm verify; promotes to error when Ring 3 construction begins)
+domain_path: platform
 ---
 
 # EP-011 — Build Without Plan

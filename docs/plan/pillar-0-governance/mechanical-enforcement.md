@@ -23,6 +23,7 @@ links:
   - { rel: agents-md, href: ../../../AGENTS.md }
   - { rel: rule-registry, href: ./rule-registry.md }
   - { rel: operating-principles, href: ./operating-principles.md }
+domain_path: platform
 ---
 
 # Mechanical Enforcement Architecture

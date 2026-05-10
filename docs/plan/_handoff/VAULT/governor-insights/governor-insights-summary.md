@@ -30,6 +30,7 @@ depth_levels:
 links:
   - { rel: parent, href: ./README.md }
   - { rel: raw-s018, href: ./governor-insights-S018.md }
+domain_path: platform
 ---
 
 # Governor Insights — Accumulating Summary

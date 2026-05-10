@@ -35,6 +35,7 @@ context_loss_prevention:
     - PAIN-PERMISSION-POPUP: "S010 has explicit settings.json batch ASK at open per Option B continuity"
   not_applicable:
     - PAIN-D8: "No future-defer; carry-forwards have explicit S010 SLA"
+domain_path: platform
 ---
 
 # HANDOFF — Session 009 → Session 010

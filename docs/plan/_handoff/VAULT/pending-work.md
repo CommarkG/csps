@@ -18,6 +18,7 @@ links:
   - { rel: protocols, href: ./protocols.md }
   - { rel: handoff, href: ../HANDOFF-S003-to-S004.md }
 session: S003
+domain_path: platform
 ---
 
 # Pending Work — S003 close (2026-05-03)

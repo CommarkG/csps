@@ -25,6 +25,7 @@ alignment_verified_session: S016
 links:
   - { rel: parent, href: ./s014-task-management-app.md }
   - { rel: depends-on, href: ./s014-l1-research.md }
+domain_path: platform
 ---
 
 # S014 L2 — Goals, Personas, Success Metrics

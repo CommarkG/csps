@@ -22,6 +22,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: minimal-version, href: ./chat-jump-prompt-S005-to-S006.md }
   - { rel: muv-spec, href: ../../pillar-0-governance/mutual-understanding-validation.md }
+domain_path: platform
 ---
 
 # Chat-jump prompt — S005 → S006 (detailed standalone, MUV-audited)

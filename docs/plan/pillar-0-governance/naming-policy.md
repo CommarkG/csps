@@ -25,6 +25,7 @@ links:
   - { rel: principle, href: ../../../packages/principles/principles.yaml }
   - { rel: contract, href: ./behavioral-contracts.md }
   - { rel: audit, href: ./audit-runner.md }
+domain_path: platform
 ---
 
 # Naming Policy

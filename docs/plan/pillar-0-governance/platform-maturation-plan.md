@@ -35,6 +35,7 @@ links:
   - { rel: ai-behavior, href: ../../../docs/plan/pillar-0-governance/ai-behavior-spine.md }
   - { rel: inner-ai-defaults, href: ../_handoff/VAULT/inner-ai-defaults/README.md }
   - { rel: opus-synthesis, href: ../_handoff/VAULT/opus-synthesis-prompt-S011.md }
+domain_path: platform
 ---
 
 # Platform Maturation Plan — CSPS

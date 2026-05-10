@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: validation-pass, href: ./validation-pass-S003.md }
 session: S003
+domain_path: platform
 ---
 
 # Gaps + Duplications Scan — Session S003

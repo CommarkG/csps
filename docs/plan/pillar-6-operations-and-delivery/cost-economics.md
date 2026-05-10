@@ -28,6 +28,7 @@ created-new-because: |
   extended-S003 per "nothing stands alone" cardinal directive. Distinct from
   stripe-clerk-wiring.md (the entitlements layer) and dashboards.md (the cost-attribution
   surface) — this leaf is the ECONOMIC MODEL.
+domain_path: platform
 ---
 
 # Cost Economics (stub)

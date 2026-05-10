@@ -28,6 +28,7 @@ created-new-because: |
   Stubbed in extended-S003 to give the topic a place + stewardship trigger per "nothing
   stands alone" cardinal directive. Distinct from dashboards.md (the surface) and
   mastra-setup.md (the runtime that emits OTel spans).
+domain_path: platform
 ---
 
 # Observability (stub)

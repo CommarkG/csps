@@ -14,6 +14,7 @@ tags:
 links:
   - { rel: parent, href: ../README.md }
   - { rel: current-trunk, href: ../../../MASTER_PLAN.md }
+domain_path: platform
 ---
 
 # Legacy Plan Archive

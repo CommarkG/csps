@@ -21,6 +21,7 @@ source_sessions: [S011]
 applies_to: [plan-creation]
 prevention_checklist_item: "Each §KH item must have >30 characters of SPECIFIC text naming the actual artifact/validator/mechanism. 'Yes, I will register slugs' = generic = EP-010. 'Each new validator registers in audit-runner.md via audit-slug-coverage.mjs' = specific = PASS."
 mechanical_prevention: "Upgrade validate-plan-know-how.mjs to check §KH QUALITY not just presence (week-4; stub today)"
+domain_path: platform
 ---
 
 # EP-010 — §KH Quality Degradation

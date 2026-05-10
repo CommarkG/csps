@@ -25,6 +25,7 @@ tags:
 links:
   - { rel: parent, href: ./sonnet-capability-injection-S019.md }
   - { rel: bottleneck-skill, href: ../../../.claude/skills/bottleneck-expert/ }
+domain_path: platform
 ---
 
 # Bottleneck Detection, Gradual Structures, and Orchestrator Improvements

@@ -31,6 +31,7 @@ created-new-because: |
   inline; this leaf consolidates composition + traits + overlays + memory model + risk-class
   guardrails into one DX-loadable reference. Distinct from mastra-setup (the runtime) and
   crisis-escalation (the cross-persona safety slice).
+domain_path: platform
 ---
 
 # Persona Composition

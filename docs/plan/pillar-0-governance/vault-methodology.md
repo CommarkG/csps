@@ -33,6 +33,7 @@ links:
   - { rel: vault-dir, href: ../_handoff/VAULT/ }
   - { rel: intake-normalizers, href: ./intake-normalizers.md }
   - { rel: know-how, href: ../_handoff/VAULT/know-how/README.md }
+domain_path: platform
 ---
 
 # Vault Methodology — CSPS

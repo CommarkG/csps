@@ -33,6 +33,7 @@ created-new-because: |
   mechanical audit; the cross-chat ITERATION was implicit not mandatory; subagent returns
   weren't output-contract-verified. This leaf locks the universal discipline + per-boundary
   protocols + chat-jump-prompt mechanical-audit checklist.
+domain_path: platform
 ---
 
 # Mutual Understanding Validation (MUV)

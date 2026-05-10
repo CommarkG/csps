@@ -22,6 +22,7 @@ links:
   - { rel: template-governance, href: ./template-governance.md }
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: adr-stack, href: ../../adr/0001-pick-csps-stack.md }
+domain_path: platform
 ---
 
 # Customer Kit

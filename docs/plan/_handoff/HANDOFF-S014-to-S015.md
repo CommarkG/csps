@@ -31,6 +31,7 @@ links:
 consolidation_cross_refs:
   - tools/session-state.json
   - docs/plan/pillar-0-governance/zf-mandate-protocol.md
+domain_path: platform
 ---
 
 # HANDOFF — Session 014 → Session 015

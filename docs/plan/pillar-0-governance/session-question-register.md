@@ -39,6 +39,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/mechanical-enforcement-policy.md
   - docs/plan/_handoff/VAULT/closing-summary-template.md
   - AGENTS.md
+domain_path: platform
 ---
 
 # Session Question Register (SQR)

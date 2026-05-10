@@ -15,6 +15,7 @@ tags:
 diataxis_type: how-to
 links:
   - { rel: parent, href: ../README.md }
+domain_path: platform
 ---
 
 # Intake Inbox — drop zone

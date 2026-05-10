@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ../README.md }
   - { rel: governs, href: ../../pillar-0-governance/behavioral-contracts.md }
   - { rel: schema, href: ../../../../tools/templates/gradual-build-plan.template.md }
+domain_path: platform
 ---
 
 # Topic Plans

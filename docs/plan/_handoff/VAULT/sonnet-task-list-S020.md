@@ -25,6 +25,7 @@ links:
   - { rel: opus-lessons, href: ./opus-lessons-S019/README.md }
   - { rel: drift-registry, href: ../../../../tools/config/drift-registry.yaml }
   - { rel: build-verification-map, href: ../../../../tools/config/build-verification-map.yaml }
+domain_path: platform
 ---
 
 # S020 Sonnet Task List

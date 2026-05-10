@@ -29,6 +29,7 @@ links:
   - { rel: value-prop, href: ./csps-pitch-and-value-S019.md }
   - { rel: schema, href: ../../../../libs/policies/schema.zmodel }
   - { rel: opus-lessons, href: ./opus-lessons-S019/README.md }
+domain_path: platform
 ---
 
 # CSPS Platform Excellence Plan — S021

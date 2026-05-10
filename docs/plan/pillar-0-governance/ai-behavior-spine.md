@@ -28,6 +28,7 @@ links:
   - { rel: operating-principles, href: ./operating-principles.md }
   - { rel: source-csp-autonomy-audit, href: ../_intake/processed/EXT-20260502-002-ai-behavior-autonomy-audit/raw.md }
   - { rel: source-csp-session-lifecycle, href: ../_intake/processed/EXT-20260502-003-session-lifecycle-protocol/raw.md }
+domain_path: platform
 ---
 
 # AI Behavior Spine — the consolidated contract

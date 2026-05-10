@@ -23,6 +23,7 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: enforcement-architecture, href: ./mechanical-enforcement.md }
   - { rel: operating-principles, href: ./operating-principles.md }
+domain_path: platform
 ---
 
 # Architecture Principles (the 27 rules)

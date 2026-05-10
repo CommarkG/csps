@@ -31,6 +31,7 @@ reuse_instruction: |
   read `packages/principles/principles/P-XXX-NNN.yaml` directly.
   When you need a contract: read `docs/plan/pillar-0-governance/behavioral-contracts/B_NAME.md`.
   NEVER: read principles.yaml or behavioral-contracts.md as full files for a single lookup.
+domain_path: platform
 ---
 
 # SG-002 — Slice-First Loading

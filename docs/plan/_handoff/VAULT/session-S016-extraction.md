@@ -23,6 +23,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/topic-plans/plan-methodology-v2.md
   - docs/plan/pillar-0-governance/csps-bedrock.md
   - docs/plan/pillar-0-governance/csps-layer-separation.md
+domain_path: platform
 ---
 
 # Session S016 — Positive ZF Extraction

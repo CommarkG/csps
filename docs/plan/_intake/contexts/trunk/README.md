@@ -17,6 +17,7 @@ diataxis_type: reference
 links:
   - { rel: parent, href: ../README.md }
   - { rel: trunk, href: ../../../../MASTER_PLAN.md }
+domain_path: platform
 ---
 
 # Context: Trunk (MASTER_PLAN-level)

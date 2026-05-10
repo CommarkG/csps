@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: protocols, href: ./protocols.md }
 session: S004
+domain_path: platform
 ---
 
 # Validation Pass — Session S004

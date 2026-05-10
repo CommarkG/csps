@@ -21,6 +21,7 @@ links:
   - { rel: governs, href: ../../pillar-0-governance/csps-core-manifest.md }
   - { rel: composes-with, href: ../topic-plans/README.md }
 session: S006
+domain_path: platform
 ---
 
 # Element Reviews

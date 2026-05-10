@@ -36,6 +36,7 @@ tags:
   - audience:ai-agent
   - maturity:stable
 diataxis_type: reference
+domain_path: platform
 ---
 
 # EP-002 — Silent Orphan Syndrome

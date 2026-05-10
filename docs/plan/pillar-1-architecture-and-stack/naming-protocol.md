@@ -20,6 +20,7 @@ links:
   - { rel: principle, href: ../pillar-0-governance/reuse-first-principle.md }
   - { rel: vocabulary, href: ./vocabulary.md }
   - { rel: frontmatter-standard, href: ./frontmatter-standard.md }
+domain_path: platform
 ---
 
 # Naming Protocol (with concrete enforcement)

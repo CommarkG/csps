@@ -30,6 +30,7 @@ links:
   - { rel: governor-prompts, href: ./governor-prompts/S010.md }
   - { rel: user-intents, href: ./user-intents.md }
   - { rel: prior-session, href: ./closing-summary-S009.md }
+domain_path: platform
 ---
 
 # Closing Summary — Session 010

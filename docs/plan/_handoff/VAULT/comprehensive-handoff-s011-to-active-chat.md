@@ -17,6 +17,7 @@ consolidation_cross_refs:
   - tools/session-state.json
   - tools/templates/chat-transfer-protocol.template.md
   - SESSION-BRIEF.md
+domain_path: platform
 ---
 
 # Comprehensive Handoff — S011 Planning → Active Implementation Chat

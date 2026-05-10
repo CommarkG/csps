@@ -56,6 +56,7 @@ links:
 muv_audit:
   required_sections_present: PASS
   alignment_questions_count: 0
+domain_path: platform
 ---
 
 # Topic-Plan — unified-intake (depth-3)

@@ -27,6 +27,7 @@ links:
   - { rel: schema-expert-skill, href: ../../../../.claude/skills/schema-expert/SKILL.md }
 consolidation_cross_refs:
   - tools/session-state.json    # VLT-S011-003/004 resolution tracking
+domain_path: platform
 ---
 
 # Foundation Design Decisions — CSPS

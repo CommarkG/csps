@@ -37,6 +37,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: depends-on, href: ./foundation-slices.md }
   - { rel: implementation, href: ../../../../../libs/integrations/ }
+domain_path: platform
 ---
 
 # Topic-Plan — S013 Clerk + Stripe Integration (depth-3)

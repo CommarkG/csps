@@ -25,6 +25,7 @@ tags:
 links:
   - { rel: capability-injection, href: ./sonnet-capability-injection-S019.md }
   - { rel: opus-lessons, href: ./opus-lessons-S019/README.md }
+domain_path: platform
 ---
 
 # Sonnet Inheritance Model — S019

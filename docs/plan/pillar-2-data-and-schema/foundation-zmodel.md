@@ -24,6 +24,7 @@ links:
   - { rel: starter-slices, href: ./starter-slices.md }
   - { rel: audit-triggers, href: ./audit-triggers.md }
   - { rel: principles-yaml, href: ../../../packages/principles/principles.yaml }
+domain_path: platform
 ---
 
 # Foundation ZModel

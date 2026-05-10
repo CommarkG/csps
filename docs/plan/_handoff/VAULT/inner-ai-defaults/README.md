@@ -39,6 +39,7 @@ links:
   - { rel: composes-with, href: ../template-registry.md }
   - { rel: principle, href: ../../../../packages/principles/principles.yaml }
 session: S006
+domain_path: platform
 ---
 
 # Inner-AI-Defaults Registry

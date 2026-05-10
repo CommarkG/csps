@@ -14,6 +14,7 @@ tags:
 diataxis_type: reference
 session: S004
 next_session: S005
+domain_path: platform
 ---
 
 # Minimal paste-target — S004 → S005

@@ -25,6 +25,7 @@ links:
   - { rel: audit-triggers, href: ./audit-triggers.md }
   - { rel: persona-composition, href: ../pillar-5-ai-systems/persona-composition.md }
   - { rel: crisis-escalation, href: ../pillar-5-ai-systems/crisis-escalation.md }
+domain_path: platform
 ---
 
 # Starter Slices (16 Foundation slices)

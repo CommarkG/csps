@@ -20,6 +20,7 @@ links:
   - { rel: principle, href: ../pillar-0-governance/reuse-first-principle.md }
   - { rel: tech-stack, href: ./tech-stack.md }
   - { rel: app-schema-contract, href: ../pillar-2-data-and-schema/app-schema-contract.md }
+domain_path: platform
 ---
 
 # Repo Layout

@@ -16,6 +16,7 @@ diataxis_type: reference
 links:
   - { rel: parent, href: ../README.md }
   - { rel: pillar, href: ../../pillar-0-governance/README.md }
+domain_path: platform
 ---
 
 # Context: Governance (Pillar 0)

@@ -24,6 +24,7 @@ session: S014
 alignment_verified_session: S016
 links:
   - { rel: parent, href: ./s014-task-management-app.md }
+domain_path: platform
 ---
 
 # S014 L1 Research — VLT Resolution + Competitor Analysis

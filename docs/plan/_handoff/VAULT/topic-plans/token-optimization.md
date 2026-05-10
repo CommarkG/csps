@@ -67,6 +67,7 @@ links:
 muv_audit:
   required_sections_present: PASS (§1-§10 populated)
   alignment_questions_count: 0 (internal sequencing; cross-chat handshake at session close)
+domain_path: platform
 ---
 
 # Topic Plan — Token Optimization (ACTIVE; opened S007 turn 2)

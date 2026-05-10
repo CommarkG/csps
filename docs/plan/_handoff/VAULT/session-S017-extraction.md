@@ -26,6 +26,7 @@ consolidation_cross_refs:
   - apps/task-mgmt/src/lib/zenstack.ts
   - tools/validators/validate-foundation-schema-drift.mjs
   - docs/plan/pillar-0-governance/csps-bedrock.md
+domain_path: platform
 ---
 
 # Session S017 — Positive ZF Extraction

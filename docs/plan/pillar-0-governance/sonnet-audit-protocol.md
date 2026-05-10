@@ -29,6 +29,7 @@ links:
   - { rel: drift-registry, href: ../../../tools/config/drift-registry.yaml }
   - { rel: inner-ai-defaults, href: ../../plan/_handoff/VAULT/inner-ai-defaults/ }
   - { rel: build-verification-map, href: ../../../tools/config/build-verification-map.yaml }
+domain_path: platform
 ---
 
 # Sonnet Audit Protocol (SAP)

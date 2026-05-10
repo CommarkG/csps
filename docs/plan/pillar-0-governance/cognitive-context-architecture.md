@@ -33,6 +33,7 @@ created-new-because: |
   and solutions serving me for the long run over immediate saving — create the solution accordingly
   with a dedicated dashboard showing exactly how it is arranged + how it is schema aligned +
   reasoning next to each part + general philosophy of how it works."
+domain_path: platform
 ---
 
 # Cognitive Context Architecture (CCA)

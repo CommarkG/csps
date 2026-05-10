@@ -31,6 +31,7 @@ links:
   - { rel: opus-plan, href: ./platform-excellence-plan-S021.md }
   - { rel: schema, href: ../../../../libs/policies/schema.zmodel }
   - { rel: domain-taxonomy, href: ./csps-pitch-and-value-S019.md }
+domain_path: platform
 ---
 
 # CSPS Platform Excellence — Consolidated Plan

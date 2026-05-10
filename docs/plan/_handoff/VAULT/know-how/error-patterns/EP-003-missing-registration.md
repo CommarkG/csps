@@ -34,6 +34,7 @@ tags:
   - audience:ai-agent
   - maturity:stable
 diataxis_type: reference
+domain_path: platform
 ---
 
 # EP-003 — Missing Registration Pattern

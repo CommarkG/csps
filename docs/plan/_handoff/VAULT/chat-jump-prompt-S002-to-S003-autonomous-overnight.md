@@ -19,6 +19,7 @@ links:
   - { rel: handoff, href: ../HANDOFF-S002-to-S003.md }
   - { rel: protocols, href: ./protocols.md }
   - { rel: closing-template, href: ./closing-summary-template.md }
+domain_path: platform
 ---
 
 # S002 → S003 Chat-Jump Prompt — AUTONOMOUS OVERNIGHT VARIANT

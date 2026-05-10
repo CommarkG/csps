@@ -52,6 +52,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/mechanical-enforcement-policy.md
   - docs/platform-audit/README.md
   - docs/plan/_handoff/VAULT/topic-plans/platform-core-alignment.md
+domain_path: platform
 ---
 
 # Topic-Plan — Core Dynamic Plan (CDP) (depth-4)

@@ -21,6 +21,7 @@ links:
   - { rel: stewardship, href: ../../pillar-0-governance/stewardship-protocol.md }
   - { rel: learning-loop, href: ../../pillar-0-governance/learning-loop.md }
   - { rel: source-handoff, href: ../HANDOFF-S001-to-S002.md }
+domain_path: platform
 ---
 
 # CSPS Session Protocols (canonical)

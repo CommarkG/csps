@@ -20,6 +20,7 @@ links:
   - { rel: tags-status, href: ../tag-status-contract.md }
   - { rel: proactive-completion, href: ../proactive-completion.md }
   - { rel: walkthrough, href: ../walkthrough-example.md }
+domain_path: platform
 ---
 
 # External-Input Contexts (the fan-out destination tree)

@@ -24,6 +24,7 @@ vault_pending:
     context_ref: docs/plan/_handoff/VAULT/cseps/CSEP-S011-001-know-how-discipline-synergy.md
     session_added: S011
     retrieve_when: "When cruel-critic skill runs a review session OR monthly CSEP review"
+domain_path: platform
 ---
 
 # CSEP-S011-001 — B_KNOW_HOW_DISCIPLINE Synergy Analysis

@@ -32,6 +32,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/frontmatter-closed-enums.md
   - tools/validators/validate-frontmatter.mjs
   - AGENTS.md
+domain_path: platform
 ---
 
 # Mechanical Enforcement Policy

@@ -26,6 +26,7 @@ links:
   - { rel: overview, href: ../../../platform-audit/03-platform-overview.md }
   - { rel: opus-lessons, href: ./opus-lessons-S019/README.md }
   - { rel: task-list, href: ./sonnet-task-list-S020.md }
+domain_path: platform
 ---
 
 # CSPS Value Proposition and Competitive Edge

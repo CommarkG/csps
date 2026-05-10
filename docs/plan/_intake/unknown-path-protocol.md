@@ -21,6 +21,7 @@ links:
   - { rel: protocol, href: ./manual-protocol.md }
   - { rel: contexts, href: ./contexts/README.md }
   - { rel: learning-loop, href: ../pillar-0-governance/learning-loop.md }
+domain_path: platform
 ---
 
 # Unknown-Path Protocol — Discovery Channel for content that fits no leaf

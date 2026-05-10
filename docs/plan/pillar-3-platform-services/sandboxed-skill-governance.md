@@ -22,6 +22,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: adr-sandboxed, href: ../../adr/0005-sandboxed-skill-governance.md }
+domain_path: platform
 ---
 
 # Sandboxed Skill Governance

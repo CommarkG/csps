@@ -25,6 +25,7 @@ consolidation_cross_refs:
   - docs/platform-audit/ai-personas.md
   - tools/validators/validate-template-compliance.mjs
   - docs/plan/pillar-0-governance/audit-hub.md
+domain_path: platform
 ---
 
 # Session S018 — Positive ZF Extraction

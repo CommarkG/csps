@@ -19,6 +19,7 @@ template_used: chat-transfer
 consolidation_cross_refs:
   - docs/plan/_handoff/HANDOFF-S016-to-S017.md
   - docs/plan/_handoff/VAULT/session-S016-extraction.md
+domain_path: platform
 ---
 
 # S017 — Context + Alignment

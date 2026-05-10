@@ -33,6 +33,7 @@ reuse_instruction: |
   4. audit-runner/pipeline-meta.md row (abbreviated)
   5. validate-audit-slug-coverage.mjs KNOWN_MAPPINGS entry (if slug name differs from filename)
   All 5 in one commit. validate-audit-slug-coverage.mjs will catch any missed.
+domain_path: platform
 ---
 
 # SG-001 — Atomic 3-Step Validator Registration

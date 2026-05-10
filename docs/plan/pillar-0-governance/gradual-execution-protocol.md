@@ -45,6 +45,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/instruction-template.md
   - docs/plan/pillar-0-governance/mechanical-enforcement-policy.md
   - AGENTS.md
+domain_path: platform
 ---
 
 # Gradual Execution Protocol (GEP)

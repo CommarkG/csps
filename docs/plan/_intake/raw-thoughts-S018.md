@@ -24,6 +24,7 @@ links:
 consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/topic-plans/platform-core-alignment.md
   - docs/platform-audit/README.md
+domain_path: platform
 ---
 
 # Raw Thoughts — S018

@@ -20,6 +20,7 @@ links:
   - { rel: principle, href: ../pillar-0-governance/reuse-first-principle.md }
   - { rel: vocabulary, href: ./vocabulary.md }
   - { rel: principles-codegen, href: ../pillar-0-governance/mechanical-enforcement.md }
+domain_path: platform
 ---
 
 # Vocabulary-as-Code (the enforcement spine)

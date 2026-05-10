@@ -25,6 +25,7 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: audit-runner, href: ./audit-runner.md }
   - { rel: results-S002, href: ../_handoff/VAULT/qc-audit-results-S002.md }
+domain_path: platform
 ---
 
 # QC Audit System — operational layer for P-META-006

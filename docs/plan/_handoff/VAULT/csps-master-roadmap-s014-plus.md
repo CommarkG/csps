@@ -27,6 +27,7 @@ links:
   - { rel: s014-l1-research, href: ./topic-plans/s014-l1-research.md }
   - { rel: s014-l2-goals, href: ./topic-plans/s014-l2-goals-personas.md }
   - { rel: session-state, href: ../../../../tools/session-state.json }
+domain_path: platform
 ---
 
 # CSPS Master Roadmap — S014+

@@ -18,6 +18,7 @@ links:
   - { rel: protocols, href: ./protocols.md }
   - { rel: prior-session, href: ./gaps-and-duplications-S004.md }
 session: S005
+domain_path: platform
 ---
 
 # Gaps + Duplications Report — Session S005

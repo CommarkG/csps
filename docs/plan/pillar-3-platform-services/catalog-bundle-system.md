@@ -21,6 +21,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: frontmatter, href: ../pillar-1-architecture-and-stack/frontmatter-standard.md }
+domain_path: platform
 ---
 
 # Catalog & Bundle System

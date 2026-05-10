@@ -32,6 +32,7 @@ created-new-because: |
   directive: "No agents created out of CSPS are allowed into the system and any agent you created
   + mechanically create an alignment protocol — a strong and detailed one covering all major parts
   of the schema — to be enforced on existing and future agents and skills." Closes the wildcard gap.
+domain_path: platform
 ---
 
 # Agent Alignment Protocol (AAP)

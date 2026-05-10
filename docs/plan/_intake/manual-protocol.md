@@ -19,6 +19,7 @@ links:
   - { rel: contexts, href: ./contexts/README.md }
   - { rel: learning-loop, href: ../pillar-0-governance/learning-loop.md }
   - { rel: stewardship, href: ../pillar-0-governance/stewardship-protocol.md }
+domain_path: platform
 ---
 
 # External-Input Manual Intake Protocol — pre-runtime

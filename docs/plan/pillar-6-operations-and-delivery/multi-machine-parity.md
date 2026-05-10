@@ -21,6 +21,7 @@ file_depth_markers:
   l1_lines: "1-60"
   l2_lines: "61-end"
   read_protocol: "L1 = version pin table + invariants. L2 = troubleshooting."
+domain_path: platform
 ---
 
 # Multi-Machine Parity — CSPS

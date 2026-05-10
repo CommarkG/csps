@@ -42,6 +42,7 @@ links:
   - { rel: source-extract, href: ../_intake/contexts/governance/depth-discipline/EXT-20260505-004-A-four-distinct-depth-level-semantics-and-unified-principle.md }
   - { rel: creation-gate-source, href: ../_intake/contexts/governance/depth-discipline/EXT-20260505-004-B-mechanical-creation-discipline-with-placeholders.md }
   - { rel: bundling-orchestrator-source, href: ../_intake/contexts/governance/depth-discipline/EXT-20260505-004-C-bundling-orchestrator-pe-read-budget-extension.md }
+domain_path: platform
 ---
 
 # Depth Discipline — CSPS Canonical Home

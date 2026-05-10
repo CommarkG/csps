@@ -22,6 +22,7 @@ links:
   - { rel: composes-with, href: ../../pillar-3-platform-services/template-governance.md }
   - { rel: schema, href: ../../../../tools/templates/ }
 session: S006
+domain_path: platform
 ---
 
 # Template Registry

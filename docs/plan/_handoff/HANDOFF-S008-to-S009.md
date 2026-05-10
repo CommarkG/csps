@@ -34,6 +34,7 @@ context_loss_prevention:
     - PAIN-PERMISSION-POPUP: "S009 has explicit ASK gate for settings.json + depth-marker-creation-gate hook (per L1.6)"
   not_applicable:
     - PAIN-D8: "No future-defer; carry-forwards have explicit S009 SLA"
+domain_path: platform
 ---
 
 # HANDOFF — Session 008 → Session 009

@@ -29,6 +29,7 @@ created-new-because: |
   contract: each frontier has a discovery-trigger + interim posture; distinct from immediate
   blockers (BLK-*) and smaller open questions (OQ-*). Acknowledged unknowns must be tracked
   so they're never lost.
+domain_path: platform
 ---
 
 # Open Frontiers

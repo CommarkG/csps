@@ -25,6 +25,7 @@ links:
   - { rel: ledger, href: ./extractions-ledger.md }
   - { rel: tag-status, href: ./tag-status-contract.md }
   - { rel: proactive-completion, href: ./proactive-completion.md }
+domain_path: platform
 ---
 
 # Dev Front-End Dashboard Plan — Intake + LearningLoop + Schema

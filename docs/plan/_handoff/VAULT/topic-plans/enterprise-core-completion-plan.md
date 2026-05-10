@@ -36,6 +36,15 @@ depth_rationale: |
   VALD (audit coverage). Foundation-before-apps mandate. Not depth-5 — no constitutional
   changes, additive to existing structures.
 impl_status: swift-implemented
+ai_defaults_influence: partial
+ai_defaults_declared_sections:
+  - "§2 feature tier gating values (free/paid features) — AI SaaS convention, Q-11/Q-12 pending Governor ratification"
+  - "§2 trial period 14 days — AI industry default, Q-08 pending Governor ratification"
+  - "§2 seat limits (free=1, trialing=5) — AI defaults, Q-13 pending Governor ratification"
+  - "§2 role permission boundaries (admin+ for project create) — AI convention, Q-04/Q-05/Q-06/Q-07 pending ratification"
+  - "§2 invoice.payment_failed → trialing (Stripe dunning) — AI Stripe knowledge, Q-10 pending ratification"
+ratification_status: PENDING_OPUS_REVIEW
+ratification_decisions_file: "Q-01 through Q-19 in S022 chat — await Governor + Opus ratification"
 links:
   - { rel: parent, href: ./README.md }
   - { rel: bedrock, href: ../../../../pillar-0-governance/csps-bedrock.md }
@@ -357,5 +366,258 @@ Ready to begin Session 3 when:
 
 ---
 
-*Enterprise Core Completion Plan v1.0 | S022 | 2026-05-10*
-*Governor directive: "enterprise level as far as the core is concerned"*
+---
+
+## ⚠ AI-DEFAULTS DECLARATION
+
+> **This plan contains sections derived from AI SaaS training knowledge, NOT from ratified CSPS decisions.**
+> The sections below marked `[AI-DEFAULT]` are proposals only — they require Governor + Opus ratification
+> before Sonnet executes them. Do NOT treat these as directives.
+
+| Section | Label | Status |
+|---|---|---|
+| Feature tier gating values (free/paid) | `[AI-DEFAULT]` | Q-11/Q-12 pending Governor |
+| Trial period = 30 days | `[AI-DEFAULT]` | Q-08 pending Governor |
+| Seat limits (free=1, trialing=5) | `[AI-DEFAULT]` | Q-13 pending Governor |
+| Role permission boundaries | `[AI-DEFAULT]` | Q-04 through Q-07 pending Governor |
+| Stripe dunning logic (payment.failed → trialing) | `[AI-DEFAULT]` | Q-10 pending Governor |
+| RLS via SET LOCAL session parameter | `[AI-DEFAULT]` | Q-14/Q-15 pending Governor |
+
+**What IS CSPS-ratified (safe to execute without further input):**
+- ZenStack fix (S022 proven broken — structural necessity)
+- Subscription status enforcement (cancelled enum ratified; enforcement gap is a bug)
+- Webhook gaps (user.deleted, org.deleted — structural gaps in existing webhook handler)
+- GDPR eraseUser() (legal requirement, methodology TBD — Q-16/Q-17 needed)
+
+---
+
+## §8 — DECISION REGISTER (Batch Ratification Queue)
+
+> **For Governor + Opus review.** All Q-* items below are pending ratification.
+> Once ratified, Sonnet executes Sessions 3-6 without stopping.
+
+### ZenStack Fix
+- **Q-01:** Fix approach: A (post-install copy script) | B (zenstack.config.ts) | C (generate from apps/)
+  - Sonnet recommendation: **A** (immediate fix) + VLT to resolve permanently later
+
+### Subscription Enforcement
+- **Q-02:** Cancelled tenant behavior: A (402 immediately) | B (7-day grace) | C (read-only redirect)
+  - Sonnet recommendation: **A**
+- **Q-03:** Check scope: A (all routes) | B (write routes only) | C (configurable per app)
+  - Sonnet recommendation: **B**
+
+### Role Permissions
+- **Q-04:** Project creation: A (any member) | B (admin+ only)
+  - Sonnet recommendation: **A** (MVP)
+- **Q-05:** Project archive: A (creator) | B (admin+) | C (any member)
+  - Sonnet recommendation: **B**
+- **Q-06:** Member invitation: A (admin+ only) | B (any member)
+  - Sonnet recommendation: **A**
+- **Q-07:** Task reassignment: A (admin+ OR creator) | B (any member)
+  - Sonnet recommendation: **B**
+
+### Trial Period
+- **Q-08:** Trial duration: A (14 days) | B (30 days) | C (no trial, free plan)
+  - Sonnet recommendation: **B**
+- **Q-09:** Trial trigger: A (2nd member joins) | B (org created)
+  - Sonnet recommendation: **A**
+- **Q-10:** Trial-to-paid: A (Stripe checkout prompt) | B (manual Governor emails)
+  - Sonnet recommendation: **A** with 7-day warning
+
+### Feature Tier Gating
+- **Q-11:** Free tier includes: Governor defines
+  - Sonnet proposal: solo use (1 seat) + unlimited tasks + read audit
+- **Q-12:** Paid only: Governor defines
+  - Sonnet proposal: team members + audit API + API access
+- **Q-13:** Free tier seat limit: A (1 solo) | B (3 small team) | C (unlimited members)
+  - Sonnet recommendation: **A**
+
+### Postgres RLS
+- **Q-14:** RLS mechanism: A (Supabase dashboard policies) | B (session parameter) | C (both)
+  - Sonnet recommendation: **A**
+- **Q-15:** RLS timing: A (Session 6 as planned) | B (Session 3 — NOW, since ZenStack bypassed)
+  - Sonnet recommendation: **B** — if ZenStack bypass persists, RLS is the only DB-level protection
+
+### GDPR
+- **Q-16:** PII scope: Governor confirms which fields (email, displayName, comments?)
+  - Sonnet proposal: email → anonymized hash, displayName → null, comment bodies → "[deleted]"
+- **Q-17:** Erasure authorization: A (self-service) | B (admin triggers) | C (staff only)
+  - Sonnet recommendation: **C** for MVP
+
+### Audit
+- **Q-18:** Audit log access: A (all members) | B (admin+ only)
+  - Sonnet recommendation: **B**
+- **Q-19:** Audit retention: A (forever) | B (90 days free / unlimited paid)
+  - Sonnet recommendation: **A** (MVP, AppendOnlyBase already immutable)
+
+---
+
+## §9 — COMPLETION AUDIT SERIES (ZF-Enforced)
+
+> Each session has a mandatory audit gate. Sonnet CANNOT declare a session complete
+> without passing the gate. Declaring complete without evidence = B_NOMINAL_ZF violation.
+
+### Session 3 Completion Gate
+
+**Pre-close pnpm verify:** exit_code=0 REQUIRED (not advisory)
+
+**Functional evidence — paste all 6 in chat:**
+```
+[S3-E1] ZenStack working:
+  edb.task.create with tenantId != auth().tenantId → DENIED (not silently filtered)
+  PASTE: error response from attempted cross-tenant write
+
+[S3-E2] Subscription enforcement:
+  POST /api/tasks with cancelled-status tenant → 402 { error: 'subscription_inactive' }
+  PASTE: curl response
+
+[S3-E3] Webhook user.deleted:
+  Delete user in Clerk → User.deletedAt set in Supabase
+  PASTE: Supabase row showing deletedAt timestamp
+
+[S3-E4] Webhook membership.deleted:
+  Remove member in Clerk → UserTenant row deleted in Supabase
+  PASTE: Supabase query showing row removed
+
+[S3-E5] GDPR erasure:
+  eraseUser() test → email replaced + AuditEvent written
+  PASTE: test output
+
+[S3-E6] Stripe subscription.cancelled handled:
+  subscriptionStatus = 'cancelled' set in Tenant row
+  PASTE: Supabase Tenant row after cancellation webhook
+```
+
+**CSPS alignment check (AI must self-declare):**
+- [ ] P-ARCH-007 (soft-delete only) honored in webhook user.deleted → using deletedAt not hard-delete
+- [ ] P-ARCH-008 (webhook-driven creation) — webhook handler in libs/integrations, not app code
+- [ ] B_COMPLETION_OVER_SHINY — scope limited to STEP 3a-3f only, no additions
+- [ ] ai_defaults_influence: none (all implemented items were ratified, not AI-invented)
+
+**ZF gate:** `node tools/zf-orchestrator.mjs --level 3`
+```
+Output MUST show: STATUS: ZF ACHIEVED ✅ — 0 blocking findings remain
+Cycle count is measurement not target
+```
+
+---
+
+### Session 4 Completion Gate
+
+**Functional evidence:**
+```
+[S4-E1] Role enforcement: member cannot archive a project (gets 403)
+  PASTE: API response
+
+[S4-E2] Seat limit: free tenant invitation of 2nd member → 402 seat limit error
+  PASTE: API response
+
+[S4-E3] Feature gate: free tenant accessing paid feature → 402 feature_not_available
+  PASTE: API response
+
+[S4-E4] Trial started: 2nd member joined free org → subscriptionStatus = 'trialing'
+  PASTE: Supabase Tenant row
+```
+
+**CSPS alignment check:**
+- [ ] ZenStack policies cite tenantId AND role — not just tenantId
+- [ ] All ratified Q-04/Q-05/Q-06/Q-07 decisions implemented as specified
+- [ ] No Q-* items implemented from AI-DEFAULT without Governor ratification
+
+**ZF gate:** `node tools/zf-orchestrator.mjs --level 3`
+
+---
+
+### Session 5 Completion Gate
+
+**Functional evidence:**
+```
+[S5-E1] All mutation types audited:
+  task.created ✅ (existing)
+  task.updated — PASTE: AuditEvent row showing status change
+  project.created — PASTE: AuditEvent row
+  member.invited — PASTE: AuditEvent row
+  member.removed — PASTE: AuditEvent row
+
+[S5-E2] Audit retrieval API (admin+ only):
+  GET /api/audit → returns AuditEvent array
+  GET /api/audit as non-admin → 403
+  PASTE: both responses
+```
+
+**CSPS alignment check:**
+- [ ] AuditEvent still uses AppendOnlyBase (no updatedAt added accidentally)
+- [ ] writeAuditEvent called consistently (no mutations skip audit)
+
+**ZF gate:** `node tools/zf-orchestrator.mjs --level 3`
+
+---
+
+### Session 6 Completion Gate (BEDROCK CLOSURE)
+
+**Functional evidence:**
+```
+[S6-E1] Postgres RLS active:
+  Direct Supabase SQL query without app.tenant_id set → 0 rows returned (not error)
+  PASTE: result
+
+[S6-E2] Cross-tenant protection at DB level:
+  SQL: SELECT * FROM "Task" -- no session variable set → 0 rows
+  PASTE: Supabase SQL result
+
+[S6-E3] ZenStack-integrated template:
+  Fork template → pnpm dev → enhance() works from session start (no bypass)
+  PASTE: server startup log showing no ZenStack error
+
+[S6-E4] Bedrock validator:
+  node tools/validators/validate-bedrock.mjs
+  Output: 22/22 items ✅ 0 blocking
+  PASTE: output
+```
+
+**CSPS alignment check:**
+- [ ] validate-bedrock.mjs exit_code=0
+- [ ] All 19 Q-* items resolved and matching ratified Governor decisions
+- [ ] ai_defaults_influence: none on all Session 6 implementations
+- [ ] No AI-invented values in feature gating, role gates, trial periods
+
+**ZF gate (DEEP — mandatory for bedrock closure):**
+```
+node tools/zf-orchestrator.mjs --level 3
+Output MUST show: ZF ACHIEVED ✅ — 0 blocking findings remain
+This is the BEDROCK ZF — platform is now enterprise-core-complete
+```
+
+**Final declaration format (AI uses this verbatim when Session 6 complete):**
+```
+ENTERPRISE CORE COMPLETE — S022 SESSION 6
+pnpm verify: exit_code=0
+bedrock: 22/22 ✅
+ZF deep: ACHIEVED — 0 blocking
+Evidence: [S6-E1] [S6-E2] [S6-E3] [S6-E4] all PASSED
+ai_defaults_influence: none (all Q-* items ratified before execution)
+Ready for: App #2 build — all fundamentals inherited automatically
+```
+
+---
+
+## §10 — AI-DEFAULTS NOTIFICATION — How This Plan Was Produced
+
+**For Opus review:** The sections flagged `[AI-DEFAULT]` above were generated from Sonnet's
+SaaS industry training (standard patterns for role gates, trial periods, feature gating).
+They are reasonable industry defaults but are NOT derived from CSPS Governor decisions.
+
+**What Opus should verify:**
+1. Are the proposed role permission boundaries (Q-04 through Q-07) appropriate for the CSPS
+   multi-app platform goal? (Sonnet defaulted to enterprise SaaS conventions.)
+2. Is 1 seat free tier (Q-13) the right graduation trigger, or should it be different given
+   the $1K MRR graduation thesis?
+3. Is Session 6 RLS timing correct, or should RLS be SESSION 3 priority given ZenStack bypass?
+   (Q-15 — this is the most consequential sequencing decision.)
+4. Are there gaps in the session plan that Sonnet missed due to its AI-defaults bias?
+
+---
+
+*Enterprise Core Completion Plan v1.1 | S022 | 2026-05-10*
+*Status: PENDING OPUS REVIEW + GOVERNOR RATIFICATION (19 decisions, Q-01 through Q-19)*
+*Do NOT execute Sessions 3-6 until ratification complete.*

@@ -447,6 +447,15 @@ const CYCLES = [
     },
   },
   {
+    // S022 — AI-defaults alignment: plans with ai_defaults_influence=dominant without ratification block
+    name: 'plan_ai_defaults_alignment',
+    command: 'node tools/validators/validate-plan-ai-defaults.mjs',
+    parse_output: (out) => {
+      const m = out.match(/scanned=(\d+)\s+flagged=(\d+)\s+ratified=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { scanned: Number(m[1]), flagged: Number(m[2]), ratified: Number(m[3]), blocking: Number(m[4]), advisory: Number(m[5]) } : {};
+    },
+  },
+  {
     // NEW S011 unified-intake L3 — source-class coverage: all 4 source classes have normalizers
     name: 'intake_source_class_coverage',
     command: 'node tools/validators/validate-source-class-coverage.mjs',

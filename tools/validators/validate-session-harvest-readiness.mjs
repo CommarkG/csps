@@ -95,14 +95,16 @@ async function main() {
     console.log('');
     console.log('  Per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION: significant sessions deserve extraction.');
     console.log(`\n[validate-session-harvest-readiness] session=${currentSession} validators=${validatorCount} extraction=MISSING status=HARVEST_READY`);
+    // PROMOTED FROM ADVISORY TO BLOCKING (S022 Governor directive: ZF within system not over it)
+    // Harvest missing = session cannot be declared done
+    process.exit(1);
   } else {
     console.log(`ℹ Session not yet mature for harvest`);
     console.log(`  validators_checked=${validatorCount} (threshold: ${VALIDATOR_THRESHOLD})`);
     console.log(`  Continue work. Harvest reminder fires when validators_checked ≥ ${VALIDATOR_THRESHOLD}.`);
     console.log(`\n[validate-session-harvest-readiness] session=${currentSession} validators=${validatorCount} threshold=${VALIDATOR_THRESHOLD} status=NOT_YET_MATURE`);
+    process.exit(0); // Not yet mature — advisory only
   }
-
-  process.exit(0); // Always advisory
 }
 
 main().catch(err => {

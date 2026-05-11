@@ -493,6 +493,13 @@ const CYCLES = [
       return m ? { checked: Number(m[1]), with_field: Number(m[2]), missing: Number(m[3]) } : {};
     },
   },
+  // Session C monitoring validators
+  { name: 'isolation_layers',            command: 'node tools/validators/validate-isolation-layers.mjs',            parse_output: (out) => { const m = out.match(/blocking=(\d+)\s+advisory=(\d+)/); return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {}; } },
+  { name: 'webhook_idempotency',         command: 'node tools/validators/validate-webhook-idempotency.mjs',         parse_output: (out) => { const m = out.match(/cases=(\d+)\s+advisory=(\d+)/); return m ? { cases: Number(m[1]), advisory: Number(m[2]) } : {}; } },
+  { name: 'solo_user_flow',              command: 'node tools/validators/validate-solo-user-flow.mjs',              parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisory=(\d+)/); return m ? { checked: Number(m[1]), advisory: Number(m[2]) } : {}; } },
+  { name: 'pe_situation_declared',       command: 'node tools/validators/validate-pe-situation-declared.mjs',       parse_output: (out) => { const m = out.match(/situation=(\S+)\s+registry=(\S+)/); return m ? { situation: m[1], registry: m[2] } : {}; } },
+  { name: 'gdpr_erasure_path',           command: 'node tools/validators/validate-gdpr-erasure-path.mjs',           parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisory=(\d+)/); return m ? { checked: Number(m[1]), advisory: Number(m[2]) } : {}; } },
+  { name: 'subscription_error_handling', command: 'node tools/validators/validate-subscription-error-handling.mjs', parse_output: (out) => { const m = out.match(/routes_checked=(\d+)\s+with_gate=(\d+)\s+advisory=(\d+)/); return m ? { routes_checked: Number(m[1]), with_gate: Number(m[2]), advisory: Number(m[3]) } : {}; } },
   {
     // NEW S011 unified-intake L3 — source-class coverage: all 4 source classes have normalizers
     name: 'intake_source_class_coverage',

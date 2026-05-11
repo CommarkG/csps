@@ -1,6 +1,9 @@
 // Clerk webhook — org/user lifecycle → CSPS entities
 // Uses @csps/integrations alias (VLT-S015-005) — kills relative path smell
 // Billing trigger (VLT-S014-005): 2nd UserTenant → Stripe subscription
+// solo_user_flow: manual — task-mgmt is a team app; users must create a Clerk org.
+//   Gap noted (GAP-A1): solo users hit "No organization yet" screen.
+//   Fix in App #2 or via Clerk onboarding: auto-create org on user.created.
 
 import { headers } from 'next/headers'
 import { Webhook } from 'svix'

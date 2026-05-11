@@ -118,6 +118,8 @@ const EXEMPT_PATH_GLOBS = [
   /tools[\/\\]templates[\/\\].*\.template\.md$/,
   /tools[\/\\]templates[\/\\]adr\.template\.md$/,
   /tools[\/\\]templates[\/\\]docs[\/\\]/,
+  // App template — scaffold files are developer-facing, not governed artifacts
+  /apps[\/\\]template[\/\\]/,
   // Clerk temporary files — auto-generated, no frontmatter expected
   /\.clerk[\/\\]/,
 ];

@@ -1,28 +1,30 @@
 # verify last run
 
-- ran_at: 2026-05-11T07:11:00.836Z
-- finished_at: 2026-05-11T07:11:19.443Z
+- ran_at: 2026-05-11T08:10:29.543Z
+- finished_at: 2026-05-11T08:11:02.263Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T07:11:00.836Z",
-    "finished_at": "2026-05-11T07:11:19.443Z",
+    "ran_at": "2026-05-11T08:10:29.543Z",
+    "finished_at": "2026-05-11T08:11:02.263Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "DEFERRED-WITH-REASON",
-        "skip_reason": "flag --skip-install"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 11.8,
+        "packages_resolved": null
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.8,
+        "duration_seconds": 1.9,
         "ts_errors": 0
       },
       {
@@ -112,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -170,7 +172,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -294,7 +296,7 @@
         "command": "node tools/validators/validate-catch-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "council_coverage",
@@ -646,7 +648,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 9.6
+        "duration_seconds": 11
       },
       {
         "name": "audit_runner_full_pass",

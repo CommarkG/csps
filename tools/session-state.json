@@ -58,7 +58,7 @@
   "session_mandate": {
     "primary": "APP_BUILD_MODE ACTIVE — Bedrock 22/22 complete (S022 Session 6, 2026-05-11). STRATEGIC_COMPLETION CLOSED. ZenStack enforce active + Postgres RLS active. Enterprise core done. Next: plan App #2 via PE-scored topic-plan.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — all decisions ratified, ready for Session 3 execution",
+    "blocking_on": "NONE — all sessions 0-D complete, schema page confirmed, App #2 ready",
     "situation": "APP_BUILD_MODE",
     "active_situation": "APP_BUILD_MODE",
     "opus_turn": "Turn 4 complete — see tools/council/opus-turn.md",

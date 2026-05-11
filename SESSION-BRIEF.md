@@ -9,7 +9,7 @@
 | **Current session** | S022 |
 | **Previous session** | S021 |
 | **Last updated** | today |
-| **Last commit** | 5c86e61 S024: STREAM 1+2+5 — protocol validators + P-META-022 Tier 1 + libs gate |
+| **Last commit** | 8359d69 S024+: B_BOUNDARY_ALIGNMENT_PROTOCOL — Phase 1 (Types E+B) |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

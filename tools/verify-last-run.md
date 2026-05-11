@@ -1,30 +1,28 @@
 # verify last run
 
-- ran_at: 2026-05-11T12:59:19.103Z
-- finished_at: 2026-05-11T12:59:49.053Z
+- ran_at: 2026-05-11T17:57:26.170Z
+- finished_at: 2026-05-11T17:57:40.159Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T12:59:19.103Z",
-    "finished_at": "2026-05-11T12:59:49.053Z",
+    "ran_at": "2026-05-11T17:57:26.170Z",
+    "finished_at": "2026-05-11T17:57:40.159Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 9.8,
-        "packages_resolved": null
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "flag --skip-install"
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -32,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.8,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -42,10 +40,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 311,
+        "scanned": 312,
         "errors": 0,
         "warnings": 5,
-        "exempt": 253
+        "exempt": 257
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -62,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -152,7 +150,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns_checked": 4,
+        "turns_checked": 6,
         "warnings": 0
       },
       {
@@ -172,7 +170,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -195,10 +193,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "assessed": 25,
-        "no_dev_surface": 25,
-        "no_user_value": 25,
-        "incomplete": 25
+        "assessed": 26,
+        "no_dev_surface": 26,
+        "no_user_value": 26,
+        "incomplete": 26
       },
       {
         "name": "update_backlog",
@@ -343,8 +341,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 77,
-        "with_status": 25,
+        "checked": 78,
+        "with_status": 26,
         "warnings": 0
       },
       {
@@ -576,7 +574,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 1,
+        "warnings": 2,
         "advisory": true
       },
       {
@@ -692,7 +690,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 10.3
+        "duration_seconds": 6.4
       },
       {
         "name": "audit_runner_full_pass",

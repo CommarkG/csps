@@ -228,7 +228,9 @@ Layer 4 — App Template Core:
   [x] @csps/integrations pattern
   [x] CRUD with AuditEvent (proven)
   [x] Live DB validation — pnpm db:push success, 5.15s, Supabase eu-central-1 — S018 COMPLETE
-  [ ] ZenStack-integrated template → VLT-S016-ZENSTACK
+  [x] ZenStack-integrated template → VLT-S022-ZENSTACK-GENERATE-PATH RESOLVED (S022 Session 6)
+      apps/task-mgmt/ has ZenStack enforce() active. root postinstall auto-copies .zenstack/ after install.
+      S3-E1 retrospective PASS: cross-tenant write denied by policy. Defense-in-depth: ORM + RLS.
 
 Layer 5 — Build Methodology Core:
   [x] gradual-build-plan template + plan-creation-protocol
@@ -237,10 +239,10 @@ Layer 5 — Build Methodology Core:
   [x] Chat State Snapshot — S016 COMPLETE
 ```
 
-**Root decisions missing: 0 — ZenStack INSTALLED + ACTIVE S017**
-**Items remaining deferred: 1 (ZenStack-integrated app template → S018 mandate)**
-**Items complete: 21/22 (95%) — 1 explicitly deferred with VLT tracking**
-**Items complete or explicitly tracked: 22/22 (100%)**
+**Root decisions missing: 0**
+**Items deferred: 0**
+**Items complete: 22/22 (100%) ✅ — BEDROCK CLOSED S022 Session 6**
+**STRATEGIC_COMPLETION exits. APP_BUILD_MODE activates.**
 
 ---
 

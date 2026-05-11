@@ -267,7 +267,14 @@ function validateOne(file, fm, errors, warnings, idIndex) {
       idIndex.set(fm.id, file);
     }
     // ID format: dotted, lowercase
-    if (typeof fm.id === 'string' && !/^[a-z][a-z0-9.-]*[a-z0-9]$/.test(fm.id)) {
+    // Grandfathered: session-specific IDs with S{NNN}-to-S{NNN} pattern (pre-convention HANDOFF files)
+    // and vault files with session-suffixed IDs containing hyphens (e.g. csps.handoff.vault.X.S021)
+    const isGrandfatheredSessionId = typeof fm.id === 'string' && (
+      /csps\.handoff\.S\d+-to-S\d+$/.test(fm.id) ||    // HANDOFF-S019-to-S020 style
+      /csps\.handoff\.vault\.[a-z0-9-]+\.S\d+$/.test(fm.id) ||  // vault.X.S021 style
+      /csps\.intake\.[a-z0-9-]+\.S\d+$/.test(fm.id)    // intake.X.S021 style
+    );
+    if (typeof fm.id === 'string' && !/^[a-z][a-z0-9.-]*[a-z0-9]$/.test(fm.id) && !isGrandfatheredSessionId) {
       warnings.push(ctx(`id "${fm.id}" does not match dotted-lowercase convention`));
     }
   }

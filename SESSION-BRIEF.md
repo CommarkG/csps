@@ -8,14 +8,14 @@
 |---|---|
 | **Current session** | S022 |
 | **Previous session** | S021 |
-| **Last updated** | 1 day(s) ago |
-| **Last commit** | f176e25 S022 COMPLETE: Schema page confirmed + session close |
+| **Last updated** | -1 day(s) ago |
+| **Last commit** | 970994c S022 SESSION CLOSE: Closing summary + HANDOFF + S023 brief + alignment fixes |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
 ## What S022 must do
 
-**APP_BUILD_MODE ACTIVE — Bedrock 22/22 complete (S022 Session 6, 2026-05-11). STRATEGIC_COMPLETION CLOSED. ZenStack enforce active + Postgres RLS active. Enterprise core done. Next: plan App #2 via PE-scored topic-plan.**
+**S023 — APP_BUILD_MODE. S022 fully closed (67 validators, bedrock 22/22, schema page live). Decide: App #2 domain (Business/Personal/Social/Knowledge) → create PE-scored topic-plan → fork apps/template/. See tools/council/S023-session-brief.md for full plan.**
 
 
 

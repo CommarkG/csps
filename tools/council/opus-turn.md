@@ -1,3 +1,188 @@
+# Opus Turn 5 — S023 Human-AI Consensus Protocol (Pre-Design Thinking)
+
+**Task:** Review opus-consensus-protocol-questions.md — 24 questions from 6 expert perspectives.
+Identify load-bearing questions. Assess: one protocol or three. Find minimum viable version.
+
+---
+
+## Part A — The 10 Load-Bearing Questions (Out of 24)
+
+The other 14 are design details that can be resolved once these 10 are answered.
+
+| Q# | Question | Why it gates everything else |
+|---|---|---|
+| 3.1-Q1 | Must consensus protocol pause even in a production emergency? | Defines whether exemptions exist — shapes the entire trigger architecture |
+| 3.1-Q3 | If Governor says "just figure it out" — has consensus been reached? | Defines whether AI autonomy is possible without documented iteration |
+| 3.2-Q2 | Does each audience need a different version? | Direct answer to "one protocol or three" |
+| 3.3-Q2 | Does consensus PRODUCE the sandbox spec, or does it precede it? | Determines sequencing — where in the workflow this sits |
+| 3.3-Q3 | New features only, or all changes including bugs? | Sets the trigger condition — determines overhead volume |
+| 3.4-Q1 | Does this redefine "consensus" in B_CONSENSUS_BEFORE_PROCEEDING? | If yes: constitutional change. Touches R1 contract. |
+| 3.4-Q4 | Is this step 0, or does it replace step 1 of plan creation protocol? | Determines integration into existing workflow |
+| 3.5-Q2 | What is the minimum viable version? | The design bottleneck |
+| 3.5-Q3 | Every session or new topic/initiative only? | Determines overhead frequency — makes or breaks adoption |
+| 3.6-Q1 | What prevents AI from performing consensus without depth? | The single hardest structural problem. If unsolved, the protocol is theater. |
+
+---
+
+## Part B — Governance Precedents
+
+Three frameworks map well to the 5-agreement flow:
+
+**Agile "Definition of Ready" (DoR)** — closest match.
+A story enters a sprint only when it has: accepted problem statement, acceptance criteria (done criteria), understood by team. Directly maps to agreements 2, 4, 5. Key learning: DoR applies to NEW stories entering a sprint — NOT to every conversation, NOT to continuation work. This is the answer to 3.5-Q3.
+
+**Scientific Method Hypothesis** — structural match.
+Background → hypothesis (the problem) → method options → prediction (goal) → measurable outcome (done). Almost identical to the 5 agreements. Key learning: the hypothesis is revisable mid-experiment if evidence demands it. The 5 agreements should not be treated as locked once stated.
+
+**Constitutional Preamble** — depth match.
+"We the people... in order to form a more perfect union..." states: background, problem, options considered, goal, and what "more perfect" looks like. Key learning: constitutional ratification applies to FOUNDATIONAL decisions. It doesn't happen before every legislative act. Different tiers of change get different depth of consensus.
+
+---
+
+## Part C — One Protocol or Three?
+
+**One protocol. Three tier configurations.**
+
+The 5 agreements are the same across all three domains. What differs is depth, trigger, and validation mechanism.
+
+```
+CORE (AI-Governor platform sessions):
+  Trigger:    New initiative / topic-plan creation / architectural decision
+  Depth:      All 5 agreements, documented in session notes or plan frontmatter
+  Validation: Governor explicitly restates the goal in their own words (see Part D)
+  Exemptions: Production emergency / continuation of established goal
+
+DEVELOPER (Building apps on CSPS):
+  Trigger:    Plan creation for new features — NOT bug fixes in established scope
+  Depth:      Agreements 2, 4, 5 minimum (problem, goal, done criteria)
+              Background assumed. Options optional.
+  Validation: Plan frontmatter fields: goal_statement + done_criteria
+  Exemptions: Changes within already-agreed plan scope / bug fixes
+
+EXTERNAL USERS (CSPS apps):
+  Trigger:    Threshold Wizard activation for new workflows
+  Depth:      Simplified — wizard guides through agreements 2, 4, 5 conversationally
+  Validation: Threshold Wizard wizard IS this protocol for external users
+  Protocol:   Already exists. Needs to be recognized as such, not rebuilt.
+```
+
+Sonnet's §4 framing is correct — The Threshold Wizard already handles Domain 3. The gap is Domains 1 and 2.
+
+---
+
+## Part D — The Critical Structural Finding (3.6-Q1)
+
+**How do we prevent AI from performing consensus without real depth?**
+
+This is the hardest question and the one most likely to cause the protocol to fail if unanswered.
+
+The failure mode: AI asks the 5 questions, Governor says "yes" to AI-drafted answers, AI proceeds. This is the same sycophancy/satisfaction-point pattern dressed as a consensus protocol. The protocol ran; genuine shared understanding was never achieved.
+
+**The structural requirement: Governor must author or restate the goal.**
+
+The 5 agreements are only valid if the Governor wrote them or explicitly restated them in their own words. AI may suggest, scaffold, or reflect. AI does NOT validate — AI cannot confirm that its suggestion captured what the Governor intended, because AI's satisfaction point fires when it produces a plausible answer.
+
+Implementation consequence: the goal_statement field in plan frontmatter must be Governor-authored or contain explicit "Governor confirmed verbatim: [text]" notation. An AI-generated goal_statement approved with "yes" is insufficient.
+
+This is the difference between:
+- AI-performed consensus: AI writes goal → Governor approves → goal may or may not reflect intent
+- Real consensus: Governor states goal → AI reflects back → Governor corrects until match
+
+The protocol must be structured as **AI reflecting, Governor deciding.** Not AI proposing, Governor ratifying.
+
+---
+
+## Part E — Answers to the 10 Load-Bearing Questions
+
+**3.1-Q1 (Production emergency):** Yes, even in production. The emergency bypass is: Governor says "emergency — proceeding without pre-consensus." That one sentence IS the minimum consensus (background = production failure, problem = restore service, goal = service up, done = monitoring green). The protocol becomes near-instant in emergencies; it doesn't disappear.
+
+**3.1-Q3 ("Just figure it out"):** This IS a valid signal — but it is consent to AI defaults, not consensus on specifics. When Governor says this, AI documents: "proceeding on AI defaults — goal_statement: [inferred] — review at milestone." The lack of explicit consensus is NOTED, not silently assumed as agreement.
+
+**3.2-Q2 (Same for all audiences):** One protocol, three configurations. The external user config (Threshold Wizard) already exists. Core and Developer configs need to be created.
+
+**3.3-Q2 (Does consensus produce sandbox?):** Sequential. Consensus → sandbox spec → ratification. Consensus answers "what are we doing and why." Sandbox spec answers "how will we simulate it." They are distinct phases, not substitutes.
+
+**3.3-Q3 (Trigger scope):** New features and architectural decisions. NOT bug fixes. NOT continuation of established goal. The trigger is: "is this the START of work on a problem that hasn't been formally agreed on?" If yes: protocol fires.
+
+**3.4-Q1 (Redefines B_CONSENSUS_BEFORE_PROCEEDING?):** It SPECIALIZES it. B_CONSENSUS_BEFORE_PROCEEDING says "no advancing without consensus." This protocol defines WHAT consensus means for the PLANNING gate specifically. No conflict — composition. The contract needs a cross-reference added, not a rewrite.
+
+**3.4-Q4 (Step 0 or replaces step 1?):** New step 0. It precedes all 5 existing plan creation protocol steps. Plan creation protocol steps are about HOW to write a plan. Step 0 is about WHETHER to write a plan and WHAT IT SHOULD ACHIEVE. These are different concerns.
+
+**3.5-Q2 (Minimum viable version):** Two plan frontmatter fields + a three-question pre-planning conversation pattern. Full details in Part F.
+
+**3.5-Q3 (Every session or new topic?):** New topic/initiative only. Once the goal is agreed and in the plan, continuation sessions inherit the consensus. Re-running the 5 agreements on continuation work is overhead without anti-drift value. The trigger: "has a goal_statement been documented for this work?" If yes: skip. If no: run protocol.
+
+**3.6-Q1 (Preventing performed consensus):** Governor must author or restate the goal. Details in Part D.
+
+---
+
+## Part F — Minimum Viable Version
+
+**Two additions. Nothing removed.**
+
+**Addition 1: Two fields in plan frontmatter (every new plan from S023+)**
+```yaml
+goal_statement: "[Governor-authored one sentence: what success looks like]"
+done_criteria:
+  - "[measurable criterion 1]"
+  - "[measurable criterion 2]"
+```
+These are REQUIRED for new plans. Empty = plan cannot be ratified.
+Validator: extend `validate-plan-zf-requirement.mjs` to also check these fields.
+
+**Addition 2: Three-question pre-planning conversation pattern**
+
+Before writing any new plan, AI asks exactly three questions:
+```
+Q1: "What specific problem are we solving? In one sentence."
+Q2: "What does success look like when this is done?"
+Q3: "How will we know it's done — what can we measure?"
+```
+
+Governor answers in their own words. AI reflects back ("I understand the goal as: [restatement]. Correct?"). Governor corrects until match. AI writes the goal_statement from the CORRECTED restatement, not from its own generation.
+
+This is the entire protocol for the Core domain. Three questions. Governor words. Reflect until match.
+
+For Developer domain: same two frontmatter fields, same three questions — but context allows quick answers ("fixing authentication latency → done when p95 < 200ms"). The protocol completes in 30 seconds for clear problems.
+
+**What this adds:** ~5 minutes per new initiative. Returns: no downstream plan that was built on a misunderstood goal.
+
+---
+
+## Part G — What Is NOT Needed
+
+The following questions do NOT need to be answered before designing the minimum viable version:
+
+- Who breaks the tie if AI and Governor disagree (3.6-Q4): Governor always wins. This is already ratified.
+- AI-to-AI subagent relationship (3.4-Q5): Subagents don't have independent goals. AAP + MUV handle them.
+- How non-technical users signal agreement (3.2-Q3): Threshold Wizard handles this already.
+- PE interaction (3.5-Q4): PE is about priority; consensus is about alignment. They compose without conflict — PE tells you WHAT to work on, consensus tells you WHAT "done" means for that work.
+
+---
+
+## RZF VERIFICATION
+Cycles run: 3 | Gaps surfaced: 2 | Critical gaps: 0
+Cycle 1: Did I miss anything?
+  Findings: 2 — (a) I didn't address whether 3.4-Q1 requires a B_CONSENSUS_BEFORE_PROCEEDING
+  contract amendment (answer: cross-reference, not rewrite — addressed in Part E), (b) I didn't
+  address whether goal_statement + done_criteria are the right names (they are — consistent
+  with existing platform vocabulary for Acceptance Criteria patterns).
+Cycle 2: Both addressed in Part E. 0 new findings.
+Cycle 3: 0 new findings.
+Status: ZF ACHIEVED
+
+---
+
+*Opus Turn 5 — S023 Consensus Protocol Pre-Design Thinking*
+*No implementation recommended. Minimum viable design specified in Part F.*
+*Governor: three things to ratify before Sonnet implements anything:*
+*  (1) Goal_statement + done_criteria fields in plans (Part F)*
+*  (2) Three-question pre-planning pattern (Part F)*
+*  (3) "Governor must author or restate the goal" rule (Part D)*
+*OPUS-1 | S023 | 2026-05-11*
+
+---
+
 # Opus Turn 1 — S022 Implementation Sequence
 
 **Topic:** Implementation sequence for Sessions 1-4

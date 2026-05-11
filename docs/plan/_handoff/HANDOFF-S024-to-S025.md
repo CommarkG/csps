@@ -8,7 +8,7 @@ lifecycle: production
 lifecycle_state: active
 tags:
   - domain:governance
-  - type:handoff
+  - type:doc
   - audience:ai-agent
   - maturity:stable
 session: S024

@@ -132,5 +132,47 @@ The Governor's trigger is not friction — it is governance. Each trigger is a c
 
 ---
 
+---
+
+## OPUS MODE (Formal Operating Protocol — Added S022)
+
+**OPUS MODE** is the standard protocol for Opus-to-Sonnet architectural handoff.
+It converts ad-hoc Opus review into a structured, repeatable format.
+
+### Three Modes
+
+| Mode | Opus produces | Sonnet does |
+|---|---|---|
+| `OPUS REVIEW` | Findings + gap list + risk assessment | Read findings, implement fixes |
+| `OPUS DECISION` | PCR table (Pros/Cons/Rec per decision) | Read Rec column after Governor ratifies |
+| `OPUS BRIEF` | Full implementation brief (8-part format) | Follow top to bottom, paste all evidence |
+
+### OPUS MODE BRIEF — 8-Part Format (always in this order)
+
+```
+Part A: Ratified Decision Register     (Q# table — source of truth for all values)
+Part B: Flexibility Architecture       (config files — all values here, nowhere else)
+Parts C-N: Session Specs               (pre-flight + steps + evidence gates per session)
+Part N+1: Immediate Mechanical Actions (what Sonnet does BEFORE any code)
+Part N+2: Flexibility Map              (feedback type → file → line to change)
+End: Governor's binding qualifiers     (runtime constraints applying to every step)
+```
+
+Template: `tools/council/opus-brief.template.md`
+
+### Sonnet Operating Rule
+
+Before starting any session:
+1. Check `tools/council/opus-turn.md` — if newer than `tools/session-state.json`, read it first
+2. If opus-turn.md contains an OPUS BRIEF, read it completely before doing anything else
+3. If opus-turn.md references a `sonnet-brief-*.md` file, that file IS the brief — read it
+
+### Activation
+
+Governor types `OPUS-[N]` in Opus tab → Opus declares mode + focal point → produces output to `opus-turn.md` → Governor pastes one-line trigger to Sonnet tab.
+
+---
+
 *Established: S021 | 2026-05-09*
+*OPUS MODE added: S022 | 2026-05-11*
 *Engraved in: PE + plan-creation-protocol.md*

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-11T01:35:54.564Z
-- finished_at: 2026-05-11T01:36:23.155Z
+- ran_at: 2026-05-11T02:05:45.216Z
+- finished_at: 2026-05-11T02:06:16.140Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T01:35:54.564Z",
-    "finished_at": "2026-05-11T01:36:23.155Z",
+    "ran_at": "2026-05-11T02:05:45.216Z",
+    "finished_at": "2026-05-11T02:06:16.140Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 10.3,
+        "duration_seconds": 10.7,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -42,9 +42,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 311,
+        "scanned": 313,
         "errors": 0,
-        "warnings": 30,
+        "warnings": 32,
         "exempt": 222
       },
       {
@@ -164,8 +164,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "issues": 1,
-        "advisory": 1,
+        "issues": 2,
+        "advisory": 2,
         "duplicates": 0
       },
       {
@@ -217,7 +217,7 @@
       {
         "name": "session_harvest_readiness",
         "command": "node tools/validators/validate-session-harvest-readiness.mjs",
-        "status": "HARVEST_READY",
+        "status": "HARVEST_DONE",
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
@@ -301,7 +301,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -370,7 +370,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 11,
+        "plans_checked": 12,
         "plans_with_open": 7,
         "total_open_items": 97
       },
@@ -398,7 +398,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 9,
+        "checked": 10,
         "grandfathered": 2,
         "errors": 0
       },
@@ -409,8 +409,8 @@
         "exit_code": 0,
         "duration_seconds": 0.2,
         "blocking": 0,
-        "advisory": 11,
-        "total_gaps": 11
+        "advisory": 12,
+        "total_gaps": 12
       },
       {
         "name": "plan_ai_defaults_alignment",
@@ -418,7 +418,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 16,
+        "scanned": 17,
         "flagged": 1,
         "ratified": 1,
         "blocking": 0,
@@ -457,7 +457,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 11,
+        "plans_checked": 12,
         "warnings": 0
       },
       {
@@ -510,9 +510,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 11,
-        "missing_harvest": 1,
-        "warnings": 1
+        "plans_checked": 12,
+        "missing_harvest": 2,
+        "warnings": 2
       },
       {
         "name": "execution_mode_declared",
@@ -520,7 +520,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 11,
+        "plans_checked": 12,
         "missing_mode": 0,
         "warnings": 0
       },
@@ -542,7 +542,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 11,
+        "plans_checked": 12,
         "stale_total": 10,
         "unverified": 10,
         "verified": 0,
@@ -554,7 +554,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 11,
+        "plans_checked": 12,
         "sections_checked": 7,
         "blocking": 0,
         "warnings": 0
@@ -564,7 +564,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 9.8
+        "duration_seconds": 11.3
       },
       {
         "name": "audit_runner_full_pass",

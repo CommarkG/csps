@@ -5,7 +5,7 @@
 
 | Slug | Cadence | Severity | What it checks |
 |---|---|---|---|
-| `frontmatter-completeness` | PR | error | Every artifact passes the Zod frontmatter schema. S021: council/governor-comments exempt. S022: VLT enums added, .clerk/ exempt, tools/council/ blanket exempt, grandfathered session IDs, ZF false positive fix. Session 0: template files exempt. Session C: apps/template/ exempt (developer-facing scaffold). |
+| `frontmatter-completeness` | PR | error | Every artifact passes the Zod frontmatter schema. S021: council/governor-comments exempt. S022: VLT enums added, .clerk/ exempt, tools/council/ blanket exempt, grandfathered session IDs, ZF false positive fix. Session 0: template files exempt. Session C: apps/template/ exempt. S023: sandbox lifecycle states exempt from next_review_at. New fields: simulation_status, intent_crystallized, threshold_route, ux_principle. |
 | `opus_turn_rzf` | per-session | advisory | NEW S022: ZF mechanical enforcement on Opus advisory output. Every substantive Opus turn in tools/council/opus-turn.md must have "## RZF VERIFICATION" section with cycles_run + ZF ACHIEVED evidence. Exempt: consensus turns + decision-only turns. Governor directive: "make ZF a mechanically enforced thing about your audits and about all of your activity." Enforcement: advisory now → blocking week-4 (K=2 promotion per B_STRUCTURAL_PREVENTION_DISCIPLINE). File: tools/validators/validate-opus-turn-rzf.mjs. Applies B_RZF to Opus's own activity — not just Sonnet's implementation. |
 | `file-size-ratchet` | PR | error | No diff makes file size worse on changed files |
 | `cognitive-complexity` | PR | error | Cognitive complexity ≤15 on changed functions (`sonarjs/cognitive-complexity`) |

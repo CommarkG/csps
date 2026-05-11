@@ -12,6 +12,127 @@
 
 ---
 
+## §SCOPE — READ THIS FIRST (80K Token Budget)
+
+**You have approximately 80,000 tokens remaining. You have not done chat close yet.**
+Chat close requires ~20-30K tokens (pnpm verify + closing summary + harvest + HANDOFF + git push).
+That leaves ~50-60K for implementation.
+
+**This session — Tier 1 (do all of these, ~35K tokens):**
+1. §1b: P-META-022 in principles.yaml
+2. §2: OD-007 in inner-AI-defaults
+3. §3a: plan-creation-protocol.md Step 0
+4. §7a: validate-intent-crystallized.mjs (create + wire to verify.mjs)
+5. §7d: audit-runner.md slug
+6. §ALIGNMENT-PRIORITY-1: B_CONSENSUS_BEFORE_PROCEEDING cross-reference
+7. §ALIGNMENT-PRIORITY-2: B_HUMBLE_EXECUTOR intent drift check (ZF-3)
+8. **Chat close** (mandatory — starts when Tier 1 is done)
+
+**Next session — Tier 2 (defer these):**
+- §4: human-intent-wizard.template.md
+- §5: gradual-build-plan.template.md
+- §6: B_HUMAN_INTENT_CRYSTALLIZATION full contract in behavioral-contracts.md
+- AGENTS.md hard NOs (protected path — needs diff + Governor confirmation)
+- §INHERITANCE: apps/template/ intent.md scaffold
+- §ALIGNMENT-PRIORITY-3 onwards
+
+**Chat close is non-negotiable. Do not sacrifice it for Tier 2 items.**
+
+---
+
+## §MULTIPLE-ZF-GATES — Four Verification Points (Wall-to-Wall)
+
+P-META-022 requires ZF at FOUR stages, not one. Define these in session notes and plan where each fires:
+
+```
+ZF-1: PRE-PLANNING (validate-intent-crystallized.mjs — IMPLEMENT THIS SESSION)
+  Evidence: goal_statement + done_criteria present + non-empty
+  Blocking: YES for S023+ plans
+
+ZF-2: STEP ALIGNMENT (future — Session B)
+  Evidence: alignment field per implementation step
+  Blocking: not yet
+
+ZF-3: MILESTONE INTENT (add to HUMBLE_EXECUTOR — IMPLEMENT THIS SESSION)
+  Evidence: intent drift check in closing summary INTENT-DRIFT block
+  Blocking: MANUAL review (AI flags, Governor decides)
+
+ZF-4: DELIVERY (future — Session C)
+  Evidence: done_criteria checklist ✅/⏳/❌ at plan completion
+  Blocking: not yet
+```
+
+When implementing §7a (validate-intent-crystallized.mjs), add this comment at the top:
+```javascript
+// ZF-1 of 4: PRE-PLANNING CRYSTALLIZATION GATE
+// ZF-2 (step alignment) deferred Session B
+// ZF-3 (milestone intent) in closing-summary-template.md §INTENT-DRIFT
+// ZF-4 (delivery done-criteria) deferred Session C
+// See: docs/plan/pillar-0-governance/human-intent-crystallization.md §10
+```
+
+---
+
+## §ALIGNMENT — Existing Elements to Update This Session
+
+Do these alongside Tier 1 (small edits, high value):
+
+**ALIGNMENT-PRIORITY-1: B_CONSENSUS_BEFORE_PROCEEDING**
+In `docs/plan/pillar-0-governance/behavioral-contracts.md`,
+find the `## B_CONSENSUS_BEFORE_PROCEEDING` section and add to its Cross-references:
+```
+**Cross-references:** P-META-022 (Human Intent Crystallization — defines WHAT consensus
+means: it is confirmed Layer 2-3 intent, not just agreement on Layer 1 expression)
+```
+
+**ALIGNMENT-PRIORITY-2: B_HUMBLE_EXECUTOR — add ZF-3 intent drift check**
+In `docs/plan/_handoff/VAULT/closing-summary-template.md`,
+find the MILESTONE ASSESSMENT block and add:
+```
+INTENT DRIFT CHECK (ZF-3 — P-META-022):
+  goal_statement (original):  [from plan frontmatter]
+  what was produced:          [one sentence]
+  drift: YES / NO
+  if YES: VLT-S{NNN}-INTENT-DRIFT raised / approved delta documented
+```
+
+**ALIGNMENT-PRIORITY-3 (defer to next session):**
+- B_ASK_WHEN_FILLING_GAPS cross-reference
+- B_AUTONOMOUS_BATCH_WITH_PREFLIGHT Q-CRYSTALLIZED gate
+- csps-platform-dna.md Element 15
+- B_INTENT_CRYSTALLIZATION deprecation note
+
+---
+
+## §INHERITANCE — How P-META-022 Reaches Everything Created
+
+**What makes this inherited (not just documented):**
+
+1. **validate-intent-crystallized.mjs** — blocks plans without goal_statement. Automatic.
+2. **plan-creation-protocol.md Step 0** — fires before any plan writing. Mandatory.
+3. **Inner-AI-defaults OD-007** — overrides act-on-first-expression. Active in every session.
+4. **Closing-summary intent drift check** — ZF-3 at every milestone. Self-checking.
+
+**What makes this reach App #2-30 (Tier 2):**
+5. `apps/template/_meta/intent.md` scaffold — every forked app starts with a crystallization record
+6. App-level goal_statement in the app's plan inherits down to all feature plans
+
+**The inheritance chain:**
+```
+Platform P-META-022 principle
+  → Session-open protocol (fires at new topic)
+    → plan-creation-protocol Step 0 (crystallize before planning)
+      → plan frontmatter goal_statement + done_criteria
+        → validate-intent-crystallized.mjs (enforces)
+          → milestone intent drift check (ZF-3)
+            → done-criteria delivery check (ZF-4, future)
+```
+
+Every app built inherits this chain through the plan lifecycle.
+No app can be built without a crystallized intent at its root.
+
+---
+
 ## §0 — WHAT YOU ARE IMPLEMENTING
 
 **One principle: P-META-022 Human Intent Crystallization**

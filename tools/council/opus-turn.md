@@ -80,14 +80,53 @@ Cycle 1: Did I miss anything in the 7 surfaces?
   already. No update needed; needs a cross-reference added.
 Cycle 2: Both resolved: template design is correct; cross-reference to Threshold Wizard
   is in the canonical doc §5 and §8.
-Cycle 3: 0 new findings.
+Cycle 3: Scope issue — 80K token constraint means not all 7 surfaces fit this session.
+  Finding: brief needs Tier 1/Tier 2 split or Sonnet will sacrifice chat close.
+Cycle 4: Tier 1/Tier 2 split added. ZF-4 gates defined. Inheritance chain specified.
+  0 new findings.
 Status: ZF ACHIEVED
+
+## ADDENDUM — Scope + Multiple ZF Gates + Inheritance (Governor directive refinement)
+
+**Multiple ZF Gates — 4 levels required, not 1:**
+
+| Gate | When fires | Evidence required | Status |
+|---|---|---|---|
+| ZF-1 Pre-planning | Before any plan writing | goal_statement + done_criteria | BLOCKING — implement now |
+| ZF-2 Step alignment | Each implementation step | alignment field per step | Deferred Session B |
+| ZF-3 Milestone intent | Every closed-circle milestone | Intent drift check in closing summary | Add to template now |
+| ZF-4 Delivery | Plan completion | done_criteria ✅/⏳/❌ per criterion | Deferred Session C |
+
+**ZF-1 is the load-bearing gate.** Without it, ZF-2/3/4 have nothing to verify against.
+
+**Inheritance chain:**
+```
+P-META-022 principle
+  → OD-007 override (every session, new topic)
+    → plan-creation-protocol Step 0 (mandatory)
+      → goal_statement + done_criteria in frontmatter (ZF-1)
+        → closing-summary intent drift check (ZF-3)
+          → apps/template/_meta/intent.md (Tier 2 — every app)
+```
+
+**Existing elements priority alignment:**
+1. B_CONSENSUS_BEFORE_PROCEEDING — add P-META-022 cross-ref this session
+2. B_HUMBLE_EXECUTOR — add ZF-3 intent drift check this session
+3. B_AUTONOMOUS_BATCH_WITH_PREFLIGHT Q-CRYSTALLIZED gate — next session
+4. csps-platform-dna.md Element 15 — next session
+5. B_INTENT_CRYSTALLIZATION deprecation note — next session
+
+**Sonnet scope (80K tokens, chat close required):**
+Tier 1 this session: principles.yaml + OD-007 + plan-creation-protocol Step 0 +
+validate-intent-crystallized.mjs + B_CONSENSUS_BEFORE_PROCEEDING xref + ZF-3 in template + chat close
+Tier 2 next session: wizard template + gradual-build-plan + full B_* contract + AGENTS.md + app template
 
 ---
 
 *Opus Turn 6 — P-META-022 Human Intent Crystallization — 7-surface constitutional engraving*
-*Governor: the canonical document is at docs/plan/pillar-0-governance/human-intent-crystallization.md*
-*Sonnet: read tools/council/sonnet-intent-crystallization-brief.md for all 7 implementation tasks*
+*Addendum: 4 ZF gates, inheritance chain, Tier 1/Tier 2 scope split, existing elements priority*
+*Governor: canonical doc at docs/plan/pillar-0-governance/human-intent-crystallization.md §10-§12*
+*Sonnet: read tools/council/sonnet-intent-crystallization-brief.md §SCOPE first — budget is tight*
 *OPUS-1 | S023 | 2026-05-11*
 
 ---

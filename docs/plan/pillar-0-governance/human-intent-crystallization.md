@@ -274,7 +274,110 @@ This is not a governance artifact. It is the platform's reason for existing.
 
 ---
 
+---
+
+## §10 — MULTIPLE ZF GATES (Wall-to-Wall Verification)
+
+A single "ZF ACHIEVED" at the end is insufficient. Intent can drift at any point in the
+lifecycle. There must be a ZF gate at every stage where drift can enter.
+
+```
+ZF-1: PRE-PLANNING CRYSTALLIZATION GATE
+  Question: Was intent crystallized before planning began?
+  Evidence: goal_statement (human-authored) + done_criteria (measurable list)
+  When:     Before any plan section is written
+  Validator: validate-intent-crystallized.mjs (ACTIVE from S023)
+  Status:   BLOCKING for S023+ plans
+
+ZF-2: STEP ALIGNMENT GATE
+  Question: Does each implementation step serve the crystallized goal?
+  Evidence: Each step includes: "alignment: [how this step advances goal_statement]"
+  When:     At the start of each implementation step
+  Validator: validate-step-crystallization-alignment.mjs (future — Session B)
+  Status:   ADVISORY initially
+
+ZF-3: MILESTONE INTENT GATE
+  Question: Does the milestone output match the original Layer 3 need?
+  Evidence: HUMBLE_EXECUTOR intent drift check:
+            original goal_statement vs. what was actually built
+  When:     At every closed-circle milestone
+  Validator: closing-summary §INTENT-DRIFT block (ACTIVE — added to template)
+  Status:   MANUAL now, automated Session C
+
+ZF-4: DELIVERY GATE (plan completion)
+  Question: Is each done_criterion measurably met?
+  Evidence: done_criteria checklist with ✅/⏳/❌ per criterion
+  When:     At session close / plan declared COMPLETE
+  Validator: validate-done-criteria-met.mjs (future — Session C)
+  Status:   MANUAL now
+```
+
+**ZF-1 is the most critical.** If ZF-1 passes, ZF-2/3/4 are easier to satisfy.
+If ZF-1 is skipped, no amount of ZF-2/3/4 can recover from a misunderstood goal.
+
+---
+
+## §11 — INHERITANCE MECHANISM
+
+P-META-022 must be inherited by every artifact created on CSPS — not just acknowledged in documentation.
+
+**Inheritance Path 1: Every new app (via template)**
+`apps/template/` will include a `_meta/intent.md` file — a crystallization record for the app itself:
+```markdown
+# App Intent Record
+goal_statement: "[why this app exists — what need it serves]"
+done_criteria:
+  - "[what success looks like for this app]"
+crystallized_at: "[session when Governor defined this]"
+```
+When a developer forks the template, they fill this in BEFORE writing any domain code.
+The app-level crystallization record is the Layer 3 anchor for all feature decisions.
+
+**Inheritance Path 2: Every new plan (via plan-creation-protocol Step 0)**
+Step 0 fires before any plan is written. Goal_statement and done_criteria are in frontmatter.
+`validate-intent-crystallized.mjs` blocks plans without them.
+
+**Inheritance Path 3: Every feature in every app (via plan ZF-1)**
+The feature spec inherits the app's goal_statement context.
+Feature done_criteria must connect to the app's Layer 3 need.
+
+**Inheritance Path 4: Every AI interaction (via inner-AI-defaults OD-007)**
+The `act-on-first-expression` override fires at every new topic, initiative, or plan.
+AI cannot proceed to action without probing Layer 2-3.
+
+**What inheritance guarantees:**
+Every app built on CSPS, at every layer from the platform to the feature level,
+carries an explicit record of WHY it was built and WHAT "done" means.
+Users of CSPS apps get help understanding their needs — automatically inherited.
+
+---
+
+## §12 — EXISTING ELEMENTS ALIGNMENT
+
+These existing platform elements must be updated with P-META-022 cross-references:
+
+| Existing artifact | Current state | Required update |
+|---|---|---|
+| B_INTENT_CRYSTALLIZATION | Narrow procedural contract | Add: "See B_HUMAN_INTENT_CRYSTALLIZATION for constitutional depth. This contract is superseded by P-META-022." |
+| B_CONSENSUS_BEFORE_PROCEEDING | No P-META-022 reference | Add cross-reference: "Consensus as defined by P-META-022 = confirmed Layer 2-3 intent" |
+| B_ASK_WHEN_FILLING_GAPS | Addresses under-specified input | Add: "4-condition gate is the operational layer; P-META-022 is the governing philosophy" |
+| B_HUMBLE_EXECUTOR | Milestone protocol | Add intent drift check (ZF-3) to milestone format |
+| B_AUTONOMOUS_BATCH_WITH_PREFLIGHT | Pre-flight format | Add Q-CRYSTALLIZED: "Is goal_statement present and human-authored?" to Q-GATE list |
+| csps-platform-dna.md | 13 DNA elements | Element 0 or add Element 15: Human Intent Crystallization |
+| gradual-build-plan.template.md | No intent fields | Add goal_statement + done_criteria to frontmatter |
+| Threshold Wizard | Already crystallizes for external users | Add explicit P-META-022 declaration: "This wizard implements P-META-022 for external users" |
+
+**Priority order for updates:**
+1. B_CONSENSUS_BEFORE_PROCEEDING cross-reference (touches R1 contract — do first)
+2. B_HUMBLE_EXECUTOR intent drift check (ZF-3 gate — high value)
+3. B_AUTONOMOUS_BATCH_WITH_PREFLIGHT Q-GATE (immediate enforcement point)
+4. csps-platform-dna.md
+5. All others in subsequent sessions
+
+---
+
 *Human Intent Crystallization — P-META-022*
 *Constitutional tier — affects all human-AI interaction in CSPS*
 *Governor directive S023: "save this in multiple places"*
+*Sections §10-§12 added S023: Multiple ZF Gates + Inheritance + Existing Alignment*
 *S023 | 2026-05-11*

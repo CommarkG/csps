@@ -283,11 +283,12 @@ sonnet_p2:
     verification: "P-ARCH-008 AuditEvent citation appears in output. pnpm verify: exit_code=0."
 
   - id: UPDATE-010
-    description: "Add rigidity_level field to all 52 behavioral contracts (after OPUS-001)"
+    description: "Add rigidity_level column to ai-behavior-spine.md discipline matrix (52 rows)"
     who: sonnet
     priority: P2
-    status: blocked
-    blocked_by: ["OPUS-001"]
+    status: pending
+    blocked_by: []
+    note: "OPUS-001 DONE (Turn 2 output in tools/council/opus-turn.md). Approach: add column to ai-behavior-spine.md matrix + add closed enum to frontmatter-closed-enums.md. NOT inline per-contract frontmatter."
     context: >
       Once Opus classifies all contracts as R1-R5, Sonnet adds the rigidity_level
       field to each contract in behavioral-contracts.md. R2-R4 contracts then

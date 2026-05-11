@@ -118,21 +118,27 @@ AI asks: "Is this an accurate record?" Human confirms → proceed to Step 0b.
 ### ITEM 3: closing-summary-template.md — Add ZF-3 Intent Drift Check
 
 **File:** `docs/plan/_handoff/VAULT/closing-summary-template.md`
-**Find:** The MILESTONE ASSESSMENT block (search for "MILESTONE ASSESSMENT")
-**Add inside it, after "ASSUMPTION CHECK:" block:**
+**Find:** Line with `### §10.0q SAP Abbreviated` (search: `§10.0q`)
+**Add a NEW §10.0r section AFTER the entire §10.0q block, before `### §10.1 Stewardship review`:**
 
 ```markdown
-INTENT DRIFT CHECK (ZF-3 — P-META-022):
-  goal_statement (original): [from plan frontmatter — paste verbatim]
-  what was produced:         [one sentence description]
+### §10.0r Intent Drift Check (P-META-022 ZF-3 — added S023)
+
+Before declaring this session DONE, verify intent did not drift from the original goal:
+
+  goal_statement (from plan frontmatter — paste verbatim):
+  what was actually produced (one sentence):
   drift: YES / NO / PARTIAL
   if YES or PARTIAL:
     delta: [what drifted]
-    approved (VLT): yes / no
+    approved drift (VLT): yes / no
     if unapproved: VLT-S{NNN}-INTENT-DRIFT-{slug} raised
+  if NO: ✅ Intent preserved — goal_statement matched delivery
 ```
 
-**Verify:** `grep -n "INTENT DRIFT CHECK\|ZF-3" docs/plan/_handoff/VAULT/closing-summary-template.md` — must appear.
+**CAUTION:** "MILESTONE ASSESSMENT" does NOT exist in closing-summary-template.md — do not search for it here. That text lives in behavioral-contracts.md (B_HUMBLE_EXECUTOR). In this file: add §10.0r as a new section after §10.0q.
+
+**Verify:** `grep -n "§10.0r\|Intent Drift Check" docs/plan/_handoff/VAULT/closing-summary-template.md` — must appear.
 
 ---
 

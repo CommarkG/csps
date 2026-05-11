@@ -137,9 +137,9 @@ The platform's council:
 **Enterprise target:** Every plan has goal_statement (human-authored). Every milestone has ZF-3 intent drift check. ZF-1 blocks S023+ plans without crystallized intent. ZF-4 delivery gate checks done_criteria. AI-to-AI (Opus→Sonnet) uses INTENT ABSORBED protocol.
 
 **Sessions:**
-- **S024 Tier 1:** Items 1-8 + 11 from p-meta-022-alignment-plan.md (principles.yaml + plan-creation-protocol Step 0a + ZF-3 in closing template + B_CONSENSUS cross-ref + B_HUMBLE_EXECUTOR ZF-3 + DNA Element 15 + OD-007 + AI-to-AI canonical section)
-- **S025 Tier 2:** Items 12-16 (wizard template, gradual-build-plan template, B_INTENT_CRYSTALLIZATION upgrade, ai-behavior-spine row, B_AUTONOMOUS_BATCH Q-CRYSTALLIZED)
-- **S027:** ZF-4 delivery gate (validate-done-criteria-met.mjs)
+- **S024 Tier 1:** Items 1-8 + 11 from p-meta-022-alignment-plan.md (principles.yaml + plan-creation-protocol Step 0a + ZF-3 in closing template §10.0r + B_CONSENSUS cross-ref + B_HUMBLE_EXECUTOR ZF-3 + DNA Element 15 + OD-007 + AI-to-AI canonical section)
+- **S025 Tier 2:** Items 12-16 (wizard template, gradual-build-plan template, B_INTENT_CRYSTALLIZATION upgrade, ai-behavior-spine row, B_AUTONOMOUS_BATCH Q-CRYSTALLIZED) + **UPDATE-010** (add rigidity_level column to ai-behavior-spine.md + closed enum to frontmatter-closed-enums.md — OPUS-001 is DONE, classification in opus-turn.md Turn 2)
+- **S026:** **UPDATE-011** (AGENTS.md R1-only refactor — R2-R4 contracts move to CDAB layers; AGENTS.md 200 lines → ~60 lines) + ZF-4 delivery gate (validate-done-criteria-met.mjs)
 
 **Foundation gate:** Tier 1 (S024) complete before App #2 begins.
 

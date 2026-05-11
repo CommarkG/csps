@@ -56,7 +56,7 @@
     }
   },
   "session_mandate": {
-    "primary": "STRATEGIC_COMPLETION active — Sessions 3-6 enterprise core closure. All 20 decisions ratified (Q-01–Q-20). Flexibility doctrine: all values in libs/config/, nothing hardcoded. Next: Part G done → Part B (create libs/config/subscription.config.ts + libs/config/roles.config.ts) → Part C (Session 3 implementation). See tools/council/opus-turn.md Turn 4.",
+    "primary": "APP_BUILD_MODE ACTIVE — Bedrock 22/22 complete (S022 Session 6, 2026-05-11). STRATEGIC_COMPLETION CLOSED. ZenStack enforce active + Postgres RLS active. Enterprise core done. Next: plan App #2 via PE-scored topic-plan.",
     "model_tier": "STANDARD_BUILD",
     "blocking_on": "NONE — all decisions ratified, ready for Session 3 execution",
     "situation": "STRATEGIC_COMPLETION",

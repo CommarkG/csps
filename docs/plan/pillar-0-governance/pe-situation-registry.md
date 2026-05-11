@@ -79,7 +79,7 @@ the foundation exit gate passes. PE_SCORE of any APP_LAYER item = 0 (multiplicat
 ---
 
 ### SITUATION-002: STRATEGIC_COMPLETION
-**Status:** ACTIVE (S022, declared by Governor 2026-05-10)
+**Status:** CLOSED (S022 Session 6 complete — 2026-05-11. All 6 sessions done. Bedrock 22/22. ZenStack enforce active. RLS active.)
 **Declared:** S022 turn "enterprise level as far as the core is concerned"
 
 **Definition:**
@@ -126,7 +126,7 @@ enterprise-core-completion-plan.md §9 all evidence blocks PASTED
 ---
 
 ### SITUATION-003: APP_BUILD_MODE
-**Status:** PENDING (activates after STRATEGIC_COMPLETION exits)
+**Status:** ACTIVE (S022 — activates 2026-05-11. Bedrock 22/22 confirmed. APP_BUILD_MODE governs all future app builds.)
 
 **Definition:**
 Foundation and enterprise core are complete. Platform is in recurring app-building

@@ -69,9 +69,67 @@ fi
 # If no session-close signal, exit silently
 [ "$CLOSE_DETECTED" = "false" ] && exit 0
 
-# INJECT the §10 closing protocol requirements
+# ─── WITHIN THE SYSTEM: Actually run ZF deep + harvest check ───────────────
+# This is not a reminder. This IS the enforcement.
+
+ZF_DEEP_STATUS="NOT_RUN"
+ZF_DEEP_OUTPUT=""
+ZF_DEEP_EXIT=0
+
+# Run ZF deep orchestrator (level 3) — this IS the mechanical gate
+ZF_DEEP_OUTPUT=$(node "${REPO_ROOT}/tools/zf-orchestrator.mjs" --level 3 2>&1) || ZF_DEEP_EXIT=$?
+
+if echo "$ZF_DEEP_OUTPUT" | grep -q "ZF ACHIEVED"; then
+  ZF_DEEP_STATUS="ACHIEVED"
+  # Update tracker
+  node -e "
+const fs=require('fs'),path=require('path');
+const f=path.join('${REPO_ROOT}','tools/zf-session-tracker.json');
+try{
+  const d=JSON.parse(fs.readFileSync(f,'utf8'));
+  d.zf_deep_runs_this_session=(d.zf_deep_runs_this_session||0)+1;
+  d.zf_deep_last_run_at=new Date().toISOString();
+  d.zf_deep_last_status='ZF_ACHIEVED';
+  fs.writeFileSync(f,JSON.stringify(d,null,2));
+}catch(e){}
+" 2>/dev/null || true
+else
+  ZF_DEEP_STATUS="BLOCKING_FOUND"
+fi
+
+# Check harvest readiness
+HARVEST_STATUS="UNKNOWN"
+HARVEST_OUTPUT=$(node "${REPO_ROOT}/tools/validators/validate-session-harvest-readiness.mjs" 2>&1) || true
+if echo "$HARVEST_OUTPUT" | grep -q "HARVEST_DONE"; then
+  HARVEST_STATUS="DONE"
+  node -e "
+const fs=require('fs'),path=require('path');
+const f=path.join('${REPO_ROOT}','tools/zf-session-tracker.json');
+try{
+  const d=JSON.parse(fs.readFileSync(f,'utf8'));
+  d.harvest_done_this_session=true;
+  d.harvest_done_at=new Date().toISOString();
+  fs.writeFileSync(f,JSON.stringify(d,null,2));
+}catch(e){}
+" 2>/dev/null || true
+else
+  HARVEST_STATUS="MISSING"
+fi
+
+# BLOCK if ZF deep found blocking items OR harvest missing
+if [ "$ZF_DEEP_STATUS" = "BLOCKING_FOUND" ] || [ "$HARVEST_STATUS" = "MISSING" ]; then
+  ZF_SUMMARY=$(echo "$ZF_DEEP_OUTPUT" | tail -15 | tr '\n' '|' || echo "see output")
+  printf '{
+    "systemMessage": "[SESSION-CLOSE-GATE] ⛔ CLOSE BLOCKED: %s\n\nZF DEEP STATUS: %s\nHARVEST STATUS: %s\n\nZF output (last 15 lines): %s\n\nFIX REQUIRED:\n  ZF: Resolve all BLOCKING findings, then re-run: node tools/zf-orchestrator.mjs --level 3\n  HARVEST: Create session-S<NNN>-extraction.md first\n\nPer INS-S022-003: These are NOT reminders. This hook runs ZF deep automatically.\nThe satisfaction point at pnpm-verify-pass is overridden by this gate.",
+    "continue": false,
+    "stopReason": "Session close blocked: ZF=%s, Harvest=%s"
+  }' "$CLOSE_REASON" "$ZF_DEEP_STATUS" "$HARVEST_STATUS" "$ZF_SUMMARY" "$ZF_DEEP_STATUS" "$HARVEST_STATUS"
+  exit 1
+fi
+
+# ZF ACHIEVED + HARVEST DONE → surface closing protocol
 printf '{
-  "systemMessage": "[SESSION-CLOSE-GATE] Close signal detected: %s\n\nCLOSING PROTOCOL REQUIRED (per governance-session skill + protocols.md §10):\n\nWas the governance-session skill invoked for close? If NOT, invoke it now:\n  /governance-session (close S<NNN>)\n\nMINIMUM REQUIRED ARTIFACTS (invoke skill to get exact format):\n  1. docs/plan/_handoff/VAULT/governor-prompts/S<NNN>.md\n  2. docs/plan/_handoff/VAULT/closing-summary-S<NNN>.md (all §10 sections)\n  3. docs/plan/_handoff/HANDOFF-S<NNN>-to-S<NNN+1>.md (Zone A/B/C)\n\nMINIMUM §10 SECTIONS:\n  §10.0 ZF orchestrator evidence (pnpm zf:deep + tracker)\n  §10.0e Governor-prompts summary\n  §10.0f HPFA 7-check walk\n  §10.0j Enhancement proposals\n  §10.0m Session extraction artifact\n  §17 Two-sided attestation\n\nPer B_PROTOCOL_LITERAL_EXECUTION: freestyle closes violate governance integrity.\nThe protocol exists because ad-hoc closes lose critical context every session."
+  "systemMessage": "[SESSION-CLOSE-GATE] ✅ ZF ACHIEVED + HARVEST DONE\nClose signal: %s\n\nNOW complete the §10 closing protocol:\n  1. Paste ZF output (above) into §10.0 of closing-summary\n  2. Run governance-session skill: /governance-session close S<NNN>\n  3. Write closing-summary + HANDOFF artifacts\n  4. git push before handoff (B_ZERO_LAPTOP_DEPENDENCY)\n\nThe ZF deep cycle ran automatically. Paste its output verbatim."
 }' "$CLOSE_REASON"
 
 exit 0

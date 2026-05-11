@@ -220,7 +220,9 @@ functional capability decisions.
 ### §4.2 CCG Scoring Formula
 
 ```
-CCG_SCORE = (PREVALENCE × 0.40) + (COST_OF_NOT_SHARING × 0.35) + (INTERFACE_STABILITY × 0.25)
+CCG_SCORE = (PREVALENCE × 0.35) + (COST_OF_NOT_SHARING × 0.35) + (INTERFACE_STABILITY × 0.30)
+[Revised per Opus Turn — Stability increased from 0.25 to 0.30, Prevalence decreased from 0.40 to 0.35]
+[Rationale: premature sealing of unstable interfaces is worse than low prevalence]
 
 Where:
   PREVALENCE: % of the 30 planned CSPS apps that will need this (1-10)
@@ -631,7 +633,56 @@ Phase 1 ready:
 
 ---
 
-*CSPS Core Primitives Architecture v1.0 | S022 | 2026-05-11*
-*For Opus review. No implementation until Phase 0 complete.*
+---
+
+## §12 — OPUS COUNCIL VERDICT (S022)
+
+**Full feedback:** `tools/council/feedback-core-primitives-S022.md`
+
+**Verdict:** CONDITIONAL SEAL — Phase 0 proceeds; Phase 1 blocked on 5 conditions.
+
+**Phase 0: APPROVED** — CCG gate + registry + DNA Element 14 documentation proceed now.
+
+**Phase 1: CONDITIONAL on all 5 conditions:**
+
+```
+CONDITION 1: Revise CCG formula (DONE — Prevalence 35%, Cost 35%, Stability 30%)
+  Re-scored: File Storage → 5.75 (DEVELOPER LAYER, not CORE)
+  Calendar: 9.25 → 9.08 (still CORE), Notifications: 8.75 → 8.6 (still CORE)
+
+CONDITION 2: Calendar Phase 1 = Gregorian-only + extensibility design
+  Phase 1 interface: CalendarSystemId = 'gregorian' only
+  Holiday awareness: defer to Phase 2 ('none' is only valid option in Phase 1)
+  RecurrenceRule: REMOVED from Phase 1 (unbounded array risk)
+  Multi-calendar: Phase 2 after 2+ apps demonstrate need
+
+CONDITION 3: NotificationService L1 must include
+  idempotencyKey?: string in send() options
+  sendBatch(): max 100 recipients (documented constraint)
+  GDPR hook: erasureNotifications(userId) OR design note on eraseUser() extension
+  Note (Security reviewer): GDPR Article 17 — notification logs are PII, MUST be erasable
+
+CONDITION 4: CalendarEngine interface must specify
+  Caching: withConfig(config) pattern (config passed in, not DB-fetched per request)
+  DST handling: documented explicitly in interface (wall-clock vs. calendar days)
+  Testability: CalendarEngine usable in unit tests without DB connection
+
+CONDITION 5: ADR template must exist before ADRs are written
+  Check: docs/plan/adr-process.md (exists) + tools/templates/adr.template.md (CHECK)
+  Create adr.template.md in Phase 0 if missing
+```
+
+**Opus additional decisions:**
+- Q7 (new): GDPR × Notifications — notification logs PII → extend eraseUser() before Phase 1
+- Q1: CCG stability weight increased (0.25→0.30) — premature sealing is the primary risk
+- Q3: Gregorian-first is correct — seal narrow, extend later (Rule of Three)
+- Q4: Thin wrapper for Notifications (Resend or Postmark) — don't build delivery infrastructure
+- Q5: CCG gate proceeds in Phase 0; L1 sealing requires 2+ apps
+- Q6: ADVISORY enforcement in Phase 0; BLOCKING starts at Phase 1
+
+---
+
+*CSPS Core Primitives Architecture v1.1 | S022 | 2026-05-11*
+*Phase 0 approved by Opus. Phase 1 conditional on 5 conditions above.*
 *ai_defaults_influence: partial (§2 research, §6 external standards)*
-*CCG scores computed using formula from §4.2*
+*CCG formula revised: Prevalence 35%, Cost 35%, Stability 30%*

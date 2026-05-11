@@ -251,6 +251,12 @@ async function main() {
     tracker.orchestrator_last_level = LEVEL;
     tracker.orchestrator_last_status = finalBlocking === 0 ? 'ZF_ACHIEVED' : 'BLOCKING_REMAINS';
     tracker.warn_found_total = (tracker.warn_found_total || 0) + allFindingsTotal;
+    // Track ZF deep runs per session (for post-stop hook enforcement)
+    if (LEVEL >= 3) {
+      tracker.zf_deep_runs_this_session = (tracker.zf_deep_runs_this_session || 0) + 1;
+      tracker.zf_deep_last_run_at = new Date().toISOString();
+      tracker.zf_deep_last_status = finalBlocking === 0 ? 'ZF_ACHIEVED' : 'BLOCKING_REMAINS';
+    }
     wfs(trackerPath, JSON.stringify(tracker, null, 2));
   } catch(e) { /* non-fatal */ }
 

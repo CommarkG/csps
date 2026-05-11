@@ -24,14 +24,23 @@ const fs = require('fs');
 const {join} = require('path');
 const ROOT = process.argv[1];
 
-// Read ZF tracker if exists
+// Read ZF tracker and RESET per-session fields at session open
 let zfIterations = 0, zfBlockingTotal = 0, zfOrchestratorCycles = 0, zfLastStatus = 'not-run';
 try {
-  const t = JSON.parse(fs.readFileSync(join(ROOT, 'tools/zf-session-tracker.json'), 'utf8'));
+  const trackerPath = join(ROOT, 'tools/zf-session-tracker.json');
+  const t = JSON.parse(fs.readFileSync(trackerPath, 'utf8'));
   zfIterations = t.verify_runs || 0;
   zfBlockingTotal = t.blocking_found_total || 0;
   zfOrchestratorCycles = t.orchestrator_cycles || 0;
   zfLastStatus = t.orchestrator_last_status || 'not-run';
+  // RESET per-session ZF deep and harvest counters (fresh session starts with 0 deep runs)
+  t.zf_deep_runs_this_session = 0;
+  t.zf_deep_last_run_at = null;
+  t.zf_deep_last_status = 'not-run-this-session';
+  t.harvest_done_this_session = false;
+  t.harvest_done_at = null;
+  t.verify_runs = 0;  // reset per-session verify counter
+  fs.writeFileSync(trackerPath, JSON.stringify(t, null, 2));
 } catch(e) { /* no tracker yet */ }
 
 // Read session state

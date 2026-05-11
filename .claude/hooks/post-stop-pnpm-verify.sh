@@ -77,14 +77,54 @@ VLT_PENDING=0
 VLT_OUTPUT=$(node "${REPO_ROOT}/tools/validators/validate-vlt-blocking.mjs" 2>&1) || true
 VLT_PENDING=$(echo "$VLT_OUTPUT" | grep -o "pending=[0-9]*" | cut -d= -f2 || echo "0")
 
-if [ "$OPEN_ITEMS" -gt 0 ] || [ "$VLT_PENDING" -gt 0 ]; then
+# ─── Check ZF deep status ──────────────────────────────────────────────────
+ZF_DEEP_RUNS=0
+ZF_DEEP_RUNS=$(node -e "
+const path=require('path'),fs=require('fs');
+const f=path.join(process.cwd(),'tools/zf-session-tracker.json');
+try{const d=JSON.parse(fs.readFileSync(f,'utf8'));process.stdout.write(String(d.zf_deep_runs_this_session||0))}catch(e){process.stdout.write('0')}
+" 2>/dev/null || echo "0")
+
+HARVEST_DONE=false
+HARVEST_DONE=$(node -e "
+const path=require('path'),fs=require('fs');
+const f=path.join(process.cwd(),'tools/zf-session-tracker.json');
+try{const d=JSON.parse(fs.readFileSync(f,'utf8'));process.stdout.write(d.harvest_done_this_session?'true':'false')}catch(e){process.stdout.write('false')}
+" 2>/dev/null || echo "false")
+
+# ─── Build message ──────────────────────────────────────────────────────────
+ZF_STATUS_MSG=""
+ZF_BLOCK=false
+
+if [ "$ZF_DEEP_RUNS" -eq 0 ] && [ "$ITER_COUNT" -gt 15 ]; then
+  ZF_STATUS_MSG="⛔ ZF DEEP NOT RUN — ${ITER_COUNT} verify iterations with ZERO pnpm zf:deep runs.\\nCannot declare DONE. Run: node tools/zf-orchestrator.mjs --level 3\\nThis is BLOCKING per B_RZF. Satisfaction point override: pnpm verify passing ≠ session complete."
+  ZF_BLOCK=true
+elif [ "$ZF_DEEP_RUNS" -eq 0 ] && [ "$ITER_COUNT" -gt 5 ]; then
+  ZF_STATUS_MSG="⚠ ZF deep not yet run (${ITER_COUNT} iterations). Run before declaring DONE: node tools/zf-orchestrator.mjs --level 3"
+fi
+
+if [ "$HARVEST_DONE" = "false" ] && [ "$ITER_COUNT" -gt 20 ]; then
+  ZF_STATUS_MSG="${ZF_STATUS_MSG}\\n⛔ SESSION HARVEST NOT DONE — no extraction note for this session.\\nRun: node tools/validators/validate-session-harvest-readiness.mjs"
+  ZF_BLOCK=true
+fi
+
+if [ "$ZF_BLOCK" = "true" ]; then
   printf '{
-    "systemMessage": "[ZF-iter-%s] PASS (exit_code 0, %s validators) | %s open items | %s PENDING VLTs\\n\\nIteration %s this session. Advisory items tracked.\\nNominal ZF = passing via workaround/bypass = false confidence at build time.\\nReal ZF = all items either resolved or explicitly deferred with documented reason.\\nCycle cost: minutes. Skipped finding cost: sessions. (P-META-021)"
-  }' "$ITER_COUNT" "$PASS_COUNT" "$OPEN_ITEMS" "$VLT_PENDING" "$ITER_COUNT"
+    "systemMessage": "[ZF-iter-%s] VERIFY PASS but ZF INCOMPLETE:\\n%s\\n\\nPer INS-S022-003: ZF and harvesting are process steps, not checklist items.\\nThe satisfaction point at verify-pass must be overridden by this gate.",
+    "continue": false,
+    "stopReason": "ZF deep required (iter %s)"
+  }' "$ITER_COUNT" "$ZF_STATUS_MSG" "$ITER_COUNT"
+  exit 1
+fi
+
+if [ "$OPEN_ITEMS" -gt 0 ] || [ "$VLT_PENDING" -gt 0 ] || [ -n "$ZF_STATUS_MSG" ]; then
+  printf '{
+    "systemMessage": "[ZF-iter-%s] PASS (exit_code 0, %s validators) | %s open | %s VLTs | ZF-deep=%s runs\\n%s\\nNominal ZF = verify pass only. Real ZF = orchestrator cycles to zero. (P-META-021)"
+  }' "$ITER_COUNT" "$PASS_COUNT" "$OPEN_ITEMS" "$VLT_PENDING" "$ZF_DEEP_RUNS" "$ZF_STATUS_MSG"
 else
   printf '{
-    "systemMessage": "[ZF-iter-%s] PASS ✅ (exit_code 0, %s validators) | 0 open items | 0 PENDING VLTs\\nReal ZF at iteration %s. Cycle count is MEASUREMENT of work richness."
-  }' "$ITER_COUNT" "$PASS_COUNT" "$ITER_COUNT"
+    "systemMessage": "[ZF-iter-%s] PASS ✅ (exit_code 0, %s validators) | ZF-deep=%s runs | harvest=%s\\nReal ZF at iteration %s."
+  }' "$ITER_COUNT" "$PASS_COUNT" "$ZF_DEEP_RUNS" "$HARVEST_DONE" "$ITER_COUNT"
 fi
 
 exit 0

@@ -1,5 +1,5 @@
-# Chat Jump — S024 (opens fresh tab)
-## Based on: HANDOFF-S023-to-S024.md + Opus Turns 5-6 in tools/council/opus-turn.md
+# Chat Jump — S024
+## Source: S023 HANDOFF + Opus Turns 5-7 + Governor ratifications 2026-05-11
 
 ## Paste this entire block to the new Sonnet chat
 
@@ -7,142 +7,219 @@
 
 You are Sonnet S024, the builder for CSPS.
 
-**Your FIRST action — before any file edit — emit this block:**
+**FIRST action — write this to `tools/council/sonnet-turn.md` BEFORE any file edit:**
 
-```
-INTENT ABSORBED — S024 opening:
+```markdown
+# Sonnet Session S024 — INTENT ABSORBED
 
-State from HANDOFF-S023-to-S024.md:
-  - 72 validators active (5 added in S023)
-  - B_INTENT_CRYSTALLIZATION (5/5 FSE) enacted
-  - B_SANDBOX_BEFORE_IMPLEMENTATION (5/5 FSE) enacted
-  - ZF ACHIEVED — 0 blocking at S023 close
-  - Sandbox policy live: DRAFT→SANDBOX→SIMULATED→RATIFIED→IMPLEMENTING→DONE
+## Opus Turns Read: Turns 5-7 (platform at S023, 72 validators)
 
-Opus has already responded:
-  - Turn 5 (opus-turn.md): answered all 6 consensus protocol questions
-  - Turn 6 (opus-turn.md): P-META-022 Human Intent Crystallization — 7-surface constitutional
-  - Canonical doc exists: docs/plan/pillar-0-governance/human-intent-crystallization.md
-  - Alignment plan exists: tools/council/p-meta-022-alignment-plan.md (16 items)
-  - AI-to-AI extension: same Layer 1-3 gap exists in Opus→Sonnet communication
+## Task understanding
+1. validate-sonnet-report.mjs — create, wire to verify. Enforces Sonnet reports back to sonnet-turn.md.
+2. validate-intent-absorbed.mjs — create, wire to verify. Enforces INTENT ABSORBED in sonnet-turn.md.
+3. council-state.json — add sonnet_last_report_session + opus_last_turn_session fields.
+4. P-META-022 alignment items 1-8 + 11 — principles.yaml, plan-creation-protocol Step 0a,
+   closing-summary ZF-3, B_CONSENSUS cross-ref, B_HUMBLE_EXECUTOR ZF-3, DNA Element 15,
+   OD-007 in inner-AI-defaults, AI-to-AI section in human-intent-crystallization.md.
+5. libs/ gate — upgrade pre-tool-use-plan-coverage-gate.sh to BLOCKING for new libs/ files
+   (ADVISORY for edits). Present diff + Governor confirms before touching .claude/hooks/
 
-Tasks I understand for S024 (in priority order):
-  1. Read HANDOFF-S023-to-S024.md Zone B for current mandate
-  2. Implement P-META-022 alignment plan items STILL PENDING:
-     Items 1,2,3,4,5,6,7,8,11 (Items 9+10 already done in S023 as validate-intent-crystallized.mjs)
-  3. Promote pre-tool-use-plan-coverage-gate.sh ADVISORY→BLOCKING for libs/ (Governor directive)
-  4. Do NOT touch Core Spines reshape (awaiting Opus ripple analysis — deferred)
-  5. Do NOT touch Threshold Wizard implementation (awaiting Governor sandbox ratification)
+## Why this matters (Layer 3)
+The platform must help humans and AIs understand what they actually need before acting.
+P-META-022 ensures this at every interaction layer. The protocol validators ensure Opus
+and Sonnet stop assuming state and start verifying it. Together: zero-drift platform.
 
-Constraints understood:
-  - Protected paths (.claude/hooks/*.sh) need diff + Governor confirm before editing
-  - Core Spines reshape is constitutional — Opus must analyze ripple before any work
-  - Threshold Wizard v1 sandbox needs Governor review/ratification before implementation
-  - Tier 2 alignment items (12-16) deferred to S025
+## Constraints understood
+- Items 9+10 (validate-intent-crystallized.mjs) were done in S023 — skip them
+- Tier 2 alignment items (12-16) defer to S025
+- Core Spines reshape deferred — Opus ripple analysis not yet complete
+- Threshold Wizard implementation deferred — awaiting Governor sandbox ratification
+- .claude/hooks/*.sh = protected path — present diff, wait for explicit Governor yes
 
-Proceeding with: pnpm verify baseline → alignment plan items 1, 2, 3...
+## First action
+pnpm verify + git log --oneline -3 to confirm baseline state
 ```
 
-**Show this to Governor before proceeding. If wrong, Governor corrects.**
+Write that to `tools/council/sonnet-turn.md`. Show it to Governor. Wait for acknowledgment.
 
 ---
 
-## Read first (in order)
+## Read (in order, before implementing)
 
 1. `docs/plan/_handoff/HANDOFF-S023-to-S024.md` — Zone A (state) + Zone B (mandate)
-2. `tools/council/opus-turn.md` — Turn 5 (consensus protocol answers) + Turn 6 (P-META-022)
-3. `docs/plan/pillar-0-governance/human-intent-crystallization.md` — the canonical principle
-4. `tools/council/p-meta-022-alignment-plan.md` — items 1-11 (items 9+10 already done)
+2. `tools/council/opus-turn.md` — Turns 5, 6, 7 (consensus protocol + P-META-022 + Core Spines)
+3. `tools/council/p-meta-022-alignment-plan.md` — items 1-8 + 11 (exact edits + verification)
+4. `docs/plan/_handoff/VAULT/topic-plans/opus-advisory-arc-S023.md` — the full multi-session arc
 
 ---
 
-## Baseline (run before anything)
+## Baseline
 
 ```bash
 pnpm verify
 git log --oneline -3
 ```
-Paste both. If verify fails, fix before proceeding.
+Paste both.
 
 ---
 
-## Task A: P-META-022 Alignment Plan (Items still pending)
+## Task A: Protocol Validators (STREAM 1 — do first)
 
-**Items 9 and 10 are DONE** — validate-intent-crystallized.mjs was created in S023.
-Skip them. Implement items 1-8 and 11 in the order listed in the alignment plan.
+### A1: validate-sonnet-report.mjs (create)
 
-Each item in `tools/council/p-meta-022-alignment-plan.md` has:
-- Exact file path
-- Exact text to insert
-- Exact grep to verify
+```javascript
+#!/usr/bin/env node
+// validate-sonnet-report.mjs
+// Checks that tools/council/sonnet-turn.md has a "# Sonnet Report" section
+// for the current session (from session-state.json current_session).
+// ADVISORY now → BLOCKING week-4.
 
-After completing all pending items:
-```bash
-pnpm verify    # Must exit_code=0
-pnpm audit-runner:split
+import { readFileSync, existsSync } from 'fs';
+import { resolve } from 'path';
+
+const SONNET_TURN = resolve('tools/council/sonnet-turn.md');
+const SESSION_STATE = resolve('tools/session-state.json');
+
+if (!existsSync(SONNET_TURN)) {
+  console.log('[validate-sonnet-report] sonnet-turn.md not found — advisory');
+  process.exit(0);
+}
+
+const state = JSON.parse(readFileSync(SESSION_STATE, 'utf8'));
+const session = state.current_session || 'unknown';
+const content = readFileSync(SONNET_TURN, 'utf8');
+
+const hasReport = content.includes(`# Sonnet Report`) ||
+                  content.includes(`Sonnet Report — ${session}`);
+const hasIntentAbsorbed = content.includes('INTENT ABSORBED');
+
+const warnings = [];
+if (!hasReport) warnings.push(`No "Sonnet Report" section found for session ${session}`);
+if (!hasIntentAbsorbed) warnings.push('No "INTENT ABSORBED" section found');
+
+if (warnings.length > 0) {
+  warnings.forEach(w => console.log(`  ⚠ ${w}`));
+  console.log('[validate-sonnet-report] stage=advisory (week-4: blocking)');
+  process.exit(0); // advisory — does not fail verify yet
+}
+
+console.log('[validate-sonnet-report] sonnet-turn.md has both INTENT ABSORBED + Sonnet Report ✓');
+process.exit(0);
 ```
-Paste outputs.
+
+Wire into `tools/verify.mjs` after the `opus_turn_rzf` cycle:
+```javascript
+{
+  name: 'sonnet_report',
+  command: 'node tools/validators/validate-sonnet-report.mjs',
+  parse_output: (out) => ({ has_report: !out.includes('No') }),
+},
+```
+
+Add to `docs/plan/pillar-0-governance/audit-runner.md`:
+```
+| `sonnet-report-completeness` | per-session | advisory | PROTOCOL.md mandate: every Sonnet session writes INTENT ABSORBED + Sonnet Report to sonnet-turn.md. ADVISORY now → BLOCKING week-4. Validator: validate-sonnet-report.mjs. |
+```
+
+### A2: Update council-state.json tracking fields
+
+Add to `tools/council/council-state.json`:
+```json
+"sonnet_last_report_session": "S023",
+"opus_last_turn_session": "S023",
+"sonnet_last_intent_absorbed": "S024 opening"
+```
 
 ---
 
-## Task B: pre-tool-use-plan-coverage-gate.sh ADVISORY→BLOCKING
+## Task B: P-META-022 Alignment Items 1-8 + 11
 
-**Governor directive S023:** "Forbid coding without permission from now on."
-
-This hook already exists at `.claude/hooks/pre-tool-use-plan-coverage-gate.sh`.
-Per protected path discipline: read current content, present diff to Governor, wait for explicit yes.
-
-The upgrade: change enforcement for libs/** writes from ADVISORY to BLOCKING.
-Write routes in apps/** stay ADVISORY.
-
-After upgrade, test with a write attempt to libs/ to confirm the gate fires.
+Read `tools/council/p-meta-022-alignment-plan.md`.
+Implement items 1, 2, 3, 4, 5, 6, 7, 8, 11 in order.
+Each has: exact file path + exact text + grep verification.
+After each item: run the grep command shown to confirm.
 
 ---
 
-## Task C: Session close (mandatory)
+## Task C: libs/ Gate Upgrade (protected path — Governor confirm required)
 
+File: `.claude/hooks/pre-tool-use-plan-coverage-gate.sh`
+Action: Change enforcement for WRITE to new files in `libs/**` from ADVISORY to BLOCKING.
+Edits to existing files in `libs/**` stay ADVISORY.
+
+**Procedure:**
+1. Read current file
+2. Show exact diff to Governor in chat
+3. WAIT for explicit "yes" before editing
+4. After confirmed: edit + verify hook fires correctly
+
+---
+
+## Task D: Session Close (mandatory)
+
+After Tasks A-C:
 ```bash
+pnpm verify
+pnpm audit-runner:split
 node tools/zf-orchestrator.mjs --level 3
 ```
-Paste output.
+Paste all three outputs.
 
-Write `docs/plan/_handoff/VAULT/closing-summary-S024.md`:
-- §10.0: paste pnpm verify + ZF outputs
-- §10.0j: enhancement proposals
-- §10.11b: positive value extracted (P-META-022 fully landed, AI-to-AI gap addressed)
-- §10.13b: catches engraved
+Write SONNET REPORT to `tools/council/sonnet-turn.md` (append after INTENT ABSORBED block):
+```markdown
+# Sonnet Report — S024 Close
 
-Write `docs/plan/_handoff/HANDOFF-S024-to-S025.md`:
-- Zone A: 72+ validators, P-META-022 Tier 1 complete, libs/ gate now blocking
-- Zone B: Tier 2 alignment items (12-16), Core Spines ripple analysis (awaiting Opus)
-- Zone C: Threshold Wizard ratification pending Governor
-- Zone D: S025 first action = Tier 2 alignment items + Core Spines Opus analysis
+## Done
+1. validate-sonnet-report.mjs: DONE | commit: [sha]
+2. council-state.json tracking fields: DONE | commit: [sha]
+3. P-META-022 alignment items 1-8 + 11: DONE | commit: [sha]
+4. libs/ gate upgrade: [DONE if Governor confirmed] | commit: [sha]
+
+## Differs from spec
+[any deviations + reason, or "None"]
+
+## Deferred
+- Tier 2 alignment items (12-16): deferred to S025
+- Core Spines Option B: deferred pending Opus ripple analysis
+- Threshold Wizard: deferred pending Governor sandbox ratification
+
+## State at close
+Validators: [N] | ZF: [status] | Push: [sha]
+
+## What Opus should know for Turn 8
+[any discoveries during implementation]
+```
+
+Then write `docs/plan/_handoff/VAULT/closing-summary-S024.md` + `HANDOFF-S024-to-S025.md`.
 
 ```bash
 git add -A
-git commit -m "S024: P-META-022 alignment Tier 1 complete + libs/ gate blocking"
+git commit -m "S024: STREAM 1+2+5 — protocol validators + P-META-022 Tier 1 + libs gate"
 git push origin main
 ```
 
 ---
 
-## What NOT to do
+## Do NOT do
 
-- Core Spines reshape → DO NOT touch. Opus must analyze ripple first. Constitutional change.
-- Threshold Wizard implementation → DO NOT build. Governor must ratify sandbox v1 first.
-- .claude/hooks/*.sh or settings.json → protected path. Diff + Governor confirm only.
-- Tier 2 alignment items (12-16) → defer to S025.
-
----
-
-## The AI-to-AI layer (embedded in this prompt)
-
-You just emitted an INTENT ABSORBED block as your first action. That IS P-META-022 applied
-to AI-to-AI (Opus→Sonnet). The Governor can intercept wrong understanding before file edits begin.
-This is the Reflect-Until-Match protocol — same as human→AI, now applied to Opus→Sonnet.
+- Core Spines reshape: Opus Turn 7 says wait for Governor clarification
+- Threshold Wizard implementation: Governor must ratify sandbox v1 first
+- Tier 2 alignment items (12-16): S025
+- WisdomVault: S035+
 
 ---
 
-*Chat jump: S024 | Updated post-S023-HANDOFF | OPUS-1 | 2026-05-11*
-*S023 state: 72 validators, B_INTENT_CRYSTALLIZATION + B_SANDBOX enacted*
-*S024 scope: P-META-022 alignment Tier 1 (pending items) + libs/ gate blocking + close*
+## The protocol working in real-time
+
+You just wrote INTENT ABSORBED to sonnet-turn.md before editing any file.
+That IS the protocol from PROTOCOL.md §MANDATORY COMMUNICATION PROTOCOL.
+Opus will read sonnet-turn.md before writing Turn 8.
+The stale-state failures from S022-S023 cannot recur with this structure.
+
+---
+
+*S024 chat-jump | Final version — Governor ratifications 2026-05-11*
+*Q1 ratified: Option A (council routing now), Option B (domain model arc)*
+*Q2 ratified: libs/ gate BLOCKING for new files*
+*Q3 ratified: INTENT ABSORBED to sonnet-turn.md*
+*Full enterprise arc: docs/plan/_handoff/VAULT/topic-plans/opus-advisory-arc-S023.md*

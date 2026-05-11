@@ -66,6 +66,59 @@ N+2. Flexibility Map (feedback → file → line number)
 
 ## §IMMEDIATE — Do These Before Any Code (No Exceptions)
 
+### IMMEDIATE-0: Fix circular dependency — move writeAuditEvent to libs/
+
+**RZF finding (Cycle 2):** `libs/integrations/gdpr.ts` imports `writeAuditEvent` from
+`apps/task-mgmt/src/lib/audit.ts`. libs/ importing from apps/ is a circular dependency
+and violates the platform layer boundary (P-ARCH layer separation).
+
+**Fix:** Move `writeAuditEvent` to `libs/integrations/audit.ts`.
+
+Create `libs/integrations/audit.ts`:
+```typescript
+import type { PrismaClient } from '@prisma/client';
+
+interface AuditEventInput {
+  action: string;
+  actorId: string;
+  resourceType: string;
+  resourceId: string;
+  tenantId: string;
+  data?: Record<string, unknown>;
+}
+
+export async function writeAuditEvent(
+  db: PrismaClient,
+  input: AuditEventInput
+): Promise<void> {
+  await db.auditEvent.create({
+    data: {
+      action: input.action,
+      actorId: input.actorId,
+      resourceType: input.resourceType,
+      resourceId: input.resourceId,
+      tenantId: input.tenantId,
+      data: input.data ?? {},
+    },
+  });
+}
+```
+
+Export from `libs/integrations/index.ts`: `export { writeAuditEvent } from './audit';`
+
+Update ALL callers — find them:
+```bash
+grep -r "writeAuditEvent" apps/ --include="*.ts" -l
+```
+Change each import from: `import { writeAuditEvent } from '../../lib/audit'`
+To: `import { writeAuditEvent } from '@csps/integrations'`
+
+**Verify before proceeding:**
+```bash
+cd apps/task-mgmt && npx tsc --noEmit
+```
+Zero errors required.
+
 ### IMMEDIATE-1: Create tsconfig path alias for config
 
 In `apps/task-mgmt/tsconfig.json`, add to `compilerOptions.paths`:

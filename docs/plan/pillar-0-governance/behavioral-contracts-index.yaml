@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 55
+  total_count: 56
   generated_at: '2026-05-11'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -98,6 +98,9 @@ contracts:
   - id: B_MUTUAL_UNDERSTANDING_VALIDATION
     desc: "B_MUTUAL_UNDERSTANDING_VALIDATION"
     path: ./behavioral-contracts/B_MUTUAL_UNDERSTANDING_VALIDATION.md
+  - id: B_BOUNDARY_ALIGNMENT_PROTOCOL
+    desc: "B_BOUNDARY_ALIGNMENT_PROTOCOL"
+    path: ./behavioral-contracts/B_BOUNDARY_ALIGNMENT_PROTOCOL.md
   - id: B_TEMPLATE_FIRST_CREATION
     desc: "B_TEMPLATE_FIRST_CREATION"
     path: ./behavioral-contracts/B_TEMPLATE_FIRST_CREATION.md

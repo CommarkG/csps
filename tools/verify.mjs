@@ -208,6 +208,14 @@ const CYCLES = [
     parse_output: (out) => ({ has_report: !out.includes('No') }),
   },
   {
+    // NEW S024 Governor directive — B_BOUNDARY_ALIGNMENT_PROTOCOL Phase 1 (Type E+B).
+    // Checks sonnet-turn.md Sonnet Report for ALIGNMENT CHECK block + closing-summary §10.0r filled.
+    // ADVISORY now → Type B BLOCKING week-4.
+    name: 'boundary_alignment',
+    command: 'node tools/validators/validate-boundary-alignment.mjs',
+    parse_output: (out) => { const m = out.match(/checks=(\d+)\s+warnings=(\d+)/); return m ? { checks: Number(m[1]), warnings: Number(m[2]) } : {}; },
+  },
+  {
     // NEW S021 Governor directive — gradual-bundling: comprehensive check of all 7 bundling elements
     // Checks: depth discipline, humble batching, core spiral, GEP enforce_stage, PE alignment
     name: 'gradual_bundling',

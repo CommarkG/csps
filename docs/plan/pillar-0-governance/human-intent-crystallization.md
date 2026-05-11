@@ -213,7 +213,7 @@ When Sonnet receives Opus output (e.g., tools/council/opus-turn.md), the gap is:
 A Sonnet that reads Opus output and immediately executes — without reflecting back
 its understanding — commits the same arrogance as acting on a human's first expression.
 
-**The INTENT ABSORBED Protocol:**
+**The INTENT ABSORBED Protocol (Type A boundary):**
 
 At the start of every session where Opus output is present, Sonnet MUST emit:
 
@@ -233,6 +233,49 @@ the Governor redirects BEFORE Sonnet edits 10 files.
   "Opus output present. Emit INTENT ABSORBED before any file edit."
 - B_MUTUAL_UNDERSTANDING_VALIDATION: the INTENT ABSORBED block IS the output_contract
   verification for AI-to-AI boundary type 2 (subagent return confirmation)
+
+---
+
+### All 5 Boundary Types — B_BOUNDARY_ALIGNMENT_PROTOCOL (S024 Governor directive)
+
+The crystallization principle applies at EVERY AI communication boundary, not only AI→AI.
+Governor ratification S024: *"MAKE IT MECHANICALLY ENFORCED FOR ALL FUTURE EXTERNAL SYSTEMS. ALWAYS VERIFY YOU UNDERSTOOD WHAT WAS COMMUNICATED TO YOU AND CONFIRM WHAT YOU SAID IS PERFECTLY ALIGNED WITH YOUR INTENT."*
+
+Every boundary crossing has the same Layer 1-3 gap:
+- Layer 1: What was literally sent/received
+- Layer 2: What it means for this specific task
+- Layer 3: What platform goal it serves
+
+**Universal block format (B_BOUNDARY_ALIGNMENT_PROTOCOL):**
+
+BEFORE crossing — UNDERSTANDING BLOCK:
+```
+BOUNDARY CROSSING — [Type A|B|C|D|E]:
+  I understand the request as: [Layer 3 intent — not Layer 1 expression]
+  I will produce:              [specific output/action]
+  This serves:                 [platform goal]
+```
+
+AFTER crossing — ALIGNMENT CONFIRMATION:
+```
+ALIGNMENT CHECK:
+  What was requested: [restatement]
+  What I produced:    [one sentence]
+  Match:              YES / PARTIAL / NO
+  If PARTIAL or NO:   [delta + VLT-S{NNN}-INTENT-DRIFT-{slug}]
+```
+
+**The 5 boundary types:**
+
+| Type | Crossing | UNDERSTANDING BLOCK | ALIGNMENT CONFIRMATION | Phase |
+|---|---|---|---|---|
+| A | Opus → Sonnet cross-session | INTENT ABSORBED (full format above) | Sonnet Report "Match:" field | Done |
+| B | Sonnet → subagent Agent() call | In Agent prompt preamble | Agent result review in Sonnet output | Phase 1 |
+| C | AI → external API / MCP tool | In AI response before tool call | Post-call note confirming result matched intent | Phase 2 |
+| D | AI → new chat (chat-jump) | MUV §8 sections + alignment questions | Cross-chat iteration loop (MUV protocol) | Phase 2 |
+| E | AI → human response | Implicit in crystallization Q1-Q3 | End-of-turn "what changed + what's next" | Phase 1 |
+
+**Why all 5 matter:** The gap between what was sent and what was understood exists at every boundary. Enforcing only one boundary type leaves four invisible leak points. The platform's governance compounds when every crossing is verified — not just the ones that "feel important."
 
 ---
 

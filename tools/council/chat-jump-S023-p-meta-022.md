@@ -1,82 +1,102 @@
-# Chat Jump — S023 P-META-022 Implementation + Session Close
+# Chat Jump — S024 (S023 continuation) — P-META-022 Implementation
 
 ## Paste this entire block to the new Sonnet chat
 
 ---
 
-You are Sonnet, the builder for the CSPS platform (CoreSights Platform Services).
-You are opening a continuation of session S023.
+You are Sonnet, the builder for CSPS (CoreSights Platform Services).
+Session: S024 (continuation of S023 Opus advisory work).
+OPUS-1 has been advising this session. Their output is in `tools/council/opus-turn.md` Turns 5-6.
 
-**Before doing anything, run:**
+**Your FIRST action — before any file edit — emit this block:**
+
+```
+INTENT ABSORBED — Opus Turns 5-6 (S023):
+
+Task understanding:
+  1. Register P-META-022 in principles.yaml (human intent crystallization principle)
+  2. Add plan-creation-protocol.md Step 0a (Reflect-Until-Match before any plan writing)
+  3. Add ZF-3 intent drift check to closing-summary-template.md (milestone gate)
+  4. Add P-META-022 cross-ref to B_CONSENSUS_BEFORE_PROCEEDING (consensus = Layer 2-3 intent)
+  5. Add ZF-3 check inside B_HUMBLE_EXECUTOR milestone block
+  6. Add Element 15 to csps-platform-dna.md (human intent crystallization)
+  7. Add OD-007 to inner-ai-defaults/output-distribution.md (override act-on-first-expression)
+  8. Update inner-ai-defaults/README.md (increment OD count)
+  9. Create validate-intent-crystallized.mjs (ZF-1 gate — blocks S023+ plans without goal_statement)
+  10. Wire validate-intent-crystallized.mjs into verify.mjs + audit-runner.md
+  11. Add AI-to-AI section to human-intent-crystallization.md (same gap exists in Opus→Sonnet)
+
+Why this matters (Layer 3):
+  Every platform interaction — human-to-AI, AI-to-AI, app-to-user — has a gap between
+  what is expressed and what is needed. P-META-022 makes the platform close this gap
+  structurally, not by hope. Without it, every plan Sonnet builds may address Layer 1
+  while drifting from Layer 3. This is the most important behavioral principle in CSPS.
+
+Constraints understood:
+  - Do NOT edit .claude/hooks/*.sh or .claude/settings.json (protected path — needs Governor)
+  - Do NOT implement Tier 2 items (defer to S025)
+  - Do NOT sacrifice chat close for extra scope
+
+First action: verify baseline, then Item 1
+```
+
+**Show this block to Governor before proceeding. If wrong, Governor corrects now.**
+
+---
+
+## Steps
+
+**Step 1: Baseline**
 ```bash
 pnpm verify
 git log --oneline -3
 ```
-Paste both outputs. If verify fails, fix it before proceeding.
+Paste both outputs.
 
----
+**Step 2: Implement Items 1-11**
+Read `tools/council/p-meta-022-alignment-plan.md`.
+Tier 1 = Items 1-11. Follow each item exactly: find the section, insert the text, run the grep verification.
 
-## Your task this session
-
-**Step 1: Read `tools/council/p-meta-022-alignment-plan.md`**
-This file has 16 items. You are implementing **Tier 1 only (Items 1-10)**.
-Each item has: file path + exact text to insert + grep verification.
-Follow them in order. Verify each one with the grep command shown.
-
-**What you are implementing:**
-P-META-022 — Human Intent Crystallization. The constitutional principle that the gap between
-what humans express and what they need is the default condition of all human-AI interaction.
-Canonical document: `docs/plan/pillar-0-governance/human-intent-crystallization.md`
-
-**Step 2: After Items 1-10, run:**
+**Step 3: After all 11 items**
 ```bash
-pnpm verify       # Must be exit_code=0
+pnpm verify       # exit_code=0 required
 pnpm audit-runner:split
 ```
 Paste both outputs.
 
-**Step 3: Chat close (mandatory — do not skip)**
-
-Run the full session close:
+**Step 4: Session close (mandatory)**
 ```bash
 node tools/zf-orchestrator.mjs --level 3
 ```
 Paste output.
 
-Then write `docs/plan/_handoff/closing-summary-S023.md` covering:
-- §10.0: pnpm verify output + ZF output (paste both)
-- §10.0j: enhancement proposals from this session
-- §10.11b: positive value extracted
-- §10.13b: catches engraved
+Write `docs/plan/_handoff/closing-summary-S024.md`:
+- §10.0: paste pnpm verify + ZF outputs
+- §10.0j: enhancement proposals (the AI-to-AI extension is a positive one)
+- §10.11b: P-META-022 constitutional engraving — value extracted
+- §10.13b: catches engraved this session
 
-Then write `docs/plan/_handoff/VAULT/HANDOFF-S023-to-S024.md` covering:
-- Zone A: current state (67 validators, P-META-022 Tier 1 implemented)
-- Zone B: what was done this session
-- Zone C: open items (Tier 2 of alignment plan, Tier 2 of P-META-022 brief)
-- Zone D: first action for S024
+Write `docs/plan/_handoff/VAULT/HANDOFF-S024-to-S025.md`:
+- Zone A: 68+ validators, P-META-022 Tier 1 active, bedrock 22/22
+- Zone B: Items 1-11 implemented, AI-to-AI gap addressed, S023 Opus advisory completed
+- Zone C: Tier 2 items 12-16 (alignment plan), P-META-022 Tier 2 brief (wizard/template/contract)
+- Zone D: S025 first action = Tier 2 items OR App #2 planning (Governor decides)
 
-Then:
 ```bash
 git add -A
-git commit -m "S023 close: P-META-022 Tier 1 alignment + session close"
+git commit -m "S024: P-META-022 Tier 1 — 11-item alignment + AI-to-AI extension"
 git push origin main
 ```
 
 ---
 
-## Files to read (in order)
+## Important: This is the INTENT ABSORBED protocol in action
 
-1. `tools/council/p-meta-022-alignment-plan.md` — your implementation instructions
-2. `docs/plan/pillar-0-governance/human-intent-crystallization.md` — the principle (read §1-§3 only)
-3. `tools/council/opus-turn.md` Turn 6 addendum — Opus scope guidance
-
-## What NOT to do
-
-- Do not implement Tier 2 items (defer to S024)
-- Do not edit `.claude/hooks/*.sh` or `.claude/settings.json` (protected path — needs Governor diff + confirm)
-- Do not add scope beyond Items 1-10 + chat close
+You just emitted an INTENT ABSORBED block at the top. That IS P-META-022 applied to AI-to-AI.
+Before you executed anything, you declared your understanding. The Governor can correct it.
+This is the Reflect-Until-Match protocol — for Opus→Sonnet, not just human→AI.
 
 ---
 
-*Chat jump: S023 continuation | OPUS-1 output | 2026-05-11*
-*Tier 1 + chat close = this session. Tier 2 = S024.*
+*Chat jump: S024 | OPUS-1 output | P-META-022 Tier 1 + AI-to-AI extension*
+*Tier 1 (Items 1-11) + session close = this session. Tier 2 = S025.*

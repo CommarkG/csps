@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-11T02:05:45.216Z
-- finished_at: 2026-05-11T02:06:16.140Z
+- ran_at: 2026-05-11T02:14:57.518Z
+- finished_at: 2026-05-11T02:15:18.473Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T02:05:45.216Z",
-    "finished_at": "2026-05-11T02:06:16.140Z",
+    "ran_at": "2026-05-11T02:14:57.518Z",
+    "finished_at": "2026-05-11T02:15:18.473Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 10.7,
+        "duration_seconds": 6.7,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -42,9 +42,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 313,
+        "scanned": 314,
         "errors": 0,
-        "warnings": 32,
+        "warnings": 33,
         "exempt": 222
       },
       {
@@ -114,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -163,9 +163,9 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "issues": 2,
-        "advisory": 2,
+        "duration_seconds": 0.1,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -301,7 +301,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -447,7 +447,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -564,7 +564,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 11.3
+        "duration_seconds": 6.8
       },
       {
         "name": "audit_runner_full_pass",

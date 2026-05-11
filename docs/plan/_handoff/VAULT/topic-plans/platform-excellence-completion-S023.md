@@ -76,7 +76,13 @@ nominally. §KH was skipped. CEC was not run.
 ```
 PE Formula: score = B×0.30 + D×0.30 + I×0.15 + Bn×0.10 + PAS×0.15
 
-Session A (Process hardening — ZF/harvest enforcement):
+Session 0 (Week-4 retirement + over-system audit):
+  B=10 (constitutional: 49 "planned week-4" items classified), D=10 (all other sessions depend on this),
+  PE_SCORE = 9.5 | Band 1 — BLOCKING
+  REASON: Cannot build enforcement for CLASS A items without knowing which items they are.
+  See: docs/plan/_handoff/VAULT/over-the-system-audit-S022.md
+
+Session A (Process hardening — ZF/harvest enforcement + CLASS A items):
   B=10 (constitutional: every future session inherits this), D=10 (all sessions depend on this),
   PE_SCORE = 9.25 | Band 1 — BLOCKING
   REASON: Every session we run without this burns more sessions recovering. Fix process FIRST.

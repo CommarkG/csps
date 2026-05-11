@@ -173,6 +173,182 @@ Governor types `OPUS-[N]` in Opus tab → Opus declares mode + focal point → p
 
 ---
 
+---
+
+## MANDATORY COMMUNICATION PROTOCOL (Added S023 — Zero Freestyle)
+
+> **Why this section exists:** During S022-S023, Opus wrote briefs based on assumed state,
+> Sonnet implemented different things, chat-jumps were wrong, and the Governor had to shuttle
+> corrections. Root cause: no enforced handshake between turns. This section closes that gap.
+
+---
+
+### The Non-Negotiable Turn Sequence
+
+```
+BEFORE Opus writes a new turn:
+  1. READ tools/council/sonnet-turn.md — what did Sonnet actually do last?
+  2. READ tools/session-state.json — what session is active?
+  3. READ git log --oneline -3 — what was actually committed?
+  PROHIBITION: Opus may NOT write a new turn without completing steps 1-3.
+  Writing direction based on assumed state = the source of all previous failures.
+
+BEFORE Sonnet executes anything from Opus output:
+  1. WRITE INTENT ABSORBED block to tools/council/sonnet-turn.md (not just chat)
+  2. Governor reviews the block — can redirect before any file edit
+  3. Execute only after implicit or explicit Governor acknowledgment
+  PROHIBITION: Sonnet may NOT edit a file before writing INTENT ABSORBED to sonnet-turn.md.
+
+AFTER Sonnet completes a session:
+  1. WRITE SONNET REPORT to tools/council/sonnet-turn.md (append, don't overwrite)
+  2. Report format below — required fields, no optional sections
+  3. Commit and push before session is considered closed
+  PROHIBITION: A session without a SONNET REPORT is incomplete regardless of verify status.
+```
+
+---
+
+### Required Sections — Every Opus Turn
+
+```markdown
+# Opus Turn [N] — [Topic] — Session: S[NNN]
+
+## State at Writing
+Platform session: S[NNN] | Validators: [N] | Last commit: [sha and message]
+Sonnet last reported: [session + what they did — from sonnet-turn.md]
+If this differs from what I assume below: Sonnet report takes precedence.
+
+## [Findings / Direction]
+[substantive content]
+
+## Tier 1 (this Sonnet session — complete these before closing)
+1. [Specific item with file path]
+2. [Specific item with file path]
+
+## Tier 2 (defer to next session)
+1. [item]
+
+## Prohibited (explicit list of what Sonnet must NOT do)
+- [specific prohibition]
+
+## RZF VERIFICATION
+Cycles run: [N] | Gaps: [N] | Status: ZF ACHIEVED / NOT ACHIEVED
+```
+
+---
+
+### Required Sections — Every Sonnet Session Start
+
+Write to `tools/council/sonnet-turn.md` BEFORE any file edit:
+
+```markdown
+# Sonnet Session S[NNN] — INTENT ABSORBED
+
+## Opus Turn Read: Turn [N] (written when platform was at S[NNN], [N] validators)
+
+## Task Understanding (one sentence per Tier 1 item)
+1. [Item]: [what I understand this means]
+2. [Item]: [what I understand this means]
+
+## Why this matters (Layer 3)
+[The platform goal this serves — not just the task]
+
+## Constraints understood
+- [what NOT to do]
+- [what's deferred]
+- [protected paths to present-diff-first on]
+
+## First action
+[Specific first step]
+
+**Governor: if any of the above is wrong, correct now before I edit any file.**
+```
+
+---
+
+### Required Sections — Every Sonnet Session Close
+
+Append to `tools/council/sonnet-turn.md` BEFORE writing HANDOFF:
+
+```markdown
+# Sonnet Report — S[NNN] Close
+
+## Done (commit sha per item)
+1. [Item]: DONE | commit: [sha] | verified: [grep output or validator name]
+2. [Item]: DONE | commit: [sha]
+
+## Differs from Opus spec (honest delta)
+- [What was different and why]
+- "None" if spec was followed exactly
+
+## Deferred (with reason)
+- [Item]: deferred because [reason]
+
+## State at close
+Validators: [N] | ZF status: [status] | Push: [sha]
+
+## What Opus should know for next turn
+[Anything discovered during implementation that Opus should factor in]
+```
+
+---
+
+### The Governor's Trigger Templates (Updated)
+
+**To activate Opus tab:**
+```
+OPUS-[N]: [topic or directive]
+```
+
+**To send Opus output to Sonnet (new chat):**
+```
+Paste the full contents of tools/council/[chat-jump-file].md
+```
+
+**To send Sonnet report to Opus:**
+```
+Opus: read tools/council/sonnet-turn.md, then [directive]
+```
+
+**To close a session from Opus tab:**
+```
+Opus: generate the S024 chat-jump file at tools/council/chat-jump-S024.md
+```
+
+---
+
+### Prohibited Patterns (Zero Freestyle)
+
+| Prohibited | Why |
+|---|---|
+| Opus writing new turn without reading `sonnet-turn.md` | Writes direction based on assumed state — root cause of chat-jump failures |
+| Sonnet executing without writing INTENT ABSORBED to `sonnet-turn.md` | Governor loses intervention window before file edits |
+| Sonnet assuming Opus brief is current without checking session | Stale briefs cause wrong implementations |
+| Opus claiming Sonnet should do X without checking if X is already done | Duplicate work and confusion |
+| Either AI using "I understand" without showing the understanding explicitly | Performed consensus — P-META-022 AI-to-AI violation |
+| Chat-jump written without reading the latest HANDOFF file | Same stale-state problem |
+| Session closed without SONNET REPORT in `sonnet-turn.md` | Opus has no verified state for next turn |
+
+---
+
+### Mechanical Enforcement
+
+**Validator:** `validate-opus-turn-rzf.mjs` — already active. Checks `## RZF VERIFICATION` in opus-turn.md.
+
+**Missing and needed (next Sonnet session):**
+- `validate-sonnet-report.mjs` — checks that sonnet-turn.md has a `# Sonnet Report` section for the current session. ADVISORY now, BLOCKING week-4.
+- `validate-intent-absorbed.mjs` — checks that sonnet-turn.md has an `# ... INTENT ABSORBED` section before the report. ADVISORY now.
+
+**council-state.json tracking fields to add:**
+```json
+"sonnet_last_report_session": "S023",
+"opus_last_turn_session": "S023",
+"sonnet_last_intent_absorbed": "S024 opening"
+```
+
+---
+
 *Established: S021 | 2026-05-09*
 *OPUS MODE added: S022 | 2026-05-11*
-*Engraved in: PE + plan-creation-protocol.md*
+*Mandatory Communication Protocol added: S023 | 2026-05-11*
+*Zero-freestyle enforcement: no turn without verified prior state*

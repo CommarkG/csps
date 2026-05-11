@@ -476,6 +476,24 @@ const CYCLES = [
     },
   },
   {
+    // Session A: consolidation check — BLOCKING for S023+ plans without §0, ADVISORY for earlier
+    name: 'consolidation_check_coverage',
+    command: 'node tools/validators/validate-consolidation-check.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // Session A: ZF requirement — ADVISORY, lists plans missing zf_required_level
+    name: 'plan_zf_requirement_coverage',
+    command: 'node tools/validators/validate-plan-zf-requirement.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+with_field=(\d+)\s+missing=(\d+)/);
+      return m ? { checked: Number(m[1]), with_field: Number(m[2]), missing: Number(m[3]) } : {};
+    },
+  },
+  {
     // NEW S011 unified-intake L3 — source-class coverage: all 4 source classes have normalizers
     name: 'intake_source_class_coverage',
     command: 'node tools/validators/validate-source-class-coverage.mjs',

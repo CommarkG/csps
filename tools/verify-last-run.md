@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-11T06:10:56.805Z
-- finished_at: 2026-05-11T06:11:10.800Z
+- ran_at: 2026-05-11T06:37:44.865Z
+- finished_at: 2026-05-11T06:37:58.539Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T06:10:56.805Z",
-    "finished_at": "2026-05-11T06:11:10.800Z",
+    "ran_at": "2026-05-11T06:37:44.865Z",
+    "finished_at": "2026-05-11T06:37:58.539Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -43,7 +43,7 @@
         "scanned": 306,
         "errors": 0,
         "warnings": 5,
-        "exempt": 246
+        "exempt": 247
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -87,7 +87,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 52,
+        "source_contracts": 53,
         "missing_slices": 0
       },
       {
@@ -216,10 +216,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "total": 25,
-        "active": 12,
-        "stub": 11,
+        "active": 13,
+        "stub": 10,
         "unknown": 2,
-        "stub_rate": 44
+        "stub_rate": 40
       },
       {
         "name": "session_harvest_readiness",
@@ -228,7 +228,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 59
+        "validators": 61
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -368,7 +368,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 120,
+        "checked": 122,
         "missing_why": 29
       },
       {
@@ -432,6 +432,26 @@
         "advisory": 2
       },
       {
+        "name": "consolidation_check_coverage",
+        "command": "node tools/validators/validate-consolidation-check.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 16,
+        "blocking": 0,
+        "advisory": 0
+      },
+      {
+        "name": "plan_zf_requirement_coverage",
+        "command": "node tools/validators/validate-plan-zf-requirement.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 16,
+        "with_field": 1,
+        "missing": 15
+      },
+      {
         "name": "intake_source_class_coverage",
         "command": "node tools/validators/validate-source-class-coverage.mjs",
         "status": "PASS",
@@ -455,7 +475,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 2,
+        "warnings": 1,
         "advisory": true
       },
       {
@@ -482,9 +502,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 59,
+        "validators_checked": 61,
         "orphans": 0,
-        "registered": 59
+        "registered": 61
       },
       {
         "name": "token_budget_validate",
@@ -571,7 +591,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7
+        "duration_seconds": 6.6
       },
       {
         "name": "audit_runner_full_pass",

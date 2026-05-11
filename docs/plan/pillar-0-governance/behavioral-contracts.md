@@ -1893,3 +1893,26 @@ RUNNING NOW (0 questions) | WAITING (N questions above)
 - contract: this entry + AGENTS.md no-confirmation-seeking hard NO + plan-methodology-v2.md §2
 
 **Cross-references:** B_HUMBLE_EXECUTOR (Humble Executor is the post-batch twin; B_AUTONOMOUS_BATCH is the pre-batch twin) / B_COMPLETION_OVER_SHINY (pre-flight Q-COMPLETE enforces completion bias check) / B_PLATFORM_FIRST_OPTIMIZATION (pre-flight Q-GLOBAL enforces platform generalizability check) / B_NO_CONFIRMATION_SEEKING (pre-flight replaces turn-by-turn confirmation loops).
+
+## B_NO_IMPLEMENTATION_WITHOUT_PLAN — no code changes to libs/ or apps/src/ outside a ratified plan (Session A S022)
+
+**Canonical wording:**
+
+> No code changes to `libs/` or `apps/*/src/` outside of an active ratified plan (lifecycle_state: active in docs/plan/_handoff/VAULT/topic-plans/). Exception: emergency security fixes documented immediately after in a post-hoc plan entry. Developer agility is preserved: for obvious in-scope changes that clearly fall within an existing plan's mandate, proceed and document. The gate is ADVISORY — it warns, does not block. Promotion to BLOCKING at Session B after plan scope audit confirms all active plans have covered_paths.
+
+**What counts as a ratified plan:**
+- lifecycle_state: active in topic-plans/
+- ratification_status: RATIFIED or Governor directive documented
+- NOT sufficient: draft plans, informal chat decisions, "it's obvious"
+
+**Counterweight (engineer judgment):**
+When the change is clearly within scope of an existing active plan AND the plan mandate covers it → proceed with a brief note in the commit message citing the plan. Example: "Per platform-excellence-completion-S023.md Session A."
+
+**Mechanical surfaces (5/5 S022 Session A):**
+- schema: `zf_required_level` + `ccg_assessment` fields in plan frontmatter
+- validator: `validate-consolidation-check.mjs` (§0 section required in plans)
+- hook: `.claude/hooks/pre-tool-use-plan-coverage-gate.sh` (ADVISORY → BLOCKING Session B)
+- memory: `feedback_no_wild_implementation.md` + MEMORY.md
+- contract: this entry + over-the-system-audit-S022.md §4 Resolution Protocol
+
+**Source:** Session A of platform-excellence-completion-S023.md. Governor ratified 2026-05-11.

@@ -6,8 +6,8 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 52
-  generated_at: '2026-05-10'
+  total_count: 53
+  generated_at: '2026-05-11'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
   usage: Load individual slice files (./behavioral-contracts/B_NAME.md) for AI session context;
@@ -170,3 +170,6 @@ contracts:
   - id: B_AUTONOMOUS_BATCH_WITH_PREFLIGHT
     desc: "B_AUTONOMOUS_BATCH_WITH_PREFLIGHT"
     path: ./behavioral-contracts/B_AUTONOMOUS_BATCH_WITH_PREFLIGHT.md
+  - id: B_NO_IMPLEMENTATION_WITHOUT_PLAN
+    desc: "no code changes to libs/ or apps/src/ outside a ratified plan"
+    path: ./behavioral-contracts/B_NO_IMPLEMENTATION_WITHOUT_PLAN.md

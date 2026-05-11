@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-11T12:32:01.938Z
-- finished_at: 2026-05-11T12:32:34.407Z
-- exit_code: 0
+- ran_at: 2026-05-11T12:56:51.492Z
+- finished_at: 2026-05-11T12:57:22.113Z
+- exit_code: 1
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T12:32:01.938Z",
-    "finished_at": "2026-05-11T12:32:34.407Z",
+    "ran_at": "2026-05-11T12:56:51.492Z",
+    "finished_at": "2026-05-11T12:57:22.113Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 11.2,
+        "duration_seconds": 10.3,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 310,
+        "scanned": 311,
         "errors": 0,
         "warnings": 5,
         "exempt": 253
@@ -62,7 +62,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.5,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -112,9 +112,10 @@
       {
         "name": "audit_health",
         "command": "node tools/validators/validate-audit-health.mjs",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 0.2
+        "status": "FAIL",
+        "exit_code": 1,
+        "duration_seconds": 0.2,
+        "tail": "\n1 warning(s) — audit mechanism health issues:\n  ⚠ [CHECK B FRESHNESS] 1 validator(s) newer than audit-runner.md — descriptions may be stale:\n  → validate-frontmatter.mjs\n"
       },
       {
         "name": "model_tier_currency",
@@ -230,7 +231,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 70
+        "validators": 72
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -575,7 +576,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -692,7 +693,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 11.5
+        "duration_seconds": 10.6
       },
       {
         "name": "audit_runner_full_pass",
@@ -701,7 +702,7 @@
         "skip_reason": "audit-runner ships week-4 (planned per build-order.md week 4)"
       }
     ],
-    "exit_code": 0,
+    "exit_code": 1,
     "strict_mode": false
   }
 }

@@ -363,8 +363,11 @@ function validateOne(file, fm, errors, warnings, idIndex) {
   }
 
   // next_review_at required when lifecycle_state != active
+  // Exempt: sandbox lifecycle states (sandbox, simulated, ratified, implementing, implemented)
+  const SANDBOX_STATES = new Set(['sandbox', 'simulated', 'ratified', 'implementing', 'implemented']);
   if (fm.lifecycle_state && fm.lifecycle_state !== 'active' && !fm.next_review_at) {
-    if (!TERMINAL_STATES.has(fm.lifecycle_state) && fm.lifecycle_state !== 'resolved' && fm.lifecycle_state !== 'deprecated') {
+    if (!TERMINAL_STATES.has(fm.lifecycle_state) && !SANDBOX_STATES.has(fm.lifecycle_state) &&
+        fm.lifecycle_state !== 'resolved' && fm.lifecycle_state !== 'deprecated') {
       errors.push(ctx(`next_review_at required when lifecycle_state="${fm.lifecycle_state}" (per P-META-004)`));
     }
   }

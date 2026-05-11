@@ -112,6 +112,15 @@
             "command": ".claude/hooks/pre-tool-use-rzf-evidence-gate.sh"
           }
         ]
+      },
+      {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-agent-alignment.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [

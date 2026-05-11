@@ -27,6 +27,8 @@ tags:
   - maturity:stable
 session: S022
 execution_mode: deep_quality
+intent_crystallized: true
+threshold_route: platform.governance
 know_how_consulted: true
 enforcement_stage: active
 topic_id: csps-continuous-intelligence-architecture

@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 53
+  total_count: 54
   generated_at: '2026-05-11'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -173,3 +173,6 @@ contracts:
   - id: B_NO_IMPLEMENTATION_WITHOUT_PLAN
     desc: "no code changes to libs/ or apps/src/ outside a ratified plan"
     path: ./behavioral-contracts/B_NO_IMPLEMENTATION_WITHOUT_PLAN.md
+  - id: B_INTENT_CRYSTALLIZATION
+    desc: "no implementation without validated intent"
+    path: ./behavioral-contracts/B_INTENT_CRYSTALLIZATION.md

@@ -333,3 +333,70 @@ Type codes: SCHM | PLAN | VAL | HOOK | DOC | CONF | SIM
 ---
 
 *S022 amendment | Governor ratified VLTs: VLT-S022-DOMAIN-PATH, VLT-S022-WISDOM-CLASS, VLT-S022-PERSONA-TARGET*
+
+---
+
+## S023 INTENT CRYSTALLIZATION + ROUTING + UX FIELDS
+
+### `intent_crystallized:` — was intent validated before work began?
+
+```yaml
+intent_crystallized: true | false | partial
+```
+
+| Value | Meaning |
+|---|---|
+| `true` | Open question asked → AI clarification → template matched → Governor confirmed |
+| `partial` | Clarification done but not via full wizard flow |
+| `false` | Work began without intent crystallization (requires justification) |
+
+**Mandatory for:** any plan with implementation scope. Default: `false` until crystallized.
+
+---
+
+### `threshold_route:` — which verified wizard template was matched
+
+```yaml
+threshold_route: developer.new-entity | developer.new-page | developer.api-integration |
+                 business.billing | business.permissions | ux.onboarding-flow |
+                 platform.governance | personal.tracking | knowledge.documentation | none
+```
+
+**Mandatory for:** all topic-plans and implementation plans. `none` = explicitly exempt with reason.
+
+---
+
+### `jtbd_outcome:` — the job-to-be-done outcome statement
+
+```yaml
+jtbd_outcome: "string — what success looks like in the user's world (not the system's)"
+```
+
+Examples:
+- `"A developer can set up App #2 in under 30 minutes without asking for help"`
+- `"A business user can invite a team member without leaving the app"`
+- `"Any user can erase their account and PII in one click"`
+
+**Mandatory for:** UX/UI artifacts, wizard templates, protocol designs.
+
+---
+
+### `ux_principle:` — primary UX design principle governing this artifact
+
+```yaml
+ux_principle: jtbd-outcome-first | progressive-disclosure | mobile-first |
+              one-decision-per-screen | example-driven | wizard-of-oz-validated | none
+```
+
+| Value | Meaning |
+|---|---|
+| `jtbd-outcome-first` | Screen communicates outcome, not action |
+| `progressive-disclosure` | Shows only what's needed — reveals complexity on demand |
+| `mobile-first` | Designed for smallest screen, scaled up |
+| `one-decision-per-screen` | Each screen resolves exactly one ambiguity |
+| `example-driven` | Users recognize their situation from examples, not labels |
+| `wizard-of-oz-validated` | Manually simulated 3+ times before building |
+
+---
+
+*S023 amendment | Governor directive: Intent Crystallization as platform DNA — WIZARDS + PROTOCOLS + AUDITS + UX/UI*

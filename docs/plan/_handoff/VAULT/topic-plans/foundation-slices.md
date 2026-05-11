@@ -20,6 +20,8 @@ tags:
 diataxis_type: how-to
 session: S011
 execution_mode: deep_quality
+intent_crystallized: true
+threshold_route: platform.governance
 alignment_verified_session: S015
 topic_id: foundation-slices
 priority_score: 95

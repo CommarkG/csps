@@ -28,6 +28,8 @@ diataxis_type: how-to
 session: S015
 alignment_verified_session: S015
 execution_mode: deep_quality
+intent_crystallized: true
+threshold_route: platform.governance
 topic_id: plan-methodology-v2
 priority_score: 88
 priority_band: 1

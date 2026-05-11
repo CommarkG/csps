@@ -1916,3 +1916,37 @@ When the change is clearly within scope of an existing active plan AND the plan 
 - contract: this entry + over-the-system-audit-S022.md §4 Resolution Protocol
 
 **Source:** Session A of platform-excellence-completion-S023.md. Governor ratified 2026-05-11.
+
+## B_INTENT_CRYSTALLIZATION — no implementation without validated intent (S023 — CONSTITUTIONAL)
+
+**Canonical wording:**
+
+> No implementation work begins — for any wizard, protocol, audit, or UX/UI artifact — without first crystallizing the true intent behind the initial request. The initial user expression is ALWAYS a draft. The platform transforms draft → accurate definition through: open question → AI interpretation → 1-3 targeted clarifying questions → verified wizard template match → declaration. "Accurate goal setting prevents multiple drifts."
+
+**The 4 domains this applies to:**
+
+1. **WIZARDS:** Open question ("What's on your plate?") → AI interprets → 1-3 questions → WIZARD_TEMPLATES match → threshold_route: declared → intent_crystallized: true
+2. **PROTOCOLS:** WHY documented before WHAT → each protocol step has an explicit acceptance_criterion → cannot declare DONE without evidence
+3. **AUDITS:** Exit criteria (ZF level, counts, assertions) defined BEFORE building the audit → Wizard-of-Oz simulation if user-facing → measurable definition of "clean"
+4. **UX/UI:** jtbd_outcome: stated before any screen design → ux_principle: declared in every page.tsx → mobile-first constraint before desktop → one decision per screen
+
+**What triggers this contract:**
+- Any new plan creation (requires threshold_route + intent_crystallized)
+- Any new page.tsx (requires ux_principle declaration)
+- Any new protocol (requires WHY + acceptance criteria)
+- Any new audit (requires measurable exit criteria + ZF level)
+
+**Counterweight:**
+Trivial bug fixes and mechanical updates (updating a count, fixing a typo, archiving a plan) are exempt. Only work with implementation scope > 1 file requires crystallization.
+
+**Mechanical surfaces (5/5 S023):**
+- schema: `threshold_route:` + `intent_crystallized:` + `jtbd_outcome:` + `ux_principle:` fields in frontmatter-closed-enums.md
+- validator: `validate-intent-crystallized.mjs` (BLOCKING for deep_quality plans without field) + `validate-routing-declared.mjs` (ADVISORY) + `validate-ux-principles-declared.mjs` (ADVISORY)
+- hook: `pre-tool-use-intent-gate.sh` (ADVISORY — fires on plan creation without threshold_route)
+- memory: `feedback_intent_crystallization_first.md` + MEMORY.md entry
+- contract: this entry + AGENTS.md hard NO sub-bullet
+
+**The UX/UI moat:**
+Every screen is customer-hired-for-a-job. Mobile-first is the constraint that forces simplicity. Progressive disclosure is the delivery mechanism. Example-driven classification is the anti-label technique. Wizard-of-Oz validation is the proof standard before automation. These are not suggestions — they are the platform's customer-facing DNA.
+
+**Source:** Governor directive S023 — "this is another moat — strong focus on customers." Platform DNA: all construction transforms initial draft → accurate definition.

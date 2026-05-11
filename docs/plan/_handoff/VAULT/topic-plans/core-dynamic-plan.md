@@ -29,6 +29,8 @@ tags:
 diataxis_type: how-to
 session: S018
 execution_mode: deep_quality
+intent_crystallized: true
+threshold_route: platform.governance
 know_how_consulted: true
 enforcement_stage: planned
 topic_id: core-dynamic-plan

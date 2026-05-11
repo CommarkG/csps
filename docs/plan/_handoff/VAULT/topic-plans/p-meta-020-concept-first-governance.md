@@ -22,6 +22,8 @@ diataxis_type: how-to
 know_how_consulted: true
 session: S014
 execution_mode: deep_quality
+intent_crystallized: true
+threshold_route: platform.governance
 alignment_verified_session: S015
 topic_id: p-meta-020-concept-first-governance
 priority_score: 98

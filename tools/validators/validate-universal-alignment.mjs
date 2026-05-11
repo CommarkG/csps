@@ -86,7 +86,11 @@ function getNewFiles() {
       .filter(f => !f.match(/tools\/templates\/adr\.template\.md$/))
       .filter(f => !f.match(/tools\/templates\/docs\//))
       // Skip tools/council/ entirely (working docs)
-      .filter(f => !f.match(/tools\/council\//));
+      .filter(f => !f.match(/tools\/council\//))
+      // Skip HANDOFF + chat-jump + closing-summary files (session lifecycle artifacts)
+      .filter(f => !f.match(/HANDOFF-S\d+-to-S\d+\.md$/))
+      .filter(f => !f.match(/chat-jump-prompt-S\d+-to-S\d+\.md$/))
+      .filter(f => !f.match(/closing-summary-S\d+\.md$/));
   } catch { return []; }
 }
 

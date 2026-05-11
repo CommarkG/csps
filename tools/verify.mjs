@@ -189,6 +189,17 @@ const CYCLES = [
     },
   },
   {
+    // NEW S022 Governor directive — ZF mechanical enforcement on Opus advisory output.
+    // Every substantive Opus turn must have "## RZF VERIFICATION" section with ZF ACHIEVED evidence.
+    // Enforcement: advisory (week-4 → blocking). Applies B_RZF to Opus's own activity.
+    name: 'opus_turn_rzf',
+    command: 'node tools/validators/validate-opus-turn-rzf.mjs',
+    parse_output: (out) => {
+      const m = out.match(/turns_checked=(\d+).*warnings=(\d+)/);
+      return m ? { turns_checked: Number(m[1]), warnings: Number(m[2]) } : {};
+    },
+  },
+  {
     // NEW S021 Governor directive — gradual-bundling: comprehensive check of all 7 bundling elements
     // Checks: depth discipline, humble batching, core spiral, GEP enforce_stage, PE alignment
     name: 'gradual_bundling',

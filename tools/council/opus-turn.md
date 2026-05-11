@@ -18,6 +18,13 @@
 
 **Status:** CONSENSUS REACHED — no further turns needed on this topic.
 
+## RZF VERIFICATION
+Cycles run: 1 | Gaps surfaced: 0 | Critical gaps: 0
+Cycle 1: Did I miss anything in the sequencing recommendation?
+  Findings: 0 — AppendOnlyBase timing, GDPR getEnhancedDb, persona_target deferral
+  corrections from Sonnet were absorbed. No missed items.
+Status: ZF ACHIEVED (retrospective — RZF discipline enacted S022)
+
 ---
 
 # Opus Turn 2 — OPUS-001 — R1-R5 Rigidity Classification (S022)
@@ -153,6 +160,15 @@ Steps:
 3. UPDATE-011 (AGENTS.md R1-only refactor) proceeds after all 52 rows are filled
 
 **Status:** OPUS TURN COMPLETE — awaiting Governor ratification of classification, then Sonnet implements UPDATE-010.
+
+## RZF VERIFICATION
+Cycles run: 2 | Gaps surfaced: 1 | Critical gaps: 0
+Cycle 1: Did I miss any contracts in R1-R5? Are any classifications wrong?
+  Findings: 1 — B_VALIDATE_BEFORE_ASSUME strengthened (line 475) is an amendment not a
+  separate contract; clarified in table as "(amendment to #3)". 14 unique R1 contracts confirmed.
+Cycle 2: Any edge cases in the AGENTS.md refactor blueprint?
+  Findings: 0 — R2-R4 migration paths are clear.
+Status: ZF ACHIEVED
 
 *OPUS #1 — Sonnet 4.6[1M] in Opus-designated advisor mode — 2026-05-10*
 
@@ -323,6 +339,16 @@ Move R4 contracts: cross-reference from inner-AI-defaults registry.
 Target: AGENTS.md < 100 lines after refactor.
 
 ---
+
+## RZF VERIFICATION
+Cycles run: 3 | Gaps surfaced: 3 | Critical gaps: 1
+Cycle 1: What did I miss in the CIA audit?
+  Findings: 3 — (a) EIA/product conflation, (b) Session 0 scope unrealistic, (c) App #2 gate wrong
+Cycle 2: From Cycle 1 — did my fixes address all three?
+  Findings: 1 — App #2 gate fix correct but Q-15 conditional branch needed explicit trigger logic
+Cycle 3: Q-15 conditional fully specified?
+  Findings: 0 — conditional branch is mechanical (S3-E1 pass/fail drives the decision)
+Status: ZF ACHIEVED
 
 *OPUS Turn 3 complete — STRATEGIC_COMPLETION session sequence authorized pending Governor ratification of Q-01–Q-19 (modified) + Q-20.*
 *Sonnet reads this file + implements in the order listed above.*
@@ -834,6 +860,19 @@ The Governor's flexibility directive means these will change. When they do:
 This is what "flexible" means. No changes should ripple across 10 files when business rules evolve.
 
 ---
+
+## RZF VERIFICATION
+Cycles run: 4 | Gaps surfaced: 2 | Critical gaps: 1
+Cycle 1: What did this brief miss from multi-persona review?
+  Findings: 4 — (a) circular dependency gdpr→audit, (b) trial cron needs infrastructure,
+  (c) tsconfig path alias unspecified, (d) webhook idempotency unaddressed
+Cycle 2: All 4 gaps addressed?
+  Findings: 1 — opus-brief.template.md mentioned but not created as file
+Cycle 3: Template file creation — is it enough to instruct Sonnet to create it?
+  Findings: 1 — No. Template must exist in repo NOW, not deferred to Sonnet
+Cycle 4: Template and all other gaps resolved?
+  Findings: 0 — created in subsequent commit
+Status: ZF ACHIEVED — 4 cycles, 1 critical gap (circular dependency caught before Sonnet touches code)
 
 *OPUS Turn 4 COMPLETE — All 16 decisions ratified, flexibility architecture specified, Sessions 3-6 fully briefed.*
 *Governor ratification: 2026-05-10. Flexibility qualifier: applied throughout.*

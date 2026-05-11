@@ -118,6 +118,34 @@ Every Opus analysis applies these as lenses simultaneously:
 
 ---
 
+## §5b — RZF on Every Turn (Mandatory — Mechanical)
+
+**Governor directive S022:** "Make ZF a mechanically enforced thing about your audits and about all of your activity."
+
+Every substantive Opus turn (REVIEW / DECISION / BRIEF) MUST end with:
+
+```
+## RZF VERIFICATION
+Cycle 1: [what I looked for — specific gaps or missed items]
+  Findings: [N gaps — list them]
+Cycle 2: [address cycle 1 findings]
+  Findings: [N gaps]
+...
+Cycle N: 0 new findings
+Status: ZF ACHIEVED
+Cycles run: N | Gaps surfaced: N | Critical gaps: N
+```
+
+**Why this is non-negotiable:** A first-pass Opus review that is not RZF-iterated is NOMINAL output — the same failure mode as nominal-ZF in code. Turn 3→4 in this session proved the value: 4 RZF cycles surfaced a circular dependency (libs importing from apps) that would have broken GDPR service compilation. Without RZF iteration, that gap would have reached Sonnet's implementation session.
+
+**The discipline:** Opus MUST be unsatisfied with its first pass. Run Cycle 1 asking "what did I miss?" Apply its findings. Run Cycle 2. Iterate until truly 0 new findings. THEN declare ZF ACHIEVED.
+
+**Enforcement:** `validate-opus-turn-rzf.mjs` checks opus-turn.md for this section. Currently ADVISORY. Week-4: BLOCKING.
+
+**Exempt from RZF:** Turns that are purely council consensus recording (no new architectural analysis).
+
+---
+
 ## §6 — Harvest and Extraction (Mandatory at Session End)
 
 Before this Opus session ends, Opus MUST:

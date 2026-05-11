@@ -4,6 +4,7 @@
 import { auth } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
 import type { CspsSessionClaims } from '@csps/integrations'
+import { mapClerkJwtRole } from '@csps/integrations'
 import { db } from '@/lib/db'
 import { writeAuditEvent } from '@/lib/audit'
 import { getEnhancedDb } from '@/lib/zenstack'
@@ -46,8 +47,10 @@ export async function GET() {
 export async function POST(request: Request) {
   const { userId, sessionClaims } = await auth()
   if (!userId) return unauthorized()
-  const tenantId = (sessionClaims as CspsSessionClaims)?.tenantId
+  const claims = sessionClaims as CspsSessionClaims
+  const tenantId = claims?.tenantId
   if (!tenantId) return forbidden()
+  const role = mapClerkJwtRole(claims?.role)  // Q-20: map org:owner→owner etc.
 
   const body = await request.json().catch(() => null)
   if (!body?.title || typeof body.title !== 'string') {

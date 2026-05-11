@@ -12,8 +12,17 @@
 
 export type CspsSessionClaims = {
   tenantId?: string    // active tenant — set from Clerk JWT custom claim
-  role?: string        // Q-20: MembershipRole (owner|admin|member) from UserTenant
+  role?: string        // Q-20: Clerk org membership role (org:owner|org:admin|org:member)
   staffRole?: string   // staff/admin override
+}
+
+// Map Clerk org membership role → CSPS MembershipRole
+// Clerk JWT contains: org:owner, org:admin, org:member (with org: prefix)
+// CSPS schema uses: owner, admin, member (without prefix)
+export function mapClerkJwtRole(clerkRole?: string): 'owner' | 'admin' | 'member' {
+  if (clerkRole === 'org:owner') return 'owner'
+  if (clerkRole === 'org:admin') return 'admin'
+  return 'member'
 }
 
 // Use in server components:

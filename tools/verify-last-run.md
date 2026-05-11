@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-11T00:47:45.701Z
-- finished_at: 2026-05-11T00:48:04.586Z
+- ran_at: 2026-05-11T01:00:22.578Z
+- finished_at: 2026-05-11T01:00:41.982Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T00:47:45.701Z",
-    "finished_at": "2026-05-11T00:48:04.586Z",
+    "ran_at": "2026-05-11T01:00:22.578Z",
+    "finished_at": "2026-05-11T01:00:41.982Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1.1,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -163,7 +163,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -360,7 +360,7 @@
         "command": "node tools/validators/validate-instruction-context.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "checked": 120,
         "missing_why": 29
       },
@@ -564,7 +564,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 10.1
+        "duration_seconds": 9.8
       },
       {
         "name": "audit_runner_full_pass",

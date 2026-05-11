@@ -8,8 +8,8 @@
 |---|---|
 | **Current session** | S022 |
 | **Previous session** | S021 |
-| **Last updated** | -1 day(s) ago |
-| **Last commit** | 970994c S022 SESSION CLOSE: Closing summary + HANDOFF + S023 brief + alignment fixes |
+| **Last updated** | today |
+| **Last commit** | fe05e5a auto: SESSION-BRIEF.md updated for S022 |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

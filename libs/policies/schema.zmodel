@@ -253,8 +253,8 @@ model Project extends Base {
 
   @@schema("public")
   @@allow("read",   auth().tenantId == tenantId)
-  @@allow("create", auth().tenantId == tenantId)
-  @@allow("update", auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)  // Q-04: any member; role enforcement at API layer via hasPermission()
+  @@allow("update", auth().tenantId == tenantId)  // Q-05: admin+ enforced at API layer (ZenStack bypass active)
   @@deny("delete",  true)
 
   @@index([tenantId, status])

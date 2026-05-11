@@ -52,6 +52,32 @@ import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = process.cwd();
+
+// Load KNOWN_DEFERRED_ADVISORIES from YAML config (Governor-editable, not code)
+// File: tools/config/known-deferred-advisories.yaml
+// Format: known_deferred: [ { id, reason, review_by_session, owner, deferred_at } ]
+function loadDeferredAdvisories() {
+  const configPath = resolve(ROOT, 'tools/config/known-deferred-advisories.yaml');
+  if (!existsSync(configPath)) return {};
+  try {
+    const raw = readFileSync(configPath, 'utf8');
+    // Minimal YAML parser for this specific structure (no external dep needed)
+    const entries = {};
+    let currentEntry = null;
+    for (const line of raw.split('\n')) {
+      if (line.trim().startsWith('- id:')) {
+        currentEntry = { id: line.replace(/.*- id:\s*["']?/, '').replace(/["'].*/, '').trim() };
+      } else if (currentEntry && line.trim().startsWith('reason:')) {
+        currentEntry.reason = line.replace(/.*reason:\s*["']?/, '').replace(/["']$/, '').trim();
+      } else if (currentEntry && line.trim().startsWith('review_by_session:')) {
+        currentEntry.review_by_session = line.replace(/.*review_by_session:\s*/, '').trim();
+        entries[currentEntry.id] = currentEntry;
+        currentEntry = null;
+      }
+    }
+    return entries;
+  } catch { return {}; }
+}
 const ARGS = process.argv.slice(2);
 const levelIdx = ARGS.indexOf('--level');
 const cyclesIdx = ARGS.indexOf('--max-cycles');
@@ -235,10 +261,9 @@ async function main() {
   const finalBlocking = lastCycle?.blocking ?? 0;
   const finalWarn = lastCycle?.warn ?? 0;
 
-  // Known advisory deferrals (formally documented — not bugs, legitimate open obligations)
-  const KNOWN_DEFERRED_ADVISORIES = {
-    'open-plan-levels': 'DEFERRED: 97 open items = real outstanding work in active plans (Sessions 0-D + App#2). Each tracked in its plan. Not closing arbitrarily.',
-  };
+  // Known advisory deferrals — loaded from tools/config/known-deferred-advisories.yaml
+  // Governor-editable config (not code). Add entries there to formally defer advisories.
+  const KNOWN_DEFERRED_ADVISORIES = loadDeferredAdvisories();
 
   if (finalBlocking === 0 && finalWarn === 0) {
     console.log('\n  STATUS: REAL ZF ACHIEVED ✅ — TRULY ZERO FINDINGS across all directions');
@@ -249,8 +274,10 @@ async function main() {
     console.log('\n  ADVISORY DISPOSITION (required — not optional):');
     const lastFindings = cycleHistory[cycleHistory.length - 1];
     // Surface deferred rationale for each known advisory source
-    for (const [source, reason] of Object.entries(KNOWN_DEFERRED_ADVISORIES)) {
-      console.log(`    [${source}]: ${reason}`);
+    for (const [source, entry] of Object.entries(KNOWN_DEFERRED_ADVISORIES)) {
+      const reason = typeof entry === 'string' ? entry : entry.reason;
+      const review = typeof entry === 'object' ? ` [review by: ${entry.review_by_session}]` : '';
+      console.log(`    [${source}]: ${reason}${review}`);
     }
     console.log('  Any advisory NOT in the known-deferred list requires explicit DONE or new DEFERRED entry.');
   } else {

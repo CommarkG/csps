@@ -54,8 +54,9 @@ domain_path: platform
 | 11 | **Priority Engine** (5-dim formula: Breadth/Depth/Impact/Blockers_now/PAS) | [gradual-build-plan.template.md §6](../../../tools/templates/gradual-build-plan.template.md) + [priority-engine.schema.yaml](../../../tools/templates/priority-engine.schema.yaml) | `priority-engine-inputs-complete` (week-4) |
 | 12 | **Context-Loss Discipline** (22-pain catalog mechanically referenced from every plan) | [context-loss-pains.md](./context-loss-pains.md) (NEW S008 turn 12) | `plan-context-loss-section-present` (week-4) |
 | 13 | **LAYER** (CSP_CORE / SOLUTION_<X> / MIXED — adapted from CSP) | (declared in artifact frontmatter) | (per-artifact frontmatter check) |
+| 14 | **Domain Primitives** (sealed L1 functional capabilities — Calendar, Notifications, ...) | [core-primitives-registry.md](./core-primitives-registry.md) + `libs/core/` directory | `validate-core-primitive-usage.mjs` (TO BUILD Phase 1) |
 
-**13 elements.** Each has a canonical home. Each has a validator (active or week-4). **Plans pass through DNA gate (Step 2 of [plan-creation-protocol.md](./plan-creation-protocol.md)) confirming all 13 elements considered or explicitly N/A.**
+**14 elements** (Element 14 added S022 per Opus Core Council approval — Phase 0 proceed). Each has a canonical home. Each has a validator (active or week-4). **Plans pass through DNA gate (Step 2 of [plan-creation-protocol.md](./plan-creation-protocol.md)) confirming all 13 elements considered or explicitly N/A.**
 
 ## §2 — DNA process integration map (how DNA flows through platform)
 

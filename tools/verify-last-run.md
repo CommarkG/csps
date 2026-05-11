@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-11T05:43:56.952Z
-- finished_at: 2026-05-11T05:44:10.794Z
+- ran_at: 2026-05-11T06:10:56.805Z
+- finished_at: 2026-05-11T06:11:10.800Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T05:43:56.952Z",
-    "finished_at": "2026-05-11T05:44:10.794Z",
+    "ran_at": "2026-05-11T06:10:56.805Z",
+    "finished_at": "2026-05-11T06:11:10.800Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.9,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -40,10 +40,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 319,
+        "scanned": 306,
         "errors": 0,
         "warnings": 5,
-        "exempt": 229
+        "exempt": 246
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -171,8 +171,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 1,
-        "advisory": 1,
+        "issues": 0,
+        "advisory": 0,
         "duplicates": 0
       },
       {
@@ -193,10 +193,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "assessed": 23,
-        "no_dev_surface": 23,
-        "no_user_value": 23,
-        "incomplete": 23
+        "assessed": 24,
+        "no_dev_surface": 24,
+        "no_user_value": 24,
+        "incomplete": 24
       },
       {
         "name": "update_backlog",
@@ -275,7 +275,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_scanned": 9,
+        "files_scanned": 11,
         "violations": 0
       },
       {
@@ -341,8 +341,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 75,
-        "with_status": 23,
+        "checked": 76,
+        "with_status": 24,
         "warnings": 0
       },
       {
@@ -455,7 +455,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 1,
+        "warnings": 2,
         "advisory": true
       },
       {
@@ -571,7 +571,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.6
+        "duration_seconds": 6.7
       },
       {
         "name": "audit_runner_full_pass",

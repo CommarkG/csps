@@ -91,8 +91,17 @@ BEFORE authoring:
 
 ### Step 2 — DNA gate (per [csps-platform-dna.md](./csps-platform-dna.md))
 
-Verify the proposed plan touches required DNA elements:
+Verify the proposed plan touches required DNA elements (14 as of S022):
 - vocab + naming + SCHEMA + core_spine + principles + behavioral contracts + depth_levels + PE + LAYER (at minimum)
+- **Element 14 — Domain Primitives (NEW S022):** Does this plan propose a new functional capability?
+  If YES: compute CCG score using formula in [core-primitives-architecture.md §4.2](../_handoff/VAULT/topic-plans/csps-core-primitives-architecture.md):
+  ```
+  CCG_SCORE = (PREVALENCE × 0.35) + (COST × 0.35) + (STABILITY × 0.30)
+  ≥ 7.0 → register in core-primitives-registry.md as PROPOSED + VLT required
+  4.0–6.9 → libs/integrations/ as shared pattern, no CCG gate
+  < 4.0 → app layer, no registration needed
+  ```
+  Include in plan frontmatter: `ccg_assessment: { prevalence, cost, stability, ccg_score, classification }`
 
 If ANY DNA element absent → fail gate; revise plan scope.
 

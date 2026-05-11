@@ -80,7 +80,13 @@ function getNewFiles() {
       .filter(f => !f.match(/tools\/council\/(opus-turn|sonnet-turn|PROTOCOL|opus-protocol|opus-1-context|sonnet-1-context|haiku-1-context|council-architecture|opus-brief\.template|sonnet-brief-S\d+-final|feedback-.+)\.md/))
       .filter(f => !f.match(/tools\/council\/templates\//))
       // Skip governor-comments (auto-generated append-only raw logs)
-      .filter(f => !f.match(/governor-comments\//));
+      .filter(f => !f.match(/governor-comments\//))
+      // Skip template files (structural scaffolds, not governed artifacts)
+      .filter(f => !f.match(/tools\/templates\/.*\.template\.md$/))
+      .filter(f => !f.match(/tools\/templates\/adr\.template\.md$/))
+      .filter(f => !f.match(/tools\/templates\/docs\//))
+      // Skip tools/council/ entirely (working docs)
+      .filter(f => !f.match(/tools\/council\//));
   } catch { return []; }
 }
 

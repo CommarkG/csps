@@ -1,0 +1,18 @@
+# CSPS Known Deferred Advisories Registry
+# Add entries here when a ZF advisory cannot be resolved now.
+# MANDATORY: review_by_session must be a future session.
+# When review_by_session passes: orchestrator surfaces as OVERDUE_REVIEW.
+#
+# Format:
+#   id: the advisory source label (matches ZF orchestrator source name)
+#   reason: why it cannot be resolved now
+#   review_by_session: S{NNN} — when this must be re-evaluated
+#   owner: governor | sonnet | opus
+#   deferred_at: S{NNN} — when this was registered
+
+known_deferred:
+  - id: open-plan-levels
+    reason: "97 open items = real outstanding work in Sessions 0-D + App#2 planning. Each tracked in its respective plan. Not closing arbitrarily — these are scheduled work items."
+    review_by_session: S025
+    owner: governor
+    deferred_at: S022

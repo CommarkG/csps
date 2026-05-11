@@ -114,6 +114,10 @@ const EXEMPT_PATH_GLOBS = [
   /pillar-0-governance[\/\\]ai-behavior-spine[\/\\]/,
   // Council files: ALL files in tools/council/ are working docs (turn files, feedback, briefs, templates)
   /tools[\/\\]council[\/\\]/,
+  // Template files in tools/templates/ — templates are structural scaffolds, not governed artifacts
+  /tools[\/\\]templates[\/\\].*\.template\.md$/,
+  /tools[\/\\]templates[\/\\]adr\.template\.md$/,
+  /tools[\/\\]templates[\/\\]docs[\/\\]/,
   // Clerk temporary files — auto-generated, no frontmatter expected
   /\.clerk[\/\\]/,
 ];

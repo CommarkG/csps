@@ -16,3 +16,8 @@ export type { StripeClient } from './stripe/customer-service'
 // S022 Session 3 additions
 export { eraseUser } from './gdpr'
 export type { ErasureReceipt, ErasureDb } from './gdpr'
+
+// S022 Session 0 additions — shared patterns (libs/integrations/ L1 conventions)
+export { createError, ERRORS } from './errors'
+export type { CspsError } from './errors'
+export { isProcessed, markProcessed, withIdempotency } from './webhook-idempotency'

@@ -53,6 +53,19 @@ links:
   - { rel: master-roadmap, href: ../csps-master-roadmap-s014-plus.md }
 domain_path: platform
 ---
+## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
+
+CHECK WHAT EXISTS before any implementation step in this plan.
+- Search: tools/validators/ for existing validators covering this area
+- Search: tools/generators/ for existing generators
+- Search: .claude/hooks/ for existing hooks
+- Search: docs/plan/pillar-0-governance/audit-runner.md for registered slugs
+- Search: docs/plan/_handoff/VAULT/topic-plans/ for overlapping plans
+- Search: libs/ for existing integrations and patterns
+
+Consolidation finding: [update with findings when implementing each step]
+
+
 
 # Topic-Plan — P-META-020 Concept-First Governance (depth-3)
 

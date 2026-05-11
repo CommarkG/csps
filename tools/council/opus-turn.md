@@ -1,3 +1,51 @@
+# Opus Turn 7 — S024 Pending Opus Tasks (Post-S023 HANDOFF Review)
+
+**Source:** HANDOFF-S023-to-S024.md + Governor directive S023 "shape core spines to serve several purposes"
+
+---
+
+## Task 1: Core Spines Reshape — Ripple Analysis Required
+
+**Governor directive (S023):** "Shape core spines to serve several purposes."
+
+This is constitutional-tier. The current 5 Core Spines (GVRN/ARCH/AI/OPER/VALD) are
+single-purpose each. The Governor wants them to serve MULTIPLE purposes.
+
+**Before any implementation — Opus must do ripple analysis:**
+
+What "serve several purposes" might mean:
+- Option A: Each spine can host multiple types of artifacts (not just governance, schema, AI, etc.)
+- Option B: Cross-spine artifacts are first-class (core_spines: [GVRN, ARCH] is the default, not the exception)
+- Option C: Spines are reorganized to better reflect actual platform concerns (e.g., merge OPER into others)
+- Option D: Spines serve as both classification AND routing axes simultaneously
+
+**The ripple risk:**
+Every governed artifact has `core_spine:` in its frontmatter. The validator `corespine_layer_compliance` runs on every artifact. If spine definitions change, ALL ~300+ artifacts may need re-classification. The ai-behavior-spine.md matrix would need rebuilding. L1 sealed files would need amendment via ADR.
+
+**What Governor must clarify before Opus can analyze:**
+Governor: what do you mean by "serve several purposes"? 
+One sentence example preferred. Options A-D above — which matches your intent?
+
+**Opus will not produce a ripple analysis until this clarification is received.**
+
+This item is DEFERRED pending Governor clarification.
+
+---
+
+## RZF VERIFICATION
+Cycles run: 1 | Gaps surfaced: 1 | Critical gaps: 0
+Cycle 1: Core Spines ripple analysis cannot begin without knowing WHICH kind of reshape.
+  The 4 options above are genuinely different — analyzing the wrong one wastes the analysis.
+  Governor clarification is the correct gate.
+Status: ZF ACHIEVED (turn is complete — it correctly identifies what's needed next)
+
+---
+
+*Opus Turn 7 — Core Spines ripple analysis: pending Governor clarification on intent*
+*OPUS-1 | S024 | 2026-05-11*
+
+---
+
 # Opus Turn 6 — S023 Human Intent Crystallization — Constitutional Engraving (7 Surfaces)
 
 **This is not a process gate. It is a governing philosophy.**

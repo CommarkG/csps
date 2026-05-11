@@ -1,102 +1,148 @@
-# Chat Jump — S024 (S023 continuation) — P-META-022 Implementation
+# Chat Jump — S024 (opens fresh tab)
+## Based on: HANDOFF-S023-to-S024.md + Opus Turns 5-6 in tools/council/opus-turn.md
 
 ## Paste this entire block to the new Sonnet chat
 
 ---
 
-You are Sonnet, the builder for CSPS (CoreSights Platform Services).
-Session: S024 (continuation of S023 Opus advisory work).
-OPUS-1 has been advising this session. Their output is in `tools/council/opus-turn.md` Turns 5-6.
+You are Sonnet S024, the builder for CSPS.
 
 **Your FIRST action — before any file edit — emit this block:**
 
 ```
-INTENT ABSORBED — Opus Turns 5-6 (S023):
+INTENT ABSORBED — S024 opening:
 
-Task understanding:
-  1. Register P-META-022 in principles.yaml (human intent crystallization principle)
-  2. Add plan-creation-protocol.md Step 0a (Reflect-Until-Match before any plan writing)
-  3. Add ZF-3 intent drift check to closing-summary-template.md (milestone gate)
-  4. Add P-META-022 cross-ref to B_CONSENSUS_BEFORE_PROCEEDING (consensus = Layer 2-3 intent)
-  5. Add ZF-3 check inside B_HUMBLE_EXECUTOR milestone block
-  6. Add Element 15 to csps-platform-dna.md (human intent crystallization)
-  7. Add OD-007 to inner-ai-defaults/output-distribution.md (override act-on-first-expression)
-  8. Update inner-ai-defaults/README.md (increment OD count)
-  9. Create validate-intent-crystallized.mjs (ZF-1 gate — blocks S023+ plans without goal_statement)
-  10. Wire validate-intent-crystallized.mjs into verify.mjs + audit-runner.md
-  11. Add AI-to-AI section to human-intent-crystallization.md (same gap exists in Opus→Sonnet)
+State from HANDOFF-S023-to-S024.md:
+  - 72 validators active (5 added in S023)
+  - B_INTENT_CRYSTALLIZATION (5/5 FSE) enacted
+  - B_SANDBOX_BEFORE_IMPLEMENTATION (5/5 FSE) enacted
+  - ZF ACHIEVED — 0 blocking at S023 close
+  - Sandbox policy live: DRAFT→SANDBOX→SIMULATED→RATIFIED→IMPLEMENTING→DONE
 
-Why this matters (Layer 3):
-  Every platform interaction — human-to-AI, AI-to-AI, app-to-user — has a gap between
-  what is expressed and what is needed. P-META-022 makes the platform close this gap
-  structurally, not by hope. Without it, every plan Sonnet builds may address Layer 1
-  while drifting from Layer 3. This is the most important behavioral principle in CSPS.
+Opus has already responded:
+  - Turn 5 (opus-turn.md): answered all 6 consensus protocol questions
+  - Turn 6 (opus-turn.md): P-META-022 Human Intent Crystallization — 7-surface constitutional
+  - Canonical doc exists: docs/plan/pillar-0-governance/human-intent-crystallization.md
+  - Alignment plan exists: tools/council/p-meta-022-alignment-plan.md (16 items)
+  - AI-to-AI extension: same Layer 1-3 gap exists in Opus→Sonnet communication
+
+Tasks I understand for S024 (in priority order):
+  1. Read HANDOFF-S023-to-S024.md Zone B for current mandate
+  2. Implement P-META-022 alignment plan items STILL PENDING:
+     Items 1,2,3,4,5,6,7,8,11 (Items 9+10 already done in S023 as validate-intent-crystallized.mjs)
+  3. Promote pre-tool-use-plan-coverage-gate.sh ADVISORY→BLOCKING for libs/ (Governor directive)
+  4. Do NOT touch Core Spines reshape (awaiting Opus ripple analysis — deferred)
+  5. Do NOT touch Threshold Wizard implementation (awaiting Governor sandbox ratification)
 
 Constraints understood:
-  - Do NOT edit .claude/hooks/*.sh or .claude/settings.json (protected path — needs Governor)
-  - Do NOT implement Tier 2 items (defer to S025)
-  - Do NOT sacrifice chat close for extra scope
+  - Protected paths (.claude/hooks/*.sh) need diff + Governor confirm before editing
+  - Core Spines reshape is constitutional — Opus must analyze ripple before any work
+  - Threshold Wizard v1 sandbox needs Governor review/ratification before implementation
+  - Tier 2 alignment items (12-16) deferred to S025
 
-First action: verify baseline, then Item 1
+Proceeding with: pnpm verify baseline → alignment plan items 1, 2, 3...
 ```
 
-**Show this block to Governor before proceeding. If wrong, Governor corrects now.**
+**Show this to Governor before proceeding. If wrong, Governor corrects.**
 
 ---
 
-## Steps
+## Read first (in order)
 
-**Step 1: Baseline**
+1. `docs/plan/_handoff/HANDOFF-S023-to-S024.md` — Zone A (state) + Zone B (mandate)
+2. `tools/council/opus-turn.md` — Turn 5 (consensus protocol answers) + Turn 6 (P-META-022)
+3. `docs/plan/pillar-0-governance/human-intent-crystallization.md` — the canonical principle
+4. `tools/council/p-meta-022-alignment-plan.md` — items 1-11 (items 9+10 already done)
+
+---
+
+## Baseline (run before anything)
+
 ```bash
 pnpm verify
 git log --oneline -3
 ```
-Paste both outputs.
+Paste both. If verify fails, fix before proceeding.
 
-**Step 2: Implement Items 1-11**
-Read `tools/council/p-meta-022-alignment-plan.md`.
-Tier 1 = Items 1-11. Follow each item exactly: find the section, insert the text, run the grep verification.
+---
 
-**Step 3: After all 11 items**
+## Task A: P-META-022 Alignment Plan (Items still pending)
+
+**Items 9 and 10 are DONE** — validate-intent-crystallized.mjs was created in S023.
+Skip them. Implement items 1-8 and 11 in the order listed in the alignment plan.
+
+Each item in `tools/council/p-meta-022-alignment-plan.md` has:
+- Exact file path
+- Exact text to insert
+- Exact grep to verify
+
+After completing all pending items:
 ```bash
-pnpm verify       # exit_code=0 required
+pnpm verify    # Must exit_code=0
 pnpm audit-runner:split
 ```
-Paste both outputs.
+Paste outputs.
 
-**Step 4: Session close (mandatory)**
+---
+
+## Task B: pre-tool-use-plan-coverage-gate.sh ADVISORY→BLOCKING
+
+**Governor directive S023:** "Forbid coding without permission from now on."
+
+This hook already exists at `.claude/hooks/pre-tool-use-plan-coverage-gate.sh`.
+Per protected path discipline: read current content, present diff to Governor, wait for explicit yes.
+
+The upgrade: change enforcement for libs/** writes from ADVISORY to BLOCKING.
+Write routes in apps/** stay ADVISORY.
+
+After upgrade, test with a write attempt to libs/ to confirm the gate fires.
+
+---
+
+## Task C: Session close (mandatory)
+
 ```bash
 node tools/zf-orchestrator.mjs --level 3
 ```
 Paste output.
 
-Write `docs/plan/_handoff/closing-summary-S024.md`:
+Write `docs/plan/_handoff/VAULT/closing-summary-S024.md`:
 - §10.0: paste pnpm verify + ZF outputs
-- §10.0j: enhancement proposals (the AI-to-AI extension is a positive one)
-- §10.11b: P-META-022 constitutional engraving — value extracted
-- §10.13b: catches engraved this session
+- §10.0j: enhancement proposals
+- §10.11b: positive value extracted (P-META-022 fully landed, AI-to-AI gap addressed)
+- §10.13b: catches engraved
 
-Write `docs/plan/_handoff/VAULT/HANDOFF-S024-to-S025.md`:
-- Zone A: 68+ validators, P-META-022 Tier 1 active, bedrock 22/22
-- Zone B: Items 1-11 implemented, AI-to-AI gap addressed, S023 Opus advisory completed
-- Zone C: Tier 2 items 12-16 (alignment plan), P-META-022 Tier 2 brief (wizard/template/contract)
-- Zone D: S025 first action = Tier 2 items OR App #2 planning (Governor decides)
+Write `docs/plan/_handoff/HANDOFF-S024-to-S025.md`:
+- Zone A: 72+ validators, P-META-022 Tier 1 complete, libs/ gate now blocking
+- Zone B: Tier 2 alignment items (12-16), Core Spines ripple analysis (awaiting Opus)
+- Zone C: Threshold Wizard ratification pending Governor
+- Zone D: S025 first action = Tier 2 alignment items + Core Spines Opus analysis
 
 ```bash
 git add -A
-git commit -m "S024: P-META-022 Tier 1 — 11-item alignment + AI-to-AI extension"
+git commit -m "S024: P-META-022 alignment Tier 1 complete + libs/ gate blocking"
 git push origin main
 ```
 
 ---
 
-## Important: This is the INTENT ABSORBED protocol in action
+## What NOT to do
 
-You just emitted an INTENT ABSORBED block at the top. That IS P-META-022 applied to AI-to-AI.
-Before you executed anything, you declared your understanding. The Governor can correct it.
-This is the Reflect-Until-Match protocol — for Opus→Sonnet, not just human→AI.
+- Core Spines reshape → DO NOT touch. Opus must analyze ripple first. Constitutional change.
+- Threshold Wizard implementation → DO NOT build. Governor must ratify sandbox v1 first.
+- .claude/hooks/*.sh or settings.json → protected path. Diff + Governor confirm only.
+- Tier 2 alignment items (12-16) → defer to S025.
 
 ---
 
-*Chat jump: S024 | OPUS-1 output | P-META-022 Tier 1 + AI-to-AI extension*
-*Tier 1 (Items 1-11) + session close = this session. Tier 2 = S025.*
+## The AI-to-AI layer (embedded in this prompt)
+
+You just emitted an INTENT ABSORBED block as your first action. That IS P-META-022 applied
+to AI-to-AI (Opus→Sonnet). The Governor can intercept wrong understanding before file edits begin.
+This is the Reflect-Until-Match protocol — same as human→AI, now applied to Opus→Sonnet.
+
+---
+
+*Chat jump: S024 | Updated post-S023-HANDOFF | OPUS-1 | 2026-05-11*
+*S023 state: 72 validators, B_INTENT_CRYSTALLIZATION + B_SANDBOX enacted*
+*S024 scope: P-META-022 alignment Tier 1 (pending items) + libs/ gate blocking + close*

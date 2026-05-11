@@ -112,8 +112,9 @@ const EXEMPT_PATH_GLOBS = [
   /pillar-0-governance[\/\\]behavioral-contracts[\/\\]/,
   /pillar-0-governance[\/\\]audit-runner[\/\\]/,
   /pillar-0-governance[\/\\]ai-behavior-spine[\/\\]/,
-  // Council files: turn files, protocol, and context briefs are working docs — not governed artifacts.
-  /tools[\/\\]council[\/\\](opus-turn|sonnet-turn|PROTOCOL|opus-protocol|opus-1-context|sonnet-1-context|haiku-1-context)\.md$/,
+  // Council files: turn files, protocol, briefs, templates, and context docs are working docs — not governed artifacts.
+  /tools[\/\\]council[\/\\](opus-turn|sonnet-turn|PROTOCOL|opus-protocol|opus-1-context|sonnet-1-context|haiku-1-context|opus-brief\.template|sonnet-brief-S\d+-final|council-architecture)\.md$/,
+  /tools[\/\\]council[\/\\]templates[\/\\]/,
   // Clerk temporary files — auto-generated, no frontmatter expected
   /\.clerk[\/\\]/,
 ];

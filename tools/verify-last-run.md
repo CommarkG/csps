@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-11T02:22:39.426Z
-- finished_at: 2026-05-11T02:23:08.697Z
+- ran_at: 2026-05-11T02:57:08.842Z
+- finished_at: 2026-05-11T02:57:29.461Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T02:22:39.426Z",
-    "finished_at": "2026-05-11T02:23:08.697Z",
+    "ran_at": "2026-05-11T02:57:08.842Z",
+    "finished_at": "2026-05-11T02:57:29.461Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 10.7,
+        "duration_seconds": 6.2,
         "packages_resolved": null
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.9,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -42,10 +42,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 315,
+        "scanned": 316,
         "errors": 0,
         "warnings": 33,
-        "exempt": 222
+        "exempt": 228
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -247,7 +247,7 @@
         "command": "node tools/validators/validate-concept-load-declared.mjs",
         "status": "ADVISORY",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files_scanned": 2,
         "with_concept_load": 1,
         "advisory_gaps": 1
@@ -370,7 +370,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 13,
+        "plans_checked": 14,
         "plans_with_open": 7,
         "total_open_items": 97
       },
@@ -398,7 +398,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 11,
+        "checked": 12,
         "grandfathered": 2,
         "errors": 0
       },
@@ -409,8 +409,8 @@
         "exit_code": 0,
         "duration_seconds": 0.2,
         "blocking": 0,
-        "advisory": 13,
-        "total_gaps": 13
+        "advisory": 14,
+        "total_gaps": 14
       },
       {
         "name": "plan_ai_defaults_alignment",
@@ -418,11 +418,11 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 18,
-        "flagged": 2,
+        "scanned": 19,
+        "flagged": 3,
         "ratified": 1,
         "blocking": 0,
-        "advisory": 1
+        "advisory": 2
       },
       {
         "name": "intake_source_class_coverage",
@@ -448,7 +448,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 1,
+        "warnings": 2,
         "advisory": true
       },
       {
@@ -457,7 +457,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 13,
+        "plans_checked": 14,
         "warnings": 0
       },
       {
@@ -510,9 +510,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 13,
-        "missing_harvest": 3,
-        "warnings": 3
+        "plans_checked": 14,
+        "missing_harvest": 4,
+        "warnings": 4
       },
       {
         "name": "execution_mode_declared",
@@ -520,7 +520,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 13,
+        "plans_checked": 14,
         "missing_mode": 0,
         "warnings": 0
       },
@@ -542,7 +542,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 13,
+        "plans_checked": 14,
         "stale_total": 10,
         "unverified": 10,
         "verified": 0,
@@ -554,7 +554,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 13,
+        "plans_checked": 14,
         "sections_checked": 7,
         "blocking": 0,
         "warnings": 0
@@ -564,7 +564,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 10.1
+        "duration_seconds": 6.5
       },
       {
         "name": "audit_runner_full_pass",

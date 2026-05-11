@@ -30,5 +30,8 @@
       "validate-session-harvest-readiness advisory after Session 1 is expected, not a failure"
     ]
   },
+  "sonnet_last_report_session": "S023",
+  "opus_last_turn_session": "S023",
+  "sonnet_last_intent_absorbed": "S024 opening",
   "next_council_trigger": "S029 (sessions_since_opus_review reaches 10) OR BPG/PEG/PIA/KCP trigger class fires"
 }

@@ -490,6 +490,19 @@ Run: `node tools/validators/validate-drift-registry.mjs` + `node tools/validator
 
 WHY: SAP Sweeps 2+5 are the minimum session-close audit. Without them, enforcement_rate and drift_coverage can silently regress across sessions without a VLT tracking the debt. The session-close invariants force the AI to declare whether coverage advanced or regressed — not assume it was unchanged.
 
+### §10.0r Intent Drift Check (P-META-022 ZF-3 — added S023)
+
+Before declaring this session DONE, verify intent did not drift from the original goal:
+
+  goal_statement (from plan frontmatter — paste verbatim):
+  what was actually produced (one sentence):
+  drift: YES / NO / PARTIAL
+  if YES or PARTIAL:
+    delta: [what drifted]
+    approved drift (VLT): yes / no
+    if unapproved: VLT-S{NNN}-INTENT-DRIFT-{slug} raised
+  if NO: ✅ Intent preserved — goal_statement matched delivery
+
 ### §10.1 Stewardship review (P-META-004)
 
 **Run `/stewardship-review`:**

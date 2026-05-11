@@ -103,7 +103,7 @@ status: active | superseded | obsolete
 | [prose-patterns.md](./prose-patterns.md) | `prose` | Voice / narration / hedging / sycophancy / confirmation-seeking / over-narration |
 | [reasoning-patterns.md](./reasoning-patterns.md) | `reasoning` | Decision framing / planning / batching / finishing-fast urge / N-part splits / single-instance vs multi-session |
 | [tooling-patterns.md](./tooling-patterns.md) | `tooling` | Tool selection / parallelism / command shape / Read-vs-Glob-vs-Grep / sub-agent invocation |
-| [output-distribution.md](./output-distribution.md) | `output` | Response shape / structure / link discipline / table usage / BLUF vs preamble |
+| [output-distribution.md](./output-distribution.md) | `output` | Response shape / structure / link discipline / table usage / BLUF vs preamble — 6 entries (OD-007 added S023: act-on-first-expression override per P-META-022) |
 | [continuous-drift-log.md](./continuous-drift-log.md) | append-only | New defaults discovered in-session — promotes to category file after K=2 |
 
 ## How the registry is consulted

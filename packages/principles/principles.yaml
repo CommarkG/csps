@@ -1926,6 +1926,29 @@ principles:
       - mechanical-as-substitute (adding hooks to avoid understanding the concept → enforcement without navigation)
       - context-without-enforcement (concept understood but no hook fires → reliable only when AI remembers)
 
+  - id: P-META-022
+    name: human-intent-crystallization
+    title: "Human Expression ≠ Human Intent — The Platform's Primary Responsibility"
+    description: >
+      The gap between what a human expresses (Layer 1) and what they truly need (Layer 3)
+      is the DEFAULT condition of human-AI interaction. Acting on Layer 1 without probing
+      Layer 2-3 is arrogance that generates compounding drift. The platform must help humans
+      traverse L1→L2→L3 through the Reflect-Until-Match protocol before any planning begins.
+      goal_statement must be human-authored. done_criteria must be measurable.
+      Drift generated at the understanding layer cannot be fixed at the implementation layer.
+    spine: AI
+    layer: L1
+    category: meta-governance
+    enforces:
+      - B_HUMAN_INTENT_CRYSTALLIZATION
+      - B_INTENT_CRYSTALLIZATION
+    canonical_ref: docs/plan/pillar-0-governance/human-intent-crystallization.md
+    composes_with:
+      - P-META-021
+      - B_CONSENSUS_BEFORE_PROCEEDING
+      - B_HUMBLE_EXECUTOR
+    session: S023
+
   - id: P-ARCH-028
     name: csps-core-spines
     aliases: [core-spine-discipline, 5-spine-architecture, outward-layering]

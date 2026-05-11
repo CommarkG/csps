@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.pre-tool-use-plan-coverage-gate
 # @csps-name pre-tool-use-plan-coverage-gate
-# @csps-description PreToolUse hook ADVISORY — fires on Write/Edit to libs/**/*.ts or apps/*/src/**/*.ts.
+# @csps-description PreToolUse hook — fires on Write/Edit to libs/**/*.ts or apps/*/src/**/*.ts.
 #   Checks if an active ratified plan covers this work.
-#   libs/**: ADVISORY if no plan found (warn, don't block — developer agility).
+#   libs/** NEW files: BLOCKING if no plan found (Governor S024 ratification Q2).
+#   libs/** edits to existing files: ADVISORY (developer agility preserved).
 #   apps/**: ADVISORY always.
-#   NOT BLOCKING (advisory only — week-4 promotion to blocking after plan scope audit).
-#   Promoted from BLOCKING to ADVISORY per Session 0 Opus brief S022.
-# @csps-version 1.1.0-advisory
+# @csps-version 1.2.0
 # @csps-owner group:finky
 # @csps-lifecycle production
 # @csps-lifecycle-state active
@@ -19,8 +18,9 @@ set -euo pipefail
 readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 readonly PLANS_DIR="${REPO_ROOT}/docs/plan/_handoff/VAULT/topic-plans"
 
-# Extract file path from stdin JSON
-FILE_PATH=$(node -e "
+# Extract file path and tool name from stdin JSON
+STDIN_JSON=$(cat)
+FILE_PATH=$(echo "$STDIN_JSON" | node -e "
   let d='';
   process.stdin.on('data',c=>d+=c);
   process.stdin.on('end',()=>{
@@ -28,6 +28,15 @@ FILE_PATH=$(node -e "
       const j=JSON.parse(d);
       process.stdout.write(j.tool_input?.file_path||j.tool_input?.path||'');
     } catch { process.stdout.write(''); }
+  });
+" 2>/dev/null || echo "")
+
+TOOL_NAME=$(echo "$STDIN_JSON" | node -e "
+  let d='';
+  process.stdin.on('data',c=>d+=c);
+  process.stdin.on('end',()=>{
+    try { const j=JSON.parse(d); process.stdout.write(j.tool_name||''); }
+    catch { process.stdout.write(''); }
   });
 " 2>/dev/null || echo "")
 
@@ -83,13 +92,29 @@ while IFS= read -r plan_file; do
   done <<< "$PATHS"
 done < <(find "$PLANS_DIR" -name "*.md" -not -name "README.md" 2>/dev/null)
 
+# Determine if this is a new file write to libs/
+IS_NEW_LIBS_FILE=false
+if [[ "$TOOL_NAME" == "Write" ]] && \
+   ([[ "$REL_PATH" == libs/* ]] || [[ "$FILE_PATH" == */libs/* ]]) && \
+   [[ ! -f "$FILE_PATH" ]]; then
+  IS_NEW_LIBS_FILE=true
+fi
+
 if [ "$FOUND_COVERAGE" = "false" ]; then
-  # ADVISORY only — not blocking (per Opus Session 0 brief)
-  # For libs/**: warn more prominently; for apps/**: light advisory
   if [[ "$REL_PATH" == libs/* ]] || [[ "$FILE_PATH" == */libs/* ]]; then
-    printf '{
-      "systemMessage": "⚠ [plan-coverage-gate] ADVISORY (libs/): No active plan with covered_paths includes %s.\\n\\nConsider: is this in scope of an existing plan? If yes, add covered_paths to that plan.\\nIf no: create a plan first. Plans at: docs/plan/_handoff/VAULT/topic-plans/\\nProceeding (advisory). Promotion to BLOCKING at week-4 after plan scope audit."
-    }' "$REL_PATH"
+    if [ "$IS_NEW_LIBS_FILE" = "true" ]; then
+      # BLOCKING — new file in libs/ without plan coverage (Governor S024 Q2 ratification)
+      printf '{
+        "decision": "block",
+        "systemMessage": "🚫 [plan-coverage-gate] BLOCKING (libs/ — new file): No active plan with covered_paths includes %s.\\n\\nGovernor S024 ratification: new files in libs/ require plan coverage.\\nCreate or update a plan with covered_paths first. Plans at: docs/plan/_handoff/VAULT/topic-plans/"
+      }' "$REL_PATH"
+      exit 1
+    else
+      # ADVISORY — edit to existing libs/ file, or non-new file
+      printf '{
+        "systemMessage": "⚠ [plan-coverage-gate] ADVISORY (libs/ — edit): No active plan with covered_paths includes %s.\\n\\nNote: new file writes to libs/ are BLOCKING (Governor S024). Edits to existing files remain advisory.\\nConsider: add covered_paths to the relevant plan."
+      }' "$REL_PATH"
+    fi
   else
     printf '{
       "systemMessage": "ℹ [plan-coverage-gate] Advisory (apps/): No covered_paths match for %s. Developer agility preserved — proceeding."

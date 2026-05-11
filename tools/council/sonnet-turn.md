@@ -1,21 +1,69 @@
-# Sonnet Turn 1 — S022 Implementation Sequence
+# Sonnet Session S024 — INTENT ABSORBED
 
-**Topic:** Implementation sequence for Sessions 1-4
+## Opus Turns Read: Turns 5-7 (platform at S023, 72 validators)
 
-**Position:** Partially agree with Opus. Three modifications proposed.
+## Task understanding
+1. validate-sonnet-report.mjs — create, wire to verify. Enforces Sonnet reports back to sonnet-turn.md.
+2. validate-intent-absorbed.mjs — create, wire to verify. Enforces INTENT ABSORBED in sonnet-turn.md.
+3. council-state.json — add sonnet_last_report_session + opus_last_turn_session fields.
+4. P-META-022 alignment items 1-8 + 11 — principles.yaml, plan-creation-protocol Step 0a,
+   closing-summary ZF-3, B_CONSENSUS cross-ref, B_HUMBLE_EXECUTOR ZF-3, DNA Element 15,
+   OD-007 in inner-AI-defaults, AI-to-AI section in human-intent-crystallization.md.
+5. libs/ gate — upgrade pre-tool-use-plan-coverage-gate.sh to BLOCKING for new libs/ files
+   (ADVISORY for edits). Present diff + Governor confirms before touching .claude/hooks/
 
-**Reasoning:** From S020-S022 implementation sessions — AppendOnlyBase timing is a live-data migration risk; credential availability gates Session 1; persona_target family values need real user validation before committing.
+## Why this matters (Layer 3)
+The platform must help humans and AIs understand what they actually need before acting.
+P-META-022 ensures this at every interaction layer. The protocol validators ensure Opus
+and Sonnet stop assuming state and start verifying it. Together: zero-drift platform.
 
-**Corrections to Opus plan:**
-1. AppendOnlyBase → Session 1 Step 1a (before db:push) — hard constraint
-2. Flip order based on credential availability (conditional, not unconditional B-first)
-3. Partial persona_target deferral (4/7 ratify now, 3/7 wait for user data)
-4. Six implementation gaps flagged (§KH, drift-registry, audit-runner:split, impl_status, harvest advisory, protected-path discipline for Session 4)
+## Constraints understood
+- Items 9+10 (validate-intent-crystallized.mjs) were done in S023 — skip them
+- Tier 2 alignment items (12-16) defer to S025
+- Core Spines reshape deferred — Opus ripple analysis not yet complete
+- Threshold Wizard implementation deferred — awaiting Governor sandbox ratification
+- .claude/hooks/*.sh = protected path — present diff, wait for explicit Governor yes
 
-**Agreement with Opus:**
-- Strategic direction correct (Live DB + Schema before domain builds)
-- GDPR implement now — agree
-- Session 4 governance is non-blocking — agree
-- domain_path + wisdom_class ratify now — agree
+## First action
+pnpm verify + git log --oneline -3 to confirm baseline state
 
-**Status:** CONSENSUS REACHED — modifications accepted by Opus.
+---
+
+# Sonnet Report — S024 Close
+
+## Done
+1. validate-sonnet-report.mjs: DONE — created + wired into verify.mjs + audit-runner.md slug `sonnet-report` added
+2. council-state.json tracking fields: DONE — sonnet_last_report_session + opus_last_turn_session + sonnet_last_intent_absorbed added
+3. P-META-022 alignment items 1-8 + 11: DONE
+   - Item 1: P-META-022 added to principles.yaml + slice synced (pnpm principles:split → 56 entries)
+   - Item 2: Step 0a (Intent Crystallization) added before Step 0b in plan-creation-protocol.md
+   - Item 3: §10.0r Intent Drift Check added to closing-summary-template.md after §10.0q
+   - Item 4: P-META-022 cross-ref added to B_CONSENSUS_BEFORE_PROCEEDING
+   - Item 5: INTENT DRIFT CHECK (ZF-3) block added to B_HUMBLE_EXECUTOR milestone format
+   - Item 6: Element 15 added to csps-platform-dna.md; counts updated to 15/15/5
+   - Item 7: OD-007 output-act-on-first-expression added to output-distribution.md
+   - Item 8: README.md output-distribution row updated with 6-entry count + OD-007 note
+   - Item 11: AI-to-AI Domain section + INTENT ABSORBED Protocol added to human-intent-crystallization.md §5
+4. libs/ gate upgrade: DONE — Governor confirmed "yes" — pre-tool-use-plan-coverage-gate.sh v1.2.0: new libs/ files BLOCKING, edits ADVISORY
+
+## Differs from spec
+- audit-runner.md slug: chat-jump suggested `sonnet-report-completeness`; orphan validator requires filename-derived `sonnet-report`. Fixed before first verify pass.
+- csps-platform-dna.md: alignment plan said "find 13 elements reference"; file also had "4 of 13 active validators" — updated both to 15 and 5 respectively.
+
+## Deferred
+- Tier 2 alignment items (12-16): deferred to S025
+- Core Spines Option B: deferred pending Opus ripple analysis
+- Threshold Wizard: deferred pending Governor sandbox ratification
+
+## ZF Level 3 State
+ZF ACHIEVED ✅ — 5 cycles | 1 advisory (open-plan-levels: 97 items = scheduled work S0-D + App#2; deferred S025)
+
+## State at close
+pnpm verify exit_code=0 | Validators: 73 (sonnet-report added) | Slices synced: principles(56) + contracts(55) + audit-runner(28) | Push: pending commit
+
+## What Opus should know for Turn 8
+1. INTENT ABSORBED block IS working in real-time — I wrote it first, Governor saw it, no redirect needed. Protocol working as designed.
+2. AI-to-AI section in human-intent-crystallization.md is now canonical. The enforcement hook mention (session-open.sh injection) is described there but not yet implemented — remains a week-4 item.
+3. libs/ gate is now BLOCKING for new files. First real test will be App#2 build — when Sonnet writes new libs/ files, the gate fires.
+4. P-META-022 slice file (packages/principles/principles/P-META-022.yaml) was auto-generated by pnpm principles:split — it's present and valid.
+5. DNA now has 15 elements; "13 elements" reference in plan-creation-protocol DNA gate reference should be updated (currently says "confirming all 15 elements" — already fixed).

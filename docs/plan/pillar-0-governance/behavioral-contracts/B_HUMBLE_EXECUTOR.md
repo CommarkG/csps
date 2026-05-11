@@ -33,6 +33,12 @@ EXTRACT → VAULT:
 ASSUMPTION CHECK:
   → [assumption 1 from plan]: STILL VALID ✓ | NEEDS RECHECK | VIOLATED
 
+INTENT DRIFT CHECK (ZF-3 — P-META-022):
+  goal_statement: [from plan frontmatter — paste verbatim]
+  what was built:  [one sentence]
+  match: YES / PARTIAL / NO
+  if PARTIAL or NO: VLT-S{NNN}-INTENT-DRIFT-{slug}
+
 PE RE-ASSESSMENT:
   Active: [current planned next step] | Completion bias: [>50% = 1.5×]
   Queued items: [count from raw-thoughts-queue.md]

@@ -202,6 +202,38 @@ The wizard's five steps map directly to the three questions:
 
 Every CSPS app that uses the Threshold Wizard is automatically giving its users the crystallization protocol. This is the platform's competitive advantage: users of CSPS apps get help understanding their own needs.
 
+### AI-to-AI Domain (Opus → Sonnet → Haiku)
+
+The same Layer 1-3 gap exists in AI-to-AI communication.
+When Sonnet receives Opus output (e.g., tools/council/opus-turn.md), the gap is:
+- Layer 1: What Opus wrote (literal text)
+- Layer 2: What it means for this session (which actions to take)
+- Layer 3: Why it matters (the platform intent it serves)
+
+A Sonnet that reads Opus output and immediately executes — without reflecting back
+its understanding — commits the same arrogance as acting on a human's first expression.
+
+**The INTENT ABSORBED Protocol:**
+
+At the start of every session where Opus output is present, Sonnet MUST emit:
+
+```
+INTENT ABSORBED — Opus Turn [N]:
+  Task understanding:  [one sentence per major action Opus specified]
+  Why this matters:    [the platform goal this serves — Layer 3]
+  Constraints understood: [what NOT to do, deferrals, protected paths]
+  First action: [Item 1]
+```
+
+This block is the Governor's intervention window. If the reflection is wrong,
+the Governor redirects BEFORE Sonnet edits 10 files.
+
+**Mechanical enforcement:**
+- session-open.sh: if opus-turn.md was modified since last session → inject
+  "Opus output present. Emit INTENT ABSORBED before any file edit."
+- B_MUTUAL_UNDERSTANDING_VALIDATION: the INTENT ABSORBED block IS the output_contract
+  verification for AI-to-AI boundary type 2 (subagent return confirmation)
+
 ---
 
 ## §6 — THE INNER-AI-DEFAULT THIS OVERRIDES

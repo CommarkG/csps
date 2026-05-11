@@ -177,5 +177,5 @@ contracts:
     desc: "B_INTENT_CRYSTALLIZATION"
     path: ./behavioral-contracts/B_INTENT_CRYSTALLIZATION.md
   - id: B_SANDBOX_BEFORE_IMPLEMENTATION
-    desc: "no code without a ratified, simulated sandbox spec"
+    desc: "B_SANDBOX_BEFORE_IMPLEMENTATION"
     path: ./behavioral-contracts/B_SANDBOX_BEFORE_IMPLEMENTATION.md

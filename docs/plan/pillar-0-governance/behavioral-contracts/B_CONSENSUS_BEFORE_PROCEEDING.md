@@ -31,5 +31,11 @@ The "AI runs ahead of the wagon" — building with training defaults on decision
 - template: tools/templates/chat-transfer-protocol.template.md (transfer-level gate)
 - memory: feedback_consensus_before_proceeding.md (to be authored)
 
+**Cross-reference: P-META-022 (Human Intent Crystallization):**
+"Consensus" as used in this contract means confirmed Layer 2-3 intent — not just
+agreement on a Layer 1 expression. Before consensus can be declared, the five stages
+in B_CONSENSUS_BEFORE_PROCEEDING must operate on a crystallized goal (goal_statement
+authored by the human, not AI-drafted). See: docs/plan/pillar-0-governance/human-intent-crystallization.md
+
 
 ---

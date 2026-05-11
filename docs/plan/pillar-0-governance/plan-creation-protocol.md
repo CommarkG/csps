@@ -66,7 +66,45 @@ A new plan is authored when ANY of these triggers fires:
 
 Every new plan follows these 5 steps in order. Skipping ANY = plan-discipline violation (caught by `plan-creation-coverage` audit; week-4).
 
-### Step 0 — Completion + Foundation gate (CSEP-S015-001/002 — added S015)
+### Step 0a — Intent Crystallization (P-META-022 — mandatory for new initiatives)
+
+**Before any other step. Exempt situations in §0a.1.**
+
+The three questions (ask in order, one at a time):
+
+**Q1: "What specific problem are we solving? One sentence."**
+Human responds in their own words.
+AI reflects: "I understand the problem as: [restatement]. Correct?"
+Human corrects. AI updates. Repeat until human confirms.
+
+**Q2: "What does success look like when this is done?"**
+Human responds.
+AI reflects: "So success means: [restatement]. Correct?"
+Human confirms. → This becomes goal_statement.
+
+**Q3: "How will we know it is done — what is measurable?"**
+Human responds.
+AI reflects: "[measurable criteria restatement]. Correct?"
+Human confirms. → These become done_criteria.
+
+AI records after all three confirmed:
+```yaml
+goal_statement: "[from confirmed Q2 — human's words]"
+done_criteria:
+  - "[from confirmed Q3]"
+```
+AI asks: "Is this an accurate record?" Human confirms → proceed to Step 0b.
+
+**§0a.1 — Exemptions:**
+| Situation | Fast path |
+|---|---|
+| Production emergency | Q1=restore service, Q2=system up, Q3=monitoring green |
+| Continuation — goal_statement already confirmed in active plan | Skip |
+| Bug fix in defined scope | Skip |
+| Governor provides all three explicitly upfront | Record + confirm |
+| Governor: "just figure it out" | Document goal_statement as AI-inferred, flag unconfirmed |
+
+### Step 0b — Completion + Foundation gate (formerly Step 0 — CSEP-S015-001/002 — added S015)
 
 BEFORE creating ANY new plan, check three gates:
 

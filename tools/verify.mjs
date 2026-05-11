@@ -200,6 +200,14 @@ const CYCLES = [
     },
   },
   {
+    // NEW S024 — Sonnet session protocol: sonnet-turn.md must have INTENT ABSORBED + Sonnet Report.
+    // Enforces the CSPS zero-freestyle communication protocol between Opus and Sonnet.
+    // ADVISORY now → BLOCKING week-4.
+    name: 'sonnet_report',
+    command: 'node tools/validators/validate-sonnet-report.mjs',
+    parse_output: (out) => ({ has_report: !out.includes('No') }),
+  },
+  {
     // NEW S021 Governor directive — gradual-bundling: comprehensive check of all 7 bundling elements
     // Checks: depth discipline, humble batching, core spiral, GEP enforce_stage, PE alignment
     name: 'gradual_bundling',

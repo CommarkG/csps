@@ -1,5 +1,7 @@
 // Shared AuditEvent writer — every Task/Project mutation calls this
 // Tenant-scoped; actor = authenticated userId from Clerk JWT
+// Q-18: audit log read is admin+ only (enforced in GET /api/audit)
+// Q-19: retention = forever at MVP (AppendOnlyBase + Postgres trigger)
 
 import { db } from './db'
 
@@ -19,7 +21,6 @@ export async function writeAuditEvent(opts: {
       action: opts.action,
       resourceType: opts.resourceType,
       resourceId: opts.resourceId,
-      // Prisma Json field accepts any serializable value
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       data: (opts.data as any) ?? undefined,
     },

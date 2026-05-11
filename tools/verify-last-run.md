@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-11T01:00:22.578Z
-- finished_at: 2026-05-11T01:00:41.982Z
+- ran_at: 2026-05-11T01:23:22.806Z
+- finished_at: 2026-05-11T01:23:43.650Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T01:00:22.578Z",
-    "finished_at": "2026-05-11T01:00:41.982Z",
+    "ran_at": "2026-05-11T01:23:22.806Z",
+    "finished_at": "2026-05-11T01:23:43.650Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -301,7 +301,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -447,7 +447,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -564,7 +564,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 9.8
+        "duration_seconds": 11
       },
       {
         "name": "audit_runner_full_pass",

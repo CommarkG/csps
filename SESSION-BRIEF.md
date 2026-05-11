@@ -9,7 +9,7 @@
 | **Current session** | S022 |
 | **Previous session** | S021 |
 | **Last updated** | today |
-| **Last commit** | fe05e5a auto: SESSION-BRIEF.md updated for S022 |
+| **Last commit** | 5c86e61 S024: STREAM 1+2+5 — protocol validators + P-META-022 Tier 1 + libs gate |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

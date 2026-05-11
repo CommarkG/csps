@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-11T02:14:57.518Z
-- finished_at: 2026-05-11T02:15:18.473Z
+- ran_at: 2026-05-11T02:22:39.426Z
+- finished_at: 2026-05-11T02:23:08.697Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T02:14:57.518Z",
-    "finished_at": "2026-05-11T02:15:18.473Z",
+    "ran_at": "2026-05-11T02:22:39.426Z",
+    "finished_at": "2026-05-11T02:23:08.697Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7,
+        "duration_seconds": 10.7,
         "packages_resolved": null
       },
       {
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 314,
+        "scanned": 315,
         "errors": 0,
         "warnings": 33,
         "exempt": 222
@@ -114,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -301,7 +301,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -370,7 +370,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 12,
+        "plans_checked": 13,
         "plans_with_open": 7,
         "total_open_items": 97
       },
@@ -398,7 +398,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 10,
+        "checked": 11,
         "grandfathered": 2,
         "errors": 0
       },
@@ -409,8 +409,8 @@
         "exit_code": 0,
         "duration_seconds": 0.2,
         "blocking": 0,
-        "advisory": 12,
-        "total_gaps": 12
+        "advisory": 13,
+        "total_gaps": 13
       },
       {
         "name": "plan_ai_defaults_alignment",
@@ -418,11 +418,11 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 17,
-        "flagged": 1,
+        "scanned": 18,
+        "flagged": 2,
         "ratified": 1,
         "blocking": 0,
-        "advisory": 0
+        "advisory": 1
       },
       {
         "name": "intake_source_class_coverage",
@@ -457,7 +457,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 12,
+        "plans_checked": 13,
         "warnings": 0
       },
       {
@@ -510,9 +510,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 12,
-        "missing_harvest": 2,
-        "warnings": 2
+        "plans_checked": 13,
+        "missing_harvest": 3,
+        "warnings": 3
       },
       {
         "name": "execution_mode_declared",
@@ -520,7 +520,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 12,
+        "plans_checked": 13,
         "missing_mode": 0,
         "warnings": 0
       },
@@ -542,7 +542,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 12,
+        "plans_checked": 13,
         "stale_total": 10,
         "unverified": 10,
         "verified": 0,
@@ -554,7 +554,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 12,
+        "plans_checked": 13,
         "sections_checked": 7,
         "blocking": 0,
         "warnings": 0
@@ -564,7 +564,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.8
+        "duration_seconds": 10.1
       },
       {
         "name": "audit_runner_full_pass",

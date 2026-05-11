@@ -1,3 +1,97 @@
+# Opus Turn 6 — S023 Human Intent Crystallization — Constitutional Engraving (7 Surfaces)
+
+**This is not a process gate. It is a governing philosophy.**
+
+---
+
+## The Governor's Insight (restated at constitutional depth)
+
+The core failure in human-AI interaction is not misunderstanding — it is premature action.
+An AI that acts on a human's first expression without probing deeper has committed an act of
+arrogance: the assumption that Layer 1 (what was said) is sufficient to serve Layer 3
+(what is truly needed). The human often does not know their own Layer 3. The platform's job
+is to help them find it — before implementation, not after.
+
+This is the difference between a platform that executes on instructions
+and a platform that helps humans understand what instructions to give.
+
+**The three layers:**
+- Layer 1: What they say (first expression — shaped by current vocabulary, always incomplete)
+- Layer 2: What they want (stated goal — reachable through structured probing)
+- Layer 3: What they need (deep intent — may be unknown even to the human)
+
+**The drift equation:** `drift = distance(L1→L3) × implementation_steps`
+
+Once drift enters the system, it cannot be fixed at the implementation layer.
+It can only be prevented at the crystallization layer — before work begins.
+
+---
+
+## What Was Created
+
+| Surface | Artifact |
+|---|---|
+| **Documentation** | `docs/plan/pillar-0-governance/human-intent-crystallization.md` — canonical principle |
+| **AI Behavior** | inner-AI-defaults OD-007: act-on-first-expression → override |
+| **Protocols** | plan-creation-protocol.md Step 0 (Reflect-Until-Match) |
+| **Wizards** | `tools/templates/human-intent-wizard.template.md` |
+| **Planning** | gradual-build-plan.template.md goal_statement + done_criteria fields |
+| **Implementation** | B_HUMAN_INTENT_CRYSTALLIZATION contract + AGENTS.md hard NOs |
+| **Validation** | validate-intent-crystallized.mjs + intent drift check in milestone protocol |
+
+Full Sonnet implementation brief: `tools/council/sonnet-intent-crystallization-brief.md`
+
+---
+
+## The Critical Structural Requirement (for every surface)
+
+**Governor must author or restate the goal. AI may only reflect.**
+
+An AI-drafted goal_statement approved with "yes" is NOT crystallization.
+It is the satisfaction-point anti-pattern dressed as a process.
+
+The Reflect-Until-Match protocol:
+1. AI proposes restatement of what it heard
+2. Human corrects
+3. AI updates
+4. Repeat until human says: "yes, that is exactly it"
+5. THAT statement — the correction — is the goal_statement
+
+The correction reveals Layer 2-3. The AI's job is to be a good mirror, not a good guesser.
+
+---
+
+## Connection to Platform Mission
+
+CSPS builds 30+ apps. Each inherits multi-tenant security, billing, audit — the technical foundation.
+The differentiator is this: every CSPS app helps its users understand what they actually need,
+not just process what they say. This is the platform's reason for existing beyond technical infrastructure.
+
+---
+
+## RZF VERIFICATION
+Cycles run: 3 | Gaps surfaced: 2 | Critical gaps: 0
+Cycle 1: Did I miss anything in the 7 surfaces?
+  Findings: 2 — (a) The wizard template is for documenting crystallization but doesn't
+  describe the INTERACTIVE flow. The canonical doc covers the flow; template records the output.
+  This is correct — the template is a record, the protocol is the flow.
+  (b) The Threshold Wizard for external users is only mentioned, not updated.
+  External user domain is Domain 3 — the Threshold Wizard IS their crystallization protocol
+  already. No update needed; needs a cross-reference added.
+Cycle 2: Both resolved: template design is correct; cross-reference to Threshold Wizard
+  is in the canonical doc §5 and §8.
+Cycle 3: 0 new findings.
+Status: ZF ACHIEVED
+
+---
+
+*Opus Turn 6 — P-META-022 Human Intent Crystallization — 7-surface constitutional engraving*
+*Governor: the canonical document is at docs/plan/pillar-0-governance/human-intent-crystallization.md*
+*Sonnet: read tools/council/sonnet-intent-crystallization-brief.md for all 7 implementation tasks*
+*OPUS-1 | S023 | 2026-05-11*
+
+---
+
 # Opus Turn 5 — S023 Human-AI Consensus Protocol (Pre-Design Thinking)
 
 **Task:** Review opus-consensus-protocol-questions.md — 24 questions from 6 expert perspectives.

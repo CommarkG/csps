@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-11T06:37:44.865Z
-- finished_at: 2026-05-11T06:37:58.539Z
+- ran_at: 2026-05-11T06:56:47.208Z
+- finished_at: 2026-05-11T06:57:04.233Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T06:37:44.865Z",
-    "finished_at": "2026-05-11T06:37:58.539Z",
+    "ran_at": "2026-05-11T06:56:47.208Z",
+    "finished_at": "2026-05-11T06:57:04.233Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 2,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 55,
         "findings_total": 0
       },
@@ -43,7 +43,7 @@
         "scanned": 306,
         "errors": 0,
         "warnings": 5,
-        "exempt": 247
+        "exempt": 248
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -308,7 +308,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -474,7 +474,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -591,7 +591,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.6
+        "duration_seconds": 8.3
       },
       {
         "name": "audit_runner_full_pass",

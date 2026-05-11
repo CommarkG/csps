@@ -1,16 +1,11 @@
 // GDPR Erasure Service
 // Q-16 ratified: PII scope = email, displayName, TaskComment.body
-//   AuditEvent NOT erased (immutable by design — erasure is itself an audit event)
 // Q-17 ratified: self-service authorization (user-triggered from settings UI)
-//
-// Usage: eraseUser(userId, userCtx) — returns ErasureReceipt
-// Wire: add DELETE /api/settings/account → calls eraseUser() → 200 + receipt
+// Opus S022: NotificationLog must be covered before Phase 1 notifications launch
 
 import { createHash } from 'crypto'
-import { writeAuditEvent } from './audit'
-import type { ZenstackUserCtx } from './zenstack'
 
-// Minimal DB interface for PII erasure
+// Minimal DB interface for PII erasure — injected, not imported from app
 export interface ErasureDb {
   user: {
     update: (args: { where: { id: string }; data: { email: string; displayName: null; deletedAt: Date } }) => Promise<unknown>
@@ -41,11 +36,7 @@ export async function eraseUser(
   // Q-16: erase email + displayName on User row
   await db.user.update({
     where: { id: userId },
-    data: {
-      email: `[deleted-${hash}]`,
-      displayName: null,
-      deletedAt: now,
-    },
+    data: { email: `[deleted-${hash}]`, displayName: null, deletedAt: now },
   })
 
   // Q-16: erase comment bodies authored by this user
@@ -71,7 +62,7 @@ export async function eraseUser(
   })
 
   return {
-    erasure_id: `erasure_${hash}_${auditRecord.id.slice(0, 8)}`,
+    erasure_id: `erasure_${hash}_${(auditRecord as { id: string }).id.slice(0, 8)}`,
     timestamp: now,
     fields_cleared: ['email', 'displayName', 'taskComment.body'],
     rows_affected: 1 + comments.count,

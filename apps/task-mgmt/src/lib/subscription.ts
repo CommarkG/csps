@@ -2,7 +2,7 @@
 // Q-02 ratified: cancelled tenant → 402 immediately (Stripe dunning is the grace period)
 // Q-03 ratified: write routes only — GET requests still allowed
 
-import { SUBSCRIPTION_CONFIG, type SubscriptionStatus } from '../../../../libs/config/subscription.config'
+import { SUBSCRIPTION_CONFIG, type SubscriptionStatus } from '@csps/config/subscription.config'
 import { NextResponse } from 'next/server'
 
 export class SubscriptionInactiveError extends Error {

@@ -16,7 +16,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@csps/integrations": ["../../libs/integrations/index.ts"],
-      "@csps/integrations/*": ["../../libs/integrations/*"]
+      "@csps/integrations/*": ["../../libs/integrations/*"],
+      "@csps/config": ["../../libs/config/index.ts"],
+      "@csps/config/*": ["../../libs/config/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

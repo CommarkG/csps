@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server'
 import type { CspsSessionClaims } from '@csps/integrations'
 import { mapClerkJwtRole } from '@csps/integrations'
 import { db } from '@/lib/db'
-import { hasPermission } from '../../../../../libs/config/roles.config'
+import { hasPermission } from '@csps/config/roles.config'
 
 export const dynamic = 'force-dynamic'
 

@@ -30,6 +30,7 @@ const dbAdapter: CspsDb = {
   tenant: {
     create: (args) => db.tenant.create(args),
     findUnique: (args) => db.tenant.findUnique(args),
+    update: (args) => db.tenant.update(args),
   },
   userTenant: {
     create: async (args) => {
@@ -74,6 +75,10 @@ const dbAdapter: CspsDb = {
 
       return result
     },
+    update: (args) => db.userTenant.update(args as Parameters<typeof db.userTenant.update>[0]),
+    delete: (args) => db.userTenant.delete(args as Parameters<typeof db.userTenant.delete>[0]),
+    updateMany: (args) => db.userTenant.updateMany(args as Parameters<typeof db.userTenant.updateMany>[0]),
+    count: (args) => db.userTenant.count(args as Parameters<typeof db.userTenant.count>[0]),
   },
 }
 

@@ -9,8 +9,8 @@ import { db } from '@/lib/db'
 import { writeAuditEvent } from '@/lib/audit'
 import { getEnhancedDb } from '@/lib/zenstack'
 import { requireWriteSubscription } from '@/lib/subscription'
-import { hasPermission } from '../../../../libs/config/roles.config'
-import type { MembershipRole } from '../../../../libs/config/roles.config'
+import { hasPermission } from '@csps/config/roles.config'
+import type { MembershipRole } from '@csps/config/roles.config'
 
 export const dynamic = 'force-dynamic'
 

@@ -1,12 +1,15 @@
 // Clerk webhook payload types — subset used by CSPS handlers.
-// Mirrors Clerk's WebhookEvent shape without the @clerk/nextjs dependency.
-// Replace with: import type { WebhookEvent } from '@clerk/nextjs/server'
-// once @clerk/nextjs is installed in the consuming app.
+// S022 Session 3: extended with user.deleted, organization.deleted,
+// organizationMembership.updated, organizationMembership.deleted events.
 
 export type ClerkWebhookEvent =
   | UserCreatedEvent
+  | UserDeletedEvent
   | OrgCreatedEvent
+  | OrgDeletedEvent
   | OrgMembershipCreatedEvent
+  | OrgMembershipUpdatedEvent
+  | OrgMembershipDeletedEvent
 
 export interface UserCreatedEvent {
   type: 'user.created'
@@ -18,14 +21,24 @@ export interface UserCreatedEvent {
   }
 }
 
+export interface UserDeletedEvent {
+  type: 'user.deleted'
+  data: { id: string }
+}
+
 export interface OrgCreatedEvent {
   type: 'organization.created'
   data: {
     id: string
     name: string
     slug: string | null
-    created_by: string   // Clerk user ID of the creator
+    created_by: string
   }
+}
+
+export interface OrgDeletedEvent {
+  type: 'organization.deleted'
+  data: { id: string }
 }
 
 export interface OrgMembershipCreatedEvent {
@@ -33,6 +46,23 @@ export interface OrgMembershipCreatedEvent {
   data: {
     organization: { id: string; name: string }
     public_user_data: { user_id: string }
-    role: string   // 'org:admin' | 'org:member' | 'org:owner' etc.
+    role: string
+  }
+}
+
+export interface OrgMembershipUpdatedEvent {
+  type: 'organizationMembership.updated'
+  data: {
+    organization: { id: string; name: string }
+    public_user_data: { user_id: string }
+    role: string
+  }
+}
+
+export interface OrgMembershipDeletedEvent {
+  type: 'organizationMembership.deleted'
+  data: {
+    organization: { id: string; name: string }
+    public_user_data: { user_id: string }
   }
 }

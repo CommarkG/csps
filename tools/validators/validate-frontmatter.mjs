@@ -52,14 +52,17 @@ const OPTIONAL_FIELD_ENUMS = {
   persona_target_deferred: ['family_admin', 'family_member', 'community_leader'],
   // use_case_class: functional category of what this artifact enables (Schema Phase A S022)
   use_case_class: ['tracking', 'planning', 'communication', 'analysis', 'automation', 'discovery', 'creation', 'governance'],
-  // S023 Intent Crystallization fields
+  // S023 Intent Crystallization + Sandbox Ratification fields
   intent_crystallized: ['true', 'false', 'partial'],
+  simulation_status: ['pending', 'pass', 'fail'],
   threshold_route: ['developer.new-entity', 'developer.new-page', 'developer.api-integration', 'business.billing', 'business.permissions', 'ux.onboarding-flow', 'platform.governance', 'personal.tracking', 'knowledge.documentation', 'none'],
   ux_principle: ['jtbd-outcome-first', 'progressive-disclosure', 'mobile-first', 'one-decision-per-screen', 'example-driven', 'wizard-of-oz-validated', 'none'],
 };
 
 const LIFECYCLE_VALUES = ['experimental', 'beta', 'production', 'deprecated'];
-const LIFECYCLE_STATE_VALUES = ['active', 'pending-review', 'pending-protocol', 'promoted', 'resolved', 'deprecated', 'validated', 'closed'];
+const LIFECYCLE_STATE_VALUES = ['active', 'pending-review', 'pending-protocol', 'promoted', 'resolved', 'deprecated', 'validated', 'closed',
+  // S023 Sandbox Ratification lifecycle states
+  'sandbox', 'simulated', 'ratified', 'implementing', 'implemented'];
 // S018 CDP — unified lifecycle state machine
 // raw→pipeline-intake→pending-ratification→ratified→implementing→implemented→zf-achieved→measured→sealed
 const CDP_STATUS_VALUES = ['raw','pipeline-intake','pending-ratification','ratified','implementing','implemented','zf-achieved','measured','sealed'];
@@ -348,6 +351,9 @@ function validateOne(file, fm, errors, warnings, idIndex) {
   // S023 Intent Crystallization fields — optional, validated when present
   if (fm.intent_crystallized && !OPTIONAL_FIELD_ENUMS.intent_crystallized.includes(String(fm.intent_crystallized))) {
     errors.push(ctx(`intent_crystallized "${fm.intent_crystallized}" must be true|false|partial`));
+  }
+  if (fm.simulation_status && !OPTIONAL_FIELD_ENUMS.simulation_status.includes(fm.simulation_status)) {
+    errors.push(ctx(`simulation_status "${fm.simulation_status}" must be pending|pass|fail`));
   }
   if (fm.threshold_route && !OPTIONAL_FIELD_ENUMS.threshold_route.includes(fm.threshold_route)) {
     errors.push(ctx(`threshold_route "${fm.threshold_route}" not in closed enum — see frontmatter-closed-enums.md`));

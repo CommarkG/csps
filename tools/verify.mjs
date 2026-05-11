@@ -494,6 +494,9 @@ const CYCLES = [
     },
   },
   // Session C+S023 monitoring validators
+  // S023 Sandbox Ratification Policy validators
+  { name: 'simulation_before_implementation', command: 'node tools/validators/validate-simulation-before-implementation.mjs', parse_output: (out) => { const m = out.match(/checked=(d+)s+blocking=(d+)s+advisory=(d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; } },
+  { name: 'sandbox_lifecycle', command: 'node tools/validators/validate-sandbox-lifecycle.mjs', parse_output: (out) => { const m = out.match(/checked=(d+)s+advisory=(d+)/); return m ? { checked: Number(m[1]), advisory: Number(m[2]) } : {}; } },
   { name: 'intent_crystallized',        command: 'node tools/validators/validate-intent-crystallized.mjs',        parse_output: (out) => { const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; } },
   { name: 'routing_declared',           command: 'node tools/validators/validate-routing-declared.mjs',           parse_output: (out) => { const m = out.match(/plans_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/); return m ? { plans_checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; } },
   { name: 'ux_principles_declared',     command: 'node tools/validators/validate-ux-principles-declared.mjs',     parse_output: (out) => { const m = out.match(/pages_checked=(\d+)\s+with_principle=(\d+)\s+advisory=(\d+)/); return m ? { pages_checked: Number(m[1]), with_principle: Number(m[2]), advisory: Number(m[3]) } : {}; } },

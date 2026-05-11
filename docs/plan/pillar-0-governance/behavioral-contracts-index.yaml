@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 54
+  total_count: 55
   generated_at: '2026-05-11'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -159,7 +159,7 @@ contracts:
     desc: "B_COMPLETION_OVER_SHINY"
     path: ./behavioral-contracts/B_COMPLETION_OVER_SHINY.md
   - id: B_DEVELOPMENT_VS_PRODUCTION
-    desc: "never confuse development-mode depth with production-mode efficiency"
+    desc: "B_DEVELOPMENT_VS_PRODUCTION"
     path: ./behavioral-contracts/B_DEVELOPMENT_VS_PRODUCTION.md
   - id: B_HUMBLE_EXECUTION_PIPELINE
     desc: "B_HUMBLE_EXECUTION_PIPELINE"
@@ -171,8 +171,11 @@ contracts:
     desc: "B_AUTONOMOUS_BATCH_WITH_PREFLIGHT"
     path: ./behavioral-contracts/B_AUTONOMOUS_BATCH_WITH_PREFLIGHT.md
   - id: B_NO_IMPLEMENTATION_WITHOUT_PLAN
-    desc: "no code changes to libs/ or apps/src/ outside a ratified plan"
+    desc: "B_NO_IMPLEMENTATION_WITHOUT_PLAN"
     path: ./behavioral-contracts/B_NO_IMPLEMENTATION_WITHOUT_PLAN.md
   - id: B_INTENT_CRYSTALLIZATION
-    desc: "no implementation without validated intent"
+    desc: "B_INTENT_CRYSTALLIZATION"
     path: ./behavioral-contracts/B_INTENT_CRYSTALLIZATION.md
+  - id: B_SANDBOX_BEFORE_IMPLEMENTATION
+    desc: "no code without a ratified, simulated sandbox spec"
+    path: ./behavioral-contracts/B_SANDBOX_BEFORE_IMPLEMENTATION.md

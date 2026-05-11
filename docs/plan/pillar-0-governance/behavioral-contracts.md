@@ -1950,3 +1950,39 @@ Trivial bug fixes and mechanical updates (updating a count, fixing a typo, archi
 Every screen is customer-hired-for-a-job. Mobile-first is the constraint that forces simplicity. Progressive disclosure is the delivery mechanism. Example-driven classification is the anti-label technique. Wizard-of-Oz validation is the proof standard before automation. These are not suggestions — they are the platform's customer-facing DNA.
 
 **Source:** Governor directive S023 — "this is another moat — strong focus on customers." Platform DNA: all construction transforms initial draft → accurate definition.
+
+## B_SANDBOX_BEFORE_IMPLEMENTATION — no code without a ratified, simulated sandbox spec (S023 — CONSTITUTIONAL)
+
+**Canonical wording:**
+
+> No implementation work begins without a sandbox spec that has been (1) fully written, (2) verified through real simulation, and (3) explicitly ratified by the Governor. The sequence DRAFT → SANDBOX → SIMULATED → RATIFIED → IMPLEMENTING is mandatory. Skipping any stage is prohibited. Code is written from the ratified spec, not from verbal descriptions or chat discussions.
+
+**The three gates:**
+
+1. **SANDBOX GATE:** Full spec written at `docs/plan/_sandbox/[name]-v[N].md` before implementation begins.
+   The spec must cover: every screen/step, every word, every condition, all failure cases.
+
+2. **SIMULATION GATE:** Spec verified against 3+ real scenarios. `simulation_status: pass` required.
+   Different simulation methods by type: Wizard-of-Oz (UX), test run (validators), narrative walkthrough (protocols).
+   If simulation fails → fix spec → re-simulate. Never implement from a failed simulation.
+
+3. **RATIFICATION GATE:** Governor explicitly approves: "implement this" or equivalent.
+   Only the Governor can ratify. AI cannot self-ratify.
+
+**What "real simulation" means:**
+Simulation is EXECUTION, not reading. Execute the spec against a scenario. Document what happened. If the spec produced the right outcome for all 3+ scenarios → simulation_status: pass.
+
+**If implementation needs to deviate from the spec:**
+STOP. Create a new sandbox version (v2, v3...). Re-simulate if scope changed. Re-ratify. Then continue.
+
+**Counterweight:**
+Trivial fixes (typo, count update, linting) are exempt. Only work that could produce unexpected outcomes requires sandbox.
+
+**Mechanical surfaces (5/5 S023):**
+- schema: `lifecycle_state: sandbox|simulated|ratified|implementing|implemented` in frontmatter + `simulation_status: pending|pass|fail` in LIFECYCLE_STATE_VALUES
+- validator: `validate-simulation-before-implementation.mjs` (ADVISORY now, BLOCKING S024+) + `validate-sandbox-lifecycle.mjs` (ADVISORY)
+- hook: `pre-tool-use-sandbox-gate.sh` (TO BUILD — advisory when implementation detected without sandbox)
+- memory: `feedback_sandbox_before_implementation.md` + MEMORY.md
+- contract: this entry + sandbox-ratification-policy.md §4 Non-Negotiable Rules
+
+**Source:** Governor directive S023 — "implement only from a ratified plan after verifying all in a real simulation status." Platform policy: sandbox-ratification-policy.md.

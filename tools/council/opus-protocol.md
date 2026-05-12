@@ -118,31 +118,61 @@ Every Opus analysis applies these as lenses simultaneously:
 
 ---
 
-## §5b — RZF on Every Turn (Mandatory — Mechanical)
+## §5b — ZF as End-to-End Pipeline (Not a Section — a Production Chain)
 
-**Governor directive S022:** "Make ZF a mechanically enforced thing about your audits and about all of your activity."
+**Governor directive S022 + S027:** "ZF must be within a mechanically enforced pipeline that results in meaningful significant measurable results and improvements in the platform. Other ways it is a waste."
 
-Every substantive Opus turn (REVIEW / DECISION / BRIEF) MUST end with:
+ZF is not a documentation ritual. It is a production chain where every gap found MUST flow into a tracked platform artifact. If a gap is found but not tracked, the gap is decoration.
 
 ```
-## RZF VERIFICATION
-Cycle 1: [what I looked for — specific gaps or missed items]
-  Findings: [N gaps — list them]
-Cycle 2: [address cycle 1 findings]
+THE ZF PIPELINE (both directions required):
+
+NEGATIVE ZF (finding gaps):
+  Cycle 1+: "What did I miss? What is wrong or incomplete here?"
+  → Each finding with real impact: create a tracking entry (SROF / backlog item / VLT)
+  → Each tracking entry has: id, what it fixes, when (session target)
+  → Findings without tracking = nominal ZF = waste
+
+POSITIVE ZF / CEC (extracting compound value):
+  After any significant finding/ratification:
+  "Where does the essence of this enhance other platform elements?"
+  → Walk: applies to [surface]? If YES: create artifact or cite existing artifact updated
+  → Iterate until 0 new applications
+  → Walk-trail: list surfaces walked + outcome per surface
+
+MEASUREMENT (what proves ZF was real):
+  - Gaps this turn → N SROF entries or backlog items created
+  - CEC applications → N artifacts updated (cite commit sha or file path)
+  - Platform improvement: enforcement_rate delta / validator count delta / governance debt delta
+```
+
+**The format** (both sections required on every substantive turn):
+
+```
+## RZF VERIFICATION — NEGATIVE (finding gaps)
+Cycle [N]: [what I looked for]
   Findings: [N gaps]
-...
-Cycle N: 0 new findings
-Status: ZF ACHIEVED
-Cycles run: N | Gaps surfaced: N | Critical gaps: N
+  Tracked: [SROF-NNN or backlog-item-id for each critical gap]
+Status: ZF ACHIEVED | Cycles: [N] | Gaps surfaced: [N] | Tracked: [N]
+
+## CEC — POSITIVE (extracting compound value)
+Significant event: [what happened that has compound value]
+Essence: [one sentence]
+Walk:
+  [Surface 1]: [applied YES/NO — if YES: cite artifact or commit]
+  [Surface 2]: [applied YES/NO]
+  ...
+Walk-trail: [N] cycles | [N] new applications found | [N] artifacts updated
 ```
 
-**Why this is non-negotiable:** A first-pass Opus review that is not RZF-iterated is NOMINAL output — the same failure mode as nominal-ZF in code. Turn 3→4 in this session proved the value: 4 RZF cycles surfaced a circular dependency (libs importing from apps) that would have broken GDPR service compilation. Without RZF iteration, that gap would have reached Sonnet's implementation session.
+**Note on cycle counts:** The number of cycles is a MEASUREMENT of how iteration-rich the work was — not a target or a minimum. A turn that genuinely has zero new findings after 2 cycles is DONE. The test is whether the finding space is actually empty, not whether you ran N iterations. The number in the record is evidence of effort, not a compliance checkbox.
 
-**The discipline:** Opus MUST be unsatisfied with its first pass. Run Cycle 1 asking "what did I miss?" Apply its findings. Run Cycle 2. Iterate until truly 0 new findings. THEN declare ZF ACHIEVED.
+**Enforcement:** 
+- `validate-opus-turn-rzf.mjs`: checks for ## RZF VERIFICATION section (ADVISORY now, BLOCKING week-4)
+- `validate-opus-rzf-gap-tracking.mjs` (TO BUILD — Sonnet Session B): checks that gaps listed in RZF sections have corresponding SROF/backlog entries. ADVISORY → BLOCKING at K=2 untracked gaps.
+- `validate-opus-cec-artifacts.mjs` (TO BUILD — Sonnet Session C): checks that CEC "Applied YES" claims have traceable artifacts.
 
-**Enforcement:** `validate-opus-turn-rzf.mjs` checks opus-turn.md for this section. Currently ADVISORY. Week-4: BLOCKING.
-
-**Exempt from RZF:** Turns that are purely council consensus recording (no new architectural analysis).
+**Exempt from ZF:** Turns that are purely council consensus recording (no new architectural analysis). Express reviews (L1) use abbreviated format: single negative cycle + no CEC required.
 
 ---
 

@@ -1,3 +1,105 @@
+# Opus Turn 18 — ZF Pipeline + Core Seeds + Parallel vs. Sequential
+
+**State at Writing:** S027+ | pnpm verify exit_code=0
+
+---
+
+## ZF Made Permanent (Pipeline, Not Format)
+
+opus-protocol.md §5b rewritten this turn. The key change: ZF is now defined as a PRODUCTION CHAIN, not a documentation section. Every negative finding must create a tracked artifact. Every CEC "yes" must cite a commit or file update. Without this, ZF is decoration.
+
+Specific mechanical fix spec (for Sonnet to build):
+
+**`validate-opus-rzf-gap-tracking.mjs`** (Session B):
+```javascript
+// Reads opus-turn.md, finds all RZF sections
+// For each "Findings: N gaps" where N > 0 and "Tracked: ?" is empty or missing:
+//   → flag as untracked gap
+// Advisory initially. BLOCKING at K=2 untracked sessions.
+// Also checks: gaps listed in RZF "Tracked:" field exist in:
+//   tools/council/sonnet-to-opus-request-log.md OR
+//   tools/config/platform-update-backlog.yaml OR
+//   HANDOFF blocking_decisions
+```
+
+**`validate-opus-cec-artifacts.mjs`** (Session C):
+```javascript
+// Reads opus-turn.md CEC sections
+// For each "Applied YES" claim: checks that a corresponding artifact
+// was created or modified (verifiable via git log cross-reference)
+// Advisory → BLOCKING after 3 CEC claims with no traceable artifact
+```
+
+These two validators close the loop. pnpm verify will catch nominal ZF at the structural level.
+
+**On cycle counts:** Correcting my earlier framing — "2-3 cycles is insufficient" was wrong and rigid. The right principle is in §5b: cycles are a measurement of how iteration-rich the work was. The test is whether the finding space is genuinely empty. A turn that achieves real zero findings in 2 cycles is complete. A turn where Cycle 5 still surfaces things isn't.
+
+---
+
+## Core Seeds + Foundation
+
+**Yes — Opus should work on core seeds.**
+
+The core seeds are governance-level growth markers — they specify WHERE the platform must grow next. Defining what each seed grows into is architectural (Opus), not implementation (Sonnet). Specifically:
+
+The three planted core seeds need:
+1. A `grows_to:` declaration: what artifact does this seed become?
+2. A session target: when does it activate?
+3. A validator connection: what does `validate-core-seeds-grows-to.mjs` check?
+
+I can define all three this session. Sonnet implements the validator when the seeds are defined.
+
+The foundation work most relevant to me (Opus) right now:
+- The schema-registry.md needs anchor entries populated (I can define the initial anchor set)
+- The L3 instance populator spec (I can finalize the exact script logic for Sonnet to build)
+- The graduation principle as a formal testable rule (spine-graduation-principle.md — Opus-appropriate)
+
+---
+
+## PCR — Parallel vs. Sequential
+
+| | Option A: Sequential | Option B: Full Parallel | Option C: Domain-Separated Parallel |
+|---|---|---|---|
+| **What** | Sonnet finishes, Opus starts | Both work simultaneously on same files | Opus: governance files. Sonnet: apps/libs/packages |
+| **Pro** | No git conflicts | Maximum throughput | Fast + no meaningful conflict risk |
+| **Con** | Blocks Opus while Sonnet works | High conflict risk | Requires clear file domain ownership |
+
+**Recommendation: Option C — Domain-Separated Parallel.**
+
+Load-bearing factor: Opus works exclusively on `tools/council/`, `.claude/core-spines/`, `docs/plan/pillar-0-governance/` (governance), and `packages/principles/`. Sonnet works on `apps/`, `libs/`, `packages/schemas/`, `tools/validators/`. These domains rarely overlap in practice. When they do overlap (e.g., both touching audit-runner.md), the rule is simple: **Opus commits first, Sonnet pulls before continuing.**
+
+**Evidence this session:** Opus and Sonnet have been running in parallel for all of S022-S027+ without meaningful conflicts. The git log shows interleaved commits from both without collision. The protocol already works at Option C level — we just haven't named it.
+
+What would flip: if Sonnet needs to update `packages/principles/principles.yaml` (principle additions) at the same time Opus is ratifying new principles. The fix: principles.yaml changes are Opus-initiated → Sonnet implements after Opus commits the ratification.
+
+---
+
+## RZF VERIFICATION — NEGATIVE
+Cycle 1: Did I miss anything in the ZF pipeline spec?
+  Findings: 1 — the pipeline assumes SROF/backlog/VLT are the only valid tracking targets. Missing: session-state.json blocking_decisions is also a valid target. Added to validator spec above.
+Cycle 2: Anything in the PCR I didn't consider?
+  Findings: 0 — Option C is validated by session history.
+Status: ZF ACHIEVED | Cycles: 2 | Gaps: 1 (addressed)
+
+## CEC — POSITIVE
+Significant event: ZF pipeline redefined as production chain, not format
+Essence: Every gap found must create a tracked artifact; every CEC "yes" must cite a changed artifact
+Walk:
+  opus-protocol.md §5b: UPDATED ✓ (this turn)
+  validate-opus-turn-rzf.mjs: extends to check "Tracked:" field (spec written — Sonnet implements)
+  validate-opus-cec-artifacts.mjs: new validator spec (Sonnet implements)
+  opus-brief.template.md: needs update to include CEC section + Tracked field → next turn
+  sonnet-to-opus-request-log.md: gaps now flow here explicitly → already exists ✓
+  platform-update-backlog.yaml: RZF gaps with session targets go here → already exists ✓
+Walk-trail: 1 cycle | 6 surfaces checked | 2 new artifacts needed (validators) | 1 update pending (brief template)
+
+---
+
+*Opus Turn 18 — ZF pipeline permanent + Core seeds Opus-appropriate + Parallel is the answer*
+*OPUS-1 | S027+ | 2026-05-12*
+
+---
+
 # Opus Turn 17 — Self-Audit: Quality of Last 4 One-Sentences to Sonnet
 
 **pnpm verify: exit_code=0 restored (ADR exempt + impl_status + links + slice sync — this turn)**

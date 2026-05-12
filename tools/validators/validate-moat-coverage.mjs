@@ -120,12 +120,12 @@ const MOAT_ELEMENTS = [
     advisory: true,
   },
   {
-    id: 'M-18', name: 'Question Protocol — F+C+G+Q full context formula',
-    description: 'Questions as encrypted context and intents. Full context only when fundamental data + connections + goal + well-defined questions are all present.',
-    coverage_validators: [],  // validate-question-coverage.mjs planned
+    id: 'M-18', name: 'Question Protocol — F+C+G+Q full context formula (I→VI Discipline)',
+    description: 'Questions as encrypted context and intents. Full context: Background+Context+Intent+Ripple+Measurable (26-item checklist). Operationalized by P-META-023 threshold-intake-protocol.md. Coach-style discovery via 9-step protocol. Covered by: threshold-intake-protocol.md §7 (SSoT) + validate-intent-crystallized.mjs + validate-routing-declared.mjs + validate-sonnet-report.mjs (INTENT ABSORBED).',
+    coverage_validators: ['intent_crystallized', 'routing_declared', 'sonnet_report'],
     coverage_hooks: [],
     cadence: 'per-session',
-    advisory: true,
+    advisory: false,  // S025: threshold-intake-protocol.md = M-18 canonical coverage
   },
 ];
 

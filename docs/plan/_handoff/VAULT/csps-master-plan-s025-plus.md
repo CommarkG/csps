@@ -360,6 +360,14 @@ Where: B=blast_radius, D=dependency_significance, I=impact, Bn=blockers_now, PAS
 | S025 | EXT-20260512-002-A architecture synthesis — 5-layer hierarchy + 9 pipelines | — | commit 63198ad |
 | S025 | M-18 moat component closed (18/18) | — | commit 63198ad |
 | S025 | csps-master-plan-s025-plus.md Band 3b — 14 DNA Protocol items PE-scored | — | this session |
+| S026 | "Drive Don't Fight" architecture COMPLETE: 6 chunks + SP-001..007 sample pairs | 95 | commit 8666f1e |
+| S026 | 14 template grades A/B/C (Opus Turn 15) + adr.template.md frontmatter | — | commit 51decd5 + this session |
+| S026 | validate-satisfaction-point.mjs (SP-001) + validate-agreement-without-evidence.mjs (SP-002) | 68 | commit 57b880d |
+| S026 | Completeness Phase 2: 6 contract SSoT cross-refs + 0 advisories | 82 | commit 88c1e5a |
+| S026 | question_register BLOCKING for S025+ plans | 72 | commit c0a70f8 |
+| S026 | Contract orphans → 4, QH-M-003 → YES, health 76%→79% | — | commit 77e190d |
+| S026 | dead-links ratchet Phase 2 (baseline 71, BLOCKING new) + agreement-detector | 68 | commit 8aad3b1 |
+| S026 | handoff template Grade A in registry + adr.template.md Grade A | — | this session |
 | S025 | P-META-022 Tier 2 items 11-16 complete | 74 | commit b2cad2d |
 | S025 | validate-dead-links.mjs (advisory, 67 pre-existing broken links found) | 68 | commit 651159f |
 | S025 | reasoning-join-forces — inner-AI-defaults reasoning-patterns.md | 59 | commit 651159f |

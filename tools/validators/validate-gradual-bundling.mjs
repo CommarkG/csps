@@ -92,7 +92,7 @@ function readTopicPlans() {
       const completionPct = total > 0 ? Math.round((checked / total) * 100) : 0;
 
       plans.push({
-        name, session, cdpStatus, depthChosen, enforceStage,
+        name, session, cdpStatus, depth: parseInt(depthChosen || '3', 10), depthChosen, enforceStage,
         unchecked, checked, total, completionPct,
         path: full.replace(ROOT, '').replace(/\\/g, '/'),
         isActive: cdpStatus === 'implementing' || cdpStatus === 'ratified',
@@ -188,8 +188,19 @@ GRADUAL BUNDLING PRINCIPLES (P-META-016 + B_HUMBLE_EXECUTOR + B_GRADUAL_BUILD_BY
   5. PE: complete ≥50% items first (1.5× PE). P3 never beats P1.
 `);
 
-  const issues = noDepth.length + noStage.length + (nearComplete.length > 2 ? 1 : 0);
-  console.log(`[validate-gradual-bundling] active_plans=${activePlans.length} near_complete=${nearComplete.length} no_depth=${noDepth.length} no_stage=${noStage.length} backlog_pending=${backlogPending} status=${issues > 0 ? 'ADVISORY' : 'CLEAN'}`);
+  // B_SPLIT_THRESHOLD_DISCIPLINE (S025): Plans with >12 open items AND depth-5 → advisory to fork sub-plan
+  const splitCandidates = activePlans.filter(p => p.unchecked > 12 && p.depth >= 5);
+  if (splitCandidates.length > 0) {
+    console.log(`\n§6 SPLIT THRESHOLD (B_SPLIT_THRESHOLD_DISCIPLINE):`);
+    console.log(`  ⚠ ${splitCandidates.length} plan(s) exceed split threshold (>12 open items + depth-5):`);
+    splitCandidates.forEach(p => {
+      console.log(`    → ${p.name}: ${p.unchecked} open items at depth-${p.depth}`);
+      console.log(`       Consider forking a sub-plan for overflow scope`);
+    });
+  }
+
+  const issues = noDepth.length + noStage.length + (nearComplete.length > 2 ? 1 : 0) + splitCandidates.length;
+  console.log(`[validate-gradual-bundling] active_plans=${activePlans.length} near_complete=${nearComplete.length} no_depth=${noDepth.length} no_stage=${noStage.length} backlog_pending=${backlogPending} split_candidates=${splitCandidates.length} status=${issues > 0 ? 'ADVISORY' : 'CLEAN'}`);
 
   process.exit(0); // advisory — always exits 0
 }

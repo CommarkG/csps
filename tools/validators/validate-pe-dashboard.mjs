@@ -40,11 +40,15 @@ function countOpenItems(text) {
   return (text.match(/^- \[ \]/gm) || []).length;
 }
 
-function computeAdjustedPE(base, depth, openItems) {
+function computeAdjustedPE(base, depth, openItems, hasGoalStatement, hasFailureSignal) {
+  // Depth bonus: depth-5 = constitutional (+5), depth-4 = multi-session (+3), depth-3 = focused (+1)
   const depthBonus = depth === 5 ? 5 : depth === 4 ? 3 : depth === 3 ? 1 : 0;
   // Open items reduce adjusted PE slightly (signals incomplete foundation)
   const openPenalty = Math.min(openItems * 0.1, 5);
-  return Math.round((base + depthBonus - openPenalty) * 10) / 10;
+  // Phase 2 (S026): + intent quality bonus (plans with goal_statement + failure_signal are better defined)
+  // For now: informational only — goal_statement present = plan is crystallized
+  const intentBonus = (hasGoalStatement && hasFailureSignal) ? 1 : hasGoalStatement ? 0.5 : 0;
+  return Math.round((base + depthBonus - openPenalty + intentBonus) * 10) / 10;
 }
 
 if (!existsSync(PLANS_DIR)) {
@@ -70,7 +74,9 @@ for (const file of planFiles) {
 
   if (baseScore === 0) continue; // Skip unscored plans
 
-  const adjustedPE = computeAdjustedPE(baseScore, depthChosen, openItems);
+  const hasGoalStatement = content.includes('goal_statement:');
+  const hasFailureSignal = content.includes('failure_signal:');
+  const adjustedPE = computeAdjustedPE(baseScore, depthChosen, openItems, hasGoalStatement, hasFailureSignal);
 
   plans.push({ name, file, baseScore, adjustedPE, band, depthChosen, openItems, session });
 }

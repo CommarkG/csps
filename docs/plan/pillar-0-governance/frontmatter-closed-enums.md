@@ -417,6 +417,36 @@ EXAMPLE:
 
 ---
 
+### `question_register:` — list of questions asked during intake + their answers (P-META-023 context preservation)
+
+TYPE: list of objects
+REQUIRED: Advisory for S025+ plans. Phase 2 (S026): BLOCKING for S025+ deep_quality plans.
+SCHEMA: Each entry has: id / type / question / asked_at / answer / confirmed
+TYPES: C (crystallization) | A (alignment) | G (gap) | R (ripple) | B (boundary) | Z (completion) | P (priority) | X (context-preservation)
+MINIMUM: 3 entries (at least Q1c/goal + M1/done + M3/failure questions answered)
+EXAMPLE:
+  ```yaml
+  question_register:
+    - id: Q001
+      type: C
+      question: "What specific problem are we solving?"
+      asked_at: "S024 turn 3"
+      answer: "Building a Budget Planner to prove Gate 3 Foundry Ready"
+      confirmed: true
+    - id: Q002
+      type: Z
+      question: "What validator output proves this is done THIS session?"
+      asked_at: "S024 turn 4"
+      answer: "pnpm verify exit_code=0 + budget-planner slice passing"
+      confirmed: true
+  ```
+WHY: The question_register IS the context preservation mechanism. It survives session close,
+context compression, and model changes. Future sessions recover context from the questions+answers
+without needing the Governor to re-explain. North Star function: can any question in this register
+be answered by the current implementation?
+
+---
+
 ### `goal_statement:` — human-authored goal (P-META-022 Q2c)
 
 TYPE: string
@@ -487,6 +517,24 @@ threshold_participants: [human, ai, opus, external-gpt]
 | `opus` | Opus Core Council reviewed (Level 3 deep) |
 | `external-<name>` | External AI advisor consulted (e.g. external-gpt, external-gemini) |
 | `persona-<id>` | Internal persona consulted (future) |
+
+---
+
+### `depth_tier:` — Core Spine layer classification for non-plan artifacts (P-ARCH-028)
+
+```yaml
+depth_tier: L1 | L2 | L3
+```
+
+| Value | Meaning | Examples |
+|---|---|---|
+| `L1` | Sealed foundation — universal core, never contradicted by deeper elements | Foundation entities (User/Tenant), sealed principles, core contracts |
+| `L2` | Domain layer — spine-specific domain doctrine | Pillar governance docs, platform-level validators, behavioral contracts |
+| `L3` | Instance layer — specific implementations, applications, sessions | Topic plans, app-specific code, session artifacts |
+
+**Rule:** L3 instances reference L2 domain files. L2 domain files reference L1 sealed anchors. Nothing at L3 contradicts L1. Enforced by validate-corespine-depth-markers.mjs (for depth marker files) and validate-spine-hierarchy.mjs (S027, planned).
+
+**Mandatory for:** governance artifacts in `docs/plan/pillar-0-governance/` from S025+. Advisory for other locations.
 
 ---
 

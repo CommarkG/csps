@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-12T22:13:09.972Z
-- finished_at: 2026-05-12T22:13:32.836Z
+- ran_at: 2026-05-12T22:14:48.371Z
+- finished_at: 2026-05-12T22:15:10.909Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-12T22:13:09.972Z",
-    "finished_at": "2026-05-12T22:13:32.836Z",
+    "ran_at": "2026-05-12T22:14:48.371Z",
+    "finished_at": "2026-05-12T22:15:10.909Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.9,
+        "duration_seconds": 6.4,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.3,
+        "duration_seconds": 1.4,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 0.7,
         "principles_loaded": 59,
         "findings_total": 0
       },
@@ -401,7 +401,7 @@
         "near_complete": 0,
         "no_depth": 0,
         "no_stage": 0,
-        "backlog_pending": 20
+        "backlog_pending": 25
       },
       {
         "name": "naming_convention",
@@ -442,8 +442,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 36,
-        "pending": 20,
+        "total": 41,
+        "pending": 25,
         "blocked": 11,
         "done": 5
       },
@@ -928,7 +928,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 5.8
+        "duration_seconds": 5.7
       },
       {
         "name": "audit_runner_full_pass",

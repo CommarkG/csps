@@ -533,3 +533,67 @@ sonnet_p3:
       12 hooks exit 0 always. Opus will identify which 3-4 to promote (OPUS-003).
       Sonnet promotes those; the rest get documented with target sessions.
     verification: "STUB hook count drops from 12. Promoted hooks have advisory behavior."
+
+# ═══════════════════════════════════════════════════════════
+# S027/S028 ITEMS — Added autonomous push session
+# ═══════════════════════════════════════════════════════════
+
+  - id: UPDATE-029
+    description: "Build validate-multi-topic-decomposition.mjs (P-META-024 mechanical enforcement)"
+    who: sonnet
+    priority: P2
+    status: pending
+    target_session: S028
+    context: >
+      P-META-024 (multi-topic intake decomposition) is SEALED but only has behavioral
+      enforcement (AGENTS.md hard NO). No validator checks whether AI emitted a routing
+      table when >2 CONCEPT_LOAD spines fired. Session B item.
+    verification: "Validator detects prompts with multiple spines handled without routing table."
+
+  - id: UPDATE-030
+    description: "ARCH CORE L1 amendment: ZModel SSoT → libs/policies/base.zmodel canonical location"
+    who: sonnet+opus
+    priority: P2
+    status: pending
+    target_session: S028
+    blocked_by: ["Opus ratification"]
+    context: >
+      ARCH CORE L1 says 'ZModel as SSoT' but packages/database/ never existed.
+      ADR-0026 (RP-005) demoted this to L2 ASPIRATIONAL. The amendment needs
+      csps-core-manifest.md ARCH CORE section updated + ADR-0027 for the amendment itself.
+    verification: "csps-core-manifest.md ARCH CORE references libs/policies/base.zmodel explicitly."
+
+  - id: UPDATE-031
+    description: "Orphan backfill: add core_spine + schema_anchor to 43 pre-S012 artifacts"
+    who: sonnet
+    priority: P2
+    status: pending
+    target_session: S028
+    context: >
+      validate-nothing-stands-alone.mjs reports 43 orphan artifacts (no core_spine +
+      schema_anchor). These have been advisory since S012. Need systematic backfill
+      using a script that assigns the correct spine based on file path.
+    verification: "validate-nothing-stands-alone: orphans=0 or < 5 (pre-existing tolerated)."
+
+  - id: UPDATE-032
+    description: "Upgrade instance-registry-populator.mjs to run as pnpm script (recurring)"
+    who: sonnet
+    priority: P2
+    status: pending
+    target_session: S028
+    context: >
+      Currently one-shot. Should be: pnpm instances:refresh runs the populator and
+      updates all 5 L3 files. validate-generated-artifact-freshness.mjs checks it ran
+      within the session boundary.
+    verification: "pnpm instances:refresh runs populator. L3 files show fresh timestamp."
+
+  - id: UPDATE-033
+    description: "Build validate-sp-007-rigid-rule.mjs (SP-007 rigid rule following detector)"
+    who: sonnet
+    priority: P3
+    status: pending
+    target_session: S029
+    context: >
+      SP-007 (rigid rule following vs intent understanding) is in sample-library.yaml
+      but has no validator. Detects when AI follows rule literally without understanding WHY.
+    verification: "Validator detects 'rule says X, I performed X' without intent understanding."

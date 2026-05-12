@@ -22,6 +22,7 @@
     "glossary:codegen": "echo 'TODO week-2: implement pnpm glossary:codegen' && exit 0",
     "catalog:search": "echo 'TODO week-1: implement pnpm catalog:search' && exit 0",
     "lint:frontmatter": "node tools/validators/validate-frontmatter.mjs",
+    "health": "node tools/health-check.mjs",
     "verify": "node tools/verify.mjs",
     "verify:strict": "node tools/verify.mjs --strict",
     "verify:fast": "node tools/verify.mjs --skip-install",

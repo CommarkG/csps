@@ -109,6 +109,15 @@ try {
   openLevels = match ? match[0] : 'see validate-open-plan-levels.mjs';
 } catch(e) { openLevels = 'validator error — run manually'; }
 
+// PE DASHBOARD top-5 (S025 — Governor directive: "PE connected to everything")
+let peTop5 = 'not computed';
+try {
+  const {execSync} = require('child_process');
+  const peOut = execSync('node tools/validators/validate-pe-dashboard.mjs 2>&1', {cwd: ROOT, encoding: 'utf8', timeout: 15000});
+  const lines = peOut.split('\n').filter(l => /^\s+\d+\s+│/.test(l)).slice(0, 5);
+  peTop5 = lines.length > 0 ? '\n' + lines.map(l => '    ' + l.trim()).join('\n') : 'no scored plans found';
+} catch(e) { peTop5 = 'pe-dashboard error — run manually'; }
+
 // FOUNDATION_EXIT_GATE — S015 major discovery (session-open v1.1)
 let foundationGateStatus = 'UNKNOWN', foundationGateBLOCKING = false, foundationGateDetail = '';
 try {
@@ -174,6 +183,7 @@ const context = [
   '  Blocking: ' + blocking,
   '  Platform verify: ' + verifyState,
   '  Open plan levels: ' + openLevels,
+  '  PE TOP-5 PRIORITIES (validate-pe-dashboard.mjs):' + peTop5,
   '  Foundation exit gate: ' + foundationGateStatus + mandateOverride,
   '  Raw thoughts queue: ' + pendingThoughtsSummary,
   '  Stale plan alignment: ' + stalePlansSummary,

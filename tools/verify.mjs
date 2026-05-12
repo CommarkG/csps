@@ -216,6 +216,15 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/checks=(\d+)\s+warnings=(\d+)/); return m ? { checks: Number(m[1]), warnings: Number(m[2]) } : {}; },
   },
   {
+    // NEW S025 — PE Dashboard: auto-compute priority queue from all active plans.
+    // Reads priority_score + depth_chosen → adjusted PE → sorted top-10.
+    // Phase 2 (S026): + gate status (Bn) + ZF gate per level.
+    // Governor directive: "PE must be connected to everything — complete holistic view."
+    name: 'pe_dashboard',
+    command: 'node tools/validators/validate-pe-dashboard.mjs',
+    parse_output: (out) => { const m = out.match(/plans=(\d+)\s+open_items=(\d+)/); return m ? { plans: Number(m[1]), open_items: Number(m[2]) } : {}; },
+  },
+  {
     // NEW S021 Governor directive — gradual-bundling: comprehensive check of all 7 bundling elements
     // Checks: depth discipline, humble batching, core spiral, GEP enforce_stage, PE alignment
     name: 'gradual_bundling',

@@ -1,3 +1,191 @@
+# Opus Turn 10 — S025 PACP Taxonomy + PE Moat Formula + S015 Queue
+
+**State at Writing:** S025 active | 73 validators | pnpm verify exit_code=0
+**Sonnet last reported:** S025 — 5 Turn 9 items implemented, PACP (DNA Element 17), PE moat extension, Budget Planner Layer 4 complete, SROF-006 filed
+**Read:** participant-protocol.md full (14 types, 5 categories confirmed)
+
+---
+
+## TOPIC 1: PACP — Taxonomy Completeness + L1 vs L2
+
+### Is the 14-type taxonomy complete?
+
+**Substantially YES for current scope.** Three edge cases assessed:
+
+**Missing type candidate: `governor.observer`** — someone with read access to platform decisions but no authority (future co-founder, investor, advisor). Not covered by any existing type. Add as PARTICIPANT-15 when the first observer exists. Don't add preemptively — no real participant yet.
+
+**Missing type candidate: `developer.partner`** — SDK consumer building integrations (not API user, not platform developer). PARTICIPANT-04 (`developer.api`) covers it adequately for now. Add when a real SDK partner exists.
+
+**Missing type candidate: `user.guest`** — unauthenticated visitor before sign-up/trial. PARTICIPANT-09 (`user.trial`) covers this adequately (trial = guest + intent to try). If an app needs a "browse without signing up" flow, add `user.guest` at that time.
+
+**Decision: The 14 types are sufficient. Add types when real participants exist, not speculatively.**
+
+One addition I recommend: document a **Category 6 placeholder** in the document:
+```
+### Category 6 — Future Participants (placeholder)
+Add new participant types here when a real participant first appears.
+New categories require L1 amendment (ADR). New types within existing categories require L2 rationale.
+```
+
+---
+
+### L1 SEALED or L2 DOMAIN?
+
+**Position: Hybrid. Constitutional principles L1 SEALED. Taxonomy L2 DOMAIN.**
+
+The CORRECT split:
+
+**L1 SEALED (never changes without ADR):**
+- The 5-category structure (Human Governors / Developers / End Users / Platform AI / External AI)
+- The principle that every platform artifact must declare `target_participant:`
+- The principle that trust level, context depth, and Threshold variant are determined by participant type
+- `validate-participant-declared.mjs` enforcement mechanism
+- The 3-item rule (I1/M1/M3 always from human — applies per participant type)
+
+**L2 DOMAIN (extensible with documented rationale):**
+- Adding new participant TYPES within existing categories → rationale required, no ADR
+- Modifying the protocol for a specific participant type → rationale required, no ADR
+- The specific Threshold variant per type (may evolve as the Threshold matures)
+
+**L3 INSTANCES (per-app or per-artifact):**
+- Specific `target_participant:` declarations in artifacts and APIs
+- App-specific Threshold calibration for that participant type
+
+**Mechanical consequence:**
+- participant-protocol.md §§1-3 (the philosophy and calibration table): L1 SEALED
+- participant-protocol.md §1 taxonomy list: L2 DOMAIN (new types are additive amendments)
+- The 5-category STRUCTURE in §1: L1 SEALED (new categories require ADR)
+
+**Update participant-protocol.md frontmatter:**
+```yaml
+depth_tier: L1-L2-hybrid
+l1_sealed_sections: ["§1 category structure", "§2 detection routing", "§3 calibration principles"]
+l2_domain_sections: ["§1 individual participant types", "§4 onwards"]
+```
+
+---
+
+## TOPIC 2: PE Moat Formula — Additive vs Multiplicative
+
+**Position: KEEP ADDITIVE (base_PE + moat_score × 0.5). Add three guardrails.**
+
+### Why additive is correct
+
+Transparency: "this item gets +5 because it's a constitutional moat element" is auditable. Multiplicative is harder to reason about: "base × 1.1" doesn't communicate WHAT the moat is or how much it contributes.
+
+Range: With max moat_score=10 and coefficient=0.5, max bonus = +5. Final_PE range: 0-15. Items scoring >10 are self-annotating as moat-priority — the >10 threshold IS the signal.
+
+Proportionality: The additive formula correctly gives the same moat bonus to a PE=3 item and a PE=8 item with identical moat_score. Whether that's right: YES — a constitutional moat item at PE=3 with +5 becomes PE=8, which is correct (it's structurally important even if narrowly scoped). A multiplicative formula would give the low-PE item a smaller bonus, which undersells its constitutional importance.
+
+**The 0.5 coefficient is right.** At 0.3 the bonus is too weak (constitutional moat adds only +3 — not enough to change scheduling). At 0.7 it's too aggressive (everything with moat > 1 crowds out pure PE items).
+
+### Three guardrails required before ratification
+
+**Guardrail 1: moat_score declarant must be Opus or Governor, not Sonnet self-assessment**
+
+moat_score is a PE multiplier. If Sonnet can self-assign moat_score=10 to any item, the formula breaks — every item becomes a "constitutional moat." The score must be:
+- moat_score ≥ 8 (constitutional or compounding): Opus ratification required before scoring
+- moat_score 4-7 (structural): Governor confirms before scoring
+- moat_score 0-3 (local or overhead): Sonnet self-assesses (low stakes, max +1.5 bonus)
+
+**Guardrail 2: moat_score requires a citation**
+
+Every non-zero moat_score must cite what makes it a moat:
+```yaml
+moat_score: 8
+moat_type: compounding
+moat_evidence: "Each session using this pattern builds on the last; enforcement_rate compounds across 30 apps"
+moat_ratified_by: opus-turn-9  # or governor + date
+```
+
+Without citation, `moat_score` defaults to 0 in PE calculation.
+
+**Guardrail 3: Display format — two numbers, always**
+
+When displaying PE in the arc plan or session brief: always show `base_PE + moat_bonus = final_PE`:
+```
+Session 3 (ZenStack + webhooks): PE 8.05 + 0.0 = 8.05
+CalendarEngine L1 (constitutional moat): PE 7.5 + 5.0 = 12.5 [MOAT-PRIORITY]
+```
+
+Items where final_PE > 10 get a `[MOAT-PRIORITY]` flag in all PE displays.
+
+**Implementation:** Add these three guardrails to the PE schema yaml + validate-pe-connectivity.mjs before moat_score goes live in arc plan scoring.
+
+---
+
+## TOPIC 3: S015 Raw-Thoughts-Queue — Audit Protocol
+
+**Position: Sonnet audits first, escalates ambiguous items only. Opus reviews the list, not each item.**
+
+### The correct protocol
+
+The 12 PENDING S015 items predate the PE system. They were raw thoughts before PE scoring existed. The right handling is NOT to close them — it's to BRING THEM INTO THE SYSTEM:
+
+**Step 1 — Sonnet classifies each (no implementation yet):**
+
+For each of the 12 items, assign one of:
+- **A: SUPERSEDED** — cite the specific session and artifact that completed it. Close automatically.
+- **B: ACTIVE, IN ARC PLAN** — PE-score it, assign to session, add to opus-advisory-arc-S023.md. Keep open.
+- **C: ACTIVE, NOT IN ARC PLAN** — PE-score it, assess blast_radius, flag for Opus review.
+- **D: AMBIGUOUS** — original intent unclear; no clear completion or arc assignment. Flag for Opus.
+
+**Step 2 — Sonnet reports the full classification list in SONNET REPORT.**
+
+Format:
+```
+S015-raw-01: [original text] → [A/B/C/D] — [reason/evidence]
+S015-raw-02: [original text] → [A/B/C/D] — [reason/evidence]
+...
+```
+
+**Step 3 — Opus reviews ONLY Class C and D items (typically 2-4 items).**
+
+Class A and B: Sonnet handles autonomously.
+Class C: Opus gives express review (L1 format — 3 lines per item).
+Class D: Opus asks the Governor for clarification before any action.
+
+**Why this matters:** Items that appear superseded sometimes contain a nuance that the completing work missed. The classification step surfaces that — a Class A determination "superseded by S017 ZenStack install" might reveal that one aspect of the raw thought (e.g., "ZenStack + RLS defense-in-depth") was NOT completed (only ZenStack was; RLS gap was surfaced by the Core Primitives review).
+
+**The rule: never close a raw thought without citing the specific artifact that closes it.**
+
+---
+
+## What Sonnet Can Implement Now
+
+**Without further Opus or Governor review:**
+- participant-protocol.md `depth_tier` frontmatter → update to L1-L2-hybrid with section annotations
+- participant-protocol.md §1 → add Category 6 placeholder block
+- PE display format → add moat_bonus display to arc plan tables (documentation only, no formula change)
+- S015 queue → classify all 12 items (Step 1 above), report back in SONNET REPORT
+
+**Needs Opus express review (L1):**
+- moat_score declarant guardrail → adds field to PE schema (governance implication)
+- moat_evidence citation requirement → adds validator check (small blast radius but touches every PE-scored item)
+
+**Needs Governor ratification:**
+- moat_score ≥ 8 requires Opus ratification (new governance gate — changes PE scoring authority)
+- The L1-L2-hybrid PACP split (confirms the sealed sections)
+
+---
+
+## RZF VERIFICATION
+Cycles run: 3 | Gaps surfaced: 3 | Critical gaps: 0
+Cycle 1: What did I miss?
+  Finding 1: PACP missing types — assessed. Covered.
+  Finding 2: moat_score — who declares it? Not specified in Sonnet's proposal. Added as Guardrail 1.
+  Finding 3: S015 items predate PE — shouldn't just be closed, should be brought into PE system.
+Cycle 2: All three addressed above. 0 new findings.
+Cycle 3: 0 new findings.
+Status: ZF ACHIEVED
+
+---
+
+*Opus Turn 10 — S025 | PACP L1-L2-hybrid | Additive PE moat with 3 guardrails | S015 audit-first protocol*
+*OPUS-1 | S025 | 2026-05-12*
+
+---
+
 # Opus Turn 9 — S025 Four Architectural Decisions + P-META-023 SEALED
 
 **State at Writing:** S025 active | 73 validators | pnpm verify exit_code=0

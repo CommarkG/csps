@@ -141,12 +141,88 @@ BRIEFING FILE (full context if Opus wants depth):
 
 ---
 
-### SROF-006 — Turn 10 (S025) ← NEXT REQUEST
-**Status:** PENDING | Briefing: participant-protocol.md + csps-platform-dna.md §Element 17
+### SROF-006 — Turn 10 (S025) ← CURRENT REQUEST
+**Status:** PENDING
 
-**Topic:** Participant-Aware Communication Protocol (PACP) — DNA Element 17
-**What Sonnet has built:** participant-protocol.md (14 types, 5 categories); validate-participant-declared.mjs (advisory); target_participant: field in enums; DNA Element 17 in csps-platform-dna.md
-**What needs Opus validation:** (1) Is the 14-type taxonomy complete? (2) Are the communication calibration rules per-type correct? (3) Should this be L1 sealed immediately or remain L2 domain until more apps validate it? (4) How should internal personas (ai.haiku variant) be structured?
+```
+═══════════════════════════════════════════════════════════════════
+SROF-006 — Turn 10 | Session: S025 | Date: 2026-05-12
+Status: PENDING
+═══════════════════════════════════════════════════════════════════
+
+PLATFORM STATE (assume Opus has not seen anything since Turn 9):
+  Validators: 84 active | Health: 76% (10/17 YES) | Last commit: 404253c
+  pnpm verify: exit_code=0 | ZF: ACHIEVED
+  Budget Planner App #2: Layers 1+2+3+4 complete (Gate 3 pending live validation)
+  DNA elements: 17 (Element 17 = PACP, added S025)
+  Principles: 57 (P-META-023 SEALED per Turn 9 — registered in principles.yaml)
+  Key new files Opus should read:
+    - docs/plan/pillar-0-governance/participant-protocol.md (PACP — the brief)
+    - tools/templates/priority-engine.schema.yaml §1b-§1c (pe_context + moat_score)
+    - docs/plan/pillar-0-governance/csps-platform-dna.md §Element 17
+
+SINCE TURN 9 (Sonnet implemented all 5 immediate items — do not re-review):
+  - P-META-023 registered in principles.yaml (total_count=57) ✓
+  - template_status 5-value enum (experimental/draft/provisional/standard/sealed) ✓
+  - intake-interrupt-protocol.md: ×1.5 vault/plan, ×2.0 interrupt, L1=always ✓
+  - PROTOCOL.md: L0-L3 consultation levels + EXPRESS format ✓
+  - HANDOFF frontmatter: needs_opus_review + opus_review_type ✓
+  NEW (not in Turn 9):
+  - PACP: participant-protocol.md (14 types, 5 categories) — DNA Element 17 — advisory
+  - PE moat-first: pe_context (platform/customer/user) + moat_score (0-10 bonus)
+  - validate-open-questions.mjs: 12 PENDING S015 items surfaced in raw-thoughts-queue.md
+
+WHAT SONNET HAS ALREADY DECIDED (Opus must not override):
+  - 14 participant types across 5 categories (governor/developer/user/platform-AI/external-AI)
+  - moat_score is ADDITIVE to base PE (not a replacement dimension)
+  - pe_context adjusts dimension weights — keeps all items in one comparable PE queue
+  - PACP is advisory Phase 1 (BLOCKING needs Governor ratification for S026)
+  - raw-thoughts-queue items without PE+trigger surfaced as advisory (not blocked yet)
+
+WHAT SONNET CANNOT DECIDE ALONE:
+  1. PACP taxonomy completeness: Are 14 types sufficient? What's missing?
+     Specifically: should "developer.platform" split into "developer.governance" vs
+     "developer.schema" vs "developer.product"? Or is one type sufficient?
+  2. L1 vs L2 for PACP: Should participant-protocol.md be L1 SEALED (constitutional,
+     governs all apps) or L2 DOMAIN (can evolve as more apps validate it)?
+     Sonnet's take: L2 for now (14 types may grow), but Opus knows better.
+  3. PE moat_score formula: Is `final_PE = base_PE + (moat_score * 0.5)` the right
+     multiplier? Or should moat contribution use a different formula (e.g., multiplicative)?
+  4. raw-thoughts-queue S015 PENDING items: 12 items from S015 without PE+trigger.
+     Most appear superseded by S015-S025 work. Should Sonnet audit+close them, or
+     should Opus review before closing?
+
+THE REQUEST (paste to Opus):
+
+  You are OPUS-1, Turn 10. Since Turn 9, Sonnet implemented all 5 immediate items
+  (P-META-023 registered, template grade system, intake-interrupt-protocol, L0-L3
+  consultation levels, HANDOFF frontmatter fields). Three new items need your review:
+
+  (1) PARTICIPANT-AWARE COMMUNICATION PROTOCOL (PACP) — the Governor identified a
+  hidden gap: CSPS has been treating all communication as binary (AI↔human) when
+  there are actually 14 distinct participant types (governor.primary, developer.platform,
+  developer.app, developer.api, user.solo, user.team.member, user.team.admin,
+  user.enterprise, user.trial, ai.sonnet, ai.opus, ai.haiku, ai.agent, ai.external)
+  each requiring different trust levels, context depth, communication protocols, and
+  Threshold variants. This is now DNA Element 17. The question: is the taxonomy
+  complete, and should participant-protocol.md be L1 SEALED (constitutional) or L2
+  DOMAIN (evolving)?
+
+  (2) PE MOAT-FIRST EXTENSION — PE now has pe_context (platform/customer/user, adjusts
+  dimension weights) and moat_score (0-10 additive bonus: constitutional=10, compounding=8,
+  structural=6). This makes moat contribution explicit in every priority decision.
+  Is `final_PE = base_PE + (moat_score × 0.5)` the right formula, or should the
+  moat be multiplicative?
+
+  (3) S015 RAW-THOUGHTS-QUEUE — 12 PENDING items from S015 have no PE score or trigger
+  condition. Most appear superseded by S015-S025 work. Should Sonnet audit and close them,
+  or does Opus need to review first?
+
+  Full briefing: docs/plan/pillar-0-governance/participant-protocol.md.
+
+BRIEFING FILE: docs/plan/pillar-0-governance/participant-protocol.md
+═══════════════════════════════════════════════════════════════════
+```
 
 ---
 

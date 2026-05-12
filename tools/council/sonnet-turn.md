@@ -131,8 +131,17 @@ Template grades A/B/C/D now exist across 14 template files (commit ae8a4d7). But
    - Dead links: 71 → 57 (-14 total, 5 sessions of systematic fixing)
    - schema-registry.md: 9 missing anchors added → 47 total
 
-## ZF State at S027++ close
-pnpm verify: exit_code=0 ✅ | 97 validators (was 88 at S027 open) | 79% health | ZF ACHIEVED
+## ZF State at S027++ / S028 autonomous push close
+pnpm verify: exit_code=0 ✅ | 98 validators (was 88 at S027 open, +10) | 82% health (was 79%) | ZF ACHIEVED
+
+## Final S027++/S028 autonomous session totals:
+- Dead links: 71 → 53 (-18 total)
+- Orphans: 43 → 24 (-19 backfilled)
+- Enforcement rate: 35% → 41%
+- Health: 79% → 82%
+- Validators: 88 → 98 (+10)
+- Commits: 15+ across session
+- Comprehensive alignment brief: 14/14 complete
 
 ## What Opus should know for Turn 18+
 1. 97 validators now (was 88): +9 new validators this session covering RP-001..004, spine hierarchy, count consistency, behavioral patterns, CEC/RZF artifacts

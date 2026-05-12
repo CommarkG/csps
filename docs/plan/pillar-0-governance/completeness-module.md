@@ -102,7 +102,14 @@ question_register:
 **Enforcement:** `validate-completeness-coverage.mjs` (TO BUILD — S026) — checks all 6 contracts are active + this module is referenced from each
 **Evidence form:** "Meta-completeness: 6/6 contracts active + validate-completeness-coverage.mjs PASS"
 
-**Self-audit:** ❌ MISSING — validate-completeness-coverage.mjs not yet built. Self-verification gap.
+**Self-audit:** ⚠️ PARTIAL — validate-completeness-coverage.mjs BUILT S025 (advisory, 1 finding below). Self-verification gap partially closed.
+
+**Meta-completeness score: 1/5 YES, 3/5 PARTIAL, 1/5 MISSING** (updated S026)
+- Level 1 (Finding): ✅ YES — pnpm verify + ZF orchestrator active
+- Level 2 (Value): ⚠️ PARTIAL — CEC fires for specific files; gaps in governance artifacts
+- Level 3 (Session): ⚠️ PARTIAL — advisory gates; some §10.0 sections skippable
+- Level 4 (Meta): ⚠️ PARTIAL — validate-completeness-coverage.mjs built S025 (advisory); Phase 2 = blocking S026
+- Level 5 (Instruction integrity): ❌ MISSING — no trigger vocabulary audit of completeness instructions (Turn 12 architecture addresses this)
 
 ---
 

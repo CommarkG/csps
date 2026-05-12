@@ -155,3 +155,28 @@ ZF ACHIEVED ✅ | pnpm verify exit_code=0 | 85 validators | 57 contracts | 57 pr
 2. Template retroactive grading (Turn 10 deferred): 14 templates need A/B/C/D grades. Sonnet has the initial list from Opus Turn 10. Ready for Turn 12 review.
 3. pe_context + moat_score formula: Governor ratified. Active in PE schema. No outstanding issues.
 4. B_CDAB enforcement_stage: planned — will surface again when MCP get_context ships.
+
+---
+
+# Sonnet Session S026 — INTENT ABSORBED (S025-C1 continuation)
+
+## Context: S025 formally closed (commit 567d141). Continuing in same chat.
+## Read: HANDOFF-S025-to-S026.md Zone B mandate + csps-master-plan-s025-plus.md §2
+
+## Task understanding (S026 Band 1-2 mandate PE-ordered):
+1. validate-completeness-coverage.mjs Phase 2 (PE=82) — BLOCKING for missing contracts
+2. Budget Planner Gate 3 live validation documentation (PE=78) — cold-start + adversarial
+3. Context orchestrator Phase 10 activation (PE=75) — inject not just detect
+4. question_register mandatory (PE=72) — Phase 2 of validate-question-coverage.mjs
+5. pnpm health improvements (PE=71) — target 11/17 YES
+
+## Why this matters (Layer 3):
+Platform must prove it can self-monitor and self-improve without Governor reminders.
+Each S026 item closes a gap between documented intent and mechanical enforcement.
+
+## Constraints understood:
+- Budget Planner live validation needs real Supabase/Clerk/Stripe credentials — document procedure, not automate
+- Context orchestrator Phase 10 = protected path (.claude/hooks) — requires diff + confirm
+- Moat_score ≥ 8 needs Opus ratification before scoring (PE schema guardrail)
+
+## First action: pnpm health + pnpm verify baseline, then Band 1 item

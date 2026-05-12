@@ -29,7 +29,7 @@ depth_tier_authored: l1_essence
 links:
   - { rel: parent, href: ./README.md }
   - { rel: frontmatter-schema, href: ./frontmatter-closed-enums.md }
-  - { rel: principles-schema, href: ../../packages/principles/principles.yaml }
+  - { rel: principles-schema, href: ../../../packages/principles/principles.yaml }
   - { rel: template-registry, href: ../_handoff/VAULT/template-registry.md }
   - { rel: audit-registry, href: ./audit-runner.md }
   - { rel: source-extract, href: ../_handoff/VAULT/contexts/governance/savings-ssot/EXT-20260505-005-C-schema-of-schemas-and-hub-per-spine-composition.md }

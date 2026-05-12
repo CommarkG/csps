@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-12T22:00:19.102Z
-- finished_at: 2026-05-12T22:00:41.913Z
+- ran_at: 2026-05-12T22:02:35.083Z
+- finished_at: 2026-05-12T22:02:57.369Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-12T22:00:19.102Z",
-    "finished_at": "2026-05-12T22:00:41.913Z",
+    "ran_at": "2026-05-12T22:02:35.083Z",
+    "finished_at": "2026-05-12T22:02:57.369Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.5,
+        "duration_seconds": 6,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.6,
         "principles_loaded": 59,
         "findings_total": 0
       },
@@ -189,7 +189,7 @@
         "duration_seconds": 0.1,
         "files": 110,
         "links": 502,
-        "broken": 62
+        "broken": 59
       },
       {
         "name": "opus_review_flagging",
@@ -302,7 +302,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 17,
-        "validators": 95,
+        "validators": 96,
         "models": 0,
         "advisories": 8
       },
@@ -374,6 +374,15 @@
         "duration_seconds": 0.1,
         "checked": 4,
         "advisories": 0
+      },
+      {
+        "name": "deferred_target_session",
+        "command": "node tools/validators/validate-deferred-target-session.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 3,
+        "advisories": 2
       },
       {
         "name": "question_coverage",
@@ -457,7 +466,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 92
+        "validators": 96
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -830,9 +839,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 96,
+        "validators_checked": 97,
         "orphans": 0,
-        "registered": 96
+        "registered": 97
       },
       {
         "name": "token_budget_validate",

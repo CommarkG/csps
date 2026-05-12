@@ -395,6 +395,14 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
   },
   {
+    // S028 — Deferred target session: surfaces governance debt (week-4/deferred items without targets).
+    // Advisory: counts week-4 rows in audit-runner, contracts, verify.mjs that have no S<NNN> target.
+    // RP-001: "week-4 is a commitment, not a metaphor." PE=75.
+    name: 'deferred_target_session',
+    command: 'node tools/validators/validate-deferred-target-session.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
     name: 'question_coverage',
     command: 'node tools/validators/validate-question-coverage.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },

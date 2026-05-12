@@ -26,7 +26,7 @@ threshold_route: platform.governance
 ux_principle: none
 links:
   - { rel: parent, href: ./README.md }
-  - { rel: sandbox-dir, href: ../../_sandbox/ }
+  - { rel: sandbox-dir, href: ../_sandbox/ }
   - { rel: routing-config, href: ../../../libs/config/routing.config.ts }
   - { rel: contract, href: ./behavioral-contracts.md }
 diataxis_type: how-to

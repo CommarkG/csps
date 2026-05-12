@@ -60,7 +60,6 @@ Skills auto-load with full detail when their domain is referenced. List below is
 
 **enforcement_stage: active (AGENTS.md behavioral mandate)**
 **self_assessment_Q:** "Am I helping the Governor feel good, or helping the platform get better? If these conflict, choose the platform."
-
 ---
 
 ### AI-behavior (Quality Gates + voice)
@@ -106,6 +105,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never CONSTITUTIONAL change Core Spines (cardinality / precedence / 3-layer doctrine) without ratified ADR + multi-session arc
 - ❌ Never name artifact violating 4-rule naming policy + ALL-rules-during-rename mandate
 - ❌ Never start multi-session topic without templated gradual-build-plan instance (depth ∈ {3,4,5}; skill: `swift-build`)
+- ❌ Never treat a prompt with > 2 distinct CONCEPT_LOAD spine classifications as "Standard chat" — declare N intake events, route each through P-META-023 separately (P-META-024 — SEALED Opus Turn 16)
 
 ### Communication boundaries (P-META-014 MUV + B_BOUNDARY_ALIGNMENT_PROTOCOL S024)
 - ❌ Never cross any AI communication boundary (Types A-E: AI→AI / subagent / API / chat / human) without UNDERSTANDING BLOCK before + ALIGNMENT CONFIRMATION after (B_BOUNDARY_ALIGNMENT_PROTOCOL + B_MUV). Format: "I understand X as [Layer 3 intent] / I produced Z / match: YES|PARTIAL|NO." Silent crossing = structural failure. Enforced: validate-boundary-alignment.mjs.

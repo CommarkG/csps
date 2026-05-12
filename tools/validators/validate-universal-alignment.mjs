@@ -85,6 +85,8 @@ function getNewFiles() {
       .filter(f => !f.match(/tools\/templates\/.*\.template\.md$/))
       .filter(f => !f.match(/tools\/templates\/adr\.template\.md$/))
       .filter(f => !f.match(/tools\/templates\/docs\//))
+      // Skip ADRs (use MADR frontmatter, not universal CSPS frontmatter — same exemption as validate-frontmatter.mjs)
+      .filter(f => !f.match(/docs[\/\\]adr[\/\\]\d{4}-/))
       // Skip tools/council/ entirely (working docs)
       .filter(f => !f.match(/tools\/council\//))
       // Skip HANDOFF + chat-jump + closing-summary files (session lifecycle artifacts)

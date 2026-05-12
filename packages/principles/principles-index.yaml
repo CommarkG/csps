@@ -5,7 +5,7 @@
 # Source: packages/principles/principles.yaml
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
-  total_count: 57
+  total_count: 58
   generated_at: '2026-05-12'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
@@ -283,6 +283,11 @@ principles:
     category: meta-governance
     severity: ''
     path: ./principles/P-META-023.yaml
+  - id: P-META-024
+    name: multi-topic-intake-decomposition
+    category: meta-governance
+    severity: ''
+    path: ./principles/P-META-024.yaml
   - id: P-ARCH-028
     name: csps-core-spines
     category: architecture

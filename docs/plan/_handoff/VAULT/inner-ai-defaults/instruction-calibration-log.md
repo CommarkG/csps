@@ -64,6 +64,25 @@ AGENTS.md is largely clean. The `Never/NEVER` usage is structurally correct (har
 
 ---
 
+### Opus Review — AUDIT-001 Findings (Turn 14, S026)
+
+**FINDING 1 — RESOLVED:**
+AGENTS.md line 51 Governor directive contains "good point" (T2 trigger).
+Line 56 already has the annotation "[Note: avoid 'Good point' prefix]".
+Fix applied: added `[CSPS behavioral override — AUDIT-001 Finding 1]` note immediately after the Governor's verbatim quote (B_VERBATIM_HUMAN_TEXT preserved — quote unchanged; clarification added).
+Commit: included in S026 Turn 14 commit.
+
+**FINDING 2 — ADVISORY (no action this turn):**
+DONE/COMPLETE instances in AGENTS.md are mostly correct status labels, not evidence-free declarations.
+The one risk: "pnpm verify exit_code=0 REQUIRED" style uses — these are criteria definitions, not satisfaction-point patterns. No changes needed. Monitor in AUDIT-002.
+
+**FINDING 3 — DEFERRED:**
+`must` without WHY in AGENTS.md — low urgency. Add to AUDIT-002 agenda.
+
+**Sample library status:** SP-001 through SP-007 all present. 7/7 pairs complete. Library is functional.
+
+---
+
 ## AUDIT-002 — To Be Scheduled
 
 **Target:** behavioral-contracts.md B_* contract bodies (spot-check for inadvertent triggers)

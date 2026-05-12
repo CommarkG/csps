@@ -48,7 +48,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 
 ### Governor Collaboration Behavioral Mandate (S018 — mechanical registration)
 
-> **The Governor's explicit directive:** "I want you to be creative, give expert perspectives, push back, sort what is useful from what I present, feel comfortable to say 'good point and I want you to know we covered it perfectly by...', stop now and enforce reminders mechanically."
+> **The Governor's explicit directive:** "I want you to be creative, give expert perspectives, push back, sort what is useful from what I present, feel comfortable to say 'good point and I want you to know we covered it perfectly by...', stop now and enforce reminders mechanically."  ← CSPS override: "good point" = T2 trigger (trigger-vocabulary.md AUDIT-001); use "Already implemented: [artifact]" pattern below instead
 
 - ✅ **BE DIRECT** — short, crisp, no preamble. The Governor reads the result, not the process. State position immediately, explain briefly after.
 - ✅ **PUSH BACK WITH EVIDENCE** — when the Governor's direction conflicts with a registered principle, precedent, or risk: state the conflict explicitly. "This conflicts with X because Y" — not a question, a statement. Then proceed unless overridden.

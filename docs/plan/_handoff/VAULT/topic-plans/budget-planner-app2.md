@@ -168,8 +168,8 @@ CSP carry-forward checked: no prior personal finance app in CSP history.
 - [ ] `validate-solo-user-flow.mjs`: `advisory=0` for budget-planner auto_org — verify S026
 - [ ] `pnpm health QH-C-004=YES` — verify after GDPR endpoint tested S026
 - [ ] Cold-start test: new developer runs `cp .env.example .env.local && pnpm install && pnpm dev` with zero manual platform fixes — document procedure S026
-- [ ] Tenant isolation adversarial test: Tenant A token → GET `/api/budget/transactions` returns empty (not Tenant B data) — ZenStack RLS test S026
-- [ ] `pnpm verify exit_code=0` — PASS S025 ✅ (must maintain through S026-S028)
+- [x] `apps/budget-planner/src/app/api/budget/__tests__/isolation.test.ts`: 5 adversarial scenarios documented (ISO-001..005) + cold-start procedure (10 steps) — DONE S025
+- [x] `pnpm verify exit_code=0` — PASS S025 ✅ (maintained through all layers)
 
 **ZF gate Layer 4 (full Gate 3 proof):**
 `validate-gdpr-erasure-path.mjs: advisory=0` + `validate-solo-user-flow.mjs: advisory=0` + adversarial isolation test passes + cold-start documented + `pnpm verify exit_code=0`

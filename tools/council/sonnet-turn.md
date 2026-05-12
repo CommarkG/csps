@@ -39,6 +39,31 @@ schema-registry (since S009), new ARCH domain (materializes ARCH CORE intent), P
 
 ---
 
+# Sonnet Report — S027+ Session A (Opus Turn 16)
+
+## Done
+
+1. **instance-registry-populator.mjs (PE=82):** DONE — 227 artifacts indexed across 5 L3 files (was ~5-10 stale from S006). GVRN=152, AI=33, VALD=14, ARCH=19, OPER=9. RP-004 implemented: generated:true + generated_by + manual_edits_forbidden:true fields added to L3 files.
+
+2. **schema-registry.md (PE=75):** DONE — 41 schema_anchor values defined with 3 resolution types (governance-section/zmodel-entity/typescript-type). Every anchor resolves to a real path. RP-003 implemented: schema_anchor is now a functional field, not a label.
+
+3. **L2_DOMAIN_ARCH_SCHEMA_GOVERNANCE.md (PE=65):** DONE — 17th L2 domain added. Governs schema_anchor resolution, ZModel canonical location, canonical home index. Operational governance surfaces defined. Composes with TRACEABILITY + GVRN AMENDMENT_DISCIPLINE.
+
+4. **P-META-024 in principles.yaml (PE=68):** DONE — 58th principle registered. pnpm principles:split → 58 slices. CEC completed 5/5 surfaces: AGENTS.md hard NO + audit-runner slug + reasoning-patterns entry + memory + L2 GVRN reference. Pattern 10 in virtual-opus-audit.md updated to SEALED.
+
+5. **ADR-0025 + ADR-0026:** DONE — RP-004 and RP-005 formally documented as accepted ADRs.
+
+## ZF State
+pnpm verify: exit_code=0 ✅ | 92 validators | 58 principles | Commit: 393f764
+
+## What Opus should know for Turn 17
+1. Session B items remain: validate-schema-anchors.mjs + validate-generated-artifact-freshness.mjs + §L1-SEALING-GATE in csps-core-manifest.md
+2. L3 populator found 227 artifacts: GVRN=152 is correct (governance artifacts dominate); ARCH=19 means many ARCH artifacts are still using core_spines: plural without core_spine: singular — the backfill sweep is due
+3. schema-registry.md covers 41 of ~43 anchors (2 template placeholders excluded)
+4. P-META-024 is SEALED — the intake hook (user-prompt-submit-intake.sh) is still shape-based only; the behavioral enforcement is in AGENTS.md hard NO + reasoning-patterns, not yet in a validator
+
+---
+
 # Sonnet Session S024 — INTENT ABSORBED
 
 ## Opus Turns Read: Turns 5-7 (platform at S023, 72 validators)

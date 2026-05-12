@@ -48,7 +48,11 @@ const APP_SCHEMA       = join(ROOT, 'apps/task-mgmt/prisma/schema.prisma');
 const APP_ONLY_ACCEPTED = new Set([]);
 
 // Models that are in the ZModel but intentionally NOT in the app schema yet
-const ZMODEL_ONLY_DEFERRED = new Set([]);
+// Budget Planner models (BudgetCategory, Transaction) are App #2 domain — not used by task-mgmt
+const ZMODEL_ONLY_DEFERRED = new Set([
+  'BudgetCategory',    // App #2 Budget Planner — not used by task-mgmt
+  'Transaction',       // App #2 Budget Planner — not used by task-mgmt
+]);
 
 // Fields that exist in the app schema but intentionally NOT in ZModel
 // Format: "ModelName.fieldName"
@@ -59,7 +63,11 @@ const APP_ONLY_ACCEPTED_FIELDS = new Set([
 
 // Fields in ZModel/generated that are intentionally absent from app schema
 // Format: "ModelName.fieldName"
-const ZMODEL_ONLY_DEFERRED_FIELDS = new Set([]);
+// Budget Planner relations on Tenant — not needed in task-mgmt app (App #2 domain only)
+const ZMODEL_ONLY_DEFERRED_FIELDS = new Set([
+  'Tenant.budgetCategories',  // App #2 Budget Planner relation — deferred until apps/budget-planner/ is fully built
+  'Tenant.transactions',      // App #2 Budget Planner relation — deferred until apps/budget-planner/ is fully built
+]);
 
 // ── Model name extraction ───────────────────────────────────────────────────
 

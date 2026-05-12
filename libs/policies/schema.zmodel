@@ -156,10 +156,12 @@ model Tenant extends Base {
   stripeSubscriptionId String?
   subscriptionStatus   TenantSubscriptionStatus @default(free)
 
-  members     UserTenant[]
-  projects    Project[]
-  tasks       Task[]
-  auditEvents AuditEvent[]
+  members          UserTenant[]
+  projects         Project[]
+  tasks            Task[]
+  auditEvents      AuditEvent[]
+  budgetCategories BudgetCategory[]
+  transactions     Transaction[]
 
   @@schema("public")
   @@allow("read", auth().tenantId == id)
@@ -291,6 +293,67 @@ model Task extends Base {
   @@index([tenantId, dueDate])
 }
 
+// ═══════════════════════════════════════════════════════════════
+// APP #2 — Budget Planner (personal.finance domain — S025)
+// Governor-authored intent: "track income and expenses, see balance"
+// gate: Gate 3 Foundry Ready — no foundation code changed
+// ═══════════════════════════════════════════════════════════════
+
+// Budget category: income/expense classification with monthly limit
+// AppendOnlyBase: soft-delete only (no hard delete)
+model BudgetCategory extends Base {
+  tenantId     String
+  name         String        // e.g. "Rent", "Food", "Salary"
+  type         BudgetCategoryType  @default(expense)
+  monthlyLimit Float?        // optional spending cap
+  color        String?       // hex color for UI
+  icon         String?       // emoji or icon name
+
+  tenant       Tenant        @relation(fields: [tenantId], references: [id])
+  transactions Transaction[]
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)
+  @@allow("update", auth().tenantId == tenantId)
+  @@deny("delete",  true)
+
+  @@index([tenantId, type])
+  @@index([tenantId, createdAt])
+}
+
+// A single financial transaction (income or expense)
+// AppendOnlyBase: immutable once recorded (financial integrity)
+model Transaction extends Base {
+  tenantId   String
+  categoryId String
+  amount     Float         // always positive; type determines direction
+  type       BudgetCategoryType  // income or expense
+  note       String?       // optional description
+  date       DateTime      @default(now())
+
+  tenant     Tenant         @relation(fields: [tenantId],   references: [id])
+  category   BudgetCategory @relation(fields: [categoryId], references: [id])
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)
+  @@deny("update",  true)   // transactions are immutable (financial integrity)
+  @@deny("delete",  true)
+
+  @@index([tenantId, date])
+  @@index([tenantId, categoryId])
+  @@index([tenantId, type, date])
+}
+
+enum BudgetCategoryType {
+  income
+  expense
+
+  @@schema("public")
+}
+
+// ═══════════════════════════════════════════════════════════════
 // From: slices/public/task-comment.zmodel
 // Immutable once posted (no update); soft-delete via deletedAt only
 model TaskComment extends Base {

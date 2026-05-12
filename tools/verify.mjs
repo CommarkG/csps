@@ -341,6 +341,15 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/routes_checked=(\d+)\s+validators_checked=(\d+)\s+models_checked=(\d+)\s+advisories=(\d+)/); return m ? { routes: Number(m[1]), validators: Number(m[2]), models: Number(m[3]), advisories: Number(m[4]) } : {}; },
   },
   {
+    // NEW S027 — DNA application evidence per element: verifies §6b table in csps-platform-dna.md.
+    // Checks presence + 17 rows + non-trivial evidence per element (validator/hook/command reference).
+    // Gap targeted: DNA gate that only checks acknowledgment, not application.
+    // Advisory Phase 1; BLOCKING Phase 2 after K=2. PE=67 S027.
+    name: 'dna_evidence',
+    command: 'node tools/validators/validate-dna-evidence.mjs',
+    parse_output: (out) => { const m = out.match(/elements_checked=(\d+)\s+advisories=(\d+)/); return m ? { elements_checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
     name: 'question_coverage',
     command: 'node tools/validators/validate-question-coverage.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },

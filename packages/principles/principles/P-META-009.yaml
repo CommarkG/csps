@@ -278,6 +278,10 @@ enforcers:
     description: >-
       Exposed as principles://cognitive-context-architecture with full 5-layer spec + 4 Quality Gate definitions + 5
       token-budget operating rules
+child_operational_protocols:
+  B_CDAB: >-
+    Context-Depth-Alignment-Boundary (S025) — per-task context selection subordinate to CCA 5-layer architecture.
+    Enforcement_stage: planned. See behavioral-contracts.md §B_CDAB.
 enforcer_count: 18
 cross_references:
   - P-META-001

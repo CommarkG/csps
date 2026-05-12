@@ -67,6 +67,8 @@ PE-FULL fires and includes this queue. Each item is promoted or discarded before
 - [S016-2026-05-07] VAULT: VLT-S016-ZENSTACK RESOLVED (Option A). S017 mandate = ZenStack install + RLS + foundation-slices L3 closure. This is the bedrock Layer 2 completion session. → STATUS: PROMOTED — S017 mandate (see session-state.json)
 
 
+- [S027-2026-05-12] VAULT: mtime-based incremental validation — each validator records its last-run timestamp in `{validator}-last-run.json`. On next run, skip files where `mtime < last_run_timestamp`. At 30 apps × 100 files each, this converts O(N·apps) → O(changed_files·validators). Directly addresses Class B bottleneck in validate-bottleneck-patterns.mjs. Existing precedent: `validate-dead-links.mjs` already uses a baseline file pattern; extend that model to per-file mtimes. Implementation: (1) validate-bottleneck-patterns.mjs Phase 2 adds file-manifest approach; (2) shared utility `tools/lib/incremental-scan.mjs` used by all file-walking validators. → STATUS: PENDING | pe: 55 | trigger: when pnpm verify > 60s at 3+ apps (currently 30s at 1 app)
+
 ---
 
 ## Processing Protocol (for AI at plan completion)

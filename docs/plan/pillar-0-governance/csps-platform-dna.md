@@ -197,6 +197,34 @@ dna_gate:
 **Week-4 ratchet:** 6 STUB validators activate.
 **Manual layer:** Behavioral Contracts + Quality Gates + Templates + FSE + DNA-gate continuous AI discipline.
 
+## §6b — Application evidence per element (S027)
+
+> **What proves each element was APPLIED, not just acknowledged.**
+> Source: dna-protocol §5a mandate. Validates that DNA gate is evidence-based, not checklist-based.
+> Enforced by: `validate-dna-evidence.mjs` (checks this section is present + non-empty per element)
+
+| # | DNA Element | Observable application evidence |
+|---|---|---|
+| 1 | **vocab** | `validate-frontmatter.mjs` in pnpm verify exits 0; all closed-enum fields in committed artifacts use exact enum values |
+| 2 | **naming** | All new artifacts in current session match kebab-case filenames; `pre-tool-use-frontmatter-enum-check.sh` fires without violations |
+| 3 | **SCHEMA** | `validate-frontmatter.mjs` PASS on every artifact; zero `lifecycle_state: draft` in production files; `tag-status-deep-audit` cron clean |
+| 4 | **Core Spines** | Every new artifact has `core_spine:` in frontmatter; `corespine_layer_compliance` advisory shows 0 blocking; L1 sealed files unmodified |
+| 5 | **Principles** | `validate-principle-count-staleness.mjs` PASS; `principles.yaml` total_count matches slice count; new P-* registered before use |
+| 6 | **Behavioral Contracts** | `validate-behavioral-contract-slices.mjs` PASS; no new B_* invoked without registration; post-stop-banned-phrase.sh exits clean |
+| 7 | **Quality Gates** | QG1 maintained (hard reasoning in main); QG2 maintained (synthesis in main); QG3 respected (re-read edited files); QG4 respected (cache invalidated on change) |
+| 8 | **Templates** | `validate-template-grade.mjs` PASS; new artifacts use `template_used:` field; template-registry.md consulted before authoring |
+| 9 | **FSE** | Every engraving in the session touches 5/5 surfaces (schema + validator + hook + memory + contract); CEC trigger fires on every methodology edit |
+| 10 | **Depth Levels** | `file_depth_markers:` present in L2+ governance artifacts; `depth_tier:` declared in plans; no L3 artifacts lacking L1 declaration |
+| 11 | **Priority Engine** | `validate-pe-dashboard.mjs` PASS; session work executed in PE-score order; lower-PE items vaulted to raw-thoughts-queue with trigger |
+| 12 | **Context-Loss** | Plans have `question_register:` field; PAIN-* IDs cited in plans; `validate-question-coverage.mjs` exits 0 |
+| 13 | **LAYER** | All apps in `apps/` declare `domain_path`; no cross-layer imports (libs/ → apps/ blocked); `validate-core-seeds.mjs` shows no overdue seeds |
+| 14 | **Domain Primitives** | `apps/` import from `libs/` not from each other; no `new PrismaClient` in routes; `validate-bottleneck-patterns.mjs` Class A advisory count tracked |
+| 15 | **Human Intent Crystallization** | `validate-intent-crystallized.mjs` PASS; `intent_crystallized: true` in active deep_quality plans; `threshold_route:` declared |
+| 16 | **Question Protocol** | `validate-question-coverage.mjs` PASS; topic-plans have `question_register:`; `validate-crystallization-bypass.mjs` exits 0 |
+| 17 | **Participant-Aware** | `validate-participant-declared.mjs` PASS; new artifacts have `audience:` tag; PACP DNA-17 participant type declared in plans |
+
+**Application evidence validator:** `validate-dna-evidence.mjs` — checks this §6b table is present, has 17 rows, and each row's evidence column is non-empty. ADVISORY Phase 1; BLOCKING Phase 2 (after K=2 promotion). PE=67 S027.
+
 ## §7 — References
 
 - [plan-creation-protocol.md](./plan-creation-protocol.md) — Step 2 DNA gate consults this file

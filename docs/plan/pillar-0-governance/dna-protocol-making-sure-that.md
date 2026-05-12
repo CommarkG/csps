@@ -29,7 +29,7 @@ links:
   - { rel: threshold-protocol, href: ./threshold-intake-protocol.md }
   - { rel: question-protocol, href: ./question-protocol.md }
   - { rel: csps-platform-dna, href: ./csps-platform-dna.md }
-  - { rel: master-plan, href: ../../_handoff/VAULT/csps-master-plan-s025-plus.md }
+  - { rel: master-plan, href: ../_handoff/VAULT/csps-master-plan-s025-plus.md }
   - { rel: audit-runner, href: ./audit-runner.md }
 diataxis_type: how-to
 ---

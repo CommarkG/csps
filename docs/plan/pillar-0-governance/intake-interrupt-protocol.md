@@ -30,9 +30,9 @@ links:
   - { rel: pe-schema, href: ../../../tools/templates/priority-engine.schema.yaml }
   - { rel: b-completion-over-shiny, href: ./behavioral-contracts.md#B_COMPLETION_OVER_SHINY }
   - { rel: b-pe-alignment-guardian, href: ./behavioral-contracts.md#B_PE_ALIGNMENT_GUARDIAN }
-  - { rel: raw-thoughts-queue, href: ../../_intake/raw-thoughts-queue.md }
+  - { rel: raw-thoughts-queue, href: ../_intake/raw-thoughts-queue.md }
   - { rel: session-state, href: ../../../tools/session-state.json }
-  - { rel: master-plan, href: ../../_handoff/VAULT/csps-master-plan-s025-plus.md }
+  - { rel: master-plan, href: ../_handoff/VAULT/csps-master-plan-s025-plus.md }
 diataxis_type: how-to
 ---
 

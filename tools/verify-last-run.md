@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-12T22:14:48.371Z
-- finished_at: 2026-05-12T22:15:10.909Z
+- ran_at: 2026-05-12T22:16:34.946Z
+- finished_at: 2026-05-12T22:16:57.087Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-12T22:14:48.371Z",
-    "finished_at": "2026-05-12T22:15:10.909Z",
+    "ran_at": "2026-05-12T22:16:34.946Z",
+    "finished_at": "2026-05-12T22:16:57.087Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.4,
+        "duration_seconds": 6.2,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.2,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.7,
+        "duration_seconds": 0.6,
         "principles_loaded": 59,
         "findings_total": 0
       },
@@ -216,7 +216,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "checked": 27,
         "advisories": 20
       },
@@ -302,7 +302,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 17,
-        "validators": 96,
+        "validators": 97,
         "models": 0,
         "advisories": 8
       },
@@ -314,6 +314,15 @@
         "duration_seconds": 0.1,
         "elements_checked": 17,
         "advisories": 0
+      },
+      {
+        "name": "multi_topic_decomposition",
+        "command": "node tools/validators/validate-multi-topic-decomposition.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 3,
+        "advisories": 4
       },
       {
         "name": "opus_rzf_gap_tracking",
@@ -839,9 +848,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 97,
+        "validators_checked": 98,
         "orphans": 0,
-        "registered": 97
+        "registered": 98
       },
       {
         "name": "token_budget_validate",
@@ -928,7 +937,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 5.7
+        "duration_seconds": 5.9
       },
       {
         "name": "audit_runner_full_pass",

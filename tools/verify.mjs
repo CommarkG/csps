@@ -353,6 +353,13 @@ const CYCLES = [
     // NEW S027+ — Opus RZF gap tracking: validates RZF NEGATIVE findings in opus-turn.md
     // are tracked to specific artifacts (SROF/backlog/session-state). Advisory Phase 1.
     // Spec: sonnet-comprehensive-alignment-s027.md P1-2. ZF as production chain discipline.
+    // S028 — Multi-topic decomposition: detects prompts with multiple PE items handled without
+    // routing table. P-META-024 mechanical enforcement. Advisory. UPDATE-029.
+    name: 'multi_topic_decomposition',
+    command: 'node tools/validators/validate-multi-topic-decomposition.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
     name: 'opus_rzf_gap_tracking',
     command: 'node tools/validators/validate-opus-rzf-gap-tracking.mjs',
     parse_output: (out) => { const m = out.match(/sections=(\d+)\s+tracked=(\d+)\s+advisories=(\d+)/); return m ? { sections: Number(m[1]), tracked: Number(m[2]), advisories: Number(m[3]) } : {}; },

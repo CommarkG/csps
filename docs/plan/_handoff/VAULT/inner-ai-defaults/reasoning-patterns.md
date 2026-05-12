@@ -213,7 +213,7 @@ domain_path: platform
 - **disposition:** override
 - **concept_ref:** GVRN L2 DECISION_RIGHTS_CLARITY — intake classification is a decision; the authority to act on any concern requires knowing what the concern actually is
 - **reason:** S027 Governor directive: activate witness to observe Threshold process. Intake hook said "Standard chat" for a 7-concern prompt. Root cause: no content-classification in the intake pipeline. P-META-024 SEALED by Opus Turn 16 SROF-008 as the structural fix.
-- **caught_by_validator:** validate-multi-topic-decomposition.mjs (to build Session B — advisory; detects prompts with routing-table missing when >2 spines would fire)
+- **caught_by_validator:** validate-multi-topic-decomposition.mjs (LIVE S028 — advisory; detects INTENT ABSORBED sections with >3 PE items and no routing table; checks HANDOFF Zone B for decomposition notes)
 - **self_assessment_question:** "How many distinct spine classifications does this prompt trigger? If >2: have I emitted a routing table before acting? If no: I am treating N intake events as 1, guaranteeing shallow coverage."
 - **opus_pattern:** Opus reads prompts as collections of concerns, not as single statements. Before responding, it mentally asks: "What spine does this concern belong to? And this one? And this one?" When 3+ spines fire, Opus constructs the routing table and vaults all but the highest-PE concern before beginning work. Sonnet responds to the surface prompt. Opus responds to the decomposed concern graph. The routing table is the evidence that decomposition happened.
 - **moat_relevance:** compound

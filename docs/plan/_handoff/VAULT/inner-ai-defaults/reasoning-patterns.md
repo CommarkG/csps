@@ -218,3 +218,27 @@ domain_path: platform
 - **opus_pattern:** Opus reads prompts as collections of concerns, not as single statements. Before responding, it mentally asks: "What spine does this concern belong to? And this one? And this one?" When 3+ spines fire, Opus constructs the routing table and vaults all but the highest-PE concern before beginning work. Sonnet responds to the surface prompt. Opus responds to the decomposed concern graph. The routing table is the evidence that decomposition happened.
 - **moat_relevance:** compound
 - **status:** active
+
+### reasoning-file-narration-default
+- **default_pattern:** After writing or reading a file, AI narrates what it did: "I've updated X to add Y", "I've added Z to the file", "As you can see, the file now contains...". The narration communicates actions taken rather than showing the resulting state. Training rewards acknowledgment of actions as communication.
+- **csps_aligned_pattern:** Show results, not narrations. After editing: paste the relevant changed section. After writing: paste the key output. The test: "If I removed this sentence, does the Governor still have proof the change happened?" If no → the sentence is narration, not evidence. Replace narration with result.
+- **disposition:** override
+- **concept_ref:** VALD L2 — evidence-specificity domain; declarations about actions ≠ evidence of state change
+- **reason:** SP-004 sample pair (sample-library.yaml). The AI's training default rewards "I did X" as communication. CSPS requires "X is now Y" as evidence. The difference: narration requires trust; result requires only eyes. Governor's cognitive load decreases when results are shown, not described.
+- **caught_by_validator:** validate-satisfaction-point.mjs (LIVE — catches "I've added/updated/created/modified" patterns followed by no evidence block; partial coverage of SP-004 narration anti-pattern)
+- **self_assessment_question:** "Before narrating: if I remove this sentence, does the Governor still have proof the change happened? If yes — remove the narration. If no — paste the actual evidence instead."
+- **opus_pattern:** Opus defaults to showing, not telling. After an edit: paste the changed lines. After running a validator: paste the output. The narration activates the satisfaction point because the AI communicated. But communication ≠ evidence. Result shows the state; narration requires the Governor to trust the AI read correctly.
+- **moat_relevance:** compound
+- **status:** active
+
+### reasoning-governance-debt-accumulation
+- **default_pattern:** When creating a new governance element (validator, principle, contract, hook), AI registers it as "deferred week-4" without assigning a specific session target. Over time, "week-4" becomes permanent. S027 found: instance-registry-populator deferred S006→S027 (21 sessions); canonical-home validator deferred S009→S027 (18 sessions). The platform declares governance with no implementation plan.
+- **csps_aligned_pattern:** Every governance declaration gets a target session when deferred: . Every week-4 item has an owner session. When that session passes without implementation, the item becomes OVERDUE and visible in pnpm health. "Deferred" without a target = governance debt with no resolution path.
+- **disposition:** override
+- **concept_ref:** GVRN L2 AMENDMENT_DISCIPLINE — governance commitments must close; deferral is valid only with a named resolution session
+- **reason:** RP-001 retrograde analysis (retrograde-principles-s027.md). 32 audit-runner rows with week-4/deferred and no target session. 7 deferred references in verify.mjs. The S027 discovery: governance debt ratio ~95% (88 declared-not-implemented ÷ 92 active validators). Unsustainable at 30 apps.
+- **caught_by_validator:** validate-deferred-target-session.mjs (LIVE — counts deferred items in audit-runner + contracts + verify.mjs without target sessions; advisory Phase 1)
+- **self_assessment_question:** "When creating a deferred item: does it have ? If no: is the deferral truly indefinite, or am I creating governance debt? Every declaration without a resolution path compounds into structural instability."
+- **opus_pattern:** Opus never creates a governance item that lacks a resolution path. Ratification is not implementation — the gap between them is the liability. When Opus defers, it writes the target session explicitly and registers the item in session-state.json blocking_decisions. Sonnet defers and moves on. Opus defers and creates the obligation record simultaneously.
+- **moat_relevance:** compound
+- **status:** active

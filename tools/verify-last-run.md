@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-12T22:06:57.284Z
-- finished_at: 2026-05-12T22:07:20.021Z
+- ran_at: 2026-05-12T22:09:55.511Z
+- finished_at: 2026-05-12T22:10:17.195Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-12T22:06:57.284Z",
-    "finished_at": "2026-05-12T22:07:20.021Z",
+    "ran_at": "2026-05-12T22:09:55.511Z",
+    "finished_at": "2026-05-12T22:10:17.195Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7,
+        "duration_seconds": 5.9,
         "packages_resolved": null
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.7,
+        "duration_seconds": 0.6,
         "principles_loaded": 59,
         "findings_total": 0
       },
@@ -136,7 +136,7 @@
         "status": "ADVISORY",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "enforcement_rate": 37
+        "enforcement_rate": 41
       },
       {
         "name": "opus_audit_due",
@@ -189,7 +189,7 @@
         "duration_seconds": 0.1,
         "files": 110,
         "links": 502,
-        "broken": 57
+        "broken": 55
       },
       {
         "name": "opus_review_flagging",

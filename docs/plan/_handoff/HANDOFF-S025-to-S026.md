@@ -81,7 +81,7 @@ FOUNDATION_EXIT_GATE: CLEAN (validate-phase-exit-criteria.mjs passes)
 - [threshold-and-p-meta-023-s025.md](./VAULT/topic-plans/threshold-and-p-meta-023-s025.md) — P-META-023 Tier 2 remaining
 - [participant-protocol.md](../pillar-0-governance/participant-protocol.md) — PACP DNA Element 17
 - [virtual-opus-audit.md](../pillar-0-governance/virtual-opus-audit.md) — Virtual Opus with 9 patterns
-- [sonnet-to-opus-request-log.md](../../council/sonnet-to-opus-request-log.md) — SROF chain, SROF-007 RESPONDED
+- [sonnet-to-opus-request-log.md](../../../tools/council/sonnet-to-opus-request-log.md) — SROF chain, SROF-007 RESPONDED
 - [dna-protocol-making-sure-that.md](../pillar-0-governance/dna-protocol-making-sure-that.md) — 12-group constitutional checklist
 
 ## Zone D — S026 Session Open Checklist

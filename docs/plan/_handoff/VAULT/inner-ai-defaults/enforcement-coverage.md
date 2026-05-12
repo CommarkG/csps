@@ -5,7 +5,7 @@ description: >
   Map of which AI behavior defaults have live structural validators vs. which
   rely on AI cooperation only. Part of CHUNK 5 (Structural Enforcement) in the
   "Drive Don't Fight" architecture. Target: 5% enforcement rate increase per session.
-  Current: 35% (12/34 entries). SP-003 comprehensive-response + bottleneck-blindness added S027. Governor ratified: S026 Opus Turn 12.
+  Current: 41% (15/37 entries). SP-004 file-narration + governance-debt + file-narration-default added S027+/S028. Governor ratified: S026 Opus Turn 12.
 version: 1.0
 owner: group:finky
 lifecycle: production
@@ -21,8 +21,8 @@ links:
 
 # Enforcement Coverage Map
 
-> **Current enforcement rate: 35% (12/34 entries).**
-> 65% of behavioral overrides rely on AI cooperation only — no live validator.
+> **Current enforcement rate: 41% (15/37 entries).**
+> 59% of behavioral overrides rely on AI cooperation only — no live validator.
 > Target: 50% by S030 (5% per session).
 
 ---

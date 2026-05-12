@@ -31,9 +31,9 @@ session: S025
 intent_crystallized: true
 threshold_route: platform.governance
 links:
-  - { rel: protocol, href: ../../council/PROTOCOL.md }
+  - { rel: protocol, href: ../../../tools/council/PROTOCOL.md }
   - { rel: question-protocol, href: ./question-protocol.md }
-  - { rel: srof-log, href: ../../council/sonnet-to-opus-request-log.md }
+  - { rel: srof-log, href: ../../../tools/council/sonnet-to-opus-request-log.md }
   - { rel: pe-schema, href: ../../../tools/templates/priority-engine.schema.yaml }
   - { rel: dna, href: ./csps-platform-dna.md }
   - { rel: participant-protocol, href: ./participant-protocol.md }

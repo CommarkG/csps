@@ -53,7 +53,7 @@ FOUNDATION_EXIT_GATE: CLEAN
 - [enforcement-coverage.md](./VAULT/inner-ai-defaults/enforcement-coverage.md)
 - [sample-library.yaml](./VAULT/inner-ai-defaults/sample-library.yaml)
 - [virtual-opus-audit.md](../pillar-0-governance/virtual-opus-audit.md)
-- [sonnet-to-opus-request-log.md](../../council/sonnet-to-opus-request-log.md)
+- [sonnet-to-opus-request-log.md](../../../tools/council/sonnet-to-opus-request-log.md)
 
 ## Zone D — S027 Session Open Checklist
 

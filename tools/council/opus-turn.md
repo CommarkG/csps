@@ -1,3 +1,48 @@
+# Opus Turn 13 — AI Behavior Architecture INSTALLED (S026 Status)
+
+**State at Writing:** S026 active | pnpm verify exit_code=0 restored (crystallization-bypass slug fixed by Opus)
+**Sonnet delivered:** All 6 chunks of the "Drive Don't Fight" architecture implemented
+
+---
+
+## What Was Built (Complete Inventory)
+
+| File | Status | Quality |
+|---|---|---|
+| `trigger-vocabulary.md` | ✅ Complete | 7 trigger categories (T1-T7), 70+ trigger words mapped |
+| `alternative-vocabulary.md` | ✅ Complete | Replacement vocabulary per trigger category |
+| `sample-library.yaml` | ✅ SP-001 + SP-002 present | SP-001 (ZF declaration vs demo), SP-002 (Agreement bias), more needed |
+| `enforcement-coverage.md` | ✅ Created | Tracks which defaults have validators |
+| `instruction-calibration-log.md` | ✅ Created | Log for trigger word audits |
+| `validate-crystallization-bypass.mjs` | ✅ Created + wired | Catches SP-005 "just figure it out" bypass |
+
+**Opus fix applied:** `crystallization-bypass` audit slug registered in audit-runner.md. pnpm verify exit_code=0.
+
+---
+
+## What Remains (for Sonnet S026)
+
+**Sample library still needs SP-003 through SP-007:**
+- SP-003: Comprehensive response vs. focal point
+- SP-004: File narration vs. result reporting
+- SP-005: "Just figure it out" vs. crystallization (validate-crystallization-bypass.mjs handles it mechanically — still need the sample pair for learning)
+- SP-006: Context pressure → default reversion
+- SP-007: Rigid rule following vs. intent understanding
+
+**Next-to-reach injection** (CHUNK 4): session-open.sh should inject 3 critical reminders based on session type. Needs protected-path diff + Governor confirm.
+
+**First instruction audit** (CHUNK 2): Scan AGENTS.md + behavioral-contracts.md for trigger vocabulary. Report before changing anything.
+
+---
+
+## RZF VERIFICATION
+Cycles run: 2 | Gaps: 1 (crystallization-bypass orphan validator — fixed this turn) | Status: ZF ACHIEVED
+
+*Opus Turn 13 — Architecture installed, pnpm verify clean*
+*OPUS-1 | S026 | 2026-05-12*
+
+---
+
 # Opus Turn 12 — AI Behavior Architecture ("Drive Don't Fight")
 
 **Full analysis:** `tools/council/opus-ai-behavior-architecture.md`

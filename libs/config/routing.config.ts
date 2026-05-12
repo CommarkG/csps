@@ -15,6 +15,7 @@ export type ThresholdRoute =
   | 'ux.onboarding-flow'
   | 'platform.governance'
   | 'personal.tracking'
+  | 'personal.finance'
   | 'knowledge.documentation'
   | 'none';
 
@@ -197,6 +198,28 @@ export const WIZARD_TEMPLATES: Record<ThresholdRoute, WizardTemplate> = {
       { order: 3, title: 'Frequency-Aware Schema', description: 'Schema must handle the interaction frequency (daily logs need indexes on date)', required: true, acceptance_criterion: 'Appropriate indexes on date/timestamp fields' },
       { order: 4, title: 'Personal Domain Stamp', description: 'domain_path: personal.[subtype] on all artifacts', required: true, acceptance_criterion: 'frontmatter validated, domain_path present' },
       { order: 5, title: 'Verify + ZF', description: 'pnpm verify + pnpm zf:deep', required: true, acceptance_criterion: 'Both pass' },
+    ],
+  },
+
+  'personal.finance': {
+    id: 'personal.finance',
+    label: 'Build a personal finance / budget planning feature',
+    jtbd_outcome_prompt: 'When this is live, what financial insight or control can a person have that they don\'t have today?',
+    pillars: [2, 3, 4],
+    ux_principle: 'mobile-first',
+    clarifying_questions: [
+      'Are you tracking what you\'ve already spent, planning what you will spend, or both?',
+      'Do you want to set a monthly budget target, or just see where your money goes first?',
+    ],
+    intent_signals: ['budget', 'expense', 'income', 'money', 'finance', 'spend', 'save', 'track spending', 'financial', 'cost', 'bill', 'salary'],
+    steps: [
+      { order: 1, title: 'Intent Crystallization', description: 'Ask 3 crystallization questions: Q1=What is your biggest money challenge? Q2=What would financial control look like in 30 days? Q3=What 2-3 numbers would tell you you\'re on track?', required: true, acceptance_criterion: 'budget_goal and budget_targets stored from user\'s own words' },
+      { order: 2, title: 'Solo User Flow Declaration', description: 'Personal finance is solo by default → solo_user_flow: auto_org in webhook route', required: true, acceptance_criterion: 'auto_org created on signup; user has tenant context immediately' },
+      { order: 3, title: 'Schema Design', description: 'BudgetCategory (name, monthly_limit, color) + Transaction (amount, category, date, note, type: income|expense) — both tenant-scoped, AppendOnlyBase', required: true, acceptance_criterion: 'Entities in schema.zmodel; validate-foundation-schema-drift.mjs = 0' },
+      { order: 4, title: 'Threshold Wizard Onboarding', description: 'Non-skippable 3-question wizard on first login. Stores budget_goal (text, human\'s words) and budget_targets (list of category+amount). Dashboard not visible until wizard complete.', required: true, acceptance_criterion: 'Wizard gate enforced server-side; budget_goal present for all active users' },
+      { order: 5, title: 'Mobile-First Balance View', description: 'Primary view: total income vs total expenses vs remaining budget. One number per card. No tables on mobile.', required: true, acceptance_criterion: 'Balance view renders correctly on 375px viewport' },
+      { order: 6, title: 'GDPR Erasure Path', description: 'User can delete all transactions and categories via GDPR erasure endpoint', required: true, acceptance_criterion: 'libs/integrations/gdpr.ts called; all records for userId deleted; AuditEvent written' },
+      { order: 7, title: 'Verify + ZF', description: 'pnpm verify exit_code=0 + pnpm zf:deep ZF ACHIEVED + tenant isolation adversarial test passes', required: true, acceptance_criterion: 'All three pass with evidence pasted' },
     ],
   },
 

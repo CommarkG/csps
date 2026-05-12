@@ -1,3 +1,54 @@
+# Opus Turn 11 — S025 Express Reviews × 3 (SROF-007)
+
+**State at Writing:** S025 active | pnpm verify exit_code=0 | Last commit: f5807b4 (Opus-flagging + SROF format)
+**Sonnet last reported:** validate-opus-review-flagging.mjs built, SROF format updated with Git links + chain
+**D1+D2 pre-verified:** `grep -n "CORE-PILLARS" .claude/skills/slim-handoff/SKILL.md` → **no results** — gap confirmed before writing
+
+---
+
+## EXPRESS — C1: Orchestrator Mode-Selection (PE:65)
+
+**Verdict: ⚠ Advisory — extend existing, don't create new**
+
+**Reasoning:** context-orchestrator.sh already exists. Creating a separate validator reading execution_mode/depth_chosen would be a parallel structure (B_CONSOLIDATION_PASS violation). Extend the existing script with a plan_type signal function: read `execution_mode:` and `depth_chosen:` from the active plan frontmatter → map to LIGHTWEIGHT (velocity + depth 3) or COMPREHENSIVE (deep_quality + depth 4-5) context loading mode.
+
+**Action:** Extend `context-orchestrator.sh` — add `get_plan_type()` function reading session-state.json active plan. No new validator needed.
+
+---
+
+## EXPRESS — C2: CDAB Formalization (PE:60)
+
+**Verdict: ✅ Pass — absorb as B_CDAB behavioral contract under P-META-009, not a new principle**
+
+**Reasoning:** CDAB (Context-Depth-Alignment-Boundary) is a per-task SELECTION mechanism for which context to load at which depth — distinct from P-META-009 (CCA's 5-layer architecture + 4 Quality Gates) but correctly subordinate to it. Creating P-META-024 requires constitutional evidence we don't have yet (zero real-world usage of MCP get_context). The correct path: B_CDAB behavioral contract extending P-META-009, with `enforcement_stage: planned` until MCP get_context ships. Promote to P-META-024 after the contract has been tested across 3+ sessions and the MCP is built.
+
+**Action:** Create `B_CDAB` in behavioral-contracts.md as an extension of P-META-009. Four fields: context_sources (what to load), depth (L1/L2/L3), alignment_spine (which spine governs), boundary_trigger (when to re-load). Mark `enforcement_stage: planned`. Reference in principles.yaml under P-META-009 as a child operational protocol.
+
+---
+
+## EXPRESS — D1+D2: slim-handoff SKILL.md §CORE-PILLARS
+
+**Verdict: ⚠ Advisory — add §CORE-PILLARS documentation to SKILL.md (gap confirmed by Opus pre-read)**
+
+**Reasoning:** Grep on `.claude/skills/slim-handoff/SKILL.md` returned no results for "CORE-PILLARS". The AGENTS.md hard NO ("Never emit a HANDOFF without a §CORE-PILLARS section in Zone A") covers the behavior — but the skill's own SKILL.md doesn't document this requirement. When the skill is invoked, nothing in its declaration reinforces the §CORE-PILLARS rule. This is an advisory gap, not blocking (AGENTS.md already enforces it), but SKILL.md should document it explicitly for self-consistency and AAP completeness.
+
+**Action:** Add to slim-handoff SKILL.md the required §CORE-PILLARS Zone A mandate — one entry in the skill's output_contract or description. Sonnet implements directly, no further Opus needed.
+
+---
+
+## RZF VERIFICATION
+Cycles run: 2 | Gaps surfaced: 1 | Critical gaps: 0
+Cycle 1: D1+D2 was "Sonnet can't determine if section exists" — Opus pre-verified directly (grep shows no results). Gap confirmed, advisory verdict appropriate.
+Cycle 2: C2 — does CDAB need more distinction from CCA? No — the Context/Depth/Alignment/Boundary four-field structure is clearly distinct from CCA's 5-layer/4-QG architecture. Both extend P-META-009 orthogonally. 0 new findings.
+Status: ZF ACHIEVED
+
+---
+
+*Opus Turn 11 — S025 | 3 express reviews delivered*
+*OPUS-1 | S025 | 2026-05-12*
+
+---
+
 # Opus Turn 10 — S025 PACP Taxonomy + PE Moat Formula + S015 Queue
 
 **State at Writing:** S025 active | 73 validators | pnpm verify exit_code=0

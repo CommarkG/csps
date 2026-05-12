@@ -84,6 +84,15 @@ done_criteria: []          # Q3c measurable done signals — HUMAN'S EXACT WORDS
 failure_signal: ""         # M3 what failure looks like — HUMAN'S EXACT WORDS.
 intent_crystallized_at: "" # "S<NNN> turn <N>" | "Threshold Wizard" | "pre-session confirmation"
 threshold_intake_level: light | medium | deep
+
+# Context management fields (P-META-009 CCA + B_TOKEN_BUDGET + chat-move-criteria)
+estimated_context_weight: light | medium | heavy | constitutional
+# light: single topic, <50K tokens per session; medium: multi-topic, 50-200K; heavy: cross-pillar, 200K+; constitutional: full-platform scope, always heavy
+chat_split_trigger: ""
+# Describe when a new chat should be opened during this plan's execution.
+# Example: "context < 10% free" | "after Layer 2 completes" | "when Band-3 items start"
+# Minimum: declare "context < 10% free OR session > 4 hours" if unsure.
+# Mechanical: session-open.sh reads this and injects reminder when chat_split_trigger conditions approach.
 depth_chosen: 3 | 4 | 5
 depth_rationale: |
   <factors evaluated:

@@ -171,6 +171,21 @@ Where: B=blast_radius, D=dependency_significance, I=impact, Bn=blockers_now, PAS
 | **55** | North Star = C+Z question pair declared per element | dna-protocol §10 | S025 | question-protocol.md amendment |
 | **55** | B_SPLIT_THRESHOLD_DISCIPLINE behavioral contract | dna-protocol §4 | S026 | Defines when to fork a sub-plan (>12 items + depth-5) |
 
+### BAND 3c — Completeness + Context + Self-Audit Items (PE 55-86) — Governor directive S025
+
+| **PE** | **Item** | **Plan** | **Session** | **Exit criteria** |
+|---|---|---|---|---|
+| **86** | completeness-module.md SSoT — consolidates all 6 B_* completeness contracts | completeness-module.md | S025 DONE ✅ | File exists + referenced from all 6 contracts (S026) |
+| **82** | validate-completeness-coverage.mjs — meta-completeness: is the system itself complete? | completeness-module.md §4 | S026 | Checks 6 contracts active + this module referenced from each |
+| **78** | CEC trigger extension — fires on ALL governance artifact changes (not just contracts+principles) | completeness-module.md §2 | S026 | post-tool-use-cec-trigger.sh updated; fires on *.md in docs/plan/pillar-0-governance/ |
+| **75** | Context orchestrator Phase 10 — inject context (not just detect) | context-load-management plan | S026 | user-prompt-submit-context-orchestrator.sh actively injects context-loading templates |
+| **72** | question_register field in key governance files — self-eat-own-food | completeness-module.md §5 | S026 | threshold-intake-protocol.md + question-protocol.md + dna-protocol get question_register |
+| **69** | chat_split_trigger field in ALL active plans | gradual-build-plan.template.md | S026 | validate-gradual-bundling.mjs checks chat_split_trigger declared |
+| **68** | depth_tier field in key governance files (L1/L2/L3 declared) | completeness-module.md §5 | S026 | pillar-0-governance/ files get depth_tier |
+| **65** | Self-audit report: run platform DNA 16 elements on CSPS governance files | completeness-module.md | S026 | Report shows which governance files violate their own standards; VLTs raised |
+| **63** | Context-load management topic plan + context-loading template for budget-planner | context-load plan | S026 | tools/templates/context-loading/budget-planner.json added |
+| **60** | B_PRE_CLOSE_VERIFICATION: session close gate promotion advisory → blocking | completeness-module.md §3 | S027 | post-stop-session-close-gate.sh BLOCKING; §10.0 sections non-skippable |
+
 ### BAND 4 — VAULTED (PE < 45) — Await their trigger
 
 | PE | Item | Plan | Trigger | Context |
@@ -346,8 +361,12 @@ Where: B=blast_radius, D=dependency_significance, I=impact, Bn=blockers_now, PAS
 | S025 | M-18 moat component closed (18/18) | — | commit 63198ad |
 | S025 | csps-master-plan-s025-plus.md Band 3b — 14 DNA Protocol items PE-scored | — | this session |
 | S025 | P-META-022 Tier 2 items 11-16 complete | 74 | commit b2cad2d |
-| S025 | validate-dead-links.mjs (advisory, 67 pre-existing broken links found) | 68 | this batch |
-| S025 | reasoning-join-forces — inner-AI-defaults reasoning-patterns.md | 59 | this batch |
+| S025 | validate-dead-links.mjs (advisory, 67 pre-existing broken links found) | 68 | commit 651159f |
+| S025 | reasoning-join-forces — inner-AI-defaults reasoning-patterns.md | 59 | commit 651159f |
+| S025 | Batch A: question_register + PE Phase 2 + split trigger + depth_tier enums | 72-68 | commit 189d92d |
+| S025 | Budget Planner schema: BudgetCategory + Transaction entities in schema.zmodel | 78 | commit 6acc9b9 |
+| S025 | completeness-module.md SSoT — 4 levels + 6 contracts + meta-completeness audit | 86 | this session |
+| S025 | gradual-build-plan.template.md: chat_split_trigger + estimated_context_weight | 69 | this session |
 
 ---
 

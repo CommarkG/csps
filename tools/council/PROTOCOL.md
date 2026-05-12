@@ -348,7 +348,42 @@ Opus: generate the S024 chat-jump file at tools/council/chat-jump-S024.md
 
 ---
 
+---
+
+### Consultation Levels (Opus Turn 9 S025 — ratified)
+
+| Level | Name | Trigger | Format |
+|---|---|---|---|
+| L0 | Virtual Opus Audit | Every consequential decision | 5-question self-check (question-protocol.md) |
+| L1 | Express Review | PE > 90 new items not in arc plan; new P-META-*; Grade A template; Virtual Audit returns "I don't know" | EXPRESS block below |
+| L2 | Full Advisory | depth-5; L1 changes; Core Spine; Foundation schema; contradicts sealed contract | Full Opus Turn format |
+| L3 | Council Seal | Constitutional changes; new Core Spine category; contradicts sealed principles | L2 + Governor + ZF Level 3 |
+
+**L1 Express Review Format (max 5 lines, batch-able):**
+
+```markdown
+## EXPRESS — [topic name]
+Verdict: ✅ Pass | ⚠ Advisory | ❌ Block
+Reasoning: [1-2 sentences]
+Action: [one specific action, or "none"]
+```
+
+Five fields required before requesting express (missing any → escalate to L2):
+```yaml
+needs_express_review:
+  - topic: [name]
+    decision: [what is being decided]
+    options: [A / B / C]
+    blast_radius: local | module | platform | external
+    recommendation: [which option + one sentence why]
+```
+
+**Sonnet adds this to sonnet-turn.md SONNET REPORT when L1 items exist.**
+
+---
+
 *Established: S021 | 2026-05-09*
 *OPUS MODE added: S022 | 2026-05-11*
 *Mandatory Communication Protocol added: S023 | 2026-05-11*
 *Zero-freestyle enforcement: no turn without verified prior state*
+*Consultation levels L0-L3 + Express format added: S025 Opus Turn 9*

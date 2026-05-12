@@ -125,8 +125,17 @@ BRIEFING FILE (full context if Opus wants depth):
 
 ---
 
-### SROF-005 — Turn 9 (S025) ← CURRENT REQUEST
-**Status:** PENDING
+### SROF-005 — Turn 9 (S025)
+**Status:** RESPONDED: 2026-05-12 | ACTED ON: see commits below
+
+**Opus verdicts:**
+1. P-META-023: SEALED ✅ (registered in principles.yaml)
+2. Template Grades A/B/C/D: APPROVED — template_status 5-value enum implemented
+3. Intake Interrupt: ×1.5 vault/plan, ×2.0 interrupt, L1=always stop — intake-interrupt-protocol.md created
+4. Consultation Pipeline L0-L3: APPROVED — EXPRESS format added to PROTOCOL.md
+5. Virtual Opus Audit 5 questions: APPROVED — already in question-protocol.md, keep as-is
+
+**Commits:** see pnpm verify log for sha reference
 
 *See §3 below for full SROF-005 entry.*
 

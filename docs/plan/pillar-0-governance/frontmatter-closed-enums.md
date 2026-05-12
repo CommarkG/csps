@@ -538,29 +538,86 @@ depth_tier: L1 | L2 | L3
 
 ---
 
-### `template_grade:` — ratification grade for templates (PENDING Opus ratification — S025 draft)
+### `template_grade:` — ratification grade for templates (RATIFIED Opus Turn 9)
 
-> **STATUS: DRAFT — awaiting Opus Turn 9 review before formal ratification**
-> See: `tools/council/opus-briefing-s025-four-topics.md` Topic 1
+> **STATUS: RATIFIED** — Opus Turn 9 S025 approved this grade system.
+> See: `tools/council/opus-turn.md` Turn 9 Topic 1.
 
 ```yaml
 template_grade: A | B | C | D
 ```
 
-| Grade | Layer | Ratification level | When used |
-|---|---|---|---|
-| `A` | L1 | Full council: research + external AI + Opus + Governor + ZF Level 3 | Core platform templates governing ALL apps |
-| `B` | L2 | Medium: targeted research + Governor + ZF Level 2 | Platform-wide templates for 2+ apps |
-| `C` | L3 | Light: Governor confirms + ZF Level 1 | App-specific templates and edge functions |
-| `D` | L3 | Experimental: K=1 first use | Novel patterns under evaluation (K=2 promotes to C) |
+| Grade | Layer | `template_status` target | Ratification required | When used |
+|---|---|---|---|---|
+| `A` | L1 | `sealed` | Full council: research_ref + external AI + Opus L2 + Governor + ZF Level 3 | Templates governing ALL platform apps (gradual-build-plan, governed-artifact-frontmatter, closing-summary) |
+| `B` | L2 | `standard` | Targeted research + Governor + ZF Level 2 | Templates reused across 2+ apps (topic-plan, adr.template) |
+| `C` | L3 | `provisional` | Governor confirms + ZF Level 1 | App-specific templates, edge functions (app UI components, customer-specific) |
+| `D` | L3 | `experimental` | None (K=1 first use; K=2 promotes to C) | Novel patterns under evaluation |
 
-**Corresponds to Core Spine doctrine:** deeper = more thorough ratification.
-L1 changes affect all future work; L3 changes affect one context only.
+**Grade A requirement:** `research_ref:` field REQUIRED in frontmatter — points to external consultation document. Validator: `validate-template-grade.mjs` (to build S026).
 
-**Note:** This field is advisory until Opus confirms the grade system design. Use in
-`template_status` field until formal ratification: `template_grade: D` for new templates.
+**Opus Turn 9 retroactive grades (full list to be confirmed Turn 10):**
+- `gradual-build-plan.template.md` → **A** (governs all platform plans)
+- `governed-artifact-frontmatter.template.md` → **A** (governs all artifacts)
+- `closing-summary-template.md` → **A** (governs all session closes)
+- `HANDOFF template` → **A**
+- `adr.template.md` → **B**
+- App-specific UI templates → **C**
+
+**Corresponds to Core Spine doctrine:** deeper = more thorough ratification. L1 = full council. L3 = Governor only.
+
+---
+
+### `template_status:` — lifecycle status for templates (EXPANDED Opus Turn 9)
+
+> Replaces previous `novel-pending-pattern-evaluation | stable` two-value enum.
+
+```yaml
+template_status: experimental | draft | provisional | standard | sealed
+```
+
+| Value | Grade | Meaning |
+|---|---|---|
+| `experimental` | D | K=1, no review — novel pattern under first evaluation |
+| `draft` | any | Active development, any grade |
+| `provisional` | C | Governor confirmed + ZF Level 1 — app-specific use |
+| `standard` | B | Research + Governor + ZF Level 2 — platform-wide use |
+| `sealed` | A | Full council + ZF Level 3 + FSE 5/5 — constitutional template |
+
+**Migration:** `novel-pending-pattern-evaluation` → `experimental`; `stable` → `standard` or `sealed` (by grade assignment, Turn 10).
+
+**Validator:** `validate-template-grade.mjs` (to build S026) — checks Grade A templates have `research_ref:` field.
+
+---
+
+### `needs_opus_review:` — flag for Opus consultation (Opus Turn 9 ratified)
+
+```yaml
+needs_opus_review: true | false
+opus_review_type: architectural | express | trend
+```
+
+**Set `needs_opus_review: true` when any of:**
+- New P-META-* or P-ARCH-* principle authored
+- Template Grade A created or modified
+- PE > 90 AND item NOT in opus-advisory-arc-S023.md assignments
+- Virtual Opus Audit (5 questions) returns any "I don't know"
+- Implementation contradicts or extends Opus-ratified element
+- depth_chosen: 5 (constitutional scope)
+
+**`opus_review_type` values:**
+| Value | Opus involvement | Format |
+|---|---|---|
+| `architectural` | Full Opus Turn (L2/L3) | Standard opus-turn.md format |
+| `express` | 5-line EXPRESS block | `## EXPRESS — [topic]` in opus-turn.md |
+| `trend` | Multi-session drift check | Opus reads last 3 HANDOFFs for drift patterns |
+
+**Validator:** `validate-opus-review-flagging.mjs` (to build S026) — checks HANDOFFs with new principles, Grade A templates, or depth-5 work have `needs_opus_review: true`.
+
+**In HANDOFF frontmatter:** Only add when true. Omit (or set false) for routine sessions.
 
 ---
 
 *S025 amendment | Governor directive: "PE must be connected to everything — complete holistic view."*
 *P-META-023 operational fields — threshold-intake-protocol.md is the canonical SSoT.*
+*Opus Turn 9: template_grade + template_status + needs_opus_review + opus_review_type ratified.*

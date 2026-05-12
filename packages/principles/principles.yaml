@@ -1951,6 +1951,38 @@ principles:
       - B_MUTUAL_UNDERSTANDING_VALIDATION
     session: S023
 
+  - id: P-META-023
+    name: intent-to-verified-impact
+    title: "Intent-to-Verified-Impact (I→VI) — Every Communication Boundary Closes the Loop"
+    description: >
+      P-META-022 establishes WHY the intent gap exists. P-META-023 establishes HOW to close it
+      at every communication surface. Every AI boundary (Types A-E: AI→AI, AI→subagent,
+      AI→external API, AI→new chat, AI→human) requires: (1) UNDERSTANDING BLOCK before acting
+      — proving absorption of intent at Layer 3 not Layer 1; (2) ALIGNMENT CONFIRMATION after
+      acting — proving output matched the understood intent; (3) 26-item structured intake
+      checklist (B/C/I/R/M categories) for new initiatives; (4) 5-item agreement (background,
+      problem, directions, goal, done) ratified before any plan begins. Goal_statement,
+      done_criteria, and failure_signal MUST be human-authored — never AI-drafted.
+      Implemented via coach-style discovery, not interrogation: questions serve the human's
+      clarity, not the AI's data collection. The platform cannot know what it truly needs
+      until it asks the right questions.
+    spine: AI
+    layer: L1
+    category: meta-governance
+    parent_principle: P-META-022
+    enforces:
+      - B_BOUNDARY_ALIGNMENT_PROTOCOL
+      - B_THRESHOLD_INTAKE_PROTOCOL
+      - B_INTENT_CRYSTALLIZATION
+    canonical_ref: docs/plan/pillar-0-governance/threshold-intake-protocol.md
+    composes_with:
+      - P-META-022
+      - P-META-014
+      - B_MUTUAL_UNDERSTANDING_VALIDATION
+      - B_HUMBLE_EXECUTOR
+    sealed_by_opus_turn: 9
+    session: S025
+
   - id: P-ARCH-028
     name: csps-core-spines
     aliases: [core-spine-discipline, 5-spine-architecture, outward-layering]

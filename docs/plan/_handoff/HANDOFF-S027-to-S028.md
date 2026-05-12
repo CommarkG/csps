@@ -52,13 +52,22 @@ Budget Planner Gate 3 live validation. Procedure:
 5. Verify: tenant isolation (2 accounts see different data), GDPR erasure endpoint, subscription gate
 6. Document result in docs/plan/apps/budget-planner/gate-3-validation.md
 
-**Top PE items for S028:**
+**Top PE items for S028 (updated after autonomous push):**
+
+DONE during autonomous S027++ push:
+✅ PE=67: validate-spine-hierarchy.mjs — COMPLETE (27 files, 0 blocking)
+✅ PE=70: validate-frontmatter-count-consistency.mjs — COMPLETE
+✅ PE=75: validate-deferred-target-session.mjs — COMPLETE (surfaces governance debt)
+✅ PE=72: Session B validators — validate-schema-anchors + validate-generated-artifact-freshness
+✅ PE=68: P-META-024 fully wired — session-open.sh + AGENTS.md + all CEC surfaces
+✅ Dead links: 71 → 57 (-14 total)
+
+REMAINING:
 - PE=78: Budget Planner Gate 3 live validation (Governor runs; AI documents result)
-- PE=67: validate-spine-hierarchy.mjs (L3 instances cannot contradict L1 sealed) — from master plan
-- PE=60: Inner-AI-defaults enforcement rate → next batch (target 40% from 35%)
-- PE=55: S015-02 stale-plan alignment Phase 2 gate (integrate validate-plan-age-alignment.mjs with plan-coverage-gate.sh)
-- PE=40: Dead links systematic fix (62 remaining, 4/session target)
+- PE=60: Inner-AI-defaults enforcement rate → 40% target (add 3 more live validators)
+- PE=55: S015-02 stale-plan alignment Phase 2 gate
 - PE=55: mtime-based incremental validation (vaulted S027, raw-thoughts-queue)
+- PE=40: Dead links → target 57→45 (ongoing, 4/session)
 
 **Architecture note — 8 N+1 queries detected:**
 Every budget-planner API route does: `findUnique(clerkId)` + `getEnhancedDb()` in sequence.

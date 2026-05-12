@@ -88,6 +88,15 @@ This manifest IS L0 (the root doctrine; analog to CSP's CSP_CORE.md). Each Core 
 
 Validator: `L1_DO_NOT_EXPAND_VIOLATION` (registered atomic; impl deferred) — scans L1 files for example blocks, cross-reference patterns, decomposition headers; flags violations.
 
+**§L1-SEALING-GATE (ADR-0026 — RP-005 — SEALED Opus Turn 16):** Before sealing any principle at L1 CORE:
+```
+1. implementation_evidence: [artifact path that proves the mechanism exists and is operational]
+2. validator_active: [validator name in pnpm verify enforcing this principle]
+3. Governor attestation: "This is operational, not aspirational"
+Missing any → cannot seal at L1. Declare as L2 ASPIRATIONAL instead.
+```
+**Aspirational demotion retroactively:** ARCH CORE "ZModel as SSoT" → L2 ASPIRATIONAL until `libs/policies/base.zmodel` is the declared canonical location AND `validate-schema-anchors.mjs` covers ZModel entities. (ADR-0026 S027)
+
 **Sequencing:** L1 files authored as part of S006 governance-foundation L2 (Foundation composition). L2 domain files authored in L3 (Core). L3 instance registries auto-populated via `instance-registry-populator.mjs` in L4 (Integration).
 
 ## Frontmatter convention (S006 turn 9 — adopted from CSP)

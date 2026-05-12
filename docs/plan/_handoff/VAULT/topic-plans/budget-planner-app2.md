@@ -124,12 +124,23 @@ CSP carry-forward checked: no prior personal finance app in CSP history.
 - [ ] pnpm build passes on forked app
 - [ ] validate-no-implementation-without-plan.mjs: budget-planner covered
 
-### Layer 2 — Schema + CRUD (S026)
-**Exit criteria:**
-- [ ] BudgetCategory entity in schema.zmodel (tenant-scoped, AppendOnly)
-- [ ] Transaction entity (income/expense/balance calculation)
-- [ ] validate-foundation-schema-drift.mjs: 0 findings
-- [ ] API routes: POST/GET Category + Transaction with subscription gate + AuditEvent
+### Layer 2 — Schema + CRUD (S025 schema done; S026 API routes)
+**Specific validators (double-protected: in plan + in protocol):**
+- [x] `validate-foundation-schema-drift.mjs`: `generate_ok=true, drift=0` — DONE S025 (run: `node tools/validators/validate-foundation-schema-drift.mjs`)
+- [x] `libs/policies/schema.zmodel`: BudgetCategory + Transaction with `@@allow read/create/update` + `@@deny delete` — DONE S025
+- [x] `BudgetCategoryType` enum: `income|expense @@schema("public")` — DONE S025
+- [x] `apps/budget-planner/src/app/api/budget/categories/route.ts`: GET=tenant-scoped+ZenStack; POST=create+AuditEvent; 401/403/402 enforced — DONE S025
+- [x] `apps/budget-planner/src/app/api/budget/transactions/route.ts`: GET=tenant-scoped; POST=create immutable+AuditEvent; subscription gate — DONE S025
+- [x] `apps/budget-planner/src/app/api/budget/balance/route.ts`: GET returns `{income,expenses,balance,byCategory}` — DONE S025
+- [x] `requireWriteSubscription()`: cancelled=402 `subscription_inactive`; free/trialing/active=proceed — DONE S025
+- [x] `writeAuditEvent()`: `budget.category.created` + `budget.transaction.created` — DONE S025
+- [x] `getEnhancedDb()`: ZenStack isolation (@@allow auth().tenantId == tenantId) — DONE S025
+- [x] `pnpm verify exit_code=0` — DONE S025
+- [x] Tiers: cancelled=read-only (402 on writes); free/trialing/active=full write — DONE S025
+- [ ] Permissions: admin-only category creation — deferred Layer 4 (pending user feedback on who should create categories)
+
+**ZF gate Layer 2 — ACHIEVED S025:**
+`validate-foundation-schema-drift.mjs: generate_ok=true` ✅ + 3 route files exist ✅ + `pnpm verify exit_code=0` ✅
 
 ### Layer 3 — Threshold Wizard Onboarding (S026-S027)
 **Exit criteria:**

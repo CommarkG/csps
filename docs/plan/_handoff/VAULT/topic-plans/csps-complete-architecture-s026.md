@@ -29,6 +29,19 @@ execution_mode: deep_quality
 know_how_consulted: true
 intent_crystallized: true
 intent_crystallized_at: "S025 Governor directive 2026-05-12"
+question_register:
+  - id: Q001
+    type: C
+    question: "What specific problem does the unified platform architecture solve?"
+    asked_at: "S025 Governor directive"
+    answer: "Platform components operate as independent mechanisms without unified processing flow. Input can bypass Threshold. Vaults have no PE triggers. External feedback has no Threshold entry. Core has no contradiction detection."
+    confirmed: true
+  - id: Q002
+    type: Z
+    question: "How will we know the unified architecture is complete?"
+    asked_at: "S025 session close"
+    answer: "validate-contract-harmonization.mjs + feedback infrastructure built + PE dashboard shows vault triggers + cold-start path documented"
+    confirmed: true
 threshold_intake_level: deep
 threshold_participants: [human, ai]
 threshold_route: platform.governance

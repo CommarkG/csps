@@ -27,6 +27,7 @@ const ROOT      = resolve(process.cwd());
 const PLANS_DIR = join(ROOT, 'docs/plan/_handoff/VAULT/topic-plans');
 const ROUTING   = join(ROOT, 'libs/config/routing.config.ts');
 
+const blockings = [];
 const advisories = [];
 let plansChecked = 0;
 let wizardStepsChecked = 0;
@@ -44,22 +45,36 @@ if (existsSync(PLANS_DIR)) {
     const hasDoneCriteria = content.includes('done_criteria:');
     const hasFailureSignal = content.includes('failure_signal:');
 
+    // Phase 2 (S026): question_register BLOCKING for S025+ deep_quality plans
+    const sessionMatch = content.match(/^session:\s*S(\d+)/m);
+    const sessionNum = sessionMatch ? parseInt(sessionMatch[1], 10) : 0;
+    const isS025Plus = sessionNum >= 25;
+
     if (!hasQuestionRegister) {
-      // Z-type minimum: done_criteria is a completion question
-      if (!hasDoneCriteria) {
-        advisories.push({
+      if (isS025Plus && hasDoneCriteria && content.includes('goal_statement:')) {
+        // S025+ plans with done_criteria + goal_statement but no question_register = BLOCKING
+        blockings.push({
           file: f,
-          type: 'Z',
-          issue: 'missing done_criteria (Z-type completion question) — what proves this is done?',
+          type: 'REGISTER',
+          issue: `S025+ deep_quality plan missing question_register field (P-META-023 mandatory for S025+). Add question_register: [{id:Q001, type:C, question:"...", asked_at:"...", answer:"...", confirmed:true}]`,
         });
-      }
-      // X-type minimum check: goal_statement present (crystallization output)
-      if (!content.includes('goal_statement:')) {
-        advisories.push({
-          file: f,
-          type: 'C',
-          issue: 'missing goal_statement (C-type crystallization output) — what is the intent?',
-        });
+      } else {
+        // Z-type minimum: done_criteria is a completion question
+        if (!hasDoneCriteria) {
+          advisories.push({
+            file: f,
+            type: 'Z',
+            issue: 'missing done_criteria (Z-type completion question) — what proves this is done?',
+          });
+        }
+        // X-type minimum check: goal_statement present (crystallization output)
+        if (!content.includes('goal_statement:')) {
+          advisories.push({
+            file: f,
+            type: 'C',
+            issue: 'missing goal_statement (C-type crystallization output) — what is the intent?',
+          });
+        }
       }
       // No question_register yet (advisory)
       if (hasDoneCriteria && content.includes('goal_statement:')) {
@@ -101,6 +116,10 @@ const zTypeMissing    = advisories.filter(a => a.type === 'Z').length;
 const cTypeMissing    = advisories.filter(a => a.type === 'C').length;
 const gTypeMissing    = advisories.filter(a => a.type === 'G').length;
 
+if (blockings.length > 0) {
+  console.log(`${blockings.length} BLOCKING — S025+ deep_quality plans missing question_register:`);
+  blockings.forEach(b => console.log(`  ✗ [${b.type}] ${b.file}: ${b.issue}`));
+}
 if (advisories.length > 0) {
   advisories.slice(0, 8).forEach(a => {
     console.log(`  ⚠ [${a.type}] ${a.file}: ${a.issue}`);
@@ -108,10 +127,10 @@ if (advisories.length > 0) {
   if (advisories.length > 8) {
     console.log(`  ... and ${advisories.length - 8} more advisory findings`);
   }
-  console.log('[validate-question-coverage] stage=advisory (S026: Phase 2 enforcement)');
-} else {
+}
+if (blockings.length === 0 && advisories.length === 0) {
   console.log('[validate-question-coverage] all active plans have minimum question coverage ✓');
 }
 
-console.log(`[validate-question-coverage] plans=${plansChecked} wizard_templates=${wizardStepsChecked} issues: Z=${zTypeMissing} C=${cTypeMissing} G=${gTypeMissing} register=${registerMissing}`);
-process.exit(0); // Advisory — Phase 2 promotes to blocking
+console.log(`[validate-question-coverage] plans=${plansChecked} wizard_templates=${wizardStepsChecked} blocking=${blockings.length} issues: Z=${zTypeMissing} C=${cTypeMissing} G=${gTypeMissing} register=${registerMissing}`);
+process.exit(blockings.length > 0 ? 1 : 0); // Phase 2: BLOCKING for S025+ without question_register

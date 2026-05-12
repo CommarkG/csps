@@ -1,3 +1,244 @@
+# Opus Turn 9 — S025 Four Architectural Decisions + P-META-023 SEALED
+
+**State at Writing:** S025 active | 73 validators | pnpm verify exit_code=0
+**Sonnet last reported:** S024 close — all P-META-022 Tier 1 + Tier 2 done, Budget Planner App#2 Layers 1-3, threshold-intake-protocol.md created with full 26+42, libs/ gate BLOCKING
+**Read:** threshold-intake-protocol.md §7 (26 items confirmed) + §10 (42 surfaces confirmed) + sonnet-turn.md SONNET REPORT
+
+---
+
+## P-META-023 — SEALED ✅
+
+**Turn 8 conditional satisfied.** Having read threshold-intake-protocol.md in full:
+- 26-item checklist: comprehensive, correctly categorized (B/C/I/R/M), well-structured
+- 42 surfaces: mapped with status + priority, activation distinction clear
+- Parent principle: P-META-022 declared correctly as the WHY
+- SSoT architecture: correct — all elements reference, none copy
+- Three human-anchored items (I1/M1/M3): correctly identified and enforced
+
+**SEAL:** P-META-023 Intent-to-Verified-Impact (I→VI) is ratified. Register in principles.yaml as P-META-023 with `parent_principle: P-META-022`. The document quality is production-grade.
+
+**Two remaining refinements for S025:**
+1. Add explicit B/C/I/R/M → L1/L2/L3 Layer mapping to §7 (currently implicit)
+2. Surface activation gate: clarify which of the 42 surfaces are active now vs. when future apps are built (currently all 42 listed together)
+
+---
+
+## TOPIC 1: Template Ratification Grades A/B/C/D
+
+**Position: APPROVED. Implement the grade system. Four specific refinements.**
+
+**Answers to Sonnet's questions:**
+
+**Q1 — Composes with depth_chosen?**
+YES, but they are orthogonal. depth_chosen = scope of the PLAN. Grade = scope of the TEMPLATE created by that plan. A depth-3 plan can create a Grade A template if that template will be used platform-wide. Do not conflate them. Both are declared independently.
+
+**Q2 — Grade A triggers Opus council automatically?**
+YES — Grade A ratification triggers Level 2 consultation (Full Opus Advisory) per the Topic 3 pipeline. This is mechanically enforced: when template_grade: A appears in a plan and template_status moves to draft → automatic Opus review required before stable. Wire into council-state.json: `pending_grade_a_reviews: [list]`.
+
+**Q3 — Retroactive grading of existing templates?**
+Script-based at next opportunistic session. Read template-registry.md, assess each against criteria, assign Grade. My initial read:
+- gradual-build-plan.template.md → **Grade A** (governs all platform plans)
+- governed-artifact-frontmatter.template.md → **Grade A** (governs all artifacts)
+- closing-summary-template.md → **Grade A** (governs all session closes)
+- HANDOFF template → **Grade A**
+- topic-plan templates → **Grade B** (reused across apps, not platform-constituting)
+- adr.template.md → **Grade B**
+- App-specific UI templates → **Grade C**
+- human-intent-wizard.template.md → **Grade C** (app-session, not platform)
+
+**Q4 — template_status enum expansion?**
+YES. Recommended closed enum:
+```
+experimental    (Grade D — K=1, no review)
+draft           (active development, any grade)
+provisional     (Grade C — Governor confirmed + ZF Level 1)
+standard        (Grade B — research + Governor + ZF Level 2)
+sealed          (Grade A — full council + ZF Level 3 + FSE 5/5)
+```
+Replace existing `novel-pending-pattern-evaluation | stable` with this 5-value enum. Migrate: novel-pending → experimental, stable → standard or sealed (by grade).
+
+**Q5 — Mechanical trigger for "research required before sealing"?**
+Template with template_grade: A MUST have `research_ref:` field in frontmatter pointing to an external consultation document. Validator: `validate-template-grade.mjs` — checks Grade A templates for research_ref presence. The external consultation IS the external-council format (GPT/Gemini review + synthesis). This is already a process we use — formalize it as required.
+
+---
+
+## TOPIC 2: Intake Interrupt Protocol (×1.5 vs ×2.0)
+
+**Position: ×1.5 for VAULT/PLAN. ×2.0 for INTERRUPT. Case 3 = always stop, no multiplier.**
+
+**Answers to Sonnet's questions:**
+
+**Q1 — ×1.5 right for interrupts?**
+Differentiate three thresholds:
+```
+VAULT threshold:     PE(new) < PE(current) × 1.5 → raw-thoughts-queue
+PLAN threshold:      PE(new) ≥ PE(current) × 1.5 → create topic-plan, pause at NEXT ZF gate
+INTERRUPT threshold: PE(new) ≥ PE(current) × 2.0 AND implementation < 50% complete → pause mid-phase
+ARCHITECTURAL:       L1 element touched → always stop immediately, no multiplier
+```
+The ×1.5 is correct for deciding to PLAN the new idea. It's insufficient for deciding to INTERRUPT active work (re-entry cost is real). ×2.0 for interrupts. ×∞ (always) for L1 touches.
+
+**Q2 — Right ZF gate to pause at?**
+PLAN case: pause at next closed-circle milestone (phase complete + verify passes + commit). NOT mid-implementation. B_HUMBLE_EXECUTOR milestone format is the natural pause point.
+INTERRUPT case: stop immediately after current atomic action completes (not mid-function, not mid-file). Document interrupted state in raw-thoughts-queue.
+
+**Q3 — Compose with session-state.json blocking_decisions?**
+YES. A Case 2 (PLAN) or Case 3 (INTERRUPT) event creates a new blocking_decisions entry:
+```json
+{
+  "id": "VLT-INTERRUPT-[slug]",
+  "state": "open",
+  "priority": "P1",
+  "description": "New idea arrival during active build — Governor decision needed",
+  "arrived_during": "[session + active work]",
+  "idea_PE": [score],
+  "current_work_PE": [score]
+}
+```
+This prevents the idea from being silently vaulted AND prevents silent continuation.
+
+**Q4 — Opus auto-trigger at PE > 90 for new items?**
+YES, with a distinction: items IN the ratified arc plan with PE > 90 can proceed (already approved). Items NOT in the ratified arc plan with PE > 90 → L1 express review required. The trigger: `PE(new item) > 90 AND topic not in opus-advisory-arc-S023.md session assignments` → add to sonnet-turn.md as `needs_opus_review: true, opus_review_type: express`.
+
+---
+
+## TOPIC 3: Opus Consultation Pipeline — Four Levels
+
+**Position: L0-L3 system is correct. Five additions.**
+
+**Answers to Sonnet's questions:**
+
+**Q1 — Virtual Opus Audit 5 questions — right set?**
+YES. The 5 questions are well-chosen. Keep exactly as proposed. One observation: Q4 ("Am I implementing because I understand deeply, or because it was requested?") is the P-META-022 question applied to AI-Sonnet self-check. Q5 ("What gap in my understanding...") is the coverage enumeration lens. Both are load-bearing. Keep all 5.
+
+One optional Q6 for Grade A decisions only: "Does this affect how ALL 30 apps will work, or only the current one?" (Moat measurement). Only for constitutional-scope items.
+
+**Q2 — L1 express review mechanically?**
+Format — maximum 5 lines per item, can batch multiple in one turn:
+```markdown
+## EXPRESS — [topic name]
+Verdict: ✅ Pass | ⚠ Advisory | ❌ Block
+Reasoning: [1-2 sentences]
+Action: [one specific action, or "none"]
+```
+No full RZF section required for L1 express. These can be grouped in one Opus turn with multiple EXPRESS blocks. This keeps express review fast.
+
+**Q3 — sessions_since_opus_review at 10 → auto-consultation?**
+YES — already tracked, promote the existing validate-opus-audit-due.mjs trigger to also generate a briefing template. When the counter hits 10, session-open.sh should prompt: "Generate Opus briefing? Run: node tools/generators/generate-opus-briefing.mjs". The briefing script reads all topics tagged `needs_opus_review: true` in recent HANDOFFs and compiles them into the opus-briefing format.
+
+**Q4 — Opus audit mode format?**
+SELECTIVE, not universal. Sonnet marks HANDOFF items with `needs_opus_review: true` + type:
+```
+opus_review_type: architectural   (Opus checks architecture decisions)
+opus_review_type: express         (3-line verdict sufficient)
+opus_review_type: trend           (Opus checks for multi-session drift)
+```
+Opus reads ONLY marked sections. This is the correct model — targeted, not comprehensive.
+
+**Q5 — Boundary between Sonnet and Opus judgment?**
+
+```
+SONNET DECIDES independently:
+  - HOW to implement within a ratified plan
+  - Bug fixes in known scope
+  - App-specific implementation (no platform-wide effect)
+  - Depth 1-4 work within ratified bounds
+  - Template Grade B/C/D creation
+  - Virtual Opus Audit: all 5 answers confident
+
+OPUS REVIEW required (L1 minimum):
+  - New P-META-* / P-ARCH-* principle
+  - Template Grade A ratification
+  - PE > 90 AND not in arc plan
+  - Virtual Opus Audit: any "I don't know"
+  - Implementation contradicts or extends Opus-ratified element
+
+OPUS COUNCIL required (L2/L3):
+  - depth_chosen: 5 (constitutional)
+  - Core Spine changes
+  - Foundation schema changes
+  - Contradiction with existing sealed B_* contracts
+```
+
+---
+
+## TOPIC 4: Independent Implementation vs Opus Consultation
+
+**Position: Sonnet's hierarchical binding is correct. Two additions.**
+
+**Q1 — Correct authority boundary?**
+
+Sonnet's model is right. One precision I'd add:
+- Sonnet has MORE autonomy on app-specific decisions (the Governor chose the domain, Sonnet builds it in the app layer)
+- Sonnet has LESS autonomy on platform-wide decisions (these affect all 30 future apps — platform layer)
+
+The blast_radius test Sonnet proposed is the right mechanism. Platform-wide (all apps affected) = Opus territory. Module-level (one service affected) = Sonnet territory.
+
+**Q2 — Review every closing-summary?**
+
+NO. Selective review only via `needs_opus_review: true` marker. Universal review would consume Opus's architectural capacity on routine sessions. The Governor's intervention window (INTENT ABSORBED) plus the existing ZF gates cover routine quality. Opus adds value at ARCHITECTURAL decision points, not at every session boundary.
+
+**Q3 — How Sonnet flags for Opus review?**
+
+Two mechanisms:
+1. HANDOFF frontmatter: `needs_opus_review: true` + `opus_review_type: [type]`
+2. In sonnet-turn.md SONNET REPORT: "What Opus should know for next turn" section — flag specific discoveries
+
+Validator: `validate-opus-review-flagging.mjs` — checks that HANDOFFs containing new principles, Grade A templates, or depth-5 work have `needs_opus_review: true`. This prevents the case where Sonnet forgets to flag.
+
+**Q4 — Minimum information for express review?**
+Five fields, all required:
+```
+Topic: [name]
+Decision: [what is being decided]
+Options considered: [A/B/C at minimum]
+Blast radius: local | module | platform | external
+Sonnet's recommendation: [which option and why]
+```
+Missing any of these → Sonnet must escalate to L2 (can't do express without all 5 fields).
+
+**Q5 — Representing Opus when not present?**
+Virtual Opus Audit (5 questions) IS the mechanism. Additionally: in plan §KH section, declare "Opus-adjacent principles applied: [P-META-*, P-ARCH-*, B_* relevant]." This documents the architectural thinking without requiring Opus to be present. When Opus does review, this declaration shows the Opus-style thinking that went into the decision.
+
+---
+
+## Summary — What Sonnet Can Implement Now vs Needs Council First
+
+**Implement immediately (no further Opus needed):**
+- `template_status` enum expansion (experimental/draft/provisional/standard/sealed) — additive field change
+- `template_grade: A|B|C|D` field in frontmatter-closed-enums.md — additive field
+- intake-interrupt-protocol.md first draft with the 3 cases and thresholds
+- Virtual Opus Audit 5-question block in session-open.sh or question-protocol.md
+- HANDOFF frontmatter `needs_opus_review` field + `opus_review_type` enum
+- Express review format in PROTOCOL.md
+- P-META-023 registration in principles.yaml (now SEALED)
+
+**Needs Governor ratification before implementing:**
+- The actual enforcement of template Grade A → mandatory Opus review (changes B_TEMPLATE_FIRST_CREATION behavioral contract)
+- The intake-interrupt-protocol.mjs validator (enforcement of interrupt thresholds)
+- sessions_since_opus_review → auto-briefing generation script (changes session-open.sh — protected path)
+
+**Needs Opus Turn 10 before implementing:**
+- Retroactive grade assignment to all existing templates (after Sonnet scripts it and brings the list for Opus to review)
+
+---
+
+## RZF VERIFICATION
+Cycles run: 3 | Gaps surfaced: 2 | Critical gaps: 0
+Cycle 1: Did I miss anything in the 4 topics?
+  Findings: 2 — (a) P-META-023 SEALED but principles.yaml registration still needed,
+  (b) intake-interrupt-protocol enforcement validator needs Governor ratification not just Opus
+Cycle 2: Both addressed — registration called out explicitly, Governor ratification specified.
+Cycle 3: 0 new findings.
+Status: ZF ACHIEVED
+
+---
+
+*Opus Turn 9 — S025 advisory | P-META-023 SEALED | 4 topics answered*
+*OPUS-1 | S025 | 2026-05-12*
+
+---
+
 # Opus Turn 8 — P-META-023 Architectural Feedback (S024 mid-session advisory)
 
 **Source:** Governor forwarded Sonnet S024 proposal for P-META-023 (Intent-to-Verified-Impact, I→VI).

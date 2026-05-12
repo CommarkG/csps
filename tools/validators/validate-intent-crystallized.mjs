@@ -45,6 +45,12 @@ function main() {
     if (!hasThresholdRoute && isDeepQuality) {
       advisory.push({ file: f, issue: 'missing threshold_route — declare which wizard template was matched' });
     }
+
+    // S025 P-META-023: failure_signal advisory for deep_quality plans
+    const hasFailureSignal = content.includes('failure_signal:');
+    if (!hasFailureSignal && isDeepQuality) {
+      advisory.push({ file: f, issue: 'missing failure_signal — what would tell us this initiative failed? (P-META-023 M3, human-authored)' });
+    }
   }
 
   if (blocking.length > 0) {

@@ -359,7 +359,8 @@ intent_crystallized: true | false | partial
 ```yaml
 threshold_route: developer.new-entity | developer.new-page | developer.api-integration |
                  business.billing | business.permissions | ux.onboarding-flow |
-                 platform.governance | personal.tracking | knowledge.documentation | none
+                 platform.governance | personal.tracking | personal.finance |
+                 knowledge.documentation | none
 ```
 
 **Mandatory for:** all topic-plans and implementation plans. `none` = explicitly exempt with reason.
@@ -399,4 +400,56 @@ ux_principle: jtbd-outcome-first | progressive-disclosure | mobile-first |
 
 ---
 
-*S023 amendment | Governor directive: Intent Crystallization as platform DNA — WIZARDS + PROTOCOLS + AUDITS + UX/UI*
+---
+
+## S025 I→VI DISCIPLINE FIELDS (P-META-022 + P-META-023)
+
+### `failure_signal:` — what would tell us this initiative failed (P-META-023 M3)
+
+TYPE: string
+REQUIRED: Yes, for topic-plans with session: S023+ and execution_mode: deep_quality
+RULE: Must be human-authored or human-confirmed. AI never drafts this.
+      Describes the concrete observable state that means failure — even if the feature is "built."
+EMPTY: Omit field or set to "EXEMPTED: [reason]"
+EXAMPLE:
+  `failure_signal: "Foundation code was changed to support this app (platform not foundry-ready)."`
+  `failure_signal: "User can access another tenant's transaction data."`
+
+---
+
+### `threshold_intake_level:` — intake depth routing for this plan
+
+```yaml
+threshold_intake_level: light | medium | deep
+```
+
+| Value | When | Who participates | Research |
+|---|---|---|---|
+| `light` | Known domain, continuation, bug fix, Governor provides all 3 items upfront | Human + AI | None |
+| `medium` | New domain, new initiative, unfamiliar integration | Human + AI + targeted search | 2-4 sources |
+| `deep` | Architectural decision, new platform primitive, constitutional change | Human + AI + Opus + external | Full synthesis |
+
+**Mandatory for:** all topic-plans from S025+. Default: `medium` if unspecified.
+
+---
+
+### `threshold_participants:` — who participated in the intake process
+
+```yaml
+threshold_participants: [human, ai]
+threshold_participants: [human, ai, opus]
+threshold_participants: [human, ai, opus, external-gpt]
+```
+
+| Participant | Meaning |
+|---|---|
+| `human` | Governor/developer provided freestyle input |
+| `ai` | Sonnet conducted 9-step coaching protocol |
+| `opus` | Opus Core Council reviewed (Level 3 deep) |
+| `external-<name>` | External AI advisor consulted (e.g. external-gpt, external-gemini) |
+| `persona-<id>` | Internal persona consulted (future) |
+
+---
+
+*S025 amendment | Governor directive: "PE must be connected to everything — complete holistic view."*
+*P-META-023 operational fields — threshold-intake-protocol.md is the canonical SSoT.*

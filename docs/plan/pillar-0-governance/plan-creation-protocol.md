@@ -66,36 +66,67 @@ A new plan is authored when ANY of these triggers fires:
 
 Every new plan follows these 5 steps in order. Skipping ANY = plan-discipline violation (caught by `plan-creation-coverage` audit; week-4).
 
-### Step 0a — Intent Crystallization (P-META-022 — mandatory for new initiatives)
+### Step 0a — Intent Crystallization (P-META-022 + P-META-023 — mandatory for new initiatives)
 
-**Before any other step. Exempt situations in §0a.1.**
+**Before any other step. Canonical reference: [threshold-intake-protocol.md](./threshold-intake-protocol.md)**
 
-The three questions (ask in order, one at a time):
+**Coaching philosophy (non-negotiable):** This is NOT a test. Questions are asked in service of the human's clarity, not data collection. The AI is a coach, not an examiner. "I don't know" is the most valuable answer — it marks where discovery is needed. The goal belongs to the human; the AI reflects and confirms, never authors.
 
-**Q1: "What specific problem are we solving? One sentence."**
-Human responds in their own words.
-AI reflects: "I understand the problem as: [restatement]. Correct?"
-Human corrects. AI updates. Repeat until human confirms.
+**Intake level routing (before starting):**
+- **Light** — known domain, continuation, bug fix, Governor provides all 3 items upfront → abbreviated (check goal_statement + done_criteria + failure_signal; if present, proceed)
+- **Medium** — new domain territory, new initiative, unfamiliar integration → full 9-step below
+- **Deep** — architectural decision, new platform primitive, constitutional change → full 9-step + Opus council
 
-**Q2: "What does success look like when this is done?"**
-Human responds.
-AI reflects: "So success means: [restatement]. Correct?"
-Human confirms. → This becomes goal_statement.
+**The 9-step coaching protocol (Medium + Deep):**
 
-**Q3: "How will we know it is done — what is measurable?"**
-Human responds.
-AI reflects: "[measurable criteria restatement]. Correct?"
-Human confirms. → These become done_criteria.
+**Step 1 — Receive freestyle input**
+Human expresses freely. No interruption. AI reads completely before responding.
 
-AI records after all three confirmed:
+**Step 2 — Understand and reflect**
+AI identifies what it understood. Internally scans against the 26-item checklist (B/C/I/R/M — see [threshold-intake-protocol.md §7](./threshold-intake-protocol.md)). Identifies: which items are FILLED, which are INFERABLE (AI can fill), which are MISSING (must ask human).
+
+**Step 3 — Ask two types of questions (2-3 per round, never more)**
+- Type 1: What is missing that matters? ("I notice we haven't covered [gap] — can you help me understand [question]?")
+- Type 2: What I think — verify alignment ("I understand this as [restatement]. Is that accurate?")
+
+**Step 4 — Check what exists**
+Before any new work: check existing plans, validators, contracts, templates. "Does this already exist somewhere in the platform?" Run consolidation check.
+
+**Step 5 — Share findings with Governor**
+Report: what was understood, what gaps remain, what exists that's relevant.
+
+**Step 6 — Iterate until 5 items agreed** (this loop repeats as many times as needed)
+Agreement required on ALL five before proceeding:
+1. **Background** — who, what happened before, what triggered this now
+2. **Problem** — the specific challenge in its environment and constraints
+3. **Directions** — optional paths toward solution (not decisions yet)
+4. **Goal** — HUMAN'S EXACT WORDS — what success looks like. AI never drafts this.
+5. **Done** — HUMAN'S EXACT WORDS — done_criteria + failure_signal. AI never drafts these.
+
+**Step 7 — Draft the goal definition**
+AI records the agreed 5 items:
 ```yaml
-goal_statement: "[from confirmed Q2 — human's words]"
+goal_statement:   "[from confirmed Goal — human's exact words]"
 done_criteria:
-  - "[from confirmed Q3]"
+  - "[from confirmed Done — human's exact words]"
+failure_signal:   "[what would tell us this failed — human's exact words]"
+intake_background: "[Background synthesis]"
+intake_problem:    "[Problem synthesis]"
+intake_directions: "[Directions — optional paths, not decisions]"
 ```
-AI asks: "Is this an accurate record?" Human confirms → proceed to Step 0b.
 
-**§0a.1 — Exemptions:**
+**Step 8 — Ratify**
+AI asks: "Is this an accurate record of what we agreed?" Human confirms or corrects. Iterate Step 6 if corrections needed. Only after explicit confirmation: ratified.
+
+**Step 9 — Draft plan or add to active plan**
+Proceed to Step 0b (Foundation gate) → then Steps 1-5 of the 5-step creation flow.
+
+**Three items that must ALWAYS come from the human — never AI-authored:**
+- `goal_statement` — the outcome (I1 in the 26-item checklist)
+- `done_criteria` — the done signal (M1 in the 26-item checklist)
+- `failure_signal` — what failure looks like (M3 in the 26-item checklist)
+
+**§0a.1 — Exemptions (Light path):**
 | Situation | Fast path |
 |---|---|
 | Production emergency | Q1=restore service, Q2=system up, Q3=monitoring green |

@@ -21,7 +21,7 @@ const ROUTING_CONFIG = join(ROOT, 'libs/config/routing.config.ts');
 const VALID_ROUTES = [
   'developer.new-entity', 'developer.new-page', 'developer.api-integration',
   'business.billing', 'business.permissions', 'ux.onboarding-flow',
-  'platform.governance', 'personal.tracking', 'knowledge.documentation', 'none',
+  'platform.governance', 'personal.tracking', 'personal.finance', 'knowledge.documentation', 'none',
 ];
 
 function main() {

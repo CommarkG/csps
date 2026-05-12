@@ -239,6 +239,16 @@ const CYCLES = [
     // NEW S025 — Meta-completeness: is the completeness system itself complete?
     // Checks all 6 B_* completeness contracts + SSoT + ZF gates active.
     // Phase 2 (S027): BLOCKING for missing contracts.
+    // NEW S025 — PACP: Participant-Aware Communication Protocol enforcement (advisory Phase 1).
+    // Every new element declares target_participant (14 types, 5 categories).
+    // DNA Element 17 — the communication moat.
+    // Governor directive: "HIDDEN GAP — treat AI, external AI, developers, user types as participants."
+    // Phase 2 (S026): BLOCKING for new elements without declaration.
+    name: 'participant_declared',
+    command: 'node tools/validators/validate-participant-declared.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
     name: 'completeness_coverage',
     command: 'node tools/validators/validate-completeness-coverage.mjs',
     parse_output: (out) => { const m = out.match(/contracts=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/); return m ? { contracts: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; },

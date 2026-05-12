@@ -57,8 +57,9 @@ domain_path: platform
 | 14 | **Domain Primitives** (sealed L1 functional capabilities — Calendar, Notifications, ...) | [core-primitives-registry.md](./core-primitives-registry.md) + `libs/core/` directory | `validate-core-primitive-usage.mjs` (TO BUILD Phase 1) |
 | 15 | **Human Intent Crystallization** (Layer 1 → Layer 3 before implementation) | [human-intent-crystallization.md](./human-intent-crystallization.md) | `validate-intent-crystallized.mjs` |
 | 16 | **Question Protocol** (questions as mandatory context preservation checkpoints at every surface — 8 types: C/A/G/R/B/Z/P/X) | [question-protocol.md](./question-protocol.md) | `validate-question-coverage.mjs` |
+| 17 | **Participant-Aware Communication** (every element declares target participant type — 14 types: governor / developer.platform / developer.app / developer.api / user.solo / user.team / user.enterprise / user.trial / ai.sonnet / ai.opus / ai.haiku / ai.agent / ai.external / mixed) | [participant-protocol.md](./participant-protocol.md) | `validate-participant-declared.mjs` |
 
-**16 elements** (Element 16 added S025 — Question Protocol: questions are the strongest context preservation tool. Element 15 added S023. Element 14 added S022.) (Element 15 added S023 — P-META-022 Human Intent Crystallization. Element 14 added S022 per Opus Core Council approval — Phase 0 proceed). Each has a canonical home. Each has a validator (active or week-4). **Plans pass through DNA gate (Step 2 of [plan-creation-protocol.md](./plan-creation-protocol.md)) confirming all 15 elements considered or explicitly N/A.**
+**17 elements** (Element 16 added S025 — Question Protocol: questions are the strongest context preservation tool. Element 15 added S023. Element 14 added S022.) (Element 15 added S023 — P-META-022 Human Intent Crystallization. Element 14 added S022 per Opus Core Council approval — Phase 0 proceed). Each has a canonical home. Each has a validator (active or week-4). **Plans pass through DNA gate (Step 2 of [plan-creation-protocol.md](./plan-creation-protocol.md)) confirming all 15 elements considered or explicitly N/A.**
 
 ## §2 — DNA process integration map (how DNA flows through platform)
 
@@ -192,7 +193,7 @@ dna_gate:
 | 12 Context-Loss | `plan-context-loss-section-present` | STUB | week-4 |
 | 13 LAYER | (frontmatter check) | STUB | week-4 |
 
-**Active today:** 6 of 16 elements have running validators (vocab / SCHEMA / principles + AAP coverage + Intent Crystallization + Question Protocol).
+**Active today:** 7 of 17 elements have running validators (vocab / SCHEMA / principles + AAP coverage + Intent Crystallization + Question Protocol + Participant-Aware Communication).
 **Week-4 ratchet:** 6 STUB validators activate.
 **Manual layer:** Behavioral Contracts + Quality Gates + Templates + FSE + DNA-gate continuous AI discipline.
 

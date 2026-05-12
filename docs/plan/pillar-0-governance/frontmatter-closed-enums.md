@@ -590,6 +590,40 @@ template_status: experimental | draft | provisional | standard | sealed
 
 ---
 
+### `target_participant:` — who this element serves (DNA Element 17 — PACP)
+
+```yaml
+target_participant: governor.primary | developer.platform | developer.app | developer.api |
+                    user.solo | user.team.member | user.team.admin | user.enterprise | user.trial |
+                    ai.sonnet | ai.opus | ai.haiku | ai.agent | ai.external |
+                    mixed | n/a
+```
+
+| Value | Category | Who |
+|---|---|---|
+| `governor.primary` | Human Governor | Platform architect (Yariv) — maximum context, full protocol |
+| `developer.platform` | Human Developer | Building the CSPS platform itself |
+| `developer.app` | Human Developer | Building apps ON CSPS using template + libs |
+| `developer.api` | Human Developer | Consuming CSPS app APIs externally |
+| `user.solo` | Human End User | Individual app user (personal domain) |
+| `user.team.member` | Human End User | Team member — role-scoped permissions |
+| `user.team.admin` | Human End User | Team admin — tenant configuration |
+| `user.enterprise` | Human End User | Enterprise user with compliance requirements |
+| `user.trial` | Human End User | Trial/guest user — simplified onboarding |
+| `ai.sonnet` | Platform AI | Sonnet builder — implementation AI |
+| `ai.opus` | Platform AI | Opus advisor — constitutional scope |
+| `ai.haiku` | Platform AI | Haiku subagent — ephemeral task execution |
+| `ai.agent` | Platform AI | Mastra or third-party agents |
+| `ai.external` | External AI | GPT/Gemini/Claude AI advisors — VAULT_DEFER always |
+| `mixed` | Multiple | Element serves multiple participant types |
+| `n/a` | Infrastructure | No direct participant interaction (build tools, migrations) |
+
+**Canonical reference:** [participant-protocol.md](./participant-protocol.md)
+**Validator:** `validate-participant-declared.mjs` (advisory Phase 1; BLOCKING S026 for new elements)
+**When to declare:** Every new governance artifact, API endpoint, UI page, validator, plan.
+
+---
+
 ### `needs_opus_review:` — flag for Opus consultation (Opus Turn 9 ratified)
 
 ```yaml

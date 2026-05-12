@@ -141,6 +141,15 @@ BRIEFING FILE (full context if Opus wants depth):
 
 ---
 
+### SROF-006 — Turn 10 (S025) ← NEXT REQUEST
+**Status:** PENDING | Briefing: participant-protocol.md + csps-platform-dna.md §Element 17
+
+**Topic:** Participant-Aware Communication Protocol (PACP) — DNA Element 17
+**What Sonnet has built:** participant-protocol.md (14 types, 5 categories); validate-participant-declared.mjs (advisory); target_participant: field in enums; DNA Element 17 in csps-platform-dna.md
+**What needs Opus validation:** (1) Is the 14-type taxonomy complete? (2) Are the communication calibration rules per-type correct? (3) Should this be L1 sealed immediately or remain L2 domain until more apps validate it? (4) How should internal personas (ai.haiku variant) be structured?
+
+---
+
 ## §3 — SROF-005: Turn 9 Full Entry
 
 ```

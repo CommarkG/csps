@@ -159,8 +159,11 @@ Commit: a4fd49b
 1. 5 behavioral detectors now active: SP-001 (satisfaction), SP-002 (agreement), SP-003 (comprehensive), SP-005 (crystallization-bypass), SP-006 is implied by context-pressure check. Enforcement coverage actively running.
 2. `validate-bottleneck-patterns.mjs` found 8 real N+1 patterns in budget-planner API routes — every API handler does findUnique(clerkId) + getEnhancedDb(). This is a live architectural gap. Session-claim pattern (cache tenantId in JWT) would eliminate all 8 hits. This is App #2 Layer 5 material.
 3. diataxis_type is now mandatory + enforced for pillar-0-governance. 69 artifacts classified.
-4. Dead links pattern: most use `../../_handoff/` when correct is `../_handoff/`. 66 remaining, systematic pattern makes them predictable to fix.
+4. Dead links: 71→62 (-9 total). Systematic pattern: `../../_handoff/` should be `../_handoff/` for pillar-0-governance files.
 5. PE=78 (Budget Planner Gate 3) deferred — needs Governor to run with real credentials.
+6. DNA §6b application evidence complete: 17/17 elements have observable evidence. `validate-dna-evidence.mjs` runs clean.
+7. Time-tag optimization vaulted: mtime-based incremental validation for O(N) validators. PE=55, trigger: pnpm verify > 60s at 3+ apps.
+8. 92 validators total (was 88 at S027 open). Commits: a4fd49b (S027 main), 84f6a6a (report), 6a26b64 (S027+).
 
 ---
 

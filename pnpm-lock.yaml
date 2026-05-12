@@ -34,6 +34,58 @@ importers:
         specifier: ^2.22.1
         version: 2.22.1(@prisma/client@6.19.3(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3))(@types/node@20.19.39)(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3)(zod@4.4.3)
 
+  apps/budget-planner:
+    dependencies:
+      '@clerk/nextjs':
+        specifier: ^6.9.0
+        version: 6.39.3(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@prisma/client':
+        specifier: ^6.7.0
+        version: 6.19.3(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3)
+      '@zenstackhq/runtime':
+        specifier: ^2.22.1
+        version: 2.22.1(@prisma/client@6.19.3(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.4.3)
+      next:
+        specifier: ^14.2.29
+        version: 14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+      stripe:
+        specifier: ^17.7.0
+        version: 17.7.0
+      svix:
+        specifier: ^1.57.0
+        version: 1.92.2
+    devDependencies:
+      '@types/node':
+        specifier: ^22.15.0
+        version: 22.19.17
+      '@types/react':
+        specifier: ^18.3.21
+        version: 18.3.28
+      '@types/react-dom':
+        specifier: ^18.3.7
+        version: 18.3.7(@types/react@18.3.28)
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.5.0(postcss@8.5.14)
+      postcss:
+        specifier: ^8.5.3
+        version: 8.5.14
+      prisma:
+        specifier: ^6.7.0
+        version: 6.19.3(typescript@5.9.3)
+      tailwindcss:
+        specifier: ^3.4.17
+        version: 3.4.19(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   apps/sandbox:
     dependencies:
       '@clerk/nextjs':

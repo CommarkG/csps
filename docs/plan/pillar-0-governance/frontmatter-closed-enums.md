@@ -538,5 +538,29 @@ depth_tier: L1 | L2 | L3
 
 ---
 
+### `template_grade:` — ratification grade for templates (PENDING Opus ratification — S025 draft)
+
+> **STATUS: DRAFT — awaiting Opus Turn 9 review before formal ratification**
+> See: `tools/council/opus-briefing-s025-four-topics.md` Topic 1
+
+```yaml
+template_grade: A | B | C | D
+```
+
+| Grade | Layer | Ratification level | When used |
+|---|---|---|---|
+| `A` | L1 | Full council: research + external AI + Opus + Governor + ZF Level 3 | Core platform templates governing ALL apps |
+| `B` | L2 | Medium: targeted research + Governor + ZF Level 2 | Platform-wide templates for 2+ apps |
+| `C` | L3 | Light: Governor confirms + ZF Level 1 | App-specific templates and edge functions |
+| `D` | L3 | Experimental: K=1 first use | Novel patterns under evaluation (K=2 promotes to C) |
+
+**Corresponds to Core Spine doctrine:** deeper = more thorough ratification.
+L1 changes affect all future work; L3 changes affect one context only.
+
+**Note:** This field is advisory until Opus confirms the grade system design. Use in
+`template_status` field until formal ratification: `template_grade: D` for new templates.
+
+---
+
 *S025 amendment | Governor directive: "PE must be connected to everything — complete holistic view."*
 *P-META-023 operational fields — threshold-intake-protocol.md is the canonical SSoT.*

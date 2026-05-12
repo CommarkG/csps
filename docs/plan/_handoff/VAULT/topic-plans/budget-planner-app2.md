@@ -158,14 +158,23 @@ CSP carry-forward checked: no prior personal finance app in CSP history.
 
 **North Star alignment:** User CANNOT reach dashboard without answering Q1c/Q2c/Q3c. Platform Promise QH-C-001 answered YES: every CSPS app guides users through Threshold Wizard. ✅
 
-### Layer 4 — Feature Complete + Validation (S027-S028)
-**Exit criteria:**
-- [ ] Balance calculation: income - expenses per category
-- [ ] Solo user flow: auto-org creation on sign-up
-- [ ] GDPR erasure path: user data fully deletable
-- [ ] pnpm verify exit_code=0 (full platform + budget-planner slice)
-- [ ] Cold-start test: new developer can run `pnpm dev` with zero manual fixes
-- [ ] Tenant isolation adversarial test: cross-tenant access blocked
+### Layer 4 — Feature Complete + Validation (S025 partial; S026 complete)
+**Specific validators (double-protected: in plan + in protocol):**
+- [x] Balance calculation: `/api/budget/balance` returns `{income,expenses,balance,byCategory}` — DONE S025 (Layer 2)
+- [x] `solo_user_flow: auto_org` declared in webhook route — DONE S025
+- [x] `DELETE /api/settings/account`: calls eraseUser() + anonymizes BudgetGoal.goalStatement + Transaction.note; AuditEvent `budget.account.erased` — DONE S025
+- [x] `apps/budget-planner/package.json` — DONE S025
+- [ ] `validate-gdpr-erasure-path.mjs`: `advisory=0` for budget-planner erasure endpoint — verify S026
+- [ ] `validate-solo-user-flow.mjs`: `advisory=0` for budget-planner auto_org — verify S026
+- [ ] `pnpm health QH-C-004=YES` — verify after GDPR endpoint tested S026
+- [ ] Cold-start test: new developer runs `cp .env.example .env.local && pnpm install && pnpm dev` with zero manual platform fixes — document procedure S026
+- [ ] Tenant isolation adversarial test: Tenant A token → GET `/api/budget/transactions` returns empty (not Tenant B data) — ZenStack RLS test S026
+- [ ] `pnpm verify exit_code=0` — PASS S025 ✅ (must maintain through S026-S028)
+
+**ZF gate Layer 4 (full Gate 3 proof):**
+`validate-gdpr-erasure-path.mjs: advisory=0` + `validate-solo-user-flow.mjs: advisory=0` + adversarial isolation test passes + cold-start documented + `pnpm verify exit_code=0`
+
+**Gate 3 (Foundry Ready) milestone declared when Layer 4 ZF gate achieved.**
 
 ---
 

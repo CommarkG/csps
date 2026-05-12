@@ -376,4 +376,29 @@ The existing F+C+G+Q formula + 6-phase lifecycle described above is the FOUNDATI
 > The Question Protocol — questions as mandatory context preservation checkpoints at every surface.
 > Platform validator: validate-question-coverage.mjs
 
+### Virtual Opus Audit (PENDING Opus ratification — S025 draft)
+
+> **STATUS: DRAFT — awaiting Opus Turn 9 review**
+> See: `tools/council/opus-briefing-s025-four-topics.md` Topic 3
+
+Before any consequential implementation, Sonnet asks itself these 5 B/Z/R/G-type questions
+as if Opus is reviewing. If any answer is "I don't know" → escalate to Opus consultation.
+
+```
+VIRTUAL OPUS AUDIT (fires before any consequential action):
+  Q1 [R-type]: What is the blast radius if this is wrong?
+  Q2 [Z-type]: What evidence would prove this is correct?
+  Q3 [R-type]: Does this contradict any existing L1 sealed element?
+  Q4 [B-type]: Am I implementing because I understand deeply, or because it was requested?
+  Q5 [G-type]: What gap in my understanding could make this decision wrong?
+```
+
+If Q1-Q3 answers are confident AND Q4 = "understand deeply" AND Q5 = identified and acceptable:
+→ Sonnet implements independently.
+
+If any answer is "I don't know" OR Q4 = "because requested":
+→ Escalate to Opus L1 consultation minimum (see opus-briefing-s025-four-topics.md).
+
+---
+
 *S025 amendment | Governor directive: "Questions are the strongest context preservation tool."*

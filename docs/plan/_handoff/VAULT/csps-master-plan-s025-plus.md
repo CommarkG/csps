@@ -345,6 +345,9 @@ Where: B=blast_radius, D=dependency_significance, I=impact, Bn=blockers_now, PAS
 | S025 | EXT-20260512-002-A architecture synthesis — 5-layer hierarchy + 9 pipelines | — | commit 63198ad |
 | S025 | M-18 moat component closed (18/18) | — | commit 63198ad |
 | S025 | csps-master-plan-s025-plus.md Band 3b — 14 DNA Protocol items PE-scored | — | this session |
+| S025 | P-META-022 Tier 2 items 11-16 complete | 74 | commit b2cad2d |
+| S025 | validate-dead-links.mjs (advisory, 67 pre-existing broken links found) | 68 | this batch |
+| S025 | reasoning-join-forces — inner-AI-defaults reasoning-patterns.md | 59 | this batch |
 
 ---
 

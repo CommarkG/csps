@@ -228,6 +228,14 @@ const CYCLES = [
     // NEW S025 — Contract harmonization: detects B_* contract contradictions + near-duplicates + orphans.
     // Phase 2 (S027): LLM-assisted contradiction scoring → BLOCKING.
     // Governor directive: "core health + harmonization — no contradictions in contracts."
+    // NEW S025 — Dead link detector: every href in governed artifact links: arrays resolves to real file.
+    // Phase 1: ADVISORY — 67 pre-existing broken links found; VLT raised; fix per PE priority.
+    // Phase 2 (S026): BLOCKING — new broken links after S026 = exit 1.
+    name: 'dead_links',
+    command: 'node tools/validators/validate-dead-links.mjs',
+    parse_output: (out) => { const m = out.match(/files=(\d+)\s+links_checked=(\d+)\s+broken=(\d+)/); return m ? { files: Number(m[1]), links: Number(m[2]), broken: Number(m[3]) } : {}; },
+  },
+  {
     name: 'contract_harmonization',
     command: 'node tools/validators/validate-contract-harmonization.mjs',
     parse_output: (out) => { const m = out.match(/contracts=(\d+)\s+orphans=(\d+)\s+tensions=(\d+)\s+overlaps=(\d+)/); return m ? { contracts: Number(m[1]), orphans: Number(m[2]), tensions: Number(m[3]), overlaps: Number(m[4]) } : {}; },

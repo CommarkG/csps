@@ -330,7 +330,7 @@ This document IS the answer. Every item above has:
 | 3. Bottlenecks | overload validator | validate-bottleneck-patterns.mjs | ❌ | S027 |
 | 4. Splitting | plan split trigger | validate-gradual-bundling.mjs extension | ❌ | S026 |
 | 5a. DNA moat | application evidence per element | validate-universal-alignment.mjs enhance | ❌ | S026 |
-| 5b. SSoT dead links | dead link detector | validate-dead-links.mjs | ❌ | S026 |
+| 5b. SSoT dead links | dead link detector | validate-dead-links.mjs | ⚠️ advisory (67 broken found S025) | S026 blocking |
 | 6. Core Spine | L3 vs L1 contradiction check | validate-spine-hierarchy.mjs | ❌ | S027 |
 | 7. Documentation | diataxis_type mandatory + context-export | validate-frontmatter.mjs + context-orchestrator | ❌ | S026 |
 | 8. Templates | behavioral-contract.template.md + validator.template.mjs | validate-template-coverage.mjs | ❌ | S025-S026 |

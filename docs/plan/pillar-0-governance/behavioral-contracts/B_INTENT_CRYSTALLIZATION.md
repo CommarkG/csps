@@ -45,3 +45,8 @@ The principle establishes WHY this matters (Layer 1-3 gap, compounding drift equ
 The contract defines HOW it operates (wizard match, threshold_route, intent_crystallized field).
 See: [human-intent-crystallization.md](./human-intent-crystallization.md) for the constitutional framing.
 The 26-item checklist (B/C/I/R/M) in [threshold-intake-protocol.md](./threshold-intake-protocol.md) is the operational HOW at deeper resolution.
+
+**P-META-024 compose (S027 — SEALED Opus Turn 16):**
+When a single expression contains N>1 topics, P-META-024 decomposes BEFORE B_INTENT_CRYSTALLIZATION fires.
+Sequence: P-META-024 (decompose N topics) → per-topic → B_INTENT_CRYSTALLIZATION (crystallize each).
+This contract is the per-topic gate; P-META-024 is the multi-topic pre-step.

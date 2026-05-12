@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-12T22:11:19.995Z
-- finished_at: 2026-05-12T22:11:42.079Z
+- ran_at: 2026-05-12T22:13:09.972Z
+- finished_at: 2026-05-12T22:13:32.836Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-12T22:11:19.995Z",
-    "finished_at": "2026-05-12T22:11:42.079Z",
+    "ran_at": "2026-05-12T22:13:09.972Z",
+    "finished_at": "2026-05-12T22:13:32.836Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.8,
+        "duration_seconds": 6.9,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.5,
+        "duration_seconds": 0.6,
         "principles_loaded": 59,
         "findings_total": 0
       },
@@ -189,7 +189,7 @@
         "duration_seconds": 0.1,
         "files": 110,
         "links": 502,
-        "broken": 55
+        "broken": 53
       },
       {
         "name": "opus_review_flagging",
@@ -216,7 +216,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "checked": 27,
         "advisories": 20
       },
@@ -812,7 +812,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 1,
+        "warnings": 2,
         "advisory": true
       },
       {
@@ -928,7 +928,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 5.5
+        "duration_seconds": 5.8
       },
       {
         "name": "audit_runner_full_pass",

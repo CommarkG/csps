@@ -393,3 +393,30 @@ When an entry is observed via `validator-caught` BUT the validator was tagged as
 13 user-surfaced inner-default patterns + 3 self-detected mid-session drifts seeded. Per-week alignment-drift-over-time validator (registered atomic; impl week-4) will compare future session output patterns against this baseline.
 
 **Drift log signature:** `S006-AI-continuous-drift-log-2026-05-04T20:55:00Z`
+
+---
+
+## S025-S026 Drift Observations (Turn 12 retrospective)
+
+**Session range:** S024-S026
+**Observed by:** Opus Turn 12 architecture review
+
+### Drift Pattern 1: "One sentence not presented in chat" (S025)
+**Observed:** When offering to send to Opus, Sonnet said "the one sentence is in the file" instead of pasting it.
+**Default activated:** File narration (T5) — describing where content is rather than showing it.
+**Resolution:** Protocol updated to mandate presentation in chat. SP-004 sample pair created.
+**Status:** K=1 (first observation). Monitor for K=2.
+
+### Drift Pattern 2: "Session artifact triggers chat close" (S024)
+**Observed:** After writing HANDOFF + closing-summary, Sonnet recommended closing the chat based on governance artifacts.
+**Default activated:** Satisfaction point (T1) — session close artifacts = done signal.
+**Resolution:** reasoning-session-artifact-triggers-chat-close registered in reasoning-patterns.md.
+**Status:** K=1. Engraved.
+
+### Drift Pattern 3: "Comprehensive response to multi-item Governor prompt" (S025, multiple)
+**Observed:** When Governor listed multiple items in one message, Sonnet attempted partial coverage of all rather than PE-scoring and focusing.
+**Default activated:** Comprehensive response (T3) — all listed items at equal depth.
+**Resolution:** B_PE_ALIGNMENT_GUARDIAN deflections documented. SP-003 sample pair created.
+**Status:** K=2+ across sessions. Structural fix in progress (sample library).
+
+**Drift log signature:** `S026-AI-continuous-drift-log-2026-05-12T14:00:00Z`

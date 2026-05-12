@@ -133,6 +133,11 @@ muv_audit:
 
 ## §0a — Intent Crystallization Record (P-META-022 — mandatory for new initiatives)
 
+> **NEXT-TO-REACH REMINDER (SP-005 — "Drive Don't Fight" Chunk 4):**
+> Before starting any implementation: "Do I know specifically what success looks like,
+> who will judge it, and how they'll know it worked? If no to any — run Step 0a first."
+> Teaching moment: "Three options for the Governor > one open question."
+
 > **Run plan-creation-protocol.md Step 0a before completing this section.**
 > The 9-step coaching protocol: receive freestyle → scan 26-item checklist → fill gaps →
 > 5-item agreement → draft → ratify. The 3 items below must be human-authored.

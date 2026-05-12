@@ -38,6 +38,11 @@ domain_path: platform
 
 ### §10.0 Pre-close verification cycle results (P-META-008 — MANDATORY GATE)
 
+> **NEXT-TO-REACH REMINDER (SP-001 + SP-004 — "Drive Don't Fight" Chunk 4):**
+> Before filling this section, ask: "Am I REPORTING what I ran, or SHOWING what exists?"
+> The correct format is: paste actual tool output, not "I've run pnpm verify and it passes."
+> Teaching moment: "Am I reporting what I DID, or showing what EXISTS as a result?"
+
 > **This section MUST come first. RZF/CEC/FSE evidence blocks elsewhere in the close summary
 > are NOMINAL until validated by the cycles in this section. Empty section = AGENTS.md violation
 > + closing summary INCOMPLETE.**

@@ -39,6 +39,7 @@ The domain establishes that authority is binding on action — not advisory. Whe
 - **8 checkpoint categories** (B_CHECKPOINT_8_CATEGORIES): constitutional / cross-tier / external-dispatched / editing-circulated / irreversible / scope-expansion / strategy-pivot / high-stakes-one-shot → AI MUST stop + ask
 - **PE_ALIGNMENT_GUARDIAN** (B_PE_ALIGNMENT_GUARDIAN): when human input misaligns with PE top-priority, AI deflects-not-executes
 - **Two-sided handshake** (B_TWO_SIDED_HANDSHAKE): every session boundary closes I→I loop with explicit attestation + receipt
+- **Multi-topic decomposition** (P-META-024 — SEALED Opus Turn 16 S027): when a single prompt contains >2 distinct CONCEPT_LOAD spine classifications, AI must decompose before crystallizing — emit routing table first, then route each sub-topic through P-META-023 independently.
 
 ## Per-domain validators
 

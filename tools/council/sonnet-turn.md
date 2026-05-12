@@ -1,3 +1,44 @@
+# Sonnet Session S027+ — Opus Turn 16 INTENT ABSORBED
+
+## Opus Turns Read: Turn 16 (SROF-008 — Schema + Spines + Retrograde Principles)
+
+## Task understanding (Session A — PE-ordered)
+1. `tools/scripts/instance-registry-populator.mjs` — one-shot scan + write L3 files (PE=82)
+   L3 files get: generated:true + generated_by + manual_edits_forbidden:true
+2. `schema-registry.md` — YAML, 3 resolution types (governance-section/zmodel-entity/ts-type) (PE=75)
+3. `L2_DOMAIN_ARCH_SCHEMA_GOVERNANCE.md` in .claude/core-spines/ (PE=65)
+4. P-META-024 in principles.yaml + pnpm principles:split (PE=68)
+5. ADR-0025 (RP-004) + ADR-0026 (RP-005) stubs
+
+## Constitutional items SEALED by Opus Turn 16:
+- RP-004: index artifacts are generated, never manually maintained
+- RP-005: L1 sealing requires operational evidence (demotes ZModel SSoT to L2 until libs/policies/schema.zmodel is declared canonical)
+- P-META-024: multi-topic intake decomposition (composes with P-META-022 + P-META-023)
+
+## Key E-block resolutions:
+- E1: ARCH CORE amendment → `libs/policies/schema.zmodel` is canonical (refinement not reversal)
+- E2: Gate 3 INDEPENDENT — build without waiting for schema governance
+- E5: Add ONLY L2_DOMAIN_ARCH_SCHEMA_GOVERNANCE — defer 4 others (Pattern 1: add when real)
+- E7: 3 resolution types — governance-section / zmodel-entity / typescript-type
+- Orphans: advisory stays for 43 pre-existing; BLOCKING for new ones
+
+## Why this matters (Layer 3):
+Governance debt (~95%) is caused by declaration without implementation. These 4 builds
+close the oldest and highest-value deferred items: L3 (since S006, 21 sessions stale),
+schema-registry (since S009), new ARCH domain (materializes ARCH CORE intent), P-META-024
+(prevents 7-concern "Standard chat" permanently).
+
+## Constraints understood:
+- instance-registry-populator.mjs: one-shot first; reads ALL corpus for core_spine:; writes L3 in-place
+- L3 files: protected path (.claude/core-spines/) — diff-before-write discipline; Opus ratified RP-004 → edits are generator output, not protected path violation
+- schema-registry.md: machine-readable YAML + human table; location: docs/plan/pillar-0-governance/
+- P-META-024 detection heuristic: >2 distinct CONCEPT_LOAD classifications in one prompt
+- ADR stubs for RP-004 + RP-005: status "accepted" (Opus already ratified)
+
+## First action: baseline check + start Session A
+
+---
+
 # Sonnet Session S024 — INTENT ABSORBED
 
 ## Opus Turns Read: Turns 5-7 (platform at S023, 72 validators)

@@ -206,3 +206,15 @@ domain_path: platform
 - **opus_pattern:** Opus processes multi-item inputs as a sequencing problem before a coverage problem. First question: "What is the highest-PE item here?" Every other item is vaulted with its PE score and a trigger condition before work begins. Sonnet tries to satisfy all items; Opus commits to the Band 1 item and explicitly deprioritizes the rest. The measure of quality is not "how many items were touched" but "how completely was the right item solved?"
 - **moat_relevance:** compound
 - **status:** active
+
+### reasoning-multi-topic-intake
+- **default_pattern:** When a prompt contains multiple concerns (governance + architecture + AI behavior + operational + validation all in one message), AI classifies the whole message as one thing ("Standard chat") and responds to all concerns at whatever depth fits one turn. The intake hook classifies by shape (upload/URL/length), not by content count. 7 concerns → 1 classification → 7 shallow responses. Training optimizes for "responded to everything" over "decomposed correctly."
+- **csps_aligned_pattern:** Before any substantive response: count distinct CONCEPT_LOAD spine classifications the prompt would trigger. If >2: emit a routing table. "I see N concerns in this prompt: [list]. Routing: [concern | spine | disposition: act/vault/escalate]." Each concern then routes through P-META-023 independently. The routing table IS the decomposition. This prevents 95% governance debt (S027 retrograde finding: 88 declared-but-not-implemented items traced to multi-topic prompts treated as single intake events).
+- **disposition:** override
+- **concept_ref:** GVRN L2 DECISION_RIGHTS_CLARITY — intake classification is a decision; the authority to act on any concern requires knowing what the concern actually is
+- **reason:** S027 Governor directive: activate witness to observe Threshold process. Intake hook said "Standard chat" for a 7-concern prompt. Root cause: no content-classification in the intake pipeline. P-META-024 SEALED by Opus Turn 16 SROF-008 as the structural fix.
+- **caught_by_validator:** validate-multi-topic-decomposition.mjs (to build Session B — advisory; detects prompts with routing-table missing when >2 spines would fire)
+- **self_assessment_question:** "How many distinct spine classifications does this prompt trigger? If >2: have I emitted a routing table before acting? If no: I am treating N intake events as 1, guaranteeing shallow coverage."
+- **opus_pattern:** Opus reads prompts as collections of concerns, not as single statements. Before responding, it mentally asks: "What spine does this concern belong to? And this one? And this one?" When 3+ spines fire, Opus constructs the routing table and vaults all but the highest-PE concern before beginning work. Sonnet responds to the surface prompt. Opus responds to the decomposed concern graph. The routing table is the evidence that decomposition happened.
+- **moat_relevance:** compound
+- **status:** active

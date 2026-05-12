@@ -14,6 +14,7 @@ lifecycle_state: active
 core_spine: AI
 core_spines: [AI, GVRN]
 schema_anchor: P-META-023
+parent_principle: P-META-022
 domain_path: platform
 tags:
   - domain:governance
@@ -37,6 +38,10 @@ ratified_date: 2026-05-12
 ---
 
 # Threshold Intake Protocol — Intent-to-Verified-Impact (I→VI) Discipline
+
+> **Hierarchy:** This protocol operationalizes **P-META-022 Human Intent Crystallization** (the WHY).
+> See: [human-intent-crystallization.md](./human-intent-crystallization.md) for the philosophical anchor.
+> This file is the HOW. P-META-023 is a child of P-META-022, not its parent.
 
 > **This is the SSoT.** All platform elements that implement or reference this discipline
 > point here. When this protocol is updated, all referencing elements inherit the update

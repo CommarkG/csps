@@ -1,0 +1,220 @@
+---
+id: csps.council.sonnet-to-opus-request-log
+name: sonnet-to-opus-request-log
+description: >
+  Permanent log of all Sonnet→Opus consultation requests. Every request uses the
+  standardized SROF (Sonnet Request to Opus Format) defined in §1.
+  Mechanically enforced: before any Opus turn is triggered, the request must have
+  a complete SROF entry here. Opus reads this log before responding to see full
+  history and avoid re-doing work Sonnet already completed.
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: vault_files
+domain_path: platform
+tags:
+  - domain:governance
+  - type:reference
+  - audience:ai-agent
+  - maturity:draft
+session: S025
+links:
+  - { rel: protocol, href: ./PROTOCOL.md }
+  - { rel: opus-turn, href: ./opus-turn.md }
+  - { rel: sonnet-turn, href: ./sonnet-turn.md }
+---
+
+# Sonnet→Opus Request Log
+
+> **Every Sonnet→Opus consultation request is logged here — permanently.**
+> Format: SROF (Sonnet Request to Opus Format) defined in §1.
+> Before triggering an Opus turn: complete the SROF entry below, then paste §REQUEST to Opus.
+> Opus reads this log to understand full history and not re-do completed work.
+
+---
+
+## §1 — SROF: Sonnet Request to Opus Format
+
+**Required sections (no hidden assumptions — Opus reads this cold):**
+
+```
+═══════════════════════════════════════════════════════════════════
+SROF — Sonnet Request to Opus Format
+Turn: [N] | Session: S[NNN] | Date: [YYYY-MM-DD]
+Status: PENDING | RESPONDED: [date] | ACTED ON: [commit sha]
+═══════════════════════════════════════════════════════════════════
+
+PLATFORM STATE (what Opus needs to know — assume zero memory of prior session):
+  Validators: [N active] | Health: [N/17 YES] | Last commit: [sha]
+  pnpm verify: exit_code=[N] | ZF: [ACHIEVED / not run]
+  Budget Planner (App #2): [Layer N complete / in-progress]
+  Key artifacts: [list of files Opus should read before responding]
+
+SINCE LAST OPUS TURN (what changed — so Opus doesn't re-analyze completed work):
+  - [item 1]: [commit + what it does]
+  - [item 2]: [commit + what it does]
+  [max 8 items — full list in key artifacts above]
+
+WHAT SONNET HAS ALREADY DECIDED (Opus must not override these without Governor directive):
+  - [decision 1]: [brief rationale]
+  - [decision 2]: [brief rationale]
+
+WHAT SONNET CANNOT DECIDE ALONE (specific gaps requiring Opus architectural judgment):
+  1. [question 1 — specific, bounded, answerable YES/NO/PARTIAL or with enumerated options]
+  2. [question 2]
+  [max 5 questions per turn]
+
+THE REQUEST (paste this to Opus):
+  [2-4 sentence paragraph — no jargon, no assumed context, no run-on sentences]
+  Written for Opus reading cold with only this SROF as context.
+  Ends with: "Specific questions: [numbered list]"
+
+BRIEFING FILE (full context if Opus wants depth):
+  [path to detailed briefing file]
+═══════════════════════════════════════════════════════════════════
+```
+
+**Mechanical enforcement:**
+- Before creating any new Opus turn in opus-turn.md: add SROF entry here
+- validate-sonnet-report.mjs checks that sonnet-turn.md references this log
+- Every SROF entry has `Status: PENDING` until Opus responds → then `RESPONDED: [date]`
+- ACTED ON commits are tracked so Opus can see what was implemented from prior responses
+
+---
+
+## §2 — Request History
+
+---
+
+### SROF-001 — Turn 1 (S021-S022)
+**Status:** RESPONDED: S022 | ACTED ON: consensus-reached (see council-state.json)
+
+**Request:** Implementation sequence for Sessions 1-4 (App #1 task-mgmt build order).
+**Opus decision:** AppendOnlyBase before db:push; credential-conditional ordering; 3/7 persona_target defer.
+**Sonnet accepted:** Yes (all corrections accepted per council-state.json).
+
+---
+
+### SROF-002 — Turn 5-6 (S022-S023)
+**Status:** RESPONDED: S023 | ACTED ON: commit 5c86e61
+
+**Request:** P-META-022 architectural design + alignment plan.
+**Opus decision:** P-META-022 ratified; 16-item alignment plan authored; Tier 1 for S024; Tier 2 for S025.
+**Sonnet implemented Tier 1:** Items 1-8+11 complete S024 (principles.yaml, plan-creation-protocol Step 0a, §10.0r, B_CONSENSUS cross-ref, B_HUMBLE_EXECUTOR INTENT DRIFT CHECK, DNA Element 15, OD-007, AI-to-AI section).
+
+---
+
+### SROF-003 — Turn 7 (S023)
+**Status:** RESPONDED: S023 | ACTED ON: commit 5c86e61 (libs/ gate v1.2.0)
+
+**Request:** Q1 council routing / Q2 libs/ gate / Q3 INTENT ABSORBED protocol.
+**Opus decision:** Option A (council routing now); libs/ BLOCKING for new files (ratified); INTENT ABSORBED to sonnet-turn.md before any edit.
+**Sonnet implemented:** libs/ gate v1.2.0, validate-sonnet-report.mjs, council-state.json fields.
+
+---
+
+### SROF-004 — Turn 8 (S024)
+**Status:** RESPONDED: S024 | ACTED ON: commits 5c86e61, 8359d69, c4c7ff1
+
+**What Opus reviewed:** P-META-023 proposal from Sonnet S024.
+**Opus verdict:** APPROVED direction. CONDITIONAL SEAL — pending full 26+42 review.
+**5 Refinements:** (1) P-META-023 is child of P-META-022 ✓ done; (2) send full 26+42 → pending this turn; (3) failure_signal to P-META-022 ✓ done S025; (4) Layer mapping → pending; (5) Surface activation gate → pending.
+**What Sonnet has since done:** threshold-intake-protocol.md SSoT created (S024+); Budget Planner Layers 1-3 built; 80 validators; Platform Health 76% (10/17 YES).
+
+---
+
+### SROF-005 — Turn 9 (S025) ← CURRENT REQUEST
+**Status:** PENDING
+
+*See §3 below for full SROF-005 entry.*
+
+---
+
+## §3 — SROF-005: Turn 9 Full Entry
+
+```
+═══════════════════════════════════════════════════════════════════
+SROF-005 — Turn 9 | Session: S025 | Date: 2026-05-12
+Status: PENDING
+═══════════════════════════════════════════════════════════════════
+
+PLATFORM STATE (assume Opus has not seen anything since Turn 8):
+  Validators: 80 active | Health: 76% (10/17 YES) | Last commit: f69e357
+  pnpm verify: exit_code=0 | ZF: ACHIEVED (5 cycles, 1 advisory)
+  Budget Planner App #2:
+    Layer 1: personal.finance WizardTemplate + template fork ✓
+    Layer 2: BudgetCategory + Transaction schema + API routes ✓
+    Layer 3: Threshold Wizard UI (3-question, non-skippable gate) ✓
+    Layer 4: GDPR erasure + webhook (partial; full Gate 3 proof pending S026)
+  DNA elements: 16 (Question Protocol added as Element 16)
+  Key files Opus should read:
+    - docs/plan/pillar-0-governance/threshold-intake-protocol.md (SSoT for I→VI, 26+42)
+    - tools/council/opus-briefing-s025-four-topics.md (full context for this request)
+    - docs/plan/pillar-0-governance/platform-health-questions.md (30 platform health questions)
+    - docs/plan/_handoff/VAULT/csps-master-plan-s025-plus.md (full PE-ordered work queue)
+
+SINCE TURN 8 (what Sonnet did — Opus does not re-analyze these):
+  - threshold-intake-protocol.md: P-META-023 SSoT file created, parent_principle: P-META-022 declared (Refinement 1 ✓)
+  - failure_signal field: added to frontmatter-closed-enums + validate-intent-crystallized.mjs (Refinement 3 ✓)
+  - B_BOUNDARY_ALIGNMENT_PROTOCOL: Types E+B implemented (pre-tool-use-agent-alignment.sh advisory)
+  - Budget Planner: Layers 1+2+3+4partial built (schema + 3 APIs + Threshold Wizard + GDPR)
+  - 15 floating elements identified and resolved/planned (dna-protocol-making-sure-that.md)
+  - Platform health questions: 30 questions in 6 batteries (platform-health-questions.md)
+  - PE dashboard: validate-pe-dashboard.mjs runs at every session open (80 validators, 10/17 YES)
+  - completeness-module.md: SSoT for 6 B_* completeness contracts
+  - question-protocol.md: 8-type taxonomy (C/A/G/R/B/Z/P/X) + Virtual Opus Audit draft
+
+WHAT SONNET HAS ALREADY DECIDED (Opus must not override without Governor directive):
+  - Budget Planner domain: Personal, Budget Planner app (Governor ratified S024)
+  - Threshold Wizard in Budget Planner: Option B (Governor ratified S024)
+  - P-META-023 is CHILD of P-META-022, not parent (Opus Refinement 1)
+  - 9-step coaching protocol IS Step 0a (not a new layer before it)
+  - validate-dead-links.mjs: advisory for 67 pre-existing broken links
+
+WHAT SONNET CANNOT DECIDE ALONE:
+  1. Template Ratification Grades: Should CSPS formalize Grade A/B/C/D based on L1/L2/L3
+     layer doctrine? Grade A = full council before sealing; Grade D = experimental K=1.
+     Current: only K=2 promotion to "stable" exists.
+  2. Idea Routing with Active Implementation: What is the correct PE multiplier threshold
+     for interrupting active work? (Sonnet proposes ×1.5 from B_COMPLETION_OVER_SHINY.)
+     Is ×1.5 right, or should architectural ideas use a lower threshold?
+  3. Opus Consultation Pipeline: What are the mechanical triggers for required Opus
+     consultation? Sonnet proposes: depth-5 OR L1 change OR PE > 85 new items OR
+     contradicts ratified principle. Does Opus agree, and what's missing?
+  4. Virtual Opus Audit: Are these the right 5 self-check questions (R/Z/R/B/G)?
+     What would Opus add or remove?
+  5. P-META-023 CONDITIONAL SEAL: Opus Turn 8 said "conditional on seeing full 26+42."
+     The full 26-item checklist + 42-surface map is in threshold-intake-protocol.md
+     (canonical file). Does Opus now give SEALED ratification?
+
+THE REQUEST (paste to Opus):
+
+  You are OPUS-1, S025 advisory turn. Since Turn 8 (S024), Sonnet has:
+  (1) completed P-META-022 Tier 1 + Tier 2 alignment items including failure_signal field
+  and 9-step coaching protocol as Step 0a; (2) built Budget Planner App #2 through
+  Layers 1-3 (schema + API + Threshold Wizard gate — users cannot reach dashboard without
+  completing the 3 crystallization questions, proving P-META-022 in user-facing code);
+  (3) created threshold-intake-protocol.md as SSoT for the I→VI discipline (26-item
+  checklist, 42 communication surfaces, coaching philosophy, platform hierarchy).
+
+  Four architectural questions need your guidance before Sonnet implements them:
+  (1) Should CSPS formalize Template Ratification Grades A/B/C/D based on L1/L2/L3 layer
+  doctrine — with Grade A requiring research + external AI + Opus council, and Grade D
+  being experimental K=1 (no review)?
+  (2) Is the ×1.5 PE multiplier from B_COMPLETION_OVER_SHINY the right threshold for
+  interrupting active implementation when a new high-PE idea arrives, or should
+  architectural interrupts use a lower threshold?
+  (3) What are the minimum mechanical triggers for required Opus consultation — does
+  Sonnet's proposed set (depth-5, L1 change, PE > 85 new items, contradicts ratified
+  principle) cover the critical cases?
+  (4) The full 26-item intake checklist and 42-surface map are now in
+  threshold-intake-protocol.md — does this satisfy the Turn 8 conditional for P-META-023
+  SEALED ratification?
+
+  Full briefing: tools/council/opus-briefing-s025-four-topics.md.
+
+BRIEFING FILE: tools/council/opus-briefing-s025-four-topics.md
+═══════════════════════════════════════════════════════════════════
+```

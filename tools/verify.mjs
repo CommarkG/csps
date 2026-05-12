@@ -244,6 +244,14 @@ const CYCLES = [
     // DNA Element 17 — the communication moat.
     // Governor directive: "HIDDEN GAP — treat AI, external AI, developers, user types as participants."
     // Phase 2 (S026): BLOCKING for new elements without declaration.
+    // NEW S025 — Cross-session open question tracker. Surfaces unanswered questions,
+    // raw-thoughts-queue items without PE+trigger, and HANDOFF alignment gaps.
+    // Governor: "I feel there is a gap — go over open things left behind and enforce them."
+    name: 'open_questions',
+    command: 'node tools/validators/validate-open-questions.mjs',
+    parse_output: (out) => { const m = out.match(/plans_checked=(\d+)\s+questions_total=(\d+)\s+questions_open=(\d+)/); return m ? { plans: Number(m[1]), total: Number(m[2]), open: Number(m[3]) } : {}; },
+  },
+  {
     name: 'participant_declared',
     command: 'node tools/validators/validate-participant-declared.mjs',
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },

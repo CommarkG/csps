@@ -538,6 +538,42 @@ depth_tier: L1 | L2 | L3
 
 ---
 
+### `pe_context:` — which PE variant governs this item (S025 moat-first PE)
+
+```yaml
+pe_context: platform | customer | user
+```
+
+| Value | Applies to | What it adjusts |
+|---|---|---|
+| `platform` | Governance, validators, hooks, contracts, principles, platform services | B weight highest (0.35) — blast across all 30+ future apps |
+| `customer` | App template, libs/, developer docs, API design, developer onboarding | I weight higher (0.20) — customer churn if blocked |
+| `user` | App pages, Threshold Wizard variants, UX flows, error messages | I weight highest (0.25) — users abandon immediately |
+
+**Why this matters:** A platform governance item and a user-facing UX item have different urgency profiles. The pe_context adjusts weights so items are correctly prioritized within their context.
+
+---
+
+### `moat_score:` — competitive moat contribution (S025 moat-first PE)
+
+```yaml
+moat_score: 0-10
+```
+
+| Value | Name | Meaning |
+|---|---|---|
+| 10 | constitutional_moat | Seals a platform-wide guarantee no competitor has |
+| 8 | compounding_moat | Each improvement makes the advantage harder to close |
+| 6 | structural_moat | Built into DNA — not a feature, a property |
+| 4 | differentiation_moat | Meaningfully better than alternatives |
+| 2 | marginal_moat | Slight advantage, quickly replicable |
+| 0 | no_moat | No competitive advantage contribution |
+
+**PE impact:** `final_PE = base_PE + (moat_score * 0.5)` — maximum bonus: +5 points.
+**When to set:** Any item that contributes to platform competitive advantage. Omit (defaults to 0) for routine maintenance.
+
+---
+
 ### `template_grade:` — ratification grade for templates (RATIFIED Opus Turn 9)
 
 > **STATUS: RATIFIED** — Opus Turn 9 S025 approved this grade system.

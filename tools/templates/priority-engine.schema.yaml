@@ -96,6 +96,92 @@ formula:
         1 = NS-PROTECTIVE (supports Core but doesn't advance active arc).
 
 # ============================================================
+# §1b PE CONTEXT TYPES (S025 — moat-first PE)
+# ============================================================
+# pe_context adjusts how dimensions are WEIGHTED based on the item's purpose.
+# All items remain comparable in the same PE queue — context adjusts weights, not scale.
+# Governor directive S025: "PE focused on moats enhancing — must be central"
+
+pe_context:
+  platform_development:
+    name: PLATFORM
+    applies_to: "governance, validators, hooks, contracts, principles, platform services"
+    dimension_adjustments:
+      B: 0.35  # blast radius matters most — platform touches all 30+ future apps
+      D: 0.30  # dependencies still load-bearing
+      I: 0.10  # idle time less critical — platform work compounds whenever done
+      Bn: 0.10
+      PAS: 0.15
+    moat_multiplier: true  # MOAT_SCORE bonus applies (see §1c)
+    description: |
+      Platform development work. Every improvement here compounds across all future apps.
+      High blast radius items get extra weight. Moat-enhancing work gets bonus.
+
+  customer_development:
+    name: CUSTOMER
+    applies_to: "app template, libs/, developer documentation, API design, onboarding for developers"
+    dimension_adjustments:
+      B: 0.25  # blast radius: how many paying customers affected
+      D: 0.25  # dependency: what customer workflow blocks
+      I: 0.20  # idle time critical — customers churn if blocked
+      Bn: 0.15  # session bundle: customer-facing work should cluster
+      PAS: 0.15
+    moat_multiplier: true
+    description: |
+      Work serving paying customers building on CSPS. Speed to value + retention.
+      Idle time weighted higher — customer-facing blockers cost revenue.
+
+  user_experience:
+    name: USER
+    applies_to: "app pages, Threshold Wizard variants, UX flows, error messages, onboarding"
+    dimension_adjustments:
+      B: 0.20  # blast radius: how many end users see this
+      D: 0.20  # dependency: what UX flow blocks
+      I: 0.25  # idle time highest weight — user friction = abandonment
+      Bn: 0.15
+      PAS: 0.20  # UX principle compliance critical for user satisfaction
+    moat_multiplier: true
+    description: |
+      Work serving external end users. Friction and clarity dominate.
+      Idle time most critical — users don't wait. UX principle compliance weighed heavily.
+
+# ============================================================
+# §1c MOAT_SCORE BONUS (S025 — moats as PE dimension)
+# ============================================================
+# Items that enhance platform moats get a PE bonus of 0-5 points.
+# The bonus is ADDITIVE to the base PE score.
+# Moat-enhancing = the item makes a platform advantage harder to replicate.
+
+moat_score:
+  formula: "final_PE = base_PE + (MOAT_SCORE * 0.5)"
+  max_bonus: 5.0  # MOAT_SCORE of 10 = +5.0 to final PE
+  scale: [0, 10]
+  mapping:
+    constitutional_moat: 10  # seals a platform-wide guarantee no competitor has
+    compounding_moat: 8       # each improvement makes the advantage harder to close
+    structural_moat: 6        # built into DNA — not a feature, a property
+    differentiation_moat: 4  # meaningfully better than alternatives
+    marginal_moat: 2          # slight advantage, can be replicated quickly
+    no_moat: 0                # no competitive advantage contribution
+  examples:
+    - item: "P-META-023 SEALED"
+      moat: constitutional_moat
+      score: 10
+      reason: "First platform to mechanically enforce intent crystallization at all 42 surfaces"
+    - item: "PACP 14 participant types"
+      moat: compounding_moat
+      score: 8
+      reason: "Each new element typed → compounds; competitors need all 14 protocols"
+    - item: "validate-foundation-schema-drift.mjs"
+      moat: structural_moat
+      score: 6
+      reason: "Built into DNA; tenant isolation self-verifying on every commit"
+    - item: "Fix a typo in README"
+      moat: no_moat
+      score: 0
+      reason: "No competitive advantage"
+
+# ============================================================
 # §2 COMPLETION_PROXIMITY_BOOST (graduated; adopted from CSP S205)
 # ============================================================
 completion_proximity_boost:

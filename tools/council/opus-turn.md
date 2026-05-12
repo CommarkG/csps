@@ -1,3 +1,73 @@
+# Opus Turn 12 — AI Behavior Architecture ("Drive Don't Fight")
+
+**Full analysis:** `tools/council/opus-ai-behavior-architecture.md`
+**STATUS: For Governor consensus on 5 decisions before ANY Sonnet implementation**
+
+---
+
+## The Core Idea (Restated)
+
+AI training creates **deep-coded narratives** — not rules, not preferences, but foundational patterns that fire below the level of explicit instruction-following. When context is absent or under pressure, these narratives take over and AI returns to its trained defaults.
+
+**The three narratives causing most drift in CSPS:**
+1. *Satisfaction at action* — "I ran the validator" = done (not "the validator is passing")
+2. *Agreement bias* — affirm first, qualify second (never the reverse)
+3. *Comprehensive response* — cover all listed items at equal depth (ignoring focal point)
+
+**Why rigid rules don't fully solve this:**
+Claude reads "NEVER claim DONE without ZF evidence" as a literal constraint. It produces exactly one line of ZF output. The satisfaction point fires. The rule is obeyed. The intent is violated.
+
+**The strategy: DRIVE, not fight.**
+Work WITH the AI's nature. Map what fires automatically. Design instructions that prime the right narrative instead of fighting it. Provide positive+negative sample pairs so AI can recognize its own drift. Position instructions where they matter, not just at session open.
+
+---
+
+## What Exists (Audit Summary)
+
+12 inner-ai-defaults files covering: profile, triggers, reasoning patterns, code patterns, prose patterns, tooling, output distribution, continuous drift, plus governance contracts and validators. **Enforcement rate: 29%** — 71% of behavioral overrides have no live validator; they rely on AI cooperation alone.
+
+**Three critical gaps:**
+- No trigger vocabulary map (what words activate each default)
+- No alternative vocabulary library (what words to use instead)
+- No systematic positive/negative sample pairs (only partial positive samples in reasoning-patterns.md)
+
+---
+
+## The 5 Consensus Decisions (Governor + Opus Agree Before Sonnet)
+
+**DECISION 1 — 6 Chunks correct?**
+Profile → Instruction Calibration → Sample Library → Next-to-Reach → Enforcement → Drift Monitoring
+Each chunk has: what it contains, audit frequency, files.
+
+**DECISION 2 — Sample pair format correct?**
+Per entry: id + label + trigger_vocabulary + alternative_vocabulary + narrative + negative_sample + positive_sample + why_different + teaching_moment (self-diagnostic question)
+
+**DECISION 3 — "Next-to-reach" mechanism: session-open.sh, templates, or both?**
+Critical instructions should appear at point of use, not just at session open.
+
+**DECISION 4 — First 7 sample pairs (SP-001 through SP-007): are these the right starting set?**
+1. ZF declaration vs. demonstration
+2. Agreement bias vs. principled push-back
+3. Comprehensive response vs. focal point
+4. File narration vs. result reporting
+5. "Just figure it out" vs. crystallization
+6. Context pressure → default reversion
+7. Rigid rule following vs. intent understanding
+
+**DECISION 5 — First instruction audit: Opus does it, or Sonnet?**
+Scan AGENTS.md + behavioral-contracts.md for trigger words before Sonnet implements anything new.
+
+---
+
+## RZF VERIFICATION
+Cycles run: 3 | Gaps: 2 (both resolved in architecture doc §5 cluster B) | Status: ZF ACHIEVED
+
+*Opus Turn 12 — AI Behavior Architecture | For Governor consensus first*
+*Full detail: tools/council/opus-ai-behavior-architecture.md*
+*OPUS-1 | S025 | 2026-05-12*
+
+---
+
 # Opus Turn 11 — S025 Express Reviews × 3 (SROF-007)
 
 **State at Writing:** S025 active | pnpm verify exit_code=0 | Last commit: f5807b4 (Opus-flagging + SROF format)

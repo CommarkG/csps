@@ -1,3 +1,67 @@
+# Opus Turn 15 — AUDIT-002 Clean + CORE-PILLARS Verified + Template Grades (14 templates)
+
+**State:** pnpm verify exit_code=0 | S026 active
+
+---
+
+## AUDIT-002 — behavioral-contracts.md CLEAN ✅
+
+Scanned for T1-T7 trigger vocabulary. All instances found are in **anti-patterns sections** — defining what NOT to do. This is correct usage (trigger words in prohibition context are appropriate). Zero problematic instances. No changes needed to behavioral-contracts.md.
+
+**Summary:** "great question/absolutely/you're right" → found in B_AI_PROFESSIONAL_VOICE anti-patterns list (correct), not in prescribed behavior. AUDIT-002 = PASS.
+
+AUDIT-002 target for next cycle: session-open.sh language + closing-summary-template.md §10 block language.
+
+---
+
+## slim-handoff SKILL.md — CORE-PILLARS: VERIFIED ✅
+
+Grep result confirms: `core_pillars_required: true` at line 30, with `### §CORE-PILLARS (Zone A — mandatory)` template block at line 36. Sonnet's S025 fix is sufficient. The gap from Turn 11 (D1+D2) is CLOSED.
+
+---
+
+## Template Retroactive Grading — 14 LIVE Templates
+
+**Sonnet action after reading this:** Add `template_grade: [A|B|C|D]` to each template file's frontmatter.
+
+| Template | File | Grade | Rationale |
+|---|---|---|---|
+| `governed-artifact-frontmatter` | `tools/templates/governed-artifact-frontmatter.template.md` | **A** | Every governed artifact uses this. Change = constitutional. |
+| `gradual-build-plan` | `tools/templates/gradual-build-plan.template.md` | **A** | Every multi-session topic plan. Platform arc depends on it. |
+| `skill-aap` (skill.template.md) | `tools/templates/skill.template.md` | **A** | Every SKILL.md file. AAP foundation — no agent without it. |
+| `closing-summary` | `_handoff/VAULT/closing-summary-template.md` | **A** | Every session close. Protocol integrity. |
+| `adr` | `tools/templates/adr.template.md` | **A** | All architecture decisions. Constitutional. |
+| `b-star-contract` | `tools/templates/b-star-contract.template.md` | **B** | All behavioral contracts. Important, but contracts evolve. |
+| `chat-transfer-protocol` | `tools/templates/chat-transfer-protocol.template.md` | **B** | All AI-to-AI transfers. Platform-wide but not constitutional. |
+| `class-b-agent-spawn-preamble` | `tools/templates/class-b-agent-spawn-preamble.template.md` | **B** | All Class B agent spawns. Platform pattern. |
+| `audit-row` | `tools/templates/audit-row.template.md` | **B** | All audit registrations. Reused platform-wide. |
+| `domain-card` | `tools/templates/domain-card.template.md` | **B** | Platform-wide (10 instances), but each is context-specific. |
+| `memory-entry` | `tools/templates/memory-entry.template.md` | **B** | Platform pattern, not constitutional. |
+| `chat-jump-prompt` | `tools/templates/chat-jump-prompt.template.md` | **B** | Cross-chat standard. Important pattern. |
+| `pillar-leaf` | (per ADR-0023) | **B** | Platform-wide Diataxis pattern, evolves with pillars. |
+| `validator-script` | (extracted pattern) | **C** | App/platform-level. Many valid variations. Not constitutional. |
+
+**Implementation note:**
+- Grade A templates need `research_ref:` field when advancing from draft → sealed
+- Grade B templates need Governor confirms + ZF Level 2 for sealing
+- Grade C templates need Governor confirms + ZF Level 1 only
+- Grade D = existing `novel-pending-pattern-evaluation` templates (no change)
+
+---
+
+## RZF VERIFICATION
+Cycles run: 2 | Gaps: 0 | Status: ZF ACHIEVED
+Cycle 1: Did I miss any templates? `handoff` template is registered-pending-author but functionally Grade A. Added to Sonnet action: classify it Grade A even though registered-pending, then author the template file.
+Cycle 2: 0 new findings.
+
+---
+
+*Opus Turn 15 — AUDIT-002 CLEAN + CORE-PILLARS VERIFIED + 14 template grades*
+*Sonnet action: add template_grade field to each template file's frontmatter per table above*
+*OPUS-1 | S026 | 2026-05-12*
+
+---
+
 # Opus Turn 14 — "Drive Don't Fight" Architecture: COMPLETE ✅
 
 **pnpm verify: exit_code=0 confirmed this turn**

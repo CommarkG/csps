@@ -37,6 +37,16 @@ links:
 
 ## §1 — SROF: Sonnet Request to Opus Format
 
+> **MECHANICAL RULE (Governor directive S025):**
+> Every time Sonnet offers to send something to Opus — in ANY chat response — it MUST:
+> 1. Present the REQUEST paragraph (the "one sentence" paste-target)
+> 2. Include git_links_since_last_turn (commits since previous SROF ACTED ON sha)
+> 3. Include previous_srofs_ref (links to prior SROFs so Opus can see the chain)
+> 4. The alignment delta MUST be within the SROF document — not just in chat
+>
+> Enforced by: validate-opus-review-flagging.mjs (detects when Opus triggers exist)
+> Log: THIS FILE — permanent record. Every SROF gets a numbered entry here.
+
 **Required sections (no hidden assumptions — Opus reads this cold):**
 
 ```
@@ -45,6 +55,18 @@ SROF — Sonnet Request to Opus Format
 Turn: [N] | Session: S[NNN] | Date: [YYYY-MM-DD]
 Status: PENDING | RESPONDED: [date] | ACTED ON: [commit sha]
 ═══════════════════════════════════════════════════════════════════
+
+GIT LINKS SINCE LAST OPUS TURN (what Opus has NOT seen yet — concrete evidence):
+  Previous SROF ACTED ON: [sha from previous SROF]
+  Commits since then:
+    [sha] [message] → [what this means for platform state]
+    [sha] [message] → [what this means for platform state]
+  GitHub link pattern: https://github.com/CommarkG/csps/compare/[prev_sha]...[current_sha]
+
+PREVIOUS SROFS (so Opus can see the chain of requests — no hidden history):
+  SROF-001: [brief topic] | RESPONDED | ACTED ON: [sha]
+  SROF-002: [brief topic] | RESPONDED | ACTED ON: [sha]
+  [current SROF is SROF-N]
 
 PLATFORM STATE (what Opus needs to know — assume zero memory of prior session):
   Validators: [N active] | Health: [N/17 YES] | Last commit: [sha]
@@ -221,6 +243,88 @@ THE REQUEST (paste to Opus):
   Full briefing: docs/plan/pillar-0-governance/participant-protocol.md.
 
 BRIEFING FILE: docs/plan/pillar-0-governance/participant-protocol.md
+═══════════════════════════════════════════════════════════════════
+```
+
+---
+
+### SROF-007 — Turn 11 (S025) ← CURRENT REQUEST
+**Status:** PENDING
+
+```
+═══════════════════════════════════════════════════════════════════
+SROF-007 — Turn 11 | Session: S025 | Date: 2026-05-12
+Status: PENDING
+═══════════════════════════════════════════════════════════════════
+
+GIT LINKS SINCE LAST OPUS TURN (Turn 10, commit ffdb494):
+  Previous SROF ACTED ON: ffdb494 (Opus Turn 10 implementation)
+  Commits since then:
+    [this session] SROF-007 + opus-review-flagging.mjs + SROF format update
+  GitHub compare: https://github.com/CommarkG/csps/compare/ffdb494...HEAD
+  Note: Opus Turn 10 was committed same session as this request (S025).
+  The gap between Turn 10 (PACP L1-L2-hybrid + moat guardrails + S015) and Turn 11
+  (C+D item reviews) is the same session — all work visible in commit history above.
+
+PREVIOUS SROFS (chain of consultation history):
+  SROF-001: Implementation sequence S021-S022 | RESPONDED | ACTED ON: consensus (council-state.json)
+  SROF-002/003: P-META-022 alignment + Q1/Q2/Q3 | RESPONDED | ACTED ON: commit 5c86e61
+  SROF-004: P-META-023 direction review | RESPONDED | ACTED ON: commits 5c86e61, 8359d69
+  SROF-005: Turn 9 — P-META-023 SEALED + 4 systems | RESPONDED | ACTED ON: commit 7384ad4
+  SROF-006: Turn 10 — PACP + PE moat + S015 audit | RESPONDED | ACTED ON: commit ffdb494
+  SROF-007: Turn 11 — S015 C+D items + slim-handoff verification ← CURRENT
+
+PLATFORM STATE (Turn 10 to 11 same session — state unchanged):
+  Validators: 84 active | Health: 76% (10/17 YES) | Last commit: [see above]
+  pnpm verify: exit_code=0 | ZF: ACHIEVED
+  Key new since Turn 10 (same session):
+    - validate-opus-review-flagging.mjs: BUILT (the mechanism is now in action)
+    - SROF format: updated with Git links + previous SROF refs (Governor directive)
+    - PE > 90 calibration: needs attention (false positive on old strategic plans)
+
+PREVIOUS SROF CHAIN (condensed for Opus):
+  9 Turns total. 7 SROFs. Full log: tools/council/sonnet-to-opus-request-log.md
+
+WHAT SONNET HAS ALREADY DECIDED:
+  - S015 A items (4) closed with citation: PE-dashboard, B_HUMBLE_EXECUTOR, B_AUTONOMOUS_BATCH, Chat-State-Snapshot
+  - S015 B items (3) assigned to arc plan: alignment-gate-phase2(S027), assumption-block(S026), validators(S027)
+  - D items flagged for Governor clarification (not Opus — ambiguous original intent)
+
+WHAT SONNET CANNOT DECIDE ALONE:
+  1. S015-C1 (Orchestrator mode-selection, pe:65): Foundation ready (S025). Design approach?
+     Options: (A) Extend context-orchestrator.sh with mode signals, (B) New validator that
+     reads plan_type+phase+execution_mode and suggests model routing, (C) AI-layer rule only.
+  2. S015-C2 (CDAB formalization, pe:60): MCP get_context NOT built. Three investments needed.
+     Question: should CDAB be formally registered as P-META-024 (new principle), or absorbed
+     into existing P-META-017 + B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS?
+  3. S015-D1+D2 (slim-handoff SKILL.md §CORE-PILLARS): Unclear if ever addressed.
+     Question for Opus: Was slim-handoff Zone A updated with spine status table in S016-S021?
+     Or should Sonnet verify the SKILL.md directly and classify accordingly?
+
+THE REQUEST (paste to Opus — the "one sentence"):
+
+  You are OPUS-1, Turn 11. Same session as Turn 10. The SROF format now includes Git links
+  and previous SROF chain (Governor directive — no more hidden assumptions). Since Turn 10,
+  Sonnet built the mechanical Opus-flagging detector (validate-opus-review-flagging.mjs) and
+  updated the SROF format protocol. Three items need your express review:
+
+  (C1) Orchestrator mode-selection (pe:65) — the foundation (B_HUMBLE_EXECUTOR,
+  B_AUTONOMOUS_BATCH) is complete. Should mode-selection extend the existing
+  context-orchestrator.sh with plan_type signals, or become a new validator that reads
+  execution_mode/depth_chosen and suggests Sonnet/Opus/Haiku routing?
+
+  (C2) CDAB formalization (pe:60) — the existing P-META-017 and B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS
+  cover behavioral alignment, but the MCP get_context extension is not built. Should CDAB
+  become a new P-META-024 principle or absorb into existing principles?
+
+  (D1+D2) slim-handoff SKILL.md §CORE-PILLARS — was this section ever added to
+  .claude/skills/slim-handoff/SKILL.md? If Opus does not know, Sonnet will verify directly
+  and reclassify A or C accordingly.
+
+  GitHub compare link: https://github.com/CommarkG/csps/compare/ffdb494...HEAD
+  Full SROF chain: tools/council/sonnet-to-opus-request-log.md
+
+BRIEFING FILE: docs/plan/_intake/raw-thoughts-queue.md (S025 AUDIT section)
 ═══════════════════════════════════════════════════════════════════
 ```
 

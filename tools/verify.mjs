@@ -247,6 +247,15 @@ const CYCLES = [
     // NEW S025 — Cross-session open question tracker. Surfaces unanswered questions,
     // raw-thoughts-queue items without PE+trigger, and HANDOFF alignment gaps.
     // Governor: "I feel there is a gap — go over open things left behind and enforce them."
+    // NEW S025 — Opus review flagging: mechanical detection of when Opus consultation needed.
+    // Checks HANDOFFs with depth-5 work, PE>90 new items, sonnet-turn.md "What Opus should know".
+    // Governor: "I want to see the mechanism deciding what to bring to Opus in action."
+    // Surfaces items + provides git links since last Opus turn.
+    name: 'opus_review_flagging',
+    command: 'node tools/validators/validate-opus-review-flagging.mjs',
+    parse_output: (out) => { const m = out.match(/last_turn=(\d+)\s+flags=(\d+)\s+commits_since=(\d+)/); return m ? { last_turn: Number(m[1]), flags: Number(m[2]), commits: Number(m[3]) } : {}; },
+  },
+  {
     name: 'open_questions',
     command: 'node tools/validators/validate-open-questions.mjs',
     parse_output: (out) => { const m = out.match(/plans_checked=(\d+)\s+questions_total=(\d+)\s+questions_open=(\d+)/); return m ? { plans: Number(m[1]), total: Number(m[2]), open: Number(m[3]) } : {}; },

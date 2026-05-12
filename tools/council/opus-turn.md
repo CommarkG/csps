@@ -1,3 +1,101 @@
+# Opus Turn 17 — Self-Audit: Quality of Last 4 One-Sentences to Sonnet
+
+**pnpm verify: exit_code=0 restored (ADR exempt + impl_status + links + slice sync — this turn)**
+
+---
+
+## Findings: The Last 4 One-Sentences Evaluated
+
+### Sentence 1 (after Turn 13 — "Drive Don't Fight" architecture)
+> *"...complete SP-003 through SP-007 in sample-library.yaml, then run the first instruction audit..."*
+
+**Problem:** SP-003 through SP-007 were already complete when I wrote this. I sent Sonnet to do work that was done. I checked the file listing BUT didn't read the samples before writing the sentence.
+
+**Root cause:** Satisfaction point at "file exists" — I saw the file listing showing sample-library.yaml, assumed content was partial, didn't verify before directing.
+
+**Pattern:** This IS the SP-001 failure mode applied to my own output. I declared a task incomplete without showing evidence of incompleteness.
+
+---
+
+### Sentence 2 (after Turn 14 — AUDIT-001 complete)
+> *"...AUDIT-002 (behavioral-contracts.md spot-check) — scan the B_* contract bodies, report findings..."*
+
+**Problem:** I had ALREADY run AUDIT-002 myself in Turn 15 and found it CLEAN — then sent Sonnet to do the same thing. Sonnet never ran a separate AUDIT-002 (Sonnet's session-close report says AUDIT-002 CLEAN per Opus Turn 15). Sonnet was directed to do Opus work.
+
+**Second problem:** "then schedule the session-open.sh next-to-reach injection" — mentioned twice across sentences but never given specific CONTENT of what to inject. The instruction was directionally correct but operationally incomplete.
+
+**Root cause:** Agreement bias. I confirmed what I found (AUDIT-002 clean) AND sent Sonnet to redundantly confirm the same thing. Sent instructions for work Opus had already done.
+
+---
+
+### Sentence 3 (after Turn 15 — template grades)
+> *"...add template_grade: A|B|C to each template file's frontmatter per the table..."*
+
+**What actually happened:** Sonnet completed this ✅ (commit ae8a4d7 shows template grades done).
+
+**Missing from the sentence:** The `template_status` enum expansion (experimental→draft→provisional→standard→sealed) that was decided alongside the grade system. Never sent to Sonnet. Still not implemented. The grade system exists without the enum system that gives it meaning.
+
+**Also missing:** "run pnpm principles:split and pnpm audit-runner:split after any changes to principles.yaml or audit-runner.md" — this is structural and was missed EVERY TIME this session. It caused the verify failures we just fixed.
+
+---
+
+### Sentence 4 (after Turn 16 — SROF-008 adjudicated)
+> *"...start with Session A build order: instance-registry-populator.mjs, then schema-registry.md, then L2_DOMAIN_ARCH_SCHEMA_GOVERNANCE.md, then P-META-024 in principles.yaml."*
+
+**What actually happened:** Sonnet built all four ✅. But the implementations had frontmatter gaps:
+- schema-registry.md missing `impl_status:` → verify FAIL
+- L2_DOMAIN_ARCH_SCHEMA_GOVERNANCE.md missing `links:` → verify FAIL
+- P-META-024 in principles.yaml missing slice → verify FAIL
+- ADR files created but not exempt in universal alignment validator → verify FAIL
+
+**Root cause:** The one-sentence told Sonnet WHAT to build but not HOW to build it correctly (required frontmatter fields, required post-build commands). Same root cause as Sentence 3.
+
+---
+
+## The Pattern (what all 4 share)
+
+**Gap 1 — Missing verification tail:** Every sentence directed Sonnet to BUILD but none specified the post-build commands:
+```
+After ANY change to principles.yaml → run: pnpm --filter @csps/principles split
+After ANY change to audit-runner.md → run: pnpm audit-runner:split  
+After NEW .md file → run: node tools/validators/validate-universal-alignment.mjs --scan-new
+After changes → run: node tools/verify.mjs (check exit_code=0 BEFORE committing)
+```
+
+**Gap 2 — Satisfaction at direction given:** I sent instructions and assumed they were complete. SP-001 applied to my own output.
+
+**Gap 3 — Incomplete chains:** Sent grade system without enum system; sent injection mention without injection content.
+
+---
+
+## The Fixed One-Sentence Template
+
+Every future one-sentence to Sonnet now ends with the verification tail:
+
+> "...after any changes: `pnpm --filter @csps/principles split` (if principles.yaml changed) + `pnpm audit-runner:split` (if audit-runner.md changed) + `node tools/validators/validate-universal-alignment.mjs --scan-new` (for new .md files) + `node tools/verify.mjs` must show exit_code=0 before committing."
+
+---
+
+## Immediate Fix for Missing Items
+
+**template_status enum:** NOT YET IMPLEMENTED. Sonnet still needs to add the expanded enum (experimental→draft→provisional→standard→sealed) to frontmatter-closed-enums.md.
+
+**session-open.sh next-to-reach injection:** Still not given specific content. The injection should be: "3 critical reminders at session open based on active situation — for STRATEGIC_COMPLETION: check KNOWN_DEFERRED before starting; for APP_BUILD_MODE: check goal_statement in plan; for governance sessions: check Virtual Opus Audit." This needs to go to Sonnet with a diff + Governor confirm.
+
+---
+
+## RZF VERIFICATION
+Cycles run: 2 | Gaps: 3 (verification tail missing, incomplete chains, redundant directions) | Status: ZF ACHIEVED
+Cycle 1: Did I miss any pattern across the 4 sentences?
+  Findings: 3 — verification tail, satisfaction-at-direction, incomplete chains
+Cycle 2: Are all three patterns addressed above? Yes. 0 new findings.
+Status: ZF ACHIEVED
+
+*Opus Turn 17 — Self-audit on one-sentence quality. pnpm verify: exit_code=0 restored this turn.*
+*OPUS-1 | S027+ | 2026-05-12*
+
+---
+
 # Opus Turn 16 — SROF-008: Schema + Spines + Retrograde Principles (7 blocks + 3 constitutional)
 
 **State at Writing:** S027+ | pnpm verify exit_code=0 | 92 validators | Read: full opus-srof-schema-and-spines-review.md

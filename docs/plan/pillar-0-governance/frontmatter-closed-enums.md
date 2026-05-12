@@ -27,6 +27,8 @@ links:
   - { rel: contract, href: ./behavioral-contracts.md }
   - { rel: triggered-by-K2-promotion, href: ./behavioral-contracts.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Frontmatter Closed Enums — Canonical Reference

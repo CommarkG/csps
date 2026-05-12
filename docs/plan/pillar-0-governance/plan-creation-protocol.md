@@ -31,6 +31,8 @@ links:
   - { rel: gradual-build-template, href: ../../../tools/templates/gradual-build-plan.template.md }
   - { rel: dna-extracts, href: ../_handoff/VAULT/contexts/INDEX.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Plan Creation Protocol — CSPS

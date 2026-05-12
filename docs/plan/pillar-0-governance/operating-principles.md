@@ -22,6 +22,8 @@ links:
   - { rel: reuse-first-detail, href: ./reuse-first-principle.md }
 domain_path: platform
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Operating Principles

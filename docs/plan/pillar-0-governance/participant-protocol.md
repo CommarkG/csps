@@ -51,6 +51,8 @@ links:
   - { rel: validator, href: ../../../tools/validators/validate-participant-declared.mjs }
   - { rel: enums, href: ./frontmatter-closed-enums.md }
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Participant-Aware Communication Protocol (PACP)

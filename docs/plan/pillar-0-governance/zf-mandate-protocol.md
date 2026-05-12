@@ -28,6 +28,8 @@ links:
   - { rel: p-meta-021, href: ../../../../packages/principles/principles.yaml }
   - { rel: chat-transfer, href: ../../../plan/_handoff/VAULT/templates/chat-transfer-protocol.template.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # ZF Mandate Protocol

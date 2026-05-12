@@ -22,6 +22,8 @@ links:
   - { rel: adr-process, href: ./adr-process.md }
 domain_path: platform
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # The Rule Registry

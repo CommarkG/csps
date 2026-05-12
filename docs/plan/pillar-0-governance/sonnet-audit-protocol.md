@@ -31,6 +31,8 @@ links:
   - { rel: build-verification-map, href: ../../../tools/config/build-verification-map.yaml }
 domain_path: platform
 diataxis_type: how-to
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Sonnet Audit Protocol (SAP)

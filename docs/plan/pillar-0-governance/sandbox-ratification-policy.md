@@ -30,6 +30,8 @@ links:
   - { rel: routing-config, href: ../../../libs/config/routing.config.ts }
   - { rel: contract, href: ./behavioral-contracts.md }
 diataxis_type: how-to
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # CSPS Sandbox Ratification Policy

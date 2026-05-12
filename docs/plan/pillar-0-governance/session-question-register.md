@@ -41,6 +41,8 @@ consolidation_cross_refs:
   - AGENTS.md
 domain_path: platform
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Session Question Register (SQR)

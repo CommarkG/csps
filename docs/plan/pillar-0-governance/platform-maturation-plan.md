@@ -36,6 +36,8 @@ links:
   - { rel: inner-ai-defaults, href: ../_handoff/VAULT/inner-ai-defaults/README.md }
   - { rel: opus-synthesis, href: ../_handoff/VAULT/opus-synthesis-prompt-S011.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Platform Maturation Plan — CSPS

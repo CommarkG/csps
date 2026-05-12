@@ -35,6 +35,8 @@ session: S024
 impl_status: swift-implemented
 ratified_by: Governor
 ratified_date: 2026-05-12
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Threshold Intake Protocol — Intent-to-Verified-Impact (I→VI) Discipline

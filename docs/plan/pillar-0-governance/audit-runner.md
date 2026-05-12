@@ -24,6 +24,8 @@ links:
   - { rel: rule-registry, href: ./rule-registry.md }
   - { rel: enforcement-architecture, href: ./mechanical-enforcement.md }
 domain_path: platform
+core_spine: VALD
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # The Audit Runner System

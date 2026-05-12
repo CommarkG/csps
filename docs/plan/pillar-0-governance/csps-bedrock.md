@@ -36,6 +36,8 @@ links:
   - { rel: open-frontiers, href: ../pillar-6-operations-and-delivery/open-frontiers.md }
 domain_path: platform
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # CSPS Platform Bedrock

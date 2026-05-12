@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-12T22:16:34.946Z
-- finished_at: 2026-05-12T22:16:57.087Z
+- ran_at: 2026-05-12T22:19:50.378Z
+- finished_at: 2026-05-12T22:20:15.563Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-12T22:16:34.946Z",
-    "finished_at": "2026-05-12T22:16:57.087Z",
+    "ran_at": "2026-05-12T22:19:50.378Z",
+    "finished_at": "2026-05-12T22:20:15.563Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.2,
+        "duration_seconds": 6.5,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.4,
         "ts_errors": 0
       },
       {
@@ -216,7 +216,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "checked": 27,
         "advisories": 20
       },
@@ -351,8 +351,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 249,
-        "clean": 249,
+        "checked": 272,
+        "clean": 272,
         "blocking": 0,
         "registry": 47
       },
@@ -475,7 +475,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 97
+        "validators": 98
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -555,7 +555,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -937,7 +937,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 5.9
+        "duration_seconds": 7.6
       },
       {
         "name": "audit_runner_full_pass",

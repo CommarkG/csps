@@ -46,6 +46,8 @@ consolidation_cross_refs:
   - AGENTS.md
 domain_path: platform
 diataxis_type: explanation
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Development Mode vs Production Mode

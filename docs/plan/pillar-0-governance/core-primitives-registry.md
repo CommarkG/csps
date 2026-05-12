@@ -22,6 +22,8 @@ links:
   - { rel: architecture-plan, href: ../../plan/_handoff/VAULT/topic-plans/csps-core-primitives-architecture.md }
   - { rel: platform-dna, href: ./csps-platform-dna.md }
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # CSPS Core Primitives Registry

@@ -29,6 +29,8 @@ links:
   - { rel: know-how-extractor, href: ../../../tools/know-how-extractor.mjs }
   - { rel: pe-schema, href: ../../../tools/templates/priority-engine.schema.yaml }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Council Registry — CSPS

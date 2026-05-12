@@ -33,6 +33,8 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/behavioral-contracts.md
 domain_path: platform
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # CSPS Instruction Template v1.0

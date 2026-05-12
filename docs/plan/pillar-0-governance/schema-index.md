@@ -34,6 +34,8 @@ links:
   - { rel: audit-registry, href: ./audit-runner.md }
   - { rel: source-extract, href: ../_handoff/VAULT/contexts/governance/savings-ssot/EXT-20260505-005-C-schema-of-schemas-and-hub-per-spine-composition.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Schema Index — CSPS

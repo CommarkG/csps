@@ -26,6 +26,8 @@ links:
   - { rel: contracts, href: ./behavioral-contracts.md }
   - { rel: source-csp, href: ../_intake/processed/EXT-20260502-005-rzf-discipline-from-csp/raw.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Zero-Findings Discipline — RZF + CEC

@@ -36,6 +36,8 @@ created-new-because: |
   an audit hub registered in the schema in the proper place and include a set of audits + various
   handling predefined pipelines and orchestrated with a front end dashboard". This hub IS that orchestration.
 domain_path: platform
+core_spine: VALD
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Audit Hub

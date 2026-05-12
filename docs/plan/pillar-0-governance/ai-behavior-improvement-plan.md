@@ -35,6 +35,8 @@ links:
   - { rel: internal-deep-review, href: ../../../.claude/skills/internal-deep-review/SKILL.md }
   - { rel: opus-prompt, href: ../_handoff/VAULT/opus-synthesis-prompt-S011.md }
 domain_path: platform
+core_spine: AI
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # AI Behavior Improvement Plan — CSPS

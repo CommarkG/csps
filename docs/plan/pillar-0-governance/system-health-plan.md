@@ -30,6 +30,8 @@ links:
   - { rel: know-how, href: ../_handoff/VAULT/know-how/README.md }
   - { rel: weekly-hook, href: ../../../.claude/hooks/cron-weekly-tag-status-deep-audit.sh }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # System Health Plan — CSPS

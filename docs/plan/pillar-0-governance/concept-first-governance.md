@@ -34,6 +34,8 @@ links:
   - { rel: inner-defaults, href: ../_handoff/VAULT/inner-ai-defaults/README.md }
   - { rel: topic-plan, href: ../_handoff/VAULT/topic-plans/p-meta-020-concept-first-governance.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Concept-First Governance — P-META-020

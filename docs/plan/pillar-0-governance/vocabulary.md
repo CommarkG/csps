@@ -28,6 +28,8 @@ links:
   - { rel: inner-ai-defaults, href: ../../plan/_handoff/VAULT/inner-ai-defaults/ }
 domain_path: platform
 diataxis_type: reference
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Governance Vocabulary

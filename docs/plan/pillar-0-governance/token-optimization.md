@@ -34,6 +34,8 @@ links:
   - { rel: priority-engine-schema, href: ../../../tools/templates/priority-engine.schema.yaml }
   - { rel: trigger-source, href: ../_handoff/VAULT/governor-prompts/S006.md }
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Token Optimization — CSPS Comprehensive Analysis + Plan

@@ -45,6 +45,8 @@ links:
   - { rel: source-cca-research, href: ./token-optimization.md }
   - { rel: source-csp-file-5, href: ../_intake/contexts/governance/savings-ssot/EXT-20260505-005-A-unified-principle-savings-and-ssot-same-discipline.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Model Routing Dashboard — CSPS

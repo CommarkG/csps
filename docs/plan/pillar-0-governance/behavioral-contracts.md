@@ -19,6 +19,8 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: agents-md, href: ../../../AGENTS.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Behavioral Contracts (B_*)

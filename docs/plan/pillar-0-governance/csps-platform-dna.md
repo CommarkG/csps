@@ -31,6 +31,8 @@ links:
   - { rel: context-loss-pains, href: ./context-loss-pains.md }
   - { rel: csp-precedent, href: ../_handoff/VAULT/contexts/governance/agent-discipline/EXT-20260505-002-B-9-element-dna-gate-triple-check-frontmatter-rigidity.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # CSPS Platform DNA — Canonical Formalization

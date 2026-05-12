@@ -39,6 +39,8 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/depth-discipline.md
 domain_path: platform
 diataxis_type: explanation
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # The Gradual Depth Engine (GDE)

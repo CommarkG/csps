@@ -38,6 +38,8 @@ links:
   - { rel: dna, href: ./csps-platform-dna.md }
   - { rel: participant-protocol, href: ./participant-protocol.md }
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Virtual Opus Audit — The Living Self-Check

@@ -31,6 +31,8 @@ links:
   - { rel: plan-protocol, href: ./plan-creation-protocol.md }
   - { rel: behavioral-contracts, href: ./behavioral-contracts.md }
 diataxis_type: explanation
+core_spine: AI
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Human Intent Crystallization

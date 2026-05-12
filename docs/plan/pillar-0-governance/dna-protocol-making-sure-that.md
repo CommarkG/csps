@@ -32,6 +32,8 @@ links:
   - { rel: master-plan, href: ../_handoff/VAULT/csps-master-plan-s025-plus.md }
   - { rel: audit-runner, href: ./audit-runner.md }
 diataxis_type: how-to
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # DNA Protocol — Making Sure That...

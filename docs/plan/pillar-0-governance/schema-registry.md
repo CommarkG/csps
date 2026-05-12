@@ -31,6 +31,8 @@ links:
   - { rel: opus-ratification, href: ../_handoff/VAULT/opus-srof-schema-and-spines-review.md }
   - { rel: retrograde-principles, href: ../_handoff/VAULT/retrograde-principles-s027.md }
   - { rel: l2-domain, href: ../../../.claude/core-spines/L2_DOMAIN_ARCH_SCHEMA_GOVERNANCE.md }
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Schema Registry — Canonical Anchor Index

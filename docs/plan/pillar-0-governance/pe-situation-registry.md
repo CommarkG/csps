@@ -30,6 +30,8 @@ links:
   - { rel: pe-connectivity-validator, href: ../../../tools/validators/validate-pe-connectivity.mjs }
   - { rel: enterprise-plan, href: ../_handoff/VAULT/topic-plans/enterprise-core-completion-plan.md }
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # PE Situation Registry

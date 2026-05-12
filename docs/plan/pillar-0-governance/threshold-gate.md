@@ -31,6 +31,8 @@ links:
   - { rel: schema, href: ../../../packages/schemas/intake-event.ts }
   - { rel: router, href: ../../../tools/intake-router.mjs }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # The Threshold — CSPS Universal Input Gate

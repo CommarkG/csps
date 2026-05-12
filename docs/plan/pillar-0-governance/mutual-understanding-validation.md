@@ -34,6 +34,8 @@ created-new-because: |
   weren't output-contract-verified. This leaf locks the universal discipline + per-boundary
   protocols + chat-jump-prompt mechanical-audit checklist.
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Mutual Understanding Validation (MUV)

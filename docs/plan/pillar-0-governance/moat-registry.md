@@ -30,6 +30,8 @@ links:
   - { rel: zf-moat, href: ./zf-moat.md }
   - { rel: council-registry, href: ./council-registry.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Moat Registry — CSPS

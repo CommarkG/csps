@@ -21,6 +21,8 @@ tags:
 diataxis_type: how-to
 session: S011
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Daily Update Plan — CSPS

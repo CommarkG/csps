@@ -25,6 +25,8 @@ links:
   - { rel: audit-runner, href: ./audit-runner.md }
   - { rel: learning-loop, href: ./learning-loop.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Stewardship Protocol — P-META-004 (Stored Content Lifecycle)

@@ -33,6 +33,8 @@ links:
   - { rel: concept-load, href: ./behavioral-contracts.md#B_CONCEPT_LOAD }
   - { rel: b-star-contracts, href: ./behavioral-contracts.md }
   - { rel: virtual-audit, href: ./virtual-opus-audit.md }
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Context-and-Intent Operating Principle (C&I)

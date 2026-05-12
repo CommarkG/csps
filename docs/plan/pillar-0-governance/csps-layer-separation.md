@@ -33,6 +33,8 @@ links:
   - { rel: core-manifest, href: ./csps-core-manifest.md }
 domain_path: platform
 diataxis_type: explanation
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # CSPS Layer Separation

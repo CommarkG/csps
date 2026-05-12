@@ -30,6 +30,8 @@ links:
   - { rel: corespine-depth-validator, href: ../../../tools/validators/validate-corespine-depth-markers.mjs }
   - { rel: spine-hierarchy-validator, href: ../../../tools/validators/validate-spine-hierarchy.mjs }
   - { rel: core-manifest, href: ./csps-core-manifest.md }
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Spine Graduation Principle

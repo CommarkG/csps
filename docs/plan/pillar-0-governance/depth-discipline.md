@@ -43,6 +43,8 @@ links:
   - { rel: creation-gate-source, href: ../_intake/contexts/governance/depth-discipline/EXT-20260505-004-B-mechanical-creation-discipline-with-placeholders.md }
   - { rel: bundling-orchestrator-source, href: ../_intake/contexts/governance/depth-discipline/EXT-20260505-004-C-bundling-orchestrator-pe-read-budget-extension.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Depth Discipline — CSPS Canonical Home

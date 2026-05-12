@@ -24,6 +24,8 @@ links:
   - { rel: enforcement-architecture, href: ./mechanical-enforcement.md }
   - { rel: operating-principles, href: ./operating-principles.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Architecture Principles (the 27 rules)

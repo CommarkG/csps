@@ -51,6 +51,8 @@ question_register:
     answer: "PARTIAL — 6 contracts exist but scattered; meta-validator (validate-completeness-coverage.mjs) not yet built; CSPS governance files missing question_register"
     confirmed: true
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Completeness Module — The Platform's Definition of Done

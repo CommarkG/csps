@@ -25,6 +25,8 @@ links:
   - { rel: operating-principles, href: ./operating-principles.md }
 domain_path: platform
 diataxis_type: reference
+core_spine: AI
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Mechanical Enforcement Architecture

@@ -26,6 +26,8 @@ links:
   - { rel: contract, href: ./behavioral-contracts.md }
   - { rel: audit, href: ./audit-runner.md }
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Naming Policy

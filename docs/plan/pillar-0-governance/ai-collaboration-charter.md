@@ -32,6 +32,8 @@ links:
   - { rel: council-protocol, href: ../../../tools/council/PROTOCOL.md }
   - { rel: agents, href: ../../../AGENTS.md }
 diataxis_type: explanation
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # CSPS AI Collaboration Charter

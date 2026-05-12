@@ -33,6 +33,8 @@ created-new-because: |
   "connect it all to the balanced solutions we have regarding the tension between the
   rigid and context focused ai behavior — make our DNA in building things!"
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # The CSPS Way of Building — DNA

@@ -29,6 +29,8 @@ created-new-because: |
   at _handoff/VAULT/governor-prompts/ (point-in-time per-session); this leaf is the canonical
   HOW (the spec) vs the logs which are the WHAT (instances).
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Governor Prompts — dashboard

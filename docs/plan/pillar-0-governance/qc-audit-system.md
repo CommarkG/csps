@@ -26,6 +26,8 @@ links:
   - { rel: audit-runner, href: ./audit-runner.md }
   - { rel: results-S002, href: ../_handoff/VAULT/qc-audit-results-S002.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # QC Audit System — operational layer for P-META-006

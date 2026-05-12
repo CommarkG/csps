@@ -22,6 +22,8 @@ links:
   - { rel: trunk, href: ../../../MASTER_PLAN.md }
 domain_path: platform
 diataxis_type: explanation
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # The Planning Playground

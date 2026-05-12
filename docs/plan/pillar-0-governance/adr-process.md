@@ -20,6 +20,8 @@ links:
   - { rel: rule-registry, href: ./rule-registry.md }
 domain_path: platform
 diataxis_type: how-to
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Architecture Decision Records (ADR) Process

@@ -28,6 +28,8 @@ links:
   - { rel: system-health-plan, href: ./system-health-plan.md }
   - { rel: know-how, href: ../_handoff/VAULT/know-how/README.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # QC Coverage Map — CSPS

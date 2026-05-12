@@ -31,6 +31,8 @@ links:
   - { rel: schema, href: ../../../packages/principles/principles.yaml }
   - { rel: pe-source, href: ../_handoff/VAULT/topic-plans/s006-governance-foundation.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # CSPS CORE Manifest

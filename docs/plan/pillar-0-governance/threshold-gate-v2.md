@@ -30,6 +30,8 @@ links:
   - { rel: council-registry, href: ./council-registry.md }
   - { rel: daily-update-plan, href: ./daily-update-plan.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # The Threshold v2 — Universal Input Pipeline

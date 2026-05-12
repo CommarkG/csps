@@ -30,6 +30,8 @@ links:
   - { rel: system-health-plan, href: ./system-health-plan.md }
   - { rel: qc-coverage-map, href: ./qc-coverage-map.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # ZF as a Moat — CSPS

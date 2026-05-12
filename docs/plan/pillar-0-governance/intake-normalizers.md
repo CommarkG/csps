@@ -28,6 +28,8 @@ links:
   - { rel: router, href: ../../../tools/intake-router.mjs }
   - { rel: topic-plan, href: ../_handoff/VAULT/topic-plans/unified-intake.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Intake Normalizers — CSPS

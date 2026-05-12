@@ -27,6 +27,8 @@ links:
   - { rel: closed-enums, href: ./frontmatter-closed-enums.md }
   - { rel: vlt, href: ../../../tools/session-state.json }
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # CSPS Domain Taxonomy

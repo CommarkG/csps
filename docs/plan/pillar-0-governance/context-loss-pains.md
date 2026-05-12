@@ -32,6 +32,8 @@ links:
   - { rel: d1-d10-source, href: ../_handoff/VAULT/contexts/governance/mechanical-completion/EXT-20260505-002-D-mechanical-completion-directive-D1-D10-false-lexicon.md }
   - { rel: edge-case-source, href: ../_handoff/VAULT/contexts/governance/edge-case-handling/EXT-20260505-006-B-7-forward-going-patterns-edge-cases-as-signals.md }
 domain_path: platform
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Context-Loss Pains Catalog — CSPS

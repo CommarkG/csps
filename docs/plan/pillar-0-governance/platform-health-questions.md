@@ -35,6 +35,8 @@ links:
   - { rel: moat-coverage, href: ../../../tools/validators/validate-moat-coverage.mjs }
   - { rel: master-plan, href: ../_handoff/VAULT/csps-master-plan-s025-plus.md }
 diataxis_type: reference
+core_spine: GVRN
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Platform Health Questions — The Competitive Promise Battery

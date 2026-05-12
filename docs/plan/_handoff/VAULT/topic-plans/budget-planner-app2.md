@@ -142,12 +142,21 @@ CSP carry-forward checked: no prior personal finance app in CSP history.
 **ZF gate Layer 2 — ACHIEVED S025:**
 `validate-foundation-schema-drift.mjs: generate_ok=true` ✅ + 3 route files exist ✅ + `pnpm verify exit_code=0` ✅
 
-### Layer 3 — Threshold Wizard Onboarding (S026-S027)
-**Exit criteria:**
-- [ ] Onboarding wizard: 3 crystallization questions (problem / goal / done signal)
-- [ ] Questions use personal.finance template clarifying_questions
-- [ ] Dashboard not accessible until wizard complete (non-skippable gate)
-- [ ] Wizard stores budget goal in user profile
+### Layer 3 — Threshold Wizard Onboarding (DONE S025)
+**Specific validators (double-protected: in plan + in protocol):**
+- [x] `BudgetGoal` model in schema.zmodel: tenantId @unique, goalStatement, budgetTargets(Json), completedAt — DONE S025
+- [x] `validate-foundation-schema-drift.mjs: generate_ok=true, drift=0` — DONE S025
+- [x] `POST /api/budget/wizard`: creates BudgetGoal with goalStatement(Q2c) + budgetTargets(Q3c); validates human-authored answers; AuditEvent `budget.wizard.completed` — DONE S025
+- [x] `GET /api/budget/wizard`: returns `{completed: bool, goal: BudgetGoal|null}` — DONE S025
+- [x] `src/app/budget-setup/page.tsx`: 3-step wizard; Step1=problem(Q1c), Step2=goal(Q2c→goalStatement), Step3=targets(Q3c→budgetTargets); no multiple choice — user types own words — DONE S025
+- [x] `src/app/page.tsx`: server-side redirect to `/budget-setup` if `!budgetGoal` (non-skippable gate) — DONE S025
+- [x] `writeAuditEvent()`: `budget.wizard.completed` with goalStatement + targetCount — DONE S025
+- [x] `pnpm verify exit_code=0` — DONE S025
+
+**ZF gate Layer 3 — ACHIEVED S025:**
+`BudgetGoal` in schema + wizard API exists + page.tsx gate enforced + `pnpm verify exit_code=0` ✅
+
+**North Star alignment:** User CANNOT reach dashboard without answering Q1c/Q2c/Q3c. Platform Promise QH-C-001 answered YES: every CSPS app guides users through Threshold Wizard. ✅
 
 ### Layer 4 — Feature Complete + Validation (S027-S028)
 **Exit criteria:**

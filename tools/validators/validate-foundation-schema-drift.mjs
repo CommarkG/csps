@@ -52,6 +52,7 @@ const APP_ONLY_ACCEPTED = new Set([]);
 const ZMODEL_ONLY_DEFERRED = new Set([
   'BudgetCategory',    // App #2 Budget Planner — not used by task-mgmt
   'Transaction',       // App #2 Budget Planner — not used by task-mgmt
+  'BudgetGoal',        // App #2 Budget Planner wizard completion — not used by task-mgmt
 ]);
 
 // Fields that exist in the app schema but intentionally NOT in ZModel
@@ -65,8 +66,9 @@ const APP_ONLY_ACCEPTED_FIELDS = new Set([
 // Format: "ModelName.fieldName"
 // Budget Planner relations on Tenant — not needed in task-mgmt app (App #2 domain only)
 const ZMODEL_ONLY_DEFERRED_FIELDS = new Set([
-  'Tenant.budgetCategories',  // App #2 Budget Planner relation — deferred until apps/budget-planner/ is fully built
-  'Tenant.transactions',      // App #2 Budget Planner relation — deferred until apps/budget-planner/ is fully built
+  'Tenant.budgetCategories',  // App #2 Budget Planner relation
+  'Tenant.transactions',      // App #2 Budget Planner relation
+  'Tenant.budgetGoal',        // App #2 Budget Planner wizard relation (optional)
 ]);
 
 // ── Model name extraction ───────────────────────────────────────────────────

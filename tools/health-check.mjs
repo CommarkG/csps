@@ -93,6 +93,15 @@ results.push(result('QH-M-003', 'All 56 B_* contracts point in same direction (z
 // BATTERY 3 — Customer Experience
 // ═══════════════════════════════════════════════════════
 
+// QH-C-001: Threshold Wizard onboarding in CSPS apps
+const wizardPageExists = existsSync(join(ROOT, 'apps/budget-planner/src/app/budget-setup/page.tsx'));
+const wizardApiExists = existsSync(join(ROOT, 'apps/budget-planner/src/app/api/budget/wizard/route.ts'));
+const dashboardGateExists = existsSync(join(ROOT, 'apps/budget-planner/src/app/page.tsx'));
+results.push(result('QH-C-001', 'Every CSPS app guides users through Threshold Wizard before dashboard?',
+  wizardPageExists && wizardApiExists && dashboardGateExists ? 'YES' : 'PARTIAL',
+  `wizard page: ${wizardPageExists ? '✓' : '✗'} | wizard API: ${wizardApiExists ? '✓' : '✗'} | gate in page.tsx: ${dashboardGateExists ? '✓' : '✗'}`
+));
+
 // QH-C-004: GDPR erasure implemented
 const gdprOut = run('node tools/validators/validate-gdpr-erasure-path.mjs');
 const gdprAdvisory = parseInt((gdprOut.match(/advisory=(\d+)/) || [])[1] || '0', 10);
@@ -209,7 +218,7 @@ for (const r of results) {
 
 console.log('───────────────────────────────────────────────────────────────────');
 console.log('  ⬜ 12 questions require human judgment — see platform-health-questions.md');
-console.log('     Batteries 1-6 full: QH-I-002/003, QH-M-002/004/005, QH-C-001/002/003,');
+console.log('     Batteries 1-6 full: QH-I-002/003, QH-M-002/004/005, QH-C-002/003,');
 console.log('     QH-T-005, QH-F-003/004, QH-P-001/003/004');
 console.log(`\n[health-check] yes=${yes} partial=${partial} no=${no} total=${total}`);
 

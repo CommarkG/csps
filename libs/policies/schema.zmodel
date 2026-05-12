@@ -162,6 +162,7 @@ model Tenant extends Base {
   auditEvents      AuditEvent[]
   budgetCategories BudgetCategory[]
   transactions     Transaction[]
+  budgetGoal       BudgetGoal?
 
   @@schema("public")
   @@allow("read", auth().tenantId == id)
@@ -344,6 +345,26 @@ model Transaction extends Base {
   @@index([tenantId, date])
   @@index([tenantId, categoryId])
   @@index([tenantId, type, date])
+}
+
+// Wizard completion record — one per tenant, stores crystallized intent
+// Created when user completes the 3 Threshold questions (the non-skippable gate)
+// Human-authored fields: goal + targets (Q2c + Q3c from threshold-intake-protocol.md)
+model BudgetGoal extends Base {
+  tenantId      String  @unique  // one goal per tenant (solo user = one per person)
+  goalStatement String            // Q2c: "What would financial control look like in 30 days?"
+  budgetTargets Json              // Q3c: [{categoryName, monthlyLimit}] — human's own words
+  completedAt   DateTime @default(now())
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)
+  @@allow("update", auth().tenantId == tenantId)
+  @@deny("delete",  true)
+
+  @@index([tenantId])
 }
 
 enum BudgetCategoryType {

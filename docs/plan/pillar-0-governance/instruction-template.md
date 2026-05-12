@@ -32,6 +32,7 @@ consolidation_cross_refs:
   - AGENTS.md
   - docs/plan/pillar-0-governance/behavioral-contracts.md
 domain_path: platform
+diataxis_type: reference
 ---
 
 # CSPS Instruction Template v1.0

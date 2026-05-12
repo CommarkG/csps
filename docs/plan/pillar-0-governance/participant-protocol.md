@@ -50,6 +50,7 @@ links:
   - { rel: dna-element-17, href: ./csps-platform-dna.md }
   - { rel: validator, href: ../../../tools/validators/validate-participant-declared.mjs }
   - { rel: enums, href: ./frontmatter-closed-enums.md }
+diataxis_type: reference
 ---
 
 # Participant-Aware Communication Protocol (PACP)

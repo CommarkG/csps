@@ -1,28 +1,30 @@
 # verify last run
 
-- ran_at: 2026-05-11T17:57:26.170Z
-- finished_at: 2026-05-11T17:57:40.159Z
+- ran_at: 2026-05-12T19:06:00.326Z
+- finished_at: 2026-05-12T19:06:25.057Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-11T17:57:26.170Z",
-    "finished_at": "2026-05-11T17:57:40.159Z",
+    "ran_at": "2026-05-12T19:06:00.326Z",
+    "finished_at": "2026-05-12T19:06:25.057Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "DEFERRED-WITH-REASON",
-        "skip_reason": "flag --skip-install"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 6.4,
+        "packages_resolved": null
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -31,7 +33,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.8,
-        "principles_loaded": 55,
+        "principles_loaded": 57,
         "findings_total": 0
       },
       {
@@ -40,10 +42,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 312,
+        "scanned": 339,
         "errors": 0,
-        "warnings": 5,
-        "exempt": 257
+        "warnings": 10,
+        "exempt": 265
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -87,7 +89,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 55,
+        "source_contracts": 57,
         "missing_slices": 0
       },
       {
@@ -96,7 +98,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_ids": 55,
+        "source_ids": 57,
         "missing_slices": 0
       },
       {
@@ -112,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -134,7 +136,7 @@
         "status": "ADVISORY",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "enforcement_rate": 29
+        "enforcement_rate": 35
       },
       {
         "name": "opus_audit_due",
@@ -150,8 +152,166 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns_checked": 6,
+        "turns_checked": 15,
         "warnings": 0
+      },
+      {
+        "name": "sonnet_report",
+        "command": "node tools/validators/validate-sonnet-report.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "has_report": true
+      },
+      {
+        "name": "boundary_alignment",
+        "command": "node tools/validators/validate-boundary-alignment.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checks": 2,
+        "warnings": 1
+      },
+      {
+        "name": "pe_dashboard",
+        "command": "node tools/validators/validate-pe-dashboard.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.2,
+        "plans": 20,
+        "open_items": 144
+      },
+      {
+        "name": "dead_links",
+        "command": "node tools/validators/validate-dead-links.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.2,
+        "files": 107,
+        "links": 487,
+        "broken": 66
+      },
+      {
+        "name": "opus_review_flagging",
+        "command": "node tools/validators/validate-opus-review-flagging.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "last_turn": 11,
+        "flags": 10,
+        "commits": 0
+      },
+      {
+        "name": "open_questions",
+        "command": "node tools/validators/validate-open-questions.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "plans": 2,
+        "total": 2,
+        "open": 0
+      },
+      {
+        "name": "participant_declared",
+        "command": "node tools/validators/validate-participant-declared.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.9,
+        "checked": 24,
+        "advisories": 17
+      },
+      {
+        "name": "completeness_coverage",
+        "command": "node tools/validators/validate-completeness-coverage.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "contracts": 6,
+        "blocking": 0,
+        "advisory": 0
+      },
+      {
+        "name": "template_grade",
+        "command": "node tools/validators/validate-template-grade.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "graded": 11,
+        "advisories": 12
+      },
+      {
+        "name": "contract_harmonization",
+        "command": "node tools/validators/validate-contract-harmonization.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "contracts": 57,
+        "orphans": 4,
+        "tensions": 0,
+        "overlaps": 1
+      },
+      {
+        "name": "satisfaction_point",
+        "command": "node tools/validators/validate-satisfaction-point.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "advisories": 1
+      },
+      {
+        "name": "agreement_without_evidence",
+        "command": "node tools/validators/validate-agreement-without-evidence.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 2,
+        "advisories": 1
+      },
+      {
+        "name": "crystallization_bypass",
+        "command": "node tools/validators/validate-crystallization-bypass.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "plans": 16,
+        "blocking": 0,
+        "advisory": 0
+      },
+      {
+        "name": "comprehensive_response",
+        "command": "node tools/validators/validate-comprehensive-response.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "advisories": 0
+      },
+      {
+        "name": "diataxis_type",
+        "command": "node tools/validators/validate-diataxis-type.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 69,
+        "blocking": 0,
+        "advisories": 0
+      },
+      {
+        "name": "bottleneck_patterns",
+        "command": "node tools/validators/validate-bottleneck-patterns.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "routes": 17,
+        "validators": 88,
+        "models": 0,
+        "advisories": 8
+      },
+      {
+        "name": "question_coverage",
+        "command": "node tools/validators/validate-question-coverage.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
       },
       {
         "name": "gradual_bundling",
@@ -163,7 +323,7 @@
         "near_complete": 0,
         "no_depth": 0,
         "no_stage": 0,
-        "backlog_pending": 19
+        "backlog_pending": 20
       },
       {
         "name": "naming_convention",
@@ -193,10 +353,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "assessed": 26,
-        "no_dev_surface": 26,
-        "no_user_value": 26,
-        "incomplete": 26
+        "assessed": 33,
+        "no_dev_surface": 33,
+        "no_user_value": 33,
+        "incomplete": 33
       },
       {
         "name": "update_backlog",
@@ -205,8 +365,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "total": 36,
-        "pending": 19,
-        "blocked": 12,
+        "pending": 20,
+        "blocked": 11,
         "done": 5
       },
       {
@@ -215,11 +375,11 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 25,
-        "active": 13,
+        "total": 26,
+        "active": 14,
         "stub": 10,
         "unknown": 2,
-        "stub_rate": 40
+        "stub_rate": 38
       },
       {
         "name": "session_harvest_readiness",
@@ -228,7 +388,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 72
+        "validators": 89
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -256,8 +416,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "files_scanned": 2,
-        "with_concept_load": 1,
-        "advisory_gaps": 1
+        "with_concept_load": 0,
+        "advisory_gaps": 2
       },
       {
         "name": "subagent_spawn_preamble",
@@ -332,7 +492,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "total": 18,
-        "covered": 17,
+        "covered": 18,
         "critical_gaps": 0
       },
       {
@@ -341,8 +501,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 78,
-        "with_status": 26,
+        "checked": 85,
+        "with_status": 33,
         "warnings": 0
       },
       {
@@ -351,7 +511,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 8,
+        "checked": 9,
         "exempt": 3,
         "unplanned": 1
       },
@@ -368,8 +528,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 124,
-        "missing_why": 29
+        "checked": 129,
+        "missing_why": 31
       },
       {
         "name": "open_plan_levels",
@@ -377,9 +537,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 16,
-        "plans_with_open": 7,
-        "total_open_items": 97
+        "plans_checked": 20,
+        "plans_with_open": 10,
+        "total_open_items": 144
       },
       {
         "name": "rzf_evidence",
@@ -405,7 +565,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 14,
+        "checked": 18,
         "grandfathered": 2,
         "errors": 0
       },
@@ -416,8 +576,8 @@
         "exit_code": 0,
         "duration_seconds": 0.2,
         "blocking": 0,
-        "advisory": 16,
-        "total_gaps": 16
+        "advisory": 20,
+        "total_gaps": 20
       },
       {
         "name": "plan_ai_defaults_alignment",
@@ -425,7 +585,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 21,
+        "scanned": 25,
         "flagged": 3,
         "ratified": 1,
         "blocking": 0,
@@ -437,7 +597,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 16,
+        "checked": 20,
         "blocking": 0,
         "advisory": 0
       },
@@ -447,9 +607,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 16,
+        "checked": 20,
         "with_field": 1,
-        "missing": 15
+        "missing": 19
       },
       {
         "name": "simulation_before_implementation",
@@ -471,9 +631,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 16,
+        "checked": 20,
         "blocking": 0,
-        "advisory": 4
+        "advisory": 17
       },
       {
         "name": "routing_declared",
@@ -481,7 +641,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 16,
+        "plans_checked": 20,
         "blocking": 0,
         "advisory": 4
       },
@@ -491,9 +651,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "pages_checked": 10,
-        "with_principle": 2,
-        "advisory": 8
+        "pages_checked": 12,
+        "with_principle": 3,
+        "advisory": 9
       },
       {
         "name": "isolation_layers",
@@ -519,7 +679,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 2,
+        "checked": 3,
         "advisory": 1
       },
       {
@@ -537,7 +697,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 2,
+        "checked": 3,
         "advisory": 1
       },
       {
@@ -546,9 +706,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "routes_checked": 2,
-        "with_gate": 2,
-        "advisory": 2
+        "routes_checked": 4,
+        "with_gate": 4,
+        "advisory": 4
       },
       {
         "name": "intake_source_class_coverage",
@@ -574,7 +734,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 2,
+        "warnings": 1,
         "advisory": true
       },
       {
@@ -583,7 +743,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 16,
+        "plans_checked": 20,
         "warnings": 0
       },
       {
@@ -601,9 +761,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 72,
+        "validators_checked": 89,
         "orphans": 0,
-        "registered": 72
+        "registered": 89
       },
       {
         "name": "token_budget_validate",
@@ -636,9 +796,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 16,
-        "missing_harvest": 6,
-        "warnings": 6
+        "plans_checked": 20,
+        "missing_harvest": 10,
+        "warnings": 10
       },
       {
         "name": "execution_mode_declared",
@@ -646,7 +806,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 16,
+        "plans_checked": 20,
         "missing_mode": 0,
         "warnings": 0
       },
@@ -668,7 +828,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 16,
+        "plans_checked": 20,
         "stale_total": 10,
         "unverified": 10,
         "verified": 0,
@@ -680,7 +840,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 16,
+        "plans_checked": 20,
         "sections_checked": 7,
         "blocking": 0,
         "warnings": 0
@@ -690,7 +850,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.4
+        "duration_seconds": 7.8
       },
       {
         "name": "audit_runner_full_pass",

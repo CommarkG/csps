@@ -29,6 +29,7 @@ links:
   - { rel: sandbox-dir, href: ../../_sandbox/ }
   - { rel: routing-config, href: ../../../libs/config/routing.config.ts }
   - { rel: contract, href: ./behavioral-contracts.md }
+diataxis_type: how-to
 ---
 
 # CSPS Sandbox Ratification Policy

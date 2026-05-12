@@ -30,6 +30,7 @@ links:
   - { rel: inner-ai-defaults, href: ../../plan/_handoff/VAULT/inner-ai-defaults/ }
   - { rel: build-verification-map, href: ../../../tools/config/build-verification-map.yaml }
 domain_path: platform
+diataxis_type: how-to
 ---
 
 # Sonnet Audit Protocol (SAP)

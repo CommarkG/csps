@@ -32,6 +32,7 @@ links:
   - { rel: bedrock, href: ./csps-bedrock.md }
   - { rel: core-manifest, href: ./csps-core-manifest.md }
 domain_path: platform
+diataxis_type: explanation
 ---
 
 # CSPS Layer Separation

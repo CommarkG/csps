@@ -50,6 +50,7 @@ question_register:
     asked_at: "S025 self-audit"
     answer: "PARTIAL — 6 contracts exist but scattered; meta-validator (validate-completeness-coverage.mjs) not yet built; CSPS governance files missing question_register"
     confirmed: true
+diataxis_type: reference
 ---
 
 # Completeness Module — The Platform's Definition of Done

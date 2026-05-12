@@ -44,6 +44,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/topic-plans/core-dynamic-plan.md
   - AGENTS.md
 domain_path: platform
+diataxis_type: how-to
 ---
 
 # Question Protocol — CSPS

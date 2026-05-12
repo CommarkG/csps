@@ -21,6 +21,7 @@ links:
   - { rel: principle, href: ./reuse-first-principle.md }
   - { rel: adr-process, href: ./adr-process.md }
 domain_path: platform
+diataxis_type: reference
 ---
 
 # The Rule Registry

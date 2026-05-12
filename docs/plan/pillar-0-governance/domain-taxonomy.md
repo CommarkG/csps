@@ -26,6 +26,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: closed-enums, href: ./frontmatter-closed-enums.md }
   - { rel: vlt, href: ../../../../tools/session-state.json }
+diataxis_type: reference
 ---
 
 # CSPS Domain Taxonomy

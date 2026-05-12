@@ -31,6 +31,7 @@ links:
   - { rel: claude-profile, href: ../_handoff/VAULT/inner-ai-defaults/claude-code-native-profile.md }
   - { rel: council-protocol, href: ../../../tools/council/PROTOCOL.md }
   - { rel: agents, href: ../../../AGENTS.md }
+diataxis_type: explanation
 ---
 
 # CSPS AI Collaboration Charter

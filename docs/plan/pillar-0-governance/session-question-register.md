@@ -40,6 +40,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/closing-summary-template.md
   - AGENTS.md
 domain_path: platform
+diataxis_type: reference
 ---
 
 # Session Question Register (SQR)

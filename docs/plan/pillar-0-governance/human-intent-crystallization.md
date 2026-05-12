@@ -30,6 +30,7 @@ links:
   - { rel: principle, href: ../../../packages/principles/principles.yaml }
   - { rel: plan-protocol, href: ./plan-creation-protocol.md }
   - { rel: behavioral-contracts, href: ./behavioral-contracts.md }
+diataxis_type: explanation
 ---
 
 # Human Intent Crystallization

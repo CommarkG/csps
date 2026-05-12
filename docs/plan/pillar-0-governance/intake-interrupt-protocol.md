@@ -33,6 +33,7 @@ links:
   - { rel: raw-thoughts-queue, href: ../../_intake/raw-thoughts-queue.md }
   - { rel: session-state, href: ../../../tools/session-state.json }
   - { rel: master-plan, href: ../../_handoff/VAULT/csps-master-plan-s025-plus.md }
+diataxis_type: how-to
 ---
 
 # Intake Interrupt Protocol

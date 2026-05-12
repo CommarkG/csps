@@ -38,6 +38,7 @@ consolidation_cross_refs:
   - docs/platform-audit/platform-services/context-orchestrator.md
   - docs/plan/pillar-0-governance/depth-discipline.md
 domain_path: platform
+diataxis_type: explanation
 ---
 
 # The Gradual Depth Engine (GDE)

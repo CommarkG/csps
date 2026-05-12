@@ -37,6 +37,7 @@ links:
   - { rel: pe-schema, href: ../../../tools/templates/priority-engine.schema.yaml }
   - { rel: dna, href: ./csps-platform-dna.md }
   - { rel: participant-protocol, href: ./participant-protocol.md }
+diataxis_type: reference
 ---
 
 # Virtual Opus Audit — The Living Self-Check

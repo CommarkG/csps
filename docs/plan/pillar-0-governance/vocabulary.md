@@ -27,6 +27,7 @@ links:
   - { rel: build-verification-map, href: ../../../tools/config/build-verification-map.yaml }
   - { rel: inner-ai-defaults, href: ../../plan/_handoff/VAULT/inner-ai-defaults/ }
 domain_path: platform
+diataxis_type: reference
 ---
 
 # Governance Vocabulary

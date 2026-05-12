@@ -34,6 +34,7 @@ links:
   - { rel: health-check, href: ../../../tools/health-check.mjs }
   - { rel: moat-coverage, href: ../../../tools/validators/validate-moat-coverage.mjs }
   - { rel: master-plan, href: ../../_handoff/VAULT/csps-master-plan-s025-plus.md }
+diataxis_type: reference
 ---
 
 # Platform Health Questions — The Competitive Promise Battery

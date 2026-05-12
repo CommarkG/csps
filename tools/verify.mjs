@@ -312,6 +312,35 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/); return m ? { plans: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; },
   },
   {
+    // NEW S027 — Comprehensive response detector: catches SP-003 "cover all items at equal depth."
+    // AI handles multiple tasks simultaneously without PE-scoring and vaulting lower-PE items.
+    // Scans: INTENT ABSORBED sections for T3 triggers without PE nearby; Done sections with 5+ items
+    // and no PE ordering; raw-thoughts-queue population (positive enforcement).
+    // Teaching moment: "ONE focal point. PE-score the rest. Vault to raw-thoughts-queue."
+    name: 'comprehensive_response',
+    command: 'node tools/validators/validate-comprehensive-response.mjs',
+    parse_output: (out) => { const m = out.match(/advisories=(\d+)/); return m ? { advisories: Number(m[1]) } : {}; },
+  },
+  {
+    // NEW S027 — Diataxis type mandatory: enforces diataxis_type field in pillar-0-governance .md files.
+    // BLOCKING if any file is missing diataxis_type entirely. Valid: tutorial | how-to | reference | explanation.
+    // Enables documentation spine: navigation clarity, AI CONCEPT_LOAD spine, coverage audits.
+    // PE=67 S027 mandate.
+    name: 'diataxis_type',
+    command: 'node tools/validators/validate-diataxis-type.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisories: Number(m[3]) } : {}; },
+  },
+  {
+    // NEW S027 — Bottleneck patterns: detects structural bottlenecks before they become crises.
+    // Class A: N+1 query patterns (auth lookup + DB call in same API route) — at 30 apps × 100 req/s → O(N²)
+    // Class B: O(N) validator file-walkers — pnpm verify degrades from 30s to 300s at 30 apps
+    // Class C: Missing @@index([tenantId]) — full table scans per tenant query
+    // All advisory. PE=65. Spec: bottleneck-and-gradual-structures-S019.md §1.
+    name: 'bottleneck_patterns',
+    command: 'node tools/validators/validate-bottleneck-patterns.mjs',
+    parse_output: (out) => { const m = out.match(/routes_checked=(\d+)\s+validators_checked=(\d+)\s+models_checked=(\d+)\s+advisories=(\d+)/); return m ? { routes: Number(m[1]), validators: Number(m[2]), models: Number(m[3]), advisories: Number(m[4]) } : {}; },
+  },
+  {
     name: 'question_coverage',
     command: 'node tools/validators/validate-question-coverage.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },

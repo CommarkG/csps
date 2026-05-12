@@ -45,6 +45,7 @@ consolidation_cross_refs:
   - docs/platform-audit/platform-services/context-orchestrator.md
   - AGENTS.md
 domain_path: platform
+diataxis_type: explanation
 ---
 
 # Development Mode vs Production Mode

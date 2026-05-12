@@ -33,6 +33,7 @@ consolidation_cross_refs:
   - tools/validators/validate-frontmatter.mjs
   - AGENTS.md
 domain_path: platform
+diataxis_type: how-to
 ---
 
 # Mechanical Enforcement Policy

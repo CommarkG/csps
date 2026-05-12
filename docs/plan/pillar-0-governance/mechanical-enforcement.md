@@ -24,6 +24,7 @@ links:
   - { rel: rule-registry, href: ./rule-registry.md }
   - { rel: operating-principles, href: ./operating-principles.md }
 domain_path: platform
+diataxis_type: reference
 ---
 
 # Mechanical Enforcement Architecture

@@ -33,8 +33,9 @@ links:
   - { rel: core-manifest, href: ./csps-core-manifest.md }
   - { rel: platform-dna, href: ./csps-platform-dna.md }
   - { rel: validator, href: ../../../tools/validators/validate-bedrock.mjs }
-  - { rel: open-frontiers, href: ../../pillar-6-operations-and-delivery/open-frontiers.md }
+  - { rel: open-frontiers, href: ../pillar-6-operations-and-delivery/open-frontiers.md }
 domain_path: platform
+diataxis_type: reference
 ---
 
 # CSPS Platform Bedrock

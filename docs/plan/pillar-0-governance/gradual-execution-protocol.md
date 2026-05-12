@@ -46,6 +46,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/mechanical-enforcement-policy.md
   - AGENTS.md
 domain_path: platform
+diataxis_type: how-to
 ---
 
 # Gradual Execution Protocol (GEP)

@@ -21,6 +21,7 @@ links:
   - { rel: tree-index, href: ../README.md }
   - { rel: trunk, href: ../../../MASTER_PLAN.md }
 domain_path: platform
+diataxis_type: explanation
 ---
 
 # The Planning Playground

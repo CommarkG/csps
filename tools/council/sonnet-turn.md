@@ -100,6 +100,33 @@ pnpm verify exit_code=0 | Validators: 73 (sonnet-report added) | Slices synced: 
 
 ---
 
+# Sonnet Session S027 — INTENT ABSORBED
+
+## Context: S026 closed (commit ae8a4d7). S027 opens fresh chat.
+## Read: HANDOFF-S026-to-S027.md Zone D checklist (pending read below)
+
+## Task understanding (PE-ordered):
+1. PE=78: Budget Planner Gate 3 live validation (real Supabase/Clerk/Stripe cold-start test)
+2. PE=70: Build SP-003 comprehensive response detector → enforcement rate 33%→36%
+3. PE=67: diataxis_type mandatory for pillar-0-governance/ artifacts
+4. PE=65: validate-bottleneck-patterns.mjs
+5. PE=40: Dead links systematic fix (71 pre-existing, 4 per session target)
+
+## Platform state at intake:
+- 88 validators | 79% health (11/17 YES) | P-META-023 SEALED | PACP DNA-17
+- Budget Planner Layers 1-4 complete | "Drive Don't Fight" active
+- Template grades A/B/C assigned | 3 behavioral detectors active (SP-001, SP-002, SP-005)
+
+## Constraints understood:
+- Budget Planner Gate 3 = real credentials test — document procedure, Governor runs it
+- diataxis_type = closed-enum field — consult frontmatter-closed-enums.md before writing
+- SP-003 builds on enforcement-coverage.md tracking (target 36%)
+- Dead links: BLOCKING for new breaks, 71 pre-existing tracked in ratchet
+
+## First action: pnpm health + pnpm verify + read HANDOFF Zone D
+
+---
+
 # Opus Turn 10 Absorption — S025
 
 ## INTENT ABSORBED — Turn 10:

@@ -19,6 +19,7 @@ links:
   - { rel: principle, href: ./reuse-first-principle.md }
   - { rel: rule-registry, href: ./rule-registry.md }
 domain_path: platform
+diataxis_type: how-to
 ---
 
 # Architecture Decision Records (ADR) Process

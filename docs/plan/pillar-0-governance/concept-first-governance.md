@@ -26,13 +26,13 @@ file_depth_markers:
   l2_lines: "81-end"
   read_protocol: "L1 = methodology + diagnostic path + composition. L2 = CONCEPT_LOAD spec + scope boundary + anti-patterns."
 links:
-  - { rel: principle, href: ../../../../packages/principles/principles.yaml#P-META-020 }
+  - { rel: principle, href: ../../../packages/principles/principles.yaml#P-META-020 }
   - { rel: threshold, href: ./threshold-gate-v2.md }
   - { rel: cca, href: ./cognitive-context-architecture.md }
   - { rel: l1-ai, href: ../../../.claude/core-spines/L1_CORE_AI.md }
   - { rel: l1-gvrn, href: ../../../.claude/core-spines/L1_CORE_GVRN.md }
-  - { rel: inner-defaults, href: ../../_handoff/VAULT/inner-ai-defaults/README.md }
-  - { rel: topic-plan, href: ../../_handoff/VAULT/topic-plans/p-meta-020-concept-first-governance.md }
+  - { rel: inner-defaults, href: ../_handoff/VAULT/inner-ai-defaults/README.md }
+  - { rel: topic-plan, href: ../_handoff/VAULT/topic-plans/p-meta-020-concept-first-governance.md }
 domain_path: platform
 ---
 

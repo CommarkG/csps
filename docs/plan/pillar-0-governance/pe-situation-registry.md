@@ -29,6 +29,7 @@ links:
   - { rel: pe-schema, href: ../../../tools/templates/priority-engine.schema.yaml }
   - { rel: pe-connectivity-validator, href: ../../../tools/validators/validate-pe-connectivity.mjs }
   - { rel: enterprise-plan, href: ../_handoff/VAULT/topic-plans/enterprise-core-completion-plan.md }
+diataxis_type: reference
 ---
 
 # PE Situation Registry

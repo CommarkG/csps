@@ -21,6 +21,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: architecture-plan, href: ../../plan/_handoff/VAULT/topic-plans/csps-core-primitives-architecture.md }
   - { rel: platform-dna, href: ./csps-platform-dna.md }
+diataxis_type: reference
 ---
 
 # CSPS Core Primitives Registry

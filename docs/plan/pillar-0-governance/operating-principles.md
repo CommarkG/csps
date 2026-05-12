@@ -21,6 +21,7 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: reuse-first-detail, href: ./reuse-first-principle.md }
 domain_path: platform
+diataxis_type: reference
 ---
 
 # Operating Principles

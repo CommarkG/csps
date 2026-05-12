@@ -164,6 +164,31 @@ enforcement_stage: stub | planned | week-4 | active
 
 ---
 
+## `diataxis_type:` — Diátaxis documentation type *(S027 — mandatory for pillar-0-governance)*
+
+**Mandatory for all `docs/plan/pillar-0-governance/*.md` files** (enforced by `validate-diataxis-type.mjs`). Based on the [Diátaxis framework](https://diataxis.fr/) — the 4-quadrant documentation taxonomy used by Canonical, Python, Cloudflare.
+
+```yaml
+diataxis_type: tutorial | how-to | reference | explanation
+```
+
+| Value | Orientation | Serves | Examples in CSPS |
+|---|---|---|---|
+| `tutorial` | Learning | Beginners following steps | (rare in governance docs) |
+| `how-to` | Task | Practitioners achieving goals | adr-process, sandbox-ratification-policy, question-protocol, gradual-execution-protocol |
+| `reference` | Information | Practitioners looking up facts | behavioral-contracts, frontmatter-closed-enums, platform-health-questions, vocabulary |
+| `explanation` | Understanding | Anyone building mental models | concept-first-governance, cognitive-context-architecture, csps-layer-separation, reuse-first-principle |
+
+**Key decision guide:**
+- "I need to DO something" → `how-to`
+- "I need to LOOK UP something" → `reference`
+- "I need to UNDERSTAND something" → `explanation`
+- "I need to LEARN from scratch" → `tutorial`
+
+**Consuming validator:** `validate-diataxis-type.mjs` — BLOCKING if missing, ADVISORY if invalid value. PE=67 S027 mandate.
+
+---
+
 ## Common drift patterns (K=2 catalog)
 
 | Wrong | Right | Why drift |

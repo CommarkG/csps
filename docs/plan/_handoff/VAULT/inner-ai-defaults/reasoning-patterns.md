@@ -71,7 +71,7 @@ domain_path: platform
 - **disposition:** override
 - **reason:** Memory of earlier runs ≠ validation; multiple S132/S184/S227-class incidents prevented by RZF discipline
 - **caught_by_validator:** validate-rzf-evidence.mjs (LIVE — checks closing-summaries + verify-last-run.md for nominal-RZF; Level 2: live chat scan → VLT-S021-TRANSCRIPT-SCAN)
-- **opus_pattern:** Opus never says "I ran it." It pastes the output. Satisfaction fires at action for Sonnet; Opus requires observable state change. The test: "If I removed my claim sentence, would the tool output alone convince a skeptical reader?" If no: it's a declaration, not evidence.
+- **opus_pattern:** Opus never says "I ran it." It pastes the output. Satisfaction fires at action for Sonnet; Opus requires observable state change. The test: "If I removed my claim sentence, would the tool output alone convince a skeptical reader?" If no: it's a declaration, not evidence. Per P-META-025 (C&I): satisfaction fires at L1 (action taken). Opus operates at L3 (observable state change is the intent). The difference: AI done = I acted; C&I done = here is proof it worked.
 - **moat_relevance:** compound
 - **status:** active
 

@@ -38,6 +38,9 @@ consolidation_cross_refs:
   - libs/policies/base.zmodel          # foundation base mixin
   - docs/plan/pillar-2-data-and-schema/foundation-zmodel.md
   - docs/plan/_handoff/VAULT/topic-plans/foundation-slices.md
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /schema-expert — ZModel + RLS + multi-tenant schema design

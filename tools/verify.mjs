@@ -350,6 +350,22 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/elements_checked=(\d+)\s+advisories=(\d+)/); return m ? { elements_checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
   },
   {
+    // NEW S027+ — Opus RZF gap tracking: validates RZF NEGATIVE findings in opus-turn.md
+    // are tracked to specific artifacts (SROF/backlog/session-state). Advisory Phase 1.
+    // Spec: sonnet-comprehensive-alignment-s027.md P1-2. ZF as production chain discipline.
+    name: 'opus_rzf_gap_tracking',
+    command: 'node tools/validators/validate-opus-rzf-gap-tracking.mjs',
+    parse_output: (out) => { const m = out.match(/sections=(\d+)\s+tracked=(\d+)\s+advisories=(\d+)/); return m ? { sections: Number(m[1]), tracked: Number(m[2]), advisories: Number(m[3]) } : {}; },
+  },
+  {
+    // NEW S027+ — Opus CEC artifacts: validates CEC Applied YES claims cite traceable artifacts.
+    // Prevents "Applied YES" without proof (CEC equivalent of SP-001 satisfaction-point).
+    // Spec: sonnet-comprehensive-alignment-s027.md P1-2. Advisory Phase 1.
+    name: 'opus_cec_artifacts',
+    command: 'node tools/validators/validate-opus-cec-artifacts.mjs',
+    parse_output: (out) => { const m = out.match(/sections=(\d+)\s+applied_yes=(\d+)\s+cited=(\d+)\s+advisories=(\d+)/); return m ? { sections: Number(m[1]), applied_yes: Number(m[2]), cited: Number(m[3]), advisories: Number(m[4]) } : {}; },
+  },
+  {
     name: 'question_coverage',
     command: 'node tools/validators/validate-question-coverage.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },

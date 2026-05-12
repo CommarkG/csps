@@ -35,6 +35,9 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/system-health-plan.md
   - docs/plan/pillar-0-governance/council-registry.md
   - docs/plan/pillar-0-governance/moat-registry.md
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /balance-expert — Anti-overengineering + Complexity tracking

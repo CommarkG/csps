@@ -32,6 +32,8 @@ Trivial bug fixes and mechanical updates (updating a count, fixing a typo, archi
 - memory: `feedback_intent_crystallization_first.md` + MEMORY.md entry
 - contract: this entry + AGENTS.md hard NO sub-bullet
 
+**governing_intent:** Ensures the platform closes the gap between what humans say and what they need — acting on first expressions without crystallization produces the wrong thing at high quality, which is worse than producing nothing.
+
 **The UX/UI moat:**
 Every screen is customer-hired-for-a-job. Mobile-first is the constraint that forces simplicity. Progressive disclosure is the delivery mechanism. Example-driven classification is the anti-label technique. Wizard-of-Oz validation is the proof standard before automation. These are not suggestions — they are the platform's customer-facing DNA.
 

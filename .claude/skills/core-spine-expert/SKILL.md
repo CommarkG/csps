@@ -37,6 +37,9 @@ consolidation_cross_refs:
   - .claude/core-spines/L1_CORE_OPER.md
   - .claude/core-spines/L1_CORE_VALD.md
   - docs/plan/pillar-0-governance/csps-core-manifest.md
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /core-spine-expert — Spine classification, doctrine, conflict resolution

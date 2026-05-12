@@ -32,6 +32,9 @@ principle_compliance:
 consolidation_cross_refs:
   - docs/plan/pillar-5-ai-systems/README.md    # persona + agent UX
   - packages/glossary/glossary.yaml            # vocabulary for UX consistency
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /ux-expert — UX flows, friction, and developer experience

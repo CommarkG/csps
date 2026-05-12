@@ -30,3 +30,5 @@
 - hook: UserPromptSubmit reminder injection
 - validator: `vale-prose` linter against the anti-pattern phrase list (planned week 4)
 - schema: n/a
+
+**governing_intent:** Ensures the AI provides genuine value rather than comfort — the platform scales on real improvements, not on affirmation, and the Governor needs expert challenge more than agreement.

@@ -34,3 +34,5 @@
 - contract: this entry + `AGENTS.md` hard NO (S005 turn 19) + `ai-behavior-spine.md` row + `principles.yaml#P-META-008` + `tools/verify.mjs` orchestrator
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_PRE_CLOSE_VERIFICATION is Level 3 (Session Completeness — pre-close gate) in the unified completeness framework.
+
+**governing_intent:** Ensures session progress is real, not theatrical — only verified improvements compound, and the platform’s promise to the Governor is that every session delivered something provably real.

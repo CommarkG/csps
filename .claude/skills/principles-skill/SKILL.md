@@ -34,6 +34,9 @@ principle_compliance:
 consolidation_cross_refs:
   - packages/principles/principles-index.yaml    # manifest SSoT for principle discovery
   - packages/principles/principles/              # slice SSoT — load P-XXX-NNN.yaml not monolith
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /principles-skill — Principle lookup via MCP

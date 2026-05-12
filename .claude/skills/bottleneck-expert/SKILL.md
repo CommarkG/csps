@@ -33,6 +33,9 @@ principle_compliance:
 consolidation_cross_refs:
   - docs/plan/pillar-0-governance/system-health-plan.md    # health metrics
   - docs/plan/pillar-0-governance/council-registry.md      # council PE band alignment
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /bottleneck-expert — Find what breaks at scale before it breaks in production

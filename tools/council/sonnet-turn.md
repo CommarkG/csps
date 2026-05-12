@@ -37,6 +37,40 @@ schema-registry (since S009), new ARCH domain (materializes ARCH CORE intent), P
 
 ---
 
+# Sonnet Session S027+ — Comprehensive Alignment Brief INTENT ABSORBED
+
+## Read: sonnet-comprehensive-alignment-s027.md (Opus Turn 18-20 + P4 CEC hook)
+
+## Full scope (19 items, 4 sections):
+- §P1 BLOCKING: spine-graduation-principle.md + ZF validators + session-open injection
+- §P2 IMPORTANT: 5 cross-reference/enum/seed updates
+- §P3 POLISH: 4 template/skill updates (schema-registry P3-4 already done S027)
+- §P4 CEC: 6 P-META-025 C&I propagation surfaces
+
+## PE-ordered execution:
+1. P1-1 (PE=72): spine-graduation-principle.md — foundational GVRN doc
+2. P4-1 (PE=65): governing_intent → 6 priority B_* contracts
+3. P1-2 (PE=68): validate-opus-rzf-gap-tracking.mjs + validate-opus-cec-artifacts.mjs
+4. P2-4 (PE=62): frontmatter-closed-enums.md target_participant enum
+5. P4-2+P2-3 (PE=62+58): virtual-opus-audit.md Q6 + SP patterns (batch)
+6. P2-1 (PE=60): behavioral-contracts.md 3 Drive-Don't-Fight cross-refs
+7. P2-5 (PE=58): Core Seeds grows_to + Seed 2 GROWN resolution
+8. P4-3 (PE=55): reasoning-patterns.md C&I reference
+9. P4-4 (PE=58): sample-library.yaml governing_intent per SP
+10. P3-1+P4-6 (PE=50): gradual-build-plan §0 + C&I update (batch)
+11. P3-2 (PE=45): skill files template_grade + P-META-022 links
+12. P3-3 (PE=48): opus-brief.template.md CEC section
+13. P1-3: session-open.sh — protected path → present diff + wait Governor confirm
+14. P2-2+P4-5: AGENTS.md additions → check line count first
+
+## Verification tail after each section (mandatory per Turn 17):
+pnpm principles:split (if principles.yaml) + pnpm audit-runner:split (if audit-runner.md)
++ validate-universal-alignment.mjs --scan-new + pnpm verify exit_code=0
+
+## Governor directive absorbed: COMPLETION IS A VIRTUE — execute all, professionally, completely.
+
+---
+
 # Sonnet Session S027+ — Opus Turn 17 INTENT ABSORBED
 
 ## Opus Turn Read: Turn 17 — Self-audit on one-sentence quality

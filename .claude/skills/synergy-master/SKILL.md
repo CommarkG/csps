@@ -36,6 +36,9 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/council-registry.md    # council member registration
   - docs/plan/pillar-0-governance/qc-coverage-map.md     # where synergies surface
   - docs/plan/_handoff/VAULT/know-how/                   # EP/SG patterns to propagate
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /synergy-master — Core Cross-Synergy Analysis

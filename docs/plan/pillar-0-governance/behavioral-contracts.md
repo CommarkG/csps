@@ -57,6 +57,8 @@ Full canonical wording for every behavioral contract that binds AI behavior in C
 - validator: `vale-prose` linter against the anti-pattern phrase list (planned week 4)
 - schema: n/a
 
+**governing_intent:** Ensures the AI provides genuine value rather than comfort — the platform scales on real improvements, not on affirmation, and the Governor needs expert challenge more than agreement.
+
 ## B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK
 
 **Canonical wording:**
@@ -106,6 +108,8 @@ Full canonical wording for every behavioral contract that binds AI behavior in C
 - memory: `feedback_validate_before_assume.md` (S002 turn 7)
 - contract: this entry
 - schema: n/a
+
+**governing_intent:** Ensures the platform only advances on states that are genuinely demonstrated — claimed states cannot be trusted to drive downstream decisions, and real state change is the only legitimate foundation for compounding work.
 
 ## B_CHECK_EXISTING_DECISIONS_FIRST
 
@@ -651,6 +655,8 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 - contract: this entry + `AGENTS.md` hard NO (S005 turn 19) + `ai-behavior-spine.md` row + `principles.yaml#P-META-008` + `tools/verify.mjs` orchestrator
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_PRE_CLOSE_VERIFICATION is Level 3 (Session Completeness — pre-close gate) in the unified completeness framework.
+
+**governing_intent:** Ensures session progress is real, not theatrical — only verified improvements compound, and the platform’s promise to the Governor is that every session delivered something provably real.
 
 ## B_POSITIVE_VALUE_EXTRACTION — every significant positive event triggers an iterative cycle (S005 turn 20)
 
@@ -1205,6 +1211,11 @@ ALIGNMENT CHECK:
 
 **Cross-references:** P-META-017 / P-META-007 (FSE applies recursively to inner-defaults engraving) / P-META-009 (CCA composes — Quality Gates discipline overrides AI training defaults of cost-minimization) / P-META-015 (inner-defaults registry IS templated) / P-META-020 (Concept-First Governance — this contract's registry is the calibration instrument under P-META-020; the inner-defaults registry IS the reference-sample map for AI L2 inner-defaults domain).
 
+**Drive Don't Fight architecture cross-references:**
+- [sample-library.yaml](../_handoff/VAULT/inner-ai-defaults/sample-library.yaml) — SP-001..SP-007 positive/negative pairs for the 7 highest-drift patterns. Teaching moments and governing_intent per pattern.
+- [trigger-vocabulary.md](../_handoff/VAULT/inner-ai-defaults/trigger-vocabulary.md) — T1-T7 trigger words that activate training defaults. Consult before writing instructions to AI.
+- [alternative-vocabulary.md](../_handoff/VAULT/inner-ai-defaults/alternative-vocabulary.md) — CSPS-aligned replacements for trigger vocabulary. SSoT for instruction authoring.
+
 ---
 
 ## B_PE_ALIGNMENT_GUARDIAN — anti-sycophancy structured deflection (S006 turn 9 — CONSTITUTIONAL)
@@ -1728,6 +1739,8 @@ A consequential decision with fewer than 3 layers is a governance gap. Surface i
 
 **Cross-references:** P-META-021 (Triad Governance — the principle this contract operationalizes) / P-META-020 (Concept-First — the context layer of the triad; triad = P-META-020 + named principle + mechanical) / B_CONSENSUS_BEFORE_PROCEEDING (triad applied at phase boundaries) / P-META-006 RZF (the validation layer of the triad for ZF claims).
 
+**governing_intent:** Ensures the Governor’s actual intent (Layer 3) governs platform decisions, not the AI’s interpretation of the first expression (Layer 1) — the platform can only be as good as the quality of what it builds on.
+
 ## B_VERBATIM_HUMAN_TEXT — stay close to what humans provided; ask before presenting alternatives (S016)
 
 **Canonical wording:**
@@ -1859,6 +1872,8 @@ This is the **shiny object trap**. It is specifically the failure mode that crea
 - hook: `session-open.sh` + `session-open.sh` milestone gate — surfaced at every phase-complete event
 - memory: `feedback_completion_over_shiny.md` + MEMORY.md index
 - contract: this entry + AGENTS.md hard NO + `inner-ai-defaults/shiny-object-override.md` + PE schema
+
+**governing_intent:** Ensures the platform compounds reliably rather than accumulating half-finished work — a platform that starts everything and finishes nothing has zero production value regardless of how many principles it declared.
 
 **Cross-references:** B_PE_ALIGNMENT_GUARDIAN (anti-sycophancy — this is the completion-domain version) / P-META-018 (PE Alignment Guardian principle) / B_GRADUAL_BUILD_BY_FOUNDATIONS (foundation-first is completion-first) / B_STRUCTURAL_PREVENTION_DISCIPLINE (K=2 abandonment pattern → structural fix, not instance fix).
 
@@ -2089,6 +2104,8 @@ Trivial bug fixes and mechanical updates (updating a count, fixing a typo, archi
 - hook: `pre-tool-use-intent-gate.sh` (ADVISORY — fires on plan creation without threshold_route)
 - memory: `feedback_intent_crystallization_first.md` + MEMORY.md entry
 - contract: this entry + AGENTS.md hard NO sub-bullet
+
+**governing_intent:** Ensures the platform closes the gap between what humans say and what they need — acting on first expressions without crystallization produces the wrong thing at high quality, which is worse than producing nothing.
 
 **The UX/UI moat:**
 Every screen is customer-hired-for-a-job. Mobile-first is the constraint that forces simplicity. Progressive disclosure is the delivery mechanism. Example-driven classification is the anti-label technique. Wizard-of-Oz validation is the proof standard before automation. These are not suggestions — they are the platform's customer-facing DNA.

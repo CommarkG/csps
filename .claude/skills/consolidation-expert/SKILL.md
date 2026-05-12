@@ -34,6 +34,9 @@ principle_compliance:
 consolidation_cross_refs:
   - docs/plan/pillar-0-governance/schema-index.md    # SSoT canonical homes
   - docs/plan/_handoff/VAULT/know-how/error-patterns/EP-012-reuse-skip.md
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /consolidation-expert — Find what exists; consolidate before creating

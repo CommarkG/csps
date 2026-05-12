@@ -198,7 +198,9 @@ diataxis_type: how-to
 - **Documentation as improving system:** ❌ No cadence for doc review/update
 
 **Gap:** Large. Documentation is optional everywhere except where the Governor explicitly demanded it.
-**Core seed (S026):** Add `diataxis_type:` as mandatory field for all governance artifacts (currently optional) → `validate-frontmatter.mjs` checks its presence and valid value. This creates the documentation spine.
+**Core seed (S026) → ✅ GROWN S027:** `diataxis_type:` mandatory for pillar-0-governance/ (validate-diataxis-type.mjs ACTIVE). 69 artifacts classified. Seed resolved.
+
+**Core seed (S027 new):** `schema-registry.md` → ✅ GROWN S027 (Session A): docs/plan/pillar-0-governance/schema-registry.md created with 41 anchors + 3 resolution types. Seed resolved.
 
 **Context-export:** Every element should be exportable as `{frontmatter} + {content}` for cross-session context bundles. The context-orchestrator.sh is the start of this → enhance it to be the export mechanism.
 

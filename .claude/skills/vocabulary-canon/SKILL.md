@@ -33,6 +33,9 @@ principle_compliance:
   - P-META-002    # principles-travel-with-artifacts
 consolidation_cross_refs: []    # empty = genuinely-novel skill per B_CONSOLIDATION_PASS
 
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /vocabulary-canon — Naming + Frontmatter Reference

@@ -35,6 +35,9 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/opus-synthesis-prompt-S011.md    # the real Opus escalation path
   - docs/plan/_handoff/VAULT/know-how/error-patterns/EP-014-ai-mode-impersonation.md
   - tools/model-tier-registry.yaml    # tier registry for honest capability declaration
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /internal-deep-review — Structured Sonnet Critical Review

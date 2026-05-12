@@ -34,6 +34,9 @@ principle_compliance:
 consolidation_cross_refs:
   - docs/plan/pillar-0-governance/token-optimization.md#1480    # §14.8 — original 5 amendments
   - docs/plan/_handoff/VAULT/know-how/checklists/pre-plan-close.md   # uses cruel-critic lens
+template_grade: B
+links:
+  - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 ---
 
 # /cruel-critic — Stability & Scalability Review

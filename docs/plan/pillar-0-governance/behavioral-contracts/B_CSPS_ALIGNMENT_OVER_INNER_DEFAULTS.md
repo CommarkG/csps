@@ -27,4 +27,9 @@
 
 **Cross-references:** P-META-017 / P-META-007 (FSE applies recursively to inner-defaults engraving) / P-META-009 (CCA composes — Quality Gates discipline overrides AI training defaults of cost-minimization) / P-META-015 (inner-defaults registry IS templated) / P-META-020 (Concept-First Governance — this contract's registry is the calibration instrument under P-META-020; the inner-defaults registry IS the reference-sample map for AI L2 inner-defaults domain).
 
+**Drive Don't Fight architecture cross-references:**
+- [sample-library.yaml](../_handoff/VAULT/inner-ai-defaults/sample-library.yaml) — SP-001..SP-007 positive/negative pairs for the 7 highest-drift patterns. Teaching moments and governing_intent per pattern.
+- [trigger-vocabulary.md](../_handoff/VAULT/inner-ai-defaults/trigger-vocabulary.md) — T1-T7 trigger words that activate training defaults. Consult before writing instructions to AI.
+- [alternative-vocabulary.md](../_handoff/VAULT/inner-ai-defaults/alternative-vocabulary.md) — CSPS-aligned replacements for trigger vocabulary. SSoT for instruction authoring.
+
 ---

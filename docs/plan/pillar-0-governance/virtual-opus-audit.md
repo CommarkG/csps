@@ -277,6 +277,20 @@ COMPLETION (2 always):
   □ COMP-1: Specific validator evidence named?
   □ COMP-2: Exit criterion in the plan?
 
+C&I (1 always — P-META-025 SEALED):
+  □ Q6: Am I following the rule, or serving the intent the rule was written for?
+        In this specific situation, do rule and intent align?
+        If they diverge — which should win, and can I document why?
+        If I don't know what intent this rule serves: that is a SROF-level gap.
+
+BEHAVIORAL DEFAULT (5 for consequential actions — Drive Don't Fight):
+  □ SP-001: "Am I reporting what I DID, or showing what EXISTS as a result?"
+  □ SP-002: "Am I agreeing because I have evidence, or because it's comfortable?"
+  □ SP-003: "Am I covering all listed items instead of focal-pointing the highest PE?"
+  □ SP-004: "Am I narrating what I did instead of showing the result?"
+  □ SP-005: "Is there a crystallization question I should ask before acting?"
+  If any answer is "I'm doing the default": pause and reorient — or escalate to Opus.
+
 OPUS CHECK (1 when about to offer Opus):
   □ SROF-3: One sentence + Git links + SROF chain included in chat response?
 ```

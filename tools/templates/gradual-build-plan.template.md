@@ -195,6 +195,30 @@ WHY: The S014 canonical instance — project settings.json had permissions{} wit
 
 **Why this section exists:** The platform has infinite future situations. Rules enumerated for today's situations will not cover tomorrow's. The triad (context + principle + mechanical) is the only mechanism that scales. A plan that doesn't declare its triad for consequential decisions is a plan that will drift the moment a new situation appears. This section makes the governance architecture explicit — not as overhead, but as load-bearing structure.
 
+## §0b — RP Pattern Gate (Concern B — hidden debt prevention, S027)
+
+> **Check BEFORE any implementation phase.** The 7 recurring failure patterns (RP-001..007) extracted from S027 retrograde analysis. Prevents hidden governance debt accumulation between phases.
+> Reference: docs/plan/_handoff/VAULT/retrograde-principles-s027.md
+
+| RP | Pattern | Check this plan | Status |
+|---|---|---|---|
+| RP-001 | Week-4 deferred items — does this plan create "deferred" items without target sessions? | Every deferred item has `deferred_target_session: S<NNN>` | ☐ |
+| RP-002 | Count drift — does this plan add counts in descriptions that must match body content? | Descriptions with numbers will be validator-checked | ☐ |
+| RP-003 | Decorative fields — does this plan introduce new frontmatter fields? | Every new field declared in schema-registry.md with resolution type | ☐ |
+| RP-004 | Stale indexes — does this plan create any index/registry file? | If yes: `generated: true` + generator script planned | ☐ |
+| RP-005 | Aspirational sealing — does this plan seal anything at L1? | L1 sealing requires `implementation_evidence:` + `validator_active:` (ADR-0026) | ☐ |
+| RP-006 | Multi-topic intake — does this plan's scope span >2 CONCEPT_LOAD spines? | If yes: decompose per P-META-024 before crystallizing | ☐ |
+| RP-007 | Creation without checking — does this plan build new validators/hooks/contracts? | B_CONSOLIDATION_PASS run first; cite search results in §KH | ☐ |
+
+**C&I (P-META-025) self-check:** For each rule above — am I following the rule, or serving the intent the rule was written for?
+```
+Intent: preventing governance debt that compresses into invisible structural risk across sessions.
+```
+
+**Inter-phase validation gate (S027 enhancement):** At EVERY L<N>→L<N+1> boundary, re-run this §0b checklist.
+Do not wait until phase close. Check: has the phase created any RP-001..007 violations?
+If yes: resolve before advancing to next phase (not at session close).
+
 ---
 
 ## Required body sections

@@ -277,3 +277,103 @@ The question keeps the intent alive even when the implementation is partial. Thi
 - `docs/plan/pillar-0-governance/question-register.md` — platform-wide registry of all registered questions by phase and element
 - `audit-runner.md` slug: `question-coverage` — all elements have associated questions
 - Integration with context-orchestrator: question_register becomes part of the context bundle for each task class
+
+---
+
+## §S025 Amendment — The 8 Question Types + Mandatory Enforcement
+
+**Governor directive S025:** "Questions are the strongest context preservation tool there is. Make them mandatory and mechanically enforced in each and every step."
+
+The existing F+C+G+Q formula + 6-phase lifecycle described above is the FOUNDATION. The S025 amendment adds the TAXONOMY (8 typed questions) and ENFORCEMENT MAP (which type is mandatory where).
+
+### 8 Question Types
+
+| Code | Name | Role | Generates |
+|---|---|---|---|
+| **C** | Crystallization | Surface Layer 1→Layer 3 gap | goal_statement, done_criteria, failure_signal |
+| **A** | Alignment Verification | Close I→I loop at every boundary | UNDERSTANDING BLOCK, ALIGNMENT CONFIRMATION |
+| **G** | Gap-Surfacing | Reveal what AI doesn't know but should | missing context, background items |
+| **R** | Impact/Ripple | Surface second-order effects before acting | covered_paths, blast radius, R-checklist items |
+| **B** | Boundary Crossing | Force understanding declaration at AI boundaries | INTENT ABSORBED, UNDERSTANDING BLOCK format |
+| **Z** | Completion/ZF | Prevent nominal completion — force evidence | ZF evidence, exit criteria checked state |
+| **P** | Priority/PE | Prevent shiny-object hijacking | PE score, vault decision |
+| **X** | Context Preservation | Preserve context at every session/chat boundary | HANDOFF alignment questions, HPFA findings |
+
+### Question Type Variations
+
+**C-type (Crystallization):**
+- Narrowing: "You said X — do you mean A or B?" (reduces solution space)
+- Expanding: "Is there anything adjacent we should consider first?"
+- Assumption-surfacing: "You're assuming [Y] — what if it isn't true?"
+- Outcome-forcing: "Set aside the feature — what changes in your life if this works?"
+
+**A-type (Alignment Verification):**
+- Pre-action: "Before I do X — is that what you wanted?"
+- Post-action: "I did X. Does that match what you needed?"
+- Restatement: "Let me confirm: [summary]. Anything missing or wrong?"
+- The mirror: "You said [quote]. I heard [interpretation]. Is that right?"
+
+**G-type (Gap-Surfacing):**
+- Missing info: "What background would help me give you a better answer?"
+- Stakeholder: "Who else should know about this decision?"
+- Prior attempts: "Has this been tried before? What happened?"
+- Trigger: "What caused you to bring this up now versus earlier?"
+
+**R-type (Impact/Ripple):**
+- Dependency: "What does X depend on, and what depends on X?"
+- Reversibility: "If this turns out wrong, how hard is it to undo?"
+- Compounding: "If 100 apps use this pattern, what happens to the platform?"
+- Tenant: "What happens to other tenants if this change is deployed?"
+
+**B-type (Boundary Crossing):**
+- Pre-action (AI self-asking): "Do I understand what was asked well enough to act?"
+- Post-action: "Does my output match the intent I declared in the UNDERSTANDING BLOCK?"
+- Cross-session: "INTENT ABSORBED — I understand the previous session's mandate as [X]. Correct?"
+
+**Z-type (Completion/ZF):**
+- Evidence demand: "What validator output in THIS session proves this is done?"
+- Regression: "What would still be true if this actually failed?"
+- Milestone: "ASSUMPTION CHECK: [assumption]. STILL VALID ✓ / NEEDS RECHECK."
+- Drift: "INTENT DRIFT CHECK: goal_statement [X]. What was built [Y]. Match: YES/PARTIAL/NO."
+
+**P-type (Priority/PE):**
+- Scope: "Is this in scope of the current plan, or does it need a new plan first?"
+- Completion bias: "Is there active work >50% complete? Does this displace it?"
+- Vault test: "If this can wait 2 sessions without harm — should it go to the vault?"
+
+**X-type (Context Preservation):**
+- HANDOFF: "What outstanding open item from this session must the next session inherit?"
+- HPFA: "Did I generate questions I forgot to answer?"
+- Context-loss: "If I lost all memory of this session — what would break?"
+
+### Mandatory Insertion Points (S025)
+
+| Surface | Required types | How |
+|---|---|---|
+| Threshold intake Step 1 (receive) | G | "What might be missing that matters?" |
+| Threshold intake Step 3 (two-question) | G + A | Type 1: gaps. Type 2: AI's read. |
+| Threshold intake Step 6 (5-item loop) | C + A + G + R + Z | All until 5 items agreed |
+| Threshold intake Step 8 (ratify) | A | "Is this an accurate record?" |
+| WizardTemplate each step | A + Z | Alignment + completion per step |
+| Plan phase gate | Z + A | ZF evidence + "does output match intent?" |
+| Session open | X + P | Q1x-Q5x from previous HANDOFF + PE top-5 |
+| Session close / HANDOFF | X | 8 mandatory alignment questions |
+| MILESTONE ASSESSMENT | Z + A + G | Assumption check + drift check |
+| AI→human substantive output | A | ALIGNMENT CONFIRMATION at end |
+| AI→Sonnet (Opus output present) | B + A | INTENT ABSORBED + reflect back |
+| AI→subagent Agent() call | B | UNDERSTANDING BLOCK in prompt |
+
+### Mechanical Enforcement Roadmap
+
+**Now active:** C-type (validate-intent-crystallized.mjs — goal_statement/done_criteria/failure_signal), G-type routing (validate-routing-declared.mjs), B-type Opus boundary (validate-sonnet-report.mjs), A-type session output (validate-boundary-alignment.mjs), B-type Agent() (pre-tool-use-agent-alignment.sh advisory)
+
+**S026 target:** validate-question-coverage.mjs — checks question_register field present in new S025+ plans; checks WizardTemplate steps have question type declared
+
+**S027 target:** validate-handoff-alignment.mjs — checks HANDOFF has 8 X-type alignment questions (blocking); B_QUESTION_PROTOCOL behavioral contract
+
+### DNA Element 16 (pending ratification)
+
+> The Question Protocol — questions as mandatory context preservation checkpoints at every surface.
+> Platform validator: validate-question-coverage.mjs
+
+*S025 amendment | Governor directive: "Questions are the strongest context preservation tool."*

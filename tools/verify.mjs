@@ -225,6 +225,24 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+open_items=(\d+)/); return m ? { plans: Number(m[1]), open_items: Number(m[2]) } : {}; },
   },
   {
+    // NEW S025 — Contract harmonization: detects B_* contract contradictions + near-duplicates + orphans.
+    // Phase 2 (S027): LLM-assisted contradiction scoring → BLOCKING.
+    // Governor directive: "core health + harmonization — no contradictions in contracts."
+    name: 'contract_harmonization',
+    command: 'node tools/validators/validate-contract-harmonization.mjs',
+    parse_output: (out) => { const m = out.match(/contracts=(\d+)\s+orphans=(\d+)\s+tensions=(\d+)\s+overlaps=(\d+)/); return m ? { contracts: Number(m[1]), orphans: Number(m[2]), tensions: Number(m[3]), overlaps: Number(m[4]) } : {}; },
+  },
+  {
+    // NEW S025 — Question coverage: enforces Question Protocol (Phase 1 advisory).
+    // Checks: topic-plans have Z-type (done_criteria) + C-type (goal_statement) questions.
+    // WizardTemplate templates have G-type clarifying_questions.
+    // Phase 2 (S026): question_register field mandatory + WizardTemplate question_type per step.
+    // Governor directive: "Questions are the strongest context preservation tool — mandatory everywhere."
+    name: 'question_coverage',
+    command: 'node tools/validators/validate-question-coverage.mjs',
+    parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },
+  },
+  {
     // NEW S021 Governor directive — gradual-bundling: comprehensive check of all 7 bundling elements
     // Checks: depth discipline, humble batching, core spiral, GEP enforce_stage, PE alignment
     name: 'gradual_bundling',

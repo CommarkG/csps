@@ -8,6 +8,7 @@ lifecycle: production
 lifecycle_state: active
 template_used: meta-template
 template_status: novel-pending-pattern-evaluation
+template_grade: A  # Opus Turn 15 S026
 core_spine: AI
 core_spines: [AI, GVRN]
 template_id: skill-aap

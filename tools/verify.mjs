@@ -289,6 +289,13 @@ const CYCLES = [
     // WizardTemplate templates have G-type clarifying_questions.
     // Phase 2 (S026): question_register field mandatory + WizardTemplate question_type per step.
     // Governor directive: "Questions are the strongest context preservation tool — mandatory everywhere."
+    // NEW S026 — Crystallization bypass detector: catches SP-005 "just figure it out" pattern.
+    // AI acts without Q1c/Q2c/Q3c crystallization. Per P-META-022 + "Drive Don't Fight" CHUNK 5.
+    name: 'crystallization_bypass',
+    command: 'node tools/validators/validate-crystallization-bypass.mjs',
+    parse_output: (out) => { const m = out.match(/plans=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/); return m ? { plans: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; },
+  },
+  {
     name: 'question_coverage',
     command: 'node tools/validators/validate-question-coverage.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },

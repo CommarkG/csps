@@ -3,6 +3,7 @@ id: csps.handoff.vault.closing-summary-template
 name: closing-summary-template
 description: Required-header closing-summary template per protocols.md v1.7 §10. Every chat-close emits a closing summary using THIS template — every section is mandatory; empty section = audit fail post-runtime + AGENTS.md hard NO violation pre-runtime. Closes the protocol-compression-is-skipping gap surfaced S002 turn 14 (5 of 14 §10 items skipped).
 version: 1.0
+template_grade: A  # Opus Turn 15 S026
 owner: group:finky
 lifecycle: production
 lifecycle_state: active

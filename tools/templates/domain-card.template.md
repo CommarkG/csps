@@ -9,6 +9,7 @@ description: >
   at an older schema_version and flags them for update. One template; infinite instances;
   one update propagates everywhere.
 version: 1.0
+template_grade: B  # Opus Turn 15 S026
 schema_version: "1.1"
 owner: group:finky
 lifecycle: production

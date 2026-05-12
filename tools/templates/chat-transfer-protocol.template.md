@@ -3,6 +3,7 @@ id: csps.tools.templates.chat-transfer-protocol
 name: chat-transfer-protocol-template
 description: ZERO-DRIFT chat transfer protocol for CSPS task handoffs. Fixes the "common sense does not work on chat transfers" problem — explicit sender/receiver identity, mandatory declaration before action, required output per step, exact completion format, BLOCKED path. Use this for ALL AI-to-AI task transfers. Platform-agnostic — works for Claude, GPT, Gemini, Lovable, Bolt.
 version: 1.0
+template_grade: B  # Opus Turn 15 S026
 owner: group:finky
 lifecycle: production
 lifecycle_state: active

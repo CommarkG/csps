@@ -8,6 +8,7 @@ lifecycle: production
 lifecycle_state: active
 template_used: meta-template
 template_status: novel-pending-pattern-evaluation
+template_grade: A  # Opus Turn 15 S026
 core_spine: ARCH
 core_spines: [ARCH, GVRN, AI, VALD]
 schema_anchor: tools_templates_meta

@@ -25,7 +25,7 @@ tags:
 links:
   - { rel: parent, href: ./README.md }
   - { rel: spec-source, href: ../../plan/_handoff/VAULT/sonnet-capability-injection-S019.md }
-  - { rel: closing-summary, href: ../../plan/_handoff/closing-summary-template.md }
+  - { rel: closing-summary, href: ../_handoff/VAULT/closing-summary-template.md }
   - { rel: drift-registry, href: ../../../tools/config/drift-registry.yaml }
   - { rel: inner-ai-defaults, href: ../../plan/_handoff/VAULT/inner-ai-defaults/ }
   - { rel: build-verification-map, href: ../../../tools/config/build-verification-map.yaml }

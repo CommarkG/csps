@@ -29,7 +29,7 @@ links:
   - { rel: contract, href: ./behavioral-contracts.md#B_THRESHOLD_INTAKE_PROTOCOL }
   - { rel: step-0a, href: ./plan-creation-protocol.md#step-0a }
   - { rel: wizard-templates, href: ../../../libs/config/routing.config.ts }
-  - { rel: validator, href: ../../../tools/validators/validate-threshold-intake.mjs }
+  - { rel: validator, href: ../../../tools/validators/validate-intent-crystallized.mjs }
   - { rel: human-intent, href: ./human-intent-crystallization.md }
 session: S024
 impl_status: swift-implemented

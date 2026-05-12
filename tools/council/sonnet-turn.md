@@ -100,6 +100,50 @@ Template grades A/B/C/D now exist across 14 template files (commit ae8a4d7). But
 
 ## First action: read frontmatter-closed-enums.md, find insertion point, add enum
 
+---
+
+# Sonnet Report — S027++ Comprehensive Alignment + Session B + Core Completion Push
+
+## Done (this session, S027 comprehensive alignment + autonomous push)
+
+1. **Comprehensive Alignment Brief P1-P4 (14/14 items):**
+   - P1-1: spine-graduation-principle.md CREATED — formal testable L1/L2/L3 rules
+   - P1-2: validate-opus-rzf-gap-tracking.mjs + validate-opus-cec-artifacts.mjs
+   - P1-3: session-open.sh APP_BUILD_MODE + GOVERNANCE injections (confirmed)
+   - P4-1: governing_intent to 6 priority B_* contracts
+   - P4-2+P2-3: virtual-opus-audit.md Q6 + SP-001..005 behavioral checks
+   - P4-3+P4-4: reasoning-patterns C&I + sample-library governing_intent SP-001..005
+   - P2-1: B_CSPS_ALIGNMENT D-D-F cross-refs
+   - P2-2: AGENTS.md P-META-022/PACP compact cross-ref (199 lines)
+   - P2-5: core seeds schema-registry + diataxis_type marked GROWN
+   - P3-1+P4-6: gradual-build-plan §0b RP Pattern Gate (Concern B — hidden debt prevention)
+   - P3-2: 19 skill SKILL.md files — template_grade: B + P-META-022 link
+   - P3-3: opus-brief.template.md CREATED
+
+2. **Session B validators (RP-003/RP-004):**
+   - validate-schema-anchors.mjs: 248 anchors checked, 0 blocking, 47 in registry
+   - validate-generated-artifact-freshness.mjs: 5 L3 files, all fresh
+
+3. **Core completion push:**
+   - validate-spine-hierarchy.mjs: 27 files, 0 blocking (PE=67)
+   - validate-frontmatter-count-consistency.mjs: DNA §1 + principles counts (PE=70)
+   - validate-deferred-target-session.mjs: governance debt visible (32 rows, PE=75)
+   - Dead links: 71 → 57 (-14 total, 5 sessions of systematic fixing)
+   - schema-registry.md: 9 missing anchors added → 47 total
+
+## ZF State at S027++ close
+pnpm verify: exit_code=0 ✅ | 97 validators (was 88 at S027 open) | 79% health | ZF ACHIEVED
+
+## What Opus should know for Turn 18+
+1. 97 validators now (was 88): +9 new validators this session covering RP-001..004, spine hierarchy, count consistency, behavioral patterns, CEC/RZF artifacts
+2. Dead links: 71→57. Pattern: most are EXT- context files that don't exist (external intake contexts). 14 were simple path fixes.
+3. schema-registry.md: 47 anchors fully registered. validate-schema-anchors.mjs enforces going forward.
+4. governing_intent added to 6 priority contracts. This materializes P-META-025 (C&I) at the behavioral contract layer.
+5. Comprehensive alignment brief: ALL 14 ITEMS COMPLETE including protected path items (session-open.sh confirmed by Governor).
+6. Commits: 2139c26 (P1-P4 alignment), 37b111d (Session B+spine+count), 4847f59 (dead links+deferred), latest (dead links -2)
+
+---
+
 ## First action: baseline check + start Session A
 
 ---

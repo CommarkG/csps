@@ -127,6 +127,43 @@ pnpm verify exit_code=0 | Validators: 73 (sonnet-report added) | Slices synced: 
 
 ---
 
+# Sonnet Report — S027 Close
+
+## Done
+
+1. **SP-003 comprehensive-response detector (PE=70):** DONE — `validate-comprehensive-response.mjs` created + wired into verify.mjs + audit-runner.md slug `comprehensive-response` added + reasoning-comprehensive-coverage added to reasoning-patterns.md. Detects T3 trigger vocabulary without PE scores, Done sections with 5+ items, raw-thoughts-queue population.
+
+2. **diataxis_type mandatory for pillar-0-governance (PE=67):** DONE — `validate-diataxis-type.mjs` created (BLOCKING). 29 pillar-0-governance files updated with diataxis_type (how-to/reference/explanation). frontmatter-closed-enums.md section added with 4-value enum + decision guide. Slug `diataxis-type` registered in audit-runner.md.
+
+3. **validate-bottleneck-patterns.mjs (PE=65):** DONE — Class A (N+1 queries), Class B (O(N) validators), Class C (missing tenant indexes). Found 8 real N+1 patterns in budget-planner API routes. Advisory. reasoning-bottleneck-blindness added to reasoning-patterns.md per S019 spec.
+
+4. **Dead links systematic fix (PE=40):** DONE — 71 → 66 (-5). Fixed: concept-first-governance.md ×3 (bad relative paths), csps-bedrock.md ×1, csps-core-manifest.md ×1. Pattern: `../../_handoff/` should be `../_handoff/`.
+
+5. **Enforcement rate:** 31% → 35% (12/34 live entries). SP-003 + bottleneck-blindness both added as live validator entries. Target was 33%→36%; achieved 35%.
+
+6. **CEC triggered and completed:** diataxis_type section added to frontmatter-closed-enums.md; reasoning-bottleneck-blindness added (S019 spec previously only in vault doc, not in registry).
+
+## Differs from spec
+- Enforcement rate: spec said 33%→36%; achieved 35% (2 entries added, not 1) because CEC required adding bottleneck-blindness to inner-ai-defaults registry.
+- Dead links: fixed 5 (target was 4) — used one natural session to do an extra fix.
+- PE=78 (Budget Planner Gate 3 live validation): NOT DONE — requires real credentials (Governor must run manually). No change.
+
+## ZF Level 3 State
+pnpm verify: exit_code=0 ✅ | 91 validators (+3) | 35% enforcement | dead links 71→66
+
+## State at S027 close
+pnpm verify exit_code=0 | 91 validators | 79% health | enforcement 35% (12/34)
+Commit: a4fd49b
+
+## What Opus should know for Turn 16
+1. 5 behavioral detectors now active: SP-001 (satisfaction), SP-002 (agreement), SP-003 (comprehensive), SP-005 (crystallization-bypass), SP-006 is implied by context-pressure check. Enforcement coverage actively running.
+2. `validate-bottleneck-patterns.mjs` found 8 real N+1 patterns in budget-planner API routes — every API handler does findUnique(clerkId) + getEnhancedDb(). This is a live architectural gap. Session-claim pattern (cache tenantId in JWT) would eliminate all 8 hits. This is App #2 Layer 5 material.
+3. diataxis_type is now mandatory + enforced for pillar-0-governance. 69 artifacts classified.
+4. Dead links pattern: most use `../../_handoff/` when correct is `../_handoff/`. 66 remaining, systematic pattern makes them predictable to fix.
+5. PE=78 (Budget Planner Gate 3) deferred — needs Governor to run with real credentials.
+
+---
+
 # Opus Turn 10 Absorption — S025
 
 ## INTENT ABSORBED — Turn 10:

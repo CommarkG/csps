@@ -365,8 +365,14 @@ Where: B=blast_radius, D=dependency_significance, I=impact, Bn=blockers_now, PAS
 | S025 | reasoning-join-forces — inner-AI-defaults reasoning-patterns.md | 59 | commit 651159f |
 | S025 | Batch A: question_register + PE Phase 2 + split trigger + depth_tier enums | 72-68 | commit 189d92d |
 | S025 | Budget Planner schema: BudgetCategory + Transaction entities in schema.zmodel | 78 | commit 6acc9b9 |
-| S025 | completeness-module.md SSoT — 4 levels + 6 contracts + meta-completeness audit | 86 | this session |
-| S025 | gradual-build-plan.template.md: chat_split_trigger + estimated_context_weight | 69 | this session |
+| S025 | completeness-module.md SSoT — 4 levels + 6 contracts + meta-completeness audit | 86 | commit 34cdb2a |
+| S025 | gradual-build-plan.template.md: chat_split_trigger + estimated_context_weight | 69 | commit 34cdb2a |
+| S025 | Opus Turn 9 — P-META-023 SEALED + 4 systems ratified | 99 | commit 7384ad4 |
+| S025 | validate-completeness-coverage.mjs (meta-completeness) | 82 | this batch |
+| S025 | validate-template-grade.mjs (Grade A/B/C/D enforcement, advisory) | 74 | this batch |
+| S025 | intake-interrupt-protocol.md (×1.5/×2.0 thresholds, Opus ratified) | 76 | commit 7384ad4 |
+| S025 | PROTOCOL.md: L0-L3 consultation levels + EXPRESS format | 85 | commit 7384ad4 |
+| S025 | sonnet-to-opus-request-log.md (permanent SROF format) | 80 | commit 4980b44 |
 
 ---
 

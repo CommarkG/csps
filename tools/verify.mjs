@@ -236,6 +236,22 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/files=(\d+)\s+links_checked=(\d+)\s+broken=(\d+)/); return m ? { files: Number(m[1]), links: Number(m[2]), broken: Number(m[3]) } : {}; },
   },
   {
+    // NEW S025 — Meta-completeness: is the completeness system itself complete?
+    // Checks all 6 B_* completeness contracts + SSoT + ZF gates active.
+    // Phase 2 (S027): BLOCKING for missing contracts.
+    name: 'completeness_coverage',
+    command: 'node tools/validators/validate-completeness-coverage.mjs',
+    parse_output: (out) => { const m = out.match(/contracts=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/); return m ? { contracts: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; },
+  },
+  {
+    // NEW S025 — Template Grade A/B/C/D enforcement (advisory Phase 1).
+    // Grade A templates must have research_ref. Existing templates need grade assignment (Turn 10).
+    // Opus Turn 9 ratified the grade system: A=council, B=standard, C=provisional, D=experimental.
+    name: 'template_grade',
+    command: 'node tools/validators/validate-template-grade.mjs',
+    parse_output: (out) => { const m = out.match(/graded=(\d+)\s+advisories=(\d+)/); return m ? { graded: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
     name: 'contract_harmonization',
     command: 'node tools/validators/validate-contract-harmonization.mjs',
     parse_output: (out) => { const m = out.match(/contracts=(\d+)\s+orphans=(\d+)\s+tensions=(\d+)\s+overlaps=(\d+)/); return m ? { contracts: Number(m[1]), orphans: Number(m[2]), tensions: Number(m[3]), overlaps: Number(m[4]) } : {}; },

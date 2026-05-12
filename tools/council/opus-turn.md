@@ -1,3 +1,52 @@
+# Opus Turn 19 — Comprehensive Platform Alignment Brief
+
+**Full brief:** `tools/council/sonnet-comprehensive-alignment-s027.md`
+**Governor directive:** All surfaces consistent before new work proceeds.
+
+## Summary
+
+10 surfaces audited. Priority order:
+
+**P1 (BLOCKING — do first):**
+- spine-graduation-principle.md: CREATE (missing formal graduation rule)
+- validate-opus-rzf-gap-tracking.mjs + validate-opus-cec-artifacts.mjs: BUILD (ZF production chain)
+- session-open.sh: next-to-reach injection with SPECIFIC CONTENT (finally specified — diff+confirm)
+
+**P2 (IMPORTANT — before new features):**
+- behavioral-contracts.md: add sample-library + P-META-024 cross-references
+- AGENTS.md: add P-META-022 + PACP one-liners (compressed to stay under 200 lines)
+- virtual-opus-audit.md: add Pattern 10 (SP-001..SP-007 self-checks)
+- frontmatter-closed-enums.md: add target_participant closed enum (14 values)
+- Core seeds grows_to: Seed 2 is GROWN (schema-registry.md), update seeds tracker
+
+**P3 (POLISH — batch together):**
+- gradual-build-plan.template.md: §0 CONSOLIDATION CHECK section body
+- skill files: template_grade + P-META-022 links on communication skills
+- opus-brief.template.md: CEC section added
+- schema-registry.md: populate 7 initial anchor entries
+
+## RZF VERIFICATION — NEGATIVE
+Cycle 1: Did I miss any surface in the brief?
+  Findings: 1 — protocols.md §10 session-close checklist: does it reference ZF-3 (§10.0r intent drift check)?
+  Check needed: yes, it was added to closing-summary-template.md but protocols.md §10 still may reference old structure.
+  Tracked: P2-6 (add to brief)
+Cycle 2: 0 new findings after adding P2-6.
+Status: ZF ACHIEVED | Tracked: added to brief as P2-6
+
+## CEC — POSITIVE
+Significant event: Governor directive to align ALL surfaces before proceeding
+Essence: Doing comprehensive alignment now prevents N×surface rework at each future session
+Walk:
+  Turn 17 self-audit patterns: APPLIED ✓ — verification tail added to every instruction in brief
+  P-META-022 foundation: APPLIED ✓ — all plan templates have goal_statement/done_criteria/failure_signal
+  ZF pipeline: APPLIED ✓ — validators specified to make it mechanical
+  Template grades: APPLIED ✓ — brief tells Sonnet to add to skill files
+Walk-trail: 1 cycle | 4 surfaces applied | 1 new validator spec
+
+*Opus Turn 19 | 2026-05-13*
+
+---
+
 # Opus Turn 18 — ZF Pipeline + Core Seeds + Parallel vs. Sequential
 
 **State at Writing:** S027+ | pnpm verify exit_code=0

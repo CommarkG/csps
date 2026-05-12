@@ -34,3 +34,5 @@
 - hook: PostStop emits per-session audit summary; UserPromptSubmit surfaces aged findings
 - memory: `feedback_re_run_is_proof.md` + `feedback_complete_extraction_required.md` + `feedback_zero_findings_cycle_count_is_measurement.md`
 - contract: this entry + `pillar-0-governance/qc-audit-system.md`
+
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_QC_AUDIT is Level 4 (Meta-completeness) in the unified completeness framework.

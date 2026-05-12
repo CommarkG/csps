@@ -29,3 +29,5 @@
 - hook: PostStop scans session log for catch-language patterns + flags un-engraved
 - memory: `feedback_catch_to_engraving.md`
 - contract: this entry + AGENTS.md hard NO (turn 15)
+
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_CATCH_TO_ENGRAVING is Level 3 (Session Completeness — catch completeness) in the unified completeness framework.

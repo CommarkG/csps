@@ -74,6 +74,22 @@ if (!existsSync(STOP_HOOK)) {
   blockings.push('post-stop-pnpm-verify.sh missing — session close completeness not enforced');
 }
 
+// Check 4b: Each B_* completeness contract should reference completeness-module.md
+// Phase 2 addition: advisory for contracts not yet cross-referenced
+if (existsSync(CONTRACTS_FILE)) {
+  const contractsText = readFileSync(CONTRACTS_FILE, 'utf8');
+  for (const contract of REQUIRED_CONTRACTS) {
+    const contractIdx = contractsText.indexOf(`## ${contract}`);
+    if (contractIdx === -1) continue; // already caught above
+    // Find end of this contract's body (next ##)
+    const nextContractIdx = contractsText.indexOf('\n## ', contractIdx + 1);
+    const body = contractsText.slice(contractIdx, nextContractIdx > 0 ? nextContractIdx : contractIdx + 5000);
+    if (!body.includes('completeness-module')) {
+      advisories.push(`${contract} does not reference completeness-module.md — add cross-reference for SSoT chain`);
+    }
+  }
+}
+
 // Check 5: closingtext template has §10.0 section (session completeness)
 const CLOSING_TEMPLATE = join(ROOT, 'docs/plan/_handoff/VAULT/closing-summary-template.md');
 if (existsSync(CLOSING_TEMPLATE)) {

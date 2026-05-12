@@ -32,3 +32,5 @@
 - hook: `.claude/hooks/post-stop-zf-cycle.sh` (planned week-4) — auto-runs `pnpm verify` at session-close; failure prevents close
 - memory: `feedback_pre_close_verification.md` (S005 turn 19) — counterweight composes with `feedback_re_run_is_proof.md` (S002 turn 10) — re-run IS the proof; `pnpm verify` IS the re-run mechanism
 - contract: this entry + `AGENTS.md` hard NO (S005 turn 19) + `ai-behavior-spine.md` row + `principles.yaml#P-META-008` + `tools/verify.mjs` orchestrator
+
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_PRE_CLOSE_VERIFICATION is Level 3 (Session Completeness — pre-close gate) in the unified completeness framework.

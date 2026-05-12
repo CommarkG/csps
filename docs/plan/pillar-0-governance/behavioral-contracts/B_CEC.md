@@ -38,3 +38,5 @@
 - hook: PostStop hook auto-fires CEC walk on session-close for ratified items this session
 - memory: `feedback_complete_extraction_required.md` + `feedback_zero_findings_cycle_count_is_measurement.md`
 - contract: this entry + `principles.yaml#P-META-006`
+
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_CEC is Level 2 (Value Completeness) in the unified completeness framework.

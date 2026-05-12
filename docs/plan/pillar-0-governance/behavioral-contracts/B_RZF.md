@@ -37,3 +37,5 @@
 - hook: PostStop hook auto-emits evidence-block reminder; UserPromptSubmit hook surfaces RZF state
 - memory: `feedback_re_run_is_proof.md` + `feedback_zero_findings_cycle_count_is_measurement.md`
 - contract: this entry + `principles.yaml#P-META-006`
+
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_RZF is Level 1 (Finding Completeness) in the unified completeness framework.

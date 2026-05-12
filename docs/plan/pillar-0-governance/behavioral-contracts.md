@@ -350,6 +350,8 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - memory: `feedback_re_run_is_proof.md` + `feedback_zero_findings_cycle_count_is_measurement.md`
 - contract: this entry + `principles.yaml#P-META-006`
 
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_RZF is Level 1 (Finding Completeness) in the unified completeness framework.
+
 ## B_CEC — Complete Extraction Cycle (value verification, CSPS extension S002 turn 10)
 
 **Canonical wording:**
@@ -386,6 +388,8 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - memory: `feedback_complete_extraction_required.md` + `feedback_zero_findings_cycle_count_is_measurement.md`
 - contract: this entry + `principles.yaml#P-META-006`
 
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_CEC is Level 2 (Value Completeness) in the unified completeness framework.
+
 ## B_QC_AUDIT — QC audit-list discipline (S002 turn 11 operational layer)
 
 **Canonical wording:**
@@ -417,6 +421,8 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - hook: PostStop emits per-session audit summary; UserPromptSubmit surfaces aged findings
 - memory: `feedback_re_run_is_proof.md` + `feedback_complete_extraction_required.md` + `feedback_zero_findings_cycle_count_is_measurement.md`
 - contract: this entry + `pillar-0-governance/qc-audit-system.md`
+
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_QC_AUDIT is Level 4 (Meta-completeness) in the unified completeness framework.
 
 ## B_PROTOCOL_LITERAL_EXECUTION — every documented protocol step gets explicit per-step execution + evidence (S002 turn 14)
 
@@ -454,6 +460,8 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - memory: `feedback_protocol_compression_is_skipping.md`
 - contract: this entry + `_handoff/VAULT/closing-summary-template.md` + `protocols.md` v1.7 §10 + AGENTS.md hard NO
 
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_PROTOCOL_LITERAL_EXECUTION is Level 3 (Session Completeness) in the unified completeness framework.
+
 ## B_CATCH_TO_ENGRAVING — every observed gap MUST produce persistent artifact within the same session (S002 turn 15)
 
 **Canonical wording:**
@@ -480,6 +488,8 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - hook: PostStop scans session log for catch-language patterns + flags un-engraved
 - memory: `feedback_catch_to_engraving.md`
 - contract: this entry + AGENTS.md hard NO (turn 15)
+
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_CATCH_TO_ENGRAVING is Level 3 (Session Completeness — catch completeness) in the unified completeness framework.
 
 ## B_VALIDATE_BEFORE_ASSUME — strengthened with tool-call sandwich (S002 turn 15 amendment)
 
@@ -639,6 +649,8 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 - hook: `.claude/hooks/post-stop-zf-cycle.sh` (planned week-4) — auto-runs `pnpm verify` at session-close; failure prevents close
 - memory: `feedback_pre_close_verification.md` (S005 turn 19) — counterweight composes with `feedback_re_run_is_proof.md` (S002 turn 10) — re-run IS the proof; `pnpm verify` IS the re-run mechanism
 - contract: this entry + `AGENTS.md` hard NO (S005 turn 19) + `ai-behavior-spine.md` row + `principles.yaml#P-META-008` + `tools/verify.mjs` orchestrator
+
+**SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_PRE_CLOSE_VERIFICATION is Level 3 (Session Completeness — pre-close gate) in the unified completeness framework.
 
 ## B_POSITIVE_VALUE_EXTRACTION — every significant positive event triggers an iterative cycle (S005 turn 20)
 

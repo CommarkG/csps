@@ -163,23 +163,50 @@ moat_score:
     differentiation_moat: 4  # meaningfully better than alternatives
     marginal_moat: 2          # slight advantage, can be replicated quickly
     no_moat: 0                # no competitive advantage contribution
+  # ── Guardrails (Opus Turn 10 required before live scoring) ──────────────────────
+  guardrails:
+    declarant_authority:
+      moat_score_0_3: "Sonnet self-assesses (max +1.5 bonus, low stakes)"
+      moat_score_4_7: "Governor confirms before scoring (structural moat — moderate stakes)"
+      moat_score_8_10: "Opus ratification required before scoring (constitutional/compounding — high stakes)"
+      enforcement: "validate-pe-dashboard.mjs Phase 2 checks moat_ratified_by field for score >= 8"
+
+    required_citation_fields:
+      description: "Every non-zero moat_score must include these fields. Without citation, score defaults to 0."
+      fields:
+        moat_type: "constitutional | compounding | structural | differentiation | marginal"
+        moat_evidence: "One sentence: what makes this a moat, who cannot replicate, and why"
+        moat_ratified_by: "opus-turn-N | governor-YYYY-MM-DD | sonnet-self (only valid for score 0-3)"
+
+    display_format:
+      description: "Always display PE as two numbers: base + moat_bonus = final"
+      format: "PE {base_PE} + {moat_bonus} = {final_PE} [MOAT-PRIORITY if final_PE > 10]"
+      examples:
+        - "PE 8.0 + 0.0 = 8.0  (no moat contribution)"
+        - "PE 7.5 + 5.0 = 12.5 [MOAT-PRIORITY]  (constitutional moat)"
+        - "PE 6.8 + 4.0 = 10.8 [MOAT-PRIORITY]  (compounding moat, Governor confirmed)"
+
   examples:
     - item: "P-META-023 SEALED"
-      moat: constitutional_moat
-      score: 10
-      reason: "First platform to mechanically enforce intent crystallization at all 42 surfaces"
+      moat_type: constitutional_moat
+      moat_score: 10
+      moat_evidence: "First platform to mechanically enforce intent crystallization at all 42 surfaces — sealed by Opus"
+      moat_ratified_by: "opus-turn-9"
     - item: "PACP 14 participant types"
-      moat: compounding_moat
-      score: 8
-      reason: "Each new element typed → compounds; competitors need all 14 protocols"
+      moat_type: compounding_moat
+      moat_score: 8
+      moat_evidence: "Each new element typed → compounds; competitors need all 14 protocols AND routing AND SSoT"
+      moat_ratified_by: "opus-turn-10"
     - item: "validate-foundation-schema-drift.mjs"
-      moat: structural_moat
-      score: 6
-      reason: "Built into DNA; tenant isolation self-verifying on every commit"
+      moat_type: structural_moat
+      moat_score: 6
+      moat_evidence: "Built into DNA; tenant isolation self-verifying on every commit; Governor-confirmed"
+      moat_ratified_by: "governor-2026-05-12"
     - item: "Fix a typo in README"
-      moat: no_moat
-      score: 0
-      reason: "No competitive advantage"
+      moat_type: no_moat
+      moat_score: 0
+      moat_evidence: "(omit for score=0)"
+      moat_ratified_by: "sonnet-self"
 
 # ============================================================
 # §2 COMPLETION_PROXIMITY_BOOST (graduated; adopted from CSP S205)

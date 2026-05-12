@@ -97,3 +97,24 @@ pnpm verify exit_code=0 | Validators: 73 (sonnet-report added) | Slices synced: 
 - I→VI surface map (42 surfaces): DONE — threshold-intake-protocol.md §10.
 - Budget Planner App #2: domain DECIDED (Personal/Budget Planner) — topic-plan → S025.
 - Governance audit: 3 priority gaps identified (plan gate for governance artifacts / pillar hubs / advisory→blocking).
+
+---
+
+# Opus Turn 10 Absorption — S025
+
+## INTENT ABSORBED — Turn 10:
+Task 1: participant-protocol.md → L1-L2-hybrid + Category 6 (DONE)
+Task 2: PE schema → moat guardrails (moat_type + moat_evidence + moat_ratified_by + display format) (DONE)
+Task 3: S015 queue → classify 11 items A/B/C/D (DONE — see raw-thoughts-queue.md S025 AUDIT)
+Task 4: SROF-006 → RESPONDED
+
+## S015 Classification Summary:
+A (superseded, 4 items): S015-03 (PE dashboard), S015-04 (B_HUMBLE_EXECUTOR), S015-05 (B_AUTONOMOUS_BATCH), S015-06 (Chat State Snapshot)
+B (arc plan, 3 items): S015-02 (alignment gate Phase 2, pe:55, S027), S015-07 (assumption block, pe:45, S026), S015-09 (validators, pe:40, S027)
+C (needs Opus L1, 2 items): S015-10 (orchestrator, pe:65), S015-11 (CDAB, pe:60) → Turn 11 express review
+D (ambiguous, 2 items): S015-01 + S015-08 (slim-handoff SKILL.md, needs verification)
+
+## ALIGNMENT CHECK — Opus Turn 10:
+  What Opus communicated: L1-L2-hybrid for PACP; additive PE moat with 3 guardrails; classify then report S015 items
+  What I produced: All three tasks complete; Governor ratified hybrid split + guardrails per S025 approval
+  Match: YES ✅

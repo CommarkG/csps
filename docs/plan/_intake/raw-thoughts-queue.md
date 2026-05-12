@@ -77,3 +77,28 @@ PE-FULL fires and includes this queue. Each item is promoted or discarded before
    - NO (Band 3-4): vault with explicit DEFERRED reason, mark DISCARDED
 3. No item stays PENDING at plan close — every item gets a decision
 4. After processing: clear PROMOTED/DISCARDED items (keep only PENDING for next session)
+
+---
+
+## S025 AUDIT — Opus Turn 10 Protocol (A/B/C/D Classification)
+
+Classification date: 2026-05-12 | Protocol: Opus Turn 10 — classify, do not close unilaterally
+A=superseded | B=active+arc plan | C=active+needs Opus | D=ambiguous
+
+| ID | Item | Class | Evidence/PE/Trigger |
+|---|---|---|---|
+| S015-01 | slim-handoff §CORE-PILLARS in SKILL.md | **D** | Unclear if .claude/skills/slim-handoff/SKILL.md updated; needs verification before closing | pe: 35, trigger: S026 audit |
+| S015-02 | Stale plan alignment Phase 2 gate | **B** | Phase 1 shipped; Phase 2 integration not done | pe: 55, S027 |
+| S015-03 | PE computation mechanical | **A** | validate-pe-dashboard.mjs (S025, commit b8dbc92) makes PE mechanical | closed_by: b8dbc92 |
+| S015-04 | B_HUMBLE_EXECUTOR full contract | **A** | behavioral-contracts.md §B_HUMBLE_EXECUTOR complete (ASSUMPTION CHECK + INTENT DRIFT CHECK S024 + Q-CRYSTALLIZED S025) | closed_by: behavioral-contracts.md |
+| S015-05 | B_AUTONOMOUS_BATCH_WITH_PREFLIGHT | **A** | behavioral-contracts.md §B_AUTONOMOUS_BATCH_WITH_PREFLIGHT complete with Q-GATE+Q-COMPLETE+Q-GLOBAL+Q-INITIATED+Q-CRYSTALLIZED | closed_by: behavioral-contracts.md |
+| S015-06 | Chat State Snapshot template | **A** | tools/templates/chat-state-snapshot.template.md exists | closed_by: template exists |
+| S015-07 | Assumption block in gradual-build-plan | **B** | §0a INTENT CRYSTALLIZATION done (S025) but specific ASSUMPTION BLOCK per L<N> not yet added | pe: 45, S026 |
+| S015-08 | slim-handoff Zone A §CORE-PILLARS table (duplicate) | **D** | Duplicate of S015-01; same uncertainty | pe: 35, S026 combined |
+| S015-09 | validate-plan-harvest-coverage + execution-mode validators | **B** | Registered in audit-runner.md but not built | pe: 40, S027 |
+| S015-10 | Orchestrator mode-selection automation | **C** | Foundation ready (S025). Mode-selection design needed. Needs Opus express review before design | pe: 65, S026 Opus L1 |
+| S015-11 | CDAB formalization | **C** | P-META-017 + registry exist. MCP get_context NOT built. Enforcement rate 31%. Needs Opus review | pe: 60, S026 Opus L1 |
+
+**Summary:** A=4 (closed) | B=3 (in arc plan, assign S026-S027) | C=2 (Opus express needed) | D=2 (verify before action)
+
+**Opus reviews C+D items in Turn 11 (express format — 5 lines per item).**

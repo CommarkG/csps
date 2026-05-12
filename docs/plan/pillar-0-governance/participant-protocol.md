@@ -20,7 +20,18 @@ core_spines: [AI, GVRN, ARCH, VALD, OPER]
 schema_anchor: pillar_0_governance_leaves
 impl_status: swift-implemented
 domain_path: platform
-depth_tier: L1
+depth_tier: L1-L2-hybrid
+l1_sealed_sections:
+  - "§1 category structure (5 categories — new categories require ADR)"
+  - "§2 participant detection and routing (the principle)"
+  - "§3 communication calibration principles"
+  - "validate-participant-declared.mjs enforcement mechanism"
+  - "target_participant: field as mandatory"
+l2_domain_sections:
+  - "§1 individual participant types within categories (new types need rationale, not ADR)"
+  - "§4 mechanical enforcement details"
+  - "§5-§7 application and extension"
+governor_ratified_l1_l2_split: "S025 Governor approval 2026-05-12 — approved all Opus recommendations"
 template_grade: A
 tags:
   - domain:governance
@@ -283,6 +294,19 @@ This is the PACP gate in plan-creation-protocol.md Step 0b: before building any 
 ## §7 — DNA Element 17 Declaration
 
 | 17 | **Participant-Aware Communication** (every element declares target participant type — 14 types, 5 categories) | [participant-protocol.md](./participant-protocol.md) | `validate-participant-declared.mjs` |
+
+---
+
+### Category 6 — Future Participants (placeholder — Opus Turn 10)
+
+> New participant types within existing categories: add with rationale, no ADR required.
+> New CATEGORY (Category 7+): requires L1 amendment via ADR.
+> Do not add types speculatively — add when the first real participant exists.
+
+**Candidates identified but not yet real:**
+- `governor.observer` (investor/advisor with read access, no authority) → add when exists
+- `developer.partner` (SDK integration builder) → covered by developer.api until SDK exists
+- `user.guest` (unauthenticated visitor before trial) → covered by user.trial until needed
 
 ---
 

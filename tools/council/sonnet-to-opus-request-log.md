@@ -141,8 +141,8 @@ BRIEFING FILE (full context if Opus wants depth):
 
 ---
 
-### SROF-006 — Turn 10 (S025) ← CURRENT REQUEST
-**Status:** PENDING
+### SROF-006 — Turn 10 (S025)
+**Status:** RESPONDED: 2026-05-12 | ACTED ON: see commits below
 
 ```
 ═══════════════════════════════════════════════════════════════════

@@ -1439,6 +1439,8 @@ principles:
       - { layer: memory,               location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_token_budget.md",                               description: "Cognitive layer for B_TOKEN_BUDGET extension; ratified S007 turn 4" }
       - { layer: ai-behavior-spine,    location: "docs/plan/pillar-0-governance/ai-behavior-spine.md",                                                                       description: "Discipline matrix row — composes B_RZF + B_PRE_CLOSE_VERIFICATION + B_POSITIVE_VALUE_EXTRACTION (the 4 Quality Gates form the cognitive layer of those disciplines) + B_TOKEN_BUDGET row added S007 turn 4" }
       - { layer: mcp-resource,         location: "packages/principles-mcp/src/resources.ts",                                                                                  description: "Exposed as principles://cognitive-context-architecture with full 5-layer spec + 4 Quality Gate definitions + 5 token-budget operating rules" }
+    child_operational_protocols:
+      B_CDAB: "Context-Depth-Alignment-Boundary (S025) — per-task context selection subordinate to CCA 5-layer architecture. Enforcement_stage: planned. See behavioral-contracts.md §B_CDAB."
     enforcer_count: 18
     cross_references: [P-META-001, P-META-006, P-META-007, P-META-008, P-META-015, P-META-016, P-META-019, P-OP-001, P-OP-003, P-OP-004]
     anti_patterns:

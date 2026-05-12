@@ -26,6 +26,22 @@ output_contract:
   max_tokens: 4000
   no_synthesis_outside_main: true
   no_ratification_claims: true
+  zone_a_requirements:
+    core_pillars_required: true
+    # §CORE-PILLARS in Zone A is MANDATORY — AGENTS.md hard NO enforces this.
+    # Every HANDOFF must include a §CORE-PILLARS table showing:
+    #   5 Core Spine statuses (GVRN/ARCH/AI/OPER/VALD) + FOUNDATION_EXIT_GATE result.
+    # Confirmed missing by Opus Turn 11 grep (S025 D1+D2 resolution).
+    format: |
+      ### §CORE-PILLARS (Zone A — mandatory)
+      | Spine | Status | Notes |
+      |---|---|---|
+      | GVRN | [active/pending] | [key governance state] |
+      | ARCH | [active/pending] | [schema/code state] |
+      | AI | [active/pending] | [behavioral contracts/validators] |
+      | OPER | [active/pending] | [deployment/hooks state] |
+      | VALD | [active/pending] | [ZF/validator state] |
+      FOUNDATION_EXIT_GATE: [CLEAN/BLOCKING — validate-phase-exit-criteria.mjs result]
 trust_tier: platform-owned
 preflight_check_required: true
 principle_compliance:

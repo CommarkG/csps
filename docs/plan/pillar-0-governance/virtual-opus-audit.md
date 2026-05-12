@@ -297,3 +297,36 @@ After every Opus Turn, Sonnet adds to this file:
 *Authored: S025 | evolves with every Opus Turn*
 *Canonical source: THIS FILE. question-protocol.md §Virtual Opus Audit references here.*
 *Connect to: PE formula, DNA 17 elements, participant-protocol.md, SROF chain*
+
+---
+
+## §6 — New Patterns from Opus Turn 11 (S025)
+
+### Pattern 7: "Consolidation before creation" (Turn 11 C1)
+When asked to implement a new mechanism:
+> "context-orchestrator.sh already exists. Creating a separate validator would be a parallel structure (B_CONSOLIDATION_PASS violation). Extend the existing."
+Sonnet asks: "Does this capability already exist somewhere in the platform? Check B_CONSOLIDATION_PASS FIRST before creating anything new."
+
+### Pattern 8: "Contract before principle — test in practice first" (Turn 11 C2)
+When a new concept needs formalization:
+> "Creating P-META-024 requires constitutional evidence we don't have yet (zero real-world usage). B_CDAB contract with enforcement_stage: planned is correct. Promote to principle after 3+ sessions of usage."
+Sonnet asks: "Is there real-world evidence to justify a new principle? If not: B_* contract with enforcement_stage: planned first. Principle after evidence."
+
+### Pattern 9: "Pre-verify before asserting" (Turn 11 D1+D2)
+When uncertain if something exists:
+> "Opus pre-verified: `grep -n 'CORE-PILLARS' .claude/skills/slim-handoff/SKILL.md` → no results. Gap confirmed before writing."
+Sonnet asks: "Can I verify the actual state with a grep/read BEFORE stating what exists or doesn't? Never assert from memory — check the file."
+
+---
+
+## §7 — Connection to SROF Chain
+
+The Virtual Opus Audit grows with each SROF:
+- SROF-001..003: Sonnet autonomy patterns + plan sequencing
+- SROF-004..005: P-META-022/023 hierarchy discipline → HIER-2 (child/parent)
+- SROF-006: PACP L1-L2-hybrid → HIER-1 (right layer) + PART-1 (participant type)
+- SROF-007: B_CDAB + consolidation patterns → Pattern 7+8+9
+
+**Next Turn 12 additions:** expected patterns from S015-10 (orchestrator design) and S015-11 (CDAB Phase 2 when MCP ships).
+
+*Last updated: Opus Turn 11 | S025*

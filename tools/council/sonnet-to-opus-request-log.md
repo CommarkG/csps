@@ -248,8 +248,8 @@ BRIEFING FILE: docs/plan/pillar-0-governance/participant-protocol.md
 
 ---
 
-### SROF-007 — Turn 11 (S025) ← CURRENT REQUEST
-**Status:** PENDING
+### SROF-007 — Turn 11 (S025)
+**Status:** RESPONDED: 2026-05-12 | ACTED ON: see commit below
 
 ```
 ═══════════════════════════════════════════════════════════════════

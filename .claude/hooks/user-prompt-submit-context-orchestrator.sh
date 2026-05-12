@@ -83,6 +83,26 @@ detect_task_class() {
 TASK_CLASS=$(detect_task_class "$PROMPT_LOWER")
 TEMPLATE_FILE="$TEMPLATES_DIR/${TASK_CLASS}.json"
 
+# PLAN TYPE detection (C1 — Opus Turn 11 — S015-C1 resolved)
+# Reads active plan execution_mode + depth_chosen → LIGHTWEIGHT or COMPREHENSIVE context loading
+# Lightweight: velocity/balanced + depth 3 → minimal context (task-specific only)
+# Comprehensive: deep_quality + depth 4-5 → full DNA + arc + session + PE state
+get_plan_type() {
+  local ss_file="$(dirname "$0")/../../tools/session-state.json"
+  if [ ! -f "$ss_file" ]; then echo "LIGHTWEIGHT"; return; fi
+  node -e "
+    const d = JSON.parse(require('fs').readFileSync('$ss_file', 'utf8'));
+    const em = (d.session_mandate || {}).execution_mode || '';
+    const depth = (d.session_mandate || {}).depth_chosen || 3;
+    if (em === 'deep_quality' || depth >= 4) {
+      process.stdout.write('COMPREHENSIVE');
+    } else {
+      process.stdout.write('LIGHTWEIGHT');
+    }
+  " 2>/dev/null || echo "LIGHTWEIGHT"
+}
+PLAN_TYPE=$(get_plan_type)
+
 # Build JSON output
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ" 2>/dev/null || echo "unknown")
 PROMPT_LEN=${#PROMPT}
@@ -113,6 +133,11 @@ echo "$OUTPUT" > "$LOG_FILE" 2>/dev/null || true
 MODEL=$(echo "$REQUIRED" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>console.log(JSON.parse(d).model_tier||'Sonnet'))" 2>/dev/null || echo "Sonnet")
 COST=$(echo "$REQUIRED" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>console.log(JSON.parse(d).cost_estimate||0))" 2>/dev/null || echo "0")
 
->&2 echo "[context-orchestrator] task_class=${TASK_CLASS} model_tier=${MODEL} L1_cost~${COST}tok template=${TASK_CLASS}.json"
+>&2 echo "[context-orchestrator] task_class=${TASK_CLASS} plan_type=${PLAN_TYPE} model_tier=${MODEL} L1_cost~${COST}tok template=${TASK_CLASS}.json"
+if [ "$PLAN_TYPE" = "COMPREHENSIVE" ]; then
+  >&2 echo "[context-orchestrator] COMPREHENSIVE mode: load DNA + arc plan + full PE state + session history"
+else
+  >&2 echo "[context-orchestrator] LIGHTWEIGHT mode: load task-specific context only"
+fi
 
 exit 0

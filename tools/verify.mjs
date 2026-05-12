@@ -366,6 +366,35 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/sections=(\d+)\s+applied_yes=(\d+)\s+cited=(\d+)\s+advisories=(\d+)/); return m ? { sections: Number(m[1]), applied_yes: Number(m[2]), cited: Number(m[3]), advisories: Number(m[4]) } : {}; },
   },
   {
+    // Session B — Schema anchors: validates schema_anchor values against schema-registry.md.
+    // NEW anchors not in registry = BLOCKING. Pre-existing 248 all registered. RP-003 enforcement.
+    name: 'schema_anchors',
+    command: 'node tools/validators/validate-schema-anchors.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+clean=(\d+)\s+blocking=(\d+)\s+registry_size=(\d+)/); return m ? { checked: Number(m[1]), clean: Number(m[2]), blocking: Number(m[3]), registry: Number(m[4]) } : {}; },
+  },
+  {
+    // Session B — Generated artifact freshness: checks L3 instance files are recently regenerated.
+    // Advisory: flags if generator is >24h newer than generated file, or file is >7 days old. RP-004.
+    name: 'generated_artifact_freshness',
+    command: 'node tools/validators/validate-generated-artifact-freshness.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
+    // S028 — Spine hierarchy: validates L1/L2/L3 structural rules per spine-graduation-principle.md
+    // BLOCKING: missing sealed fields in L1, missing parent_l1_doctrine in L2/L3, non-canonical spines
+    // ADVISORY: do_not_expand violations in sealed L1 files. PE=67.
+    name: 'spine_hierarchy',
+    command: 'node tools/validators/validate-spine-hierarchy.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisories: Number(m[3]) } : {}; },
+  },
+  {
+    // S028 — Frontmatter count consistency: body counts match description counts. RP-002.
+    // Advisory: csps-platform-dna §1 rows, principles total_count, contracts total_count.
+    name: 'frontmatter_count_consistency',
+    command: 'node tools/validators/validate-frontmatter-count-consistency.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
     name: 'question_coverage',
     command: 'node tools/validators/validate-question-coverage.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },

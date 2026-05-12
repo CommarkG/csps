@@ -345,6 +345,71 @@ schema_anchors:
     spine: ARCH
     l2_domain: STRUCTURAL_INTEGRITY
     description: Graduation design artifacts (data model graduation)
+
+  # ─── Additional anchors discovered S027 corpus scan ────────────────────────
+
+  P-META-023:
+    type: governance-section
+    resolves_to: packages/principles/principles/P-META-023.yaml
+    spine: GVRN
+    l2_domain: DECISION_RIGHTS_CLARITY
+    description: P-META-023 I→VI principle slice (direct reference from principle)
+
+  pillar_6_ops_leaves:
+    type: governance-section
+    resolves_to: docs/plan/pillar-6-operations-and-delivery/
+    spine: OPER
+    l2_domain: WORKFLOW_INTEGRITY
+    description: Pillar 6 (operations and delivery) leaf artifacts
+
+  chat_transfers:
+    type: governance-section
+    resolves_to: docs/plan/_handoff/VAULT/
+    spine: GVRN
+    l2_domain: ACCOUNTABILITY_TRACEABILITY
+    description: Chat transfer artifacts (cross-chat continuity via lean handshake)
+
+  csep_vault:
+    type: governance-section
+    resolves_to: docs/plan/_handoff/VAULT/
+    spine: GVRN
+    l2_domain: ACCOUNTABILITY_TRACEABILITY
+    description: Cross-Synergy Enhancement Plan vault artifacts
+
+  governor_insights:
+    type: governance-section
+    resolves_to: docs/plan/_handoff/VAULT/
+    spine: GVRN
+    l2_domain: ACCOUNTABILITY_TRACEABILITY
+    description: Governor insights and directives (cardinal GP entries)
+
+  governor_prompts:
+    type: governance-section
+    resolves_to: docs/plan/_handoff/VAULT/governor-prompts/
+    spine: GVRN
+    l2_domain: ACCOUNTABILITY_TRACEABILITY
+    description: Governor prompts log files (alternate anchor for governor_prompts_session_log)
+
+  topic_plan_instance:
+    type: governance-section
+    resolves_to: docs/plan/_handoff/VAULT/topic-plans/
+    spine: GVRN
+    l2_domain: AMENDMENT_DISCIPLINE
+    description: Individual topic-plan instance artifact (specific plan file)
+
+  tools_templates_meta:
+    type: governance-section
+    resolves_to: tools/templates/
+    spine: ARCH
+    l2_domain: COMPOSITION
+    description: Template metadata artifacts (template-registry.md, template schemas)
+
+  templates:
+    type: governance-section
+    resolves_to: tools/templates/
+    spine: ARCH
+    l2_domain: COMPOSITION
+    description: Template files in tools/templates/ (alternate anchor for tools_templates_meta)
 ```
 
 ---

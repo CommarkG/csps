@@ -118,3 +118,40 @@ D (ambiguous, 2 items): S015-01 + S015-08 (slim-handoff SKILL.md, needs verifica
   What Opus communicated: L1-L2-hybrid for PACP; additive PE moat with 3 guardrails; classify then report S015 items
   What I produced: All three tasks complete; Governor ratified hybrid split + guardrails per S025 approval
   Match: YES ✅
+
+---
+
+# Sonnet Report — S025 Close
+
+## Done (selected highlights — full list in closing-summary-S025.md)
+1. P-META-023 SEALED by Opus Turn 9 — registered in principles.yaml (total_count=57)
+2. Budget Planner App #2 Layers 1-4 complete — Threshold Wizard live (QH-C-001 → YES)
+3. PACP DNA Element 17 — 14 participant types, L1-L2-hybrid, validate-participant-declared.mjs
+4. 85 validators active (+12 from S024)
+5. 11 Opus turns processed (SROF-001..007 all RESPONDED)
+6. S015 queue fully classified — 4A+3B+2C(resolved)+2D pending Turn 12
+7. B_CDAB created under P-META-009 (C2 from S015 queue, Opus Turn 11)
+8. Virtual Opus Audit — living SSoT with 9 patterns from Turns 1-11
+9. pnpm health: 76% (10/17 YES)
+10. SROF format with Git links + validate-opus-review-flagging.mjs (mechanism in action)
+
+## Deferred
+- Budget Planner Gate 3 live validation (real Supabase/Clerk/Stripe) → S026
+- validate-dead-links.mjs Phase 2 (BLOCKING) → S026
+- S015-D1+D2 slim-handoff SKILL.md verification → Turn 12
+- Template retroactive grading → Turn 12
+- B_CDAB enforcement activation → S026+ (awaits MCP get_context)
+
+## ZF State at S025 close
+ZF ACHIEVED ✅ | pnpm verify exit_code=0 | 85 validators | 57 contracts | 57 principles
+
+## ALIGNMENT CHECK — S025 full session:
+  What Governor wanted: complete platform core governance + Budget Planner + moat architecture
+  What was produced: P-META-023 SEALED + Layers 1-4 + PACP DNA 17 + 22 governance artifacts + 11 Opus turns
+  Match: YES — exceeded original scope ✅
+
+## What Opus should know for Turn 12
+1. S015-D1+D2: slim-handoff SKILL.md output_contract.zone_a_requirements was added (S025 Opus Turn 11). Need to verify if this is sufficient or if the §CORE-PILLARS section needs to appear in the actual SKILL.md body text that the skill uses as output guidance.
+2. Template retroactive grading (Turn 10 deferred): 14 templates need A/B/C/D grades. Sonnet has the initial list from Opus Turn 10. Ready for Turn 12 review.
+3. pe_context + moat_score formula: Governor ratified. Active in PE schema. No outstanding issues.
+4. B_CDAB enforcement_stage: planned — will surface again when MCP get_context ships.

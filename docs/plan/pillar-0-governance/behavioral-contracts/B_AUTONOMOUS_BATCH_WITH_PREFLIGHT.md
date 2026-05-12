@@ -23,7 +23,10 @@ PRE-FLIGHT — [batch name]
 Scope:    [N files] | [what they deliver] | ~[time est]
 Context:  [token estimate] — safe to continue | /compact before starting
 
-Q-GATE:      Is FOUNDATION_EXIT_GATE CLEAN? (validate-phase-exit-criteria.mjs)
+Q-GATE:        Is FOUNDATION_EXIT_GATE CLEAN? (validate-phase-exit-criteria.mjs)
+Q-CRYSTALLIZED: Is goal_statement present and human-authored for this work?
+  IF NO: run Reflect-Until-Match (plan-creation-protocol Step 0a) before this batch.
+  IF YES: proceed. (P-META-022 + B_INTENT_CRYSTALLIZATION)
 Q-COMPLETE:  Active work >50%? Does this batch contribute to completion or pivot?
 Q-GLOBAL:    Is this solution platform-generalizable? If yes, vault generalization first.
 Q-INITIATED: Is this work Governor-directed or AI-proactive? If AI-proactive + App layer → vault it.

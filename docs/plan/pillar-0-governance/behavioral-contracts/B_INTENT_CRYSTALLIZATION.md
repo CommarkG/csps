@@ -36,3 +36,10 @@ Trivial bug fixes and mechanical updates (updating a count, fixing a typo, archi
 Every screen is customer-hired-for-a-job. Mobile-first is the constraint that forces simplicity. Progressive disclosure is the delivery mechanism. Example-driven classification is the anti-label technique. Wizard-of-Oz validation is the proof standard before automation. These are not suggestions — they are the platform's customer-facing DNA.
 
 **Source:** Governor directive S023 — "this is another moat — strong focus on customers." Platform DNA: all construction transforms initial draft → accurate definition.
+
+**P-META-022 constitutional upgrade (S023):**
+B_INTENT_CRYSTALLIZATION is the operational CONTRACT. P-META-022 is the governing PRINCIPLE.
+The principle establishes WHY this matters (Layer 1-3 gap, compounding drift equation).
+The contract defines HOW it operates (wizard match, threshold_route, intent_crystallized field).
+See: [human-intent-crystallization.md](./human-intent-crystallization.md) for the constitutional framing.
+The 26-item checklist (B/C/I/R/M) in [threshold-intake-protocol.md](./threshold-intake-protocol.md) is the operational HOW at deeper resolution.

@@ -157,6 +157,14 @@ Full canonical wording for every behavioral contract that binds AI behavior in C
 - validator: n/a (judgment call)
 - schema: n/a
 
+**Cross-reference: P-META-022 (Human Intent Crystallization):**
+B_ASK_WHEN_FILLING_GAPS is the operational 4-condition gate for WHEN to ask.
+P-META-022 is the governing principle for WHY the gap exists in the first place (Layer 1-3 gap).
+The 4-condition gate fires because the human's expression is incomplete;
+P-META-022 explains why that incompleteness is the default condition, not the exception.
+The 9-step coaching protocol in [threshold-intake-protocol.md](./threshold-intake-protocol.md)
+extends this contract with the full discovery methodology (receive → gap-surface → iterate → ratify).
+
 ## B_AUTONOMY_4_CONDITIONS (CSP carry-forward)
 
 **Canonical wording:** (from CSP `AI_BEHAVIOR_AUTONOMY_AUDIT`)
@@ -1923,7 +1931,10 @@ PRE-FLIGHT — [batch name]
 Scope:    [N files] | [what they deliver] | ~[time est]
 Context:  [token estimate] — safe to continue | /compact before starting
 
-Q-GATE:      Is FOUNDATION_EXIT_GATE CLEAN? (validate-phase-exit-criteria.mjs)
+Q-GATE:        Is FOUNDATION_EXIT_GATE CLEAN? (validate-phase-exit-criteria.mjs)
+Q-CRYSTALLIZED: Is goal_statement present and human-authored for this work?
+  IF NO: run Reflect-Until-Match (plan-creation-protocol Step 0a) before this batch.
+  IF YES: proceed. (P-META-022 + B_INTENT_CRYSTALLIZATION)
 Q-COMPLETE:  Active work >50%? Does this batch contribute to completion or pivot?
 Q-GLOBAL:    Is this solution platform-generalizable? If yes, vault generalization first.
 Q-INITIATED: Is this work Governor-directed or AI-proactive? If AI-proactive + App layer → vault it.
@@ -2025,6 +2036,13 @@ Trivial bug fixes and mechanical updates (updating a count, fixing a typo, archi
 Every screen is customer-hired-for-a-job. Mobile-first is the constraint that forces simplicity. Progressive disclosure is the delivery mechanism. Example-driven classification is the anti-label technique. Wizard-of-Oz validation is the proof standard before automation. These are not suggestions — they are the platform's customer-facing DNA.
 
 **Source:** Governor directive S023 — "this is another moat — strong focus on customers." Platform DNA: all construction transforms initial draft → accurate definition.
+
+**P-META-022 constitutional upgrade (S023):**
+B_INTENT_CRYSTALLIZATION is the operational CONTRACT. P-META-022 is the governing PRINCIPLE.
+The principle establishes WHY this matters (Layer 1-3 gap, compounding drift equation).
+The contract defines HOW it operates (wizard match, threshold_route, intent_crystallized field).
+See: [human-intent-crystallization.md](./human-intent-crystallization.md) for the constitutional framing.
+The 26-item checklist (B/C/I/R/M) in [threshold-intake-protocol.md](./threshold-intake-protocol.md) is the operational HOW at deeper resolution.
 
 ## B_SANDBOX_BEFORE_IMPLEMENTATION — no code without a ratified, simulated sandbox spec (S023 — CONSTITUTIONAL)
 

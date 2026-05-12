@@ -78,6 +78,12 @@ priority_band: 1 | 2 | 3 | 4
 multi_session_arc: [S<NNN>, S<NNN+1>, ...]
 alignment_verified_session: S<NNN>    # updated each session this plan is reviewed
 execution_mode: velocity | balanced | deep_quality   # S015: velocity=speed/Sonnet, balanced=verify-gated/Sonnet, deep_quality=assumption-blocks/Opus for intersections
+# P-META-022 Intent Crystallization fields (REQUIRED for S023+ deep_quality plans — human-authored)
+goal_statement: ""         # Q2c outcome — HUMAN'S EXACT WORDS. AI never drafts this.
+done_criteria: []          # Q3c measurable done signals — HUMAN'S EXACT WORDS.
+failure_signal: ""         # M3 what failure looks like — HUMAN'S EXACT WORDS.
+intent_crystallized_at: "" # "S<NNN> turn <N>" | "Threshold Wizard" | "pre-session confirmation"
+threshold_intake_level: light | medium | deep
 depth_chosen: 3 | 4 | 5
 depth_rationale: |
   <factors evaluated:
@@ -113,6 +119,25 @@ muv_audit:
 **4. Existing infrastructure reuse:** [What existing validators, hooks, templates, contracts does this plan USE (not rebuild)?]
 
 **5. Governor decisions required before L2:** [List any VLTs or explicit approvals this plan needs before writes begin.]
+
+---
+
+## §0a — Intent Crystallization Record (P-META-022 — mandatory for new initiatives)
+
+> **Run plan-creation-protocol.md Step 0a before completing this section.**
+> The 9-step coaching protocol: receive freestyle → scan 26-item checklist → fill gaps →
+> 5-item agreement → draft → ratify. The 3 items below must be human-authored.
+
+**Problem (Q1c confirmed):** [human's words — what specific problem are we solving?]
+
+**Goal (Q2c confirmed — goal_statement):** [human's exact words — what does success look like?]
+
+**Done criteria (Q3c confirmed — done_criteria):**
+- [criterion 1 — observable, measurable]
+
+**Failure signal (M3 confirmed — failure_signal):** [human's words — what would tell us this failed?]
+
+**Crystallization status:** ✅ Human-authored | ⏳ Pending | ⚠️ AI-inferred (flag)
 
 ---
 

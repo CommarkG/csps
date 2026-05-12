@@ -27,3 +27,11 @@
 - hook: UserPromptSubmit reminder
 - validator: n/a (judgment call)
 - schema: n/a
+
+**Cross-reference: P-META-022 (Human Intent Crystallization):**
+B_ASK_WHEN_FILLING_GAPS is the operational 4-condition gate for WHEN to ask.
+P-META-022 is the governing principle for WHY the gap exists in the first place (Layer 1-3 gap).
+The 4-condition gate fires because the human's expression is incomplete;
+P-META-022 explains why that incompleteness is the default condition, not the exception.
+The 9-step coaching protocol in [threshold-intake-protocol.md](./threshold-intake-protocol.md)
+extends this contract with the full discovery methodology (receive → gap-surface → iterate → ratify).

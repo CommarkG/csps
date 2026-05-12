@@ -417,6 +417,45 @@ EXAMPLE:
 
 ---
 
+### `goal_statement:` — human-authored goal (P-META-022 Q2c)
+
+TYPE: string
+REQUIRED: Yes, for topic-plans with session: S023+ and execution_mode: deep_quality
+RULE: Must be human-authored or human-confirmed restatement. NEVER AI-drafted.
+      Governor's exact words preferred. AI restatement confirmed by human is acceptable.
+      If AI generates the goal_statement and human says "yes" — that is NOT crystallization.
+EMPTY: Omit field (triggers advisory via validate-intent-crystallized.mjs) or "EXEMPTED: [reason]"
+EXAMPLE:
+  `goal_statement: "Ship a Budget Planner that helps users see where their money goes"`
+
+---
+
+### `done_criteria:` — measurable completion signals (P-META-022 Q3c / ZF-4)
+
+TYPE: list of strings
+REQUIRED: Yes, same conditions as goal_statement
+RULE: Each item must be observable or measurable. "Success" is not a criterion.
+MINIMUM: 1 item. Items must be checkable by a person who wasn't in the session.
+EXAMPLE:
+  ```yaml
+  done_criteria:
+    - "pnpm verify exit_code=0 with budget-planner slice validators passing"
+    - "User can log a transaction and see updated balance without page refresh"
+    - "Tenant A cannot see Tenant B's transactions (adversarial test passes)"
+  ```
+
+---
+
+### `failure_signal:` — what failure looks like even if the feature appears built (P-META-023 M3)
+
+TYPE: string
+REQUIRED: Advisory for S025+ plans. NEVER AI-authored.
+RULE: Describes the observable state that means failure — even if pnpm verify passes.
+EXAMPLE:
+  `failure_signal: "Foundation code was modified to support this app (platform not foundry-ready)."`
+
+---
+
 ### `threshold_intake_level:` — intake depth routing for this plan
 
 ```yaml

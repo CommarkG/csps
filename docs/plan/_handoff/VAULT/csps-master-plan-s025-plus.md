@@ -77,13 +77,18 @@ links:
 - [x] P-META-022 Tier 1 active (S024)
 - [x] libs/ gate BLOCKING for new files (S024)
 - [x] apps/template/ complete (22/22 bedrock items)
-- [ ] Threshold Wizard UI design (Option B confirmed; UI spec needed S025)
-- [ ] personal.finance WizardTemplate in routing.config.ts (S025 Layer 1)
+- [x] personal.finance WizardTemplate in routing.config.ts (S025 DONE)
+- [x] apps/budget-planner/ forked from template (S025 DONE)
+- [ ] Threshold Wizard UI design (Option B confirmed; UI spec needed S026)
 
-**Platform governance maturity:**
-- Enforcement ratio: ~40% active blocking / 60% advisory → target 70/30 by S030
-- Floating elements: 15 identified S024 (see §6)
-- PE connectivity: manual scoring only → auto-compute target S025
+**Platform governance maturity (S025 close):**
+- Validators: 79 active (was 67 at S022)
+- DNA elements: 16 (Element 16 = Question Protocol, S025)
+- Enforcement ratio: ~42% active blocking / 58% advisory → target 70/30 by S030
+- Floating elements: 15 → 12 resolved in S024-S025 (see §6)
+- PE connectivity: validate-pe-dashboard.mjs ACTIVE (S025 DONE)
+- Moat coverage: 18/18 (M-18 closed S025)
+- DNA Protocol: dna-protocol-making-sure-that.md created S025
 
 ---
 
@@ -146,6 +151,25 @@ Where: B=blast_radius, D=dependency_significance, I=impact, Bn=blockers_now, PAS
 | **48** | validate-pe-dashboard.mjs — connect depth_chosen to D dimension | THIS PLAN | S026 | depth_chosen: 3 → D≤5; depth_chosen: 5 → D≥7 in auto-compute |
 | **47** | validate-pe-dashboard.mjs — connect ZF gate status to Bn dimension | THIS PLAN | S026 | Open plan gate = Bn≥8 in auto-compute |
 | **45** | Dynamic pillar hub files — 6 pillar _hub.md files | THIS PLAN | S027 | Each pillar has _hub.md listing schema entities + plan coverage + impl_status |
+
+### BAND 3b — DNA Protocol Items (PE 55-72) — Governor directive S025
+
+| **PE** | **Item** | **Plan** | **Session** | **Exit criteria** |
+|---|---|---|---|---|
+| **72** | question_register mandatory in plan frontmatter | dna-protocol §1 | S026 | validate-question-coverage.mjs Phase 2: blocking for S025+ plans |
+| **71** | tools/health-check.mjs — unified platform health dashboard | dna-protocol §11 | S026 | `pnpm health` shows moat + enforcement rate + PE top-5 + ZF status |
+| **70** | Plan split trigger — validate-gradual-bundling.mjs extension | dna-protocol §4 | S026 | Plans with >12 open items AND depth-5 get advisory: consider forking |
+| **68** | depth_tier field for governance artifacts (L1/L2/L3) | dna-protocol §2 | S026 | frontmatter-closed-enums.md addition; validate-frontmatter checks |
+| **68** | validate-dead-links.mjs — broken href detector (BLOCKING) | dna-protocol §5b | S026 | All links: href values resolve to real files |
+| **67** | DNA application evidence per element | dna-protocol §5a | S026 | validate-universal-alignment.mjs: application_evidence field |
+| **67** | diataxis_type mandatory for governance artifacts | dna-protocol §7 | S026 | validate-frontmatter.mjs enforces for pillar-0-governance/ |
+| **65** | validate-bottleneck-patterns.mjs | dna-protocol §3 | S027 | Serial tool chains + oversized plans + overload patterns detected |
+| **63** | validate-spine-hierarchy.mjs | dna-protocol §6 | S027 | L3 instances cannot contradict L1 sealed definitions |
+| **60** | inner-ai-defaults enforcement rate → 70% target | dna-protocol §9 | S026-S028 | Track A + B closes rate from ~50% to 70% |
+| **59** | reasoning-join-forces entry in reasoning-patterns.md | dna-protocol §9 | S026 | AI reasoning + CSPS context as complementary — override suppress-AI anti-pattern |
+| **58** | validate-template-coverage.mjs | dna-protocol §8 | S026 | K=2 auto-promotes to template creation; artifact types with registered templates |
+| **55** | North Star = C+Z question pair declared per element | dna-protocol §10 | S025 | question-protocol.md amendment |
+| **55** | B_SPLIT_THRESHOLD_DISCIPLINE behavioral contract | dna-protocol §4 | S026 | Defines when to fork a sub-plan (>12 items + depth-5) |
 
 ### BAND 4 — VAULTED (PE < 45) — Await their trigger
 
@@ -309,6 +333,18 @@ Where: B=blast_radius, D=dependency_significance, I=impact, Bn=blockers_now, PAS
 | S024 | threshold-and-p-meta-023-s025.md | 71 | commit c4c7ff1 |
 | S024 | reasoning-session-artifact-triggers-chat-close | 65 | commit 3283e73 |
 | S024 | Opus Turn 8 absorption — P-META-023 conditional seal | — | sonnet-turn.md |
+| S025 | validate-pe-dashboard.mjs + session-open injection | 95 | commit b8dbc92 |
+| S025 | Budget Planner Layer 1: personal.finance template + fork | 82 | commit ef9b1f3 |
+| S025 | plan-creation-protocol.md Step 0a → full 9-step coaching | 80 | commit 3d2f2be |
+| S025 | failure_signal + threshold_intake_level + threshold_participants → closed enums | 76 | commit 3d2f2be |
+| S025 | validate-contract-harmonization.mjs + validate-question-coverage.mjs | 84+73 | commit 604afe0 |
+| S025 | question-protocol.md §S025 amendment — 8-type taxonomy + enforcement map | 73 | commit 604afe0 |
+| S025 | DNA Element 16 (Question Protocol) — csps-platform-dna.md | — | commit 9564bf9 |
+| S025 | dna-protocol-making-sure-that.md — 12-group constitutional checklist | 88 | commit 9564bf9 |
+| S025 | csps-complete-architecture-s026.md topic plan — full unified architecture | 88 | commit 63198ad |
+| S025 | EXT-20260512-002-A architecture synthesis — 5-layer hierarchy + 9 pipelines | — | commit 63198ad |
+| S025 | M-18 moat component closed (18/18) | — | commit 63198ad |
+| S025 | csps-master-plan-s025-plus.md Band 3b — 14 DNA Protocol items PE-scored | — | this session |
 
 ---
 

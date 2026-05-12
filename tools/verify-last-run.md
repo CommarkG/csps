@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-12T19:22:04.054Z
-- finished_at: 2026-05-12T19:22:26.509Z
+- ran_at: 2026-05-12T20:02:36.327Z
+- finished_at: 2026-05-12T20:03:01.574Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-12T19:22:04.054Z",
-    "finished_at": "2026-05-12T19:22:26.509Z",
+    "ran_at": "2026-05-12T20:02:36.327Z",
+    "finished_at": "2026-05-12T20:03:01.574Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.6,
+        "duration_seconds": 7.4,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 0.7,
         "principles_loaded": 57,
         "findings_total": 0
       },
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 339,
+        "scanned": 342,
         "errors": 0,
         "warnings": 10,
         "exempt": 265
@@ -256,7 +256,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 1
+        "advisories": 0
       },
       {
         "name": "agreement_without_evidence",
@@ -282,7 +282,7 @@
         "command": "node tools/validators/validate-comprehensive-response.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "advisories": 0
       },
       {
@@ -339,9 +339,9 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
-        "issues": 0,
-        "advisory": 0,
+        "duration_seconds": 0.2,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -349,7 +349,7 @@
         "command": "node tools/validators/validate-research-reuse.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "total": 7,
         "active": 7,
         "stale": 0,
@@ -397,7 +397,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 89
+        "validators": 90
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -859,7 +859,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7
+        "duration_seconds": 7.2
       },
       {
         "name": "audit_runner_full_pass",

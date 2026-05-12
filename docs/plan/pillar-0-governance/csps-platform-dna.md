@@ -1,7 +1,7 @@
 ---
 id: csps.pillar-0-governance.csps-platform-dna
 name: csps-platform-dna
-description: Canonical formalization of CSPS Platform DNA — 13 DNA elements with definitions + canonical homes + validators + how each flows through platform processes (engrave / audit / plan-create / closing / reassessment / intake). Per S008 turn 12 user directive "formalize the focal points as core part of platform DNA + see how the DNA is involved in the platform's processes." Adapts CSP PLATFORM_DNA_INDEX.md to CSPS structure (5 spines + CSPS-native disciplines). Required pre-engraving consultation per [plan-creation-protocol.md §3 Step 2 DNA gate](./plan-creation-protocol.md).
+description: Canonical formalization of CSPS Platform DNA — 17 DNA elements with definitions + canonical homes + validators + how each flows through platform processes (engrave / audit / plan-create / closing / reassessment / intake). Per S008 turn 12 user directive "formalize the focal points as core part of platform DNA + see how the DNA is involved in the platform's processes." Adapts CSP PLATFORM_DNA_INDEX.md to CSPS structure (5 spines + CSPS-native disciplines). Required pre-engraving consultation per [plan-creation-protocol.md §3 Step 2 DNA gate](./plan-creation-protocol.md). [Updated S027: count corrected 13→17 — Elements 14/15/16/17 added S022-S025 but description not updated].
 version: 1.0
 owner: group:finky
 lifecycle: production
@@ -24,7 +24,7 @@ file_depth_markers:
   l1_lines: "1-80"
   l2_lines: "81-260"
   l3_lines: "261-end"
-  read_protocol: "L1 = 13 DNA elements catalog + DNA-process integration map. L2 = per-element detail. L3 = mechanical enforcement + references."
+  read_protocol: "L1 = 17 DNA elements catalog + DNA-process integration map. L2 = per-element detail. L3 = mechanical enforcement + §6b application evidence + references."
 links:
   - { rel: parent, href: ./README.md }
   - { rel: plan-creation-protocol, href: ./plan-creation-protocol.md }
@@ -37,7 +37,7 @@ domain_path: platform
 
 > **Per S008 turn 12 user directive:** *"formalize the focal points as core part of platform DNA + see how the DNA is involved in the platform's processes."* This file is the canonical home for "what counts as CSPS DNA." Every governed artifact passes the DNA gate at creation (per [plan-creation-protocol.md §3 Step 2](./plan-creation-protocol.md)).
 
-## §1 — The 13 CSPS DNA elements (canonical catalog)
+## §1 — The 17 CSPS DNA elements (canonical catalog)
 
 | # | DNA Element | Canonical home | Validator |
 |---|---|---|---|
@@ -59,7 +59,7 @@ domain_path: platform
 | 16 | **Question Protocol** (questions as mandatory context preservation checkpoints at every surface — 8 types: C/A/G/R/B/Z/P/X) | [question-protocol.md](./question-protocol.md) | `validate-question-coverage.mjs` |
 | 17 | **Participant-Aware Communication** (every element declares target participant type — 14 types: governor / developer.platform / developer.app / developer.api / user.solo / user.team / user.enterprise / user.trial / ai.sonnet / ai.opus / ai.haiku / ai.agent / ai.external / mixed) | [participant-protocol.md](./participant-protocol.md) | `validate-participant-declared.mjs` |
 
-**17 elements** (Element 16 added S025 — Question Protocol: questions are the strongest context preservation tool. Element 15 added S023. Element 14 added S022.) (Element 15 added S023 — P-META-022 Human Intent Crystallization. Element 14 added S022 per Opus Core Council approval — Phase 0 proceed). Each has a canonical home. Each has a validator (active or week-4). **Plans pass through DNA gate (Step 2 of [plan-creation-protocol.md](./plan-creation-protocol.md)) confirming all 15 elements considered or explicitly N/A.**
+**17 elements** (Element 16 added S025 — Question Protocol: questions are the strongest context preservation tool. Element 15 added S023. Element 14 added S022.) (Element 15 added S023 — P-META-022 Human Intent Crystallization. Element 14 added S022 per Opus Core Council approval — Phase 0 proceed). Each has a canonical home. Each has a validator (active or week-4). **Plans pass through DNA gate (Step 2 of [plan-creation-protocol.md](./plan-creation-protocol.md)) confirming all 17 elements considered or explicitly N/A.**
 
 ## §2 — DNA process integration map (how DNA flows through platform)
 
@@ -68,7 +68,7 @@ domain_path: platform
 ```
                     INTAKE (B_INTAKE_DISCIPLINE)
                          ↓ external content arrives
-                    DNA gate (16 elements check)
+                    DNA gate (17 elements check)
                          ↓
               ┌────────────┴────────────┐
               ↓                         ↓
@@ -107,13 +107,13 @@ domain_path: platform
 | Process | DNA elements touched |
 |---|---|
 | **INTAKE** (B_INTAKE_DISCIPLINE) | vocab + naming + SCHEMA + Context-Loss + LAYER |
-| **ENGRAVING** (FSE 5/5 atomic) | All 13 — engraving IS the platform's DNA-replication mechanism |
-| **PLAN CREATION** | All 13 (Step 2 DNA gate is mandatory for ALL plans) |
+| **ENGRAVING** (FSE 5/5 atomic) | All 17 — engraving IS the platform's DNA-replication mechanism |
+| **PLAN CREATION** | All 17 (Step 2 DNA gate is mandatory for ALL plans) |
 | **PLAN EXECUTION** | Principles (per-step validation) + Behavioral Contracts (per-action) + Quality Gates (per-decision) + Depth Levels (per-read) + Context-Loss (per-batch) |
 | **AUDIT** | Validators (per element) + SCHEMA (per artifact) + Naming + Vocab |
 | **REASSESSMENT** | Priority Engine (re-fire) + Principles (re-rank) + Templates (re-validate) |
-| **CLOSING** | All 13 (HPFA 9-check verifies coverage) |
-| **HANDOFF** | All 13 (Zone D §17 attestation cites every DNA element) |
+| **CLOSING** | All 17 (HPFA 9-check verifies coverage) |
+| **HANDOFF** | All 17 (Zone D §17 attestation cites every DNA element) |
 
 **Why this matters:** without explicit DNA-process map, platform processes drift independently. With this map, every process is DNA-anchored — drift detected at boundary; mechanical enforcement composes.
 
@@ -173,7 +173,7 @@ dna_gate:
 - **CSPS-native additions:** Behavioral Contracts (B_*) + Quality Gates (QG1-QG4 immutable) + Templates (B_TEMPLATE_FIRST_CREATION) + Five-Surface Engraving (FSE) + Context-Loss Discipline (NEW S008 turn 12)
 - **CSPS-deferred:** pillars (CSP has 4: CONTEXT/GOVERNANCE/TIMING/INTEGRITY; CSPS uses 5-spine system instead per [EXT-20260505-001-F](../_handoff/VAULT/contexts/governance/token-optimization/EXT-20260505-001-F-80-10-10-session-rule-and-pillar-balance.md) — defer pillar-layer until ADR-0025 CNST/GVRN split ratifies)
 
-**Total CSPS:** 13 DNA elements (vs CSP 9+1) — richer because CSPS includes operational disciplines (B_* / QG / Templates / FSE / Context-Loss) that CSP keeps separate.
+**Total CSPS:** 17 DNA elements (vs CSP 9+1) — richer because CSPS includes operational disciplines (B_* / QG / Templates / FSE / Context-Loss / Human-Intent / Questions / Participants) that CSP keeps separate.
 
 ## §6 — Mechanical enforcement summary
 

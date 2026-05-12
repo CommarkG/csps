@@ -318,6 +318,26 @@ When uncertain if something exists:
 > "Opus pre-verified: `grep -n 'CORE-PILLARS' .claude/skills/slim-handoff/SKILL.md` → no results. Gap confirmed before writing."
 Sonnet asks: "Can I verify the actual state with a grep/read BEFORE stating what exists or doesn't? Never assert from memory — check the file."
 
+### Pattern 10: "Declaration without implementation = governance debt" (S027 retrograde — pending Opus review)
+Extracted from S027 retrograde analysis of 7 recurring failure patterns. All share one root:
+the gap between declaration and implementation is not tracked as debt.
+> "The platform knows what was declared. It doesn't know what fraction of declarations
+> are implemented. Current estimate: ~88 declared-but-not-implemented items ÷ 92 active
+> validators ≈ 95% governance debt ratio. This ratio is unsustainable at 30 apps."
+
+When evaluating a proposed declaration (new principle, validator registration, week-4 deferral):
+Sonnet asks: "Does this add to governance debt without a concrete implementation path?
+Is there a named session target? If none: should we BUILD first, then DECLARE — not declare first?"
+
+Core sub-patterns:
+- RP-001: week-4 items must have target session or they become OVERDUE
+- RP-004: index artifacts are generated, never manually maintained
+- RP-005: L1 sealing requires implementation evidence, not just ratification
+- RP-003: fields that don't resolve don't govern
+
+Full spec: `docs/plan/_handoff/VAULT/retrograde-principles-s027.md`
+**Status: pending Opus SROF-008 review.**
+
 ---
 
 ## §7 — Connection to SROF Chain
@@ -327,7 +347,10 @@ The Virtual Opus Audit grows with each SROF:
 - SROF-004..005: P-META-022/023 hierarchy discipline → HIER-2 (child/parent)
 - SROF-006: PACP L1-L2-hybrid → HIER-1 (right layer) + PART-1 (participant type)
 - SROF-007: B_CDAB + consolidation patterns → Pattern 7+8+9
+- SROF-008 (pending): Schema + Core Spines architecture review → Pattern 10 (governance debt)
+  Full request: `docs/plan/_handoff/VAULT/opus-srof-schema-and-spines-review.md`
 
-**Next Turn 12 additions:** expected patterns from S015-10 (orchestrator design) and S015-11 (CDAB Phase 2 when MCP ships).
+**Next Turn 16 additions:** expected from SROF-008 — schema_anchor resolution design,
+L3 populator architecture, RP-005 L1 sealing amendment decision, 5 missing L2 domains verdict.
 
-*Last updated: Opus Turn 11 | S025*
+*Last updated: S027 (Pattern 10 added Sonnet-side pending Opus review)*

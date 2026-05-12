@@ -447,6 +447,55 @@ PE ordering for the compound fix:
 
 ---
 
+## §D — Retrograde Principles (from retrograde-principles-s027.md — full document)
+
+Seven recurring problem classes were identified this session. Each has a principle that
+would have prevented it if ratified. Summary for Opus:
+
+| # | Principle | Problem prevented | PE | Constitutional? |
+|---|---|---|---|---|
+| RP-001 | WEEK-4 IS A COMMITMENT | Deferred-forever (instance populator, 21 sessions) | 75 | No |
+| RP-002 | BODY COUNT MATCHES FRONTMATTER COUNT | Count drift (DNA: 13/15/16/17 in one file) | 70 | No |
+| RP-003 | FIELDS THAT DON'T RESOLVE ARE DECORATION | Decorative schema_anchor (43 orphans, no resolution) | 72 | No — needs schema-registry first |
+| RP-004 | INDEX ARTIFACTS ARE GENERATED, NEVER MAINTAINED | Stale L3 (S006 entries, 93+ actual artifacts) | 78 | Yes — modifies artifact model |
+| RP-005 | CORE PRINCIPLES REQUIRE IMPLEMENTATION PROOF BEFORE SEALING | ZModel SSoT declared; packages/database/ missing | 80 | Yes — modifies L1 sealing protocol |
+| RP-006 | MULTI-TOPIC PROMPTS MUST BE DECOMPOSED | Threshold sees shape, not content (7 concerns = "Standard chat") | 68 | Yes — new P-META-024 |
+| RP-007 | CONSOLIDATION CHECK IS MECHANICAL | Quick creation without checking existing (B_CONSOLIDATION_PASS behavioral-only) | 65 | No |
+
+**The meta-principle behind all 7:**
+> Every governance declaration creates a completion obligation. The platform must track
+> the ratio of declarations to implementations. Current governance debt estimate:
+> ~88 declared-but-not-implemented items ÷ 92 active validators = ~95% governance debt ratio.
+> This ratio is unsustainable at 30 apps.
+
+**Proposed: P-META-??? — DECLARATION COMPLETENESS DISCIPLINE**
+Every declared-but-not-implemented governance item is tracked as "governance debt."
+`pnpm health` surfaces the debt ratio. Above 80% = ❌ (not just ⚠️).
+Full spec in `retrograde-principles-s027.md`.
+
+---
+
+## §E — Completion Path (Opus Priority Decisions)
+
+These 7 questions, if resolved by Opus in ONE review, unblock all high-PE Sonnet work:
+
+| # | Question | Blocks | PE unlocked |
+|---|---|---|---|
+| E1 | Where is the canonical ZModel schema location? | schema-registry.md, ARCH CORE validation | 82 |
+| E2 | Is Budget Planner Gate 3 independent of schema governance? | PE=78 live validation | 78 |
+| E3 | Is RP-005 (L1 sealing + implementation proof) constitutional? | L1 amendment protocol | 80 |
+| E4 | Is RP-004 (generated:true artifact model) constitutional? | L3 populator architecture | 78 |
+| E5 | Add 5 missing L2 domains? (SCHEMA_GOVERNANCE etc.) | L2 domain structure | 65 |
+| E6 | Is RP-006 an extension of P-META-023 or new P-META-024? | multi-topic decomposition | 68 |
+| E7 | Should schema_anchor resolve to: ZModel entity / governance section / TS type? | schema-registry.md design | 75 |
+
+**Optimal Opus response format:**
+For each E1-E7: one line. YES/NO/AMENDMENT REQUIRED. If amendment: specify surface.
+Do NOT elaborate beyond what's needed to unblock. Sonnet implements; Opus adjudicates.
+
+---
+
 **SROF request number:** SROF-008 (pending Governor approval to send)
-**Git state at preparation:** commits a4fd49b, 84f6a6a, 6a26b64, f4f1cc9 (all S027)
-**Validators at preparation:** 92 active | pnpm verify exit_code=0 | 79% health
+**ZF cycle:** pnpm verify exit_code=0 ✅ | DNA count fixed (13→17) ✅ | 92 validators
+**Git state at preparation:** b4cc925 (opus-srof + raw-thoughts) + pending DNA fix commit
+**Retrograde doc:** retrograde-principles-s027.md in same VAULT directory

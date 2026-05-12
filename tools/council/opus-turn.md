@@ -1,3 +1,162 @@
+# Opus Turn 16 — SROF-008: Schema + Spines + Retrograde Principles (7 blocks + 3 constitutional)
+
+**State at Writing:** S027+ | pnpm verify exit_code=0 | 92 validators | Read: full opus-srof-schema-and-spines-review.md
+
+---
+
+## E1–E7 Adjudication (one line each — unblocking PE=82 compound fix)
+
+**E1: Canonical ZModel schema location?**
+AMENDMENT REQUIRED. The ARCH CORE "ZModel as schema source of truth" is correct — but the implementation was always: platform foundation in `libs/policies/schema.zmodel`, each app extends in `apps/{app}/schema/`. `packages/database/` never existed as intended. Update ARCH CORE L1 from "ZModel as SSoT" to "ZModel defines data contracts; platform foundation = `libs/policies/schema.zmodel`; apps extend in `apps/{app}/schema/`." This is a refinement, not a reversal.
+
+**E2: Budget Planner Gate 3 independent of schema governance?**
+YES. Gate 3 (live DB validation with real credentials) is app-specific. Build it without waiting for schema governance decisions.
+
+**E3: RP-005 (L1 sealing requires implementation proof) — constitutional?**
+YES — RATIFIED AS CONSTITUTIONAL. This is the most important of the 7. We have been sealing aspirational principles. The ZModel SSoT gap proves it. Amendment: add to L1 sealing protocol: "Sealing at L1 requires operational verification evidence — aspirational declarations cannot be L1 CORE." Requires ADR-XXXX.
+
+**E4: RP-004 (index artifacts generated, not maintained) — constitutional?**
+YES — RATIFIED AS CONSTITUTIONAL. L3 files get `generated: true` + `generated_by: instance-registry-populator.mjs` in frontmatter. They become generated outputs, not manually-maintained sources. This changes the artifact model. Requires ADR-XXXX.
+
+**E5: Add 5 missing L2 domains?**
+AMENDMENT REQUIRED — ADD ONE NOW, DEFER FOUR. Add `L2_DOMAIN_ARCH_SCHEMA_GOVERNANCE` immediately (real use cases: schema_anchor resolution, ZModel location, schema registry — all exist now). Defer PRINCIPLE_REGISTRY, BEHAVIORAL_ENFORCEMENT, CONTINUOUS_MONITORING, ZERO_LAPTOP_DEPENDENCY until 3 real instances exist without a governance home (Pattern 1: add only when real). Over-governing is a real risk at this platform size.
+
+**E6: RP-006 — P-META-023 extension or new P-META-024?**
+NEW PRINCIPLE — P-META-024 RATIFIED. Multi-topic decomposition is a pre-step to P-META-023, not an extension of it. P-META-023 handles crystallization of ONE topic. P-META-024 handles decomposition of N-topic prompts BEFORE crystallization begins. They compose in sequence: P-META-024 → (per-topic) → P-META-023. Register P-META-024: "When a human expression contains multiple topics, decompose before crystallizing — each sub-intent routes through P-META-023 separately. A prompt that triggers 7 system concerns is not 'Standard chat' — it is 7 intake events."
+
+**E7: What does schema_anchor resolve to?**
+AMENDMENT REQUIRED — THREE RESOLUTION TYPES. schema-registry.md must be YAML (machine-readable) with three types:
+```yaml
+pillar_0_governance_leaves:
+  type: governance-section
+  resolves_to: docs/plan/pillar-0-governance/
+  spine: GVRN
+  l2_domain: L2_DOMAIN_GVRN_DECISION_RIGHTS_CLARITY
+governance_decisions:
+  type: zmodel-entity
+  resolves_to: libs/policies/schema.zmodel#GovernanceDecision
+  spine: GVRN
+platform_types:
+  type: typescript-type
+  resolves_to: packages/schemas/intake-event.ts
+  spine: ARCH
+```
+Current values (`pillar_0_governance_leaves`, `platform_governance`) are governance-section type — they resolve correctly for governance artifacts. Add `resolves_to:` to schema-registry.md entries to make resolution explicit.
+
+---
+
+## Three Constitutional Ratifications
+
+### RP-005 — L1 Sealing Requires Implementation Evidence — SEALED ✅
+
+**What it does:** Before any principle is sealed at L1 (undebatable CORE), its implementation mechanism must exist and be operational. Declaring "ZModel is SSoT" without `packages/database/` being a real package is aspirational sealing — now prohibited.
+
+**Mechanism:** Add gate to L1 amendment protocol in `csps-core-manifest.md`:
+```
+§L1-SEALING-GATE: Before sealing at L1 CORE:
+  1. implementation_evidence: [artifact path that proves the mechanism exists]
+  2. validator_active: [validator name that enforces this principle]
+  3. Governor attestation: "This is operational, not aspirational"
+Missing any → cannot seal. May declare as L2 "ASPIRATIONAL → implementation pending."
+```
+
+**This retroactively reclassifies:** "ZModel as SSoT" → demote to L2 until `libs/policies/schema.zmodel` is the declared canonical location AND `validate-schema-anchors.mjs` is built and active.
+
+**ADR required:** Yes. ADR title: "RP-005 — L1 sealing now requires operational evidence."
+
+---
+
+### RP-004 — Index Artifacts Are Generated, Never Manually Maintained — SEALED ✅
+
+**What it does:** Any artifact whose purpose is to be an INDEX (list of what exists) must be machine-generated, not hand-curated. Manual curation creates stale data and false navigation.
+
+**Applies to:**
+- L3 instance files → output of `instance-registry-populator.mjs`
+- audit-runner-index.yaml → output of `split-audit-runner.mjs` (already generated ✓)
+- template-registry sections that list template instances → scanner should verify
+
+**Mechanism:** Generated index artifacts declare:
+```yaml
+generated: true
+generated_by: instance-registry-populator.mjs
+manual_edits_forbidden: true
+```
+
+`validate-generated-artifact-freshness.mjs` (build in B-1 session): checks that generated artifacts were regenerated within [session boundary] of the files they index.
+
+**ADR required:** Yes. ADR title: "RP-004 — Index artifacts are generated outputs, not source files."
+
+---
+
+### P-META-024 — Multi-Topic Intake Decomposition — SEALED ✅
+
+**What it does:** When a human expression contains multiple topics, CSPS must decompose before crystallizing. Each sub-intent gets its own P-META-023 crystallization pass. This prevents the "7 concerns in one chat message → treated as Standard intake → all surface-level" failure mode that created 95% governance debt.
+
+**The principle:**
+> When a single expression contains N distinct topics (N > 1), the platform must decompose before proceeding. Each sub-topic becomes an independent intake event, routed through P-META-023 (crystallization) individually. A prompt that triggers 7 system concerns is not "Standard chat" — it is 7 intake events, each requiring background, problem, directions, goal, and done-signal. Treating N topics as one creates shallow coverage of all N vs. deep coverage of one.
+
+**Composes with:**
+- P-META-022 (L1-L3 gap — applies to each sub-topic after decomposition)
+- P-META-023 (I→VI — the per-sub-topic crystallization protocol)
+- B_PE_ALIGNMENT_GUARDIAN (which sub-topic has highest PE? prioritize that first)
+- B_COMPLETION_OVER_SHINY (decompose and prioritize; don't work all N in parallel)
+
+**Detection heuristic:** A single prompt triggers > 2 distinct CONCEPT_LOAD classifications → decomposition required.
+
+**Threshold variant:** Level 3 (Deep) — multi-topic intakes always route to the full crystallization process.
+
+---
+
+## Answers to Key Questions from 30-Question Set
+
+**Most Q1-Q15 Part A are resolved by E1/E7:**
+- A.7 Q1: E1 answer — ZModel still core, platform foundation in libs/policies. YES still the right commitment.
+- A.7 Q2: E7 answer — `pillar_0_governance_leaves` resolves as governance-section type → documentation reference.
+- A.7 Q4: Advisory → blocking for NEW artifacts. Pre-existing 43 → remain advisory, backfill at S028 in one session via script.
+- A.7 Q8: schema-registry.md = YAML (machine-readable by populator) + human-readable table (for navigation).
+- A.7 Q13: Cross-spine artifacts → single `core_spine:` (the dominant spine) + `core_spines:` plural (secondary).
+
+**Most Q1-Q15 Part B are resolved by E3/E4/E5:**
+- B.6 Q1: E4 answer — use one-shot scan script today (not recurring validator). Build `tools/scripts/instance-registry-populator.mjs` as a one-shot that writes L3 files. Then make it recurring.
+- B.6 Q2: YES — emergency one-shot scan. Stale L3 actively misleads Opus reading the model.
+- B.6 Q3: Budget Planner → inline OPER spine overlay for now. L4 gets formally defined at S028 (one L4 template, all spines).
+- B.6 Q4: Graduation principle → L1 GVRN CORE (undebatable). Write as `spine-graduation-principle.md`.
+- B.6 Q5: YES — add ARCH-SCHEMA_GOVERNANCE as 5th L2 domain (E5 answer).
+- B.6 Q11: Add 1 (SCHEMA_GOVERNANCE). Defer 4. B.6 Q12: "More specific" = restricts application scope; "contradicts" = changes the outcome for shared scope.
+
+---
+
+## Build Order After Ratifications (PE-ordered)
+
+**Session A (Sonnet, next):**
+1. Build `tools/scripts/instance-registry-populator.mjs` (one-shot scan → writes L3 files) — PE=82 compound fix begins
+2. Create `schema-registry.md` (YAML, 3 resolution types) — PE=75
+3. Create `L2_DOMAIN_ARCH_SCHEMA_GOVERNANCE.md` — PE=65
+4. Register P-META-024 in `principles.yaml` — PE=68
+5. Begin ADR for RP-004 and RP-005
+
+**Session B (Sonnet):**
+6. `validate-generated-artifact-freshness.mjs` (enforces RP-004)
+7. `validate-schema-anchors.mjs` (validates schema_anchor resolution against registry)
+8. Promote `nothing-stands-alone` from advisory to blocking for NEW artifacts
+
+---
+
+## RZF VERIFICATION
+Cycles run: 3 | Gaps: 2 | Critical gaps: 0
+Cycle 1: Did I miss answering any of the 30 questions? Most resolved by E1-E7 or constitutional items. Detailed spine composition questions (B.6 Q8-Q15) deferred — they don't block PE=82.
+Cycle 2: The database schema canonical location (E1 answer) needs ARCH CORE L1 amendment. I specified this but should confirm: `libs/policies/schema.zmodel` IS the existing canonical location — we already know this from the enterprise core sessions. The ARCH CORE just needs updating to make this explicit. ✅
+Cycle 3: 0 new findings.
+Status: ZF ACHIEVED
+
+---
+
+*Opus Turn 16 — SROF-008 adjudicated: 7 blocks resolved, 3 constitutional items SEALED*
+*RP-004 SEALED: generated index artifacts | RP-005 SEALED: L1 sealing needs implementation proof | P-META-024 SEALED: multi-topic decomposition*
+*OPUS-1 | S027+ | 2026-05-12*
+
+---
+
 # Opus Turn 15 — AUDIT-002 Clean + CORE-PILLARS Verified + Template Grades (14 templates)
 
 **State:** pnpm verify exit_code=0 | S026 active

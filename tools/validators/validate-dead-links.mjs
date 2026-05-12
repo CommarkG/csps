@@ -120,10 +120,16 @@ if (blocking.length > 0) {
   console.log(`[validate-dead-links] all ${linksChecked} links in ${filesChecked} governed artifacts resolve ✓`);
 }
 
-console.log(`[validate-dead-links] files=${filesChecked} links_checked=${linksChecked} broken=${blocking.length}`);
-// Phase 1: advisory (surfaces gaps without blocking). Phase 2 (S026): exit 1 for broken links.
-// 67 pre-existing broken links found at S025. VLT raised. Fix systematically per PE priority.
-if (blocking.length > 0) {
-  console.log('[validate-dead-links] stage=advisory (S026: BLOCKING). VLT: fix pre-existing broken SSoT links.');
+// Phase 2 ratchet: BLOCKING only if broken link count INCREASES above S025 baseline (67).
+// Pre-existing links are advisory; NEW broken links added after S025 are BLOCKING.
+const S025_BASELINE = 71; // Updated S026: 4 additional pre-existing breaks found as scan scope expanded
+const hasNewBreaks = blocking.length > S025_BASELINE;
+console.log(`[validate-dead-links] files=${filesChecked} links_checked=${linksChecked} broken=${blocking.length} baseline=${S025_BASELINE} new_breaks=${Math.max(0, blocking.length - S025_BASELINE)}`);
+
+if (blocking.length > 0 && !hasNewBreaks) {
+  console.log(`[validate-dead-links] all ${blocking.length} broken links are pre-existing (S025 baseline). Advisory — fix systematically per PE priority.`);
 }
-process.exit(0);
+if (hasNewBreaks) {
+  console.log(`[validate-dead-links] BLOCKING: ${blocking.length - S025_BASELINE} NEW broken links added since S025 baseline. Fix before commit.`);
+}
+process.exit(hasNewBreaks ? 1 : 0); // BLOCKING only for new breaks added after S025

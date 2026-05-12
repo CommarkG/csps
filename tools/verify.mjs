@@ -291,6 +291,14 @@ const CYCLES = [
     // Governor directive: "Questions are the strongest context preservation tool — mandatory everywhere."
     // NEW S026 — Crystallization bypass detector: catches SP-005 "just figure it out" pattern.
     // AI acts without Q1c/Q2c/Q3c crystallization. Per P-META-022 + "Drive Don't Fight" CHUNK 5.
+    // NEW S026 — Agreement-without-evidence detector: catches SP-002 agreement bias.
+    // AI agrees without evidence (T2 triggers: "good point", "exactly", "I agree" without because).
+    // Part of CHUNK 5 enforcement roadmap. Advisory Phase 1; scan session artifacts.
+    name: 'agreement_without_evidence',
+    command: 'node tools/validators/validate-agreement-without-evidence.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
     name: 'crystallization_bypass',
     command: 'node tools/validators/validate-crystallization-bypass.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/); return m ? { plans: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; },

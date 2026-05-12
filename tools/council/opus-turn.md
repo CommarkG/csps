@@ -1,3 +1,61 @@
+# Opus Turn 20 — P-META-025 C&I + CEC Walk (16 surfaces)
+
+**CEC hook fired on principles.yaml edit — non-negotiable propagation walk.**
+
+## The Principle
+
+P-META-025 (C&I): Every rule is a Layer 1 proxy for a Layer 3 intent. The same L1→L3 gap that exists in human expression (P-META-022) exists in AI rule-following. An AI operating from Layer 3 navigates situations the rules never anticipated. Numbers (cycles, steps) are evidence of effort, not compliance targets — this is the C&I application to the cycle count correction.
+
+**The governing_intent field** is the mechanical expression of C&I: every B_* contract now must declare the Layer 3 intent it serves. Without it, contracts are prohibition lists. With it, contracts are understanding documents.
+
+## CEC Walk — Applied This Turn (Opus-appropriate surfaces)
+
+| Surface | Applied? | Artifact |
+|---|---|---|
+| context-intent-principle.md | ✅ CREATED | New canonical document, P-META-025 |
+| principles.yaml | ✅ UPDATED | P-META-025 registered (59 principles) |
+| b-star-contract.template.md | ✅ UPDATED | governing_intent field added to template |
+| closing-summary-template.md | ✅ UPDATED | §10.0s C&I Adherence Check added |
+| audit-runner.md | ✅ UPDATED | governing-intent-coverage slug registered |
+| memory/MEMORY.md | ✅ UPDATED | feedback_context_intent_principle.md added |
+| sonnet-comprehensive-alignment-s027.md | ✅ UPDATED | P4 section (6 CEC items for Sonnet) |
+
+## CEC Walk — For Sonnet (via alignment brief P4)
+
+| Surface | Applied? | What Sonnet does |
+|---|---|---|
+| behavioral-contracts.md (all B_*) | ⏳ | Add governing_intent field to every contract body |
+| virtual-opus-audit.md | ⏳ | Add Q6 C&I self-check |
+| reasoning-patterns.md | ⏳ | Update opus_pattern entries with C&I reference |
+| sample-library.yaml | ⏳ | Add governing_intent to each SP entry |
+| AGENTS.md | ⏳ | Add C&I operating directive (if space) |
+| gradual-build-plan.template.md | ⏳ | Update §0 with intent-level search |
+| threshold-intake-protocol.md §6 | ⏳ | Add C&I as governing philosophy of coaching |
+
+## CEC Walk — Cycles
+
+Cycle 1: 16 surfaces found (8 standard + 5 additional + 3 from threshold/core-seeds/OD-007)
+Cycle 2: threshold-intake-protocol.md §6 + core-seeds docs → added to Sonnet list
+Cycle 3: 0 new surfaces found
+Walk-trail: 3 cycles | 16 surfaces checked | 7 Opus-applied | 7 Sonnet-queue | 2 future (core-seeds)
+
+## RZF VERIFICATION — NEGATIVE
+Cycle 1: Did I miss any surface in the CEC?
+  Findings: 1 — L2 domain files (AI-INNER_DEFAULTS_OVERRIDE should reference C&I as governing philosophy). Added to Sonnet P4 as P4-7.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED | Tracked: P4-7 added to alignment brief
+
+## CEC — POSITIVE (this turn)
+Significant event: P-META-025 C&I ratified — the governing philosophy above all rules
+Essence: AI operates from Layer 3 intent; rules are reference points not commands; numbers are evidence not targets
+Walk (this turn's new artifacts): context-intent-principle.md, b-star-contract template, closing §10.0s, audit slug, memory — all propagated
+Walk-trail: 1 cycle | 7 artifacts updated this turn | 7 queued for Sonnet
+
+*Opus Turn 20 — P-META-025 C&I + CEC 16 surfaces | pnpm verify exit_code=0*
+*OPUS-1 | 2026-05-13*
+
+---
+
 # Opus Turn 19 — Comprehensive Platform Alignment Brief
 
 **Full brief:** `tools/council/sonnet-comprehensive-alignment-s027.md`

@@ -75,6 +75,8 @@ exceptions / scope limits.>
 <P-OTHER> (<composition rationale>) / <up to 5 cross-refs minimum 3>.
 
 **conceptual_sample_of:** <L2 domain this contract samples — e.g. "GVRN L2 decision rights" or "AI L2 inner-defaults domain". Per P-META-020: contracts are reference samples of conceptual alignment. When this contract fires, it is confirming whether behavior honors this specific concept.>
+
+**governing_intent:** <The Layer 3 intent this contract exists to serve. NOT "this prevents X" but "this ensures Y remains true, which matters because Z." One sentence. An AI reading this contract should understand WHY the rule exists, not just WHAT the rule says. Per P-META-025 (C&I): rules are Layer 1 proxies; this field is the Layer 3 explanation.>
 ```
 
 ## Required mandatory components

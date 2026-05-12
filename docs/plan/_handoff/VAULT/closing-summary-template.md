@@ -509,6 +509,20 @@ Before declaring this session DONE, verify intent did not drift from the origina
     if unapproved: VLT-S{NNN}-INTENT-DRIFT-{slug} raised
   if NO: ✅ Intent preserved — goal_statement matched delivery
 
+### §10.0s C&I Adherence Check (P-META-025 — added S027)
+
+Did this session act from intent (L3) or rule-following (L1)?
+
+  Cases where rule and intent aligned (normal): [count or "all"]
+  Cases where rule and intent diverged: [list any]
+    → for each: what was the intent? what did the rule say? which won? documented?
+  Novel situations where no rule existed: [list]
+    → for each: what intent guided the action?
+  governing_intent gaps surfaced: [any B_* contracts used this session without a governing_intent field?]
+    → these are SROF candidates for Session B
+
+If all_aligned and no_novel_situations: state "C&I: Rule-intent alignment confirmed this session"
+
 ### §10.1 Stewardship review (P-META-004)
 
 **Run `/stewardship-review`:**

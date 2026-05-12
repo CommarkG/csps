@@ -300,6 +300,77 @@ git push origin main
 
 ---
 
+## §P4 — CEC PROPAGATION (P-META-025 C&I — triggered by principles.yaml hook)
+
+P-META-025 (Context-and-Intent Operating Principle) requires propagation to 14 surfaces.
+Opus applied: b-star-contract template + closing-summary §10.0s + audit-runner slug + memory entry.
+**Sonnet completes:**
+
+### P4-1: behavioral-contracts.md — Add governing_intent to every B_* contract body
+
+Every B_* contract needs one new field at the end:
+```
+**governing_intent:** [One sentence: what Layer 3 truth does this rule preserve?
+  "This rule exists to ensure [Y] remains true, which matters because [Z]."]
+```
+
+Priority contracts (the ones most used, do these first):
+- B_AI_PROFESSIONAL_VOICE: "ensures the AI provides value rather than comfort — genuine expertise serves the platform better than agreement"
+- B_VALIDATE_BEFORE_ASSUME: "ensures the platform only advances on states that are genuinely demonstrated — claimed states cannot be trusted to drive decisions"
+- B_PRE_CLOSE_VERIFICATION: "ensures session progress is real, not theatrical — only verified improvements compound"
+- B_CONSENSUS_BEFORE_PROCEEDING: "ensures the Governor's actual intent (L3) governs, not the AI's interpretation of the first expression (L1)"
+- B_HUMAN_INTENT_CRYSTALLIZATION: "ensures the platform closes the gap between what humans say and what they need, which is the platform's primary competitive differentiator"
+- B_COMPLETION_OVER_SHINY: "ensures the platform compounds reliably rather than accumulating half-finished work"
+
+### P4-2: virtual-opus-audit.md — Add Q6 (C&I self-check)
+
+Add to the end of the 5 current questions:
+```
+Q6 [C&I]: "Am I following the rule, or serving the intent the rule was written for?
+  In this specific situation, do rule and intent align?
+  If they diverge — which should win, and can I document why?
+  If I don't know what intent this rule serves: that is a SROF-level gap."
+```
+
+### P4-3: inner-ai-defaults/reasoning-patterns.md — Add C&I reference
+
+In the `reasoning-premature-completion-claim` entry, update opus_pattern to reference C&I:
+```
+opus_pattern: > [existing text]... Per P-META-025 (C&I): satisfaction fires at L1 (action taken).
+  Opus operates at L3 (observable state change is the intent). The difference: AI "done" = "I acted";
+  C&I "done" = "here is proof it worked."
+```
+
+### P4-4: sample-library.yaml — Add governing_intent to each SP entry
+
+Each SP entry needs: `governing_intent: "[L3 intent this pattern exists to serve]"`
+
+Examples:
+```yaml
+# SP-001:
+governing_intent: "Only demonstrated state change can safely drive downstream decisions — the platform builds on what is real, not what was reported"
+# SP-002:
+governing_intent: "The platform needs genuine expert perspective, not comfortable agreement — disagreement is how architecture gets stress-tested"
+```
+
+### P4-5: AGENTS.md — Add C&I operating directive (if space allows)
+
+**CHECK LINE COUNT FIRST.** If under 198 lines, add:
+```
+- ✅ **OPERATE FROM INTENT (P-META-025 C&I)** — rules are L1 proxies. Know the L3 intent behind every rule. When novel situations arise, serve the intent. Self-check Q6: "Am I following the rule or serving what it was written for?"
+```
+
+If adding pushes over 200 lines: compress one existing verbose line elsewhere (B_AI_PROFESSIONAL_VOICE or SORT THE SIGNAL section).
+
+### P4-6: gradual-build-plan.template.md — Update §0 CONSOLIDATION CHECK
+
+In the §0 section, add after "Search: libs/ for existing integrations":
+```
+- Search: what INTENT does this serve? Does that intent already have a home? (C&I-level consolidation — P-META-025)
+```
+
+---
+
 ## WHAT OPUS IS DOING IN PARALLEL
 
 While Sonnet implements P1-P3 above, Opus is working on:

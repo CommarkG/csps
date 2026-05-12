@@ -2018,6 +2018,39 @@ principles:
     sealed_by_opus_turn: 16
     session: S027
 
+  - id: P-META-025
+    name: context-intent-principle
+    aliases: [C-and-I, context-intent, C&I, intent-led-operation]
+    title: "Context-and-Intent Operating Principle — AI Acts from Layer 3, Not Layer 1 Rules"
+    description: >
+      Every rule in CSPS is a Layer 1 proxy for a Layer 3 intent. P-META-022 closes the L1→L3 gap
+      for human expression. P-META-025 closes the same gap for AI rule-following. An AI operating
+      from C&I understands WHY rules exist and serves that intent — especially in novel situations
+      the rules never anticipated. Rules are reference points, not commands. When rule and intent
+      conflict: serve the intent, document the deviation. CDAB (B_CDAB) handles context loading
+      mechanics; C&I is the philosophy that USES the loaded context. The most significant impact
+      is on new thing creation: C&I asks "does this intent already have a home?" before creating
+      anything new — extending B_CONSOLIDATION_PASS to the intent level.
+    spine: AI
+    layer: L1
+    category: meta-governance
+    composes_with:
+      - P-META-020
+      - P-META-022
+      - P-META-023
+      - P-META-024
+      - B_CDAB
+      - B_CONSOLIDATION_PASS
+    enforces:
+      - governing_intent_field_in_contracts
+      - validate-governing-intent-coverage.mjs (TO BUILD Session B)
+    canonical_ref: docs/plan/pillar-0-governance/context-intent-principle.md
+    sealed_by_opus_turn: 20
+    session: S027
+    self_check_q: >
+      "Am I following the rule, or serving the intent the rule was written for?
+       In this situation, do rule and intent align? If they diverge — which wins?"
+
   - id: P-ARCH-028
     name: csps-core-spines
     aliases: [core-spine-discipline, 5-spine-architecture, outward-layering]

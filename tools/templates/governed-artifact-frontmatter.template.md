@@ -7,7 +7,7 @@ owner: group:finky
 lifecycle: production
 lifecycle_state: active
 template_used: meta-template
-template_status: novel-pending-pattern-evaluation
+template_status: standard
 template_grade: A  # Opus Turn 15 S026
 core_spine: ARCH
 core_spines: [ARCH, GVRN, AI, VALD]
@@ -89,7 +89,7 @@ core_spine: <GVRN | ARCH | AI | OPER | VALD>    # singular primary spine
 core_spines: [<GVRN, ARCH, AI, OPER, VALD>]     # plural; primary first
 schema_anchor: <pillar_<N>_<name>_leaves | vault_files | topic_plans | element_reviews | etc.>
 template_used: <pillar-leaf | meta-template | gradual-build-plan | etc.>
-template_status: <stable | novel-pending-pattern-evaluation>
+template_status: <stable | experimental>
 
 # === REQUIRED tag dimensions (closed enums per frontmatter-closed-enums.md) ===
 tags:

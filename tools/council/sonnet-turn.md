@@ -35,6 +35,37 @@ schema-registry (since S009), new ARCH domain (materializes ARCH CORE intent), P
 - P-META-024 detection heuristic: >2 distinct CONCEPT_LOAD classifications in one prompt
 - ADR stubs for RP-004 + RP-005: status "accepted" (Opus already ratified)
 
+---
+
+# Sonnet Session S027+ — Opus Turn 17 INTENT ABSORBED
+
+## Opus Turn Read: Turn 17 — Self-audit on one-sentence quality
+
+## Task understanding (single item):
+Add `template_status` enum (experimental→draft→provisional→standard→sealed) to `frontmatter-closed-enums.md`.
+This was decided alongside the template grade system (Turn 15) but never sent to Sonnet. The grade system exists without the enum that gives it meaning.
+
+## Verification tail (MANDATORY per Turn 17 — runs after EVERY change now):
+1. `pnpm --filter @csps/principles split` — only if principles.yaml changed
+2. `pnpm audit-runner:split` — only if audit-runner.md changed
+3. `node tools/validators/validate-universal-alignment.mjs --scan-new` — for new .md files
+4. `node tools/verify.mjs` — must show exit_code=0 BEFORE committing
+
+## Why this matters:
+Template grades A/B/C/D now exist across 14 template files (commit ae8a4d7). But `template_status` values in those files (novel-pending-pattern-evaluation, stable, standard, sealed) are informal strings — no closed-enum meaning. Adding the formal enum:
+- `experimental` → being evaluated, may change significantly
+- `draft` → intent clear, not yet ratified
+- `provisional` → ratified, in use, not yet proven at scale
+- `standard` → ratified + K=2 proven across multiple deployments
+- `sealed` → constitutional; amendment = ADR + ratification
+
+## Constraints understood:
+- Only frontmatter-closed-enums.md changes → no principles:split or audit-runner:split needed
+- Must check validate-universal-alignment.mjs --scan-new (no new .md files expected)
+- pnpm verify must pass before commit
+
+## First action: read frontmatter-closed-enums.md, find insertion point, add enum
+
 ## First action: baseline check + start Session A
 
 ---

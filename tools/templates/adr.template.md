@@ -2,7 +2,7 @@
 id: csps.tools.templates.adr
 name: adr-template
 template_grade: A  # Opus Turn 15 S026 — governs all architecture decisions; constitutional
-template_status: novel-pending-pattern-evaluation
+template_status: standard
 session: S006
 ---
 

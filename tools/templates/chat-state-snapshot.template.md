@@ -7,7 +7,7 @@ owner: group:finky
 lifecycle: production
 lifecycle_state: active
 template_used: meta-template
-template_status: novel-pending-pattern-evaluation
+template_status: provisional
 core_spine: OPER
 core_spines: [OPER, GVRN, AI]
 schema_anchor: templates

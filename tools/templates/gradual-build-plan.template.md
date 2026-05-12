@@ -7,7 +7,7 @@ owner: group:finky
 lifecycle: production
 lifecycle_state: active
 template_used: meta-template
-template_status: novel-pending-pattern-evaluation
+template_status: standard
 template_grade: A  # Opus Turn 15 S026
 core_spines: [GVRN, OPER]
 template_id: gradual-build-plan
@@ -63,7 +63,7 @@ lifecycle: production
 lifecycle_state: active
 template_used: gradual-build-plan
 template_version: 1.0
-template_status: novel-pending-pattern-evaluation | stable
+template_status: experimental | stable
 core_spines: [<one or more of GVRN, ARCH, AI, OPER, VALD>]
 tags:
   - domain:<>

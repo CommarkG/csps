@@ -17,7 +17,7 @@ do_not_expand:
   - No instance lists (L3_INSTANCES files own that)
   - Sealed prose only — every word load-bearing
 template_used: l1-core-sealed-doctrine
-template_status: novel-pending-pattern-evaluation
+template_status: sealed
 file_depth_markers:
   l1_lines: "1-end"
   l2_lines: "N/A"

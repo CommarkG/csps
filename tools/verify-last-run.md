@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-12T20:37:22.446Z
-- finished_at: 2026-05-12T20:37:45.956Z
+- ran_at: 2026-05-12T20:48:34.085Z
+- finished_at: 2026-05-12T20:48:57.946Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-12T20:37:22.446Z",
-    "finished_at": "2026-05-12T20:37:45.956Z",
+    "ran_at": "2026-05-12T20:48:34.085Z",
+    "finished_at": "2026-05-12T20:48:57.946Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.9,
+        "duration_seconds": 7.6,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -152,7 +152,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns_checked": 16,
+        "turns_checked": 17,
         "warnings": 0
       },
       {
@@ -216,7 +216,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1,
         "checked": 25,
         "advisories": 18
       },
@@ -237,7 +237,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "graded": 11,
-        "advisories": 12
+        "advisories": 0
       },
       {
         "name": "contract_harmonization",
@@ -583,7 +583,7 @@
         "command": "node tools/validators/validate-pe-connectivity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 20,
         "total_gaps": 20
@@ -804,7 +804,7 @@
         "command": "node tools/validators/validate-plan-harvest-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "plans_checked": 20,
         "missing_harvest": 10,
         "warnings": 10
@@ -859,7 +859,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.5
+        "duration_seconds": 6.1
       },
       {
         "name": "audit_runner_full_pass",

@@ -14,7 +14,7 @@ owner: group:finky
 lifecycle: production
 lifecycle_state: active
 template_used: governed-artifact-frontmatter
-template_status: novel-pending-pattern-evaluation
+template_status: standard
 template_grade: B  # Opus Turn 15 S026
 core_spine: AI
 core_spines: [AI, GVRN, OPER]

@@ -6,7 +6,7 @@ version: 1.0
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
-template_status: stable
+template_status: provisional
 core_spine: GVRN
 schema_anchor: templates
 tags:

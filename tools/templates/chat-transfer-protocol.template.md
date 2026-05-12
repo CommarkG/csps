@@ -8,7 +8,7 @@ owner: group:finky
 lifecycle: production
 lifecycle_state: active
 template_used: meta-template
-template_status: stable
+template_status: standard
 core_spine: GVRN
 schema_anchor: tools_templates_meta
 template_id: chat-transfer-protocol

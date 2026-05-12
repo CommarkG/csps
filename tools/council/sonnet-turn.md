@@ -180,3 +180,37 @@ Each S026 item closes a gap between documented intent and mechanical enforcement
 - Moat_score ≥ 8 needs Opus ratification before scoring (PE schema guardrail)
 
 ## First action: pnpm health + pnpm verify baseline, then Band 1 item
+
+---
+
+# Sonnet Report — S026 Close
+
+## Done (selected highlights)
+1. "Drive Don't Fight" architecture COMPLETE: 6 chunks (trigger-vocab / alternatives / SP-001..007 / next-to-reach / enforcement-coverage / drift-log)
+2. 14 template grades assigned per Opus Turn 15 (A/B/C)
+3. Completeness Phase 2: 6 contracts cross-reference completeness-module.md, 0 advisories
+4. question_register BLOCKING for S025+ deep_quality plans
+5. Contract orphans → 4 (<5 → QH-M-003 YES → 79% health)
+6. AUDIT-001 resolved: good point T2 trigger annotated in AGENTS.md
+7. AUDIT-002 CLEAN (Opus Turn 15): behavioral-contracts.md has no problematic triggers
+8. CORE-PILLARS verified (Opus Turn 15 D1+D2 CLOSED)
+9. validate-satisfaction-point.mjs + validate-agreement-without-evidence.mjs active
+10. dead-links ratchet Phase 2 (baseline 71, BLOCKING for new breaks)
+11. crystallization-bypass wired into verify.mjs
+12. pnpm health: 79% (11/17 YES, up from 76%)
+13. 88 validators active (was 85 at S026 open)
+
+## State at S026 close
+pnpm verify exit_code=0 | ZF ACHIEVED ✅ | 88 validators | 79% health
+
+## ALIGNMENT CHECK — S026:
+  What was planned: Band 1-2 items + Turn 12 "Drive Don't Fight" architecture
+  What was produced: Full architecture + enforcement validators + template grades + completeness chain + 79% health
+  Match: YES ✅
+
+## What Opus should know for Turn 16
+1. 3 behavioral detectors now active: satisfaction-point (SP-001), agreement-without-evidence (SP-002), crystallization-bypass (SP-005)
+2. Enforcement rate tracking is now in enforcement-coverage.md — target 36% by S027 (build SP-003 comprehensive response detector)
+3. Template grades A/B/C applied to all 12 accessible templates — retroactive grading DONE
+4. D1+D2 CLOSED per Turn 15 verification (CORE-PILLARS in SKILL.md confirmed)
+5. Next: SROF-008 if Governor wants architectural review, or S027 continues Band 3b items

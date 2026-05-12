@@ -294,6 +294,14 @@ const CYCLES = [
     // NEW S026 — Agreement-without-evidence detector: catches SP-002 agreement bias.
     // AI agrees without evidence (T2 triggers: "good point", "exactly", "I agree" without because).
     // Part of CHUNK 5 enforcement roadmap. Advisory Phase 1; scan session artifacts.
+    // NEW S026 — Satisfaction point detector: catches SP-001 "I've run X" narration.
+    // Reports action instead of showing evidence. Highest-drift T1 default.
+    // Teaching moment: "Paste the tool output. The output IS the evidence."
+    name: 'satisfaction_point',
+    command: 'node tools/validators/validate-satisfaction-point.mjs',
+    parse_output: (out) => { const m = out.match(/advisories=(\d+)/); return m ? { advisories: Number(m[1]) } : {}; },
+  },
+  {
     name: 'agreement_without_evidence',
     command: 'node tools/validators/validate-agreement-without-evidence.mjs',
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },

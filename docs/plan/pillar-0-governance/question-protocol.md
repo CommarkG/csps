@@ -376,22 +376,28 @@ The existing F+C+G+Q formula + 6-phase lifecycle described above is the FOUNDATI
 > The Question Protocol — questions as mandatory context preservation checkpoints at every surface.
 > Platform validator: validate-question-coverage.mjs
 
-### Virtual Opus Audit (PENDING Opus ratification — S025 draft)
+### Virtual Opus Audit (RATIFIED Opus Turn 9 — LIVING document)
 
-> **STATUS: DRAFT — awaiting Opus Turn 9 review**
-> See: `tools/council/opus-briefing-s025-four-topics.md` Topic 3
+> **STATUS: ACTIVE** — evolves with every Opus Turn.
+> **SSoT:** [virtual-opus-audit.md](./virtual-opus-audit.md) — full question set with PE/DNA/participant connections
+> See: `docs/plan/pillar-0-governance/virtual-opus-audit.md` for the complete evolving checklist.
 
-Before any consequential implementation, Sonnet asks itself these 5 B/Z/R/G-type questions
-as if Opus is reviewing. If any answer is "I don't know" → escalate to Opus consultation.
+The core 5 questions are extended with domain-specific questions from each Opus Turn:
+PE questions (Turns 9-10), DNA questions (Turn 5-9), Participant questions (Turn 10),
+Template questions (Turn 9), Layer hierarchy questions (Turns 8-10), SROF pattern (Turns 9-11).
 
 ```
-VIRTUAL OPUS AUDIT (fires before any consequential action):
+VIRTUAL OPUS AUDIT — Core 5 (always run before consequential action):
   Q1 [R-type]: What is the blast radius if this is wrong?
   Q2 [Z-type]: What evidence would prove this is correct?
   Q3 [R-type]: Does this contradict any existing L1 sealed element?
   Q4 [B-type]: Am I implementing because I understand deeply, or because it was requested?
   Q5 [G-type]: What gap in my understanding could make this decision wrong?
+  [+ domain-specific questions from virtual-opus-audit.md §2 based on action type]
 ```
+
+If any answer is "I don't know" → escalate to L1 consultation minimum (PROTOCOL.md).
+If Q3 = YES → **always stop** regardless of other answers (L1 element touched).
 
 If Q1-Q3 answers are confident AND Q4 = "understand deeply" AND Q5 = identified and acceptable:
 → Sonnet implements independently.

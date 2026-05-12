@@ -1,0 +1,299 @@
+---
+id: csps.governance.virtual-opus-audit
+name: virtual-opus-audit
+description: >
+  The CSPS Virtual Opus Audit — a living document that evolves with every Opus Turn.
+  Sonnet asks these questions BEFORE every consequential action, acting as if Opus is
+  reviewing. The questions are extracted from Opus's actual reasoning patterns across
+  all turns. Each turn adds new questions. Connected to: PE, DNA 17 elements,
+  participant types, SROF chain, topic plans.
+  Governed by: PROTOCOL.md L0 (self-audit level) + question-protocol.md §Virtual Opus Audit.
+  Governor directive S025: "Use each Opus interaction to enhance Virtual Opus."
+version: 1.3
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: AI
+core_spines: [AI, GVRN, VALD]
+schema_anchor: pillar_0_governance_leaves
+impl_status: swift-implemented
+domain_path: platform
+depth_tier: L2
+target_participant: ai.sonnet
+template_grade: B
+tags:
+  - domain:governance
+  - domain:ai
+  - type:reference
+  - audience:ai-agent
+  - maturity:draft
+session: S025
+intent_crystallized: true
+threshold_route: platform.governance
+links:
+  - { rel: protocol, href: ../../council/PROTOCOL.md }
+  - { rel: question-protocol, href: ./question-protocol.md }
+  - { rel: srof-log, href: ../../council/sonnet-to-opus-request-log.md }
+  - { rel: pe-schema, href: ../../../tools/templates/priority-engine.schema.yaml }
+  - { rel: dna, href: ./csps-platform-dna.md }
+  - { rel: participant-protocol, href: ./participant-protocol.md }
+---
+
+# Virtual Opus Audit — The Living Self-Check
+
+> **This file evolves with every Opus Turn.**
+> After each Turn, Sonnet extracts patterns from Opus's reasoning and adds questions here.
+> This is L0 of the consultation pipeline — Sonnet asks these before taking any consequential
+> action. If any answer is "I don't know" → escalate to L1 (express review).
+>
+> Current version: Turns 1-11 | Last updated: S025
+
+---
+
+## §1 — The Core 5 Questions (original — Opus Turn 9 approved)
+
+Before any consequential action, Sonnet asks:
+
+```
+Q1 [R-type]: What is the blast radius if this is wrong?
+Q2 [Z-type]: What evidence would prove this is correct?
+Q3 [R-type]: Does this contradict any existing L1 sealed element?
+Q4 [B-type]: Am I implementing because I understand deeply, or because it was requested?
+Q5 [G-type]: What gap in my understanding could make this decision wrong?
+
+IF any answer is "I don't know" → escalate to L1 consultation minimum.
+```
+
+---
+
+## §2 — Enhanced Questions by Domain (extracted from Opus Turns)
+
+### PE + Priority (from PE moat formula design — Opus Turns 1-10)
+
+```
+PE-1: Which PE band does this item belong in?
+      Band 1 (constitutional): requires Opus L2. Band 2 (high): proceed with SROF.
+      Band 3-4: proceed independently.
+
+PE-2: What is the moat_score for this item?
+      Score ≥ 8 → Opus ratification required BEFORE scoring.
+      Score 4-7 → Governor confirms.
+      Score 0-3 → Sonnet self-assesses.
+      [cites moat_evidence + moat_type + moat_ratified_by or defaults to 0]
+
+PE-3: Does this item have pe_context declared (platform/customer/user)?
+      Different contexts = different weight profiles (blast/dependency/idle time).
+      Without declaration → item may be mis-prioritized.
+
+PE-4: Is this item in the ratified arc plan (opus-advisory-arc-S023.md)?
+      YES → proceed with Sonnet autonomy.
+      NO + PE > 90 → Opus L1 express review required (PROTOCOL.md trigger).
+```
+
+### DNA Elements (from DNA gate design — Opus Turns 5-9)
+
+```
+DNA-1: Which of the 17 DNA elements does this touch?
+       List them. If 3+ elements → likely constitutional (check blast_radius).
+
+DNA-2: Does this element have depth_tier declared (L1/L2/L3)?
+       L1 items changing: always require Opus (never modify L1 without ADR).
+       L2 items changing: Governor confirms + ZF Level 2.
+       L3 items: Sonnet autonomy within ratified plan.
+
+DNA-3: Is the DNA gate (17-element check) satisfied for this new element?
+       Check: goal_statement, done_criteria, failure_signal, target_participant,
+       threshold_route, core_spine, depth_tier, template_grade all declared.
+
+DNA-4: Does this add a new DNA element (Element 18+)?
+       YES → automatic L2 consultation with Opus before any implementation.
+       DNA elements are L1 sealed (new ones require Opus + Governor).
+```
+
+### Participant Types (from PACP design — Opus Turn 10)
+
+```
+PART-1: Which participant type does this element serve?
+        target_participant: [one of the 14 types or "mixed" or "n/a"]
+        Not declared → advisory flag from validate-participant-declared.mjs.
+
+PART-2: Does the communication protocol match the participant type?
+        user.solo → plain language + mobile-first + zero jargon
+        developer.platform → validator names + fix commands + WHY in code
+        ai.opus → constitutional scope + full arc context + SROF format
+        [check §3 Communication Calibration table in participant-protocol.md]
+
+PART-3: Does this add a new participant CATEGORY (Category 6+)?
+        YES → L1 amendment required (ADR). Categories are L1 sealed.
+        Adding a new TYPE within existing category → L2 rationale (no ADR).
+```
+
+### Template + Ratification (from template grade system — Opus Turn 9)
+
+```
+TMPL-1: What is the template_grade for this new template?
+        A (governs all apps) → research_ref required + Opus L2 review before sealing
+        B (platform-wide) → Governor confirms + ZF Level 2
+        C (app-specific) → Governor confirms + ZF Level 1
+        D (K=1 experimental) → no review needed; K=2 promotes to C
+
+TMPL-2: Does template_status match template_grade?
+        Grade A → template_status: sealed (only after full council)
+        Grade B → template_status: standard
+        Grade C → template_status: provisional
+        Grade D → template_status: experimental (never "stable" until graded)
+
+TMPL-3: Is there an existing template that covers this case?
+        Check template-registry.md FIRST.
+        If exists: USE IT (B_TEMPLATE_FIRST_CREATION).
+        If novel: template_status: experimental, track K count.
+```
+
+### Layer + Hierarchy (from P-META-023 hierarchy + PACP L1-L2-hybrid — Turns 8-10)
+
+```
+HIER-1: Am I placing this at the right layer (L1/L2/L3)?
+        L1 = constitutional, governs everything above → sealed, requires ADR to change
+        L2 = domain-specific, extensible with rationale
+        L3 = instance-specific, per-app or per-session
+        Wrong layer = future debt when someone needs to move it.
+
+HIER-2: Is this a child or parent principle?
+        Child principles (P-META-023 is child of P-META-022) must declare parent_principle:
+        Never position a child principle as its own constitutional anchor.
+        Check the composes_with chain is correct.
+
+HIER-3: Does this implement the correct layer of an existing principle?
+        P-META-022 is the WHY; P-META-023 is the HOW.
+        The HOW can evolve (L2); the WHY is sealed (L1).
+        Do not put HOW details in L1 sealed elements.
+```
+
+### Completion + Evidence (from ZF discipline — all Turns)
+
+```
+COMP-1: What specific validator output would prove this is done?
+        Not "pnpm verify passes" — which SPECIFIC validator at what count/value?
+        Document this before building, not after.
+
+COMP-2: Is the completion criterion in the PLAN, not just the protocol?
+        Double-protection: same exit criterion in both the plan AND the protocol.
+        If only in protocol → governance debt.
+
+COMP-3: What is the failure signal if this appears done but actually fails?
+        The failure signal (M3) must be human-authored. Never AI-drafted.
+        Ask: "What would make us realize 3 sessions later that this was wrong?"
+```
+
+### SROF Pattern (from consultation pipeline formalization — Turns 9-11)
+
+```
+SROF-1: Have I checked the SROF log for similar prior requests?
+        tools/council/sonnet-to-opus-request-log.md — check if Opus already ruled on this.
+        Asking the same question twice wastes Opus turns.
+
+SROF-2: Does this require Opus L1/L2/L3 per PROTOCOL.md triggers?
+        Run validate-opus-review-flagging.mjs first to see current flags.
+        If flagged: don't proceed — create SROF entry with one-sentence REQUEST.
+
+SROF-3: If I'm about to offer to send to Opus, have I included:
+        □ The one-sentence REQUEST paragraph (paste-ready in chat response)
+        □ git_links_since_last_turn (commits + GitHub compare URL)
+        □ previous_srofs_ref (the chain)
+        □ Alignment delta within the SROF document (not just in chat)
+```
+
+---
+
+## §3 — Pattern Library (Opus's Reasoning Extracted)
+
+*Every time Opus gives an unexpected answer, it reveals a thinking pattern Sonnet should internalize.*
+
+### Pattern 1: "Add only when real" (Turns 3, 10)
+When evaluating whether to add a new type/category/element:
+> "Do not add preemptively — add when the first real [thing] exists."
+Sonnet asks: "Is there a real participant/use-case/scenario that needs this, or am I speculating?"
+
+### Pattern 2: "Additive over multiplicative for transparency" (Turn 10)
+When choosing between formula types:
+> "Additive is auditable: '+5 because constitutional moat' is clear. Multiplicative obscures contribution."
+Sonnet asks: "Can someone reading this formula immediately understand what each component contributes?"
+
+### Pattern 3: "Declarant authority" (Turn 10)
+When assigning scores or ratings:
+> "Who declares this score matters as much as the score itself. Self-assessment is only valid for low stakes."
+Sonnet asks: "Who has authority to assign this score/grade/classification? Is it Sonnet, Governor, or Opus?"
+
+### Pattern 4: "Never close without citing" (Turn 10)
+When clearing backlog items:
+> "Items that appear superseded sometimes contain a nuance the completing work missed."
+Sonnet asks: "Can I cite the SPECIFIC artifact/commit that closes this? Partially superseded = still open."
+
+### Pattern 5: "Hybrid is better than forced choice" (Turn 10)
+When evaluating L1 vs L2 decisions:
+> "The 5-category STRUCTURE is L1 sealed. Individual types within it are L2 extensible."
+Sonnet asks: "Am I forcing a binary choice when a hybrid gives better flexibility with appropriate seals?"
+
+### Pattern 6: "Constitutional scope = always stop" (Turns 5-7)
+When L1 elements are involved:
+> "Constitutional means: changing this requires a CORE re-grounding event."
+Sonnet asks: "Does this touch L1? If yes: stop, Opus required, no exceptions."
+
+---
+
+## §4 — Full Pre-Action Checklist (all questions)
+
+Run this before any consequential action:
+
+```
+CORE (5 always):
+  □ Q1: Blast radius?
+  □ Q2: Proof of correctness?
+  □ Q3: Contradicts L1?
+  □ Q4: Deep understanding or requested?
+  □ Q5: Gap in understanding?
+
+PE (4 for Band 1-2 items):
+  □ PE-1: PE band?
+  □ PE-2: moat_score + authority?
+  □ PE-3: pe_context declared?
+  □ PE-4: In arc plan?
+
+DNA (3 for new elements):
+  □ DNA-1: Which DNA elements touched?
+  □ DNA-2: depth_tier correct?
+  □ DNA-3: DNA gate satisfied?
+
+PARTICIPANT (2 for new APIs/pages):
+  □ PART-1: target_participant declared?
+  □ PART-2: Protocol calibration correct?
+
+LAYER (2 for principles/contracts):
+  □ HIER-1: Right layer (L1/L2/L3)?
+  □ HIER-2: Child/parent relationship correct?
+
+COMPLETION (2 always):
+  □ COMP-1: Specific validator evidence named?
+  □ COMP-2: Exit criterion in the plan?
+
+OPUS CHECK (1 when about to offer Opus):
+  □ SROF-3: One sentence + Git links + SROF chain included in chat response?
+```
+
+---
+
+## §5 — Update Protocol
+
+After every Opus Turn, Sonnet adds to this file:
+1. New patterns extracted from Opus's reasoning
+2. New questions triggered by Opus's unexpected decisions
+3. Any question that Q3 missed (contradictions Opus found)
+
+**Last extracted patterns:** Turns 1-11 (S025)
+**Next update:** After Opus Turn 11 response
+
+---
+
+*Authored: S025 | evolves with every Opus Turn*
+*Canonical source: THIS FILE. question-protocol.md §Virtual Opus Audit references here.*
+*Connect to: PE formula, DNA 17 elements, participant-protocol.md, SROF chain*

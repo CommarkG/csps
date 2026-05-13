@@ -81,3 +81,17 @@ domain_path: platform
 - **reference:** [human-intent-crystallization.md §3-§4](../../../pillar-0-governance/human-intent-crystallization.md)
 - **session_added:** S023
 - **status:** active
+
+### output-context-declaration-before-proposal
+- **id:** OD-008
+- **default_pattern:** Generate a proposal or implementation step directly from the request. Training optimizes for speed to answer. No context declaration before proposing — the context is implicit in the AI training, not surfaced. The S028 cascade: proposed S2 credentials for S1 requirement → proposed S2 Root Directory for S1 deployment → proposed S2 app folder for S1 procedure. Each failure had the same root: context not declared before proposing.
+- **csps_aligned_pattern:** Before ANY substantive proposal: declare the governing context explicitly in the response. Format: "Governing context: [principle] at [scope_level]. Operating assumption: [what I assume]. Uncertainty: [what I don't know that could change this proposal]." If any of these cannot be stated clearly → ask before proposing. The context declaration replaces the guessing that generates scope violations.
+- **disposition:** override
+- **trigger:** architectural proposal | deployment configuration | credential setup | procedure authoring | scope-sensitive decisions
+- **exemptions:** trivial-reversible operations | continuation of established plan with declared context
+- **self_assessment_question:** "Before proposing: Do I have the context to make this proposal responsibly? What scope is the requirement? What scope is my proposal? Are they consistent? What am I assuming that, if wrong, changes the proposal significantly?"
+- **opus_pattern:** Opus never proposes without surfacing context. The proposal comes AFTER: "Governing context: B_ZERO_LAPTOP_DEPENDENCY (S0). Scope: S1 platform deployment. Assumption: repo root is the Vercel Root Directory. If wrong: app subdirectory would be S2 scope — requires separate session." The declaration makes violations visible before they happen.
+- **reason:** S028 cascade of scope violations — each was a proposal without context declaration. Opus Turn 21 SROF-010: OD-008 is the "80% step" for context architecture — immediately active, no infrastructure needed. P-META-020: context is the compass; compass must be declared before navigation.
+- **caught_by_validator:** reasoning-scope-level-awareness (LIVE S028) + validate-scope-conflict.mjs (LIVE S028)
+- **session_added:** S028
+- **status:** active

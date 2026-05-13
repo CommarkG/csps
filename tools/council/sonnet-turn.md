@@ -157,6 +157,39 @@ pnpm verify: exit_code=0 ✅ | 98 validators (was 88 at S027 open, +10) | 82% he
 
 ---
 
+# Sonnet Session S028+ — Opus Turn 21 INTENT ABSORBED
+
+## Opus Turn Read: Turn 21 (SROF-009 USM + SROF-009 Supplement + SROF-010 Context)
+
+## Constitutional Decisions Absorbed:
+- USM S0-S5: L1 GVRN CORE (vocabulary sealed) + L2 operational (field + migration)
+- ADR-0027: REQUIRED before validate-scope-level-declared.mjs goes blocking
+- D.1 Auto-invoked critic: APPROVED with surgical triggers (not cruel-critic for everything)
+- D.2 Scope Guardian: APPROVED as pre-tool-use hook FIRST (Mastra is premature)
+- D.3 Haiku pre-commit: APPROVED, build now
+- Context architecture: HYBRID — P-META-020 IS the L1; L2_DOMAIN_AI_CONTEXT_ARCHITECTURE.md is the operational L2
+
+## Session A build order (no ADR needed):
+1. L2_DOMAIN_AI_CONTEXT_ARCHITECTURE.md (L2 doc, extends L1_CORE_AI.md)
+2. OD-008 in output-distribution.md (context declaration at proposal time)
+3. session-context-record.md template at tools/templates/
+4. session-open.sh injection (diff + confirm per policy)
+
+## Session B (after ADR-0027):
+5. ADR-0027 (vocabulary only, no migration yet)
+6. validate-scope-level-declared.mjs (ADVISORY — tracking)
+7. validate-scope-conflict.mjs → BLOCKING (already advisory, upgrading after ADR)
+8. Wire into verify
+
+## Key Q answers absorbed:
+- session-context-record.md = DERIVED SUMMARY (not competing with frontmatter SSoT)
+- B_CDAB + session-context-record: ORTHOGONAL (depth vs. what context exists)
+- Q12 (chat integration): OD-008 is the mechanism — declare context before proposing
+
+## First action: Create L2_DOMAIN_AI_CONTEXT_ARCHITECTURE.md
+
+---
+
 # Sonnet Report — S027+ Session A (Opus Turn 16)
 
 ## Done

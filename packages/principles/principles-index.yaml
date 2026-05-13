@@ -6,7 +6,7 @@
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
   total_count: 59
-  generated_at: '2026-05-12'
+  generated_at: '2026-05-13'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
   usage: >-

@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
   transpilePackages: ['@csps/integrations'],
   typescript: {
     ignoreBuildErrors: true,
   },
   webpack: (config) => {
     config.resolve.symlinks = false
+    config.resolve.preferRelative = true
+    config.ignoreWarnings = [
+      { module: /node_modules\/@zenstackhq\/runtime\/enhance\.js/ },
+    ]
     return config
   },
 }

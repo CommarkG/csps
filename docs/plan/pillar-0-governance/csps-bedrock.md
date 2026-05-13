@@ -72,7 +72,7 @@ When bedrock is complete, an app developer can:
 
 ## §2 The 5 Bedrock Layers
 
-### Layer 1 — Governance Core (GVRN spine)
+### Layer 1 — Governance Core (GVRN spine) → **Scope: S0 (Constitutional)**
 *The rules that govern every decision in every app build.*
 
 | Item | Status | Evidence |
@@ -92,7 +92,7 @@ When bedrock is complete, an app developer can:
 
 ---
 
-### Layer 2 — Schema Security Core (ARCH spine)
+### Layer 2 — Schema Security Core (ARCH spine) → **Scope: S0-S1 (Constitutional → Platform-wide)**
 *The data model + tenant isolation that every app inherits.*
 
 | Item | Status | Evidence |
@@ -110,7 +110,7 @@ When bedrock is complete, an app developer can:
 
 ---
 
-### Layer 3 — Auth + Billing Core (ARCH + OPER)
+### Layer 3 — Auth + Billing Core (ARCH + OPER) → **Scope: S1-S3 (Platform-wide → Tenant-scope)**
 *The identity and payment infrastructure every app inherits.*
 
 | Item | Status | Evidence |
@@ -128,7 +128,7 @@ When bedrock is complete, an app developer can:
 
 ---
 
-### Layer 4 — App Template Core (ARCH)
+### Layer 4 — App Template Core (ARCH) → **Scope: S2 (App-scope)**
 *The scaffold every new CSPS app begins from.*
 
 | Item | Status | Evidence |
@@ -145,7 +145,7 @@ When bedrock is complete, an app developer can:
 
 ---
 
-### Layer 5 — Build Methodology Core (AI + GVRN)
+### Layer 5 — Build Methodology Core (AI + GVRN) → **Scope: S1 (Platform-wide — applies to all apps)**
 *The discipline that ensures every app is built correctly.*
 
 | Item | Status | Evidence |

@@ -195,6 +195,26 @@ WHY: The S014 canonical instance — project settings.json had permissions{} wit
 
 **Why this section exists:** The platform has infinite future situations. Rules enumerated for today's situations will not cover tomorrow's. The triad (context + principle + mechanical) is the only mechanism that scales. A plan that doesn't declare its triad for consequential decisions is a plan that will drift the moment a new situation appears. This section makes the governance architecture explicit — not as overhead, but as load-bearing structure.
 
+## §0a-scope — Scope Level Declaration (USM — Unified Scope Model, S028)
+
+> **Declare before implementing.** What scope does this plan operate at?
+> S0=Constitutional | S1=Platform-wide | S2=App-scope | S3=Tenant | S4=User | S5=Session
+> **Violation rule:** implementation actions cannot be at a lower scope than the principles they serve.
+> S028 incident: pnpm dev (S2 action) overrode B_ZERO_LAPTOP (S0 principle) → BLOCKED by validate-scope-conflict.mjs
+
+```yaml
+plan_scope_level: S0 | S1 | S2     # primary scope this plan operates at
+governing_principles_scope: S0 | S1 # scope of the principles being implemented
+scope_conflict_check: CLEAR | REVIEW # REVIEW if plan_scope_level > governing_principles_scope
+```
+
+**Scope-to-location mapping:**
+- S0/S1 plans → implement in `libs/`, `packages/`, `.claude/`, `docs/plan/`
+- S2 plans → implement in `apps/{app}/`
+- S3+ plans → implement via API, never in codebase
+
+---
+
 ## §0b — RP Pattern Gate (Concern B — hidden debt prevention, S027)
 
 > **Check BEFORE any implementation phase.** The 7 recurring failure patterns (RP-001..007) extracted from S027 retrograde analysis. Prevents hidden governance debt accumulation between phases.

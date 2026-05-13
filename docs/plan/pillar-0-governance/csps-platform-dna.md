@@ -55,7 +55,7 @@ schema_anchor: pillar_0_governance_leaves
 | 10 | **Depth Levels** (5 semantics — file_depth_markers / depth_levels_invoked / audit_depth / depth_tier_authored / topic-plan depth_chosen) | [depth-discipline.md](./depth-discipline.md) (S009 PCR — pending; per [EXT-20260505-004-A](../_handoff/VAULT/contexts/governance/depth-discipline/EXT-20260505-004-A-four-distinct-depth-level-semantics-and-unified-principle.md)) | `depth_marker_creation_gate` (S009 stub) |
 | 11 | **Priority Engine** (5-dim formula: Breadth/Depth/Impact/Blockers_now/PAS) | [gradual-build-plan.template.md §6](../../../tools/templates/gradual-build-plan.template.md) + [priority-engine.schema.yaml](../../../tools/templates/priority-engine.schema.yaml) | `priority-engine-inputs-complete` (week-4) |
 | 12 | **Context-Loss Discipline** (22-pain catalog mechanically referenced from every plan) | [context-loss-pains.md](./context-loss-pains.md) (NEW S008 turn 12) | `plan-context-loss-section-present` (week-4) |
-| 13 | **LAYER** (CSP_CORE / SOLUTION_<X> / MIXED — adapted from CSP) | (declared in artifact frontmatter) | (per-artifact frontmatter check) |
+| 13 | **LAYER → SCOPE_LEVEL** (S0=Constitutional / S1=Platform-wide / S2=App / S3=Tenant / S4=User / S5=Session — S028 USM upgrade from CSP_CORE/SOLUTION/MIXED) | `scope_level:` field in frontmatter + `frontmatter-closed-enums.md` | `validate-scope-level.mjs` (to build PE=78) + `validate-scope-conflict.mjs` (to build PE=75) |
 | 14 | **Domain Primitives** (sealed L1 functional capabilities — Calendar, Notifications, ...) | [core-primitives-registry.md](./core-primitives-registry.md) + `libs/core/` directory | `validate-core-primitive-usage.mjs` (TO BUILD Phase 1) |
 | 15 | **Human Intent Crystallization** (Layer 1 → Layer 3 before implementation) | [human-intent-crystallization.md](./human-intent-crystallization.md) | `validate-intent-crystallized.mjs` |
 | 16 | **Question Protocol** (questions as mandatory context preservation checkpoints at every surface — 8 types: C/A/G/R/B/Z/P/X) | [question-protocol.md](./question-protocol.md) | `validate-question-coverage.mjs` |
@@ -219,7 +219,7 @@ dna_gate:
 | 10 | **Depth Levels** | `file_depth_markers:` present in L2+ governance artifacts; `depth_tier:` declared in plans; no L3 artifacts lacking L1 declaration |
 | 11 | **Priority Engine** | `validate-pe-dashboard.mjs` PASS; session work executed in PE-score order; lower-PE items vaulted to raw-thoughts-queue with trigger |
 | 12 | **Context-Loss** | Plans have `question_register:` field; PAIN-* IDs cited in plans; `validate-question-coverage.mjs` exits 0 |
-| 13 | **LAYER** | All apps in `apps/` declare `domain_path`; no cross-layer imports (libs/ → apps/ blocked); `validate-core-seeds.mjs` shows no overdue seeds |
+| 13 | **LAYER → SCOPE_LEVEL** | `scope_level: S0-S5` declared on new artifacts; `validate-layer-boundary.mjs` enforces S1 (libs/) never imports S2 (apps/); `validate-laptop-patterns.mjs` catches S2 actions overriding S0 principles; S028 incident resolved via FSE 5/5 |
 | 14 | **Domain Primitives** | `apps/` import from `libs/` not from each other; no `new PrismaClient` in routes; `validate-bottleneck-patterns.mjs` Class A advisory count tracked |
 | 15 | **Human Intent Crystallization** | `validate-intent-crystallized.mjs` PASS; `intent_crystallized: true` in active deep_quality plans; `threshold_route:` declared |
 | 16 | **Question Protocol** | `validate-question-coverage.mjs` PASS; topic-plans have `question_register:`; `validate-crystallization-bypass.mjs` exits 0 |

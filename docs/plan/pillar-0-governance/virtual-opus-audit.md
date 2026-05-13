@@ -271,9 +271,12 @@ PARTICIPANT (2 for new APIs/pages):
   □ PART-1: target_participant declared?
   □ PART-2: Protocol calibration correct?
 
-LAYER (2 for principles/contracts):
-  □ HIER-1: Right layer (L1/L2/L3)?
-  □ HIER-2: Child/parent relationship correct?
+LAYER + SCOPE (3 for principles/contracts/procedures):
+  □ HIER-1: Right governance layer (L1/L2/L3) AND right scope level (S0-S5)?
+            S0=Constitutional / S1=Platform-wide / S2=App-scope / S3=Tenant / S4=User / S5=Session
+  □ HIER-2: Child/parent relationship correct? (Lower-scope never overrides higher-scope)
+  □ HIER-3: S028 scope conflict check — "what scope is the principle I'm serving? What scope is this action?"
+            If action_scope > principle_scope: BLOCKED (S2 action cannot override S0 principle)
 
 COMPLETION (2 always):
   □ COMP-1: Specific validator evidence named?

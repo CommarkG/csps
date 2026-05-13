@@ -565,6 +565,39 @@ depth_tier: L1 | L2 | L3
 
 ---
 
+### `scope_level:` — Unified Scope Model (USM) — artifact universality scope *(S028 — pending ADR-0027 ratification)*
+
+> **Status:** ADVISORY until ADR-0027 consolidates 4 fragmented level systems.
+> **Maps from:** DNA Element 13 (LAYER: CSP_CORE / SOLUTION_<X> / MIXED) → scope_level
+> **Diagnostic:** S028 Zero-Laptop incident — B_ZERO_LAPTOP_DEPENDENCY is S0 (constitutional);
+> the training default that overrode it was S2 (app-specific). No field existed to surface this conflict.
+
+```yaml
+scope_level: S0 | S1 | S2 | S3 | S4 | S5
+```
+
+| Value | Name | Applies to | Examples | Amendment |
+|---|---|---|---|---|
+| `S0` | Constitutional | Entire platform, all apps, all users, forever | B_ZERO_LAPTOP, tenant isolation, audit trail, sealed L1 spine principles | ADR + Opus + Governor |
+| `S1` | Platform-wide | All apps built on CSPS, not all contexts | libs/policies/, libs/integrations/, shared auth pattern, API conventions | PCR + Governor |
+| `S2` | App-scope | One specific SaaS app | apps/budget-planner/, budget categories, app-specific schema | Within-app PCR |
+| `S3` | Tenant-scope | One customer organization within an app | Tenant config, billing tier, custom domain, RLS scope | Admin API call |
+| `S4` | User-scope | One person within a tenant | Notification prefs, display settings, GDPR personal data | User-facing API |
+| `S5` | Session-scope | One request/interaction | JWT claims, rate limits, real-time context | Next request |
+
+**Violation rule:** A lower-scope implementation CANNOT override a higher-scope principle.
+- S2 dev workflow (pnpm dev) cannot override S0 principle (B_ZERO_LAPTOP_DEPENDENCY) ← S028 incident
+- S3 tenant config cannot override S1 platform security policy
+
+**Replaces (pending ADR-0027):**
+- DNA Element 13 LAYER field (CSP_CORE = S0/S1; SOLUTION_<X> = S2; MIXED = spans)
+- Platform Layer Boundaries L0/L1/L2 (L0 = S0-S1; L1 = S2; L2 = S3)
+- Spine Outward L1-L5 layers in csps-core-manifest.md
+
+**Validator (to build, PE=78):** `validate-scope-level.mjs` — checks file placement matches declared scope_level; BLOCKING for S2 artifacts in libs/ (S1 territory).
+
+---
+
 ### `pe_context:` — which PE variant governs this item (S025 moat-first PE)
 
 ```yaml

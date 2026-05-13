@@ -49,6 +49,7 @@ samples:
     Before claiming completion: "Am I reporting what I DID, or showing what EXISTS
     as a result of what I did? If I removed the last sentence, would the Governor
     still have evidence the task is done?"
+    CLEANUP COROLLARY: After rm/restore/delete/unstage: show git status output. The command running ≠ the file being gone. SP-001 fires at the operation; ZF requires the state.
 
   governing_intent: "Only demonstrated state change can safely drive downstream decisions — the platform builds on what is real, not what was reported"
 

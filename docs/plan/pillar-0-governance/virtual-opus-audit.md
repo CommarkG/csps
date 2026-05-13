@@ -278,9 +278,15 @@ LAYER + SCOPE (3 for principles/contracts/procedures):
   □ HIER-3: S028 scope conflict check — "what scope is the principle I'm serving? What scope is this action?"
             If action_scope > principle_scope: BLOCKED (S2 action cannot override S0 principle)
 
-COMPLETION (2 always):
-  □ COMP-1: Specific validator evidence named?
+COMPLETION (4 always):
+  □ COMP-1: Specific validator evidence named? (what tool output proves this done?)
   □ COMP-2: Exit criterion in the plan?
+  □ COMP-3: After any rm/restore/delete/unstage — git status output shown in THIS response?
+             "I ran the cleanup" ≠ ZF. State change must be demonstrated, not declared.
+             (reasoning-cleanup-without-verification — S028 diagnostic)
+  □ COMP-4: PROPOSAL scope check — does the proposed action scope ≤ the principle scope?
+             S2 proposal for S1 principle = scope conflict. Declare before proposing.
+             (reasoning-scope-level-awareness — S028 level-awareness flop)
 
 C&I (1 always — P-META-025 SEALED):
   □ Q6: Am I following the rule, or serving the intent the rule was written for?

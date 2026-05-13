@@ -195,6 +195,26 @@ WHY: The S014 canonical instance — project settings.json had permissions{} wit
 
 **Why this section exists:** The platform has infinite future situations. Rules enumerated for today's situations will not cover tomorrow's. The triad (context + principle + mechanical) is the only mechanism that scales. A plan that doesn't declare its triad for consequential decisions is a plan that will drift the moment a new situation appears. This section makes the governance architecture explicit — not as overhead, but as load-bearing structure.
 
+## §0a-proposal-scope — Proposal Scope Check (S028 — MANDATORY before any implementation proposal)
+
+> **Before proposing ANY implementation step:** declare the scope of the proposal.
+> The S028 level-awareness flop: AI proposed S2 solution (import task-mgmt .env.local)
+> for an S1 requirement (universal credential management). No check fired on the PROPOSAL.
+> Validators catch scope violations in ARTIFACTS. This section catches them in PROPOSALS.
+>
+> Self-check (Virtual Opus Audit COMP-4):
+> - What scope is the requirement being served? S0/S1/S2/S3/S4/S5?
+> - What scope is the proposed implementation? S0/S1/S2/S3/S4/S5?
+> - Is proposal_scope ≤ requirement_scope? If NO: STOP. Find the platform-level equivalent.
+
+```yaml
+requirement_scope: S0 | S1 | S2  # scope of the problem being solved
+proposal_scope: S0 | S1 | S2     # scope of the proposed solution
+scope_conflict: CLEAR | REVIEW   # REVIEW if proposal_scope > requirement_scope
+```
+
+---
+
 ## §0a-scope — Scope Level Declaration (USM — Unified Scope Model, S028)
 
 > **Declare before implementing.** What scope does this plan operate at?

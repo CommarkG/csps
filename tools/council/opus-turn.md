@@ -1,3 +1,141 @@
+# Opus Turn 21 — SROF-009 (USM) + SROF-009 Supplement (AI Oversight) + SROF-010 (Context Architecture)
+
+**State:** S028 | 102 validators | pnpm verify exit_code=0
+**Read:** All 3 VAULT documents in full
+
+---
+
+## SROF-009: Unified Scope Model — 3 Constitutional Decisions
+
+### Decision 1: Is scope_level constitutional (L1 SEALED)?
+
+**YES — the S0-S5 VOCABULARY is L1 GVRN CORE. The FIELD DECLARATION and migration is L2 operational.**
+
+The S0-S5 definitions define what "constitutional" means at each level — that's L1 material. The fact that an artifact can't store S4 data in S1 code is undebatable. The ADR seals the vocabulary; the validator enforces it. These are two distinct steps.
+
+ADR-0027 (Unified Scope Model) is the required artifact. It should state: "S0 = cannot change without platform re-grounding. S1 = applies to all apps. S2 = one app. S3 = one tenant. S4 = one user. S5 = one session. These definitions are L1 GVRN CORE."
+
+### Decision 2: Replace or add?
+
+**REPLACE Systems 1, 2, 3, 5. KEEP System 4 (Depth Semantics) as orthogonal.**
+
+The Devil's Advocate persona (Persona 5) is correct. Adding scope_level as a SIXTH system makes the fragmentation worse. Migration plan:
+- Retire "L0/L1/L2" vocabulary from Platform Layer Boundaries (validate-layer-boundary.mjs) — replace with S1/S2
+- Retire "Layer 1-5" vocabulary from csps-bedrock.md — replace with S0/S1 descriptions
+- Keep `depth_chosen ∈ {3,4,5}` EXACTLY AS IS — depth is plan complexity, orthogonal to scope
+
+**BUT:** The Platform Layer code filenames (validate-layer-boundary.mjs) should NOT be renamed until scope_level is declared on all 93+ artifacts. Migration first, rename after. No breaking changes to running validators during migration.
+
+### Decision 3: validate-scope-level BLOCKING or advisory?
+
+**TWO VALIDATORS with different severities:**
+
+`validate-scope-level-declared.mjs` → ADVISORY (93+ artifacts need migration; don't block everything)
+`validate-scope-conflict.mjs` → BLOCKING immediately (S2 action on S0 principle is NEVER acceptable)
+
+The Zero-Laptop incident is prevented by the second validator, not the first. The first is a process improvement; the second is constitutional enforcement.
+
+---
+
+## SROF-009 Supplement: AI Oversight — 3 Architectural Approvals
+
+### D.1: Auto-Invoked Critic — APPROVED with strict triggers
+
+Yes, but the trigger must be surgical:
+- File touches a documented S0 principle reference (not any procedure doc)
+- Content includes known violation patterns (.env.local in setup context, localhost in test context, pnpm dev in deployment context)
+- The auto-invoked skill is scope-specific (not cruel-critic for everything — that creates noise)
+
+Without surgical triggering, the critic becomes noise and will be ignored. The boy-who-cried-wolf failure mode is worse than no critic.
+
+### D.2: Scope Guardian Agent — APPROVED architecture, PRE-HOOK implementation first
+
+The pattern is correct. But Mastra implementation is premature (Mastra is week-6+ in build-order). Build it as a **pre-tool-use-scope-guardian.sh hook** first — fires before Write/Edit on docs/plan/ and docs/plan/apps/, checks for scope_conflict patterns. This achieves 80% of the value today. The Mastra version is the S2 upgrade after scope_level is declared on all artifacts and ADR-0027 is sealed.
+
+### D.3: Haiku Pre-Commit Check — APPROVED, build now
+
+Elegant and cheap. The patterns are well-defined. Haiku is the right tier for mechanical pattern matching. Wire it as a pre-commit hook. Sonnet writes the hook script; Haiku runs it. This closes the gap that validate-laptop-patterns.mjs (post-hoc, advisory) leaves open.
+
+---
+
+## SROF-010: Context Architecture — Constitutional Position + Minimum Architecture
+
+### Constitutional Question: L1 GVRN CORE or L2 domain?
+
+**HYBRID — same pattern as PACP (Opus Turn 10):**
+
+The PRINCIPLE ("context is the compass; context failure is constitutional") → **L1 AI CORE, already sealed as P-META-020.**
+The MECHANICS (session-context-record.md, context-gap detection, question_register) → **L2 operational, evolving.**
+
+Adding a new L1 for "context architecture" would duplicate P-META-020. P-META-020 IS the L1. What's missing is the operational L2 that implements it.
+
+**Create: `L2_DOMAIN_AI_CONTEXT_ARCHITECTURE.md`** — L2 file extending L1_CORE_AI.md. Domain: CONTEXT_MANAGEMENT. Covers: session-context-record.md, context-gap detection, skill context snapshots, question_register enforcement.
+
+### Answering the 8 Governor Questions (Q6: which 2 steps deliver 80%?)
+
+**Step 1 — Context declaration at proposal time (highest immediate impact):**
+Every AI proposal includes: "Governing context: [principle] at [scope]. Operating assumption: [X]. Uncertainty: [what I don't know]." This is a new inner-defaults entry OD-008 (disposition: override — training default is to propose without declaring context). Immediately active, no new infrastructure.
+
+**Step 2 — session-context-record.md SSoT (highest leverage for the chain):**
+Auto-generated by session-open.sh. Contains: active scope level, governing principles for this session, open requests with context, context gaps detected. Skills receive a snapshot at invocation. Closing gate verifies context was honored.
+
+These 2 steps together cover 4 of the 6 chain links (declaration → capture → inherit → verify). Steps 3-6 follow naturally.
+
+**Key answer on Q3 (session-context-record.md vs. frontmatter):**
+NOT either/or. session-context-record.md is a DERIVED SUMMARY of permanent frontmatter. The permanent SSoT is distributed (scope_level in artifact frontmatter, question_register in plans). The session record aggregates it into a navigable per-session view. Don't conflate the two.
+
+**Key answer on Q12 (chat integration — proactive on context gaps):**
+New inner-defaults entry OD-008: "Before any substantive proposal: check 'Do I have the context to make this proposal responsibly?' Surface missing context BEFORE proposing." Specific signals:
+- About to propose X but haven't heard what the Governor's success looks like → ask Q1c
+- About to reference a principle but don't know its current scope_level → query scope registry
+- Ambiguity between interpretation A and B → declare ambiguity and ask which
+
+---
+
+## Build Order for Sonnet (PE-ordered, blocking gates respected)
+
+**Session A (immediate, no ADR needed):**
+1. Create `L2_DOMAIN_AI_CONTEXT_ARCHITECTURE.md` (L2 governance doc)
+2. Add OD-008 to inner-ai-defaults/output-distribution.md (context declaration at proposal time)
+3. Create session-context-record.md template at tools/templates/
+4. session-open.sh: generate session-context-record.md from active session state (diff + Governor confirm)
+
+**Session B (after ADR-0027):**
+5. Write ADR-0027 (Unified Scope Model — vocabulary only, no migration yet)
+6. Create validate-scope-level-declared.mjs (ADVISORY — tracking only)
+7. Create validate-scope-conflict.mjs (BLOCKING — S2 override of S0)
+8. Wire both into pnpm verify
+
+**Session C (migration + oversight):**
+9. Backfill scope_level on all 93 governed artifacts (script, not manual)
+10. pre-tool-use-scope-guardian.sh hook (scope conflict detection before Write/Edit)
+11. Haiku pre-commit hook for scope pattern violations
+12. promote validate-scope-level-declared from advisory → blocking after backfill complete
+
+---
+
+## RZF VERIFICATION — NEGATIVE
+Cycle 1: What did I miss?
+  Findings: 1 — Q8 (B_CDAB composition with session-context-record.md): B_CDAB governs DEPTH of context loading. session-context-record.md governs WHAT context exists. They're orthogonal, not conflicting. B_CDAB says "load L1 by default"; session-context-record.md tells you WHICH L1 to load. No conflict.
+  Tracked: Noted in L2_DOMAIN_AI_CONTEXT_ARCHITECTURE.md when Sonnet creates it.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: USM S0-S5 vocabulary ratified as L1 material
+Essence: The S0-S5 scope levels make "what level is this?" unambiguously answerable for the first time
+Walk:
+  inner-ai-defaults (OD-008): QUEUED — context declaration at proposal time
+  session-context-record.md template: QUEUED — for Sonnet Session A
+  scope_level field: QUEUED — needs backfill after ADR
+  L2_DOMAIN_AI_CONTEXT_ARCHITECTURE: QUEUED — Sonnet Session A
+Walk-trail: 1 cycle | 4 surfaces identified | all queued for Sonnet
+
+*Opus Turn 21 — SROF-009+010 constitutional decisions | Build order established*
+*OPUS-1 | S028 | 2026-05-13*
+
+---
+
 # Opus Turn 20 — P-META-025 C&I + CEC Walk (16 surfaces)
 
 **CEC hook fired on principles.yaml edit — non-negotiable propagation walk.**

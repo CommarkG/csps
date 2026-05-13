@@ -21,6 +21,8 @@ links:
   - { rel: principle, href: ../pillar-0-governance/reuse-first-principle.md }
   - { rel: repo-layout, href: ./repo-layout.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Tech Stack (locked)

@@ -33,6 +33,8 @@ created-new-because: |
   (the system-prompt assembly logic) and from skills-package (the AI-skill catalog the dispatcher
   routes to). Mastra-setup is the GLUE.
 domain_path: platform
+core_spine: AI
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Mastra Setup

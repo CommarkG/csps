@@ -21,6 +21,8 @@ links:
   - { rel: tech-stack, href: ./tech-stack.md }
   - { rel: app-schema-contract, href: ../pillar-2-data-and-schema/app-schema-contract.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Repo Layout

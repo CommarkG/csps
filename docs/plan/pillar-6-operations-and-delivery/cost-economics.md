@@ -29,6 +29,8 @@ created-new-because: |
   stripe-clerk-wiring.md (the entitlements layer) and dashboards.md (the cost-attribution
   surface) — this leaf is the ECONOMIC MODEL.
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Cost Economics (stub)

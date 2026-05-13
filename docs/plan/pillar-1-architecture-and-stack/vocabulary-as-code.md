@@ -21,6 +21,8 @@ links:
   - { rel: vocabulary, href: ./vocabulary.md }
   - { rel: principles-codegen, href: ../pillar-0-governance/mechanical-enforcement.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Vocabulary-as-Code (the enforcement spine)

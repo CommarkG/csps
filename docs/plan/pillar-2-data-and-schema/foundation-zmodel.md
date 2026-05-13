@@ -25,6 +25,8 @@ links:
   - { rel: audit-triggers, href: ./audit-triggers.md }
   - { rel: principles-yaml, href: ../../../packages/principles/principles.yaml }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Foundation ZModel

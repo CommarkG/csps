@@ -21,6 +21,8 @@ links:
   - { rel: vocabulary, href: ./vocabulary.md }
   - { rel: frontmatter-standard, href: ./frontmatter-standard.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Naming Protocol (with concrete enforcement)

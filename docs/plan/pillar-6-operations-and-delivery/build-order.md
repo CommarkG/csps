@@ -30,6 +30,8 @@ created-new-because: |
   shuffle (resolution at S002 turn 9 → option B). Distinct from MASTER_PLAN's brief week table
   (which is the trunk index summary).
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Build Order — 12 Weeks to v1

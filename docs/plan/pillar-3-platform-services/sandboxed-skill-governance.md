@@ -23,6 +23,8 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: adr-sandboxed, href: ../../adr/0005-sandboxed-skill-governance.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Sandboxed Skill Governance

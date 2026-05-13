@@ -23,6 +23,8 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: adr-stack, href: ../../adr/0001-pick-csps-stack.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Customer Kit

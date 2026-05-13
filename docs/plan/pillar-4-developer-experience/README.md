@@ -20,6 +20,8 @@ links:
   - { rel: parent, href: ../README.md }
   - { rel: principle, href: ../pillar-0-governance/reuse-first-principle.md }
 domain_path: platform
+core_spine: AI
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Pillar 4 — Developer Experience

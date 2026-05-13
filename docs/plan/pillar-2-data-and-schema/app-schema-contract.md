@@ -24,6 +24,8 @@ links:
   - { rel: audit-triggers, href: ./audit-triggers.md }
   - { rel: graduation-pipeline, href: ../pillar-6-operations-and-delivery/graduation-pipeline.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # App Schema Contract

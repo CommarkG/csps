@@ -27,6 +27,8 @@ created-new-because: |
   cardinal directive. Distinct from crisis-escalation.md (the slice) and dashboards.md (the
   surface) — this leaf is the OPERATIONAL RESPONSE PLAYBOOK.
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Runbooks (stub)

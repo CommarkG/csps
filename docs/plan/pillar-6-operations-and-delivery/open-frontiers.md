@@ -30,6 +30,8 @@ created-new-because: |
   blockers (BLK-*) and smaller open questions (OQ-*). Acknowledged unknowns must be tracked
   so they're never lost.
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Open Frontiers

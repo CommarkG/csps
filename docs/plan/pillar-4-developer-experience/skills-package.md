@@ -30,6 +30,8 @@ created-new-because: |
   this leaf documents the PLATFORM-OWNED skills that originate from principles.yaml. Distinct
   concerns: tier governance vs principle-backed skill catalog.
 domain_path: platform
+core_spine: AI
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Skills Package — `packages/skills/`

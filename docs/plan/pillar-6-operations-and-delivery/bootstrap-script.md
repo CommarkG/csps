@@ -29,6 +29,8 @@ created-new-because: |
   the contract + readiness checklist + idempotency requirements. Distinct from build-order
   (which uses bootstrap as week-1 step 1) and graduation-pipeline (which uses --graduate-mode).
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Bootstrap Script

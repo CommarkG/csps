@@ -32,6 +32,8 @@ created-new-because: |
   guardrails into one DX-loadable reference. Distinct from mastra-setup (the runtime) and
   crisis-escalation (the cross-persona safety slice).
 domain_path: platform
+core_spine: AI
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Persona Composition

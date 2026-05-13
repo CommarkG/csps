@@ -29,6 +29,8 @@ created-new-because: |
   stands alone" cardinal directive. Distinct from dashboards.md (the surface) and
   mastra-setup.md (the runtime that emits OTel spans).
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Observability (stub)

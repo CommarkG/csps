@@ -30,6 +30,8 @@ created-new-because: |
   is load-bearing for the foundry model — if extraction takes months, the schema-per-app pattern
   fails its design goal. This leaf locks the 2-3 day extraction contract + checklist.
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Graduation Pipeline (CSPS App → Standalone Product)

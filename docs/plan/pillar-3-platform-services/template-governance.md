@@ -22,6 +22,8 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: adr-template-only, href: ../../adr/0004-template-only-page-creation.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Template Governance

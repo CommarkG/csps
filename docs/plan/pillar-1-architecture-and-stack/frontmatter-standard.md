@@ -22,6 +22,8 @@ links:
   - { rel: vocabulary, href: ./vocabulary.md }
   - { rel: catalog, href: ../pillar-3-platform-services/catalog-bundle-system.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Universal Frontmatter Standard

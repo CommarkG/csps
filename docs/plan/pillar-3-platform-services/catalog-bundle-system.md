@@ -22,6 +22,8 @@ links:
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: frontmatter, href: ../pillar-1-architecture-and-stack/frontmatter-standard.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Catalog & Bundle System

@@ -31,6 +31,8 @@ created-new-because: |
   AI agents loading the platform — what to load, in what order, with what priority. Distinct
   concern: governance vs developer-experience surfacing of the same disciplines.
 domain_path: platform
+core_spine: AI
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # AI Behavior Instructions (DX Surface)

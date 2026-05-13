@@ -25,6 +25,8 @@ links:
   - { rel: app-schema-contract, href: ./app-schema-contract.md }
   - { rel: audit-runner, href: ../pillar-0-governance/audit-runner.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Audit Triggers (SQL)

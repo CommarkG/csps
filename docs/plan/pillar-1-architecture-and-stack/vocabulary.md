@@ -21,6 +21,8 @@ links:
   - { rel: codegen-spec, href: ./vocabulary-as-code.md }
   - { rel: agents-md, href: ../../../AGENTS.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Vocabulary (locked glossary)

@@ -22,6 +22,8 @@ links:
   - { rel: complexity-contract, href: ./complexity-contract.md }
   - { rel: module-folder-pattern, href: ./module-folder-pattern.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # The Slice Contract (16 checks, percentage-based)

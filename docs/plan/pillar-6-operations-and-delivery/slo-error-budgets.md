@@ -28,6 +28,8 @@ created-new-because: |
   cardinal directive. Distinct from observability.md (the measurement layer) and runbooks.md
   (the response playbooks) — this leaf is the EXPECTATION CONTRACT with users.
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # SLOs + Error Budgets (stub)

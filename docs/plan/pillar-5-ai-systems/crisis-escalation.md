@@ -33,6 +33,8 @@ created-new-because: |
   Distinct from persona-composition (the slice every persona INHERITS from) and from the audit-
   triggers leaf (the DB layer that records events).
 domain_path: platform
+core_spine: AI
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Crisis Escalation (Load-Bearing for v1)

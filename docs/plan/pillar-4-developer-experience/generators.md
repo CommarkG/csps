@@ -31,6 +31,8 @@ created-new-because: |
   acceptance criteria. The pillar-3 catalog-bundle-system leaf documents the catalog SIDE; this
   leaf documents the GENERATOR side that writes to it. Distinct concerns.
 domain_path: platform
+core_spine: AI
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Generators (the platform's golden-path scaffolders)

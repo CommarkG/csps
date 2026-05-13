@@ -31,6 +31,8 @@ created-new-because: |
   plan.md added 6 intake pages (treasure #3 D). This leaf consolidates ALL admin dashboards
   into one reference + locks the read-only-vs-edit boundaries + impersonation gates.
 domain_path: platform
+core_spine: OPER
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Admin Dashboards

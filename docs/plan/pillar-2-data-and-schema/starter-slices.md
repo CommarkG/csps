@@ -26,6 +26,8 @@ links:
   - { rel: persona-composition, href: ../pillar-5-ai-systems/persona-composition.md }
   - { rel: crisis-escalation, href: ../pillar-5-ai-systems/crisis-escalation.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # Starter Slices (16 Foundation slices)

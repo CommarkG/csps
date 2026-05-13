@@ -22,6 +22,8 @@ links:
   - { rel: slice-contract, href: ./slice-contract.md }
   - { rel: module-folder-pattern, href: ./module-folder-pattern.md }
 domain_path: platform
+core_spine: ARCH
+schema_anchor: pillar_0_governance_leaves
 ---
 
 # The Complexity Contract

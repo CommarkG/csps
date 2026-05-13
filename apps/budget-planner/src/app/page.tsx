@@ -8,6 +8,9 @@ import type { CspsSessionClaims } from '@csps/integrations'
 import { db } from '@/lib/db'
 import { getEnhancedDb } from '@/lib/zenstack'
 
+type Tx = { id: string; type: string; amount: number; note: string | null }
+type Cat = { id: string; name: string; type: string; monthlyLimit: number | null }
+
 export default async function DashboardPage() {
   const { userId, sessionClaims } = await auth()
 
@@ -22,7 +25,7 @@ export default async function DashboardPage() {
   const edb = getEnhancedDb({ id: cspsUser.id, tenantId, staffRole: cspsUser.staffRole })
 
   // Threshold Wizard gate — non-skippable (server-side enforcement)
-  const budgetGoal = await edb.budgetGoal.findUnique({ where: { tenantId } })
+  const budgetGoal = await edb.budgetGoal.findUnique({ where: { tenantId } }) as { tenantId: string; goalStatement: string } | null
   if (!budgetGoal) redirect('/budget-setup')
 
   // Fetch current month balance
@@ -40,11 +43,10 @@ export default async function DashboardPage() {
       orderBy: [{ date: 'desc' }],
       take: 20,
     }),
-  ])
+  ]) as [Cat[], Tx[]]
 
-  type Tx = { type: string; amount: number }
-  const income = (transactions as Tx[]).filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0)
-  const expenses = (transactions as Tx[]).filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0)
+  const income = transactions.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0)
+  const expenses = transactions.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0)
   const balance = income - expenses
   const period = `${now.toLocaleString('default', { month: 'long' })} ${now.getFullYear()}`
 
@@ -74,7 +76,7 @@ export default async function DashboardPage() {
       {categories.length > 0 ? (
         <div style={{ marginBottom: '2rem' }}>
           <h2 style={{ fontSize: '1rem', marginBottom: '1rem', color: '#374151' }}>Categories</h2>
-          {categories.map(cat => (
+          {categories.map((cat: Cat) => (
             <div key={cat.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem', background: '#f9fafb', borderRadius: 6, marginBottom: '0.5rem' }}>
               <span>{cat.name}</span>
               <span style={{ color: cat.type === 'income' ? '#16a34a' : '#dc2626', fontSize: '0.875rem' }}>
@@ -94,7 +96,7 @@ export default async function DashboardPage() {
       {transactions.length > 0 && (
         <div>
           <h2 style={{ fontSize: '1rem', marginBottom: '1rem', color: '#374151' }}>Recent transactions</h2>
-          {transactions.slice(0, 10).map(t => (
+          {transactions.slice(0, 10).map((t: Tx) => (
             <div key={t.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid #f3f4f6', fontSize: '0.875rem' }}>
               <span style={{ color: '#374151' }}>{t.note ?? 'Transaction'}</span>
               <span style={{ color: t.type === 'income' ? '#16a34a' : '#dc2626', fontWeight: 500 }}>

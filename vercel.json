@@ -1,5 +1,4 @@
 {
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- apps/budget-planner/",
   "framework": null,
   "installCommand": "pnpm install",
   "buildCommand": "pnpm --filter budget-planner build",

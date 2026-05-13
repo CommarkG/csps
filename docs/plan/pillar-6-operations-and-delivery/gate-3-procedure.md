@@ -1,6 +1,6 @@
 ---
-id: csps.apps.budget-planner.gate-3-validation
-name: gate-3-validation
+id: csps.pillar-6.gate-3-procedure
+name: gate-3-procedure
 description: >
   Budget Planner Gate 3 — Live validation via Vercel deployment from platform root.
   scope_level: S1 (Platform-wide deployment, root = repo root, NOT app subdirectory).

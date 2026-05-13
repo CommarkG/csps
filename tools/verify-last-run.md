@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-13T10:06:53.342Z
-- finished_at: 2026-05-13T10:07:37.560Z
+- ran_at: 2026-05-13T10:39:20.246Z
+- finished_at: 2026-05-13T10:39:51.700Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-13T10:06:53.342Z",
-    "finished_at": "2026-05-13T10:07:37.560Z",
+    "ran_at": "2026-05-13T10:39:20.246Z",
+    "finished_at": "2026-05-13T10:39:51.700Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 15.2,
+        "duration_seconds": 8,
         "packages_resolved": null
       },
       {
@@ -41,8 +41,8 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
-        "scanned": 350,
+        "duration_seconds": 0.2,
+        "scanned": 351,
         "errors": 0,
         "warnings": 10,
         "exempt": 269
@@ -62,7 +62,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.4,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -196,7 +196,7 @@
         "command": "node tools/validators/validate-opus-review-flagging.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "last_turn": 11,
         "flags": 10,
         "commits": 0
@@ -216,7 +216,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.3,
         "checked": 27,
         "advisories": 20
       },
@@ -339,7 +339,7 @@
         "command": "node tools/validators/validate-opus-cec-artifacts.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "sections": 4,
         "applied_yes": 0,
         "cited": 0,
@@ -350,9 +350,9 @@
         "command": "node tools/validators/validate-schema-anchors.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "checked": 316,
-        "clean": 316,
+        "duration_seconds": 0.1,
+        "checked": 317,
+        "clean": 317,
         "blocking": 0,
         "registry": 47
       },
@@ -408,7 +408,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 38,
+        "checked": 39,
         "advisories": 1
       },
       {
@@ -427,9 +427,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "checked": 37,
+        "checked": 39,
         "blocking": 0,
-        "advisories": 6
+        "advisories": 7
       },
       {
         "name": "request_ledger",
@@ -532,7 +532,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 103
+        "validators": 104
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -822,7 +822,7 @@
         "command": "node tools/validators/validate-solo-user-flow.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "checked": 3,
         "advisory": 1
       },
@@ -878,7 +878,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "warnings": 2,
+        "warnings": 3,
         "advisory": true
       },
       {
@@ -994,7 +994,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 11.8
+        "duration_seconds": 7.8
       },
       {
         "name": "audit_runner_full_pass",

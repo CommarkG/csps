@@ -42,8 +42,9 @@ export default async function DashboardPage() {
     }),
   ])
 
-  const income = transactions.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0)
-  const expenses = transactions.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0)
+  type Tx = { type: string; amount: number }
+  const income = (transactions as Tx[]).filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0)
+  const expenses = (transactions as Tx[]).filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0)
   const balance = income - expenses
   const period = `${now.toLocaleString('default', { month: 'long' })} ${now.getFullYear()}`
 

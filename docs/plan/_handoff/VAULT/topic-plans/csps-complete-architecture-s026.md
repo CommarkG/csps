@@ -66,7 +66,7 @@ failure_signal: >
   OR a vault item stays PENDING for >30 days without a documented trigger or review.
 links:
   - { rel: architecture-synthesis, href: ../../../_handoff/VAULT/contexts/governance/platform-readiness/EXT-20260512-002-A-csps-complete-architecture-synthesis.md }
-  - { rel: master-plan, href: ./csps-master-plan-s025-plus.md }
+  - { rel: master-plan, href: ../csps-master-plan-s025-plus.md }
   - { rel: audit-runner, href: ../../../pillar-0-governance/audit-runner.md }
   - { rel: threshold-protocol, href: ../../../pillar-0-governance/threshold-intake-protocol.md }
 ---

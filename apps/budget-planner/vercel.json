@@ -1,7 +1,7 @@
 {
   "framework": "nextjs",
-  "outputDirectory": ".next",
-  "buildCommand": "pnpm build",
+  "outputDirectory": "apps/budget-planner/.next",
+  "buildCommand": "pnpm --filter budget-planner build",
   "installCommand": "pnpm install",
   "env": {
     "NEXT_PUBLIC_CLERK_SIGN_IN_URL": "/sign-in",
@@ -9,5 +9,6 @@
     "NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL": "/dashboard",
     "NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL": "/dashboard"
   },
-  "regions": ["iad1"]
+  "regions": ["iad1"],
+  "_scope_comment": "Root Directory in Vercel dashboard MUST be . (repo root, S1). Build commands reference app subdirectory. This file is S2 config but deployment root is S1."
 }

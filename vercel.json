@@ -1,0 +1,15 @@
+{
+  "_comment": "CSPS Monorepo — Root-level Vercel config. scope_level: S1 (Platform controls build). Each app is a build target, not a deployment root.",
+  "_scope": "S1 Platform-wide — Root Directory in Vercel must be . (repo root). App subdirectories are targets.",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- apps/budget-planner/",
+  "framework": null,
+  "installCommand": "pnpm install",
+  "projects": {
+    "csps-budget-planner": {
+      "rootDirectory": "apps/budget-planner",
+      "buildCommand": "pnpm --filter budget-planner build",
+      "outputDirectory": "apps/budget-planner/.next",
+      "framework": "nextjs"
+    }
+  }
+}

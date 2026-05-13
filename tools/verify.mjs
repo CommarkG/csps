@@ -422,6 +422,22 @@ const CYCLES = [
     // Governor directive: "mechanically enforce it — global context lead mandatory element."
     // BLOCKING for new .md files containing: "pnpm dev", "localhost:PORT", ".env.local" in procedures.
     // ADVISORY for pre-existing docs. B_ZERO_LAPTOP_DEPENDENCY | P-OPER-001.
+    // SROF-011 D.3 — Core contamination: no external API calls in validators/hooks/principles.
+    // BLOCKING: fetch()/http.get/axios in governance validators; curl to external in hooks.
+    // ADVISORY: principles citing external sources as canonical. scope_level: S0.
+    // S028 — Scope conflict: detects S2 proposals for S1 requirements in procedure docs.
+    // K=2 already reached: 3+ violations in S028 (credentials, vercel link, root directory).
+    // Advisory Phase 1 → BLOCKING Phase 2. Closes the PROPOSAL-level enforcement gap.
+    name: 'scope_conflict',
+    command: 'node tools/validators/validate-scope-conflict.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
+    name: 'core_contamination',
+    command: 'node tools/validators/validate-core-contamination.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisories: Number(m[3]) } : {}; },
+  },
+  {
     name: 'laptop_patterns',
     command: 'node tools/validators/validate-laptop-patterns.mjs',
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisories: Number(m[3]) } : {}; },

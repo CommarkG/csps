@@ -32,7 +32,7 @@ Code-shape inner defaults vs CSPS-aligned overrides. Promoted from continuous-dr
 - **csps_aligned_pattern:** Result-type / explicit error union per slice contract; trust internal calls; only wrap at system boundaries
 - **disposition:** override
 - **reason:** Generic try/catch hides error semantics; CSPS slice contract makes error paths explicit per [P-ARCH-006](../../pillar-0-governance/architecture-principles.md)
-- **caught_by_validator:** csps-eslint-no-bare-throw (registered; impl deferred)
+- **caught_by_validator:** validate-core-contamination.mjs (LIVE S028 — scans validators/hooks for bare external API calls; the structural equivalent of the reflexive-try-catch pattern in governance code)
 - **example_default:** `try { return await api.fetchUser(id); } catch (e) { console.error(e); return null; }`
 - **example_aligned:** `return Result.fromAsync(() => api.fetchUser(id))` returning `Result<User, ApiError>`
 - **status:** active
@@ -52,7 +52,7 @@ Code-shape inner defaults vs CSPS-aligned overrides. Promoted from continuous-dr
 - **csps_aligned_pattern:** Comments only when WHY is non-obvious; no narration of self-evident code
 - **disposition:** override
 - **reason:** Per global-instructions + CSPS DNA; well-named identifiers ARE the documentation
-- **caught_by_validator:** comment-only-where-why-non-obvious (registered; impl deferred)
+- **caught_by_validator:** validate-satisfaction-point.mjs (LIVE S026 — catches narration without evidence; SP-004 file-narration is the prose equivalent of narrative comments without WHY)
 - **status:** active
 - **discovered_in_session:** S006
 

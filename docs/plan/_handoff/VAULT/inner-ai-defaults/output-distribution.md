@@ -30,7 +30,7 @@ domain_path: platform
 - **csps_aligned_pattern:** BLUF — direct lead; one-sentence task-statement before first tool; updates only at key moments
 - **disposition:** override
 - **reason:** Preamble eats tokens; user can read tool calls
-- **caught_by_validator:** prose-over-narration-detector (registered; impl deferred)
+- **caught_by_validator:** validate-satisfaction-point.mjs (LIVE S026 — SP-001/SP-004 catch narration without evidence; output-preamble is the narration-before-action variant)
 - **status:** active
 
 ### output-non-clickable-references

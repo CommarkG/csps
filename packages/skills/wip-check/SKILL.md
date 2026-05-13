@@ -39,6 +39,7 @@ principle_compliance:
 consolidation_cross_refs: []    # empty = genuinely-novel skill per B_CONSOLIDATION_PASS
 
 scope_level: S1
+template_grade: B
 ---
 
 # /wip-check — Finish What We Started threshold gate

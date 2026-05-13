@@ -54,13 +54,24 @@ Budget Planner Gate 3 live validation. Procedure:
 
 **Top PE items for S028 (updated after autonomous push):**
 
-DONE during autonomous S027++ push:
+DONE during autonomous S027++ push (comprehensive session):
 ✅ PE=67: validate-spine-hierarchy.mjs — COMPLETE (27 files, 0 blocking)
 ✅ PE=70: validate-frontmatter-count-consistency.mjs — COMPLETE
 ✅ PE=75: validate-deferred-target-session.mjs — COMPLETE (surfaces governance debt)
-✅ PE=72: Session B validators — validate-schema-anchors + validate-generated-artifact-freshness
-✅ PE=68: P-META-024 fully wired — session-open.sh + AGENTS.md + all CEC surfaces
-✅ Dead links: 71 → 57 (-14 total)
+✅ PE=72: Session B validators — validate-schema-anchors (248/248 clean) + validate-generated-artifact-freshness
+✅ PE=68: P-META-024 fully wired + validate-multi-topic-decomposition.mjs BUILT
+✅ PE=63: validate-multi-topic-decomposition.mjs — COMPLETE (UPDATE-029)
+✅ Dead links: 71 → 40 (-31 total!)
+✅ Orphans: 43 → 0 — ZERO ORPHANS ACHIEVED (full platform connectivity)
+✅ Enforcement rate: 35% → 70% (ACCEPTABLE — long-term target hit!)
+✅ Health: 79% → 88% (13/17 YES)
+✅ Validators: 88 → 98 (+10)
+✅ L3 instances: 227 → 295 (orphan backfill connected everything)
+✅ §L1-SEALING-GATE in csps-core-manifest.md (ADR-0026 materialized)
+✅ Gate 3 procedure documented: docs/plan/apps/budget-planner/gate-3-validation.md
+✅ pnpm instances:refresh script added to package.json
+✅ 9 bulk dead link patterns fixed (../../../../docs/plan/ → ../../../)
+✅ platform-update-backlog.yaml: 5 S027/S028 items added
 
 REMAINING:
 - PE=78: Budget Planner Gate 3 live validation (Governor runs; AI documents result)

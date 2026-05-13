@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-12T22:19:50.378Z
-- finished_at: 2026-05-12T22:20:15.563Z
+- ran_at: 2026-05-13T00:22:15.691Z
+- finished_at: 2026-05-13T00:22:38.666Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-12T22:19:50.378Z",
-    "finished_at": "2026-05-12T22:20:15.563Z",
+    "ran_at": "2026-05-13T00:22:15.691Z",
+    "finished_at": "2026-05-13T00:22:38.666Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.5,
+        "duration_seconds": 6.2,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.2,
         "ts_errors": 0
       },
       {
@@ -133,10 +133,10 @@
       {
         "name": "ai_defaults_enforcement_rate",
         "command": "node tools/validators/validate-inner-ai-defaults-enforcement-rate.mjs",
-        "status": "ADVISORY",
+        "status": "ACCEPTABLE",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "enforcement_rate": 41
+        "enforcement_rate": 51
       },
       {
         "name": "opus_audit_due",
@@ -189,7 +189,7 @@
         "duration_seconds": 0.1,
         "files": 110,
         "links": 502,
-        "broken": 53
+        "broken": 51
       },
       {
         "name": "opus_review_flagging",
@@ -555,7 +555,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -937,7 +937,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.6
+        "duration_seconds": 6.7
       },
       {
         "name": "audit_runner_full_pass",

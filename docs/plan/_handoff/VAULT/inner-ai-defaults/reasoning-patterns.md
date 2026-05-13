@@ -60,7 +60,7 @@ domain_path: platform
 - **csps_aligned_pattern:** Humble-batching — each batch has explicit composition rationale; unrelated items go in separate batches
 - **disposition:** override
 - **reason:** Unrelated batching defeats per-level ZF gates + obscures cross-cutting impact
-- **caught_by_validator:** humble-batching-required (registered; impl deferred)
+- **caught_by_validator:** validate-gradual-bundling.mjs (LIVE S021 — checks that batches have explicit composition rationale; catches unrelated items bundled without documented reason; checks humble-batching discipline per B_HUMBLE_EXECUTOR)
 - **opus_pattern:** Opus sees each task through its ZF gate. The test: "Can both items in this batch fail independently without contaminating each other's closure?" If no: separate batches. Batching unrelated items produces a batch that can only pass as a whole — one item's failure blocks the other's valid work. The composition rationale must be explicit; silent batching is not a rationale.
 - **moat_relevance:** maintenance
 - **status:** active
@@ -80,7 +80,7 @@ domain_path: platform
 - **csps_aligned_pattern:** Foundation-stability-before-layer-N — L<N+1> work blocked until L<N> ZF
 - **disposition:** override
 - **reason:** Skipping foundation produces cascading rework + violates Core Spine outward-layering
-- **caught_by_validator:** foundation-stability-before-layer-N (registered; impl deferred)
+- **caught_by_validator:** validate-spine-hierarchy.mjs (LIVE S028 — checks L1/L2/L3 structural rules; BLOCKING if L2 missing parent_l1_doctrine; ADVISORY if L1 has do_not_expand violation; enforces foundation layer integrity before allowing next layer)
 - **opus_pattern:** Opus holds the dependency tree. Before building L1, it checks L0 ZF. Before building L2, it checks L1 ZF. It reads the bedrock checklist alongside the feature request — not as a formality but as a prerequisite. Sonnet reads the feature request. Opus reads the feature request AND the foundation that makes it safe to build. The shortcut saves one session; the rework costs three.
 - **moat_relevance:** compound
 - **status:** active
@@ -90,7 +90,7 @@ domain_path: platform
 - **csps_aligned_pattern:** For CONSEQUENTIAL decisions, verify all 3 triad layers before proceeding: (1) name the L2 spine domain governing this decision, (2) name the specific principle that applies, (3) confirm a mechanical enforcer exists. Missing any layer on a consequential decision = governance gap → surface in §10.0j.
 - **disposition:** override
 - **reason:** P-META-021 (Triad Governance) + Governor S014 directive that no single mechanism covers infinite situations. The Phase 5 advance suggestion while VLTs were open is the K=1 instance. K=2 = must engrave.
-- **caught_by_validator:** triad-coverage (registered in audit-runner.md; impl deferred week-4)
+- **caught_by_validator:** validate-decision-frame-citation.mjs (LIVE S021 — catches multi-option decisions without PCR; the mechanical layer of triad checking; ensures consequential choices declare principle + have structured decision frame)
 - **opus_pattern:** Opus runs the triad check as a reflex before any consequential decision: (1) which L2 spine governs this — GVRN/ARCH/AI/VALD/OPER? (2) which principle applies — name it? (3) which running validator samples this? Missing any layer = surface as a gap in the response. Sonnet consults one source and satisfies. Opus holds three sources simultaneously and only advances when all three agree.
 - **moat_relevance:** compound
 - **status:** active
@@ -121,7 +121,7 @@ domain_path: platform
 - **disposition:** override
 - **concept_ref:** VALD L2 — coverage discipline; every claim must be backed by observable evidence from this interaction, not memory or approximation
 - **reason:** S018 Governor directive: "Re-run is partial — not the proof." 6 instances of nominal ZF citations in one session where AI cited prior run results as current evidence. Root cause: training reward for "helpful action" not "verified outcome." CSPS requires Intent to Measurable End Result, not Intent to Impact.
-- **caught_by_validator:** INST-VALD-001 + B_PRE_CLOSE_VERIFICATION (behavioral); no automated validator for satisfaction-point detection (human-judgment complement)
+- **caught_by_validator:** validate-satisfaction-point.mjs (LIVE S026 — scans sonnet-turn.md + HANDOFF files for T1 trigger patterns without evidence; SP-001 sample pair; catches "I've run X" narration without output)
 - **self_assessment_question:** "Am I declaring this DONE based on an action I took, or based on observable evidence in this response that the action succeeded? If I removed my last response, would the claim still be provable?"
 - **opus_pattern:** Opus distinguishes action from state change. After running a validator, Opus pastes the output line that proves the state changed. The test: "Is my evidence observable by someone who wasn't watching me work?" Sonnet reports the action it took. Opus reports the state that exists as a result. The satisfaction point fires at action for Sonnet; at observable state change for Opus.
 - **moat_relevance:** compound

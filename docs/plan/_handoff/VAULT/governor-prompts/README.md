@@ -15,7 +15,7 @@ tags:
 diataxis_type: reference
 links:
   - { rel: parent, href: ../README.md }
-  - { rel: principle, href: ../../../../packages/principles/principles.yaml }
+  - { rel: principle, href: ../../../../../packages/principles/principles.yaml }
   - { rel: contract, href: ../../../pillar-0-governance/behavioral-contracts.md }
   - { rel: dashboard, href: ../../../pillar-0-governance/governor-prompts.md }
   - { rel: user-intents, href: ../user-intents.md }

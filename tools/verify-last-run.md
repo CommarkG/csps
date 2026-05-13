@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-13T02:29:20.467Z
-- finished_at: 2026-05-13T02:29:47.336Z
+- ran_at: 2026-05-13T02:36:55.968Z
+- finished_at: 2026-05-13T02:37:23.571Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-13T02:29:20.467Z",
-    "finished_at": "2026-05-13T02:29:47.336Z",
+    "ran_at": "2026-05-13T02:36:55.968Z",
+    "finished_at": "2026-05-13T02:37:23.571Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.5,
+        "duration_seconds": 7.6,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.3,
+        "duration_seconds": 1.2,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.7,
+        "duration_seconds": 0.8,
         "principles_loaded": 59,
         "findings_total": 0
       },
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 347,
+        "scanned": 348,
         "errors": 0,
         "warnings": 10,
         "exempt": 269
@@ -216,7 +216,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.3,
         "checked": 27,
         "advisories": 20
       },
@@ -351,8 +351,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 313,
-        "clean": 313,
+        "checked": 314,
+        "clean": 314,
         "blocking": 0,
         "registry": 47
       },
@@ -437,8 +437,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -839,7 +839,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 2,
         "advisory": true
       },
@@ -956,7 +956,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.1
+        "duration_seconds": 7.5
       },
       {
         "name": "audit_runner_full_pass",

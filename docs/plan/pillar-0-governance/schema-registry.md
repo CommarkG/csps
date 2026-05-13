@@ -142,6 +142,13 @@ schema_anchors:
     l2_domain: DECISION_RIGHTS_CLARITY
     description: Opus consultation artifacts (SROF logs, opus-turn.md outputs)
 
+  external_integrations:
+    type: reference-hub
+    resolves_to: docs/plan/pillar-0-governance/external-integrations/
+    spine: ARCH
+    l2_domain: INFRA_INTEGRATIONS
+    description: External service integration knowledge hub (Vercel, Supabase, Clerk, etc.)
+
   vault_files:
     type: governance-section
     resolves_to: docs/plan/_handoff/VAULT/

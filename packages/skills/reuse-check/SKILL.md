@@ -39,6 +39,7 @@ principle_compliance:
   - P-META-002    # principles-travel-with-artifacts
 consolidation_cross_refs: []    # empty = genuinely-novel skill per B_CONSOLIDATION_PASS
 
+scope_level: S1
 ---
 
 # /reuse-check — Catalog similarity search

@@ -39,6 +39,7 @@ consolidation_cross_refs:
 template_grade: B
 links:
   - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
+scope_level: S1
 ---
 
 # /synergy-master — Core Cross-Synergy Analysis

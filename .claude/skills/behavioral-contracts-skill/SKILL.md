@@ -34,6 +34,7 @@ consolidation_cross_refs: []    # empty = genuinely-novel skill per B_CONSOLIDAT
 template_grade: B
 links:
   - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
+scope_level: S1
 ---
 
 # /behavioral-contracts-skill — B_* Contract Lookup

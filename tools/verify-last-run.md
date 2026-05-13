@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-13T08:23:40.121Z
-- finished_at: 2026-05-13T08:24:08.612Z
+- ran_at: 2026-05-13T08:42:12.640Z
+- finished_at: 2026-05-13T08:42:39.749Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-13T08:23:40.121Z",
-    "finished_at": "2026-05-13T08:24:08.612Z",
+    "ran_at": "2026-05-13T08:42:12.640Z",
+    "finished_at": "2026-05-13T08:42:39.749Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 8.3,
+        "duration_seconds": 7.4,
         "packages_resolved": null
       },
       {
@@ -216,7 +216,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.5,
         "checked": 27,
         "advisories": 20
       },
@@ -302,7 +302,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 17,
-        "validators": 99,
+        "validators": 101,
         "models": 0,
         "advisories": 8
       },
@@ -411,6 +411,25 @@
         "checked": 37,
         "blocking": 0,
         "advisories": 6
+      },
+      {
+        "name": "request_ledger",
+        "command": "node tools/validators/validate-request-ledger.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "open": 0,
+        "advisories": 0,
+        "blocking": 0
+      },
+      {
+        "name": "skill_dna_alignment",
+        "command": "node tools/validators/validate-skill-dna-alignment.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "skills": 26,
+        "advisories": 9
       },
       {
         "name": "question_coverage",
@@ -867,9 +886,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 100,
+        "validators_checked": 102,
         "orphans": 0,
-        "registered": 100
+        "registered": 102
       },
       {
         "name": "token_budget_validate",
@@ -956,7 +975,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.4
+        "duration_seconds": 6.7
       },
       {
         "name": "audit_runner_full_pass",

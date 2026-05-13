@@ -427,6 +427,22 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisories: Number(m[3]) } : {}; },
   },
   {
+    // Governor Request Ledger: tracks all substantive requests with PE scores.
+    // Advisory: surfaces OPEN requests sorted by PE. BLOCKING at session close (future).
+    // SSoT: tools/config/governor-request-ledger.yaml | Governor directive S028.
+    name: 'request_ledger',
+    command: 'node tools/validators/validate-request-ledger.mjs',
+    parse_output: (out) => { const m = out.match(/open=(\d+)\s+advisories=(\d+)\s+blocking=(\d+)/); return m ? { open: Number(m[1]), advisories: Number(m[2]), blocking: Number(m[3]) } : {}; },
+  },
+  {
+    // Skill DNA alignment: validates all SKILL.md files are current with platform DNA.
+    // Checks: scope_level, template_grade, backed_by_principle exists, backed_by_contract exists.
+    // Advisory: skill references stale principle/contract. Governor directive S028.
+    name: 'skill_dna_alignment',
+    command: 'node tools/validators/validate-skill-dna-alignment.mjs',
+    parse_output: (out) => { const m = out.match(/skills_checked=(\d+)\s+advisories=(\d+)/); return m ? { skills: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
     name: 'question_coverage',
     command: 'node tools/validators/validate-question-coverage.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },

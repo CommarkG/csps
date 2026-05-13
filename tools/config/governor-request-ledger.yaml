@@ -1,0 +1,130 @@
+---
+id: csps.tools.config.governor-request-ledger
+name: governor-request-ledger
+description: >
+  Single source of truth for all substantive Governor requests and their resolution status.
+  Every request is PE-scored and tracked: OPEN | ANSWERED | DEFERRED.
+  Enforced: session-close gate blocks if OPEN items exist without resolution.
+  Integrates with: governor-prompts/ (source), PE engine (ordering),
+  session-open.sh (surfaces at session start), validate-request-ledger.mjs.
+
+  Governor directive S028: "how can it be connected to accountability tracking
+  and PE to sort things by importance — consolidated into one source of truth"
+
+scope_level: S1
+version: 1.0
+owner: group:finky
+session: S028
+---
+
+# Governor Request Ledger (GRL)
+# Every substantive request logged with PE score + resolution status.
+# validate-request-ledger.mjs checks this at every pnpm verify.
+# Session close blocks if OPEN items exist.
+
+categories:
+  operational-question: "How do I do X? Can we do Y?"
+  directive: "Build X / implement Y / create Z"
+  ratification: "Approve/confirm/ratify this"
+  strategic: "What should we do about X? Deep dive on Y"
+  feedback: "This was wrong / you did X wrong"
+  gate: "Formal gate check (Gate 3, foundation gate, etc.)"
+
+# ─── OPEN REQUESTS (sorted by PE — highest first) ────────────────────────────
+
+open:
+
+  - id: GRL-S028-001
+    session: S028
+    timestamp: 2026-05-13T08:36:13Z
+    verbatim: "are we connected to vercel?"
+    category: operational-question
+    pe: 78
+    status: OPEN
+    notes: "Budget Planner .vercel/ not found — vercel link not run yet"
+
+  - id: GRL-S028-002
+    session: S028
+    timestamp: 2026-05-13T08:36:13Z
+    verbatim: "you something for opus to improve and ratify?"
+    category: strategic
+    pe: 72
+    status: OPEN
+    notes: "SROF-009 (USM + agents/skills research) ready — two documents"
+
+  - id: GRL-S028-003
+    session: S028
+    timestamp: 2026-05-13T08:36:13Z
+    verbatim: "how enforced mechanically is you not dropping any question or request — accountability tracking with PE"
+    category: directive
+    pe: 70
+    status: OPEN
+    notes: "Building: governor-request-ledger.yaml + validate-request-ledger.mjs"
+
+  - id: GRL-S028-004
+    session: S028
+    timestamp: 2026-05-13T08:36:13Z
+    verbatim: "agents and skills dynamically aligned to CSPS DNA and intents — bulletproof mechanically enforced"
+    category: directive
+    pe: 68
+    status: OPEN
+    notes: "Building: validate-skill-dna-alignment.mjs"
+
+# ─── ANSWERED REQUESTS (this session) ────────────────────────────────────────
+
+answered:
+
+  - id: GRL-S027-001
+    session: S027
+    verbatim: "can we have a universal file for credentials across all apps?"
+    category: directive
+    pe: 75
+    status: ANSWERED
+    resolution: "tools/scripts/sync-vercel-env.mjs + .env.platform pattern (S1 scope)"
+
+  - id: GRL-S028-005
+    session: S028
+    verbatim: "zero dependency on local computers — mechanically enforce it"
+    category: directive
+    pe: 80
+    status: ANSWERED
+    resolution: "validate-laptop-patterns.mjs + pre-commit hook + session-open injection + 5-surface FSE"
+
+  - id: GRL-S028-006
+    session: S028
+    verbatim: "deep dive into level definition architecture"
+    category: strategic
+    pe: 78
+    status: ANSWERED
+    resolution: "opus-level-definition-architecture.md + USM S0-S5 + 8 platform surfaces updated"
+
+  - id: GRL-S028-007
+    session: S028
+    verbatim: "deep research on agents/skills/AI oversight"
+    category: strategic
+    pe: 75
+    status: ANSWERED
+    resolution: "opus-agents-skills-ai-oversight-research.md — 6 proposals, 15 Opus questions"
+
+  - id: GRL-S028-008
+    session: S028
+    verbatim: "approved — D.3 pre-commit hook"
+    category: ratification
+    pe: 75
+    status: ANSWERED
+    resolution: "tools/scripts/git-hooks/pre-commit LIVE — blocks laptop-pattern commits"
+
+# ─── DEFERRED REQUESTS ───────────────────────────────────────────────────────
+
+deferred: []
+
+# ─── PROCESSING RULES ─────────────────────────────────────────────────────────
+#
+# At session close: all OPEN items must move to ANSWERED or DEFERRED with reason
+# DEFERRED: acceptable only with explicit target session + PE score
+# OPEN at session close without action: BLOCKS handoff write
+#
+# validate-request-ledger.mjs:
+#   - Counts OPEN items older than 2 hours in current session → ADVISORY
+#   - OPEN items with pe > 70 → elevated advisory (surface in OPTIMAL NEXT STEP)
+#   - Session close with OPEN items → BLOCKING

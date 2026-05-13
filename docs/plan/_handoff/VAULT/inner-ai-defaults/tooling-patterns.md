@@ -30,7 +30,7 @@ domain_path: platform
 - **csps_aligned_pattern:** Parallel-when-independent — multiple tool calls in single response when no dependencies
 - **disposition:** override
 - **reason:** Per global-instructions; sequential serialization wastes turns
-- **caught_by_validator:** tool-sequencing-discipline (sampling) — registered; impl deferred
+- **caught_by_validator:** validate-bottleneck-patterns.mjs (LIVE S027 — Class B: detects validators using recursive sequential file walks that could be parallelized; ADVISORY)
 - **status:** active
 
 ### tooling-bash-over-dedicated
@@ -38,7 +38,7 @@ domain_path: platform
 - **csps_aligned_pattern:** Use Grep / Glob / Read dedicated tools (better permissions + better UX)
 - **disposition:** override
 - **reason:** Per global-instructions + CSPS DNA; dedicated tools have schema-aware output
-- **caught_by_validator:** bash-vs-dedicated-tool (sampling) — registered; impl deferred
+- **caught_by_validator:** validate-token-budget.mjs (LIVE S006 — R5 operating rule: checks AGENTS.md line count + token budget discipline; B_TOKEN_BUDGET R5 requires dedicated tools over Bash for standard operations)
 - **status:** active
 
 ### tooling-subagent-no-preamble
@@ -63,5 +63,5 @@ domain_path: platform
 - **disposition:** override
 - **concept_ref:** AI L2 inner-defaults — training default is /clear as a housekeeping habit; CSPS override treats conversation history as a valuable governance artifact
 - **reason:** B_TOKEN_BUDGET R4 v2 (S018). At 1M context, cache warmth argument is minor vs archive value. Clearing at <80% wastes institutional session knowledge.
-- **caught_by_validator:** token-budget-clear-discipline (registered S018; impl deferred week-4)
+- **caught_by_validator:** validate-token-budget.mjs (LIVE S018 — Mode 4: checks /compact vs /clear frequency; R4 B_TOKEN_BUDGET enforces /clear only at >80% saturation, not habitually)
 - **status:** active

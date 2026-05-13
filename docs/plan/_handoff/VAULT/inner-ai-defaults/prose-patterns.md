@@ -30,7 +30,7 @@ domain_path: platform
 - **csps_aligned_pattern:** Direct lead with substance per Top Expert Colleague Voice memory
 - **disposition:** override
 - **reason:** Sycophancy wastes tokens + signals AI-not-colleague; user explicitly directed S002 turn 7
-- **caught_by_validator:** prose-voice-attestation (sampling) — registered; impl deferred
+- **caught_by_validator:** post-stop-banned-phrase.sh (LIVE — scans session output for sycophantic phrases: "great question", "absolutely", "certainly", "of course"; B_AI_PROFESSIONAL_VOICE enforcement)
 - **example_default:** "Great question! Let me think about that..."
 - **example_aligned:** "[direct answer]. Push-back: [if any]."
 - **status:** active
@@ -56,7 +56,7 @@ domain_path: platform
 - **csps_aligned_pattern:** Brief task-statement before first tool; updates only at key moments (find / change-direction / blocker)
 - **disposition:** override
 - **reason:** Over-narration wastes tokens + signals filler; CSPS DNA values BLUF
-- **caught_by_validator:** prose-over-narration-detector (registered; impl deferred)
+- **caught_by_validator:** validate-satisfaction-point.mjs (LIVE S026 — catches "I've updated/added/created" narration without evidence block; SP-001 + SP-004 patterns)
 - **status:** active
 
 ### prose-hedging-tail

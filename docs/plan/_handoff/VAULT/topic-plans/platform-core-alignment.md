@@ -41,9 +41,9 @@ depth_rationale: |
   foundation for the next. This is a governance improvement meta-plan.
 links:
   - { rel: parent, href: ./README.md }
-  - { rel: threshold-gate, href: ../../../../docs/plan/pillar-0-governance/threshold-gate-v2.md }
-  - { rel: vocabulary-as-code, href: ../../../../docs/plan/pillar-1-architecture-and-stack/vocabulary-as-code.md }
-  - { rel: audit-runner, href: ../../../../docs/plan/pillar-0-governance/audit-runner.md }
+  - { rel: threshold-gate, href: ../../../pillar-0-governance/threshold-gate-v2.md }
+  - { rel: vocabulary-as-code, href: ../../../pillar-1-architecture-and-stack/vocabulary-as-code.md }
+  - { rel: audit-runner, href: ../../../pillar-0-governance/audit-runner.md }
   - { rel: inner-ai-defaults, href: ../inner-ai-defaults/README.md }
 consolidation_cross_refs:
   - docs/plan/pillar-0-governance/threshold-gate-v2.md

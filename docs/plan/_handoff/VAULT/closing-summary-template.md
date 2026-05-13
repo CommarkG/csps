@@ -464,7 +464,7 @@ If overall_status: OPEN_CHECKPOINTS — session close is advisory-blocked. Surfa
 
 ### §10.0q SAP Abbreviated — Sweeps 2 + 5 (sonnet-audit-protocol.md — added S020)
 
-> **Runs at every session close.** Full 6-sweep SAP runs at complex/architectural sessions and before every Opus consultation. Spec: [sonnet-audit-protocol.md](../../../../docs/plan/pillar-0-governance/sonnet-audit-protocol.md).
+> **Runs at every session close.** Full 6-sweep SAP runs at complex/architectural sessions and before every Opus consultation. Spec: [sonnet-audit-protocol.md](../../../pillar-0-governance/sonnet-audit-protocol.md).
 
 ```yaml
 sap_abbreviated:

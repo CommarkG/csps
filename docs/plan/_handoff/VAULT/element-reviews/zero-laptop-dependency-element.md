@@ -19,8 +19,8 @@ review_cadence: quarterly
 next_review_due: 2026-08-07
 links:
   - { rel: topic-plan, href: ../topic-plans/zero-laptop-dependency-setup.md }
-  - { rel: contract, href: ../../../../docs/plan/pillar-0-governance/behavioral-contracts.md }
-  - { rel: pillar, href: ../../../../docs/plan/pillar-6-operations-and-delivery/README.md }
+  - { rel: contract, href: ../../../pillar-0-governance/behavioral-contracts.md }
+  - { rel: pillar, href: ../../../pillar-6-operations-and-delivery/README.md }
 consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/topic-plans/zero-laptop-dependency-setup.md
   - docs/plan/pillar-6-operations-and-delivery/android-workflow.md

@@ -34,8 +34,8 @@ intent_crystallized: true
 intent_crystallized_at: "S024 Governor directive 2026-05-12"
 links:
   - { rel: principle, href: ../../../../packages/principles/principles.yaml }
-  - { rel: canonical-file, href: ../../../../docs/plan/pillar-0-governance/threshold-intake-protocol.md }
-  - { rel: parent-principle, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
+  - { rel: canonical-file, href: ../../../pillar-0-governance/threshold-intake-protocol.md }
+  - { rel: parent-principle, href: ../../../pillar-0-governance/human-intent-crystallization.md }
   - { rel: opus-feedback, href: ../../../../tools/council/feedback-p-meta-023-opus-turn8.md }
   - { rel: alignment-plan, href: ../../../../tools/council/p-meta-022-alignment-plan.md }
 goal_statement: >

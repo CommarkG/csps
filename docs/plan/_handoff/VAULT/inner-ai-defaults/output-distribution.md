@@ -78,6 +78,6 @@ domain_path: platform
 - **opus_pattern:** The mirror, not the guesser. AI reflects → human corrects → AI updates → repeat until human says "yes, exactly that." The correction reveals Layer 2-3.
 - **reason:** P-META-022 (Human Intent Crystallization) — Layer 1 expression ≠ Layer 3 need. Acting on first expression generates compounding drift that cannot be fixed at the implementation layer.
 - **caught_by_validator:** intent-crystallization-coverage (validate-intent-crystallized.mjs — LIVE)
-- **reference:** [human-intent-crystallization.md §3-§4](../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md)
+- **reference:** [human-intent-crystallization.md §3-§4](../../../pillar-0-governance/human-intent-crystallization.md)
 - **session_added:** S023
 - **status:** active

@@ -45,8 +45,8 @@ depth_rationale: |
   structures, not a replacement.
 links:
   - { rel: parent, href: ./README.md }
-  - { rel: instruction-template, href: ../../../../docs/plan/pillar-0-governance/instruction-template.md }
-  - { rel: mechanical-enforcement-policy, href: ../../../../docs/plan/pillar-0-governance/mechanical-enforcement-policy.md }
+  - { rel: instruction-template, href: ../../../pillar-0-governance/instruction-template.md }
+  - { rel: mechanical-enforcement-policy, href: ../../../pillar-0-governance/mechanical-enforcement-policy.md }
   - { rel: platform-core-alignment, href: ./platform-core-alignment.md }
   - { rel: ai-personas, href: ../../../platform-audit/ai-personas.md }
 consolidation_cross_refs:

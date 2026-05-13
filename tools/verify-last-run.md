@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-13T00:25:34.115Z
-- finished_at: 2026-05-13T00:25:57.646Z
+- ran_at: 2026-05-13T00:27:08.591Z
+- finished_at: 2026-05-13T00:27:31.222Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-13T00:25:34.115Z",
-    "finished_at": "2026-05-13T00:25:57.646Z",
+    "ran_at": "2026-05-13T00:27:08.591Z",
+    "finished_at": "2026-05-13T00:27:31.222Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.6,
+        "duration_seconds": 6.3,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.3,
+        "duration_seconds": 1.2,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 0.5,
         "principles_loaded": 59,
         "findings_total": 0
       },
@@ -114,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -188,8 +188,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "files": 110,
-        "links": 502,
-        "broken": 49
+        "links": 505,
+        "broken": 40
       },
       {
         "name": "opus_review_flagging",
@@ -216,7 +216,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "checked": 27,
         "advisories": 20
       },
@@ -290,7 +290,7 @@
         "command": "node tools/validators/validate-diataxis-type.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "checked": 72,
         "blocking": 0,
         "advisories": 0

@@ -32,7 +32,7 @@ depth_levels:
 links:
   - { rel: raw-session, href: ./governor-insights-S018.md }
   - { rel: accumulating-summary, href: ./governor-insights-summary.md }
-  - { rel: csps-dna, href: ../../../../docs/plan/pillar-0-governance/csps-platform-dna.md }
+  - { rel: csps-dna, href: ../../../pillar-0-governance/csps-platform-dna.md }
 consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/governor-insights/governor-insights-summary.md
   - docs/plan/pillar-0-governance/csps-platform-dna.md

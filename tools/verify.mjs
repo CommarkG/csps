@@ -410,6 +410,14 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
   },
   {
+    // B_ZERO_LAPTOP_DEPENDENCY enforcement: .env.local = laptop dependency.
+    // Governor directive S028: "zero dependency on local computers — mechanically enforce it now."
+    // Checks: .env.local with real values (advisory: move to Vercel env vars), missing vercel.json.
+    name: 'no_laptop_secrets',
+    command: 'node tools/validators/validate-no-laptop-secrets.mjs',
+    parse_output: (out) => { const m = out.match(/apps_checked=(\d+)\s+advisories=(\d+)/); return m ? { apps: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
     name: 'question_coverage',
     command: 'node tools/validators/validate-question-coverage.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },

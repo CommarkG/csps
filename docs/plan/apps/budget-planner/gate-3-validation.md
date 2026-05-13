@@ -46,39 +46,71 @@ Before running Gate 3, confirm:
 
 ---
 
-## Environment Setup
+## Zero-Laptop Setup (B_ZERO_LAPTOP_DEPENDENCY — P-OPER-001)
+
+> **CRITICAL:** CSPS has zero dependency on local computers.
+> Gate 3 runs against a **Vercel deployment**, NOT a local `pnpm dev` server.
+> Secrets live in **Vercel environment variables**, NOT in `.env.local` files.
+> `.env.local` = laptop dependency = violation of platform architecture.
+
+### Step A — Connect to Vercel
 
 ```bash
-# 1. Copy environment template
-cp apps/budget-planner/.env.example apps/budget-planner/.env.local
+# Install Vercel CLI if needed (one-time)
+npm i -g vercel
 
-# 2. Fill in these values from dashboards:
-#    DATABASE_URL: Supabase → Settings → Database → Connection pooling → Transaction mode
-#                 Port 6543 MUST have ?pgbouncer=true&connection_limit=1
-#    DIRECT_URL:   Supabase → Settings → Database → Connection string → URI (port 5432)
-#    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: Clerk dashboard → API Keys
-#    CLERK_SECRET_KEY: Clerk dashboard → API Keys
-
-# 3. Run database migration
+# From the project root — link budget-planner to Vercel
 cd apps/budget-planner
-pnpm prisma db push
+vercel link
+# Choose: existing project OR create new project named "csps-budget-planner"
+```
+
+### Step B — Add secrets to Vercel (not .env.local)
+
+```bash
+# Add each secret to Vercel — runs from apps/budget-planner/
+vercel env add DATABASE_URL
+# Paste: postgresql://postgres.[ref]:[password]@...6543...?pgbouncer=true&connection_limit=1
+
+vercel env add DIRECT_URL
+# Paste: postgresql://postgres.[ref]:[password]@...5432...
+
+vercel env add NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+# Paste: pk_test_...
+
+vercel env add CLERK_SECRET_KEY
+# Paste: sk_test_...
+```
+
+### Step C — Run database migration via Vercel
+
+```bash
+# Pull env vars from Vercel (temporary, for migration only — does NOT create .env.local)
+vercel env pull .env.migration --yes
+DATABASE_URL=$(grep DATABASE_URL .env.migration | cut -d= -f2-) npx prisma db push
+rm .env.migration
+```
+
+### Step D — Deploy to Vercel
+
+```bash
+vercel --prod
+# Output: https://csps-budget-planner.vercel.app (or similar)
+# This is the URL Gate 3 tests run against
 ```
 
 ---
 
 ## Gate 3 Test Procedure
 
-### Step 1: Cold start
+### Step 1: Confirm deployment is live
 
-```bash
-cd apps/budget-planner
-pnpm dev
-# Wait for: "ready started server on 0.0.0.0:3000"
-```
+After `vercel --prod`, you get a URL like `https://csps-budget-planner.vercel.app`.
+Confirm it loads (should show sign-in page).
 
 ### Step 2: Happy path (test as User A)
 
-1. Open `http://localhost:3000`
+1. Open `https://csps-budget-planner.vercel.app` (or your Vercel URL)
 2. Sign up as a NEW account (not existing)
 3. Run the budget wizard (5 steps):
    - Step 1: Income
@@ -110,8 +142,8 @@ pnpm dev
 ### Step 4: GDPR erasure endpoint
 
 ```bash
-# In User A's session, call the erasure endpoint:
-curl -X DELETE http://localhost:3000/api/settings/account \
+# Against the Vercel deployment:
+curl -X DELETE https://csps-budget-planner.vercel.app/api/settings/account \
   -H "Authorization: Bearer <user-a-clerk-token>"
 ```
 

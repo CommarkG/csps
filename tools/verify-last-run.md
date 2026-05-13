@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-13T07:44:24.631Z
-- finished_at: 2026-05-13T07:44:49.936Z
+- ran_at: 2026-05-13T07:51:17.811Z
+- finished_at: 2026-05-13T07:51:49.231Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-13T07:44:24.631Z",
-    "finished_at": "2026-05-13T07:44:49.936Z",
+    "ran_at": "2026-05-13T07:51:17.811Z",
+    "finished_at": "2026-05-13T07:51:49.231Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.3,
+        "duration_seconds": 6.6,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -436,7 +436,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -574,7 +574,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -840,7 +840,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "warnings": 3,
+        "warnings": 2,
         "advisory": true
       },
       {
@@ -956,7 +956,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.3
+        "duration_seconds": 11.3
       },
       {
         "name": "audit_runner_full_pass",

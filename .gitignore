@@ -76,4 +76,4 @@ temp/
 libs/policies/generated/
 
 # === VS Code workspace utilities (auto-generated; not governance artifacts) ===
-"CSPS contents.txt"
+"CSPS contents.txt".env.platform

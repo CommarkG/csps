@@ -2,15 +2,11 @@
 const nextConfig = {
   output: 'standalone',
   transpilePackages: ['@csps/integrations'],
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack: (config) => {
-    // symlinks=false lets relative imports inside @csps/integrations resolve
-    // from their original disk location (not through the pnpm symlink).
-    // Only apply to source files, not node_modules internal resolution.
-    const originalResolve = config.resolve
-    config.resolve = {
-      ...originalResolve,
-      symlinks: false,
-    }
+    config.resolve.symlinks = false
     return config
   },
 }

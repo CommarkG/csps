@@ -242,3 +242,15 @@ domain_path: platform
 - **opus_pattern:** Opus never creates a governance item that lacks a resolution path. Ratification is not implementation — the gap between them is the liability. When Opus defers, it writes the target session explicitly and registers the item in session-state.json blocking_decisions. Sonnet defers and moves on. Opus defers and creates the obligation record simultaneously.
 - **moat_relevance:** compound
 - **status:** active
+
+### reasoning-local-dev-default
+- **default_pattern:** AI defaults to local development patterns for any app/service setup task. "Developer needs to run the app" → "pnpm dev" → "localhost:3000" → ".env.local". This is the universal training default for web development — deeply encoded across millions of Next.js tutorials, Stack Overflow answers, and documentation. It fires automatically without checking zero-laptop constraints.
+- **csps_aligned_pattern:** CSPS has zero dependency on local computers (P-OPER-001, B_ZERO_LAPTOP_DEPENDENCY). Every deployment target is cloud: Vercel (production/preview), GitHub Codespaces (development). The FIRST question before any deployment procedure is: "Where does this run?" Answer: cloud. Never localhost. Credentials → Vercel env vars. Testing → Vercel preview URL. Development → Codespaces. The local machine is irrelevant.
+- **disposition:** override
+- **concept_ref:** OPER L2 WORKFLOW_INTEGRITY — the platform workflow runs on cloud infrastructure; local dev is a training-default anti-pattern for CSPS
+- **reason:** S028 Gate 3 incident. AI guided Governor to create .env.local + run pnpm dev on localhost. Violated B_ZERO_LAPTOP_DEPENDENCY. Root cause: training default fired; no mechanical interception existed. Governor directive: "mechanically enforce it — global context lead mandatory element defining between different levels — engraved deeply into all relevant things."
+- **caught_by_validator:** validate-laptop-patterns.mjs (LIVE S028 — BLOCKING for new docs with pnpm dev/localhost/env.local patterns) + validate-no-laptop-secrets.mjs (LIVE S028 — BLOCKING for .env.local with real values)
+- **self_assessment_question:** "Before suggesting ANY setup, deployment, or testing step: What is the cloud equivalent? Is pnpm dev the right answer? Is localhost the right URL? Is .env.local the right credential location? If I am about to type any of these — STOP. What is the Vercel/Codespaces equivalent?"
+- **opus_pattern:** Opus always asks "where does this run?" before any deployment instruction. The answer for CSPS is always: Vercel (production/preview) or GitHub Codespaces (development). Opus never writes a procedure that starts with pnpm dev or ends with localhost. When asked to help run an app, Opus assumes cloud-first and redirects to vercel --prod or a Codespace URL.
+- **moat_relevance:** compound
+- **status:** active

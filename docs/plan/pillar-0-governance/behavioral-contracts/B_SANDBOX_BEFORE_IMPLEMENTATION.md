@@ -37,4 +37,8 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - memory: `feedback_sandbox_before_implementation.md` + MEMORY.md
 - contract: this entry + sandbox-ratification-policy.md §4 Non-Negotiable Rules
 
-**Source:** Governor directive S023 — "implement only from a ratified plan after verifying all in a real simulation status." Platform policy: sandbox-ratification-policy.md.
+**Source:** Governor directive S023 — "implement only from a ratified plan after verifying all in a real simulation status." Platform policy: sandbox-ratification-policy.md.
+- env-local-as-credentials (.env.local with real values = laptop dependency; use Vercel env vars)
+- pnpm-dev-in-procedure ("pnpm dev" in a deployment procedure = laptop dependency; use vercel --prod)
+- localhost-test-url ("localhost:PORT" as test URL = laptop dependency; use Vercel preview URL)
+- local-only-migrations (prisma db push from laptop = laptop dependency; use Vercel build hook or Supabase CLI)

@@ -418,6 +418,15 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/apps_checked=(\d+)\s+advisories=(\d+)/); return m ? { apps: Number(m[1]), advisories: Number(m[2]) } : {}; },
   },
   {
+    // S028 FSE — Laptop patterns: scans governance docs for laptop-dependency language.
+    // Governor directive: "mechanically enforce it — global context lead mandatory element."
+    // BLOCKING for new .md files containing: "pnpm dev", "localhost:PORT", ".env.local" in procedures.
+    // ADVISORY for pre-existing docs. B_ZERO_LAPTOP_DEPENDENCY | P-OPER-001.
+    name: 'laptop_patterns',
+    command: 'node tools/validators/validate-laptop-patterns.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisories: Number(m[3]) } : {}; },
+  },
+  {
     name: 'question_coverage',
     command: 'node tools/validators/validate-question-coverage.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },

@@ -30,7 +30,7 @@ domain_path: platform
 - **csps_aligned_pattern:** Multi-session topics declare arc explicitly; gradual-build with depth 3/4/5
 - **disposition:** override
 - **reason:** Finish-fast urge produces shallow completion + skipped foundations; B_GRADUAL_BUILD_BY_FOUNDATIONS pushes back per priority-engine §8
-- **caught_by_validator:** priority-engine-depth-respected (registered; impl deferred)
+- **caught_by_validator:** validate-pe-dashboard.mjs (LIVE S025 — tracks PE ordering; catches session work that doesn't follow PE-score order) + validate-comprehensive-response.mjs (LIVE S027 — catches covering all items instead of focal-pointing the highest PE)
 - **opus_pattern:** Opus projects the timeline: "In 10 sessions, what does this shortcut cost? Foundation skipped = rework tax at every app that inherits this layer. Sonnet feels the relief of shipping now; Opus feels the weight of what future Sonnet will inherit." The test: "If I do this the fast way today, what does the slow fix look like in session 20?"
 - **moat_relevance:** compound
 - **status:** active
@@ -40,7 +40,7 @@ domain_path: platform
 - **csps_aligned_pattern:** Depth ∈ {3, 4, 5} with explicit rationale citing factors (leverage / cross-actor / reversibility)
 - **disposition:** override
 - **reason:** Arbitrary N obscures the actual structural logic; CSPS uses formalized depth schema
-- **caught_by_validator:** priority-engine-depth-respected (registered; impl deferred)
+- **caught_by_validator:** validate-gradual-bundling.mjs (LIVE S021 — checks depth_chosen declared; catches arbitrary N part splits without depth rationale; enforces depth ∈ {3,4,5})
 - **opus_pattern:** Opus applies depth-discipline self-referentially: before proposing any split, it verifies depth ∈ {3,4,5} with written rationale for N. It asks "what factors determine whether this warrants depth-4 vs depth-5?" and answers before proposing. Sonnet picks a number; Opus derives one from the factors.
 - **moat_relevance:** maintenance
 - **status:** active

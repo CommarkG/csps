@@ -33,8 +33,8 @@ intent_crystallized: true
 intent_crystallized_at: "S024 Governor ratification 2026-05-12"
 links:
   - { rel: arc-plan, href: ./opus-advisory-arc-S023.md }
-  - { rel: template, href: ../../../../apps/template/ }
-  - { rel: wizard-templates, href: ../../../../libs/config/routing.config.ts }
+  - { rel: template, href: ../../../../../apps/template/ }
+  - { rel: wizard-templates, href: ../../../../../libs/config/routing.config.ts }
   - { rel: threshold-protocol, href: ../../../../docs/plan/pillar-0-governance/threshold-intake-protocol.md }
 goal_statement: >
   A Budget Planner where users track income and expenses, see their balance, and manage

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-13T00:22:15.691Z
-- finished_at: 2026-05-13T00:22:38.666Z
+- ran_at: 2026-05-13T00:25:34.115Z
+- finished_at: 2026-05-13T00:25:57.646Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-13T00:22:15.691Z",
-    "finished_at": "2026-05-13T00:22:38.666Z",
+    "ran_at": "2026-05-13T00:25:34.115Z",
+    "finished_at": "2026-05-13T00:25:57.646Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.2,
+        "duration_seconds": 6.6,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.3,
         "ts_errors": 0
       },
       {
@@ -114,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -136,7 +136,7 @@
         "status": "ACCEPTABLE",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "enforcement_rate": 51
+        "enforcement_rate": 57
       },
       {
         "name": "opus_audit_due",
@@ -189,7 +189,7 @@
         "duration_seconds": 0.1,
         "files": 110,
         "links": 502,
-        "broken": 51
+        "broken": 49
       },
       {
         "name": "opus_review_flagging",
@@ -290,7 +290,7 @@
         "command": "node tools/validators/validate-diataxis-type.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "checked": 72,
         "blocking": 0,
         "advisories": 0
@@ -937,7 +937,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7
+        "duration_seconds": 6.4
       },
       {
         "name": "audit_runner_full_pass",

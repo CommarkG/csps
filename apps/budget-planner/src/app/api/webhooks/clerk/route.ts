@@ -27,7 +27,10 @@ const dbAdapter: CspsDb = {
   },
   userTenant: {
     create: async (args) => db.userTenant.create(args as Parameters<typeof db.userTenant.create>[0]),
-    findFirst: (args) => db.userTenant.findFirst(args),
+    update: (args) => db.userTenant.update(args as Parameters<typeof db.userTenant.update>[0]),
+    delete: (args) => db.userTenant.delete(args as Parameters<typeof db.userTenant.delete>[0]),
+    updateMany: (args) => db.userTenant.updateMany(args),
+    count: (args) => db.userTenant.count(args),
   },
 }
 
@@ -55,12 +58,7 @@ export async function POST(req: Request) {
     return new Response('Webhook signature invalid', { status: 400 })
   }
 
-  // solo_user_flow: auto_org
-  // handleClerkWebhook creates User + Tenant on user.created
-  // For Budget Planner: every new user gets their own personal tenant immediately
-  await handleClerkWebhook(evt as Parameters<typeof handleClerkWebhook>[0], dbAdapter, {
-    soloUserFlow: 'auto_org',
-  })
+  await handleClerkWebhook(evt as Parameters<typeof handleClerkWebhook>[0], dbAdapter)
 
   return new Response('OK', { status: 200 })
 }

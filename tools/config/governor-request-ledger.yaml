@@ -70,6 +70,26 @@ open:
     status: OPEN
     notes: "Building: validate-skill-dna-alignment.mjs"
 
+
+
+  - id: GRL-S028-009
+    session: S028
+    timestamp: 2026-05-13T08:52:38Z
+    verbatim: "deep dive into importance of context in CSPS — 8 sub-questions"
+    category: strategic
+    pe: 82
+    status: OPEN
+    notes: "SROF-010 document prepared: opus-srof-010-context-architecture.md — awaiting Opus review"
+
+  - id: GRL-S028-010
+    session: S028
+    timestamp: 2026-05-13T08:52:38Z
+    verbatim: "localizing skills/agents safely — when to adopt external, never in core"
+    category: strategic
+    pe: 68
+    status: OPEN
+    notes: "SROF-011 document prepared: opus-srof-011-external-skills-adoption.md — awaiting Opus review"
+
 # ─── ANSWERED REQUESTS (this session) ────────────────────────────────────────
 
 answered:

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-13T08:42:12.640Z
-- finished_at: 2026-05-13T08:42:39.749Z
+- ran_at: 2026-05-13T08:56:20.923Z
+- finished_at: 2026-05-13T08:56:49.623Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-13T08:42:12.640Z",
-    "finished_at": "2026-05-13T08:42:39.749Z",
+    "ran_at": "2026-05-13T08:56:20.923Z",
+    "finished_at": "2026-05-13T08:56:49.623Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.4,
+        "duration_seconds": 7.8,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.4,
         "ts_errors": 0
       },
       {
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 348,
+        "scanned": 350,
         "errors": 0,
         "warnings": 10,
         "exempt": 269
@@ -216,7 +216,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "checked": 27,
         "advisories": 20
       },
@@ -351,8 +351,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 314,
-        "clean": 314,
+        "checked": 316,
+        "clean": 316,
         "blocking": 0,
         "registry": 47
       },
@@ -456,8 +456,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 2,
+        "advisory": 2,
         "duplicates": 0
       },
       {
@@ -513,7 +513,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 100
+        "validators": 102
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -699,7 +699,7 @@
         "command": "node tools/validators/validate-pe-connectivity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "blocking": 0,
         "advisory": 20,
         "total_gaps": 20
@@ -975,7 +975,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7
+        "duration_seconds": 7.6
       },
       {
         "name": "audit_runner_full_pass",

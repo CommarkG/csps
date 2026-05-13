@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-13T02:36:55.968Z
-- finished_at: 2026-05-13T02:37:23.571Z
+- ran_at: 2026-05-13T07:44:24.631Z
+- finished_at: 2026-05-13T07:44:49.936Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-13T02:36:55.968Z",
-    "finished_at": "2026-05-13T02:37:23.571Z",
+    "ran_at": "2026-05-13T07:44:24.631Z",
+    "finished_at": "2026-05-13T07:44:49.936Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.6,
+        "duration_seconds": 6.3,
         "packages_resolved": null
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.6,
         "principles_loaded": 59,
         "findings_total": 0
       },
@@ -216,7 +216,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.3,
+        "duration_seconds": 1,
         "checked": 27,
         "advisories": 20
       },
@@ -437,8 +437,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 1,
-        "advisory": 1,
+        "issues": 0,
+        "advisory": 0,
         "duplicates": 0
       },
       {
@@ -839,8 +839,8 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "warnings": 2,
+        "duration_seconds": 0.3,
+        "warnings": 3,
         "advisory": true
       },
       {
@@ -956,7 +956,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.5
+        "duration_seconds": 7.3
       },
       {
         "name": "audit_runner_full_pass",

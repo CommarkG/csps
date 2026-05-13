@@ -92,7 +92,14 @@ function getNewFiles() {
   try {
     const output = execSync('git status --porcelain', { encoding: 'utf8', cwd: ROOT });
     return output.split('\n')
-      .filter(l => l.startsWith('?? ') || l.startsWith(' M ') || l.startsWith('M '))
+      .filter(l =>
+        l.startsWith('?? ') ||    // untracked
+        l.startsWith(' M ') ||    // unstaged modified
+        l.startsWith('M  ') ||    // staged modified
+        l.startsWith('A  ') ||    // staged new file
+        l.startsWith('AM ') ||    // staged new + unstaged modified
+        l.startsWith('MM ')       // staged + unstaged modified
+      )
       .map(l => l.slice(3).trim())
       .filter(f => f.endsWith('.md'));
   } catch { return []; }

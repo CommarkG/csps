@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# CSPS Pre-Commit Gate — Zero-Laptop Scope Enforcement
+#
+# Ratified: D.3 from opus-agents-skills-ai-oversight-research.md
+# Approved by Governor S028
+#
+# Purpose: Block commits containing laptop-dependency patterns in procedure docs.
+# This is the pre-hoc enforcement the Zero-Laptop incident lacked.
+#
+# S028 incident: validate-laptop-patterns.mjs existed but only fired in pnpm verify
+# (post-hoc, after the violation was already written). This hook fires BEFORE commit.
+#
+# What it checks (delegated to validate-laptop-patterns.mjs):
+#   - "pnpm dev" in procedure docs → blocks (use vercel --prod)
+#   - "localhost:PORT" as test URL → blocks (use Vercel preview URL)
+#   - ".env.local" as credential storage → blocks (use vercel env add)
+#
+# Installation: run tools/scripts/setup-git-hooks.sh once per machine
+# Or: ln -sf ../../tools/scripts/git-hooks/pre-commit .git/hooks/pre-commit
+
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+if [ -z "$REPO_ROOT" ]; then
+  REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+fi
+
+# Only run if we have staged .md files
+STAGED_MD=$(git diff --cached --name-only 2>/dev/null | grep '\.md$' || true)
+if [ -z "$STAGED_MD" ]; then
+  exit 0  # No .md files staged — skip check
+fi
+
+# Check if node is available
+if ! command -v node >/dev/null 2>&1; then
+  echo "[pre-commit] SKIP: node not found (install Node.js to enable laptop-pattern check)"
+  exit 0
+fi
+
+# Check if the validator exists
+VALIDATOR="${REPO_ROOT}/tools/validators/validate-laptop-patterns.mjs"
+if [ ! -f "$VALIDATOR" ]; then
+  echo "[pre-commit] SKIP: validate-laptop-patterns.mjs not found"
+  exit 0
+fi
+
+echo "[pre-commit] Running zero-laptop scope check..."
+
+# Run the validator — it uses git status --porcelain to detect new files
+# For pre-commit context: staged files appear as 'A' (added) or 'M' (modified)
+output=$(node "$VALIDATOR" 2>&1)
+exit_code=$?
+
+if [ $exit_code -ne 0 ]; then
+  echo ""
+  echo "⛔ COMMIT BLOCKED — Laptop-dependency patterns detected:"
+  echo "$output"
+  echo ""
+  echo "Fix: Replace local dev patterns with cloud equivalents:"
+  echo "  pnpm dev         → vercel --prod (deploy) or Codespace"
+  echo "  localhost:PORT   → https://your-project.vercel.app"
+  echo "  .env.local       → vercel env add (cloud storage)"
+  echo ""
+  echo "B_ZERO_LAPTOP_DEPENDENCY (S0 — Constitutional)"
+  echo "P-OPER-001 | S028 FSE 5/5 | ADR pending (ADR-0027)"
+  exit 1
+fi
+
+echo "[pre-commit] ✓ Zero-laptop scope check passed"
+exit 0

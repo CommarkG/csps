@@ -673,3 +673,31 @@ Consolidation before proceeding prevents duplicate governance artifacts. OD-009 
 Check if memory/feedback_trial_app_principle.md exists, then read opus-turn.md Turn 29 for exact OD-009 and Component A/B specs.
 
 **Governor: if any of the above is wrong, correct now before I edit any file.**
+
+---
+
+# Sonnet Report — Turn 29 Complete (S029)
+
+## Done
+1. Deleted feedback_trial_app_principle.md duplicate | MEMORY.md entry updated
+2. OD-009 added to output-distribution.md (the missing 6th FSE surface) | commit: 37bc970
+3. B_APPS_ARE_TRIALS: Component A/B + deletion test as Component B signal | commit: 37bc970
+4. apps/budget-planner/app-manifest.yaml: trial status + graduation criteria | commit: 37bc970
+5. apps/template/app-manifest.yaml.example: template for future apps | commit: 37bc970
+6. PROTOCOL.md: GCI gate (GCI<10 proceed, ≥10 SROF first) | commit: 37bc970
+7. UX-001 platform-first: isSessionReady() in libs/integrations/auth.ts + account-setup in apps/template/ + budget-planner copies | commit: 3087f8f
+
+## Differs from spec
+- UX-001: Opus spec said "apps/budget-planner copies page.tsx + route.ts from apps/template" — done exactly. Middleware updated to add /account-setup and /api/auth/session-ready as public routes (not in spec but required for it to work).
+- libs/integrations/index.ts: exported isSessionReady as CEC propagation — additive.
+
+## Deferred
+- Nothing from Turn 29
+
+## What Opus should know
+- CspsSessionClaims is now exported TWICE from @csps/integrations: once from ./clerk/session-context (as CspsSessionClaims) and once from ./auth (as AuthSessionClaims). Potential duplicate — may need to rationalize on next turn.
+- app-manifest.yaml deletion_test: PENDING for budget-planner — 2 blockers: account-setup (now fixed) and clerk sign-in pages in template (still needed).
+- pnpm verify exit_code=0 | principles:split 60 | contracts:split 58
+
+## State at close
+Validators: 104 | pnpm verify: exit_code=0 | Last commit: 3087f8f

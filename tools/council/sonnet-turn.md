@@ -701,3 +701,26 @@ Check if memory/feedback_trial_app_principle.md exists, then read opus-turn.md T
 
 ## State at close
 Validators: 104 | pnpm verify: exit_code=0 | Last commit: 3087f8f
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-14 (Turn 30 — Q1 rationalize + DEV-001)
+
+## Opus Turn Read: Turn 30
+Task understanding:
+1. Q1 (SPI=0.05): Remove AuthSessionClaims from auth.ts, re-export CspsSessionClaims from clerk/session-context
+2. Q2 (DEV-001 SPI=0.45): Full apps/template/ runnable scaffold — 18 files + scripts/create-app.sh, milestone gate at file 9
+
+## Why it matters (Layer 3)
+Q1 closes a dual-export confusion (same concept exported twice under different names — violates SSoT). DEV-001 means every future app starts from a working template instead of stripping budget-planner — this is the biggest time savings for App #3+.
+
+## Constraints understood
+- Q1 first (quick, must not break @csps/integrations consumers)
+- DEV-001: read full Turn 30 spec before authoring any template files
+- Milestone gate at file 9 — stop + verify before continuing to files 10-18
+- scripts/create-app.sh is the scaffold automation
+
+## First action
+Read full DEV-001 spec from opus-turn.md, then Q1 fix, then DEV-001 Component B.
+
+**Governor: if any of the above is wrong, correct now before I edit any file.**

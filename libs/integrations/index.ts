@@ -5,7 +5,6 @@
 // This kills the 6-level relative import smell (CSEP-S014-001 RANK 2).
 
 export { isSessionReady } from './auth'
-export type { CspsSessionClaims as AuthSessionClaims } from './auth'
 
 export { handleClerkWebhook } from './clerk/webhook-handler'
 export type { CspsDb } from './clerk/webhook-handler'

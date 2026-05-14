@@ -8,8 +8,7 @@
 
 import { auth } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
-import { isSessionReady } from '@csps/integrations'
-import type { CspsSessionClaims } from '@csps/integrations'
+import { isSessionReady, type CspsSessionClaims } from '@csps/integrations'
 
 export const dynamic = 'force-dynamic'
 

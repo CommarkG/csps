@@ -416,3 +416,99 @@ THE REQUEST (paste to Opus):
 BRIEFING FILE: tools/council/opus-briefing-s025-four-topics.md
 ═══════════════════════════════════════════════════════════════════
 ```
+
+```
+
+---
+
+### SROF-008 — Turn 22 (S029)
+**Status:** PENDING
+
+```
+═══════════════════════════════════════════════════════════════════
+SROF-008 — Turn 22 | Session: S029 | Date: 2026-05-14
+Status: PENDING
+═══════════════════════════════════════════════════════════════════
+
+GIT LINKS SINCE LAST OPUS TURN (Turn 21 — S028):
+  Previous SROF ACTED ON: no formal SROF for Turns 12-21 (gap acknowledged)
+  Commits since last formal SROF (SROF-007):
+    74699da Gate 3: add Clerk sign-in and sign-up pages → Budget Planner LIVE on Vercel
+    bf6ff0f Gate 3: fix Prisma type root cause — remove custom generator output → all @prisma/client imports now typed
+    9fba3f9 Gate 3: wire @csps/integrations as workspace package → transpilePackages + symlinks=false
+    9adf9c6 S028: External Integrations Hub — Supabase, Clerk, ZenStack knowledge files
+    55423df S028: close all GRL open requests — platform core complete
+    0361abc S029: SROF-012 platform core readiness review for Opus (full context file)
+    37f0e7a S029: council protocol gaps + Sonnet Report
+    bb7d960 S029: council infrastructure — platform-state-snapshot + Turn 22 request
+  GitHub compare: https://github.com/CommarkG/csps/compare/74699da...bb7d960
+
+PREVIOUS SROFS (chain of consultation history):
+  SROF-001: Implementation sequence S021-S022 | RESPONDED | ACTED ON: council-state.json
+  SROF-002/003: P-META-022 alignment + Q1/Q2/Q3 | RESPONDED | ACTED ON: 5c86e61
+  SROF-004: P-META-023 direction review | RESPONDED | ACTED ON: 5c86e61, 8359d69
+  SROF-005: Turn 9 — P-META-023 SEALED + 4 systems | RESPONDED | ACTED ON: 7384ad4
+  SROF-006: Turn 10 — PACP + PE moat + S015 audit | RESPONDED | ACTED ON: ffdb494
+  SROF-007: Turn 11 — S015 C+D items + slim-handoff | RESPONDED | ACTED ON: (S025)
+  SROF-008: Turn 22 — Gate 3 complete, 4 security/perf/UX/dev gaps ← CURRENT
+
+PLATFORM STATE (assume Opus has not seen anything since Turn 21):
+  Validators: 104 active | Health: 88% | Last commit: bb7d960
+  pnpm verify: exit_code=0 | GRL open: 0 | VLT blockers: 0
+  Budget Planner (App #2): LIVE at csps-budget-planner.vercel.app — Clerk sign-in working
+  External Integrations Hub: created at docs/plan/pillar-0-governance/external-integrations/
+    vercel.md (10 rules), supabase.md (8 rules), clerk.md (8 rules), zenstack.md (7 rules)
+  Key file for full context: docs/plan/_handoff/VAULT/opus-srof-012-platform-core-readiness-review.md
+
+SINCE TURN 21 (Sonnet did — Opus does not re-analyze these):
+  - Gate 3 LIVE: Budget Planner deployed to Vercel (commit 74699da)
+  - Prisma root cause fixed: removed output="./generated/client" from schema.zmodel (bf6ff0f)
+  - @csps/integrations wired as proper pnpm workspace package (9fba3f9)
+  - External Integrations Hub: 33+ rules across 4 services (9adf9c6)
+  - All GRL open requests resolved or deferred (55423df)
+  NOT DONE from Turn 21 directives:
+  - ADR-0027 + validate-scope-level-declared.mjs → deferred (Gate 3 consumed session)
+  - validate-scope-conflict.mjs → still advisory (not promoted to BLOCKING)
+  - backfill scope_level script → not built
+  - pre-tool-use-scope-guardian.sh → not built
+
+WHAT SONNET HAS ALREADY DECIDED (Opus must not override without Governor directive):
+  - Vercel deployment pattern: Root Directory = apps/[app-name], not repo root (documented in vercel.md)
+  - @csps/integrations is a workspace package with transpilePackages + symlinks:false in next.config.js
+  - platform-state-snapshot.md is the single file Opus reads for current reality (no system scanning)
+  - SROF format with REQUEST paragraph (2-4 sentences) is the correct communication structure
+
+WHAT SONNET CANNOT DECIDE ALONE:
+  1. SEC-001: Can ZModel's @@allow("update", auth().id == id) be scoped to exclude specific fields
+     like staffRole? If not, should the fix be at the API layer (strip staffRole from request body)
+     or at the schema level (separate @@deny for sensitive fields)?
+  2. PERF-001: For the balance aggregation in balance/route.ts — is Prisma groupBy with _sum
+     the right pattern (stays in ORM), or should this use raw SQL ($queryRaw), or a Supabase
+     materialized view updated on transaction write?
+  3. UX-001: For the JWT-refresh gap (user signs up, org created by webhook, but JWT has no
+     tenantId for ~5 min) — is a polling /api/me endpoint the right fix, or does Clerk offer
+     a better hook (session_variables callback, organizationId sync)?
+  4. DEV-001: For apps/template/ runnable scaffold — what is the minimum viable set of files
+     a new developer needs to fork to create App #3 without touching budget-planner code?
+
+THE REQUEST (paste this to Opus tab):
+
+  You are Opus, Turn 22. Since Turn 21 (Unified Scope Model ratification), Sonnet shipped
+  Gate 3: Budget Planner is live at csps-budget-planner.vercel.app with Clerk auth working.
+  During that deployment Sonnet found and fixed a platform-wide Prisma type bug (custom
+  generator output breaking all @prisma/client types) and created an External Integrations Hub
+  (33+ rules across Vercel/Supabase/Clerk/ZenStack). A multi-perspective review then surfaced
+  4 gaps that need your guidance before App #3 starts: (SEC-001) a potential staffRole
+  self-promotion vulnerability in schema.zmodel's @@allow(update) policy, (PERF-001) an
+  unbounded findMany in balance/route.ts that will OOM at scale, (UX-001) a JWT-refresh
+  timing gap creating a broken sign-up→403→sign-in loop, and (DEV-001) apps/template/ being
+  docs-only with no runnable scaffold. Read tools/council/platform-state-snapshot.md for
+  current platform reality, then review docs/plan/_handoff/VAULT/opus-srof-012-platform-core-readiness-review.md
+  for full context. Specific questions: (1) ZModel field-level deny for staffRole — schema
+  vs API layer? (2) Balance aggregate pattern — groupBy, raw SQL, or materialized view?
+  (3) JWT gap fix — polling endpoint or Clerk session hook? (4) apps/template/ minimum
+  viable scaffold — what files?
+
+BRIEFING FILE: docs/plan/_handoff/VAULT/opus-srof-012-platform-core-readiness-review.md
+═══════════════════════════════════════════════════════════════════
+```

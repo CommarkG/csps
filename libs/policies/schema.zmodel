@@ -134,11 +134,17 @@ model User extends Base {
   comments     TaskComment[] @relation("TaskCommentAuthor")
 
   @@schema("public")
-  // Any authenticated user (with active tenant session) can read User profiles —
-  // required for task assignee/createdBy display in team queries.
-  // Staff override: can read any user regardless of session.
-  @@allow("read", auth().tenantId != null || auth().staffRole != null)
+  // Staff can read any user fully (admin operations)
+  @@allow("read", auth().staffRole != null)
+  // Users can read their own full profile
+  @@allow("read", auth().id == id)
+  // Cross-tenant read for task assignee/createdBy display.
+  // ZenStack v2 limitation: @@allow fields scoping not supported; field-level scoping
+  // deferred to ZenStack v3 or application-layer projection. Tracked: VLT-S029-FIELD-SCOPE.
+  @@allow("read", auth().tenantId != null)
   @@allow("update", auth().id == id)  // users can only update their own profile
+  // SEC-001: prevent non-staff from self-promoting staffRole (Opus Turn 23 security fix)
+  @@deny("update", future().staffRole != staffRole && auth().staffRole == null)
   @@deny("create", true)              // created via Clerk webhook only (P-ARCH-008)
   @@deny("delete", true)
 

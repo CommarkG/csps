@@ -549,3 +549,27 @@ Validators: 104 | pnpm verify exit_code: 0 | GRL open: 0 | VLT blockers: 0 | Pus
 - Critical security gap: staffRole self-promotion via @@allow(update, auth().id == id) needs immediate ZModel policy review
 - Critical performance gap: balance/route.ts has unbounded findMany — will OOM at scale
 - Council protocol gaps identified and documented in PROTOCOL.md §S029 GAPS — needs mechanical enforcement in next session
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-14 (Turn 22 → SEC-001)
+
+## Opus Turn Read: Turn 23, SEC-001 section
+Task understanding:
+1. Add @@deny to User model blocking staffRole self-promotion by non-staff users
+2. Add field-level @@allow("read") for cross-tenant User reads — scoped to [id, displayName] only
+3. Run pnpm db:push + test + verification tail before committing
+
+## Why it matters (Layer 3)
+staffRole bypass grants cross-tenant read to ALL tenants. Without this fix, any authenticated user can self-promote to platform-wide data access. Field-scoping the cross-tenant read closes the privacy gap: other tenants can see display names for task assignee UX, not full User records.
+
+## Constraints understood
+- Must read opus-turn.md Turn 23 SEC-001 section before editing schema
+- Use ZenStack future() syntax for the @@deny — checks the proposed new value against current
+- Verification tail is MANDATORY: principles:split + audit-runner:split + verify exit_code=0
+- Do NOT commit without exit_code=0
+
+## First action
+Read opus-turn.md Turn 23 to get full context, then read current User model in schema.zmodel to find exact insertion point.
+
+**Governor: if any of the above is wrong, correct now before I edit any file.**

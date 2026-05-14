@@ -820,3 +820,24 @@ S029: CLOSED
 
 ## S030 first action
 Run validate-partial-processes.mjs baseline, then build E1 (validate-mini-tree-integrity.mjs, SPI=0.15)
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-14 (S030 E0 — validate-platform-capacity.mjs)
+
+## Directive: Build validate-platform-capacity.mjs
+1. Read tools/config/platform-capacity-registry.yaml — understand each element + limits
+2. Build validator that measures each element, emits ADVISORY at soft_limit, BLOCKING at hard_limit
+3. Wire to verify.mjs as 'platform_capacity'
+4. Add 'platform-capacity-monitoring' slug to audit-runner.md
+5. pnpm audit-runner:split + node tools/verify.mjs exit_code=0
+
+## Constraints understood
+- Read the registry BEFORE writing code — don't invent element names
+- ADVISORY at soft_limit (not blocking), BLOCKING at hard_limit
+- Emit WHAT_TO_DO from registry for each finding
+
+## First action
+Read platform-capacity-registry.yaml to understand what elements to measure.
+
+**Governor: if any of the above is wrong, correct now.**

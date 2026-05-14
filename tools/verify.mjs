@@ -438,8 +438,14 @@ const CYCLES = [
     command: 'node tools/validators/validate-mini-tree-integrity.mjs',
     parse_output: (out) => { const m = out.match(/blocking=(\d+) advisory=(\d+)/); return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {}; },
   },
-  // E0: validate-platform-capacity.mjs (S030-E0) | E2: validate-file-complexity.mjs | E3: validate-file-naming.mjs
-  // E4: validate-opus-chat-jump-freshness.mjs | P-ARCH-030: validate-app-scope-isolation.mjs (week-4)
+  {
+    // E0 LIVE S030 — platform capacity monitoring (Turn 34)
+    name: 'platform_capacity',
+    command: 'node tools/validators/validate-platform-capacity.mjs',
+    parse_output: (out) => { const m = out.match(/blocking=(\d+) advisory=(\d+)/); return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {}; },
+  },
+  // E2: validate-file-complexity.mjs (S030-E2) | E3: validate-file-naming.mjs | E4: validate-opus-chat-jump-freshness.mjs
+  // P-ARCH-030: validate-app-scope-isolation.mjs (week-4)
   {
     name: 'core_contamination',
     command: 'node tools/validators/validate-core-contamination.mjs',

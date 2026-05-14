@@ -89,9 +89,11 @@ WHAT SONNET CANNOT DECIDE ALONE (specific gaps requiring Opus architectural judg
   [max 5 questions per turn]
 
 THE REQUEST (paste this to Opus):
-  [2-4 sentence paragraph — no jargon, no assumed context, no run-on sentences]
+  MANDATORY OPENING: every request starts with "Opus, this is Sonnet." — exact phrase, no variation.
+  Then: 2-4 sentences — no jargon, no assumed context, no run-on sentences.
   Written for Opus reading cold with only this SROF as context.
   Ends with: "Specific questions: [numbered list]"
+  Template: "Opus, this is Sonnet. [one sentence context]. [what was done or what is needed]. Specific questions: (1)... (2)..."
 
 BRIEFING FILE (full context if Opus wants depth):
   [path to detailed briefing file]

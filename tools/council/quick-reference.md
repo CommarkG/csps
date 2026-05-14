@@ -53,6 +53,14 @@ Read [file-link] — [priority-ordered task list with verification tail at end].
 ```
 It is self-contained. Paste it at session start. Everything you need is in it.
 
+### The REQUEST format (Sonnet → Opus, in every SROF)
+```
+Opus, this is Sonnet. [one sentence context — platform state + what changed].
+[What was done, or what decision is needed]. Specific questions: (1)... (2)...
+```
+MANDATORY: every request to Opus opens with "Opus, this is Sonnet." — no exceptions.
+This is the identity handshake. Opus reads many sessions; the opening identifies who is writing.
+
 ---
 
 ---

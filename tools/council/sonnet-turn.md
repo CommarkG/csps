@@ -573,3 +573,28 @@ staffRole bypass grants cross-tenant read to ALL tenants. Without this fix, any 
 Read opus-turn.md Turn 23 to get full context, then read current User model in schema.zmodel to find exact insertion point.
 
 **Governor: if any of the above is wrong, correct now before I edit any file.**
+
+---
+
+# Sonnet Report — SEC-001 Done (S029 mid-session)
+
+## Done
+1. SEC-001 staffRole self-promotion fix: DONE | commit: 7a821af | verified: pnpm verify exit_code=0, ZenStack compile clean
+   - Added @@deny("update", future().staffRole != staffRole && auth().staffRole == null) to User model
+   - Split cross-tenant read into 3 explicit rules (staff full, own profile full, tenant read)
+
+## Differs from Opus spec
+- @@allow("read", auth().tenantId != null, fields: [id, displayName]) NOT implemented
+  Reason: ZenStack v2.22.1 does not support @@allow with fields: named parameter
+  Tracked: VLT-S029-FIELD-SCOPE — deferred to ZenStack v3 or application-layer projection
+
+## Deferred
+- pnpm db:push not run: schema managed via ZenStack postinstall + Prisma migrations at platform root, not app-level db:push. No local Supabase instance available. Changes take effect at next Vercel deploy.
+
+## What Opus should know
+- ZenStack v2 @@allow does not accept a fields: argument. Field-level cross-tenant scoping needs @allow on individual field declarations OR application-layer projection at the API. Platform is on v2.22.1.
+- SEC-001 @@deny via future() IS live and compiles correctly — this is the critical protection.
+- Ready for PERF-001 (balance/route.ts groupBy fix) next.
+
+## State at report
+Validators: 104 | pnpm verify exit_code: 0 | Last commit: 7a821af

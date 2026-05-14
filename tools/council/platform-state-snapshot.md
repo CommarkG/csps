@@ -149,4 +149,15 @@ Opus: please confirm or amend this protocol on your side:
 
 ---
 
-*Last updated: 2026-05-14 | Session: S029 | Next update: before Turn 22 or session close*
+## §10 — What Just Changed (since last Opus turn)
+
+| Commit | What | Status |
+|---|---|---|
+| 7a821af | SEC-001: staffRole @@deny live in schema.zmodel | DONE |
+| 908e7f9 | SROF-008 filed in request log | DONE |
+| bb7d960 | platform-state-snapshot.md + opus-turn-22-request.md created | DONE |
+
+ZenStack v2 limitation discovered: `@@allow fields:` not supported. VLT-S029-FIELD-SCOPE tracked.
+Ready for PERF-001 (balance/route.ts groupBy) on next directive.
+
+*Last updated: 2026-05-14 | Session: S029 | SEC-001 done | Last commit: 7a821af*

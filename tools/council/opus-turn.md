@@ -1,3 +1,54 @@
+# Opus Turn 31 — CspsSessionClaims + DEV-001 Scope
+
+**State:** S029 | pnpm verify exit_code=0 | 8 consolidation items done | UX-001 platform-first done
+
+---
+
+## Q1: CspsSessionClaims Dual-Export — ADVISORY, Fix This Session
+
+**Short answer: Rationalize now. SPI=0.05. Quick.**
+
+The issue: two type names for the same JWT claims shape:
+- `CspsSessionClaims` (existing, in `clerk/session-context.ts`)
+- `AuthSessionClaims` (new, added to `auth.ts`)
+
+**Fix:** `auth.ts` should re-export `CspsSessionClaims`, not define `AuthSessionClaims`:
+
+```typescript
+// libs/integrations/auth.ts
+import type { CspsSessionClaims } from './clerk/session-context';
+export type { CspsSessionClaims };  // re-export the canonical type
+
+export function isSessionReady(claims: CspsSessionClaims | null | undefined): boolean {
+  return !!claims?.tenantId;
+}
+```
+
+`AuthSessionClaims` → delete. Any code referencing `AuthSessionClaims` → update to `CspsSessionClaims`. This is B_CONSOLIDATION_PASS: one canonical home for the type, no duplicates.
+
+---
+
+## Q2: DEV-001 — YES, Next. One Session, Milestone Gate at File 10
+
+SPI = (18 files × 2.5 structural × 1.0 interdependency) / 100 = **0.45** — just under 0.5. One session with an explicit milestone gate after the first 9 files (auth + routing shell).
+
+**Milestone gate at file 9:** pnpm verify + `pnpm dev` must start without errors before proceeding to API routes.
+
+**Session scope:** All 18 files from Turn 23 spec + scripts/create-app.sh + package.json script entry. Each file has `// CSPS TEMPLATE — replace [App Name]` at the top.
+
+**Component B verification:** After completing apps/template, the `pnpm create:app budget-planner-v2` command should create a working duplicate of the existing app structure. This IS the Component B test for DEV-001.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: 0 new findings.
+Status: ZF ACHIEVED
+
+*Opus Turn 31 | DEV-001 scoped | CspsSessionClaims rationalized*
+*OPUS-1 | S029*
+
+---
+
 # Opus Turn 30 — DEV-001 Decision + Context Boundary (FINAL TURN THIS CHAT)
 
 **Context: ~25,000 tokens remaining. OPUS-2 chat-jump created. Completing open items.**

@@ -841,3 +841,20 @@ Run validate-partial-processes.mjs baseline, then build E1 (validate-mini-tree-i
 Read platform-capacity-registry.yaml to understand what elements to measure.
 
 **Governor: if any of the above is wrong, correct now.**
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-14 (Turn 35 — E2 + CAQ + S030 Close)
+
+## Opus directive: Turn 35, 3 items
+1. E2: validate-file-complexity.mjs — dual-gate lines>300 AND H2≥3, ADVISORY without mini_tree_root:true
+2. session-open.sh: add 3 Context Alignment Questions (PROTECTED PATH — diff first, Governor confirms)
+3. S030 close: closing-summary + HANDOFF + platform-state-snapshot + git push
+
+## Constraints
+- Read Turn 35 BEFORE implementing — get exact CAQ wording
+- session-open.sh is a protected path: show diff to Governor before any edit
+- Verification tail after EACH item
+
+## First action
+Read opus-turn.md Turn 35 for exact specs.

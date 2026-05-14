@@ -444,7 +444,13 @@ const CYCLES = [
     command: 'node tools/validators/validate-platform-capacity.mjs',
     parse_output: (out) => { const m = out.match(/blocking=(\d+) advisory=(\d+)/); return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {}; },
   },
-  // E2: validate-file-complexity.mjs (S030-E2) | E3: validate-file-naming.mjs | E4: validate-opus-chat-jump-freshness.mjs
+  {
+    // E2 LIVE S030 — file complexity dual-gate (lines>300 AND H2>=3 without mini_tree_root)
+    name: 'file_complexity_validate',
+    command: 'node tools/validators/validate-file-complexity.mjs',
+    parse_output: (out) => { const m = out.match(/scanned=(\d+) advisory=(\d+)/); return m ? { scanned: Number(m[1]), advisory: Number(m[2]) } : {}; },
+  },
+  // E3: validate-file-naming.mjs | E4: validate-opus-chat-jump-freshness.mjs
   // P-ARCH-030: validate-app-scope-isolation.mjs (week-4)
   {
     name: 'core_contamination',

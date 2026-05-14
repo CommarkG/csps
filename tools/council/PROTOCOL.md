@@ -195,6 +195,22 @@ Never decide without reading platform-state-snapshot.md first.
 
 **Chat-jump files:** `tools/council/opus-chat-jump-S[NNN].md` (one per context boundary)
 
+### Sonnet's Role in Creating Opus Chat-Jumps
+
+Sonnet creates the chat-jump when Opus context is approaching limits — no need to wait for Opus.
+
+**Trigger:** Opus turn count ≥ 20 OR Governor requests it OR Opus signals context < 30K tokens.
+
+**How Sonnet creates it:**
+1. Read `tools/council/opus-turn.md` — get latest turn number + open items
+2. Read `tools/council/platform-state-snapshot.md` — get current state
+3. Create `tools/council/opus-chat-jump-S[NNN].md` following this format (one paragraph → 3 files)
+4. Commit the file
+5. In SONNET REPORT: "Opus chat-jump created at tools/council/opus-chat-jump-S[NNN].md"
+
+**Validation:** `validate-opus-chat-jump-freshness.mjs` (to build Session E4):
+- When opus-turn.md has ≥ 20 turns AND no chat-jump file for current session: ADVISORY
+
 ### When to create the chat-jump
 
 Trigger: Opus context < 30,000 tokens remaining OR Governor asks for it.

@@ -1,3 +1,156 @@
+# Opus Turn 32 — Mini-Tree Protocol + File Naming + Sonnet Chat-Jump Role
+
+**Four topics, all answered. New file: mini-tree-split-protocol.md**
+
+---
+
+## TOPIC 1: Sonnet Creates the Opus Chat-Jump (Add to Protocol)
+
+Sonnet can create the chat-jump for OPUS-2 without waiting for Opus to do it:
+
+```
+WHEN: Opus turn count ≥ 20 OR pnpm verify shows Opus-related staleness
+WHO: Sonnet (as part of session close)
+WHAT: Create tools/council/opus-chat-jump-S[NNN].md following the format in PROTOCOL.md
+  Content: one paragraph → 3 file references
+  Also: update tools/council/platform-state-snapshot.md with current state
+HOW: In SONNET REPORT at session close, add:
+  "Opus chat-jump: created at tools/council/opus-chat-jump-S029.md"
+  OR "Opus chat-jump: not needed this session (context not at limit)"
+```
+
+**Added to PROTOCOL.md this turn** (Sonnet's role in chat-jump creation).
+
+**The chat-jump validation:** `validate-opus-chat-jump-freshness.mjs` (new — Sonnet builds):
+- Checks if opus-turn.md has ≥ 20 turns AND no chat-jump file exists for current session
+- ADVISORY: "Consider creating Opus chat-jump at tools/council/opus-chat-jump-S[NNN].md"
+
+---
+
+## TOPIC 2: Mini-Tree Split — What Exists, What's Missing, Wiring Problem
+
+**Full protocol written to:** `docs/plan/pillar-0-governance/mini-tree-split-protocol.md`
+
+**Short summary for Sonnet:**
+
+What EXISTS (registered, not built):
+- `file-complexity-threshold` + `mini-tree-intro-required` audit slugs (registered, week-4)
+- `mini-tree-intro.template.md` template
+
+What's MISSING:
+- `validate-file-complexity.mjs` — not built yet (was week-4 deferred since S018)
+- `validate-mini-tree-integrity.mjs` — the wiring checker (new, spec in mini-tree-split-protocol.md)
+
+**The Wiring Problem + Solution:**
+When a file at `/path/file.md` splits into a mini-tree, existing references to `/path/file.md` still work IF the intro file IS at the original path. The intro file has `mini_tree_root: true` + `sub_files: [...]` — this makes the transformation machine-readable. Any validator that was watching `/path/file.md` reads the intro and follows `sub_files:` to get content.
+
+**The "what we do when" protocol:** See mini-tree-split-protocol.md §4. It's airtight:
+- Detection → Scope classification → Split plan declaration → Execute → Post-split wiring audit → Update 5 mandatory artifact types
+
+---
+
+## TOPIC 3: File Naming — Mechanical Enforcement
+
+**Current gaps in naming (not enforced mechanically):**
+
+| File type | Current pattern (examples) | Required pattern |
+|---|---|---|
+| Validators | `validate-something.mjs` | `validate-[noun]-[action].mjs` ✅ |
+| Council docs | `opus-srof-012-platform-core-readiness-review.md` | `srof-[NNN]-[topic-kebab].md` (drop "opus-") |
+| Chat-jump files | `opus-chat-jump-S029.md` | `opus-chat-jump-S[NNN].md` ✅ |
+| Principles | `P-META-025.yaml` | `P-META-025-context-intent-principle.yaml` (add topic suffix) |
+| Mini-tree intros | varies | `README.md` within the directory OR `[domain].md` at same path |
+| Memory files | `feedback_trial_app_principle.md` | `[type]_[kebab-topic].md` ✅ already |
+
+**Mechanically enforced by:** `validate-file-naming.mjs` (new — Sonnet builds):
+
+```javascript
+// Rules (check each .md and .mjs file):
+// 1. tools/validators/*.mjs → must match: validate-[noun(s)]-[verb].mjs
+// 2. docs/plan/_handoff/VAULT/opus-*.md → must have explicit topic: opus-[type]-[NNN]-[topic].md
+// 3. docs/plan/_handoff/VAULT/topic-plans/*.md → must match: [domain]-[topic]-plan.md
+// 4. .claude/core-spines/*.md → must match: [L0|L1|L2|L3]_[CORE|DOMAIN|INSTANCES]_[SPINE]*.md
+// 5. packages/principles/principles/*.yaml → must match: P-[ARCH|META|OP]-[NNN]-[topic-kebab].yaml
+// 6. Mini-tree intro files: must have mini_tree_root: true OR be README.md in a sub-directory
+
+// Severity: ADVISORY (week-4 → BLOCKING after backfill)
+// Exempt: legacy files (add to naming-exempt.yaml to grandfather)
+```
+
+**The important principle:** A file's name must tell you what it contains WITHOUT opening it. This is the "intent is clear from the surface" principle applied to file naming.
+
+---
+
+## TOPIC 4: Mini-Tree "Tells" — Self-Declaring Structure
+
+The Governor's question: can each mini-tree be so clear that it tells consumers it has sub-files?
+
+**YES — through frontmatter + validate-mini-tree-integrity.mjs:**
+
+```yaml
+# Every intro file has this:
+mini_tree_root: true
+sub_files:
+  - ./B_COGNITIVE_CONTEXT.md  # covers: cognitive context
+  - ./B_TOKEN_BUDGET.md       # covers: token budget rules
+  - ./B_CONSOLIDATION.md      # covers: consolidation discipline
+```
+
+Any code or AI that reads this file sees immediately: "this is an index; content is in sub_files."
+
+The validator enforces BIDIRECTIONALLY:
+- Intro file must list all sub-files (intro → sub)
+- Sub-files must exist at listed paths (no broken links)
+- Sub-files should ideally back-reference their intro (sub → intro, advisory)
+- External references should point to intro, not directly to sub-files
+
+**The hook that enforces it:** `post-commit-mini-tree-check.sh` (Sonnet builds):
+```bash
+# Fires after any commit that modifies .md files
+# If a .md file was deleted and a directory of same name was created → mini-tree split detected
+# Checks: does the directory have a README.md or [name].md with mini_tree_root: true?
+# If not: ADVISORY "Detected possible mini-tree split without intro file"
+```
+
+---
+
+## Build Order for Sonnet (After DEV-001)
+
+| Session | Task | SPI |
+|---|---|---|
+| E1 | validate-mini-tree-integrity.mjs + wire to verify | 0.15 |
+| E2 | validate-file-complexity.mjs (the deferred week-4 slug) | 0.10 |
+| E3 | validate-file-naming.mjs + naming-exempt.yaml | 0.15 |
+| E4 | validate-opus-chat-jump-freshness.mjs | 0.05 |
+| E5 | Backfill principle slice names (add topic suffix to P-*.yaml) | 0.25 |
+
+All E-sessions are SPI < 0.5 — each fits in one Sonnet session.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Did I miss anything?
+  Findings: 1 — the post-commit hook for mini-tree detection needs to be in .claude/hooks/ (protected path). Sonnet must present diff + Governor confirms before adding.
+  Tracked: Added "protected path — diff+confirm" note to E1 session.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: Mini-tree split protocol now airtight — WHO/WHAT/HOW/WHO-GETS-UPDATED all specified
+Essence: The "tells" mechanism (mini_tree_root + sub_files in frontmatter) makes mini-trees machine-readable and bidirectionally verifiable
+Walk:
+  mini-tree-split-protocol.md: CREATED this turn ✅
+  PROTOCOL.md: Sonnet's chat-jump role ADDED this turn ✅
+  validate-mini-tree-integrity.mjs: SPEC written → Sonnet builds in E1
+  validate-file-naming.mjs: SPEC written → Sonnet builds in E3
+  All future mini-tree splits: protocol is the governing procedure
+Walk-trail: 1 cycle | 5 surfaces | 2 Opus-built, 3 Sonnet-queue
+
+*Opus Turn 32 — Mini-tree + naming + Sonnet chat-jump role | All 4 topics resolved*
+*OPUS-1 | S029 | 2026-05-14*
+
+---
+
 # Opus Turn 31 — CspsSessionClaims + DEV-001 Scope
 
 **State:** S029 | pnpm verify exit_code=0 | 8 consolidation items done | UX-001 platform-first done

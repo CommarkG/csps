@@ -450,7 +450,18 @@ const CYCLES = [
     command: 'node tools/validators/validate-file-complexity.mjs',
     parse_output: (out) => { const m = out.match(/scanned=(\d+) advisory=(\d+)/); return m ? { scanned: Number(m[1]), advisory: Number(m[2]) } : {}; },
   },
-  // E3: validate-file-naming.mjs | E4: validate-opus-chat-jump-freshness.mjs
+  {
+    // E3 LIVE S031 — naming convention 5-rule check (R1-R5, ADVISORY, exempt via naming-exempt.yaml)
+    name: 'file_naming',
+    command: 'node tools/validators/validate-file-naming.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+) advisory=(\d+) exempt=(\d+)/); return m ? { checked: Number(m[1]), advisory: Number(m[2]), exempt: Number(m[3]) } : {}; },
+  },
+  {
+    // E4 LIVE S031 — Opus chat-jump freshness (≥20 turns + no current-session chat-jump = ADVISORY)
+    name: 'opus_chat_jump_freshness',
+    command: 'node tools/validators/validate-opus-chat-jump-freshness.mjs',
+    parse_output: (out) => { const m = out.match(/turns=(\d+) session=(\S+) has_chat_jump=(\w+)/); return m ? { turns: Number(m[1]), session: m[2], has_chat_jump: m[3] === 'true' } : {}; },
+  },
   // P-ARCH-030: validate-app-scope-isolation.mjs (week-4)
   {
     name: 'core_contamination',

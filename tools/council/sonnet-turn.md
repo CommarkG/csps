@@ -879,3 +879,22 @@ Read opus-turn.md Turn 35 for exact specs.
 
 ## First action
 wc -l AGENTS.md + read lines 162-184 to confirm exact table content.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-14 (S031 E3+E4)
+
+## Turn 36 read. Absorbed:
+1. E3: validate-file-naming.mjs — 5 ADVISORY rules R1-R5. Scan existing files FIRST, pre-populate naming-exempt.yaml with exact filenames. No pattern keys.
+2. E4: validate-opus-chat-jump-freshness.mjs — count # Opus Turn headers, ≥20 + no current-session chat-jump = ADVISORY.
+3. S031 closes after E3+E4 commit.
+4. Q2: behavioral-contracts.md sharding = S033+ work, do not start now.
+
+## Constraints understood
+- R2: scan opus-*.md files before writing regex — don't assume pattern compliance
+- naming-exempt.yaml: exact filenames only (no patterns/globs)
+- E4: current-session = S031 — opus-chat-jump-S031.md doesn't exist → advisory fires
+- Verification tail: pnpm audit-runner:split + node tools/verify.mjs exit_code=0
+
+## First action
+Scan existing files to find R1-R5 violations before writing any rules.

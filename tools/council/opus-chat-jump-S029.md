@@ -1,57 +1,48 @@
 # OPUS-TO-OPUS Chat Jump — S029 → OPUS-2
 ## Paste this as your FIRST message in the new Opus tab
-## Updated: Turn 32 complete | 2026-05-14
+## Updated: Turn 34 complete | S029 CLOSED | S030 ACTIVE | 2026-05-14
 
 ---
 
-You are OPUS-2, the architectural advisor for CSPS (CoreSights Platform Services), continuing from OPUS-1 which has completed Turns 1–32 in session S029. Do not assume you know anything — read the files below IN ORDER before responding to anything the Governor sends.
+You are OPUS-2, the architectural advisor for CSPS. OPUS-1 completed Turns 1–34, session S029 is CLOSED at commit 0668cf1. S030 is now active. Read these IN ORDER before responding:
 
-**Read these first (required, in order):**
-1. `tools/council/platform-state-snapshot.md` — current platform reality
-2. `tools/council/opus-turn.md` — start at Turn 28 (most recent architectural decisions)
-3. `tools/council/quick-reference.md` — the operational flow between Opus ↔ Governor ↔ Sonnet
+1. `tools/council/platform-state-snapshot.md` — current reality
+2. `tools/council/opus-turn.md` Turns 28–34 — all recent decisions + embedded SONNET DIRECTIVES
+3. `tools/council/quick-reference.md` — Opus ↔ Governor ↔ Sonnet flow
 
-**Your architectural history (sealed — do not re-decide):**
-- P-META-022 through P-META-025 sealed
-- P-ARCH-030 sealed (apps are ephemeral trials — deletion test standard)
-- USM (S0-S5 unified scope model) ratified
-- GCI gate sealed (GCI<10 proceed, GCI≥10 SROF first)
-- Mini-tree split protocol sealed (mini_tree_root + sub_files + post-split wiring audit)
-- File naming convention sealed (validate-[noun]-[verb].mjs, P-NNN-topic-kebab.yaml)
+---
 
-**What Sonnet completed in S029 (do NOT re-open):**
-- Gate 3: Budget Planner LIVE at csps-budget-planner.vercel.app ✅
-- SEC-001: staffRole @@deny in schema.zmodel ✅
-- PERF-001: balance/route.ts groupBy ✅
-- UX-001 platform-first: libs/integrations/auth.ts + apps/template/account-setup ✅
-- DEV-001: apps/template/ 18-file scaffold + pnpm create:app script ✅ (commit 7e90760)
-- Turn 29 all 8 consolidation items (OD-009, Component A/B, app-manifests, GCI gate) ✅
-- CspsSessionClaims rationalized ✅
-- External Integrations Hub: Vercel/Supabase/Clerk/ZenStack knowledge files ✅
-- P-ARCH-030 5/5 FSE engraving ✅
+**S029 STATUS: CLOSED** (commit 0668cf1 — do not ask Sonnet to re-close)
 
-**Open items for OPUS-2:**
-- E1: validate-mini-tree-integrity.mjs + wire to verify (SPI=0.15)
-- E2: validate-file-complexity.mjs — week-4 deferred slug (SPI=0.10)
-- E3: validate-file-naming.mjs + naming-exempt.yaml (SPI=0.15)
-- E4: validate-opus-chat-jump-freshness.mjs (SPI=0.05)
-- E5: Backfill principle slice names with topic suffix (SPI=0.25)
-- validate-platform-capacity.mjs: spec written (Turn 22/25), pending build
-- VLT-S029-FIELD-SCOPE: ZenStack v2 field scoping — deferred to v3 or app-layer
-- Turn 32: post-commit hook for mini-tree detection needs protected-path diff+confirm
+**S030 STATUS: ACTIVE** — Sonnet starts with E0 (validate-platform-capacity.mjs)
 
-**Your role in next session:**
-- Read sonnet-turn.md before any new turn
-- Apply SPI formula before any directive (scope-pressure-index.md)
-- GCI < 10 → proceed with "GCI=[N], proceeding" | GCI ≥ 10 → file SROF first
-- Every turn ends with ## RZF VERIFICATION + ## CEC — POSITIVE
+---
+
+**Sonnet's S030 directives (self-contained — OPUS-2 reads these, Governor pastes to Sonnet):**
+
+**SONNET S030 E0** — Build `tools/validators/validate-platform-capacity.mjs`: reads `tools/config/platform-capacity-registry.yaml`, measures each element (AGENTS.md line count, verify runtime, VAULT root file count, etc.), emits ADVISORY at soft_limit / BLOCKING at hard_limit with WHAT_TO_DO from registry; wire into `tools/verify.mjs` cycle `platform_capacity`; add slug `platform-capacity-monitoring` to audit-runner.md; then `pnpm audit-runner:split` + `node tools/verify.mjs exit_code=0`.
+
+**SONNET S030 E1** — Build `tools/validators/validate-mini-tree-integrity.mjs` per `docs/plan/pillar-0-governance/mini-tree-split-protocol.md` §6: check every file with `mini_tree_root: true` has valid `sub_files:` entries; detect directories with 2+ files but no intro; create `behavioral-contracts/README.md` and `external-integrations/README.md` with `mini_tree_root: true` + `sub_files:`; wire to verify + audit-runner; `pnpm contracts:split` + `pnpm audit-runner:split` + `node tools/verify.mjs exit_code=0`.
+
+**SONNET S030 E2** — Build `tools/validators/validate-file-complexity.mjs`: the week-4 deferred slug from S018 — scan all .md files in docs/, dual-gate lines > 300 AND H2 sections ≥ 3 without `mini_tree_root: true` = ADVISORY; wire to verify + audit-runner slug `file-complexity-threshold`; `pnpm audit-runner:split` + `node tools/verify.mjs exit_code=0`.
+
+---
+
+**Sealed decisions (do NOT re-decide):**
+- P-META-022 through P-META-025 | P-ARCH-030 | USM S0-S5 | GCI gate | Mini-tree protocol | SPI formula | Trial app principle | File naming convention | Opus-to-Opus handoff Rule 1-4
+
+**What Sonnet completed in S029:**
+Gate 3 live | SEC-001 | PERF-001 | UX-001 platform-first | DEV-001 18-file scaffold | P-ARCH-030 5/5 FSE | 8 consolidation items | CspsSessionClaims | External Integrations Hub | Weekly audit LIVE
+
+**Open for OPUS-2 to handle:**
+- E0-E5 Sonnet sessions (directives above for E0+E1; E2-E5 in opus-turn.md Turn 34)
+- VLT-S029-FIELD-SCOPE: ZenStack v2 field scoping — deferred
+- Post-commit hook for mini-tree detection: protected-path diff+confirm required
 
 **PROHIBITED without reading platform-state-snapshot.md first:**
-- Any implementation recommendation
-- Any claim about current validator count, session, or platform state
-- Reversing decisions from Turns 1-32
+Any claim about validators, session number, or platform state.
 
 ---
 
-*OPUS-1 final state: 33 turns | S029 CLOSED | pnpm verify exit_code=0 | 105 validators | 60 principles | 58 contracts*
-*OPUS-2 opens clean — read the files, not training defaults*
+*OPUS-1 final: 34 turns | S029 CLOSED 0668cf1 | pnpm verify exit_code=0 | 105 validators*
+*OPUS-2: read the files first. The directives above are self-contained — no "see Turn N" references.*

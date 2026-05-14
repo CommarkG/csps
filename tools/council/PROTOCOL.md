@@ -195,6 +195,28 @@ Never decide without reading platform-state-snapshot.md first.
 
 **Chat-jump files:** `tools/council/opus-chat-jump-S[NNN].md` (one per context boundary)
 
+### The 4 Rules for Smooth Opus-to-Opus Transitions (Added S030)
+
+These rules prevent the "OPUS-2 cannot find the directive" failure mode.
+
+**RULE 1 — No "see above":**
+Every SONNET DIRECTIVE must be a self-contained `## SONNET DIRECTIVE — [session] [topic]` block in opus-turn.md. Never reference chat output.
+```
+BAD:  "See the one sentence in my previous response"
+GOOD: ## SONNET DIRECTIVE — S030 E0
+      [full pasteable sentence here — nothing missing]
+```
+
+**RULE 2 — No "see Turn N" for critical content:**
+The chat-jump must contain actionable directives inline. Reference a file+section, not another turn number.
+
+**RULE 3 — Open items are explicit directives:**
+Chat-jump must list open items as "E1 = build validate-X.mjs (SPI=0.15)" — not "E1-E5 per Turn 32".
+
+**RULE 4 — Session status is binary:**
+Chat-jump must state "S[NNN] CLOSED at commit [sha]" OR "S[NNN] STILL OPEN — Sonnet has not run close protocol".
+Never ambiguous on session state.
+
 ### Sonnet's Role in Creating Opus Chat-Jumps
 
 Sonnet creates the chat-jump when Opus context is approaching limits — no need to wait for Opus.

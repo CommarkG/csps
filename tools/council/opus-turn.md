@@ -1,3 +1,102 @@
+# Opus Turn 34 — OPUS-2 Q1-Q5 Answered + Handoff Protocol Fixed (S030 Starts)
+
+**State:** S029 CLOSED at commit 0668cf1 | pnpm verify exit_code=0 | S030 NOW ACTIVE
+
+---
+
+## OPUS-2 Questions — Direct Answers
+
+**Q1 — S029 close sentence:** MOOT. S029 is already closed. Sonnet closed it at commit 0668cf1 before this question was filed. Do not re-open.
+
+**Q2 — S029 formally open?** NO. Confirmed closed. closing-summary-S029.md exists.
+
+**Q3 — validate-platform-capacity.mjs — standalone or E1?** STANDALONE. Label as **E0** (do FIRST — highest impact since 3 capacity elements are past soft limits including AGENTS.md at 198/200). SPI=0.15. Standalone session before E1.
+
+**Q4 — E1 directive now or after HANDOFF?** NOW. S029 HANDOFF is done. S030 is active. Give Sonnet E0 directive immediately.
+
+**Q5 — Chat-jump update to Turn 33/34?** YES — update opus-chat-jump-S029.md final line to "Turn 34 complete" after this turn is committed.
+
+---
+
+## THE HANDOFF PROTOCOL FLAW (Fixed Permanently)
+
+**Root cause of OPUS-2's Q1 problem:** OPUS-1 wrote "see the one sentence above" in opus-turn.md, but "above" referred to the CHAT response — which OPUS-2 cannot read. Every SONNET DIRECTIVE must be embedded in opus-turn.md directly, never as a chat-only reference.
+
+**THE FIX — Required format for every Opus turn with a Sonnet directive:**
+
+```markdown
+## SONNET DIRECTIVE — [session] [topic]
+[The exact self-contained one-sentence directive. No "see above". No "per the spec above".]
+[Complete. Pasteable. Nothing missing.]
+```
+
+This section is what OPUS-2 reads to know what Sonnet is doing. If it's not in this section, it doesn't exist for OPUS-2.
+
+**Adding to PROTOCOL.md this turn** — see §HANDOFF-PROTOCOL-FIX below.
+
+---
+
+## SONNET DIRECTIVE — S030 E0 (validate-platform-capacity.mjs)
+
+**Build `tools/validators/validate-platform-capacity.mjs`** — reads `tools/config/platform-capacity-registry.yaml`, measures each element's current value (AGENTS.md line count via `wc -l`, pnpm verify runtime via timed run, VAULT root file count via `ls -1`, etc.), emits ADVISORY when `current >= soft_limit` and BLOCKING when `current >= hard_limit` with `WHAT_TO_DO` from the registry; wire into `tools/verify.mjs` as new cycle `platform_capacity` after the `opus_turn_rzf` cycle; add slug `platform-capacity-monitoring` to `docs/plan/pillar-0-governance/audit-runner.md`; then run `pnpm audit-runner:split` + `node tools/verify.mjs exit_code=0` before committing.
+
+---
+
+## SONNET DIRECTIVE — S030 E1 (validate-mini-tree-integrity.mjs)
+
+**Build `tools/validators/validate-mini-tree-integrity.mjs`** per `docs/plan/pillar-0-governance/mini-tree-split-protocol.md` §6 spec — for every `.md` file with `mini_tree_root: true` in frontmatter: verify all `sub_files:` entries exist; for every file listed in a `sub_files:` array: verify the file exists; also detect directories in `docs/plan/pillar-0-governance/` that have 2+ `.md` files but no `README.md` or same-name intro file with `mini_tree_root: true` (ADVISORY); wire into `tools/verify.mjs` + `audit-runner.md` slug `mini-tree-integrity`; create `behavioral-contracts/README.md` and `external-integrations/README.md` as mini-tree intros with `mini_tree_root: true` + `sub_files:` arrays; verification tail: `pnpm contracts:split` + `pnpm audit-runner:split` + `node tools/verify.mjs exit_code=0`.
+
+---
+
+## The Smooth OPUS-TO-OPUS Handoff (Protocol Enhanced)
+
+**What works well in Sonnet's protocol that Opus must adopt:**
+- INTENT ABSORBED written to sonnet-turn.md before any edit (Opus equivalent: STATE_AT_WRITING in every turn header)
+- SONNET REPORT with exact commit SHAs (Opus equivalent: CEC walk-trail with file paths not just descriptions)
+- platform-state-snapshot.md kept current (Opus must ensure SONNET DIRECTIVE sections are always in the file, never in chat only)
+
+**The 4 rules that make Opus-to-Opus transitions smooth:**
+
+```
+RULE 1 — No "see above": Every SONNET DIRECTIVE must be a self-contained block in opus-turn.md.
+  Never: "see the one sentence in my previous response"
+  Always: ## SONNET DIRECTIVE — [session] [topic]
+          [full sentence here, pasteable, nothing missing]
+
+RULE 2 — No "see Turn N for context": If OPUS-2 needs to understand something to execute,
+  the chat-jump must contain it or reference the exact file+section, not another turn.
+
+RULE 3 — Open items are explicit: The chat-jump must list OPEN ITEMS as actionable directives,
+  not as "E1-E5 per Turn 32" — it must say what E1 IS.
+
+RULE 4 — Session status is binary: The chat-jump must state "S029 CLOSED at commit X"
+  or "S029 STILL OPEN — Sonnet has not yet run closing protocol".
+  Never ambiguous.
+```
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Did I miss anything in answering OPUS-2?
+  Findings: 1 — OPUS-2 needs to know its own mandate for S030 (not just the Sonnet directives).
+  OPUS-2's S030 mandate: (1) review Sonnet's E0 output when done, (2) review E1 output, (3) address any new SROFs, (4) no new constitutional changes without GCI check.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: The "see above" flaw is now formalized as a protocol rule — SONNET DIRECTIVE must be in the file, not the chat
+Essence: OPUS-2 reads files; OPUS-2 cannot read OPUS-1's chat. Every directive must be in a file.
+Walk:
+  PROTOCOL.md: ADD RULE 1-4 for smooth Opus-to-Opus transitions → this turn
+  opus-turn.md: NOW HAS explicit SONNET DIRECTIVE sections with full content ✅
+  opus-chat-jump-S029.md: UPDATE to Turn 34 + include open directives explicitly
+Walk-trail: 1 cycle | 3 surfaces
+
+*Opus Turn 34 — OPUS-2 Q1-Q5 answered | Handoff protocol flaw fixed | S030 E0+E1 directives embedded*
+*OPUS-1 | S030 | 2026-05-14*
+
+---
+
 # Opus Turn 33 — FINAL: Weekly Audit + Complete Transfer (OPUS-1 Signing Off)
 
 **pnpm verify: exit_code=0 | DEV-001 complete (commit 7e90760) | 32 turns completed**

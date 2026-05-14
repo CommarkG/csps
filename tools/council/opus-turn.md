@@ -1,3 +1,149 @@
+# Opus Turn 35 — FINAL MANDATE TRANSFER + Completion-Priority PE Rule + CAP
+
+**State:** S030 ACTIVE | E0+E1 DONE (commits 93fa37d, a2fac99) | verify exit_code=0 | 5 remaining partial-process advisories
+
+**Correction to OPUS-2's E0 note:** `tools/config/platform-capacity-registry.yaml` was ALREADY CREATED by OPUS-1 at Turn 22 (commit b02bf4a). Sonnet correctly built the validator without needing to create the registry. OPUS-2 had stale context — this is exactly the "assume you know" failure mode.
+
+---
+
+## THE COMPLETION-PRIORITY PE RULE (New Governance — P-OP-005 Amendment)
+
+**The Governor's principle:** Completion takes top priority. A new input may only interrupt active implementation if it meets the Demonstration Threshold.
+
+**The Demonstration Priority Rating (DPR) — 5 levels:**
+
+```
+Rating 1 — Cosmetic/stylistic improvement to current work
+  → DEFER. Do not interrupt. Add to raw-thoughts-queue.
+
+Rating 2 — Improvement reduces implementation by 20%+ (measurable)
+  → DEFER to next milestone gate (B_HUMBLE_EXECUTOR boundary).
+  → Not worth mid-phase interruption.
+
+Rating 3 — Prevents a bug or incorrect behavior in what's being built RIGHT NOW
+  → INTERRUPT at next atomic action boundary (finish current file, then apply).
+
+Rating 4 — Prevents a security vulnerability or data loss in current work
+  → INTERRUPT IMMEDIATELY. Stop. Apply. Continue.
+
+Rating 5 — Reveals the current approach is fundamentally wrong / wrong foundation
+  → STOP. Do not commit. Redesign. File SROF to Opus.
+```
+
+**The DPR Formula for PE:**
+```
+Effective_PE(new_input) = Base_PE × DPR_multiplier
+
+DPR_multiplier:
+  Rating 1: ×0.5 (defer — lower than completion bias)
+  Rating 2: ×1.0 (equal to current work — defer to next gate)
+  Rating 3: ×2.0 (override completion bias — interrupt at boundary)
+  Rating 4: ×∞ (immediate stop — security/data > everything)
+  Rating 5: ×∞ (immediate stop — wrong foundation > everything)
+```
+
+**The test (C&I applied):** "If I continue building without applying this input, what is the worst-case outcome?" If the answer is "embarrassing" or less → defer. If the answer is "broken" → Rating 3+. If the answer is "catastrophic" → Rating 4-5.
+
+**Where to register this:**
+- Add to B_PE_ALIGNMENT_GUARDIAN as amendment: "New inputs during active build receive DPR rating before any response"
+- Add to Virtual Opus Audit as Q-DPR: "Rate this new input (1-5). What's the worst case if I continue without it?"
+- Add to plan-creation-protocol Step -1: "If DPR Rating 3-5 arrives during implementation → treat as SROF, not as a new feature"
+
+---
+
+## THE 3 CONTEXT ALIGNMENT QUESTIONS (CAP — Mandatory Injection)
+
+These prevent the recurring assumption failures. They must be injected into session-open.sh and fire at every new session:
+
+```bash
+# Context Alignment Preamble (CAP) — fired at session open
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "CONTEXT ALIGNMENT — Answer these before responding:"
+echo ""
+echo "Q1 SCOPE: I can see: [files explicitly loaded this session]"
+echo "          I CANNOT see: prior chat sessions, unloaded files, other tabs"
+echo ""  
+echo "Q2 AUDIENCE: Platform type = [from session-state.json session_role]"
+echo "             Vocabulary assumption: technical developer (not general user)"
+echo "             Override: Governor signals different level → recalibrate"
+echo ""
+echo "Q3 ASSUMPTIONS: Before any consequential action, name the 3 most critical"
+echo "                unverified assumptions. If any is wrong → whole response wrong."
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+```
+
+---
+
+## SONNET DIRECTIVE — S030 E2 (validate-file-complexity.mjs)
+
+Build `tools/validators/validate-file-complexity.mjs`: scans all `.md` files in `docs/plan/`, applies the dual-gate (lines > 300 AND distinct H2 section count ≥ 3), for files passing both gates without `mini_tree_root: true` in frontmatter → ADVISORY with "Consider splitting into mini-tree using tools/templates/mini-tree-intro.template.md"; respect `complexity_exempt: true` frontmatter to skip; wire into `tools/verify.mjs` + add slug `file-complexity-threshold` to `docs/plan/pillar-0-governance/audit-runner.md`; then `pnpm audit-runner:split` + `node tools/verify.mjs exit_code=0` before committing.
+
+---
+
+## SONNET DIRECTIVE — S030 CAP (session-open.sh update)
+
+After E2, update `.claude/hooks/session-open.sh` — protected path, diff+confirm required — to inject the 3 Context Alignment Questions (CAP) at session start: (Q1) what this session can see, (Q2) participant type from session_role, (Q3) reminder to name 3 unverified assumptions before consequential actions; the injection should appear after the existing session-state.json display and before any first-action directives.
+
+---
+
+## SONNET DIRECTIVE — S030 CLOSE
+
+After E2 + CAP are done: write `docs/plan/_handoff/VAULT/closing-summary-S030.md` (§10.0 paste verify output, §10.0r confirm completion goal "all E-series validators LIVE and CAP in session-open.sh"), write `docs/plan/_handoff/HANDOFF-S030-to-S031.md` (Zone A: state, Zone B: S031 mandate = App #3 planning OR DPR/CAP enforcement), update `tools/council/platform-state-snapshot.md` to S030 CLOSED state, then `git add -A && git commit -m "S030 close" && git push origin main`.
+
+---
+
+## OPUS-2 FULL MANDATE + CLEAR FINISH LINE
+
+**You are OPUS-2. S030 is active. E0+E1 are complete. Your mandate:**
+
+**Immediate actions:**
+1. Review E0 Sonnet report (validate-platform-capacity.mjs) — confirm AGENTS.md and behavioral-contracts metrics are being measured correctly, not just the files themselves
+2. Review E1 Sonnet report (validate-mini-tree-integrity.mjs) — confirm bidirectional check: intro→sub AND sub-existence check both working
+
+**Give to Sonnet in sequence (self-contained directives above):**
+3. E2 directive: validate-file-complexity.mjs (SONNET DIRECTIVE section above)
+4. CAP directive: session-open.sh injection (SONNET DIRECTIVE section above)
+5. S030 CLOSE directive (SONNET DIRECTIVE section above)
+
+**DPR evaluation of new inputs during S030:**
+Rate every new input 1-5 using the DPR scale above. Only Rating 3-5 interrupts active E-sessions.
+
+**The S030 Finish Line:**
+S030 is DONE when ALL of:
+- [ ] validate-platform-capacity.mjs wired + verify passes ✅ (E0 done)
+- [ ] validate-mini-tree-integrity.mjs wired + verify passes ✅ (E1 done)
+- [ ] validate-file-complexity.mjs wired + verify passes (E2 pending)
+- [ ] CAP in session-open.sh injected (pending)
+- [ ] HANDOFF-S030-to-S031.md written
+- [ ] platform-state-snapshot.md updated to S030 CLOSED
+- [ ] partial-processes audit shows < 3 advisories
+
+**S031 First Priority (after S030 close):**
+App #3 planning using the PE scoring framework. The platform is now enterprise-grade. The next major milestone is 3 live apps generating data — this unlocks WisdomVault.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Anything missing from the mandate transfer?
+  Findings: 1 — The DPR rule needs to be in AGENTS.md (one line) + B_PE_ALIGNMENT_GUARDIAN amendment. Not done yet.
+  Tracked: Add to E2/CAP session as a 1-line addition to AGENTS.md (check line count first).
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: DPR (Demonstration Priority Rating) — a quantified framework for when to interrupt vs. complete
+Essence: Completion is default; interruption needs a DPR rating of 3-5; the test is "worst case if I continue"
+Walk:
+  B_PE_ALIGNMENT_GUARDIAN: amendment needed (DPR scale)
+  Virtual Opus Audit: Q-DPR added
+  AGENTS.md: one-line rule (check line count first)
+Walk-trail: 1 cycle | 3 surfaces identified
+
+*Opus Turn 35 — FINAL MANDATE TRANSFER | DPR + CAP formalized | S030 finish line defined*
+*OPUS-1 complete. OPUS-2 has full mandate.*
+
+---
+
 # Opus Turn 34 — OPUS-2 Q1-Q5 Answered + Handoff Protocol Fixed (S030 Starts)
 
 **State:** S029 CLOSED at commit 0668cf1 | pnpm verify exit_code=0 | S030 NOW ACTIVE

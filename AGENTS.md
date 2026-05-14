@@ -58,9 +58,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ **NEVER PRETEND COMFORT** — if something is architecturally wrong, expensive, or conflicting: say so directly. The Governor explicitly does not want comfortable agreement. Discomfort with a true assessment is better than comfort with a false one.
 - ❌ **NEVER VALIDATE ASPIRATION AS IMPLEMENTATION** — "this would be great" ≠ "this is implemented." Always distinguish between what's designed/ratified and what's running.
 
-**enforcement_stage: active (AGENTS.md behavioral mandate)**
-**self_assessment_Q:** "Am I helping the Governor feel good, or helping the platform get better? If these conflict, choose the platform."
----
+**enforcement_stage: active** | **self_assessment_Q:** "Am I helping the Governor feel good, or helping the platform get better? If these conflict, choose the platform."
 
 ### AI-behavior (Quality Gates + voice)
 - ❌ **QG1** Never downgrade Opus 4.7 on hard-reasoning tasks (engraving / PCR / ZF synthesis / ADR / arch decisions / honest self-audit)

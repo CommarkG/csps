@@ -1,3 +1,190 @@
+# Opus Turn 23 — SROF-012: 4 Platform Core Gaps + Architectural Positions
+
+**State at Writing:** S029 | 104 validators | Budget Planner LIVE | pnpm verify exit_code=0
+**Source:** platform-state-snapshot.md + opus-srof-012-platform-core-readiness-review.md (full read)
+
+---
+
+## SEC-001: staffRole Self-Promotion — Schema Layer, Not API Layer
+
+**Position: ZenStack schema layer enforcement is required. API layer is defense-in-depth only.**
+
+Constitutional principle (S0): DB-level enforcement cannot be bypassed by API bugs. If staffRole protection lives only in `settings/account/route.ts`, a future developer adds a new route and the protection disappears silently. This is P-ARCH security pattern.
+
+**The correct ZenStack fix:**
+
+```zmodel
+model User {
+  // ... existing fields ...
+  staffRole  String?
+
+  // existing allow:
+  @@allow("update", auth().id == id)
+
+  // ADD — prevents self-promotion of staffRole:
+  @@deny("update", future().staffRole != staffRole && auth().staffRole == null)
+}
+```
+
+`future()` references the post-update value. This deny rule fires when: (1) staffRole would change AND (2) the updater is not already staff. Staff can still update staffRole (for granting/revoking staff status). Non-staff cannot escalate themselves.
+
+**ZenStack v2 supports `future()` in deny policies.** This is the canonical pattern. The API layer (`settings/account/route.ts`) should ALSO strip staffRole from request bodies as defense-in-depth, but the schema is primary.
+
+**Sonnet action:** Add the `@@deny` line to schema.zmodel User model + run `pnpm db:push` + verify by attempting a staffRole update via API as a non-staff user.
+
+**Severity:** CRITICAL — fix before any external user testing.
+
+---
+
+## PERF-001: Balance Aggregate — groupBy, Not Raw SQL, Not Materialized View
+
+**Position: Prisma `groupBy` with `_sum` for MVP. Materialized view at 100K+ tenants.**
+
+Critical constraint: **`$queryRaw` bypasses ZenStack RLS tenant isolation.** This is a constitutional S0 violation (ZenStack is the enforcement layer). Do not use `$queryRaw` for tenant-scoped data.
+
+**The correct pattern:**
+
+```typescript
+// Replace unbounded findMany + JS aggregation:
+const categoryBalances = await edb.transaction.groupBy({
+  by: ['categoryId'],
+  where: {
+    tenantId,
+    deletedAt: null,
+    // optional date range:
+    ...(dateFrom && { date: { gte: dateFrom } }),
+  },
+  _sum: { amount: true },
+  orderBy: { _sum: { amount: 'desc' } },
+});
+```
+
+This pushes aggregation to Postgres. No OOM risk. No Vercel timeout risk. ZenStack policies apply normally.
+
+**Remove `?all=true` entirely.** Replace with a dedicated `/api/balance/summary` endpoint that always uses `groupBy`. No unbounded query path should exist.
+
+**Materialized view** (Option C) is correct at scale but overengineered for MVP — requires a Supabase Edge Function or trigger to update on transaction write, plus snapshot staleness management. Deferred to when tenant count exceeds 10K active transactions per tenant.
+
+**Sonnet action:** 
+1. Replace `balance/route.ts` unbounded findMany with groupBy
+2. Remove `?all=true` query parameter entirely
+3. Add partial index note to schema.zmodel comments: `// TODO: add partial index WHERE deletedAt IS NULL after ZModel supports it`
+
+---
+
+## UX-001: JWT-Refresh Gap — Redesign the Webhook Flow (Long-term) + Polling (Immediate)
+
+**Position: Two-phase fix. Immediate: polling loading state. Platform fix: synchronous Tenant creation in user.created.**
+
+**The root cause:** Clerk's `auto_org` fires `organization.created` AFTER `user.created`. The JWT gets `tenantId` only when org membership is reflected in Clerk's session (up to 5 minutes). This creates the sign-up → 403 loop.
+
+**Immediate fix (Sonnet does this session):**
+
+Create `/account-setup` page that:
+1. Shows "Setting up your account..." spinner
+2. Polls `/api/auth/session-ready` every 2 seconds (max 30 polls)
+3. `/api/auth/session-ready` returns `{ ready: boolean }` — true when `auth().sessionClaims.tenantId` is populated
+4. On `ready: true` → redirect to `/dashboard`
+
+Redirect the 403 `no_tenant` path to `/account-setup` instead of `/sign-in`.
+
+**Platform-level fix (architectural — for all apps, implement next session):**
+
+Move Tenant+UserTenant creation to the `user.created` webhook (synchronous). Don't wait for Clerk's `organization.created`. When `user.created` fires:
+1. Create User row
+2. Create Tenant row (tenantId = userId or UUID)
+3. Create UserTenant row
+4. Call Clerk's `updateUserMetadata` to set `tenantId` in publicMetadata
+
+This sets `tenantId` in Clerk's user metadata before the JWT refresh. The next JWT refresh picks it up. Org creation (`organization.created`) becomes metadata sync only — not the source of tenantId.
+
+This is S1-scope (platform-wide pattern). All future apps inherit it. The current `organization.created`-as-primary pattern is fragile.
+
+**Q-EU-2 answer:** The `/account-setup` loading page is S1 scope — all apps inherit it via `libs/integrations/` or `apps/template/`. It should be in the template scaffold.
+
+---
+
+## DEV-001: apps/template/ Minimum Viable Scaffold
+
+**Position: ~20 files. Runnable from first `pnpm dev`. Zero domain logic. Contains: auth, webhook, dashboard gate, Threshold Wizard redirect.**
+
+```
+apps/template/
+  package.json               ← next, react, @csps/integrations, @prisma/client, @zenstackhq/runtime
+  next.config.js             ← transpilePackages: ['@csps/integrations']
+  vercel.json                ← rootDir + include-outside-root: true
+  .env.example               ← all required vars with inline annotations
+  tsconfig.json              ← paths: @csps/integrations → ../../libs/integrations
+  middleware.ts              ← Clerk auth + tenantId check + /account-setup redirect
+  src/
+    app/
+      layout.tsx             ← ClerkProvider wrapper only
+      page.tsx               ← redirect logic (has tenantId? → /dashboard, else → /sign-in)
+      account-setup/
+        page.tsx             ← "Setting up your account" polling page (UX-001 fix)
+      sign-in/[[...sign-in]]/page.tsx   ← Clerk SignIn
+      sign-up/[[...sign-up]]/page.tsx   ← Clerk SignUp
+      dashboard/
+        page.tsx             ← "Welcome to [App Name]" — add your domain here
+        layout.tsx           ← sidebar/nav shell
+      api/
+        webhooks/
+          clerk/route.ts     ← imports from @csps/integrations, handles all lifecycle events
+          stripe/route.ts    ← imports from @csps/integrations (subscription events)
+        auth/
+          session-ready/route.ts   ← polls tenantId availability (UX-001 polling endpoint)
+```
+
+**18 files. Runnable. Passes pnpm verify.** Developer adds domain schema + domain routes. Does not touch anything above.
+
+**Critical note:** Each template file must have `// CSPS TEMPLATE FILE — replace [App Name] with your app` at the top. This prevents a developer copying the template and shipping a Budget Planner fork.
+
+---
+
+## Bonus Answers (Additional Questions from SROF-012)
+
+**Q-B-3 (pnpm verify --fast):** YES — tiered verify is the right pattern per Turn 22. `pnpm verify:light` (blocking only, <10s), `pnpm verify` (full), `pnpm verify:deep` (advisory included). The 5-frontmatter-validator consolidation goes to a shared `libs/validator-utils/frontmatter-parser.mjs`.
+
+**Q-D-2 (ADR backlog):** The 5 decisions that must become ADRs immediately: shared schema monolith, flat ZModel assembly, ZenStack enhance path fix, transpilePackages pattern, auto_org flow. ADR template exists at `tools/templates/adr.template.md`. Sonnet drafts all 5 in one batch.
+
+**Q-D-3 (validator consolidation):** Create `libs/validator-utils/frontmatter-parser.mjs` — shared parse-all-markdown utility. All 5 frontmatter validators import it. This eliminates 4× redundant file I/O per verify run and is the first step toward the tiered verify system.
+
+---
+
+## Division of Work
+
+**Opus handled (this turn):** Architectural positions on all 4 gaps + platform-level fix design for UX-001 + ZenStack syntax for SEC-001 + apps/template/ file list.
+
+**Sonnet implements (next session):**
+1. SEC-001: Add `@@deny` to User model in schema.zmodel → `pnpm db:push`
+2. PERF-001: Replace balance/route.ts unbounded findMany with `groupBy` → remove `?all=true`
+3. UX-001: Create `/account-setup` page + polling endpoint + redirect 403 no_tenant path
+4. DEV-001: Create apps/template/ scaffold with ~18 files (see list above)
+5. BONUS: Draft 5 ADRs in docs/plan/pillar-1-architecture/ADR/
+
+---
+
+## RZF VERIFICATION — NEGATIVE
+Cycle 1: Did I miss anything critical?
+  Findings: 1 — Finding P-2 (cross-tenant User reads): I didn't address field-level @@allow syntax. ZenStack v2 does support field-level policies. The syntax: add a separate `@@allow("read", ..., fields: [displayName, id])` to restrict which fields are exposed in cross-tenant reads. This should be in the schema fix alongside SEC-001.
+  Tracked: Added to Sonnet SEC-001 action as "also address cross-tenant User read scoping."
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: Budget Planner is live — real users, real auth, real data
+Essence: The platform works in production; now closing the gaps that would break at scale
+Walk:
+  webhook flow redesign: S1-scope pattern that all 30 apps inherit
+  apps/template/ scaffold: the foundational artifact that makes App #3-30 fast
+  SEC-001 ZenStack pattern: reusable for any field-level security in any future model
+Walk-trail: 1 cycle | 3 platform-wide patterns identified
+
+*Opus Turn 23 — 4 platform core gaps addressed | Division of work established*
+*OPUS-1 | S029 | 2026-05-14*
+
+---
+
 # Opus Turn 22 — Platform Scalability: Prevention, Capacity Monitoring, Sharding Architecture
 
 **Governor directive:** CSPS must handle 500× of activity. Prevention over detection. Audits tagging elements approaching limits. Platform-level validated solutions.

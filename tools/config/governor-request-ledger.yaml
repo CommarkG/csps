@@ -32,67 +32,60 @@ categories:
 
 # ─── OPEN REQUESTS (sorted by PE — highest first) ────────────────────────────
 
-open:
-
-  - id: GRL-S028-001
-    session: S028
-    timestamp: 2026-05-13T08:36:13Z
-    verbatim: "are we connected to vercel?"
-    category: operational-question
-    pe: 78
-    status: OPEN
-    notes: "Budget Planner .vercel/ not found — vercel link not run yet"
-
-  - id: GRL-S028-002
-    session: S028
-    timestamp: 2026-05-13T08:36:13Z
-    verbatim: "you something for opus to improve and ratify?"
-    category: strategic
-    pe: 72
-    status: OPEN
-    notes: "SROF-009 (USM + agents/skills research) ready — two documents"
-
-  - id: GRL-S028-003
-    session: S028
-    timestamp: 2026-05-13T08:36:13Z
-    verbatim: "how enforced mechanically is you not dropping any question or request — accountability tracking with PE"
-    category: directive
-    pe: 70
-    status: OPEN
-    notes: "Building: governor-request-ledger.yaml + validate-request-ledger.mjs"
-
-  - id: GRL-S028-004
-    session: S028
-    timestamp: 2026-05-13T08:36:13Z
-    verbatim: "agents and skills dynamically aligned to CSPS DNA and intents — bulletproof mechanically enforced"
-    category: directive
-    pe: 68
-    status: OPEN
-    notes: "Building: validate-skill-dna-alignment.mjs"
-
-
-
-  - id: GRL-S028-009
-    session: S028
-    timestamp: 2026-05-13T08:52:38Z
-    verbatim: "deep dive into importance of context in CSPS — 8 sub-questions"
-    category: strategic
-    pe: 82
-    status: OPEN
-    notes: "SROF-010 document prepared: opus-srof-010-context-architecture.md — awaiting Opus review"
-
-  - id: GRL-S028-010
-    session: S028
-    timestamp: 2026-05-13T08:52:38Z
-    verbatim: "localizing skills/agents safely — when to adopt external, never in core"
-    category: strategic
-    pe: 68
-    status: OPEN
-    notes: "SROF-011 document prepared: opus-srof-011-external-skills-adoption.md — awaiting Opus review"
+open: []
 
 # ─── ANSWERED REQUESTS (this session) ────────────────────────────────────────
 
 answered:
+
+  - id: GRL-S028-001
+    session: S028
+    verbatim: "are we connected to vercel?"
+    category: operational-question
+    pe: 78
+    status: ANSWERED
+    resolution: "Gate 3 LIVE — csps-budget-planner.vercel.app serving Clerk sign-in. Deployment 74699da. Vercel project configured with Root Directory=apps/budget-planner, framework=nextjs."
+
+  - id: GRL-S028-002
+    session: S028
+    verbatim: "you something for opus to improve and ratify?"
+    category: strategic
+    pe: 72
+    status: DEFERRED
+    resolution: "SROF-009/010/011 documents prepared in VAULT. Deferred to next Opus session — documents ready at docs/plan/_handoff/VAULT/opus-srof-*.md"
+    deferred_to: S029
+
+  - id: GRL-S028-003
+    session: S028
+    verbatim: "how enforced mechanically is you not dropping any question or request — accountability tracking with PE"
+    category: directive
+    pe: 70
+    status: ANSWERED
+    resolution: "governor-request-ledger.yaml (this file) + validate-request-ledger.mjs LIVE. Every request PE-scored, ledger checked at pnpm verify, session close blocks on OPEN items."
+
+  - id: GRL-S028-004
+    session: S028
+    verbatim: "agents and skills dynamically aligned to CSPS DNA and intents — bulletproof mechanically enforced"
+    category: directive
+    pe: 68
+    status: ANSWERED
+    resolution: "validate-skill-dna-alignment.mjs LIVE. AAP protocol enforced. All 16 skills scanned across packages/skills/ + .claude/skills/."
+
+  - id: GRL-S028-009
+    session: S028
+    verbatim: "deep dive into importance of context in CSPS — 8 sub-questions"
+    category: strategic
+    pe: 82
+    status: ANSWERED
+    resolution: "L2_DOMAIN_AI_CONTEXT_ARCHITECTURE.md authored (Opus Turn 21 SROF-010). Session-context-record template created. 4 operational questions answered. Context as compass — ratified."
+
+  - id: GRL-S028-010
+    session: S028
+    verbatim: "localizing skills/agents safely — when to adopt external, never in core"
+    category: strategic
+    pe: 68
+    status: ANSWERED
+    resolution: "SROF-011 authored: external-skills-adoption doctrine. Core isolation rules: no external agent in .claude/core-spines/, AAP gate mandatory, sandbox before adoption."
 
   - id: GRL-S027-001
     session: S027

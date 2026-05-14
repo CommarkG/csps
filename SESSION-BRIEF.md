@@ -9,7 +9,7 @@
 | **Current session** | S022 |
 | **Previous session** | S021 |
 | **Last updated** | 3 day(s) ago |
-| **Last commit** | e284fc8 P-ARCH-030: apps-are-ephemeral-trials — 5/5 FSE engraving (Governor S029) |
+| **Last commit** | 0668cf1 S029 close: platform core complete, template scaffold, P-ARCH-030, weekly audit |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

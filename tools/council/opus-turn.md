@@ -1,3 +1,293 @@
+# Opus Turn 25 — Unified Pressure Framework: All 7 Over-Bundling Surfaces
+
+**Governor directive:** Find all situations where over-bundling can happen. Include document/presentation absorption. All must be mechanically enforced with clear context.
+
+---
+
+## §1 — The 7 Surfaces Where Over-Bundling Occurs
+
+Over-bundling is not limited to implementation sessions. It occurs in every container that processes complexity: sessions, turns, documents, prompts, intakes, reviews, plans. The same universal formula applies, with domain-specific parameters.
+
+**Key finding from system audit:** `B_CHECKPOINT_8_CATEGORIES` already exists and defines 8 categories requiring explicit human approval (constitutional, cross-tier authority, external-dispatched, editing-circulated, irreversible, scope-expansion, strategy-pivots, high-stakes-one-shot). This IS the constitutional weight table for the pressure formula — it just hasn't been connected to SPI. That connection is the primary gap.
+
+---
+
+### SURFACE 1: Implementation Sessions (SPI — already designed)
+**Container:** Sonnet session | **Budget:** 100
+**See:** `scope-pressure-index.md`
+
+---
+
+### SURFACE 2: Document/Presentation Intake (CPI — Content Pressure Index)
+
+**When it triggers:** Governor uploads a PDF, presentation, external research doc, or pastes large text blocks.
+
+**Current gap:** B_INTAKE_DISCIPLINE runs the 7-step manual protocol but does NOT compute a pressure score. A 50-page technical paper with 12 distinct topics is absorbed in one pass with no complexity gate.
+
+```
+CPI = (word_count / 500) × topic_count × source_weight × checkpoint_weight
+
+  topic_count = distinct CONCEPT_LOAD spines activated by the content
+  source_weight = 0.5 (Governor's own words) | 1.0 (external doc) | 1.5 (unverified)
+  checkpoint_weight = from B_CHECKPOINT_8_CATEGORIES:
+    constitutional? × 4.0
+    cross-tier authority? × 3.0
+    irreversible impact? × 3.0
+    scope-expansion? × 2.0
+    else × 1.0
+
+CPI thresholds:
+  < 2.0: absorb in one intake pass
+  2.0-5.0: split into N topic extractions (one spine per pass)
+  > 5.0: BLOCKED — Governor must sequence topics before AI processes
+```
+
+**Example:** Governor uploads a 5000-word architecture proposal touching all 5 spines with constitutional implications: (5000/500) × 5 × 1.0 × 4.0 = **200** → BLOCKED. Must be sequenced: GVRN topics first, then ARCH, then AI.
+
+**Mechanical enforcement:** Pre-UserPromitSubmit hook detects large pastes/attachments. If detected: compute CPI estimate, surface before absorbing.
+
+---
+
+### SURFACE 3: Governance Changes Per Session (GCI — Governance Change Index)
+
+**When it triggers:** Multiple principles, contracts, or constitutional elements ratified in one session.
+
+**Current gap:** There's no gate on how many constitutional changes happen per session. S029 ratified P-META-025 + updated 4 B_* contracts + the USM vocabulary in one turn.
+
+```
+GCI = (P-META-0* changes × 5) + (B_* additions × 2) + (L1 seal amendments × 10) + (ADRs × 3) + (scope_level definitions × 4)
+
+GCI thresholds:
+  < 10: proceed
+  10-20: document explicitly with B_FIVE_SURFACE_ENGRAVING per item (already required)
+  > 20: split governance changes across sessions
+  > 40: requires Opus + Governor + FSE per item before any takes effect
+```
+
+**Example:** Ratifying P-META-025 + 3 B_* contracts + ADR-0027: GCI = 5 + 6 + 3 = 14 → upper range, should be split across 2 sessions.
+
+---
+
+### SURFACE 4: Opus Review Load Per Turn (ORI — Opus Review Index)
+
+**When it triggers:** A SROF document or Governor message asks Opus too many questions in one turn.
+
+**Current gap:** Sonnet writes SROF-012 with 30+ questions across 6 areas. Opus answered 4 gaps in Turn 23 (already reduced from 30) but still over-bundled at SPI≈3.5.
+
+```
+ORI = (constitutional_questions × 3) + (architectural_questions × 1.5) + (express_reviews × 0.5) + (ratification_requests × 2)
+
+ORI thresholds:
+  < 5: one Opus turn
+  5-10: one Opus turn with explicit priority ordering
+  > 10: split into N Opus turns with explicit turn-by-turn scope
+  > 20: BLOCKED — Sonnet must triage and sequence before sending to Opus
+```
+
+**Example:** SROF-012 with 30 questions: ORI ≈ 30 × 1.5 (architectural avg) = 45 → BLOCKED. Should have been: Sonnet triages to top 5 questions first, Opus responds, then next 5.
+
+**Mechanical enforcement:** Add to `sonnet-to-opus-request-log.md` format: each SROF must declare `question_count:` and `estimated_ORI:`. If ORI > 10: Sonnet must pre-triage before filing.
+
+---
+
+### SURFACE 5: Context Loading Per Session (CLI — Context Load Index)
+
+**When it triggers:** Session starts by loading too many documents before acting.
+
+**Current gap:** B_CDAB governs depth selection (LIGHTWEIGHT vs COMPREHENSIVE) but not the NUMBER of files loaded. A session that reads 20 VAULT documents before acting has already consumed most of its context budget before any implementation.
+
+```
+CLI = (L1_files × 5) + (L2_files × 3) + (L3_files × 1) + (VAULT_files × 2) + (external_research_files × 3)
+
+CLI thresholds:
+  < 10: load freely
+  10-20: B_CDAB LIGHTWEIGHT mode recommended
+  > 20: context pre-saturation warning — AI must declare which files it will NOT read
+  > 30: BLOCKED — session cannot begin until context plan is ratified
+```
+
+**Example:** The "read everything in docs/plan before starting" pattern: CLI easily exceeds 50 → BLOCKED. Sessions must declare upfront: "I will read ONLY: [list 5 files] and no others."
+
+**Context degradation factor (new):** As a session progresses, effective CLI budget DECREASES. A session at 80% context utilization can only handle CLI/4 additional context. This means loading strategy must account for where you are in the session:
+
+```
+effective_CLI_budget = CLI_budget × (1 - context_utilization)
+```
+
+---
+
+### SURFACE 6: Plan Phase Bundling (PPI — Plan Phase Index)
+
+**When it triggers:** A single plan document contains multiple phases where each phase's SPI is high.
+
+**Current gap:** The gradual-build-plan template allows unlimited phases with no cross-phase pressure check. The enterprise-core-completion-plan had Sessions 3-6 (4 phases × ~2 SPI each = PPI of ~8).
+
+```
+PPI = sum(SPI of each phase in the plan)
+
+PPI thresholds:
+  < 2.0: plan fits in one document
+  2.0-4.0: add explicit session-boundary gates between phases
+  > 4.0: split into multiple plans (each plan ≤ PPI of 2.0)
+  > 8.0: BLOCKED — plan must be redesigned as an arc plan with separate topic-plans per phase
+```
+
+**Example:** The comprehensive alignment brief from Turn 19 had P1 (SPI≈0.8) + P2 (SPI≈1.2) + P3 (SPI≈0.5) + P4 (SPI≈1.0) = PPI of 3.5 → should have been 2 separate plans.
+
+---
+
+### SURFACE 7: AI-to-AI Directive Bundling (ATAI — AI-to-AI Index)
+
+**When it triggers:** Opus writes a one-sentence (or paragraph) to Sonnet that contains too many distinct tasks.
+
+**Current gap:** Turn 23 had ATAI ≈ 5.34 (caught only retroactively). No gate fires before Opus sends a bundled directive.
+
+```
+ATAI = task_count × urgency_weight × dependency_complexity
+
+  urgency_weight = 1.0 (all same urgency) | 1.5 (mixed urgency) | 2.5 (CRITICAL mixed with LOW)
+  dependency_complexity = 1.0 (independent tasks) | 1.5 (some dependencies) | 2.5 (fully sequential)
+
+ATAI thresholds:
+  < 1.0: one directive, no splitting
+  1.0-2.0: one directive with explicit session priority ordering
+  > 2.0: split into sequential directives (one per Opus turn comment)
+  > 4.0: BLOCKED — must sequence and separate before sending
+```
+
+**Special rule:** Mixing CRITICAL urgency items with STANDARD items in one directive = mandatory split. CRITICAL work is never bundled with non-critical.
+
+---
+
+## §2 — The Unified Formula
+
+All 7 surfaces share the same meta-structure:
+
+```
+PRESSURE = (CONTENT × COMPLEXITY × INTERDEPENDENCY) / CONTAINER_BUDGET
+
+Where COMPLEXITY always uses B_CHECKPOINT_8_CATEGORIES as the constitutional weight table:
+  constitutional: ×4.0
+  cross-tier authority: ×3.0
+  irreversible: ×3.0
+  scope-expansion: ×2.0
+  standard: ×1.0
+```
+
+The insight: **B_CHECKPOINT_8_CATEGORIES was the complexity weight table all along.** Every time a plan/prompt/document/turn falls into one of these 8 categories, the complexity weight goes up. This wasn't connected to the pressure formula until now.
+
+---
+
+## §3 — The Dependency Graph Correction
+
+The current SPI treats all tasks as sequential (additive). But parallel independent tasks have LOWER pressure than sequential dependent tasks:
+
+```
+Sequential tasks: PRESSURE = sum(SPI_task1, SPI_task2, ...)
+Independent parallel: PRESSURE = max(SPI_task1, SPI_task2, ...)
+Mixed: PRESSURE = sum(sequential_SPIs) + max(parallel_group_SPIs)
+```
+
+**Turn 23 with dependency graph:**
+- SEC-001 (independent, urgent): SPI=0.28
+- PERF-001 (independent of SEC): SPI=0.05  
+- UX-001 (depends on SEC-001 pattern): SPI=0.26 → sequential
+- DEV-001 (independent of all above, but parallel to UX-001): SPI=1.35
+
+Correct ATAI: (0.28+0.26) + max(0.05, 1.35) × urgency_mix = 0.54 + 1.35 × 1.5 = **2.57** → still SPLIT required, but less extreme than the naive sum of 3.56. The key change: DEV-001 can be sent to a separate parallel Sonnet session, not blocked waiting for UX-001.
+
+---
+
+## §4 — The Consolidation: One Validator, 7 Surfaces
+
+Instead of 7 separate validators (CPI, GCI, ORI, CLI, PPI, SPI, ATAI), implement:
+
+**`validate-pressure.mjs`** — the universal pressure validator:
+
+```javascript
+// Parameters:
+//   --domain [implementation|intake|governance|review|context|plan|directive]
+//   --container [session|turn|document|plan|prompt]
+// 
+// Reads: domain-specific pressure inputs
+// Applies: B_CHECKPOINT_8_CATEGORIES weight table (from behavioral-contracts.md)
+// Outputs: PRESSURE score + threshold status + split recommendation
+//
+// Slug: plan-complexity-gate (for implementation domain)
+//       content-pressure-gate (for intake domain)
+//       governance-change-gate (for governance domain)
+//       etc.
+```
+
+This is B_CONSOLIDATION_PASS applied to the formula infrastructure itself.
+
+---
+
+## §5 — What SPI Missed: Context Degradation
+
+A session at 20% context utilization can handle SPI=0.5. A session at 80% context utilization can only handle SPI=0.1 for the same task.
+
+Add to SPI:
+```
+SPI_effective = SPI × (1 + context_utilization_factor)
+
+Where context_utilization_factor:
+  0-40% context used: ×1.0 (baseline)
+  40-60% context used: ×1.5 (caution zone)
+  60-80% context used: ×2.0 (danger zone)
+  80%+ context used: ×3.0 (BLOCKED from new work unless critical)
+```
+
+**Practical implication:** When Sonnet's context is 70% full, a task that would normally be SPI=0.4 (proceed) becomes SPI=0.8 (milestone gate required). Session-close must happen, not more work.
+
+---
+
+## §6 — Anticipated Situations (Developer + External User — Specific Cases)
+
+**Developer Frontend — High-pressure scenarios:**
+
+| Scenario | Dominant surface | Primary pressure formula |
+|---|---|---|
+| "Let me add auth to my new app" | Implementation | SPI (constitutional because S0 auth) = ~2.0 SPLIT |
+| "Here's a 20-page design doc" | Document intake | CPI = ~15 → BLOCKED, sequence by section |
+| "Integrate payments + GDPR + billing" | Implementation | SPI = ~4.8 BLOCKED |
+| "I want to add 3 new features today" | AI-to-AI directive | ATAI = 3 × urgency = ~3.5 SPLIT |
+| Loading all docs before starting | Context loading | CLI > 30 BLOCKED |
+
+**External User Frontend — High-pressure scenarios:**
+
+| Scenario | Dominant surface | Primary pressure formula |
+|---|---|---|
+| "Cancel my account" (billing + GDPR + data) | Implementation | SPI = 4.8 BLOCKED → constitutional review first |
+| External presentation about UX patterns | Document intake | CPI depends on topic diversity |
+| "Change my email + delete all data + transfer ownership" | Implementation | SPI = ~6.0 BLOCKED — 3 constitutional S0 operations |
+| "Build a settings page + billing page + admin page" | AI-to-AI directive | ATAI = ~4.5 BLOCKED → 3 separate directives |
+
+---
+
+## RZF VERIFICATION — NEGATIVE
+Cycle 1: What did I miss?
+  Findings: 1 — I didn't address the INTAKE of IMAGES/SCREENSHOTS. Visual content with many elements (a complex UX mockup, an architecture diagram) has no pressure formula. The word count doesn't apply. Need a visual complexity factor: element_count / 10 as the equivalent of word_count / 500.
+Cycle 2: Added to CPI formula: if visual input detected, L = estimated_element_count / 10. This is advisory (can't auto-detect without AI vision pass).
+  Findings: 0 new.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: B_CHECKPOINT_8_CATEGORIES discovered as the missing constitutional weight table for pressure formula
+Essence: The 8 checkpoint categories are the complexity weights — this connection was missing across all 7 pressure surfaces
+Walk:
+  scope-pressure-index.md: UPDATE — add B_CHECKPOINT_8_CATEGORIES reference as constitutional weight source
+  validate-pressure.mjs: SPEC — unified validator for all 7 surfaces
+  CPI (intake): ADD to plan-creation-protocol.md as pre-Step -1 gate for document intake
+  ATAI: ADD to PROTOCOL.md as one-sentence complexity gate
+  Context degradation factor: ADD to B_TOKEN_BUDGET R1 as context-utilization adjustment
+Walk-trail: 2 cycles | 5 surfaces | all actionable for Sonnet
+
+*Opus Turn 25 — 7 over-bundling surfaces + unified pressure formula + B_CHECKPOINT_8_CATEGORIES connection*
+*OPUS-1 | S029 | 2026-05-14*
+
+---
+
 # Opus Turn 24 — Scope Pressure Index (SPI) + Mini-Tree Extension to Planning
 
 **Governor directive:** Mini-tree splits must govern plans and implementations, not just docs. Formula for mix of length+complexity. Mechanical enforcement across monitoring/planning/implementing. Never freestyle AI.

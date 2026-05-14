@@ -2165,3 +2165,28 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - pnpm-dev-in-procedure ("pnpm dev" in a deployment procedure = laptop dependency; use vercel --prod)
 - localhost-test-url ("localhost:PORT" as test URL = laptop dependency; use Vercel preview URL)
 - local-only-migrations (prisma db push from laptop = laptop dependency; use Vercel build hook or Supabase CLI)
+
+## B_APPS_ARE_TRIALS — apps/* are ephemeral trials, libs/* is permanent core (S029)
+
+**Canonical:** `apps/*` directories are EPHEMERAL TRIAL ARTIFACTS — proofs-of-concept that the platform works. They can be deleted and recreated from `apps/template/` + platform core at any time without losing platform value. The permanent platform core is: `libs/*`, `tools/*`, `.claude/core-spines/*`, `docs/plan/pillar-0-governance/*`, `packages/*`. Every reusable pattern discovered while building an app MUST be extracted to `libs/` before the session closes. The extraction cycle: (1) discover pattern in app, (2) extract to libs/, (3) app imports from libs/, (4) pattern survives even if app is deleted.
+
+**Governing intent:** The platform is the moat. Apps prove the moat works. Every session the moat grows and apps stay thin. An app deleted tomorrow costs nothing. A lib deleted tomorrow costs everything.
+
+**Deletion test:** At any point, `rm -rf apps/budget-planner/` should not lose platform value. If it would, that value is in the wrong place.
+
+**Counterweight:** App-specific UI, domain logic (budget categories, task labels), and per-app config (vercel.json per app) BELONG in `apps/*` — not extraction candidates. Only patterns duplicated in App #3, #4, etc. require extraction to `libs/`.
+
+**Source:** Governor S029 directive — "Budget Planner must be treated as an external trial not affecting CSPS core. Apps we have now are elements to be deleted and recreated. All pointing inwards to enhance universal platform core."
+
+**Anti-patterns:**
+- platform-procedure-in-app-folder (gate-3-procedure.md inside apps/budget-planner/ — caught S028)
+- universal-credentials-in-specific-app (sync-vercel-env.mjs conceived as app-specific — caught S028)
+- reusable-query-pattern-in-app-only (balance groupBy pattern kept in route.ts instead of libs/)
+- schema-migration-in-app (prisma/schema.prisma inside apps/* instead of libs/policies/)
+
+**Mechanical surfaces (4/5 declared S029):**
+- memory: `~/.claude/projects/.../memory/project_apps_are_trials.md` (survives chat moves)
+- instruction-file: `AGENTS.md` hard NO — B_APPS_ARE_TRIALS
+- contract: `docs/plan/pillar-0-governance/behavioral-contracts/B_APPS_ARE_TRIALS.md` (canonical)
+- validator (atomic registration): `app-scope-isolation` (impl week-4)
+- principle: P-ARCH-030 in principles.yaml

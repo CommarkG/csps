@@ -2187,6 +2187,45 @@ principles:
       - synonym-drift (introducing module / feature / component for slice concept)
       - canonical-term-renamed-without-adr (renaming P-META-* / B_* / FSE / etc. without ratified ADR)
 
+  - id: P-ARCH-030
+    name: apps-are-ephemeral-trials
+    aliases: [trial-layer, apps-disposable, core-is-permanent, extraction-cycle]
+    category: architecture
+    severity: critical
+    statement: |
+      apps/* directories are ephemeral trial artifacts — proofs-of-concept that the platform
+      works. They can be deleted and recreated from apps/template/ + platform core at any time
+      without losing platform value. The permanent platform core is: libs/*, tools/*,
+      .claude/core-spines/*, docs/plan/pillar-0-governance/*, packages/*.
+      Every reusable pattern discovered while building an app MUST be extracted to libs/
+      before the session closes. The app imports from libs/ (stays thin). The pattern
+      becomes permanent. The app remains disposable.
+    counterweight: |
+      App-specific UI, app-specific domain logic (budget categories, task labels), and
+      app-specific configuration (vercel.json per app) BELONG in apps/* — these are
+      not extraction candidates. Only patterns that would be duplicated in App #3,
+      App #4, etc. require extraction to libs/.
+    extraction_cycle:
+      step_1: Trial discovers pattern — works in app/ first (prove it works)
+      step_2: Extract reusable part to libs/ (make it permanent)
+      step_3: App imports from libs/ (now thin and replaceable)
+      step_4: Pattern survives even if app is deleted
+    deletion_test: |
+      At any point, deleting apps/budget-planner/ entirely should not lose platform value.
+      If it would, that value is in the wrong place.
+    ratified: S029
+    governor_directive: |
+      "Budget Planner must be treated as an external trial not affecting CSPS core.
+      Apps we have now are elements to be deleted and recreated. All pointing inwards
+      to enhance universal platform core." — Governor S029
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "Hard NO — B_APPS_ARE_TRIALS" }
+      - { layer: contract, location: "docs/plan/pillar-0-governance/behavioral-contracts/B_APPS_ARE_TRIALS.md", description: "B_APPS_ARE_TRIALS canonical contract" }
+      - { layer: memory, location: "~/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/project_apps_are_trials.md", description: "Cognitive layer — survives chat moves" }
+      - { layer: ci-check, location: "tools/validators/validate-app-scope-isolation.mjs", description: "Detects platform artifacts in wrong location (week-4)" }
+    enforcer_count: 4
+    cross_references: [P-META-019, P-ARCH-028, B_APPS_ARE_TRIALS]
+
   - id: P-OPER-001
     name: zero-laptop-dependency
     aliases: [git-canonical, multi-machine-parity, android-accessible, auto-push-at-session-close]

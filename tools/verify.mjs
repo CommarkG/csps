@@ -430,6 +430,9 @@ const CYCLES = [
     // Advisory Phase 1 → BLOCKING Phase 2. Closes the PROPOSAL-level enforcement gap.
     name: 'scope_conflict',
     command: 'node tools/validators/validate-scope-conflict.mjs',
+    // Companion to scope_conflict: detects platform-level artifacts placed in apps/* (P-ARCH-030 + B_APPS_ARE_TRIALS).
+    // Registered atomic S029; impl week-4. Deletion test: any platform doc in apps/* = ADVISORY.
+    // { name: 'app_scope_isolation', command: 'node tools/validators/validate-app-scope-isolation.mjs' }, // week-4
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
   },
   {

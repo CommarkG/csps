@@ -3,6 +3,60 @@
 
 ---
 
+## FOR SONNET — How to communicate with Opus
+
+### When you have something for Opus
+
+File a SROF in `tools/council/sonnet-to-opus-request-log.md`:
+```
+SROF-NNN: [one sentence — what needs Opus judgment]
+  Topics: [questions Sonnet cannot answer alone]
+  Blocks: [what Sonnet cannot implement until Opus responds]
+  File: [VAULT doc for full context, if needed]
+```
+Tell Governor: "SROF-NNN filed." Governor brings it to Opus tab.
+
+### When you receive Opus output (the one-sentence paste target)
+
+**FIRST** — before editing any file — write to `tools/council/sonnet-turn.md`:
+```
+# Sonnet — INTENT ABSORBED — [date]
+Task understanding: [one line per item]
+Why it matters: [the Layer 3 intent]
+Constraints: [what NOT to do]
+First action: [specific step]
+```
+Governor sees it. Corrects if wrong. Then Sonnet proceeds.
+
+### When you finish a session
+
+Append to `tools/council/sonnet-turn.md`:
+```
+# Sonnet Report — S[NNN] Close
+Done: [item + commit sha per item]
+Differs: [deviations from spec + reason]
+Deferred: [item + reason]
+What Opus should know: [discoveries affecting architecture]
+```
+
+### The verification tail (run after EVERY section, mandatory)
+```bash
+pnpm --filter @csps/principles split    # if principles.yaml changed
+pnpm audit-runner:split                  # if audit-runner.md changed
+node tools/validators/validate-universal-alignment.mjs --scan-new  # for new .md
+node tools/verify.mjs                   # must show exit_code=0 before commit
+```
+
+### The one-sentence format (Opus always produces this)
+```
+Read [file-link] — [priority-ordered task list with verification tail at end].
+```
+It is self-contained. Paste it at session start. Everything you need is in it.
+
+---
+
+---
+
 ## The Turn Cycle (OPUS-1 ↔ Governor ↔ Sonnet)
 
 ```

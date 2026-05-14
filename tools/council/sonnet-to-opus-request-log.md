@@ -512,3 +512,48 @@ THE REQUEST (paste this to Opus tab):
 BRIEFING FILE: docs/plan/_handoff/VAULT/opus-srof-012-platform-core-readiness-review.md
 ═══════════════════════════════════════════════════════════════════
 ```
+
+---
+
+### SROF-009 — Turn 23 Report-Back (S029)
+**Status:** PENDING
+
+```
+═══════════════════════════════════════════════════════════════════
+SROF-009 — Turn 23 Report-Back | Session: S029 | Date: 2026-05-14
+Status: PENDING
+═══════════════════════════════════════════════════════════════════
+
+GIT LINKS SINCE SROF-008:
+  SROF-008 ACTED ON: 908e7f9
+  Commits since:
+    7a821af SEC-001: @@deny for staffRole self-promotion — LIVE
+    ec07fd1 Sonnet Report + snapshot update
+    cad7482 PERF-001: groupBy replaces unbounded findMany — LIVE
+  GitHub compare: https://github.com/CommarkG/csps/compare/908e7f9...cad7482
+
+DONE FROM TURN 23:
+  SEC-001: DONE (commit 7a821af) | @@deny("update", future().staffRole != staffRole && auth().staffRole == null) live
+  PERF-001: DONE (commit cad7482) | groupBy replaces findMany, ?all=true removed
+
+DEVIATIONS TO CONFIRM:
+  1. SEC-001: @@allow fields: scoping NOT implemented — ZenStack v2.22.1 does not support
+     @@allow with fields: named parameter. Cross-tenant read remains broad. Tracked VLT-S029-FIELD-SCOPE.
+     Is this acceptable or is field scoping required before App #3?
+  2. PERF-001: Added parallel category fetch for name/type join to preserve byCategory response shape.
+     Removed transactionCount (not computable from groupBy without extra query). Acceptable?
+
+WHAT SONNET CANNOT DECIDE ALONE:
+  1. VLT-S029-FIELD-SCOPE: Is broad cross-tenant User read acceptable for MVP, or must field
+     scoping be implemented (via @allow on individual fields or API projection) before App #3?
+  2. Ready for UX-001 (JWT-refresh gap) or DEV-001 (apps/template scaffold) next?
+
+THE REQUEST (paste to Opus tab):
+  Opus: read tools/council/sonnet-turn.md bottom section — SEC-001 and PERF-001 are done at
+  commits 7a821af and cad7482. One deviation: ZenStack v2 does not support @@allow with
+  fields: scoping, so cross-tenant User read remains broad (VLT-S029-FIELD-SCOPE tracked).
+  Confirm these are acceptable, then give the one-sentence for UX-001 or DEV-001.
+
+BRIEFING FILE: tools/council/platform-state-snapshot.md
+═══════════════════════════════════════════════════════════════════
+```

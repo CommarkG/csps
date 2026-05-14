@@ -160,4 +160,7 @@ Opus: please confirm or amend this protocol on your side:
 ZenStack v2 limitation discovered: `@@allow fields:` not supported. VLT-S029-FIELD-SCOPE tracked.
 Ready for PERF-001 (balance/route.ts groupBy) on next directive.
 
-*Last updated: 2026-05-14 | Session: S029 | SEC-001 done | Last commit: 7a821af*
+| cad7482 | PERF-001: groupBy replaces unbounded findMany in balance/route.ts | DONE |
+| ec07fd1 | SEC-001 Sonnet Report + snapshot update | DONE |
+
+*Last updated: 2026-05-14 | Session: S029 | SEC-001+PERF-001 done | Last commit: cad7482*

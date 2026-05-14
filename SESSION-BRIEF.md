@@ -9,7 +9,7 @@
 | **Current session** | S022 |
 | **Previous session** | S021 |
 | **Last updated** | 3 day(s) ago |
-| **Last commit** | 0668cf1 S029 close: platform core complete, template scaffold, P-ARCH-030, weekly audit |
+| **Last commit** | 43cfd7c S031: AGENTS.md relief + DPR engraving (P-OP-006) + agents-navigation.md |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

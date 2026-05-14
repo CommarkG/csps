@@ -20,7 +20,7 @@ tags:
 
 *Architectural metaphor (origin codename: "Cambium"): the living layer of a tree that generates new growth. The platform is the trunk; each app is a branch grown from one core; matured branches graft off as standalone trees.*
 
-**Status:** v1.5 — mechanical enforcement architecture + 4 operating principles formalized
+**Status:** v1.5 — mechanical enforcement architecture + 5 operating principles formalized
 **Owner:** Finky
 **Last updated:** 2026-05-01
 
@@ -42,7 +42,7 @@ CSPS is a multi-tenant SaaS platform that hosts 30–75 apps. Each app starts in
 
 ## The operating principles (always-on)
 
-Cognitive-load-aware human-AI collaboration. All four live in `packages/principles/principles.yaml` (entries P-OP-001 through P-OP-004) as the single source of truth, with full enforcer maps + industry lineage. Detailed in [pillar 0 / operating-principles.md](docs/plan/pillar-0-governance/operating-principles.md).
+Cognitive-load-aware human-AI collaboration. All four live in `packages/principles/principles.yaml` (5 operating principles: P-OP-001 to P-OP-004 + P-OP-006) as the single source of truth, with full enforcer maps + industry lineage. Detailed in [pillar 0 / operating-principles.md](docs/plan/pillar-0-governance/operating-principles.md).
 
 1. **Reuse-first** (P-OP-001) — Check what exists. Enhance the ratified thing. Create new only with a justification.
 2. **FWWS** (P-OP-002) — Finish What We Started. Resist drift to new work while in-flight work is incomplete.

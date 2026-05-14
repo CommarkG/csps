@@ -11,4 +11,4 @@ Per [tag-status-contract.md](../_intake/tag-status-contract.md) §tag-related-au
 | `tag-propagation-coverage` | PR | warn | Sub-extraction's inheritable tags match parent input's |
 | `tag-context-mismatch` | PR | warn | Extraction routed to `governance/X/` carries `domain:governance` (or has explicit override with reason) |
 | `tag-removed-without-reason` | PR | error | Inherited tag dropped requires `removed_inherited_tag` field with reason |
-| `tag-canonical-phrasing-drift` | PR | error | The 4 operating principles byte-match across the 4 documented places |
+| `tag-canonical-phrasing-drift` | PR | error | The 5 operating principles byte-match across the 4 documented places |

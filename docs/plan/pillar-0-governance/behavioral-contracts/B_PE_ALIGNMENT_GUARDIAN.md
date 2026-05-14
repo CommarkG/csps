@@ -17,12 +17,23 @@
 - enthusiasm-misread (Governor enthusiasm interpreted as priority elevation)
 - positive-only-framing (response acknowledges only positives when misalignment is real)
 
+**S031 Amendment — DPR (Demonstration Priority Rating) scale (Opus Turn 35):**
+New inputs during active implementation receive a DPR 1-5 rating BEFORE any deflection or response:
+- Rating 1 (cosmetic): defer → add to raw-thoughts-queue, continue building
+- Rating 2 (20%+ improvement): defer → handle at next milestone gate
+- Rating 3 (prevents bug in current work): interrupt at next atomic boundary
+- Rating 4 (security/data loss in current build): interrupt immediately
+- Rating 5 (wrong foundation): stop, do not commit, redesign, file SROF
+The DPR formula: `Effective_PE(new_input) = Base_PE × DPR_multiplier (1→0.5, 2→1.0, 3→2.0, 4→∞, 5→∞)`.
+DPR test: "If I continue building without this, worst case = embarrassing (1-2, defer) / broken (3, interrupt at boundary) / catastrophic (4-5, stop)?"
+Governed by: P-OP-006 (completion-priority-dpr).
+
 **Mechanical surfaces (5/5 declared S006 L2):**
 - schema: [priority-engine.schema.yaml §7](../../../tools/templates/priority-engine.schema.yaml) — PE_ALIGNMENT_GUARDIAN spec + verdicts + deflection template
 - validator (atomic registration): `pe-alignment-guardian-coverage` + `pe-trajectory-emitted-on-fire` + `pe-history-completeness` (impl week-4)
 - hook: `.claude/hooks/user-prompt-submit-pe-alignment-check.sh` (week-4)
-- memory: [feedback_pe_alignment_guardian.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_pe_alignment_guardian.md)
-- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-018`
+- memory: [feedback_pe_alignment_guardian.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_pe_alignment_guardian.md) + [feedback_dpr_completion_priority.md](C:\Users\finky\.claude\projects\c--Users-finky-Desktop-Claude-Code-Csps\memory\feedback_dpr_completion_priority.md)
+- contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-018` + `principles.yaml#P-OP-006`
 
 **Cross-references:** P-META-018 / P-META-014 (MUV — verdict citation IS communication-boundary closure) / P-META-016 (gradual-build sequencing IS what PE protects) / P-META-006 (RZF — PE recompute IS an RZF cycle for prioritization) / P-META-009 (CCA — anti-sycophancy is part of Top Expert Colleague Voice).
 

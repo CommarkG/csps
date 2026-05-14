@@ -111,3 +111,18 @@ domain_path: platform
 - **caught_by_validator:** app-scope-isolation (week-4)
 - **session_added:** S029
 - **status:** active
+
+---
+
+## OD-010 — New-input handling training default: respond immediately (no DPR gate)
+
+- **training_default:** When a new input arrives during active implementation, the AI responds to it immediately. Training makes every input feel like the most important thing right now. There is no instinct to check whether the new input is worth interrupting current work.
+- **csps_aligned_pattern:** Every new input during active build receives a DPR rating before any response. Rating 1-2 = defer (add to raw-thoughts-queue, continue current work). Rating 3-5 = interrupt justified. The DPR test: "If I continue without this, worst case = embarrassing (defer) or broken (3+) or catastrophic (4-5)?" Completion is the highest-PE activity for in-flight work. B_COMPLETION_OVER_SHINY + P-OP-006.
+- **disposition:** override
+- **trigger:** any new Governor input that arrives while active implementation is in progress (50%+ complete)
+- **exemptions:** session opens (new session = no active work), questions (not new directives), Rating 3-5 inputs (override justified)
+- **self_assessment_question:** "DPR 1-5: what is the worst case if I continue building without this input? Embarrassing = 1-2 (defer). Broken = 3. Catastrophic = 4-5."
+- **reason:** Opus Turn 35 S031 — DPR rule formalized. P-OP-006 ratified. Training default of "respond immediately" fragments implementation sessions and compounds WIP debt.
+- **caught_by_validator:** validate-dpr-rating (planned, not yet built)
+- **session_added:** S031
+- **status:** active

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-14T19:04:39.314Z
-- finished_at: 2026-05-14T19:05:18.813Z
+- ran_at: 2026-05-14T19:40:05.066Z
+- finished_at: 2026-05-14T19:40:44.627Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-14T19:04:39.314Z",
-    "finished_at": "2026-05-14T19:05:18.813Z",
+    "ran_at": "2026-05-14T19:40:05.066Z",
+    "finished_at": "2026-05-14T19:40:44.627Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 12,
+        "duration_seconds": 12.2,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -33,8 +33,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 1,
-        "principles_loaded": 60,
-        "findings_total": 1
+        "principles_loaded": 61,
+        "findings_total": 3
       },
       {
         "name": "frontmatter_validate",
@@ -42,9 +42,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 361,
+        "scanned": 364,
         "errors": 0,
-        "warnings": 11,
+        "warnings": 12,
         "exempt": 275
       },
       {
@@ -98,7 +98,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_ids": 60,
+        "source_ids": 61,
         "missing_slices": 0
       },
       {
@@ -185,8 +185,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files": 112,
-        "links": 513,
+        "files": 113,
+        "links": 515,
         "broken": 39
       },
       {
@@ -215,8 +215,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 1.1,
-        "checked": 32,
-        "advisories": 24
+        "checked": 33,
+        "advisories": 25
       },
       {
         "name": "completeness_coverage",
@@ -289,7 +289,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 74,
+        "checked": 75,
         "blocking": 0,
         "advisories": 0
       },
@@ -320,7 +320,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "checked": 3,
-        "advisories": 4
+        "advisories": 3
       },
       {
         "name": "opus_rzf_gap_tracking",
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 329,
-        "clean": 329,
+        "checked": 332,
+        "clean": 332,
         "blocking": 0,
         "registry": 48
       },
@@ -425,7 +425,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocking": 0,
-        "advisory": 4
+        "advisory": 3
       },
       {
         "name": "file_complexity_validate",
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 519,
+        "scanned": 522,
         "advisory": 85
       },
       {
@@ -522,10 +522,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "assessed": 38,
-        "no_dev_surface": 38,
-        "no_user_value": 38,
-        "incomplete": 38
+        "assessed": 39,
+        "no_dev_surface": 39,
+        "no_user_value": 39,
+        "incomplete": 39
       },
       {
         "name": "update_backlog",
@@ -670,8 +670,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 90,
-        "with_status": 38,
+        "checked": 91,
+        "with_status": 39,
         "warnings": 0
       },
       {
@@ -697,8 +697,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 133,
-        "missing_why": 34
+        "checked": 134,
+        "missing_why": 35
       },
       {
         "name": "open_plan_levels",
@@ -1019,7 +1019,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 11.7
+        "duration_seconds": 12.2
       },
       {
         "name": "audit_runner_full_pass",

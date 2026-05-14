@@ -858,3 +858,24 @@ Read platform-capacity-registry.yaml to understand what elements to measure.
 
 ## First action
 Read opus-turn.md Turn 35 for exact specs.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-14 (S031 — AGENTS.md relief + DPR engraving)
+
+## Directive
+1. wc -l AGENTS.md (confirm count)
+2. Extract "Where things live" table (lines ~162-184) to agents-navigation.md
+3. Replace table in AGENTS.md with single reference line
+4. Confirm wc -l AGENTS.md ≤ 180
+5. Add one DPR rule line to AGENTS.md Hard NOs
+6. Engrave DPR: principles.yaml (P-OP-005 amendment or P-OP-006) + behavioral-contracts.md (B_PE_ALIGNMENT_GUARDIAN amendment)
+7. Verification tail: pnpm principles:split + validate-platform-capacity.mjs + verify exit_code=0
+
+## Constraints understood
+- Extract FIRST, then replace — no data loss
+- AGENTS.md is the file that's at 199/200 — this is the relief operation
+- DPR engraving is a constitutional amendment — will check GCI
+
+## First action
+wc -l AGENTS.md + read lines 162-184 to confirm exact table content.

@@ -29,7 +29,7 @@ CSPS is built collaboratively by a solo developer + multiple AI assistants acros
 
 ## Decision outcome
 
-**Chosen:** 4 operating principles, each with full enforcer map (10 / 8 / 4 / 4 enforcers respectively):
+**Chosen:** 5 operating principles, each with full enforcer map (10 / 8 / 4 / 4 enforcers respectively):
 
 1. **P-OP-001 Reuse-first** — Check what exists. Enhance the ratified thing. Create new only with justification.
 2. **P-OP-002 FWWS** — Finish What We Started. Resist drift to new work while in-flight work incomplete.

@@ -34,7 +34,7 @@ schema_anchor: pillar_0_governance_leaves
 
 The four operating principles that govern how humans and AI assistants collaborate to build CSPS. Each principle is independently defined (no forced bundling) but they share a philosophical premise: **respect the cognitive load and time of the human in an AI-assisted loop.**
 
-This document is the human-readable companion to `packages/principles/principles.yaml` (entries P-OP-001 through P-OP-004). The yaml is the source of truth for enforcer maps; this document is where the *why* and the *industry lineage* lives in narrative form.
+This document is the human-readable companion to `packages/principles/principles.yaml` (5 operating principles: P-OP-001 to P-OP-004 + P-OP-006). The yaml is the source of truth for enforcer maps; this document is where the *why* and the *industry lineage* lives in narrative form.
 
 ## The shared philosophical premise (acknowledged, not bundled)
 

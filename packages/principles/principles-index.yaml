@@ -5,7 +5,7 @@
 # Source: packages/principles/principles.yaml
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
-  total_count: 60
+  total_count: 61
   generated_at: '2026-05-14'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
@@ -33,6 +33,11 @@ principles:
     category: operating
     severity: warn
     path: ./principles/P-OP-004.yaml
+  - id: P-OP-006
+    name: completion-priority-dpr
+    category: operating
+    severity: warn
+    path: ./principles/P-OP-006.yaml
   - id: P-ARCH-001
     name: nothing-stands-alone
     category: architecture

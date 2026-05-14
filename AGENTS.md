@@ -75,6 +75,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ✅ **END OF EVERY SUBSTANTIVE TURN: emit NEXT STEP block** — format: `→ NEXT: [specific action] | Why: [one sentence] | Tier: [STANDARD_BUILD|DEEP_REASONING|MECHANICAL_SCAN]`. Substantive = any response that builds something, makes a decision, or changes platform state. NOT required for trivial factual answers. This is mandatory, not optional, not "when I remember." (S011 Governor directive — "mechanical optimal next step at end of each turn with context and short core reasoning")
 - ✅ **CHAT TRANSFER: use chat-transfer-protocol.template.md** — never write a free-form handoff prompt. Every AI-to-AI task transfer must use the zero-drift template from tools/templates/chat-transfer-protocol.template.md. The template structure prevents AI drift by eliminating space for interpretation. (S011 Governor directive — "common sense does not work on chat transfers — must be I am SXXX you are SYYY format")
 - ❌ Never assert state without paired tool-call evidence in SAME response (B_VALIDATE_BEFORE_ASSUME)
+- ❌ **DPR: Rate new inputs 1-5 during active build. Rating 1-2 = defer. Rating 3-5 = interrupt justified. See B_PE_ALIGNMENT_GUARDIAN.**
 - ❌ **NEVER build platform-level logic inside apps/* — apps are EPHEMERAL TRIALS** (Governor S029 constitutional directive). The rule: `apps/*` = disposable trial layer; `libs/*` + `tools/*` + `.claude/core-spines/*` + `docs/plan/pillar-0-governance/*` = permanent platform core. Before writing ANY code in `apps/*`, ask: "Does this belong in libs/ instead?" If yes → write in libs/ first, app imports. Pattern discovered in app → EXTRACT to libs/ before session close. App can be deleted and recreated at any time from apps/template/ + platform core. (B_APPS_ARE_TRIALS)
 - ❌ Never invent new structure/format/name without precedent check (existing CSPS / CSP carry-forward / industry research; B_NO_INVENTION)
 - ❌ Never seek chat-level confirmation when 4-condition autonomous gate passes (banned phrases — skill `behavioral-contracts-skill`)
@@ -161,27 +162,7 @@ All run catalog-first search. `--new` requires `created-new-because:` justificat
 
 ## Where things live
 
-| Path | Purpose |
-|---|---|
-| [`MASTER_PLAN.md`](MASTER_PLAN.md) | Trunk index |
-| [`docs/plan/pillar-0-governance/`](docs/plan/pillar-0-governance/) | Principles, ADRs, audit, planning |
-| [`docs/plan/pillar-1-architecture-and-stack/`](docs/plan/pillar-1-architecture-and-stack/) | Vocabulary, frontmatter, slice contract |
-| [`docs/plan/pillar-2-data-and-schema/`](docs/plan/pillar-2-data-and-schema/) | ZModel, schema-per-app, audit triggers |
-| [`docs/plan/pillar-3-platform-services/`](docs/plan/pillar-3-platform-services/) | Stripe/Clerk, templates, skill governance |
-| [`docs/plan/pillar-4-developer-experience/`](docs/plan/pillar-4-developer-experience/) | Generators, skills, ingestion |
-| [`docs/plan/pillar-5-ai-systems/`](docs/plan/pillar-5-ai-systems/) | Personas, Mastra, crisis escalation |
-| [`docs/plan/pillar-6-operations-and-delivery/`](docs/plan/pillar-6-operations-and-delivery/) | Build order, graduation, dashboards |
-| [`packages/principles/principles.yaml`](packages/principles/principles.yaml) | **Single source of truth for principles** |
-| [`packages/skills/`](packages/skills/) | Existing platform skills (7) |
-| [`.claude/skills/`](.claude/skills/) | Claude Code skill auto-load (Phase 4 NEW; 9 skills) |
-| [`tools/`](tools/) | Generators, audit-runner, validators, measure-token-cost |
-| [`docs/plan/pillar-0-governance/plan-creation-protocol.md`](docs/plan/pillar-0-governance/plan-creation-protocol.md) | **NEW S008** — canonical "how plans get made" 5-step protocol; consult before authoring any plan |
-| [`docs/plan/pillar-0-governance/context-loss-pains.md`](docs/plan/pillar-0-governance/context-loss-pains.md) | **NEW S008** — SSoT 22-pain catalog; every plan REFERENCES (not restates) via Context-Loss Prevention Checklist |
-| [`docs/plan/pillar-0-governance/csps-platform-dna.md`](docs/plan/pillar-0-governance/csps-platform-dna.md) | **NEW S008** — 13 CSPS DNA elements + process integration map; consulted at plan-creation Step 2 DNA gate |
-| [`docs/plan/_intake/contexts/INDEX.md`](docs/plan/_intake/contexts/INDEX.md) | **NEW S008** — extraction notes index (55 sub-IDs across 11 EXT IDs); entry point for consuming absorbed external inputs |
-| [`docs/plan/pillar-0-governance/depth-discipline.md`](docs/plan/pillar-0-governance/depth-discipline.md) | **NEW S009 L1.1** — canonical home for 5 CSPS depth semantics (file_depth_markers / depth_levels_invoked / audit-depth-DEFERRED / depth_tier_authored / depth_chosen-CSPS-native); 5-step creation gate with TBD-S<NNN> placeholders; consulted before any artifact >300 lines authored |
-| [`tools/templates/governed-artifact-frontmatter.template.md`](tools/templates/governed-artifact-frontmatter.template.md) | **NEW S009 L1.2** — base frontmatter scaffold for ANY new governed artifact; pre-includes depth fields + closed-enum compliance + AAP extension hooks; specialized templates (gradual-build-plan / b-star-contract / skill / etc.) extend this base; TBD-S<NNN> placeholders per EXT-20260505-004-B 5-step creation gate |
-| [`docs/plan/pillar-0-governance/model-routing-dashboard.md`](docs/plan/pillar-0-governance/model-routing-dashboard.md) | **NEW S009** — user-facing dashboard for dynamic model-routing decisions; current state + decision tree + 4 validated patterns from S006/S008 research + 4 adjustable templates (T1 per-skill / T2 spawn / T3 per-task / T4 per-session) + Phase 6 auto-tiering preview; consult before model-switch decisions |
+See [agents-navigation.md](docs/plan/pillar-0-governance/agents-navigation.md) for the full path reference.
 
 ## Per-directory cascade + update workflow
 

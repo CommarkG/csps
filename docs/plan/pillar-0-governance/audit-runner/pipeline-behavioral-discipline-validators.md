@@ -11,7 +11,7 @@ Audits that pillar leaves + behavioral-contracts.md + ai-behavior-spine.md cited
 | `assertion-without-evidence` | PR | error | Stop-hook scan: AI assertions of state ("I checked X" / "X is present") without paired tool-call output in same response | B_VALIDATE_BEFORE_ASSUME |
 | `assertion-without-preceding-tool-call` | PR | error | Tool-call sandwich validator: `[tool-call invocation]` → `[verbatim output]` → `[assertion]` literal sequence required (turn 15 strengthening) | B_VALIDATE_BEFORE_ASSUME (turn 15) |
 | `assumption-without-evidence` | PR | warn | AI assumes scope/intent without explicit ratification; surfaces in self-audit | B_VALIDATE_BEFORE_ASSUME family |
-| `canonical-phrasing-drift` | PR | error | The 4 operating principles + new meta-principles byte-match across the documented places (template-governance + per-app docs) | P-META-003 + ADR-0013 |
+| `canonical-phrasing-drift` | PR | error | The 5 operating principles + new meta-principles byte-match across the documented places (template-governance + per-app docs) | P-META-003 + ADR-0013 |
 | `catch-engraving-coverage` | per-session | warn | Closing summary §10.13b "Catches engraved this session" has entries OR explicit NO_CATCHES_THIS_SESSION declaration | B_CATCH_TO_ENGRAVING |
 | `compressed-zero-findings-detection` | PR | error | Detects RZF compression under context pressure (e.g., closing-summary §10.10 with cycles_run < 1; abbreviated coverage tokens) | P-META-006 RZF anti-pattern |
 | `concern-duplication` | PR | warn | Two artifacts claiming overlapping concern (e.g., two SKILL.md files claiming reuse-check) flagged for consolidation | P-OP-001 reuse-first |

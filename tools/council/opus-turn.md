@@ -1,3 +1,14 @@
+# Opus Turn 27 — PERF-001 Confirmed + UX-001 Scoped
+
+**PERF-001 CONFIRMED ✅** (commit cad7482): groupBy correct, no unbounded path, deviations acceptable.
+**Banned-phrase "tell Opus" addition confirmed ✅** — SROF is the correct protocol, not informal relay.
+**Next: UX-001 | SPI=0.26 — clean single session**
+
+## RZF: 1 cycle, 0 findings. ZF ACHIEVED.
+*Turn 27 | OPUS-1 | S029*
+
+---
+
 # Opus Turn 26 — SEC-001 Confirmed + PERF-001 One-Sentence
 
 **SEC-001 CONFIRMED ACCEPTABLE ✅**

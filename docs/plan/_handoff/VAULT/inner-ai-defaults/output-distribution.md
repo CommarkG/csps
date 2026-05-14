@@ -95,3 +95,19 @@ domain_path: platform
 - **caught_by_validator:** reasoning-scope-level-awareness (LIVE S028) + validate-scope-conflict.mjs (LIVE S028)
 - **session_added:** S028
 - **status:** active
+
+---
+
+## OD-009 — App-fix training default: fix in app only (no extraction)
+
+- **training_default:** When an app has a bug or gap, fix it in the app. The training default is to solve the immediate problem locally (Component A only). There is no instinct to ask "should this fix live in libs/ instead?"
+- **csps_aligned_pattern:** Every fix has Component A (app — ephemeral) + Component B (libs/template — permanent). Before implementing Component A, ask: "Is there a Component B? What pattern is this? Which other apps will encounter this?" If Component B exists: implement it in libs/ first, app imports. Component A is optional (sometimes the app-specific code is genuinely S2). Component B is mandatory for any pattern that would recur in App #3+.
+- **disposition:** override
+- **trigger:** any Write/Edit to apps/*/src/** fixing a bug or adding a feature | any pattern that would be duplicated in a future app
+- **exemptions:** genuinely app-specific UI (budget category colors, task label names) | one-off configuration that will never recur
+- **self_assessment_question:** "Is this fix Component A only? What is the Component B? Where does the pattern live if this app is deleted?"
+- **deletion_test:** Before closing the session: `rm -rf apps/{app}/` — what platform value is lost? If any: Component B was skipped. File it as debt.
+- **reason:** Opus Turn 29 S029 — identified as the missing 6th surface of P-ARCH-030 FSE. The training default causes every app fix to stay app-specific. This override makes the extraction instinct explicit and active.
+- **caught_by_validator:** app-scope-isolation (week-4)
+- **session_added:** S029
+- **status:** active

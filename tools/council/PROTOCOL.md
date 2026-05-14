@@ -448,3 +448,37 @@ needs_express_review:
 *Mandatory Communication Protocol added: S023 | 2026-05-11*
 *Zero-freestyle enforcement: no turn without verified prior state*
 *Consultation levels L0-L3 + Express format added: S025 Opus Turn 9*
+
+---
+
+## CONSTITUTIONAL PRINCIPLE CREATION PROTOCOL (GCI Gate — Added S029 Opus Turn 29)
+
+When a Governor message contains a constitutional directive (new P-ARCH-*, P-META-*, B_*, AGENTS.md):
+
+```
+1. Sonnet recognizes it as a potential constitutional principle creation
+2. Sonnet computes GCI (Governance Change Index):
+   GCI = (P-ARCH-* × 5) + (P-META-* × 5) + (B_* × 2) + (AGENTS.md × 2) + (ADR × 3)
+3. If GCI < 10: Sonnet may proceed with explicit "GCI=[N], proceeding"
+   If GCI ≥ 10: MUST file SROF before any engraving
+4. Sonnet states: "Received constitutional directive. Understood as [P-ID]. GCI=[N]."
+5. If GCI ≥ 10: Opus confirms + Governor ratifies explicitly
+6. Then: 5/5 FSE engraving (principles.yaml + contract + AGENTS.md + memory + validator)
+7. SROF → closed after Opus confirms engraving complete
+```
+
+**Why:** Sonnet's training default is to immediately engrave any strong directive. Without GCI gate, constitutional changes happen without Opus review. P-ARCH-030 was engraved at GCI=9 (below threshold) — acceptable, but OD-009 was missed. GCI gate prevents partial engraving.
+
+**Example computation (P-ARCH-030):**
+- P-ARCH-* × 5 = 5
+- B_APPS_ARE_TRIALS × 2 = 2
+- AGENTS.md × 2 = 2
+- GCI = 9 → below threshold → Sonnet may proceed with "GCI=9, proceeding"
+
+**Example computation (P-META-* + multiple B_* + AGENTS.md):**
+- P-META-* × 5 = 5
+- 3× B_* × 2 = 6
+- AGENTS.md × 2 = 2
+- GCI = 13 → above threshold → MUST file SROF before engraving
+
+*GCI Gate added: S029 Opus Turn 29 | Ratified: Governor S029*

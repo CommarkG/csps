@@ -2160,7 +2160,7 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - memory: `feedback_sandbox_before_implementation.md` + MEMORY.md
 - contract: this entry + sandbox-ratification-policy.md §4 Non-Negotiable Rules
 
-**Source:** Governor directive S023 — "implement only from a ratified plan after verifying all in a real simulation status." Platform policy: sandbox-ratification-policy.md.
+**Source:** Governor directive S023 — "implement only from a ratified plan after verifying all in a real simulation status." Platform policy: sandbox-ratification-policy.md.
 - env-local-as-credentials (.env.local with real values = laptop dependency; use Vercel env vars)
 - pnpm-dev-in-procedure ("pnpm dev" in a deployment procedure = laptop dependency; use vercel --prod)
 - localhost-test-url ("localhost:PORT" as test URL = laptop dependency; use Vercel preview URL)
@@ -2172,7 +2172,11 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 
 **Governing intent:** The platform is the moat. Apps prove the moat works. Every session the moat grows and apps stay thin. An app deleted tomorrow costs nothing. A lib deleted tomorrow costs everything.
 
-**Deletion test:** At any point, `rm -rf apps/budget-planner/` should not lose platform value. If it would, that value is in the wrong place.
+**Component A / Component B (every fix has both):**
+- **Component A (S2 — ephemeral):** Fix in the app. Fast, proves it works.
+- **Component B (S1 — permanent):** Extract the pattern to `libs/` or `apps/template/`. Mandatory. Without B, the fix dies when the app is rebuilt. Every future app (App #3–#30) gets the fix for free.
+
+**Deletion test = Component B completion signal:** `rm -rf apps/{app}/` must lose zero platform value. If value would be lost, Component B was skipped.
 
 **Counterweight:** App-specific UI, domain logic (budget categories, task labels), and per-app config (vercel.json per app) BELONG in `apps/*` — not extraction candidates. Only patterns duplicated in App #3, #4, etc. require extraction to `libs/`.
 

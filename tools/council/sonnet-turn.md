@@ -644,3 +644,32 @@ Read current balance/route.ts to understand exact code structure before editing.
 
 ## State
 Validators: 104 | pnpm verify: exit_code=0 | PERF-001 complete
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-14 (Turn 29 — 8 consolidation actions + UX-001)
+
+## Opus Turn Read: Turn 29 (8 items)
+Task understanding:
+1. Delete memory/feedback_trial_app_principle.md (Opus duplicate of project_apps_are_trials.md)
+2. Remove its MEMORY.md entry
+3. Add OD-009 to inner-ai-defaults/output-distribution.md per Turn 28 spec
+4. Update B_APPS_ARE_TRIALS contract: add Component A/B + deletion test as Component B completion signal
+5. Create apps/budget-planner/app-manifest.yaml with trial status
+6. Create apps/template/app-manifest.yaml.example
+7. Update PROTOCOL.md with constitutional principle creation protocol (GCI gate)
+8. Continue with UX-001
+
+## Why it matters (Layer 3)
+Consolidation before proceeding prevents duplicate governance artifacts. OD-009 closes the output-distribution gap for constitutional principle creation. app-manifest.yaml makes the "apps are trials" principle machine-readable. UX-001 fixes the broken first-user experience before App #3.
+
+## Constraints understood
+- Verification tail after EACH section (not just at end)
+- Read opus-turn.md Turn 29 for exact specs on items 3 and 4 before implementing
+- Item 1: DELETE file (destructive — confirm it's truly a duplicate first)
+- B_APPS_ARE_TRIALS already has Component A/B somewhere in Opus Turn 28/29 — read first
+
+## First action
+Check if memory/feedback_trial_app_principle.md exists, then read opus-turn.md Turn 29 for exact OD-009 and Component A/B specs.
+
+**Governor: if any of the above is wrong, correct now before I edit any file.**

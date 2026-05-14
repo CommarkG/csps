@@ -1,0 +1,36 @@
+# app-manifest.yaml — Budget Planner (P-ARCH-030: apps are ephemeral trials)
+# This file makes trial status machine-readable. validate-app-scope-isolation.mjs reads it.
+
+app_id: budget-planner
+status: trial          # trial | graduated | archived
+trial_started: S022
+platform_session: S029
+live_url: https://csps-budget-planner.vercel.app
+
+graduation_criteria:
+  mrr_usd: 1000                # $1K MRR per B_COMPLETION_OVER_SHINY
+  deletion_test: PENDING       # rm -rf apps/budget-planner/ must lose zero platform value
+  component_b_complete: false  # pattern extraction to libs/ not yet complete
+
+deletion_test_status:
+  last_checked: 2026-05-14
+  result: PENDING
+  blockers:
+    - "JWT refresh gap fix (UX-001) not yet extracted to libs/integrations/auth.ts"
+    - "Account setup page not yet in apps/template/"
+
+component_b_extractions:
+  - pattern: balance-aggregate-groupby
+    status: documented
+    location: docs/plan/pillar-0-governance/external-integrations/supabase.md
+  - pattern: staffRole-deny-policy
+    status: complete
+    location: libs/policies/schema.zmodel (platform-level — already S1)
+  - pattern: jwt-refresh-gap
+    status: pending
+    target: libs/integrations/auth.ts + apps/template/src/app/account-setup/
+  - pattern: clerk-signin-pages
+    status: pending
+    target: apps/template/src/app/sign-in/ + apps/template/src/app/sign-up/
+
+graduation_session: null  # set when graduated

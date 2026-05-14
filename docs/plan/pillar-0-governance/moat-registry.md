@@ -84,11 +84,16 @@ moat_element:
 | M-17 | **Reuse-first mechanical (P-OP-001 enforced)** | §0 mandatory reuse check before any implementation; EP-012 catches skips | `plan_know_how` (§KH §0 item) + EP-012 | Every plan | swift-implemented |
 | M-18 | **Connectivity enforcement (P-ARCH-001)** | nothing-stands-alone mechanically checked; 43 pre-S006 orphans surfaced | `nothing_stands_alone` | Per-session advisory | swift-implemented |
 | M-15 | **CORE alignment enforcement** | Every artifact declares its spine; precedence order resolves conflicts | `corespine_depth_markers` + frontmatter_validate | Every session | CSEP-pending |
+| M-19 | **External Integrations Hub (S028)** | 33+ rules from production deployments (Vercel/Supabase/Clerk/ZenStack) with 3-month review cadence + screenshot archive — AI MUST read before touching any external service. No other platform governs external integration knowledge this way. | `external-integrations` dir freshness (planned) | Quarterly review + every integration touch | CSEP-pending |
+| M-20 | **Apps-as-ephemeral-trials + deletion test (S029)** | P-ARCH-030: every fix = Component A (app) + Component B (libs/template extraction). Deletion test is the standard: rm -rf apps/{app}/ must lose zero platform value. 30 future apps inherit every fix for free. | `app_scope_isolation` (week-4) + `platform_capacity` | Every session | CSEP-pending |
+| M-21 | **Platform capacity monitoring (S030)** | validate-platform-capacity.mjs + platform-capacity-registry.yaml: 11 elements measured every verify run, ADVISORY at soft limit, BLOCKING at hard limit with mitigation strategy. Most platforms discover limits at crisis, not at 85% of soft limit. | `platform_capacity` LIVE | Every session | CSEP-pending |
+| M-22 | **Multi-model council protocol (S028-S029)** | SROF format, GCI gate (GCI<10 proceed, ≥10 must consult Opus), platform-state-snapshot as single Opus read target, INTENT ABSORBED before any edit, "Opus, this is Sonnet" identity handshake. No other platform has formalized multi-model architectural governance with verifiable handoffs. | `validate-sonnet-report.mjs` (planned) | Every Opus interaction | CSEP-pending |
+| M-23 | **Completion-Priority DPR (S031)** | P-OP-006: every new input during active build rated 1-5 before response. Only Rating 3-5 justifies interruption. Training default (respond immediately) overridden. Platform ships faster because WIP debt compounds correctly. | OD-010 in inner-ai-defaults (behavioral) | Every session | CSEP-pending |
 
 ## §2 — Audit coverage by cadence
 
-### Every session (pnpm verify — 23 validators)
-Covers: M-01, M-02, M-04, M-05, M-06, M-07, M-12, M-15
+### Every session (pnpm verify — 108 validators, S031)
+Covers: M-01, M-02, M-04, M-05, M-06, M-07, M-12, M-15, M-20, M-21, M-23
 
 ### Weekly (cron-weekly-tag-status-deep-audit.sh)
 Covers: M-03 (know-how extraction), M-08 (vault processing), M-09 (SG-NNN), M-10 (K=2 check), M-11 (council drift)

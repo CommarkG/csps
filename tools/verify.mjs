@@ -430,8 +430,17 @@ const CYCLES = [
     // Advisory Phase 1 → BLOCKING Phase 2. Closes the PROPOSAL-level enforcement gap.
     name: 'scope_conflict',
     command: 'node tools/validators/validate-scope-conflict.mjs',
-    // Companion to scope_conflict: detects platform-level artifacts placed in apps/* (P-ARCH-030 + B_APPS_ARE_TRIALS).
-    // Registered atomic S029; impl week-4. Deletion test: any platform doc in apps/* = ADVISORY.
+    // E-session validators (each built in its own session, SPI<0.5, Turn 32 spec):
+    // E1 (SPI=0.15): validate-mini-tree-integrity.mjs — bidirectional intro↔sub-file check
+    // { name: 'mini_tree_integrity', command: 'node tools/validators/validate-mini-tree-integrity.mjs' },
+    // E2 (SPI=0.10): validate-file-complexity.mjs — week-4 deferred slug
+    // { name: 'file_complexity_validate', command: 'node tools/validators/validate-file-complexity.mjs' },
+    // E3 (SPI=0.15): validate-file-naming.mjs — validate-[noun]-[verb].mjs + P-NNN-topic.yaml
+    // { name: 'file_naming', command: 'node tools/validators/validate-file-naming.mjs' },
+    // E4 (SPI=0.05): validate-opus-chat-jump-freshness.mjs — ADVISORY when ≥20 turns, no chat-jump
+    // { name: 'opus_chat_jump_freshness', command: 'node tools/validators/validate-opus-chat-jump-freshness.mjs' },
+    // E5 (SPI=0.25): backfill principle slice names — P-META-025.yaml → P-META-025-context-intent-principle.yaml
+    // P-ARCH-030 companion: app_scope_isolation (SPI=0.15)
     // { name: 'app_scope_isolation', command: 'node tools/validators/validate-app-scope-isolation.mjs' }, // week-4
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
   },

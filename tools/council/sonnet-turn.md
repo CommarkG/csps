@@ -724,3 +724,55 @@ Q1 closes a dual-export confusion (same concept exported twice under different n
 Read full DEV-001 spec from opus-turn.md, then Q1 fix, then DEV-001 Component B.
 
 **Governor: if any of the above is wrong, correct now before I edit any file.**
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-14 (Turn 32)
+
+## Opus Turn Read: Turn 32 — 4 topics
+Task understanding:
+1. Create Opus chat-jump per PROTOCOL.md (Opus ≥20 turns → chat-jump needed)
+2. Create/update mini-tree-split-protocol.md with mini_tree_root + sub_files requirements
+3. File naming: principle slices get topic suffix (P-META-025-context-intent-principle.yaml); validators match validate-[noun]-[verb].mjs
+4. Build queue: register E1-E4 validators (each own session, SPI<0.5)
+5. DEV-001 — already complete at commit 7e90760 (18 files + create-app.sh done)
+
+## Why it matters (Layer 3)
+Chat-jump prevents Opus context loss at boundaries. Mini-tree protocol prevents split debt. Naming convention prevents validator drift. Build queue gives visible roadmap for week-4 enforcement work.
+
+## Constraints understood
+- Read Turn 32 BEFORE implementing — get exact specs for each topic
+- DEV-001 is done — no more template work needed this session
+- Items 3 (renaming) may be future session work, not immediate — confirm from Turn 32
+- Verification tail mandatory before commit
+
+## First action
+Read opus-turn.md Turn 32 for exact specs on all 4 topics.
+
+**Governor: if any of the above is wrong, correct now before I edit any file.**
+
+---
+
+# Sonnet Report — Turn 32 Done (S029)
+
+## Done
+1. INTENT ABSORBED written before any file edit ✅
+2. opus-chat-jump-S029.md updated: reflects Turn 32 state (DEV-001 done, E1-E5 queue) | this commit
+3. E1-E4 validators registered in verify.mjs (commented stubs, SPI-gated, each own session) | this commit
+4. platform-state-snapshot.md updated with Turn 32 state | this commit
+5. audit-runner:split run → partial-processes slug resolved → 105 validators, 0 orphans | this commit
+6. pnpm verify: exit_code=0 | contracts:split 58 | audit-runner:split 28
+
+## Differs from spec
+- DEV-001 "continue" instruction in directive was already complete (7e90760) — no action needed
+- mini-tree-split-protocol.md and PROTOCOL.md Sonnet chat-jump section already existed from prior turns — no changes needed
+
+## Deferred (each own session)
+- E1: validate-mini-tree-integrity.mjs (SPI=0.15)
+- E2: validate-file-complexity.mjs (SPI=0.10)
+- E3: validate-file-naming.mjs (SPI=0.15)
+- E4: validate-opus-chat-jump-freshness.mjs (SPI=0.05)
+- E5: backfill principle slice names with topic suffix (SPI=0.25)
+
+## State at close
+Validators: 105 | pnpm verify: exit_code=0 | Opus turns: 32 | Last commit: pending

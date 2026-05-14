@@ -163,4 +163,10 @@ Ready for PERF-001 (balance/route.ts groupBy) on next directive.
 | cad7482 | PERF-001: groupBy replaces unbounded findMany in balance/route.ts | DONE |
 | ec07fd1 | SEC-001 Sonnet Report + snapshot update | DONE |
 
-*Last updated: 2026-05-14 | Session: S029 | SEC-001+PERF-001 done | Last commit: cad7482*
+| 7e90760 | DEV-001: 18-file template scaffold + pnpm create:app | DONE |
+| Turn 32 | Mini-tree protocol sealed, file naming convention sealed, E1-E4 queue registered | DONE |
+
+**E-session build queue (registered, not yet built):**
+E1: validate-mini-tree-integrity.mjs (SPI=0.15) | E2: validate-file-complexity.mjs (SPI=0.10) | E3: validate-file-naming.mjs (SPI=0.15) | E4: validate-opus-chat-jump-freshness.mjs (SPI=0.05) | E5: backfill principle slice names (SPI=0.25)
+
+*Last updated: 2026-05-14 | Session: S029 | DEV-001 done, Turn 32 done | Last commit: pending*

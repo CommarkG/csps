@@ -776,3 +776,47 @@ Read opus-turn.md Turn 32 for exact specs on all 4 topics.
 
 ## State at close
 Validators: 105 | pnpm verify: exit_code=0 | Opus turns: 32 | Last commit: pending
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-14 (Turn 33 — S029 Close)
+
+## Opus directive: S029 session close
+1. Run zf-orchestrator --level 3 + validate-partial-processes.mjs
+2. Write closing-summary-S029.md (§10.0, §10.0r, §10.11b)
+3. Write HANDOFF-S029-to-S030.md (Zone A/B/D)
+4. Update opus-chat-jump-S029.md final line to "33 turns | S029 CLOSED"
+5. git add -A && commit && push
+
+## Why it matters (Layer 3)
+Session close is the governance boundary — everything that happened in S029 gets a ZF evidence block, an intent drift check, and a carry-forward to S030. The HANDOFF is what makes the next session start correctly.
+
+## Constraints understood
+- §10.0r: original goal = "platform core complete before App #3" — must honestly assess
+- §10.11b: positive value extraction mandatory (DEV-001, P-ARCH-030, weekly audit, mini-tree protocol)
+- Commit message: "S029 close: platform core complete, template scaffold, P-ARCH-030, weekly audit"
+- No selective git add — use git add -A per Opus directive
+
+**Governor: if any of the above is wrong, correct now before I edit any file.**
+
+---
+
+# Sonnet Report — S029 CLOSE
+
+## Done
+1. ZF Orchestrator Level 3: ACHIEVED | 5 cycles | 1 advisory (open-plan-levels — scheduled work)
+2. validate-partial-processes.mjs: 10 advisory, 0 blocking — baseline captured
+3. closing-summary-S029.md: written with §10.0, §10.0r (intent ACHIEVED), §10.11b (5 PVE entries)
+4. HANDOFF-S029-to-S030.md: Zone A (platform state), Zone B (E-session queue), Zone D (S030 first action)
+5. opus-chat-jump-S029.md: updated final line to "33 turns | S029 CLOSED"
+
+## Differs from spec
+- None. All items executed exactly per Opus Turn 33 directive.
+
+## State at close
+Validators: 105 | pnpm verify: exit_code=0 | GRL open: 0 | VLT blockers: 0
+Opus turns: 33 | Last commit: see git push below
+S029: CLOSED
+
+## S030 first action
+Run validate-partial-processes.mjs baseline, then build E1 (validate-mini-tree-integrity.mjs, SPI=0.15)

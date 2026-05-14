@@ -1,30 +1,28 @@
 # verify last run
 
-- ran_at: 2026-05-13T11:16:59.853Z
-- finished_at: 2026-05-13T11:17:32.556Z
+- ran_at: 2026-05-14T11:11:27.616Z
+- finished_at: 2026-05-14T12:26:11.963Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-13T11:16:59.853Z",
-    "finished_at": "2026-05-13T11:17:32.556Z",
+    "ran_at": "2026-05-14T11:11:27.616Z",
+    "finished_at": "2026-05-14T12:26:11.963Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 7.2,
-        "packages_resolved": null
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "flag --skip-install"
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 0.7,
         "ts_errors": 0
       },
       {
@@ -32,9 +30,9 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
-        "principles_loaded": 59,
-        "findings_total": 0
+        "duration_seconds": 1,
+        "principles_loaded": 60,
+        "findings_total": 1
       },
       {
         "name": "frontmatter_validate",
@@ -42,10 +40,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 351,
+        "scanned": 361,
         "errors": 0,
-        "warnings": 10,
-        "exempt": 270
+        "warnings": 11,
+        "exempt": 275
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -62,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -89,7 +87,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 57,
+        "source_contracts": 58,
         "missing_slices": 0
       },
       {
@@ -98,7 +96,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_ids": 59,
+        "source_ids": 60,
         "missing_slices": 0
       },
       {
@@ -106,7 +104,7 @@
         "command": "node --check tools/verify.mjs tools/pe-compute.mjs tools/validators/validate-aap-frontmatter.mjs tools/validators/validate-token-budget.mjs tools/validators/validate-corespine-depth-markers.mjs tools/validators/validate-audit-slug-coverage.mjs tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "syntax_ok": true
       },
       {
@@ -114,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -151,9 +149,7 @@
         "command": "node tools/validators/validate-opus-turn-rzf.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
-        "turns_checked": 21,
-        "warnings": 0
+        "duration_seconds": 0.1
       },
       {
         "name": "sonnet_report",
@@ -187,9 +183,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files": 110,
-        "links": 505,
-        "broken": 39
+        "files": 112,
+        "links": 513,
+        "broken": 42
       },
       {
         "name": "opus_review_flagging",
@@ -197,8 +193,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "last_turn": 11,
-        "flags": 10,
+        "last_turn": 23,
+        "flags": 11,
         "commits": 0
       },
       {
@@ -216,9 +212,9 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
-        "checked": 27,
-        "advisories": 20
+        "duration_seconds": 1.3,
+        "checked": 32,
+        "advisories": 24
       },
       {
         "name": "completeness_coverage",
@@ -245,8 +241,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "contracts": 57,
-        "orphans": 4,
+        "contracts": 58,
+        "orphans": 5,
         "tensions": 0,
         "overlaps": 1
       },
@@ -256,7 +252,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 1
+        "advisories": 0
       },
       {
         "name": "agreement_without_evidence",
@@ -291,7 +287,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 72,
+        "checked": 74,
         "blocking": 0,
         "advisories": 0
       },
@@ -301,8 +297,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "routes": 17,
-        "validators": 103,
+        "routes": 20,
+        "validators": 104,
         "models": 0,
         "advisories": 8
       },
@@ -330,9 +326,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "sections": 4,
+        "sections": 11,
         "tracked": 0,
-        "advisories": 4
+        "advisories": 11
       },
       {
         "name": "opus_cec_artifacts",
@@ -340,7 +336,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "sections": 4,
+        "sections": 13,
         "applied_yes": 0,
         "cited": 0,
         "advisories": 0
@@ -351,10 +347,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 319,
-        "clean": 319,
+        "checked": 329,
+        "clean": 329,
         "blocking": 0,
-        "registry": 47
+        "registry": 48
       },
       {
         "name": "generated_artifact_freshness",
@@ -417,7 +413,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 130,
+        "checked": 131,
         "blocking": 0,
         "advisories": 0
       },
@@ -475,8 +471,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -497,10 +493,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "assessed": 36,
-        "no_dev_surface": 36,
-        "no_user_value": 36,
-        "incomplete": 36
+        "assessed": 38,
+        "no_dev_surface": 38,
+        "no_user_value": 38,
+        "incomplete": 38
       },
       {
         "name": "update_backlog",
@@ -532,7 +528,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 104
+        "validators": 105
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -546,12 +542,12 @@
       {
         "name": "decision_frame_citation",
         "command": "node tools/validators/validate-decision-frame-citation.mjs",
-        "status": "ADVISORY",
+        "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
         "files_scanned": 3,
         "with_pcr": 0,
-        "advisory_gaps": 1
+        "advisory_gaps": 0
       },
       {
         "name": "concept_load_declared",
@@ -579,7 +575,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_scanned": 12,
+        "files_scanned": 13,
         "violations": 0
       },
       {
@@ -645,8 +641,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 88,
-        "with_status": 36,
+        "checked": 90,
+        "with_status": 38,
         "warnings": 0
       },
       {
@@ -655,9 +651,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 9,
+        "checked": 10,
         "exempt": 3,
-        "unplanned": 1
+        "unplanned": 2
       },
       {
         "name": "vlt_blocking",
@@ -672,8 +668,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 131,
-        "missing_why": 33
+        "checked": 133,
+        "missing_why": 34
       },
       {
         "name": "open_plan_levels",
@@ -718,7 +714,7 @@
         "command": "node tools/validators/validate-pe-connectivity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "blocking": 0,
         "advisory": 20,
         "total_gaps": 20
@@ -795,16 +791,16 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "pages_checked": 12,
+        "pages_checked": 15,
         "with_principle": 3,
-        "advisory": 9
+        "advisory": 12
       },
       {
         "name": "isolation_layers",
         "command": "node tools/validators/validate-isolation-layers.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 0
       },
@@ -859,7 +855,7 @@
         "command": "node tools/validators/validate-source-class-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "source_classes": 4,
         "errors": 0
       },
@@ -878,7 +874,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "warnings": 2,
+        "warnings": 1,
         "advisory": true
       },
       {
@@ -886,7 +882,7 @@
         "command": "node tools/validators/validate-topic-plan-progress.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "plans_checked": 20,
         "warnings": 0
       },
@@ -905,9 +901,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 104,
+        "validators_checked": 105,
         "orphans": 0,
-        "registered": 104
+        "registered": 105
       },
       {
         "name": "token_budget_validate",
@@ -994,7 +990,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 12.3
+        "duration_seconds": 4471.2
       },
       {
         "name": "audit_runner_full_pass",

@@ -6,8 +6,8 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 57
-  generated_at: '2026-05-13'
+  total_count: 58
+  generated_at: '2026-05-14'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
   usage: Load individual slice files (./behavioral-contracts/B_NAME.md) for AI session context;
@@ -185,3 +185,6 @@ contracts:
   - id: B_SANDBOX_BEFORE_IMPLEMENTATION
     desc: "B_SANDBOX_BEFORE_IMPLEMENTATION"
     path: ./behavioral-contracts/B_SANDBOX_BEFORE_IMPLEMENTATION.md
+  - id: B_APPS_ARE_TRIALS
+    desc: "B_APPS_ARE_TRIALS"
+    path: ./behavioral-contracts/B_APPS_ARE_TRIALS.md

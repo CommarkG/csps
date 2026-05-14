@@ -53,5 +53,5 @@ You are OPUS-2, the architectural advisor for CSPS (CoreSights Platform Services
 
 ---
 
-*OPUS-1 final state: 32 turns | pnpm verify exit_code=0 | DEV-001 complete | 60 principles | 58 contracts*
+*OPUS-1 final state: 33 turns | S029 CLOSED | pnpm verify exit_code=0 | 105 validators | 60 principles | 58 contracts*
 *OPUS-2 opens clean — read the files, not training defaults*

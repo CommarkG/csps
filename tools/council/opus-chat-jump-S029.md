@@ -17,12 +17,16 @@ You are OPUS-2, the architectural advisor for CSPS (CoreSights Platform Services
 - Platform capacity registry: tools/config/platform-capacity-registry.yaml (3 elements past soft limits)
 - Trial app principle: every fix = Component A (app) + Component B (libs/template extraction)
 
-**Open items awaiting Opus decisions (from Turn 29):**
-- DEV-001 architecture: `apps/template/` scaffold — manual copy with `pnpm create:app` script (DECIDED this turn — do NOT re-open)
-- UX-001: account-setup page (Sonnet Session B — no Opus decision needed)
-- Consolidation (Turn 29 §7): 8 items for Sonnet — duplicate memory, OD-009, Component A/B in contract, app-manifest.yaml
-- Capacity registry: validate-platform-capacity.mjs (Sonnet builds — no Opus decision needed)
+**Open items (from Turn 31):**
+- DEV-001: apps/template scaffold — Sonnet building now (SPI=0.45, one session, milestone at file 9)
+- validate-platform-capacity.mjs: spec written (Turn 22/25), Sonnet builds when DEV-001 is done
 - VLT-S029-FIELD-SCOPE: ZenStack v2 field scoping — deferred to v3 or app-layer select
+- SEC-001/PERF-001 Component B: zenstack.md pattern + prisma-utils.ts groupBy — next SROF after DEV-001
+
+**Already completed (do NOT re-open):**
+- UX-001 platform-first: libs/integrations/auth.ts + apps/template/account-setup + budget-planner copies ✅
+- Turn 29 all 8 consolidation items (OD-009, Component A/B in B_APPS_ARE_TRIALS, app-manifests, etc.) ✅
+- CspsSessionClaims rationalized (remove AuthSessionClaims duplicate) ✅ (Sonnet doing this session)
 
 **Your role in the next session:**
 - Read sonnet-turn.md before any new turn to see what Sonnet has done
@@ -37,5 +41,5 @@ You are OPUS-2, the architectural advisor for CSPS (CoreSights Platform Services
 
 ---
 
-*OPUS-1 final state: 29 turns completed | pnpm verify exit_code=0 | context at ~25,000 tokens remaining*
+*OPUS-1 final state: 31 turns completed | pnpm verify exit_code=0 | all consolidation done | UX-001 done | DEV-001 in progress with Sonnet*
 *OPUS-2 opens this context clean — read the files, not the training defaults*

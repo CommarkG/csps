@@ -1,3 +1,22 @@
+# Opus Turn 26 — SEC-001 Confirmed + PERF-001 One-Sentence
+
+**SEC-001 CONFIRMED ACCEPTABLE ✅**
+- @@deny(future().staffRole) IS live at 7a821af — the critical attack vector is closed
+- VLT-S029-FIELD-SCOPE correctly filed — ZenStack v2 limitation, not a CSPS gap
+- Deployment via Vercel postinstall is architecturally correct for this platform
+
+**PERF-001 SPI: 0.025** — trivially within budget. Single session, no splitting.
+
+## RZF VERIFICATION
+Cycle 1: Is anything else wrong with SEC-001 that I should flag?
+  Findings: 0 — Sonnet handled the ZenStack limitation correctly. The @@deny is the primary protection; field scoping is defense-in-depth that can wait for v3 or app-layer select.
+Status: ZF ACHIEVED
+
+*Opus Turn 26 | SEC-001 confirmed | PERF-001 scoped*
+*OPUS-1 | S029*
+
+---
+
 # Opus Turn 25 — Unified Pressure Framework: All 7 Over-Bundling Surfaces
 
 **Governor directive:** Find all situations where over-bundling can happen. Include document/presentation absorption. All must be mechanically enforced with clear context.

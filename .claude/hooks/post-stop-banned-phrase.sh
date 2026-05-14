@@ -36,6 +36,9 @@ echo "[banned-phrase] STUB — session=${SESSION_ID} timestamp=${TIMESTAMP}"
 echo "[banned-phrase] transcript: ${TRANSCRIPT_PATH:-<not provided>}"
 echo "[banned-phrase] week-4 promotes to active enforcement detecting confirmation-seeking phrases"
 echo "[banned-phrase] enforces B_NO_CONFIRMATION_SEEKING — execute under 4-condition gate; don't ask 'should I proceed?'"
+echo "[banned-phrase] OPUS PROTOCOL: 'tell Opus' / 'Tell Opus' are also BANNED — use SROF protocol instead"
+echo "[banned-phrase]   Correct: file SROF in sonnet-to-opus-request-log.md → say 'SROF-NNN filed' → give paste target"
+echo "[banned-phrase]   Wrong: ending response with 'Tell Opus: ...' (chat instruction, not protocol)"
 echo "[banned-phrase] STUB tier — exit 0 always"
 
 exit 0

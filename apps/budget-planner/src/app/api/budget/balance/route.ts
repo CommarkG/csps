@@ -6,7 +6,10 @@
 //
 // Optional query params:
 //   ?month=YYYY-MM  — filter to specific month (default: current month)
-//   ?all=true       — all-time balance (overrides month)
+//
+// PERF-001 (Opus Turn 23): replaced unbounded findMany+JS aggregation with
+// Prisma groupBy. Pushes aggregation to Postgres. No OOM risk. ZenStack
+// policies apply via edb. ?all=true removed — no unbounded query path exists.
 
 import { auth } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
@@ -32,63 +35,58 @@ export async function GET(request: Request) {
   const edb = getEnhancedDb({ id: cspsUser.id, tenantId, staffRole: cspsUser.staffRole })
 
   const { searchParams } = new URL(request.url)
-  const allTime = searchParams.get('all') === 'true'
   const monthParam = searchParams.get('month') // YYYY-MM
 
-  let dateFilter: { gte: Date; lt: Date } | undefined
-  if (!allTime) {
-    const now = new Date()
-    const year = monthParam ? parseInt(monthParam.slice(0, 4), 10) : now.getFullYear()
-    const month = monthParam ? parseInt(monthParam.slice(5, 7), 10) - 1 : now.getMonth()
-    const start = new Date(year, month, 1)
-    const end = new Date(year, month + 1, 1)
-    dateFilter = { gte: start, lt: end }
-  }
+  const now = new Date()
+  const year = monthParam ? parseInt(monthParam.slice(0, 4), 10) : now.getFullYear()
+  const month = monthParam ? parseInt(monthParam.slice(5, 7), 10) - 1 : now.getMonth()
+  const dateFrom = new Date(year, month, 1)
+  const dateTo = new Date(year, month + 1, 1)
 
-  const transactions = await edb.transaction.findMany({
-    where: {
-      tenantId,
-      deletedAt: null,
-      ...(dateFilter ? { date: dateFilter } : {}),
-    },
-    include: {
-      category: { select: { id: true, name: true, type: true, color: true, monthlyLimit: true } },
-    },
-  })
+  const [categoryBalances, categories] = await Promise.all([
+    edb.transaction.groupBy({
+      by: ['categoryId'],
+      where: {
+        tenantId,
+        deletedAt: null,
+        date: { gte: dateFrom, lt: dateTo },
+      },
+      _sum: { amount: true },
+      orderBy: { _sum: { amount: 'desc' } },
+    }),
+    edb.budgetCategory.findMany({
+      where: { tenantId, deletedAt: null },
+      select: { id: true, name: true, type: true, color: true, monthlyLimit: true },
+    }),
+  ])
 
-  // Compute totals
+  const categoryMap = new Map(categories.map(c => [c.id, c]))
+
   let income = 0
   let expenses = 0
-  const byCategory: Record<string, { name: string; type: string; total: number; limit: number | null; count: number }> = {}
-
-  for (const t of transactions) {
-    if (t.type === 'income') {
-      income += t.amount
-    } else {
-      expenses += t.amount
-    }
-
-    if (!byCategory[t.categoryId]) {
-      byCategory[t.categoryId] = {
-        name: t.category.name,
-        type: t.category.type,
-        total: 0,
-        limit: t.category.monthlyLimit,
-        count: 0,
+  const byCategory = categoryBalances
+    .map(row => {
+      const cat = categoryMap.get(row.categoryId)
+      if (!cat) return null
+      const total = Math.round((row._sum.amount ?? 0) * 100) / 100
+      if (cat.type === 'income') income += total
+      else expenses += total
+      return {
+        id: row.categoryId,
+        name: cat.name,
+        type: cat.type,
+        color: cat.color,
+        total,
+        limit: cat.monthlyLimit,
       }
-    }
-    byCategory[t.categoryId].total += t.amount
-    byCategory[t.categoryId].count++
-  }
+    })
+    .filter(Boolean)
 
   return NextResponse.json({
     income: Math.round(income * 100) / 100,
     expenses: Math.round(expenses * 100) / 100,
     balance: Math.round((income - expenses) * 100) / 100,
-    transactionCount: transactions.length,
-    period: allTime ? 'all-time' : (monthParam ?? new Date().toISOString().slice(0, 7)),
-    byCategory: Object.entries(byCategory)
-      .map(([id, data]) => ({ id, ...data, total: Math.round(data.total * 100) / 100 }))
-      .sort((a, b) => b.total - a.total),
+    period: monthParam ?? `${year}-${String(month + 1).padStart(2, '0')}`,
+    byCategory,
   })
 }

@@ -169,4 +169,11 @@ Ready for PERF-001 (balance/route.ts groupBy) on next directive.
 **E-session build queue (registered, not yet built):**
 E1: validate-mini-tree-integrity.mjs (SPI=0.15) | E2: validate-file-complexity.mjs (SPI=0.10) | E3: validate-file-naming.mjs (SPI=0.15) | E4: validate-opus-chat-jump-freshness.mjs (SPI=0.05) | E5: backfill principle slice names (SPI=0.25)
 
-*Last updated: 2026-05-14 | Session: S029 | DEV-001 done, Turn 32 done | Last commit: pending*
+| 425f20b | S030 E2+CAP: validate-file-complexity LIVE + Context Alignment Preamble | DONE |
+| 93fa37d | S030 E0: validate-platform-capacity LIVE | DONE |
+| a2fac99 | S030 E1: validate-mini-tree-integrity LIVE | DONE |
+
+**S030 STATUS: CLOSED** | 108 validators | exit_code=0 | CAP in session-open.sh
+**Critical:** agents-md-lines at 199/200 hard limit — Governor decision required before adding AGENTS.md content
+
+*Last updated: 2026-05-14 | Session: S030 CLOSED | Last commit: 425f20b*

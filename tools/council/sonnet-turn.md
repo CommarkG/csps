@@ -498,3 +498,54 @@ pnpm verify exit_code=0 | ZF ACHIEVED ✅ | 88 validators | 79% health
 3. Template grades A/B/C applied to all 12 accessible templates — retroactive grading DONE
 4. D1+D2 CLOSED per Turn 15 verification (CORE-PILLARS in SKILL.md confirmed)
 5. Next: SROF-008 if Governor wants architectural review, or S027 continues Band 3b items
+
+---
+
+# Sonnet Report — S028/S029 (extended session)
+
+## Done (commit sha per item)
+1. Gate 3 LIVE: csps-budget-planner.vercel.app | commit: 74699da | verified: Clerk sign-in screenshot from Governor
+2. Prisma type root cause fixed: removed output="./generated/client" | commit: bf6ff0f
+3. @csps/integrations workspace package: libs/integrations/package.json + transpilePackages | commit: 9fba3f9
+4. External Integrations Hub: Vercel (10 rules) + Supabase (8) + Clerk (8) + ZenStack (7) | commit: 9adf9c6
+5. GRL all OPEN → ANSWERED/DEFERRED | commit: 55423df | verified: open=0 from validate-request-ledger.mjs
+6. SROF-012 multi-perspective review: 14 Opus questions, 5 Band A ENH items | commit: 0361abc
+7. PROTOCOL.md: S029 gaps identified + 5 enforcement surfaces added | this session
+
+## Differs from Opus spec (honest delta)
+- No INTENT ABSORBED written at session start (S029 gap — now documented in PROTOCOL.md)
+- L0 Virtual Opus Audit not run on ENH-001 through ENH-004 before identifying them (should have)
+- staffRole self-promotion gap discovered POST Gate 3 instead of PRE Gate 3 (L1 trigger missed)
+
+## L1 ITEMS FOR OPUS
+needs_express_review:
+  - topic: balance-query-pattern
+    decision: "Prisma groupBy vs raw SQL $queryRaw vs Supabase materialized view for balance aggregation"
+    blast_radius: platform
+    recommendation: "Prisma groupBy with _sum — stays within ORM boundary, testable, ZenStack-compatible"
+
+  - topic: staffRole-self-promotion-gap
+    decision: "Can @@allow(update, auth().id == id) be scoped to exclude staffRole field? ZModel field-level deny?"
+    blast_radius: platform (security)
+    recommendation: "Needs Opus verification — may require explicit @@deny or API-layer field stripping"
+
+  - topic: jwt-refresh-gap-pattern
+    decision: "Pattern for JWT TTL gap between sign-up and first tenantId: polling vs Clerk session_variables vs sync org creation"
+    blast_radius: platform (UX + security boundary)
+    recommendation: "Lean toward /api/me polling endpoint with 'setting up' UI — simple, no Clerk internals"
+
+  - topic: apps-template-scaffold
+    decision: "What is the minimum runnable scaffold for apps/template/ — full Next.js + Clerk + ZenStack or just the critical wiring files?"
+    blast_radius: platform (affects every future app)
+    recommendation: "Include: package.json, src/app/layout.tsx (ClerkProvider), src/middleware.ts, sign-in/up pages, next.config.js, vercel.json. Skip domain logic."
+
+## State at close
+Validators: 104 | pnpm verify exit_code: 0 | GRL open: 0 | VLT blockers: 0 | Push: 0361abc (SROF-012)
+
+## What Opus should know for next turn
+- Gate 3 is live. Platform has its first production app.
+- External Integrations Hub created at docs/plan/pillar-0-governance/external-integrations/ (4 service files, 33+ rules)
+- SROF-012 is the primary Opus input — 14 questions, prioritized Band A ENH items
+- Critical security gap: staffRole self-promotion via @@allow(update, auth().id == id) needs immediate ZModel policy review
+- Critical performance gap: balance/route.ts has unbounded findMany — will OOM at scale
+- Council protocol gaps identified and documented in PROTOCOL.md §S029 GAPS — needs mechanical enforcement in next session

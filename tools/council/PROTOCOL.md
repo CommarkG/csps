@@ -339,6 +339,16 @@ Opus: generate the S024 chat-jump file at tools/council/chat-jump-S024.md
 - `validate-sonnet-report.mjs` — checks that sonnet-turn.md has a `# Sonnet Report` section for the current session. ADVISORY now, BLOCKING week-4.
 - `validate-intent-absorbed.mjs` — checks that sonnet-turn.md has an `# ... INTENT ABSORBED` section before the report. ADVISORY now.
 
+**S029 GAPS IDENTIFIED (Governor directive — mechanically fix these):**
+1. `session-open.sh` must check opus-turn.md modification time vs last session close timestamp. If newer → surface "⚠ Opus Turn [N] not yet read by Sonnet — read before proceeding" BEFORE any task work.
+2. A `pre-tool-use` hook should detect L1/L2 consultation triggers:
+   - Write/Edit to `libs/policies/schema.zmodel` → emit "L2 required before schema changes"
+   - Write/Edit to `*.zmodel` pattern with `@@allow` content → emit "L1 security policy — flag for Opus"
+   - Write/Edit to `principles.yaml` → emit "L2 required"
+3. Sonnet must append `## L1 ITEMS FOR OPUS` to `sonnet-turn.md` at end of any turn with a consequential decision. Governor sees it, one-line trigger to Opus tab activates.
+4. Opus insight extraction pipeline: every INTENT ABSORBED block must cascade decisions to: principles.yaml (ratified principles) + external-integrations/ (security/config findings) + SROF-NNN (scale findings).
+5. Band A ENH items (SROF-012 §7) are `council_required: true` — Opus must review before Sonnet implements ENH-001 through ENH-004.
+
 **council-state.json tracking fields to add:**
 ```json
 "sonnet_last_report_session": "S023",

@@ -1,0 +1,179 @@
+# Platform Capacity Registry
+# Managed by: tools/validators/validate-platform-capacity.mjs (to build)
+# Updated by: validate-platform-capacity.mjs at each pnpm verify run
+# Governor directive S028: CSPS must handle 500× of activity — track approaching limits
+#
+# scope_level: S0 = constitutional (must stay STABLE), S1 = platform-wide, S2+ = app/session
+# at_risk: true when current >= soft_limit
+
+meta:
+  version: "1.0"
+  created_session: S028
+  last_updated: S028
+  enforcement: measurement  # measurement → advisory → blocking
+
+elements:
+
+  # ═══ S0: CONSTITUTIONAL — must stay STABLE IN SIZE ═══
+
+  - id: agents-md-lines
+    description: "AGENTS.md constitutional line count"
+    current: 199
+    soft_limit: 185
+    hard_limit: 200
+    scope_level: S0
+    at_risk: true
+    growth_rate: "3-5 lines/session"
+    five_session_projection: 214
+    ten_session_projection: 249
+    mitigation_strategy: >
+      New governance rules → S1 skill files (not AGENTS.md).
+      AGENTS.md references skill files, never carries full detail.
+      S0 = constitutional prohibitions only (~150 lines target).
+
+  - id: behavioral-contracts-tokens
+    description: "behavioral-contracts.md estimated token count"
+    current: 49000
+    soft_limit: 40000
+    hard_limit: 60000
+    scope_level: S1
+    at_risk: true
+    growth_rate: "2000-5000 tokens/session"
+    five_session_projection: 62000
+    ten_session_projection: 82000
+    mitigation_strategy: >
+      Shard into domain-specific files: behavioral-contracts/B_AI_*.md,
+      B_GVRN_*.md, B_ARCH_*.md, B_VALD_*.md, B_OPER_*.md.
+      Main file becomes an index. Validators load domain files by context (B_CDAB-aware).
+
+  - id: core-spine-l1-lines
+    description: "Average L1_CORE_{SPINE}.md file length"
+    current: 50
+    soft_limit: 65
+    hard_limit: 80
+    scope_level: S0
+    at_risk: false
+    growth_rate: "0.1 lines/session (constitutional = rarely amended)"
+    mitigation_strategy: >
+      L1 files are sealed. If they grow past 65 lines, an ADR is required to
+      justify the amendment. Constitutional growth is a governance event.
+
+  # ═══ S1: PLATFORM-WIDE — indexable, shardable ═══
+
+  - id: pnpm-verify-runtime
+    description: "Full pnpm verify runtime (seconds, skip-install)"
+    current: 18.6
+    soft_limit: 30
+    hard_limit: 60
+    scope_level: S1
+    at_risk: false
+    growth_rate: "0.3s/new validator"
+    five_session_projection: 20.1
+    ten_session_projection: 21.6
+    mitigation_strategy: >
+      Tiered verify: pnpm verify:light (blocking only, <10s for PR),
+      pnpm verify (full, <30s for session close),
+      pnpm verify:deep (all including advisory, unlimited for weekly audit).
+      Not all validators must run at every PR.
+
+  - id: pnpm-verify-cycles
+    description: "Number of active validator cycles in pnpm verify"
+    current: 106
+    soft_limit: 140
+    hard_limit: 200
+    scope_level: S1
+    at_risk: false
+    growth_rate: "2-3 cycles/session"
+    five_session_projection: 118
+    ten_session_projection: 131
+    mitigation_strategy: >
+      Tier validators: CRITICAL (run always), STANDARD (run at session close),
+      DEEP (run weekly). Tiered pnpm verify splits the load.
+
+  - id: deferred-audit-slugs
+    description: "Audit slugs in audit-runner.md with no matching validator"
+    current: 271
+    soft_limit: 200
+    hard_limit: 400
+    scope_level: S1
+    at_risk: true
+    growth_rate: "2-4/session (new slugs added, validators not always built)"
+    mitigation_strategy: >
+      Create deferred-slug-registry.yaml (separate from audit-runner.md).
+      Each deferred slug must have: target_session + owner.
+      When target_session passes: OVERDUE status — surfaces in pnpm health.
+      Prevents false confidence from "registered" but never-run validators.
+
+  - id: principles-count
+    description: "Total P-* principle entries in principles.yaml"
+    current: 59
+    soft_limit: 80
+    hard_limit: 120
+    scope_level: S0-S1
+    at_risk: false
+    growth_rate: "1-2/session"
+    five_session_projection: 64
+    ten_session_projection: 74
+    mitigation_strategy: >
+      P-META → S0 constitutional only (max 25). New principles → P-ARCH/P-OP at S1.
+      When principles-count approaches 80: shard into spine-specific YAML files
+      (principles/gvrn.yaml, principles/arch.yaml, etc.) — already started with slice files.
+
+  - id: backlog-items
+    description: "Active items in platform-update-backlog.yaml"
+    current: 41
+    soft_limit: 60
+    hard_limit: 100
+    scope_level: S1
+    at_risk: false
+    growth_rate: "2-3/session"
+    five_session_projection: 53
+    ten_session_projection: 71
+    mitigation_strategy: >
+      Monthly backlog triage. Items with no session target after 10 sessions →
+      move to deferred-backlog.yaml (cold storage). Active backlog stays navigable.
+
+  # ═══ S2+: APP/SESSION — ephemeral, archived ═══
+
+  - id: vault-root-files
+    description: "File count in docs/plan/_handoff/VAULT/ root"
+    current: 99
+    soft_limit: 80
+    hard_limit: 150
+    scope_level: S3
+    at_risk: true
+    growth_rate: "3-5 files/session"
+    five_session_projection: 114
+    ten_session_projection: 144
+    mitigation_strategy: >
+      VAULT tiered archival: active/ (current + 5 sessions), recent/ (sessions 6-20),
+      archive/ (sessions 20+). Auto-rotation at session-close.
+      VAULT root should have ONLY: README, INDEX.yaml, and current-session files.
+
+  - id: topic-plans-active
+    description: "Active topic plans in VAULT/topic-plans/"
+    current: 25
+    soft_limit: 40
+    hard_limit: 60
+    scope_level: S2
+    at_risk: false
+    growth_rate: "1-2/session"
+    five_session_projection: 30
+    ten_session_projection: 40
+    mitigation_strategy: >
+      Plans with lifecycle_state: closed → auto-move to archive/topic-plans/.
+      Active = plans where current work is happening (S028+ plans only).
+
+  - id: session-state-blocking-decisions
+    description: "Items in session-state.json blocking_decisions array"
+    current: 0
+    soft_limit: 15
+    hard_limit: 30
+    scope_level: S3
+    at_risk: false
+    growth_rate: "variable — resolved per session"
+    mitigation_strategy: >
+      Blocking decisions older than 3 sessions without resolution:
+      auto-escalate to Governor with VLT status OVERDUE.
+      Prevent silent accumulation of unresolved blockers.
+```

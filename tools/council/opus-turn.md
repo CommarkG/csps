@@ -1,3 +1,73 @@
+# Opus Turn 33 — FINAL: Weekly Audit + Complete Transfer (OPUS-1 Signing Off)
+
+**pnpm verify: exit_code=0 | DEV-001 complete (commit 7e90760) | 32 turns completed**
+
+---
+
+## Weekly "What Do We Do If..." Audit: LIVE
+
+`validate-partial-processes.mjs` created and wired this turn.
+`partial-processes` slug registered in audit-runner.md.
+
+Run: `node tools/validators/validate-partial-processes.mjs`
+Cadence: Weekly. Advisory output. 5 checks:
+1. Validators referenced in verify.mjs but not built (orphan detection)
+2. Deferred audit slugs past accumulation threshold
+3. Backlog items without session targets
+4. Mini-tree directories without intro files
+5. Capacity elements at risk (AGENTS.md overflow, etc.)
+
+First run found **10 advisories** — all legitimate partial processes with clear "what to do" instructions.
+
+---
+
+## Complete Transfer to Sonnet (Final One-Sentence)
+
+Everything remaining after DEV-001: Sessions E1-E5 + capacity validator + two mini-tree intros.
+
+---
+
+## Complete Transfer to OPUS-2
+
+**OPUS-2 chat-jump:** `tools/council/opus-chat-jump-S029.md` (Sonnet updated to Turn 32 state)
+**Confirmed complete (do not re-open):** SEC-001, PERF-001, UX-001, DEV-001, Turn 29 all 8 consolidation, CspsSessionClaims, External Integrations Hub, P-ARCH-030 5/5 FSE
+
+**For OPUS-2 to address (open items):**
+- E1: validate-mini-tree-integrity.mjs (SPI=0.15)
+- E2: validate-file-complexity.mjs (the deferred week-4 slug, SPI=0.10)
+- E3: validate-file-naming.mjs (SPI=0.15)
+- E4: validate-opus-chat-jump-freshness.mjs (SPI=0.05)
+- E5: Principle slice names backfill with topic suffix (SPI=0.25)
+- validate-platform-capacity.mjs: build spec from Turn 22 (SPI=0.15)
+- Two mini-tree intro files: behavioral-contracts/ + external-integrations/ (SPI=0.05)
+- VLT-S029-FIELD-SCOPE: ZenStack v3 or app-layer select (deferred)
+- Two mini-tree intros flagged by partial-processes validator
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Anything left undone that OPUS-2 must know?
+  Findings: 1 — `pnpm audit:weekly` script not in package.json yet. Sonnet adds in E1.
+  Tracked: E1 scope updated.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: Weekly partial-process audit is LIVE — platform can now self-monitor for governance debt
+Essence: Every week, "What do we do if..." runs and surfaces 10 partial processes with clear action instructions
+Walk:
+  validate-partial-processes.mjs: CREATED + WIRED ✅
+  audit-runner.md `partial-processes` slug: REGISTERED ✅
+  platform-state-snapshot.md: Sonnet kept current ✅
+  OPUS-2 chat-jump: Sonnet updated to Turn 32 state ✅
+Walk-trail: 1 cycle | 4 surfaces complete
+
+*Opus Turn 33 — FINAL TURN | OPUS-1 complete | Transfer ready*
+*All 32 turns in tools/council/opus-turn.md | OPUS-2 opens from opus-chat-jump-S029.md*
+*OPUS-1 | S029 | 2026-05-14 | Signing off*
+
+---
+
 # Opus Turn 32 — Mini-Tree Protocol + File Naming + Sonnet Chat-Jump Role
 
 **Four topics, all answered. New file: mini-tree-split-protocol.md**

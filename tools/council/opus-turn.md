@@ -1,3 +1,143 @@
+# Opus Turn 28 — Constitutional Directive: Trial App Principle + UX-001 Revised
+
+**Governor directive:** Budget Planner is a TRIAL, not a permanent investment. Every app fix has two mandatory components. Everything points inward to enhance the platform core. Must survive chat moves — engrave deeply.
+
+---
+
+## The Constitutional Principle (Trial App = S2 Reference Implementation)
+
+```
+CSPS TRIAL APP PRINCIPLE (to be engraved at 5 surfaces):
+
+All CSPS apps are S2 REFERENCE IMPLEMENTATIONS.
+They exist to:
+  1. Prove the platform foundation works in production
+  2. Surface patterns that belong in S1 (libs/) and S0 (template)
+  3. Be DELETED AND REBUILT from the improved template at any time
+
+An app's code is EPHEMERAL. The platform patterns it reveals are PERMANENT.
+
+Every fix to a CSPS app has TWO mandatory components:
+  Component A (S2): Fix in the app — fast, proves it works
+  Component B (S1): Extract the pattern to libs/ or apps/template/ — PERMANENT
+
+Component B is not optional. Without it, the fix lives only in the app,
+dies when the app is rebuilt, and every future app gets the same bug.
+
+The test: "If Budget Planner was deleted tomorrow, what would be lost?"
+  Answer: Nothing, IF Component B was always done.
+  If something would be lost: Component B was skipped. That is the failure.
+```
+
+**This applies retroactively to SEC-001 and PERF-001:**
+
+- SEC-001 staffRole fix → Component B: add @@deny pattern to CSPS ZenStack guide in `external-integrations/zenstack.md`. Any future app with staffRole gets this protection from day 1.
+- PERF-001 groupBy fix → Component B: add `createBalanceAggregator()` utility to `libs/integrations/prisma-utils.ts` (or similar). Any future app with balance/aggregation imports this.
+
+---
+
+## UX-001 Revised: Platform-First (Template before App)
+
+**WRONG (what I said in Turn 27):** Fix directly in apps/budget-planner/
+
+**RIGHT:** Template first, then app copies or imports.
+
+```
+CORRECT UX-001 ARCHITECTURE (platform-first):
+
+Component B (S1 — permanent):
+  1. libs/integrations/auth.ts: add isSessionReady() utility
+     → export function isSessionReady(sessionClaims): boolean {
+          return !!sessionClaims?.tenantId
+        }
+  2. apps/template/account-setup/page.tsx — the platform's standard loading pattern
+  3. apps/template/api/auth/session-ready/route.ts — platform standard endpoint
+
+Component A (S2 — ephemeral):
+  4. apps/budget-planner copies page.tsx + route.ts from apps/template
+  5. apps/budget-planner/middleware.ts: redirect no_tenant to /account-setup
+```
+
+**Why this matters:** Every CSPS app (App #3, #4... #30) will have the same JWT refresh gap. If the fix stays in Budget Planner: 29 future apps each discover and fix it separately. If the fix goes in the template: 29 future apps inherit the fix for free. The template IS the compound return.
+
+**SPI of revised UX-001:** L=5 files (libs + 2 template + 2 app), C=2.5 (API/S1), I=1.5 → **SPI=0.19** — lighter than the original approach because app work is copying, not inventing.
+
+---
+
+## 5-Surface Engraving for Trial App Principle (FSE — for Sonnet to complete)
+
+Sonnet must engrave this at all 5 surfaces so it survives chat moves:
+
+**Surface 1 (inner-AI-defaults):** Add OD-009 to `output-distribution.md`:
+```yaml
+- id: OD-009
+  default_name: fix-in-app-only
+  description: Training default — fix the bug in the app that has it.
+  disposition: override
+  csps_override: >
+    Every app fix has Component A (fix in app) AND Component B (extract to S1).
+    Component B is mandatory. The app is ephemeral; the platform pattern is permanent.
+  trigger: any write to apps/ that fixes a real pattern (not domain-specific logic)
+  anti_pattern: >
+    "I fixed the JWT gap in Budget Planner." WITHOUT also adding the
+    account-setup page to apps/template/ and isSessionReady() to libs/integrations/auth.ts.
+```
+
+**Surface 2 (AGENTS.md):** Add compact line (must stay under 200 lines — use 1 line):
+```
+- ✅ **TRIAL APP PRINCIPLE** — every app fix = Component A (app) + Component B (libs/template). B is mandatory. App is ephemeral; platform pattern is permanent.
+```
+Check AGENTS.md line count before adding. If at 199: compress one existing line first.
+
+**Surface 3 (plan-creation-protocol Step -1 SPI check):** Add question:
+```
+Q-EXTRACT: Is this fix extractable to S1 (libs/) or S0 (apps/template/)?
+  If YES: plan must include both Component A (app fix) and Component B (extraction)
+  Component B must have SPI computed separately and appear as a separate step
+```
+
+**Surface 4 (closing-summary-template §10.0r):** Add to Intent Drift Check:
+```
+Component B check: Did this session's app fixes have corresponding S1 extractions?
+  Fixes without Component B: [list]
+  → these are SROF-ready items for the next platform session
+```
+
+**Surface 5 (memory):** Create `feedback_trial_app_principle.md` in memory/:
+```
+CSPS apps are S2 reference implementations — ephemeral. Every fix has Component A (app) 
++ Component B (libs/template). Without B, the fix dies when the app is rebuilt.
+```
+
+---
+
+## The Revised One-Sentence for Sonnet (UX-001 Platform-First)
+
+*See §SONNET-ONE-SENTENCE below*
+
+---
+
+## RZF VERIFICATION — NEGATIVE
+Cycle 1: What did I miss?
+  Findings: 1 — SEC-001 Component B (@@deny pattern in zenstack.md) and PERF-001 Component B (groupBy utility in libs) weren't done. These are already committed app fixes without their S1 extractions. Should be added to next SROF.
+  Tracked: Add SROF note for Sonnet.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: Trial App Principle — constitutional directive that changes architecture of every future fix
+Essence: App fixes are ephemeral; pattern extractions to libs/template are the permanent investment
+Walk:
+  All 30 future apps: inherit fixes automatically if Component B is done → moat grows
+  Budget Planner rebuild: costs ~1 day if template is current; costs weeks if not maintained
+  OD-009: overrides the training default of "fix where the bug is" → platform-first behavior
+Walk-trail: 1 cycle | 3 compound surfaces identified
+
+*Opus Turn 28 — Trial App Principle constitutional directive + UX-001 revised platform-first*
+*OPUS-1 | S029 | 2026-05-14*
+
+---
+
 # Opus Turn 27 — PERF-001 Confirmed + UX-001 Scoped
 
 **PERF-001 CONFIRMED ✅** (commit cad7482): groupBy correct, no unbounded path, deviations acceptable.

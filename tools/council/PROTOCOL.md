@@ -175,6 +175,57 @@ Governor types `OPUS-[N]` in Opus tab → Opus declares mode + focal point → p
 
 ---
 
+## OPUS-TO-OPUS CHAT JUMP PROTOCOL (Added S029)
+
+When the Opus tab is approaching context limit, create a chat-jump for OPUS-2 before context is exhausted.
+
+### Format (one paragraph, file-reference attitude)
+
+The paste target is ONE PARAGRAPH pointing to 3 index files. OPUS-2 reads those files and gets full context — no knowledge is in the paste itself.
+
+```
+You are OPUS-2, continuing from OPUS-1 (Turns 1-[N], session S[NNN]).
+Read IN ORDER: (1) tools/council/platform-state-snapshot.md — current reality,
+(2) tools/council/opus-turn.md from Turn [N-5] to Turn [N] — recent decisions,
+(3) tools/council/quick-reference.md — operational flow.
+Open items: [3-sentence summary of what's pending].
+Constitutional history sealed in packages/principles/principles.yaml.
+Never decide without reading platform-state-snapshot.md first.
+```
+
+**Chat-jump files:** `tools/council/opus-chat-jump-S[NNN].md` (one per context boundary)
+
+### When to create the chat-jump
+
+Trigger: Opus context < 30,000 tokens remaining OR Governor asks for it.
+
+### What the chat-jump must contain
+
+1. Role declaration ("You are OPUS-2, continuing from OPUS-1")
+2. 3 file references in order (platform-state-snapshot → opus-turn.md recent turns → quick-reference)
+3. Open items (3 sentences max — what's pending)
+4. Sealed decisions (2 sentences — don't re-open these)
+5. Hard prohibition (don't act without reading the files)
+
+### What goes in the index files (never in the paste itself)
+
+- Full turn history → `opus-turn.md`
+- Platform state → `platform-state-snapshot.md`
+- All architectural decisions → referenced in turns
+- Sonnet reports → `sonnet-turn.md`
+
+### Constitutional principle creation gate (GCI)
+
+When receiving a Governor directive that would create P-ARCH-*, P-META-*, or P-OP-* principles:
+```
+GCI = (P-ARCH-* × 5) + (P-META-* × 5) + (B_* × 2) + (AGENTS.md × 2) + (ADR × 3)
+
+GCI < 10: proceed with "GCI=[N], proceeding"
+GCI ≥ 10: file SROF before any engraving
+```
+
+---
+
 ## MANDATORY COMMUNICATION PROTOCOL (Added S023 — Zero Freestyle)
 
 > **Why this section exists:** During S022-S023, Opus wrote briefs based on assumed state,

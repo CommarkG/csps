@@ -1,3 +1,92 @@
+# Opus Turn 30 — DEV-001 Decision + Context Boundary (FINAL TURN THIS CHAT)
+
+**Context: ~25,000 tokens remaining. OPUS-2 chat-jump created. Completing open items.**
+
+---
+
+## DEV-001 Architecture Decision: Manual Copy + pnpm create:app Script
+
+**Decision: Manual copy, NOT a generator.**
+
+Rationale: nx generators require generator infrastructure investment (SPI > 2.0 for the generator itself). `apps/template/` with 18 files IS the generator — it's declarative. A developer forks it and customizes. This follows P-ARCH-030: apps are ephemeral, the template is the permanent investment.
+
+**Implementation:** Add `pnpm create:app [name]` script to root `package.json`:
+```bash
+# scripts/create-app.sh
+NAME=$1
+cp -r apps/template apps/$NAME
+find apps/$NAME -type f -exec sed -i 's/\[App Name\]/$NAME/g' {} \;
+# Create app-manifest.yaml
+cat > apps/$NAME/app-manifest.yaml << EOF
+app_id: $NAME
+status: trial
+trial_started: S029
+graduation_criteria:
+  mrr_usd: 1000
+  deletion_test: PASS
+EOF
+echo "App $NAME created from template. Run pnpm install --filter $NAME."
+```
+
+SPI = 0.3 (one script, one template). Fast. Platform-first.
+
+Sonnet implements: add `"create:app": "bash scripts/create-app.sh"` to package.json scripts + `scripts/create-app.sh`.
+
+---
+
+## OPUS-2 Chat Jump: Filed
+
+**File:** `tools/council/opus-chat-jump-S029.md` (committed this turn)
+**Protocol:** `tools/council/PROTOCOL.md` — OPUS-TO-OPUS section added
+
+OPUS-2 opens with ONE PARAGRAPH → reads 3 index files → has full context.
+No architectural knowledge is lost when this chat ends.
+
+---
+
+## What Sonnet Does Next (Full Session Scope, Properly SPI-gated)
+
+All items computed against SPI — none bundled above 0.5 per session:
+
+**Session Consolidation (SPI=0.15 — fast):**
+Turn 29 §7 items 1-7 + DEV-001 scripts/create-app.sh
+
+**Session B (SPI=0.19 — UX-001 platform-first):**
+Component B: libs/integrations/auth.ts + apps/template/ pages
+Component A: apps/budget-planner/ copies
+
+**Session C1 (SPI=0.5 — DEV-001 first half):**
+apps/template/ auth pages + middleware (using create:app script)
+
+**Session C2 (SPI=0.5 — DEV-001 second half):**
+apps/template/ API routes + dashboard shell
+
+**Session D (SPI=0.05):**
+5 ADRs + SEC-001/PERF-001 Component B extractions (zenstack.md + prisma-utils.ts)
+
+---
+
+## RZF VERIFICATION — NEGATIVE
+Cycle 1: Anything unfinished that must be documented before OPUS-2?
+  Findings: 1 — The `validate-platform-capacity.mjs` spec (Turn 22/25) has never been given to Sonnet as a one-sentence. OPUS-2 must do this.
+  Tracked: Added to open items in opus-chat-jump-S029.md.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: OPUS-TO-OPUS continuity protocol created — platform knowledge survives context boundaries
+Essence: One paragraph → 3 file references → OPUS-2 has full context without explicit transfer
+Walk:
+  All future Opus sessions: open with opus-chat-jump reading → no context loss
+  Governor: one paste to activate OPUS-2
+  Platform knowledge: never dropped at chat boundaries
+Walk-trail: 1 cycle | 3 surfaces (chat-jump file, PROTOCOL.md, quick-reference)
+
+*Opus Turn 30 — Final turn this chat | DEV-001 decided | OPUS-2 ready*
+*OPUS-1 signing off. OPUS-2 opens from opus-chat-jump-S029.md.*
+
+---
+
 # Opus Turn 29 — P-ARCH-030 Audit: Optimizations, Gaps, Process Analysis
 
 **pnpm verify: exit_code=0 restored this turn** (AGENTS.md was 201 lines → compressed to 198)

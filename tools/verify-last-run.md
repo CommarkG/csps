@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-14T19:40:05.066Z
-- finished_at: 2026-05-14T19:40:44.627Z
+- ran_at: 2026-05-15T04:20:35.210Z
+- finished_at: 2026-05-15T04:21:13.521Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-14T19:40:05.066Z",
-    "finished_at": "2026-05-14T19:40:44.627Z",
+    "ran_at": "2026-05-15T04:20:35.210Z",
+    "finished_at": "2026-05-15T04:21:13.521Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 12.2,
+        "duration_seconds": 11.8,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -151,7 +151,7 @@
         "command": "node tools/validators/validate-opus-turn-rzf.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "sonnet_report",
@@ -214,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 1,
         "checked": 33,
         "advisories": 25
       },
@@ -300,7 +300,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 20,
-        "validators": 107,
+        "validators": 109,
         "models": 0,
         "advisories": 8
       },
@@ -338,7 +338,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "sections": 15,
+        "sections": 17,
         "applied_yes": 0,
         "cited": 0,
         "advisories": 0
@@ -437,12 +437,32 @@
         "advisory": 85
       },
       {
+        "name": "file_naming",
+        "command": "node tools/validators/validate-file-naming.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 88,
+        "advisory": 0,
+        "exempt": 88
+      },
+      {
+        "name": "opus_chat_jump_freshness",
+        "command": "node tools/validators/validate-opus-chat-jump-freshness.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "turns": 38,
+        "session": "unknown",
+        "has_chat_jump": false
+      },
+      {
         "name": "core_contamination",
         "command": "node tools/validators/validate-core-contamination.mjs",
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 134,
+        "checked": 136,
         "blocking": 0,
         "advisories": 0
       },
@@ -557,7 +577,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 108
+        "validators": 110
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -637,7 +657,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -930,9 +950,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 108,
+        "validators_checked": 110,
         "orphans": 0,
-        "registered": 108
+        "registered": 110
       },
       {
         "name": "token_budget_validate",
@@ -1019,7 +1039,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 12.2
+        "duration_seconds": 11.6
       },
       {
         "name": "audit_runner_full_pass",

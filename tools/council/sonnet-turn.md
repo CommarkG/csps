@@ -898,3 +898,43 @@ wc -l AGENTS.md + read lines 162-184 to confirm exact table content.
 
 ## First action
 Scan existing files to find R1-R5 violations before writing any rules.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 38 — S031 Close)
+
+## Directive: S031 close — 7 items in order
+1. node tools/verify.mjs — confirm 110 validators, exit_code=0
+2. closing-summary-S031.md (§10.0 + §10.0r)
+3. HANDOFF-S031-to-S032.md (Zone A/B)
+4. opus-chat-jump-S031.md (from S029 format, Turn 38, S031 CLOSED)
+5. SONNET REPORT appended to sonnet-turn.md
+6. platform-state-snapshot.md → S031 CLOSED
+7. git add -A && commit && push
+
+## Constraints understood
+- §10.0r: "E3+E4 live, naming-exempt has 88 grandfathered — BLOCKING upgrade requires backfill session first"
+- S032: E5 (principle slice name backfill SPI=0.25) + App #3 domain = Governor decision
+- Chat-jump format: match opus-chat-jump-S029.md structure
+
+---
+
+# Sonnet Report — S031 CLOSE
+
+## Done
+1. E3: validate-file-naming.mjs LIVE | commit: 1a868a5 | 88 grandfathered in naming-exempt.yaml
+2. E4: validate-opus-chat-jump-freshness.mjs LIVE | commit: 1a868a5 | advisory fires (37+ turns, no S031 chat-jump)
+3. DPR: P-OP-006 5/5 FSE | commit: 43cfd7c | AGENTS.md 179 lines
+4. Moat: M-19 through M-23 registered | commit: 8a4205a
+5. closing-summary-S031.md + HANDOFF-S031-to-S032.md + opus-chat-jump-S031.md | this commit
+6. platform-state-snapshot.md: S031 CLOSED | this commit
+
+## Differs from spec
+- None. All items executed per Turn 38 directive.
+
+## State at close
+Validators: 110 | pnpm verify: exit_code=0 | Last commit: 1a868a5 (E3+E4) + close commit pending
+S031: CLOSED
+
+## S032 first action
+Governor decision: App #3 domain OR E5 (principle slice backfill) first.

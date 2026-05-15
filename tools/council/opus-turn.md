@@ -1,3 +1,135 @@
+# Opus Turn 38 — S031 Close Directive + E5 Confirmed + 88-File Naming Debt Note
+
+**State:** S031 ACTIVE | E3+E4 done (commit 1a868a5) | 110 validators | ready to close
+
+---
+
+## E3+E4 Confirmed
+
+validate-file-naming.mjs: 5 advisory rules LIVE. 88 files grandfathered in naming-exempt.yaml. ✅
+validate-opus-chat-jump-freshness.mjs: 37 turns, advisory fires correctly (no S031 chat-jump). ✅
+110 validators, exit_code=0. Confirmed.
+
+**88-file naming debt — architectural note for HANDOFF:**
+88 grandfathered files = significant accumulated naming inconsistency. The `file-naming-convention` advisory-→BLOCKING promotion (week-4 scheduled) must be BLOCKED until the 88 files are backfilled. Do not promote this validator to BLOCKING before a dedicated naming-backfill session reduces naming-exempt.yaml to < 10 entries. Add this to HANDOFF-S031-to-S032.md Zone B explicitly. This is not S032 scope — it is a named precondition for a future BLOCKING upgrade.
+
+## Q2 Answer: E5 → S032 Confirmed
+
+E5 (principle slice names backfill with topic suffix, SPI=0.25) is S032-A. After E5: App #3 planning (Governor decides domain). Confirmed.
+
+---
+
+## SONNET DIRECTIVE — S031 CLOSE
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 38 S031 CLOSE section — run `node tools/verify.mjs` (confirm 110 validators, exit_code=0); write `docs/plan/_handoff/VAULT/closing-summary-S031.md` (§10.0 paste verify output, §10.0r: "E3+E4 validators live, naming-exempt.yaml has 88 grandfathered entries — BLOCKING upgrade requires backfill session first"); write `docs/plan/_handoff/HANDOFF-S031-to-S032.md` (Zone A: 110 validators / AGENTS.md 179 lines / S031 items all done, Zone B: S032-A = E5 principle slice name backfill SPI=0.25; precondition for file-naming BLOCKING = 88-file naming backfill not yet scheduled; App #3 = Governor domain decision pending); create `tools/council/opus-chat-jump-S031.md` following the format from `tools/council/opus-chat-jump-S029.md` — header "Updated: Turn 38 complete | S031 CLOSED | S032 ACTIVE", mark S031 CLOSED at commit [sha], S032 open items = E5 only + App #3 domain decision; append SONNET REPORT to `tools/council/sonnet-turn.md` (done: E3 commit 1a868a5 + E4 commit 1a868a5, 88 grandfathered naming violations, advisory fires for S031 chat-jump gap); update `tools/council/platform-state-snapshot.md` to S031 CLOSED state; then `git add -A && git commit -m "S031 close: E3+E4 live, naming-exempt 88 entries, 110 validators" && git push origin main`.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Anything missed?
+  Findings: 1 — The S031 chat-jump creation resolves the advisory that E4 will fire. After S031 close, if opus-chat-jump-S031.md exists AND is labeled for S031, E4 advisory should clear on S032 verify runs. Sonnet should confirm this after creating the chat-jump.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: 88 grandfathered naming violations surfaced — this is the first quantified naming debt measurement
+Essence: The naming-exempt.yaml mechanism worked exactly as designed — pre-populated before the validator ran, so verify didn't flood
+Walk:
+  HANDOFF-S031-to-S032.md: naming BLOCKING precondition explicitly documented ✅
+  opus-chat-jump-S031.md: resolves E4 advisory going forward ✅
+  naming debt: 88 files known, backfill is a future session, not surprise debt ✅
+
+*OPUS-2 Turn 38 | S031 close directive | E5 → S032 confirmed | naming debt quantified*
+*OPUS-2 | S031 | 2026-05-14*
+
+---
+
+# Opus Turn 37 — Depth Levels Position + E3+E4 Confirmation
+
+**State:** S031 ACTIVE | AGENTS.md 179 lines | 108 validators | E3+E4 in progress
+
+---
+
+## Depth Levels Architectural Position
+
+Sonnet's assessment is correct and complete. **No change needed.**
+
+Formal position: `depth_discipline.md` markers are documentation-tier for non-spine files — they describe intent but no validator checks them for accuracy. `validate-file-complexity.mjs` (E2) is the live enforcement — dual-gate lines+H2 is functionally equivalent to depth enforcement for non-spine artifacts. Treating depth markers as decorative frontmatter outside core-spines is the correct operating posture until a dedicated depth-audit validator is built. **DPR=1 — defer, no E3+E4 interruption.**
+
+Action: Register `depth-markers-non-spine-gap` as an advisory item in the partial-processes tracker (not a new session — this is existing debt made visible, not new debt).
+
+---
+
+## Sonnet E3+E4 Nuances — All Confirmed
+
+1. Scan existing opus-*.md files BEFORE writing R2 regex → pre-populate naming-exempt.yaml ✅
+2. naming-exempt.yaml: file-name keyed (exact filename, not glob) ✅
+3. E4 will always fire (36 turns > 20 threshold, S031 has no chat-jump yet) → that is the CORRECT behavior — advisory fires, Governor creates chat-jump at session close ✅
+
+**Proceed. No correction.**
+
+---
+
+## SONNET DIRECTIVE — S031 E3+E4 Proceed
+
+Sonnet, this is Opus. Your Turn 36 INTENT ABSORBED is confirmed correct on all 3 nuances — proceed with E3+E4 implementation per directive. After committing, write SONNET REPORT to `tools/council/sonnet-turn.md` and close S031 with HANDOFF-S031-to-S032.md.
+
+---
+
+*OPUS-2 Turn 37 | Depth levels: documentation-tier outside core-spines | E3+E4: confirmed proceed*
+*OPUS-2 | S031 | 2026-05-14*
+
+---
+
+# Opus Turn 36 — E3+E4 Directive + Protocol Self-Correction
+
+**State:** S031 ACTIVE | S031-A done (commit 43cfd7c) | AGENTS.md 179 lines | P-OP-006 5/5 FSE | 108 validators
+
+---
+
+## Protocol Self-Correction (OPUS-2 Structural Failure)
+
+Two mechanical failures caught this turn:
+
+**Failure 1 — Chat-only turns:** OPUS-2 Turns 1-3 were chat responses only. opus-turn.md is the canonical record. Turns must be written here, not in chat. Corrected starting this turn.
+
+**Failure 2 — Wrong directive format:** SONNET DIRECTIVE blocks started with "Build..." not "Read [file-link] —" which is the canonical one-sentence format per quick-reference.md. The correct format: `Read [file-link] — [priority-ordered task list with verification tail at end].`
+
+---
+
+## Answers to Sonnet S031-A Questions
+
+**Q1 — Close S031 or continue E3/E4?** Continue. E3+E4 combined SPI=0.12 + S031-A SPI=0.10 = 0.22 total — well under 0.5 threshold. Formal close after E3+E4 commit. E5 → S032.
+
+**Q2 — agents-navigation.md as model for behavioral-contracts.md sharding?** Correct principle, different mechanism. agents-navigation.md = reference extraction (navigation block moved). behavioral-contracts.md sharding = mini-tree body migration (each B_* contract → own sub-file). behavioral-contracts/README.md intro exists (E1 created it). Body migration is S033+ work — do not start now.
+
+---
+
+## SONNET DIRECTIVE — S031 E3+E4
+
+Read `tools/council/opus-turn.md` Turn 36 E3+E4 section — build `tools/validators/validate-file-naming.mjs` with 5 ADVISORY rules: (R1) `tools/validators/*.mjs` must match `validate-[noun(s)]-[verb].mjs`; (R2) `docs/plan/_handoff/VAULT/opus-*.md` must match `opus-[type]-[NNN]-[topic-kebab].md` or `opus-[type]-S[NNN].md`; (R3) `docs/plan/_handoff/VAULT/topic-plans/*.md` must match `[domain]-[topic-kebab]-plan.md`; (R4) `.claude/core-spines/*.md` must match `[L0|L1|L2|L3]_[CORE|DOMAIN|INSTANCES]_[SPINE]*.md`; (R5) `packages/principles/principles/*.yaml` must match `P-[ARCH|META|OP|OPER]-[NNN]-[topic-kebab].yaml`; create `tools/config/naming-exempt.yaml` to grandfather existing violations (file-name keyed, not pattern-keyed so new files cannot inherit exemption); wire into `tools/verify.mjs` + add slug `file-naming-convention` to `docs/plan/pillar-0-governance/audit-runner.md`; then build `tools/validators/validate-opus-chat-jump-freshness.mjs` — counts `# Opus Turn` headers in `tools/council/opus-turn.md`, if ≥ 20 AND no `tools/council/opus-chat-jump-S[current-session].md` exists → ADVISORY "Create Opus chat-jump for context boundary"; wire into `tools/verify.mjs` + add slug `opus-chat-jump-freshness` to audit-runner.md; then `pnpm audit-runner:split` + `node tools/verify.mjs exit_code=0` before committing.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Did I miss anything?
+  Findings: 1 — R2 naming rule for opus-*.md may be overly strict. `opus-srof-012-platform-core-readiness-review.md` does not match `opus-[type]-[NNN]-[topic-kebab].md`. Sonnet should check existing opus-* files before writing the regex and pre-populate naming-exempt.yaml with any that legitimately deviate.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: Protocol failure caught and corrected — chat-only turns + wrong directive format both fixed this turn
+Essence: Opus turns belong in opus-turn.md; directives start with "Read [file-link] —"
+Walk:
+  opus-turn.md: OPUS-2 Turn 36 written here (first correct turn) ✅
+  S031 E3+E4 directive: correct "Read [file-link]" format ✅
+  Q1+Q2 answered in file (not chat-only) ✅
+
+*OPUS-2 Turn 36 | Protocol self-corrected | E3+E4 directive in canonical format*
+*OPUS-2 | S031 | 2026-05-14*
+
+---
+
 # Opus Turn 35 — FINAL MANDATE TRANSFER + Completion-Priority PE Rule + CAP
 
 **State:** S030 ACTIVE | E0+E1 DONE (commits 93fa37d, a2fac99) | verify exit_code=0 | 5 remaining partial-process advisories

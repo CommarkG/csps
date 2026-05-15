@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.9.0",
+    "@csps/components": "workspace:*",
     "@csps/integrations": "workspace:*",
     "@prisma/client": "^6.7.0",
     "@zenstackhq/runtime": "^2.22.1",

@@ -18,6 +18,8 @@ sub_files:
   - ./src/dashboard/DashboardShell.tsx
   - ./src/settings/SettingsLayout.tsx
   - ./src/feature-gate/FeatureGateOverlay.tsx
+  - ./src/onboarding/OnboardingWizard.tsx
+  - ./src/data-table/DataTable.tsx
 links:
   - { rel: parent, href: ../../AGENTS.md }
 tags:
@@ -31,10 +33,12 @@ tags:
 
 Platform shell components. Every CSPS app imports these — no per-app reimplementation.
 
-| Component | File | Purpose |
-|---|---|---|
-| `DashboardShell` | [dashboard/DashboardShell.tsx](./src/dashboard/DashboardShell.tsx) | Sidebar nav + main content + 4 states (empty/loading/loaded/error) |
-| `SettingsLayout` | [settings/SettingsLayout.tsx](./src/settings/SettingsLayout.tsx) | Vertical tab sidebar + content pane |
-| `FeatureGateOverlay` | [feature-gate/FeatureGateOverlay.tsx](./src/feature-gate/FeatureGateOverlay.tsx) | Blurred overlay + upgrade prompt when plan insufficient |
+| Component | Purpose |
+|---|---|
+| `DashboardShell` | Sidebar nav + main content + 4 states (empty/loading/loaded/error) |
+| `SettingsLayout` | Vertical tab sidebar + content pane |
+| `FeatureGateOverlay` | Plan gate overlay + upgrade prompt |
+| `OnboardingWizard` | 3-step wizard → 5 archetypes (EFFICIENCY_SEEKER/BUILDER/ANALYST/TEAM_LEAD/EXPLORER) |
+| `DataTable<T>` | Typed table with sort/filter/bulk actions/pagination/CSV export |
 
 **Package:** `@csps/components` (peerDeps: react ≥18, react-dom ≥18, typescript ≥5)

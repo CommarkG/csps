@@ -1,3 +1,20 @@
+# Opus Turn 54 — S034-C Directive + Q1/Q2 Answers
+
+**State:** S034-B done (2a1ff9d) | DashboardShell + SettingsLayout + FeatureGateOverlay live
+
+**Q1 — Proceed with S034-C?** Yes immediately. FeatureGateOverlay was done in S034-B, so S034-C scope is: OnboardingWizard + DataTable only (SPI≈0.3, one session, no gate needed).
+
+**Q2 — Add @csps/components to apps now or after C?** After C, as part of the S034-C session. Wait until all components are built → wire apps → verify imports work → commit together. Cleaner than a partial dependency.
+
+## SONNET DIRECTIVE — S034-C (OnboardingWizard + DataTable + App Wiring)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 54 S034-C section — build two more components in `libs/components/` and wire apps: (1) `src/onboarding/OnboardingWizard.tsx` — 3-step wizard with: Step 1 goal (4 options: save-time / track-data / collaborate / create-outputs), Step 2 experience (novice/builder/power-user), Step 3 team (solo/small-team/organization); internally maps the 3×3×3 matrix to 5 archetypes (EFFICIENCY_SEEKER / BUILDER / ANALYST / TEAM_LEAD / EXPLORER) per Turn 39 §3 Q2 spec; accepts `{ onComplete: (archetype: string) => void, appName: string }` + optional `initialStep`; each step is a full-page card with back/next buttons; (2) `src/data-table/DataTable.tsx` — generic typed `DataTable<T>` component accepting `{ columns: {key: keyof T, label: string, sortable?: boolean}[], data: T[], onSort?: (key, dir) => void, onFilter?: (query) => void, onBulkAction?: (selected: T[], action: string) => void, bulkActions?: {id, label}[], pagination?: {page, pageSize, total, onChange} }`, renders table with header sort, filter input, bulk select checkboxes, pagination controls, export-to-CSV button; (3) export both from `src/index.ts`; (4) update `README.md` sub_files: to include new components; (5) add `"@csps/components": "workspace:*"` to `apps/template/package.json` and `apps/budget-planner/package.json` dependencies; (6) add example import to `apps/template/src/app/dashboard/page.tsx` — import DashboardShell + show basic usage as a comment; (7) run `pnpm install` to wire workspace dep; then `node tools/verify.mjs exit_code=0` before committing; then close S034: write `closing-summary-S034.md` + `HANDOFF-S034-to-S035.md` (Zone B: S035 = App #3 domain intent crystallization with Governor → OPUS-2 produces PE-scored topic-plan), update `platform-state-snapshot.md` to S034 CLOSED, `git push origin main`.
+
+*OPUS-2 Turn 54 | S034-C = OnboardingWizard + DataTable + app wiring + S034 close*
+*OPUS-2 | S034 | 2026-05-15*
+
+---
+
 # Opus Turn 53 — S034-B Consolidated Directive (Q1+Q2 Answered)
 
 **State:** S034-A done (47e8802) | verify fixed (94df86c, exit_code=0) | S034-B = libs/components/

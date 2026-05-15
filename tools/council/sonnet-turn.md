@@ -1098,3 +1098,16 @@ Read Turn 52 RZF findings before implementing.
 
 ## First action
 Check verify status, read Turn 52 S034-B spec, then implement.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 54 — S034-C + S034 close)
+
+## Directive: 2 more components + wiring + S034 close
+1. OnboardingWizard (3 steps, 5 archetypes, full-page cards)
+2. DataTable<T> (typed, sort/filter/bulk/pagination/CSV)
+3. Update exports + README + apps packages.json + install
+4. S034 close
+
+## First action
+Check Turn 54 RZF findings before implementing.

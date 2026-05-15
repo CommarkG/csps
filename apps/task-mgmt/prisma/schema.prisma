@@ -33,10 +33,11 @@ model User {
   staffRole   String?
   tenantId    String?   // active session context (VLT-S015-001)
 
-  memberships  UserTenant[]
-  tasksCreated Task[]       @relation("TaskCreatedBy")
-  tasksAssigned Task[]      @relation("TaskAssignee")
-  comments     TaskComment[] @relation("TaskCommentAuthor")
+  memberships    UserTenant[]
+  tasksCreated   Task[]         @relation("TaskCreatedBy")
+  tasksAssigned  Task[]         @relation("TaskAssignee")
+  comments       TaskComment[]  @relation("TaskCommentAuthor")
+  notifications  Notification[] @relation("UserNotifications")
 }
 
 enum TenantSubscriptionStatus {
@@ -62,10 +63,12 @@ model Tenant {
   features             String[]                  @default([])
   limits               Json?
 
-  members      UserTenant[]
-  projects     Project[]
-  tasks        Task[]
-  auditEvents  AuditEvent[]
+  members           UserTenant[]
+  projects          Project[]
+  tasks             Task[]
+  auditEvents       AuditEvent[]
+  notifications     Notification[]
+  webhookEndpoints  WebhookEndpoint[]
 }
 
 model UserTenant {
@@ -170,6 +173,7 @@ enum MembershipRole {
   owner
   admin
   member
+  viewer
 }
 
 enum ProjectStatus {
@@ -190,4 +194,43 @@ enum TaskPriority {
   medium
   high
   urgent
+}
+
+model Notification {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  tenantId   String
+  userId     String
+  type       String
+  title      String
+  body       String
+  readAt     DateTime?
+  actionUrl  String?
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+  user   User   @relation("UserNotifications", fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
+  @@index([tenantId, userId, readAt])
+}
+
+model WebhookEndpoint {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  tenantId        String
+  url             String
+  secret          String
+  events          String[]  @default([])
+  active          Boolean   @default(true)
+  lastTriggeredAt DateTime?
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId, active])
 }

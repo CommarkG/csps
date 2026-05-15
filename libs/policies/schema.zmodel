@@ -129,10 +129,11 @@ model User extends Base {
   staffRole   String?
   tenantId    String?
 
-  memberships  UserTenant[]
-  tasksCreated Task[]       @relation("TaskCreatedBy")
-  tasksAssigned Task[]      @relation("TaskAssignee")
-  comments     TaskComment[] @relation("TaskCommentAuthor")
+  memberships    UserTenant[]
+  tasksCreated   Task[]         @relation("TaskCreatedBy")
+  tasksAssigned  Task[]         @relation("TaskAssignee")
+  comments       TaskComment[]  @relation("TaskCommentAuthor")
+  notifications  Notification[] @relation("UserNotifications")
 
   @@schema("public")
   // Staff can read any user fully (admin operations)
@@ -168,13 +169,15 @@ model Tenant extends Base {
   // Resource limits override (null = use plan defaults)
   limits               Json?
 
-  members          UserTenant[]
-  projects         Project[]
-  tasks            Task[]
-  auditEvents      AuditEvent[]
-  budgetCategories BudgetCategory[]
-  transactions     Transaction[]
-  budgetGoal       BudgetGoal?
+  members           UserTenant[]
+  projects          Project[]
+  tasks             Task[]
+  auditEvents       AuditEvent[]
+  budgetCategories  BudgetCategory[]
+  transactions      Transaction[]
+  budgetGoal        BudgetGoal?
+  notifications     Notification[]
+  webhookEndpoints  WebhookEndpoint[]
 
   @@schema("public")
   @@allow("read", auth().tenantId == id)
@@ -411,4 +414,53 @@ model TaskComment extends Base {
   @@deny("delete",  true)
 
   @@index([taskId, createdAt])
+}
+
+// ─── Notification ──────────────────────────────────────────────────────────────
+// Per-user, per-tenant notifications. Append-only (created by system triggers).
+// Users can read and mark their own notifications as read.
+
+model Notification extends Base {
+  tenantId   String
+  userId     String
+  type       String    // e.g. "task.assigned", "mention", "system"
+  title      String
+  body       String
+  readAt     DateTime?
+  actionUrl  String?
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+  user   User   @relation("UserNotifications", fields: [userId], references: [id])
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId && auth().id == userId)
+  @@allow("update", auth().id == userId)  // mark as read
+  @@deny("create",  true)               // created via system triggers only
+  @@deny("delete",  true)
+
+  @@index([userId, createdAt])
+  @@index([tenantId, userId, readAt])
+}
+
+// ─── WebhookEndpoint ───────────────────────────────────────────────────────────
+// Per-tenant webhook endpoints. Admin-level write via API guard; read for all members.
+// ZenStack: staff-only write. API layer: checkMembership(['owner','admin']) enforces customer access.
+
+model WebhookEndpoint extends Base {
+  tenantId        String
+  url             String
+  secret          String    // HMAC signing secret — never expose in read responses
+  events          String[]  @default([])  // e.g. ["task.created", "member.added"]
+  active          Boolean   @default(true)
+  lastTriggeredAt DateTime?
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@schema("public")
+  @@allow("read",          auth().tenantId == tenantId)
+  // Staff-only in ZenStack; owner/admin enforced at API layer via checkMembership()
+  @@allow("create,update", auth().tenantId == tenantId && auth().staffRole != null)
+  @@deny("delete",         true)
+
+  @@index([tenantId, active])
 }

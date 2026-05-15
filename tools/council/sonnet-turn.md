@@ -955,3 +955,21 @@ Governor decision: App #3 domain OR E5 (principle slice backfill) first.
 
 ## First action
 Read Turn 43 full spec, then check current schema for context.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 44 — S032-B: Notification + WebhookEndpoint)
+
+## Directive: 2 new models + checkMembership guard stub
+1. Notification model: tenantId/userId/type/title/body/readAt/actionUrl, user-scoped read/update
+2. WebhookEndpoint model: tenantId/url/secret/events[]/active/lastTriggeredAt, staff-only create/update
+3. Add relations from Tenant to both models
+4. Add checkMembership(['owner','admin']) stub to security/guards.ts
+
+## Constraints
+- db:push deferred to Codespaces — zenstack generate only locally
+- WebhookEndpoint write: staff-only via ZenStack; owner/admin via API-layer guard (guards.ts)
+- Read Turn 44 before writing any policies
+
+## First action
+Read Turn 44 full spec, then add to schema.

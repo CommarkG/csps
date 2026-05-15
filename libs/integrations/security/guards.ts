@@ -51,3 +51,22 @@ export async function getMembershipRole(
   })
   return (membership?.role as MembershipRole) ?? null
 }
+
+/**
+ * Convenience wrapper — checks if user is owner or admin in the given tenant.
+ * Used at API layer for WebhookEndpoint and other owner/admin-only operations.
+ *
+ * Usage:
+ *   if (!await checkMembership(db, userId, tenantId, staffRole)) {
+ *     return NextResponse.json({ error: 'forbidden' }, { status: 403 })
+ *   }
+ */
+export async function checkMembership(
+  db: PrismaClient,
+  userId: string,
+  tenantId: string,
+  staffRole?: string | null,
+  requiredRoles: MembershipRole[] = ['owner', 'admin'],
+): Promise<boolean> {
+  return checkMembershipPermission(db, userId, tenantId, requiredRoles, staffRole)
+}

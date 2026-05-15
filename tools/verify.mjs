@@ -462,6 +462,12 @@ const CYCLES = [
     command: 'node tools/validators/validate-opus-chat-jump-freshness.mjs',
     parse_output: (out) => { const m = out.match(/turns=(\d+) session=(\S+) has_chat_jump=(\w+)/); return m ? { turns: Number(m[1]), session: m[2], has_chat_jump: m[3] === 'true' } : {}; },
   },
+  {
+    // ADR-0027 Phase 1 LIVE S032 — scope_level on governed artifacts (206 missing, advisory until backfill)
+    name: 'scope_level_declared',
+    command: 'node tools/validators/validate-scope-level-declared.mjs',
+    parse_output: (out) => { const m = out.match(/checked=(\d+) missing=(\d+) invalid=(\d+) exempt=(\d+)/); return m ? { checked: Number(m[1]), missing: Number(m[2]), invalid: Number(m[3]), exempt: Number(m[4]) } : {}; },
+  },
   // P-ARCH-030: validate-app-scope-isolation.mjs (week-4)
   {
     name: 'core_contamination',

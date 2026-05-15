@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-15T05:13:04.487Z
-- finished_at: 2026-05-15T05:13:31.065Z
+- ran_at: 2026-05-15T05:16:46.296Z
+- finished_at: 2026-05-15T05:17:11.625Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-15T05:13:04.487Z",
-    "finished_at": "2026-05-15T05:13:31.065Z",
+    "ran_at": "2026-05-15T05:16:46.296Z",
+    "finished_at": "2026-05-15T05:17:11.625Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7,
+        "duration_seconds": 6.3,
         "packages_resolved": null
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.9,
         "principles_loaded": 61,
         "findings_total": 3
       },
@@ -45,7 +45,7 @@
         "scanned": 368,
         "errors": 0,
         "warnings": 13,
-        "exempt": 279
+        "exempt": 280
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -184,7 +184,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.4,
         "files": 117,
         "links": 520,
         "broken": 40
@@ -300,7 +300,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 20,
-        "validators": 109,
+        "validators": 110,
         "models": 0,
         "advisories": 8
       },
@@ -396,7 +396,7 @@
         "command": "node tools/validators/validate-no-laptop-secrets.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.3,
         "apps": 4,
         "advisories": 3
       },
@@ -457,12 +457,23 @@
         "has_chat_jump": false
       },
       {
+        "name": "scope_level_declared",
+        "command": "node tools/validators/validate-scope-level-declared.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "checked": 207,
+        "missing": 206,
+        "invalid": 0,
+        "exempt": 1
+      },
+      {
         "name": "core_contamination",
         "command": "node tools/validators/validate-core-contamination.mjs",
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 136,
+        "checked": 137,
         "blocking": 0,
         "advisories": 0
       },
@@ -519,7 +530,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -950,9 +961,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 110,
+        "validators_checked": 111,
         "orphans": 0,
-        "registered": 110
+        "registered": 111
       },
       {
         "name": "token_budget_validate",
@@ -1039,7 +1050,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.1
+        "duration_seconds": 6.1
       },
       {
         "name": "audit_runner_full_pass",

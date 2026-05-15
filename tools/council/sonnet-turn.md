@@ -938,3 +938,20 @@ S031: CLOSED
 
 ## S032 first action
 Governor decision: App #3 domain OR E5 (principle slice backfill) first.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 43 — Schema additions)
+
+## Directive: 3 schema changes
+1. ADD viewer to MembershipRole enum after member
+2. ADD write policies to UserTenant model — check ZenStack auth().memberRole syntax first
+3. ADD plan/features/limits to Tenant model
+
+## Constraints understood
+- Check ZenStack docs for auth().memberRole before writing policy (may need API-layer guard instead)
+- pnpm db:push requires Supabase — will run zenstack generate locally, db:push may be deferred
+- Run node tools/verify.mjs exit_code=0 before committing
+
+## First action
+Read Turn 43 full spec, then check current schema for context.

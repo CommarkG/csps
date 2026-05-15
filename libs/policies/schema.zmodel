@@ -116,6 +116,7 @@ enum MembershipRole {
   owner   // created the tenant; full control
   admin   // invited admin; can manage members + billing
   member  // standard member; app-level permissions only
+  viewer  // read-only access; cannot create or modify anything
 
   @@schema("public")
 }
@@ -160,6 +161,12 @@ model Tenant extends Base {
   stripeCustomerId     String?
   stripeSubscriptionId String?
   subscriptionStatus   TenantSubscriptionStatus @default(free)
+  // Plan tier — separate from billing status (free/pro/enterprise/custom)
+  plan                 String                   @default("free")
+  // Feature flags enabled for this tenant (e.g. ["ai-assist", "webhooks"])
+  features             String[]                 @default([])
+  // Resource limits override (null = use plan defaults)
+  limits               Json?
 
   members          UserTenant[]
   projects         Project[]
@@ -192,6 +199,13 @@ model UserTenant extends Base {
   @@schema("public")
   @@allow("read", auth().id == userId || auth().tenantId == tenantId)
   @@allow("read", auth().staffRole != null)
+  // Write policies: membership changes require owner/admin — enforced at API layer.
+  // ZenStack auth() returns the User context (id, tenantId, staffRole) NOT UserTenant.role,
+  // so role-gated create/update is implemented in libs/integrations/security/guards.ts
+  // via checkMembershipPermission(userId, tenantId, requiredRole).
+  // Staff can always manage memberships.
+  @@allow("create", auth().staffRole != null)
+  @@allow("update", auth().staffRole != null)
   @@deny("delete", true)
 
   @@index([userId])

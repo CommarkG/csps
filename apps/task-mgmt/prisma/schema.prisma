@@ -58,6 +58,9 @@ model Tenant {
   stripeCustomerId     String?
   stripeSubscriptionId String?
   subscriptionStatus   TenantSubscriptionStatus  @default(free)
+  plan                 String                    @default("free")
+  features             String[]                  @default([])
+  limits               Json?
 
   members      UserTenant[]
   projects     Project[]

@@ -70,3 +70,35 @@ export async function checkMembership(
 ): Promise<boolean> {
   return checkMembershipPermission(db, userId, tenantId, requiredRoles, staffRole)
 }
+
+/**
+ * Throws a 402 Payment Required error if the tenant's plan doesn't meet the required tier.
+ * Use at the top of API routes that require paid features.
+ *
+ * Usage:
+ *   await requiresTier(tenant.plan, 'pro')
+ */
+export function requiresTier(currentPlan: string, requiredPlan: 'pro' | 'enterprise'): void {
+  const TIER_ORDER = { free: 0, pro: 1, enterprise: 2 }
+  const current = TIER_ORDER[currentPlan as keyof typeof TIER_ORDER] ?? 0
+  const required = TIER_ORDER[requiredPlan]
+  if (current < required) {
+    const err = new Error(`This feature requires ${requiredPlan} plan or higher`)
+    ;(err as NodeJS.ErrnoException).code = '402'
+    throw err
+  }
+}
+
+/**
+ * Higher-order component placeholder for future middleware chaining.
+ * Wraps a Next.js API route handler — reserved for cross-cutting security concerns.
+ * Currently passes through; future: add rate limiting, audit logging, security headers.
+ */
+export function withSecurity<T>(
+  handler: (...args: unknown[]) => Promise<T>
+): (...args: unknown[]) => Promise<T> {
+  return async (...args: unknown[]) => {
+    // Future: inject rate limiting, audit, security headers
+    return handler(...args)
+  }
+}

@@ -973,3 +973,17 @@ Read Turn 43 full spec, then check current schema for context.
 
 ## First action
 Read Turn 44 full spec, then add to schema.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 45 — S032-C: Security Module)
+
+## Directive: 10 steps for libs/integrations/security/
+Key constraints:
+- Check existing API route prisma import pattern before writing audit.ts
+- guards.ts already partially built — extend, don't replace
+- rate-limit.ts needs UPSTASH env vars (placeholder only)
+- .env.local = B_ZERO_LAPTOP_DEPENDENCY — placeholders only
+
+## First action
+Read Turn 45 RZF findings, check existing API pattern for prisma imports.

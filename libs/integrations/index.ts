@@ -5,6 +5,13 @@
 // This kills the 6-level relative import smell (CSEP-S014-001 RANK 2).
 
 export { isSessionReady } from './auth'
+// Security module — re-exported for convenience
+export { securityHeaders } from './security/headers'
+export { PaginationSchema, IdSchema, TenantScopeSchema, DateRangeSchema } from './security/validation'
+export { auditLog } from './security/audit'
+export { checkMembership, checkMembershipPermission, getMembershipRole, requiresTier, withSecurity } from './security/guards'
+export { rateLimitUser, rateLimitAuth } from './security/rate-limit'
+export { withFallback, withRetry } from './security/resilience'
 
 export { handleClerkWebhook } from './clerk/webhook-handler'
 export type { CspsDb } from './clerk/webhook-handler'

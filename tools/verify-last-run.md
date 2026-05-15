@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-15T05:16:46.296Z
-- finished_at: 2026-05-15T05:17:11.625Z
+- ran_at: 2026-05-15T14:05:50.505Z
+- finished_at: 2026-05-15T14:06:28.127Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-15T05:16:46.296Z",
-    "finished_at": "2026-05-15T05:17:11.625Z",
+    "ran_at": "2026-05-15T14:05:50.505Z",
+    "finished_at": "2026-05-15T14:06:28.127Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.3,
+        "duration_seconds": 11.2,
         "packages_resolved": null
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1,
         "principles_loaded": 61,
         "findings_total": 3
       },
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 368,
+        "scanned": 371,
         "errors": 0,
         "warnings": 13,
         "exempt": 280
@@ -114,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -184,7 +184,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.4,
+        "duration_seconds": 0.2,
         "files": 117,
         "links": 520,
         "broken": 40
@@ -338,7 +338,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "sections": 17,
+        "sections": 18,
         "applied_yes": 0,
         "cited": 0,
         "advisories": 0
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 339,
-        "clean": 339,
+        "checked": 341,
+        "clean": 341,
         "blocking": 0,
         "registry": 48
       },
@@ -396,7 +396,7 @@
         "command": "node tools/validators/validate-no-laptop-secrets.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.1,
         "apps": 4,
         "advisories": 3
       },
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 529,
+        "scanned": 531,
         "advisory": 85
       },
       {
@@ -452,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 40,
+        "turns": 46,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -530,7 +530,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -588,7 +588,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 110
+        "validators": 111
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -635,7 +635,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_scanned": 13,
+        "files_scanned": 19,
         "violations": 0
       },
       {
@@ -668,7 +668,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -1050,7 +1050,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.1
+        "duration_seconds": 11.7
       },
       {
         "name": "audit_runner_full_pass",

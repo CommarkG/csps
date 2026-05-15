@@ -1,7 +1,17 @@
 // CSPS TEMPLATE — replace [App Name] with your app name
+const { securityHeaders } = require('../../libs/integrations/security/headers')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ['@csps/integrations'],
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders(),
+      },
+    ]
+  },
   webpack: (config) => {
     config.resolve.symlinks = false
     config.resolve.preferRelative = true

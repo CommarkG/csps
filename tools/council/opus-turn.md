@@ -1,3 +1,749 @@
+# Opus Turn 46 — S032-B Q1/Q2 Answers | S032-C Directive Approved
+
+**State:** S032-B done (commit c29086a) | Upstash .env.local saved | S032-C directive approved
+
+**Q1 — WebhookEndpoint.secret:** Plain String for MVP (Supabase encrypts at rest). API layer must never return `secret` in list/get responses. Add `stripSecret()` helper to guards.ts. Schema comment: `// TODO: encrypt AES-256 before first production webhook customer`. Not a blocker.
+
+**Q2 — Security headers location:** `next.config.js` only. Static headers (CSP/HSTS/X-Frame) at CDN level = no compute cost, works even if middleware fails. Middleware needed only for nonce-based CSP (drops 'unsafe-inline') — future enhancement.
+
+**Upstash:** Configured. .env.local saved. rate-limit.ts unblocked.
+
+**S032-C directive (Turn 45): approved as-is. Paste to Sonnet.**
+
+*OPUS-2 Turn 46 | Q1+Q2 answered | S032-C approved*
+*OPUS-2 | S032 | 2026-05-15*
+
+---
+
+# Opus Turn 45 — S032-C Security Module Directive
+
+**State:** S032-B pending | Upstash csps-rate-limit live (eu-west-1) | .env.local saved
+
+---
+
+## SONNET DIRECTIVE — S032-C (Security Module: libs/integrations/security/)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 45 S032-C section — build the security module in `libs/integrations/security/`: (1) run `pnpm add --filter @csps/integrations @upstash/ratelimit @upstash/redis zod` to install dependencies; (2) create `libs/integrations/security/README.md` with `mini_tree_root: true` + `sub_files:` listing all 6 files below; (3) create `libs/integrations/security/headers.ts` — exports `securityHeaders()` function returning Next.js headers config array with: `Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none'`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`, `Strict-Transport-Security: max-age=31536000; includeSubDomains`; (4) create `libs/integrations/security/validation.ts` — exports common Zod schemas: `PaginationSchema` (page/limit), `IdSchema` (uuid string), `TenantScopeSchema` (tenantId uuid), `DateRangeSchema` (from/to optional dates); (5) create `libs/integrations/security/audit.ts` — exports `auditLog({ tenantId, actorId, action, resourceType, resourceId, data? })` function that writes to AuditEvent model via prisma (import prisma from `@csps/db` or direct); (6) create `libs/integrations/security/guards.ts` — exports `requiresTier(plan: string)` (throws 402 if tenant plan doesn't match), `checkMembership(userId, tenantId, roles: string[])` (returns boolean from UserTenant lookup), `withSecurity(handler)` HOC placeholder (calls handler, reserved for future middleware chaining); (7) create `libs/integrations/security/rate-limit.ts` — imports `@upstash/ratelimit` + `@upstash/redis`, exports `rateLimitUser(userId: string)` (100 req/min sliding window) and `rateLimitAuth(ip: string)` (20 req/15min fixed window) both returning `{ success: boolean, reset: number }`; env vars: `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`; (8) create `libs/integrations/security/resilience.ts` — exports `withFallback<T>(primary, fallback, auditLabel)` async function per Turn 42 §1 circuit breaker pattern; (9) update `apps/template/next.config.js` to import `securityHeaders` from `@csps/integrations/security/headers` and add to `headers()` config; (10) update `apps/budget-planner/next.config.js` same way; (11) add `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` to `apps/budget-planner/.env.local` (copy from root `.env.local`) and to `.env.platform.example` as placeholders; then `node tools/verify.mjs exit_code=0` before committing.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Anything missed?
+  Findings: 1 — `audit.ts` needs access to the Prisma client. If `@csps/db` workspace doesn't exist, Sonnet should import from `@prisma/client` directly or check what the existing pattern is in apps/budget-planner. Add: "check how existing API routes import prisma and match that pattern."
+  Update: added to directive as "import prisma from `@csps/db` or direct — check existing pattern."
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+*OPUS-2 Turn 45 | S032-C security module | 6 files + README + next.config.js updates + env wiring*
+*OPUS-2 | S032 | 2026-05-15*
+
+---
+
+# Opus Turn 44 — S032-B Directive + Q1/Q2 Answers + EP Harvesting Position
+
+**State:** S032-A done (commit e1e493c) | String[] + MembershipRole.viewer + Tenant.plan/features/limits live
+
+---
+
+## Q1 — String[] with PostgreSQL multiSchema mode
+
+**Yes, works correctly.** PostgreSQL natively supports `TEXT[]` arrays. Prisma maps `String[]` → `TEXT[]`. multiSchema mode only affects schema routing, not column types. The `@default([])` empty array default is valid Prisma syntax for PostgreSQL. No compatibility issues.
+
+## Q2 — pnpm db:push: Vercel or Codespaces?
+
+**Codespaces. Not Vercel.**
+
+Vercel runs builds (`pnpm build`) — never schema migrations. Pushing migrations via deployment is dangerous (build failure = blocked deploy + stuck migration). The correct approach per B_ZERO_LAPTOP_DEPENDENCY:
+- **Codespaces**: run `pnpm db:push` directly using DIRECT_URL Supabase connection (available in Codespaces secrets)
+- **GitHub Action** (longer term): trigger `pnpm db:push` on schema.zmodel changes to main — with Supabase credentials as repository secrets
+
+For now: Codespaces is the mechanism. When Governor opens Codespaces, run `pnpm db:push` once to push e1e493c schema changes to Supabase.
+
+## EP Harvesting — Architectural Position
+
+**Current design is correct. Do not automate EP bodies.**
+
+EP creation requires recognizing "this is a recurring pattern" — that judgment is AI-level cognition, not mechanical. The CEC trigger → Sonnet writes EP is the right architecture. What CAN be automated is the stub: when CEC fires, auto-create `EP-NNN-stub.md` with title + session + date, Sonnet fills the body. This reduces friction without removing judgment. Add to partial-processes tracker as a future enhancement. No action now.
+
+---
+
+## SONNET DIRECTIVE — S032-B (Notification + WebhookEndpoint Models)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 44 S032-B section — in `libs/policies/schema.zmodel` add two models: (1) `Notification extends Base` with fields `tenantId String`, `userId String`, `type String`, `title String`, `body String`, `readAt DateTime?`, `actionUrl String?` and policies `@@allow("read", auth().tenantId == tenantId && auth().id == userId)` + `@@allow("update", auth().id == userId)` + `@@deny("create,delete", true)` + `@@schema("public")` + `@@index([userId, createdAt])` + `@@index([tenantId, userId, readAt])`; (2) `WebhookEndpoint extends Base` with fields `tenantId String`, `url String`, `secret String`, `events String[] @default([])`, `active Boolean @default(true)`, `lastTriggeredAt DateTime?` and policies `@@allow("read", auth().tenantId == tenantId)` + `@@allow("create,update", auth().tenantId == tenantId && auth().staffRole != null)` + `@@deny("delete", true)` + `@@schema("public")` + `@@index([tenantId, active])`; also add relations from Tenant to both models; run `pnpm exec zenstack generate --schema libs/policies/schema.zmodel`; then `node tools/verify.mjs exit_code=0` before committing (db:push runs from Codespaces separately per B_ZERO_LAPTOP_DEPENDENCY).
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Anything missed?
+  Findings: 1 — WebhookEndpoint write policy says `auth().staffRole != null` (staff only). But customers should be able to configure their own webhooks — it should be `auth().tenantId == tenantId && auth().memberRole.role in ["owner","admin"]`. However, auth().memberRole is not valid ZenStack syntax. Use guards.ts approach (same as UserTenant): staff-only in ZenStack + role-check in API guard. Update directive: WebhookEndpoint create/update = staff-only in ZenStack; guards.ts `checkMembership(['owner','admin'])` at API layer.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+*OPUS-2 Turn 44 | S032-B directive | Q1: String[] ✅ | Q2: Codespaces not Vercel | EP: correct design, stub automation future*
+*OPUS-2 | S032 | 2026-05-15*
+
+---
+
+# Opus Turn 43 — S032 Schema Audit + Corrected Directives (Governor Ratified 5 Models)
+
+**State:** S032 ACTIVE | Governor ratified 5 schema additions | Schema read before directing
+
+---
+
+## Schema Audit: What Already Exists (B_VALIDATE_BEFORE_ASSUME applied)
+
+Reading schema.zmodel before directing — critical finding:
+
+| What I proposed | Actual state |
+|---|---|
+| AuditEvent model | ✅ ALREADY EXISTS — AppendOnlyBase, tenant-scoped, indexed, append-only @@deny |
+| TenantMemberRole model | ✅ UserTenant ALREADY has `role MembershipRole` enum (owner/admin/member) |
+| Tenant subscription fields | ✅ ALREADY has stripeCustomerId + stripeSubscriptionId + subscriptionStatus |
+| TenantSubscriptionStatus | ✅ ALREADY has free/trialing/active/cancelled enum |
+| Notification model | ❌ MISSING |
+| WebhookEndpoint model | ❌ MISSING |
+| Tenant.plan (pro/enterprise) | ❌ MISSING — subscriptionStatus is billing state, plan tier is separate |
+| Tenant.features[] | ❌ MISSING |
+| Tenant.limits JSON | ❌ MISSING |
+| MembershipRole.viewer | ❌ MISSING — enum only has owner/admin/member |
+| UserTenant write policies | ❌ MISSING — only read + deny-delete wired |
+
+**The ratified 5 models are partially done.** Actual gap is SMALLER and more targeted.
+
+---
+
+## Revised S032 Scope (4 Sessions)
+
+**S032-A (schema augmentation — SPI=0.5):**
+- ADD `viewer` to MembershipRole enum
+- ADD write policies to UserTenant (admin creates memberships, owner transfers ownership)
+- ADD to Tenant: `plan String @default("free")` + `features String[] @default([])` + `limits Json?`
+- pnpm db:push → verify exit_code=0
+
+**S032-B (new models — SPI=0.5):**
+- ADD Notification model (per-user, per-tenant, append-style with readAt)
+- ADD WebhookEndpoint model (per-tenant, admin-only write, url + secret + events[])
+- pnpm db:push → verify exit_code=0
+
+**S032-C (security module — SPI=0.4):**
+- BUILD libs/integrations/security/: headers.ts + validation.ts + audit.ts + guards.ts
+- DEFER: rate-limit.ts until Governor sets up Upstash Redis (not a Sonnet action)
+- Wire security headers into apps/template/next.config.js
+
+**S032-D (enforcement — SPI=0.1):**
+- BUILD validate-security-headers.mjs (BLOCKING if app missing CSP)
+- BUILD L2_DOMAIN_SECURITY.md in .claude/core-spines/
+- Wire validator into verify.mjs
+
+**Governor action required before S032-C rate-limit.ts:** Create Upstash Redis account (free tier works) → get UPSTASH_REDIS_URL + UPSTASH_REDIS_TOKEN → add to .env.local + .env.example. This is a 5-minute setup at upstash.com.
+
+---
+
+## SONNET DIRECTIVE — S032-A (Schema Augmentation)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 43 S032-A section — in `libs/policies/schema.zmodel`: (1) ADD `viewer` to MembershipRole enum after `member`; (2) ADD write policies to UserTenant model — `@@allow("create", auth().tenantId == tenantId && auth().memberRole.role in ["owner","admin"])` and `@@allow("update", auth().tenantId == tenantId && auth().memberRole.role == "owner")` and `@@deny("update", future().role == "owner" && auth().memberRole.role != "owner")`; (3) ADD three fields to Tenant model: `plan String @default("free")`, `features String[] @default([])`, `limits Json?`; run `pnpm exec zenstack generate --schema libs/policies/schema.zmodel` then `pnpm db:push`; then `node tools/verify.mjs exit_code=0` before committing.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Did I miss anything?
+  Findings: 1 — The UserTenant write policy syntax needs careful checking. `auth().memberRole.role` may not be valid ZenStack syntax — auth() returns the User model, not UserTenant. The correct approach may be an API-layer guard instead of ZenStack policy for role-based writes. Sonnet must check ZenStack docs/existing pattern before writing the policy. Added: "check ZenStack auth() syntax first — if unsupported, implement as API-layer check in libs/integrations/security/guards.ts instead."
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+## CEC — POSITIVE
+Significant event: Schema read before directing prevented building 3 models that already existed
+Essence: B_VALIDATE_BEFORE_ASSUME applied to schema — saved an entire session of duplicate work
+Walk:
+  Turn 39/41 revised: gap map corrected ✅
+  S032 scope: tighter, more precise, faster ✅
+  UserTenant write policy: flagged as ZenStack syntax risk → Sonnet checks before writing ✅
+
+*OPUS-2 Turn 43 | Schema audit caught 3 existing models | S032-A directive with ZenStack syntax caveat*
+*OPUS-2 | S032 | 2026-05-15*
+
+---
+
+# Opus Turn 42 — Connectivity Architecture + Security-as-DNA Integration
+
+**Governing spine:** ARCH L2 (platform architecture) | GVRN L2 (constitutional rules)
+
+---
+
+## §1 — Connectivity: Bi-Directional Updates + Notifications + Risk
+
+### Five Connectivity Layers
+
+```
+Layer A — Client → Server (already working):
+  Next.js API routes + server actions → Zod validation → ZenStack → Postgres
+
+Layer B — Server → Client (missing — real-time push):
+  SSE (Server-Sent Events) at GET /api/stream
+  Client: const source = new EventSource('/api/stream')
+  Events: data-changed | notification | job-progress | system-alert
+  Reconnect: automatic (EventSource spec — no code needed)
+  Fallback: 30-second polling if SSE fails (React Query refetchInterval)
+
+Layer C — DB → Server (Supabase Realtime — optional, premium):
+  pg_notify triggers → Supabase broadcasts → Server listens
+  Use case: multi-server deployments where one server needs to know
+  what another did. Not needed until 10K+ concurrent users.
+  Default: skip. Use Inngest events for inter-service communication.
+
+Layer D — Server → External (outbound webhooks):
+  Customer registers endpoint URL in settings suite
+  Event fires → Inngest job → HMAC-SHA256 signed payload → HTTP POST
+  Retry: 3 attempts (1s → 10s → 60s exponential backoff)
+  Dead letter: failed after 3 → mark as failed + alert customer
+
+Layer E — External → Server (inbound webhooks — already partial):
+  Pattern: apps/*/api/webhooks/[provider]/route.ts
+  Providers wired: Clerk ✅ | Stripe 🔶 | Others: add as needed
+  Security: verify signature before processing (provider-specific)
+```
+
+### Notification Architecture (Complete)
+
+```
+Notification type    │ Trigger         │ Delivery        │ Storage
+─────────────────────┼─────────────────┼─────────────────┼──────────────
+Toast (ephemeral)    │ User action     │ SSE → UI        │ None
+Bell/center          │ System event    │ SSE + DB        │ Notification model
+Email (transactional)│ Lifecycle event │ Inngest + Resend│ AuditEvent
+Email (digest)       │ Scheduled job   │ Inngest + Resend│ DigestQueue model
+Webhook (outbound)   │ Data mutation   │ Inngest + HTTP  │ WebhookDelivery log
+Push (browser)       │ High-priority   │ OneSignal       │ Optional module
+```
+
+**Schema additions for notifications:**
+```zmodel
+model Notification {
+  id         String    @id @default(cuid())
+  tenantId   String
+  userId     String
+  type       String    // "invite" | "trial-expiry" | "billing" | "system"
+  title      String
+  body       String
+  readAt     DateTime?
+  createdAt  DateTime  @default(now())
+  @@allow("read", auth().tenantId == tenantId && auth().id == userId)
+  @@allow("update", auth().id == userId)  // mark read
+}
+
+model WebhookEndpoint {
+  id         String    @id @default(cuid())
+  tenantId   String
+  url        String
+  secret     String    // HMAC secret, stored encrypted
+  events     String[]  // which event types to deliver
+  active     Boolean   @default(true)
+  @@allow("all", auth().tenantId == tenantId && auth().memberRole == "admin")
+}
+```
+
+### Connectivity Risk Management
+
+| Risk | Probability | Impact | Mitigation |
+|---|---|---|---|
+| SSE connection drops | HIGH (mobile networks) | LOW | Auto-reconnect + 30s polling fallback |
+| Webhook delivery fails | MEDIUM | HIGH | Inngest retry + dead letter + customer alert |
+| Optimistic update conflicts | LOW | MEDIUM | onError rollback + React Query invalidation |
+| Inngest queue overflow | LOW | HIGH | Per-tenant job limit (100/hour) + backpressure alert |
+| Email provider down | LOW | HIGH | Circuit breaker → log to DB → retry when up |
+| SSE overload (too many connections) | LOW (at scale) | HIGH | Connection limit per tenant (1 per browser tab) |
+| Stale real-time data | MEDIUM | LOW | Version field on models + client conflict resolution |
+
+**Circuit breaker pattern (universal):**
+```typescript
+// libs/integrations/resilience.ts
+export async function withFallback<T>(
+  primary: () => Promise<T>,
+  fallback: (error: Error) => Promise<T>,
+  auditOnFallback: string
+): Promise<T> {
+  try { return await primary(); }
+  catch (e) {
+    await auditLog(auditOnFallback, { error: e.message });
+    return fallback(e as Error);
+  }
+}
+// Usage: withFallback(sendEmail, logToQueue, 'email_circuit_open')
+```
+
+---
+
+## §2 — Security as CSPS DNA: How Everything Works Together
+
+### The Security Flow (Every API Request)
+
+```
+HTTP Request
+    ↓
+[1] MIDDLEWARE (Clerk auth)
+    auth().id extracted → tenantId resolved from JWT → attached to request
+    Missing token → 401. Wrong tenant → 403.
+    ↓
+[2] SECURITY HEADERS (applied via next.config.js)
+    Content-Security-Policy | X-Frame-Options: DENY | HSTS | Referrer-Policy
+    Applied globally — no app can miss them (validate-security-headers.mjs BLOCKS if missing)
+    ↓
+[3] RATE LIMITING (Upstash Redis middleware)
+    Key: `${userId}:${route}` → 100 requests/min
+    Key: `ip:${ip}:auth` → 20 attempts/15min (brute force protection)
+    Hit limit → 429 with Retry-After header
+    ↓
+[4] INPUT VALIDATION (Zod at route boundary)
+    const body = RequestSchema.parse(await req.json()) → throws 400 if invalid
+    Never: const body = await req.json() (banned by AGENTS.md Hard NO)
+    ↓
+[5] FEATURE GATE (subscription tier check)
+    requiresTier('pro') → checks SubscriptionTier for tenant
+    Not subscribed → throws UpgradeRequired (402) → client shows upgrade overlay
+    ↓
+[6] ZENSTACK ENHANCED DB (RLS enforced at query level)
+    const db = enhance(prisma, { user: auth() })
+    All queries automatically scoped: WHERE tenant_id = $1 (injected by ZenStack)
+    @@deny rules compile to PostgreSQL RLS policies (enforced in DB, not app code)
+    Banned: prisma.$queryRaw for tenant-scoped data (bypasses ZenStack — PERF-001)
+    ↓
+[7] BUSINESS LOGIC (app-specific code)
+    Pure domain logic. No auth checks here — ZenStack handles it below.
+    ↓
+[8] AUDIT LOG (mandatory for mutations)
+    auditLog({ action: 'entity.create', resourceId: id, metadata: {...} })
+    Written to AuditEvent model. Satisfies GDPR Art.30.
+    ↓
+[9] RESPONSE
+    JSON + security headers (set by middleware, not per-route)
+```
+
+### Security Mapped to Core Spines (CSPS DNA)
+
+```
+L1_CORE_GVRN.md (constitutional — sealed):
+  "Every API request passes through 9 security layers in order"
+  "ZenStack @@deny before @@allow — deny-first"
+  "No raw prisma for tenant-scoped data"
+  "AuditEvent is mandatory for mutations — GDPR constitutional"
+
+L1_CORE_ARCH.md (architectural — sealed):
+  "Security lives in libs/integrations/security/ — every app inherits"
+  "Schema.zmodel is the access control layer — not API code"
+  "SubscriptionTier + TenantMemberRole in shared schema"
+
+L2_DOMAIN_SECURITY.md (NEW — needs creation):
+  "6 mandatory surfaces: headers, rate-limit, validation, gates, ZenStack, audit"
+  "Vocabulary: withSecurity() | validate() | auditLog() | requiresTier() | rateLimit()"
+  "Risk management: circuit breaker pattern for all external calls"
+
+L3_INSTANCES_SECURITY (per-app):
+  "apps/budget-planner/.env.local — UPSTASH_REDIS_URL"
+  "apps/budget-planner/next.config.js — imports security headers"
+  "apps/budget-planner/middleware.ts — imports rate limit middleware"
+```
+
+### ZenStack Vocabulary (Security-Specific)
+
+These terms are CSPS canonical (from principles.yaml):
+
+| Term | Meaning | Example |
+|---|---|---|
+| `auth()` | Current user context in ZModel | `auth().tenantId == tenantId` |
+| `auth().staffRole` | Staff status check | `@@allow("read", auth().staffRole != null)` |
+| `auth().memberRole` | Tenant role (admin/member/viewer) | `@@allow("update", auth().memberRole == "admin")` |
+| `future()` | Post-update field value | `@@deny("update", future().staffRole != staffRole && auth().staffRole == null)` |
+| `@@deny before @@allow` | Deny-first ordering | Always write denies first |
+| `enhance(prisma, { user })` | ZenStack client with auth context | Never use bare prisma for tenant data |
+
+### Mini-Tree Structure for Security (libs/integrations/security/)
+
+```yaml
+# libs/integrations/security/README.md
+---
+mini_tree_root: true
+sub_files:
+  - ./headers.ts       # CSP + HSTS + security headers (next.config.js integration)
+  - ./rate-limit.ts    # Upstash Redis per-user + per-IP rate limiting
+  - ./validation.ts    # Zod standard schemas (PaginationSchema, IdSchema, etc.)
+  - ./audit.ts         # AuditEvent writer (GDPR Art.30 mandatory)
+  - ./guards.ts        # requiresTier() | checkPermission() | withSecurity() HOC
+  - ./resilience.ts    # Circuit breaker + withFallback() pattern
+depth_tier_authored: L2
+core_spine: ARCH
+schema_anchor: security-integration
+```
+
+Each sub-file is at L2 (implementation). The L1 interface is in `types.ts` (ISecurityConfig, IAuditEvent) — never changes. The L3 (app-specific) lives in each app's `.env.local` and `next.config.js`.
+
+### Depth Levels Applied to Security
+
+```
+L1 (INTERFACE — sealed, never changes):
+  type AuditAction = 'create' | 'update' | 'delete' | 'auth' | 'export'
+  interface IAuditEvent { tenantId, userId, action, resourceId, metadata }
+  interface IFeatureGate { tier: 'free' | 'pro' | 'enterprise' }
+
+L2 (IMPLEMENTATION — can swap providers):
+  audit.ts → writes to Postgres AuditEvent via Prisma
+  rate-limit.ts → reads/writes Upstash Redis
+  headers.ts → generates next.config.js headers config
+  Swappable: swap Upstash for another Redis provider without changing interfaces
+
+L3 (INSTANCES — per-app configuration):
+  apps/budget-planner/.env.local: UPSTASH_REDIS_URL, UPSTASH_REDIS_TOKEN
+  apps/budget-planner/next.config.js: imports from @csps/integrations/security/headers
+  apps/budget-planner/middleware.ts: imports from @csps/integrations/security/rate-limit
+```
+
+### Security + Connectivity: Integration Points
+
+```
+SSE security:
+  GET /api/stream → auth required (Clerk session cookie)
+  Rate limited: 1 SSE connection per user (not per IP)
+  Events filtered: ZenStack-equivalent scope (tenantId check before sending)
+  CORS: only same-origin (default in Next.js)
+
+Webhook security (outbound):
+  Payload signed: HMAC-SHA256(secret, JSON.stringify(payload))
+  Customer verifies: crypto.timingSafeEqual(computedSig, receivedSig)
+  Replay prevention: include timestamp, reject if > 5 minutes old
+
+Webhook security (inbound, Stripe/Clerk):
+  Already wired in apps/template/api/webhooks/[provider]/route.ts
+  Pattern: verify signature → process → return 200 (don't expose errors)
+
+File upload security:
+  Client requests presigned URL from /api/storage/presign
+  Server validates: file type + size + tenant quota
+  R2 serves directly: never expose R2 credentials to client
+
+Background job security:
+  Inngest functions receive tenantId in event data (not from env)
+  DB access within job: always use ZenStack enhance(prisma, { user: { tenantId } })
+  No job should ever have cross-tenant data access
+```
+
+---
+
+## §3 — New Core Spine Document Needed
+
+`L2_DOMAIN_SECURITY.md` must be created as part of S032-B (security module build). It is the canonical reference for:
+- The 9-layer security request flow (from §2)
+- CSPS security vocabulary (ZenStack terms)
+- Risk management patterns (circuit breaker)
+- Connectivity security rules (SSE, webhooks, jobs)
+- Compliance mapping (GDPR Art.30, SOC2 CC6)
+
+This document goes in `.claude/core-spines/` and is referenced by `L1_CORE_ARCH.md`.
+
+*OPUS-2 Turn 42 | Connectivity layers 5 defined | Security-as-DNA with CSPS vocabulary | Mini-tree structure for security | L2_DOMAIN_SECURITY.md specified*
+*OPUS-2 | 2026-05-15*
+
+---
+
+# Opus Turn 41 — Enterprise Infrastructure: Full Coverage + CSPS Gap Analysis
+
+**Governing spine:** ARCH L2 (platform architecture) + GVRN L2 (strategic direction)
+**DPR=1 on this input** — strategic parallel work while Sonnet completes #2+3+4+5
+
+---
+
+## §1 — Direct Answer: Is CSPS Enterprise Infrastructure?
+
+**Current state: Foundation-grade, not enterprise-grade.**
+
+CSPS is built on enterprise-grade PROVIDERS (Clerk, Supabase, Vercel, Stripe) — but the GLUE CODE that makes those providers enterprise-safe is largely missing. The providers can do the job; CSPS hasn't yet wired them together correctly for enterprise trust.
+
+**After Phase 1 build:** CSPS becomes more enterprise-ready than every vibe coding platform on the market. No competitor has pre-wired RBAC + feature gates + security headers + audit trail + SSO config. That's the moat.
+
+---
+
+## §2 — Enterprise Readiness Matrix (Industry Standard)
+
+What every serious enterprise procurement team checks before signing:
+
+### TIER 1 — Security & Compliance (Blocking for any enterprise sale)
+
+| Requirement | CSPS Status | Gap |
+|---|---|---|
+| Security headers (CSP, HSTS, X-Frame) | ❌ MISSING | libs/integrations/security/headers.ts |
+| Rate limiting (brute force + API abuse) | ❌ MISSING | Upstash Redis + middleware |
+| Input validation at every API boundary | ❌ MISSING | Zod schemas in libs/ |
+| Audit log (who did what when + IP) | ❌ MISSING | AuditEvent model + trigger |
+| Field-level security (staffRole) | ✅ SEC-001 done | ZenStack @@deny |
+| RLS (tenant isolation) | ✅ ZenStack | schema.zmodel policies |
+| HTTPS everywhere | ✅ Vercel | enforced by default |
+| Secrets never in code | ✅ .env pattern | .env.example enforces |
+| GDPR deletion pipeline | 🔶 partial | libs/integrations basics wired |
+| Dependency scanning | ❌ MISSING | npm audit in CI/CD |
+| Pen test / vulnerability disclosure | ❌ MISSING | Policy document needed |
+| SOC2 controls documented | ❌ MISSING | Requires audit trail first |
+
+### TIER 2 — Identity & Access Management
+
+| Requirement | CSPS Status | Gap |
+|---|---|---|
+| Auth (sign-in/up/out/webhook) | ✅ Clerk | wired |
+| MFA support | ✅ Clerk | Clerk handles |
+| SSO (SAML 2.0 / OIDC — Okta, Azure AD) | 🔶 Clerk Enterprise plan | config only — no build needed |
+| SCIM provisioning (auto user sync) | 🔶 Clerk Enterprise plan | config only — no build needed |
+| RBAC (team roles within tenant) | ❌ MISSING | TenantMemberRole model |
+| Custom roles (enterprise defines own) | ❌ MISSING | Future — after basic RBAC |
+| API tokens (machine-to-machine) | ❌ MISSING | Token model + middleware |
+| Service accounts | ❌ MISSING | Future — after API tokens |
+| IP allowlisting | ❌ MISSING | Middleware check |
+| Session timeout policies | ❌ MISSING | Clerk config + enforcement |
+
+**KEY INSIGHT on SSO:** Clerk already has full SAML SSO + SCIM built in. This is NOT a build — it's a plan upgrade + configuration. The settings suite (libs/components/settings/) just needs a "SSO Configuration" page that calls Clerk's API. This means enterprise SSO is weeks away, not months.
+
+### TIER 3 — Feature Control & Monetization
+
+| Requirement | CSPS Status | Gap |
+|---|---|---|
+| Subscription tiers (free/pro/enterprise) | ❌ MISSING | SubscriptionTier model |
+| Feature gates (tier → feature access) | ❌ MISSING | libs/integrations/feature-gates/ |
+| Usage limits per tier | ❌ MISSING | UsageLimit model or JSON field |
+| Upgrade flow (free → paid) | ❌ MISSING | Feature gate overlay + Stripe checkout |
+| Volume discounts | ❌ MISSING | Enterprise contracts |
+| Annual invoicing (not just credit card) | ❌ MISSING | Stripe invoicing mode |
+| Usage-based billing | ❌ MISSING | Stripe metered billing |
+
+### TIER 4 — Platform Services
+
+| Service | CSPS Status | Provider | Priority |
+|---|---|---|---|
+| Email (transactional) | ❌ MISSING | Resend | HIGH |
+| Background jobs / queue | ❌ MISSING | Inngest | HIGH |
+| Error monitoring | ❌ MISSING | Sentry | HIGH |
+| Cache (Redis) | ❌ MISSING | Upstash Redis | HIGH (shared with rate limiting) |
+| File storage | ❌ MISSING | Cloudflare R2 | MEDIUM |
+| Analytics (events) | ❌ MISSING | PostHog | MEDIUM |
+| Real-time (SSE/WebSockets) | ❌ MISSING | Native SSE | MEDIUM |
+| Webhook delivery (outbound) | ❌ MISSING | Custom + Inngest | MEDIUM |
+| AI/LLM | ❌ MISSING | Anthropic SDK | MEDIUM |
+| Search | ❌ MISSING | Algolia / meilisearch | LOW |
+| Push notifications | ❌ MISSING | OneSignal / Firebase | LOW |
+
+### TIER 5 — Reliability & Observability
+
+| Requirement | CSPS Status | Gap |
+|---|---|---|
+| Database backups | ✅ Supabase | handled |
+| Database replication | ✅ Supabase | handled |
+| Horizontal scaling | ✅ Vercel serverless | handled |
+| Connection pooling | ✅ pgBouncer | wired |
+| Status page | ❌ MISSING | BetterUptime (10 min setup) |
+| Error alerting | ❌ MISSING | Sentry + PagerDuty |
+| Application performance monitoring | ❌ MISSING | Vercel Analytics + Sentry |
+| Log aggregation | ❌ MISSING | Axiom / Logtail |
+| Uptime SLA documentation | ❌ MISSING | Policy document |
+
+### TIER 6 — Developer Platform (for apps with external developers)
+
+| Requirement | CSPS Status | Gap |
+|---|---|---|
+| REST API (documented, versioned) | 🔶 implicit | OpenAPI spec missing |
+| API authentication | ❌ MISSING | API key model |
+| OAuth 2.0 authorization | ❌ MISSING | Future |
+| Webhook system | ❌ MISSING | Event publishing + delivery |
+| SDK / client libraries | ❌ MISSING | Future |
+| Public docs / changelog | ❌ MISSING | docs site |
+| Rate limits documented | ❌ MISSING | after rate limiting built |
+
+### TIER 7 — Data Management (GDPR + Enterprise Data Rights)
+
+| Requirement | CSPS Status | Gap |
+|---|---|---|
+| Data export (full portability) | ❌ MISSING | Export pipeline per entity |
+| Right to erasure | 🔶 partial | deletion route exists, not complete |
+| Data residency (EU/US) | ❌ MISSING | Supabase region selection |
+| Audit log retention policy | ❌ MISSING | AuditEvent pruning schedule |
+| Data lineage | ❌ MISSING | Future |
+| Consent management | ❌ MISSING | Cookie banner + consent store |
+| DPA agreement | ❌ MISSING | Legal document |
+
+---
+
+## §3 — What CSPS Gets FREE from Providers (No Build Required)
+
+This is the key architectural advantage. Much of "enterprise infrastructure" is already handled:
+
+| Enterprise Feature | Provider | CSPS Action Needed |
+|---|---|---|
+| SSO (SAML + OIDC) | Clerk Enterprise | Plan upgrade + settings UI |
+| SCIM user provisioning | Clerk Enterprise | Plan upgrade + settings UI |
+| MFA enforcement | Clerk | Configuration in dashboard |
+| Database replication + failover | Supabase | Already active |
+| Automated backups | Supabase | 7-day retention active |
+| Connection pooling | pgBouncer / Supabase | Already wired |
+| Auto-scaling | Vercel serverless | Already active |
+| DDoS protection | Vercel Edge Network | Already active |
+| TLS/HTTPS enforcement | Vercel | Already active |
+| PCI compliance (Stripe) | Stripe | Card data never touches CSPS |
+
+**The build is smaller than it looks.** The constitutional gaps (security headers, RBAC, feature gates, audit log) are 4-6 weeks of Sonnet sessions. The provider integrations (SSO, SCIM) are configuration, not code.
+
+---
+
+## §4 — Background Jobs: The Missing Reliability Layer
+
+This is the most underappreciated gap. Without a queue system, CSPS has a hard ceiling:
+- Any operation taking > 10 seconds → Vercel timeout (30s limit)
+- Bulk email → synchronous, blocks the request
+- Large imports → timeout in production
+- Scheduled tasks → no mechanism exists
+- Webhook retries → no retry logic
+
+**Recommended solution: Inngest** (serverless-native, no Redis needed for jobs)
+
+```typescript
+// libs/integrations/jobs/inngest.ts
+import { Inngest } from "inngest";
+export const inngest = new Inngest({ name: "csps" });
+
+// Usage in any app:
+export const sendWelcomeEmail = inngest.createFunction(
+  { name: "Send Welcome Email" },
+  { event: "user/created" },
+  async ({ event }) => {
+    await sendEmail({ to: event.user.email, template: "welcome" });
+  }
+);
+```
+
+Every app imports from `@csps/integrations/jobs` — the queue is shared infrastructure, not per-app.
+
+**What Inngest enables:**
+- Trial expiry emails (scheduled, day 25 + day 29)
+- Weekly summary reports (scheduled, every Monday)
+- Bulk import processing (async, with progress)
+- Webhook delivery with retry (3 attempts, exponential backoff)
+- Large export generation (async, download link when ready)
+
+---
+
+## §5 — Complete Enterprise Infrastructure Architecture (Target State)
+
+```
+CONSTITUTIONAL LAYER (S0 — every app, no exceptions):
+├── auth/               ✅ Clerk (sign-in/up/webhook/JWT)
+├── database/           ✅ Supabase (Postgres + pgBouncer + backups)
+├── deployment/         ✅ Vercel (auto-scale + HTTPS + DDoS protection)
+├── security/           ❌ NEW: headers + rate-limit + audit + validation
+│   ├── headers.ts      CSP + HSTS + X-Frame-Options
+│   ├── rate-limit.ts   Upstash Redis per-user + per-IP
+│   ├── validation.ts   Zod schemas (standard shapes shared)
+│   └── audit.ts        AuditEvent writer (GDPR Art.30)
+├── rbac/               ❌ NEW: TenantMemberRole in schema.zmodel
+│   └── roles.ts        role check helpers (isAdmin, canEdit, etc.)
+└── feature-gates/      ❌ NEW: SubscriptionTier in schema.zmodel
+    └── gates.ts        requiresTier('pro') — throws upgrade error if not
+
+PLATFORM SERVICES (S1 — app opts in via app-manifest.yaml):
+├── email/              ❌ NEW: Resend + 5 base templates
+│   ├── resend.ts
+│   └── templates/      welcome | trial-expiry | upgrade | report | invite
+├── jobs/               ❌ NEW: Inngest (background jobs + scheduling)
+│   ├── inngest.ts      shared client
+│   └── functions/      sendEmail | generateReport | processImport
+├── storage/            ❌ NEW: Cloudflare R2 (file uploads)
+│   └── r2.ts           upload | download | delete | presigned URL
+├── cache/              ❌ NEW: Upstash Redis (shared with rate limiting)
+│   └── redis.ts        get | set | invalidate
+├── monitoring/         ❌ NEW: Sentry (error tracking)
+│   └── sentry.ts       captureException | captureEvent
+├── analytics/          ❌ NEW: PostHog (event tracking)
+│   └── events.ts       track | identify | group
+└── ai/                 ❌ NEW: Anthropic SDK
+    └── claude.ts       createMessage | streamMessage | withCache
+
+UX SYSTEM (S2 — libs/components/ workspace — MISSING ENTIRELY):
+├── onboarding/         archetype wizard (3Q → 5 archetypes)
+├── dashboard/          shell + 3 states (empty/loaded/error)
+├── settings/           5-page suite
+│   ├── profile/        name + avatar + timezone
+│   ├── billing/        plan + invoices + upgrade
+│   ├── team/           invite + roles + remove (RBAC frontend)
+│   ├── notifications/  email prefs + in-app prefs
+│   └── security/       SSO config + API keys + active sessions
+├── feature-gate/       upgrade overlay + pricing modal
+├── data-table/         filter + sort + paginate + bulk + export
+└── forms/              create/edit + multi-step + confirm dialog
+
+OUTPUT TEMPLATES (S3 — libs/templates/ workspace — MISSING ENTIRELY):
+├── landing-page/       hero + features + social proof + pricing + CTA
+├── email-sequence/     welcome → nurture → offer → re-engagement
+├── pricing-page/       3-tier table + FAQ + enterprise CTA
+├── proposal/           project scope + timeline + pricing + sign
+└── report/             branded data export with charts + summary
+
+RELIABILITY:
+├── Status page         ❌ BetterUptime (10 min setup, no code)
+├── Error alerting      ❌ Sentry → PagerDuty (config)
+├── APM                 ❌ Vercel Analytics + Sentry performance
+└── Log aggregation     ❌ Axiom (Vercel integration, 1 click)
+
+COMPLIANCE:
+├── Audit trail         ❌ AuditEvent model (Constitutional gap)
+├── Data export         ❌ Export API per entity
+├── GDPR erasure        🔶 Partial — completion needed
+├── SOC2 controls       ❌ Documented controls list (after audit trail)
+└── DPA agreement       ❌ Legal document (not a build)
+```
+
+---
+
+## §6 — The CSPS Competitive Position
+
+If CSPS builds Phase 1 (constitutional gaps), it becomes:
+
+**The only platform that gives you:**
+1. ✅ Auth + SSO (Clerk) — enterprise SSO without building it
+2. ✅ RBAC + custom team roles — team permissions pre-wired
+3. ✅ Feature gates + subscription tiers — monetization baked in
+4. ✅ Security headers + rate limiting — hardened by default
+5. ✅ Audit log — GDPR-ready from day one
+6. ✅ Constitutional governance — validators prevent regression
+7. ✅ 30-app scaffold — pnpm create:app in 60 seconds
+
+No competitor has all 7. Most have 1-2.
+
+---
+
+## §7 — Revised Build Priority (Including Enterprise Infrastructure)
+
+### Phase 1 — Constitutional Core (must have before ANY external user sees App #3)
+| Session | Item | SPI | Blocking |
+|---|---|---|---|
+| S032-A | Schema: SubscriptionTier + TenantMemberRole + AuditEvent | 0.5 | Everything |
+| S032-B | Security module: headers + rate-limit + validation + audit writer | 0.5 | Enterprise trust |
+| S032-C | Feature gates: requiresTier() + upgrade error | 0.3 | Monetization |
+| S032-D | validate-security-headers.mjs (BLOCKING validator) | 0.1 | Enforcement |
+
+### Phase 2 — Platform Services (needed for App #3 launch)
+| Session | Item | SPI |
+|---|---|---|
+| S033-A | Email: Resend + 5 templates | 0.4 |
+| S033-B | Jobs: Inngest + 3 functions (welcome email, trial expiry, report) | 0.4 |
+| S033-C | Monitoring: Sentry + PostHog | 0.3 |
+
+### Phase 3 — UX System (libs/components/ workspace)
+| Session | Item | SPI |
+|---|---|---|
+| S034-A | Onboarding wizard + archetype router | 0.5 |
+| S034-B | Dashboard shell + settings suite shell | 0.5 |
+| S034-C | Feature gate overlay + data table | 0.5 |
+
+### Phase 4 — App #3 (after Phase 1 minimum)
+App #3 can start after S032-A through S032-D. Phase 2+3 continue in parallel.
+
+*OPUS-2 Turn 41 | Enterprise infrastructure full coverage | CSPS gap analysis | Build priority revised*
+*OPUS-2 | 2026-05-15*
+
+---
+
 # Opus Turn 40 — Complete Core Map: Security + Modularity + Bundling Architecture
 
 **State:** S031 closing (Sonnet on #2+3+4+5) | DPR=1 — strategic parallel work

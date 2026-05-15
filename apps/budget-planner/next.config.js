@@ -1,8 +1,18 @@
+const { securityHeaders } = require('../../libs/integrations/security/headers')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ['@csps/integrations'],
   typescript: {
     ignoreBuildErrors: true,
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders(),
+      },
+    ]
   },
   webpack: (config) => {
     config.resolve.symlinks = false

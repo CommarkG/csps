@@ -1,3 +1,50 @@
+# Opus Turn 49 — S033-B Inngest Directive + Session Sequence Correction
+
+**State:** S033-A done (aa7ca69) | Email module live | S033-B = Inngest jobs (NOT db:push)
+
+---
+
+## Q1 — S033-B: db:push or Inngest? Correction on sequencing.
+
+**S033-B = Inngest jobs. db:push is NOT a session.**
+
+db:push is a Governor Codespaces action — it runs once from Codespaces terminal (`pnpm db:push`) and takes 2 minutes. Sonnet does not run db:push. It's been deferred since S032-A (schema changes Notification + WebhookEndpoint + Tenant plan/features). The Governor should run it from Codespaces when they have 2 minutes — it's not blocking any Sonnet session.
+
+Scope backfill script stays in S034, not S033-C. S033-C is Monitoring (Sentry + PostHog).
+
+**Correct S033 sequence:**
+- S033-A: Email ✅ (aa7ca69)
+- S033-B: Inngest jobs module (SPI=0.4) → now
+- S033-C: Monitoring — Sentry + PostHog (SPI=0.3)
+- S033 close → S034
+
+## Q2 — S033-D? No. S033 closes after C.
+
+S033 closes after S033-C (monitoring). No S033-D. S034 = scope backfill script + App #3 prep.
+
+---
+
+## SONNET DIRECTIVE — S033-B (Inngest Jobs Module)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 49 S033-B section — build `libs/integrations/jobs/`: (1) run `pnpm add --filter @csps/integrations inngest`; (2) create `libs/integrations/jobs/README.md` with `mini_tree_root: true` + `sub_files:`; (3) create `libs/integrations/jobs/inngest.ts` — exports `inngest = new Inngest({ id: "csps", signingKey: process.env.INNGEST_SIGNING_KEY })` with graceful handling when key not set; (4) create `libs/integrations/jobs/functions/send-welcome-email.ts` — Inngest function triggered by event `"user/created"`, calls `sendEmail(welcomeEmail({...}))` from `@csps/integrations/email`, retries 3 times; (5) create `libs/integrations/jobs/functions/check-trial-expiry.ts` — Inngest scheduled function (cron `"0 9 * * *"` = 9am daily), queries tenants where `subscriptionStatus == "trialing"` and trial created > 25 days ago, sends `trialExpiryEmail` for each; (6) create `libs/integrations/jobs/functions/send-digest.ts` — Inngest scheduled function (cron `"0 8 * * 1"` = Monday 8am), query active tenants, send `digestEmail` with last 7 days summary placeholder; (7) create `libs/integrations/jobs/index.ts` — exports all 3 functions as `allFunctions` array for the HTTP handler; (8) create `apps/template/src/app/api/inngest/route.ts` — `serve({ client: inngest, functions: allFunctions })` importing from `@csps/integrations/jobs`; (9) create `apps/budget-planner/src/app/api/inngest/route.ts` same pattern; (10) add `INNGEST_SIGNING_KEY` + `INNGEST_EVENT_KEY` to `.env.platform.example` + `apps/template/.env.example` + `apps/budget-planner/.env.example` as placeholders; then `node tools/verify.mjs exit_code=0` before committing.
+
+## Governor Parallel Action (Codespaces — 2 min)
+
+Open GitHub Codespaces → run `pnpm db:push` from the repo root. This pushes all deferred S032-A/B schema changes (Notification + WebhookEndpoint + viewer role + Tenant plan/features/limits) to Supabase. Not blocking Sonnet's S033-B work.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Anything missed?
+  Findings: 1 — The `check-trial-expiry.ts` function queries Prisma directly. It needs the Prisma client (with tenant context). Since scheduled jobs run without a user auth context, they must use the raw Prisma client (not ZenStack enhanced), and must be explicitly scoped by tenant. Add note: "use prisma directly (not enhance()) for scheduled jobs since there is no auth context — manually apply tenantId filter to all queries."
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+*OPUS-2 Turn 49 | S033-B = Inngest jobs | db:push = Governor Codespaces action | S033-C = monitoring | S033-D = none*
+*OPUS-2 | S033 | 2026-05-15*
+
+---
+
 # Opus Turn 48 — S033 Opens | Q1/Q2 Answers | S033-A Directive
 
 **State:** S032 CLOSED (ceea140) | 113 validators | Phase 1 constitutional security complete | S033 ACTIVE

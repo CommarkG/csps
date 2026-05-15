@@ -1040,3 +1040,14 @@ Validators: 113 | pnpm verify: exit_code=0 | S032: CLOSED
 
 ## First action
 Check Turn 48 RZF, then execute all steps.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 49 — S033-B: Inngest jobs module)
+
+## Directive: libs/integrations/jobs/ — 9 steps
+Key constraint: check-trial-expiry uses raw prisma (NOT enhance()) — no auth context in scheduled jobs
+Pattern: inngest functions + cron jobs + route handlers in both apps
+
+## First action
+Check Turn 49 RZF findings, then execute.

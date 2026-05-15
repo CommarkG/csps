@@ -5,6 +5,8 @@
 // This kills the 6-level relative import smell (CSEP-S014-001 RANK 2).
 
 export { isSessionReady } from './auth'
+// Jobs module
+export { inngest, allFunctions } from './jobs/index'
 // Email module
 export { sendEmail } from './email/client'
 export { welcomeEmail } from './email/templates/welcome'

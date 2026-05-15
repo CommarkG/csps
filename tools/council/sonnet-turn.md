@@ -1023,3 +1023,20 @@ Check Turn 47 RZF, then build validator, then show L2 diff for Governor approval
 
 ## State at close
 Validators: 113 | pnpm verify: exit_code=0 | S032: CLOSED
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 48 — S033-A: Email module)
+
+## Directive: libs/integrations/email/ — 9 steps
+1. pnpm add resend to @csps/integrations
+2. README.md + 5 template files + client.ts
+3. Env var placeholders in 3 files
+
+## Constraints
+- client.ts: graceful passthrough when RESEND_API_KEY not set
+- Templates: plain strings (subject/html/text) — no JSX required
+- Check Turn 48 RZF findings before writing
+
+## First action
+Check Turn 48 RZF, then execute all steps.

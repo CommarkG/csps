@@ -1,3 +1,62 @@
+# Opus Turn 48 — S033 Opens | Q1/Q2 Answers | S033-A Directive
+
+**State:** S032 CLOSED (ceea140) | 113 validators | Phase 1 constitutional security complete | S033 ACTIVE
+
+---
+
+## Q1 — Resend account: start now or wait?
+
+**Start immediately. Governor creates Resend account in parallel.**
+
+The email module structure (TypeScript interfaces, templates, client wrapper) requires zero external credentials. Sonnet builds everything with graceful passthrough: `if (!process.env.RESEND_API_KEY) { logger.warn('RESEND_API_KEY not set — email disabled'); return; }`. This is the same pattern as Upstash rate limiting.
+
+Governor parallel action (5 min): Go to resend.com → sign up → create API key → add `RESEND_API_KEY=re_xxx` to `.env.local` and `apps/budget-planner/.env.local`. For development, Resend's sandbox captures emails without delivering them. No DNS setup needed for dev.
+
+## Q2 — Scope-level backfill (206 files) vs email: which first?
+
+**Email first. Scope backfill as S034 with a batch script.**
+
+PE comparison:
+- Email (Resend) → directly enables App #3 (welcome + trial + invitation emails) → PE=75
+- Scope-level backfill → governance completeness, not blocking anything → PE=35
+
+Email is higher PE. But 206-file manual backfill is unnecessary — build a script:
+
+`tools/scripts/backfill-scope-level.mjs` — auto-detects `scope_level` per file by path rules:
+- `.claude/core-spines/L1_*` → S0 (constitutional)
+- `packages/principles/principles/*.yaml` → S0
+- `libs/**` → S1 (platform)
+- `apps/*/` → S2 (app)
+- `docs/plan/**` → S3 (tenant/session)
+
+Run the script → spot-check 10-20 ambiguous files → commit. Turns 206 manual edits into 10 minutes. This goes to S034 after S033 email+jobs+monitoring. No urgency now.
+
+S033 sequence confirmed:
+- S033-A: Email (Resend + 5 templates) — SPI=0.3 → now
+- S033-B: Jobs (Inngest + 3 functions) — SPI=0.4
+- S033-C: Monitoring (Sentry + PostHog) — SPI=0.3
+- S033 closes → S034 scope backfill script + App #3 prep
+
+---
+
+## SONNET DIRECTIVE — S033-A (Email Module)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 48 S033-A section — build `libs/integrations/email/`: (1) run `pnpm add --filter @csps/integrations resend`; (2) create `libs/integrations/email/README.md` with `mini_tree_root: true` + `sub_files:` listing all files; (3) create `libs/integrations/email/client.ts` — exports `sendEmail({ to, subject, html, text? })` that uses Resend client with `RESEND_API_KEY` env var, graceful passthrough (console.warn + return `{ success: false }`) when key not set, sender address `noreply@csps.app` (configurable via `RESEND_FROM_EMAIL` env var); (4) create `libs/integrations/email/templates/welcome.ts` — exports `welcomeEmail({ displayName, appName, dashboardUrl })` returning `{ subject, html, text }` as plain strings; (5) create `libs/integrations/email/templates/trial-expiry.ts` — exports `trialExpiryEmail({ displayName, daysLeft, upgradeUrl })` returning `{ subject, html, text }`; (6) create `libs/integrations/email/templates/invitation.ts` — exports `invitationEmail({ inviterName, tenantName, acceptUrl, expiresAt })` returning `{ subject, html, text }`; (7) create `libs/integrations/email/templates/upgrade.ts` — exports `upgradeEmail({ displayName, planName, manageUrl })` returning `{ subject, html, text }`; (8) create `libs/integrations/email/templates/digest.ts` — exports `digestEmail({ displayName, weekSummary: string[], appName, dashboardUrl })` returning `{ subject, html, text }`; (9) add `RESEND_API_KEY` and `RESEND_FROM_EMAIL` to `.env.platform.example` as placeholders; (10) add `RESEND_API_KEY` to `.env.example` in `apps/template/` and `apps/budget-planner/`; then `node tools/verify.mjs exit_code=0` before committing.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Anything missed?
+  Findings: 1 — The email templates use plain HTML strings. Mention that `react-email` is a future upgrade path but not needed now — avoids Sonnet over-engineering the templates with a React dependency.
+  Update: directive says "plain strings" implicitly. No change needed.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+*OPUS-2 Turn 48 | S033 opens | Email module S033-A | Scope backfill → S034 batch script | Q1+Q2 answered*
+*OPUS-2 | S033 | 2026-05-15*
+
+---
+
 # Opus Turn 47 — S032-D Directive + Q1/Q2 Answers + S032 Close
 
 **State:** S032-C done (commit 8862335) | 6 security files live | pnpm verify exit_code=0

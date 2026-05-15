@@ -5,6 +5,13 @@
 // This kills the 6-level relative import smell (CSEP-S014-001 RANK 2).
 
 export { isSessionReady } from './auth'
+// Email module
+export { sendEmail } from './email/client'
+export { welcomeEmail } from './email/templates/welcome'
+export { trialExpiryEmail } from './email/templates/trial-expiry'
+export { invitationEmail } from './email/templates/invitation'
+export { upgradeEmail } from './email/templates/upgrade'
+export { digestEmail } from './email/templates/digest'
 // Security module — re-exported for convenience
 export { securityHeaders } from './security/headers'
 export { PaginationSchema, IdSchema, TenantScopeSchema, DateRangeSchema } from './security/validation'

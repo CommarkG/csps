@@ -1,3 +1,45 @@
+# Opus Turn 50 — S033-C Monitoring Directive + Q1/Q2 Answers
+
+**State:** S033-B done (c776e7b) | Email + Jobs live | S033-C = monitoring
+
+---
+
+## Q1 — Is there an S033-C? Yes.
+
+S033-C = Monitoring (Sentry + PostHog). SPI=0.3. Do it before closing S033.
+
+Why now and not later: error monitoring must be live BEFORE App #3 launches. Flying blind on the first real user-facing app is avoidable. Sentry catches unhandled exceptions; PostHog measures conversion. Both are standard at launch, not post-launch. The session pays for itself on the first production bug. Short session — no reason to skip.
+
+## Q2 — Close with db:push deferred? Yes.
+
+Close S033 after S033-C. db:push stays deferred. Justification:
+- No current production feature writes to Notification or WebhookEndpoint (new models exist in code, not yet in DB)
+- Inngest functions don't trigger until real events fire (no current trigger)
+- The budget-planner app is live but no feature touches the new models
+- db:push doesn't block S033-C or App #3 planning
+- HANDOFF-S033-to-S034.md must explicitly note: "db:push deferred — run from Codespaces before App #3 first deployment"
+
+Resend + Inngest account setup: same status — graceful passthrough means nothing breaks. Governor sets up when convenient.
+
+---
+
+## SONNET DIRECTIVE — S033-C (Monitoring: Sentry + PostHog)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 50 S033-C section — build `libs/integrations/monitoring/`: (1) run `pnpm add --filter @csps/integrations @sentry/node posthog-node`; (2) create `libs/integrations/monitoring/README.md` with `mini_tree_root: true` + `sub_files:`; (3) create `libs/integrations/monitoring/sentry.ts` — exports `captureException(error: unknown, context?: Record<string, unknown>)` and `captureMessage(message: string, level?: 'info'|'warning'|'error')`, both using `@sentry/node` with `SENTRY_DSN` env var, graceful passthrough (console.error + return) when DSN not set; (4) create `libs/integrations/monitoring/posthog.ts` — exports `track(distinctId: string, event: string, properties?: Record<string, unknown>)` and `identify(distinctId: string, properties: Record<string, unknown>)` and `groupIdentify(groupType: string, groupKey: string, properties: Record<string, unknown>)`, using `posthog-node` with `POSTHOG_API_KEY` + `POSTHOG_HOST` env vars (default host: `https://app.posthog.com`), graceful passthrough when key not set; (5) add `SENTRY_DSN`, `POSTHOG_API_KEY`, `POSTHOG_HOST` to `.env.platform.example` + `apps/template/.env.example` + `apps/budget-planner/.env.example` as placeholders; (6) add comment in each README: "For client-side: install @sentry/nextjs and posthog-js in each app — server-side helpers only in this module"; then close S033: `node tools/verify.mjs exit_code=0`, write `docs/plan/_handoff/VAULT/closing-summary-S033.md` (§10.0 paste verify output, §10.0r: "email + jobs + monitoring primitives live; db:push deferred — run before App #3 deploy; Resend + Inngest + Sentry + PostHog accounts pending Governor setup"), write `docs/plan/_handoff/HANDOFF-S033-to-S034.md` (Zone A: 113+ validators / email+jobs+monitoring live, Zone B: S034-A = scope backfill script + App #3 domain decision + App #3 scaffold), update `tools/council/platform-state-snapshot.md` to S033 CLOSED, `git add -A && git commit -m "S033 close: email module, Inngest jobs, monitoring primitives" && git push origin main`.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Anything missed?
+  Findings: 1 — Sentry initialization (calling `Sentry.init()`) must happen at app startup, not at call time. The `sentry.ts` helper assumes Sentry is initialized elsewhere. Add note: each app that uses captureException must call `Sentry.init({ dsn: process.env.SENTRY_DSN })` in its instrumentation.ts. Sonnet should add a comment to sentry.ts: `// apps must call Sentry.init() in their instrumentation.ts before captureException works`.
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+*OPUS-2 Turn 50 | S033-C monitoring | Q1: yes S033-C | Q2: close with db:push deferred | S034 = scope backfill + App #3*
+*OPUS-2 | S033 | 2026-05-15*
+
+---
+
 # Opus Turn 49 — S033-B Inngest Directive + Session Sequence Correction
 
 **State:** S033-A done (aa7ca69) | Email module live | S033-B = Inngest jobs (NOT db:push)

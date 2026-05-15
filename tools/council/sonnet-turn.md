@@ -1051,3 +1051,18 @@ Pattern: inngest functions + cron jobs + route handlers in both apps
 
 ## First action
 Check Turn 49 RZF findings, then execute.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 50 — S033-C: Monitoring + S033 close)
+
+## Directive: libs/integrations/monitoring/ + S033 close
+1. pnpm add @sentry/node posthog-node
+2. README.md + sentry.ts + posthog.ts
+3. Env vars in 3 files
+4. S033 close: verify + closing-summary + HANDOFF + snapshot + commit
+
+## Key constraints
+- sentry.ts: apps call Sentry.init() in instrumentation.ts — add comment
+- Both files: graceful passthrough when env vars not set
+- Check Turn 50 RZF before implementing

@@ -7,6 +7,9 @@
 export { isSessionReady } from './auth'
 // Jobs module
 export { inngest, allFunctions } from './jobs/index'
+// Monitoring module
+export { captureException, captureMessage } from './monitoring/sentry'
+export { track, identify, groupIdentify, shutdownPostHog } from './monitoring/posthog'
 // Email module
 export { sendEmail } from './email/client'
 export { welcomeEmail } from './email/templates/welcome'

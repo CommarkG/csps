@@ -463,6 +463,12 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/turns=(\d+) session=(\S+) has_chat_jump=(\w+)/); return m ? { turns: Number(m[1]), session: m[2], has_chat_jump: m[3] === 'true' } : {}; },
   },
   {
+    // S032-D LIVE — BLOCKING: apps/*/next.config.js must import + use securityHeaders()
+    name: 'security_headers_compliance',
+    command: 'node tools/validators/validate-security-headers.mjs',
+    parse_output: (out) => { const m = out.match(/apps=(\d+) passing=(\d+) blocking=(\d+) skipped=(\d+)/); return m ? { apps: Number(m[1]), passing: Number(m[2]), blocking: Number(m[3]), skipped: Number(m[4]) } : {}; },
+  },
+  {
     // ADR-0027 Phase 1 LIVE S032 — scope_level on governed artifacts (206 missing, advisory until backfill)
     name: 'scope_level_declared',
     command: 'node tools/validators/validate-scope-level-declared.mjs',

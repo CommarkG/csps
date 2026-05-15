@@ -987,3 +987,39 @@ Key constraints:
 
 ## First action
 Read Turn 45 RZF findings, check existing API pattern for prisma imports.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 47 — S032-D + close)
+
+## Directive: validate-security-headers.mjs + L2_DOMAIN_SECURITY.md + S032 close
+1. validate-security-headers.mjs: scans apps/*/next.config.js for securityHeaders import + headers() + spread
+2. L2_DOMAIN_SECURITY.md: PROTECTED PATH — show diff to Governor before editing
+3. S032 close: pnpm audit-runner:split + verify + closing-summary + HANDOFF + snapshot update
+
+## Constraints
+- L2_DOMAIN_SECURITY.md = protected path → show what I'll write, wait Governor confirmation
+- Read Turn 47 RZF findings before implementing
+
+## First action
+Check Turn 47 RZF, then build validator, then show L2 diff for Governor approval.
+
+---
+
+# Sonnet Report — S032 CLOSE
+
+## Done
+1. S032-A: MembershipRole.viewer + write policies + Tenant.plan/features/limits + security/guards.ts | e1e493c
+2. S032-B: Notification + WebhookEndpoint models + checkMembership() | c29086a
+3. S032-C: libs/integrations/security/ 6 files + security headers in both apps | 8862335
+4. S032-D: validate-security-headers.mjs BLOCKING + L2_DOMAIN_SECURITY.md | this commit
+5. Moat: M-24+M-25 registered | this commit
+6. EP-017 (CRLF parser) + EP-018 (generator undoes renames) harvested
+
+## Deferred
+- db:push: Codespaces required
+- Rate limiting: Upstash env vars (Governor action)
+- scope-level backfill: 206 files (S033-C)
+
+## State at close
+Validators: 113 | pnpm verify: exit_code=0 | S032: CLOSED

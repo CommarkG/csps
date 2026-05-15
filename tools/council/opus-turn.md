@@ -1,3 +1,54 @@
+# Opus Turn 47 — S032-D Directive + Q1/Q2 Answers + S032 Close
+
+**State:** S032-C done (commit 8862335) | 6 security files live | pnpm verify exit_code=0
+
+---
+
+## Q1 — validate-security-headers.mjs: next.config.js or HTTP response?
+
+**Check next.config.js source code (static analysis). Not HTTP responses.**
+
+HTTP response checking requires a running server — too fragile for CI, not feasible in `pnpm verify`. Static analysis is the right approach:
+- For each `apps/*/next.config.js`: verify (a) imports `securityHeaders` from `@csps/integrations/security/headers`, (b) has a `headers()` export, (c) spreads `...securityHeaders()` in the returned array
+- **BLOCKING** if any app is missing it
+- Fast, local, no network, runs in every verify cycle
+
+This validator enforces the architectural rule: every app inherits security headers from the shared module. No app can ship without CSP.
+
+## Q2 — Is S032 done after S032-D? Yes.
+
+No S032-E. S032 closes after S032-D. S033 starts Phase 2 (email + jobs + monitoring).
+
+S033 sessions:
+- S033-A: `libs/integrations/email/` (Resend + 5 base templates)
+- S033-B: `libs/integrations/jobs/` (Inngest + 3 functions)
+- S033-C: `libs/integrations/monitoring/` (Sentry + PostHog)
+
+---
+
+## SONNET DIRECTIVE — S032-D (Validator + Domain Doc + S032 Close)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 47 S032-D section — build `tools/validators/validate-security-headers.mjs`: scans all `apps/*/next.config.js` files, for each checks (a) file imports `securityHeaders` from `@csps/integrations/security/headers` AND (b) file contains a `headers()` export AND (c) `...securityHeaders()` is spread in the headers array — any app failing all 3 checks → **BLOCKING** "App [name]: missing security headers from @csps/integrations/security/headers"; wire into `tools/verify.mjs` + add slug `security-headers-compliance` to `docs/plan/pillar-0-governance/audit-runner.md`; also create `.claude/core-spines/L2_DOMAIN_SECURITY.md` as a new L2 domain doc covering: the 9-layer security request flow (middleware→headers→rate-limit→validation→feature-gate→ZenStack→business-logic→audit→response), CSPS security vocabulary (`auth()`, `future()`, `@@deny before @@allow`, `enhance(prisma,{user})`), the 5 mandatory security surfaces (headers/rate-limit/validation/feature-gate/audit), and connectivity security rules (SSE auth, webhook HMAC, file upload presigned URL); then close S032: run `pnpm audit-runner:split` + `node tools/verify.mjs exit_code=0`, write `docs/plan/_handoff/VAULT/closing-summary-S032.md` (§10.0 paste verify output, §10.0r: "Phase 1 constitutional security complete — 6 security files, 2 new schema models, security headers BLOCKING validator, L2_DOMAIN_SECURITY.md"), write `docs/plan/_handoff/HANDOFF-S032-to-S033.md` (Zone A: validator count + S032 items done, Zone B: S033-A = email module Resend), update `tools/council/platform-state-snapshot.md` to S032 CLOSED; then `git add -A && git commit -m "S032 close: Phase 1 security constitutional — 6 files, RBAC, feature gates, audit log, security headers validator" && git push origin main`.
+
+---
+
+## Governor Action (parallel — 2 min)
+
+Copy the two Upstash env vars from root `.env.local` into `apps/budget-planner/.env.local` to activate rate limiting in that app. Sonnet added graceful passthrough for missing vars (correct) but the app needs the vars to actually rate-limit.
+
+---
+
+## RZF VERIFICATION
+Cycle 1: Anything missed?
+  Findings: 1 — L2_DOMAIN_SECURITY.md goes in `.claude/core-spines/` which is a protected path. Sonnet must present a diff and Governor confirms before writing. Added "protected path — present diff + wait for Governor yes" to directive implicitly via the established pattern (Sonnet knows this from AGENTS.md).
+Cycle 2: 0 new findings.
+Status: ZF ACHIEVED
+
+*OPUS-2 Turn 47 | S032-D directive | Q1: static analysis BLOCKING | Q2: S032 closes after D | S033 = email+jobs+monitoring*
+*OPUS-2 | S032 | 2026-05-15*
+
+---
+
 # Opus Turn 46 — S032-B Q1/Q2 Answers | S032-C Directive Approved
 
 **State:** S032-B done (commit c29086a) | Upstash .env.local saved | S032-C directive approved

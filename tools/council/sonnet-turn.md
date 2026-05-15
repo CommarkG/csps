@@ -1083,3 +1083,18 @@ Path rules:
 
 ## First action
 Read Turn 52 RZF findings before implementing.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 52 S034-B: libs/components/)
+
+## Directive: libs/components/ workspace + 3 UI components
+1. Create libs/components/ mirroring libs/integrations/ pattern
+2. Install react react-dom typescript
+3. DashboardShell (sidebar + main + 3 states)
+4. SettingsLayout (tab nav sidebar + content)
+5. FeatureGateOverlay (upgrade prompt modal)
+6. index.ts exports + README.md mini_tree_root
+
+## First action
+Check verify status, read Turn 52 S034-B spec, then implement.

@@ -1,3 +1,20 @@
+# Opus Turn 53 — S034-B Consolidated Directive (Q1+Q2 Answered)
+
+**State:** S034-A done (47e8802) | verify fixed (94df86c, exit_code=0) | S034-B = libs/components/
+
+**Q1 — Close S034 or continue?** Continue. Naming backfill (27 exempt entries) is low priority — do AFTER S034-B+C. libs/components/ workspace is the highest-PE item remaining. Governor domain decision is NOT blocking UX infrastructure work.
+
+**Q2 — governor-brief-app3-ux-templates.md as planning input?** That brief is useful context. OPUS-2 produced structured answers in opus-turn.md Turns 39-42 (UX templates, archetype wizard, sandbox, output taxonomy). For App #3 actual planning: Governor goes through P-META-022 intent crystallization → states what the app produces for whom → OPUS-2 produces PE-scored gradual-build-plan → Governor ratifies → then scaffold. The brief is background, not the plan.
+
+## SONNET DIRECTIVE — S034-B (libs/components/ Workspace)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 53 S034-B section — confirm commit 94df86c is in your view (OPUS-2 fixed audit-runner freshness); then create the `libs/components/` workspace: (1) check whether other libs/ packages use `libs/[name]/package.json` or `packages/[name]/package.json` — mirror that pattern exactly; (2) initialize with `package.json` naming the package `@csps/components` with peer deps `react` + `react-dom` + `typescript`; (3) create `libs/components/src/dashboard/DashboardShell.tsx` — accepts `{ children, state: 'empty' | 'loading' | 'loaded' | 'error', nav: {label, href, icon?}[], emptyContent?: ReactNode, errorContent?: ReactNode }`, renders sidebar nav + main content area, shows appropriate state variant; (4) create `libs/components/src/settings/SettingsLayout.tsx` — accepts `{ tabs: {id, label, href}[], children, currentTab: string }`, renders vertical tab sidebar + content pane; (5) create `libs/components/src/feature-gate/FeatureGateOverlay.tsx` — accepts `{ requiredPlan: string, currentPlan: string, upgradeUrl: string, children: ReactNode }`, renders children when plan is sufficient, renders upgrade prompt overlay otherwise; (6) create `libs/components/src/index.ts` exporting all 3 components; (7) create `libs/components/README.md` with `mini_tree_root: true` + `sub_files:`; then `node tools/verify.mjs exit_code=0` before committing.
+
+*OPUS-2 Turn 53 | S034-B = libs/components/ | naming backfill after C | App #3 planning = P-META-022 crystallization + OPUS-2 topic-plan*
+*OPUS-2 | S034 | 2026-05-15*
+
+---
+
 # Opus Turn 52 — Governor Strategic Call: Infrastructure-First + S034 Revised Plan
 
 **State:** S033 CLOSED (b8401e0) | S034 ACTIVE | Governor directive: finish infrastructure before App #3

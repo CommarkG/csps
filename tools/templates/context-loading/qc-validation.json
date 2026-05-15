@@ -4,8 +4,8 @@
   "triggers": ["pnpm verify", "ZF", "RZF", "CEC", "pre-close", "exit_code 0", "validation", "DONE", "RATIFIED"],
   "model_tier": "Sonnet",
   "required_artifacts": [
-    { "path": "packages/principles/principles/P-META-006.yaml", "depth": "L2", "why": "ZF discipline — every DONE claim cites this" },
-    { "path": "packages/principles/principles/P-META-008.yaml", "depth": "L1", "why": "cycle-mandatory-in-plan" }
+    { "path": "packages/principles/principles/P-META-006-zero-findings-discipline.yaml", "depth": "L2", "why": "ZF discipline — every DONE claim cites this" },
+    { "path": "packages/principles/principles/P-META-008-cycle-mandatory-in-plan.yaml", "depth": "L1", "why": "cycle-mandatory-in-plan" }
   ],
   "mcp_queries": [
     { "tool": "get_principle", "args": { "id": "P-META-006", "depth": "L2" }, "why": "ZF discipline + RZF + CEC definitions" }

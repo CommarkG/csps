@@ -6,7 +6,7 @@
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
   total_count: 61
-  generated_at: '2026-05-14'
+  generated_at: '2026-05-15'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
   usage: >-
@@ -17,304 +17,304 @@ principles:
     name: reuse-first
     category: operating
     severity: critical
-    path: ./principles/P-OP-001.yaml
+    path: ./principles/P-OP-001-reuse-first.yaml
   - id: P-OP-002
     name: finish-what-we-started
     category: operating
     severity: critical
-    path: ./principles/P-OP-002.yaml
+    path: ./principles/P-OP-002-finish-what-we-started.yaml
   - id: P-OP-003
     name: pcr
     category: operating
     severity: warn
-    path: ./principles/P-OP-003.yaml
+    path: ./principles/P-OP-003-pcr.yaml
   - id: P-OP-004
     name: batched-execution
     category: operating
     severity: warn
-    path: ./principles/P-OP-004.yaml
+    path: ./principles/P-OP-004-batched-execution.yaml
   - id: P-OP-006
     name: completion-priority-dpr
     category: operating
     severity: warn
-    path: ./principles/P-OP-006.yaml
+    path: ./principles/P-OP-006-completion-priority-dpr.yaml
   - id: P-ARCH-001
     name: nothing-stands-alone
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-001.yaml
+    path: ./principles/P-ARCH-001-nothing-stands-alone.yaml
   - id: P-ARCH-002
     name: mechanical-over-procedural
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-002.yaml
+    path: ./principles/P-ARCH-002-mechanical-over-procedural.yaml
   - id: P-ARCH-003
     name: files-are-truth-db-is-index
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-003.yaml
+    path: ./principles/P-ARCH-003-files-are-truth-db-is-index.yaml
   - id: P-ARCH-004
     name: one-source-of-truth-per-concern
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-004.yaml
+    path: ./principles/P-ARCH-004-one-source-of-truth-per-concern.yaml
   - id: P-ARCH-005
     name: three-layer-composition-only
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-005.yaml
+    path: ./principles/P-ARCH-005-three-layer-composition-only.yaml
   - id: P-ARCH-006
     name: slice-contract-90-percent-to-merge
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-006.yaml
+    path: ./principles/P-ARCH-006-slice-contract-90-percent-to-merge.yaml
   - id: P-ARCH-007
     name: soft-delete-by-default
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-007.yaml
+    path: ./principles/P-ARCH-007-soft-delete-by-default.yaml
   - id: P-ARCH-008
     name: audit-by-trigger-not-app-code
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-008.yaml
+    path: ./principles/P-ARCH-008-audit-by-trigger-not-app-code.yaml
   - id: P-ARCH-009
     name: one-generation-layer-leverage-three-collapse
     category: architecture
     severity: warn
-    path: ./principles/P-ARCH-009.yaml
+    path: ./principles/P-ARCH-009-one-generation-layer-leverage-three-collapse.yaml
   - id: P-ARCH-010
     name: defense-in-depth-authz
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-010.yaml
+    path: ./principles/P-ARCH-010-defense-in-depth-authz.yaml
   - id: P-ARCH-011
     name: filter-by-entitlement-before-catalog-load
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-011.yaml
+    path: ./principles/P-ARCH-011-filter-by-entitlement-before-catalog-load.yaml
   - id: P-ARCH-012
     name: persona-orthogonal-to-agent
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-012.yaml
+    path: ./principles/P-ARCH-012-persona-orthogonal-to-agent.yaml
   - id: P-ARCH-013
     name: universal-traits-trunk-domain-overlays
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-013.yaml
+    path: ./principles/P-ARCH-013-universal-traits-trunk-domain-overlays.yaml
   - id: P-ARCH-014
     name: crisis-escalation-load-bearing-v1
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-014.yaml
+    path: ./principles/P-ARCH-014-crisis-escalation-load-bearing-v1.yaml
   - id: P-ARCH-015
     name: audit-system-is-itself-a-slice
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-015.yaml
+    path: ./principles/P-ARCH-015-audit-system-is-itself-a-slice.yaml
   - id: P-ARCH-016
     name: universal-terms-first
     category: architecture
     severity: warn
-    path: ./principles/P-ARCH-016.yaml
+    path: ./principles/P-ARCH-016-universal-terms-first.yaml
   - id: P-ARCH-017
     name: template-first-reuse-first
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-017.yaml
+    path: ./principles/P-ARCH-017-template-first-reuse-first.yaml
   - id: P-ARCH-018
     name: schema-per-app
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-018.yaml
+    path: ./principles/P-ARCH-018-schema-per-app.yaml
   - id: P-ARCH-019
     name: glossary-owns-vocabulary
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-019.yaml
+    path: ./principles/P-ARCH-019-glossary-owns-vocabulary.yaml
   - id: P-ARCH-020
     name: live-drift-detection
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-020.yaml
+    path: ./principles/P-ARCH-020-live-drift-detection.yaml
   - id: P-ARCH-021
     name: ratchet-pattern
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-021.yaml
+    path: ./principles/P-ARCH-021-ratchet-pattern.yaml
   - id: P-ARCH-022
     name: module-folder-mandatory-above-thresholds
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-022.yaml
+    path: ./principles/P-ARCH-022-module-folder-mandatory-above-thresholds.yaml
   - id: P-ARCH-023
     name: variants-cascade-defaults-explicit-overrides-win
     category: architecture
     severity: warn
-    path: ./principles/P-ARCH-023.yaml
+    path: ./principles/P-ARCH-023-variants-cascade-defaults-explicit-overrides-win.yaml
   - id: P-ARCH-024
     name: small-files-ok-iff-three-preconditions
     category: architecture
     severity: warn
-    path: ./principles/P-ARCH-024.yaml
+    path: ./principles/P-ARCH-024-small-files-ok-iff-three-preconditions.yaml
   - id: P-ARCH-025
     name: third-party-trust-default-deny
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-025.yaml
+    path: ./principles/P-ARCH-025-third-party-trust-default-deny.yaml
   - id: P-ARCH-026
     name: verbatim-vendor-preserved-rewritten-platform-owned
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-026.yaml
+    path: ./principles/P-ARCH-026-verbatim-vendor-preserved-rewritten-platform-owned.yaml
   - id: P-ARCH-027
     name: capability-declaration-dispatcher-enforcement
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-027.yaml
+    path: ./principles/P-ARCH-027-capability-declaration-dispatcher-enforcement.yaml
   - id: P-META-001
     name: defense-in-depth-enforcement
     category: meta
     severity: critical
-    path: ./principles/P-META-001.yaml
+    path: ./principles/P-META-001-defense-in-depth-enforcement.yaml
   - id: P-META-002
     name: principles-travel-with-artifacts
     category: meta
     severity: error
-    path: ./principles/P-META-002.yaml
+    path: ./principles/P-META-002-principles-travel-with-artifacts.yaml
   - id: P-META-003
     name: inheritance-via-shared-runtime
     category: meta
     severity: error
-    path: ./principles/P-META-003.yaml
+    path: ./principles/P-META-003-inheritance-via-shared-runtime.yaml
   - id: P-META-004
     name: stored-content-lifecycle
     category: meta
     severity: critical
-    path: ./principles/P-META-004.yaml
+    path: ./principles/P-META-004-stored-content-lifecycle.yaml
   - id: P-META-005
     name: learning-loop
     category: meta
     severity: critical
-    path: ./principles/P-META-005.yaml
+    path: ./principles/P-META-005-learning-loop.yaml
   - id: P-META-006
     name: zero-findings-discipline
     category: meta
     severity: critical
-    path: ./principles/P-META-006.yaml
+    path: ./principles/P-META-006-zero-findings-discipline.yaml
   - id: P-META-007
     name: five-surface-engraving
     category: meta
     severity: critical
-    path: ./principles/P-META-007.yaml
+    path: ./principles/P-META-007-five-surface-engraving.yaml
   - id: P-META-014
     name: mutual-understanding-validation
     category: meta
     severity: critical
-    path: ./principles/P-META-014.yaml
+    path: ./principles/P-META-014-mutual-understanding-validation.yaml
   - id: P-META-012
     name: governor-prompts
     category: meta
     severity: critical
-    path: ./principles/P-META-012.yaml
+    path: ./principles/P-META-012-governor-prompts.yaml
   - id: P-META-013
     name: handoff-pre-flight-audit
     category: meta
     severity: critical
-    path: ./principles/P-META-013.yaml
+    path: ./principles/P-META-013-handoff-pre-flight-audit.yaml
   - id: P-META-011
     name: audit-orchestration
     category: meta
     severity: error
-    path: ./principles/P-META-011.yaml
+    path: ./principles/P-META-011-audit-orchestration.yaml
   - id: P-META-010
     name: agent-alignment-protocol
     category: meta
     severity: critical
-    path: ./principles/P-META-010.yaml
+    path: ./principles/P-META-010-agent-alignment-protocol.yaml
   - id: P-META-009
     name: cognitive-context-architecture
     category: meta
     severity: critical
-    path: ./principles/P-META-009.yaml
+    path: ./principles/P-META-009-cognitive-context-architecture.yaml
   - id: P-META-008
     name: cycle-mandatory-in-plan
     category: meta
     severity: critical
-    path: ./principles/P-META-008.yaml
+    path: ./principles/P-META-008-cycle-mandatory-in-plan.yaml
   - id: P-META-015
     name: universal-template-first
     category: meta
     severity: critical
-    path: ./principles/P-META-015.yaml
+    path: ./principles/P-META-015-universal-template-first.yaml
   - id: P-META-016
     name: gradual-build-by-foundations
     category: meta
     severity: critical
-    path: ./principles/P-META-016.yaml
+    path: ./principles/P-META-016-gradual-build-by-foundations.yaml
   - id: P-META-017
     name: csps-alignment-over-inner-defaults
     category: meta
     severity: critical
-    path: ./principles/P-META-017.yaml
+    path: ./principles/P-META-017-csps-alignment-over-inner-defaults.yaml
   - id: P-META-018
     name: pe-alignment-guardian
     category: meta
     severity: critical
-    path: ./principles/P-META-018.yaml
+    path: ./principles/P-META-018-pe-alignment-guardian.yaml
   - id: P-META-019
     name: structural-prevention-discipline
     category: meta
     severity: critical
-    path: ./principles/P-META-019.yaml
+    path: ./principles/P-META-019-structural-prevention-discipline.yaml
   - id: P-META-020
     name: concept-first-governance
     category: meta
     severity: critical
-    path: ./principles/P-META-020.yaml
+    path: ./principles/P-META-020-concept-first-governance.yaml
   - id: P-META-021
     name: triad-governance
     category: meta
     severity: critical
-    path: ./principles/P-META-021.yaml
+    path: ./principles/P-META-021-triad-governance.yaml
   - id: P-META-022
     name: human-intent-crystallization
     category: meta-governance
     severity: ''
-    path: ./principles/P-META-022.yaml
+    path: ./principles/P-META-022-human-intent-crystallization.yaml
   - id: P-META-023
     name: intent-to-verified-impact
     category: meta-governance
     severity: ''
-    path: ./principles/P-META-023.yaml
+    path: ./principles/P-META-023-intent-to-verified-impact.yaml
   - id: P-META-024
     name: multi-topic-intake-decomposition
     category: meta-governance
     severity: ''
-    path: ./principles/P-META-024.yaml
+    path: ./principles/P-META-024-multi-topic-intake-decomposition.yaml
   - id: P-META-025
     name: context-intent-principle
     category: meta-governance
     severity: ''
-    path: ./principles/P-META-025.yaml
+    path: ./principles/P-META-025-context-intent-principle.yaml
   - id: P-ARCH-028
     name: csps-core-spines
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-028.yaml
+    path: ./principles/P-ARCH-028-csps-core-spines.yaml
   - id: P-ARCH-029
     name: naming-policy
     category: architecture
     severity: error
-    path: ./principles/P-ARCH-029.yaml
+    path: ./principles/P-ARCH-029-naming-policy.yaml
   - id: P-ARCH-030
     name: apps-are-ephemeral-trials
     category: architecture
     severity: critical
-    path: ./principles/P-ARCH-030.yaml
+    path: ./principles/P-ARCH-030-apps-are-ephemeral-trials.yaml
   - id: P-OPER-001
     name: zero-laptop-dependency
     category: operations
     severity: critical
-    path: ./principles/P-OPER-001.yaml
+    path: ./principles/P-OPER-001-zero-laptop-dependency.yaml

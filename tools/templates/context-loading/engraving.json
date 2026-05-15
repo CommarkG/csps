@@ -4,8 +4,8 @@
   "triggers": ["engrave", "5-surface", "FSE", "new B_", "new principle", "atomic", "ratify discipline"],
   "model_tier": "Opus",
   "required_artifacts": [
-    { "path": "packages/principles/principles/P-META-007.yaml", "depth": "L2", "why": "FSE 5-surface discipline reference" },
-    { "path": "packages/principles/principles/P-META-006.yaml", "depth": "L1", "why": "ZF discipline — engraving must exit ZF" },
+    { "path": "packages/principles/principles/P-META-007-five-surface-engraving.yaml", "depth": "L2", "why": "FSE 5-surface discipline reference" },
+    { "path": "packages/principles/principles/P-META-006-zero-findings-discipline.yaml", "depth": "L1", "why": "ZF discipline — engraving must exit ZF" },
     { "path": "tools/templates/b-star-contract.template.md", "depth": "L1", "why": "B_* contract template" }
   ],
   "mcp_queries": [

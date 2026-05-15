@@ -1,3 +1,284 @@
+# Opus Turn 40 — Complete Core Map: Security + Modularity + Bundling Architecture
+
+**State:** S031 closing (Sonnet on #2+3+4+5) | DPR=1 — strategic parallel work
+**Governing spine:** ARCH L2 (platform modularity) + GVRN L2 (constitutional core definition)
+
+---
+
+## §1 — What Every Successful Vibe Coding Platform Does (Research Synthesis)
+
+Bolt.new, Lovable, v0, Replit, Supabase Studio — analyzing what they all provide out of the box:
+
+| Platform | Auth | DB | Deploy | Security | RBAC | Email | Storage | Realtime | Feature Gates |
+|---|---|---|---|---|---|---|---|---|---|
+| Bolt.new | ❌ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Lovable | ✅ Supabase | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| v0 | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Replit | ✅ | ✅ | ✅ | basic | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **CSPS now** | ✅ | ✅ | ✅ | 🔶 | ❌ | 🔶 | ❌ | ❌ | ❌ |
+| **CSPS target** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | opt-in | ✅ |
+
+**The competitive gap:** No vibe coding platform has RBAC + feature gates + security hardening pre-wired. CSPS can be the first if built correctly.
+
+---
+
+## §2 — The 4-Layer Core Model (Complete)
+
+### Layer 0 — Constitutional (S0 — mandatory, every app, no exceptions)
+
+These cannot be opted out of. Any app missing them has a security or legal vulnerability.
+
+| Element | Status | Where |
+|---|---|---|
+| Auth (Clerk — sign in/up/webhook) | ✅ | libs/integrations/auth/ |
+| Database (ZenStack/Prisma + RLS) | ✅ | libs/policies/schema.zmodel |
+| Deployment (Vercel + env pattern) | ✅ | vercel.json + .env.example |
+| **Security hardening** | ❌ MISSING | libs/integrations/security/ (needs build) |
+| **RBAC (TenantMemberRole)** | ❌ MISSING | schema.zmodel (needs model) |
+| **Subscription tiers (SubscriptionTier)** | ❌ MISSING | schema.zmodel (needs model) |
+| **Feature gates (gate: tier check)** | ❌ MISSING | libs/integrations/feature-gates/ |
+| **Input validation layer (Zod)** | ❌ MISSING | libs/integrations/validation/ |
+| Audit log (GDPR — who did what when) | ❌ MISSING | schema.zmodel AuditEvent + trigger |
+
+### Layer 1 — Platform Services (S1 — shared library, app declares which it uses)
+
+App opts in via app-manifest.yaml `modules:` field.
+
+| Module | Status | Provider | Where |
+|---|---|---|---|
+| Payments (Stripe) | 🔶 partial | Stripe | libs/integrations/payments/ |
+| **Email (transactional)** | ❌ MISSING | Resend | libs/integrations/email/ |
+| **File storage** | ❌ MISSING | Cloudflare R2 | libs/integrations/storage/ |
+| **Analytics (events)** | ❌ MISSING | PostHog | libs/integrations/analytics/ |
+| Real-time (SSE) | ❌ MISSING | Native SSE | libs/integrations/realtime/ |
+| Notifications | ❌ MISSING | In-app + push | libs/integrations/notifications/ |
+| **AI/LLM** | ❌ MISSING | Anthropic SDK | libs/integrations/ai/ |
+
+### Layer 2 — UX System (S2 — shared component library)
+
+| Component | Status | What it solves |
+|---|---|---|
+| **Onboarding wizard** | ❌ MISSING | Archetype detection → personalized first run |
+| **Dashboard shell** | ❌ MISSING | Empty state / loaded / error — 3 variants every app needs |
+| **Settings suite** | ❌ MISSING | Profile / Billing / Team / Notifications / API keys |
+| **Feature gate overlay** | ❌ MISSING | Upgrade prompt when hitting tier limit |
+| **Data table** | ❌ MISSING | Filter + sort + pagination + bulk + export |
+| **Form system** | ❌ MISSING | Create/edit entity, multi-step, confirmation |
+| **Mobile nav** | ❌ MISSING | Sidebar (desktop) ↔ bottom nav (mobile) |
+
+### Layer 3 — Output Templates (S3 — per-app, selected by bundling agent)
+
+| Template | Status | Who uses it |
+|---|---|---|
+| Landing page | ❌ MISSING | Every app's marketing site |
+| Email sequence | ❌ MISSING | Apps with nurture flows |
+| Pricing page | ❌ MISSING | Every app's upgrade path |
+| Client proposal | ❌ MISSING | B2B apps |
+| Report (data export) | ❌ MISSING | Analytics / tracking apps |
+
+---
+
+## §3 — Security Module (Deep Coverage — Layer 0, Non-Optional)
+
+Security is the Governor's specific callout. This is the most underspecified constitutional element.
+
+**What must be in `libs/integrations/security/`:**
+
+**3a — HTTP Headers (`security/headers.ts`):**
+```typescript
+// Applied via next.config.js headers()
+Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-{nonce}'
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+
+**3b — Rate Limiting (`security/rate-limit.ts`):**
+```typescript
+// Per-user: 100 API calls/minute
+// Per-IP: 20 auth attempts/15 minutes (brute force protection)
+// Provider: Upstash Redis (serverless, free tier for MVP)
+// Applied as middleware: rateLimit(req) → 429 if exceeded
+```
+
+**3c — Input Validation (`security/validation.ts`):**
+```typescript
+// All API routes use Zod schemas at the boundary
+// Standard schemas: PaginationSchema, TenantScopeSchema, IdSchema
+// Pattern: const body = TenantSchema.parse(await req.json())
+// Never: const body = await req.json() (unvalidated)
+```
+
+**3d — Audit Log (`security/audit.ts`):**
+```typescript
+// AuditEvent model in schema.zmodel:
+// id, tenantId, userId, action, resource, resourceId, metadata, createdAt
+// Called from: every API route that mutates data
+// auditLog({ action: 'transaction.create', resourceId: id, metadata: { amount } })
+// Satisfies: GDPR Art.30 (records of processing), SOC2 (audit trail)
+```
+
+**3e — CSRF Protection:**
+Next.js 14 App Router is CSRF-safe by default (SameSite cookie + server actions). Document this explicitly in security/README.md so developers don't accidentally break it.
+
+**3f — Dependency Scanning:**
+```json
+// .github/workflows/security.yml
+// npm audit --audit-level=moderate on every PR
+// Dependabot enabled for package updates
+```
+
+**Security validator (new):** `validate-security-headers.mjs` — checks that every app's `next.config.js` exports the security headers from `@csps/integrations/security/headers`. **BLOCKING if missing.** This is the enforcement mechanism.
+
+---
+
+## §4 — Modular Architecture: How Mini-Trees Enable Bundling
+
+**The complete `libs/` mini-tree structure (target state):**
+
+```
+libs/
+├── integrations/         (mini_tree_root: true — exists, partial)
+│   ├── auth/            ✅ complete
+│   ├── payments/        🔶 partial (Stripe webhooks wired)
+│   ├── security/        ❌ (new — highest priority)
+│   ├── email/           ❌ (new)
+│   ├── storage/         ❌ (new)
+│   ├── analytics/       ❌ (new)
+│   ├── ai/              ❌ (new)
+│   ├── feature-gates/   ❌ (new — depends on SubscriptionTier schema)
+│   └── realtime/        ❌ (new — optional module)
+├── policies/            ✅ complete
+│   └── schema.zmodel    (add SubscriptionTier + TenantMemberRole + AuditEvent)
+├── components/          ❌ MISSING workspace entirely
+│   ├── onboarding/      (wizard + archetype router)
+│   ├── dashboard/       (shell + 3 states)
+│   ├── settings/        (5-page suite)
+│   ├── feature-gate/    (upgrade overlay + pricing modal)
+│   ├── data-table/      (filter + sort + pagination + export)
+│   └── forms/           (create/edit + multi-step)
+└── templates/           ❌ MISSING workspace entirely
+    ├── landing-page/
+    ├── email-sequence/
+    ├── pricing-page/
+    └── report/
+```
+
+**Each module is a mini-tree: `README.md` with `mini_tree_root: true` + `sub_files:` listing every exported file.** This makes every module:
+- Discoverable by the bundling agent
+- Verifiable by validate-mini-tree-integrity.mjs
+- Independently importable
+
+**Depth level application per module:**
+```
+L1_INTERFACE: The TypeScript interface (IAuthProvider, IEmailProvider)
+  → Every module has this. Never changes. Constitutional.
+L2_IMPLEMENTATION: The concrete provider (ClerkAuth, ResendEmail)
+  → Can be swapped (Clerk → Auth0 someday). Not constitutional.
+L3_CONFIG: App-specific setup (budget-planner Clerk config, keys, templates)
+  → Lives in the app, not libs/. Never in the shared library.
+```
+
+**Bundling agent decision tree (what `pnpm create:app` asks):**
+```
+1. App category? → determines which Layer 3 output templates to include
+2. Email needed? → include libs/integrations/email/ + template setup
+3. File uploads? → include libs/integrations/storage/ + S3/R2 setup
+4. Real-time? → include libs/integrations/realtime/ + SSE setup
+5. AI features? → include libs/integrations/ai/ + Anthropic SDK
+6. User archetype? → determines which onboarding wizard variant
+```
+
+Result: `app-manifest.yaml` declares modules + archetype + output templates. The bundling agent reads this to generate the right app shell.
+
+---
+
+## §5 — Complete Enhanced Core Completion Map
+
+**Legend:** ✅ Done | 🔶 Partial | ❌ Missing | 🆕 New (not in Sonnet's list)
+
+### DONE (genuine core, S028-S031)
+✅ First app live in production (Budget Planner)
+✅ Shared schema (schema.zmodel) — all 30 apps share one ZModel
+✅ Auth (Clerk sign-in/up/webhook/JWT)
+✅ Deployment (Vercel + include-outside-root + rootDir)
+✅ SEC-001 staffRole @@deny (field-level security)
+✅ PERF-001 balance groupBy (no unbounded queries)
+✅ UX-001 JWT gap (account-setup polling page)
+✅ apps/template/ 18-file scaffold (pnpm create:app works)
+✅ External Integrations Hub (33+ rules)
+✅ 110 validators, pnpm verify clean
+✅ P-ARCH-030 trial deletion test standard
+✅ P-OP-006 DPR interrupt gate
+✅ CAP in session-open.sh
+✅ E0-E4 validators
+
+### CONSTITUTIONAL GAPS (S0 — must fix before App #3)
+❌ 🆕 **Security module** (CSP headers + rate limiting + audit log + Zod validation)
+❌ 🆕 **TenantMemberRole** (admin/member/viewer within tenant)
+❌ 🆕 **SubscriptionTier** (free/pro/enterprise + feature list + usage limits)
+❌ 🆕 **Feature gate** (tier check → upgrade prompt)
+❌ 🆕 **AuditEvent model** (GDPR Art.30 — who did what when)
+❌ 🆕 **validate-security-headers.mjs** (BLOCKING if app missing CSP)
+
+### PLATFORM SERVICE GAPS (S1 — needed for App #3)
+❌ **Email** (Resend — transactional + templates)
+🔶 **Payments** (Stripe wired, but no tier→plan mapping)
+❌ 🆕 **Analytics** (PostHog — event tracking + conversion)
+❌ 🆕 **AI/LLM** (Anthropic SDK — shared client + prompt patterns)
+
+### UX SYSTEM GAPS (S2 — lib/components workspace missing entirely)
+❌ **Onboarding wizard** (3-question → 5-archetype → personalized setup)
+❌ **Dashboard shell** (empty/loaded/error — 3 variants)
+❌ **Settings suite** (Profile/Billing/Team/Notifications/API)
+❌ **Feature gate overlay** (upgrade prompt + pricing comparison)
+❌ **Data table** (filter+sort+pagination+bulk+export)
+
+### OUTPUT TEMPLATE GAPS (S3 — lib/templates workspace missing)
+❌ Landing page template
+❌ Email sequence template
+❌ Pricing page template
+❌ Report/data export template
+
+### OPEN FROM EARLIER (governance)
+🔶 #2: 4 mini-tree README intros (Sonnet doing now)
+🔶 #3: Deletion test actual run (Sonnet doing now)
+🔶 #4: ADR-0027 + scope-level enforcement (Turn 21 mandate)
+🔶 #5: E5 principle slice backfill
+
+---
+
+## §6 — Recommended Build Order for Full Core
+
+**Phase 1 — Constitutional (1 Sonnet session each, Governor ratifies schema first):**
+1. Schema: add SubscriptionTier + TenantMemberRole + AuditEvent to schema.zmodel (SPI=3.2 → requires this Opus turn as review)
+2. libs/integrations/security/ — headers + rate-limit + validation + audit (SPI=0.5)
+3. libs/integrations/feature-gates/ — tier check function + gate HOC (SPI=0.3)
+4. validate-security-headers.mjs — BLOCKING validator (SPI=0.10)
+
+**Phase 2 — Platform Services (1-2 Sonnet sessions):**
+5. libs/integrations/email/ — Resend + 3 base templates (welcome/trial-expiry/upgrade) (SPI=0.4)
+6. libs/integrations/analytics/ — PostHog events (SPI=0.2)
+7. libs/integrations/ai/ — Anthropic SDK shared client (SPI=0.2)
+
+**Phase 3 — UX System (2-3 Sonnet sessions):**
+8. libs/components/ workspace + onboarding wizard (SPI=1.0 → split C1+C2)
+9. Dashboard shell + settings suite (SPI=0.5)
+10. Feature gate overlay + data table (SPI=0.5)
+
+**Phase 4 — App #3 (after all above):**
+11. Governor picks output category → domain determined
+12. pnpm create:app [name] → scaffold from template
+13. Apply archetype wizard + output templates
+14. Gate 4: deploy to Vercel
+
+*OPUS-2 Turn 40 | Complete Core Map | Security module specified | Modular architecture with mini-trees | Build order for full constitutional core*
+*OPUS-2 | 2026-05-15*
+
+---
+
 # Opus Turn 39 — Tiers/Permissions Gap + App #3 Strategic Architecture (Priority #6 Draft)
 
 **State:** S031 closing (Sonnet executing #2+3+4+5) | DPR=1 on this input — no #2+3+4+5 interruption

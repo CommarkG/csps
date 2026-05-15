@@ -5,8 +5,8 @@
   "model_tier": "Sonnet",
   "required_artifacts": [
     { "path": "docs/plan/_handoff/VAULT/closing-summary-template.md", "depth": "L1", "why": "closing summary template" },
-    { "path": "packages/principles/principles/P-META-013.yaml", "depth": "L1", "why": "HPFA — 9-check mandate" },
-    { "path": "packages/principles/principles/P-META-012.yaml", "depth": "L1", "why": "Governor-prompts — log every substantive prompt" }
+    { "path": "packages/principles/principles/P-META-013-handoff-pre-flight-audit.yaml", "depth": "L1", "why": "HPFA — 9-check mandate" },
+    { "path": "packages/principles/principles/P-META-012-governor-prompts.yaml", "depth": "L1", "why": "Governor-prompts — log every substantive prompt" }
   ],
   "mcp_queries": [
     { "tool": "get_principle", "args": { "id": "P-META-013", "depth": "L2" }, "why": "HPFA 9 checks reference" }

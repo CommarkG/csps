@@ -66,20 +66,27 @@ async function main() {
 
   // ── 1. Check each P-* ID has a slice file ───────────────────────────────────
 
+  // E5 S032: slices now have topic-kebab suffix (P-ARCH-001-topic.yaml)
+  // Find by prefix match: any file starting with `${id}-` or exactly `${id}.yaml`
+  const { readdirSync } = await import('node:fs');
+  const sliceFiles = readdirSync(SLICES_DIR);
+
   for (const id of sourceIds) {
-    const slicePath = join(SLICES_DIR, `${id}.yaml`);
-    if (!existsSync(slicePath)) {
-      errors.push(`missing slice file: packages/principles/principles/${id}.yaml`);
+    // Look for exact match OR prefix match (id + '-' + topic-kebab)
+    const match = sliceFiles.find(f => f === `${id}.yaml` || f.startsWith(`${id}-`));
+    if (!match) {
+      errors.push(`missing slice file: packages/principles/principles/${id}*.yaml`);
       continue;
     }
+    const slicePath = join(SLICES_DIR, match);
     try {
       const sliceText = readFileSync(slicePath, 'utf8');
       const sliceId   = extractSliceId(sliceText);
       if (sliceId !== id) {
-        errors.push(`slice id mismatch: ${id}.yaml contains id: "${sliceId ?? '(none)'}"`);
+        errors.push(`slice id mismatch: ${match} contains id: "${sliceId ?? '(none)'}"`);
       }
     } catch (e) {
-      errors.push(`cannot read slice ${id}.yaml: ${e.message}`);
+      errors.push(`cannot read slice ${match}: ${e.message}`);
     }
   }
 

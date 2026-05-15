@@ -1,3 +1,250 @@
+# Opus Turn 39 — Tiers/Permissions Gap + App #3 Strategic Architecture (Priority #6 Draft)
+
+**State:** S031 closing (Sonnet executing #2+3+4+5) | DPR=1 on this input — no #2+3+4+5 interruption
+**Governing spine:** GVRN L2 (Governor strategic directive) + ARCH L2 (schema gap identification)
+
+---
+
+## §1 — The Tiers/Permissions Gap (Governor's Correct Callout)
+
+This gap is REAL and is S0-level constitutional. Schema.zmodel has: User, Tenant, UserTenant, staffRole. What it does NOT have:
+
+| Missing Element | Impact |
+|---|---|
+| Subscription tier (free/pro/enterprise) | Every app reinvents billing tier logic |
+| Within-tenant roles (admin/member/viewer) | Every app reinvents team permissions |
+| Feature gate → tier mapping | Every app reinvents upgrade prompts |
+| Usage limits per tier | No shared enforcement, just app-level checks |
+
+These belong in `libs/policies/schema.zmodel` as constitutional models — not app-level. Every one of the 30 planned apps needs them identically. Building App #3 without this is building on sand. **This must be resolved before App #3 scaffold.**
+
+Proposed schema additions (for Sonnet to implement when Governor ratifies):
+```zmodel
+model SubscriptionTier {
+  id        String   @id @default(cuid())
+  name      String   // "free" | "pro" | "enterprise"
+  tenantId  String
+  features  String[] // feature flag keys enabled for this tier
+  limits    Json     // { projects: 5, teamMembers: 3, apiCalls: 1000 }
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  @@allow("read", auth().id != null)
+  @@allow("update", auth().staffRole != null) // only staff can upgrade tiers
+}
+
+model TenantMemberRole {
+  id       String   @id @default(cuid())
+  tenantId String
+  userId   String
+  role     String   // "owner" | "admin" | "member" | "viewer"
+  tenant   Tenant   @relation(fields: [tenantId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+  @@allow("read", auth().tenantId == tenantId)
+  @@allow("update", auth().memberRole == "admin" || auth().memberRole == "owner")
+}
+```
+
+**SPI for schema addition:** L = 2 models × 5 (schema) = 10; C = 4.0 (S0, constitutional) × 4 = 16; I = 2.0 (blocks all 30 apps); SPI = (10 × 4.0 × 4 × 2.0) / 100 = **3.2 → BLOCKED. Opus review required before Sonnet builds.** This turn IS that review. Governor ratification needed before Sonnet starts.
+
+---
+
+## §2 — Enhanced Platform Core Completion Map
+
+**✅ CONFIRMED DONE:**
+| Item | Evidence |
+|---|---|
+| First app live in production | csps-budget-planner.vercel.app |
+| Shared schema (schema.zmodel) | All apps share one ZModel |
+| Shared integrations (libs/integrations/) | auth, Clerk, GDPR, Stripe |
+| apps/template/ 18-file scaffold | pnpm create:app works |
+| SEC-001 staffRole @@deny | Constitutional security |
+| PERF-001 balance groupBy | No unbounded queries |
+| UX-001 JWT gap fixed | account-setup + isSessionReady |
+| 110 validators, clean verify | exit_code=0 |
+| P-ARCH-030 trial deletion test | 5/5 FSE |
+| P-OP-006 DPR | Interrupt gate operational |
+| CAP in session-open.sh | Q1/Q2/Q3 every session |
+| E0-E4 validators | capacity/complexity/naming/mini-tree/Opus-jump |
+
+**🔶 OPEN (numbered by priority):**
+| # | Item | Time | Blocking? |
+|---|---|---|---|
+| 2 | 4 mini-tree README intros | 30 min | Validator advisory every run |
+| 3 | E5 principle slice backfill | 30 min | Naming BLOCKING upgrade |
+| 4 | ADR-0027 + scope-level enforcement | 1 session | Turn 21 mandate, 4 sessions overdue |
+| 5 | Deletion test (actual run) | 5 min | P-ARCH-030 formal closure |
+| **NEW** | **Tiers + Permissions schema** | **1 session** | **Every app reinvents this without it** |
+| 6 | App #3 deployment (Gate 4) | Governor decision | Proves template works at scale |
+
+**Added:** Tiers/Permissions schema (§1 above) is Priority 2.5 — after #2-5 governance items but BEFORE App #3 scaffold. Without it, App #3 cannot have team roles or feature gating.
+
+---
+
+## §3 — App #3 Strategic Architecture: Enhanced Governor Questions
+
+*These are drafted now. Present to Governor when #2+3+4+5 complete.*
+
+### Q1 — UX/UI Templates (What a top UX expert would require)
+
+A professional bundling agent selecting templates for a SaaS product needs these 8 template categories — each is universal across all 30 planned apps:
+
+**Tier 1 — Required for every app:**
+1. **Onboarding flow** — 3-phase: (a) account setup with archetype wizard, (b) first value moment (show the "aha"), (c) invite team or personalize dashboard
+2. **Dashboard shell** — 3 variants: empty state (no data yet), loaded state (data present), degraded state (API error or loading)
+3. **Settings suite** — 5 pages: Profile / Billing + Upgrade / Team + Permissions / Notifications / API Keys + Integrations
+4. **Feature gate** — upgrade prompt overlay (shown when free tier user hits limit) + pricing comparison modal
+
+**Tier 2 — Required for data-handling apps:**
+5. **Data table** — with: column sort, row filter, pagination, bulk select + actions, export button
+6. **Form template** — create/edit entity, multi-step form with progress, confirmation dialog + undo
+
+**Tier 3 — Growth-layer templates:**
+7. **Referral + sharing** — invite link generator, share-to-socials, referral tracking dashboard
+8. **Notification center** — in-app activity feed + email digest preferences
+
+**For the bundling agent:** Each template gets a `target_archetype[]` tag. Agent matches user archetype → pre-selects template variant. See Q2.
+
+---
+
+### Q2 — Onboarding Wizard with Archetype Personalization
+
+This is the platform's strategic differentiation. The wizard runs at first login (before dashboard) and produces an archetype that governs the rest of the session.
+
+**3-question wizard (max 60 seconds):**
+
+**Q2a — Goal (JTBD):**
+"What's your main goal?"
+- A: Save time on repetitive work
+- B: Track and understand my data better
+- C: Collaborate with my team more effectively
+- D: Create professional outputs for clients/customers
+
+**Q2b — Experience level:**
+"How would you describe yourself?"
+- Novice: "I'm new to this type of tool"
+- Builder: "I know what I want to build"
+- Power User: "I want full control from day one"
+
+**Q2c — Team context:**
+"Working alone or with others?"
+- Solo
+- Small team (2-5 people)
+- Organization (6+ people)
+
+**5 Archetypes (mapped from responses):**
+
+| Archetype | Signals | Gets |
+|---|---|---|
+| THE EFFICIENCY SEEKER | Save time + Power User + Solo | Skip wizard, direct to dashboard, keyboard shortcuts highlighted |
+| THE BUILDER | Any goal + Builder + Team | Template gallery first, "start from template" CTA, invite prompt after first save |
+| THE ANALYST | Track data + Any level + Solo | Sample data pre-loaded, chart builder first, export options visible |
+| THE TEAM LEAD | Collaborate + Any level + 6+ | Invite team first, permission settings surfaced, shared views prominent |
+| THE EXPLORER | Any + Novice + Any | Guided tour, tooltips, "try this first" suggestions, progress tracker |
+
+**Platform implementation:** Archetype stored in user.publicMetadata (Clerk). Governs: sample data set, highlighted features, empty state messaging, suggested first action.
+
+---
+
+### Q3 — Sandbox/Trial (No Core Integrity Impact)
+
+**Three isolation levels (constitutional design):**
+
+**Level 1 — Demo Mode** (no account required):
+- Shared read-only "demo" tenant with curated synthetic data
+- No writes. No auth. Resets daily via cron.
+- Implementation: single `DEMO_TENANT_ID` env var, middleware blocks writes
+
+**Level 2 — Trial Account** (email required, real account):
+- Real isolated tenant, `status: "trial"` in app-manifest.yaml + DB
+- 30-day auto-expiry with email at day 25 + day 29
+- Upgrade: one API call removes trial flag, activates Stripe subscription
+- Trial data excluded from platform aggregates (`WHERE is_trial = false`)
+- P-ARCH-030 applies: `rm -rf apps/{app}/` must lose no platform value
+
+**Level 3 — Feature Sandbox** (existing paid users testing new features):
+- Specific features expose a "Try in sandbox" toggle
+- Isolated transaction log (writes go to shadow table, not production)
+- "Exit sandbox" discards shadow table, no production impact
+- Implementation: `sandbox_mode: boolean` in session context, middleware routes writes
+
+**Constitutional protections:**
+- Trial tenant deletion: automated after expiry (no manual cleanup)
+- Platform-wide aggregate queries always filter `is_trial = false`
+- Feature sandbox flag never persists past session
+
+---
+
+### Q4 — OUTPUTS List (Complete Taxonomy)
+
+*The Governor's insight: pick the output type first, then the domain becomes obvious.*
+
+**Category A — Digital Presence:**
+- Landing page (hero + features + testimonials + pricing + CTA)
+- Multi-page marketing website
+- Personal/professional portfolio
+- Waitlist page with social proof
+
+**Category B — Growth & Marketing:**
+- Lead generation funnel (opt-in → value delivery → offer)
+- Email sequence (welcome / nurture / conversion / re-engagement / win-back)
+- Social media content calendar + caption templates
+- Ad copy variations (A/B testable)
+
+**Category C — Sales & Commerce:**
+- Pricing page with tier comparison table
+- Client proposal / project quote
+- Service package offer (bundled + priced)
+- Payment/checkout page with guarantee
+
+**Category D — Client Deliverables:**
+- Project report (weekly/monthly with charts)
+- Client onboarding document
+- Service agreement / statement of work
+- Invoice template
+
+**Category E — Operational:**
+- Data export (branded CSV/PDF with charts)
+- Knowledge base article
+- API documentation page
+- Team handbook page
+
+**For App #3 selection:** The Governor picks ONE output category. The app is then named after what it produces:
+- Category B → "ContentFlow" (marketing content generator)
+- Category C → "ProposalKit" (client proposals + pricing)
+- Category D → "ClientHub" (client deliverable management)
+- Category E → "ReportBuilder" (automated reports)
+
+Budget Planner produces Category E (operational data reports). App #3 should produce something different — likely Category B or C to serve the marketing/sales persona.
+
+---
+
+## §4 — OPUS-2 Architectural Position on App #3
+
+The Governor's note — "no sense creating another APP just to mark v" — is exactly right.
+
+App #3 should not be:
+- Another financial tracker (too similar to Budget Planner)
+- A generic task manager (no output value, commodity space)
+- A CSPS showcase (internal benefit only)
+
+App #3 SHOULD be:
+- Something that produces a TANGIBLE OUTPUT (from Q4 list)
+- Something that uses the ARCHETYPE WIZARD (from Q2)
+- Something that has a meaningful FREE → PAID conversion moment (tests the tier model from §1)
+- Something the Governor himself would actually use
+
+**Recommendation:** App #3 = a tool in Category B or C. Something that produces a client-facing output (proposal, email sequence, landing page). This:
+1. Proves the template works for a non-financial domain
+2. Tests the tier model (free: 3 outputs, pro: unlimited)
+3. Tests the archetype wizard (agency owner vs. solo freelancer vs. team)
+4. Has a real market (every freelancer and agency needs this)
+
+---
+
+*OPUS-2 Turn 39 | Tiers/Permissions gap identified | App #3 strategic architecture drafted | Priority #6 ready for Governor review*
+*OPUS-2 | S031→S032 transition | 2026-05-15*
+
+---
+
 # Opus Turn 38 — S031 Close Directive + E5 Confirmed + 88-File Naming Debt Note
 
 **State:** S031 ACTIVE | E3+E4 done (commit 1a868a5) | 110 validators | ready to close

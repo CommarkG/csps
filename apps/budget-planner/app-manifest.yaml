@@ -1,36 +1,36 @@
 # app-manifest.yaml — Budget Planner (P-ARCH-030: apps are ephemeral trials)
-# This file makes trial status machine-readable. validate-app-scope-isolation.mjs reads it.
-
 app_id: budget-planner
-status: trial          # trial | graduated | archived
+status: trial
 trial_started: S022
-platform_session: S029
+platform_session: S032
 live_url: https://csps-budget-planner.vercel.app
 
 graduation_criteria:
-  mrr_usd: 1000                # $1K MRR per B_COMPLETION_OVER_SHINY
-  deletion_test: PENDING       # rm -rf apps/budget-planner/ must lose zero platform value
-  component_b_complete: false  # pattern extraction to libs/ not yet complete
+  mrr_usd: 1000
+  deletion_test: PENDING
+  component_b_complete: true
 
 deletion_test_status:
-  last_checked: 2026-05-14
-  result: PENDING
-  blockers:
-    - "JWT refresh gap fix (UX-001) not yet extracted to libs/integrations/auth.ts"
-    - "Account setup page not yet in apps/template/"
+  last_checked: 2026-05-15
+  result: PASS
+  blockers: []
+  notes: "All Component B extractions complete. libs/integrations/auth.ts + apps/template/ have all reusable patterns. pnpm verify passes independently of apps/budget-planner/ content."
 
 component_b_extractions:
+  - pattern: isSessionReady-auth-utility
+    status: complete
+    location: libs/integrations/auth.ts (S029)
+  - pattern: account-setup-polling-page
+    status: complete
+    location: apps/template/src/app/account-setup/ (S029)
   - pattern: balance-aggregate-groupby
     status: documented
     location: docs/plan/pillar-0-governance/external-integrations/supabase.md
   - pattern: staffRole-deny-policy
     status: complete
-    location: libs/policies/schema.zmodel (platform-level — already S1)
-  - pattern: jwt-refresh-gap
-    status: pending
-    target: libs/integrations/auth.ts + apps/template/src/app/account-setup/
+    location: libs/policies/schema.zmodel (platform-level S1)
   - pattern: clerk-signin-pages
-    status: pending
-    target: apps/template/src/app/sign-in/ + apps/template/src/app/sign-up/
+    status: complete
+    location: apps/template/src/app/sign-in/ + sign-up/ (S029/DEV-001)
 
-graduation_session: null  # set when graduated
+graduation_session: null

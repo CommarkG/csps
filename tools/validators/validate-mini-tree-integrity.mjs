@@ -22,21 +22,23 @@ const SCAN_DIRS = [
 ];
 
 function parseYamlFrontmatter(content) {
-  if (!content.startsWith('---')) return null;
-  const end = content.indexOf('\n---', 3);
+  const clean = content.replace(/\r/g, ''); // normalize CRLF
+  if (!clean.startsWith('---')) return null;
+  const end = clean.indexOf('\n---', 3);
   if (end === -1) return null;
-  const yaml = content.slice(4, end);
+  const yaml = clean.slice(4, end);
+  content = clean;
   const result = {};
   for (const line of yaml.split('\n')) {
     const m = line.match(/^(\w[\w_-]*):\s*(.+)$/);
     if (m) result[m[1]] = m[2].trim().replace(/^["']|["']$/g, '');
-    // sub_files: array (simple list)
-    if (line.match(/^sub_files:$/)) result._sub_files_next = true;
-    if (result._sub_files_next && line.match(/^\s+-\s+(.+)$/)) {
+    // sub_files: array (simple list) — set flag first, process items next iteration
+    if (line.match(/^sub_files:$/)) {
+      result._sub_files_next = true;
+    } else if (result._sub_files_next && line.match(/^\s+-\s+(.+)$/)) {
       if (!result.sub_files) result.sub_files = [];
       result.sub_files.push(line.match(/^\s+-\s+(.+)$/)[1].trim());
-    }
-    if (result._sub_files_next && !line.match(/^\s*[-\s]/)) {
+    } else if (result._sub_files_next && !line.match(/^\s*-/)) {
       delete result._sub_files_next;
     }
   }

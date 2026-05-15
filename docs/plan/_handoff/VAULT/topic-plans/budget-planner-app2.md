@@ -61,6 +61,7 @@ intake_directions:
   - Personal/Budget Planner with Threshold Wizard onboarding (approved)
   - personal.finance WizardTemplate needed in routing.config.ts before build starts
   - Budget Planner exercises solo_user_flow (auto-org) + GDPR erasure path + personal data isolation
+scope_level: S1
 ---
 
 # Budget Planner — App #2 Topic Plan

@@ -18,6 +18,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:stable
+scope_level: S1
 ---
 
 # Closing Summary — S029

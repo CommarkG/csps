@@ -13,6 +13,7 @@ tags:
   - maturity:stable
 session: S024
 domain_path: platform
+scope_level: S1
 ---
 
 # HANDOFF S024 → S025

@@ -80,6 +80,7 @@ links:
   - { rel: foundation-spec, href: ../../pillar-2-data-and-schema/foundation-zmodel.md }
   - { rel: construction-gate, href: ../../../../tools/validators/validate-no-implementation-without-plan.mjs }
 domain_path: platform
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

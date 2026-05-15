@@ -27,6 +27,7 @@ alignment_verified_session: S016
 links:
   - { rel: parent, href: ./s014-task-management-app.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # S014 L1 Research — VLT Resolution + Competitor Analysis

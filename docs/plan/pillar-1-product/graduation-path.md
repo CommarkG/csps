@@ -22,6 +22,7 @@ consolidation_cross_refs:
   - apps/sandbox/prisma/schema.prisma
   - tools/session-state.json
 domain_path: platform
+scope_level: S1
 ---
 
 # Graduation Path — CSPS App Extraction Design

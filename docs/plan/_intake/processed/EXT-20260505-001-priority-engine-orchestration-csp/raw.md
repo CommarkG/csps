@@ -19,6 +19,7 @@ pe_score: 9.5
 layer: CSP_CORE
 status: ACTIVE_PORTABLE_REFERENCE
 github: https://github.com/CommarkG/core-sights-platform/blob/main/.claudecode/platform-brief/PRIORITY_ENGINE_AND_WORK_ORCHESTRATION_REPORT_ON_CSP_prepared_by_CSP_2026-05-05.md
+scope_level: S1
 ---
 
 # Priority Engine and Work Orchestration Report on Core Sights Platform

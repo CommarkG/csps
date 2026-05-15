@@ -42,6 +42,7 @@ links:
   - { rel: discipline, href: ../../docs/plan/pillar-0-governance/agent-alignment-protocol.md }
   - { rel: validator, href: ../validators/validate-aap-frontmatter.mjs }
   - { rel: registry, href: ../../docs/plan/_handoff/VAULT/template-registry.md }
+scope_level: S1
 ---
 
 # SKILL.md Template — AAP-aligned (no-wildcards)

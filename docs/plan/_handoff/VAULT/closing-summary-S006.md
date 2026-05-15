@@ -25,6 +25,7 @@ links:
   - { rel: governor-prompts, href: ./governor-prompts/S006.md }
   - { rel: user-intents, href: ./user-intents.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Closing Summary — Session 006

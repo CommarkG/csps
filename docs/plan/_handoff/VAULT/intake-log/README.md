@@ -15,6 +15,7 @@ tags:
   - audience:ai-agent
   - maturity:stable
 domain_path: platform
+scope_level: S1
 ---
 
 # Intake Log — CSPS

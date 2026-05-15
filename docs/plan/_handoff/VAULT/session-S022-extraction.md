@@ -24,6 +24,7 @@ cec_walk_trail_ref: "session-S022-extraction.md §2 CEC walk — 8 cycles to zer
 links:
   - { rel: parent, href: ./README.md }
   - { rel: bedrock, href: ../../../../pillar-0-governance/csps-bedrock.md }
+scope_level: S1
 ---
 
 # Session S022 Extraction

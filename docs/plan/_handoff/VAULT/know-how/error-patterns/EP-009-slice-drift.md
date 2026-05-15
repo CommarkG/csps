@@ -22,6 +22,7 @@ applies_to: [implement, plan-closure]
 prevention_checklist_item: "Every monolith edit is a 2-step: (1) edit monolith, (2) run pnpm <source>:split immediately. Never commit monolith changes without slice regeneration."
 mechanical_prevention: validate-slice-freshness.mjs (ACTIVE in pnpm verify)
 domain_path: platform
+scope_level: S1
 ---
 
 # EP-009 — Slice Drift

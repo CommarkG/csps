@@ -33,6 +33,7 @@ links:
 diataxis_type: explanation
 core_spine: AI
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # Human Intent Crystallization

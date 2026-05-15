@@ -25,6 +25,7 @@ links:
   - { rel: ccat-design, href: ./ccat-when-and-naming-S021.md }
   - { rel: orchestration, href: ./three-axis-orchestration-S021.md }
   - { rel: backlog, href: ../../../../tools/config/platform-update-backlog.yaml }
+scope_level: S1
 ---
 
 # 8-Expert Panel Review — S021 Full Plan

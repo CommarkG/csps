@@ -23,6 +23,7 @@ links:
   - { rel: contexts, href: ./contexts/README.md }
   - { rel: learning-loop, href: ../pillar-0-governance/learning-loop.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Proactive Completion — the closure forcing functions

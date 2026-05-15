@@ -55,6 +55,7 @@ links:
   - { rel: bedrock, href: ../../../../pillar-0-governance/csps-bedrock.md }
   - { rel: schema, href: ../../../../../libs/policies/schema.zmodel }
   - { rel: session-state, href: ../../../../../tools/session-state.json }
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

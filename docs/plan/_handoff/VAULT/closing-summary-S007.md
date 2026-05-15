@@ -27,6 +27,7 @@ links:
   - { rel: topic-plan, href: ./topic-plans/token-optimization.md }
   - { rel: element-review, href: ./element-reviews/token-optimization-S007.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Closing Summary — Session 007

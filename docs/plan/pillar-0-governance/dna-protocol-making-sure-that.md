@@ -34,6 +34,7 @@ links:
 diataxis_type: how-to
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # DNA Protocol — Making Sure That...

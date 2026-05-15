@@ -1066,3 +1066,20 @@ Check Turn 49 RZF findings, then execute.
 - sentry.ts: apps call Sentry.init() in instrumentation.ts — add comment
 - Both files: graceful passthrough when env vars not set
 - Check Turn 50 RZF before implementing
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 52 — S034-A: Scope backfill script)
+
+## Directive: build tools/scripts/backfill-scope-level.mjs
+Path rules:
+- .claude/core-spines/L1_* | packages/principles/principles/P-*.yaml → S0
+- libs/** → S1
+- apps/*/ → S2
+- docs/plan/pillar-*/ | tools/ → S3
+- unclear → needs-manual-review
+
+## Constraints: skip files that already have scope_level, add to frontmatter if missing
+
+## First action
+Read Turn 52 RZF findings before implementing.

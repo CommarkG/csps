@@ -8,6 +8,7 @@ pillars: [CONTEXT, TIMING, INTEGRITY, GOVERNANCE]
 pe_score: 9.0
 status: ACTIVE_PORTABLE_REFERENCE
 github: https://github.com/CommarkG/core-sights-platform/blob/main/.claudecode/platform-brief/DEPTH_LEVELS_AND_BUNDLING_ORCHESTRATOR_REPORT_ON_CSP_prepared_by_CSP_2026-05-05.md
+scope_level: S1
 ---
 
 # Depth Levels and Bundling Orchestrator Report on CSP

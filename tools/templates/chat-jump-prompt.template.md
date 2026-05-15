@@ -53,6 +53,7 @@ links:
   - { rel: parent, href: ./ }
   - { rel: registry-entry, href: ../../docs/plan/_handoff/VAULT/template-registry.md }
   - { rel: discipline, href: ../../docs/plan/pillar-0-governance/mutual-understanding-validation.md }
+scope_level: S1
 ---
 
 # Chat-Jump Prompt Template

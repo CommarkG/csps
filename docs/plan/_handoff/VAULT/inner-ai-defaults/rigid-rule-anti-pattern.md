@@ -21,6 +21,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/inner-ai-defaults/reasoning-patterns.md
   - docs/plan/pillar-0-governance/csps-layer-separation.md
 domain_path: platform
+scope_level: S1
 ---
 
 # Rigid Rule Anti-Pattern

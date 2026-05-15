@@ -32,6 +32,7 @@ reuse_instruction: |
   When you need a contract: read `docs/plan/pillar-0-governance/behavioral-contracts/B_NAME.md`.
   NEVER: read principles.yaml or behavioral-contracts.md as full files for a single lookup.
 domain_path: platform
+scope_level: S1
 ---
 
 # SG-002 — Slice-First Loading

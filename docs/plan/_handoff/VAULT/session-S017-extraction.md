@@ -27,6 +27,7 @@ consolidation_cross_refs:
   - tools/validators/validate-foundation-schema-drift.mjs
   - docs/plan/pillar-0-governance/csps-bedrock.md
 domain_path: platform
+scope_level: S1
 ---
 
 # Session S017 — Positive ZF Extraction

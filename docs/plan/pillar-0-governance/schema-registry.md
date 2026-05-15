@@ -33,6 +33,7 @@ links:
   - { rel: l2-domain, href: ../../../.claude/core-spines/L2_DOMAIN_ARCH_SCHEMA_GOVERNANCE.md }
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # Schema Registry — Canonical Anchor Index

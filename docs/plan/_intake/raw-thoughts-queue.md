@@ -19,6 +19,7 @@ consolidation_cross_refs:
   - tools/templates/priority-engine.schema.yaml
   - tools/validators/validate-phase-exit-criteria.mjs
 domain_path: platform
+scope_level: S1
 ---
 
 # Raw Thoughts Queue

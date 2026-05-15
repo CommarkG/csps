@@ -20,6 +20,7 @@ created-new-because: |
   Per P-ARCH-004 + P-ARCH-016: vocabulary needs a single source-of-truth file that codegens
   downstream artifacts (Vale dict, ESLint denylist, Payload options, ZModel @@meta). glossary.yaml
   is that file; codegen lands week-2.
+scope_level: S1
 ---
 
 # @csps/glossary

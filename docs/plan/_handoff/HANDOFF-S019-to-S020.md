@@ -16,6 +16,7 @@ links:
   - { rel: opus-lessons, href: ./_handoff/VAULT/opus-lessons-S019/README.md }
   - { rel: session-state, href: ../../tools/session-state.json }
 domain_path: platform
+scope_level: S1
 ---
 
 # HANDOFF S019 → S020

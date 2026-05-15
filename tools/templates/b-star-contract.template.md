@@ -37,6 +37,7 @@ links:
   - { rel: parent, href: ./ }
   - { rel: target, href: ../../docs/plan/pillar-0-governance/behavioral-contracts.md }
   - { rel: discipline, href: ../../docs/plan/pillar-0-governance/five-surface-engraving.md }
+scope_level: S1
 ---
 
 # B_* Contract Template

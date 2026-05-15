@@ -29,6 +29,7 @@ links:
   - { rel: closing-summary, href: ./VAULT/closing-summary-S010.md }
   - { rel: prior-handoff, href: ./HANDOFF-S009-to-S010.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # HANDOFF — Session 010 → Session 011

@@ -25,6 +25,7 @@ created-new-because: |
   Principles registry must live in code (per P-META-003 codegen-source-of-truth) so all
   downstream artifacts (AGENTS.md / hooks / skills / MCP resources / audit checks) regenerate
   deterministically from one file. principles.yaml is the file; codegen.ts is the pipeline.
+scope_level: S1
 ---
 
 # @csps/principles

@@ -21,6 +21,7 @@ consolidation_cross_refs:
   - EXT-20260505-003-C HUB-per-spine + schema-as-canonical-home (already extracted)
   - EXT-20260505-004-D Improvement #6 HUB-per-spine + #2 disambiguate semantics (already extracted)
 inherited_from_input: [source_type:AI_OTHER, risk:low]
+scope_level: S1
 ---
 
 # Extract C — Schema-of-schemas index + HUB-per-spine reinforcement

@@ -24,6 +24,7 @@ consolidation_cross_refs:
   - tools/validators/validate-phase-exit-criteria.mjs
   - tools/templates/priority-engine.schema.yaml
 domain_path: platform
+scope_level: S1
 ---
 
 # Core-Before-Application Pattern (FOUNDATION_EXIT_GATE)

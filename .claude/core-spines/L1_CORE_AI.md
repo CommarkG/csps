@@ -33,6 +33,7 @@ tags:
   - maturity:stable
 diataxis_type: explanation
 session: S006
+scope_level: S0
 ---
 
 # L1_CORE_AI — AI Systems Spine, Sealed Core Doctrine

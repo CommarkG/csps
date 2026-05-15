@@ -43,6 +43,7 @@ context_loss_prevention:
   not_applicable:
     - PAIN-D7-D10: "Closing summary; not engraving session"
 domain_path: platform
+scope_level: S1
 ---
 
 # Closing Summary — Session 008

@@ -8,6 +8,7 @@ pillars: [INTEGRITY, GOVERNANCE, CONTEXT, TIMING]
 pe_score: 9.0
 status: ACTIVE_PORTABLE_REFERENCE
 github: https://github.com/CommarkG/core-sights-platform/blob/main/.claudecode/platform-brief/ANTI_DUPLICATION_AND_CONSOLIDATION_DISCIPLINE_REPORT_ON_CSP_prepared_by_CSP_2026-05-05.md
+scope_level: S1
 ---
 
 # Anti-Duplication and Consolidation Discipline Report on CSP

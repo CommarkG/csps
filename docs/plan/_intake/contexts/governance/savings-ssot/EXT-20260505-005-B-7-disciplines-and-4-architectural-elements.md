@@ -20,6 +20,7 @@ priority_for_10_phase_completion: MEDIUM — informative architectural overview;
 consolidation_cross_refs:
   - All EXT-001 through EXT-004 (this extract is the SYNTHESIS map showing how prior extracts compose)
 inherited_from_input: [source_type:AI_OTHER, risk:low]
+scope_level: S1
 ---
 
 # Extract B — 7 active disciplines + 4 cross-cutting architectural elements

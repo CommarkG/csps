@@ -16,6 +16,7 @@ diataxis_type: reference
 session: S004
 next_session: S005
 domain_path: platform
+scope_level: S1
 ---
 
 # Detailed paste-prompt — S004 → S005

@@ -30,6 +30,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:stable
+scope_level: S1
 ---
 
 # AI Behavior Spine — Index

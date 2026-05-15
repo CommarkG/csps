@@ -21,6 +21,7 @@ consolidation_cross_refs:
   - tools/session-state.json
   - docs/plan/_handoff/HANDOFF-S014-to-S015.md
 domain_path: platform
+scope_level: S1
 ---
 
 # Closing Summary — S014

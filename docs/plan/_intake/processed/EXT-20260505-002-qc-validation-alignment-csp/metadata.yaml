@@ -35,4 +35,5 @@ notes: |
   All sub-IDs include `deep_dive_schedule` field per pipeline-enhancement directive.
   All sub-IDs include `mini_tree_layer` field per mini-tree split directive.
   All sub-IDs include `priority_for_10_phase_completion` field per PE alignment.
+scope_level: S1
 ---

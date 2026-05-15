@@ -23,6 +23,7 @@ consolidation_cross_refs:
   - EXT-20260505-004-C PE.read_budget (already extracted; the savings half of unified principle)
   - feedback_token_budget.md (memory entry 40; CSPS B_TOKEN_BUDGET 5 operating rules already engraved)
 inherited_from_input: [source_type:AI_OTHER, risk:low]
+scope_level: S1
 ---
 
 # Extract A — Unified principle: savings + SSoT are the same discipline

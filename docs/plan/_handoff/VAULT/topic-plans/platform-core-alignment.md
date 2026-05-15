@@ -52,6 +52,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/inner-ai-defaults/README.md
   - AGENTS.md
 domain_path: platform
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

@@ -32,6 +32,7 @@ links:
   - { rel: schema, href: ../../../../libs/policies/schema.zmodel }
   - { rel: domain-taxonomy, href: ./csps-pitch-and-value-S019.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # CSPS Platform Excellence — Consolidated Plan

@@ -32,6 +32,7 @@ links:
   - { rel: part1, href: ./part1-schema-and-security.md }
   - { rel: part2, href: ./part2-spines-ai-and-vision.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # CSPS Architectural Lessons — S019

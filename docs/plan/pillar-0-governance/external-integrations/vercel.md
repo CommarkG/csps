@@ -20,6 +20,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:stable
+scope_level: S1
 ---
 
 # Vercel Integration Knowledge — CSPS

@@ -23,6 +23,7 @@ links:
   - { rel: schema, href: ../../../../tools/templates/ }
 session: S006
 domain_path: platform
+scope_level: S1
 ---
 
 # Template Registry

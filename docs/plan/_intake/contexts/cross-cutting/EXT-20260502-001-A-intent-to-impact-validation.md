@@ -35,6 +35,7 @@ inherited_from_input:
 sla_due:
   triaged_to_routed: 2026-05-04T15:05:00Z   # met (acted same-turn)
   fixing_complete: 2026-05-02T15:05:00Z      # met (already shipped)
+scope_level: S1
 ---
 
 # Intent-to-impact validation in handoff (S002 turn-6 user proposal)

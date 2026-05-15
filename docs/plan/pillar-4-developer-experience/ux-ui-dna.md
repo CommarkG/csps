@@ -27,6 +27,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: routing-config, href: ../../../libs/config/routing.config.ts }
   - { rel: schema-page, href: ../../../apps/task-mgmt/src/app/schema/page.tsx }
+scope_level: S1
 ---
 
 # CSPS UX/UI DNA

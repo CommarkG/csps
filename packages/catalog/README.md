@@ -20,6 +20,7 @@ links:
 created-new-because: |
   Per P-OP-001 reuse-first: catalog-first generator UX requires a queryable index. catalog.json
   is the build-time output. Skeleton tier seeds an empty entries array; week-3 wires the scanner.
+scope_level: S1
 ---
 
 # @csps/catalog

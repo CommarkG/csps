@@ -35,6 +35,7 @@ tags:
   - maturity:stable
 diataxis_type: reference
 domain_path: platform
+scope_level: S1
 ---
 
 # EP-003 — Missing Registration Pattern

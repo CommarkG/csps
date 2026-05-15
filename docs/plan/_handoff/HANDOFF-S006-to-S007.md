@@ -19,6 +19,7 @@ diataxis_type: how-to
 session: S006
 next_session: S007
 domain_path: platform
+scope_level: S1
 ---
 
 # HANDOFF — Session 006 → Session 007

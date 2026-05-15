@@ -33,6 +33,7 @@ links:
   - { rel: zenstack-schema, href: ../../libs/policies/schema.zmodel }
   - { rel: zenstack-helper, href: ../../apps/task-mgmt/src/lib/zenstack.ts }
 domain_path: platform
+scope_level: S1
 ---
 
 # HANDOFF — Session 017 → Session 018

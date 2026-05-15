@@ -22,6 +22,7 @@ links:
 domain_path: platform
 core_spine: ARCH
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # Pillar 3 — Platform Services

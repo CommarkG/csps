@@ -15,6 +15,7 @@ tags:
 diataxis_type: reference
 session: S005
 domain_path: platform
+scope_level: S1
 ---
 
 # Chat-jump prompt — S005 → S006 (minimal)

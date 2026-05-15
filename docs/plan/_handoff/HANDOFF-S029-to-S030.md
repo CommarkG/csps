@@ -17,6 +17,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:stable
+scope_level: S1
 ---
 
 # HANDOFF — S029 → S030

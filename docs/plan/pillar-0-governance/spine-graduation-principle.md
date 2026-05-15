@@ -32,6 +32,7 @@ links:
   - { rel: core-manifest, href: ./csps-core-manifest.md }
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # Spine Graduation Principle

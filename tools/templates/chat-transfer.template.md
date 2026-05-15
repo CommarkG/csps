@@ -23,6 +23,7 @@ consolidation_cross_refs:
 links:
   - { rel: parent, href: ./ }
   - { rel: registry, href: ../../docs/plan/_handoff/VAULT/template-registry.md }
+scope_level: S1
 ---
 
 # Chat Transfer Template v2

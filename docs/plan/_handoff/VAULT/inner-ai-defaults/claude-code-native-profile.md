@@ -27,6 +27,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: reasoning-patterns, href: ./reasoning-patterns.md }
   - { rel: opus-protocol, href: ../../../tools/council/opus-protocol.md }
+scope_level: S1
 ---
 
 # Claude Code Native Profile

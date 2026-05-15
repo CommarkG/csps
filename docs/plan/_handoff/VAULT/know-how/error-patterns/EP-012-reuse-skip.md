@@ -22,6 +22,7 @@ applies_to: [plan-creation, implement]
 prevention_checklist_item: "Before any new implementation: run check_reuse in principles-mcp or search existing platform for similar patterns. Cite results in §KH item 0 ('reuse check: <result>'). If nothing found: document why creation is justified."
 mechanical_prevention: "pre-tool-use-reuse-check.sh (to be built; pre-tool-use hook on Write to implementation paths)"
 domain_path: platform
+scope_level: S1
 ---
 
 # EP-012 — Reuse-Skip

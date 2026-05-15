@@ -39,6 +39,7 @@ links:
   - { rel: parent, href: ./ }
   - { rel: memory-index, href: "C:\\Users\\finky\\.claude\\projects\\c--Users-finky-Desktop-Claude-Code-Csps\\memory\\MEMORY.md" }
   - { rel: discipline, href: ../../docs/plan/pillar-0-governance/five-surface-engraving.md }
+scope_level: S1
 ---
 
 # Memory Entry Template

@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ../README.md }
   - { rel: intake, href: ../../README.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Context: Intake (the recursive case)

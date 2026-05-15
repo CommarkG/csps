@@ -19,6 +19,7 @@ links:
   - { rel: handoff, href: ../HANDOFF-S004-to-S005.md }
 session: S004
 domain_path: platform
+scope_level: S1
 ---
 
 # Blocker Registry — Session S004

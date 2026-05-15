@@ -35,6 +35,7 @@ when_NOT_to_use: |
   - Do NOT use instead of a full HANDOFF at session close
   - Do NOT use for session-to-session boundaries (use HANDOFF-S<NNN>-to-S<NNN+1>.md)
   - Do NOT use if the session is closing (use session close protocol instead)
+scope_level: S1
 ---
 
 # Chat State Snapshot Template

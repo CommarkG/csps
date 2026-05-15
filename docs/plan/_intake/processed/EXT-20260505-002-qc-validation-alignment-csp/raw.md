@@ -8,6 +8,7 @@ pillars: [INTEGRITY, GOVERNANCE, TIMING, CONTEXT]
 pe_score: 9.0
 status: ACTIVE_PORTABLE_REFERENCE
 github: https://github.com/CommarkG/core-sights-platform/blob/main/.claudecode/platform-brief/QC_VALIDATION_ALIGNMENT_REPORT_ON_CSP_prepared_by_CSP_2026-05-05.md
+scope_level: S1
 ---
 
 # QC, Validation, and Alignment Measures Report on CSP

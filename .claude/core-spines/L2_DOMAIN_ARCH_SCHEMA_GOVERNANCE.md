@@ -33,6 +33,7 @@ links:
   - { rel: schema-registry, href: ../../../docs/plan/pillar-0-governance/schema-registry.md }
   - { rel: nothing-stands-alone, href: ../../../tools/validators/validate-nothing-stands-alone.mjs }
   - { rel: opus-ratification, href: ../../../docs/plan/_handoff/VAULT/opus-srof-schema-and-spines-review.md }
+scope_level: S1
 ---
 
 # L2_DOMAIN_ARCH_SCHEMA_GOVERNANCE

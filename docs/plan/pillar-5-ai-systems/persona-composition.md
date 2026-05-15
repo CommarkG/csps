@@ -34,6 +34,7 @@ created-new-because: |
 domain_path: platform
 core_spine: AI
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # Persona Composition

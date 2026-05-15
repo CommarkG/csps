@@ -23,6 +23,7 @@ session: S026
 links:
   - { rel: trigger-vocabulary, href: ./trigger-vocabulary.md }
   - { rel: sample-library, href: ./sample-library.yaml }
+scope_level: S1
 ---
 
 # Alternative Vocabulary Library

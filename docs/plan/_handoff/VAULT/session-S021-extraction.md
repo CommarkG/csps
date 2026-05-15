@@ -27,6 +27,7 @@ links:
   - { rel: enforcement-plan, href: ./topic-plans/enforcement-rate-uplift.md }
   - { rel: s020-deliverables, href: ./sonnet-task-list-S020.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Session Extraction — S020 + S021

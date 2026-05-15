@@ -19,6 +19,7 @@ links:
   - { rel: variant-autonomous, href: ./chat-jump-prompt-S003-to-S004-autonomous-overnight.md }
 session: S003
 domain_path: platform
+scope_level: S1
 ---
 
 # Chat-Jump Prompt — S003 → S004 (Standard)

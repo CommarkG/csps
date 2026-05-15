@@ -18,6 +18,7 @@ tags:
   - maturity:stable
 links:
   - { rel: parent, href: ../README.md }
+scope_level: S1
 ---
 
 # HANDOFF — S033 → S034

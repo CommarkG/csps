@@ -27,6 +27,7 @@ links:
   - { rel: core-manifest, href: ../pillar-0-governance/csps-core-manifest.md }
   - { rel: platform-dna, href: ../pillar-0-governance/csps-platform-dna.md }
   - { rel: core-spines-dir, href: ../../../.claude/core-spines/ }
+scope_level: S1
 ---
 
 # Opus SROF Review — Schema & Core Spines Architecture

@@ -19,6 +19,7 @@ links:
   - { rel: parent, href: ./README.md }
 session: S006
 domain_path: platform
+scope_level: S1
 ---
 
 # Inner-AI-Defaults — Prose Patterns

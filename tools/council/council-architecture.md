@@ -20,6 +20,7 @@ tags:
   - maturity:stable
 session: S022
 impl_status: swift-implemented
+scope_level: S1
 ---
 
 # CSPS Mini Internal Council

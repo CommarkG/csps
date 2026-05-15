@@ -25,6 +25,7 @@ links:
   - { rel: handoff, href: ../HANDOFF-S009-to-S010.md }
   - { rel: closing-summary, href: ./closing-summary-S009.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Chat-Jump Prompt — S009 → S010 (LEAN)

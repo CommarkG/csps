@@ -28,6 +28,7 @@ links:
 consolidation_cross_refs:
   - tools/session-state.json    # VLT-S011-003/004 resolution tracking
 domain_path: platform
+scope_level: S1
 ---
 
 # Foundation Design Decisions — CSPS

@@ -13,6 +13,7 @@ impl_status: swift-implemented
 links:
   - { rel: closing-summary, href: ./VAULT/closing-summary-S023.md }
   - { rel: chat-jump, href: ./VAULT/chat-jump-prompt-S023-to-S024.md }
+scope_level: S1
 ---
 
 # HANDOFF S023 → S024

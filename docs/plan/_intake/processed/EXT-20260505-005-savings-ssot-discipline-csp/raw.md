@@ -8,6 +8,7 @@ pillars: [INTEGRITY, GOVERNANCE, CONTEXT, TIMING]
 pe_score: 9.5
 status: ACTIVE_PORTABLE_REFERENCE
 github: https://github.com/CommarkG/core-sights-platform/blob/main/.claudecode/platform-brief/SAVINGS_AND_SINGLE_SOURCE_OF_TRUTH_DISCIPLINE_REPORT_ON_CSP_prepared_by_CSP_2026-05-05.md
+scope_level: S1
 ---
 
 # Savings and Single Source of Truth Discipline Report on CSP

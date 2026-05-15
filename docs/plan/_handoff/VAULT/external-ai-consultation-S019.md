@@ -24,6 +24,7 @@ links:
   - { rel: opus-brief, href: ./opus-consultation-brief-S019.md }
   - { rel: platform-audit, href: ../../../platform-audit/README.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # External AI Consultation — CSPS Platform Review

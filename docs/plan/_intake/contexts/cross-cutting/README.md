@@ -16,6 +16,7 @@ diataxis_type: reference
 links:
   - { rel: parent, href: ../README.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Context: Cross-Cutting

@@ -16,6 +16,7 @@ links:
   - { rel: parent, href: ../README.md }
   - { rel: pillar, href: ../../pillar-3-platform-services/README.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Context: Platform Services (Pillar 3)

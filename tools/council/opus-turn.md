@@ -1,3 +1,93 @@
+# Opus Turn 52 — Governor Strategic Call: Infrastructure-First + S034 Revised Plan
+
+**State:** S033 CLOSED (b8401e0) | S034 ACTIVE | Governor directive: finish infrastructure before App #3
+
+---
+
+## Governor Decision: CORRECT. Full support.
+
+Building App #3 on incomplete infrastructure means retrofitting later. Every piece of UX (dashboard, settings, onboarding) will be built inside the app instead of in libs/ — then the next app repeats it. This is exactly what P-ARCH-030 prevents for apps; the same logic applies to the platform layer itself.
+
+**Also correct:** We haven't used the platform's own planning processes for App #3. A platform that doesn't use its own governance to plan its next app is missing the point. App #3 needs: PE-scored topic-plan → Governor crystallization → SPI-gated sessions → ratification before scaffold. That's the process. It hasn't happened yet.
+
+---
+
+## db:push: Governor Action (Codespaces)
+
+No db:push script at root. No DIRECT_URL accessible from this session. The Governor must run from Codespaces:
+
+```bash
+# Open GitHub Codespaces for this repo, then:
+cd apps/budget-planner
+pnpm prisma db push
+# OR from repo root:
+pnpm --filter @csps/budget-planner exec prisma db push
+```
+
+This pushes: Notification model + WebhookEndpoint model + MembershipRole.viewer + Tenant.plan/features/limits — all changes from S032-A/B that have been deferred.
+
+---
+
+## What "Complete Infrastructure" Means (OPUS-2 Definition)
+
+Three layers remain before App #3 planning starts:
+
+### Layer 2 — UX System: libs/components/ (0% → target 100%)
+
+This is the most important gap. Without it, every app hand-rolls its own:
+- Dashboard shell (empty state / loaded state / error state)
+- Settings suite (profile / billing / team / API keys)
+- Onboarding wizard (archetype detection → personalized setup)
+- Feature gate overlay (upgrade prompt)
+- Data table (filter + sort + pagination + export)
+
+**2 sessions** to build Phase 1 (dashboard + settings + feature gate = the universal set):
+- S034-B: Dashboard shell + Settings suite (SPI=0.5)
+- S034-C: Onboarding wizard + Feature gate overlay + Data table (SPI=0.5)
+
+### Scope Backfill: tools/scripts/backfill-scope-level.mjs
+
+206 files need scope_level frontmatter. Build the auto-detection script (S034-A, SPI=0.2) — runs in 10 minutes, not 206 manual edits.
+
+### Optional Platform Services (not blocking App #3 launch)
+
+These can be built as App #3 needs them — not before:
+- File storage (Cloudflare R2) — only if App #3 has file uploads
+- Real-time (SSE) — only if App #3 needs live data
+- AI/LLM (Anthropic SDK) — only if App #3 is AI-powered
+
+Do NOT build these speculatively before knowing App #3's domain.
+
+---
+
+## Revised S034 Sequence (Infrastructure-First)
+
+| Session | What | SPI | Blocking |
+|---|---|---|---|
+| S034-A | Scope backfill script (206 files auto-detect) | 0.2 | Naming BLOCKING upgrade |
+| S034-B | libs/components/ Dashboard shell + Settings suite | 0.5 | Every app's UX layer |
+| S034-C | libs/components/ Onboarding wizard + Feature gate + Data table | 0.5 | App #3 differentiator |
+| Governor | App #3 domain decision → crystallize intent → PE-scored topic-plan | — | Prerequisite for S034-D |
+| S034-D | App #3 topic-plan ratification (Opus reviews before scaffold) | — | Gate 4 |
+
+### What App #3 planning looks like (correct process):
+
+1. **Governor picks category** (from Turn 40 taxonomy: B=Marketing, C=Sales, D=Client, E=Operational)
+2. **Governor crystallizes intent** per P-META-022: "The app produces X for Y persona when Z condition"
+3. **OPUS-2 produces PE-scored topic-plan** using gradual-build-plan template: domain schema → UI → API → deploy
+4. **Governor ratifies the topic-plan**
+5. **pnpm create:app [name]** → scaffold
+6. **SPI-gated sessions** per the topic-plan
+
+This is how CSPS apps are supposed to be built. Not "domain decision → pnpm create:app → freestyle."
+
+---
+
+*OPUS-2 Turn 52 | Infrastructure-first ratified | S034 sequence | App #3 process corrected*
+*OPUS-2 | S034 | 2026-05-15*
+
+---
+
 # Opus Turn 50 — S033-C Monitoring Directive + Q1/Q2 Answers
 
 **State:** S033-B done (c776e7b) | Email + Jobs live | S033-C = monitoring

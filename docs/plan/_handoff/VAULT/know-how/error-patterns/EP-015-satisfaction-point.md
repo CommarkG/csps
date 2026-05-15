@@ -26,6 +26,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/ai-behavior-improvement-plan.md
   - AGENTS.md
 domain_path: platform
+scope_level: S1
 ---
 
 # EP-015 — The Satisfaction Point

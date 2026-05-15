@@ -40,6 +40,7 @@ links:
   - { rel: principle, href: ../../../../packages/principles/principles.yaml }
 session: S006
 domain_path: platform
+scope_level: S1
 ---
 
 # Inner-AI-Defaults Registry

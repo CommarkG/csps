@@ -32,6 +32,7 @@ links:
 domain_path: platform
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # System Health Plan — CSPS

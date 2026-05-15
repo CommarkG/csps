@@ -42,6 +42,7 @@ links:
   - { rel: governs, href: ../../docs/plan/pillar-0-governance/csps-core-manifest.md }
   - { rel: registry, href: ../../docs/plan/_handoff/VAULT/template-registry.md }
 session: S006
+scope_level: S1
 ---
 
 # Gradual-Build-Plan Template

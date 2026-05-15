@@ -31,6 +31,7 @@ inherited_from_input:
   - risk: low
 sla_due:
   routed_for_review: 2026-05-06T04:35:00Z
+scope_level: S1
 ---
 
 # Extract E — IVP 5+1 personas + L3 Expert Panel 6 voices + Cruel-critic discipline

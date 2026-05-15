@@ -40,6 +40,7 @@ links:
   - { rel: cia-plan, href: ./csps-continuous-intelligence-architecture.md }
   - { rel: over-system-audit, href: ../over-the-system-audit-S022.md }
   - { rel: excellence-plan, href: ./platform-excellence-completion-S023.md }
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

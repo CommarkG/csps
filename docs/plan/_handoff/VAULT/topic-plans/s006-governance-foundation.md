@@ -48,6 +48,7 @@ muv_audit:
   required_sections_present: PASS (foundation + per-level + priority-engine + ZF-gates + backtrack-register + cross-layer-audits)
   alignment_questions_count: 0 (this is internal sequencing artifact, not cross-chat handshake)
 domain_path: platform
+scope_level: S1
 ---
 
 # Topic Plan — S006 Governance Foundation

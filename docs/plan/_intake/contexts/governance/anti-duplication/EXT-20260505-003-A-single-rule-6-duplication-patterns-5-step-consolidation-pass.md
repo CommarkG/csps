@@ -37,6 +37,7 @@ self_demonstrating: |
   This extract APPLIES Consolidation Pass discipline to itself: cross-references EXT-001-A (PE formula),
   EXT-002-D (D1-D10 catalog), EXT-002-F (rigid-vs-flex) instead of restating their content. CSP file #3's
   meta-recursion (the discipline applying to its own authoring) is CSPS-replicated here.
+scope_level: S1
 ---
 
 # Extract A — Single rule + 6 duplication patterns + 5-step Consolidation Pass protocol

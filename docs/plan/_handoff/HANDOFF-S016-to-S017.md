@@ -32,6 +32,7 @@ links:
   - { rel: bedrock, href: ../pillar-0-governance/csps-bedrock.md }
   - { rel: layer-separation, href: ../pillar-0-governance/csps-layer-separation.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # HANDOFF — Session 016 → Session 017

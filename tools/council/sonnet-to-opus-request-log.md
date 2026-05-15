@@ -24,6 +24,7 @@ links:
   - { rel: protocol, href: ./PROTOCOL.md }
   - { rel: opus-turn, href: ./opus-turn.md }
   - { rel: sonnet-turn, href: ./sonnet-turn.md }
+scope_level: S1
 ---
 
 # Sonnet→Opus Request Log

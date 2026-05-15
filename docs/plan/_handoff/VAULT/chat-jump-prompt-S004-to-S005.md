@@ -15,6 +15,7 @@ diataxis_type: reference
 session: S004
 next_session: S005
 domain_path: platform
+scope_level: S1
 ---
 
 # Minimal paste-target — S004 → S005

@@ -27,6 +27,7 @@ consolidation_cross_refs:
   - AGENTS.md
   - docs/plan/_handoff/VAULT/know-how/checklists/pre-plan-creation.md
 domain_path: platform
+scope_level: S1
 ---
 
 # EP-016 — Loose Chat Transfer

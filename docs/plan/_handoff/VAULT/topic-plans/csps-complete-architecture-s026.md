@@ -69,6 +69,7 @@ links:
   - { rel: master-plan, href: ../csps-master-plan-s025-plus.md }
   - { rel: audit-runner, href: ../../../pillar-0-governance/audit-runner.md }
   - { rel: threshold-protocol, href: ../../../pillar-0-governance/threshold-intake-protocol.md }
+scope_level: S1
 ---
 
 # CSPS Complete Architecture — S026 Implementation Plan

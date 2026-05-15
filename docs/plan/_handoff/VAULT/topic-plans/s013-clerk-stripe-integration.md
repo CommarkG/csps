@@ -38,6 +38,7 @@ links:
   - { rel: depends-on, href: ./foundation-slices.md }
   - { rel: implementation, href: ../../../../../libs/integrations/ }
 domain_path: platform
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

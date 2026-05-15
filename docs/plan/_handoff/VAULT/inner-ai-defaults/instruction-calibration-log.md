@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: trigger-vocabulary, href: ./trigger-vocabulary.md }
   - { rel: alternative-vocabulary, href: ./alternative-vocabulary.md }
+scope_level: S1
 ---
 
 # Instruction Calibration Log

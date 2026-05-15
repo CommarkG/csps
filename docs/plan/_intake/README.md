@@ -27,6 +27,7 @@ links:
   - { rel: source-leaf-pending, href: ./routing-rules.md }
   - { rel: source-leaf-pending, href: ./external-inputs-plan.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # External-Input Intake — the place

@@ -19,6 +19,7 @@ links:
   - { rel: prior-session, href: ./gaps-and-duplications-S004.md }
 session: S005
 domain_path: platform
+scope_level: S1
 ---
 
 # Gaps + Duplications Report — Session S005

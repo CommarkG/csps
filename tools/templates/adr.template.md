@@ -4,6 +4,7 @@ name: adr-template
 template_grade: A  # Opus Turn 15 S026 — governs all architecture decisions; constitutional
 template_status: standard
 session: S006
+scope_level: S1
 ---
 
 # ADR-[NNN]: [Title]

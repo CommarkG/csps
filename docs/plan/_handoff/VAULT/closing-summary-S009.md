@@ -41,6 +41,7 @@ context_loss_prevention:
   not_applicable:
     - PAIN-D7-D10: "S009 is engraving session; D7-D10 cognitive failure modes self-monitored via L1.5 D1-D10 catalog"
 domain_path: platform
+scope_level: S1
 ---
 
 # Closing Summary — Session 009

@@ -9,6 +9,7 @@ lifecycle_state: active
 core_spine: GVRN
 domain_path: platform
 session: S022
+scope_level: S1
 ---
 
 # HANDOFF S022 → S023

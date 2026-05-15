@@ -8,6 +8,7 @@ pillars: [TIMING, GOVERNANCE, INTEGRITY]
 pe_score: 7.0
 status: ACTIVE_OPERATIONAL_NOTE
 github: https://github.com/CommarkG/core-sights-platform/blob/main/.claudecode/platform-brief/AI_BUILDER_EDGE_CASE_HANDLING_NOTE_prepared_by_CSP_2026-05-05.md
+scope_level: S1
 ---
 
 # AI Builder Edge Case Handling Note (CSP)

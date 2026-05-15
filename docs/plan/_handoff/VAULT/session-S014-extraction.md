@@ -30,6 +30,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/csps-master-roadmap-s014-plus.md
   - tools/session-state.json
 domain_path: platform
+scope_level: S1
 ---
 
 # Session S014 Extraction — Full Harvest

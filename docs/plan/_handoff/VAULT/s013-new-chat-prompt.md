@@ -17,6 +17,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/inner-ai-defaults/README.md
   - docs/plan/pillar-0-governance/ai-behavior-improvement-plan.md
 domain_path: platform
+scope_level: S1
 ---
 
 # New Chat Prompt — S013

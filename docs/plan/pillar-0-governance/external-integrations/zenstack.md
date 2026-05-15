@@ -22,6 +22,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:stable
+scope_level: S1
 ---
 
 # ZenStack Integration Knowledge — CSPS

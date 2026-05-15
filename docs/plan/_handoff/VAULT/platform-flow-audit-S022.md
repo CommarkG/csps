@@ -27,6 +27,7 @@ ai_defaults_influence: none
 links:
   - { rel: bedrock, href: ../../../../pillar-0-governance/csps-bedrock.md }
   - { rel: enterprise-plan, href: ./enterprise-core-completion-plan.md }
+scope_level: S1
 ---
 
 # Platform Flow Audit — S022

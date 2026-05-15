@@ -51,6 +51,7 @@ links:
   - { rel: depends-on, href: ./s013-clerk-stripe-integration.md }
   - { rel: construction-gate, href: ../../../../../tools/validators/validate-no-implementation-without-plan.mjs }
 domain_path: platform
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

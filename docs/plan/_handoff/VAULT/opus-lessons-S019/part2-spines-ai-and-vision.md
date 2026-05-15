@@ -28,6 +28,7 @@ links:
   - { rel: ai-behavior, href: ../../../../platform-audit/platform-services/ai-behavior.md }
   - { rel: ai-personas, href: ../../../../platform-audit/ai-personas.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Part 2: Core Spines, AI Behavior, and the Platform Self-Improvement Vision

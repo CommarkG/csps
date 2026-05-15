@@ -22,6 +22,7 @@ links:
   - { rel: composes-with, href: ../topic-plans/README.md }
 session: S006
 domain_path: platform
+scope_level: S1
 ---
 
 # Element Reviews

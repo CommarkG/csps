@@ -35,6 +35,7 @@ links:
   - { rel: virtual-audit, href: ./virtual-opus-audit.md }
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # Context-and-Intent Operating Principle (C&I)

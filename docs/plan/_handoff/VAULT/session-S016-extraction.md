@@ -24,6 +24,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/csps-bedrock.md
   - docs/plan/pillar-0-governance/csps-layer-separation.md
 domain_path: platform
+scope_level: S1
 ---
 
 # Session S016 — Positive ZF Extraction

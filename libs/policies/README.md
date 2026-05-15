@@ -21,6 +21,7 @@ created-new-because: |
   Per build-order.md week 1: base ZModel + audit-trigger DDL must commit before any slice
   can scaffold. libs/policies/ is the canonical home for cross-slice schema policy.
 domain_path: platform
+scope_level: S1
 ---
 
 # @csps/libs/policies

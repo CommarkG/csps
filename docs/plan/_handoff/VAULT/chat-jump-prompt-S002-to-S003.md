@@ -18,6 +18,7 @@ links:
   - { rel: handoff, href: ../HANDOFF-S002-to-S003.md }
   - { rel: protocols, href: ./protocols.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # S002 → S003 Chat-Jump Prompt (paste-target for user)

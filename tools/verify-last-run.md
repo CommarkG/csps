@@ -1,28 +1,30 @@
 # verify last run
 
-- ran_at: 2026-05-15T21:51:37.747Z
-- finished_at: 2026-05-15T21:51:58.643Z
-- exit_code: 0
+- ran_at: 2026-05-15T22:04:50.451Z
+- finished_at: 2026-05-15T22:05:20.634Z
+- exit_code: 1
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-15T21:51:37.747Z",
-    "finished_at": "2026-05-15T21:51:58.643Z",
+    "ran_at": "2026-05-15T22:04:50.451Z",
+    "finished_at": "2026-05-15T22:05:20.634Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "DEFERRED-WITH-REASON",
-        "skip_reason": "flag --skip-install"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 7.8,
+        "packages_resolved": null
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -30,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 1.1,
         "principles_loaded": 61,
         "findings_total": 3
       },
@@ -183,9 +185,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files": 117,
-        "links": 520,
-        "broken": 40
+        "files": 122,
+        "links": 547,
+        "broken": 48
       },
       {
         "name": "opus_review_flagging",
@@ -212,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.3,
         "checked": 35,
         "advisories": 27
       },
@@ -307,7 +309,7 @@
         "command": "node tools/validators/validate-dna-evidence.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "elements_checked": 17,
         "advisories": 0
       },
@@ -432,7 +434,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "scanned": 535,
-        "advisory": 85
+        "advisory": 86
       },
       {
         "name": "file_naming",
@@ -450,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 50,
+        "turns": 51,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -472,7 +474,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "checked": 208,
-        "missing": 206,
+        "missing": 94,
         "invalid": 0,
         "exempt": 1
       },
@@ -489,12 +491,13 @@
       {
         "name": "laptop_patterns",
         "command": "node tools/validators/validate-laptop-patterns.mjs",
-        "status": "PASS",
-        "exit_code": 0,
+        "status": "FAIL",
+        "exit_code": 1,
         "duration_seconds": 0.2,
         "checked": 39,
-        "blocking": 0,
-        "advisories": 7
+        "blocking": 6,
+        "advisories": 1,
+        "tail": "     → \"1. **Hard-coding secrets in the script** — refused; reads only from `.env.local`\"\n  ⛔ docs/plan/_handoff/VAULT/topic-plans/budget-planner-app2.md:171: \"pnpm dev\" = local server. Use: `vercel --prod` (deploy) or Codespace\n     → \"- [ ] Cold-start test: new developer runs `cp .env.example .env.local && pnpm in\"\n  ⛔ docs/plan/_handoff/VAULT/topic-plans/enterprise-core-completion-plan.md:600: \"pnpm dev\" = local server. Use: `vercel --prod` (deploy) or Codespace\n     → \"Fork template → pnpm dev → enhance() works from session start (no bypass)\"\n  ⛔ docs/plan/_handoff/VAULT/topic-plans/platform-excellence-completion-S023.md:422: \"pnpm dev\" = local server. Use: `vercel --prod` (deploy) or Codespace\n     → \"README.md: \"Fork this to build App #2. Run: pnpm install → pnpm db:push → pnpm d\"\n  ⛔ docs/plan/_handoff/VAULT/topic-plans/platform-excellence-completion-S023.md:433: \"pnpm dev\" = local server. Use: `vercel --prod` (deploy) or Codespace\n     → \"5. First run (pnpm dev, sign up, verify \"No org yet\" → create org → tasks)\"\n"
       },
       {
         "name": "request_ledger",
@@ -539,9 +542,9 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "issues": 1,
-        "advisory": 1,
+        "duration_seconds": 0.1,
+        "issues": 0,
+        "advisory": 0,
         "duplicates": 0
       },
       {
@@ -783,7 +786,7 @@
         "command": "node tools/validators/validate-pe-connectivity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 20,
         "total_gaps": 20
@@ -1059,7 +1062,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.2
+        "duration_seconds": 7.6
       },
       {
         "name": "audit_runner_full_pass",
@@ -1068,7 +1071,7 @@
         "skip_reason": "audit-runner ships week-4 (planned per build-order.md week 4)"
       }
     ],
-    "exit_code": 0,
+    "exit_code": 1,
     "strict_mode": false
   }
 }

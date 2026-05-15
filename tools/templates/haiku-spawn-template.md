@@ -31,6 +31,7 @@ links:
   - { rel: pattern-library, href: ../config/haiku-pattern-library.yaml }
   - { rel: class-b-preamble, href: ./class-b-agent-spawn-preamble.template.md }
   - { rel: spec-source, href: ../../docs/plan/_handoff/VAULT/bottleneck-and-gradual-structures-S019.md }
+scope_level: S1
 ---
 
 # Haiku Scout Spawn Template

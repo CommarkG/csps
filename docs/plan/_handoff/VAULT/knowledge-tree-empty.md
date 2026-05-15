@@ -26,6 +26,7 @@ links:
   - { rel: csps-response, href: ./knowledge-tree-empty-response.md }
   - { rel: analysis, href: ./lovable-tree-analysis-S021.md }
   - { rel: orchestration, href: ./three-axis-orchestration-S021.md }
+scope_level: S1
 ---
 
 # Knowledge Hub — Empty Tree Scaffold

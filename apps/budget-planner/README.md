@@ -20,6 +20,7 @@ links:
   - { rel: topic-plan, href: ../../docs/plan/_handoff/VAULT/topic-plans/budget-planner-app2.md }
   - { rel: wizard-template, href: ../../libs/config/routing.config.ts }
   - { rel: forked-from, href: ../template/README.md }
+scope_level: S2
 ---
 
 # Budget Planner — CSPS App #2

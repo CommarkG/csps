@@ -39,6 +39,7 @@ links:
   - { rel: over-system-audit, href: ../over-the-system-audit-S022.md }
   - { rel: governance-cycle, href: ./csps-platform-governance-cycle.md }
   - { rel: cia-plan, href: ./csps-continuous-intelligence-architecture.md }
+scope_level: S1
 ---
 
 # CSPS Consolidation + ZF Hardening Plan

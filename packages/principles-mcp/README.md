@@ -26,6 +26,7 @@ created-new-because: |
   ("packages/principles-mcp/ skeleton"), this is the canonical inheritance bridge — vendored into
   every graduated app per graduation-pipeline.md. Distinct from packages/principles (which is the
   single-source-of-truth for principle definitions); this server EXPOSES that source.
+scope_level: S1
 ---
 
 # @csps/principles-mcp

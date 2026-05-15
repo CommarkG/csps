@@ -30,6 +30,7 @@ links:
   - { rel: ccat-framework, href: ./three-axis-orchestration-S021.md }
   - { rel: naming-policy, href: ../../../docs/plan/pillar-0-governance/naming-policy.md }
   - { rel: naming-validator, href: ../../../tools/validators/validate-naming-convention.mjs }
+scope_level: S1
 ---
 
 # CCAT WHEN + Naming + HOW Enhancements

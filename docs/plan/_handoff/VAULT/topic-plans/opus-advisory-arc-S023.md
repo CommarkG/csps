@@ -50,6 +50,7 @@ links:
   - { rel: opus-turns, href: ../../../../../tools/council/opus-turn.md }
   - { rel: alignment-plan, href: ../../../../../tools/council/p-meta-022-alignment-plan.md }
   - { rel: bedrock, href: ../../../../pillar-0-governance/csps-bedrock.md }
+scope_level: S1
 ---
 
 # Opus Advisory Arc — S023

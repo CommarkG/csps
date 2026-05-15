@@ -24,6 +24,7 @@ links:
   - { rel: opus-srof, href: ./opus-srof-schema-and-spines-review.md }
   - { rel: csps-platform-dna, href: ../pillar-0-governance/csps-platform-dna.md }
   - { rel: virtual-opus-audit, href: ../pillar-0-governance/virtual-opus-audit.md }
+scope_level: S1
 ---
 
 # Retrograde Principles — S027 Session Extraction

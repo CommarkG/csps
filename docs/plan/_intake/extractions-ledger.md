@@ -18,6 +18,7 @@ links:
   - { rel: protocol, href: ./manual-protocol.md }
   - { rel: contexts, href: ./contexts/README.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Extractions Ledger

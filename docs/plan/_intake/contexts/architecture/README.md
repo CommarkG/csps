@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ../README.md }
   - { rel: pillar, href: ../../pillar-1-architecture-and-stack/README.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Context: Architecture & Stack (Pillar 1)

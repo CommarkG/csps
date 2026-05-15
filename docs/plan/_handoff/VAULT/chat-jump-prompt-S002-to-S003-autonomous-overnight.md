@@ -20,6 +20,7 @@ links:
   - { rel: protocols, href: ./protocols.md }
   - { rel: closing-template, href: ./closing-summary-template.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # S002 → S003 Chat-Jump Prompt — AUTONOMOUS OVERNIGHT VARIANT

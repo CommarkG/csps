@@ -33,6 +33,7 @@ sla_due:
   triaged_to_routed: 2026-05-04T18:00:00Z   # met (already routed)
   fixing_complete: n/a                       # archive; no fix needed
 precedent_checked: declared-novel            # B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK — no CSP precedent for "save rejected PCR options as inputs"; user invented this discipline turn 9
+scope_level: S1
 ---
 
 # S002 Decision Alternatives — Archive of Non-Recommended PCR Options

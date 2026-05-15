@@ -33,6 +33,7 @@ inherited_from_input:
   - risk: low
 sla_due:
   routed_for_review: 2026-05-06T04:35:00Z
+scope_level: S1
 ---
 
 # Extract D — MECHANICAL_COMPLETION_DIRECTIVE pattern + D1-D10 counter-default catalog + "false" lexicon + 5 FP classes

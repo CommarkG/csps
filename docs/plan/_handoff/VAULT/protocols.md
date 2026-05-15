@@ -22,6 +22,7 @@ links:
   - { rel: learning-loop, href: ../../pillar-0-governance/learning-loop.md }
   - { rel: source-handoff, href: ../HANDOFF-S001-to-S002.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # CSPS Session Protocols (canonical)

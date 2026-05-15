@@ -39,6 +39,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/closing-summary-S011.md
   - docs/plan/pillar-0-governance/platform-maturation-plan.md
 domain_path: platform
+scope_level: S1
 ---
 
 # S011 Session Synthesis — Full Context Vault

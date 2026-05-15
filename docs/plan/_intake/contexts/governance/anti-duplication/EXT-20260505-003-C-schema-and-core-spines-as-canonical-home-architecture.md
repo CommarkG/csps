@@ -31,6 +31,7 @@ inherited_from_input:
   - risk: low
 sla_due:
   routed_for_review: 2026-05-06T04:40:00Z
+scope_level: S1
 ---
 
 # Extract C — Schema-as-canonical-home + Core Spines / HUB files architecture

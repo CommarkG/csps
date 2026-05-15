@@ -49,6 +49,7 @@ muv_audit:
   required_sections_present: PASS
   alignment_questions_count: 0
 domain_path: platform
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

@@ -15,6 +15,7 @@ session: S025
 impl_status: swift-implemented
 needs_opus_review: false
 domain_path: platform
+scope_level: S1
 ---
 
 # Closing Summary — S025

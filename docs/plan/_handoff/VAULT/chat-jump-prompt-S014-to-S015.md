@@ -21,6 +21,7 @@ consolidation_cross_refs:
   - tools/session-state.json
   - docs/plan/_handoff/VAULT/csps-master-roadmap-s014-plus.md
 domain_path: platform
+scope_level: S1
 ---
 
 # Chat Transfer — S014 → S015

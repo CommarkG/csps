@@ -15,6 +15,7 @@ tags:
   - audience:developer
   - maturity:stable
 session: S022
+scope_level: S1
 ---
 
 # Personal Domain Schema Slices

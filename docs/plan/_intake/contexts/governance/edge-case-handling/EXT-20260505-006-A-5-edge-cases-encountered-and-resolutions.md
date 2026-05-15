@@ -21,6 +21,7 @@ consolidation_cross_refs:
   - feedback_diff_before_protected_path_writes.md (THIS BATCH; Pattern A engraved CSPS-immediate)
   - feedback_no_settings_edits_unless_asked.md (memory entry 38; analog of Pattern G)
 inherited_from_input: [source_type:AI_OTHER, risk:low]
+scope_level: S1
 ---
 
 # Extract A — 5 specific edge cases + resolutions (operational catalog)

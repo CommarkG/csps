@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: enforcement-rate, href: ../../../../tools/validators/validate-inner-ai-defaults-enforcement-rate.mjs }
   - { rel: sample-library, href: ./sample-library.yaml }
+scope_level: S1
 ---
 
 # Enforcement Coverage Map

@@ -55,6 +55,7 @@ consolidation_cross_refs:
   - docs/platform-audit/README.md
   - docs/plan/_handoff/VAULT/topic-plans/platform-core-alignment.md
 domain_path: platform
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

@@ -18,6 +18,7 @@ tags:
   - maturity:stable
 links:
   - { rel: fix, href: ../../../../tools/validators/validate-mini-tree-integrity.mjs }
+scope_level: S1
 ---
 
 # EP-017 — CRLF YAML Parser Failure

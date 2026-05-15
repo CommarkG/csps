@@ -21,6 +21,7 @@ tags:
   - maturity:stable
 diataxis_type: reference
 session: S006
+scope_level: S1
 ---
 
 # L2_DOMAIN_VALD_RESULT_DRIVEN_VERIFICATION

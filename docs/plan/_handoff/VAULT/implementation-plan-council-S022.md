@@ -30,6 +30,7 @@ links:
   - { rel: platform-excellence-sonnet, href: ../../platform-excellence-readiness.md }
   - { rel: session-state, href: ../../../../tools/session-state.json }
 domain_path: platform
+scope_level: S1
 ---
 
 # Implementation Plan — S022+ Council Brief

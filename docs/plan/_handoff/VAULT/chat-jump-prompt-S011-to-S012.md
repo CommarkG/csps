@@ -19,6 +19,7 @@ diataxis_type: how-to
 session: S011
 next_session: S012
 domain_path: platform
+scope_level: S1
 ---
 
 # Chat-Jump Prompt — S011 → S012

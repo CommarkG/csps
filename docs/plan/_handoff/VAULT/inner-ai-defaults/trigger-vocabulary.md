@@ -24,6 +24,7 @@ links:
   - { rel: alternative-vocabulary, href: ./alternative-vocabulary.md }
   - { rel: sample-library, href: ./sample-library.yaml }
   - { rel: architecture, href: ../../../../tools/council/opus-ai-behavior-architecture.md }
+scope_level: S1
 ---
 
 # Trigger Vocabulary Map

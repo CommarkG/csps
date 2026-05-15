@@ -27,6 +27,7 @@ links:
   - { rel: mastra-setup, href: ../../../docs/plan/pillar-5-ai-systems/mastra-setup.md }
   - { rel: persona-composition, href: ../../../docs/plan/pillar-5-ai-systems/persona-composition.md }
   - { rel: virtual-opus-audit, href: ../../pillar-0-governance/virtual-opus-audit.md }
+scope_level: S1
 ---
 
 # Agents, Skills & AI Oversight — Deep Research for Opus

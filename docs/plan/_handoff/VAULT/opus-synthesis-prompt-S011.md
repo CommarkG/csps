@@ -14,6 +14,7 @@ tags:
   - audience:ai-agent
   - maturity:stable
 domain_path: platform
+scope_level: S1
 ---
 
 # Opus 4.7 Synthesis Prompt — S011 Session Review

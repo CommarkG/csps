@@ -19,6 +19,7 @@ consolidation_cross_refs:
   - tools/templates/priority-engine.schema.yaml
   - docs/plan/_handoff/VAULT/inner-ai-defaults/reasoning-patterns.md
 domain_path: platform
+scope_level: S1
 ---
 
 # Shiny Object Override (B_COMPLETION_OVER_SHINY)

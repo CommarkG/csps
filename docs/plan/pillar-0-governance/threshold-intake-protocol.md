@@ -37,6 +37,7 @@ ratified_by: Governor
 ratified_date: 2026-05-12
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # Threshold Intake Protocol — Intent-to-Verified-Impact (I→VI) Discipline

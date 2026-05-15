@@ -20,6 +20,7 @@ links:
   - { rel: adr-index, href: ../../../docs/adr/ }
 session: S003
 domain_path: platform
+scope_level: S1
 ---
 
 # Decisions Snapshot — S003 close (2026-05-03)

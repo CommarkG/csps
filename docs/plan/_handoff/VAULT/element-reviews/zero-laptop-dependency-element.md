@@ -26,6 +26,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-6-operations-and-delivery/android-workflow.md
   - docs/plan/pillar-6-operations-and-delivery/multi-machine-parity.md
 domain_path: platform
+scope_level: S1
 ---
 
 # Element Review — Zero-Laptop Dependency

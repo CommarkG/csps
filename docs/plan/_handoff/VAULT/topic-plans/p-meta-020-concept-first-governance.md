@@ -54,6 +54,7 @@ links:
   - { rel: drift-log, href: ../inner-ai-defaults/continuous-drift-log.md }
   - { rel: master-roadmap, href: ../csps-master-roadmap-s014-plus.md }
 domain_path: platform
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

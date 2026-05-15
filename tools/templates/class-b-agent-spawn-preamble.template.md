@@ -57,6 +57,7 @@ links:
   - { rel: token-optimization-phase-6, href: ../../docs/plan/pillar-0-governance/token-optimization.md }
   - { rel: model-routing-dashboard, href: ../../docs/plan/pillar-0-governance/model-routing-dashboard.md }
   - { rel: registry, href: ../../docs/plan/_handoff/VAULT/template-registry.md }
+scope_level: S1
 ---
 
 # Class B Subagent Spawn Preamble Template

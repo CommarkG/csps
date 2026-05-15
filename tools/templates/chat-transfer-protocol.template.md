@@ -21,6 +21,7 @@ tags:
 consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/s013-new-chat-prompt.md    # replaced by this
   - docs/plan/pillar-0-governance/ai-behavior-improvement-plan.md
+scope_level: S1
 ---
 
 # Chat Transfer Protocol Template — CSPS

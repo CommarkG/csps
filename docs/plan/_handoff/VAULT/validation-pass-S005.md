@@ -19,6 +19,7 @@ links:
   - { rel: handoff, href: ../HANDOFF-S005-to-S006.md }
 session: S005
 domain_path: platform
+scope_level: S1
 ---
 
 # Validation Pass — Session S005

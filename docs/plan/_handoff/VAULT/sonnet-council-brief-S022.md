@@ -21,6 +21,7 @@ links:
   - { rel: council-plan, href: ./implementation-plan-council-S022.md }
   - { rel: session-state, href: ../../../../tools/session-state.json }
 domain_path: platform
+scope_level: S1
 ---
 
 # Sonnet Council Brief — S022

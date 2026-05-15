@@ -29,6 +29,7 @@ inherited_from_input:
 sla_due:
   triaged_to_routed: 2026-05-04T15:07:00Z
   fixing_complete: 2026-05-02T15:07:00Z
+scope_level: S1
 ---
 
 # Constitutional principle: memory alone doesn't change behavior; only mechanical layer does

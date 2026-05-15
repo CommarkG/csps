@@ -20,6 +20,7 @@ file_depth_markers:
   l2_lines: "61-end"
   read_protocol: "L1 = schema + directory map. L2 = full entry format."
 domain_path: platform
+scope_level: S1
 ---
 
 # CSPS Know-How Registry

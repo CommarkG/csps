@@ -27,6 +27,7 @@ consolidation_cross_refs:
   - tools/model-tier-registry.yaml
   - AGENTS.md
 domain_path: platform
+scope_level: S1
 ---
 
 # EP-014 — AI Mode Impersonation

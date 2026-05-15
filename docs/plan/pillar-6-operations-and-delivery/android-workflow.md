@@ -22,6 +22,7 @@ file_depth_markers:
   l2_lines: "61-end"
   read_protocol: "L1 = app list + quick-start. L2 = detailed workflows."
 domain_path: platform
+scope_level: S1
 ---
 
 # Android Workflow — CSPS

@@ -35,4 +35,5 @@ notes: |
   - Schedule deep-dive (deep_dive_schedule field)
   - Cross-reference EXT-001 + EXT-002 instead of duplicating concepts
   - Priority for 10-phase completion (priority_for_10_phase_completion field)
+scope_level: S1
 ---

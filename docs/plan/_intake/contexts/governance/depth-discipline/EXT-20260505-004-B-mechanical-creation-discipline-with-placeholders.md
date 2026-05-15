@@ -30,6 +30,7 @@ inherited_from_input:
   - risk: low
 sla_due:
   routed_for_review: 2026-05-06T05:05:00Z
+scope_level: S1
 ---
 
 # Extract B — Mechanical-creation discipline with placeholders

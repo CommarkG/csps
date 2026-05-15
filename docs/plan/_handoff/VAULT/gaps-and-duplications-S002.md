@@ -22,6 +22,7 @@ links:
   - { rel: source-handoff, href: ../HANDOFF-S001-to-S002.md }
   - { rel: principles, href: ../../../packages/principles/principles.yaml }
 domain_path: platform
+scope_level: S1
 ---
 
 # Gaps + Duplications Audit — S002

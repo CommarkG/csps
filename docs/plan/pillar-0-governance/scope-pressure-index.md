@@ -23,6 +23,7 @@ links:
   - { rel: capacity-registry, href: ../../../tools/config/platform-capacity-registry.yaml }
   - { rel: plan-protocol, href: ./plan-creation-protocol.md }
   - { rel: validator, href: ../../../tools/validators/validate-plan-complexity.mjs }
+scope_level: S1
 ---
 
 # Scope Pressure Index (SPI)

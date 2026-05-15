@@ -70,6 +70,7 @@ links:
   - { rel: drift-registry, href: ../../../../tools/config/drift-registry.yaml }
   - { rel: sap-protocol, href: ../../../plan/pillar-0-governance/sonnet-audit-protocol.md }
 domain_path: platform
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

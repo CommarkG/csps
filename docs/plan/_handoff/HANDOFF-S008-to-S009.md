@@ -35,6 +35,7 @@ context_loss_prevention:
   not_applicable:
     - PAIN-D8: "No future-defer; carry-forwards have explicit S009 SLA"
 domain_path: platform
+scope_level: S1
 ---
 
 # HANDOFF — Session 008 → Session 009

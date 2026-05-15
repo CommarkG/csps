@@ -18,6 +18,7 @@ tags:
   - maturity:stable
 links:
   - { rel: fix, href: ../../../../packages/principles/split.mjs }
+scope_level: S1
 ---
 
 # EP-018 — Generator Undoes Renames

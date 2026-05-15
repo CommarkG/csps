@@ -17,6 +17,7 @@ tags:
   - type:template
   - audience:ai-agent
   - maturity:stable
+scope_level: S1
 ---
 
 # Opus Turn [N] — [Topic]

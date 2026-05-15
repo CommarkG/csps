@@ -30,6 +30,7 @@ links:
 session: S006
 generated_at: 2026-05-05T15:44:00Z
 domain_path: platform
+scope_level: S1
 ---
 
 # CSPS Overview

@@ -31,6 +31,7 @@ inherited_from_input:
   - risk: low
 sla_due:
   routed_for_review: 2026-05-06T04:35:00Z
+scope_level: S1
 ---
 
 # Extract B — 9-element DNA gate + Triple-check + Frontmatter rigidity + Full DNA Coverage Audit

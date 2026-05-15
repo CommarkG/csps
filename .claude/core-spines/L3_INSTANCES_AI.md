@@ -35,6 +35,7 @@ session: S006
 generated: true
 generated_by: tools/scripts/instance-registry-populator.mjs
 manual_edits_forbidden: true
+scope_level: S1
 ---
 
 # L3_INSTANCES_AI

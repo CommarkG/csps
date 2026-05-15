@@ -19,6 +19,7 @@ mini_tree_root: true
 links:
   - { rel: pattern, href: ../../docs/plan/pillar-0-governance/mini-trees-pattern.md }
   - { rel: validator, href: ../validators/validate-file-complexity.mjs }
+scope_level: S1
 ---
 
 # [Domain Name] — Overview

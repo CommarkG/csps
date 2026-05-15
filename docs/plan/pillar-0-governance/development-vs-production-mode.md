@@ -48,6 +48,7 @@ domain_path: platform
 diataxis_type: explanation
 core_spine: ARCH
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # Development Mode vs Production Mode

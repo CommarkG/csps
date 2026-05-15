@@ -25,6 +25,7 @@ tags:
   - maturity:stable
 links:
   - { rel: hub, href: ./HUB.md }
+scope_level: S1
 ---
 
 # External Integrations — Index

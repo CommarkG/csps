@@ -22,6 +22,7 @@ links:
   - { rel: naming-policy, href: ./naming-policy.md }
   - { rel: validator, href: ../../../tools/validators/validate-mini-tree-integrity.mjs }
   - { rel: complexity-validator, href: ../../../tools/validators/validate-file-complexity.mjs }
+scope_level: S1
 ---
 
 # Mini-Tree Split Protocol

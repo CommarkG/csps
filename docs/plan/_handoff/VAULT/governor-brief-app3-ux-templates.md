@@ -18,6 +18,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:draft
+scope_level: S1
 ---
 
 # Governor Brief — App #3 Pre-Planning (to improve after #2-5)

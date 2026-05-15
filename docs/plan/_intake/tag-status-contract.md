@@ -25,6 +25,7 @@ links:
   - { rel: stewardship, href: ../pillar-0-governance/stewardship-protocol.md }
   - { rel: learning-loop, href: ../pillar-0-governance/learning-loop.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Tag + Status Contract — mechanical

@@ -49,6 +49,7 @@ links:
   - { rel: domain-taxonomy, href: ../../../../pillar-0-governance/domain-taxonomy.md }
   - { rel: bedrock, href: ../../../../pillar-0-governance/csps-bedrock.md }
   - { rel: cia-plan, href: ./csps-continuous-intelligence-architecture.md }
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

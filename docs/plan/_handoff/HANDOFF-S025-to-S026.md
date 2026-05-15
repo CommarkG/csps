@@ -16,6 +16,7 @@ impl_status: swift-implemented
 needs_opus_review: false
 opus_review_type: n/a
 domain_path: platform
+scope_level: S1
 ---
 
 # HANDOFF S025 → S026

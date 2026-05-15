@@ -21,6 +21,7 @@ created-new-because: |
   No prior tools/validators directory existed. Per build-order.md week 1 + AGENTS.md hard NO #11
   (saved-without-lifecycle_state = orphan-in-waiting), a PR-blocking frontmatter validator is week-1
   scope. This is the placeholder root.
+scope_level: S1
 ---
 
 # Validators

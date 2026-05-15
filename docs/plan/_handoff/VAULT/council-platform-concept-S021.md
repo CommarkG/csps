@@ -29,6 +29,7 @@ links:
   - { rel: council-infrastructure, href: ../../../../tools/council/PROTOCOL.md }
   - { rel: council-state, href: ../../../../tools/council/council-state.json }
   - { rel: platform-excellence, href: ./platform-excellence-consolidated-S021.md }
+scope_level: S1
 ---
 
 # Multi-Model Council Platform — Strategic Concept

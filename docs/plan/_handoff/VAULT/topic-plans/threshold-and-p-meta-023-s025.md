@@ -54,6 +54,7 @@ failure_signal: >
   P-META-023 registered in principles.yaml before Opus gives SEALED ratification (premature).
   OR threshold-intake-protocol.md hierarchy inverted (P-META-023 declared parent of P-META-022).
   OR B_THRESHOLD_INTAKE_PROTOCOL contract authored without Opus review of 26+42.
+scope_level: S1
 ---
 
 # Threshold + P-META-023 — S025 Mandate Plan

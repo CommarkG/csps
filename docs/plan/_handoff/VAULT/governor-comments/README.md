@@ -22,6 +22,7 @@ tags:
 links:
   - { rel: hook, href: ../../../../../../.claude/hooks/user-prompt-submit-raw-comments.sh }
 domain_path: platform
+scope_level: S1
 ---
 
 # Governor Raw Comments Log

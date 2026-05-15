@@ -24,6 +24,7 @@ links:
   - { rel: platform-audit, href: ../../../platform-audit/README.md }
   - { rel: session-state, href: ../../../../tools/session-state.json }
 domain_path: platform
+scope_level: S1
 ---
 
 # Opus Expert Consultation Brief — S019

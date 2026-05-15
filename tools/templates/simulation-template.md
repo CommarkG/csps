@@ -29,6 +29,7 @@ links:
   - { rel: research-registry, href: ../config/research-registry.yaml }
   - { rel: three-axis, href: ../../docs/plan/_handoff/VAULT/three-axis-orchestration-S021.md }
   - { rel: haiku-spawn, href: ./haiku-spawn-template.md }
+scope_level: S1
 ---
 
 # CSPS Simulation Protocol Template

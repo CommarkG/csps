@@ -17,6 +17,7 @@ tags:
 session: S022
 evidence_block_ref: "ZF Level 3: ACHIEVED 0 blocking, 1 advisory DEFERRED — 2026-05-11"
 cec_walk_trail_ref: "session-S022-extraction.md §2 — 5 cycles to zero"
+scope_level: S1
 ---
 
 # Closing Summary — S022

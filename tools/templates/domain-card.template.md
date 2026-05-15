@@ -37,6 +37,7 @@ consolidation_cross_refs:
   - docs/platform-audit/spines/VALD.md
   - docs/platform-audit/spines/OPER.md
   - docs/platform-audit/platform-services/vocabulary.md
+scope_level: S1
 ---
 
 # Domain Card Template — §1-§11

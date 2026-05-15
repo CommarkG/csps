@@ -18,6 +18,7 @@ links:
   - { rel: protocol, href: ./manual-protocol.md }
   - { rel: spine, href: ../pillar-0-governance/ai-behavior-spine.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Input-Assessment Questions (LOCKED v1.0)

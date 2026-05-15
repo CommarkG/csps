@@ -15,6 +15,7 @@ links:
   - { rel: parent, href: ../README.md }
   - { rel: current-trunk, href: ../../../MASTER_PLAN.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Legacy Plan Archive

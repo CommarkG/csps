@@ -34,6 +34,7 @@ inherited_from_input:
 sla_due:
   triaged_to_routed: 2026-05-04T15:06:00Z
   fixing_complete: 2026-05-02T15:06:00Z
+scope_level: S1
 ---
 
 # Two-sided handshake at chat-jump (S002 turn-6 user proposal)

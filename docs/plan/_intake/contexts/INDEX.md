@@ -30,6 +30,7 @@ file_depth_markers:
   l3_lines: "151-end"
   read_protocol: "L1 = aggregate counts + fastest path to extract by topic. L2 = per-leaf inventory with cross-refs. L3 = per-extract value tier + deep_dive_schedule."
 domain_path: platform
+scope_level: S1
 ---
 
 # Extraction Notes Index — Available For Usage

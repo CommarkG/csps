@@ -29,6 +29,7 @@ links:
   - { rel: lovable-analysis, href: ./lovable-tree-analysis-S021.md }
   - { rel: platform-excellence, href: ./platform-excellence-consolidated-S021.md }
   - { rel: council-protocol, href: ../../../tools/council/PROTOCOL.md }
+scope_level: S1
 ---
 
 # Three-Axis Orchestration Framework

@@ -20,6 +20,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: source-handoff, href: ../HANDOFF-S001-to-S002.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Insights Vault

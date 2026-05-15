@@ -12,6 +12,7 @@ domain_path: platform
 session: S023
 evidence_block_ref: "ZF Level 3: ACHIEVED 0 blocking, 1 advisory DEFERRED to S025 — 2026-05-11"
 cec_walk_trail_ref: "closing-summary-S023.md §10.11b — S023 was advisory/design-only, CEC deferred to S024"
+scope_level: S1
 ---
 
 # Closing Summary — S023

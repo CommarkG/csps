@@ -27,6 +27,7 @@ tags:
 links:
   - { rel: csps-taxonomy, href: ./platform-excellence-consolidated-S021.md }
   - { rel: completion-circle, href: ../../../../tools/validators/validate-completion-circle.mjs }
+scope_level: S1
 ---
 
 # Lovable Knowledge Tree — CSPS Analysis

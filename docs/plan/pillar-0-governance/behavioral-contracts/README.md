@@ -78,6 +78,7 @@ tags:
 links:
   - { rel: monolith, href: ../behavioral-contracts.md }
   - { rel: index, href: ../behavioral-contracts-index.yaml }
+scope_level: S1
 ---
 
 # Behavioral Contracts — Index

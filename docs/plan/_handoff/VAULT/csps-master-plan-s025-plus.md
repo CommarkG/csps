@@ -55,6 +55,7 @@ links:
   - { rel: session-state, href: ../../../../tools/session-state.json }
   - { rel: pe-schema, href: ../../../../tools/templates/priority-engine.schema.yaml }
   - { rel: open-plan-levels, href: ../../../../tools/validators/validate-open-plan-levels.mjs }
+scope_level: S1
 ---
 
 # CSPS Master Plan — S025+

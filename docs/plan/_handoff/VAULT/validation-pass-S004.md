@@ -18,6 +18,7 @@ links:
   - { rel: protocols, href: ./protocols.md }
 session: S004
 domain_path: platform
+scope_level: S1
 ---
 
 # Validation Pass — Session S004

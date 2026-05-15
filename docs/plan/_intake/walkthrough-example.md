@@ -20,6 +20,7 @@ links:
   - { rel: proactive-completion, href: ./proactive-completion.md }
   - { rel: contexts, href: ./contexts/README.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Walkthrough — Proof of Complete Pipeline

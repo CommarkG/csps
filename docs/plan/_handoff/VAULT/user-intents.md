@@ -19,6 +19,7 @@ links:
   - { rel: handoff-s002, href: ../HANDOFF-S002-to-S003.md }
 session: S003
 domain_path: platform
+scope_level: S1
 ---
 
 # User Intents Vault — verbatim quotes preserved across sessions

@@ -29,4 +29,5 @@ notes: |
   Operational note (not series). 5 specific cases + 7 forward patterns + single rule.
   CSPS-IMMEDIATE: Pattern A engraved THIS BATCH per user explicit directive.
   2 sub-IDs sufficient (5 cases cluster; 7 patterns cluster).
+scope_level: S1
 ---

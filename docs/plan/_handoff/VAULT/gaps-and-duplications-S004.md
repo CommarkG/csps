@@ -18,6 +18,7 @@ links:
   - { rel: validation-pass, href: ./validation-pass-S004.md }
 session: S004
 domain_path: platform
+scope_level: S1
 ---
 
 # Gaps + Duplications Scan — Session S004

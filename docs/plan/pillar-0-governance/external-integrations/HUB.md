@@ -20,6 +20,7 @@ tags:
   - audience:ai-agent
   - audience:developer
   - maturity:stable
+scope_level: S1
 ---
 
 # External Integrations Hub

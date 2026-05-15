@@ -17,6 +17,7 @@ links:
   - { rel: parent, href: ../README.md }
   - { rel: pillar, href: ../../pillar-5-ai-systems/README.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Context: AI Systems (Pillar 5)

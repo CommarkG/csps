@@ -21,6 +21,7 @@ links:
   - { rel: proactive-completion, href: ../proactive-completion.md }
   - { rel: walkthrough, href: ../walkthrough-example.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # External-Input Contexts (the fan-out destination tree)

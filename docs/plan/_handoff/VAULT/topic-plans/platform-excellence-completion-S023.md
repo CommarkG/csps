@@ -49,6 +49,7 @@ links:
   - { rel: flow-audit, href: ../platform-flow-audit-S022.md }
   - { rel: s022-extraction, href: ../session-S022-extraction.md }
   - { rel: session-state, href: ../../../../../tools/session-state.json }
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

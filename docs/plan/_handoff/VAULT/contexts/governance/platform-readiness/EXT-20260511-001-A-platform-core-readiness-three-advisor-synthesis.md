@@ -26,6 +26,7 @@ links:
 received_date: 2026-05-11
 note: Claude AI section truncated at 50K char limit — What-If battery received partially
 domain_path: platform
+scope_level: S1
 ---
 
 # Platform Core Readiness — Three Advisor Synthesis

@@ -23,6 +23,7 @@ session: S006
 disposition: adjust
 append_only: true
 domain_path: platform
+scope_level: S1
 ---
 
 # Inner-AI-Defaults — Continuous Drift Log

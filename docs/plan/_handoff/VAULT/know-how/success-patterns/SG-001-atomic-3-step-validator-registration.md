@@ -34,6 +34,7 @@ reuse_instruction: |
   5. validate-audit-slug-coverage.mjs KNOWN_MAPPINGS entry (if slug name differs from filename)
   All 5 in one commit. validate-audit-slug-coverage.mjs will catch any missed.
 domain_path: platform
+scope_level: S1
 ---
 
 # SG-001 — Atomic 3-Step Validator Registration

@@ -27,6 +27,7 @@ enhances: csps.pillar-3.sandboxed-skill-governance
 domain_path: platform
 core_spine: AI
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # Skill Ingestion Contract

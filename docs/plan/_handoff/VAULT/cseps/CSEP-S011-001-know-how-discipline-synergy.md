@@ -25,6 +25,7 @@ vault_pending:
     session_added: S011
     retrieve_when: "When cruel-critic skill runs a review session OR monthly CSEP review"
 domain_path: platform
+scope_level: S1
 ---
 
 # CSEP-S011-001 — B_KNOW_HOW_DISCIPLINE Synergy Analysis

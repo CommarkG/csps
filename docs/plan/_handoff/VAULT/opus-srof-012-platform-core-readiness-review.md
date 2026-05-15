@@ -19,6 +19,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:stable
+scope_level: S1
 ---
 
 # SROF-012: Platform Core Readiness — Multi-Perspective Review

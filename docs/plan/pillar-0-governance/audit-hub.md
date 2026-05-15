@@ -38,6 +38,7 @@ created-new-because: |
 domain_path: platform
 core_spine: VALD
 schema_anchor: pillar_0_governance_leaves
+scope_level: S1
 ---
 
 # Audit Hub

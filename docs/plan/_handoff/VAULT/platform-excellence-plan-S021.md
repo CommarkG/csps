@@ -30,6 +30,7 @@ links:
   - { rel: schema, href: ../../../../libs/policies/schema.zmodel }
   - { rel: opus-lessons, href: ./opus-lessons-S019/README.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # CSPS Platform Excellence Plan — S021

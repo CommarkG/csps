@@ -19,6 +19,7 @@ links:
   - { rel: protocols, href: ./protocols.md }
   - { rel: feedback, href: ../../../../.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_protocol_compression_is_skipping.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Closing Summary — required-header template

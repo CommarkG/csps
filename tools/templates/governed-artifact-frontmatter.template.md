@@ -52,6 +52,7 @@ links:
   - { rel: plan-creation-protocol, href: ../../docs/plan/pillar-0-governance/plan-creation-protocol.md }
   - { rel: source-extract, href: ../../docs/plan/_intake/contexts/governance/depth-discipline/EXT-20260505-004-B-mechanical-creation-discipline-with-placeholders.md }
   - { rel: registry, href: ../../docs/plan/_handoff/VAULT/template-registry.md }
+scope_level: S1
 ---
 
 # Governed-Artifact Frontmatter Template

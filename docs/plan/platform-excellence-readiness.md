@@ -33,6 +33,7 @@ links:
   - { rel: bedrock, href: ./pillar-0-governance/csps-bedrock.md }
   - { rel: session-extraction, href: ./_handoff/VAULT/session-S021-extraction.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # Platform Excellence Readiness Plan

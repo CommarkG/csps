@@ -33,6 +33,7 @@ links:
   - { rel: threshold-protocol, href: ../../../../pillar-0-governance/threshold-intake-protocol.md }
   - { rel: pe-schema, href: ../../../../../tools/templates/priority-engine.schema.yaml }
   - { rel: audit-runner, href: ../../../../pillar-0-governance/audit-runner.md }
+scope_level: S1
 ---
 
 # CSPS Complete Architecture Synthesis — The Unified Platform Grid

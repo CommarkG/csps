@@ -27,6 +27,7 @@ links:
   - { rel: session-extraction, href: ./VAULT/session-S018-extraction.md }
   - { rel: platform-audit, href: ../../platform-audit/README.md }
 domain_path: platform
+scope_level: S1
 ---
 
 # HANDOFF — Session 018 → Session 019

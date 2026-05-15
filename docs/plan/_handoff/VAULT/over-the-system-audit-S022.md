@@ -27,6 +27,7 @@ links:
   - { rel: session-extraction, href: ./session-S022-extraction.md }
   - { rel: platform-plan, href: ./topic-plans/platform-excellence-completion-S023.md }
   - { rel: flow-audit, href: ./platform-flow-audit-S022.md }
+scope_level: S1
 ---
 
 # Over-the-System Audit — S022

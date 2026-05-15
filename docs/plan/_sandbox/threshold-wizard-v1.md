@@ -13,6 +13,7 @@ sandbox_for: Threshold Wizard — browser page at /schema/wizard + routing.confi
 threshold_route: ux.onboarding-flow
 intent_crystallized: true
 ux_principle: jtbd-outcome-first
+scope_level: S1
 ---
 
 ## §CONTEXT

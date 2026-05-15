@@ -22,6 +22,7 @@ applies_to: [session-close, plan-closure]
 prevention_checklist_item: "Every DONE/CLOSED/RATIFIED claim cites a pnpm verify run FROM THIS SESSION with structured JSON output. Memory of prior session's verify = NOT valid evidence."
 mechanical_prevention: validate-rzf-evidence.mjs (ACTIVE in pnpm verify)
 domain_path: platform
+scope_level: S1
 ---
 
 # EP-008 — Nominal RZF

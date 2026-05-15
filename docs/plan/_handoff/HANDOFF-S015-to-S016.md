@@ -32,6 +32,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/topic-plans/plan-methodology-v2.md
   - apps/task-mgmt/
 domain_path: platform
+scope_level: S1
 ---
 
 # HANDOFF — Session 015 → Session 016

@@ -26,6 +26,7 @@ inherited_from_input:
 sla_due:
   routed_for_review: 2026-05-05T04:30:00Z
   pcr_decision: 2026-05-06T03:55:00Z
+scope_level: S1
 ---
 
 # Extract F — 80/10/10 session phase rule + 4-pillar balance metric

@@ -30,6 +30,7 @@ inherited_from_input:
   - trust_tier: external_ai_export
 sla_due:
   routed_for_review: 2026-05-06T04:35:00Z
+scope_level: S1
 ---
 
 # Extract A — Validator class structure + Smoke test + Severity taxonomy

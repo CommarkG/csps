@@ -64,6 +64,7 @@ consolidation_cross_refs:
   - tools/templates/priority-engine.schema.yaml
   - docs/plan/_handoff/VAULT/inner-ai-defaults/shiny-object-override.md
 domain_path: platform
+scope_level: S1
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

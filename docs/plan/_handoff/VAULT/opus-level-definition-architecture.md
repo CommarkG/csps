@@ -26,6 +26,7 @@ links:
   - { rel: incident, href: ../../../docs/plan/apps/budget-planner/gate-3-validation.md }
   - { rel: platform-layers, href: ../../../tools/config/platform-layer-boundaries.yaml }
   - { rel: core-manifest, href: ../../pillar-0-governance/csps-core-manifest.md }
+scope_level: S1
 ---
 
 # Level Definition Architecture — Opus Deep Review

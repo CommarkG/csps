@@ -24,6 +24,7 @@ consolidation_cross_refs:
   - feedback_no_settings_edits_unless_asked.md (memory entry 38; Pattern G analog)
   - feedback_no_confirmation_seeking.md (memory entry 16; composes with Pattern A — when to ask vs not ask)
 inherited_from_input: [source_type:AI_OTHER, risk:low]
+scope_level: S1
 ---
 
 # Extract B — 7 forward-going patterns + single rule (edge cases as signals)

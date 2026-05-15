@@ -30,6 +30,7 @@ inherited_from_input:
   - risk: low
 sla_due:
   routed_for_review: 2026-05-06T04:40:00Z
+scope_level: S1
 ---
 
 # Extract D — When NOT to consolidate (6 counter-cases)

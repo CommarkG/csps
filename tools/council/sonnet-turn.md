@@ -1111,3 +1111,15 @@ Check verify status, read Turn 52 S034-B spec, then implement.
 
 ## First action
 Check Turn 54 RZF findings before implementing.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-15 (Turn 56 — S035-A: Storage module)
+
+## Directive: libs/integrations/storage/ — Cloudflare R2
+1. pnpm add @aws-sdk/client-s3 @aws-sdk/s3-request-presigner
+2. client.ts: S3Client for R2 + uploadFile/getPresignedUrl/deleteFile
+3. README.md + env var placeholders
+
+## First action
+Check Turn 56 RZF, then execute.

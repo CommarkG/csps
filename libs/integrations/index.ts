@@ -5,6 +5,8 @@
 // This kills the 6-level relative import smell (CSEP-S014-001 RANK 2).
 
 export { isSessionReady } from './auth'
+// Storage module
+export { uploadFile, getPresignedUrl, deleteFile } from './storage/client'
 // Jobs module
 export { inngest, allFunctions } from './jobs/index'
 // Monitoring module

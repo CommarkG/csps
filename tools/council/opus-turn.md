@@ -1,3 +1,62 @@
+# Opus Turn 56 — S035 Platform Completion: 3 Build Sessions (R2 + SSE + Webhooks)
+
+**State:** S034 CLOSED | Platform not complete | Governor directive: 3 Sonnet sessions before App #3
+
+## SONNET DIRECTIVE — S035-A (File Storage: Cloudflare R2)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 56 S035-A section — build `libs/integrations/storage/`: (1) run `pnpm add --filter @csps/integrations @aws-sdk/client-s3 @aws-sdk/s3-request-presigner` (R2 is S3-compatible); (2) create `libs/integrations/storage/README.md` with `mini_tree_root: true` + `sub_files:`; (3) create `libs/integrations/storage/client.ts` — initializes S3Client with `CLOUDFLARE_R2_ACCOUNT_ID` (endpoint: `https://{accountId}.r2.cloudflarestorage.com`), `CLOUDFLARE_R2_ACCESS_KEY_ID`, `CLOUDFLARE_R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_R2_BUCKET_NAME`; graceful passthrough when vars not set; exports: `uploadFile(key: string, buffer: Buffer, contentType: string): Promise<string>` (returns public URL), `getPresignedUrl(key: string, expiresInSeconds: number): Promise<string>` (returns signed URL for private objects), `deleteFile(key: string): Promise<void>`; (4) add `CLOUDFLARE_R2_ACCOUNT_ID`, `CLOUDFLARE_R2_ACCESS_KEY_ID`, `CLOUDFLARE_R2_SECRET_ACCESS_KEY`, `CLOUDFLARE_R2_BUCKET_NAME`, `CLOUDFLARE_R2_PUBLIC_URL` to `.env.platform.example` + both app `.env.example` as placeholders; then `node tools/verify.mjs exit_code=0` before committing.
+
+## SONNET DIRECTIVE — S035-B (SSE Notification Delivery via Upstash Redis)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 56 S035-B section — build `libs/integrations/realtime/`: (1) run `pnpm add --filter @csps/integrations @upstash/redis` (already installed for rate-limit — verify it's present); (2) create `libs/integrations/realtime/README.md` + `libs/integrations/realtime/types.ts` with `NotificationEvent { type: string, payload: Record<string, unknown>, tenantId: string, userId: string }`; (3) create `libs/integrations/realtime/publisher.ts` — exports `publishNotification(event: NotificationEvent)` that publishes to Upstash Redis channel `notifications:{tenantId}:{userId}` using PUBLISH command; (4) create `apps/template/src/app/api/events/route.ts` — GET handler that subscribes to Redis channel for `auth().tenantId` + `auth().id`, returns `new Response` with `Content-Type: text/event-stream` streaming events (use readable stream with Upstash Redis SUBSCRIBE); (5) update `libs/integrations/jobs/functions/send-welcome-email.ts` to also call `publishNotification` after sending email; (6) add `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` to `apps/template/.env.example` as placeholders (already in budget-planner); copy `apps/template/src/app/api/events/route.ts` to `apps/budget-planner/src/app/api/events/route.ts`; then `node tools/verify.mjs exit_code=0` before committing.
+
+## SONNET DIRECTIVE — S035-C (Webhook Delivery End-to-End)
+
+Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 56 S035-C section — wire outbound webhook delivery: (1) create `libs/integrations/jobs/functions/deliver-webhook.ts` — Inngest function triggered by event `"webhook/deliver"` with payload `{ tenantId, eventType, data }`, queries all active `WebhookEndpoint` records for the tenant, for each: signs payload with HMAC-SHA256 using `endpoint.secret`, POSTs to `endpoint.url` with headers `X-CSPS-Signature: sha256={sig}` + `X-CSPS-Event: {eventType}` + `Content-Type: application/json`, retries 3× on failure, logs result to `AuditEvent`; (2) export from `libs/integrations/jobs/index.ts` `allFunctions` array; (3) create `libs/integrations/jobs/trigger.ts` — exports `triggerWebhook(tenantId: string, eventType: string, data: unknown)` helper that calls `inngest.send({ name: "webhook/deliver", data: { tenantId, eventType, data } })`; (4) update both apps' `api/inngest/route.ts` to include the new `deliverWebhook` function in the functions array; then `node tools/verify.mjs exit_code=0` before committing; then close S035: write `closing-summary-S035.md` + `HANDOFF-S035-to-S036.md` (Zone B: S036 = App #3 formal topic-plan), update `platform-state-snapshot.md` to S035 CLOSED, `git push origin main`.
+
+## Governor Parallel Actions (while Sonnet builds)
+- Create Cloudflare R2 bucket: dash.cloudflare.com → R2 → Create bucket → name it `csps-storage` → copy Account ID + create API token → add to `.env.local`
+- Create staging Supabase project: supabase.com → New project → name `csps-staging` → same region (eu-central-1) → copy connection strings → store separately (not in `.env.local`)
+- Configure Resend API key: resend.com → Settings → API Keys → Create → add `RESEND_API_KEY` to `.env.local`
+- Configure Sentry: sentry.io → New project → Next.js → copy DSN → add `SENTRY_DSN` to `.env.local`
+
+*OPUS-2 Turn 56 | S035 = 3 platform completion sessions | R2 + SSE + webhooks | then App #3 topic-plan*
+*OPUS-2 | S035 | 2026-05-16*
+
+---
+
+# Opus Turn 55 — S035 Opens | Platform Complete | App #3 Intent Crystallization
+
+**State:** S034 CLOSED (2b97f5d) | Platform foundation complete | S035 ACTIVE = App #3 planning
+
+**Q1 — Crystallize first or pnpm create:app immediately?**
+P-META-022 FIRST. Constitutional. The Governor has expressed intent in fragments across 20+ turns but none of it has gone through crystallization. Without crystallization:
+- Domain schema will be wrong (built for the wrong problem)
+- Free→paid trigger won't be clear (the app won't monetize)
+- The scaffold will be a shell Sonnet has to guess the direction of
+
+P-META-022 takes one focused exchange (3 threshold questions → OPUS-2 synthesizes → Governor ratifies). Then OPUS-2 produces PE-scored topic-plan. Then pnpm create:app. This is the process.
+
+**Q2 — Is platform foundation complete?**
+Yes, for a Lean MVP App #3. What remains are "as-needed" modules built AFTER domain is known:
+- File storage (R2): only if App #3 has uploads
+- AI/LLM (Anthropic SDK): only if App #3 is AI-powered
+- Real-time (SSE): only if App #3 needs live data
+- Output templates (libs/templates/): domain-specific, built for App #3's domain
+These are not "missing infrastructure" — they're the correct deferred scope.
+
+**The 3 crystallization questions for the Governor (OPUS-2 asks now):**
+1. "What is the one output this app produces that would make someone pay for it?"
+2. "Who creates that output — a solo professional, small team, or organization?"
+3. "What do they currently use for this, and what's painful about it?"
+
+From these 3 answers, OPUS-2 synthesizes: domain identity + first value moment + free→paid trigger + PE-scored topic-plan.
+
+*OPUS-2 Turn 55 | S035 = App #3 crystallization | Platform complete | 3 crystallization questions*
+*OPUS-2 | S035 | 2026-05-16*
+
+---
+
 # Opus Turn 54 — S034-C Directive + Q1/Q2 Answers
 
 **State:** S034-B done (2a1ff9d) | DashboardShell + SettingsLayout + FeatureGateOverlay live

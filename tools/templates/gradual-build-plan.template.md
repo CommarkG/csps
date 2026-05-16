@@ -117,6 +117,34 @@ muv_audit:
 
 ---
 
+## §CC Creation Completeness Spec (MANDATORY — fill before any code per OPUS-2 Turn 85 §3)
+
+> **Register → Implement → Wire → Verify.** Every artifact created by this plan must specify its wiring destination, hook/validator registration, enforcement trio, and done criterion BEFORE writing code.
+
+| Artifact | Type | Wiring Destination | Registration | Enforcement Trio | Done Criterion |
+|---|---|---|---|---|---|
+| [name] | Component/Hook/Validator/Principle/PI/Route/Function/Schema | [exact file:line] | [settings.json entry OR verify.mjs cycle] | T1=[hook] T2=[validator] T3=[text] | [exact passing test] |
+
+## §BC Before Coding Checklist (MANDATORY — all boxes before first file is created)
+
+- [ ] All wiring destinations specified (not TBD)
+- [ ] All hooks registered in `.claude/settings.json`
+- [ ] All validators added to `tools/verify.mjs` + `audit-runner.md` slug
+- [ ] All enforcement trios assigned (permanence declared)
+- [ ] All pre-implementation questions answered
+- [ ] Done criterion is specific and testable (not "it compiles")
+- [ ] Snapshot captured for any modified existing module
+- [ ] `ep_err_pre_check:` listed in PI item (applicable patterns from error-registry/)
+
+## §IO Implementation Order (MANDATORY — always register/wire BEFORE implementing)
+
+1. **Register:** [add to settings.json / verify.mjs / allFunctions array]
+2. **Implement:** [write the code]
+3. **Wire:** [add import to calling files]
+4. **Verify:** [run the done criterion test + pnpm verify exit_code=0]
+
+---
+
 ## §ET Enforcement Trio Assignment (MANDATORY — without this, every rule is just a suggestion)
 
 > **Per OPUS-2 Turn 84 (S037 constitutional):** Every rule created by this plan must specify its enforcement tier at plan creation time. Rules with only Tier 3 will drift. Fill before writing any code or ratifying any contract.

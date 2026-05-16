@@ -53,3 +53,5 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 ---
 
 *Maintained by OPUS-2. Checked at start of every turn.*
+| OPEN-020 | PI-019: validate-handoff-completeness.mjs | Turn 86 | ✅ DONE S037-G (4eabb23) | — | — |
+| OPEN-021 | EP-ERR→Planning Loop: ep_err_pre_check field + validate-creation-completeness.mjs | Turn 88 | ✅ DONE S037-H — validate-creation-completeness.mjs LIVE, ep_err_pre_check on PI-001 | — | — |

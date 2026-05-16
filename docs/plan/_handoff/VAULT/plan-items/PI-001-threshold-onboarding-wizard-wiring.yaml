@@ -91,6 +91,21 @@ plan_summary: |
 linked_principle: P-ARCH-031
 linked_contract: null
 
+# EP-ERR Pre-Check (Turn 88 — OPEN-021 EP-ERR→Planning loop)
+ep_err_pre_check:
+  - pattern: done-equals-committed
+    applicable: true
+    mitigation: "validate-wiring-completeness.mjs enforces DONE = WIRED in both apps, not just committed"
+  - pattern: context-fades-mid-session
+    applicable: true
+    mitigation: "persona_chain_log: required before implementing; wiring_checklist is explicit"
+  - pattern: plain-path-reference
+    applicable: false
+    mitigation: "n/a — PI-001 produces no doc output"
+  - pattern: implement-without-ratification
+    applicable: false
+    mitigation: "ratified_at: 2026-05-16, ratified_by: yariv — Governor ratification recorded"
+
 # Enforcement Trio (Turn 84 — assigned S037)
 enforcement_trio:
   tier1_hook: null

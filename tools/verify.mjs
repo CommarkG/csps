@@ -973,6 +973,27 @@ const CYCLES = [
     },
   },
   {
+    // S037-H LIVE — Creation Completeness (Turn 85 §2 + OPEN-021): PI files from last 30 days
+    // checked for wiring_checklist ≥3, enforcement_trio, done_criterion, ep_err_pre_check. ADVISORY.
+    name: 'creation_completeness',
+    command: 'node tools/validators/validate-creation-completeness.mjs',
+    parse_output: (out) => { const m = out.match(/pi_checked=(\d+)\s+advisories=(\d+)/); return m ? { pi_checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
+    // S037-H LIVE — Directive RZF Gate (Rule 9): SONNET DIRECTIVE sections in opus-turn.md
+    // must have ## RZF VERIFICATION in same Turn block. ADVISORY. communication-protocol-shared.md Rule 9.
+    name: 'directive_has_rzf',
+    command: 'node tools/validators/validate-directive-has-rzf.mjs',
+    parse_output: (out) => { const m = out.match(/turns_checked=(\d+)\s+directives=(\d+)\s+missing_rzf=(\d+)/); return m ? { turns_checked: Number(m[1]), directives: Number(m[2]), missing_rzf: Number(m[3]) } : {}; },
+  },
+  {
+    // S037-H LIVE — Quality Alignment (OPEN-022): OPUS-2 RZF rate + Sonnet INTENT ABSORBED rate.
+    // Both must be ≥80% over last 5 turns. ADVISORY. Shared quality discipline.
+    name: 'quality_alignment',
+    command: 'node tools/validators/validate-quality-alignment.mjs',
+    parse_output: (out) => { const m = out.match(/opus_rzf_rate=(\d+)%\s+sonnet_intent_rate=(\d+)%\s+status=(\w+)/); return m ? { opus_rzf_rate: Number(m[1]), sonnet_intent_rate: Number(m[2]), status: m[3] } : {}; },
+  },
+  {
     // S037-G LIVE — Handoff Completeness (OPEN-020/PI-019): HANDOFF-*.md files from last 90 days
     // must have ## ALIGNMENT QUESTIONS section with ≥3 questions. ADVISORY. P-META-014 MUV.
     name: 'handoff_completeness',

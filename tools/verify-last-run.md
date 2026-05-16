@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T20:52:50.407Z
-- finished_at: 2026-05-16T20:53:17.129Z
+- ran_at: 2026-05-16T21:07:07.880Z
+- finished_at: 2026-05-16T21:07:33.525Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T20:52:50.407Z",
-    "finished_at": "2026-05-16T20:53:17.129Z",
+    "ran_at": "2026-05-16T21:07:07.880Z",
+    "finished_at": "2026-05-16T21:07:33.525Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.3,
+        "duration_seconds": 6.2,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 65,
         "findings_total": 15
       },
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 409,
+        "scanned": 410,
         "errors": 0,
         "warnings": 26,
         "exempt": 285
@@ -300,7 +300,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 24,
-        "validators": 121,
+        "validators": 124,
         "models": 0,
         "advisories": 8
       },
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 372,
-        "clean": 372,
+        "checked": 373,
+        "clean": 373,
         "blocking": 0,
         "registry": 48
       },
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 565,
+        "scanned": 566,
         "advisory": 86
       },
       {
@@ -452,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 77,
+        "turns": 78,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -521,7 +521,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 150,
+        "checked": 153,
         "blocking": 0,
         "advisories": 0
       },
@@ -579,8 +579,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -636,7 +636,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 122
+        "validators": 123
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -1009,9 +1009,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 122,
+        "validators_checked": 125,
         "orphans": 0,
-        "registered": 122
+        "registered": 125
       },
       {
         "name": "token_budget_validate",
@@ -1098,7 +1098,35 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.8
+        "duration_seconds": 6
+      },
+      {
+        "name": "creation_completeness",
+        "command": "node tools/validators/validate-creation-completeness.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "pi_checked": 5,
+        "advisories": 4
+      },
+      {
+        "name": "directive_has_rzf",
+        "command": "node tools/validators/validate-directive-has-rzf.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "turns_checked": 78,
+        "directives": 23,
+        "missing_rzf": 6
+      },
+      {
+        "name": "quality_alignment",
+        "command": "node tools/validators/validate-quality-alignment.mjs",
+        "status": "OK",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "opus_rzf_rate": 80,
+        "sonnet_intent_rate": 100
       },
       {
         "name": "handoff_completeness",

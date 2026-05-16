@@ -474,6 +474,12 @@ const CYCLES = [
     command: 'node tools/validators/validate-scope-level-declared.mjs',
     parse_output: (out) => { const m = out.match(/checked=(\d+) missing=(\d+) invalid=(\d+) exempt=(\d+)/); return m ? { checked: Number(m[1]), missing: Number(m[2]), invalid: Number(m[3]), exempt: Number(m[4]) } : {}; },
   },
+  {
+    // S036-PROTO LIVE — active protocol compliance (no parallel directives, tracks active_directive)
+    name: 'active_protocol_compliance',
+    command: 'node tools/validators/validate-active-protocol.mjs',
+    parse_output: (out) => { const m = out.match(/advisory=(\d+) blocking=(\d+)/); return m ? { advisory: Number(m[1]), blocking: Number(m[2]) } : {}; },
+  },
   // P-ARCH-030: validate-app-scope-isolation.mjs (week-4)
   {
     name: 'core_contamination',

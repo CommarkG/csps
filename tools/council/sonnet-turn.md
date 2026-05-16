@@ -1158,3 +1158,20 @@ Confirm @upstash/redis is installed, then execute all steps.
 
 ## First action
 Execute all 4 steps, then close S035.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-16 (Turn 67 §3: Protocol infrastructure + snapshot tooling)
+
+## Directive: 4 items
+1. validate-active-protocol.mjs — reads session-state.json active_directive, ADVISORY/BLOCKING
+2. capture-module-snapshot.mjs — static analysis exports + wired_in → VAULT/snapshots/
+3. validate-snapshot-continuity.mjs — checks snapshots still valid
+4. AGENTS.md Hard Rule: "PROTOCOL: Read session-state.json active_directive before work"
+
+## Constraints
+- Check AGENTS.md line count before adding (must stay ≤ 200 after addition)
+- Read Turn 67 §3 for full RZF findings
+
+## First action
+Check AGENTS.md line count, read Turn 67 full §3, then execute.

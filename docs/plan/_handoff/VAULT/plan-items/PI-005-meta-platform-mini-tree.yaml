@@ -1,0 +1,59 @@
+---
+id: PI-005
+name: PI-005-meta-platform-mini-tree
+description: "Create docs/plan/pillar-0-governance/meta-platform/ — 8-file mini-tree documenting the meta-platform governance layer"
+version: 1.0.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+
+# Classification
+core_spine: GVRN
+depth_level: 2
+tags: [meta-platform, mini-tree, documentation, governance]
+
+# Prioritization
+pe_score: 75
+spi_estimate: 0.30
+urgency: high
+impact: platform-wide
+
+# Status
+status: done
+ratified_at: 2026-05-16
+ratified_by: yariv
+implementation_session: S037
+implementation_commit: null
+done_at: 2026-05-16
+
+# Dependencies
+depends_on: [PI-002, PI-003]
+unlocks: [PI-004]
+
+# Wiring checklist (DONE = all boxes checked)
+wiring_checklist:
+  - "docs/plan/pillar-0-governance/meta-platform/README.md exists (mini_tree_root: true)"
+  - "docs/plan/pillar-0-governance/meta-platform/knowledge-engine.md exists"
+  - "docs/plan/pillar-0-governance/meta-platform/plan-items.md exists"
+  - "docs/plan/pillar-0-governance/meta-platform/pe-agent.md exists"
+  - "docs/plan/pillar-0-governance/meta-platform/implementation-gate.md exists"
+  - "docs/plan/pillar-0-governance/meta-platform/app-pipeline.md exists"
+  - "docs/plan/pillar-0-governance/meta-platform/threshold-gate.md exists"
+  - "docs/plan/pillar-0-governance/meta-platform/persona-matrix.md exists"
+  - "validate-mini-tree-integrity.mjs PASS"
+  - "pnpm verify exit_code=0"
+
+# Plan summary
+plan_summary: |
+  The meta-platform layer needed documentation so future sessions and new Sonnet instances
+  can understand HOW the platform governs itself without re-reading all Opus turns.
+
+  The 8-file mini-tree covers all 6 meta-platform elements:
+  Knowledge Engine / PI Items / PE Agent / Implementation Gate / App Pipeline / Threshold Gate
+  Plus the persona matrix (which skill governs which element).
+
+  DONE criterion: validate-mini-tree-integrity.mjs PASS + pnpm verify exit_code=0
+
+linked_principle: P-ARCH-031
+linked_contract: null
+---

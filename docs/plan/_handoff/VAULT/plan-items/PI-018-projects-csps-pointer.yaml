@@ -1,0 +1,41 @@
+---
+id: PI-018
+name: PI-018-projects-csps-pointer
+description: "Create projects/csps.md in universal-governance GitHub repo — pointer to github.com/CommarkG/csps with ecosystem context"
+version: 1.0.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+
+# Classification
+core_spine: GVRN
+depth_level: 2
+tags: [universal-governance, ecosystem, pointer, documentation]
+
+# Prioritization
+pe_score: 45
+spi_estimate: 0.03
+urgency: low
+impact: multi-app
+
+# Status
+status: done
+ratified_at: 2026-05-16
+ratified_by: yariv
+implementation_session: S037
+implementation_commit: null
+done_at: 2026-05-16
+
+# Dependencies
+depends_on: [PI-016]
+unlocks: []
+
+# Wiring checklist
+wiring_checklist:
+  - "projects/csps.md pushed to github.com/CommarkG/universal-governance"
+  - "File references github.com/CommarkG/csps (not local path)"
+  - "c:\Users\finky\.claude\projects\csps.md exists locally"
+
+linked_principle: P-OPER-001
+linked_contract: null
+---

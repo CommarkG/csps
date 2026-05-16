@@ -17,7 +17,7 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 | OPEN-001 | PI-002: PI schema YAML format + create-pi.mjs | Turn 59 | ✅ DONE (40f931f) | — | PI-002 |
 | OPEN-002 | PI-003: validate-implementation-gate.mjs (PIG) | Turn 62 | ✅ DONE (40f931f) | — | PI-003 |
 | OPEN-003 | PI-004: PE Agent skill (.claude/skills/pe-agent.md) | Turn 59 | pending | automated bundling | none yet |
-| OPEN-004 | PI-005: meta-platform mini-tree documents | Turn 59 | pending | meta-platform only in opus-turn.md | none yet |
+| OPEN-004 | PI-005: meta-platform mini-tree documents | Turn 59 | ✅ DONE S037-D — 8-file mini-tree live, blocking=0 | PI-005 | — |
 | OPEN-005 | PI-013: EKEP wizard spec and PI file | Turn 72 | pending | cross-platform knowledge exchange | none yet |
 | OPEN-006 | post-stop-rzf-reminder.sh hook | Turns 63/67 | ✅ DONE S037-B (d0b32f4 — hook ACTIVE + settings.json registered) | — | — |
 | OPEN-007 | validate-pi-questions-answered.mjs | Turn 62 | ✅ DONE S037-B — LIVE in verify.mjs + pi-questions-gate slug | — | — |
@@ -31,7 +31,7 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 | OPEN-015 | 3-location wiring in gradual-build-plan.template.md | This turn | ✅ APPROVED — in PROTO-002 scope | — | — |
 | OPEN-016 | GitHub repo creation for universal-governance | Turn 69 | ✅ DONE S037 — github.com/CommarkG/universal-governance (private, 5 files pushed) | — | — |
 | OPEN-017 | L1 files ratification (core/L1-*.md) | This turn | ✅ RATIFIED 2026-05-16 | — | — |
-| OPEN-018 | projects/csps.md pointer file for universal repo | Turn 69 | pending | ecosystem index incomplete | none yet |
+| OPEN-018 | projects/csps.md pointer file for universal repo | Turn 69 | ✅ DONE S037-D — pushed to CommarkG/universal-governance + local .claude/projects/csps.md | PI-018 | — |
 
 ---
 

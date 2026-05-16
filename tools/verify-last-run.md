@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T18:56:01.453Z
-- finished_at: 2026-05-16T18:56:27.877Z
+- ran_at: 2026-05-16T19:39:31.520Z
+- finished_at: 2026-05-16T19:39:57.626Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T18:56:01.453Z",
-    "finished_at": "2026-05-16T18:56:27.877Z",
+    "ran_at": "2026-05-16T19:39:31.520Z",
+    "finished_at": "2026-05-16T19:39:57.626Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.1,
+        "duration_seconds": 6.4,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 64,
         "findings_total": 13
       },
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 399,
+        "scanned": 407,
         "errors": 0,
         "warnings": 25,
         "exempt": 285
@@ -185,9 +185,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files": 122,
-        "links": 547,
-        "broken": 48
+        "files": 130,
+        "links": 564,
+        "broken": 52
       },
       {
         "name": "opus_review_flagging",
@@ -214,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 1,
         "checked": 37,
         "advisories": 29
       },
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 363,
-        "clean": 363,
+        "checked": 371,
+        "clean": 371,
         "blocking": 0,
         "registry": 48
       },
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 556,
+        "scanned": 564,
         "advisory": 86
       },
       {
@@ -452,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 72,
+        "turns": 73,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -473,7 +473,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 211,
+        "checked": 219,
         "missing": 97,
         "invalid": 0,
         "exempt": 1
@@ -530,7 +530,7 @@
         "command": "node tools/validators/validate-laptop-patterns.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "checked": 39,
         "blocking": 0,
         "advisories": 7
@@ -579,8 +579,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 2,
+        "advisory": 2,
         "duplicates": 0
       },
       {
@@ -601,10 +601,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "assessed": 39,
-        "no_dev_surface": 39,
-        "no_user_value": 39,
-        "incomplete": 39
+        "assessed": 46,
+        "no_dev_surface": 46,
+        "no_user_value": 46,
+        "incomplete": 46
       },
       {
         "name": "update_backlog",
@@ -636,7 +636,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 119
+        "validators": 120
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -1098,7 +1098,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.3
+        "duration_seconds": 6.7
       },
       {
         "name": "persona_chain_complete",
@@ -1106,7 +1106,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "pi_checked": 3,
+        "pi_checked": 5,
         "implementing": 0,
         "advisories": 0
       },
@@ -1116,7 +1116,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "pi_checked": 3,
+        "pi_checked": 5,
         "implementing": 0,
         "advisories": 0
       },

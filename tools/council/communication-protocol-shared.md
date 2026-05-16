@@ -116,3 +116,5 @@ Enforcement trio:
 - **Enforcement:** validate-communication-protocol.mjs checks Sonnet reports for Rule 1
 
 *Canonical source. Do not duplicate. Reference this file only.*
+
+<!-- See quality-protocols/ for actor-specific specs -->

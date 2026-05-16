@@ -1,3 +1,15 @@
+# Sonnet Session S037 — S037-G INTENT ABSORBED
+
+## Task: validate-handoff-completeness.mjs (OPEN-020 / PI-019)
+
+1. Create `tools/validators/validate-handoff-completeness.mjs` — scans HANDOFF-*.md files from last 90 days, checks for `## ALIGNMENT QUESTIONS` section with 3-5 questions, ADVISORY if missing
+2. Wire into `tools/verify.mjs` + slug `handoff-alignment-questions` in `docs/plan/pillar-0-governance/audit-runner.md`
+3. `pnpm audit-runner:split` + `node tools/verify.mjs exit_code=0` before committing
+
+Audit slug must match filename: `validate-handoff-completeness.mjs` → expected slug `handoff-completeness` (not `handoff-alignment-questions` — will verify audit-slug-coverage).
+
+---
+
 # Sonnet Session S027+ — Opus Turn 16 INTENT ABSORBED
 
 ## Opus Turns Read: Turn 16 (SROF-008 — Schema + Spines + Retrograde Principles)

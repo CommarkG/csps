@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T20:37:53.084Z
-- finished_at: 2026-05-16T20:38:18.332Z
+- ran_at: 2026-05-16T20:52:50.407Z
+- finished_at: 2026-05-16T20:53:17.129Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T20:37:53.084Z",
-    "finished_at": "2026-05-16T20:38:18.332Z",
+    "ran_at": "2026-05-16T20:52:50.407Z",
+    "finished_at": "2026-05-16T20:53:17.129Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.2,
+        "duration_seconds": 6.3,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.9,
         "principles_loaded": 65,
         "findings_total": 15
       },
@@ -196,7 +196,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "last_turn": 23,
-        "flags": 11,
+        "flags": 10,
         "commits": 0
       },
       {
@@ -300,7 +300,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 24,
-        "validators": 120,
+        "validators": 121,
         "models": 0,
         "advisories": 8
       },
@@ -320,7 +320,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "checked": 3,
-        "advisories": 3
+        "advisories": 2
       },
       {
         "name": "opus_rzf_gap_tracking",
@@ -452,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 76,
+        "turns": 77,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -521,7 +521,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 149,
+        "checked": 150,
         "blocking": 0,
         "advisories": 0
       },
@@ -636,7 +636,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 121
+        "validators": 122
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -1009,9 +1009,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 121,
+        "validators_checked": 122,
         "orphans": 0,
-        "registered": 121
+        "registered": 122
       },
       {
         "name": "token_budget_validate",
@@ -1098,7 +1098,17 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 5.8
+        "duration_seconds": 6.8
+      },
+      {
+        "name": "handoff_completeness",
+        "command": "node tools/validators/validate-handoff-completeness.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "handoffs_checked": 31,
+        "missing_section": 30,
+        "insufficient_questions": 1
       },
       {
         "name": "enforcement_trio_assigned",

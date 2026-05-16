@@ -973,6 +973,13 @@ const CYCLES = [
     },
   },
   {
+    // S037-G LIVE — Handoff Completeness (OPEN-020/PI-019): HANDOFF-*.md files from last 90 days
+    // must have ## ALIGNMENT QUESTIONS section with ≥3 questions. ADVISORY. P-META-014 MUV.
+    name: 'handoff_completeness',
+    command: 'node tools/validators/validate-handoff-completeness.mjs',
+    parse_output: (out) => { const m = out.match(/handoffs_checked=(\d+)\s+missing_section=(\d+)\s+insufficient_questions=(\d+)/); return m ? { handoffs_checked: Number(m[1]), missing_section: Number(m[2]), insufficient_questions: Number(m[3]) } : {}; },
+  },
+  {
     // S037-F LIVE — Enforcement Trio Gate (Turn 84): PI files with status: ratified|implementing
     // must have enforcement_trio: field. ADVISORY (transition period). Turn 84 constitutional.
     name: 'enforcement_trio_assigned',  // slug: enforcement-trio-assigned (matches filename)

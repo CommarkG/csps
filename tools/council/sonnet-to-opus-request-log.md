@@ -560,3 +560,47 @@ THE REQUEST (paste to Opus tab):
 BRIEFING FILE: tools/council/platform-state-snapshot.md
 ═══════════════════════════════════════════════════════════════════
 ```
+
+---
+
+### SROF-011 — S035-S036 (Platform Core Ratification + Knowledge Engine)
+**Status:** PENDING
+
+```
+═══════════════════════════════════════════════════════════════════
+SROF-011 — Platform Core Ratification | Session: S035-S036 | Date: 2026-05-16
+Status: PENDING
+═══════════════════════════════════════════════════════════════════
+
+GIT LINKS SINCE SROF-010 (last formal SROF):
+  Commits since last SROF: S028-S035 (approximately 80+ commits)
+  GitHub compare: https://github.com/CommarkG/csps/compare/55423df...b0a8efb
+  Last commit: b0a8efb (S035 close: storage + realtime + webhook delivery)
+
+WHAT SONNET COMPLETED S028-S035 (do NOT re-analyze):
+  S028-S031: Gate 3 live, E0-E5 validators, ADR-0027, P-ARCH-030, DPR, CAP
+  S032: Security Phase 1 (RBAC, audit, headers, ZenStack policies, Notification, WebhookEndpoint)
+  S033: Email (Resend) + Jobs (Inngest) + Monitoring (Sentry + PostHog)
+  S034: Scope backfill (487 files) + libs/components/ (5 UI shells: DashboardShell/Settings/FeatureGate/OnboardingWizard/DataTable)
+  S035: libs/integrations/storage/ (R2) + realtime/ (SSE polling) + deliver-webhook.ts + trigger.ts
+
+WHAT SONNET CANNOT DECIDE:
+  1. CORE COMPLETION RATIFICATION: Has the CSPS platform core reached completion?
+     The platform currently has: 113 validators, libs/integrations/ (auth/security/email/jobs/monitoring/storage/realtime), libs/components/ (5 shells), libs/policies/ (schema), apps/template/ (18-file scaffold + pnpm create:app). Governor directive: "core completion must be ratified by Opus, not declared by Sonnet."
+     Question: Is the platform core complete? What specific items, if any, must be added before Opus will ratify completion? What does "completion" mean in terms that can be measured?
+
+  2. KNOWLEDGE ENGINE: Governor directive — should CSPS have a permanent engine that:
+     (a) Explores external skills, agents, apps, and SaaS services
+     (b) Extracts essentials into a vault
+     (c) Confronts extracted knowledge against CSPS architecture and DNA
+     (d) "Makes them our own" — integrates valuable patterns while preserving CSPS identity
+     (e) Has a permanent policy: "save all raw research and tag it even if it gets processed"
+     Question: Should this be a new moat element? What is the correct architecture for this? How does it relate to the existing External Integrations Hub (M-19), SROF-011 (external skills), and the council process?
+
+THE REQUEST (paste to Opus tab):
+
+  Opus, this is Sonnet. S035 is closed at commit b0a8efb — the platform has libs/integrations/ (7 modules: auth/security/email/jobs/monitoring/storage/realtime), libs/components/ (5 UI shells), libs/policies/ (12 models), apps/template/ (18-file scaffold), 113 validators, exit_code=0. The Governor wants Opus to ratify core completion — not Sonnet — and asks: is the CSPS platform core complete, and if not, what specific items are required? Separately, the Governor wants a permanent knowledge engine that explores external skills/agents/apps/SaaS, extracts essentials to vault, confronts them against CSPS DNA, makes them CSPS-native — with a standing policy that all raw research is saved and tagged even after processing. Specific questions: (1) Will Opus ratify platform core completion, and what is the completion criterion? (2) Is the knowledge engine a new moat element or an extension of M-19 (External Integrations Hub)? What is the correct architecture?
+
+BRIEFING FILE: tools/council/platform-state-snapshot.md
+═══════════════════════════════════════════════════════════════════
+```

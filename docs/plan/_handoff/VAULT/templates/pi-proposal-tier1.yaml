@@ -1,0 +1,56 @@
+---
+# PROP-001 TEMPLATE — Tier 1 Constitutional Change Proposal
+# Use this template when proposing a new principle, contract, or governance change
+# that touches constitutional (L1-sealed) surfaces or ratifies a platform-wide constraint.
+#
+# Process:
+#   1. Copy this file to docs/plan/_handoff/VAULT/proposals/PROP-NNN-[title-kebab].yaml
+#   2. Fill all required fields (marked # REQUIRED)
+#   3. Present to OPUS-2 for architectural review (file SROF or present in turn)
+#   4. Governor ratifies after OPUS-2 sign-off + cooling period
+#   5. Do NOT implement before governor_ratified_at is set
+#
+# Authority: Governor (yariv) ratifies; OPUS-2 reviews; Sonnet implements after ratification
+
+id: PROP-NNN                             # REQUIRED — auto-assign from existing proposals/
+title: ""                                # REQUIRED — human-readable title (< 60 chars)
+status: draft                            # draft | under-review | ratified | rejected | superseded
+created_at: "YYYY-MM-DD"
+created_by: sonnet                       # who proposed this
+core_spine: GVRN                         # which spine this touches
+tier: 1                                  # always 1 for constitutional changes (Tier 2 = standard)
+
+# ── What is being proposed ───────────────────────────────────────────────────
+principle_proposed: ""                   # REQUIRED — P-META-NNN, P-ARCH-NNN, or B_NAME
+rationale: |                             # REQUIRED — why this change is needed
+  TODO: explain the problem this solves and why now.
+
+# ── Risk analysis ─────────────────────────────────────────────────────────────
+what_breaks_if_wrong: |                  # REQUIRED — concrete failure scenario
+  TODO: if this principle is wrong or over-specified, what breaks?
+  Be specific: which sessions, which validators, which user workflows?
+
+rollback_path: |                         # REQUIRED — how to revert if ratification is wrong
+  TODO: what would reverting look like? Is it clean or does it require cleanup?
+
+# ── Review record ─────────────────────────────────────────────────────────────
+opus2_review_turn: null                  # set after OPUS-2 reviews (Turn NNN)
+opus2_verdict: null                      # approved | rejected | needs-revision
+opus2_notes: ""                          # OPUS-2 feedback summary
+
+# ── Ratification ─────────────────────────────────────────────────────────────
+governor_ratified_at: null               # REQUIRED before implementation
+cooling_period_satisfied: false          # true when one full session has passed since ratification
+implementation_session: null            # S<NNN> when built
+implementation_commit: null             # SHA when built
+
+# ── Cross-references ──────────────────────────────────────────────────────────
+composes_with: []                        # existing principles/contracts this builds on
+supersedes: []                           # existing principles this replaces (if any)
+cross_references: []                     # related artifacts
+
+# ── Links ─────────────────────────────────────────────────────────────────────
+links:
+  - { rel: parent, href: ../README.md }
+  - { rel: template-source, href: ../templates/pi-proposal-tier1.yaml }
+---

@@ -973,6 +973,13 @@ const CYCLES = [
     },
   },
   {
+    // S037-C LIVE — Persona Chain Gate (OPEN-008): PI files with status: implementing must have
+    // all 6 persona reviews complete (consolidation/balance/domain/ux/critic/synergy). ADVISORY.
+    name: 'persona_chain_complete',
+    command: 'node tools/validators/validate-persona-chain-complete.mjs',
+    parse_output: (out) => { const m = out.match(/pi_checked=(\d+)\s+implementing=(\d+)\s+advisories=(\d+)/); return m ? { pi_checked: Number(m[1]), implementing: Number(m[2]), advisories: Number(m[3]) } : {}; },
+  },
+  {
     // S037-B LIVE — PI Questions Gate (OPEN-007): PI files with status: implementing must have
     // zero unanswered questions. ADVISORY. P-OPER-002 + P-ARCH-031.
     name: 'pi_questions_answered',

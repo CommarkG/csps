@@ -21,9 +21,9 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 | OPEN-005 | PI-013: EKEP wizard spec and PI file | Turn 72 | pending | cross-platform knowledge exchange | none yet |
 | OPEN-006 | post-stop-rzf-reminder.sh hook | Turns 63/67 | ✅ DONE S037-B (d0b32f4 — hook ACTIVE + settings.json registered) | — | — |
 | OPEN-007 | validate-pi-questions-answered.mjs | Turn 62 | ✅ DONE S037-B — LIVE in verify.mjs + pi-questions-gate slug | — | — |
-| OPEN-008 | validate-persona-chain-complete.mjs | Turn 62 | pending | sequential chain has no enforcement | none yet |
-| OPEN-009 | sync-universal-governance.mjs script | Turn 72 | pending | auto-update universal governance | none yet |
-| OPEN-010 | PROP-001 proposal template YAML | Turn 69 | pending | no formal Tier 1 proposal process | none yet |
+| OPEN-008 | validate-persona-chain-complete.mjs | Turn 62 | ✅ DONE S037-C — LIVE in verify.mjs + persona-chain-complete slug | — | — |
+| OPEN-009 | sync-universal-governance.mjs script | Turn 72 | ✅ DONE S037-C — LIVE + pnpm sync:universal + proposals/ dir | — | — |
+| OPEN-010 | PROP-001 proposal template YAML | Turn 69 | ✅ DONE S037-C — pi-proposal-tier1.yaml + proposals/README.md | — | — |
 | OPEN-011 | B_PLAN_MUST_EMBED_NOT_REFERENCE | Turn 67 | ✅ DONE — gradual-build-plan 3 mandatory wiring sections added (commit 25cbec8) | — | — |
 | OPEN-012 | P-OPER-002 in principles.yaml | Turns 67/72 | ✅ DONE S037-B — P-OPER-002 + B_DONE_RIGHT_FROM_THE_START ratified | — | — |
 | OPEN-013 | S036 formal close (closing-summary + HANDOFF) | — | ✅ DONE (76328f4 + 19891ad) | — | — |

@@ -1,0 +1,7 @@
+{
+  "last_sync": "2026-05-16T00:00:00Z",
+  "last_sync_principle_count": 64,
+  "synced_principles": [],
+  "pending_proposals": [],
+  "notes": "Initial sync state. Run pnpm sync:universal to check for new principles to propose for universal-governance."
+}

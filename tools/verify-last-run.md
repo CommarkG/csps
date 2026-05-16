@@ -1,28 +1,30 @@
 # verify last run
 
-- ran_at: 2026-05-16T18:47:54.084Z
-- finished_at: 2026-05-16T18:48:12.347Z
+- ran_at: 2026-05-16T18:56:01.453Z
+- finished_at: 2026-05-16T18:56:27.877Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T18:47:54.084Z",
-    "finished_at": "2026-05-16T18:48:12.347Z",
+    "ran_at": "2026-05-16T18:56:01.453Z",
+    "finished_at": "2026-05-16T18:56:27.877Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "DEFERRED-WITH-REASON",
-        "skip_reason": "flag --skip-install"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 6.1,
+        "packages_resolved": null
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 64,
         "findings_total": 13
       },
@@ -40,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 398,
+        "scanned": 399,
         "errors": 0,
         "warnings": 25,
         "exempt": 285
@@ -298,7 +300,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 24,
-        "validators": 118,
+        "validators": 119,
         "models": 0,
         "advisories": 8
       },
@@ -347,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 362,
-        "clean": 362,
+        "checked": 363,
+        "clean": 363,
         "blocking": 0,
         "registry": 48
       },
@@ -431,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 555,
+        "scanned": 556,
         "advisory": 86
       },
       {
@@ -450,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 69,
+        "turns": 72,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -519,7 +521,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 147,
+        "checked": 148,
         "blocking": 0,
         "advisories": 0
       },
@@ -1007,9 +1009,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 119,
+        "validators_checked": 120,
         "orphans": 0,
-        "registered": 119
+        "registered": 120
       },
       {
         "name": "token_budget_validate",
@@ -1096,7 +1098,17 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.4
+        "duration_seconds": 7.3
+      },
+      {
+        "name": "persona_chain_complete",
+        "command": "node tools/validators/validate-persona-chain-complete.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "pi_checked": 3,
+        "implementing": 0,
+        "advisories": 0
       },
       {
         "name": "pi_questions_answered",

@@ -168,4 +168,27 @@ From `tools/council/communication-protocol-shared.md` (7 rules):
 
 ---
 
+---
+
+## ALIGNMENT QUESTIONS (P-META-014 MUV — mandatory for cross-boundary handoff)
+
+> These questions fire AFTER the default protocol. The receiving AI answers them before touching any code. Questions generated from actual S036 state — not generic.
+
+**Q1 — Completion verification:**
+S037 items (A through D) were marked done. Before accepting any as complete: run `node tools/verify.mjs` and confirm `exit_code=0`. Which S037 items have verify evidence in THIS session vs inherited from previous?
+
+**Q2 — OPEN items register currency:**
+The open items register at `tools/council/opus-open-items.md` shows statuses. Which items are marked done but have no commit SHA? Which items were done but pnpm verify wasn't re-run after?
+
+**Q3 — PE Agent status:**
+OPEN-003 (PE Agent, PE=78) is the highest-PE remaining item. The AAP spec is in `docs/plan/pillar-0-governance/meta-platform/pe-agent.md`. What's the FIRST action for S037-E — reading Turn 83 directive or filing SROF to OPUS-2?
+
+**Q4 — ZCA hook deployment:**
+`post-stop-rzf-reminder.sh` was registered in settings.json (S037-B). Has it fired in practice in this session? Any false positives worth reporting to OPUS-2?
+
+**Q5 — Universal governance sync:**
+`pnpm sync:universal` was wired in S037-C. Has it been run since P-ARCH-031 was added to principles.yaml? If not, run it now to generate a PROP-NNN candidate for universal-governance.
+
+---
+
 *S036 CLOSED | ZCA constitutional | 63 principles | 60 contracts | 115+ validators | S037 = PI-002 schema*

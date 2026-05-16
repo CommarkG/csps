@@ -457,3 +457,19 @@ When an entry is observed via `validator-caught` BUT the validator was tagged as
 - **Status:** Mechanically prevented. K=6.
 
 **Drift log signature:** `S036-AI-continuous-drift-log-2026-05-16T15:00:00Z`
+
+### Pattern: PLAIN_PATH_REFERENCE (S037 — EP-ERR-007)
+- **Training default:** AI outputs bare file paths (`tools/verify.mjs`) instead of clickable markdown links (`[verify.mjs](tools/verify.mjs)`) — bare paths are the path of least resistance.
+- **CSPS override:** Every file path in chat output must be a clickable markdown link. No bare paths — they are invisible outside the IDE.
+- **Training context:** Speed-optimizing: bare paths require fewer keystrokes. AI treats "formatting" as lower priority than "content", so link formatting is the first thing dropped under context pressure.
+- **Resolution:** post-stop-link-discipline.sh extended to detect bare `.mjs/.md/.ts/.yaml` paths. EP-ERR-007 filed. T1 hook active.
+- **Status:** Mechanically prevented (advisory). K=30+. Engraved S037-F.
+
+### Pattern: TIER_3_ONLY_ENFORCEMENT (S037 — structural)
+- **Training default:** When creating a new rule or principle, AI notes it in a document or memory without assigning a mechanical enforcement tier. "Noted in AGENTS.md" = done.
+- **CSPS override:** Every rule needs enforcement_trio at CREATION TIME: T1 hook (fires on output), T2 validator (fires on commit), T3 session-open. T3-only = acknowledged drift, not governance.
+- **Training context:** Documentation feels complete. AI does not spontaneously consider "how will this be detected if violated 30 sessions from now?"
+- **Resolution:** validate-enforcement-trio-assigned.mjs (advisory) + enforcement_tier: field added to principles. EP-ERR pending K=2 promotion.
+- **Status:** Advisory enforced. K=1. S037-F.
+
+**Drift log signature:** `S037-AI-continuous-drift-log-2026-05-16T20:00:00Z`

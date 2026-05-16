@@ -2261,6 +2261,45 @@ principles:
       - { layer: ci-check, location: "tools/validators/validate-app-scope-isolation.mjs", description: "Detects platform artifacts in wrong location (week-4)" }
     enforcer_count: 4
     cross_references: [P-META-019, P-ARCH-028, B_APPS_ARE_TRIALS]
+    enforcement_tier:
+      tier1: null
+      tier2: tools/validators/validate-app-scope-isolation.mjs
+      tier3: "Apps = ephemeral trials. Delete test: if deleted, does platform lose value? If yes, extract to libs/ first."
+      permanence: medium
+
+  - id: P-ARCH-031
+    name: completion-seal
+    aliases: [done-equals-wired, wiring-required-for-done, completion-standard]
+    category: architecture
+    severity: critical
+    statement: |
+      DONE = built + wired + called + output verified.
+      Never declare done on commit alone.
+      A component committed but not imported anywhere = an orphan.
+      A function committed but never called = an orphan.
+      An integration committed but not wired into a route = an orphan.
+      The done criterion must be specified BEFORE building, not discovered after.
+    rationale: |
+      S034 incident: OnboardingWizard built, committed, declared done.
+      S036 audit: OnboardingWizard was an orphan — never called anywhere.
+      The "commit = done" assumption caused 2 sessions of invisible debt.
+      validate-wiring-completeness.mjs mechanically blocks this going forward.
+    governing_intent: |
+      Completion is determined by whether the artifact is alive in the system —
+      imported, called, producing visible output — not by whether it exists on disk.
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "DONE standard: built + wired + called + output verified" }
+      - { layer: validator, location: "tools/validators/validate-wiring-completeness.mjs", description: "LIVE S036: WIRED/DEFERRED/ORPHAN classification per exported symbol" }
+      - { layer: validator, location: "tools/validators/validate-implementation-gate.mjs", description: "PIG: commits touching libs/apps reference PI-NNN (advisory S037)" }
+    enforcer_count: 3
+    ratified: S036
+    ratified_by: yariv
+    cross_references: [P-ARCH-030, P-META-008, P-OPER-002]
+    enforcement_tier:
+      tier1: tools/hooks/post-stop-rzf-reminder.sh
+      tier2: tools/validators/validate-wiring-completeness.mjs
+      tier3: "DONE = built + wired + called + verified. Commit is necessary but not sufficient."
+      permanence: high
 
   - id: P-UX-001
     name: contextual-locality
@@ -2287,6 +2326,11 @@ principles:
     enforcer_count: 3
     ratified: S036
     cross_references: [P-META-022, communication-protocol-shared.md]
+    enforcement_tier:
+      tier1: null
+      tier2: tools/validators/validate-communication-protocol.mjs
+      tier3: "Content at point of use. No 'see §X'. Paste target inline under the step it belongs to."
+      permanence: medium
 
   - id: P-UX-002
     name: zero-context-assumption
@@ -2320,6 +2364,11 @@ principles:
     ratified_at: "2026-05-16"
     ratified_by: yariv
     cross_references: [P-UX-001, P-META-014, communication-protocol-shared.md, boundary-assumptions.md]
+    enforcement_tier:
+      tier1: null
+      tier2: tools/validators/validate-boundary-alignment.mjs
+      tier3: "ZCA: every cross-boundary message starts with WHO/WHAT/HOW/NOW. Receiver starts from zero."
+      permanence: medium
 
   - id: P-OPER-001
     name: zero-laptop-dependency
@@ -2399,6 +2448,11 @@ principles:
     ratified_at: "2026-05-16"
     ratified_by: yariv
     cross_references: [P-ARCH-031, P-META-008, P-META-006]
+    enforcement_tier:
+      tier1: null
+      tier2: tools/validators/validate-implementation-gate.mjs
+      tier3: "P-OPER-002: build correctly from the start. Specify HOW before writing code."
+      permanence: medium
 
 # ============================================================================
 # AUDIT META-CHECK ALGORITHM

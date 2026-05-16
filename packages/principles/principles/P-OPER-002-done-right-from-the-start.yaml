@@ -45,3 +45,8 @@ cross_references:
   - P-ARCH-031
   - P-META-008
   - P-META-006
+enforcement_tier:
+  tier1: null
+  tier2: tools/validators/validate-implementation-gate.mjs
+  tier3: 'P-OPER-002: build correctly from the start. Specify HOW before writing code.'
+  permanence: medium

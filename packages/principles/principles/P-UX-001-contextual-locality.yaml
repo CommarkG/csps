@@ -41,3 +41,8 @@ ratified: S036
 cross_references:
   - P-META-022
   - communication-protocol-shared.md
+enforcement_tier:
+  tier1: null
+  tier2: tools/validators/validate-communication-protocol.mjs
+  tier3: Content at point of use. No 'see §X'. Paste target inline under the step it belongs to.
+  permanence: medium

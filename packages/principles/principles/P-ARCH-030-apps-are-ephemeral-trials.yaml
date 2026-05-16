@@ -58,3 +58,8 @@ cross_references:
   - P-META-019
   - P-ARCH-028
   - B_APPS_ARE_TRIALS
+enforcement_tier:
+  tier1: null
+  tier2: tools/validators/validate-app-scope-isolation.mjs
+  tier3: 'Apps = ephemeral trials. Delete test: if deleted, does platform lose value? If yes, extract to libs/ first.'
+  permanence: medium

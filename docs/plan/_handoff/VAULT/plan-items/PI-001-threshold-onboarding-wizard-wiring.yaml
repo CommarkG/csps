@@ -90,4 +90,12 @@ plan_summary: |
 
 linked_principle: P-ARCH-031
 linked_contract: null
+
+# Enforcement Trio (Turn 84 — assigned S037)
+enforcement_trio:
+  tier1_hook: null
+  tier2_validator: validate-wiring-completeness.mjs
+  tier3_session: "OnboardingWizard must be WIRED in both apps — check validate-wiring-completeness output"
+  tier_decision_rationale: "Violation detectable in committed files (missing import) → Tier 2 primary"
+  permanence_assessment: medium
 ---

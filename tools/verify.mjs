@@ -973,6 +973,13 @@ const CYCLES = [
     },
   },
   {
+    // S037-F LIVE — Enforcement Trio Gate (Turn 84): PI files with status: ratified|implementing
+    // must have enforcement_trio: field. ADVISORY (transition period). Turn 84 constitutional.
+    name: 'enforcement_trio_assigned',  // slug: enforcement-trio-assigned (matches filename)
+    command: 'node tools/validators/validate-enforcement-trio-assigned.mjs',
+    parse_output: (out) => { const m = out.match(/pi_checked=(\d+)\s+active=(\d+)\s+missing_trio=(\d+)/); return m ? { pi_checked: Number(m[1]), active: Number(m[2]), missing_trio: Number(m[3]) } : {}; },
+  },
+  {
     // S037-C LIVE — Persona Chain Gate (OPEN-008): PI files with status: implementing must have
     // all 6 persona reviews complete (consolidation/balance/domain/ux/critic/synergy). ADVISORY.
     name: 'persona_chain_complete',

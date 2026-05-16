@@ -5,7 +5,7 @@
 # Source: packages/principles/principles.yaml
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
-  total_count: 64
+  total_count: 65
   generated_at: '2026-05-16'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
@@ -313,6 +313,11 @@ principles:
     category: architecture
     severity: critical
     path: ./principles/P-ARCH-030-apps-are-ephemeral-trials.yaml
+  - id: P-ARCH-031
+    name: completion-seal
+    category: architecture
+    severity: critical
+    path: ./principles/P-ARCH-031-completion-seal.yaml
   - id: P-UX-001
     name: contextual-locality
     category: operating

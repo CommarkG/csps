@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T19:39:31.520Z
-- finished_at: 2026-05-16T19:39:57.626Z
+- ran_at: 2026-05-16T20:21:13.714Z
+- finished_at: 2026-05-16T20:21:53.034Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T19:39:31.520Z",
-    "finished_at": "2026-05-16T19:39:57.626Z",
+    "ran_at": "2026-05-16T20:21:13.714Z",
+    "finished_at": "2026-05-16T20:21:53.034Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.4,
+        "duration_seconds": 11.2,
         "packages_resolved": null
       },
       {
@@ -33,8 +33,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.9,
-        "principles_loaded": 64,
-        "findings_total": 13
+        "principles_loaded": 65,
+        "findings_total": 15
       },
       {
         "name": "frontmatter_validate",
@@ -42,9 +42,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 407,
+        "scanned": 409,
         "errors": 0,
-        "warnings": 25,
+        "warnings": 26,
         "exempt": 285
       },
       {
@@ -62,7 +62,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -98,7 +98,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_ids": 64,
+        "source_ids": 65,
         "missing_slices": 0
       },
       {
@@ -114,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -184,7 +184,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 130,
         "links": 564,
         "broken": 52
@@ -214,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 1.2,
         "checked": 37,
         "advisories": 29
       },
@@ -254,7 +254,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 4
+        "advisories": 6
       },
       {
         "name": "agreement_without_evidence",
@@ -300,7 +300,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 24,
-        "validators": 119,
+        "validators": 120,
         "models": 0,
         "advisories": 8
       },
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 371,
-        "clean": 371,
+        "checked": 372,
+        "clean": 372,
         "blocking": 0,
         "registry": 48
       },
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 564,
+        "scanned": 565,
         "advisory": 86
       },
       {
@@ -452,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 73,
+        "turns": 76,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -521,7 +521,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 148,
+        "checked": 149,
         "blocking": 0,
         "advisories": 0
       },
@@ -530,7 +530,7 @@
         "command": "node tools/validators/validate-laptop-patterns.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "checked": 39,
         "blocking": 0,
         "advisories": 7
@@ -636,7 +636,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 120
+        "validators": 121
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -776,8 +776,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 142,
-        "missing_why": 38
+        "checked": 143,
+        "missing_why": 39
       },
       {
         "name": "open_plan_levels",
@@ -981,7 +981,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -1009,9 +1009,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 120,
+        "validators_checked": 121,
         "orphans": 0,
-        "registered": 120
+        "registered": 121
       },
       {
         "name": "token_budget_validate",
@@ -1098,7 +1098,17 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7
+        "duration_seconds": 12.4
+      },
+      {
+        "name": "enforcement_trio_assigned",
+        "command": "node tools/validators/validate-enforcement-trio-assigned.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "pi_checked": 5,
+        "active": 3,
+        "missing_trio": 2
       },
       {
         "name": "persona_chain_complete",
@@ -1125,7 +1135,7 @@
         "command": "node tools/validators/validate-implementation-gate.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "advisories": 0
       },
       {

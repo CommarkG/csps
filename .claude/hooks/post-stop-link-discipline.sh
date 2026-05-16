@@ -59,5 +59,33 @@ if [[ "$INTERNAL_LINKS" != "0" ]] && [[ -n "$INTERNAL_LINKS" ]]; then
   }' "$INTERNAL_LINKS"
 fi
 
-echo "[link-discipline] scan complete — internal_links_found=${INTERNAL_LINKS:-0} session=${SESSION_ID} timestamp=${TIMESTAMP}"
+# EP-ERR-007: Bare path detection (S037-F — Turn 83)
+# Detect file extensions NOT preceded by ( — these are bare paths, not clickable links
+BARE_PATHS=$(python3 -c "
+import json, re, sys
+try:
+    with open('$TRANSCRIPT_PATH') as f:
+        data = json.load(f)
+    messages = data.get('messages', [])
+    last_ai = next((m for m in reversed(messages) if m.get('role') == 'assistant'), None)
+    if not last_ai: sys.exit(0)
+    content = str(last_ai.get('content', ''))
+    # Find bare file extensions NOT preceded by ( markdown link syntax
+    # Pattern: NOT preceded by ( AND matches filename.ext
+    # Look for word.ext where word char before . is not preceded by (
+    pattern = r'(?<!\()\b\w[\w/-]*\.(mjs|md|ts|tsx|yaml|yml|sh|json)\b'
+    # Exclude markdown link patterns [text](path.ext)
+    # Remove all [text](path) to avoid false positives
+    cleaned = re.sub(r'\[[^\]]+\]\([^)]+\)', '', content)
+    matches = re.findall(pattern, cleaned)
+    print(str(len(matches)))
+except Exception:
+    print('0')
+" 2>/dev/null || echo "0")
+
+if [[ "$BARE_PATHS" != "0" ]] && [[ -n "$BARE_PATHS" ]] && [[ "$BARE_PATHS" -gt 2 ]]; then
+  echo "[link-discipline] ADVISORY: ${BARE_PATHS} bare path(s) detected (EP-ERR-007) — use [filename](path) format. session=${SESSION_ID}"
+fi
+
+echo "[link-discipline] scan complete — internal_links_found=${INTERNAL_LINKS:-0} bare_paths=${BARE_PATHS:-0} session=${SESSION_ID} timestamp=${TIMESTAMP}"
 exit 0

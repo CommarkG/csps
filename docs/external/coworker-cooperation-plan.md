@@ -1,3 +1,25 @@
+---
+id: csps.docs.external.coworker-cooperation-plan
+name: coworker-cooperation-plan
+description: "External co-worker guide for operating in alignment with CSPS DNA. Distribute at the start of every co-worker session."
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: vault_files
+diataxis_type: reference
+session: S037
+scope_level: S1
+tags:
+  - domain:governance
+  - type:reference
+  - audience:developer
+  - maturity:stable
+links:
+  - { rel: parent, href: ../plan/pillar-0-governance/README.md }
+---
+
 # CSPS × Co-Worker Cooperation Plan
 ## Complete guide for the co-worker to operate in alignment with CSPS DNA
 ## Download this file and give it to the co-worker at the start of every session.

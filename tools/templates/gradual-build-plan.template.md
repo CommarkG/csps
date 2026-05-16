@@ -117,6 +117,21 @@ muv_audit:
 
 ---
 
+## §ET Enforcement Trio Assignment (MANDATORY — without this, every rule is just a suggestion)
+
+> **Per OPUS-2 Turn 84 (S037 constitutional):** Every rule created by this plan must specify its enforcement tier at plan creation time. Rules with only Tier 3 will drift. Fill before writing any code or ratifying any contract.
+
+| Rule created by this plan | Tier 1 Hook | Tier 2 Validator | Tier 3 Session | Permanence |
+|---|---|---|---|---|
+| [Rule name] | [hook name or "not applicable — why"] | [validator or "not applicable — why"] | [injection text] | high/medium/low |
+
+**Tier decision algorithm:**
+- "Can violation leave a detectable signature in AI output text?" → Tier 1 (post-stop hook)
+- "Can violation leave a detectable signature in committed files?" → Tier 2 (validator in pnpm verify)
+- Neither → Tier 3 only (explicitly accept drift — document why T1/T2 are not feasible)
+
+---
+
 ## §KH Know-How Consultation (B_KNOW_HOW_DISCIPLINE — mandatory for plans S011+)
 
 > **Required before §0.** Answers 5 questions to ensure the plan doesn't duplicate existing work, introduces no naming collisions, and respects existing infrastructure. validate-plan-know-how.mjs blocks when this section is absent.

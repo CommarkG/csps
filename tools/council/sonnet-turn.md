@@ -1141,3 +1141,20 @@ Check Turn 56 RZF, then execute.
 
 ## First action
 Confirm @upstash/redis is installed, then execute all steps.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-16 (Turn 56 S035-C: Webhook delivery + S035 close)
+
+## Directive: deliver-webhook.ts + trigger.ts + allFunctions update + S035 close
+1. deliver-webhook.ts: Inngest fn, prisma.webhookEndpoint.findMany, HMAC sign, POST, auditLog
+2. trigger.ts: triggerWebhook() helper
+3. Export to allFunctions + both app inngest routes
+4. S035 close: closing-summary + HANDOFF + snapshot
+
+## Key constraints
+- WebhookEndpoint model exists in schema but db:push deferred — code correct, activation on db:push
+- auditLog needs db + event params (import pattern from audit.ts)
+
+## First action
+Execute all 4 steps, then close S035.

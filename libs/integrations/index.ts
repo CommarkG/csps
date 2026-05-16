@@ -11,7 +11,7 @@ export { uploadFile, getPresignedUrl, deleteFile } from './storage/client'
 export { publishNotification } from './realtime/publisher'
 export type { NotificationEvent } from './realtime/types'
 // Jobs module
-export { inngest, allFunctions } from './jobs/index'
+export { inngest, allFunctions, triggerWebhook } from './jobs/index'
 // Monitoring module
 export { captureException, captureMessage } from './monitoring/sentry'
 export { track, identify, groupIdentify, shutdownPostHog } from './monitoring/posthog'

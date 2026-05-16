@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T04:47:23.719Z
-- finished_at: 2026-05-16T04:47:53.267Z
+- ran_at: 2026-05-16T04:53:53.291Z
+- finished_at: 2026-05-16T04:54:23.889Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T04:47:23.719Z",
-    "finished_at": "2026-05-16T04:47:53.267Z",
+    "ran_at": "2026-05-16T04:53:53.291Z",
+    "finished_at": "2026-05-16T04:54:23.889Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.7,
+        "duration_seconds": 7.6,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.8,
         "ts_errors": 0
       },
       {
@@ -452,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 56,
+        "turns": 57,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -646,7 +646,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_scanned": 36,
+        "files_scanned": 38,
         "violations": 0
       },
       {
@@ -944,7 +944,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -1061,7 +1061,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.6
+        "duration_seconds": 8.3
       },
       {
         "name": "audit_runner_full_pass",

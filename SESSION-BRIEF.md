@@ -9,7 +9,7 @@
 | **Current session** | S022 |
 | **Previous session** | S021 |
 | **Last updated** | 5 day(s) ago |
-| **Last commit** | 08130f6 S037-B: RZF hook + P-OPER-002 + PI questions gate (OPEN-006/007/012) |
+| **Last commit** | 4f78800 S037-F: enforcement trio + EP-ERR-007 + alignment questions trial (Turns 83+84 + Governor) |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

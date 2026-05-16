@@ -95,9 +95,10 @@ moat_element:
 
 | M-24 | **Security module as platform primitive (S032)** | libs/integrations/security/ gives every CSPS app security headers (CSP/HSTS/X-Frame), Zod validation, audit logging, role guards, Upstash rate limiting, and circuit breakers for free — zero per-app cost. Most stacks rebuild this 30× independently. CSPS builds it once, every app inherits. | `security-headers-compliance` (LIVE S032-D) | Every app + every verify | CSEP-pending |
 | M-25 | **Schema-first tenant isolation with write policies (S032)** | ZenStack @@allow/@@deny policies enforce tenant isolation at the ORM layer for ALL models, not just critical ones. S032 added write policies (UserTenant, Notification, WebhookEndpoint) + viewer role + plan/features/limits tier support. 12 models, all tenant-isolated by default. App code cannot bypass. | `foundation_schema_drift` LIVE | Every PR + verify | CSEP-pending |
+| M-26 | **CSPS DNA inheritance gate — new code carries governance DNA (S037)** | Every new TypeScript/JS file added to libs/ must carry at least one DNA signal (@csps-id, @csps-enforces, graceful passthrough pattern, or PI wiring_checklist coverage). Training-default code patterns (plain Node.js, no governance linkage) are BLOCKED at commit for platform-critical files. DNA propagation is the compounding mechanism — each new module inherits the entire platform governance layer. | `new-file-dna` LIVE S037 | Every commit | M-26 |
 
-### Every session (pnpm verify — 112+ validators, S032)
-Covers: M-01, M-02, M-04, M-05, M-06, M-07, M-12, M-15, M-20, M-21, M-23, M-24
+### Every session (pnpm verify — 125+ validators, S037)
+Covers: M-01, M-02, M-04, M-05, M-06, M-07, M-12, M-15, M-20, M-21, M-23, M-24, M-26
 
 ### Weekly (cron-weekly-tag-status-deep-audit.sh)
 Covers: M-03 (know-how extraction), M-08 (vault processing), M-09 (SG-NNN), M-10 (K=2 check), M-11 (council drift)

@@ -973,6 +973,14 @@ const CYCLES = [
     },
   },
   {
+    // S037 LIVE — New File DNA Gate: TypeScript/JS files added in last commit must carry CSPS DNA.
+    // BLOCKING for libs/ files > 50 lines without @csps-id, @csps-enforces, graceful passthrough, or PI coverage.
+    // Closes the DNA inheritance gap: creation completeness checks PI YAML; this checks actual code.
+    name: 'new_file_dna',
+    command: 'node tools/validators/validate-new-file-dna.mjs',
+    parse_output: (out) => { const m = out.match(/files_checked=(\d+)\s+dna_ok=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/); return m ? { files_checked: Number(m[1]), dna_ok: Number(m[2]), advisory: Number(m[3]), blocking: Number(m[4]) } : {}; },
+  },
+  {
     // S037-H LIVE — Creation Completeness (Turn 85 §2 + OPEN-021): PI files from last 30 days
     // checked for wiring_checklist ≥3, enforcement_trio, done_criterion, ep_err_pre_check. ADVISORY.
     name: 'creation_completeness',

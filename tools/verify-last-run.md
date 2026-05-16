@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T22:50:58.080Z
-- finished_at: 2026-05-16T22:51:25.010Z
+- ran_at: 2026-05-16T23:01:02.933Z
+- finished_at: 2026-05-16T23:01:29.548Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T22:50:58.080Z",
-    "finished_at": "2026-05-16T22:51:25.010Z",
+    "ran_at": "2026-05-16T23:01:02.933Z",
+    "finished_at": "2026-05-16T23:01:29.548Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7,
+        "duration_seconds": 6.4,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 65,
         "findings_total": 15
       },
@@ -300,7 +300,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 24,
-        "validators": 124,
+        "validators": 125,
         "models": 0,
         "advisories": 8
       },
@@ -521,7 +521,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 153,
+        "checked": 154,
         "blocking": 0,
         "advisories": 0
       },
@@ -636,7 +636,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 125
+        "validators": 126
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -1009,9 +1009,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 125,
+        "validators_checked": 126,
         "orphans": 0,
-        "registered": 125
+        "registered": 126
       },
       {
         "name": "token_budget_validate",
@@ -1098,7 +1098,18 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.6
+        "duration_seconds": 6.8
+      },
+      {
+        "name": "new_file_dna",
+        "command": "node tools/validators/validate-new-file-dna.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files_checked": 0,
+        "dna_ok": 0,
+        "advisory": 0,
+        "blocking": 0
       },
       {
         "name": "creation_completeness",

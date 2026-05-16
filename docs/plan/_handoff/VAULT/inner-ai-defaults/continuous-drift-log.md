@@ -473,3 +473,18 @@ When an entry is observed via `validator-caught` BUT the validator was tagged as
 - **Status:** Advisory enforced. K=1. S037-F.
 
 **Drift log signature:** `S037-AI-continuous-drift-log-2026-05-16T20:00:00Z`
+
+### Pattern: IDENTITY_HANDSHAKE_OMISSION (S037 — K=10+)
+- **Training default:** Claude generates a response and then thinks about formatting. The opening line is content-first ("The validator now...") not protocol-first ("Opus, this is Sonnet.").
+- **CSPS override:** Every response to OPUS-2 (or any cross-boundary message) starts with the identity handshake AS THE FIRST COGNITIVE FRAME, not as an afterthought appended. The handshake IS the content when crossing a boundary.
+- **Root cause:** The protocol reminder fires at prompt-submission (UserPromptSubmit hook) but Sonnet's generation begins before that context fully loads as the primary frame. The handshake is treated as "formatting" not "function."
+- **Correct behavior:** When the context indicates OPUS-2 is the recipient (directive received, SROF being filed), the FIRST word generated is "Opus," — not reconsidered afterward.
+- **Status:** T1 hook extended (enforcement #6 now includes handshake requirement). K=10+. Structural drift.
+
+### Pattern: DNA_TRAINING_DEFAULT (S037 — K=5+)
+- **Training default:** New files are written with vanilla patterns. A new TypeScript integration file gets try/catch, console.log, and export — exactly what the training data contains. No @csps- annotations, no principle references, no graceful passthrough.
+- **CSPS override:** Every new file in libs/ carries at least one DNA signal at creation time. DNA signals are NOT retrofitted — they are part of the creation frame.
+- **Root cause:** Creation completeness checks PI YAML (governance artifact) but doesn't fire on the code file at write time. The AI writes code first, then considers governance. The correct order: governance frame FIRST (what PI covers this? what principle does it enforce?), then code.
+- **Resolution:** validate-new-file-dna.mjs BLOCKING for libs/ files > 50 lines. M-26 moat element. K=5+.
+
+**Drift log signature:** `S037-AI-continuous-drift-log-2026-05-17T22:55:00Z`

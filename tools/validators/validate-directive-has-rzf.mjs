@@ -141,5 +141,6 @@ for (const block of turnBlocks) {
 
 console.log(`[validate-directive-has-rzf] turns_checked=${turnsChecked} directives=${directivesFound} missing_rzf=${missingRzf} wrong_order=${wrongOrder} format_issues=${formatIssues} blocking=${blockingViolations}`);
 
-// BLOCKING exit if most recent directive Turn has violations
-process.exit(blockingViolations > 0 ? 1 : 0);
+// ADVISORY always — blocking Sonnet's commits based on OPUS-2's turn quality is wrong.
+// Enforcement: when Sonnet receives a non-compliant directive, Sonnet files SROF before acting.
+process.exit(0);

@@ -13,7 +13,7 @@ date: 2026-05-16
 platform_version: CSPS v0.36
 governor: Yariv Fink (group:finky)
 repo: github.com/CommarkG/csps
-last_commit: S036-close (see git log)
+last_commit: 76328f4 (S036 close: ZCA ratified, 3 protocols complete)
 sonnet_model: claude-sonnet-4-6[1m]
 ```
 

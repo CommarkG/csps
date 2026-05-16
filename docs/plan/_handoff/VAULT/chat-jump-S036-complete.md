@@ -25,7 +25,7 @@ links:
 **S036 CLOSED — session complete. Use HANDOFF-S036-to-S037.md for S037.**
 
 **From:** Sonnet (OPUS-2 enhanced) | **To:** New Sonnet tab
-**Last commit:** S036-close (see git log) | **Date:** 2026-05-16 | **OPUS-2 turn:** 78
+**Last commit:** 76328f4 | **Date:** 2026-05-16 | **OPUS-2 turn:** 78
 
 ---
 

@@ -23,7 +23,7 @@ links:
 
 # Closing Summary — S036
 
-**Date:** 2026-05-16 | **Last commit:** pending (see §10.0) | **OPUS-2 turns:** 75–78
+**Date:** 2026-05-16 | **Last commit:** 76328f4 | **OPUS-2 turns:** 75–78
 
 ---
 

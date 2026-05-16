@@ -11,6 +11,21 @@ NOT wrapping existing queries — staffRole is required for getEnhancedDb scopin
 
 ---
 
+# Sonnet Session S038 — INTENT ABSORBED (OPUS-2 4-session directive)
+
+## S038-A: STT module (libs/integrations/speech/)
+Topic plan first → 5 TypeScript files → @csps-enforces P-META-022 → verify + commit
+
+## S038-B: quality-protocols mini-tree (tools/council/quality-protocols/)
+3 spec files + shared-rules extraction → @csps-enforces P-UX-001 → verify + commit
+
+## S038-C: DNA audit + open-items update
+validate-new-file-dna.mjs run → pnpm sync:dna --dry-run → open items → verify + commit
+
+## S038 CLOSE: closing-summary + HANDOFF + platform-state-snapshot
+
+---
+
 # Sonnet Session S037 — S037-G INTENT ABSORBED
 
 ## Task: validate-handoff-completeness.mjs (OPEN-020 / PI-019)

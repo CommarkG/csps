@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T23:13:33.272Z
-- finished_at: 2026-05-16T23:14:00.381Z
+- ran_at: 2026-05-16T23:25:32.430Z
+- finished_at: 2026-05-16T23:25:59.486Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T23:13:33.272Z",
-    "finished_at": "2026-05-16T23:14:00.381Z",
+    "ran_at": "2026-05-16T23:25:32.430Z",
+    "finished_at": "2026-05-16T23:25:59.486Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.8,
+        "duration_seconds": 7.1,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 413,
+        "scanned": 415,
         "errors": 0,
         "warnings": 28,
         "exempt": 285
@@ -176,7 +176,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans": 20,
+        "plans": 21,
         "open_items": 144
       },
       {
@@ -185,8 +185,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files": 130,
-        "links": 564,
+        "files": 131,
+        "links": 565,
         "broken": 52
       },
       {
@@ -205,8 +205,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans": 2,
-        "total": 2,
+        "plans": 3,
+        "total": 4,
         "open": 0
       },
       {
@@ -271,7 +271,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans": 16,
+        "plans": 17,
         "blocking": 0,
         "advisory": 0
       },
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 376,
-        "clean": 376,
+        "checked": 377,
+        "clean": 377,
         "blocking": 0,
         "registry": 49
       },
@@ -406,7 +406,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 39,
+        "checked": 40,
         "advisories": 1
       },
       {
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 569,
+        "scanned": 570,
         "advisory": 86
       },
       {
@@ -531,7 +531,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "checked": 39,
+        "checked": 40,
         "blocking": 0,
         "advisories": 7
       },
@@ -579,8 +579,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -683,7 +683,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_scanned": 39,
+        "files_scanned": 44,
         "violations": 0
       },
       {
@@ -785,7 +785,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 20,
+        "plans_checked": 21,
         "plans_with_open": 10,
         "total_open_items": 144
       },
@@ -813,7 +813,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 18,
+        "checked": 19,
         "grandfathered": 2,
         "errors": 0
       },
@@ -824,8 +824,8 @@
         "exit_code": 0,
         "duration_seconds": 0.2,
         "blocking": 0,
-        "advisory": 20,
-        "total_gaps": 20
+        "advisory": 21,
+        "total_gaps": 21
       },
       {
         "name": "plan_ai_defaults_alignment",
@@ -833,7 +833,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 25,
+        "scanned": 26,
         "flagged": 3,
         "ratified": 1,
         "blocking": 0,
@@ -845,7 +845,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 20,
+        "checked": 21,
         "blocking": 0,
         "advisory": 0
       },
@@ -855,8 +855,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 20,
-        "with_field": 1,
+        "checked": 21,
+        "with_field": 2,
         "missing": 19
       },
       {
@@ -879,7 +879,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 20,
+        "checked": 21,
         "blocking": 0,
         "advisory": 17
       },
@@ -889,7 +889,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 20,
+        "plans_checked": 21,
         "blocking": 0,
         "advisory": 4
       },
@@ -991,7 +991,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 20,
+        "plans_checked": 21,
         "warnings": 0
       },
       {
@@ -1044,9 +1044,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 20,
-        "missing_harvest": 10,
-        "warnings": 10
+        "plans_checked": 21,
+        "missing_harvest": 11,
+        "warnings": 11
       },
       {
         "name": "execution_mode_declared",
@@ -1054,7 +1054,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 20,
+        "plans_checked": 21,
         "missing_mode": 0,
         "warnings": 0
       },
@@ -1076,7 +1076,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 20,
+        "plans_checked": 21,
         "stale_total": 10,
         "unverified": 10,
         "verified": 0,
@@ -1088,7 +1088,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "plans_checked": 20,
+        "plans_checked": 21,
         "sections_checked": 7,
         "blocking": 0,
         "warnings": 0
@@ -1098,7 +1098,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.5
+        "duration_seconds": 6.1
       },
       {
         "name": "sync_state_fresh",
@@ -1197,7 +1197,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 0
+        "advisories": 1
       },
       {
         "name": "audit_runner_full_pass",

@@ -8,12 +8,12 @@
 ## §1 — Current Platform Identity
 
 ```yaml
-session: S037
+session: S038
 date: 2026-05-17
-platform_version: CSPS v0.37
+platform_version: CSPS v0.38
 governor: Yariv Fink (group:finky)
 repo: github.com/CommarkG/csps
-last_commit: 3075da3 (S037-I: PE Agent skill LIVE)
+last_commit: 9188d98 (S038-C: DNA signals + open items)
 sonnet_model: claude-sonnet-4-6[1m]
 ```
 
@@ -22,7 +22,7 @@ sonnet_model: claude-sonnet-4-6[1m]
 ## §2 — Platform Health (last pnpm verify run)
 
 ```yaml
-validators: 125
+validators: 127
 exit_code: 0
 vlt_blockers: 0
 grl_open: 0
@@ -136,6 +136,7 @@ Rule 7 (ZCA) added. Full protocol: `tools/council/communication-protocol-shared.
 
 ## §10 — Session History (last 5)
 
+**S038 STATUS: CLOSED** | 127 validators | STT module + quality-protocols mini-tree | DNA gate M-26 | communication protocol v2
 **S037 STATUS: CLOSED** | 125 validators | PE Agent live | 65 principles | 61 contracts | creation completeness + enforcement trio + EP-ERR loop
 **S036 STATUS: CLOSED** | 115+ validators | ZCA constitutional | 63 principles | 60 contracts | error registry + wiring audit live
 **S035 STATUS: CLOSED** | 113 validators | storage+realtime+webhooks live | full async infra done

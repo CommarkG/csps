@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T23:29:14.971Z
-- finished_at: 2026-05-16T23:29:55.659Z
+- ran_at: 2026-05-16T23:30:54.747Z
+- finished_at: 2026-05-16T23:31:35.159Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T23:29:14.971Z",
-    "finished_at": "2026-05-16T23:29:55.659Z",
+    "ran_at": "2026-05-16T23:30:54.747Z",
+    "finished_at": "2026-05-16T23:31:35.159Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 12.5,
+        "duration_seconds": 12.9,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.9,
         "principles_loaded": 65,
         "findings_total": 15
       },
@@ -214,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 1.2,
         "checked": 37,
         "advisories": 29
       },
@@ -578,7 +578,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -981,7 +981,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -1098,7 +1098,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 12.2
+        "duration_seconds": 11.3
       },
       {
         "name": "sync_state_fresh",

@@ -80,6 +80,35 @@ If no → the crossing is incomplete.
 
 ---
 
+## RULE 8 — Creation Order
+
+Register → Implement → Wire → Verify. Never implement without registering first. Never declare DONE without verifying wiring.
+
+---
+
+## RULE 9 — Pre-Directive RZF (Directive Quality Gate)
+
+Before presenting ANY directive to Sonnet or co-worker:
+1. Draft the directive internally
+2. Run minimum 1 ZF cycle on the draft: "What did I miss? What would a reader find incomplete?"
+3. If findings improve the directive, amend FIRST
+4. Present ONLY the amended final version
+
+The recipient never sees a directive that has known gaps.
+
+Applies to: SONNET DIRECTIVE blocks, co-worker prompts, any cross-boundary instruction.
+
+NOT the same as post-architectural-turn RZF:
+- Architectural turns (design, analysis, decisions): ## RZF VERIFICATION at the end
+- Directive turns (paste targets for Sonnet/co-worker): pre-directive RZF only — no post-directive RZF
+
+Enforcement trio:
+- T1: post-stop-directive-rzf-gate.sh (ADVISORY if no RZF precedes directive)
+- T2: validate-directive-has-rzf.mjs (checks opus-turn.md SONNET DIRECTIVE sections)
+- T3: this rule (session-open injection)
+
+---
+
 ## WHERE THIS IS READ
 
 - **Sonnet:** session-open.sh injects this file's rules at every session start

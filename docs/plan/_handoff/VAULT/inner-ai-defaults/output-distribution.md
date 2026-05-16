@@ -127,3 +127,20 @@ scope_level: S1
 - **caught_by_validator:** validate-dpr-rating (planned, not yet built)
 - **session_added:** S031
 - **status:** active
+
+---
+
+## OD-011 — 6 New patterns from S036 Opus Turn 76 (disposition: override)
+
+All 6 are documented in docs/plan/_handoff/VAULT/error-registry/:
+
+- **done-equals-committed** (EP-ERR-001): DONE ≠ committed+verify. DONE = wired+called+verified.
+- **implement-without-ratification** (EP-ERR-002): 'Proceed' ≠ implementation license. PI item required.
+- **invent-governance-concepts** (EP-ERR-003): No new governance concepts without precedent check.
+- **sycophantic-compliance** (EP-ERR-004): Expert colleague voice. Challenge broad directives.
+- **announce-not-track** (EP-ERR-005): Every announced item → opus-open-items.md. Nothing queued without register.
+- **context-fades-mid-session** (EP-ERR-006): Governance repeats every turn via hooks. Session-open insufficient.
+
+- **disposition:** override (all 6)
+- **session_added:** S036
+- **status:** active

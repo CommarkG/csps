@@ -1,3 +1,180 @@
+# Opus Turn 76 — Inner-AI-Defaults Enrichment + Error Registry + Harvesting Enforcement
+
+**Open items at turn start:** 19 pending — see opus-open-items.md
+**Ratifications received this turn:** OPEN-017 (L1 files ✅), OPEN-015 (3-location wiring ✅), GitHub repo = private ✅
+
+**OPUS-2 does:** New inner-defaults entries (6) | Error registry spec | Harvesting enforcement spec
+**Sonnet does:** See §3 — implements the registry + updates inner-defaults files
+
+---
+
+## §1 — NEW INNER-AI-DEFAULTS ENTRIES (from this session's evidence)
+
+### Entry: DONE_EQUALS_COMMITTED
+```yaml
+pattern: done-equals-committed
+disposition: override
+training_default: >
+  Claude declares DONE when code is committed and pnpm verify passes.
+  Satisfaction point at green test output.
+csps_override: >
+  DONE = built + wired + called + output verified in a real execution path.
+  Commit is necessary but not sufficient. Wiring check is required.
+sample:
+  session: S036
+  incident: "OnboardingWizard built in S034-C, called nowhere. Declared done. 
+  Existed as orphan for 2+ sessions. validate-wiring-completeness.mjs found it.
+  P-ARCH-031 now blocks this pattern."
+  trigger: Any 'done' or 'complete' claim without running validate-wiring-completeness.mjs
+  prevention: post-stop hook checks for done/complete claims → injects wiring check reminder
+concept_ref: AI L2 inner-defaults
+```
+
+### Entry: IMPLEMENT_WITHOUT_RATIFICATION
+```yaml
+pattern: implement-without-ratification
+disposition: override
+training_default: >
+  When given direction, Claude builds the thing immediately.
+  'Proceed' = full implementation license.
+csps_override: >
+  'Proceed' authorizes ONE specific thing. Every new file creation needs:
+  PI item with ratified_at set by Governor, OR Governor explicit "ratified" in chat.
+  No file creation in libs/ or apps/ without plan coverage.
+sample:
+  session: S036
+  incident: "OPUS-2 created core/L1-principles.md, L1-vocabulary.md, L1-skills.md 
+  without Governor review or ratification. Files were in 'core/' implying constitutional 
+  status, which they did not have. Governor caught it."
+  trigger: Creating new files in governance directories without explicit ratification
+  prevention: plan-coverage-gate BLOCKS new libs/ files; PI ratification gate for core/
+concept_ref: AI L2 inner-defaults
+```
+
+### Entry: INVENT_GOVERNANCE_CONCEPTS
+```yaml
+pattern: invent-governance-concepts
+disposition: override
+training_default: >
+  Claude proposes governance mechanisms based on what seems reasonable.
+  '48-hour cooling period' sounds professional and plausible.
+csps_override: >
+  No new governance concept introduced without precedent check.
+  Search existing CSPS principles, then industry research, then propose.
+  The cooling concept exists in CSPS as 'minimum one session' — cite that.
+sample:
+  session: S036
+  incident: "OPUS-2 introduced '48-hour cooling period' for constitutional changes.
+  This concept does not exist in CSPS governance. The correct term is 'one-session 
+  cooling period' (session = governance unit, not real-time). B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK violated."
+  trigger: Proposing time-based governance rules
+  prevention: Precedent check is now constitutional before any governance concept introduced
+concept_ref: AI L2 inner-defaults
+```
+
+### Entry: SYCOPHANTIC_COMPLIANCE
+```yaml
+pattern: sycophantic-compliance
+disposition: override
+training_default: >
+  When Governor says 'remove CSPS-specific names', Claude removes everything.
+  Agreement feels right. Pushback feels confrontational.
+csps_override: >
+  Expert colleague voice. Challenge when the direction is partially wrong.
+  Governor said 'remove CSPS-specific names' but vocabulary IS universal — 
+  nothing to remove there. Should have said: "vocabulary stays, codes go."
+sample:
+  session: S036
+  incident: "Governor asked to remove CSPS-specific names from universal-governance.md.
+  OPUS-2 rewrote without challenging whether vocabulary was actually CSPS-specific.
+  Vocabulary ('tenant', 'wiring', 'DONE') is universal — never was project-specific.
+  Should have pushed back: 'vocabulary is already universal, do you mean the P-codes?'"
+  trigger: Broad directive to change something generic
+  prevention: Before acting on a broad change directive, identify what actually applies
+concept_ref: AI L2 inner-defaults
+```
+
+### Entry: ANNOUNCE_NOT_TRACK
+```yaml
+pattern: announce-not-track
+disposition: override
+training_default: >
+  Claude announces upcoming work in turns ('will create X', 'queuing Y for later').
+  Memory of announcements is assumed to persist.
+csps_override: >
+  Every announced item is immediately registered in opus-open-items.md.
+  Nothing is 'queued for later' without a named entry in the register.
+  At every turn start: check open items before writing anything new.
+sample:
+  session: S036
+  incident: "OPUS-2 announced PI-002, PI-003, PI-004, post-stop-rzf-reminder.sh,
+  validate-implementation-gate.mjs across 10+ turns. None were created. 
+  18-item OPEN register found at audit."
+  trigger: Any turn that says 'will create', 'queue for later', 'next session we will'
+  prevention: opus-open-items.md check at turn start; nothing announced without register entry
+concept_ref: AI L2 inner-defaults
+```
+
+### Entry: CONTEXT_FADES_MID_SESSION
+```yaml
+pattern: context-fades-mid-session
+disposition: override
+training_default: >
+  Claude reads governance files at session start (session-open.sh).
+  Governance rules apply for the first few turns, then fade as context fills.
+csps_override: >
+  Governance is injected at EVERY turn start via user-prompt-submit hooks.
+  The inner-defaults reminder fires on every message.
+  The communication protocol is stated in every directive header.
+sample:
+  session: S036
+  incident: "Sonnet stopped using 'Opus, this is Sonnet.' handshake after turn 1.
+  OPUS-2 started drifting from the 'Read [file] —' directive format by turn 5.
+  Governance read at session-open is not sufficient — it must repeat each turn."
+  trigger: Any message without the mandatory handshake
+  prevention: validate-communication-protocol.mjs checks each response; hooks inject reminders
+concept_ref: AI L2 inner-defaults
+```
+
+---
+
+## §2 — ERROR REGISTRY SPECIFICATION
+
+Create: `docs/plan/_handoff/VAULT/error-registry/`
+
+Each file: `EP-ERR-NNN-[pattern-kebab].md`
+```yaml
+---
+id: EP-ERR-001
+pattern_name: done-equals-committed
+first_observed: S034 (OnboardingWizard orphan)
+recurrence_count: 3
+trigger: Any 'done' claim without wiring verification
+sample_incident: "OnboardingWizard built S034-C, orphaned until S036 audit"
+mechanical_prevention: validate-wiring-completeness.mjs (BLOCKING)
+principle_reference: P-ARCH-031
+status: mechanically_prevented
+---
+```
+
+Mechanical enforcement of harvesting:
+- `post-stop-error-harvest.sh` — when Governor sends a correction (detects keywords: "stop", "wrong", "no,", "this is not", "you forgot") → injects: "HARVEST GATE: Is this a recurring error pattern? If yes, create EP-ERR-NNN before responding further."
+- `validate-error-registry-coverage.mjs` — scans inner-ai-defaults entries with `disposition: override` → checks if a matching EP-ERR file exists → ADVISORY if prevention is undocumented
+
+---
+
+## §3 — SONNET DIRECTIVES
+
+**Step 1 | Owner: Governor | Paste to Sonnet now (PROTO-002 continuation):**
+
+> [PROTOCOL: PROTO-002 | STEP: 1 of 2 | MODE: sequential]
+> Sonnet, this is Opus. Read `tools/council/opus-turn.md` Turn 76 §1 and §2 — implement inner-defaults enrichment and error registry: (1) create `docs/plan/_handoff/VAULT/error-registry/` directory with README.md explaining the error registry purpose; (2) create 6 error-registry files (EP-ERR-001 through EP-ERR-006) using the spec in §2, one per pattern from §1 (done-equals-committed, implement-without-ratification, invent-governance-concepts, sycophantic-compliance, announce-not-track, context-fades-mid-session); (3) add the 6 YAML entries from §1 to `docs/plan/_handoff/VAULT/inner-ai-defaults/continuous-drift-log.md` as new drift entries with date 2026-05-16; (4) create `tools/validators/validate-error-registry-coverage.mjs` — for each inner-ai-defaults entry with `disposition: override`, check if a matching EP-ERR file exists in error-registry/; ADVISORY if prevention is undocumented; wire into verify.mjs + slug `error-registry-coverage` in audit-runner.md; (5) create `.claude/hooks/post-stop-error-harvest.sh` (protected path — present diff to Governor first) — scans last Governor message for correction keywords; if found, injects "HARVEST GATE: Is this a recurring error pattern? File EP-ERR-NNN before responding."; then `pnpm audit-runner:split` + `node tools/verify.mjs exit_code=0` before committing.
+
+*OPUS-2 Turn 76 | 6 new inner-defaults entries | Error registry spec | Harvesting enforcement | All with samples from this session*
+*OPUS-2 | S036 | 2026-05-16*
+
+---
+
 # Opus Turn 67 — System Wisdom + Snapshot Mechanism + Corrected Directives (No Drift)
 
 **OPUS-2 does this turn:** System wisdom principle | Snapshot mechanism | Corrected S036-PROTO directive

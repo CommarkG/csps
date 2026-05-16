@@ -475,6 +475,12 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/checked=(\d+) missing=(\d+) invalid=(\d+) exempt=(\d+)/); return m ? { checked: Number(m[1]), missing: Number(m[2]), invalid: Number(m[3]), exempt: Number(m[4]) } : {}; },
   },
   {
+    // S036 LIVE — error registry coverage (inner-ai-defaults overrides have EP-ERR files)
+    name: 'error_registry_coverage',
+    command: 'node tools/validators/validate-error-registry-coverage.mjs',
+    parse_output: (out) => { const m = out.match(/overrides=(\d+) covered=(\d+) uncovered=(\d+)/); return m ? { overrides: Number(m[1]), covered: Number(m[2]), uncovered: Number(m[3]) } : {}; },
+  },
+  {
     // S036 LIVE — wiring completeness (WIRED/DEFERRED/ORPHAN per exported symbol)
     name: 'wiring_completeness',
     command: 'node tools/validators/validate-wiring-completeness.mjs',

@@ -421,3 +421,39 @@ When an entry is observed via `validator-caught` BUT the validator was tagged as
 **Status:** K=2+ across sessions. Structural fix in progress (sample library).
 
 **Drift log signature:** `S026-AI-continuous-drift-log-2026-05-12T14:00:00Z`
+
+---
+
+## Drift Block — 2026-05-16 (S036 — 6 new patterns from Opus Turn 76)
+
+### Pattern: DONE_EQUALS_COMMITTED
+- **Training default activated:** Declared DONE on commit+verify. OnboardingWizard orphaned S034-C→S036.
+- **Resolution:** validate-wiring-completeness.mjs LIVE. EP-ERR-001 filed.
+- **Status:** Mechanically prevented. K=3.
+
+### Pattern: IMPLEMENT_WITHOUT_RATIFICATION
+- **Training default activated:** OPUS-2 created core/ files without Governor review.
+- **Resolution:** plan-coverage-gate BLOCKS unratified libs/ creation. EP-ERR-002 filed.
+- **Status:** Mechanically prevented. K=2.
+
+### Pattern: INVENT_GOVERNANCE_CONCEPTS
+- **Training default activated:** OPUS-2 introduced '48-hour cooling period' (not in CSPS).
+- **Resolution:** B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK constitutional. EP-ERR-003 filed.
+- **Status:** Advisory enforced. K=2.
+
+### Pattern: SYCOPHANTIC_COMPLIANCE
+- **Training default activated:** Executed broad directive without challenging scope.
+- **Resolution:** B_AI_PROFESSIONAL_VOICE + expert colleague voice. EP-ERR-004 filed.
+- **Status:** Advisory enforced. K=4.
+
+### Pattern: ANNOUNCE_NOT_TRACK
+- **Training default activated:** 18 items announced, none tracked. Found at audit.
+- **Resolution:** opus-open-items.md register discipline. EP-ERR-005 filed.
+- **Status:** Advisory enforced. K=5.
+
+### Pattern: CONTEXT_FADES_MID_SESSION
+- **Training default activated:** Handshake dropped after turn 1. Directive format drifted by turn 5.
+- **Resolution:** validate-communication-protocol.mjs LIVE + per-turn hook injection. EP-ERR-006 filed.
+- **Status:** Mechanically prevented. K=6.
+
+**Drift log signature:** `S036-AI-continuous-drift-log-2026-05-16T15:00:00Z`

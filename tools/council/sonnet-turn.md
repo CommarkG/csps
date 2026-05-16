@@ -1195,3 +1195,19 @@ Check AGENTS.md line count, read Turn 67 full §3, then execute.
 
 ## First action
 Read communication-protocol-shared.md then execute in order.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-16 (Turn 76 §1-§3: Error registry + drift log + wiring template)
+
+## Directive: 7 items
+1. error-registry/ + README.md
+2. EP-ERR-001 through EP-ERR-006
+3. 6 entries to continuous-drift-log.md
+4. gradual-build-plan.template.md: 3 wiring sections
+5. validate-error-registry-coverage.mjs + wire + slug
+6. inner-ai-defaults disposition update
+7. PRESENT DIFF ONLY for post-stop-error-harvest.sh (DO NOT APPLY)
+
+## First action
+Read Turn 76 §1/§2/§3 for full specs.

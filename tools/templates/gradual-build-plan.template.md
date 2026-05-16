@@ -464,3 +464,43 @@ harvest_questions:                  # what are we TRYING TO LEARN by executing t
 ---
 
 **Template signature:** S006-AI-gradual-build-plan-template-2026-05-04T16:00:00Z
+
+---
+
+## §W — Mandatory Wiring Sections (S036 — P-ARCH-031)
+
+Every gradual-build-plan MUST include these 3 sections before closing any level:
+
+### wiring_checklist
+
+```yaml
+wiring_checklist:
+  - symbol: [ExportedSymbol]
+    status: WIRED | DEFERRED | ORPHAN
+    wired_in: [path/to/file.ts]  # or wiring_deferred_until: S0NN
+  # Add one entry per exported symbol from this plan's libs/ output
+```
+
+Run `node tools/validators/validate-wiring-completeness.mjs` to populate.
+ORPHAN = not done. Level cannot close with ORPHAN status.
+
+### inner_defaults_override
+
+```yaml
+inner_defaults_override:
+  patterns_addressed:
+    - EP-ERR-NNN: [pattern-name]  # list any error patterns this level prevents
+  new_patterns_discovered: []     # any new patterns found during implementation
+```
+
+### DONE criterion
+
+```
+DONE = built + wired + called + output verified
+  ✓ All exported symbols WIRED or explicitly DEFERRED with session target
+  ✓ validate-wiring-completeness.mjs: orphan=0
+  ✓ pnpm verify: exit_code=0
+  ✓ At least one integration test OR real execution evidence
+```
+
+**DONE does NOT equal committed.** Per EP-ERR-001 and P-ARCH-031.

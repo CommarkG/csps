@@ -186,6 +186,11 @@
           {
             "type": "command",
             "command": ".claude/hooks/post-stop-savings-ssot-coverage.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-rzf-reminder.sh",
+            "timeout": 10
           }
         ]
       }

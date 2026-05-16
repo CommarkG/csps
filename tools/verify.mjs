@@ -973,6 +973,14 @@ const CYCLES = [
     },
   },
   {
+    // S037 LIVE — PI-003 Implementation Gate: advisory check that lib/app commits reference PI-NNN.
+    // Reads git log -1 --name-only. Advisory only (transition period per Opus Turn 62).
+    // Exempt: fix:/chore:/docs: prefixes. Future: BLOCKING after PI backfill complete.
+    name: 'implementation_gate',
+    command: 'node tools/validators/validate-implementation-gate.mjs',
+    parse_output: (out) => { const m = out.match(/advisories=(\d+)/); return m ? { advisories: Number(m[1]) } : {}; },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

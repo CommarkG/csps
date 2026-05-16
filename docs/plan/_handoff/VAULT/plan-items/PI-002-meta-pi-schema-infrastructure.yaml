@@ -1,0 +1,62 @@
+---
+id: PI-002
+name: PI-002-meta-pi-schema-infrastructure
+description: "Create the PI system itself — create-pi.mjs script, PI YAML schema, and the infrastructure that makes plan-items trackable"
+version: 1.0.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+
+# Classification
+core_spine: GVRN
+depth_level: 2
+tags: [pi-system, governance, tracking, infrastructure]
+
+# Prioritization
+pe_score: 90
+spi_estimate: 0.15
+urgency: critical
+impact: platform-wide
+
+# Status
+status: ratified
+ratified_at: 2026-05-16
+ratified_by: yariv
+implementation_session: S037
+implementation_commit: null
+done_at: null
+
+# Dependencies
+depends_on: [PI-001]
+unlocks: [PI-003]
+
+# Schema impact
+schema_impact:
+  models_modified: []
+  migration_required: false
+  note: "PI YAML files live in docs/plan/_handoff/VAULT/plan-items/ — no DB schema"
+
+# Wiring checklist (DONE = all boxes checked)
+wiring_checklist:
+  - "tools/scripts/create-pi.mjs exists and runs"
+  - "pnpm create:pi --id PI-NNN --title 'test' exits 0 and creates file"
+  - "root package.json has create:pi script"
+  - "PI-002-meta-pi-schema-infrastructure.yaml exists (this file)"
+
+# Plan summary
+plan_summary: |
+  The PI (Plan Item) system requires a script to create new PI items consistently.
+  Without create-pi.mjs, each PI must be authored manually from the PI-001 template —
+  inconsistent, error-prone, and slow.
+
+  WHAT TO DO:
+  1. Create tools/scripts/create-pi.mjs accepting --id, --title, --category, --spine, --pe
+  2. Auto-increment NNN from existing PI files in plan-items/
+  3. Write new PI-NNN-[title-kebab].yaml using PI-001 as template structure
+  4. Add pnpm create:pi to root package.json
+
+  DONE criterion: pnpm create:pi --title "test-item" creates PI-NNN.yaml with correct structure
+
+linked_principle: P-ARCH-031
+linked_contract: null
+---

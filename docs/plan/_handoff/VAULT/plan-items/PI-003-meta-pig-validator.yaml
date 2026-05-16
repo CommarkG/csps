@@ -1,0 +1,64 @@
+---
+id: PI-003
+name: PI-003-meta-pig-validator
+description: "Create validate-implementation-gate.mjs — advisory check that lib/app commits reference a ratified PI item"
+version: 1.0.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+
+# Classification
+core_spine: VALD
+depth_level: 2
+tags: [pi-system, validator, implementation-gate, governance]
+
+# Prioritization
+pe_score: 88
+spi_estimate: 0.15
+urgency: critical
+impact: platform-wide
+
+# Status
+status: ratified
+ratified_at: 2026-05-16
+ratified_by: yariv
+implementation_session: S037
+implementation_commit: null
+done_at: null
+
+# Dependencies
+depends_on: [PI-002]
+unlocks: []
+
+# Schema impact
+schema_impact:
+  models_modified: []
+  migration_required: false
+  note: "Validator only — reads git log, no schema changes"
+
+# Wiring checklist (DONE = all boxes checked)
+wiring_checklist:
+  - "tools/validators/validate-implementation-gate.mjs exists"
+  - "validator reads git log -1 --name-only"
+  - "advisory fires when libs/ or apps/ file touched AND no PI-NNN AND not fix:/chore:/docs:"
+  - "validator exits 0 always (ADVISORY, not BLOCKING)"
+  - "wired into tools/verify.mjs CYCLES array"
+  - "slug implementation-gate in audit-runner.md"
+
+# Plan summary
+plan_summary: |
+  The Implementation Gate (PIG) is the enforcement arm of the PI system.
+  Without it, commits can touch libs/ or apps/ without referencing any ratified PI item —
+  making implementation governance aspirational rather than mechanical.
+
+  ADVISORY tier (not BLOCKING): transition period per Opus Turn 62.
+  The check reads the last git commit via git log -1 --name-only.
+  Fires when: libs/ or apps/ file touched AND commit message lacks PI-NNN AND
+  commit message does not start with fix:/chore:/docs:
+
+  DONE criterion: pnpm verify shows implementation_gate entry; manual test commit
+  touching libs/ without PI-NNN produces advisory warning.
+
+linked_principle: P-ARCH-031
+linked_contract: null
+---

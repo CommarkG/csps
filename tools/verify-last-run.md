@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-15T23:18:37.230Z
-- finished_at: 2026-05-15T23:19:03.985Z
+- ran_at: 2026-05-16T04:47:23.719Z
+- finished_at: 2026-05-16T04:47:53.267Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-15T23:18:37.230Z",
-    "finished_at": "2026-05-15T23:19:03.985Z",
+    "ran_at": "2026-05-16T04:47:23.719Z",
+    "finished_at": "2026-05-16T04:47:53.267Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7,
+        "duration_seconds": 7.7,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 382,
+        "scanned": 383,
         "errors": 0,
         "warnings": 16,
         "exempt": 280
@@ -184,7 +184,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 122,
         "links": 547,
         "broken": 48
@@ -214,9 +214,9 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
-        "checked": 35,
-        "advisories": 27
+        "duration_seconds": 1.4,
+        "checked": 37,
+        "advisories": 29
       },
       {
         "name": "completeness_coverage",
@@ -299,7 +299,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "routes": 22,
+        "routes": 24,
         "validators": 111,
         "models": 0,
         "advisories": 8
@@ -452,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 55,
+        "turns": 56,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -646,7 +646,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_scanned": 34,
+        "files_scanned": 36,
         "violations": 0
       },
       {
@@ -679,7 +679,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -1061,7 +1061,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.4
+        "duration_seconds": 7.6
       },
       {
         "name": "audit_runner_full_pass",

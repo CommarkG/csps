@@ -1,3 +1,142 @@
+# Opus Turn 58 — Three Strategic Topics: CSPS Bundle / Existing Apps / STT Buffer
+
+**DPR=1-2 — S035 continues. These are S036+ items captured for planning.**
+
+## Topic A — CSPS Compliance Bundle for External Builders (Lovable etc.)
+## Topic B — Existing Apps Analysis: how they map to CSPS
+## Topic C — Speech-to-Text Buffer + Personal Dictionary (CRITICAL — driver use case)
+
+All three captured below. Discussion with Governor in progress.
+
+*OPUS-2 Turn 58 | 3 strategic topics captured | S035 continues uninterrupted*
+*OPUS-2 | S035 | 2026-05-16*
+
+---
+
+# Opus Turn 57 — Post-Core Vision: Sandbox Architecture + Threshold Wizard Simulator
+
+**DPR=1 — no implementation now. S035 continues. This is captured for S036+ planning.**
+
+---
+
+## §1 — What the Governor Is Asking For
+
+Two interconnected systems, both post-core:
+
+**A. Development Sandbox** — a complete isolated CSPS instance where new apps and platform changes can be tested without touching the production system. New apps are born in the sandbox. Only apps that pass the deletion test + graduation criteria get promoted to production. The "core" is never at risk.
+
+**B. Threshold Wizard Simulator** — a built-in tool for simulating the full user onboarding journey (the "one entry threshold") from any archetype's perspective. Lets the Governor preview "what does an EFFICIENCY_SEEKER experience?" before real users arrive. Simulates personalization without being a real user.
+
+---
+
+## §2 — Sandbox Architecture (Design Spec)
+
+**Three-tier environment model:**
+
+```
+PRODUCTION (csps-prod — currently exists):
+  Database: csps-prod Supabase (eu-central-1)
+  Deploy: main branch → Vercel production
+  Users: real paying users
+  Rule: NO schema changes without sandbox validation first
+
+SANDBOX (csps-sandbox — to build):
+  Database: csps-sandbox Supabase (same region, separate project)
+  Deploy: sandbox/* branches → Vercel preview URLs
+  Users: Governor + developers only
+  Rule: All new apps + schema experiments happen here first
+
+TRIAL (per-app, P-ARCH-030 — already designed):
+  Apps are born in sandbox with status: trial
+  Must pass: deletion test + graduation criteria (mrr_usd threshold)
+  Promotion: Governor explicitly promotes to production manifest
+```
+
+**The promotion pipeline:**
+1. New app idea → `pnpm create:app [name]` in sandbox branch
+2. Build + iterate in sandbox (separate DB, no production impact)
+3. Pass deletion test (`rm -rf apps/[name]/` loses zero platform value)
+4. Hit graduation criteria (mrr_usd or user threshold)
+5. Governor promotes: merge to main → production Vercel → production DB migration
+
+**What sandbox isolation requires:**
+- Separate Supabase project (`csps-sandbox`) with same schema → 15 min setup
+- Separate Vercel environment with sandbox env vars → 10 min setup
+- `.env.sandbox` file (gitignored) → holds sandbox credentials
+- `CSPS_ENV=sandbox | staging | production` env var → drives behavior differences
+- Sandbox apps: `NEXT_PUBLIC_APP_ENV=sandbox` → shows "SANDBOX" banner to prevent confusion
+
+**The key governance rule:**
+Anything touching `libs/` (shared platform code) requires a sandbox-validated PR. Apps can be built without sandbox validation. Schema changes require sandbox-first. This protects the constitutional core.
+
+---
+
+## §3 — Threshold Wizard Simulator (Design Spec)
+
+**What it is:** A staff-only `/admin/simulator` page that lets you walk through the OnboardingWizard as any archetype, and then preview the personalized experience that follows.
+
+**The simulator UI:**
+```
+┌─────────────────────────────────────────────────┐
+│  THRESHOLD WIZARD SIMULATOR                     │
+│  Preview the user journey from any archetype    │
+├─────────────────────────────────────────────────┤
+│  Mode: ○ Step-through wizard   ○ Pick archetype │
+│                                                 │
+│  [Step-through mode:]                           │
+│  Q1 Goal:      [Save time ▼]                   │
+│  Q2 Experience: [Power User ▼]                  │
+│  Q3 Team:      [Solo ▼]                         │
+│                                                 │
+│  → Detected archetype: EFFICIENCY_SEEKER        │
+│                                                 │
+│  WHAT THIS USER SEES:                           │
+│  ✓ Skips tutorial (no wizard shown)             │
+│  ✓ Dashboard loads with full data table         │
+│  ✓ Keyboard shortcuts highlighted               │
+│  ✓ Empty state: "Import your data →"            │
+│  ✓ First suggested action: "Create first entry" │
+└─────────────────────────────────────────────────┘
+```
+
+**The simulator also shows:**
+- Which @csps/components variants are selected
+- Which email template fires on signup
+- Which Inngest functions trigger
+- What the first 3 notifications would be
+
+**Implementation approach (post-core):**
+1. `apps/template/src/app/admin/simulator/page.tsx` — staff-only route
+2. Renders `OnboardingWizard` in "simulation mode" prop
+3. Captures archetype output → renders the personalized experience preview
+4. Static data (no real DB writes in simulation mode)
+
+**This enables:**
+- Testing the full onboarding flow before a single real user arrives
+- Validating archetype routing (does "Power User + Solo + Track Data" → ANALYST or EFFICIENCY_SEEKER?)
+- Previewing what emails/notifications fire
+- Demonstrating the platform to stakeholders without touching real user data
+
+---
+
+## §4 — Build Order (Post-Core)
+
+Both systems build on each other:
+
+```
+S036-A: Create csps-sandbox Supabase project + sandbox env vars
+S036-B: Threshold Wizard Simulator page (admin/simulator)
+S036-C: Promotion pipeline tooling (sandbox → production migration script)
+S036-D: App #3 formal topic-plan (FIRST PLANNED APP using this system)
+```
+
+The sandbox means App #3 is developed entirely in sandbox first, then promoted. This is the first app that uses the complete platform process end-to-end.
+
+*OPUS-2 Turn 57 | Sandbox architecture + Threshold Wizard Simulator | DPR=1, S036+ | Governor vision captured*
+*OPUS-2 | S035 | 2026-05-16*
+
+---
+
 # Opus Turn 56 — S035 Platform Completion: 3 Build Sessions (R2 + SSE + Webhooks)
 
 **State:** S034 CLOSED | Platform not complete | Governor directive: 3 Sonnet sessions before App #3

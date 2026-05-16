@@ -7,6 +7,9 @@
 export { isSessionReady } from './auth'
 // Storage module
 export { uploadFile, getPresignedUrl, deleteFile } from './storage/client'
+// Realtime module
+export { publishNotification } from './realtime/publisher'
+export type { NotificationEvent } from './realtime/types'
 // Jobs module
 export { inngest, allFunctions } from './jobs/index'
 // Monitoring module

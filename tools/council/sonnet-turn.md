@@ -1123,3 +1123,21 @@ Check Turn 54 RZF findings before implementing.
 
 ## First action
 Check Turn 56 RZF, then execute.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-16 (Turn 56 S035-B: Realtime SSE polling)
+
+## Directive: libs/integrations/realtime/ + SSE route
+1. No new install — @upstash/redis already present
+2. types.ts (NotificationEvent) + publisher.ts (rpush) + README.md
+3. apps/template + apps/budget-planner: /api/events/route.ts (polling SSE)
+4. Update send-welcome-email.ts to call publishNotification
+
+## Key constraints
+- Polling-based SSE (NOT SUBSCRIBE) — Vercel serverless compatible
+- export const runtime = 'nodejs' + dynamic = 'force-dynamic'
+- lrange → lrem pattern for consume-once behavior
+
+## First action
+Confirm @upstash/redis is installed, then execute all steps.

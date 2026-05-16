@@ -1,0 +1,70 @@
+---
+id: PI-025
+name: PI-025-cross-tenant-field-scoping
+description: "Create user-projections.ts with PUBLIC_USER_FIELDS + toPublicUser() for future cross-tenant User reads; add schema.zmodel comment"
+version: 1.0.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+
+core_spine: ARCH
+depth_level: 2
+tags: [security, cross-tenant, field-scoping, user-model]
+
+pe_score: 72
+spi_estimate: 0.10
+urgency: high
+impact: platform-wide
+
+status: ratified
+ratified_at: 2026-05-17
+ratified_by: yariv
+implementation_session: S037
+implementation_commit: null
+done_at: null
+
+depends_on: []
+unlocks: []
+
+schema_impact:
+  models_modified: [User]
+  migration_required: false
+  note: "Comment added to User model in schema.zmodel referencing user-projections.ts"
+
+wiring_checklist:
+  - "libs/integrations/security/user-projections.ts exists with PUBLIC_USER_FIELDS + toPublicUser()"
+  - "schema.zmodel User model has cross-tenant read comment referencing user-projections.ts"
+  - "AUDIT CONFIRMED: no existing cross-tenant User queries (all are self-lookups by clerkId)"
+
+questions:
+  - id: Q1
+    question: "PI-025 audit: are there any true cross-tenant User reads to fix?"
+    status: answered
+    answer: "No. All 18 User queries are db.user.findUnique({ where: { clerkId: userId } }) — self-lookups. No cross-tenant reads. user-projections.ts is defensive utility for future routes."
+  - id: Q2
+    question: "Should existing queries use toPublicUser()?"
+    status: answered
+    answer: "No. Existing queries fetch staffRole for getEnhancedDb — stripping it would break ZenStack RLS. toPublicUser() is for API responses returning user data TO OTHER USERS."
+
+ep_err_pre_check:
+  - pattern: done-equals-committed
+    applicable: false
+    mitigation: "Utility created + comment added. Done when first cross-tenant route uses PUBLIC_USER_FIELDS."
+  - pattern: implement-without-ratification
+    applicable: false
+    mitigation: "ratified_at: 2026-05-17 by yariv"
+
+enforcement_trio:
+  tier1_hook: null
+  tier2_validator: null
+  tier3_session: "Any new API route returning User data to other users must use PUBLIC_USER_FIELDS or toPublicUser()"
+  permanence_assessment: low
+
+plan_summary: |
+  Defensive field projection utility for User model cross-tenant reads.
+  Audit found no current violations — all queries are self-lookups (clerkId = userId).
+  DONE criterion: utility exists + future cross-tenant routes use PUBLIC_USER_FIELDS.
+
+linked_principle: P-ARCH-031
+linked_contract: null
+---

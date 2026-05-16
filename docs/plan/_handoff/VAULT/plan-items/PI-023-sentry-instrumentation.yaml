@@ -1,0 +1,66 @@
+---
+id: PI-023
+name: PI-023-sentry-instrumentation
+description: "Create instrumentation.ts in apps/template and apps/budget-planner to initialize Sentry when SENTRY_DSN env var is set"
+version: 1.0.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+
+core_spine: ARCH
+depth_level: 2
+tags: [sentry, monitoring, instrumentation, apps]
+
+pe_score: 65
+spi_estimate: 0.05
+urgency: normal
+impact: multi-app
+
+status: ratified
+ratified_at: 2026-05-17
+ratified_by: yariv
+implementation_session: S037
+implementation_commit: null
+done_at: null
+
+depends_on: []
+unlocks: []
+
+schema_impact:
+  models_modified: []
+  migration_required: false
+  note: "No schema changes — instrumentation.ts is Next.js runtime hook"
+
+wiring_checklist:
+  - "apps/template/instrumentation.ts exists with register() function"
+  - "apps/budget-planner/instrumentation.ts exists with register() function"
+  - "Both files check SENTRY_DSN env var before init (graceful passthrough)"
+
+questions:
+  - id: Q1
+    question: "Why dynamic import not top-level import for @sentry/nextjs?"
+    status: answered
+    answer: "Package not yet installed in workspace. Dynamic import with try/catch = graceful passthrough without pnpm install. Governor action required to install before Sentry captures errors."
+
+ep_err_pre_check:
+  - pattern: done-equals-committed
+    applicable: true
+    mitigation: "DONE = Sentry actually captures errors in production. Requires GOVERNOR ACTION: pnpm add @sentry/nextjs + SENTRY_DSN in Vercel env vars."
+  - pattern: implement-without-ratification
+    applicable: false
+    mitigation: "ratified_at: 2026-05-17 by yariv"
+
+enforcement_trio:
+  tier1_hook: null
+  tier2_validator: null
+  tier3_session: "instrumentation.ts must exist in each app; SENTRY_DSN set in Vercel"
+  permanence_assessment: low
+
+plan_summary: |
+  Next.js instrumentation.ts initializes Sentry if SENTRY_DSN is configured.
+  DONE criterion: SENTRY_DSN set in Vercel + @sentry/nextjs installed + errors appear in Sentry dashboard.
+  GOVERNOR ACTION REQUIRED: pnpm add --filter [app] @sentry/nextjs before DONE is achievable.
+
+linked_principle: P-ARCH-031
+linked_contract: null
+---

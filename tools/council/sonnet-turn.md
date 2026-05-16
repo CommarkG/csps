@@ -1,3 +1,16 @@
+# Sonnet Session S037 — PI-023 + PI-025 INTENT ABSORBED (Turn 89)
+
+## PI-023: Sentry instrumentation.ts
+No @sentry package installed anywhere. Using dynamic import + try/catch in instrumentation.ts.
+Both apps get identical file. GOVERNOR ACTION REQUIRED: pnpm add --filter [app] @sentry/nextjs
+
+## PI-025: Cross-tenant field scoping
+Audit result: ALL 18 User queries are self-lookups (clerkId = userId). No cross-tenant reads.
+Creating PUBLIC_USER_FIELDS + toPublicUser() as defensive utility for future use.
+NOT wrapping existing queries — staffRole is required for getEnhancedDb scoping.
+
+---
+
 # Sonnet Session S037 — S037-G INTENT ABSORBED
 
 ## Task: validate-handoff-completeness.mjs (OPEN-020 / PI-019)

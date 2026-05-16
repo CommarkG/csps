@@ -122,6 +122,7 @@ enum MembershipRole {
 }
 
 // From: slices/public/user.zmodel
+// Cross-tenant reads scoped to PUBLIC_USER_FIELDS via libs/integrations/security/user-projections.ts (PI-025)
 model User extends Base {
   clerkId     String  @unique
   email       String  @unique

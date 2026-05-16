@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T22:31:20.962Z
-- finished_at: 2026-05-16T22:31:48.642Z
+- ran_at: 2026-05-16T22:43:17.134Z
+- finished_at: 2026-05-16T22:43:43.386Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T22:31:20.962Z",
-    "finished_at": "2026-05-16T22:31:48.642Z",
+    "ran_at": "2026-05-16T22:43:17.134Z",
+    "finished_at": "2026-05-16T22:43:43.386Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.2,
+        "duration_seconds": 6.4,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 0.9,
         "principles_loaded": 65,
         "findings_total": 15
       },
@@ -683,7 +683,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_scanned": 38,
+        "files_scanned": 39,
         "violations": 0
       },
       {
@@ -1098,7 +1098,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7
+        "duration_seconds": 6.2
       },
       {
         "name": "creation_completeness",
@@ -1106,7 +1106,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "pi_checked": 6,
+        "pi_checked": 8,
         "advisories": 4
       },
       {
@@ -1145,8 +1145,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "pi_checked": 6,
-        "active": 0,
+        "pi_checked": 8,
+        "active": 2,
         "missing_trio": 0
       },
       {
@@ -1155,7 +1155,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "pi_checked": 6,
+        "pi_checked": 8,
         "implementing": 0,
         "advisories": 0
       },
@@ -1165,7 +1165,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "pi_checked": 6,
+        "pi_checked": 8,
         "implementing": 0,
         "advisories": 0
       },

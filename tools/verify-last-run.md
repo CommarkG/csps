@@ -1,30 +1,28 @@
 # verify last run
 
-- ran_at: 2026-05-16T18:39:24.037Z
-- finished_at: 2026-05-16T18:39:50.105Z
+- ran_at: 2026-05-16T18:47:54.084Z
+- finished_at: 2026-05-16T18:48:12.347Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T18:39:24.037Z",
-    "finished_at": "2026-05-16T18:39:50.105Z",
+    "ran_at": "2026-05-16T18:47:54.084Z",
+    "finished_at": "2026-05-16T18:48:12.347Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 7.2,
-        "packages_resolved": null
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "flag --skip-install"
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 0.6,
         "ts_errors": 0
       },
       {
@@ -32,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 64,
         "findings_total": 13
       },
@@ -62,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -214,7 +212,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 1.1,
         "checked": 37,
         "advisories": 29
       },
@@ -452,7 +450,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 71,
+        "turns": 69,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -1098,7 +1096,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6
+        "duration_seconds": 6.4
       },
       {
         "name": "pi_questions_answered",

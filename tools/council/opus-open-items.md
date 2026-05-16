@@ -19,7 +19,7 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 | OPEN-003 | PI-004: PE Agent skill (.claude/skills/pe-agent.md) | Turn 59 | pending | automated bundling | none yet |
 | OPEN-004 | PI-005: meta-platform mini-tree documents | Turn 59 | pending | meta-platform only in opus-turn.md | none yet |
 | OPEN-005 | PI-013: EKEP wizard spec and PI file | Turn 72 | pending | cross-platform knowledge exchange | none yet |
-| OPEN-006 | post-stop-rzf-reminder.sh hook | Turns 63/67 | ✅ BUILT S037-B (hook file + settings.json diff — Governor must apply) | — | — |
+| OPEN-006 | post-stop-rzf-reminder.sh hook | Turns 63/67 | ✅ DONE S037-B (d0b32f4 — hook ACTIVE + settings.json registered) | — | — |
 | OPEN-007 | validate-pi-questions-answered.mjs | Turn 62 | ✅ DONE S037-B — LIVE in verify.mjs + pi-questions-gate slug | — | — |
 | OPEN-008 | validate-persona-chain-complete.mjs | Turn 62 | pending | sequential chain has no enforcement | none yet |
 | OPEN-009 | sync-universal-governance.mjs script | Turn 72 | pending | auto-update universal governance | none yet |

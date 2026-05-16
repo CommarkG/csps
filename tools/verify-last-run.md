@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T14:05:36.317Z
-- finished_at: 2026-05-16T14:06:04.297Z
+- ran_at: 2026-05-16T14:30:40.367Z
+- finished_at: 2026-05-16T14:31:06.884Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T14:05:36.317Z",
-    "finished_at": "2026-05-16T14:06:04.297Z",
+    "ran_at": "2026-05-16T14:30:40.367Z",
+    "finished_at": "2026-05-16T14:31:06.884Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.2,
+        "duration_seconds": 7.3,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.9,
         "principles_loaded": 62,
         "findings_total": 5
       },
@@ -62,7 +62,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.4,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -114,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -184,7 +184,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 122,
         "links": 547,
         "broken": 48
@@ -214,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.1,
         "checked": 37,
         "advisories": 29
       },
@@ -300,7 +300,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 24,
-        "validators": 114,
+        "validators": 115,
         "models": 0,
         "advisories": 8
       },
@@ -479,6 +479,16 @@
         "exempt": 1
       },
       {
+        "name": "wiring_completeness",
+        "command": "node tools/validators/validate-wiring-completeness.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "wired": 19,
+        "deferred": 12,
+        "orphan": 22
+      },
+      {
         "name": "communication_protocol",
         "command": "node tools/validators/validate-communication-protocol.mjs",
         "status": "PASS",
@@ -501,7 +511,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 141,
+        "checked": 142,
         "blocking": 0,
         "advisories": 0
       },
@@ -616,7 +626,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 115
+        "validators": 116
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -989,9 +999,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 115,
+        "validators_checked": 116,
         "orphans": 0,
-        "registered": 115
+        "registered": 116
       },
       {
         "name": "token_budget_validate",
@@ -1078,7 +1088,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.1
+        "duration_seconds": 6
       },
       {
         "name": "audit_runner_full_pass",

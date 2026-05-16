@@ -475,6 +475,12 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/checked=(\d+) missing=(\d+) invalid=(\d+) exempt=(\d+)/); return m ? { checked: Number(m[1]), missing: Number(m[2]), invalid: Number(m[3]), exempt: Number(m[4]) } : {}; },
   },
   {
+    // S036 LIVE — wiring completeness (WIRED/DEFERRED/ORPHAN per exported symbol)
+    name: 'wiring_completeness',
+    command: 'node tools/validators/validate-wiring-completeness.mjs',
+    parse_output: (out) => { const m = out.match(/wired=(\d+) deferred=(\d+) orphan=(\d+)/); return m ? { wired: Number(m[1]), deferred: Number(m[2]), orphan: Number(m[3]) } : {}; },
+  },
+  {
     // S036 LIVE — communication protocol Rule 1 compliance (identity handshake)
     name: 'communication_protocol',
     command: 'node tools/validators/validate-communication-protocol.mjs',

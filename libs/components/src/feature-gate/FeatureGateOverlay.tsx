@@ -75,3 +75,5 @@ export function FeatureGateOverlay({
     </div>
   )
 }
+
+// wiring_deferred_until: S036-B2 — FeatureGateOverlay wired when App #3 has plan features

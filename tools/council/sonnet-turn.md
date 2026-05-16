@@ -1175,3 +1175,23 @@ Execute all 4 steps, then close S035.
 
 ## First action
 Check AGENTS.md line count, read Turn 67 full §3, then execute.
+
+---
+
+# Sonnet — INTENT ABSORBED — 2026-05-16 (Turn 67 §3 Wire NOW — 11 items)
+
+## Directive: Wire NOW items per OPUS-2 triage
+1. Rate limiting in both middleware.ts files
+2. Sentry client config in both apps
+3. PostHog track on dashboard page
+4. OnboardingWizard in account-setup/page.tsx
+5. Real DashboardShell in dashboard/page.tsx
+6. SettingsLayout in settings/page.tsx
+7. auditLog in one existing API route
+8. triggerWebhook in one mutation route
+9. P-UX-001 + B_CONTEXTUAL_LOCALITY
+10. validate-communication-protocol.mjs
+11. Mark wiring_deferred_until on orphans
+
+## First action
+Read communication-protocol-shared.md then execute in order.

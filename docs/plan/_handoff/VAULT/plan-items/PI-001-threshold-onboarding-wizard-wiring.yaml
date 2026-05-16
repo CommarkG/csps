@@ -1,0 +1,93 @@
+---
+id: PI-001
+name: PI-001-threshold-onboarding-wizard-wiring
+description: "Wire OnboardingWizard into the account-setup entry flow — currently an orphan component"
+version: 1.0.0
+owner: group:finky
+lifecycle: experimental
+lifecycle_state: active
+
+# Classification
+core_spine: ARCH
+depth_level: 2
+tags: [threshold, onboarding, personalization, ux, wiring]
+
+# Prioritization
+pe_score: 85
+spi_estimate: 0.3
+urgency: critical
+impact: platform-wide
+
+# Status
+status: ratified
+ratified_at: 2026-05-16
+ratified_by: yariv
+implementation_session: null
+implementation_commit: null
+done_at: null
+
+# Dependencies
+depends_on: []
+unlocks: [PI-009]
+
+# Schema impact
+schema_impact:
+  models_modified: [User]
+  migration_required: false
+  note: "Stores archetype in Clerk publicMetadata, not DB"
+
+# UX impact
+ux_impact:
+  user_journey_affected: [onboarding, first-login, account-setup]
+  friction_removed: true
+  friction_description: "Users currently see blank dashboard with no guidance. Wizard gives personalized first-run experience."
+
+# Wiring checklist (DONE = all boxes checked)
+wiring_checklist:
+  - "OnboardingWizard imported in apps/template/src/app/account-setup/page.tsx"
+  - "OnboardingWizard imported in apps/budget-planner/src/app/account-setup/page.tsx"
+  - "onComplete callback calls Clerk updateUserMetadata with archetype"
+  - "archetype stored in user.publicMetadata.archetype"
+  - "dashboard redirects after archetype confirmed"
+  - "validate-wiring-completeness.mjs reports OnboardingWizard as WIRED"
+
+# Inner defaults override
+inner_defaults_override:
+  risk: "Claude will declare DONE when OnboardingWizard is called from one file — but not both apps"
+  override: "DONE only when wiring-completeness validator reports WIRED for both apps AND archetype is readable from Clerk after sign-in"
+
+# Pre-implementation questions (answered)
+questions:
+  - id: Q1
+    question: "What if user closes browser mid-wizard?"
+    status: answered
+    answer: "Wizard progress is NOT stored between sessions. User restarts from Q1. Acceptable — wizard is <60 seconds."
+  - id: Q2
+    question: "What if archetype stored is wrong — can user change it?"
+    status: answered
+    answer: "Settings page will eventually have 'Reset my profile' option. Not blocking launch."
+  - id: Q3
+    question: "What if Clerk updateUserMetadata fails?"
+    status: answered
+    answer: "Show error message, allow retry. Do not redirect to dashboard until archetype is confirmed stored."
+
+# Plan summary
+plan_summary: |
+  OnboardingWizard was built in S034-C but never called anywhere — it is an orphan component.
+  P-ARCH-031 (Completion Seal) requires: built + wired + called + output verified.
+
+  WHAT TO DO:
+  In apps/template/src/app/account-setup/page.tsx:
+    - After tenantId confirmed (polling resolves), check auth().publicMetadata?.archetype
+    - If not set: render <OnboardingWizard onComplete={handleArchetype} appName="[App Name]" />
+    - handleArchetype: calls Clerk updateUserMetadata({ public_metadata: { archetype } })
+    - After Clerk confirms: redirect to /dashboard
+
+  Copy same pattern to apps/budget-planner/src/app/account-setup/page.tsx
+
+  DONE criterion: validate-wiring-completeness.mjs shows OnboardingWizard as WIRED in both apps
+                  + manual test: sign up as new user → wizard appears → completes → dashboard shown
+
+linked_principle: P-ARCH-031
+linked_contract: null
+---

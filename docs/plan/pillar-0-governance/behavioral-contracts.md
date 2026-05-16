@@ -2206,3 +2206,23 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - contract: `docs/plan/pillar-0-governance/behavioral-contracts/B_APPS_ARE_TRIALS.md` (canonical)
 - validator (atomic registration): `app-scope-isolation` (impl week-4)
 - principle: P-ARCH-030 in principles.yaml
+
+## B_CONTEXTUAL_LOCALITY — content at point of use, never navigate (S036 P-UX-001)
+
+**Canonical:** Every piece of content appears at the point where it is needed. Never instruct to "see §X", "see Turn N", or "see the linked document". The paste target appears UNDER the step it belongs to. The fix instruction lives IN the error message. The checklist lives IN the plan. The rule rationale is INLINE with the rule. Applied to AI directives: every Opus directive is self-contained with verification tail. Applied to validators: error messages include the fix, not just the problem.
+
+**Governing intent:** Eliminate cognitive switching cost. The reader's attention is at the point of use — deliver the content there.
+
+**Counterweight:** Summary tables and index files may reference other documents — this is navigation by design. B_CONTEXTUAL_LOCALITY applies to INSTRUCTIONS, not to discovery/reference artifacts.
+
+**Source:** Governor directive S036. communication-protocol-shared.md RULE 4: "Content is always at the point of use."
+
+**Anti-patterns:**
+- "See §4 for the paste target" (paste target must be inline)
+- "Fix documented in error-patterns/EP-017.md" (error output must include the fix)
+- "Checklist in the plan-creation-protocol.md" (checklist must be in the plan)
+
+**Mechanical surfaces (3/5 declared S036):**
+- memory: `feedback_contextual_locality.md` (survives chat moves)
+- principle: P-UX-001 in principles.yaml
+- validator: validate-communication-protocol.mjs (checks Sonnet reports)

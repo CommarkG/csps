@@ -208,3 +208,5 @@ export function DataTable<T extends Record<string, unknown>>({
     </div>
   )
 }
+
+// wiring_deferred_until: S036-B2 — DataTable wired when App #3 has list views

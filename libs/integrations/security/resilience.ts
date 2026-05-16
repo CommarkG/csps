@@ -51,3 +51,5 @@ export async function withRetry<T>(
   }
   throw lastErr
 }
+
+// wiring_deferred_until: S036-B2 — withFallback wired when App #3 adds external API calls

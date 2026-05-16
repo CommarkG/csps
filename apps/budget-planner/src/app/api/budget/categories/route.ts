@@ -14,6 +14,7 @@
 import { auth } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
 import type { CspsSessionClaims } from '@csps/integrations'
+import { auditLog, triggerWebhook } from '@csps/integrations'
 import { db } from '@/lib/db'
 import { writeAuditEvent } from '@/lib/audit'
 import { getEnhancedDb } from '@/lib/zenstack'
@@ -88,6 +89,16 @@ export async function POST(request: Request) {
     },
   })
 
+  // Platform audit log via @csps/integrations (S036 wired)
+  await auditLog(db, {
+    tenantId,
+    actorId: cspsUser.id,
+    action: 'budget.category.created',
+    resourceType: 'BudgetCategory',
+    resourceId: category.id,
+    data: { name: category.name, type: category.type },
+  })
+
   // Immutable audit trail — action namespaced to budget domain
   await writeAuditEvent({
     tenantId,
@@ -97,6 +108,9 @@ export async function POST(request: Request) {
     resourceId: category.id,
     data: { name: category.name, type: category.type, monthlyLimit: category.monthlyLimit },
   })
+
+  // Trigger outbound webhooks for registered endpoints (S036 wired)
+  await triggerWebhook(tenantId, 'budget.category.created', { id: category.id, name: category.name, type: category.type })
 
   return NextResponse.json(category, { status: 201 })
 }

@@ -5,8 +5,8 @@
 # Source: packages/principles/principles.yaml
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
-  total_count: 61
-  generated_at: '2026-05-15'
+  total_count: 62
+  generated_at: '2026-05-16'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
   usage: >-
@@ -313,6 +313,11 @@ principles:
     category: architecture
     severity: critical
     path: ./principles/P-ARCH-030-apps-are-ephemeral-trials.yaml
+  - id: P-UX-001
+    name: contextual-locality
+    category: operating
+    severity: warn
+    path: ./principles/P-UX-001-contextual-locality.yaml
   - id: P-OPER-001
     name: zero-laptop-dependency
     category: operations

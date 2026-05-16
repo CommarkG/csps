@@ -102,3 +102,5 @@ export function withSecurity<T>(
     return handler(...args)
   }
 }
+
+// wiring_deferred_until: S036-B2 — checkMembership wired when App #3 adds admin routes

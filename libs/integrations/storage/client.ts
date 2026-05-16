@@ -92,3 +92,5 @@ export async function deleteFile(key: string): Promise<void> {
     Key: key,
   }))
 }
+
+// wiring_deferred_until: S036-B2 — uploadFile wired when App #3 adds file uploads

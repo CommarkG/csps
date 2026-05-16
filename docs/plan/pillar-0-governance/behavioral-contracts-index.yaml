@@ -6,8 +6,8 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 58
-  generated_at: '2026-05-14'
+  total_count: 59
+  generated_at: '2026-05-16'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
   usage: Load individual slice files (./behavioral-contracts/B_NAME.md) for AI session context;
@@ -15,7 +15,7 @@ meta:
 
 contracts:
   - id: B_AI_PROFESSIONAL_VOICE
-    desc: "B_AI_PROFESSIONAL_VOICE"
+    desc: "top expert colleague"
     path: ./behavioral-contracts/B_AI_PROFESSIONAL_VOICE.md
   - id: B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK
     desc: "B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK"
@@ -51,140 +51,143 @@ contracts:
     desc: "B_NO_FORCE_FIT"
     path: ./behavioral-contracts/B_NO_FORCE_FIT.md
   - id: B_RZF
-    desc: "B_RZF"
+    desc: "Real Zero Findings"
     path: ./behavioral-contracts/B_RZF.md
   - id: B_CEC
-    desc: "B_CEC"
+    desc: "Complete Extraction Cycle"
     path: ./behavioral-contracts/B_CEC.md
   - id: B_QC_AUDIT
-    desc: "B_QC_AUDIT"
+    desc: "QC audit-list discipline"
     path: ./behavioral-contracts/B_QC_AUDIT.md
   - id: B_PROTOCOL_LITERAL_EXECUTION
-    desc: "B_PROTOCOL_LITERAL_EXECUTION"
+    desc: "every documented protocol step gets explicit per-step execution + evidence"
     path: ./behavioral-contracts/B_PROTOCOL_LITERAL_EXECUTION.md
   - id: B_CATCH_TO_ENGRAVING
-    desc: "B_CATCH_TO_ENGRAVING"
+    desc: "every observed gap MUST produce persistent artifact within the same session"
     path: ./behavioral-contracts/B_CATCH_TO_ENGRAVING.md
   - id: B_VALIDATE_BEFORE_ASSUME
-    desc: "B_VALIDATE_BEFORE_ASSUME"
+    desc: "strengthened with tool-call sandwich"
     path: ./behavioral-contracts/B_VALIDATE_BEFORE_ASSUME.md
   - id: B_FIVE_SURFACE_ENGRAVING
-    desc: "B_FIVE_SURFACE_ENGRAVING"
+    desc: "every catch produces a 5-surface delta atomically"
     path: ./behavioral-contracts/B_FIVE_SURFACE_ENGRAVING.md
   - id: B_ALWAYS_GIT_LINKS
-    desc: "B_ALWAYS_GIT_LINKS"
+    desc: "every path mention is a clickable link"
     path: ./behavioral-contracts/B_ALWAYS_GIT_LINKS.md
   - id: B_PCR_FOR_DECISIONS
-    desc: "B_PCR_FOR_DECISIONS"
+    desc: "every non-trivial decision in chat triggers PCR 3-block"
     path: ./behavioral-contracts/B_PCR_FOR_DECISIONS.md
   - id: B_PRE_CLOSE_VERIFICATION
-    desc: "B_PRE_CLOSE_VERIFICATION"
+    desc: "every closing summary RZF block requires §10.0 cycle evidence"
     path: ./behavioral-contracts/B_PRE_CLOSE_VERIFICATION.md
   - id: B_POSITIVE_VALUE_EXTRACTION
-    desc: "B_POSITIVE_VALUE_EXTRACTION"
+    desc: "every significant positive event triggers an iterative cycle"
     path: ./behavioral-contracts/B_POSITIVE_VALUE_EXTRACTION.md
   - id: B_COGNITIVE_CONTEXT_DISCIPLINE
-    desc: "B_COGNITIVE_CONTEXT_DISCIPLINE"
+    desc: "every AI session uses the 5-layer architecture with 4 Quality Gates immutable"
     path: ./behavioral-contracts/B_COGNITIVE_CONTEXT_DISCIPLINE.md
   - id: B_CDAB
-    desc: "B_CDAB"
+    desc: "Context-Depth-Alignment-Boundary: per-task context selection for correct depth"
     path: ./behavioral-contracts/B_CDAB.md
   - id: B_AGENT_ALIGNMENT_PROTOCOL
-    desc: "B_AGENT_ALIGNMENT_PROTOCOL"
+    desc: "every agent passes AAP before invocation; no wildcards"
     path: ./behavioral-contracts/B_AGENT_ALIGNMENT_PROTOCOL.md
   - id: B_GOVERNOR_PROMPTS
-    desc: "B_GOVERNOR_PROMPTS"
+    desc: "every user prompt is governance-tracked"
     path: ./behavioral-contracts/B_GOVERNOR_PROMPTS.md
   - id: B_HANDOFF_PRE_FLIGHT_AUDIT
-    desc: "B_HANDOFF_PRE_FLIGHT_AUDIT"
+    desc: "every handoff creation is preceded by whole-session audit"
     path: ./behavioral-contracts/B_HANDOFF_PRE_FLIGHT_AUDIT.md
   - id: B_MUTUAL_UNDERSTANDING_VALIDATION
-    desc: "B_MUTUAL_UNDERSTANDING_VALIDATION"
+    desc: "every AI communication boundary closes the I→I loop"
     path: ./behavioral-contracts/B_MUTUAL_UNDERSTANDING_VALIDATION.md
   - id: B_BOUNDARY_ALIGNMENT_PROTOCOL
-    desc: "B_BOUNDARY_ALIGNMENT_PROTOCOL"
+    desc: "every AI communication boundary emits UNDERSTANDING + ALIGNMENT blocks"
     path: ./behavioral-contracts/B_BOUNDARY_ALIGNMENT_PROTOCOL.md
   - id: B_TEMPLATE_FIRST_CREATION
-    desc: "B_TEMPLATE_FIRST_CREATION"
+    desc: "every commitment-layer output passes templated discovery gate"
     path: ./behavioral-contracts/B_TEMPLATE_FIRST_CREATION.md
   - id: B_GRADUAL_BUILD_BY_FOUNDATIONS
-    desc: "B_GRADUAL_BUILD_BY_FOUNDATIONS"
+    desc: "every multi-session topic enters via templated gradual-build-plan"
     path: ./behavioral-contracts/B_GRADUAL_BUILD_BY_FOUNDATIONS.md
   - id: B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS
-    desc: "B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS"
+    desc: "every AI output gated by alignment registry"
     path: ./behavioral-contracts/B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS.md
   - id: B_PE_ALIGNMENT_GUARDIAN
-    desc: "B_PE_ALIGNMENT_GUARDIAN"
+    desc: "anti-sycophancy structured deflection"
     path: ./behavioral-contracts/B_PE_ALIGNMENT_GUARDIAN.md
   - id: B_STRUCTURAL_PREVENTION_DISCIPLINE
-    desc: "B_STRUCTURAL_PREVENTION_DISCIPLINE"
+    desc: "enhance system constantly, never patch instance"
     path: ./behavioral-contracts/B_STRUCTURAL_PREVENTION_DISCIPLINE.md
   - id: B_CORE_SPINE_DISCIPLINE
-    desc: "B_CORE_SPINE_DISCIPLINE"
+    desc: "every artifact maps to ≥1 spine; outward layering enforced"
     path: ./behavioral-contracts/B_CORE_SPINE_DISCIPLINE.md
   - id: B_ZERO_LAPTOP_DEPENDENCY
-    desc: "B_ZERO_LAPTOP_DEPENDENCY"
+    desc: "Git canonical + Codespaces + Android"
     path: ./behavioral-contracts/B_ZERO_LAPTOP_DEPENDENCY.md
   - id: B_NAMING_POLICY
-    desc: "B_NAMING_POLICY"
+    desc: "names are simple + clear + industry-standard"
     path: ./behavioral-contracts/B_NAMING_POLICY.md
   - id: B_TOKEN_BUDGET
-    desc: "B_TOKEN_BUDGET"
+    desc: "8 operating rules extending P-META-009 CCA"
     path: ./behavioral-contracts/B_TOKEN_BUDGET.md
   - id: B_CONSOLIDATION_PASS
-    desc: "B_CONSOLIDATION_PASS"
+    desc: "single canonical home + cross-reference protocol"
     path: ./behavioral-contracts/B_CONSOLIDATION_PASS.md
   - id: B_SAVINGS_AND_SSOT_UNIFIED
-    desc: "B_SAVINGS_AND_SSOT_UNIFIED"
+    desc: "savings and SSoT are the same discipline"
     path: ./behavioral-contracts/B_SAVINGS_AND_SSOT_UNIFIED.md
   - id: B_KNOW_HOW_DISCIPLINE
-    desc: "B_KNOW_HOW_DISCIPLINE"
+    desc: "every plan consults the know-how registry"
     path: ./behavioral-contracts/B_KNOW_HOW_DISCIPLINE.md
   - id: B_AI_COLLABORATIVE_DISCIPLINE
-    desc: "B_AI_COLLABORATIVE_DISCIPLINE"
+    desc: "AI as governed contributor, not just restrained executor"
     path: ./behavioral-contracts/B_AI_COLLABORATIVE_DISCIPLINE.md
   - id: B_NO_AI_IMPERSONATION
-    desc: "B_NO_AI_IMPERSONATION"
+    desc: "AI must never claim to be a different model, mode, or capability"
     path: ./behavioral-contracts/B_NO_AI_IMPERSONATION.md
   - id: B_CONSENSUS_BEFORE_PROCEEDING
-    desc: "B_CONSENSUS_BEFORE_PROCEEDING"
+    desc: "principal decisions require Governor ratification before any stage advances"
     path: ./behavioral-contracts/B_CONSENSUS_BEFORE_PROCEEDING.md
   - id: B_CONCEPT_LOAD
-    desc: "B_CONCEPT_LOAD"
+    desc: "every input processed through L2 spine classification before work begins"
     path: ./behavioral-contracts/B_CONCEPT_LOAD.md
   - id: B_TRIAD_GOVERNANCE
-    desc: "B_TRIAD_GOVERNANCE"
+    desc: "for consequential decisions, all three layers must be present"
     path: ./behavioral-contracts/B_TRIAD_GOVERNANCE.md
   - id: B_VERBATIM_HUMAN_TEXT
-    desc: "B_VERBATIM_HUMAN_TEXT"
+    desc: "stay close to what humans provided; ask before presenting alternatives"
     path: ./behavioral-contracts/B_VERBATIM_HUMAN_TEXT.md
   - id: B_PLATFORM_FIRST_OPTIMIZATION
-    desc: "B_PLATFORM_FIRST_OPTIMIZATION"
+    desc: "every solution evaluated for platform-wide applicability before local implementa"
     path: ./behavioral-contracts/B_PLATFORM_FIRST_OPTIMIZATION.md
   - id: B_COMPLETION_OVER_SHINY
-    desc: "B_COMPLETION_OVER_SHINY"
+    desc: "completion of active phases beats new significant items"
     path: ./behavioral-contracts/B_COMPLETION_OVER_SHINY.md
   - id: B_DEVELOPMENT_VS_PRODUCTION
-    desc: "B_DEVELOPMENT_VS_PRODUCTION"
+    desc: "never confuse development-mode depth with production-mode efficiency"
     path: ./behavioral-contracts/B_DEVELOPMENT_VS_PRODUCTION.md
   - id: B_HUMBLE_EXECUTION_PIPELINE
-    desc: "B_HUMBLE_EXECUTION_PIPELINE"
+    desc: "gradual execution: Stage 1 proof before Stage 3 full scope"
     path: ./behavioral-contracts/B_HUMBLE_EXECUTION_PIPELINE.md
   - id: B_HUMBLE_EXECUTOR
-    desc: "B_HUMBLE_EXECUTOR"
+    desc: "closed-circle milestone protocol at every phase gate"
     path: ./behavioral-contracts/B_HUMBLE_EXECUTOR.md
   - id: B_AUTONOMOUS_BATCH_WITH_PREFLIGHT
-    desc: "B_AUTONOMOUS_BATCH_WITH_PREFLIGHT"
+    desc: "pre-flight decision extraction before any implementation batch ≥4 files"
     path: ./behavioral-contracts/B_AUTONOMOUS_BATCH_WITH_PREFLIGHT.md
   - id: B_NO_IMPLEMENTATION_WITHOUT_PLAN
-    desc: "B_NO_IMPLEMENTATION_WITHOUT_PLAN"
+    desc: "no code changes to libs/ or apps/src/ outside a ratified plan"
     path: ./behavioral-contracts/B_NO_IMPLEMENTATION_WITHOUT_PLAN.md
   - id: B_INTENT_CRYSTALLIZATION
-    desc: "B_INTENT_CRYSTALLIZATION"
+    desc: "no implementation without validated intent"
     path: ./behavioral-contracts/B_INTENT_CRYSTALLIZATION.md
   - id: B_SANDBOX_BEFORE_IMPLEMENTATION
-    desc: "B_SANDBOX_BEFORE_IMPLEMENTATION"
+    desc: "no code without a ratified, simulated sandbox spec"
     path: ./behavioral-contracts/B_SANDBOX_BEFORE_IMPLEMENTATION.md
   - id: B_APPS_ARE_TRIALS
-    desc: "B_APPS_ARE_TRIALS"
+    desc: "apps/* are ephemeral trials, libs/* is permanent core"
     path: ./behavioral-contracts/B_APPS_ARE_TRIALS.md
+  - id: B_CONTEXTUAL_LOCALITY
+    desc: "content at point of use, never navigate"
+    path: ./behavioral-contracts/B_CONTEXTUAL_LOCALITY.md

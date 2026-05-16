@@ -2262,6 +2262,32 @@ principles:
     enforcer_count: 4
     cross_references: [P-META-019, P-ARCH-028, B_APPS_ARE_TRIALS]
 
+  - id: P-UX-001
+    name: contextual-locality
+    aliases: [content-at-point-of-use, no-navigation-required, locality-principle]
+    category: operating
+    severity: warn
+    statement: |
+      Every piece of content must appear at the point where it is needed.
+      Never require navigation to apply an instruction:
+      - Paste target appears UNDER the step it belongs to (not "see §X")
+      - Fix instruction lives IN the error message (not "see docs")
+      - Checklist lives IN the plan (not linked out)
+      - Rule rationale is INLINE with the rule (not in a separate file)
+      Applied to AI directives: every Opus directive is self-contained.
+      Applied to validators: error messages include the fix, not just the problem.
+    rationale: Governor directive S036 + communication-protocol-shared.md RULE 4.
+    governing_intent: |
+      Eliminate the cognitive switching cost of "go look somewhere else."
+      The reader's attention is at the point of use — deliver the content there.
+    enforcers:
+      - { layer: instruction-file, location: "AGENTS.md", description: "PROTOCOL Hard Rule includes locality" }
+      - { layer: contract, location: "docs/plan/pillar-0-governance/behavioral-contracts.md#B_CONTEXTUAL_LOCALITY", description: "B_CONTEXTUAL_LOCALITY canonical contract" }
+      - { layer: validator, location: "tools/validators/validate-communication-protocol.mjs", description: "Checks Sonnet reports follow locality rule" }
+    enforcer_count: 3
+    ratified: S036
+    cross_references: [P-META-022, communication-protocol-shared.md]
+
   - id: P-OPER-001
     name: zero-laptop-dependency
     aliases: [git-canonical, multi-machine-parity, android-accessible, auto-push-at-session-close]

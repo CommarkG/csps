@@ -475,6 +475,12 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/checked=(\d+) missing=(\d+) invalid=(\d+) exempt=(\d+)/); return m ? { checked: Number(m[1]), missing: Number(m[2]), invalid: Number(m[3]), exempt: Number(m[4]) } : {}; },
   },
   {
+    // S036 LIVE — communication protocol Rule 1 compliance (identity handshake)
+    name: 'communication_protocol',
+    command: 'node tools/validators/validate-communication-protocol.mjs',
+    parse_output: (out) => { const m = out.match(/advisory=(\d+)/); return m ? { advisory: Number(m[1]) } : {}; },
+  },
+  {
     // S036-PROTO LIVE — active protocol compliance (no parallel directives, tracks active_directive)
     name: 'active_protocol_compliance',
     command: 'node tools/validators/validate-active-protocol.mjs',

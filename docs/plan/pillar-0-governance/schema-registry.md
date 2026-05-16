@@ -210,6 +210,13 @@ schema_anchors:
 
   # ─── GVRN — know-how and intake ────────────────────────────────────────────
 
+  error_registry:
+    type: governance-section
+    resolves_to: docs/plan/_handoff/VAULT/error-registry/
+    spine: VALD
+    l2_domain: COVERAGE_DISCIPLINE
+    description: EP-ERR-NNN error pattern registry
+
   know_how_error_patterns:
     type: governance-section
     resolves_to: docs/plan/_intake/know-how/
@@ -455,3 +462,9 @@ Before using a new `schema_anchor:` value:
 
 **Validator (to build Session B):** `validate-schema-anchors.mjs` — checks every `schema_anchor:` value
 against this registry. Unknown anchors = ORPHAN. Pre-existing orphans: advisory; new orphans: BLOCKING.
+
+- anchor: error_registry
+  type: governance-section
+  resolves_to: docs/plan/_handoff/VAULT/error-registry/
+  spine: VALD
+  l2_domain: vald_coverage_discipline

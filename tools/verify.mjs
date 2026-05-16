@@ -991,7 +991,7 @@ const CYCLES = [
     // Both must be ≥80% over last 5 turns. ADVISORY. Shared quality discipline.
     name: 'quality_alignment',
     command: 'node tools/validators/validate-quality-alignment.mjs',
-    parse_output: (out) => { const m = out.match(/opus_rzf_rate=(\d+)%\s+sonnet_intent_rate=(\d+)%\s+status=(\w+)/); return m ? { opus_rzf_rate: Number(m[1]), sonnet_intent_rate: Number(m[2]), status: m[3] } : {}; },
+    parse_output: (out) => { const m = out.match(/opus_rzf_rate=(\d+)%\s+sonnet_intent_rate=(\d+)%\s+directive_rzf_quality_rate=(\d+)%\s+status=(\w+)/); return m ? { opus_rzf_rate: Number(m[1]), sonnet_intent_rate: Number(m[2]), directive_rzf_quality_rate: Number(m[3]), status: m[4] } : {}; },
   },
   {
     // S037-G LIVE — Handoff Completeness (OPEN-020/PI-019): HANDOFF-*.md files from last 90 days

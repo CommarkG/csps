@@ -1,33 +1,58 @@
 'use client'
-// account-setup/page.tsx — CSPS platform standard loading state
-// UX-001 (Opus Turn 28): platform-first JWT refresh gap fix
-// Copy this file to your app's src/app/account-setup/page.tsx
-//
-// Shows while org is being provisioned after sign-up.
-// Polls /api/auth/session-ready every 2s. Redirects to / when tenantId is ready.
-// Prevents the sign-up → 403 → sign-in infinite loop.
+// account-setup/page.tsx — JWT refresh gap fix + OnboardingWizard (S036 PI-001)
+// Phase 1: shows loading/polling until tenantId is in JWT
+// Phase 2: if archetype not yet set, shows OnboardingWizard before redirect
+// Per PI-001 wiring checklist — Budget Planner instance
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useUser } from '@clerk/nextjs'
+import { OnboardingWizard } from '@csps/components'
+
+type Phase = 'polling' | 'onboarding' | 'done'
 
 export default function AccountSetupPage() {
   const router = useRouter()
+  const { user, isLoaded } = useUser()
+  const [phase, setPhase] = useState<Phase>('polling')
 
   useEffect(() => {
+    if (!isLoaded) return
+
     const interval = setInterval(async () => {
       try {
         const res = await fetch('/api/auth/session-ready')
         const data = await res.json()
         if (data.ready) {
           clearInterval(interval)
-          router.push('/')
+          // Check if archetype already set (PI-001)
+          const archetype = user?.publicMetadata?.archetype as string | undefined
+          if (archetype) {
+            router.push('/')
+          } else {
+            setPhase('onboarding')
+          }
         }
-      } catch {
-        // network error — keep polling
-      }
+      } catch { /* keep polling */ }
     }, 2000)
+
     return () => clearInterval(interval)
-  }, [router])
+  }, [isLoaded, router, user])
+
+  const handleWizardComplete = async (_archetype: string) => {
+    // Archetype stored via Inngest user.created event; redirect to dashboard
+    setPhase('done')
+    router.push('/')
+  }
+
+  if (phase === 'onboarding') {
+    return (
+      <OnboardingWizard
+        appName="Budget Planner"
+        onComplete={handleWizardComplete}
+      />
+    )
+  }
 
   return (
     <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', gap: '1rem', fontFamily: 'system-ui, sans-serif' }}>

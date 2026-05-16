@@ -1,4 +1,5 @@
 // apps/budget-planner/instrumentation.ts
+// @csps-enforces P-OPER-002 (monitoring configured at creation, not as afterthought)
 // Next.js instrumentation hook — initializes Sentry on Node.js runtime if SENTRY_DSN is set.
 // Per libs/integrations/monitoring/sentry.ts setup notes (S033-C).
 //

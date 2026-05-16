@@ -1,4 +1,5 @@
 // libs/integrations/security/user-projections.ts
+// @csps-enforces P-ARCH-031 (cross-tenant reads scoped to PUBLIC_USER_FIELDS — P-ARCH-031 wiring requirement)
 // PI-025: Cross-tenant field scoping — defensive field projection for User model.
 //
 // AUDIT RESULT (S037 PI-025): All current User queries are self-lookups (clerkId = userId).

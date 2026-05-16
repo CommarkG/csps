@@ -24,6 +24,8 @@
     "create:app": "bash scripts/create-app.sh",
     "create:pi": "node tools/scripts/create-pi.mjs",
     "sync:universal": "node tools/scripts/sync-universal-governance.mjs",
+    "sync:dna": "node tools/scripts/auto-sync-platform-dna.mjs",
+    "sync:dna:dry": "node tools/scripts/auto-sync-platform-dna.mjs --dry-run",
     "env:sync": "node tools/scripts/sync-vercel-env.mjs",
     "glossary:codegen": "echo 'TODO week-2: implement pnpm glossary:codegen' && exit 0",
     "catalog:search": "echo 'TODO week-1: implement pnpm catalog:search' && exit 0",

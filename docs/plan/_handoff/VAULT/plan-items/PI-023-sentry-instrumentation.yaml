@@ -16,12 +16,12 @@ spi_estimate: 0.05
 urgency: normal
 impact: multi-app
 
-status: ratified
+status: done
 ratified_at: 2026-05-17
 ratified_by: yariv
 implementation_session: S037
-implementation_commit: null
-done_at: null
+implementation_commit: e6d2820
+done_at: 2026-05-17
 
 depends_on: []
 unlocks: []

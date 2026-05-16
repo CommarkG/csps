@@ -973,6 +973,14 @@ const CYCLES = [
     },
   },
   {
+    // DNA SYNC FRESHNESS — T2 of 3-direction auto-sync enforcement.
+    // Checks universal-sync-state.json is within 24h + drift detected since last sync.
+    // ADVISORY if stale or drift > 0. Run pnpm sync:dna to propagate.
+    name: 'sync_state_fresh',
+    command: 'node tools/validators/validate-sync-state-fresh.mjs',
+    parse_output: (out) => { const m = out.match(/hours_since_sync=(\d+)\s+principle_drift=(\d+)\s+moat_drift=(\d+)\s+contract_drift=(\d+)\s+status=(\w+)/); return m ? { hours_since_sync: Number(m[1]), principle_drift: Number(m[2]), moat_drift: Number(m[3]), contract_drift: Number(m[4]), status: m[5] } : {}; },
+  },
+  {
     // S037 LIVE — New File DNA Gate: TypeScript/JS files added in last commit must carry CSPS DNA.
     // BLOCKING for libs/ files > 50 lines without @csps-id, @csps-enforces, graceful passthrough, or PI coverage.
     // Closes the DNA inheritance gap: creation completeness checks PI YAML; this checks actual code.

@@ -191,6 +191,11 @@
             "type": "command",
             "command": ".claude/hooks/post-stop-rzf-reminder.sh",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-dna-sync-check.sh",
+            "timeout": 10
           }
         ]
       }

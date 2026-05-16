@@ -312,6 +312,18 @@ const context = [
   '  validate-phase-exit-criteria.mjs   — FOUNDATION_EXIT_GATE (BLOCKING if exit criteria open)',
   '  validate-plan-age-alignment.mjs    — STALE PLAN GATE (WARN: plans >1 session old need alignment before execution)',
   '',
+  'FORMATTING (EP-ERR-007 — S037-F active enforcement):',
+  '  EVERY file path in chat output = clickable markdown link: [name](path)',
+  '  NEVER: bare paths like tools/verify.mjs or validate-frontmatter.mjs',
+  '  post-stop-link-discipline.sh fires on every response to detect violations.',
+  '',
+  'ALIGNMENT QUESTIONS + ENFORCEMENT TRIO (S037-F — Governor directive):',
+  '  EVERY HANDOFF and chat-transfer must include ## ALIGNMENT QUESTIONS section.',
+  '  Questions must be context-specific (not generic) — 3-5 questions for receiving AI.',
+  '  EVERY new rule/principle/contract must have enforcement_trio: at creation time.',
+  '  T1 = hook (fires on AI output) | T2 = validator (fires on commit) | T3 = session-open.',
+  '  T3-only = explicitly acknowledged drift. T1+T2 = high permanence.',
+  '',
   '═══════════════════════════════════════════════════════════════════',
 ].filter(l => l !== null).join('\\n');
 

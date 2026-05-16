@@ -79,6 +79,7 @@ COUNCIL REGISTRY UPDATE
 | **reuse-check** (packages) | P-OP-001 reuse-first check | Band 1 | P10 csps-alignment | reuse / check_reuse / existing / enhance | Pre-implementation |
 | **stewardship-review** (packages) | Lifecycle stewardship | Band 3 | P5 | stewardship / lifecycle / deprecate | Monthly |
 | **internal-deep-review** | Structured Sonnet critical review — honest capability declaration + proactive concern registration | Band 1 | P14 EP-014 | deep review / structured review / critical audit / architectural review / self-audit / internal review | Per-session (mandatory before session close) |
+| **pe-agent** | PE-scores PI items + detects bundle opportunities + proposes implementation bundles to Governor | Band 1 | PI-004 | PE score / bundle / priority / which PI / score the items / priority engine / what to build next / bundle proposal | On-demand (Governor-triggered) |
 | **balance-expert** | Platform complexity tracking + anti-overengineering + Occam Razor + simplification backlog | Band 1 | P19 M-19 WS-2 | over-engineering / balance / simplify / complexity score / too complex / remove before adding | Per-session + Monthly |
 | **wip-check** (packages) | Work-in-progress check | Band 3 | P1 | wip / in progress / outstanding | Per-session |
 | **synergy-master** | Core Cross-Synergy analysis + CSEP production | Band 2 | P13 M-13 | synergy / cross-synergy / CSEP / how does X enhance Y | Monthly |

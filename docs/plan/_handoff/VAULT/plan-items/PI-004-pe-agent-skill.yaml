@@ -1,0 +1,89 @@
+---
+id: PI-004
+name: PI-004-pe-agent-skill
+description: "Build .claude/skills/pe-agent/SKILL.md — Class A AAP-compliant PE Agent skill for priority scoring and bundle proposals"
+version: 1.0.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+
+# Classification
+core_spine: GVRN
+depth_level: 2
+tags: [pe-agent, priority-engine, bundling, skill, governance]
+
+# Prioritization
+pe_score: 78
+spi_estimate: 0.30
+urgency: high
+impact: platform-wide
+
+# Status
+status: ratified
+ratified_at: 2026-05-17
+ratified_by: yariv
+implementation_session: S037
+implementation_commit: null
+done_at: null
+
+# Dependencies
+depends_on: [PI-005]
+unlocks: []
+
+# Schema impact
+schema_impact:
+  models_modified: []
+  migration_required: false
+  note: "SKILL.md file only — no schema changes"
+
+# Wiring checklist
+wiring_checklist:
+  - ".claude/skills/pe-agent/SKILL.md exists with Class A AAP frontmatter"
+  - "validate-aap-frontmatter.mjs reports scanned=27 missing=0 (all skills aligned)"
+  - "pe-agent appears in available skills list (system-reminder confirms it)"
+
+# Pre-implementation questions
+questions:
+  - id: Q1
+    question: "What trust_tier does the PE Agent use?"
+    status: answered
+    answer: "platform-owned — per validate-aap-frontmatter.mjs enum (quarantine|vendored|platform-owned)"
+  - id: Q2
+    question: "Can the PE Agent write to PI files or only read?"
+    status: answered
+    answer: "Read-only — allowed_tools: [Read, Glob, Grep]. Cannot modify PI files."
+  - id: Q3
+    question: "Who ratifies a PE Agent bundle proposal?"
+    status: answered
+    answer: "Governor ratifies → OPUS-2 directs Sonnet. PE Agent only proposes."
+
+# EP-ERR Pre-Check (OPEN-021 EP-ERR→Planning loop)
+ep_err_pre_check:
+  - pattern: implement-without-ratification
+    applicable: false
+    mitigation: "ratified_at: 2026-05-17, ratified_by: yariv — Governor ratification explicit"
+  - pattern: done-equals-committed
+    applicable: true
+    mitigation: "validate-aap-frontmatter.mjs confirms WIRED; pe-agent appears in skills list = DONE criterion"
+
+# Enforcement Trio
+enforcement_trio:
+  tier1_hook: null
+  tier2_validator: validate-aap-frontmatter.mjs
+  tier3_session: "PE Agent must have Class A AAP frontmatter — check validate-aap-frontmatter output"
+  tier_decision_rationale: "Violation detectable in committed SKILL.md file → Tier 2 primary"
+  permanence_assessment: high
+
+# Plan summary
+plan_summary: |
+  PE Agent is the Priority Engine + Bundling Specialist for CSPS. It reads PI-NNN files,
+  computes PE scores (urgency × impact / SPI_estimate), detects tag overlap, and proposes
+  implementation bundles for Governor ratification.
+
+  DONE criterion: validate-aap-frontmatter.mjs shows missing=0 (pe-agent aligned)
+                  + pe-agent appears in available skills (system confirms it loads)
+                  + PE formula documented in SKILL.md and meta-platform/pe-agent.md
+
+linked_principle: P-META-010
+linked_contract: B_PE_ALIGNMENT_GUARDIAN
+---

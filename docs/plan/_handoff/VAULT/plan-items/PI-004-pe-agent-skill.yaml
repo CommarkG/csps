@@ -19,12 +19,12 @@ urgency: high
 impact: platform-wide
 
 # Status
-status: ratified
+status: done
 ratified_at: 2026-05-17
 ratified_by: yariv
 implementation_session: S037
-implementation_commit: null
-done_at: null
+implementation_commit: 3075da3
+done_at: 2026-05-17
 
 # Dependencies
 depends_on: [PI-005]

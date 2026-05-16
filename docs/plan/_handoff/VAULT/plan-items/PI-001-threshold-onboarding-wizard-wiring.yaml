@@ -19,12 +19,12 @@ urgency: critical
 impact: platform-wide
 
 # Status
-status: ratified
+status: done
 ratified_at: 2026-05-16
 ratified_by: yariv
-implementation_session: null
-implementation_commit: null
-done_at: null
+implementation_session: S036
+implementation_commit: ddfa4db
+done_at: 2026-05-17
 
 # Dependencies
 depends_on: []

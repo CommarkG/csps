@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T22:00:18.877Z
-- finished_at: 2026-05-16T22:00:45.617Z
+- ran_at: 2026-05-16T22:09:10.412Z
+- finished_at: 2026-05-16T22:09:37.291Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T22:00:18.877Z",
-    "finished_at": "2026-05-16T22:00:45.617Z",
+    "ran_at": "2026-05-16T22:09:10.412Z",
+    "finished_at": "2026-05-16T22:09:37.291Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.3,
+        "duration_seconds": 6.6,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.8,
         "principles_loaded": 65,
         "findings_total": 15
       },
@@ -42,9 +42,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 410,
+        "scanned": 412,
         "errors": 0,
-        "warnings": 26,
+        "warnings": 27,
         "exempt": 285
       },
       {
@@ -62,7 +62,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -184,7 +184,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 130,
         "links": 564,
         "broken": 52
@@ -254,7 +254,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 6
+        "advisories": 1
       },
       {
         "name": "agreement_without_evidence",
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 373,
-        "clean": 373,
+        "checked": 375,
+        "clean": 375,
         "blocking": 0,
         "registry": 48
       },
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 566,
+        "scanned": 568,
         "advisory": 86
       },
       {
@@ -1098,7 +1098,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.5
+        "duration_seconds": 6.3
       },
       {
         "name": "creation_completeness",
@@ -1134,9 +1134,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "handoffs_checked": 31,
+        "handoffs_checked": 32,
         "missing_section": 30,
-        "insufficient_questions": 1
+        "insufficient_questions": 2
       },
       {
         "name": "enforcement_trio_assigned",
@@ -1145,8 +1145,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "pi_checked": 6,
-        "active": 4,
-        "missing_trio": 2
+        "active": 0,
+        "missing_trio": 0
       },
       {
         "name": "persona_chain_complete",

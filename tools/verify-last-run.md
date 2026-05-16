@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T23:27:50.989Z
-- finished_at: 2026-05-16T23:28:30.769Z
+- ran_at: 2026-05-16T23:29:14.971Z
+- finished_at: 2026-05-16T23:29:55.659Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T23:27:50.989Z",
-    "finished_at": "2026-05-16T23:28:30.769Z",
+    "ran_at": "2026-05-16T23:29:14.971Z",
+    "finished_at": "2026-05-16T23:29:55.659Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 11.4,
+        "duration_seconds": 12.5,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 1,
         "principles_loaded": 65,
         "findings_total": 15
       },
@@ -214,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.1,
         "checked": 37,
         "advisories": 29
       },
@@ -414,7 +414,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 0
       },
@@ -981,7 +981,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -1098,18 +1098,18 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 12
+        "duration_seconds": 12.2
       },
       {
         "name": "sync_state_fresh",
         "command": "node tools/validators/validate-sync-state-fresh.mjs",
-        "status": "DRIFT",
+        "status": "OK",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "hours_since_sync": 23,
-        "principle_drift": 3,
-        "moat_drift": 27,
-        "contract_drift": 61
+        "hours_since_sync": 0,
+        "principle_drift": 0,
+        "moat_drift": 0,
+        "contract_drift": 0
       },
       {
         "name": "new_file_dna",
@@ -1197,7 +1197,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 1
+        "advisories": 0
       },
       {
         "name": "audit_runner_full_pass",

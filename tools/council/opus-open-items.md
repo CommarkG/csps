@@ -16,7 +16,7 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 |---|---|---|---|---|---|
 | OPEN-001 | PI-002: PI schema YAML format + create-pi.mjs | Turn 59 | ✅ DONE (40f931f) | — | PI-002 |
 | OPEN-002 | PI-003: validate-implementation-gate.mjs (PIG) | Turn 62 | ✅ DONE (40f931f) | — | PI-003 |
-| OPEN-003 | PI-004: PE Agent skill (.claude/skills/pe-agent.md) | Turn 59 | pending | automated bundling | none yet |
+| OPEN-003 | PI-004: PE Agent skill (.claude/skills/pe-agent.md) | Turn 59 | ✅ DONE S037-I (3075da3 — AAP Class A, 27/27 aligned) | — | PI-004 |
 | OPEN-004 | PI-005: meta-platform mini-tree documents | Turn 59 | ✅ DONE S037-D — 8-file mini-tree live, blocking=0 | PI-005 | — |
 | OPEN-005 | PI-013: EKEP wizard spec and PI file | Turn 72 | pending | cross-platform knowledge exchange | none yet |
 | OPEN-006 | post-stop-rzf-reminder.sh hook | Turns 63/67 | ✅ DONE S037-B (d0b32f4 — hook ACTIVE + settings.json registered) | — | — |

@@ -1,3 +1,162 @@
+# Opus Turn 78 — ZCA RATIFIED + S036 Close Directive
+
+**ZCA ratified by Governor: 2026-05-16**
+Constitutional principle: Zero-Context Assumption is now L1 sealed.
+
+## ZCA Ratification Record
+```
+principle: Zero-Context Assumption (ZCA)
+ratified_at: 2026-05-16
+ratified_by: yariv
+surfaces_engraved: 5
+  1. core/L1-principles.md (constitutional)
+  2. tools/council/communication-protocol-shared.md (Rule 7)
+  3. docs/plan/_handoff/VAULT/inner-ai-defaults/boundary-assumptions.md
+  4. AGENTS.md (Hard Rule)
+  5. docs/plan/_handoff/VAULT/templates/ai-transfer-template.md
+also_in: C:\Users\finky\.claude\universal-governance.md (AI-TO-AI TRANSFER PROTOCOL)
+commit: 6ffb879
+```
+
+## SONNET DIRECTIVE — S036 CLOSE
+
+Sonnet, this is Opus. Read `tools/council/opus-open-items.md` — close S036: (1) add ZCA as P-UX-002 to `packages/principles/principles.yaml` (title: "Zero-Context Assumption", statement: "Every communication crossing a boundary assumes the receiver has zero prior context. Provide WHO/WHAT/HOW/NOW inline. Test: could someone with no background understand this completely?", ratified_at: 2026-05-16, ratified_by: yariv); (2) run `pnpm principles:split`; (3) write `docs/plan/_handoff/VAULT/closing-summary-S036.md` (§10.0 paste verify output, §10.0r: "ZCA ratified, PROTO-001+002+003 complete, 6 EP-ERR patterns documented, ZCA in 5 surfaces, 115+ validators"); (4) write `docs/plan/_handoff/HANDOFF-S036-to-S037.md` (Zone A: 115+ validators, all libs/ live, PROTO-001/002/003 complete, ZCA constitutional, Zone B: S037 = OPEN-001 PI-002 schema — the PI tracking infrastructure); (5) update `tools/council/platform-state-snapshot.md` to S036 CLOSED; (6) update `docs/plan/_handoff/VAULT/chat-jump-S036-complete.md` with final commit SHA; (7) `git add -A && git commit -m "S036 close: ZCA ratified, 3 protocols complete, wiring fixed, error registry live" && git push origin main`.
+
+*OPUS-2 Turn 78 | ZCA RATIFIED | S036 close directive | P-UX-002 to be registered*
+*OPUS-2 | S036 | 2026-05-16*
+
+---
+
+# Opus Turn 77 — Zero-Context Assumption: The Missing Communication Concept
+
+**OPUS-2 does this turn:** Define the concept | Where it embeds | Propose principle + inner-default + contract
+**Sonnet does after ratification:** Build the templates + add to communication-protocol-shared.md
+
+---
+
+## §1 — THE CONCEPT: "Zero-Context Assumption" (ZCA)
+
+**The inner default Claude breaks (repeatedly):** When communicating across any boundary, Claude assumes the receiver shares context — shared session, shared conversation, shared vocabulary, shared project knowledge. This assumption is always wrong at boundaries.
+
+**The correct operating concept:** Every communication that crosses a boundary between independent minds (AI tabs, AI-to-AI, AI-to-human, AI-to-API, AI-to-external-system) must assume the receiver starts from ZERO. Provide everything needed for standalone understanding.
+
+**This is NOT the same as existing principles:**
+- P-UX-001 Contextual Locality: content at point of use WITHIN a single document/response
+- "Complete instructions every time": about instruction completeness within a session
+- ZCA: about CROSS-BOUNDARY completeness — when the receiver has no prior context at all
+
+**The 7 boundary types where ZCA applies:**
+
+| Boundary | Example | What new receiver doesn't know |
+|---|---|---|
+| AI tab → AI tab | OPUS-2 chat → Sonnet chat | What CSPS is, what roles are, current state |
+| AI → AI system | CSPS → Lovable API | What CSPS is, what schema applies |
+| AI → external developer | API response, error message | What the system does, how to fix it |
+| AI → new session | Session start briefing | Everything — full zero start |
+| AI → audit log | AuditEvent data field | Why the action happened, what it means |
+| AI → external AI agent | EKEP exchange | Architecture, vocabulary, expectations |
+| Sonnet → Governor (SROF) | Report on work done | Context of what was asked, why |
+
+**The 4 essentials at every boundary crossing (WHO-WHAT-HOW-NOW):**
+1. WHO — who is the sender, who is the receiver, what roles do they play
+2. WHAT — what is the project/system, what technology, what purpose
+3. HOW — how the collaboration works, communication rules, the pattern
+4. NOW — current state, what's active, what's next, the concrete action
+
+**Why it must be a CONCEPT, not a rule:**
+Rules enumerate specific situations: "when doing tab transfer, include sections 1-7." Concepts handle ALL situations: "at every boundary crossing, assume zero context." When a new boundary type appears (EKEP wizard, API consumer, mobile app user) — the concept applies automatically. Rules require updates. Concepts propagate.
+
+**The test for any boundary communication:**
+"Could a knowledgeable person with NO background on this project understand this completely?" If no → the boundary is not crossed correctly.
+
+---
+
+## §2 — WHERE ZCA EMBEDS IN THE DNA
+
+### L1 Constitutional (proposed addition to core/L1-principles.md):
+```
+Zero-Context Assumption (ZCA):
+Every communication that crosses a boundary between independent thinking entities 
+assumes the receiver starts from zero context.
+Provide: WHO (roles and relationships), WHAT (project and system), 
+HOW (the working pattern), NOW (current state and next action).
+The test: "Could someone with no background understand this completely?"
+If no → the crossing is incomplete.
+```
+
+### Inner-AI-Defaults (new entry):
+```yaml
+pattern: boundary-context-assumption
+disposition: override
+training_default: >
+  Claude assumes shared context when communicating within what feels like 
+  "the same project" — referencing "what we discussed", "per the plan", 
+  "as you know", when the receiver may be a completely new instance with no memory.
+csps_override: >
+  At every boundary crossing: assume zero. Every SROF, every chat-jump, 
+  every API response, every EKEP exchange — provide WHO/WHAT/HOW/NOW.
+  The receiver is always a stranger until proven otherwise.
+sample:
+  incident: "Chat-jump file sent to new Sonnet tab assumed it knew what OPUS-2 is,
+  what CSPS is, what S036 means, what the 3-party triangle is. New Sonnet had none
+  of this context. Governor caught it: 'Do not falsely assume it knows the basics.'"
+  fix: "WHO-WHAT-HOW-NOW section added as mandatory first section in any transfer"
+```
+
+### Communication Protocol (Rule 7 addition to communication-protocol-shared.md):
+```
+RULE 7 — Zero-Context Assumption (ZCA):
+Every communication crossing a boundary assumes the receiver has zero prior context.
+Provide WHO/WHAT/HOW/NOW inline before any task context.
+Applies to: tab transfers, SROFs, API responses, EKEP exchanges, any cross-boundary message.
+Test: "Could someone with no background on this project understand this completely?"
+```
+
+### In AGENTS.md (Hard Rule):
+```
+ZCA: Every cross-boundary communication (tab transfer, API, SROF, EKEP) 
+starts with WHO/WHAT/HOW/NOW. Never assume shared context.
+```
+
+---
+
+## §3 — THE AI TRANSFER TEMPLATE (mechanizes ZCA for AI-to-AI)
+
+This template is the mechanical implementation of ZCA for all AI-to-AI transfers:
+
+```markdown
+# AI Transfer — [Project/Context Name]
+
+## WHO (roles and relationships)
+You are: [role, capabilities, what you do]
+The [ARCHITECT/ADVISOR]: [who they are, where they work, how to reach them]
+The [HUMAN/GOVERNOR]: [who they are, how they communicate, decision rights]
+How you collaborate: [the 3-party or N-party pattern, communication flow]
+
+## WHAT (the project and system)
+Project: [what it is, what it does, who uses it]
+Technology: [stack, key tools]
+Workspace: [where files live, path conventions]
+
+## HOW (the working pattern)
+Communication rules: [mandatory openers, report format, DONE standard]
+Governance: [validators, verification requirement]
+Current protocols: [any active protocol, step N of M]
+
+## NOW (current state and next action)
+Last commit: [sha] | State: [active/closed] | Validators: [count]
+Active work: [what's in progress, the active directive INLINE]
+Open items: [count and where to find the register]
+
+## FIRST ACTION
+[Exactly what to do first, self-contained, no navigation required]
+```
+
+*OPUS-2 Turn 77 | ZCA concept defined | DNA embedding specified | Template formalized*
+*OPUS-2 | S036 | 2026-05-16*
+
+---
+
 # Opus Turn 76 — Inner-AI-Defaults Enrichment + Error Registry + Harvesting Enforcement
 
 **Open items at turn start:** 19 pending — see opus-open-items.md

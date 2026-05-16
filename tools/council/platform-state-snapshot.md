@@ -8,12 +8,12 @@
 ## §1 — Current Platform Identity
 
 ```yaml
-session: S029
-date: 2026-05-14
-platform_version: CSPS v0.29
+session: S036
+date: 2026-05-16
+platform_version: CSPS v0.36
 governor: Yariv Fink (group:finky)
 repo: github.com/CommarkG/csps
-last_commit: 37f0e7a (S029: council protocol gaps + Sonnet Report)
+last_commit: S036-close (see git log)
 sonnet_model: claude-sonnet-4-6[1m]
 ```
 
@@ -22,12 +22,14 @@ sonnet_model: claude-sonnet-4-6[1m]
 ## §2 — Platform Health (last pnpm verify run)
 
 ```yaml
-validators: 104
+validators: 115+
 exit_code: 0
 vlt_blockers: 0
 grl_open: 0
-health_score: 88%
-enforcement_rate: 80%  # 32/40 validators live (week-4 scheduled for remainder)
+principles: 63
+behavioral_contracts: 60
+audit_slugs: 28
+moat_elements: 25
 ```
 
 ---
@@ -59,122 +61,83 @@ Precedence: GVRN > VALD > ARCH > AI > OPER
 
 ---
 
-## §5 — What Changed Since Last Opus Turn (Turn 21, S028)
+## §5 — What Changed This Session (S036 — OPUS-2 Turns 75–78)
 
-**Turn 21 was:** Opus ratified Unified Scope Model (S0-S5), L2_DOMAIN_AI_CONTEXT_ARCHITECTURE, and 7 retrograde principles. Sonnet was directed to: build scope validators, backfill scope_level, wire session-context-record.
-
-**What Sonnet actually delivered (S028-S029 delta):**
+**S036 delivered:**
 
 | Item | Status | Commit |
 |---|---|---|
-| Gate 3 — Budget Planner live on Vercel | DONE ✅ | 74699da |
-| Prisma type root cause fixed (output="./generated/client" removed) | DONE ✅ | bf6ff0f |
-| @csps/integrations workspace package wired | DONE ✅ | 9fba3f9 |
-| External Integrations Hub: Vercel (10 rules) + Supabase (8) + Clerk (8) + ZenStack (7) | DONE ✅ | 9adf9c6 |
-| GRL: all OPEN requests resolved | DONE ✅ | 55423df |
-| SROF-012 multi-perspective review prepared | DONE ✅ | 0361abc |
-| Council protocol gaps documented | DONE ✅ | 37f0e7a |
-
-**What was NOT done from Turn 21 directives:**
-- ADR-0027: scope_level on all artifacts — NOT done (validate-scope-level-declared.mjs not built)
-- validate-scope-conflict.mjs → BLOCKING upgrade — NOT done (still advisory)
-- backfill scope_level script — NOT done
-- pre-tool-use-scope-guardian.sh — NOT done
-- session-context-record.md populated — NOT done
-
-Reason: Gate 3 deployment work consumed the session. These are deferred to S030.
+| PROTO-001: 3-step wiring audit (19 WIRED / 12 DEFERRED / 22 ORPHAN) | DONE ✅ | c91a974 |
+| validate-wiring-completeness.mjs LIVE | DONE ✅ | c91a974 |
+| Wire NOW: 11 items (rate-limit, Sentry, PostHog, OnboardingWizard, etc.) | DONE ✅ | ddfa4db |
+| 6 EP-ERR error patterns + error-registry/ + post-stop-error-harvest.sh | DONE ✅ | 25cbec8 + 80049c1 |
+| validate-communication-protocol.mjs + validate-active-protocol.mjs | DONE ✅ | ddfa4db |
+| P-UX-001 contextual-locality + B_CONTEXTUAL_LOCALITY | DONE ✅ | ddfa4db |
+| ZCA 5 surfaces (Rule 7 + inner-default + template + AGENTS.md + P-UX-002) | DONE ✅ | 6ffb879 |
+| B_ZCA + audit slug + L2 domain + memory/feedback_zca.md (CEC complete) | DONE ✅ | S036 close |
+| pnpm principles:split (63 principles) + contracts:split (60 contracts) | DONE ✅ | S036 close |
+| PROTO-003 closed + all commits pushed to remote | DONE ✅ | 8dc60ba |
 
 ---
 
-## §6 — Open Issues Requiring Opus Input (Priority-ordered)
+## §6 — Open Items Requiring OPUS-2 Input (S037 priority)
 
-### CRITICAL (security / correctness)
+### PRIMARY (S037 mandate)
+**OPEN-001: PI-002 PI schema YAML + create-pi.mjs**
+PI tracking infrastructure — every new libs/apps file needs a ratified PI item. Without this, implementation gate (PIG = validate-implementation-gate.mjs) has no schema. OPUS-2 specified in Turn 59.
 
-**SEC-001: staffRole self-promotion gap**
-`schema.zmodel:141` — `@@allow("update", auth().id == id)` allows a user to update their own User record. `staffRole` is a field on User. If the API layer doesn't strip `staffRole` from update payloads, a user can self-promote to staff bypass (grants cross-tenant read to ALL tenants). ZModel field-level deny needed.
+**OPEN-002: PI-003 validate-implementation-gate.mjs (PIG)**
+Blocks commits with new libs/ files not covered by a ratified PI.
 
-**PERF-001: balance/route.ts unbounded query**
-`apps/budget-planner/src/app/api/budget/balance/route.ts:48` — `?all=true` path does unbounded `findMany` with no `take`. In-process JS aggregation. Will OOM or timeout at 100K+ transactions. Needs: Prisma `groupBy` with `_sum`, or raw SQL, or materialized view.
+### SECONDARY
+**OPEN-006: post-stop-rzf-reminder.sh** — promote from STUB to ACTIVE
+**OPEN-012: P-OPER-002 in principles.yaml** — currently only in universal-governance.md
 
-### HIGH (platform readiness for App #3)
-
-**UX-001: JWT refresh gap on sign-up**
-Window between sign-up and first tenantId in JWT (Clerk TTL ~5 min) shows 403 → redirect to sign-in → infinite loop. User sees "broken login", not "setting up account." Pattern needed: polling endpoint, Clerk session_variables, or sync org creation in user.created webhook.
-
-**DEV-001: apps/template/ is docs-only**
-`apps/template/` has 2 files (README.md + .env.example). No runnable scaffold. Every new app must copy budget-planner and manually strip domain logic. Need minimum viable scaffold: package.json, layout.tsx (ClerkProvider), middleware.ts, sign-in/up pages, next.config.js, vercel.json.
+Full register: `tools/council/opus-open-items.md` (18 pending items)
 
 ---
 
-## §7 — Documents Opus Should Read (in order)
+## §7 — Documents OPUS-2 Should Read (in order)
 
-1. **This file** — `tools/council/platform-state-snapshot.md` (you are reading it now)
-2. **Sonnet Report + L1 items** — `tools/council/sonnet-turn.md` (bottom section: "Sonnet Report — S028/S029")
-3. **Full 14-question review** — `docs/plan/_handoff/VAULT/opus-srof-012-platform-core-readiness-review.md`
-4. **Context architecture (Turn 21 output)** — `.claude/core-spines/L2_DOMAIN_AI_CONTEXT_ARCHITECTURE.md`
-5. **Current schema** — `libs/policies/schema.zmodel` (first 100 lines — generator + models)
-
-**Do NOT read:**
-- `docs/plan/_handoff/VAULT/` broadly (189 files — too many, use targeted reads)
-- `tools/validators/` broadly (104 files — not needed for this turn)
-- Any file not listed above unless a specific question requires it
+1. **This file** — `tools/council/platform-state-snapshot.md`
+2. **Open items register** — `tools/council/opus-open-items.md`
+3. **Turn 78 (last Opus turn)** — `tools/council/opus-turn.md`
+4. **S036 HANDOFF** — `docs/plan/_handoff/HANDOFF-S036-to-S037.md`
+5. **ZCA ratification record** — `tools/council/opus-turn.md` Turn 78 §ZCA Ratification
 
 ---
 
-## §8 — Council Communication Protocol (what Sonnet needs from Opus)
+## §8 — Communication Protocol (7 rules — UPDATED S036)
 
-Opus: please confirm or amend this protocol on your side:
+Rule 7 (ZCA) added. Full protocol: `tools/council/communication-protocol-shared.md`
 
-1. **Snapshot-first reading**: Opus reads `platform-state-snapshot.md` first on every turn. Sonnet updates this file before every Opus communication. No system scanning needed.
-
-2. **Turn format remains as per PROTOCOL.md** — but Opus should explicitly state "I have read the snapshot dated [date], platform at S[NNN]" at the top of every turn to confirm reading current state.
-
-3. **Express reviews** (L1): Opus produces a 5-line EXPRESS block per item. Sonnet implements without full advisory session.
-
-4. **Security items escalate to L2 automatically**: anything touching `schema.zmodel:@@allow` or API auth patterns → full Opus turn, not express.
-
-5. **Opus persona for Virtual Audit (L0)**: Sonnet's internal L0 self-check should ask "what would Opus say?" using this knowledge base:
-   - Opus consistently catches: missing field-level policies, unbounded queries, timing race conditions, cross-tenant data leakage
-   - Opus's primary audit questions: (a) What is the scale failure mode? (b) What is the security boundary? (c) What is the rollback path? (d) Does this contradict a sealed principle?
-   - When L0 answer is "I don't know" → escalate to L1 immediately, do not proceed
+1. Identity handshake: `Opus, this is Sonnet.` / `[PROTOCOL: ID | STEP: N of M] Sonnet, this is Opus.`
+2. Directive: self-contained, verification tail `node tools/verify.mjs exit_code=0 before committing`
+3. Report: `Opus, this is Sonnet. [session] done at commit [sha] — [items]. Questions: (1)...`
+4. Contextual locality: content at point of use, never "see §X"
+5. Single active thread: one directive at a time
+6. DONE standard: built + wired + called + output verified
+7. **ZCA (NEW S036):** every cross-boundary message starts with WHO/WHAT/HOW/NOW
 
 ---
 
-## §9 — Sonnet Prohibitions Until Opus Responds
+## §9 — Sealed Decisions (do NOT re-open)
 
-- Do NOT implement ENH-001 (balance fix) without Opus ratifying the query pattern
-- Do NOT implement any schema.zmodel @@allow change without L2 review
-- Do NOT build apps/template/ scaffold without Opus ratifying the minimum viable set
-- Do NOT promote validate-scope-conflict.mjs to BLOCKING without Turn 22 directive
+- P-ARCH-030: apps are ephemeral trials
+- P-ARCH-031: DONE = wired + called + verified
+- P-UX-001: contextual-locality
+- **P-UX-002: zero-context-assumption / ZCA — NEW S036, CONSTITUTIONAL**
+- USM S0-S5 unified scope model
+- GCI gate: GCI<10 proceed, ≥10 SROF first
+- No Parallel Pipelines
 
 ---
 
-## §10 — What Just Changed (since last Opus turn)
+## §10 — Session History (last 5)
 
-| Commit | What | Status |
-|---|---|---|
-| 7a821af | SEC-001: staffRole @@deny live in schema.zmodel | DONE |
-| 908e7f9 | SROF-008 filed in request log | DONE |
-| bb7d960 | platform-state-snapshot.md + opus-turn-22-request.md created | DONE |
-
-ZenStack v2 limitation discovered: `@@allow fields:` not supported. VLT-S029-FIELD-SCOPE tracked.
-Ready for PERF-001 (balance/route.ts groupBy) on next directive.
-
-| cad7482 | PERF-001: groupBy replaces unbounded findMany in balance/route.ts | DONE |
-| ec07fd1 | SEC-001 Sonnet Report + snapshot update | DONE |
-
-| 7e90760 | DEV-001: 18-file template scaffold + pnpm create:app | DONE |
-| Turn 32 | Mini-tree protocol sealed, file naming convention sealed, E1-E4 queue registered | DONE |
-
-**E-session build queue (registered, not yet built):**
-E1: validate-mini-tree-integrity.mjs (SPI=0.15) | E2: validate-file-complexity.mjs (SPI=0.10) | E3: validate-file-naming.mjs (SPI=0.15) | E4: validate-opus-chat-jump-freshness.mjs (SPI=0.05) | E5: backfill principle slice names (SPI=0.25)
-
-| 425f20b | S030 E2+CAP: validate-file-complexity LIVE + Context Alignment Preamble | DONE |
-| 93fa37d | S030 E0: validate-platform-capacity LIVE | DONE |
-| a2fac99 | S030 E1: validate-mini-tree-integrity LIVE | DONE |
-
-**S035 STATUS: CLOSED** | 113 validators | storage+realtime+webhooks live | full async infra done | App #3 = S036
-**S034 STATUS: CLOSED** | 113 validators | libs/components/ 5 UI shells | scope backfill done | App #3 = S035
+**S036 STATUS: CLOSED** | 115+ validators | ZCA constitutional | 63 principles | 60 contracts | error registry + wiring audit live
+**S035 STATUS: CLOSED** | 113 validators | storage+realtime+webhooks live | full async infra done
+**S034 STATUS: CLOSED** | 113 validators | libs/components/ 5 UI shells | scope backfill done
 **S033 STATUS: CLOSED** | 113 validators | email+jobs+monitoring live | libs/integrations/ complete
 **S032 STATUS: CLOSED** | 113 validators | exit_code=0 | Security Phase 1 complete | 25 moat elements
 **S031 STATUS: CLOSED** | 110 validators | exit_code=0 | E3+E4 LIVE | AGENTS.md 179 lines | 23 moat elements

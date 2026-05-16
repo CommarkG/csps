@@ -22,8 +22,34 @@ links:
 
 # Chat Transfer — S036 Complete State
 
-**From:** Sonnet (this session) | **To:** New Sonnet tab
-**Last commit:** 80049c1 | **Date:** 2026-05-16
+**S036 CLOSED — session complete. Use HANDOFF-S036-to-S037.md for S037.**
+
+**From:** Sonnet (OPUS-2 enhanced) | **To:** New Sonnet tab
+**Last commit:** S036-close (see git log) | **Date:** 2026-05-16 | **OPUS-2 turn:** 78
+
+---
+
+## WHO YOU ARE AND HOW THIS WORKS (read this first — assume nothing)
+
+**You are:** A new Claude Sonnet instance (builder/implementer) taking over from a previous Sonnet tab that ran out of context. You have no memory of what happened before. Everything you need is in this file and the files it references.
+
+**Your role:** Builder and Implementer. You write code, create files, run validators, commit to GitHub, and report back. You do NOT make architectural decisions alone — you ask OPUS-2 for direction on anything architectural.
+
+**OPUS-2 (Claude Opus in a separate chat tab):** The Architectural Advisor. OPUS-2 makes design decisions, produces directives for you to implement, and reviews your work. OPUS-2 writes turns to `tools/council/opus-turn.md`. You implement, then report back. When you have architectural questions: file a SROF (Sonnet Request for Opus Feedback) and say "SROF-NNN filed."
+
+**The Governor (Yariv Fink):** The human decision-maker. He relays messages between you and OPUS-2 — paste your reports to him, he brings them to OPUS-2, OPUS-2 responds, he brings that back to you. He ratifies all significant decisions.
+
+**The 3-party triangle:**
+```
+OPUS-2 (architect) writes directives → Governor (relay) pastes to Sonnet → 
+Sonnet implements → Sonnet reports to Governor → Governor brings to OPUS-2
+```
+
+**The project (CSPS):** CoreSights Platform Services — a multi-tenant SaaS platform (TypeScript/Next.js 14) built to support up to 30 apps. Budget Planner is the first deployed app at csps-budget-planner.vercel.app. The codebase is a pnpm monorepo with Clerk (auth), Supabase PostgreSQL (database), ZenStack (schema-based security), and Vercel (deployment).
+
+**The workspace:** `c:\Users\finky\Desktop\Claude Code\Csps` — this is the repo root. All paths in this file are relative to it.
+
+**Governance:** 115+ validators run via `node tools/verify.mjs`. Exit code must be 0 before every commit. Principles live in `packages/principles/`. Constitutional decisions are sealed — do NOT re-open them.
 
 ---
 
@@ -107,10 +133,14 @@ Filed at: `docs/plan/_handoff/VAULT/governor-brief-app3-ux-templates.md`
 Content: onboarding wizard archetypes, sandbox trial mode, OUTPUTS list (website/landing/funnel/email/pricing)
 **Status:** Deferred until after items #2-5. To be re-presented improved after ratification.
 
-### S036 PROTO-002 Open (Step 2 pending OPUS-2)
-PROTO-001 was protocol infrastructure (complete at 98db123).
-PROTO-002 Step 1 was Turn 76 §1-§3 (complete at 80049c1).
-**Awaiting:** OPUS-2 Step 2 directive.
+### PROTO-002 Step 2 — Active (paste this to Sonnet)
+PROTO-001 complete (98db123). PROTO-002 Step 1 complete (25cbec8).
+Step 2 directive (paste when Governor confirms "apply hook"):
+`[PROTOCOL: PROTO-002 | STEP: 2 of 2 | MODE: sequential] Sonnet, this is Opus. Read tools/council/opus-open-items.md OPEN-019 — Step 2: (1) apply .claude/hooks/post-stop-error-harvest.sh per the diff already shown; (2) update validate-wiring-completeness.mjs to exempt symbols imported within libs/ itself (libs/-to-libs/ = internal-use, not orphan); (3) add to AGENTS.md Hard Rule: "PATIENCE: Governed foundation beats fast patches after session 10."; (4) present diff for session-open.sh Patient Foundation injection; then node tools/verify.mjs exit_code=0 before committing.`
+
+### OPUS-2 Open Items Register
+19 items pending — see `tools/council/opus-open-items.md`
+Most critical blockers: OPEN-001 (PI-002 schema), OPEN-002 (PIG validator), OPEN-006 (rzf-reminder hook)
 
 ### App #3 Domain Decision
 Platform ready. Governor selects domain.
@@ -167,5 +197,20 @@ PostHog (POSTHOG_API_KEY), Upstash (UPSTASH_REDIS_*), Cloudflare R2 (R2_*)
 
 ---
 
-*S036 ACTIVE | 115+ validators | All libs/ live | App #3 = Governor domain decision*
-*Sonnet: follow communication-protocol-shared.md. Every message: "Opus, this is Sonnet."*
+---
+
+## HOW SONNET HANDLES CHAT TRANSFERS (Permanent Protocol)
+
+When context fills and a new Sonnet tab is needed:
+1. **Before closing:** Update this file — commit with `git add docs/plan/_handoff/VAULT/chat-jump-S036-complete.md`
+2. **Fields to update:** last_commit, PROTO-* status, OPEN items count, any new validators
+3. **Test the paste target:** The one-paragraph below must be self-contained — new Sonnet proceeds without asking questions
+4. **Notify OPUS-2:** Add "Sonnet chat-jump: created/updated" to Sonnet Report
+
+The paste paragraph is the canonical entry point. Files referenced within it are secondary.
+
+---
+
+*S036 ACTIVE | 115+ validators | All libs/ live | PROTO-002 Step 2 pending | 19 OPUS-2 open items*
+*Communication protocol: every message starts "Opus, this is Sonnet." | DONE = wired + called + verified*
+*OPUS-2 Tab: report to Opus when needed. Never parallel directives.*

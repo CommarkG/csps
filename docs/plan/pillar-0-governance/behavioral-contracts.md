@@ -2226,3 +2226,29 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - memory: `feedback_contextual_locality.md` (survives chat moves)
 - principle: P-UX-001 in principles.yaml
 - validator: validate-communication-protocol.mjs (checks Sonnet reports)
+
+## B_ZCA — Zero-Context Assumption at every cross-boundary communication (S036 P-UX-002)
+
+**Canonical:** Every communication that crosses a boundary between independent entities assumes the receiver has zero prior context. Before any task context, provide WHO/WHAT/HOW/NOW inline: WHO (sender/receiver/roles), WHAT (project/system/purpose), HOW (collaboration pattern/rules), NOW (current state/next action). The test: "Could someone with no background on this project understand this completely?" If no → the boundary is not crossed correctly.
+
+**Governing intent:** The receiver is always a stranger until proven otherwise. Shared context is an illusion at boundaries — the sending side always feels like context is obvious, the receiving side always starts from zero. WHO/WHAT/HOW/NOW is the minimum viable context bundle at any crossing.
+
+**Composes with:** B_BOUNDARY_ALIGNMENT_PROTOCOL (which governs UNDERSTANDING + ALIGNMENT blocks WITHIN a session) + B_CONTEXTUAL_LOCALITY (which governs content at point of use WITHIN a single document). ZCA governs completeness ACROSS boundaries where receiver has no prior state.
+
+**Counterweight:** Internal tool calls, sub-steps within a single response, and continuation messages within the same session are NOT boundary crossings — do not inject WHO/WHAT/HOW/NOW within a flowing session.
+
+**Anti-patterns:**
+- Chat-jump sent to new AI tab without WHO/WHAT/HOW/NOW preamble
+- SROF filed to OPUS-2 that assumes OPUS-2 knows what "the current directive" is
+- API error message that says "configuration failed" without explaining what configuration, why it matters, and how to fix it
+- Session start briefing that references "S036 state" assuming a new AI instance knows what S036 is
+
+**Source:** OPUS-2 Turn 77 — ZCA concept defined | Ratified 2026-05-16 by Governor (yariv). P-UX-002 in principles.yaml.
+
+**Mechanical surfaces (4/5 declared S036):**
+- memory: `feedback_zca.md` (survives chat moves)
+- principle: P-UX-002 in principles.yaml
+- inner-default: `docs/plan/_handoff/VAULT/inner-ai-defaults/boundary-assumptions.md`
+- template: `docs/plan/_handoff/VAULT/templates/ai-transfer-template.md`
+- protocol: Rule 7 in `tools/council/communication-protocol-shared.md`
+- AGENTS.md: ZCA Hard Rule under Communication boundaries

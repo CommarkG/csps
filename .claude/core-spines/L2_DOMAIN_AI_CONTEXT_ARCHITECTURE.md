@@ -77,6 +77,8 @@ The domain answers 4 operational questions that P-META-020 leaves to implementat
 - S1→S2: what platform patterns the app inherits
 - Each transition: `context_transfer: from_scope: S0 → to_scope: S1 | inherited: [...] | new: [...]`
 
+**Cross-entity boundary transfer (ZCA — P-UX-002)** — When context crosses between INDEPENDENT entities (separate AI tabs, separate sessions, external APIs, EKEP exchanges): the receiver starts from zero. WHO/WHAT/HOW/NOW is mandatory before any task content. Scope transitions above are internal (same entity, different layer); ZCA governs external crossings where the receiver has no prior state. See: [boundary-assumptions.md](../plan/_handoff/VAULT/inner-ai-defaults/boundary-assumptions.md) + [ai-transfer-template.md](../plan/_handoff/VAULT/templates/ai-transfer-template.md).
+
 ## Per-Domain Validators
 
 - `validate-question-coverage.mjs` (LIVE) — question_register field in plans

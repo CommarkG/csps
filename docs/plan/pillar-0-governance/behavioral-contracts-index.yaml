@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 59
+  total_count: 60
   generated_at: '2026-05-16'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -191,3 +191,6 @@ contracts:
   - id: B_CONTEXTUAL_LOCALITY
     desc: "content at point of use, never navigate"
     path: ./behavioral-contracts/B_CONTEXTUAL_LOCALITY.md
+  - id: B_ZCA
+    desc: "Zero-Context Assumption at every cross-boundary communication"
+    path: ./behavioral-contracts/B_ZCA.md

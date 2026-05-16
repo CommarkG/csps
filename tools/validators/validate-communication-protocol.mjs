@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// validate-communication-protocol.mjs — S036 (communication-protocol-shared.md Rule 1)
-// Checks that Sonnet report entries in sonnet-turn.md begin with "Opus, this is Sonnet."
+// validate-communication-protocol.mjs — S036 (communication-protocol-shared.md Rules 1+2)
+// Rule 1: Sonnet→Opus messages start with "Opus, this is Sonnet." (sonnet-turn.md)
+// Rule 2: Opus→Sonnet directives start with [PROTOCOL:] or "Sonnet, this is Opus." (opus-turn.md)
+//         (see validate-directive-has-rzf.mjs for RZF ordering enforcement)
 // ADVISORY only — enforces identity handshake rule for cross-session consistency.
 //
-// Also checks: validate-active-protocol entries reference protocol IDs.
 // Wired: tools/verify.mjs cycle 'communication_protocol'
 // Slug: 'communication-protocol' in audit-runner.md
 

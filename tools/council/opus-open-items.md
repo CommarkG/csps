@@ -24,7 +24,7 @@ Updated: 2026-05-16 | Every turn: check this before writing anything new.
 | OPEN-008 | validate-persona-chain-complete.mjs | Turn 62 | pending | sequential chain has no enforcement | none yet |
 | OPEN-009 | sync-universal-governance.mjs script | Turn 72 | pending | auto-update universal governance | none yet |
 | OPEN-010 | PROP-001 proposal template YAML | Turn 69 | pending | no formal Tier 1 proposal process | none yet |
-| OPEN-011 | B_PLAN_MUST_EMBED_NOT_REFERENCE contract | Turn 67 | pending | contract is a note, not implemented | none yet |
+| OPEN-011 | B_PLAN_MUST_EMBED_NOT_REFERENCE | Turn 67 | ✅ DONE — gradual-build-plan 3 mandatory wiring sections added (commit 25cbec8) | — | — |
 | OPEN-012 | P-OPER-002 in principles.yaml | Turns 67/72 | pending | principle only in universal-governance.md | none yet |
 | OPEN-013 | S036 formal close (closing-summary + HANDOFF) | — | pending | session has no official close record | none yet |
 | OPEN-014 | Sonnet E0/E1 retrospective in sonnet-turn.md | Turn 1 | pending | protocol gap documented, never resolved | none yet |
@@ -35,7 +35,7 @@ Updated: 2026-05-16 | Every turn: check this before writing anything new.
 
 ---
 
-| OPEN-019 | validate-wiring-completeness.mjs: exempt internal-use symbols (libs/-to-libs/ imports) | This turn | pending | 22 false orphans in current run | none yet |
+| OPEN-019 | validate-wiring-completeness.mjs: exempt internal-use symbols (libs/-to-libs/ imports) | This turn | ✅ DONE (commit in PROTO-002 Step 2 scope) | — | — |
 
 ## COMPLETED THIS SESSION
 

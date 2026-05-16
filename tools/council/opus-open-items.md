@@ -29,7 +29,7 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 | OPEN-013 | S036 formal close (closing-summary + HANDOFF) | — | ✅ DONE (76328f4 + 19891ad) | — | — |
 | OPEN-014 | Sonnet E0/E1 retrospective in sonnet-turn.md | Turn 1 | pending | protocol gap documented, never resolved | none yet |
 | OPEN-015 | 3-location wiring in gradual-build-plan.template.md | This turn | ✅ APPROVED — in PROTO-002 scope | — | — |
-| OPEN-016 | GitHub repo creation for universal-governance | Turn 69 | pending | local files only, not accessible from Codespaces | none yet |
+| OPEN-016 | GitHub repo creation for universal-governance | Turn 69 | ✅ DONE S037 — github.com/CommarkG/universal-governance (private, 5 files pushed) | — | — |
 | OPEN-017 | L1 files ratification (core/L1-*.md) | This turn | ✅ RATIFIED 2026-05-16 | — | — |
 | OPEN-018 | projects/csps.md pointer file for universal repo | Turn 69 | pending | ecosystem index incomplete | none yet |
 

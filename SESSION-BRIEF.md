@@ -9,7 +9,7 @@
 | **Current session** | S022 |
 | **Previous session** | S021 |
 | **Last updated** | 5 day(s) ago |
-| **Last commit** | ddfa4db S036 Wire NOW: 11 items — rate limiting, Sentry, PostHog, OnboardingWizard, DashboardShell, SettingsLayout, auditLog, triggerWebhook, P-UX-001, comms validator |
+| **Last commit** | 08130f6 S037-B: RZF hook + P-OPER-002 + PI questions gate (OPEN-006/007/012) |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

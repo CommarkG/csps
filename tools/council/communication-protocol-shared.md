@@ -70,6 +70,16 @@ DONE = built + wired + called + output verified. Never declare done on commit al
 
 ---
 
+## RULE 7 — Zero-Context Assumption (ZCA)
+
+Every communication crossing a boundary assumes the receiver has zero prior context.
+Provide WHO/WHAT/HOW/NOW inline before any task context.
+Applies to: tab transfers, SROFs, API responses, EKEP exchanges, any cross-boundary message.
+Test: "Could someone with no background on this project understand this completely?"
+If no → the crossing is incomplete.
+
+---
+
 ## WHERE THIS IS READ
 
 - **Sonnet:** session-open.sh injects this file's rules at every session start

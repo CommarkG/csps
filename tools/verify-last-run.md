@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T15:32:17.328Z
-- finished_at: 2026-05-16T15:32:44.016Z
+- ran_at: 2026-05-16T16:01:26.229Z
+- finished_at: 2026-05-16T16:01:52.567Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T15:32:17.328Z",
-    "finished_at": "2026-05-16T15:32:44.016Z",
+    "ran_at": "2026-05-16T16:01:26.229Z",
+    "finished_at": "2026-05-16T16:01:52.567Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.9,
+        "duration_seconds": 7.1,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.9,
         "principles_loaded": 62,
         "findings_total": 5
       },
@@ -42,9 +42,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 393,
+        "scanned": 396,
         "errors": 0,
-        "warnings": 23,
+        "warnings": 24,
         "exempt": 283
       },
       {
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 357,
-        "clean": 357,
+        "checked": 360,
+        "clean": 360,
         "blocking": 0,
         "registry": 48
       },
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 548,
+        "scanned": 551,
         "advisory": 86
       },
       {
@@ -452,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 67,
+        "turns": 68,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -484,9 +484,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "overrides": 0,
+        "overrides": 1,
         "covered": 0,
-        "uncovered": 0
+        "uncovered": 1
       },
       {
         "name": "wiring_completeness",
@@ -521,7 +521,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 143,
+        "checked": 144,
         "blocking": 0,
         "advisories": 0
       },
@@ -579,8 +579,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -623,11 +623,11 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 26,
+        "total": 27,
         "active": 14,
         "stub": 10,
-        "unknown": 2,
-        "stub_rate": 38
+        "unknown": 3,
+        "stub_rate": 37
       },
       {
         "name": "session_harvest_readiness",
@@ -776,7 +776,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 136,
+        "checked": 137,
         "missing_why": 36
       },
       {
@@ -1098,7 +1098,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7
+        "duration_seconds": 6
       },
       {
         "name": "audit_runner_full_pass",

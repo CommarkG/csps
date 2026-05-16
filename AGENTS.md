@@ -110,6 +110,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 
 ### Communication boundaries (P-META-014 MUV + B_BOUNDARY_ALIGNMENT_PROTOCOL S024)
 - ❌ Never cross any AI communication boundary (Types A-E: AI→AI / subagent / API / chat / human) without UNDERSTANDING BLOCK before + ALIGNMENT CONFIRMATION after (B_BOUNDARY_ALIGNMENT_PROTOCOL + B_MUV). Format: "I understand X as [Layer 3 intent] / I produced Z / match: YES|PARTIAL|NO." Silent crossing = structural failure. Enforced: validate-boundary-alignment.mjs.
+- ❌ **ZCA: Every cross-boundary message (tab transfer, API, SROF, EKEP) starts with WHO/WHAT/HOW/NOW. Never assume the receiver knows anything.** Template: [ai-transfer-template.md](docs/plan/_handoff/VAULT/templates/ai-transfer-template.md). Entry: [boundary-assumptions.md](docs/plan/_handoff/VAULT/inner-ai-defaults/boundary-assumptions.md). Rule 7 of communication-protocol-shared.md. (OPUS-2 Turn 77 | S036)
 - ❌ Never close a session without GP-S<NNN>-<NN> entries for substantive prompts + cardinal cross-link to user-intents.md (skill: `cc-absorption-csps`)
 - ❌ Never write HANDOFF without HPFA + addressing or carrying-forward findings (skill: `slim-handoff`)
 - ❌ **VERBATIM HUMAN TEXT — two-part rule (caused confusion 20+ times):**

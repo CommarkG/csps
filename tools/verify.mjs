@@ -973,6 +973,13 @@ const CYCLES = [
     },
   },
   {
+    // S037-B LIVE — PI Questions Gate (OPEN-007): PI files with status: implementing must have
+    // zero unanswered questions. ADVISORY. P-OPER-002 + P-ARCH-031.
+    name: 'pi_questions_answered',
+    command: 'node tools/validators/validate-pi-questions-answered.mjs',
+    parse_output: (out) => { const m = out.match(/pi_checked=(\d+)\s+implementing=(\d+)\s+advisories=(\d+)/); return m ? { pi_checked: Number(m[1]), implementing: Number(m[2]), advisories: Number(m[3]) } : {}; },
+  },
+  {
     // S037 LIVE — PI-003 Implementation Gate: advisory check that lib/app commits reference PI-NNN.
     // Reads git log -1 --name-only. Advisory only (transition period per Opus Turn 62).
     // Exempt: fix:/chore:/docs: prefixes. Future: BLOCKING after PI backfill complete.

@@ -2252,3 +2252,22 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - template: `docs/plan/_handoff/VAULT/templates/ai-transfer-template.md`
 - protocol: Rule 7 in `tools/council/communication-protocol-shared.md`
 - AGENTS.md: ZCA Hard Rule under Communication boundaries
+
+## B_DONE_RIGHT_FROM_THE_START — verification is evidence, not the mechanism that creates quality (S037 P-OPER-002)
+
+**Canonical:** Verification confirms quality already achieved — it does not create quality. Before building, specify HOW the result will be correct: wiring checklist, DONE criterion, validation path. Build to the specification; run verify as evidence not as a discovery/fix loop. The sequence is: understand → specify → build correctly → verify evidence. NOT: build → verify → patch → verify → patch.
+
+**Governing intent:** Every `pnpm verify exit 1` followed by patching rounds is a signal that the specification was under-determined before building. The fix is earlier specification, not faster iteration. Quality is a design property, not a testing property.
+
+**Composes with:** B_PRE_CLOSE_VERIFICATION (verify evidence must be THIS-SESSION, not memory) + P-ARCH-031 (DONE = wired + called + verified) + P-META-008 (ZF cycle discipline). P-OPER-002 is the philosophy that makes B_PRE_CLOSE_VERIFICATION pass on the first attempt rather than requiring iteration.
+
+**Anti-patterns:**
+- Writing code then running verify to "see what's wrong" — spec first, then build
+- Treating verify failures as normal build output rather than specification failures
+- Iterating patch → verify → patch as the primary quality mechanism
+
+**Source:** OPUS-2 Turn 80 | Ratified 2026-05-16 by Governor (yariv). P-OPER-002 in principles.yaml.
+
+**Mechanical surfaces (2/5 declared S037):**
+- memory: `feedback_done_right.md` (survives chat moves)
+- principle: P-OPER-002 in principles.yaml

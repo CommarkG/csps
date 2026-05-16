@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T18:29:26.313Z
-- finished_at: 2026-05-16T18:29:51.548Z
+- ran_at: 2026-05-16T18:39:24.037Z
+- finished_at: 2026-05-16T18:39:50.105Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T18:29:26.313Z",
-    "finished_at": "2026-05-16T18:29:51.548Z",
+    "ran_at": "2026-05-16T18:39:24.037Z",
+    "finished_at": "2026-05-16T18:39:50.105Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.6,
+        "duration_seconds": 7.2,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -32,9 +32,9 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
-        "principles_loaded": 63,
-        "findings_total": 10
+        "duration_seconds": 0.8,
+        "principles_loaded": 64,
+        "findings_total": 13
       },
       {
         "name": "frontmatter_validate",
@@ -45,7 +45,7 @@
         "scanned": 398,
         "errors": 0,
         "warnings": 25,
-        "exempt": 284
+        "exempt": 285
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -62,7 +62,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -89,7 +89,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 60,
+        "source_contracts": 61,
         "missing_slices": 0
       },
       {
@@ -98,7 +98,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_ids": 63,
+        "source_ids": 64,
         "missing_slices": 0
       },
       {
@@ -243,8 +243,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "contracts": 60,
-        "orphans": 6,
+        "contracts": 61,
+        "orphans": 7,
         "tensions": 0,
         "overlaps": 1
       },
@@ -300,7 +300,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 24,
-        "validators": 117,
+        "validators": 118,
         "models": 0,
         "advisories": 8
       },
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 554,
+        "scanned": 555,
         "advisory": 86
       },
       {
@@ -452,7 +452,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "turns": 70,
+        "turns": 71,
         "session": "unknown",
         "has_chat_jump": false
       },
@@ -473,8 +473,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 210,
-        "missing": 96,
+        "checked": 211,
+        "missing": 97,
         "invalid": 0,
         "exempt": 1
       },
@@ -521,7 +521,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 145,
+        "checked": 147,
         "blocking": 0,
         "advisories": 0
       },
@@ -579,8 +579,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 2,
-        "advisory": 2,
+        "issues": 0,
+        "advisory": 0,
         "duplicates": 0
       },
       {
@@ -623,11 +623,11 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 27,
-        "active": 14,
+        "total": 28,
+        "active": 15,
         "stub": 10,
         "unknown": 3,
-        "stub_rate": 37
+        "stub_rate": 36
       },
       {
         "name": "session_harvest_readiness",
@@ -636,7 +636,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 118
+        "validators": 119
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -776,8 +776,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 139,
-        "missing_why": 37
+        "checked": 142,
+        "missing_why": 38
       },
       {
         "name": "open_plan_levels",
@@ -1009,9 +1009,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 118,
+        "validators_checked": 119,
         "orphans": 0,
-        "registered": 118
+        "registered": 119
       },
       {
         "name": "token_budget_validate",
@@ -1099,6 +1099,16 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 6
+      },
+      {
+        "name": "pi_questions_answered",
+        "command": "node tools/validators/validate-pi-questions-answered.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "pi_checked": 3,
+        "implementing": 0,
+        "advisories": 0
       },
       {
         "name": "implementation_gate",

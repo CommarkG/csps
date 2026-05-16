@@ -10,23 +10,23 @@ lifecycle_state: active
 
 # OPUS-2 Open Items Register
 
-Updated: 2026-05-16 | Every turn: check this before writing anything new.
+Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 
 | ID | Item | Announced | Status | Blocks | PI Ref |
 |---|---|---|---|---|---|
-| OPEN-001 | PI-002: PI schema YAML format + create-pi.mjs | Turn 59 | pending | entire PI tracking system | none yet |
-| OPEN-002 | PI-003: validate-implementation-gate.mjs (PIG) | Turn 62 | pending | commits without ratified plan reference | none yet |
+| OPEN-001 | PI-002: PI schema YAML format + create-pi.mjs | Turn 59 | ✅ DONE (40f931f) | — | PI-002 |
+| OPEN-002 | PI-003: validate-implementation-gate.mjs (PIG) | Turn 62 | ✅ DONE (40f931f) | — | PI-003 |
 | OPEN-003 | PI-004: PE Agent skill (.claude/skills/pe-agent.md) | Turn 59 | pending | automated bundling | none yet |
 | OPEN-004 | PI-005: meta-platform mini-tree documents | Turn 59 | pending | meta-platform only in opus-turn.md | none yet |
 | OPEN-005 | PI-013: EKEP wizard spec and PI file | Turn 72 | pending | cross-platform knowledge exchange | none yet |
-| OPEN-006 | post-stop-rzf-reminder.sh hook | Turns 63/67 | pending | RZF "mandatory" is aspirational only | none yet |
-| OPEN-007 | validate-pi-questions-answered.mjs | Turn 62 | pending | Questions Agent has no enforcement | none yet |
+| OPEN-006 | post-stop-rzf-reminder.sh hook | Turns 63/67 | ✅ BUILT S037-B (hook file + settings.json diff — Governor must apply) | — | — |
+| OPEN-007 | validate-pi-questions-answered.mjs | Turn 62 | ✅ DONE S037-B — LIVE in verify.mjs + pi-questions-gate slug | — | — |
 | OPEN-008 | validate-persona-chain-complete.mjs | Turn 62 | pending | sequential chain has no enforcement | none yet |
 | OPEN-009 | sync-universal-governance.mjs script | Turn 72 | pending | auto-update universal governance | none yet |
 | OPEN-010 | PROP-001 proposal template YAML | Turn 69 | pending | no formal Tier 1 proposal process | none yet |
 | OPEN-011 | B_PLAN_MUST_EMBED_NOT_REFERENCE | Turn 67 | ✅ DONE — gradual-build-plan 3 mandatory wiring sections added (commit 25cbec8) | — | — |
-| OPEN-012 | P-OPER-002 in principles.yaml | Turns 67/72 | pending | principle only in universal-governance.md | none yet |
-| OPEN-013 | S036 formal close (closing-summary + HANDOFF) | — | pending | session has no official close record | none yet |
+| OPEN-012 | P-OPER-002 in principles.yaml | Turns 67/72 | ✅ DONE S037-B — P-OPER-002 + B_DONE_RIGHT_FROM_THE_START ratified | — | — |
+| OPEN-013 | S036 formal close (closing-summary + HANDOFF) | — | ✅ DONE (76328f4 + 19891ad) | — | — |
 | OPEN-014 | Sonnet E0/E1 retrospective in sonnet-turn.md | Turn 1 | pending | protocol gap documented, never resolved | none yet |
 | OPEN-015 | 3-location wiring in gradual-build-plan.template.md | This turn | ✅ APPROVED — in PROTO-002 scope | — | — |
 | OPEN-016 | GitHub repo creation for universal-governance | Turn 69 | pending | local files only, not accessible from Codespaces | none yet |

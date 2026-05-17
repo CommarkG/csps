@@ -45,6 +45,9 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never conflate chat with session — N:1 forbidden (1-session in 1-chat default)
 - ❌ Never proceed past upload/paste/URL without manual-protocol + EXT-ID stamping
 - ❌ Never write HANDOFF while any blocker has `state: open`
+- ❌ Never passively observe a gap ("this should not be forgotten", "worth noting") — register OPEN-NNN immediately in the SAME turn (B_INHERITANCE_POLICY + EP-ERR-005: announce-not-track)
+- ❌ Never close a session without Zone A + Zone B + ALIGNMENT QUESTIONS (≥3) in the HANDOFF — validate-handoff-completeness.mjs BLOCKS (B_INHERITANCE_POLICY)
+- ❌ Never create a governance rule with T3-only enforcement (memory/session injection alone = drift-prone) — B_INHERITANCE_POLICY requires T1+T2+T3
 
 ### Governor Collaboration Behavioral Mandate (S018 — mechanical registration)
 

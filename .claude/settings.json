@@ -53,6 +53,10 @@
           {
             "type": "command",
             "command": ".claude/hooks/user-prompt-submit-raw-comments.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/user-prompt-submit-turn-counter.sh"
           }
         ]
       }

@@ -8,12 +8,12 @@
 ## §1 — Current Platform Identity
 
 ```yaml
-session: S038
+session: S039
 date: 2026-05-17
-platform_version: CSPS v0.38
+platform_version: CSPS v0.39
 governor: Yariv Fink (group:finky)
 repo: github.com/CommarkG/csps
-last_commit: 9188d98 (S038-C: DNA signals + open items)
+last_commit: c2fc7f7 (PROTO-018: Budget Planner build clean)
 sonnet_model: claude-sonnet-4-6[1m]
 ```
 
@@ -22,7 +22,7 @@ sonnet_model: claude-sonnet-4-6[1m]
 ## §2 — Platform Health (last pnpm verify run)
 
 ```yaml
-validators: 127
+validators: 127+
 exit_code: 0
 vlt_blockers: 0
 grl_open: 0
@@ -136,6 +136,7 @@ Rule 7 (ZCA) added. Full protocol: `tools/council/communication-protocol-shared.
 
 ## §10 — Session History (last 5)
 
+**S039 STATUS: ACTIVE** | 127+ validators | Budget Planner build fixed | App #3 domain pending
 **S038 STATUS: CLOSED** | 127 validators | STT module + quality-protocols mini-tree | DNA gate M-26 | communication protocol v2
 **S037 STATUS: CLOSED** | 125 validators | PE Agent live | 65 principles | 61 contracts | creation completeness + enforcement trio + EP-ERR loop
 **S036 STATUS: CLOSED** | 115+ validators | ZCA constitutional | 63 principles | 60 contracts | error registry + wiring audit live

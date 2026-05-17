@@ -1,10 +1,8 @@
 // libs/integrations/security/headers.ts
 // S032-C: Security headers for all CSPS Next.js apps.
-// Import in next.config.js headers() to apply platform-standard security headers.
-//
-// Usage in next.config.js:
-//   import { securityHeaders } from '@csps/integrations/security/headers'
-//   module.exports = { async headers() { return [{ source: '/(.*)', headers: securityHeaders() }] } }
+// @csps-deferred: for future next.config.ts consumers (ESM import compatible).
+// NOTE: next.config.js uses CJS require() which cannot load TypeScript ESM files.
+// Inline the headers array directly in next.config.js instead of importing this.
 
 export function securityHeaders(): { key: string; value: string }[] {
   return [

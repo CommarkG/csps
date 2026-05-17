@@ -49,13 +49,20 @@ for (const appName of readdirSync(APPS_DIR, { withFileTypes: true })
   const hasSpread = content.includes('...securityHeaders()') ||
                     content.includes('securityHeaders()');
 
-  if (hasImport && hasHeadersFn && hasSpread) {
+  // Also accept inline headers (when CJS import of .ts file is not possible)
+  const hasInlineHeaders = content.includes('X-Frame-Options') &&
+                           content.includes('Content-Security-Policy');
+
+  const passesFunctionPattern = hasImport && hasHeadersFn && hasSpread;
+  const passesInlinePattern = hasInlineHeaders && hasHeadersFn;
+
+  if (passesFunctionPattern || passesInlinePattern) {
     passing++;
   } else {
     const missing = [];
-    if (!hasImport) missing.push('missing import of securityHeaders');
+    if (!hasImport && !hasInlineHeaders) missing.push('missing securityHeaders import or inline headers');
     if (!hasHeadersFn) missing.push('missing headers() export');
-    if (!hasSpread) missing.push('not spreading securityHeaders()');
+    if (!hasSpread && !hasInlineHeaders) missing.push('not using securityHeaders() or inline headers');
     errors.push(`  ✗ apps/${appName}/next.config.js: ${missing.join('; ')}`);
     blocking++;
   }

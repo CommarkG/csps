@@ -16,12 +16,11 @@ function notificationKey(tenantId: string, userId: string) {
   return `notifications:${tenantId}:${userId}`
 }
 
-function getRedis() {
-  const url = process.env.UPSTASH_REDIS_REST_URL
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN
-  if (!url || !token) return null
-  const { Redis } = require('@upstash/redis')
-  return new Redis({ url, token })
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getRedis(): any {
+  // @upstash/redis not installed — wiring_deferred_until: S040
+  // When installed: replace with require('@upstash/redis').Redis + env var check
+  return null
 }
 
 function encode(data: string): Uint8Array {

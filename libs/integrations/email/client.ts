@@ -1,8 +1,6 @@
 // libs/integrations/email/client.ts
-// wiring_deferred_until: S039 (requires RESEND_API_KEY + email trigger points in apps)
-// S033-A: Platform email client using Resend.
-// Graceful passthrough when RESEND_API_KEY not set — logs warning, returns failure.
-// Note: react-email is a future upgrade path for richer templates; plain HTML is used now.
+// wiring_deferred_until: S040 (requires pnpm add resend + RESEND_API_KEY)
+// Stub: graceful failure until resend package installed + env var set
 
 type SendEmailInput = {
   to: string | string[]
@@ -24,31 +22,6 @@ export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult>
     console.warn('[csps/email] RESEND_API_KEY not set — email not sent:', input.subject)
     return { success: false, error: 'RESEND_API_KEY not configured' }
   }
-
-  const from = process.env.RESEND_FROM_EMAIL ?? 'noreply@csps.app'
-
-  try {
-    const { Resend } = await import('resend')
-    const resend = new Resend(apiKey)
-
-    const result = await resend.emails.send({
-      from,
-      to: Array.isArray(input.to) ? input.to : [input.to],
-      subject: input.subject,
-      html: input.html,
-      text: input.text,
-      replyTo: input.replyTo,
-    })
-
-    if (result.error) {
-      console.error('[csps/email] Send failed:', result.error)
-      return { success: false, error: result.error.message }
-    }
-
-    return { success: true, id: result.data?.id }
-  } catch (err) {
-    const message = err instanceof Error ? err.message : String(err)
-    console.error('[csps/email] Unexpected error:', message)
-    return { success: false, error: message }
-  }
+  console.warn('[csps/email] resend package not installed — email not sent:', input.subject)
+  return { success: false, error: 'resend package not installed' }
 }

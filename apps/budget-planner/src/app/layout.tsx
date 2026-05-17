@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
 
+// All pages in this app are auth-gated — never statically pre-render
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Budget Planner',
   description: 'CSPS Budget Planner — track income, expenses, and savings goals',

@@ -179,6 +179,8 @@ model Tenant extends Base {
   budgetGoal        BudgetGoal?
   notifications     Notification[]
   webhookEndpoints  WebhookEndpoint[]
+  habits            Habit[]
+  habitLogs         HabitLog[]
 
   @@schema("public")
   @@allow("read", auth().tenantId == id)
@@ -446,6 +448,44 @@ model Notification extends Base {
 // ─── WebhookEndpoint ───────────────────────────────────────────────────────────
 // Per-tenant webhook endpoints. Admin-level write via API guard; read for all members.
 // ZenStack: staff-only write. API layer: checkMembership(['owner','admin']) enforces customer access.
+
+// ── Habit Tracker (App #2) ───────────────────────────────────────────────
+
+// A habit the user wants to track daily (e.g. "Exercise", "Read 20 minutes")
+model Habit extends Base {
+  tenantId String
+  name     String    // user-defined habit name
+  logs     HabitLog[]
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@schema("public")
+  @@allow("read",          auth().tenantId == tenantId)
+  @@allow("create,update", auth().tenantId == tenantId)
+  @@deny("delete",         true)  // soft-delete via deletedAt in Base
+
+  @@index([tenantId, createdAt])
+}
+
+// A single day check-off for a habit — one per habit per day
+model HabitLog extends Base {
+  habitId  String
+  tenantId String
+  date     DateTime  // date only — store as midnight UTC of the day
+
+  habit  Habit  @relation(fields: [habitId], references: [id])
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)
+  @@allow("delete", auth().tenantId == tenantId)
+  @@deny("update",  true)  // immutable — delete and re-create to correct
+
+  @@unique([habitId, date])  // one check per habit per day
+  @@index([tenantId, date])
+  @@index([habitId, date])
+}
 
 model WebhookEndpoint extends Base {
   tenantId        String

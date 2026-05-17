@@ -53,6 +53,8 @@ const ZMODEL_ONLY_DEFERRED = new Set([
   'BudgetCategory',    // App #2 Budget Planner — not used by task-mgmt
   'Transaction',       // App #2 Budget Planner — not used by task-mgmt
   'BudgetGoal',        // App #2 Budget Planner wizard completion — not used by task-mgmt
+  'Habit',             // App #2 Habit Tracker — not used by task-mgmt
+  'HabitLog',          // App #2 Habit Tracker — not used by task-mgmt
 ]);
 
 // Fields that exist in the app schema but intentionally NOT in ZModel
@@ -69,6 +71,8 @@ const ZMODEL_ONLY_DEFERRED_FIELDS = new Set([
   'Tenant.budgetCategories',  // App #2 Budget Planner relation
   'Tenant.transactions',      // App #2 Budget Planner relation
   'Tenant.budgetGoal',        // App #2 Budget Planner wizard relation (optional)
+  'Tenant.habits',            // App #2 Habit Tracker relation
+  'Tenant.habitLogs',         // App #2 Habit Tracker relation
 ]);
 
 // ── Model name extraction ───────────────────────────────────────────────────

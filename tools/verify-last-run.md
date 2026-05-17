@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-17T03:43:27.460Z
-- finished_at: 2026-05-17T03:44:00.554Z
+- ran_at: 2026-05-17T03:55:40.331Z
+- finished_at: 2026-05-17T03:56:11.244Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-17T03:43:27.460Z",
-    "finished_at": "2026-05-17T03:44:00.554Z",
+    "ran_at": "2026-05-17T03:55:40.331Z",
+    "finished_at": "2026-05-17T03:56:11.244Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 8.3,
+        "duration_seconds": 7.6,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.9,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -41,10 +41,10 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
-        "scanned": 418,
+        "duration_seconds": 0.2,
+        "scanned": 419,
         "errors": 0,
-        "warnings": 29,
+        "warnings": 30,
         "exempt": 289
       },
       {
@@ -62,7 +62,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 384,
-        "clean": 384,
+        "checked": 385,
+        "clean": 385,
         "blocking": 0,
         "registry": 49
       },
@@ -433,8 +433,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 573,
-        "advisory": 86
+        "scanned": 574,
+        "advisory": 87
       },
       {
         "name": "file_naming",
@@ -530,7 +530,7 @@
         "command": "node tools/validators/validate-laptop-patterns.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "checked": 40,
         "blocking": 0,
         "advisories": 7
@@ -578,7 +578,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "issues": 1,
         "advisory": 1,
         "duplicates": 0
@@ -981,7 +981,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -1098,7 +1098,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.6
+        "duration_seconds": 7.3
       },
       {
         "name": "ui_completeness",
@@ -1205,7 +1205,7 @@
         "command": "node tools/validators/validate-implementation-gate.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "advisories": 0
       },
       {

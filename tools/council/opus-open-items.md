@@ -57,3 +57,7 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 | OPEN-021 | EP-ERR→Planning Loop: ep_err_pre_check field + validate-creation-completeness.mjs | Turn 88 | ✅ DONE S037-H — validate-creation-completeness.mjs LIVE, ep_err_pre_check on PI-001 | — | — |
 | OPEN-022 | validate-quality-alignment.mjs (OPUS-2 RZF + Sonnet INTENT ABSORBED ≥80%) | Turn 88 | ✅ DONE S037-H — validate-quality-alignment.mjs LIVE in verify.mjs | — | — |
 | OPEN-003 | PI-004: PE Agent skill (.claude/skills/pe-agent/SKILL.md) | Turn 59 | ✅ DONE S037-I — AAP Class A, 27/27 aligned, PI-004 ratified | PI-004 | — |
+| OPEN-023 | PI-026: Developer onboarding via threshold wizard (dogfood) | Turn 93 | pending | developer UX not dogfooded | none yet |
+| OPEN-024 | PI-027: validate-intent-alignment.mjs (PI done_criterion vs code) | Turn 93 | pending | planning-to-code gap unclosed | none yet |
+| OPEN-025 | PI-028: Abstract interpretation for ZenStack tenant isolation | Turn 93 | pending | behavioral validation gap | none yet |
+| OPEN-026 | P-META-026 ratification (planning-before-implementing as primary pillar) | Turn 92 | pending governor | constitutional principle | none yet |

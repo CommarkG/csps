@@ -217,6 +217,13 @@ schema_anchors:
     l2_domain: COVERAGE_DISCIPLINE
     description: EP-ERR-NNN error pattern registry
 
+  council_state:
+    type: governance-section
+    resolves_to: tools/council/
+    spine: GVRN
+    l2_domain: COUNCIL_COMMUNICATION
+    description: CSPS council governance files (master plan, open items, state snapshot)
+
   know_how_error_patterns:
     type: governance-section
     resolves_to: docs/plan/_intake/know-how/

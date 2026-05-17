@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-17T17:37:33.075Z
-- finished_at: 2026-05-17T17:38:02.231Z
+- ran_at: 2026-05-17T18:44:08.998Z
+- finished_at: 2026-05-17T18:44:38.490Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-17T17:37:33.075Z",
-    "finished_at": "2026-05-17T17:38:02.231Z",
+    "ran_at": "2026-05-17T18:44:08.998Z",
+    "finished_at": "2026-05-17T18:44:38.490Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.9,
+        "duration_seconds": 7.2,
         "packages_resolved": null
       },
       {
@@ -45,7 +45,7 @@
         "scanned": 437,
         "errors": 0,
         "warnings": 31,
-        "exempt": 290
+        "exempt": 291
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -89,7 +89,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_contracts": 61,
+        "source_contracts": 62,
         "missing_slices": 0
       },
       {
@@ -128,7 +128,7 @@
         "command": "node tools/validators/validate-inner-ai-defaults-freshness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "ai_defaults_enforcement_rate",
@@ -194,7 +194,7 @@
         "command": "node tools/validators/validate-opus-review-flagging.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.6,
         "last_turn": 23,
         "flags": 10,
         "commits": 0
@@ -214,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.3,
+        "duration_seconds": 1.2,
         "checked": 47,
         "advisories": 39
       },
@@ -243,7 +243,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "contracts": 61,
+        "contracts": 62,
         "orphans": 7,
         "tensions": 0,
         "overlaps": 1
@@ -253,7 +253,7 @@
         "command": "node tools/validators/validate-satisfaction-point.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "advisories": 2
       },
       {
@@ -261,7 +261,7 @@
         "command": "node tools/validators/validate-agreement-without-evidence.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "checked": 2,
         "advisories": 2
       },
@@ -425,7 +425,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocking": 0,
-        "advisory": 3
+        "advisory": 4
       },
       {
         "name": "file_complexity_validate",
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 592,
+        "scanned": 593,
         "advisory": 87
       },
       {
@@ -473,8 +473,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 220,
-        "missing": 98,
+        "checked": 221,
+        "missing": 99,
         "invalid": 0,
         "exempt": 1
       },
@@ -521,7 +521,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 157,
+        "checked": 158,
         "blocking": 0,
         "advisories": 0
       },
@@ -579,8 +579,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 1,
-        "advisory": 1,
+        "issues": 0,
+        "advisory": 0,
         "duplicates": 0
       },
       {
@@ -623,11 +623,11 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 29,
-        "active": 16,
+        "total": 30,
+        "active": 17,
         "stub": 10,
         "unknown": 3,
-        "stub_rate": 34
+        "stub_rate": 33
       },
       {
         "name": "session_harvest_readiness",
@@ -716,7 +716,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -776,7 +776,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 144,
+        "checked": 146,
         "missing_why": 39
       },
       {
@@ -864,7 +864,7 @@
         "command": "node tools/validators/validate-simulation-before-implementation.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "sandbox_lifecycle",
@@ -1098,7 +1098,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.8
+        "duration_seconds": 7.3
       },
       {
         "name": "ui_completeness",
@@ -1112,13 +1112,13 @@
       {
         "name": "sync_state_fresh",
         "command": "node tools/validators/validate-sync-state-fresh.mjs",
-        "status": "OK",
+        "status": "DRIFT",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "hours_since_sync": 18,
+        "hours_since_sync": 19,
         "principle_drift": 0,
         "moat_drift": 0,
-        "contract_drift": 0
+        "contract_drift": 1
       },
       {
         "name": "new_file_dna",
@@ -1165,10 +1165,7 @@
         "command": "node tools/validators/validate-handoff-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
-        "handoffs_checked": 33,
-        "missing_section": 30,
-        "insufficient_questions": 3
+        "duration_seconds": 0.1
       },
       {
         "name": "enforcement_trio_assigned",

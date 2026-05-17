@@ -2,26 +2,28 @@
 /**
  * @csps-id csps.tools.validators.validate-handoff-completeness
  * @csps-name validate-handoff-completeness
- * @csps-description Handoff Completeness Gate: scans all HANDOFF-*.md files created or
- * modified in the last 90 days. Checks each for a ## ALIGNMENT QUESTIONS section with
- * at least 3 questions (lines starting with Q or **Q). ADVISORY if section missing.
- * Implements OPEN-020 / PI-019 — Governor directive S037-F (alignment questions mechanical).
- * @csps-version 1.0.0
+ * @csps-description Handoff Completeness Gate: scans HANDOFF-*.md files in last 90 days.
+ * Checks for 3 MANDATORY sections (BLOCKING) + 1 advisory section.
+ *
+ * MANDATORY (exit 1 if missing in any recent handoff):
+ *   (A) Zone A or Session State — what was done
+ *   (B) Zone B or Mandate — what next session must do
+ *   (C) ## ALIGNMENT QUESTIONS — per P-META-014 MUV (3+ questions required)
+ *
+ * ADVISORY (exit 0, warn only):
+ *   (D) ZF Evidence or Verification block
+ *
+ * Implements OPEN-020 / PI-019 — upgraded S040-PROTO-018 from ADVISORY to BLOCKING.
+ * Governor directive S040 Turn 6: "inheritance policy — BLOCKING if mandatory sections missing."
+ * @csps-version 2.0.0
  * @csps-owner group:finky
  * @csps-lifecycle production
  * @csps-lifecycle-state active
  * @csps-tags type:validator domain:governance audience:ai-agent
- * @csps-enforces P-META-014
+ * @csps-enforces P-META-014 B_INHERITANCE_POLICY B_HANDOFF_PRE_FLIGHT_AUDIT
  *
- * Coverage Levels:
- *   ✓ Checks: all HANDOFF-*.md files modified in last 90 days
- *   ✓ Detects: missing ## ALIGNMENT QUESTIONS section
- *   ✓ Detects: section present but fewer than 3 questions
- *   ✗ Does not check: question quality or context-specificity (advisory only)
- *   ✗ Does not check: HANDOFFs older than 90 days (grandfathered)
- *
- * Exit: 0 always (ADVISORY only)
- * Output: handoffs_checked=N missing_section=N insufficient_questions=N
+ * Exit: 1 if any recent handoff is missing a MANDATORY section
+ * Exit: 0 if all mandatory sections present (advisory warnings still emitted)
  */
 
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
@@ -36,72 +38,115 @@ const NINETY_DAYS_MS = 90 * 24 * 60 * 60 * 1000;
 const NOW = Date.now();
 
 let handoffsChecked = 0;
-let missingSection = 0;
-let insufficientQuestions = 0;
+let blocking = 0;
+let advisory = 0;
+
+const MANDATORY = [
+  {
+    id: 'zone-a',
+    label: 'Zone A / Session State',
+    patterns: [/^##\s+Zone\s+A/mi, /^##\s+(SESSION\s+STATE|WHAT\s+WAS\s+DONE|PLATFORM\s+STATE)/mi],
+    message: 'Missing Zone A (session state — what was accomplished). Add "## Zone A — Platform State at S[NNN] Close" section.'
+  },
+  {
+    id: 'zone-b',
+    label: 'Zone B / Next Mandate',
+    patterns: [/^##\s+Zone\s+B/mi, /^##\s+(MANDATE|NEXT\s+SESSION|S0\d\d\s+MANDATE)/mi],
+    message: 'Missing Zone B (next session mandate). Add "## Zone B — S[NNN] Mandate" section.'
+  },
+  {
+    id: 'alignment-questions',
+    label: 'ALIGNMENT QUESTIONS (3+)',
+    patterns: [/^##\s+ALIGNMENT\s+QUESTIONS/mi],
+    message: 'Missing ## ALIGNMENT QUESTIONS section with 3+ questions. Required by P-META-014 MUV.'
+  }
+];
+
+const ADVISORY_CHECKS = [
+  {
+    id: 'zf-evidence',
+    label: 'ZF Evidence',
+    patterns: [/ZF\s+(ACHIEVED|EVIDENCE|evidence|Cycle)/m, /pnpm verify.*exit_code/m, /exit_code.*0/m],
+    message: 'No ZF/verification evidence found. Add "## ZF EVIDENCE" section with pnpm verify output.'
+  }
+];
 
 if (!existsSync(HANDOFF_DIR)) {
-  console.log(`[validate-handoff-completeness] handoff dir not found handoffs_checked=0 missing_section=0 insufficient_questions=0`);
+  console.log(`[validate-handoff-completeness] handoff dir not found — skipping`);
   process.exit(0);
 }
 
-// Find all HANDOFF-*.md files (not in subdirectories)
 const files = readdirSync(HANDOFF_DIR)
   .filter(f => /^HANDOFF-.*\.md$/.test(f))
   .map(f => ({ name: f, path: resolve(HANDOFF_DIR, f) }))
   .filter(({ path }) => {
-    try {
-      const mtime = statSync(path).mtimeMs;
-      return (NOW - mtime) <= NINETY_DAYS_MS;
-    } catch {
-      return false;
-    }
+    try { return (NOW - statSync(path).mtimeMs) <= NINETY_DAYS_MS; }
+    catch { return false; }
   });
 
 handoffsChecked = files.length;
 
 for (const { name, path } of files) {
   const content = readFileSync(path, 'utf-8');
+  const fileBlocking = [];
+  const fileAdvisory = [];
 
-  // Check for ## ALIGNMENT QUESTIONS section (case-insensitive)
-  const hasSection = /^##\s+ALIGNMENT\s+QUESTIONS/mi.test(content);
+  // Grandfather pre-S037 HANDOFFs — Zone A/B and ALIGNMENT QUESTIONS not mandatory before S037
+  const sessionMatch = name.match(/^HANDOFF-S(\d+)-to-/);
+  const sessionNum = sessionMatch ? Number(sessionMatch[1]) : 999;
+  const isLegacy = sessionNum < 37; // S001-S036 grandfathered (predated these requirements)
 
-  if (!hasSection) {
-    missingSection++;
-    console.warn(
-      `[validate-handoff-completeness] ADVISORY: ${name} has no ## ALIGNMENT QUESTIONS section.\n` +
-      `  File: docs/plan/_handoff/${name}\n` +
-      `  Fix: add ## ALIGNMENT QUESTIONS section with 3-5 context-specific questions.\n` +
-      `  Questions the receiving AI should answer before acting — not generic.\n` +
-      `  Template:\n` +
-      `    ## ALIGNMENT QUESTIONS (P-META-014 MUV)\n` +
-      `    **Q1 — Completion verification:** [specific question about this session's state]\n` +
-      `    **Q2 — Open items currency:** [specific question about what might be incomplete]\n` +
-      `    **Q3 — First action:** [what should the receiving AI do first?]\n` +
-      `  Rationale: P-META-014 MUV requires alignment check at every cross-boundary handoff.`
-    );
-    continue;
+  // Check mandatory sections
+  for (const check of MANDATORY) {
+    const found = check.patterns.some(p => p.test(content));
+
+    if (!found) {
+      if (isLegacy) {
+        advisory++;
+      } else {
+        fileBlocking.push(check.message);
+        blocking++;
+      }
+    } else if (check.id === 'alignment-questions') {
+      // Verify 3+ questions when section exists
+      // Extract from ## ALIGNMENT QUESTIONS to end of section (next ## or end of file)
+      const lines = content.split('\n');
+      let inSection = false;
+      let questionCount = 0;
+      for (const line of lines) {
+        if (/^##\s+ALIGNMENT\s+QUESTIONS/i.test(line)) { inSection = true; continue; }
+        if (inSection && /^##\s/.test(line)) break; // next heading ends section
+        if (inSection && /^\*\*Q\d|^Q\d[\s—:]|^[-•]\s*Q\d|\^\d+\./.test(line.trim())) {
+          questionCount++;
+        }
+      }
+      if (questionCount < 3) {
+        const msg = `ALIGNMENT QUESTIONS has ${questionCount} question(s) — minimum 3 required.`;
+        if (isLegacy) { advisory++; }
+        else { fileBlocking.push(msg); blocking++; }
+      }
+    }
   }
 
-  // Count questions in the ALIGNMENT QUESTIONS section
-  // Find section start and end (next ## or end of file)
-  const sectionMatch = content.match(/^##\s+ALIGNMENT\s+QUESTIONS.*?(?=\n##\s|\n---\s*$|$)/mis);
-  if (!sectionMatch) continue;
+  // Check advisory sections
+  for (const check of ADVISORY_CHECKS) {
+    if (!check.patterns.some(p => p.test(content))) {
+      fileAdvisory.push(check.message);
+      advisory++;
+    }
+  }
 
-  const sectionText = sectionMatch[0];
-  // Count lines starting with **Q, Q1, Q2, etc. or - Q
-  const questionLines = sectionText.split('\n').filter(line =>
-    /^\s*(\*\*Q\d|Q\d|[-•]\s*Q\d|\d+\.)/.test(line.trim())
-  );
-
-  if (questionLines.length < 3) {
-    insufficientQuestions++;
-    console.warn(
-      `[validate-handoff-completeness] ADVISORY: ${name} has ## ALIGNMENT QUESTIONS but only ${questionLines.length} question(s) (minimum 3).\n` +
-      `  File: docs/plan/_handoff/${name}\n` +
-      `  Fix: add at least 3 context-specific questions for the receiving AI.`
-    );
+  if (fileBlocking.length > 0) {
+    console.error(`[validate-handoff-completeness] BLOCKING: ${name} missing mandatory sections:`);
+    fileBlocking.forEach(m => console.error(`  ✗ ${m}`));
+  }
+  if (fileAdvisory.length > 0) {
+    fileAdvisory.forEach(m => console.warn(`[validate-handoff-completeness] ADVISORY: ${name}: ${m}`));
+  }
+  if (fileBlocking.length === 0 && fileAdvisory.length === 0) {
+    console.log(`[validate-handoff-completeness] ✓ ${name} — all mandatory sections present`);
   }
 }
 
-console.log(`[validate-handoff-completeness] handoffs_checked=${handoffsChecked} missing_section=${missingSection} insufficient_questions=${insufficientQuestions}`);
-process.exit(0);
+console.log(`[validate-handoff-completeness] handoffs_checked=${handoffsChecked} blocking=${blocking} advisory=${advisory}`);
+process.exit(blocking > 0 ? 1 : 0);

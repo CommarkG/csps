@@ -1,8 +1,8 @@
 ---
 id: csps.vault.chat-jump-S039-complete
 name: chat-jump-S039-complete
-description: "Complete professional chat transfer for S039 continuation. WHO/WHAT/HOW/NOW + full state + alignment questions. ZCA-compliant."
-version: 1.0
+description: "Complete professional chat transfer for S039/S040 continuation. WHO/WHAT/HOW/NOW + deep context + alignment questions. ZCA-compliant. Improved with full session nuances."
+version: 2.0
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -18,164 +18,187 @@ tags:
   - maturity:stable
 links:
   - { rel: parent, href: ../README.md }
+  - { rel: handoff, href: ../../HANDOFF-S038-to-S039.md }
 ---
 
-# Chat Transfer — S039 Complete State
+# Chat Transfer — S039 Complete State (v2 — improved)
 
-**Last commit:** c2fc7f7 | **Date:** 2026-05-17 | **OPUS-2 Turn:** 95+
+**Last commit:** 8644dc3 | **Date:** 2026-05-17 | **OPUS-2 Turn:** 95+
+**Verify:** exit_code=0 | **Budget Planner build:** FIXED (c2fc7f7)
 
 ---
 
-## WHO YOU ARE AND HOW THIS WORKS (read this first — zero prior context assumed)
+## WHO YOU ARE AND HOW THIS WORKS
 
-**You are:** A new Claude Sonnet instance (builder/implementer). You write code, create files, run validators, commit to GitHub, and report back. You do NOT make architectural decisions alone — ask OPUS-2 for direction.
+**You are:** A new Claude Sonnet instance — builder/implementer. You write code, create files, run validators, commit to GitHub, and report back. You do NOT make architectural decisions.
 
-**Your role:** Builder. Before touching any file: write INTENT ABSORBED to `tools/council/sonnet-turn.md`.
+**Your role:** Before touching any file: write `INTENT ABSORBED` to `tools/council/sonnet-turn.md`.
 
-**OPUS-2 (Claude Opus in a separate chat tab):** The Architectural Advisor. Writes turns to `tools/council/opus-turn.md`. Read from Turn 80 onward for recent directives.
+**OPUS-2 (Claude Opus, separate tab):** Architectural Advisor. Read `tools/council/opus-turn.md` from Turn 90+ for recent directives. Writes using format: `[PROTOCOL: ID | STEP: N of M | MODE: x]`.
 
-**The Governor (Yariv Fink):** The human decision-maker. Relays messages between you and OPUS-2. Ratifies all significant decisions. **Only the Governor can set `ratified_at` on PI items.**
+**The Governor (Yariv Fink):** Human decision-maker. Relays between you and OPUS-2. **Only the Governor can set `ratified_at`** on PI items. "proceed" or "approved" is NOT ratification.
 
-**The 3-party triangle:**
+**The project (CSPS):** CoreSights Platform Services — governed, AI-collaborative foundation for multi-tenant SaaS. Next.js 14 monorepo, pnpm, Clerk/Supabase/ZenStack/Vercel. Budget Planner live at csps-budget-planner.vercel.app.
+
+**The workspace:** `c:\Users\finky\Desktop\Claude Code\Csps` — repo root.
+
+---
+
+## WHAT (platform state)
+
+```yaml
+validators: 127+ (node tools/verify.mjs exit_code=0)
+principles: 65 (including P-ARCH-031, P-UX-002/ZCA, P-OPER-002)
+behavioral_contracts: 61 (including B_ZCA, B_DONE_RIGHT_FROM_THE_START)
+skills: 27 (all AAP-aligned, /pe-agent Class A PE-scoring + bundling)
+moat_elements: 26 (M-26: DNA inheritance gate — new libs/ files blocked without @csps-enforces)
+session: S039 active → S040 opens
+last_commit: 8644dc3 (chat-jump + platform-state-snapshot)
 ```
-OPUS-2 (architect) writes directives → Governor (relay) pastes to Sonnet →
-Sonnet implements → Sonnet reports to Governor → Governor brings to OPUS-2
-```
 
-**The project (CSPS):** CoreSights Platform Services — a governed, AI-collaborative foundation for building multi-tenant SaaS products. Next.js 14 monorepo, pnpm, Clerk/Supabase/ZenStack/Vercel. Budget Planner is the first deployed app at csps-budget-planner.vercel.app.
+**Budget Planner:** FIXED at c2fc7f7. Build was failing because:
+- `sentry.client.config.ts` imported `@sentry/nextjs` (not installed) → deleted
+- `inngest/next` imported in API route (not installed) → stubbed
+- `libs/integrations/jobs/inngest.ts` had hard `inngest` import chain → stubbed
+- Added `src/types/deferred-packages.d.ts` for type stubs of 7 deferred packages
+- `tsc --noEmit` now 0 errors
 
-**The workspace:** `c:\Users\finky\Desktop\Claude Code\Csps` — repo root. All paths relative to it.
-
-**Governance:** 127+ validators run via `node tools/verify.mjs`. Exit code must be 0 before every commit. Principles in `packages/principles/`. Constitutional decisions are sealed.
-
----
-
-## WHAT (the project and system)
-
-**Stack:** Next.js 14 / Clerk (auth) / Supabase PostgreSQL / ZenStack (schema-based RLS) / Vercel
-
-**Key platform numbers at S039 close:**
-- Validators: 127+ (node tools/verify.mjs exit_code=0 confirmed)
-- Principles: 65 (packages/principles/principles.yaml)
-- Behavioral contracts: 61
-- Skills: 27 (all AAP-aligned, including /pe-agent)
-- Moat elements: 26 (M-26: DNA inheritance gate)
-
-**Live apps:**
-- Budget Planner: csps-budget-planner.vercel.app (Gate 3 ✓, FIXED at c2fc7f7 after build errors)
+**New in S037-S039 (read ALL of these):**
+- `docs/plan/pillar-4-developer-experience/developer-journey/` — 10-doc PE-scored developer journey mini-tree
+- `docs/plan/pillar-0-governance/meta-platform/` — 8-doc meta-platform mini-tree
+- `tools/council/quality-protocols/` — shared/opus/sonnet quality specs (3 files)
+- `docs/plan/_handoff/VAULT/COMPLETION-GAP-ANALYSIS-S039.md` — honest analysis of why governance fails
+- `docs/plan/_handoff/VAULT/user-journey-tests/` — UJT infrastructure (pnpm record:ujt)
+- `docs/plan/_handoff/VAULT/templates/page-creation-checklist.md` — fill before any JSX
 
 ---
 
-## HOW (the working pattern)
+## HOW (communication rules + critical protocols)
 
-**Communication Rules (tools/council/communication-protocol-shared.md, Rules 1-10):**
-- Rule 1: Every Sonnet→Opus message: `Opus, this is Sonnet.`
-- Rule 2: Directives: `[PROTOCOL: ID | STEP: N of M | MODE: x] Sonnet, this is Opus.`
+**Rules 1-10 (tools/council/communication-protocol-shared.md):**
+- Rule 1: Every Sonnet→Opus: `Opus, this is Sonnet.`
 - Rule 6: DONE = built + wired + called + verified. Not just committed.
-- Rule 7 (ZCA): Every cross-boundary message starts with WHO/WHAT/HOW/NOW.
-- Rule 8: Register → Implement → Wire → Verify. Never implement without registering.
+- Rule 7 (ZCA): WHO/WHAT/HOW/NOW at every boundary. Receiver starts from zero.
+- Rule 8: Register → Implement → Wire → Verify.
 - Rule 9: Pre-directive RZF. Directive quality gate.
-- Rule 10: YOU ARE / I AM / THIS IS THE SITUATION / YOUR TASK format for all directives.
+- Rule 10: YOU ARE / I AM / THIS IS THE SITUATION / YOUR TASK for all directives.
 
-**The NEW protocol (Governor ratified S039):** Nothing is coded without a ratified plan. `ratified_at` must be set by Governor explicitly. Pending plan → no code.
-
-**Verification:** `node tools/verify.mjs exit_code=0` before every commit. `pnpm --filter @csps/[app] build` before declaring build-related fixes done (tsc alone is insufficient).
-
-**ZF discipline:** ZF = Zero Findings. Cycle terminates only when findings reach zero. Cycle 2 must NAME what was re-examined — not just "0 new findings."
-
----
-
-## NOW (current state and next action)
-
-**Last commits:**
+**THE MOST CRITICAL PROTOCOL (Governor ratified S039):**
 ```
-c2fc7f7 fix: PROTO-018 — Budget Planner build clean (next build passes)
-b4eb88b S039: purge forbidden term + fix OPUS role description + register OPEN-029/030
-6174a56 fix: Budget Planner build errors — 3 fixes → 0 TypeScript errors
-41159ae Rule 10: mandatory context block
-da592d9 S039: comprehensive OPUS-2 chat-jump + planning pipeline spec for S040
+NOTHING IS CODED WITHOUT A RATIFIED PLAN.
+Ratified = Governor explicitly said "ratified" + set ratified_at.
+"proceed" or "approved" alone is NOT ratification.
+Pending plan → no implementation, period.
 ```
 
-**Budget Planner status:**
-- Build: FIXED (c2fc7f7). Deleted sentry.client.config.ts, stubbed inngest route and libs/integrations/jobs/inngest.ts, added deferred-packages.d.ts type stubs.
-- Dashboard: LIVE at /dashboard (moved from root / in 17cc957)
-- OnboardingWizard: WIRED in account-setup for both apps (fixed 1d45e78)
-- tsc --noEmit: 0 errors confirmed
+**ZF discipline (enforced by hook #6 on every prompt):**
+- ZF = Zero Findings. Cycle terminates ONLY when nothing new is found.
+- Cycle 2 MUST name what was re-examined from Cycle 1 — not "0 new findings" (EP-ERR-008: nominal RZF)
+- Every substantive response requires ZF before finalizing
 
-**Key pending items (tools/council/opus-open-items.md):**
-- OPEN-026: P-META-026 ratification (planning-before-implementing as primary pillar) — AWAITING GOVERNOR
-- OPEN-027: csps-master-plan.md auto-update mechanism — pending
-- OPEN-029: Absorb remaining research files (04-11 series) as EXT-KNOW entries — pending
-- OPEN-030: PROP-APP3-001: Governor decision on App #3 domain — AWAITING GOVERNOR
-- OPEN-031: EP-ERR entry for premature-done-on-tsc-not-build — pending
-- OPEN-032: Audit empty (dashboard) route group in budget-planner — pending review
-- OPEN-033: Add `pnpm --filter @csps/[app] build` to standard verification tail — pending
-
-**What S040 opens with (per OPUS-2 Turn 95 planning pipeline):**
-1. Governor decision on OPEN-030 (App #3 domain) — unblocks all S040 app work
-2. Register OPEN-031 EP-ERR in error-registry/ — quick governance fix
-3. OPEN-026 P-META-026 ratification — constitutional principle for planning-before-implementing
+**Build verification:** For build-related fixes: run `pnpm --filter @csps/[app] build` — not just `tsc --noEmit`. tsc alone is insufficient (OPEN-033).
 
 ---
 
-## MANDATORY READ ORDER (do this before anything else)
+## THE COMPLETION GAP (critical insight — read before any implementation)
 
-1. `tools/council/platform-state-snapshot.md` — current platform reality (needs S039 update)
-2. `tools/council/communication-protocol-shared.md` — 10 rules, apply immediately
-3. `tools/council/opus-turn.md` — start at Turn 90 for recent architectural decisions
-4. `tools/council/opus-open-items.md` — pending work register (OPEN-023 through OPEN-033)
-5. `docs/plan/pillar-4-developer-experience/developer-journey/README.md` — the developer journey mini-tree (new in S039)
+From `docs/plan/_handoff/VAULT/COMPLETION-GAP-ANALYSIS-S039.md`:
 
-**DO NOT read the full conversation history. Read the files above.**
+**The core problem:** AI training defaults generate code that passes governance validators but does NOT make users able to accomplish their goals. The satisfaction point fires at "validators pass" not at "user achieves goal."
 
----
+**What actually works:** T2 validators that block commits. T1 hooks that fire before response. T3 session injections dilute by turn 10.
 
-## IMPORTANT: NEWLY ESTABLISHED PROTOCOLS (ratified S039)
+**The fix:** `user_journey_test:` field on PI items — done criterion must be user-behavioral, not validator-proxy. A feature is DONE when the user_journey_test PASSES, not when pnpm verify passes.
 
-**1. Planning-before-implementing rule:** Nothing is coded without a ratified plan. Pending plan → no code. Governor must explicitly set `ratified_at` — "proceed" or "approved" is not ratification.
-
-**2. User Journey Tests (UJT-NNN.yaml):** Every user-facing feature has a UJT file at `docs/plan/_handoff/VAULT/user-journey-tests/`. Record results with `pnpm record:ujt --test UJT-001 --result pass --observation "..."`. UJT-001 (Budget Planner threshold flow) is pending — needs manual browser test.
-
-**3. DNA inheritance gate (M-26):** Every new libs/ TypeScript file > 50 lines needs `@csps-enforces` annotation. `validate-new-file-dna.mjs` BLOCKS if missing.
-
-**4. Build verification:** For build-related fixes: `pnpm --filter @csps/[app] build` (not just tsc) is required before declaring done. (OPEN-033 — pending Rule update)
-
-**5. RZF before response:** The UserPromptSubmit hook injects the RZF mandate on every turn. Cycle 2 must name what was re-examined from Cycle 1.
+**Implication for every new feature you build:** Before writing code, state the user_journey_test: "Given [user state], When [action], Then [observable outcome]." This is the DONE criterion.
 
 ---
 
-## GOVERNOR ACTIONS STILL PENDING
+## GOVERNANCE NUANCES (don't miss these)
 
-1. **OPEN-030**: What is App #3? State the domain for Sonnet to begin planning.
-2. **OPEN-026**: Ratify P-META-026 as a constitutional principle: "planning-before-implementing is the primary pillar."
-3. **Service accounts**: Resend / Inngest / Sentry / PostHog / Upstash / R2 → API keys in Vercel.
-4. **db:push**: S032 schema changes (Notification, WebhookEndpoint) not yet in Supabase.
-5. **UJT-001**: Visit csps-budget-planner.vercel.app, sign up with new email, record observation.
+**EP-ERR-007 (plain-path references):** Every file path in chat output must be a clickable markdown link `[name](path)`. Never bare paths like `tools/verify.mjs`. The `post-stop-link-discipline.sh` hook catches this.
+
+**EP-ERR-008 (nominal RZF):** Cycle 2 of RZF that just says "0 new findings" without naming what was re-examined = the #1 governance failure. The `validate-quality-alignment.mjs` validator measures this — current `directive_rzf_quality_rate=0%`. Must name the specific area re-examined.
+
+**DNA inheritance (M-26):** Every new `libs/` TypeScript file > 50 lines needs `// @csps-enforces P-XXX-NNN` annotation. `validate-new-file-dna.mjs` BLOCKS commits if missing. This applies to YOU — before writing any new integration file, add the annotation.
+
+**validate-handoff-completeness v2.0 (BLOCKING):** HANDOFFs from S037+ must have Zone A, Zone B, AND `## ALIGNMENT QUESTIONS` with 3+ questions. If you write a HANDOFF without these, `pnpm verify` FAILS. Pre-S037 HANDOFFs are grandfathered as advisory.
+
+**Enforcement trio:** Every new rule/principle/contract needs T1+T2+T3 at creation. T3-only WILL drift. `validate-enforcement-trio-assigned.mjs` checks this on PI items.
 
 ---
 
-## FIRST ACTIONS IN NEW CHAT
+## DEFERRED PACKAGES (stub situation)
 
+These packages are NOT installed — graceful stubs exist:
+- `inngest` → `libs/integrations/jobs/inngest.ts` stubbed (wiring_deferred_until: S040)
+- `resend` → `libs/integrations/email/client.ts` stubbed (wiring_deferred_until: S040)
+- `posthog-node`, `@upstash/*`, `@aws-sdk/*`, `zod` → type stubs in `apps/budget-planner/src/types/deferred-packages.d.ts`
+
+**Governor action required to activate any:** install package + set env var in Vercel + test.
+
+---
+
+## PLANNING GRID CONCEPT (not yet built as tooling)
+
+The Governor ratified the planning grid concept in S039. Key points:
+- Every new feature activates a subgraph of planning nodes (User Model, Data Model, API Surface, UI Flows, Auth, Business Logic)
+- Nodes must reach VALIDATED status before implementation
+- This is conceptual — no tooling built yet
+- The `developer-journey/02-planning-grid.md` document specifies it
+- Implementation awaits OPUS-2 ratification in Turn 96+
+
+---
+
+## NOW (open items and first actions)
+
+**Awaiting Governor (HIGHEST PE):**
+- OPEN-030: App #3 domain decision → this unlocks all S040 app work
+- OPEN-026: Ratify P-META-026 (planning-before-implementing as constitutional principle)
+
+**Quick governance fixes (S040 can start here):**
+- OPEN-031: Register EP-ERR entry for premature-done-on-tsc-not-build in error-registry/
+- OPEN-032: Audit empty `(dashboard)` route group in budget-planner
+- OPEN-033: Update communication-protocol-shared.md Rule 6 to require `pnpm build`
+
+**UJT-001 pending:** Visit csps-budget-planner.vercel.app, sign up, record result:
+```bash
+pnpm record:ujt --test UJT-001 --result pass --observation "what you saw"
+```
+
+**First actions in new chat:**
 1. Write INTENT ABSORBED to `tools/council/sonnet-turn.md`
-2. Run `node tools/verify.mjs` — confirm exit_code=0 baseline
+2. Run `node tools/verify.mjs` — confirm exit_code=0
 3. Update `tools/council/platform-state-snapshot.md` to S039 CLOSED
-4. Check OPUS-2 tab for Turn 96+ directive, OR await Governor's App #3 domain decision
+4. Check OPUS-2 tab for Turn 96 directive OR await Governor App #3 decision
 
 ---
 
-## ALIGNMENT QUESTIONS (P-META-014 MUV — answer before any implementation)
+## ALIGNMENT QUESTIONS (P-META-014 MUV — mandatory, answer before implementation)
 
-**Q1 — Budget Planner live verification:** Has anyone visited csps-budget-planner.vercel.app AFTER commit c2fc7f7 deployed? If yes, what was the result? If no, that should be the first action — the UJT-001 test is still pending.
+**Q1 — Budget Planner build:** Visit csps-budget-planner.vercel.app after commit c2fc7f7. Did it load (200) or still 404? The build fix was deployed but not yet verified live. UJT-001 status = pending.
 
-**Q2 — App #3 domain:** Has the Governor made the OPEN-030 decision yet? If yes, that is the highest PE item for S040. If no, S040 starts with governance housekeeping (OPEN-031 EP-ERR registration + OPEN-033 Rule update).
+**Q2 — App #3 domain:** Has Governor made OPEN-030 decision? If yes, OPUS-2 needs the domain to write the planning grid specification and PE-scored topic-plan. If no, S040 starts with governance housekeeping (OPEN-031/032/033).
 
-**Q3 — Deferred packages status:** `libs/integrations/jobs/inngest.ts`, `libs/integrations/email/client.ts`, and others are stubbed until real packages are installed. Are any of these now ready to activate? (Would require: install package + set env var in Vercel + test)
+**Q3 — Completion gap — will you follow it?** The completion gap analysis (VAULT/COMPLETION-GAP-ANALYSIS-S039.md) says satisfaction points fire at "validators pass." For every feature you build this session: can you state the user_journey_test BEFORE writing any code? If you can't, you're not ready to implement.
 
-**Q4 — Planning grid ratification:** The planning grid concept was explained to OPUS-2 in the S039 session. Is there a Turn 96+ directive from OPUS-2 that ratifies it as a formal CSPS concept? This unlocks S040 App #3 planning.
+**Q4 — Deferred packages:** Are Resend, Inngest, or any other deferred service ready to activate? (RESEND_API_KEY, INNGEST_SIGNING_KEY in Vercel?) If yes, OPEN-033 should happen before activating them (so the verification tail is correct).
 
-**Q5 — validate-wiring-completeness state:** The last known result was wired=19 deferred=34 orphan=0. After the Budget Planner fixes (stubbed inngest, email client stub), is this still clean? Run `node tools/validators/validate-wiring-completeness.mjs` to confirm.
+**Q5 — OPUS-2 quality score:** Run `node tools/validators/validate-quality-alignment.mjs` and report: what is the current `directive_rzf_quality_rate`? If still 0%, that means every OPUS-2 directive in the last 5 turns had a nominal Cycle 2. This is the most important quality metric to improve.
 
 ---
 
-*S039 ACTIVE → transitioning to S040 | Last confirmed commit: c2fc7f7 | verify exit_code=0*
-*Budget Planner build FIXED | App #3 domain PENDING Governor | Planning protocol RATIFIED*
+## SEALED DECISIONS (do NOT re-open)
+
+- P-UX-002 ZCA — Zero-Context Assumption constitutional
+- P-ARCH-031 Completion Seal — DONE = wired + called + verified
+- Enforcement Trio constitutional (T1+T2+T3)
+- Planning-before-implementing protocol (Governor ratified S039)
+- Rule 10 — YOU ARE / I AM / THIS IS THE SITUATION / YOUR TASK format
+- DNA inheritance gate M-26
+
+---
+
+*S039 ACTIVE → S040 opens | Last commit: 8644dc3 | verify exit_code=0*
+*Budget Planner build FIXED | App #3 PENDING Governor | Planning protocol RATIFIED*
+*Deferred packages stubbed | Quality alignment validator live | UJT-001 pending browser test*

@@ -6,8 +6,8 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 61
-  generated_at: '2026-05-16'
+  total_count: 62
+  generated_at: '2026-05-17'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
   usage: Load individual slice files (./behavioral-contracts/B_NAME.md) for AI session context;
@@ -197,3 +197,6 @@ contracts:
   - id: B_DONE_RIGHT_FROM_THE_START
     desc: "verification is evidence, not the mechanism that creates quality"
     path: ./behavioral-contracts/B_DONE_RIGHT_FROM_THE_START.md
+  - id: B_INHERITANCE_POLICY
+    desc: "every chat boundary must transfer complete governance context"
+    path: ./behavioral-contracts/B_INHERITANCE_POLICY.md

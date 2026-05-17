@@ -217,6 +217,20 @@ schema_anchors:
     l2_domain: COVERAGE_DISCIPLINE
     description: EP-ERR-NNN error pattern registry
 
+  governance_docs:
+    type: governance-section
+    resolves_to: docs/plan/pillar-0-governance/
+    spine: GVRN
+    l2_domain: COUNCIL_COMMUNICATION
+    description: CSPS governance documentation (registry, protocol, plans)
+
+  ext_know_entry:
+    type: governance-section
+    resolves_to: docs/plan/_intake/external-knowledge/
+    spine: AI
+    l2_domain: KNOWLEDGE_ABSORPTION
+    description: External Knowledge vault entries (EXT-KNOW-NNN)
+
   council_state:
     type: governance-section
     resolves_to: tools/council/

@@ -26,7 +26,8 @@ export async function auditLog(db: PrismaClient, event: AuditLogInput): Promise<
       action: event.action,
       resourceType: event.resourceType,
       resourceId: event.resourceId,
-      data: event.data ?? {},
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      data: (event.data ?? {}) as any,
     },
   })
 }

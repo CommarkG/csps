@@ -16,8 +16,12 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./src/*"],
-      "@csps/integrations": ["../../libs/integrations/index.ts"]
-    }
+      "@csps/integrations": ["../../libs/integrations/index.ts"],
+      "@csps/components": ["../../libs/components/src/index.ts"],
+      "react": ["./node_modules/@types/react"],
+      "react-dom": ["./node_modules/@types/react-dom"]
+    },
+    "typeRoots": ["./node_modules/@types", "../../node_modules/@types"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

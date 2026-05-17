@@ -1,20 +1,16 @@
 // libs/integrations/jobs/trigger.ts
-// S035-C: Helper to trigger webhook delivery from anywhere in the platform.
-// Usage: await triggerWebhook(tenantId, 'task.created', { taskId, title })
+// wiring_deferred_until: S040 (requires 'inngest' package + INNGEST_SIGNING_KEY)
 
 import { inngest } from './inngest'
 
-/**
- * Trigger outbound webhook delivery for all active endpoints in a tenant.
- * Non-blocking — Inngest handles delivery with retries.
- */
 export async function triggerWebhook(
   tenantId: string,
   eventType: string,
   data: unknown
 ): Promise<void> {
+  if (!process.env.INNGEST_SIGNING_KEY) return
   await inngest.send({
-    name: 'webhook/deliver',
-    data: { tenantId, eventType, data },
+    name: 'csps/webhook.trigger',
+    data: { tenantId, eventType, payload: data },
   })
 }

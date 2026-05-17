@@ -36,7 +36,8 @@ export async function DELETE() {
       updateMany: async () => ({ count: 0 }),
     },
     auditEvent: {
-      create: (args) => db.auditEvent.create(args),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      create: (args: any) => db.auditEvent.create(args),
     },
   })
 

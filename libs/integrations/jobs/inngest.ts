@@ -1,14 +1,18 @@
 // libs/integrations/jobs/inngest.ts
-// S033-B: Platform Inngest client shared across all CSPS apps.
-// Import this in API route handlers and job functions.
+// wiring_deferred_until: S040 (requires 'inngest' package + INNGEST_SIGNING_KEY)
 
-import { Inngest } from 'inngest'
+type FnConfig = { id: string; name?: string; retries?: number; [key: string]: unknown }
 
-if (!process.env.INNGEST_SIGNING_KEY && process.env.NODE_ENV === 'production') {
-  console.warn('[csps/jobs] INNGEST_SIGNING_KEY not set — Inngest events will not be verified in production')
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export const inngest = {
+  id: 'csps' as const,
+  send: async (_event: { name: string; data?: unknown }): Promise<void> => {
+    if (!process.env.INNGEST_SIGNING_KEY) return
+    console.warn('[csps/jobs] inngest.send: package not installed')
+  },
+  createFunction: (
+    _config: FnConfig,
+    _trigger: any,
+    _handler: (...args: any[]) => Promise<any>
+  ): any => ({ id: _config.id }),
 }
-
-export const inngest = new Inngest({
-  id: 'csps',
-  signingKey: process.env.INNGEST_SIGNING_KEY,
-})

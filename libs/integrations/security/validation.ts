@@ -20,7 +20,8 @@ export const DateRangeSchema = z.object({
   from: z.coerce.date().optional(),
   to: z.coerce.date().optional(),
 }).refine(
-  ({ from, to }) => !from || !to || from <= to,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ({ from, to }: { from?: any; to?: any }) => !from || !to || from <= to,
   { message: 'from must be before or equal to to' }
 )
 

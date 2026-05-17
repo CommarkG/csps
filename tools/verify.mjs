@@ -973,6 +973,14 @@ const CYCLES = [
     },
   },
   {
+    // S039 LIVE — UI Completeness Gate: new app page files must have working interactive elements.
+    // Catches: empty onClick, dead links, forms without onSubmit, TODO in JSX, missing API routes.
+    // ADVISORY. promote to BLOCKING when pattern repeats (K=2 per EP-ERR discipline).
+    name: 'ui_completeness',
+    command: 'node tools/validators/validate-ui-completeness.mjs',
+    parse_output: (out) => { const m = out.match(/files_checked=(\d+).*advisories=(\d+)/); return m ? { files_checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
+  },
+  {
     // DNA SYNC FRESHNESS — T2 of 3-direction auto-sync enforcement.
     // Checks universal-sync-state.json is within 24h + drift detected since last sync.
     // ADVISORY if stale or drift > 0. Run pnpm sync:dna to propagate.

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-17T03:25:19.893Z
-- finished_at: 2026-05-17T03:25:51.248Z
+- ran_at: 2026-05-17T03:43:27.460Z
+- finished_at: 2026-05-17T03:44:00.554Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-17T03:25:19.893Z",
-    "finished_at": "2026-05-17T03:25:51.248Z",
+    "ran_at": "2026-05-17T03:43:27.460Z",
+    "finished_at": "2026-05-17T03:44:00.554Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 8.2,
+        "duration_seconds": 8.3,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.8,
+        "duration_seconds": 1.9,
         "ts_errors": 0
       },
       {
@@ -41,8 +41,8 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 417,
+        "duration_seconds": 0.3,
+        "scanned": 418,
         "errors": 0,
         "warnings": 29,
         "exempt": 289
@@ -214,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.4,
         "checked": 37,
         "advisories": 29
       },
@@ -300,7 +300,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 24,
-        "validators": 126,
+        "validators": 127,
         "models": 0,
         "advisories": 8
       },
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 383,
-        "clean": 383,
+        "checked": 384,
+        "clean": 384,
         "blocking": 0,
         "registry": 49
       },
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 572,
+        "scanned": 573,
         "advisory": 86
       },
       {
@@ -521,7 +521,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 156,
+        "checked": 157,
         "blocking": 0,
         "advisories": 0
       },
@@ -530,7 +530,7 @@
         "command": "node tools/validators/validate-laptop-patterns.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "checked": 40,
         "blocking": 0,
         "advisories": 7
@@ -579,8 +579,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -636,7 +636,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S022",
-        "validators": 127
+        "validators": 128
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -981,7 +981,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -1009,9 +1009,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 127,
+        "validators_checked": 128,
         "orphans": 0,
-        "registered": 127
+        "registered": 128
       },
       {
         "name": "token_budget_validate",
@@ -1098,7 +1098,16 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.1
+        "duration_seconds": 7.6
+      },
+      {
+        "name": "ui_completeness",
+        "command": "node tools/validators/validate-ui-completeness.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files_checked": 0,
+        "advisories": 0
       },
       {
         "name": "sync_state_fresh",
@@ -1196,7 +1205,7 @@
         "command": "node tools/validators/validate-implementation-gate.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "advisories": 0
       },
       {

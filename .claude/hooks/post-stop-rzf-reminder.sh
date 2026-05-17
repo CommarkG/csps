@@ -1,29 +1,32 @@
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.post-stop-rzf-reminder
 # @csps-name post-stop-rzf-reminder
-# @csps-description PostStop hook (ACTIVE S037-B). Scans the last assistant message for
-# "## RZF VERIFICATION". If the response is >200 chars AND the RZF section is missing,
-# injects a system message forcing the AI to run Zero-Findings cycles before continuing.
-# Implements OPEN-006. Per L1-principles: every substantive architectural turn must end
-# with RZF evidence. Advisory injection — exit 1 with continue:false.
-# @csps-version 1.0.0
+# @csps-description PostStop hook (ACTIVE S040). BLOCKING enforcement of RZF-before-response mandate.
+# Governor directive: ZF must happen BEFORE presenting any prompt or architectural claim.
+# Blocks the response if substantive content exists without ZF evidence.
+#
+# Checks for BOTH formats:
+#   - Sonnet format: "ZF Cycle 1:" ... "Status: ZF ACHIEVED"
+#   - OPUS-2 format: "## RZF VERIFICATION"
+#
+# B_RZF_BEFORE_PROMPT: every substantive response must contain ZF evidence.
+# T1 enforcement — fires after every response, blocks if missing.
+# @csps-version 2.0.0
 # @csps-owner group:finky
 # @csps-lifecycle production
 # @csps-lifecycle-state active
 # @csps-tags type:hook domain:governance audience:ai-agent
-# @csps-enforces P-META-006 P-META-008
+# @csps-enforces P-META-006 P-META-008 B_RZF_BEFORE_PROMPT
 
 set -euo pipefail
 
 readonly TRANSCRIPT_PATH="${CLAUDE_TRANSCRIPT_PATH:-}"
 readonly SESSION_ID="${CLAUDE_SESSION_ID:-unknown}"
 
-# If no transcript, skip gracefully
 if [ -z "$TRANSCRIPT_PATH" ] || [ ! -f "$TRANSCRIPT_PATH" ]; then
   exit 0
 fi
 
-# Extract last assistant message text from JSONL transcript
 LAST_ASSISTANT=$(python3 -c "
 import json, sys
 try:
@@ -35,49 +38,61 @@ try:
       if msg.get('type') == 'assistant':
         content = msg.get('message', {}).get('content', '')
         if isinstance(content, list):
-          text = ' '.join(
-            c.get('text', '') for c in content
-            if isinstance(c, dict) and c.get('type') == 'text'
-          )
+          text = ' '.join(c.get('text','') for c in content if isinstance(c,dict) and c.get('type')=='text')
         elif isinstance(content, str):
           text = content
         else:
           text = ''
-        print(text[:2000])
+        print(text[:3000])
         break
-    except:
-      pass
-except:
-  pass
+    except: pass
+except: pass
 " 2>/dev/null || echo "")
 
-# Skip if response is short (non-substantive) or empty
 MSG_LEN=${#LAST_ASSISTANT}
-if [ "$MSG_LEN" -lt 200 ]; then
+if [ "$MSG_LEN" -lt 150 ]; then
   exit 0
 fi
 
-# Check for RZF VERIFICATION section
+# Check for ZF evidence — EITHER Sonnet inline format OR OPUS-2 section format
+HAS_ZF=0
 if echo "$LAST_ASSISTANT" | grep -q "## RZF VERIFICATION"; then
+  HAS_ZF=1
+elif echo "$LAST_ASSISTANT" | grep -qE "ZF Cycle [12]:|Status: ZF ACHIEVED"; then
+  HAS_ZF=1
+elif echo "$LAST_ASSISTANT" | grep -qE "ZF Cycle 1.*finding|Cycle 1: 0"; then
+  HAS_ZF=1
+fi
+
+if [ "$HAS_ZF" -eq 1 ]; then
   exit 0
 fi
 
-# Check for DONE/COMPLETE/RATIFIED/IMPLEMENTED/CLOSED claims — only fire on substantive claims
-HAS_SUBSTANTIVE_CLAIM=0
-CLAIM_KEYWORDS=("DONE" "COMPLETE" "RATIFIED" "IMPLEMENTED" "CLOSED" "verified" "exit_code=0" "pnpm verify" "all validators" "structural" "architectural" "governance" "principle" "contract")
-
+# Check for substantive content requiring ZF — broader than before
+HAS_SUBSTANTIVE=0
 MSG_UPPER=$(echo "$LAST_ASSISTANT" | tr '[:lower:]' '[:upper:]')
-for keyword in "${CLAIM_KEYWORDS[@]}"; do
-  if echo "$MSG_UPPER" | grep -qi "${keyword^^}"; then
-    HAS_SUBSTANTIVE_CLAIM=1
+
+# Substantive indicators (expanded)
+SUBSTANTIVE_PATTERNS=(
+  "DONE" "COMPLETE" "RATIFIED" "IMPLEMENTED" "CLOSED"
+  "EXIT_CODE=0" "PNPM VERIFY" "COMMIT" "PUSH"
+  "ARCHITECTURAL" "GOVERNANCE" "PRINCIPLE" "CONTRACT"
+  "STRUCTURAL" "PERMANENT" "ENFORCE" "BLOCKING"
+  "SONNET, THIS IS OPUS" "OPUS, THIS IS SONNET"
+  "PROTO-0" "STEP: " "DIRECTIVE" "HANDOFF"
+)
+
+for pattern in "${SUBSTANTIVE_PATTERNS[@]}"; do
+  if echo "$MSG_UPPER" | grep -q "$pattern"; then
+    HAS_SUBSTANTIVE=1
     break
   fi
 done
 
-if [ "$HAS_SUBSTANTIVE_CLAIM" -eq 0 ]; then
+if [ "$HAS_SUBSTANTIVE" -eq 0 ]; then
   exit 0
 fi
 
-# Inject RZF gate — output JSON for Claude Code hook injection
-printf '%s\n' '{"continue":false,"systemMessage":"RZF GATE: This response made substantive architectural claims without running Zero-Findings cycles. Per L1-principles (P-META-006 + P-META-008): every substantive architectural turn must end with ## RZF VERIFICATION + Cycle 1 (what did I miss?) + Status (ZF ACHIEVED or findings list). Run ZF now before the Governor acts on this output. Format: ## RZF VERIFICATION\\nCycle 1: [findings or 0]\\nStatus: ZF ACHIEVED"}'
+# BLOCK — RZF missing from substantive response
+printf '%s\n' '{"continue":false,"systemMessage":"🚫 RZF GATE BLOCKED: Substantive response presented WITHOUT Zero-Findings verification.\n\nGOVERNOR DIRECTIVE: ZF must happen BEFORE presenting any prompt, directive, or architectural claim.\n\nRequired format before finalizing this response:\n  ZF Cycle 1: [what could be wrong with this response?]\n  Cycle 2: Re-examined [Cycle 1 area] — [what was checked] — 0 new findings.\n  Status: ZF ACHIEVED\n\nDo NOT repeat the response. Run ZF cycles, state findings, THEN re-present with ZF evidence included."}'
 exit 1

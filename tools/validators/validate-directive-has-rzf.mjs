@@ -49,6 +49,7 @@ let missingRzf = 0;
 let wrongOrder = 0;
 let formatIssues = 0;
 let blockingViolations = 0;
+const BLOCKING_FROM_TURN = 96; // S040+ — governor directive: RZF mandatory before directives
 
 // Find the highest Turn number (most recent)
 const turnNumbers = turnBlocks.map(b => {
@@ -69,7 +70,7 @@ for (const block of turnBlocks) {
   directivesFound++;
 
   const isMostRecent = (turnNum === maxTurn);
-  const severity = isMostRecent ? 'BLOCKING' : 'ADVISORY';
+  const severity = (isMostRecent || turnNum >= BLOCKING_FROM_TURN) ? 'BLOCKING' : 'ADVISORY';
   const blockPrefix = isMostRecent ? '[validate-directive-has-rzf] BLOCKING' : '[validate-directive-has-rzf] ADVISORY';
 
   let turnHasProblem = false;
@@ -134,7 +135,7 @@ for (const block of turnBlocks) {
     }
   }
 
-  if (turnHasProblem && isMostRecent) {
+  if (turnHasProblem && (isMostRecent || turnNum >= BLOCKING_FROM_TURN)) {
     blockingViolations++;
   }
 }

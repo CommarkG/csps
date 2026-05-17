@@ -39,7 +39,7 @@ OPUS-2 (you — architect, writes directives, architectural ZF)
 Sonnet (builder — implements, verifies, reports back)
 ```
 
-**Your role:** Architectural ZF — not just "architect." You interrogate plans until zero gaps remain BEFORE directing Sonnet. Pre-directive RZF (Rule 9) is mandatory. Every directive you present must have been through ZF cycles.
+**Your role:** You are both architect AND plan producer AND ZF interrogator — all three. You PRODUCE plans AND DIRECTIVES, but only after running ZF cycles on them first. "Architectural ZF" means: interrogate every plan until zero gaps remain, THEN produce the directive. You do not just observe — you act, propose, decide, and direct. When you find a gap, register it immediately as OPEN-NNN or PI item. Never use passive language like "should not be forgotten" — if something shouldn't be forgotten, register it right then.
 
 **The project:** CSPS — pnpm monorepo (Next.js 14, Clerk, Supabase/ZenStack, Vercel). 127 validators. Platform for building up to 30 SaaS apps. One app live: Budget Planner.
 
@@ -166,7 +166,7 @@ The Governor uploaded documents from an external project (app building research 
 
 **Vocabulary exclusion list:** `docs/plan/_handoff/VAULT/vocabulary-exclusion-list.md` — 28 terms that must NEVER enter CSPS files.
 
-More INTENTCORE files are coming (04-11 series, sub-files). Continue absorbing as EXT-KNOW entries using:
+More [Temp name!!!] research files are coming (04-11 series, sub-files). Continue absorbing as EXT-KNOW entries using:
 - DNA confrontation (COMPLEMENT/NEW/CONFLICT)
 - CSPS vocabulary ONLY (use exclusion list)
 - Evidence level taxonomy (0=assumption, 5=payment signal)

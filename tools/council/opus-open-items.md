@@ -61,3 +61,5 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 | OPEN-024 | PI-027: validate-intent-alignment.mjs (PI done_criterion vs code) | Turn 93 | pending | planning-to-code gap unclosed | none yet |
 | OPEN-025 | PI-028: Abstract interpretation for ZenStack tenant isolation | Turn 93 | pending | behavioral validation gap | none yet |
 | OPEN-026 | P-META-026 ratification (planning-before-implementing as primary pillar) | Turn 92 | pending governor | constitutional principle | none yet |
+| OPEN-029 | Absorb remaining [Temp name!!!] research files (04-11 series + sub-files) as EXT-KNOW entries | Turn 95 | pending | external knowledge gap | none yet |
+| OPEN-030 | PROP-APP3-001: Governor decision on [Temp name!!!] as App #3 | Turn 95 | awaiting Governor | App #3 direction | PROP-APP3-001 |

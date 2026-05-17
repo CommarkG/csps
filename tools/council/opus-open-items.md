@@ -60,7 +60,7 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 | OPEN-023 | PI-026: Developer onboarding via threshold wizard (dogfood) | Turn 93 | pending | developer UX not dogfooded | none yet |
 | OPEN-024 | PI-027: validate-intent-alignment.mjs (PI done_criterion vs code) | Turn 93 | pending | planning-to-code gap unclosed | none yet |
 | OPEN-025 | PI-028: Abstract interpretation for ZenStack tenant isolation | Turn 93 | pending | behavioral validation gap | none yet |
-| OPEN-026 | P-META-026 ratification (planning-before-implementing as primary pillar) | Turn 92 | pending governor | constitutional principle | none yet |
+| OPEN-026 | P-META-026 ratification (planning-before-implementing as primary pillar) | Turn 92 | ✅ RATIFIED 2026-05-17 by Governor in S040 C1 | constitutional principle | none yet |
 | OPEN-027 | csps-master-plan.md auto-update mechanism (keep master plan current without manual updates) | Turn 93 | pending | navigation staleness | none yet |
 | OPEN-029 | Absorb remaining [Temp name!!!] research files (04-11 series + sub-files) as EXT-KNOW entries | Turn 95 | pending | external knowledge gap | none yet |
 | OPEN-030 | PROP-APP3-001: Governor decision on [Temp name!!!] as App #3 | Turn 95 | awaiting Governor | App #3 direction | PROP-APP3-001 |
@@ -69,3 +69,4 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 | OPEN-033 | Add `pnpm --filter @csps/[app] build` to standard verification tail for any build-related fix directive — tsc alone is insufficient | Turn 3 | pending — update communication-protocol-shared.md Rule 6 or add Rule 11 | EP-ERR-003 prevention | none yet |
 | OPEN-034 | OPUS persona quality commitment into session-open.sh OPUS section (T3 for B_INHERITANCE_POLICY OPUS-specific enforcement) | Turn 6 | deferred — low-risk after turn counter at 25 re-injects | OPUS quality | none yet |
 | OPEN-035 | packages/principles/principles.yaml (65 ratified principles) not surfaced in any external DNA bundle — becomes DNA component ID in PI-031 dna-registry.yaml | OPUS-2 S8 | pending PI-031 design | DNA coverage gap | PI-031 |
+| OPEN-036 | T2 validator for FSE compliance on new behavioral contracts — check that new B_* entries in behavioral-contracts.md declare all 5 surfaces (T1+T2+T3+contract+AGENTS.md) | Turn 7 S040 | pending | FSE enforcement gap | none yet |

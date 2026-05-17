@@ -44,12 +44,11 @@ These are banned from new work. Do not revisit.
 
 ## §3 — Immediate Priorities (PE-scored)
 
-### PRIORITY 1 — P-META-026 Ratification [PE: 90]
+### PRIORITY 1 — P-META-026 Ratification [PE: 90] ✅ DONE
 
-**What:** Ratify planning-before-implementing as primary governance pillar.
-**OPEN:** OPEN-026
-**Governor action required:** Say "P-META-026 ratified" in any chat.
-**Unblocks:** S040 pipeline mandate (routing → intent crystallization → PI item flow).
+**Status:** ✅ RATIFIED 2026-05-17 by Governor (S040 C1). "I approve all your recommendations."
+**Principle:** Before implementing ANY feature, intent must be crystallized through the threshold intake protocol. No code without ratified plan.
+**Unblocks:** S040 pipeline mandate (routing → intent crystallization → PI item flow). OPEN-023/024 can now progress.
 
 ---
 
@@ -196,16 +195,24 @@ Key behavioral constraints for every response:
 
 ---
 
-## §7 — Alignment Questions for Governor Review
+## §7 — Governor Decisions Recorded (S040 C1)
 
-Before starting S040 C2, Governor should answer:
+All decisions made 2026-05-17. Ratified via "I approve all your recommendations."
 
-**Q1 — P-META-026:** Are you ready to ratify "planning-before-implementing as primary pillar"? (Y → say "P-META-026 ratified")
+**Q1 — P-META-026:** ✅ RATIFIED. Planning-before-implementing is primary governance pillar.
 
-**Q2 — Habit Tracker priority:** Do you want to prioritize Vercel deployment of Habit Tracker, or proceed to Consolidation Pass + DNA Bundle Engine first?
+**Q2 — Next priority:** ✅ Consolidation + DNA Bundle Engine first. Habit Tracker deploy is async (Governor Vercel action, no blocking).
 
-**Q3 — App #3:** Have you decided on [Temp name!!!] as App #3? (OPEN-030 — Governor decision gates S041 app build work)
+**Q3 — App #3:** ✅ Deferred. Decide after EXT-KNOW 04-11 absorbed.
 
-**Q4 — EXT-KNOW files:** When will you upload the 04-11 series files for absorption? (OPEN-029 — file upload triggers absorption workflow)
+**Q4 — EXT-KNOW upload:** ✅ Next available session. No urgency unless App #3 in S041.
 
-**Q5 — Consolidation authority:** For C-1 (shared-rules.md deletion), confirm you want me to delete it outright rather than archive. This is irreversible.
+**Q5 — Consolidation C-1:** ✅ Resolved — shared-rules.md is a valid contextual locality slice (NOT deleted). Synced with Rules 10+11.
+
+---
+
+## §8 — S040 C2 Mandate (next chat)
+
+**Open:** Consolidation Pass items C-2 + C-3 + design PI-031/032/033 (DNA Bundle Engine).
+
+Read `docs/plan/_handoff/VAULT/plan-items/PI-001-threshold-onboarding-wizard-wiring.yaml` as PI format template before designing PI-031/032/033.

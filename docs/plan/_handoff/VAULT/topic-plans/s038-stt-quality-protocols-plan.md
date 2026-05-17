@@ -41,6 +41,8 @@ covered_paths:
   - tools/council/quality-protocols/
   - libs/integrations/security/
   - .env.platform.example
+  - apps/budget-planner/src/app/dashboard/
+  - apps/budget-planner/src/app/page.tsx
 
 goal_statement: "STT quality protocols live as platform primitive; OPUS-2+Sonnet quality specs consolidated"
 know_how_consulted: true

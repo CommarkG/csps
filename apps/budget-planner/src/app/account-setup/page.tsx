@@ -28,7 +28,7 @@ export default function AccountSetupPage() {
           // Check if archetype already set (PI-001)
           const archetype = user?.publicMetadata?.archetype as string | undefined
           if (archetype) {
-            router.push('/')
+            router.push('/dashboard')
           } else {
             setPhase('onboarding')
           }
@@ -42,7 +42,7 @@ export default function AccountSetupPage() {
   const handleWizardComplete = async (_archetype: string) => {
     // Archetype stored via Inngest user.created event; redirect to dashboard
     setPhase('done')
-    router.push('/')
+    router.push('/dashboard')
   }
 
   if (phase === 'onboarding') {

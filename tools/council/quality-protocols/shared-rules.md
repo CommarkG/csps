@@ -67,3 +67,13 @@ Register → Implement → Wire → Verify. Never implement without registering 
 ## RULE 9 — Pre-Directive RZF
 
 Draft directive → ZF cycle → amend if findings → present only amended version. Recipient never sees known-gap directives.
+
+## RULE 10 — Mandatory Context Block (S039)
+
+Every cross-boundary message opens with: YOU ARE / I AM / THIS IS THE SITUATION / YOUR TASK. No exceptions. ZCA in mechanical form.
+
+## RULE 11 — Build Verification Tail (S040)
+
+For any build-related fix: verification tail MUST include `pnpm --filter @csps/[app] build` → 0 errors.
+`tsc --noEmit` alone = INSUFFICIENT (does not catch webpack errors, Next.js config failures, or runtime module resolution).
+DONE for a build fix = `next build` passes + `node tools/verify.mjs exit_code=0`.

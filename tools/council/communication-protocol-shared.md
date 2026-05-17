@@ -128,6 +128,29 @@ If the message is a long directive, the context block goes FIRST, before the dir
 
 ---
 
+## RULE 11 — Build Verification Tail (S040 — OPEN-033 resolution)
+
+For any build-related fix directive, the verification tail MUST include `pnpm --filter @csps/[app] build` → 0 errors.
+`tsc --noEmit` alone is NOT sufficient — it does not catch:
+- webpack module resolution failures (CJS `require()` of TypeScript ESM)
+- Next.js config errors (next.config.js crash at load time)
+- Missing packages not caught by type stubs
+
+**DONE for a build fix = `next build` passes AND `node tools/verify.mjs exit_code=0`**
+
+Pattern:
+```
+(5) VERIFY: pnpm --filter @csps/[app] build → must complete without error
+(6) VERIFY: node tools/verify.mjs → exit_code must be 0
+```
+
+Enforcement trio:
+- T1: none yet (OPEN-033 — add hook that checks build fix directives include `next build`)
+- T2: audit-runner.md slug `turn-counter-refresh` tracks this pattern
+- T3: this rule (session-open injection via communication-protocol-shared.md)
+
+---
+
 ## WHERE THIS IS READ
 
 - **Sonnet:** session-open.sh injects this file's rules at every session start

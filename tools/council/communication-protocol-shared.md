@@ -109,6 +109,25 @@ Enforcement trio:
 
 ---
 
+## RULE 10 — Mandatory Context Block (every paste target, every cross-boundary message)
+
+Every message sent across a boundary (new tab, new AI instance, new chat, co-worker) MUST open with this exact block, filled in:
+
+```
+YOU ARE: [exact role of the receiver — e.g. "Sonnet, the builder/implementer in Claude Code VS Code tab"]
+I AM: [exact role of sender — e.g. "OPUS-2, the architectural advisor in a separate Claude Code tab"]
+THIS IS THE SITUATION: [2-3 sentences max: project name, current state, what changed, what is urgent]
+YOUR TASK: [one specific action to take right now]
+```
+
+**No exceptions.** Not for Sonnet. Not for new OPUS-2. Not for co-worker. Not for any agent.
+
+If the message is a long directive, the context block goes FIRST, before the directive body.
+
+**Why:** Without this, the receiver starts from zero and makes wrong assumptions. ZCA (P-UX-002) is not just a concept — it is this block, filled in, every time.
+
+---
+
 ## WHERE THIS IS READ
 
 - **Sonnet:** session-open.sh injects this file's rules at every session start

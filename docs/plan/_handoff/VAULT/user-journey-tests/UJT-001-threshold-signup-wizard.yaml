@@ -1,0 +1,65 @@
+---
+id: UJT-001
+name: UJT-001-threshold-signup-wizard
+description: "Sign up with new email → OnboardingWizard appears → complete wizard → dashboard shows Budget Planner content. Primary threshold test for Budget Planner."
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: ARCH
+schema_anchor: vault_files
+diataxis_type: reference
+session: S039
+tags:
+  - domain:ux
+  - domain:architecture
+  - type:reference
+  - audience:developer
+  - maturity:draft
+links:
+  - { rel: parent, href: ./README.md }
+  - { rel: pi, href: ../plan-items/PI-001-threshold-onboarding-wizard-wiring.yaml }
+  - { rel: page, href: ../../../../apps/budget-planner/src/app/account-setup/page.tsx }
+---
+
+test_id: UJT-001
+pi_ref: PI-001
+description: "Threshold signup → wizard → dashboard flow for Budget Planner"
+
+steps:
+  - step: 1
+    action: "Visit https://csps-budget-planner.vercel.app and click Sign Up"
+    expected: "Clerk sign-up form appears"
+  - step: 2
+    action: "Enter a brand new email address and complete sign-up"
+    expected: "Redirect to /account-setup"
+  - step: 3
+    action: "Wait on /account-setup"
+    expected: "Loading screen with 'Setting up your account…' appears within 2s. Then polling resolves and the OnboardingWizard renders (3-5 questions about archetype)"
+  - step: 4
+    action: "Complete the OnboardingWizard (answer all questions)"
+    expected: "Wizard progresses through steps. Completion button visible. No errors."
+  - step: 5
+    action: "Click the final completion action in the wizard"
+    expected: "Redirect to /dashboard"
+  - step: 6
+    action: "Observe /dashboard"
+    expected: "Dashboard shows: goal statement (from budget-setup, or redirect to /budget-setup if goal not set), balance summary cards (income/expenses/balance), categories list or empty state, recent transactions or empty state"
+
+success_definition: "User arrives at a working dashboard with real data or clear empty states after completing the wizard. No 404. No blank page. No error."
+
+failure_indicators:
+  - "404 on /dashboard"
+  - "Blank white page"
+  - "Wizard doesn't appear (goes straight to dashboard without archetype check)"
+  - "OnboardingWizard completes but redirects back to /account-setup"
+  - "Dashboard shows DashboardShell with empty/nav=[] only"
+  - "JavaScript error in console"
+
+status: pending
+actual_result: null
+tested_at: null
+observation: null
+tested_by: null
+deploy_sha: 08bf23f
+deploy_url: "https://csps-budget-planner.vercel.app"

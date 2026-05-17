@@ -7,7 +7,6 @@ import { auth } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import type { CspsSessionClaims } from '@csps/integrations'
 import { db } from '@/lib/db'
-import { getEnhancedDb } from '@/lib/zenstack'
 
 type Tx = { id: string; type: string; amount: number; note: string | null }
 type Cat = { id: string; name: string; type: string; monthlyLimit: number | null }
@@ -23,10 +22,8 @@ export default async function DashboardPage() {
   const cspsUser = await db.user.findUnique({ where: { clerkId: userId } })
   if (!cspsUser) redirect('/sign-in')
 
-  const edb = getEnhancedDb({ id: cspsUser.id, tenantId, staffRole: cspsUser.staffRole })
-
   // Threshold Wizard gate — non-skippable (P-META-022: intent before action)
-  const budgetGoal = await edb.budgetGoal.findUnique({ where: { tenantId } }) as { tenantId: string; goalStatement: string } | null
+  const budgetGoal = await db.budgetGoal.findUnique({ where: { tenantId } }) as { tenantId: string; goalStatement: string } | null
   if (!budgetGoal) redirect('/budget-setup')
 
   // Current month balance
@@ -35,11 +32,11 @@ export default async function DashboardPage() {
   const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1)
 
   const [categories, transactions] = await Promise.all([
-    edb.budgetCategory.findMany({
+    db.budgetCategory.findMany({
       where: { tenantId, deletedAt: null },
       orderBy: [{ type: 'asc' }, { name: 'asc' }],
     }),
-    edb.transaction.findMany({
+    db.transaction.findMany({
       where: { tenantId, deletedAt: null, date: { gte: monthStart, lt: monthEnd } },
       orderBy: [{ date: 'desc' }],
       take: 20,

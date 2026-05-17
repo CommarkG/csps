@@ -68,6 +68,8 @@ ONE active directive at a time. Sonnet reports step-complete before OPUS-2 sends
 
 DONE = built + wired + called + output verified. Never declare done on commit alone. Wiring-completeness validator must pass.
 
+For build-related fixes specifically: `tsc --noEmit` passing is NOT done. See Rule 11 — `pnpm --filter @csps/[app] build` must complete without error.
+
 ---
 
 ## RULE 7 — Zero-Context Assumption (ZCA)

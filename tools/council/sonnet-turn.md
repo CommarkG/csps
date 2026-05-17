@@ -1,3 +1,40 @@
+# Sonnet Session S040 — INTENT ABSORBED (S039→S040 handoff)
+
+## Context absorbed from chat-jump-S039-complete.md + previous Sonnet tab handoff
+
+**Session state:** S039 CLOSED → S040 OPENING
+**Last verified commit:** c2435cd (enforce: B_RZF_BEFORE_PROMPT — full 5-surface permanent enforcement)
+**Platform:** 127+ validators, exit_code=0, Budget Planner build FIXED (c2fc7f7), App #3 domain PENDING
+
+## New permanent enforcement (from c2435cd — applies THIS session immediately):
+1. post-stop-rzf-reminder.sh v2.0 BLOCKS substantive response without ZF
+2. validate-directive-has-rzf.mjs BLOCKS Turn 96+ directives without prior RZF
+3. session-open.sh CAP injects: RZF → content order
+4. AGENTS.md Hard NO B_RZF_BEFORE_PROMPT constitutional
+5. feedback_rzf_before_prompt.md cross-session memory
+
+## First actions completed:
+1. ✅ INTENT ABSORBED written here
+2. ⏳ node tools/verify.mjs — running
+3. ✅ platform-state-snapshot.md → S039 CLOSED (in progress)
+4. ⏳ Awaiting OPUS-2 Turn 96 directive OR Governor App #3 domain decision (OPEN-030)
+
+## Open alignment questions (from Q1-Q5 in chat-jump):
+- Q1: Budget Planner live status post c2fc7f7 — UJT-001 pending
+- Q2: App #3 domain OPEN-030 decision from Governor
+- Q3: user_journey_test required before any feature code
+- Q4: Deferred packages activation readiness
+- Q5: directive_rzf_quality_rate current value
+
+## Two-path await:
+- PATH A: OPUS-2 Turn 96 directive → execute per directive
+- PATH B: Governor App #3 domain decision → planning grid spec + PE-scored topic-plan
+- While waiting: OPEN-031 + OPEN-032 + OPEN-033 housekeeping (no ratification needed)
+
+**Governor: if anything above is wrong, correct before I take any action.**
+
+---
+
 # Sonnet Session S037 — PI-023 + PI-025 INTENT ABSORBED (Turn 89)
 
 ## PI-023: Sentry instrumentation.ts
@@ -8,6 +45,16 @@ Both apps get identical file. GOVERNOR ACTION REQUIRED: pnpm add --filter [app] 
 Audit result: ALL 18 User queries are self-lookups (clerkId = userId). No cross-tenant reads.
 Creating PUBLIC_USER_FIELDS + toPublicUser() as defensive utility for future use.
 NOT wrapping existing queries — staffRole is required for getEnhancedDb scoping.
+
+---
+
+# Sonnet Session S039+ — INTENT ABSORBED (PROTO-018)
+
+## Task: Fix Budget Planner TypeScript build errors (3 errors → 0)
+1. Delete apps/budget-planner/sentry.client.config.ts (imports @sentry/nextjs — not installed)
+2. Fix inngest/next import (module not found)
+3. Fix AuditEvent type mismatch in settings route
+## Verification: pnpm --filter @csps/budget-planner exec tsc --noEmit → 0 errors → git push
 
 ---
 

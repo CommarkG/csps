@@ -8,12 +8,12 @@
 ## §1 — Current Platform Identity
 
 ```yaml
-session: S039
+session: S040
 date: 2026-05-17
-platform_version: CSPS v0.39
+platform_version: CSPS v0.40
 governor: Yariv Fink (group:finky)
 repo: github.com/CommarkG/csps
-last_commit: c2fc7f7 (PROTO-018: Budget Planner build clean)
+last_commit: c2435cd (enforce: B_RZF_BEFORE_PROMPT — full 5-surface permanent enforcement)
 sonnet_model: claude-sonnet-4-6[1m]
 ```
 
@@ -62,22 +62,32 @@ Precedence: GVRN > VALD > ARCH > AI > OPER
 
 ---
 
-## §5 — What Changed This Session (S036 — OPUS-2 Turns 75–78)
+## §5 — What Changed This Session (S039→S040 — OPUS-2 Turn 95+)
 
-**S036 delivered:**
+**S039 delivered (now CLOSED):**
 
 | Item | Status | Commit |
 |---|---|---|
-| PROTO-001: 3-step wiring audit (19 WIRED / 12 DEFERRED / 22 ORPHAN) | DONE ✅ | c91a974 |
-| validate-wiring-completeness.mjs LIVE | DONE ✅ | c91a974 |
-| Wire NOW: 11 items (rate-limit, Sentry, PostHog, OnboardingWizard, etc.) | DONE ✅ | ddfa4db |
-| 6 EP-ERR error patterns + error-registry/ + post-stop-error-harvest.sh | DONE ✅ | 25cbec8 + 80049c1 |
-| validate-communication-protocol.mjs + validate-active-protocol.mjs | DONE ✅ | ddfa4db |
-| P-UX-001 contextual-locality + B_CONTEXTUAL_LOCALITY | DONE ✅ | ddfa4db |
-| ZCA 5 surfaces (Rule 7 + inner-default + template + AGENTS.md + P-UX-002) | DONE ✅ | 6ffb879 |
-| B_ZCA + audit slug + L2 domain + memory/feedback_zca.md (CEC complete) | DONE ✅ | S036 close |
-| pnpm principles:split (63 principles) + contracts:split (60 contracts) | DONE ✅ | S036 close |
-| PROTO-003 closed + all commits pushed to remote | DONE ✅ | 8dc60ba |
+| PROTO-018: Budget Planner build fixed (0 TS errors) | DONE ✅ | c2fc7f7 |
+| B_RZF_BEFORE_PROMPT 5-surface permanent enforcement | DONE ✅ | c2435cd |
+| post-stop-rzf-reminder.sh v2.0 BLOCKING | DONE ✅ | c2435cd |
+| validate-directive-has-rzf.mjs BLOCKING | DONE ✅ | c2435cd |
+| session-open.sh CAP: RZF mandate injected | DONE ✅ | c2435cd |
+| developer-journey/ 10-doc mini-tree (pillar-4) | DONE ✅ | S039 |
+| meta-platform/ 8-doc mini-tree (pillar-0) | DONE ✅ | S039 |
+| quality-protocols/ (tools/council/) 3 spec files | DONE ✅ | S039 |
+| COMPLETION-GAP-ANALYSIS-S039.md + UJT infrastructure | DONE ✅ | S039 |
+| chat-jump-S039-complete.md (ZCA-compliant v2) | DONE ✅ | 8644dc3 |
+
+**S040 opening:**
+
+| Item | Status | Action |
+|---|---|---|
+| OPEN-030: App #3 domain decision | PENDING | Governor decision required |
+| OPEN-031: EP-ERR for premature-done-on-tsc | PENDING | S040 housekeeping |
+| OPEN-032: Audit (dashboard) route group | PENDING | S040 housekeeping |
+| OPEN-033: Rule 6 pnpm build requirement | PENDING | S040 housekeeping |
+| UJT-001: Budget Planner live visit | PENDING | Governor browser test |
 
 ---
 
@@ -136,7 +146,8 @@ Rule 7 (ZCA) added. Full protocol: `tools/council/communication-protocol-shared.
 
 ## §10 — Session History (last 5)
 
-**S039 STATUS: ACTIVE** | 127+ validators | Budget Planner build fixed | App #3 domain pending
+**S040 STATUS: ACTIVE** | 127+ validators | B_RZF_BEFORE_PROMPT live | App #3 domain PENDING Governor
+**S039 STATUS: CLOSED** | 127+ validators | Budget Planner build fixed | RZF enforcement 5/5 surfaces
 **S038 STATUS: CLOSED** | 127 validators | STT module + quality-protocols mini-tree | DNA gate M-26 | communication protocol v2
 **S037 STATUS: CLOSED** | 125 validators | PE Agent live | 65 principles | 61 contracts | creation completeness + enforcement trio + EP-ERR loop
 **S036 STATUS: CLOSED** | 115+ validators | ZCA constitutional | 63 principles | 60 contracts | error registry + wiring audit live

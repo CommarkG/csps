@@ -1,4 +1,5 @@
 // libs/integrations/security/validation.ts
+// wiring_deferred_until: S039 (schemas wired in individual API routes — not top-level app import)
 // S032-C: Common Zod validation schemas for CSPS API routes.
 // Import in API routes to validate request params/body.
 

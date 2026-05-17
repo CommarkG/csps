@@ -120,6 +120,11 @@ if (existsSync(INTEG_INDEX)) {
       const files = existsSync(dir) ? readdirSync(dir).filter(f => f.endsWith('.ts')).map(f => join(dir, f)) : []
       if (files.some(f => isDeferredIn(sym, f))) { deferred = true; break }
     }
+    // Also check root-level .ts files (errors.ts, webhook-idempotency.ts, index.ts)
+    if (!deferred) {
+      const rootFiles = readdirSync(join(ROOT, 'libs/integrations')).filter(f => f.endsWith('.ts')).map(f => join(ROOT, 'libs/integrations', f))
+      if (rootFiles.some(f => isDeferredIn(sym, f))) deferred = true
+    }
 
     results.push({
       symbol: sym,

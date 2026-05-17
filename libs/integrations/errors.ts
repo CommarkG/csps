@@ -1,4 +1,5 @@
 // CSPS standard error response shapes — L1 convention (not Core Primitive)
+// wiring_deferred_until: S039 (used in API routes via direct import — not top-level app import)
 // Shared pattern: apps may extend via their own error types.
 // Opus S022: remove renewal_url from L1. Error shape = { error, message, details? }
 

@@ -1,4 +1,5 @@
 // Plan upgrade confirmation email
+// wiring_deferred_until: S039 (needs Stripe billing flow + RESEND_API_KEY)
 
 type UpgradeInput = {
   displayName: string

@@ -1,4 +1,5 @@
 // Trial expiry reminder email
+// wiring_deferred_until: S039 (triggered by Inngest cron — needs RESEND_API_KEY)
 
 type TrialExpiryInput = {
   displayName: string

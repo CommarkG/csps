@@ -1,4 +1,5 @@
 // Webhook idempotency — prevents duplicate processing when Stripe/Clerk retries delivery.
+// wiring_deferred_until: S039 (used by webhook endpoints when webhook delivery is activated)
 // Uses AuditEvent as the idempotency store (append-only, immutable — ideal for this).
 //
 // Pattern: call isProcessed(key, db) before handling; call markProcessed(key, ...) after.

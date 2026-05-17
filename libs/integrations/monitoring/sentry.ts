@@ -1,4 +1,5 @@
 // libs/integrations/monitoring/sentry.ts
+// wiring_deferred_until: S039 (requires SENTRY_DSN env var + pnpm add @sentry/nextjs per app)
 // S033-C: Server-side Sentry error capture helpers.
 //
 // IMPORTANT: apps must call Sentry.init() in their instrumentation.ts before

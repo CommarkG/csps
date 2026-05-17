@@ -1,4 +1,5 @@
 // libs/integrations/email/client.ts
+// wiring_deferred_until: S039 (requires RESEND_API_KEY + email trigger points in apps)
 // S033-A: Platform email client using Resend.
 // Graceful passthrough when RESEND_API_KEY not set — logs warning, returns failure.
 // Note: react-email is a future upgrade path for richer templates; plain HTML is used now.

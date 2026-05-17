@@ -1,4 +1,5 @@
 // Team invitation email
+// wiring_deferred_until: S039 (needs invitation flow in apps + RESEND_API_KEY)
 
 type InvitationInput = {
   inviterName: string

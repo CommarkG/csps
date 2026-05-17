@@ -1,4 +1,5 @@
 // Welcome email — sent when a new user joins an app
+// wiring_deferred_until: S039 (triggered by Inngest user.created — needs RESEND_API_KEY)
 
 type WelcomeEmailInput = {
   displayName: string

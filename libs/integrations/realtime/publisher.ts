@@ -1,4 +1,5 @@
 // libs/integrations/realtime/publisher.ts
+// wiring_deferred_until: S039 (requires UPSTASH_REDIS_REST_URL + notification UI in apps)
 // S035-B: Publish notifications to a per-user Redis list.
 // Uses rpush (append to list) — SSE route polls with lrange + lrem to consume.
 // Polling-based SSE pattern: compatible with Vercel serverless (no SUBSCRIBE needed).

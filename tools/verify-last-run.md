@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-16T23:51:50.264Z
-- finished_at: 2026-05-16T23:52:16.475Z
+- ran_at: 2026-05-17T00:01:57.313Z
+- finished_at: 2026-05-17T00:02:24.823Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-16T23:51:50.264Z",
-    "finished_at": "2026-05-16T23:52:16.475Z",
+    "ran_at": "2026-05-17T00:01:57.313Z",
+    "finished_at": "2026-05-17T00:02:24.823Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.7,
+        "duration_seconds": 6.8,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 65,
         "findings_total": 15
       },
@@ -495,8 +495,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "wired": 19,
-        "deferred": 12,
-        "orphan": 22
+        "deferred": 34,
+        "orphan": 0
       },
       {
         "name": "communication_protocol",
@@ -1098,7 +1098,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 5.8
+        "duration_seconds": 7.2
       },
       {
         "name": "sync_state_fresh",
@@ -1106,7 +1106,7 @@
         "status": "OK",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "hours_since_sync": 0,
+        "hours_since_sync": 1,
         "principle_drift": 0,
         "moat_drift": 0,
         "contract_drift": 0

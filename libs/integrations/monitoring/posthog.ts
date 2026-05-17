@@ -1,4 +1,5 @@
 // libs/integrations/monitoring/posthog.ts
+// wiring_deferred_until: S039 (requires POSTHOG_API_KEY env var + posthog-js in apps)
 // S033-C: Server-side PostHog analytics helpers.
 // Graceful passthrough when POSTHOG_API_KEY not set.
 //

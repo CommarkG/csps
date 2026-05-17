@@ -1,4 +1,5 @@
 // Weekly digest email
+// wiring_deferred_until: S039 (triggered by Inngest weekly cron — needs RESEND_API_KEY)
 
 type DigestInput = {
   displayName: string

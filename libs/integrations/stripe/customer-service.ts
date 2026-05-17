@@ -1,4 +1,5 @@
 // Stripe customer service — creates/manages Stripe customers for CSPS Tenants.
+// wiring_deferred_until: S039 (requires STRIPE_SECRET_KEY + billing topic-plan)
 //
 // Pattern: when a Tenant is created (via Clerk org.created webhook),
 // a Stripe customer is created and Tenant.stripeCustomerId is set.

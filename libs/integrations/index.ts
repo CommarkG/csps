@@ -44,6 +44,8 @@ export { eraseUser } from './gdpr'
 export type { ErasureReceipt, ErasureDb } from './gdpr'
 
 // S022 Session 0 additions — shared patterns (libs/integrations/ L1 conventions)
+// wiring_deferred_until: S039 ERRORS createError (used in API routes via direct import — not top-level app import)
 export { createError, ERRORS } from './errors'
 export type { CspsError } from './errors'
+// wiring_deferred_until: S039 withIdempotency isProcessed markProcessed (webhook delivery flow — not yet in active use)
 export { isProcessed, markProcessed, withIdempotency } from './webhook-idempotency'

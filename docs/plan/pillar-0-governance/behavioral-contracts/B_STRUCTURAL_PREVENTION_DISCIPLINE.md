@@ -26,4 +26,11 @@
 
 **Cross-references:** P-META-019 / P-META-007 (FSE — the structural-fix surfaces typically span all 5) / P-META-013 (HPFA — checks engraving completeness; this contract makes gaps surface as enhancements) / P-META-016 (gradual-build absorbs structural enhancements as new topic-plan candidates) / P-META-006 (RZF — structural fix discipline IS RZF applied to enforcement coverage).
 
+**Enforcement Trio (S041 OPEN-050 declaration):**
+- T1 (hook): None declared yet. Ideal T1: PostStop hook that detects instance-patch language ("fixed this case", "patched here") without accompanying structural fix. Would flag "patch-without-structure" pattern. (OPEN-049 candidate)
+- T2 (validator): `enhancement-proposal-coverage` — PLANNED week 4. Not yet in pnpm verify. `structural-fix-vs-instance-fix-discipline` — PLANNED. `validate-rule-has-enforcement.mjs` catches rules without enforcement_tier.
+- T3 (session): `session-open.sh` — "B_STRUCTURAL_PREVENTION_DISCIPLINE: when enforcement skipped → fix STRUCTURE not instance." Active since S006.
+- **enforcement_tier:** `{ t1: none (planned patch-detector PostStop hook), t2: none (enhancement-proposal-coverage planned), t3: session-open structural-fix mandate, permanence: low-current (T3-only) → target: medium with T1 patch-detector + T2 BLOCKING }`
+- **AI deep instruction:** This contract is itself an example of DEFAULT-ME-1: it was declared in S006 as a fully-documented rule. But it has T3-only enforcement. A rule about fixing structures, lacking structural enforcement — the deepest irony in the platform. Adding enforcement_tier to this contract IS the structural fix.
+
 ---

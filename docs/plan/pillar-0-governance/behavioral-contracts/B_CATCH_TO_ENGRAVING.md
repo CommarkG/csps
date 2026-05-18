@@ -31,3 +31,9 @@
 - contract: this entry + AGENTS.md hard NO (turn 15)
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_CATCH_TO_ENGRAVING is Level 3 (Session Completeness — catch completeness) in the unified completeness framework.
+
+**Enforcement Trio (S041 OPEN-050 declaration):**
+- T1 (hook): `.claude/hooks/post-tool-use-cec-trigger.sh` — PARTIAL-ACTIVE. Fires when behavioral-contracts.md is modified, triggers CEC walk. Does not yet scan session log for un-engraved catches.
+- T2 (validator): No dedicated T2 exists yet. `validate-rule-has-enforcement.mjs` catches PI items without enforcement_trio but not un-engraved catches. Planned: `validate-catch-engraving-coverage.mjs` per audit-runner slug.
+- T3 (session): `session-open.sh` — "B_CATCH_TO_ENGRAVING: every gap → persistent artifact within session." Active since S002.
+- **enforcement_tier:** `{ t1: post-tool-use-cec-trigger.sh PARTIAL, t2: none (planned validate-catch-engraving-coverage.mjs), t3: session-open mandate, permanence: low-current → target: medium with T2 built }`

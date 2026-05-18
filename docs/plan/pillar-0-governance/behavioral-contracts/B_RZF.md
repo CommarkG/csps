@@ -39,3 +39,9 @@
 - contract: this entry + `principles.yaml#P-META-006`
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_RZF is Level 1 (Finding Completeness) in the unified completeness framework.
+
+**Enforcement Trio (S041 OPEN-050 declaration):**
+- T1 (hook): `.claude/hooks/post-stop-rzf-reminder.sh` — PRODUCTION BLOCKING. Fires after every response, exits 1 if ZF cycles absent from substantive content. The strongest T1 in the platform — fully operational.
+- T2 (validator): `tools/validators/validate-directive-has-rzf.mjs` — ADVISORY. Scans Opus directives for RZF evidence. Partially covers the contract. Full T2: blocking validator that scans all responses for nominal ZF (Cycle 2 without naming). Planned OPEN-049.
+- T3 (session): `session-open.sh` — "ZF ITERATION AWARENESS" injected every session. "Cycle 2 MUST name what was re-examined."
+- **enforcement_tier:** `{ t1: post-stop-rzf-reminder.sh BLOCKING, t2: validate-directive-has-rzf.mjs ADVISORY, t3: session-open ZF mandate, permanence: high-partial → target: high-full with validate-nominal-rzf.mjs BLOCKING }`

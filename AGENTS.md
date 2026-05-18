@@ -37,6 +37,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 ### Governance + workflow
 - ❌ Never edit `AGENTS.md` directly — edit [`packages/principles/principles.yaml`](packages/principles/principles.yaml) + run `pnpm principles:codegen`
 - ❌ Never edit `nav.js`, `styles.css` Design Attitudes section, or `platform/templates/vault/*.html` without: (1) showing the exact diff, (2) stating which pages are affected, (3) receiving explicit Governor YES. (Sacred Elements — 1C ratified Opus Turn 96)
+- ❌ Never declare a new B_* behavioral contract, principle, or Hard NO without including `enforcement_tier:` section declaring T1 hook + T2 validator + T3 session. Written rule = 0% complete. T1+T2+T3 = 100% complete. (DEFAULT-ME-1 override — S041 OPEN-050 — validate-rule-has-enforcement.mjs detects absence)
 - ❌ Never bypass hooks (`--no-verify`) or skip CI checks
 - ❌ Never `git push --force` on main without explicit go-ahead
 - ❌ Never save artifact without `lifecycle_state` + valid frontmatter (skill: `vocabulary-canon`)
@@ -46,6 +47,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never conflate chat with session — N:1 forbidden (1-session in 1-chat default)
 - ❌ Never proceed past upload/paste/URL without manual-protocol + EXT-ID stamping
 - ❌ Never write HANDOFF while any blocker has `state: open`
+- ❌ Never declare a governance rule DONE without naming: (1) the training default it overrides, (2) the AI satisfaction point it prevents, (3) which T1 hook fires on violation, (4) which T2 validator BLOCKS commits. AGENTS.md-only = T3-only = will drift by turn 10. (B_PRACE — PRACE enforcement mandate)
 - ❌ Never passively observe a gap ("this should not be forgotten", "worth noting") — register OPEN-NNN immediately in the SAME turn (B_INHERITANCE_POLICY + EP-ERR-005: announce-not-track)
 - ❌ Never close a session without Zone A + Zone B + ALIGNMENT QUESTIONS (≥3) in the HANDOFF — validate-handoff-completeness.mjs BLOCKS (B_INHERITANCE_POLICY)
 - ❌ Never create a governance rule with T3-only enforcement (memory/session injection alone = drift-prone) — B_INHERITANCE_POLICY requires T1+T2+T3
@@ -184,7 +186,6 @@ All run catalog-first search. `--new` requires `created-new-because:` justificat
 See [agents-navigation.md](docs/plan/pillar-0-governance/agents-navigation.md) for the full path reference.
 
 ## Per-directory cascade + update workflow
-
 Per-app (`apps/<scope>/<name>/AGENTS.md`) and per-package (`packages/<name>/AGENTS.md`) extend with scope-specific rules. Inheritance: AGENTS.md cascade + shared MCP (`csps-principles-mcp`) + Mastra `BaseAgent` + audit-runner.
 
 **Do not edit `AGENTS.md` directly.** Generated from [`packages/principles/principles.yaml`](packages/principles/principles.yaml) via `pnpm principles:codegen`. Workflow: edit principles.yaml → run codegen → commit both. CI fails if `git diff AGENTS.md` shows drift.
@@ -192,7 +193,6 @@ Per-app (`apps/<scope>/<name>/AGENTS.md`) and per-package (`packages/<name>/AGEN
 **Phase 4 transitional state (S007 turn 6):** AGENTS.md slim authored manually pending codegen full implementation per [token-optimization.md](docs/plan/pillar-0-governance/token-optimization.md) Phase 4. Backup at [`AGENTS.md.original`](AGENTS.md.original). Per principles-codegen.ts header: "Full AGENTS.md regeneration deferred to week-2-4 per build-order.md" — manual maintenance until codegen ships.
 
 ## Compact + session boundaries (B_TOKEN_BUDGET R3+R4)
-
 - `/compact <focus>` at IMPL_BATCH boundaries; `/clear` between unrelated tasks (domain change → session boundary; P-META-014).
 - Cardinal: tokens are INVESTMENT in reasoning quality, NOT budget to minimize.
 ## Open frontiers — [`docs/plan/pillar-6-operations-and-delivery/open-frontiers.md`](docs/plan/pillar-6-operations-and-delivery/open-frontiers.md) tracks items not yet final. Don't lock in behavior on those without checking latest state.

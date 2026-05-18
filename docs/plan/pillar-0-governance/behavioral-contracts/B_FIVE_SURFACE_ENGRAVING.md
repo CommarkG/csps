@@ -36,3 +36,9 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 - hook: PostStop scans session log for catch-language ("I notice", "gap surfaced", "this is a trap") + verifies 5-surface artifacts; UserPromptSubmit reminder for the catch-cycle 7 stages
 - memory: `feedback_five_surface_engraving.md` (S002 turn 17)
 - contract: this entry + `pillar-0-governance/five-surface-engraving.md` (canonical spec) + `principles.yaml#P-META-007` + AGENTS.md hard NO (turn 17) + `ai-behavior-spine.md` row + `_handoff/VAULT/closing-summary-template.md` §10.13c
+
+**Enforcement Trio (S041 OPEN-050 declaration):**
+- T1 (hook): `.claude/hooks/post-tool-use-cec-trigger.sh` — PARTIAL-ACTIVE. Fires on behavioral-contracts.md edits, triggers CEC walk. Does not yet count surfaces engraved per session.
+- T2 (validator): `catch-engraving-completeness` audit — PLANNED week 4. Does not yet exist in pnpm verify. `validate-rule-has-enforcement.mjs` provides partial coverage for new rules.
+- T3 (session): `session-open.sh` — "B_FIVE_SURFACE_ENGRAVING: when catch detected → 5 surfaces atomically in same response/commit." Active since S002.
+- **enforcement_tier:** `{ t1: post-tool-use-cec-trigger.sh PARTIAL, t2: none-current (catch-engraving-completeness planned), t3: session-open FSE mandate, permanence: low-current → target: medium with T1 surface-count + T2 BLOCKING }`

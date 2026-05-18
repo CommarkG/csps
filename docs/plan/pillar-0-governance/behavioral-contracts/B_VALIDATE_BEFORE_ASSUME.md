@@ -16,3 +16,22 @@
 The original B_VALIDATE_BEFORE_ASSUME relied on AI to remember to cite tool-call output. Pre-runtime, no mechanical enforcement. The strengthening: the response STRUCTURE must show tool-call → output → assertion in literal sequence. Future readers (and future audits) can grep for assertion-without-preceding-tool-call. Pattern is mechanically visible.
 
 **Composes with B_CATCH_TO_ENGRAVING:** if the AI's tool-call output reveals a gap (e.g., file missing where expected), that gap MUST be engraved per B_CATCH_TO_ENGRAVING. Both contracts together produce: validate-via-tool-call → notice-gap → engrave-as-artifact → continue.
+
+**Enforcement Trio (T1+T2+T3 — S041 OPEN-050 declaration):**
+
+**AI deep instruction — why T3-only fails here:**
+Training DEFAULT-ME-3: "T3 session injection = enforcement." The session-open CAP mentions validate-before-assume. But by turn 10-15, context pressure displaces it. State claims without tool evidence then reappear. T3 alone = documented suggestion, not structural enforcement. T1+T2 fire REGARDLESS of AI cooperation.
+
+- T1 (hook): `.claude/hooks/post-tool-use-validate-before-assume.sh` — fires after every tool call. Currently STUB (exit 0 always). Week-4 upgrade: scans last AI message for assertion-without-preceding-tool-call in same response. Exit 1 on violation. (OPEN-045)
+- T2 (validator): `tools/validators/validate-rule-has-enforcement.mjs` — ADVISORY. Scans PI items creating rules for enforcement_trio field. Does not yet directly validate B_VALIDATE_BEFORE_ASSUME violations. Full T2 pending: `validate-validate-before-assume-rate.mjs` (tracks per-session rate of tool-sandwich compliance). (S042 candidate)
+- T3 (session): `session-open.sh` CAP Q line — "B_VALIDATE_BEFORE_ASSUME: every state claim cites tool call IN THIS RESPONSE." Active since S002.
+
+**Satisfaction point (CSPS):** post-tool-use-validate-before-assume.sh exits 1 on violation AND pnpm verify includes it as BLOCKING. Until then: T3-only + advisory T2 scan.
+
+**enforcement_tier:**
+```yaml
+  t1_hook: post-tool-use-validate-before-assume.sh (STUB → ADVISORY OPEN-045 → BLOCKING week-4)
+  t2_validator: validate-rule-has-enforcement.mjs (advisory) + validate-validate-before-assume-rate.mjs (S042 planned)
+  t3_session: session-open.sh CAP — "every state claim cites tool call IN THIS RESPONSE"
+  permanence: low-current → high-target (T1 upgrade in OPEN-045 raises to medium; T2 BLOCKING raises to high)
+```

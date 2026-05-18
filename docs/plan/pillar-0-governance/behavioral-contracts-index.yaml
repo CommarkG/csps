@@ -6,8 +6,8 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 62
-  generated_at: '2026-05-17'
+  total_count: 63
+  generated_at: '2026-05-18'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
   usage: Load individual slice files (./behavioral-contracts/B_NAME.md) for AI session context;
@@ -200,3 +200,6 @@ contracts:
   - id: B_INHERITANCE_POLICY
     desc: "every chat boundary must transfer complete governance context"
     path: ./behavioral-contracts/B_INHERITANCE_POLICY.md
+  - id: B_PRACE
+    desc: "Permanent Recurring AI Contextual Enforcement"
+    path: ./behavioral-contracts/B_PRACE.md

@@ -359,6 +359,12 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_RZF is Level 1 (Finding Completeness) in the unified completeness framework.
 
+**Enforcement Trio (S041 OPEN-050 declaration):**
+- T1 (hook): `.claude/hooks/post-stop-rzf-reminder.sh` — PRODUCTION BLOCKING. Fires after every response, exits 1 if ZF cycles absent from substantive content. The strongest T1 in the platform — fully operational.
+- T2 (validator): `tools/validators/validate-directive-has-rzf.mjs` — ADVISORY. Scans Opus directives for RZF evidence. Partially covers the contract. Full T2: blocking validator that scans all responses for nominal ZF (Cycle 2 without naming). Planned OPEN-049.
+- T3 (session): `session-open.sh` — "ZF ITERATION AWARENESS" injected every session. "Cycle 2 MUST name what was re-examined."
+- **enforcement_tier:** `{ t1: post-stop-rzf-reminder.sh BLOCKING, t2: validate-directive-has-rzf.mjs ADVISORY, t3: session-open ZF mandate, permanence: high-partial → target: high-full with validate-nominal-rzf.mjs BLOCKING }`
+
 ## B_CEC — Complete Extraction Cycle (value verification, CSPS extension S002 turn 10)
 
 **Canonical wording:**
@@ -498,6 +504,12 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_CATCH_TO_ENGRAVING is Level 3 (Session Completeness — catch completeness) in the unified completeness framework.
 
+**Enforcement Trio (S041 OPEN-050 declaration):**
+- T1 (hook): `.claude/hooks/post-tool-use-cec-trigger.sh` — PARTIAL-ACTIVE. Fires when behavioral-contracts.md is modified, triggers CEC walk. Does not yet scan session log for un-engraved catches.
+- T2 (validator): No dedicated T2 exists yet. `validate-rule-has-enforcement.mjs` catches PI items without enforcement_trio but not un-engraved catches. Planned: `validate-catch-engraving-coverage.mjs` per audit-runner slug.
+- T3 (session): `session-open.sh` — "B_CATCH_TO_ENGRAVING: every gap → persistent artifact within session." Active since S002.
+- **enforcement_tier:** `{ t1: post-tool-use-cec-trigger.sh PARTIAL, t2: none (planned validate-catch-engraving-coverage.mjs), t3: session-open mandate, permanence: low-current → target: medium with T2 built }`
+
 ## B_VALIDATE_BEFORE_ASSUME — strengthened with tool-call sandwich (S002 turn 15 amendment)
 
 **Strengthening (canonical wording amendment):**
@@ -511,6 +523,25 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 The original B_VALIDATE_BEFORE_ASSUME relied on AI to remember to cite tool-call output. Pre-runtime, no mechanical enforcement. The strengthening: the response STRUCTURE must show tool-call → output → assertion in literal sequence. Future readers (and future audits) can grep for assertion-without-preceding-tool-call. Pattern is mechanically visible.
 
 **Composes with B_CATCH_TO_ENGRAVING:** if the AI's tool-call output reveals a gap (e.g., file missing where expected), that gap MUST be engraved per B_CATCH_TO_ENGRAVING. Both contracts together produce: validate-via-tool-call → notice-gap → engrave-as-artifact → continue.
+
+**Enforcement Trio (T1+T2+T3 — S041 OPEN-050 declaration):**
+
+**AI deep instruction — why T3-only fails here:**
+Training DEFAULT-ME-3: "T3 session injection = enforcement." The session-open CAP mentions validate-before-assume. But by turn 10-15, context pressure displaces it. State claims without tool evidence then reappear. T3 alone = documented suggestion, not structural enforcement. T1+T2 fire REGARDLESS of AI cooperation.
+
+- T1 (hook): `.claude/hooks/post-tool-use-validate-before-assume.sh` — fires after every tool call. Currently STUB (exit 0 always). Week-4 upgrade: scans last AI message for assertion-without-preceding-tool-call in same response. Exit 1 on violation. (OPEN-045)
+- T2 (validator): `tools/validators/validate-rule-has-enforcement.mjs` — ADVISORY. Scans PI items creating rules for enforcement_trio field. Does not yet directly validate B_VALIDATE_BEFORE_ASSUME violations. Full T2 pending: `validate-validate-before-assume-rate.mjs` (tracks per-session rate of tool-sandwich compliance). (S042 candidate)
+- T3 (session): `session-open.sh` CAP Q line — "B_VALIDATE_BEFORE_ASSUME: every state claim cites tool call IN THIS RESPONSE." Active since S002.
+
+**Satisfaction point (CSPS):** post-tool-use-validate-before-assume.sh exits 1 on violation AND pnpm verify includes it as BLOCKING. Until then: T3-only + advisory T2 scan.
+
+**enforcement_tier:**
+```yaml
+  t1_hook: post-tool-use-validate-before-assume.sh (STUB → ADVISORY OPEN-045 → BLOCKING week-4)
+  t2_validator: validate-rule-has-enforcement.mjs (advisory) + validate-validate-before-assume-rate.mjs (S042 planned)
+  t3_session: session-open.sh CAP — "every state claim cites tool call IN THIS RESPONSE"
+  permanence: low-current → high-target (T1 upgrade in OPEN-045 raises to medium; T2 BLOCKING raises to high)
+```
 
 ## B_FIVE_SURFACE_ENGRAVING — every catch produces a 5-surface delta atomically (S002 turn 17)
 
@@ -545,6 +576,12 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 - hook: PostStop scans session log for catch-language ("I notice", "gap surfaced", "this is a trap") + verifies 5-surface artifacts; UserPromptSubmit reminder for the catch-cycle 7 stages
 - memory: `feedback_five_surface_engraving.md` (S002 turn 17)
 - contract: this entry + `pillar-0-governance/five-surface-engraving.md` (canonical spec) + `principles.yaml#P-META-007` + AGENTS.md hard NO (turn 17) + `ai-behavior-spine.md` row + `_handoff/VAULT/closing-summary-template.md` §10.13c
+
+**Enforcement Trio (S041 OPEN-050 declaration):**
+- T1 (hook): `.claude/hooks/post-tool-use-cec-trigger.sh` — PARTIAL-ACTIVE. Fires on behavioral-contracts.md edits, triggers CEC walk. Does not yet count surfaces engraved per session.
+- T2 (validator): `catch-engraving-completeness` audit — PLANNED week 4. Does not yet exist in pnpm verify. `validate-rule-has-enforcement.mjs` provides partial coverage for new rules.
+- T3 (session): `session-open.sh` — "B_FIVE_SURFACE_ENGRAVING: when catch detected → 5 surfaces atomically in same response/commit." Active since S002.
+- **enforcement_tier:** `{ t1: post-tool-use-cec-trigger.sh PARTIAL, t2: none-current (catch-engraving-completeness planned), t3: session-open FSE mandate, permanence: low-current → target: medium with T1 surface-count + T2 BLOCKING }`
 
 ## B_ALWAYS_GIT_LINKS — every path mention is a clickable link (CSP carry-forward, hardened S002 turn 19)
 
@@ -1279,6 +1316,13 @@ Governed by: P-OP-006 (completion-priority-dpr).
 - contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#P-META-019` + element-reviews place
 
 **Cross-references:** P-META-019 / P-META-007 (FSE — the structural-fix surfaces typically span all 5) / P-META-013 (HPFA — checks engraving completeness; this contract makes gaps surface as enhancements) / P-META-016 (gradual-build absorbs structural enhancements as new topic-plan candidates) / P-META-006 (RZF — structural fix discipline IS RZF applied to enforcement coverage).
+
+**Enforcement Trio (S041 OPEN-050 declaration):**
+- T1 (hook): None declared yet. Ideal T1: PostStop hook that detects instance-patch language ("fixed this case", "patched here") without accompanying structural fix. Would flag "patch-without-structure" pattern. (OPEN-049 candidate)
+- T2 (validator): `enhancement-proposal-coverage` — PLANNED week 4. Not yet in pnpm verify. `structural-fix-vs-instance-fix-discipline` — PLANNED. `validate-rule-has-enforcement.mjs` catches rules without enforcement_tier.
+- T3 (session): `session-open.sh` — "B_STRUCTURAL_PREVENTION_DISCIPLINE: when enforcement skipped → fix STRUCTURE not instance." Active since S006.
+- **enforcement_tier:** `{ t1: none (planned patch-detector PostStop hook), t2: none (enhancement-proposal-coverage planned), t3: session-open structural-fix mandate, permanence: low-current (T3-only) → target: medium with T1 patch-detector + T2 BLOCKING }`
+- **AI deep instruction:** This contract is itself an example of DEFAULT-ME-1: it was declared in S006 as a fully-documented rule. But it has T3-only enforcement. A rule about fixing structures, lacking structural enforcement — the deepest irony in the platform. Adding enforcement_tier to this contract IS the structural fix.
 
 ---
 
@@ -2304,3 +2348,39 @@ The `user-prompt-submit-turn-counter.sh` hook fires on every turn. At turn 25, 5
 - T3 session: `session-open.sh` (role + mandate + blocking at session open)
 - contract: `docs/plan/pillar-0-governance/behavioral-contracts.md` (this file)
 - memory: `~/.claude/projects/.../memory/feedback_inheritance_policy.md`
+
+## B_PRACE — Permanent Recurring AI Contextual Enforcement (S040 — Governor directive — CONSTITUTIONAL)
+
+**Canonical:** PRACE is the governing philosophy of ALL enforcement in CSPS. Every rule must be designed according to four properties simultaneously:
+- **PERMANENT**: enforcement fires regardless of context pressure, session length, or chat boundaries — T1 hooks and T2 validators that run without AI memory of the rule
+- **RECURRING**: fires again and again — turn counter at 25, session-open injection, post-stop verify, pre-commit hook — no single-point-of-failure
+- **AI CONTEXTUAL**: designed around how AI actually works — includes the training default being overridden, why the default fails in CSPS, the full reasoning (not just the instruction), and the specific satisfaction point the rule prevents from being hit prematurely
+- **ENFORCEMENT**: genuine blocking (T1 exits 1 on violation, T2 fails commit, pnpm verify catches it) — not suggestions, not AGENTS.md-only, not T3-only
+
+**Governing intent:** "Rule text = enforcement" is the most common governance failure in AI-assisted platforms. CSPS's competitive moat M-27 is that every rule is given full context so AI reasons toward the rule rather than merely following it — and when reasoning fails (context pressure, long sessions), mechanical enforcement catches the failure anyway. The combination of contextual understanding + mechanical backup is what makes CSPS governance permanent rather than session-dependent.
+
+**The three defaults PRACE overrides:**
+1. AI default: "I wrote the rule → done." PRACE requires T1+T2+T3 at the moment the rule is created.
+2. AI default: "AGENTS.md hard NO → enforced." PRACE clarifies: AGENTS.md = T3-only = necessary but not sufficient.
+3. AI default: "The rule is in my context → active." PRACE requires it to be in hooks and validators — context fades, hooks do not.
+
+**Every new governance rule must answer three questions before it is considered DONE:**
+1. What training default does this rule override? (name it explicitly)
+2. What is the AI's default satisfaction point that this rule prevents? (name it exactly)
+3. What fires if the AI violates this rule without being aware? (name T1 hook + T2 validator)
+
+**Anti-patterns:**
+- "Rule is now enforced" without T1 hook named and tested (EP-ERR-003)
+- "Added to AGENTS.md" declared as enforcement complete (AGENTS.md = T3-only)
+- Advisory validator counted as enforcement ("the rule is checked")
+- Session injection only — "it's in session-open.sh" — T3 alone drifts in 2 sessions
+- Context-pressure failure: rule works at turn 5, silent at turn 40 because no T1 fires
+
+**Source:** Governor directive S040 — "You must bundle this and make it permanent. Call it PRACE = Permanent Recurring AI Contextual Enforcement. This is one of the cornerstones of the whole platform."
+
+**Mechanical surfaces (5/5 declared S040):**
+- T1 hook: all active hooks in `.claude/hooks/` — the combined hook system IS the T1 surface for PRACE
+- T2 validator: `tools/validators/validate-moat-coverage.mjs` (checks M-27 is covered) + `validate-rule-has-enforcement.mjs`
+- T3 session: `session-open.sh` PRACE injection block (added S040) + turn-counter refresh at 25
+- contract: this entry in `docs/plan/pillar-0-governance/behavioral-contracts.md`
+- memory: `~/.claude/projects/.../memory/feedback_prace.md` (cross-session persistence)

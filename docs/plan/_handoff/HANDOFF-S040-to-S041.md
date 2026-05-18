@@ -27,6 +27,13 @@ validators: 128+
 exit_code: 0
 vlt_blockers: 0
 grl_open: 0
+enforcement_delta:
+  contracts_gained_t1_t2: 1  # B_INHERITANCE_POLICY (already had full trio)
+  contracts_gained_t3_only: 2  # B_ZERO_NAVIGATION_FOR_GOVERNOR + Communication Rule 12
+  contracts_now_advisory_only: 60  # tracked by validate-enforcement-trio-assigned.mjs v2.0
+  enforcement_rate_change: "from ~2% to ~3% (1/62 full trio → same, but 60 now visible)"
+  new_blocking_validators: [validate-governor-instructions.mjs, validate-rule-has-enforcement.mjs]
+  new_advisory_validators: [validate-enforcement-trio-assigned.mjs v2.0 covers 62 contracts]
 principles: 65
 behavioral_contracts: 62
 skills: 27

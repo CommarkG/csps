@@ -25,6 +25,7 @@
     "create:pi": "node tools/scripts/create-pi.mjs",
     "sync:universal": "node tools/scripts/sync-universal-governance.mjs",
     "sync:dna": "node tools/scripts/auto-sync-platform-dna.mjs",
+    "dna:bundle": "node tools/scripts/generate-dna-bundle.mjs",
     "record:ujt": "node tools/scripts/record-user-journey-test.mjs",
     "sync:dna:dry": "node tools/scripts/auto-sync-platform-dna.mjs --dry-run",
     "env:sync": "node tools/scripts/sync-vercel-env.mjs",

@@ -324,6 +324,15 @@ const context = [
   '  T1 = hook (fires on AI output) | T2 = validator (fires on commit) | T3 = session-open.',
   '  T3-only = explicitly acknowledged drift. T1+T2 = high permanence.',
   '',
+  'AI BEHAVIOR OVERRIDES — ACTIVE (disposition: override | inner-ai-defaults/):',
+  '  These training defaults are WRONG for CSPS. Override is mandatory:',
+  '  BOUNDARY: default=assume shared context → CSPS=WHO/WHAT/HOW/NOW at every crossing',
+  '  CORE-FIRST: default=accept session-state mandate → CSPS=validate phase exit criteria first; validators supersede session-state',
+  '  RULE-SCOPE: default=blanket Never-X rules → CSPS=every rule has CONCEPT + SCOPE + ESCAPE HATCH',
+  '  COMPLETION: default=new items as high urgency → CSPS=queue for PE; active work ≥50% scores 1.5×',
+  '  VERBATIM: default=refine human text → CSPS=preserve verbatim; ask only if purpose would fail',
+  '  VIRTUAL-OPUS: when architectural decision detected → invoke /cruel-critic or /balance-expert BEFORE proposing',
+  '',
   '═══════════════════════════════════════════════════════════════════',
 ].filter(l => l !== null).join('\\n');
 

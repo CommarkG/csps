@@ -57,6 +57,10 @@
           {
             "type": "command",
             "command": ".claude/hooks/user-prompt-submit-turn-counter.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/user-prompt-submit-ai-profiler.sh"
           }
         ]
       }

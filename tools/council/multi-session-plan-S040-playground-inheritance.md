@@ -7,7 +7,7 @@ owner: group:finky
 lifecycle: production
 lifecycle_state: active
 core_spine: GVRN
-schema_anchor: governance_plan
+schema_anchor: council_state
 diataxis_type: reference
 session: S040
 scope_level: S0

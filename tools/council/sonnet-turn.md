@@ -1,3 +1,13 @@
+# Sonnet Session S041 — INTENT ABSORBED
+
+## OPEN-046: extend validate-enforcement-trio-assigned.mjs to cover 62 behavioral contracts
+- Current: scans 11 PI items only
+- Required: scan all 62 B_* contracts in behavioral-contracts.md for enforcement_tier field
+- Output: ADVISORY — which contracts are T3-only or unenforced
+- verify exit_code=0 at 6fe66f2 confirmed as baseline
+
+---
+
 # Sonnet Report — S040 CLOSE
 
 ## Summary

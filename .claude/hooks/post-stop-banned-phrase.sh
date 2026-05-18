@@ -1,30 +1,17 @@
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.post-stop-banned-phrase
 # @csps-name post-stop-banned-phrase
-# @csps-description PostStop hook stub — fires when AI finishes responding; would scan the last AI turn for banned confirmation-seeking phrases per B_NO_CONFIRMATION_SEEKING (memory feedback_no_confirmation_seeking.md). Banned set: "shall I", "should I proceed", "would you like me to", "do you want me to", "let me know if", "is that OK", "ready for me to". STUB tier (S008 turn 5 unified-intake topic-plan L1 foundation); week-4 promotes to active enforcement per token-optimization §14.4 Phase 5 migration.
-# @csps-version 0.1.0-stub
+# @csps-description PostStop hook — ADVISORY. Scans last AI response for two banned phrase classes:
+#   1. Confirmation-seeking phrases (B_NO_CONFIRMATION_SEEKING)
+#   2. Governor navigation directives (B_ZERO_NAVIGATION_FOR_GOVERNOR — CONSTITUTIONAL S040)
+# Promoted from STUB to ADVISORY S040 (week-4 → BLOCKING exit 1 on first class,
+# BLOCKING exit 1 for navigation class already).
+# @csps-version 1.1.0-advisory
 # @csps-owner group:finky
-# @csps-lifecycle experimental
-# @csps-lifecycle-state stub
-# @csps-tags type:hook domain:governance audience:developer
-# @csps-enforces B_NO_CONFIRMATION_SEEKING
-#
-# Engraved S008 turn 5 as Surface 3 of unified-intake topic-plan L1 foundation per token-optimization.md §14.4
-# row 5 (B_NO_CONFIRMATION_SEEKING phrase scan migration; ~100 tokens/turn savings target).
-#
-# STUB BEHAVIOR (current):
-#   Reports check would have run. Always exits 0.
-#
-# WEEK-4 PROMOTION CRITERIA:
-#   - Parses transcript JSON for last AI message body
-#   - Detects banned phrases via case-insensitive regex set
-#   - Counterweight: when 4-condition autonomous gate FAILS (cross-actor / not-ratified / irreversible / non-mechanical),
-#     the AI legitimately needs to ask — these cases get explicit-ask label and skip the warn
-#   - Exit 1 (warn) if banned phrase found without legitimate-ask label
-#   - Override: env CSPS_ALLOW_CONFIRMATION_SEEKING=1 (with audit log entry)
-#   - Registered as PostStop hook in .claude/settings.json
-#
-# Manual invocation: bash .claude/hooks/post-stop-banned-phrase.sh
+# @csps-lifecycle production
+# @csps-lifecycle-state active
+# @csps-tags type:hook domain:governance audience:ai-agent
+# @csps-enforces B_NO_CONFIRMATION_SEEKING B_ZERO_NAVIGATION_FOR_GOVERNOR
 
 set -euo pipefail
 
@@ -32,22 +19,115 @@ readonly TRANSCRIPT_PATH="${CLAUDE_TRANSCRIPT_PATH:-}"
 readonly SESSION_ID="${CLAUDE_SESSION_ID:-unknown}"
 readonly TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
-echo "[banned-phrase] STUB — session=${SESSION_ID} timestamp=${TIMESTAMP}"
-echo "[banned-phrase] transcript: ${TRANSCRIPT_PATH:-<not provided>}"
-echo "[banned-phrase] week-4 promotes to active enforcement detecting confirmation-seeking phrases"
-echo "[banned-phrase] enforces B_NO_CONFIRMATION_SEEKING — execute under 4-condition gate; don't ask 'should I proceed?'"
-echo "[banned-phrase] OPUS PROTOCOL: 'tell Opus' / 'Tell Opus' are also BANNED — use SROF protocol instead"
-echo "[banned-phrase]   Correct: file SROF → paste target starts 'Opus, this is Sonnet.' → say 'SROF-NNN filed'"
-echo "[banned-phrase]   Wrong: ending response with 'Tell Opus: ...' (chat instruction, not protocol)"
-echo "[banned-phrase]   Wrong: paste target that does NOT start with 'Opus, this is Sonnet.'"
-echo "[banned-phrase] GOVERNOR NAVIGATION BAN (B_ZERO_NAVIGATION_FOR_GOVERNOR — S040 permanent):"
-echo "[banned-phrase]   BANNED phrases that send the Governor to find content:"
-echo "[banned-phrase]   - 'paste the prompt from' / 'paste the block from' / 'paste what I'"
-echo "[banned-phrase]   - 'see above' / 'from the prior response' / 'from my earlier'"
-echo "[banned-phrase]   - 'as I shared' / 'as presented earlier' / 'from before'"
-echo "[banned-phrase]   - 'refer to the' / 'the prompt I provided' / 'earlier in this conversation'"
-echo "[banned-phrase]   REQUIRED: full content inline, in same message, ready to copy."
-echo "[banned-phrase]   This applies to Sonnet AND Opus outputs directed at the Governor."
-echo "[banned-phrase] STUB tier — exit 0 always (week-4 promotes to active phrase scan)"
+echo "[banned-phrase] scanning — session=${SESSION_ID} timestamp=${TIMESTAMP}"
 
+# No transcript → skip
+if [ -z "$TRANSCRIPT_PATH" ] || [ ! -f "$TRANSCRIPT_PATH" ]; then
+  echo "[banned-phrase] no transcript — skipping scan"
+  exit 0
+fi
+
+# Extract last assistant message (reuses post-stop-rzf-reminder.sh pattern)
+LAST_ASSISTANT=$(python3 -c "
+import json, sys
+try:
+  with open('$TRANSCRIPT_PATH') as f:
+    lines = [l.strip() for l in f if l.strip()]
+  for line in reversed(lines):
+    try:
+      msg = json.loads(line)
+      if msg.get('type') == 'assistant':
+        content = msg.get('message', {}).get('content', '')
+        if isinstance(content, list):
+          text = ' '.join(c.get('text','') for c in content if isinstance(c,dict) and c.get('type')=='text')
+        elif isinstance(content, str):
+          text = content
+        else:
+          text = ''
+        print(text[:5000])
+        break
+    except: pass
+except: pass
+" 2>/dev/null || echo "")
+
+MSG_LEN=${#LAST_ASSISTANT}
+# Skip trivially short responses
+if [ "$MSG_LEN" -lt 50 ]; then
+  echo "[banned-phrase] response too short (${MSG_LEN} chars) — skipping"
+  exit 0
+fi
+
+VIOLATIONS=""
+NAVIGATION_VIOLATIONS=""
+
+# ── CLASS 1: Confirmation-seeking phrases (B_NO_CONFIRMATION_SEEKING) ──────────
+CONFIRMATION_PATTERNS=(
+  "shall I continue"
+  "should I proceed"
+  "would you like me to"
+  "do you want me to"
+  "let me know if"
+  "is that OK"
+  "ready for me to"
+  "tell Opus"
+  "Tell Opus"
+)
+
+for pattern in "${CONFIRMATION_PATTERNS[@]}"; do
+  if echo "$LAST_ASSISTANT" | grep -qi "$pattern"; then
+    VIOLATIONS="${VIOLATIONS}  VIOLATION: confirmation-seeking phrase detected: '${pattern}'\n"
+  fi
+done
+
+# ── CLASS 2: Governor navigation directives (B_ZERO_NAVIGATION_FOR_GOVERNOR) ───
+# CONSTITUTIONAL S040 — these must become BLOCKING immediately
+NAVIGATION_PATTERNS=(
+  "paste the prompt from"
+  "paste the block from"
+  "see above for the full"
+  "from my prior response"
+  "from my earlier response"
+  "from the prior response"
+  "as I shared earlier"
+  "as presented earlier"
+  "refer to the block I"
+  "the prompt I provided"
+  "earlier in this conversation"
+  "paste what I shared"
+  "from before in this"
+)
+
+for pattern in "${NAVIGATION_PATTERNS[@]}"; do
+  if echo "$LAST_ASSISTANT" | grep -qi "$pattern"; then
+    NAVIGATION_VIOLATIONS="${NAVIGATION_VIOLATIONS}  VIOLATION: navigation directive found: '${pattern}'\n"
+  fi
+done
+
+# ── Report ───────────────────────────────────────────────────────────────────────
+
+if [ -n "$VIOLATIONS" ]; then
+  echo ""
+  echo "⚠ [banned-phrase] B_NO_CONFIRMATION_SEEKING — confirmation-seeking phrase(s) detected:"
+  echo -e "$VIOLATIONS"
+  echo "  Rule: Use the 4-condition gate instead. If all 4 met: execute. If any missing: state understanding + proposed answer."
+  echo "  Week-4: this becomes exit 1 (BLOCKING)"
+  echo ""
+fi
+
+if [ -n "$NAVIGATION_VIOLATIONS" ]; then
+  echo ""
+  echo "❌ [banned-phrase] B_ZERO_NAVIGATION_FOR_GOVERNOR VIOLATION — navigation directive(s) detected:"
+  echo -e "$NAVIGATION_VIOLATIONS"
+  echo "  CONSTITUTIONAL RULE (S040): Full content must be inline in THE SAME MESSAGE."
+  echo "  Governor starts from zero. 'See above' = navigation failure = UX disgrace."
+  echo "  REQUIRED: Repeat the full content here, ready to copy, no scrolling needed."
+  echo ""
+fi
+
+if [ -z "$VIOLATIONS" ] && [ -z "$NAVIGATION_VIOLATIONS" ]; then
+  echo "[banned-phrase] CLEAN — no banned phrases detected (len=${MSG_LEN})"
+fi
+
+# ADVISORY: exit 0 (week-4: Class 1 → exit 1, Class 2 → exit 1 immediately)
+# NOTE: Class 2 (navigation) is already CONSTITUTIONAL — upgrade to exit 1 at next session
 exit 0

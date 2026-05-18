@@ -476,6 +476,12 @@ const CYCLES = [
   },
   {
     // S040 ADVISORY — B_ZERO_NAVIGATION_FOR_GOVERNOR: scans AI files for navigation directives directed at Governor
+    // S041 ADVISORY — DEFAULT-ME-1 enforcement: rules/PI items without T1+T2+T3. Embeds AI deep instruction in output.
+    name: 'rule_has_enforcement',
+    command: 'node tools/validators/validate-rule-has-enforcement.mjs',
+    parse_output: (out) => { const m = out.match(/advisories=(\d+)/); return m ? { advisories: Number(m[1]) } : { advisories: 0 }; },
+  },
+  {
     name: 'governor_instructions',
     command: 'node tools/validators/validate-governor-instructions.mjs',
     parse_output: (out) => { const m = out.match(/(\d+) navigation directive/); return m ? { violations: Number(m[1]) } : { violations: 0 }; },

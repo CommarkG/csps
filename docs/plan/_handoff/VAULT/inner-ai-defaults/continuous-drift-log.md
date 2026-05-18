@@ -46,6 +46,70 @@ scope_level: S1
 
 ## Entries (newest first)
 
+### S041 — 6 mechanical enforcement defaults (user-surfaced + AI-confirmed + validated by audit)
+
+```yaml
+- id: reasoning-mechanical-enforcement-satisfaction
+  observed_at: 2026-05-18T08:00:00Z
+  observed_by: user-surfaced + AI-confirmed + validated-by-audit
+  category: reasoning
+  default_pattern: "Writing a behavioral contract or rule fires satisfaction. AI treats rule text = complete governance act."
+  csps_aligned_pattern: "Rule text = 0% complete. T1+T2+T3 = 100% complete. Satisfaction point fires ONLY at pnpm verify exit_code=0 with T2 visible in output."
+  evidence: "60 of 62 behavioral contracts have zero T1+T2 mechanical enforcement. validate-enforcement-trio-assigned.mjs v2.0 confirmed."
+  k_count: 60
+  promotion_status: promoted-to-mechanical-enforcement-defaults.md
+  session: S041
+  pe_for_fix: 90
+
+- id: reasoning-documentation-is-governance
+  observed_at: 2026-05-18T08:00:00Z
+  observed_by: user-surfaced + AI-confirmed
+  category: reasoning
+  default_pattern: "Documented policy = governed behavior. AGENTS.md with 60+ Hard NOs = those behaviors are mechanically constrained."
+  csps_aligned_pattern: "Documentation = declared intention. Governance = T1 hook that catches violations + T2 validator that blocks commits. AGENTS.md is T3-only."
+  evidence: "AGENTS.md is comprehensive but T3-only. No T1 hook scans it at commit time. No T2 blocks violations."
+  k_count: 3+
+  promotion_status: promoted-to-mechanical-enforcement-defaults.md
+  session: S041
+  pe_for_fix: 85
+
+- id: reasoning-advisory-validation-is-validation
+  observed_at: 2026-05-18T08:00:00Z
+  observed_by: AI-confirmed
+  category: reasoning
+  default_pattern: "Writing a validator that exits 0 = the thing is validated. Advisory = done."
+  csps_aligned_pattern: "Advisory = visible. Blocking (exit 1) = enforced. enforcement_rate counts only BLOCKING validators."
+  evidence: "87 advisories in validate-file-naming.mjs cited as 'naming is validated' — but naming drifts freely."
+  k_count: 5+
+  promotion_status: promoted-to-mechanical-enforcement-defaults.md
+  session: S041
+  pe_for_fix: 80
+
+- id: reasoning-t3-session-injection-is-enforcement
+  observed_at: 2026-05-18T08:00:00Z
+  observed_by: AI-confirmed
+  category: reasoning
+  default_pattern: "If session-open.sh mentions the rule, the rule is enforced. T3 = enforcement."
+  csps_aligned_pattern: "T3 = 30% of enforcement. Fades by turn 10. T1+T2 fire regardless of AI cooperation = permanent enforcement."
+  evidence: "B_RZF was T3-only for 2 sessions (S037-S039) before T1+T2 were added. Nominal ZF accumulated during those sessions."
+  k_count: 3+
+  promotion_status: promoted-to-mechanical-enforcement-defaults.md
+  session: S041
+  pe_for_fix: 85
+
+- id: reasoning-governor-navigation-inference
+  observed_at: 2026-05-18T00:00:00Z
+  observed_by: user-surfaced
+  category: reasoning
+  default_pattern: "Governor can recall or navigate to prior content. 'See above' is valid instruction."
+  csps_aligned_pattern: "Governor starts from zero every message. All content must be inline in the same message. No navigation directives."
+  evidence: "Governor named this 'insulting' and 'a disgrace at the core of this magnificent platform.' Constitutional S040."
+  k_count: 5+
+  promotion_status: promoted-to-B_ZERO_NAVIGATION_FOR_GOVERNOR + communication-protocol-shared.md Rule 12
+  session: S040
+  pe_for_fix: 95
+```
+
 ### S014 — 2 new patterns from settings + navigation discoveries (user-surfaced + AI-confirmed)
 
 ```yaml

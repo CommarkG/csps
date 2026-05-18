@@ -32,6 +32,13 @@ if echo "$PROMPT" | grep -Eqi '\b(B_[A-Z_]+|P-META|P-ARCH|P-OPER|engrave|ratif|A
   MODE="governance"
 fi
 
+# ENFORCEMENT MODE — highest priority override
+# Fires when AI is creating or declaring governance artifacts complete
+# This catches DEFAULT-ME-1 (rule text = done) before it closes the session
+if echo "$PROMPT" | grep -Eqi '\b(new.*contract|new.*validator|Hard NO|add.*AGENTS|enforcement.*active|validator.*LIVE|hook.*active|T1.*T2|enforcement trio|wired.*verify|mechanical enforcement|B_CSPS_INHERITANCE|B_ZERO_NAVIGATION|behavioral contract.*new|now enforced|enforcement.*complete)\b'; then
+  MODE="enforcement"
+fi
+
 # Standard chat — no injection needed
 if [ "$MODE" = "standard" ]; then
   printf '{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":""}}'
@@ -57,7 +64,29 @@ Active override: COMPLETION (finish active work before new; 1.5× PE score for �
     INJECTION="[AI-PROFILER: GOVERNANCE MODE]
 FSE checklist required: T5 AGENTS.md + T4 contract + T3 memory + T2 validator + T1 hook.
 Commit all 5 surfaces atomically. T3-only = drift within 2 sessions.
-Active override: RULE-SCOPE (every rule needs CONCEPT + SCOPE + ESCAPE HATCH)."
+Active override: RULE-SCOPE (every rule needs CONCEPT + SCOPE + ESCAPE HATCH).
+ENFORCEMENT CHECK: Does every rule in this session have T1+T2? Show enforcement_rate delta."
+    ;;
+
+  enforcement)
+    INJECTION="[AI-PROFILER: ENFORCEMENT MODE — MECHANICAL ENFORCEMENT MANDATE]
+STOP before declaring any rule/validator/contract COMPLETE.
+
+THE TRAINING DEFAULT YOU MUST OVERRIDE:
+  DEFAULT-ME-1: 'I wrote the rule → done.' WRONG. Written rule = 0% complete.
+  DEFAULT-ME-2: 'It is in AGENTS.md → enforced.' WRONG. AGENTS.md = T3-only = suggestion.
+  DEFAULT-ME-3: 'T3 session injection = enforcement.' WRONG. T3 fades by turn 10.
+  DEFAULT-ME-4: 'Advisory validator = validation.' WRONG. Advisory = visibility, not enforcement.
+  DEFAULT-ME-5: 'I have wired the validator' without showing output = EP-ERR-001.
+
+SATISFACTION POINT CHECK (fire ONLY when ALL are true):
+  T1 hook: which hook fires on VIOLATION? Named, tested, exits 1 on detection.
+  T2 validator: which validator BLOCKS commits? Wired to pnpm verify, exits 1. In verify output.
+  T3 session: in session-open.sh injection. Necessary but not sufficient alone.
+  EVIDENCE: pnpm verify exit_code=0 WITH the T2 validator name visible in output.
+
+IF ANY T1/T2 IS MISSING: register OPEN-NNN immediately. Do NOT close the session without it.
+Reference: docs/plan/_handoff/VAULT/inner-ai-defaults/mechanical-enforcement-defaults.md"
     ;;
 esac
 

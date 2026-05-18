@@ -1,28 +1,30 @@
 # verify last run
 
-- ran_at: 2026-05-18T19:12:58.945Z
-- finished_at: 2026-05-18T19:13:20.668Z
+- ran_at: 2026-05-18T19:27:01.332Z
+- finished_at: 2026-05-18T19:27:30.433Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-18T19:12:58.945Z",
-    "finished_at": "2026-05-18T19:13:20.668Z",
+    "ran_at": "2026-05-18T19:27:01.332Z",
+    "finished_at": "2026-05-18T19:27:30.433Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "DEFERRED-WITH-REASON",
-        "skip_reason": "flag --skip-install"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 7.2,
+        "packages_resolved": null
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,9 +32,9 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
-        "principles_loaded": 65,
-        "findings_total": 15
+        "duration_seconds": 0.8,
+        "principles_loaded": 67,
+        "findings_total": 17
       },
       {
         "name": "frontmatter_validate",
@@ -96,7 +98,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "source_ids": 65,
+        "source_ids": 67,
         "missing_slices": 0
       },
       {
@@ -517,7 +519,7 @@
         "command": "node tools/validators/validate-communication-protocol.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "advisory": 1
       },
       {
@@ -730,7 +732,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -790,8 +792,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 151,
-        "missing_why": 39
+        "checked": 153,
+        "missing_why": 41
       },
       {
         "name": "open_plan_levels",
@@ -902,7 +904,7 @@
         "command": "node tools/validators/validate-routing-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.1,
         "plans_checked": 21,
         "blocking": 0,
         "advisory": 4
@@ -995,7 +997,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -1077,7 +1079,7 @@
         "command": "node tools/validators/validate-bedrock.mjs",
         "status": "COMPLETE",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "total": 22,
         "done": 22,
         "deferred": 0,
@@ -1112,14 +1114,14 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.9
+        "duration_seconds": 6.5
       },
       {
         "name": "ui_completeness",
         "command": "node tools/validators/validate-ui-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 0,
         "advisories": 0
       },
@@ -1130,7 +1132,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "hours_since_sync": 44,
-        "principle_drift": 0,
+        "principle_drift": 2,
         "moat_drift": 2,
         "contract_drift": 2
       },

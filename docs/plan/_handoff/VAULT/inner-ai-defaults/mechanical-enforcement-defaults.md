@@ -2,7 +2,8 @@
 id: csps.handoff.vault.inner-ai-defaults.mechanical-enforcement-defaults
 name: mechanical-enforcement-defaults
 description: "Deep dive on the 6 training defaults that cause mechanical enforcement failure. Why AI stops at documentation instead of enforcement. CSPS overrides with reasoning. The most important inner-AI-defaults file for structural integrity."
-version: 1.0
+version: 1.1
+governing_principles: [P-META-027, P-META-026, P-META-019, P-META-006]
 owner: group:finky
 lifecycle: production
 lifecycle_state: active

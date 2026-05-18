@@ -2087,6 +2087,72 @@ principles:
       "Am I following the rule, or serving the intent the rule was written for?
        In this situation, do rule and intent align? If they diverge — which wins?"
 
+  - id: P-META-026
+    name: planning-before-implementing
+    aliases: [planning-first, plan-before-code, sandbox-first, PBI]
+    title: "Planning Before Implementing — No Code Without Ratified Plan"
+    description: >
+      Implementation begins only after a ratified plan exists. Initial expression of a requirement
+      is always a draft — never acted on directly. The lifecycle is: express intent → crystallize
+      (JTBD + 1-3 questions) → template match → sandbox spec → Governor ratification → build.
+      "proceed" from the Governor means permission to plan, not permission to implement. Only
+      explicit ratified_at on a PI item permits implementation to begin. This principle prevents
+      the pattern of building the right thing in the wrong direction — which costs more to undo
+      than it cost to build.
+    spine: GVRN
+    layer: L1
+    category: meta-governance
+    severity: critical
+    composes_with:
+      - P-META-022
+      - P-META-025
+      - B_NO_WILD_IMPLEMENTATION
+    enforcement_tier:
+      tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — new libs/ files require ratified PI)
+      tier2_validator: validate-implementation-gate.mjs (BLOCKING — checks PI file for ratified status)
+      tier3_session: "session-open.sh: ratification required before implementation; 'proceed' ≠ ratified_at"
+    ratified_by: Governor S040 C1
+    ratified_date: "2026-05-17"
+    session: S040
+    self_check_q: >
+      "Does a ratified PI item exist for what I am about to build?
+       Has Governor set ratified_at? Is 'approved' the same as ratification? (No.)"
+
+  - id: P-META-027
+    name: prace
+    aliases: [PRACE, permanent-recurring-ai-contextual-enforcement, mechanical-enforcement-mandate]
+    title: "PRACE — Permanent Recurring AI Contextual Enforcement"
+    description: >
+      Every governance rule in CSPS must answer three questions before it is considered enforced:
+      (1) What training default does it override? (2) What AI satisfaction point does it prevent?
+      (3) What T1+T2+T3 mechanical enforcement fires on violation? A rule that cannot answer all
+      three is a suggestion, not governance. T3-only rules (session injection only) drift within
+      10 turns. T1+T2 enforcement fires regardless of AI cooperation. Context fades; hooks do not.
+      PRACE is the governing philosophy of ALL enforcement in CSPS — the standard every new rule
+      must meet before being declared ratified.
+    spine: GVRN
+    layer: L1
+    category: meta-governance
+    severity: critical
+    moat_element: M-27
+    composes_with:
+      - P-META-006
+      - P-META-019
+      - B_INHERITANCE_POLICY
+    enforcement_tier:
+      tier1_hook: user-prompt-submit-ai-profiler.sh ENFORCEMENT MODE (fires when AI creates governance artifacts)
+      tier2_validator: validate-rule-has-enforcement.mjs (ADVISORY — scans PI items for enforcement_trio)
+      tier3_session: "AGENTS.md Hard NO: never declare governance rule DONE without T1+T2+T3 named"
+    canonical_ref: docs/plan/_handoff/VAULT/inner-ai-defaults/mechanical-enforcement-defaults.md
+    ratified_by: Governor S040 constitutional
+    ratified_date: "2026-05-18"
+    session: S040
+    self_check_q: >
+      "What training default does this rule override?
+       What satisfaction point does it prevent?
+       Which T1 hook fires on violation? Which T2 validator BLOCKS commits?
+       If I cannot answer all three — this rule is not enforced."
+
   - id: P-ARCH-028
     name: csps-core-spines
     aliases: [core-spine-discipline, 5-spine-architecture, outward-layering]

@@ -146,7 +146,16 @@ components:
     audience: [new-ai-tab]
     depth_level: L2
     always_include: false
-    summary: "17+ AI behavior overrides with incident samples. Covers: completion premature declaration, satisfaction point, context drift, sycophantic compliance. Load when deep behavioral alignment needed."
+    summary: "17+ AI behavior overrides. 4 parameters each: trigger, default, satisfaction_point, csps_override. Source files for the CSPS PACK. Load when deep behavioral alignment needed."
+
+  - id: csps-pack-registry
+    path: docs/plan/_handoff/VAULT/inner-ai-defaults/profile-registry.yaml
+    scope: repo
+    category: ai-behavior
+    audience: [new-ai-tab, automation]
+    depth_level: L1
+    always_include: true
+    summary: "CSPS PACK canonical source: 7 AI behavior profiles (DEFAULT-ME-1/2/3, DEFAULT-R1/2/3/4, DEFAULT-B1). Each profile: trigger + training_default + satisfaction_point + csps_override. Auto-syncs to ai-profiling-triggers.yaml and hook when pnpm profiles:sync runs."
 
   - id: open-items
     path: tools/council/opus-open-items.md

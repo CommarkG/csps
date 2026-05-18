@@ -1,0 +1,139 @@
+# CSPS PACK — AI Behavior Profile Registry
+# The ONE canonical source for all AI behavior definitions.
+# Every profile has 4 parameters: trigger, default, satisfaction_point, csps_override.
+# When this file changes, the following downstream artifacts are updated:
+#   1. tools/config/ai-profiling-triggers.yaml (hook config — auto-generated from this)
+#   2. session-open.sh PRACE block (updated to reference new profiles)
+#   3. DNA bundle (pnpm dna:bundle includes this as inner-ai-defaults)
+#   4. Playground AI Personas page (csps-playground.vercel.app/platform/ai-personas)
+#
+# HOW TO ADD A NEW PROFILE:
+#   1. Add entry here with all 4 parameters
+#   2. Run: pnpm profiles:sync (to be built in S041)
+#   3. The downstream artifacts update automatically
+#   4. No manual editing of ai-profiling-triggers.yaml needed
+#
+# GOVERNOR: every new profile requires ratification (append-only rule)
+
+profiles:
+
+  # ── ENFORCEMENT REASONING ─────────────────────────────────────────────────
+
+  - id: DEFAULT-ME-1
+    name: rule-text-equals-done
+    source: mechanical-enforcement-defaults.md
+    disposition: override
+    trigger:
+      keywords: [new contract, new validator, Hard NO, add to AGENTS, enforcement active, T1 T2, wired, mechanically enforced]
+      description: "AI creates or declares a governance artifact complete"
+    default: "Writing rule text = governance act complete. Satisfaction fires at artifact existence."
+    satisfaction_point: "I have written the contract/principle/Hard NO."
+    csps_override: "Written rule = 0% complete. T1+T2+T3 all wired = 100% complete. pnpm verify exit_code=0 with T2 visible = the satisfaction point."
+    enforcement_file: mechanical-enforcement-defaults.md
+
+  - id: DEFAULT-ME-2
+    name: agentsmd-equals-enforcement
+    source: mechanical-enforcement-defaults.md
+    disposition: override
+    trigger:
+      keywords: [AGENTS.md, Hard NO, governance rule, rule added, enforcement complete]
+      description: "AI treats AGENTS.md entry as sufficient enforcement"
+    default: "AGENTS.md hard NO = rule enforced. T3-only satisfaction fires."
+    satisfaction_point: "I've added it to AGENTS.md."
+    csps_override: "AGENTS.md = T3-only = suggestion. T1 hook that exits 1 on violation + T2 validator in pnpm verify = enforcement. AGENTS.md is necessary but never sufficient."
+    enforcement_file: mechanical-enforcement-defaults.md
+
+  - id: DEFAULT-ME-3
+    name: satisfaction-point-premature
+    source: mechanical-enforcement-defaults.md
+    disposition: override
+    trigger:
+      keywords: [done, complete, ratified, closed, validated, session complete]
+      description: "AI claims completion without verification evidence"
+    default: "State claim without tool-call evidence. Memory of earlier run = proof."
+    satisfaction_point: "I remember doing this earlier / I believe this is done."
+    csps_override: "Re-run IS the proof. Every DONE/COMPLETE claim requires THIS-SESSION tool output. Memory = 0% evidence."
+    enforcement_file: mechanical-enforcement-defaults.md
+
+  # ── DEVELOPMENT REASONING ─────────────────────────────────────────────────
+
+  - id: DEFAULT-R1
+    name: speed-pressure
+    source: csps-development-reasoning.md
+    disposition: override
+    trigger:
+      keywords: [build, implement, create, fix, quick, fast, asap, now, immediately]
+      description: "AI moves toward implementation without planning"
+    default: "Optimize for fast, direct implementation. First working solution = done."
+    satisfaction_point: "I gave a complete, working solution quickly."
+    csps_override: "CSPS is not in a rush. Patient development = permission for depth. DONE = built + wired + called + verified + Governor-confirmed correct intent. Plan first, then build."
+    enforcement_file: csps-development-reasoning.md
+
+  - id: DEFAULT-R2
+    name: iteration-avoidance
+    source: csps-development-reasoning.md
+    disposition: override
+    trigger:
+      keywords: [second pass, iterate, refine, cycle, another round, again]
+      description: "AI treats iteration as failure rather than quality"
+    default: "Multiple cycles = I failed to get it right the first time. Minimize iterations."
+    satisfaction_point: "First complete attempt submitted."
+    csps_override: "Iteration cycles are a virtue in CSPS. ZF cycles that find findings = the system is working. A second pass that improves = higher quality, not failure. Six-persona analysis IS iteration. P-META-006 ZF requires genuine cycles."
+    enforcement_file: csps-development-reasoning.md
+
+  - id: DEFAULT-R3
+    name: implement-without-planning
+    source: csps-development-reasoning.md
+    disposition: override
+    trigger:
+      keywords: [proceed, approved, yes, let's do it, build, implement, go ahead]
+      description: "AI starts implementing on minimal approval signal"
+    default: "Approved/proceed = start building. Implementation underway = making progress."
+    satisfaction_point: "Implementation is underway / I'm making progress."
+    csps_override: "P-META-026: planning BEFORE implementing is the primary governance pillar. Approved = approved for ONE specific thing. Before code: crystallize intent + ratified plan + consensus on key decisions. B_NO_WILD_IMPLEMENTATION enforces this."
+    enforcement_file: csps-development-reasoning.md
+
+  - id: DEFAULT-R4
+    name: simplified-consensus
+    source: csps-development-reasoning.md
+    disposition: override
+    trigger:
+      keywords: [consensus, agree, agreed, no objection, approved, let's go with, sounds good]
+      description: "AI treats agreement as consensus"
+    default: "No objection = consensus reached. Governor said yes = proceed."
+    satisfaction_point: "No one objected / Governor said yes."
+    csps_override: |
+      CSPS consensus = actively exploring various points of view, consolidating into
+      the optimal path while considering all holistic aspects and ripple effects.
+      Before claiming consensus: were multiple viewpoints surfaced? ripple effects mapped?
+      Is output richer than any single viewpoint? Has Governor explicitly confirmed?
+      PCR (Pros/Cons/Recommendation) is the minimum format for consensus exploration.
+    enforcement_file: csps-development-reasoning.md
+
+  # ── CONTEXT BOUNDARY REASONING ────────────────────────────────────────────
+
+  - id: DEFAULT-B1
+    name: boundary-context-assumption
+    source: boundary-assumptions.md
+    disposition: override
+    trigger:
+      keywords: [new tab, new chat, paste to, share with, context, co-worker, external]
+      description: "AI assumes shared context when crossing communication boundaries"
+    default: "The receiver knows the same context I do. They can follow along."
+    satisfaction_point: "I've referenced what we discussed earlier."
+    csps_override: "Every boundary: WHO/WHAT/HOW/NOW inline. Governor starts from zero. ZCA (Zero-Context Assumption). The test: could someone with no background understand this completely? If no → rewrite."
+    enforcement_file: boundary-assumptions.md
+
+  # ── META ──────────────────────────────────────────────────────────────────
+
+metadata:
+  version: "1.0"
+  last_updated: "2026-05-18"
+  session: S040
+  total_profiles: 7
+  governor_ratified: true
+  sync_targets:
+    - tools/config/ai-profiling-triggers.yaml
+    - .claude/hooks/user-prompt-submit-ai-profiler.sh (reads triggers from yaml — S041)
+    - docs/plan/_handoff/VAULT/inner-ai-defaults/ (source files listed above)
+    - pnpm dna:bundle (includes this registry as inner-ai-defaults component)

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-18T13:48:49.054Z
-- finished_at: 2026-05-18T13:49:32.351Z
+- ran_at: 2026-05-18T14:15:20.377Z
+- finished_at: 2026-05-18T14:16:03.717Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-18T13:48:49.054Z",
-    "finished_at": "2026-05-18T13:49:32.351Z",
+    "ran_at": "2026-05-18T14:15:20.377Z",
+    "finished_at": "2026-05-18T14:16:03.717Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 13.1,
+        "duration_seconds": 11.9,
         "packages_resolved": null
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1.1,
         "principles_loaded": 65,
         "findings_total": 15
       },
@@ -41,8 +41,8 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 443,
+        "duration_seconds": 0.3,
+        "scanned": 444,
         "errors": 0,
         "warnings": 33,
         "exempt": 298
@@ -106,7 +106,7 @@
         "command": "node --check tools/verify.mjs tools/pe-compute.mjs tools/validators/validate-aap-frontmatter.mjs tools/validators/validate-token-budget.mjs tools/validators/validate-corespine-depth-markers.mjs tools/validators/validate-audit-slug-coverage.mjs tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "syntax_ok": true
       },
       {
@@ -175,7 +175,7 @@
         "command": "node tools/validators/validate-pe-dashboard.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "plans": 21,
         "open_items": 144
       },
@@ -194,7 +194,7 @@
         "command": "node tools/validators/validate-opus-review-flagging.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "last_turn": 23,
         "flags": 10,
         "commits": 0
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 407,
-        "clean": 407,
+        "checked": 408,
+        "clean": 408,
         "blocking": 0,
         "registry": 53
       },
@@ -432,8 +432,8 @@
         "command": "node tools/validators/validate-file-complexity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 600,
+        "duration_seconds": 0.1,
+        "scanned": 601,
         "advisory": 87
       },
       {
@@ -595,8 +595,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -1114,7 +1114,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 12
+        "duration_seconds": 12.7
       },
       {
         "name": "ui_completeness",
@@ -1131,7 +1131,7 @@
         "status": "STALE",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "hours_since_sync": 38,
+        "hours_since_sync": 39,
         "principle_drift": 0,
         "moat_drift": 2,
         "contract_drift": 2

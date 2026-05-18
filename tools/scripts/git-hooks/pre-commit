@@ -78,4 +78,22 @@ if [ -n "$STAGED_VALIDATORS" ]; then
   fi
 fi
 
+# ── CHECK 3: Monolith slice freshness (principles/contracts/audit-runner) ──────
+STAGED_MONOLITHS=$(git diff --cached --name-only 2>/dev/null | grep -E '(behavioral-contracts\.md|principles\.yaml|audit-runner\.md)$' || true)
+if [ -n "$STAGED_MONOLITHS" ]; then
+  STAGED_SLICES=$(git diff --cached --name-only 2>/dev/null | grep -E '(behavioral-contracts/|principles/principles/|audit-runner/)' || true)
+  if [ -z "$STAGED_SLICES" ]; then
+    echo ""
+    echo "⚠ [pre-commit] Monolith file(s) staged without slices — run split command first:"
+    while IFS= read -r f; do echo "  → $f"; done <<< "$STAGED_MONOLITHS"
+    echo "  behavioral-contracts.md → pnpm contracts:split"
+    echo "  principles.yaml         → pnpm principles:split"
+    echo "  audit-runner.md         → pnpm audit-runner:split"
+    echo "  (ADVISORY — commit not blocked. validate-slice-freshness.mjs catches this)"
+    echo ""
+  else
+    echo "[pre-commit] ✓ Monolith slice check passed"
+  fi
+fi
+
 exit 0

@@ -1,3 +1,74 @@
+# Sonnet Report — S042 (for Opus Turn 98)
+
+## Done (this session)
+
+**CSPS repo — commit 7b5cd16:**
+
+1. **OPEN-050 T1: B_VALIDATE_BEFORE_ASSUME hook STUB→ADVISORY** ✅
+   - `post-tool-use-validate-before-assume.sh` v1.0.0-advisory (was STUB v0.1.0)
+   - Real logic: scans last 20 transcript entries for text-only assistant messages (no tool_use in same content array) containing state-claim keywords (DONE/RATIFIED/VALIDATED/CLOSED/VERIFIED/exit_code=0/PASS/COMPLETE/confirmed/ZF ACHIEVED)
+   - Pattern from post-stop-banned-phrase.sh (Python3 transcript parse + keyword scan)
+   - Exit 0 always (ADVISORY). Week-4: promote to exit 1 (BLOCKING)
+   - Enforces: P-META-006 B_VALIDATE_BEFORE_ASSUME
+
+2. **OPEN-050 T2: B_RZF validate-directive-has-rzf.mjs ADVISORY→BLOCKING** ✅
+   - v2.0.0 → v2.1.0 — single line: `process.exit(0)` → `process.exit(blockingViolations > 0 ? 1 : 0)`
+   - Affects: most-recent Turn AND turns >= Turn 96 (S040+ directives)
+   - Historical turns (< 96): still ADVISORY only
+   - Safe: confirmed blocking=0 before change (current maxTurn=97+ without directive; Turn 87 is most recent directive turn, not >= 96)
+   - audit-runner.md updated + slices re-split (pnpm audit-runner:split)
+
+3. **OPEN-040: frontmatter-closed-enums.md inherits_from note** ✅
+   - Added row to "Common drift patterns" table: `inherits_from` as enum (wrong) vs resolved path (right)
+   - Added new section "Free-form fields (not closed enums)" with 4 fields: inherits_from / description / ratified_by / links
+   - SROF-013 Q2 resolution
+
+**Playground repo — commit d78f950:**
+
+4. **OPEN-044: 2 missing vault templates** ✅
+   - `platform/templates/vault/registry-clean.html`: filterable table template for governance registries (filter input + thead + tbody + .reg-row rows + empty-state msg + notes-panel)
+   - `platform/templates/vault/dashboard-clean.html`: metric cards + status gate checklist + recent activity list + notes-panel
+   - Both follow vault conventions: page-data.js + nav.js + .content-block + .mandatory-list + notes-panel
+
+**Sprint 1 status — S041/S042:**
+All 5 items now confirmed done: P-META-027 ✅ | Core Scopes tags ✅ | post-stop-pcr-check ✅ | gradual-build-plan template ✅ | OPEN-040/044/050 per S042 ✅
+
+## Verify State
+- pnpm verify: exit_code=0 ✅ at 7b5cd16
+- audit-runner: 28 slices (re-split post audit-runner.md update)
+- RZF gap: audit freshness check fired (validate-directive-has-rzf.mjs newer than audit-runner) — fixed before commit
+
+## ZF Honest Assessment
+- Found before changes: blocking=0 confirmed (safe to promote T2), P-META-027 already existed (no work needed), Core Scopes section already existed
+- Missed: audit-runner slice freshness ripple from validator edit — caught by verify before commit (not in initial ZF cycles)
+- PRACE analysis: both T1+T2 are ADVISORY → BLOCKING still requires week-4 (T1) and additional Opus directive confirmation for T2 full blocking scope
+
+## S042 Remaining Open (PE-ordered)
+| PE | Item | Scope | Status |
+|---|---|---|---|
+| 80 | OPEN-049 | [S3] | 60/63 contracts enforcement_tier backfill — PENDING |
+| 72 | OPEN-052 | [S2] | Staging environment — PENDING (Governor Vercel action needed) |
+| 70 | OPEN-039 | [S3] | Token optimization T1+T2+T3 — PENDING |
+| 55 | OPEN-047 | [S2] | governor-prompts.sh STUB→ADVISORY — PENDING |
+| 48 | OPEN-036 | [S3] | T2 FSE compliance validator — PENDING |
+| 45 | OPEN-042 | [S2] | inheritance-registry.yaml propagation_rules — PENDING |
+
+## What Opus Should Know for Turn 98
+
+1. **OPEN-050 T1+T2 DONE** — both hooks/validators upgraded. enforcement_rate for these 2 contracts: T3→T1+T2+T3 (from 6/63 declared → now actually wired for B_VALIDATE_BEFORE_ASSUME and B_RZF)
+
+2. **enforcement gap still wide**: 58/63 contracts still T3-only or unenforced. OPEN-049 (backfill enforcement_tier) is PE=80 and deferred — this is the structural debt.
+
+3. **validate-directive-has-rzf.mjs blocking** fires only on turns >= 96 AND the most recent turn with a directive. Turn 97 (current Opus context) does NOT have `## SONNET DIRECTIVE` format (it was relayed as plain text by Governor), so it won't trigger. If Opus formats Turn 98 with `## SONNET DIRECTIVE`, RZF VERIFICATION must appear BEFORE it or verify blocks.
+
+4. **Playground vault**: 6 templates now live (content/hero/living-reference/tabbed/registry/dashboard). Templates page links should resolve. No broken refs from OPEN-044.
+
+5. **S042 bandwidth**: 4 items done this session. Remaining high-PE work (OPEN-049 enforcement backfill = 2h+ batch work, OPEN-039 token optimization = new hooks). Governor can direct priority for Turn 98.
+
+6. **Opus Turn 97 directive format note**: The relay came as plain prose (not `## SONNET DIRECTIVE` format per Rule 2). Steps 1+2 were executed correctly. No SROF filed — sprint items were clear and aligned with chat-jump mandate. If Turn 98 has formal directive, use `## SONNET DIRECTIVE` format with `## RZF VERIFICATION` BEFORE it.
+
+---
+
 # Sonnet Session S042 — INTENT ABSORBED
 
 ## Context absorbed from chat-jump-S042-complete.md

@@ -117,12 +117,17 @@ Every message sent across a boundary (new tab, new AI instance, new chat, co-wor
 
 ```
 YOU ARE: [exact role of the receiver — e.g. "Sonnet, the builder/implementer in Claude Code VS Code tab"]
-I AM: [exact role of sender — e.g. "OPUS-2, the architectural advisor in a separate Claude Code tab"]
+I AM: [exact role of the DRAFTER — not the Governor unless the Governor authored it directly]
+      e.g. "OPUS-3, the architectural advisor" when Opus drafts the directive
+      e.g. "Sonnet (S041, builder)" when Sonnet writes an SROF to Opus
+      e.g. "Yariv Fink (Governor)" ONLY when the Governor personally authors the message
 THIS IS THE SITUATION: [2-3 sentences max: project name, current state, what changed, what is urgent]
 YOUR TASK: [one specific action to take right now]
 ```
 
 **No exceptions.** Not for Sonnet. Not for new OPUS-2. Not for co-worker. Not for any agent.
+
+**"I AM" authorship rule:** The Governor relays messages between tabs but does NOT change the "I AM" field. The drafter fills "I AM" as themselves. If Opus wrote it, "I AM: OPUS-3." If Sonnet wrote it, "I AM: Sonnet." The Governor's name appears only when the Governor personally authored the message.
 
 If the message is a long directive, the context block goes FIRST, before the directive body.
 

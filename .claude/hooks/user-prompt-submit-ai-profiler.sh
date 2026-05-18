@@ -55,16 +55,17 @@ Virtual OPUS check: draft → ZF → amend → present amended version only.
 Active overrides: CORE-FIRST (validate exit criteria before accepting session-state), RULE-SCOPE (escape hatch required).
 
 COMMUNICATION PROTOCOL REMINDER (Rule 1 + Rule 10 — mandatory):
-When preparing a directive FOR SONNET: start with exactly:
+When preparing a directive FOR SONNET (Opus is the drafter):
   [PROTOCOL: PROTO-NNN | STEP: N of M | MODE: sequential]
   YOU ARE: Sonnet, the builder in Claude Code VS Code tab.
-  I AM: Yariv Fink (Governor).
+  I AM: OPUS-3 (Claude Opus), the architectural advisor.   ← NOT "Governor" unless Governor wrote it
   THIS IS THE SITUATION: [2-3 sentences]
   YOUR TASK: [one specific action]
-When preparing a SROF FOR OPUS: start with exactly:
+When preparing a SROF FOR OPUS (Sonnet is the drafter):
   [PROTOCOL: SROF-NNN | STEP: 1 of 1 | MODE: REVIEW + REFINE]
   YOU ARE: OPUS-3 (Claude Opus), the architectural advisor for CSPS.
-  I AM: [sender identity]
+  I AM: Sonnet (S[NNN], builder), reporting to OPUS.
+"I AM" = the DRAFTER. Governor relays without changing this field.
 Missing this format = malformed cross-boundary message = Rule 1 violation."
     ;;
   implementation)

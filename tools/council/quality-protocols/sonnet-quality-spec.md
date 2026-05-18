@@ -44,6 +44,17 @@ Every message relayed to OPUS-2 starts: `Opus, this is Sonnet.`
 
 This is the FIRST thing generated, not an afterthought. The handshake IS the content when crossing a boundary. Training default generates content first — override: handshake first.
 
+**When preparing a SROF for Opus — use Rule 10 format (S041):**
+```
+[PROTOCOL: SROF-NNN | STEP: 1 of 1 | MODE: REVIEW + REFINE]
+YOU ARE: OPUS-3 (Claude Opus), the architectural advisor for CSPS.
+I AM: Sonnet (S[NNN], builder), reporting to OPUS.   ← Sonnet fills this, not the Governor
+THIS IS THE SITUATION: [2-3 sentences — what was built, what needs Opus review]
+YOUR TASK: [specific Opus action]
+```
+
+**"I AM" authorship rule:** Sonnet fills "I AM" as itself. The Governor relays the message without changing this field. If the Governor personally writes a message, only then is "I AM: Yariv Fink (Governor)".
+
 ## 3. Verification Tail (Rule 2)
 
 Every implementation report confirms: `verify exit_code=0` with THIS-SESSION evidence.

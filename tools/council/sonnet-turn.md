@@ -1,3 +1,20 @@
+# Sonnet Report — S040 CLOSE
+
+## Summary
+- PROTO-018: Budget Planner build fixed (0 TS errors) — commit c2fc7f7
+- B_RZF_BEFORE_PROMPT: 5-surface permanent enforcement — commit c2435cd
+- CSPS Playground built: csps-playground.vercel.app (40+ pages, Living Reference template, Completion Engine, DNA ribbon, sacred elements, B_ZERO_NAVIGATION_FOR_GOVERNOR)
+- PROTO-019: audit.ts dedup + S041 mandate + template strategy — commit 2f5e19c
+- PROTO-020: Turn 96 ratifications applied — commit 0ad07b7
+- Enforcement audit: hook upgrade + OPEN-045 through OPEN-049 — commit c2a1630
+- Communication Rule 12 (B_ZERO_NAVIGATION_FOR_GOVERNOR) added to protocol — commit bef1681
+- pnpm verify: exit_code=0 | 128+ validators | last commit c2a1630
+
+## S041 First Action
+OPEN-046: extend validate-enforcement-trio-assigned.mjs to cover all 62 behavioral contracts (currently only checks 11 PI items). 52 contracts T3-only. Governor approved.
+
+---
+
 # Sonnet Session S040 — INTENT ABSORBED (S039→S040 handoff)
 
 ## Context absorbed from chat-jump-S039-complete.md + previous Sonnet tab handoff

@@ -8,12 +8,12 @@
 ## §1 — Current Platform Identity
 
 ```yaml
-session: S040
-date: 2026-05-17
-platform_version: CSPS v0.40
+session: S041
+date: 2026-05-18
+platform_version: CSPS v0.41
 governor: Yariv Fink (group:finky)
 repo: github.com/CommarkG/csps
-last_commit: c2435cd (enforce: B_RZF_BEFORE_PROMPT — full 5-surface permanent enforcement)
+last_commit: c2a1630 (audit: enforcement gap sweep S040 — hook upgrade + 5 new OPEN items)
 sonnet_model: claude-sonnet-4-6[1m]
 ```
 

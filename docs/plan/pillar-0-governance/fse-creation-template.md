@@ -35,6 +35,21 @@ consolidation_cross_refs:
 - Registering an error pattern (EP-ERR-*)
 - Fixing a recurring gap (K=2 promotion rule)
 
+## Scope-3 Prevention: Threshold Gate (Governor S040 — mandatory for new rules)
+
+Every new governance rule created with this template is a **Scope-3 prevention response** (Core Scopes).
+Before declaring the rule complete, route to threshold:
+
+1. **Fill the PRACE template** (training default being overridden + satisfaction point prevented + T1/T2/T3)
+2. **Submit to threshold**: does `threshold-intake-protocol.md` classify this as a NEW pattern or RECURRING?
+   - NEW pattern → create OPEN-NNN with full PRACE analysis
+   - RECURRING → upgrade existing rule rather than creating parallel one
+3. **Threshold verdict**: `threshold_submitted: true` in the plan frontmatter after routing
+
+Reference: `docs/plan/pillar-0-governance/threshold-intake-protocol.md`
+Reference: `docs/plan/pillar-0-governance/core-scopes.md` (Scope-3 = permanent prevention)
+Reference: `docs/plan/_handoff/VAULT/inner-ai-defaults/profile-registry.yaml` (training defaults library)
+
 ---
 
 ## The 5 Surfaces — Mandatory Checklist

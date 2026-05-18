@@ -1,31 +1,17 @@
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.post-stop-pcr-check
 # @csps-name post-stop-pcr-check
-# @csps-description PostStop hook stub — fires when AI finishes responding; would scan the last AI turn for non-trivial multi-option decisions lacking a Pros/Cons/Recommendation 3-block (per B_PCR_FOR_DECISIONS). Trigger keywords: "should we", "X vs Y", "option A/B/C", "decide between", "alternatives", "either... or...". STUB tier (S008 turn 5 unified-intake topic-plan L1 foundation); week-4 promotes to active enforcement per token-optimization §14.4 Phase 5 migration.
-# @csps-version 0.1.0-stub
+# @csps-description PostStop hook — scans last AI response for multi-option decisions
+#   without PCR (Pros/Cons/Recommendation) structure. Advisory — exits 0 always.
+#   PRACE: Training default = present options without PCR (satisfying to user, incomplete governance).
+#          Satisfaction point = "I gave choices." CSPS override = PCR required for non-trivial decisions.
+#   Promoted from STUB to ADVISORY S041 Sprint 1 — addresses Core Scopes S3 prevention gap.
+# @csps-version 1.0.0
 # @csps-owner group:finky
-# @csps-lifecycle experimental
-# @csps-lifecycle-state stub
+# @csps-lifecycle production
+# @csps-lifecycle-state active
 # @csps-tags type:hook domain:governance audience:developer
-# @csps-enforces P-OP-003 B_PCR_FOR_DECISIONS
-#
-# Engraved S008 turn 5 as Surface 3 of unified-intake topic-plan L1 foundation per token-optimization.md §14.4
-# row 3 (B_PCR_FOR_DECISIONS trigger detection migration; ~200 tokens/turn savings target).
-#
-# STUB BEHAVIOR (current):
-#   Reports check would have run. Always exits 0.
-#
-# WEEK-4 PROMOTION CRITERIA:
-#   - Parses transcript JSON for last AI message body
-#   - Detects multi-option decision patterns (regex on trigger keyword set)
-#   - Verifies presence of 3-block PCR structure (Pros: / Cons: / Recommendation:)
-#   - Verifies "what would flip" clause present per B_PCR_FOR_DECISIONS
-#   - Counterweight: explicit "trivial-reversible — skipping PCR per <reason>" inline note allows skip
-#   - Exit 1 (warn) if multi-option decision detected without PCR or skip-note
-#   - Override: env CSPS_ALLOW_PCR_BYPASS=1 (with audit log entry)
-#   - Registered as PostStop hook in .claude/settings.json
-#
-# Manual invocation: bash .claude/hooks/post-stop-pcr-check.sh
+# @csps-enforces P-OP-003 B_PCR_FOR_DECISIONS B_PRACE
 
 set -euo pipefail
 
@@ -33,10 +19,38 @@ readonly TRANSCRIPT_PATH="${CLAUDE_TRANSCRIPT_PATH:-}"
 readonly SESSION_ID="${CLAUDE_SESSION_ID:-unknown}"
 readonly TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
-echo "[pcr-check] STUB — session=${SESSION_ID} timestamp=${TIMESTAMP}"
-echo "[pcr-check] transcript: ${TRANSCRIPT_PATH:-<not provided>}"
-echo "[pcr-check] week-4 promotes to active enforcement detecting multi-option decisions without PCR 3-block"
-echo "[pcr-check] enforces B_PCR_FOR_DECISIONS — Pros/Cons/Recommendation + what-would-flip clause mandatory"
-echo "[pcr-check] STUB tier — exit 0 always"
+if [ -z "$TRANSCRIPT_PATH" ] || [ ! -f "$TRANSCRIPT_PATH" ]; then
+  echo "[pcr-check] no transcript path — skipping (session=${SESSION_ID})"
+  exit 0
+fi
+
+# Read last ~3000 chars of transcript for recent AI content
+RECENT=$(tail -c 3000 "$TRANSCRIPT_PATH" 2>/dev/null || echo "")
+
+# Detect multi-option patterns
+HAS_OPTIONS=false
+if echo "$RECENT" | grep -Eqi '(should we|which approach|Option [A-C]\b|option [0-9]\b|alternatives|either.*or|A vs B|PCR|decide between|choose between)'; then
+  HAS_OPTIONS=true
+fi
+
+# Detect PCR structure
+HAS_PCR=false
+if echo "$RECENT" | grep -Eqi '(Pros:|Cons:|Recommendation:|## Pros|## Cons|\*\*Pros|\*\*Cons)'; then
+  HAS_PCR=true
+fi
+
+# Detect explicit trivial-reversible skip
+HAS_SKIP=false
+if echo "$RECENT" | grep -Eqi '(trivial.reversible|skipping PCR|skip.*PCR)'; then
+  HAS_SKIP=true
+fi
+
+if [ "$HAS_OPTIONS" = "true" ] && [ "$HAS_PCR" = "false" ] && [ "$HAS_SKIP" = "false" ]; then
+  echo "[pcr-check] ADVISORY: multi-option response detected without PCR structure (session=${SESSION_ID})"
+  echo "[pcr-check] B_PCR_FOR_DECISIONS: Pros/Cons/Recommendation required for non-trivial decisions"
+  echo "[pcr-check] Add PCR block or note: 'trivial-reversible — skipping PCR per [reason]'"
+else
+  echo "[pcr-check] ✓ PCR check passed (session=${SESSION_ID} timestamp=${TIMESTAMP})"
+fi
 
 exit 0

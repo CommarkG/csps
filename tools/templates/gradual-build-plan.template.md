@@ -117,6 +117,30 @@ muv_audit:
 
 ---
 
+## §PA Prevention Analysis (MANDATORY — Core Scopes — fill before §CC)
+
+> Reference: docs/plan/pillar-0-governance/core-scopes.md | Governor S040: "Prevention is a main issue."
+> Core Spine governing this plan: [GVRN|ARCH|AI|VALD|OPER]
+> Training default this plan overrides: [name from profile-registry.yaml DEFAULT-R* or DEFAULT-ME-*]
+
+**Scope-1 risks (immediate — what could go wrong this session):**
+| Risk | If triggered: immediate fix path |
+|---|---|
+| [specific risk] | [fix path] |
+
+**Scope-2 ripples (connected elements — what else changes when this plan executes):**
+| Connected artifact | Ripple check required |
+|---|---|
+| [file/validator/hook] | [what to verify is still consistent] |
+
+**Scope-3 prevention (permanent — what structural fix prevents this class of problem):**
+- Class of problem: [name the category, not the specific instance]
+- Training default: [which DEFAULT-* applies]
+- T1/T2/T3 to install: [hook | validator | session injection]
+- threshold_submitted: false  ← set true when S3 finding routed to threshold-intake-protocol.md
+
+---
+
 ## §CC Creation Completeness Spec (MANDATORY — fill before any code per OPUS-2 Turn 85 §3)
 
 > **Register → Implement → Wire → Verify.** Every artifact created by this plan must specify its wiring destination, hook/validator registration, enforcement trio, and done criterion BEFORE writing code.

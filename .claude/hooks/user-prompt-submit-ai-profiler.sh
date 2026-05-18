@@ -52,7 +52,20 @@ case "$MODE" in
 Pre-directive ZF required before any proposal.
 If decision is consequential: invoke /cruel-critic or /balance-expert BEFORE finalizing.
 Virtual OPUS check: draft → ZF → amend → present amended version only.
-Active overrides: CORE-FIRST (validate exit criteria before accepting session-state), RULE-SCOPE (escape hatch required)."
+Active overrides: CORE-FIRST (validate exit criteria before accepting session-state), RULE-SCOPE (escape hatch required).
+
+COMMUNICATION PROTOCOL REMINDER (Rule 1 + Rule 10 — mandatory):
+When preparing a directive FOR SONNET: start with exactly:
+  [PROTOCOL: PROTO-NNN | STEP: N of M | MODE: sequential]
+  YOU ARE: Sonnet, the builder in Claude Code VS Code tab.
+  I AM: Yariv Fink (Governor).
+  THIS IS THE SITUATION: [2-3 sentences]
+  YOUR TASK: [one specific action]
+When preparing a SROF FOR OPUS: start with exactly:
+  [PROTOCOL: SROF-NNN | STEP: 1 of 1 | MODE: REVIEW + REFINE]
+  YOU ARE: OPUS-3 (Claude Opus), the architectural advisor for CSPS.
+  I AM: [sender identity]
+Missing this format = malformed cross-boundary message = Rule 1 violation."
     ;;
   implementation)
     INJECTION="[AI-PROFILER: IMPLEMENTATION MODE]

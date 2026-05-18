@@ -1,38 +1,47 @@
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.verify-hooks-functional
 # @csps-name verify-hooks-functional
-# @csps-description SessionStart self-test hook — verifies all declared hooks under .claude/hooks/ are present + executable. Mitigates cruel-critic Critique 2 from token-optimization.md v0.3 §14.8 ("hooks-replacing-injection assumes hook reliability"). STUB tier (S007 turn 4); week-4 promotes to active enforcement once 7 hook scripts ship per token-optimization Phase 5.
-# @csps-version 0.1.0-stub
+# @csps-description SessionStart hook — ACTIVE S041 (OPEN-048). Verifies critical hooks
+# are present + executable. Exits 1 if ANY critical hook is missing or not executable.
+# Non-critical hooks report advisory only. The meta-gap closed: the hook that validates
+# hooks was STUB exits 0 — meaning a broken post-stop-rzf-reminder.sh would go undetected.
+# @csps-version 1.0.0-active
 # @csps-owner group:finky
-# @csps-lifecycle experimental
-# @csps-lifecycle-state stub
+# @csps-lifecycle production
+# @csps-lifecycle-state active
 # @csps-tags type:hook domain:governance audience:developer
-# @csps-enforces P-META-009 B_TOKEN_BUDGET B_COGNITIVE_CONTEXT_DISCIPLINE
+# @csps-enforces B_STRUCTURAL_PREVENTION_DISCIPLINE B_INHERITANCE_POLICY
 #
-# Engraved at S007 turn 4 as Surface 3 of B_TOKEN_BUDGET 5/5 atomic engraving.
-# Per token-optimization.md v0.3 §9.4 Phase 3 + §14.8 cruel-critic Critique 2 mitigation.
+# AI DEEP INSTRUCTION (DEFAULT-ME-6 override):
+# Training default: "platform has 20 hooks → enforcement is present."
+# CSPS override: "every specific hook must be individually verified. The gestalt of
+# 'lots of hooks' is not evidence that THIS hook is functioning."
 #
-# STUB BEHAVIOR (current):
-#   Reports declared-hook list + presence/absence + executable bit. Always exits 0.
-#
-# WEEK-4 PROMOTION CRITERIA:
-#   - 7 hook scripts shipped per token-optimization.md §14.4 migration table
-#   - This script promoted to: enumerate declared hooks → check presence + +x bit → fire warn on missing → exit 1 if any critical hook missing
-#   - .claude/settings.json registers this script as SessionStart hook
-#
-# Manual invocation: bash .claude/hooks/verify-hooks-functional.sh
+# OPEN-048 S041 — upgraded from STUB to ACTIVE.
+# Critical hooks: those with PRODUCTION/ACTIVE status that enforcement depends on.
+# Non-critical hooks: STUB tier — advisory warning, not blocking.
 
 set -euo pipefail
 
 readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 readonly HOOKS_DIR="${REPO_ROOT}/.claude/hooks"
 
-# Declared hooks per token-optimization.md §14.4 migration table (Phase 5 ship list)
-# + S007 §24+ existing stubs + S007 production hooks. Updated S008 turn 5 (unified-intake topic-plan
-# L1 foundation): all 7 §14.4 stubs authored + verify-hooks-functional updated to enumerate full set.
-# 10 stubs + 2 production + 2 S012/S014 + 2 ZF-wall-to-wall + 1 ZF-mandate + 1 claude-dir-guard + 1 session-close-gate = 19 total.
+# ── Critical hooks (PRODUCTION/ACTIVE — platform breaks without these) ────────
+# Exit 1 if any of these are missing or not executable.
+readonly -a CRITICAL_HOOKS=(
+  "post-stop-rzf-reminder.sh"           # BLOCKING: ZF before response mandate
+  "pre-tool-use-plan-coverage-gate.sh"  # BLOCKING: new libs/ require ratified PI
+  "pre-tool-use-claude-dir-guard.sh"    # BLOCKING: protects .claude/ directory
+  "post-stop-pnpm-verify.sh"            # BLOCKING: verify after code changes
+  "post-stop-session-close-gate.sh"     # BLOCKING: session close protocol
+  "session-open.sh"                     # PRODUCTION: CAP + governance injection
+  "user-prompt-submit-next-step-reminder.sh"  # PRODUCTION: 6 turn disciplines
+  "post-stop-link-discipline.sh"        # ACTIVE: EP-ERR-007 detection
+  "post-stop-banned-phrase.sh"          # ADVISORY-ACTIVE: phrase detection
+)
+
+# ── All declared hooks ─────────────────────────────────────────────────────────
 readonly -a DECLARED_HOOKS=(
-  # 7 §14.4 Phase 5 migration stubs (authored S008 turn 5)
   "post-tool-use-validate-before-assume.sh"
   "pre-tool-use-rzf-evidence-gate.sh"
   "post-stop-pcr-check.sh"
@@ -40,62 +49,74 @@ readonly -a DECLARED_HOOKS=(
   "post-stop-banned-phrase.sh"
   "user-prompt-submit-governor-prompts.sh"
   "post-stop-pnpm-verify.sh"
-  # Self-test hook (this file; S007 turn 4)
   "verify-hooks-functional.sh"
-  # S007 §24+ existing stubs (frontmatter-enum-check + skill-aap-required)
   "pre-tool-use-frontmatter-enum-check.sh"
   "pre-tool-use-skill-aap-required.sh"
-  # S007 production hooks (active enforcement; not stubs)
   "user-prompt-submit-intake.sh"
   "post-stop-learning-loop.sh"
-  # S012 production hook — B_OPTIMAL_NEXT_STEP turn discipline (user directive S012)
   "user-prompt-submit-next-step-reminder.sh"
-  # S021 Governor directive — raw Governor comment auto-save (append-only, unchanged)
   "user-prompt-submit-raw-comments.sh"
-  # S014 production hook — B_NO_WILD_IMPLEMENTATION plan-coverage gate (user directive S014)
   "pre-tool-use-plan-coverage-gate.sh"
-  # S014 ZF-wall-to-wall — mandatory context load at session activation (P-META-020)
   "session-open.sh"
-  # S014 ZF-wall-to-wall — CEC trigger on principle/contract ratification (P-META-006)
   "post-tool-use-cec-trigger.sh"
-  # S014 ZF mandate protocol — level gate on phase/batch completion signals
   "post-tool-use-zf-level-gate.sh"
-  # S014 permanent fix — blocks Write/Edit on .claude/** and redirects to Bash/node
   "pre-tool-use-claude-dir-guard.sh"
-  # S014 governance-session close gate — detects session-close intent, injects §10 protocol
   "post-stop-session-close-gate.sh"
 )
 
-echo "[verify-hooks-functional] STUB — token-optimization.md §14.8 cruel-critic Critique 2 mitigation"
+echo "[verify-hooks-functional] ACTIVE S041 — checking ${#DECLARED_HOOKS[@]} hooks"
 echo "[verify-hooks-functional] hooks_dir: ${HOOKS_DIR}"
-echo "[verify-hooks-functional] declared: ${#DECLARED_HOOKS[@]} hooks (10 stubs + 2 production + 2 S012/S014 + 2 ZF-wall-to-wall)"
 echo ""
 
 declare -i present=0
 declare -i missing=0
 declare -i not_executable=0
+declare -i critical_failures=0
 
 for hook in "${DECLARED_HOOKS[@]}"; do
   hook_path="${HOOKS_DIR}/${hook}"
+  is_critical=false
+  for ch in "${CRITICAL_HOOKS[@]}"; do
+    [[ "$hook" == "$ch" ]] && is_critical=true && break
+  done
+
   if [[ -f "${hook_path}" ]]; then
     present=$((present + 1))
-    # On Windows NTFS, execute bits are not preserved by the filesystem.
-    # Check git's tracked mode instead (100755 = executable in git).
-    git_mode=$(git ls-files --format='%(objectmode)' -- "${hook_path}" 2>/dev/null)
+    git_mode=$(git ls-files --format='%(objectmode)' -- "${hook_path}" 2>/dev/null || echo "")
     if [[ -x "${hook_path}" ]] || [[ "${git_mode}" == "100755" ]]; then
-      printf "  ✓ %s (present + executable)\n" "${hook}"
+      printf "  ✓ %s%s\n" "${hook}" "$($is_critical && echo ' [CRITICAL]' || echo '')"
     else
       not_executable=$((not_executable + 1))
-      printf "  ⚠ %s (present but NOT executable; chmod +x required)\n" "${hook}"
+      if $is_critical; then
+        critical_failures=$((critical_failures + 1))
+        printf "  ✗ %s [CRITICAL — not executable: chmod +x required]\n" "${hook}"
+      else
+        printf "  ⚠ %s (not executable — advisory)\n" "${hook}"
+      fi
     fi
   else
     missing=$((missing + 1))
-    printf "  ✗ %s (missing — declared at token-optimization.md §14.4 Phase 5)\n" "${hook}"
+    if $is_critical; then
+      critical_failures=$((critical_failures + 1))
+      printf "  ✗ %s [CRITICAL — MISSING: enforcement gap]\n" "${hook}"
+    else
+      printf "  ⚠ %s (missing — non-critical, advisory)\n" "${hook}"
+    fi
   fi
 done
 
 echo ""
 echo "[verify-hooks-functional] summary: present=${present} missing=${missing} not_executable=${not_executable} total_declared=${#DECLARED_HOOKS[@]}"
-echo "[verify-hooks-functional] STUB tier — exit 0 always (week-4 promotes to fail-on-missing-critical)"
 
+if [[ ${critical_failures} -gt 0 ]]; then
+  echo ""
+  echo "[verify-hooks-functional] ✗ BLOCKING: ${critical_failures} critical hook(s) missing or not executable."
+  echo "  Critical hooks are PRODUCTION enforcement surfaces."
+  echo "  Platform enforcement is degraded without them."
+  echo "  DEFAULT-ME-6 override: 'hooks exist' ≠ 'this specific hook is functional.'"
+  echo "  Fix: verify .claude/hooks/ and run git ls-files --format='%(objectmode)' -- .claude/hooks/<hook>"
+  exit 1
+fi
+
+echo "[verify-hooks-functional] ✓ All critical hooks present and executable"
 exit 0

@@ -67,6 +67,15 @@
     ],
     "PreToolUse": [
       {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-sacred-parts-guard.sh"
+          }
+        ]
+      },
+      {
         "matcher": "Write",
         "hooks": [
           {

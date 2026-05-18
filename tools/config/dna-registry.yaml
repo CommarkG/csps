@@ -1,0 +1,163 @@
+# CSPS DNA Registry — PI-031
+# Machine-readable manifest of all CSPS platform identity components.
+# Consumed by: tools/scripts/generate-dna-bundle.mjs (PI-032)
+# Maintained by: Governor only (append-only, ratification required for new entries)
+# Last updated: 2026-05-18 S040-C2
+
+components:
+
+  # ── LANGUAGE ──────────────────────────────────────────────────────────────
+
+  - id: vocabulary-canon
+    path: C:\Users\finky\.claude\core\L1-vocabulary.md
+    scope: local
+    category: language
+    audience: [all]
+    depth_level: L1
+    always_include: true
+    summary: "32 canonical terms. Use exactly these words. Never invent synonyms. Append-only list."
+
+  - id: vocabulary-exclusion
+    path: docs/plan/_handoff/VAULT/vocabulary-exclusion-list.md
+    scope: repo
+    category: language
+    audience: [all]
+    depth_level: L1
+    always_include: true
+    summary: "28 forbidden terms with CSPS replacements. Check before writing any new artifact. Foreign vocabulary = contamination."
+
+  # ── PROTOCOL ──────────────────────────────────────────────────────────────
+
+  - id: communication-rules
+    path: tools/council/communication-protocol-shared.md
+    scope: repo
+    category: protocol
+    audience: [new-ai-tab, external-ai, automation]
+    depth_level: L2
+    always_include: true
+    summary: "11 rules. Rule 10: context block mandatory (YOU ARE/I AM/THIS IS THE SITUATION/YOUR TASK). Rule 11: next build required for build fixes."
+
+  - id: fse-template
+    path: docs/plan/pillar-0-governance/fse-creation-template.md
+    scope: repo
+    category: protocol
+    audience: [new-ai-tab, developer]
+    depth_level: L2
+    always_include: false
+    summary: "Mandatory 5-surface checklist for every new governance rule: T5 AGENTS.md + T4 contract + T3 memory + T2 validator + T1 hook. Commit atomically."
+
+  - id: cooperation-plan
+    path: docs/external/coworker-cooperation-plan.md
+    scope: repo
+    category: protocol
+    audience: [external-ai]
+    depth_level: L2
+    always_include: false
+    summary: "Complete guide for external AI co-workers. Zone model (read-only/write zones), vocabulary discipline, output format, zone crossing rules."
+
+  # ── GOVERNANCE ────────────────────────────────────────────────────────────
+
+  - id: principles-constitutional
+    path: C:\Users\finky\.claude\core\L1-principles.md
+    scope: local
+    category: governance
+    audience: [all]
+    depth_level: L1
+    always_include: true
+    summary: "Sealed constitutional principles: ZCA, Completion Seal, Planning-Before-Implementing (P-META-026 ratified 2026-05-17), Patient Foundation. Requires OPUS review + Governor ratification to change."
+
+  - id: principles-full
+    path: packages/principles/principles.yaml
+    scope: repo
+    category: governance
+    audience: [developer, new-ai-tab]
+    depth_level: L2
+    always_include: false
+    summary: "65 ratified principles (machine-readable). Full CSPS governance contract. P-META-*, P-ARCH-*, P-OPER-* namespaces."
+
+  - id: behavioral-contracts
+    path: docs/plan/pillar-0-governance/behavioral-contracts.md
+    scope: repo
+    category: governance
+    audience: [new-ai-tab, developer]
+    depth_level: L2
+    always_include: false
+    summary: "61+ B_* behavioral contracts. B_INHERITANCE_POLICY (turn counter + BLOCKING handoff), B_APPS_ARE_TRIALS, B_ENFORCEMENT_TRIO. Load when domain referenced."
+
+  - id: agents-hard-nos
+    path: AGENTS.md
+    scope: repo
+    category: governance
+    audience: [new-ai-tab]
+    depth_level: L2
+    always_include: true
+    summary: "Hard NOs (absolute prohibitions) + Governor collaboration mandate. Always-resident for every AI session in CSPS."
+
+  # ── ARCHITECTURE ──────────────────────────────────────────────────────────
+
+  - id: schema-architecture
+    path: libs/policies/schema.zmodel
+    scope: repo
+    category: architecture
+    audience: [developer, new-ai-tab]
+    depth_level: L2
+    always_include: false
+    summary: "ZenStack ZModel schema. Tenant isolation mandatory (tenantId on every model). RLS via @@allow/@@deny. Soft-delete via deletedAt. Current models: User, Tenant, Task, Project, Habit, HabitLog, BudgetCategory, Transaction, BudgetGoal."
+
+  - id: integration-modules
+    path: libs/integrations/index.ts
+    scope: repo
+    category: architecture
+    audience: [developer]
+    depth_level: L2
+    always_include: false
+    summary: "7 platform integration modules: auth, security, email, jobs, monitoring, storage, realtime. All with graceful passthrough when env vars not set. Deferred packages stub until installed."
+
+  - id: platform-state
+    path: tools/council/platform-state-snapshot.md
+    scope: repo
+    category: architecture
+    audience: [new-ai-tab, developer]
+    depth_level: L3
+    always_include: true
+    summary: "Verified current platform state: 128 validators, exit_code=0. Apps: Habit Tracker (built, needs Vercel). Budget Planner (dropped). Active session: S040."
+
+  # ── AI BEHAVIOR ───────────────────────────────────────────────────────────
+
+  - id: inner-ai-defaults
+    path: docs/plan/_handoff/VAULT/inner-ai-defaults/
+    scope: repo
+    category: ai-behavior
+    audience: [new-ai-tab]
+    depth_level: L2
+    always_include: false
+    summary: "17+ AI behavior overrides with incident samples. Covers: completion premature declaration, satisfaction point, context drift, sycophantic compliance. Load when deep behavioral alignment needed."
+
+  - id: open-items
+    path: tools/council/opus-open-items.md
+    scope: repo
+    category: ai-behavior
+    audience: [new-ai-tab]
+    depth_level: L3
+    always_include: true
+    summary: "36 open items. Critical pending: OPEN-029 (EXT-KNOW 04-11 absorption), OPEN-035 (principles.yaml in DNA), OPEN-036 (FSE compliance validator). Full register — check before proposing new work."
+
+  # ── KNOWLEDGE ─────────────────────────────────────────────────────────────
+
+  - id: multi-session-plan
+    path: tools/council/multi-session-plan-S040.md
+    scope: repo
+    category: knowledge
+    audience: [new-ai-tab, developer]
+    depth_level: L3
+    always_include: true
+    summary: "Current multi-session roadmap. Priorities: Habit Tracker deploy (async), DNA Bundle Engine (PI-031/032/033), S040 pipeline (PI-026/027). Governor decisions recorded. S040 C2 mandate: PI-031/032/033 implementation."
+
+  - id: ext-know-registry
+    path: docs/plan/pillar-0-governance/external-knowledge-registry.md
+    scope: repo
+    category: knowledge
+    audience: [new-ai-tab, research]
+    depth_level: L3
+    always_include: false
+    summary: "Registry of absorbed external knowledge (EXT-KNOW-001 through 003). [Temp name!!!] competitor landscape, market hypothesis, document architecture patterns. Pending: 04-11 series."

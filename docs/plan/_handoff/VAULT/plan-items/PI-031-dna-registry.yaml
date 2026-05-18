@@ -1,0 +1,116 @@
+---
+id: PI-031
+name: PI-031-dna-registry
+description: "DNA Registry — machine-readable manifest of all CSPS platform identity components. Consumed by Bundle Engine (PI-032) and Wizard (PI-033)."
+version: 1.0.0
+owner: group:finky
+lifecycle: experimental
+lifecycle_state: active
+
+# Classification
+core_spine: ARCH
+depth_level: 2
+tags: [dna, registry, bundle-engine, external-ai, context-inheritance]
+
+# Prioritization
+pe_score: 80
+spi_estimate: 0.2
+urgency: high
+impact: platform-wide
+
+# Status
+status: implementing
+ratified_at: 2026-05-18
+ratified_by: yariv
+implementation_session: S040-C2
+implementation_commit: null
+done_at: null
+
+# Dependencies
+depends_on: []
+unlocks: [PI-032, PI-033]
+
+# Schema impact
+schema_impact:
+  models_modified: []
+  migration_required: false
+  note: "Pure config file — tools/config/dna-registry.yaml"
+
+# UX impact
+ux_impact:
+  user_journey_affected: [new-ai-tab, external-ai, developer-onboarding]
+  friction_removed: true
+  friction_description: "Governor currently navigates manually to find context for new chats. Registry enables automated bundle generation."
+
+# Wiring checklist
+wiring_checklist:
+  - "tools/config/dna-registry.yaml exists with all canonical components"
+  - "Each component has: id, path, category, audience, depth_level, always_include, summary"
+  - "All component paths resolve to existing files"
+  - "validate-dna-registry.mjs reports registry_valid=true (PI-031 creates stub validator)"
+
+# Inner defaults override
+inner_defaults_override:
+  risk: "Claude will declare DONE when registry file exists but components are incomplete"
+  override: "DONE only when all canonical DNA components are listed AND paths resolve to existing files"
+
+# Pre-implementation questions
+questions:
+  - id: Q1
+    question: "Should the registry include local files (C:\\Users\\finky\\.claude\\) or only repo files?"
+    status: answered
+    answer: "Both — mark local files with scope: local. Repo files with scope: repo. Bundle engine handles path resolution."
+  - id: Q2
+    question: "What happens when a DNA component file is updated — does the registry auto-update?"
+    status: answered
+    answer: "Registry is manual-maintained by default. OPEN-027 (master-plan auto-update) is the broader pattern — same solution applies."
+  - id: Q3
+    question: "Who can extend the registry?"
+    status: answered
+    answer: "Governor only (ratification required). AI can propose new entries as OPEN-NNN. Append-only."
+
+# Plan summary
+plan_summary: |
+  Create tools/config/dna-registry.yaml with entries for each CSPS DNA component.
+
+  Component categories:
+    language: vocabulary, exclusion list, glossary
+    protocol: communication rules, behavioral contracts, FSE template
+    governance: principles, L1 files, AGENTS.md
+    architecture: schema, integrations, API patterns
+    ai-behavior: inner-ai-defaults, quality gates
+    knowledge: EXT-KNOW entries, PI items, platform state
+
+  Each entry:
+    id: [kebab-case-slug]
+    path: [relative or absolute path]
+    scope: [repo|local]
+    category: [language|protocol|governance|architecture|ai-behavior|knowledge]
+    audience: [all|new-ai-tab|external-ai|developer|automation|research]
+    depth_level: [L1|L2|L3]
+    always_include: [true|false]
+    summary: "[one sentence max — consumed as context header]"
+
+  DONE criterion: tools/config/dna-registry.yaml exists with ≥10 canonical components,
+                  all paths resolve, validate-dna-registry.mjs passes.
+
+linked_principle: P-OP-001
+linked_contract: B_INHERITANCE_POLICY
+
+# EP-ERR Pre-Check
+ep_err_pre_check:
+  - pattern: done-equals-committed
+    applicable: true
+    mitigation: "DONE = paths resolve + validator passes, not just file exists"
+  - pattern: plain-path-reference
+    applicable: true
+    mitigation: "Registry must include summaries — not just path references"
+
+# Enforcement Trio
+enforcement_trio:
+  tier1_hook: null
+  tier2_validator: validate-dna-registry.mjs (stub — to be created with PI-031)
+  tier3_session: "DNA registry must exist before Bundle Engine (PI-032) can be built"
+  tier_decision_rationale: "Config file drift detectable via path-resolve check → T2 primary"
+  permanence_assessment: high
+---

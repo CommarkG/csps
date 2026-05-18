@@ -1,0 +1,134 @@
+---
+id: PI-032
+name: PI-032-dna-bundle-engine
+description: "Bundle Engine CLI — assembles context-appropriate CSPS DNA bundles by target audience. Solves: Governor must manually navigate to find context for new chats."
+version: 1.0.0
+owner: group:finky
+lifecycle: experimental
+lifecycle_state: active
+
+# Classification
+core_spine: ARCH
+depth_level: 2
+tags: [dna, bundle-engine, context-inheritance, cli, new-ai-tab]
+
+# Prioritization
+pe_score: 75
+spi_estimate: 0.5
+urgency: high
+impact: platform-wide
+
+# Status
+status: design
+ratified_at: 2026-05-18
+ratified_by: yariv
+implementation_session: null
+implementation_commit: null
+done_at: null
+
+# Dependencies
+depends_on: [PI-031]
+unlocks: [PI-033]
+
+# Schema impact
+schema_impact:
+  models_modified: []
+  migration_required: false
+  note: "Pure Node.js script — tools/scripts/generate-dna-bundle.mjs"
+
+# UX impact
+ux_impact:
+  user_journey_affected: [new-ai-tab, external-ai, developer-onboarding, new-session-start]
+  friction_removed: true
+  friction_description: |
+    Governor's problem: 'Stop sending me to look for things.'
+    Solution: `pnpm dna:bundle --target=new-ai-tab` outputs a complete, pasteable context block
+    with all relevant DNA embedded inline. No navigation. No looking.
+
+# Wiring checklist
+wiring_checklist:
+  - "tools/scripts/generate-dna-bundle.mjs exists and is executable"
+  - "pnpm dna:bundle --target=new-ai-tab outputs a valid context block with YOU ARE / I AM structure"
+  - "pnpm dna:bundle --target=developer outputs schema + integrations summary"
+  - "pnpm dna:bundle --target=external-ai outputs vocabulary exclusion + cooperation plan"
+  - "Output includes Rule 10 context block (YOU ARE / I AM / THIS IS THE SITUATION / YOUR TASK)"
+  - "All referenced files from dna-registry.yaml exist and are readable"
+  - "package.json has 'dna:bundle' script in root"
+
+# Inner defaults override
+inner_defaults_override:
+  risk: "Claude will declare DONE when script runs without error but output is incomplete or missing key components"
+  override: "DONE only when output for --target=new-ai-tab contains: vocabulary, current mandate, open blockers, active B_* contracts, ZF discipline — and fits in one paste"
+
+# Pre-implementation questions
+questions:
+  - id: Q1
+    question: "What is the max output length? Needs to be pasteable without truncation."
+    status: answered
+    answer: "Target: ≤2000 tokens. Use summaries from dna-registry.yaml, not full file content. Deep content on demand via --context=full flag."
+  - id: Q2
+    question: "How does the bundle include current state (mandate, open items)?"
+    status: answered
+    answer: "Session state pulled dynamically from tools/session-state.json + tools/council/multi-session-plan-S040.md at bundle-time."
+  - id: Q3
+    question: "Does the output format differ between targets?"
+    status: answered
+    answer: "Yes. new-ai-tab: starts with YOU ARE / I AM block. developer: starts with schema summary. external-ai: starts with vocabulary exclusion list."
+
+# Plan summary
+plan_summary: |
+  Create tools/scripts/generate-dna-bundle.mjs
+
+  CLI flags:
+    --target=[new-ai-tab|external-ai|developer|automation|research]
+    --context=[minimal|standard|full]  (default: standard)
+    --output=[stdout|file:path]        (default: stdout)
+    --domain=[governance|architecture|all]  (default: all)
+
+  Algorithm:
+    1. Load tools/config/dna-registry.yaml (PI-031)
+    2. Filter components by target + domain + always_include
+    3. For each component: read summary (not full content unless --context=full)
+    4. Read current state from tools/session-state.json + multi-session-plan-S040.md
+    5. Inject Rule 10 context block at the top
+    6. Output complete, pasteable document
+
+  Primary output for new-ai-tab (standard):
+    YOU ARE: Sonnet, the builder in Claude Code VS Code tab
+    I AM: [Governor name], the Governor
+    THIS IS THE SITUATION: CSPS [session]. Mandate: [mandate]. Open blockers: [blockers].
+    YOUR TASK: Read the context below and confirm alignment before acting.
+
+    --- CSPS DNA CONTEXT ---
+    [vocabulary highlights]
+    [active behavioral contracts]
+    [current open items]
+    [FSE checklist]
+    [done criteria]
+
+  Add to root package.json scripts:
+    "dna:bundle": "node tools/scripts/generate-dna-bundle.mjs"
+
+  DONE criterion: pnpm dna:bundle --target=new-ai-tab outputs a complete pasteable context
+                  in ≤2000 tokens, including YOU ARE / I AM block + governance summary.
+
+linked_principle: P-UX-001
+linked_contract: B_INHERITANCE_POLICY
+
+# EP-ERR Pre-Check
+ep_err_pre_check:
+  - pattern: done-equals-committed
+    applicable: true
+    mitigation: "DONE = actual output tested, not just script committed"
+  - pattern: context-fades-mid-session
+    applicable: true
+    mitigation: "Bundle reads live state from session-state.json — always current"
+
+# Enforcement Trio
+enforcement_trio:
+  tier1_hook: null
+  tier2_validator: "pnpm dna:bundle --target=new-ai-tab --output=stdout | wc -c (must be > 500)"
+  tier3_session: "Bundle engine is the delivery mechanism for B_INHERITANCE_POLICY — referenced in session-open.sh"
+  tier_decision_rationale: "Output quality check more meaningful than code structure check → manual T2"
+  permanence_assessment: high
+---

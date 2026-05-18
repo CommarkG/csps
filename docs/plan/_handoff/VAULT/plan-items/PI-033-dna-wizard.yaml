@@ -1,0 +1,112 @@
+---
+id: PI-033
+name: PI-033-dna-wizard
+description: "DNA Wizard CLI — 4-question interactive wizard that calls the Bundle Engine (PI-032) with the right flags. Removes the need to know CLI flags."
+version: 1.0.0
+owner: group:finky
+lifecycle: experimental
+lifecycle_state: active
+
+# Classification
+core_spine: ARCH
+depth_level: 2
+tags: [dna, wizard, cli, ux, context-inheritance]
+
+# Prioritization
+pe_score: 55
+spi_estimate: 0.3
+urgency: medium
+impact: ux
+
+# Status
+status: design
+ratified_at: 2026-05-18
+ratified_by: yariv
+implementation_session: null
+implementation_commit: null
+done_at: null
+
+# Dependencies
+depends_on: [PI-032]
+unlocks: []
+
+# Schema impact
+schema_impact:
+  models_modified: []
+  migration_required: false
+  note: "Pure Node.js script — tools/scripts/dna-wizard.mjs"
+
+# UX impact
+ux_impact:
+  user_journey_affected: [new-session-start, new-ai-tab, external-ai]
+  friction_removed: true
+  friction_description: "Governor doesn't need to remember --target flags. 4 questions → correct bundle."
+
+# Wiring checklist
+wiring_checklist:
+  - "tools/scripts/dna-wizard.mjs exists and is executable"
+  - "pnpm dna:wizard runs interactively (4 prompts) and produces a bundle"
+  - "Output matches what pnpm dna:bundle --target=[chosen] --context=[chosen] produces"
+  - "package.json has 'dna:wizard' script in root"
+
+# Inner defaults override
+inner_defaults_override:
+  risk: "Claude will add unnecessary questions beyond the 4 defined"
+  override: "Exactly 4 questions. No more. Quick-path: 'dna:bundle --target=new-ai-tab' is the most common case."
+
+# Pre-implementation questions
+questions:
+  - id: Q1
+    question: "Should the wizard support non-interactive mode (for automation)?"
+    status: answered
+    answer: "No — dna:bundle handles non-interactive. Wizard is for human use only."
+
+# Plan summary
+plan_summary: |
+  Create tools/scripts/dna-wizard.mjs
+
+  4 questions (no more):
+    Q1: Who is this bundle for?
+        1. New AI tab (Sonnet/Claude starting fresh)
+        2. External co-worker AI
+        3. Developer building on CSPS
+        4. Automation system
+
+    Q2: How much context do they need?
+        1. Minimal (protocol rules + vocabulary only)
+        2. Standard (vocabulary + rules + current state) [default]
+        3. Full (everything including history)
+
+    Q3: Which domain?
+        1. All domains [default]
+        2. Governance only
+        3. Architecture only
+
+    Q4: Output to:
+        1. Screen (paste-ready) [default]
+        2. File (specify path)
+
+  After answers: calls generate-dna-bundle.mjs with the correct --target --context --domain --output flags.
+
+  Add to root package.json scripts:
+    "dna:wizard": "node tools/scripts/dna-wizard.mjs"
+
+  DONE criterion: pnpm dna:wizard runs, completes 4 questions, outputs a bundle.
+
+linked_principle: P-UX-001
+linked_contract: null
+
+# EP-ERR Pre-Check
+ep_err_pre_check:
+  - pattern: done-equals-committed
+    applicable: true
+    mitigation: "DONE = wizard runs end-to-end and produces output, not just committed"
+
+# Enforcement Trio
+enforcement_trio:
+  tier1_hook: null
+  tier2_validator: null
+  tier3_session: "Wizard is optional convenience — dna:bundle works without it"
+  tier_decision_rationale: "Low-criticality convenience tool — T3 only acceptable"
+  permanence_assessment: low
+---

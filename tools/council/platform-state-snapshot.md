@@ -8,12 +8,12 @@
 ## §1 — Current Platform Identity
 
 ```yaml
-session: S041
+session: S042
 date: 2026-05-18
-platform_version: CSPS v0.41
+platform_version: CSPS v0.42
 governor: Yariv Fink (group:finky)
 repo: github.com/CommarkG/csps
-last_commit: c2a1630 (audit: enforcement gap sweep S040 — hook upgrade + 5 new OPEN items)
+last_commit: e1a0a83 (feat: Sprint 1 COMPLETE — Core Scopes [S1]/[S2]/[S3] tags in open items)
 sonnet_model: claude-sonnet-4-6[1m]
 ```
 
@@ -146,8 +146,9 @@ Rule 7 (ZCA) added. Full protocol: `tools/council/communication-protocol-shared.
 
 ## §10 — Session History (last 5)
 
-**S040 STATUS: ACTIVE** | 127+ validators | B_RZF_BEFORE_PROMPT live | App #3 domain PENDING Governor
-**S039 STATUS: CLOSED** | 127+ validators | Budget Planner build fixed | RZF enforcement 5/5 surfaces
+**S042 STATUS: ACTIVE** | 130+ validators | Sprint 1 complete | Playground on GitHub | 9 pending OPEN items
+**S041 STATUS: CLOSED** | 130+ validators | OPEN-043/046/048/050/051 done | 67 principles | B_PRACE M-27
+**S040 STATUS: CLOSED** | 127+ validators | B_RZF_BEFORE_PROMPT live | Playground built | B_ZERO_NAVIGATION constitutional
 **S038 STATUS: CLOSED** | 127 validators | STT module + quality-protocols mini-tree | DNA gate M-26 | communication protocol v2
 **S037 STATUS: CLOSED** | 125 validators | PE Agent live | 65 principles | 61 contracts | creation completeness + enforcement trio + EP-ERR loop
 **S036 STATUS: CLOSED** | 115+ validators | ZCA constitutional | 63 principles | 60 contracts | error registry + wiring audit live

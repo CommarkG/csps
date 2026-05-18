@@ -1,3 +1,23 @@
+# Sonnet Report — S041 CLOSE
+
+## Done
+1. OPEN-046: enforce-trio validator v2.0 → 63 contracts (60 unenforced visible) ✅
+2. OPEN-048: verify-hooks-functional STUB→ACTIVE (exits 1 on missing critical) ✅
+3. OPEN-050: enforcement_tier declared for 5 contracts + B_PRACE M-27 ✅
+4. OPEN-043: nav.js 541→252 lines, page-data.js extracted ✅
+5. OPEN-051: csps-playground on GitHub + Vercel connected ✅
+6. EP-ERR-010: PowerShell replace wipe registered ✅
+7. P-META-026 + P-META-027: principles.yaml (67 principles) ✅
+8. Sprint 1: all 5 items complete ✅
+
+## S041 ZF Evidence
+pnpm verify exit_code=0 at e1a0a83 | 130+ validators | enforcement_trio_assigned advisory_gaps=60
+
+## S042 First Action
+OPEN-050 T1+T2 build — B_VALIDATE_BEFORE_ASSUME post-tool-use hook STUB→ADVISORY
+
+---
+
 # Sonnet Report — S041 (comprehensive, for Opus Turn 97)
 ## All work since PROTO-020 (commit 0ad07b7) through current (38a8e93+)
 

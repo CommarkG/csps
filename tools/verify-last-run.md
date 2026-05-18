@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-18T05:24:12.883Z
-- finished_at: 2026-05-18T05:24:40.968Z
+- ran_at: 2026-05-18T05:31:54.425Z
+- finished_at: 2026-05-18T05:32:22.060Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-18T05:24:12.883Z",
-    "finished_at": "2026-05-18T05:24:40.968Z",
+    "ran_at": "2026-05-18T05:31:54.425Z",
+    "finished_at": "2026-05-18T05:32:22.060Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.8,
+        "duration_seconds": 7,
         "packages_resolved": null
       },
       {
@@ -45,7 +45,7 @@
         "scanned": 440,
         "errors": 0,
         "warnings": 33,
-        "exempt": 293
+        "exempt": 294
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -214,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.4,
         "checked": 60,
         "advisories": 51
       },
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 400,
-        "clean": 400,
+        "checked": 401,
+        "clean": 401,
         "blocking": 0,
         "registry": 52
       },
@@ -521,7 +521,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 159,
+        "checked": 160,
         "blocking": 0,
         "advisories": 0
       },
@@ -579,8 +579,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -623,11 +623,11 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 31,
-        "active": 18,
+        "total": 32,
+        "active": 19,
         "stub": 10,
         "unknown": 3,
-        "stub_rate": 32
+        "stub_rate": 31
       },
       {
         "name": "session_harvest_readiness",
@@ -776,7 +776,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 147,
+        "checked": 148,
         "missing_why": 39
       },
       {
@@ -1098,7 +1098,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.2
+        "duration_seconds": 6.3
       },
       {
         "name": "ui_completeness",

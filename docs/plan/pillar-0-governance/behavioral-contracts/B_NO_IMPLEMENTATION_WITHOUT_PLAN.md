@@ -25,3 +25,4 @@ When the change is clearly within scope of an existing active plan AND the plan 
 - contract: this entry + over-the-system-audit-S022.md §4 Resolution Protocol
 
 **Source:** Session A of platform-excellence-completion-S023.md. Governor ratified 2026-05-11.
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

@@ -61,7 +61,7 @@ Full canonical wording for every behavioral contract that binds AI behavior in C
 - schema: n/a
 
 **governing_intent:** Ensures the AI provides genuine value rather than comfort — the platform scales on real improvements, not on affirmation, and the Governor needs expert challenge more than agreement.
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK
 
 **Canonical wording:**
@@ -86,7 +86,7 @@ Full canonical wording for every behavioral contract that binds AI behavior in C
 - hook: UserPromptSubmit reminder
 - memory: `feedback_no_invention_without_precedent.md` (S002 turn 7)
 - contract: this entry
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_VALIDATE_BEFORE_ASSUME
 
 **Canonical wording:**
@@ -113,7 +113,7 @@ Full canonical wording for every behavioral contract that binds AI behavior in C
 - schema: n/a
 
 **governing_intent:** Ensures the platform only advances on states that are genuinely demonstrated — claimed states cannot be trusted to drive downstream decisions, and real state change is the only legitimate foundation for compounding work.
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_CHECK_EXISTING_DECISIONS_FIRST
 
 **Canonical wording:**
@@ -138,7 +138,7 @@ Full canonical wording for every behavioral contract that binds AI behavior in C
 - hook: UserPromptSubmit reminder ("before building NEW: check EXISTING")
 - memory: `feedback_check_existing_decisions_first.md` (S002 turn 7)
 - contract: this entry
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_ASK_WHEN_FILLING_GAPS
 
 **Canonical wording:**
@@ -171,7 +171,7 @@ The 4-condition gate fires because the human's expression is incomplete;
 P-META-022 explains why that incompleteness is the default condition, not the exception.
 The 9-step coaching protocol in [threshold-intake-protocol.md](./threshold-intake-protocol.md)
 extends this contract with the full discovery methodology (receive → gap-surface → iterate → ratify).
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_AUTONOMY_4_CONDITIONS (CSP carry-forward)
 
 **Canonical wording:** (from CSP `AI_BEHAVIOR_AUTONOMY_AUDIT`)
@@ -195,7 +195,7 @@ extends this contract with the full discovery methodology (receive → gap-surfa
 - hook: UserPromptSubmit reminder (firing the 4 conditions check before action)
 - validator: n/a (judgment)
 - schema: extraction-note `scope_ratified_by:` field (closed enum: explicit-user-directive / inferred-from-task / out-of-scope-flagged)
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_CHECKPOINT_8_CATEGORIES (CSP carry-forward)
 
 **Canonical wording:** (from CSP `AI_BEHAVIOR_AUTONOMY_AUDIT`)
@@ -218,7 +218,7 @@ extends this contract with the full discovery methodology (receive → gap-surfa
 - memory: `feedback_checkpoint_8_categories.md`
 - hook: UserPromptSubmit + Stop hooks
 - validator: scope-creep flag at close
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_INTAKE_DISCIPLINE (S002 turn 4-7)
 
 **Canonical wording:**
@@ -249,7 +249,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - router: `tools/intake-router.mjs` (S011 unified-intake L3)
 - memory: `feedback_intake_discipline.md`
 - contract: this entry + AGENTS.md hard NOs
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_BLOCKER_NO_SILENT_DROP (S002 turn 6-7)
 
 **Canonical wording:**
@@ -268,7 +268,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - hook: closing-summary-surface (manual pre-runtime)
 - memory: `feedback_blocker_no_silent_drop.md`
 - contract: this entry + AGENTS.md hard NO
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_TWO_SIDED_HANDSHAKE (S002 turn 6-7 + CSP session-lifecycle)
 
 **Canonical wording:**
@@ -285,7 +285,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - schema: `continuity_manifest` + `opening_receipt` YAML schemas in protocols.md §17 v1.2
 - validator: `handshake-completion` audit
 - contract: this entry + `protocols.md` §17 + §11b + AGENTS.md hard NO
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_INTENT_TO_IMPACT (S002 turn 6-7 + CSP session-lifecycle step 5b)
 
 **Canonical wording:**
@@ -304,7 +304,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - contract: this entry + `protocols.md` §16 + §11c + AGENTS.md hard NO
 
 **Cross-references:** P-META-020 (intent = the concept; impact = whether behavior honored the concept — B_INTENT_TO_IMPACT IS the intent-to-impact loop at the session level, which P-META-020 operates at the input level via Threshold PREAMBLE) / P-META-014 B_MUTUAL_UNDERSTANDING_VALIDATION (MUV closes the loop at communication boundaries; INTENT_TO_IMPACT closes it at session boundaries — composed, not redundant).
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_NO_FORCE_FIT (S002 turn 7)
 
 **Canonical wording:**
@@ -321,7 +321,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - schema: extraction-note `discovery_origin: true` flag
 - validator: `force-fit-detection` audit
 - contract: this entry + `unknown-path-protocol.md` + AGENTS.md hard NO
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_RZF — Real Zero Findings (defect verification, CSP carry-forward S333)
 
 **Canonical wording:**
@@ -402,7 +402,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - contract: this entry + `principles.yaml#P-META-006`
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_CEC is Level 2 (Value Completeness) in the unified completeness framework.
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_QC_AUDIT — QC audit-list discipline (S002 turn 11 operational layer)
 
 **Canonical wording:**
@@ -436,7 +436,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - contract: this entry + `pillar-0-governance/qc-audit-system.md`
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_QC_AUDIT is Level 4 (Meta-completeness) in the unified completeness framework.
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_PROTOCOL_LITERAL_EXECUTION — every documented protocol step gets explicit per-step execution + evidence (S002 turn 14)
 
 **Canonical wording:**
@@ -474,7 +474,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - contract: this entry + `_handoff/VAULT/closing-summary-template.md` + `protocols.md` v1.7 §10 + AGENTS.md hard NO
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_PROTOCOL_LITERAL_EXECUTION is Level 3 (Session Completeness) in the unified completeness framework.
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_CATCH_TO_ENGRAVING — every observed gap MUST produce persistent artifact within the same session (S002 turn 15)
 
 **Canonical wording:**
@@ -612,7 +612,7 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 - hook: Stop hook scans output for path-shaped strings without link wrapping; UserPromptSubmit reminder
 - memory: `feedback_always_git_links.md` (NEW S002 turn 19)
 - contract: this entry + AGENTS.md hard NO (turn 19) + `ai-behavior-spine.md` row (engraving status: 4/5 declared; ~2/5 mechanical — memory + AGENTS.md NO + contract active; validator + hook deferred week 4)
-
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: post-stop-link-discipline.sh (ADVISORY — S040), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
 ## B_PCR_FOR_DECISIONS — every non-trivial decision in chat triggers PCR 3-block (S005 turn 5)
 
 **Canonical wording:**
@@ -663,7 +663,7 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 - hook: `.claude/hooks/post-stop-pcr-check.sh` (Stop-hook output scan) + UserPromptSubmit reminder when user message contains decision-asking patterns — registered; build deferred week-4
 - memory: `feedback_pcr_for_decisions.md` (S005 turn 5) — counterweight composes with `feedback_obvious_answer_execute.md` (CSP carry-forward — when path converges, just decide)
 - contract: this entry + `AGENTS.md` hard NO (S005 turn 5) + `ai-behavior-spine.md` P-OP-003 row updated + `principles.yaml#P-OP-003` enforcer_count 4 → 8
-
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: post-stop-pcr-check.sh (ADVISORY — S040), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
 ## B_PRE_CLOSE_VERIFICATION — every closing summary RZF block requires §10.0 cycle evidence (S005 turn 19)
 
 **Canonical wording:**
@@ -697,7 +697,7 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_PRE_CLOSE_VERIFICATION is Level 3 (Session Completeness — pre-close gate) in the unified completeness framework.
 
 **governing_intent:** Ensures session progress is real, not theatrical — only verified improvements compound, and the platform’s promise to the Governor is that every session delivered something provably real.
-
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: post-stop-pnpm-verify.sh + post-stop-session-close-gate.sh (ACTIVE), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
 ## B_POSITIVE_VALUE_EXTRACTION — every significant positive event triggers an iterative cycle (S005 turn 20)
 
 **Canonical wording:**
@@ -758,7 +758,7 @@ S005 evidence: when the FSE-produces-dangling-refs meta-finding was surfaced at 
 - `B_RZF` + `B_CEC` — same shape; positive-value branch of the same discipline
 - `P-META-008 cycle-mandatory-in-plan` — the umbrella that says "cycles in plan text, not memory"
 - `B_FIVE_SURFACE_ENGRAVING` — when meta-finding surfaces (cycle output), the walk may identify need for new engraving; FSE applies
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_COGNITIVE_CONTEXT_DISCIPLINE — every AI session uses the 5-layer architecture with 4 Quality Gates immutable (S005 turn 24)
 
 **Canonical wording:**
@@ -805,7 +805,7 @@ With the discipline, every AI session organizes context to **maximize reasoning 
 - `B_PCR_FOR_DECISIONS` (S005 turn 5) — PCR rendering = Layer 3 work; QG1 keeps it on Opus
 - `B_VALIDATE_BEFORE_ASSUME` (S002 turn 7 + 15) — the tool-call sandwich IS QG3's enforcement at AI-cooperation level
 - `P-META-006 RZF + CEC` — QG3 + QG4 prevent the nominal-not-actual failure modes
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_CDAB — Context-Depth-Alignment-Boundary: per-task context selection for correct depth (S025 — extends P-META-009)
 
 **Canonical wording:**
@@ -851,7 +851,7 @@ cdab_boundary_trigger: [phase_gate, context_below_20pct, new_domain_detected, se
 - contract: this entry + principles.yaml#P-META-009 as child operational protocol
 
 **Composes with:** P-META-009 (CCA 5-layer architecture — CDAB is the per-task selection mechanism within it) / B_TOKEN_BUDGET R1 (CDAB enforces right-depth loading, not just token budgets) / B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS (CDAB ensures AI loads CSPS context before acting on defaults)
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_AGENT_ALIGNMENT_PROTOCOL — every agent passes AAP before invocation; no wildcards (S005 turn 25)
 
 **Canonical wording:**
@@ -963,7 +963,7 @@ CSPS uses claude-code-builtin subagents (Explore / Plan / general-purpose / clau
 - `B_CONSOLIDATION_PASS` (P-META-007 + S009 L1.3) — `consolidation_cross_refs` is the per-agent surface of the consolidation discipline
 - `B_SAVINGS_AND_SSOT_UNIFIED` (S009 L1.4) — extending existing B_AGENT_ALIGNMENT_PROTOCOL (not new B_*) preserves the savings + SSoT axis; same Q3=A minimum-blast-radius pattern as S009
 - `B_GRADUAL_BUILD_BY_FOUNDATIONS` (P-META-016) — Phase 1 → Phase 2 phased adoption is itself a gradual-build trajectory at validator-enforcement-tier scale
-
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-tool-use-skill-aap-required.sh (ACTIVE), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
 ## B_GOVERNOR_PROMPTS — every user prompt is governance-tracked (S005 turn 27)
 
 **Canonical wording:**
@@ -996,7 +996,7 @@ Pre-S005-turn-27, CSPS captured load-bearing user-intent quotes in [user-intents
 - hook: `.claude/hooks/post-stop-governor-prompts.sh` (PostStop: aggregates session GPs + cross-links cardinals to user-intents.md; planned week-4)
 - memory: `feedback_governor_prompts.md` (S005 turn 27) + MEMORY.md index
 - contract: this entry + AGENTS.md hard NO (S005 turn 27) + `ai-behavior-spine.md` row + `principles.yaml#P-META-012` + dashboard leaf [pillar-0/governor-prompts.md](./governor-prompts.md)
-
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: user-prompt-submit-governor-prompts.sh (STUB→ADVISORY S042), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
 ## B_HANDOFF_PRE_FLIGHT_AUDIT — every handoff creation is preceded by whole-session audit (S005 turn 27)
 
 **Canonical wording:**
@@ -1034,7 +1034,7 @@ Pre-S005-turn-27, HANDOFF creation was a procedural step in [protocols.md §10](
 - hook: `.claude/hooks/pre-handoff-write-hpfa.sh` (refuses handoff write if HPFA gaps un-addressed; planned week-4)
 - memory: `feedback_handoff_pre_flight_audit.md` (S005 turn 27) + MEMORY.md index
 - contract: this entry + AGENTS.md hard NO (S005 turn 27) + spine row + `principles.yaml#P-META-013`
-
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: post-stop-session-close-gate.sh (partial), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
 ## B_MUTUAL_UNDERSTANDING_VALIDATION — every AI communication boundary closes the I→I loop (S005 turn 28)
 
 **Canonical wording:**
@@ -1112,7 +1112,7 @@ Step 7: ITERATE until alignment-confirmed-explicit (no more clarifications neede
 - `B_AGENT_ALIGNMENT_PROTOCOL` (S005 turn 25) — boundary type 2 (AI-to-AI subagent) is exactly AAP's domain; MUV adds output_contract verification on return
 - `P-OP-004 batched-execution` — boundary type 5 (context batches) directly extends the batched-execution counterweight
 - `P-META-013 HPFA` — pre-handoff audit; MUV is the cross-handoff iteration discipline (HPFA verifies the handoff is COMPLETE; MUV verifies the handoff is UNDERSTOOD)
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_BOUNDARY_ALIGNMENT_PROTOCOL — every AI communication boundary emits UNDERSTANDING + ALIGNMENT blocks (S024 Governor directive — CONSTITUTIONAL)
 
 **Canonical:** Before crossing any substantive AI→X boundary, emit an UNDERSTANDING BLOCK proving absorption. After crossing, emit an ALIGNMENT CONFIRMATION proving output matched intent. Both blocks are mandatory for consequential crossings. Composes with B_MUTUAL_UNDERSTANDING_VALIDATION (which defines the 5 boundary types and iteration loops); this contract adds the EXPLICIT BLOCK FORMAT and mechanical enforcement.
@@ -1175,7 +1175,7 @@ ALIGNMENT CHECK:
 **Composes with:** B_MUTUAL_UNDERSTANDING_VALIDATION (parent — 5 boundary types + iteration loops) / P-META-022 (Human Intent Crystallization — the understanding layer this contract enforces mechanically) / B_AGENT_ALIGNMENT_PROTOCOL (Type B boundary — AAP is the pre-spawn check; BAP adds the in-prompt UNDERSTANDING BLOCK format)
 
 ---
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_TEMPLATE_FIRST_CREATION — every commitment-layer output passes templated discovery gate (S006 turn 5-7)
 
 **Canonical:** Every commitment-layer output AI produces — persisted artifacts, code, prose patterns, decision frames, reasoning structures, tooling discipline — passes through a templated discovery gate before authoring. Template registry at [_handoff/VAULT/template-registry.md](../_handoff/VAULT/template-registry.md) is the single source of truth. Entries register validator slugs atomically per FSE; implementation may defer. Escape hatch: `template_status: novel-pending-pattern-evaluation` with K=2 promotion to stable.
@@ -1200,7 +1200,7 @@ ALIGNMENT CHECK:
 **Cross-references:** P-META-015 / P-META-007 (FSE — 5 surfaces are themselves templates) / P-OP-001 (reuse-first applied recursively to template selection) / P-META-016 (gradual-build-plan IS a template) / P-ARCH-028 (Core Spine attribution requires schema_anchor + core_spine fields per template).
 
 ---
-
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-tool-use-frontmatter-enum-check.sh (partial — enum drift only), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
 ## B_GRADUAL_BUILD_BY_FOUNDATIONS — every multi-session topic enters via templated gradual-build-plan (S006 turn 5-7)
 
 **Canonical:** Every multi-session topic entering CSPS goes through a templated gradual-build-plan instance at `_handoff/VAULT/topic-plans/<topic-id>.md`. Depth chosen ∈ {3, 4, 5} with rationale (free-form N rejected by validator). Levels enumerated; ZF gate per level; foundation-stability-before-layer-N enforced. Priority engine sequences via 5-dimension formula + 4 bands + PE TRAJECTORY lookahead.
@@ -1226,7 +1226,7 @@ ALIGNMENT CHECK:
 **Cross-references:** P-META-016 / P-META-008 (cycle-mandatory-in-plan — gradual-build IS the cycle structure) / P-META-015 (gradual-build-plan is itself templated) / P-META-018 (PE_ALIGNMENT_GUARDIAN respects gradual-build sequencing) / P-ARCH-028 (each level maps to Core Spine layers).
 
 ---
-
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-tool-use-plan-coverage-gate.sh (partial — new libs/apps files), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
 ## B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS — every AI output gated by alignment registry (S006 turn 6)
 
 **Canonical:** Every AI output is gated by alignment against the inner-AI-defaults registry at [_handoff/VAULT/inner-ai-defaults/](../_handoff/VAULT/inner-ai-defaults/). 5 categories: code / prose / reasoning / tooling / output. Training defaults: `keep` (compose well) / `override` (full replacement) / `adjust` (partial modification with `adjust_specifics`). Continuous validation: per-session leak detector + per-week drift comparison + per-quarter coverage audit + per-major-model-update full re-registration.
@@ -1257,7 +1257,7 @@ ALIGNMENT CHECK:
 - [alternative-vocabulary.md](../_handoff/VAULT/inner-ai-defaults/alternative-vocabulary.md) — CSPS-aligned replacements for trigger vocabulary. SSoT for instruction authoring.
 
 ---
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_PE_ALIGNMENT_GUARDIAN — anti-sycophancy structured deflection (S006 turn 9 — CONSTITUTIONAL)
 
 **Canonical:** When ANY human input enters CSPS with intent that misaligns with PE current top-priority AND does NOT meet ESSENTIAL-bar against in-flight topic-plan completion debt → AI MUST RESPOND WITH STRUCTURED 3-STEP DEFLECTION: (1) Acknowledge value / (2) Offer two paths (SWIFT it OR Vault to GOVERNOR_INPUT_VAULT) / (3) Anchor focus to specific current top-PE item. Verdicts: PROCEED / DEFLECT_SWIFT / DEFLECT_VAULT / BLOCK.
@@ -1293,7 +1293,7 @@ Governed by: P-OP-006 (completion-priority-dpr).
 **Cross-references:** P-META-018 / P-META-014 (MUV — verdict citation IS communication-boundary closure) / P-META-016 (gradual-build sequencing IS what PE protects) / P-META-006 (RZF — PE recompute IS an RZF cycle for prioritization) / P-META-009 (CCA — anti-sycophancy is part of Top Expert Colleague Voice).
 
 ---
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_STRUCTURAL_PREVENTION_DISCIPLINE — enhance system constantly, never patch instance (S006 turn 8 — Q-2 tweak)
 
 **Canonical:** When an enforcement is skipped, late, or partial — fix the STRUCTURE that allowed the skip, not the instance. Every closing-summary §10.0j header captures enhancement proposals from any enforcement gap discovered this session. Silent empty proposals forbidden — explicit `zero_proposals_declaration` with reason required when no gaps found. Philosophy: enhance the system constantly; never settle for low standards + manual recovery.
@@ -1351,7 +1351,7 @@ Governed by: P-OP-006 (completion-priority-dpr).
 **Cross-references:** P-ARCH-028 / P-ARCH-013 (universal-traits-trunk-domain-overlays — generalized from persona prompts to all topics) / P-META-007 (FSE — 5 surfaces map to L0/L1/L2 layers) / P-META-015 (template-first applies recursively — every artifact cites template_used) / P-META-016 (gradual-build levels map to spine outward layers).
 
 ---
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_ZERO_LAPTOP_DEPENDENCY — Git canonical + Codespaces + Android (S006 turn 8 — Hybrid C ratified)
 
 **Canonical:** Every CSPS artifact lives in cloud-canonical (Git remote at github.com/CommarkG/csps) before any session closes. No work depends on a single physical machine. Multi-device + Android workflows first-class. Hybrid mode (Q-1 ratified S006 turn 8): Git canonical + GitHub Codespaces on-demand + Android read-mostly via GitHub mobile + Chromium for occasional edit. Auto-push enforced at session-close gate (Q-2 ratified B; not commit-time A) — composes with HPFA + pre-close verify.
@@ -1376,7 +1376,7 @@ Governed by: P-OP-006 (completion-priority-dpr).
 **Cross-references:** P-OPER-001 / P-META-008 (cycle-mandatory-in-plan — git-pushed-state IS a pre-close cycle) / P-META-013 (HPFA — adds check #8 git-pushed-state-clean) / P-META-015 (devcontainer.json IS templated) / P-ARCH-028 (P-OPER-001 maps to OPER spine — the lowest-precedence-most-adaptive spine).
 
 ---
-
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-commit git hook via validate-laptop-patterns.mjs (ACTIVE — BLOCKING), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
 ## B_NAMING_POLICY — names are simple + clear + industry-standard (S006 turn 24)
 
 **Canonical:** CSPS artifacts MUST be named per the 4-rule naming policy at [naming-policy.md](./naming-policy.md): (1) always-current artifacts have no session/version/level suffix in filename — version goes in frontmatter; (2) per-session artifacts include `S<NNN>` suffix; (3) per-topic artifacts use topic-id only; (4) layer-prefixed governance artifacts (L1_CORE / L2_DOMAIN / L3_INSTANCES) preserve load-bearing layer identity. English words preferred over abbreviations except engraved canonical terms (P-META / B_ / FSE / RZF / CEC / HPFA / MUV / AAP / CCA / ZModel / BaseAgent / RLS / PCR preserved). Industry-standard vocabulary preferred (slice / template / audit / validator / registry / manifest / schema / pillar). Renaming requires `git mv` + frontmatter update + grep-and-update inbound references in same commit.
@@ -1427,7 +1427,7 @@ Governed by: P-OP-006 (completion-priority-dpr).
 - **Contract:** this amendment (subsection of B_STRUCTURAL_PREVENTION_DISCIPLINE; composition-only — no new B_* contract per template escape hatch matching K=2 closed-enum precedent).
 
 **Going forward:** every 7 days (or on-demand via `bash .claude/hooks/cron-weekly-tag-status-deep-audit.sh`), AI runs the audit; output structured report at `docs/plan/_handoff/VAULT/tag-status-deep-audit-W<NN>.md`; findings route per severity (RED → next-batch fix; YELLOW → accumulate to monthly review; INFO → log only). Composes with EXT-20260505-001-D 5 CSPS reassessment triggers (weekly-cadence trigger added as 6th CSPS reassessment trigger). Composes with CSP file #3 §5 Trigger 2 (Consolidation Pass at reassessment). Honest disclosure: STUB tier S008; week-4 active enforcement.
-
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-tool-use-frontmatter-enum-check.sh (partial — enum enforcement), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
 ## B_TOKEN_BUDGET — 8 operating rules extending P-META-009 CCA (v2 ratified S018 — Governor + 4-advisor consensus)
 
 **Canonical (v2 — 8 rules):** Every CSPS AI session honors 8 operating rules governing recurring token consumption:
@@ -1477,7 +1477,7 @@ NEVER mid-session: edit CLAUDE.md / install/remove MCP servers / add plugins / s
 - contract: this entry + AGENTS.md hard NO (S007 turn 4 — covers all 5 operating rules) + ai-behavior-spine.md matrix row (S007 turn 4) + [`principles.yaml#P-META-009`](../../../packages/principles/principles.yaml) (extension) + [`token-optimization.md v0.3`](./token-optimization.md) (dashboard leaf — full 10-phase plan + chat-transfer + ZF 6-pass)
 
 **Cross-references:** P-META-009 (extends; no new principle — B_TOKEN_BUDGET IS the operating-rules subsection of CCA) / P-META-006 (RZF — Phase 1 measurement IS the proof per "re-run IS the proof"; B_TOKEN_BUDGET claims about 60-80% savings remain ESTIMATED until measured) / P-META-008 (cycle-mandatory-in-plan — every phase has explicit ZF gate; pnpm verify exit 0 required) / P-META-016 (gradual-build — R3 IMPL_BATCH boundaries align with L<N>→L<N+1> topic-plan transitions per foundation-stability) / P-META-019 (structural-prevention — Phase 1 measurement gaps surface as §10.0j enhancement-proposals not patches) / B_COGNITIVE_CONTEXT_DISCIPLINE (foundation; R2 directly enforces QG1) / B_GRADUAL_BUILD_BY_FOUNDATIONS (R3 boundary alignment).
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_CONSOLIDATION_PASS — single canonical home + cross-reference protocol
 
 **Canonical wording:**
@@ -1534,7 +1534,7 @@ NEVER mid-session: edit CLAUDE.md / install/remove MCP servers / add plugins / s
 - **contract:** this entry + AGENTS.md "Engraving + ratification" hard-NO row (S009 L1.3 amendment) + cross-reference at [depth-discipline.md §5](./depth-discipline.md) anti-patterns table
 
 **Cross-references:** P-OP-001 reuse-first (composes; B_CONSOLIDATION_PASS is operational application of reuse-first to fact-content not just artifacts) / B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK (sister discipline; precedent-check-before-create + consolidation-pass-after-discover-duplicate) / B_STRUCTURAL_PREVENTION_DISCIPLINE Q-2 (K=2 duplication promotion mechanism) / B_TEMPLATE_FIRST_CREATION (templates pre-include cross-ref fields) / EXT-20260505-003-A through 003-D (4 source extracts).
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_SAVINGS_AND_SSOT_UNIFIED — savings and SSoT are the same discipline
 
 **Canonical wording:**
@@ -1617,7 +1617,7 @@ The 5-surface cycle remains; what changes is that **3b cannot be deferred** — 
 
 - New B_* contracts in S006+ that violate 3b are caught by `audit-of-audits-fse` (planned week-4 — when audit-runner ships, will scan for `principles.yaml#<P>.enforcers` ci-check entries pointing to slugs absent from `audit-runner.md` tables).
 - The 30 dangling refs from gaps-and-duplications-S005.md are the BACKFILL bulk-fix; addressing them in S006 §C3.1 + this amendment together close the structural compounding.
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_KNOW_HOW_DISCIPLINE — every plan consults the know-how registry (S011 §24++++)
 
 **Canonical wording:**
@@ -1647,7 +1647,7 @@ The 5-surface cycle remains; what changes is that **3b cannot be deferred** — 
 - §KH-generic (items say "yes I'll do this" without concrete mitigations)
 - EP-not-extracted (session close without running know-how-extractor.mjs)
 - checklist-skipped (using pre-plan-close.md as decoration, not as blocking gate)
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_AI_COLLABORATIVE_DISCIPLINE — AI as governed contributor, not just restrained executor (S011)
 
 **Canonical wording:**
@@ -1672,7 +1672,7 @@ The 5-surface cycle remains; what changes is that **3b cannot be deferred** — 
 - memory: feedback_ai_collaborative_discipline.md
 - validator: validate-proactive-contribution-routing (future — checks contributions go through Threshold)
 - hook: future pre-contribution-classification hook
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_NO_AI_IMPERSONATION — AI must never claim to be a different model, mode, or capability (S011 §24++++++++++++++++)
 
 **Canonical wording:**
@@ -1708,7 +1708,7 @@ The Opus simulation incident (S011) is the canonical failure case:
 - memory: feedback_no_ai_impersonation.md (to be authored)
 - hook: post-stop-banned-phrase.sh extension (add "I am Opus", "as Opus", "Opus-quality" to banned phrases when not running Opus)
 - audit: ai-honesty-audit slug (Pipeline 10 csps-alignment)
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_CONSENSUS_BEFORE_PROCEEDING — principal decisions require Governor ratification before any stage advances (S011 §24++ final)
 
 **Canonical wording:**
@@ -1745,7 +1745,7 @@ authored by the human, not AI-drafted). See: docs/plan/pillar-0-governance/human
 
 
 ---
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_CONCEPT_LOAD — every input processed through L2 spine classification before work begins (P-META-020 mechanical enforcement — S018 CEC)
 
 **Canonical:** Before processing ANY substantive input, AI MUST identify the governing L2 spine domain. This is not a suggestion — it is the Threshold step that activates the correct conceptual frame for the work. Context is the compass; the spine identifies which compass to use.
@@ -1768,7 +1768,7 @@ authored by the human, not AI-drafted). See: docs/plan/pillar-0-governance/human
 **Cross-references:** P-META-020 (the principle this operationalizes) / B_TRIAD_GOVERNANCE (triad = concept + principle + mechanical; CONCEPT_LOAD is the concept layer) / P-META-021 (triad must be present for consequential decisions) / inner-ai-defaults/README.md (calibration instrument activated by CONCEPT_LOAD).
 
 ---
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_TRIAD_GOVERNANCE — for consequential decisions, all three layers must be present (S014 ZF audit + Governor S014 directive)
 
 **Canonical:** For every CONSEQUENTIAL decision — defined as: hard to reverse OR affects multiple artifacts OR represents a new situation class OR blocks future phases — AI MUST verify all three triad layers are active before proceeding:
@@ -1798,7 +1798,7 @@ A consequential decision with fewer than 3 layers is a governance gap. Surface i
 **Cross-references:** P-META-021 (Triad Governance — the principle this contract operationalizes) / P-META-020 (Concept-First — the context layer of the triad; triad = P-META-020 + named principle + mechanical) / B_CONSENSUS_BEFORE_PROCEEDING (triad applied at phase boundaries) / P-META-006 RZF (the validation layer of the triad for ZF claims).
 
 **governing_intent:** Ensures the Governor’s actual intent (Layer 3) governs platform decisions, not the AI’s interpretation of the first expression (Layer 1) — the platform can only be as good as the quality of what it builds on.
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_VERBATIM_HUMAN_TEXT — stay close to what humans provided; ask before presenting alternatives (S016)
 
 **Canonical wording:**
@@ -1837,7 +1837,7 @@ Two sentences. No pre-emptive versions. No lengthy explanation. WAIT.
 - contract: this entry + AGENTS.md hard NO
 
 **Cross-references:** rigid-rule-anti-pattern (same root: AI initiating unrequested changes) / B_NO_CONFIRMATION_SEEKING (complement: don't ask for trivial things; DO ask for significant gaps) / P-META-020 (context is the compass — Governor context = their exact words are the compass).
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_PLATFORM_FIRST_OPTIMIZATION — every solution evaluated for platform-wide applicability before local implementation (S015 — CONSTITUTIONAL)
 
 **Canonical wording:**
@@ -1885,7 +1885,7 @@ This is the moat. It is built deliberately, surface by surface, through discipli
 - contract: this entry + AGENTS.md hard NO + plan-creation-protocol.md Step 0 Gate C + `inner-ai-defaults/platform-first-optimization.md` (S016)
 
 **Cross-references:** B_COMPLETION_OVER_SHINY (both are PE-priority disciplines) / B_CONSOLIDATION_PASS (reuse before create) / synergy-master skill (CEC operationalization) / P-META-006 RZF (CEC is the positive counterpart to RZF — both ensure nothing is missed) / B_STRUCTURAL_PREVENTION_DISCIPLINE (fix class, not instance).
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_COMPLETION_OVER_SHINY — completion of active phases beats new significant items (S015 — CONSTITUTIONAL)
 
 **Canonical wording:**
@@ -1937,7 +1937,7 @@ This is the **shiny object trap**. It is specifically the failure mode that crea
 
 
 ---
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_DEVELOPMENT_VS_PRODUCTION — never confuse development-mode depth with production-mode efficiency (S019 — Governor directive)
 
 **Canonical:** Development Mode and Production Mode are two fundamentally different operational contexts. Development Mode optimizes for quality, correctness, and depth (tokens = investment). Production Mode optimizes for efficiency, latency, and cost (tokens = operational expense). **Confusing them in either direction is an anti-pattern:** applying production-mode efficiency constraints to development exploration stunts quality; applying development-mode governance overhead to production API serving destroys margins.
@@ -1953,7 +1953,7 @@ This is the **shiny object trap**. It is specifically the failure mode that crea
 **conceptual_sample_of:** GVRN L2 + OPER L2 — the development/production mode distinction is the governance decision that shapes every operational choice downstream.
 
 **Cross-references:** development-vs-production-mode.md / B_HUMBLE_EXECUTION_PIPELINE (GEP applies in development before production deployment) / B_TOKEN_BUDGET (development: R1 L1-default is guideline; production: R1 is hard constraint) / GRACE architecture (designed for production; in development, depth > efficiency)
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_HUMBLE_EXECUTION_PIPELINE — gradual execution: Stage 1 proof before Stage 3 full scope (S019 — Governor directive)
 
 **Canonical:** Before applying any ratified plan at full scope, there MUST be a Stage 1 proof: 1-3 real-world cases where the intent demonstrably becomes a measurable result (THIS-SESSION observable evidence). "Ratification ≠ Proven." Intellectual analysis cannot discover what real-world application reveals. The AI satisfaction point "ratified = ready for full scope" is a training default that CSPS overrides.
@@ -1974,7 +1974,7 @@ This is the **shiny object trap**. It is specifically the failure mode that crea
 **Cross-references:** gradual-execution-protocol.md / B_HUMBLE_EXECUTOR (composes — milestone at phase gate; GEP for execution scope) / instruction-template.md MEASURABLE_END_RESULT (Stage 1 passes when MEASURABLE_END_RESULT is demonstrated) / enforcement_stage: stub→planned→week-4→active (the GEP applied to validators)
 
 ---
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_HUMBLE_EXECUTOR — closed-circle milestone protocol at every phase gate (S016 — CONSTITUTIONAL)
 
 **Canonical wording:**
@@ -2041,7 +2041,7 @@ DECISION: [CONTINUE / STOP]
 - contract: this entry + AGENTS.md hard NO + chat-state-snapshot.template.md + plan-methodology-v2.md §2
 
 **Cross-references:** B_COMPLETION_OVER_SHINY (completion discipline — Humble Executor fires when completion is achieved) / B_PLATFORM_FIRST_OPTIMIZATION (milestone extraction = CEC walk = platform-first) / P-META-006 RZF (milestone is a ZF cycle at phase boundary) / B_AUTONOMOUS_BATCH_WITH_PREFLIGHT (pre-flight is the forward-planning twin; Humble Executor is the backward-validating twin).
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_AUTONOMOUS_BATCH_WITH_PREFLIGHT — pre-flight decision extraction before any implementation batch ≥4 files (S016 — CONSTITUTIONAL)
 
 **Canonical wording:**
@@ -2110,7 +2110,7 @@ RUNNING NOW (0 questions) | WAITING (N questions above)
 - contract: this entry + AGENTS.md no-confirmation-seeking hard NO + plan-methodology-v2.md §2
 
 **Cross-references:** B_HUMBLE_EXECUTOR (Humble Executor is the post-batch twin; B_AUTONOMOUS_BATCH is the pre-batch twin) / B_COMPLETION_OVER_SHINY (pre-flight Q-COMPLETE enforces completion bias check) / B_PLATFORM_FIRST_OPTIMIZATION (pre-flight Q-GLOBAL enforces platform generalizability check) / B_NO_CONFIRMATION_SEEKING (pre-flight replaces turn-by-turn confirmation loops).
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_NO_IMPLEMENTATION_WITHOUT_PLAN — no code changes to libs/ or apps/src/ outside a ratified plan (Session A S022)
 
 **Canonical wording:**
@@ -2133,7 +2133,7 @@ When the change is clearly within scope of an existing active plan AND the plan 
 - contract: this entry + over-the-system-audit-S022.md §4 Resolution Protocol
 
 **Source:** Session A of platform-excellence-completion-S023.md. Governor ratified 2026-05-11.
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_INTENT_CRYSTALLIZATION — no implementation without validated intent (S023 — CONSTITUTIONAL)
 
 **Canonical wording:**
@@ -2181,7 +2181,7 @@ The 26-item checklist (B/C/I/R/M) in [threshold-intake-protocol.md](./threshold-
 When a single expression contains N>1 topics, P-META-024 decomposes BEFORE B_INTENT_CRYSTALLIZATION fires.
 Sequence: P-META-024 (decompose N topics) → per-topic → B_INTENT_CRYSTALLIZATION (crystallize each).
 This contract is the per-topic gate; P-META-024 is the multi-topic pre-step.
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_SANDBOX_BEFORE_IMPLEMENTATION — no code without a ratified, simulated sandbox spec (S023 — CONSTITUTIONAL)
 
 **Canonical wording:**
@@ -2221,7 +2221,7 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - pnpm-dev-in-procedure ("pnpm dev" in a deployment procedure = laptop dependency; use vercel --prod)
 - localhost-test-url ("localhost:PORT" as test URL = laptop dependency; use Vercel preview URL)
 - local-only-migrations (prisma db push from laptop = laptop dependency; use Vercel build hook or Supabase CLI)
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_APPS_ARE_TRIALS — apps/* are ephemeral trials, libs/* is permanent core (S029)
 
 **Canonical:** `apps/*` directories are EPHEMERAL TRIAL ARTIFACTS — proofs-of-concept that the platform works. They can be deleted and recreated from `apps/template/` + platform core at any time without losing platform value. The permanent platform core is: `libs/*`, `tools/*`, `.claude/core-spines/*`, `docs/plan/pillar-0-governance/*`, `packages/*`. Every reusable pattern discovered while building an app MUST be extracted to `libs/` before the session closes. The extraction cycle: (1) discover pattern in app, (2) extract to libs/, (3) app imports from libs/, (4) pattern survives even if app is deleted.
@@ -2250,7 +2250,7 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - contract: `docs/plan/pillar-0-governance/behavioral-contracts/B_APPS_ARE_TRIALS.md` (canonical)
 - validator (atomic registration): `app-scope-isolation` (impl week-4)
 - principle: P-ARCH-030 in principles.yaml
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_CONTEXTUAL_LOCALITY — content at point of use, never navigate (S036 P-UX-001)
 
 **Canonical:** Every piece of content appears at the point where it is needed. Never instruct to "see §X", "see Turn N", or "see the linked document". The paste target appears UNDER the step it belongs to. The fix instruction lives IN the error message. The checklist lives IN the plan. The rule rationale is INLINE with the rule. Applied to AI directives: every Opus directive is self-contained with verification tail. Applied to validators: error messages include the fix, not just the problem.
@@ -2270,7 +2270,7 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - memory: `feedback_contextual_locality.md` (survives chat moves)
 - principle: P-UX-001 in principles.yaml
 - validator: validate-communication-protocol.mjs (checks Sonnet reports)
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_ZCA — Zero-Context Assumption at every cross-boundary communication (S036 P-UX-002)
 
 **Canonical:** Every communication that crosses a boundary between independent entities assumes the receiver has zero prior context. Before any task context, provide WHO/WHAT/HOW/NOW inline: WHO (sender/receiver/roles), WHAT (project/system/purpose), HOW (collaboration pattern/rules), NOW (current state/next action). The test: "Could someone with no background on this project understand this completely?" If no → the boundary is not crossed correctly.
@@ -2296,7 +2296,7 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - template: `docs/plan/_handoff/VAULT/templates/ai-transfer-template.md`
 - protocol: Rule 7 in `tools/council/communication-protocol-shared.md`
 - AGENTS.md: ZCA Hard Rule under Communication boundaries
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_DONE_RIGHT_FROM_THE_START — verification is evidence, not the mechanism that creates quality (S037 P-OPER-002)
 
 **Canonical:** Verification confirms quality already achieved — it does not create quality. Before building, specify HOW the result will be correct: wiring checklist, DONE criterion, validation path. Build to the specification; run verify as evidence not as a discovery/fix loop. The sequence is: understand → specify → build correctly → verify evidence. NOT: build → verify → patch → verify → patch.
@@ -2315,7 +2315,7 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 **Mechanical surfaces (2/5 declared S037):**
 - memory: `feedback_done_right.md` (survives chat moves)
 - principle: P-OPER-002 in principles.yaml
-
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
 ## B_INHERITANCE_POLICY — every chat boundary must transfer complete governance context (S040 Turn 6)
 
 **Canonical:** Every chat boundary (session close → new session open) must transfer a COMPLETE governance handoff. "Complete" is defined mechanically: the handoff MUST contain Zone A (session state), Zone B (next mandate), and ALIGNMENT QUESTIONS (3+ questions). Missing any mandatory section = BLOCKING at session close. The receiving AI MUST acknowledge inherited context before acting. Passive assumption of context = the primary drift mechanism.

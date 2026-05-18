@@ -32,3 +32,4 @@ A consequential decision with fewer than 3 layers is a governance gap. Surface i
 **Cross-references:** P-META-021 (Triad Governance — the principle this contract operationalizes) / P-META-020 (Concept-First — the context layer of the triad; triad = P-META-020 + named principle + mechanical) / B_CONSENSUS_BEFORE_PROCEEDING (triad applied at phase boundaries) / P-META-006 RZF (the validation layer of the triad for ZF claims).
 
 **governing_intent:** Ensures the Governor’s actual intent (Layer 3) governs platform decisions, not the AI’s interpretation of the first expression (Layer 1) — the platform can only be as good as the quality of what it builds on.
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

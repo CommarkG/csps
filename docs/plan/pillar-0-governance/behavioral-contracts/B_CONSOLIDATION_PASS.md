@@ -59,3 +59,4 @@
 - **contract:** this entry + AGENTS.md "Engraving + ratification" hard-NO row (S009 L1.3 amendment) + cross-reference at [depth-discipline.md §5](./depth-discipline.md) anti-patterns table
 
 **Cross-references:** P-OP-001 reuse-first (composes; B_CONSOLIDATION_PASS is operational application of reuse-first to fact-content not just artifacts) / B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK (sister discipline; precedent-check-before-create + consolidation-pass-after-discover-duplicate) / B_STRUCTURAL_PREVENTION_DISCIPLINE Q-2 (K=2 duplication promotion mechanism) / B_TEMPLATE_FIRST_CREATION (templates pre-include cross-ref fields) / EXT-20260505-003-A through 003-D (4 source extracts).
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

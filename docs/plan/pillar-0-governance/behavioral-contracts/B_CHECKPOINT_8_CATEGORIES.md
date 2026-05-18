@@ -25,3 +25,4 @@
 - memory: `feedback_checkpoint_8_categories.md`
 - hook: UserPromptSubmit + Stop hooks
 - validator: scope-creep flag at close
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

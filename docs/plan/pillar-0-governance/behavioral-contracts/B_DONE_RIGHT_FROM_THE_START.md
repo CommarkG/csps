@@ -21,3 +21,4 @@
 **Mechanical surfaces (2/5 declared S037):**
 - memory: `feedback_done_right.md` (survives chat moves)
 - principle: P-OPER-002 in principles.yaml
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

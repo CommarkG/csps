@@ -28,3 +28,4 @@
 **Cross-references:** P-META-016 / P-META-008 (cycle-mandatory-in-plan — gradual-build IS the cycle structure) / P-META-015 (gradual-build-plan is itself templated) / P-META-018 (PE_ALIGNMENT_GUARDIAN respects gradual-build sequencing) / P-ARCH-028 (each level maps to Core Spine layers).
 
 ---
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-tool-use-plan-coverage-gate.sh (partial — new libs/apps files), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`

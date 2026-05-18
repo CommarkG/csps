@@ -27,3 +27,4 @@
 **Cross-references:** P-OPER-001 / P-META-008 (cycle-mandatory-in-plan — git-pushed-state IS a pre-close cycle) / P-META-013 (HPFA — adds check #8 git-pushed-state-clean) / P-META-015 (devcontainer.json IS templated) / P-ARCH-028 (P-OPER-001 maps to OPER spine — the lowest-precedence-most-adaptive spine).
 
 ---
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-commit git hook via validate-laptop-patterns.mjs (ACTIVE — BLOCKING), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`

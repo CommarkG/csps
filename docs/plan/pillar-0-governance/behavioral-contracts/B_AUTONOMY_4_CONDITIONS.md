@@ -26,3 +26,4 @@
 - hook: UserPromptSubmit reminder (firing the 4 conditions check before action)
 - validator: n/a (judgment)
 - schema: extraction-note `scope_ratified_by:` field (closed enum: explicit-user-directive / inferred-from-task / out-of-scope-flagged)
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

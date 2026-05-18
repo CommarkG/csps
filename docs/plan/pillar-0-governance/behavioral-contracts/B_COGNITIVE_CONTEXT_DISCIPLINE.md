@@ -49,3 +49,4 @@ With the discipline, every AI session organizes context to **maximize reasoning 
 - `B_PCR_FOR_DECISIONS` (S005 turn 5) — PCR rendering = Layer 3 work; QG1 keeps it on Opus
 - `B_VALIDATE_BEFORE_ASSUME` (S002 turn 7 + 15) — the tool-call sandwich IS QG3's enforcement at AI-cooperation level
 - `P-META-006 RZF + CEC` — QG3 + QG4 prevent the nominal-not-actual failure modes
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

@@ -27,3 +27,4 @@
 - memory: feedback_ai_collaborative_discipline.md
 - validator: validate-proactive-contribution-routing (future — checks contributions go through Threshold)
 - hook: future pre-contribution-classification hook
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

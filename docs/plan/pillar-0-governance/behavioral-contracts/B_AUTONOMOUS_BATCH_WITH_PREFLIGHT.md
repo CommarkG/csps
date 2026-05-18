@@ -71,3 +71,4 @@ RUNNING NOW (0 questions) | WAITING (N questions above)
 - contract: this entry + AGENTS.md no-confirmation-seeking hard NO + plan-methodology-v2.md §2
 
 **Cross-references:** B_HUMBLE_EXECUTOR (Humble Executor is the post-batch twin; B_AUTONOMOUS_BATCH is the pre-batch twin) / B_COMPLETION_OVER_SHINY (pre-flight Q-COMPLETE enforces completion bias check) / B_PLATFORM_FIRST_OPTIMIZATION (pre-flight Q-GLOBAL enforces platform generalizability check) / B_NO_CONFIRMATION_SEEKING (pre-flight replaces turn-by-turn confirmation loops).
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

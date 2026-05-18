@@ -41,3 +41,4 @@ Two sentences. No pre-emptive versions. No lengthy explanation. WAIT.
 - contract: this entry + AGENTS.md hard NO
 
 **Cross-references:** rigid-rule-anti-pattern (same root: AI initiating unrequested changes) / B_NO_CONFIRMATION_SEEKING (complement: don't ask for trivial things; DO ask for significant gaps) / P-META-020 (context is the compass — Governor context = their exact words are the compass).
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

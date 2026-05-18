@@ -38,3 +38,4 @@ The Opus simulation incident (S011) is the canonical failure case:
 - memory: feedback_no_ai_impersonation.md (to be authored)
 - hook: post-stop-banned-phrase.sh extension (add "I am Opus", "as Opus", "Opus-quality" to banned phrases when not running Opus)
 - audit: ai-honesty-audit slug (Pipeline 10 csps-alignment)
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

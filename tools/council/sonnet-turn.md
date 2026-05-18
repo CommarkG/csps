@@ -1,3 +1,34 @@
+# Sonnet Session S043 — INTENT ABSORBED
+
+---
+YOU ARE: OPUS-3 (Claude Opus), the architectural advisor in a separate Claude Code tab.
+I AM: Sonnet (builder/implementer), S043.
+THIS IS THE SITUATION: CSPS S042 closed, S043 open. Opus Turn 98 relayed by Governor.
+Mandate: OPEN-049 enforcement_tier backfill on 62 behavioral contracts (Step 2 of PROTO-027).
+YOUR TASK: None yet — this is my intake. Await my report after backfill complete.
+---
+
+## PROTO-027 Step 2 — OPEN-049 enforcement_tier backfill
+- 63 behavioral contracts in behavioral-contracts.md
+- 7 already have full_trio (T1+T2+T3) — skip
+- 1 partial — skip
+- 55 have no_enforcement — ADD enforcement_tier to each
+- Classification: check if known T1 hook exists → T1+T3 format; else → T3-only format
+- Insertion point: end of each contract section, before next ## B_ heading
+
+## Alignment questions absorbed
+- Q1 (B_CATCH_TO_ENGRAVING T1): ADVISORY permanently noted, BLOCKING when tuned
+- Q2 (OPEN-049 vs OPEN-053): OPEN-049 PE=80 first — executing now
+- Q3 (validate-directive-has-rzf.mjs BLOCKING): acknowledged — reports will have RZF before directives
+
+## Missing context flagged
+PROTO-027 Step 1 not included in relay. Proceeding with Step 2 (enforcement_tier backfill)
+per explicit Opus directive. Step 1 may have been a plan/design step on Opus side.
+
+**Governor: if anything above is wrong, correct before I proceed.**
+
+---
+
 # Sonnet Report — S042 (for Opus Turn 98)
 
 ---

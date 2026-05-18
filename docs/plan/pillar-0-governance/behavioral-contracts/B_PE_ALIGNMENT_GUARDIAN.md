@@ -38,3 +38,4 @@ Governed by: P-OP-006 (completion-priority-dpr).
 **Cross-references:** P-META-018 / P-META-014 (MUV — verdict citation IS communication-boundary closure) / P-META-016 (gradual-build sequencing IS what PE protects) / P-META-006 (RZF — PE recompute IS an RZF cycle for prioritization) / P-META-009 (CCA — anti-sycophancy is part of Top Expert Colleague Voice).
 
 ---
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

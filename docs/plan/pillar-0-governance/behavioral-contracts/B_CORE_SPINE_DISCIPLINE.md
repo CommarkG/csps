@@ -28,3 +28,4 @@
 **Cross-references:** P-ARCH-028 / P-ARCH-013 (universal-traits-trunk-domain-overlays — generalized from persona prompts to all topics) / P-META-007 (FSE — 5 surfaces map to L0/L1/L2 layers) / P-META-015 (template-first applies recursively — every artifact cites template_used) / P-META-016 (gradual-build levels map to spine outward layers).
 
 ---
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

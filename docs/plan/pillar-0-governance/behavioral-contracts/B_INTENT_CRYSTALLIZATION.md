@@ -50,3 +50,4 @@ The 26-item checklist (B/C/I/R/M) in [threshold-intake-protocol.md](./threshold-
 When a single expression contains N>1 topics, P-META-024 decomposes BEFORE B_INTENT_CRYSTALLIZATION fires.
 Sequence: P-META-024 (decompose N topics) → per-topic → B_INTENT_CRYSTALLIZATION (crystallize each).
 This contract is the per-topic gate; P-META-024 is the multi-topic pre-step.
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

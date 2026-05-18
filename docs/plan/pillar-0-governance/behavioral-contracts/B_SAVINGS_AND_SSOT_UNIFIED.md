@@ -85,3 +85,4 @@ The 5-surface cycle remains; what changes is that **3b cannot be deferred** — 
 
 - New B_* contracts in S006+ that violate 3b are caught by `audit-of-audits-fse` (planned week-4 — when audit-runner ships, will scan for `principles.yaml#<P>.enforcers` ci-check entries pointing to slugs absent from `audit-runner.md` tables).
 - The 30 dangling refs from gaps-and-duplications-S005.md are the BACKFILL bulk-fix; addressing them in S006 §C3.1 + this amendment together close the structural compounding.
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

@@ -27,3 +27,4 @@
 **Cross-references:** P-META-015 / P-META-007 (FSE — 5 surfaces are themselves templates) / P-OP-001 (reuse-first applied recursively to template selection) / P-META-016 (gradual-build-plan IS a template) / P-ARCH-028 (Core Spine attribution requires schema_anchor + core_spine fields per template).
 
 ---
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-tool-use-frontmatter-enum-check.sh (partial — enum drift only), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`

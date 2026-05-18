@@ -22,3 +22,4 @@
 - memory: `feedback_contextual_locality.md` (survives chat moves)
 - principle: P-UX-001 in principles.yaml
 - validator: validate-communication-protocol.mjs (checks Sonnet reports)
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

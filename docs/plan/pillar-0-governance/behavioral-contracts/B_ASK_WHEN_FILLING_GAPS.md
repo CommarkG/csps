@@ -35,3 +35,4 @@ The 4-condition gate fires because the human's expression is incomplete;
 P-META-022 explains why that incompleteness is the default condition, not the exception.
 The 9-step coaching protocol in [threshold-intake-protocol.md](./threshold-intake-protocol.md)
 extends this contract with the full discovery methodology (receive → gap-surface → iterate → ratify).
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

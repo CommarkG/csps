@@ -65,3 +65,4 @@ ALIGNMENT CHECK:
 **Composes with:** B_MUTUAL_UNDERSTANDING_VALIDATION (parent — 5 boundary types + iteration loops) / P-META-022 (Human Intent Crystallization — the understanding layer this contract enforces mechanically) / B_AGENT_ALIGNMENT_PROTOCOL (Type B boundary — AAP is the pre-spawn check; BAP adds the in-prompt UNDERSTANDING BLOCK format)
 
 ---
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

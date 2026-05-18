@@ -48,3 +48,4 @@ cdab_boundary_trigger: [phase_gate, context_below_20pct, new_domain_detected, se
 - contract: this entry + principles.yaml#P-META-009 as child operational protocol
 
 **Composes with:** P-META-009 (CCA 5-layer architecture — CDAB is the per-task selection mechanism within it) / B_TOKEN_BUDGET R1 (CDAB enforces right-depth loading, not just token budgets) / B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS (CDAB ensures AI loads CSPS context before acting on defaults)
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

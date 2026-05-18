@@ -36,3 +36,4 @@
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_PRE_CLOSE_VERIFICATION is Level 3 (Session Completeness — pre-close gate) in the unified completeness framework.
 
 **governing_intent:** Ensures session progress is real, not theatrical — only verified improvements compound, and the platform’s promise to the Governor is that every session delivered something provably real.
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: post-stop-pnpm-verify.sh + post-stop-session-close-gate.sh (ACTIVE), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`

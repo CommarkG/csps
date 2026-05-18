@@ -28,3 +28,4 @@
 - template: `docs/plan/_handoff/VAULT/templates/ai-transfer-template.md`
 - protocol: Rule 7 in `tools/council/communication-protocol-shared.md`
 - AGENTS.md: ZCA Hard Rule under Communication boundaries
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

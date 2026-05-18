@@ -21,3 +21,4 @@
 - hook: closing-summary-surface (manual pre-runtime)
 - memory: `feedback_blocker_no_silent_drop.md`
 - contract: this entry + AGENTS.md hard NO
+- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`

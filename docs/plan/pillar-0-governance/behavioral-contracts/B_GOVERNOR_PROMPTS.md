@@ -35,3 +35,4 @@ Pre-S005-turn-27, CSPS captured load-bearing user-intent quotes in [user-intents
 - hook: `.claude/hooks/post-stop-governor-prompts.sh` (PostStop: aggregates session GPs + cross-links cardinals to user-intents.md; planned week-4)
 - memory: `feedback_governor_prompts.md` (S005 turn 27) + MEMORY.md index
 - contract: this entry + AGENTS.md hard NO (S005 turn 27) + `ai-behavior-spine.md` row + `principles.yaml#P-META-012` + dashboard leaf [pillar-0/governor-prompts.md](./governor-prompts.md)
+- **enforcement_tier:** `{ tier: T1+T3, T1 hook: user-prompt-submit-governor-prompts.sh (STUB→ADVISORY S042), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`

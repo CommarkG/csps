@@ -1,3 +1,101 @@
+# Sonnet Report — S041 (comprehensive, for Opus Turn 97)
+## All work since PROTO-020 (commit 0ad07b7) through current (38a8e93+)
+
+---
+
+### CSPS REPO — 16 commits since PROTO-020
+
+**commit 53a46c4 — OPEN-046 DONE**
+- validate-enforcement-trio-assigned.mjs v2.0: now scans ALL 63 behavioral contracts
+- Result: 63 contracts checked, 1 full trio (B_INHERITANCE_POLICY), 60 unenforced (ADVISORY output)
+- Advisory_gaps=60 reported every verify run — drift visibility now permanent
+
+**commit c2a1630 — Enforcement audit gap sweep**
+- post-stop-banned-phrase.sh upgraded STUB→ADVISORY with real transcript scanning
+  - Class 1: confirmation-seeking phrases (B_NO_CONFIRMATION_SEEKING)
+  - Class 2: Governor navigation ban (B_ZERO_NAVIGATION_FOR_GOVERNOR, CONSTITUTIONAL)
+- OPEN-045 through OPEN-049 registered in open items register
+
+**commit a2205d2 — Mechanical enforcement defaults system**
+- `docs/plan/_handoff/VAULT/inner-ai-defaults/mechanical-enforcement-defaults.md` CREATED
+  - 6 training defaults (DEFAULT-ME-1 through ME-6) with AI deep instructions + CSPS overrides
+  - DEFAULT-ME-1: rule text = done → CSPS: T1+T2+T3 = 100% complete
+  - DEFAULT-ME-3: T3 injection = sufficient → CSPS: T3 fades by turn 10; T1+T2 permanent
+- `user-prompt-submit-ai-profiler.sh` extended: ENFORCEMENT MODE added
+  - Fires when AI creates governance artifacts
+  - Injects: training default names, wrong satisfaction point, correct requirements
+- `tools/validators/validate-rule-has-enforcement.mjs` CREATED + wired to verify
+  - Scans PI items creating rules for enforcement_trio field
+  - Scans recent HANDOFFs for enforcement delta
+  - Embeds DEFAULT-ME-1 AI deep instruction in every finding
+- 5 S041 drift log entries added to continuous-drift-log.md
+
+**commit 637460a — B_PRACE 5/5 FSE ratified (Governor-led)**
+- B_PRACE (Permanent Recurring AI Contextual Enforcement) ratified as M-27 moat
+- enforcement_tier declared for 5 contracts: B_VALIDATE_BEFORE_ASSUME, B_RZF, B_CATCH_TO_ENGRAVING, B_FIVE_SURFACE_ENGRAVING, B_STRUCTURAL_PREVENTION_DISCIPLINE
+- AGENTS.md Hard NO: "never declare governance rule DONE without T1+T2+T3 named"
+
+**commit 6683964 — OPEN-048 DONE**
+- verify-hooks-functional.sh STUB→ACTIVE
+- Exits 1 if 9 critical hooks are missing or not executable
+- Meta-gap closed: the hook that validates hooks was itself STUB exits 0
+- DEFAULT-ME-6 override embedded in output
+
+**commits 0c45b75, d1e40b3 — CSPS PACK + consensus (Governor-led)**
+- profile-registry.yaml: 7 AI behavior profiles with 4 parameters each
+- CSPS consensus definition engraved (explore + consolidate + holistic + ripple)
+- PROTOCOL.md updated with consensus + inheritance blocking design (PI-034)
+
+**commit 38a8e93 — EP-ERR-010 + OPEN-051 + OPEN-043 done**
+- EP-ERR-010: PowerShell replace wipe pattern registered in error registry
+- OPEN-051: csps-playground git initialized (local commit feecf0a; awaiting GitHub push)
+- OPEN-043: ✅ DONE
+
+---
+
+### CSPS PLAYGROUND — OPEN-043 DONE
+
+**nav.js extracted: 541 → 252 lines**
+- page-data.js created: 300 lines (MQ + PAGES + DNA_BY_PIPELINE + USER_TYPES + LANGS)
+- 45 HTML files updated with `<script src="/page-data.js">` before nav.js
+- Deployed at csps-playground.vercel.app (all working)
+
+**Playground now a git repository (OPEN-051)**
+- `git init` + initial commit `feecf0a` with all 50 files
+- Local only — awaiting GitHub repo creation (CommarkG/csps-playground) + push
+- `git checkout .` now recovers any future wipe instantly
+
+---
+
+### WHAT OPUS NEEDS TO KNOW (for Turn 97 directive)
+
+**Verify state:** exit_code=0 at 38a8e93 | 130+ validators
+
+**Sprint 1 items from HANDOFF addendum — STATUS:**
+1. Read opus-prompt-prevention-S040.md → paste to Opus → Turn 97 — PENDING (file exists, not yet sent)
+2. P-META-027 (PRACE) in principles.yaml — NOT YET DONE
+3. Core Scopes Prevention Analysis in gradual-build-plan.template.md — NOT YET DONE
+4. post-stop-pcr-check.sh promote STUB→advisory — NOT YET DONE
+5. Core Scopes [S1]/[S2]/[S3] tags in opus-open-items.md — NOT YET DONE
+
+**Key gaps remaining (PE-ordered):**
+- OPEN-039: Token optimization T1+T2+T3 (PE=70)
+- OPEN-044: 2 missing vault templates (registry-clean.html, dashboard-clean.html) (PE=62)
+- OPEN-045: post-tool-use-validate-before-assume.sh upgrade (PE=65)
+- OPEN-047: user-prompt-submit-governor-prompts.sh upgrade (PE=55)
+- OPEN-049: enforcement_tier field scan on 63 contracts (PE=80) — validator exists, now need to backfill fields
+- P-META-027: PRACE in principles.yaml (Sprint 1 — not done)
+- OPEN-051: GitHub push for csps-playground (needs Governor to create repo)
+
+**What's been built structurally this session:**
+The enforcement gap audit revealed 60/63 contracts with zero mechanical enforcement.
+The system can now SEE these gaps (validate-enforcement-trio-assigned.mjs advisory output).
+The system can now DETECT new gaps at creation time (validate-rule-has-enforcement.mjs).
+The system can now REMIND at every governance session (ENFORCEMENT MODE in ai-profiler).
+What's still missing: the T1+T2 enforcement for those 60 contracts. That's 60 individual OPEN items worth of work — but OPEN-050 started by declaring enforcement_tier on 5 key contracts.
+
+---
+
 # Sonnet Session S041 — INTENT ABSORBED
 
 ## OPEN-046: extend validate-enforcement-trio-assigned.mjs to cover 62 behavioral contracts

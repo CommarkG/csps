@@ -89,3 +89,24 @@ Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
 | OPEN-050 | Add T1+T2 enforcement to top 5 contracts: B_VALIDATE_BEFORE_ASSUME + B_RZF + B_CATCH_TO_ENGRAVING + B_FIVE_SURFACE_ENGRAVING + B_STRUCTURAL_PREVENTION_DISCIPLINE. Each needs T1 hook + T2 blocking validator. PE=85. | S041 | pending — Band A | enforcement rate: 1/62 → 6/62 | none yet |
 | OPEN-051 | Initialize csps-playground as git repository → push to GitHub. No git = no recovery, no history, no hooks. The S041 PowerShell wipe wiped 45 files silently; recovery only possible because Vercel had a cached deployment. PE=85. | S041 | pending S041 | playground resilience | EP-ERR-010 |
 | OPEN-052 | Staging environment: add `staging` branch to CSPS repo → Vercel auto-deploys to staging-csps-budget-planner.vercel.app. Pipeline becomes: local → staging (UJT runs) → ratify → main (production). Lowest-effort highest-impact blast-radius reduction. PE=72. | S041 | pending S042 | testing architecture | none yet |
+
+---
+
+## Core Scopes Classification (Sprint 1 item 5 — S041)
+
+> Reference: docs/plan/pillar-0-governance/core-scopes.md
+> [S1] = immediate fix, can close quickly
+> [S2] = needs ripple check before closing (connected elements must update too)
+> [S3] = requires PRACE analysis + new T1/T2/T3 enforcement mechanism
+
+| OPEN | Scope | Rationale |
+|---|---|---|
+| OPEN-039 | [S3] | Token optimization needs new T1 hook (detect Sonnet doing Opus-tier architectural work) + T2 validator + T3 injection. New enforcement mechanism. |
+| OPEN-040 | [S1] | Frontmatter closed-enums.md note about `inherits_from` being free-form. Quick additive change. |
+| OPEN-042 | [S2] | inheritance-registry.yaml propagation_rules — needs ripple check: does the propagator logic respect the threshold? Connected to inheritance-propagator.mjs. |
+| OPEN-044 | [S1] | 2 missing vault templates (registry-clean.html, dashboard-clean.html). Create files and verify links resolve. |
+| OPEN-045 | [S2] | post-tool-use-validate-before-assume.sh upgrade — ripple: update enforcement-coverage.md + behavioral-contracts.md enforcement_tier after upgrade. |
+| OPEN-047 | [S2] | user-prompt-submit-governor-prompts.sh upgrade — ripple: GP log files must be created in correct path, HANDOFF process must include GP count. |
+| OPEN-049 | [S3] | 60/63 contracts T3-only — requires adding enforcement_tier to each contract. New enforcement declarations = PRACE analysis per contract. Batch work. |
+| OPEN-050 | [S3] | T1+T2 for 5 contracts — each contract needs a new T1 hook and T2 blocking validator. Scope-3 prevention per contract. |
+| OPEN-052 | [S2] | Staging environment — ripple: Vercel config change + new branch + UJT pipeline + HANDOFF process update to include staging-verified step. |

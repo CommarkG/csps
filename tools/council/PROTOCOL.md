@@ -53,6 +53,22 @@ When both positions are aligned or a Governor decision resolves the gap:
 Governor updates council-state.json: status → "consensus-reached"
 ```
 
+**CSPS Consensus Definition (S040 — constitutional):**
+Council consensus is NOT "both AIs agree." CSPS consensus is:
+- **Exploring** — multiple viewpoints were actively surfaced (not just the first position)
+- **Consolidating** — viewpoints synthesized into an optimal path (not compromise, not majority)
+- **Holistic** — all aspects considered (not just the immediate decision)
+- **Ripple-aware** — downstream effects mapped before the decision locks
+
+Before setting `status: consensus-reached`, confirm:
+□ Were multiple viewpoints explored in the council turns?
+□ Were ripple effects of the chosen path considered?
+□ Is the output richer than what either AI's first position would have produced?
+□ Has Governor explicitly confirmed this as the crystallized intent?
+
+"No disagreement" ≠ consensus. "Both agree" ≠ consensus if no exploration happened.
+PCR (Pros/Cons/Recommendation) in each turn is the minimum exploration format.
+
 ---
 
 ## Turn Format

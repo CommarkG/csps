@@ -1,0 +1,3 @@
+[submodule "apps/csps-playground"]
+	path = apps/csps-playground
+	url = https://github.com/CommarkG/csps-playground.git

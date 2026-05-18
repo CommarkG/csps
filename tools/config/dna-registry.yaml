@@ -177,6 +177,15 @@ components:
     always_include: true
     summary: "Current multi-session roadmap. Priorities: Habit Tracker deploy (async), DNA Bundle Engine (PI-031/032/033), S040 pipeline (PI-026/027). Governor decisions recorded. S040 C2 mandate: PI-031/032/033 implementation."
 
+  - id: csps-playground
+    path: https://github.com/CommarkG/csps-playground
+    scope: external-repo
+    category: knowledge
+    audience: [all]
+    depth_level: L2
+    always_include: true
+    summary: "CSPS Playground — csps-playground.vercel.app. Living reference platform: UX UI, Threshold, DNA, Platform (40+ pages). Built with static HTML + nav.js + page-data.js. THIS IS PART OF CSPS. Local clone: c:/Users/finky/Desktop/Claude Code/csps-playground/. To edit: open that directory or add as git submodule."
+
   - id: ext-know-registry
     path: docs/plan/pillar-0-governance/external-knowledge-registry.md
     scope: repo

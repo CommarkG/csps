@@ -338,6 +338,19 @@ PE estimate: 60 | SPI: 0.3 | Priority: Band B
 
 ## 8. OPEN QUESTIONS FOR OPUS (SROF-FORMAT)
 
+**STATUS: Answered by Opus Turn 96 — read tools/council/srof-013-complete.md PART 2**
+**Architecture ratified. S041 mandate confirmed. Session order S041→S042→S043→S044 confirmed.**
+
+Key answers summary:
+- Q1: New contract B_CSPS_INHERITANCE_PRINCIPLE (NOT extension of B_DNA_INHERITANCE)
+- Q2: `inherits_from` = free-form path string, NOT closed enum. validate-dna-block.mjs uses existsSync()
+- Q3: Three-tier risk model: low→auto-approve, medium→queue, high→BLOCK. Threshold in registry YAML.
+- Q4: S041 (code layer) FIRST — tools must exist before they can enforce playground pages
+- Q5: One principle, two implementations, one registry. Unified initiative.
+- Q6: pre-tool-use-dna-block-check.sh T1 (reads Write tool content) + validate-dna-block.mjs T2 together
+
+---
+
 **Q1 (Architecture):** Should B_CSPS_INHERITANCE_PRINCIPLE be a NEW contract or an extension of B_DNA_INHERITANCE? The key difference: DNA_INHERITANCE covers libs/ file annotation; INHERITANCE_PRINCIPLE would cover all artifact types across all layers.
 
 **Q2 (Schema):** The DNA block standard I propose adds HTML comments + new YAML/TS fields. Does this conflict with or extend the existing frontmatter-closed-enums.md schema? Specifically: should `inherits_from` be a formal closed-enum field or a free-form reference?

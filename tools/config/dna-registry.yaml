@@ -4,6 +4,21 @@
 # Maintained by: Governor only (append-only, ratification required for new entries)
 # Last updated: 2026-05-18 S040-C2
 
+# COMPLETENESS BLOCK (S041 addition — Opus Turn 96 design):
+# Each artifact in inheritance-registry.yaml (when built in S041) will have:
+#   completeness:
+#     status: stub | draft | complete
+#     verified_by: null  # must be 'governor' before status=complete
+#     mandatory_questions_answered: 0  # of 12
+#     has_dna_block: true | false
+#     three_tests:
+#       stranger_can_use: false
+#       survives_deletion: false
+#       self_enforcing: false
+#     last_reviewed: 'YYYY-MM-DD'
+# validate-page-completeness.mjs (OPEN-043, S041) enforces: status=complete requires verified_by=governor
+# inheritance-propagator.mjs reads completeness.status to determine update priority
+
 components:
 
   # ── LANGUAGE ──────────────────────────────────────────────────────────────

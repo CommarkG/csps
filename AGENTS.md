@@ -36,6 +36,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 
 ### Governance + workflow
 - ❌ Never edit `AGENTS.md` directly — edit [`packages/principles/principles.yaml`](packages/principles/principles.yaml) + run `pnpm principles:codegen`
+- ❌ Never edit `nav.js`, `styles.css` Design Attitudes section, or `platform/templates/vault/*.html` without: (1) showing the exact diff, (2) stating which pages are affected, (3) receiving explicit Governor YES. (Sacred Elements — 1C ratified Opus Turn 96)
 - ❌ Never bypass hooks (`--no-verify`) or skip CI checks
 - ❌ Never `git push --force` on main without explicit go-ahead
 - ❌ Never save artifact without `lifecycle_state` + valid frontmatter (skill: `vocabulary-canon`)

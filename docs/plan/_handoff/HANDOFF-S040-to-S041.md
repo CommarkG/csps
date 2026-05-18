@@ -1,8 +1,8 @@
 ---
 id: csps.handoff.S040-to-S041
 name: HANDOFF-S040-to-S041
-description: "S040 session close → S041 open. Inheritance Initiative ratified. Enforcement audit complete. Playground deployed. 11 new OPEN items registered."
-version: 1.0
+description: "S040 session close → S041. Longest CSPS session. PRACE M-27 ratified. CSPS PACK. Core Scopes (3-scope prevention). CSPS consensus definition. Inheritance blocking design (PI-034). Habit Tracker built. 25+ commits."
+version: 2.0
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -104,3 +104,35 @@ OPEN-046: Extend `tools/validators/validate-enforcement-trio-assigned.mjs` to sc
 ---
 
 *S040 CLOSED | Verified exit_code=0 at c2a1630 | Playground live at csps-playground.vercel.app*
+
+---
+
+## ZONE B ADDENDUM — Full S041 Mandate (extended S040)
+
+**Additional ratifications since initial HANDOFF:**
+
+| Commit | What |
+|---|---|
+| `637460a` | B_PRACE 5/5 FSE — Constitutional moat M-27 |
+| `0c45b75` | CSPS PACK — profile-registry.yaml + consensus definition + 4th parameter |
+| `d1e40b3` | CSPS consensus in PROTOCOL.md + inheritance blocking design |
+| Current | Core Scopes framework (core-scopes.md) + Opus prompt for prevention |
+
+**S041 Sprint 1 mandate (first 2 hours):**
+1. Read `tools/council/opus-prompt-prevention-S040.md` — paste to Opus, await Turn 97
+2. P-META-027 (PRACE) in principles.yaml (OPEN-046)
+3. Core Scopes Prevention Analysis section in `gradual-build-plan.template.md`
+4. `post-stop-pcr-check.sh` — promote from STUB to advisory minimum
+5. Core Scopes [S1]/[S2]/[S3] tags in `opus-open-items.md` format
+
+**Opus prompt location:** `tools/council/opus-prompt-prevention-S040.md`
+**Core Scopes location:** `docs/plan/pillar-0-governance/core-scopes.md`
+**CSPS PACK location:** `docs/plan/_handoff/VAULT/inner-ai-defaults/profile-registry.yaml`
+
+## ADDITIONAL ALIGNMENT QUESTIONS (from extended S040)
+
+**Q4 — Core Scopes adoption:** Core Scopes (3-scope prevention) must appear in 6 places. `core-scopes.md` defines all 6. Before S041 begins: is `gradual-build-plan.template.md` the right first location (high frequency of use), or should session-open.sh injection come first?
+
+**Q5 — CSPS PACK sync:** `pnpm profiles:sync` needs to be built in S041 Sprint 2. The question: should new profiles be BLOCKED from manually adding to `ai-profiling-triggers.yaml` directly? Yes — the inheritance guard hook (PI-034) is the enforcement. Confirm this as the correct sequence.
+
+*S040 FULLY CLOSED | All commits pushed | 130 validators | exit_code=0 | 2026-05-18*

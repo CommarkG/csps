@@ -1,22 +1,17 @@
 #!/usr/bin/env bash
-# CSPS Pre-Commit Gate — Zero-Laptop Scope Enforcement
+# CSPS Pre-Commit Gate — multi-check
 #
-# Ratified: D.3 from opus-agents-skills-ai-oversight-research.md
-# Approved by Governor S028
+# Check 1 (S028 D.3): Zero-laptop scope enforcement
+#   Blocks commits with laptop-dependency patterns in .md files.
+#   Ratified: D.3 | Approved: Governor S028
 #
-# Purpose: Block commits containing laptop-dependency patterns in procedure docs.
-# This is the pre-hoc enforcement the Zero-Laptop incident lacked.
-#
-# S028 incident: validate-laptop-patterns.mjs existed but only fired in pnpm verify
-# (post-hoc, after the violation was already written). This hook fires BEFORE commit.
-#
-# What it checks (delegated to validate-laptop-patterns.mjs):
-#   - "pnpm dev" in procedure docs → blocks (use vercel --prod)
-#   - "localhost:PORT" as test URL → blocks (use Vercel preview URL)
-#   - ".env.local" as credential storage → blocks (use vercel env add)
+# Check 2 (S042 EP-ERR-011): Audit-runner freshness after validator edits
+#   Warns when tools/validators/*.mjs is staged without audit-runner.md.
+#   Pattern: validator behavior change → audit-runner description becomes stale.
+#   ADVISORY (exit 0). EP-ERR-011 | B_CATCH_TO_ENGRAVING.
 #
 # Installation: run tools/scripts/setup-git-hooks.sh once per machine
-# Or: ln -sf ../../tools/scripts/git-hooks/pre-commit .git/hooks/pre-commit
+# Or: cp tools/scripts/git-hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 
 set -euo pipefail
 
@@ -25,46 +20,62 @@ if [ -z "$REPO_ROOT" ]; then
   REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 fi
 
-# Only run if we have staged .md files
-STAGED_MD=$(git diff --cached --name-only 2>/dev/null | grep '\.md$' || true)
-if [ -z "$STAGED_MD" ]; then
-  exit 0  # No .md files staged — skip check
-fi
-
 # Check if node is available
 if ! command -v node >/dev/null 2>&1; then
-  echo "[pre-commit] SKIP: node not found (install Node.js to enable laptop-pattern check)"
+  echo "[pre-commit] SKIP: node not found"
   exit 0
 fi
 
-# Check if the validator exists
-VALIDATOR="${REPO_ROOT}/tools/validators/validate-laptop-patterns.mjs"
-if [ ! -f "$VALIDATOR" ]; then
-  echo "[pre-commit] SKIP: validate-laptop-patterns.mjs not found"
-  exit 0
+# ── CHECK 1: Zero-laptop scope enforcement (only if .md files staged) ──────────
+STAGED_MD=$(git diff --cached --name-only 2>/dev/null | grep '\.md$' || true)
+if [ -n "$STAGED_MD" ]; then
+  VALIDATOR="${REPO_ROOT}/tools/validators/validate-laptop-patterns.mjs"
+  if [ -f "$VALIDATOR" ]; then
+    echo "[pre-commit] Running zero-laptop scope check..."
+    output=$(node "$VALIDATOR" 2>&1) && exit_code=0 || exit_code=$?
+    if [ "$exit_code" -ne 0 ]; then
+      echo ""
+      echo "⛔ COMMIT BLOCKED — Laptop-dependency patterns detected:"
+      echo "$output"
+      echo ""
+      echo "Fix: Replace local dev patterns with cloud equivalents:"
+      echo "  pnpm dev         → vercel --prod (deploy) or Codespace"
+      echo "  localhost:PORT   → https://your-project.vercel.app"
+      echo "  .env.local       → vercel env add (cloud storage)"
+      echo ""
+      echo "B_ZERO_LAPTOP_DEPENDENCY (S0 — Constitutional)"
+      echo "P-OPER-001 | S028 FSE 5/5"
+      exit 1
+    fi
+    echo "[pre-commit] ✓ Zero-laptop scope check passed"
+  fi
 fi
 
-echo "[pre-commit] Running zero-laptop scope check..."
-
-# Run the validator — it uses git status --porcelain to detect new files
-# For pre-commit context: staged files appear as 'A' (added) or 'M' (modified)
-output=$(node "$VALIDATOR" 2>&1)
-exit_code=$?
-
-if [ $exit_code -ne 0 ]; then
-  echo ""
-  echo "⛔ COMMIT BLOCKED — Laptop-dependency patterns detected:"
-  echo "$output"
-  echo ""
-  echo "Fix: Replace local dev patterns with cloud equivalents:"
-  echo "  pnpm dev         → vercel --prod (deploy) or Codespace"
-  echo "  localhost:PORT   → https://your-project.vercel.app"
-  echo "  .env.local       → vercel env add (cloud storage)"
-  echo ""
-  echo "B_ZERO_LAPTOP_DEPENDENCY (S0 — Constitutional)"
-  echo "P-OPER-001 | S028 FSE 5/5 | ADR pending (ADR-0027)"
-  exit 1
+# ── CHECK 2: Audit-runner freshness after validator edits ──────────────────────
+# If any tools/validators/*.mjs is staged, audit-runner.md must also be staged.
+# Pattern from EP-ERR-011: editing a validator changes its behavior/version, making
+# the audit-runner description stale. The freshness check in pnpm verify will then
+# fail — catch it HERE instead of after commit.
+STAGED_VALIDATORS=$(git diff --cached --name-only 2>/dev/null | grep 'tools/validators/.*\.mjs$' || true)
+if [ -n "$STAGED_VALIDATORS" ]; then
+  STAGED_AUDIT_RUNNER=$(git diff --cached --name-only 2>/dev/null | grep 'audit-runner\.md$' || true)
+  if [ -z "$STAGED_AUDIT_RUNNER" ]; then
+    echo ""
+    echo "⚠ [pre-commit] EP-ERR-011 — validator file(s) staged without audit-runner.md update:"
+    while IFS= read -r f; do
+      echo "  → $f"
+    done <<< "$STAGED_VALIDATORS"
+    echo ""
+    echo "  If you changed validator behavior or version:"
+    echo "  1. Update the entry in: docs/plan/pillar-0-governance/audit-runner.md"
+    echo "  2. Run: pnpm audit-runner:split"
+    echo "  3. Stage both files before committing"
+    echo ""
+    echo "  (ADVISORY — commit not blocked. B_CATCH_TO_ENGRAVING | EP-ERR-011)"
+    echo ""
+  else
+    echo "[pre-commit] ✓ Audit-runner freshness check passed (audit-runner.md staged alongside validators)"
+  fi
 fi
 
-echo "[pre-commit] ✓ Zero-laptop scope check passed"
 exit 0

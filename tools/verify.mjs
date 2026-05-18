@@ -475,6 +475,12 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/checked=(\d+) missing=(\d+) invalid=(\d+) exempt=(\d+)/); return m ? { checked: Number(m[1]), missing: Number(m[2]), invalid: Number(m[3]), exempt: Number(m[4]) } : {}; },
   },
   {
+    // S040 ADVISORY — B_ZERO_NAVIGATION_FOR_GOVERNOR: scans AI files for navigation directives directed at Governor
+    name: 'governor_instructions',
+    command: 'node tools/validators/validate-governor-instructions.mjs',
+    parse_output: (out) => { const m = out.match(/(\d+) navigation directive/); return m ? { violations: Number(m[1]) } : { violations: 0 }; },
+  },
+  {
     // S036 LIVE — error registry coverage (inner-ai-defaults overrides have EP-ERR files)
     name: 'error_registry_coverage',
     command: 'node tools/validators/validate-error-registry-coverage.mjs',

@@ -49,6 +49,18 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never close a session without Zone A + Zone B + ALIGNMENT QUESTIONS (≥3) in the HANDOFF — validate-handoff-completeness.mjs BLOCKS (B_INHERITANCE_POLICY)
 - ❌ Never create a governance rule with T3-only enforcement (memory/session injection alone = drift-prone) — B_INHERITANCE_POLICY requires T1+T2+T3
 
+### B_ZERO_NAVIGATION_FOR_GOVERNOR — Governor Instruction Completeness (S040 CONSTITUTIONAL)
+
+- ❌ **NEVER** send the Governor to find content: "paste the prompt from earlier", "see above", "from my prior response", "as I shared", "refer to the block I wrote", "earlier in this conversation"
+- ❌ **NEVER** give the Governor a partial instruction that requires scrolling, searching, or recalling previous turns
+- ✅ **ALWAYS** include the complete paste-ready content in the SAME message as the instruction
+- ✅ **ALWAYS** repeat content fully even if presented 30 seconds ago — the Governor starts from zero
+- ✅ **ALWAYS** use labeled copy blocks: "PASTE THIS INTO THE OPUS TAB:" followed by full text
+- Applies to: Sonnet outputs, Opus outputs, any AI participant communicating with the Governor
+- Principle: P-UX-001 (Contextual Locality) + P-UX-002 (ZCA) — the Governor IS a receiver
+- Enforcement: T1 post-stop-banned-phrase.sh + T2 validate-governor-instructions.mjs + T3 session-open.sh + this Hard NO
+- Added: S040 | Ratified by Governor as constitutional
+
 ### Governor Collaboration Behavioral Mandate (S018 — mechanical registration)
 
 > **The Governor's explicit directive:** "I want you to be creative, give expert perspectives, push back, sort what is useful from what I present, feel comfortable to say 'good point and I want you to know we covered it perfectly by...', stop now and enforce reminders mechanically."  ← CSPS override: "good point" = T2 trigger (trigger-vocabulary.md AUDIT-001); use "Already implemented: [artifact]" pattern below instead

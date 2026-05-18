@@ -40,6 +40,14 @@ echo "[banned-phrase] OPUS PROTOCOL: 'tell Opus' / 'Tell Opus' are also BANNED �
 echo "[banned-phrase]   Correct: file SROF → paste target starts 'Opus, this is Sonnet.' → say 'SROF-NNN filed'"
 echo "[banned-phrase]   Wrong: ending response with 'Tell Opus: ...' (chat instruction, not protocol)"
 echo "[banned-phrase]   Wrong: paste target that does NOT start with 'Opus, this is Sonnet.'"
-echo "[banned-phrase] STUB tier — exit 0 always"
+echo "[banned-phrase] GOVERNOR NAVIGATION BAN (B_ZERO_NAVIGATION_FOR_GOVERNOR — S040 permanent):"
+echo "[banned-phrase]   BANNED phrases that send the Governor to find content:"
+echo "[banned-phrase]   - 'paste the prompt from' / 'paste the block from' / 'paste what I'"
+echo "[banned-phrase]   - 'see above' / 'from the prior response' / 'from my earlier'"
+echo "[banned-phrase]   - 'as I shared' / 'as presented earlier' / 'from before'"
+echo "[banned-phrase]   - 'refer to the' / 'the prompt I provided' / 'earlier in this conversation'"
+echo "[banned-phrase]   REQUIRED: full content inline, in same message, ready to copy."
+echo "[banned-phrase]   This applies to Sonnet AND Opus outputs directed at the Governor."
+echo "[banned-phrase] STUB tier — exit 0 always (week-4 promotes to active phrase scan)"
 
 exit 0

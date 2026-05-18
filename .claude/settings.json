@@ -1,5 +1,4 @@
 {
-  "model": "claude-sonnet-4-6[1m]",
   "permissions": {
     "allow": [
       "Bash",
@@ -11,10 +10,16 @@
       "Bash(pnpm verify)",
       "Bash(node tools/verify.mjs *)",
       "Bash(pnpm tokens:measure)",
-      "Bash(bash .claude/hooks/verify-hooks-functional.sh)"
+      "Bash(bash .claude/hooks/verify-hooks-functional.sh)",
+      "Bash(cp \"c:\\\\Users\\\\finky\\\\Desktop\\\\Claude Code\\\\Csps\\\\tools\\\\scripts\\\\git-hooks\\\\pre-commit\" \"c:\\\\Users\\\\finky\\\\Desktop\\\\Claude Code\\\\Csps\\\\.git\\\\hooks\\\\pre-commit\" && echo \"copied\")"
     ],
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "bypassPermissions",
+    "additionalDirectories": [
+      "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\.git\\hooks",
+      "c:\\Users\\finky\\Desktop\\csps-playground"
+    ]
   },
+  "model": "claude-sonnet-4-6[1m]",
   "hooks": {
     "SessionStart": [
       {

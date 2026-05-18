@@ -66,33 +66,22 @@ These are banned from new work. Do not revisit.
 
 ---
 
-### PRIORITY 3 — Consolidation Pass [PE: 80]
+### PRIORITY 3 — Consolidation Pass [PE: 80] ✅ DONE S040-C2
 
-Four confirmed duplicate/redundant files that must be resolved before building new governance:
-
-| # | What | Action |
+| # | What | Status |
 |---|---|---|
-| C-1 | `communication-protocol-shared.md` + `quality-protocols/shared-rules.md` | Delete shared-rules.md. Add redirect comment pointing to communication-protocol-shared.md. |
-| C-2 | Local `C:\Users\finky\.claude\core\L1-*.md` + `universal-governance.md` | L1 files = source. universal-governance.md = aggregator. Verify hierarchy is correct, not parallel. |
-| C-3 | Local `coworker-cooperation-plan.md` + repo `docs/external/coworker-cooperation-plan.md` | Repo = canonical. Local = reference only. Remove local or make it a pointer. |
-| C-4 | `packages/principles/principles.yaml` (65 principles) not surfaced in external DNA | See Priority 4 (DNA Bundle Engine) — principles.yaml becomes a DNA component. |
-
-**Session:** 1 session. **Chat:** Single Sonnet chat. No relay needed.
+| C-1 | `shared-rules.md` stale | ✅ Synced with Rules 10+11 (S040-C1) — not deleted (valid contextual locality slice) |
+| C-2 | L1 files vs universal-governance.md hierarchy | ✅ CORRECT — L1 = CSPS-specific sealed source, universal-governance = universal version. No action. |
+| C-3 | Local coworker plan vs repo canonical | ✅ Canonical pointer added to local file (S040-C2) |
+| C-4 | principles.yaml not in DNA | ✅ Now in DNA registry as `principles-full` component (S040-C2 PI-031) |
 
 ---
 
-### PRIORITY 4 — Platform DNA Bundle Engine [PE: 75]
+### PRIORITY 4 — Platform DNA Bundle Engine [PE: 75] — PARTIAL
 
-**What:** PI-031/032/033 — a system that packages CSPS platform identity for external AI, automation, and new apps.
-
-**Components:**
-- `tools/config/dna-registry.yaml` — machine-readable registry of all DNA components (vocabulary, principles, schema, integrations, inner-ai-defaults)
-- `tools/scripts/generate-dna-bundle.mjs` — CLI that assembles context-appropriate bundles by target audience
-- `tools/scripts/dna-wizard.mjs` — 4-question wizard CLI for generating bundles
-
-**Why now:** Every new chat starts cold. The bundle engine is the mechanical solution to the inheritance problem — not just for CSPS sessions but for any external AI that needs to understand CSPS.
-
-**Session:** 2 sessions. **Chat:** Session 1 = design + PI YAML ratification. Session 2 = build.
+**PI-031 ✅ DONE (commit 13cc496):** `tools/config/dna-registry.yaml` — 16 components across 5 categories
+**PI-032 ⏳ NEXT:** `tools/scripts/generate-dna-bundle.mjs` — the CLI that makes `pnpm dna:bundle --target=new-ai-tab` work
+**PI-033 ⏳ AFTER PI-032:** `tools/scripts/dna-wizard.mjs` — 4-question interactive wrapper
 
 **Audience targets:**
 ```

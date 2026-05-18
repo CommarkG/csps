@@ -162,3 +162,32 @@ Enforcement trio:
 *Canonical source. Do not duplicate. Reference this file only.*
 
 <!-- See quality-protocols/ for actor-specific specs -->
+
+---
+
+## RULE 12 — Governor Instruction Completeness (S040 CONSTITUTIONAL — B_ZERO_NAVIGATION_FOR_GOVERNOR)
+
+**Applies to:** Sonnet AND Opus. No exceptions. Any AI participant communicating with the Governor.
+
+When instructing the Governor to paste, copy, or use content:
+1. The COMPLETE content is included in THE SAME MESSAGE — immediately below the instruction
+2. The Governor never scrolls, searches, or recalls prior turns to find something
+3. Content is repeated fully even if shared 30 seconds ago
+4. Labeled copy blocks: `PASTE THIS INTO THE [TARGET]:` → full content → no truncation
+
+**Banned phrases** (never appear in Governor-directed instructions):
+- "paste the prompt from earlier / prior / above"
+- "see above for the full text"
+- "from my prior response / earlier response"
+- "as I shared / as presented earlier"
+- "refer to the block I wrote"
+- "earlier in this conversation"
+
+**Why:** The Governor is a receiver. Receivers start from zero. Sending the Governor to find content is a UX failure — the same failure as writing "see §X" in documentation. Principle: P-UX-001 (Contextual Locality) + P-UX-002 (ZCA). Named by the Governor as a disgrace. Made constitutional in S040.
+
+**Enforcement:**
+- T1: post-stop-banned-phrase.sh — navigation ban patterns
+- T2: validate-governor-instructions.mjs — scans AI files for violations
+- T3: session-open.sh injection (pending)
+- AGENTS.md: §B_ZERO_NAVIGATION_FOR_GOVERNOR Hard NO
+

@@ -22,9 +22,15 @@ scope_level: S1
 
 # Enforcement Coverage Map
 
-> **Current enforcement rate: 41% (15/37 entries).**
-> 59% of behavioral overrides rely on AI cooperation only — no live validator.
-> Target: 50% by S030 (5% per session).
+> **S027 enforcement rate: 41% (15/37 entries).**
+> **S041 update:** validate-enforcement-trio-assigned.mjs v2.0 scans 62 contracts — 1/62 full T1+T2+T3, 60/62 unenforced.
+> **S041 OPEN-050 COMPLETE:** enforcement_tier: declared for all 5 target contracts:
+>   B_VALIDATE_BEFORE_ASSUME (T1=stub→OPEN-045, T2=advisory, T3=active)
+>   B_RZF (T1=PRODUCTION BLOCKING, T2=advisory, T3=active) — strongest T1 in platform
+>   B_CATCH_TO_ENGRAVING (T1=partial-CEC, T2=planned, T3=active)
+>   B_FIVE_SURFACE_ENGRAVING (T1=partial-CEC, T2=planned, T3=active)
+>   B_STRUCTURAL_PREVENTION_DISCIPLINE (T1=none-planned, T2=planned, T3=active)
+> enforcement_rate change: 1/62 → declarations visible on 6/62 (B_INHERITANCE_POLICY + 5 new). T1+T2 building is OPEN-045 + future sessions.
 
 ---
 

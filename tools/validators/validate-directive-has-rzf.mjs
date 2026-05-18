@@ -142,6 +142,7 @@ for (const block of turnBlocks) {
 
 console.log(`[validate-directive-has-rzf] turns_checked=${turnsChecked} directives=${directivesFound} missing_rzf=${missingRzf} wrong_order=${wrongOrder} format_issues=${formatIssues} blocking=${blockingViolations}`);
 
-// ADVISORY always — blocking Sonnet's commits based on OPUS-2's turn quality is wrong.
-// Enforcement: when Sonnet receives a non-compliant directive, Sonnet files SROF before acting.
-process.exit(0);
+// BLOCKING for turns >= BLOCKING_FROM_TURN (96) or most recent turn — S042 promotion.
+// Enforcement: new Opus directives (Turn 96+) must have RZF BEFORE directive text.
+// Historical turns (< 96) remain ADVISORY; only forward-looking turns are blocked.
+process.exit(blockingViolations > 0 ? 1 : 0);

@@ -202,6 +202,18 @@ diataxis_type: tutorial | how-to | reference | explanation
 | `type:test` | `type:feature` (with test sub-folder convention) | `test` not in type enum |
 | `domain:tooling` | `domain:dx` (developer-experience) | `tooling` not in domain enum |
 | `tier:standard` | `tier:pro` (or business) | `standard` not in tier enum |
+| `inherits_from: template` (as enum value) | `inherits_from: docs/plan/_handoff/VAULT/templates/gradual-build-plan.template.md` (resolved path) | `inherits_from` is FREE-FORM path, NOT a closed enum — SROF-013 Q2 |
+
+## Free-form fields (not closed enums)
+
+These fields appear in CSPS frontmatter but are **NOT** closed enums. Do not validate them against a fixed set of values.
+
+| Field | Type | Example | Note |
+|---|---|---|---|
+| `inherits_from` | free-form resolved-path string | `docs/plan/_handoff/VAULT/templates/gradual-build-plan.template.md` | Resolved path to the template/parent artifact this artifact inherits from. Any valid file path is correct. No enum. (SROF-013 Q2, S040) |
+| `description` | free-form string | any text | Human-readable description; no enum constraint |
+| `ratified_by` | free-form string | `Governor S040` or `yariv` | No enum; records who ratified |
+| `links` | free-form list | `[{rel: parent, href: ./README.md}]` | YAML list; rel values are informational not enum-constrained |
 
 ## Where these enums live (atomic single-source-of-truth)
 

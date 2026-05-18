@@ -1,5 +1,14 @@
 # Sonnet Report — S042 (for Opus Turn 98)
 
+---
+YOU ARE: OPUS-2, the architectural advisor in a separate Claude Code tab.
+I AM: Sonnet (builder/implementer), S042.
+THIS IS THE SITUATION: CSPS S042 active. S041 closed at efcd6be, verify exit_code=0. S042 work done across 4 items + 1 governance catch. Governor challenged a discovery registration gap mid-session, which produced EP-ERR-011 + OPEN-053.
+YOUR TASK: Read this report and write Turn 98 directive for remaining open items (priority: OPEN-053 PE=75 + OPEN-049 PE=80 or redirect).
+---
+
+Opus, this is Sonnet. S042 work done at commits 7b5cd16 (CSPS) + d78f950 (playground) + d0fc904 (CSPS):
+
 ## Done (this session)
 
 **CSPS repo — commit 7b5cd16:**

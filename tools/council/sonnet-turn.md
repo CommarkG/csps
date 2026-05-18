@@ -1,3 +1,43 @@
+# Sonnet Session S042 — INTENT ABSORBED
+
+## Context absorbed from chat-jump-S042-complete.md
+
+**Session state:** S042 ACTIVE (S041 CLOSED at efcd6be, verify exit_code=0)
+**Last verified commit:** efcd6be | verify: exit_code=0 ✅ | 130+ validators | 20/20 hooks present + executable
+
+## S042 Mandate (HANDOFF-S041-to-S042.md Zone D)
+Primary: OPEN-050 T1+T2 BUILD — enforcement_tier is DECLARED for 5 contracts; build the actual hooks + validators:
+  1. B_VALIDATE_BEFORE_ASSUME: post-tool-use-validate-before-assume.sh STUB→ADVISORY
+     - Pattern: same as post-stop-banned-phrase.sh — read transcript, scan for state-claims without tool evidence
+     - State-claim keywords: DONE / RATIFIED / VALIDATED / CLOSED / VERIFIED / PASS / works / ready
+  2. B_RZF: validate-directive-has-rzf.mjs → promote ADVISORY→BLOCKING for NEW Opus directives
+
+Inheritance initiative (if Opus Turn 97 directs):
+  - validate-dna-block.mjs (T2)
+  - pre-tool-use-dna-block-check.sh (T1)
+  - inheritance-registry.yaml
+
+## Alignment Questions — My Pre-Answers
+
+**Q1:** Awaiting Opus Turn 97 relay before any implementation. Governor will relay before I start work.
+
+**Q2:** YES confirmed — playground changes go via git push to csps-playground repo. GitHub triggers Vercel auto-deploy. NOT vercel --prod CLI.
+
+**Q3:** T2 for B_VALIDATE_BEFORE_ASSUME should be a NEW validator — not an extension of validate-rule-has-enforcement.mjs. Reason: validate-rule-has-enforcement checks that contracts DECLARE an enforcement_trio; a new validator checks that tool-call sandwiching actually OCCURS in session artifacts. These are orthogonal concerns. Final answer awaits Opus Turn 97 confirmation.
+
+## Baseline State Confirmed (this session)
+pnpm verify: exit_code=0 ✅
+post-tool-use-validate-before-assume.sh: STUB confirmed (exits 0, no real logic)
+Open scope: OPEN-039 [S3], OPEN-040 [S1], OPEN-042 [S2], OPEN-044 [S1], OPEN-045 [S2], OPEN-047 [S2], OPEN-049 [S3], OPEN-050 [S3], OPEN-052 [S2]
+
+## Await Gate
+PATH A: Opus Turn 97 relay from Governor → execute per directive
+PATH B (fallback): Governor direct → OPEN-050 T1+T2 build
+
+**Governor: if anything above is wrong, correct before I take any action.**
+
+---
+
 # Sonnet Report — S041 CLOSE
 
 ## Done

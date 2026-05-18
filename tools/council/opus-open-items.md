@@ -10,10 +10,11 @@ lifecycle_state: active
 
 # OPUS-2 Open Items Register
 
-Updated: 2026-05-16 S037-B | Every turn: check this before writing anything new.
+Updated: 2026-05-18 S041 | Every turn: check this before writing anything new.
+Scope tags: [S1]=fix now (same session) | [S2]=ripple check needed | [S3]=PRACE analysis + threshold routing required
 
-| ID | Item | Announced | Status | Blocks | PI Ref |
-|---|---|---|---|---|---|
+| ID | Item | Announced | Status | Scope | Blocks | PI Ref |
+|---|---|---|---|---|---|---|
 | OPEN-001 | PI-002: PI schema YAML format + create-pi.mjs | Turn 59 | ✅ DONE (40f931f) | — | PI-002 |
 | OPEN-002 | PI-003: validate-implementation-gate.mjs (PIG) | Turn 62 | ✅ DONE (40f931f) | — | PI-003 |
 | OPEN-003 | PI-004: PE Agent skill (.claude/skills/pe-agent.md) | Turn 59 | ✅ DONE S037-I (3075da3 — AAP Class A, 27/27 aligned) | — | PI-004 |

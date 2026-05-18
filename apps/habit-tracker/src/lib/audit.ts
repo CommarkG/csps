@@ -1,28 +1,18 @@
-// CSPS TEMPLATE — replace [App Name] with your app name
-// Platform audit event writer — all significant actions create an immutable AuditEvent
-// Pattern: never delete AuditEvents. They are the compliance trail.
+// Re-exports writeAuditEvent wrapping libs/integrations/security/audit (auditLog).
+// Keeps app API stable while deduplicating core logic. OPEN-038 dedup.
 
+import { auditLog } from '@csps/integrations/security/audit'
 import { db } from './db'
 
 type AuditEventInput = {
   tenantId: string
   actorId: string
-  action: string        // e.g. 'user.login', '[app].resource.created'
-  resourceType: string  // e.g. 'User', '[Resource]'
+  action: string
+  resourceType: string
   resourceId: string
   data?: Record<string, unknown>
 }
 
 export async function writeAuditEvent(event: AuditEventInput): Promise<void> {
-  await db.auditEvent.create({
-    data: {
-      tenantId: event.tenantId,
-      actorId: event.actorId,
-      action: event.action,
-      resourceType: event.resourceType,
-      resourceId: event.resourceId,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      data: (event.data ?? {}) as any,
-    },
-  })
+  await auditLog(db, event)
 }

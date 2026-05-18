@@ -205,3 +205,58 @@ All decisions made 2026-05-17. Ratified via "I approve all your recommendations.
 **Open:** Consolidation Pass items C-2 + C-3 + design PI-031/032/033 (DNA Bundle Engine).
 
 Read `docs/plan/_handoff/VAULT/plan-items/PI-001-threshold-onboarding-wizard-wiring.yaml` as PI format template before designing PI-031/032/033.
+
+---
+
+## §9 — S041 Mandate — Inheritance Initiative
+
+**Source:** PROTO-019 (Opus Turn 96 directive). **Date added:** 2026-05-18.
+**Full plan:** `tools/council/multi-session-plan-S040-playground-inheritance.md`
+
+### New Contract: B_CSPS_INHERITANCE_PRINCIPLE (draft — Opus to ratify)
+Every CSPS artifact must:
+1. Declare `inherits_from` pointing to its canonical parent
+2. Include a DNA block as the first content in the file (machine-readable)
+3. Not diverge from parent structure without explicit ADR + Governor ratification
+4. Trigger `inheritance-propagator.mjs` when parent version changes
+5. Require human confirmation before applying parent updates
+
+### S041 Build Items (Sonnet executes · Opus directs)
+| Item | Type | PE | Description |
+|---|---|---|---|
+| `validate-dna-block.mjs` | T2 validator | 75 | BLOCKS files without valid `@csps-dna` block |
+| `pre-tool-use-dna-block-check.sh` | T1 hook | 72 | Checks DNA block before any Write/Edit tool call |
+| `tools/config/inheritance-registry.yaml` | Config | 68 | Maps every artifact to its parent |
+| `tools/scripts/inheritance-propagator.mjs` | Script | 65 | Generates audit report when parent version changes |
+| DNA block backfill — libs/ | Content | 60 | Add `@csps-dna` blocks to all libs/ TypeScript files |
+
+### DNA Block Standard (for all new files)
+```
+// TypeScript/JS:
+/**
+ * @csps-dna
+ * inherits_from: libs/[parent-module]/
+ * core_spine: [GVRN|ARCH|AI|OPER|VALD]
+ * governing_principle: [P-XXX-NNN]
+ * role: [one-sentence role]
+ * @csps-enforces [P-XXX-NNN]
+ */
+
+<!-- HTML pages:
+  @csps-dna
+  inherits_from: platform/templates/vault/[type]-clean.html
+  core_spine: [spine]
+  governing_principle: [P-XXX-NNN]
+  completion_status: [stub|draft|complete]
+  template_version: [X.Y]
+-->
+```
+
+### Session Order
+- **S041:** Code tools (validate-dna-block + propagator + registry + libs backfill)
+- **S042:** Playground application (page-data.js extraction + inherits_from in PAGES + template chain)
+- **S043:** User tier inheritance (content filtering by tier + differentiated home pages)
+- **S044:** Validation + alignment audit (full inheritance manifest)
+
+### Open Questions for Opus (SROF-013 Q1-Q6)
+See `multi-session-plan-S040-playground-inheritance.md` §8 for the 6 SROF questions.

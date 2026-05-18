@@ -231,6 +231,13 @@ schema_anchors:
     l2_domain: KNOWLEDGE_ABSORPTION
     description: External Knowledge vault entries (EXT-KNOW-NNN)
 
+  governance_section:
+    type: governance-section
+    resolves_to: docs/plan/pillar-0-governance/
+    spine: ARCH
+    l2_domain: ARCH_SCHEMA_GOVERNANCE
+    description: Pillar-0 governance section artifacts (template strategy, schema references, design guides)
+
   council_state:
     type: governance-section
     resolves_to: tools/council/
@@ -463,6 +470,7 @@ schema_anchors:
 | `core_spines_l3_instances` | governance-section | GVRN | ACCOUNTABILITY | .claude/core-spines/L3_INSTANCES_*.md |
 | `handoffs` | governance-section | GVRN | ACCOUNTABILITY | docs/plan/_handoff/ |
 | `topic_plans` | governance-section | GVRN | AMENDMENT_DISCIPLINE | docs/plan/_handoff/VAULT/topic-plans/ |
+| `governance_section` | governance-section | ARCH | ARCH_SCHEMA_GOVERNANCE | docs/plan/pillar-0-governance/ |
 | `vault_files` | governance-section | GVRN | ACCOUNTABILITY | docs/plan/_handoff/VAULT/ |
 | `opus_consultations` | governance-section | GVRN | DECISION_RIGHTS | docs/plan/_handoff/VAULT/ |
 | `know_how_error_patterns` | governance-section | GVRN | ACCOUNTABILITY | docs/plan/_intake/know-how/ |

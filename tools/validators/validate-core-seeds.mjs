@@ -48,7 +48,13 @@ const ROOT = resolve(__dirname, '../..');
 // Advisory mode: reports overdue seeds but doesn't block development.
 // Blocking mode: week-4 promotion (when overdue seeds should actively block phase gates)
 const STUB_MODE = false;
-const CURRENT_SESSION = 19; // S019 — update at each session close
+// OPEN-057 fix: read current session from session-state.json (was hardcoded to 19)
+let CURRENT_SESSION = 44; // fallback — updated dynamically below
+try {
+  const ss = JSON.parse(readFileSync(join(ROOT, 'tools/session-state.json'), 'utf8'));
+  const sessionStr = (ss.current_session || 'S044').replace(/^S0*/, '');
+  CURRENT_SESSION = parseInt(sessionStr, 10) || 44;
+} catch(e) { /* use fallback */ }
 
 const SEED_PATTERN = /@core-seed:\s*([A-Z_]+)/g;
 const SEED_FIELDS_PATTERN = /@core-seed:[^|]+\|\s*plan:\s*([^|]+)\|\s*grows-to:\s*([^|]+)(?:\|\s*target:\s*(\S+))?/;
@@ -115,17 +121,52 @@ async function main() {
         noTarget.push(s);
         console.log(`  🌱 ${s.name} (${s.file}:${s.line}) — no target session set`);
       } else {
-        // Parse target session number (e.g., S019 → 19)
-        const targetNum = parseInt(s.target.replace(/^S0*/, ''), 10);
-        if (!isNaN(targetNum) && targetNum < CURRENT_SESSION) {
-          overdue.push(s);
-          console.log(`  ⚠ OVERDUE ${s.name} (${s.file}:${s.line}) — target was ${s.target}, now S${String(CURRENT_SESSION).padStart(3,'0')}`);
-        } else {
-          current.push(s);
-          console.log(`  🌱 ${s.name} (${s.file}:${s.line}) — target: ${s.target}`);
+        // OPEN-057 fix: check DEPRECATED marker and grows-to artifact existence first
+        const isDeprecated = s.growsTo && /DEPRECATED/i.test(s.growsTo);
+
+        // Try to detect grows-to artifact in repo (any .mjs/.sh/.yaml/.ts filename)
+        const artifactMatch = s.growsTo && s.growsTo.match(/\b([\w-]+\.(mjs|sh|yaml|ts|js|json))/);
+        let isGrown = false;
+        if (artifactMatch && !isDeprecated) {
+          // Search for the artifact in common locations
+          const artifactName = artifactMatch[1];
+          const searchPaths = [
+            join(ROOT, 'tools/validators', artifactName),
+            join(ROOT, 'tools/scripts', artifactName),
+            join(ROOT, 'tools', artifactName),
+            join(ROOT, '.claude/hooks', artifactName),
+            join(ROOT, 'tools/data', artifactName),
+            join(ROOT, 'tools/config', artifactName),
+          ];
+          isGrown = searchPaths.some(p => existsSync(p));
         }
-        console.log(`     plan: ${s.plan}`);
-        console.log(`     grows-to: ${s.growsTo}`);
+
+        if (isDeprecated) {
+          current.push(s); // deprecated seeds don't count as overdue
+          console.log(`  ✓ DEPRECATED ${s.name} (${s.file}:${s.line}) — closed S044 OPEN-058`);
+        } else if (isGrown) {
+          current.push(s);
+          console.log(`  ✓ GROWN ${s.name} (${s.file}:${s.line}) — grows-to artifact exists`);
+          console.log(`     plan: ${s.plan}`);
+          console.log(`     grows-to: ${s.growsTo}`);
+        } else {
+          // Parse target session number (e.g., S019 → 19, week-4 → NaN)
+          const targetNum = parseInt(s.target.replace(/^S0*/, '').replace(/week-.*/, ''), 10);
+          const isWeekTarget = /^week-/.test(s.target);
+          if (!isNaN(targetNum) && targetNum < CURRENT_SESSION) {
+            overdue.push(s);
+            console.log(`  ⚠ OVERDUE ${s.name} (${s.file}:${s.line}) — target was ${s.target}, now S${String(CURRENT_SESSION).padStart(3,'0')}`);
+          } else if (isWeekTarget) {
+            // week-N targets: check if artifact was supposed to exist
+            overdue.push(s);
+            console.log(`  ⚠ OVERDUE ${s.name} (${s.file}:${s.line}) — week-N target passed, grows-to artifact not found`);
+          } else {
+            current.push(s);
+            console.log(`  🌱 ${s.name} (${s.file}:${s.line}) — target: ${s.target}`);
+          }
+          console.log(`     plan: ${s.plan}`);
+          console.log(`     grows-to: ${s.growsTo}`);
+        }
       }
     }
   } else if (seeds.length === 0) {

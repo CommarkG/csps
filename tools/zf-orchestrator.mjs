@@ -309,7 +309,7 @@ async function main() {
   process.exit(finalBlocking > 0 ? 1 : 0);
 }
 
-// @core-seed: ZF_POSITIVE_HARVEST | plan: docs/plan/pillar-0-governance/mechanical-enforcement-policy.md | grows-to: auto-trigger positive ZF harvest (CEC walk) when Level 3 achieves 0 BLOCKING — removes behavioral dependency | target: S019
+// @core-seed: ZF_POSITIVE_HARVEST | plan: deprecated-S044 | grows-to: DEPRECATED — ZF harvest now done via post-stop-learning-loop.sh (active S037). Positive-value-extraction is B_POSITIVE_VALUE_EXTRACTION. | target: S044 | closed: S044 OPEN-058
 main().catch(err => {
   console.error('[zf-orchestrator] fatal:', err);
   process.exit(1);

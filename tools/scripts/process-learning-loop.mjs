@@ -2,7 +2,7 @@
 /**
  * process-learning-loop.mjs — Learning Loop JSONL Consumer
  *
- * @core-seed: LEARNING_LOOP_CONSUMER | plan: docs/plan/_handoff/VAULT/opus-lessons-S019/part2-spines-ai-and-vision.md L15 | grows-to: full session quality analyzer feeding pattern registry and self-improvement pipeline | target: S023
+ * @core-seed: LEARNING_LOOP_CONSUMER | plan: deprecated-S044 | grows-to: DEPRECATED — session learning now handled by post-stop-learning-loop.sh (active). Pattern registry = validate-quality-alignment.mjs. | target: S044 | closed: S044 OPEN-058
  *
  * ROOT CAUSE TARGETED (S021 Expert Review E7-1):
  *   post-stop-learning-loop.sh has been writing session metadata to

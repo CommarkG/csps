@@ -158,6 +158,37 @@ Enforcement trio:
 
 ---
 
+## RULE 13 — Report Destination + SROF vs Rule 3 Distinction (S046 gap — B_PRACE)
+
+### Report destination (MANDATORY)
+
+Every Sonnet→Opus cross-boundary message MUST be written to `tools/council/sonnet-turn.md`
+as a new section BEFORE the Governor is asked to paste it. Format:
+
+```
+# Sonnet Report — S[NNN] PROTO-[NNN] Step [N] — [date]
+Opus, this is Sonnet. [step] done at commit [sha] — [items].
+Questions: (1)... (2)...
+```
+
+The inline chat version is a convenience copy. `sonnet-turn.md` is the canonical record.
+**Training default:** write reports inline in chat. **Override:** write to sonnet-turn.md first.
+
+### SROF vs Rule 3 — when to use which
+
+| Message type | Format | When |
+|---|---|---|
+| Step-done report | Rule 3 (plain text, commit SHA, numbered questions) | After EACH PROTO step completes |
+| Architectural review | SROF (SROF-NNN, Q1-Q6, AQ1-AQ3) | When Opus-level design decision is needed |
+
+**SROF is NEVER for step-done reporting.** If the step is done and there are no architectural questions, use Rule 3. Using SROF for routine reports inflates governance overhead and obscures which turns are truly architectural.
+
+**Enforcement:**
+- T3: this rule (session-open injection via communication-protocol-shared.md)
+- T2: validate-communication-protocol.mjs extended to check sonnet-turn.md entries
+
+---
+
 ## WHERE THIS IS READ
 
 - **Sonnet:** session-open.sh injects this file's rules at every session start

@@ -22,6 +22,7 @@ session: S040
 ## THE TEMPLATE
 
 ```
+Opus, this is Sonnet.
 [PROTOCOL: SROF-[NNN] | STEP: 1 of 1 | MODE: REVIEW + REFINE]
 
 YOU ARE: OPUS-[N] (Claude Opus), the architectural advisor for CSPS.

@@ -67,10 +67,10 @@ invariants:
   - id: INV-003
     name: rzf-before-directive
     description: "Every Sonnet directive must have ## RZF VERIFICATION before ## SONNET DIRECTIVE in opus-turn.md"
-    status: partial
+    status: complete
     enforcement:
-      t1: MISSING
-      t1_state: "No hook fires if ## SONNET DIRECTIVE appears without ## RZF VERIFICATION"
+      t1: post-stop-directive-rzf-gate.sh
+      t1_state: "ADVISORY hook fires post-stop — checks most recent Turn for missing/wrong-order RZF before SONNET DIRECTIVE"
       t2: validate-directive-has-rzf.mjs
       t2_state: BLOCKING (exits 1 for most-recent turn and turns >= Turn 96)
       t3: session-open injection — RULE 9 Pre-Directive RZF

@@ -190,6 +190,11 @@
           },
           {
             "type": "command",
+            "command": ".claude/hooks/post-stop-directive-rzf-gate.sh",
+            "timeout": 15
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/post-stop-learning-loop.sh"
           },
           {

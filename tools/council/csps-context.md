@@ -127,7 +127,7 @@ DO NOT: Make strategic decisions without Opus ratification, implement unratified
 
 ## COMMUNICATION FORMAT (mandatory for both)
 
-### Opus directive to Sonnet:
+### Opus directive to Sonnet (single step):
 ```
 [PROTOCOL: PROTO-NNN | STEP: N of M | MODE: sequential]
 YOU ARE: Sonnet, the builder in Claude Code VS Code tab.
@@ -135,6 +135,35 @@ I AM: OPUS-N (Claude Opus), the architectural advisor.
 THIS IS THE SITUATION: [2-3 sentences]
 YOUR TASK: [one specific action]
 ```
+
+### Opus directive to Sonnet (BATCHED — PROTO-039):
+Use when steps are ratified, sequential, and have no inter-step architectural unknowns.
+Sonnet executes all steps in order, commits each, and reports ONCE at the end with all SHAs.
+SROF-pause is valid mid-execution ONLY for genuine architectural blockers.
+
+```
+[PROTOCOL: PROTO-NNN | STEPS: 1-N BATCHED | MODE: batched-sequential]
+YOU ARE: Sonnet, the builder in Claude Code VS Code tab.
+I AM: OPUS-N (Claude Opus), the architectural advisor.
+THIS IS THE SITUATION: [2-3 sentences]
+YOUR TASK: Execute all N steps below sequentially. Commit after each step. Report ONCE
+           at end with all SHAs. SROF only if a genuine architectural blocker arises.
+
+STEP 1: [full description + verify tail: node tools/verify.mjs exit_code=0 before committing]
+STEP 2: [full description + verify tail]
+...
+STEP N: [full description + verify tail]
+
+SINGLE REPORT FORMAT (after all steps complete):
+Opus, this is Sonnet. PROTO-NNN done. Steps 1-N batched.
+Step 1 commit: [sha] — [what]
+Step 2 commit: [sha] — [what]
+pnpm verify: exit_code=[N] | [key validator outputs]
+PE-SUGGESTION: [top non-done item]
+Questions: (numbered, if any)
+```
+
+**When NOT to use batched:** when any step has a design question that requires Opus review before the next step can proceed. Use sequential PROTO + SROF instead.
 
 ### Sonnet SROF to Opus:
 ```

@@ -1,0 +1,67 @@
+---
+id: csps.config.inheritance-registry
+name: inheritance-registry
+description: "Maps parent→child artifact relationships for the CSPS platform. The delete-guard
+  (pre-commit-delete-guard.sh) reads this file to detect cascade impact before allowing staged
+  deletions. delete_guard=true means staging this path for deletion triggers a BLOCK + child list.
+  propagation=auto means child becomes invalid if parent is deleted. propagation=manual means
+  deletion is allowed but a warning lists affected children."
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: inheritance_registry
+session: S045
+---
+
+artifacts:
+  - id: invariant-registry
+    path: tools/config/invariant-registry.yaml
+    delete_guard: true
+    cascade_warning: true
+    propagation: auto
+    parents: []
+    children:
+      - tools/validators/validate-invariant-coverage.mjs
+      - .claude/hooks/pre-commit-delete-guard.sh
+
+  - id: unified-plan
+    path: tools/config/unified-plan.yaml
+    delete_guard: true
+    cascade_warning: true
+    propagation: auto
+    parents: []
+    children:
+      - tools/data/plan-api.json
+      - tools/validators/validate-plan-readiness.mjs
+      - tools/scripts/generate-plan-api.mjs
+
+  - id: csps-context
+    path: tools/council/csps-context.md
+    delete_guard: true
+    cascade_warning: true
+    propagation: auto
+    parents: []
+    children:
+      - .claude/hooks/session-open.sh
+
+  - id: template-registry
+    path: docs/plan/_handoff/VAULT/template-registry.md
+    delete_guard: true
+    cascade_warning: true
+    propagation: manual
+    parents: []
+    children:
+      - tools/templates/dual-focal-plan.template.yaml
+      - tools/templates/governed-artifact-frontmatter.template.md
+      - tools/templates/b-star-contract.template.md
+
+  - id: dna-registry
+    path: tools/config/dna-registry.yaml
+    delete_guard: true
+    cascade_warning: true
+    propagation: auto
+    parents: []
+    children:
+      - tools/scripts/generate-dna-bundle.mjs

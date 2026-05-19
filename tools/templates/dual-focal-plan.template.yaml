@@ -1,0 +1,53 @@
+# dual-focal-plan.template.yaml
+# CSPS template for planning a new app using dual-focal-point architecture.
+# Dual-focal-point = outward focus (user need) + inward focus (platform need) planned simultaneously.
+#
+# USAGE:
+#   1. Copy to docs/plan/<app-slug>-dual-focal-plan.yaml
+#   2. Fill all fields — no placeholders in the final artifact
+#   3. Get Opus review on inward_focus.invariants_addressed
+#   4. Governor ratifies
+#   5. Promote to unified-plan.yaml: copy the pmi block + id + name as a new items entry
+#
+# TEMPLATE ID: DUAL_FOCAL_PLAN | registry: docs/plan/_handoff/VAULT/template-registry.md §1
+# VALIDATES VIA: pmi fields feed tools/validators/validate-plan-readiness.mjs (PI-037)
+---
+id: "<app-slug>-dual-focal-plan"
+name: "<App Name> — Dual Focal Point Plan"
+status: draft
+session: "<S0NN>"
+
+# OUTWARD FOCUS — what users need (fill this before writing a single line of code)
+outward_focus:
+  target_user: "<primary persona — e.g., solo_user | business_admin | business_member>"
+  core_jtbd: "<jobs-to-be-done — the job this app does, not the features it has>"
+  user_value: "<concrete value delivered — measurable or observable outcome for the user>"
+  success_metric: "<how we know it worked — e.g., 'user returns daily for 7+ days'>"
+
+# INWARD FOCUS — what the platform needs (fill this before implementation)
+inward_focus:
+  platform_seed: "<@core-seed id this app creates or fulfills — must match dna-registry.yaml>"
+  invariants_addressed:
+    - "<INV-NNN: one line on how this app satisfies or exercises this invariant>"
+  validators_enabled:
+    - "<validator-slug: which new validator this app warrants — or 'none' if none>"
+  libs_touched:
+    - "<libs/path — every lib this app will write to, e.g., libs/auth, libs/billing>"
+
+# PMI — Plan Maturity Index
+# All 5 fields must reach 'high' before status can be promoted to ratified.
+# validate-plan-readiness.mjs (PI-037) checks these when the item enters unified-plan.yaml.
+pmi:
+  intent_depth: low        # low | medium | high — depth of JTBD + success_metric crystallization
+  cross_ref_density: low   # low | medium | high — how many existing artifacts this plan references
+  consensus_width: low     # low | medium | high — Sonnet + Opus + Governor all reviewed
+  reversibility: low       # low | medium | high — how easy to adjust scope mid-build
+  dependency_clarity: low  # low | medium | high — all libs_touched and invariants identified
+
+# PROMOTION CHECKLIST — complete before adding to unified-plan.yaml as status=ratified
+# [ ] outward_focus: all 4 fields filled, no angle-bracket placeholders remaining
+# [ ] inward_focus: platform_seed confirmed in dna-registry.yaml, invariants reviewed by Opus
+# [ ] pmi: all 5 fields at 'high'
+# [ ] Opus reviewed inward_focus.invariants_addressed
+# [ ] Governor ratified
+# [ ] Entry added to unified-plan.yaml items with this pmi block intact

@@ -304,7 +304,7 @@ items:
 
   - id: dual-focal-point-planning
     title: Dual Focal Point Planning — outward (user) + inward (core spine) simultaneously
-    status: intake
+    status: done
     category: architecture
     owner: governor
     pe_score: 90
@@ -321,6 +321,7 @@ items:
       - "What is the L1/L2/L3 breakdown for 'project management' in CSPS core spines?"
       - "How does the intake wizard enforce 'check existing validated element first'?"
     notes: |
+      DONE S045 PROTO-036. Template live at tools/templates/dual-focal-plan.template.yaml. Registered in template-registry.md §1.
       Governor directive S044. Vaulted per VAULT_DEFER protocol — process after active plans reach RZF.
 
       CONCEPT: Every new capability/app gets planned with TWO focal points simultaneously:

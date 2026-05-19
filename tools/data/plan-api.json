@@ -2,17 +2,17 @@
   "meta": {
     "version": "1.0",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-19T18:41:09.414Z",
+    "generated_at": "2026-05-19T19:35:56.303Z",
     "created_session": "S043",
     "last_updated": "2026-05-19",
     "total_items": 20,
     "status_counts": {
-      "intake": 5,
+      "intake": 4,
       "planning": 4,
       "ratified": 2,
       "implementing": 0,
       "activation": 1,
-      "done": 8
+      "done": 9
     },
     "pmi_ready_count": 6,
     "seeds_planted": 3
@@ -538,7 +538,7 @@
     {
       "id": "dual-focal-point-planning",
       "title": "Dual Focal Point Planning — outward (user) + inward (core spine) simultaneously",
-      "status": "intake",
+      "status": "done",
       "category": "architecture",
       "owner": "governor",
       "pe_score": 90,
@@ -558,7 +558,7 @@
         "What is the L1/L2/L3 breakdown for 'project management' in CSPS core spines?",
         "How does the intake wizard enforce 'check existing validated element first'?"
       ],
-      "notes": "Governor directive S044. Vaulted per VAULT_DEFER protocol — process after active plans reach RZF.\n\nCONCEPT: Every new capability/app gets planned with TWO focal points simultaneously:\n  OUTWARD: user journeys, interface, tiers, permissions, specific use cases\n  INWARD: which existing validated core element does this build on?\n          L1 principle → L2 domain implementation → L3 specific delta\n\nINVARIANT: Never recreate a validated core element. The system must MECHANICALLY\nenforce checking what exists at planning time — not as a reminder, as a gate.\nB_NO_INVENTION_WITHOUT_PRECEDENT_CHECK exists (T3-only). Needs T1+T2 upgrade.\n\nTEMPLATE CONNECTION: apps/template/ + platform/templates/vault/ are the validated elements.\nWhen planning new project management app: first gate = which template covers this?\nFork from template → only the delta is new. This is what makes the moat compound.\n\nVAULT GATE NEEDED (PROTO-036): T1 hook that fires on new Governor input when\nactive plan exists → asks \"is this urgent for active plan?\" → if no → auto-registers\nas unified-plan.yaml intake item → freezes until active plan reaches RZF.\n\nPROCESSING ORDER: After S044 HANDOFF and S045 inheritance-registry.yaml are complete.\n",
+      "notes": "DONE S045 PROTO-036. Template live at tools/templates/dual-focal-plan.template.yaml. Registered in template-registry.md §1.\nGovernor directive S044. Vaulted per VAULT_DEFER protocol — process after active plans reach RZF.\n\nCONCEPT: Every new capability/app gets planned with TWO focal points simultaneously:\n  OUTWARD: user journeys, interface, tiers, permissions, specific use cases\n  INWARD: which existing validated core element does this build on?\n          L1 principle → L2 domain implementation → L3 specific delta\n\nINVARIANT: Never recreate a validated core element. The system must MECHANICALLY\nenforce checking what exists at planning time — not as a reminder, as a gate.\nB_NO_INVENTION_WITHOUT_PRECEDENT_CHECK exists (T3-only). Needs T1+T2 upgrade.\n\nTEMPLATE CONNECTION: apps/template/ + platform/templates/vault/ are the validated elements.\nWhen planning new project management app: first gate = which template covers this?\nFork from template → only the delta is new. This is what makes the moat compound.\n\nVAULT GATE NEEDED (PROTO-036): T1 hook that fires on new Governor input when\nactive plan exists → asks \"is this urgent for active plan?\" → if no → auto-registers\nas unified-plan.yaml intake item → freezes until active plan reaches RZF.\n\nPROCESSING ORDER: After S044 HANDOFF and S045 inheritance-registry.yaml are complete.\n",
       "pmi_score": 2,
       "pmi_ready": false,
       "pmi_detail": {

@@ -32,25 +32,41 @@ const turn = tracker.turn_count_this_session;
 try { fs.writeFileSync(trackerPath, JSON.stringify(tracker, null, 2)); } catch(e) {}
 
 // ── Quality degradation warning at turn thresholds ────────────────────────
-if (turn === 40) {
+// Research basis (S044 update): CSPS governance sessions are ~5x more cognitively
+// demanding than simple coding. PRACE empirically shows rules drift by turn 10 without T1+T2.
+// Governance protocols drift at ~25-30 turns. "Lost in the middle" LLM research confirms
+// attention quality drops for context in the middle of long conversations.
+// Old thresholds (40/60) were validated as TOO LATE from S044 session evidence (140 turns,
+// drift visible from ~40+). New validated thresholds: warn at 20, strong at 30.
+if (turn === 20) {
   console.log(JSON.stringify({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext:
-    '⚠️ [QUALITY GATE — TURN 40] Context quality is degrading. Rules from early turns are less salient.\n' +
-    'Consider: write HANDOFF + open a fresh tab, even with tokens remaining.\n' +
-    'Quality matters more than token savings. (Governor directive S044)'
+    '⚠️ [QUALITY GATE — TURN 20] Context quality beginning to degrade. CSPS governance rules are less salient.\n' +
+    'Research: governance protocols drift at ~25-30 turns (5x complexity vs simple coding).\n' +
+    'Recommendation: wrap up current PROTO, write HANDOFF within 10 more turns.\n' +
+    'Tab-closing-protocol.md Section 1: target close at turn 25-30.'
   }}));
   process.exit(0);
 }
-if (turn >= 60 && turn % 10 === 0) {
+if (turn === 30) {
   console.log(JSON.stringify({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext:
-    '🚨 [QUALITY GATE — TURN ' + turn + '] STRONG RECOMMENDATION: Move to a new tab NOW.\n' +
-    'Context at this length has significant governance drift risk.\n' +
-    'Action: pnpm dna:bundle --target=new-ai-tab → write HANDOFF → open fresh tab.'
+    '🚨 [QUALITY GATE — TURN 30] STRONG RECOMMENDATION: Move to a new tab NOW.\n' +
+    'This is the validated governance drift threshold for CSPS complexity sessions.\n' +
+    'Action: pnpm dna:bundle --target=new-ai-tab → write HANDOFF → open fresh tab.\n' +
+    'Ref: tab-closing-protocol.md | S044 research: 140-turn session showed drift from turn 40+.'
+  }}));
+  process.exit(0);
+}
+if (turn >= 40 && turn % 10 === 0) {
+  console.log(JSON.stringify({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext:
+    '🚨 [QUALITY GATE — TURN ' + turn + '] PAST optimal threshold. Governance drift is significant.\n' +
+    'Context at this length: rule violations and protocol skips are near-certain.\n' +
+    'Action NOW: pnpm dna:bundle --target=new-ai-tab → write HANDOFF → open fresh tab.'
   }}));
   process.exit(0);
 }
 
-// ── Only output on refresh turns (every 25) ────────────────────────────────
-const REFRESH_EVERY = 25;
+// ── Only output on refresh turns (every 15 — reduced from 25 per S044 research) ──
+const REFRESH_EVERY = 15; // was 25 — S044 research: more frequent re-injection reduces drift
 if (turn % REFRESH_EVERY !== 0) {
   // No output — hook fires silently
   console.log(JSON.stringify({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: '' } }));

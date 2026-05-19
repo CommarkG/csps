@@ -24,9 +24,15 @@ last_updated: "2026-05-19"
 ## SECTION 1 — WHEN TO CLOSE
 
 **Close when ANY of these is true:**
-- Turn count ≥ 40 (quality gate — context degradation begins here)
-- Turn count ≥ 60 (STRONG RECOMMENDATION — governance drift risk is high)
+- Turn count ≥ 20 (quality gate — CSPS governance drift begins here)
+- Turn count ≥ 30 (STRONG RECOMMENDATION — validated drift threshold for CSPS sessions)
 - All PROTO steps for the current session are done AND Sonnet has committed them
+
+**Research basis (S044 empirical update):**
+Old: 40/60. New: 20/30. Why: CSPS sessions are ~5x more complex than simple coding.
+PRACE empirically showed rules drift by turn 10 without T1+T2. Governance protocols at ~25-30.
+"Lost in the middle" (Liu et al. 2023): LLM attention drops for middle-context content.
+S044 evidence: 140-turn session showed drift from turn 40+. New thresholds prevent this.
 - Governor explicitly says "close" or "move to next tab"
 
 **Do NOT close when:**

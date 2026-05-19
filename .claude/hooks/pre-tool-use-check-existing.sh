@@ -12,11 +12,7 @@
 # @csps-lifecycle production
 # @csps-lifecycle-state active
 # @csps-enforces B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK P-META-019
-# @core-seed: PREVENTION_T1_GATE
-# | planted-by: opus
-# | plan: prevention-framework (tools/config/unified-plan.yaml)
-# | grows-to: BLOCKING mode after 3 false-positive-free sessions
-# | pmi-gate: consensus_width=high on prevention-framework plan item
+# @core-seed: PREVENTION_T1_GATE | plan: prevention-framework (unified-plan.yaml) | grows-to: pre-tool-use-check-existing.sh BLOCKING after 3 false-positive-free sessions | target: S044
 
 set -euo pipefail
 

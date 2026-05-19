@@ -6,12 +6,7 @@
  *   This is the bridge between the ONE SOURCE (unified-plan.yaml) and the playground's live data.
  *   Run: pnpm plan:export
  *
- * @core-seed: PLAN_API_LIVE_DATA
- * planted-by: opus
- * plan: S043-A (generate-plan-api.mjs)
- * grows-to: planning-hub live data binding reading from plan-api.json
- * pmi-gate: S043-A complete + plan-api.json accessible at /api/plan.json
- * caq: "Is the JSON served correctly from Vercel (not blocked by CORS or routing)?"
+ * @core-seed: PLAN_API_LIVE_DATA | plan: S043-A (generate-plan-api.mjs) | grows-to: planning-hub live data binding reading from plan-api.json | target: S043
  *
  * @csps-version 1.0.0
  * @csps-owner group:finky

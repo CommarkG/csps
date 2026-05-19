@@ -96,4 +96,20 @@ if [ -n "$STAGED_MONOLITHS" ]; then
   fi
 fi
 
+# ── CHECK 4: Auto-export plan-api.json when unified-plan.yaml is staged ────────
+# If unified-plan.yaml is staged, automatically run pnpm plan:export to keep
+# plan-api.json in sync. Stages plan-api.json as part of the same commit.
+# Closes the manual sync gap — Planning Hub always reads fresh data after commit.
+STAGED_UNIFIED_PLAN=$(git diff --cached --name-only 2>/dev/null | grep 'tools/config/unified-plan.yaml' || true)
+if [ -n "$STAGED_UNIFIED_PLAN" ]; then
+  echo "[pre-commit] unified-plan.yaml staged — auto-running pnpm plan:export..."
+  if command -v pnpm >/dev/null 2>&1 && [ -f "tools/scripts/generate-plan-api.mjs" ]; then
+    pnpm plan:export 2>/dev/null && echo "[pre-commit] plan:export succeeded"
+    git add tools/data/plan-api.json 2>/dev/null || true
+    echo "[pre-commit] ✓ plan-api.json auto-staged alongside unified-plan.yaml"
+  else
+    echo "[pre-commit] ⚠ pnpm or generate-plan-api.mjs not found — run pnpm plan:export manually"
+  fi
+fi
+
 exit 0

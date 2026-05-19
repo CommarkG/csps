@@ -1077,6 +1077,15 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/advisories=(\d+)/); return m ? { advisories: Number(m[1]) } : {}; },
   },
   {
+    // PI-037: plan readiness gate — PMI scoring per plan item (BLOCKING for implementing < 4/5)
+    name: 'plan_readiness',
+    command: 'node tools/validators/validate-plan-readiness.mjs',
+    parse_output: (out) => {
+      const m = out.match(/items_checked=(\d+)\s+pmi_ready=(\d+)\s+premature_implementing=(\d+)\s+advisory_ratified=(\d+)/);
+      return m ? { items_checked: Number(m[1]), pmi_ready: Number(m[2]), premature_implementing: Number(m[3]), advisory_ratified: Number(m[4]) } : {};
+    },
+  },
+  {
     // S043-E: DNA block enforcement — advisory check on playground pages
     name: 'page_dna_coverage',
     command: 'node tools/validators/validate-page-dna.mjs',

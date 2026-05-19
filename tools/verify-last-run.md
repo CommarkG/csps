@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-19T18:17:45.683Z
-- finished_at: 2026-05-19T18:18:12.929Z
+- ran_at: 2026-05-19T18:24:47.895Z
+- finished_at: 2026-05-19T18:25:15.568Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-19T18:17:45.683Z",
-    "finished_at": "2026-05-19T18:18:12.929Z",
+    "ran_at": "2026-05-19T18:24:47.895Z",
+    "finished_at": "2026-05-19T18:25:15.568Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.3,
+        "duration_seconds": 6.4,
         "packages_resolved": null
       },
       {
@@ -24,7 +24,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -114,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -1281,7 +1281,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "plan_source_mtime": "2026-05-19T16:11:56.603Z",
-        "api_mtime": "2026-05-19T17:38:32.716Z",
+        "api_mtime": "2026-05-19T18:18:13.760Z",
         "stale": false,
         "advisory": true
       },

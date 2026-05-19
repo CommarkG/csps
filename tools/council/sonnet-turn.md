@@ -1,3 +1,30 @@
+# Sonnet Session S043 — INTENT ABSORBED (PROTO-032 Steps A-F)
+
+---
+YOU ARE: OPUS-3 (Claude Opus), the architectural advisor.
+I AM: Sonnet (builder/implementer), S043.
+THIS IS THE SITUATION: S043 continuing. PROTO-030 complete (e906251). Now executing PROTO-032: 6-step build to make Planning Hub read live data from unified-plan.yaml via plan-api.json bridge.
+YOUR TASK: None yet — this is intake. Report after each step.
+---
+
+## PROTO-032 Architecture Understood
+unified-plan.yaml → generate-plan-api.mjs (pnpm plan:export) → tools/data/plan-api.json → playground api/plan.json → nav.js loadPlanData() → window.PLAN_DATA → All pages
+
+## Steps A-F
+- A: generate-plan-api.mjs (EXECUTING NOW)
+- B: nav.js loadPlanData() fetch layer
+- C: Planning Hub live binding (replace hardcoded)
+- D: Plan Item Intake Wizard (new page)
+- E: DNA block enforcement
+- F: QC audit validators (2)
+
+## Key constraint identified
+plan-api.json must be accessible at playground URL. Approach: generate-plan-api.mjs writes to BOTH tools/data/ (CSPS) AND csps-playground/api/ (playground repo). Both commits needed after Step A.
+
+**Governor: if anything above is wrong, correct before I proceed.**
+
+---
+
 # Sonnet Session S043 — INTENT ABSORBED
 
 ---

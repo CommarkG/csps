@@ -21,6 +21,9 @@ importers:
       gpt-tokenizer:
         specifier: ^3.4.0
         version: 3.4.0
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.1
       prettier:
         specifier: ^3.4.0
         version: 3.8.3
@@ -90,6 +93,46 @@ importers:
         version: 3.4.19(tsx@4.21.0)
       typescript:
         specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/habit-tracker:
+    dependencies:
+      '@clerk/nextjs':
+        specifier: ^6.9.0
+        version: 6.39.3(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@csps/components':
+        specifier: workspace:*
+        version: link:../../libs/components
+      '@csps/integrations':
+        specifier: workspace:*
+        version: link:../../libs/integrations
+      '@prisma/client':
+        specifier: ^6.7.0
+        version: 6.19.3(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3)
+      '@zenstackhq/runtime':
+        specifier: ^2.22.1
+        version: 2.22.1(@prisma/client@6.19.3(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.4.3)
+      next:
+        specifier: ^14.2.29
+        version: 14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@types/node':
+        specifier: ^20
+        version: 20.19.39
+      '@types/react':
+        specifier: ^18
+        version: 18.3.28
+      '@types/react-dom':
+        specifier: ^18
+        version: 18.3.7(@types/react@18.3.28)
+      typescript:
+        specifier: ^5
         version: 5.9.3
 
   apps/sandbox:
@@ -3402,7 +3445,7 @@ snapshots:
 
   stripe@17.7.0:
     dependencies:
-      '@types/node': 22.19.17
+      '@types/node': 20.19.39
       qs: 6.15.1
 
   styled-jsx@5.1.1(react@18.3.1):

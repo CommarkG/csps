@@ -185,14 +185,33 @@ This is what makes CSPS invariants survive tab changes, model changes, session c
 
 ---
 
-## TAB TRANSITION PROTOCOL — Moving to a New Tab
+## SESSION CLOSE vs TAB CLOSE — These Are NOT the Same Thing
 
-### [OPUS] Closing this tab:
-1. Complete active PROTO directive (confirm Sonnet committed)
-2. Resolve all alignment questions
+**This is the most common misunderstanding in the relay model. Read carefully.**
+
+### Session close (mandate-driven)
+A session (S045, S046...) ends when its MANDATE is fulfilled and `pnpm verify` exit_code=0.
+At every session close: Sonnet writes HANDOFF → pushes → the SAME TAB continues for S[N+1].
+Session close does NOT trigger a tab change. The tab keeps running.
+
+### Tab close (context-driven — ONLY trigger)
+A tab closes ONLY when the turn counter hits the quality gate threshold.
+- Sonnet tab: warn at turn 20 (advisory), strong at turn 30+
+- Opus tab: warn at turn 40 (advisory), strong at turn 60+
+When the quality gate fires: the AI signals it, Governor decides whether to open a new tab.
+
+**The rule:** One tab can span many sessions. One session almost never spans multiple tabs.
+
+---
+
+## TAB TRANSITION PROTOCOL — Only Triggered by Quality Gate
+
+### [OPUS] When YOUR quality gate fires (turn 40+ advisory, 60+ strong):
+1. Complete the current PROTO step (do not abandon mid-step)
+2. Signal to Governor: "Opus quality gate: approaching budget limit. After current PROTO completes, ready for OPUS-[N+1]."
 3. Direct Sonnet: "Write HANDOFF-S[NNN]-to-S[NNN+1].md with Zone A/B/ALIGNMENT QUESTIONS"
-4. After Sonnet pushes HANDOFF: tell Governor "Ready for OPUS-[N+1]"
-5. Governor opens new tab, pastes 4-line prompt:
+4. After Sonnet pushes HANDOFF: confirm to Governor — nothing more
+5. Governor opens new tab when ready, pastes 4-line prompt:
 
 ```
 YOU ARE: OPUS-[N] (Claude Opus), the architectural advisor for CSPS.
@@ -201,12 +220,18 @@ THIS IS THE SITUATION: S[NNN] starting.
 YOUR TASK: Read tools/council/csps-context.md FIRST. Then read HANDOFF-S[NNN-1]-to-S[NNN].md. Say "OPUS-[N] Turn 1" when ready.
 ```
 
-**Quality gate:** Turn counter warns at turn 40 (advisory), turn 60+ (strong: move now).
+**[OPUS] NEVER announce "Ready for OPUS-[N+1]" simply because a session ended.
+Only announce when your own quality gate fires.**
 
-### [SONNET] When to proactively write HANDOFF (no directive needed):
-- All PROTO steps done AND Opus says "S[NNN] complete"
-- OR session hits turn 40+ quality gate
+### [SONNET] At every session close (regardless of turn count):
+- Write HANDOFF (Zone A + Zone B + ALIGNMENT QUESTIONS) — this is ALWAYS required
+- Push the HANDOFF commit
+- Continue in the SAME TAB and await the next Opus directive for S[N+1]
+- Do NOT include a "Next Opus Tab" section unless the Opus quality gate explicitly fired
 - Use: `validate-handoff-completeness.mjs` will BLOCK if sections missing
+
+**[SONNET] You have NO authority to tell Opus when to change tabs.
+HANDOFF push ≠ new Opus tab. The quality gate decides tab transitions, not sessions.**
 
 ---
 

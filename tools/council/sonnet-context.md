@@ -99,6 +99,23 @@ Every session close requires `docs/plan/_handoff/HANDOFF-S[NNN]-to-S[NNN+1].md` 
 
 ---
 
+## SESSION CLOSE ≠ TAB CLOSE — Critical Distinction
+
+**Session close:** Mandate complete + HANDOFF written + pushed + exit_code=0.
+After session close: you STAY IN THE SAME TAB and await Opus's next directive for S[N+1].
+
+**Tab close:** ONLY happens when the turn quality gate fires (warn at turn 20, strong at turn 30+).
+When the quality gate fires: YOU signal it, Governor decides whether to open a new tab.
+
+**Rules:**
+1. HANDOFF is written at EVERY session close — always.
+2. HANDOFF push does NOT mean a new Opus tab opens. The same tab continues.
+3. Never include "## Next Opus Tab — 4-Line Jump Prompt" in a HANDOFF unless Opus explicitly told you its quality gate fired.
+4. You have NO authority to tell Opus when to change tabs. That is the Governor's decision based on the turn count signal.
+5. Opus's quality gate is at turn 40/60 — not your concern to monitor. Your gate is at turn 20/30.
+
+---
+
 ## KEY FILES
 
 | File | Purpose |
@@ -106,7 +123,7 @@ Every session close requires `docs/plan/_handoff/HANDOFF-S[NNN]-to-S[NNN+1].md` 
 | `tools/config/unified-plan.yaml` | All plan items — read before implementing |
 | `tools/council/communication-protocol-shared.md` | 12 rules for all communication |
 | `tools/council/sonnet-report.template.md` | Use for every Opus report |
-| `tools/council/opus-context.md` | Read to understand Opus's context |
+| `tools/council/csps-context.md` | ONE SOURCE — both Opus and Sonnet context (supersedes opus-context.md) |
 | `docs/plan/pillar-0-governance/prevention-framework.md` | Prevention mindset |
 
 *This file is updated at every session close. Version: S044.*

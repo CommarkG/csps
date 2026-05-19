@@ -195,6 +195,15 @@ components:
     always_include: false
     summary: "Registry of absorbed external knowledge (EXT-KNOW-001 through 003). [Temp name!!!] competitor landscape, market hypothesis, document architecture patterns. Pending: 04-11 series."
 
+  - id: tab-closing-protocol
+    path: tools/council/tab-closing-protocol.md
+    scope: repo
+    category: knowledge
+    audience: [new-ai-tab]
+    depth_level: L1
+    always_include: true
+    summary: "Complete protocol for closing Opus tabs. Pre-closing checklist (8 items with tool calls), HANDOFF format, 8 audit CAQs, relay format, what survives transitions. Nothing taken for granted."
+
   - id: csps-context
     path: tools/council/csps-context.md
     scope: repo

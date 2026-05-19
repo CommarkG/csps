@@ -146,20 +146,25 @@ if (S1.length === 0 && S2.length === 0 && S3.length === 0) {
   if (S1.length > 0) {
     console.log(`[S1] BLOCKING — Fix in this session (${S1.length} items):`);
     S1.forEach(f => console.log(`  • ${f.name}: ${f.reason}`));
+    console.log(`  ⚠ AI behavior override: Default is "fix symptom → done". S1 alone = recurrence.`);
+    console.log(`  → After S1: enumerate connected artifacts (S2) before closing.`);
     console.log('');
   }
 
   if (S2.length > 0) {
     console.log(`[S2] ADVISORY — Ripple check before next commit (${S2.length} items):`);
     S2.forEach(f => console.log(`  • ${f.name}: ${f.reason}`));
+    console.log(`  ⚠ AI behavior override: Default is "change is self-contained". S2 = enumerate what else moved.`);
+    console.log(`  → After S2: identify if any item warrants Scope-3 (recurring class? training default?)`);
     console.log('');
   }
 
   if (S3.length > 0) {
     console.log(`[S3] DEFERRED — PRACE analysis + threshold routing (${S3.length} items):`);
     S3.forEach(f => console.log(`  • ${f.name}: ${f.reason}`));
+    console.log(`  ⚠ AI behavior override: Default is "problem solved → move on". S3 = install T1/T2/T3 so the CLASS cannot recur.`);
+    console.log(`  → Name the training default. Name the satisfaction point. Install mechanical prevention.`);
     console.log(`  → Route S3 findings to: docs/plan/pillar-0-governance/threshold-intake-protocol.md`);
-    console.log(`  → For each: name training default + satisfaction point + T1/T2 to install`);
     console.log('');
   }
 }

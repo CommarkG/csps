@@ -13,7 +13,13 @@ session: S040
 
 # Sonnet → Opus SROF Template
 
-> **When to use:** Any time Sonnet needs Opus-level architectural review, ratification, or multi-session planning decisions. This IS the canonical format — no other format needed.
+> **When to use:** Architectural review, ratification, or multi-session planning decisions ONLY.
+> Use SROF when Sonnet needs Opus to answer design questions before implementation can proceed.
+>
+> **SROF is NOT for step-done reporting.** For step-done reports, use Rule 3 (plain format,
+> written to `tools/council/sonnet-turn.md` as `# Sonnet Report — S[NNN] PROTO-[NNN]`).
+> Misusing SROF for routine reports inflates governance overhead and obscures which turns
+> are genuinely architectural. (See communication-protocol-shared.md Rule 13.)
 >
 > **How to use:** Copy this template → fill every field → paste to Opus tab. All sections are mandatory. Missing a section = malformed SROF = Opus will flag before answering.
 

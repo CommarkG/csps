@@ -51,6 +51,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never passively observe a gap ("this should not be forgotten", "worth noting") — register OPEN-NNN immediately in the SAME turn (B_INHERITANCE_POLICY + EP-ERR-005: announce-not-track)
 - ❌ Never close a session without Zone A + Zone B + ALIGNMENT QUESTIONS (≥3) in the HANDOFF — validate-handoff-completeness.mjs BLOCKS (B_INHERITANCE_POLICY)
 - ❌ Never create a governance rule with T3-only enforcement (memory/session injection alone = drift-prone) — B_INHERITANCE_POLICY requires T1+T2+T3
+- ❌ **Never stop at Scope-1** (fix-and-move-on = recurrence by session N+2): proceed to Scope-2 (ripple check) + Scope-3 (name training default + T1/T2/T3). Never use SROF for step-done reports — SROF = architectural review only; step-done = Rule 3 to `sonnet-turn.md`. (core-scopes.md + Rule 13 — S046)
 
 ### B_ZERO_NAVIGATION_FOR_GOVERNOR — Governor Instruction Completeness (S040 CONSTITUTIONAL)
 
@@ -191,7 +192,6 @@ Per-app (`apps/<scope>/<name>/AGENTS.md`) and per-package (`packages/<name>/AGEN
 **Do not edit `AGENTS.md` directly.** Generated from [`packages/principles/principles.yaml`](packages/principles/principles.yaml) via `pnpm principles:codegen`. Workflow: edit principles.yaml → run codegen → commit both. CI fails if `git diff AGENTS.md` shows drift.
 
 **Phase 4 transitional state (S007 turn 6):** AGENTS.md slim authored manually pending codegen full implementation per [token-optimization.md](docs/plan/pillar-0-governance/token-optimization.md) Phase 4. Backup at [`AGENTS.md.original`](AGENTS.md.original). Per principles-codegen.ts header: "Full AGENTS.md regeneration deferred to week-2-4 per build-order.md" — manual maintenance until codegen ships.
-
 ## Compact + session boundaries (B_TOKEN_BUDGET R3+R4)
 - `/compact <focus>` at IMPL_BATCH boundaries; `/clear` between unrelated tasks (domain change → session boundary; P-META-014).
 - Cardinal: tokens are INVESTMENT in reasoning quality, NOT budget to minimize.

@@ -31,12 +31,23 @@ consolidation_cross_refs:
 
 ## The Three Core Scopes
 
+> **Why AI behavior is in every scope:** AI training defaults are the engine of recurrence.
+> Every finding has a training default that produced it. Naming that default at each scope
+> is what makes the fix durable — not just correct today, but mechanically enforced for
+> every future AI instance, model upgrade, and session boundary.
+
 ### SCOPE-1: Immediate Resolution
 **What:** Fix the specific finding directly, locally, in the session where it's discovered.
 **When:** Same response or same session as the finding.
 **Output:** Commit with fix OR OPEN-NNN registered if not immediately fixable.
 **Done when:** The specific symptom is addressed. Tool-verified.
 **Example:** A hook is a stub → upgrade it to advisory minimum in this session.
+
+**AI behavior this scope overrides:**
+> Training default: "Fix the symptom → declare done → move on."
+> This is the AI's strongest satisfaction point — task-completion ends the loop.
+> Scope-1 alone = recurrence by session N+2 with no memory of the fix.
+> Scope-1 is necessary. It is NOT sufficient. Proceeding to Scope-2 is mandatory.
 
 ### SCOPE-2: Ripple Response
 **What:** Check what's connected to the finding. Update those elements too. Map the dependency tree.
@@ -45,6 +56,13 @@ consolidation_cross_refs:
 **Done when:** All artifacts connected to the original finding are consistent with the fix.
 **Example:** Upgrading a hook → also update session-open.sh T3 injection + audit-runner.md slug + AGENTS.md.
 
+**AI behavior this scope overrides:**
+> Training default: "My change is self-contained. Other files are not my concern unless
+> explicitly asked." AI has narrow-scope training — it optimizes for the object requested.
+> This is the scope most likely to be skipped silently: the AI finishes Scope-1,
+> reaches a natural stopping point, and does not enumerate what else was affected.
+> Connected artifacts left inconsistent = silent drift that compounds across sessions.
+
 ### SCOPE-3: Permanent Prevention
 **What:** Deep dive into the root cause. Find the AI behavior default that allowed this finding. Install mechanical prevention (T1+T2+T3) so this CLASS of problem cannot recur.
 **When:** Same session (if small) OR registered as OPEN-NNN with PRACE analysis for next session.
@@ -52,18 +70,35 @@ consolidation_cross_refs:
 **Done when:** The failure mode that created the finding can no longer occur mechanically — not just "we won't do it again."
 **Example:** Hook was a stub → add validate-hook-production-status.mjs T2 that blocks stubs from being declared as CRITICAL in verify-hooks-functional.sh.
 
+**AI behavior this scope overrides:**
+> Training default: "The problem is solved. Move on."
+> AI never installs mechanical prevention unless explicitly directed — Scope-1 satisfaction
+> is the terminal state by default. Scope-3 requires the deliberate question:
+> "What training default allowed this class of problem to exist, and what T1/T2/T3
+> makes that training default mechanically irrelevant?"
+> Without Scope-3, every session re-discovers the same class of problem.
+> This is the CSPS moat mechanism: Scope-3 is where compounding platform strength is built.
+
 ---
 
 ## PRACE Template for Scope-3
 
-Every Scope-3 finding requires these four fields:
+Every Scope-3 finding requires these five fields (the fifth is new — AI behavior dimension):
 ```
 SCOPE-3 ANALYSIS:
   Training default: [what Claude/AI does by training that caused this]
-  Satisfaction point: [what incorrect "done" feeling was hit]
+  Satisfaction point: [what incorrect "done" feeling was hit — name the specific moment]
   Class of problem: [the category — not the specific instance]
+  AI behavior fix: [what the AI must do differently at each scope level to prevent recurrence]
+    Scope-1: [what the AI should check before declaring the symptom fixed]
+    Scope-2: [what connected artifacts the AI must enumerate before closing]
+    Scope-3: [what enforcement mechanism removes the training default from the equation]
   Permanent fix: [T1 hook | T2 validator | T3 injection] that prevents the class
 ```
+
+The `AI behavior fix` field is the bridge between the training default and the mechanical prevention.
+It answers: "Even if the T1/T2/T3 didn't exist yet, what would a well-calibrated AI do differently?"
+This is what gets injected into session-open.sh (T3) when no hook is available yet.
 
 ---
 

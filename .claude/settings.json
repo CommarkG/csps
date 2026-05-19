@@ -89,6 +89,10 @@
           },
           {
             "type": "command",
+            "command": ".claude/hooks/pre-tool-use-vault-write-gate.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/pre-tool-use-claude-dir-guard.sh"
           },
           {

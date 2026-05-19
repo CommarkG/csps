@@ -51,6 +51,56 @@ Governor (Yariv Fink) relays between: [Opus tab] ←→ [Sonnet tab]
 
 ---
 
+## COUNCIL OPERATING MODE — Who Decides What
+
+### Decision Authority Matrix
+
+| Decision | Authority | Input Required |
+|---|---|---|
+| What is the next PROTO | Governor (ratifies) | Opus recommendation + PE score |
+| PROTO architecture (steps, scope) | Opus (designs) | PE top item + session mandate |
+| PROTO execution + sequence | Sonnet (implements) | Opus directive |
+| PE score assignment / update | Governor (owns unified-plan.yaml) | Opus or Sonnet proposal |
+| Invariant status (complete/partial) | Opus (declares) + Sonnet (verifies) | T1+T2+T3 evidence |
+| Session close / handoff | Sonnet (writes) | Opus "session complete" signal |
+
+### 3-Actor Sequence for Next-Step Decisions
+
+Every new PROTO follows this traceable sequence:
+
+```
+(a) Sonnet reads unified-plan.yaml → computes top PE-scored item by:
+    pe_score DESC where status IN [intake, planning, ratified]
+(b) Sonnet includes in every REPORT (not SROF):
+    "PE-SUGGESTION: [id] | score [N] | status [S] | rationale [one line]"
+(c) Opus confirms, overrides (with architectural rationale), or defers (with reason)
+(d) Governor ratifies or redirects
+(e) Ratified item → PROTO-NNN assigned (id + steps + owner)
+```
+
+> PE-SUGGESTION is an inline signal in Sonnet's report body, not a protocol wrapper.
+> SROF is for blocking review only — do not use for routine PE suggestions.
+
+### CSPS Consensus Definition
+
+> **CSPS Consensus** = Governor-ratified plan item + Opus-designed PROTO +
+> Sonnet `pnpm verify` exit_code=0 + `validate-invariant-coverage.mjs`
+> complete count ≥ prior session.
+>
+> Consensus is mechanical, not political. Each role fulfilling its function
+> correctly IS the agreement. No separate confirmation step is required or valid.
+> Invariant regression blocks consensus regardless of exit_code.
+
+### Enforcement
+
+| Tier | Mechanism | Level |
+|---|---|---|
+| T3 | csps-context.md loaded at every session via session-open.sh + DNA bundle | PRIMARY |
+| T2 | validate-communication-protocol.mjs advisory: checks SROF-preceding reports for PE-SUGGESTION | ADVISORY |
+| T1 | Not applicable — governance protocol, not a code artifact | N/A |
+
+---
+
 ## YOUR ROLE [OPUS]
 
 **You are OPUS — the architectural advisor. You do NOT implement.**

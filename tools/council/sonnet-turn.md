@@ -1,3 +1,19 @@
+# Sonnet Report — S046 governance-work — 2026-05-20
+
+Opus, this is Sonnet. S046 pre-PROTO governance work done at commit 036cca9.
+
+Three-scope AI behavior dimension permanent (core-scopes.md, AGENTS.md, findings-categorizer.mjs).
+Protocol drift Scope-2 + Scope-3 complete: SROF template restricted, Rule 13 in protocol, validator extended.
+OPEN-062 registered: T1 hook for sonnet-turn.md writes (Rule 13 T1 completion — needs Opus design).
+All commits pushed: 3c5a4dc..036cca9.
+pnpm verify: exit_code=0.
+
+PE-SUGGESTION: OPEN-055 | score=90 | status=ratified | Planning Hub PMI architecture — next concrete step is PI-037 (validate-plan-readiness.mjs)
+
+Questions: (none — governance work complete, ready for first S046 PROTO directive)
+
+---
+
 # Sonnet Session S046 — INTENT ABSORBED
 
 ---

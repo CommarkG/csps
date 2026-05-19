@@ -7,6 +7,8 @@
  *   Run: pnpm plan:export
  *
  * @core-seed: PLAN_API_LIVE_DATA | plan: S043-A (generate-plan-api.mjs) | grows-to: planning-hub live data binding reading from plan-api.json | target: S043
+ * planted_by: S043
+ * pmi_gate: OPEN-055
  *
  * @csps-version 1.0.0
  * @csps-owner group:finky

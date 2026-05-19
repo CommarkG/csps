@@ -78,6 +78,10 @@ function walkForSeeds(dir, exts = ['.mjs', '.sh']) {
             const planMatch = line.match(/plan:\s*([^|]+)/);
             const growsToMatch = line.match(/grows-to:\s*([^|]+)/);
             const targetMatch = line.match(/target:\s*(\S+)/);
+            // OPEN-059: scan next 5 lines for planted_by: and pmi_gate: fields
+            const nearby = lines.slice(idx + 1, idx + 6).join('\n');
+            const plantedByMatch = nearby.match(/planted_by:\s*(\S+)/);
+            const pmiGateMatch = nearby.match(/pmi_gate:\s*(\S+)/);
             seeds.push({
               file: full.replace(ROOT + '/', '').replace(ROOT + '\\', ''),
               line: idx + 1,
@@ -85,6 +89,8 @@ function walkForSeeds(dir, exts = ['.mjs', '.sh']) {
               plan: planMatch ? planMatch[1].trim() : null,
               growsTo: growsToMatch ? growsToMatch[1].trim() : null,
               target: targetMatch ? targetMatch[1].trim() : null,
+              plantedBy: plantedByMatch ? plantedByMatch[1].trim() : null,
+              pmiGate: pmiGateMatch ? pmiGateMatch[1].trim() : null,
               rawLine: line.trim()
             });
           }
@@ -182,8 +188,38 @@ async function main() {
     }
   }
 
+  // OPEN-059: Check A — planted_by field presence on active seeds
+  // OPEN-059: Check B — pmi_gate cross-reference against unified-plan.yaml
+  const activeSeeds = valid.filter(s => s.growsTo && !/DEPRECATED/i.test(s.growsTo));
+  let plantedByPresent = 0;
+  let pmiGateValid = 0;
+  let planItems = [];
+  try {
+    const yaml = (await import('js-yaml')).default;
+    const planYaml = readFileSync(join(ROOT, 'tools/config/unified-plan.yaml'), 'utf8');
+    const planData = yaml.load(planYaml);
+    planItems = (planData.items || []).map(i => i.id);
+  } catch(e) { /* skip cross-ref if parse fails */ }
+
+  for (const s of activeSeeds) {
+    // Check A: planted_by
+    if (s.plantedBy) {
+      plantedByPresent++;
+    } else {
+      console.log(`  ADVISORY [OPEN-059] SEED ${s.name}: missing planted_by field (which session planted this seed?)`);
+    }
+    // Check B: pmi_gate cross-reference
+    if (s.pmiGate) {
+      if (planItems.length > 0 && !planItems.includes(s.pmiGate)) {
+        console.log(`  ADVISORY [OPEN-059] SEED ${s.name}: pmi_gate=${s.pmiGate} not found in unified-plan.yaml (stale reference?)`);
+      } else {
+        pmiGateValid++;
+      }
+    }
+  }
+
   const statusLabel = overdue.length > 0 ? 'ADVISORY-OVERDUE' : 'CLEAN';
-  console.log(`\n[validate-core-seeds] seeds_found=${seeds.length} valid=${valid.length} malformed=${malformed.length} overdue=${overdue.length} current=${current.length} no_target=${noTarget.length} status=${statusLabel}`);
+  console.log(`\n[validate-core-seeds] seeds_found=${seeds.length} valid=${valid.length} malformed=${malformed.length} overdue=${overdue.length} current=${current.length} no_target=${noTarget.length} active=${activeSeeds.length} planted_by_present=${plantedByPresent} pmi_gate_valid=${pmiGateValid} status=${statusLabel}`);
   console.log('[validate-core-seeds] enforcement_stage=advisory — exits 0 always; overdue seeds are advisory debt');
   process.exit(0);
 }

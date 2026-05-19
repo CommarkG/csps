@@ -14,6 +14,8 @@
  * @csps-tags type:validator domain:governance audience:developer
  *
  * @core-seed: PLAN_READINESS_GATE | plan: PI-037 (validate-plan-readiness.mjs) | grows-to: BLOCKING gate preventing implementation of under-matured plan items | target: S044
+ * planted_by: S044
+ * pmi_gate: PI-037
  *
  * Exit: 1 if any implementing item has PMI < 4/5. 0 otherwise (advisories still emit).
  * Output: items_checked=N pmi_ready=N premature_implementing=N advisory_ratified=N

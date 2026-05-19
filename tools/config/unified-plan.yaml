@@ -167,7 +167,7 @@ items:
 
   - id: OPEN-059
     title: Core seeds enhanced — add planted-by and pmi-gate fields
-    status: ratified
+    status: done
     category: governance
     owner: sonnet
     pe_score: 85
@@ -179,7 +179,7 @@ items:
       reversibility: high
       dependency_clarity: high
     depends_on: [OPEN-055]
-    notes: "Opus-plants/Sonnet-grows model. Seeds reference unified-plan.yaml item IDs."
+    notes: "DONE S045 PROTO-038. planted_by + pmi_gate fields added to validate-core-seeds.mjs. Active seeds updated. Opus-plants/Sonnet-grows model live."
 
   # --- PLANNING (accumulating value) --------------------------------------
 

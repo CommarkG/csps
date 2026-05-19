@@ -1077,6 +1077,15 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/advisories=(\d+)/); return m ? { advisories: Number(m[1]) } : {}; },
   },
   {
+    // S044 Step 2 (PROTO-035): validate-agent-calls.mjs — T2 for INV-004
+    name: 'agent_calls_compliance',
+    command: 'node tools/validators/validate-agent-calls.mjs',
+    parse_output: (out) => {
+      const m = out.match(/agent_calls_checked=(\d+)\s+compliant=(\d+)\s+advisory=(\d+)/);
+      return m ? { agent_calls_checked: Number(m[1]), compliant: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // S044 Step 3: invariant coverage — checks T1+T2 exist per invariant in invariant-registry.yaml
     name: 'invariant_coverage',
     command: 'node tools/validators/validate-invariant-coverage.mjs',

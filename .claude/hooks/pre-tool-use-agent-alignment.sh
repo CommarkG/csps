@@ -4,8 +4,8 @@
 # @csps-description B_BOUNDARY_ALIGNMENT_PROTOCOL Type B — Agent() call prompt must
 #   contain UNDERSTANDING BLOCK preamble before spawn. Checks for any of:
 #   "INTENT ABSORBED" / "BOUNDARY CROSSING" / "UNDERSTANDING BLOCK" / "I understand the request".
-#   ADVISORY Phase 1 (S024); BLOCKING week-4 (B_STRUCTURAL_PREVENTION_DISCIPLINE K=2).
-# @csps-version 1.0.0-advisory
+#   BLOCKING (S044 PROTO-034 Step 4 — K=2 overdue, INV-004 upgrade).
+# @csps-version 1.1.0-blocking
 # @csps-owner group:finky
 # @csps-lifecycle production
 # @csps-lifecycle-state active
@@ -43,9 +43,7 @@ if echo "$PROMPT" | grep -qiE \
   exit 0
 fi
 
-# Advisory — missing understanding block in agent prompt
-printf '{
-  "systemMessage": "⚠ [agent-alignment] ADVISORY (B_BOUNDARY_ALIGNMENT_PROTOCOL Type B): Agent() prompt missing UNDERSTANDING BLOCK.\\n\\nAdd to start of agent prompt:\\n\\n  BOUNDARY CROSSING — Type B (AI→subagent):\\n    I understand the request as: [Layer 3 intent — not Layer 1 expression]\\n    I will produce: [specific output expected back]\\n    This serves: [platform goal]\\n\\nPhase 1: advisory (proceeding). Week-4 promotion to BLOCKING per B_STRUCTURAL_PREVENTION_DISCIPLINE K=2."
-}'
+# BLOCKING — missing understanding block in agent prompt
+printf '{"continue": false, "stopReason": "BLOCKED [agent-alignment] B_BOUNDARY_ALIGNMENT_PROTOCOL Type B: Agent() prompt missing UNDERSTANDING BLOCK. Add to start of agent prompt: BOUNDARY CROSSING — Type B (AI→subagent): / I understand the request as: [Layer 3 intent] / I will produce: [specific output] / This serves: [platform goal]. INV-004 enforcement — S044 PROTO-034 Step 4 upgrade from ADVISORY to BLOCKING."}'
 
-exit 0
+exit 1

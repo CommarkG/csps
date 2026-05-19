@@ -836,6 +836,17 @@ const CYCLES = [
       return m ? { checked: Number(m[1]), with_field: Number(m[2]), missing: Number(m[3]) } : {};
     },
   },
+  {
+    // Core Seeds — S043: wired to verify (was only standalone before)
+    // Scans @core-seed annotations. Reports overdue seeds + seeds missing grows-to artifact.
+    name: 'core_seeds_coverage',
+    command: 'node tools/validators/validate-core-seeds.mjs',
+    parse_output: (out) => {
+      const m = out.match(/seeds_found=(\d+).*overdue=(\d+)/);
+      return m ? { seeds_found: Number(m[1]), overdue: Number(m[2]) } : {};
+    },
+    advisories: 0,
+  },
   // Session C+S023 monitoring validators
   // S023 Sandbox Ratification Policy validators
   { name: 'simulation_before_implementation', command: 'node tools/validators/validate-simulation-before-implementation.mjs', parse_output: (out) => { const m = out.match(/checked=(d+)s+blocking=(d+)s+advisory=(d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; } },

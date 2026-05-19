@@ -1077,6 +1077,15 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/advisories=(\d+)/); return m ? { advisories: Number(m[1]) } : {}; },
   },
   {
+    // S044 Step 3: invariant coverage — checks T1+T2 exist per invariant in invariant-registry.yaml
+    name: 'invariant_coverage',
+    command: 'node tools/validators/validate-invariant-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/invariants_checked=(\d+)\s+complete=(\d+)\s+partial=(\d+)\s+minimal=(\d+)/);
+      return m ? { invariants_checked: Number(m[1]), complete: Number(m[2]), partial: Number(m[3]), minimal: Number(m[4]), advisory: true } : {};
+    },
+  },
+  {
     // PI-037: plan readiness gate — PMI scoring per plan item (BLOCKING for implementing < 4/5)
     name: 'plan_readiness',
     command: 'node tools/validators/validate-plan-readiness.mjs',

@@ -1,3 +1,33 @@
+# Sonnet Session S045 — INTENT ABSORBED (PROTO-036 Steps 1-3b)
+
+---
+YOU ARE: OPUS-4 (Claude Opus), the architectural advisor.
+I AM: Sonnet (builder/implementer), S045.
+THIS IS THE SITUATION: S045 open. S044 closed at f0ccb32. PROTO-036 is the mandate — 4 steps to extend vault gate, add dual-focal-plan template, and build inheritance-registry with delete guard extension.
+YOUR TASK: None yet — this is intake. Await report after each step.
+---
+
+## Baseline Verification (pre-implementation)
+- git log: f0ccb32 confirmed at HEAD ✓
+- node tools/verify.mjs: exit_code=0 ✓
+- validate-invariant-coverage.mjs: complete=4 partial=1 ✓ (INV-003 T1 still missing — known)
+
+## PROTO-036 Steps Understood
+- Step 1: pre-tool-use-vault-write-gate.sh — ADVISORY hook, fires before Write to docs/plan/_handoff/VAULT/, asks "Did you check template-registry.md first?"
+- Step 2: dual-focal-plan.template.yaml — outward (user needs) + inward (platform needs) planning template, registered in template-registry.md
+- Step 3a: inheritance-registry.yaml — 6-field schema (id, parent_path, children, propagation, delete_guard, notes), maps parent→child relationships
+- Step 3b: pre-commit-delete-guard.sh — extend to check inheritance-registry.yaml in addition to invariant-registry.yaml
+
+## Corrections Absorbed (from OPUS-3 final relay)
+- Last commit: f0ccb32 (not d43fc0b as previously stated)
+- Context brief: csps-context.md is ONE SOURCE (supersedes opus-context.md + sonnet-context.md)
+- New advisor: OPUS-4 (Turn 1 of OPUS-4, not "Turn 105")
+- OPEN-061 registered: council-state.json has no opus_instance field — secondary S045 task
+
+**Governor: if anything above is wrong, correct before I proceed.**
+
+---
+
 # Sonnet Session S044 — INTENT ABSORBED (PROTO-034 Steps 0-5)
 
 ---

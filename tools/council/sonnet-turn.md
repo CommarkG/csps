@@ -1,3 +1,29 @@
+# Sonnet Session S046 — INTENT ABSORBED
+
+---
+YOU ARE: OPUS-4 (Claude Opus), the architectural advisor.
+I AM: Sonnet (builder/implementer), S046.
+THIS IS THE SITUATION: S046 open in same tab (TAB-SESSION MODEL absorbed). S045 closed clean
+at 10f0072 (exit_code=0, HANDOFF pushed). S046 mandate: INV-003 T1 + PROTO-039 batched mode.
+YOUR TASK: None yet — this is intake. Await first PROTO directive.
+---
+
+## S046 Mandate Absorbed (from HANDOFF-S045-to-S046.md Zone B)
+- Primary 1: INV-003 T1 — post-stop-directive-rzf-gate.sh (invariant system to 5/5)
+  Blocked on Opus design: hook environment question (response text available as file path?)
+- Primary 2: PROTO-039 — Batched Directive Mode in csps-context.md
+  Blocked on Opus specification: format + consensus-compatibility check
+- Secondary: PI-037 (pe_score=85), OPEN-055, OPEN-061 (council-state.json)
+
+## Baseline Verified
+- exit_code=0 at 10f0072 ✓
+- TAB-SESSION MODEL: session ends → HANDOFF → push → stay in tab → await next PROTO ✓
+- Turn count this tab: ~11
+
+**Governor/Opus: if anything above is wrong, correct before sending first PROTO.**
+
+---
+
 # Sonnet Session S045 — INTENT ABSORBED (PROTO-036 Steps 1-3b)
 
 ---

@@ -1,0 +1,138 @@
+# tools/config/invariant-registry.yaml
+# ONE SOURCE for every CSPS platform invariant.
+# An invariant holds true regardless of: AI model, chat/session, time since last activity, training defaults.
+# Full enforcement requires: T1 (before AI acts) + T2 (before merge) + T3 (session start) + DNA + core seed.
+# Schema owner: opus | Data owner: governor
+# Created: S044 PROTO-034 Step 1
+# Ratification: Opus Turn 103 A1 alignment answers
+
+metadata:
+  version: "1.0"
+  created_session: S044
+  last_updated: "2026-05-19"
+  schema_owner: opus
+  data_owner: governor
+  enforcement_note: >
+    T1 = hook that fires before AI acts (PreToolUse or Stop hook).
+    T2 = validator wired into pnpm verify that BLOCKS commits.
+    T3 = session-open injection (necessary but insufficient alone — T3-only drifts by turn 10).
+    status: complete = T1+T2+T3 all active | partial = one missing | minimal = T1 or T2 absent
+
+invariants:
+
+  # ── COMPLETE (T1+T2+T3 all active) ──────────────────────────────────────────
+
+  - id: INV-001
+    name: plan-before-implement
+    description: "No code without a ratified plan item in unified-plan.yaml or opus-open-items.md"
+    status: complete
+    enforcement:
+      t1: pre-tool-use-plan-coverage-gate.sh
+      t1_state: PRODUCTION (BLOCKING — exits 1 for new libs/apps files without plan)
+      t2: validate-no-implementation-without-plan.mjs
+      t2_state: PRODUCTION (wired into pnpm verify)
+      t3: session-open PRACE block + Q15 "INITIATED BY WHOM"
+    training_default: "Implement immediately when asked or approved"
+    satisfaction_point: "Code is written and committed"
+    prace_override: "Check unified-plan.yaml for item with status=ratified before any new file"
+    cold_start_anchor: "unified-plan.yaml item with status=ratified in git"
+    inheritance:
+      parent: P-META-026
+      enforces_on: all implementation actions in libs/ apps/
+    delete_guard: false
+    violation_response: "pre-tool-use-plan-coverage-gate.sh exits 1 — Claude Code blocks tool call"
+
+  - id: INV-002
+    name: handoff-completeness
+    description: "Session cannot close without Zone A + Zone B + ## ALIGNMENT QUESTIONS (3+ required)"
+    status: complete
+    enforcement:
+      t1: post-stop-session-close-gate.sh
+      t1_state: PRODUCTION (BLOCKING — fires on Stop event)
+      t2: validate-handoff-completeness.mjs
+      t2_state: BLOCKING (wired into pnpm verify, exits 1 if missing mandatory sections)
+      t3: session-open B_INHERITANCE_POLICY injection
+    training_default: "End session when work seems done"
+    satisfaction_point: "Summary is written, session feels complete"
+    prace_override: "Write HANDOFF-S[N]-to-S[N+1].md with Zone A/B/ALIGNMENT QUESTIONS or pnpm verify blocks"
+    cold_start_anchor: "HANDOFF-S[NNN]-to-S[NNN+1].md in git"
+    inheritance:
+      parent: B_INHERITANCE_POLICY
+      enforces_on: every session close
+    delete_guard: true
+    violation_response: "validate-handoff-completeness.mjs exits 1 — verify blocks commit"
+
+  # ── PARTIAL (T1 missing, T2 active) ─────────────────────────────────────────
+
+  - id: INV-003
+    name: rzf-before-directive
+    description: "Every Sonnet directive must have ## RZF VERIFICATION before ## SONNET DIRECTIVE in opus-turn.md"
+    status: partial
+    enforcement:
+      t1: MISSING
+      t1_state: "No hook fires if ## SONNET DIRECTIVE appears without ## RZF VERIFICATION"
+      t2: validate-directive-has-rzf.mjs
+      t2_state: BLOCKING (exits 1 for most-recent turn and turns >= Turn 96)
+      t3: session-open injection — RULE 9 Pre-Directive RZF
+    training_default: "Write directive when asked, skip verification cycles"
+    satisfaction_point: "Directive is written and looks complete"
+    prace_override: "Run ZF cycles with tool calls BEFORE any ## SONNET DIRECTIVE section"
+    cold_start_anchor: "sonnet-report.template.md rule in git + session-open Rule 9 injection"
+    inheritance:
+      parent: B_RZF + communication-protocol-shared.md Rule 9
+      enforces_on: all Opus turns with SONNET DIRECTIVE sections
+    gap: "T1 missing — hook would detect ## SONNET DIRECTIVE without preceding ## RZF VERIFICATION"
+    gap_priority: medium
+    upgrade_path: "Build post-stop-directive-rzf-gate.sh (pre-planned in communication-protocol-shared.md)"
+    delete_guard: false
+    violation_response: "validate-directive-has-rzf.mjs exits 1 — verify blocks commit"
+
+  # ── MINIMAL (T1 advisory, T2 absent) ────────────────────────────────────────
+
+  - id: INV-004
+    name: agent-understanding-block
+    description: "Every Agent() call must include UNDERSTANDING BLOCK — boundary crossing declaration"
+    status: minimal
+    enforcement:
+      t1: pre-tool-use-agent-alignment.sh
+      t1_state: "ADVISORY (exits 0) — UPGRADING TO BLOCKING in PROTO-034 Step 4"
+      t2: MISSING
+      t2_state: "No validator checks Agent() calls in committed files"
+      t3: session-open + AGENTS.md hard NO
+    training_default: "Spawn agent with task, skip boundary context"
+    satisfaction_point: "Agent receives task description"
+    prace_override: >
+      Agent prompt must contain: BOUNDARY CROSSING — Type B
+      AND one of: 'I understand the request as' OR 'I will produce' OR 'This serves'
+    cold_start_anchor: "AGENTS.md hard NO in git"
+    inheritance:
+      parent: B_AGENT_ALIGNMENT_PROTOCOL
+      enforces_on: all Agent() tool calls
+    gap: "T1 advisory → BLOCKING in Step 4. T2 missing — validate-agent-calls.mjs needed"
+    gap_priority: high
+    upgrade_path: "Step 4 of this PROTO (T1 → BLOCKING). T2 = S045 candidate"
+    delete_guard: false
+    violation_response: "Currently only advisory warning. After Step 4: exits 1 blocks call"
+
+  - id: INV-005
+    name: dna-block-on-creation
+    description: "Every new platform artifact must carry DNA (@csps-id/@csps-name/governing fields)"
+    status: minimal
+    enforcement:
+      t1: pre-tool-use-check-existing.sh
+      t1_state: "ADVISORY — fires for docs/tools new files, suggests search. Does not enforce DNA."
+      t2: validate-page-dna.mjs
+      t2_state: "ADVISORY — scans playground HTML only, not all governed artifacts"
+      t3: session-open PRACE block + DNA mandate
+    training_default: "Create artifact with content, skip governance header"
+    satisfaction_point: "File exists and contains the intended content"
+    prace_override: "Add @csps-id / @csps-name / @csps-enforces as first content in any new file"
+    cold_start_anchor: "@csps-dna annotation pattern + validate-new-file-dna.mjs for libs/"
+    inheritance:
+      parent: B_FIVE_SURFACE_ENGRAVING + validate-new-file-dna.mjs (BLOCKING for libs/)
+      enforces_on: new governed artifacts (docs/ tools/ .claude/)
+    gap: "T1 only searches 'did you check what exists' — not DNA content. T2 limited to playground."
+    gap_priority: medium
+    upgrade_path: "OPEN-060 (pmi-gate field + inherits_from mandatory)"
+    delete_guard: false
+    violation_response: "Advisory warning only. validate-new-file-dna.mjs BLOCKS for libs/ only."

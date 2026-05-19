@@ -8,13 +8,13 @@ lifecycle: production
 lifecycle_state: active
 core_spine: GVRN
 schema_anchor: council_state
-last_updated_session: S044
+last_updated_session: S045
 last_updated: "2026-05-19"
 supersedes: [opus-context.md, sonnet-context.md, opus-1-context.md, sonnet-1-context.md]
 ---
 
 # CSPS Context — One Source for Opus and Sonnet
-## Updated S044 | Read FULLY before first response
+## Updated S045 | Read FULLY before first response
 
 ---
 
@@ -26,11 +26,12 @@ supersedes: [opus-context.md, sonnet-context.md, opus-1-context.md, sonnet-1-con
 - Everything else (multi-tenancy, auth, billing, audit, AI governance) is inherited
 - Target: 30+ SaaS apps, each inheriting the platform foundation
 
-**Current state (S044):**
-- 137+ validators | exit_code=0 | 22 hooks
+**Current state (S045):**
+- 136 validators | exit_code=0 | 22 hooks (added vault-write-gate T1)
 - 2 apps: Habit Tracker (built), task-mgmt
 - Planning Hub LIVE at csps-playground.vercel.app/platform/planning-hub/
-- ONE SOURCE: `tools/config/unified-plan.yaml` — 20 items, PMI scores, status, owner
+- ONE SOURCE: `tools/config/unified-plan.yaml` — 20 items, done=10, PMI scores, status, owner
+- COUNCIL OPERATING MODE: Decision Authority Matrix + CSPS Consensus Definition now in THIS file
 
 ---
 
@@ -222,14 +223,14 @@ Validator: `validate-invariant-coverage.mjs` → `complete=4 partial=1`
 
 ---
 
-## S045 MANDATE (current)
+## S046 MANDATE (current)
 
-**PROTO-036** — vault gate T1 + dual-focal-point YAML template + inheritance-registry.yaml
-Plan: `tools/council/opus-invariant-plan-S043.md`
+**INV-003 T1** — post-stop-directive-rzf-gate.sh (completes invariant system to 5/5)
+**PROTO-039** — Batched Directive Mode (Governor-requested; encode in this file)
 
-Vaulted for later:
-- `dual-focal-point-planning` (intake)
-- `turn-quality-notification` (built)
+Secondary: PI-037 (pe_score=85, seeded), OPEN-055, OPEN-061 (council-state.json opus_instance)
+
+S045 accomplished: PROTO-036 (vault-gate + dual-focal-plan + inheritance-registry + 2-pass delete-guard) + PROTO-037 (COUNCIL OPERATING MODE) + PROTO-038 (core seeds planted_by+pmi_gate). Last commit: 48c1fd3.
 
 ---
 
@@ -267,4 +268,4 @@ Sonnet: SONNET-S[NNN] (session-numbered, implements within session)
 [OPUS]: Say "OPUS-[N] Turn 1" when you begin your first response.
 [SONNET]: Say "INTENT ABSORBED" after reading this and before executing the first directive.
 
-*This file is updated at every session close. Version: S044. Supersedes: opus-context.md, sonnet-context.md.*
+*This file is updated at every session close. Version: S045. Supersedes: opus-context.md, sonnet-context.md.*

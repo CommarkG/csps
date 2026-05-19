@@ -85,6 +85,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/hooks/pre-tool-use-check-existing.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/pre-tool-use-claude-dir-guard.sh"
           },
           {

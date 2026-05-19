@@ -1,0 +1,303 @@
+# tools/config/unified-plan.yaml
+# ONE SOURCE for all CSPS planning state — S043
+# Governor-approved schema. Do not modify schema without Opus ratification.
+#
+# Status values: intake | planning | ratified | implementing | activation | done
+# Owner values: opus | sonnet | governor | shared
+# Category values: governance | architecture | ai-behavior | product | infrastructure
+#
+# PMI (Plan Maturity Index) — 5 indicators per item:
+#   intent_depth: was intent human-authored and challenged?
+#   cross_ref_density: how many other items reference this?
+#   consensus_width: how many viewpoints engaged?
+#   reversibility: how easy to undo if wrong?
+#   dependency_clarity: are all dependencies resolved or explicitly deferred?
+#
+# Items move to implementing ONLY when PMI >= 4/5 HIGH AND Governor ratifies.
+# activation_exit options: governor-explicit | n-sessions: N | n-uses: N | evaluation-passed
+
+metadata:
+  version: "1.0"
+  created_session: S043
+  last_updated: "2026-05-19"
+  governance: "P-META-026 (plan before implement) + PMI maturity gating + Core Seeds (OPEN-059)"
+  schema_owner: opus
+  data_owner: governor
+
+items:
+
+  # --- CONSTITUTIONAL / RATIFIED ------------------------------------------
+
+  - id: P-META-026
+    title: Planning-before-implementing as primary pillar
+    status: done
+    category: governance
+    owner: governor
+    pe_score: 95
+    tags: [constitutional, ratified, s040]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "Ratified 2026-05-17. Governs all implementation decisions."
+
+  - id: B_PRACE
+    title: Permanent Recurring AI Contextual Enforcement — Constitutional M-27
+    status: done
+    category: governance
+    owner: governor
+    pe_score: 95
+    tags: [constitutional, moat, ratified, s040]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "Ratified S040. 5/5 FSE. session-open T3 + ai-profiler T1 + validate-rule-has-enforcement T2 all active."
+
+  - id: B_INHERITANCE_POLICY
+    title: Every chat boundary must transfer complete governance context
+    status: done
+    category: governance
+    owner: governor
+    pe_score: 90
+    tags: [constitutional, s040]
+    notes: "Turn counter at 25. BLOCKING handoff validator. Zone A+B+ALIGNMENT QUESTIONS mandatory."
+
+  - id: M-27-M-28
+    title: Moats M-27 (PRACE) + M-28 (PMI + CAQ)
+    status: done
+    category: governance
+    owner: governor
+    pe_score: 90
+    tags: [moat, constitutional, s040-s043]
+    notes: "M-27 = PRACE philosophy. M-28 = Plan Maturity Index + Context Alignment Questions."
+
+  # --- IN ACTIVATION (built, evaluating results) --------------------------
+
+  - id: OPEN-051
+    title: findings-categorizer.mjs — Core Scopes S1/S2/S3 tagging
+    status: activation
+    category: infrastructure
+    owner: sonnet
+    pe_score: 80
+    tags: [three-scopes, mechanical-default, s041]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: high
+    activation_exit: "n-sessions: 3"
+    activation_period:
+      started: "2026-05-19"
+      q1_behavior_match: "partial — stdin piping required 4 iterations to fix"
+      q2_unexpected_ripples: "none detected"
+      q3_same_decision: "yes with one change — check upstream JSON structure first"
+      verdict: partial
+    notes: "Stay in activation 2 more sessions. Lesson: check JSON structure before building a reader."
+
+  # --- DONE ---------------------------------------------------------------
+
+  - id: OPEN-049
+    title: enforcement_tier backfill on all 63 behavioral contracts
+    status: done
+    category: governance
+    owner: sonnet
+    pe_score: 80
+    tags: [enforcement, contracts, backfill, s043]
+    notes: "DONE 881f3ed. no_enforcement=0 on all 63 contracts. 45 T3-only now visible."
+
+  - id: PI-031
+    title: DNA Registry — tools/config/dna-registry.yaml (16 components)
+    status: done
+    category: architecture
+    owner: sonnet
+    pe_score: 80
+    tags: [dna, registry, s040]
+    notes: "DONE. always_include for new-ai-tab bundle."
+
+  - id: PI-032
+    title: DNA Bundle Engine — pnpm dna:bundle
+    status: done
+    category: architecture
+    owner: sonnet
+    pe_score: 75
+    tags: [dna, bundle-engine, s040]
+    notes: "DONE. pnpm dna:bundle --target=new-ai-tab works."
+
+  - id: habit-tracker-app
+    title: Habit Tracker — App #2 built from scratch
+    status: done
+    category: product
+    owner: sonnet
+    pe_score: 70
+    tags: [app, s040]
+    notes: "Built clean. Needs Vercel deploy (Governor action). Schema: Habit + HabitLog."
+
+  # --- RATIFIED (ready when PMI clears and Governor approves) -------------
+
+  - id: OPEN-055
+    title: Unified Planning Initiative — this file IS the first deliverable
+    status: ratified
+    category: architecture
+    owner: shared
+    pe_score: 90
+    tags: [plan-hub, pmi, architecture, s043-mandate]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: medium
+    depends_on: []
+    caq_questions:
+      - "Is the schema extensible enough for PI items AND OPEN items AND governance concepts in the same list?"
+      - "What migration path exists for the 71 existing opus-open-items.md entries?"
+    notes: "This file is Step 1 of OPEN-055. Next: validate-plan-readiness.mjs (PI-037)."
+    core_seed:
+      id: UNIFIED_PLAN_SOURCE
+      planted_by: opus
+      grows_to: "validate-plan-readiness.mjs — PMI scoring validator that reads this file"
+      pmi_gate: "consensus_width=high on PI-037"
+      caq: "Has the PMI formula been validated against at least 3 diverse plan items?"
+
+  - id: OPEN-059
+    title: Core seeds enhanced — add planted-by and pmi-gate fields
+    status: ratified
+    category: governance
+    owner: sonnet
+    pe_score: 85
+    tags: [core-seeds, enhancement, s043]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    depends_on: [OPEN-055]
+    notes: "Opus-plants/Sonnet-grows model. Seeds reference unified-plan.yaml item IDs."
+
+  # --- PLANNING (accumulating value) --------------------------------------
+
+  - id: OPEN-053
+    title: B_CATCH_TO_ENGRAVING T1+T2 build
+    status: planning
+    category: governance
+    owner: sonnet
+    pe_score: 75
+    tags: [S3, catch-to-engraving, advisory-first, s042]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: high
+    caq_questions:
+      - "After 3 advisory sessions — what is the measured false-positive rate?"
+    activation_exit: "n-sessions: 3"
+    notes: "ADVISORY first. Promote to BLOCKING after <20% false positive rate confirmed."
+    core_seed:
+      id: CATCH_TO_ENGRAVING_T1
+      planted_by: opus
+      grows_to: "post-stop-catch-to-engraving.sh — scans response for discovery language without EP-ERR creation"
+      pmi_gate: "consensus_width=high AND 3 advisory sessions complete"
+      caq: "What is the measured false-positive rate from the advisory period?"
+
+  - id: OPEN-057
+    title: Fix core seeds overdue detection — use plan-item-status not session-number
+    status: planning
+    category: infrastructure
+    owner: sonnet
+    pe_score: 80
+    tags: [core-seeds, fix, s043]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: medium
+    depends_on: [OPEN-055]
+    notes: "Requires unified-plan.yaml to exist first. Seeds target plan item IDs, not session numbers."
+
+  - id: PI-037
+    title: validate-plan-readiness.mjs — PMI scoring per plan item in unified-plan.yaml
+    status: planning
+    category: infrastructure
+    owner: sonnet
+    pe_score: 85
+    tags: [pmi, plan-hub, s043]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: medium
+    depends_on: [OPEN-055]
+    caq_questions:
+      - "Should PMI score affect PE scoring? (higher PMI = higher effective PE)"
+    notes: "Depends on unified-plan.yaml existing first. This is Step 2 of OPEN-055."
+
+  - id: prevention-framework
+    title: Prevention Framework — B_PREVENTION_FIRST contract + pre-tool-use-check-existing.sh
+    status: planning
+    category: governance
+    owner: shared
+    pe_score: 80
+    tags: [prevention, s043, S3]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "Framework document drafted (prevention-framework.md). T1 hook (OPEN-057) and T2 validator needed."
+    core_seed:
+      id: PREVENTION_T1_GATE
+      planted_by: opus
+      grows_to: "pre-tool-use-check-existing.sh — fires before any new docs/ write with 'did you search first?'"
+      pmi_gate: "consensus_width=high on prevention-framework"
+      caq: "Has B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK been verified to have T1 enforcement?"
+
+  # --- INTAKE (just registered, accumulating) -----------------------------
+
+  - id: OPEN-030
+    title: App #3 direction — [Temp name!!!]
+    status: intake
+    category: product
+    owner: governor
+    pe_score: 80
+    tags: [app3, ext-know, deferred]
+    depends_on: [OPEN-029]
+    notes: "Awaiting Governor decision after EXT-KNOW 04-11 absorbed."
+
+  - id: OPEN-029
+    title: Absorb [Temp name!!!] research files 04-11 as EXT-KNOW
+    status: intake
+    category: architecture
+    owner: shared
+    pe_score: 85
+    tags: [ext-know, absorption]
+    notes: "Awaiting Governor file upload. No action without upload."
+
+  - id: consultation-from-playground
+    title: Playground pages to Claude API direct consultation
+    status: intake
+    category: product
+    owner: shared
+    pe_score: 70
+    tags: [playground, consultation, api]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: medium
+      dependency_clarity: low
+    depends_on: []
+    caq_questions:
+      - "Should the playground restructure to Next.js, or use a lightweight proxy instead?"
+      - "Who manages the ANTHROPIC_API_KEY rotation?"
+    notes: "Requires Next.js restructure OR Vercel Edge Function. Governor decision on approach needed."

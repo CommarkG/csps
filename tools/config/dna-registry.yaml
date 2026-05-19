@@ -194,3 +194,12 @@ components:
     depth_level: L3
     always_include: false
     summary: "Registry of absorbed external knowledge (EXT-KNOW-001 through 003). [Temp name!!!] competitor landscape, market hypothesis, document architecture patterns. Pending: 04-11 series."
+
+  - id: unified-plan
+    path: tools/config/unified-plan.yaml
+    scope: repo
+    category: knowledge
+    audience: [all]
+    depth_level: L2
+    always_include: true
+    summary: "ONE SOURCE for all CSPS planning state. 20+ items with PMI scores, status, owner, core seeds. Any model in any chat reads this to know what's planned, ratified, implementing, and done."

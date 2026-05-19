@@ -31,6 +31,24 @@ tracker.turn_count_this_session = (tracker.turn_count_this_session || 0) + 1;
 const turn = tracker.turn_count_this_session;
 try { fs.writeFileSync(trackerPath, JSON.stringify(tracker, null, 2)); } catch(e) {}
 
+// ── Quality degradation warning at turn thresholds ────────────────────────
+if (turn === 40) {
+  console.log(JSON.stringify({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext:
+    '⚠️ [QUALITY GATE — TURN 40] Context quality is degrading. Rules from early turns are less salient.\n' +
+    'Consider: write HANDOFF + open a fresh tab, even with tokens remaining.\n' +
+    'Quality matters more than token savings. (Governor directive S044)'
+  }}));
+  process.exit(0);
+}
+if (turn >= 60 && turn % 10 === 0) {
+  console.log(JSON.stringify({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext:
+    '🚨 [QUALITY GATE — TURN ' + turn + '] STRONG RECOMMENDATION: Move to a new tab NOW.\n' +
+    'Context at this length has significant governance drift risk.\n' +
+    'Action: pnpm dna:bundle --target=new-ai-tab → write HANDOFF → open fresh tab.'
+  }}));
+  process.exit(0);
+}
+
 // ── Only output on refresh turns (every 25) ────────────────────────────────
 const REFRESH_EVERY = 25;
 if (turn % REFRESH_EVERY !== 0) {

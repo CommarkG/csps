@@ -301,3 +301,74 @@ items:
       - "Should the playground restructure to Next.js, or use a lightweight proxy instead?"
       - "Who manages the ANTHROPIC_API_KEY rotation?"
     notes: "Requires Next.js restructure OR Vercel Edge Function. Governor decision on approach needed."
+
+  - id: dual-focal-point-planning
+    title: Dual Focal Point Planning — outward (user) + inward (core spine) simultaneously
+    status: intake
+    category: architecture
+    owner: governor
+    pe_score: 90
+    tags: [vault, architectural-principle, template-reuse, core-spines, S044-intake]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: medium
+    depends_on: [OPEN-055, invariant-registry]
+    caq_questions:
+      - "Which existing validated core element covers 80%+ of project-management planning?"
+      - "What is the L1/L2/L3 breakdown for 'project management' in CSPS core spines?"
+      - "How does the intake wizard enforce 'check existing validated element first'?"
+    notes: |
+      Governor directive S044. Vaulted per VAULT_DEFER protocol — process after active plans reach RZF.
+
+      CONCEPT: Every new capability/app gets planned with TWO focal points simultaneously:
+        OUTWARD: user journeys, interface, tiers, permissions, specific use cases
+        INWARD: which existing validated core element does this build on?
+                L1 principle → L2 domain implementation → L3 specific delta
+
+      INVARIANT: Never recreate a validated core element. The system must MECHANICALLY
+      enforce checking what exists at planning time — not as a reminder, as a gate.
+      B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK exists (T3-only). Needs T1+T2 upgrade.
+
+      TEMPLATE CONNECTION: apps/template/ + platform/templates/vault/ are the validated elements.
+      When planning new project management app: first gate = which template covers this?
+      Fork from template → only the delta is new. This is what makes the moat compound.
+
+      VAULT GATE NEEDED (PROTO-036): T1 hook that fires on new Governor input when
+      active plan exists → asks "is this urgent for active plan?" → if no → auto-registers
+      as unified-plan.yaml intake item → freezes until active plan reaches RZF.
+
+      PROCESSING ORDER: After S044 HANDOFF and S045 inheritance-registry.yaml are complete.
+
+  - id: turn-quality-notification
+    title: Turn count quality degradation notification — warn when tab exceeds quality threshold
+    status: intake
+    category: governance
+    owner: sonnet
+    pe_score: 75
+    tags: [vault, ux, quality-gate, S044-intake]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: high
+    notes: |
+      Governor directive S044. Vaulted per VAULT_DEFER protocol.
+
+      CONCEPT: When a chat tab exceeds N turns (recommended: 40-50), auto-inject a
+      STRONG recommendation to move to a new tab, even if tokens remain.
+
+      WHY: Context quality degrades before token limit. Rules ratified at turn 1
+      are fuzzier by turn 40. The 25-turn refresh helps but doesn't fully prevent drift.
+
+      IMPLEMENTATION: Turn counter hook (user-prompt-submit-turn-counter.sh) already
+      counts turns. At turn 40: inject LEVEL-2 warning. At turn 60: inject LEVEL-3 STRONG
+      recommendation with handoff preparation checklist.
+
+      TRIGGER: If turn_count_this_session > 40 AND session not closing → inject:
+      "[QUALITY GATE: Turn 40+ detected. Context quality degrading.
+       Strongly recommend: write HANDOFF + move to new tab.
+       Quality matters more than token savings.]"

@@ -2,12 +2,12 @@
   "meta": {
     "version": "1.0",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-19T12:13:33.488Z",
+    "generated_at": "2026-05-19T16:24:46.867Z",
     "created_session": "S043",
     "last_updated": "2026-05-19",
-    "total_items": 18,
+    "total_items": 20,
     "status_counts": {
-      "intake": 3,
+      "intake": 5,
       "planning": 4,
       "ratified": 2,
       "implementing": 0,
@@ -529,6 +529,74 @@
         "consensus_width": "medium",
         "reversibility": "medium",
         "dependency_clarity": "low"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "dual-focal-point-planning",
+      "title": "Dual Focal Point Planning — outward (user) + inward (core spine) simultaneously",
+      "status": "intake",
+      "category": "architecture",
+      "owner": "governor",
+      "pe_score": 90,
+      "tags": [
+        "vault",
+        "architectural-principle",
+        "template-reuse",
+        "core-spines",
+        "S044-intake"
+      ],
+      "depends_on": [
+        "OPEN-055",
+        "invariant-registry"
+      ],
+      "caq_questions": [
+        "Which existing validated core element covers 80%+ of project-management planning?",
+        "What is the L1/L2/L3 breakdown for 'project management' in CSPS core spines?",
+        "How does the intake wizard enforce 'check existing validated element first'?"
+      ],
+      "notes": "Governor directive S044. Vaulted per VAULT_DEFER protocol — process after active plans reach RZF.\n\nCONCEPT: Every new capability/app gets planned with TWO focal points simultaneously:\n  OUTWARD: user journeys, interface, tiers, permissions, specific use cases\n  INWARD: which existing validated core element does this build on?\n          L1 principle → L2 domain implementation → L3 specific delta\n\nINVARIANT: Never recreate a validated core element. The system must MECHANICALLY\nenforce checking what exists at planning time — not as a reminder, as a gate.\nB_NO_INVENTION_WITHOUT_PRECEDENT_CHECK exists (T3-only). Needs T1+T2 upgrade.\n\nTEMPLATE CONNECTION: apps/template/ + platform/templates/vault/ are the validated elements.\nWhen planning new project management app: first gate = which template covers this?\nFork from template → only the delta is new. This is what makes the moat compound.\n\nVAULT GATE NEEDED (PROTO-036): T1 hook that fires on new Governor input when\nactive plan exists → asks \"is this urgent for active plan?\" → if no → auto-registers\nas unified-plan.yaml intake item → freezes until active plan reaches RZF.\n\nPROCESSING ORDER: After S044 HANDOFF and S045 inheritance-registry.yaml are complete.\n",
+      "pmi_score": 2,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "medium",
+        "reversibility": "high",
+        "dependency_clarity": "medium"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "turn-quality-notification",
+      "title": "Turn count quality degradation notification — warn when tab exceeds quality threshold",
+      "status": "intake",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 75,
+      "tags": [
+        "vault",
+        "ux",
+        "quality-gate",
+        "S044-intake"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Governor directive S044. Vaulted per VAULT_DEFER protocol.\n\nCONCEPT: When a chat tab exceeds N turns (recommended: 40-50), auto-inject a\nSTRONG recommendation to move to a new tab, even if tokens remain.\n\nWHY: Context quality degrades before token limit. Rules ratified at turn 1\nare fuzzier by turn 40. The 25-turn refresh helps but doesn't fully prevent drift.\n\nIMPLEMENTATION: Turn counter hook (user-prompt-submit-turn-counter.sh) already\ncounts turns. At turn 40: inject LEVEL-2 warning. At turn 60: inject LEVEL-3 STRONG\nrecommendation with handoff preparation checklist.\n\nTRIGGER: If turn_count_this_session > 40 AND session not closing → inject:\n\"[QUALITY GATE: Turn 40+ detected. Context quality degrading.\n Strongly recommend: write HANDOFF + move to new tab.\n Quality matters more than token savings.]\"\n",
+      "pmi_score": 3,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "medium",
+        "reversibility": "high",
+        "dependency_clarity": "high"
       },
       "has_core_seed": false,
       "core_seed": null,

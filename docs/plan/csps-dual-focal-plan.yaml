@@ -1,0 +1,67 @@
+# csps-dual-focal-plan.yaml
+# CSPS Platform — planned through its own dual-focal template.
+# This is the first artifact that ran through our own process.
+# "Eating the dog food" — S046 Governor constitutional directive.
+#
+# TEMPLATE ID: DUAL_FOCAL_PLAN | registry: docs/plan/_handoff/VAULT/template-registry.md §1
+# VALIDATES VIA: pmi fields feed tools/validators/validate-plan-readiness.mjs (PI-037)
+---
+id: csps-platform-process
+name: "CSPS Platform — Dual Focal Point Plan"
+status: draft
+session: S046
+
+# OUTWARD FOCUS — what users need
+outward_focus:
+  target_user: "Independent developer building a B2B SaaS product. Has domain expertise, limited platform/infrastructure experience. Wants to ship, not maintain auth boilerplate."
+  core_jtbd: "Ship a production-ready multi-tenant SaaS app without building auth, tenancy, billing, audit trails, and AI governance from scratch — and without those cutting corners on quality."
+  user_value: "First app deployed in 8-10 sessions instead of 4-6 months. Second app in 50% fewer sessions because the platform, not the developer, carries the cross-cutting concerns."
+  success_metric: "Developer ships App #2 using only the dual-focal process and the template, with no ad-hoc architectural decisions. Governance system catches 0 quality regressions."
+
+# INWARD FOCUS — what the platform needs
+inward_focus:
+  platform_seed: "CSPS_PROCESS_VALIDATED — first complete app lifecycle through all gates"
+  invariants_addressed:
+    - "INV-001: plan-before-implement enforced at every app entry (dual-focal + PMI gate)"
+    - "INV-002: handoff completeness — every session boundary carries full context"
+    - "INV-003: RZF before every directive — Opus has ZF evidence before each PROTO"
+    - "INV-004: agent understanding block — every new tab reads csps-context.md"
+    - "INV-005: DNA inheritance — every new app artifact carries @csps-dna blocks"
+  validators_enabled:
+    - "PI-037: validate-plan-readiness.mjs — PMI scoring gate before implementation"
+    - "validate-dual-focal-completeness (future): checks both focal points filled"
+    - "validate-batch-assignment (future): every new plan item declares its batch"
+  libs_touched:
+    - "libs/components — form layer needed before any real app"
+    - "apps/template — dual-focal checklist in template README"
+    - "tools/config/unified-plan.yaml — batch field added to all items"
+
+# PMI — Plan Maturity Index
+pmi:
+  intent_depth: high        # Governor + Opus both authored and challenged
+  cross_ref_density: high   # references invariants, validators, libs, batches
+  consensus_width: medium   # Governor ratified, Opus designed — Sonnet feasibility not yet validated
+  reversibility: high       # plan is a document; easy to adjust
+  dependency_clarity: medium  # libs/components gap and billing gap are known unknowns
+
+# PROMOTION CHECKLIST
+# [ ] outward_focus: all 4 fields filled — DONE
+# [ ] inward_focus: platform_seed confirmed in dna-registry.yaml — PENDING (seed not yet planted)
+# [ ] pmi: all 5 fields at 'high' — PENDING (consensus_width + dependency_clarity = medium)
+# [ ] Opus reviewed inward_focus.invariants_addressed — DONE (S046 constitutional directive)
+# [ ] Governor ratified — DONE (S046 Governor constitutional directive)
+# [ ] Entry added to unified-plan.yaml — DONE (csps-platform-batches item added S046)
+
+# 6-PERSONA AUDIT NOTES (S046 Opus Turn 12)
+# Persona 1 (Governor): BATCH-H = 0%, 7 sessions of self-governance with no external validation.
+#   Inflection point is this app.
+# Persona 2 (Builder/Sonnet): form layer missing — will block turn 2 of any build session.
+#   Decision needed NOW: shadcn/ui or build from scratch.
+# Persona 3 (Architect): batches only exist in Opus response until PROTO-040 persists them.
+#   Until files are written and pushed, this is temp memory.
+# Persona 4 (Cruel Critic): PI-037 never blocked anything — could be governance theater.
+#   PMI scoring is self-reported. 6-persona audit done by Opus (one perspective imagining 5).
+# Persona 5 (New Developer): csps-context.md written for Governor-Opus-Sonnet relay, not
+#   for an independent developer. No onboarding trail exists. BATCH-G needs developer path.
+# Persona 6 (Operator at Session 300): invariant system mechanical and survives boundaries.
+#   Risk: unified-plan.yaml as flat YAML will fail around 50 items — needs migration to DB.

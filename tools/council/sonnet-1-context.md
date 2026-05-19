@@ -1,5 +1,6 @@
 # SONNET #1 — Deep Context Brief
-## Implementation Builder Role | Read This Fully Before Responding
+## ⛔ DEPRECATED — Superseded by tools/council/sonnet-context.md (updated S044)
+## This file is from S018-S022 and is STALE. Do NOT use.
 
 ---
 

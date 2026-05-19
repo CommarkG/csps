@@ -1,5 +1,6 @@
 # OPUS #1 — Deep Context Brief
-## Strategic Advisor Role | Read This Fully Before Responding
+## ⛔ DEPRECATED — Superseded by tools/council/opus-context.md (updated S044)
+## This file is from S018-S022 and is STALE. Do NOT use.
 
 ---
 

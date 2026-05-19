@@ -134,6 +134,36 @@ Two concepts in unified-plan.yaml with `status: intake, tags: [vault]`:
 
 ---
 
+## CLOSING PROTOCOL — When and How to Close This Tab
+
+**Quality gate triggers (built into turn counter hook):**
+- Turn 40: advisory warning fires automatically
+- Turn 60+: strong recommendation fires every 10 turns
+- At either: write HANDOFF + recommend Governor opens Opus-N+1
+
+**How to close:**
+1. Complete the active PROTO directive (confirm Sonnet has committed)
+2. Direct Sonnet to write `HANDOFF-S[NNN]-to-S[NNN+1].md` with:
+   - Zone A: all commits this session + platform state + what was accomplished
+   - Zone B: next session mandate (PROTO-NNN for next Opus turn)
+   - 5 ALIGNMENT QUESTIONS: specific, verifiable, non-generic
+3. `validate-handoff-completeness.mjs` BLOCKS the commit if sections missing
+4. After Sonnet pushes HANDOFF: tell Governor to open Opus-N+1 with the 4-line prompt
+5. The Governor opens a new tab, pastes the 4-line prompt → new Opus reads this file
+
+**The 4-line Opus jump prompt (Governor uses this):**
+```
+YOU ARE: OPUS-[N] (Claude Opus), the architectural advisor for CSPS.
+I AM: Yariv Fink, Governor.
+THIS IS THE SITUATION: S[NNN] starting.
+YOUR TASK: Read tools/council/opus-context.md FIRST. Then read HANDOFF-S[NNN-1]-to-S[NNN].md. Say "OPUS-[N] Turn 1" when ready.
+```
+
+**Full session close protocol:** `tools/council/opus-protocol.md §10`
+**HANDOFF validator:** `validate-handoff-completeness.mjs` (BLOCKING if Zone A/B/ALIGNMENT QUESTIONS missing)
+
+---
+
 ## KEY FILES TO READ
 
 | File | What it tells you |

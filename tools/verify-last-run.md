@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-19T16:36:59.594Z
-- finished_at: 2026-05-19T16:37:28.850Z
+- ran_at: 2026-05-19T18:05:37.163Z
+- finished_at: 2026-05-19T18:06:05.640Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-19T16:36:59.594Z",
-    "finished_at": "2026-05-19T16:37:28.850Z",
+    "ran_at": "2026-05-19T18:05:37.163Z",
+    "finished_at": "2026-05-19T18:06:05.640Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.2,
+        "duration_seconds": 6.6,
         "packages_resolved": null
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 67,
         "findings_total": 17
       },
@@ -42,7 +42,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 454,
+        "scanned": 455,
         "errors": 0,
         "warnings": 37,
         "exempt": 308
@@ -214,7 +214,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.5,
         "checked": 65,
         "advisories": 56
       },
@@ -254,7 +254,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 2
+        "advisories": 1
       },
       {
         "name": "agreement_without_evidence",
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 427,
-        "clean": 427,
+        "checked": 428,
+        "clean": 428,
         "blocking": 0,
         "registry": 53
       },
@@ -433,7 +433,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 611,
+        "scanned": 612,
         "advisory": 87
       },
       {
@@ -484,7 +484,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 1
+        "advisories": 2
       },
       {
         "name": "governor_instructions",
@@ -1123,7 +1123,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.2
+        "duration_seconds": 6.8
       },
       {
         "name": "ui_completeness",
@@ -1140,7 +1140,7 @@
         "status": "STALE",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "hours_since_sync": 65,
+        "hours_since_sync": 67,
         "principle_drift": 2,
         "moat_drift": 4,
         "contract_drift": 2
@@ -1281,7 +1281,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "plan_source_mtime": "2026-05-19T16:11:56.603Z",
-        "api_mtime": "2026-05-19T16:24:46.869Z",
+        "api_mtime": "2026-05-19T17:38:32.716Z",
         "stale": false,
         "advisory": true
       },

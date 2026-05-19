@@ -1,0 +1,143 @@
+---
+id: csps.config.csps-platform-batches
+name: csps-platform-batches
+description: "Top-level organization for CSPS. 8 named batches replace 80+ floating items. Every plan item, validator, hook, and principle belongs to one batch. Reference batches — not individual items — when discussing platform state."
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: platform_batches
+session: S046
+---
+
+# CSPS Platform Batches — 8 Named Groups
+
+> **Rationale:** CSPS has 65+ principles, 63+ contracts, 137+ validators, 80+ open items.
+> Zero top-level organization above the item level made priority invisible and composition
+> impossible. 8 named batches give every item a home. BATCH-H is the frontier.
+
+batches:
+
+  - id: BATCH-A
+    name: Governance Foundation
+    description: "The rules that never change — behavioral contracts, naming, permanence"
+    governs:
+      - B_PRACE
+      - B_INHERITANCE_POLICY
+      - M-27-M-28
+      - OPEN-049
+      - OPEN-053
+      - prevention-framework
+      - csps-platform-batches
+    completion_signal: "B_* contracts have enforcement_tier, no_enforcement=0. Naming policy violations=0. validate-rule-has-enforcement exits 0."
+    current_state_pct: 85
+    blocking_BATCH-H: false
+    gap: "naming-policy-compliance validator (planned week-4)"
+
+  - id: BATCH-B
+    name: Planning Infrastructure
+    description: "Plan before a line of code — templates, PMI scoring, PE engine, seeds"
+    governs:
+      - OPEN-055
+      - OPEN-059
+      - OPEN-057
+      - PI-037
+      - dual-focal-point-planning
+    completion_signal: "PI-037 live and blocking premature implementing. First real app ran through full dual-focal process gate-to-gate. Every new plan item passes PMI >= 4/5 before ratified status."
+    current_state_pct: 70
+    blocking_BATCH-H: true
+    gap: "PI-037 (validate-plan-readiness.mjs) still planning — never blocked a real implementation. Process end-to-end untested."
+
+  - id: BATCH-C
+    name: AI Behavior Layer
+    description: "Override training defaults permanently — PRACE, inner defaults registry, CCA, SROF/Rule-3 routing"
+    governs: []
+    completion_signal: "AI behavior audit shows 0 unregistered training defaults. Every SROF uses the template. Every step-done uses Rule 3 to sonnet-turn.md. Core-scope AI dimensions in all 3 scopes."
+    current_state_pct: 75
+    blocking_BATCH-H: false
+    gap: "inner-AI defaults registry has unregistered items. OPEN-062 (Rule 13 T1) pending."
+
+  - id: BATCH-D
+    name: Quality Gates
+    description: "Mechanical impossibility of the failure mode — validators, hooks, ZF, invariants"
+    governs:
+      - P-META-026
+      - OPEN-051
+    completion_signal: "validate-invariant-coverage complete=5 partial=0. Every PROTO preceded by ZF evidence (INV-003 enforcing). pnpm verify exit_code=0 always."
+    current_state_pct: 95
+    blocking_BATCH-H: false
+    gap: "INV-003 T1 completed S046. BATCH-D is functionally complete."
+
+  - id: BATCH-E
+    name: Platform Moats
+    description: "What makes CSPS defensible and permanent — DNA, consolidation, inheritance"
+    governs:
+      - PI-031
+      - PI-032
+    completion_signal: "New artifacts arrive with DNA blocks. Deletion blocked on inheritance-registry check. No orphaned items (consolidation validator passes). DNA enforcement BLOCKING (not advisory)."
+    current_state_pct: 80
+    blocking_BATCH-H: false
+    gap: "DNA enforcement still advisory. validate-new-file-dna.mjs BLOCKING upgrade needed."
+
+  - id: BATCH-F
+    name: Developer Experience (Platform)
+    description: "How Opus and Sonnet work together without friction — relay protocol, batched directives, session vs tab"
+    governs:
+      - turn-quality-notification
+    completion_signal: "Relay cycle count per PROTO <= 2. SROF used only for architectural review. Tab transitions happen at quality gate only. Batched directives default for sequential ratified work."
+    current_state_pct: 70
+    blocking_BATCH-H: false
+    gap: "Batched directives just established (PROTO-039 S046). Session/tab model corrected S045-S046."
+
+  - id: BATCH-G
+    name: Developer Experience (Product)
+    description: "How a developer builds an app on CSPS — UI components, admin panel, billing, template"
+    governs:
+      - habit-tracker-app
+      - OPEN-030
+      - OPEN-029
+      - consultation-from-playground
+    completion_signal: "A developer can fork template/ -> fill dual-focal plan -> build -> deploy in one coherent session sequence WITHOUT manual assembly. Form layer live. Admin panel live. Billing integrated."
+    current_state_pct: 20
+    blocking_BATCH-H: true
+    gap: "libs/components (forms, inputs, design system) entirely missing. Admin panel absent. Billing not integrated."
+
+  - id: BATCH-H
+    name: Process Validation
+    description: "Proof that the process works — first real app through every gate"
+    governs: []
+    completion_signal: "One deployed app that went through every gate: dual-focal plan -> PMI gate -> Opus design -> Sonnet build -> deployed. Governor validates the process produced better decisions than ad-hoc. 6-persona retrospective complete."
+    current_state_pct: 0
+    blocking_BATCH-H: false
+    gap: "Never started. Requires BATCH-B (PI-037) and BATCH-G (form layer) to reach sufficient completeness first. This batch is why CSPS exists."
+
+---
+
+# Unified Plan Mapping
+
+# Maps every unified-plan.yaml item to its canonical batch.
+# Add new items here when registering them in unified-plan.yaml.
+
+unified_plan_mapping:
+  P-META-026: BATCH-D
+  B_PRACE: BATCH-A
+  B_INHERITANCE_POLICY: BATCH-A
+  M-27-M-28: BATCH-A
+  OPEN-051: BATCH-D
+  OPEN-049: BATCH-A
+  PI-031: BATCH-E
+  PI-032: BATCH-E
+  habit-tracker-app: BATCH-G
+  OPEN-055: BATCH-B
+  OPEN-059: BATCH-B
+  OPEN-053: BATCH-A
+  OPEN-057: BATCH-B
+  PI-037: BATCH-B
+  prevention-framework: BATCH-A
+  OPEN-030: BATCH-G
+  OPEN-029: BATCH-G
+  consultation-from-playground: BATCH-G
+  dual-focal-point-planning: BATCH-B
+  turn-quality-notification: BATCH-F
+  csps-platform-batches: BATCH-A

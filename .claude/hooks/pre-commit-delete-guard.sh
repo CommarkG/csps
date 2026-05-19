@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.pre-commit-delete-guard
 # @csps-name pre-commit-delete-guard
-# @csps-description Pre-commit hook — checks staged file deletions against invariant-registry.yaml.
-#   If a deletion matches an invariant with delete_guard: true, emits ADVISORY warning.
-#   Scope: invariant-registry.yaml delete_guard items ONLY (NOT inheritance-registry.yaml,
-#   which is OPEN-059 S044+). Per A3 alignment answer from S043 HANDOFF.
+# @csps-description Pre-commit hook — checks staged file deletions against TWO registries:
+#   1. invariant-registry.yaml: delete_guard items (checks by name/id)
+#   2. inheritance-registry.yaml: delete_guard artifacts (checks by path, lists children)
+#   If a deletion matches either registry, emits ADVISORY warning showing cascade impact.
 #   ADVISORY mode — exits 0 always (never blocks deletion).
 #   Promotes to BLOCKING after T2 validator validates the pattern.
-# @csps-version 1.0.0
+#   Extended PROTO-036 Step 3b (S045) — previously only checked invariant-registry.yaml.
+# @csps-version 1.1.0
 # @csps-owner group:finky
 # @csps-lifecycle production
 # @csps-lifecycle-state active
@@ -16,16 +17,12 @@
 
 set -euo pipefail
 
-REGISTRY="tools/config/invariant-registry.yaml"
+INV_REGISTRY="tools/config/invariant-registry.yaml"
+INH_REGISTRY="tools/config/inheritance-registry.yaml"
 
 # Only run if there are staged deletions
 DELETED=$(git diff --cached --name-only --diff-filter=D 2>/dev/null || true)
 if [ -z "$DELETED" ]; then
-  exit 0
-fi
-
-# Only run if registry exists
-if [ ! -f "$REGISTRY" ]; then
   exit 0
 fi
 
@@ -34,13 +31,14 @@ if ! command -v node >/dev/null 2>&1; then
   exit 0
 fi
 
-# Check each deleted file against guarded invariants
-FOUND_GUARDED=""
-while IFS= read -r file; do
-  RESULT=$(node -e "
+# ── PASS 1: invariant-registry.yaml ──────────────────────────────────────────
+FOUND_INVARIANT=""
+if [ -f "$INV_REGISTRY" ]; then
+  while IFS= read -r file; do
+    RESULT=$(node -e "
 try {
   const yaml = require('js-yaml');
-  const reg = yaml.load(require('fs').readFileSync('$REGISTRY', 'utf-8'));
+  const reg = yaml.load(require('fs').readFileSync('$INV_REGISTRY', 'utf-8'));
   const guarded = (reg.invariants || []).filter(i => i.delete_guard === true);
   const match = guarded.find(i =>
     '$file'.includes(i.name) ||
@@ -52,20 +50,64 @@ try {
   }
 } catch(e) { /* yaml parse error — skip */ }
 " 2>/dev/null || true)
-  if [ -n "$RESULT" ]; then
-    FOUND_GUARDED="${FOUND_GUARDED}  → $file (matches $RESULT)\n"
-  fi
-done <<< "$DELETED"
+    if [ -n "$RESULT" ]; then
+      FOUND_INVARIANT="${FOUND_INVARIANT}  → $file (invariant: $RESULT)\n"
+    fi
+  done <<< "$DELETED"
+fi
 
-if [ -n "$FOUND_GUARDED" ]; then
+if [ -n "$FOUND_INVARIANT" ]; then
   echo ""
   echo "⚠ [delete-guard] ADVISORY: Staged deletion(s) match invariant-registry.yaml delete_guard items:"
-  echo -e "$FOUND_GUARDED"
+  echo -e "$FOUND_INVARIANT"
   echo "  These files are guarded because the invariant depends on them existing."
   echo "  Check: does this deletion break a downstream dependency?"
-  echo "  Registry: tools/config/invariant-registry.yaml"
-  echo "  Invariant with delete_guard: true — INV-002 (HANDOFF files)"
+  echo "  Registry: $INV_REGISTRY"
   echo "  (ADVISORY — commit not blocked. Verify intentional before proceeding.)"
+  echo ""
+fi
+
+# ── PASS 2: inheritance-registry.yaml ────────────────────────────────────────
+FOUND_INHERITANCE=""
+if [ -f "$INH_REGISTRY" ]; then
+  while IFS= read -r file; do
+    RESULT=$(node -e "
+try {
+  const yaml = require('js-yaml');
+  // inheritance-registry.yaml has YAML frontmatter — use loadAll and take the last doc
+  const docs = yaml.loadAll(require('fs').readFileSync('$INH_REGISTRY', 'utf-8'));
+  const reg = docs[docs.length - 1] || {};
+  const guarded = (reg.artifacts || []).filter(a => a.delete_guard === true);
+  const match = guarded.find(a => {
+    const p = (a.path || '').replace(/\\\\/g, '/');
+    const f = '$file'.replace(/\\\\/g, '/');
+    return f === p || f.endsWith('/' + p) || p.endsWith('/' + f);
+  });
+  if (match) {
+    const children = (match.children || []).join('|');
+    const prop = match.propagation || 'auto';
+    process.stdout.write(match.id + '::' + prop + '::' + children);
+  }
+} catch(e) { /* yaml parse error — skip */ }
+" 2>/dev/null || true)
+    if [ -n "$RESULT" ]; then
+      ARTIFACT_ID=$(echo "$RESULT" | cut -d: -f1)
+      PROPAGATION=$(echo "$RESULT" | cut -d: -f3)
+      CHILDREN=$(echo "$RESULT" | cut -d: -f4- | tr '|' '\n' | sed 's/^/      • /')
+      FOUND_INHERITANCE="${FOUND_INHERITANCE}  → $file (artifact: $ARTIFACT_ID | propagation: $PROPAGATION)\n"
+      FOUND_INHERITANCE="${FOUND_INHERITANCE}    Children that depend on this:\n$CHILDREN\n"
+    fi
+  done <<< "$DELETED"
+fi
+
+if [ -n "$FOUND_INHERITANCE" ]; then
+  echo ""
+  echo "⚠ [delete-guard] ADVISORY: Staged deletion(s) match inheritance-registry.yaml delete_guard artifacts:"
+  echo -e "$FOUND_INHERITANCE"
+  echo "  propagation=auto means children become invalid if parent is deleted."
+  echo "  propagation=manual means deletion is allowed but children need manual update."
+  echo "  Registry: $INH_REGISTRY"
+  echo "  (ADVISORY — commit not blocked. Verify cascade impact before proceeding.)"
   echo ""
 fi
 

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-19T18:05:37.163Z
-- finished_at: 2026-05-19T18:06:05.640Z
+- ran_at: 2026-05-19T18:17:45.683Z
+- finished_at: 2026-05-19T18:18:12.929Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-19T18:05:37.163Z",
-    "finished_at": "2026-05-19T18:06:05.640Z",
+    "ran_at": "2026-05-19T18:17:45.683Z",
+    "finished_at": "2026-05-19T18:18:12.929Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.6,
+        "duration_seconds": 6.3,
         "packages_resolved": null
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 67,
         "findings_total": 17
       },
@@ -45,7 +45,7 @@
         "scanned": 455,
         "errors": 0,
         "warnings": 37,
-        "exempt": 308
+        "exempt": 309
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 428,
-        "clean": 428,
+        "checked": 429,
+        "clean": 429,
         "blocking": 0,
         "registry": 53
       },
@@ -1123,7 +1123,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.8
+        "duration_seconds": 6.1
       },
       {
         "name": "ui_completeness",

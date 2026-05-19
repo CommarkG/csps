@@ -195,7 +195,16 @@ components:
     always_include: false
     summary: "Registry of absorbed external knowledge (EXT-KNOW-001 through 003). [Temp name!!!] competitor landscape, market hypothesis, document architecture patterns. Pending: 04-11 series."
 
-  - id: opus-context-brief
+  - id: csps-context
+    path: tools/council/csps-context.md
+    scope: repo
+    category: knowledge
+    audience: [all]
+    depth_level: L1
+    always_include: true
+    summary: "UNIFIED context brief for BOTH Opus and Sonnet. ONE SOURCE. Supersedes opus-context.md and sonnet-context.md. Updated every session close."
+
+  - id: opus-context-brief-DEPRECATED
     path: tools/council/opus-context.md
     scope: repo
     category: knowledge
@@ -204,7 +213,7 @@ components:
     always_include: true
     summary: "PERMANENT context brief for Opus tabs. WHO YOU ARE, relay model, communication format, platform state S044, invariant system, vaulted concepts, first actions, key files. Updated every session close."
 
-  - id: sonnet-context-brief
+  - id: sonnet-context-brief-DEPRECATED
     path: tools/council/sonnet-context.md
     scope: repo
     category: knowledge

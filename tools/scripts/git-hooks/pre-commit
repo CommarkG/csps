@@ -96,6 +96,13 @@ if [ -n "$STAGED_MONOLITHS" ]; then
   fi
 fi
 
+# ── CHECK 5: Delete guard — check staged deletions against invariant-registry ──
+# Advisory: if a staged deletion matches an invariant with delete_guard:true, warn.
+# Scope: invariant-registry.yaml only (not inheritance-registry — that's OPEN-059).
+if [ -f ".claude/hooks/pre-commit-delete-guard.sh" ]; then
+  bash ".claude/hooks/pre-commit-delete-guard.sh" || true
+fi
+
 # ── CHECK 4: Auto-export plan-api.json when unified-plan.yaml is staged ────────
 # If unified-plan.yaml is staged, automatically run pnpm plan:export to keep
 # plan-api.json in sync. Stages plan-api.json as part of the same commit.

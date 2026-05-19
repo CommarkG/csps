@@ -92,12 +92,12 @@ invariants:
   - id: INV-004
     name: agent-understanding-block
     description: "Every Agent() call must include UNDERSTANDING BLOCK — boundary crossing declaration"
-    status: minimal
+    status: complete
     enforcement:
       t1: pre-tool-use-agent-alignment.sh
-      t1_state: "ADVISORY (exits 0) — UPGRADING TO BLOCKING in PROTO-034 Step 4"
-      t2: MISSING
-      t2_state: "No validator checks Agent() calls in committed files"
+      t1_state: "BLOCKING — exits 1 when UNDERSTANDING BLOCK missing from Agent() prompt (S044 PROTO-034 Step 4)"
+      t2: validate-agent-calls.mjs
+      t2_state: "ADVISORY — scans sonnet-turn.md for Agent() invocations, checks compliance (S044 PROTO-035 Step 2)"
       t3: session-open + AGENTS.md hard NO
     training_default: "Spawn agent with task, skip boundary context"
     satisfaction_point: "Agent receives task description"
@@ -108,9 +108,9 @@ invariants:
     inheritance:
       parent: B_AGENT_ALIGNMENT_PROTOCOL
       enforces_on: all Agent() tool calls
-    gap: "T1 advisory → BLOCKING in Step 4. T2 missing — validate-agent-calls.mjs needed"
-    gap_priority: high
-    upgrade_path: "Step 4 of this PROTO (T1 → BLOCKING). T2 = S045 candidate"
+    gap: "CLOSED S044: T1 upgraded to BLOCKING (PROTO-034 Step 4). T2 added as ADVISORY (PROTO-035 Step 2)."
+    gap_priority: none
+    upgrade_path: "Complete. T2 scope improvement: expand to scan transcript files S045+."
     delete_guard: false
     violation_response: "Currently only advisory warning. After Step 4: exits 1 blocks call"
 

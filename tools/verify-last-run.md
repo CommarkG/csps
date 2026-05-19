@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-19T16:23:35.053Z
-- finished_at: 2026-05-19T16:24:05.883Z
+- ran_at: 2026-05-19T16:36:59.594Z
+- finished_at: 2026-05-19T16:37:28.850Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-19T16:23:35.053Z",
-    "finished_at": "2026-05-19T16:24:05.883Z",
+    "ran_at": "2026-05-19T16:36:59.594Z",
+    "finished_at": "2026-05-19T16:37:28.850Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -16,7 +16,7 @@
         "command": "pnpm install --frozen-lockfile",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.8,
+        "duration_seconds": 7.2,
         "packages_resolved": null
       },
       {
@@ -32,7 +32,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.9,
         "principles_loaded": 67,
         "findings_total": 17
       },
@@ -41,11 +41,11 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "scanned": 454,
         "errors": 0,
         "warnings": 37,
-        "exempt": 306
+        "exempt": 308
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -62,7 +62,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -114,7 +114,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -184,7 +184,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 138,
         "links": 589,
         "broken": 63
@@ -349,8 +349,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 425,
-        "clean": 425,
+        "checked": 427,
+        "clean": 427,
         "blocking": 0,
         "registry": 53
       },
@@ -1123,7 +1123,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 7.4
+        "duration_seconds": 7.2
       },
       {
         "name": "ui_completeness",
@@ -1281,8 +1281,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "plan_source_mtime": "2026-05-19T16:11:56.603Z",
-        "api_mtime": "2026-05-19T12:13:33.491Z",
-        "stale": true,
+        "api_mtime": "2026-05-19T16:24:46.869Z",
+        "stale": false,
         "advisory": true
       },
       {

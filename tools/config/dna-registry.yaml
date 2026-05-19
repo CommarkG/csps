@@ -195,6 +195,24 @@ components:
     always_include: false
     summary: "Registry of absorbed external knowledge (EXT-KNOW-001 through 003). [Temp name!!!] competitor landscape, market hypothesis, document architecture patterns. Pending: 04-11 series."
 
+  - id: opus-context-brief
+    path: tools/council/opus-context.md
+    scope: repo
+    category: knowledge
+    audience: [new-ai-tab]
+    depth_level: L1
+    always_include: true
+    summary: "PERMANENT context brief for Opus tabs. WHO YOU ARE, relay model, communication format, platform state S044, invariant system, vaulted concepts, first actions, key files. Updated every session close."
+
+  - id: sonnet-context-brief
+    path: tools/council/sonnet-context.md
+    scope: repo
+    category: knowledge
+    audience: [new-ai-tab]
+    depth_level: L1
+    always_include: true
+    summary: "PERMANENT context brief for Sonnet sessions. Role, relay model, communication format, done criteria, handoff requirements, key commands. Updated every session close."
+
   - id: unified-plan
     path: tools/config/unified-plan.yaml
     scope: repo

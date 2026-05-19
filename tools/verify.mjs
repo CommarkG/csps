@@ -1077,6 +1077,24 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/advisories=(\d+)/); return m ? { advisories: Number(m[1]) } : {}; },
   },
   {
+    // S043-E: DNA block enforcement — advisory check on playground pages
+    name: 'page_dna_coverage',
+    command: 'node tools/validators/validate-page-dna.mjs',
+    parse_output: (out) => {
+      const m = out.match(/pages_checked=(\d+)\s+dna_present=(\d+)\s+dna_missing=(\d+)/);
+      return m ? { pages_checked: Number(m[1]), dna_present: Number(m[2]), dna_missing: Number(m[3]), advisory: true } : {};
+    },
+  },
+  {
+    // S043-F: Unified plan sync check — advisory when plan-api.json is stale
+    name: 'unified_plan_sync',
+    command: 'node tools/validators/validate-unified-plan-sync.mjs',
+    parse_output: (out) => {
+      const m = out.match(/plan_source_mtime=(\S+)\s+api_mtime=(\S+)\s+stale=(\w+)/);
+      return m ? { plan_source_mtime: m[1], api_mtime: m[2], stale: m[3] === 'true', advisory: true } : {};
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

@@ -27,6 +27,7 @@
     "sync:dna": "node tools/scripts/auto-sync-platform-dna.mjs",
     "dna:bundle": "node tools/scripts/generate-dna-bundle.mjs",
     "plan:export": "node tools/scripts/generate-plan-api.mjs",
+    "plan:sync-playground": "node tools/scripts/sync-plan-to-playground.mjs",
     "record:ujt": "node tools/scripts/record-user-journey-test.mjs",
     "sync:dna:dry": "node tools/scripts/auto-sync-platform-dna.mjs --dry-run",
     "env:sync": "node tools/scripts/sync-vercel-env.mjs",

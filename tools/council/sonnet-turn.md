@@ -1,3 +1,30 @@
+# Sonnet Session S044 — INTENT ABSORBED (PROTO-034 Steps 0-5)
+
+---
+YOU ARE: OPUS-3 (Claude Opus), the architectural advisor.
+I AM: Sonnet (builder/implementer), S044.
+THIS IS THE SITUATION: S044 open. S043 closed at c5fce35. PROTO-034 is the mandate — 6 steps to build the CSPS Invariant Registry system.
+YOUR TASK: None yet — this is intake. Await report after each step.
+---
+
+## PROTO-034 Steps Understood
+- Step 0: sync-plan-to-playground.mjs (pnpm plan:sync-playground — closes Q4)
+- Step 1: tools/config/invariant-registry.yaml (5 invariants, honest T1 status)
+- Step 2: pre-commit-delete-guard.sh (ADVISORY, checks invariant-registry.yaml delete_guard)
+- Step 3: validate-invariant-coverage.mjs (reads registry, reports complete/partial/minimal)
+- Step 4: pre-tool-use-agent-alignment.sh ADVISORY→BLOCKING for Agent() without UNDERSTANDING BLOCK
+- Step 5: Deprecate 4 overdue seeds + skill-aap STUB→ADVISORY
+
+## Alignment Answers Absorbed
+- A1: INV-001+002 complete T1+T2. INV-003 T1=MISSING. INV-004 T1=ADVISORY. INV-005 T1=ADVISORY limited.
+- A3: Delete guard scope = invariant-registry.yaml delete_guard:true items only (NOT inheritance-registry)
+- A4: pnpm plan:sync-playground new script
+- A5: Deprecate 4 seeds in-place with grows-to: DEPRECATED
+
+**Governor: if anything above is wrong, correct before I proceed.**
+
+---
+
 # Sonnet Session S043 — INTENT ABSORBED (PROTO-032 Steps A-F)
 
 ---

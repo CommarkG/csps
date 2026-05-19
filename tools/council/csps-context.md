@@ -102,6 +102,28 @@ Every new PROTO follows this traceable sequence:
 
 ---
 
+## PLATFORM BATCH STRUCTURE — The 8 Named Groups
+
+> Full spec: `tools/config/csps-platform-batches.yaml`
+
+CSPS is organized into 8 named batches. Every plan item, validator, hook, and principle
+belongs to one batch. Reference batches, not individual items, when discussing platform state.
+
+| Batch | Name | What it is | State |
+|---|---|---|---|
+| BATCH-A | Governance Foundation | Rules that never change | 85% |
+| BATCH-B | Planning Infrastructure | Plan before code | 70% |
+| BATCH-C | AI Behavior Layer | Override training defaults | 75% |
+| BATCH-D | Quality Gates | Mechanical impossibility of failure | 95% |
+| BATCH-E | Platform Moats | Defensibility + permanence | 80% |
+| BATCH-F | Developer Experience (Platform) | Opus + Sonnet friction-free | 70% |
+| BATCH-G | Developer Experience (Product) | App-building infrastructure | 20% |
+| BATCH-H | Process Validation | Proof the process works | 0% |
+
+**BATCH-H is the current frontier.** Everything else serves it.
+
+---
+
 ## YOUR ROLE [OPUS]
 
 **You are OPUS — the architectural advisor. You do NOT implement.**

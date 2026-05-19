@@ -1,23 +1,52 @@
 {
   "meta": {
-    "version": "1.0",
+    "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-19T19:57:17.845Z",
+    "generated_at": "2026-05-19T23:22:36.799Z",
     "created_session": "S043",
-    "last_updated": "2026-05-19",
-    "total_items": 20,
+    "last_updated": "2026-05-20",
+    "total_items": 21,
     "status_counts": {
       "intake": 4,
       "planning": 4,
-      "ratified": 1,
+      "ratified": 2,
       "implementing": 0,
       "activation": 1,
       "done": 10
     },
-    "pmi_ready_count": 6,
+    "pmi_ready_count": 7,
     "seeds_planted": 3
   },
   "items": [
+    {
+      "id": "csps-platform-batches",
+      "title": "CSPS 8-Batch Platform Organization",
+      "status": "ratified",
+      "category": "governance",
+      "owner": "governor",
+      "pe_score": 95,
+      "tags": [
+        "constitutional",
+        "architecture",
+        "s046"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Top-level org structure (PROTO-040). Replaces flat item list as the platform's mental model. Spec: tools/config/csps-platform-batches.yaml.",
+      "pmi_score": 5,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
     {
       "id": "P-META-026",
       "title": "Planning-before-implementing as primary pillar",

@@ -17,22 +17,40 @@
 # activation_exit options: governor-explicit | n-sessions: N | n-uses: N | evaluation-passed
 
 metadata:
-  version: "1.0"
+  version: "1.1"
   created_session: S043
-  last_updated: "2026-05-19"
-  governance: "P-META-026 (plan before implement) + PMI maturity gating + Core Seeds (OPEN-059)"
+  last_updated: "2026-05-20"
+  governance: "P-META-026 (plan before implement) + PMI maturity gating + Core Seeds (OPEN-059) + 8-batch structure (PROTO-040)"
   schema_owner: opus
   data_owner: governor
+  batch_registry: tools/config/csps-platform-batches.yaml
 
 items:
 
   # --- CONSTITUTIONAL / RATIFIED ------------------------------------------
+
+  - id: csps-platform-batches
+    title: "CSPS 8-Batch Platform Organization"
+    status: ratified
+    category: governance
+    owner: governor
+    batch: BATCH-A
+    pe_score: 95
+    tags: [constitutional, architecture, s046]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "Top-level org structure (PROTO-040). Replaces flat item list as the platform's mental model. Spec: tools/config/csps-platform-batches.yaml."
 
   - id: P-META-026
     title: Planning-before-implementing as primary pillar
     status: done
     category: governance
     owner: governor
+    batch: BATCH-D
     pe_score: 95
     tags: [constitutional, ratified, s040]
     pmi:
@@ -48,6 +66,7 @@ items:
     status: done
     category: governance
     owner: governor
+    batch: BATCH-A
     pe_score: 95
     tags: [constitutional, moat, ratified, s040]
     pmi:
@@ -63,6 +82,7 @@ items:
     status: done
     category: governance
     owner: governor
+    batch: BATCH-A
     pe_score: 90
     tags: [constitutional, s040]
     notes: "Turn counter at 25. BLOCKING handoff validator. Zone A+B+ALIGNMENT QUESTIONS mandatory."
@@ -72,6 +92,7 @@ items:
     status: done
     category: governance
     owner: governor
+    batch: BATCH-A
     pe_score: 90
     tags: [moat, constitutional, s040-s043]
     notes: "M-27 = PRACE philosophy. M-28 = Plan Maturity Index + Context Alignment Questions."
@@ -83,6 +104,7 @@ items:
     status: activation
     category: infrastructure
     owner: sonnet
+    batch: BATCH-D
     pe_score: 80
     tags: [three-scopes, mechanical-default, s041]
     pmi:
@@ -107,6 +129,7 @@ items:
     status: done
     category: governance
     owner: sonnet
+    batch: BATCH-A
     pe_score: 80
     tags: [enforcement, contracts, backfill, s043]
     notes: "DONE 881f3ed. no_enforcement=0 on all 63 contracts. 45 T3-only now visible."
@@ -116,6 +139,7 @@ items:
     status: done
     category: architecture
     owner: sonnet
+    batch: BATCH-E
     pe_score: 80
     tags: [dna, registry, s040]
     notes: "DONE. always_include for new-ai-tab bundle."
@@ -125,6 +149,7 @@ items:
     status: done
     category: architecture
     owner: sonnet
+    batch: BATCH-E
     pe_score: 75
     tags: [dna, bundle-engine, s040]
     notes: "DONE. pnpm dna:bundle --target=new-ai-tab works."
@@ -134,6 +159,7 @@ items:
     status: done
     category: product
     owner: sonnet
+    batch: BATCH-G
     pe_score: 70
     tags: [app, s040]
     notes: "Built clean. Needs Vercel deploy (Governor action). Schema: Habit + HabitLog."
@@ -145,6 +171,7 @@ items:
     status: ratified
     category: architecture
     owner: shared
+    batch: BATCH-B
     pe_score: 90
     tags: [plan-hub, pmi, architecture, s043-mandate]
     pmi:
@@ -170,6 +197,7 @@ items:
     status: done
     category: governance
     owner: sonnet
+    batch: BATCH-B
     pe_score: 85
     tags: [core-seeds, enhancement, s043]
     pmi:
@@ -188,6 +216,7 @@ items:
     status: planning
     category: governance
     owner: sonnet
+    batch: BATCH-A
     pe_score: 75
     tags: [S3, catch-to-engraving, advisory-first, s042]
     pmi:
@@ -212,6 +241,7 @@ items:
     status: planning
     category: infrastructure
     owner: sonnet
+    batch: BATCH-B
     pe_score: 80
     tags: [core-seeds, fix, s043]
     pmi:
@@ -228,6 +258,7 @@ items:
     status: planning
     category: infrastructure
     owner: sonnet
+    batch: BATCH-B
     pe_score: 85
     tags: [pmi, plan-hub, s043]
     pmi:
@@ -246,6 +277,7 @@ items:
     status: planning
     category: governance
     owner: shared
+    batch: BATCH-A
     pe_score: 80
     tags: [prevention, s043, S3]
     pmi:
@@ -269,6 +301,7 @@ items:
     status: intake
     category: product
     owner: governor
+    batch: BATCH-G
     pe_score: 80
     tags: [app3, ext-know, deferred]
     depends_on: [OPEN-029]
@@ -279,6 +312,7 @@ items:
     status: intake
     category: architecture
     owner: shared
+    batch: BATCH-G
     pe_score: 85
     tags: [ext-know, absorption]
     notes: "Awaiting Governor file upload. No action without upload."
@@ -288,6 +322,7 @@ items:
     status: intake
     category: product
     owner: shared
+    batch: BATCH-G
     pe_score: 70
     tags: [playground, consultation, api]
     pmi:
@@ -307,6 +342,7 @@ items:
     status: done
     category: architecture
     owner: governor
+    batch: BATCH-B
     pe_score: 90
     tags: [vault, architectural-principle, template-reuse, core-spines, S044-intake]
     pmi:
@@ -348,6 +384,7 @@ items:
     status: intake
     category: governance
     owner: sonnet
+    batch: BATCH-F
     pe_score: 75
     tags: [vault, ux, quality-gate, S044-intake]
     pmi:

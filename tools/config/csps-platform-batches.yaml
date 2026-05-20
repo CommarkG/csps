@@ -116,6 +116,20 @@ batches:
     blocking_BATCH-H: false
     gap: "Never started. Requires BATCH-B (PI-037) and BATCH-G (form layer) to reach sufficient completeness first. This batch is why CSPS exists."
 
+
+  - id: BATCH-J
+    name: Cross-App Intelligence
+    description: "How CSPS learns from external apps — App Knowledge Cards, Expert Comparison Agent, EXT-KNOW absorption"
+    governs:
+      - CAIE-AKC
+      - CAIE-ECA
+      - BATCH-J-DEFINITION
+      - OPEN-029
+    completion_signal: "First external app compared to CSPS equivalent using AKC template. ECA skill produces one usable improvement plan item."
+    current_state_pct: 0
+    blocking_BATCH-H: false
+    gap: "AKC template not built. ECA skill not built. OPEN-029 absorption not started."
+
 ---
 
 # Unified Plan Mapping

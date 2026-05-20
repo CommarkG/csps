@@ -2,19 +2,19 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-20T00:50:50.897Z",
+    "generated_at": "2026-05-20T03:49:01.124Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
-    "total_items": 21,
+    "total_items": 30,
     "status_counts": {
-      "intake": 4,
+      "intake": 13,
       "planning": 2,
       "ratified": 2,
       "implementing": 0,
       "activation": 0,
       "done": 13
     },
-    "pmi_ready_count": 7,
+    "pmi_ready_count": 12,
     "seeds_planted": 3
   },
   "items": [
@@ -626,6 +626,276 @@
         "consensus_width": "medium",
         "reversibility": "high",
         "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "DOG-FOOD-AUDIT",
+      "title": "Multi-vector dog-food audit (6 vectors, weekly)",
+      "status": "intake",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 90,
+      "tags": [
+        "dog-food",
+        "compliance",
+        "weekly",
+        "s047"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "6 vectors: Planning/Templates/Vocabulary/Lifecycle/DNA/Audit-meta. Weekly score format: dog_food_score: N/6.",
+      "pmi_score": 3,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "medium"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "VOCAB-3L",
+      "title": "Vocabulary 3-layer depth: L1+L2_active_in+L3_central_at per term",
+      "status": "intake",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 80,
+      "tags": [
+        "vocabulary",
+        "depth-levels",
+        "s047"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Enhance L1-vocabulary.md entries with L2_active_in and L3_central_at fields.",
+      "pmi_score": 5,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "CORE-REMINDER-DNA",
+      "title": "@csps-core-reminder DNA field — targeted per-file principle activation",
+      "status": "intake",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 85,
+      "tags": [
+        "dna",
+        "ai-behavior",
+        "activation",
+        "ap-001-fix",
+        "s047"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "AP-001 structural fix. Every governed file lists 3 most relevant principles inline as @csps-core-reminder.",
+      "pmi_score": 4,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "medium"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "AP-002-DEAD-END",
+      "title": "AP-002: exception_handling field mandatory in all process docs",
+      "status": "intake",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 80,
+      "tags": [
+        "anti-pattern",
+        "exception-handling",
+        "s047"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "exception_handling: dead_end_condition + dead_end_action + undefined_situation_action + escalation_path",
+      "pmi_score": 4,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "EVOLUTION-K0",
+      "title": "K=0 declaration field on all new artifacts (creation_justification)",
+      "status": "intake",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 80,
+      "tags": [
+        "evolution",
+        "bundling",
+        "consolidation",
+        "s047"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "creation_justification: K=0 (first-ever) OR K=2 from [existing ID]. consolidation-expert skill catches false K=0 claims.",
+      "pmi_score": 5,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "PLANNING-HUB-COMPLIANCE",
+      "title": "Planning Hub weekly compliance validator + batch/epoch display",
+      "status": "intake",
+      "category": "infrastructure",
+      "owner": "sonnet",
+      "pe_score": 75,
+      "tags": [
+        "planning-hub",
+        "weekly",
+        "compliance",
+        "s047"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "validate-planning-hub-compliance.mjs: sync check + batch field coverage + EPOCH coverage + compliance score.",
+      "pmi_score": 3,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "medium",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "BATCH-J-DEFINITION",
+      "title": "BATCH-J: Cross-App Intelligence — CAIE framework",
+      "status": "intake",
+      "category": "architecture",
+      "owner": "shared",
+      "pe_score": 88,
+      "tags": [
+        "batch",
+        "caie",
+        "intelligence",
+        "s047"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "New batch for App Knowledge Card + Expert Comparison Agent + all EXT-KNOW absorption. OPEN-029 moves here.",
+      "pmi_score": 3,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "medium"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "CAIE-AKC",
+      "title": "App Knowledge Card template — structured YAML for any app",
+      "status": "intake",
+      "category": "architecture",
+      "owner": "sonnet",
+      "pe_score": 90,
+      "tags": [
+        "caie",
+        "template",
+        "knowledge-card",
+        "s047"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Fields: purpose, jtbd, problem_solved, success_metrics, key_patterns, csps_batch, csps_gap, csps_surplus, extraction_items.",
+      "pmi_score": 4,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "CAIE-ECA",
+      "title": "Expert Comparison Agent — cross-app extraction + CSPS optimization plan",
+      "status": "intake",
+      "category": "architecture",
+      "owner": "sonnet",
+      "pe_score": 88,
+      "tags": [
+        "caie",
+        "skill",
+        "comparison",
+        "agent",
+        "s047"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Skill: takes 2+ AKCs, asks purpose+quality questions, extracts best patterns, outputs CSPS plan item.",
+      "pmi_score": 1,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "medium",
+        "cross_ref_density": "medium",
+        "consensus_width": "medium",
+        "reversibility": "high",
+        "dependency_clarity": "medium"
       },
       "has_core_seed": false,
       "core_seed": null,

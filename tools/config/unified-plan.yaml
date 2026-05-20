@@ -437,3 +437,158 @@ items:
       "[QUALITY GATE: Turn 40+ detected. Context quality degrading.
        Strongly recommend: write HANDOFF + move to new tab.
        Quality matters more than token savings.]"
+
+  # --- S047 INTAKE — Opus architectural work from S046 overnight ---
+
+  - id: DOG-FOOD-AUDIT
+    title: "Multi-vector dog-food audit (6 vectors, weekly)"
+    status: intake
+    epoch: unassigned
+    category: governance
+    owner: sonnet
+    batch: BATCH-H
+    pe_score: 90
+    tags: [dog-food, compliance, weekly, s047]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: medium
+    notes: "6 vectors: Planning/Templates/Vocabulary/Lifecycle/DNA/Audit-meta. Weekly score format: dog_food_score: N/6."
+
+  - id: VOCAB-3L
+    title: "Vocabulary 3-layer depth: L1+L2_active_in+L3_central_at per term"
+    status: intake
+    epoch: unassigned
+    category: governance
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 80
+    tags: [vocabulary, depth-levels, s047]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "Enhance L1-vocabulary.md entries with L2_active_in and L3_central_at fields."
+
+  - id: CORE-REMINDER-DNA
+    title: "@csps-core-reminder DNA field — targeted per-file principle activation"
+    status: intake
+    epoch: unassigned
+    category: governance
+    owner: sonnet
+    batch: BATCH-C
+    pe_score: 85
+    tags: [dna, ai-behavior, activation, ap-001-fix, s047]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: medium
+    notes: "AP-001 structural fix. Every governed file lists 3 most relevant principles inline as @csps-core-reminder."
+
+  - id: AP-002-DEAD-END
+    title: "AP-002: exception_handling field mandatory in all process docs"
+    status: intake
+    epoch: unassigned
+    category: governance
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 80
+    tags: [anti-pattern, exception-handling, s047]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "exception_handling: dead_end_condition + dead_end_action + undefined_situation_action + escalation_path"
+
+  - id: EVOLUTION-K0
+    title: "K=0 declaration field on all new artifacts (creation_justification)"
+    status: intake
+    epoch: unassigned
+    category: governance
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 80
+    tags: [evolution, bundling, consolidation, s047]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "creation_justification: K=0 (first-ever) OR K=2 from [existing ID]. consolidation-expert skill catches false K=0 claims."
+
+  - id: PLANNING-HUB-COMPLIANCE
+    title: "Planning Hub weekly compliance validator + batch/epoch display"
+    status: intake
+    epoch: unassigned
+    category: infrastructure
+    owner: sonnet
+    batch: BATCH-H
+    pe_score: 75
+    tags: [planning-hub, weekly, compliance, s047]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: high
+    notes: "validate-planning-hub-compliance.mjs: sync check + batch field coverage + EPOCH coverage + compliance score."
+
+  - id: BATCH-J-DEFINITION
+    title: "BATCH-J: Cross-App Intelligence — CAIE framework"
+    status: intake
+    epoch: unassigned
+    category: architecture
+    owner: shared
+    batch: BATCH-J
+    pe_score: 88
+    tags: [batch, caie, intelligence, s047]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: medium
+    notes: "New batch for App Knowledge Card + Expert Comparison Agent + all EXT-KNOW absorption. OPEN-029 moves here."
+
+  - id: CAIE-AKC
+    title: "App Knowledge Card template — structured YAML for any app"
+    status: intake
+    epoch: unassigned
+    category: architecture
+    owner: sonnet
+    batch: BATCH-J
+    pe_score: 90
+    tags: [caie, template, knowledge-card, s047]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "Fields: purpose, jtbd, problem_solved, success_metrics, key_patterns, csps_batch, csps_gap, csps_surplus, extraction_items."
+
+  - id: CAIE-ECA
+    title: "Expert Comparison Agent — cross-app extraction + CSPS optimization plan"
+    status: intake
+    epoch: unassigned
+    category: architecture
+    owner: sonnet
+    batch: BATCH-J
+    pe_score: 88
+    tags: [caie, skill, comparison, agent, s047]
+    pmi:
+      intent_depth: medium
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: medium
+    notes: "Skill: takes 2+ AKCs, asks purpose+quality questions, extracts best patterns, outputs CSPS plan item."

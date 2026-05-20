@@ -120,6 +120,8 @@ belongs to one batch. Reference batches, not individual items, when discussing p
 | BATCH-G | Developer Experience (Product) | App-building infrastructure | 20% |
 | BATCH-H | Process Validation | Proof the process works | 0% |
 
+| BATCH-J | Cross-App Intelligence | CSPS learns from external apps | 0% |
+
 **BATCH-H is the current frontier.** Everything else serves it.
 
 ---

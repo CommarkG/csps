@@ -245,6 +245,13 @@ schema_anchors:
     l2_domain: COUNCIL_COMMUNICATION
     description: CSPS council governance files (master plan, open items, state snapshot)
 
+  apps_planning:
+    type: product-planning-artifact
+    resolves_to: docs/plan/apps/
+    spine: ARCH
+    l2_domain: arch_data_domain
+    description: App planning artifacts — dual-focal plans, knowledge cards, threshold topic plans per app slot
+
   know_how_error_patterns:
     type: governance-section
     resolves_to: docs/plan/_intake/know-how/
@@ -497,3 +504,11 @@ against this registry. Unknown anchors = ORPHAN. Pre-existing orphans: advisory;
   resolves_to: docs/plan/_handoff/VAULT/error-registry/
   spine: VALD
   l2_domain: vald_coverage_discipline
+
+- anchor: apps_planning
+  type: product-planning-artifact
+  resolves_to: docs/plan/apps/
+  spine: ARCH
+  l2_domain: arch_data_domain
+  description: App planning artifacts — dual-focal plans, knowledge cards, threshold topic plans
+

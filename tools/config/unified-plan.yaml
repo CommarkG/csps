@@ -645,3 +645,113 @@ items:
       reversibility: high
       dependency_clarity: medium
     notes: "7 sections: Job/Challenge/Scope/Connection/Journey/Quality/PMI. APP-001 is first test specimen."
+
+  # --- S047 Consensus Decisions + P-ARCH-COMPLETE-DEFAULT ---
+
+  - id: P-ARCH-COMPLETE-DEFAULT
+    title: "P-ARCH-COMPLETE-DEFAULT — Max-down principle: complete by default, selective by declaration"
+    status: ratified
+    epoch: E1
+    category: governance
+    owner: governor
+    batch: BATCH-A
+    pe_score: 97
+    tags: [principle, max-default, template-completeness, s047, constitutional]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: |
+      RATIFIED S047. Governor + Opus 6-persona PCR consensus.
+      Every new element created at maximum specification. Sub-elements are explicit
+      documented deactivations. Template masters have ALL options, sub-templates activate subsets.
+      Enforcement starts at L9, graduates DOWN with justification.
+      Replaces: "start minimal, promote based on violations" (anti-pattern).
+
+  - id: VALIDATE-PLAYGROUND-LINKS
+    title: "validate-playground-links.mjs — T2 blocking + T1 advisory for link permanence"
+    status: ratified
+    epoch: E1
+    category: infrastructure
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 88
+    tags: [validator, playground, links, s048]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "D1 decision: T2 blocking at commit + T1 advisory at creation. Both surfaces."
+
+  - id: VALIDATE-ACTIVATION-COVERAGE
+    title: "validate-activation-coverage.mjs — T2 for AP-001 (B_* contracts must have activation)"
+    status: ratified
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 85
+    tags: [validator, ap-001, activation, s048]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "D3 decision: checks every B_* contract has T1/T2/T3/DNA/AGENTS.md activation. AP-001 T2."
+
+  - id: CORE-REMINDER-DNA
+    title: "@csps-core-reminder frontmatter field + validate-core-reminder.mjs"
+    status: ratified
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-C
+    pe_score: 85
+    tags: [dna, ai-behavior, activation, ap-001-fix, s048]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "D4 decision. frontmatter field (not comment). principle IDs as values. validator checks IDs exist in principles.yaml."
+
+  - id: STATUS-CONSOLIDATION
+    title: "Status consolidation: lifecycle_state→stage, impl_status→quality_state (2-session transition)"
+    status: ratified
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 90
+    tags: [status, consolidation, migration, s048-s049]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: medium
+      dependency_clarity: high
+    notes: "D5 decision. Add stage + quality_state alongside old fields for 2 sessions. Hard cutover S050."
+
+  - id: SKILL-BASE-TEMPLATE
+    title: "skill-base.template.md — parent template for all 20 CSPS skills"
+    status: ratified
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 80
+    tags: [template, skills, parent, s048]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "20 skills reference parent_template: skill-base. Template doesn't exist. Fixes orphaned inheritance chain."
+

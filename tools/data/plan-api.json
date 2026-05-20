@@ -2,19 +2,19 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-20T10:03:29.469Z",
+    "generated_at": "2026-05-20T15:22:20.768Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
-    "total_items": 33,
+    "total_items": 39,
     "status_counts": {
       "intake": 15,
       "planning": 3,
-      "ratified": 2,
+      "ratified": 8,
       "implementing": 0,
       "activation": 0,
       "done": 13
     },
-    "pmi_ready_count": 14,
+    "pmi_ready_count": 20,
     "seeds_planted": 3
   },
   "items": [
@@ -990,6 +990,188 @@
         "consensus_width": "high",
         "reversibility": "high",
         "dependency_clarity": "medium"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "P-ARCH-COMPLETE-DEFAULT",
+      "title": "P-ARCH-COMPLETE-DEFAULT — Max-down principle: complete by default, selective by declaration",
+      "status": "ratified",
+      "category": "governance",
+      "owner": "governor",
+      "pe_score": 97,
+      "tags": [
+        "principle",
+        "max-default",
+        "template-completeness",
+        "s047",
+        "constitutional"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "RATIFIED S047. Governor + Opus 6-persona PCR consensus.\nEvery new element created at maximum specification. Sub-elements are explicit\ndocumented deactivations. Template masters have ALL options, sub-templates activate subsets.\nEnforcement starts at L9, graduates DOWN with justification.\nReplaces: \"start minimal, promote based on violations\" (anti-pattern).\n",
+      "pmi_score": 5,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "VALIDATE-PLAYGROUND-LINKS",
+      "title": "validate-playground-links.mjs — T2 blocking + T1 advisory for link permanence",
+      "status": "ratified",
+      "category": "infrastructure",
+      "owner": "sonnet",
+      "pe_score": 88,
+      "tags": [
+        "validator",
+        "playground",
+        "links",
+        "s048"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "D1 decision: T2 blocking at commit + T1 advisory at creation. Both surfaces.",
+      "pmi_score": 4,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "VALIDATE-ACTIVATION-COVERAGE",
+      "title": "validate-activation-coverage.mjs — T2 for AP-001 (B_* contracts must have activation)",
+      "status": "ratified",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 85,
+      "tags": [
+        "validator",
+        "ap-001",
+        "activation",
+        "s048"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "D3 decision: checks every B_* contract has T1/T2/T3/DNA/AGENTS.md activation. AP-001 T2.",
+      "pmi_score": 5,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "CORE-REMINDER-DNA",
+      "title": "@csps-core-reminder frontmatter field + validate-core-reminder.mjs",
+      "status": "ratified",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 85,
+      "tags": [
+        "dna",
+        "ai-behavior",
+        "activation",
+        "ap-001-fix",
+        "s048"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "D4 decision. frontmatter field (not comment). principle IDs as values. validator checks IDs exist in principles.yaml.",
+      "pmi_score": 5,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "STATUS-CONSOLIDATION",
+      "title": "Status consolidation: lifecycle_state→stage, impl_status→quality_state (2-session transition)",
+      "status": "ratified",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 90,
+      "tags": [
+        "status",
+        "consolidation",
+        "migration",
+        "s048-s049"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "D5 decision. Add stage + quality_state alongside old fields for 2 sessions. Hard cutover S050.",
+      "pmi_score": 4,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "medium",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "SKILL-BASE-TEMPLATE",
+      "title": "skill-base.template.md — parent template for all 20 CSPS skills",
+      "status": "ratified",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 80,
+      "tags": [
+        "template",
+        "skills",
+        "parent",
+        "s048"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "20 skills reference parent_template: skill-base. Template doesn't exist. Fixes orphaned inheritance chain.",
+      "pmi_score": 4,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
       },
       "has_core_seed": false,
       "core_seed": null,

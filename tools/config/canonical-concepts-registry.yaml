@@ -103,3 +103,42 @@ concepts:
   principles:
     canonical: docs/plan/pillar-0-governance/principles.yaml
     note: "Every P-META-*, P-ARCH-*, P-OPER-*. Single YAML. Sliced views OK; redefinitions not OK."
+
+# ── VOCABULARY REGISTRY — formal term definitions ──────────────────────────────
+# PI: VOCAB-SSOT (intake). Prevents term overloading across the platform.
+# Until vocabulary-registry.yaml is created (PI-VOCAB-SSOT), these definitions are canonical here.
+
+vocabulary:
+
+  validator:
+    definition: "Single-concern .mjs file checking ONE rule. Binary pass/fail. Run by node tools/verify.mjs."
+    active: true
+    count: 140
+    location: tools/validators/
+    enforcement_tier: T2
+
+  verification:
+    definition: "Combined run of ALL validators (node tools/verify.mjs). exit_code=0 is the session-close gate."
+    active: true
+    location: tools/verify.mjs
+    trigger: "post-stop-pnpm-verify.sh (T1 hook fires on every Stop)"
+
+  audit:
+    definition: "Multi-validator pipeline. Cadence-based (PR/nightly/weekly). Scored/weighted. Broader than a single validator."
+    active: false
+    note: "9 pipelines DEFINED in audit-hub.md. ZERO are running. All nightly/weekly cadences are architectural plans only. PI: RECURRING-AUDITS-WIRE."
+    location: docs/plan/pillar-0-governance/audit-hub.md
+
+  sanity_check:
+    definition: "Informal pre-action check before consequential operation. Not formally defined in CSPS yet."
+    active: false
+    note: "category:sanity exists in audit-runner.md schema but no formal protocol. Distinguish from Validator (mechanical) vs Sanity (human-readable quick check). PI: VOCAB-SSOT to formalize."
+
+  confirmation:
+    definition: "Process boundary acknowledgment. Not a tool check — a protocol handshake."
+    active: true
+    forms:
+      - "INTENT ABSORBED — session start self-declaration"
+      - "ALIGNMENT CONFIRMATION — after cross-boundary ZCA block"
+      - "ZCA block (WHO/WHAT/HOW/NOW) — every boundary crossing"
+    location: tools/council/communication-protocol-shared.md

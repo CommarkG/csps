@@ -796,3 +796,88 @@ items:
       dependency_clarity: high
     notes: "20 skills reference parent_template: skill-base. Template doesn't exist. Fixes orphaned inheritance chain."
 
+  - id: CONSOLIDATION-DEBT-T2
+    title: "validate-consolidation-debt.mjs — T2 validator for canonical-concepts-registry.yaml"
+    status: intake
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 85
+    tags: [consolidation, ssot, t2, validator, s049]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "Reads canonical-concepts-registry.yaml. For each concept, greps the declared cross_ref files and detects any that redefine (vs reference) the canonical. ADVISORY if concept appears in 3+ files with full definition. Closes the registry from advisory to T2 enforcement."
+
+  - id: PE-FORMULA-YAML
+    title: "pe-formula.yaml — extract PE scoring formula from unified-plan.yaml to standalone config"
+    status: intake
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 72
+    tags: [pe, consolidation, thin-reader, s049]
+    pmi:
+      intent_depth: medium
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: high
+    notes: "PE formula (urgency×impact/SPI_estimate), tier thresholds, band definitions extracted to tools/config/pe-formula.yaml. pe-agent skill and session-open become Thin Readers. Eliminates formula drift across 4 current locations."
+
+  - id: VOCAB-SSOT
+    title: "Vocabulary SSoT — formal CSPS term definitions (Validator/Verification/Audit/Sanity/Confirmation)"
+    status: intake
+    epoch: E1
+    category: governance
+    owner: opus
+    batch: BATCH-A
+    pe_score: 78
+    tags: [vocabulary, consolidation, ssot, definitions, s049]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: high
+    notes: "5 terms currently overloaded/undefined. Formal definitions in tools/config/vocabulary-registry.yaml. Audits = cadence-based multi-validator pipelines (planned). Validators = single-concern .mjs files (active). Verification = combined verify.mjs gate (active). Sanity = informal pre-action (not formally defined). Confirmation = boundary acknowledgment protocol."
+
+  - id: MODEL-IDENTITY-HOOK
+    title: "session-open model identity check — AI self-declares role from active model picker"
+    status: intake
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 80
+    tags: [model-identity, session-open, hooks, relay, s049]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "S049 discovery: settings.json model field is stale from workspace load; picker checkmark is ground truth. session-open.sh should emit MODEL IDENTITY CHECK block asking user to verify picker. AI self-declares SONNET or OPUS role at session start. Eliminates model confusion in relay workflow."
+
+  - id: RECURRING-AUDITS-WIRE
+    title: "Wire 9 audit-hub.md pipelines to actual execution (nightly/weekly cadences)"
+    status: intake
+    epoch: E1
+    category: governance
+    owner: opus
+    batch: BATCH-H
+    pe_score: 65
+    tags: [audit, recurring, cadence, nightly, weekly, s049]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: low
+      reversibility: medium
+      dependency_clarity: low
+    notes: "9 pipelines defined in audit-hub.md. 0 are running. 67 planned validators in audit-runner.md have no PE-tracked completion. This is a large scope — needs Opus design session before Sonnet implements. Batch-H (infrastructure). Prerequisite: foundation complete."
+

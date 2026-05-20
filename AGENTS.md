@@ -53,7 +53,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never create a governance rule with T3-only enforcement (memory/session injection alone = drift-prone) — B_INHERITANCE_POLICY requires T1+T2+T3
 - ❌ **Never stop at Scope-1** (fix-and-move-on = recurrence by session N+2): proceed to Scope-2 (ripple check) + Scope-3 (name training default + T1/T2/T3). Never use SROF for step-done reports — SROF = architectural review only; step-done = Rule 3 to `sonnet-turn.md`. (core-scopes.md + Rule 13 — S046)
 - ❌ **Never cite a governance artifact as "enforcing" without naming its activation mechanism** (T1 hook / T2 validator / session-open injection / DNA always_include). EXISTS ≠ ACTIVE. AP-001 — S046.
-- ❌ **Never embed specific app names, market segments, or demographic labels into universal framework files** (universal-logic-framework/, csps-context.md, core configs). AP-002: examples → docs/plan/apps/ only. (S047)
+- ❌ **Creation gates (AP-002 + AP-003):** Never embed app-specific content in universal files (AP-002 → examples go to docs/plan/apps/). When creating any new artifact, register in ALL schemas listed in `tools/config/artifact-schema-registry.yaml` — not just one (AP-003). (S047-S048)
 ### B_ZERO_NAVIGATION_FOR_GOVERNOR — Governor Instruction Completeness (S040 CONSTITUTIONAL)
 
 - ❌ **NEVER** send the Governor to find content: "paste the prompt from earlier", "see above", "from my prior response", "as I shared", "refer to the block I wrote", "earlier in this conversation"

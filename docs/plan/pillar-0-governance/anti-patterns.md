@@ -91,6 +91,35 @@ CSPS CORE must be vocabulary-agnostic and universal. When specific examples cont
 
 **Related:** AP-001 (EXISTS≠ACTIVE), B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK
 
+---
+
+## AP-003 — CREATION WITHOUT MULTI-SCHEMA REGISTRATION
+
+**Name:** Artifact Created in One Schema, Missing N-1 Others
+**First observed:** S047/S048 — domain-tree + universal-framework pages launched without registration in page-data.js PAGES schema. Breadcrumbs fell back to path labels.
+**Scope:** S3
+
+**The pattern:**
+Every artifact type in CSPS requires registration in multiple schemas simultaneously. Creating it in one schema without completing the others produces structural incompleteness — broken navigation, audit failures, and governance drift.
+
+**Each artifact type's registration requirements:**
+- `platform_page`: HTML links × page-data.js PAGES (K=2 → BLOCKING)
+- `validator`: verify.mjs × audit-runner.md
+- `hook`: settings.json × verify-hooks-functional.sh
+- `skill`: template-registry.md × session-open.sh
+- `behavioral_contract`: behavioral-contracts.md × audit-runner.md × AGENTS.md (3 schemas)
+- `plan_item`: unified-plan.yaml × csps-platform-batches.yaml mapping
+
+**The rule:**
+`tools/config/artifact-schema-registry.yaml` (S048 build) is the single source for all schemas per artifact type. The T1 gate reads it and emits the full registration checklist at creation time.
+
+**Prevention (T1+T2+T3):**
+- T1: `pre-tool-use-schema-registration-gate.sh` — BLOCKING for platform_page (K=2), ADVISORY for others. Reads artifact-schema-registry.yaml, emits full checklist.
+- T2: `validate-page-schema-consistency.mjs` (already LIVE, 85e307d)
+- T3: This anti-patterns.md entry (always_include: true)
+
+**Related:** AP-001 (EXISTS≠ACTIVE), AP-002 (sample-to-core), B_FIVE_SURFACE_ENGRAVING
+
 <!-- @core-seed: BEHAVIOR_PATTERN_REGISTER | plan: anti-patterns (docs/plan/pillar-0-governance/anti-patterns.md) | grows-to: formal register of AI behavior patterns with triggers + satisfaction points (currently in discipline matrix — needs dedicated register format) | target: S048 -->
 <!-- planted_by: S047 -->
 <!-- pmi_gate: DOG-FOOD-AUDIT -->

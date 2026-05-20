@@ -42,10 +42,21 @@ supersedes: [opus-context.md, sonnet-context.md, opus-1-context.md, sonnet-1-con
 Governor (Yariv Fink) relays between: [Opus tab] ←→ [Sonnet tab]
 ```
 
+**Step 0 — Model Identity (session open):**
+At session open, AI self-declares role based on active model (session-open hook emits the header).
+- SONNET tab: "I am Sonnet. Awaiting first PROTO directive from Opus before implementing anything."
+- OPUS tab: "I am Opus. Reading context. Will emit PROTO directive."
+Verify via model picker checkmark — the checkmark shows the ACTIVE model for this tab.
+
 - Governor PASTES messages from one tab to the other
 - Governor does NOT change "I AM" in messages — the sender fills it
-- Opus writes directives → Governor pastes to Sonnet
-- Sonnet implements, reports → Governor pastes report to Opus
+- Opus: writes PROTO directives + architectural decisions + core seeds → Governor pastes to Sonnet. **No code implementation.**
+- Sonnet: implements all code, reports → Governor pastes report to Opus
+
+**Rule 1 — Identity Handshake (bidirectional, NO EXCEPTIONS):**
+- Sonnet→Opus: every message starts **"Opus, this is Sonnet."** (first word, no exceptions)
+- Opus→Sonnet: every message starts **"Sonnet, this is Opus."** (first word, no exceptions)
+Missing handshake = malformed message. Receiver flags before acting.
 
 **"I AM" rule:** If Sonnet wrote it: "I AM: Sonnet." If Opus wrote it: "I AM: OPUS-N." If Governor personally wrote it: "I AM: Yariv Fink (Governor)."
 
@@ -266,6 +277,7 @@ Logic (patterns, rules, config) lives in `tools/config/*.yaml` files (no protect
 **Patterns in:** `tools/config/caq-patterns.yaml`
 **Hub at:** `/platform/questions/` (CAQ tab)
 **When CAQ MODE fires:** Run Scope-3 analysis FIRST. Name the class. Propose only structural fixes.
+**Scope definitions:** Scope-1 = fix this instance | Scope-2 = fix the process | Scope-3 = redesign the structure. 2+ CAQ types = Scope-1 has already failed → only Scope-3 is valid.
 
 ### 4. .claude/ Protection Boundary
 **What Claude Code protects:** `settings.json` AND any file inside `.claude/` directory require explicit permission prompts regardless of `bypassPermissions`. This is a Claude Code design constraint.

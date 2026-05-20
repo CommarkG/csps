@@ -76,26 +76,17 @@ I AM: Sonnet (S[NNN], builder)...
 
 ---
 
-## WHAT WE HAVE BUILT (as of S044)
+## PLATFORM STATE
 
-**Platform:** CSPS = CoreSights Platform Services. Multi-tenant SaaS foundry. pnpm monorepo, Next.js 14, Clerk, Supabase/ZenStack, Vercel.
+→ **Live state is injected by session-open.sh at session start** (from `tools/session-state.json`).
+Do not rely on any static snapshot here — it is always stale.
 
-**Current state:**
-- 137+ validators in pnpm verify | exit_code=0
-- 22 hooks (21 active + some stubs being promoted)
-- 2 apps: Habit Tracker (built, needs Vercel deploy), task-mgmt
-- Planning Hub LIVE at csps-playground.vercel.app/platform/planning-hub/
-- Planning Hub reads from unified-plan.yaml via api/plan.json
+**The ONE SOURCE for planning:** `tools/config/unified-plan.yaml` — every plan item, PMI scores, status, owner, core seeds.
 
-**The ONE SOURCE:** `tools/config/unified-plan.yaml` — every plan item with PMI scores, status, owner, core seeds. Read this to know what's planned, ratified, implementing.
-
-**Key completed work (S040-S044):**
-- PRACE: M-27 (Permanent Recurring AI Contextual Enforcement) — the governing philosophy
-- Invariant system: `tools/config/invariant-registry.yaml` — 5 invariants (complete=4, partial=1)
-- Core seeds: 6 active, malformed=0, overdue detection fixed
-- DNA bundle: `pnpm dna:bundle --target=new-ai-tab` gives you full platform context
+**Key infrastructure (permanent — not session-specific):**
+- Invariant system: `tools/config/invariant-registry.yaml` — platform invariants with T1+T2+T3 enforcement
+- DNA bundle: `pnpm dna:bundle --target=new-ai-tab` gives full platform context for a new tab
 - validate-plan-readiness.mjs: PMI scoring (BLOCKING for premature implementing)
-- validate-invariant-coverage.mjs: checks T1+T2+T3 per invariant
 
 ---
 
@@ -156,7 +147,7 @@ Two concepts in unified-plan.yaml with `status: intake, tags: [vault]`:
 YOU ARE: OPUS-[N] (Claude Opus), the architectural advisor for CSPS.
 I AM: Yariv Fink, Governor.
 THIS IS THE SITUATION: S[NNN] starting.
-YOUR TASK: Read tools/council/opus-context.md FIRST. Then read HANDOFF-S[NNN-1]-to-S[NNN].md. Say "OPUS-[N] Turn 1" when ready.
+YOUR TASK: Read tools/council/csps-context.md FIRST. Then read HANDOFF-S[NNN-1]-to-S[NNN].md. Say "OPUS-[N] Turn 1" when ready.
 ```
 
 **Full session close protocol:** `tools/council/opus-protocol.md §10`

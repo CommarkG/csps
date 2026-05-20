@@ -1,0 +1,105 @@
+# @csps-id csps.tools.config.canonical-concepts-registry
+# @csps-name canonical-concepts-registry
+# @csps-description Single source of truth map — for each governance concept,
+#   declares which ONE file owns it canonically. All other files must cross-reference,
+#   not redefine. Used by validate-consolidation-debt.mjs (T2) to detect SSoT violations.
+#   Created S049 after consolidation audit identified consolidation_debt: HIGH.
+# @csps-version 1.0.0
+# @csps-owner group:finky
+# @csps-lifecycle production
+# @csps-lifecycle-state active
+# @csps-tags type:config domain:governance audience:ai-agent
+# @csps-enforces B_CONSOLIDATION_PASS
+
+# ── HOW TO USE ────────────────────────────────────────────────────────────────
+# Each concept entry:
+#   canonical:    the ONE file that owns the authoritative definition
+#   section:      optional anchor within that file
+#   cross_refs:   files that MAY reference (not redefine) this concept
+#   violators:    files currently out of compliance (to be cleaned up)
+#   note:         clarification on scope or ownership rule
+# ─────────────────────────────────────────────────────────────────────────────
+
+concepts:
+
+  relay_model:
+    canonical: tools/council/csps-context.md
+    section: "## THE RELAY MODEL — How This Works"
+    cross_refs:
+      - tools/council/opus-context.md
+      - tools/council/sonnet-context.md
+    note: "Step 0 (model identity), Rule 1 bidirectional handshake, Opus no-code boundary all live here"
+
+  rule_1_identity_handshake:
+    canonical: tools/council/communication-protocol-shared.md
+    section: "## RULE 1"
+    cross_refs:
+      - tools/council/csps-context.md
+      - tools/scripts/session-open-context.mjs
+    note: "communication-protocol-shared.md is the master rules file. csps-context.md may summarize."
+
+  done_criteria:
+    canonical: tools/council/communication-protocol-shared.md
+    section: "## RULE 6"
+    cross_refs:
+      - tools/council/sonnet-context.md
+      - tools/scripts/session-open-context.mjs
+    note: "DONE = built + wired + called + output verified. Added to session-open injection S049."
+
+  platform_state:
+    canonical: tools/session-state.json
+    note: "DYNAMIC — never copy to static context files. session-open.sh injects live state at session start."
+    violators:
+      - tools/council/opus-context.md   # cleaned up S049 — static section removed
+
+  ratified_patterns:
+    canonical: tools/council/csps-context.md
+    section: "## RATIFIED PATTERNS — Permanent Platform Architecture (S048)"
+    cross_refs:
+      - tools/council/sonnet-turn.md
+    note: "Dispatcher / Thin Reader / CAQ / .claude Protection Boundary all defined here"
+
+  pe_formula:
+    canonical: tools/config/unified-plan.yaml
+    section: "pe_score field definition"
+    cross_refs:
+      - .claude/skills/pe-agent/
+      - tools/scripts/session-open-context.mjs
+    note: "Future: extract to tools/config/pe-formula.yaml (Thin Reader pattern) — PI item pending"
+
+  quality_gate_thresholds:
+    canonical: tools/council/csps-context.md
+    section: "## TAB TRANSITION PROTOCOL"
+    enforcement:
+      T1: .claude/hooks/user-prompt-submit-turn-counter.sh
+      T2: pending
+    note: "Sonnet: warn 20 / strong 30+. Opus: warn 40 / strong 60+."
+
+  session_tab_naming:
+    canonical: tools/scripts/session-open-context.mjs
+    section: "SESSION NAMING CONVENTION block"
+    note: "OPUS-1/OPUS-2 = instance-numbered. SONNET-S[NNN] = session-numbered."
+
+  handoff_format:
+    canonical: docs/plan/_handoff/VAULT/template-registry.md
+    note: "Zone A / Zone B / ALIGNMENT QUESTIONS structure"
+    enforcement:
+      T2: tools/validators/validate-handoff-completeness.mjs
+
+  zf_rzf_discipline:
+    canonical: tools/council/communication-protocol-shared.md
+    section: "## RULE 9"
+    cross_refs:
+      - tools/scripts/session-open-context.mjs
+      - .claude/hooks/post-stop-rzf-reminder.sh
+    note: "Cycle count is measurement not target. Termination is findings-driven."
+
+  behavioral_contracts:
+    canonical: docs/plan/pillar-0-governance/behavioral-contracts.md
+    cross_refs:
+      - docs/plan/pillar-1-agents/AGENTS.md
+    note: "Every B_* contract. AGENTS.md hard NOs are a subset. Do not duplicate definitions."
+
+  principles:
+    canonical: docs/plan/pillar-0-governance/principles.yaml
+    note: "Every P-META-*, P-ARCH-*, P-OPER-*. Single YAML. Sliced views OK; redefinitions not OK."

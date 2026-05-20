@@ -64,6 +64,33 @@ that has already fired?" If no → it is not active, regardless of where it is w
 **Replaces false assumption in:** principles.yaml governance notes, PRACE philosophy,
   all session-open injection design discussions
 
+---
+
+## AP-002 — SAMPLE-TO-CORE CONTAMINATION
+
+**Name:** Specific Example Embedded in Universal Pattern
+**First observed:** S047/S048 — app-specific content (product names, demographics, personas) found in CSPS CORE files (universal-logic-framework/, csps-context.md, csps-platform-batches.yaml)
+**Scope:** S3
+
+**The pattern:**
+When using a specific example to illustrate a universal concept, AI embeds the specific example INTO the universal artifact rather than referencing it from an app-specific directory.
+
+**The rule:**
+- Examples live in: `docs/plan/apps/[app-slug]/` or `docs/plan/_intake/`
+- Universal patterns live in: `docs/plan/universal-logic-framework/` or `tools/config/`
+
+These directories **MUST NEVER** contain: specific product names, market segment labels (e.g., "construction contractors"), specific demographic labels (e.g., "ADHD professionals"), or app-specific data passed off as universal examples.
+
+**Why this matters:**
+CSPS CORE must be vocabulary-agnostic and universal. When specific examples contaminate the core, every new AI instance that reads the core inherits a false assumption that CSPS is designed for a specific market. This is the opposite of what the core is for.
+
+**Prevention (T1+T2+T3):**
+- T1: none yet (S048 item)
+- T2: validate-core-purity.mjs (S048) — scans universal framework files for proper nouns in example positions, demographic labels, product candidate names
+- T3: This anti-pattern in anti-patterns.md (always_include: true)
+
+**Related:** AP-001 (EXISTS≠ACTIVE), B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK
+
 <!-- @core-seed: BEHAVIOR_PATTERN_REGISTER | plan: anti-patterns (docs/plan/pillar-0-governance/anti-patterns.md) | grows-to: formal register of AI behavior patterns with triggers + satisfaction points (currently in discipline matrix — needs dedicated register format) | target: S048 -->
 <!-- planted_by: S047 -->
 <!-- pmi_gate: DOG-FOOD-AUDIT -->

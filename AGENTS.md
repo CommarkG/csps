@@ -53,6 +53,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never create a governance rule with T3-only enforcement (memory/session injection alone = drift-prone) — B_INHERITANCE_POLICY requires T1+T2+T3
 - ❌ **Never stop at Scope-1** (fix-and-move-on = recurrence by session N+2): proceed to Scope-2 (ripple check) + Scope-3 (name training default + T1/T2/T3). Never use SROF for step-done reports — SROF = architectural review only; step-done = Rule 3 to `sonnet-turn.md`. (core-scopes.md + Rule 13 — S046)
 - ❌ **Never cite a governance artifact as "enforcing" without naming its activation mechanism** (T1 hook / T2 validator / session-open injection / DNA always_include). EXISTS ≠ ACTIVE. AP-001 — S046.
+- ❌ **Never embed specific app names, market segments, or demographic labels into universal framework files** (universal-logic-framework/, csps-context.md, core configs). AP-002: examples → docs/plan/apps/ only. (S047)
 ### B_ZERO_NAVIGATION_FOR_GOVERNOR — Governor Instruction Completeness (S040 CONSTITUTIONAL)
 
 - ❌ **NEVER** send the Governor to find content: "paste the prompt from earlier", "see above", "from my prior response", "as I shared", "refer to the block I wrote", "earlier in this conversation"
@@ -190,9 +191,8 @@ See [agents-navigation.md](docs/plan/pillar-0-governance/agents-navigation.md) f
 Per-app (`apps/<scope>/<name>/AGENTS.md`) and per-package (`packages/<name>/AGENTS.md`) extend with scope-specific rules. Inheritance: AGENTS.md cascade + shared MCP (`csps-principles-mcp`) + Mastra `BaseAgent` + audit-runner.
 
 **Do not edit `AGENTS.md` directly.** Generated from [`packages/principles/principles.yaml`](packages/principles/principles.yaml) via `pnpm principles:codegen`. Workflow: edit principles.yaml → run codegen → commit both. CI fails if `git diff AGENTS.md` shows drift.
-
 **Phase 4 transitional state (S007 turn 6):** AGENTS.md slim authored manually pending codegen full implementation per [token-optimization.md](docs/plan/pillar-0-governance/token-optimization.md) Phase 4. Backup at [`AGENTS.md.original`](AGENTS.md.original). Per principles-codegen.ts header: "Full AGENTS.md regeneration deferred to week-2-4 per build-order.md" — manual maintenance until codegen ships.
-## Compact + session boundaries (B_TOKEN_BUDGET R3+R4)
+## Compact + session boundaries (B_TOKEN_BUDGET R3+R4)  
 - `/compact <focus>` at IMPL_BATCH boundaries; `/clear` between unrelated tasks (domain change → session boundary; P-META-014).
 - Cardinal: tokens are INVESTMENT in reasoning quality, NOT budget to minimize.
 ## Open frontiers — [`docs/plan/pillar-6-operations-and-delivery/open-frontiers.md`](docs/plan/pillar-6-operations-and-delivery/open-frontiers.md) tracks items not yet final. Don't lock in behavior on those without checking latest state.

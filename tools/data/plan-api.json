@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-20T19:26:29.086Z",
+    "generated_at": "2026-05-20T23:11:54.893Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
     "total_items": 42,
@@ -992,22 +992,23 @@
         "app",
         "voice",
         "threshold",
-        "d3",
-        "s047",
+        "d4",
+        "s049",
         "batch-h-proof",
-        "vibe-coding"
+        "csps-template",
+        "cognitive-offload"
       ],
       "depends_on": [],
       "caq_questions": [],
-      "notes": "PMI 2/5. Build BLOCKED until 4/5. Pending: Q1.1 persona choice + build arch ratification. docs/plan/apps/APP-001-voice-sorting/",
+      "notes": "PMI 2/5 → 3/5 path open. S049 ratified: persona=cognitive-offload-professional, build=csps-template. Sections 1+4 gates resolved. Next: kill condition (S2) + STT provider (S4). docs/plan/apps/APP-001-voice-sorting/",
       "pmi_score": 0,
       "pmi_ready": false,
       "pmi_detail": {
         "intent_depth": "medium",
-        "cross_ref_density": "low",
+        "cross_ref_density": "medium",
         "consensus_width": "medium",
         "reversibility": "medium",
-        "dependency_clarity": "low"
+        "dependency_clarity": "medium"
       },
       "has_core_seed": false,
       "core_seed": null,

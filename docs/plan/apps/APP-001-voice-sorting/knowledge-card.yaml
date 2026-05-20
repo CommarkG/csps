@@ -3,8 +3,8 @@ id: csps.plan.apps.APP-001.knowledge-card
 name: APP-001 App Knowledge Card
 template_id: AKC
 template_version: 1.0
-status: draft
-session: S047
+status: planning
+session: S049
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -20,13 +20,15 @@ purpose: "AI-powered voice input system that captures fragmented spoken thoughts
   driving and converts them into structured, clarifiable task items — without guessing,
   without interrupting, without requiring hands."
 
-jtbd: "When I'm driving between job sites and something urgent crosses my mind,
-  I want to speak it out loud and trust it will be captured accurately so I can
-  focus on driving and not lose the thought or have to call myself."
+jtbd: "When I'm mid-day and a thought, task, or obligation surfaces at the wrong
+  moment — in a meeting, during a commute, between contexts — I want to speak it
+  out loud and trust it will be captured, structured, and waiting for me, so I
+  can stay present without losing the thread or adding more load to my mental RAM."
 
-problem_solved: "23% time leakage from repeated confirmation calls, mental context
-  switching at the wheel, and the 'Manual Entry Wall' (the gap between capturing
-  intent and converting it to structured action)."
+problem_solved: "Cognitive overload from trying to hold too much context simultaneously.
+  Thoughts lost in transition between contexts. The 'Manual Entry Wall' — the gap
+  between capturing intent (easy, natural) and converting it to structured action
+  (requires a screen, attention, and mental energy the user doesn't have right then)."
 
 success_metrics:
   - metric: "Confirmation call reduction"
@@ -62,14 +64,16 @@ key_patterns:
 
 csps_batch: BATCH-H
   # This app IS the BATCH-H proof of concept.
-  # CSPS provides planning governance; build happens in Lovable/Bolt.
+  # CSPS provides both planning governance AND the full build stack (apps/template/).
+  # Persona ratified S049: cognitive-offload-professional.
+  # Build arch ratified S049: csps-template.
 
-csps_gap: "Voice input pipeline, STT with accent calibration, reliability scoring,
-  event-sourced audio vault. None of these exist in CSPS today."
+csps_gap: "Voice input pipeline, STT integration, reliability scoring,
+  event-sourced audio vault. None of these exist in CSPS today — APP-001 creates them."
 
-csps_surplus: "Multi-tenancy, auth, ZenStack RLS — NOT needed since this app builds
-  externally. CSPS's surplus is invisible governance infrastructure that the vibe-coded
-  app will lack."
+csps_surplus: "Multi-tenancy, auth (Clerk), ZenStack RLS, Supabase — ALL inherited
+  from apps/template/. The template provides the full foundation; APP-001 adds
+  the voice-capture domain layer on top."
 
 extraction_priority: high
 extraction_items:

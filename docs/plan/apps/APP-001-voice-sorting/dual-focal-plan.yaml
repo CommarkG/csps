@@ -2,14 +2,14 @@
 id: csps.plan.apps.APP-001.dual-focal-plan
 name: APP-001 Dual-Focal Plan — Voice Sorting App
 description: "Formal dual-focal-point planning artifact for APP-001 (Temp Sorting App).
-  Outward: construction contractors + ADHD professionals converting driving time into
-  structured cognitive offload. Inward: CSPS governs the planning process; build
-  executes via Lovable/Bolt vibe-coding. This is the first real CSPS-process app plan."
+  Outward: cognitive-offload professionals (primary) + construction contractors (future)
+  converting driving/transit time into structured cognitive offload. Inward: CSPS
+  governs AND builds — csps-template (Next.js/Clerk/ZenStack). BATCH-H proof #1."
 version: 1.0
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
-next_review_at: S048
+next_review_at: S049
 core_spine: ARCH
 schema_anchor: apps_planning
 batch: BATCH-H
@@ -26,32 +26,39 @@ name_candidates:
   - sortitout.ai
   - IntentCore
   - talkitout.io
-build_framework: vibe-coding
-build_tools: [lovable, bolt, v0]
+build_framework: csps-template
+build_tools: [nextjs, clerk, zenstack, supabase]
+build_arch_ratified_session: S049
+persona_ratified: cognitive-offload-professional
+persona_ratified_session: S049
+future_personas:
+  - persona: contractor
+    saved_for: future-app
+    notes: "Mike persona (construction subcontractor). Saved for APP-004+ population."
 ---
 
 # APP-001 — Dual-Focal Plan
 
 > **Name:** Pending market validation and customer interviews.
 > **Placeholder:** "Temp Sorting App" / "Voice Sorting App"
-> **CSPS Role:** CSPS governs the PLANNING process. Lovable/Bolt executes the BUILD.
-> **Critical:** This app does NOT inherit the CSPS Next.js/Clerk/ZenStack template.
->   CSPS is the planning infrastructure. The build is external vibe-coding.
+> **CSPS Role:** CSPS governs AND builds. apps/template/ fork. Full platform inheritance.
+> **Ratified S049:** Build = csps-template (Next.js/Clerk/ZenStack/Supabase).
+>   Primary persona = cognitive-offload-professional. Contractor saved for future app.
 
 ---
 
 ## OUTWARD FOCUS — What users need
 
 target_users:
-  primary: "Mike — US construction subcontractor, 40s, drives 2-4 hours/day between
-    job sites. Heavy accent, uses construction jargon. Manages 3-8 active projects.
-    Lives in his truck. Runs on WhatsApp, phone calls, and gut memory."
-  secondary: "Alex — High-earning ADHD professional (founder/executive/consultant).
-    Cognitively overloaded. Has tried every productivity app and abandoned them all.
-    Needs to dump thoughts before they evaporate."
-  primary_persona_decision: PENDING
-    # Governor must choose ONE primary persona before Section 1 gate can close.
-    # The build approach differs significantly between these two.
+  primary: "Alex — High-earning cognitive-offload professional (founder/executive/consultant).
+    Cognitively overloaded, meetings back-to-back, thoughts surface at the worst moments.
+    Has tried every productivity app and abandoned them all. Needs a zero-friction capture
+    that works in real time — speaking the thought IS the action."
+  secondary: "Mike — US construction subcontractor (saved for future contractor app).
+    Drives 2-4 hours/day between job sites. Heavy accent, construction jargon. Manages
+    3-8 active projects. Runs on WhatsApp, phone calls, gut memory."
+  primary_persona_decision: cognitive-offload-professional
+    # Governor ratified S049. Section 1 gate: RESOLVED.
 
 core_jtbd: "When I'm driving between job sites (or meetings), I want to voice-dump
   everything in my head so I can trust that nothing falls through the cracks,
@@ -91,10 +98,10 @@ platform_seed: "APP-001-PROCESS-VALIDATED"
   # outcomes than ad-hoc vibe-coding decisions.
 
 build_architecture: |
-  CSPS provides: planning governance, dual-focal plan, PMI scoring, 7-section
-    crystallization, App Knowledge Card, domain-tree registration.
-  Lovable/Bolt provides: actual code generation, deployment, iteration.
-  This split is intentional: test whether CSPS planning improves vibe-coding quality.
+  CSPS provides: planning governance + the full build stack.
+    Fork: apps/template/ → apps/voice-sorting/ (or final registered name).
+    Stack: Next.js 14 + Clerk (auth) + ZenStack (RLS) + Supabase (DB).
+  This is BATCH-H proof: CSPS planning + CSPS template = first real app shipped.
 
 invariants_addressed:
   - "INV-001 (plan-before-implement): YES — this document IS the plan that must
@@ -103,8 +110,10 @@ invariants_addressed:
     documented here and in session HANDOFF files"
   - "INV-003 (RZF-before-directive): ADVISORY — each section gate requires ZF
     before advancing to next section"
-  - "INV-004 (agent-understanding-block): N/A — vibe-coding agents outside CSPS scope"
-  - "INV-005 (DNA-block-on-creation): N/A — build is external"
+  - "INV-004 (agent-understanding-block): YES — all agents building this app must
+    pass AAP alignment block (csps-template build inherits CSPS agent discipline)"
+  - "INV-005 (DNA-block-on-creation): YES — new files in apps/voice-sorting/ must
+    carry @csps-dna blocks per validate-new-file-dna.mjs"
 
 validators_enabled:
   - "validate-plan-readiness.mjs (PI-037): BLOCKING — PMI must reach 5/5 HIGH
@@ -113,8 +122,10 @@ validators_enabled:
     all planning docs use registered app slot name"
 
 libs_touched:
-  - "NONE — this app does not use CSPS libs. It builds externally."
-  - "CSPS provides: planning templates, AKC, domain-tree, PMI scoring."
+  - "libs/auth: Clerk integration (inherited from template)"
+  - "libs/db: ZenStack + Supabase (inherited from template)"
+  - "apps/voice-sorting: new app directory forked from apps/template/"
+  - "CSPS provides: planning templates + full build stack + governance."
 
 new_platform_capability_required:
   - "7-section planning wizard templates (in progress — BATCH-B)"
@@ -129,33 +140,33 @@ pmi:
   intent_depth: medium
     # Section 1 (THE JOB) is 85% crystallized. Primary persona choice pending.
     # Reaches HIGH when: Q1.1 persona chosen + Q1.5 day-30 success confirmed by Governor.
-  cross_ref_density: low
-    # Section 4 (CONNECTION MAP) not yet started.
-    # Reaches HIGH when: CSPS vs vibe-coding split formally ratified +
-    # invariants_addressed confirmed + dependency_clarity confirmed.
+  cross_ref_density: medium
+    # Build architecture ratified S049 — Section 4 gate unblocked.
+    # Reaches HIGH when: invariants_addressed fully confirmed + Section 4 completed.
   consensus_width: medium
     # Governor + Opus reviewed. Sonnet has not validated feasibility.
     # Reaches HIGH after Sections 1+2 reviewed by Opus in formal SROF.
   reversibility: medium
     # Phase 1 scope defined. Kill condition not yet stated.
     # Reaches HIGH when: Section 3 kill condition locked by Governor.
-  dependency_clarity: low
-    # CRITICAL: build framework (vibe-coding) implies NO CSPS code inheritance.
-    # This changes what "done" means for CSPS. Must be explicitly ratified.
-    # Reaches HIGH when: vibe-coding architecture formally ratified + STT provider chosen.
+  dependency_clarity: medium
+    # Build framework ratified S049 (csps-template). CSPS code inheritance confirmed.
+    # Reaches HIGH when: STT provider chosen + Section 3 kill condition locked.
 
 pmi_score: 2
-  # 2/5 HIGH fields. Plan is NOT READY FOR IMPLEMENTATION.
-  # validate-plan-readiness.mjs will BLOCK any Lovable session until PMI reaches 4/5.
+  # 2/5 HIGH fields (S049 ratification advanced cross_ref + dependency_clarity to medium).
+  # Sections 1+4 gates resolved. PMI advances to 3/5 when Section 2+3 close.
+  # validate-plan-readiness.mjs BLOCKS app fork until PMI reaches 4/5.
 
 ---
 
 ## 7-SECTION WIZARD STATUS
 
 section_1_the_job:
-  status: 85_pct
-  gate_blocking: primary_persona_choice
-  note: "The job is clear. The user is not yet specific enough."
+  status: 95_pct
+  gate_blocking: none
+  gate_resolved: "primary_persona_choice — cognitive-offload-professional ratified S049"
+  note: "Job clear. Persona ratified. Remaining: Governor confirms day-30 success definition."
 
 section_2_the_challenge:
   status: 80_pct
@@ -168,9 +179,10 @@ section_3_scope_boundary:
   note: "Phase 1 defined but kill condition and EPOCH duration not set."
 
 section_4_connection_map:
-  status: 50_pct
-  gate_blocking: csps_vs_vibecodit_architecture_ratification
-  note: "CRITICAL: build framework choice fundamentally changes this section."
+  status: 65_pct
+  gate_blocking: none
+  gate_resolved: "csps_vs_vibe_architecture — csps-template ratified S049"
+  note: "Build framework resolved. Section can now proceed: invariants + STT provider + deps."
 
 section_5_user_journey:
   status: 75_pct
@@ -192,10 +204,10 @@ section_7_pmi_gate:
 
 ## PROMOTION CHECKLIST
 
-- [ ] Section 1 gate: Q1.1 primary persona chosen (Governor decision required)
+- [x] Section 1 gate: Q1.1 primary persona chosen — cognitive-offload-professional (S049)
 - [ ] Section 2 gate: Kill condition named. 3 assumptions force-ranked.
 - [ ] Section 3 gate: Kill condition locked. EPOCH duration set.
-- [ ] Section 4 gate: Vibe-coding architecture formally ratified by Governor + Opus.
+- [x] Section 4 gate: Build architecture ratified — csps-template (S049)
 - [ ] Section 5 gate: Onboarding 3 questions defined.
 - [ ] Section 6 gate: Measurement method confirmed for all metrics.
 - [ ] PMI reaches 4/5 HIGH → validate-plan-readiness.mjs passes

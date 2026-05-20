@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-20T00:01:08.129Z",
+    "generated_at": "2026-05-20T00:02:25.982Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
     "total_items": 21,
@@ -11,8 +11,8 @@
       "planning": 3,
       "ratified": 2,
       "implementing": 0,
-      "activation": 1,
-      "done": 11
+      "activation": 0,
+      "done": 12
     },
     "pmi_ready_count": 7,
     "seeds_planted": 3
@@ -154,7 +154,7 @@
     {
       "id": "OPEN-051",
       "title": "findings-categorizer.mjs — Core Scopes S1/S2/S3 tagging",
-      "status": "activation",
+      "status": "done",
       "category": "infrastructure",
       "owner": "sonnet",
       "pe_score": 80,
@@ -165,7 +165,7 @@
       ],
       "depends_on": [],
       "caq_questions": [],
-      "notes": "Stay in activation 2 more sessions. Lesson: check JSON structure before building a reader.",
+      "notes": "DONE S046 PROTO-041. S1/S2/S3 tagging + AI behavior override notes confirmed working (036cca9). Activation confirmed.",
       "pmi_score": 3,
       "pmi_ready": false,
       "pmi_detail": {

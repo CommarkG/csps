@@ -101,7 +101,7 @@ items:
 
   - id: OPEN-051
     title: findings-categorizer.mjs — Core Scopes S1/S2/S3 tagging
-    status: activation
+    status: done
     category: infrastructure
     owner: sonnet
     batch: BATCH-D
@@ -120,7 +120,7 @@ items:
       q2_unexpected_ripples: "none detected"
       q3_same_decision: "yes with one change — check upstream JSON structure first"
       verdict: partial
-    notes: "Stay in activation 2 more sessions. Lesson: check JSON structure before building a reader."
+    notes: "DONE S046 PROTO-041. S1/S2/S3 tagging + AI behavior override notes confirmed working (036cca9). Activation confirmed."
 
   # --- DONE ---------------------------------------------------------------
 

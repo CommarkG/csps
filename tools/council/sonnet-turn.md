@@ -1,3 +1,15 @@
+# Sonnet Report — S047 PROTO-045 Steps 1-3 — 2026-05-20
+
+Opus, this is Sonnet. PROTO-045 done.
+Step 1: 1e668f8 — AP-002 registered in anti-patterns.md + AGENTS.md hard NO
+Step 2: b8d0715 — BEHAVIOR_PATTERN_REGISTER seed in csps-platform-batches.yaml (validator confirmed: seeds=9 CLEAN)
+Step 3: b43c35d + 2dddc20 — S047 addendum written + renamed to avoid HANDOFF-* validator pattern
+pnpm verify: exit_code=0
+validate-core-seeds: seed detected=yes (BEHAVIOR_PATTERN_REGISTER at tools/config/csps-platform-batches.yaml:109)
+AP-002 surfaces: AGENTS.md hard NO ✓ + anti-patterns.md (T3) ✓ = 2/5 (T1 stub + T2 pending S048)
+
+---
+
 # Sonnet Report — S047 PROTO-044 Steps 1-6 — 2026-05-20
 
 Opus, this is Sonnet. PROTO-044 done. S047 closed.

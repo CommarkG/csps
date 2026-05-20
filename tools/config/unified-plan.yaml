@@ -592,3 +592,56 @@ items:
       reversibility: high
       dependency_clarity: medium
     notes: "Skill: takes 2+ AKCs, asks purpose+quality questions, extracts best patterns, outputs CSPS plan item."
+
+  # --- APP-001 + Planning Wizard (S047) ---
+
+  - id: APP-001-PLAN
+    title: "APP-001 Voice Sorting App — Threshold D3 (crystallization in progress)"
+    status: planning
+    epoch: E1
+    category: product
+    owner: governor
+    batch: BATCH-H
+    pe_score: 95
+    tags: [app, voice, threshold, d3, s047, batch-h-proof, vibe-coding]
+    pmi:
+      intent_depth: medium
+      cross_ref_density: low
+      consensus_width: medium
+      reversibility: medium
+      dependency_clarity: low
+    notes: "PMI 2/5. Build BLOCKED until 4/5. Pending: Q1.1 persona choice + build arch ratification. docs/plan/apps/APP-001-voice-sorting/"
+
+  - id: APP-NAME-REGISTRY
+    title: "App Name Registry — pnpm app:rename mechanism"
+    status: intake
+    epoch: unassigned
+    category: architecture
+    owner: sonnet
+    batch: BATCH-B
+    pe_score: 80
+    tags: [app-name, registry, rename, s047]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "tools/config/app-name-registry.yaml created (3 apps registered). Rename script + validator needed."
+
+  - id: APP-PLANNING-WIZARD
+    title: "7-Section App Planning Wizard — templates + gate validators"
+    status: intake
+    epoch: unassigned
+    category: architecture
+    owner: sonnet
+    batch: BATCH-B
+    pe_score: 92
+    tags: [wizard, planning, templates, s047, batch-h-prerequisite]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: medium
+    notes: "7 sections: Job/Challenge/Scope/Connection/Journey/Quality/PMI. APP-001 is first test specimen."

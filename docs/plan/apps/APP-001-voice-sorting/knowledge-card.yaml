@@ -1,0 +1,104 @@
+---
+id: csps.plan.apps.APP-001.knowledge-card
+name: APP-001 App Knowledge Card
+template_id: AKC
+template_version: 1.0
+status: draft
+session: S047
+template_depth: L3
+parent_template: app-knowledge-card
+batch: BATCH-J
+app_slot: APP-001
+---
+
+# App Knowledge Card — APP-001 Voice Sorting App
+
+purpose: "AI-powered voice input system that captures fragmented spoken thoughts during
+  driving and converts them into structured, clarifiable task items — without guessing,
+  without interrupting, without requiring hands."
+
+jtbd: "When I'm driving between job sites and something urgent crosses my mind,
+  I want to speak it out loud and trust it will be captured accurately so I can
+  focus on driving and not lose the thought or have to call myself."
+
+problem_solved: "23% time leakage from repeated confirmation calls, mental context
+  switching at the wheel, and the 'Manual Entry Wall' (the gap between capturing
+  intent and converting it to structured action)."
+
+success_metrics:
+  - metric: "Confirmation call reduction"
+    target: "-50% within 30 days"
+    measurement: "User-reported before/after call log"
+  - metric: "Daily activation"
+    target: "≥5 voice notes on day 7"
+    measurement: "Usage event tracking"
+  - metric: "Vault resolution time"
+    target: "Needs-Clarification items resolved within 4 hours"
+    measurement: "Timestamp delta"
+  - metric: "Reliability score baseline"
+    target: ">85% of chunks score ≥ 0.85 after 14 days of accent calibration"
+    measurement: "reliability_score distribution in raw_voice_payloads"
+
+key_patterns:
+  - pattern: "Humble AI positioning"
+    purpose: "Disarms tech-skeptic users by framing AI as apprentice, not oracle"
+    csps_equivalent: "AP-001 (EXISTS ≠ ACTIVE) — same philosophy: don't claim
+      confidence without evidence"
+  - pattern: "Sponge Protocol"
+    purpose: "Treat incoming audio as fragments, not commands. Never assume."
+    csps_equivalent: "B_VALIDATE_BEFORE_ASSUME — validate every claim with tool call"
+  - pattern: "Event-sourced raw vault"
+    purpose: "Never overwrite original voice — reparse on model improvement"
+    csps_equivalent: "The CSPS git history model — commits are immutable, never rewrite"
+  - pattern: "Confidence-scored clarification routing"
+    purpose: "reliability_score < 0.85 → needs_clarification, never guesses"
+    csps_equivalent: "ZF discipline — 0 findings required before claiming done"
+  - pattern: "Three-state vault model"
+    purpose: "Crystal Clear / Needs Clarification / Vaulted Draft"
+    csps_equivalent: "lifecycle_state: ratified / planning / intake"
+
+csps_batch: BATCH-H
+  # This app IS the BATCH-H proof of concept.
+  # CSPS provides planning governance; build happens in Lovable/Bolt.
+
+csps_gap: "Voice input pipeline, STT with accent calibration, reliability scoring,
+  event-sourced audio vault. None of these exist in CSPS today."
+
+csps_surplus: "Multi-tenancy, auth, ZenStack RLS — NOT needed since this app builds
+  externally. CSPS's surplus is invisible governance infrastructure that the vibe-coded
+  app will lack."
+
+extraction_priority: high
+extraction_items:
+  - item: "Three-state status model (Crystal Clear / Needs Clarification / Vaulted Draft)"
+    rationale: "This is lifecycle_state done correctly for user-generated content.
+      CSPS should adopt this for plan items: ratified / pending-clarification / archived."
+    target_artifact: "tools/config/unified-plan.yaml lifecycle field enhancement"
+  - item: "reliability_score threshold for action"
+    rationale: "CSPS's PMI score is the reliability_score for plan items.
+      Below 4/5 = needs_clarification. The parallel is exact."
+    target_artifact: "validate-plan-readiness.mjs PMI threshold documentation"
+  - item: "Humble AI positioning"
+    rationale: "CSPS should explicitly state AP-001 as the 'Humble AI' principle —
+      we don't claim something is active until a T1 hook proves it fires."
+    target_artifact: "AP-001 description in anti-patterns.md"
+
+external_reference: "https://docs.google.com/document/d/1ayqjPEhHAuEkTzwIZv_Pv5cTN-njwW_bFPiNYyI3-jc/"
+
+reference_apps:
+  - name: "Todoist"
+    url: "https://todoist.com"
+    learning: "Task structure patterns + priority capture UX"
+    eca_comparison_done: false
+  - name: "Otter.ai"
+    url: "https://otter.ai"
+    learning: "Voice transcription reliability + speaker context"
+    eca_comparison_done: false
+  - name: "Notion"
+    url: "https://notion.so"
+    learning: "Database structure for heterogeneous input types"
+    eca_comparison_done: false
+  - name: "Beeper / WhatsApp Business"
+    url: "https://www.whatsapp.com/business"
+    learning: "Contractor communication patterns + attachment handling"
+    eca_comparison_done: false

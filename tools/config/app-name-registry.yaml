@@ -1,0 +1,61 @@
+---
+id: csps.config.app-name-registry
+name: app-name-registry
+description: "Single source of truth for all CSPS app names and slugs. When an app
+  name changes, run: pnpm app:rename --slot [slot] --name [name] --slug [slug].
+  The rename script updates all registered name_references and renames directories.
+  Validator: validate-app-name-consistency.mjs (checks for stale name references)."
+version: 1.0
+owner: governor
+lifecycle: production
+lifecycle_state: active
+core_spine: ARCH
+schema_anchor: app_name_registry
+batch: BATCH-B
+---
+
+apps:
+  - slot: APP-001
+    current_name: "Voice Sorting App"
+    current_slug: APP-001-voice-sorting
+    current_short_code: VSA
+    name_locked: false
+    name_pending_validation: true
+    name_candidates:
+      - sortitout.ai
+      - IntentCore
+      - talkitout.io
+    name_references:
+      - docs/plan/apps/APP-001-voice-sorting/dual-focal-plan.yaml
+      - docs/plan/apps/APP-001-voice-sorting/knowledge-card.yaml
+      - docs/plan/apps/APP-001-voice-sorting/threshold-topic-plan.md
+      - tools/config/unified-plan.yaml
+    domain: Business
+    category: Operations
+    build_framework: vibe-coding
+    plan_status: D3
+
+  - slot: APP-002
+    current_name: "Habit Tracker"
+    current_slug: habit-tracker
+    current_short_code: HT
+    name_locked: true
+    name_references:
+      - apps/habit-tracker/package.json
+      - docs/plan/apps/
+    domain: Private
+    category: Productivity
+    build_framework: csps-template
+    plan_status: built
+
+  - slot: APP-003
+    current_name: "Budget Planner"
+    current_slug: budget-planner
+    current_short_code: BP
+    name_locked: true
+    name_references:
+      - apps/budget-planner/package.json
+    domain: Private
+    category: Finance
+    build_framework: csps-template
+    plan_status: partial

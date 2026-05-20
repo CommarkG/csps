@@ -1,3 +1,19 @@
+# Opus Architecture — APP-001 Threshold Registration — 2026-05-20
+
+APP-001 (Voice Sorting App) formally entered the CSPS planning system.
+Artifacts created:
+  - docs/plan/apps/APP-001-voice-sorting/dual-focal-plan.yaml (PMI: 2/5)
+  - docs/plan/apps/APP-001-voice-sorting/knowledge-card.yaml
+  - docs/plan/apps/APP-001-voice-sorting/threshold-topic-plan.md (depth: D3)
+  - tools/config/app-name-registry.yaml (APP-001, APP-002, APP-003 registered)
+  - apps/csps-playground/platform/domain-tree/ (live at playground)
+Critical architectural question pending Governor ratification:
+  Is APP-001 vibe-coded (Lovable/Bolt) with CSPS as planning layer only,
+  OR does it use the CSPS Next.js/Clerk/ZenStack template?
+  Section 4 of the wizard cannot close until this is ratified.
+Also awaiting: Q1.1 primary persona choice (construction contractor vs ADHD professional).
+Sent: 2026-05-20T10:00:00Z
+
 # Opus Directive — PROTO-043 — 2026-05-20
 
 PROTO-043 Steps 1-3 directed to Sonnet (S047):

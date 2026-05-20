@@ -2,19 +2,19 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-20T03:49:01.124Z",
+    "generated_at": "2026-05-20T10:03:29.469Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
-    "total_items": 30,
+    "total_items": 33,
     "status_counts": {
-      "intake": 13,
-      "planning": 2,
+      "intake": 15,
+      "planning": 3,
       "ratified": 2,
       "implementing": 0,
       "activation": 0,
       "done": 13
     },
-    "pmi_ready_count": 12,
+    "pmi_ready_count": 14,
     "seeds_planted": 3
   },
   "items": [
@@ -894,6 +894,100 @@
         "intent_depth": "medium",
         "cross_ref_density": "medium",
         "consensus_width": "medium",
+        "reversibility": "high",
+        "dependency_clarity": "medium"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "APP-001-PLAN",
+      "title": "APP-001 Voice Sorting App — Threshold D3 (crystallization in progress)",
+      "status": "planning",
+      "category": "product",
+      "owner": "governor",
+      "pe_score": 95,
+      "tags": [
+        "app",
+        "voice",
+        "threshold",
+        "d3",
+        "s047",
+        "batch-h-proof",
+        "vibe-coding"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "PMI 2/5. Build BLOCKED until 4/5. Pending: Q1.1 persona choice + build arch ratification. docs/plan/apps/APP-001-voice-sorting/",
+      "pmi_score": 0,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "medium",
+        "cross_ref_density": "low",
+        "consensus_width": "medium",
+        "reversibility": "medium",
+        "dependency_clarity": "low"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "APP-NAME-REGISTRY",
+      "title": "App Name Registry — pnpm app:rename mechanism",
+      "status": "intake",
+      "category": "architecture",
+      "owner": "sonnet",
+      "pe_score": 80,
+      "tags": [
+        "app-name",
+        "registry",
+        "rename",
+        "s047"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "tools/config/app-name-registry.yaml created (3 apps registered). Rename script + validator needed.",
+      "pmi_score": 4,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "APP-PLANNING-WIZARD",
+      "title": "7-Section App Planning Wizard — templates + gate validators",
+      "status": "intake",
+      "category": "architecture",
+      "owner": "sonnet",
+      "pe_score": 92,
+      "tags": [
+        "wizard",
+        "planning",
+        "templates",
+        "s047",
+        "batch-h-prerequisite"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "7 sections: Job/Challenge/Scope/Connection/Journey/Quality/PMI. APP-001 is first test specimen.",
+      "pmi_score": 4,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
         "reversibility": "high",
         "dependency_clarity": "medium"
       },

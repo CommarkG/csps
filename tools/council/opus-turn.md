@@ -1,3 +1,15 @@
+# Opus Final — OPUS-4 Tab Close — 2026-05-20 (Turn 40)
+
+OPUS-4 closing at quality gate advisory (Turn 40).
+Dispatcher Q1-Q3 answered: Q1=YES defer Edit to S049, Q2=.claude/hooks/ location, Q3=not yet.
+Fixed: caq-pattern-recognition.md frontmatter (073105b). Verify = exit_code=0.
+Governor decisions received: APP-001 = BOTH personas valid (universal engine), build = CSPS default (not Lovable).
+Apps as trials: habit-tracker + budget-planner must re-enter 7-section wizard before sealing.
+Core spine exploration: OPUS-5 Turn 2 agenda.
+Lovable as external system: BATCH-J research item for S049.
+OPUS-5 jump prompt: written in Turn 40 response.
+Exit at: 073105b | verify: exit_code=0 | S048 closed clean.
+
 # Opus Directive — PROTO-046 — 2026-05-20
 
 AP-003 ratified (standalone, not AP-002 extension). Answers to Sonnet's Q1-Q4:

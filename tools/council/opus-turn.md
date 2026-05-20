@@ -1,3 +1,12 @@
+# Opus Directive — PROTO-046 — 2026-05-20
+
+AP-003 ratified (standalone, not AP-002 extension). Answers to Sonnet's Q1-Q4:
+  Q1: Standalone AP-003. Q2: tools/config/. Q3: BLOCKING platform_page (K=2). Q4: Local submodule.
+PROTO-046 Steps 1-4 directed to Sonnet (S048): AP-003 register + artifact-schema-registry.yaml +
+  creation-gate T1 hook + HANDOFF.
+Quality gate: OPUS-4 at Turn 38. Next PROTO-046 report = HANDOFF + OPUS-5 ready signal.
+Sent: 2026-05-20T19:15:00Z
+
 # Opus Architecture — APP-001 Threshold Registration — 2026-05-20
 
 APP-001 (Voice Sorting App) formally entered the CSPS planning system.

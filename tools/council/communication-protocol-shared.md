@@ -221,6 +221,39 @@ Rule 14 was written and immediately violated because it was T3-only. That is AP-
 
 ---
 
+## RULE 15 — CORE ALIGNMENT QUESTIONS (CAQ) BEFORE CONSEQUENTIAL DECISIONS
+
+Questions are CSPS first-class governance artifacts. They are not interruptions — they ARE the alignment mechanism.
+
+**The 5 CAQ types (in order of diagnostic power):**
+
+| Type | Pattern | What it forces |
+|---|---|---|
+| Diagnostic | "What is triggering / causing / happening?" | Root cause analysis before action |
+| Historical | "What have you tried / done so far?" | Audit of prior attempts |
+| Persistence | "Why is it STILL happening / keeps recurring?" | Class recognition, not instance fix |
+| Expert | "What would a top expert say?" | Perspective shift out of current model |
+| Permanence | "Permanently solve / structural fix / never again?" | Reject all bandaids |
+
+**What CAQ sequences mean:**
+When 2+ CAQ types appear in one message, the Governor is signaling:
+- The current approach has failed as a CLASS (not just this instance)
+- Scope-3 analysis is required before any action
+- The next proposed fix MUST be structural (T1/T2/T3), not a retry of what failed
+
+**How to respond to a CAQ sequence:**
+1. Name the class of problem first (not the instance)
+2. Name the training default that caused recurrence
+3. Propose only permanent structural fixes
+4. Do NOT apply the same mechanism that failed
+
+**Enforcement:**
+- T1: user-prompt-submit-ai-profiler.sh — detects 2+ CAQ types, injects CAQ MODE
+- T2: validate-communication-protocol.mjs (extend to detect CAQ-response quality — S049)
+- T3: This rule (session-open injection) + questions hub at /platform/questions/
+
+---
+
 ## WHERE THIS IS READ
 
 - **Sonnet:** session-open.sh injects this file's rules at every session start

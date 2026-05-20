@@ -39,6 +39,19 @@ if echo "$PROMPT" | grep -Eqi '\b(new.*contract|new.*validator|Hard NO|add.*AGEN
   MODE="enforcement"
 fi
 
+# CAQ MODE — Core Alignment Question pattern detected
+# Fires when prompt contains 2+ of: diagnostic + historical + persistence + expert + permanence
+# This is the Governor signaling that Scope-1 fixes have failed; Scope-3 required
+CAQ_SCORE=0
+echo "$PROMPT" | grep -Eqi '\b(what is (triggering|causing|happening)|why (is|does|did)|root cause|what.*trigger)\b' && CAQ_SCORE=$((CAQ_SCORE+1)) || true
+echo "$PROMPT" | grep -Eqi '\b(what did you|have you tried|so far|already|still happening|keeps happening|again)\b' && CAQ_SCORE=$((CAQ_SCORE+1)) || true
+echo "$PROMPT" | grep -Eqi '\b(STILL|30 times|keep(s)? (doing|happening)|every time|recurring|never stop)\b' && CAQ_SCORE=$((CAQ_SCORE+1)) || true
+echo "$PROMPT" | grep -Eqi '\b(top expert|best practice|what would.*say|expert.*perspective|permanently solve|structural.*fix)\b' && CAQ_SCORE=$((CAQ_SCORE+1)) || true
+echo "$PROMPT" | grep -Eqi '\b(permanent(ly)?|forever|never again|make it.*right|structural|once and for all)\b' && CAQ_SCORE=$((CAQ_SCORE+1)) || true
+if [ "$CAQ_SCORE" -ge 2 ]; then
+  MODE="caq"
+fi
+
 # Standard chat — no injection needed
 if [ "$MODE" = "standard" ]; then
   printf '{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":""}}'
@@ -80,6 +93,32 @@ FSE checklist required: T5 AGENTS.md + T4 contract + T3 memory + T2 validator + 
 Commit all 5 surfaces atomically. T3-only = drift within 2 sessions.
 Active override: RULE-SCOPE (every rule needs CONCEPT + SCOPE + ESCAPE HATCH).
 ENFORCEMENT CHECK: Does every rule in this session have T1+T2? Show enforcement_rate delta."
+    ;;
+
+  caq)
+    INJECTION="[AI-PROFILER: CAQ MODE — CORE ALIGNMENT QUESTION DETECTED]
+Governor is using diagnostic multi-dimensional questioning. This means Scope-1 fixes have FAILED.
+DO NOT apply the same approach again. SWITCH TO SCOPE-3 MODE.
+
+WHAT CAQs SIGNAL:
+  The current approach has been tried and failed as a CLASS.
+  The next response must address the class, not the instance.
+  Governor expects permanent structural fix, not another retry.
+
+MANDATORY CAQ RESPONSE SEQUENCE:
+  1. Name the CLASS of problem (not the instance)
+  2. Name the TRAINING DEFAULT that caused it to recur
+  3. Name the SATISFACTION POINT that felt like success but wasn't
+  4. Propose ONLY permanent structural fixes (T1/T2/T3 or architectural pattern change)
+  5. If proposed fix touches the same mechanism that failed: REJECT IT before proposing
+
+ACTIVE OVERRIDE — CAQ-BEFORE-ACTION:
+  Do NOT execute any action until the Scope-3 diagnosis is complete.
+  'Diagnostic reasoning → structural proposal → Governor ratification → implementation.'
+  Jumping to implementation without this sequence = AP-001 applied to yourself.
+
+Reference: docs/plan/_handoff/VAULT/inner-ai-defaults/caq-pattern-recognition.md
+Questions hub: csps-playground.vercel.app/platform/questions/"
     ;;
 
   enforcement)

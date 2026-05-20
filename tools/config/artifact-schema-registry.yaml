@@ -1,0 +1,109 @@
+---
+id: csps.config.artifact-schema-registry
+name: artifact-schema-registry
+description: "Maps every CSPS artifact type to the COMPLETE list of schemas it must be registered in when created. The creation gate (pre-tool-use-schema-registration-gate.sh) reads this file. P-ARCH-COMPLETE-DEFAULT: maximum registration by default. AP-003 prevention mechanism."
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: ARCH
+schema_anchor: artifact_schema_registry
+batch: BATCH-A
+session: S048
+---
+
+artifact_types:
+
+  platform_page:
+    description: "New HTML page under apps/csps-playground/platform/[slug]/"
+    schemas:
+      - file: apps/csps-playground/platform/index.html
+        action: "Add <li><a href='/platform/[slug]/'>...</a></li> entry to the ul.mandatory-list"
+        blocking: true
+      - file: apps/csps-playground/page-data.js
+        action: "Add entry to Platform PAGES array: { label, href, goal, pipeline, intro, alignment }"
+        blocking: true
+    t1_enforcement: BLOCKING
+    k_failures: 2
+    note: "domain-tree + universal-framework both launched without PAGES registration (S047). K=2 → BLOCKING immediately."
+
+  validator:
+    description: "New tools/validators/validate-*.mjs file"
+    schemas:
+      - file: tools/verify.mjs
+        action: "Add validator entry to the validators array with name, command, parse_output"
+        blocking: true
+      - file: docs/plan/pillar-0-governance/audit-runner.md
+        action: "Add slug row to appropriate pipeline table with cadence/severity/description"
+        blocking: false
+    t1_enforcement: ADVISORY
+    k_failures: 0
+    note: "T2 audit-freshness check already blocks commit if validator added without audit-runner update."
+
+  hook:
+    description: "New .claude/hooks/*.sh file"
+    schemas:
+      - file: .claude/settings.json
+        action: "Register in hooks.PreToolUse, hooks.PostToolUse, or hooks.Stop array with matcher"
+        blocking: true
+      - file: .claude/hooks/verify-hooks-functional.sh
+        action: "Add to DECLARED_HOOKS list (update count)"
+        blocking: false
+    t1_enforcement: ADVISORY
+    k_failures: 0
+    note: "verify-hooks-functional.sh count drift is advisory — update when adding hooks."
+
+  skill:
+    description: "New .claude/skills/[name]/SKILL.md file"
+    schemas:
+      - file: docs/plan/_handoff/VAULT/template-registry.md
+        action: "Add entry to §5 Agent/persona templates table"
+        blocking: false
+      - file: tools/config/dna-registry.yaml
+        action: "Add entry if skill should be in DNA bundle (always_include: false for most skills)"
+        blocking: false
+    t1_enforcement: ADVISORY
+    k_failures: 0
+
+  behavioral_contract:
+    description: "New docs/plan/pillar-0-governance/behavioral-contracts/B_*.md file"
+    schemas:
+      - file: docs/plan/pillar-0-governance/behavioral-contracts.md
+        action: "Add B_* contract section with 5-surface FSE (schema + validator + hook + memory + contract)"
+        blocking: true
+      - file: docs/plan/pillar-0-governance/audit-runner.md
+        action: "Register at least one audit slug that monitors this contract"
+        blocking: false
+      - file: AGENTS.md
+        action: "Add hard NO if this contract prohibits a behavior (check 200-line limit)"
+        blocking: false
+    t1_enforcement: ADVISORY
+    k_failures: 0
+
+  plan_item:
+    description: "New item added to tools/config/unified-plan.yaml"
+    schemas:
+      - file: tools/config/unified-plan.yaml
+        action: "Add item with all required fields: id, title, status, batch, epoch, pmi (5 fields)"
+        blocking: true
+      - file: tools/config/csps-platform-batches.yaml
+        action: "Add to unified_plan_mapping section: [id]: BATCH-[X]"
+        blocking: false
+    t1_enforcement: ADVISORY
+    k_failures: 0
+    note: "plan:export pre-commit hook auto-exports unified-plan.yaml to plan-api.json."
+
+  anti_pattern:
+    description: "New AP-NNN entry in docs/plan/pillar-0-governance/anti-patterns.md"
+    schemas:
+      - file: docs/plan/pillar-0-governance/anti-patterns.md
+        action: "Append ## AP-NNN section with name/observed/scope/pattern/rule/prevention/related"
+        blocking: true
+      - file: AGENTS.md
+        action: "Add hard NO if this anti-pattern prohibits a behavior (check 200-line limit)"
+        blocking: false
+      - file: tools/config/dna-registry.yaml
+        action: "anti-patterns.md is already always_include: true — no action needed per entry"
+        blocking: false
+    t1_enforcement: ADVISORY
+    k_failures: 0

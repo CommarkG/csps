@@ -11,6 +11,7 @@ schema_anchor: pillar_0_governance_leaves
 batch: BATCH-A
 template_depth: L2
 parent_template: governed-artifact-frontmatter
+diataxis_type: reference
 ---
 
 # CSPS Anti-Pattern Register

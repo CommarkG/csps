@@ -1122,6 +1122,15 @@ const CYCLES = [
     },
   },
   {
+    // S047 VALIDATE-PLAYGROUND-LINKS: BLOCKING if any platform page is not linked in index
+    name: 'playground_links',
+    command: 'node tools/validators/validate-playground-links.mjs',
+    parse_output: (out) => {
+      const m = out.match(/found=(\d+)\s+missing=(\d+)/);
+      return m ? { found: parseInt(m[1]), missing: parseInt(m[2]) } : {};
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

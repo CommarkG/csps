@@ -1,0 +1,58 @@
+# dispatch-registry.yaml — Write hook dispatcher registry
+# ──────────────────────────────────────────────────────────────────────────────
+# PURPOSE: This file is the ONLY place you add new Write-triggered hooks.
+#   settings.json has ONE permanent entry: pre-tool-use-write-dispatcher.sh
+#   Never edit settings.json for Write hooks again — add here instead.
+#
+# DISPATCHER: .claude/hooks/pre-tool-use-write-dispatcher.sh
+# PATTERN: Each hook handles its own path conditions internally.
+#   The dispatcher calls all of them in order.
+#   Exit 2 from any hook = BLOCKING (dispatcher exits 2 immediately).
+#   Exit 1 from any hook = error (dispatcher exits 1).
+#   All exit 0 = advisory output only, Write proceeds.
+#
+# HOW TO ADD A NEW WRITE HOOK:
+#   1. Create the hook script in .claude/hooks/
+#   2. Add an entry here (path + description)
+#   3. DONE — no settings.json edit needed. Ever.
+# ──────────────────────────────────────────────────────────────────────────────
+
+version: "1.0"
+owner: "group:finky"
+
+hooks:
+  - path: ".claude/hooks/pre-tool-use-schema-registration-gate.sh"
+    description: "AP-003 creation gate — BLOCKING for platform_page (K=2), ADVISORY for others"
+    enforcement: blocking_possible
+
+  - path: ".claude/hooks/pre-tool-use-rule14-read-before-write.sh"
+    description: "Rule 14 — BLOCKING when sonnet-turn.md is unread before opus-turn.md write"
+    enforcement: blocking_possible
+
+  - path: ".claude/hooks/pre-tool-use-check-existing.sh"
+    description: "Prevention gate — advisory, check existing before creating in governed dirs"
+    enforcement: advisory
+
+  - path: ".claude/hooks/pre-tool-use-vault-write-gate.sh"
+    description: "VAULT write gate — advisory, check template-registry before VAULT artifact creation"
+    enforcement: advisory
+
+  - path: ".claude/hooks/pre-tool-use-claude-dir-guard.sh"
+    description: ".claude/ directory write guard"
+    enforcement: advisory
+
+  - path: ".claude/hooks/pre-tool-use-plan-coverage-gate.sh"
+    description: "Plan coverage gate — blocks unplanned writes"
+    enforcement: blocking_possible
+
+  - path: ".claude/hooks/pre-tool-use-frontmatter-enum-check.sh"
+    description: "Frontmatter closed-enum check — validates enum fields before write"
+    enforcement: blocking_possible
+
+  - path: ".claude/hooks/pre-tool-use-skill-aap-required.sh"
+    description: "Skill AAP check — advisory"
+    enforcement: advisory
+
+  - path: ".claude/hooks/depth-marker-creation-gate.sh"
+    description: "Depth marker creation gate — advisory for deep files"
+    enforcement: advisory

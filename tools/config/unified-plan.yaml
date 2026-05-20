@@ -255,7 +255,7 @@ items:
 
   - id: PI-037
     title: validate-plan-readiness.mjs — PMI scoring per plan item in unified-plan.yaml
-    status: planning
+    status: done
     category: infrastructure
     owner: sonnet
     batch: BATCH-B
@@ -270,7 +270,7 @@ items:
     depends_on: [OPEN-055]
     caq_questions:
       - "Should PMI score affect PE scoring? (higher PMI = higher effective PE)"
-    notes: "Depends on unified-plan.yaml existing first. This is Step 2 of OPEN-055."
+    notes: "DONE S046 PROTO-041. Validator implemented and live. PMI scoring gates all plan items. First real app through BATCH-B will be the first specimen it gates."
 
   - id: prevention-framework
     title: Prevention Framework — B_PREVENTION_FIRST contract + pre-tool-use-check-existing.sh

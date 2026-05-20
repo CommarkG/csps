@@ -1,3 +1,15 @@
+# Opus Directive — PROTO-043 — 2026-05-20
+
+PROTO-043 Steps 1-3 directed to Sonnet (S047):
+Step 1: Rule 14 T1 BLOCKING hook (pre-tool-use-rule14-read-before-write.sh)
+Step 2: 9 new intake items + BATCH-J in unified-plan.yaml and csps-platform-batches.yaml
+Step 3: Rule 14 + opus-turn.md write discipline in communication-protocol-shared.md
+Context: AP-001 proved itself on Opus (Rule 14 written without T1 hook → immediately violated).
+Fix: T1 hook is BLOCKING exit 2. Rule 14 is now enforced, not documented.
+Sent: 2026-05-20T03:50:00Z
+
+---
+
 # Opus Turn 88 — EP-ERR→Planning Loop + OPUS-2/Sonnet Alignment + Rule 9 Enforcement
 
 **OPEN items: Adding OPEN-021 (EP-ERR→Planning Loop)**

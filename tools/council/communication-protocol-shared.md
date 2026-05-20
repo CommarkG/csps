@@ -189,6 +189,38 @@ The inline chat version is a convenience copy. `sonnet-turn.md` is the canonical
 
 ---
 
+## RULE 14 — READ BEFORE WRITE (cross-boundary discipline)
+
+**Both directions, both parties.**
+
+**Sonnet before writing any SROF or step-done report:**
+Read the last entry in `tools/council/opus-turn.md`.
+If Opus has an unanswered question there — answer it before raising new topics.
+
+**Opus before writing any PROTO directive:**
+(a) Read the last entry in `tools/council/sonnet-turn.md` — confirm it is acknowledged.
+(b) Write the directive to `tools/council/opus-turn.md` (same file-write discipline as Rule 13 for Sonnet).
+
+Format for opus-turn.md entries:
+```
+# Opus Directive — [PROTO-NNN] — [date]
+[brief summary of what was directed to Sonnet]
+Sent: [timestamp]
+```
+
+**Why this rule exists:**
+Rule 14 was written and immediately violated because it was T3-only. That is AP-001 instantiated on its own author. The T1 hook (`pre-tool-use-rule14-read-before-write.sh`) makes it BLOCKING — not advisory. If Sonnet has committed a newer report than Opus's last write to opus-turn.md, the hook exits 2 and blocks the PROTO write.
+
+**Training default overridden:** "I know what the other party did from context."
+**CSPS override:** Context degrades. The file is permanent. Read the file.
+
+**Enforcement:**
+- T1: `pre-tool-use-rule14-read-before-write.sh` — BLOCKING (exit 2) on opus-turn.md writes when sonnet-turn.md is newer
+- T2: validate-communication-protocol.mjs extended to check Rule 14 compliance (S047)
+- T3: This rule (session-open injection)
+
+---
+
 ## WHERE THIS IS READ
 
 - **Sonnet:** session-open.sh injects this file's rules at every session start

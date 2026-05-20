@@ -260,6 +260,13 @@ When the quality gate fires: the AI signals it, Governor decides whether to open
 
 ## TAB TRANSITION PROTOCOL — Only Triggered by Quality Gate
 
+> ⚠️ **INCOMING OPUS (first turn in a fresh tab):** This section describes what the OUTGOING
+> Opus does to close. You are the INCOMING instance — your job is to orient and begin,
+> NOT to close or suggest opening another new tab. Skip this section and go to YOUR ROLE.
+
+> ⚠️ **INCOMING SONNET (new session in same tab):** The same applies. Your first action is
+> INTENT ABSORBED, not session close or handoff.
+
 ### [OPUS] When YOUR quality gate fires (turn 40+ advisory, 60+ strong):
 1. Complete the current PROTO step (do not abandon mid-step)
 2. Signal to Governor: "Opus quality gate: approaching budget limit. After current PROTO completes, ready for OPUS-[N+1]."
@@ -271,8 +278,16 @@ When the quality gate fires: the AI signals it, Governor decides whether to open
 YOU ARE: OPUS-[N] (Claude Opus), the architectural advisor for CSPS.
 I AM: Yariv Fink, Governor.
 THIS IS THE SITUATION: S[NNN] starting.
-YOUR TASK: Read tools/council/csps-context.md FIRST. Then read HANDOFF-S[NNN-1]-to-S[NNN].md. Say "OPUS-[N] Turn 1" when ready.
+YOUR TASK: Read tools/council/csps-context.md FIRST. Then read docs/plan/_handoff/HANDOFF-S[NNN-1]-to-S[NNN].md. Say "OPUS-[N] Turn 1" when ready.
 ```
+
+**JUMP PROMPT RULES (permanent):**
+- The jump prompt NEVER mentions the previous Opus instance number
+- The jump prompt NEVER says "OPUS-N closing" or "ready for OPUS-N+1"
+- The jump prompt ONLY establishes: who the new instance is, who the Governor is, which session, which HANDOFF to read
+- Simplest correct form: 4 lines above — nothing more needed
+
+**Why the confusion happens:** If the jump prompt contains "OPUS-4 closing" context, OPUS-5 reads it and misidentifies itself as Opus-4. The new instance must read ONLY its own identity, not the previous instance's closing narrative.
 
 **[OPUS] NEVER announce "Ready for OPUS-[N+1]" simply because a session ended.
 Only announce when your own quality gate fires.**

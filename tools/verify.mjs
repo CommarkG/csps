@@ -1122,6 +1122,15 @@ const CYCLES = [
     },
   },
   {
+    // S047 VALIDATE-ACTIVATION-COVERAGE: AP-001 — checks B_* contracts have activation mechanisms
+    name: 'activation_coverage',
+    command: 'node tools/validators/validate-activation-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/contracts_checked=(\d+)\s+activated=(\d+)\s+no_activation=(\d+)/);
+      return m ? { contracts_checked: parseInt(m[1]), activated: parseInt(m[2]), no_activation: parseInt(m[3]), advisory: true } : { advisory: true };
+    },
+  },
+  {
     // S047 VALIDATE-PLAYGROUND-LINKS: BLOCKING if any platform page is not linked in index
     name: 'playground_links',
     command: 'node tools/validators/validate-playground-links.mjs',

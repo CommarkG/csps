@@ -238,4 +238,22 @@ components:
     audience: [all]
     depth_level: L2
     always_include: true
-    summary: "ONE SOURCE for all CSPS planning state. 20+ items with PMI scores, status, owner, core seeds. Any model in any chat reads this to know what's planned, ratified, implementing, and done."
+    summary: "ONE SOURCE for all CSPS planning state. 21 items with PMI scores, status, owner, batch assignment, core seeds. Any model in any chat reads this to know what's planned, ratified, implementing, and done."
+
+  - id: csps-platform-batches
+    path: tools/config/csps-platform-batches.yaml
+    scope: repo
+    category: knowledge
+    audience: [all]
+    depth_level: L1
+    always_include: true
+    summary: "8 named batches (BATCH-A through BATCH-H) replace 80+ floating items. Every plan item maps to one batch. BATCH-H = 0% = current frontier. Reference batches not items when discussing platform state."
+
+  - id: csps-dual-focal-plan
+    path: docs/plan/csps-dual-focal-plan.yaml
+    scope: repo
+    category: knowledge
+    audience: [opus, sonnet]
+    depth_level: L2
+    always_include: false
+    summary: "CSPS planned through its own dual-focal template. outward_focus: independent developer building B2B SaaS. inward_focus: CSPS_PROCESS_VALIDATED seed. PMI: intent_depth+cross_ref_density high; consensus_width+dependency_clarity medium (honest)."

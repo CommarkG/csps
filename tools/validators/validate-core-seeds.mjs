@@ -59,7 +59,7 @@ try {
 const SEED_PATTERN = /@core-seed:\s*([A-Z_]+)/g;
 const SEED_FIELDS_PATTERN = /@core-seed:[^|]+\|\s*plan:\s*([^|]+)\|\s*grows-to:\s*([^|]+)(?:\|\s*target:\s*(\S+))?/;
 
-function walkForSeeds(dir, exts = ['.mjs', '.sh']) {
+function walkForSeeds(dir, exts = ['.mjs', '.sh', '.yaml']) {
   const seeds = [];
   try {
     for (const entry of readdirSync(dir)) {

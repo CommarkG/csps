@@ -103,6 +103,10 @@ batches:
     blocking_BATCH-H: true
     gap: "libs/components (forms, inputs, design system) entirely missing. Admin panel absent. Billing not integrated."
 
+  # @core-seed: BATCH_COMPLETION_GATE | plan: csps-platform-batches (tools/config/csps-platform-batches.yaml) | grows-to: validate-batch-completeness.mjs — mechanically checks each batch completion signal | target: S047
+  # planted_by: S046
+  # pmi_gate: csps-platform-batches
+
   - id: BATCH-H
     name: Process Validation
     description: "Proof that the process works — first real app through every gate"

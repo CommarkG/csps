@@ -36,6 +36,10 @@ inward_focus:
     - "apps/template — dual-focal checklist in template README"
     - "tools/config/unified-plan.yaml — batch field added to all items"
 
+# @core-seed: CSPS_PROCESS_VALIDATED | plan: csps-dual-focal-plan (docs/plan/csps-dual-focal-plan.yaml) | grows-to: first real CSPS-process app through all BATCH-B gates, deployed and validated by Governor | target: S047
+# planted_by: S046
+# pmi_gate: csps-platform-batches
+
 # PMI — Plan Maturity Index
 pmi:
   intent_depth: high        # Governor + Opus both authored and challenged

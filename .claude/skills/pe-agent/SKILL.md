@@ -58,6 +58,10 @@ links:
   - { rel: spec, href: ../../../../docs/plan/pillar-0-governance/meta-platform/pe-agent.md }
   - { rel: pi, href: ../../../../docs/plan/_handoff/VAULT/plan-items/PI-004-pe-agent-skill.yaml }
 scope_level: S1
+batch: BATCH-B
+lifecycle_state: active
+template_depth: L2
+parent_template: skill-base
 ---
 
 # /pe-agent — Priority Engine + Bundling Specialist

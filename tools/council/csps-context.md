@@ -307,7 +307,7 @@ Validator: `validate-invariant-coverage.mjs` → `complete=4 partial=1`
 
 Secondary: PLAN_READINESS_GATE seed deprecation, OPEN-029 (EXT-KNOW), OPEN-062 (Rule 13 T1)
 
-S046 accomplished: PROTO-039 (batched directives + INV-003 T1 complete=5) + PROTO-040 (8-batch structure + CSPS dual-focal plan) + PROTO-041 (seeds planted + PI-037/OPEN-051/OPEN-057 done). Last commit: f1265bd. Plan done=13.
+S046 accomplished: PROTO-039 (INV-003 T1 complete=5) + PROTO-040 (8-batch structure + CSPS self-plan) + PROTO-041 (AP-001 + B_EXISTS_NOT_EQUALS_ACTIVE 5-surface + skills backfill + EPOCH fields + done=13). Last commit: 21ac15a.
 
 ---
 

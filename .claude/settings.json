@@ -11,7 +11,8 @@
       "Bash(node tools/verify.mjs *)",
       "Bash(pnpm tokens:measure)",
       "Bash(bash .claude/hooks/verify-hooks-functional.sh)",
-      "Bash(cp \"c:\\\\Users\\\\finky\\\\Desktop\\\\Claude Code\\\\Csps\\\\tools\\\\scripts\\\\git-hooks\\\\pre-commit\" \"c:\\\\Users\\\\finky\\\\Desktop\\\\Claude Code\\\\Csps\\\\.git\\\\hooks\\\\pre-commit\" && echo \"copied\")"
+      "Bash(cp \"c:\\\\Users\\\\finky\\\\Desktop\\\\Claude Code\\\\Csps\\\\tools\\\\scripts\\\\git-hooks\\\\pre-commit\" \"c:\\\\Users\\\\finky\\\\Desktop\\\\Claude Code\\\\Csps\\\\.git\\\\hooks\\\\pre-commit\" && echo \"copied\")",
+      "WebFetch(domain:docs.google.com)"
     ],
     "defaultMode": "bypassPermissions",
     "additionalDirectories": [
@@ -83,6 +84,10 @@
       {
         "matcher": "Write",
         "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-schema-registration-gate.sh"
+          },
           {
             "type": "command",
             "command": ".claude/hooks/pre-tool-use-rule14-read-before-write.sh"

@@ -1,0 +1,80 @@
+---
+id: csps.config.caq-patterns
+name: caq-patterns
+description: "Core Alignment Question detection patterns for user-prompt-submit-ai-profiler.sh.
+  The hook reads THIS file — logic changes here require NO .claude/ file edit and NO permission prompt.
+  This is the thin-reader pattern: .claude/.sh = dumb reader, tools/config/*.yaml = logic."
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: AI
+schema_anchor: caq_patterns
+batch: BATCH-C
+session: S048
+---
+
+# CAQ (Core Alignment Question) Detection Patterns
+# ───────────────────────────────────────────────────────────────────────────────
+# When Governor uses 2+ of these CAQ types in one prompt, CAQ MODE fires.
+# CAQ MODE forces Scope-3 diagnostic reasoning before any action.
+# Add new patterns here — no .claude/ file edit, no permission prompt.
+#
+# THRESHOLD: CAQ_SCORE >= 2 triggers CAQ mode
+# Each type contributes 1 point to CAQ_SCORE when matched.
+
+caq_types:
+  - id: diagnostic
+    description: "Root cause framing — forces analysis before action"
+    score: 1
+    patterns:
+      - '\b(what is (triggering|causing|happening)|why (is|does|did)|root cause|what.*trigger)\b'
+
+  - id: historical
+    description: "Accountability for prior attempts — surfaces failure patterns"
+    score: 1
+    patterns:
+      - '\b(what did you|have you tried|so far|already|still happening|keeps happening|again)\b'
+
+  - id: persistence
+    description: "Class recognition — rejects instance-fix mindset"
+    score: 1
+    patterns:
+      - '\b(STILL|[0-9]+ times|keep(s)? (doing|happening)|every time|recurring|never stop)\b'
+
+  - id: expert_simulation
+    description: "Perspective shift — breaks out of current mental model"
+    score: 1
+    patterns:
+      - '\b(top expert|best practice|what would.*say|expert.*perspective|permanently solve|structural.*fix)\b'
+
+  - id: permanence_commitment
+    description: "Structural fix required — rejects all bandaids"
+    score: 1
+    patterns:
+      - '\b(permanent(ly)?|forever|never again|make it.*right|structural|once and for all)\b'
+
+# AI PROFILER MODES — detection patterns for all modes
+# These are the existing mode patterns, externalized for thin-reader pattern.
+# Update patterns here without touching .claude/hooks/user-prompt-submit-ai-profiler.sh
+
+profiler_modes:
+  - id: architectural
+    description: "Design/architecture decisions requiring ZF + expert review"
+    patterns:
+      - '\b(design|architect|PI-[0-9]+|plan the|how should we|consolidat|pcr|pros and cons|recommend|should we|OPEN-[0-9]+|strategy|trade.?off)\b'
+
+  - id: implementation
+    description: "Build/implement actions requiring Rule 11 (build verification)"
+    patterns:
+      - '\b(build|implement|create the|fix the|write the|next build|deploy|vercel|pnpm|tsc|prisma|route\.ts|page\.tsx)\b'
+
+  - id: governance
+    description: "B_* contracts, principles, FSE — governance FSE checklist required"
+    patterns:
+      - '\b(B_[A-Z_]+|P-META|P-ARCH|P-OPER|engrave|ratif|AGENTS\.md|behavioral contract|FSE|enforcement trio)\b'
+
+  - id: enforcement
+    description: "Declaring governance artifacts complete — mechanical enforcement check"
+    patterns:
+      - '\b(new.*contract|new.*validator|Hard NO|add.*AGENTS|enforcement.*active|validator.*LIVE|hook.*active|T1.*T2|enforcement trio|wired.*verify|mechanical enforcement|B_CSPS_INHERITANCE|B_ZERO_NAVIGATION|behavioral contract.*new|now enforced|enforcement.*complete)\b'

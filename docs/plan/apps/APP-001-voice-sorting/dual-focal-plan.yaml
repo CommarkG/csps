@@ -137,26 +137,22 @@ new_platform_capability_required:
 ## PMI — Plan Maturity Index
 
 pmi:
-  intent_depth: medium
-    # Section 1 (THE JOB) is 85% crystallized. Primary persona choice pending.
-    # Reaches HIGH when: Q1.1 persona chosen + Q1.5 day-30 success confirmed by Governor.
-  cross_ref_density: medium
-    # Build architecture ratified S049 — Section 4 gate unblocked.
-    # Reaches HIGH when: invariants_addressed fully confirmed + Section 4 completed.
+  intent_depth: high
+    # Section 1 persona ratified. Section 2 kill condition + assumptions locked. Core JTBD sharp.
+  cross_ref_density: high
+    # 4 platform invariants confirmed. 2 validators wired. STT provider decided. Stack decided.
   consensus_width: medium
-    # Governor + Opus reviewed. Sonnet has not validated feasibility.
-    # Reaches HIGH after Sections 1+2 reviewed by Opus in formal SROF.
-  reversibility: medium
-    # Phase 1 scope defined. Kill condition not yet stated.
-    # Reaches HIGH when: Section 3 kill condition locked by Governor.
-  dependency_clarity: medium
-    # Build framework ratified S049 (csps-template). CSPS code inheritance confirmed.
-    # Reaches HIGH when: STT provider chosen + Section 3 kill condition locked.
+    # Governor + Opus reviewed Sections 1-4. Sonnet feasibility check pending (Section 7).
+    # Reaches HIGH after Section 5 (user journey gate) closes.
+  reversibility: high
+    # Kill condition locked. EPOCH E1 appetite = small. Nothing built yet. Fully reversible.
+  dependency_clarity: high
+    # STT: Web Speech API (E1) → Deepgram Nova-2 (E2). Stack: csps-template. All deps explicit.
 
-pmi_score: 2
-  # 2/5 HIGH fields (S049 ratification advanced cross_ref + dependency_clarity to medium).
-  # Sections 1+4 gates resolved. PMI advances to 3/5 when Section 2+3 close.
-  # validate-plan-readiness.mjs BLOCKS app fork until PMI reaches 4/5.
+pmi_score: 4
+  # 4/5 HIGH fields — advanced S049 by resolving Sections 2+3+4.
+  # GATE OPEN: validate-plan-readiness.mjs should now allow apps/template/ fork.
+  # Remaining: Section 5 (consensus_width HIGH) → PMI 5/5 → full ratification.
 
 ---
 
@@ -169,20 +165,65 @@ section_1_the_job:
   note: "Job clear. Persona ratified. Remaining: Governor confirms day-30 success definition."
 
 section_2_the_challenge:
-  status: 80_pct
-  gate_blocking: explicit_kill_conditions
-  note: "Sponge Protocol + reliability_score are strong. Kill conditions missing."
+  status: 100_pct
+  gate_blocking: none
+  gate_resolved: "S049 — kill condition + 3 assumptions force-ranked"
+  kill_condition: |
+    KILL if after 14 days of real use by 5 users:
+      (a) average reliability_score < 0.70 across all clips, AND
+      (b) users report > 3 "I didn't mean that" corrections per session
+    — OR —
+      (c) Voice capture fails in moving vehicles (wind/road noise breaks recognition
+          in > 40% of real-car test clips)
+    Primary kill trigger: (c) — validate this FIRST, before any development begins.
+    Kill decision authority: Governor only.
+  assumptions_force_ranked:
+    1_highest_risk: "Voice input works reliably in a moving vehicle (wind, road noise, radio, AC).
+      If this fails → the entire concept fails. Validate with a 5-minute real-car test
+      BEFORE any development. This is the cheapest possible kill gate."
+    2_medium_risk: "Cognitive-offload professionals (Alex) will actually speak thoughts out loud
+      rather than just thinking they will. Many people find talking to devices alone in a car
+      unnatural or embarrassing. Validate with 3 user interviews before building."
+    3_lower_risk: "Users will return to the clarification interface within 4 hours of capturing.
+      If the vault accumulates unreviewed items, the app fails silently — users stop trusting it
+      without knowing why. Validate via day-7 cohort: did they open the vault?"
 
 section_3_scope_boundary:
-  status: 60_pct
-  gate_blocking: kill_condition + appetite_in_epochs
-  note: "Phase 1 defined but kill condition and EPOCH duration not set."
+  status: 100_pct
+  gate_blocking: none
+  gate_resolved: "S049 — EPOCH model + appetite defined"
+  epoch_e1:
+    name: "Does the core loop work?"
+    duration: "6 weeks"
+    appetite: small
+    stack_choices:
+      stt: "Web Speech API (browser-native, free, no server needed)"
+      storage: "Supabase — 3-state vault: crystal_clear / needs_clarification / archived"
+      ai: "None in E1 — human reviews and classifies, no AI structuring yet"
+      ui: "Simple Next.js form. No native app."
+    success_gate: "Alex records 10 voice clips, reviews and resolves 8/10 within 4 hours,
+      reports 'this actually saves me time.' If not → kill."
+    do_not_build_in_e1: "Deepgram, AI structuring, native mobile, multi-tenant billing,
+      sharing features, analytics — none of this until E1 gate passes."
+  epoch_e2:
+    name: "Is it good enough to pay for?"
+    prerequisite: "E1 gate passed by Governor"
+    upgrades: "Deepgram Nova-2 (real-time STT) + Claude Haiku (structuring) + freemium billing"
+    appetite: medium
 
 section_4_connection_map:
-  status: 65_pct
+  status: 100_pct
   gate_blocking: none
-  gate_resolved: "csps_vs_vibe_architecture — csps-template ratified S049"
-  note: "Build framework resolved. Section can now proceed: invariants + STT provider + deps."
+  gate_resolved: "S049 — build architecture + STT provider + invariants all ratified"
+  stt_decision:
+    e1_prototype: "Web Speech API — browser-native, free, zero setup, good for controlled testing"
+    e2_production: "Deepgram Nova-2 — real-time streaming, accent support, $0.0059/min, 200hr/mo free tier"
+    rejected: "Whisper (500ms+ latency breaks real-time UX), Google STT (cost + complexity)"
+  invariants_confirmed:
+    INV_001: "Raw voice is immutable — never delete original audio, always reparse on model improvement"
+    INV_002: "AI never guesses — reliability_score < 0.85 → needs_clarification, never auto-structures"
+    INV_003: "Tenant isolation — all entities carry tenant_id, ZenStack RLS enforced (inherited from csps-template, non-negotiable)"
+    INV_004: "Confidence-first UX — reliability_score always visible alongside AI output. Never hide uncertainty."
 
 section_5_user_journey:
   status: 75_pct
@@ -205,9 +246,9 @@ section_7_pmi_gate:
 ## PROMOTION CHECKLIST
 
 - [x] Section 1 gate: Q1.1 primary persona chosen — cognitive-offload-professional (S049)
-- [ ] Section 2 gate: Kill condition named. 3 assumptions force-ranked.
-- [ ] Section 3 gate: Kill condition locked. EPOCH duration set.
-- [x] Section 4 gate: Build architecture ratified — csps-template (S049)
+- [x] Section 2 gate: Kill condition named. 3 assumptions force-ranked. (S049)
+- [x] Section 3 gate: Kill condition locked. EPOCH E1/E2 model set. (S049)
+- [x] Section 4 gate: Build architecture ratified — csps-template (S049). STT + 4 invariants (S049)
 - [ ] Section 5 gate: Onboarding 3 questions defined.
 - [ ] Section 6 gate: Measurement method confirmed for all metrics.
 - [ ] PMI reaches 4/5 HIGH → validate-plan-readiness.mjs passes

@@ -6,9 +6,10 @@ description: "Formal dual-focal-point planning artifact for APP-001 (Temp Sortin
   structured cognitive offload. Inward: CSPS governs the planning process; build
   executes via Lovable/Bolt vibe-coding. This is the first real CSPS-process app plan."
 version: 1.0
-owner: governor
+owner: group:finky
 lifecycle: production
-lifecycle_state: planning
+lifecycle_state: active
+next_review_at: S048
 core_spine: ARCH
 schema_anchor: apps_planning
 batch: BATCH-H

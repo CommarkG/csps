@@ -5,9 +5,10 @@ description: "Formal threshold entry for APP-001 Voice Sorting App. This plan go
   the 7-section crystallization process. Each depth level (D3→D4→D5) corresponds to
   one section cluster completing. Build is authorized only when D5 gate closes (PMI 4/5)."
 version: 1.0
-owner: governor
+owner: group:finky
 lifecycle: production
-lifecycle_state: planning
+lifecycle_state: active
+next_review_at: S048
 core_spine: ARCH
 schema_anchor: apps_planning
 batch: BATCH-H

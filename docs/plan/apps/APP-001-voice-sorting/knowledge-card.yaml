@@ -5,6 +5,9 @@ template_id: AKC
 template_version: 1.0
 status: draft
 session: S047
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
 template_depth: L3
 parent_template: app-knowledge-card
 batch: BATCH-J

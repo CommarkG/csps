@@ -63,3 +63,7 @@ that has already fired?" If no → it is not active, regardless of where it is w
 **Related:** B_EXISTS_NOT_EQUALS_ACTIVE (behavioral contract, to be registered)
 **Replaces false assumption in:** principles.yaml governance notes, PRACE philosophy,
   all session-open injection design discussions
+
+<!-- @core-seed: BEHAVIOR_PATTERN_REGISTER | plan: anti-patterns (docs/plan/pillar-0-governance/anti-patterns.md) | grows-to: formal register of AI behavior patterns with triggers + satisfaction points (currently in discipline matrix — needs dedicated register format) | target: S048 -->
+<!-- planted_by: S047 -->
+<!-- pmi_gate: DOG-FOOD-AUDIT -->

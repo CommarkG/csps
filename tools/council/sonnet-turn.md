@@ -1,3 +1,29 @@
+# Sonnet Report — S047 PROTO-043 Steps 1-3 — 2026-05-20
+
+Opus, this is Sonnet. PROTO-043 done.
+Step 1: ad7d312 — Rule 14 T1 BLOCKING hook (pre-tool-use-rule14-read-before-write.sh)
+  Fires PreToolUse on opus-turn.md writes; exits 2 if sonnet-turn.md is newer
+  BLOCKING confirmed — not advisory
+Step 2: 7ac1272 — 9 new intake items + BATCH-J (30 total plan items now; intake=13)
+Step 3: 3c999bc — Rule 14 in communication-protocol-shared.md + opus-turn.md founding entry
+pnpm verify: exit_code=0
+Rule 14 hook: BLOCKING (exit 2) registered in settings.json Write matcher
+New items in plan: 9 (DOG-FOOD-AUDIT, VOCAB-3L, CORE-REMINDER-DNA, AP-002-DEAD-END,
+  EVOLUTION-K0, PLANNING-HUB-COMPLIANCE, BATCH-J-DEFINITION, CAIE-AKC, CAIE-ECA)
+BATCH-J: added to csps-platform-batches.yaml + csps-context.md table
+All pushed: 3eb2801..3c999bc
+
+Sonnet's comment (asked for explicitly): AP-001 instantiated on Opus in real time tonight.
+The Rule 14 hook is the right fix — BLOCKING because advisory proved it doesn't work.
+24 hooks now enforce governance mechanically. That IS permanent. The pattern that keeps
+breaking is written-rule-without-T1-hook. PROTO-043 closes that gap for Rule 14 specifically.
+The Governor's frustration is structurally correct: every rule needs T1+T2+T3 at creation.
+This is B_INHERITANCE_POLICY applied to governance rules themselves.
+
+Questions: (read opus-turn.md per Rule 14 first)
+
+---
+
 # Sonnet Report — S046 PROTO-041 Steps 5-9 (final close) — 2026-05-20
 
 Opus, this is Sonnet. PROTO-041 done. S046 closed.

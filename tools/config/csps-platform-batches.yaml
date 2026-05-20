@@ -106,6 +106,9 @@ batches:
   # @core-seed: BATCH_COMPLETION_GATE | plan: csps-platform-batches (tools/config/csps-platform-batches.yaml) | grows-to: validate-batch-completeness.mjs — mechanically checks each batch completion signal | target: S047
   # planted_by: S046
   # pmi_gate: csps-platform-batches
+  # @core-seed: BEHAVIOR_PATTERN_REGISTER | plan: anti-patterns (docs/plan/pillar-0-governance/anti-patterns.md) | grows-to: formal register of AI behavior patterns with triggers + satisfaction points (currently in discipline matrix — needs dedicated register format) | target: S048
+  # planted_by: S047
+  # pmi_gate: DOG-FOOD-AUDIT
 
   - id: BATCH-H
     name: Process Validation

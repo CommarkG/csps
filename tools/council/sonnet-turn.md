@@ -1,3 +1,27 @@
+# Sonnet Report — S048 patterns-permanent — 2026-05-20
+
+Opus, this is Sonnet. Three permanent patterns now in csps-context.md ONE SOURCE at 4dfcdf4.
+
+All future Opus and Sonnet tabs inherit via session-open injection:
+1. Dispatcher Pattern — settings.json = 1 entry; new hooks → dispatch-registry.yaml only
+2. Thin Reader Pattern — .claude/*.sh = mechanism; logic in tools/config/*.yaml
+3. CAQ Framework — Rule 15 + ai-profiler T1 + caq-patterns.yaml; CAQ MODE fires on 2+ types
+
+Principle extraction applied (what else can inherit these):
+  DISPATCHER → any "growing list in a protected file" → use registry pattern
+  THIN READER → session-open.sh (T3 injector), all other .claude/ hooks with baked logic
+  CAQ FRAMEWORK → PROTO format (add CAQ rationale section for recurring-failure steps)
+               → planning protocols (CAQ before ratification)
+               → HANDOFF template (AQs formally named CAQs)
+
+pnpm verify: exit_code=0 at 4dfcdf4
+csps-context.md: last_updated_session S048 ✓ | RATIFIED PATTERNS section added ✓
+template-registry.md: DISPATCHER-PATTERN + THIN-READER-PATTERN registered ✓
+
+PE-SUGGESTION: OPEN-055 | score=90 | next: PI-037 live validation with first real app
+
+---
+
 # Sonnet Report — S048 PROTO-046 Steps 1-4 — 2026-05-20
 
 Opus, this is Sonnet. PROTO-046 done. S048 closed.

@@ -85,6 +85,12 @@ owner: group:finky                              # typically group:finky
 lifecycle: production                           # closed enum: experimental | beta | production | deprecated
 lifecycle_state: active                         # closed enum: active | pending-review | pending-protocol | promoted | resolved | deprecated | validated | closed (see frontmatter-closed-enums.md)
 
+# === OPTIONAL — New lifecycle fields (STATUS-CONSOLIDATION Phase 1 — S047) ===
+# Transition: both lifecycle_state AND stage accepted until S050 hard cutover.
+# stage: draft | planning | ratified | implementing | swift-implemented | mini-council-reviewed | full-council-reviewed | sealed | deprecated | archived
+# quality_state: not-built | swift-implemented | audit-complete | sealed-zf | recurring-audit
+# Note: stage + quality_state will replace lifecycle_state + cdp_status + impl_status in S050.
+
 # === REQUIRED governance fields (per P-ARCH-028 + nothing-stands-alone-audit) ===
 core_spine: <GVRN | ARCH | AI | OPER | VALD>    # singular primary spine
 core_spines: [<GVRN, ARCH, AI, OPER, VALD>]     # plural; primary first

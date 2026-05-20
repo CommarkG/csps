@@ -764,3 +764,25 @@ opus_review_type: architectural | express | trend
 *S025 amendment | Governor directive: "PE must be connected to everything — complete holistic view."*
 *P-META-023 operational fields — threshold-intake-protocol.md is the canonical SSoT.*
 *Opus Turn 9: template_grade + template_status + needs_opus_review + opus_review_type ratified.*
+
+---
+
+## `stage:` — Unified lifecycle state (STATUS-CONSOLIDATION Phase 1 — S047)
+
+**Optional.** Transition period: both `lifecycle_state` AND `stage` accepted until S050.
+
+```yaml
+stage: draft | planning | ratified | implementing | swift-implemented | mini-council-reviewed | full-council-reviewed | sealed | deprecated | archived
+```
+
+## `quality_state:` — Implementation quality state (STATUS-CONSOLIDATION Phase 1 — S047)
+
+**Optional.** Replaces `impl_status`. Same meaning, clearer name.
+
+```yaml
+quality_state: not-built | swift-implemented | audit-complete | sealed-zf | recurring-audit
+```
+
+**S050 cutover:** both fields replace lifecycle_state + cdp_status + impl_status. validate-frontmatter.mjs accepts both during transition.
+
+*S047 STATUS-CONSOLIDATION Phase 1.*

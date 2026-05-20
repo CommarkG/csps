@@ -8,13 +8,13 @@ lifecycle: production
 lifecycle_state: active
 core_spine: GVRN
 schema_anchor: council_state
-last_updated_session: S045
+last_updated_session: S046
 last_updated: "2026-05-19"
 supersedes: [opus-context.md, sonnet-context.md, opus-1-context.md, sonnet-1-context.md]
 ---
 
 # CSPS Context — One Source for Opus and Sonnet
-## Updated S045 | Read FULLY before first response
+## Updated S046 | Read FULLY before first response
 
 ---
 
@@ -299,14 +299,15 @@ Validator: `validate-invariant-coverage.mjs` → `complete=4 partial=1`
 
 ---
 
-## S046 MANDATE (current)
+## S047 MANDATE (current)
 
-**INV-003 T1** — post-stop-directive-rzf-gate.sh (completes invariant system to 5/5)
-**PROTO-039** — Batched Directive Mode (Governor-requested; encode in this file)
+**Two decisions before any build:**
+1. BATCH-G form layer: Governor decides (shadcn/ui vs native vs raw HTML) — PCR from Opus S047 Turn 1
+2. First real app: Governor presents one sentence (user + daily action + problem) — dual-focal plan only, no build
 
-Secondary: PI-037 (pe_score=85, seeded), OPEN-055, OPEN-061 (council-state.json opus_instance)
+Secondary: PLAN_READINESS_GATE seed deprecation, OPEN-029 (EXT-KNOW), OPEN-062 (Rule 13 T1)
 
-S045 accomplished: PROTO-036 (vault-gate + dual-focal-plan + inheritance-registry + 2-pass delete-guard) + PROTO-037 (COUNCIL OPERATING MODE) + PROTO-038 (core seeds planted_by+pmi_gate). Last commit: 48c1fd3.
+S046 accomplished: PROTO-039 (batched directives + INV-003 T1 complete=5) + PROTO-040 (8-batch structure + CSPS dual-focal plan) + PROTO-041 (seeds planted + PI-037/OPEN-051/OPEN-057 done). Last commit: f1265bd. Plan done=13.
 
 ---
 
@@ -344,4 +345,4 @@ Sonnet: SONNET-S[NNN] (session-numbered, implements within session)
 [OPUS]: Say "OPUS-[N] Turn 1" when you begin your first response.
 [SONNET]: Say "INTENT ABSORBED" after reading this and before executing the first directive.
 
-*This file is updated at every session close. Version: S045. Supersedes: opus-context.md, sonnet-context.md.*
+*This file is updated at every session close. Version: S046. Supersedes: opus-context.md, sonnet-context.md.*

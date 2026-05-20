@@ -1140,6 +1140,15 @@ const CYCLES = [
     },
   },
   {
+    // S047 VALIDATE-PAGE-SCHEMA-CONSISTENCY: checks PAGES registration vs directory structure
+    name: 'page_schema_consistency',
+    command: 'node tools/validators/validate-page-schema-consistency.mjs',
+    parse_output: (out) => {
+      const m = out.match(/dirs_checked=(\d+)\s+in_html=(\d+)\s+in_pages=(\d+)\s+missing_from_pages=(\d+)/);
+      return m ? { dirs_checked: parseInt(m[1]), in_pages: parseInt(m[3]), missing_from_pages: parseInt(m[4]), advisory: true } : { advisory: true };
+    },
+  },
+  {
     // S047 VALIDATE-PLAYGROUND-LINKS: BLOCKING if any platform page is not linked in index
     name: 'playground_links',
     command: 'node tools/validators/validate-playground-links.mjs',

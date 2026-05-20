@@ -25,6 +25,12 @@ metadata:
   data_owner: governor
   batch_registry: tools/config/csps-platform-batches.yaml
 
+# EPOCH DEFINITION: An EPOCH is a named, bounded implementation period.
+# Each EPOCH corresponds to one depth-level advancement.
+# Format: epoch: E[N] | epoch: unassigned | epoch: completed
+# Epoch boundaries are marked in PROTO directives and HANDOFF Zone B.
+# Current epoch: E1 (S046 — platform restructuring)
+
 items:
 
   # --- CONSTITUTIONAL / RATIFIED ------------------------------------------
@@ -32,6 +38,7 @@ items:
   - id: csps-platform-batches
     title: "CSPS 8-Batch Platform Organization"
     status: ratified
+    epoch: E1
     category: governance
     owner: governor
     batch: BATCH-A
@@ -48,6 +55,7 @@ items:
   - id: P-META-026
     title: Planning-before-implementing as primary pillar
     status: done
+    epoch: completed
     category: governance
     owner: governor
     batch: BATCH-D
@@ -64,6 +72,7 @@ items:
   - id: B_PRACE
     title: Permanent Recurring AI Contextual Enforcement — Constitutional M-27
     status: done
+    epoch: completed
     category: governance
     owner: governor
     batch: BATCH-A
@@ -80,6 +89,7 @@ items:
   - id: B_INHERITANCE_POLICY
     title: Every chat boundary must transfer complete governance context
     status: done
+    epoch: completed
     category: governance
     owner: governor
     batch: BATCH-A
@@ -90,6 +100,7 @@ items:
   - id: M-27-M-28
     title: Moats M-27 (PRACE) + M-28 (PMI + CAQ)
     status: done
+    epoch: completed
     category: governance
     owner: governor
     batch: BATCH-A
@@ -102,6 +113,7 @@ items:
   - id: OPEN-051
     title: findings-categorizer.mjs — Core Scopes S1/S2/S3 tagging
     status: done
+    epoch: completed
     category: infrastructure
     owner: sonnet
     batch: BATCH-D
@@ -127,6 +139,7 @@ items:
   - id: OPEN-049
     title: enforcement_tier backfill on all 63 behavioral contracts
     status: done
+    epoch: completed
     category: governance
     owner: sonnet
     batch: BATCH-A
@@ -137,6 +150,7 @@ items:
   - id: PI-031
     title: DNA Registry — tools/config/dna-registry.yaml (16 components)
     status: done
+    epoch: completed
     category: architecture
     owner: sonnet
     batch: BATCH-E
@@ -147,6 +161,7 @@ items:
   - id: PI-032
     title: DNA Bundle Engine — pnpm dna:bundle
     status: done
+    epoch: completed
     category: architecture
     owner: sonnet
     batch: BATCH-E
@@ -157,6 +172,7 @@ items:
   - id: habit-tracker-app
     title: Habit Tracker — App #2 built from scratch
     status: done
+    epoch: completed
     category: product
     owner: sonnet
     batch: BATCH-G
@@ -169,6 +185,7 @@ items:
   - id: OPEN-055
     title: Unified Planning Initiative — this file IS the first deliverable
     status: ratified
+    epoch: unassigned
     category: architecture
     owner: shared
     batch: BATCH-B
@@ -195,6 +212,7 @@ items:
   - id: OPEN-059
     title: Core seeds enhanced — add planted-by and pmi-gate fields
     status: done
+    epoch: completed
     category: governance
     owner: sonnet
     batch: BATCH-B
@@ -214,6 +232,7 @@ items:
   - id: OPEN-053
     title: B_CATCH_TO_ENGRAVING T1+T2 build
     status: planning
+    epoch: unassigned
     category: governance
     owner: sonnet
     batch: BATCH-A
@@ -239,6 +258,7 @@ items:
   - id: OPEN-057
     title: Fix core seeds overdue detection — use plan-item-status not session-number
     status: done
+    epoch: completed
     category: infrastructure
     owner: sonnet
     batch: BATCH-B
@@ -256,6 +276,7 @@ items:
   - id: PI-037
     title: validate-plan-readiness.mjs — PMI scoring per plan item in unified-plan.yaml
     status: done
+    epoch: completed
     category: infrastructure
     owner: sonnet
     batch: BATCH-B
@@ -275,6 +296,7 @@ items:
   - id: prevention-framework
     title: Prevention Framework — B_PREVENTION_FIRST contract + pre-tool-use-check-existing.sh
     status: planning
+    epoch: unassigned
     category: governance
     owner: shared
     batch: BATCH-A
@@ -299,6 +321,7 @@ items:
   - id: OPEN-030
     title: App #3 direction — [Temp name!!!]
     status: intake
+    epoch: unassigned
     category: product
     owner: governor
     batch: BATCH-G
@@ -310,6 +333,7 @@ items:
   - id: OPEN-029
     title: Absorb [Temp name!!!] research files 04-11 as EXT-KNOW
     status: intake
+    epoch: unassigned
     category: architecture
     owner: shared
     batch: BATCH-G
@@ -320,6 +344,7 @@ items:
   - id: consultation-from-playground
     title: Playground pages to Claude API direct consultation
     status: intake
+    epoch: unassigned
     category: product
     owner: shared
     batch: BATCH-G
@@ -340,6 +365,7 @@ items:
   - id: dual-focal-point-planning
     title: Dual Focal Point Planning — outward (user) + inward (core spine) simultaneously
     status: done
+    epoch: completed
     category: architecture
     owner: governor
     batch: BATCH-B
@@ -382,6 +408,7 @@ items:
   - id: turn-quality-notification
     title: Turn count quality degradation notification — warn when tab exceeds quality threshold
     status: intake
+    epoch: unassigned
     category: governance
     owner: sonnet
     batch: BATCH-F

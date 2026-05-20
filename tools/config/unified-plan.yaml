@@ -438,6 +438,47 @@ items:
        Strongly recommend: write HANDOFF + move to new tab.
        Quality matters more than token savings.]"
 
+  # --- S048 DONE — PROTO-046 deliverables ------------------------------------
+
+  - id: AP-003-CREATION-SCHEMA
+    title: "AP-003: Creation Without Multi-Schema Registration"
+    status: ratified
+    epoch: E1
+    category: governance
+    owner: governor
+    batch: BATCH-A
+    pe_score: 92
+    tags: [anti-pattern, creation-gate, schema-registration, s048]
+    pmi:
+      intent_depth: high
+      cross_ref_density: high
+      consensus_width: high
+      reversibility: high
+      dependency_clarity: high
+    notes: "Ratified OPUS-4 Turn 38. Standalone from AP-002. T1 hook BLOCKING for platform_page (K=2). All other types ADVISORY."
+
+  - id: ARTIFACT-SCHEMA-REGISTRY
+    title: "artifact-schema-registry.yaml — multi-schema creation map"
+    status: done
+    epoch: E1
+    category: architecture
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 90
+    tags: [registry, creation-gate, ap-003, s048]
+    notes: "DONE PROTO-046 Step 2. 6 artifact types registered. Single source for what schemas each type must register in at creation."
+
+  - id: CREATION-GATE-T1
+    title: "pre-tool-use-schema-registration-gate.sh — AP-003 T1"
+    status: done
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 88
+    tags: [hook, t1, creation-gate, ap-003, s048]
+    notes: "DONE PROTO-046 Step 3. BLOCKING exit 2 for platform_page. ADVISORY for validator/hook/skill/contract/plan_item."
+
   # --- S047 INTAKE — Opus architectural work from S046 overnight ---
 
   - id: DOG-FOOD-AUDIT

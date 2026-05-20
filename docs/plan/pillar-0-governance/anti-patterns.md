@@ -12,6 +12,7 @@ batch: BATCH-A
 template_depth: L2
 parent_template: governed-artifact-frontmatter
 diataxis_type: reference
+csps_core_reminder: [B_EXISTS_NOT_EQUALS_ACTIVE, B_STRUCTURAL_PREVENTION_DISCIPLINE, AP-001]
 ---
 
 # CSPS Anti-Pattern Register

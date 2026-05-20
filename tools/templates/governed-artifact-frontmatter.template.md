@@ -157,6 +157,12 @@ links:
 # consolidation_exempt: true
 # consolidation_exempt_reason: "<glossary-restatement | safety-critical-redundancy | batch-boundary-cite>"
 
+# === OPTIONAL — Core Reminder (AP-001 fix: targeted per-file principle activation) ===
+# List 1-3 principle IDs most relevant to this specific file.
+# When AI reads this file, these principles are activated — not just documented.
+# IDs must exist in packages/principles/principles.yaml or behavioral-contracts/.
+# csps_core_reminder: [P-META-NNN, B_RULE_NAME, AP-NNN]
+
 # === OPTIONAL — Vault connections (per vault-methodology.md + B_VAULT_DISCIPLINE) ===
 # Every governed artifact SHOULD have vault_pending even if empty.
 # vault_pending entries = items FROM this artifact that couldn't be fully processed now.

@@ -9,7 +9,8 @@ lifecycle_state: active
 core_spine: GVRN
 schema_anchor: council_state
 last_updated_session: S046
-last_updated: "2026-05-19"
+last_updated: "2026-05-20"
+csps_core_reminder: [P-META-020, B_PRACE, AP-001]
 supersedes: [opus-context.md, sonnet-context.md, opus-1-context.md, sonnet-1-context.md]
 ---
 

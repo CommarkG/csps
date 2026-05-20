@@ -1122,6 +1122,15 @@ const CYCLES = [
     },
   },
   {
+    // S047 CORE-REMINDER-DNA: checks csps_core_reminder field coverage + stale refs
+    name: 'core_reminder',
+    command: 'node tools/validators/validate-core-reminder.mjs',
+    parse_output: (out) => {
+      const m = out.match(/scanned=(\d+)\s+with_reminder=(\d+)\s+without_reminder=(\d+)\s+stale_refs=(\d+)/);
+      return m ? { scanned: parseInt(m[1]), with_reminder: parseInt(m[2]), without_reminder: parseInt(m[3]), stale_refs: parseInt(m[4]), advisory: true } : { advisory: true };
+    },
+  },
+  {
     // S047 VALIDATE-ACTIVATION-COVERAGE: AP-001 — checks B_* contracts have activation mechanisms
     name: 'activation_coverage',
     command: 'node tools/validators/validate-activation-coverage.mjs',

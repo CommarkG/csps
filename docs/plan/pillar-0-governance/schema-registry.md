@@ -462,6 +462,13 @@ schema_anchors:
     spine: ARCH
     l2_domain: COMPOSITION
     description: Template files in tools/templates/ (alternate anchor for tools_templates_meta)
+
+  skill_template:
+    type: skill-artifact
+    resolves_to: tools/council/templates/skill-base.template.md
+    spine: AI
+    l2_domain: AGENT_BEHAVIOR
+    description: CSPS skill template artifacts — SKILL-BASE parent template with 6 mandatory sections (Identity/AAP/Input/Output/ZF/Enforcement)
 ```
 
 ---

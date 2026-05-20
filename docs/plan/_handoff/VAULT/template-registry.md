@@ -111,7 +111,7 @@ Templates organized by output category per inner-AI-defaults registry alignment.
 
 | Template ID | Applicability trigger | Validator | File path | Implementation status |
 |---|---|---|---|---|
-| `SKILL-BASE` | Any new CSPS skill SKILL.md | N/A (parent template for all skills) | [`tools/templates/skill-base.template.md`](../../../../tools/templates/skill-base.template.md) | **LIVE (S047 PROTO-044 — P-ARCH-COMPLETE-DEFAULT; all options stale by default; 20 existing skills already have batch+lifecycle_state+template_depth+parent_template fields referencing this)** |
+| `SKILL-BASE` | Any new CSPS skill SKILL.md | `validate-aap-frontmatter.mjs` | [`tools/council/templates/skill-base.template.md`](../../../../tools/council/templates/skill-base.template.md) | **LIVE (S049 — comprehensive: 6 sections Identity/AAP/Input/Output/ZF/Enforcement. Frontmatter-only predecessor: [`tools/templates/skill-base.template.md`](../../../../tools/templates/skill-base.template.md) stays for parent_template refs)** |
 | `skill-md-aap` | New SKILL.md (Class A) | `aap_frontmatter_coverage` | (extracted from existing 7 SKILL.md aligned in S005) | LIVE |
 | `mastra-base-agent` | New Mastra agent (Class C) | `agent-alignment-coverage` | (week-6 build) | registered-pending-author |
 | `persona-system-prompt` | New persona | per [P-ARCH-013](../../pillar-0-governance/architecture-principles.md#L249) | (week-7 build) | registered-pending-author |

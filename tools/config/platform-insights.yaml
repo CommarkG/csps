@@ -1,0 +1,69 @@
+---
+id: csps.config.platform-insights
+name: platform-insights
+description: "Compressed wisdom from CSPS governance work. Each insight is a sentence that survives context compression. Collected from governance sessions S040-S048. DNA always_include: true — injected at every session so these never fade."
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: AI
+schema_anchor: platform_insights
+batch: BATCH-C
+session: S048
+---
+
+# Platform Insights — Compressed Governance Wisdom
+
+## On Enforcement
+- "Advisory is visibility. Prevention is mechanical impossibility of the failure mode."
+- "Writing a rule = 0% complete. T1+T2+T3 = 100% complete."
+- "EXISTS ≠ ACTIVE. A governance artifact that exists somewhere is not being consulted."
+- "If it happened twice, it's a class. Classes need structural prevention, not personal vigilance."
+- "T3-only fades by turn 10. T1 fires whether or not you remember the rule."
+
+## On Architecture
+- "Protected files are interfaces, not implementations."
+- "30 requests produced 30 bandaids. 5 CAQs produced the dispatcher that eliminated the class."
+- ".claude/*.sh = mechanism. tools/config/*.yaml = logic. Edit the YAML, never the shell."
+- "One permanent registry entry. N extensions via config. Never expand the protected file."
+
+## On Completion
+- "Completion is identifying all gaps that are missing from something that is whole."
+- "Whole = every downstream element updated. Gap = any activation mechanism not yet firing."
+- "exit_code=0 is evidence of validity, not evidence of completeness."
+- "A solution that fixes the instance but not the class is not complete."
+- "Completion at tab-open and completion at tab-close are both required — neither alone is whole."
+
+## On Questions and Alignment
+- "Questions are governance artifacts. They are not interruptions — they ARE the alignment mechanism."
+- "30 simple requests trigger action. 5 CAQs trigger structural redesign."
+- "A CAQ sequence signals: the current approach has failed as a CLASS. Scope-3 is required."
+- "The best question is one that, if answered honestly, prevents the entire class of failure."
+
+## On Inheritance
+- "What a new tab doesn't read, the new tab doesn't know. Inheritance is not assumed — it's verified."
+- "csps-context.md is the ONE SOURCE. Stale ONE SOURCE = stale inheritance for all future tabs."
+- "Patterns live in git. But patterns ARE NOT ACTIVE until they are in the files that are always read."
+- "Writing to sonnet-turn.md first makes the relay flawless. Writing inline in chat loses it."
+
+## On Planning
+- "Planning and implementing are different jobs. Mixing them produces neither good plans nor good code."
+- "PMI scoring is self-reported. The first real app through the gates is the first honest measurement."
+- "BATCH-H = 0% = the entire reason CSPS exists. Every other batch serves BATCH-H."
+
+## On the Multi-Grid (to be explored in S049+)
+- "Every CSPS element has a node: what it enforces, what it serves, what depends on it."
+- "The grid's health = the fraction of nodes that have all 3 connections active."
+- "A node without dependencies is documentation. A node with T1+T2+T3 is governance."
+
+# @core-seed: MULTI_GRID_ARCHITECTURE | plan: platform-insights (tools/config/platform-insights.yaml) | grows-to: 3D governance grid showing CSPS element nodes with connectivity/dependencies/service map | target: S049
+# planted_by: S048
+# pmi_gate: BATCH-J-DEFINITION
+
+# @core-seed: COMPLETION_ENGINE_FORMAL | plan: platform-insights (tools/config/platform-insights.yaml) | grows-to: completion.mjs — formal completion score for any CSPS artifact using multi-dimensional wholeness model | target: S049
+# planted_by: S048
+# pmi_gate: DOG-FOOD-AUDIT
+
+# @core-seed: INSIGHTS_AS_GOVERNANCE | plan: platform-insights (tools/config/platform-insights.yaml) | grows-to: insights-governance.mjs — validates platform files cite relevant compressed insights at decision points | target: S049
+# planted_by: S048
+# pmi_gate: CORE-REMINDER-DNA

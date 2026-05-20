@@ -240,6 +240,15 @@ components:
     always_include: true
     summary: "ONE SOURCE for all CSPS planning state. 21 items with PMI scores, status, owner, batch assignment, core seeds. Any model in any chat reads this to know what's planned, ratified, implementing, and done."
 
+  - id: platform-insights
+    path: tools/config/platform-insights.yaml
+    scope: repo
+    category: knowledge
+    audience: [all]
+    depth_level: L1
+    always_include: true
+    summary: "Compressed governance wisdom from S040-S048. Sentences that survive context compression: AP-001, completion definition, CAQ framework, dispatcher/thin-reader patterns, multi-grid concept. Injected at every session to prevent decay."
+
   - id: anti-patterns
     path: docs/plan/pillar-0-governance/anti-patterns.md
     scope: repo

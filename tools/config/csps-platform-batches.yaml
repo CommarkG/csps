@@ -94,10 +94,10 @@ batches:
     name: Developer Experience (Product)
     description: "How a developer builds an app on CSPS — UI components, admin panel, billing, template"
     governs:
-      - habit-tracker-app
       - OPEN-030
       - OPEN-029
       - consultation-from-playground
+      # Specific app plan items tracked in unified-plan.yaml — not listed here (core must be universal)
     completion_signal: "A developer can fork template/ -> fill dual-focal plan -> build -> deploy in one coherent session sequence WITHOUT manual assembly. Form layer live. Admin panel live. Billing integrated."
     current_state_pct: 20
     blocking_BATCH-H: true
@@ -146,7 +146,6 @@ unified_plan_mapping:
   OPEN-049: BATCH-A
   PI-031: BATCH-E
   PI-032: BATCH-E
-  habit-tracker-app: BATCH-G
   OPEN-055: BATCH-B
   OPEN-059: BATCH-B
   OPEN-053: BATCH-A

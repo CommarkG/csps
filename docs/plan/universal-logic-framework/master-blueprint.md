@@ -53,7 +53,7 @@ A **Combinatorial Priority Engine** is a decision-support infrastructure that:
 This is the mathematical soul of any system that needs to sort complex, interdependent realities into actionable sequences. The soul is identical whether you are:
 - Prioritizing construction deliveries against cash flow
 - Managing software engineering backlog against business goals
-- Structuring a personal ADHD productivity system
+- Structuring a personal productivity system that overcomes recurring cognitive bottlenecks
 - Running a multi-AI governance council
 
 **The use case changes. The mathematics does not.**

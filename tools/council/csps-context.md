@@ -29,7 +29,7 @@ supersedes: [opus-context.md, sonnet-context.md, opus-1-context.md, sonnet-1-con
 
 **Current state (S045):**
 - 136 validators | exit_code=0 | 22 hooks (added vault-write-gate T1)
-- 2 apps: Habit Tracker (built), task-mgmt
+- Sample apps built for template validation (see unified-plan.yaml BATCH-G items)
 - Planning Hub LIVE at csps-playground.vercel.app/platform/planning-hub/
 - ONE SOURCE: `tools/config/unified-plan.yaml` — 20 items, done=10, PMI scores, status, owner
 - COUNCIL OPERATING MODE: Decision Authority Matrix + CSPS Consensus Definition now in THIS file

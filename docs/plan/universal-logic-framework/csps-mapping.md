@@ -97,34 +97,9 @@ session: S047
 
 ---
 
-## APP-001 CRYSTALLIZATION QUESTIONS — CSPS ANSWERS
+> **NOTE TO IMPLEMENTER:** Specific use case crystallization answers belong in the
+> app-specific planning documents (e.g., docs/plan/apps/[app-slug]/), not in this
+> universal framework mapping. This file maps CSPS vocabulary to universal concepts only.
+> App-specific content moved to: docs/plan/apps/ per P-ARCH-COMPLETE-DEFAULT.
 
-*Applying the crystallization questions from crystallization-questions.md to APP-001:*
-
-**A.1.1 — Primary use case:**
-"Turn fragmented voice thoughts captured while driving into structured, clarifiable task items — for construction contractors and ADHD professionals."
-
-**A.1.3 — Gravity unit:**
-"Number of downstream items that block if this chunk is not clarified. A chunk about a material delivery blocks the entire delivery sequence if it stays in STATE 2."
-
-**A.1.4 — Velocity unit:**
-"Hours before irreversibility. A permit expiration is measured in days. A cash flow gap is measured in days to payroll. A missed supplier window is measured in hours."
-
-**A.1.5 — Irreversible loss:**
-"A commitment made (verbally or in writing) that was not captured and therefore not honored. The contractor's reputation is the irreversible loss."
-
-**B.1.13 — Cognitive state at input:**
-"Driving. Both hands occupied. Visual attention on road. Maximum cognitive load from multi-site project management."
-→ Implication: voice is the ONLY viable primary input channel.
-
-**B.2.19 — User's biggest fear:**
-"The AI will send something on my behalf that I didn't approve and will embarrass me with a client or supplier."
-→ Implication: Nothing external without explicit approval. Trust Ladder Rung 3 is the maximum for MVP.
-
-**D.1.31 — Private data in this domain:**
-"Family conflicts that influenced a business decision. Personal health that affects work capacity. Financial stress that explains a client negotiation stance."
-→ Must never appear in business outputs.
-
----
-
-*Document version: 1.0 | Session: S047*
+*Document version: 1.1 | Session: S048 (contamination removed) | S047 original*

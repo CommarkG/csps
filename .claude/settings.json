@@ -85,6 +85,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/hooks/pre-tool-use-rule14-read-before-write.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/pre-tool-use-check-existing.sh"
           },
           {

@@ -38,3 +38,30 @@
 - T3 session: `session-open.sh` PRACE injection block (added S040) + turn-counter refresh at 25
 - contract: this entry in `docs/plan/pillar-0-governance/behavioral-contracts.md`
 - memory: `~/.claude/projects/.../memory/feedback_prace.md` (cross-session persistence)
+
+---
+
+## STATUS-CONSOLIDATION — Field Rationalization (S049 — ratified, pe_score=90)
+
+**Problem:** CSPS has two overlapping status tracking fields — `lifecycle_state` (P-META-004) and `impl_status` (S011) — with partially overlapping semantics and confusing naming that diverges from industry conventions.
+
+**Ratified plan:** 2-session parallel transition (S049 → S050), then hard cutover.
+
+### New fields (add alongside existing — S049)
+
+| New field | Replaces | Values (closed enum) |
+|---|---|---|
+| `stage:` | `lifecycle_state:` | `intake` / `planning` / `active` / `archived` |
+| `quality_state:` | `impl_status:` | `draft` / `validated` / `certified` |
+
+### Transition protocol
+
+- **S049 (now):** New fields registered here + in [`frontmatter-closed-enums.md`](./frontmatter-closed-enums.md). Both old + new fields coexist. New artifacts may use either. No validator changes yet.
+- **S050 (cutover):** Backfill all existing artifacts to use new fields. Remove old field references. Validator updated to enforce new fields.
+
+**Governing intent:** Alignment with the mental model developers already have (stage = "where in the lifecycle", quality_state = "how good is the artifact right now"). The old names carried governance system jargon that confused onboarding.
+
+**Enforcement (S049 advisory — S050 mandatory):**
+- T1 hook: `pre-tool-use-frontmatter-enum-check.sh` (advisory S049; will upgrade to blocking S050)
+- T2 validator: `validate-frontmatter.mjs` (will add stage + quality_state to CLOSED_DIMENSIONS in S050 backfill pass)
+- T3 session: AGENTS.md advisory note (S049) → Hard NO (S050)

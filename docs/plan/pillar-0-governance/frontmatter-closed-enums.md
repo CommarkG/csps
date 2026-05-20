@@ -239,6 +239,41 @@ Per S011 user directive: every implementation artifact declares its quality stat
 | `deprecated` | Superseded; terminal | — |
 
 
+## stage: — simplified lifecycle state *(STATUS-CONSOLIDATION S049)*
+
+**Replaces:** `lifecycle_state:` (2-session parallel transition; hard cutover S050)
+
+```
+stage: intake | planning | active | archived
+```
+
+| Value | Meaning |
+|---|---|
+| `intake` | Captured, not yet assessed |
+| `planning` | Being designed / ratified |
+| `active` | In use / enforcing |
+| `archived` | Superseded or terminal |
+
+**Transition:** During S049 both `stage:` and `lifecycle_state:` are valid. In S050, all artifacts backfill to `stage:` and `lifecycle_state:` is removed.
+
+---
+
+## quality_state: — artifact quality level *(STATUS-CONSOLIDATION S049)*
+
+**Replaces:** `impl_status:` (2-session parallel transition; hard cutover S050)
+
+```
+quality_state: draft | validated | certified
+```
+
+| Value | Meaning |
+|---|---|
+| `draft` | Built but not yet reviewed |
+| `validated` | Reviewed; ZF evidence present |
+| `certified` | Recurring audit clean; production-grade |
+
+---
+
 ## How to add / amend an enum value
 
 1. **Edit `validate-frontmatter.mjs`** `CLOSED_DIMENSIONS` / `LIFECYCLE_*` constants

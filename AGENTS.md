@@ -40,7 +40,7 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never declare a new B_* behavioral contract, principle, or Hard NO without including `enforcement_tier:` section declaring T1 hook + T2 validator + T3 session. Written rule = 0% complete. T1+T2+T3 = 100% complete. (DEFAULT-ME-1 override — S041 OPEN-050 — validate-rule-has-enforcement.mjs detects absence)
 - ❌ Never bypass hooks (`--no-verify`) or skip CI checks
 - ❌ Never `git push --force` on main without explicit go-ahead
-- ❌ Never save artifact without `lifecycle_state` + valid frontmatter (skill: `vocabulary-canon`)
+- ❌ Never save artifact without `lifecycle_state` + valid frontmatter (skill: `vocabulary-canon`) — **⚠ S049 ADVISORY:** `stage:` replaces `lifecycle_state:`, `quality_state:` replaces `impl_status:` — 2-session parallel, hard cutover S050 (see [frontmatter-closed-enums.md](docs/plan/pillar-0-governance/frontmatter-closed-enums.md))
 - ❌ Never author frontmatter without consulting [`frontmatter-closed-enums.md`](docs/plan/pillar-0-governance/frontmatter-closed-enums.md) on closed-enum fields (K=2 promotion)
 - ❌ Never close a chat without `/learning-loop-extract` + `/stewardship-review` + GP + HPFA + §10.0 verify + §10.0j enhancement-proposals
 - ❌ Never start a fresh chat without §17 attestation + receipt-signature as FIRST REPLY (skill: `governance-session`)

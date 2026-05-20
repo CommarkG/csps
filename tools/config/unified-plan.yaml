@@ -238,7 +238,7 @@ items:
 
   - id: OPEN-057
     title: Fix core seeds overdue detection — use plan-item-status not session-number
-    status: planning
+    status: done
     category: infrastructure
     owner: sonnet
     batch: BATCH-B
@@ -251,7 +251,7 @@ items:
       reversibility: high
       dependency_clarity: medium
     depends_on: [OPEN-055]
-    notes: "Requires unified-plan.yaml to exist first. Seeds target plan item IDs, not session numbers."
+    notes: "DONE S046 PROTO-041 Step 4. pmi_gate status check added to validate-core-seeds.mjs. If pmi_gate item is done → advisory: seed should be DEPRECATED. planItemMap pre-loaded at main() start."
 
   - id: PI-037
     title: validate-plan-readiness.mjs — PMI scoring per plan item in unified-plan.yaml

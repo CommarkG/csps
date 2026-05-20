@@ -104,6 +104,19 @@ function walkForSeeds(dir, exts = ['.mjs', '.sh', '.yaml']) {
 async function main() {
   const seeds = walkForSeeds(ROOT);
 
+  // Pre-load unified-plan.yaml for pmi_gate status checks (OPEN-057) and cross-ref (OPEN-059)
+  let planItemMap = {}; // id → status
+  let planItemIds = []; // for OPEN-059 advisory
+  try {
+    const yaml = (await import('js-yaml')).default;
+    const planYaml = readFileSync(join(ROOT, 'tools/config/unified-plan.yaml'), 'utf8');
+    const planData = yaml.load(planYaml);
+    for (const item of (planData.items || [])) {
+      planItemMap[item.id] = item.status || '';
+      planItemIds.push(item.id);
+    }
+  } catch(e) { /* skip if unavailable */ }
+
   const malformed = seeds.filter(s => !s.plan || !s.growsTo);
   const valid = seeds.filter(s => s.plan && s.growsTo);
 
@@ -145,6 +158,13 @@ async function main() {
             join(ROOT, 'tools/config', artifactName),
           ];
           isGrown = searchPaths.some(p => existsSync(p));
+        }
+
+        // OPEN-057 fix: check pmi_gate status — if pmi_gate item is done in unified-plan.yaml,
+        // the seed has reached its goal and should be promoted to DEPRECATED.
+        const pmiGateDone = s.pmiGate && planItemMap[s.pmiGate] === 'done';
+        if (!isDeprecated && pmiGateDone) {
+          console.log(`  ADVISORY [OPEN-057] SEED ${s.name}: pmi_gate=${s.pmiGate} is done — this seed should be promoted to DEPRECATED`);
         }
 
         if (isDeprecated) {
@@ -193,13 +213,7 @@ async function main() {
   const activeSeeds = valid.filter(s => s.growsTo && !/DEPRECATED/i.test(s.growsTo));
   let plantedByPresent = 0;
   let pmiGateValid = 0;
-  let planItems = [];
-  try {
-    const yaml = (await import('js-yaml')).default;
-    const planYaml = readFileSync(join(ROOT, 'tools/config/unified-plan.yaml'), 'utf8');
-    const planData = yaml.load(planYaml);
-    planItems = (planData.items || []).map(i => i.id);
-  } catch(e) { /* skip cross-ref if parse fails */ }
+  const planItems = planItemIds; // use pre-loaded list from main() top
 
   for (const s of activeSeeds) {
     // Check A: planted_by

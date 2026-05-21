@@ -21,8 +21,8 @@ session: S049
 ## Zone A — S049 Platform State
 
 ### Verify Evidence
-- **pnpm verify:** exit_code=0 at `d5115ab`
-- **Validators:** 139 checked, all passing
+- **pnpm verify:** exit_code=0 at `77bd88a` (latest)
+- **Validators:** 140 checked, all passing
 - **Invariants:** complete=5, partial=0
 
 ### S049 Commits (chronological)
@@ -37,6 +37,7 @@ session: S049
 | `d059de1` | OPUS-5 Turn 1 — S049 answers recorded (template separation + S050 backfill directive) |
 | `2490154` | STATUS-CONSOLIDATION S049 — stage+quality_state fields registered (2-session parallel) |
 | `d5115ab` | SKILL-BASE-TEMPLATE — 6-section behavioral template for all CSPS skills |
+| `77bd88a` | fix: ZF definition — two valid types only, reasoning-only cycles = nominal |
 
 ### What S049 Delivered
 
@@ -66,9 +67,11 @@ session: S049
 - `template-registry.md` §5 SKILL-BASE updated to new path
 - `schema-registry.md` `skill_template` anchor registered
 
-**AP-004 Binary Option Collapse:**
-- Registered at `806621d` — prevents AI binary framing of multi-option decisions
-- Threshold model routing schema added
+**AP-004 Binary Option Collapse + B_DEFINITION_BEFORE_ENFORCEMENT:**
+- `806621d` — AP-004: prevents AI binary framing of multi-option decisions
+- `806621d` — Threshold §1b: model routing schema (DECISION_ARCHITECTURE/IMPLEMENTATION/QUICK_CHECK/COUNCIL_REVIEW)
+- `77bd88a` — ZF two-type definition: code changes = pnpm verify; response claims = name a specific tool result. Reasoning-only cycles = nominal. 4-line session-open fix closed the satisfaction point.
+- B_DEFINITION_BEFORE_ENFORCEMENT ratified: sharpen definition before adding mechanism. Single-line validator test = precision check. CEC: memory + inner-ai-defaults + behavioral-contracts all updated.
 
 ### Platform State Summary
 - Batch progress: BATCH-H still 0% (APP-001 plan complete, build not yet started)

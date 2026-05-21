@@ -51,6 +51,7 @@ These are the defaults that cause most CSPS drift — yet have no structural enf
 | Default | Category | Drift frequency | Why no validator yet | PE for validator |
 |---|---|---|---|---|
 | **Satisfaction point (T1)** | satisfaction | Very high | Hard to detect in output text | 70 |
+| **Enforcement-over-definition (T7)** | enforcement | High | AI adds hooks before checking definition precision. B_DEFINITION_BEFORE_ENFORCEMENT S049. Fix: check if rule passes single-line validator test first. | 72 |
 | **Agreement bias (T2)** | agreement | High | Requires response analysis | 68 |
 | **File narration (T5)** | satisfaction | High | Hard to distinguish from valid summary | 65 |
 | **Context pressure → default (T6)** | context | Medium | Requires session-context tracking | 60 |

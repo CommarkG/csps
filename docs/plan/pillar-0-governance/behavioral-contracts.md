@@ -2411,3 +2411,30 @@ The `user-prompt-submit-turn-counter.sh` hook fires on every turn. At turn 25, 5
 - T1 hook: `pre-tool-use-frontmatter-enum-check.sh` (advisory S049; will upgrade to blocking S050)
 - T2 validator: `validate-frontmatter.mjs` (will add stage + quality_state to CLOSED_DIMENSIONS in S050 backfill pass)
 - T3 session: AGENTS.md advisory note (S049) → Hard NO (S050)
+
+---
+
+## B_DEFINITION_BEFORE_ENFORCEMENT
+
+**Governing intent:** When enforcement of a rule is failing, sharpen the rule's definition before adding mechanism. A precisely defined rule is self-enforcing. An imprecise rule only accumulates complex scaffolding around the same void.
+
+**Training default being overridden:** "When enforcement fails, add more hooks, validators, and patterns around it."
+
+**Satisfaction point being prevented:** "I have wired T1+T2+T3 → the rule is enforced." When the definition is soft, pattern-matching satisfies all three tiers without closing the gap.
+
+**The test:** Write a single-line validator. If it passes or fails definitively with no judgment call — the definition is precise enough. If it requires reasoning — sharpen the definition first.
+
+**S049 sample (canonical):**
+- Problem: inline ZF cycles were nominal — "ZF ACHIEVED" declared by writing the format
+- Proposed: rewrite hook to check for validator names + inner-defaults entry + multiple surfaces
+- Applied: 4 lines to session-open defining two valid ZF types and what makes a cycle real
+- Result: existing hook became meaningful because the definition it checks is now precise
+
+**Applied rule:** Before proposing a new hook or validator, ask: "Is the definition imprecise?" If yes, sharpen it. The enforcement mechanism may already exist.
+
+**Enforcement:**
+- T1: `user-prompt-submit-ai-profiler.sh` CAQ MODE — "add enforcement" proposals trigger Scope-3: "is the definition precise first?"
+- T2: inherits from `validate-rule-has-enforcement.mjs` (B_STRUCTURAL_PREVENTION)
+- T3: This entry + session-open injection
+
+**Ratified:** S049 | **Related:** B_STRUCTURAL_PREVENTION, AP-004, P-META-019

@@ -6,8 +6,8 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 63
-  generated_at: '2026-05-20'
+  total_count: 64
+  generated_at: '2026-05-21'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
   usage: Load individual slice files (./behavioral-contracts/B_NAME.md) for AI session context;
@@ -203,3 +203,6 @@ contracts:
   - id: B_PRACE
     desc: "Permanent Recurring AI Contextual Enforcement"
     path: ./behavioral-contracts/B_PRACE.md
+  - id: B_DEFINITION_BEFORE_ENFORCEMENT
+    desc: "B_DEFINITION_BEFORE_ENFORCEMENT"
+    path: ./behavioral-contracts/B_DEFINITION_BEFORE_ENFORCEMENT.md

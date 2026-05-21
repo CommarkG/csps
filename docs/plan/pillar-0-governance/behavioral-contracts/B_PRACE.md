@@ -65,3 +65,5 @@
 - T1 hook: `pre-tool-use-frontmatter-enum-check.sh` (advisory S049; will upgrade to blocking S050)
 - T2 validator: `validate-frontmatter.mjs` (will add stage + quality_state to CLOSED_DIMENSIONS in S050 backfill pass)
 - T3 session: AGENTS.md advisory note (S049) → Hard NO (S050)
+
+---

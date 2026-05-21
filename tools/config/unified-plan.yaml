@@ -37,8 +37,8 @@ items:
 
   - id: csps-platform-batches
     title: "CSPS 8-Batch Platform Organization"
-    status: ratified
-    epoch: E1
+    status: done
+    epoch: completed
     category: governance
     owner: governor
     batch: BATCH-A
@@ -184,8 +184,8 @@ items:
 
   - id: OPEN-055
     title: Unified Planning Initiative — this file IS the first deliverable
-    status: ratified
-    epoch: unassigned
+    status: done
+    epoch: completed
     category: architecture
     owner: shared
     batch: BATCH-B
@@ -442,8 +442,8 @@ items:
 
   - id: AP-003-CREATION-SCHEMA
     title: "AP-003: Creation Without Multi-Schema Registration"
-    status: ratified
-    epoch: E1
+    status: done
+    epoch: completed
     category: governance
     owner: governor
     batch: BATCH-A
@@ -515,22 +515,7 @@ items:
       dependency_clarity: high
     notes: "Enhance L1-vocabulary.md entries with L2_active_in and L3_central_at fields."
 
-  - id: CORE-REMINDER-DNA
-    title: "@csps-core-reminder DNA field — targeted per-file principle activation"
-    status: intake
-    epoch: unassigned
-    category: governance
-    owner: sonnet
-    batch: BATCH-C
-    pe_score: 85
-    tags: [dna, ai-behavior, activation, ap-001-fix, s047]
-    pmi:
-      intent_depth: high
-      cross_ref_density: high
-      consensus_width: high
-      reversibility: high
-      dependency_clarity: medium
-    notes: "AP-001 structural fix. Every governed file lists 3 most relevant principles inline as @csps-core-reminder."
+  # CORE-REMINDER-DNA intake entry removed — duplicate of ratified entry below (s048)
 
   - id: AP-002-DEAD-END
     title: "AP-002: exception_handling field mandatory in all process docs"
@@ -646,12 +631,12 @@ items:
     pe_score: 95
     tags: [app, voice, threshold, d4, s049, batch-h-proof, csps-template, cognitive-offload]
     pmi:
-      intent_depth: medium
-      cross_ref_density: medium
+      intent_depth: high
+      cross_ref_density: high
       consensus_width: medium
-      reversibility: medium
-      dependency_clarity: medium
-    notes: "PMI 2/5 → 3/5 path open. S049 ratified: persona=cognitive-offload-professional, build=csps-template. Sections 1+4 gates resolved. Next: kill condition (S2) + STT provider (S4). docs/plan/apps/APP-001-voice-sorting/"
+      reversibility: high
+      dependency_clarity: high
+    notes: "PMI=4/5. S049: Sections 1-4 ratified. S050: Section 5 (user journey) closes PMI=5/5 → fork authorized. docs/plan/apps/APP-001-voice-sorting/"
 
   - id: APP-NAME-REGISTRY
     title: "App Name Registry — pnpm app:rename mechanism"
@@ -691,8 +676,8 @@ items:
 
   - id: P-ARCH-COMPLETE-DEFAULT
     title: "P-ARCH-COMPLETE-DEFAULT — Max-down principle: complete by default, selective by declaration"
-    status: ratified
-    epoch: E1
+    status: done
+    epoch: completed
     category: governance
     owner: governor
     batch: BATCH-A
@@ -747,8 +732,8 @@ items:
 
   - id: CORE-REMINDER-DNA
     title: "@csps-core-reminder frontmatter field + validate-core-reminder.mjs"
-    status: ratified
-    epoch: E1
+    status: done
+    epoch: completed
     category: governance
     owner: sonnet
     batch: BATCH-C

@@ -2,17 +2,17 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-20T23:21:16.454Z",
+    "generated_at": "2026-05-21T04:08:34.017Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
-    "total_items": 47,
+    "total_items": 46,
     "status_counts": {
-      "intake": 20,
+      "intake": 19,
       "planning": 3,
-      "ratified": 9,
+      "ratified": 4,
       "implementing": 0,
       "activation": 0,
-      "done": 15
+      "done": 20
     },
     "pmi_ready_count": 23,
     "seeds_planted": 3
@@ -21,7 +21,7 @@
     {
       "id": "csps-platform-batches",
       "title": "CSPS 8-Batch Platform Organization",
-      "status": "ratified",
+      "status": "done",
       "category": "governance",
       "owner": "governor",
       "pe_score": 95,
@@ -281,7 +281,7 @@
     {
       "id": "OPEN-055",
       "title": "Unified Planning Initiative — this file IS the first deliverable",
-      "status": "ratified",
+      "status": "done",
       "category": "architecture",
       "owner": "shared",
       "pe_score": 90,
@@ -635,7 +635,7 @@
     {
       "id": "AP-003-CREATION-SCHEMA",
       "title": "AP-003: Creation Without Multi-Schema Registration",
-      "status": "ratified",
+      "status": "done",
       "category": "governance",
       "owner": "governor",
       "pe_score": 92,
@@ -764,37 +764,6 @@
         "consensus_width": "high",
         "reversibility": "high",
         "dependency_clarity": "high"
-      },
-      "has_core_seed": false,
-      "core_seed": null,
-      "activation_exit": null,
-      "activation_period": null
-    },
-    {
-      "id": "CORE-REMINDER-DNA",
-      "title": "@csps-core-reminder DNA field — targeted per-file principle activation",
-      "status": "intake",
-      "category": "governance",
-      "owner": "sonnet",
-      "pe_score": 85,
-      "tags": [
-        "dna",
-        "ai-behavior",
-        "activation",
-        "ap-001-fix",
-        "s047"
-      ],
-      "depends_on": [],
-      "caq_questions": [],
-      "notes": "AP-001 structural fix. Every governed file lists 3 most relevant principles inline as @csps-core-reminder.",
-      "pmi_score": 4,
-      "pmi_ready": true,
-      "pmi_detail": {
-        "intent_depth": "high",
-        "cross_ref_density": "high",
-        "consensus_width": "high",
-        "reversibility": "high",
-        "dependency_clarity": "medium"
       },
       "has_core_seed": false,
       "core_seed": null,
@@ -1000,15 +969,15 @@
       ],
       "depends_on": [],
       "caq_questions": [],
-      "notes": "PMI 2/5 → 3/5 path open. S049 ratified: persona=cognitive-offload-professional, build=csps-template. Sections 1+4 gates resolved. Next: kill condition (S2) + STT provider (S4). docs/plan/apps/APP-001-voice-sorting/",
-      "pmi_score": 0,
-      "pmi_ready": false,
+      "notes": "PMI=4/5. S049: Sections 1-4 ratified. S050: Section 5 (user journey) closes PMI=5/5 → fork authorized. docs/plan/apps/APP-001-voice-sorting/",
+      "pmi_score": 4,
+      "pmi_ready": true,
       "pmi_detail": {
-        "intent_depth": "medium",
-        "cross_ref_density": "medium",
+        "intent_depth": "high",
+        "cross_ref_density": "high",
         "consensus_width": "medium",
-        "reversibility": "medium",
-        "dependency_clarity": "medium"
+        "reversibility": "high",
+        "dependency_clarity": "high"
       },
       "has_core_seed": false,
       "core_seed": null,
@@ -1079,7 +1048,7 @@
     {
       "id": "P-ARCH-COMPLETE-DEFAULT",
       "title": "P-ARCH-COMPLETE-DEFAULT — Max-down principle: complete by default, selective by declaration",
-      "status": "ratified",
+      "status": "done",
       "category": "governance",
       "owner": "governor",
       "pe_score": 97,
@@ -1170,7 +1139,7 @@
     {
       "id": "CORE-REMINDER-DNA",
       "title": "@csps-core-reminder frontmatter field + validate-core-reminder.mjs",
-      "status": "ratified",
+      "status": "done",
       "category": "governance",
       "owner": "sonnet",
       "pe_score": 85,
@@ -1418,7 +1387,7 @@
     {
       "item_id": "OPEN-055",
       "item_title": "Unified Planning Initiative — this file IS the first deliverable",
-      "item_status": "ratified",
+      "item_status": "done",
       "id": "UNIFIED_PLAN_SOURCE",
       "planted_by": "opus",
       "grows_to": "validate-plan-readiness.mjs — PMI scoring validator that reads this file",

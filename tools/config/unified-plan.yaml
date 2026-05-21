@@ -876,4 +876,37 @@ items:
     batch: BATCH-A
     pe_score: 97
     tags: [SIA, architecture, s050, arch-session]
-    notes: "18 design docs in docs/SIA/. Awaiting external AI consultation + Governor ratification before R1 execution."
+    notes: "19 design docs in docs/SIA/ (including R1-08 Template Bundle System). Awaiting external AI consultation + Governor ratification before R1 execution."
+
+  - id: TEMPLATE-BUNDLE-SYSTEM
+    title: "Template Bundle System — sealed capability bundles + upgrade paths for 100+ apps"
+    status: planning
+    epoch: E1
+    category: architecture
+    owner: shared
+    batch: BATCH-G
+    pe_score: 93
+    tags: [templates, bundles, upgrade-paths, self-creating, s050]
+    notes: "Design doc: docs/SIA/R1-08-TEMPLATE-BUNDLE-SYSTEM.md. Foundation/Tier/Domain bundle taxonomy. Upgrade paths pre-defined and sealed. Self-creating: app capabilities promote to bundles. PE BUNDLE_OPPORTUNITY signal needed."
+
+  - id: DELTA-AUDIT-PRINCIPLE
+    title: "Delta Audit Efficiency — run audits on changed files only, monthly full scan"
+    status: intake
+    epoch: E1
+    category: infrastructure
+    owner: sonnet
+    batch: BATCH-H
+    pe_score: 72
+    tags: [audit, efficiency, delta, incremental, s050]
+    notes: "Per-audit: store last-run commit hash. Next run: git diff to get changed files only. Monthly: full scan. Prevents expensive full scans on every audit cycle. Design: store audit_state.yaml per audit type."
+
+  - id: ZF-TERMINATION-ENFORCEMENT
+    title: "Formal ZF termination rule enforcement — T2 blocking validator for false declarations"
+    status: intake
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 88
+    tags: [zf, rzf, termination, validator, s050]
+    notes: "B_ZF_TERMINATION_DISCIPLINE engraved in vault. AGENTS.md hard NO added. T2 BLOCKING validator needed: scan responses for 'ZF ACHIEVED' in the same sentence/paragraph as a finding. Extends OPEN-049 (nominal ZF validator)."

@@ -92,9 +92,16 @@ Register → Implement → Wire → Verify. Never implement without registering 
 
 Before presenting ANY directive to Sonnet or co-worker:
 1. Draft the directive internally
-2. Run minimum 1 ZF cycle on the draft: "What did I miss? What would a reader find incomplete?"
-3. If findings improve the directive, amend FIRST
-4. Present ONLY the amended final version
+2. Run Cycle 1: "What did I miss? What would a reader find incomplete?"
+3. If findings: amend the directive. Cycle 1 is NON-TERMINAL.
+4. Run termination cycle: re-examine Cycle 1 areas by name. 0 new findings → ZF ACHIEVED.
+5. Present ONLY the amended final version after the termination cycle confirms zero.
+
+ZF TERMINATION RULE (S050 — mandatory): A cycle that finds something is non-terminal.
+Valid minimum pattern:
+  Cycle 1: [finding — amend directive]
+  Cycle 2: Re-examined [name the areas from Cycle 1]. 0 new findings. ZF ACHIEVED.
+Declaring ZF ACHIEVED in the same cycle as the last finding = false declaration.
 
 The recipient never sees a directive that has known gaps.
 

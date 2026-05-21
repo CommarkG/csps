@@ -126,6 +126,18 @@ ARTIFACT_PUSHABLE
 - COLLECT_FINDINGS → ARTIFACT_PUSHABLE without ZF-0 declaration
 - FIX_FINDINGS → ZF-0_DECLARED without RETURN_TO_RUN_MECHANICAL re-execution
 - ZF-0_DECLARED without EVIDENCE_BLOCK_EMITTED
+- **FINDING_IN_CYCLE_N → ZF_ACHIEVED_IN_CYCLE_N (S050 — false termination declaration)**:
+  A cycle that introduces or confirms a finding is NON-TERMINAL. ZF ACHIEVED is only
+  valid after a TERMINATION CYCLE whose own result was zero.
+  Valid minimum: Cycle 1 [finding] → Cycle 2 [re-examines named areas, 0 new] → ZF ACHIEVED.
+  Invalid: "Cycle 1: finding. Cycle 2: re-examined, ZF ACHIEVED." — if Cycle 2 itself
+  had findings, Cycle 3 is required.
+
+**META-ZF (S050 — platform-wide ZF passes):**
+When running a ZF pass ACROSS multiple files (updating ZF references, auditing 200 files),
+the pass itself is subject to ZF. The meta-termination cycle must confirm no additional
+files were missed. A ZF action must use ZF on itself.
+Canonical definition: tools/vault/ai-conception/B_ZF_TERMINATION_DISCIPLINE.md
 
 ### Evidence block format (every ZF-0 declaration emits)
 

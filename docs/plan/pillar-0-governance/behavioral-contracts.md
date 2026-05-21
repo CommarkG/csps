@@ -349,6 +349,8 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - Re-run skipped after fix (S132 — fixing necessary not sufficient)
 - Cycle count as target (S227 — process-driven not result-driven)
 - Compressed RZF under context pressure (defer not compress)
+- **False termination declaration (S050):** declaring ZF ACHIEVED in the same cycle as the last finding. A cycle that finds something is NON-TERMINAL. The TERMINATION CYCLE must itself return zero — it re-examines named areas and finds nothing. "ZF ACHIEVED" is valid only when the most recent cycle's own result was zero.
+- **Meta-ZF omission (S050):** when running a ZF pass ACROSS the platform (updating all ZF references, auditing all files), the pass itself is subject to ZF. The platform-scan must complete a termination cycle confirming no additional files were missed. A ZF action must use ZF on itself.
 
 **Mechanical surfaces:**
 - schema: every-artifact frontmatter requires `evidence_block_ref:` field at lifecycle_state ∈ {validated, closed}

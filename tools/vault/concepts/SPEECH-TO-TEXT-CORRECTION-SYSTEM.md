@@ -67,6 +67,36 @@ Only AFTER correction does Threshold classify and route.
 
 This is the "contacts → context" fix, done automatically, not reactively.
 
+## The Correction UI Pattern (±4 sentences context)
+
+When the system detects a likely STT error (confidence below threshold, OR contextual mismatch):
+
+```
+FLAGGED PHRASE: "I am Thornton"
+─────────────────────────────────────────────────
+Context (4 sentences before):
+"...building this for complex systems, and I am totally aware that human cognition
+is quite different. I am totally aware of the difference in how the hierarchies
+are built. I will proceed only if it doesn't have a significant toll on the
+structure that AI is used to. What I am talking about is having all things..."
+
+Flagged: [I am Thornton]
+
+Context (4 sentences after):
+"...and then you can offer the user. There are several things I'm not sure
+were translated correctly. Here they are, and they have a clickable button.
+Sometimes a human must read the before and after to understand the context..."
+─────────────────────────────────────────────────
+Did you mean:
+  ○ "I am certain"       ← most likely
+  ○ "I am a person"
+  ○ "I am Thornton"      ← keep as-is (it's a proper name)
+```
+
+**Key design principle:** The ±4 sentences window is what enables this. Without context, "I am Thornton" could be correct (a proper name). With context, it's clear it's a STT error. The context window IS the intelligence layer.
+
+**Implementation note:** The flagged phrase shows BEFORE presenting alternatives. Humans calibrate their judgment by reading the context, not by guessing from the phrase alone.
+
 ## Onboarding Design Constraints
 
 - Timing: NOT the first screen (trust not yet established). NOT too late (habit already formed).

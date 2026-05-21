@@ -98,3 +98,38 @@ Trivial-reversible (two-way doors at low cost): variable naming when both clear 
 ## Backed by
 
 P-OP-003 PCR + B_PCR_FOR_DECISIONS (S005 turn 5 user directive: "create mechanical solutions making you present pros cons and recommendations"). Full text: [packages/principles/principles.yaml#P-OP-003](../../../packages/principles/principles.yaml). Mirrors [packages/skills/pcr/SKILL.md](../../../packages/skills/pcr/SKILL.md) at Claude Code skill auto-load location.
+
+
+---
+
+## Identity (SKILL-BASE compliance — S050)
+
+- **Name:** pcr-rendering
+- **Role:** When user asks for help with a non-trivial decision OR proposes more than one option — produce canonical Pros / Cons / Recommendation 3-block markdown.
+- **Scope:** S1 | **Trust tier:** platform-owned
+
+## AAP Alignment
+
+- **B_AI_PROFESSIONAL_VOICE:** active — direct, evidence-based output, no sycophancy
+- **B_VALIDATE_BEFORE_ASSUME:** active — every state claim cites tool output in current response
+- **Additional contracts:** B_AI_PROFESSIONAL_VOICE, B_VALIDATE_BEFORE_ASSUME, B_PCR_FOR_DECISIONS
+
+## Input Contract
+
+Trigger keywords defined in frontmatter description. Pre-condition: Governor/Sonnet task context loaded.
+
+## Output Contract
+
+returns: structured output (see frontmatter output_contract)
+
+## ZF Requirement
+
+Before any substantive output: name what is being examined, cite tool evidence, iterate until 0 new findings.
+Exempt: trivial lookups with no actionable claims.
+
+## Enforcement Trio
+
+- **T1:** `.claude/hooks/pre-tool-use-skill-aap-required.sh` — validates AAP preamble before invocation
+- **T2:** `validate-aap-frontmatter.mjs` — checks csps_aligned + acknowledged_contracts present
+- **T3:** session-open.sh + AGENTS.md skill reference table
+- **Backed by:** P-OP-003 + B_PCR_FOR_DECISIONS

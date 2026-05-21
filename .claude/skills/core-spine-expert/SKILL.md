@@ -84,3 +84,38 @@ When two spines conflict: higher-precedence spine wins. An artifact claiming GVR
 - `.claude/core-spines/L1_CORE_AI.md` — AI systems core doctrine (sealed S006)
 - `.claude/core-spines/L1_CORE_OPER.md` — operations core doctrine (sealed S006)
 - `.claude/core-spines/L1_CORE_VALD.md` — validation core doctrine (sealed S006)
+
+
+---
+
+## Identity (SKILL-BASE compliance — S050)
+
+- **Name:** core-spine-expert
+- **Role:** When classifying a new artifact into the correct Core Spine (GVRN/ARCH/AI/OPER/VALD) OR resolving cross-spine conflicts OR maintaining L1/L2/L3 doctrine OR checking that core_spine + schema_anchor are correct OR auditing spine precedence violations — apply the 5-spine model with GVRN>VALD>ARCH>AI>OPER precedence.
+- **Scope:** S1 | **Trust tier:** platform-owned
+
+## AAP Alignment
+
+- **B_AI_PROFESSIONAL_VOICE:** active — direct, evidence-based output, no sycophancy
+- **B_VALIDATE_BEFORE_ASSUME:** active — every state claim cites tool output in current response
+- **Additional contracts:** B_AI_PROFESSIONAL_VOICE, B_VALIDATE_BEFORE_ASSUME, B_CORE_SPINE_DISCIPLINE
+
+## Input Contract
+
+Trigger keywords defined in frontmatter description. Pre-condition: Governor/Sonnet task context loaded.
+
+## Output Contract
+
+returns: structured output (see frontmatter output_contract)
+
+## ZF Requirement
+
+Before any substantive output: name what is being examined, cite tool evidence, iterate until 0 new findings.
+Exempt: trivial lookups with no actionable claims.
+
+## Enforcement Trio
+
+- **T1:** `.claude/hooks/pre-tool-use-skill-aap-required.sh` — validates AAP preamble before invocation
+- **T2:** `validate-aap-frontmatter.mjs` — checks csps_aligned + acknowledged_contracts present
+- **T3:** session-open.sh + AGENTS.md skill reference table
+- **Backed by:** P-ARCH-028 + B_CORE_SPINE_DISCIPLINE

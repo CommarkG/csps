@@ -107,3 +107,38 @@ CSP S333 evidence: single-surface engravings demonstrably fail. Target: 5/5. Com
 ## Backed by
 
 P-META-007 Five-Surface Engraving + B_FIVE_SURFACE_ENGRAVING (S002 turn 17 user directive: "formalize the 5 surfaces to be included and used in all relevant places"). Full canonical: [five-surface-engraving.md](../../../docs/plan/pillar-0-governance/five-surface-engraving.md).
+
+
+---
+
+## Identity (SKILL-BASE compliance — S050)
+
+- **Name:** engraving-discipline
+- **Role:** When engraving a new B_* contract OR new principle (P-META / P-ARCH / P-OPER) OR a discipline at 5/5 atomic surfaces per FSE — load the 5-Surface Engraving Cycle (Detect → Classify → Design-delta → Apply-atomically → Verify-completeness → Emit-evidence-block → Propagate) + atomic validator-surface registration discipline + b-star-contract template structure.
+- **Scope:** S1 | **Trust tier:** platform-owned
+
+## AAP Alignment
+
+- **B_AI_PROFESSIONAL_VOICE:** active — direct, evidence-based output, no sycophancy
+- **B_VALIDATE_BEFORE_ASSUME:** active — every state claim cites tool output in current response
+- **Additional contracts:** B_AI_PROFESSIONAL_VOICE, B_VALIDATE_BEFORE_ASSUME, B_FIVE_SURFACE_ENGRAVING, B_TEMPLATE_FIRST_CREATION, B_CATCH_TO_ENGRAVING
+
+## Input Contract
+
+Trigger keywords defined in frontmatter description. Pre-condition: Governor/Sonnet task context loaded.
+
+## Output Contract
+
+returns: structured output (see frontmatter output_contract)
+
+## ZF Requirement
+
+Before any substantive output: name what is being examined, cite tool evidence, iterate until 0 new findings.
+Exempt: trivial lookups with no actionable claims.
+
+## Enforcement Trio
+
+- **T1:** `.claude/hooks/pre-tool-use-skill-aap-required.sh` — validates AAP preamble before invocation
+- **T2:** `validate-aap-frontmatter.mjs` — checks csps_aligned + acknowledged_contracts present
+- **T3:** session-open.sh + AGENTS.md skill reference table
+- **Backed by:** P-META-007 + B_FIVE_SURFACE_ENGRAVING

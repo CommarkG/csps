@@ -85,3 +85,38 @@ parent_template: skill-base
 | L1 | id + name + category + severity + statement_summary | Quick definition; default |
 | L2 | L1 + counterweight + industry_lineage + enforcers | Need full context |
 | L3 | Full principle including anti_patterns + config | Deep implementation work |
+
+
+---
+
+## Identity (SKILL-BASE compliance — S050)
+
+- **Name:** principles-skill
+- **Role:** When looking up a principle by ID OR asking what a principle means OR checking principle compliance OR searching for principles by category/spine/enforcer-layer — use principles-mcp MCP tools (get_principle / list_principles / find_by_spine / find_by_enforcer_layer) at depth L1 by default.
+- **Scope:** S1 | **Trust tier:** platform-owned
+
+## AAP Alignment
+
+- **B_AI_PROFESSIONAL_VOICE:** active — direct, evidence-based output, no sycophancy
+- **B_VALIDATE_BEFORE_ASSUME:** active — every state claim cites tool output in current response
+- **Additional contracts:** B_AI_PROFESSIONAL_VOICE, B_VALIDATE_BEFORE_ASSUME, B_SAVINGS_AND_SSOT_UNIFIED, B_CONSOLIDATION_PASS
+
+## Input Contract
+
+Trigger keywords defined in frontmatter description. Pre-condition: Governor/Sonnet task context loaded.
+
+## Output Contract
+
+returns: structured output (see frontmatter output_contract)
+
+## ZF Requirement
+
+Before any substantive output: name what is being examined, cite tool evidence, iterate until 0 new findings.
+Exempt: trivial lookups with no actionable claims.
+
+## Enforcement Trio
+
+- **T1:** `.claude/hooks/pre-tool-use-skill-aap-required.sh` — validates AAP preamble before invocation
+- **T2:** `validate-aap-frontmatter.mjs` — checks csps_aligned + acknowledged_contracts present
+- **T3:** session-open.sh + AGENTS.md skill reference table
+- **Backed by:** P-META-002 + B_SAVINGS_AND_SSOT_UNIFIED

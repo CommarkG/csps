@@ -136,3 +136,38 @@ Receipt format (next session): `S<NNN+1>-AI-receipt-<iso>-against-S<NNN>-AI-atte
 ## Backed by
 
 P-META-013 + B_HANDOFF_PRE_FLIGHT_AUDIT (S005 turn 27) + B_MUTUAL_UNDERSTANDING_VALIDATION (S005 turn 28). Full canonical: [protocols.md](../../../docs/plan/_handoff/VAULT/protocols.md) §10/§11/§17/§22 + [mutual-understanding-validation.md](../../../docs/plan/pillar-0-governance/mutual-understanding-validation.md).
+
+
+---
+
+## Identity (SKILL-BASE compliance — S050)
+
+- **Name:** slim-handoff
+- **Role:** When authoring HANDOFF-S<NNN>-to-S<NNN+1>.
+- **Scope:** S1 | **Trust tier:** platform-owned
+
+## AAP Alignment
+
+- **B_AI_PROFESSIONAL_VOICE:** active — direct, evidence-based output, no sycophancy
+- **B_VALIDATE_BEFORE_ASSUME:** active — every state claim cites tool output in current response
+- **Additional contracts:** B_AI_PROFESSIONAL_VOICE, B_VALIDATE_BEFORE_ASSUME, B_HANDOFF_PRE_FLIGHT_AUDIT, B_MUTUAL_UNDERSTANDING_VALIDATION, B_PROTOCOL_LITERAL_EXECUTION
+
+## Input Contract
+
+Trigger keywords defined in frontmatter description. Pre-condition: Governor/Sonnet task context loaded.
+
+## Output Contract
+
+returns: structured output (see frontmatter output_contract)
+
+## ZF Requirement
+
+Before any substantive output: name what is being examined, cite tool evidence, iterate until 0 new findings.
+Exempt: trivial lookups with no actionable claims.
+
+## Enforcement Trio
+
+- **T1:** `.claude/hooks/pre-tool-use-skill-aap-required.sh` — validates AAP preamble before invocation
+- **T2:** `validate-aap-frontmatter.mjs` — checks csps_aligned + acknowledged_contracts present
+- **T3:** session-open.sh + AGENTS.md skill reference table
+- **Backed by:** P-META-013 + B_HANDOFF_PRE_FLIGHT_AUDIT

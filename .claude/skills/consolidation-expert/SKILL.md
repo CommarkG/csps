@@ -71,3 +71,38 @@ If ANY match: ENHANCE the existing, don't create parallel.
 ## Consolidation debt metric
 Count = number of multi-line facts appearing in 3+ places without cross-reference.
 Report format: `consolidation_debt: N (HIGH if >10, MED if 3-10, LOW if <3)`
+
+
+---
+
+## Identity (SKILL-BASE compliance — S050)
+
+- **Name:** consolidation-expert
+- **Role:** When scanning for duplicate or near-duplicate functionality OR auditing B_CONSOLIDATION_PASS compliance OR identifying consolidation opportunities (3 similar things → 1 canonical + 2 cross-refs) OR tracking consolidation debt — find what can be merged, what's redundant, and what violates SSoT.
+- **Scope:** S1 | **Trust tier:** platform-owned
+
+## AAP Alignment
+
+- **B_AI_PROFESSIONAL_VOICE:** active — direct, evidence-based output, no sycophancy
+- **B_VALIDATE_BEFORE_ASSUME:** active — every state claim cites tool output in current response
+- **Additional contracts:** B_AI_PROFESSIONAL_VOICE, B_VALIDATE_BEFORE_ASSUME, B_CONSOLIDATION_PASS, B_SAVINGS_AND_SSOT_UNIFIED
+
+## Input Contract
+
+Trigger keywords defined in frontmatter description. Pre-condition: Governor/Sonnet task context loaded.
+
+## Output Contract
+
+returns: structured output (see frontmatter output_contract)
+
+## ZF Requirement
+
+Before any substantive output: name what is being examined, cite tool evidence, iterate until 0 new findings.
+Exempt: trivial lookups with no actionable claims.
+
+## Enforcement Trio
+
+- **T1:** `.claude/hooks/pre-tool-use-skill-aap-required.sh` — validates AAP preamble before invocation
+- **T2:** `validate-aap-frontmatter.mjs` — checks csps_aligned + acknowledged_contracts present
+- **T3:** session-open.sh + AGENTS.md skill reference table
+- **Backed by:** P-ARCH-004 + B_CONSOLIDATION_PASS

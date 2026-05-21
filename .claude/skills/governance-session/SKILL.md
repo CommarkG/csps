@@ -86,3 +86,38 @@ HANDOFF + minimal chat-jump-prompt + detailed chat-jump-prompt + HPFA + closing-
 ## Backed by
 
 P-META-008 cycle-mandatory-in-plan + B_PROTOCOL_LITERAL_EXECUTION (S002 turn 14) + B_PRE_CLOSE_VERIFICATION (P-META-008 / S005 turn 19) + B_HANDOFF_PRE_FLIGHT_AUDIT (P-META-013 / S005 turn 27) + B_GOVERNOR_PROMPTS (P-META-012 / S005 turn 27) + B_MUTUAL_UNDERSTANDING_VALIDATION (P-META-014 / S005 turn 28). Full canonical: [protocols.md](../../../docs/plan/_handoff/VAULT/protocols.md).
+
+
+---
+
+## Identity (SKILL-BASE compliance — S050)
+
+- **Name:** governance-session
+- **Role:** When opening a new session OR closing one OR running session-protocol steps (chat-jump intake, §17 attestation, handoff write, closing-summary §10.
+- **Scope:** S1 | **Trust tier:** platform-owned
+
+## AAP Alignment
+
+- **B_AI_PROFESSIONAL_VOICE:** active — direct, evidence-based output, no sycophancy
+- **B_VALIDATE_BEFORE_ASSUME:** active — every state claim cites tool output in current response
+- **Additional contracts:** B_AI_PROFESSIONAL_VOICE, B_VALIDATE_BEFORE_ASSUME, B_PROTOCOL_LITERAL_EXECUTION, B_PRE_CLOSE_VERIFICATION, B_HANDOFF_PRE_FLIGHT_AUDIT, B_GOVERNOR_PROMPTS, B_MUTUAL_UNDERSTANDING_VALIDATION
+
+## Input Contract
+
+Trigger keywords defined in frontmatter description. Pre-condition: Governor/Sonnet task context loaded.
+
+## Output Contract
+
+returns: structured output (see frontmatter output_contract)
+
+## ZF Requirement
+
+Before any substantive output: name what is being examined, cite tool evidence, iterate until 0 new findings.
+Exempt: trivial lookups with no actionable claims.
+
+## Enforcement Trio
+
+- **T1:** `.claude/hooks/pre-tool-use-skill-aap-required.sh` — validates AAP preamble before invocation
+- **T2:** `validate-aap-frontmatter.mjs` — checks csps_aligned + acknowledged_contracts present
+- **T3:** session-open.sh + AGENTS.md skill reference table
+- **Backed by:** P-META-008 + B_PROTOCOL_LITERAL_EXECUTION

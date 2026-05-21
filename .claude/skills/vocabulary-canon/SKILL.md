@@ -106,3 +106,38 @@ If precedent: enhance (P-OP-001 reuse-first). If no precedent: declare absence +
 ## Backed by
 
 P-ARCH-029 + B_NAMING_POLICY (S006 turn 24 user directive: "names are simple and clear for human users while using industry standard vocabulary"). Composes with B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK (S002 turn 7) + B_STRUCTURAL_PREVENTION_DISCIPLINE Q-2 K=2 closed-enum drift fix (S007 turn 5). Full canonical: [naming-policy.md](../../../docs/plan/pillar-0-governance/naming-policy.md) + [frontmatter-closed-enums.md](../../../docs/plan/pillar-0-governance/frontmatter-closed-enums.md).
+
+
+---
+
+## Identity (SKILL-BASE compliance — S050)
+
+- **Name:** vocabulary-canon
+- **Role:** When authoring frontmatter OR naming a new artifact OR amending closed-enum fields — load naming-policy 4-rules + frontmatter-closed-enums canonical reference + glossary lookup + B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK.
+- **Scope:** S1 | **Trust tier:** platform-owned
+
+## AAP Alignment
+
+- **B_AI_PROFESSIONAL_VOICE:** active — direct, evidence-based output, no sycophancy
+- **B_VALIDATE_BEFORE_ASSUME:** active — every state claim cites tool output in current response
+- **Additional contracts:** B_AI_PROFESSIONAL_VOICE, B_VALIDATE_BEFORE_ASSUME, B_NAMING_POLICY, B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK, B_STRUCTURAL_PREVENTION_DISCIPLINE
+
+## Input Contract
+
+Trigger keywords defined in frontmatter description. Pre-condition: Governor/Sonnet task context loaded.
+
+## Output Contract
+
+returns: structured output (see frontmatter output_contract)
+
+## ZF Requirement
+
+Before any substantive output: name what is being examined, cite tool evidence, iterate until 0 new findings.
+Exempt: trivial lookups with no actionable claims.
+
+## Enforcement Trio
+
+- **T1:** `.claude/hooks/pre-tool-use-skill-aap-required.sh` — validates AAP preamble before invocation
+- **T2:** `validate-aap-frontmatter.mjs` — checks csps_aligned + acknowledged_contracts present
+- **T3:** session-open.sh + AGENTS.md skill reference table
+- **Backed by:** P-ARCH-029 + B_NAMING_POLICY

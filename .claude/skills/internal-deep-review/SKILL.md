@@ -96,3 +96,38 @@ The STRUCTURE forces coverage that my "regular self" default skips:
 - Proactive concern registration (regular me: notices and continues; review me: names and records)
 
 This is real value, honestly labeled. Not Opus, but better than passive execution.
+
+
+---
+
+## Identity (SKILL-BASE compliance — S050)
+
+- **Name:** internal-deep-review
+- **Role:** When performing a structured critical self-review of CSPS work OR auditing architectural coherence OR applying systematic challenge to what was built — use this Sonnet-quality structured review format.
+- **Scope:** S1 | **Trust tier:** platform-owned
+
+## AAP Alignment
+
+- **B_AI_PROFESSIONAL_VOICE:** active — direct, evidence-based output, no sycophancy
+- **B_VALIDATE_BEFORE_ASSUME:** active — every state claim cites tool output in current response
+- **Additional contracts:** B_AI_PROFESSIONAL_VOICE, B_VALIDATE_BEFORE_ASSUME, B_NO_AI_IMPERSONATION    # never claim to be Opus, B_PRE_CLOSE_VERIFICATION
+
+## Input Contract
+
+Trigger keywords defined in frontmatter description. Pre-condition: Governor/Sonnet task context loaded.
+
+## Output Contract
+
+returns: structured output (see frontmatter output_contract)
+
+## ZF Requirement
+
+Before any substantive output: name what is being examined, cite tool evidence, iterate until 0 new findings.
+Exempt: trivial lookups with no actionable claims.
+
+## Enforcement Trio
+
+- **T1:** `.claude/hooks/pre-tool-use-skill-aap-required.sh` — validates AAP preamble before invocation
+- **T2:** `validate-aap-frontmatter.mjs` — checks csps_aligned + acknowledged_contracts present
+- **T3:** session-open.sh + AGENTS.md skill reference table
+- **Backed by:** P-META-006 + B_NO_AI_IMPERSONATION

@@ -105,3 +105,38 @@ Reject: finish-fast urge / arbitrary-N split / skip-foundation / unrelated-batch
 ## Backed by
 
 P-META-016 + B_GRADUAL_BUILD_BY_FOUNDATIONS (S006 turn 5-7 user directive: "develop a gradual build methodology engraved into the multi session plan way of creation and updating"). Full canonical: [gradual-build-plan template](../../../tools/templates/gradual-build-plan.template.md) + [priority-engine.schema.yaml](../../../tools/templates/priority-engine.schema.yaml).
+
+
+---
+
+## Identity (SKILL-BASE compliance — S050)
+
+- **Name:** swift-build
+- **Role:** When opening a multi-session topic-plan OR running an element-review OR sequencing depth-3/4/5 layers — load gradual-build-plan template + priority-engine 5-dim formula + per-layer ZF gate + foundation-stability-before-layer-N + push-back rules + backtrack-trigger register.
+- **Scope:** S1 | **Trust tier:** platform-owned
+
+## AAP Alignment
+
+- **B_AI_PROFESSIONAL_VOICE:** active — direct, evidence-based output, no sycophancy
+- **B_VALIDATE_BEFORE_ASSUME:** active — every state claim cites tool output in current response
+- **Additional contracts:** B_AI_PROFESSIONAL_VOICE, B_VALIDATE_BEFORE_ASSUME, B_GRADUAL_BUILD_BY_FOUNDATIONS, B_TEMPLATE_FIRST_CREATION, B_PE_ALIGNMENT_GUARDIAN
+
+## Input Contract
+
+Trigger keywords defined in frontmatter description. Pre-condition: Governor/Sonnet task context loaded.
+
+## Output Contract
+
+returns: structured output (see frontmatter output_contract)
+
+## ZF Requirement
+
+Before any substantive output: name what is being examined, cite tool evidence, iterate until 0 new findings.
+Exempt: trivial lookups with no actionable claims.
+
+## Enforcement Trio
+
+- **T1:** `.claude/hooks/pre-tool-use-skill-aap-required.sh` — validates AAP preamble before invocation
+- **T2:** `validate-aap-frontmatter.mjs` — checks csps_aligned + acknowledged_contracts present
+- **T3:** session-open.sh + AGENTS.md skill reference table
+- **Backed by:** P-META-016 + B_GRADUAL_BUILD_BY_FOUNDATIONS

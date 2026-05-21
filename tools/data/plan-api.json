@@ -2,13 +2,13 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-21T04:08:34.017Z",
+    "generated_at": "2026-05-21T08:02:33.493Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
-    "total_items": 46,
+    "total_items": 47,
     "status_counts": {
       "intake": 19,
-      "planning": 3,
+      "planning": 4,
       "ratified": 4,
       "implementing": 0,
       "activation": 0,
@@ -1377,6 +1377,30 @@
         "reversibility": "medium",
         "dependency_clarity": "low"
       },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "SIA-FOUNDATION",
+      "title": "Structural Intelligence Architecture — R1 Foundation",
+      "status": "planning",
+      "category": "architecture",
+      "owner": "shared",
+      "pe_score": 97,
+      "tags": [
+        "SIA",
+        "architecture",
+        "s050",
+        "arch-session"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "18 design docs in docs/SIA/. Awaiting external AI consultation + Governor ratification before R1 execution.",
+      "pmi_score": 0,
+      "pmi_ready": false,
+      "pmi_detail": null,
       "has_core_seed": false,
       "core_seed": null,
       "activation_exit": null,

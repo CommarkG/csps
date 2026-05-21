@@ -8,8 +8,8 @@ lifecycle: production
 lifecycle_state: active
 core_spine: GVRN
 schema_anchor: council_state
-last_updated_session: S048
-last_updated: "2026-05-20"
+last_updated_session: S050
+last_updated: "2026-05-21"
 csps_core_reminder: [P-META-020, B_PRACE, AP-001]
 supersedes: [opus-context.md, sonnet-context.md, opus-1-context.md, sonnet-1-context.md]
 ---
@@ -283,6 +283,16 @@ Logic (patterns, rules, config) lives in `tools/config/*.yaml` files (no protect
 **What Claude Code protects:** `settings.json` AND any file inside `.claude/` directory require explicit permission prompts regardless of `bypassPermissions`. This is a Claude Code design constraint.
 **Solution:** Move logic OUT of `.claude/` into `tools/config/*.yaml`. The `.claude/` files are dumb readers that NEVER need to change for logic updates.
 
+### 5. Sacred File Protection
+**Rule:** Files with `protection_level: sacred` in frontmatter are BLOCKING writes via `pre-tool-use-sacred-file-guard.sh`.
+**To override:** Governor must include "AUTHORIZED: [reason]" in the message. No exceptions.
+**Registry:** `apps/csps-playground/_sacred.json`
+
+### 6. Three Session Types
+**ARCH-SESSION:** design only — output = DESIGN-DOC. No code execution. Output lives in `docs/SIA/`.
+**MIXED-SESSION:** scoped design + limited execution.
+**EXEC-SESSION:** execute a ratified plan. Must be declared at session-open. You are in one or the other — never ambiguous.
+
 ---
 
 ## SESSION CLOSE vs TAB CLOSE — These Are NOT the Same Thing
@@ -386,6 +396,7 @@ S048 accomplished: Dispatcher pattern (one settings.json entry, N hooks via disp
 | `docs/plan/pillar-0-governance/prevention-framework.md` | Prevention mindset |
 | `docs/plan/pillar-0-governance/core-scopes.md` | Three-scope framework |
 | `tools/council/opus-protocol.md` | [OPUS ONLY] Full working protocol |
+| `docs/SIA/` | SIA architecture documents (18 files, S050 ARCH-SESSION) |
 
 ---
 

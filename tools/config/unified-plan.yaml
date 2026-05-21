@@ -866,3 +866,14 @@ items:
       dependency_clarity: low
     notes: "9 pipelines defined in audit-hub.md. 0 are running. 67 planned validators in audit-runner.md have no PE-tracked completion. This is a large scope — needs Opus design session before Sonnet implements. Batch-H (infrastructure). Prerequisite: foundation complete."
 
+
+  - id: SIA-FOUNDATION
+    title: "Structural Intelligence Architecture — R1 Foundation"
+    status: planning
+    epoch: E1
+    category: architecture
+    owner: shared
+    batch: BATCH-A
+    pe_score: 97
+    tags: [SIA, architecture, s050, arch-session]
+    notes: "18 design docs in docs/SIA/. Awaiting external AI consultation + Governor ratification before R1 execution."

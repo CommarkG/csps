@@ -77,6 +77,8 @@ ZF_DEEP_OUTPUT=""
 ZF_DEEP_EXIT=0
 
 # Run ZF deep orchestrator (level 3) — this IS the mechanical gate
+# First run verify.mjs to clear any stale state, then run orchestrator
+node "${REPO_ROOT}/tools/verify.mjs" > /dev/null 2>&1 || true
 ZF_DEEP_OUTPUT=$(node "${REPO_ROOT}/tools/zf-orchestrator.mjs" --level 3 2>&1) || ZF_DEEP_EXIT=$?
 
 if echo "$ZF_DEEP_OUTPUT" | grep -q "ZF ACHIEVED"; then

@@ -9,7 +9,11 @@ lifecycle: experimental
 lifecycle_state: active
 version: "0.1"
 session: S050
-status: awaiting-governor-consensus
+status: partial-consensus
+consensus_q1_vocabulary: ratified — translate Chunks→Parts, Councils→Expert-Lenses, etc.
+consensus_q2_transparent_signing: clarified — 2 concepts. Both register as plan items.
+consensus_q3_ab_testing: approved — A/B/C/D testing hub as plan item
+consensus_q4_template_agent: directional — Bundle Advisor sub-engine inside PIE (R2.1)
 raw_source: "vault/raw/RAW-20260521-DOC-001-UNIVERSAL-COMBINATORIAL-FRAMEWORK.md"
 core_spines: [ARCH, AI]
 core_spine: ARCH
@@ -31,18 +35,18 @@ context_quote: "The framework asks to be translated. CSPS is the vocabulary it w
 
 ## Parts Register
 
-| Part ID | Name | Section | Status | CSPS Relevance |
-|---|---|---|---|---|
-| DOC-001.P01 | Multi-Use Intent (4 use cases) | Part I §1 | new | HIGH — maps to CSPS batch structure + app types |
-| DOC-001.P02 | Weighted Dependency Matrix | Part I §2 | new | CRITICAL — core of Combinatorial Engine |
-| DOC-001.P03 | Universal Priority Engine (DSS) | Part I §3 | partial-overlap | HIGH — extends PE engine |
-| DOC-001.P04 | Invisible Absorption System | Part II §1 | new | CRITICAL — APP-001 core value + Threshold design |
-| DOC-001.P05 | Validated Psychological Hooks | Part II §2 | new | HIGH — Human Psychology Hub foundation |
-| DOC-001.P06 | Sensitivity Ladder (Tone/Depth/Urgency) | Part II §3 | new | HIGH — response calibration schema |
-| DOC-001.P07 | Template Mechanism + Inheritance | Part III §1 | strong-overlap | CRITICAL — maps exactly to Template Bundle System |
-| DOC-001.P08 | Core Council (3 expert roles) | Part III §2 | vocabulary-conflict | MEDIUM — needs translation |
-| DOC-001.P09 | Personalization + Feedback Hub | Part III §3 | new | HIGH — Transparent Signing is new concept |
-| DOC-001.P10 | Developer Build Sequence (5 steps) | Summary | guiding | MEDIUM — reference for implementation order |
+| Part ID | Name | Section | Status | CSPS Relevance | Topics |
+|---|---|---|---|---|---|
+| DOC-001.P01 | Multi-Use Intent (4 use cases) | Part I §1 | new | HIGH | #multi-dimensional-reasoning #use-cases #platform-architecture |
+| DOC-001.P02 | Weighted Dependency Matrix | Part I §2 | absorbed-to-vault | CRITICAL | #combinatorial-engine #dependency-scoring #core-math #4-level-scale |
+| DOC-001.P03 | Universal Priority Engine (DSS) | Part I §3 | partial-overlap | HIGH | #pe-engine #multi-conclusion #reasoning-trace #dynamic-weighting |
+| DOC-001.P04 | Invisible Absorption System | Part II §1 | new | CRITICAL | #ux #threshold #cognitive-offload #app-001 #stt #fragmented-input |
+| DOC-001.P05 | Validated Psychological Hooks | Part II §2 | absorbed-to-vault | HIGH | #human-psychology-hub #trust-ladder #pattern-verification #statistical-significance |
+| DOC-001.P06 | Sensitivity Ladder (Tone/Depth/Urgency) | Part II §3 | absorbed-to-vault | HIGH | #response-calibration #human-psychology-hub #ux #4-grade-scale |
+| DOC-001.P07 | Template Mechanism + Inheritance | Part III §1 | strong-overlap | CRITICAL | #template-bundle-system #inheritance #orchestrator #bundle-advisor |
+| DOC-001.P08 | Core Council (3 expert roles) | Part III §2 | vocabulary-conflict | MEDIUM | #expert-lenses #behavior-hub #translated: Core-Council→Expert-Lenses |
+| DOC-001.P09 | Personalization + Feedback Hub | Part III §3 | new | HIGH | #transparent-signing #feedback-loop #privacy-silo #external-recipients |
+| DOC-001.P10 | Developer Build Sequence (5 steps) | Summary | guiding | MEDIUM | #implementation-order #planning #build-sequence |
 
 ---
 

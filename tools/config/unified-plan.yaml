@@ -965,3 +965,82 @@ items:
     pe_score: 72
     tags: [ai-behavior, register, patterns, s052]
     notes: "Seed planted S047 in anti-patterns.md (target: S048, missed 3 sessions). Rescheduled S052. Grows to: dedicated register format for AI behavior patterns with triggers + satisfaction points. pmi_gate: DOG-FOOD-AUDIT."
+
+  # --- S050 DOCUMENT ABSORPTION PLAN ITEMS --------------------------------
+
+  - id: STT-CORRECTION-SYSTEM
+    title: "Speech-to-Text Correction System — per-user vocabulary builder + system-wide distortion registry"
+    status: planning
+    epoch: E1
+    category: ai-behavior
+    owner: shared
+    batch: BATCH-C
+    pe_score: 88
+    tags: [stt, vocabulary, calibration, moat, s050, app-001]
+    notes: "Two components: (1) per-user onboarding calibration session — user reads + corrects speech-to-text to build personal vocabulary map; (2) system-wide distortion registry — tracks common misrecognitions across all users. Feeds Threshold: correct before classify. Design: tools/vault/concepts/SPEECH-TO-TEXT-CORRECTION-SYSTEM.md. Moat: most AI systems ignore this gap."
+
+  - id: BEHAVIOR-HUB
+    title: "Universal Behavior Hub — AI layer (AI/automation) + Human layer (Governor/devs/users)"
+    status: planning
+    epoch: E1
+    category: architecture
+    owner: opus
+    batch: BATCH-A
+    pe_score: 90
+    tags: [behavior, hub, ai-behavioral-profile, human-psychology-hub, consolidation, s050]
+    notes: "Universal core fields + two explicit sub-layers. AI/Automation layer: rule-based, instructable (AI Behavioral Profile + external AI profiles + automation entities). Human layer: psychological, emergent, observed (Governor + developers + external users: admins/semi-managers/team-leaders/end-users). Combinatorial Engine consumes from both. MUST keep layers explicitly separated — conflating AI cognition with human cognition is a design anti-pattern."
+
+  - id: PRIVATE-BUSINESS-SILOS
+    title: "Private/Business Data Silo Architecture — encrypted separation of personal vs business logic"
+    status: planning
+    epoch: E1
+    category: architecture
+    owner: opus
+    batch: BATCH-A
+    pe_score: 89
+    tags: [privacy, silos, gdpr, personal-data, architecture, s050]
+    notes: "Hard psychological and technical line: private personal data (family, relationships, health) stored in encrypted silo EXCLUDED from business-logic training sets. Prerequisites: consent model, encryption architecture, silo boundary validation. Must be designed BEFORE any CSPS app activates personal dimensions. Prevention priority: privacy architecture breach is worse than missing feature."
+
+  - id: AB-TESTING-HUB
+    title: "A/B/C/D Testing Hub — experimentation platform for user-facing flows with completion tracking"
+    status: intake
+    epoch: E1
+    category: product
+    owner: shared
+    batch: BATCH-H
+    pe_score: 82
+    tags: [ab-testing, experimentation, onboarding, completion-tracking, s050]
+    notes: "Version management for user-facing flows (onboarding variants, etc.). User segmentation by percentage. Outcome tracking: completion rate, bail-out points, engagement depth. Auto-promote winner at statistical significance. Maps to activation_exit: evaluation-passed. Playground UI for experiment management. First use case: onboarding 3-question variants for APP-001."
+
+  - id: TRANSPARENT-SIGNING
+    title: "Transparent Signing — AI-assisted outputs marked as such to protect user reputation"
+    status: intake
+    epoch: E1
+    category: governance
+    owner: shared
+    batch: BATCH-G
+    pe_score: 75
+    tags: [transparency, ai-attribution, governance, ux, s050]
+    notes: "Every AI-assisted outbound action (emails, reports, recommendations sent to external parties) is marked 'Assisted by AI' in a non-intrusive way. Protects user reputation while the engine is in activated (test drive) state. Allows engine to mature in live environment. Separate from Trust Ladder (which is about data collection) — this is about output labeling."
+
+  - id: BUNDLE-ADVISOR-ENGINE
+    title: "Bundle Advisor — PIE sub-engine for cross-app capability bundle suggestions"
+    status: intake
+    epoch: E1
+    category: architecture
+    owner: opus
+    batch: BATCH-J
+    pe_score: 83
+    tags: [bundle-advisor, pie-sub-engine, template-agent, cross-app, s050]
+    notes: "PIE (R2.1) sub-engine that monitors capability usage across all CSPS apps and suggests bundle upgrades. Different from L3 Journey Orchestrator (which handles user journey paths) — this handles CAPABILITY bundles across app domains. Sources: CAIE cross-app patterns. Trigger: user profile in APP-001 shows signals → suggests REPORTING_BUNDLE activation. CSPS translation of DOC-001 Template Agent concept."
+
+  - id: COMBINATORIAL-ENGINE
+    title: "Combinatorial Engine — multi-dimensional reasoning with Dependency Matrix + Sensitivity Ladder"
+    status: planning
+    epoch: E1
+    category: architecture
+    owner: opus
+    batch: BATCH-J
+    pe_score: 95
+    tags: [combinatorial, dependency-matrix, sensitivity-ladder, forward-reasoning, moat, s050]
+    notes: "Core engine for multi-dimensional user context with Dependency Strength grading (Isolated→Linked→Dependent→Synergetic). Three collection modes. Sensitivity Ladder (Tone/Depth/Urgency 1-4). Forward reasoning on trajectories. Vault design: tools/vault/concepts/COMBINATORIAL-ENGINE-RAW.md + tools/vault/processing/COMBINATORIAL-ENGINE-S123-ANALYSIS.md. Prerequisite: BEHAVIOR-HUB + PRIVATE-BUSINESS-SILOS + STT-CORRECTION-SYSTEM."

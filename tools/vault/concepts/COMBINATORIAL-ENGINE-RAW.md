@@ -149,13 +149,45 @@ The difference: the advisor synthesizes what you told them. Surveillance finds w
 | Dimensional model | Node Schema (R1.1.1) — user profile nodes |
 | Gap identification | PIE seeds monitor (R2.1.4) |
 | Organic question routing | (NEW — not yet designed) |
-| Response calibration | Human Psychology Hub (planned) |
+| Response calibration | Human Psychology Hub + Sensitivity Ladder (DOC-001.P06) |
+| Dependency strength grading | Weighted Dependency Matrix 4-level scale (DOC-001.P02) |
 | Forward reasoning | (NEW — the core engine, not yet designed) |
 | Insight surfacing | Queen dimension of PE (R2.1.1) |
-| Trust architecture | (NEW — consent/declaration model) |
+| Trust architecture | Trust Ladder → activated lifecycle (DOC-001.P05) |
+| Multi-conclusion output | 3 conclusions: Aggressive/Defensive/Balanced (DOC-001.P03) |
+| STT input correction | Per-user vocabulary correction + distortion registry (see STT vault) |
 
-The new elements are: organic routing, forward reasoning, trust consent model.
-Everything else extends existing CSPS architecture.
+The new elements are: organic routing, forward reasoning, dependency grading math.
+DOC-001 contributed: Sensitivity Ladder schema, 4-level Dependency Strength, Trust Ladder mapping.
+
+---
+
+## Dependency Strength Scale (from DOC-001.P02 — key addition)
+
+Every element in the Combinatorial Engine is graded on a 4-level Dependency Strength scale:
+
+1. **Isolated** — no meaningful connection to other elements
+2. **Linked** — affects other elements but doesn't depend on them
+3. **Dependent** — value is significantly higher when combined with specific other elements
+4. **Synergetic** — the presence of element A exponentially increases the value of element B
+
+The Synergetic level is the core of what makes this a COMBINATORIAL engine (not just a multi-factor scorer). Two Synergetic elements together produce insights that neither produces alone.
+
+---
+
+## Sensitivity Ladder Schema (from DOC-001.P06 — CSPS translation)
+
+The engine communicates at the right level based on user context. Three orthogonal dimensions:
+
+| Dimension | Level 1 | Level 2 | Level 3 | Level 4 |
+|---|---|---|---|---|
+| **Tone** | Clinical / Logic-only | Neutral / Factual | Warm / Supportive | High Empathy / Personal |
+| **Depth** | Bullet points / Summary | Brief rationale | Full explanation | Comprehensive audit |
+| **Urgency** | Silent push | Advisory | Active notification | Interruption / Escalation |
+
+The default is Level 2 for all three dimensions. The engine moves to higher levels based on: engagement signals, topic sensitivity score, user calibration data.
+
+In CSPS terms: this IS the response calibration system for the Human Psychology Hub.
 
 ---
 

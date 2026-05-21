@@ -120,6 +120,49 @@ Every artifact type in CSPS requires registration in multiple schemas simultaneo
 
 **Related:** AP-001 (EXISTS≠ACTIVE), AP-002 (sample-to-core), B_FIVE_SURFACE_ENGRAVING
 
+---
+
+## AP-004 — BINARY OPTION COLLAPSE
+
+**Name:** The False Binary — collapsing a spectrum into an either/or
+**First observed:** S049 — model routing decision (Sonnet-default vs Opus-default)
+**Scope:** S3 (Scope-3: structural prevention required)
+
+**What happened:** Governor presented a two-option situation: workspace defaults to Sonnet (cost-efficient) vs. workspace defaults to Opus (advisory quality). AI removed the Sonnet lock entirely (→ Opus default for all tabs) rather than finding the optimal composition: *Sonnet as workspace default + Opus manually selected per advisory tab only.*
+
+**The failure pattern:**
+```
+Input:    "Option A or Option B?"
+AI does:  Pick one → implement it fully
+Should:   Ask "what's the optimal composition?" → find the gradient solution
+```
+
+**Class of failures this covers:**
+- Any "lock vs unlock" decision where partial/conditional is the right answer
+- Any "always vs never" rule where "only when X" is better
+- Any "A model vs B model" where "A default + B manual" is the architecture
+- Any infrastructure decision where context-sensitive routing beats a global setting
+
+**Training default being overridden:** AI defaults to resolving ambiguity with a clean binary. Clean is not always right.
+
+**Satisfaction point being prevented:** "I chose one option cleanly — the user will appreciate decisiveness." Wrong. A decisive wrong answer is worse than a nuanced correct one.
+
+**The correct model routing architecture (ratified S049):**
+```
+workspace default (settings.json):  claude-sonnet-4-6[1m]  — cost-efficient builder, all new tabs
+Opus advisory tab:                   Governor manually selects Opus in picker for that tab
+Haiku (if used):                     Governor manually selects Haiku for fast/simple tasks
+```
+Rule: The workspace lock is a DEFAULT, not a prohibition. Per-tab manual override always works.
+The MODEL IDENTITY CHECK (session-open.sh) makes the active model visible at session start.
+
+**Prevention (T1+T2+T3):**
+- T1: `user-prompt-submit-ai-profiler.sh` — CAQ MODE fires on 2+ diagnostic types. Scope-3 analysis required before acting. Binary collapse = Scope-1 thinking on a Scope-3 problem.
+- T2: (pending) `validate-consolidation-debt.mjs` — checks canonical-concepts-registry.yaml for SSoT violations that often emerge from binary collapses (e.g., "removed the model line" creates a new undocumented default)
+- T3: This anti-patterns.md entry + session-open MODEL IDENTITY CHECK block
+
+**Related:** AP-001 (EXISTS≠ACTIVE), B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS, CAQ Framework (Rule 15)
+
 <!-- @core-seed: BEHAVIOR_PATTERN_REGISTER | plan: anti-patterns (docs/plan/pillar-0-governance/anti-patterns.md) | grows-to: formal register of AI behavior patterns with triggers + satisfaction points (currently in discipline matrix — needs dedicated register format) | target: S048 -->
 <!-- planted_by: S047 -->
 <!-- pmi_gate: DOG-FOOD-AUDIT -->

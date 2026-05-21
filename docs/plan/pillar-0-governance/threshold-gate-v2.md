@@ -59,6 +59,45 @@ scope_level: S1
 
 **The insight:** types 7-13 are non-trivial inputs that existing platforms don't treat as governed inputs. CSPS treats them identically to user prompts — they all get classified, routed, and logged. A competitor release note and a user directive follow the SAME pipeline.
 
+## §1b — Model Tier Routing Schema (added S049 — AP-004 prevention)
+
+Every input that crosses the Threshold also carries an implicit `model_tier` requirement.
+This determines which tab executes the response — not which tab the Governor is currently in.
+
+```
+model_tier routing:
+
+  DECISION_ARCHITECTURE (strategic, multi-session consequences)
+    → model_tier: OPUS
+    → examples: kill condition ratification, EPOCH design, invariant selection,
+                new principle/contract ratification, PROTO design
+    → execution: Governor opens Opus tab, pastes input with ZCA block
+
+  IMPLEMENTATION (build + wire + verify)
+    → model_tier: SONNET (workspace default — no tab change needed)
+    → examples: validator builds, hook writes, plan item execution,
+                file edits per ratified spec, HANDOFF authoring
+    → execution: current Sonnet tab executes directly
+
+  QUICK_CHECK (fast lookup, simple question, status check)
+    → model_tier: SONNET or HAIKU
+    → examples: "what's the current PE score?", "does X file exist?", 
+                single-file reads, git status checks
+    → execution: current tab, no switch needed
+
+  COUNCIL_REVIEW (ambiguous, multi-actor, binary-collapse risk detected)
+    → model_tier: OPUS required
+    → trigger: CAQ MODE fires (2+ diagnostic types in one prompt)
+    → trigger: AP-004 pattern detected (AI collapses spectrum to binary)
+    → execution: PAUSE, route to Opus tab before any SWIFT_EXECUTE
+
+WORKSPACE DEFAULTS (never change without explicit Governor ratification):
+  New CSPS tab default:  claude-sonnet-4-6[1m]  (settings.json — cost-efficient builder)
+  Opus advisory tab:     Governor manually selects Opus in picker per session
+  Rule: workspace lock = DEFAULT, not prohibition. Per-tab picker always overrides.
+  Anti-pattern: AP-004 — do not toggle between "lock all" or "unlock all"
+```
+
 ## §2 — The Threshold v2 pipeline (8 steps)
 
 ```

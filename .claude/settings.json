@@ -20,6 +20,7 @@
       "c:\\Users\\finky\\Desktop\\csps-playground"
     ]
   },
+  "model": "claude-sonnet-4-6[1m]",
   "hooks": {
     "SessionStart": [
       {

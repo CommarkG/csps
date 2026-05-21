@@ -910,3 +910,47 @@ items:
     pe_score: 88
     tags: [zf, rzf, termination, validator, s050]
     notes: "B_ZF_TERMINATION_DISCIPLINE engraved in vault. AGENTS.md hard NO added. T2 BLOCKING validator needed: scan responses for 'ZF ACHIEVED' in the same sentence/paragraph as a finding. Extends OPEN-049 (nominal ZF validator)."
+
+  - id: PLATFORM-WISDOM-HARVEST
+    title: "Platform Wisdom Harvest — multi-persona extraction from recent session vault"
+    status: intake
+    epoch: E1
+    category: governance
+    owner: shared
+    batch: BATCH-H
+    pe_score: 85
+    tags: [harvest, vault, multi-persona, recurring, s050]
+    notes: "Recurring (monthly): Sonnet reads 3-6 closing-summary-S*.md + HANDOFF files through 4 lenses (Platform Architect / AI Behavior / UX-Journey / Prevention). Produces: cross-session patterns, dangling decisions, orphaned insights. Opus reviews + identifies anchor points. Valuable insight: 48-72 insights per 6 sessions currently sitting unextracted in _handoff/VAULT/."
+
+  - id: INHERITANCE-CHAIN-VALIDATOR
+    title: "Inheritance chain validator — T2 blocking check for parent_node chain integrity"
+    status: intake
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 91
+    tags: [inheritance, validator, creation-gate, t2, s050]
+    notes: "When a node has parent_node field, verify: parent exists, required inherited fields are present in child, invariants from parent are acknowledged. Pair with drift-detection: when parent is modified, flag child nodes for review. Critical for preserving platform quality as external interfaces evolve."
+
+  - id: CSPS-REFINEMENT-CYCLE
+    title: "CSPS Refinement Cycle — Observe→Name→Engrave→Enforce→Inherit pipeline"
+    status: intake
+    epoch: E1
+    category: governance
+    owner: opus
+    batch: BATCH-A
+    pe_score: 88
+    tags: [refinement, pipeline, anti-satisfaction, s050]
+    notes: "Formalize: when Governor corrects a pattern K>=2 times, system auto-creates vault entry draft + session-open T3 suggestion + T1+T2+T3 enforcement proposal. Today's session ran this 3 times (B_ARCHITECTURE_REDIRECT_AWARENESS, B_ZF_TERMINATION_DISCIPLINE, B_IDENTITY_BEFORE_CONTEXT). This is how the platform learns. Five steps: Observe → Name → Engrave → Enforce → Inherit."
+
+  - id: CSPS-ARCHITECTURE-QUADRANT
+    title: "CSPS Architecture Quadrant — Foundation / Context / Prevention / Inheritance"
+    status: intake
+    epoch: E1
+    category: architecture
+    owner: opus
+    batch: BATCH-A
+    pe_score: 83
+    tags: [quadrant, architecture, four-elements, s050]
+    notes: "Four elements that appear in every significant CSPS architectural decision: (1) Foundation — what must exist first, (2) Context — who/what/why, (3) Prevention — what wrong thing is made impossible, (4) Inheritance — what is permanently carried forward. Every architectural decision must pass all four. Formalize as a checklist in creation-wizard-protocol.md and session-open."

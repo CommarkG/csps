@@ -56,3 +56,7 @@ hooks:
   - path: ".claude/hooks/depth-marker-creation-gate.sh"
     description: "Depth marker creation gate — advisory for deep files"
     enforcement: advisory
+
+  - path: ".claude/hooks/pre-tool-use-sacred-file-guard.sh"
+    description: "Sacred file guard — BLOCKING for protection_level:sacred, ADVISORY for protected"
+    enforcement: blocking_possible

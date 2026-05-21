@@ -163,6 +163,8 @@ The MODEL IDENTITY CHECK (session-open.sh) makes the active model visible at ses
 
 **Related:** AP-001 (EXISTS≠ACTIVE), B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS, CAQ Framework (Rule 15)
 
-<!-- @core-seed: BEHAVIOR_PATTERN_REGISTER | plan: anti-patterns (docs/plan/pillar-0-governance/anti-patterns.md) | grows-to: formal register of AI behavior patterns with triggers + satisfaction points (currently in discipline matrix — needs dedicated register format) | target: S048 -->
+<!-- @core-seed: BEHAVIOR_PATTERN_REGISTER | plan: anti-patterns (docs/plan/pillar-0-governance/anti-patterns.md) | grows-to: formal register of AI behavior patterns with triggers + satisfaction points (currently in discipline matrix — needs dedicated register format) | target: S052 -->
 <!-- planted_by: S047 -->
 <!-- pmi_gate: DOG-FOOD-AUDIT -->
+<!-- deprecated: false | missed_target: S048 | rescheduled: S052 | reason: target missed 3 sessions; still valid but deprioritized; moved to S052 intake -->
+<!-- S050 review: seed is valid (behavior patterns register is needed) but low urgency vs shard + activation coverage work. Keeping alive, rescheduling to S052. -->

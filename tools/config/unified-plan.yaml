@@ -954,3 +954,14 @@ items:
     pe_score: 83
     tags: [quadrant, architecture, four-elements, s050]
     notes: "Four elements that appear in every significant CSPS architectural decision: (1) Foundation — what must exist first, (2) Context — who/what/why, (3) Prevention — what wrong thing is made impossible, (4) Inheritance — what is permanently carried forward. Every architectural decision must pass all four. Formalize as a checklist in creation-wizard-protocol.md and session-open."
+
+  - id: BEHAVIOR-PATTERN-REGISTER
+    title: "Formal AI Behavior Pattern Register — triggers + satisfaction points"
+    status: intake
+    epoch: unassigned
+    category: ai-behavior
+    owner: opus
+    batch: BATCH-C
+    pe_score: 72
+    tags: [ai-behavior, register, patterns, s052]
+    notes: "Seed planted S047 in anti-patterns.md (target: S048, missed 3 sessions). Rescheduled S052. Grows to: dedicated register format for AI behavior patterns with triggers + satisfaction points. pmi_gate: DOG-FOOD-AUDIT."

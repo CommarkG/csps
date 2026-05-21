@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APP-001 User Journey — Draft S050</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      color: #1a1a2e;
+      padding: 40px 20px;
+    }
+    .page { max-width: 860px; margin: 0 auto; }
+
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .header h1 { font-size: 28px; font-weight: 700; color: #1a1a2e; }
+    .header .tagline { margin-top: 10px; font-size: 17px; color: #555; font-style: italic; }
+    .header .draft-badge {
+      display: inline-block;
+      margin-top: 12px;
+      background: #ffe066;
+      color: #7a5c00;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    /* PERSONA CARD */
+    .persona {
+      display: flex;
+      gap: 24px;
+      background: #1a1a2e;
+      color: #fff;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      align-items: flex-start;
+    }
+    .persona-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7b8cde, #52b788);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .persona-info { flex: 1; }
+    .persona-name { font-size: 22px; font-weight: 700; }
+    .persona-role { font-size: 14px; color: #aaa; margin-top: 4px; }
+    .persona-traits {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .trait {
+      background: rgba(255,255,255,0.1);
+      color: #ddd;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .persona-insight {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.6;
+      border-left: 3px solid #52b788;
+      padding-left: 12px;
+    }
+
+    /* CORE LOOP */
+    .core-loop {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .core-loop h3 { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; }
+    .loop-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .loop-step {
+      flex: 1;
+      text-align: center;
+      padding: 14px 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    .loop-step .step-icon { font-size: 22px; }
+    .loop-step .step-name { font-size: 13px; font-weight: 700; color: #1a1a2e; margin-top: 6px; }
+    .loop-step .step-desc { font-size: 12px; color: #888; margin-top: 4px; }
+    .loop-arrow { color: #bbb; font-size: 18px; padding: 0 6px; flex-shrink: 0; }
+
+    /* TIMELINE */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: #e0e4ea;
+    }
+
+    .stage {
+      position: relative;
+      padding-left: 72px;
+      margin-bottom: 24px;
+    }
+    .stage-dot {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #ddd;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      z-index: 1;
+    }
+    .stage-dot.active { border-color: #52b788; background: #52b788; color: #fff; }
+    .stage-dot.value  { border-color: #e07b54; background: #e07b54; color: #fff; }
+
+    .stage-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .stage-card.highlighted {
+      border: 2px solid #e07b54;
+    }
+    .stage-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .stage-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      font-weight: 600;
+    }
+    .stage-title { font-size: 17px; font-weight: 700; color: #1a1a2e; }
+    .stage-subtitle { font-size: 13px; color: #888; font-style: italic; }
+
+    .stage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .stage-col h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #bbb;
+      margin-bottom: 8px;
+    }
+    .stage-col p { font-size: 14px; color: #333; line-height: 1.5; }
+    .stage-col ul { list-style: none; }
+    .stage-col ul li { font-size: 14px; color: #333; padding: 3px 0; padding-left: 14px; position: relative; }
+    .stage-col ul li::before { content: "–"; position: absolute; left: 0; color: #bbb; }
+
+    /* FIRST VALUE MOMENT */
+    .first-value {
+      background: linear-gradient(135deg, #fff5f0, #fff);
+      border: 2px solid #e07b54;
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+    .first-value .fv-badge {
+      display: inline-block;
+      background: #e07b54;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .first-value .fv-moment {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a2e;
+      line-height: 1.4;
+    }
+    .first-value .fv-detail {
+      font-size: 14px;
+      color: #666;
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    /* INBOX MOCKUP */
+    .inbox-mockup {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-top: 14px;
+    }
+    .inbox-mockup .inbox-header {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 10px;
+    }
+    .inbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      background: #fff;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      border-left: 3px solid #ddd;
+    }
+    .inbox-item.act    { border-left-color: #e05252; }
+    .inbox-item.decide { border-left-color: #e0c354; }
+    .inbox-item.delegate { border-left-color: #7b8cde; }
+    .inbox-item .item-cat {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: 64px;
+      color: #999;
+    }
+    .inbox-item .item-text { font-size: 13px; color: #333; flex: 1; }
+    .inbox-item .item-flag {
+      font-size: 11px;
+      background: #ffe8e8;
+      color: #c0392b;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    /* CATEGORIES */
+    .sort-categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .sort-cat {
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    .sort-cat.act      { background: #ffe8e8; }
+    .sort-cat.decide   { background: #fff8e0; }
+    .sort-cat.delegate { background: #ece8ff; }
+    .sort-cat.someday  { background: #e8f8ee; }
+    .sort-cat .cat-name { font-size: 13px; font-weight: 700; }
+    .sort-cat.act .cat-name      { color: #c0392b; }
+    .sort-cat.decide .cat-name   { color: #856404; }
+    .sort-cat.delegate .cat-name { color: #5b4ba0; }
+    .sort-cat.someday .cat-name  { color: #1d6b3f; }
+    .sort-cat .cat-q { font-size: 11px; color: #999; margin-top: 4px; line-height: 1.4; }
+
+    /* ANNOTATION */
+    .annotation {
+      margin-top: 40px;
+      background: #fffbea;
+      border: 1px solid #ffe066;
+      border-radius: 10px;
+      padding: 20px 28px;
+    }
+    .annotation h3 { font-size: 13px; font-weight: 700; color: #7a5c00; margin-bottom: 8px; }
+    .annotation p { font-size: 14px; color: #5a4200; line-height: 1.6; }
+
+    /* OPEN GATES */
+    .open-gates {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px 32px;
+      margin-top: 32px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .open-gates h3 { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; }
+    .gate-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f2f5;
+    }
+    .gate-item:last-child { border-bottom: none; }
+    .gate-status {
+      width: 64px;
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .gate-status.open   { background: #ffe8e8; color: #c0392b; }
+    .gate-status.closed { background: #e8f8ee; color: #1d6b3f; }
+    .gate-desc { font-size: 14px; color: #333; line-height: 1.5; }
+    .gate-desc strong { color: #1a1a2e; }
+
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 12px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>APP-001 — User Journey</h1>
+    <div class="tagline">"Think out loud. The app sorts it."</div>
+    <div class="draft-badge">DRAFT — S050 — For Governor Review</div>
+  </div>
+
+  <!-- PERSONA -->
+  <div class="persona">
+    <div class="persona-avatar">🧠</div>
+    <div class="persona-info">
+      <div class="persona-name">Alex</div>
+      <div class="persona-role">Cognitive Offload Professional — primary persona</div>
+      <div class="persona-traits">
+        <span class="trait">High-output knowledge worker</span>
+        <span class="trait">Constant context switching</span>
+        <span class="trait">Voice-comfortable</span>
+        <span class="trait">Not a task-app power user</span>
+        <span class="trait">Trusts AI when it earns it</span>
+      </div>
+      <div class="persona-insight">
+        Alex doesn't have a productivity problem. Alex has an externalization problem.
+        Ideas, tasks, and decisions accumulate faster than Alex can organize them.
+        The existing tools (Notion, Todoist, Notes) require effort to maintain — which means they get abandoned.
+        What Alex needs: capture that requires zero taxonomy, plus sorting that happens without input.
+      </div>
+    </div>
+  </div>
+
+  <!-- CORE LOOP -->
+  <div class="core-loop">
+    <h3>The core loop — four steps, repeating daily</h3>
+    <div class="loop-steps">
+      <div class="loop-step">
+        <div class="step-icon">🎙️</div>
+        <div class="step-name">Capture</div>
+        <div class="step-desc">Voice, 5–30 sec</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="step-icon">⚡</div>
+        <div class="step-name">Sort</div>
+        <div class="step-desc">AI categorizes</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="step-icon">📥</div>
+        <div class="step-name">Surface</div>
+        <div class="step-desc">App shows what matters</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="step-icon">✓</div>
+        <div class="step-name">Act</div>
+        <div class="step-desc">Alex decides or delegates</div>
+      </div>
+    </div>
+
+    <!-- SORT CATEGORIES -->
+    <div style="margin-top:20px;">
+      <div style="font-size:12px; color:#999; margin-bottom:10px; font-weight:600; text-transform:uppercase; letter-spacing:1px;">The four sort buckets</div>
+      <div class="sort-categories">
+        <div class="sort-cat act">
+          <div class="cat-name">Act</div>
+          <div class="cat-q">Requires action from Alex, time-sensitive</div>
+        </div>
+        <div class="sort-cat decide">
+          <div class="cat-name">Decide</div>
+          <div class="cat-q">Needs a decision before anything moves</div>
+        </div>
+        <div class="sort-cat delegate">
+          <div class="cat-name">Delegate</div>
+          <div class="cat-q">Someone else should own this</div>
+        </div>
+        <div class="sort-cat someday">
+          <div class="cat-name">Someday</div>
+          <div class="cat-q">Real but not now — park without losing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+
+    <!-- STAGE 0: DISCOVERY -->
+    <div class="stage">
+      <div class="stage-dot">0</div>
+      <div class="stage-card">
+        <div class="stage-header">
+          <div>
+            <div class="stage-label">Discovery</div>
+            <div class="stage-title">Alex hears about the app</div>
+            <div class="stage-subtitle">Before first open</div>
+          </div>
+        </div>
+        <div class="stage-grid">
+          <div class="stage-col">
+            <h4>Context</h4>
+            <p>B2B professional context — colleague mentions it, LinkedIn, or direct recommendation. The hook: "it captures your thinking and sorts it — you do nothing."</p>
+          </div>
+          <div class="stage-col">
+            <h4>Alex's question</h4>
+            <p>"I've tried these apps before and they always end up as graveyards. What's different here?"</p>
+          </div>
+          <div class="stage-col">
+            <h4>Design implication</h4>
+            <p>The app's market positioning must address graveyard anxiety directly. No onboarding screen says "organize your life." It says: "This takes 5 seconds. The app does the rest."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 1: ONBOARDING -->
+    <div class="stage">
+      <div class="stage-dot active">1</div>
+      <div class="stage-card">
+        <div class="stage-header">
+          <div>
+            <div class="stage-label">Day 0 — Onboarding</div>
+            <div class="stage-title">Three questions. No more.</div>
+            <div class="stage-subtitle">Calibration, not setup</div>
+          </div>
+        </div>
+        <div class="stage-grid">
+          <div class="stage-col">
+            <h4>Question 1 — Role calibration</h4>
+            <p>"What describes your work best?" → Options drive category weighting. A lawyer's "Act" bucket behaves differently than a founder's.</p>
+          </div>
+          <div class="stage-col">
+            <h4>Question 2 — Capture preference</h4>
+            <p>"When something crosses your mind, do you usually speak it or type it?" → Sets default input mode. This is the only UX preference we ask upfront.</p>
+          </div>
+          <div class="stage-col">
+            <h4>Question 3 — Entry friction</h4>
+            <p>"What's one thing that slipped through the cracks recently?" → Free-form voice. Seeds the first capture. Also teaches Alex the UX by doing it.</p>
+          </div>
+        </div>
+        <div style="margin-top:14px; font-size:13px; color:#999; font-style:italic;">
+          ⚠ OPEN GATE: These 3 questions require Governor ratification. Above is the architectural recommendation — react and redirect.
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2: FIRST CAPTURE + VALUE MOMENT -->
+    <div class="stage">
+      <div class="stage-dot value">★</div>
+      <div class="stage-card highlighted">
+        <div class="stage-header">
+          <div>
+            <div class="stage-label">Day 1 — First Value Moment</div>
+            <div class="stage-title">The app surprises Alex</div>
+            <div class="stage-subtitle">This is the moment the app earns trust</div>
+          </div>
+        </div>
+
+        <div class="first-value">
+          <div class="fv-badge">★ FIRST VALUE MOMENT</div>
+          <div class="fv-moment">Alex records 3 voice notes walking to a meeting.<br>Opens the app 2 hours later.<br>Sees: "3 captured — 1 flagged as time-sensitive."<br>Alex did not sort. Alex did not label. It just happened.</div>
+          <div class="fv-detail">
+            The emotional pivot: Alex expected to find a raw transcript. Instead found organized context ready to act on.
+            This is the moment the graveyard anxiety breaks. Not because Alex was productive — because the app was.
+          </div>
+        </div>
+
+        <!-- INBOX MOCKUP -->
+        <div class="inbox-mockup">
+          <div class="inbox-header">Alex's inbox — Day 1</div>
+          <div class="inbox-item act">
+            <div class="item-cat">Act</div>
+            <div class="item-text">Follow up with Jordan on the contract revision before Friday</div>
+            <div class="item-flag">⚑ Time-sensitive</div>
+          </div>
+          <div class="inbox-item decide">
+            <div class="item-cat">Decide</div>
+            <div class="item-text">Whether to move the Q3 planning meeting to async format</div>
+          </div>
+          <div class="inbox-item delegate">
+            <div class="item-cat">Delegate</div>
+            <div class="item-text">Someone should update the onboarding doc with the new pricing</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STAGE 3: WEEK 1 -->
+    <div class="stage">
+      <div class="stage-dot active">2</div>
+      <div class="stage-card">
+        <div class="stage-header">
+          <div>
+            <div class="stage-label">Week 1</div>
+            <div class="stage-title">Habit forms without effort</div>
+            <div class="stage-subtitle">Alex stops maintaining a separate to-do list</div>
+          </div>
+        </div>
+        <div class="stage-grid">
+          <div class="stage-col">
+            <h4>What Alex does</h4>
+            <p>Records 2–5 voice notes daily. Checks the inbox once or twice. No taxonomy maintenance. No tag discipline. No weekly review ritual.</p>
+          </div>
+          <div class="stage-col">
+            <h4>What the app surfaces</h4>
+            <p>Pattern alert: "You've mentioned 'proposal' 6 times this week. 2 items are in Decide. 1 has been in Act for 4 days."<br><br>This is the second trust inflection point.</p>
+          </div>
+          <div class="stage-col">
+            <h4>The behavioral shift</h4>
+            <p>Alex abandons the Notion page. Not because this app is better — because this app requires nothing to keep running. Maintenance cost = 0.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4: MONTH 1 -->
+    <div class="stage">
+      <div class="stage-dot active">3</div>
+      <div class="stage-card">
+        <div class="stage-header">
+          <div>
+            <div class="stage-label">Month 1</div>
+            <div class="stage-title">Full cognitive offload achieved</div>
+            <div class="stage-subtitle">The app becomes Alex's external brain</div>
+          </div>
+        </div>
+        <div class="stage-grid">
+          <div class="stage-col">
+            <h4>The transformation</h4>
+            <p>Alex stops worrying about forgetting things. The physical sensation of "I need to write that down" is replaced by a quick voice note, no friction.</p>
+          </div>
+          <div class="stage-col">
+            <h4>Weekly digest</h4>
+            <p>Every Monday: "Last week — 23 captured, 11 acted, 4 delegated, 3 still in Decide, 5 in Someday." No manual review. Just a mirror of Alex's week.</p>
+          </div>
+          <div class="stage-col">
+            <h4>The metric that matters</h4>
+            <p>Alex would notice immediately if the app disappeared. Not because it's convenient — because the cognitive architecture now depends on it. That's product-market fit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OPEN GATES -->
+  <div class="open-gates">
+    <h3>Section 5 — Open Gates (PMI 4/5 → 5/5)</h3>
+    <div class="gate-item">
+      <div class="gate-status open">Open</div>
+      <div class="gate-desc"><strong>Onboarding 3 questions:</strong> Role types defined? Capture preference options finalized? Question 3 free-form or constrained? This draft proposes — Governor reacts.</div>
+    </div>
+    <div class="gate-item">
+      <div class="gate-status open">Open</div>
+      <div class="gate-desc"><strong>Homepage variants (5 states):</strong> Empty (day 0) / First capture / Active use / Alert state (something stuck) / Celebration (week summary). The 5 states define what the homepage component tree needs to handle.</div>
+    </div>
+    <div class="gate-item">
+      <div class="gate-status open">Open</div>
+      <div class="gate-desc"><strong>First value moment:</strong> This draft proposes "3 captured, 1 flagged, zero sorting by Alex." Is this the right moment? Or is it the pattern alert at Week 1? The earlier the moment, the higher the Day-1 retention.</div>
+    </div>
+    <div class="gate-item">
+      <div class="gate-status closed">Closed</div>
+      <div class="gate-desc"><strong>Persona:</strong> Alex = cognitive-offload-professional. Ratified S049.</div>
+    </div>
+    <div class="gate-item">
+      <div class="gate-status closed">Closed</div>
+      <div class="gate-desc"><strong>Build architecture:</strong> apps/template/ fork, full CSPS stack. Ratified S049.</div>
+    </div>
+  </div>
+
+  <!-- ANNOTATION -->
+  <div class="annotation">
+    <h3>Architectural positions — OPUS-6 (react and redirect)</h3>
+    <p>
+      <strong>Sort model:</strong> Act / Decide / Delegate / Someday is a GTD-derivative. The risk is that knowledge workers know GTD and have already failed with it. The differentiator must be "you never manually assign a bucket" — the AI categorization must be accurate enough to feel magical, not like a smarter form.<br><br>
+      <strong>Voice-first constraint:</strong> If the app is voice-first but the first-value moment requires Alex to open the app and see the inbox — that's a context switch. Consider: does the first-value moment arrive as a notification? "3 things sorted while you were in your meeting" could be higher-leverage than "open the app to see it."<br><br>
+      <strong>Week-1 pattern surfacing:</strong> The pattern alert ("you mentioned X 6 times") is the sleeper feature. This is what makes the app feel intelligent rather than merely organized. It should appear earlier — Day 3, not Week 1 — to shorten the trust-building arc.
+    </p>
+  </div>
+
+  <div class="footer">
+    APP-001 — Voice Sorting App | User Journey Draft S050 | OPUS-6 | For Governor review only
+  </div>
+
+</div>
+</body>
+</html>

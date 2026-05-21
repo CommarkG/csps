@@ -1,0 +1,116 @@
+{
+  "timestamp": "2026-05-20T00:01:40.564Z",
+  "exit_code": 0,
+  "total_validators": 136,
+  "s1_count": 0,
+  "s2_count": 16,
+  "s3_count": 1,
+  "S1": [],
+  "S2": [
+    {
+      "name": "participant_declared",
+      "scope": "S2",
+      "reason": "56 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to participant_declared area"
+    },
+    {
+      "name": "template_grade",
+      "scope": "S2",
+      "reason": "1 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to template_grade area"
+    },
+    {
+      "name": "satisfaction_point",
+      "scope": "S2",
+      "reason": "7 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to satisfaction_point area"
+    },
+    {
+      "name": "agreement_without_evidence",
+      "scope": "S2",
+      "reason": "2 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to agreement_without_evidence area"
+    },
+    {
+      "name": "comprehensive_response",
+      "scope": "S2",
+      "reason": "1 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to comprehensive_response area"
+    },
+    {
+      "name": "bottleneck_patterns",
+      "scope": "S2",
+      "reason": "8 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to bottleneck_patterns area"
+    },
+    {
+      "name": "multi_topic_decomposition",
+      "scope": "S2",
+      "reason": "2 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to multi_topic_decomposition area"
+    },
+    {
+      "name": "opus_rzf_gap_tracking",
+      "scope": "S2",
+      "reason": "11 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to opus_rzf_gap_tracking area"
+    },
+    {
+      "name": "deferred_target_session",
+      "scope": "S2",
+      "reason": "2 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to deferred_target_session area"
+    },
+    {
+      "name": "no_laptop_secrets",
+      "scope": "S2",
+      "reason": "4 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to no_laptop_secrets area"
+    },
+    {
+      "name": "scope_conflict",
+      "scope": "S2",
+      "reason": "1 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to scope_conflict area"
+    },
+    {
+      "name": "rule_has_enforcement",
+      "scope": "S2",
+      "reason": "3 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to rule_has_enforcement area"
+    },
+    {
+      "name": "laptop_patterns",
+      "scope": "S2",
+      "reason": "7 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to laptop_patterns area"
+    },
+    {
+      "name": "skill_dna_alignment",
+      "scope": "S2",
+      "reason": "2 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to skill_dna_alignment area"
+    },
+    {
+      "name": "creation_completeness",
+      "scope": "S2",
+      "reason": "4 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to creation_completeness area"
+    },
+    {
+      "name": "persona_chain_complete",
+      "scope": "S2",
+      "reason": "1 advisory findings — ripple check before next commit",
+      "ripple_check": "Verify connected artifacts are consistent after any change to persona_chain_complete area"
+    }
+  ],
+  "S3": [
+    {
+      "name": "audit_runner_full_pass",
+      "scope": "S3",
+      "reason": "audit-runner ships week-4 (planned per build-order.md week 4)",
+      "prace_question": "What training default caused this to be deferred instead of built? When will T1+T2 be installed?",
+      "threshold_needed": true
+    }
+  ]
+}

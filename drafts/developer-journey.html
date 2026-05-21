@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSPS Developer Journey — Draft S050</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      color: #1a1a2e;
+      padding: 40px 20px;
+    }
+    .page { max-width: 860px; margin: 0 auto; }
+
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .header h1 { font-size: 28px; font-weight: 700; color: #1a1a2e; }
+    .header .tagline {
+      margin-top: 10px;
+      font-size: 17px;
+      color: #555;
+      font-style: italic;
+    }
+    .header .draft-badge {
+      display: inline-block;
+      margin-top: 12px;
+      background: #ffe066;
+      color: #7a5c00;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    /* INVERSION BOX */
+    .inversion {
+      background: #1a1a2e;
+      color: #fff;
+      border-radius: 12px;
+      padding: 24px 32px;
+      margin-bottom: 40px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+    .inversion-col { flex: 1; }
+    .inversion-col h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 10px; }
+    .inversion-col ul { list-style: none; }
+    .inversion-col ul li { font-size: 14px; padding: 4px 0; color: #ccc; }
+    .inversion-col ul li::before { content: "✕ "; color: #e05252; }
+    .inversion-col.yours ul li::before { content: "✓ "; color: #52e09a; }
+    .inversion-divider {
+      width: 1px;
+      background: #333;
+      align-self: stretch;
+    }
+
+    /* PHASES */
+    .phase {
+      background: #fff;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      overflow: hidden;
+      border-left: 5px solid #ddd;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .phase.orient  { border-left-color: #7b8cde; }
+    .phase.plan    { border-left-color: #52b788; }
+    .phase.build   { border-left-color: #e07b54; }
+    .phase.validate{ border-left-color: #e0c354; }
+    .phase.deploy  { border-left-color: #54b3e0; }
+    .phase.evaluate{ border-left-color: #b854e0; }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      padding: 16px 24px;
+      gap: 16px;
+      cursor: default;
+    }
+    .phase-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #f0f2f5;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: #666;
+      flex-shrink: 0;
+    }
+    .phase-title { font-size: 16px; font-weight: 700; flex: 1; }
+    .phase-gate {
+      font-size: 12px;
+      background: #f5f5f5;
+      color: #666;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .phase-gate.blocking {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .phase-body {
+      padding: 0 24px 20px 68px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .phase-section h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 8px;
+    }
+    .phase-section ul { list-style: none; }
+    .phase-section ul li {
+      font-size: 14px;
+      color: #333;
+      padding: 3px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+    .phase-section ul li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: #bbb;
+    }
+    .phase-section .highlight {
+      background: #f0faf5;
+      border: 1px solid #b8e6cc;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #1d6b3f;
+      font-weight: 500;
+    }
+
+    .connector {
+      text-align: center;
+      color: #bbb;
+      font-size: 20px;
+      padding: 4px 0;
+    }
+
+    /* PLATFORM STACK */
+    .platform-stack {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px 32px;
+      margin-top: 32px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .platform-stack h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+    }
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .stack-item {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    .stack-item .tech { font-size: 14px; font-weight: 700; color: #1a1a2e; }
+    .stack-item .role { font-size: 12px; color: #888; margin-top: 4px; }
+
+    /* ANNOTATION */
+    .annotation {
+      margin-top: 40px;
+      background: #fffbea;
+      border: 1px solid #ffe066;
+      border-radius: 10px;
+      padding: 20px 28px;
+    }
+    .annotation h3 { font-size: 13px; font-weight: 700; color: #7a5c00; margin-bottom: 8px; }
+    .annotation p { font-size: 14px; color: #5a4200; line-height: 1.6; }
+
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 12px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>CSPS Developer Journey</h1>
+    <div class="tagline">"You bring the domain. We bring the platform."</div>
+    <div class="draft-badge">DRAFT — S050 — For Governor Review</div>
+  </div>
+
+  <!-- THE INVERSION -->
+  <div class="inversion">
+    <div class="inversion-col">
+      <h3>Traditional app development — you build</h3>
+      <ul>
+        <li>Auth system</li>
+        <li>Multi-tenancy + row-level security</li>
+        <li>Audit logging</li>
+        <li>Billing infrastructure</li>
+        <li>AI governance layer</li>
+        <li>Deployment pipeline</li>
+        <li>Then: your actual domain logic</li>
+      </ul>
+    </div>
+    <div class="inversion-divider"></div>
+    <div class="inversion-col yours">
+      <h3>CSPS — you write only the delta</h3>
+      <ul>
+        <li>Your ZModel domain schema</li>
+        <li>Your business rules</li>
+        <li>Your UI</li>
+      </ul>
+      <div style="margin-top:16px; font-size:13px; color:#aaa; font-style:italic;">
+        Everything else: inherited at fork.
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASES -->
+
+  <div class="phase orient">
+    <div class="phase-header">
+      <div class="phase-num">1</div>
+      <div class="phase-title">Orient</div>
+      <div class="phase-gate">Entry — no gate</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-section">
+        <h4>You do</h4>
+        <ul>
+          <li>Read the platform promise</li>
+          <li>Understand what "inherit" means concretely</li>
+          <li>Orient to Opus / Sonnet / Governor roles</li>
+        </ul>
+      </div>
+      <div class="phase-section">
+        <h4>CSPS provides</h4>
+        <ul>
+          <li>csps-context.md — one-file orientation</li>
+          <li>Batch structure (A → H, J)</li>
+          <li>apps/template/ — the forkable starting point</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">↓</div>
+
+  <div class="phase plan">
+    <div class="phase-header">
+      <div class="phase-num">2</div>
+      <div class="phase-title">Plan — 7-Section Wizard</div>
+      <div class="phase-gate blocking">Gate: PMI = 5/5 before fork</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-section">
+        <h4>7 sections (in order)</h4>
+        <ul>
+          <li>§1 JTBD — who, what, why</li>
+          <li>§2 Kill condition — when is this dead?</li>
+          <li>§3 EPOCH scope — what ships in v1?</li>
+          <li>§4 Connection map — integrations</li>
+          <li>§5 User journey — first value moment</li>
+          <li>§6 Quality gates — how you know it works</li>
+          <li>§7 PMI score — maturity index</li>
+        </ul>
+      </div>
+      <div class="phase-section">
+        <h4>Why this gate exists</h4>
+        <div class="highlight">
+          PMI = 5/5 is not bureaucracy. It's proof you know what you're building before you touch code.
+          Every section that stays vague = a redesign waiting to happen.
+        </div>
+        <br>
+        <h4>Opus role</h4>
+        <ul>
+          <li>Challenges each section</li>
+          <li>Prevents false PMI scores</li>
+          <li>Designs PROTO for fork</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">↓</div>
+
+  <div class="phase build">
+    <div class="phase-header">
+      <div class="phase-num">3</div>
+      <div class="phase-title">Build — Fork and Write the Delta</div>
+      <div class="phase-gate blocking">Gate: PMI = 5/5 confirmed</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-section">
+        <h4>You write (the delta only)</h4>
+        <ul>
+          <li>ZModel schema for your domain entities</li>
+          <li>Business rules + permissions</li>
+          <li>Pages and components</li>
+          <li>API routes for domain logic</li>
+        </ul>
+      </div>
+      <div class="phase-section">
+        <h4>You inherit (touch nothing)</h4>
+        <ul>
+          <li>Auth — Clerk, fully wired</li>
+          <li>Tenancy — ZenStack RLS, row-level</li>
+          <li>Audit — automatic event capture</li>
+          <li>AI governance — Opus/Sonnet relay model</li>
+          <li>Deploy pipeline — Vercel + Supabase</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">↓</div>
+
+  <div class="phase validate">
+    <div class="phase-header">
+      <div class="phase-num">4</div>
+      <div class="phase-title">Validate</div>
+      <div class="phase-gate blocking">Gate: pnpm verify → exit_code = 0</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-section">
+        <h4>What runs</h4>
+        <ul>
+          <li>140+ validators across the platform</li>
+          <li>DNA block coverage check</li>
+          <li>Invariant coverage (5 invariants)</li>
+          <li>Frontmatter schema compliance</li>
+          <li>Handoff completeness (if session close)</li>
+        </ul>
+      </div>
+      <div class="phase-section">
+        <h4>The guarantee</h4>
+        <div class="highlight">
+          exit_code = 0 means the platform's structural invariants hold. Not just that your code compiles — that your domain is correctly integrated into the governed foundation.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">↓</div>
+
+  <div class="phase deploy">
+    <div class="phase-header">
+      <div class="phase-num">5</div>
+      <div class="phase-title">Deploy</div>
+      <div class="phase-gate">Gate: pnpm build passes</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-section">
+        <h4>Deployment</h4>
+        <ul>
+          <li>Vercel — root dir = apps/[your-app]</li>
+          <li>Supabase — tenant-isolated by default</li>
+          <li>Clerk — auth pre-configured</li>
+          <li>No infrastructure decisions at this stage</li>
+        </ul>
+      </div>
+      <div class="phase-section">
+        <h4>What's already configured</h4>
+        <ul>
+          <li>Environment variable schema</li>
+          <li>Vercel project settings (10 rules)</li>
+          <li>Database connection pooling</li>
+          <li>Edge function readiness</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">↓</div>
+
+  <div class="phase evaluate">
+    <div class="phase-header">
+      <div class="phase-num">6</div>
+      <div class="phase-title">Evaluate — Activation Period</div>
+      <div class="phase-gate">Gate: n-sessions or evaluation-passed</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-section">
+        <h4>What this phase answers</h4>
+        <ul>
+          <li>Q1: Did the build match the plan intent?</li>
+          <li>Q2: Any unexpected ripple effects?</li>
+          <li>Q3: Would you make the same decision again?</li>
+        </ul>
+      </div>
+      <div class="phase-section">
+        <h4>BATCH-H significance</h4>
+        <div class="highlight">
+          Every app that completes this cycle is CSPS proof. BATCH-H = 0% until the first app reaches activation. This is what "BATCH-H is the current frontier" means.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORM STACK -->
+  <div class="platform-stack">
+    <h3>What you inherit at fork — the CSPS platform stack</h3>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="tech">Next.js 14</div>
+        <div class="role">App framework</div>
+      </div>
+      <div class="stack-item">
+        <div class="tech">Clerk</div>
+        <div class="role">Auth + users</div>
+      </div>
+      <div class="stack-item">
+        <div class="tech">Supabase</div>
+        <div class="role">Database + RLS</div>
+      </div>
+      <div class="stack-item">
+        <div class="tech">ZenStack</div>
+        <div class="role">Multi-tenancy</div>
+      </div>
+      <div class="stack-item">
+        <div class="tech">Vercel</div>
+        <div class="role">Deployment</div>
+      </div>
+      <div class="stack-item">
+        <div class="tech">pnpm</div>
+        <div class="role">Monorepo</div>
+      </div>
+      <div class="stack-item">
+        <div class="tech">140+ validators</div>
+        <div class="role">Quality gates</div>
+      </div>
+      <div class="stack-item">
+        <div class="tech">AI Council</div>
+        <div class="role">Opus + Sonnet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANNOTATION ZONE -->
+  <div class="annotation">
+    <h3>Open architectural questions (OPUS-6 perspective)</h3>
+    <p>
+      <strong>Phase 2 weight:</strong> Is the 7-section wizard the right entry point for external developers, or is it CSPS-internal? The planning depth required may be appropriate for the Governor + AI council relay model, but needs design review if external developers are the audience.<br><br>
+      <strong>Phase 3 trust:</strong> "Touch nothing in the inherited layer" is easy to say but hard to enforce. The DNA block system + 140 validators are the mechanical answer — but the developer experience of "I want to customize auth" needs a designed response: "Fork the relevant lib, not the .claude config."<br><br>
+      <strong>Phase 6 loop:</strong> CAIE extraction (BATCH-J) would close this loop by feeding what Phase 6 learns back into the platform. Currently Phase 6 is a dead end — evaluation results have no feed-forward mechanism.
+    </p>
+  </div>
+
+  <div class="footer">
+    CSPS — CoreSights Platform Services | Draft S050 | OPUS-6 | For Governor review only
+  </div>
+
+</div>
+</body>
+</html>

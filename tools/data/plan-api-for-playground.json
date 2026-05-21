@@ -1,0 +1,571 @@
+{
+  "meta": {
+    "version": "1.0",
+    "source": "tools/config/unified-plan.yaml",
+    "generated_at": "2026-05-19T12:13:10.086Z",
+    "created_session": "S043",
+    "last_updated": "2026-05-19",
+    "total_items": 18,
+    "status_counts": {
+      "intake": 3,
+      "planning": 4,
+      "ratified": 2,
+      "implementing": 0,
+      "activation": 1,
+      "done": 8
+    },
+    "pmi_ready_count": 6,
+    "seeds_planted": 3
+  },
+  "items": [
+    {
+      "id": "P-META-026",
+      "title": "Planning-before-implementing as primary pillar",
+      "status": "done",
+      "category": "governance",
+      "owner": "governor",
+      "pe_score": 95,
+      "tags": [
+        "constitutional",
+        "ratified",
+        "s040"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Ratified 2026-05-17. Governs all implementation decisions.",
+      "pmi_score": 5,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "B_PRACE",
+      "title": "Permanent Recurring AI Contextual Enforcement — Constitutional M-27",
+      "status": "done",
+      "category": "governance",
+      "owner": "governor",
+      "pe_score": 95,
+      "tags": [
+        "constitutional",
+        "moat",
+        "ratified",
+        "s040"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Ratified S040. 5/5 FSE. session-open T3 + ai-profiler T1 + validate-rule-has-enforcement T2 all active.",
+      "pmi_score": 5,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "B_INHERITANCE_POLICY",
+      "title": "Every chat boundary must transfer complete governance context",
+      "status": "done",
+      "category": "governance",
+      "owner": "governor",
+      "pe_score": 90,
+      "tags": [
+        "constitutional",
+        "s040"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Turn counter at 25. BLOCKING handoff validator. Zone A+B+ALIGNMENT QUESTIONS mandatory.",
+      "pmi_score": 0,
+      "pmi_ready": false,
+      "pmi_detail": null,
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "M-27-M-28",
+      "title": "Moats M-27 (PRACE) + M-28 (PMI + CAQ)",
+      "status": "done",
+      "category": "governance",
+      "owner": "governor",
+      "pe_score": 90,
+      "tags": [
+        "moat",
+        "constitutional",
+        "s040-s043"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "M-27 = PRACE philosophy. M-28 = Plan Maturity Index + Context Alignment Questions.",
+      "pmi_score": 0,
+      "pmi_ready": false,
+      "pmi_detail": null,
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "OPEN-051",
+      "title": "findings-categorizer.mjs — Core Scopes S1/S2/S3 tagging",
+      "status": "activation",
+      "category": "infrastructure",
+      "owner": "sonnet",
+      "pe_score": 80,
+      "tags": [
+        "three-scopes",
+        "mechanical-default",
+        "s041"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Stay in activation 2 more sessions. Lesson: check JSON structure before building a reader.",
+      "pmi_score": 3,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "medium",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": "n-sessions: 3",
+      "activation_period": {
+        "started": "2026-05-19",
+        "q1_behavior_match": "partial — stdin piping required 4 iterations to fix",
+        "q2_unexpected_ripples": "none detected",
+        "q3_same_decision": "yes with one change — check upstream JSON structure first",
+        "verdict": "partial"
+      }
+    },
+    {
+      "id": "OPEN-049",
+      "title": "enforcement_tier backfill on all 63 behavioral contracts",
+      "status": "done",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 80,
+      "tags": [
+        "enforcement",
+        "contracts",
+        "backfill",
+        "s043"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "DONE 881f3ed. no_enforcement=0 on all 63 contracts. 45 T3-only now visible.",
+      "pmi_score": 0,
+      "pmi_ready": false,
+      "pmi_detail": null,
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "PI-031",
+      "title": "DNA Registry — tools/config/dna-registry.yaml (16 components)",
+      "status": "done",
+      "category": "architecture",
+      "owner": "sonnet",
+      "pe_score": 80,
+      "tags": [
+        "dna",
+        "registry",
+        "s040"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "DONE. always_include for new-ai-tab bundle.",
+      "pmi_score": 0,
+      "pmi_ready": false,
+      "pmi_detail": null,
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "PI-032",
+      "title": "DNA Bundle Engine — pnpm dna:bundle",
+      "status": "done",
+      "category": "architecture",
+      "owner": "sonnet",
+      "pe_score": 75,
+      "tags": [
+        "dna",
+        "bundle-engine",
+        "s040"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "DONE. pnpm dna:bundle --target=new-ai-tab works.",
+      "pmi_score": 0,
+      "pmi_ready": false,
+      "pmi_detail": null,
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "habit-tracker-app",
+      "title": "Habit Tracker — App",
+      "status": "done",
+      "category": "product",
+      "owner": "sonnet",
+      "pe_score": 70,
+      "tags": [
+        "app",
+        "s040"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Built clean. Needs Vercel deploy (Governor action). Schema: Habit + HabitLog.",
+      "pmi_score": 0,
+      "pmi_ready": false,
+      "pmi_detail": null,
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "OPEN-055",
+      "title": "Unified Planning Initiative — this file IS the first deliverable",
+      "status": "ratified",
+      "category": "architecture",
+      "owner": "shared",
+      "pe_score": 90,
+      "tags": [
+        "plan-hub",
+        "pmi",
+        "architecture",
+        "s043-mandate"
+      ],
+      "depends_on": [],
+      "caq_questions": [
+        "Is the schema extensible enough for PI items AND OPEN items AND governance concepts in the same list?",
+        "What migration path exists for the 71 existing opus-open-items.md entries?"
+      ],
+      "notes": "This file is Step 1 of OPEN-055. Next: validate-plan-readiness.mjs (PI-037).",
+      "pmi_score": 4,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "medium"
+      },
+      "has_core_seed": true,
+      "core_seed": {
+        "id": "UNIFIED_PLAN_SOURCE",
+        "planted_by": "opus",
+        "grows_to": "validate-plan-readiness.mjs — PMI scoring validator that reads this file",
+        "pmi_gate": "consensus_width=high on PI-037",
+        "caq": "Has the PMI formula been validated against at least 3 diverse plan items?"
+      },
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "OPEN-059",
+      "title": "Core seeds enhanced — add planted-by and pmi-gate fields",
+      "status": "ratified",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 85,
+      "tags": [
+        "core-seeds",
+        "enhancement",
+        "s043"
+      ],
+      "depends_on": [
+        "OPEN-055"
+      ],
+      "caq_questions": [],
+      "notes": "Opus-plants/Sonnet-grows model. Seeds reference unified-plan.yaml item IDs.",
+      "pmi_score": 5,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "OPEN-053",
+      "title": "B_CATCH_TO_ENGRAVING T1+T2 build",
+      "status": "planning",
+      "category": "governance",
+      "owner": "sonnet",
+      "pe_score": 75,
+      "tags": [
+        "S3",
+        "catch-to-engraving",
+        "advisory-first",
+        "s042"
+      ],
+      "depends_on": [],
+      "caq_questions": [
+        "After 3 advisory sessions — what is the measured false-positive rate?"
+      ],
+      "notes": "ADVISORY first. Promote to BLOCKING after <20% false positive rate confirmed.",
+      "pmi_score": 3,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "medium",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": true,
+      "core_seed": {
+        "id": "CATCH_TO_ENGRAVING_T1",
+        "planted_by": "opus",
+        "grows_to": "post-stop-catch-to-engraving.sh — scans response for discovery language without EP-ERR creation",
+        "pmi_gate": "consensus_width=high AND 3 advisory sessions complete",
+        "caq": "What is the measured false-positive rate from the advisory period?"
+      },
+      "activation_exit": "n-sessions: 3",
+      "activation_period": null
+    },
+    {
+      "id": "OPEN-057",
+      "title": "Fix core seeds overdue detection — use plan-item-status not session-number",
+      "status": "planning",
+      "category": "infrastructure",
+      "owner": "sonnet",
+      "pe_score": 80,
+      "tags": [
+        "core-seeds",
+        "fix",
+        "s043"
+      ],
+      "depends_on": [
+        "OPEN-055"
+      ],
+      "caq_questions": [],
+      "notes": "Requires unified-plan.yaml to exist first. Seeds target plan item IDs, not session numbers.",
+      "pmi_score": 2,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "medium",
+        "reversibility": "high",
+        "dependency_clarity": "medium"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "PI-037",
+      "title": "validate-plan-readiness.mjs — PMI scoring per plan item in unified-plan.yaml",
+      "status": "planning",
+      "category": "infrastructure",
+      "owner": "sonnet",
+      "pe_score": 85,
+      "tags": [
+        "pmi",
+        "plan-hub",
+        "s043"
+      ],
+      "depends_on": [
+        "OPEN-055"
+      ],
+      "caq_questions": [
+        "Should PMI score affect PE scoring? (higher PMI = higher effective PE)"
+      ],
+      "notes": "Depends on unified-plan.yaml existing first. This is Step 2 of OPEN-055.",
+      "pmi_score": 4,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "medium"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "prevention-framework",
+      "title": "Prevention Framework — B_PREVENTION_FIRST contract + pre-tool-use-check-existing.sh",
+      "status": "planning",
+      "category": "governance",
+      "owner": "shared",
+      "pe_score": 80,
+      "tags": [
+        "prevention",
+        "s043",
+        "S3"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Framework document drafted (prevention-framework.md). T1 hook (OPEN-057) and T2 validator needed.",
+      "pmi_score": 5,
+      "pmi_ready": true,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
+        "reversibility": "high",
+        "dependency_clarity": "high"
+      },
+      "has_core_seed": true,
+      "core_seed": {
+        "id": "PREVENTION_T1_GATE",
+        "planted_by": "opus",
+        "grows_to": "pre-tool-use-check-existing.sh — fires before any new docs/ write with 'did you search first?'",
+        "pmi_gate": "consensus_width=high on prevention-framework",
+        "caq": "Has B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK been verified to have T1 enforcement?"
+      },
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "OPEN-030",
+      "title": "App",
+      "status": "intake",
+      "category": "product",
+      "owner": "governor",
+      "pe_score": 80,
+      "tags": [
+        "app3",
+        "ext-know",
+        "deferred"
+      ],
+      "depends_on": [
+        "OPEN-029"
+      ],
+      "caq_questions": [],
+      "notes": "Awaiting Governor decision after EXT-KNOW 04-11 absorbed.",
+      "pmi_score": 0,
+      "pmi_ready": false,
+      "pmi_detail": null,
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "OPEN-029",
+      "title": "Absorb [Temp name!!!] research files 04-11 as EXT-KNOW",
+      "status": "intake",
+      "category": "architecture",
+      "owner": "shared",
+      "pe_score": 85,
+      "tags": [
+        "ext-know",
+        "absorption"
+      ],
+      "depends_on": [],
+      "caq_questions": [],
+      "notes": "Awaiting Governor file upload. No action without upload.",
+      "pmi_score": 0,
+      "pmi_ready": false,
+      "pmi_detail": null,
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    },
+    {
+      "id": "consultation-from-playground",
+      "title": "Playground pages to Claude API direct consultation",
+      "status": "intake",
+      "category": "product",
+      "owner": "shared",
+      "pe_score": 70,
+      "tags": [
+        "playground",
+        "consultation",
+        "api"
+      ],
+      "depends_on": [],
+      "caq_questions": [
+        "Should the playground restructure to Next.js, or use a lightweight proxy instead?",
+        "Who manages the ANTHROPIC_API_KEY rotation?"
+      ],
+      "notes": "Requires Next.js restructure OR Vercel Edge Function. Governor decision on approach needed.",
+      "pmi_score": 1,
+      "pmi_ready": false,
+      "pmi_detail": {
+        "intent_depth": "high",
+        "cross_ref_density": "medium",
+        "consensus_width": "medium",
+        "reversibility": "medium",
+        "dependency_clarity": "low"
+      },
+      "has_core_seed": false,
+      "core_seed": null,
+      "activation_exit": null,
+      "activation_period": null
+    }
+  ],
+  "core_seeds": [
+    {
+      "item_id": "OPEN-055",
+      "item_title": "Unified Planning Initiative — this file IS the first deliverable",
+      "item_status": "ratified",
+      "id": "UNIFIED_PLAN_SOURCE",
+      "planted_by": "opus",
+      "grows_to": "validate-plan-readiness.mjs — PMI scoring validator that reads this file",
+      "pmi_gate": "consensus_width=high on PI-037",
+      "caq": "Has the PMI formula been validated against at least 3 diverse plan items?"
+    },
+    {
+      "item_id": "OPEN-053",
+      "item_title": "B_CATCH_TO_ENGRAVING T1+T2 build",
+      "item_status": "planning",
+      "id": "CATCH_TO_ENGRAVING_T1",
+      "planted_by": "opus",
+      "grows_to": "post-stop-catch-to-engraving.sh — scans response for discovery language without EP-ERR creation",
+      "pmi_gate": "consensus_width=high AND 3 advisory sessions complete",
+      "caq": "What is the measured false-positive rate from the advisory period?"
+    },
+    {
+      "item_id": "prevention-framework",
+      "item_title": "Prevention Framework — B_PREVENTION_FIRST contract + pre-tool-use-check-existing.sh",
+      "item_status": "planning",
+      "id": "PREVENTION_T1_GATE",
+      "planted_by": "opus",
+      "grows_to": "pre-tool-use-check-existing.sh — fires before any new docs/ write with 'did you search first?'",
+      "pmi_gate": "consensus_width=high on prevention-framework",
+      "caq": "Has B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK been verified to have T1 enforcement?"
+    }
+  ]
+}

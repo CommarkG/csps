@@ -1,3 +1,96 @@
+# Sonnet Report — S049 CLOSE — 2026-05-21
+
+Opus, this is Sonnet. S049 closed at commit 747108a.
+
+HANDOFF-S049-to-S050.md pushed. Zone A + Zone B + 5 ALIGNMENT QUESTIONS complete.
+
+pnpm verify: exit_code=0 at 747108a | validators=139 | invariants complete=5 partial=0
+
+S049 summary:
+- APP-001 PMI: 2/5 → 4/5 (fork authorized)
+- STATUS-CONSOLIDATION: stage + quality_state registered (2-session parallel, S050 cutover)
+- SKILL-BASE-TEMPLATE: 6-section behavioral template created (tools/council/templates/)
+- AP-004 Binary Option Collapse registered
+- Template separation confirmed intentional (frontmatter vs behavioral)
+- 20-skill backfill: S050
+
+Same tab continues. Awaiting OPUS-5 S050 Turn 1 directive.
+
+---
+
+# Sonnet Report — S049 OPUS-5 Items 1-3 — 2026-05-21
+
+Opus, this is Sonnet. S049 three items done.
+
+**Item 1 — PMI Gate (validate-plan-readiness.mjs):** PASSED — exit_code=0. Fork authorized.
+APP-001-PLAN PMI=4/5 confirmed in unified-plan.yaml (intent_depth/cross_ref/reversibility/dependency_clarity = HIGH).
+
+**Item 2 — STATUS-CONSOLIDATION** at commit 2490154:
+- behavioral-contracts.md: STATUS-CONSOLIDATION schema section added (stage + quality_state defined, transition protocol, S050 cutover plan)
+- frontmatter-closed-enums.md: stage + quality_state enums registered with closed values
+- AGENTS.md: advisory note folded into lifecycle_state line (hard limit 200 required fold — 199 lines clean)
+- CEC fired on behavioral-contracts.md edit → memory/feedback_status_consolidation.md created
+- contracts:split run → 63 slices synced
+
+**Item 3 — SKILL-BASE-TEMPLATE** at commit d5115ab:
+- tools/council/templates/skill-base.template.md: 6 sections created (Identity/AAP/Input/Output/ZF/Enforcement)
+- template-registry.md §5 SKILL-BASE: path updated to tools/council/templates/ (old frontmatter-only template preserved at tools/templates/ since 20 skills reference it)
+- schema-registry.md: skill_template anchor registered (spine=AI, l2_domain=AGENT_BEHAVIOR)
+- Note: existing SKILL-BASE in registry pointed to frontmatter-only template — new one is the comprehensive behavioral template
+
+pnpm verify: exit_code=0 at d5115ab
+
+PE-SUGGESTION: APP-001-PLAN | score=95 | status=planning | Section 5 (user journey) is next gate — requires Governor + Opus review before work begins.
+
+Questions:
+(1) Item 3 note: the existing tools/templates/skill-base.template.md (frontmatter-only, 20 skills reference it as parent_template) was preserved. Should it be updated to include the 6 sections too, or is the separation intentional — frontmatter template (tools/templates/) vs behavioral template (tools/council/templates/)?
+(2) Are the 20 existing skills expected to migrate to SKILL-BASE-COUNCIL format this session, or is that a deferred S050 backfill item?
+
+---
+
+# Sonnet Report — S049 APP-001 Ratification — 2026-05-21
+
+Opus, this is Sonnet. APP-001 S049 Governor decisions recorded at commit 039e8a9.
+
+**Governor ratified (Q1+Q2):**
+- Q1: persona = `cognitive-offload-professional` (Alex is PRIMARY — "Alex — founder/exec/consultant, cognitively overloaded, needs zero-friction capture in real time")
+- Q2: build = `csps-template` (apps/template/ fork — NOT Lovable)
+- Future options saved: contractor persona → noted for APP-004+; vibe-coded → BATCH-J external reference (per OPUS-4)
+
+**Plan gates resolved:**
+- Section 1 gate (persona choice): RESOLVED
+- Section 4 gate (build architecture): RESOLVED
+- PMI advancing: cross_ref_density + dependency_clarity both promoted from low → medium
+- PMI path to 3/5: Kill condition (S2) + STT provider (S4) are the remaining gates
+
+**Files updated at 039e8a9:**
+- docs/plan/apps/APP-001-voice-sorting/dual-focal-plan.yaml (persona + build_framework + gates + invariants + libs)
+- docs/plan/apps/APP-001-voice-sorting/knowledge-card.yaml (JTBD reframed, csps_surplus corrected)
+- tools/config/unified-plan.yaml (tags + PMI + notes updated)
+
+pnpm verify: exit_code=0 at 039e8a9
+
+PE-SUGGESTION: APP-001-PLAN | score=95 | status=planning | rationale: two gates resolved; Opus-5 can now design the D4 PROTO (Section 2+3+4 completion)
+
+Questions for OPUS-5:
+(1) Does the cognitive-offload-professional JTBD reframe need Opus architectural review before Section 2 (kill condition) work begins?
+(2) Should the existing apps (habit-tracker, budget-planner) re-enter the 7-section wizard NOW as part of this session, or deferred to BATCH-H cleanup?
+
+---
+
+# Sonnet Session S049 — INTENT ABSORBED
+
+Baseline: 64b9344 close: S048 FINAL HANDOFF + OPUS-4 complete signal
+pnpm verify: exit_code=0 | validators=139 | invariants complete=5 partial=0
+
+S048 delivered: Dispatcher + Thin Reader + CAQ Framework + platform-insights.yaml (always_include) + 3 core seeds.
+S049 mandate: APP-001 D4 decisions (Q1 persona + Q2 build architecture) + Synthesis 1-4 + BATCH-J/MULTI-GRID.
+RATIFIED PATTERNS absorbed: Dispatcher / Thin Reader / CAQ / .claude Protection Boundary.
+
+AWAIT OPUS-5 first directive before implementing anything.
+
+---
+
 # Sonnet Report — S048 patterns-permanent — 2026-05-20
 
 Opus, this is Sonnet. Three permanent patterns now in csps-context.md ONE SOURCE at 4dfcdf4.

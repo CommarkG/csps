@@ -1,0 +1,108 @@
+# activation-coverage-exempt.yaml
+# Temporary exempt list for validate-activation-coverage.mjs BLOCKING upgrade.
+# These 24 B_* contracts exist but have no T1/T2/session-open/DNA activation mechanism.
+# They are ADVISORY-only and need activation work by S052.
+# Each entry must have: reason (why it's exempt) and target_session (when to fix).
+# When fixed: remove from this list. When list is empty: delete this file.
+# Rationale: >5 contracts unactivated — immediate BLOCKING would break pnpm verify.
+#   Solution: temporary grace period with explicit tracking. AP-001 detector now exits 1
+#   for ANY NEW contract not in this list. This prevents the gap from growing.
+#
+# CREATED: S050 PROTO Step 3 | TARGET: S052 (activate top 10, S053 remainder)
+
+exemptions:
+  - id: B_AI_COLLABORATIVE_DISCIPLINE
+    reason: "Behavioral guidance — T3 session-open. Mechanical T1/T2 undefined."
+    target_session: S052
+
+  - id: B_ASK_WHEN_FILLING_GAPS
+    reason: "Behavioral guidance — T3 only. No tool-call context for T1."
+    target_session: S052
+
+  - id: B_AUTONOMOUS_BATCH_WITH_PREFLIGHT
+    reason: "Session behavior — T3 only. Pre-commit hook candidate."
+    target_session: S052
+
+  - id: B_AUTONOMY_4_CONDITIONS
+    reason: "CSP carry-forward. T3 only. Low frequency trigger."
+    target_session: S053
+
+  - id: B_BLOCKER_NO_SILENT_DROP
+    reason: "Behavioral guidance — T3 only. No mechanical trigger exists."
+    target_session: S053
+
+  - id: B_CDAB
+    reason: "Context selection guidance — T3 only. No mechanical hook viable."
+    target_session: S052
+
+  - id: B_CHECKPOINT_8_CATEGORIES
+    reason: "CSP carry-forward. T3 only."
+    target_session: S053
+
+  - id: B_CHECK_EXISTING_DECISIONS_FIRST
+    reason: "Behavioral guidance — T3 only. Pre-Write hook candidate."
+    target_session: S052
+
+  - id: B_CONCEPT_LOAD
+    reason: "Enforced by ai-profiler T1 (CAQ mode) — may need explicit ID reference."
+    target_session: S051
+
+  - id: B_CONTEXTUAL_LOCALITY
+    reason: "UX principle — T3 only. Validated in governance review."
+    target_session: S052
+
+  - id: B_CORE_SPINE_DISCIPLINE
+    reason: "Architectural governance — validator candidate."
+    target_session: S052
+
+  - id: B_DEFINITION_BEFORE_ENFORCEMENT
+    reason: "Meta-governance — T3 only. No mechanical trigger."
+    target_session: S053
+
+  - id: B_DEVELOPMENT_VS_PRODUCTION
+    reason: "Mode distinction — T3 only."
+    target_session: S053
+
+  - id: B_DONE_RIGHT_FROM_THE_START
+    reason: "Philosophical — T3 only."
+    target_session: S053
+
+  - id: B_INTENT_CRYSTALLIZATION
+    reason: "Pre-implementation gate — validate-intent-crystallized.mjs may cover."
+    target_session: S051
+
+  - id: B_INTENT_TO_IMPACT
+    reason: "Process guidance — T3 only."
+    target_session: S053
+
+  - id: B_NO_AI_IMPERSONATION
+    reason: "Behavioral — T3 only. Hard to mechanize."
+    target_session: S053
+
+  - id: B_NO_FORCE_FIT
+    reason: "Behavioral guidance — T3 only."
+    target_session: S053
+
+  - id: B_PLATFORM_FIRST_OPTIMIZATION
+    reason: "Architectural principle — T3 only."
+    target_session: S053
+
+  - id: B_SANDBOX_BEFORE_IMPLEMENTATION
+    reason: "Pre-build gate — validate-sandbox-lifecycle.mjs may cover."
+    target_session: S051
+
+  - id: B_TRIAD_GOVERNANCE
+    reason: "Consequential decision gate — T3 only."
+    target_session: S053
+
+  - id: B_TWO_SIDED_HANDSHAKE
+    reason: "CSP carry-forward — T3 only."
+    target_session: S053
+
+  - id: B_VERBATIM_HUMAN_TEXT
+    reason: "Behavioral guidance — T3 only."
+    target_session: S053
+
+  - id: B_ZCA
+    reason: "Zero-context-assumption — boundary discipline, T3 only."
+    target_session: S052

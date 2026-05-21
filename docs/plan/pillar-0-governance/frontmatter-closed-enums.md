@@ -263,14 +263,18 @@ stage: intake | planning | active | archived
 **Replaces:** `impl_status:` (2-session parallel transition; hard cutover S050)
 
 ```
-quality_state: draft | validated | certified
+quality_state: draft | validated | activated | certified
 ```
 
-| Value | Meaning |
-|---|---|
-| `draft` | Built but not yet reviewed |
-| `validated` | Reviewed; ZF evidence present |
-| `certified` | Recurring audit clean; production-grade |
+| Value | Meaning | Protection level |
+|---|---|---|
+| `draft` | Being designed — freely mutable | none |
+| `validated` | Implemented + validators pass (`pnpm verify` exit_code=0) | none |
+| `activated` | Live in production, measuring intent-vs-results correlation; requires `activation_exit` conditions defined at creation; changes require ratification | `protected` |
+| `certified` | Intent and results proven to align; cannot be modified without Governor authorization | `sacred` |
+
+**Implemented ≠ Sealed.** `validated` = done. `activated` = live + measuring. `certified` = proven + sealed.
+An artifact must pass through `activated` before it can reach `certified`. Skipping `activated` is not permitted.
 
 ---
 

@@ -75,7 +75,7 @@ const ENFORCEMENT_STAGE_VALUES = ['stub', 'planned', 'week-4', 'active', 'human-
 // STATUS-CONSOLIDATION S049 — stage replaces lifecycle_state, quality_state replaces impl_status
 // S050 hard cutover: lifecycle_state removed from REQUIRED_FIELDS after full backfill
 const STAGE_VALUES = ['intake', 'planning', 'active', 'archived'];
-const QUALITY_STATE_VALUES = ['draft', 'validated', 'certified'];
+const QUALITY_STATE_VALUES = ['draft', 'validated', 'activated', 'certified'];
 
 const TERMINAL_STATES = new Set(['validated', 'closed']);
 

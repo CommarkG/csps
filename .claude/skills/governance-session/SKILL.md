@@ -40,7 +40,6 @@ links:
   - { rel: p-meta-022, href: ../../../../docs/plan/pillar-0-governance/human-intent-crystallization.md }
 scope_level: S1
 batch: BATCH-C
-lifecycle_state: active
 template_depth: L2
 parent_template: skill-base
 ---

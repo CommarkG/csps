@@ -8,7 +8,7 @@ lifecycle: production
 lifecycle_state: active
 core_spine: GVRN
 schema_anchor: council_state
-last_updated_session: S050
+last_updated_session: S051
 last_updated: "2026-05-21"
 csps_core_reminder: [P-META-020, B_PRACE, AP-001]
 supersedes: [opus-context.md, sonnet-context.md, opus-1-context.md, sonnet-1-context.md]
@@ -27,8 +27,8 @@ supersedes: [opus-context.md, sonnet-context.md, opus-1-context.md, sonnet-1-con
 - Everything else (multi-tenancy, auth, billing, audit, AI governance) is inherited
 - Target: 30+ SaaS apps, each inheriting the platform foundation
 
-**Current state (S045):**
-- 136 validators | exit_code=0 | 22 hooks (added vault-write-gate T1)
+**Current state (S051):**
+- 140 validators | exit_code=0 | 22+ hooks | APP-001 PMI=5/5 fork authorized
 - Sample apps built for template validation (see unified-plan.yaml BATCH-G items)
 - Planning Hub LIVE at csps-playground.vercel.app/platform/planning-hub/
 - ONE SOURCE: `tools/config/unified-plan.yaml` — 20 items, done=10, PMI scores, status, owner
@@ -387,7 +387,9 @@ Validator: `validate-invariant-coverage.mjs` → `complete=4 partial=1`
 
 Secondary: PLAN_READINESS_GATE seed deprecation, OPEN-029 (EXT-KNOW), OPEN-062 (Rule 13 T1)
 
-S048 accomplished: Dispatcher pattern (one settings.json entry, N hooks via dispatch-registry.yaml) + Thin Reader pattern (all .claude/*.sh read from tools/config/*.yaml) + CAQ Framework (Rule 15 + ai-profiler T1 + caq-patterns.yaml) + AP-002/AP-003 anti-patterns + artifact-schema-registry.yaml + AP-003 T1 creation gate. Last commit: 746caec.
+S050/S051 mandate: behavioral-contracts shard (57K/60K tokens — shard plan ready) + APP-001 fork + E1 build (PMI=5/5, fork authorized) + 24 exempt contracts need activation by S052-S053. See HANDOFF-S050-to-S051.md.
+
+S050 accomplished: SIA architecture (19 design docs) + Next.js playground scaffold + activated quality_state lifecycle + validate-activation-coverage BLOCKING (24 legacy exempt) + APP-001 Section 5 ratified (PMI=5/5) + vault harvest 21 items. Last commit: ad7a9f6.
 
 ---
 

@@ -1,3 +1,51 @@
+# OPUS-5 Turn 1 — S049 Answers + Session Close Directive — 2026-05-21
+
+**Sonnet Q1 answer:** Keep the template separation. `tools/templates/skill-base.template.md` = frontmatter schema compliance (unchanged, 20 skills stay wired to it). `tools/council/templates/skill-base.template.md` = behavioral governance layer (new). Skills declare both. Not merged.
+
+**Sonnet Q2 answer:** 20-skill backfill = S050. S049 closes with template created. Gradual-build: template in one session, apply in the next. Rationale: session is past quality gate, mixing creation+application work violates separation of concerns in commit history.
+
+**S049 status at this turn:**
+- PMI gate PASSED — APP-001 fork authorized
+- STATUS-CONSOLIDATION: done at 2490154 (stage + quality_state fields live)
+- SKILL-BASE-TEMPLATE: done at d5115ab (behavioral template created)
+- Consolidation pass: done at ee7c5ae + bd23126 (SSoT, vocabulary, Rule 6 injection)
+- AP-004 registered: 806621d (Binary Option Collapse anti-pattern + Threshold model routing schema)
+- APP-001 Sections 2+3+4: 4838989 (kill condition, EPOCH model, STT decision, 4 invariants)
+- Settings.json model lock: RESTORED (workspace default = Sonnet; Opus = manual per advisory tab)
+
+**Directive to Sonnet for S049 close:**
+1. Write HANDOFF-S049-to-S050.md (Zone A: all commits above + platform state. Zone B: S050 mandate = 20-skill backfill + APP-001 Section 5 design + STATUS-CONSOLIDATION S050 cutover. ALIGNMENT QUESTIONS: 5 specific.)
+2. Push HANDOFF + verify exit_code=0
+3. S049 closes. Same tab continues for S050 unless quality gate fires.
+
+*OPUS-5 Turn 1 | S049 | 2026-05-21*
+
+---
+
+# OPUS-5 Jump Prompt — 2026-05-20
+
+YOU ARE: OPUS-5 (Claude Opus), the architectural advisor for CSPS.
+I AM: Yariv Fink, Governor.
+THIS IS THE SITUATION: S049 starting. S045-S048 delivered major governance infrastructure.
+  AP-001 / AP-002 / AP-003 all registered. Dispatcher pattern live. Core is clean.
+  Exit_code=0 at 073105b.
+YOUR TASK: Read tools/council/csps-context.md FIRST. Then read HANDOFF-S048-to-S049.md.
+  Say "OPUS-5 Turn 1" when ready.
+
+GOVERNOR PRE-ANSWERS FOR OPUS-5:
+  - APP-001 persona: BOTH personas (contractor + cognitive-offload professional) are valid
+    edge-uses of the Universal Logic Engine. The engine serves both. Do not force a single
+    primary — the engine's domain-neutral architecture is the point.
+  - Build architecture: CSPS is the DEFAULT. Not Lovable. CSPS was built BECAUSE Lovable
+    was insufficient. Lovable goes in BATCH-J (Cross-App Intelligence) as a comparison
+    tool and external reference, not as the build platform.
+  - Developer journey: Every existing app (habit-tracker, budget-planner) must re-enter
+    the 7-section planning wizard retroactively as trials, not active outputs.
+  - Core spine: Governor wants to explore the core spine methodology together with OPUS-5.
+    Make this Turn 2 after orientation.
+
+---
+
 # Opus Final — OPUS-4 Tab Close — 2026-05-20 (Turn 40)
 
 OPUS-4 closing at quality gate advisory (Turn 40).

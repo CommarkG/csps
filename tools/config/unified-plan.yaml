@@ -633,10 +633,10 @@ items:
     pmi:
       intent_depth: high
       cross_ref_density: high
-      consensus_width: medium
+      consensus_width: high
       reversibility: high
       dependency_clarity: high
-    notes: "PMI=4/5. S049: Sections 1-4 ratified. S050: Section 5 (user journey) closes PMI=5/5 → fork authorized. docs/plan/apps/APP-001-voice-sorting/"
+    notes: "PMI=5/5. Section 5 ratified OPUS-6 S050. Fork authorized. Next: Governor ratifies job statement → apps/template/ fork → build E1. docs/plan/apps/APP-001-voice-sorting/"
 
   - id: APP-NAME-REGISTRY
     title: "App Name Registry — pnpm app:rename mechanism"

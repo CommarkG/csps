@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-21T08:25:10.108Z",
+    "generated_at": "2026-05-21T11:57:54.306Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
     "total_items": 54,
@@ -969,13 +969,13 @@
       ],
       "depends_on": [],
       "caq_questions": [],
-      "notes": "PMI=4/5. S049: Sections 1-4 ratified. S050: Section 5 (user journey) closes PMI=5/5 → fork authorized. docs/plan/apps/APP-001-voice-sorting/",
-      "pmi_score": 4,
+      "notes": "PMI=5/5. Section 5 ratified OPUS-6 S050. Fork authorized. Next: Governor ratifies job statement → apps/template/ fork → build E1. docs/plan/apps/APP-001-voice-sorting/",
+      "pmi_score": 5,
       "pmi_ready": true,
       "pmi_detail": {
         "intent_depth": "high",
         "cross_ref_density": "high",
-        "consensus_width": "medium",
+        "consensus_width": "high",
         "reversibility": "high",
         "dependency_clarity": "high"
       },

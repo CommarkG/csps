@@ -141,18 +141,17 @@ pmi:
     # Section 1 persona ratified. Section 2 kill condition + assumptions locked. Core JTBD sharp.
   cross_ref_density: high
     # 4 platform invariants confirmed. 2 validators wired. STT provider decided. Stack decided.
-  consensus_width: medium
-    # Governor + Opus reviewed Sections 1-4. Sonnet feasibility check pending (Section 7).
-    # Reaches HIGH after Section 5 (user journey gate) closes.
+  consensus_width: high
+    # Governor + Opus reviewed all Sections 1-5. Section 5 ratified OPUS-6 S050.
   reversibility: high
     # Kill condition locked. EPOCH E1 appetite = small. Nothing built yet. Fully reversible.
   dependency_clarity: high
     # STT: Web Speech API (E1) → Deepgram Nova-2 (E2). Stack: csps-template. All deps explicit.
 
-pmi_score: 4
-  # 4/5 HIGH fields — advanced S049 by resolving Sections 2+3+4.
-  # GATE OPEN: validate-plan-readiness.mjs should now allow apps/template/ fork.
-  # Remaining: Section 5 (consensus_width HIGH) → PMI 5/5 → full ratification.
+pmi_score: 5
+  # 5/5 HIGH fields — Section 5 ratified OPUS-6 S050 (consensus_width now HIGH).
+  # FORK AUTHORIZED: validate-plan-readiness.mjs PASSES at 5/5.
+  # apps/template/ fork authorized. Build can begin.
 
 ---
 
@@ -226,9 +225,11 @@ section_4_connection_map:
     INV_004: "Confidence-first UX — reliability_score always visible alongside AI output. Never hide uncertainty."
 
 section_5_user_journey:
-  status: 75_pct
-  gate_blocking: onboarding_wizard_questions
-  note: "5 homepage variants defined. First-value moment clear."
+  status: 100_pct
+  gate_blocking: none
+  gate_resolved: "onboarding_wizard_questions — ratified OPUS-6 S050"
+  spec: "docs/plan/apps/APP-001-voice-sorting/section-5-user-journey.md"
+  note: "3 onboarding questions + 5 homepage variants + first-value notification ≤2min. Ratified."
 
 section_6_quality_contract:
   status: 70_pct
@@ -249,9 +250,9 @@ section_7_pmi_gate:
 - [x] Section 2 gate: Kill condition named. 3 assumptions force-ranked. (S049)
 - [x] Section 3 gate: Kill condition locked. EPOCH E1/E2 model set. (S049)
 - [x] Section 4 gate: Build architecture ratified — csps-template (S049). STT + 4 invariants (S049)
-- [ ] Section 5 gate: Onboarding 3 questions defined.
+- [x] Section 5 gate: Onboarding 3 questions defined + 5 homepage variants + first-value notification (S050)
 - [ ] Section 6 gate: Measurement method confirmed for all metrics.
-- [ ] PMI reaches 4/5 HIGH → validate-plan-readiness.mjs passes
-- [ ] Opus ratifies inward_focus.invariants_addressed
+- [x] PMI reaches 5/5 HIGH → validate-plan-readiness.mjs passes (S050)
+- [x] Opus ratifies inward_focus.invariants_addressed (OPUS-6 S050)
 - [ ] Governor ratifies outward_focus job statement
-- [ ] Plan status → ratified. Lovable build session authorized.
+- [ ] Plan status → ratified. apps/template/ fork authorized.

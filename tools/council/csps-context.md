@@ -293,6 +293,12 @@ Logic (patterns, rules, config) lives in `tools/config/*.yaml` files (no protect
 **MIXED-SESSION:** scoped design + limited execution.
 **EXEC-SESSION:** execute a ratified plan. Must be declared at session-open. You are in one or the other — never ambiguous.
 
+### 7. Lifecycle: draft → validated → activated → certified
+**`activated`** = live in production, measuring intent-vs-results correlation. Requires `activation_exit` conditions defined at creation.
+**`certified`** = proven + sealed. Only `certified` artifacts may be `protection_level: sacred`.
+**Implemented ≠ Sealed.** An artifact must pass through `activated` before it can reach `certified`. Skipping is not permitted.
+See: `tools/vault/csps-lifecycle/ACTIVATED-STATUS.md`
+
 ---
 
 ## SESSION CLOSE vs TAB CLOSE — These Are NOT the Same Thing

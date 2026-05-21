@@ -60,6 +60,13 @@ Key files:
 - King = alignment (prevents vocabulary drift and duplicate naming)
 - Queen = timing (the right move at the right moment)
 
+### G. NEW SINCE BRIEF CREATED — 'activated' quality_state
+`activated` added to quality_state closed enum. Full lifecycle: `draft → validated → activated → certified`.
+- `activated` = live in production, measuring intent-vs-results correlation
+- `certified` = proven + sealed (requires passing through `activated` first)
+- **Implemented ≠ Sealed.** Never mark certified/sacred without activated evidence.
+- See Step 2 commit results + `tools/vault/csps-lifecycle/ACTIVATED-STATUS.md`
+
 ### E. New Git Commits You Must Know About
 All committed and pushed. Latest: `dab3e56`.
 ```

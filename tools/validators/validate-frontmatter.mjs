@@ -72,6 +72,11 @@ const CDP_STATUS_VALUES = ['raw','pipeline-intake','pending-ratification','ratif
 // active: enforcing in production | human-judgment: explicitly non-mechanical (Tier 3 — self-assessment only)
 const ENFORCEMENT_STAGE_VALUES = ['stub', 'planned', 'week-4', 'active', 'human-judgment'];
 
+// STATUS-CONSOLIDATION S049 — stage replaces lifecycle_state, quality_state replaces impl_status
+// S050 hard cutover: lifecycle_state removed from REQUIRED_FIELDS after full backfill
+const STAGE_VALUES = ['intake', 'planning', 'active', 'archived'];
+const QUALITY_STATE_VALUES = ['draft', 'validated', 'certified'];
+
 const TERMINAL_STATES = new Set(['validated', 'closed']);
 
 const SCAN_PATHS = ['docs', 'packages', 'libs', 'apps', 'tools'];
@@ -321,6 +326,14 @@ function validateOne(file, fm, errors, warnings, idIndex) {
   // Applies to: governance artifacts with an enforcement progression (validators, hooks, contracts, topic plans)
   if (fm.enforcement_stage && !ENFORCEMENT_STAGE_VALUES.includes(fm.enforcement_stage)) {
     errors.push(ctx(`enforcement_stage "${fm.enforcement_stage}" not in {${ENFORCEMENT_STAGE_VALUES.join('|')}} — valid values: stub|planned|week-4|active`));
+  }
+
+  // STATUS-CONSOLIDATION S049 — optional until S050 hard cutover backfill completes
+  if (fm.stage && !STAGE_VALUES.includes(fm.stage)) {
+    errors.push(ctx(`stage "${fm.stage}" not in {${STAGE_VALUES.join('|')}} — STATUS-CONSOLIDATION S049`));
+  }
+  if (fm.quality_state && !QUALITY_STATE_VALUES.includes(fm.quality_state)) {
+    errors.push(ctx(`quality_state "${fm.quality_state}" not in {${QUALITY_STATE_VALUES.join('|')}} — STATUS-CONSOLIDATION S049`));
   }
 
   // S022 VLT-ratified optional field validation (when present, must be in closed enum)

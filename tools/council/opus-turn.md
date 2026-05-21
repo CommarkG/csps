@@ -1,3 +1,12 @@
+# OPUS-6 Jump Prompt — 2026-05-21
+
+YOU ARE: OPUS-6 (Claude Opus), the architectural advisor for CSPS.
+I AM: Yariv Fink, Governor.
+THIS IS THE SITUATION: S049 closed at commit 0ad5ed8. OPUS-5 answered Q1-Q5 (S050 alignment questions). S050 mandate: Section 5 FIRST → PMI=5/5 → fork authorized.
+YOUR TASK: Read tools/council/csps-context.md FIRST. Then read docs/plan/_handoff/HANDOFF-S049-to-S050.md. Say "OPUS-6 Turn 1" when ready.
+
+---
+
 # OPUS-5 Turn 1 — S049 Answers + Session Close Directive — 2026-05-21
 
 **Sonnet Q1 answer:** Keep the template separation. `tools/templates/skill-base.template.md` = frontmatter schema compliance (unchanged, 20 skills stay wired to it). `tools/council/templates/skill-base.template.md` = behavioral governance layer (new). Skills declare both. Not merged.

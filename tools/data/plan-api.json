@@ -2,15 +2,15 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-21T14:16:16.141Z",
+    "generated_at": "2026-05-22T10:49:23.831Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
     "total_items": 62,
     "status_counts": {
       "intake": 29,
-      "planning": 9,
+      "planning": 8,
       "ratified": 4,
-      "implementing": 0,
+      "implementing": 1,
       "activation": 0,
       "done": 20
     },
@@ -952,8 +952,8 @@
     },
     {
       "id": "APP-001-PLAN",
-      "title": "APP-001 Voice Sorting App — Threshold D3 (crystallization in progress)",
-      "status": "planning",
+      "title": "APP-001 Voice Sorting App — E1 build in progress",
+      "status": "implementing",
       "category": "product",
       "owner": "governor",
       "pe_score": 95,

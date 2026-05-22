@@ -298,6 +298,46 @@ importers:
         specifier: ^5
         version: 5.9.3
 
+  apps/voice-sorting:
+    dependencies:
+      '@clerk/nextjs':
+        specifier: ^6.9.0
+        version: 6.39.3(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@csps/components':
+        specifier: workspace:*
+        version: link:../../libs/components
+      '@csps/integrations':
+        specifier: workspace:*
+        version: link:../../libs/integrations
+      '@prisma/client':
+        specifier: ^6.7.0
+        version: 6.19.3(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3)
+      '@zenstackhq/runtime':
+        specifier: ^2.22.1
+        version: 2.22.1(@prisma/client@6.19.3(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.4.3)
+      next:
+        specifier: ^14.2.29
+        version: 14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@types/node':
+        specifier: ^20
+        version: 20.19.39
+      '@types/react':
+        specifier: ^18
+        version: 18.3.28
+      '@types/react-dom':
+        specifier: ^18
+        version: 18.3.7(@types/react@18.3.28)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
   libs/components:
     dependencies:
       react:

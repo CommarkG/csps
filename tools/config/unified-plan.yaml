@@ -622,8 +622,8 @@ items:
   # --- APP-001 + Planning Wizard (S047) ---
 
   - id: APP-001-PLAN
-    title: "APP-001 Voice Sorting App — Threshold D3 (crystallization in progress)"
-    status: planning
+    title: "APP-001 Voice Sorting App — E1 build in progress"
+    status: implementing
     epoch: E1
     category: product
     owner: governor

@@ -31,6 +31,10 @@ Q1: Does this already exist?
     → Search existing CSPS artifacts, templates, and external sources first.
     → B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK applies.
     → If it exists: extend it, not recreate it.
+    → When creating: include context_question in frontmatter:
+      "Before [using this], what must be verified about [key prerequisite]?"
+      This makes the artifact's dependency assumptions explicit and machine-checkable.
+    AUTHORIZED: OPUS-6 PROTO-S052-A — add context_question requirement to Q1
 
 Q2: What is the architectural foundation this depends on?
     → Is that foundation established, ratified, and stable?
@@ -109,6 +113,27 @@ Every CSPS wizard has exactly these sections:
 | Template Fork Wizard | Creating from existing template | ARCH |
 | Sacred File Modification Wizard | Attempting to write a sacred file | GVRN |
 | [Creation Wizard Protocol itself] | When the Q7 questions can't be answered | GVRN |
+
+---
+
+## AI Behavior Analysis (mandatory before ratification)
+<!-- AUTHORIZED: OPUS-6 PROTO-S052-A — add AI behavior analysis section -->
+
+Before any artifact is ratified, the creator must answer these 3 questions:
+
+**1. Top 2 AI defaults relevant to implementing this**
+Name the specific training defaults that could cause incorrect implementation.
+Example: "Default 1: AI assumes documentation = implementation (AP-001). Default 2: AI marks done when 'validated' is reached, skipping 'activated' gate."
+
+**2. Top 1-2 satisfaction points that could fire prematurely**
+Name the exact moment where the AI would feel the work is complete but it isn't.
+Example: "Satisfaction point: 'I wrote the validator' feels done. Real done: the validator passes in pnpm verify with actual output."
+
+**3. How instructions for this artifact should be written**
+Specify the instruction format: command/advisory/example-driven/schema-contract.
+Example: "This artifact is a behavioral contract — instructions are absolute (NEVER/ALWAYS), not advisory. Every instruction must have a measurable satisfaction point."
+
+These 3 answers must appear in the artifact's commit message or a paired vault entry.
 
 ---
 

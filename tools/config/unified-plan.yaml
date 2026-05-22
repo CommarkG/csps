@@ -1116,12 +1116,14 @@ items:
 
   - id: MDPE-UPGRADE
     title: "Multi-Dimensional Priority Engine — blast_radius + readiness + future_enablement + simplicity_bonus"
-    status: planning
-    epoch: E1
+    status: done
+    epoch: completed
     category: governance
     owner: opus
     batch: BATCH-A
     pe_score: 94
+    completed_session: S052
+    completed_commit: b3cc33f
     tags: [pe-engine, intelligence, holistic, s051]
     mdpe_dimensions:
       blast_radius: 0.5

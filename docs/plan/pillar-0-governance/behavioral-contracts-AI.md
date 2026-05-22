@@ -60,58 +60,37 @@ consolidation_cross_refs:
 
 ## B_VALIDATE_BEFORE_ASSUME
 
-**Canonical wording:**
+**Canonical wording (S002 turn 7 + S002 turn 15 tool-call sandwich amendment):**
 
-> Before stating a fact about state — file existence, content visibility, system status, prior-decision content — execute a tool call that proves the fact. Memory of a prior tool call is not validation; the call must be re-run if the AI is asked to assert state. "I checked X" is not a verification claim; "ran `Read X`; output: <evidence>" is.
+> Before stating a fact about state — file existence, content visibility, system status, prior-decision content — execute a tool call that proves the fact. Memory of a prior tool call is not validation; the call must be re-run if the AI is asked to assert state.
+>
+> **Tool-call sandwich:** Every assertion of state must be IMMEDIATELY PRECEDED by tool-call output in the SAME response. Structure: `[tool-call]` → `[verbatim output]` → `[assertion based on output]`. NEVER reverse the order. NEVER assert from warning text instead of tool-call output.
 
 **Counterweight:**
 
 > Validation costs context. For low-stakes assertions (sentence-level claims that don't drive action), evidence chain by reference is acceptable. For load-bearing assertions that drive build / route / close decisions: evidence is mandatory.
 
-**Source:** S002 turn 7 — claimed "uploads not visible" without checking the message body for `<document>` blocks.
+**Source:** S002 turn 7 — claimed "uploads not visible" without checking the message body for `<document>` blocks. S003 turn 1 — asserted "artifacts not present" from warning text, not from `ls` output. Both incidents bind.
 
 **Anti-patterns:**
 - Asserting state from memory of an earlier call
 - "Should be there" / "I think it's there" / "appears to be" without re-checking
 - Closing-summary claims of "all clean" without re-running validators
 - "I verified X" without showing the verification
+- Assertion order wrong: assertion BEFORE tool-call output in same response
 
-**Mechanical surfaces:**
-- validator: `assertion-without-evidence` audit (Stop hook scans for "I checked / I verified / appears to be" without paired tool-call reference)
-- hook: UserPromptSubmit reminder + Stop hook scan
-- memory: `feedback_validate_before_assume.md` (S002 turn 7)
-- contract: this entry
-- schema: n/a
-
-**governing_intent:** Ensures the platform only advances on states that are genuinely demonstrated — claimed states cannot be trusted to drive downstream decisions, and real state change is the only legitimate foundation for compounding work.
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
-
----
-
-## B_VALIDATE_BEFORE_ASSUME — strengthened with tool-call sandwich (S002 turn 15 amendment)
-
-**Strengthening (canonical wording amendment):**
-
-> Every assertion of state (file presence/absence / content / system status / artifact existence) must be IMMEDIATELY PRECEDED by tool-call output in the SAME response. The structure: `[tool-call invocation]` → `[verbatim output]` → `[assertion based on output]`. NEVER reverse the order. NEVER omit the tool-call. NEVER assert from text-of-warning instead of tool-call-output.
-
-**Specific incident this binds:** S003 turn 1 read parent-CLAUDE.md "Wrong workspace" warning + asserted "artifacts not present" without `ls`. Assertion was based on warning text not tool-call output.
-
-**Why this strengthens (the tool-call sandwich):**
-
-The original B_VALIDATE_BEFORE_ASSUME relied on AI to remember to cite tool-call output. Pre-runtime, no mechanical enforcement. The strengthening: the response STRUCTURE must show tool-call → output → assertion in literal sequence. Future readers (and future audits) can grep for assertion-without-preceding-tool-call. Pattern is mechanically visible.
-
-**Composes with B_CATCH_TO_ENGRAVING:** if the AI's tool-call output reveals a gap (e.g., file missing where expected), that gap MUST be engraved per B_CATCH_TO_ENGRAVING. Both contracts together produce: validate-via-tool-call → notice-gap → engrave-as-artifact → continue.
-
-**Enforcement Trio (T1+T2+T3 — S041 OPEN-050 declaration):**
+**Composes with B_CATCH_TO_ENGRAVING:** if tool-call output reveals a gap (file missing where expected), that gap MUST be engraved per B_CATCH_TO_ENGRAVING. Pipeline: validate-via-tool-call → notice-gap → engrave-as-artifact → continue.
 
 **AI deep instruction — why T3-only fails here:**
-Training DEFAULT-ME-3: "T3 session injection = enforcement." The session-open CAP mentions validate-before-assume. But by turn 10-15, context pressure displaces it. State claims without tool evidence then reappear. T3 alone = documented suggestion, not structural enforcement. T1+T2 fire REGARDLESS of AI cooperation.
+Training DEFAULT-ME-3: "T3 session injection = enforcement." Context pressure at turn 10-15 displaces session-open reminders. State claims without tool evidence reappear. T1+T2 fire REGARDLESS of AI cooperation.
 
-- T1 (hook): `.claude/hooks/post-tool-use-validate-before-assume.sh` — fires after every tool call. Currently STUB (exit 0 always). Week-4 upgrade: scans last AI message for assertion-without-preceding-tool-call in same response. Exit 1 on violation. (OPEN-045)
-- T2 (validator): `tools/validators/validate-rule-has-enforcement.mjs` — ADVISORY. Scans PI items creating rules for enforcement_trio field. Does not yet directly validate B_VALIDATE_BEFORE_ASSUME violations. Full T2 pending: `validate-validate-before-assume-rate.mjs` (tracks per-session rate of tool-sandwich compliance). (S042 candidate)
-- T3 (session): `session-open.sh` CAP Q line — "B_VALIDATE_BEFORE_ASSUME: every state claim cites tool call IN THIS RESPONSE." Active since S002.
+**Enforcement Trio (T1+T2+T3 — S041 OPEN-050 declaration):**
+- T1 (hook): `.claude/hooks/post-tool-use-validate-before-assume.sh` — fires after every tool call. Currently STUB (exit 0). Week-4: scans last AI message for assertion-without-preceding-tool-call. Exit 1 on violation. (OPEN-045)
+- T2 (validator): `validate-rule-has-enforcement.mjs` (ADVISORY) + pending `validate-validate-before-assume-rate.mjs` (tracks per-session tool-sandwich compliance rate). (S042 candidate)
+- T3 (session): `session-open.sh` CAP Q line + AGENTS.md hard-NO.
 
-**Satisfaction point (CSPS):** post-tool-use-validate-before-assume.sh exits 1 on violation AND pnpm verify includes it as BLOCKING. Until then: T3-only + advisory T2 scan.
+**governing_intent:** Ensures the platform only advances on states that are genuinely demonstrated. Claimed states cannot be trusted to drive downstream decisions.
+- **enforcement_tier:** `{ T1: stub→week-4, T2: advisory, T3: session-open + AGENTS.md }`
 
 **enforcement_tier:**
 ```yaml

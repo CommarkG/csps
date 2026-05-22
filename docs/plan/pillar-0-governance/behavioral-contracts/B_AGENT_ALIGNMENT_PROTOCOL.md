@@ -115,3 +115,5 @@ CSPS uses claude-code-builtin subagents (Explore / Plan / general-purpose / clau
 - `B_SAVINGS_AND_SSOT_UNIFIED` (S009 L1.4) — extending existing B_AGENT_ALIGNMENT_PROTOCOL (not new B_*) preserves the savings + SSoT axis; same Q3=A minimum-blast-radius pattern as S009
 - `B_GRADUAL_BUILD_BY_FOUNDATIONS` (P-META-016) — Phase 1 → Phase 2 phased adoption is itself a gradual-build trajectory at validator-enforcement-tier scale
 - **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-tool-use-skill-aap-required.sh (ACTIVE), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
+
+---

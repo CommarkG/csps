@@ -81,3 +81,5 @@ Step 7: ITERATE until alignment-confirmed-explicit (no more clarifications neede
 - `P-OP-004 batched-execution` — boundary type 5 (context batches) directly extends the batched-execution counterweight
 - `P-META-013 HPFA` — pre-handoff audit; MUV is the cross-handoff iteration discipline (HPFA verifies the handoff is COMPLETE; MUV verifies the handoff is UNDERSTOOD)
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

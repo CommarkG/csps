@@ -51,3 +51,5 @@ This is the moat. It is built deliberately, surface by surface, through discipli
 
 **Cross-references:** B_COMPLETION_OVER_SHINY (both are PE-priority disciplines) / B_CONSOLIDATION_PASS (reuse before create) / synergy-master skill (CEC operationalization) / P-META-006 RZF (CEC is the positive counterpart to RZF — both ensure nothing is missed) / B_STRUCTURAL_PREVENTION_DISCIPLINE (fix class, not instance).
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

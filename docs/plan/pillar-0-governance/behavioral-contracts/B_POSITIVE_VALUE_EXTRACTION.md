@@ -64,3 +64,5 @@ S005 evidence: when the FSE-produces-dangling-refs meta-finding was surfaced at 
 - `P-META-008 cycle-mandatory-in-plan` — the umbrella that says "cycles in plan text, not memory"
 - `B_FIVE_SURFACE_ENGRAVING` — when meta-finding surfaces (cycle output), the walk may identify need for new engraving; FSE applies
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

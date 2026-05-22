@@ -21,10 +21,23 @@ const SOURCE     = join(ROOT, 'docs/plan/pillar-0-governance/behavioral-contract
 const SLICES_DIR = join(ROOT, 'docs/plan/pillar-0-governance/behavioral-contracts');
 const INDEX_PATH = join(ROOT, 'docs/plan/pillar-0-governance/behavioral-contracts-index.yaml');
 
+// S051: shard files are now the SSoT. Read from shards if they exist; fallback to monolith.
+const SHARD_FILES = ['GVRN', 'AI', 'ARCH', 'VALD', 'OPER'].map(
+  s => join(ROOT, `docs/plan/pillar-0-governance/behavioral-contracts-${s}.md`)
+);
+const SHARDS_EXIST = SHARD_FILES.every(f => existsSync(f));
+
 // ── Read source ────────────────────────────────────────────────────────────────
 
-const content = readFileSync(SOURCE, 'utf8');
-const lines   = content.split('\n');
+let combinedContent;
+if (SHARDS_EXIST) {
+  // Read from 5 shard files (S051+ — shards are SSoT)
+  combinedContent = SHARD_FILES.map(f => readFileSync(f, 'utf8')).join('\n');
+} else {
+  // Fallback: read from monolith (pre-S051 behavior)
+  combinedContent = readFileSync(SOURCE, 'utf8');
+}
+const lines   = combinedContent.split('\n');
 
 // ── Parse sections ─────────────────────────────────────────────────────────────
 // Split by "## B_" headers.  Everything before the first match = preamble (ignored in slices).
@@ -54,7 +67,7 @@ if (currentName) {
 }
 
 if (sections.length === 0) {
-  console.error('[split-behavioral-contracts] ERROR: no B_* sections found in behavioral-contracts.md');
+  console.error('[split-behavioral-contracts] ERROR: no B_* sections found');
   process.exit(1);
 }
 

@@ -54,3 +54,5 @@
 - memory: `feedback_pcr_for_decisions.md` (S005 turn 5) — counterweight composes with `feedback_obvious_answer_execute.md` (CSP carry-forward — when path converges, just decide)
 - contract: this entry + `AGENTS.md` hard NO (S005 turn 5) + `ai-behavior-spine.md` P-OP-003 row updated + `principles.yaml#P-OP-003` enforcer_count 4 → 8
 - **enforcement_tier:** `{ tier: T1+T3, T1 hook: post-stop-pcr-check.sh (ADVISORY — S040), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
+
+---

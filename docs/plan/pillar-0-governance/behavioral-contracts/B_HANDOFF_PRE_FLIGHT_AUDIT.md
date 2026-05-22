@@ -41,3 +41,5 @@ Pre-S005-turn-27, HANDOFF creation was a procedural step in [protocols.md §10](
 - memory: `feedback_handoff_pre_flight_audit.md` (S005 turn 27) + MEMORY.md index
 - contract: this entry + AGENTS.md hard NO (S005 turn 27) + spine row + `principles.yaml#P-META-013`
 - **enforcement_tier:** `{ tier: T1+T3, T1 hook: post-stop-session-close-gate.sh (partial), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
+
+---

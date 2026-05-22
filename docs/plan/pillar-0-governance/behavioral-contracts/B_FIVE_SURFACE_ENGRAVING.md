@@ -42,3 +42,5 @@ Without discipline: each session re-discovers up to N patterns; cost = N × corr
 - T2 (validator): `catch-engraving-completeness` audit — PLANNED week 4. Does not yet exist in pnpm verify. `validate-rule-has-enforcement.mjs` provides partial coverage for new rules.
 - T3 (session): `session-open.sh` — "B_FIVE_SURFACE_ENGRAVING: when catch detected → 5 surfaces atomically in same response/commit." Active since S002.
 - **enforcement_tier:** `{ t1: post-tool-use-cec-trigger.sh PARTIAL, t2: none-current (catch-engraving-completeness planned), t3: session-open FSE mandate, permanence: low-current → target: medium with T1 surface-count + T2 BLOCKING }`
+
+---

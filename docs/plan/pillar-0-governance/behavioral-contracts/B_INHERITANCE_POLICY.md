@@ -35,3 +35,5 @@ The `user-prompt-submit-turn-counter.sh` hook fires on every turn. At turn 25, 5
 - T3 session: `session-open.sh` (role + mandate + blocking at session open)
 - contract: `docs/plan/pillar-0-governance/behavioral-contracts.md` (this file)
 - memory: `~/.claude/projects/.../memory/feedback_inheritance_policy.md`
+
+---

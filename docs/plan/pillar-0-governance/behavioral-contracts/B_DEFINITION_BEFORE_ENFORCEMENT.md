@@ -27,3 +27,29 @@
 - T3: This entry + session-open injection
 
 **Ratified:** S049 | **Related:** B_STRUCTURAL_PREVENTION, AP-004, P-META-019
+
+---
+id: csps.pillar-0-governance.behavioral-contracts-oper
+name: behavioral-contracts-OPER
+description: "B_* contracts governing operational discipline, handoffs, and execution patterns"
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: OPER
+schema_anchor: behavioral_contracts_oper
+batch: BATCH-A
+session: S051
+diataxis_type: reference
+links:
+  - { rel: index, href: behavioral-contracts.md }
+consolidation_cross_refs:
+  - docs/plan/pillar-0-governance/behavioral-contracts.md
+---
+
+# Behavioral Contracts — OPER Spine
+
+> **Shard of behavioral-contracts.md.** 18 contracts — OPER spine.
+> Index: [behavioral-contracts.md](behavioral-contracts.md) | Split: `pnpm contracts:split`
+
+---

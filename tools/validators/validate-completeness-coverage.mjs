@@ -23,6 +23,13 @@ import { resolve, join } from 'node:path';
 
 const ROOT = resolve(process.cwd());
 const CONTRACTS_FILE = join(ROOT, 'docs/plan/pillar-0-governance/behavioral-contracts.md');
+// S051: shard files are the SSoT for B_* contract content
+const SHARD_FILES_BC = ['GVRN', 'AI', 'ARCH', 'VALD', 'OPER'].map(
+  s => join(ROOT, `docs/plan/pillar-0-governance/behavioral-contracts-${s}.md`)
+).filter(f => existsSync(f));
+const CONTRACTS_TEXT_COMBINED = SHARD_FILES_BC.length > 0
+  ? SHARD_FILES_BC.map(f => readFileSync(f, 'utf8')).join('\n')
+  : (existsSync(CONTRACTS_FILE) ? readFileSync(CONTRACTS_FILE, 'utf8') : '');
 const COMPLETENESS_MODULE = join(ROOT, 'docs/plan/pillar-0-governance/completeness-module.md');
 const VERIFY_FILE = join(ROOT, 'tools/verify.mjs');
 const STOP_HOOK = join(ROOT, '.claude/hooks/post-stop-pnpm-verify.sh');
@@ -51,12 +58,12 @@ if (!existsSync(COMPLETENESS_MODULE)) {
   }
 }
 
-// Check 2: All 6 B_* contracts exist in behavioral-contracts.md
-if (existsSync(CONTRACTS_FILE)) {
-  const contractsText = readFileSync(CONTRACTS_FILE, 'utf8');
+// Check 2: All 6 B_* contracts exist (shard files are SSoT in S051+)
+{
+  const contractsText = CONTRACTS_TEXT_COMBINED;
   for (const contract of REQUIRED_CONTRACTS) {
     if (!contractsText.includes(`## ${contract}`)) {
-      blockings.push(`Missing completeness contract: ${contract} not found in behavioral-contracts.md`);
+      blockings.push(`Missing completeness contract: ${contract} not found in behavioral-contracts shard files`);
     }
   }
 }
@@ -75,13 +82,11 @@ if (!existsSync(STOP_HOOK)) {
 }
 
 // Check 4b: Each B_* completeness contract should reference completeness-module.md
-// Phase 2 addition: advisory for contracts not yet cross-referenced
-if (existsSync(CONTRACTS_FILE)) {
-  const contractsText = readFileSync(CONTRACTS_FILE, 'utf8');
+{
+  const contractsText = CONTRACTS_TEXT_COMBINED;
   for (const contract of REQUIRED_CONTRACTS) {
     const contractIdx = contractsText.indexOf(`## ${contract}`);
     if (contractIdx === -1) continue; // already caught above
-    // Find end of this contract's body (next ##)
     const nextContractIdx = contractsText.indexOf('\n## ', contractIdx + 1);
     const body = contractsText.slice(contractIdx, nextContractIdx > 0 ? nextContractIdx : contractIdx + 5000);
     if (!body.includes('completeness-module')) {

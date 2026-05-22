@@ -33,3 +33,5 @@
 - memory: `feedback_always_git_links.md` (NEW S002 turn 19)
 - contract: this entry + AGENTS.md hard NO (turn 19) + `ai-behavior-spine.md` row (engraving status: 4/5 declared; ~2/5 mechanical — memory + AGENTS.md NO + contract active; validator + hook deferred week 4)
 - **enforcement_tier:** `{ tier: T1+T3, T1 hook: post-stop-link-discipline.sh (ADVISORY — S040), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
+
+---

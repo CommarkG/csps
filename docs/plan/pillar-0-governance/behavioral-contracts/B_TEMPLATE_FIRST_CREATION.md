@@ -28,3 +28,5 @@
 
 ---
 - **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-tool-use-frontmatter-enum-check.sh (partial — enum drift only), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
+
+---

@@ -70,3 +70,5 @@ DECISION: [CONTINUE / STOP]
 
 **Cross-references:** B_COMPLETION_OVER_SHINY (completion discipline — Humble Executor fires when completion is achieved) / B_PLATFORM_FIRST_OPTIMIZATION (milestone extraction = CEC walk = platform-first) / P-META-006 RZF (milestone is a ZF cycle at phase boundary) / B_AUTONOMOUS_BATCH_WITH_PREFLIGHT (pre-flight is the forward-planning twin; Humble Executor is the backward-validating twin).
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

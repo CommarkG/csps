@@ -7,25 +7,151 @@
 
 meta:
   total_count: 64
-  generated_at: '2026-05-21'
+  generated_at: '2026-05-22'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
   usage: Load individual slice files (./behavioral-contracts/B_NAME.md) for AI session context;
          load this index to discover available contracts without loading full monolith
 
 contracts:
+  - id: B_PCR_FOR_DECISIONS
+    desc: "B_PCR_FOR_DECISIONS"
+    path: ./behavioral-contracts/B_PCR_FOR_DECISIONS.md
+  - id: B_GOVERNOR_PROMPTS
+    desc: "B_GOVERNOR_PROMPTS"
+    path: ./behavioral-contracts/B_GOVERNOR_PROMPTS.md
+  - id: B_MUTUAL_UNDERSTANDING_VALIDATION
+    desc: "B_MUTUAL_UNDERSTANDING_VALIDATION"
+    path: ./behavioral-contracts/B_MUTUAL_UNDERSTANDING_VALIDATION.md
+  - id: B_BOUNDARY_ALIGNMENT_PROTOCOL
+    desc: "B_BOUNDARY_ALIGNMENT_PROTOCOL"
+    path: ./behavioral-contracts/B_BOUNDARY_ALIGNMENT_PROTOCOL.md
+  - id: B_PE_ALIGNMENT_GUARDIAN
+    desc: "B_PE_ALIGNMENT_GUARDIAN"
+    path: ./behavioral-contracts/B_PE_ALIGNMENT_GUARDIAN.md
+  - id: B_KNOW_HOW_DISCIPLINE
+    desc: "B_KNOW_HOW_DISCIPLINE"
+    path: ./behavioral-contracts/B_KNOW_HOW_DISCIPLINE.md
+  - id: B_CONSENSUS_BEFORE_PROCEEDING
+    desc: "B_CONSENSUS_BEFORE_PROCEEDING"
+    path: ./behavioral-contracts/B_CONSENSUS_BEFORE_PROCEEDING.md
+  - id: B_TRIAD_GOVERNANCE
+    desc: "B_TRIAD_GOVERNANCE"
+    path: ./behavioral-contracts/B_TRIAD_GOVERNANCE.md
+  - id: B_PLATFORM_FIRST_OPTIMIZATION
+    desc: "B_PLATFORM_FIRST_OPTIMIZATION"
+    path: ./behavioral-contracts/B_PLATFORM_FIRST_OPTIMIZATION.md
+  - id: B_COMPLETION_OVER_SHINY
+    desc: "B_COMPLETION_OVER_SHINY"
+    path: ./behavioral-contracts/B_COMPLETION_OVER_SHINY.md
+  - id: B_INHERITANCE_POLICY
+    desc: "B_INHERITANCE_POLICY"
+    path: ./behavioral-contracts/B_INHERITANCE_POLICY.md
+  - id: B_PRACE
+    desc: "B_PRACE"
+    path: ./behavioral-contracts/B_PRACE.md
   - id: B_AI_PROFESSIONAL_VOICE
     desc: "B_AI_PROFESSIONAL_VOICE"
     path: ./behavioral-contracts/B_AI_PROFESSIONAL_VOICE.md
-  - id: B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK
-    desc: "B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK"
-    path: ./behavioral-contracts/B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK.md
   - id: B_VALIDATE_BEFORE_ASSUME
     desc: "B_VALIDATE_BEFORE_ASSUME"
     path: ./behavioral-contracts/B_VALIDATE_BEFORE_ASSUME.md
+  - id: B_VALIDATE_BEFORE_ASSUME
+    desc: "B_VALIDATE_BEFORE_ASSUME"
+    path: ./behavioral-contracts/B_VALIDATE_BEFORE_ASSUME.md
+  - id: B_COGNITIVE_CONTEXT_DISCIPLINE
+    desc: "B_COGNITIVE_CONTEXT_DISCIPLINE"
+    path: ./behavioral-contracts/B_COGNITIVE_CONTEXT_DISCIPLINE.md
+  - id: B_CDAB
+    desc: "B_CDAB"
+    path: ./behavioral-contracts/B_CDAB.md
+  - id: B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS
+    desc: "B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS"
+    path: ./behavioral-contracts/B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS.md
+  - id: B_TOKEN_BUDGET
+    desc: "B_TOKEN_BUDGET"
+    path: ./behavioral-contracts/B_TOKEN_BUDGET.md
+  - id: B_AI_COLLABORATIVE_DISCIPLINE
+    desc: "B_AI_COLLABORATIVE_DISCIPLINE"
+    path: ./behavioral-contracts/B_AI_COLLABORATIVE_DISCIPLINE.md
+  - id: B_NO_AI_IMPERSONATION
+    desc: "B_NO_AI_IMPERSONATION"
+    path: ./behavioral-contracts/B_NO_AI_IMPERSONATION.md
+  - id: B_CONCEPT_LOAD
+    desc: "B_CONCEPT_LOAD"
+    path: ./behavioral-contracts/B_CONCEPT_LOAD.md
+  - id: B_VERBATIM_HUMAN_TEXT
+    desc: "B_VERBATIM_HUMAN_TEXT"
+    path: ./behavioral-contracts/B_VERBATIM_HUMAN_TEXT.md
+  - id: B_DEVELOPMENT_VS_PRODUCTION
+    desc: "B_DEVELOPMENT_VS_PRODUCTION"
+    path: ./behavioral-contracts/B_DEVELOPMENT_VS_PRODUCTION.md
+  - id: B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK
+    desc: "B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK"
+    path: ./behavioral-contracts/B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK.md
   - id: B_CHECK_EXISTING_DECISIONS_FIRST
     desc: "B_CHECK_EXISTING_DECISIONS_FIRST"
     path: ./behavioral-contracts/B_CHECK_EXISTING_DECISIONS_FIRST.md
+  - id: B_TEMPLATE_FIRST_CREATION
+    desc: "B_TEMPLATE_FIRST_CREATION"
+    path: ./behavioral-contracts/B_TEMPLATE_FIRST_CREATION.md
+  - id: B_GRADUAL_BUILD_BY_FOUNDATIONS
+    desc: "B_GRADUAL_BUILD_BY_FOUNDATIONS"
+    path: ./behavioral-contracts/B_GRADUAL_BUILD_BY_FOUNDATIONS.md
+  - id: B_CORE_SPINE_DISCIPLINE
+    desc: "B_CORE_SPINE_DISCIPLINE"
+    path: ./behavioral-contracts/B_CORE_SPINE_DISCIPLINE.md
+  - id: B_NAMING_POLICY
+    desc: "B_NAMING_POLICY"
+    path: ./behavioral-contracts/B_NAMING_POLICY.md
+  - id: B_CONSOLIDATION_PASS
+    desc: "B_CONSOLIDATION_PASS"
+    path: ./behavioral-contracts/B_CONSOLIDATION_PASS.md
+  - id: B_SAVINGS_AND_SSOT_UNIFIED
+    desc: "B_SAVINGS_AND_SSOT_UNIFIED"
+    path: ./behavioral-contracts/B_SAVINGS_AND_SSOT_UNIFIED.md
+  - id: B_NO_IMPLEMENTATION_WITHOUT_PLAN
+    desc: "B_NO_IMPLEMENTATION_WITHOUT_PLAN"
+    path: ./behavioral-contracts/B_NO_IMPLEMENTATION_WITHOUT_PLAN.md
+  - id: B_INTENT_CRYSTALLIZATION
+    desc: "B_INTENT_CRYSTALLIZATION"
+    path: ./behavioral-contracts/B_INTENT_CRYSTALLIZATION.md
+  - id: B_SANDBOX_BEFORE_IMPLEMENTATION
+    desc: "B_SANDBOX_BEFORE_IMPLEMENTATION"
+    path: ./behavioral-contracts/B_SANDBOX_BEFORE_IMPLEMENTATION.md
+  - id: B_APPS_ARE_TRIALS
+    desc: "B_APPS_ARE_TRIALS"
+    path: ./behavioral-contracts/B_APPS_ARE_TRIALS.md
+  - id: B_RZF
+    desc: "B_RZF"
+    path: ./behavioral-contracts/B_RZF.md
+  - id: B_CEC
+    desc: "B_CEC"
+    path: ./behavioral-contracts/B_CEC.md
+  - id: B_QC_AUDIT
+    desc: "B_QC_AUDIT"
+    path: ./behavioral-contracts/B_QC_AUDIT.md
+  - id: B_CATCH_TO_ENGRAVING
+    desc: "B_CATCH_TO_ENGRAVING"
+    path: ./behavioral-contracts/B_CATCH_TO_ENGRAVING.md
+  - id: B_FIVE_SURFACE_ENGRAVING
+    desc: "B_FIVE_SURFACE_ENGRAVING"
+    path: ./behavioral-contracts/B_FIVE_SURFACE_ENGRAVING.md
+  - id: B_PRE_CLOSE_VERIFICATION
+    desc: "B_PRE_CLOSE_VERIFICATION"
+    path: ./behavioral-contracts/B_PRE_CLOSE_VERIFICATION.md
+  - id: B_POSITIVE_VALUE_EXTRACTION
+    desc: "B_POSITIVE_VALUE_EXTRACTION"
+    path: ./behavioral-contracts/B_POSITIVE_VALUE_EXTRACTION.md
+  - id: B_STRUCTURAL_PREVENTION_DISCIPLINE
+    desc: "B_STRUCTURAL_PREVENTION_DISCIPLINE"
+    path: ./behavioral-contracts/B_STRUCTURAL_PREVENTION_DISCIPLINE.md
+  - id: B_DONE_RIGHT_FROM_THE_START
+    desc: "B_DONE_RIGHT_FROM_THE_START"
+    path: ./behavioral-contracts/B_DONE_RIGHT_FROM_THE_START.md
+  - id: B_DEFINITION_BEFORE_ENFORCEMENT
+    desc: "B_DEFINITION_BEFORE_ENFORCEMENT"
+    path: ./behavioral-contracts/B_DEFINITION_BEFORE_ENFORCEMENT.md
   - id: B_ASK_WHEN_FILLING_GAPS
     desc: "B_ASK_WHEN_FILLING_GAPS"
     path: ./behavioral-contracts/B_ASK_WHEN_FILLING_GAPS.md
@@ -50,123 +176,21 @@ contracts:
   - id: B_NO_FORCE_FIT
     desc: "B_NO_FORCE_FIT"
     path: ./behavioral-contracts/B_NO_FORCE_FIT.md
-  - id: B_RZF
-    desc: "B_RZF"
-    path: ./behavioral-contracts/B_RZF.md
-  - id: B_CEC
-    desc: "B_CEC"
-    path: ./behavioral-contracts/B_CEC.md
-  - id: B_QC_AUDIT
-    desc: "B_QC_AUDIT"
-    path: ./behavioral-contracts/B_QC_AUDIT.md
   - id: B_PROTOCOL_LITERAL_EXECUTION
     desc: "B_PROTOCOL_LITERAL_EXECUTION"
     path: ./behavioral-contracts/B_PROTOCOL_LITERAL_EXECUTION.md
-  - id: B_CATCH_TO_ENGRAVING
-    desc: "B_CATCH_TO_ENGRAVING"
-    path: ./behavioral-contracts/B_CATCH_TO_ENGRAVING.md
-  - id: B_VALIDATE_BEFORE_ASSUME
-    desc: "B_VALIDATE_BEFORE_ASSUME"
-    path: ./behavioral-contracts/B_VALIDATE_BEFORE_ASSUME.md
-  - id: B_FIVE_SURFACE_ENGRAVING
-    desc: "B_FIVE_SURFACE_ENGRAVING"
-    path: ./behavioral-contracts/B_FIVE_SURFACE_ENGRAVING.md
   - id: B_ALWAYS_GIT_LINKS
     desc: "B_ALWAYS_GIT_LINKS"
     path: ./behavioral-contracts/B_ALWAYS_GIT_LINKS.md
-  - id: B_PCR_FOR_DECISIONS
-    desc: "B_PCR_FOR_DECISIONS"
-    path: ./behavioral-contracts/B_PCR_FOR_DECISIONS.md
-  - id: B_PRE_CLOSE_VERIFICATION
-    desc: "B_PRE_CLOSE_VERIFICATION"
-    path: ./behavioral-contracts/B_PRE_CLOSE_VERIFICATION.md
-  - id: B_POSITIVE_VALUE_EXTRACTION
-    desc: "B_POSITIVE_VALUE_EXTRACTION"
-    path: ./behavioral-contracts/B_POSITIVE_VALUE_EXTRACTION.md
-  - id: B_COGNITIVE_CONTEXT_DISCIPLINE
-    desc: "B_COGNITIVE_CONTEXT_DISCIPLINE"
-    path: ./behavioral-contracts/B_COGNITIVE_CONTEXT_DISCIPLINE.md
-  - id: B_CDAB
-    desc: "B_CDAB"
-    path: ./behavioral-contracts/B_CDAB.md
   - id: B_AGENT_ALIGNMENT_PROTOCOL
     desc: "B_AGENT_ALIGNMENT_PROTOCOL"
     path: ./behavioral-contracts/B_AGENT_ALIGNMENT_PROTOCOL.md
-  - id: B_GOVERNOR_PROMPTS
-    desc: "B_GOVERNOR_PROMPTS"
-    path: ./behavioral-contracts/B_GOVERNOR_PROMPTS.md
   - id: B_HANDOFF_PRE_FLIGHT_AUDIT
     desc: "B_HANDOFF_PRE_FLIGHT_AUDIT"
     path: ./behavioral-contracts/B_HANDOFF_PRE_FLIGHT_AUDIT.md
-  - id: B_MUTUAL_UNDERSTANDING_VALIDATION
-    desc: "B_MUTUAL_UNDERSTANDING_VALIDATION"
-    path: ./behavioral-contracts/B_MUTUAL_UNDERSTANDING_VALIDATION.md
-  - id: B_BOUNDARY_ALIGNMENT_PROTOCOL
-    desc: "B_BOUNDARY_ALIGNMENT_PROTOCOL"
-    path: ./behavioral-contracts/B_BOUNDARY_ALIGNMENT_PROTOCOL.md
-  - id: B_TEMPLATE_FIRST_CREATION
-    desc: "B_TEMPLATE_FIRST_CREATION"
-    path: ./behavioral-contracts/B_TEMPLATE_FIRST_CREATION.md
-  - id: B_GRADUAL_BUILD_BY_FOUNDATIONS
-    desc: "B_GRADUAL_BUILD_BY_FOUNDATIONS"
-    path: ./behavioral-contracts/B_GRADUAL_BUILD_BY_FOUNDATIONS.md
-  - id: B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS
-    desc: "B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS"
-    path: ./behavioral-contracts/B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS.md
-  - id: B_PE_ALIGNMENT_GUARDIAN
-    desc: "B_PE_ALIGNMENT_GUARDIAN"
-    path: ./behavioral-contracts/B_PE_ALIGNMENT_GUARDIAN.md
-  - id: B_STRUCTURAL_PREVENTION_DISCIPLINE
-    desc: "B_STRUCTURAL_PREVENTION_DISCIPLINE"
-    path: ./behavioral-contracts/B_STRUCTURAL_PREVENTION_DISCIPLINE.md
-  - id: B_CORE_SPINE_DISCIPLINE
-    desc: "B_CORE_SPINE_DISCIPLINE"
-    path: ./behavioral-contracts/B_CORE_SPINE_DISCIPLINE.md
   - id: B_ZERO_LAPTOP_DEPENDENCY
     desc: "B_ZERO_LAPTOP_DEPENDENCY"
     path: ./behavioral-contracts/B_ZERO_LAPTOP_DEPENDENCY.md
-  - id: B_NAMING_POLICY
-    desc: "B_NAMING_POLICY"
-    path: ./behavioral-contracts/B_NAMING_POLICY.md
-  - id: B_TOKEN_BUDGET
-    desc: "B_TOKEN_BUDGET"
-    path: ./behavioral-contracts/B_TOKEN_BUDGET.md
-  - id: B_CONSOLIDATION_PASS
-    desc: "B_CONSOLIDATION_PASS"
-    path: ./behavioral-contracts/B_CONSOLIDATION_PASS.md
-  - id: B_SAVINGS_AND_SSOT_UNIFIED
-    desc: "B_SAVINGS_AND_SSOT_UNIFIED"
-    path: ./behavioral-contracts/B_SAVINGS_AND_SSOT_UNIFIED.md
-  - id: B_KNOW_HOW_DISCIPLINE
-    desc: "B_KNOW_HOW_DISCIPLINE"
-    path: ./behavioral-contracts/B_KNOW_HOW_DISCIPLINE.md
-  - id: B_AI_COLLABORATIVE_DISCIPLINE
-    desc: "B_AI_COLLABORATIVE_DISCIPLINE"
-    path: ./behavioral-contracts/B_AI_COLLABORATIVE_DISCIPLINE.md
-  - id: B_NO_AI_IMPERSONATION
-    desc: "B_NO_AI_IMPERSONATION"
-    path: ./behavioral-contracts/B_NO_AI_IMPERSONATION.md
-  - id: B_CONSENSUS_BEFORE_PROCEEDING
-    desc: "B_CONSENSUS_BEFORE_PROCEEDING"
-    path: ./behavioral-contracts/B_CONSENSUS_BEFORE_PROCEEDING.md
-  - id: B_CONCEPT_LOAD
-    desc: "B_CONCEPT_LOAD"
-    path: ./behavioral-contracts/B_CONCEPT_LOAD.md
-  - id: B_TRIAD_GOVERNANCE
-    desc: "B_TRIAD_GOVERNANCE"
-    path: ./behavioral-contracts/B_TRIAD_GOVERNANCE.md
-  - id: B_VERBATIM_HUMAN_TEXT
-    desc: "B_VERBATIM_HUMAN_TEXT"
-    path: ./behavioral-contracts/B_VERBATIM_HUMAN_TEXT.md
-  - id: B_PLATFORM_FIRST_OPTIMIZATION
-    desc: "B_PLATFORM_FIRST_OPTIMIZATION"
-    path: ./behavioral-contracts/B_PLATFORM_FIRST_OPTIMIZATION.md
-  - id: B_COMPLETION_OVER_SHINY
-    desc: "B_COMPLETION_OVER_SHINY"
-    path: ./behavioral-contracts/B_COMPLETION_OVER_SHINY.md
-  - id: B_DEVELOPMENT_VS_PRODUCTION
-    desc: "B_DEVELOPMENT_VS_PRODUCTION"
-    path: ./behavioral-contracts/B_DEVELOPMENT_VS_PRODUCTION.md
   - id: B_HUMBLE_EXECUTION_PIPELINE
     desc: "B_HUMBLE_EXECUTION_PIPELINE"
     path: ./behavioral-contracts/B_HUMBLE_EXECUTION_PIPELINE.md
@@ -176,33 +200,9 @@ contracts:
   - id: B_AUTONOMOUS_BATCH_WITH_PREFLIGHT
     desc: "B_AUTONOMOUS_BATCH_WITH_PREFLIGHT"
     path: ./behavioral-contracts/B_AUTONOMOUS_BATCH_WITH_PREFLIGHT.md
-  - id: B_NO_IMPLEMENTATION_WITHOUT_PLAN
-    desc: "B_NO_IMPLEMENTATION_WITHOUT_PLAN"
-    path: ./behavioral-contracts/B_NO_IMPLEMENTATION_WITHOUT_PLAN.md
-  - id: B_INTENT_CRYSTALLIZATION
-    desc: "B_INTENT_CRYSTALLIZATION"
-    path: ./behavioral-contracts/B_INTENT_CRYSTALLIZATION.md
-  - id: B_SANDBOX_BEFORE_IMPLEMENTATION
-    desc: "B_SANDBOX_BEFORE_IMPLEMENTATION"
-    path: ./behavioral-contracts/B_SANDBOX_BEFORE_IMPLEMENTATION.md
-  - id: B_APPS_ARE_TRIALS
-    desc: "B_APPS_ARE_TRIALS"
-    path: ./behavioral-contracts/B_APPS_ARE_TRIALS.md
   - id: B_CONTEXTUAL_LOCALITY
     desc: "B_CONTEXTUAL_LOCALITY"
     path: ./behavioral-contracts/B_CONTEXTUAL_LOCALITY.md
   - id: B_ZCA
     desc: "B_ZCA"
     path: ./behavioral-contracts/B_ZCA.md
-  - id: B_DONE_RIGHT_FROM_THE_START
-    desc: "B_DONE_RIGHT_FROM_THE_START"
-    path: ./behavioral-contracts/B_DONE_RIGHT_FROM_THE_START.md
-  - id: B_INHERITANCE_POLICY
-    desc: "B_INHERITANCE_POLICY"
-    path: ./behavioral-contracts/B_INHERITANCE_POLICY.md
-  - id: B_PRACE
-    desc: "B_PRACE"
-    path: ./behavioral-contracts/B_PRACE.md
-  - id: B_DEFINITION_BEFORE_ENFORCEMENT
-    desc: "B_DEFINITION_BEFORE_ENFORCEMENT"
-    path: ./behavioral-contracts/B_DEFINITION_BEFORE_ENFORCEMENT.md

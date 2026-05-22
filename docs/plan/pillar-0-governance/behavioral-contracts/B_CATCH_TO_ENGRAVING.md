@@ -37,3 +37,5 @@
 - T2 (validator): No dedicated T2 exists yet. `validate-rule-has-enforcement.mjs` catches PI items without enforcement_trio but not un-engraved catches. Planned: `validate-catch-engraving-coverage.mjs` per audit-runner slug.
 - T3 (session): `session-open.sh` — "B_CATCH_TO_ENGRAVING: every gap → persistent artifact within session." Active since S002.
 - **enforcement_tier:** `{ t1: post-tool-use-cec-trigger.sh PARTIAL, t2: none (planned validate-catch-engraving-coverage.mjs), t3: session-open mandate, permanence: low-current → target: medium with T2 built }`
+
+---

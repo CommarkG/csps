@@ -19,3 +19,29 @@
 
 **Cross-references:** development-vs-production-mode.md / B_HUMBLE_EXECUTION_PIPELINE (GEP applies in development before production deployment) / B_TOKEN_BUDGET (development: R1 L1-default is guideline; production: R1 is hard constraint) / GRACE architecture (designed for production; in development, depth > efficiency)
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---
+id: csps.pillar-0-governance.behavioral-contracts-arch
+name: behavioral-contracts-ARCH
+description: "B_* contracts governing architecture, implementation gates, and structural decisions"
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: ARCH
+schema_anchor: behavioral_contracts_arch
+batch: BATCH-A
+session: S051
+diataxis_type: reference
+links:
+  - { rel: index, href: behavioral-contracts.md }
+consolidation_cross_refs:
+  - docs/plan/pillar-0-governance/behavioral-contracts.md
+---
+
+# Behavioral Contracts — ARCH Spine
+
+> **Shard of behavioral-contracts.md.** 12 contracts — ARCH spine.
+> Index: [behavioral-contracts.md](behavioral-contracts.md) | Split: `pnpm contracts:split`
+
+---

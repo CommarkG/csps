@@ -53,3 +53,5 @@ NEVER mid-session: edit CLAUDE.md / install/remove MCP servers / add plugins / s
 
 **Cross-references:** P-META-009 (extends; no new principle — B_TOKEN_BUDGET IS the operating-rules subsection of CCA) / P-META-006 (RZF — Phase 1 measurement IS the proof per "re-run IS the proof"; B_TOKEN_BUDGET claims about 60-80% savings remain ESTIMATED until measured) / P-META-008 (cycle-mandatory-in-plan — every phase has explicit ZF gate; pnpm verify exit 0 required) / P-META-016 (gradual-build — R3 IMPL_BATCH boundaries align with L<N>→L<N+1> topic-plan transitions per foundation-stability) / P-META-019 (structural-prevention — Phase 1 measurement gaps surface as §10.0j enhancement-proposals not patches) / B_COGNITIVE_CONTEXT_DISCIPLINE (foundation; R2 directly enforces QG1) / B_GRADUAL_BUILD_BY_FOUNDATIONS (R3 boundary alignment).
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

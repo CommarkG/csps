@@ -67,3 +67,29 @@
 - T3 session: AGENTS.md advisory note (S049) → Hard NO (S050)
 
 ---
+
+---
+id: csps.pillar-0-governance.behavioral-contracts-ai
+name: behavioral-contracts-AI
+description: "B_* contracts governing AI behavior defaults, cognitive context, and model alignment"
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: AI
+schema_anchor: behavioral_contracts_ai
+batch: BATCH-A
+session: S051
+diataxis_type: reference
+links:
+  - { rel: index, href: behavioral-contracts.md }
+consolidation_cross_refs:
+  - docs/plan/pillar-0-governance/behavioral-contracts.md
+---
+
+# Behavioral Contracts — AI Spine
+
+> **Shard of behavioral-contracts.md.** 12 contracts — AI spine.
+> Index: [behavioral-contracts.md](behavioral-contracts.md) | Split: `pnpm contracts:split`
+
+---

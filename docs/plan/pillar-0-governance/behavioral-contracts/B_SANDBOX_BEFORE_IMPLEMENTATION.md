@@ -43,3 +43,5 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - localhost-test-url ("localhost:PORT" as test URL = laptop dependency; use Vercel preview URL)
 - local-only-migrations (prisma db push from laptop = laptop dependency; use Vercel build hook or Supabase CLI)
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

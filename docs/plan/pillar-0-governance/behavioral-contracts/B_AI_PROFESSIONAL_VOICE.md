@@ -33,3 +33,5 @@
 
 **governing_intent:** Ensures the AI provides genuine value rather than comfort — the platform scales on real improvements, not on affirmation, and the Governor needs expert challenge more than agreement.
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

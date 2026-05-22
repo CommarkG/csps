@@ -469,6 +469,41 @@ schema_anchors:
     spine: AI
     l2_domain: AGENT_BEHAVIOR
     description: CSPS skill template artifacts — SKILL-BASE parent template with 6 mandatory sections (Identity/AAP/Input/Output/ZF/Enforcement)
+
+  behavioral_contracts_ai:
+    type: governance-section
+    resolves_to: docs/plan/pillar-0-governance/behavioral-contracts-AI.md
+    spine: AI
+    l2_domain: AI_BEHAVIOR
+    description: AI spine behavioral contracts shard (12 B_* contracts governing AI behavior and model alignment)
+
+  behavioral_contracts_gvrn:
+    type: governance-section
+    resolves_to: docs/plan/pillar-0-governance/behavioral-contracts-GVRN.md
+    spine: GVRN
+    l2_domain: GOVERNANCE
+    description: GVRN spine behavioral contracts shard (12 B_* contracts governing decision rights and accountability)
+
+  behavioral_contracts_arch:
+    type: governance-section
+    resolves_to: docs/plan/pillar-0-governance/behavioral-contracts-ARCH.md
+    spine: ARCH
+    l2_domain: ARCHITECTURE
+    description: ARCH spine behavioral contracts shard (12 B_* contracts governing architecture and implementation gates)
+
+  behavioral_contracts_vald:
+    type: governance-section
+    resolves_to: docs/plan/pillar-0-governance/behavioral-contracts-VALD.md
+    spine: VALD
+    l2_domain: VALIDATION
+    description: VALD spine behavioral contracts shard (10 B_* contracts governing verification and zero-findings discipline)
+
+  behavioral_contracts_oper:
+    type: governance-section
+    resolves_to: docs/plan/pillar-0-governance/behavioral-contracts-OPER.md
+    spine: OPER
+    l2_domain: OPERATIONS
+    description: OPER spine behavioral contracts shard (18 B_* contracts governing operational discipline and execution patterns)
 ```
 
 ---

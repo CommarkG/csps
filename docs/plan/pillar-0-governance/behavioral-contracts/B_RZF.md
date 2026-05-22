@@ -47,3 +47,5 @@
 - T2 (validator): `tools/validators/validate-directive-has-rzf.mjs` — ADVISORY. Scans Opus directives for RZF evidence. Partially covers the contract. Full T2: blocking validator that scans all responses for nominal ZF (Cycle 2 without naming). Planned OPEN-049.
 - T3 (session): `session-open.sh` — "ZF ITERATION AWARENESS" injected every session. "Cycle 2 MUST name what was re-examined."
 - **enforcement_tier:** `{ t1: post-stop-rzf-reminder.sh BLOCKING, t2: validate-directive-has-rzf.mjs ADVISORY, t3: session-open ZF mandate, permanence: high-partial → target: high-full with validate-nominal-rzf.mjs BLOCKING }`
+
+---

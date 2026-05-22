@@ -28,3 +28,5 @@
 
 ---
 - **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-commit git hook via validate-laptop-patterns.mjs (ACTIVE — BLOCKING), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
+
+---

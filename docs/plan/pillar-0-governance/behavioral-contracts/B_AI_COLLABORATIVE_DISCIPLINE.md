@@ -28,3 +28,5 @@
 - validator: validate-proactive-contribution-routing (future — checks contributions go through Threshold)
 - hook: future pre-contribution-classification hook
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

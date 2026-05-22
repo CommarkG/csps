@@ -54,3 +54,5 @@
 
 **Going forward:** every 7 days (or on-demand via `bash .claude/hooks/cron-weekly-tag-status-deep-audit.sh`), AI runs the audit; output structured report at `docs/plan/_handoff/VAULT/tag-status-deep-audit-W<NN>.md`; findings route per severity (RED → next-batch fix; YELLOW → accumulate to monthly review; INFO → log only). Composes with EXT-20260505-001-D 5 CSPS reassessment triggers (weekly-cadence trigger added as 6th CSPS reassessment trigger). Composes with CSP file #3 §5 Trigger 2 (Consolidation Pass at reassessment). Honest disclosure: STUB tier S008; week-4 active enforcement.
 - **enforcement_tier:** `{ tier: T1+T3, T1 hook: pre-tool-use-frontmatter-enum-check.sh (partial — enum enforcement), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
+
+---

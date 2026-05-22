@@ -32,3 +32,29 @@
 - validator (atomic registration): `app-scope-isolation` (impl week-4)
 - principle: P-ARCH-030 in principles.yaml
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---
+id: csps.pillar-0-governance.behavioral-contracts-vald
+name: behavioral-contracts-VALD
+description: "B_* contracts governing verification, validation, and zero-findings discipline"
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: behavioral_contracts_vald
+batch: BATCH-A
+session: S051
+diataxis_type: reference
+links:
+  - { rel: index, href: behavioral-contracts.md }
+consolidation_cross_refs:
+  - docs/plan/pillar-0-governance/behavioral-contracts.md
+---
+
+# Behavioral Contracts — VALD Spine
+
+> **Shard of behavioral-contracts.md.** 10 contracts — VALD spine.
+> Index: [behavioral-contracts.md](behavioral-contracts.md) | Split: `pnpm contracts:split`
+
+---

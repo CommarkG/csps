@@ -22,3 +22,5 @@
 
 **Cross-references:** P-META-020 (intent = the concept; impact = whether behavior honored the concept — B_INTENT_TO_IMPACT IS the intent-to-impact loop at the session level, which P-META-020 operates at the input level via Threshold PREAMBLE) / P-META-014 B_MUTUAL_UNDERSTANDING_VALIDATION (MUV closes the loop at communication boundaries; INTENT_TO_IMPACT closes it at session boundaries — composed, not redundant).
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

@@ -34,3 +34,5 @@
 - **AI deep instruction:** This contract is itself an example of DEFAULT-ME-1: it was declared in S006 as a fully-documented rule. But it has T3-only enforcement. A rule about fixing structures, lacking structural enforcement — the deepest irony in the platform. Adding enforcement_tier to this contract IS the structural fix.
 
 ---
+
+---

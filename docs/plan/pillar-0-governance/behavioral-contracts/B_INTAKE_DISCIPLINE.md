@@ -34,3 +34,5 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - memory: `feedback_intake_discipline.md`
 - contract: this entry + AGENTS.md hard NOs
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

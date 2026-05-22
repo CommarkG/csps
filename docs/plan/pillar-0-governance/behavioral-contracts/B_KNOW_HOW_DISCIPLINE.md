@@ -33,3 +33,5 @@
 - EP-not-extracted (session close without running know-how-extractor.mjs)
 - checklist-skipped (using pre-plan-close.md as decoration, not as blocking gate)
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

@@ -33,3 +33,5 @@ A consequential decision with fewer than 3 layers is a governance gap. Surface i
 
 **governing_intent:** Ensures the Governor’s actual intent (Layer 3) governs platform decisions, not the AI’s interpretation of the first expression (Layer 1) — the platform can only be as good as the quality of what it builds on.
 - **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+
+---

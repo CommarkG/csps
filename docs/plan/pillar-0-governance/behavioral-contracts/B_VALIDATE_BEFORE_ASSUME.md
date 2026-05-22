@@ -35,3 +35,5 @@ Training DEFAULT-ME-3: "T3 session injection = enforcement." The session-open CA
   t3_session: session-open.sh CAP — "every state claim cites tool call IN THIS RESPONSE"
   permanence: low-current → high-target (T1 upgrade in OPEN-045 raises to medium; T2 BLOCKING raises to high)
 ```
+
+---

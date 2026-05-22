@@ -988,6 +988,11 @@ items:
     batch: BATCH-A
     pe_score: 90
     tags: [behavior, hub, ai-behavioral-profile, human-psychology-hub, consolidation, s050]
+    mdpe_dimensions:
+      blast_radius: 0.7
+      future_enablement: 0.85
+      readiness: 0.6
+      simplicity_bonus: 0
     notes: "Universal core fields + two explicit sub-layers. AI/Automation layer: rule-based, instructable (AI Behavioral Profile + external AI profiles + automation entities). Human layer: psychological, emergent, observed (Governor + developers + external users: admins/semi-managers/team-leaders/end-users). Combinatorial Engine consumes from both. MUST keep layers explicitly separated — conflating AI cognition with human cognition is a design anti-pattern."
 
   - id: PRIVATE-BUSINESS-SILOS
@@ -1071,6 +1076,11 @@ items:
       consensus_width: medium
       reversibility: high
       dependency_clarity: medium
+    mdpe_dimensions:
+      blast_radius: 0.8
+      future_enablement: 0.95
+      readiness: 0.3
+      simplicity_bonus: 0
     notes: |
       PREREQUISITE FOR ALL APP BUILDS. The complete flow must pass before any app can be implemented.
       Flow: idea→Threshold→PE-score→7-section-wizard→PMI-gate→fork→validate→build→deploy→activate.
@@ -1092,6 +1102,11 @@ items:
       consensus_width: medium
       reversibility: high
       dependency_clarity: low
+    mdpe_dimensions:
+      blast_radius: 0.9
+      future_enablement: 0.95
+      readiness: 0.5
+      simplicity_bonus: 0
     notes: |
       Design complete (docs/SIA/R1-04-THRESHOLD.md) but ZERO code exists.
       user-prompt-submit-intake.sh is a thin stub, not Threshold.
@@ -1108,6 +1123,11 @@ items:
     batch: BATCH-A
     pe_score: 94
     tags: [pe-engine, intelligence, holistic, s051]
+    mdpe_dimensions:
+      blast_radius: 0.5
+      future_enablement: 0.7
+      readiness: 0.9
+      simplicity_bonus: 1
     notes: |
       The current PE formula (urgency × impact / SPI) scores items in isolation.
       Missing dimensions: blast_radius (how much breaks if wrong), readiness (is it
@@ -1127,6 +1147,11 @@ items:
     batch: BATCH-A
     pe_score: 97
     tags: [documentation, schema, node-architecture, s051, infrastructure-critical]
+    mdpe_dimensions:
+      blast_radius: 0.9
+      future_enablement: 0.9
+      readiness: 0.8
+      simplicity_bonus: 0
     notes: |
       ESCALATED to pe=97 by MDPE analysis. Currently 15% implemented (fields exist,
       mechanical linkage does not). 3 steps to MVP:

@@ -26,12 +26,20 @@ const ROOT = resolve(process.cwd());
 const CONTRACTS_FILE = join(ROOT, 'docs/plan/pillar-0-governance/behavioral-contracts.md');
 const AUDIT_RUNNER  = join(ROOT, 'docs/plan/pillar-0-governance/audit-runner.md');
 
-if (!existsSync(CONTRACTS_FILE)) {
-  console.log('[validate-contract-harmonization] behavioral-contracts.md not found — skip');
+// S052: shard files are the SSoT after S051 sharding — read from shards if present
+const SHARD_FILES_CH = ['GVRN', 'AI', 'ARCH', 'VALD', 'OPER'].map(
+  s => join(ROOT, `docs/plan/pillar-0-governance/behavioral-contracts-${s}.md`)
+).filter(f => existsSync(f));
+
+const contractsText = SHARD_FILES_CH.length > 0
+  ? SHARD_FILES_CH.map(f => readFileSync(f, 'utf8')).join('\n')
+  : (existsSync(CONTRACTS_FILE) ? readFileSync(CONTRACTS_FILE, 'utf8') : '');
+
+if (!contractsText || contractsText.length < 100) {
+  console.log('[validate-contract-harmonization] no contract content found — skip');
   process.exit(0);
 }
 
-const contractsText  = readFileSync(CONTRACTS_FILE, 'utf8');
 const auditRunnerText = existsSync(AUDIT_RUNNER) ? readFileSync(AUDIT_RUNNER, 'utf8') : '';
 
 // ── Parse B_* contract headers ──────────────────────────────────────────────

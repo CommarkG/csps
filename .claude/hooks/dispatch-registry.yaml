@@ -60,3 +60,7 @@ hooks:
   - path: ".claude/hooks/pre-tool-use-sacred-file-guard.sh"
     description: "Sacred file guard — BLOCKING for protection_level:sacred, ADVISORY for protected"
     enforcement: blocking_possible
+
+  - path: ".claude/hooks/pre-tool-use-context-question-gate.sh"
+    description: "documentation-in-schema T1 gate — BLOCKING for new governed .md without context_question"
+    enforcement: blocking_possible

@@ -1,0 +1,26 @@
+---
+id: csps.data.gap-vault
+name: gap-vault
+description: "Append-only vault of identified gaps. Each entry routed per scope-questions.yaml classification. Never delete entries — mark status: resolved when fixed."
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: audit_scheduling
+---
+
+# Gap Vault
+
+> Append-only. Every gap found by validate-declared-never-finished (or manually) is logged here.
+> Routing: CRITICAL=fix now | SIGNIFICANT=fix this/next session | ADVISORY=weekly | COSMETIC=daily
+
+entries:
+  - id: gap_2026-05-22-16-04-12_corespine-hub-depth-markers
+    source: validate-declared-never-finished
+    finding: "week-4 stub never shipped: corespine-hub-depth-markers"
+    classification: ADVISORY
+    scope_routing: "S1-next-gate S2-weekly S3-within-3-sessions"
+    session_discovered: S051
+    status: open
+    session_target: S053

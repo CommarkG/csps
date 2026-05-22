@@ -613,6 +613,15 @@ const CYCLES = [
     },
   },
   {
+    // S051: gap-routing — classifies and vaults findings from declared-never-finished (ADVISORY)
+    name: 'gap_routing',
+    command: 'node tools/validators/validate-gap-routing.mjs',
+    parse_output: (out) => {
+      const m = out.match(/findings=(\d+)\s+significant=(\d+)\s+advisory=(\d+)\s+vaulted=(\d+)/);
+      return m ? { findings: Number(m[1]), significant: Number(m[2]), advisory: Number(m[3]), vaulted: Number(m[4]) } : {};
+    },
+  },
+  {
     // Implements Governor directive: "mechanical enforcement every several turns when mature enough"
     name: 'session_harvest_readiness',
     command: 'node tools/validators/validate-session-harvest-readiness.mjs',

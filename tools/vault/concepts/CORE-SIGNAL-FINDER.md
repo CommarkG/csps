@@ -23,9 +23,9 @@ context_quote: "The moat is not the fix. The moat is extracting the principle th
 
 # Core Signal Finder
 
-## Proposed Name for Governor Ratification
-Options: "Core Signal Finder" | "Core Ascent Finder" | "Principle Distiller" | "Essence Navigator"
-[Governor names — this file uses "Core Signal Finder" as working title]
+## Name Ratified
+
+Name ratified: **Core Signal Finder** (S052, OPUS-7 Turn 4)
 
 ## What It Is
 
@@ -86,4 +86,4 @@ This builds the signal registry over time, enabling automation later.
 
 ---
 
-*Core Signal Finder | Vault concept | S051 | Name pending Governor ratification*
+*Core Signal Finder | Vault concept | S051-S052 | Name ratified OPUS-7 Turn 4*

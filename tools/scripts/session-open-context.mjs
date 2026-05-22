@@ -392,6 +392,7 @@ const context = [
   '  validate-open-plan-levels.mjs       — open items surfaced (obligations)',
   '  validate-vlt-blocking.mjs           — PENDING VLTs warn at every verify',
   '  validate-phase-exit-criteria.mjs    — FOUNDATION_EXIT_GATE',
+  '  [docs-in-schema T1 active] New governed .md in docs/tools/vault/ require context_question: — pre-tool-use-context-question-gate.sh BLOCKS if missing',
   '',
   'FORMATTING (EP-ERR-007):',
   '  EVERY file path in chat output = clickable markdown link: [name](path)',

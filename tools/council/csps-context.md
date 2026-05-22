@@ -397,7 +397,9 @@ Validator: `validate-invariant-coverage.mjs` → `complete=4 partial=1`
 
 Secondary: PLAN_READINESS_GATE seed deprecation, OPEN-029 (EXT-KNOW), OPEN-062 (Rule 13 T1)
 
-S050/S051 mandate: behavioral-contracts shard (57K/60K tokens — shard plan ready) + APP-001 fork + E1 build (PMI=5/5, fork authorized) + 24 exempt contracts need activation by S052-S053. See HANDOFF-S050-to-S051.md.
+S053 mandate: VOCABULARY-SERVICE Phase 1 YAML + THRESHOLD-CODE (code) + 9 orphan contracts activation (target S054). See HANDOFF-S052-to-S053.md.
+
+S052 accomplished: MDPE formula live in PE dashboard. context-question T1+T2+T3. INFRA-FLOW-VALIDATION 9-step spec. THRESHOLD design complete. BEHAVIOR-HUB schema ratified (two-layer, first-visit, YAML→ZModel). 7/7 mandate items. B_VALIDATE_BEFORE_ASSUME consolidated (63 contracts). 9 orphans in gap-vault.
 
 S050 accomplished: SIA architecture (19 design docs) + Next.js playground scaffold + activated quality_state lifecycle + validate-activation-coverage BLOCKING (24 legacy exempt) + APP-001 Section 5 ratified (PMI=5/5) + vault harvest 21 items. Last commit: ad7a9f6.
 

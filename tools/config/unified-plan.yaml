@@ -985,6 +985,7 @@ items:
     epoch: E1
     category: architecture
     owner: opus
+    design_status: design_complete
     batch: BATCH-A
     pe_score: 90
     tags: [behavior, hub, ai-behavioral-profile, human-psychology-hub, consolidation, s050]
@@ -993,7 +994,7 @@ items:
       future_enablement: 0.85
       readiness: 0.6
       simplicity_bonus: 0
-    notes: "Universal core fields + two explicit sub-layers. AI/Automation layer: rule-based, instructable (AI Behavioral Profile + external AI profiles + automation entities). Human layer: psychological, emergent, observed (Governor + developers + external users: admins/semi-managers/team-leaders/end-users). Combinatorial Engine consumes from both. MUST keep layers explicitly separated — conflating AI cognition with human cognition is a design anti-pattern."
+    notes: "Schema at docs/SIA/PROFILING-HUB-SCHEMA.md. Phase 1 builds S053 (@csps/vocabulary-service YAML). Three ratified decisions: YAML→ZModel, two-layer vocabulary, first-visit profile creation. Phase 3 (AIDefaultOverride, CE) BLOCKED until ZModel promotion complete."
 
   - id: PRIVATE-BUSINESS-SILOS
     title: "Private/Business Data Silo Architecture — encrypted separation of personal vs business logic"
@@ -1082,10 +1083,8 @@ items:
       readiness: 0.3
       simplicity_bonus: 0
     notes: |
-      PREREQUISITE FOR ALL APP BUILDS. The complete flow must pass before any app can be implemented.
-      Flow: idea→Threshold→PE-score→7-section-wizard→PMI-gate→fork→validate→build→deploy→activate.
-      Current blockers: Threshold code (THRESHOLD-CODE), 7-section wizard UI, evidence-capture per PMI,
-      end-to-end test harness. See THRESHOLD-CODE for the first dependency. pe_score=98 = highest in plan.
+      Spec at docs/SIA/INFRA-FLOW-VALIDATION.md. 9-step flow: 4 ACTIVE / 3 PARTIAL / 2 NOT BUILT.
+      NOT BUILT: Threshold intake (Step 1) + Evidence Capture (Step 9). pe_score=98 = highest in plan.
 
   - id: THRESHOLD-CODE
     title: "Threshold — code implementation of the intake + routing system"
@@ -1108,11 +1107,8 @@ items:
       readiness: 0.5
       simplicity_bonus: 0
     notes: |
-      Design complete (docs/SIA/R1-04-THRESHOLD.md) but ZERO code exists.
-      user-prompt-submit-intake.sh is a thin stub, not Threshold.
-      Must be built before INFRA-FLOW-VALIDATION can pass.
-      Depends on: BEHAVIOR-HUB schema (routing rules), STT correction layer, ingestion schema.
-      First dependency for APP-001 E1 restart.
+      Design complete at docs/SIA/R1-04-THRESHOLD.md (status=complete, all sections filled S052).
+      Code = S053. user-prompt-submit-intake.sh is a thin stub. Must be built before INFRA-FLOW-VALIDATION passes.
 
   - id: MDPE-UPGRADE
     title: "Multi-Dimensional Priority Engine — blast_radius + readiness + future_enablement + simplicity_bonus"
@@ -1154,12 +1150,31 @@ items:
       future_enablement: 0.9
       readiness: 0.8
       simplicity_bonus: 0
-    notes: |
-      ESCALATED to pe=97 by MDPE analysis. Currently 15% implemented (fields exist,
-      mechanical linkage does not). 3 steps to MVP:
-      1. T1 hook: new governance file without context_question → advisory warning
-      2. T2 validator: validate-context-question-coverage.mjs (ADVISORY, not BLOCKING yet)
-      3. Creation wizard update: require context_question for new governance artifacts
-      Future enablement: unlocks AI alignment that persists, searchable governance,
-      automated context carriers. Blast radius: HIGH (60+ existing docs need retrofitting).
-      Readiness: HIGH (design in docs/SIA/R1-01-NODE-SCHEMA.md, pattern in vault files).
+    notes: "T1+T2+T3 done (S052). T1: context-question-gate BLOCKS new governed .md without context_question. T2: validate-context-question-coverage ADVISORY (12% coverage, 52/428 files). T3: session-open line added. Coverage baseline: 12%. Backfill = ongoing."
+
+  - id: VOCABULARY-SERVICE
+    title: "@csps/vocabulary-service — libs/ package for two-layer vocabulary"
+    status: planning
+    epoch: E1
+    category: architecture
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 89
+    tags: [vocabulary, behavior-hub, libs, two-layer, s052]
+    mdpe_dimensions:
+      blast_radius: 0.8
+      future_enablement: 0.9
+      readiness: 0.7
+      simplicity_bonus: 0
+    notes: "Build UserVocabulary + AppVocabulary YAML Phase 1 per PROFILING-HUB-SCHEMA.md Decision 2. Lives in libs/ — imported by all CSPS apps, never reimplemented per-app. session_target: S053."
+
+  - id: BEHAVIOR-HUB-ZMODEL-PROMOTION
+    title: "BehaviorProfile YAML → ZModel promotion gate"
+    status: planning
+    epoch: E1
+    category: architecture
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 85
+    tags: [behavior-hub, zmodel, promotion-gate, s052]
+    notes: "Promote Phase 1 YAML BehaviorProfile to ZenStack ZModel. BLOCKS Phase 3 (AIDefaultOverride, CE). Must be a plan item before any Phase 3 work begins. session_target: S053-phase2."

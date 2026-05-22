@@ -604,6 +604,15 @@ const CYCLES = [
   },
   {
     // NEW S021 CEC — session-harvest-readiness: fires ADVISORY when session work volume is significant
+    // S051: declared-never-finished scanner — finds 'Build ACTIVE' slugs with no file + week-4 stubs (ADVISORY)
+    name: 'declared_never_finished',
+    command: 'node tools/validators/validate-declared-never-finished.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+significant=(\d+)\s+advisory_week4=(\d+)/);
+      return m ? { checked: Number(m[1]), significant: Number(m[2]), week4_stubs: Number(m[3]) } : {};
+    },
+  },
+  {
     // Implements Governor directive: "mechanical enforcement every several turns when mature enough"
     name: 'session_harvest_readiness',
     command: 'node tools/validators/validate-session-harvest-readiness.mjs',

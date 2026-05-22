@@ -1,0 +1,220 @@
+---
+id: csps.config.scope-questions
+name: scope-questions
+description: "Canonical 3-scope question sets that fire whenever a gap is identified. These questions ARE the mechanism for structured gap analysis. Not optional — they replace ad-hoc intuition with systematic coverage. Aligned with core-scopes.md (S1/S2/S3 framework) + CAQ framework (Rule 15) + AP-001 (EXISTS≠ACTIVE)."
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: governance_questions
+batch: BATCH-D
+session: S051
+---
+
+# Scope Questions — Canonical 3-Scope Framework
+
+## What these are
+
+When a gap is identified (something declared but not done, something wired but not firing,
+something counted but not verified), these questions provide the structured analysis.
+
+The 3 scopes are defined in `docs/plan/pillar-0-governance/core-scopes.md`:
+- **S1 (Local)**: Fix THIS instance
+- **S2 (Ripple)**: Find everything else affected by this class
+- **S3 (Prevention)**: Make this class structurally impossible to recur
+
+---
+
+## Scope 1 Questions — "What exactly is broken right now?"
+
+*These 5 questions must be answered BEFORE any fix is applied.*
+*Purpose: prevent fixing the wrong thing, prevent fixing based on assumptions.*
+
+```yaml
+scope_1_questions:
+  Q1_precise_gap: "What EXACTLY is missing or wrong? (one sentence, no paraphrase)"
+  Q2_what_was_declared: "What did the platform say was done? (cite: commit SHA / doc line / plan item)"
+  Q3_what_actually_exists: "What actually exists right now? (verified by running it this session, not memory)"
+  Q4_minimal_fix: "What is the minimal change that closes THIS instance without touching anything else?"
+  Q5_immediate_risk: "If I fix this now, does anything currently DEPENDING on it break?"
+```
+
+*Example for 'week-4 audits never implemented':*
+```
+Q1: validate-activation-coverage.mjs was advisory (exit 0) even for unactivated contracts
+Q2: audit-runner.md line 405 said 'Build ACTIVE (validate-activation-coverage.mjs in pnpm verify)'
+Q3: validator existed but always exited 0 — effectively a no-op for unactivated contracts
+Q4: Change exit code to 1 for non-exempt unactivated contracts + create exempt list
+Q5: Yes — 24 contracts had 0 activation → would break build. Added exempt list (see PROTO-S051-3).
+```
+
+---
+
+## Scope 2 Questions — "What else is affected by this class of gap?"
+
+*These 5 questions must be answered WITHIN THE SAME SESSION as the S1 fix.*
+*Purpose: prevent closing the visible instance while leaving hidden instances open.*
+
+```yaml
+scope_2_questions:
+  Q1_what_depends_on_this: "What else in the platform ASSUMES this was working correctly?"
+  Q2_who_else_hits_this: "Which roles / sessions / apps / tools could encounter this same gap?"
+  Q3_instance_or_class: "Is this K=1 (one-off) or K≥2 (recurring pattern requiring structural fix)?"
+  Q4_co_declared_items: "What else was declared in the same timeframe / same session / same commit?"
+  Q5_downstream_artifacts: "What was built ON TOP OF the false assumption? What inherits the gap?"
+```
+
+*Example for 'week-4 audits never implemented':*
+```
+Q1: Any session that relied on 'validation passes' was relying on advisory (not blocking) checks
+Q2: All sessions since S007 that added week-4 validators — all auditors, all builders
+Q3: K≥2 pattern — 'week-4' appears 50+ times in audit-runner.md (structural)
+Q4: All items tagged 'week-4' in the same period — many never promoted
+Q5: Session close gates that counted 'validators=140' as proof of health — proxy for false completeness
+```
+
+---
+
+## Scope 3 Questions — "What makes this structurally impossible to happen again?"
+
+*These 5 questions produce the PERMANENT prevention artifacts.*
+*Purpose: not 'personal vigilance' — mechanical impossibility.*
+
+```yaml
+scope_3_questions:
+  Q1_training_default: "What AI/human default ENABLED this to happen? (name it explicitly)"
+  Q2_satisfaction_point: "What incorrect 'done feeling' was hit prematurely? (the moment it felt complete but wasn't)"
+  Q3_t1_hook: "What T1 hook would catch this BEFORE it enters git? (exits 1 on violation)"
+  Q4_t2_validator: "What T2 validator would BLOCK this from passing pnpm verify?"
+  Q5_t3_injection: "What T3 session-open injection would remind the AI to verify this class?"
+  Q6_anti_pattern: "Does this match an existing AP-* or needs a new one? Name it and the class."
+```
+
+*Example for 'week-4 audits never implemented':*
+```
+Q1: AI default: 'writing week-4 in a doc = scheduling it.' No tracking that week-4 passed.
+Q2: 'I registered the slug. It says Build ACTIVE. That's the audit done.' (documentation = implementation)
+Q3: pre-commit-week4-staleness.sh — blocks commits that reference week-4 items older than 5 sessions
+Q4: validate-week4-staleness.mjs — checks audit-runner.md 'week-4' items against session count
+Q5: 'Any validator marked week-4 that is still marked week-4 after 3 sessions = STUB. Treat as stub.'
+Q6: AP-001 (EXISTS≠ACTIVE) covers this class. Subsection: 'declared-implementation date passing without shipment'
+```
+
+---
+
+## Gap Classification Matrix
+
+When a gap is found, classify it BEFORE routing:
+
+```yaml
+gap_classification:
+  CRITICAL:
+    definition: "Platform is currently broken or producing false outputs"
+    examples: ["exit_code lies about validity", "blocking validator not actually blocking", "security header missing in production"]
+    routing: "Fix S1 NOW this turn. S2 this session. S3 this session or next."
+    delay_tolerated: none
+
+  SIGNIFICANT:
+    definition: "Something is built on a false assumption; future work will compound the error"
+    examples: ["week-4 audit never shipped but others depend on it", "plan item marked done but key file missing"]
+    routing: "Vault immediately. S1 at next natural gate. S2 this session or next. S3 within 2 sessions."
+    delay_tolerated: "1-2 sessions maximum"
+
+  ADVISORY:
+    definition: "Deviation from plan that doesn't affect current correctness"
+    examples: ["count says 5 but should say 6", "slug in audit-runner but no validator file yet"]
+    routing: "Vault. Add to daily audit queue. S1 at next session. S2 weekly. S3 when K=2 fires."
+    delay_tolerated: "3-7 sessions"
+
+  COSMETIC:
+    definition: "Label drift, count mismatch, naming inconsistency"
+    examples: ["'5 operating principles' in old doc", "BATCH-G instead of BATCH-H in a tag"]
+    routing: "Fix inline if 2 lines or less. Otherwise vault. No S2/S3 needed unless K=2 fires."
+    delay_tolerated: "No urgency"
+```
+
+---
+
+## Prevention Routing Engine
+
+When a gap is found, this is the decision sequence:
+
+```
+FOUND GAP
+    ↓
+1. Classify: CRITICAL / SIGNIFICANT / ADVISORY / COSMETIC
+    ↓
+2. S1 now? → CRITICAL: yes immediately | SIGNIFICANT: next gate | ADVISORY: vault | COSMETIC: inline if tiny
+    ↓
+3. S2 when? → CRITICAL: this session | SIGNIFICANT: this/next session | ADVISORY: weekly | COSMETIC: if K=2
+    ↓
+4. S3 when? → CRITICAL: this session | SIGNIFICANT: next session | ADVISORY: 2-3 sessions | COSMETIC: skip
+    ↓
+5. K-check: Is this K=1 or K≥2?
+   K=1: proceed as classified
+   K≥2: PROMOTE to SIGNIFICANT minimum, register anti-pattern, trigger S3 immediately
+    ↓
+6. Route output:
+   - CRITICAL fix: commit + push + update this session
+   - Vault: tools/data/gap-vault.yaml + note in session-working-doc
+   - Daily queue: audit-scheduling.yaml pipeline_13 (threshold-gate) or custom daily slot
+   - Weekly queue: audit-scheduling.yaml pipeline_6/7/8
+   - S3 artifact: anti-patterns.md entry + T1/T2/T3 enforcement map
+```
+
+---
+
+## Integration Points (WHERE these questions live in CSPS)
+
+```yaml
+integration_points:
+  - surface: "CAQ framework (Rule 15)"
+    location: "tools/config/caq-patterns.yaml"
+    how: "2+ diagnostic questions in a Governor message → CAQ MODE fires → run S3 questions automatically"
+
+  - surface: "Learning loop (P-META-005)"
+    location: "docs/plan/pillar-0-governance/audit-hub.md Pipeline 7"
+    how: "Every session close: S1 questions applied to new gaps, S3 applied to K=2 patterns"
+
+  - surface: "Engraving discipline (B_FIVE_SURFACE_ENGRAVING)"
+    location: "docs/plan/pillar-0-governance/behavioral-contracts-VALD.md"
+    how: "S3 questions ARE the 5-surface engraving protocol (T1/T2/T3/memory/contract)"
+
+  - surface: "AP-001 (EXISTS≠ACTIVE)"
+    location: "docs/plan/pillar-0-governance/anti-patterns.md"
+    how: "S3 Q2 (satisfaction point) = the EXISTS feeling. S3 Q3+Q4 = the ACTIVE mechanism."
+
+  - surface: "Platform questions hub"
+    location: "apps/csps-playground/platform/questions/"
+    how: "3-scope questions = governance artifacts; queryable via CAQ Hub tab"
+
+  - surface: "Session working document"
+    location: "tools/council/session-working-doc.md"
+    how: "Every task in the queue gets scope classification + S1/S2/S3 routing applied"
+
+  - surface: "Audit-scheduling.yaml"
+    location: "tools/config/audit-scheduling.yaml"
+    how: "S2 triggers weekly audit cadence. S3 triggers on-ratification slot."
+```
+
+---
+
+## The Quotes Dimension
+
+> "You don't have to create from scratch. You have to create with the wisdom of what came before."
+
+Every S3 question should be accompanied by the relevant platform quote or famous insight
+that makes the PRINCIPLE memorable. The core-quotes library (Task #7 in session-working-doc)
+feeds into this: each scope question maps to a guiding quote.
+
+Example:
+- S3 Q1 (training default): *"We cannot solve our problems with the same thinking we used when we created them." — Einstein*
+- S3 Q2 (satisfaction point): *"The most dangerous phrase in the language is 'we've always done it this way.'" — Grace Hopper*
+- S3 Q3 (T1 hook): *"Automation is the next necessary step after consistency." — Adapted from Drucker*
+
+---
+
+## @core-seed: SCOPE_QUESTIONS_ENGINE | plan: scope-questions (tools/config/scope-questions.yaml) | grows-to: AI-assisted gap classifier that reads this file + auto-applies questions + routes to correct cadence | target: S052
+## planted_by: S051
+## pmi_gate: AUDIT_HUB_PIPELINE_1

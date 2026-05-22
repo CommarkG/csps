@@ -37,6 +37,9 @@ session: S051
 | 5b034ea | Apps marked as input-specimens, APP-001 paused |
 | 6164e47 | PROTO registry created |
 | 4c4793b | MDPE plan item + documentation-in-schema pe=97 |
+| 7abd210 | HANDOFF created + MDPE formula vault + completion tracker design |
+| e100ef8 | **4 vault entries (B_TAB_TRANSITION_PROTOCOL, B_AI_BEHAVIOR_IN_PLANS, B_FALSE_ASSUMPTION_CHECK, B_SIMULATION_COMPARISON)** + HANDOFF section fix |
+| a6ff5f4 | Core Signal Finder vault + PROTO-S052-A saved as file |
 
 ### Critical Decisions Made in S051
 
@@ -54,15 +57,31 @@ session: S051
 
 7. **Gap-routing automated:** validate-gap-routing.mjs builds on validate-declared-never-finished. Findings classified S1/S2/S3 and routed to gap-vault.yaml. ACTIVE gap (corespine-hub-depth-markers) registered as S052 plan item.
 
-### Current AI Conception Vault (8 entries, all T3 only)
-- B_ARCHITECTURE_REDIRECT_AWARENESS
-- B_ZF_TERMINATION_DISCIPLINE
-- B_IDENTITY_BEFORE_CONTEXT
-- B_HUMBLE_FIRST_STEP
-- B_VERIFY_UNCLEAR_INPUT
-- B_POLARITY_AS_COMPLEMENT
-- B_VAULT_FIRST_ATTITUDE
-- B_PE_GATEKEEPER_MANDATE
+8. **Tab transition protocol (B_TAB_TRANSITION_PROTOCOL):** Opus closes first (most degraded). Sonnet continues mid-PROTO. New Opus opens with HANDOFF + Sonnet completion report.
+
+9. **AI behavior in plans (B_AI_BEHAVIOR_IN_PLANS):** Every plan ratification requires `ai_behavior_analysis:` section — defaults, triggers, satisfaction points, instruction guidance.
+
+10. **False assumption check (B_FALSE_ASSUMPTION_CHECK):** 4-category audit before any cross-boundary communication. Applies to ALL instructions, protocols, wizards, communications.
+
+11. **Simulation comparison (B_SIMULATION_COMPARISON):** Every improvement requires BEFORE/AFTER/DELTA. Makes improvements concrete, evaluable, permanent.
+
+12. **Core Signal Finder:** Expert agent that extracts universal principles from specific improvements. Goes over session → finds essence → checks if already in CSPS → proposes or escalates. Name pending Governor ratification. Vault: tools/vault/concepts/CORE-SIGNAL-FINDER.md
+
+13. **PROTO-S052-A saved as file:** docs/plan/protos/PROTO-S052-A.md — enhanced completion tracker + context_question validator + creation wizard update. Sonnet is executing this now.
+
+### Current AI Conception Vault (12 entries, all T3 only)
+- B_ARCHITECTURE_REDIRECT_AWARENESS (entry 1)
+- B_ZF_TERMINATION_DISCIPLINE (entry 2)
+- B_IDENTITY_BEFORE_CONTEXT (entry 3)
+- B_HUMBLE_FIRST_STEP (entry 4)
+- B_VERIFY_UNCLEAR_INPUT (entry 5)
+- B_POLARITY_AS_COMPLEMENT (entry 6)
+- B_VAULT_FIRST_ATTITUDE (entry 7)
+- B_PE_GATEKEEPER_MANDATE (entry 8)
+- **B_TAB_TRANSITION_PROTOCOL (entry 9) — NEW in S051**
+- **B_AI_BEHAVIOR_IN_PLANS (entry 10) — NEW in S051**
+- **B_FALSE_ASSUMPTION_CHECK (entry 11) — NEW in S051**
+- **B_SIMULATION_COMPARISON (entry 12) — NEW in S051**
 
 ---
 

@@ -19,6 +19,8 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.symlinks = false
     config.resolve.preferRelative = true
+    // AP-005: deduplicate React across pnpm workspace
+    config.resolve.dedupe = ['react', 'react-dom', 'react/jsx-runtime']
     config.ignoreWarnings = [
       { module: /node_modules\/@zenstackhq\/runtime\/enhance\.js/ },
     ]

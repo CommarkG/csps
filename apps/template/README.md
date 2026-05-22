@@ -53,6 +53,13 @@ pnpm dev
    `pnpm verify` (61 validators) + `node tools/zf-orchestrator.mjs --level 3`
    Both must pass. Create session extraction note.
 
+6. **Fork build gate (AP-005)**: Immediately after forking this template, run:
+   `pnpm --filter @csps/[app-name] build`
+   If `/_error: /404` or `/_error: /500` fail with a styled-jsx or React context error:
+   - Confirm `next.config.js` has `config.resolve.dedupe = ['react', 'react-dom', 'react/jsx-runtime']` (already in this template)
+   - Confirm `src/pages/_error.tsx` exists (already in this template)
+   Both are pre-included in this template. If missing, copy from `apps/template/`.
+
 ## solo_user_flow policy (declare in webhook route)
 
 Every CSPS app must declare its solo user flow:

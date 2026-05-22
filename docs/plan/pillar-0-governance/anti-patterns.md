@@ -163,6 +163,55 @@ The MODEL IDENTITY CHECK (session-open.sh) makes the active model visible at ses
 
 **Related:** AP-001 (EXISTS≠ACTIVE), B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS, CAQ Framework (Rule 15)
 
+---
+
+## AP-005 — PNPM WORKSPACE REACT INSTANCE SPLIT (App Fork Build Failure)
+
+**Name:** The Duplicate React — pnpm workspace creates split React instances that break built-in error pages
+**First observed:** S051 — APP-001 fork from apps/template/, `pnpm --filter @csps/voice-sorting build`
+**Scope:** S3 (Scope-3: structural prevention required — every future app fork will hit this)
+
+**What happened:** `cp -r apps/template apps/voice-sorting` + `pnpm --filter @csps/voice-sorting install` created an app with its own `node_modules`. The app-local `react-dom` resolved from a different path than `styled-jsx` (used by Next.js built-in `/_error` pages). `styled-jsx`'s `StyleRegistry` called `React.useContext()` but the React instance was different from `react-dom`'s — causing a stack overflow during static page generation of `/_error: /404` and `/_error: /500`.
+
+**The failure pattern:**
+```
+Build passes for all app pages
+Build fails only on: /_error: /404 | /_error: /500
+Error: StyleRegistry useContext / react-dom stack
+Root cause: app node_modules/react-dom ≠ workspace styled-jsx's React
+```
+
+**Class of failures this covers:**
+- Any pnpm workspace app fork that runs `pnpm --filter @csps/[app] install` separately
+- Any app that has its own `node_modules` with React-dependent packages that pull from the workspace root
+- Next.js built-in pages that use styled-jsx (error pages, not custom app pages)
+
+**Training default being overridden:** "Copy template, install, build — done." AI doesn't check for multi-instance React in a pnpm workspace. The symptom (specific pages failing) looks unrelated to the root cause (module resolution).
+
+**Satisfaction point being prevented:** "Build passes for my pages, therefore the app builds." Wrong — built-in Next.js pages also build, and they fail first.
+
+**The fix (two layers, both required):**
+
+Layer 1 — webpack dedupe (root cause fix, applied to TEMPLATE):
+```javascript
+webpack: (config) => {
+  config.resolve.dedupe = ['react', 'react-dom', 'react/jsx-runtime']
+  // ...
+}
+```
+This forces webpack to use a single React instance across all modules.
+
+Layer 2 — custom `pages/_error.tsx` (defense-in-depth, also in TEMPLATE):
+Even with dedupe, provide a custom error page with no styled-jsx dependency.
+Simple component with inline styles, `getInitialProps` for status code.
+
+**Prevention (T1+T2+T3):**
+- T1 (immediate): `apps/template/next.config.js` has `resolve.dedupe` + `apps/template/src/pages/_error.tsx` — every fork inherits both fixes automatically
+- T2 (future): `validate-app-build-compat.mjs` — checks that forked apps have both dedupe in webpack config AND `pages/_error.tsx`. BLOCKING at `pnpm verify`.
+- T3: This AP-005 entry + template README "5 Critical Patterns" — "Always run `pnpm --filter @csps/[app] build` immediately after fork. If `/_error` pages fail, you're missing `pages/_error.tsx` or `resolve.dedupe`."
+
+**Related:** AP-002 (template-to-app inheritance), B_APPS_ARE_TRIALS (template is permanent, apps are ephemeral → fix in template, not in each app)
+
 <!-- @core-seed: BEHAVIOR_PATTERN_REGISTER | plan: anti-patterns (docs/plan/pillar-0-governance/anti-patterns.md) | grows-to: formal register of AI behavior patterns with triggers + satisfaction points (currently in discipline matrix — needs dedicated register format) | target: S052 -->
 <!-- planted_by: S047 -->
 <!-- pmi_gate: DOG-FOOD-AUDIT -->

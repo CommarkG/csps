@@ -1,0 +1,275 @@
+---
+id: csps.config.audit-scheduling
+name: audit-scheduling
+description: "Canonical scheduling registry for all CSPS audit pipelines. Each pipeline has a default_cadence (changeable by Governor/admin) and supported_cadences. This is the machine-readable source of truth for when audits run. Replaces the prose triggers in audit-hub.md."
+version: 1.0
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: audit_scheduling
+batch: BATCH-D
+session: S051
+---
+
+# Audit Scheduling Registry
+
+## Scheduling Type Taxonomy
+
+All available cadence values across CSPS. Use these values in pipeline definitions below.
+
+### Time-Based Cadences
+```
+real-time          — on every event (hooks, immediate)
+per-turn           — every AI turn
+per-session-open   — at session start
+per-session-close  — at session close (mandatory gate)
+daily              — once per day (nightly cron, ~2am UTC)
+weekly             — once per week (Monday digest)
+monthly            — first day of month
+quarterly          — every quarter (Jan/Apr/Jul/Oct)
+annually           — once per year
+```
+
+### Event-Based Cadences
+```
+on-pr-open         — when PR is created
+on-pr-merge        — when PR is merged to main
+on-pr-review       — when PR receives a review
+on-ratification    — when an artifact reaches ratified/done state
+on-lifecycle-change — when lifecycle_state changes on any artifact
+on-file-change     — when specific file patterns change (configurable glob)
+on-model-update    — when AI model version changes (new major version)
+on-deploy          — when a new deployment is pushed to Vercel
+on-schema-change   — when ZModel or Prisma schema is modified
+```
+
+### Condition-Based Cadences
+```
+k-equals-2         — when the same pattern fires twice (K=2 promotion)
+on-session-count:N — every N sessions (configurable integer N)
+on-n-uses:N        — after N uses of a specific feature
+on-activation-exit — when activation_exit conditions are met
+on-evaluation-pass — when an evaluation baseline passes
+on-threshold-cross — when a metric crosses a defined threshold
+```
+
+### Manual Cadences
+```
+on-demand          — manual trigger only: pnpm audit:run --pipeline <name>
+governor-explicit  — requires Governor to explicitly invoke (highest-stakes audits)
+never              — registered but permanently deferred (with documented reason)
+```
+
+---
+
+## Pipeline Scheduling Defaults
+
+> **To change a default:** edit the `default_cadence` field below.
+> **Authorization:** Governor or admin.
+> **Effect:** takes effect on next audit run cycle.
+> **`supported_cadences`:** all valid cadences for that pipeline. Other values rejected.
+
+pipelines:
+
+  pipeline_1_pre_close_verification:
+    name: "Pre-Close Verification"
+    spine: GVRN
+    principle: P-META-008
+    contract: B_PRE_CLOSE_VERIFICATION
+    implementation_status: LIVE
+    default_cadence: per-session-close
+    supported_cadences: [per-session-close, on-demand]
+    override_notes: "This pipeline is MANDATORY at session close. Changing to on-demand removes the mechanical gate. Governor-explicit override required."
+    orchestrator: tools/verify.mjs
+    findings_persist: true
+    findings_path: tools/verify-last-run.md
+
+  pipeline_2_agent_alignment:
+    name: "Agent Alignment"
+    spine: AI
+    principle: P-META-010
+    contract: B_AGENT_ALIGNMENT_PROTOCOL
+    implementation_status: PARTIAL (validate-aap-frontmatter.mjs LIVE; others stub)
+    default_cadence: on-pr-open
+    supported_cadences: [on-pr-open, on-pr-merge, per-session-close, on-demand]
+    override_notes: "Weekly cadence is safe; per-session adds coverage but slows close."
+    findings_persist: false
+    findings_path: null
+
+  pipeline_3_cognitive_context:
+    name: "Cognitive Context Discipline"
+    spine: AI
+    principle: P-META-009
+    contract: B_COGNITIVE_CONTEXT_DISCIPLINE
+    implementation_status: STUB (most validators not yet built)
+    default_cadence: per-session-close
+    supported_cadences: [per-session-close, weekly, on-demand]
+    override_notes: "Daily would be excessive; per-session sufficient for current scope."
+    findings_persist: false
+    findings_path: null
+
+  pipeline_4_zero_findings:
+    name: "Zero Findings Cycle"
+    spine: VALD
+    principle: P-META-006
+    contract: B_RZF
+    implementation_status: PARTIAL (rzf-coverage, nominal-rzf-detection LIVE)
+    default_cadence: on-ratification
+    supported_cadences: [on-ratification, on-lifecycle-change, per-session-close, on-demand]
+    override_notes: "Must fire on every ratification. Removing per-session-close weakens ZF."
+    findings_persist: true
+    findings_path: tools/zf-session-tracker.json
+
+  pipeline_5_engraving_completeness:
+    name: "Engraving Completeness"
+    spine: VALD
+    principle: P-META-007
+    contract: B_FIVE_SURFACE_ENGRAVING
+    implementation_status: PARTIAL (validate-catch-completeness.mjs LIVE)
+    default_cadence: on-pr-open
+    supported_cadences: [on-pr-open, per-session-close, on-demand]
+    override_notes: "PR is the natural gate for new B_* / P-META-* introduction."
+    findings_persist: false
+    findings_path: null
+
+  pipeline_6_schema_integrity:
+    name: "Schema Integrity"
+    spine: ARCH
+    principle: P-ARCH-001
+    contract: null
+    implementation_status: PARTIAL (validate-schema-anchors.mjs, validate-frontmatter.mjs LIVE)
+    default_cadence: on-pr-open
+    supported_cadences: [on-pr-open, daily, weekly, on-demand]
+    override_notes: "Nightly run catches drift from non-PR changes (direct commits, tooling)."
+    cadence_recommendation: "Upgrade to daily when CI/CD pipeline is wired."
+    findings_persist: false
+    findings_path: null
+
+  pipeline_7_intake_and_learning:
+    name: "Intake and Learning"
+    spine: AI
+    principle: P-META-005
+    contract: B_INTAKE_DISCIPLINE
+    implementation_status: STUB (most validators not yet built)
+    default_cadence: per-session-close
+    supported_cadences: [per-session-close, weekly, on-demand]
+    override_notes: "Weekly digest is the natural cadence for learning loop review."
+    cadence_recommendation: "Add weekly tag-status-deep-audit when CI is wired."
+    findings_persist: false
+    findings_path: null
+
+  pipeline_8_complexity_hotspots:
+    name: "Complexity and Hotspots"
+    spine: ARCH
+    principle: P-ARCH-018
+    contract: null
+    implementation_status: PARTIAL (validate-file-complexity.mjs LIVE)
+    default_cadence: weekly
+    supported_cadences: [weekly, on-pr-open, on-demand]
+    override_notes: "Weekly is appropriate; daily would create too much noise."
+    findings_persist: false
+    findings_path: null
+
+  pipeline_9_runtime_health:
+    name: "Runtime Health"
+    spine: OPER
+    principle: null
+    contract: null
+    implementation_status: STUB (no runtime yet — week-4+ when first app ships)
+    default_cadence: daily
+    supported_cadences: [real-time, daily, on-demand, never]
+    override_notes: "Set to 'never' until first app ships to production. Change to 'daily' at E1 launch."
+    current_override: never
+    override_reason: "No production runtime yet. APP-001 E1 build in progress."
+    findings_persist: false
+    findings_path: null
+
+  pipeline_10_csps_alignment:
+    name: "CSPS Alignment Over Inner Defaults"
+    spine: AI
+    principle: P-META-017
+    contract: B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS
+    implementation_status: STUB (all 34 audits deferred week-4)
+    default_cadence: per-session-close
+    supported_cadences: [per-session-close, weekly, quarterly, on-model-update, on-demand]
+    override_notes: "on-model-update is critical — every new Claude version needs full re-registration."
+    cadence_recommendation: "Per-session for per-turn + per-week for drift + quarterly for coverage + on-model-update mandatory."
+    findings_persist: false
+    findings_path: null
+
+  pipeline_11_vocabulary_canon:
+    name: "Vocabulary Canon"
+    spine: GVRN
+    principle: null
+    contract: null
+    implementation_status: STUB
+    default_cadence: weekly
+    supported_cadences: [weekly, on-pr-open, on-demand]
+    findings_persist: false
+    findings_path: null
+
+  pipeline_12_behavioral_alignment:
+    name: "Behavioral Alignment"
+    spine: AI
+    principle: null
+    contract: B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS
+    implementation_status: STUB
+    default_cadence: weekly
+    supported_cadences: [weekly, on-pr-open, on-demand]
+    findings_persist: false
+    findings_path: null
+
+  pipeline_13_threshold_gate:
+    name: "Threshold Gate"
+    spine: GVRN
+    principle: null
+    contract: null
+    implementation_status: STUB
+    default_cadence: per-session-open
+    supported_cadences: [per-session-open, on-demand]
+    override_notes: "Session-open gate is its natural home — cannot be moved to on-demand without removing the gate."
+    findings_persist: false
+    findings_path: null
+
+---
+
+## Combinatorial Engine Integration (PLANNED)
+
+> When the combinatorial engine (BATCH-J) is built, it will read this file to:
+> 1. Select the optimal pipeline subset given current context
+> 2. Avoid running expensive pipelines when context signals they're unnecessary
+> 3. Prioritize findings using PE scores assigned to each pipeline
+
+combinatorial_hints:
+  context_signals:
+    - signal: "PR contains only .md file changes"
+      skip_pipelines: [pipeline_9_runtime_health, pipeline_8_complexity_hotspots]
+    - signal: "session contains no new B_* / P-META-* additions"
+      skip_pipelines: [pipeline_5_engraving_completeness]
+    - signal: "no new agents or skill files in PR"
+      skip_pipelines: [pipeline_2_agent_alignment]
+    - signal: "model version unchanged"
+      skip_pipelines: [pipeline_10_csps_alignment]
+
+---
+
+## PE Engine Integration (PLANNED)
+
+> The PE engine will score finding severity × impact × frequency to prioritize resolution order.
+> Each pipeline contributes a pe_weight to its findings.
+
+pe_weights:
+  pipeline_1_pre_close_verification: 100  # blocking — highest priority
+  pipeline_4_zero_findings: 95
+  pipeline_5_engraving_completeness: 90
+  pipeline_6_schema_integrity: 85
+  pipeline_2_agent_alignment: 80
+  pipeline_3_cognitive_context: 75
+  pipeline_10_csps_alignment: 70
+  pipeline_7_intake_and_learning: 65
+  pipeline_13_threshold_gate: 60
+  pipeline_11_vocabulary_canon: 55
+  pipeline_12_behavioral_alignment: 50
+  pipeline_8_complexity_hotspots: 45
+  pipeline_9_runtime_health: 40  # low until runtime ships

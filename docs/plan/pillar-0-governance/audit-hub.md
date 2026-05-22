@@ -56,7 +56,12 @@ The orchestration layer above [`audit-runner.md`](./audit-runner.md) registry. D
 5. **Dashboard spec** — interim markdown dashboards (this leaf + dashboards.md sections); week-10 admin app pages on Vercel
 6. **Dynamic schema connections** — how every audit ties back to principles + contracts + closing-summary headers; the bidirectional link AUDITS.md ↔ principles.yaml
 
-## The 9 pipelines
+## The 13 pipelines
+
+> **Scheduling registry:** `tools/config/audit-scheduling.yaml` — machine-readable defaults + override mechanism.
+> Every pipeline has a `default_cadence` (Governor/admin-changeable) and `supported_cadences`.
+> To change when a pipeline runs: edit the `default_cadence` in that file. No code change needed.
+> Combinatorial engine (PLANNED) + PE engine (PLANNED) integrations defined in the same file.
 
 ### Pipeline 1 — `pre-close-verification` (B_PRE_CLOSE_VERIFICATION + P-META-008)
 
@@ -374,15 +379,19 @@ Every new validator runs ADVISORY for ≥5 fires before ratchet review for FAIL_
    ┌──────────────────────────────────────────────────────┐
    │ Pipelines (executed in dependency order)             │
    │                                                      │
-   │ 1. schema-integrity     (depends: nothing)           │
+   │ 1. schema-integrity        (depends: nothing)         │
    │ 2. pre-close-verification  (depends: 1)              │
-   │ 3. zero-findings-cycle  (depends: 1, 2)              │
+   │ 3. zero-findings-cycle     (depends: 1, 2)           │
    │ 4. engraving-completeness  (depends: 1, 3)           │
-   │ 5. agent-alignment      (depends: 1)                 │
-   │ 6. cognitive-context-discipline (depends: 1, 2)      │
-   │ 7. intake-and-learning  (depends: 1)                 │
-   │ 8. complexity-and-hotspots  (depends: 1)             │
-   │ 9. runtime-health       (depends: nothing — operational)│
+   │ 5. agent-alignment         (depends: 1)              │
+   │ 6. cognitive-context       (depends: 1, 2)           │
+   │ 7. intake-and-learning     (depends: 1)              │
+   │ 8. complexity-and-hotspots (depends: 1)              │
+   │ 9. runtime-health          (depends: nothing)        │
+   │ 10. csps-alignment         (depends: 1, 2)           │
+   │ 11. vocabulary-canon       (depends: 1)              │
+   │ 12. behavioral-alignment   (depends: 1, 10)          │
+   │ 13. threshold-gate         (depends: nothing — open) │
    └──────────────────────┬───────────────────────────────┘
                           ▼
    ┌──────────────────────────────────────────────────────┐

@@ -57,14 +57,100 @@ session: S051
 
 ---
 
-### TASK #2 — [NEXT — Governor will define]
-**Status:** Waiting for Governor input
+### TASK #2 — Audit Hub Deep Review + Scheduling System ✅ DONE
+**Scope:** ARCH + VALD — audit-hub.md analysis, scheduling types, defaults, dropdowns
+**Governor input:** "go over our audits hub + go over whole chat for completeness/enhancements + add scheduling types list (daily, after occasion, weekly) + populate defaults with dropdowns"
+**Deliverables:**
+  - Full audit of audit-hub.md: what's complete vs stub vs missing
+  - Scheduling types taxonomy (all kinds: time-based, event-based, session-based, etc.)
+  - Default schedule assigned to every pipeline in audit-runner.md
+  - Admin/developer-changeable dropdown mechanism (config file or YAML)
+  - 3-scope insights (what gaps, what ripples, what prevents recurrence)
+**Status:** DONE
+**Committed:** (see commit below)
+**What was done:**
+  - Created `tools/config/audit-scheduling.yaml` — full scheduling taxonomy (time/event/condition/manual) + per-pipeline defaults + override mechanism + combinatorial/PE integration stubs
+  - Fixed audit-hub.md: "9 pipelines" → "13 pipelines" (discrepancy corrected)
+  - Updated orchestration diagram to show all 13 pipelines with dependencies
+  - Added scheduling registry reference at the top of the pipelines section
+  - Scheduling taxonomy: 9 time-based + 9 event-based + 6 condition-based + 4 manual cadences
+  - Each pipeline has: default_cadence, supported_cadences, override_notes, findings_persist, implementation_status
+**Gaps found (for Opus):**
+  - `libs/audits/dispatcher.ts` still missing — the pipeline dispatcher referenced in audit-hub doesn't exist
+  - Most pipeline audits beyond Pipeline 1 are STUB — "week-4" audits never implemented
+  - No raw findings persistence for pipelines 2-13 (only Pipeline 1 has verify-last-run.md)
+  - Combinatorial engine (PLANNED) not yet built
+  - PE engine weights defined but no implementation wired to them
 
 ---
 
-### TASK #3 — [PENDING]
-### TASK #4 — [PENDING]
-### TASK #5+ — [PENDING]
+### TASK #3 — Findings Wiring: Raw Content → Pattern Identifier → Registered Data
+**Scope:** ARCH — raw findings persistence, pattern identifier, data file template
+**Governor input:** "create mechanism of saving raw content findings + wire to evolve/QC/prevention + create pattern identifier who transforms raw content into workable data following defined template"
+**Deliverables:**
+  - Raw findings storage format/template
+  - Pattern identifier algorithm (raw → classified → registered)
+  - Wire to existing: validate-catchcompleteness, audit-hub, QC pipelines
+  - Data registration template file
+**Status:** PENDING (starts only after Task #2 committed+pushed)
+
+---
+
+### TASK #4 — Personalization Hub + Template Connectivity
+**Scope:** ARCH — personalization hub creation, template system connections
+**Governor input:** "see how it all serves templating elements + connect to personalization hub you should create"
+**Deliverables:**
+  - Personalization hub concept (what it is, who uses it, what it stores)
+  - Template registry → personalization hub connection
+  - User profile + developer profile → template selection flow
+**Status:** PENDING
+
+---
+
+### TASK #5 — Unified Multi-Session Plan Status Check
+**Scope:** GVRN — audit current state vs intended design
+**Governor input:** "where are we with unified multi-session multi-chat dynamic plan with numbered parts + bundling orchestrator + statuses per part + mandatory alignment context DNA + corespine in every file?"
+**Deliverables:**
+  - Current state audit (what exists, what's missing)
+  - Gap analysis: schema, validators, files
+  - Explicit YES/NO for each required element
+**Status:** PENDING
+
+---
+
+### TASK #6 — Core Alignment + Inheritance Enhancement
+**Scope:** GVRN+ARCH — creation protocols, inheritance discipline
+**Governor input:** "see what top expert would do to enhance alignment + inheritance + verify connection to core + enhance creation protocols so inheritance is clearly mentioned and done"
+**Deliverables:**
+  - Creation protocol enhancements (explicit inheritance steps)
+  - Validator for inheritance verification
+  - 3-scope analysis of inheritance gaps
+**Status:** PENDING
+
+---
+
+### TASK #7 — Core Quotes Library + Dashboard
+**Scope:** ARCH — quotes library, dashboard, tagging
+**Governor input:** "Core Quotes library + dashboard — top topics + sub-topics + 10+ quotes per topic + tagged + universal status + universal tagging"
+**Deliverables:**
+  - Core quotes data file (YAML or JSON) with topics/subtopics
+  - 10+ quotes per topic from famous people
+  - Universal status element (create if missing)
+  - Universal tagging formalization
+  - Playground dashboard at /platform/quotes/
+**Status:** PENDING
+
+---
+
+### TASK #8 — Universal Libraries + Master Template System
+**Scope:** ARCH — platform-wide template audit, master template hierarchy
+**Governor input:** "create libraries + engrave all CSPS libraries + similar dashboards + find things built differently that could become base of a template + master template for everything + sub-templates + edge templates"
+**Deliverables:**
+  - Audit of all things built as dashboards/pages/libraries
+  - Master template hierarchy: master → domain → sub → edge
+  - Template registry updated
+  - Creation protocol: "check master template before creating"
+**Status:** PENDING
 
 ---
 
@@ -96,4 +182,12 @@ session: S051
 
 ---
 
-*Updated: S051 | Last task: #1 (AP-005) | Next task: #2 (awaiting Governor)*
+*Updated: S051 | Last task: #2 (Audit Hub + Scheduling) | Next task: #3 (awaiting Governor signal)*
+
+## RECOMMENDATIONS ACCUMULATING FOR OPUS SUMMARY (continued)
+
+5. **libs/audits/dispatcher.ts** — the pipeline dispatcher is referenced in audit-hub.md orchestration diagram but doesn't exist. This is the core missing infrastructure. Without it, all pipeline orchestration is manual. PROTO candidate.
+
+6. **Scheduling taxonomy is now canonical** — `tools/config/audit-scheduling.yaml` is the SSoT for when audits run. The combinatorial engine should read this file. The PE engine weights are seeded. This unblocks both planned integrations.
+
+7. **Pipeline 9 (runtime-health) is set to `current_override: never`** — deliberately disabled until APP-001 E1 ships to production. Auto-promotion to `daily` should fire on APP-001 first Vercel deploy.

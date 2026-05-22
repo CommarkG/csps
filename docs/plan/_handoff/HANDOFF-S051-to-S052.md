@@ -87,7 +87,7 @@ session: S051
 
 ---
 
-## Zone C — Alignment Questions for OPUS-7
+## ALIGNMENT QUESTIONS
 
 **Q1:** What is the tab transition protocol, and why should Opus close before Sonnet?
 > Opus degrades with session length; Sonnet gets fresh context per PROTO. Opus-first means new Opus opens with richest context: HANDOFF + Sonnet completion report.

@@ -32,6 +32,7 @@ core_spine: ARCH
 schema_anchor: behavioral_contracts_arch
 batch: BATCH-A
 session: S051
+impl_status: swift-implemented
 diataxis_type: reference
 links:
   - { rel: index, href: behavioral-contracts.md }

@@ -80,6 +80,7 @@ core_spine: AI
 schema_anchor: behavioral_contracts_ai
 batch: BATCH-A
 session: S051
+impl_status: swift-implemented
 diataxis_type: reference
 links:
   - { rel: index, href: behavioral-contracts.md }

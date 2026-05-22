@@ -54,7 +54,7 @@ Without explicit governance, every architectural rule decays into goodwill withi
 | [planning-playground.md](planning-playground.md) | 🟢 v1.4 | This planning system, documented |
 | [audit-runner.md](audit-runner.md) | 🟢 v1.7 | The recurring audit system: ~37 checks across 10 categories, severity routing, dashboards |
 | [mechanical-enforcement.md](mechanical-enforcement.md) | 🟢 v1.5 | Defense-in-depth enforcement architecture; `principles.yaml` as single source of truth; multi-level inheritance |
-| [operating-principles.md](operating-principles.md) | 🟢 v1.5 | The 5 operating principles — Reuse-first, FWWS, PCR, Batched execution — with industry lineage and per-layer enforcer mapping |
+| [operating-principles.md](operating-principles.md) | 🟢 v1.5 | The 6 operating principles — Reuse-first, FWWS, PCR, Batched execution — with industry lineage and per-layer enforcer mapping |
 | [stewardship-protocol.md](stewardship-protocol.md) | 🟢 v1.0 | P-META-004 Stored Content Lifecycle — every saved artifact declares `lifecycle_state` with a recurring trigger that advances it. 6-state machine + per-state SLAs + 4 enforcing audits. The cure for orphan-in-waiting saves. |
 | [learning-loop.md](learning-loop.md) | 🟢 v1.0 | P-META-005 Learning Loop — every input stream (chat, errors, audits, feedback, AI insights) routed through observed → triaged → routed → fixing → validated → closed. 6 enforcing audits + LearningLoopItem slice + extraction skill. The cure for write-only knowledge graveyards. |
 | [ai-behavior-spine.md](ai-behavior-spine.md) | 🟢 v1.0 | The single audit-point for every AI behavioral discipline. 29 disciplines × 5 surfaces (schema/validator/hook/memory/contract). Adopts CSP's 5-element pattern. Companion to behavioral-contracts.md. |

@@ -45,6 +45,7 @@ core_spine: VALD
 schema_anchor: behavioral_contracts_vald
 batch: BATCH-A
 session: S051
+impl_status: swift-implemented
 diataxis_type: reference
 links:
   - { rel: index, href: behavioral-contracts.md }

@@ -40,6 +40,7 @@ core_spine: OPER
 schema_anchor: behavioral_contracts_oper
 batch: BATCH-A
 session: S051
+impl_status: swift-implemented
 diataxis_type: reference
 links:
   - { rel: index, href: behavioral-contracts.md }

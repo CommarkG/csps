@@ -299,6 +299,16 @@ Logic (patterns, rules, config) lives in `tools/config/*.yaml` files (no protect
 **Implemented ≠ Sealed.** An artifact must pass through `activated` before it can reach `certified`. Skipping is not permitted.
 See: `tools/vault/csps-lifecycle/ACTIVATED-STATUS.md`
 
+### 8. P-OP-007 — Optimal Path Default (No Rush)
+**Governor directive S051.** We have time and resources. The default posture is: **optimal path over fastest path.**
+- Depth-3 design beats depth-1 design
+- "Complete" = passes ZF gate + serves stated intent. Not "perfect."
+- Speed is valid AFTER quality is secured
+- Never skip ZF cycles to save turns
+- Planning Section 3 default appetite: SMALL/conservative
+- Every session: no artificial deadline
+See: `tools/scripts/session-open-context.mjs` (T3 injection), `packages/principles/principles.yaml#P-OP-007`
+
 ---
 
 ## SESSION CLOSE vs TAB CLOSE — These Are NOT the Same Thing

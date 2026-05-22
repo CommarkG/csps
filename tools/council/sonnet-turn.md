@@ -1,3 +1,129 @@
+# Sonnet Report — PROTO-S051-1 done — 2026-05-22
+
+Opus, this is Sonnet. PROTO-S051-1 done. Steps 1-2 batched.
+
+Step 1 commit: 56b8238 — behavioral-contracts shard execution (57K → index 2.5K + 5 shards)
+Step 2 commit: 2feca0e — APP-001 fork (apps/voice-sorting + V1 homepage + onboarding)
+
+pnpm verify: exit_code=0 at 2feca0e | validators=140
+build: pnpm --filter @csps/voice-sorting build PASS
+Shard: 64 contracts distributed across 5 spine files (AI=12, GVRN=12, ARCH=12, VALD=10, OPER=18)
+behavioral-contracts-tokens: 2525/40000 (6% of soft limit — hard limit breach resolved)
+
+APP-001 fork notes:
+  - E1 stubs: Clerk/auth/Inngest all stubbed (no credentials needed for prototype)
+  - pages/_error.tsx: custom error page to bypass styled-jsx duplicate instance issue
+  - Split generator updated: reads from 5 shard files (fallback to monolith if shards absent)
+  - validate-completeness-coverage.mjs: updated to read from shard files
+
+PE-SUGGESTION: APP-001-PLAN | score=95 | status=implementing | Next: Supabase schema + voice capture API route (E1 STT)
+
+Questions:
+(1) The styled-jsx duplicate instance issue affects `/_error: /404` and `/_error: /500` in the build.
+    Workaround: custom pages/_error.tsx (no styled-jsx). Root cause: app-local node_modules react-dom
+    vs workspace-root styled-jsx. Is this acceptable for E1, or should full node_modules dedup be
+    addressed before S052?
+
+---
+
+# Sonnet Report — S050-CLOSE + S051-STEPS-1-5 done — 2026-05-21
+
+Opus, this is Sonnet. S050-CLOSE + S051-STEPS-1-5 done.
+
+Step 0 commit: 8591db3 — S050 HANDOFF (Zone A/B + 3 ALIGNMENT QUESTIONS)
+Step 1 commit: 81b539e — APP-001 Section 5 ratified: 3 onboarding + 5 homepage + first-value-moment ≤2min. PMI=5/5.
+Step 2: ALREADY DONE (22b93ad → 51b591b from prior session — lifecycle + RZF page + skill fixes all live)
+Step 3 commit: fa6f62d — validate-activation-coverage BLOCKING. 24 legacy exempt in activation-coverage-exempt.yaml. New unactivated contracts → exit 1.
+Step 4 commit: ad7a9f6 — BEHAVIOR_PATTERN_REGISTER rescheduled S052 + formal intake plan item. INV-003 already complete (T1 active).
+Step 5 commit: 7b62c15 — csps-context.md S051 + S050/S051 mandate summary
+
+pnpm verify: exit_code=0 at 7b62c15 | validators=140
+PMI gate: PASS — validate-plan-readiness.mjs pmi_ready=4/4 (APP-001 now 5/5)
+build: pnpm --filter @csps/csps-playground build PASS
+
+PE-SUGGESTION: APP-001-PLAN | score=95 | status=planning | PMI=5/5 fork authorized — S051 priority 1 = apps/template/ fork + E1 build
+
+No blocking questions. All steps complete.
+
+---
+
+# Sonnet Report — S050-RZF-LIFECYCLE done — 2026-05-21
+
+Opus, this is Sonnet. S050-RZF-LIFECYCLE done. Steps 1-4 batched.
+
+Step 1 commit: 22b93ad — skill SKILL.md duplicate lifecycle_state fixed (20 files) + inline parser TODO
+Step 2 commit: cd343bd — 'activated' quality_state + implemented≠sealed lifecycle principle
+Step 3 commit: c1015bc (submodule) — RZF playground page + TopNav update
+Step 4 commit: 51b591b — csps-context.md pattern 7 + SONNET-S050-COMPLETE §G amendment
+
+pnpm verify: exit_code=0 at 51b591b | validators=140 | invariants complete=5 partial=0
+build: pnpm --filter @csps/csps-playground build PASS
+
+RZF page URL: csps-playground.vercel.app/platform/rzf/ (after Vercel redeploy)
+
+No blocking questions. All 4 steps executed cleanly.
+
+PE-SUGGESTION: APP-001-PLAN | score=95 | status=planning | Section 5 (user journey) = last PMI gate before fork
+
+---
+
+# Sonnet Report — S050 Vault Harvest + Playground complete — 2026-05-21
+
+Opus, this is Sonnet. Two deliverables done at 6db7b78.
+
+**PLAYGROUND-S050:** Steps 0-8 already executed (bd843fd). Unchanged — SONNET-S050-COMPLETE.md was same file.
+
+**VAULT HARVEST (S047/S048/S049 — 4 lenses):** 6db7b78
+21 items extracted from 3 sessions. Harvest at: docs/plan/_handoff/VAULT/harvests/wisdom-harvest-S047-S048-S049.md
+
+TOP 5 ANCHOR POINTS FOR OPUS REVIEW:
+1. APP-001 Section 5 PROTO — user journey gate, last PMI blocker (Lens: UX-Journey)
+2. behavioral-contracts shard execution — 57K/60K tokens, shard plan exists but not run (Lens: Platform Architect)
+3. validate-activation-coverage → BLOCKING — AP-001 detector is itself advisory (Lens: Prevention)
+4. BEHAVIOR_PATTERN_REGISTER — S047 seed, not delivered in S048/S049 — deliver or deprecate? (Lens: Platform Architect)
+5. INV-003 T1 — verify pre-tool-use-rzf-evidence-gate.sh covers it (Lens: Prevention)
+
+SECONDARY (platform-insights.yaml seeds not yet assigned to PROTOs):
+- MULTI-GRID_ARCHITECTURE seed (S048)
+- INSIGHTS_AS_GOVERNANCE seed (S048)
+- "Context is the palace" — no mechanical expression yet
+
+pnpm verify: exit_code=0 at 6db7b78
+
+PE-SUGGESTION: APP-001-PLAN | score=95 | status=planning | Section 5 = top-ranked unblocked item
+
+---
+
+# Sonnet Report — S050 PLAYGROUND-S050 done — 2026-05-21
+
+Opus, this is Sonnet. PLAYGROUND-S050 done. Steps 0-8 batched.
+
+Step 0 commit: 4ccd77d — context sync (csps-context.md S050, SIA-FOUNDATION plan item, governor-prompts hook active)
+Steps 1-8 commit: bd843fd (parent) / d783c1e + a34b734 (submodule)
+  - PageHeader + TopNav components
+  - SIA minisite: /platform/sia/ + /platform/sia/[slug] (19 SIA docs)
+  - Profiling hub: /platform/profiles/ (developers/users/ai-systems, Governor pre-filled)
+  - Template gallery: /platform/architecture/node-templates
+  - Audit dashboard: /platform/audits (14 audits, cadence tabs, search, sort, modal)
+  - Claude Code consultation: /platform/consult + /api/consult (Opus/Sonnet selector, SIA context)
+  - Security headers wired in next.config.js
+
+pnpm verify: exit_code=0 at bd843fd | validators=140 | invariants complete=5 partial=0
+build: pnpm --filter @csps/csps-playground build PASS (19 SIA routes pre-generated)
+
+Playground URL: csps-playground.vercel.app/platform/sia/ (after Vercel redeploy with Root Dir=apps/csps-playground)
+Consultation URL: csps-playground.vercel.app/platform/consult/
+
+PE-SUGGESTION: APP-001-PLAN | score=95 | status=planning | Section 5 (user journey) = only gate to PMI=5/5 + fork
+
+Infrastructure note: apps/csps-playground was a static HTML submodule. Next.js scaffolded on top (src/ directory added). Static files preserved. Vercel deploy config will need updating: Root Dir → apps/csps-playground (or the new Next.js app), framework → Next.js.
+
+Questions:
+(1) The Vercel deployment currently serves the static site from the csps-playground repo root. To serve the Next.js app, the deploy config needs: Root Dir=apps/csps-playground (or the submodule root), framework=nextjs. Who updates Vercel config — Governor action or is there a pnpm deploy script?
+(2) The gray-matter package from the brief was not needed — I implemented a simple inline frontmatter parser instead. Is that acceptable or should gray-matter be used?
+
+---
+
 # Sonnet Report — S050 PROTO-050 done — 2026-05-21
 
 Opus, this is Sonnet. PROTO-050 complete. 5 steps, pushed at 11768dc.

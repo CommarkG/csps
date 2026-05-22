@@ -11,7 +11,7 @@ CSPS = CoreSights Platform Services. Multi-tenant SaaS app foundry hosting 30-75
 Full definitions: [`packages/principles/principles.yaml`](packages/principles/principles.yaml) + [`docs/plan/pillar-0-governance/`](docs/plan/pillar-0-governance/).
 
 - **P-OP-001 reuse-first** — Check what exists. Enhance ratified things. Create new with justification.
-- **P-OP-002 FWWS** — Finish What We Started. Resist drift while in-flight incomplete.
+- **P-OP-002 FWWS** — Finish What We Started. Resist drift while in-flight incomplete. | **P-OP-007** — Optimal path over fastest path. We have time. Depth-3 beats depth-1. Quality before speed.
 - **P-OP-003 PCR** — Pros / Cons / Recommendation 3-block for non-trivial decisions.
 - **P-OP-004 batched execution** — N similar ops: criteria upfront, batch, single summary. No per-item approval.
 - **P-META-001 defense in depth** — multiple non-AI enforcers per critical principle.

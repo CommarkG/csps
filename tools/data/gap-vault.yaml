@@ -24,3 +24,84 @@ entries:
     session_discovered: S051
     status: open
     session_target: S053
+
+  - id: gap_2026-05-22T21-21-46_B_PRACE-orphan
+    source: validate-contract-harmonization
+    finding: "B_PRACE has no matching audit-runner.md slug — 0 T2 validator coverage for contract"
+    classification: ADVISORY
+    scope_routing: "S2-weekly S3-within-5-sessions"
+    session_discovered: S052
+    status: open
+    session_target: S054
+
+  - id: gap_2026-05-22T21-21-46_B_NO_AI_IMPERSONATION-orphan
+    source: validate-contract-harmonization
+    finding: "B_NO_AI_IMPERSONATION has no matching audit-runner.md slug — 0 T2 validator coverage"
+    classification: ADVISORY
+    scope_routing: "S2-weekly S3-within-5-sessions"
+    session_discovered: S052
+    status: open
+    session_target: S054
+
+  - id: gap_2026-05-22T21-21-46_B_DEVELOPMENT_VS_PRODUCTION-orphan
+    source: validate-contract-harmonization
+    finding: "B_DEVELOPMENT_VS_PRODUCTION has no matching audit-runner.md slug — 0 T2 validator coverage"
+    classification: ADVISORY
+    scope_routing: "S2-weekly S3-within-5-sessions"
+    session_discovered: S052
+    status: open
+    session_target: S054
+
+  - id: gap_2026-05-22T21-21-46_B_APPS_ARE_TRIALS-orphan
+    source: validate-contract-harmonization
+    finding: "B_APPS_ARE_TRIALS has no matching audit-runner.md slug — 0 T2 validator coverage"
+    classification: ADVISORY
+    scope_routing: "S2-weekly S3-within-5-sessions"
+    session_discovered: S052
+    status: open
+    session_target: S054
+
+  - id: gap_2026-05-22T21-21-46_B_DONE_RIGHT_FROM_THE_START-orphan
+    source: validate-contract-harmonization
+    finding: "B_DONE_RIGHT_FROM_THE_START has no matching audit-runner.md slug — 0 T2 validator coverage"
+    classification: ADVISORY
+    scope_routing: "S2-weekly S3-within-5-sessions"
+    session_discovered: S052
+    status: open
+    session_target: S054
+
+  - id: gap_2026-05-22T21-21-46_B_DEFINITION_BEFORE_ENFORCEMENT-orphan
+    source: validate-contract-harmonization
+    finding: "B_DEFINITION_BEFORE_ENFORCEMENT has no matching audit-runner.md slug — 0 T2 validator coverage"
+    classification: ADVISORY
+    scope_routing: "S2-weekly S3-within-5-sessions"
+    session_discovered: S052
+    status: open
+    session_target: S054
+
+  - id: gap_2026-05-22T21-21-46_B_AUTONOMY_4_CONDITIONS-orphan
+    source: validate-contract-harmonization
+    finding: "B_AUTONOMY_4_CONDITIONS has no matching audit-runner.md slug — 0 T2 validator coverage"
+    classification: ADVISORY
+    scope_routing: "S2-weekly S3-within-5-sessions"
+    session_discovered: S052
+    status: open
+    session_target: S054
+
+  - id: gap_2026-05-22T21-21-46_B_CHECKPOINT_8_CATEGORIES-orphan
+    source: validate-contract-harmonization
+    finding: "B_CHECKPOINT_8_CATEGORIES has no matching audit-runner.md slug — 0 T2 validator coverage"
+    classification: ADVISORY
+    scope_routing: "S2-weekly S3-within-5-sessions"
+    session_discovered: S052
+    status: open
+    session_target: S054
+
+  - id: gap_2026-05-22T21-21-46_B_CONTEXTUAL_LOCALITY-orphan
+    source: validate-contract-harmonization
+    finding: "B_CONTEXTUAL_LOCALITY has no matching audit-runner.md slug — 0 T2 validator coverage"
+    classification: ADVISORY
+    scope_routing: "S2-weekly S3-within-5-sessions"
+    session_discovered: S052
+    status: open
+    session_target: S054

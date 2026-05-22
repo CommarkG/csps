@@ -622,6 +622,15 @@ const CYCLES = [
     },
   },
   {
+    // S052: documentation-in-schema T2 advisory — context_question coverage across governed files
+    name: 'context_question_coverage',
+    command: 'node tools/validators/validate-context-question-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/coverage:\s*(\d+)\/(\d+)\s+governed files\s+\((\d+)%\)/);
+      return m ? { with_cq: Number(m[1]), total: Number(m[2]), pct: Number(m[3]) } : {};
+    },
+  },
+  {
     // Implements Governor directive: "mechanical enforcement every several turns when mature enough"
     name: 'session_harvest_readiness',
     command: 'node tools/validators/validate-session-harvest-readiness.mjs',

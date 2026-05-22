@@ -1055,3 +1055,46 @@ items:
     pe_score: 70
     tags: [validator, week4-stub, gap-vault, s051]
     notes: "Discovered S051 via validate-declared-never-finished. ADVISORY gap. week-4 target missed. Validator was registered in audit-runner.md but file was never created. Route: ADVISORY → S3 within 3 sessions."
+
+  - id: INFRA-FLOW-VALIDATION
+    title: "End-to-end developer flow validation — idea to running app"
+    status: planning
+    epoch: E1
+    category: architecture
+    owner: shared
+    batch: BATCH-H
+    pe_score: 98
+    tags: [infrastructure, flow-validation, prerequisite, s051, threshold]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: medium
+    notes: |
+      PREREQUISITE FOR ALL APP BUILDS. The complete flow must pass before any app can be implemented.
+      Flow: idea→Threshold→PE-score→7-section-wizard→PMI-gate→fork→validate→build→deploy→activate.
+      Current blockers: Threshold code (THRESHOLD-CODE), 7-section wizard UI, evidence-capture per PMI,
+      end-to-end test harness. See THRESHOLD-CODE for the first dependency. pe_score=98 = highest in plan.
+
+  - id: THRESHOLD-CODE
+    title: "Threshold — code implementation of the intake + routing system"
+    status: planning
+    epoch: E1
+    category: architecture
+    owner: opus
+    batch: BATCH-A
+    pe_score: 96
+    tags: [threshold, infrastructure, intake-routing, s051]
+    pmi:
+      intent_depth: high
+      cross_ref_density: medium
+      consensus_width: medium
+      reversibility: high
+      dependency_clarity: low
+    notes: |
+      Design complete (docs/SIA/R1-04-THRESHOLD.md) but ZERO code exists.
+      user-prompt-submit-intake.sh is a thin stub, not Threshold.
+      Must be built before INFRA-FLOW-VALIDATION can pass.
+      Depends on: BEHAVIOR-HUB schema (routing rules), STT correction layer, ingestion schema.
+      First dependency for APP-001 E1 restart.

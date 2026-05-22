@@ -2,15 +2,15 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-22T10:49:23.831Z",
+    "generated_at": "2026-05-22T15:59:23.136Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
     "total_items": 62,
     "status_counts": {
       "intake": 29,
       "planning": 8,
-      "ratified": 4,
-      "implementing": 1,
+      "ratified": 5,
+      "implementing": 0,
       "activation": 0,
       "done": 20
     },
@@ -265,11 +265,13 @@
       "pe_score": 70,
       "tags": [
         "app",
-        "s040"
+        "s040",
+        "input-specimen",
+        "ai-defaults-specimen"
       ],
       "depends_on": [],
       "caq_questions": [],
-      "notes": "Built clean. Needs Vercel deploy (Governor action). Schema: Habit + HabitLog.",
+      "notes": "INPUT SPECIMEN — built before CSPS infrastructure existed. Represents AI-default build patterns. Use when full developer flow is validated: compare this app's construction against the CSPS-correct process to identify default behaviors to override. Do NOT redeploy or enhance until infrastructure is complete.",
       "pmi_score": 0,
       "pmi_ready": false,
       "pmi_detail": null,
@@ -952,8 +954,8 @@
     },
     {
       "id": "APP-001-PLAN",
-      "title": "APP-001 Voice Sorting App — E1 build in progress",
-      "status": "implementing",
+      "title": "APP-001 Voice Sorting App — INFRASTRUCTURE-PENDING (PMI=5/5 ready)",
+      "status": "ratified",
       "category": "product",
       "owner": "governor",
       "pe_score": 95,
@@ -965,11 +967,12 @@
         "s049",
         "batch-h-proof",
         "csps-template",
-        "cognitive-offload"
+        "cognitive-offload",
+        "infrastructure-pending"
       ],
       "depends_on": [],
       "caq_questions": [],
-      "notes": "PMI=5/5. Section 5 ratified OPUS-6 S050. Fork authorized. Next: Governor ratifies job statement → apps/template/ fork → build E1. docs/plan/apps/APP-001-voice-sorting/",
+      "notes": "PMI=5/5. Section 5 ratified. Fork AUTHORIZED but PAUSED — infrastructure must be validated first. Governor directive S051: complete Threshold (code), PIE, Behavioral Hub, and end-to-end flow test before any app build. APP-001 is the first BUILD candidate when infrastructure is ready. Plan is complete; execution is blocked on infrastructure.",
       "pmi_score": 5,
       "pmi_ready": true,
       "pmi_detail": {

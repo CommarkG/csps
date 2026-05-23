@@ -80,8 +80,9 @@ entries:
       - tools/vault/wisdom/communication-samples.md (5 samples)
       - session-open-context.mjs (Rule 16 Transfer Block)
       - tools/templates/sonnet-report.template.md v2.0 (S054 — REPORT FORMAT uses FROM/TO)
+    propagated_to:
+      - tools/templates/opus-startup.template.md (S053-T36 — new Opus startup block uses generous context, FROM/TO format explained, roles explained)
     not_yet_propagated:
-      - HANDOFF startup block (still uses YOU ARE/I AM format — acceptable per startup block convention)
       - External agent protocol (pre-external-agent checklist)
     note: "PROTO REPORT FORMAT now uses FROM/TO. 5 templates still need adoption (advisory)."
 

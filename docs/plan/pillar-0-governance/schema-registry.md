@@ -504,6 +504,13 @@ schema_anchors:
     spine: OPER
     l2_domain: OPERATIONS
     description: OPER spine behavioral contracts shard (18 B_* contracts governing operational discipline and execution patterns)
+
+  audit_scheduling:
+    type: governance-registry
+    resolves_to: tools/data/
+    spine: VALD
+    l2_domain: vald_coverage_discipline
+    description: Audit scheduling and gap tracking data — gap-recurrence-register.yaml, threshold-intake-log.yaml, and similar runtime governance data files
 ```
 
 ---
@@ -554,3 +561,10 @@ against this registry. Unknown anchors = ORPHAN. Pre-existing orphans: advisory;
   l2_domain: arch_data_domain
   description: App planning artifacts — dual-focal plans, knowledge cards, threshold topic plans
 
+
+- anchor: audit_scheduling
+  type: governance-registry
+  resolves_to: tools/data/
+  spine: VALD
+  l2_domain: vald_coverage_discipline
+  description: Audit scheduling and gap tracking data files — gap-recurrence-register.yaml, threshold-intake-log.yaml, and similar runtime governance data

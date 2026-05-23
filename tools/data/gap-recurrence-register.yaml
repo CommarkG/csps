@@ -52,12 +52,15 @@ entries:
     first_seen: S037
     k_count: 6
     sessions: [S037, S040, S046, S050, S052, S053]
-    status: structural_fix_proposed
+    status: fix_committed
     structural_fix_triggered: true
     structural_fix_required_since: S039
-    behavioral_test_exists: false
-    current_fix: "ZF template added to session-open-context.mjs (S053). validate-zf-cycle-format.mjs designed but not built."
-    note: "K=6. T3 only (session injection). T2 (validate-zf-cycle-format.mjs) designed but not committed. Status remains open until T2 exists AND behavioral test case passes."
+    behavioral_test_exists: true
+    behavioral_test_file: "tools/tests/behavioral/zf-cycle-format-test.sh"
+    behavioral_test_result: "INPUT A (nominal) → exit=1 ✓ | INPUT B (file-citing) → exit=0 ✓"
+    current_fix: "T2: validate-zf-cycle-format.mjs LIVE S053-B (commit 13a3cef). T3: ZF template in session-open-context.mjs. Behavioral test passing."
+    gap_found_during_tool_run: "validate-zf-cycle-format finds 0 blocks in sonnet-turn.md — ZF evidence written in chat not in council file. Sonnet reports should embed ZF blocks."
+    note: "K=6. Fix committed. Behavioral test proves validator catches violations. NEW GAP: ZF written to chat, not sonnet-turn.md — T2 cannot scan it. Resolution: Sonnet report template must include ZF block in council file write."
 
   - id: gap_SETTINGS_LOCAL_BYPASS
     observation: "settings.local.json missing defaultMode: bypassPermissions — new tabs ask for write permissions"

@@ -1185,6 +1185,24 @@ const CYCLES = [
     },
   },
   {
+    // S054: Platform Genome guardian — 10 sections check + links per section
+    name: 'platform_genome',
+    command: 'node tools/validators/validate-platform-genome.mjs',
+    parse_output: (out) => {
+      const m = out.match(/sections_found=(\d+)\/10\s+sections_with_links=(\d+)\s+advisory=(\d+)/);
+      return m ? { sections_found: Number(m[1]), sections_with_links: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // S054: Improvement register T2 — positive pipeline CEC enforcement
+    name: 'improvement_register',
+    command: 'node tools/validators/validate-improvement-register.mjs',
+    parse_output: (out) => {
+      const m = out.match(/entries=(\d+)\s+cec_needed=(\d+)\s+blocking=(\d+)/);
+      return m ? { entries: Number(m[1]), cec_needed: Number(m[2]), blocking: Number(m[3]) } : {};
+    },
+  },
+  {
     // S054: B_APPS_ARE_TRIALS T2 (constitutional backfitting, gap_T2_ORPHAN_CONTRACTS)
     // BLOCKING: apps/* contains nested package.json naming a @csps/* libs package (reimplementation)
     // ADVISORY: platform-procedure files inside apps/, relative imports bypassing @csps/ API

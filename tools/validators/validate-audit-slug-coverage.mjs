@@ -73,6 +73,15 @@ const KNOWN_MAPPINGS = {
   'validate-subagent-spawn-preamble': ['subagent-spawn-preamble', 'subagent_spawn_preamble', 'spawn-preamble'],
   'validate-hook-lifecycle-state': ['hook-lifecycle-state', 'hook_lifecycle_state', 'hook-lifecycle'],
   'validate-session-harvest-readiness': ['session-harvest-readiness', 'session_harvest_readiness', 'harvest-readiness'],
+  'validate-platform-genome': ['platform-genome-freshness', 'platform-genome', 'platform_genome'],
+  'validate-improvement-register': ['improvement-register-cec', 'improvement-register', 'improvement_register'],
+  'validate-apps-are-trials': ['apps-are-trials', 'apps_are_trials', 'app-scope-isolation'],
+  'validate-communication-quality': ['communication-quality', 'communication_quality'],
+  'validate-zf-cycle-format': ['zf-cycle-format', 'zf_cycle_format'],
+  'validate-gap-recurrence': ['gap-recurrence', 'gap_recurrence'],
+  'validate-threshold-intake': ['threshold-intake', 'threshold_intake'],
+  'validate-context-question-coverage': ['context-question-coverage', 'context_question_coverage'],
+  'validate-guard-questions': ['guard-questions', 'guard_questions'],
 };
 
 function validatorBasename(filename) {

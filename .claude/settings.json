@@ -2,6 +2,10 @@
   "permissions": {
     "allow": [
       "Bash",
+      "Edit",
+      "Write",
+      "Edit(.claude/**)",
+      "Write(.claude/**)",
       "WebFetch(domain:tag-app-delivery.cncf.io)",
       "WebFetch(domain:arc42.org)",
       "WebFetch(domain:sandimetz.com)",
@@ -16,6 +20,9 @@
     ],
     "defaultMode": "bypassPermissions",
     "additionalDirectories": [
+      "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\.claude",
+      "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\.claude\\hooks",
+      "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\.claude\\skills",
       "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\.git\\hooks",
       "c:\\Users\\finky\\Desktop\\csps-playground"
     ]

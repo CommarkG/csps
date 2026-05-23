@@ -1237,3 +1237,21 @@ items:
     session_target: S053
     notes: "Formal protocol preventing wild implementations. Exploration produces plan items only. Execution works against ratified plan items. EXPLORE-RATIFY-EXECUTE.md being built S053-B Step 7."
     core_spine: GVRN
+
+  - id: PLAYGROUND-CORE-ELEVATION
+    title: "Register playground as Tier 2 Core + apply CSPS Frontend DNA to all platform pages"
+    status: implementing
+    epoch: E1
+    category: architecture
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 88
+    tags: [playground, frontend, tier-2-core, dna, s054]
+    mdpe_dimensions:
+      blast_radius: 0.85
+      future_enablement: 0.90
+      readiness: 1.0
+      simplicity_bonus: 0
+    session_target: S054
+    notes: "Playground elevated to Tier 2 Core per CSPS Frontend Methodology (b807ebf). pageDNA added to all 15 platform pages (tsx_dna_missing=0). validate-page-dna.mjs updated to check tsx files. validate-ui-completeness.mjs fixed to scan csps-playground/src."
+    core_spine: ARCH

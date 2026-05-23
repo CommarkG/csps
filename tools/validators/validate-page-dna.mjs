@@ -74,13 +74,51 @@ for (const file of htmlFiles) {
   }
 }
 
+// S054: Also check apps/csps-playground/src/app/platform/**/*.tsx for export const pageDNA
+// Next.js pages use pageDNA export instead of window.CURRENT_PAGE.dna (different mechanism)
+const ROOT_REPO = resolve(join(PLAYGROUND, '../../Claude Code/Csps'), '.');
+const TSX_SRC = join(PLAYGROUND, '../Claude Code/Csps/apps/csps-playground/src/app/platform');
+let tsxChecked = 0;
+let tsxPresent = 0;
+let tsxMissing = 0;
+const tsxMissingList = [];
+
+function scanTsx(dir) {
+  if (!existsSync(dir)) return;
+  try {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory() && !entry.name.startsWith('.')) { scanTsx(full); continue; }
+      // Only check page.tsx files (not client components, layouts, or util files)
+      if (entry.name !== 'page.tsx') continue;
+      const content = readFileSync(full, 'utf-8');
+      tsxChecked++;
+      // Check for 'const pageDNA' OR 'export const pageDNA' — Next.js pages can't use export const
+      if (/(?:export\s+)?const\s+pageDNA\s*=/.test(content)) {
+        tsxPresent++;
+      } else {
+        tsxMissing++;
+        tsxMissingList.push(full.replace(/.*apps\/csps-playground\//, 'apps/csps-playground/').replace(/\\/g, '/'));
+      }
+    }
+  } catch { /* skip unreadable */ }
+}
+if (existsSync(TSX_SRC)) scanTsx(TSX_SRC);
+
 console.log(`[validate-page-dna] pages_checked=${checked} dna_present=${present} dna_missing=${missing}`);
+console.log(`[validate-page-dna] tsx_checked=${tsxChecked} tsx_dna_present=${tsxPresent} tsx_dna_missing=${tsxMissing}`);
 
 if (missing > 0) {
-  console.warn(`[validate-page-dna] ADVISORY: ${missing} playground page(s) missing DNA block (window.CURRENT_PAGE.dna):`);
-  missingList.forEach(f => console.warn(`  → ${f}`));
+  console.warn(`[validate-page-dna] ADVISORY: ${missing} static HTML page(s) missing DNA block (window.CURRENT_PAGE.dna):`);
+  missingList.slice(0, 5).forEach(f => console.warn(`  → ${f}`));
+  if (missingList.length > 5) console.warn(`  ... and ${missingList.length - 5} more`);
   console.warn(`  Fix: add dna: { spine: ['GVRN'], pipeline: 'Platform' } to window.CURRENT_PAGE`);
-  console.warn(`  Reference: S043-E DNA enforcement`);
+}
+
+if (tsxMissing > 0) {
+  console.warn(`[validate-page-dna] ADVISORY: ${tsxMissing} Next.js page(s) missing pageDNA export:`);
+  tsxMissingList.forEach(f => console.warn(`  → ${f}`));
+  console.warn(`  Fix: add export const pageDNA = { spine, audience, purpose, inheritsFrom, contextQuestion, cspsApproved, dnaVersion }`);
 }
 
 process.exit(0); // ADVISORY

@@ -40,17 +40,38 @@ let filesChecked = 0;
 let advisories = 0;
 const issues = [];
 
-// Get newly added .tsx/.ts files from last commit
+// Get UI files to check: git-diffed files + direct scan of csps-playground/src/app/platform/
+// The playground is a git submodule — git diff at root won't list its internal files.
+// Direct scan ensures all platform pages are always checked (not just parent-repo diffs).
 let addedFiles = [];
 try {
   const result = execSync('git diff --name-only --diff-filter=AM HEAD~1 HEAD 2>/dev/null || git diff --name-only --diff-filter=AM --cached', {
     cwd: ROOT, encoding: 'utf-8',
   }).trim();
-  addedFiles = result.split('\n').filter(f =>
+  const diffFiles = result.split('\n').filter(f =>
     f && /apps\/.*\.(tsx|ts)$/.test(f) &&
     !/node_modules|\.next|api\//.test(f) // skip API routes
   );
+  addedFiles.push(...diffFiles);
 } catch { /* no git */ }
+
+// Also scan csps-playground/src/app/platform/ directly (submodule bypass)
+function scanTsxDir(dir, relBase) {
+  if (!existsSync(dir)) return;
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name);
+    const rel = relBase + '/' + entry.name;
+    if (entry.isDirectory() && !entry.name.startsWith('.') && entry.name !== 'node_modules' && entry.name !== '.next') {
+      scanTsxDir(full, rel);
+    } else if (entry.name.endsWith('.tsx') && !rel.includes('api/')) {
+      if (!addedFiles.includes(rel)) addedFiles.push(rel);
+    }
+  }
+}
+const pgSrc = join(ROOT, 'apps/csps-playground/src/app');
+if (existsSync(pgSrc)) {
+  scanTsxDir(join(pgSrc, 'platform'), 'apps/csps-playground/src/app/platform');
+}
 
 // Collect existing API routes for fetch-call validation
 function getApiRoutes() {

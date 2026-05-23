@@ -47,6 +47,12 @@ function hasContextQuestion(content) {
   return /^context_question\s*:/m.test(match[1])
 }
 
+function hasContextQuote(content) {
+  const match = content.match(/^---\n([\s\S]*?)\n---/m)
+  if (!match) return false
+  return /^context_quote\s*:/m.test(match[1])
+}
+
 function scanDir(dir, results) {
   if (!existsSync(dir)) return
   const entries = readdirSync(dir, { withFileTypes: true })
@@ -61,18 +67,24 @@ function scanDir(dir, results) {
         const content = readFileSync(fullPath, 'utf8')
         if (!hasFrontmatter(content)) continue
         const hasCQ = hasContextQuestion(content)
+        const hasCQUOTE = hasContextQuote(content)
         results.total++
         if (hasCQ) {
           results.with_cq++
         } else {
           results.without_cq.push(relPath)
         }
+        if (hasCQUOTE) {
+          results.with_cquote++
+        } else {
+          results.without_cquote.push(relPath)
+        }
       } catch { /* skip unreadable files */ }
     }
   }
 }
 
-const results = { total: 0, with_cq: 0, without_cq: [] }
+const results = { total: 0, with_cq: 0, without_cq: [], with_cquote: 0, without_cquote: [] }
 
 for (const dir of SCAN_DIRS) {
   scanDir(join(ROOT, dir), results)
@@ -90,10 +102,18 @@ if (results.without_cq.length > SHOW_LIMIT) {
   console.log(`  ... and ${results.without_cq.length - SHOW_LIMIT} more (run with --all to see full list)`)
 }
 
+const pctQuote = results.total > 0 ? Math.round(100 * results.with_cquote / results.total) : 0
+
 console.log(`[validate-context-question-coverage] context_question coverage: ${results.with_cq}/${results.total} governed files (${pct}%)`)
 if (results.without_cq.length > 0) {
   console.log(`[validate-context-question-coverage] ADVISORY — ${results.without_cq.length} governed files missing context_question`)
   console.log(`[validate-context-question-coverage] Add context_question: "Before [using this], what must be verified about [key assumption]?"`)
+}
+
+console.log(`[validate-context-question-coverage] context_quote coverage: ${results.with_cquote}/${results.total} governed files (${pctQuote}%)`)
+if (results.without_cquote.length > 0) {
+  console.log(`[validate-context-question-coverage] ADVISORY — ${results.without_cquote.length} governed files missing context_quote`)
+  console.log(`[validate-context-question-coverage] Add context_quote: the Governor's verbatim words that best capture this artifact's purpose`)
 }
 
 process.exit(0) // Always advisory

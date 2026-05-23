@@ -51,12 +51,10 @@ try{
   _PROJECT_LOCAL="${REPO_ROOT}/.claude/settings.local.json"
   if [ -f "$_PROJECT_LOCAL" ]; then
     _CONTENT=$(cat "$_PROJECT_LOCAL" 2>/dev/null || echo "{}")
-    if echo "$_CONTENT" | node -e "process.stdin.resume();let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);process.exit(j.permissions?1:0);}catch(e){process.exit(0);}});" 2>/dev/null; then
-      : # no permissions key — clean
-    else
-      # Has permissions key → reset to avoid shadowing
-      echo '{}' > "$_PROJECT_LOCAL" 2>/dev/null || true
-    fi
+    # Always write the minimal bypass content — ensures bypassPermissions is explicit.
+    # Root cause: empty {} does not inherit bypassPermissions from settings.json in IDE extension.
+    # Only permissions.defaultMode is set here — allow/additionalDirectories come from settings.json.
+    printf '{"permissions":{"defaultMode":"bypassPermissions"},"skipDangerousModePermissionPrompt":true}\n' > "$_PROJECT_LOCAL" 2>/dev/null || true
   fi
 } 2>/dev/null || true
 

@@ -1,7 +1,7 @@
 // CSPS TEMPLATE — replace [App Name] with your app name
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@csps/integrations'],
+  transpilePackages: ['@csps/integrations', '@csps/ui'],
   async headers() {
     return [
       {

@@ -1,12 +1,12 @@
 {
   "session": "unknown",
-  "captured_at": "2026-05-23T18:38:42.882Z",
+  "captured_at": "2026-05-23T19:26:27.322Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 157,
-    "ran_at": "2026-05-23T18:38:08.092Z"
+    "ran_at": "2026-05-23T19:25:42.850Z"
   },
-  "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 2/4, Layer 4: 0/4",
+  "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 3/4, Layer 4: 0/4",
   "gap_snapshot_k2": [
     "gap_T1_AI_CONCEPTION_VAULT K=5 (structural_fix_proposed)",
     "gap_T2_ORPHAN_CONTRACTS K=2 (structural_fix_proposed)",
@@ -15,5 +15,5 @@
     "gap_HANDOFF_STARTUP_BLOCK K=3 (fix_committed)",
     "gap_SESSION_INJECTION_COMPRESSION K=2 (open)"
   ],
-  "sonnet_summary": "Layer 1 4/4 COMPLETE (all 5 Foundation Bundles sealed including TENANCY+AUDIT_BASE). Layer 2 3/3 already complete. INFRA-FLOW 9/9 ACTIVE. MDPE 8→21. Layer 3 honest status: 2/4 (INFRA-FLOW composite te"
+  "sonnet_summary": "Sonnet S058 started. Permission fix confirmed (system-reminder shows settings.local.json correctly updated by linter to canonical form). Iter 48 failure was transient — verify exit_code=0 confirmed th"
 }

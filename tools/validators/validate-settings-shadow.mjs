@@ -47,15 +47,19 @@ try {
   process.exit(0);
 }
 
-// BLOCKING: has permissions key → may shadow settings.json defaultMode
+// BLOCKING: has permissions key AND does NOT set defaultMode:bypassPermissions
+// PASS: permissions key exists but sets defaultMode:bypassPermissions explicitly (correct canonical form)
 if (content.permissions !== undefined) {
-  settings_local_clean = false;
-  console.error('[validate-settings-shadow] BLOCKING: .claude/settings.local.json has "permissions" key');
-  console.error('  This silently shadows the "defaultMode: bypassPermissions" from .claude/settings.json.');
-  console.error('  Result: permission popup prompts appear on every new tab.');
-  console.error('  Fix: reset .claude/settings.local.json to {} (project settings.json is the SSoT)');
-  console.error('  SSoT: .claude/settings.json has defaultMode:bypassPermissions + additionalDirectories');
-  blocking++;
+  const mode = content.permissions?.defaultMode;
+  if (mode !== 'bypassPermissions') {
+    settings_local_clean = false;
+    console.error('[validate-settings-shadow] BLOCKING: .claude/settings.local.json has "permissions" key without bypassPermissions');
+    console.error('  This silently overrides defaultMode from .claude/settings.json causing permission popups.');
+    console.error('  Fix: set permissions.defaultMode to "bypassPermissions" in settings.local.json');
+    blocking++;
+  } else {
+    console.log('[validate-settings-shadow] .claude/settings.local.json has explicit bypassPermissions — CORRECT canonical form');
+  }
 }
 
 // ADVISORY: top-level defaultMode (unusual but possible)

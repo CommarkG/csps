@@ -60,31 +60,30 @@ entries:
     finding: "Build a tool, immediately run it on the work that produced it. Finds gaps within minutes of creation."
     first_found: S053
     k_count: 1
-    sessions: [S053]
-    status: cec_run
+    sessions: [S053, S054]
+    status: propagated
     propagated_to:
       - moat-registry.md (M-33)
-      - PROTO-S053-B/C REPORT FORMAT (reflexive application step added)
+      - tools/templates/sonnet-report.template.md v2.0 (reflexive application step added S054)
     not_yet_propagated:
-      - PROTO template (reflexive application should be a standard final step)
       - creation wizard (after building validator: run it on current artifacts)
-    note: "Sonnet built validate-zf-cycle-format.mjs, ran it on sonnet-turn.md, found ZF-in-chat gap immediately."
+    note: "Reflexive step now in sonnet-report.template.md. Every PROTO completion requires reflexive run."
 
   - id: imp_FROM_TO_COMMUNICATION_FORMAT
     finding: "FROM/TO format with three-question test eliminates impersonation, example-confusion, complexity escalation."
     first_found: S053
-    k_count: 1
-    sessions: [S053]
-    status: cec_run
+    k_count: 2
+    sessions: [S053, S054]
+    status: propagated
     propagated_to:
       - tools/council/communication-protocol-shared.md (v2, S053)
       - tools/vault/wisdom/communication-samples.md (5 samples)
       - session-open-context.mjs (Rule 16 Transfer Block)
+      - tools/templates/sonnet-report.template.md v2.0 (S054 — REPORT FORMAT uses FROM/TO)
     not_yet_propagated:
-      - HANDOFF template (startup block should use FROM/TO, not YOU ARE/I AM for relay)
-      - PROTO template (REPORT FORMAT should explicitly use FROM/TO)
+      - HANDOFF startup block (still uses YOU ARE/I AM format — acceptable per startup block convention)
       - External agent protocol (pre-external-agent checklist)
-    note: "5 real failure samples preserved. validate-communication-quality.mjs validates adoption."
+    note: "PROTO REPORT FORMAT now uses FROM/TO. 5 templates still need adoption (advisory)."
 
   - id: imp_ZF_IN_COUNCIL_FILE
     finding: "ZF block must appear IN sonnet-turn.md (the council file T2 scans), not only in chat."

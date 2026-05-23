@@ -1185,6 +1185,17 @@ const CYCLES = [
     },
   },
   {
+    // S054: B_APPS_ARE_TRIALS T2 (constitutional backfitting, gap_T2_ORPHAN_CONTRACTS)
+    // BLOCKING: apps/* contains nested package.json naming a @csps/* libs package (reimplementation)
+    // ADVISORY: platform-procedure files inside apps/, relative imports bypassing @csps/ API
+    name: 'apps_are_trials',
+    command: 'node tools/validators/validate-apps-are-trials.mjs',
+    parse_output: (out) => {
+      const m = out.match(/apps_checked=(\d+)\s+libs_packages=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { apps_checked: Number(m[1]), libs_packages: Number(m[2]), blocking: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
     // S053: Communication quality gate — FROM/TO format + Governor impersonation check
     // BLOCKING (exit 0 advisory for now): "I AM: Yariv Fink" in non-startup templates
     // ADVISORY: communication relay templates missing FROM/TO format

@@ -154,7 +154,7 @@ session: S052
 
 ## POST-HANDOFF COMMITS
 
-Commit adding this HANDOFF file: [sha — filled by Sonnet after commit]
+Commit adding this HANDOFF file: c7edc98
 Any further commits before new Opus opens must be appended here.
 
 ---

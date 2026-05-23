@@ -1,0 +1,100 @@
+---
+id: csps.data.gap-recurrence-register
+name: gap-recurrence-register
+description: "Persistent register of governance gaps that have been observed multiple times. When k_count >= 2, structural fix is required. When k_count >= 3, P-META-019 structural prevention mandate fires. Never delete entries — mark status: resolved with evidence."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: audit_scheduling
+context_question: "How many times has this exact gap been observed without structural resolution? Is k_count >= 2 triggering a mandatory structural fix now?"
+context_quote: "Listing what is missing is like a mirror of the gaps. If you go back, you see you keep missing and fixing the same things."
+---
+
+# Gap Recurrence Register
+
+> Append-only. Every gap observed in any Opus "what's missing" analysis gets an entry.
+> k_count tracks how many sessions have independently re-discovered the same gap.
+> k_count >= 2: STRUCTURAL FIX REQUIRED (not another description).
+> k_count >= 3: P-META-019 fires. Block session close without a committed fix.
+>
+> Status progression: open → structural_fix_proposed → fix_committed → behavioral_test_passing → resolved
+> A gap is RESOLVED only when a behavioral test case exists that PROVES the fix catches violations.
+> A gap with k_count >= 2 that is only "documented" is NOT improving — it is accumulating.
+
+entries:
+
+  - id: gap_T1_AI_CONCEPTION_VAULT
+    observation: "T1 hook missing for AI Conception Vault entries (all 12 are T3-only)"
+    first_seen: S040
+    k_count: 5
+    sessions: [S040, S046, S051, S052, S053, S053-turn-11]
+    status: open
+    structural_fix_triggered: true
+    structural_fix_required_since: S042
+    behavioral_test_exists: false
+    note: "K=5. Constitutional gap. B_PRACE requires T1+T2+T3 at creation. Every session re-discovers this. The mirror loop must end here."
+
+  - id: gap_T2_ORPHAN_CONTRACTS
+    observation: "9 constitutional B_* contracts have no T2 validator (B_PRACE, B_NO_AI_IMPERSONATION, B_APPS_ARE_TRIALS, B_DONE_RIGHT_FROM_THE_START, B_DEFINITION_BEFORE_ENFORCEMENT, B_AUTONOMY_4_CONDITIONS, B_CHECKPOINT_8_CATEGORIES, B_CONTEXTUAL_LOCALITY, B_DEVELOPMENT_VS_PRODUCTION)"
+    first_seen: S052
+    k_count: 2
+    sessions: [S052, S053]
+    status: open
+    structural_fix_triggered: true
+    structural_fix_required_since: S052
+    behavioral_test_exists: false
+    note: "K=2. Registered in audit-runner.md (S052). No validator built yet. Structural fix = build T2 for top 3 by impact."
+
+  - id: gap_ZF_NOMINAL_CYCLES
+    observation: "AI writes nominal ZF cycles ('no new findings', 'areas', 'topics') instead of naming specific files and line numbers"
+    first_seen: S037
+    k_count: 6
+    sessions: [S037, S040, S046, S050, S052, S053]
+    status: structural_fix_proposed
+    structural_fix_triggered: true
+    structural_fix_required_since: S039
+    behavioral_test_exists: false
+    current_fix: "ZF template added to session-open-context.mjs (S053). validate-zf-cycle-format.mjs designed but not built."
+    note: "K=6. T3 only (session injection). T2 (validate-zf-cycle-format.mjs) designed but not committed. Status remains open until T2 exists AND behavioral test case passes."
+
+  - id: gap_SETTINGS_LOCAL_BYPASS
+    observation: "settings.local.json missing defaultMode: bypassPermissions — new tabs ask for write permissions"
+    first_seen: S040
+    k_count: 3
+    sessions: [S040, S046, S053]
+    status: fix_committed
+    behavioral_test_exists: false
+    commit: "S053-turn-10 direct edit"
+    note: "Fix committed. No behavioral test (would require opening a fresh tab and confirming no prompts). Human verification pending."
+
+  - id: gap_HANDOFF_STARTUP_BLOCK
+    observation: "HANDOFF files missing paste-ready startup block for new Sonnet tab"
+    first_seen: S051
+    k_count: 3
+    sessions: [S051, S052, S053]
+    status: fix_committed
+    behavioral_test_exists: false
+    current_fix: "sonnet-startup.template.md created (S053-A). validate-handoff-completeness.mjs updated to check."
+    note: "Fix committed. Behavioral test: does a new Sonnet tab following the startup block actually produce correct INTENT ABSORBED format? Not yet tested."
+
+  - id: gap_SESSION_INJECTION_COMPRESSION
+    observation: "Session-open injection may be compressed in long sessions — critical templates not present in AI context"
+    first_seen: S051
+    k_count: 2
+    sessions: [S051, S053]
+    status: open
+    structural_fix_triggered: true
+    behavioral_test_exists: false
+    note: "K=2. No measurement exists for whether injection content survives context compression. Structural fix: behavioral test that verifies injection content is present in fresh tab first response."
+
+  - id: gap_CONCEPTUAL_CLOSURE_NO_TEST
+    observation: "Solutions are designed and described (cognitive match) without being tested against known violations. The model of the solution is treated as the solution."
+    first_seen: S053
+    k_count: 1
+    sessions: [S053]
+    status: open
+    structural_fix_triggered: false
+    behavioral_test_exists: false
+    note: "K=1. This is the root cause behind gaps 1-6. Structural fix: behavioral test suite (tools/tests/behavioral/) + Gap Recurrence Register validator. This register IS the first step of that fix."

@@ -1,0 +1,11 @@
+{
+  "name": "@csps/behavior-hub",
+  "version": "0.0.1",
+  "private": true,
+  "description": "CSPS per-user behavioral intelligence hub — BehaviorProfile YAML Phase 1 (vocabulary + AI/Human layers). Phase 2: ZModel promotion. Phase 3: AIDefaultOverride + CE.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test": "node_modules/.bin/tsx src/../tests/profile.test.ts || ../../node_modules/.bin/tsx tests/profile.test.ts"
+  }
+}

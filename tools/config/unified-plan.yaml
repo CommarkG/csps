@@ -981,7 +981,7 @@ items:
 
   - id: BEHAVIOR-HUB
     title: "Universal Behavior Hub — AI layer (AI/automation) + Human layer (Governor/devs/users)"
-    status: planning
+    status: implementing
     epoch: E1
     category: architecture
     owner: opus

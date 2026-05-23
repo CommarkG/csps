@@ -1,0 +1,59 @@
+---
+id: csps.bundles.foundation.AUTH
+name: AUTH
+status: SEALED
+version: "1.0"
+session: S056
+owner: group:finky
+core_spine: GVRN
+schema_anchor: vault_files
+protection_level: sealed
+activation: mandatory
+requires_db: false
+inherits_from: "R1-08-TEMPLATE-BUNDLE-SYSTEM § Foundation Bundles"
+context_question: "Before building auth in a new CSPS app: are all AUTH bundle components active and the env vars present in Vercel?"
+---
+
+# AUTH Foundation Bundle
+
+> Status: SEALED
+> Every CSPS app inherits this bundle. Non-negotiable. Cannot be deactivated.
+> Design source: docs/SIA/R1-08-TEMPLATE-BUNDLE-SYSTEM.md § 2 Foundation Bundles
+
+## Components
+
+components:
+  - name: clerk-integration
+    description: "Clerk auth middleware, user sync, session management"
+    provides: [users, sessions, organizations, JWT-claims]
+  - name: protected-routes
+    description: "Middleware guards on all non-public routes"
+    pattern: "apps/[app]/src/middleware.ts — clerkMiddleware()"
+  - name: user-sync-webhook
+    description: "Clerk → CSPS user sync via webhook (user.created, user.deleted, membership.*)"
+    pattern: "apps/[app]/src/app/api/webhooks/clerk/route.ts"
+  - name: session-claims
+    description: "Custom JWT claims (tenantId embedded at login)"
+    pattern: "libs/integrations/clerk/session-context.ts"
+
+## Required Environment Variables
+
+env_vars_required:
+  - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  - CLERK_SECRET_KEY
+  - CLERK_WEBHOOK_SECRET
+
+## Verification Gate
+
+verification_gate:
+  - "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY present in Vercel env"
+  - "CLERK_SECRET_KEY present in Vercel env"
+  - "validate-security-headers.mjs passes (auth headers present)"
+  - "validate-webhook-idempotency.mjs passes"
+
+## Phase Notes
+
+phase_notes:
+  current: "Phase 1 — Clerk auth only. No ZModel RLS (DB layer not yet provisioned)."
+  phase_2: "Add TENANCY bundle (ZModel RLS). AUTH + TENANCY = full multi-tenant isolation."
+  blocked_by: "TENANCY bundle (requires Supabase + ZModel provision)"

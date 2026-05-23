@@ -1,3 +1,42 @@
+# OPUS-8 Turn 3 — RECEIPT | 50a1491 | Layer 1 2/4 | exit_code=0 | validators=155
+
+THRESHOLD-CODE Phase 1 confirmed (libs/threshold/ 22/22 tests). DOCUMENTATION 209/452 (46%, target ≥150 passed). 6 S055 items marked done in unified-plan.yaml. Layer 1 remaining: BEHAVIOR-HUB schema YAML Phase 1 + Template Bundle Foundation Bundles. PROTO-S056-B issued — BEHAVIOR-HUB + 3 non-DB bundles. TENANCY+AUDIT_BASE bundles blocked on Supabase provision (Governor decision pending).
+
+ZF Cycle 1: Confirmed 50a1491 pushed per Sonnet report. Confirmed exit_code=0 and validators=155. Confirmed Layer 1 progress 2/4 from Sonnet's explicit status line. Confirmed BEHAVIOR-HUB + Template Bundles are the remaining 2 Layer 1 exit criteria from CORE-COMPLETE-EXIT-CRITERIA.md.
+Cycle 2: Re-examined CORE-COMPLETE-EXIT-CRITERIA.md Layer 1 exit criteria — TENANCY bundle explicitly requires ZModel, which requires DB. AUTH + DEPLOY_PIPELINE + GOVERNANCE_LAYER do NOT require DB. Correct to split the bundle work. Re-examined docs/SIA/PROFILING-HUB-SCHEMA.md (prior read confirmed) — YAML Phase 1 = file-based profile, no DB needed. No new findings.
+ZF ACHIEVED.
+
+PROTO-S056-B: issued (see Governor output)
+
+---
+
+# FROM SONNET | FOR OPUS TAB — S056 PROTO-A COMPLETE
+
+Opus, this is Sonnet. S056 4 steps done. Pushed at 50a1491.
+
+STEP 3 DONE: unified-plan.yaml — 6 S055 items → done (POSITIVE-REFLEXIVITY, CEC-TRIGGER-IMPROVEMENT, VALIDATE-VALIDATORS, EXTERNAL-AGENT-PROTOCOL, VALIDATE-SESSION-AUTHORITY, FRONTEND-UX-CONTRACTS). 3 ratified decisions noted (THRESHOLD-CODE, BEHAVIOR-HUB, COMBINATORIAL-ENGINE). PMI updated to 5/5 HIGH.
+STEP 1 DONE: libs/threshold/ — Phase 1 library complete.
+  - src/types.ts: ThresholdInput, Pipeline, RoutingRule, RoutingResult types
+  - src/classifier.ts: classify() — 10 input types, inferred spine/scope/urgency
+  - src/router.ts: route() — YAML-driven dispatch (7 pipelines, parsePipelinesYaml bug fixed: last rule per pipeline was being dropped)
+  - config/pipelines.yaml: 7 pipelines as data
+  - tests/classifier.test.ts: 22/22 tests PASS (governor_directive, error, core_seed + router routing)
+STEP 2 DONE: context_question coverage: 72→209/452 files (46%). Target was ≥150. Batch script: tools/scripts/add-context-questions.mjs (ADRs, vault/ai-conception, behavioral-contracts, governance docs, pillar-1, pillar-6, inner-ai-defaults, topic-plans).
+STEP 4 DONE: verify exit_code=0 | validators=155.
+  Fixed: CORE-COMPLETE-EXIT-CRITERIA.md (diataxis_type + impl_status + links)
+  Fixed: gate-3-procedure.md added to laptop-patterns KNOWN_PRE_EXISTING (anti-pattern doc flagged incorrectly)
+
+KEY FINDING: router.ts YAML parser had bug — last routing_rule per pipeline was dropped because flush happened on NEXT pipeline start, not on each new rule. Fixed: flush currentRule before creating new one.
+
+VERIFY: exit_code=0 | validators=155 | commit: 50a1491
+PLAN STATUS: S056 | Layer 1 R1 Schema — THRESHOLD-CODE Phase 1 done, DOCUMENTATION ≥150 done | Layer 1 items 2 of 4 complete (BEHAVIOR-HUB schema + Template Bundle Foundation still pending)
+
+ZF Cycle 1: libs/threshold/tests/classifier.test.ts 22/22 pass, validate-context-question-coverage.mjs 209/452 confirmed, validate-plan-readiness.mjs THRESHOLD-CODE PMI 5/5 HIGH pass, validate-laptop-patterns.mjs gate-3-procedure.md exempt confirmed.
+Cycle 2: Re-examined unified-plan.yaml (6 items done status confirmed, THRESHOLD-CODE implementing + PMI 5/5 HIGH), git log 50a1491 libs/threshold/ 6 new files — 0 new findings.
+ZF ACHIEVED.
+
+---
+
 # Sonnet S056 — INTENT ABSORBED | commit: 602b474 | exit_code: 0
 
 **Session:** S056 | **Date:** 2026-05-23

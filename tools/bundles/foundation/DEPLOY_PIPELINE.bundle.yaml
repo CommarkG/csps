@@ -1,0 +1,60 @@
+---
+id: csps.bundles.foundation.DEPLOY_PIPELINE
+name: DEPLOY_PIPELINE
+status: SEALED
+version: "1.0"
+session: S056
+owner: group:finky
+core_spine: OPER
+schema_anchor: vault_files
+protection_level: sealed
+activation: mandatory
+requires_db: false
+inherits_from: "R1-08-TEMPLATE-BUNDLE-SYSTEM § Foundation Bundles"
+context_question: "Before deploying a CSPS app: does it have vercel.json with root-dir set, all required env vars in Vercel (never .env.local), and pnpm verify passing?"
+---
+
+# DEPLOY_PIPELINE Foundation Bundle
+
+> Status: SEALED
+> Every CSPS app inherits this bundle. Non-negotiable. Cannot be deactivated.
+> Design source: docs/SIA/R1-08-TEMPLATE-BUNDLE-SYSTEM.md § 2 Foundation Bundles
+
+## Components
+
+components:
+  - name: vercel-config
+    description: "vercel.json with correct root dir, framework, include-outside-root"
+    pattern: "apps/[app]/vercel.json — root Dir=apps/[app], framework=nextjs, include-outside-root=enabled"
+    reference: "docs/plan/pillar-0-governance/external-integrations/vercel.md 10 rules"
+  - name: env-schema
+    description: "Required environment variables declared in .env.example (never .env.local in production)"
+    pattern: "apps/[app]/.env.example — documents all required vars"
+  - name: deploy-gate
+    description: "pnpm verify exit_code=0 required before any deployment"
+    pattern: "post-stop-pnpm-verify.sh hook + Vercel build command"
+  - name: zero-laptop-dependency
+    description: "All credentials in Vercel env vars. No .env.local in production."
+    reference: "B_ZERO_LAPTOP_DEPENDENCY + P-OPER-001"
+
+## Required Environment Variables
+
+env_vars_required:
+  - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  - CLERK_SECRET_KEY
+  - "(DATABASE_URL — required when TENANCY bundle activated)"
+
+## Verification Gate
+
+verification_gate:
+  - "vercel.json present with correct root dir and framework"
+  - "validate-no-laptop-secrets.mjs passes (no .env.local secrets)"
+  - "validate-security-headers.mjs passes"
+  - "pnpm verify exit_code=0 on last commit"
+  - "Vercel deployment URL live (csps-playground.vercel.app confirms pattern)"
+
+## Phase Notes
+
+phase_notes:
+  current: "Phase 1 — Vercel deployment only. No DB env vars required yet."
+  phase_2: "Add DATABASE_URL + DIRECT_URL for Supabase (when TENANCY bundle activated)."

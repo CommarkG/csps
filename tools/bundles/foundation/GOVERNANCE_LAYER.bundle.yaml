@@ -1,0 +1,66 @@
+---
+id: csps.bundles.foundation.GOVERNANCE_LAYER
+name: GOVERNANCE_LAYER
+status: SEALED
+version: "1.0"
+session: S056
+owner: group:finky
+core_spine: GVRN
+schema_anchor: vault_files
+protection_level: sealed
+activation: mandatory
+requires_db: false
+inherits_from: "R1-08-TEMPLATE-BUNDLE-SYSTEM § Foundation Bundles"
+context_question: "Before declaring an app governance-complete: does it have pageDNA on all pages, pass pnpm verify exit_code=0, and have validate-new-file-dna.mjs not blocking?"
+---
+
+# GOVERNANCE_LAYER Foundation Bundle
+
+> Status: SEALED
+> Every CSPS app inherits this bundle. Non-negotiable. Cannot be deactivated.
+> Design source: docs/SIA/R1-08-TEMPLATE-BUNDLE-SYSTEM.md § 2 Foundation Bundles
+
+## Components
+
+components:
+  - name: page-dna
+    description: "const pageDNA block on every Next.js page file (NOT export const — App Router prohibits it)"
+    pattern: |
+      const pageDNA = {
+        id: 'csps.[app].[page]',
+        core_spine: '[SPINE]',
+        schema_anchor: '[ANCHOR]',
+      } as const;
+    validator: "validate-page-dna.mjs — tsx_dna_missing=0 required"
+  - name: pnpm-verify-gate
+    description: "pnpm verify exit_code=0 required at every session close"
+    hook: "post-stop-pnpm-verify.sh"
+    validator: "All 155+ validators at exit_code=0"
+  - name: new-file-dna
+    description: "New files in libs/ and packages/ must carry CSPS DNA (@csps-id at creation)"
+    validator: "validate-new-file-dna.mjs — blocking=0 required"
+  - name: hooks-registration
+    description: "All hooks declared in .claude/settings.json and present as executables"
+    validator: "verify-hooks-functional.sh — all 20 hooks present and executable"
+  - name: behavioral-contracts
+    description: "All B_* contracts active via T1+T2+T3 or exempt with documented reason"
+    validator: "validate-activation-coverage.mjs — blocking=0 required"
+
+## Required Environment Variables
+
+env_vars_required: []
+
+## Verification Gate
+
+verification_gate:
+  - "validate-page-dna.mjs: tsx_dna_missing=0"
+  - "validate-new-file-dna.mjs: blocking=0"
+  - "verify-hooks-functional.sh: all hooks present and executable"
+  - "validate-activation-coverage.mjs: blocking=0"
+  - "pnpm verify exit_code=0 on latest commit"
+
+## Phase Notes
+
+phase_notes:
+  current: "Phase 1 — full governance layer active. No DB-dependent validators yet."
+  phase_2: "Add validate-foundation-schema-drift.mjs checks when ZModel active."

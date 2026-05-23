@@ -163,7 +163,7 @@ CSPS-correct build).
 | Step | Status | Runnable? | Notes |
 |---|---|---|---|
 | 1 — Threshold | ACTIVE (S056) | Yes | user-prompt-submit-intake.sh wired to write ThresholdIntakeRecord to .csps/threshold/intake-log.yaml (PROTO-F). |
-| 2 — PE Scoring | PARTIAL (enhanced, S056) | Partially | libs/intelligence/ PE sub-engine built (eb9350f). |
+| 2 — PE Scoring | ACTIVE (S057) | Yes | libs/intelligence/ PE sub-engine + mdpe_items=21 (S057 PROTO-D MDPE backfill). |
 | 3 — Planning Wizard | ACTIVE (S057) | Yes | apps/csps-playground/src/app/platform/wizard/page.tsx — 7-section wizard UI, saves to tools/data/wizard-drafts/. |
 | 4 — PMI Gate | ACTIVE | Yes | validate-plan-readiness.mjs LIVE. |
 | 5 — Fork | ACTIVE (S056) | Yes | tools/scripts/fork-app.mjs built (PROTO-E). |
@@ -172,7 +172,7 @@ CSPS-correct build).
 | 8 — Activate | ACTIVE | Yes | pageDNA + DNA validators. |
 | 9 — Evidence Capture | ACTIVE (S056) | Yes | capture-session-evidence.mjs auto-triggered at session close via post-stop-session-close-gate.sh (PROTO-F). |
 
-**Composite test runnable:** Yes for 8/9 ACTIVE steps. Step 2 (MDPE dimensions for all plan items) still partial.
+**Composite test runnable:** Yes for 9/9 steps (Step 2 now ACTIVE with mdpe_items=21).
 **Blocked on:** Step 3 Wizard UI (Layer 3 — S057 target), Step 2 PE MDPE dimensions in all items
 **Updated:** S056 PROTO-E
 

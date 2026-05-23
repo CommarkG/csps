@@ -637,6 +637,11 @@ items:
       reversibility: high
       dependency_clarity: high
     notes: "PMI=5/5. Section 5 ratified. Fork AUTHORIZED but PAUSED — infrastructure must be validated first. Governor directive S051: complete Threshold (code), PIE, Behavioral Hub, and end-to-end flow test before any app build. APP-001 is the first BUILD candidate when infrastructure is ready. Plan is complete; execution is blocked on infrastructure."
+    mdpe_dimensions:
+      blast_radius: 0.9
+      future_enablement: 0.95
+      readiness: 0.55
+      simplicity_bonus: 0
 
   - id: APP-NAME-REGISTRY
     title: "App Name Registry — pnpm app:rename mechanism"
@@ -888,6 +893,11 @@ items:
     pe_score: 93
     tags: [templates, bundles, upgrade-paths, self-creating, s050]
     notes: "Design doc: docs/SIA/R1-08-TEMPLATE-BUNDLE-SYSTEM.md. Foundation/Tier/Domain bundle taxonomy. Upgrade paths pre-defined and sealed. Self-creating: app capabilities promote to bundles. PE BUNDLE_OPPORTUNITY signal needed."
+    mdpe_dimensions:
+      blast_radius: 0.85
+      future_enablement: 0.9
+      readiness: 0.45
+      simplicity_bonus: 0
 
   - id: DELTA-AUDIT-PRINCIPLE
     title: "Delta Audit Efficiency — run audits on changed files only, monthly full scan"
@@ -1007,6 +1017,11 @@ items:
     blocked_on: BEHAVIOR-HUB-ZMODEL-PROMOTION
     tags: [privacy, silos, gdpr, personal-data, architecture, s050]
     notes: "Hard psychological and technical line: private personal data (family, relationships, health) stored in encrypted silo EXCLUDED from business-logic training sets. Design doc complete at a9b5e79. Phase 2 (ZModel RLS) blocked on BEHAVIOR-HUB-ZMODEL-PROMOTION (DB infrastructure prerequisite). Prevention priority: privacy architecture breach is worse than missing feature."
+    mdpe_dimensions:
+      blast_radius: 0.7
+      future_enablement: 0.85
+      readiness: 0.4
+      simplicity_bonus: 0
 
   - id: AB-TESTING-HUB
     title: "A/B/C/D Testing Hub — experimentation platform for user-facing flows with completion tracking"
@@ -1051,6 +1066,11 @@ items:
     pe_score: 95
     tags: [combinatorial, dependency-matrix, sensitivity-ladder, forward-reasoning, moat, s050]
     notes: "Core engine for multi-dimensional user context with Dependency Strength grading (Isolated→Linked→Dependent→Synergetic). Three collection modes. Sensitivity Ladder (Tone/Depth/Urgency 1-4). Forward reasoning on trajectories. Vault design: tools/vault/concepts/COMBINATORIAL-ENGINE-RAW.md + tools/vault/processing/COMBINATORIAL-ENGINE-S123-ANALYSIS.md. Prerequisite: BEHAVIOR-HUB + PRIVATE-BUSINESS-SILOS + STT-CORRECTION-SYSTEM. S055 ratification: PIE sub-engines ratified — PE Sub-engine + Learning Loop + Scope Router + Seeds Monitor + Documentation Engine (all D1-always-active; full activation on triggers per CORE-COMPLETE-EXIT-CRITERIA.md Layer 2). Opus designs R2-01 in S056."
+    mdpe_dimensions:
+      blast_radius: 0.8
+      future_enablement: 0.95
+      readiness: 0.5
+      simplicity_bonus: 0
 
   - id: CORESPINE-HUB-DEPTH-MARKERS
     title: "corespine-hub-depth-markers — week-4 stub never shipped"
@@ -1213,6 +1233,11 @@ items:
     tags: [gap-recurrence, validation, s053]
     session_target: S053
     notes: "Reads gap-recurrence-register.yaml. K>=2=advisory, K>=3=blocking session close. validate-gap-recurrence.mjs LIVE (S053-B Step 2). Breaks the mirror loop."
+    mdpe_dimensions:
+      blast_radius: 0.6
+      future_enablement: 0.75
+      readiness: 0.7
+      simplicity_bonus: 0.1
     core_spine: VALD
 
   - id: BEHAVIORAL-TEST-SUITE
@@ -1226,11 +1251,16 @@ items:
     tags: [behavioral-tests, validation, s053]
     session_target: S053
     notes: "Test suite where each behavioral rule has a test case proving it catches violations. First test: validate-zf-cycle-format.mjs (zf-cycle-format-test.sh LIVE S053-B Step 1). README and directory created."
+    mdpe_dimensions:
+      blast_radius: 0.65
+      future_enablement: 0.8
+      readiness: 0.65
+      simplicity_bonus: 0.1
     core_spine: VALD
 
   - id: EXPLORE-RATIFY-EXECUTE
     title: "Explore → Ratify → Execute protocol document"
-    status: planning
+    status: ratified
     epoch: E1
     category: governance
     owner: governor
@@ -1272,6 +1302,11 @@ items:
     tags: [reflexivity, improvement-register, s055]
     session_target: S055
     notes: "When improvement-register K reaches 2, auto-generate a plan item proposal for the next Opus session. Closes the gap between introspective (logs K) and reflexive (K patches enforcement surface). Per SELF-VALIDATION-METHODOLOGIES.md Methodology 1."
+    mdpe_dimensions:
+      blast_radius: 0.5
+      future_enablement: 0.7
+      readiness: 0.9
+      simplicity_bonus: 0.2
     core_spine: VALD
 
   - id: CEC-TRIGGER-IMPROVEMENT
@@ -1285,6 +1320,11 @@ items:
     tags: [cec, improvement-register, hooks, s055]
     session_target: S055
     notes: "Extend post-tool-use-cec-trigger.sh to check improvement-register.yaml not_yet_propagated paths. When a file matching a target path is written, inject a CEC reminder. Currently the trigger only checks gap-register; positive pipeline has no trigger."
+    mdpe_dimensions:
+      blast_radius: 0.55
+      future_enablement: 0.65
+      readiness: 0.9
+      simplicity_bonus: 0.2
     core_spine: VALD
 
   - id: VALIDATE-VALIDATORS
@@ -1298,6 +1338,11 @@ items:
     tags: [meta-validator, self-healing, s055]
     session_target: S055
     notes: "Meta-validator that checks registered validators ran last session and produced results. Catches the case where a T2 exists but has fired 0 times in 20 sessions silently. Per SELF-VALIDATION-METHODOLOGIES.md Methodology 5."
+    mdpe_dimensions:
+      blast_radius: 0.5
+      future_enablement: 0.6
+      readiness: 0.9
+      simplicity_bonus: 0.2
     core_spine: VALD
 
   - id: EXTERNAL-AGENT-PROTOCOL
@@ -1311,6 +1356,11 @@ items:
     tags: [agent-protocol, communication, s055]
     session_target: S055
     notes: "Formal protocol for when CSPS uses external agents (subagents, third-party tools). Checklist: identity declared, FROM/TO format, context block, capability verified. imp_FROM_TO_COMMUNICATION_FORMAT not_yet_propagated target."
+    mdpe_dimensions:
+      blast_radius: 0.4
+      future_enablement: 0.5
+      readiness: 0.9
+      simplicity_bonus: 0.2
     core_spine: GVRN
 
   - id: FRONTEND-UX-CONTRACTS
@@ -1324,6 +1374,11 @@ items:
     tags: [frontend, ux, contracts, tier-2, s055]
     session_target: S055
     notes: "Behavioral contracts specific to the playground as Tier 2 Core. What must every playground page do? What is NEVER acceptable? Per CSPS Frontend Methodology (b807ebf). Complements B_APPS_ARE_TRIALS at the Tier 2 layer."
+    mdpe_dimensions:
+      blast_radius: 0.6
+      future_enablement: 0.75
+      readiness: 0.85
+      simplicity_bonus: 0.1
     core_spine: ARCH
 
   - id: VALIDATE-SESSION-AUTHORITY
@@ -1337,6 +1392,11 @@ items:
     tags: [validator, session-authority, parallel-sessions, s055]
     session_target: S055
     notes: "Reads active_implementation_session from tools/session-state.json. Advisory: flags when outputs appear associated with a session no longer active. Prevents the 'three drivers' structural problem — multiple sessions producing conflicting outputs without authority signal. Methodology 5 (meta-validator layer) application."
+    mdpe_dimensions:
+      blast_radius: 0.4
+      future_enablement: 0.5
+      readiness: 0.9
+      simplicity_bonus: 0.2
     core_spine: VALD
 
   - id: COMPONENT-LIBRARY
@@ -1351,4 +1411,9 @@ items:
     tags: [component-library, libs-ui, tier-2, frontend, s056]
     session_target: S056
     notes: "Shared UI component library for CSPS Tier 2 (playground + future apps). Design phase only until INFRA-FLOW-VALIDATION complete. Registered per Opus S055 directive C2. Deferred to S056."
+    mdpe_dimensions:
+      blast_radius: 0.8
+      future_enablement: 0.9
+      readiness: 0.4
+      simplicity_bonus: 0
     core_spine: ARCH

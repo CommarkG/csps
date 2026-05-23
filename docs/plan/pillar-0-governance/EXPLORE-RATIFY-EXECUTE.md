@@ -12,7 +12,9 @@ lifecycle_state: active
 core_spines: [GVRN, ARCH]
 core_spine: GVRN
 schema_anchor: vault_files
-session: S053
+session: S057
+ratified_session: S057
+ratified_by: Governor
 links:
   - csps.data.gap-recurrence-register
   - vault.concepts.DEFAULT-STORAGE-IS-EPHEMERAL

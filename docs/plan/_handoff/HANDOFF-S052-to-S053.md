@@ -159,4 +159,34 @@ Any further commits before new Opus opens must be appended here.
 
 ---
 
+## SONNET STARTUP BLOCK
+
+**PASTE THIS INTO THE NEW SONNET TAB — S053 STARTUP**
+
+```
+YOU ARE: Sonnet, builder. Session S053.
+I AM: Yariv Fink (Governor).
+SITUATION: S052 closed at 0f0a23c. pnpm verify exit_code=0. Fresh tab (95+ turns).
+  S053 mandate: VOCABULARY-SERVICE Phase 1 YAML + THRESHOLD-CODE (code)
+
+FIRST ACTION:
+  1. Read docs/plan/_handoff/HANDOFF-S052-to-S053.md FULLY
+  2. git log --oneline -3
+  3. node tools/verify.mjs | grep exit_code
+  4. Write to tools/council/sonnet-turn.md:
+     "# Sonnet S053 — INTENT ABSORBED | commit: [sha] | exit_code: [N]"
+  5. AWAIT Opus directive. Do not implement anything before receiving PROTO.
+
+RELAY MODEL:
+  Every Sonnet→Opus message: "Opus, this is Sonnet." (Rule 1 — no exceptions)
+  Step reports: write to sonnet-turn.md FIRST, then report to Governor
+
+NON-NEGOTIABLE PATTERNS:
+  1. New hooks → dispatch-registry.yaml ONLY (not settings.json mid-session)
+  2. All 4 false assumption categories checked before any PROTO execution
+  3. DONE/RATIFIED claims require THIS-SESSION pnpm verify output, not memory
+```
+
+---
+
 *HANDOFF S052→S053 | OPUS-7 closing | OPUS-8 opens with this file + fresh Sonnet report*

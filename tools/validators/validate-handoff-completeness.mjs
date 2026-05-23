@@ -59,6 +59,18 @@ const MANDATORY = [
     label: 'ALIGNMENT QUESTIONS (3+)',
     patterns: [/^##\s+ALIGNMENT\s+QUESTIONS/mi],
     message: 'Missing ## ALIGNMENT QUESTIONS section with 3+ questions. Required by P-META-014 MUV.'
+  },
+  {
+    id: 'sonnet-startup-block',
+    label: 'SONNET STARTUP BLOCK (paste-ready for incoming tab)',
+    // Matches: "## SONNET STARTUP BLOCK", "PASTE THIS INTO", "YOU ARE: Sonnet", "INTENT ABSORBED"
+    patterns: [
+      /^##\s+SONNET\s+STARTUP\s+BLOCK/mi,
+      /PASTE\s+THIS\s+INTO\s+THE\s+(NEW\s+)?SONNET/mi,
+      /YOU\s+ARE:\s+Sonnet.*builder/mi,
+      /INTENT\s+ABSORBED\s*—\s*S\d+/m,
+    ],
+    message: 'Missing SONNET STARTUP BLOCK. Every HANDOFF must include a paste-ready startup prompt for the incoming Sonnet tab. Add "## SONNET STARTUP BLOCK" with the complete YOU ARE / I AM / THIS IS / YOUR TASK block. B_ZERO_NAVIGATION_FOR_GOVERNOR requires this — the new Sonnet tab starts from zero.'
   }
 ];
 
@@ -92,9 +104,11 @@ for (const { name, path } of files) {
   const fileAdvisory = [];
 
   // Grandfather pre-S037 HANDOFFs — Zone A/B and ALIGNMENT QUESTIONS not mandatory before S037
-  const sessionMatch = name.match(/^HANDOFF-S(\d+)-to-/);
+  // Extract session number — handles S040, S040-C1 continuation format, etc.
+  const sessionMatch = name.match(/^HANDOFF-S(\d+)/);
   const sessionNum = sessionMatch ? Number(sessionMatch[1]) : 999;
-  const isLegacy = sessionNum < 37; // S001-S036 grandfathered (predated these requirements)
+  const isLegacy = sessionNum < 37; // S001-S036 grandfathered (predated Zone A/B/AQ requirements)
+  const isPreStartupBlock = sessionNum < 53; // S037-S052 grandfathered for SONNET STARTUP BLOCK (added S052 close)
 
   // Check mandatory sections
   for (const check of MANDATORY) {
@@ -102,6 +116,9 @@ for (const { name, path } of files) {
 
     if (!found) {
       if (isLegacy) {
+        advisory++;
+      } else if (check.id === 'sonnet-startup-block' && isPreStartupBlock) {
+        // S037-S052 HANDOFFs grandfathered for startup block — requirement added S052 close
         advisory++;
       } else {
         fileBlocking.push(check.message);

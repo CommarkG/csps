@@ -7,7 +7,7 @@
 
 meta:
   total_count: 63
-  generated_at: '2026-05-22'
+  generated_at: '2026-05-23'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
   usage: Load individual slice files (./behavioral-contracts/B_NAME.md) for AI session context;

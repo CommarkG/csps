@@ -365,11 +365,14 @@ YOUR TASK: Read tools/council/csps-context.md FIRST. Then read docs/plan/_handof
 Only announce when your own quality gate fires.**
 
 ### [SONNET] At every session close (regardless of turn count):
-- Write HANDOFF (Zone A + Zone B + ALIGNMENT QUESTIONS) — this is ALWAYS required
+- Write HANDOFF (Zone A + Zone B + ALIGNMENT QUESTIONS + **SONNET STARTUP BLOCK**) — ALL FOUR required
+- **SONNET STARTUP BLOCK** (mandatory, always): a complete paste-ready prompt for the incoming Sonnet tab.
+  Format: YOU ARE / I AM / THIS IS THE SITUATION / YOUR TASK block. Never abbreviated.
+  B_ZERO_NAVIGATION_FOR_GOVERNOR: the new Sonnet tab starts from ZERO — it cannot find things.
 - Push the HANDOFF commit
 - Continue in the SAME TAB and await the next Opus directive for S[N+1]
 - Do NOT include a "Next Opus Tab" section unless the Opus quality gate explicitly fired
-- Use: `validate-handoff-completeness.mjs` will BLOCK if sections missing
+- Use: `validate-handoff-completeness.mjs` will BLOCK if any of the 4 sections missing
 
 **[SONNET] You have NO authority to tell Opus when to change tabs.
 HANDOFF push ≠ new Opus tab. The quality gate decides tab transitions, not sessions.**

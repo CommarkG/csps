@@ -1185,6 +1185,18 @@ const CYCLES = [
     },
   },
   {
+    // S053: ZF cycle format T2 — nominal ZF detection (gap_ZF_NOMINAL_CYCLES K=6)
+    // BLOCKING: Cycle 2+ claims ZF ACHIEVED but cites no file names.
+    // ADVISORY: Cycle 2+ uses vague words (areas/topics/things) without file names.
+    // Scans tools/council/sonnet-turn.md + tools/council/opus-turn.md by default.
+    name: 'zf_cycle_format',
+    command: 'node tools/validators/validate-zf-cycle-format.mjs',
+    parse_output: (out) => {
+      const m = out.match(/zf_blocks_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { zf_blocks_checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // S053: THRESHOLD R1.4.1 T2 — advisory report on intake log classification
     // Reads tools/data/threshold-intake-log.yaml. Reports total entries + type distribution.
     // Advisory always. Grows as governor prompts accumulate per-session.

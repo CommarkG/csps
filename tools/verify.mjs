@@ -1185,6 +1185,17 @@ const CYCLES = [
     },
   },
   {
+    // S053: THRESHOLD R1.4.1 T2 — advisory report on intake log classification
+    // Reads tools/data/threshold-intake-log.yaml. Reports total entries + type distribution.
+    // Advisory always. Grows as governor prompts accumulate per-session.
+    name: 'threshold_intake',
+    command: 'node tools/validators/validate-threshold-intake.mjs',
+    parse_output: (out) => {
+      const m = out.match(/total_entries=(\d+)\s+sessions=(\d+)/);
+      return m ? { total_entries: Number(m[1]), sessions: Number(m[2]), advisory: true } : { advisory: true };
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

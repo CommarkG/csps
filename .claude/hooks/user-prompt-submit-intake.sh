@@ -49,4 +49,64 @@ if [ -f "$STATE_FILE" ]; then
   fi
 fi
 
+
+# ─── THRESHOLD R1.4.1 — Intake classification + log append (non-blocking) ────
+# Classifies every governor prompt and appends to tools/data/threshold-intake-log.yaml.
+# Classification is pattern-based (Phase 1). First match wins. Non-blocking — never fails hook.
+{
+  _TR="${REPO_ROOT}/tools/config/threshold-classification-rules.yaml"
+  _LOG="${REPO_ROOT}/tools/data/threshold-intake-log.yaml"
+
+  if [ -f "$_TR" ]; then
+    # Type classification (first match wins)
+    _TY="governor_directive"; _SP="GVRN"; _UR="medium"
+    if   echo "$USER_MESSAGE" | grep -Eqi 'upload|paste|EXT-ID|external.research'; then _TY="external_research"; _SP="AI"; _UR="low"
+    elif echo "$USER_MESSAGE" | grep -Eq  'exit_code=1|BLOCKING'; then _TY="error"; _SP="VALD"; _UR="high"
+    elif echo "$USER_MESSAGE" | grep -Eqi 'fixed|resolved|exit_code=0'; then _TY="solution"; _SP="VALD"; _UR="medium"
+    elif echo "$USER_MESSAGE" | grep -Eqi 'correction|wrong|should be|instead of|not like that'; then _TY="correction"; _SP="AI"; _UR="medium"
+    elif echo "$USER_MESSAGE" | grep -Eqi 'every session|pattern across|emerging'; then _TY="core_seed"; _SP="ARCH"; _UR="low"
+    elif echo "$USER_MESSAGE" | grep -Eqi 'HANDOFF|session close|closing'; then _TY="session_harvest"; _SP="GVRN"; _UR="low"
+    elif echo "$USER_MESSAGE" | grep -Fq '?'; then _TY="question"; _SP="GVRN"; _UR="low"
+    fi
+
+    # Scope classification (first match wins)
+    _SC="S2"
+    if   echo "$USER_MESSAGE" | grep -Eqi 'this specific|this instance|fix this'; then _SC="S1"
+    elif echo "$USER_MESSAGE" | grep -Eqi 'structural|principle|always|constitutional|platform'; then _SC="S3"
+    fi
+
+    # Get session id
+    _SN=$(node -e "try{const s=JSON.parse(require('fs').readFileSync('$STATE_FILE','utf8'));process.stdout.write(s.current_session||'unknown');}catch(e){process.stdout.write('unknown');}" 2>/dev/null || echo "unknown")
+
+    # Sanitize preview: strip control chars and quotes
+    _PV=$(printf '%s' "$USER_MESSAGE" | head -c 80 | tr -d '\001-\031\\')
+
+    # Append to intake log via node (env-var passing avoids bash/node quoting issues)
+    THRESHOLD_TYPE="$_TY" THRESHOLD_SPINE="$_SP" THRESHOLD_SCOPE="$_SC" \
+    THRESHOLD_URGENCY="$_UR" THRESHOLD_SESSION="$_SN" THRESHOLD_PREVIEW="$_PV" \
+    THRESHOLD_LOG="$_LOG" node -e "
+const fs=require('fs'),p=require('path');
+try{
+  const ts=new Date().toISOString();
+  const id='intake_'+ts.replace(/[:.]/g,'-');
+  const log=process.env.THRESHOLD_LOG;
+  fs.mkdirSync(p.dirname(log),{recursive:true});
+  const lines=[
+    '- id: '+JSON.stringify(id),
+    '  timestamp: '+JSON.stringify(ts),
+    '  session: '+JSON.stringify(process.env.THRESHOLD_SESSION||'unknown'),
+    '  type: '+(process.env.THRESHOLD_TYPE||'governor_directive'),
+    '  spine_tag: '+(process.env.THRESHOLD_SPINE||'GVRN'),
+    '  scope_tag: '+(process.env.THRESHOLD_SCOPE||'S2'),
+    '  urgency: '+(process.env.THRESHOLD_URGENCY||'medium'),
+    '  status: new',
+    '  source: governor',
+    '  input_preview: '+JSON.stringify(process.env.THRESHOLD_PREVIEW||''),
+  ].join('\n')+'\n';
+  fs.appendFileSync(log,lines);
+}catch(e){}
+" 2>/dev/null || true
+  fi
+} 2>/dev/null || true
+
 exit 0

@@ -1,0 +1,48 @@
+# THRESHOLD R1.4.1 — Input Classification Rules (Phase 1)
+# Pattern-based best-effort classification. AI-assisted classification = Phase 2.
+# Routing rules are data (YAML), not code — changeable without deployment.
+# Each rule checked in order. First match wins. Default = governor_directive.
+
+type_rules:
+  - pattern: "upload|paste|EXT-ID|external research"
+    type: external_research
+    spine_tag: AI
+    urgency: low
+  - pattern: "exit_code=1|✗ BLOCKING|FAIL|verify failed"
+    type: error
+    spine_tag: VALD
+    urgency: high
+  - pattern: "fixed|resolved|✓ PASS|exit_code=0"
+    type: solution
+    spine_tag: VALD
+    urgency: medium
+  - pattern: "correct(ion|ed)|wrong|should be|instead of|not like that"
+    type: correction
+    spine_tag: AI
+    urgency: medium
+  - pattern: "every session|pattern across|K=[23]|emerging"
+    type: core_seed
+    spine_tag: ARCH
+    urgency: low
+  - pattern: "\\?"
+    type: question
+    spine_tag: GVRN
+    urgency: low
+  - pattern: "HANDOFF|session close|closing"
+    type: session_harvest
+    spine_tag: GVRN
+    urgency: low
+  - default: governor_directive
+    spine_tag: GVRN
+    urgency: medium
+
+scope_rules:
+  # Reuses S1/S2/S3 logic from findings-categorizer.mjs
+  - pattern: "this specific|this instance|fix this"
+    scope_tag: S1
+  - pattern: "process|every time|pattern|workflow"
+    scope_tag: S2
+  - pattern: "structural|principle|always|constitutional|platform"
+    scope_tag: S3
+  - default:
+    scope_tag: S2

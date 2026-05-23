@@ -16,7 +16,8 @@
  * @csps-lifecycle-state active
  * @csps-tags type:validator domain:governance audience:ai-agent
  * @csps-enforces B_ZERO_NAVIGATION_FOR_GOVERNOR
- * context_question: "Does any non-startup template claim 'I AM: Yariv Fink' — impersonating the Governor?"
+ * @csps-version 1.1.0
+ * context_question: "Does any non-startup template claim 'I AM: Yariv Fink' — and does validate-communication-quality output blocking=0?"
  */
 
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
@@ -40,14 +41,30 @@ const GOVERNOR_IMPERSONATION = /I AM:\s*(Yariv|Governor|Yariv Fink)/i;
 // FROM/TO format pattern (simplified communication-protocol-shared.md v2)
 const FROM_TO_PATTERN = /^FROM\s+\w/m;
 
+// Sample patterns from communication-samples.md — used for pattern-matching
+// These are extracted from the samples library, not hardcoded descriptions
+function loadSamplePatterns(samplesContent) {
+  const patterns = [];
+  // Extract "bad version" blocks — text between "**The bad version:**" and "**The correct version:**"
+  const badVersionRe = /\*\*The bad version:\*\*\s*```[\w\s]*\n([\s\S]*?)```/g;
+  let m;
+  while ((m = badVersionRe.exec(samplesContent)) !== null) {
+    patterns.push(m[1].trim());
+  }
+  return patterns;
+}
+
 let blocking = 0;
 let advisory = 0;
 let checked = 0;
 let samplesLoaded = false;
+let samplePatterns = [];
 
 if (existsSync(SAMPLES_FILE)) {
   samplesLoaded = true;
-  console.log(`[validate-communication-quality] samples library loaded (${basename(SAMPLES_FILE)})`);
+  const samplesContent = readFileSync(SAMPLES_FILE, 'utf-8');
+  samplePatterns = loadSamplePatterns(samplesContent);
+  console.log(`[validate-communication-quality] samples library loaded: ${samplePatterns.length} bad-version patterns extracted`);
 }
 
 if (!existsSync(TEMPLATES_DIR)) {
@@ -79,6 +96,21 @@ for (const file of files) {
       console.warn(`  Expected: "FROM [SENDER] | FOR [RECEIVER] TAB" at start of paste block.`);
       console.warn(`  See communication-protocol-shared.md v2 simplified format.`);
       advisory++;
+    }
+  }
+
+  // ADVISORY: Pattern-match against known bad versions from samples library
+  // Uses actual content from communication-samples.md, not hardcoded strings
+  if (samplePatterns.length > 0) {
+    for (const badPattern of samplePatterns) {
+      // Extract first 50 chars of bad pattern as a signature to search for
+      const sig = badPattern.slice(0, 60).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      if (sig.length > 20 && new RegExp(sig.slice(0, 40), 'i').test(content)) {
+        console.warn(`[validate-communication-quality] ADVISORY: ${file} — matches known bad pattern from samples library`);
+        console.warn(`  Pattern excerpt: "${badPattern.slice(0, 80)}"`);
+        advisory++;
+        break; // one advisory per file
+      }
     }
   }
 }

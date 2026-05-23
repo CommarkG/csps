@@ -112,6 +112,10 @@ try{
   fs.writeFileSync(f,JSON.stringify(d,null,2));
 }catch(e){}
 " 2>/dev/null || true
+
+  # INFRA-FLOW Step 9: Auto-capture session evidence at close
+  _SESSION=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('${REPO_ROOT}/tools/session-state.json','utf8'));process.stdout.write(d.current_session||d.active_implementation_session||'unknown');}catch(e){process.stdout.write('unknown');}" 2>/dev/null || echo "unknown")
+  node "${REPO_ROOT}/tools/scripts/capture-session-evidence.mjs" "--session=${_SESSION}" 2>/dev/null || true
 else
   HARVEST_STATUS="MISSING"
 fi

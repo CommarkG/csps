@@ -76,12 +76,12 @@ Central Intelligence Engine (CIE) — root
 
 ## Layer 3 — R3 Developer's Journey
 
-**Status:** IN PROGRESS (S056 PROTO-E) — INFRA-FLOW steps advancing. 5/9 steps ACTIVE.
+**Status:** IN PROGRESS (S056 PROTO-F) — INFRA-FLOW 7/9 ACTIVE. Layer 3: 1/4 fully checked.
 
 Exit criteria:
-- [ ] INFRA-FLOW-VALIDATION: all 9 steps passing end-to-end (5/9 ACTIVE: Fork, Verify, Deploy, Activate, PMI Gate. Steps 1/3/9 partial or manual.)
-- [ ] Journey Framework L2 option space complete (6 stages × full option set)
-- [ ] Playground reference implementation shows complete developer journey
+- [ ] INFRA-FLOW-VALIDATION: all 9 steps passing end-to-end (7/9 ACTIVE: Threshold, Fork, Verify, Deploy, Activate, PMI Gate, Evidence. Steps 2/3 partial. Step 3 Wizard UI = S057 target.)
+- [ ] Journey Framework L2 option space complete (R3-01 ratified S056 Turn 6, build = S057 target)
+- [ ] Playground reference implementation shows complete developer journey (S057 target)
 - [x] PLAYGROUND-CORE-ELEVATION: all key pages with pageDNA and working content (done S054, 16/16 pages)
 
 ---

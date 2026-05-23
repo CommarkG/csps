@@ -162,7 +162,7 @@ CSPS-correct build).
 
 | Step | Status | Runnable? | Notes |
 |---|---|---|---|
-| 1 — Threshold | PARTIAL (S056) | Manually | libs/threshold/ classify+route+intake.ts built (PROTO-E). Session-open auto-wiring still pending. |
+| 1 — Threshold | ACTIVE (S056) | Yes | user-prompt-submit-intake.sh wired to write ThresholdIntakeRecord to .csps/threshold/intake-log.yaml (PROTO-F). |
 | 2 — PE Scoring | PARTIAL (enhanced, S056) | Partially | libs/intelligence/ PE sub-engine built (eb9350f). |
 | 3 — Planning Wizard | PROTOCOL_ONLY | Manually | 7-section protocol exists, no UI built. |
 | 4 — PMI Gate | ACTIVE | Yes | validate-plan-readiness.mjs LIVE. |
@@ -170,10 +170,10 @@ CSPS-correct build).
 | 6 — Verify | ACTIVE | Yes | pnpm verify + 156 validators. |
 | 7 — Deploy | ACTIVE | Yes | Vercel csps-playground.vercel.app live. |
 | 8 — Activate | ACTIVE | Yes | pageDNA + DNA validators. |
-| 9 — Evidence Capture | PARTIAL (S056) | Manually | tools/scripts/capture-session-evidence.mjs built (PROTO-E). Auto-trigger pending. |
+| 9 — Evidence Capture | ACTIVE (S056) | Yes | capture-session-evidence.mjs auto-triggered at session close via post-stop-session-close-gate.sh (PROTO-F). |
 
-**Composite test runnable:** Partially (Steps 2,3 manual, Step 9 manual, Step 1 needs session wiring)
-**Blocked on:** Step 1 session-open auto-wiring, Step 3 Wizard UI (Layer 3), Step 9 auto-trigger
+**Composite test runnable:** Partially (Steps 2,3 manual — Wizard UI not built)
+**Blocked on:** Step 3 Wizard UI (Layer 3 — S057 target), Step 2 PE MDPE dimensions in all items
 **Updated:** S056 PROTO-E
 
 ---

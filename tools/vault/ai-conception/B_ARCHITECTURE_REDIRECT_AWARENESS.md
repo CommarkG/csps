@@ -12,6 +12,7 @@ session: S050
 core_spines: [AI, GVRN]
 context_question: "What should an AI do when the Governor signals a foundational architectural redirect mid-session?"
 context_quote: "A foundation signal suspends the queue. It does not add to it."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_ARCHITECTURE_REDIRECT_AWARENESS

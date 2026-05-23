@@ -20,6 +20,7 @@ links:
   - csps.governance.THE-IDEAL-BUILD
 context_question: "For each CSPS governance mechanism, is it reflexive (findings causally patch enforcement surfaces) or merely introspective (findings are logged but don't trigger automated changes)?"
 context_quote: "A system is reflexive when its internal representation of its own structure causally intervenes in its behavior — not just observes, but modifies. The gap between 'we logged a recurrence' and 'we patched the enforcement surface' is the reflexivity gap."
+inherits_from: "Platform Genome §10 Gap Recurrence Register"
 ---
 
 # Self-Validation Methodologies

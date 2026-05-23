@@ -18,6 +18,7 @@ links:
   - vault.concepts.OPTIMAL-BUILD-ORDER-S050
 context_question: "What are the three APP-001 design decisions that every session touching this app must know before making any choices?"
 context_quote: "Most tools require you to maintain them. We built a tool that maintains itself."
+inherits_from: "Platform Genome §4 Tab Transition Protocol + §5 Platform Architecture"
 ---
 
 # APP-001 Context Carriers — Must Know Before Building

@@ -19,6 +19,7 @@ links:
   - ai-conception.B_VERIFY_UNCLEAR_INPUT
 context_question: "When external inputs arrive, what is the PE's role in protecting platform coherence?"
 context_quote: "External inputs inspire. CSPS architecture decides. Nothing is absorbed without translation, alignment, and optimization toward what we have built."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_PE_GATEKEEPER_MANDATE

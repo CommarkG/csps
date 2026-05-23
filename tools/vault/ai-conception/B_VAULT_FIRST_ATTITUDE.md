@@ -19,6 +19,7 @@ links:
   - ai-conception.B_POLARITY_AS_COMPLEMENT
 context_question: "What should happen when new input arrives while the AI is engaged in complex work?"
 context_quote: "Completion is top priority unless the input affects what we are doing now. If not, the input is respectfully placed in a vault."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_VAULT_FIRST_ATTITUDE

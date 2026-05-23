@@ -19,6 +19,7 @@ links:
   - SIA.R3-01-JOURNEY-FRAMEWORK
 context_question: "How does the Combinatorial Engine gather multi-dimensional context about a user while maintaining trust, sensitivity, and natural conversation flow?"
 context_quote: "He will help me define it. Ask when the moment is organic. Calibrate by how he answers."
+inherits_from: "Platform Genome §5 Platform Architecture"
 ---
 
 # Combinatorial Engine — Raw Design Note (S050 ARCH-SESSION)

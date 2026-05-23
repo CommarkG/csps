@@ -18,6 +18,7 @@ links:
   - vault.concepts.OPTIMAL-BUILD-ORDER-S050
 context_question: "At a glance, what percentage of each infrastructure layer is built vs. designed?"
 context_quote: "What gets measured gets managed."
+inherits_from: "Platform Genome §5 Platform Architecture"
 ---
 
 # Completion Tracker — Playground Page Design

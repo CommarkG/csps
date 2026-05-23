@@ -18,6 +18,7 @@ links:
   - vault.concepts.COMBINATORIAL-ENGINE-RAW
 context_question: "How does CSPS correct speech-to-text errors per-user and system-wide before they accumulate into silent data corruption?"
 context_quote: "Think about the accumulating damage a system that never corrects speech-to-text is causing. Then think what a magnificent moat this is."
+inherits_from: "Platform Genome §5 Platform Architecture"
 ---
 
 # Speech-to-Text Correction System

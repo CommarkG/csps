@@ -19,6 +19,7 @@ links:
   - vault.concepts.GRID-CONSCIOUSNESS
   - ai-conception.B_ZF_TERMINATION_DISCIPLINE
   - docs.governance.PLATFORM-GENOME
+inherits_from: "Platform Genome §6 Core Seeds"
 ---
 
 # Default Storage is Ephemeral

@@ -18,6 +18,7 @@ links:
   - SIA.SONNET-S051-FORK-BRIEF
 context_question: "Before starting any new build phase, what must the previous phase have generated — and is that output actually present?"
 context_quote: "The learning of Phase N is not overhead. It is the specification for Phase N+1."
+inherits_from: "Platform Genome §7 Phase Build Order"
 ---
 
 # Optimal Build Order — S050 ARCH-SESSION Output

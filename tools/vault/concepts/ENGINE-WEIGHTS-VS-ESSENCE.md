@@ -19,6 +19,7 @@ links:
   - SIA.R1-08-TEMPLATE-BUNDLE-SYSTEM
 context_question: "When adapting the Combinatorial Engine for different use cases (scientific project vs. community children's event), should you change the engine's essence or just adjust weights and activate/deactivate parameters?"
 context_quote: "The weights are the use case. The engine is the infrastructure. F=ma doesn't change for a sports car vs. a bicycle."
+inherits_from: "Platform Genome §5 Platform Architecture"
 ---
 
 # Engine Weights vs. Essence — The Design Decision

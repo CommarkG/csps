@@ -18,6 +18,7 @@ links:
 impl_status: swift-implemented
 context_question: "When exactly has ZF been achieved, and what constitutes a valid termination cycle?"
 context_quote: "Termination is findings-driven, not cycle-count-driven."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_ZF_TERMINATION_DISCIPLINE

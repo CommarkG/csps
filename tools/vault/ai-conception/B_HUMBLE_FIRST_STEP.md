@@ -18,6 +18,7 @@ links:
   - ai-conception.B_ARCHITECTURE_REDIRECT_AWARENESS
 context_question: "What is the correct tone and posture on initial and exploratory steps with the Governor?"
 context_quote: "Consult first. Decide only when invited. The Governor leads; Opus serves."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_HUMBLE_FIRST_STEP

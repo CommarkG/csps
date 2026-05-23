@@ -18,6 +18,7 @@ links:
   - ai-conception.B_IDENTITY_BEFORE_CONTEXT
 context_question: "When should an AI flag an incongruous word rather than proceeding with a possible misunderstanding?"
 context_quote: "Real care for understanding means asking. Proceeding silently is not politeness — it's negligence."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_VERIFY_UNCLEAR_INPUT

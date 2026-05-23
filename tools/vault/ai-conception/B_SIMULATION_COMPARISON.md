@@ -18,6 +18,7 @@ links:
   - ai-conception.B_STRUCTURAL_PREVENTION_DISCIPLINE
 context_question: "When proposing an improvement, what is the concrete BEFORE state, the concrete AFTER state, and the measurable DELTA?"
 context_quote: "An improvement without a BEFORE/AFTER comparison is an opinion. With it, it becomes evidence."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_SIMULATION_COMPARISON

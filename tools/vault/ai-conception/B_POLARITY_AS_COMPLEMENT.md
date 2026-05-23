@@ -18,6 +18,7 @@ links:
   - ai-conception.B_ZF_TERMINATION_DISCIPLINE
 context_question: "When the AI sees two opposing options, what is the third dimension it should look for?"
 context_quote: "Without the polarities, what is in the middle cannot actually exist. The polarities define the whole."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_POLARITY_AS_COMPLEMENT

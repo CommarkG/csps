@@ -18,6 +18,7 @@ links:
   - SIA.R2-01-PLATFORM-INTELLIGENCE-ENGINE
 context_question: "Before scoring any plan item, what dimensions beyond urgency × impact does the Queen need to assess timing correctly?"
 context_quote: "The Palace is alignment. The Queen is timing. A rigid PE serves neither."
+inherits_from: "Platform Genome §3 Priority Engine"
 ---
 
 # MDPE — Multi-Dimensional Priority Engine Formula

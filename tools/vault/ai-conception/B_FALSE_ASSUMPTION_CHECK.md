@@ -19,6 +19,7 @@ links:
   - ai-conception.B_TAB_TRANSITION_PROTOCOL
 context_question: "Before sending any directive to Sonnet or starting a new Opus tab, what do I know that the receiver might falsely assume is already known?"
 context_quote: "The gap is not in what you say. It is in what you don't say because you assumed they knew."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_FALSE_ASSUMPTION_CHECK

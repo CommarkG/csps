@@ -18,6 +18,7 @@ links:
   - SIA.META-04-PLANNING-METHODOLOGY
 context_question: "What development approach is right for a given task, and how do classic and CSPS-foundational approaches complement each other?"
 context_quote: "Systems that jump to quick fixes spend 2000% more time on iterations at scale. The foundation is not overhead — it is the multiplier."
+inherits_from: "Platform Genome §7 Phase Build Order"
 ---
 
 # Development Approach Spectrum

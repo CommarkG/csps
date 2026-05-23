@@ -18,6 +18,7 @@ links:
   - ai-conception.B_HUMBLE_FIRST_STEP
 context_question: "When context is degrading, which tab closes first and why does sequence matter?"
 context_quote: "The new Opus that starts with HANDOFF + Sonnet's completed work makes better decisions than the one that starts with only the HANDOFF."
+inherits_from: "Platform Genome §4 Tab Transition Protocol"
 ---
 
 # B_TAB_TRANSITION_PROTOCOL

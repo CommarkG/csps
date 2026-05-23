@@ -20,6 +20,7 @@ links:
   - SIA.R2-01-PLATFORM-INTELLIGENCE-ENGINE
 context_question: "How does the Combinatorial Engine process inputs through three layers while scaling to many concurrent multi-tenant requests?"
 context_quote: "Simple sorting first. Refinement second. Deep reasoning third. Never block the user waiting for layer 3."
+inherits_from: "Platform Genome §5 Platform Architecture"
 ---
 
 # Combinatorial Engine — Three-Layer Architecture V1

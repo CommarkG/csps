@@ -18,6 +18,7 @@ links:
 impl_status: swift-implemented
 context_question: "How should every substantive CSPS response open, and why does identity come before context?"
 context_quote: "I AM. YOU ARE. Then context. Then content."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_IDENTITY_BEFORE_CONTEXT

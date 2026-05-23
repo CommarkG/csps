@@ -19,6 +19,7 @@ links:
   - vault.concepts.PLATFORM-GENOME
   - ai-conception.B_TAB_TRANSITION_PROTOCOL
   - vault.concepts.MDPE-FORMULA
+inherits_from: "Platform Genome §6 Core Seeds"
 ---
 
 # Grid Consciousness — Core Architectural Principle

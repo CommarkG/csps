@@ -19,6 +19,7 @@ links:
   - vault.concepts.MDPE-FORMULA
 context_question: "Before ratifying any plan, what AI defaults and triggers must be explicitly identified and accounted for in the plan's instructions?"
 context_quote: "A plan that doesn't name its AI risks is a plan that lets AI freestyle on the hardest parts."
+inherits_from: "Platform Genome §1 Behavioral Contracts"
 ---
 
 # B_AI_BEHAVIOR_IN_PLANS

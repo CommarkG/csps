@@ -19,6 +19,7 @@ links:
   - vault.concepts.DEVELOPMENT-APPROACH-SPECTRUM
 context_question: "What is the universal principle hidden inside this specific improvement, and is it already in CSPS?"
 context_quote: "The moat is not the fix. The moat is extracting the principle that prevents the entire class of similar issues."
+inherits_from: "Platform Genome §10 Gap Recurrence Register"
 ---
 
 # Core Signal Finder

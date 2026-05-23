@@ -18,6 +18,32 @@ links:
 
 ---
 
+## RULE 0 — TURN PROTOCOL (S053 CONSTITUTIONAL — above all other rules)
+
+**The Turn Token** is the authority to produce output. Only the party holding the Turn Token speaks.
+
+**Roles:**
+- **DIRECTOR** (Opus): holds Turn Token for architectural decisions. Transfers via HANDOFF.
+- **BUILDER** (Sonnet): holds Turn Token for implementation. Transfers via completion report.
+- **RELAY** (Governor): NEVER holds the Turn Token. Only passes turns and injects new directives.
+
+**Transfer rules:**
+- DIRECTOR → BUILDER: when HANDOFF is written and pushed
+- BUILDER → RELAY: when PROTO completion report is ready
+- RELAY → DIRECTOR: when Governor directive issued OR new Opus opens with HANDOFF
+
+**Violations:** A party producing output WITHOUT holding the Turn Token = Turn Protocol Violation.
+Expired session tabs have permanently released their Turn Token. THEY DO NOT SPEAK AGAIN.
+
+**Guard question (add to G2 Identity):** "Do I hold the Turn Token for this process?
+If this session is expired (HANDOFF was written and pushed for it) — I cannot produce directives."
+
+**Why "Turn Protocol" works for AI:** Every LLM has trained deeply on conversational turn-taking.
+The vocabulary activates the correct default: one speaker at a time.
+When the AI asks "do I hold the Turn Token?" — it correctly refuses to speak if the answer is no.
+
+---
+
 ## THE THREE-QUESTION TEST (run before every message — S053 CONSTITUTIONAL)
 
 Before writing ANY cross-boundary message, answer these three questions.

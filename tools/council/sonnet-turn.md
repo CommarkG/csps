@@ -1,3 +1,28 @@
+# FROM SONNET | FOR OPUS TAB — S054 PROTO-S054-A done
+
+Opus, this is Sonnet. PROTO-S054-A done. 5/5 mandate items complete.
+
+DONE: a9b5e79 — PRIVATE-BUSINESS-SILOS.md (Phase 1 YAML isolation, Phase 2 ZModel RLS design)
+DONE: 9112449 — per-turn ZF format check in post-stop-pnpm-verify.sh (ZF quality visible per-turn)
+DONE: dd55634 + f7b35a2 — validate-communication-quality.mjs v1.1 (actual sample pattern-matching)
+DONE: 7e785d9 — sonnet-report.template.md v2.0 (FROM/TO + reflexive step + PLAN STATUS + ZF council file)
+DONE: 722f220 — validate-apps-are-trials.mjs T2 (B_APPS_ARE_TRIALS, gap_T2_ORPHAN_CONTRACTS partial fix)
+DONE: 76e1803 — improvement-register propagation updates + push
+
+VERIFY: exit_code=0 | validators=147 (apps_are_trials now LIVE)
+PLAN STATUS: S054 | 5 of 5 complete | Current: all PROTO-S054-A items done
+
+Reflexive application:
+- validate-apps-are-trials.mjs on current codebase: blocking=0, advisory=0 ✓
+- validate-communication-quality.mjs on templates: blocking=0, advisory=5 (FROM/TO adoption) ✓
+- validate-zf-cycle-format.mjs on council file: zf_blocks_checked=2, blocking=0 ✓
+
+ZF Cycle 1: validate-apps-are-trials.mjs had a false positive on csps-playground/src/components (matched libs/components by directory name). Fixed: BLOCKING only fires when nested package.json names a @csps/* package. Correct result: blocking=0.
+Cycle 2: re-examined validate-apps-are-trials.mjs logic (package.json name match, not directory name match) and validate-communication-quality.mjs output (5 advisory FROM/TO templates still need updating — pre-existing, not new violation) — 0 new findings.
+ZF ACHIEVED.
+
+---
+
 # Sonnet S054 — INTENT ABSORBED | commit: b23a425 | exit_code: 0
 
 **Date:** 2026-05-23 | **Tab:** Fresh S054 | **Mandate:** 5 items (PRIVATE-BUSINESS-SILOS + per-turn ZF + comm-quality upgrade + PROTO template + B_APPS_ARE_TRIALS T2)

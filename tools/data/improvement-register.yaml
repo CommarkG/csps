@@ -116,3 +116,15 @@ entries:
       - Creation wizard (should ask "which Platform Genome section does this inherit from?")
       - All 12 AI Conception Vault entries (should have inherits_from: Platform Genome section)
     note: "The single most impactful architectural change of S053."
+
+  - id: imp_CEC_SPECIFICITY
+    finding: "CEC hook keyword matching too broad — fires on template/behavioral/vault paths regardless of relevance. 9+ fires per session. Session dedup is a patch, not a fix."
+    first_found: S055
+    k_count: 1
+    sessions: [S055]
+    status: open
+    propagated_to:
+      - .claude/hooks/post-tool-use-cec-trigger.sh (session dedup added at 6ae470c — patch only)
+    not_yet_propagated:
+      - post-tool-use-cec-trigger.sh (replace keyword scan with explicit path→improvement mapping table — root fix)
+    note: "Session dedup added at 6ae470c. Root fix: map file paths to specific improvement IDs via lookup table, not substring matching against not_yet_propagated descriptions. K=1, CEC fatigue visible at 9+ fires/session."

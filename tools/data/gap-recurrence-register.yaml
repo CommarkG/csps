@@ -63,14 +63,16 @@ entries:
     note: "K=6. Fix committed. Behavioral test proves validator catches violations. NEW GAP: ZF written to chat, not sonnet-turn.md — T2 cannot scan it. Resolution: Sonnet report template must include ZF block in council file write."
 
   - id: gap_SETTINGS_LOCAL_BYPASS
-    observation: "settings.local.json missing defaultMode: bypassPermissions — new tabs ask for write permissions"
+    observation: "New tabs ask for write permissions despite bypassPermissions being set"
     first_seen: S040
-    k_count: 3
-    sessions: [S040, S046, S053]
-    status: fix_committed
+    k_count: 4
+    sessions: [S040, S046, S053, S053-T35]
+    status: resolved
     behavioral_test_exists: false
-    commit: "S053-turn-10 direct edit"
-    note: "Fix committed. No behavioral test (would require opening a fresh tab and confirming no prompts). Human verification pending."
+    root_cause: "settings.local.json `permissions` object SHADOWED settings.json `permissions` object, losing additionalDirectories (csps-playground). Writes to playground prompted because directory not registered."
+    permanent_fix: "settings.local.json now empty `{}`. ALL permissions live in git-tracked settings.json. No shadowing. Single source of truth."
+    rule: "If settings.local.json must exist, it MUST include ALL fields from settings.json permissions block, or stay empty `{}`."
+    note: "K=4. Previous 3 fixes added defaultMode to settings.local.json — STILL shadowed additionalDirectories. Correct fix removes local override entirely."
 
   - id: gap_HANDOFF_STARTUP_BLOCK
     observation: "HANDOFF files missing paste-ready startup block for new Sonnet tab"

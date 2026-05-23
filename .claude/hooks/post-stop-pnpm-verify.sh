@@ -77,6 +77,24 @@ VLT_PENDING=0
 VLT_OUTPUT=$(node "${REPO_ROOT}/tools/validators/validate-vlt-blocking.mjs" 2>&1) || true
 VLT_PENDING=$(echo "$VLT_OUTPUT" | grep -o "pending=[0-9]*" | cut -d= -f2 || echo "0")
 
+# ─── Per-turn ZF cycle format check (S054 mandate item 2) ─────────────────
+# Runs validate-zf-cycle-format.mjs separately to surface ZF quality in systemMessage.
+# pnpm verify already runs it, but the result is buried in 148 validators.
+# This makes ZF format quality visible per-turn, not just at session close.
+ZF_FORMAT_BLOCKING=0
+ZF_FORMAT_BLOCKS_CHECKED=0
+ZF_FORMAT_OUT=$(node "${REPO_ROOT}/tools/validators/validate-zf-cycle-format.mjs" 2>&1) || true
+ZF_FORMAT_BLOCKING=$(echo "$ZF_FORMAT_OUT" | grep -o "blocking=[0-9]*" | cut -d= -f2 || echo "0")
+ZF_FORMAT_BLOCKS_CHECKED=$(echo "$ZF_FORMAT_OUT" | grep -o "zf_blocks_checked=[0-9]*" | cut -d= -f2 || echo "0")
+ZF_FORMAT_STATUS=""
+if [ "${ZF_FORMAT_BLOCKING:-0}" -gt 0 ]; then
+  ZF_FORMAT_STATUS="⛔ ZF FORMAT VIOLATION: ${ZF_FORMAT_BLOCKING} nominal ZF block(s) detected in council file. Cycle 2+ must name specific files. Fix before next response."
+elif [ "${ZF_FORMAT_BLOCKS_CHECKED:-0}" -eq 0 ]; then
+  ZF_FORMAT_STATUS="⚠ ZF FORMAT: 0 ZF blocks found in sonnet-turn.md — ZF evidence must be written to the council file, not just chat."
+else
+  ZF_FORMAT_STATUS="✓ ZF format: ${ZF_FORMAT_BLOCKS_CHECKED} block(s) checked, 0 nominal"
+fi
+
 # ─── Check ZF deep status ──────────────────────────────────────────────────
 ZF_DEEP_RUNS=0
 ZF_DEEP_RUNS=$(node -e "
@@ -110,21 +128,21 @@ fi
 
 if [ "$ZF_BLOCK" = "true" ]; then
   printf '{
-    "systemMessage": "[ZF-iter-%s] VERIFY PASS but ZF INCOMPLETE:\\n%s\\n\\nPer INS-S022-003: ZF and harvesting are process steps, not checklist items.\\nThe satisfaction point at verify-pass must be overridden by this gate.",
+    "systemMessage": "[ZF-iter-%s] VERIFY PASS but ZF INCOMPLETE:\\n%s\\n%s\\n\\nPer INS-S022-003: ZF and harvesting are process steps, not checklist items.\\nThe satisfaction point at verify-pass must be overridden by this gate.",
     "continue": false,
     "stopReason": "ZF deep required (iter %s)"
-  }' "$ITER_COUNT" "$ZF_STATUS_MSG" "$ITER_COUNT"
+  }' "$ITER_COUNT" "$ZF_STATUS_MSG" "$ZF_FORMAT_STATUS" "$ITER_COUNT"
   exit 1
 fi
 
 if [ "$OPEN_ITEMS" -gt 0 ] || [ "$VLT_PENDING" -gt 0 ] || [ -n "$ZF_STATUS_MSG" ]; then
   printf '{
-    "systemMessage": "[ZF-iter-%s] PASS (exit_code 0, %s validators) | %s open | %s VLTs | ZF-deep=%s runs\\n%s\\nNominal ZF = verify pass only. Real ZF = orchestrator cycles to zero. (P-META-021)"
-  }' "$ITER_COUNT" "$PASS_COUNT" "$OPEN_ITEMS" "$VLT_PENDING" "$ZF_DEEP_RUNS" "$ZF_STATUS_MSG"
+    "systemMessage": "[ZF-iter-%s] PASS (exit_code 0, %s validators) | %s open | %s VLTs | ZF-deep=%s runs\\n%s\\n%s\\nNominal ZF = verify pass only. Real ZF = orchestrator cycles to zero. (P-META-021)"
+  }' "$ITER_COUNT" "$PASS_COUNT" "$OPEN_ITEMS" "$VLT_PENDING" "$ZF_DEEP_RUNS" "$ZF_STATUS_MSG" "$ZF_FORMAT_STATUS"
 else
   printf '{
-    "systemMessage": "[ZF-iter-%s] PASS ✅ (exit_code 0, %s validators) | ZF-deep=%s runs | harvest=%s\\nReal ZF at iteration %s."
-  }' "$ITER_COUNT" "$PASS_COUNT" "$ZF_DEEP_RUNS" "$HARVEST_DONE" "$ITER_COUNT"
+    "systemMessage": "[ZF-iter-%s] PASS ✅ (exit_code 0, %s validators) | ZF-deep=%s runs | harvest=%s | %s\\nReal ZF at iteration %s."
+  }' "$ITER_COUNT" "$PASS_COUNT" "$ZF_DEEP_RUNS" "$HARVEST_DONE" "$ZF_FORMAT_STATUS" "$ITER_COUNT"
 fi
 
 exit 0

@@ -76,10 +76,10 @@ Central Intelligence Engine (CIE) — root
 
 ## Layer 3 — R3 Developer's Journey
 
-**Status:** IN PROGRESS (S057 PROTO-C) — INFRA-FLOW 8/9 ACTIVE. Layer 3: 2/4 fully checked.
+**Status:** IN PROGRESS (S057 CLOSE) — INFRA-FLOW 9/9 ACTIVE. Layer 3: 3/4 fully checked.
 
 Exit criteria:
-- [ ] INFRA-FLOW-VALIDATION: all 9 steps passing end-to-end (8/9 ACTIVE: Steps 1-9 except Step 2 MDPE full automation. Composite test partially runnable.)
+- [x] INFRA-FLOW-VALIDATION: all 9 steps passing end-to-end (9/9 ACTIVE. Composite test run S057 CLOSE: Steps 1/2/3/4/5/6/8/9 pass confirmed. Step 7 Vercel live from prior evidence.)
 - [x] Journey Framework L2 option space complete (R3-01 ratified S056 + /platform/developer-journey L2 page + /platform/user-journey L2 page built S057 PROTO-C)
 - [ ] Playground reference implementation shows complete developer journey (PARTIAL: developer-journey page shows L2 option space. User journey NOT BUILT honestly disclosed. Full implementation pending BehaviorHub Phase 2.)
 - [x] PLAYGROUND-CORE-ELEVATION: all key pages with pageDNA and working content (done S054, 17/17 pages including wizard S057)

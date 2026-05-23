@@ -1,0 +1,71 @@
+---
+id: csps.config.infrastructure-registry
+name: infrastructure-registry
+description: "What external services are configured in CSPS. Read this — never .env files."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: OPER
+schema_anchor: vault_files
+session: S057
+diataxis_type: reference
+impl_status: swift-implemented
+context_question: "Is the service I need configured? Check configured: true here. NEVER read .env files — they contain live credentials that leak to chat transcripts."
+links:
+  - { rel: tenancy-bundle, href: ../../tools/bundles/foundation/TENANCY.bundle.yaml }
+  - { rel: auth-bundle, href: ../../tools/bundles/foundation/AUTH.bundle.yaml }
+---
+
+# Infrastructure Registry
+
+> **READ THIS INSTEAD OF .env FILES.**
+> .env and .env.local contain live credentials. Reading them in chat sessions
+> causes credential leakage to transcripts. This file contains metadata only.
+>
+> Rule: if you need to know "is X configured?" — check `configured: true` below.
+> Never read .env.local directly. Never ask Claude to cat .env files.
+
+---
+
+supabase:
+  project_ref: kzxiajmfwabxflubexhf
+  region: eu-central-1
+  provider: aws
+  configured: true
+  db_url_env: DATABASE_URL
+  direct_url_env: DIRECT_URL
+  note: "Pooled port 6543 + ?pgbouncer=true&connection_limit=1 (required for Prisma). Direct port 5432 for migrations."
+  zenstack: true
+  rls_active: true
+  audit_trigger_active: true
+  sealed_in: tools/bundles/foundation/TENANCY.bundle.yaml
+
+clerk:
+  configured: true
+  environment: development
+  publishable_key_env: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  secret_key_env: CLERK_SECRET_KEY
+  webhook_secret_env: CLERK_WEBHOOK_SECRET
+  sealed_in: tools/bundles/foundation/AUTH.bundle.yaml
+
+vercel:
+  configured: true
+  deployment_url: csps-playground.vercel.app
+  root_dir_pattern: "apps/[app-name]"
+  framework: nextjs
+  sealed_in: tools/bundles/foundation/DEPLOY_PIPELINE.bundle.yaml
+
+stripe:
+  configured: false
+  note: "Placeholder — billing phase not started. Sealed when BILLING_BUNDLE is created."
+
+---
+
+# Security Rule
+
+CREDENTIAL_LEAK_PREVENTION:
+  rule: "NEVER read .env or .env.local files directly in any Claude Code session."
+  reason: "File contents appear in chat transcripts. Credentials leak and must be rotated."
+  alternative: "Use this registry for infrastructure status. Use Vercel dashboard for env var values."
+  enforcement: ".claude/hooks/pre-tool-use-claude-dir-guard.sh blocks Read of .env* files"

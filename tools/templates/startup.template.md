@@ -109,6 +109,9 @@ ZF CYCLES — always name specific files:
   Cycle 2: re-examined [SPECIFIC-FILE.md] and [SPECIFIC-VALIDATOR.mjs] — 0 new findings.
   ZF ACHIEVED.
   NEVER: "Cycle 2: no new findings" without naming files = BLOCKING.
+  ⚠️ THIS RULE APPLIES TO RECEIPTS TOO: Opus Turn receipts written to sonnet-turn.md
+     must also cite specific file:line in every ZF Cycle 2+. Conceptual reasoning
+     without file citations triggers validate-zf-cycle-format.mjs BLOCKING even in receipts.
 
 TURN REPORT FORMAT (for each directive response):
   Use: # OPUS-{N} Turn {T} S{NNN} — [topic] + RZF block + optional CEC walk

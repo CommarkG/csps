@@ -37,4 +37,16 @@ if [[ "$FILE_PATH" == *".claude/"* ]]; then
   exit 1
 fi
 
+# Block Read/Edit/Write of .env* files — CREDENTIAL LEAK PREVENTION (S057)
+# .env.local and .env files contain live credentials. Reading them in Claude Code
+# sessions causes credentials to appear in chat transcripts → must be rotated.
+# Use tools/config/infrastructure-registry.yaml for infrastructure status instead.
+if [[ -n "$FILE_PATH" ]]; then
+  _FP_LOWER=$(echo "$FILE_PATH" | tr '[:upper:]' '[:lower:]')
+  if [[ "$_FP_LOWER" == *".env.local"* ]] || [[ "$_FP_LOWER" == *".env.production"* ]] || [[ "$_FP_LOWER" == *".env.development"* ]]; then
+    printf '{"continue": false, "stopReason": "CREDENTIAL LEAK PREVENTION: Do not read/write .env files directly — credentials appear in chat transcripts and must be rotated. Use tools/config/infrastructure-registry.yaml for infrastructure status. Check configured:true there instead."}'
+    exit 1
+  fi
+fi
+
 exit 0

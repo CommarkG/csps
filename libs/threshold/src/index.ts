@@ -14,6 +14,8 @@
 
 export { classify } from './classifier.js';
 export { route } from './router.js';
+export { processGovernorInput, getRecentIntake } from './intake.js';
+export type { ThresholdIntakeRecord } from './intake.js';
 export type {
   ThresholdInput,
   ThresholdInputType,

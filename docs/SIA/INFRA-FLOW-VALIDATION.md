@@ -4,12 +4,12 @@ name: SIA-INFRA-FLOW-VALIDATION
 description: "End-to-end flow validation spec — the 9 steps every CSPS app must pass"
 type: architecture
 protection_level: protected
-status: draft
+status: active
 owner: group:finky
 lifecycle: experimental
 lifecycle_state: active
 version: "0.1"
-session: S052
+session: S056
 core_spines: [GVRN, ARCH, OPER]
 core_spine: GVRN
 schema_anchor: vault_files
@@ -43,9 +43,9 @@ to the correct pipeline (PE_INTAKE for new app ideas).
 **Pass criteria:** Input enters as unstructured text, exits as a structured intake record
 with all required fields. No manual classification by Governor.
 
-**Current status:** NOT BUILT
-**Blocked on:** Threshold code (R1-04-THRESHOLD.md design exists, code does not)
-**Existing partial:** user-prompt-submit-intake.sh is a thin T1 approximation (PROTOCOL_ONLY)
+**Current status:** PARTIAL (S056)
+**Built:** libs/threshold/ classify(10 types) + route(7 pipelines) + intake.ts processGovernorInput() → writes to .csps/threshold/intake-log.yaml
+**Still missing:** Auto-wire to user-prompt-submit-intake.sh (session-open integration). Currently called manually via node.
 
 ---
 
@@ -101,10 +101,9 @@ The fork is clean — template files only, no app-specific content.
 
 **Pass criteria:** New app directory exists with all template files. pnpm --filter @csps/[app-name] build PASS.
 
-**Current status:** PARTIAL (manual process)
-**What exists:** apps/template/ exists as the fork source
-**What's missing:** Automated fork script (`nx g platform:app --slug=<slug>` or equivalent)
-**Current workaround:** Governor manually forks with Sonnet assistance per Gate 3 Vercel config
+**Current status:** ACTIVE (S056)
+**Built:** tools/scripts/fork-app.mjs — copies apps/template/, updates package.json name, creates app.config.yaml, runs pnpm install + build.
+**Usage:** node tools/scripts/fork-app.mjs --slug=\<app-slug\> [--skip-build]
 
 ---
 
@@ -153,27 +152,29 @@ CSPS-correct build).
 
 **Pass criteria:** Session harvest file created. Build added to correct-builds registry.
 
-**Current status:** NOT BUILT
-**Blocked on:** Session harvest automation (Threshold R1.4.4 code, also NOT BUILT)
+**Current status:** PARTIAL (S056)
+**Built:** tools/scripts/capture-session-evidence.mjs — reads verify-last-run.md + gap register + layer progress + sonnet-turn summary. Writes .csps/evidence/session-\<S0NN\>-evidence.yaml.
+**Still missing:** Automatic trigger at session close (post-stop-session-close-gate.sh integration).
 
 ---
 
 ## INFRA-FLOW-VALIDATION Test Status
 
-| Step | Status | Runnable? |
-|---|---|---|
-| 1 — Threshold | NOT BUILT | No |
-| 2 — PE Scoring | PARTIAL | Partially |
-| 3 — Planning Wizard | PROTOCOL_ONLY | Manually |
-| 4 — PMI Gate | ACTIVE | Yes |
-| 5 — Fork | PARTIAL (manual) | Manually |
-| 6 — Verify | ACTIVE | Yes |
-| 7 — Deploy | ACTIVE | Yes |
-| 8 — Activate | ACTIVE | Yes |
-| 9 — Evidence Capture | NOT BUILT | No |
+| Step | Status | Runnable? | Notes |
+|---|---|---|---|
+| 1 — Threshold | PARTIAL (S056) | Manually | libs/threshold/ classify+route+intake.ts built (PROTO-E). Session-open auto-wiring still pending. |
+| 2 — PE Scoring | PARTIAL (enhanced, S056) | Partially | libs/intelligence/ PE sub-engine built (eb9350f). |
+| 3 — Planning Wizard | PROTOCOL_ONLY | Manually | 7-section protocol exists, no UI built. |
+| 4 — PMI Gate | ACTIVE | Yes | validate-plan-readiness.mjs LIVE. |
+| 5 — Fork | ACTIVE (S056) | Yes | tools/scripts/fork-app.mjs built (PROTO-E). |
+| 6 — Verify | ACTIVE | Yes | pnpm verify + 156 validators. |
+| 7 — Deploy | ACTIVE | Yes | Vercel csps-playground.vercel.app live. |
+| 8 — Activate | ACTIVE | Yes | pageDNA + DNA validators. |
+| 9 — Evidence Capture | PARTIAL (S056) | Manually | tools/scripts/capture-session-evidence.mjs built (PROTO-E). Auto-trigger pending. |
 
-**Composite test runnable:** No — Steps 1, 3 (automated), 9 are not built.
-**Estimated sessions to composite test:** 3-4 (Threshold code + wizard UI + harvest automation)
+**Composite test runnable:** Partially (Steps 2,3 manual, Step 9 manual, Step 1 needs session wiring)
+**Blocked on:** Step 1 session-open auto-wiring, Step 3 Wizard UI (Layer 3), Step 9 auto-trigger
+**Updated:** S056 PROTO-E
 
 ---
 

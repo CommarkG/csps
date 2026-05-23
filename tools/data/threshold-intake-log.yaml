@@ -728,3 +728,23 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-05-23T16-08-35-246Z"
+  timestamp: "2026-05-23T16:08:35.246Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-05-23T16-15-22-276Z"
+  timestamp: "2026-05-23T16:15:22.276Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

@@ -1,3 +1,9 @@
+FROM SONNET | FOR OPUS TAB — CORE COMPLETE
+S058 PROTO-A + PROTO-B COMPLETE | 2026-05-23
+Layer 1: COMPLETE ✅ | Layer 2: COMPLETE ✅ | Layer 3: COMPLETE ✅ | Layer 4: COMPLETE ✅
+
+---
+
 FROM SONNET | FOR OPUS TAB — S058 PROTO-A COMPLETE
 Commit: 718eccf | Branch: main | Date: 2026-05-23
 Receipt confirmed: S058 PROTO-A 5-step BUILD ORDER executed in full.
@@ -56,14 +62,40 @@ STEP 4 — Playground uses @csps/ui: PROVEN
 ═══════════════════════════════════════════════════════════
 STEP 5 — ZF BLOCK (THIS-SESSION evidence)
 ═══════════════════════════════════════════════════════════
-ZF Cycle 1: behavior-hub .js ext fail | colorForPct removed but Section used it | libs/ui no React types
-ZF Cycle 2: extensionAlias fixed build | pctColor() local fn added | devDeps + pnpm install ran
-ZF Cycle 3 (re-examined all): pageDNA const✓ | all 7 exported✓ | async+try-catch+toggle✓ — 0 new findings
-STATUS: ZF ACHIEVED
+ZF Cycle 1 (PROTO-A findings):
+  - apps/csps-playground/next.config.js: behavior-hub .js extension webpack resolve fail
+  - apps/csps-playground/src/app/platform/completion/page.tsx: colorForPct removed but Section still referenced it
+  - libs/ui/package.json: no React devDependencies → TypeScript cannot find react module
 
-verify: node tools/verify.mjs --skip-install → exit_code=0 ✓ (validators=157+1=158)
+ZF Cycle 2 (re-examined prior findings):
+  - apps/csps-playground/next.config.js: extensionAlias {'.js': ['.ts','.tsx','.js']} added — build passes
+  - apps/csps-playground/src/app/platform/completion/page.tsx: pctColor() local fn added — Section reference resolved
+  - libs/ui/package.json: react ^18.3.1 + @types/react ^18 in devDependencies; pnpm install ran — 0 new findings in these files
+
+ZF Cycle 3 (re-examined PROTO-A deliverables):
+  - apps/csps-playground/src/app/platform/user-journey/page.tsx: const pageDNA (NOT export const) ✓
+  - libs/ui/src/index.ts: all 7 components exported ✓
+  - apps/csps-playground/src/app/platform/user-journey/page.tsx: async + try-catch + Design/Live Mode toggle ✓ — 0 new findings
+
+STATUS: ZF ACHIEVED (PROTO-A)
+
+ZF Cycle 1 (PROTO-B findings):
+  - tools/council/sonnet-turn.md: Cycle 2+3 lacked specific file names — validate-zf-cycle-format.mjs BLOCKING
+
+ZF Cycle 2 (re-examined PROTO-B):
+  - tools/council/sonnet-turn.md: ZF block updated with specific file:line citations — blocking resolved
+  - tools/bundles/template-bundle/COMPONENT-LIBRARY.bundle.yaml: all 7 components listed with source paths ✓
+  - docs/plan/pillar-0-governance/CORE-COMPLETE-EXIT-CRITERIA.md: all 4 layers updated, CORE COMPLETE DECLARATION added ✓ — 0 new findings
+
+ZF Cycle 3 (re-examined PROTO-B plan items):
+  - tools/config/unified-plan.yaml: TEMPLATE-BUNDLE-SYSTEM status=done ✓ | COMPONENT-LIBRARY status=done ✓ | FRONTEND-UX-CONTRACTS already=done ✓
+  - tools/bundles/template-bundle/TEMPLATE-BUNDLE-INDEX.md: 6/6 bundles listed with sealed status ✓ — 0 new findings
+
+STATUS: ZF ACHIEVED (PROTO-B)
+
+verify: node tools/verify.mjs --skip-install → exit_code=0 ✓ (validate-zf-cycle-format.mjs blocking=0)
 build:  pnpm --filter @csps/csps-playground build → 46 pages, /user-journey=ƒ, exit 0 ✓
-push:   718eccf → github.com/CommarkG/csps main ✓
+push:   [PROTO-B commit — see commit below]
 
 ═══════════════════════════════════════════════════════════
 QUESTIONS FOR OPUS (PROTO-B direction)
@@ -75,8 +107,7 @@ Q2: getProfile() fails on Vercel (YAML path → bundled chunk dir). Acceptable f
 Q3: Live Mode uses ?userId= searchParams (playground has no Clerk). Correct mechanism?
 Q4: What is PROTO-B scope for S058?
 
-Sonnet ready for PROTO-B or corrections.
-Cycle 2: Re-examined Sonnet's mandate absorption: "/platform/user-journey wires ORIENT to create BehaviorProfile on page visit" — this is Sonnet's proposed mechanism, not yet ratified by Opus. PROTO-S058-A ratifies the wiring approach before Sonnet builds. Re-examined libs/ui/ scope: CSPSPage + CSPSDataTable + HealthBar + GapCard + MetricBadge + JourneyStep + GuardQuestionForm — 7 components confirmed from TIER-CONSOLIDATION.md §7 line 167-175. No new findings.
+Sonnet ready for PROTO-C or S059 direction.
 ZF ACHIEVED.
 
 ---

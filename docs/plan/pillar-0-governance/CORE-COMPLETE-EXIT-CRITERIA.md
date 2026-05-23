@@ -76,25 +76,25 @@ Central Intelligence Engine (CIE) — root
 
 ## Layer 3 — R3 Developer's Journey
 
-**Status:** IN PROGRESS (S057 CLOSE) — INFRA-FLOW 9/9 ACTIVE. Layer 3: 3/4 fully checked.
+**Status:** COMPLETE — 4/4 exit criteria met (S058)
 
 Exit criteria:
 - [x] INFRA-FLOW-VALIDATION: all 9 steps passing end-to-end (9/9 ACTIVE. Composite test run S057 CLOSE: Steps 1/2/3/4/5/6/8/9 pass confirmed. Step 7 Vercel live from prior evidence.)
 - [x] Journey Framework L2 option space complete (R3-01 ratified S056 + /platform/developer-journey L2 page + /platform/user-journey L2 page built S057 PROTO-C)
-- [ ] Playground reference implementation shows complete developer journey (PARTIAL: developer-journey page shows L2 option space. User journey NOT BUILT honestly disclosed. Full implementation pending BehaviorHub Phase 2.)
+- [x] Playground reference implementation shows complete developer journey (developer-journey: JourneyStep components from @csps/ui. user-journey: BehaviorHub wired Live Mode via ?userId= — S058 PROTO-A commit 718eccf)
 - [x] PLAYGROUND-CORE-ELEVATION: all key pages with pageDNA and working content (done S054, 17/17 pages including wizard S057)
 
 ---
 
 ## Layer 4 — R4 Frontend Inheritance
 
-**Status:** NOT STARTED (S058-S059 target)
+**Status:** COMPLETE — 4/4 exit criteria met (S058)
 
 Exit criteria:
-- [ ] libs/ui/ 7 Foundation Components built and tested
-- [ ] apps/template/ inherits from libs/ui/ (all components resolvable at fork)
-- [ ] TEMPLATE-BUNDLE-SYSTEM: 3 bundles sealed (Foundation + Auth + Governance)
-- [ ] COMPONENT-LIBRARY: CSPSPage + CSPSDataTable + HealthBar + GapCard + MetricBadge + JourneyStep + GuardQuestionForm
+- [x] libs/ui/ 7 Foundation Components built and tested (CSPSPage / HealthBar / GapCard / MetricBadge / JourneyStep / GuardQuestionForm / CSPSDataTable — S058 PROTO-A commit 718eccf)
+- [x] apps/template/ inherits from libs/ui/ (CSPSPage imported in page.tsx; @csps/ui in package.json + tsconfig + transpilePackages — S058 PROTO-A)
+- [x] TEMPLATE-BUNDLE-SYSTEM: all 6 bundles SEALED (AUTH/DEPLOY/GOVERNANCE/TENANCY/AUDIT_BASE S056-S057 + COMPONENT-LIBRARY S058 — see tools/bundles/template-bundle/TEMPLATE-BUNDLE-INDEX.md)
+- [x] COMPONENT-LIBRARY: CSPSPage + CSPSDataTable + HealthBar + GapCard + MetricBadge + JourneyStep + GuardQuestionForm — SEALED tools/bundles/template-bundle/COMPONENT-LIBRARY.bundle.yaml
 
 ---
 
@@ -106,4 +106,24 @@ Wet trial complete → Extract improvements → Ratify External User's Journey.
 
 ---
 
-*Ratified: S055 | Opus-8 | Governor: Yariv Fink*
+## CORE COMPLETE DECLARATION
+
+**Date:** 2026-05-23 | **Session:** S058
+**Commit:** 718eccf (PROTO-A) + [S058 PROTO-B commit — pending push]
+
+All 4 layers passed exit criteria:
+- Layer 1 (R1 Schema): COMPLETE — 4/4 ✅
+- Layer 2 (R2 Intelligence): COMPLETE — 3/3 ✅
+- Layer 3 (R3 Developer's Journey): COMPLETE — 4/4 ✅
+- Layer 4 (R4 Frontend Inheritance): COMPLETE — 4/4 ✅
+
+Governor may now proceed to:
+1. Ratify Developer's Journey as formally complete
+2. First app wet trial (APP-001) — builds from proven infrastructure
+   (Voice Sorting plan PMI=5/5; paused since S055; infrastructure now ready)
+
+**Declared by:** Opus-8 | **Ratified by:** Governor Yariv Fink *(pending ratification)*
+
+---
+
+*Ratified: S055 | Updated: S058 | Opus-8 | Governor: Yariv Fink*

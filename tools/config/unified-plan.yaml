@@ -885,14 +885,14 @@ items:
 
   - id: TEMPLATE-BUNDLE-SYSTEM
     title: "Template Bundle System — sealed capability bundles + upgrade paths for 100+ apps"
-    status: planning
+    status: done
     epoch: E1
     category: architecture
     owner: shared
     batch: BATCH-G
     pe_score: 93
     tags: [templates, bundles, upgrade-paths, self-creating, s050]
-    notes: "Design doc: docs/SIA/R1-08-TEMPLATE-BUNDLE-SYSTEM.md. Foundation/Tier/Domain bundle taxonomy. Upgrade paths pre-defined and sealed. Self-creating: app capabilities promote to bundles. PE BUNDLE_OPPORTUNITY signal needed."
+    notes: "DONE S058. 6/6 Foundation Bundles SEALED: AUTH/DEPLOY/GOVERNANCE (S056) + TENANCY/AUDIT_BASE (S057) + COMPONENT-LIBRARY (S058). Index: tools/bundles/template-bundle/TEMPLATE-BUNDLE-INDEX.md."
     mdpe_dimensions:
       blast_radius: 0.85
       future_enablement: 0.9
@@ -1401,16 +1401,15 @@ items:
 
   - id: COMPONENT-LIBRARY
     title: "libs/ui/ component library — shared UI primitive layer for Tier 2"
-    status: planning
+    status: done
     epoch: E1
     category: architecture
     owner: sonnet
     batch: BATCH-A
     pe_score: 80
-    blocked_on: INFRA-FLOW-VALIDATION
     tags: [component-library, libs-ui, tier-2, frontend, s056]
-    session_target: S056
-    notes: "Shared UI component library for CSPS Tier 2 (playground + future apps). Design phase only until INFRA-FLOW-VALIDATION complete. Registered per Opus S055 directive C2. Deferred to S056."
+    session_target: S058
+    notes: "DONE S058 PROTO-A. 7 components in libs/ui/: CSPSPage/HealthBar/GapCard/MetricBadge/JourneyStep/GuardQuestionForm/CSPSDataTable. Bundle SEALED: tools/bundles/template-bundle/COMPONENT-LIBRARY.bundle.yaml. Proven: commit 718eccf."
     mdpe_dimensions:
       blast_radius: 0.8
       future_enablement: 0.9

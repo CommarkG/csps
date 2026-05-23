@@ -1,0 +1,96 @@
+---
+id: csps.bundles.template-bundle.COMPONENT-LIBRARY
+name: COMPONENT-LIBRARY
+status: SEALED
+version: "1.0"
+session: S058
+owner: group:finky
+core_spine: ARCH
+schema_anchor: vault_files
+protection_level: sealed
+activation: mandatory
+requires_db: false
+inherits_from: "R1-08-TEMPLATE-BUNDLE-SYSTEM Foundation Bundles"
+context_question: "Before consuming @csps/ui in a new app: are all 7 components exported from libs/ui/src/index.ts and does pnpm --filter @csps/template build pass with CSPSPage imported?"
+---
+
+# COMPONENT-LIBRARY Foundation Bundle
+
+> Status: SEALED | Session: S058 | Proven: 718eccf
+> Every CSPS app inherits this bundle. Non-negotiable UI primitive layer.
+> Design source: docs/SIA/R1-08-TEMPLATE-BUNDLE-SYSTEM.md § Foundation Bundles
+> Source library: libs/ui/ | Package: @csps/ui v0.1.0
+
+## Components
+
+components:
+  - name: CSPSPage
+    source: libs/ui/src/CSPSPage.tsx
+    description: "Page wrapper with pageDNA contextQuestion slot. Surfaces context question visibly for developer awareness."
+    props: [title, contextQuestion?, subtitle?, children]
+
+  - name: HealthBar
+    source: libs/ui/src/HealthBar.tsx
+    description: "Progress bar with CSPS color semantics. pass(≥80%)=green / warn(≥40%)=amber / block(<40%)=red."
+    props: [value, label, variant?, source?]
+
+  - name: GapCard
+    source: libs/ui/src/GapCard.tsx
+    description: "Gap / improvement register entry display. Shows k_count recurrence badge and status chip (open/resolved/deferred)."
+    props: [id, k_count, status, observation, structural_fix?]
+
+  - name: MetricBadge
+    source: libs/ui/src/MetricBadge.tsx
+    description: "MDPE/coverage percentage display. Compact: '[value][unit] [label]'."
+    props: [value, label, unit?, color?]
+
+  - name: JourneyStep
+    source: libs/ui/src/JourneyStep.tsx
+    description: "One stage in a developer/user journey. Renders header + options table (friction/value/status) + exit criterion footer."
+    props: [step, name, status?, description, exit, options[]]
+
+  - name: GuardQuestionForm
+    source: libs/ui/src/GuardQuestionForm.tsx
+    description: "ZF-style verification form. Shows main question + guard question + textarea + submit. 'use client' component."
+    props: [question, guardText, placeholder?, onSubmit, submitLabel?]
+
+  - name: CSPSDataTable
+    source: libs/ui/src/CSPSDataTable.tsx
+    description: "Data display with optional click-to-sort. Basic table — no heavy dependencies. 'use client' component."
+    props: [columns, rows, sortable?, emptyMessage?]
+
+## Required Environment Variables
+
+env_vars_required: []
+
+## Consumer Setup
+
+consumer_setup:
+  package_json: '"@csps/ui": "workspace:*"'
+  tsconfig_paths: '"@csps/ui": ["../../libs/ui/src/index.ts"]'
+  next_config: 'transpilePackages: [..., "@csps/ui"]'
+  import_example: "import { CSPSPage, HealthBar, JourneyStep } from '@csps/ui'"
+
+## Verification Gate
+
+verification_gate:
+  - "pnpm --filter @csps/template build exits 0 with @csps/ui imported"
+  - "libs/ui/src/index.ts exports all 7 components (CSPSPage / HealthBar / GapCard / MetricBadge / JourneyStep / GuardQuestionForm / CSPSDataTable)"
+  - "apps/csps-playground imports JourneyStep + HealthBar — proven 718eccf"
+
+## Proven By
+
+proven_by:
+  commit: "718eccf"
+  evidence:
+    - "apps/csps-playground/src/app/platform/developer-journey/page.tsx — JourneyStep from @csps/ui (replaced hand-coded tables)"
+    - "apps/csps-playground/src/app/platform/completion/page.tsx — HealthBar from @csps/ui (replaces hand-coded bar)"
+    - "apps/template/src/app/page.tsx — CSPSPage from @csps/ui (wired S058 PROTO-A)"
+    - "pnpm --filter @csps/csps-playground build: 46 pages, exit 0"
+
+## Phase Notes
+
+phase_notes:
+  current: "Phase 1 — 7 components, inline styles, React 17+ new JSX transform. No Tailwind dependency."
+  phase_2: "Consider Tailwind if multiple apps adopt it. Component props stable — no breaking changes expected."
+  phase_3: "Storybook or equivalent visual test harness. Component-level unit tests."

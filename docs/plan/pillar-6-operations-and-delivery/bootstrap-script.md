@@ -32,6 +32,7 @@ domain_path: platform
 core_spine: OPER
 schema_anchor: pillar_0_governance_leaves
 scope_level: S1
+context_question: "Before starting this operation: has it been validated in the current deployment environment, or only in dev?"
 ---
 
 # Bootstrap Script

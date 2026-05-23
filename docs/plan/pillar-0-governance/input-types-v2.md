@@ -18,6 +18,7 @@ consolidation_cross_refs:
   - B_PRACE
   - PMI
   - CAQ
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # Input Types v2 — Complete Taxonomy (20 types)

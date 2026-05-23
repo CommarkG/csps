@@ -19,6 +19,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: template, href: ../templates/ai-transfer-template.md }
   - { rel: protocol, href: ../../../../tools/council/communication-protocol-shared.md }
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Inner-AI-Default: Boundary Context Assumption

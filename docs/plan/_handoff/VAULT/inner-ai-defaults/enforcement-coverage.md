@@ -18,6 +18,7 @@ links:
   - { rel: enforcement-rate, href: ../../../../tools/validators/validate-inner-ai-defaults-enforcement-rate.mjs }
   - { rel: sample-library, href: ./sample-library.yaml }
 scope_level: S1
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Enforcement Coverage Map

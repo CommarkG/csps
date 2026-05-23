@@ -34,6 +34,7 @@ links:
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
 scope_level: S1
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # Schema Registry — Canonical Anchor Index

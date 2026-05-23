@@ -20,6 +20,7 @@ tags:
   - type:reference
   - audience:ai-agent
   - maturity:stable
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0027 — Unified Scope Model (USM)

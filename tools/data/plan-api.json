@@ -2,20 +2,20 @@
   "meta": {
     "version": "1.1",
     "source": "tools/config/unified-plan.yaml",
-    "generated_at": "2026-05-23T12:22:39.957Z",
+    "generated_at": "2026-05-23T15:00:37.270Z",
     "created_session": "S043",
     "last_updated": "2026-05-20",
     "total_items": 81,
     "status_counts": {
       "intake": 30,
-      "planning": 20,
+      "planning": 13,
       "ratified": 5,
-      "implementing": 4,
+      "implementing": 5,
       "activation": 0,
-      "done": 21,
+      "done": 27,
       "design_complete": 1
     },
-    "pmi_ready_count": 23,
+    "pmi_ready_count": 24,
     "seeds_planted": 3
   },
   "items": [
@@ -1650,7 +1650,7 @@
       ],
       "depends_on": [],
       "caq_questions": [],
-      "notes": "Schema at docs/SIA/PROFILING-HUB-SCHEMA.md. Phase 1 builds S053 (@csps/vocabulary-service YAML). Three ratified decisions: YAML→ZModel, two-layer vocabulary, first-visit profile creation. Phase 3 (AIDefaultOverride, CE) BLOCKED until ZModel promotion complete.",
+      "notes": "Schema at docs/SIA/PROFILING-HUB-SCHEMA.md. Phase 1 builds S053 (@csps/vocabulary-service YAML). Three ratified decisions: YAML→ZModel, two-layer vocabulary, first-visit profile creation. Phase 3 (AIDefaultOverride, CE) BLOCKED until ZModel promotion complete. S055 ratification: ZModel provision alongside R1 Layer 1 completion — before TENANCY bundle is sealed (CORE-COMPLETE-EXIT-CRITERIA.md Layer 1 sequence).",
       "pmi_score": 0,
       "pmi_ready": false,
       "pmi_detail": null,
@@ -1777,7 +1777,7 @@
       ],
       "depends_on": [],
       "caq_questions": [],
-      "notes": "Core engine for multi-dimensional user context with Dependency Strength grading (Isolated→Linked→Dependent→Synergetic). Three collection modes. Sensitivity Ladder (Tone/Depth/Urgency 1-4). Forward reasoning on trajectories. Vault design: tools/vault/concepts/COMBINATORIAL-ENGINE-RAW.md + tools/vault/processing/COMBINATORIAL-ENGINE-S123-ANALYSIS.md. Prerequisite: BEHAVIOR-HUB + PRIVATE-BUSINESS-SILOS + STT-CORRECTION-SYSTEM.",
+      "notes": "Core engine for multi-dimensional user context with Dependency Strength grading (Isolated→Linked→Dependent→Synergetic). Three collection modes. Sensitivity Ladder (Tone/Depth/Urgency 1-4). Forward reasoning on trajectories. Vault design: tools/vault/concepts/COMBINATORIAL-ENGINE-RAW.md + tools/vault/processing/COMBINATORIAL-ENGINE-S123-ANALYSIS.md. Prerequisite: BEHAVIOR-HUB + PRIVATE-BUSINESS-SILOS + STT-CORRECTION-SYSTEM. S055 ratification: PIE sub-engines ratified — PE Sub-engine + Learning Loop + Scope Router + Seeds Monitor + Documentation Engine (all D1-always-active; full activation on triggers per CORE-COMPLETE-EXIT-CRITERIA.md Layer 2). Opus designs R2-01 in S056.",
       "pmi_score": 0,
       "pmi_ready": false,
       "pmi_detail": null,
@@ -1844,7 +1844,7 @@
     {
       "id": "THRESHOLD-CODE",
       "title": "Threshold — code implementation of the intake + routing system",
-      "status": "planning",
+      "status": "implementing",
       "category": "architecture",
       "owner": "opus",
       "pe_score": 96,
@@ -1856,15 +1856,15 @@
       ],
       "depends_on": [],
       "caq_questions": [],
-      "notes": "Design complete at docs/SIA/R1-04-THRESHOLD.md (status=complete, all sections filled S052).\nCode = S053. user-prompt-submit-intake.sh is a thin stub. Must be built before INFRA-FLOW-VALIDATION passes.\n",
-      "pmi_score": 2,
-      "pmi_ready": false,
+      "notes": "Design complete at docs/SIA/R1-04-THRESHOLD.md (status=complete, all sections filled S052).\nPhase 1 target S056: libs/threshold/ library (10 input types, 7 pipelines in YAML, classify + route). No platform integration yet.\nPhase 2 (S057+): integrate into session-open, hook up to user-prompt-submit-intake.sh.\nS056 ratified: THRESHOLD-CODE Phase 1 = first Layer 1 deliverable in CORE-COMPLETE-EXIT-CRITERIA.md.\n",
+      "pmi_score": 5,
+      "pmi_ready": true,
       "pmi_detail": {
         "intent_depth": "high",
-        "cross_ref_density": "medium",
-        "consensus_width": "medium",
+        "cross_ref_density": "high",
+        "consensus_width": "high",
         "reversibility": "high",
-        "dependency_clarity": "low"
+        "dependency_clarity": "high"
       },
       "has_core_seed": false,
       "core_seed": null,
@@ -2090,7 +2090,7 @@
     {
       "id": "POSITIVE-REFLEXIVITY",
       "title": "Auto-draft plan item at K>=2 in improvement-register (positive reflexivity)",
-      "status": "planning",
+      "status": "done",
       "category": "governance",
       "owner": "sonnet",
       "pe_score": 90,
@@ -2113,7 +2113,7 @@
     {
       "id": "CEC-TRIGGER-IMPROVEMENT",
       "title": "post-tool-use-cec-trigger.sh: check improvement-register when files written to not_yet_propagated target paths",
-      "status": "planning",
+      "status": "done",
       "category": "governance",
       "owner": "sonnet",
       "pe_score": 88,
@@ -2137,7 +2137,7 @@
     {
       "id": "VALIDATE-VALIDATORS",
       "title": "validate-validators.mjs — meta-validator layer (Methodology 5)",
-      "status": "planning",
+      "status": "done",
       "category": "governance",
       "owner": "sonnet",
       "pe_score": 85,
@@ -2160,7 +2160,7 @@
     {
       "id": "EXTERNAL-AGENT-PROTOCOL",
       "title": "External agent protocol (pre-external-agent checklist)",
-      "status": "planning",
+      "status": "done",
       "category": "governance",
       "owner": "sonnet",
       "pe_score": 82,
@@ -2183,7 +2183,7 @@
     {
       "id": "FRONTEND-UX-CONTRACTS",
       "title": "Frontend UX contracts — B_* behavioral contracts for Tier 2 (playground)",
-      "status": "planning",
+      "status": "done",
       "category": "governance",
       "owner": "sonnet",
       "pe_score": 80,
@@ -2208,7 +2208,7 @@
     {
       "id": "VALIDATE-SESSION-AUTHORITY",
       "title": "validate-session-authority.mjs — flag outputs from expired implementation sessions",
-      "status": "planning",
+      "status": "done",
       "category": "governance",
       "owner": "sonnet",
       "pe_score": 78,

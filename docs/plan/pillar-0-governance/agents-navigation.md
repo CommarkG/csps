@@ -20,6 +20,7 @@ tags:
   - audience:ai-agent
   - maturity:stable
 scope_level: S1
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # CSPS Path Reference — Where Things Live

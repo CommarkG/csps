@@ -23,6 +23,7 @@ links:
   - { rel: validator, href: ../../../tools/validators/validate-mini-tree-integrity.mjs }
   - { rel: complexity-validator, href: ../../../tools/validators/validate-file-complexity.mjs }
 scope_level: S1
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # Mini-Tree Split Protocol

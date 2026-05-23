@@ -29,6 +29,7 @@ links:
   - { rel: depends-on, href: ./s014-l1-research.md }
 domain_path: platform
 scope_level: S1
+context_question: "What is the current depth level of this topic plan, and have all prior depth gates been verified clean before proceeding to the next level?"
 ---
 
 # S014 L2 — Goals, Personas, Success Metrics

@@ -24,6 +24,7 @@ disposition: adjust
 append_only: true
 domain_path: platform
 scope_level: S1
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Inner-AI-Defaults — Continuous Drift Log

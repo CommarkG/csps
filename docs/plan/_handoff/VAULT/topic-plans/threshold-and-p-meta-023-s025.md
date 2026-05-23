@@ -55,6 +55,7 @@ failure_signal: >
   OR threshold-intake-protocol.md hierarchy inverted (P-META-023 declared parent of P-META-022).
   OR B_THRESHOLD_INTAKE_PROTOCOL contract authored without Opus review of 26+42.
 scope_level: S1
+context_question: "What is the current depth level of this topic plan, and have all prior depth gates been verified clean before proceeding to the next level?"
 ---
 
 # Threshold + P-META-023 — S025 Mandate Plan

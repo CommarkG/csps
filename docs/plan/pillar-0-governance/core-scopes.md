@@ -19,6 +19,7 @@ consolidation_cross_refs:
   - B_STRUCTURAL_PREVENTION_DISCIPLINE
   - B_PRACE
   - P-META-019
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # Core Scopes — Three-Scope Prevention Framework

@@ -13,6 +13,7 @@ links:
   - { rel: principle, href: ../../packages/principles/principles.yaml }
   - { rel: prior-recurrence-k1, href: ../plan/_handoff/VAULT/qc-audit-results-S002.md }
   - { rel: prior-recurrence-k2, href: ../plan/_handoff/VAULT/validation-pass-S003.md }
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0022 — Stale meta-principle count permanent fix

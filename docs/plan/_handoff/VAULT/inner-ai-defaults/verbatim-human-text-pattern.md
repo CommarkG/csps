@@ -21,6 +21,7 @@ consolidation_cross_refs:
   - docs/plan/_handoff/VAULT/inner-ai-defaults/rigid-rule-anti-pattern.md
 domain_path: platform
 scope_level: S1
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Verbatim Human Text Pattern

@@ -21,6 +21,7 @@ consolidation_cross_refs:
   - P-META-019
   - CAQ
   - PMI
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # CSPS Prevention Framework — Advanced Draft

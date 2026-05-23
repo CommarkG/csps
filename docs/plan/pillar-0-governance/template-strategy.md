@@ -15,6 +15,7 @@ impl_status: swift-implemented
 links:
   - { rel: parent, href: ../pillar-4-developer-experience/ }
   - { rel: related, href: ../../_handoff/VAULT/multi-session-plan-S040-playground-inheritance.md }
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # CSPS Template Strategy

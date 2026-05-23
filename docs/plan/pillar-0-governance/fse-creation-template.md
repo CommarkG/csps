@@ -19,6 +19,7 @@ consolidation_cross_refs:
   - B_ENFORCEMENT_TRIO
   - B_INHERITANCE_POLICY
   - P-META-007
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # Five-Surface Engraving (FSE) — Mandatory Creation Template

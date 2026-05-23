@@ -1,0 +1,62 @@
+# Threshold pipeline routing rules
+# Design: docs/SIA/R1-04-THRESHOLD.md § 5
+# Routing rules are DATA (YAML), not code — adding a new pipeline = adding a YAML entry.
+# Plan item: THRESHOLD-CODE | S056
+
+pipelines:
+
+  - name: PE_INTAKE
+    description: "Platform Intelligence Engine — new plan items, priority changes"
+    processor: "platform-intelligence-engine"
+    routing_rules:
+      - input_types: [governor_directive, core_seed]
+        scope_tags: [S1, S2, S3]
+
+  - name: LEARNING_LOOP
+    description: "Session patterns, AI behavioral observations, error+solution pairs"
+    processor: "learning-loop-sub-engine"
+    routing_rules:
+      - input_types: [session_harvest, error, solution]
+        scope_tags: [S2, S3]
+
+  - name: DOC_UPDATE
+    description: "Node changes that affect documentation"
+    processor: "documentation-engine"
+    routing_rules:
+      - input_types: [correction]
+        spine_tags: [ARCH, GVRN]
+
+  - name: AI_PROFILE
+    description: "AI trigger/default/satisfaction point observations, AI behavior corrections"
+    processor: "ai-behavioral-profile-registry"
+    routing_rules:
+      - input_types: [correction, architectural_insight]
+        spine_tags: [AI]
+
+  - name: CONCEPTION_VAULT
+    description: "How AI models its own role or decision architecture"
+    processor: "ai-conception-vault"
+    routing_rules:
+      - input_types: [architectural_insight]
+        scope_tags: [S3]
+        spine_tags: [AI]
+
+  - name: AUDIT_QUEUE
+    description: "Compliance findings, validation failures, errors requiring immediate action"
+    processor: "audit-hub"
+    routing_rules:
+      - input_types: [error, solution, correction]
+        scope_tags: [S1, S2, S3]
+        escalation: true
+
+  - name: CORE_SEED_REGISTRY
+    description: "Architectural promises reaching consensus (K>=2)"
+    processor: "core-seeds-monitor"
+    routing_rules:
+      - input_types: [core_seed, architectural_insight]
+        scope_tags: [S3]
+
+# Escalation paths (override routing):
+# - error with urgency=high → direct AUDIT_QUEUE (skips queue)
+# - governor_directive with high urgency → direct PE_INTAKE
+# - correction with scope_tag=S3 → dual routing: AI_PROFILE + CONCEPTION_VAULT

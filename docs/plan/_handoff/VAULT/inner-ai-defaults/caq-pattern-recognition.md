@@ -16,6 +16,7 @@ links:
   - { rel: enforces, href: ../../../../tools/council/csps-context.md }
 session: S048
 csps_model_version: claude-sonnet-4-6-1m
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # CAQ Pattern Recognition — Inner Default Override

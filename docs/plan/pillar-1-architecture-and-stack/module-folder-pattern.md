@@ -26,6 +26,7 @@ domain_path: platform
 core_spine: ARCH
 schema_anchor: pillar_0_governance_leaves
 scope_level: S1
+context_question: "Is the architecture decision described here still the ratified approach, or has a newer ADR superseded it?"
 ---
 
 # The Module Folder Pattern

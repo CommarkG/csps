@@ -46,6 +46,7 @@ domain_path: platform
 core_spine: ARCH
 schema_anchor: pillar_0_governance_leaves
 scope_level: S1
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # Depth Discipline — CSPS Canonical Home

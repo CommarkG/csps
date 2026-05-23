@@ -28,6 +28,7 @@ links:
   - { rel: reasoning-patterns, href: ./reasoning-patterns.md }
   - { rel: opus-protocol, href: ../../../tools/council/opus-protocol.md }
 scope_level: S1
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Claude Code Native Profile

@@ -69,6 +69,7 @@ failure_signal: "STT module exists but no PI item, no @csps-enforces, or validat
 
 links:
   - { rel: parent, href: ../README.md }
+context_question: "What is the current depth level of this topic plan, and have all prior depth gates been verified clean before proceeding to the next level?"
 ---
 
 # S038: STT Module + Quality Protocols

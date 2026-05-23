@@ -14,6 +14,7 @@ lifecycle: production
 lifecycle_state: active
 session: S026
 scope_level: S1
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Sample Library — Positive/Negative Behavioral Pairs

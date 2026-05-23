@@ -62,6 +62,7 @@ intake_directions:
   - personal.finance WizardTemplate needed in routing.config.ts before build starts
   - Budget Planner exercises solo_user_flow (auto-org) + GDPR erasure path + personal data isolation
 scope_level: S1
+context_question: "What is the current depth level of this topic plan, and have all prior depth gates been verified clean before proceeding to the next level?"
 ---
 
 # Budget Planner — App #2 Topic Plan

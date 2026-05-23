@@ -13,6 +13,7 @@ template_depth: L2
 parent_template: governed-artifact-frontmatter
 diataxis_type: reference
 csps_core_reminder: [B_EXISTS_NOT_EQUALS_ACTIVE, B_STRUCTURAL_PREVENTION_DISCIPLINE, AP-001]
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # CSPS Anti-Pattern Register

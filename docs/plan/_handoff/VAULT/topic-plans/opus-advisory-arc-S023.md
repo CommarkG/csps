@@ -51,6 +51,7 @@ links:
   - { rel: alignment-plan, href: ../../../../../tools/council/p-meta-022-alignment-plan.md }
   - { rel: bedrock, href: ../../../../pillar-0-governance/csps-bedrock.md }
 scope_level: S1
+context_question: "What is the current depth level of this topic plan, and have all prior depth gates been verified clean before proceeding to the next level?"
 ---
 
 # Opus Advisory Arc — S023

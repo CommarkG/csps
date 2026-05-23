@@ -19,6 +19,7 @@ links:
   - { rel: source-leaf, href: ../plan/pillar-2-data-and-schema/app-schema-contract.md }
   - { rel: registry, href: ../../packages/principles/principles.yaml }
   - { rel: enforces, href: ../plan/pillar-0-governance/architecture-principles.md }
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0002 — Schema-per-app multi-tenancy

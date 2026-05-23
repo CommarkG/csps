@@ -25,6 +25,7 @@ consolidation_cross_refs:
   - tools/templates/priority-engine.schema.yaml
 domain_path: platform
 scope_level: S1
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Core-Before-Application Pattern (FOUNDATION_EXIT_GATE)

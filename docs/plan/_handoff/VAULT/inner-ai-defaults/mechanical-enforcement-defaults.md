@@ -17,6 +17,7 @@ links:
   - { rel: enforcement-rate, href: ./enforcement-coverage.md }
   - { rel: trigger-vocabulary, href: ./trigger-vocabulary.md }
   - { rel: contracts, href: ../../../../docs/plan/pillar-0-governance/behavioral-contracts.md }
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Mechanical Enforcement Defaults — Deep Dive

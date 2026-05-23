@@ -10,6 +10,7 @@ lifecycle_state: active
 diataxis_type: explanation
 links:
   - { rel: source-leaf, href: ../plan/_handoff/VAULT/validation-pass-S002.md }
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0021 — Per-principle-category validation coverage

@@ -24,6 +24,7 @@ links:
   - { rel: plan-protocol, href: ./plan-creation-protocol.md }
   - { rel: validator, href: ../../../tools/validators/validate-plan-complexity.mjs }
 scope_level: S1
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # Scope Pressure Index (SPI)

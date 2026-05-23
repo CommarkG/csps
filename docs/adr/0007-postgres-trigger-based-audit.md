@@ -18,6 +18,7 @@ diataxis_type: explanation
 links:
   - { rel: source-leaf, href: ../plan/pillar-2-data-and-schema/audit-triggers.md }
   - { rel: registry, href: ../../packages/principles/principles.yaml }
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0007 — Postgres triggers as audit primitive

@@ -86,6 +86,7 @@ links:
   - { rel: index, href: behavioral-contracts.md }
 consolidation_cross_refs:
   - docs/plan/pillar-0-governance/behavioral-contracts.md
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # Behavioral Contracts — AI Spine

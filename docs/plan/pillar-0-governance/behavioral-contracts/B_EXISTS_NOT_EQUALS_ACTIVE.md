@@ -11,6 +11,7 @@ lifecycle_state: ratified
 diataxis_type: reference
 council_state: none
 session: S046
+context_question: "Is B_EXISTS_NOT_EQUALS_ACTIVE enforced with T1 (hook) + T2 (validator) + T3 (session-open)? T3-only = will drift by session N+2."
 ---
 
 # B_EXISTS_NOT_EQUALS_ACTIVE

@@ -25,6 +25,7 @@ links:
   - { rel: sample-library, href: ./sample-library.yaml }
   - { rel: architecture, href: ../../../../tools/council/opus-ai-behavior-architecture.md }
 scope_level: S1
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Trigger Vocabulary Map

@@ -79,6 +79,7 @@ links:
   - { rel: monolith, href: ../behavioral-contracts.md }
   - { rel: index, href: ../behavioral-contracts-index.yaml }
 scope_level: S1
+context_question: "Is behavioral-contracts-index enforced with T1 (hook) + T2 (validator) + T3 (session-open)? T3-only = will drift by session N+2."
 ---
 
 # Behavioral Contracts — Index

@@ -11,6 +11,7 @@ diataxis_type: explanation
 links:
   - { rel: source-leaf, href: ../plan/_handoff/VAULT/validation-pass-S002.md }
   - { rel: source-protocols, href: ../plan/_handoff/VAULT/protocols.md }
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0020 — Verification command in every handoff

@@ -13,6 +13,7 @@ links:
   - { rel: prior-adr, href: ./0001-pick-csps-stack.md }
   - { rel: related-adr, href: ./0005-sandboxed-skill-governance.md }
   - { rel: dashboards, href: ../plan/pillar-6-operations-and-delivery/dashboards.md }
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0024 — Deployment platform: Vercel + Cloudflare Workers hybrid

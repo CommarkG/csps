@@ -14,6 +14,7 @@ impl_status: swift-implemented
 links:
   - { rel: parent, href: ./audit-runner.md }
   - { rel: governs, href: ../../_intake/external-knowledge/ }
+context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
 # External Knowledge Registry

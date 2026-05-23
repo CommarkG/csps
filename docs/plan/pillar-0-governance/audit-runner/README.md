@@ -49,6 +49,7 @@ tags:
   - audience:ai-agent
   - maturity:stable
 scope_level: S1
+context_question: "Does this audit pipeline slug have a matching active validator in pnpm verify, or is it registered but never running?"
 ---
 
 # Audit Runner — Pipeline Index

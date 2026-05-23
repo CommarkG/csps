@@ -15,6 +15,7 @@ links:
   - { rel: parent, href: ./README.md }
   - { rel: enforcement, href: ./mechanical-enforcement-defaults.md }
   - { rel: contracts, href: ../../../../docs/plan/pillar-0-governance/behavioral-contracts.md }
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # CSPS Development Reasoning Defaults

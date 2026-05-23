@@ -22,6 +22,7 @@ consolidation_cross_refs:
   - docs/plan/pillar-0-governance/csps-layer-separation.md
 domain_path: platform
 scope_level: S1
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Rigid Rule Anti-Pattern

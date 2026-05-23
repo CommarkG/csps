@@ -50,6 +50,7 @@ links:
   - { rel: bedrock, href: ../../../../pillar-0-governance/csps-bedrock.md }
   - { rel: cia-plan, href: ./csps-continuous-intelligence-architecture.md }
 scope_level: S1
+context_question: "What is the current depth level of this topic plan, and have all prior depth gates been verified clean before proceeding to the next level?"
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

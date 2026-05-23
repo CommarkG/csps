@@ -23,6 +23,7 @@ links:
   - { rel: vercel-json, href: ../../../../vercel.json }
   - { rel: env-platform, href: ../../../../.env.platform.example }
   - { rel: sync-script, href: ../../../../tools/scripts/sync-vercel-env.mjs }
+context_question: "Before starting this operation: has it been validated in the current deployment environment, or only in dev?"
 ---
 
 # Budget Planner Gate 3 — Vercel Deployment

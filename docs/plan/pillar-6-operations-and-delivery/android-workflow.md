@@ -23,6 +23,7 @@ file_depth_markers:
   read_protocol: "L1 = app list + quick-start. L2 = detailed workflows."
 domain_path: platform
 scope_level: S1
+context_question: "Before starting this operation: has it been validated in the current deployment environment, or only in dev?"
 ---
 
 # Android Workflow — CSPS

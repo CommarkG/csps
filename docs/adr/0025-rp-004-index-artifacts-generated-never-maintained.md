@@ -26,6 +26,7 @@ links:
   - { rel: retrograde-principle, href: ../plan/_handoff/VAULT/retrograde-principles-s027.md }
   - { rel: opus-ratification, href: ../plan/_handoff/VAULT/opus-srof-schema-and-spines-review.md }
   - { rel: l3-populator, href: ../../tools/scripts/instance-registry-populator.mjs }
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0025 — RP-004: Index Artifacts Are Generated Outputs, Not Source Files

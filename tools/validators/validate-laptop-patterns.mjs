@@ -79,6 +79,7 @@ const EXEMPT_PATTERNS = [
 // These are ADVISORY (historical docs), not BLOCKING.
 const KNOWN_PRE_EXISTING = new Set([
   'docs/plan/pillar-6-operations-and-delivery/bootstrap-script.md',
+  'docs/plan/pillar-6-operations-and-delivery/gate-3-procedure.md', // description field says "never .env.local" — anti-pattern doc, not a violation
   'docs/plan/_handoff/VAULT/topic-plans/budget-planner-app2.md',
   'docs/plan/_handoff/VAULT/topic-plans/enterprise-core-completion-plan.md',
   'docs/plan/_handoff/VAULT/topic-plans/platform-excellence-completion-S023.md',

@@ -19,6 +19,7 @@ diataxis_type: explanation
 links:
   - { rel: source-leaf, href: ../plan/pillar-5-ai-systems/persona-composition.md }
   - { rel: registry, href: ../../packages/principles/principles.yaml }
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0009 — Hybrid persona memory

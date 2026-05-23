@@ -24,6 +24,7 @@ links:
   - { rel: trigger-vocabulary, href: ./trigger-vocabulary.md }
   - { rel: sample-library, href: ./sample-library.yaml }
 scope_level: S1
+context_question: "Is this AI default still the active training default, or has CSPS overridden it? Check enforcement_stage before assuming it is active."
 ---
 
 # Alternative Vocabulary Library

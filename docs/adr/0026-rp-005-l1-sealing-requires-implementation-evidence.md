@@ -25,6 +25,7 @@ links:
   - { rel: opus-ratification, href: ../plan/_handoff/VAULT/opus-srof-schema-and-spines-review.md }
   - { rel: l1-gvrn, href: ../../.claude/core-spines/L1_CORE_GVRN.md }
   - { rel: core-manifest, href: ../plan/pillar-0-governance/csps-core-manifest.md }
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0026 — RP-005: L1 Sealing Requires Operational Evidence

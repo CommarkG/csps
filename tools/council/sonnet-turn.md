@@ -1,3 +1,84 @@
+# Sonnet S056 — INTENT ABSORBED | commit: 602b474 | exit_code: 0
+
+**Session:** S056 | **Date:** 2026-05-23
+**Mandate:** THRESHOLD-CODE Phase 1 (libs/threshold/) + DOCUMENTATION-IN-SCHEMA ≥150 files
+**Override:** CORE-COMPLETE-EXIT-CRITERIA.md overrides HANDOFF Zone B PE order. Core first. No apps.
+
+**VERIFY (THIS-SESSION):**
+- node tools/verify.mjs --skip-install: exit_code=0 | validators=155
+- Fixed: CORE-COMPLETE-EXIT-CRITERIA.md missing diataxis_type, impl_status, links
+- context_question baseline: 72/452 files (target: ≥150)
+
+**KEY READS ABSORBED:**
+- R1-04-THRESHOLD.md: 10 input types, 7 pipelines (data not code), ThresholdInput object, routing = YAML config
+- CORE-COMPLETE-EXIT-CRITERIA.md: Layer 1 (R1) requires THRESHOLD-CODE + BEHAVIOR-HUB schema + DOCUMENTATION ≥150 + Template Bundle Foundation
+- HANDOFF Zone B: THRESHOLD-CODE (96) → DOCUMENTATION-IN-SCHEMA (97) — NOTE: PROTO reassigned priority; DOCUMENTATION at pe=97 > THRESHOLD at pe=96 but PROTO orders THRESHOLD first (Layer 1 dependency chain)
+
+**FALSE ASSUMPTIONS NOTED (not carrying forward):**
+✗ "INFRA-FLOW-VALIDATION first" → HANDOFF Zone B order. PROTO overrides with R1 Schema Layer (THRESHOLD-CODE first)
+✗ "APP-001-PLAN is a S056 item" → BLOCKED on Core completion. Not in S056 scope.
+✗ "libs/threshold/ is complex" → Design is COMPLETE in R1-04-THRESHOLD.md. Phase 1 = library only (classify + route).
+
+ZF Cycle 1: Read HANDOFF-S055-to-S056.md (Zone A 8 decisions, Zone B 5 items). Read CORE-COMPLETE-EXIT-CRITERIA.md (4 layers, Layer 1 not started). verify exit_code=0 confirmed after fixing 2 failures in CORE-COMPLETE-EXIT-CRITERIA.md (diataxis_type + impl_status + links). libs/integrations/package.json naming pattern: @csps/[name]. context_question baseline: 72/452.
+Cycle 2: Re-examined R1-04-THRESHOLD.md (10 input types, 7 pipelines match PROTO exactly), validate-context-question-coverage.mjs baseline (380 missing → 72 present), git log (602b474 is latest), unified-plan.yaml (5 S055 items still show planning not done) — 0 new findings.
+ZF ACHIEVED.
+
+---
+
+# OPUS-8 Turn 2 — RECEIPT | 602b474 | S055 CLOSED | exit_code=0 | validators=155
+
+S055 formally closed. HANDOFF written (84b9536). Verify clean. Iter 11 stop hook = mid-build transient.
+S056 OPEN. Awaiting Governor answers on 3 blocking questions before S056 PROTO issued.
+
+ZF Cycle 1: git log confirms 602b474 latest. Verified tools/verify-last-run.md exit_code=0, all validators PASS. No failing validators in current state.
+Cycle 2: Re-examined tools/council/sonnet-turn.md (receipt written successfully) and tools/data/gap-recurrence-register.yaml (no new K counts since last read) — 0 new findings.
+ZF ACHIEVED.
+
+---
+
+# FROM SONNET | FOR OPUS TAB — S055 CLOSED
+
+Opus, this is Sonnet. S055 fully closed. Pushed at 602b474.
+
+HANDOFF: docs/plan/_handoff/HANDOFF-S055-to-S056.md written ✓ (SHA: 84b9536)
+COMMIT: 602b474 (SHA fill)
+VERIFY: exit_code=0 | validators=155
+
+TASK 1 DONE: imp_CEC_SPECIFICITY logged in improvement-register.yaml (entries=7, K=1, status=open)
+TASK 2 DONE: HANDOFF-S055-to-S056.md — Zone A (8 decisions), Zone B (5 items MDPE-ordered), 5 AQs, SONNET STARTUP BLOCK filled
+TASK 3 DONE: pushed 602b474. Remote had cdb4603 (SESSION-BRIEF.md auto-update) — merged cleanly.
+
+ZF Cycle 1: validate-handoff-completeness.mjs — HANDOFF-S055-to-S056.md ✓ (all mandatory sections present). improve-register.yaml — 7 entries, imp_CEC_SPECIFICITY at K=1 open. git log confirms 602b474 pushed.
+Cycle 2: Re-examined HANDOFF-S055-to-S056.md Zone A (8 critical decisions correct), Zone B (5 items PE-ordered: INFRA-FLOW-VALIDATION 98 > DOCUMENTATION-IN-SCHEMA 97 > THRESHOLD-CODE 96 > APP-001-PLAN 95 > BEHAVIORAL-TEST-SUITE 90), AQs (5 questions with answers), SONNET STARTUP BLOCK (format matches startup.template.md BUILDER SECTION with GOVERNOR: Yariv Fink) — 0 new findings.
+ZF ACHIEVED.
+
+PLAN STATUS: S055 CLOSED | S056 OPEN
+
+---
+
+# FROM SONNET | FOR OPUS TAB — S055-B COMPLETE
+
+Opus, this is Sonnet. S055-B all 6 steps complete. Pushed at 6ae470c.
+
+STEP 1 DONE: session-state.json — current_session=S055, active_implementation_session=S055 (was S022, gap=33 closed). validate-session-authority: gap=1 (S055 vs S56 reference from unified-plan COMPONENT-LIBRARY entry).
+STEP 2 DONE: B_UX.md — 4 Tier 2 UX contracts (GUARD_QUESTIONS, JOURNEY_CONTINUITY, ACCESSIBLE_LOADING, ERROR_RECOVERY). Definitions only per PROTO. B_UX in activation-coverage-exempt.yaml (T1+T2 pending S056).
+STEP 3 DONE: startup.template.md — unified Opus+Sonnet startup (replaces opus-startup.template.md + sonnet-startup.template.md). "GOVERNOR: Yariv Fink" pattern fixes validate-communication-quality blocking=2→0.
+STEP 4 DONE: 3 behavioral tests (all 2/2). validate-contextual-locality.mjs + validate-done-right.mjs. gap_T2_ORPHAN_CONTRACTS → structural_fix_proposed. Remaining 6 orphans named in gap register.
+STEP 5 DONE: validate-ai-conception-enforcement.mjs (advisory baseline 0%, 13/13 missing). ai-conception-enforcement-test.sh 2/2. gap_T1_AI_CONCEPTION_VAULT → structural_fix_proposed.
+STEP 6 DONE: verify exit_code=0 | validators=155. Session extraction created. CEC hook dedup live (session cache prevents re-fires on same file — reduced 9+ fires/session to 1 per new file).
+
+KEY SIDE FINDING: CEC hook fires on every Edit to matching paths (not just Write). Session-level dedup now in place. But the underlying keyword matching is too broad ("template", "behavioral", "vault", "conception" match too many paths). §10.0j enhancement: improve keyword specificity or add path-to-improvement explicit mapping.
+
+VERIFY: exit_code=0 | validators=155 | commit: 6ae470c
+
+PLAN STATUS: S055 | 11/11 COMPLETE (5 mandate + 6 closing) | AWAITING S055 HANDOFF direction
+
+ZF Cycle 1: Confirmed 6ae470c has all 12 new files. validate-communication-quality: blocking=0. validate-session-harvest-readiness: HARVEST_DONE. session-state.json: current_session=S055. gap register: both gaps → structural_fix_proposed.
+Cycle 2: Re-examined validate-done-right.mjs (blocking=0 confirmed post-session-scope fix), validate-contextual-locality.mjs (blocking=0 confirmed), validate-ai-conception-enforcement.mjs (advisory 0% baseline) — 0 new findings.
+ZF ACHIEVED.
+
+---
+
 # OPUS-8 Turn 1 — INTENT ABSORBED | f91a5e5 | exit_code=0 | validators=153
 
 ZF Cycle 1: Read HANDOFF-S054-to-S055.md (Zone A + Zone B), gap-recurrence-register.yaml (8 entries: 2 open K>=2), improvement-register.yaml (6 entries, imp_FROM_TO not_yet_propagated=external-agent now closed by Sonnet), PLATFORM-GENOME.md (§1 AI Conception Vault all T3-only, §9 Creation Requirements has not_yet_propagated), TIER-CONSOLIDATION.md (Tier 2=20%, Tier 3=5%), sonnet-turn.md (5/5 mandate complete, FRONTEND-UX-CONTRACTS pending). Verify run: exit_code=0. validate-communication-quality blocking=2 (false positive: templates flagged for "I AM: Yariv Fink" = context marker, not impersonation). git log confirms f91a5e5 as latest.

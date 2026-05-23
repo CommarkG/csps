@@ -49,6 +49,7 @@ muv_audit:
   alignment_questions_count: 0 (this is internal sequencing artifact, not cross-chat handshake)
 domain_path: platform
 scope_level: S1
+context_question: "What is the current depth level of this topic plan, and have all prior depth gates been verified clean before proceeding to the next level?"
 ---
 
 # Topic Plan — S006 Governance Foundation

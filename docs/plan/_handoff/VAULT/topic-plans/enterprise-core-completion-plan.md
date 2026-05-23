@@ -56,6 +56,7 @@ links:
   - { rel: schema, href: ../../../../../libs/policies/schema.zmodel }
   - { rel: session-state, href: ../../../../../tools/session-state.json }
 scope_level: S1
+context_question: "What is the current depth level of this topic plan, and have all prior depth gates been verified clean before proceeding to the next level?"
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

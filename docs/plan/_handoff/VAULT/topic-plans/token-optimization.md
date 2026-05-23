@@ -69,6 +69,7 @@ muv_audit:
   alignment_questions_count: 0 (internal sequencing; cross-chat handshake at session close)
 domain_path: platform
 scope_level: S1
+context_question: "What is the current depth level of this topic plan, and have all prior depth gates been verified clean before proceeding to the next level?"
 ---
 ## §0 — CONSOLIDATION CHECK (mandatory — read before any implementation)
 

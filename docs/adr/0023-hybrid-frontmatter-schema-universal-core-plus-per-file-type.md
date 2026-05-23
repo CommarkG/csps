@@ -12,6 +12,7 @@ links:
   - { rel: source-leaf, href: ../plan/pillar-1-architecture-and-stack/frontmatter-standard.md }
   - { rel: prior-adr, href: ./0014-adopt-madr-for-adr-format.md }
   - { rel: source-finding, href: ../plan/_handoff/VAULT/gaps-and-duplications-S005.md }
+context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
 # ADR-0023 — Hybrid frontmatter schema (universal-required-core + per-file-type extensions)

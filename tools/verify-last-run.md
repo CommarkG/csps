@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-23T19:57:27.055Z
-- finished_at: 2026-05-23T19:57:56.971Z
+- ran_at: 2026-05-23T20:05:58.828Z
+- finished_at: 2026-05-23T20:06:28.167Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-23T19:57:27.055Z",
-    "finished_at": "2026-05-23T19:57:56.971Z",
+    "ran_at": "2026-05-23T20:05:58.828Z",
+    "finished_at": "2026-05-23T20:06:28.167Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 68,
         "findings_total": 22
       },
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -212,7 +212,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.1,
+        "duration_seconds": 2,
         "checked": 89,
         "advisories": 79
       },
@@ -412,7 +412,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 0
       },
@@ -430,7 +430,7 @@
         "command": "node tools/validators/validate-file-complexity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "scanned": 659,
         "advisory": 95
       },
@@ -507,7 +507,7 @@
         "command": "node tools/validators/validate-wiring-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "wired": 18,
         "deferred": 35,
         "orphan": 0
@@ -658,7 +658,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -909,7 +909,7 @@
         "command": "node tools/validators/validate-core-seeds.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "seeds_found": 13,
         "overdue": 9
       },
@@ -1152,7 +1152,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 10
+        "duration_seconds": 9.1
       },
       {
         "name": "ui_completeness",
@@ -1186,7 +1186,7 @@
         "command": "node tools/validators/validate-creation-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.1,
         "pi_checked": 11,
         "advisories": 4
       },
@@ -1304,10 +1304,10 @@
         "command": "node tools/validators/validate-unified-plan-sync.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "plan_source_mtime": "2026-05-23T19:53:09.113Z",
-        "api_mtime": "2026-05-23T18:15:34.119Z",
-        "stale": true,
+        "api_mtime": "2026-05-23T19:58:33.352Z",
+        "stale": false,
         "advisory": true
       },
       {
@@ -1433,7 +1433,7 @@
         "command": "node tools/validators/validate-settings-shadow.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "settings_local_clean": true,
         "blocking": 0,
         "advisory": 0
@@ -1516,7 +1516,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 104,
+        "total_entries": 106,
         "sessions": 1,
         "advisory": true
       },

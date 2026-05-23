@@ -109,20 +109,21 @@ Wet trial complete → Extract improvements → Ratify External User's Journey.
 ## CORE COMPLETE DECLARATION
 
 **Date:** 2026-05-23 | **Session:** S058
-**Commit:** 718eccf (PROTO-A) + [S058 PROTO-B commit — pending push]
+**Commits:** 718eccf (PROTO-A) + db15435 (PROTO-B)
 
 All 4 layers passed exit criteria:
 - Layer 1 (R1 Schema): COMPLETE — 4/4 ✅
 - Layer 2 (R2 Intelligence): COMPLETE — 3/3 ✅
-- Layer 3 (R3 Developer's Journey): COMPLETE — 4/4 ✅
+- Layer 3 (R3 Developer's Journey infrastructure): COMPLETE — 4/4 ✅
 - Layer 4 (R4 Frontend Inheritance): COMPLETE — 4/4 ✅
 
-Governor may now proceed to:
-1. Ratify Developer's Journey as formally complete
-2. First app wet trial (APP-001) — builds from proven infrastructure
-   (Voice Sorting plan PMI=5/5; paused since S055; infrastructure now ready)
+**NEXT GATE — Developer's Journey Examination (S059)**
+Core being complete does NOT mean the Developer's Journey is ready.
+The infrastructure exists. The Governor must now WALK the journey,
+examine each stage, identify gaps, and ratify the experience before any app is built.
+Only after Developer's Journey is ratified → first app wet trial begins.
 
-**Declared by:** Opus-8 | **Ratified by:** Governor Yariv Fink *(pending ratification)*
+**Declared by:** Opus-8 | **Ratified by:** Governor Yariv Fink — 2026-05-23
 
 ---
 

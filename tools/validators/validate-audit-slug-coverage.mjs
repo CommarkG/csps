@@ -82,6 +82,9 @@ const KNOWN_MAPPINGS = {
   'validate-threshold-intake': ['threshold-intake', 'threshold_intake'],
   'validate-context-question-coverage': ['context-question-coverage', 'context_question_coverage'],
   'validate-guard-questions': ['guard-questions', 'guard_questions'],
+  'validate-positive-reflexivity': ['positive-reflexivity', 'positive_reflexivity'],
+  'validate-validators': ['validate-validators', 'validate_validators', 'meta-validator-layer'],
+  'validate-session-authority': ['session-authority', 'session_authority', 'session-authority-validation'],
 };
 
 function validatorBasename(filename) {

@@ -49,6 +49,20 @@ elif [[ "$FILE_PATH" == *"concept-first-governance"* ]] || [[ "$FILE_PATH" == *"
   CEC_REASON="methodology document written — verify propagation to validators, templates, contracts, memory"
 fi
 
+# CEC-TRIGGER-IMPROVEMENT (S055): check improvement-register for open not_yet_propagated
+# items whose descriptions keyword-match this file path — positive pipeline fires at write-time
+if [[ "$NEEDS_CEC" == "false" ]] && [[ -n "$FILE_PATH" ]]; then
+  IMP_CHECK_SCRIPT="$(cd "$(dirname "$0")" && pwd)/../../tools/helpers/cec-improvement-check.mjs"
+  if [[ -f "$IMP_CHECK_SCRIPT" ]]; then
+    IMP_RESULT=$(node "$IMP_CHECK_SCRIPT" "$FILE_PATH" 2>/dev/null || echo '{"matches":[],"open_count":0}')
+    MATCH_COUNT=$(echo "$IMP_RESULT" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{process.stdout.write(String(JSON.parse(d).matches?.length??0));}catch{process.stdout.write('0');}});" 2>/dev/null || echo "0")
+    if [[ "$MATCH_COUNT" != "0" && "$MATCH_COUNT" != "" ]]; then
+      NEEDS_CEC=true
+      CEC_REASON="improvement-register: ${MATCH_COUNT} open improvement(s) have not_yet_propagated targets matching this path. Positive pipeline: verify these improvements were intentionally applied here."
+    fi
+  fi
+fi
+
 [[ "$NEEDS_CEC" == "false" ]] && exit 0
 
 # Inject CEC requirement

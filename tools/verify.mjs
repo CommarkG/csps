@@ -1249,6 +1249,39 @@ const CYCLES = [
     },
   },
   {
+    // S055: SESSION-AUTHORITY advisory validator. Compares current_session in session-state.json
+    // against the latest session marker in sonnet-turn.md. Advisory if gap > 2 sessions.
+    // Flags potential "three drivers" problem (multiple sessions without authority signal).
+    name: 'session_authority',
+    command: 'node tools/validators/validate-session-authority.mjs',
+    parse_output: (out) => {
+      const m = out.match(/state_session=(\S+)\s+council_session=(\S+)\s+gap=(-?\d+)\s+session_spread=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { state_session: m[1], council_session: m[2], gap: Number(m[3]), session_spread: Number(m[4]), advisory: Number(m[5]), blocking: Number(m[6]) } : {};
+    },
+  },
+  {
+    // S055: VALIDATE-VALIDATORS meta-validator layer (Methodology 5). Reads verify-last-run.md.
+    // Advisory: DEFERRED validators + validators with empty parse_output + all-zero numeric output.
+    // "Existence ≠ active" (AP-001) applied to validators themselves.
+    name: 'validate_validators',
+    command: 'node tools/validators/validate-validators.mjs',
+    parse_output: (out) => {
+      const m = out.match(/total=(\d+)\s+deferred=(\d+)\s+empty_output=(\d+)\s+zero_numeric=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { total: Number(m[1]), deferred: Number(m[2]), empty_output: Number(m[3]), zero_numeric: Number(m[4]), advisory: Number(m[5]), blocking: Number(m[6]) } : {};
+    },
+  },
+  {
+    // S055: POSITIVE-REFLEXIVITY T2 — K>=2 improvement entries must have draft or plan item.
+    // Reads improvement-register.yaml + pending-plan-items.yaml + unified-plan.yaml.
+    // BLOCKING if K>=2 entry has no draft and no plan item. ADVISORY if draft not yet promoted.
+    name: 'positive_reflexivity',
+    command: 'node tools/validators/validate-positive-reflexivity.mjs',
+    parse_output: (out) => {
+      const m = out.match(/entries=(\d+)\s+covered=(\d+)\s+advisory_drafts=(\d+)\s+blocking=(\d+)/);
+      return m ? { entries: Number(m[1]), covered: Number(m[2]), advisory_drafts: Number(m[3]), blocking: Number(m[4]) } : {};
+    },
+  },
+  {
     // S053: THRESHOLD R1.4.1 T2 — advisory report on intake log classification
     // Reads tools/data/threshold-intake-log.yaml. Reports total entries + type distribution.
     // Advisory always. Grows as governor prompts accumulate per-session.

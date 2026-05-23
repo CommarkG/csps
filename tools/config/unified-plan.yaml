@@ -998,14 +998,15 @@ items:
 
   - id: PRIVATE-BUSINESS-SILOS
     title: "Private/Business Data Silo Architecture — encrypted separation of personal vs business logic"
-    status: planning
+    status: design_complete
     epoch: E1
     category: architecture
     owner: opus
     batch: BATCH-A
     pe_score: 89
+    blocked_on: BEHAVIOR-HUB-ZMODEL-PROMOTION
     tags: [privacy, silos, gdpr, personal-data, architecture, s050]
-    notes: "Hard psychological and technical line: private personal data (family, relationships, health) stored in encrypted silo EXCLUDED from business-logic training sets. Prerequisites: consent model, encryption architecture, silo boundary validation. Must be designed BEFORE any CSPS app activates personal dimensions. Prevention priority: privacy architecture breach is worse than missing feature."
+    notes: "Hard psychological and technical line: private personal data (family, relationships, health) stored in encrypted silo EXCLUDED from business-logic training sets. Design doc complete at a9b5e79. Phase 2 (ZModel RLS) blocked on BEHAVIOR-HUB-ZMODEL-PROMOTION (DB infrastructure prerequisite). Prevention priority: privacy architecture breach is worse than missing feature."
 
   - id: AB-TESTING-HUB
     title: "A/B/C/D Testing Hub — experimentation platform for user-facing flows with completion tracking"
@@ -1321,4 +1322,31 @@ items:
     tags: [frontend, ux, contracts, tier-2, s055]
     session_target: S055
     notes: "Behavioral contracts specific to the playground as Tier 2 Core. What must every playground page do? What is NEVER acceptable? Per CSPS Frontend Methodology (b807ebf). Complements B_APPS_ARE_TRIALS at the Tier 2 layer."
+    core_spine: ARCH
+
+  - id: VALIDATE-SESSION-AUTHORITY
+    title: "validate-session-authority.mjs — flag outputs from expired implementation sessions"
+    status: planning
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 78
+    tags: [validator, session-authority, parallel-sessions, s055]
+    session_target: S055
+    notes: "Reads active_implementation_session from tools/session-state.json. Advisory: flags when outputs appear associated with a session no longer active. Prevents the 'three drivers' structural problem — multiple sessions producing conflicting outputs without authority signal. Methodology 5 (meta-validator layer) application."
+    core_spine: VALD
+
+  - id: COMPONENT-LIBRARY
+    title: "libs/ui/ component library — shared UI primitive layer for Tier 2"
+    status: planning
+    epoch: E1
+    category: architecture
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 80
+    blocked_on: INFRA-FLOW-VALIDATION
+    tags: [component-library, libs-ui, tier-2, frontend, s056]
+    session_target: S056
+    notes: "Shared UI component library for CSPS Tier 2 (playground + future apps). Design phase only until INFRA-FLOW-VALIDATION complete. Registered per Opus S055 directive C2. Deferred to S056."
     core_spine: ARCH

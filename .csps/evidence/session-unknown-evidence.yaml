@@ -1,10 +1,10 @@
 {
   "session": "unknown",
-  "captured_at": "2026-05-23T17:23:44.753Z",
+  "captured_at": "2026-05-23T17:53:10.981Z",
   "verify": {
     "exit_code": 0,
-    "validators_checked": 156,
-    "ran_at": "2026-05-23T17:23:07.015Z"
+    "validators_checked": 157,
+    "ran_at": "2026-05-23T17:52:36.676Z"
   },
   "layer_progress": "Layer 1: 3/4, Layer 2: 3/3, Layer 3: 1/4, Layer 4: 0/4",
   "gap_snapshot_k2": [
@@ -15,5 +15,5 @@
     "gap_HANDOFF_STARTUP_BLOCK K=3 (fix_committed)",
     "gap_SESSION_INJECTION_COMPRESSION K=2 (open)"
   ],
-  "sonnet_summary": "Wizard built at /platform/wizard. INFRA-FLOW Step 3 ACTIVE. Permission fix engraved in session-open.sh. PROTO-S057-B issued: opus/sonnet file consolidation + settings.json permanent permission fix + L"
+  "sonnet_summary": "23 council + 3 SIA files archived. validate-settings-shadow.mjs BLOCKING on shadow. COUNCIL-INDEX.md created. 3-layer permission fix permanent. Next: Journey Framework L2 playground pages (pe=85, imme"
 }

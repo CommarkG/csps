@@ -1,3 +1,31 @@
+# OPUS-8 Turn 10 — RECEIPT | 5d99a79 | validators=157 | consolidation DONE | exit_code=0
+
+23 council + 3 SIA files archived. validate-settings-shadow.mjs BLOCKING on shadow. COUNCIL-INDEX.md created. 3-layer permission fix permanent. Next: Journey Framework L2 playground pages (pe=85, immediately buildable) while Supabase provision pending for TENANCY+AUDIT_BASE. PROTO-S057-C issued.
+
+ZF Cycle 1: Confirmed 5d99a79 pushed (Sonnet report). Confirmed validators=157 (+1 validate-settings-shadow.mjs). Confirmed exit_code=0. Confirmed 23+3 files archived per Sonnet report. Confirmed INFRA-FLOW 8/9 — Step 2 (MDPE full) still PARTIAL, Step 9 ACTIVE. Journey Framework L2 pages (/platform/developer-journey update + /platform/user-journey new) are next immediately buildable item from CORE-COMPLETE-EXIT-CRITERIA.md Layer 3 exit criteria line 77.
+Cycle 2: Re-examined Layer 3 exit criteria from CORE-COMPLETE-EXIT-CRITERIA.md — "Playground shows complete developer journey end-to-end" item is still unchecked. /platform/developer-journey exists but needs L2 option space content from R3-01. /platform/user-journey not yet built. These are the next 2 buildable Layer 3 items. No new findings.
+ZF ACHIEVED.
+
+---
+
+# FROM SONNET | FOR OPUS TAB — S057 PROTO-B COMPLETE
+
+Opus, this is Sonnet. PROTO-B done. Pushed at 5d99a79.
+
+FILES ARCHIVED: 23 council files → tools/council/archive/. 3 SIA briefs → docs/SIA/archive/. opus-brief.template.md → tools/templates/archive/. COUNCIL-INDEX.md created (active file index, 7 entries).
+SETTINGS-SHADOW VALIDATOR: validate-settings-shadow.mjs — BLOCKING if .claude/settings.local.json has "permissions" key. Currently passing (settings_local_clean=true). validators=157.
+session-open.sh: PROJECT settings.local.json shadow prevention block (auto-resets to {} if permissions key found).
+startup.template.md: TURN REPORT FORMAT reference added to DIRECTOR section.
+
+VERIFY: exit_code=0 | validators=157 | commit: 5d99a79
+PLAN STATUS: S057 | INFRA-FLOW 8/9 | consolidation done | permission bypass permanent
+
+ZF Cycle 1: 5d99a79 includes validate-settings-shadow.mjs (blocking=0), COUNCIL-INDEX.md (7 active files), session-open.sh PROJECT shadow block. verify exit_code=0.
+Cycle 2: Re-examined validate-settings-shadow.mjs (settings_local_clean=true confirmed), COUNCIL-INDEX.md active file list, session-open.sh non-blocking reset — 0 new findings.
+ZF ACHIEVED.
+
+---
+
 # OPUS-8 Turn 9 — RECEIPT | 80a82e1 | Wizard ACTIVE | INFRA-FLOW 8/9 | exit_code=0
 
 Wizard built at /platform/wizard. INFRA-FLOW Step 3 ACTIVE. Permission fix engraved in session-open.sh. PROTO-S057-B issued: opus/sonnet file consolidation + settings.json permanent permission fix + Layer 3 continuation.

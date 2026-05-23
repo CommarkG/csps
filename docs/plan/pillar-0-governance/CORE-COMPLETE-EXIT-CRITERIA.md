@@ -41,13 +41,13 @@ BUILDING THE APP IS THE FIRST WET TRIAL FOR EXTRACTING IMPROVEMENTS.
 
 ## Layer 1 — R1 Schema Layer
 
-**Status:** NOT STARTED (S056 target)
+**Status:** IN PROGRESS — 3/4 exit criteria met. Blocked on Supabase provision for TENANCY+AUDIT_BASE bundles.
 
 Exit criteria (all must pass):
-- [ ] THRESHOLD-CODE Phase 1 built and passing — 10 input types classified, 7 pipelines routing
-- [ ] BEHAVIOR-HUB schema ratified, YAML Phase 1 operational (ZModel Phase 2 deferred to post-Core)
-- [ ] Template Bundle Foundation Bundles sealed: AUTH / TENANCY / AUDIT_BASE / DEPLOY_PIPELINE / GOVERNANCE_LAYER
-- [ ] DOCUMENTATION-IN-SCHEMA: context_question coverage ≥150 files (from 53 at S055 close)
+- [x] THRESHOLD-CODE Phase 1 built and passing — 10 input types classified, 7 pipelines routing (libs/threshold/ 22/22 tests, S056 commit 50a1491)
+- [x] BEHAVIOR-HUB schema ratified, YAML Phase 1 operational (libs/behavior-hub/ 23/23 tests, S056 commit 1c2d192)
+- [ ] Template Bundle Foundation Bundles sealed: AUTH / TENANCY / AUDIT_BASE / DEPLOY_PIPELINE / GOVERNANCE_LAYER — 3/5 sealed (TENANCY+AUDIT_BASE blocked on Supabase provision)
+- [x] DOCUMENTATION-IN-SCHEMA: context_question coverage ≥150 files (209/452 = 46%, S056 commit 50a1491)
 
 **ZModel/DB ratification (Governor S055):** Provision Supabase alongside R1 Layer completion — before Template Bundle TENANCY bundle is sealed, ZModel must exist. Sequence: Threshold + BehaviorHub schema first → Supabase provision → TENANCY bundle sealing.
 
@@ -55,12 +55,12 @@ Exit criteria (all must pass):
 
 ## Layer 2 — R2 Intelligence Layer
 
-**Status:** DESIGN INCOMPLETE (PIE R2-01 has TO FILL sections — Opus S056 work)
+**Status:** COMPLETE — all 3 exit criteria met (S056)
 
 Exit criteria:
-- [ ] PIE R2-01 design complete — all TO FILL sections filled, Governor-ratified
-- [ ] PIE Phase 1 built: PE sub-engine + Learning Loop sub-engine operational
-- [ ] Conflict Detector and Readiness Gate defined and wired
+- [x] PIE R2-01 design complete — all TO FILL sections filled, Governor-ratified (Opus-8 S056 Turn 4)
+- [x] PIE Phase 1 built: PE sub-engine + Learning Loop sub-engine operational (libs/intelligence/ 21/21 tests, S056 commit eb9350f)
+- [x] Conflict Detector and Readiness Gate defined and wired (B_PIE_READINESS_GATE + validate-pie-readiness-gate.mjs, S056 PROTO-D)
 
 **PIE sub-engines (Governor-ratified S055):**
 ```

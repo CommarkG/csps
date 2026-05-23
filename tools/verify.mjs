@@ -1249,6 +1249,17 @@ const CYCLES = [
     },
   },
   {
+    // S056: PIE-READINESS-GATE — B_PIE_READINESS_GATE T2. Checks implementing items
+    // against CORE-COMPLETE-EXIT-CRITERIA.md layer prerequisites.
+    // ADVISORY: R2 item with Layer 1 incomplete. BLOCKING: R3+ with layer incomplete.
+    name: 'pie_readiness_gate',
+    command: 'node tools/validators/validate-pie-readiness-gate.mjs',
+    parse_output: (out) => {
+      const m = out.match(/items_checked=(\d+)\s+blocked=(\d+)\s+advisory=(\d+)\s+layer1=(\S+)\s+layer2=(\S+)/);
+      return m ? { items_checked: Number(m[1]), blocked: Number(m[2]), advisory: Number(m[3]), layer1: m[4], layer2: m[5] } : {};
+    },
+  },
+  {
     // S055: SESSION-AUTHORITY advisory validator. Compares current_session in session-state.json
     // against the latest session marker in sonnet-turn.md. Advisory if gap > 2 sessions.
     // Flags potential "three drivers" problem (multiple sessions without authority signal).

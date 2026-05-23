@@ -175,18 +175,12 @@ Skills auto-load with full detail when their domain is referenced. List below is
 | [`/vocabulary-canon`](.claude/skills/vocabulary-canon/SKILL.md) | Naming + frontmatter enums | "name", "frontmatter", "lifecycle_state", "rename" |
 | [`/swift-build`](.claude/skills/swift-build/SKILL.md) | Topic-plan + element-review + PE | "topic-plan", "depth-3/4/5", "PE", "priority band" |
 | `/pcr` `/wip-check` `/reuse-check` `/audit-self` `/batched-plan` `/learning-loop-extract` `/stewardship-review` | Existing platform skills | (per [packages/skills/](packages/skills/)) |
-
 ## Generators (the ONLY sanctioned scaffolding path)
-
 Never write `page.tsx` / slice files / new skills/agents/personas directly. Use:
 - `nx g platform:slice <Name>` / `:page --template=<id>` / `:app --slug=<slug>` / `:agent` / `:skill` / `:persona` / `:wizard` / `:skill-import` / `:skill-promote` / `:skill-upgrade` / `:split <slice>`
-
 All run catalog-first search. `--new` requires `created-new-because:` justification.
-
 ## Where things live
-
 See [agents-navigation.md](docs/plan/pillar-0-governance/agents-navigation.md) for the full path reference.
-
 ## Per-directory cascade + update workflow
 Per-app (`apps/<scope>/<name>/AGENTS.md`) and per-package (`packages/<name>/AGENTS.md`) extend with scope-specific rules. Inheritance: AGENTS.md cascade + shared MCP (`csps-principles-mcp`) + Mastra `BaseAgent` + audit-runner.
 

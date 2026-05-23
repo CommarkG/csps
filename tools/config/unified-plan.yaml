@@ -1243,7 +1243,7 @@ items:
 
   - id: PLAYGROUND-CORE-ELEVATION
     title: "Register playground as Tier 2 Core + apply CSPS Frontend DNA to all platform pages"
-    status: implementing
+    status: done
     epoch: E1
     category: architecture
     owner: sonnet

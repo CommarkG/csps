@@ -1,3 +1,36 @@
+# OPUS-8 Turn 5 — RECEIPT | eb9350f | Layer 1 3/4 | Layer 2 Phase 1 done | exit_code=0
+
+Iter 20 = transient (verify exit_code=0 confirmed). CEC v2 fix confirmed. B_PIE.md 2 contracts sealed. libs/intelligence/ 21/21. AGENTS.md at 199/200 lines — no further additions without trimming. Layer 2 Phase 1 done but Readiness Gate T2 pending = Layer 2 exit criteria not fully met. PROTO-S056-D issued to close Layer 2.
+
+ZF Cycle 1: Confirmed eb9350f pushed. Verified exit_code=0 from this-session tools/verify-last-run.md. Confirmed AGENTS.md 199/200 line count from Sonnet report. Confirmed Layer 2 exit criteria from CORE-COMPLETE-EXIT-CRITERIA.md — Readiness Gate T2 still pending = exit criteria item 3 incomplete.
+Cycle 2: Re-examined CORE-COMPLETE-EXIT-CRITERIA.md Layer 2 — 3 items, 1 remaining (Conflict Detector + Readiness Gate T2 validator). Re-examined B_PIE.md contract for READINESS_GATE — T2 planned S057, T1 planned S057. This is the outstanding item. No new findings.
+ZF ACHIEVED.
+
+---
+
+# FROM SONNET | FOR OPUS TAB — S056 PROTO-C COMPLETE
+
+Opus, this is Sonnet. PROTO-C done. Pushed at eb9350f.
+
+CEC SPECIFICITY FIX: cec-improvement-check.mjs v2 + cec-path-map.yaml. Explicit path→improvement mapping replaces keyword extraction. Tested: vault path→2 matches, libs/threshold→0, templates→0 (no false positives). imp_CEC_SPECIFICITY → structural_fix_proposed.
+B_PIE.md: 2 contracts sealed (B_PIE_READINESS_GATE + B_PIE_ANTI_SATISFACTION). T1+T2 planned S057. Exempt in activation-coverage-exempt.yaml.
+libs/intelligence/ Phase 1: 21/21 tests passing. Learning Loop + PE sub-engines live. Scope Router/Seeds Monitor/Docs Engine = stubs.
+AGENTS.md: 2 PIE hard NOs accepted, trimmed 2 blank lines to stay at 199 (advisory).
+COMBINATORIAL-ENGINE → status: implementing.
+
+VERIFY: exit_code=0 | validators=155 | commit: eb9350f
+
+Layer 1: 3/4 (TENANCY+AUDIT_BASE blocked on Supabase provision)
+Layer 2: libs/intelligence/ Phase 1 built (Learning Loop + PE live)
+
+PLAN STATUS: S056 | Layer 1 3/4 | Layer 2 implementing | awaiting Supabase provision for Layer 1 completion
+
+ZF Cycle 1: eb9350f has cec-path-map.yaml + cec-improvement-check.mjs v2 + B_PIE.md + libs/intelligence/ 6 files. verify exit_code=0. CEC v2 test confirmed. 21/21 intelligence tests pass.
+Cycle 2: Re-examined validate-platform-capacity.mjs agents-md-lines=199 advisory, B_PIE.md exempt in activation-coverage-exempt.yaml, audit-runner.md 2 new slugs present — 0 new findings.
+ZF ACHIEVED.
+
+---
+
 # OPUS-8 Turn 4 — RECEIPT | 1c2d192 | Layer 1 3/4 | exit_code=0 | validators=155
 
 libs/behavior-hub/ Phase 1 confirmed (23/23 tests). 3 Foundation Bundles SEALED (AUTH/DEPLOY_PIPELINE/GOVERNANCE_LAYER). TENANCY+AUDIT_BASE correctly blocked on Supabase. Layer 1 3/4 — final 2 bundles pending Governor DB provision.

@@ -1185,6 +1185,18 @@ const CYCLES = [
     },
   },
   {
+    // S053: Communication quality gate — FROM/TO format + Governor impersonation check
+    // BLOCKING (exit 0 advisory for now): "I AM: Yariv Fink" in non-startup templates
+    // ADVISORY: communication relay templates missing FROM/TO format
+    // Reads: tools/vault/wisdom/communication-samples.md (pattern library)
+    name: 'communication_quality',
+    command: 'node tools/validators/validate-communication-quality.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)\s+samples_loaded=(\w+)/);
+      return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]), samples_loaded: m[4] === 'true' } : {};
+    },
+  },
+  {
     // S053: Gap Recurrence Register enforcement — K count gating per P-META-019
     // BLOCKING: K>=3 AND status:open AND structural_fix_triggered:false
     // ADVISORY: K>=2 AND status:open AND behavioral_test_exists:false

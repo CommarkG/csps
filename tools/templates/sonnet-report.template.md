@@ -1,48 +1,69 @@
 ---
 template_id: sonnet-report
-template_version: 1.0
+template_version: 2.0
 template_status: stable
 template_grade: A
-description: "Canonical template for Sonnet→Opus reports written to sonnet-turn.md. Enforces Rules 1+3+10 from communication-protocol-shared.md. Every report section is mandatory. Governor receives the paste block inline — Rule 12."
-applicability_trigger: "Any Sonnet session close OR mid-session report to Opus. Used every time Sonnet writes to tools/council/sonnet-turn.md."
-enforced_by: validate-communication-protocol.mjs (Rule 1 check)
-session: S042
+description: "Canonical template for Sonnet→Opus reports. Written to sonnet-turn.md FIRST, then relayed. S054: adds reflexive tool application step, PLAN STATUS indicator, ZF block in council file requirement."
+applicability_trigger: "Any Sonnet PROTO completion OR mid-session report to Opus. Every time Sonnet writes to tools/council/sonnet-turn.md."
+enforced_by: validate-communication-quality.mjs (FROM/TO format check)
+session: S054
+context_question: "Before sending this report — has (a) the ZF block been written to sonnet-turn.md (not just chat), (b) validate-zf-cycle-format.mjs been run against the council file, and (c) every built artifact been run reflexively against its own output?"
+context_quote: "Use the simple form of communication that makes it permanent. I am annoyed and tired of reminding you."
 ---
 
 <!--
-SONNET REPORT TEMPLATE — Fill in all [PLACEHOLDERS] before committing to sonnet-turn.md.
-Rule 1: First word of every section is "Opus, this is Sonnet."
-Rule 3: commit SHA required. Questions numbered. No paraphrasing of what was asked.
-Rule 10: YOU ARE / I AM / THIS IS THE SITUATION / YOUR TASK block FIRST.
-Rule 12: Governor receives full paste block inline — never link to this file.
+SONNET REPORT TEMPLATE v2.0 (S054) — Fill ALL [PLACEHOLDERS] before committing to sonnet-turn.md.
+
+MANDATORY SEQUENCE:
+  1. Write this report to sonnet-turn.md FIRST (including the ZF block below)
+  2. Run: node tools/validators/validate-zf-cycle-format.mjs (must find >=1 block, blocking=0)
+  3. THEN relay to Governor and Opus
+
+CHANGED FROM v1.0:
+  - FROM/TO format replaces YOU ARE/I AM relay blocks
+  - Reflexive tool application step is now REQUIRED
+  - PLAN STATUS indicator required at end
+  - ZF block MUST be in the council file write, not just chat
 -->
 
-# Sonnet Report — [SESSION] (for Opus Turn [NN])
+# FROM SONNET | FOR OPUS TAB
+Opus, this is Sonnet. [PROTO-ID] done at commit [SHA].
 
----
-YOU ARE: OPUS-2, the architectural advisor in a separate Claude Code tab.
-I AM: Sonnet (builder/implementer), [SESSION].
-THIS IS THE SITUATION: CSPS [SESSION] active. [1-2 sentences: what changed this session, what is urgent for Opus to know.]
-YOUR TASK: Read this report and write Turn [NN] directive for remaining open items.
----
+DONE: [SHA] — [one-line description of what was completed]
+FOUND: [any blockers or unexpected findings — one line each, or "none"]
+VERIFY: exit_code=0 | validators=[N]
+PLAN STATUS: [SESSION] | Item [N] of [TOTAL] complete | Current: [plan item ID]
 
-Opus, this is Sonnet. [SESSION] done at commit [SHA] ([CSPS or playground]) —
+## What was built
 
-1. [ITEM-ID]: [One-line description of what was built/done] | commit [SHA]
-   github.com/CommarkG/csps/commit/[SHA]
-   [2-3 sentences: what specifically changed, what it enforces, what was confirmed before change.]
+1. [ITEM-ID]: [One-line description] | commit [SHA]
+   [2 sentences: what specifically changed + what behavioral guarantee it enforces]
 
 2. [ITEM-ID]: [One-line description] | commit [SHA]
-   github.com/CommarkG/csps/commit/[SHA]
-   [Detail.]
+   [Detail]
 
-<!-- Add more numbered items as needed. One item = one logical unit of work. -->
+<!-- One numbered item per logical unit of work. -->
 
-verify: exit_code=0 at [FINAL-SHA] | [N]+ validators | [N]/20 hooks
+## Reflexive tool application (REQUIRED)
 
-Specific questions:
-(1) [Specific architectural question requiring Opus decision — not a status update]
-(2) [Next priority question — PE score or direction needed]
-(3) [Blocking technical decision if any]
+After building each validator/hook, run it against the work that produced it:
 
-<!-- If no questions: write "No questions — Turn [NN] can direct next PE-ordered item." -->
+- [validator-name.mjs] run against [what-it-scans]: exit=[N] | [key metric]
+- [validator-name.mjs] run against [current-session-artifacts]: exit=[N] | [finding or "clean"]
+
+<!-- If nothing to run reflexively: state "No validators built this PROTO." -->
+
+## ZF — write this block to sonnet-turn.md FIRST
+
+ZF Cycle 1: [specific finding — name a file:line or claim]
+Cycle 2: re-examined [SPECIFIC-FILE-1.mjs] and [SPECIFIC-FILE-2.md] — 0 new findings.
+ZF ACHIEVED.
+
+<!-- VIOLATION: "Cycle N: no new findings" without naming specific files = BLOCKING -->
+<!-- This block must appear IN sonnet-turn.md before being sent here -->
+
+## Questions (numbered, blockers only)
+
+(1) [Specific question requiring Opus decision — cite file:line for context]
+
+<!-- If no questions: "No questions — next item per PLAN STATUS is [ID]." -->

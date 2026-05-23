@@ -1178,3 +1178,62 @@ items:
     pe_score: 85
     tags: [behavior-hub, zmodel, promotion-gate, s052]
     notes: "Promote Phase 1 YAML BehaviorProfile to ZenStack ZModel. BLOCKS Phase 3 (AIDefaultOverride, CE). Must be a plan item before any Phase 3 work begins. session_target: S053-phase2."
+
+  # --- S053 GOVERNANCE ARTIFACTS (retroactive wild-implementation fix) --------
+
+  - id: PLATFORM-GENOME-BUILD
+    title: "Build PLATFORM-GENOME.md + validate-platform-genome.mjs"
+    status: implementing
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 95
+    tags: [platform-genome, governance, s053]
+    mdpe_dimensions:
+      blast_radius: 0.95
+      future_enablement: 0.95
+      readiness: 1.0
+      simplicity_bonus: 0
+    session_target: S053
+    notes: "Authoritative index of all CSPS behavioral invariants. 10 sections, human-readable. Replaces HANDOFF as primary knowledge vehicle. PLATFORM-GENOME.md created S053-B. validate-platform-genome.mjs pending."
+    core_spine: GVRN
+
+  - id: GAP-RECURRENCE-ENFORCEMENT
+    title: "validate-gap-recurrence.mjs — K count enforcement"
+    status: implementing
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 88
+    tags: [gap-recurrence, validation, s053]
+    session_target: S053
+    notes: "Reads gap-recurrence-register.yaml. K>=2=advisory, K>=3=blocking session close. validate-gap-recurrence.mjs LIVE (S053-B Step 2). Breaks the mirror loop."
+    core_spine: VALD
+
+  - id: BEHAVIORAL-TEST-SUITE
+    title: "tools/tests/behavioral/ — first class behavioral tests"
+    status: implementing
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 90
+    tags: [behavioral-tests, validation, s053]
+    session_target: S053
+    notes: "Test suite where each behavioral rule has a test case proving it catches violations. First test: validate-zf-cycle-format.mjs (zf-cycle-format-test.sh LIVE S053-B Step 1). README and directory created."
+    core_spine: VALD
+
+  - id: EXPLORE-RATIFY-EXECUTE
+    title: "Explore → Ratify → Execute protocol document"
+    status: planning
+    epoch: E1
+    category: governance
+    owner: governor
+    batch: BATCH-D
+    pe_score: 85
+    tags: [protocol, governance, wild-implementation-prevention, s053]
+    session_target: S053
+    notes: "Formal protocol preventing wild implementations. Exploration produces plan items only. Execution works against ratified plan items. EXPLORE-RATIFY-EXECUTE.md being built S053-B Step 7."
+    core_spine: GVRN

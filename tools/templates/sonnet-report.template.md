@@ -67,3 +67,26 @@ ZF ACHIEVED.
 (1) [Specific question requiring Opus decision — cite file:line for context]
 
 <!-- If no questions: "No questions — next item per PLAN STATUS is [ID]." -->
+
+## PASTE FOR NEW SONNET TAB (mandatory at session close — B_ZERO_NAVIGATION_FOR_GOVERNOR)
+
+<!-- Read the SONNET STARTUP BLOCK from the HANDOFF and paste it here verbatim. -->
+<!-- The hook post-stop-session-close-gate.sh surfaces this automatically. -->
+<!-- NEVER close a session without this block inline in the response. -->
+
+```
+FROM OPUS-[N] | FOR SONNET TAB — S[NNN] STARTUP
+
+YOU ARE: Sonnet, builder. Session S[NNN].
+I AM: Yariv Fink (Governor).
+SITUATION: S[NNN-1] closed at [sha]. pnpm verify exit_code=0. [N] validators. Fresh tab.
+  S[NNN] mandate: [top 2 MDPE items from HANDOFF Zone B]
+
+FIRST ACTION (all 4 before responding):
+  1. Read docs/plan/_handoff/HANDOFF-S[NNN-1]-to-S[NNN].md FULLY
+  2. git log --oneline -3
+  3. node tools/verify.mjs | grep exit_code
+  4. Write to tools/council/sonnet-turn.md:
+     "# Sonnet S[NNN] — INTENT ABSORBED | commit: [sha] | exit_code: [N]"
+  THEN: AWAIT Opus PROTO before implementing anything.
+```

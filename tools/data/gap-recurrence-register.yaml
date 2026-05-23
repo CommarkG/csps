@@ -92,6 +92,17 @@ entries:
     behavioral_test_exists: false
     note: "K=2. No measurement exists for whether injection content survives context compression. Structural fix: behavioral test that verifies injection content is present in fresh tab first response."
 
+  - id: gap_STARTUP_BLOCK_NOT_SURFACED
+    observation: "Session close response does not paste the SONNET STARTUP BLOCK inline — Governor has to navigate to HANDOFF to find it"
+    first_seen: S054
+    k_count: 1
+    sessions: [S054]
+    status: fix_committed
+    structural_fix_triggered: true
+    behavioral_test_exists: false
+    current_fix: "post-stop-session-close-gate.sh now extracts and surfaces startup block automatically. AGENTS.md hard NO added. sonnet-report.template.md v2.1 has mandatory PASTE section."
+    note: "K=1. Root cause: B_ZERO_NAVIGATION_FOR_GOVERNOR does not explicitly cover session-close startup block surfacing. Fix: 5-surface FSE (hook + template + AGENTS + gap-register + this note). Behavioral test pending."
+
   - id: gap_CONCEPTUAL_CLOSURE_NO_TEST
     observation: "Solutions are designed and described (cognitive match) without being tested against known violations. The model of the solution is treated as the solution."
     first_seen: S053

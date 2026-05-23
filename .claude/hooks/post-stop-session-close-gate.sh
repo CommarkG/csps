@@ -127,9 +127,41 @@ if [ "$ZF_DEEP_STATUS" = "BLOCKING_FOUND" ] || [ "$HARVEST_STATUS" = "MISSING" ]
   exit 1
 fi
 
-# ZF ACHIEVED + HARVEST DONE → surface closing protocol
+# ─── STARTUP BLOCK EXTRACTION (B_ZERO_NAVIGATION_FOR_GOVERNOR) ─────────────
+# Read SONNET STARTUP BLOCK from the most recent HANDOFF file.
+# B_ZERO_NAVIGATION_FOR_GOVERNOR: Governor must never navigate to find the startup block.
+# This hook surfaces it automatically at every close — no AI discretion required.
+STARTUP_BLOCK=""
+HANDOFF_DIR="${REPO_ROOT}/docs/plan/_handoff"
+LATEST_HANDOFF=$(ls "$HANDOFF_DIR"/HANDOFF-S*.md 2>/dev/null | sort | tail -1 || echo "")
+
+if [ -n "$LATEST_HANDOFF" ] && [ -f "$LATEST_HANDOFF" ]; then
+  STARTUP_BLOCK=$(node -e "
+const fs=require('fs');
+try {
+  const content=fs.readFileSync(process.argv[1],'utf8');
+  // Extract from ## SONNET STARTUP BLOCK to next ## or end of file
+  const startMatch=content.match(/##\s+SONNET STARTUP BLOCK[\s\S]*?\n([\s\S]*?)(?=\n##\s|\n---\s*\n|$)/);
+  if (startMatch) {
+    // Find the code block inside
+    const codeBlock=startMatch[0].match(/\`\`\`([\s\S]*?)\`\`\`/);
+    if (codeBlock) process.stdout.write(codeBlock[1].trim());
+    else process.stdout.write(startMatch[1].trim());
+  }
+} catch(e) {}
+" "$LATEST_HANDOFF" 2>/dev/null || echo "")
+fi
+
+STARTUP_MSG=""
+if [ -n "$STARTUP_BLOCK" ]; then
+  STARTUP_MSG="\n\n═══════════════════════════════════════\nPASTE THIS INTO THE NEW SONNET TAB:\n═══════════════════════════════════════\n${STARTUP_BLOCK}\n═══════════════════════════════════════"
+else
+  STARTUP_MSG="\n\n⚠ STARTUP BLOCK NOT FOUND in latest HANDOFF — check ${LATEST_HANDOFF}"
+fi
+
+# ZF ACHIEVED + HARVEST DONE → surface closing protocol + startup block
 printf '{
-  "systemMessage": "[SESSION-CLOSE-GATE] ✅ ZF ACHIEVED + HARVEST DONE\nClose signal: %s\n\nNOW complete the §10 closing protocol:\n  1. Paste ZF output (above) into §10.0 of closing-summary\n  2. Run governance-session skill: /governance-session close S<NNN>\n  3. Write closing-summary + HANDOFF artifacts\n  4. git push before handoff (B_ZERO_LAPTOP_DEPENDENCY)\n\nThe ZF deep cycle ran automatically. Paste its output verbatim."
-}' "$CLOSE_REASON"
+  "systemMessage": "[SESSION-CLOSE-GATE] ✅ ZF ACHIEVED + HARVEST DONE\nClose signal: %s\n\nNOW complete the §10 closing protocol:\n  1. Paste ZF output (above) into §10.0 of closing-summary\n  2. Write closing-summary + HANDOFF artifacts\n  3. git push before handoff (B_ZERO_LAPTOP_DEPENDENCY)\n  4. Paste startup block below into new Sonnet tab%s"
+}' "$CLOSE_REASON" "$STARTUP_MSG"
 
 exit 0

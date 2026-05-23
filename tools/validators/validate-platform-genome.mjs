@@ -22,6 +22,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '../..');
 const GENOME_FILE = join(ROOT, 'docs/plan/pillar-0-governance/PLATFORM-GENOME.md');
 
+// Sections exempt from link-count check — these are text-only prose by design
+const LINK_EXEMPT_SECTIONS = ['## 8.', '## 9.'];
+
 const REQUIRED_SECTIONS = [
   '## 1.',
   '## 2.',
@@ -65,8 +68,11 @@ for (const sectionPrefix of REQUIRED_SECTIONS) {
   const sectionContent = lines.slice(sectionIdx, sectionEnd).join('\n');
   const hasLink = /→|\[.+\]\(.+\)|→\s+\[/.test(sectionContent);
 
+  const isLinkExempt = LINK_EXEMPT_SECTIONS.some(s => sectionPrefix.startsWith(s));
   if (hasLink) {
     sectionsWithLinks++;
+  } else if (isLinkExempt) {
+    sectionsWithLinks++; // text-only prose section — no links expected by design
   } else {
     console.warn(`[validate-platform-genome] ADVISORY: section "${sectionPrefix.trim()}" has no links — add at least one →[file] link`);
     advisory++;

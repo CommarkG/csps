@@ -1255,3 +1255,70 @@ items:
     session_target: S054
     notes: "Playground elevated to Tier 2 Core per CSPS Frontend Methodology (b807ebf). pageDNA added to all 15 platform pages (tsx_dna_missing=0). validate-page-dna.mjs updated to check tsx files. validate-ui-completeness.mjs fixed to scan csps-playground/src."
     core_spine: ARCH
+
+  # --- S055 MANDATE ITEMS ------------------------------------------------
+
+  - id: POSITIVE-REFLEXIVITY
+    title: "Auto-draft plan item at K>=2 in improvement-register (positive reflexivity)"
+    status: planning
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 90
+    tags: [reflexivity, improvement-register, s055]
+    session_target: S055
+    notes: "When improvement-register K reaches 2, auto-generate a plan item proposal for the next Opus session. Closes the gap between introspective (logs K) and reflexive (K patches enforcement surface). Per SELF-VALIDATION-METHODOLOGIES.md Methodology 1."
+    core_spine: VALD
+
+  - id: CEC-TRIGGER-IMPROVEMENT
+    title: "post-tool-use-cec-trigger.sh: check improvement-register when files written to not_yet_propagated target paths"
+    status: planning
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 88
+    tags: [cec, improvement-register, hooks, s055]
+    session_target: S055
+    notes: "Extend post-tool-use-cec-trigger.sh to check improvement-register.yaml not_yet_propagated paths. When a file matching a target path is written, inject a CEC reminder. Currently the trigger only checks gap-register; positive pipeline has no trigger."
+    core_spine: VALD
+
+  - id: VALIDATE-VALIDATORS
+    title: "validate-validators.mjs — meta-validator layer (Methodology 5)"
+    status: planning
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 85
+    tags: [meta-validator, self-healing, s055]
+    session_target: S055
+    notes: "Meta-validator that checks registered validators ran last session and produced results. Catches the case where a T2 exists but has fired 0 times in 20 sessions silently. Per SELF-VALIDATION-METHODOLOGIES.md Methodology 5."
+    core_spine: VALD
+
+  - id: EXTERNAL-AGENT-PROTOCOL
+    title: "External agent protocol (pre-external-agent checklist)"
+    status: planning
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-D
+    pe_score: 82
+    tags: [agent-protocol, communication, s055]
+    session_target: S055
+    notes: "Formal protocol for when CSPS uses external agents (subagents, third-party tools). Checklist: identity declared, FROM/TO format, context block, capability verified. imp_FROM_TO_COMMUNICATION_FORMAT not_yet_propagated target."
+    core_spine: GVRN
+
+  - id: FRONTEND-UX-CONTRACTS
+    title: "Frontend UX contracts — B_* behavioral contracts for Tier 2 (playground)"
+    status: planning
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 80
+    tags: [frontend, ux, contracts, tier-2, s055]
+    session_target: S055
+    notes: "Behavioral contracts specific to the playground as Tier 2 Core. What must every playground page do? What is NEVER acceptable? Per CSPS Frontend Methodology (b807ebf). Complements B_APPS_ARE_TRIALS at the Tier 2 layer."
+    core_spine: ARCH

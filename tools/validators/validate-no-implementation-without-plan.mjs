@@ -32,6 +32,13 @@ const ROOT = resolve(__dirname, '../..');
 // Directories to scan for implementation code
 const IMPL_DIRS = ['libs', 'apps', 'src'];
 
+// Governance files to check: new validators and hooks should have backing plan items
+// Extended S053-B Step 8 to cover tools/validators/ and .claude/hooks/
+const GOVERNANCE_DIRS = [
+  { dir: 'tools/validators', pattern: /^validate-.*\.mjs$/, type: 'validator' },
+  { dir: '.claude/hooks', pattern: /\.sh$/, type: 'hook' },
+];
+
 // Packages that are EXEMPT (platform governance infrastructure)
 const EXEMPT_PACKAGES = [
   'principles',        // governance registry
@@ -166,12 +173,40 @@ async function main() {
     }
   }
 
+  // --- GOVERNANCE FILES CHECK (S053-B Step 8) ---
+  // New validators and hooks should have backing plan items or be exempt (grandfathered pre-S053).
+  // Advisory only — gradual adoption.
+  const govWarnings = [];
+  for (const { dir, pattern, type } of GOVERNANCE_DIRS) {
+    const absDir = join(ROOT, dir);
+    if (!existsSync(absDir)) continue;
+    const files = readdirSync(absDir).filter(f => pattern.test(f));
+    for (const file of files) {
+      const slug = file.replace(/\.(mjs|sh)$/, '').replace(/^validate-/, '');
+      const hasPlan = [...activePlans].some(plan =>
+        plan.toLowerCase().includes(slug.toLowerCase()) ||
+        slug.toLowerCase().includes(plan.toLowerCase().slice(0, 8))
+      );
+      if (!hasPlan) {
+        govWarnings.push(`UNPLANNED ${type.toUpperCase()}: ${dir}/${file} — no matching plan item. Per EXPLORE-RATIFY-EXECUTE protocol.`);
+      }
+    }
+  }
+
   if (warnings.length > 0) {
     console.warn(`\n${warnings.length} warning(s) — unplanned implementation detected:`);
     for (const w of warnings) console.warn(`  ⚠ ${w}`);
   }
 
-  const summary = `[validate-no-implementation-without-plan] checked=${checked} exempt=${exempt} unplanned=${warnings.length}`;
+  if (govWarnings.length > 0) {
+    // Report count only — individual listing would flood output (most predate plan item system)
+    // See EXPLORE-RATIFY-EXECUTE.md for the protocol: new governance files SHOULD have plan items
+    console.warn(`\n[validate-no-implementation-without-plan] ADVISORY: ${govWarnings.length} governance files (validators/hooks) without matching plan items.`);
+    console.warn(`  Advisory only — most predate the EXPLORE-RATIFY-EXECUTE protocol. New additions (S053+) should cite plan item ID.`);
+    console.warn(`  See: docs/plan/pillar-0-governance/EXPLORE-RATIFY-EXECUTE.md`);
+  }
+
+  const summary = `[validate-no-implementation-without-plan] checked=${checked} exempt=${exempt} unplanned=${warnings.length} gov_advisory=${govWarnings.length}`;
   console.log(`\n${summary}`);
 
   // Advisory: exit 0 always (foundational; would exit 1 when Ring 3 construction begins)

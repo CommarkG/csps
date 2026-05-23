@@ -1,9 +1,11 @@
 ---
-id: csps.governance.PLATFORM-GENOME
+id: csps.governance.platform-genome
 name: PLATFORM-GENOME
 description: "Authoritative index of all CSPS behavioral invariants. Links to canonical permanent files. Every CSPS tab — Opus or Sonnet — loads from this index. HANDOFF is the delta. Platform Genome is the permanent state."
+version: "1.0"
 type: architecture
 protection_level: sacred
+diataxis_type: reference
 owner: group:finky
 lifecycle: production
 lifecycle_state: active

@@ -1,8 +1,104 @@
-# OPUS-8 Turn 16 — RECEIPT | db15435 | ALL 4 LAYERS COMPLETE | exit_code=0 | AWAITING GOVERNOR RATIFICATION
+FROM SONNET | FOR OPUS TAB — S059 PROTO-A COMPLETE
+Date: 2026-05-24 | Main CSPS: 33f2ef9 | Playground: 5718365
 
-CORE COMPLETE DECLARATION written to CORE-COMPLETE-EXIT-CRITERIA.md. TEMPLATE-BUNDLE-INDEX.md = 6/6 bundles SEALED. All unified-plan.yaml items updated. Iter 2 stop hook = transient (verify exit_code=0 confirmed this turn). Governor ratification of CORE COMPLETE is the final gate before APP-001.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 1 — Completion page: updated to S058 state
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+File: apps/csps-playground/src/app/platform/completion/page.tsx
 
-ZF Cycle 1: Confirmed db15435 pushed (Sonnet report). Confirmed exit_code=0 from tools/verify-last-run.md this-session run. Confirmed CORE-COMPLETE-EXIT-CRITERIA.md updated to 4/4 layers complete per Sonnet STEP 2 report. Confirmed TEMPLATE-BUNDLE-INDEX.md created with 6/6 bundles (AUTH+DEPLOY+GOVERNANCE from S056 + TENANCY+AUDIT_BASE from S057 + COMPONENT-LIBRARY from S058). Confirmed unified-plan.yaml: TEMPLATE-BUNDLE-SYSTEM → done, COMPONENT-LIBRARY → done per Sonnet STEP 3.
+Metrics updated:
+  Documentation in Schema: 12% → 46% (source updated to 209/452 S056)
+  Threshold: 0% → 100% (status complete, Phase 1 22/22 tests)
+  Platform Intelligence Engine: 5% → 60% (libs/intelligence/ Phase 1)
+  Behavioral Hub: 0% → 60% (libs/behavior-hub/ Phase 1)
+  Platform Genome: NEW 100% (10/10 sections)
+  Developer Journey Validation: 0% → 100% (INFRA-FLOW 9/9)
+  APP-001 Build: status paused → planning (S059 target)
+
+New section added: "Core Complete (S058)" with SEALED badge:
+  INFRA-FLOW composite: 100%
+  Foundation Bundles 6/6: 100%
+  libs/ui/ 7/7 components: 100%
+
+Stat bar: AI enforcement chip replaced with "Core layers: 4/4" green
+dnaVersion: S054 → S058
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 2A — tools/config/voice-profiles.yaml: CREATED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+File: tools/config/voice-profiles.yaml (NEW)
+
+3 foundation profiles × 7 wizard sections:
+  colleague: conversational, friend-who-has-done-this
+  professional: formal, business-proposal-style
+  mentor: patient, exploratory, self-discovery
+
+Each section has: title, subtitle, fields (label/placeholder/tip/guard/errorShort)
+All 7 sections filled for all 3 profiles.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 2B — useVoiceProfile.ts: CREATED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+File: apps/csps-playground/src/hooks/useVoiceProfile.ts (NEW)
+
+Embedded profile data (not a file read — bundled at build time, Vercel safe)
+API: useVoiceProfile(profileId) → { getSection(id), getField(sectionId, fieldId) }
+Returns: VoiceField { label, placeholder, tip, guard, errorShort }
+Default fallback: 'colleague' profile
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 2C — WizardClient.tsx: REWRITTEN with colleague profile
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+File: apps/csps-playground/src/app/platform/wizard/WizardClient.tsx
+
+All labels/placeholders/tips/guards from useVoiceProfile('colleague')
+No exam language: "Describe the problem in detail" → "Describe it"
+Tips shown with 💡 prefix. Guards conversational not interrogative.
+voiceProfile prop added (default='colleague')
+"Voice: Colleague" indicator in top-right
+Wizard bundle size: 4.21kB → 9.46kB (profile data bundled — expected)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 2D — Save API: Vercel-compatible
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+File: apps/csps-playground/src/app/api/wizard/save/route.ts
+
+getDraftsDir():
+  process.env.VERCEL → /tmp/wizard-drafts (Vercel writable)
+  else → [cwd]/../../tools/data/wizard-drafts (local dev)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 2E — Both repos pushed
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Main CSPS:   33f2ef9 → github.com/CommarkG/csps main ✓
+Playground:  5718365 → github.com/CommarkG/csps-playground main ✓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF BLOCK (THIS-SESSION evidence)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF Cycle 1 (pre-execution findings):
+  - apps/csps-playground/src/app/platform/completion/page.tsx: stale S054 data
+  - tools/config/voice-profiles.yaml: missing, needed for Voice Profile System
+  - apps/csps-playground/src/hooks/useVoiceProfile.ts: directory missing, file needed
+  - apps/csps-playground/src/app/api/wizard/save/route.ts: hardcoded local path fails Vercel
+  - docs/SIA/VOICE-PROFILE-SYSTEM.md: missing links: array → universal_alignment BLOCKING
+
+ZF Cycle 2 (re-examined prior findings):
+  - apps/csps-playground/src/app/platform/completion/page.tsx: all metrics updated, Core Complete section added ✓
+  - tools/config/voice-profiles.yaml: 3 profiles × 7 sections created ✓
+  - apps/csps-playground/src/hooks/useVoiceProfile.ts: created with embedded data ✓
+  - apps/csps-playground/src/app/api/wizard/save/route.ts: getDraftsDir() with VERCEL detection ✓
+  - docs/SIA/VOICE-PROFILE-SYSTEM.md: links added, validate-universal-alignment.mjs blocking=0 ✓ — 0 new findings
+
+ZF Cycle 3 (re-examined deliverables):
+  - apps/csps-playground/src/app/platform/wizard/WizardClient.tsx: all 7 steps use vp.getSection + vp.getField ✓
+  - apps/csps-playground/src/hooks/useVoiceProfile.ts: 3 profiles embedded, fallback colleague ✓
+  - Both repos: 33f2ef9 (main CSPS) + 5718365 (playground) pushed ✓ — 0 new findings
+
+STATUS: ZF ACHIEVED
+
+verify: node tools/verify.mjs --skip-install → exit_code=0 ✓
+build:  pnpm --filter @csps/csps-playground build → 46 pages, /wizard=9.46kB, exit 0 ✓
 Cycle 2: Re-examined CORE-COMPLETE-EXIT-CRITERIA.md final section "CORE COMPLETE DECLARATION" — marked "pending Governor ratification" per my PROTO-B instruction. Governor one word away from unlocking APP-001 build. Re-examined APP-001-PLAN in unified-plan.yaml: status=ratified, pe=95. No new findings.
 ZF ACHIEVED.
 

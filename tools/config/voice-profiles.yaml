@@ -1,0 +1,429 @@
+---
+# CSPS Voice Profile System — Foundation Profiles
+# Ratified: S058 | Opus-8 | Governor: Yariv Fink
+# Schema: docs/SIA/VOICE-PROFILE-SYSTEM.md §3
+# All 3 foundation profiles × all 7 wizard sections.
+# Locked T1 profiles — cannot be deleted, only forked.
+---
+
+profiles:
+
+  # ─────────────────────────────────────────────────────────
+  # COLLEAGUE — "Like a smart friend who has done this before"
+  # ─────────────────────────────────────────────────────────
+  colleague:
+    id: colleague
+    display_name: "Colleague"
+    description: "Like a smart friend who has done this before"
+    context_quote: "The best ideas start as a conversation, not a form."
+    status: ratified
+    locked: true
+    tier: T1
+    sections:
+
+      problem_statement:
+        title: "What's the problem?"
+        subtitle: "One clear sentence — like you'd tell a friend"
+        fields:
+          main:
+            label: "Describe it"
+            placeholder: "e.g. Yariv chases unpaid invoices and hates awkward follow-up calls"
+            tip: "Best answers name one real person and their specific friction. The more specific, the better."
+            guard: "Can you name 3 real people who have this problem today?"
+            error_short: "Add a real person and their friction"
+
+      user_persona:
+        title: "Who's your main user?"
+        subtitle: "Start with one real person, not a demographic"
+        fields:
+          role:
+            label: "Their role"
+            placeholder: "Solo founder, Ops manager, Freelance designer…"
+            tip: "Think of someone you actually know personally — not a generic archetype"
+            guard: "Would this person pay for this today if it existed?"
+            error_short: "Name a specific job and the frustration that goes with it"
+          friction:
+            label: "What frustrates them every day?"
+            placeholder: "What do they dread on Monday morning?"
+            tip: "What would they complain about at dinner? That level of specific."
+            guard: null
+            error_short: "Add the daily friction they actually face"
+
+      market_position:
+        title: "What do people use instead?"
+        subtitle: "Honest about competitors and workarounds"
+        fields:
+          alternatives:
+            label: "Current workarounds"
+            placeholder: "Spreadsheets, Notion, WhatsApp groups, doing nothing…"
+            tip: "People are always doing SOMETHING — what is it?"
+            guard: "What do users do RIGHT NOW when this problem hits them?"
+            error_short: "Name at least one real alternative they use today"
+          differentiation:
+            label: "Why your version wins"
+            placeholder: "Specifically what you do that none of those alternatives do"
+            tip: "Be concrete — feature level, not adjective level"
+            guard: null
+            error_short: "Add what makes you concretely different"
+
+      core_loop:
+        title: "The core loop"
+        subtitle: "The single thing users do every time they open the app"
+        fields:
+          input:
+            label: "User puts in"
+            placeholder: "e.g. a voice note"
+            tip: "Keep it to one thing — the simpler, the better"
+            guard: null
+            error_short: "Describe what the user provides"
+          action:
+            label: "AI does"
+            placeholder: "e.g. classifies + sorts"
+            tip: "The magic in the middle — what makes this an AI product"
+            guard: null
+            error_short: "Describe the AI action"
+          value:
+            label: "User gets"
+            placeholder: "e.g. a prioritized task list they can act on"
+            tip: "The payoff — must be something the user actually wanted"
+            guard: null
+            error_short: "Describe the concrete value delivered"
+        section_guard: "Can you say this loop in one sentence with no adjectives?"
+        section_error_short: "Fill in all three parts of the loop"
+
+      ai_behavior:
+        title: "How does AI change the game?"
+        subtitle: "What would a non-AI version miss?"
+        fields:
+          override:
+            label: "What AI gets wrong by default"
+            placeholder: "AI default: summarize everything. CSPS override: sort by urgency instead."
+            tip: "Format: 'AI default: [behavior]. Our override: [what we do instead]. Trigger: [when].'"
+            guard: "What would the AI screw up if you didn't correct it?"
+            error_short: "Name the AI default and what you override it with"
+          satisfaction:
+            label: "When does the AI think it's done?"
+            placeholder: "e.g. After one output — CSPS requires user confirmation first"
+            tip: "AI satisfaction point vs. your satisfaction point — they're often different"
+            guard: null
+            error_short: "Describe when AI stops and when you need it to keep going"
+
+      success_metrics:
+        title: "3 numbers that prove it's working"
+        subtitle: "Measurable, not vague — specific enough to build a query for"
+        fields:
+          metric_name:
+            label: "What to measure"
+            placeholder: "e.g. Daily active users"
+            tip: "One number you'd check every morning — not a lagging indicator"
+            guard: "Which of these 3 would you check first thing tomorrow morning?"
+            error_short: "Name at least one metric"
+          metric_how:
+            label: "How to measure it"
+            placeholder: "e.g. Count distinct userIds per day in events table"
+            tip: "Specific enough to build a SQL query for right now"
+            guard: null
+            error_short: "Add the measurement method"
+
+      phase_plan:
+        title: "What does Phase 1 ship?"
+        subtitle: "Must be buildable in one session"
+        fields:
+          goal:
+            label: "The goal in one sentence"
+            placeholder: "e.g. Prove the core loop works for one real user"
+            tip: "One user, one use case, one session — that's Phase 1"
+            guard: "If Phase 1 shipped tomorrow and nobody used it — what would you learn?"
+            error_short: "Set a clear goal for Phase 1"
+          deliverables:
+            label: "What ships"
+            placeholder: "- Working intake\n- AI classification running\n- Output they can act on"
+            tip: "Only what users can actually touch and test"
+            guard: null
+            error_short: "List what actually ships in Phase 1"
+          exit_criteria:
+            label: "How you know Phase 1 is done"
+            placeholder: "- User completes the core loop\n- pnpm verify passes\n- Real test case works"
+            tip: "Concrete, binary checks — no adjectives, no 'feels like'"
+            guard: null
+            error_short: "Add at least one concrete exit criterion"
+
+  # ─────────────────────────────────────────────────────────
+  # PROFESSIONAL — "Structured and formal — business proposal style"
+  # ─────────────────────────────────────────────────────────
+  professional:
+    id: professional
+    display_name: "Professional"
+    description: "Structured and formal — business proposal style"
+    context_quote: "Precision builds trust. Vagueness loses deals."
+    status: ratified
+    locked: true
+    tier: T1
+    sections:
+
+      problem_statement:
+        title: "Business Problem Statement"
+        subtitle: "Describe the problem this application addresses"
+        fields:
+          main:
+            label: "Problem description"
+            placeholder: "Include user type, frequency, and current workaround"
+            tip: "Quantify where possible: e.g. 'SMB owners spending 3hrs/week on manual invoice follow-up'"
+            guard: "Can you name 3 organizations that experience this problem today?"
+            error_short: "Include user type, frequency, and current alternative"
+
+      user_persona:
+        title: "Primary User Profile"
+        subtitle: "Define the target user segment and their core pain point"
+        fields:
+          role:
+            label: "Job title / role"
+            placeholder: "e.g. Operations Manager, Series A Founder, Enterprise Procurement Lead"
+            tip: "Be specific about organizational context and seniority level"
+            guard: "Is this person a decision-maker or an influencer for budget allocation?"
+            error_short: "Specify role, organizational context, and seniority"
+          friction:
+            label: "Primary operational friction"
+            placeholder: "Describe the workflow inefficiency, its frequency, and business impact"
+            tip: "Include time cost, error rate, or revenue impact where quantifiable"
+            guard: null
+            error_short: "Quantify the friction: time, frequency, or cost"
+
+      market_position:
+        title: "Competitive Positioning"
+        subtitle: "Map the current solution landscape and your differentiation"
+        fields:
+          alternatives:
+            label: "Existing solutions"
+            placeholder: "List direct competitors, indirect alternatives, and status-quo workarounds"
+            tip: "Include adoption rates or market share where known"
+            guard: "Can you name 3 organizations currently using one of these alternatives?"
+            error_short: "Name at least 2 existing solutions with their limitations"
+          differentiation:
+            label: "Competitive advantage"
+            placeholder: "Define the specific capability or outcome advantage over listed alternatives"
+            tip: "Quantify where possible: e.g. '40% faster' or 'eliminates manual step entirely'"
+            guard: null
+            error_short: "Provide a specific, measurable advantage over each alternative"
+
+      core_loop:
+        title: "Core Product Loop"
+        subtitle: "The primary value-creation sequence in this application"
+        fields:
+          input:
+            label: "User input"
+            placeholder: "e.g. Uploaded invoice document"
+            tip: "Specify format, source, and frequency of input"
+            guard: null
+            error_short: "Specify the input type and format"
+          action:
+            label: "System processing"
+            placeholder: "e.g. Automated classification, extraction, and routing"
+            tip: "Include the AI component and the decision logic it executes"
+            guard: null
+            error_short: "Describe the system process clearly"
+          value:
+            label: "Delivered output"
+            placeholder: "e.g. Structured action queue with priority ranking"
+            tip: "Include measurable outcome improvement vs. current state"
+            guard: null
+            error_short: "Specify the output and its business value"
+        section_guard: "Can you express this loop as a single-sentence value proposition?"
+        section_error_short: "Complete all three components of the core loop"
+
+      ai_behavior:
+        title: "AI Configuration"
+        subtitle: "Specification of AI behavior overrides and success conditions"
+        fields:
+          override:
+            label: "AI default behavior override"
+            placeholder: "Default: [AI behavior]. Override: [CSPS behavior]. Trigger: [condition]."
+            tip: "Document the specific AI default being corrected and the business rationale"
+            guard: "What is the compliance or quality risk if this override is not applied?"
+            error_short: "Specify the default, the override, and the trigger condition"
+          satisfaction:
+            label: "AI satisfaction point definition"
+            placeholder: "AI terminates at: [condition]. CSPS requires: [extended condition]."
+            tip: "Misaligned satisfaction points are a primary source of AI quality failures"
+            guard: null
+            error_short: "Define both the AI satisfaction point and the required override"
+
+      success_metrics:
+        title: "Key Performance Indicators"
+        subtitle: "Measurable indicators of application success"
+        fields:
+          metric_name:
+            label: "Metric name"
+            placeholder: "e.g. Invoice processing time (minutes)"
+            tip: "Use industry-standard metric names where applicable"
+            guard: "Which metric would you include in an investor update?"
+            error_short: "Provide a clearly named, measurable KPI"
+          metric_how:
+            label: "Measurement methodology"
+            placeholder: "e.g. Average time from upload to action queue generation, sampled weekly"
+            tip: "Include data source, sampling frequency, and baseline comparison"
+            guard: null
+            error_short: "Specify data source, frequency, and baseline"
+
+      phase_plan:
+        title: "Phase 1 Scope Definition"
+        subtitle: "Bounded deliverables for initial validation"
+        fields:
+          goal:
+            label: "Phase 1 objective"
+            placeholder: "e.g. Validate core processing pipeline with 3 pilot users"
+            tip: "Align with a single measurable business outcome"
+            guard: "Does this phase produce evidence sufficient to justify Phase 2 investment?"
+            error_short: "Define a specific, measurable Phase 1 objective"
+          deliverables:
+            label: "Deliverable list"
+            placeholder: "- Functional intake interface\n- Processing pipeline operational\n- Output interface for pilot users"
+            tip: "Each deliverable should be independently verifiable"
+            guard: null
+            error_short: "List each deliverable as a discrete, verifiable item"
+          exit_criteria:
+            label: "Phase 1 completion criteria"
+            placeholder: "- 3 pilot users complete full workflow\n- Processing time < 2 minutes\n- Zero critical errors in 10 runs"
+            tip: "Criteria must be objectively binary — met or not met"
+            guard: null
+            error_short: "Define binary, objectively measurable exit criteria"
+
+  # ─────────────────────────────────────────────────────────
+  # MENTOR — "Patient and exploratory — helps you discover the answer"
+  # ─────────────────────────────────────────────────────────
+  mentor:
+    id: mentor
+    display_name: "Mentor"
+    description: "Patient and exploratory — helps you discover the answer yourself"
+    context_quote: "Good questions lead to better answers than good templates."
+    status: ratified
+    locked: true
+    tier: T1
+    sections:
+
+      problem_statement:
+        title: "What problem are you trying to solve?"
+        subtitle: "Think about a customer who contacted you recently…"
+        fields:
+          main:
+            label: "Describe what's happening"
+            placeholder: "Think about a customer who contacted you last week — what were they frustrated about?"
+            tip: "What were they frustrated about? What did they wish existed? Start there, not with a solution."
+            guard: "Imagine explaining this to someone at dinner. What would you say?"
+            error_short: "Tell us more — think about one specific customer moment"
+
+      user_persona:
+        title: "Who are you building this for?"
+        subtitle: "A real person is better than a persona"
+        fields:
+          role:
+            label: "Describe them"
+            placeholder: "Who is this person in their daily life? What does their day look like?"
+            tip: "The more vividly you can picture them, the clearer the product becomes"
+            guard: "Can you picture a specific person you know who would use this every day?"
+            error_short: "Bring them to life — who are they and what's their day like?"
+          friction:
+            label: "What's making their life harder than it needs to be?"
+            placeholder: "What's the thing they've tried to fix but couldn't quite crack?"
+            tip: "Sometimes people know what bothers them; sometimes they just know it's not working"
+            guard: null
+            error_short: "What specifically is making their work harder than it should be?"
+
+      market_position:
+        title: "What do they do today instead?"
+        subtitle: "Every problem has a current workaround — what is it?"
+        fields:
+          alternatives:
+            label: "What they're using now"
+            placeholder: "Take a guess — what do you think they're doing right now to manage this?"
+            tip: "People are resourceful. They've found something, even if it's just accepting the friction."
+            guard: "What would they do if your app didn't exist tomorrow?"
+            error_short: "Think about what they do today — even imperfect workarounds count"
+          differentiation:
+            label: "What would make them switch?"
+            placeholder: "What's the one thing that would make them say 'I need this'?"
+            tip: "Not 'better' — what's the specific thing that makes the current option frustrating?"
+            guard: null
+            error_short: "What would they need to see to choose your version over what they use now?"
+
+      core_loop:
+        title: "The heart of the app"
+        subtitle: "If the app could do just one thing, what would it be?"
+        fields:
+          input:
+            label: "They bring…"
+            placeholder: "What does the user bring to the app each time they use it?"
+            tip: "Think about the moment they open the app — what are they carrying with them?"
+            guard: null
+            error_short: "What does the user provide to get started?"
+          action:
+            label: "The app does…"
+            placeholder: "What happens in the middle — the intelligent part?"
+            tip: "This is where the value lives. What does the app figure out that the user couldn't easily do alone?"
+            guard: null
+            error_short: "Describe what the app does with what the user provides"
+          value:
+            label: "They leave with…"
+            placeholder: "What are they holding at the end that they didn't have before?"
+            tip: "A feeling, an action, a decision — what changed for them?"
+            guard: null
+            error_short: "Describe what the user takes away from each use"
+        section_guard: "Close your eyes and describe this loop out loud. Does it feel right?"
+        section_error_short: "Complete all three parts — input, what happens, and what they get"
+
+      ai_behavior:
+        title: "What does AI make possible?"
+        subtitle: "What could this app not do without AI?"
+        fields:
+          override:
+            label: "Where does AI naturally go wrong here?"
+            placeholder: "Without guidance, AI would probably… but you want it to…"
+            tip: "AI has trained patterns that might not match your users. What needs to be different here?"
+            guard: "If AI just did what it always does — what would go wrong for your users?"
+            error_short: "Describe where the default AI behavior would let your users down"
+          satisfaction:
+            label: "When is the job actually done?"
+            placeholder: "AI often stops too early. When do YOU consider the job finished?"
+            tip: "Think about the moment your user feels satisfied — not when the system outputs something"
+            guard: null
+            error_short: "Describe the moment of genuine completion for your user"
+
+      success_metrics:
+        title: "How will you know it's working?"
+        subtitle: "3 signals you'd trust, not just 3 numbers you can track"
+        fields:
+          metric_name:
+            label: "What would tell you this is working?"
+            placeholder: "Not just any number — one that would genuinely make you confident"
+            tip: "Think about what you'd tell a friend who asked 'is it working?' — what's your honest answer?"
+            guard: "If all 3 metrics looked great but you still felt uncertain — what would you be missing?"
+            error_short: "Choose a metric that would genuinely shift your confidence"
+          metric_how:
+            label: "How would you know this number?"
+            placeholder: "Where does this data come from — and how often?"
+            tip: "It's OK if it starts manual. What matters is that you can actually observe it."
+            guard: null
+            error_short: "Describe how you'd actually observe or measure this"
+
+      phase_plan:
+        title: "What does 'done' look like for Phase 1?"
+        subtitle: "A small win that teaches you something real"
+        fields:
+          goal:
+            label: "What are you trying to learn in Phase 1?"
+            placeholder: "The most important question you want answered by the end of Phase 1"
+            tip: "Phase 1 is a learning experiment, not a product launch. What's the hypothesis?"
+            guard: "If Phase 1 ended and you'd learned only one thing — what would make it worth it?"
+            error_short: "Frame Phase 1 as a learning goal, not just a build goal"
+          deliverables:
+            label: "What will you actually build?"
+            placeholder: "The minimum you need to test your hypothesis — nothing more"
+            tip: "Resist the urge to build everything. What's the smallest useful thing?"
+            guard: null
+            error_short: "List what you'll build — keep it to the minimum needed to learn"
+          exit_criteria:
+            label: "How will you know you're done?"
+            placeholder: "Something concrete you can check — not a feeling, an observable event"
+            tip: "Binary is better: either it happened or it didn't"
+            guard: null
+            error_short: "Make the exit criteria something you can actually observe and verify"

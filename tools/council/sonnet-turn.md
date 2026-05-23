@@ -95,7 +95,8 @@ STATUS: ZF ACHIEVED (PROTO-B)
 
 verify: node tools/verify.mjs --skip-install → exit_code=0 ✓ (validate-zf-cycle-format.mjs blocking=0)
 build:  pnpm --filter @csps/csps-playground build → 46 pages, /user-journey=ƒ, exit 0 ✓
-push:   [PROTO-B commit — see commit below]
+push PROTO-A: 718eccf → github.com/CommarkG/csps main ✓
+push PROTO-B: db15435 → github.com/CommarkG/csps main ✓ (CORE COMPLETE commit)
 
 ═══════════════════════════════════════════════════════════
 QUESTIONS FOR OPUS (PROTO-B direction)

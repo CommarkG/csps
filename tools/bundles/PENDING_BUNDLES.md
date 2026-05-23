@@ -1,9 +1,9 @@
 ---
 id: csps.bundles.pending
 name: PENDING_BUNDLES
-description: "Foundation Bundles blocked on Supabase provision + ZModel promotion. These are part of CORE-COMPLETE-EXIT-CRITERIA.md Layer 1. Cannot be sealed until DB infrastructure is live."
-version: "1.0"
-session: S056
+description: "RESOLVED S057: TENANCY + AUDIT_BASE bundles now SEALED. Supabase provisioned by Governor. All 5 Foundation Bundles now sealed."
+version: "1.1"
+session: S057
 owner: group:finky
 core_spine: GVRN
 schema_anchor: vault_files
@@ -17,32 +17,39 @@ links:
   - { rel: template-bundle-system, href: ../docs/SIA/R1-08-TEMPLATE-BUNDLE-SYSTEM.md }
 ---
 
-# Pending Foundation Bundles
+# Foundation Bundle Status — ALL SEALED ✅
 
-> These 2 Foundation Bundles are BLOCKED on DB infrastructure.
-> Governor is provisioning Supabase. These bundles will be sealed as part of Layer 1 completion.
+> RESOLVED S057: Governor provisioned Supabase (aws-1-eu-central-1).
+> DATABASE_URL + DIRECT_URL available. TENANCY + AUDIT_BASE sealed.
+> All 5 Foundation Bundles now SEALED. Layer 1 4/4 COMPLETE.
+
+| Bundle | Status | Sealed |
+|---|---|---|
+| AUTH | SEALED (S056) | ✅ |
+| DEPLOY_PIPELINE | SEALED (S056) | ✅ |
+| GOVERNANCE_LAYER | SEALED (S056) | ✅ |
+| TENANCY | SEALED (S057) | ✅ |
+| AUDIT_BASE | SEALED (S057) | ✅ |
 
 ---
 
-## TENANCY Bundle (BLOCKED — requires Supabase + ZModel)
+## TENANCY Bundle (SEALED S057)
 
-**Status:** PENDING — blocked on Supabase provision
-**Blocking condition:** `DATABASE_URL` + ZenStack `@allow` policies operational
+**Status:** SEALED — Supabase provisioned S057
+**Sealed:** tools/bundles/foundation/TENANCY.bundle.yaml
+**Supabase project:** aws-1-eu-central-1 (existing project, shared with task-mgmt)
 **What it provides:** ZenStack RLS row-level isolation — every entity scoped to tenantId
-**PRIVATE-BUSINESS-SILOS guarantee:** personal data encrypted in separate silo, excluded from business training sets
-**When to seal:** After Supabase provisioned + ZModel promotion complete + `validate-foundation-schema-drift.mjs` passes
 
 Target file: `tools/bundles/foundation/TENANCY.bundle.yaml`
 
 ---
 
-## AUDIT_BASE Bundle (BLOCKED — requires DB event tables)
+## AUDIT_BASE Bundle (SEALED S057)
 
-**Status:** PENDING — blocked on Supabase provision
-**Blocking condition:** AuditEvent Postgres trigger live (see `libs/policies/audit-triggers.sql`)
+**Status:** SEALED — Supabase provisioned S057
+**Sealed:** tools/bundles/foundation/AUDIT_BASE.bundle.yaml
+**Evidence:** S3-E7 (2026-05-10) — enforce_audit_event_immutability trigger confirmed active
 **What it provides:** Append-only audit trail — who did what, when (DB level, not app level)
-**Immutability guarantee:** `enforce_audit_event_immutability` Postgres trigger prevents UPDATE/DELETE
-**When to seal:** After TENANCY bundle sealed + AuditEvent trigger confirmed active (S3-E7 pattern)
 
 Target file: `tools/bundles/foundation/AUDIT_BASE.bundle.yaml`
 

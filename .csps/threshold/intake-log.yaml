@@ -172,3 +172,23 @@ entries:
   source: governor_directive
   status: new
   raw: ""
+- id: "thr-unknown-1779560315928"
+  session: "unknown"
+  timestamp: "2026-05-23T18:18:35.927Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-unknown-1779560378341"
+  session: "unknown"
+  timestamp: "2026-05-23T18:19:38.340Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""

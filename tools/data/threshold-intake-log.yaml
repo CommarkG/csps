@@ -918,3 +918,23 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-05-23T18-18-36-035Z"
+  timestamp: "2026-05-23T18:18:36.035Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-05-23T18-19-38-434Z"
+  timestamp: "2026-05-23T18:19:38.434Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

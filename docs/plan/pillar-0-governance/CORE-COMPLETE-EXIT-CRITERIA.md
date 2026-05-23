@@ -41,12 +41,12 @@ BUILDING THE APP IS THE FIRST WET TRIAL FOR EXTRACTING IMPROVEMENTS.
 
 ## Layer 1 — R1 Schema Layer
 
-**Status:** IN PROGRESS — 3/4 exit criteria met. Blocked on Supabase provision for TENANCY+AUDIT_BASE bundles.
+**Status:** COMPLETE — 4/4 exit criteria met. Supabase provisioned S057. All 5 Foundation Bundles sealed.
 
 Exit criteria (all must pass):
 - [x] THRESHOLD-CODE Phase 1 built and passing — 10 input types classified, 7 pipelines routing (libs/threshold/ 22/22 tests, S056 commit 50a1491)
 - [x] BEHAVIOR-HUB schema ratified, YAML Phase 1 operational (libs/behavior-hub/ 23/23 tests, S056 commit 1c2d192)
-- [ ] Template Bundle Foundation Bundles sealed: AUTH / TENANCY / AUDIT_BASE / DEPLOY_PIPELINE / GOVERNANCE_LAYER — 3/5 sealed (TENANCY+AUDIT_BASE blocked on Supabase provision)
+- [x] Template Bundle Foundation Bundles sealed: AUTH / TENANCY / AUDIT_BASE / DEPLOY_PIPELINE / GOVERNANCE_LAYER — ALL 5 SEALED (TENANCY+AUDIT_BASE sealed S057 after Supabase provisioned)
 - [x] DOCUMENTATION-IN-SCHEMA: context_question coverage ≥150 files (209/452 = 46%, S056 commit 50a1491)
 
 **ZModel/DB ratification (Governor S055):** Provision Supabase alongside R1 Layer completion — before Template Bundle TENANCY bundle is sealed, ZModel must exist. Sequence: Threshold + BehaviorHub schema first → Supabase provision → TENANCY bundle sealing.

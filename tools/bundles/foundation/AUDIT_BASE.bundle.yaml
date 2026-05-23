@@ -1,0 +1,58 @@
+---
+id: csps.bundles.foundation.AUDIT_BASE
+name: AUDIT_BASE
+status: SEALED
+version: "1.0"
+session: S057
+owner: group:finky
+core_spine: VALD
+schema_anchor: vault_files
+protection_level: sealed
+activation: mandatory
+requires_db: true
+db_url_env: DATABASE_URL
+inherits_from: "R1-08-TEMPLATE-BUNDLE-SYSTEM § Foundation Bundles"
+context_question: "Is the AuditEvent table present in the schema and is the immutability trigger active? Check: pnpm db:push status + S3-E7 trigger evidence."
+---
+
+# AUDIT_BASE Foundation Bundle
+
+> Status: SEALED — Supabase provisioned S057 (aws-1-eu-central-1, existing project)
+> Every CSPS app inherits this bundle. Non-negotiable. Cannot be deactivated.
+> Design source: docs/SIA/R1-08-TEMPLATE-BUNDLE-SYSTEM.md § 2 Foundation Bundles
+
+## Components
+
+components:
+  - name: audit-event-table
+    description: "AuditEvent table: id, tenantId, userId, action, resource, timestamp, metadata"
+    schema: "libs/policies/schema.zmodel — AuditEvent model with @@deny update/delete"
+    immutability: "Postgres trigger: enforce_audit_event_immutability (prevents UPDATE/DELETE at DB level)"
+    evidence: "S3-E7 confirmed 2026-05-10 — AuditEvent trigger fires, blocks updates"
+  - name: trigger-based-capture
+    description: "Audit events captured by Postgres trigger, NOT app code. Cannot be bypassed by application layer."
+    ddl: "libs/policies/audit-triggers.sql"
+    reference: "VLT-S015-004 + VLT-S017-ENHANCE"
+  - name: retention-policy
+    description: "90-day default retention. Events older than 90 days eligible for archival."
+    status: "policy defined, automated archival job pending (S058 target)"
+
+## Required Environment Variables
+
+env_vars_required:
+  - DATABASE_URL
+  - DIRECT_URL
+
+## Verification Gate
+
+verification_gate:
+  - "AuditEvent table present in Prisma schema and Supabase DB"
+  - "enforce_audit_event_immutability trigger active in Supabase"
+  - "S3-E7 test: attempt UPDATE on AuditEvent → must return P0001 error"
+  - "validate-audit-health.mjs passes (audit-runner.md validators active)"
+
+## Seal Date
+
+sealed_at: "2026-05-23"
+sealed_by: "Sonnet S057 — Supabase credentials provisioned by Governor"
+immutability_evidence: "S3-E7 (2026-05-10): ERROR P0001: AuditEvent is append-only. UPDATE and DELETE are forbidden at DB level."

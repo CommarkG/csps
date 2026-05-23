@@ -1,0 +1,68 @@
+---
+id: csps.bundles.foundation.TENANCY
+name: TENANCY
+status: SEALED
+version: "1.0"
+session: S057
+owner: group:finky
+core_spine: ARCH
+schema_anchor: vault_files
+protection_level: sealed
+activation: mandatory
+requires_db: true
+db_url_env: DATABASE_URL
+inherits_from: "R1-08-TEMPLATE-BUNDLE-SYSTEM § Foundation Bundles"
+context_question: "Before forking a new CSPS app: is DATABASE_URL wired to Supabase, and has ZenStack generated RLS policies with no errors?"
+---
+
+# TENANCY Foundation Bundle
+
+> Status: SEALED — Supabase provisioned S057 (aws-1-eu-central-1, existing project)
+> Every CSPS app inherits this bundle. Non-negotiable. Cannot be deactivated.
+> Design source: docs/SIA/R1-08-TEMPLATE-BUNDLE-SYSTEM.md § 2 Foundation Bundles
+
+## Components
+
+components:
+  - name: zenstack-zmodel-rls
+    description: "ZenStack ZModel schema with RLS policies. Every model has @@allow policies scoped by tenantId."
+    pattern: "libs/policies/schema.zmodel — @@allow('all', auth().id == tenantId)"
+    reference: "VLT-S016-ZENSTACK + VLT-S015-001 (Clerk JWT tenantId claim)"
+  - name: row-level-isolation
+    description: "Every database query scoped to tenantId. No query can access another tenant's data."
+    pattern: "enhance(prismaClient) from @zenstackhq/runtime — wired in API routes"
+    guarantee: "PRIVATE-BUSINESS-SILOS invariant: personal data silo never accessible by app B"
+  - name: tenant-creation-webhook
+    description: "Tenant created on first org signup via Clerk webhook (org.created event)."
+    pattern: "apps/[app]/src/app/api/webhooks/clerk/route.ts — org.created handler"
+  - name: supabase-connection
+    description: "Supabase project: aws-1-eu-central-1 (shared with existing task-mgmt app)"
+    env_vars:
+      DATABASE_URL: "Transaction pooler (port 6543) + ?pgbouncer=true&connection_limit=1"
+      DIRECT_URL: "Direct connection (port 5432) for migrations"
+
+## Required Environment Variables
+
+env_vars_required:
+  - DATABASE_URL
+  - DIRECT_URL
+
+## Verification Gate
+
+verification_gate:
+  - "pnpm zenstack generate exits 0 with no RLS errors"
+  - "libs/policies/schema.zmodel has @@allow policies on all tenant-scoped models"
+  - "validate-foundation-schema-drift.mjs passes"
+  - "AuditEvent immutability trigger active (S3-E7 pattern confirmed)"
+
+## Seal Date
+
+sealed_at: "2026-05-23"
+sealed_by: "Sonnet S057 — Supabase credentials provisioned by Governor"
+supabase_project: "aws-1-eu-central-1 (existing project from task-mgmt)"
+
+## PRIVATE-BUSINESS-SILOS Guarantee
+
+Each app using this bundle gets full row-level isolation. Personal data (family, health)
+stored in separate encrypted silo per PRIVATE-BUSINESS-SILOS.md design.
+Phase 2 (ZModel RLS): now active. Phase 1 (YAML) was temporary workaround.

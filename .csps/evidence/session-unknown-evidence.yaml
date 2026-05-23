@@ -1,10 +1,10 @@
 {
   "session": "unknown",
-  "captured_at": "2026-05-23T16:57:37.106Z",
+  "captured_at": "2026-05-23T17:23:44.753Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 156,
-    "ran_at": "2026-05-23T16:56:53.137Z"
+    "ran_at": "2026-05-23T17:23:07.015Z"
   },
   "layer_progress": "Layer 1: 3/4, Layer 2: 3/3, Layer 3: 1/4, Layer 4: 0/4",
   "gap_snapshot_k2": [
@@ -15,5 +15,5 @@
     "gap_HANDOFF_STARTUP_BLOCK K=3 (fix_committed)",
     "gap_SESSION_INJECTION_COMPRESSION K=2 (open)"
   ],
-  "sonnet_summary": "S056 formally closed. HANDOFF ce3a925. Layer 1 3/4, Layer 2 COMPLETE, Layer 3 7/9.\r | Opus-8 session complete. S057 opens with HANDOFF-S056-to-S057.md.\r | Next Opus tab reads: HANDOFF + R2-01 (PIE rat"
+  "sonnet_summary": "Wizard built at /platform/wizard. INFRA-FLOW Step 3 ACTIVE. Permission fix engraved in session-open.sh. PROTO-S057-B issued: opus/sonnet file consolidation + settings.json permanent permission fix + L"
 }

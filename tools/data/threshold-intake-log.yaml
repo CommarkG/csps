@@ -828,3 +828,23 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-05-23T17-16-23-647Z"
+  timestamp: "2026-05-23T17:16:23.647Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-05-23T17-20-17-898Z"
+  timestamp: "2026-05-23T17:20:17.898Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

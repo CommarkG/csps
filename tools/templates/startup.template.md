@@ -110,6 +110,11 @@ ZF CYCLES — always name specific files:
   ZF ACHIEVED.
   NEVER: "Cycle 2: no new findings" without naming files = BLOCKING.
 
+TURN REPORT FORMAT (for each directive response):
+  Use: # OPUS-{N} Turn {T} S{NNN} — [topic] + RZF block + optional CEC walk
+  Full format: tools/council/quality-protocols/opus-quality-spec.md
+  (supersedes archived tools/templates/archive/opus-brief.template.md)
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 FIRST ACTION (do all 4 before responding)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

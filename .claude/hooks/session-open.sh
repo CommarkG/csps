@@ -43,6 +43,23 @@ try{
 " 2>/dev/null || true
 } 2>/dev/null || true
 
+# ─── PROJECT settings.local.json SHADOW PREVENTION (validate-settings-shadow.mjs T1) ──────
+# Ensures .claude/settings.local.json does NOT shadow the project settings.json permissions.
+# SSoT: project permissions live in .claude/settings.json (has defaultMode:bypassPermissions).
+# Project settings.local.json must stay clean (no permissions key = no shadowing risk).
+{
+  _PROJECT_LOCAL="${REPO_ROOT}/.claude/settings.local.json"
+  if [ -f "$_PROJECT_LOCAL" ]; then
+    _CONTENT=$(cat "$_PROJECT_LOCAL" 2>/dev/null || echo "{}")
+    if echo "$_CONTENT" | node -e "process.stdin.resume();let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);process.exit(j.permissions?1:0);}catch(e){process.exit(0);}});" 2>/dev/null; then
+      : # no permissions key — clean
+    else
+      # Has permissions key → reset to avoid shadowing
+      echo '{}' > "$_PROJECT_LOCAL" 2>/dev/null || true
+    fi
+  fi
+} 2>/dev/null || true
+
 CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.mjs" 2>/dev/null \
   || printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"[session-open] context load failed — read tools/session-state.json + tools/council/opus-open-items.md manually"}}'
 

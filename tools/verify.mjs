@@ -1260,6 +1260,17 @@ const CYCLES = [
     },
   },
   {
+    // S057: SETTINGS-SHADOW validator — detects .claude/settings.local.json shadowing
+    // project settings.json permissions (causes permission popups on every new tab).
+    // BLOCKING if settings.local.json has "permissions" key.
+    name: 'settings_shadow',
+    command: 'node tools/validators/validate-settings-shadow.mjs',
+    parse_output: (out) => {
+      const m = out.match(/settings_local_clean=(\S+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { settings_local_clean: m[1] === 'true', blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // S055: SESSION-AUTHORITY advisory validator. Compares current_session in session-state.json
     // against the latest session marker in sonnet-turn.md. Advisory if gap > 2 sessions.
     // Flags potential "three drivers" problem (multiple sessions without authority signal).

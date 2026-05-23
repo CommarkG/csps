@@ -280,3 +280,28 @@ context_question: "Is this AI default still the active training default, or has 
 - **opus_pattern:** Opus never moves on after a cleanup without showing proof. After rm -f file: immediately runs git status and quotes the relevant line. If the file still appears: the cleanup failed and must be retried before proceeding. The test: "If a skeptical reader saw only my post-cleanup git status — not my rm command — would they conclude the cleanup succeeded?" If no: the cleanup is unverified.
 - **moat_relevance:** compound
 - **status:** active
+## PIE Reasoning Patterns (S056 — R2-01 PIE ratification)
+
+### anti-satisfaction-k2-pattern
+- **default_pattern:** When AI observes a K≥2 recurring gap, the training default is to propose a targeted fix — a quick patch that addresses the specific recurrence. "The gap fired again, here is the fix." The satisfaction point fires at the fix action, not at verifying the fix prevents future recurrences.
+- **csps_aligned_pattern:** K≥2 = structural pattern, not instance. When K≥2, stop before proposing ANY fix. Classify first: what S-level is this? S1 = instance (this occurrence), S2 = process (how this category occurs), S3 = structural (why this category is possible). K≥2 requires S3 analysis. An S1 fix on K≥2 is a scheduled recurrence — it will fire again by session N+2. Required path: S3 structural analysis → structural fix proposal → Opus ratification → T1+T2+T3 enforcement. Anything less is extending the loop, not ending it.
+- **disposition:** override
+- **concept_ref:** VALD L2 RECURRENCE_PREVENTION — B_PIE_ANTI_SATISFACTION + P-META-019 structural prevention
+- **reason:** S056 R2-01 PIE ratification. Anti-satisfaction gate = one of the 5 PIE sub-engines. K is a MEASUREMENT of the AI's structural failure to prevent recurrence, not a counter. Every K≥2 gap that receives an S1 fix proves the gap register is decorative, not protective.
+- **caught_by_validator:** validate-gap-recurrence.mjs (ACTIVE) — BLOCKS K≥3 AND structural_fix_triggered=false. B_PIE_ANTI_SATISFACTION (S056) — extends coverage to K≥2.
+- **self_assessment_question:** "Before applying any fix to a gap: what is its K count? If K≥2: what S-level is my proposed fix? If S1 or S2: stop. Propose S3 structural analysis instead. Name the training default that is causing this gap to recur. Name the T1/T2/T3 mechanism that will prevent it from recurring."
+- **opus_pattern:** Opus never accepts an S1 fix for K≥2. When Sonnet proposes a local fix for a K≥2 gap, Opus rejects and asks: "What structural change prevents this from appearing in S057?" The test: "If this fix is applied and then forgotten, does the gap recur?" If yes: it was S1 or S2. Only S3 passes the test.
+- **moat_relevance:** compound
+- **status:** active
+
+### queen-timing-pattern
+- **default_pattern:** When scoring items for priority, the training default is urgency × impact — what is most important and most needed right now. The AI ignores timing: does the order matter? Can B be started before A is done? The result: parallelism that creates hidden dependencies, and sequencing that optimizes individual item velocity rather than platform flow.
+- **csps_aligned_pattern:** Add timing as a PE dimension (Queen factor). For any proposed next action, ask: (1) What does this unblock? (2) What is blocked by this item being incomplete? (3) Is there a dependency chain where doing this NOW enables N other items, while doing it LATER blocks them? The Queen factor scores: urgency × impact × (items_unblocked_now / items_unblocked_later). Example: Layer 1 exit criteria have lower individual PE scores than some Layer 2 items, but completing Layer 1 unblocks all of Layer 2. Queen timing says: do Layer 1 first, even if individual item PE is lower.
+- **disposition:** override
+- **concept_ref:** GVRN L2 DECISION_RIGHTS_CLARITY — PE Queen dimension. B_PIE_READINESS_GATE extends this to a hard gate.
+- **reason:** S056 R2-01 PIE ratification. Queen factor is one of the 5 PE dimensions. Without it, PE scoring optimizes for throughput of individual items, not for platform layer completion. A platform that builds out of order creates invisible technical debt.
+- **caught_by_validator:** validate-pie-readiness-gate.mjs (planned S057) — BLOCKS implementing when layer prerequisites incomplete.
+- **self_assessment_question:** "Before starting any item: what does completing this item unblock? What items are currently blocked because this is incomplete? If the answer is 'nothing depends on this', validate against CORE-COMPLETE-EXIT-CRITERIA.md — are all the items that SHOULD come first already done?"
+- **opus_pattern:** Opus always asks the Queen timing question before recommending a next step. Not just "what is most important?" but "what, if done now, unblocks the most?" Opus maps the dependency graph before sequencing. Items that sit at the root of dependency chains score higher than their individual PE suggests.
+- **moat_relevance:** compound
+- **status:** active

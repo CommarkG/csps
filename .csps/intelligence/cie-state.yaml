@@ -1,0 +1,52 @@
+{
+  "session": "S056-TEST",
+  "updated_at": "2026-05-23T15:38:07.550Z",
+  "engines": [
+    {
+      "engine_id": "pe",
+      "d_level": 1,
+      "alert": false,
+      "last_run": "2026-05-23T15:38:07.549Z"
+    },
+    {
+      "engine_id": "learning-loop",
+      "d_level": 1,
+      "alert": true,
+      "alert_reason": "1 gap(s) K≥2 no fix, 0 improvement(s) K≥2 open",
+      "last_run": "2026-05-23T15:38:07.549Z",
+      "output": {
+        "session": "S056-TEST",
+        "gaps_k2_no_fix": [
+          {
+            "id": "gap_HANDOFF_STARTUP_BLOCK",
+            "k_count": 3,
+            "status": "fix_committed",
+            "observation": "HANDOFF files missing paste-ready startup block for new Sonnet tab",
+            "structural_fix_triggered": false
+          }
+        ],
+        "improvements_k2_open": [],
+        "items_queued_to_pending": 0,
+        "ran_at": "2026-05-23T15:38:07.549Z"
+      }
+    },
+    {
+      "engine_id": "scope-router",
+      "d_level": 1,
+      "alert": false,
+      "last_run": "2026-05-23T15:38:07.550Z"
+    },
+    {
+      "engine_id": "seeds-monitor",
+      "d_level": 1,
+      "alert": false,
+      "last_run": "2026-05-23T15:38:07.550Z"
+    },
+    {
+      "engine_id": "docs-engine",
+      "d_level": 1,
+      "alert": false,
+      "last_run": "2026-05-23T15:38:07.550Z"
+    }
+  ]
+}

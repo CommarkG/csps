@@ -110,3 +110,7 @@ exemptions:
   - id: B_UX
     reason: "S055 definitions-only per PROTO. T1+T2 validators planned S056 (validate-ux-*.mjs pending)."
     target_session: S056
+
+  - id: B_PIE
+    reason: "S056 definitions ratified. T2 validate-pie-readiness-gate.mjs planned S057. T1 hook extension planned S057."
+    target_session: S057

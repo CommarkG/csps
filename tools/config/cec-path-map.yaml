@@ -1,0 +1,59 @@
+---
+id: csps.config.cec-path-map
+name: cec-path-map
+description: "Explicit path→improvement mapping for CEC trigger. Each improvement has an explicit list of file path substrings that should trigger a CEC notification. Replaces keyword extraction which caused false positives on 'template', 'behavioral', 'vault' paths."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: vault_files
+session: S056
+context_question: "Before adding a new improvement to improvement-register.yaml: have its specific target file paths been added to this map so the CEC trigger fires precisely?"
+links:
+  - { rel: improvement-register, href: ../../tools/data/improvement-register.yaml }
+  - { rel: cec-helper, href: ../../tools/helpers/cec-improvement-check.mjs }
+---
+
+# CEC Path Map
+
+# Each entry maps an improvement ID to the specific file paths (substrings) that should
+# trigger a CEC notification. Only fires when the written file path contains one of
+# these substrings. Null = never fire on path match (improvements with no remaining
+# specific file targets).
+
+mappings:
+
+  # imp_GUARD_QUESTION_PATTERN: vault entries and templates need context_question upgrades
+  - improvement_id: imp_GUARD_QUESTION_PATTERN
+    trigger_on:
+      - "tools/vault/ai-conception/"
+
+  # imp_PLATFORM_GENOME_AS_PERMANENT_NODE: HANDOFF templates should reference Platform Genome
+  - improvement_id: imp_PLATFORM_GENOME_AS_PERMANENT_NODE
+    trigger_on:
+      - "tools/vault/ai-conception/"
+      - "docs/plan/_handoff/HANDOFF-"
+
+  # imp_ZF_IN_COUNCIL_FILE: report templates should state ZF block in council file
+  - improvement_id: imp_ZF_IN_COUNCIL_FILE
+    trigger_on:
+      - "tools/templates/sonnet-report.template.md"
+
+  # imp_BEHAVIORAL_TEST_BEFORE_RATIFICATION: creation wizard and plan sections
+  - improvement_id: imp_BEHAVIORAL_TEST_BEFORE_RATIFICATION
+    trigger_on:
+      - "tools/generators/"
+      - "docs/plan/pillar-0-governance/creation-wizard"
+
+  # imp_FROM_TO_COMMUNICATION_FORMAT: external agent protocol (only remaining target)
+  - improvement_id: imp_FROM_TO_COMMUNICATION_FORMAT
+    trigger_on:
+      - "tools/vault/ai-conception/B_EXTERNAL_AGENT_PROTOCOL.md"
+
+  # imp_CEC_SPECIFICITY: the CEC hook file itself (bootstrapped self-reference)
+  - improvement_id: imp_CEC_SPECIFICITY
+    trigger_on:
+      - ".claude/hooks/post-tool-use-cec-trigger.sh"
+      - "tools/helpers/cec-improvement-check.mjs"
+      - "tools/config/cec-path-map.yaml"

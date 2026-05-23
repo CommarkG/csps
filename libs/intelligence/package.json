@@ -1,0 +1,11 @@
+{
+  "name": "@csps/intelligence",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Central Intelligence Engine (CIE) — aggregates PE, Learning Loop, Scope Router, Seeds Monitor, Documentation Engine sub-engines. D1 always active. Design: docs/SIA/R2-01-PLATFORM-INTELLIGENCE-ENGINE.md.",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "test": "../../node_modules/.bin/tsx tests/intelligence.test.ts"
+  }
+}

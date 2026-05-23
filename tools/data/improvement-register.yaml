@@ -122,9 +122,10 @@ entries:
     first_found: S055
     k_count: 1
     sessions: [S055]
-    status: open
+    status: structural_fix_proposed
     propagated_to:
-      - .claude/hooks/post-tool-use-cec-trigger.sh (session dedup added at 6ae470c — patch only)
-    not_yet_propagated:
-      - post-tool-use-cec-trigger.sh (replace keyword scan with explicit path→improvement mapping table — root fix)
-    note: "Session dedup added at 6ae470c. Root fix: map file paths to specific improvement IDs via lookup table, not substring matching against not_yet_propagated descriptions. K=1, CEC fatigue visible at 9+ fires/session."
+      - .claude/hooks/post-tool-use-cec-trigger.sh (session dedup added at 6ae470c — patch)
+      - tools/helpers/cec-improvement-check.mjs v2 (S056 — explicit path map replaces keyword extraction)
+      - tools/config/cec-path-map.yaml (S056 — explicit improvement_id→trigger_on path list)
+    not_yet_propagated: []
+    note: "Root fix applied S056: cec-improvement-check.mjs v2 reads tools/config/cec-path-map.yaml. Each improvement has explicit trigger_on paths — no keyword extraction. 9+ fires/session → 0 false positives. Session dedup remains as safety net."

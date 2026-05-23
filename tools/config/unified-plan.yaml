@@ -1043,7 +1043,7 @@ items:
 
   - id: COMBINATORIAL-ENGINE
     title: "Combinatorial Engine — multi-dimensional reasoning with Dependency Matrix + Sensitivity Ladder"
-    status: planning
+    status: implementing
     epoch: E1
     category: architecture
     owner: opus

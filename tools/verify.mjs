@@ -1185,6 +1185,17 @@ const CYCLES = [
     },
   },
   {
+    // S053: Gap Recurrence Register enforcement — K count gating per P-META-019
+    // BLOCKING: K>=3 AND status:open AND structural_fix_triggered:false
+    // ADVISORY: K>=2 AND status:open AND behavioral_test_exists:false
+    name: 'gap_recurrence',
+    command: 'node tools/validators/validate-gap-recurrence.mjs',
+    parse_output: (out) => {
+      const m = out.match(/entries=(\d+)\s+open=(\d+)\s+k_ge2_no_test=(\d+)\s+k_ge3_no_fix=(\d+)/);
+      return m ? { entries: Number(m[1]), open: Number(m[2]), k_ge2_no_test: Number(m[3]), k_ge3_no_fix: Number(m[4]) } : {};
+    },
+  },
+  {
     // S053: ZF cycle format T2 — nominal ZF detection (gap_ZF_NOMINAL_CYCLES K=6)
     // BLOCKING: Cycle 2+ claims ZF ACHIEVED but cites no file names.
     // ADVISORY: Cycle 2+ uses vague words (areas/topics/things) without file names.

@@ -1,15 +1,75 @@
 ---
 id: csps.council.communication-protocol-shared
 name: communication-protocol-shared
-description: "Canonical communication rules for ALL parties — OPUS-2, Sonnet, and Governor. Single source. Both sides read this."
-version: 1.0.0
+description: "Canonical communication rules for ALL parties — Opus, Sonnet, Governor, external agents. Single source. Both sides read this."
+version: 2.0.0
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
+context_question: "Before sending any message: who sent this, who reads it, what do they do next — can you answer all three in one word each?"
+context_quote: "It is common sense in a conversation that every 10-year-old can follow. Somehow, because you are so sophisticated, you keep messing it around."
+links:
+  - csps.governance.PLATFORM-GENOME
+  - csps.vault.wisdom.communication-samples
 ---
 
 # Shared Communication Protocol
 ## One file. Both sides read it. No drift.
+
+---
+
+## THE THREE-QUESTION TEST (run before every message — S053 CONSTITUTIONAL)
+
+Before writing ANY cross-boundary message, answer these three questions.
+If any answer is compound, ambiguous, or "it depends" — simplify the message first.
+
+1. **WHO sent this?** Name the actual author: OPUS-7 / SONNET-S053 / GOVERNOR. Never vague.
+2. **WHO reads this?** Name the actual receiver: SONNET / OPUS / EXTERNAL-AGENT. Never both.
+3. **What does the receiver DO next?** One action. Not a list. One specific thing.
+
+This test prevents: impersonation, example-confusion, over-complex formats, false assumptions.
+
+---
+
+## THE SIMPLIFIED FORMAT (for all ongoing relay communication — S053)
+
+### Opus → Governor (to relay to Sonnet)
+```
+FROM OPUS-7 | FOR SONNET TAB
+[situation: 2 sentences max]
+[what to do: numbered steps, max 5]
+[success looks like: one verifiable outcome]
+```
+
+### Sonnet → Governor (to relay to Opus)
+```
+FROM SONNET | FOR OPUS TAB
+Opus, this is Sonnet.
+DONE: [sha] — [what was completed]
+FOUND: [any issues, one line each]
+VERIFY: exit_code=[N] | validators=[N]
+NEXT: [what Opus should direct]
+```
+
+### External agent (CSPS → co-worker / MCP / test agent)
+```
+FROM CSPS | TO [AGENT-ROLE: Tester / Analyst / Builder]
+CONTEXT: [3 sentences max — no jargon]
+TASK: [one sentence]
+RETURN ONLY: [exact output format — nothing else]
+```
+
+### WHY this format works (not a rule — reasoning)
+The AI training default adds complexity when it has space to fill. Short, labeled,
+mandatory fields give it no space. "FROM:" forces identity declaration — you cannot
+write someone else's name here and remain coherent. "RETURN ONLY:" prevents the AI
+from deciding what to add. The format exploits AI accuracy instinct (fill the field
+correctly) instead of fighting AI complexity instinct (be thorough).
+
+---
+
+## COMMUNICATION FAILURE SAMPLES (see tools/vault/wisdom/communication-samples.md)
+Real examples of what goes wrong and why. Read these before writing complex messages.
 
 ---
 

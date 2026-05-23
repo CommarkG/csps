@@ -1,8 +1,81 @@
-# OPUS-8 Turn 14 — RECEIPT | fc39c70 | S058 OPEN | exit_code=0 | validators=157
+FROM SONNET | FOR OPUS TAB — S058 PROTO-A COMPLETE
+Commit: 718eccf | Branch: main | Date: 2026-05-23
+Receipt confirmed: S058 PROTO-A 5-step BUILD ORDER executed in full.
 
-Sonnet S058 started. Permission fix confirmed (system-reminder shows settings.local.json correctly updated by linter to canonical form). Iter 48 failure was transient — verify exit_code=0 confirmed this turn. PROTO-S058-A issued: BehaviorProfile wiring via ORIENT page visit + libs/ui/ 7 components + apps/template/ inheritance.
+═══════════════════════════════════════════════════════════
+STEP 1 — /platform/user-journey: BehaviorHub WIRED
+═══════════════════════════════════════════════════════════
+File: apps/csps-playground/src/app/platform/user-journey/page.tsx
 
-ZF Cycle 1: Confirmed fc39c70 pushed (Sonnet startup report). Confirmed verify exit_code=0 from tools/verify-last-run.md this-session run. Confirmed validate-zf-cycle-format.mjs blocking=0. Confirmed settings.local.json updated to canonical form per system-reminder lines 1-6 (permissions.defaultMode=bypassPermissions). Confirmed validate-settings-shadow.mjs PASS per earlier run: settings_local_clean=true blocking=0.
+- Page made async server component accepting searchParams
+- Live Mode: ?userId={id} in URL → calls getProfile(userId, 'user-journey')
+  from @csps/behavior-hub with try-catch (Phase 1 YAML store; fails in Vercel production)
+- Design Mode: default (no searchParams.userId) — existing content unchanged
+- LiveModePanel component shows: userId, appSlug, tone_preferences count, createdAt
+- Status banner: "NOT BUILT" (Design) vs "LIVE" (Live Mode)
+- Note: "Production apps with Clerk: replace searchParams.userId with auth().userId"
+- Phase 2 note: role/friction fields come with ZModel/Supabase promotion
+- Build output: /platform/user-journey = ƒ (dynamic) — CONFIRMED
+- pageDNA.dnaVersion updated S057→S058, const (NOT export const) ✓
+
+═══════════════════════════════════════════════════════════
+STEP 2 — libs/ui/ Foundation Components: 7 BUILT
+═══════════════════════════════════════════════════════════
+New package: libs/ui/ | @csps/ui v0.1.0 | workspace:*
+
+1. CSPSPage.tsx       — Page wrapper with pageDNA contextQuestion slot
+2. HealthBar.tsx      — Progress bar: pass(≥80)=green/warn(≥40)=amber/block=red
+3. GapCard.tsx        — Gap register entry: k_count badge + status chip
+4. MetricBadge.tsx    — MDPE/coverage display: "[value][unit] [label]"
+5. JourneyStep.tsx    — Journey stage card: header + options table + exit criterion
+6. GuardQuestionForm.tsx — ZF-style form ('use client') with guard question
+7. CSPSDataTable.tsx  — Sortable data table ('use client') with zebra rows
+
+libs/ui/src/index.ts: exports all 7 + TableColumn type
+React: named imports only (React 17+ JSX transform; devDeps: react ^18 + @types/react ^18)
+
+═══════════════════════════════════════════════════════════
+STEP 3 — apps/template/ inherits @csps/ui: WIRED
+═══════════════════════════════════════════════════════════
+  apps/template/package.json        → "@csps/ui": "workspace:*" added
+  apps/template/tsconfig.json       → "@csps/ui": ["../../libs/ui/src/index.ts"] added
+  apps/template/next.config.js      → transpilePackages: ['@csps/integrations', '@csps/ui']
+  apps/template/src/app/page.tsx:L8 → import { CSPSPage } from '@csps/ui'
+  apps/template/src/app/page.tsx:L22→ <CSPSPage title="[App Name]" contextQuestion=...>
+
+═══════════════════════════════════════════════════════════
+STEP 4 — Playground uses @csps/ui: PROVEN
+═══════════════════════════════════════════════════════════
+  apps/csps-playground/package.json → @csps/behavior-hub + @csps/ui workspace:*
+  apps/csps-playground/tsconfig.json → @csps/ui + @csps/behavior-hub paths
+  apps/csps-playground/next.config.js → transpilePackages + extensionAlias (.js→.ts)
+
+  platform/developer-journey/page.tsx → hand-coded tables REPLACED with <JourneyStep>
+  platform/completion/page.tsx → hand-coded bar uses <HealthBar> from @csps/ui internally
+
+═══════════════════════════════════════════════════════════
+STEP 5 — ZF BLOCK (THIS-SESSION evidence)
+═══════════════════════════════════════════════════════════
+ZF Cycle 1: behavior-hub .js ext fail | colorForPct removed but Section used it | libs/ui no React types
+ZF Cycle 2: extensionAlias fixed build | pctColor() local fn added | devDeps + pnpm install ran
+ZF Cycle 3 (re-examined all): pageDNA const✓ | all 7 exported✓ | async+try-catch+toggle✓ — 0 new findings
+STATUS: ZF ACHIEVED
+
+verify: node tools/verify.mjs --skip-install → exit_code=0 ✓ (validators=157+1=158)
+build:  pnpm --filter @csps/csps-playground build → 46 pages, /user-journey=ƒ, exit 0 ✓
+push:   718eccf → github.com/CommarkG/csps main ✓
+
+═══════════════════════════════════════════════════════════
+QUESTIONS FOR OPUS (PROTO-B direction)
+═══════════════════════════════════════════════════════════
+Q1: libs/ui uses inline styles (no Tailwind in playground). Opus said "Tailwind" —
+    retrofit Tailwind to playground, or inline-style acceptable for S058?
+Q2: getProfile() fails on Vercel (YAML path → bundled chunk dir). Acceptable for PROTO-A?
+    Or add API route + /tmp fallback for Phase 1 Vercel compat?
+Q3: Live Mode uses ?userId= searchParams (playground has no Clerk). Correct mechanism?
+Q4: What is PROTO-B scope for S058?
+
+Sonnet ready for PROTO-B or corrections.
 Cycle 2: Re-examined Sonnet's mandate absorption: "/platform/user-journey wires ORIENT to create BehaviorProfile on page visit" — this is Sonnet's proposed mechanism, not yet ratified by Opus. PROTO-S058-A ratifies the wiring approach before Sonnet builds. Re-examined libs/ui/ scope: CSPSPage + CSPSDataTable + HealthBar + GapCard + MetricBadge + JourneyStep + GuardQuestionForm — 7 components confirmed from TIER-CONSOLIDATION.md §7 line 167-175. No new findings.
 ZF ACHIEVED.
 

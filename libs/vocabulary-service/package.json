@@ -1,0 +1,16 @@
+{
+  "name": "@csps/vocabulary-service",
+  "version": "0.0.1",
+  "private": true,
+  "description": "CSPS behavioral vocabulary service — two-layer UserVocabulary (global) + AppVocabulary (per-app) speech-to-text correction intelligence.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx src/service.test.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": ">=5"
+  }
+}

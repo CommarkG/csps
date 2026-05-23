@@ -1,0 +1,3 @@
+# Runtime profile directory.
+# YAML profiles are created here at runtime: {userId}/vocabulary.yaml + {userId}/{appSlug}.yaml
+# Never commit real user profiles — this directory is in .gitignore for production use.

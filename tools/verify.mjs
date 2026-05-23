@@ -1260,6 +1260,37 @@ const CYCLES = [
     },
   },
   {
+    // S055: AI-CONCEPTION-ENFORCEMENT advisory baseline — gap_T1_AI_CONCEPTION_VAULT (K=5).
+    // Advisory-only: measures enforcement_tier coverage rate across ai-conception/ vault files.
+    // Baseline S055: 0% (13/13 missing). Target: 100% after backfill pass.
+    name: 'ai_conception_enforcement',
+    command: 'node tools/validators/validate-ai-conception-enforcement.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_checked=(\d+)\s+missing_tier=(\d+)\s+missing_t1=(\d+)\s+missing_t2=(\d+)\s+enforcement_rate=(\d+)%\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { files_checked: Number(m[1]), missing_tier: Number(m[2]), missing_t1: Number(m[3]), missing_t2: Number(m[4]), enforcement_rate: Number(m[5]), advisory: Number(m[6]), blocking: Number(m[7]) } : {};
+    },
+  },
+  {
+    // S055: CONTEXTUAL-LOCALITY T2 — B_CONTEXTUAL_LOCALITY (gap_T2_ORPHAN_CONTRACTS).
+    // BLOCKING: navigation phrases in council/*.md. ADVISORY: same in governance docs.
+    name: 'contextual_locality',
+    command: 'node tools/validators/validate-contextual-locality.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { files_checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // S055: DONE-RIGHT T2 — B_DONE_RIGHT_FROM_THE_START (gap_T2_ORPHAN_CONTRACTS).
+    // BLOCKING: B_*.md missing enforcement_tier. ADVISORY: T1+T2 both pending (T3-only drift risk).
+    name: 'done_right',
+    command: 'node tools/validators/validate-done-right.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_checked=(\d+)\s+missing_enforcement_tier=(\d+)\s+t3_only=(\d+)\s+blocking=(\d+)/);
+      return m ? { files_checked: Number(m[1]), missing_enforcement_tier: Number(m[2]), t3_only: Number(m[3]), blocking: Number(m[4]) } : {};
+    },
+  },
+  {
     // S055: VALIDATE-VALIDATORS meta-validator layer (Methodology 5). Reads verify-last-run.md.
     // Advisory: DEFERRED validators + validators with empty parse_output + all-zero numeric output.
     // "Existence ≠ active" (AP-001) applied to validators themselves.

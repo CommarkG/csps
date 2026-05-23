@@ -53,6 +53,7 @@ scope_level: S1
 
 | Contract | Spine | Shard |
 |---|---|---|
+| [B_UX](behavioral-contracts/B_UX.md) | AI | [shard](behavioral-contracts/B_UX.md) |
 | [B_AI_PROFESSIONAL_VOICE](behavioral-contracts/B_AI_PROFESSIONAL_VOICE.md) | AI | [shard](behavioral-contracts-AI.md) |
 | [B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK](behavioral-contracts/B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK.md) | ARCH | [shard](behavioral-contracts-ARCH.md) |
 | [B_VALIDATE_BEFORE_ASSUME](behavioral-contracts/B_VALIDATE_BEFORE_ASSUME.md) | AI | [shard](behavioral-contracts-AI.md) |

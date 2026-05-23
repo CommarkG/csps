@@ -106,3 +106,7 @@ exemptions:
   - id: B_ZCA
     reason: "Zero-context-assumption — boundary discipline, T3 only."
     target_session: S052
+
+  - id: B_UX
+    reason: "S055 definitions-only per PROTO. T1+T2 validators planned S056 (validate-ux-*.mjs pending)."
+    target_session: S056

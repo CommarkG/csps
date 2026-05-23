@@ -85,6 +85,9 @@ const KNOWN_MAPPINGS = {
   'validate-positive-reflexivity': ['positive-reflexivity', 'positive_reflexivity'],
   'validate-validators': ['validate-validators', 'validate_validators', 'meta-validator-layer'],
   'validate-session-authority': ['session-authority', 'session_authority', 'session-authority-validation'],
+  'validate-contextual-locality': ['contextual-locality', 'contextual_locality', 'b-contextual-locality'],
+  'validate-done-right': ['done-right', 'done_right', 'b-done-right-from-start', 'done-right-from-start'],
+  'validate-ai-conception-enforcement': ['ai-conception-enforcement', 'ai_conception_enforcement', 'gap-t1-ai-conception-vault'],
 };
 
 function validatorBasename(filename) {

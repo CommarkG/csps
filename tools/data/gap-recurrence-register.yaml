@@ -30,22 +30,31 @@ entries:
     first_seen: S040
     k_count: 5
     sessions: [S040, S046, S051, S052, S053, S053-turn-11]
-    status: open
+    status: structural_fix_proposed
     structural_fix_triggered: true
     structural_fix_required_since: S042
-    behavioral_test_exists: false
-    note: "K=5. Constitutional gap. B_PRACE requires T1+T2+T3 at creation. Every session re-discovers this. The mirror loop must end here."
+    behavioral_test_exists: true
+    behavioral_test_file: tools/tests/behavioral/ai-conception-enforcement-test.sh
+    structural_fix_file: tools/validators/validate-ai-conception-enforcement.mjs
+    note: "K=5. S055: T2 validator built (advisory baseline: 13/13 missing enforcement_tier, 0% rate). Behavioral test 2/2. T1 hook still pending — must be done before constitutional gap is fully closed. Mirror loop ends when rate reaches 100%."
 
   - id: gap_T2_ORPHAN_CONTRACTS
     observation: "9 constitutional B_* contracts have no T2 validator (B_PRACE, B_NO_AI_IMPERSONATION, B_APPS_ARE_TRIALS, B_DONE_RIGHT_FROM_THE_START, B_DEFINITION_BEFORE_ENFORCEMENT, B_AUTONOMY_4_CONDITIONS, B_CHECKPOINT_8_CATEGORIES, B_CONTEXTUAL_LOCALITY, B_DEVELOPMENT_VS_PRODUCTION)"
     first_seen: S052
     k_count: 2
     sessions: [S052, S053]
-    status: open
+    status: structural_fix_proposed
     structural_fix_triggered: true
     structural_fix_required_since: S052
-    behavioral_test_exists: false
-    note: "K=2. Registered in audit-runner.md (S052). No validator built yet. Structural fix = build T2 for top 3 by impact."
+    behavioral_test_exists: true
+    behavioral_test_files:
+      - tools/tests/behavioral/apps-are-trials-test.sh
+      - tools/tests/behavioral/contextual-locality-test.sh
+      - tools/tests/behavioral/done-right-from-start-test.sh
+    structural_fix_files:
+      - tools/validators/validate-contextual-locality.mjs
+      - tools/validators/validate-done-right.mjs
+    note: "K=2. S055: behavioral tests built for top 3 contracts. validate-apps-are-trials.mjs T2 existed (test added). validate-contextual-locality.mjs + validate-done-right.mjs NEW. Remaining 6 orphans: B_PRACE, B_NO_AI_IMPERSONATION, B_DEFINITION_BEFORE_ENFORCEMENT, B_AUTONOMY_4_CONDITIONS, B_CHECKPOINT_8_CATEGORIES, B_DEVELOPMENT_VS_PRODUCTION."
 
   - id: gap_ZF_NOMINAL_CYCLES
     observation: "AI writes nominal ZF cycles ('no new findings', 'areas', 'topics') instead of naming specific files and line numbers"

@@ -78,7 +78,7 @@ ZF ACHIEVED.
 FROM OPUS-[N] | FOR SONNET TAB — S[NNN] STARTUP
 
 YOU ARE: Sonnet, builder. Session S[NNN].
-I AM: Yariv Fink (Governor).
+GOVERNOR: Yariv Fink.
 SITUATION: S[NNN-1] closed at [sha]. pnpm verify exit_code=0. [N] validators. Fresh tab.
   S[NNN] mandate: [top 2 MDPE items from HANDOFF Zone B]
 

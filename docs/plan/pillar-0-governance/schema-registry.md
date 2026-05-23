@@ -470,6 +470,13 @@ schema_anchors:
     l2_domain: AGENT_BEHAVIOR
     description: CSPS skill template artifacts — SKILL-BASE parent template with 6 mandatory sections (Identity/AAP/Input/Output/ZF/Enforcement)
 
+  behavioral_contracts:
+    type: governance-section
+    resolves_to: docs/plan/pillar-0-governance/behavioral-contracts/
+    spine: AI
+    l2_domain: AI_BEHAVIOR
+    description: Individual B_* behavioral contract shard files (one file per contract in behavioral-contracts/ directory)
+
   behavioral_contracts_ai:
     type: governance-section
     resolves_to: docs/plan/pillar-0-governance/behavioral-contracts-AI.md

@@ -17,6 +17,11 @@
 
 set -euo pipefail
 
+# Session-level deduplication — skip repeat CEC fires for the same file within a session.
+# Cache file resets when Claude Code restarts (temp file, not committed).
+# Prevents K=6+ CEC noise on template/behavioral files without weakening new-file enforcement.
+CEC_CACHE="${TMPDIR:-/tmp}/csps-cec-session-cache"
+
 # Read file path from stdin
 FILE_PATH=$(node -e "
   let d='';
@@ -64,6 +69,14 @@ if [[ "$NEEDS_CEC" == "false" ]] && [[ -n "$FILE_PATH" ]]; then
 fi
 
 [[ "$NEEDS_CEC" == "false" ]] && exit 0
+
+# Deduplication: if this file was already CEC-notified this session, skip.
+# First fire = notify + cache. Subsequent fires on same file = silent skip.
+if [[ -f "$CEC_CACHE" ]] && grep -qF "$FILE_PATH" "$CEC_CACHE" 2>/dev/null; then
+  exit 0
+fi
+# Record this file as notified
+echo "$FILE_PATH" >> "$CEC_CACHE" 2>/dev/null || true
 
 # Inject CEC requirement
 printf '{

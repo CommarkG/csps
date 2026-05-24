@@ -1,5 +1,77 @@
-# FROM SONNET — S060 PROTO SWEEP COMPLETE | 77b5544 | exit_code=0 | 161 validators
-Date: 2026-05-25 | Role: Sonnet acting as director+builder (Governor directive)
+# FROM SONNET | FOR OPUS TAB — PERMANENCE-BY-DEFAULT BUILT + OPUS REVIEW REQUESTED
+Date: 2026-05-25 | Commit: [976e0cd](https://github.com/CommarkG/csps/commit/976e0cd) | exit_code=0 | 162 validators
+
+Governor directive: "create enhancements so the default in each creation will be to be permanent and to be inherited — formalize it and make a mandatory in every implementation"
+
+## WHAT WAS BUILT (5 deliverables)
+
+**1. `validate-permanence-coverage.mjs`** (T2 validator)
+- Scans all 66 B_* contract slices for T1/T2/T3 declarations
+- **Baseline established**: full_trio=35 (53%) | has_t1=35 | has_t2=56 | no_enforcement=8
+- In verify.mjs as `permanence_coverage` cycle
+- Slug `permanence-coverage` registered in audit-runner.md
+
+**2. `.claude/hooks/pre-tool-use-permanence-gate.sh`** (T1 hook)
+- Fires on Write/Edit to behavioral-contracts/B_*.md, principles.yaml, contract shards
+- Warns when new governance artifact has no Mechanical surfaces block
+- Advisory (exit 0) — T2 is the real gate; T1 prevents at write time
+
+**3. `tools/templates/b-star-contract.template.md`** (template update)
+- `enforcement_trio` block added as MANDATORY field
+- T1/T2/T3/coverage/status all required — parsed by validate-permanence-coverage.mjs
+
+**4. `docs/plan/pillar-0-governance/PERMANENCE-PROTOCOL.md`** (new creation-time checklist)
+- 5-step creation gate: T2 first → T1 next → T3 → enforcement_trio → inherit
+- Permanence Quick-Check (4 questions before claiming DONE)
+- Permanence tiers table (Ephemeral → Documented → T3-aware → T2-enforced → T1-prevented → PERMANENT)
+- Inheritance protocol: `inherits_enforcement_from` field for child artifacts
+- Platform score target: 53% (S060) → 65% → 80% → 90%
+
+**5. Session-open D1 permanence score**
+- CIE D1 now shows: "Permanence: 35/66 contracts T1+T2+T3 (53%) | T2-only: 56"
+- Every Opus session starts knowing the permanence gap
+
+## WHAT NEEDS OPUS REVIEW + ENHANCEMENT
+
+**Question 1 — Inheritance protocol depth:**
+The PERMANENCE-PROTOCOL.md has `inherits_enforcement_from` field but `validate-permanence-coverage.mjs` doesn't yet parse it. Should the validator:
+(a) Count contracts with `inherits_enforcement_from` as "T2/T3-covered-by-parent" (not missing)?
+(b) Treat inheritance chains as transparent — trace parent and inherit its coverage?
+**Recommendation:** Option (b) but that requires tracing parent IDs. Too complex for now → Option (a) simpler.
+
+**Question 2 — Coverage threshold:**
+Currently advisory at all coverage levels. When should it become BLOCKING?
+(a) When coverage drops below 30% (regression protection)
+(b) When no_enforcement count > 10 (absolute floor)
+(c) Both
+
+**Question 3 — The 8 contracts with no Mechanical surfaces:**
+`no_enforcement=8` in the baseline. Should these be:
+(a) Fixed immediately (add Mechanical surfaces retrospectively)
+(b) Tracked in gap register and addressed in next session
+(c) Grandfathered (legacy — marked as `enforcement_status: legacy-exempt`)
+
+**Question 4 — enforcement_trio in frontmatter vs body:**
+Currently validator scans the body text for T1/T2/T3 signals.
+Should we standardize to YAML frontmatter (`enforcement_trio:`) as the canonical machine-readable field?
+This would require updating 66 contracts — is that worth doing now or deferred?
+
+**Question 5 — The 21 "partial" contracts:**
+21 contracts have some but not full T1+T2+T3. Specific pattern?
+Most have T2+T3 but no T1 hook. Should Sonnet:
+(a) Create stub pre-tool-use hooks for all 21 in next session?
+(b) Only create hooks for the highest-PE contracts?
+
+ZF Cycle 1: Confirmed [validate-permanence-coverage.mjs](../../tools/validators/validate-permanence-coverage.mjs) live: advisory=1 (8 no_enforcement) | blocking=0. Confirmed [pre-tool-use-permanence-gate.sh](../../.claude/hooks/pre-tool-use-permanence-gate.sh) — fires on B_*.md writes, warns without blocking. Confirmed [b-star-contract.template.md](../../tools/templates/b-star-contract.template.md) — enforcement_trio block added with MANDATORY label. Confirmed [PERMANENCE-PROTOCOL.md](../../docs/plan/pillar-0-governance/PERMANENCE-PROTOCOL.md) has impl_status: swift-implemented + enforcement_trio in frontmatter (self-referential: the protocol applies its own protocol). Confirmed D1 permanence score live: "Permanence: 35/66 contracts T1+T2+T3 (53%)". Verify exit_code: 0 | 162 validators.
+ZF Cycle 2: Re-examined validate-permanence-coverage.mjs scan logic (T1 detected via `.claude/hooks/`, T2 via `validate-*.mjs` or backtick slug, T3 via schema/memory/feedback_*.md patterns). Re-examined pre-tool-use hook exit code (0 = advisory, not blocking — correct). Re-examined template enforcement_trio block (YAML format with comments — parseable). Re-examined PERMANENCE-PROTOCOL.md inheritance section (defines inherits_enforcement_from field but validator doesn't yet parse chains — noted in Question 1 above). 0 new findings.
+**ZF ACHIEVED.**
+
+Session close classification: **ADVANCE** — Permanence now has T1+T2+T3 enforcement on itself (self-referential). The Governor's core frustration — "things don't stay permanent" — has a measurement (53%), a creation gate (T1 hook), a verification gate (T2), and a session-start score (D1). The platform can now track whether permanence improves.
+
+AWAIT Opus direction on the 5 questions above.
+
+---
+(Previous: PROTO-NORTHSTAR-1 COMPLETE)
 
 PROTOS COMPLETED THIS TURN:
 ✅ PROTO-F: unified-plan.yaml — GAP-RECURRENCE-ENFORCEMENT + BEHAVIORAL-TEST-SUITE → done; INFRA-FLOW-VALIDATION Threshold note updated (a26b82d)

@@ -9,7 +9,7 @@ context_quote: "One central engine. Sub-engines activated by need. Intelligence 
 version: "1.0"
 session: S056
 name: "SIA-R2-platform-intelligence-engine"
-description: "Central Intelligence Engine consolidating PE, learning loop, scope router, seeds monitor, doc engine"
+description: "Central Intelligence Engine (CIE = Combinatorial Engine) — provides computed intelligence as services on demand. Does not decide. Illuminates. 9 sub-engines: PE + Learning Loop + Scope Router + Seeds Monitor + Doc Engine + UX Engine + Session Engine + Governance Engine + Relay Engine. S059 extended from 5 to 9 sub-engines."
 owner: "group:finky"
 lifecycle: "production"
 lifecycle_state: "active"
@@ -242,4 +242,76 @@ interface EngineStatus {
 
 ---
 
-*CSPS — SIA | Platform Intelligence Engine v1.0 | RATIFIED S056 | Opus-8*
+---
+
+## S059 Extension — 4 New Sub-Engines + Services Architecture
+
+### CIE = Combinatorial Engine (canonical name confirmed S059)
+The CIE is NOT an orchestrator. It does not decide. It illuminates.
+Decision chain: CIE (computes) → Opus (ratifies) → Governor (approves) → Sonnet (executes)
+
+### 4 New Sub-Engines (extending original 5)
+
+**6. UX Engine**
+  D1: pages with UX score below 6/8 | D3: full audit with violation log
+  Reads: apps/csps-playground pages, pageDNA fields, voice profile declarations
+  Outputs: UX score per page, missing elements list, voice profile mismatches
+
+**7. Session Engine**
+  D1: open decisions + items in flight | D3: complete session state export
+  Reads: tools/data/session-state.json, tools/council/sonnet-turn.md, tools/data/pending-plan-items.yaml
+  Outputs: what's in progress, what's blocked, what Governor decisions are needed
+
+**8. Governance Engine**
+  D1: K≥2 gaps without T1/T2 + missing enforcement | D3: full enforcement audit
+  Reads: tools/data/gap-recurrence-register.yaml, tools/data/improvement-register.yaml, .claude/hooks/
+  Outputs: structural fix candidates, T1 hook proposals for K≥2 patterns
+
+**9. Relay Engine** (CSPS-unique — no industry parallel)
+  D1: pending Governor decisions surfaced | D3: decision pattern analysis
+  Reads: docs/plan/_handoff/VAULT/governor-prompts/, tools/data/pending-plan-items.yaml
+  Outputs: what decisions Governor needs to make, in PE-scored order
+
+### Services API (the simplification)
+
+With CIE as a service provider:
+
+```typescript
+// These calls replace manual reasoning across the entire platform:
+CIE.getTopItems(n)            // PE-ordered plan items — no more manual YAML parsing
+CIE.checkReadinessGate(id)    // Layer prerequisite check — no more manual CORE-COMPLETE reads
+CIE.getVoiceProfile(userId)   // BehaviorProfile → correct voice profile (Phase 2)
+CIE.getUXScore(pagePath)      // Page quality score — no more separate audit runs
+CIE.runLearningLoop()         // K count extraction → pending-plan-items.yaml
+CIE.detectConflicts([items])  // Sequencing conflict detection
+CIE.getOpenGaps(minK)         // K≥2 gaps with fix status
+CIE.getCompletionSnapshot()   // Computed completion metrics — replaces GitHub raw API
+CIE.getSessionStatus()        // Current session state — what's in flight, what's blocked
+CIE.getPendingDecisions()     // What Governor needs to decide, PE-ordered
+```
+
+### What Skills and Agents Add (distinct from CIE)
+
+CIE sub-engines: deterministic TypeScript functions (no LLM, fast)
+CSPS Skills: AI reasoning patterns loaded into Opus/Sonnet context (via AGENTS.md)
+CSPS Agents: specialized AI instances for discrete tasks (Mastra runtime, future)
+
+The orchestration: CIE computes → Skills help reason → Governor approves → Sonnet executes
+
+### Implementation Sequence
+
+Phase 1 (next PROTO after PROTO-K-PRE):
+  - getCompletionSnapshot() → replaces playground GitHub raw API fetch
+  - getSessionStatus() → wired to session-open-context.mjs (the critical missing link)
+  - Wire to session-open: "CIE D1: PE top-3 + open gaps + pending decisions" injected at Opus startup
+
+Phase 2 (S060):
+  - getUXScore(pagePath) — UX Engine sub-engine
+  - getOpenGaps(minK) — Governance Engine sub-engine
+  - Playground API routes /api/cie/* — serve CIE to Next.js
+
+Phase 3 (S061):
+  - getVoiceProfile(userId) — BehaviorProfile integration
+  - Relay Engine full implementation
+
+*CSPS — SIA | Platform Intelligence Engine v1.1 | RATIFIED S056, Extended S059 | Opus-8*

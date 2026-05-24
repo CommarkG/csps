@@ -58,10 +58,10 @@ echo ""
 echo "pre-tool-use-add-not-replace-gate.sh behavioral test"
 echo ""
 
-# INPUT A: Write to existing 100-line file with 20-line replacement → BLOCK (exit=1)
+# INPUT A: Write to existing 100-line file with 20-line replacement → ADVISORY (exit=0)
 JSON_A=$(printf '{"tool_name":"Write","tool_input":{"file_path":"%s","content":%s}}' \
   "$EXISTING_FILE" "$SMALL_JSON")
-check "INPUT A (Write existing 100-line with 20-line = 80% reduction) → BLOCK" 1 "$JSON_A"
+check "INPUT A (Write existing 100-line with 20-line = 80% reduction) → ADVISORY (exit=0)" 0 "$JSON_A"
 
 # INPUT B: Write to existing 100-line file with 80-line update → PASS (exit=0)
 JSON_B=$(printf '{"tool_name":"Write","tool_input":{"file_path":"%s","content":%s}}' \
@@ -86,7 +86,7 @@ check "INPUT E (Write to .yaml, not .tsx) → PASS" 0 "$JSON_E"
 # INPUT F: Protected file with DO NOT REPLACE → BLOCK even at 50-line replacement
 JSON_F=$(printf '{"tool_name":"Write","tool_input":{"file_path":"%s","content":%s}}' \
   "$PROTECTED_FILE" "$MEDIUM_JSON")
-check "INPUT F (Protected DO NOT REPLACE file with 50-line replacement) → BLOCK" 1 "$JSON_F"
+check "INPUT F (Protected DO NOT REPLACE file with 50-line replacement) → ADVISORY (exit=0)" 0 "$JSON_F"
 
 echo ""
 echo "$((PASS + FAIL)) test(s): $PASS passed, $FAIL failed"

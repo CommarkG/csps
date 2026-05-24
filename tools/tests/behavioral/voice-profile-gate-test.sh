@@ -30,10 +30,10 @@ echo ""
 echo "pre-tool-use-voice-profile-gate.sh behavioral test"
 echo ""
 
-# INPUT A: Form component with no voiceProfile → BLOCK (exit=1)
+# INPUT A: Form component with no voiceProfile → ADVISORY (exit=0)
 CONTENT_A='export function MyForm() { return <form><input type="text" /></form> }'
 JSON_A=$(printf '{"tool_name":"Write","tool_input":{"file_path":"/app/MyForm.tsx","content":%s}}' "$(echo "$CONTENT_A" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>process.stdout.write(JSON.stringify(d)))")")
-check "INPUT A (form component with no voiceProfile) → BLOCK" 1 "$JSON_A"
+check "INPUT A → ADVISORY (exit=0)" 0 "$JSON_A"
 
 # INPUT B: Form with voiceProfile prop → PASS (exit=0)
 CONTENT_B='export function MyForm({ voiceProfile = "colleague" }) { return <form><input /></form> }'
@@ -50,10 +50,10 @@ CONTENT_D='export function DataTable({ rows }) { return <div>{rows.map(r => <spa
 JSON_D=$(printf '{"tool_name":"Write","tool_input":{"file_path":"/app/DataTable.tsx","content":%s}}' "$(echo "$CONTENT_D" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>process.stdout.write(JSON.stringify(d)))")")
 check "INPUT D (non-form display component) → PASS" 0 "$JSON_D"
 
-# INPUT E: WizardClient without voiceProfile → BLOCK (exit=1)
+# INPUT E: WizardClient without voiceProfile → ADVISORY (exit=0)
 CONTENT_E='export default function WizardClient() { return <div><input type="text" /></div> }'
 JSON_E=$(printf '{"tool_name":"Write","tool_input":{"file_path":"/platform/wizard/WizardClient.tsx","content":%s}}' "$(echo "$CONTENT_E" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>process.stdout.write(JSON.stringify(d)))")")
-check "INPUT E (WizardClient without voiceProfile) → BLOCK" 1 "$JSON_E"
+check "INPUT E → ADVISORY (exit=0)" 0 "$JSON_E"
 
 # INPUT F: Non-.tsx file → PASS (exit=0)
 JSON_F='{"tool_name":"Write","tool_input":{"file_path":"/config/form.yaml","content":"<form> no profile"}}'

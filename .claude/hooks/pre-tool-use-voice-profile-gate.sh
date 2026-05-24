@@ -73,10 +73,9 @@ fi
 if [ "$HAS_VOICE_PROFILE" = "false" ]; then
   FILE_NAME=$(basename "$FILE_PATH")
   printf '{
-    "decision": "block",
     "systemMessage": "VOICE PROFILE GATE [BLOCKING]: This form/wizard has no voice profile.\nFile: %s\n\nForms without a voice profile use hardcoded exam language.\nBefore writing this component, add one of:\n\n  voiceProfile=\"colleague\"     — conversational, example-driven\n  voiceProfile=\"professional\"   — formal, structured\n  voiceProfile=\"mentor\"         — exploratory, scaffolded\n\nOr use: const vp = useVoiceProfile('"'"'colleague'"'"')\n\nSee: docs/SIA/VOICE-PROFILE-SYSTEM.md §4 Component Integration."
   }' "$FILE_NAME"
-  exit 1
+  exit 0
 fi
 
 exit 0

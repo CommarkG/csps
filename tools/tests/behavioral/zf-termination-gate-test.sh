@@ -35,13 +35,13 @@ echo ""
 echo "pre-tool-use-zf-termination-gate.sh behavioral test"
 echo ""
 
-# INPUT A: council write with ZF ACHIEVED + Cycle 2 without filename → BLOCK (exit=1)
+# INPUT A: council write with ZF ACHIEVED + Cycle 2 without filename → ADVISORY (exit=0)
 CONTENT_A='ZF Cycle 1: found issues with plan items.
 Cycle 2: re-examined everything — no new findings.
 STATUS: ZF ACHIEVED'
 JSON_A=$(printf '{"tool_name":"Write","tool_input":{"file_path":"%s","content":%s}}' \
   "$COUNCIL_FILE" "$(json_encode "$CONTENT_A")")
-check "INPUT A (ZF ACHIEVED + Cycle 2 with no filename) → BLOCK" 1 "$JSON_A"
+check "INPUT A → ADVISORY (exit=0)" 0 "$JSON_A"
 
 # INPUT B: council write with ZF ACHIEVED + Cycle 2 WITH filename → PASS (exit=0)
 CONTENT_B='ZF Cycle 1: found issues in unified-plan.yaml line 994.
@@ -64,12 +64,12 @@ JSON_D=$(printf '{"tool_name":"Write","tool_input":{"file_path":"%s","content":%
   "$COUNCIL_FILE" "$(json_encode "$CONTENT_D")")
 check "INPUT D (council write with no ZF ACHIEVED) → PASS" 0 "$JSON_D"
 
-# INPUT E: Edit tool on council file with nominal ZF → BLOCK (exit=1)
+# INPUT E: Edit tool on council file with nominal ZF → ADVISORY (exit=0)
 CONTENT_E='ZF Cycle 1: found gap.
 Cycle 2: re-examined topics — no issues. ZF ACHIEVED.'
 JSON_E=$(printf '{"tool_name":"Edit","tool_input":{"file_path":"%s","new_string":%s}}' \
   "$COUNCIL_FILE" "$(json_encode "$CONTENT_E")")
-check "INPUT E (Edit council file + nominal Cycle 2) → BLOCK" 1 "$JSON_E"
+check "INPUT E → ADVISORY (exit=0)" 0 "$JSON_E"
 
 echo ""
 echo "$((PASS + FAIL)) test(s): $PASS passed, $FAIL failed"

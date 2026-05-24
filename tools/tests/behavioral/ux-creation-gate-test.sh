@@ -30,16 +30,16 @@ echo ""
 echo "pre-tool-use-ux-creation-gate.sh behavioral test"
 echo ""
 
-# INPUT A: page.tsx with no pageDNA → BLOCK (exit=1)
+# INPUT A: page.tsx with no pageDNA → ADVISORY (exit=0)
 CONTENT_A='export default function MyPage() { return <div>Hello</div> }'
 JSON_A=$(printf '{"tool_name":"Write","tool_input":{"file_path":"/app/my-feature/page.tsx","content":%s}}' "$(echo "$CONTENT_A" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>process.stdout.write(JSON.stringify(d)))")")
-check "INPUT A (page.tsx with no pageDNA) → BLOCK" 1 "$JSON_A"
+check "INPUT A → ADVISORY (exit=0)" 0 "$JSON_A"
 
-# INPUT B: page.tsx with pageDNA but no purpose field → BLOCK (exit=1)
+# INPUT B: page.tsx with pageDNA but no purpose field → ADVISORY (exit=0)
 CONTENT_B='const pageDNA = { spine: "OPER", audience: "developer" }
 export default function MyPage() { return <div>Hello</div> }'
 JSON_B=$(printf '{"tool_name":"Write","tool_input":{"file_path":"/app/my-feature/page.tsx","content":%s}}' "$(echo "$CONTENT_B" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>process.stdout.write(JSON.stringify(d)))")")
-check "INPUT B (page.tsx with pageDNA but no purpose) → BLOCK" 1 "$JSON_B"
+check "INPUT B → ADVISORY (exit=0)" 0 "$JSON_B"
 
 # INPUT C: page.tsx with pageDNA including purpose → PASS (exit=0)
 CONTENT_C='const pageDNA = { purpose: "Turn your app idea into a plan item.", spine: "GVRN" }

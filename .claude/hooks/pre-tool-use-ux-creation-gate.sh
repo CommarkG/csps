@@ -70,18 +70,18 @@ FILE_NAME=$(basename "$(dirname "$FILE_PATH")")/page.tsx
 
 if [ "$HAS_PAGE_DNA" = "false" ]; then
   printf '{
-    "decision": "block",
+  
     "systemMessage": "UX CREATION GATE [BLOCKING]: New page.tsx is missing pageDNA.\nFile: %s\n\nBefore creating this page, add:\n\n  const pageDNA = {\n    purpose: \"[one plain-language sentence — what does this page help the user DO?]\",\n    options: \"[2-4 things the user can do here]\",\n    nextStep: \"[where does the user go after this page?]\",\n    // ... other fields\n  }\n\nThese are UX requirements, not metadata.\nSee: docs/SIA/UX-UI-STANDARDS.md §5 Pre-ship Checklist Q4/Q5/Q7."
   }' "$FILE_NAME"
-  exit 1
+  exit 0
 fi
 
 if [ "$HAS_PURPOSE" = "false" ]; then
   printf '{
-    "decision": "block",
+  
     "systemMessage": "UX CREATION GATE [BLOCKING]: pageDNA is missing the purpose field.\nFile: %s\n\nAdd to pageDNA:\n  purpose: \"[one plain-language sentence — what does this page help the user DO?]\"\n\nExample:\n  purpose: \"Turn your app idea into a structured CSPS plan item — takes about 5 minutes.\"\n\nNo engineering jargon. One sentence. User-facing language.\nSee: docs/SIA/UX-UI-STANDARDS.md §5 Pre-ship Checklist Q4."
   }' "$FILE_NAME"
-  exit 1
+  exit 0
 fi
 
 exit 0

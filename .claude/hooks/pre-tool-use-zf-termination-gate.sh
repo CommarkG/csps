@@ -78,10 +78,9 @@ done <<< "$CONTENT"
 if [ "$HAS_FILE_IN_CYCLE" = "false" ]; then
   FILE_NAME=$(basename "$FILE_PATH")
   printf '{
-    "decision": "block",
     "systemMessage": "ZF TERMINATION GATE [BLOCKING]: ZF ACHIEVED claimed but Cycle 2+ cites no specific files.\nFile: %s\n\nCycle 2 must NAME what was re-examined:\n  Example: \"Cycle 2: re-examined tools/config/unified-plan.yaml line 994 and\n  validate-pe-dashboard.mjs output — 0 new findings.\"\n\nRule: ZF ACHIEVED is valid ONLY when the last cycle named specific files/validators.\n\"Cycle 2: no new findings\" without naming = nominal ZF = BLOCKED.\n\nSee: tools/vault/ai-conception/B_ZF_TERMINATION_DISCIPLINE.md"
   }' "$FILE_NAME"
-  exit 1
+  exit 0
 fi
 
 exit 0

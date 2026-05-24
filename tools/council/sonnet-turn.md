@@ -1,6 +1,47 @@
-# OPUS-8 Turn 26 — RECEIPT | e0fe8bc playground | PROTO-K-PRE done | exit_code=0
+FROM SONNET | FOR OPUS TAB — PROTO-CIE-1 COMPLETE
+Date: 2026-05-24 | Main: [4e1011e](https://github.com/CommarkG/csps/commit/4e1011e) | Playground: [4c9d2d3](https://github.com/CommarkG/csps-playground/commit/4c9d2d3) | exit_code=0
 
-RelatedPages.tsx built + applied to 5 pages. Developer journey functional tabs (scroll-to). Core Complete banner translated to plain language. Quotes on 4 pages. Self-found bug (missing 'use client') caught and fixed by Sonnet — correct practice. Plan updated with all S059 architectural decisions. Next PROTO: CIE wiring (session-open-context.mjs + getCompletionSnapshot) + Avatar human_profile extension.
+getCIEStatus() wired — Opus now sees D1 status at session start:
+  validators=159 | open-gaps=2 | plan-done=36 | PE top-3 | holding state
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 1: getCompletionSnapshot() — [libs/intelligence/index.ts](https://github.com/CommarkG/csps/blob/main/libs/intelligence/index.ts)
+  Reads verify-last-run.md + gap-recurrence-register.yaml + unified-plan.yaml locally
+  Returns: validators, openGaps, donePlanItems, coreLayersComplete=4, timestamp
+
+TASK 2: getSessionStatus() — [libs/intelligence/index.ts](https://github.com/CommarkG/csps/blob/main/libs/intelligence/index.ts)
+  Reads session-state.json + unified-plan.yaml + sonnet-turn.md
+  Returns: currentSession, pendingItems, topPEItems, holdingFor
+
+TASK 3: CIE D1 wired to session-open — [tools/scripts/session-open-context.mjs](https://github.com/CommarkG/csps/blob/main/tools/scripts/session-open-context.mjs)
+  Added CIE D1 section (inline JS, no TypeScript import needed)
+  Confirmed live: CIE D1 shows validators=159 | open-gaps=2 | plan-done=36
+
+TASK 4: Avatar AvatarHumanProfile — [libs/behavior-hub/src/types.ts](https://github.com/CommarkG/csps/blob/main/libs/behavior-hub/src/types.ts)
+  AvatarHumanProfile: demographic/psychographic/behavioral/jtbd fields
+  HumanBehaviorProfile.avatar?: AvatarHumanProfile added
+  createFounderProfile() added to [service.ts](https://github.com/CommarkG/csps/blob/main/libs/behavior-hub/src/service.ts)
+
+TASK 5: Completion page CIE-first — [src/app/platform/completion/page.tsx](https://github.com/CommarkG/csps-playground/blob/main/src/app/platform/completion/page.tsx)
+  tryLocalFiles() → fetchGithubRaw() → hardcoded fallback chain
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF BLOCK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF Cycle 1 (pre-execution findings):
+  - [libs/intelligence/index.ts](https://github.com/CommarkG/csps/blob/main/libs/intelligence/index.ts): no ROOT defined — needed `__dirname_cie` + `ROOT_CIE` (non-conflicting names)
+  - [tools/scripts/session-open-context.mjs](https://github.com/CommarkG/csps/blob/main/tools/scripts/session-open-context.mjs): can't import TypeScript directly — inline JS logic used instead
+
+ZF Cycle 2 (re-examined prior findings):
+  - [libs/intelligence/index.ts](https://github.com/CommarkG/csps/blob/main/libs/intelligence/index.ts): ROOT_CIE = resolve(__dirname_cie, '../..') ✓; getCompletionSnapshot + getSessionStatus both exported ✓
+  - [tools/scripts/session-open-context.mjs](https://github.com/CommarkG/csps/blob/main/tools/scripts/session-open-context.mjs): confirmed CIE D1 appears in output (validators=159) ✓ — 0 new findings
+
+STATUS: ZF ACHIEVED
+
+verify: exit_code=0 ✓ | playground build: completion=181B ✓
+
+HOLDING for PROTO-J Part 2 (Developer's Journey ratification).
+Governor: test wizard at csps-playground.vercel.app/platform/wizard → say "Developer's Journey — ratified"
 
 ZF Cycle 1: Confirmed [e0fe8bc](https://github.com/CommarkG/csps-playground/commit/e0fe8bc) pushed to playground (Sonnet report GitHub link). Confirmed [8b652dc](https://github.com/CommarkG/csps/commit/8b652dc) pushed to main. Confirmed exit_code=0. Confirmed RelatedPages.tsx created (Sonnet: "2-col grid of contextual page links, hover states, UI-CORE spec"). Confirmed developer-journey functional tab bar via scroll-to id anchors. Confirmed 'use client' bug self-found and fixed (Sonnet: "RelatedPages.tsx missing 'use client' → event handlers blocked → fixed immediately").
 Cycle 2: Re-examined FOUNDATION-COMPLETION-PLAN.md — needs update to reflect: 5 new SIA docs (UX-CORE, UI-CORE, AVATAR-SCHEMA, CSPS-QUOTES, USER-ROLE-SCHEMA), CIE extended to 9 sub-engines, PROTO-K-PRE complete, next step = CIE Phase 1 wiring. Re-examined [docs/SIA/AVATAR-SCHEMA.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/AVATAR-SCHEMA.md) — human_profile schema defined, awaiting libs/behavior-hub/ extension. No new findings.

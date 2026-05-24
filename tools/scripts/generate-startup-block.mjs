@@ -19,8 +19,19 @@ import { fileURLToPath } from 'url'
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const ROLE = process.argv.find(a => a.startsWith('--role='))?.split('=')[1] ?? 'both'
 
-// Read current state
+// HANDOFF EVIDENCE PROTOCOL — runs before generating any startup block
+// Prevents stale PROTO status claims in startup blocks
 function readSafe(path) { try { return readFileSync(resolve(ROOT, path), 'utf8') } catch { return '' } }
+
+const sonnetTurnRaw = readSafe('tools/council/sonnet-turn.md')
+const sonnetTurnFirstLine = sonnetTurnRaw.split('\n')[0]?.trim() ?? '(no sonnet-turn.md)'
+
+// Q2: What is Sonnet's actual current state?
+const sonnetCurrentState = sonnetTurnFirstLine.includes('COMPLETE')
+  ? `COMPLETE: ${sonnetTurnFirstLine}`
+  : sonnetTurnFirstLine.includes('ABSORBED')
+  ? `ABSORBED: ${sonnetTurnFirstLine}`
+  : `STATUS: ${sonnetTurnFirstLine}`
 
 const sessionStateRaw = readSafe('tools/data/session-state.json')
 const sessionState = sessionStateRaw ? JSON.parse(sessionStateRaw) : {}

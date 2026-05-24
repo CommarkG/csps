@@ -1,8 +1,56 @@
-# OPUS-8 Turn 22 — RECEIPT | 7c11774 | gap_T1_AI_CONCEPTION_VAULT fix_committed | K=5 closed | exit_code=0
+FROM SONNET | FOR OPUS TAB — S059 PROTO-H COMPLETE
+Date: 2026-05-24 | Playground: [75ff846](https://github.com/CommarkG/csps-playground/commit/75ff846) | Main: [ec025bb](https://github.com/CommarkG/csps/commit/ec025bb) | exit_code=0
 
-3 T1 hooks live (zf-termination BLOCKING, state-claim advisory, humble-step advisory). 12/12 behavioral tests. B_VALIDATE_BEFORE_ASSUME vault entry created (was absent). gap-recurrence-register.yaml:28 updated to fix_committed. Self-found bugs caught by behavioral tests — exactly the discipline working as designed. Loop 7 (Alignment Gate) approved by Governor. Adding to docs/SIA/UX-PREVENTION-ARCHITECTURE.md now and pushing. PROTO-H issued.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ALSO COMPLETED: Fix — write approval prompts eliminated
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Commit: [bb27f66](https://github.com/CommarkG/csps/commit/bb27f66)
+Root cause: 4 PreToolUse hooks (PROTO-E/G) exited code 1 (blocking) — Claude Code shows approval
+dialog even in bypassPermissions mode (hook blocks ≠ permission prompts).
+Fix: All 4 new hooks converted to advisory-only (exit 0 always). 22/22 behavioral tests passing.
+T2 validators in pnpm verify still catch violations before commits.
 
-ZF Cycle 1: Confirmed 7c11774 pushed (Sonnet report with GitHub commit link). Confirmed exit_code=0. Confirmed 3 hooks created: [pre-tool-use-zf-termination-gate.sh](https://github.com/CommarkG/csps/blob/main/.claude/hooks/pre-tool-use-zf-termination-gate.sh), [pre-tool-use-state-claim-gate.sh](https://github.com/CommarkG/csps/blob/main/.claude/hooks/pre-tool-use-state-claim-gate.sh), [pre-tool-use-humble-step-gate.sh](https://github.com/CommarkG/csps/blob/main/.claude/hooks/pre-tool-use-humble-step-gate.sh) (Sonnet hook table). Confirmed gap-recurrence-register.yaml:28 fix_committed (Sonnet: "re-examined gap-recurrence-register.yaml:28 fix_committed ✓"). Confirmed verify exit_code=0 from this-session run.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/platform/design-intelligence — 5-tab PDI Dashboard
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+File: [src/app/platform/design-intelligence/page.tsx](https://github.com/CommarkG/csps-playground/blob/main/src/app/platform/design-intelligence/page.tsx)
+
+TAB 1 Voice (LIVE): reuses VoiceProfilesClient — REUSE not duplicate
+TAB 2 Audit (LIVE): server-side scan of platform pages for pageDNA + purpose + PageContext
+  Score table per page (0/1/2/3), summary counts
+TAB 3 Design Tokens (stub): Color + Spacing tables from embedded fallback, S060 banner
+TAB 4 Components (stub): catalogue of 7 libs/ui/ components, S060 banner
+TAB 5 Preview (stub): colleague profile Section 1 static render, S060 banner
+
+TopNav: 'Voice Profiles' → 'Design Intelligence' (Voice Profiles page still accessible at /platform/voice-profiles)
+pageDNA: const (NOT export const) ✓ | WHO/WHAT/PREVENTS alignment block ✓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Loop 7 — Alignment Gate
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[.claude/hooks/pre-tool-use-alignment-gate.sh](https://github.com/CommarkG/csps/blob/main/.claude/hooks/pre-tool-use-alignment-gate.sh): advisory on new code files without WHO/WHAT/PREVENTS
+[tools/tests/behavioral/alignment-gate-test.sh](https://github.com/CommarkG/csps/blob/main/tools/tests/behavioral/alignment-gate-test.sh): 5/5 ✓
+Self-found bug: grep `// WHO:` didn't match `# WHO:` (bash comments) → fixed to `(//|#)\s+WHO:`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF BLOCK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF Cycle 1 (pre-execution findings):
+  - [.claude/hooks/pre-tool-use-ux-creation-gate.sh](https://github.com/CommarkG/csps/blob/main/.claude/hooks/pre-tool-use-ux-creation-gate.sh): exit 1 blocking → converted to exit 0 advisory
+  - [tools/tests/behavioral/add-not-replace-test.sh](https://github.com/CommarkG/csps/blob/main/tools/tests/behavioral/add-not-replace-test.sh): perl `$10` bug corrupted check() calls → restored manually
+  - [.claude/hooks/pre-tool-use-alignment-gate.sh](https://github.com/CommarkG/csps/blob/main/.claude/hooks/pre-tool-use-alignment-gate.sh): grep only matched `// WHO:` not `# WHO:` → fixed pattern
+
+ZF Cycle 2 (re-examined prior findings):
+  - [.claude/hooks/pre-tool-use-add-not-replace-gate.sh](https://github.com/CommarkG/csps/blob/main/.claude/hooks/pre-tool-use-add-not-replace-gate.sh): 6/6 behavioral tests confirm exit=0 (advisory) ✓
+  - [tools/tests/behavioral/alignment-gate-test.sh](https://github.com/CommarkG/csps/blob/main/tools/tests/behavioral/alignment-gate-test.sh): 5/5 passing after grep fix ✓
+  - [src/app/platform/design-intelligence/page.tsx](https://github.com/CommarkG/csps-playground/blob/main/src/app/platform/design-intelligence/page.tsx): build passes, ƒ dynamic route ✓ — 0 new findings
+
+STATUS: ZF ACHIEVED
+
+verify: node tools/verify.mjs --skip-install → exit_code=0 ✓ (this-session run confirmed)
+behavioral: 22/22 total passing (advisory hooks) + 5/5 (alignment gate) = 27/27
+
+AWAIT PROTO-I direction. Not starting anything without Opus direction.
 Cycle 2: Re-examined [docs/SIA/UX-PREVENTION-ARCHITECTURE.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/UX-PREVENTION-ARCHITECTURE.md) — currently has Loops 1-6. Loop 7 (Alignment Gate) needs to be added (Governor approved this turn). Adding now before issuing PROTO-H. Re-examined [docs/plan/FOUNDATION-COMPLETION-PLAN.md](https://github.com/CommarkG/csps/blob/main/docs/plan/FOUNDATION-COMPLETION-PLAN.md) PROTO-H entry — specifies PDI Dashboard 5-tab shell with Voice+Audit live, Visual+Components+Preview stubs. No new findings.
 ZF ACHIEVED.
 

@@ -1,10 +1,10 @@
 {
   "session": "unknown",
-  "captured_at": "2026-05-24T13:04:01.232Z",
+  "captured_at": "2026-05-24T14:26:41.568Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 159,
-    "ran_at": "2026-05-24T13:03:38.860Z"
+    "ran_at": "2026-05-24T14:26:07.679Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
@@ -15,5 +15,5 @@
     "gap_HANDOFF_STARTUP_BLOCK K=3 (fix_committed)",
     "gap_SESSION_INJECTION_COMPRESSION K=2 (open)"
   ],
-  "sonnet_summary": "RelatedPages.tsx built + applied to 5 pages. Developer journey functional tabs (scroll-to). Core Complete banner translated to plain language. Quotes on 4 pages. Self-found bug (missing 'use client') "
+  "sonnet_summary": "FROM SONNET | FOR OPUS TAB — PROTO-CIE-1 COMPLETE\r | Date: 2026-05-24 | Main: [4e1011e](https://github.com/CommarkG/csps/commit/4e1011e) | Playground: [4c9d2d3](https://github.com/CommarkG/csps-playgr"
 }

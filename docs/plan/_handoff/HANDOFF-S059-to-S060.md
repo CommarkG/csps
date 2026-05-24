@@ -77,13 +77,14 @@ session: S059
 
 **Priority order (from FOUNDATION-COMPLETION-PLAN.md):**
 
-### 1. PROTO-CIE-1 (highest leverage — currently assigned to Sonnet)
-Wire CIE to session-open-context.mjs:
-- getCompletionSnapshot() in libs/intelligence/src/index.ts
-- getSessionStatus() in libs/intelligence/src/index.ts
-- Wire both to tools/scripts/session-open-context.mjs
-- Extend BehaviorProfile with Avatar human_profile TypeScript type
-Result: Opus starts every session with CIE D1 status, not free-style reasoning
+### 1. PROTO-CIE-1 ✅ COMPLETE (S059 — same session)
+Commits: [4e1011e](https://github.com/CommarkG/csps/commit/4e1011e) (main) + [4c9d2d3](https://github.com/CommarkG/csps-playground/commit/4c9d2d3) (playground)
+- getCompletionSnapshot() in libs/intelligence/index.ts ✓
+- getSessionStatus() in libs/intelligence/index.ts ✓
+- CIE D1 wired to tools/scripts/session-open-context.mjs (inline JS) ✓
+- AvatarHumanProfile + createFounderProfile() in behavior-hub ✓
+- Completion page: local CIE → GitHub raw → hardcoded fallback ✓
+- Confirmed live: validators=159 | open-gaps=2 | plan-done=36 at session-open ✓
 
 ### 2. PROTO-J Part 2 (Governor action required first)
 Governor tests /platform/wizard → says "Developer's Journey — ratified"
@@ -116,7 +117,7 @@ Q3: What is the Avatar and how does it differ from a traditional persona?
 > Avatar = extended BehaviorProfile.human_profile. It starts as a pre-seeded archetype (The Founder, The Operator, etc.) and self-updates through behavioral signals. Traditional personas are static design artifacts. CSPS avatars are living profiles that drive voice selection, journey bundles, and CIE personalization.
 
 Q4: What is the status of PROTO-CIE-1?
-> Issued to Sonnet's current tab. Sonnet is building. After completion, Sonnet should stop and await a new Sonnet tab for PROTO-K.
+> COMPLETE. Commits 4e1011e (main) + 4c9d2d3 (playground). CIE D1 confirmed live at session-open (validators=159, gaps=2). New Sonnet tab opens for PROTO-K after Developer's Journey ratification.
 
 Q5: Why is Debt Collection the first app and not Voice Sorting?
 > Governor validated Debt Collection with a real user who said they'd pay. This is the strongest wet trial signal. Voice Sorting (APP-001) remains registered but second.
@@ -136,10 +137,10 @@ YOU ARE: Sonnet, builder. Session S060. Fresh tab — PROTO-K (first app wet tri
 Read: docs/plan/_handoff/HANDOFF-S059-to-S060.md Zone B — your mandate.
 
 Context:
-- Core Complete: all 4 layers done
-- Developer's Journey: RATIFIED (Governor confirmed before this tab)
-- CIE: wired in PROTO-CIE-1 (prior Sonnet tab)
-- First app: Debt Collection — user-validated
+- Core Complete: all 4 layers done ✅ (S058)
+- Developer's Journey: RATIFIED ✅ (Governor confirmed — that's why this tab is open)
+- CIE: wired ✅ (PROTO-CIE-1 complete — validators=159, gaps=2, plan-done=36 at session-open)
+- First app: Debt Collection — user-validated ✅
 
 FIRST ACTIONS:
 1. node tools/verify.mjs --skip-install | grep exit_code → confirm 0

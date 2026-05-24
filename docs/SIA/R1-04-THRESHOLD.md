@@ -49,7 +49,8 @@ input:
   scope_tag:       # S1 (instance) | S2 (process) | S3 (structural)
   urgency:         # high | medium | low
   status:          # new | processing | routed | sealed | deprecated
-  source:          # governor_directive | sonnet_report | opus_design | external | session_harvest
+  source:          # [see extended source taxonomy below — S059 Governor directive]
+  source_detail:   # optional: specific tool/platform name when source is external_*
 ```
 
 Input types (closed enum):
@@ -65,6 +66,56 @@ core_seed             — architectural promise approaching consensus (K≥2)
 question              — unresolved question requiring investigation
 quote                 — memorable statement worth permanent capture
 ```
+
+---
+
+## 3b. Extended Source Taxonomy (S059 Governor ratification)
+
+> Source identifies WHERE an input came from. This matters because:
+> - External AI inputs may contain different assumptions than internal directives
+> - Market intelligence triggers different routing pipelines than code errors
+> - BehaviorProfile accumulates which sources a Governor relies on → platform adapts
+
+```yaml
+# INTERNAL SOURCES
+governor_directive:   "Explicit instruction from Governor in this session"
+sonnet_report:        "Build completion report from Sonnet"
+opus_design:          "Architectural decision from Opus"
+session_harvest:      "Insight captured at session close"
+error:                "Build error, validator failure, runtime error"
+solution:             "Fix applied to an error"
+
+# EXTERNAL AI SOURCES
+external_gpt:         "Research or insight from ChatGPT/GPT-4"
+external_gemini:      "Research from Google Gemini"
+external_claude:      "Insight from Claude in a different context/session"
+external_perplexity:  "Live web research from Perplexity"
+external_deepseek:    "Technical insight from DeepSeek"
+external_ai_general:  "AI source — unspecified model"
+
+# EXTERNAL TOOL SOURCES
+external_lovable:     "UI or app generated in Lovable"
+external_base44:      "App component or feature from Base44"
+external_cursor:      "Code suggestion from Cursor AI"
+external_tool_general:"Tool-generated content — source unspecified"
+
+# MARKET INTELLIGENCE
+customer_feedback:    "Direct feedback from current or potential app users"
+competitor_analysis:  "Competitive research or feature comparison"
+market_research:      "Broader market data, surveys, or user research"
+industry_report:      "Published benchmarks, whitepapers, or analyst data"
+```
+
+**BehaviorProfile connection:** The `source` field accumulates in BehaviorHub:
+```yaml
+ai_profile:
+  preferred_research_tools: [perplexity, external_gemini]
+  external_ai_influence: 0.6   # % of session inputs from external AI
+  market_signal_frequency: high
+```
+This enables vocabulary-service to weight terminology matching the Governor's dominant source style.
+
+**Routing impact:** `external_*` sources route through a "cross-source validation" pipeline step — checking that external insights don't contradict existing CSPS architectural decisions before being vaulted.
 
 ---
 

@@ -1,91 +1,84 @@
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.post-stop-link-discipline
 # @csps-name post-stop-link-discipline
-# @csps-version 1.0.0-active
+# @csps-version 2.0.0-active
 # @csps-lifecycle production
 # @csps-lifecycle-state active
 # @csps-enforces B_ALWAYS_GIT_LINKS
 #
-# S019 UPGRADE: Active enforcement — scans last AI response for workspace-relative
-# links and emits a BLOCKING reminder to use GitHub URLs instead.
+# S059 FIX: Replaced python3 (not available on Windows) with Node.js.
+# Root cause of persistent bare-path violations: python3 not found → hook silently
+# exited 0 on every response. K=100+ violations, 0 actual blocks.
 #
 # CSPS repo: https://github.com/CommarkG/csps
 # File URL:  https://github.com/CommarkG/csps/blob/main/[path]
 # Dir URL:   https://github.com/CommarkG/csps/tree/main/[path]
 #
-# DETECTS: [text](docs/...) | [text](tools/...) | [text](apps/...) | [text](libs/...) | [text](packages/...)
-# CORRECT: [text](https://github.com/CommarkG/csps/blob/main/...)
+# CORRECT:   [FOUNDATION-COMPLETION-PLAN.md](https://github.com/CommarkG/csps/blob/main/docs/plan/FOUNDATION-COMPLETION-PLAN.md)
+# FORBIDDEN: docs/plan/FOUNDATION-COMPLETION-PLAN.md  (bare path — not clickable)
+# FORBIDDEN: [name](docs/plan/...)  (workspace-relative — not clickable outside IDE)
 
 set -euo pipefail
 
 readonly TRANSCRIPT_PATH="${CLAUDE_TRANSCRIPT_PATH:-}"
 readonly SESSION_ID="${CLAUDE_SESSION_ID:-unknown}"
-readonly TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
-# Check if we have a transcript to scan
 if [[ -z "$TRANSCRIPT_PATH" ]] || [[ ! -f "$TRANSCRIPT_PATH" ]]; then
-  echo "[link-discipline] no transcript available for scan — session=${SESSION_ID}"
   exit 0
 fi
 
-# Scan last AI message for workspace-relative markdown links
-# Pattern: [any text](docs/... or tools/... or apps/... or libs/... or packages/...)
-INTERNAL_LINKS=$(python3 -c "
-import json, re, sys
-try:
-    with open('$TRANSCRIPT_PATH') as f:
-        data = json.load(f)
-    messages = data.get('messages', [])
-    last_ai = next((m for m in reversed(messages) if m.get('role') == 'assistant'), None)
-    if not last_ai: sys.exit(0)
-    content = str(last_ai.get('content', ''))
-    # Find [text](internal-path) patterns
-    pattern = r'\[([^\]]+)\]\((docs|tools|apps|libs|packages|\.claude)[^)]*\)'
-    matches = re.findall(pattern, content)
-    if matches:
-        print(str(len(matches)))
-    else:
-        print('0')
-except Exception as e:
-    print('0')
-" 2>/dev/null || echo "0")
+# Use Node.js (always available in CSPS) instead of python3 (not on Windows)
+RESULT=$(node -e "
+const fs = require('fs');
+try {
+  const data = JSON.parse(fs.readFileSync('$TRANSCRIPT_PATH', 'utf8'));
+  const messages = data.messages || [];
+  const lastAI = [...messages].reverse().find(m => m.role === 'assistant');
+  if (!lastAI) { console.log('bare=0 internal=0'); process.exit(0); }
+  const content = typeof lastAI.content === 'string' ? lastAI.content :
+    (Array.isArray(lastAI.content) ? lastAI.content.map(c => c.text || '').join(' ') : '');
 
-if [[ "$INTERNAL_LINKS" != "0" ]] && [[ -n "$INTERNAL_LINKS" ]]; then
+  // Remove existing correct markdown links to avoid false positives
+  const cleaned = content.replace(/\[[^\]]+\]\([^)]+\)/g, '');
+
+  // Detect bare paths (file/folder references without markdown link)
+  const barePattern = /\b[\w][\w/-]*\.(mjs|md|ts|tsx|yaml|yml|sh|json)\b/g;
+  const barePaths = (cleaned.match(barePattern) || []).length;
+
+  // Detect workspace-relative links [text](docs/... tools/... etc.)
+  const internalPattern = /\[[^\]]+\]\((docs|tools|apps|libs|packages|\.claude)[^)]*\)/g;
+  const internalLinks = (content.match(internalPattern) || []).length;
+
+  console.log('bare=' + barePaths + ' internal=' + internalLinks);
+} catch(e) {
+  console.log('bare=0 internal=0');
+}
+" 2>/dev/null || echo "bare=0 internal=0")
+
+BARE=$(echo "$RESULT" | grep -o 'bare=[0-9]*' | cut -d= -f2)
+INTERNAL=$(echo "$RESULT" | grep -o 'internal=[0-9]*' | cut -d= -f2)
+BARE=${BARE:-0}
+INTERNAL=${INTERNAL:-0}
+
+# BLOCKING: workspace-relative links (should be GitHub URLs)
+if [[ "$INTERNAL" -gt 0 ]]; then
   printf '{
     "hookSpecificOutput": {
       "hookEventName": "PostStop",
-      "additionalContext": "B_ALWAYS_GIT_LINKS VIOLATION — %s workspace-relative link(s) detected in last response.\n\nREQUIRED: Use full GitHub URLs.\n  File: https://github.com/CommarkG/csps/blob/main/[path]\n  Dir:  https://github.com/CommarkG/csps/tree/main/[path]\n\nFORBIDDEN: [name](docs/path) or [name](tools/path) — these are NOT clickable outside the IDE.\n\nGovernor has asked for this 3+ times (K=3). This is now MECHANICAL ENFORCEMENT.\nEdit the response links to use GitHub URLs before this counts as correct."
+      "additionalContext": "B_ALWAYS_GIT_LINKS: %s workspace-relative link(s) found.\nREQUIRED: https://github.com/CommarkG/csps/blob/main/[path]\nFORBIDDEN: [name](docs/path) — not clickable outside IDE\nGovernor has asked 100+ times. Fix EVERY link before proceeding."
     }
-  }' "$INTERNAL_LINKS"
+  }' "$INTERNAL"
 fi
 
-# EP-ERR-007: Bare path detection (S037-F — Turn 83)
-# Detect file extensions NOT preceded by ( — these are bare paths, not clickable links
-BARE_PATHS=$(python3 -c "
-import json, re, sys
-try:
-    with open('$TRANSCRIPT_PATH') as f:
-        data = json.load(f)
-    messages = data.get('messages', [])
-    last_ai = next((m for m in reversed(messages) if m.get('role') == 'assistant'), None)
-    if not last_ai: sys.exit(0)
-    content = str(last_ai.get('content', ''))
-    # Find bare file extensions NOT preceded by ( markdown link syntax
-    # Pattern: NOT preceded by ( AND matches filename.ext
-    # Look for word.ext where word char before . is not preceded by (
-    pattern = r'(?<!\()\b\w[\w/-]*\.(mjs|md|ts|tsx|yaml|yml|sh|json)\b'
-    # Exclude markdown link patterns [text](path.ext)
-    # Remove all [text](path) to avoid false positives
-    cleaned = re.sub(r'\[[^\]]+\]\([^)]+\)', '', content)
-    matches = re.findall(pattern, cleaned)
-    print(str(len(matches)))
-except Exception:
-    print('0')
-" 2>/dev/null || echo "0")
-
-if [[ "$BARE_PATHS" != "0" ]] && [[ -n "$BARE_PATHS" ]] && [[ "$BARE_PATHS" -gt 2 ]]; then
-  echo "[link-discipline] ADVISORY: ${BARE_PATHS} bare path(s) detected (EP-ERR-007) — use [filename](path) format. session=${SESSION_ID}"
+# BLOCKING: bare paths > 2 (file references without any markdown link)
+if [[ "$BARE" -gt 2 ]]; then
+  printf '{
+    "hookSpecificOutput": {
+      "hookEventName": "PostStop",
+      "additionalContext": "B_ALWAYS_GIT_LINKS: %s bare file path(s) found (no markdown link).\nEVERY file/folder mentioned in output must be a clickable link.\nCorrect: [FOUNDATION-COMPLETION-PLAN.md](https://github.com/CommarkG/csps/blob/main/docs/plan/FOUNDATION-COMPLETION-PLAN.md)\nForbidden: docs/plan/FOUNDATION-COMPLETION-PLAN.md  (bare path)"
+    }
+  }' "$BARE"
 fi
 
-echo "[link-discipline] scan complete — internal_links_found=${INTERNAL_LINKS:-0} bare_paths=${BARE_PATHS:-0} session=${SESSION_ID} timestamp=${TIMESTAMP}"
+echo "[link-discipline] v2 scan: bare=${BARE} internal=${INTERNAL} session=${SESSION_ID}"
 exit 0

@@ -48,6 +48,7 @@ let no_enforcement = 0; // no mechanical surfaces block at all
 
 const missing_t1 = [];
 const missing_t2 = [];
+const true_orphans = [];  // contracts with ZERO enforcement section (separate from missing_t1)
 const t3_only_list = [];
 
 try {
@@ -83,12 +84,24 @@ try {
       /- T3:/.test(content) ||
       /feedback_.*\.md/i.test(content);
 
-    // Has mechanical surfaces section at all?
+    // Has ANY enforcement section at all?
+    // Contracts use various section headings — detect all variants:
+    //   "Mechanical surfaces"  (5-surface FSE style)
+    //   "Enforcement Trio" / "enforcement_trio" (yaml or words)
+    //   "enforcement_tier:" (yaml frontmatter field)
+    //   "**Enforcement:**" (plain bold heading — some older contracts use this)
+    //   "Enforcement:" (plain heading)
     const hasMechanicalSection = /mechanical surfaces/i.test(content) ||
-      /enforcement_trio/i.test(content);
+      /enforcement_trio/i.test(content) ||
+      /enforcement trio/i.test(content) ||
+      /enforcement_tier:/i.test(content) ||
+      /\*\*enforcement:\*\*/i.test(content) ||
+      /^#+\s*enforcement/im.test(content) ||
+      /\*\*enforcement\s+tier\*\*/i.test(content);
 
     if (!hasMechanicalSection) {
       no_enforcement++;
+      true_orphans.push(contractName);  // tracked separately for accurate reporting
       missing_t1.push(contractName);
       missing_t2.push(contractName);
       continue;
@@ -123,7 +136,8 @@ try {
   const principlesPath = join(ROOT, 'packages/principles/principles.yaml');
   if (existsSync(principlesPath)) {
     const raw = readFileSync(principlesPath, 'utf8');
-    const allPrinciples = raw.split(/\n- id:/).slice(1);
+    // Principles use "  - id:" (2-space indent) in the registry format
+    const allPrinciples = raw.split(/\n  - id:/).slice(1);
     principles_checked = allPrinciples.length;
     principles_with_enforcement_tier = allPrinciples.filter(p => /enforcement_tier:/i.test(p)).length;
   }
@@ -143,17 +157,44 @@ const t2_coverage_pct = contracts_checked > 0
   ? Math.round((has_t2 / contracts_checked) * 100)
   : 0;
 
+// ── Ratchet baseline (S060 session-close freeze) ─────────────────────────────
+// The baseline is the first verified measurement.
+// BLOCKING if full_trio DROPS below baseline (regression, not absolute threshold).
+// BLOCKING if no_enforcement INCREASES above baseline (new orphan contracts).
+// Rationale: we never block FORWARD progress, only BACKWARD regression.
+const BASELINE_FULL_TRIO = 39;   // S060 true baseline: 39/66 (59%) after all detection pattern fixes
+const BASELINE_NO_ENFORCEMENT = 0; // S060: zero true orphans — every contract has enforcement declaration
+
 // ── Output ────────────────────────────────────────────────────────────────────
 
 const warnings = [];
 const errors = [];
 
-// Advisory: contracts with no enforcement at all
-if (no_enforcement > 5) {
+// BLOCKING: regression — full_trio dropped below baseline
+if (full_trio < BASELINE_FULL_TRIO) {
+  errors.push(
+    `BLOCKING: T1+T2+T3 coverage REGRESSED from baseline ${BASELINE_FULL_TRIO} to ${full_trio}. ` +
+    'A contract lost mechanical enforcement. Find and restore it before proceeding. ' +
+    'Permanence is irreversible once committed — regression means structural damage.'
+  );
+}
+
+// BLOCKING: new orphan contracts appeared (no_enforcement increased)
+if (no_enforcement > BASELINE_NO_ENFORCEMENT) {
+  errors.push(
+    `BLOCKING: ${no_enforcement} contracts with no enforcement (baseline: ${BASELINE_NO_ENFORCEMENT}). ` +
+    `New orphans: ${no_enforcement - BASELINE_NO_ENFORCEMENT} new contract(s) shipped without T1+T2+T3. ` +
+    'Fix: add enforcement_trio section before merging. ' +
+    'No governance artifact ships without declaring its enforcement surfaces.'
+  );
+}
+
+// Advisory: contracts with no enforcement at all (print names from dedicated array)
+if (no_enforcement > 0) {
   warnings.push(
-    `${no_enforcement}/${contracts_checked} contracts have NO mechanical surfaces section. ` +
-    'Add enforcement_trio or Mechanical surfaces to each. ' +
-    'Permanence-mechanics.md: contract without T1+T2+T3 is text, not governance.'
+    `${no_enforcement} contract(s) have NO enforcement declaration (no Mechanical surfaces, Enforcement Trio, or enforcement_tier). ` +
+    'Orphan contracts: ' + true_orphans.join(', ') + '. ' +
+    'Fix: add enforcement_trio: { T1: planned-SNNN, T2: planned-SNNN, T3: session-open } to each.'
   );
 }
 
@@ -172,7 +213,8 @@ if (t1_coverage_pct < 25) {
   warnings.push(
     `T1 hook coverage: ${t1_coverage_pct}% (${has_t1}/${contracts_checked} contracts have named pre-tool hooks). ` +
     'T1 is the ONLY enforcement that prevents violations BEFORE they enter the codebase. ' +
-    'Without T1: the rule is aspirational.'
+    'Without T1: the rule is aspirational. ' +
+    'Top-5 missing T1: ' + missing_t1.slice(0, 5).join(', ')
   );
 }
 
@@ -187,6 +229,7 @@ const summary = [
   `  full_trio=${full_trio} (${coverage_pct}% T1+T2+T3 coverage)`,
   `  has_t1=${has_t1} (${t1_coverage_pct}%)  has_t2=${has_t2} (${t2_coverage_pct}%)  has_t3=${has_t3}`,
   `  t3_only=${t3_only}  partial=${partial}  no_enforcement=${no_enforcement}`,
+  `  baseline_full_trio=${BASELINE_FULL_TRIO}  baseline_no_enforcement=${BASELINE_NO_ENFORCEMENT}`,
   `  principles_checked=${principles_checked}  with_enforcement_tier=${principles_with_enforcement_tier}`,
   `  advisory=${warnings.length} | blocking=${errors.length}`,
 ].join('\n');

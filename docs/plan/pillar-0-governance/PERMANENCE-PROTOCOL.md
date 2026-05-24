@@ -181,13 +181,16 @@ The test is:
 
 ## Platform Permanence Score
 
-Current baseline (S060): **53% T1+T2+T3 coverage** (35/66 contracts).
+Current baseline (S060): **59% T1+T2+T3 coverage** (39/66 contracts).
+Note: initially reported as 53% — detection bug in validator (underscore vs space in "Enforcement Trio"). Fixed S060.
+Zero true orphans — every contract has some enforcement declaration.
+The gap: 25 contracts have T2+T3 but no T1 hook (T1 = prevention before violation writes).
 
 Target progression:
-- S060: 53% (current baseline — first time measured)
-- S065: 65% (10% improvement — add enforcement_trio to existing partial contracts)
-- S070: 80% (add T1 hooks for the 21 partial contracts)
-- S075: 90% (only legacy/deferred contracts below threshold)
+- S060: 59% (corrected baseline — 39/66 full T1+T2+T3)
+- S065: 70% (add T1 hooks for 7 highest-impact partial contracts)
+- S070: 80% (add T1 hooks for remaining partial contracts)
+- S075: 90% (only deferred/legacy items below threshold)
 
 `validate-permanence-coverage.mjs` tracks this score. It appears in session-open D1 context.
 

@@ -113,3 +113,49 @@ tags: [frontend, ux, tier-2, contracts, s055, behavioral]
 **enforcement_tier:** T3 (session-open + AGENTS.md) | T2 pending validate-ux-error-recovery.mjs (S056)
 **core_spine:** AI
 **inherits_from:** Platform Genome §1 + TIER-CONSOLIDATION §2
+
+---
+
+## B_PAGE_CONTEXT
+
+**Contract:** Every new or updated playground page answers 8 questions BEFORE showing any data. A page missing more than 3 of these 8 is not shippable.
+
+**Governing intent:** Pages designed for engineers hide context behind data. The 8 questions ensure every page tells the user: who they are in the system, where they are in the flow, what state they're in, why they came here, what they can do, what they should do now, where next, and where to learn more. A page that only shows data is a dashboard. A page that answers all 8 questions is a tool.
+
+**The 8 questions:**
+
+| # | Question | Component field | Failure if missing |
+|---|---|---|---|
+| Q1 | What is this page? | `title` | User doesn't know where they are |
+| Q2 | Where am I in the flow? | `pipeline` | User doesn't know what came before/after |
+| Q3 | What is the current state? | `status` | User doesn't know if things are working |
+| Q4 | Why am I here? | `purpose` | User doesn't know the page's job |
+| Q5 | What can I do? | `options` | User doesn't know their choices |
+| Q6 | What should I do NOW? | `options[recommended]` + `cta` | User doesn't know the primary action |
+| Q7 | Where next? | `nextStep` | User gets stuck after completing the task |
+| Q8 | Where to learn more? | `toolkit` | User can't get help without leaving the page |
+
+**Positive form:**
+- Every page has a `PageContext` component with title + purpose + at least 1 option
+- The recommended option has a CTA button, not just a description
+- The purpose sentence uses plain language — no acronyms or engineering terms
+- Options are named by what the user wants, not by what the feature does
+
+**Anti-patterns:**
+- Page that starts with a table/form/list with no context about what it's for
+- Status that says only "ACTIVE" without a message explaining what's active
+- Options panel with only descriptions and no CTAs (user has to guess what to click)
+- Purpose statement that uses internal terms the user hasn't seen yet
+
+**Implementation:**
+- Component: `apps/csps-playground/src/components/PageContext.tsx`
+- Applied to: /platform/wizard, /platform/voice-profiles, /platform/developer-journey, /platform/completion (S059 PROTO-C)
+- Extends: does NOT replace `PageHeader.tsx` — older pages keep PageHeader; new/updated pages use PageContext
+
+**enforcement_tier:**
+- T1: pending (hook at file creation — S060 target)
+- T2: pending (validate-page-context-coverage.mjs — S060 target)
+- T3: this contract in B_UX.md + AGENTS.md UX Colocation Gate
+**core_spine:** AI
+**inherits_from:** Platform Genome §1 + B_UX_GUARD_QUESTIONS + memory/feedback_ux_ui_discipline.md
+**session:** S059 | Governor feedback: "pages built for engineers, not users"

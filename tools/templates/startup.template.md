@@ -104,6 +104,14 @@ FROM OPUS-{instance} | FOR SONNET TAB or FOR GOVERNOR
 [steps: numbered]
 [success: one verifiable outcome]
 
+NORTH STAR GATE (NSPP — required at every session open):
+  "What part of the North Star does today's work serve?"
+  Version C: "Turn intention into reality — not approximately, but precisely."
+  No answer = no mandate. If answer is unclear → surface to Governor before proceeding.
+  Session close classification: ADVANCE (moved toward NS) | HOLD (no movement) | DRIFT (moved away)
+  3 consecutive HOLDs without ADVANCE = Governor decision required.
+  Source: docs/plan/pillar-0-governance/CSPS-NORTH-STAR.md (when created) | CSP PLTF-NS-01
+
 ZF CYCLES — always name specific files:
   Cycle 1: [finding — cite specific file or validator]
   Cycle 2: re-examined [SPECIFIC-FILE.md] and [SPECIFIC-VALIDATOR.mjs] — 0 new findings.

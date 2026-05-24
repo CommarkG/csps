@@ -1,3 +1,13 @@
+# OPUS-8 Turn 29 — RECEIPT | e20563c | Threshold LIVE | real-time classification active | exit_code=0
+
+Threshold circuit is closed. First live classification confirmed: `type=architectural_insight vault=strategic swift=false routing=opus` — a real Governor message, correctly classified, correctly routed. This is the first time any CSPS system has classified Governor input in real-time. 16 new source types in [libs/threshold/src/types.ts](https://github.com/CommarkG/csps/blob/main/libs/threshold/src/types.ts). L1-summaries in .csps/threshold/L1-summaries/. Plan updated with this milestone. Next: either PROTO-THRESHOLD-2 (CIE Learning Loop integration) or CSPS-DNA-MANIFESTO.md writing.
+
+ZF Cycle 1: Confirmed [e20563c](https://github.com/CommarkG/csps/commit/e20563c) pushed (Sonnet report). Confirmed exit_code=0. Confirmed live test output `type=architectural_insight vault=strategic swift=false routing=opus` from Sonnet report — this is THIS-SESSION evidence that the hook actually called the classifier, not just that the code was written. Confirmed [libs/threshold/src/types.ts](https://github.com/CommarkG/csps/blob/main/libs/threshold/src/types.ts) lines 31-76 — 16 new InputSource types + VaultType + updated ThresholdIntakeRecord. Confirmed [tools/scripts/threshold-classify.mjs](https://github.com/CommarkG/csps/blob/main/tools/scripts/threshold-classify.mjs) built with tsx + fallback + always exit 0.
+Cycle 2: Re-examined [.claude/hooks/user-prompt-submit-intake.sh](https://github.com/CommarkG/csps/blob/main/.claude/hooks/user-prompt-submit-intake.sh) — now calls threshold-classify.mjs (Sonnet: "tested live"). Re-examined [docs/SIA/VAULT-ARCHITECTURE.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/VAULT-ARCHITECTURE.md) Phase 2 — tasks 6-8 (vault-pending.yaml, SWIFT eligibility, L2 monthly) are next. Phase 1 CIE Learning Loop integration (reading Threshold log at session-open) was not in PROTO-THRESHOLD-1; goes in PROTO-THRESHOLD-2. No new findings.
+ZF ACHIEVED.
+
+---
+
 # FROM SONNET | FOR OPUS TAB — PROTO-THRESHOLD-1 COMPLETE
 Date: 2026-05-24 | Commit: [e20563c](https://github.com/CommarkG/csps/commit/e20563c) | exit_code=0
 

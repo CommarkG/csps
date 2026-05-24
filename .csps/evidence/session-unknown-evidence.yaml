@@ -1,10 +1,10 @@
 {
   "session": "unknown",
-  "captured_at": "2026-05-24T20:15:19.651Z",
+  "captured_at": "2026-05-24T21:11:05.725Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 159,
-    "ran_at": "2026-05-24T20:14:53.781Z"
+    "ran_at": "2026-05-24T21:10:38.474Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
@@ -15,5 +15,5 @@
     "gap_HANDOFF_STARTUP_BLOCK K=3 (fix_committed)",
     "gap_SESSION_INJECTION_COMPRESSION K=2 (open)"
   ],
-  "sonnet_summary": "Date: 2026-05-24 | Commit: [33339c9](https://github.com/CommarkG/csps/commit/33339c9) | exit_code=0\r | Vercel: pending Governor connection (app.config.yaml + vercel.json ready)\r | Wet trial findings: "
+  "sonnet_summary": "Threshold circuit is closed. First live classification confirmed: `type=architectural_insight vault=strategic swift=false routing=opus` — a real Governor message, correctly classified, correctly route"
 }

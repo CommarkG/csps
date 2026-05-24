@@ -13,7 +13,7 @@
  * @csps-enforces P-META-020 B_COGNITIVE_CONTEXT_DISCIPLINE
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
@@ -205,12 +205,35 @@ try {
     }
   } catch(e) {}
 
+  // Threshold patterns — PROTO-THRESHOLD-2 (S060)
+  let thresholdSummary = null;
+  try {
+    const intakePath = join(ROOT, '.csps/threshold/intake-log.yaml');
+    if (existsSync(intakePath)) {
+      const raw = readFileSync(intakePath, 'utf8');
+      const blocks = raw.split(/\n- id:/).slice(1);
+      // Filter to current session entries
+      const sessionBlocks = blocks.filter(b => b.includes(`session: ${session}`) || b.includes(`session: "${session}"`));
+      const relevant = sessionBlocks.length > 0 ? sessionBlocks : blocks.slice(-10);
+      const typeCounts = {};
+      let swiftN = 0;
+      for (const b of relevant) {
+        const tm = b.match(/\n  type:\s*(\S+)/);
+        if (tm) { const t = tm[1].replace(/['"]/g,''); typeCounts[t] = (typeCounts[t]||0)+1; }
+        if (/swift_eligible:\s*true/.test(b)) swiftN++;
+      }
+      const domType = Object.entries(typeCounts).sort((a,b)=>b[1]-a[1])[0]?.[0] ?? 'governor_directive';
+      thresholdSummary = `  Threshold (last session): ${relevant.length} classified | dominant=${domType} | swift-eligible=${swiftN}`;
+    }
+  } catch(e) {}
+
   cieD1Summary = [
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
     'CIE D1 STATUS (auto-computed from local files):',
     `  Platform: validators=${validators} | open-gaps=${openGaps} | plan-done=${donePlanItems}/36+ | layers=4/4`,
     topPE ? `  PE top-3: ${topPE}` : '  PE: no scored open items',
     holdingFor ? `  Holding for: ${holdingFor}` : '  Holding: not in holding state',
+    ...(thresholdSummary ? [thresholdSummary] : []),
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
   ];
 } catch(e) { /* CIE unavailable — continue without */ }

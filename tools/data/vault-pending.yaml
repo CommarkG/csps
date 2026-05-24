@@ -1,0 +1,36 @@
+---
+id: csps.data.vault-pending
+name: vault-pending
+description: "Items that arrived but have no current home. Routed here by Threshold when type=external_research, or by CIE when no pipeline matches. Weekly triage by Opus."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: vault_files
+context_question: "Has this item been triaged? Has Opus decided routing for each pending entry?"
+context_quote: "Nothing is discarded. Everything waits for its optimal moment. — VAULT-ARCHITECTURE.md"
+links:
+  - { rel: vault_architecture, href: ../../docs/SIA/VAULT-ARCHITECTURE.md }
+  - { rel: threshold_intake, href: ../../.csps/threshold/intake-log.yaml }
+  - { rel: improvement_register, href: improvement-register.yaml }
+---
+
+# Vault Pending Register
+
+> Items routed here by Threshold (type=external_research) or when no pipeline matches.
+> Weekly triage by Opus: review → decide routing_decision → update status.
+> Status flow: new → triaged → routed | dropped
+
+# Schema per entry:
+#   id: [generated — vlt-SXXX-NNNNN]
+#   raw_summary: "[first 120 chars of original input]"
+#   source: [Threshold InputSource — see libs/threshold/src/types.ts]
+#   vault_type: pending
+#   status: new | triaged | routed | dropped
+#   urgency: weekly | monthly | someday
+#   routing_decision: ""  # filled at triage — where does this go?
+#   created_session: [session id]
+#   context: "[why this was vaulted, not acted on immediately]"
+
+entries: []

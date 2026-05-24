@@ -114,6 +114,77 @@ export function getCompletionSnapshot(): CompletionSnapshot {
   };
 }
 
+// ── Threshold patterns — PROTO-THRESHOLD-2 (S060) ──────────────────────────────
+
+export interface ThresholdPatterns {
+  dominant_type: string;
+  dominant_vault: string;
+  swift_count: number;
+  total_classified: number;
+}
+
+/**
+ * Read .csps/threshold/intake-log.yaml and return aggregated patterns.
+ * Filters to the current session if provided; falls back to last 20 entries.
+ * Always returns a valid ThresholdPatterns (never throws).
+ */
+export function readThresholdPatterns(session?: string): ThresholdPatterns {
+  const fallback: ThresholdPatterns = {
+    dominant_type: 'unknown',
+    dominant_vault: 'pending',
+    swift_count: 0,
+    total_classified: 0,
+  };
+
+  try {
+    const logPath = join(ROOT_CIE, '.csps/threshold/intake-log.yaml');
+    if (!existsSync(logPath)) return fallback;
+
+    const raw = readFileSync(logPath, 'utf-8');
+
+    // Extract entries matching session (or last 20 if no session given)
+    const entryBlocks = raw.split(/\n- id:/).slice(1); // split on entry boundaries
+    const relevant = session
+      ? entryBlocks.filter(b => b.includes(`session: ${session}`) || b.includes(`session: "${session}"`))
+      : entryBlocks.slice(-20);
+
+    if (relevant.length === 0) return { ...fallback, total_classified: entryBlocks.length };
+
+    // Count type frequencies
+    const typeCounts: Record<string, number> = {};
+    const vaultCounts: Record<string, number> = {};
+    let swiftCount = 0;
+
+    for (const block of relevant) {
+      const typeMatch = block.match(/\n  type:\s*(\S+)/);
+      const vaultMatch = block.match(/\n  vault_type:\s*(\S+)/);
+      const swiftMatch = block.match(/\n  swift_eligible:\s*(true)/);
+
+      if (typeMatch) {
+        const t = typeMatch[1].replace(/['"]/g, '');
+        typeCounts[t] = (typeCounts[t] ?? 0) + 1;
+      }
+      if (vaultMatch) {
+        const v = vaultMatch[1].replace(/['"]/g, '');
+        vaultCounts[v] = (vaultCounts[v] ?? 0) + 1;
+      }
+      if (swiftMatch) swiftCount++;
+    }
+
+    const dominant_type = Object.entries(typeCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'governor_directive';
+    const dominant_vault = Object.entries(vaultCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'pending';
+
+    return {
+      dominant_type,
+      dominant_vault,
+      swift_count: swiftCount,
+      total_classified: relevant.length,
+    };
+  } catch {
+    return fallback;
+  }
+}
+
 // ── TASK 2: getSessionStatus() ─────────────────────────────────────────────────
 
 export interface SessionStatus {
@@ -121,6 +192,7 @@ export interface SessionStatus {
   pendingItems: number;
   topPEItems: Array<{ id: string; pe: number; status: string }>;
   holdingFor: string | null; // what Sonnet is waiting for
+  threshold_patterns?: ThresholdPatterns; // PROTO-THRESHOLD-2 (S060)
 }
 
 /**
@@ -168,5 +240,11 @@ export function getSessionStatus(): SessionStatus {
     }
   } catch { /* use fallback */ }
 
-  return { currentSession, pendingItems, topPEItems, holdingFor };
+  // Threshold patterns — PROTO-THRESHOLD-2
+  let threshold_patterns: ThresholdPatterns | undefined;
+  try {
+    threshold_patterns = readThresholdPatterns(currentSession);
+  } catch { /* unavailable */ }
+
+  return { currentSession, pendingItems, topPEItems, holdingFor, threshold_patterns };
 }

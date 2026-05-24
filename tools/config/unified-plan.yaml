@@ -1104,8 +1104,9 @@ items:
       readiness: 0.3
       simplicity_bonus: 0
     notes: |
-      Spec at docs/SIA/INFRA-FLOW-VALIDATION.md. 9-step flow: 4 ACTIVE / 3 PARTIAL / 2 NOT BUILT.
-      NOT BUILT: Threshold intake (Step 1) + Evidence Capture (Step 9). pe_score=98 = highest in plan.
+      Spec at docs/SIA/INFRA-FLOW-VALIDATION.md. 9-step flow: 5 ACTIVE / 3 PARTIAL / 1 NOT BUILT.
+      S060 update: Threshold intake (Step 1) NOW BUILT via PROTO-THRESHOLD-1+2 (commits e20563c, 2265b89).
+      NOT BUILT: Evidence Capture (Step 9). pe_score=98 = highest in plan.
 
   - id: THRESHOLD-CODE
     title: "Threshold — code implementation of the intake + routing system"
@@ -1224,15 +1225,15 @@ items:
 
   - id: GAP-RECURRENCE-ENFORCEMENT
     title: "validate-gap-recurrence.mjs — K count enforcement"
-    status: implementing
-    epoch: E1
+    status: done
+    epoch: completed
     category: governance
     owner: sonnet
     batch: BATCH-D
     pe_score: 88
     tags: [gap-recurrence, validation, s053]
     session_target: S053
-    notes: "Reads gap-recurrence-register.yaml. K>=2=advisory, K>=3=blocking session close. validate-gap-recurrence.mjs LIVE (S053-B Step 2). Breaks the mirror loop."
+    notes: "DONE S053-B. Reads gap-recurrence-register.yaml. K>=2=advisory, K>=3=blocking session close. validate-gap-recurrence.mjs LIVE. Breaks the mirror loop."
     mdpe_dimensions:
       blast_radius: 0.6
       future_enablement: 0.75
@@ -1242,15 +1243,15 @@ items:
 
   - id: BEHAVIORAL-TEST-SUITE
     title: "tools/tests/behavioral/ — first class behavioral tests"
-    status: implementing
-    epoch: E1
+    status: done
+    epoch: completed
     category: governance
     owner: sonnet
     batch: BATCH-D
     pe_score: 90
     tags: [behavioral-tests, validation, s053]
     session_target: S053
-    notes: "Test suite where each behavioral rule has a test case proving it catches violations. First test: validate-zf-cycle-format.mjs (zf-cycle-format-test.sh LIVE S053-B Step 1). README and directory created."
+    notes: "DONE S053-B+. 12 behavioral tests live in tools/tests/behavioral/. Each rule has a test case proving it catches violations. zf-termination-gate + state-claim-gate + humble-step-gate + ux-creation-gate + voice-profile-gate + apps-are-trials + alignment-gate + add-not-replace all present."
     mdpe_dimensions:
       blast_radius: 0.65
       future_enablement: 0.8

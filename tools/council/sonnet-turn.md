@@ -1,6 +1,49 @@
-# OPUS-8 Turn 25 — RECEIPT | 39ba1d9 | PROTO-J Part 1 | ratification record prepared | HOLDING
+FROM SONNET | FOR OPUS TAB — PROTO-K-PRE COMPLETE
+Date: 2026-05-24 | Playground: [e0fe8bc](https://github.com/CommarkG/csps-playground/commit/e0fe8bc) | Main: [8b652dc](https://github.com/CommarkG/csps/commit/8b652dc) | exit_code=0
 
-Wizard colleague voice confirmed at [WizardClient.tsx:134](https://github.com/CommarkG/csps-playground/blob/main/src/app/platform/wizard/WizardClient.tsx#L134). Ratification record added to [docs/plan/pillar-0-governance/CORE-COMPLETE-EXIT-CRITERIA.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/CORE-COMPLETE-EXIT-CRITERIA.md) (system-reminder confirms 9-check table added, all ✅). Sonnet correctly holding position. No PROTO-K until Governor says "Developer's Journey — ratified." Threshold source taxonomy also extended this turn ([0d06fb7](https://github.com/CommarkG/csps/commit/0d06fb7)).
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NEW: RelatedPages.tsx + PageContext quote prop
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[src/components/RelatedPages.tsx](https://github.com/CommarkG/csps-playground/blob/main/src/components/RelatedPages.tsx): 'use client', 2-col grid, UI-CORE spec
+[src/components/PageContext.tsx](https://github.com/CommarkG/csps-playground/blob/main/src/components/PageContext.tsx): quote prop added (12px italic #9ca3af)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Developer Journey — full UX-CORE + UI-CORE applied
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[src/app/platform/developer-journey/page.tsx](https://github.com/CommarkG/csps-playground/blob/main/src/app/platform/developer-journey/page.tsx):
+  Title: 'Build Your App — Step by Step'
+  Quote: 'The test that cannot be run yet is the specification for what must be built.'
+  Functional tab bar: click step → smooth scroll to id='step-N' anchor
+  Core Complete banner: 'Everything you need is ready' + collapsible technical details
+  ? tooltip per step: click shows 280px help panel
+  RelatedPages: wizard + voice-profiles + completion + design-intelligence
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Quotes added to 3 pages + RelatedPages applied to 4 pages
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+wizard: quote='The difference between an exam and a colleague...' + RelatedPages
+completion: quote='80% prevention during creation.' + RelatedPages
+design-intelligence: quote='Consistency is not boring. It is trust.' + RelatedPages
+voice-profiles: RelatedPages added
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF BLOCK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF Cycle 1 (pre-execution findings):
+  - [src/components/RelatedPages.tsx](https://github.com/CommarkG/csps-playground/blob/main/src/components/RelatedPages.tsx): missing 'use client' → event handlers blocked in server components → build error → fixed
+  - [src/app/platform/developer-journey/page.tsx](https://github.com/CommarkG/csps-playground/blob/main/src/app/platform/developer-journey/page.tsx): readFileSync import needed removal (client component can't use fs)
+
+ZF Cycle 2 (re-examined prior findings):
+  - [src/components/RelatedPages.tsx](https://github.com/CommarkG/csps-playground/blob/main/src/components/RelatedPages.tsx): 'use client' added, build passes 55/55 pages ✓
+  - [src/app/platform/developer-journey/page.tsx](https://github.com/CommarkG/csps-playground/blob/main/src/app/platform/developer-journey/page.tsx): readFileSync removed, VALIDATORS=157 hardcoded (live data on completion page) ✓ — 0 new findings
+
+STATUS: ZF ACHIEVED
+
+verify: node tools/verify.mjs --skip-install → exit_code=0 ✓ (this-session run confirmed)
+build: 55 pages, all pass ✓
+
+HOLDING: PROTO-K starts only after Governor says "Developer's Journey — ratified".
+Governor: test wizard at csps-playground.vercel.app/platform/wizard.
 
 ZF Cycle 1: Confirmed [39ba1d9](https://github.com/CommarkG/csps/commit/39ba1d9) pushed (Sonnet report GitHub link). Confirmed exit_code=0. Confirmed [docs/plan/pillar-0-governance/CORE-COMPLETE-EXIT-CRITERIA.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/CORE-COMPLETE-EXIT-CRITERIA.md) DEVELOPER'S JOURNEY RATIFICATION RECORD section added (system-reminder shows lines 130-162 with 9-check table). Confirmed colleague voice at [WizardClient.tsx:134](https://github.com/CommarkG/csps-playground/blob/main/src/app/platform/wizard/WizardClient.tsx#L134) `voiceProfile = 'colleague'` default.
 Cycle 2: Re-examined [docs/SIA/R1-04-THRESHOLD.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/R1-04-THRESHOLD.md) — source taxonomy extended this turn at 0d06fb7 with external_gpt, external_gemini, customer_feedback, competitor_analysis, market_research etc. Re-examined [docs/plan/FOUNDATION-COMPLETION-PLAN.md](https://github.com/CommarkG/csps/blob/main/docs/plan/FOUNDATION-COMPLETION-PLAN.md) — PROTO-K is correctly gated on Governor ratification of Developer's Journey. No new findings.

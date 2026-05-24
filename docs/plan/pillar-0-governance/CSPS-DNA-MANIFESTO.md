@@ -15,7 +15,7 @@ lifecycle: production
 lifecycle_state: active
 context_question: "Does this decision move toward or away from the North Star? Can you name specifically which aspect of 'turn intention into reality — not approximately, but precisely' this serves?"
 context_quote: "The platform does not generate code. It governs the journey from intention to precise reality."
-inherits_from: "CSPS-NORTH-STAR.md (when created) + Platform Genome §1-10 + VAULT-ARCHITECTURE.md"
+inherits_from: "CSPS-NORTH-STAR.md + PLATFORM-GENOME.md §0 + VAULT-ARCHITECTURE.md"
 links:
   - { rel: platform-genome, href: PLATFORM-GENOME.md }
   - { rel: moat-registry, href: moat-registry.md }

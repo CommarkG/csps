@@ -27,6 +27,22 @@ context_quote: "Think about it like a huge grid taking care of things, not one b
 
 ---
 
+## 0. THE NORTH STAR (governing principle — topmost element)
+
+→ [CSPS-NORTH-STAR.md](CSPS-NORTH-STAR.md)
+  What it contains: Version C of the North Star + 6 NS Qualities + 3 NSPP gates.
+  The NSPP gates are mandatory at every session: Gate 1 (open), Gate 2 (close), Gate 3 (every 10 sessions).
+
+**The North Star in one sentence:**
+"Turn intention into reality — not approximately, but precisely."
+
+**NSPP Gate 1 (required at EVERY session open):**
+"What part of the North Star does today's work serve?" — no answer = no mandate.
+
+**Session close classification (Gate 2):** ADVANCE / HOLD / DRIFT
+
+---
+
 ## 1. BEHAVIORAL CONTRACTS (AI Conception Vault)
 
 How to use: load the entry relevant to your current task. Not all at once.

@@ -1188,3 +1188,23 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-05-24T03-14-58-984Z"
+  timestamp: "2026-05-24T03:14:58.984Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-05-24T03-15-34-074Z"
+  timestamp: "2026-05-24T03:15:34.074Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

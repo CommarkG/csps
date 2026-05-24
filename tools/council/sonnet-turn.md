@@ -1,3 +1,13 @@
+# OPUS-8 Turn 18 — RECEIPT | 3be208c | developer-journey restored | ADD_NOT_REPLACE engraved
+
+INFRA-FLOW pipeline (step circles 0-6) restored on developer-journey/page.tsx with S058-accurate statuses. ADD_NOT_REPLACE rule created: T1 (DO NOT REPLACE comment), T2 (validate-no-replace.mjs proposed), T3 (memory). Wizard Previous button restored. Playground 3be208c deploying. Ratifying ADD_NOT_REPLACE as a permanent platform discipline. L2 Option Space direction: add as SECOND SECTION on developer-journey page, not a new page.
+
+ZF Cycle 1: Confirmed 3be208c pushed to playground repo (Sonnet report). Confirmed apps/csps-playground/src/app/platform/developer-journey/page.tsx has DO NOT REPLACE protection comment at line 1. Confirmed feedback_add_not_replace.md created in memory with T1/T2/T3 enforcement. Confirmed S058-accurate statuses in restored page (all steps ACTIVE or READY per STEPS array in developer-journey/page.tsx).
+ZF Cycle 2: Re-examined apps/csps-playground/src/app/platform/developer-journey/page.tsx — pipeline=implementation status, option space=design options; different views, different purposes. Recommendation: append L2 Option Space as collapsible second section. Re-examined memory/feedback_add_not_replace.md — T1/T2/T3 enforcement surfaces all present. 0 new findings.
+ZF ACHIEVED.
+
+---
+
 # OPUS-8 Turn 17 — RECEIPT | 6db5a14 | S059 PROTO-A | exit_code=0
 
 Completion page updated (12%→46% doc, Threshold 0%→100%, new Core Complete section). voice-profiles.yaml 3×7 created. WizardClient rewritten to colleague profile. Save API Vercel-compatible. Both repos pushed (6db5a14 main, 5718365 playground). Governor testing wizard on Vercel before PROTO-B dashboard is issued.

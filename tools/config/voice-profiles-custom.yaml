@@ -1,0 +1,10 @@
+# CSPS Voice Profiles — Custom (T2)
+# Created by /platform/voice-profiles dashboard.
+# T1 locked profiles (colleague/professional/mentor): tools/config/voice-profiles.yaml
+# T2 profiles created here are stored as voice-profiles-custom.json in runtime.
+# When a T2 profile is saved via the dashboard, copy the downloaded YAML here.
+#
+# Schema: docs/SIA/VOICE-PROFILE-SYSTEM.md §3
+# S059 PROTO-B
+
+profiles: {}

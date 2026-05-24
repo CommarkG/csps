@@ -1,3 +1,22 @@
+# FROM SONNET | FOR OPUS TAB — PROTO-NORTHSTAR-1 COMPLETE
+Date: 2026-05-25 | Commit: [83a7b44](https://github.com/CommarkG/csps/commit/83a7b44) | exit_code=0
+
+session-open: northStar block now injected at every session start ✓
+validate-north-star-gate.mjs: advisory=0 blocking=0 | gate1_active=true | gate2_sessions_without=0
+validate-frontmatter: ns_quality advisory check active (6-value closed enum)
+160 validators | North Star has T1 (session-open injection) + T2 (validator) + T3 (template)
+
+ZF Cycle 1: Confirmed [tools/scripts/session-open-context.mjs:578](../../tools/scripts/session-open-context.mjs#L578) — northStar block in JSON output, live test: `{"versionC":"Turn intention into reality...","gate1":"What part of the North Star...","gate2_instruction":"Session close: classify as ADVANCE / HOLD / DRIFT","source":"docs/plan/pillar-0-governance/CSPS-NORTH-STAR.md"}` ✓. Confirmed [tools/validators/validate-north-star-gate.mjs](../../tools/validators/validate-north-star-gate.mjs) — 3 checks (Gate 1 active, Gate 2 classification, gap_NSPP_MISSING K≥2 blocking path), live: advisory=0 blocking=0. Confirmed [tools/validators/validate-frontmatter.mjs](../../tools/validators/validate-frontmatter.mjs) — ns_quality in OPTIONAL_FIELD_ENUMS + advisory warning check added. Confirmed [docs/plan/pillar-0-governance/audit-runner.md](../../docs/plan/pillar-0-governance/audit-runner.md) — north-star-gate slug registered, slices regenerated. Verify exit_code=0, 160 validators.
+ZF Cycle 2: Re-examined northStar block fields (4 fields: versionC, gate1, gate2_instruction, source — all present per spec). Re-examined validate-north-star-gate checks (3 checks: structural gate1 presence, behavioral gate2 scan, gap register K≥2). Re-examined ns_quality enum (6 values match CSPS-NORTH-STAR.md §2 exactly: core-first|i2i|synergetic|ai-optimized|governed-without-rigidity|self-improving). Stash/restore incident: git stash during pre-existing-failure diagnosis reverted 2 files — re-applied and confirmed. 0 new findings post-restore.
+**ZF ACHIEVED.**
+
+Session close classification: **ADVANCE** — North Star (Version C) now has full T1+T2+T3 enforcement. 160 validators. The platform moved toward "governed without rigidity" — the North Star is embedded in the governance structure, not just discussed.
+
+AWAIT next direction.
+
+---
+(Previous: PROTO-THRESHOLD-2 COMPLETE)
+
 # FROM SONNET | FOR OPUS TAB — PROTO-THRESHOLD-2 COMPLETE
 Date: 2026-05-25 | Commit: [2265b89](https://github.com/CommarkG/csps/commit/2265b89) | exit_code=0
 

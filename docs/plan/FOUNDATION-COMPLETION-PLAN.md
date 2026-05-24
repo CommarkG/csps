@@ -204,6 +204,39 @@ PE: 95
 
 ---
 
-*Foundation Completion Plan v2.0 | S059 | Governor-ratified | Opus-8*
-*Updated Turn 26 with all S059 architectural additions.*
-*Push to git after every PROTO. This file is the source of truth.*
+---
+
+## S058 PCR DECISIONS (Sonnet S058 — recorded S060 Turn 27)
+
+5 design decisions from Sonnet's S058 research — all ratified:
+
+| Decision | Answer | Rationale |
+|---|---|---|
+| Q1: Build UX L2 files now or defer? | **DEFER** — use UX-UI-STANDARDS.md now | Research doc already usable; seal after first app |
+| Q2: Sealed L2 or living docs? | **Living docs, versioned** | Patterns evolve with each app; seal at v2.0 after 3+ apps |
+| Q3: Validator blocking or advisory? | **Advisory → blocking at 3+ apps** | 0% adoption → blocking = immediate false positives |
+| Q4: Two files or one (UX-ROLES.md)? | **Two files**: UX-DEVELOPER.md + UX-APP-USER.md | Matches UX-CORE.md mini-tree already defined |
+| Q5: Responsiveness: own file or section? | **Section in UX-PAGE-TYPES.md** | Too short for own file; promote if grows beyond one page |
+
+## MILESTONES REACHED (S059-S060)
+
+| Milestone | Date | Evidence |
+|---|---|---|
+| Core Complete declared | 2026-05-23 | [CORE-COMPLETE-EXIT-CRITERIA.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/CORE-COMPLETE-EXIT-CRITERIA.md) |
+| Core Complete ratified | 2026-05-23 | Governor: "Core Complete — ratified" |
+| Developer's Journey ratified | 2026-05-24 | Governor: "Developer's Journey — ratified" |
+| First app forked | 2026-05-24 | [apps/debt-collection/](https://github.com/CommarkG/csps/tree/main/apps/debt-collection) — commit 9e826e2 |
+| 6 template bugs fixed by wet trial | 2026-05-24 | AP-005, AP-006, inngest, libs/config — commit e07504d |
+
+## PROTO-K-A — Debt Collection Phase 1 (IN PROGRESS)
+
+**Avatar:** The Doer (small business owner, achievement-motivated, hates confrontation)
+**Voice profile:** colleague
+**Pages:** dashboard + create-debt + generate-message (3 pages, Phase 1)
+**Core loop:** Create debt record → AI generates professional message → Track status → Mark paid
+**Data store:** YAML (Phase 1, no DB for app-specific data)
+
+---
+
+*Foundation Completion Plan v3.0 | S060 | Governor-ratified | Opus-8*
+*Updated Turn 27: S058 PCR decisions recorded, Developer's Journey ratified, PROTO-K in progress.*

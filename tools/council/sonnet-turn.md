@@ -1,3 +1,20 @@
+# FROM SONNET | FOR OPUS TAB — PROTO-THRESHOLD-1 COMPLETE
+Date: 2026-05-24 | Commit: [e20563c](https://github.com/CommarkG/csps/commit/e20563c) | exit_code=0
+
+types.ts: 16 new InputSource types + VaultType + ThresholdIntakeRecord interface added
+threshold-classify.mjs: built (TypeScript path + keyword fallback, always exits 0)
+intake hook: calls classifier, outputs [threshold] type=... vault=... swift=... routing=...
+L1-summaries: 5 pillar files created (GVRN/ARCH/AI/OPER/VALD)
+
+ZF Cycle 1: Confirmed [libs/threshold/src/types.ts:31](../../libs/threshold/src/types.ts#L31) — 16 new InputSource members added ✓. Confirmed [libs/threshold/src/types.ts:54](../../libs/threshold/src/types.ts#L54) — VaultType declared ✓. Confirmed [libs/threshold/src/types.ts:57](../../libs/threshold/src/types.ts#L57) — ThresholdIntakeRecord interface with vault_type+swift_eligible+routing ✓. Confirmed [tools/scripts/threshold-classify.mjs](../../tools/scripts/threshold-classify.mjs) — always exits 0, fallback tested: error→swift=true, architectural→vault=strategic routing=opus. Confirmed [.claude/hooks/user-prompt-submit-intake.sh](../../.claude/hooks/user-prompt-submit-intake.sh) — THRESHOLD REAL CLASSIFIER block added, tested: 'define a new architectural principle' → [threshold] type=architectural_insight vault=strategic swift=false routing=opus ✓. Confirmed 5 L1-summary files in [.csps/threshold/L1-summaries/](../../.csps/threshold/L1-summaries/) ✓. Stray PILLAR-template file cleaned. Verify exit_code: 0.
+ZF Cycle 2: Re-examined types.ts TypeScript compile (ts.transpileModule → OK, no errors). Re-examined hook integration (SESSION variable available at classifier call point, env-var injection pattern consistent with existing hook). Re-examined L1-summaries (5 files, each has required frontmatter: pillar+last_aggregated+session_count+top_patterns+pending_vault_items). 0 new findings.
+**ZF ACHIEVED.**
+
+AWAIT next direction.
+
+---
+(Previous: PROTO-K-B COMPLETE)
+
 # FROM SONNET | FOR OPUS TAB — PROTO-K-B COMPLETE
 Date: 2026-05-24 | Commit: [33339c9](https://github.com/CommarkG/csps/commit/33339c9) | exit_code=0
 

@@ -39,28 +39,28 @@ context_quote: "Finishing the foundation is crucial. As long as we do not comple
 
 ## PROTO SEQUENCE (PE-ordered, all ratified)
 
-### PROTO-F — unified-plan.yaml cleanup (RUNNING NOW — Sonnet has it)
-**PE:** 90 | **Owner:** Sonnet | **Time:** ~20 min
-Mark ~15 items done (THRESHOLD-CODE, COMBINATORIAL-ENGINE, PLATFORM-GENOME-BUILD, BEHAVIOR-HUB, S055 items, S058 items, UX-Prevention, Voice-Profile).
-**Exit:** PE dashboard shows accurate count. mdpe_items ≥ 20.
+### ~~PROTO-F~~ — ✅ DONE (a26b82d, S060)
+GAP-RECURRENCE-ENFORCEMENT + BEHAVIORAL-TEST-SUITE marked done. INFRA-FLOW-VALIDATION updated (Threshold intake built). mdpe_items=24 ✅.
 
 ---
 
-### PROTO-G — AI Behavioral Enforcement T1+T2 (HIGHEST PRIORITY)
-**PE:** 95 | **Owner:** Opus designs, Sonnet builds | **Time:** ~45 min
-**The constitutional gap: K=5, open since S040.**
-
-Targets (D3 ratified):
-1. `B_ZF_TERMINATION_DISCIPLINE` — T1: check sonnet-turn.md writes for ZF ACHIEVED with file citations. T2: extend validate-zf-cycle-format.mjs to also scan council files for "I noticed" / "it seems" nominal patterns.
-2. `B_VALIDATE_BEFORE_ASSUME` — T1: when Write to sonnet-turn.md, check content doesn't claim state without citing a tool call in THIS response. T2: validate-validate-before-assume.mjs scans for state-claims without tool evidence.
-3. `B_HUMBLE_FIRST_STEP` — T1: PROTO scope check — if Write to sonnet-turn.md contains a PROTO with >5 steps in STEP-1, advisory. T2: validate-humble-first-step.mjs checks PROTO-* sections in council for step count.
-
-Also: update tools/data/gap-recurrence-register.yaml for gap_T1_AI_CONCEPTION_VAULT → status: fix_committed after hooks land.
-**Exit:** validate-ai-conception-enforcement.mjs shows 3 entries with T1+T2 declared. Behavioral test 2/2.
+### ~~PROTO-G~~ — ✅ DONE (S059 — pre-dated this plan)
+gap_T1_AI_CONCEPTION_VAULT closed K=5. 3 T1+T2+T3 contracts: ZF_TERMINATION + VALIDATE_BEFORE_ASSUME + HUMBLE_FIRST_STEP. Behavioral tests 5/5+4/4+3/3. validate-ai-conception-enforcement: 3 entries ✅.
 
 ---
 
-### PROTO-H — PDI Dashboard (/platform/design-intelligence)
+### ~~PROTO-H~~ — ✅ DONE (S059 — pre-dated this plan)
+/platform/design-intelligence: 5 tabs (Voice LIVE + Audit LIVE + Visual stub + Components stub + Preview stub). pageDNA declared. VoiceProfilesClient reused. 7 lib components catalogued. dnaVersion: S059.
+
+---
+
+### ~~PROTO-I~~ — ✅ DONE (S060 — this session)
+validate-ux-audit.mjs created + wired to verify.mjs + wired to audit-runner.md (ux-audit slug). validate-north-star-gate.mjs also wired (was orphan). 6/13 pipelines running. exit_code=0. 161 validators.
+Also fixed: PROTO-NORTHSTAR-1 gap — north-star-gate was created but not wired to verify.mjs.
+
+---
+
+### ~~PROTO-H (archived spec)~~ — PDI Dashboard (/platform/design-intelligence)
 **PE:** 80 | **Owner:** Sonnet | **Time:** ~60 min
 **After PROTO-E hooks are active (they are) + PROTO-G complete.**
 

@@ -2,12 +2,12 @@
 // WHAT: Dispatcher that runs pipelines 2-6 sequentially and collects results into a JSON report
 // PREVENTS: 12 designed pipelines silently doing nothing (Audit Pipeline Coverage stuck at 8%)
 // RISK: Circular dependency — pipelines import validators that import each other → keep dispatcher thin
-// SCOPE: Pipelines 2-5 only (pipeline 6 validate-ux-audit.mjs not yet built); pipeline 1 = pnpm verify
+// SCOPE: Pipelines 2-6 active (Pipeline 6 validate-ux-audit.mjs LIVE S060 PROTO-I); pipeline 1 = pnpm verify
 //
 // @csps-id csps.libs.audits.dispatcher
 // @csps-name audit-dispatcher
-// @csps-description Audit pipeline dispatcher Phase 1 — runs pipelines 2-5, records results.
-//   Pipeline 1 (pnpm verify) runs separately. Pipelines 2-5 add governance + quality checks.
+// @csps-description Audit pipeline dispatcher Phase 1 — runs pipelines 2-6, records results.
+//   Pipeline 1 (pnpm verify) runs separately. Pipelines 2-6 add governance + quality checks.
 //   Output: tools/data/audit-pipeline-last-run.json
 // @csps-version 0.1.0
 // @csps-owner group:finky
@@ -82,9 +82,9 @@ function runPipeline(id: number, name: string, validator: string): PipelineResul
   return { id, name, validator, status, exit_code: exitCode, blocking, advisory, output_tail, duration_ms };
 }
 
-// Pipeline definitions (Phase 1 — pipelines 2-5)
+// Pipeline definitions (Phase 1 — pipelines 2-6)
 // Pipeline 1 = pnpm verify (runs separately, always active)
-// Pipeline 6 (validate-ux-audit.mjs) — not yet built, skipped
+// Pipeline 6 (validate-ux-audit.mjs) — LIVE S060 PROTO-I
 const PIPELINE_DEFINITIONS = [
   { id: 2, name: 'Boundary Alignment',      validator: 'validate-boundary-alignment.mjs' },
   { id: 3, name: 'Communication Quality',   validator: 'validate-communication-quality.mjs' },

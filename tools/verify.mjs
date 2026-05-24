@@ -1346,6 +1346,31 @@ const CYCLES = [
     },
   },
   {
+    // S060 PROTO-NORTHSTAR-1: North Star Presence Protocol T2 — Gates 1+2 enforcement
+    // Checks Gate 1 (northStar block in session-open), Gate 2 (ADVANCE/HOLD/DRIFT in sonnet-turn.md),
+    // and gap_NSPP_MISSING K≥2 BLOCKING trigger.
+    name: 'north_star_gate',
+    command: 'node tools/validators/validate-north-star-gate.mjs',
+    parse_output: (out) => {
+      const g1 = out.match(/nspp_gate1_active:\s*(\S+)/)?.[1] ?? 'unknown';
+      const g2 = out.match(/nspp_gate2_sessions_without:\s*(\d+)/)?.[1] ?? '0';
+      const adv = out.match(/advisory:\s*(\d+)/)?.[1] ?? '0';
+      const blk = out.match(/blocking:\s*(\d+)/)?.[1] ?? '0';
+      return { gate1_active: g1, gate2_sessions_without: Number(g2), advisory: Number(adv), blocking: Number(blk) };
+    },
+  },
+  {
+    // S060 PROTO-I: UX Audit Pipeline 6 T2 — platform pages context coverage
+    // Scans apps/csps-playground/src/app/platform/**\/page.tsx for pageDNA + purpose + PageContext.
+    // Advisory per page; BLOCKING if coverage < 50% with > 10 pages.
+    name: 'ux_audit',
+    command: 'node tools/validators/validate-ux-audit.mjs',
+    parse_output: (out) => {
+      const m = out.match(/pages_scanned=(\d+)\s+full_context=(\d+)\s+partial=(\d+)\s+no_context=(\d+)\s+coverage=(\d+)%\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { pages_scanned: Number(m[1]), full_context: Number(m[2]), partial: Number(m[3]), no_context: Number(m[4]), coverage: Number(m[5]), advisory: Number(m[6]), blocking: Number(m[7]) } : {};
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

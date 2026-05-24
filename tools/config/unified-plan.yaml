@@ -991,7 +991,7 @@ items:
 
   - id: BEHAVIOR-HUB
     title: "Universal Behavior Hub — AI layer (AI/automation) + Human layer (Governor/devs/users)"
-    status: implementing
+    status: done
     epoch: E1
     category: architecture
     owner: opus
@@ -1058,7 +1058,7 @@ items:
 
   - id: COMBINATORIAL-ENGINE
     title: "Combinatorial Engine — multi-dimensional reasoning with Dependency Matrix + Sensitivity Ladder"
-    status: implementing
+    status: done
     epoch: E1
     category: architecture
     owner: opus
@@ -1109,7 +1109,7 @@ items:
 
   - id: THRESHOLD-CODE
     title: "Threshold — code implementation of the intake + routing system"
-    status: implementing
+    status: done
     epoch: E1
     category: architecture
     owner: opus
@@ -1206,7 +1206,7 @@ items:
 
   - id: PLATFORM-GENOME-BUILD
     title: "Build PLATFORM-GENOME.md + validate-platform-genome.mjs"
-    status: implementing
+    status: done
     epoch: E1
     category: governance
     owner: sonnet
@@ -1416,3 +1416,39 @@ items:
       readiness: 0.4
       simplicity_bonus: 0
     core_spine: ARCH
+
+  - id: UX-PREVENTION-ARCHITECTURE
+    title: "UX Prevention Architecture — 6 T1 hooks blocking UX violations before creation"
+    status: done
+    epoch: E1
+    category: governance
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 92
+    session_target: S059
+    tags: [ux, prevention, hooks, behavioral-tests, s059]
+    notes: "DONE S059 PROTO-E. 6 loops: UX-creation-gate (pageDNA.purpose required on page.tsx), voice-profile-gate (forms require voiceProfile), design-token-check (advisory hex colors), add-not-replace-gate (>50% removal blocked), UX pre-flight in startup.template.md, ux-violation-register.yaml. 17/17 behavioral tests passing. Hooks registered in settings.json, active next session. Commit: 79b70ab."
+    mdpe_dimensions:
+      blast_radius: 0.9
+      future_enablement: 0.95
+      readiness: 1.0
+      simplicity_bonus: 0.1
+    core_spine: VALD
+
+  - id: VOICE-PROFILE-SYSTEM
+    title: "Voice Profile System — 3 foundation profiles × 7 sections + CRUD dashboard"
+    status: done
+    epoch: E1
+    category: architecture
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 88
+    session_target: S059
+    tags: [voice-profiles, ux, wizard, dashboard, s059]
+    notes: "DONE S059 PROTO-A/B. tools/config/voice-profiles.yaml: 3 T1 profiles (colleague/professional/mentor) × all 7 wizard sections (label/placeholder/tip/guard/errorShort). apps/csps-playground/src/hooks/useVoiceProfile.ts: embedded data hook. /platform/voice-profiles CRUD dashboard: Fork → T2 custom profiles, ratify/deprecate/delete. Wizard rewritten to use colleague profile — no exam language. B_PAGE_CONTEXT added to B_UX.md. Commit: 9da2bce."
+    mdpe_dimensions:
+      blast_radius: 0.8
+      future_enablement: 0.9
+      readiness: 1.0
+      simplicity_bonus: 0.1
+    core_spine: AI

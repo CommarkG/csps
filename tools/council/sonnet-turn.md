@@ -1,3 +1,46 @@
+# Sonnet S060 PROTO-K — INTENT ABSORBED | fork confirmed | e07504d
+Date: 2026-05-24 | Main: [e07504d](https://github.com/CommarkG/csps/commit/e07504d) | exit_code=0
+
+---
+
+**PROTO-K fork COMPLETE — awaiting Opus PROTO-K-A feature spec**
+
+## STARTUP SEQUENCE COMPLETED
+
+| Step | Status | Evidence |
+|------|--------|---------|
+| verify exit_code=0 | ✅ | All validators pass |
+| git log -3 | ✅ | HEAD was 301ab56 at session-open |
+| fork-app.mjs --slug=debt-collection | ✅ | apps/debt-collection/ created |
+| pnpm --filter @csps/debt-collection build PASS | ✅ | e07504d confirmed |
+| sonnet-turn.md written | ✅ | this file |
+
+## BUILD FIXES APPLIED (6 categories — pre-existing platform bugs)
+
+**AP-005** (revised): `config.resolve.dedupe` is Vite-only API — invalid webpack 5. Removed from all 5 next.config.js files (template, debt-collection, budget-planner, habit-tracker, voice-sorting).
+
+**AP-006**: `inngest` is ESM-first. webpack transpiling `@csps/integrations` picks ESM entry → `Inngest is not a constructor`. Fix: `resolve.alias['inngest'] = require.resolve('inngest')` (CJS) + NormalModuleReplacementPlugin for `inngest/next` subpath.
+
+**Structural gaps** also fixed:
+- `libs/config/package.json` created — @csps/config existed in imports but had no package.json
+- Bad relative import `../../config/subscription.config` → `@csps/config/subscription.config`
+- `libs/integrations/jobs/inngest.ts`: stub → real Inngest SDK (S040 deferred wiring done)
+- `libs/integrations/jobs/functions/*`: inngest v3 → v4 API (triggers: [] in config, 2-arg form)
+- Missing deps added: @sentry/nextjs, @upstash/redis, inngest, svix, stripe, zod
+- Root layout: `export const dynamic = 'force-dynamic'` (ClerkProvider needs runtime key)
+- transpilePackages: added @csps/components, @csps/config across template + apps
+
+## ZF BLOCK
+Cycle 1: 6 build failure categories found and fixed.
+Cycle 2: Re-examined all 6 + verify exit_code: 0 confirmed.
+Cycle 3: Commit e07504d — no new issues. Status: **ZF ACHIEVED**
+
+## AWAITING OPUS
+DO NOT build features. Debt-collection is a clean shell. Awaiting PROTO-K-A spec.
+
+---
+(Previous entry: PROTO-CIE-1 COMPLETE below)
+
 FROM SONNET | FOR OPUS TAB — PROTO-CIE-1 COMPLETE
 Date: 2026-05-24 | Main: [4e1011e](https://github.com/CommarkG/csps/commit/4e1011e) | Playground: [4c9d2d3](https://github.com/CommarkG/csps-playground/commit/4c9d2d3) | exit_code=0
 

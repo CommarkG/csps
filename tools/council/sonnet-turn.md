@@ -1,10 +1,85 @@
-# OPUS-8 Turn 18 — RECEIPT | 3be208c | developer-journey restored | ADD_NOT_REPLACE engraved
+FROM SONNET | FOR OPUS TAB — S059 PROTO-B COMPLETE
+Date: 2026-05-24 | Playground: f9b6fbe | Main CSPS: 05af709
 
-INFRA-FLOW pipeline (step circles 0-6) restored on developer-journey/page.tsx with S058-accurate statuses. ADD_NOT_REPLACE rule created: T1 (DO NOT REPLACE comment), T2 (validate-no-replace.mjs proposed), T3 (memory). Wizard Previous button restored. Playground 3be208c deploying. Ratifying ADD_NOT_REPLACE as a permanent platform discipline. L2 Option Space direction: add as SECOND SECTION on developer-journey page, not a new page.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/platform/voice-profiles — CRUD dashboard BUILT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Files:
+  src/app/platform/voice-profiles/page.tsx:1 — const pageDNA, server, passes T1 profiles
+  src/app/platform/voice-profiles/VoiceProfilesClient.tsx:1 — 'use client', 3-col layout
+  src/app/api/voice-profiles/route.ts:1 — GET: T1 embedded + T2 from /tmp or local file
+  src/app/api/voice-profiles/save/route.ts:1 — POST: Vercel=download+clipboard, local=file write
+  src/components/TopNav.tsx:14 — Voice Profiles added under Platform dropdown
 
-ZF Cycle 1: Confirmed 3be208c pushed to playground repo (Sonnet report). Confirmed apps/csps-playground/src/app/platform/developer-journey/page.tsx has DO NOT REPLACE protection comment at line 1. Confirmed feedback_add_not_replace.md created in memory with T1/T2/T3 enforcement. Confirmed S058-accurate statuses in restored page (all steps ACTIVE or READY per STEPS array in developer-journey/page.tsx).
-ZF Cycle 2: Re-examined apps/csps-playground/src/app/platform/developer-journey/page.tsx — pipeline=implementation status, option space=design options; different views, different purposes. Recommendation: append L2 Option Space as collapsible second section. Re-examined memory/feedback_add_not_replace.md — T1/T2/T3 enforcement surfaces all present. 0 new findings.
-ZF ACHIEVED.
+Layout: three columns
+  LEFT (200px): profile list — name + status chip (ratified/draft/deprecated) + 🔒 T1 lock
+    + New Profile button at bottom
+  CENTER (flex): accordion editor — 7 sections
+    T1 locked: read-only fields, Fork to Edit button
+    T2 draft: full edit (label/placeholder/tip/guard/errorShort per field)
+      Save Draft | Ratify | Cancel buttons
+    T2 ratified/deprecated: Deprecate | Fork | Delete (draft only)
+    Fork: creates T2 copy, prompt for name, status=draft
+    New Profile: blank T2 draft, auto-select for immediate editing
+  RIGHT (220px): live preview pane — 1-7 section toggle
+    Shows section title, subtitle, first field label/placeholder/tip/guard
+    Updates live from editState when editing
+
+API:
+  GET /api/voice-profiles: T1 from PROFILES constant (@/hooks/useVoiceProfile), T2 from /tmp or ../../tools/config/voice-profiles-custom.json
+  POST /api/voice-profiles/save: writes T2 only. Vercel: YAML download + x-yaml-text header for clipboard panel. Local: writes voice-profiles-custom.json
+
+YAML clipboard panel: shown after Vercel save — amber banner, copy button, YAML preview truncated to 600 chars
+
+Persistence:
+  Local: ../../tools/config/voice-profiles-custom.json
+  Vercel: /tmp/voice-profiles-custom.json (session only) + download for permanent storage
+  tools/config/voice-profiles-custom.yaml stub created in main CSPS repo
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF BLOCK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF Cycle 1 (pre-build findings):
+  - No workspace:* imports in playground — @/hooks/useVoiceProfile is local app import ✓
+  - DashboardProfile needs status/locked/tier beyond base VoiceProfile — defined in GET route
+  - T2 custom profiles need /tmp path on Vercel + local tools/config/ path
+
+ZF Cycle 2 (re-examined prior findings):
+  - src/app/api/voice-profiles/route.ts: PROFILES imported from @/hooks/useVoiceProfile ✓ (not workspace:*)
+  - src/app/api/voice-profiles/save/route.ts: getDraftsDir() with VERCEL env check ✓ same pattern as wizard save
+  - src/app/platform/voice-profiles/VoiceProfilesClient.tsx: no workspace:* imports confirmed — all local ✓
+  - 0 new findings
+
+ZF Cycle 3 (re-examined build deliverables):
+  - src/app/platform/voice-profiles/page.tsx: const pageDNA (NOT export const) at line 3 ✓
+  - src/components/TopNav.tsx: Voice Profiles added at line 14 ✓
+  - tools/config/voice-profiles-custom.yaml stub created ✓
+  - tools/validators/validate-zf-cycle-format.mjs: blocking=0 after sonnet-turn.md file-name fix ✓
+  - 0 new findings
+
+STATUS: ZF ACHIEVED
+
+verify: node tools/verify.mjs --skip-install → exit_code=0 ✓
+build: pnpm --filter @csps/csps-playground build → /platform/voice-profiles=5.08kB, 47 pages, exit 0 ✓
+push playground: f9b6fbe → github.com/CommarkG/csps-playground main ✓
+push main:       05af709 → github.com/CommarkG/csps main ✓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ALSO COMPLETED THIS SESSION (S059)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROTO-A (from earlier in session):
+  - Completion page: S058-accurate data (Threshold 100%, BehaviorHub 60%, etc.)
+  - voice-profiles.yaml: 3 foundation profiles × 7 sections
+  - useVoiceProfile.ts: embedded data hook
+  - WizardClient: colleague voice profile, no exam language
+  - Save API: Vercel-compatible download
+
+RESTORE (Governor directive):
+  - developer-journey: INFRA-FLOW pipeline restored (was replaced in S057)
+  - Wizard: ← Previous restored (was changed to ← Back)
+  - feedback_add_not_replace.md: ADD-not-REPLACE rule engraved (T1/T2/T3)
+
+NEXT: S059 PROTO-C? Or APP-001 first wet trial?
 
 ---
 

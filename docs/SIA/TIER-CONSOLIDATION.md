@@ -184,6 +184,7 @@ The canonical CSPS UI components. Every app inherits these at fork.
 | Tier | Area | % Done | Blocking Deps |
 |---|---|---|---|
 | 1 | Validation | 70% | — |
+| 1 | Audit Pipeline Coverage | 38% | 5/13 running (S059 PROTO-I): pnpm verify + boundary-alignment + communication-quality + agent-calls + quality-alignment |
 | 1 | Behavioral contracts | 85% | 9 orphan T2s pending |
 | 1 | Priority engine | 90% | — |
 | 1 | Knowledge architecture | 25% | context_question backfill |

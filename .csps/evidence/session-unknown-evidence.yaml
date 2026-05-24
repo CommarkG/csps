@@ -1,10 +1,10 @@
 {
   "session": "unknown",
-  "captured_at": "2026-05-24T09:27:09.059Z",
+  "captured_at": "2026-05-24T09:49:09.925Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 159,
-    "ran_at": "2026-05-24T09:26:44.131Z"
+    "ran_at": "2026-05-24T09:48:43.541Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
@@ -15,5 +15,5 @@
     "gap_HANDOFF_STARTUP_BLOCK K=3 (fix_committed)",
     "gap_SESSION_INJECTION_COMPRESSION K=2 (open)"
   ],
-  "sonnet_summary": "3 T1 hooks live (zf-termination BLOCKING, state-claim advisory, humble-step advisory). 12/12 behavioral tests. B_VALIDATE_BEFORE_ASSUME vault entry created (was absent). gap-recurrence-register.yaml:2"
+  "sonnet_summary": "CRITICAL FINDING: T1 hooks (PROTO-E/G) exiting code 1 caused approval dialogs in bypassPermissions mode. Sonnet correctly converted all 4 to advisory (exit 0). T2 validators still enforce in pnpm veri"
 }

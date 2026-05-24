@@ -1,0 +1,11 @@
+{
+  "name": "@csps/audits",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CSPS Audit Pipeline Dispatcher — routes to pipelines 2-6, collects results, writes to tools/data/audit-pipeline-last-run.json.",
+  "main": "./src/dispatcher.ts",
+  "types": "./src/dispatcher.ts",
+  "scripts": {
+    "run": "tsx src/dispatcher.ts"
+  }
+}

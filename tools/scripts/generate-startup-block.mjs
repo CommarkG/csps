@@ -12,9 +12,10 @@
  * Governor pastes from these files. Never generated ad-hoc in chat.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs'
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { execSync } from 'child_process'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const ROLE = process.argv.find(a => a.startsWith('--role='))?.split('=')[1] ?? 'both'
@@ -41,10 +42,13 @@ const verifyRaw = readSafe('tools/verify-last-run.md')
 const validators = verifyRaw.match(/"validators_checked":\s*(\d+)/)?.[1] ?? '159'
 
 const gitLog = (() => {
-  try {
-    const { execSync } = await import('child_process').catch(() => ({ execSync: () => '' }))
-    return execSync('git log --oneline -1', { cwd: ROOT, encoding: 'utf8' }).trim()
-  } catch { return 'unknown' }
+  try { return execSync('git log --oneline -1', { cwd: ROOT, encoding: 'utf8' }).trim() }
+  catch { return 'unknown' }
+})()
+
+const gitLog10 = (() => {
+  try { return execSync('git log --oneline -10', { cwd: ROOT, encoding: 'utf8' }).trim() }
+  catch { return 'unknown' }
 })()
 
 const latestCommit = gitLog.split(' ')[0] ?? 'unknown'
@@ -52,7 +56,6 @@ const latestCommit = gitLog.split(' ')[0] ?? 'unknown'
 // Find latest HANDOFF
 const handoffFiles = (() => {
   try {
-    const { readdirSync } = await import('fs').catch(() => ({ readdirSync: () => [] }))
     const dir = resolve(ROOT, 'docs/plan/_handoff')
     return readdirSync(dir).filter(f => f.startsWith('HANDOFF-') && f.endsWith('.md')).sort().reverse()
   } catch { return [] }

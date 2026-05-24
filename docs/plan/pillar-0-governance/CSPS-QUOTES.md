@@ -3,6 +3,7 @@ id: csps.governance.csps-quotes
 name: CSPS-QUOTES
 description: "Canonical registry of platform-defining quotes. Harvested from SIA docs, behavioral contracts, Governor directives, and session insights. Used in page headers, tooltips, onboarding. Wired to Threshold (type: quote) and Learning Loop."
 type: governance
+diataxis_type: reference
 protection_level: active
 status: active
 core_spine: GVRN

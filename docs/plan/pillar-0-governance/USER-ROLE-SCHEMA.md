@@ -3,6 +3,7 @@ id: csps.governance.user-role-schema
 name: USER-ROLE-SCHEMA
 description: "Formal definition of all user roles across CSPS layers. Three layers: Platform (Governor/AI), CSPS Developer (builds apps), App User (end users of apps). Each role has defined access scope, permissions, and UX persona."
 type: governance
+diataxis_type: reference
 protection_level: protected
 status: ratified
 core_spine: GVRN

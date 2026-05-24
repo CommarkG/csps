@@ -1452,3 +1452,21 @@ items:
       readiness: 1.0
       simplicity_bonus: 0.1
     core_spine: AI
+
+  - id: DEBT-COLLECTION-WET-TRIAL
+    title: "Debt Collection — first CSPS-process-correct app (wet trial)"
+    status: planning
+    epoch: E1
+    category: app
+    owner: sonnet
+    batch: BATCH-A
+    pe_score: 95
+    session_target: S060
+    tags: [wet-trial, first-app, debt-collection, s060]
+    notes: "PROTO-K. Governor-validated: small business owners collecting money owed without awkward confrontation. Goes through full INFRA-FLOW pipeline (fork → validate → deploy → evidence). Developer's Journey ratified 2026-05-24. apps/debt-collection/ forked from apps/template/."
+    mdpe_dimensions:
+      blast_radius: 0.95
+      future_enablement: 0.9
+      readiness: 1.0
+      simplicity_bonus: 0.0
+    core_spine: ARCH

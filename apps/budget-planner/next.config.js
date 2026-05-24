@@ -19,8 +19,8 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.symlinks = false
     config.resolve.preferRelative = true
-    // AP-005: deduplicate React across pnpm workspace
-    config.resolve.dedupe = ['react', 'react-dom', 'react/jsx-runtime']
+    // AP-005 (revised): pnpm workspace uses a single react@18.3.1 instance via .pnpm hoisting.
+    // resolve.dedupe is a Vite API — invalid in webpack 5. Removed; no alias needed.
     config.ignoreWarnings = [
       { module: /node_modules\/@zenstackhq\/runtime\/enhance\.js/ },
     ]

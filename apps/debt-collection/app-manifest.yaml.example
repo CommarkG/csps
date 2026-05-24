@@ -1,0 +1,27 @@
+# app-manifest.yaml.example — copy to apps/{your-app}/app-manifest.yaml
+# Required by P-ARCH-030 (apps are ephemeral trials) + validate-app-scope-isolation.mjs
+# Every new app starts as a trial. Graduate when deletion_test: PASS + mrr_usd reached.
+
+app_id: your-app-name          # matches apps/your-app-name/ directory
+status: trial                  # trial | graduated | archived
+trial_started: S0NN            # session number when app was created
+platform_session: S0NN         # current session
+live_url: https://csps-your-app.vercel.app
+
+graduation_criteria:
+  mrr_usd: 1000                # $1K MRR per B_COMPLETION_OVER_SHINY
+  deletion_test: PENDING       # rm -rf apps/{app}/ must lose zero platform value
+  component_b_complete: false  # all reusable patterns extracted to libs/
+
+deletion_test_status:
+  last_checked: YYYY-MM-DD
+  result: PENDING              # PENDING | PASS | FAIL
+  blockers: []                 # list what would be lost if app was deleted
+
+component_b_extractions:
+  # For each pattern discovered in this app, track extraction to platform
+  # - pattern: name-of-pattern
+  #   status: pending | documented | complete
+  #   target: libs/path/to/where-it-belongs.ts
+
+graduation_session: null       # set when mrr_usd reached + deletion_test: PASS

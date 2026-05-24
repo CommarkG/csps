@@ -1042,3 +1042,23 @@ entries:
   source: governor_directive
   status: new
   raw: ""
+- id: "thr-unknown-1779636929909"
+  session: "unknown"
+  timestamp: "2026-05-24T15:35:29.908Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-unknown-1779637528794"
+  session: "unknown"
+  timestamp: "2026-05-24T15:45:28.793Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""

@@ -1,0 +1,53 @@
+session: S060
+app: debt-collection
+purpose: "First real app wet trial — validate CSPS template + governance under real build conditions"
+
+findings:
+  - type: bug_fix
+    id: AP-005
+    description: "resolve.dedupe invalid in webpack 5 — Vite-only API used in all next.config.js files"
+    impact: "All future apps inherit fix automatically via template"
+    commit: e07504d
+
+  - type: bug_fix
+    id: AP-006
+    description: "inngest ESM/CJS interop — webpack picks ESM entry when transpiling @csps/integrations"
+    fix: "resolve.alias to CJS path + NormalModuleReplacementPlugin for inngest/next subpath"
+    impact: "Inngest background jobs now work in all CSPS apps"
+    commit: e07504d
+
+  - type: structural_gap
+    id: SG-001
+    description: "libs/config missing package.json — @csps/config referenced everywhere but had no workspace package"
+    fix: "Created libs/config/package.json"
+    impact: "Template properly resolves @csps/config; subscription config accessible to all libs"
+    commit: e07504d
+
+  - type: structural_gap
+    id: SG-002
+    description: "Bad relative import in @csps/integrations: ../../config/subscription.config breaks in node_modules symlink context"
+    fix: "Changed to @csps/config/subscription.config (proper workspace import)"
+    commit: e07504d
+
+  - type: deferred_wiring
+    id: DW-001
+    description: "inngest stub finally wired (S040 deferred) — real Inngest SDK + v4 API migration"
+    detail: "All 4 job functions migrated: triggers move into config object, handler becomes 2nd arg"
+    impact: "Background jobs (welcome email, trial expiry, digest, webhook delivery) now functional"
+    commit: e07504d
+
+  - type: structural_gap
+    id: SG-003
+    description: "Missing deps in template: @sentry/nextjs, @upstash/redis, inngest, svix, stripe, zod not declared"
+    fix: "Added to template/package.json + debt-collection/package.json"
+    impact: "Future forks from template will have all deps from day 1"
+    commit: e07504d
+
+  - type: structural_gap
+    id: SG-004
+    description: "Root layout missing force-dynamic — ClerkProvider needs publishable key at runtime, fails static prerender"
+    fix: "Added export const dynamic = 'force-dynamic' to all app root layouts"
+    impact: "All CSPS apps build cleanly without CLERK_PUBLISHABLE_KEY at build time"
+    commit: e07504d
+
+  # PROTO-K-A findings added during feature build phase

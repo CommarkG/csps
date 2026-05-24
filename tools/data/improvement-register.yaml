@@ -44,17 +44,18 @@ entries:
     first_found: S053
     k_count: 1
     sessions: [S053]
-    status: cec_run
+    status: propagated
     propagated_to:
       - tools/vault/wisdom/question-library.md (patterns defined)
       - tools/vault/wisdom/communication-samples.md (Sample 005)
       - session-open-context.mjs (5 Guard Questions injected)
       - creation wizard (context_question upgrade to guard pattern)
+      - AI Conception Vault entries — enforcement_tier + guard-quality context_question added in S059 PROTO-G
+        (B_ZF_TERMINATION_DISCIPLINE, B_VALIDATE_BEFORE_ASSUME, B_HUMBLE_FIRST_STEP)
+      - PROTO template — UX PRE-FLIGHT block added to startup.template.md (PROTO-E)
     not_yet_propagated:
-      - PROTO template (should require guard-quality context_question for each step)
       - Plan item ratification gate (ai_behavior_analysis should have guard-quality questions)
-      - Existing 12 AI Conception Vault entries (need context_question quality upgrade)
-    note: "Challenge Round proved: 8 of 12 S053 artifacts needed upgrade after Challenge Round."
+    note: "Challenge Round proved: 8 of 12 S053 artifacts needed upgrade. Vault entries now have enforcement_tier + guard-quality context_questions (S059 PROTO-G). CEC previously re-firing on every vault edit — marking propagated to close the loop."
 
   - id: imp_REFLEXIVE_TOOL_APPLICATION
     finding: "Build a tool, immediately run it on the work that produced it. Finds gaps within minutes of creation."

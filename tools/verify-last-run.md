@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-24T08:07:36.819Z
-- finished_at: 2026-05-24T08:08:11.146Z
+- ran_at: 2026-05-24T08:53:58.429Z
+- finished_at: 2026-05-24T08:54:21.938Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-24T08:07:36.819Z",
-    "finished_at": "2026-05-24T08:08:11.146Z",
+    "ran_at": "2026-05-24T08:53:58.429Z",
+    "finished_at": "2026-05-24T08:54:21.938Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 68,
         "findings_total": 22
       },
@@ -40,9 +40,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 572,
+        "scanned": 574,
         "errors": 0,
-        "warnings": 109,
+        "warnings": 110,
         "exempt": 320
       },
       {
@@ -112,7 +112,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -231,7 +231,7 @@
         "command": "node tools/validators/validate-template-grade.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "graded": 12,
         "advisories": 1
       },
@@ -259,7 +259,7 @@
         "command": "node tools/validators/validate-agreement-without-evidence.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.1,
         "checked": 2,
         "advisories": 3
       },
@@ -268,7 +268,7 @@
         "command": "node tools/validators/validate-crystallization-bypass.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "plans": 17,
         "blocking": 0,
         "advisory": 0
@@ -298,7 +298,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 39,
-        "validators": 156,
+        "validators": 158,
         "models": 0,
         "advisories": 8
       },
@@ -346,9 +346,9 @@
         "command": "node tools/validators/validate-schema-anchors.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "checked": 522,
-        "clean": 522,
+        "duration_seconds": 0.1,
+        "checked": 524,
+        "clean": 524,
         "blocking": 0,
         "registry": 62
       },
@@ -431,7 +431,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 659,
+        "scanned": 660,
         "advisory": 95
       },
       {
@@ -507,7 +507,7 @@
         "command": "node tools/validators/validate-wiring-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "wired": 19,
         "deferred": 34,
         "orphan": 0
@@ -535,7 +535,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 204,
+        "checked": 209,
         "blocking": 0,
         "advisories": 0
       },
@@ -593,8 +593,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -637,11 +637,11 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 47,
-        "active": 39,
+        "total": 50,
+        "active": 42,
         "stub": 4,
         "unknown": 4,
-        "stub_rate": 9
+        "stub_rate": 8
       },
       {
         "name": "declared_never_finished",
@@ -649,7 +649,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 74,
+        "checked": 76,
         "significant": 0,
         "week4_stubs": 1
       },
@@ -658,7 +658,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -670,9 +670,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "with_cq": 215,
-        "total": 463,
-        "pct": 46
+        "with_cq": 217,
+        "total": 465,
+        "pct": 47
       },
       {
         "name": "session_harvest_readiness",
@@ -681,7 +681,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S057",
-        "validators": 157
+        "validators": 159
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -776,7 +776,7 @@
         "command": "node tools/validators/validate-nothing-stands-alone.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3
+        "duration_seconds": 0.1
       },
       {
         "name": "moat_coverage",
@@ -821,7 +821,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 176,
+        "checked": 179,
         "missing_why": 42
       },
       {
@@ -877,7 +877,7 @@
         "command": "node tools/validators/validate-plan-ai-defaults.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "scanned": 26,
         "flagged": 3,
         "ratified": 1,
@@ -909,7 +909,7 @@
         "command": "node tools/validators/validate-core-seeds.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "seeds_found": 13,
         "overdue": 9
       },
@@ -1007,7 +1007,7 @@
         "command": "node tools/validators/validate-subscription-error-handling.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "routes_checked": 4,
         "with_gate": 4,
         "advisory": 4
@@ -1035,7 +1035,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -1063,9 +1063,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 157,
+        "validators_checked": 159,
         "orphans": 0,
-        "registered": 157
+        "registered": 159
       },
       {
         "name": "token_budget_validate",
@@ -1152,14 +1152,14 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 12.1
+        "duration_seconds": 6
       },
       {
         "name": "ui_completeness",
         "command": "node tools/validators/validate-ui-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 22,
         "advisories": 1
       },
@@ -1205,7 +1205,7 @@
         "command": "node tools/validators/validate-quality-alignment.mjs",
         "status": "ADVISORY",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "opus_rzf_rate": 80,
         "sonnet_intent_rate": 100,
         "directive_rzf_quality_rate": 0
@@ -1252,7 +1252,7 @@
         "command": "node tools/validators/validate-implementation-gate.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "advisories": 0
       },
       {
@@ -1306,8 +1306,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "plan_source_mtime": "2026-05-24T08:07:13.644Z",
-        "api_mtime": "2026-05-23T19:58:33.352Z",
-        "stale": true,
+        "api_mtime": "2026-05-24T08:08:28.301Z",
+        "stale": false,
         "advisory": true
       },
       {
@@ -1315,7 +1315,7 @@
         "command": "node tools/validators/validate-core-reminder.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "scanned": 276,
         "with_reminder": 2,
         "without_reminder": 142,
@@ -1327,7 +1327,7 @@
         "command": "node tools/validators/validate-activation-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "contracts_checked": 66,
         "activated": 43,
         "no_activation": 23,
@@ -1411,8 +1411,8 @@
         "command": "node tools/validators/validate-zf-cycle-format.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "zf_blocks_checked": 46,
+        "duration_seconds": 0.1,
+        "zf_blocks_checked": 47,
         "blocking": 0,
         "advisory": 0
       },
@@ -1457,12 +1457,12 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_checked": 13,
-        "missing_tier": 13,
+        "files_checked": 14,
+        "missing_tier": 11,
         "missing_t1": 0,
         "missing_t2": 0,
-        "enforcement_rate": 0,
-        "advisory": 13,
+        "enforcement_rate": 21,
+        "advisory": 11,
         "blocking": 0
       },
       {
@@ -1495,7 +1495,7 @@
         "total": 158,
         "deferred": 2,
         "empty_output": 15,
-        "zero_numeric": 13,
+        "zero_numeric": 12,
         "advisory": 3,
         "blocking": 0
       },
@@ -1516,7 +1516,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 142,
+        "total_entries": 146,
         "sessions": 1,
         "advisory": true
       },

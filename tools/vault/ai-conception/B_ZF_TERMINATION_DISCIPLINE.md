@@ -16,6 +16,10 @@ links:
   - ai-conception.B_ARCHITECTURE_REDIRECT_AWARENESS
   - ai-conception.B_IDENTITY_BEFORE_CONTEXT
 impl_status: swift-implemented
+enforcement_tier:
+  T1: "pre-tool-use-zf-termination-gate.sh — PreToolUse BLOCK on council writes without filename in Cycle 2 (S059 PROTO-G)"
+  T2: "validate-zf-cycle-format.mjs — BLOCKING in pnpm verify, scans sonnet-turn.md (existing, S050)"
+  T3: "session-open.sh injection — ZF discipline in turn-0 context (existing)"
 context_question: "When exactly has ZF been achieved, and what constitutes a valid termination cycle?"
 context_quote: "Termination is findings-driven, not cycle-count-driven."
 inherits_from: "Platform Genome §1 Behavioral Contracts"

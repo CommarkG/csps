@@ -13,6 +13,10 @@ core_spines: [AI, GVRN]
 core_spine: AI
 schema_anchor: vault_files
 impl_status: swift-implemented
+enforcement_tier:
+  T1: "pre-tool-use-humble-step-gate.sh — PreToolUse ADVISORY on council writes when STEP 1 >10 sub-items (S059 PROTO-G)"
+  T2: "validate-humble-first-step.mjs — advisory scan in pnpm verify (S059 PROTO-G)"
+  T3: "session-open.sh injection — B_HUMBLE_FIRST_STEP in turn-0 context (existing)"
 links:
   - ai-conception.B_IDENTITY_BEFORE_CONTEXT
   - ai-conception.B_ARCHITECTURE_REDIRECT_AWARENESS

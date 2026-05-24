@@ -238,5 +238,84 @@ PE: 95
 
 ---
 
-*Foundation Completion Plan v3.0 | S060 | Governor-ratified | Opus-8*
-*Updated Turn 27: S058 PCR decisions recorded, Developer's Journey ratified, PROTO-K in progress.*
+## S060 ADDITIONAL MILESTONES
+
+| Milestone | Date | Evidence |
+|---|---|---|
+| Threshold wired to real inputs | 2026-05-24 | PROTO-THRESHOLD-1 commit e20563c |
+| Vault Architecture ratified | 2026-05-24 | [docs/SIA/VAULT-ARCHITECTURE.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/VAULT-ARCHITECTURE.md) commit 8308c82 |
+| PROTO-THRESHOLD-2 complete | 2026-05-24 | vault-pending.yaml + CIE reads Threshold — commit 2265b89 |
+| Zero Friction Intake designed | 2026-05-24 | [docs/SIA/ZERO-FRICTION-INTAKE.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/ZERO-FRICTION-INTAKE.md) commit 299aa48 |
+| North Star Version C identified from CSP | 2026-05-25 | CSP PLTF-NS-01 document — NOT YET FORMAL CSPS ARTIFACT |
+| CSPS-DNA-MANIFESTO.md v1 written | 2026-05-24 | commit bdb716d — NEEDS REWRITE from Version C |
+
+## OPEN ITEMS (not yet in plan — S060 audit)
+
+### IMMEDIATE (next Opus tab)
+
+**NI-1: North Star formal adoption**
+Create `docs/plan/pillar-0-governance/CSPS-NORTH-STAR.md`
+Content: Version C verbatim + 6 NS Qualities + 3 NSPP gates + companion Foundation Sentence
+Status: NOT CREATED. Identified from CSP PLTF-NS-01 document 2026-05-25.
+
+**NI-2: NSPP Gates 1+2 in startup.template.md**
+Add to DIRECTOR and BUILDER sections:
+Gate 1 (open): "What part of the North Star does today's work serve?" → no answer = no mandate
+Gate 2 (close): ADVANCE / HOLD / DRIFT classification
+Status: DESIGNED, NOT BUILT.
+
+**NI-3: CSPS-DNA-MANIFESTO.md rewrite from Version C**
+Current version is poor quality (Governor confirmed). Version C identified.
+Every sentence must derive from "turn intention into reality — not approximately, but precisely."
+Status: v1 exists at bdb716d, full rewrite needed.
+
+### DEFERRED (explicitly deferred)
+
+**D-1: Zero Friction Phase 1 page**
+5 questions never answered by Governor (Q1-Q5 about voice input, AI transparency, template scope, location, default status)
+Status: WAITING for Governor answers before Phase 1 build.
+
+**D-2: Moat M-A through M-G registration**
+Moats identified this session: Palace, NorthStar, ConnectionFabric, GuardVsGuide, RatifiedExamples
+Need to be added to docs/plan/pillar-0-governance/moat-registry.md
+Status: DESIGNED, NOT REGISTERED.
+
+**D-3: ns_quality field in schema frontmatter**
+Every artifact should declare which NS Quality it serves (Core-first, I2I, Synergetic, AI-optimized, Governed-without-rigidity, Self-improving)
+Status: DESIGNED, NOT ADDED to frontmatter or validate-universal-alignment.mjs.
+
+**D-4: Context question ratification pipeline**
+4-test pipeline for mandatory vs advisory context_questions — designed this session
+Status: DESIGNED, NOT BUILT as validator.
+
+**D-5: Bundle taxonomy extension**
+Branding Bundle, Content Bundle, Feature Bundles, Integration Bundles — designed
+Need entries in R1-08-TEMPLATE-BUNDLE-SYSTEM.md and unified-plan.yaml
+Status: DESIGNED, NO PLAN ITEMS.
+
+**D-6: PROTO-K-C (live flow test)**
+Requires Governor to connect Vercel to debt-collection app (Root Dir: apps/debt-collection)
+Status: WAITING on Governor infrastructure action.
+
+**D-7: Business/Private/Social Avatar schema extensions**
+L2 branches of AVATAR-SCHEMA.md for business pillars (marketing, finance), personal pillars (health, relationships), social pillars (community, advocacy)
+Status: DESIGNED, NOT ADDED.
+
+**D-8: Cruel translation of Governor's content**
+Governor mentioned having content to translate into CSPS DNA. Content never arrived.
+Status: PENDING Governor sends content.
+
+## FALSE ASSUMPTIONS (corrected for next tab)
+
+| Assumption | Reality |
+|---|---|
+| CSPS-DNA-MANIFESTO.md ready for external review | FALSE — poor quality, needs rewrite from Version C |
+| Vercel deploy (Stage 5) complete | FALSE — config ready, Governor never connected Vercel |
+| North Star is ratified in CSPS | FALSE — Version C identified, no formal artifact yet |
+| PROTO-THRESHOLD-2 was pending | FALSE — completed at commit 2265b89 (Opus missed this) |
+| Developer's Journey independently verified | PARTIAL — ratified by Governor, not re-tested after colleague voice fix |
+
+---
+
+*Foundation Completion Plan v4.0 | S060 | Updated Turn 29 — comprehensive audit*
+*FALSE ASSUMPTIONS corrected. OPEN ITEMS explicitly tracked. North Star Version C identified.*

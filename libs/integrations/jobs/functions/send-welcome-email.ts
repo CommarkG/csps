@@ -11,8 +11,8 @@ export const sendWelcomeEmailFn = inngest.createFunction(
     id: 'send-welcome-email',
     name: 'Send Welcome Email',
     retries: 3,
+    triggers: [{ event: 'user/created' }],
   },
-  { event: 'user/created' },
   async ({ event }) => {
     const { userId, email, displayName, appName, dashboardUrl, tenantId } = event.data as {
       userId: string

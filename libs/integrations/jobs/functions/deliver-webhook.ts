@@ -20,8 +20,8 @@ export const deliverWebhookFn = inngest.createFunction(
     id: 'deliver-webhook',
     name: 'Deliver Webhook',
     retries: 3,
+    triggers: [{ event: 'webhook/deliver' }],
   },
-  { event: 'webhook/deliver' },
   async ({ event }) => {
     const { tenantId, eventType, data } = event.data as WebhookDeliverData
     const timestamp = Date.now()

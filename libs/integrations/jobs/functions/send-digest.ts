@@ -10,8 +10,8 @@ export const sendDigestFn = inngest.createFunction(
     id: 'send-weekly-digest',
     name: 'Send Weekly Digest',
     retries: 2,
+    triggers: [{ cron: '0 8 * * 1' }], // Monday 8am
   },
-  { cron: '0 8 * * 1' }, // Monday 8am
   async () => {
     // Raw prisma — no auth context in scheduled jobs (Opus Turn 49 RZF)
     const prisma = new PrismaClient()

@@ -14,7 +14,7 @@
 // Signature verification (svix) is the caller's responsibility.
 
 import type { ClerkWebhookEvent } from './types'
-import { SUBSCRIPTION_CONFIG } from '../../config/subscription.config'
+import { SUBSCRIPTION_CONFIG } from '@csps/config/subscription.config'
 import { createHash } from 'crypto'
 
 // Minimal DB interface — satisfied by PrismaClient once `prisma generate` runs.

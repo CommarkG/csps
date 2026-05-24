@@ -14,8 +14,8 @@ export const checkTrialExpiryFn = inngest.createFunction(
     id: 'check-trial-expiry',
     name: 'Check Trial Expiry',
     retries: 2,
+    triggers: [{ cron: '0 9 * * *' }], // 9am daily
   },
-  { cron: '0 9 * * *' }, // 9am daily
   async () => {
     // Raw prisma — no auth context in scheduled jobs (Opus Turn 49 RZF)
     const prisma = new PrismaClient()

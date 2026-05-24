@@ -10,11 +10,16 @@
   "dependencies": {
     "@clerk/nextjs": "^6.9.0",
     "@csps/components": "workspace:*",
-    "@csps/ui": "workspace:*",
+    "@csps/config": "workspace:*",
     "@csps/integrations": "workspace:*",
+    "@csps/ui": "workspace:*",
     "@prisma/client": "^6.7.0",
+    "@sentry/nextjs": "^10.53.1",
+    "@upstash/redis": "^1.38.0",
     "@zenstackhq/runtime": "^2.22.1",
+    "inngest": "^4.4.0",
     "next": "^14.2.29",
+    "svix": "^1.47.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

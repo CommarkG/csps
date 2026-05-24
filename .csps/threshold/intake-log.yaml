@@ -1282,3 +1282,13 @@ entries:
   source: governor_directive
   status: new
   raw: ""
+- id: "thr-unknown-1779661060737"
+  session: "unknown"
+  timestamp: "2026-05-24T22:17:40.736Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""

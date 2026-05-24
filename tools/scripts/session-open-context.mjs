@@ -579,5 +579,13 @@ process.stdout.write(JSON.stringify({
   hookSpecificOutput: {
     hookEventName: 'SessionStart',
     additionalContext: context
+  },
+  // PROTO-NORTHSTAR-1 (S060) — North Star Gate 1 injected at every session start.
+  // Opus reads this before any work begins. T1 enforcement: session-open injection.
+  northStar: {
+    versionC: 'Turn intention into reality — not approximately, but precisely.',
+    gate1: 'What part of the North Star does today\'s work serve? No answer = no mandate.',
+    gate2_instruction: 'Session close: classify as ADVANCE / HOLD / DRIFT',
+    source: 'docs/plan/pillar-0-governance/CSPS-NORTH-STAR.md'
   }
 }));

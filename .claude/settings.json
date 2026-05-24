@@ -95,6 +95,21 @@
             "type": "command",
             "command": ".claude/hooks/pre-tool-use-write-dispatcher.sh",
             "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-ux-creation-gate.sh",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-add-not-replace-gate.sh",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-voice-profile-gate.sh",
+            "timeout": 15
           }
         ]
       },
@@ -153,6 +168,11 @@
           {
             "type": "command",
             "command": ".claude/hooks/post-tool-use-zf-level-gate.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-tool-use-design-token-check.sh",
+            "timeout": 15
           }
         ]
       },

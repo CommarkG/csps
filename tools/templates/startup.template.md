@@ -113,6 +113,23 @@ ZF CYCLES — always name specific files:
      must also cite specific file:line in every ZF Cycle 2+. Conceptual reasoning
      without file citations triggers validate-zf-cycle-format.mjs BLOCKING even in receipts.
 
+UX PRE-FLIGHT (required before any UI PROTO):
+  Every PROTO that asks Sonnet to build a page or form MUST include this block.
+  Missing = INCOMPLETE PROTO. Sonnet should ask for it before building.
+  ┌─────────────────────────────────────────────────────────────┐
+  │ Use case: [Wizard / Dashboard / Config / Nav / Onboarding]  │
+  │ pageDNA for each new page:                                  │
+  │   purpose: [one plain-language sentence — user-facing]      │
+  │   options: [2-4 things the user can do here]                │
+  │   nextStep: [where they go after]                           │
+  │ Voice profile: [colleague / professional / mentor]          │
+  │   (required on any form, input, textarea, wizard)           │
+  │ ADD not REPLACE check:                                      │
+  │   [list existing pages this PROTO affects — ADD only]       │
+  └─────────────────────────────────────────────────────────────┘
+  Reference: docs/SIA/UX-PREVENTION-ARCHITECTURE.md Loop 5
+  S059 Governor directive: "pages built for engineers, not users — fix the spec."
+
 TURN REPORT FORMAT (for each directive response):
   Use: # OPUS-{N} Turn {T} S{NNN} — [topic] + RZF block + optional CEC walk
   Full format: tools/council/quality-protocols/opus-quality-spec.md

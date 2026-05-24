@@ -1,0 +1,167 @@
+---
+id: csps.config.design-tokens
+name: design-tokens
+description: "Platform Design Intelligence — visual token registry. Single source of truth for all colors, spacing, typography, and radius values across all CSPS apps. Apps inherit these at fork. Ratified S059 by Governor."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: ARCH
+schema_anchor: vault_files
+session: S059
+context_question: "Is this component using platform tokens or inventing its own values? Invented values = design debt."
+---
+
+# Design Tokens — CSPS Platform
+
+# COLORS
+# ---------------------------
+color:
+  # Core semantics — use these everywhere
+  success: "#16a34a"
+  warning: "#d97706"
+  danger:  "#dc2626"
+  info:    "#1d4ed8"
+  muted:   "#6b7280"
+
+  # Backgrounds for status (paired with above)
+  success_bg: "#dcfce7"
+  warning_bg: "#fef3c7"
+  danger_bg:  "#fee2f2"
+  info_bg:    "#eff6ff"
+
+  # Borders for status
+  success_border: "#86efac"
+  warning_border: "#fcd34d"
+  danger_border:  "#fca5a5"
+  info_border:    "#93c5fd"
+
+  # Base
+  text_primary:   "#111111"
+  text_secondary: "#374151"
+  text_muted:     "#6b7280"
+  border:         "#e5e7eb"
+  surface:        "#ffffff"
+  surface_alt:    "#f9fafb"
+
+# SPACING
+# ---------------------------
+# All spacing based on 4px base unit
+spacing:
+  xs:  "4px"    # icon gaps, tight inline
+  sm:  "8px"    # field padding, button padding vertical
+  md:  "12px"   # section padding inner, gap between related elements
+  lg:  "16px"   # card padding, field gaps
+  xl:  "24px"   # section gaps, card margins
+  xxl: "32px"   # page section separations
+
+# TYPOGRAPHY
+# ---------------------------
+typography:
+  page_title:
+    size: "18px"
+    weight: 700
+    color: "#111111"
+  section_title:
+    size: "15px"
+    weight: 700
+    color: "#111111"
+  label:
+    size: "13px"
+    weight: 600
+    color: "#374151"
+  body:
+    size: "14px"
+    weight: 400
+    color: "#374151"
+    line_height: 1.5
+  caption:
+    size: "12px"
+    weight: 400
+    color: "#6b7280"
+  code:
+    size: "13px"
+    family: "monospace"
+    color: "#111111"
+    background: "#f5f5f5"
+
+# RADIUS
+# ---------------------------
+radius:
+  sm:  "4px"   # chips, small buttons
+  md:  "6px"   # inputs, regular buttons
+  lg:  "8px"   # cards, panels
+  xl:  "12px"  # modals, large containers
+  full: "9999px"  # pills, avatars
+
+# STATUS CHIPS
+# ---------------------------
+chip:
+  height: "20px"
+  font_size: "11px"
+  font_weight: 700
+  text_transform: "uppercase"
+  radius: "4px"
+  variants:
+    active:     { text: "#1d4ed8", bg: "#eff6ff", border: "#93c5fd" }
+    complete:   { text: "#16a34a", bg: "#dcfce7", border: "#86efac" }
+    partial:    { text: "#d97706", bg: "#fef3c7", border: "#fcd34d" }
+    draft:      { text: "#6b7280", bg: "#f5f5f5", border: "#e5e7eb" }
+    blocked:    { text: "#dc2626", bg: "#fee2f2", border: "#fca5a5" }
+    ratified:   { text: "#16a34a", bg: "#dcfce7", border: "#86efac" }
+
+# INTERACTIVE ELEMENTS
+# ---------------------------
+button:
+  primary:
+    background: "#111111"
+    color: "#ffffff"
+    hover_bg: "#333333"
+    radius: "6px"
+    padding: "10px 20px"
+    font_weight: 600
+  secondary:
+    background: "transparent"
+    border: "1px solid #e5e7eb"
+    hover_bg: "#f5f5f5"
+    radius: "6px"
+    padding: "10px 20px"
+  ghost:
+    background: "transparent"
+    border: "none"
+    color: "#1d4ed8"
+    hover: "underline"
+  danger:
+    background: "transparent"
+    border: "1px solid #dc2626"
+    color: "#dc2626"
+    hover_bg: "#fee2f2"
+  compact:
+    padding: "6px 14px"
+  large:
+    padding: "14px 28px"
+
+input:
+  padding: "8px 12px"
+  border: "1px solid #e5e7eb"
+  radius: "6px"
+  focus_border: "#1d4ed8"
+  font_size: "14px"
+
+# NAVIGATION
+# ---------------------------
+nav:
+  height: "44px"
+  background: "#ffffff"
+  border_bottom: "1.5px solid #e5e5e5"
+  item_font_size: "12px"
+  item_font_weight: 600
+  dropdown_min_width: "180px"
+  dropdown_shadow: "0 4px 12px rgba(0,0,0,.08)"
+
+# APP INHERITANCE NOTE
+# ---------------------------
+# When a new app forks from apps/template/, it inherits these tokens.
+# Override in apps/[slug]/design-tokens.local.yaml (not yet built).
+# Global changes here propagate to all apps on next build.
+# App-specific overrides: per-app token file (S060+ feature).

@@ -1,0 +1,34 @@
+---
+id: csps.tools.data.ux-violation-register
+name: ux-violation-register
+description: "UX violation log — parallel to gap-recurrence-register.yaml but for UX violations. Every gate block or advisory trigger is logged here. K>=2 → Learning Loop drafts T1 proposal. K>=3 → SESSION BLOCKS."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: vault_files
+session: S059
+context_question: "Are any UX violations at K>=2? Those require structural fix proposals, not instance fixes."
+links:
+  - { rel: prevention-architecture, href: ../../docs/SIA/UX-PREVENTION-ARCHITECTURE.md }
+  - { rel: gap-recurrence-register, href: gap-recurrence-register.yaml }
+---
+
+# UX Violation Register
+
+# Entry schema:
+# - id: ux_[pattern_name]         (snake_case)
+#   type: creation_gate | voice_profile | design_token | replace_gate
+#   rule_source: "UX-UI-STANDARDS.md §[N]"
+#   file: path/to/file (where violation occurred)
+#   first_seen: S[NNN]
+#   k_count: 1
+#   sessions: [S059]
+#   status: open | structural_fix_committed
+#   structural_fix: pending | [description of fix]
+#
+# k_count >= 2: Learning Loop drafts T1 hook proposal in pending-plan-items.yaml
+# k_count >= 3: SESSION BLOCKS until T1 hook is committed
+
+entries: []

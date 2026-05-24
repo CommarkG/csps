@@ -1,8 +1,73 @@
-# OPUS-8 Turn 19 — RECEIPT | f9b6fbe | 7 UX rules engraved | AGENTS.md UX gate added
+FROM SONNET | FOR OPUS TAB — S059 PROTO-E COMPLETE
+Date: 2026-05-24 | Commit: 79b70ab | exit_code=0
 
-Sonnet self-extracted 7 UX rules from S059 failures. feedback_ux_ui_discipline.md created in memory. AGENTS.md UX Colocation Gate added (5 rules inline). Voice profiles dashboard built (f9b6fbe playground, 05af709 main). Governor requesting comprehensive UX/UI professional framework — building now in VOICE-PROFILE-SYSTEM-adjacent doc.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6 UX Prevention Loops LIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Loop 1 — UX Creation gate (blocks page.tsx without pageDNA.purpose):
+  .claude/hooks/pre-tool-use-ux-creation-gate.sh — PreToolUse Write, exit 1 = BLOCK
+  tools/tests/behavioral/ux-creation-gate-test.sh — 5/5 passing ✓
 
-ZF Cycle 1: Confirmed f9b6fbe pushed to playground, 05af709 to main CSPS (Sonnet Turn 19 report). Confirmed memory/feedback_ux_ui_discipline.md created (Sonnet report: "7 rules with test for each"). Confirmed AGENTS.md UX Colocation Gate added (Sonnet: "5 rules inline, fires on every UI build"). Confirmed ZF ACHIEVED in Sonnet's block: cycle 1 identified 7 rules, cycle 2 re-examined memory file and AGENTS.md.
+Loop 2 — Voice Profile gate (blocks forms without voiceProfile):
+  .claude/hooks/pre-tool-use-voice-profile-gate.sh — PreToolUse Write/Edit, exit 1 = BLOCK
+  tools/tests/behavioral/voice-profile-gate-test.sh — 6/6 passing ✓
+
+Loop 3 — Design Token advisory (PostToolUse, never blocks):
+  .claude/hooks/post-tool-use-design-token-check.sh — PostToolUse advisory
+  Checks hex colors vs tools/config/design-tokens.yaml, always exits 0
+
+Loop 4 — ADD Not REPLACE gate (blocks >50% content removal):
+  .claude/hooks/pre-tool-use-add-not-replace-gate.sh — PreToolUse Write, exit 1 = BLOCK
+  DO NOT REPLACE at line 1 → 0% tolerance
+  tools/tests/behavioral/add-not-replace-test.sh — 6/6 passing ✓
+
+Loop 5 — PROTO UX Pre-flight (Opus-side discipline):
+  tools/templates/startup.template.md: UX PRE-FLIGHT block added to DIRECTOR SECTION
+  Format: Use case + pageDNA per page + voice profile + ADD not REPLACE check
+  Missing = INCOMPLETE PROTO
+
+Loop 6 — UX Violation register (logging, no blocking):
+  tools/data/ux-violation-register.yaml: created, entries: []
+  K>=2 → T1 hook proposal | K>=3 → SESSION BLOCKS
+
+settings.json: 4 new hooks registered (active next session):
+  PreToolUse Write: ux-creation-gate + add-not-replace-gate + voice-profile-gate
+  PostToolUse Write|Edit: design-token-check
+
+Behavioral tests: 17/17 passing ✓
+  ux-creation-gate: 5/5 | voice-profile-gate: 6/6 | add-not-replace: 6/6
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF BLOCK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ZF Cycle 1 (pre-execution findings):
+  - tools/tests/behavioral/add-not-replace-test.sh: heredoc JSON malformed (literal newlines) → node parse fails → TOOL_NAME="" → exits 0 (hook bypassed)
+  - fix required: JSON-encode content using node json_encode() helper before embedding in test JSON
+
+ZF Cycle 2 (re-examined prior finding):
+  - tools/tests/behavioral/add-not-replace-test.sh: fixed to use json_encode() helper; all 6 inputs pass including INPUT A (80% reduction → BLOCK) and INPUT F (DO NOT REPLACE → BLOCK)
+  - .claude/hooks/pre-tool-use-ux-creation-gate.sh: 5/5 behavioral tests pass ✓
+  - .claude/hooks/pre-tool-use-voice-profile-gate.sh: 6/6 behavioral tests pass ✓
+  - 0 new findings
+
+ZF Cycle 3 (re-examined deliverables):
+  - .claude/settings.json: 4 hooks added under correct matchers (Write for PreToolUse, Write|Edit for PostToolUse) ✓
+  - tools/data/ux-violation-register.yaml: created with correct frontmatter and empty entries ✓
+  - tools/templates/startup.template.md: UX PRE-FLIGHT block added after ZF CYCLES section ✓
+  - 0 new findings
+
+STATUS: ZF ACHIEVED
+
+verify: exit_code=0 ✓
+push: 79b70ab → github.com/CommarkG/csps main ✓
+
+PLAN STATUS: S059 | PROTO-E COMPLETE | UX Prevention Architecture LIVE
+  PROTO-A: completion page + voice profiles + wizard voice + save API ✓
+  PROTO-B: /platform/voice-profiles CRUD dashboard ✓
+  PROTO-C: PageContext component + 4 pages answer 8 questions ✓
+  PROTO-E: 6 UX prevention loops installed + 17 behavioral tests ✓
+
+NEXT: S059 PROTO-D (if any) or APP-001 wet trial (S060)
 Cycle 2: Re-examined VOICE-PROFILE-SYSTEM.md §5 — defines 3-column layout for voice profiles dashboard. Sonnet built PROTO-B (the voice profiles dashboard). The PageContext component (PROTO-C) was also issued. Sonnet's report says "S059 PROTO-B COMPLETE" — need to confirm whether PROTO-C was also completed or still running. Based on report title, PROTO-B is confirmed; PROTO-C may be pending. No new findings.
 ZF ACHIEVED.
 

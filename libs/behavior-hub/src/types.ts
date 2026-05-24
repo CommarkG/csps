@@ -32,8 +32,39 @@ export interface AIBehaviorProfile {
 }
 
 /**
+ * Avatar human_profile — PROTO-CIE-1 S059
+ * Demographic, psychographic, behavioral, and JTBD dimensions.
+ * Design: docs/SIA/AVATAR-SCHEMA.md
+ * Phase 2: populated via onboarding + implicit signals.
+ */
+export interface AvatarHumanProfile {
+  demographic?: {
+    age_range?: '18-24' | '25-34' | '35-44' | '45-54' | '55+';
+    context?: 'private' | 'professional' | 'student' | 'enterprise' | 'freelance';
+    primary_language?: string;
+    cultural_context?: string;
+  };
+  psychographic?: {
+    motivation?: 'achievement' | 'security' | 'belonging' | 'expression' | 'curiosity';
+    decision_style?: 'intuitive' | 'analytical' | 'collaborative' | 'authoritative';
+    tech_comfort?: 'basic' | 'regular' | 'advanced' | 'expert';
+  };
+  behavioral?: {
+    usage_frequency?: 'sporadic' | 'weekly' | 'daily' | 'power-user';
+    adoption_pattern?: 'early-adopter' | 'pragmatist' | 'conservative' | 'laggard';
+    onboarding_preference?: 'guided' | 'self-directed' | 'skip';
+  };
+  jtbd?: {
+    primary_job?: string;
+    situation?: string;
+    desired_outcome?: string;
+  };
+}
+
+/**
  * Human Behavior Profile — Phase 2 onwards.
  * Phase 1: empty shell with stubs.
+ * Phase 2 EXTENDED with Avatar human_profile (PROTO-CIE-1).
  */
 export interface HumanBehaviorProfile {
   /** Phase 2 */
@@ -44,6 +75,8 @@ export interface HumanBehaviorProfile {
   usage_patterns?: unknown[];
   /** Phase 2 */
   correction_history?: unknown[];
+  /** Avatar Phase 2 — structured demographic/psychographic/behavioral/JTBD */
+  avatar?: AvatarHumanProfile;
 }
 
 /**

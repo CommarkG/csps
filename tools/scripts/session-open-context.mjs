@@ -156,6 +156,65 @@ try {
   stalePlansSummary = count > 0 ? count + ' plans need alignment — review before executing' : '0 stale unverified';
 } catch(e) { stalePlansSummary = 'validator error'; }
 
+// ── CIE D1 Summary (PROTO-CIE-1 — S059) ─────────────────────────────────────
+// Reads local files for live platform state summary.
+// Graceful fallback if any file missing.
+let cieD1Summary = null;
+try {
+  const verifyPath = join(ROOT, 'tools/verify-last-run.md');
+  const gapPath = join(ROOT, 'tools/data/gap-recurrence-register.yaml');
+  const planPath = join(ROOT, 'tools/config/unified-plan.yaml');
+
+  let validators = 157, openGaps = 0, donePlanItems = 36;
+  try {
+    const vRaw = readFileSync(verifyPath, 'utf8');
+    const m = vRaw.match(/"validators_checked":\s*(\d+)/);
+    if (m) validators = parseInt(m[1]);
+  } catch(e) {}
+  try {
+    const gRaw = readFileSync(gapPath, 'utf8');
+    openGaps = (gRaw.match(/status:\s*open/g) || []).length;
+  } catch(e) {}
+  try {
+    const pRaw = readFileSync(planPath, 'utf8');
+    donePlanItems = (pRaw.match(/^\s{4}status:\s*done\s*$/gm) || []).length;
+  } catch(e) {}
+
+  // Get top 3 PE items from unified-plan.yaml
+  let topPE = '';
+  try {
+    const pRaw = readFileSync(planPath, 'utf8');
+    const itemMatches = [...pRaw.matchAll(/- id:\s*(\S+)\n\s+title:[^\n]+\n\s+status:\s*(\S+)\n(?:.*\n)*?\s+pe_score:\s*(\d+)/gm)];
+    const open = itemMatches
+      .filter(m => m[2] !== 'done')
+      .map(m => ({ id: m[1], status: m[2], pe: parseInt(m[3]) }))
+      .sort((a, b) => b.pe - a.pe)
+      .slice(0, 3);
+    if (open.length > 0) {
+      topPE = open.map(i => `${i.id}(PE=${i.pe},${i.status})`).join(', ');
+    }
+  } catch(e) {}
+
+  // Check sonnet-turn.md for HOLDING state
+  let holdingFor = null;
+  try {
+    const turnPath = join(ROOT, 'tools/council/sonnet-turn.md');
+    const firstLine = readFileSync(turnPath, 'utf8').split('\n')[0] || '';
+    if (/HOLDING|AWAIT/i.test(firstLine)) {
+      holdingFor = firstLine.replace(/^[^|]+\|\s*/, '').trim().slice(0, 60);
+    }
+  } catch(e) {}
+
+  cieD1Summary = [
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    'CIE D1 STATUS (auto-computed from local files):',
+    `  Platform: validators=${validators} | open-gaps=${openGaps} | plan-done=${donePlanItems}/36+ | layers=4/4`,
+    topPE ? `  PE top-3: ${topPE}` : '  PE: no scored open items',
+    holdingFor ? `  Holding for: ${holdingFor}` : '  Holding: not in holding state',
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+  ];
+} catch(e) { /* CIE unavailable — continue without */ }
+
 // ── Build output ──────────────────────────────────────────────────────────────
 const isOpus = sessionRole === 'opus-advisor';
 const roleHeader = isOpus
@@ -197,6 +256,8 @@ const context = [
   '  The current S055 mandate (5 items) takes priority. No side quests unless Governor directs.',
   '  Completion = DONE means validated with evidence, not just built.',
   '',
+  ...(cieD1Summary || []),
+  ...(cieD1Summary ? [''] : []),
   'TURN PROTOCOL (Rule 0 — check before producing any directive):',
   '  DIRECTOR (Opus) holds Turn Token during planning. Transfers via HANDOFF.',
   '  BUILDER (Sonnet) holds Turn Token during implementation. Transfers via completion report.',

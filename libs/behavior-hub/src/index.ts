@@ -14,13 +14,14 @@
  * @csps-tags type:library domain:behavior-hub audience:platform
  */
 
-export { createProfile, getProfile, updateProfile } from './service.js';
+export { createProfile, getProfile, updateProfile, createFounderProfile } from './service.js';
 export { readProfile, writeProfile, profileExists } from './store.js';
 export type {
   BehaviorProfile,
   BehaviorProfileDelta,
   AIBehaviorProfile,
   HumanBehaviorProfile,
+  AvatarHumanProfile,
   TonePreference,
   VocabCorrection,
 } from './types.js';

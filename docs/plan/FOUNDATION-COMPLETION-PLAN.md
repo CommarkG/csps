@@ -152,14 +152,58 @@ The 6 UX prevention hooks will fire during build. Every new page gets pageDNA ga
 
 **Opus current session:**
 - Turn 20: PROTO-E receipt + PROTO-F to Sonnet ✓
-- Turn 21: Design PROTO-G spec (AI enforcement T1+T2 exact hook logic)
-- Turn 22: PROTO-G receipt + PROTO-H spec to Sonnet
-- Turn 23: PROTO-H receipt + PROTO-I architecture design
-- Turn 24: PROTO-I receipt + ratify Developer's Journey (PROTO-J)
-- Turn 25: PROTO-K launch (first app wet trial)
+- Turn 21: Design PROTO-G spec (AI enforcement T1+T2 exact hook logic) ✅
+- Turn 22: PROTO-G receipt + PROTO-H spec to Sonnet ✅
+- Turn 23: PROTO-H receipt + PROTO-I architecture design ✅
+- Turn 24: PROTO-I receipt + ratify Developer's Journey (PROTO-J) ✅
+- Turn 25: PROTO-J Part 1 + PROTO-K-PRE UX/page improvements ✅
+- Turn 26: PROTO-K-PRE receipt. Next: CIE wiring PROTO + Avatar extension
 
 ---
 
-*Foundation Completion Plan | S059 | Governor-ratified | Opus-8*
-*Push to git immediately. This file is the source of truth for all foundation work.*
-*Update when: PROTO completes, decision changes, new gap discovered.*
+## S059 ARCHITECTURAL ADDITIONS (Governor-ratified, all pushed)
+
+These emerged from the Developer's Journey examination and design sessions. All permanent.
+
+| File | Commit | What it defines |
+|---|---|---|
+| [docs/SIA/UX-CORE.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/UX-CORE.md) | bb55e1a | L1 sealed UX principles — 8 page elements, 5 cognitive load rules, mini-tree |
+| [docs/SIA/UI-CORE.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/UI-CORE.md) | bb55e1a | L1 sealed UI visual laws — token usage, component states, button hierarchy |
+| [docs/SIA/AVATAR-SCHEMA.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/AVATAR-SCHEMA.md) | e633a3a | 6 foundation archetypes, human_profile schema, learning loop, CIE integration |
+| [docs/plan/pillar-0-governance/CSPS-QUOTES.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/CSPS-QUOTES.md) | 264592f | 13 canonical platform quotes with sources |
+| [docs/plan/pillar-0-governance/USER-ROLE-SCHEMA.md](https://github.com/CommarkG/csps/blob/main/docs/plan/pillar-0-governance/USER-ROLE-SCHEMA.md) | 264592f | 3-layer role taxonomy, 10 roles, access matrix, PE+CIE integration |
+| [docs/SIA/R2-01-PLATFORM-INTELLIGENCE-ENGINE.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/R2-01-PLATFORM-INTELLIGENCE-ENGINE.md) | 6961a09 | CIE extended to 9 sub-engines, Services API, CIE=Combinatorial Engine confirmed |
+| [docs/SIA/R1-04-THRESHOLD.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/R1-04-THRESHOLD.md) | 0d06fb7 | Extended source taxonomy: external AI, tools, market intelligence |
+| [docs/SIA/UX-PREVENTION-ARCHITECTURE.md](https://github.com/CommarkG/csps/blob/main/docs/SIA/UX-PREVENTION-ARCHITECTURE.md) | 0e72f44 | Loop 7 (Alignment Gate) added |
+
+## REMAINING PROTOS (in order)
+
+### PROTO-CIE-1 — CIE Phase 1 Wiring (NEXT)
+Connect libs/intelligence/src/index.ts to the platform:
+1. Wire getCIEStatus() to session-open-context.mjs (the critical missing link)
+2. Build getCompletionSnapshot() — replaces GitHub raw API in completion page
+3. Build getSessionStatus() — surfaces open decisions + in-flight items
+PE: 95 (highest-leverage single connection in the platform)
+
+### PROTO-AVATAR-1 — Avatar human_profile extension
+Extend libs/behavior-hub/ with Avatar schema fields:
+1. Add human_profile section to BehaviorProfile TypeScript type
+2. Seed foundation archetypes (6 archetypes from AVATAR-SCHEMA.md)
+3. Wire to voice profile selection (Avatar → voice-profiles.yaml)
+PE: 88
+
+### PROTO-J-PART2 — Developer's Journey Ratification
+Governor tests wizard → says "Developer's Journey — ratified"
+Sonnet fills Date in CORE-COMPLETE-EXIT-CRITERIA.md + registers Debt Collection plan item
+PE: 95 (gate to PROTO-K)
+
+### PROTO-K — First App Wet Trial (Debt Collection)
+GATES: Developer's Journey ratified + CIE wiring complete + Avatar extension complete
+Build: fork apps/template/ → apps/debt-collection/ → core loop → validate → deploy → evidence
+PE: 95
+
+---
+
+*Foundation Completion Plan v2.0 | S059 | Governor-ratified | Opus-8*
+*Updated Turn 26 with all S059 architectural additions.*
+*Push to git after every PROTO. This file is the source of truth.*

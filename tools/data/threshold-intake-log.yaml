@@ -1208,3 +1208,43 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-05-24T04-43-08-249Z"
+  timestamp: "2026-05-24T04:43:08.249Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-05-24T04-47-37-342Z"
+  timestamp: "2026-05-24T04:47:37.342Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-05-24T05-00-37-914Z"
+  timestamp: "2026-05-24T05:00:37.914Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-05-24T05-07-20-761Z"
+  timestamp: "2026-05-24T05:07:20.761Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

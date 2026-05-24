@@ -462,3 +462,43 @@ entries:
   source: governor_directive
   status: new
   raw: ""
+- id: "thr-unknown-1779597788145"
+  session: "unknown"
+  timestamp: "2026-05-24T04:43:08.143Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-unknown-1779598057209"
+  session: "unknown"
+  timestamp: "2026-05-24T04:47:37.208Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-unknown-1779598837865"
+  session: "unknown"
+  timestamp: "2026-05-24T05:00:37.864Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-unknown-1779599240710"
+  session: "unknown"
+  timestamp: "2026-05-24T05:07:20.710Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""

@@ -1,10 +1,10 @@
 {
   "session": "unknown",
-  "captured_at": "2026-05-24T03:16:22.428Z",
+  "captured_at": "2026-05-24T04:47:35.380Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 157,
-    "ran_at": "2026-05-24T03:15:50.197Z"
+    "ran_at": "2026-05-24T04:46:50.781Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
@@ -15,5 +15,5 @@
     "gap_HANDOFF_STARTUP_BLOCK K=3 (fix_committed)",
     "gap_SESSION_INJECTION_COMPRESSION K=2 (open)"
   ],
-  "sonnet_summary": "INFRA-FLOW pipeline (step circles 0-6) restored on developer-journey/page.tsx with S058-accurate statuses. ADD_NOT_REPLACE rule created: T1 (DO NOT REPLACE comment), T2 (validate-no-replace.mjs propos"
+  "sonnet_summary": "FROM SONNET | FOR OPUS TAB — S059 PROTO-B COMPLETE\r | Date: 2026-05-24 | Playground: f9b6fbe | Main CSPS: 05af709\r | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\r"
 }

@@ -50,6 +50,31 @@ if [ -f "$STATE_FILE" ]; then
 fi
 
 
+# ─── THRESHOLD REAL CLASSIFIER — PROTO-THRESHOLD-1 (non-blocking) ────────────
+# Calls threshold-classify.mjs (TypeScript library or fallback keyword rules).
+# Outputs [threshold] type=... vault=... swift=... line for session context.
+# NEVER blocks — wrapped in subshell with || true.
+{
+  if [ -n "$USER_MESSAGE" ] && [ "$MSG_LEN" -gt 10 ]; then
+    _CLASSIFY_SESSION="${SESSION:-unknown}"
+    CLASSIFICATION=$(node "${REPO_ROOT}/tools/scripts/threshold-classify.mjs" \
+      "$USER_MESSAGE" "$_CLASSIFY_SESSION" 2>/dev/null || echo '{}')
+    if [ -n "$CLASSIFICATION" ] && [ "$CLASSIFICATION" != '{}' ]; then
+      TH_OUT=$(TH_JSON="$CLASSIFICATION" node -e "
+try{
+  const d=JSON.parse(process.env.TH_JSON||'{}');
+  const parts=['type='+(d.type||'?')];
+  if(d.vault_type) parts.push('vault='+d.vault_type);
+  if(d.swift_eligible!==undefined) parts.push('swift='+d.swift_eligible);
+  if(d.routing) parts.push('routing='+d.routing);
+  process.stdout.write(parts.join(' '));
+}catch(e){process.stdout.write('classified');}
+" 2>/dev/null || echo 'classified')
+      echo "[threshold] $TH_OUT"
+    fi
+  fi
+} 2>/dev/null || true
+
 # ─── THRESHOLD R1.4.1 — Intake classification + log append (non-blocking) ────
 # Classifies every governor prompt and appends to tools/data/threshold-intake-log.yaml.
 # Classification is pattern-based (Phase 1). First match wins. Non-blocking — never fails hook.

@@ -6,7 +6,7 @@ Wet trial findings: 7 added to [tools/data/improvement-register.yaml](../../tool
 Evidence: [.csps/evidence/session-S060-evidence.yaml](../../.csps/evidence/session-S060-evidence.yaml) — validators=159, layers 4/4 all
 
 ZF Cycle 1: Confirmed [apps/debt-collection/.env.local](../../apps/debt-collection/.env.local) has 13 keys (ANTHROPIC_API_KEY present, empty — Governor fills value). Confirmed [apps/debt-collection/vercel.json](../../apps/debt-collection/vercel.json):4 — buildCommand uses pnpm filter pattern ✓. Confirmed [apps/debt-collection/app.config.yaml](../../apps/debt-collection/app.config.yaml):9 — deployment block with Gate 3 setup guide ✓. Confirmed improvement-register.yaml has 7 imp_WET_TRIAL_* entries ✓. Confirmed evidence file captured validators=159, exit_code=0, layer_progress 4/4 ✓. Verify exit_code: 0.
-ZF Cycle 2: Re-examined ANTHROPIC_API_KEY placeholder (empty — correct, Governor provides value). Re-examined 7 improvement entries: all have status: propagated (already fixed in template), not_yet_propagated noted where applicable (SG004 needs fix in budget-planner/habit-tracker/voice-sorting layouts). Re-confirmed verify exit_code: 0. 0 new findings.
+ZF Cycle 2: Re-examined [apps/debt-collection/.env.local](../../apps/debt-collection/.env.local) — ANTHROPIC_API_KEY present but empty (correct, Governor fills). Re-examined [tools/data/improvement-register.yaml](../../tools/data/improvement-register.yaml) — 7 imp_WET_TRIAL_* entries confirmed at status: propagated. Re-examined [tools/verify-last-run.md](../../tools/verify-last-run.md) — exit_code=0. 0 new findings.
 **ZF ACHIEVED.**
 
 AWAIT PROTO-K-C direction (Governor Vercel connect → test the live flow).

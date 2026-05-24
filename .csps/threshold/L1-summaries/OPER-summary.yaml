@@ -1,0 +1,10 @@
+---
+pillar: OPER
+last_aggregated: "2026-05-24T00:00:00Z"
+session_count: 0
+top_patterns: []
+pending_vault_items: 0
+---
+# OPER L1 Summary
+# Aggregated from .csps/threshold/intake-log.yaml entries where spine_tag=OPER.
+# Updated by: tools/scripts/aggregate-l1-summaries.mjs (planned PROTO-THRESHOLD-2).

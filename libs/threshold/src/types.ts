@@ -33,7 +33,45 @@ export type InputSource =
   | 'sonnet_report'
   | 'opus_design'
   | 'external'
-  | 'session_harvest';
+  | 'session_harvest'
+  // External AI sources — R1-04-THRESHOLD.md §3b Extended Source Taxonomy
+  | 'external_gpt'
+  | 'external_gemini'
+  | 'external_claude'
+  | 'external_perplexity'
+  | 'external_deepseek'
+  | 'external_ai_general'
+  // External tool sources
+  | 'external_lovable'
+  | 'external_base44'
+  | 'external_cursor'
+  | 'external_tool_general'
+  // Market intelligence
+  | 'customer_feedback'
+  | 'competitor_analysis'
+  | 'market_research'
+  | 'industry_report';
+
+/** Vault type — maps input to deliberate processing cadence (VAULT-ARCHITECTURE.md) */
+export type VaultType = 'strategic' | 'operational' | 'technical' | 'insight' | 'pending';
+
+/** Record written to tools/data/threshold-intake-log.yaml for every classified Governor input */
+export interface ThresholdIntakeRecord {
+  id: string;
+  session: string;
+  timestamp: string;
+  type: ThresholdInputType;
+  spine_tag: SpineTag;
+  scope_tag: ScopeTag;
+  urgency: Urgency;
+  source: InputSource;
+  status: ThresholdStatus;
+  input_preview?: string;
+  // Vault routing — added PROTO-THRESHOLD-1 (S060)
+  vault_type?: VaultType;
+  swift_eligible?: boolean;
+  routing?: 'opus' | 'sonnet' | 'both' | 'automated';
+}
 
 /** Classified Threshold input object — design R1-04-THRESHOLD.md § 3 */
 export interface ThresholdInput {

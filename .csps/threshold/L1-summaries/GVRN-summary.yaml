@@ -1,0 +1,11 @@
+---
+pillar: GVRN
+last_aggregated: "2026-05-24T00:00:00Z"
+session_count: 0
+top_patterns: []
+pending_vault_items: 0
+---
+# GVRN L1 Summary
+# Aggregated from .csps/threshold/intake-log.yaml entries where spine_tag=GVRN.
+# Updated by: tools/scripts/aggregate-l1-summaries.mjs (planned PROTO-THRESHOLD-2).
+# Format: session → classify → vault → L1-aggregate → Opus review.

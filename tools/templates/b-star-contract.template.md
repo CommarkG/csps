@@ -72,6 +72,19 @@ exceptions / scope limits.>
 - memory: <C:\path\to\feedback_<slug>.md>
 - contract: this entry + AGENTS.md hard NO + spine matrix row + `principles.yaml#<P-XXX-NNN>`
 
+**enforcement_trio (MANDATORY — permanence-by-default, S060):**
+```yaml
+enforcement_trio:
+  T1: ".claude/hooks/<hook-script>.sh"           # pre-creation gate (ACTIVE or planned-SNNN)
+  T2: "tools/validators/validate-<slug>.mjs"     # verify gate (BLOCKING or advisory)
+  T3: "tools/scripts/session-open-context.mjs"   # session awareness injection
+  coverage: "T1+T2+T3"                           # or "T2+T3" or "T3-only" (advisory)
+  status: "active | planned-SNNN"
+```
+> This field is parsed by `validate-permanence-coverage.mjs` to compute platform permanence score.
+> T3-only = will drift within 3 sessions (permanence-mechanics.md §2).
+> MINIMUM viable = T2+T3. Target = T1+T2+T3.
+
 **Cross-references:** <P-XXX-NNN> / <P-OTHER> (<composition rationale>) /
 <P-OTHER> (<composition rationale>) / <up to 5 cross-refs minimum 3>.
 

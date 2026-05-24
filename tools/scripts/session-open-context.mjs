@@ -227,6 +227,23 @@ try {
     }
   } catch(e) {}
 
+  // Permanence coverage score — S060 permanence-by-default (PERMANENCE-PROTOCOL.md)
+  let permanenceSummary = null;
+  try {
+    const { execSync } = await import('node:child_process');
+    const permOut = execSync('node tools/validators/validate-permanence-coverage.mjs 2>&1', { cwd: ROOT, encoding: 'utf8', timeout: 8000 });
+    const contractsM = permOut.match(/contracts_checked=(\d+)/);
+    const fullTrioM = permOut.match(/full_trio=(\d+)/);
+    const t2M = permOut.match(/has_t2=(\d+)/);
+    if (contractsM && fullTrioM) {
+      const total = Number(contractsM[1]);
+      const full = Number(fullTrioM[1]);
+      const t2 = t2M ? Number(t2M[1]) : '?';
+      const pct = total > 0 ? Math.round((full/total)*100) : 0;
+      permanenceSummary = `  Permanence: ${full}/${total} contracts T1+T2+T3 (${pct}%) | T2-only: ${t2}`;
+    }
+  } catch(e) {}
+
   cieD1Summary = [
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
     'CIE D1 STATUS (auto-computed from local files):',
@@ -234,6 +251,7 @@ try {
     topPE ? `  PE top-3: ${topPE}` : '  PE: no scored open items',
     holdingFor ? `  Holding for: ${holdingFor}` : '  Holding: not in holding state',
     ...(thresholdSummary ? [thresholdSummary] : []),
+    ...(permanenceSummary ? [permanenceSummary] : []),
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
   ];
 } catch(e) { /* CIE unavailable — continue without */ }

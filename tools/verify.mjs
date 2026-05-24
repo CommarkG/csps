@@ -1346,6 +1346,25 @@ const CYCLES = [
     },
   },
   {
+    // S060 permanence-by-default: track T1+T2+T3 coverage across all 66 behavioral contracts
+    name: 'permanence_coverage',
+    command: 'node tools/validators/validate-permanence-coverage.mjs',
+    parse_output: (out) => {
+      const contractsM = out.match(/contracts_checked=(\d+)/);
+      const fullTrioM = out.match(/full_trio=(\d+)/);
+      const t1M = out.match(/has_t1=(\d+)/);
+      const t2M = out.match(/has_t2=(\d+)/);
+      const advM = out.match(/advisory=(\d+)/);
+      return {
+        contracts_checked: contractsM ? Number(contractsM[1]) : 0,
+        full_trio: fullTrioM ? Number(fullTrioM[1]) : 0,
+        has_t1: t1M ? Number(t1M[1]) : 0,
+        has_t2: t2M ? Number(t2M[1]) : 0,
+        advisory: advM ? Number(advM[1]) : 0,
+      };
+    },
+  },
+  {
     // S060 PROTO-NORTHSTAR-1: North Star Presence Protocol T2 — Gates 1+2 enforcement
     // Checks Gate 1 (northStar block in session-open), Gate 2 (ADVANCE/HOLD/DRIFT in sonnet-turn.md),
     // and gap_NSPP_MISSING K≥2 BLOCKING trigger.

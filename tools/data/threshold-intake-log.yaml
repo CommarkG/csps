@@ -2038,3 +2038,33 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-05-24T22-27-27-964Z"
+  timestamp: "2026-05-24T22:27:27.964Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-05-24T22-36-00-893Z"
+  timestamp: "2026-05-24T22:36:00.893Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-05-24T22-47-28-736Z"
+  timestamp: "2026-05-24T22:47:28.736Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

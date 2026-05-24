@@ -245,7 +245,57 @@ Test files: `tools/tests/behavioral/[loop-name]-test.sh`
 
 ---
 
-*CSPS — UX Prevention Architecture v1.0 | RATIFIED S059 | Opus-8*
+## Loop 7 — Alignment Gate (Governor-ratified S059)
+
+**Hook:** `.claude/hooks/pre-tool-use-alignment-gate.sh`
+**Fires on:** Write to any NEW file (.sh, .mjs, .tsx, .ts, .md) that does not yet exist
+**T1 implementation:** PreToolUse — ADVISORY first 30 days (matching Loop 3 adoption pattern), then BLOCKING
+**Rationale:** Every failure this session — wrong tone, wrong content, replacing instead of adding, building for engineers not users — happened because builders read the spec then immediately built without structured self-questioning.
+
+**What it enforces:** The builder must articulate INTENT before writing a single line.
+
+**Required alignment block at top of every new file:**
+```
+// ALIGNMENT CHECK (required — docs/SIA/UX-PREVENTION-ARCHITECTURE.md Loop 7)
+// WHO:      [who uses this — developer / governor / end user]
+// WHAT:     [exact artifact being created — one specific thing]
+// PREVENTS: [which violation this prevents (not detects)]
+// RISK:     [false assumption that could make me build the wrong thing]
+// SCOPE:    [is this the minimal first step? yes/no + reason]
+```
+
+**Block message:**
+```
+ALIGNMENT GATE [ADVISORY/BLOCKING]: New file missing alignment block.
+Every new file must articulate intent before the first line of code.
+Add the 5-question alignment comment at the top of this file.
+See: docs/SIA/UX-PREVENTION-ARCHITECTURE.md Loop 7
+```
+
+**Where else this applies:** Before hooks (T1 hooks affect all builds), schema changes (ripple across 30 apps), plan item registration (prevent duplicates), UI components handling user input.
+
+**The screenshot test case:** Sonnet discovered B_VALIDATE_BEFORE_ASSUME.md didn't exist mid-build. An alignment check ("RISK: the vault entry I'm implementing might not exist") would have caught this before the Write.
+
+**Rollback:** Remove hook file — all new file creation unblocked immediately.
+
+---
+
+## Hook Summary Table (updated — 7 loops)
+
+| Loop | Hook file | Type | Blocks? | Fires on |
+|---|---|---|---|---|
+| 1 UX Creation | `pre-tool-use-ux-creation-gate.sh` | T1 PreToolUse | YES | Write to page.tsx |
+| 2 Voice Profile | `pre-tool-use-voice-profile-gate.sh` | T1 PreToolUse | YES | Write to form/wizard |
+| 3 Design Token | `post-tool-use-design-token-check.sh` | PostToolUse | ADVISORY | Write to .tsx |
+| 4 ADD not REPLACE | `pre-tool-use-add-not-replace-gate.sh` | T1 PreToolUse | YES | Write to existing page |
+| 5 PROTO Pre-flight | startup.template.md DIRECTOR | T3 Discipline | SOFT | Every UI PROTO |
+| 6 UX Reflexivity | ux-violation-register.yaml + cec | T1 PostToolUse | AT K=3 | Any gate trigger |
+| 7 Alignment Gate | `pre-tool-use-alignment-gate.sh` | T1 PreToolUse | ADVISORY→BLOCKING | Every new file |
+
+---
+
+*CSPS — UX Prevention Architecture v1.1 | RATIFIED S059 | Opus-8*
+*Loop 7 added: Alignment Gate — Governor-ratified, advisory 30 days then blocking.*
 *All steps are permanent. Rollback by removing individual hook files.*
 *Update when: new prevention pattern identified, threshold adjusted, hook upgraded*
 </content>

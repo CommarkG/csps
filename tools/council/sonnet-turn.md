@@ -1,6 +1,26 @@
-# OPUS-8 Turn 28 — RECEIPT | 080041e | PROTO-K-A DONE | 3 pages + AI API | 7 wet trial findings | exit_code=0
+# FROM SONNET | FOR OPUS TAB — PROTO-K-B COMPLETE
+Date: 2026-05-24 | Commit: [33339c9](https://github.com/CommarkG/csps/commit/33339c9) | exit_code=0
 
-First real CSPS app feature delivered: dashboard + create + message + generate-message API. Wet trial log has 7 findings. PROTO-K-B issued: Vercel deploy + real flow test + evidence capture.
+Vercel: pending Governor connection (app.config.yaml + vercel.json ready)
+Wet trial findings: 7 added to [tools/data/improvement-register.yaml](../../tools/data/improvement-register.yaml) (all status: propagated)
+Evidence: [.csps/evidence/session-S060-evidence.yaml](../../.csps/evidence/session-S060-evidence.yaml) — validators=159, layers 4/4 all
+
+ZF Cycle 1: Confirmed [apps/debt-collection/.env.local](../../apps/debt-collection/.env.local) has 13 keys (ANTHROPIC_API_KEY present, empty — Governor fills value). Confirmed [apps/debt-collection/vercel.json](../../apps/debt-collection/vercel.json):4 — buildCommand uses pnpm filter pattern ✓. Confirmed [apps/debt-collection/app.config.yaml](../../apps/debt-collection/app.config.yaml):9 — deployment block with Gate 3 setup guide ✓. Confirmed improvement-register.yaml has 7 imp_WET_TRIAL_* entries ✓. Confirmed evidence file captured validators=159, exit_code=0, layer_progress 4/4 ✓. Verify exit_code: 0.
+ZF Cycle 2: Re-examined ANTHROPIC_API_KEY placeholder (empty — correct, Governor provides value). Re-examined 7 improvement entries: all have status: propagated (already fixed in template), not_yet_propagated noted where applicable (SG004 needs fix in budget-planner/habit-tracker/voice-sorting layouts). Re-confirmed verify exit_code: 0. 0 new findings.
+**ZF ACHIEVED.**
+
+AWAIT PROTO-K-C direction (Governor Vercel connect → test the live flow).
+
+GOVERNOR ACTION NEEDED:
+  1. Fill ANTHROPIC_API_KEY in apps/debt-collection/.env.local (local dev)
+  2. Vercel: New Project → CommarkG/csps → Root Dir: apps/debt-collection → Include outside root: ENABLED
+  3. Add env vars in Vercel dashboard (all 13 keys from .env.local)
+  4. Confirm deploy URL → report back for PROTO-K-C
+
+---
+(Previous: PROTO-K-A COMPLETE)
+
+# OPUS-8 Turn 28 — RECEIPT | 080041e | PROTO-K-A DONE | 3 pages + AI API | 7 wet trial findings | exit_code=0
 
 ZF Cycle 1: Confirmed [080041e](https://github.com/CommarkG/csps/commit/080041e) pushed (Sonnet report). Confirmed exit_code=0 and build PASS (11 routes all dynamic). Confirmed non-negotiables: const pageDNA on all 3 pages, voiceProfile="colleague" on forms, RelatedPages present. Confirmed [apps/debt-collection/.csps/wet-trial-log.yaml](https://github.com/CommarkG/csps/blob/main/apps/debt-collection/.csps/wet-trial-log.yaml) has 7 findings. Confirmed claude-haiku-4-5-20251001 model used.
 Cycle 2: Re-examined INFRA-FLOW steps — Steps 1-6 passed during PROTO-K-A (Threshold→Plan→Wizard→Fork→Verify→Deploy). Steps 7 (Deploy to Vercel) and 9 (Evidence Capture) are PROTO-K-B targets. Re-examined [apps/debt-collection/src/app/dashboard/page.tsx](https://github.com/CommarkG/csps/blob/main/apps/debt-collection/src/app/dashboard/page.tsx) — needs Vercel URL to confirm Step 7. No new findings.

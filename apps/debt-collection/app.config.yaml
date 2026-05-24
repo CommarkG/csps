@@ -2,5 +2,23 @@ id: csps.apps.debt-collection
 name: debt-collection
 slug: debt-collection
 created_at: 2026-05-24T14:49:35.846Z
-status: forked
+status: active
 template_version: "1.0"
+phase: PROTO-K-B
+
+deployment:
+  platform: vercel
+  repo: CommarkG/csps
+  root_dir: apps/debt-collection
+  include_outside_root: true
+  framework: nextjs
+  url: "[pending Governor connection]"
+  status: pending_connection
+
+# Gate 3 Vercel setup (per external-integrations/vercel.md):
+#   1. Vercel → New Project → Import CommarkG/csps
+#   2. Root Directory: apps/debt-collection
+#   3. Framework: Next.js (auto-detected)
+#   4. Include files outside root: ENABLED (required for libs/* access)
+#   5. Add env vars: DATABASE_URL, DIRECT_URL, CLERK_*, STRIPE_*, ANTHROPIC_API_KEY
+#   6. Deploy → update url above

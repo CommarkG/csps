@@ -130,3 +130,106 @@ entries:
       - tools/config/cec-path-map.yaml (S056 — explicit improvement_id→trigger_on path list)
     not_yet_propagated: []
     note: "Root fix applied S056: cec-improvement-check.mjs v2 reads tools/config/cec-path-map.yaml. Each improvement has explicit trigger_on paths — no keyword extraction. 9+ fires/session → 0 false positives. Session dedup remains as safety net."
+
+  # ─── PROTO-K Wet Trial Findings (S060) ───────────────────────────────────────
+  # Source: apps/debt-collection/.csps/wet-trial-log.yaml
+  # These were found by forking apps/template/ for the first time under real build conditions.
+  # All already fixed (status: propagated) — recording for K-count tracking + CEC discipline.
+
+  - id: imp_WET_TRIAL_AP005_WEBPACK_DEDUPE
+    finding: "resolve.dedupe is a Vite-only API — invalid in webpack 5. Was used in all CSPS next.config.js files, breaking every app build."
+    first_found: S060
+    k_count: 1
+    sessions: [S060]
+    status: propagated
+    commit: e07504d
+    propagated_to:
+      - apps/template/next.config.js
+      - apps/debt-collection/next.config.js
+      - apps/budget-planner/next.config.js
+      - apps/habit-tracker/next.config.js
+      - apps/voice-sorting/next.config.js
+    not_yet_propagated: []
+
+  - id: imp_WET_TRIAL_AP006_INNGEST_ESM
+    finding: "inngest is 'type: module' (ESM-first). webpack picks ESM entry when transpiling @csps/integrations via transpilePackages, causing 'Inngest is not a constructor'. Fix: resolve.alias to CJS path + NormalModuleReplacementPlugin for inngest/next subpath."
+    first_found: S060
+    k_count: 1
+    sessions: [S060]
+    status: propagated
+    commit: e07504d
+    propagated_to:
+      - apps/template/next.config.js (AP-006 comment + CJS alias pattern)
+      - apps/debt-collection/next.config.js
+    not_yet_propagated:
+      - apps/budget-planner/next.config.js (needs AP-006 pattern if inngest added)
+      - apps/habit-tracker/next.config.js (same)
+
+  - id: imp_WET_TRIAL_SG001_CONFIG_PACKAGE
+    finding: "libs/config had no package.json — @csps/config was imported everywhere but not a proper workspace package. Silently broken until first real fork attempt."
+    first_found: S060
+    k_count: 1
+    sessions: [S060]
+    status: propagated
+    commit: e07504d
+    propagated_to:
+      - libs/config/package.json (created)
+      - libs/integrations/package.json (added @csps/config dependency)
+      - apps/template/package.json
+      - apps/debt-collection/package.json
+    not_yet_propagated: []
+
+  - id: imp_WET_TRIAL_SG002_RELATIVE_IMPORT
+    finding: "libs/integrations/clerk/webhook-handler.ts used relative ../../config/subscription.config which breaks when the lib is symlinked via node_modules. Cross-package imports must use @csps/config, not relative paths."
+    first_found: S060
+    k_count: 1
+    sessions: [S060]
+    status: propagated
+    commit: e07504d
+    propagated_to:
+      - libs/integrations/clerk/webhook-handler.ts (import fixed)
+    not_yet_propagated:
+      - rule: future libs MUST NOT use relative imports crossing package boundaries — consider validator
+
+  - id: imp_WET_TRIAL_DW001_INNGEST_WIRED
+    finding: "inngest stub (S040 deferred wiring) finally activated: real Inngest SDK + v4 API migration. createFunction signature changed from (config, trigger, handler) 3-arg to ({ id, triggers: [] }, handler) 2-arg."
+    first_found: S060
+    k_count: 1
+    sessions: [S060]
+    status: propagated
+    commit: e07504d
+    propagated_to:
+      - libs/integrations/jobs/inngest.ts (stub → real Inngest SDK)
+      - libs/integrations/jobs/functions/check-trial-expiry.ts
+      - libs/integrations/jobs/functions/deliver-webhook.ts
+      - libs/integrations/jobs/functions/send-digest.ts
+      - libs/integrations/jobs/functions/send-welcome-email.ts
+    not_yet_propagated: []
+
+  - id: imp_WET_TRIAL_SG003_MISSING_DEPS
+    finding: "Template package.json was missing: @sentry/nextjs, @upstash/redis, inngest, svix, stripe, zod. These are imported by template source but not declared — every new fork would fail build on first attempt."
+    first_found: S060
+    k_count: 1
+    sessions: [S060]
+    status: propagated
+    commit: e07504d
+    propagated_to:
+      - apps/template/package.json (6 deps added)
+      - apps/debt-collection/package.json
+      - libs/integrations/package.json (stripe, zod, inngest, @clerk/nextjs)
+    not_yet_propagated: []
+
+  - id: imp_WET_TRIAL_SG004_FORCE_DYNAMIC
+    finding: "Root layout missing 'export const dynamic = force-dynamic'. ClerkProvider requires publishable key at runtime, causing prerender failures at build time when CLERK_PUBLISHABLE_KEY is not set in build env."
+    first_found: S060
+    k_count: 1
+    sessions: [S060]
+    status: propagated
+    commit: e07504d
+    propagated_to:
+      - apps/template/src/app/layout.tsx (force-dynamic added)
+      - apps/debt-collection/src/app/layout.tsx
+    not_yet_propagated:
+      - apps/budget-planner/src/app/layout.tsx
+      - apps/habit-tracker/src/app/layout.tsx
+      - apps/voice-sorting/src/app/layout.tsx

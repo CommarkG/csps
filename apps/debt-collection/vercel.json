@@ -1,10 +1,12 @@
 {
   "framework": "nextjs",
+  "buildCommand": "cd ../.. && pnpm --filter @csps/debt-collection build",
+  "installCommand": "cd ../.. && pnpm install",
   "env": {
     "NEXT_PUBLIC_CLERK_SIGN_IN_URL": "/sign-in",
     "NEXT_PUBLIC_CLERK_SIGN_UP_URL": "/sign-up",
-    "NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL": "/",
-    "NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL": "/account-setup"
+    "NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL": "/dashboard",
+    "NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL": "/dashboard"
   },
   "regions": ["iad1"]
 }

@@ -35,6 +35,8 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ Never invent a "cool name" for something with industry-standard term
 
 ### Governance + workflow
+- ❌ **Freestyle startup blocks are PROHIBITED (S059 Governor directive):** Never write a startup block for a new Opus or Sonnet tab from memory or chat. Always run `node tools/scripts/generate-startup-block.mjs` — it generates the correct block from current platform state. Freestyle blocks = inconsistent, incomplete, unverifiable. The generated files are at `.csps/startup-blocks/opus-startup.txt` and `.csps/startup-blocks/sonnet-startup.txt`.
+- ❌ **Conceptual DONE is not DONE (S059 Governor directive):** Never declare something fixed without naming and running the observable verification test. "session-open.sh updated" ≠ DONE. "New tab opened, zero popups observed" = DONE. Every DONE claim requires a measurable final result, not a description of what was changed. See `memory/feedback_satisfaction_point_final_result.md`.
 - ❌ Never edit `AGENTS.md` directly — edit [`packages/principles/principles.yaml`](packages/principles/principles.yaml) + run `pnpm principles:codegen`
 - ❌ Never edit `nav.js`, `styles.css` Design Attitudes section, or `platform/templates/vault/*.html` without: (1) showing the exact diff, (2) stating which pages are affected, (3) receiving explicit Governor YES. (Sacred Elements — 1C ratified Opus Turn 96)
 - ❌ Never declare a new B_* behavioral contract, principle, or Hard NO without including `enforcement_tier:` section declaring T1 hook + T2 validator + T3 session. Written rule = 0% complete. T1+T2+T3 = 100% complete. (DEFAULT-ME-1 override — S041 OPEN-050 — validate-rule-has-enforcement.mjs detects absence)

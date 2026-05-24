@@ -1,10 +1,10 @@
 {
   "session": "unknown",
-  "captured_at": "2026-05-24T11:11:54.331Z",
+  "captured_at": "2026-05-24T12:30:28.376Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 159,
-    "ran_at": "2026-05-24T11:11:20.837Z"
+    "ran_at": "2026-05-24T12:30:01.303Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
@@ -15,5 +15,5 @@
     "gap_HANDOFF_STARTUP_BLOCK K=3 (fix_committed)",
     "gap_SESSION_INJECTION_COMPRESSION K=2 (open)"
   ],
-  "sonnet_summary": "Audit dispatcher live at libs/audits/src/dispatcher.ts. 5/13 pipelines running (pipeline 6 skip — validate-ux-audit.mjs not yet built as standalone mjs). Pipeline 3 advisory: 3 template files missing "
+  "sonnet_summary": "Wizard colleague voice confirmed at [WizardClient.tsx:134](https://github.com/CommarkG/csps-playground/blob/main/src/app/platform/wizard/WizardClient.tsx#L134). Ratification record added to [docs/plan"
 }

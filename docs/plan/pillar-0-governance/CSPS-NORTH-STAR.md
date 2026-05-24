@@ -3,6 +3,7 @@ id: csps.governance.north-star
 name: CSPS-NORTH-STAR
 description: "The CSPS North Star — the single ratified statement against which every decision, session, and artifact is measured. Adopted from CSP predecessor platform (PLTF-NS-01, Version C, PROVISIONAL via CC-013 R1/Q001). The governing principle: turn intention into reality — not approximately, but precisely."
 type: governance
+diataxis_type: reference
 protection_level: sacred
 status: ratified
 core_spine: GVRN

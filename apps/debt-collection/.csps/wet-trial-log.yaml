@@ -68,4 +68,12 @@ findings:
     commit: TBD
     propagation_target: app-only
 
+  - type: false_positive_gap_closed
+    id: GAP-2-already-present
+    description: "GAP-2 audit identified relatedPages as missing on create/page.tsx + message/page.tsx — but relatedPages was already present since commit 080041e (S060)"
+    finding: "create/page.tsx:16 relatedPages:['/dashboard','/message'] + message/page.tsx:17 relatedPages:['/dashboard','/create'] — both present since S060 build"
+    fix: "No fix required. Gap-audit false positive. Closed as already-present."
+    commit: 080041e
+    propagation_target: none
+
   # PROTO-K-A findings added during feature build phase

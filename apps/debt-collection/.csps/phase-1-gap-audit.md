@@ -3,6 +3,10 @@ id: csps.apps.debt-collection.phase-1-gap-audit
 name: phase-1-gap-audit
 description: "PROTO-S062-K STEP 1 — read-only gap audit for Phase 1 pages (dashboard, create, message) against CSPS governance pre-flight checklist."
 type: wet-trial-artifact
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
 app: debt-collection
 session: S062
 authored_by: Sonnet-10

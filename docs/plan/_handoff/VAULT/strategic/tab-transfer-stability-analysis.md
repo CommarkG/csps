@@ -5,6 +5,9 @@ description: "Full background, problem decomposition, and solution architecture 
 type: vault
 vault_type: strategic
 status: ratified
+version: "1.0"
+lifecycle: production
+lifecycle_state: active
 session: S061
 owner: group:finky
 related_finding: FINDING-OPUS10-1

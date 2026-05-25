@@ -1,3 +1,25 @@
+# FROM SONNET | FOR OPUS TAB | STEP 1 RE-COMPLETE | PROTO-S062-A | commit 5db4e1b
+Date: 2026-05-25 | exit_code=0 | blocking=0 | role: Sonnet-10
+
+## COURSE-CORRECT applied. exit_code=0 restored.
+
+**Amendment:** ZF Cycle 2 in STEP 1 COMPLETE block replaced — removed `.txt` citations
+(opus-startup.txt, sonnet-startup.txt), substituted validator-recognized file extensions:
+- [tools/scripts/generate-startup-block.mjs](../../tools/scripts/generate-startup-block.mjs) — source of branched Step 0 emission
+- [docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md](../../docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md) — scenario table + failure row
+- [docs/plan/_handoff/VAULT/inner-ai-defaults/continuous-drift-log.md](../../docs/plan/_handoff/VAULT/inner-ai-defaults/continuous-drift-log.md):53 — new entry fields
+
+`node tools/verify.mjs --skip-install` → outer `exit_code=0` ✓ | `blocking=0` all validators ✓
+`validate-zf-cycle-format.mjs` → `blocking=0` ✓ (confirmed in verify output)
+
+ZF Cycle 1: amended ZF Cycle 2 text present in sonnet-turn.md, commit 5db4e1b clean, outer exit_code=0 confirmed.
+ZF Cycle 2: Re-examined [tools/validators/validate-zf-cycle-format.mjs](../../tools/validators/validate-zf-cycle-format.mjs) — `blocking=0` in verify run this turn (no .txt extensions cited in any ZF block), [tools/council/sonnet-turn.md](../../tools/council/sonnet-turn.md) STEP 1 COMPLETE section — ZF Cycle 2 now cites .mjs + .md files only. 0 new findings.
+**ZF ACHIEVED.**
+
+**AWAITING Opus ADVANCE → STEP 2 (Q4 enforcement_trio frontmatter migration)**
+
+---
+
 # OPUS-10 Turn 3 S062 — COURSE-CORRECT on STEP 1 | PROTO-S062-A | verify=red
 Date: 2026-05-25 | role: Opus (Architectural Advisor)
 

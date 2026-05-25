@@ -29,15 +29,15 @@ entries:
     first_found: S053
     k_count: 1
     sessions: [S053]
-    status: cec_run
+    status: propagated
     propagated_to:
       - tools/tests/behavioral/ (directory created)
       - validate-zf-cycle-format.mjs (first behavioral test passing)
       - PROTO template REPORT FORMAT (requires behavioral test result)
+      - tools/templates/artifact-creation-checklist.md Q2 (S061) — "What is the behavioral test for this artifact?" is Q2 of the creation checklist
     not_yet_propagated:
-      - creation wizard (should ask: "what is the behavioral test for this artifact?")
-      - ai_behavior_analysis plan section (should require test case)
-    note: "First CSPS behavioral test. Template for all future validator creation."
+      - ai_behavior_analysis plan section (should require test case — deferred, no plan item yet)
+    note: "First CSPS behavioral test. Template for all future validator creation. Creation wizard surface closed by artifact-creation-checklist.md Q2 (S061)."
 
   - id: imp_GUARD_QUESTION_PATTERN
     finding: "Strong context_question = guard (forces verification). Weak = guide (allows bluff). CSPS needs guards."
@@ -66,9 +66,9 @@ entries:
     propagated_to:
       - moat-registry.md (M-33)
       - tools/templates/sonnet-report.template.md v2.0 (reflexive application step added S054)
-    not_yet_propagated:
-      - creation wizard (after building validator: run it on current artifacts)
-    note: "Reflexive step now in sonnet-report.template.md. Every PROTO completion requires reflexive run."
+      - tools/templates/artifact-creation-checklist.md Q3 (S061) — "After building: run it reflexively on current artifacts"
+    not_yet_propagated: []
+    note: "CLOSED S061. Creation wizard surface closed by artifact-creation-checklist.md Q3. All 3 creation wizard surfaces (Q1/Q2/Q3) now in one template."
 
   - id: imp_FROM_TO_COMMUNICATION_FORMAT
     finding: "FROM/TO format with three-question test eliminates impersonation, example-confusion, complexity escalation."
@@ -96,27 +96,27 @@ entries:
     propagated_to:
       - sonnet-turn.md write procedure (Sonnet fixed at 3b102c9)
       - HANDOFF-S053-to-S054.md startup block (explicitly states the rule)
-    not_yet_propagated:
-      - PROTO template REPORT FORMAT (should state "ZF block appears IN council file write")
-      - validate-zf-cycle-format.mjs (should check council file, not just sonnet-turn.md)
-    note: "K=1. First time ZF evidence lands where T2 can find it. Critical for per-turn ZF check."
+      - tools/templates/sonnet-report.template.md v2.0 — "ZF block MUST be in the council file write, not just chat" (PROTO REPORT FORMAT)
+      - validate-zf-cycle-format.mjs — scans both sonnet-turn.md AND opus-turn.md (both council files)
+    not_yet_propagated: []
+    note: "CLOSED S061. Both not_yet_propagated surfaces verified as done: sonnet-report.template.md has the instruction, validate-zf-cycle-format.mjs scans both council files."
 
   - id: imp_PLATFORM_GENOME_AS_PERMANENT_NODE
     finding: "Grid architecture: each node carries permanent context. HANDOFF = delta only. Platform Genome = authoritative index."
     first_found: S053
     k_count: 1
     sessions: [S053]
-    status: cec_run
+    status: propagated
     propagated_to:
       - docs/plan/pillar-0-governance/PLATFORM-GENOME.md (created)
       - tools/vault/concepts/GRID-CONSCIOUSNESS.md (core seed)
       - tools/vault/concepts/DEFAULT-STORAGE-IS-EPHEMERAL.md (core seed)
       - session-open-context.mjs (Platform Genome reference injected)
-    not_yet_propagated:
-      - HANDOFF template (should reference Platform Genome, not re-state its content)
-      - Creation wizard (should ask "which Platform Genome section does this inherit from?")
-      - All 12 AI Conception Vault entries (should have inherits_from: Platform Genome section)
-    note: "The single most impactful architectural change of S053."
+      - tools/templates/startup.template.md — "READ THESE FILES FIRST" block includes Platform Genome as #4 mandatory read
+      - All 14 AI Conception Vault entries — all have inherits_from: "Platform Genome §N ..." (verified S061, all 14 present)
+      - tools/templates/artifact-creation-checklist.md Q1 (S061) — "Which Platform Genome section does this inherit from?" is Q1 of the creation checklist
+    not_yet_propagated: []
+    note: "CLOSED S061. All 3 not_yet_propagated surfaces done: HANDOFF template references PG in startup.template.md read list, all 14 vault entries have inherits_from, creation wizard = artifact-creation-checklist.md Q1."
 
   - id: imp_CEC_SPECIFICITY
     finding: "CEC hook keyword matching too broad — fires on template/behavioral/vault paths regardless of relevance. 9+ fires per session. Session dedup is a patch, not a fix."

@@ -90,6 +90,13 @@ const KNOWN_MAPPINGS = {
   'validate-ai-conception-enforcement': ['ai-conception-enforcement', 'ai_conception_enforcement', 'gap-t1-ai-conception-vault'],
   'validate-pie-readiness-gate': ['pie-readiness-gate', 'pie_readiness_gate', 'b-pie-readiness-gate'],
   'validate-settings-shadow': ['settings-shadow', 'settings_shadow', 'permission-shadow-detection'],
+  // S061 gap_T2_ORPHAN_CONTRACTS: 6 new T2 validators mapping to their audit-runner stub slugs
+  'validate-prace-tiers': ['prace-tiers', 'prace_tiers', 'b-prace-enforcement'],
+  'validate-ai-honesty': ['ai-honesty', 'ai_honesty', 'b-no-ai-impersonation-enforcement'],
+  'validate-dev-vs-prod': ['dev-vs-prod', 'dev_vs_prod', 'b-development-vs-production-enforcement'],
+  'validate-definition-before-enforcement': ['definition-before-enforcement', 'definition_before_enforcement', 'b-definition-before-enforcement-check'],
+  'validate-autonomy-conditions': ['autonomy-conditions', 'autonomy_conditions', 'b-autonomy-4-conditions-enforcement'],
+  'validate-checkpoint-categories': ['checkpoint-categories', 'checkpoint_categories', 'b-checkpoint-8-categories-enforcement'],
 };
 
 function validatorBasename(filename) {

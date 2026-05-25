@@ -1,4 +1,7 @@
 // APP-001 Voice Sorting — E1 prototype layout
+// imp_WET_TRIAL_SG004_FORCE_DYNAMIC: force-dynamic prevents prerender failure when Clerk is installed
+export const dynamic = 'force-dynamic'
+
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

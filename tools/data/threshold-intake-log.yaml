@@ -2098,3 +2098,23 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-05-25T05-10-58-892Z"
+  timestamp: "2026-05-25T05:10:58.892Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-05-25T08-36-56-441Z"
+  timestamp: "2026-05-25T08:36:56.441Z"
+  session: "unknown"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

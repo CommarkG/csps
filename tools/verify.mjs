@@ -1401,6 +1401,72 @@ const CYCLES = [
     },
   },
   {
+    // S061 gap_T2_ORPHAN_CONTRACTS: PRACE tiers — B_PRACE T2.
+    // ADVISORY: B_* contracts declaring T3-only enforcement (no real T1 hook / T2 validator).
+    // Surfaces PRACE violations where governance theater exists: written rule, no mechanical check.
+    name: 'prace_tiers',
+    command: 'node tools/validators/validate-prace-tiers.mjs',
+    parse_output: (out) => {
+      const m = out.match(/t3_only_count=(\d+)\s+advisory=(\d+)/);
+      return m ? { t3_only_count: Number(m[1]), advisory: Number(m[2]) } : {};
+    },
+  },
+  {
+    // S061 gap_T2_ORPHAN_CONTRACTS: AI honesty — B_NO_AI_IMPERSONATION T2.
+    // BLOCKING: Sonnet claiming to be Opus or Governor in council files (recent 100 lines).
+    // ADVISORY: historical impersonation phrases in older council content.
+    name: 'ai_honesty',
+    command: 'node tools/validators/validate-ai-honesty.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { files_checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // S061 gap_T2_ORPHAN_CONTRACTS: dev vs prod — B_DEVELOPMENT_VS_PRODUCTION T2.
+    // BLOCKING: hardcoded Opus model strings in production API routes.
+    // ADVISORY: Opus references in dev/playground paths (expected, but surfaces visibility).
+    name: 'dev_vs_prod',
+    command: 'node tools/validators/validate-dev-vs-prod.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { files_checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // S061 gap_T2_ORPHAN_CONTRACTS: definition before enforcement — B_DEFINITION_BEFORE_ENFORCEMENT T2.
+    // ADVISORY: principles with enforcement_tier declared but missing governing_intent field.
+    // Signals: enforcement exists without clear definition of what it enforces.
+    name: 'definition_before_enforcement',
+    command: 'node tools/validators/validate-definition-before-enforcement.mjs',
+    parse_output: (out) => {
+      const m = out.match(/principles_checked=(\d+)\s+with_enforcement_tier=(\d+)\s+missing_definition=(\d+)\s+advisory=(\d+)/);
+      return m ? { principles_checked: Number(m[1]), with_enforcement_tier: Number(m[2]), missing_definition: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
+    // S061 gap_T2_ORPHAN_CONTRACTS: autonomy conditions — B_AUTONOMY_4_CONDITIONS T2.
+    // ADVISORY: "AI proceeds" language in council files without all 4 conditions cited nearby.
+    // Ratified/reversible/mechanical/no-cross-actor must ALL be present when autonomy claimed.
+    name: 'autonomy_conditions',
+    command: 'node tools/validators/validate-autonomy-conditions.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_checked=(\d+)\s+triggers_found=(\d+)\s+missing_condition_count=(\d+)\s+advisory=(\d+)/);
+      return m ? { files_checked: Number(m[1]), triggers_found: Number(m[2]), missing_condition_count: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
+    // S061 gap_T2_ORPHAN_CONTRACTS: checkpoint categories — B_CHECKPOINT_8_CATEGORIES T2.
+    // ADVISORY: scope expansion / constitutional change language in council files without PCR cite.
+    // The 8 stop-and-ask categories must trigger explicit PCR when referenced in AI output.
+    name: 'checkpoint_categories',
+    command: 'node tools/validators/validate-checkpoint-categories.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_checked=(\d+)\s+triggers_found=(\d+)\s+unchecked_expansions=(\d+)\s+advisory=(\d+)/);
+      return m ? { files_checked: Number(m[1]), triggers_found: Number(m[2]), unchecked_expansions: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

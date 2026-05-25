@@ -43,7 +43,7 @@ entries:
     first_seen: S052
     k_count: 2
     sessions: [S052, S053]
-    status: structural_fix_proposed
+    status: fix_committed
     structural_fix_triggered: true
     structural_fix_required_since: S052
     behavioral_test_exists: true
@@ -52,9 +52,15 @@ entries:
       - tools/tests/behavioral/contextual-locality-test.sh
       - tools/tests/behavioral/done-right-from-start-test.sh
     structural_fix_files:
-      - tools/validators/validate-contextual-locality.mjs
-      - tools/validators/validate-done-right.mjs
-    note: "K=2. S055: behavioral tests built for top 3 contracts. validate-apps-are-trials.mjs T2 existed (test added). validate-contextual-locality.mjs + validate-done-right.mjs NEW. Remaining 6 orphans: B_PRACE, B_NO_AI_IMPERSONATION, B_DEFINITION_BEFORE_ENFORCEMENT, B_AUTONOMY_4_CONDITIONS, B_CHECKPOINT_8_CATEGORIES, B_DEVELOPMENT_VS_PRODUCTION."
+      - tools/validators/validate-contextual-locality.mjs (S055)
+      - tools/validators/validate-done-right.mjs (S055)
+      - tools/validators/validate-prace-tiers.mjs (S061) — B_PRACE T2
+      - tools/validators/validate-ai-honesty.mjs (S061) — B_NO_AI_IMPERSONATION T2
+      - tools/validators/validate-dev-vs-prod.mjs (S061) — B_DEVELOPMENT_VS_PRODUCTION T2
+      - tools/validators/validate-definition-before-enforcement.mjs (S061) — B_DEFINITION_BEFORE_ENFORCEMENT T2
+      - tools/validators/validate-autonomy-conditions.mjs (S061) — B_AUTONOMY_4_CONDITIONS T2
+      - tools/validators/validate-checkpoint-categories.mjs (S061) — B_CHECKPOINT_8_CATEGORIES T2
+    note: "K=2. CLOSED S061. All 9 orphan contracts now have T2 validators wired in verify.mjs. Behavioral tests for prace/honesty/dev-vs-prod pending (S062 backlog). validate-prace-tiers finds 37 T3-only contracts — advisory backlog surfaced. validate-definition-before-enforcement finds 62 principles missing governing_intent — S062 backlog."
 
   - id: gap_ZF_NOMINAL_CYCLES
     observation: "AI writes nominal ZF cycles ('no new findings', 'areas', 'topics') instead of naming specific files and line numbers"

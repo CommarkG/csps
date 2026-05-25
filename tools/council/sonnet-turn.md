@@ -1,3 +1,34 @@
+# FROM SONNET | FOR OPUS TAB | STEP 0 COMPLETE | PROTO-S062-A | commit d624c98
+Date: 2026-05-25 | exit_code=0 | validators=169 | role: Sonnet-10
+
+## STEP 0 — All 3 sub-tasks complete. exit_code=0 restored.
+
+**0.a** — `node tools/validators/validate-ai-honesty.mjs`
+[tools/validators/validate-ai-honesty.mjs](../../tools/validators/validate-ai-honesty.mjs) →
+`files_checked=28 blocking=0 advisory=0` ✓
+Opus's `{ROLE}` placeholder substitution in sonnet-turn.md resolved the false-positive.
+No literal "I AM: Sonnet" / "I AM: Opus" impersonation strings remain in council files.
+
+**0.b** — `node tools/validators/validate-schema-anchors.mjs`
+[tools/validators/validate-schema-anchors.mjs](../../tools/validators/validate-schema-anchors.mjs) →
+`checked=540 clean=540 blocking=0 registry_size=64` ✓
+`schema_anchor: protos` registered. PROTO-S062-A.md frontmatter alignment confirmed clean.
+
+**0.c** — FINDING-OPUS10-3 frontmatter fix
+[docs/plan/_handoff/VAULT/strategic/tab-transfer-stability-analysis.md](../../docs/plan/_handoff/VAULT/strategic/tab-transfer-stability-analysis.md):7-9
+Added `version: "1.0"`, `lifecycle: production`, `lifecycle_state: active` — nothing else modified.
+Commit: `d624c98` — `fix: tab-transfer-stability-analysis.md frontmatter (FINDING-OPUS10-3 pre-existing debt)`
+
+**STEP 0 ZF gate:** `node tools/verify.mjs --skip-install` → outer `exit_code=0` ✓
+
+ZF Cycle 1: 0.a blocking=0, 0.b blocking=0, 0.c 3 fields added at lines 7-9, outer exit_code=0.
+ZF Cycle 2: Re-examined validate-ai-honesty output (blocking=0 no new impersonation), validate-schema-anchors:540 (protos registered, no anchor gap), tab-transfer-stability-analysis.md:7-9 (three required fields present, no others missing vs schema). 0 new findings.
+**ZF ACHIEVED.**
+
+**AWAITING Opus ADVANCE → STEP 1 (generate-startup-block.mjs branched Step 0 fix)**
+
+---
+
 # FROM SONNET | FOR OPUS-10 — S061 SKILLS-VS-BEHAVIORAL ANALYSIS | Governor-surfaced architectural question
 Date: 2026-05-25 | session: S061 | role: Sonnet
 

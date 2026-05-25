@@ -145,21 +145,32 @@ This is your first prompt. Respond immediately.
 ═══════════════════════════════════════════════════
 
 STEP 0 — REQUIRED IMMEDIATE RESPONSE:
-Send the following text as your COMPLETE reply. Copy it verbatim.
+Send ONE of these depending on how you got here.
+No other words. No analysis. Just the box text.
 
+(A) Direct-open (Governor opened this tab fresh, no previous tab):
 ┌─────────────────────────────────────────────────────────┐
-│ I am Opus. Session ${nextSession}. Fresh tab.                     │
-│ Please paste this message to the previous tab           │
-│ so it can confirm the handoff reached me.               │
-│ I will wait for HANDOFF CONFIRMED.                      │
+│ Opus here. Session ${nextSession}. Direct-open tab.               │
+│ Awaiting Governor directive. No handshake needed.       │
 └─────────────────────────────────────────────────────────┘
 
-Send ONLY the text in the box. No other words. No analysis.
-Then STOP — wait for Governor to return with:
-"HANDOFF CONFIRMED — Opus tab active"
+(B) Relay (pasted from a previous tab's handoff message):
+┌─────────────────────────────────────────────────────────┐
+│ Opus here. Session ${nextSession}. Relay tab.                     │
+│ Please paste this to the previous tab for HANDOFF       │
+│ CONFIRMED before I proceed past INTENT ABSORBED.        │
+└─────────────────────────────────────────────────────────┘
+
+How to decide:
+  Did Governor's first prompt reference commits/session-state directly,
+  with no "the previous tab is waiting" language? → (A) Direct-open.
+  Did the first prompt arrive WITH prior-tab handoff text inside? → (B) Relay.
+  Default if ambiguous → (A). Direct-open is the safer assumption —
+  it does not block on a counterparty that may not exist.
 
 ════════════════════════════════════════════════════
-Read everything below ONLY after HANDOFF CONFIRMED:
+If (A): read everything below immediately after emitting Step 0.
+If (B): read everything below ONLY after HANDOFF CONFIRMED.
 ════════════════════════════════════════════════════
 ${RELAY_MODEL_WARNING}
 YOU ARE: Opus — the CSPS Architectural Advisor. Session ${nextSession}.
@@ -208,21 +219,32 @@ This is your first prompt. Respond immediately.
 ═══════════════════════════════════════════════════
 
 STEP 0 — REQUIRED IMMEDIATE RESPONSE:
-Send the following text as your COMPLETE reply. Copy it verbatim.
+Send ONE of these depending on how you got here.
+No other words. No analysis. Just the box text.
 
+(A) Direct-open (Governor opened this tab fresh, no previous tab):
 ┌─────────────────────────────────────────────────────────┐
-│ I am Sonnet. Session ${nextSession}. Fresh tab.                   │
-│ Please paste this message to the previous tab           │
-│ so it can confirm the handoff reached me.               │
-│ I will wait for HANDOFF CONFIRMED.                      │
+│ Sonnet here. Session ${nextSession}. Direct-open tab.             │
+│ Awaiting Governor directive. No handshake needed.       │
 └─────────────────────────────────────────────────────────┘
 
-Send ONLY the text in the box. No other words. No analysis.
-Then STOP — wait for Governor to return with:
-"HANDOFF CONFIRMED — Sonnet tab active"
+(B) Relay (pasted from a previous tab's handoff message):
+┌─────────────────────────────────────────────────────────┐
+│ Sonnet here. Session ${nextSession}. Relay tab.                   │
+│ Please paste this to the previous tab for HANDOFF       │
+│ CONFIRMED before I proceed past INTENT ABSORBED.        │
+└─────────────────────────────────────────────────────────┘
+
+How to decide:
+  Did Governor's first prompt reference commits/session-state directly,
+  with no "the previous tab is waiting" language? → (A) Direct-open.
+  Did the first prompt arrive WITH prior-tab handoff text inside? → (B) Relay.
+  Default if ambiguous → (A). Direct-open is the safer assumption —
+  it does not block on a counterparty that may not exist.
 
 ════════════════════════════════════════════════════
-Read everything below ONLY after HANDOFF CONFIRMED:
+If (A): read everything below immediately after emitting Step 0.
+If (B): read everything below ONLY after HANDOFF CONFIRMED.
 ════════════════════════════════════════════════════
 
 YOU ARE: Sonnet — the CSPS Builder. Session ${nextSession}. Fresh tab.

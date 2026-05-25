@@ -47,6 +47,44 @@ context_question: "Is this AI default still the active training default, or has 
 
 ## Entries (newest first)
 
+### S062 — Handshake-without-counterparty default (Opus-10-surfaced, FINDING-OPUS10-1)
+
+```yaml
+- id: handshake-assumes-relay-when-direct-open
+  observed_at: 2026-05-25T00:00:00Z
+  observed_by: opus-surfaced
+  category: output
+  default_pattern: >
+    Single-shape Step 0 in startup blocks assumed a relay scenario for ALL
+    tab openings: "Please paste this message to the previous tab so it can
+    confirm the handoff reached me." Three tab-open scenarios exist but only
+    one has a previous-tab counterparty. When Governor opened Opus-10 directly
+    (no previous tab), the Step 0 box asked Governor to relay to a tab that
+    didn't exist. Resulted in back-and-forth confusion + repeated corrections
+    before Opus could begin work.
+  csps_aligned_pattern: >
+    Branched Step 0 — the AI selects (A) or (B) based on how it arrived:
+    (A) Direct-open: "Awaiting Governor directive. No handshake needed."
+    (B) Relay (pasted from previous-tab handoff): "Please paste this to the
+    previous tab for HANDOFF CONFIRMED before proceeding."
+    Default if ambiguous: (A). Direct-open is the safer assumption — it does
+    not block on a counterparty that may not exist.
+  evidence: >
+    S062: Governor opened Opus-10 tab directly. Step 0 box said "please paste
+    to previous tab." No previous tab existed. Opus-10 FINDING-OPUS10-1.
+    Scenario table (see PROTO-AND-TAB-TRANSFER-PROTOCOL.md v2.2 Step 0):
+      Sonnet→Opus relay → previous tab YES → (B) correct
+      Governor opens fresh → no previous tab → (A) correct
+      Compaction continuation → self as counterparty → (A) correct
+  k_count: 1
+  promotion_status: pending
+  session: S062
+  structural_fix: tools/scripts/generate-startup-block.mjs — branched Step 0
+    (A)/(B) for both opus + sonnet blocks. Committed PROTO-S062-A STEP 1.
+  protocol_fix: docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md
+    v2.1 → v2.2 — Step 0 section replaced, scenario table added, failure table row added.
+```
+
 ### S061 — Instruction-block absorb-and-wait default (user-surfaced, governor-confirmed)
 
 ```yaml

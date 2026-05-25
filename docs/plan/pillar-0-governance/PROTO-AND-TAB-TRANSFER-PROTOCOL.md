@@ -2,7 +2,7 @@
 id: csps.governance.proto-and-tab-transfer-protocol
 name: PROTO-AND-TAB-TRANSFER-PROTOCOL
 description: "Single source of truth for BOTH Opus and Sonnet: what a PROTO is, the relay cycle with all edge cases, tab transfer mechanics, role registry, and the handoff validation loop that closes every tab transfer."
-version: 2.0
+version: 2.2
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -521,44 +521,51 @@ Both roles follow the same structure. Role-specific behavior is marked [OPUS] or
 
 **This step happens before the permission bypass. Before reading. Before everything.**
 
-**⚠️ AI DEFAULT THAT CAUSES FAILURE — READ THIS:**
-Large blocks of instructions formatted like system prompts (CAPS headers, numbered
-steps, directives) trigger an "absorb and wait" behavior in Claude models. The AI
-files the content as background context and waits for what it considers a "real"
-prompt. It will NOT self-trigger Step 0 if Step 0 is embedded mid-document.
+**⚠️ AI DEFAULTS THAT CAUSE FAILURE — READ BOTH:**
 
-**The fix built into generate-startup-block.mjs:**
-Step 0 is the VERY FIRST THING in the block, above all instructions.
-The exact text the AI must send is in a bordered ┌──┐ box.
-The block opens with "This is your first prompt. Respond immediately."
-All session context is below a separator: "Read only after HANDOFF CONFIRMED."
-This eliminates the absorb-and-wait default — bordered box + "copy verbatim" +
-"no other words" makes the required output mechanically unambiguous.
+**Default 1 (absorb-and-wait):** Large instruction blocks with CAPS headers trigger an "absorb
+and wait" behavior. The AI files content as background context and waits for a "real" prompt.
+Step 0 buried mid-document was treated as context, not a required action.
+Fix: Step 0 is the VERY FIRST THING in the block, bordered box, "no other words."
+Source: continuous-drift-log.md — id: output-instruction-block-absorb-wait
 
-Source: inner-ai-defaults/continuous-drift-log.md — id: output-instruction-block-absorb-wait
-Evidence: S061 Opus 4.7 tab said "command context, not a new request" — Step 0 never fired.
+**Default 2 (handshake-without-counterparty):** The old single-shape Step 0 assumed a previous
+tab always exists to receive the relay. Three tab-open scenarios exist; only one has a counterparty.
+Fix: Branched Step 0 — AI selects A (direct-open) or B (relay) based on how it arrived.
+Source: continuous-drift-log.md — id: handshake-assumes-relay-when-direct-open
 
-**The new tab sends this exact text (pre-written in startup block):**
+**The branched Step 0 (pre-written in generate-startup-block.mjs):**
+
 ```
-[OPUS]:
-I am Opus. Session [S0XX]. Fresh tab.
-Please paste this message to the previous tab
-so it can confirm the handoff reached me.
-I will wait for HANDOFF CONFIRMED.
+(A) Direct-open (Governor opened this tab fresh, no previous tab):
+┌─────────────────────────────────────────────────────────┐
+│ [Opus/Sonnet] here. Session [S0XX]. Direct-open tab.    │
+│ Awaiting Governor directive. No handshake needed.       │
+└─────────────────────────────────────────────────────────┘
 
-[SONNET]:
-I am Sonnet. Session [S0XX]. Fresh tab.
-Please paste this message to the previous tab
-so it can confirm the handoff reached me.
-I will wait for HANDOFF CONFIRMED.
+(B) Relay (pasted from a previous tab's handoff message):
+┌─────────────────────────────────────────────────────────┐
+│ [Opus/Sonnet] here. Session [S0XX]. Relay tab.          │
+│ Please paste this to the previous tab for HANDOFF       │
+│ CONFIRMED before I proceed past INTENT ABSORBED.        │
+└─────────────────────────────────────────────────────────┘
+
+How to decide:
+  Governor's first prompt references commits/session-state directly,
+  with no "the previous tab is waiting" language? → (A) Direct-open.
+  First prompt arrived WITH prior-tab handoff text inside? → (B) Relay.
+  Default if ambiguous → (A). Direct-open is the safer assumption.
 ```
 
-**Why this step exists:**
-A startup block pasted into the wrong tab (Opus block → Sonnet session, or vice versa)
-produces a session where the AI operates from a false identity. The validation loop
-closes this. The previous tab receives confirmation and can flag if the role is wrong.
+**Scenario table:**
 
-**What the PREVIOUS tab does when it receives the paste:**
+| Tab-open scenario | Previous tab? | Use |
+|---|---|---|
+| Sonnet → Opus relay (mid-session role flip) | Yes | (B) Relay |
+| Governor opens Opus/Sonnet fresh for advisory/build | No | (A) Direct-open |
+| Compaction continuation in same tab | Self (no counterparty) | (A) Direct-open |
+
+**For case (B) — What the PREVIOUS tab does when it receives the paste:**
 ```
 [If identity matches what was expected]:
 "HANDOFF CONFIRMED — [Opus/Sonnet] tab active at [timestamp].
@@ -571,9 +578,11 @@ closes this. The previous tab receives confirmation and can flag if the role is 
  Paste the correct block."
 ```
 
-**What Governor does:** Pastes the new tab's Step 0 message to the previous tab.
+**What Governor does (case B only):** Pastes the new tab's Step 0 box to the previous tab.
 Pastes the previous tab's confirmation back to the new tab.
 The new tab proceeds only after receiving HANDOFF CONFIRMED.
+
+**For case (A):** Governor does nothing. New tab reads session context immediately.
 
 ---
 
@@ -693,6 +702,7 @@ ZF ACHIEVED."
 | New tab says "ready when you give me an actual prompt" — Step 0 never fires | AI training default: large instruction blocks = "absorb and wait for real prompt." Step 0 buried mid-document was treated as context, not as a required action. | Step 0 moved to VERY TOP of block with bordered box + "This is your first prompt. Respond immediately." All context below a separator. See inner-ai-defaults: output-instruction-block-absorb-wait |
 | Startup block shows wrong session number (S061 instead of S062) | Generator derived session from git log (shows current), not from the HANDOFF filename target | nextSession extracted from HANDOFF-S0XX-to-S0YY.md filename → S0YY. New tab always opens into the next session. |
 | Startup block pasted to wrong tab | Block generated for Opus, pasted to Sonnet session (or vice versa) | Step 0 handoff validation catches identity mismatch before any work begins. |
+| Step 0 box asks Governor to relay to a previous tab that doesn't exist (handshake-without-counterparty) | Single-shape Step 0 assumed a relay scenario for ALL tab openings. Direct-open tabs have no counterparty. | Branched Step 0 — (A) direct-open emits "no handshake needed", (B) relay emits the handoff confirmation request. Default: (A). See continuous-drift-log.md id: handshake-assumes-relay-when-direct-open |
 | Stale PROTO status in startup block | Block written from memory, not from current git state | generate-startup-block.mjs derives session from git log + reads sonnet-turn.md |
 | Sonnet deviating from core seed silently | PROTO didn't name anti-patterns; "working" felt sufficient | PROTO anatomy includes explicit anti-patterns field. Opus reviews actual files, not Sonnet's description. |
 | New Sonnet tab re-doing already-done work | Previous Sonnet didn't commit before reporting COMPLETE | DONE = committed + pnpm verify exit_code=0. Not before. |
@@ -758,5 +768,6 @@ Cut this out. Know it cold.
 *v1.0: Initial protocol, separate Opus/Sonnet sections, no validation loop.*
 *v2.0: Unified single source of truth. Part 0 Role Registry. Step 0 handoff validation loop.*
 *v2.1: Step 0 absorb-and-wait AI default profiled + fixed. Bordered box format. nextSession derivation from HANDOFF filename. Failure table updated. AI profiling in inner-ai-defaults/continuous-drift-log.md.*
+*v2.2: Step 0 branched-shape — (A) direct-open vs (B) relay. Eliminates handshake-without-counterparty defect (FINDING-OPUS10-1). Scenario table added. Failure table row added. PROTO-S062-A STEP 1.*
 *Every section traces to a specific failure mode from CSPS sessions S051-S061.*
 *Governor directive S061: "one source of truth, both participants, identical context, handoff validation. No freestyle parts."*

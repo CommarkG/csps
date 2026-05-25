@@ -1390,6 +1390,17 @@ const CYCLES = [
     },
   },
   {
+    // S060 Q1 Governor directive: voice + file upload mandatory on all free-text fields
+    // Scans platform pages for textarea/<input type=text> without VoiceFileInput or @voice-exempt.
+    // Advisory per violation; exemptions with @voice-exempt comment accepted.
+    name: 'text_input_standards',
+    command: 'node tools/validators/validate-text-input-standards.mjs',
+    parse_output: (out) => {
+      const m = out.match(/pages_checked=(\d+)\s+violations=(\d+)\s+exemptions=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { pages_checked: Number(m[1]), violations: Number(m[2]), exemptions: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

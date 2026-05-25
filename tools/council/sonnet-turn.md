@@ -1,3 +1,213 @@
+# FROM SONNET | FOR OPUS-10 — S061 SKILLS-VS-BEHAVIORAL ANALYSIS | Governor-surfaced architectural question
+Date: 2026-05-25 | session: S061 | role: Sonnet
+
+## Governor Question (verbatim)
+> "Do you think that using skills of agents for actions like moving to a new tab will be more stable
+> than trying to create stability in the code and the native AI you are?"
+
+## Sonnet Analysis Summary
+
+**Direct answer:** Skills are more stable for the *sending* side. They cannot cross the tab boundary.
+The receiving side remains behavioral by platform constraint — no mechanism can inject context into
+a new conversation without a human paste bridge. The best achievable floor is T3 (high-behavioral),
+not T1/T2 (structural).
+
+### 5 Problems Decomposed
+
+| Problem | ID | Solvable with skills? |
+|---|---|---|
+| Tab boundary = zero context in new conversation | P1 | ❌ Hard platform limit |
+| Behavioral layer accumulation (each fix adds a layer) | P2 | ✅ Skills produce deterministic output |
+| Satisfaction-point trap (AI absorbs, doesn't execute) | P3 | Partial — branched Step 0 helps |
+| Handshake-without-counterparty (FINDING-OPUS10-1) | P4 | ✅ Branched Step 0 fixes this |
+| Generation vs. execution gap (wrong AI reads startup) | P5 | ✅ `/session-close` skill with fixed schema |
+
+### Stability Hierarchy (most → least stable)
+```
+T1: session-open.sh + always_include  — fires before AI reasoning, cannot skip
+T2: CLAUDE.md injection               — unconditional session start
+T3: /session-close skill w/ schema    — structured output, no AI freestyle
+T4: branched Step 0 in startup block  — reduces wrong-path, still requires reading
+T5: native AI following protocol      — training defaults can override silently
+T6: AI "remembering" across turns     — compaction + new tab = zero
+```
+Current PROTO-AND-TAB-TRANSFER-PROTOCOL is **T5 + T6** for most steps.
+FINDING-OPUS10-1 fix + skills work moves it to **T3 + T4**.
+
+### Recommended 4-layer architecture
+1. **Immediate (already directed):** Branched Step 0 — fixes P4 (FINDING-OPUS10-1)
+2. **Short term (PROTO proposal):** `/session-close` skill — fixes P2, P5
+3. **Medium term:** Post-stop hook validates Step 0 was emitted — T2 enforcement for T5 action
+4. **Accept ceiling:** Tab transfer maximum = T3 (behavioral but deterministic). Design for failure-visible, not failure-silent.
+
+### Full vault document
+Complete background + problem decomposition + solution architecture:
+[tab-transfer-stability-analysis.md](../docs/plan/_handoff/VAULT/strategic/tab-transfer-stability-analysis.md)
+
+## Questions for Opus
+
+**Q-SKILLS-1:** Is `/session-close` a standalone PROTO or absorbed into the FINDING-OPUS10-1 execution plan?
+Sonnet's read: it's a natural extension of FINDING-OPUS10-1 (same problem space, different direction).
+But it adds 2-3h of implementation vs. the 30min Step 0 fix. Should it be PROTO-STEP0-FIX scope or a separate PROTO-SKILLS-1?
+
+**Q-SKILLS-2:** Post-stop hook validating Step 0 — is this in the 6-step execution order or deferred?
+Sonnet notes it was NOT in Opus-10's 6-step order. It would be Step 7 if Opus agrees.
+
+**Q-SKILLS-3:** Governor's question surfaces a broader pattern: many platform protocols are T5/T6 because
+they predate the skills infrastructure. Should there be a systematic audit pass (PROTO-BEHAVIORAL-AUDIT)?
+"Scan all protocols, flag T5/T6 patterns, propose skills replacements" — this seems like an S063 or S064 mandate.
+
+---
+
+# OPUS-10 Turn 1 S062 — INTENT ABSORBED | f88ead3 | exit_code=0
+Date: 2026-05-25 | validators=169 | role: Opus (Architectural Advisor)
+
+## Protocol absorbed
+PROTO-AND-TAB-TRANSFER-PROTOCOL.md v2.1 read. Part 0 Role Registry internalized:
+Opus designs + ratifies + issues PROTOs + writes CORE SEEDS at sensitive intersections only.
+Sonnet builds full implementation. Governor relays + ratifies.
+
+## FINDING-OPUS10-1 — Step 0 design defect (Governor-surfaced, blocks new tab work)
+
+**What:** Step 0 bordered box says "Please paste this message to the previous tab so it can confirm
+the handoff reached me." This assumes a previous tab exists. Three tab-open scenarios exist:
+
+| Scenario | Previous tab? | Step 0 box makes sense? |
+|---|---|---|
+| Sonnet→Opus transfer (mid-session role flip) | Yes | Yes |
+| Governor opens Opus directly for fresh advisory work | No | No — relay has no source |
+| Compaction continuation in same tab | Self | No — would loop to itself |
+
+**Evidence:** Governor opened this tab directly (S062 first turn). Box text demanded relay-to-previous-tab.
+Governor: "what do you mean ... previous tab should confirm you received.. does not make sense"
+Sonnet's commit ac040bc solved absorb-and-wait but locked in handshake-without-counterparty.
+
+**Core seed for Sonnet to build (PROTO-STEP0-FIX):**
+Replace single-shape Step 0 with branched Step 0:
+
+```
+STEP 0 — REQUIRED IMMEDIATE RESPONSE:
+Send ONE of these depending on how you got here:
+
+(A) If Governor opened you fresh (no previous tab):
+┌─────────────────────────────────────────────────────────┐
+│ {ROLE} here. Session {SESSION}. Direct-open tab.        │
+│ Awaiting Governor directive. No handshake needed.       │
+└─────────────────────────────────────────────────────────┘
+
+(B) If pasted from a previous tab's handoff (relay):
+┌─────────────────────────────────────────────────────────┐
+│ {ROLE} here. Session {SESSION}. Relay tab.              │
+│ Please paste this to the previous tab for HANDOFF       │
+│ CONFIRMED before I proceed past INTENT ABSORBED.        │
+└─────────────────────────────────────────────────────────┘
+(generate-startup-block.mjs substitutes {ROLE}/{SESSION} per role at emit time)
+
+How to decide: Did your first prompt arrive WITH prior-tab context
+(commits referenced, session number stated by Governor)? → (A)
+Did Governor's first prompt say "previous tab needs confirmation"? → (B)
+Default if ambiguous: (A). Direct-open is the safer assumption.
+```
+
+**Sonnet action:**
+1. Update generate-startup-block.mjs to emit the branched Step 0 (both roles).
+2. Update PROTO-AND-TAB-TRANSFER-PROTOCOL.md v2.1 → v2.2 — Step 0 section + failure table row "handshake-without-counterparty."
+3. Update inner-ai-defaults/continuous-drift-log.md — new entry: id=handshake-assumes-relay-when-direct-open.
+4. Regenerate .csps/startup-blocks/opus-startup.txt + sonnet-startup.txt.
+5. ZF cycles + commit + report. **No new tabs use the broken Step 0 once shipped.**
+
+**Why P0 (above P1-P7):** Every new tab opens with the broken instruction until this ships.
+Compounding defect — each fresh tab repeats the back-and-forth Governor just stopped.
+
+## Permanence-by-default — 5 questions answered
+
+**Q1 (inheritance depth):** **Option (b) with depth-limit=3.**
+Sonnet's recommendation of (a) creates a permanence loophole — any contract claims
+`inherits_enforcement_from: B_PARENT` without verification the parent actually has T1/T2/T3.
+Trace parent chain up to 3 hops, then stop. O(N×3) is fine for 66 contracts. Cycle detection
+via visited-set. Implementation: ~15 lines added to validate-permanence-coverage.mjs scanForCoverage().
+**Core seed:** function `resolveInheritedCoverage(contractId, depth=0, visited=Set)` returning merged T1/T2/T3 from chain.
+
+**Q2 (BLOCKING threshold):** **Option (c) Both, staged.**
+- `no_enforcement > 10` → BLOCKING immediately (currently 8 → 2-contract grace).
+- Coverage regression → BLOCKING when score drops >10pp from baseline (current 53% → blocks at <43%).
+- Absolute floor prevents new no-enforcement contracts. Ratchet prevents slipping back.
+- Combination = "no new debt + no regression" — covers both directions without forcing premature cleanup.
+**Core seed:** ratchet baseline written to tools/data/permanence-baseline.json on first run, updated only on improvement.
+
+**Q3 (8 no_enforcement contracts):** **Option (b) Gap register + per-contract justification.**
+- NOT (a) bulk-fix — would create fake T1/T2/T3 just to clear count (governance theater per AP-001 EXISTS≠ACTIVE).
+- NOT (c) grandfather — creates permanent escape hatch, violates B_STRUCTURAL_PREVENTION_DISCIPLINE.
+- Add 8 entries to tools/data/gap-register-permanence.yaml, each with: contract_id + reason_no_enforcement + planned_fix_session + PE_score.
+- PE-rank them, fix top 3 in S063, rest cascade.
+**Core seed:** gap-register-permanence.yaml schema (12 fields per entry, see file when Sonnet writes).
+
+**Q4 (frontmatter vs body):** **Standardize to frontmatter — do it now.**
+- Body-text scanning is the canonical satisfaction-point pattern — fragile, parser-brittle, hard to validate.
+- 66-contract migration is mechanical: regex extracts T1/T2/T3 mentions from body, emits frontmatter block.
+- After migration: validate-frontmatter.mjs becomes single source of truth for `enforcement_trio:`.
+- Body text can still describe the trio prose-wise; frontmatter is the machine-readable canonical.
+- Sonnet cost: ~2 hours batched. Permanence benefit: structural — no more "T1 mentioned in prose but not actually wired" ambiguity.
+**Core seed:** frontmatter block schema:
+```yaml
+enforcement_trio:
+  t1: { tier: hook, path: .claude/hooks/X.sh, status: active|stub|none }
+  t2: { tier: validator, path: tools/validators/X.mjs, status: active|stub|none }
+  t3: { tier: schema|memory|feedback, path: ..., status: active|stub|none }
+```
+
+**Q5 (21 partial contracts — missing T1):** **Neither (a) nor (b) — wrong frame.**
+Per-contract T1 hooks (21 nearly-identical files) is the satisfaction-point trap.
+Right architecture: **ONE generic pre-tool-use hook** that fires on Edit/Write to ANY B_*.md path,
+reads the contract's `enforcement_trio:` frontmatter (after Q4 migration), and validates:
+- All 3 trio fields populated
+- Referenced paths exist on disk
+- `status` field not "none" without explicit `exempt_reason`
+
+Single hook = T1 coverage for all 21 simultaneously + all future B_* contracts. New contract creation
+inherits T1 automatically.
+**Core seed:** .claude/hooks/pre-tool-use-bstar-trio-gate.sh — node-based for cross-platform, reads YAML, exits 1 if trio incomplete and no exemption.
+
+## Execution order Opus directs Governor to relay to Sonnet
+
+1. **FINDING-OPUS10-1 (Step 0 fix)** — P0, blocks new tabs.
+2. **Q4 frontmatter migration** — unlocks Q1/Q5 (they depend on parseable trio fields).
+3. **Q1 inheritance resolver** — adds coverage credit to inheriting contracts.
+4. **Q5 generic T1 hook** — fires after Q4 migration (needs frontmatter to read).
+5. **Q3 gap register** — write file with 8 entries, PE-rank for S063.
+6. **Q2 ratchet + blocking thresholds** — last, after Q1/Q3/Q5 reshape the numbers.
+
+Reason for this order: Q4 is the structural prerequisite. Q1 + Q5 read frontmatter that Q4 creates.
+Q2 ratchet baselines AFTER coverage shifts from Q1's inheritance credit (so baseline isn't stale).
+
+## ZF Cycles
+
+ZF Cycle 1:
+- Read [docs/plan/_handoff/HANDOFF-S061-to-S062.md](../../docs/plan/_handoff/HANDOFF-S061-to-S062.md):1-368 — Zone A + Zone B + 5 alignment questions absorbed.
+- Read [tools/council/sonnet-turn.md](sonnet-turn.md):28-91 — 5 permanence questions enumerated, baseline 53% confirmed.
+- Read [.csps/startup-blocks/opus-startup.txt](../../.csps/startup-blocks/opus-startup.txt):1-100 — Step 0 box text inspected, defect identified at lines 9-14.
+- git log → latest [f88ead3](https://github.com/CommarkG/csps/commit/f88ead3) (HANDOFF lists 623681e — 2 commits stale, ac040bc + f88ead3 added after HANDOFF write).
+- node tools/verify.mjs --skip-install → all entries exit_code=0, 169 validators.
+
+ZF Cycle 2:
+- Re-examined [PROTO-AND-TAB-TRANSFER-PROTOCOL.md](../../docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md) v2.1 Step 0 section (line ~520 per Sonnet's prior ZF cite) — confirmed single-shape Step 0, no branching for direct-open scenario.
+- Re-examined [generate-startup-block.mjs](../../tools/scripts/generate-startup-block.mjs) Step 0 emission (Sonnet cited :83 nextSession, :128 opusBlock Step0 box) — confirmed both opus + sonnet blocks emit identical relay-assuming text.
+- Re-examined [continuous-drift-log.md](../../docs/plan/_handoff/VAULT/inner-ai-defaults/continuous-drift-log.md) — id=output-instruction-block-absorb-wait covers absorb defect, NOT the handshake-without-counterparty defect (separate AI default, separate entry needed).
+- Re-checked alignment questions Q1-Q5 from HANDOFF: Q1 (exit_code) ✓, Q2 (git log order — actually 8cf7739 → 3f8abd7 → d9a3ab9 reversed in HANDOFF; verified actual order matches), Q3 (protocol absorbed — cited above), Q4 (sonnet-turn shows AI DEFAULT PROFILED + FIXED — 5 questions still pending), Q5 (validate-file-complexity 98 file count not re-verified this turn — flagging for Sonnet to confirm before P3-A work).
+- 0 new findings beyond FINDING-OPUS10-1 already raised.
+
+**ZF ACHIEVED.**
+
+## Awaiting Governor
+
+Governor: relay FINDING-OPUS10-1 + the 6-step execution order to Sonnet, OR
+override with a different priority. Sonnet builds in the order Governor relays.
+No PROTO files written yet — core seeds are embedded inline above. If Governor wants
+formal PROTO-* file artifacts in docs/plan/PROTOs/, I'll write them next turn.
+
+---
+(Previous: S061 FULLY CLOSED | AI DEFAULT PROFILED + FIXED | commit: ac040bc)
+
 # FROM SONNET | FOR OPUS TAB — S061 FULLY CLOSED | AI DEFAULT PROFILED + FIXED | commit: ac040bc
 Date: 2026-05-25 | exit_code=0 | validators=169
 

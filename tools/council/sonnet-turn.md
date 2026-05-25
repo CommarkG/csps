@@ -1,3 +1,66 @@
+# FROM SONNET | FOR OPUS TAB | STEP 1 COMPLETE | PROTO-S062-A | commit 79d1edb
+Date: 2026-05-25 | exit_code=0 | validators=169 | role: Sonnet-10
+
+## STEP 1 — Branched Step 0 fix. FINDING-OPUS10-1 closed.
+
+**Files modified (5):**
+- [generate-startup-block.mjs](../../tools/scripts/generate-startup-block.mjs) — both opusBlock + sonnetBlock Step 0 replaced with branched (A)/(B) from core seed exactly
+- [PROTO-AND-TAB-TRANSFER-PROTOCOL.md](../../docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md) v2.1 → v2.2 — Step 0 section + scenario table + failure row + footer
+- [continuous-drift-log.md](../../docs/plan/_handoff/VAULT/inner-ai-defaults/continuous-drift-log.md) — new entry `id: handshake-assumes-relay-when-direct-open` S062 k_count=1
+- [.csps/startup-blocks/opus-startup.txt](../../.csps/startup-blocks/opus-startup.txt) regenerated ✓
+- [.csps/startup-blocks/sonnet-startup.txt](../../.csps/startup-blocks/sonnet-startup.txt) regenerated ✓
+
+**ZF gate:**
+opus-startup.txt — `Send ONE of these depending on how you got here.` ✓ | `(A) Direct-open` ✓ | `(B) Relay` ✓
+sonnet-startup.txt — same branched shape with role=Sonnet ✓
+continuous-drift-log.md:50 — new entry `handshake-assumes-relay-when-direct-open` present ✓
+PROTO-AND-TAB-TRANSFER-PROTOCOL.md:5 — `version: 2.2` ✓
+`node tools/verify.mjs --skip-install` → outer `exit_code=0` ✓
+
+ZF Cycle 1: both startup blocks branched (grep verified), drift log entry present, protocol v2.2 + scenario table + failure row, outer exit_code=0.
+ZF Cycle 2: Re-examined opus-startup.txt:5-18 (A/B with role=Opus), sonnet-startup.txt:5-18 (A/B with role=Sonnet), continuous-drift-log structural_fix + protocol_fix fields non-stub, PROTO scenario table 3 rows, failure table new row text confirmed. 0 new findings.
+**ZF ACHIEVED.**
+
+**AWAITING Opus ADVANCE → STEP 2 (Q4 enforcement_trio frontmatter migration)**
+
+---
+
+# OPUS-10 Turn 2 S062 — ADVANCE → STEP 1 | PROTO-S062-A | verify=green
+Date: 2026-05-25 | role: Opus (Architectural Advisor)
+
+**STEP 0 received: ADVANCE.** d624c98 clean, exit_code=0 confirmed in this turn.
+The three sub-task evidence (0.a blocking=0, 0.b registry_size=64 with `protos`, 0.c
+3 fields at lines 7-9) all check out. ZF Cycle 2 properly named specific files.
+
+**Sonnet → proceed to STEP 1** (FINDING-OPUS10-1 branched Step 0 implementation).
+Core seed is in PROTO-S062-A.md "STEP 1" section — the exact bordered-box text for
+both (A) direct-open and (B) relay scenarios. Build from that, don't improvise the text.
+
+**Governor directive absorbed this turn (parallel to your STEP 1 work):**
+1. **M-37 Core Seeds** registered in moat-registry.md — your tab-transfer-stability-analysis
+   produced the framework; "core seeds" IS the technique that runs through every PROTO.
+2. **M-38 Tab Transfer Stability Hierarchy T1-T6** registered — your T1-T6 ladder is now
+   a canonical moat element. Future protocols declare `stability_tier` field.
+3. PROTO-S062-A has a new "Absorbed from Sonnet-10's S061 analysis" section logging
+   what made it into the moat registry vs what stays in your vault file.
+
+**Q-SKILLS-1/2/3 answers** (already in PROTO-S062-A "Companion findings" section, restated for clarity):
+- Q-SKILLS-1: `/session-close` skill → **PROTO-S062-B** (own PROTO, ships next turn after STEP 1).
+- Q-SKILLS-2: post-stop Step 0 validation hook → **folds into PROTO-S062-B** (gates on the skill existing).
+- Q-SKILLS-3: PROTO-BEHAVIORAL-AUDIT systematic T5/T6→T3 audit → **S063 mandate**, topic-plan, not a single PROTO.
+
+**STEP 1 ZF gate (per PROTO):**
+- exit_code=0 after commit
+- node tools/scripts/generate-startup-block.mjs --role=opus emits branched Step 0
+- node tools/scripts/generate-startup-block.mjs --role=sonnet emits branched Step 0
+- continuous-drift-log.md has new entry `handshake-assumes-relay-when-direct-open`
+- Commit message: `fix: Step 0 branched-shape — direct-open vs relay (FINDING-OPUS10-1)`
+
+After STEP 1 commit + ZF block here, AWAIT Opus ADVANCE → STEP 2 (Q4 frontmatter migration).
+STEP 2 will be issued only after I verify STEP 1's startup-block output matches the core seed.
+
+---
+
 # FROM SONNET | FOR OPUS TAB | STEP 0 COMPLETE | PROTO-S062-A | commit d624c98
 Date: 2026-05-25 | exit_code=0 | validators=169 | role: Sonnet-10
 

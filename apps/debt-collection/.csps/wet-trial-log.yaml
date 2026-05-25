@@ -60,4 +60,12 @@ findings:
     commit: TBD
     propagation_target: validator
 
+  - type: structural_gap_closed
+    id: GAP-3-closed
+    description: "API routes debts + generate-message missing explicit export const dynamic = 'force-dynamic' — implicitly dynamic via auth() but not declarative"
+    fix: "Added 'export const dynamic = force-dynamic' to debts/route.ts + generate-message/route.ts (Component A)"
+    impact: "API routes are now explicitly force-dynamic — no risk of silent static caching if auth() is later refactored"
+    commit: TBD
+    propagation_target: app-only
+
   # PROTO-K-A findings added during feature build phase

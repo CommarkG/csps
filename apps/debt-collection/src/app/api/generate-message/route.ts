@@ -2,6 +2,8 @@
 // Generates a professional, colleague-tone debt reminder using Claude Haiku.
 // PROTO-K-A Phase 1 | Session S060
 
+export const dynamic = 'force-dynamic'
+
 import { NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
 import Anthropic from '@anthropic-ai/sdk'

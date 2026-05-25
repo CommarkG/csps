@@ -1,6 +1,8 @@
 // Debt Collection — POST /api/debts
 // Creates a new debt entry in .csps/debts.yaml
 
+export const dynamic = 'force-dynamic'
+
 import { NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
 import { createDebt } from '@/lib/debts'

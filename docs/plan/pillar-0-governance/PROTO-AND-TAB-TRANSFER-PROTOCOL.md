@@ -521,24 +521,36 @@ Both roles follow the same structure. Role-specific behavior is marked [OPUS] or
 
 **This step happens before the permission bypass. Before reading. Before everything.**
 
-The new tab states its role back to the Governor immediately:
+**⚠️ AI DEFAULT THAT CAUSES FAILURE — READ THIS:**
+Large blocks of instructions formatted like system prompts (CAPS headers, numbered
+steps, directives) trigger an "absorb and wait" behavior in Claude models. The AI
+files the content as background context and waits for what it considers a "real"
+prompt. It will NOT self-trigger Step 0 if Step 0 is embedded mid-document.
 
+**The fix built into generate-startup-block.mjs:**
+Step 0 is the VERY FIRST THING in the block, above all instructions.
+The exact text the AI must send is in a bordered ┌──┐ box.
+The block opens with "This is your first prompt. Respond immediately."
+All session context is below a separator: "Read only after HANDOFF CONFIRMED."
+This eliminates the absorb-and-wait default — bordered box + "copy verbatim" +
+"no other words" makes the required output mechanically unambiguous.
+
+Source: inner-ai-defaults/continuous-drift-log.md — id: output-instruction-block-absorb-wait
+Evidence: S061 Opus 4.7 tab said "command context, not a new request" — Step 0 never fired.
+
+**The new tab sends this exact text (pre-written in startup block):**
 ```
 [OPUS]:
-"I am Opus. Session [S0XX]. Fresh tab. Before I read anything:
- Please paste my first message back to the previous [Opus/Sonnet] tab
- so it can confirm the handoff reached me.
-
- The previous tab should respond: 'HANDOFF CONFIRMED — Opus tab active at [timestamp]'
- I will wait for that confirmation before proceeding."
+I am Opus. Session [S0XX]. Fresh tab.
+Please paste this message to the previous tab
+so it can confirm the handoff reached me.
+I will wait for HANDOFF CONFIRMED.
 
 [SONNET]:
-"I am Sonnet. Session [S0XX]. Fresh tab. Before I read anything:
- Please paste my first message back to the previous [Opus/Sonnet] tab
- so it can confirm the handoff reached me.
-
- The previous tab should respond: 'HANDOFF CONFIRMED — Sonnet tab active at [timestamp]'
- I will wait for that confirmation before proceeding."
+I am Sonnet. Session [S0XX]. Fresh tab.
+Please paste this message to the previous tab
+so it can confirm the handoff reached me.
+I will wait for HANDOFF CONFIRMED.
 ```
 
 **Why this step exists:**
@@ -678,6 +690,8 @@ ZF ACHIEVED."
 | Failure | Root cause | Fix |
 |---|---|---|
 | Opus tab consuming 1M tokens implementing | No mechanical barrier; training default = be helpful by doing | Relay model box in startup block names specifically what Opus writes. Role self-check required before every response. |
+| New tab says "ready when you give me an actual prompt" — Step 0 never fires | AI training default: large instruction blocks = "absorb and wait for real prompt." Step 0 buried mid-document was treated as context, not as a required action. | Step 0 moved to VERY TOP of block with bordered box + "This is your first prompt. Respond immediately." All context below a separator. See inner-ai-defaults: output-instruction-block-absorb-wait |
+| Startup block shows wrong session number (S061 instead of S062) | Generator derived session from git log (shows current), not from the HANDOFF filename target | nextSession extracted from HANDOFF-S0XX-to-S0YY.md filename → S0YY. New tab always opens into the next session. |
 | Startup block pasted to wrong tab | Block generated for Opus, pasted to Sonnet session (or vice versa) | Step 0 handoff validation catches identity mismatch before any work begins. |
 | Stale PROTO status in startup block | Block written from memory, not from current git state | generate-startup-block.mjs derives session from git log + reads sonnet-turn.md |
 | Sonnet deviating from core seed silently | PROTO didn't name anti-patterns; "working" felt sufficient | PROTO anatomy includes explicit anti-patterns field. Opus reviews actual files, not Sonnet's description. |
@@ -740,8 +754,9 @@ Cut this out. Know it cold.
 
 ---
 
-*PROTO-AND-TAB-TRANSFER-PROTOCOL v2.0 | S061 | Sonnet*
+*PROTO-AND-TAB-TRANSFER-PROTOCOL v2.1 | S061 | Sonnet*
 *v1.0: Initial protocol, separate Opus/Sonnet sections, no validation loop.*
 *v2.0: Unified single source of truth. Part 0 Role Registry. Step 0 handoff validation loop.*
+*v2.1: Step 0 absorb-and-wait AI default profiled + fixed. Bordered box format. nextSession derivation from HANDOFF filename. Failure table updated. AI profiling in inner-ai-defaults/continuous-drift-log.md.*
 *Every section traces to a specific failure mode from CSPS sessions S051-S061.*
-*Governor directive S061: "one source of truth, both participants, identical context, handoff validation."*
+*Governor directive S061: "one source of truth, both participants, identical context, handoff validation. No freestyle parts."*

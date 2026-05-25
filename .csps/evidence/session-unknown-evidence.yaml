@@ -1,19 +1,19 @@
 {
   "session": "unknown",
-  "captured_at": "2026-05-24T22:41:02.773Z",
+  "captured_at": "2026-05-25T14:10:00.941Z",
   "verify": {
     "exit_code": 0,
-    "validators_checked": 161,
-    "ran_at": "2026-05-24T22:40:33.762Z"
+    "validators_checked": 169,
+    "ran_at": "2026-05-25T14:09:35.013Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
     "gap_T1_AI_CONCEPTION_VAULT K=5 (fix_committed)",
-    "gap_T2_ORPHAN_CONTRACTS K=2 (structural_fix_proposed)",
+    "gap_T2_ORPHAN_CONTRACTS K=2 (fix_committed)",
     "gap_ZF_NOMINAL_CYCLES K=6 (fix_committed)",
     "gap_SETTINGS_LOCAL_BYPASS K=4 (resolved)",
     "gap_HANDOFF_STARTUP_BLOCK K=3 (fix_committed)",
     "gap_SESSION_INJECTION_COMPRESSION K=2 (open)"
   ],
-  "sonnet_summary": "Date: 2026-05-25 | Commit: [83a7b44](https://github.com/CommarkG/csps/commit/83a7b44) | exit_code=0\r | session-open: northStar block now injected at every session start ✓\r | validate-north-star-gate.m"
+  "sonnet_summary": "Date: 2026-05-25 | Commit: [8cf7739](https://github.com/CommarkG/csps/commit/8cf7739) | exit_code=0 | 169 validators\r | Governor directive: \"create enhancements so the default in each creation will be"
 }

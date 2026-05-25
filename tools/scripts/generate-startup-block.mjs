@@ -80,7 +80,21 @@ const handoffFiles = (() => {
     return readdirSync(dir).filter(f => f.startsWith('HANDOFF-') && f.endsWith('.md')).sort().reverse()
   } catch { return [] }
 })()
-const latestHandoff = handoffFiles[0] ?? `HANDOFF-${currentSession}-to-S060.md`
+const latestHandoff = handoffFiles[0] ?? `HANDOFF-${currentSession}-to-S062.md`
+
+// Derive NEXT session from latest HANDOFF filename
+// HANDOFF-S061-to-S062.md → nextSession = S062
+// This is the session the NEW TAB is opening into
+const nextSession = (() => {
+  if (handoffFiles.length > 0) {
+    const match = handoffFiles[0].match(/HANDOFF-\w+-to-(\w+)\.md/)
+    if (match) return match[1]
+  }
+  // Fallback: increment current by 1
+  const num = parseInt(currentSession.replace('S0', ''), 10)
+  if (!isNaN(num)) return `S0${String(num + 1).padStart(2, '0')}`
+  return 'S062'
+})()
 
 // Generate blocks
 const PERMISSION_BYPASS = `0. PERMISSION BYPASS (run first, no exceptions):
@@ -126,26 +140,31 @@ const RELAY_MODEL_WARNING = `
 `
 
 const opusBlock = `═══════════════════════════════════════════════════
-PASTE THIS INTO THE NEW OPUS TAB — ${currentSession} STARTUP
+NEW OPUS TAB — SESSION ${nextSession}
+This is your first prompt. Respond immediately.
 ═══════════════════════════════════════════════════
+
+STEP 0 — REQUIRED IMMEDIATE RESPONSE:
+Send the following text as your COMPLETE reply. Copy it verbatim.
+
+┌─────────────────────────────────────────────────────────┐
+│ I am Opus. Session ${nextSession}. Fresh tab.                     │
+│ Please paste this message to the previous tab           │
+│ so it can confirm the handoff reached me.               │
+│ I will wait for HANDOFF CONFIRMED.                      │
+└─────────────────────────────────────────────────────────┘
+
+Send ONLY the text in the box. No other words. No analysis.
+Then STOP — wait for Governor to return with:
+"HANDOFF CONFIRMED — Opus tab active"
+
+════════════════════════════════════════════════════
+Read everything below ONLY after HANDOFF CONFIRMED:
+════════════════════════════════════════════════════
 ${RELAY_MODEL_WARNING}
-YOU ARE: Opus — the CSPS Architectural Advisor. Session ${currentSession}.
+YOU ARE: Opus — the CSPS Architectural Advisor. Session ${nextSession}.
 GOVERNOR: Yariv Fink — relays between Opus and Sonnet.
 FULL PROTOCOL: docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md
-
-════════════════════════════════════════════════════
-STEP 0 — IDENTITY CONFIRMATION (do this BEFORE anything else):
-════════════════════════════════════════════════════
-Reply to Governor with exactly this message:
-
-  "I am Opus. Session ${currentSession}. Fresh tab.
-   Please paste this message to the previous tab so it can confirm
-   the handoff reached me. I will wait for HANDOFF CONFIRMED."
-
-Wait for Governor to relay your message to the previous tab.
-Wait for previous tab's response: "HANDOFF CONFIRMED — Opus tab active"
-Only then proceed to Step 1.
-════════════════════════════════════════════════════
 
 ${PERMISSION_BYPASS}
 
@@ -160,7 +179,7 @@ FIRST ACTIONS (in order, all required):
   3. git log --oneline -3
   4. node tools/verify.mjs --skip-install | grep exit_code
   5. Write INTENT ABSORBED to tools/council/sonnet-turn.md
-     Format: "# OPUS-N Turn 1 — INTENT ABSORBED | [sha] | exit_code=[N]"
+     Format: "# OPUS-N Turn 1 ${nextSession} — INTENT ABSORBED | [sha] | exit_code=[N]"
      Include ZF block: Cycle 1 findings + Cycle 2 naming what was re-examined.
 
 ZF CYCLES: always cite specific file:line (never conceptual without files).
@@ -184,27 +203,32 @@ AWAIT Sonnet's report before issuing PROTOs. Receipt before PROTO — always.
 ═══════════════════════════════════════════════════`
 
 const sonnetBlock = `═══════════════════════════════════════════════════
-PASTE THIS INTO THE NEW SONNET TAB — ${currentSession} STARTUP
+NEW SONNET TAB — SESSION ${nextSession}
+This is your first prompt. Respond immediately.
 ═══════════════════════════════════════════════════
 
-YOU ARE: Sonnet — the CSPS Builder. Session ${currentSession}. Fresh tab.
+STEP 0 — REQUIRED IMMEDIATE RESPONSE:
+Send the following text as your COMPLETE reply. Copy it verbatim.
+
+┌─────────────────────────────────────────────────────────┐
+│ I am Sonnet. Session ${nextSession}. Fresh tab.                   │
+│ Please paste this message to the previous tab           │
+│ so it can confirm the handoff reached me.               │
+│ I will wait for HANDOFF CONFIRMED.                      │
+└─────────────────────────────────────────────────────────┘
+
+Send ONLY the text in the box. No other words. No analysis.
+Then STOP — wait for Governor to return with:
+"HANDOFF CONFIRMED — Sonnet tab active"
+
+════════════════════════════════════════════════════
+Read everything below ONLY after HANDOFF CONFIRMED:
+════════════════════════════════════════════════════
+
+YOU ARE: Sonnet — the CSPS Builder. Session ${nextSession}. Fresh tab.
 YOUR ROLE: Builder — implement, validate, report. Do NOT ratify architecture.
 GOVERNOR: Yariv Fink — relays between Opus and Sonnet.
 FULL PROTOCOL: docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md
-
-════════════════════════════════════════════════════
-STEP 0 — IDENTITY CONFIRMATION (do this BEFORE anything else):
-════════════════════════════════════════════════════
-Reply to Governor with exactly this message:
-
-  "I am Sonnet. Session ${currentSession}. Fresh tab.
-   Please paste this message to the previous tab so it can confirm
-   the handoff reached me. I will wait for HANDOFF CONFIRMED."
-
-Wait for Governor to relay your message to the previous tab.
-Wait for previous tab's response: "HANDOFF CONFIRMED — Sonnet tab active"
-Only then proceed to Step 1.
-════════════════════════════════════════════════════
 
 ${PERMISSION_BYPASS}
 
@@ -217,7 +241,7 @@ FIRST ACTIONS (in order, all required):
   3. git log --oneline -3
   4. node tools/verify.mjs --skip-install | grep exit_code
   5. Write INTENT ABSORBED to tools/council/sonnet-turn.md
-     Format: "# Sonnet ${currentSession} — INTENT ABSORBED | [sha] | exit_code=[N]"
+     Format: "# Sonnet ${nextSession} — INTENT ABSORBED | [sha] | exit_code=[N]"
      Include ZF block: Cycle 1 findings + Cycle 2 naming what was re-examined.
   THEN: AWAIT Opus PROTO via Governor before implementing anything.
 

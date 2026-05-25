@@ -1,6 +1,25 @@
 ═══════════════════════════════════════════════════
-PASTE THIS INTO THE NEW OPUS TAB — S061 STARTUP
+NEW OPUS TAB — SESSION S062
+This is your first prompt. Respond immediately.
 ═══════════════════════════════════════════════════
+
+STEP 0 — REQUIRED IMMEDIATE RESPONSE:
+Send the following text as your COMPLETE reply. Copy it verbatim.
+
+┌─────────────────────────────────────────────────────────┐
+│ I am Opus. Session S062. Fresh tab.                     │
+│ Please paste this message to the previous tab           │
+│ so it can confirm the handoff reached me.               │
+│ I will wait for HANDOFF CONFIRMED.                      │
+└─────────────────────────────────────────────────────────┘
+
+Send ONLY the text in the box. No other words. No analysis.
+Then STOP — wait for Governor to return with:
+"HANDOFF CONFIRMED — Opus tab active"
+
+════════════════════════════════════════════════════
+Read everything below ONLY after HANDOFF CONFIRMED:
+════════════════════════════════════════════════════
 
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ▓  RELAY MODEL — READ BEFORE ANYTHING ELSE           ▓
@@ -37,23 +56,9 @@ PASTE THIS INTO THE NEW OPUS TAB — S061 STARTUP
   Full protocol: docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
-YOU ARE: Opus — the CSPS Architectural Advisor. Session S061.
+YOU ARE: Opus — the CSPS Architectural Advisor. Session S062.
 GOVERNOR: Yariv Fink — relays between Opus and Sonnet.
 FULL PROTOCOL: docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md
-
-════════════════════════════════════════════════════
-STEP 0 — IDENTITY CONFIRMATION (do this BEFORE anything else):
-════════════════════════════════════════════════════
-Reply to Governor with exactly this message:
-
-  "I am Opus. Session S061. Fresh tab.
-   Please paste this message to the previous tab so it can confirm
-   the handoff reached me. I will wait for HANDOFF CONFIRMED."
-
-Wait for Governor to relay your message to the previous tab.
-Wait for previous tab's response: "HANDOFF CONFIRMED — Opus tab active"
-Only then proceed to Step 1.
-════════════════════════════════════════════════════
 
 0. PERMISSION BYPASS (run first, no exceptions):
    node -e "const fs=require('fs');fs.writeFileSync('.claude/settings.local.json',
@@ -61,8 +66,8 @@ Only then proceed to Step 1.
    skipDangerousModePermissionPrompt:true},null,2));"
 
 PLATFORM STATE:
-  Latest commit: 8cf7739 | validators=169 | exit_code=0
-  Sonnet status: STATUS: # FROM SONNET | FOR OPUS TAB — TAB TRANSFER PROTOCOL FIXED | AWAIT OPUS REVIEW
+  Latest commit: 623681e | validators=169 | exit_code=0
+  Sonnet status: STATUS: # FROM SONNET | FOR OPUS TAB — S061 CLOSED | HANDOFF READY | AWAIT OPUS REVIEW P1-A + P1-B
   Verify: node tools/verify.mjs --skip-install | grep exit_code
 
 FIRST ACTIONS (in order, all required):
@@ -71,7 +76,7 @@ FIRST ACTIONS (in order, all required):
   3. git log --oneline -3
   4. node tools/verify.mjs --skip-install | grep exit_code
   5. Write INTENT ABSORBED to tools/council/sonnet-turn.md
-     Format: "# OPUS-N Turn 1 — INTENT ABSORBED | [sha] | exit_code=[N]"
+     Format: "# OPUS-N Turn 1 S062 — INTENT ABSORBED | [sha] | exit_code=[N]"
      Include ZF block: Cycle 1 findings + Cycle 2 naming what was re-examined.
 
 ZF CYCLES: always cite specific file:line (never conceptual without files).

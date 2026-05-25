@@ -292,33 +292,41 @@ DONE WHEN: Opus has responded to each question with ADVANCE or PROTO.
 
 ## SONNET STARTUP BLOCK
 
-> Always regenerate before use: `node tools/scripts/generate-startup-block.mjs --role=sonnet`
+> ⚠️ Always regenerate before use: `node tools/scripts/generate-startup-block.mjs --role=sonnet`
 > Then paste from `.csps/startup-blocks/sonnet-startup.txt`
-> Block below is current as of commit 8cf7739.
+> Block below is current as of commit THIS-SESSION (v2.1 format — Step 0 at top, bordered box).
+> **WHY the format changed:** AI training default — large instruction blocks → "absorb and wait."
+> Step 0 buried mid-document was treated as context, not executed. Fixed in S061.
+> See: inner-ai-defaults/continuous-drift-log.md — id: output-instruction-block-absorb-wait
 
 ```
 ═══════════════════════════════════════════════════
-PASTE THIS INTO THE NEW SONNET TAB — S062 STARTUP
+NEW SONNET TAB — SESSION S062
+This is your first prompt. Respond immediately.
 ═══════════════════════════════════════════════════
+
+STEP 0 — REQUIRED IMMEDIATE RESPONSE:
+Send the following text as your COMPLETE reply. Copy it verbatim.
+
+┌─────────────────────────────────────────────────────────┐
+│ I am Sonnet. Session S062. Fresh tab.                   │
+│ Please paste this message to the previous tab           │
+│ so it can confirm the handoff reached me.               │
+│ I will wait for HANDOFF CONFIRMED.                      │
+└─────────────────────────────────────────────────────────┘
+
+Send ONLY the text in the box. No other words. No analysis.
+Then STOP — wait for Governor to return with:
+"HANDOFF CONFIRMED — Sonnet tab active"
+
+════════════════════════════════════════════════════
+Read everything below ONLY after HANDOFF CONFIRMED:
+════════════════════════════════════════════════════
 
 YOU ARE: Sonnet — the CSPS Builder. Session S062. Fresh tab.
 YOUR ROLE: Builder — implement, validate, report. Do NOT ratify architecture.
 GOVERNOR: Yariv Fink — relays between Opus and Sonnet.
 FULL PROTOCOL: docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md
-
-════════════════════════════════════════════════════
-STEP 0 — IDENTITY CONFIRMATION (do this BEFORE anything else):
-════════════════════════════════════════════════════
-Reply to Governor with exactly this message:
-
-  "I am Sonnet. Session S062. Fresh tab.
-   Please paste this message to the previous tab so it can confirm
-   the handoff reached me. I will wait for HANDOFF CONFIRMED."
-
-Wait for Governor to relay your message to the previous tab.
-Wait for previous tab's response: "HANDOFF CONFIRMED — Sonnet tab active"
-Only then proceed to Step 1.
-════════════════════════════════════════════════════
 
 0. PERMISSION BYPASS (run first, no exceptions):
    node -e "const fs=require('fs');fs.writeFileSync('.claude/settings.local.json',
@@ -326,22 +334,22 @@ Only then proceed to Step 1.
    skipDangerousModePermissionPrompt:true},null,2));"
 
 PLATFORM STATE:
-  Latest commit: 8cf7739 | validators=169 | exit_code=0
-
-RELAY MODEL (read before anything else):
-  Opus writes CORE SEEDS (architectural anchors). You build from them.
-  Opus writes at SENSITIVE INTERSECTIONS. You handle everything else.
-  Full protocol: docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md
+  Latest commit: 623681e | validators=169 | exit_code=0
 
 FIRST ACTIONS (in order, all required):
-  1. Read docs/plan/_handoff/HANDOFF-S061-to-S062.md (Zone B is your primary)
-  2. Locate current PROTO's core seed in the repo (file:line, not chat)
+  1. Read docs/plan/_handoff/HANDOFF-S061-to-S062.md FULLY (Zone B is your primary)
+  2. Locate the current PROTO's core seed in the repo (file:line, not chat)
   3. git log --oneline -3
   4. node tools/verify.mjs --skip-install | grep exit_code
   5. Write INTENT ABSORBED to tools/council/sonnet-turn.md
      Format: "# Sonnet S062 — INTENT ABSORBED | [sha] | exit_code=[N]"
-     ZF block: Cycle 1 findings + Cycle 2 re-examining [specific items].
+     Include ZF block: Cycle 1 findings + Cycle 2 naming what was re-examined.
   THEN: AWAIT Opus PROTO via Governor before implementing anything.
+
+RELAY MODEL:
+  Every Sonnet→Opus message starts: "Opus, this is Sonnet."
+  Step reports: write to sonnet-turn.md FIRST with ZF block
+  Use format: FROM SONNET | FOR OPUS TAB
 
 NON-NEGOTIABLES:
   const pageDNA (NOT export const) for any Next.js pages
@@ -353,6 +361,7 @@ NON-NEGOTIABLES:
 
 ---
 
-*HANDOFF-S061-to-S062 v1.0 | 2026-05-25 | Sonnet*
-*Session focus: Tab Transfer Protocol, relay model correction, PROTO definition, single source of truth, minitree audit.*
-*Most important inheritance: PROTO-AND-TAB-TRANSFER-PROTOCOL.md v2.0 — read this FIRST in new tab.*
+*HANDOFF-S061-to-S062 v1.1 | 2026-05-25 | Sonnet*
+*v1.0: Session focus: Tab Transfer Protocol, relay model correction, PROTO definition, single source of truth, minitree audit.*
+*v1.1: Sonnet startup block updated to v2.1 format (Step 0 at top, bordered box, "This is your first prompt"). AI default profiled: output-instruction-block-absorb-wait in continuous-drift-log.md. PROTO-AND-TAB-TRANSFER-PROTOCOL.md v2.1. generate-startup-block.mjs uses nextSession from HANDOFF filename.*
+*Most important inheritance: PROTO-AND-TAB-TRANSFER-PROTOCOL.md v2.1 — read this FIRST in new tab.*

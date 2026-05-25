@@ -47,6 +47,48 @@ context_question: "Is this AI default still the active training default, or has 
 
 ## Entries (newest first)
 
+### S061 — Instruction-block absorb-and-wait default (user-surfaced, governor-confirmed)
+
+```yaml
+- id: output-instruction-block-absorb-wait
+  observed_at: 2026-05-25T00:00:00Z
+  observed_by: user-surfaced
+  category: output
+  default_pattern: >
+    Large blocks of text with CAPS headers, numbered steps, and directives
+    (formatted like system prompts or instruction sheets) trigger an
+    "internalize and wait" behavior. The AI absorbs the content as context
+    and waits for what it considers the 'real' prompt. It does not execute
+    any embedded instructions, even explicit ones like 'Reply with exactly
+    this message.' Symptom: new Opus 4.7 tab responded "Ready when you give
+    me an actual prompt — the prior turn's content was shown as command
+    context, not a new request."
+  csps_aligned_pattern: >
+    Startup blocks must begin with a direct response-demanding statement
+    ("This is your first prompt. Respond immediately.") followed by the
+    pre-written Step 0 text in a bordered box with the instruction
+    "Send ONLY the text in the box. No other words. No analysis."
+    The bordered box + explicit "copy verbatim" + "no other words" breaks
+    the absorb-and-wait loop by making the required output unambiguous.
+    All session context moves BELOW a "read only after HANDOFF CONFIRMED"
+    separator so it cannot be confused with the required response.
+  evidence: >
+    S061: Opus 4.7 tab received startup block with Step 0 in the middle
+    of a 100+ line instruction document. AI said "command context, not a
+    new request" and waited instead of executing Step 0.
+    Root cause: CSPS startup block looked structurally identical to a
+    system prompt. AI training default fired: system prompts = background
+    context, not conversational turns requiring response.
+  k_count: 1
+  promotion_status: pending
+  session: S061
+  structural_fix: tools/scripts/generate-startup-block.mjs — Step 0 box
+    at top of block with "This is your first prompt. Respond immediately."
+    All context moved below "read only after HANDOFF CONFIRMED" separator.
+  protocol_fix: docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md
+    — Step 0 section updated to reference this default + box format
+```
+
 ### S041 — 6 mechanical enforcement defaults (user-surfaced + AI-confirmed + validated by audit)
 
 ```yaml

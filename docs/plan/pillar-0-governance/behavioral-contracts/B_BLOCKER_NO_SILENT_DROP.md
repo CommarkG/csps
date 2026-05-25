@@ -21,6 +21,6 @@
 - hook: closing-summary-surface (manual pre-runtime)
 - memory: `feedback_blocker_no_silent_drop.md`
 - contract: this entry + AGENTS.md hard NO
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/post-stop-session-close-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---

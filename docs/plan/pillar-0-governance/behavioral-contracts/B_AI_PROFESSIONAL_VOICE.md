@@ -32,6 +32,6 @@
 - schema: n/a
 
 **governing_intent:** Ensures the AI provides genuine value rather than comfort — the platform scales on real improvements, not on affirmation, and the Governor needs expert challenge more than agreement.
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-voice-profile-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---

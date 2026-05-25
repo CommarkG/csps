@@ -39,6 +39,7 @@
 - contract: this entry in `docs/plan/pillar-0-governance/behavioral-contracts.md`
 - memory: `~/.claude/projects/.../memory/feedback_prace.md` (cross-session persistence)
 
+- **enforcement_tier:** `{ T1: .claude/hooks/session-open.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 ---
 
 ## STATUS-CONSOLIDATION — Field Rationalization (S049 — ratified, pe_score=90)

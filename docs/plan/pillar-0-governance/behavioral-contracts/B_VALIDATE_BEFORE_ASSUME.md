@@ -35,7 +35,10 @@ Training DEFAULT-ME-3: "T3 session injection = enforcement." Context pressure at
 - T3 (session): `session-open.sh` CAP Q line + AGENTS.md hard-NO.
 
 **governing_intent:** Ensures the platform only advances on states that are genuinely demonstrated. Claimed states cannot be trusted to drive downstream decisions.
-- **enforcement_tier:** `{ T1: stub→week-4, T2: advisory, T3: session-open + AGENTS.md }`
+**enforcement_tier:**
+- T1: .claude/hooks/post-tool-use-validate-before-assume.sh
+- T2: validate-rule-has-enforcement.mjs (advisory)
+- T3: session-open.sh + AGENTS.md hard-NO
 
 **enforcement_tier:**
 ```yaml

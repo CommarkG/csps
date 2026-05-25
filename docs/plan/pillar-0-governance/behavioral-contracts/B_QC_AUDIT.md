@@ -36,6 +36,6 @@
 - contract: this entry + `pillar-0-governance/qc-audit-system.md`
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_QC_AUDIT is Level 4 (Meta-completeness) in the unified completeness framework.
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/post-stop-rzf-reminder.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---

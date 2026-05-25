@@ -18,7 +18,10 @@
 **conceptual_sample_of:** GVRN L2 + OPER L2 — the development/production mode distinction is the governance decision that shapes every operational choice downstream.
 
 **Cross-references:** development-vs-production-mode.md / B_HUMBLE_EXECUTION_PIPELINE (GEP applies in development before production deployment) / B_TOKEN_BUDGET (development: R1 L1-default is guideline; production: R1 is hard constraint) / GRACE architecture (designed for production; in development, depth > efficiency)
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+**enforcement_tier:**
+- T1: .claude/hooks/pre-tool-use-alignment-gate.sh
+- T2: validate-rule-has-enforcement.mjs (advisory)
+- T3: session-open.sh + AGENTS.md hard-NO
 
 ---
 id: csps.pillar-0-governance.behavioral-contracts-arch

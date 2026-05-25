@@ -371,7 +371,7 @@ authored by the human, not AI-drafted). See: docs/plan/pillar-0-governance/human
 
 
 ---
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-plan-coverage-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -455,7 +455,7 @@ This is the moat. It is built deliberately, surface by surface, through discipli
 - contract: this entry + AGENTS.md hard NO + plan-creation-protocol.md Step 0 Gate C + `inner-ai-defaults/platform-first-optimization.md` (S016)
 
 **Cross-references:** B_COMPLETION_OVER_SHINY (both are PE-priority disciplines) / B_CONSOLIDATION_PASS (reuse before create) / synergy-master skill (CEC operationalization) / P-META-006 RZF (CEC is the positive counterpart to RZF — both ensure nothing is missed) / B_STRUCTURAL_PREVENTION_DISCIPLINE (fix class, not instance).
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/post-tool-use-cec-trigger.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -585,6 +585,7 @@ The `user-prompt-submit-turn-counter.sh` hook fires on every turn. At turn 25, 5
 - contract: this entry in `docs/plan/pillar-0-governance/behavioral-contracts.md`
 - memory: `~/.claude/projects/.../memory/feedback_prace.md` (cross-session persistence)
 
+- **enforcement_tier:** `{ T1: .claude/hooks/session-open.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 ---
 
 ## STATUS-CONSOLIDATION — Field Rationalization (S049 — ratified, pe_score=90)

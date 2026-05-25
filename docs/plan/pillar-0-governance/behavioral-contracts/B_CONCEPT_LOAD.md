@@ -25,6 +25,9 @@
 **Cross-references:** P-META-020 (the principle this operationalizes) / B_TRIAD_GOVERNANCE (triad = concept + principle + mechanical; CONCEPT_LOAD is the concept layer) / P-META-021 (triad must be present for consequential decisions) / inner-ai-defaults/README.md (calibration instrument activated by CONCEPT_LOAD).
 
 ---
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+**enforcement_tier:**
+- T1: .claude/hooks/pre-tool-use-context-question-gate.sh
+- T2: validate-rule-has-enforcement.mjs (advisory)
+- T3: session-open.sh + AGENTS.md hard-NO
 
 ---

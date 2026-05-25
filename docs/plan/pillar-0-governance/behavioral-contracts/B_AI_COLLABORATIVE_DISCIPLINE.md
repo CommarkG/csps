@@ -27,6 +27,6 @@
 - memory: feedback_ai_collaborative_discipline.md
 - validator: validate-proactive-contribution-routing (future — checks contributions go through Threshold)
 - hook: future pre-contribution-classification hook
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-alignment-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---

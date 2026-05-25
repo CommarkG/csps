@@ -31,7 +31,7 @@
 - contract: `docs/plan/pillar-0-governance/behavioral-contracts/B_APPS_ARE_TRIALS.md` (canonical)
 - validator (atomic registration): `app-scope-isolation` (impl week-4)
 - principle: P-ARCH-030 in principles.yaml
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-plan-coverage-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 id: csps.pillar-0-governance.behavioral-contracts-vald

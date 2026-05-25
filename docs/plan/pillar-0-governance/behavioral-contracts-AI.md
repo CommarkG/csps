@@ -55,7 +55,7 @@ context_question: "Before relying on this governance document: is it current wit
 - schema: n/a
 
 **governing_intent:** Ensures the AI provides genuine value rather than comfort — the platform scales on real improvements, not on affirmation, and the Governor needs expert challenge more than agreement.
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-voice-profile-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -91,7 +91,10 @@ Training DEFAULT-ME-3: "T3 session injection = enforcement." Context pressure at
 - T3 (session): `session-open.sh` CAP Q line + AGENTS.md hard-NO.
 
 **governing_intent:** Ensures the platform only advances on states that are genuinely demonstrated. Claimed states cannot be trusted to drive downstream decisions.
-- **enforcement_tier:** `{ T1: stub→week-4, T2: advisory, T3: session-open + AGENTS.md }`
+**enforcement_tier:**
+- T1: .claude/hooks/post-tool-use-validate-before-assume.sh
+- T2: validate-rule-has-enforcement.mjs (advisory)
+- T3: session-open.sh + AGENTS.md hard-NO
 
 **enforcement_tier:**
 ```yaml
@@ -313,7 +316,7 @@ NEVER mid-session: edit CLAUDE.md / install/remove MCP servers / add plugins / s
 - memory: feedback_ai_collaborative_discipline.md
 - validator: validate-proactive-contribution-routing (future — checks contributions go through Threshold)
 - hook: future pre-contribution-classification hook
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-alignment-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -378,7 +381,10 @@ The Opus simulation incident (S011) is the canonical failure case:
 **Cross-references:** P-META-020 (the principle this operationalizes) / B_TRIAD_GOVERNANCE (triad = concept + principle + mechanical; CONCEPT_LOAD is the concept layer) / P-META-021 (triad must be present for consequential decisions) / inner-ai-defaults/README.md (calibration instrument activated by CONCEPT_LOAD).
 
 ---
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+**enforcement_tier:**
+- T1: .claude/hooks/pre-tool-use-context-question-gate.sh
+- T2: validate-rule-has-enforcement.mjs (advisory)
+- T3: session-open.sh + AGENTS.md hard-NO
 
 ---
 
@@ -439,4 +445,7 @@ Two sentences. No pre-emptive versions. No lengthy explanation. WAIT.
 **conceptual_sample_of:** GVRN L2 + OPER L2 — the development/production mode distinction is the governance decision that shapes every operational choice downstream.
 
 **Cross-references:** development-vs-production-mode.md / B_HUMBLE_EXECUTION_PIPELINE (GEP applies in development before production deployment) / B_TOKEN_BUDGET (development: R1 L1-default is guideline; production: R1 is hard constraint) / GRACE architecture (designed for production; in development, depth > efficiency)
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+**enforcement_tier:**
+- T1: .claude/hooks/pre-tool-use-alignment-gate.sh
+- T2: validate-rule-has-enforcement.mjs (advisory)
+- T3: session-open.sh + AGENTS.md hard-NO

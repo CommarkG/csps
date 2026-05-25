@@ -25,6 +25,6 @@
 - memory: `feedback_checkpoint_8_categories.md`
 - hook: UserPromptSubmit + Stop hooks
 - validator: scope-creep flag at close
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-alignment-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---

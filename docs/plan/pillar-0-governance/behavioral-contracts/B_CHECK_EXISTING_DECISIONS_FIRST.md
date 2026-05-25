@@ -27,6 +27,6 @@
 - hook: UserPromptSubmit reminder ("before building NEW: check EXISTING")
 - memory: `feedback_check_existing_decisions_first.md` (S002 turn 7)
 - contract: this entry
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-check-existing.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---

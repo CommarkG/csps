@@ -50,7 +50,7 @@ context_question: "Before relying on this governance document: is it current wit
 - hook: UserPromptSubmit reminder
 - memory: `feedback_no_invention_without_precedent.md` (S002 turn 7)
 - contract: this entry
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-check-existing.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -78,7 +78,7 @@ context_question: "Before relying on this governance document: is it current wit
 - hook: UserPromptSubmit reminder ("before building NEW: check EXISTING")
 - memory: `feedback_check_existing_decisions_first.md` (S002 turn 7)
 - contract: this entry
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-check-existing.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -516,4 +516,4 @@ Trivial fixes (typo, count update, linting) are exempt. Only work that could pro
 - contract: `docs/plan/pillar-0-governance/behavioral-contracts/B_APPS_ARE_TRIALS.md` (canonical)
 - validator (atomic registration): `app-scope-isolation` (impl week-4)
 - principle: P-ARCH-030 in principles.yaml
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-plan-coverage-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`

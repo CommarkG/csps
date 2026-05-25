@@ -58,7 +58,7 @@ The 4-condition gate fires because the human's expression is incomplete;
 P-META-022 explains why that incompleteness is the default condition, not the exception.
 The 9-step coaching protocol in [threshold-intake-protocol.md](./threshold-intake-protocol.md)
 extends this contract with the full discovery methodology (receive → gap-surface → iterate → ratify).
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-state-claim-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -85,7 +85,7 @@ extends this contract with the full discovery methodology (receive → gap-surfa
 - hook: UserPromptSubmit reminder (firing the 4 conditions check before action)
 - validator: n/a (judgment)
 - schema: extraction-note `scope_ratified_by:` field (closed enum: explicit-user-directive / inferred-from-task / out-of-scope-flagged)
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-alignment-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -111,7 +111,7 @@ extends this contract with the full discovery methodology (receive → gap-surfa
 - memory: `feedback_checkpoint_8_categories.md`
 - hook: UserPromptSubmit + Stop hooks
 - validator: scope-creep flag at close
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-alignment-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -145,7 +145,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - router: `tools/intake-router.mjs` (S011 unified-intake L3)
 - memory: `feedback_intake_discipline.md`
 - contract: this entry + AGENTS.md hard NOs
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/user-prompt-submit-intake.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -167,7 +167,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - hook: closing-summary-surface (manual pre-runtime)
 - memory: `feedback_blocker_no_silent_drop.md`
 - contract: this entry + AGENTS.md hard NO
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/post-stop-session-close-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -187,7 +187,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - schema: `continuity_manifest` + `opening_receipt` YAML schemas in protocols.md §17 v1.2
 - validator: `handshake-completion` audit
 - contract: this entry + `protocols.md` §17 + §11b + AGENTS.md hard NO
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/post-stop-session-close-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -209,7 +209,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - contract: this entry + `protocols.md` §16 + §11c + AGENTS.md hard NO
 
 **Cross-references:** P-META-020 (intent = the concept; impact = whether behavior honored the concept — B_INTENT_TO_IMPACT IS the intent-to-impact loop at the session level, which P-META-020 operates at the input level via Threshold PREAMBLE) / P-META-014 B_MUTUAL_UNDERSTANDING_VALIDATION (MUV closes the loop at communication boundaries; INTENT_TO_IMPACT closes it at session boundaries — composed, not redundant).
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/post-stop-session-close-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -229,7 +229,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - schema: extraction-note `discovery_origin: true` flag
 - validator: `force-fit-detection` audit
 - contract: this entry + `unknown-path-protocol.md` + AGENTS.md hard NO
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-vault-write-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -270,7 +270,7 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - contract: this entry + `_handoff/VAULT/closing-summary-template.md` + `protocols.md` v1.7 §10 + AGENTS.md hard NO
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_PROTOCOL_LITERAL_EXECUTION is Level 3 (Session Completeness) in the unified completeness framework.
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/post-stop-session-close-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -303,7 +303,10 @@ All 4 normalize through `tools/intake-router.mjs` → `docs/plan/_handoff/VAULT/
 - hook: Stop hook scans output for path-shaped strings without link wrapping; UserPromptSubmit reminder
 - memory: `feedback_always_git_links.md` (NEW S002 turn 19)
 - contract: this entry + AGENTS.md hard NO (turn 19) + `ai-behavior-spine.md` row (engraving status: 4/5 declared; ~2/5 mechanical — memory + AGENTS.md NO + contract active; validator + hook deferred week 4)
-- **enforcement_tier:** `{ tier: T1+T3, T1 hook: post-stop-link-discipline.sh (ADVISORY — S040), no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low-partial }`
+**enforcement_tier:**
+- T1: .claude/hooks/post-stop-link-discipline.sh
+- T2: validate-rule-has-enforcement.mjs (advisory)
+- T3: session-open.sh + AGENTS.md hard-NO
 
 ---
 
@@ -511,7 +514,10 @@ Pre-S005-turn-27, HANDOFF creation was a procedural step in [protocols.md §10](
 **Cross-references:** gradual-execution-protocol.md / B_HUMBLE_EXECUTOR (composes — milestone at phase gate; GEP for execution scope) / instruction-template.md MEASURABLE_END_RESULT (Stage 1 passes when MEASURABLE_END_RESULT is demonstrated) / enforcement_stage: stub→planned→week-4→active (the GEP applied to validators)
 
 ---
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+**enforcement_tier:**
+- T1: .claude/hooks/pre-tool-use-humble-step-gate.sh
+- T2: validate-rule-has-enforcement.mjs (advisory)
+- T3: session-open.sh + AGENTS.md hard-NO
 
 ---
 
@@ -676,7 +682,7 @@ RUNNING NOW (0 questions) | WAITING (N questions above)
 - memory: `feedback_contextual_locality.md` (survives chat moves)
 - principle: P-UX-001 in principles.yaml
 - validator: validate-communication-protocol.mjs (checks Sonnet reports)
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/post-stop-link-discipline.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -705,4 +711,4 @@ RUNNING NOW (0 questions) | WAITING (N questions above)
 - template: `docs/plan/_handoff/VAULT/templates/ai-transfer-template.md`
 - protocol: Rule 7 in `tools/council/communication-protocol-shared.md`
 - AGENTS.md: ZCA Hard Rule under Communication boundaries
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-alignment-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`

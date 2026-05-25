@@ -23,6 +23,9 @@
 **Cross-references:** gradual-execution-protocol.md / B_HUMBLE_EXECUTOR (composes — milestone at phase gate; GEP for execution scope) / instruction-template.md MEASURABLE_END_RESULT (Stage 1 passes when MEASURABLE_END_RESULT is demonstrated) / enforcement_stage: stub→planned→week-4→active (the GEP applied to validators)
 
 ---
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+**enforcement_tier:**
+- T1: .claude/hooks/pre-tool-use-humble-step-gate.sh
+- T2: validate-rule-has-enforcement.mjs (advisory)
+- T3: session-open.sh + AGENTS.md hard-NO
 
 ---

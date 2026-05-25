@@ -110,7 +110,7 @@ context_question: "Before relying on this governance document: is it current wit
 - contract: this entry + `principles.yaml#P-META-006`
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_CEC is Level 2 (Value Completeness) in the unified completeness framework.
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/post-tool-use-cec-trigger.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -147,7 +147,7 @@ context_question: "Before relying on this governance document: is it current wit
 - contract: this entry + `pillar-0-governance/qc-audit-system.md`
 
 **SSoT cross-reference:** [completeness-module.md](./completeness-module.md) §2 — B_QC_AUDIT is Level 4 (Meta-completeness) in the unified completeness framework.
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/post-stop-rzf-reminder.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 
@@ -383,7 +383,7 @@ S005 evidence: when the FSE-produces-dangling-refs meta-finding was surfaced at 
 **Mechanical surfaces (2/5 declared S037):**
 - memory: `feedback_done_right.md` (survives chat moves)
 - principle: P-OPER-002 in principles.yaml
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-rzf-evidence-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---
 

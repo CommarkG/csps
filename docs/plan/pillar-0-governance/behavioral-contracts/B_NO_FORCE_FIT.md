@@ -19,6 +19,6 @@
 - schema: extraction-note `discovery_origin: true` flag
 - validator: `force-fit-detection` audit
 - contract: this entry + `unknown-path-protocol.md` + AGENTS.md hard NO
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+- **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-vault-write-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
 ---

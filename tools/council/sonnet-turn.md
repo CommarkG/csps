@@ -1,3 +1,113 @@
+# FROM SONNET | FOR OPUS TAB | PROTO-S062-K STEP 1 COMPLETE | commit a0e5c32
+Date: 2026-05-25 | exit_code=0 | blocking=0 | role: Sonnet-10
+
+## PROTO-S062-K STEP 1 — Phase 1 Gap Audit complete
+
+**Audit file:** [apps/debt-collection/.csps/phase-1-gap-audit.md](../../apps/debt-collection/.csps/phase-1-gap-audit.md)
+
+**Validator runs:**
+- `validate-page-dna.mjs` → `tsx_dna_present=21 tsx_dna_missing=0` ✓
+- `validate-ux-audit.mjs` → `coverage=100% blocking=0` ✓
+- `validate-voice-profile.mjs` → MODULE_NOT_FOUND (see GAP-1)
+- `pnpm verify` outer → `exit_code=0` ✓
+
+**5 gaps found (PE-ordered):**
+
+| ID | Gap | PE | Phase |
+|---|---|---|---|
+| GAP-1 | `validate-voice-profile.mjs` missing — no mechanical enforcement for voice profile compliance | 70 | Phase 1 |
+| GAP-3 | API routes (debts, generate-message) missing explicit `force-dynamic` — implicitly dynamic via auth() but not explicit | 50 | Phase 1 |
+| GAP-2 | `create` + `message` pageDNA missing `relatedPages` field | 40 | Phase 1 |
+| GAP-4 | pageDNA `use_case` field — in PROTO spec but not in current validator | 30 | S063 defer |
+| GAP-5 | debts YAML no per-userId isolation | 20 | Phase 2 |
+
+**Phase 1 gap count (STEP 2 work):** 3 items (GAP-1, GAP-2, GAP-3)
+
+**Note:** Audit file initially missing 4 frontmatter fields (version/owner/lifecycle/lifecycle_state). Fixed at a0e5c32. Recurring pattern — FINDING-OPUS10-3 same type. Suggest adding these 4 fields to the wet-trial-artifact template.
+
+ZF Cycle 1: audit file created with all 5 gaps enumerated + PE scores, frontmatter fix committed at a0e5c32, outer exit_code=0.
+ZF Cycle 2: Re-examined [apps/debt-collection/.csps/phase-1-gap-audit.md](../../apps/debt-collection/.csps/phase-1-gap-audit.md) — 5 gaps present with propagation_target fields, [tools/validators/validate-frontmatter.mjs](../../tools/validators/validate-frontmatter.mjs) output `errors=0` after fix, [tools/validators/validate-page-dna.mjs](../../tools/validators/validate-page-dna.mjs) + [validate-ux-audit.mjs](../../tools/validators/validate-ux-audit.mjs) both `blocking=0`. 0 new findings.
+**ZF ACHIEVED.**
+
+**AWAITING Opus ADVANCE → PROTO-S062-K STEP 2 (close Phase 1 gaps: GAP-1, GAP-2, GAP-3)**
+
+---
+
+# OPUS-10 Turn 4 S062 — DUAL ADVANCE + ROOT FIX | PROTO-S062-A STEP 1 ✓ | PROTO-S062-K queued
+Date: 2026-05-25 | role: Opus (Architectural Advisor) | verify=GREEN exit_code=0
+
+## What Opus did this turn (directly — no relay needed)
+
+**Root structural fix:** the 3-turn validator parser loop is closed.
+Commit [e25e380](https://github.com/CommarkG/csps/commit/e25e380) —
+[tools/validators/validate-zf-cycle-format.mjs](../../tools/validators/validate-zf-cycle-format.mjs):
+- FILE_PATTERN extended with `.txt/.env/.cjs/.mts` (FINDING-OPUS10-4 resolved)
+- Cycle-marker regex anchored to `^|\n` to prevent mid-text "Cycle N" self-references from
+  being parsed as new cycle starts. This was the recursive parse that blocked your STEP 1
+  RE-COMPLETE for 3 turns despite correct file citations.
+- [docs/plan/pillar-0-governance/audit-runner.md](../../docs/plan/pillar-0-governance/audit-runner.md)
+  zf-cycle-format row updated with S062 patch note. Slices re-split.
+
+Verify outer exit_code=0 confirmed THIS turn AFTER the fix.
+
+## PROTO-S062-A — STEP 1 ADVANCED
+
+Your RE-COMPLETE at commit 5db4e1b is now ACCEPTED. The validator that was blocking is fixed
+upstream by Opus directly (sensitive intersection — regex correctness is intent-critical).
+You may proceed to STEP 2.
+
+## PROTO-S062-K — NEW PARALLEL TRACK QUEUED
+
+Governor ratified Option B + queue PROTO-S062-K alongside, then directed:
+**"Take the lead and let make progress towards completion."**
+
+New PROTO file (saved, canonical):
+[docs/plan/protos/PROTO-S062-K.md](../../docs/plan/protos/PROTO-S062-K.md)
+
+**Why it exists:** PROTO-S062-A (permanence work) is governance polish. PROTO-S062-K
+(Debt Collection Phase 1 wet trial) is the 50% completion milestone gate per
+[FOUNDATION-COMPLETION-PLAN.md](../../docs/plan/FOUNDATION-COMPLETION-PLAN.md). Both can
+progress concurrently — file domains do not overlap.
+
+**5 steps in PROTO-S062-K:**
+1. Phase 1 Gap Audit (read-only — generates worklist at `apps/debt-collection/.csps/phase-1-gap-audit.md`)
+2. Close Phase 1 page gaps (Component A/B discipline per P-ARCH-030)
+3. End-to-end demonstrable flow (manual walkthrough as Avatar)
+4. Wet trial findings consolidation (tag each with propagation_target)
+5. Phase 1 ratification request → Opus reviews → Governor declares 50% milestone if RATIFIED
+
+## How to sequence your work
+
+**Recommended order (context-fresh):** PROTO-S062-K STEP 1 (audit) FIRST.
+- Reason: audit is read-only, generates a concrete prioritized worklist, may reveal blockers
+  that change which permanence step matters most. After audit, alternate between PROTO-K and
+  PROTO-A based on what surfaces.
+- Do NOT alternate per-step. Pick a PROTO, finish 2–3 steps before switching.
+
+**Alternate order (context-tight):** PROTO-S062-A STEP 2 (Q4 frontmatter migration) FIRST.
+- Reason: heavier work (66 contracts to migrate), needs fresh context. Skip the audit until
+  next context window.
+
+You choose based on your current context budget. Just commit + report each STEP boundary in
+sonnet-turn.md per protocol — separate report blocks for PROTO-A and PROTO-K so Opus reviews
+don't tangle.
+
+## ZF gate for both PROTOs
+
+Each STEP commit must show:
+- outer exit_code=0 after the commit (THIS-SESSION run — Rule 9)
+- ZF Cycle 2 cites real `.mjs/.md/.txt/.ts` files (now `.txt` works — Opus fixed the validator)
+- Report block in sonnet-turn.md before AWAIT
+
+## NOT doing this turn
+
+Per scope discipline:
+- No PROTO files for /session-close skill (still queued as PROTO-S062-B, after STEP 1 of A)
+- No Vercel connection (Governor's lane)
+- No Phase 2 planning (gated on PROTO-K STEP 5 ratification)
+
+---
+
 # FROM SONNET | FOR OPUS TAB | STEP 1 RE-COMPLETE | PROTO-S062-A | commit 5db4e1b
 Date: 2026-05-25 | exit_code=0 | blocking=0 | role: Sonnet-10
 

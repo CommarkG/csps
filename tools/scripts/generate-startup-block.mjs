@@ -27,16 +27,36 @@ function readSafe(path) { try { return readFileSync(resolve(ROOT, path), 'utf8')
 const sonnetTurnRaw = readSafe('tools/council/sonnet-turn.md')
 const sonnetTurnFirstLine = sonnetTurnRaw.split('\n')[0]?.trim() ?? '(no sonnet-turn.md)'
 
-// Q2: What is Sonnet's actual current state?
-const sonnetCurrentState = sonnetTurnFirstLine.includes('COMPLETE')
-  ? `COMPLETE: ${sonnetTurnFirstLine}`
-  : sonnetTurnFirstLine.includes('ABSORBED')
-  ? `ABSORBED: ${sonnetTurnFirstLine}`
-  : `STATUS: ${sonnetTurnFirstLine}`
+// Q2: What is Sonnet's actual current state? (trim to 100 chars to keep startup block readable)
+const sonnetStatusLabel = sonnetTurnFirstLine.includes('COMPLETE') ? 'COMPLETE'
+  : sonnetTurnFirstLine.includes('ABSORBED') ? 'ABSORBED'
+  : sonnetTurnFirstLine.includes('ADVANCE') ? 'ADVANCE'
+  : 'STATUS'
+const sonnetCurrentState = `${sonnetStatusLabel}: ${sonnetTurnFirstLine.slice(0, 100)}${sonnetTurnFirstLine.length > 100 ? '…' : ''}`
 
-const sessionStateRaw = readSafe('tools/data/session-state.json')
-const sessionState = sessionStateRaw ? JSON.parse(sessionStateRaw) : {}
-const currentSession = sessionState.active_implementation_session ?? 'S059'
+// Derive session from most recent commit message (pattern: S0XX)
+// Falls back to scanning git log for most recent session number
+const currentSession = (() => {
+  try {
+    const log = execSync('git log --oneline -20', { cwd: ROOT, encoding: 'utf8' })
+    const matches = log.match(/S0(\d+)/g)
+    if (matches && matches.length > 0) {
+      // Find highest session number
+      const nums = matches.map(s => parseInt(s.replace('S0', ''), 10)).filter(n => !isNaN(n))
+      const max = Math.max(...nums)
+      return `S0${String(max).padStart(2, '0')}`
+    }
+  } catch {}
+  // Last-resort fallback: read session-state.json if it exists
+  try {
+    const sessionStateRaw = readSafe('tools/data/session-state.json')
+    if (sessionStateRaw) {
+      const parsed = JSON.parse(sessionStateRaw)
+      return parsed.active_implementation_session ?? 'S061'
+    }
+  } catch {}
+  return 'S061'
+})()
 
 const verifyRaw = readSafe('tools/verify-last-run.md')
 const validators = verifyRaw.match(/"validators_checked":\s*(\d+)/)?.[1] ?? '159'
@@ -68,18 +88,42 @@ const PERMISSION_BYPASS = `0. PERMISSION BYPASS (run first, no exceptions):
    JSON.stringify({permissions:{defaultMode:'bypassPermissions'},
    skipDangerousModePermissionPrompt:true},null,2));"`
 
+const RELAY_MODEL_WARNING = `
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+▓  RELAY MODEL — READ BEFORE ANYTHING ELSE           ▓
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+  GOVERNOR (Yariv) decides WHAT and ratifies
+  OPUS (you)    → designs + ratifies + issues PROTOs
+  SONNET        → the SOLE builder (writes all code)
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+  OPUS NEVER writes code, edits files, runs installs,
+  or modifies the codebase. EVER. Not even "just this
+  one quick fix." Not even "it's only a small change."
+
+  If you feel the urge to implement: STOP.
+  Issue a PROTO to Sonnet instead. Every time.
+
+  The relay: GOVERNOR input → OPUS PROTO → SONNET builds
+              → SONNET reports → OPUS reviews → cycle
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+  VIOLATION: Writing code = wasted tokens + role collapse
+  WHY IT MATTERS: Opus consuming 1M tokens implementing
+  is the specific failure this block was written to prevent.
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+`
+
 const opusBlock = `═══════════════════════════════════════════════════
 PASTE THIS INTO THE NEW OPUS TAB — ${currentSession} STARTUP
 ═══════════════════════════════════════════════════
-
-YOU ARE: Opus, the CSPS Architectural Advisor for session ${currentSession}.
-YOUR ROLE: Director — design, ratify, direct. Do NOT implement code.
-GOVERNOR: Yariv Fink (platform owner — relays messages between Opus and Sonnet)
+${RELAY_MODEL_WARNING}
+YOU ARE: Opus, the CSPS Architectural Advisor — session ${currentSession}.
+GOVERNOR: Yariv Fink — relays between Opus and Sonnet.
 
 ${PERMISSION_BYPASS}
 
 PLATFORM STATE:
   Latest commit: ${latestCommit} | validators=${validators} | exit_code=0
+  Sonnet status: ${sonnetCurrentState}
   Verify: node tools/verify.mjs --skip-install | grep exit_code
 
 FIRST ACTIONS (do all 4 before responding):
@@ -97,11 +141,12 @@ ZF CYCLES: always cite specific file:line (never conceptual reasoning without fi
   ZF ACHIEVED.
 
 BEHAVIORAL RECIPES: docs/plan/_handoff/VAULT/inner-ai-defaults/behavioral-recipes.md
+PERMANENCE MECHANICS: docs/plan/_handoff/VAULT/inner-ai-defaults/permanence-mechanics.md
 VOCABULARY GUIDE: docs/plan/_handoff/VAULT/inner-ai-defaults/csps-vocabulary-triggers.md
 
 5 GUARD QUESTIONS (before every response):
   G1: What file:line proves my main claim?
-  G2: Am I writing as a role I don't hold?
+  G2: Am I writing as a role I don't hold? (Opus NEVER writes code)
   G3: Does this have a plan item ID in unified-plan.yaml?
   G4: Which Platform Genome section does this inherit from?
   G5: Are key decisions in permanent files (not just chat)?

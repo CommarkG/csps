@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-25T08:51:24.743Z
-- finished_at: 2026-05-25T08:51:49.574Z
+- ran_at: 2026-05-25T09:04:52.318Z
+- finished_at: 2026-05-25T09:05:20.762Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-25T08:51:24.743Z",
-    "finished_at": "2026-05-25T08:51:49.574Z",
+    "ran_at": "2026-05-25T09:04:52.318Z",
+    "finished_at": "2026-05-25T09:05:20.762Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -39,8 +39,8 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 593,
+        "duration_seconds": 0.3,
+        "scanned": 594,
         "errors": 0,
         "warnings": 116,
         "exempt": 320
@@ -60,7 +60,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -212,7 +212,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.7,
+        "duration_seconds": 2.9,
         "checked": 113,
         "advisories": 102
       },
@@ -252,7 +252,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 2
+        "advisories": 1
       },
       {
         "name": "agreement_without_evidence",
@@ -347,8 +347,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 536,
-        "clean": 536,
+        "checked": 537,
+        "clean": 537,
         "blocking": 0,
         "registry": 62
       },
@@ -431,7 +431,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 671,
+        "scanned": 672,
         "advisory": 97
       },
       {
@@ -507,7 +507,7 @@
         "command": "node tools/validators/validate-wiring-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "wired": 19,
         "deferred": 34,
         "orphan": 0
@@ -592,7 +592,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -671,7 +671,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "with_cq": 229,
-        "total": 480,
+        "total": 481,
         "pct": 48
       },
       {
@@ -761,7 +761,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -1152,7 +1152,7 @@
         "command": "node tools/validators/validate-foundation-schema-drift.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 6.3
+        "duration_seconds": 9.4
       },
       {
         "name": "ui_completeness",
@@ -1253,7 +1253,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 0
+        "advisories": 1
       },
       {
         "name": "agent_calls_compliance",
@@ -1495,7 +1495,7 @@
         "total": 168,
         "deferred": 2,
         "empty_output": 15,
-        "zero_numeric": 15,
+        "zero_numeric": 14,
         "advisory": 3,
         "blocking": 0
       },
@@ -1516,7 +1516,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 212,
+        "total_entries": 213,
         "sessions": 1,
         "advisory": true
       },

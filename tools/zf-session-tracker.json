@@ -4,7 +4,7 @@
   "verify_runs": 0,
   "blocking_found_total": 151,
   "warn_found_total": 4533,
-  "last_run_at": "2026-05-25T05:11:22.447Z",
+  "last_run_at": "2026-05-25T08:52:26.845Z",
   "last_exit_code": 1,
   "orchestrator_cycles": 4159,
   "orchestrator_last_level": 1,

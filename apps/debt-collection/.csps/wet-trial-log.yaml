@@ -131,6 +131,6 @@ findings:
         action: "Document in Phase 1 setup guide. Route code is correct."
     phase_1_code_blockers: 0
     notes: "posthog.track() is no-op stub (wiring_deferred_until: S040). Dashboard empty state, create form, PATCH, status reflect — all verified. generate-message route wired correctly but requires live server + ANTHROPIC_API_KEY for full validation."
-    commit: TBD
+    commit: 812be30
 
   # PROTO-K-A findings added during feature build phase

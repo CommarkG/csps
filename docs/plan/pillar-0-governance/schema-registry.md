@@ -158,6 +158,13 @@ schema_anchors:
     l2_domain: ACCOUNTABILITY_TRACEABILITY
     description: General VAULT artifacts (various types)
 
+  governance_files:
+    type: governance-section
+    resolves_to: docs/plan/pillar-0-governance/
+    spine: GVRN
+    l2_domain: ACCOUNTABILITY_TRACEABILITY
+    description: Core governance protocol documents (pillar-0 governance files)
+
   vault_artifacts:
     type: governance-section
     resolves_to: docs/plan/_handoff/VAULT/

@@ -1390,6 +1390,17 @@ const CYCLES = [
     },
   },
   {
+    // S062 PROTO-S062-K GAP-1: voice profile compliance — Component B platform-wide validator.
+    // Scans apps/*/src/app/**/page.tsx for form elements; checks data-voice-profile attribute
+    // + voiceProfile in pageDNA. Advisory per violating page; @voice-exempt comment exempts.
+    name: 'voice_profile_coverage',
+    command: 'node tools/validators/validate-voice-profile.mjs',
+    parse_output: (out) => {
+      const m = out.match(/pages_with_forms=(\d+)\s+forms_with_profile=(\d+)\s+forms_missing_profile=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { pages_with_forms: Number(m[1]), forms_with_profile: Number(m[2]), forms_missing_profile: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
     // S060 Q1 Governor directive: voice + file upload mandatory on all free-text fields
     // Scans platform pages for textarea/<input type=text> without VoiceFileInput or @voice-exempt.
     // Advisory per violation; exemptions with @voice-exempt comment accepted.

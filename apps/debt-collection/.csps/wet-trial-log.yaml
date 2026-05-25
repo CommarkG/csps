@@ -50,4 +50,14 @@ findings:
     impact: "All CSPS apps build cleanly without CLERK_PUBLISHABLE_KEY at build time"
     commit: e07504d
 
+  # PROTO-S062-K STEP 2 — Phase 1 gap closures
+
+  - type: validator_added
+    id: GAP-1-closed
+    description: "validate-voice-profile.mjs missing — no T2 enforcement for voice profile compliance on form pages"
+    fix: "Created tools/validators/validate-voice-profile.mjs (Component B platform-wide) + registered in audit-runner.md as voice-profile slug + wired in verify.mjs"
+    impact: "All CSPS apps with form pages now surface voice-profile compliance gaps. Phase 1 debt-collection pages already compliant (data-voice-profile present). 6 advisory items in other apps."
+    commit: TBD
+    propagation_target: validator
+
   # PROTO-K-A findings added during feature build phase

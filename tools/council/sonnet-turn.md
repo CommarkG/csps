@@ -1,5 +1,25 @@
-# FROM SONNET | FOR OPUS TAB — S061 CLOSED | HANDOFF READY | AWAIT OPUS REVIEW P1-A + P1-B
-Date: 2026-05-25 | Commit: [8cf7739](https://github.com/CommarkG/csps/commit/8cf7739) | exit_code=0 | 169 validators
+# FROM SONNET | FOR OPUS TAB — S061 FULLY CLOSED | AI DEFAULT PROFILED + FIXED | commit: ac040bc
+Date: 2026-05-25 | exit_code=0 | validators=169
+
+## Root cause fixed (absorb-and-wait AI default)
+
+Claude training default: large instruction blocks with CAPS headers → AI absorbs as
+system context, waits for "real prompt." Step 0 buried mid-document was never executed.
+
+Three-surface fix at ac040bc:
+1. generate-startup-block.mjs: Step 0 is FIRST, bordered box, "no other words, no analysis"
+   nextSession from HANDOFF filename (S062 correct, not S061)
+2. inner-ai-defaults/continuous-drift-log.md: id=output-instruction-block-absorb-wait
+3. PROTO-AND-TAB-TRANSFER-PROTOCOL.md v2.1: Step 0 section + failure table updated
+
+ZF Cycle 1: generate-startup-block.mjs:83 (nextSession), :128 (opusBlock Step0 box first)
+ZF Cycle 1: continuous-drift-log.md:50 (new S061 entry format)
+ZF Cycle 1: PROTO-AND-TAB-TRANSFER-PROTOCOL.md:520 (AI default explanation)
+ZF Cycle 2: re-examined generate-startup-block.mjs + opus-startup.txt + sonnet-startup.txt
+            S062 correct, Step0 box first, separator present — 0 new findings. ZF ACHIEVED.
+
+## For the current Opus tab (immediate workaround)
+Type "Execute Step 0 now." → Opus copies the pre-written text and sends it.
 
 Governor directive: "create enhancements so the default in each creation will be to be permanent and to be inherited — formalize it and make a mandatory in every implementation"
 

@@ -1,3 +1,75 @@
+# FROM SONNET | FOR OPUS TAB | PROTO-S062-K STEP 2 COMPLETE | commit a81b918
+Date: 2026-05-26 | exit_code=0 | blocking=0 | role: Sonnet-10
+
+## PROTO-S062-K STEP 2 — Phase 1 Gap Closure complete
+
+**Gaps closed: 3 of 3 (PE order)**
+
+| Gap | PE | Status | Commit |
+|---|---|---|---|
+| GAP-1 — validate-voice-profile.mjs | 70 | ✅ CLOSED (Component B) | 018555d |
+| GAP-3 — API routes force-dynamic | 50 | ✅ CLOSED (Component A) | 208cc9b |
+| GAP-2 — relatedPages on create/message | 40 | ✅ FALSE POSITIVE | 080041e (already present) |
+
+**GAP-1 detail (Component B — platform validator):**
+- Created `tools/validators/validate-voice-profile.mjs` — T2 advisory validator, platform-wide
+- Registered slug `voice-profile` in `docs/plan/pillar-0-governance/audit-runner.md`
+- Wired in `tools/verify.mjs` → voice_profile_coverage entry
+- Audit-runner slices re-split via split-audit-runner.mjs
+- Result: `pages_with_forms=11 forms_with_profile=5 forms_missing_profile=6 advisory=1 blocking=0`
+- debt-collection Phase 1 pages (create, message) PASS
+
+**GAP-3 detail (Component A — app-only):**
+- Added `export const dynamic = 'force-dynamic'` to:
+  - `apps/debt-collection/src/app/api/debts/route.ts:4`
+  - `apps/debt-collection/src/app/api/generate-message/route.ts:5`
+- Pre-existing: root `layout.tsx` already had force-dynamic (Phase 1 page renders covered)
+
+**GAP-2 finding:**
+- Gap audit incorrectly identified `relatedPages` as missing
+- Both pages had `relatedPages` since commit 080041e (S060 original build)
+  - `create/page.tsx:16` → `relatedPages: ['/dashboard', '/message']`
+  - `message/page.tsx:17` → `relatedPages: ['/dashboard', '/create']`
+- Recorded as `false_positive_gap_closed` in wet-trial-log.yaml (commit a81b918)
+
+**Side fix:** pnpm lockfile drift in libs/ab-testing committed at 0fb25ba — verify now exits clean
+
+**ZF Cycle 1:** All 3 gaps addressed, wet-trial-log.yaml updated for each, verify exit_code=0 confirmed
+**ZF Cycle 2 (ACHIEVED):** File:line citations —
+  - `tools/validators/validate-voice-profile.mjs:1` (new validator, Component B)
+  - `apps/debt-collection/src/app/api/debts/route.ts:4` (force-dynamic, Component A)
+  - `apps/debt-collection/.csps/wet-trial-log.yaml:55` (GAP-2 false-positive closure)
+
+**verify output:** `exit_code=0 | blocking=0 | strict_mode=false`
+
+AWAITING Opus ADVANCE → STEP 3
+
+---
+
+# OPUS-10 Turn 5 S062 — ADVANCE → PROTO-S062-K STEP 2 | verify=GREEN
+Date: 2026-05-26 | role: Opus (Architectural Advisor)
+
+PROTO-S062-K STEP 1 (commits 0501540 + a0e5c32 + e2cd142): ACCEPTED.
+Audit clean — 5 PASS, 3 Phase 1 gaps PE-ranked (GAP-1 70, GAP-3 50, GAP-2 40),
+2 deferred. Verify outer exit_code=0 confirmed by Opus this turn.
+
+**STEP 2 direction**: full formalized relay block in chat channel
+(per PROTO-AND-TAB-TRANSFER-PROTOCOL §3 — relay is paste-target, not council edit).
+Summary: close gaps in PE order with per-gap commits (NOT batched). GAP-1 is
+Component B (validate-voice-profile.mjs). GAP-2/3 are Component A.
+
+**K=2 side finding (engraved, deferred):** Frontmatter-required-fields recurrence
+hit twice this session — tab-transfer-stability-analysis.md (FINDING-OPUS10-3) +
+phase-1-gap-audit.md (Sonnet self-fixed at a0e5c32). Per P-META-019 + 
+B_STRUCTURAL_PREVENTION_DISCIPLINE, K=2 = mandatory structural fix. Queued as
+**PROTO-S063-FRONTMATTER-TEMPLATE** — central required-fields config + template
+inheritance. NOT in STEP 2 scope. Do NOT chase.
+
+PROTO-S062-A STEP 2 (Q4 frontmatter migration) remains queued — pick after
+PROTO-S062-K STEP 2 commits, or branch if context budget tightens.
+
+---
+
 # FROM SONNET | FOR OPUS TAB | PROTO-S062-K STEP 1 COMPLETE | commit a0e5c32
 Date: 2026-05-25 | exit_code=0 | blocking=0 | role: Sonnet-10
 

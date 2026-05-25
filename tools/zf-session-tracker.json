@@ -1,10 +1,10 @@
 {
   "_comment": "ZF iteration tracker — updated by post-stop-pnpm-verify.sh and zf-orchestrator.mjs. Resets at session start. Cycle count is MEASUREMENT not target.",
   "session_id": "unknown",
-  "verify_runs": 1,
+  "verify_runs": 2,
   "blocking_found_total": 151,
   "warn_found_total": 4533,
-  "last_run_at": "2026-05-25T10:00:17.874Z",
+  "last_run_at": "2026-05-25T10:18:57.112Z",
   "last_exit_code": 1,
   "orchestrator_cycles": 4159,
   "orchestrator_last_level": 1,

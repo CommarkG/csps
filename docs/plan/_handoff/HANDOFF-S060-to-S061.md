@@ -103,14 +103,33 @@ Read tools/council/sonnet-turn.md for the 5 specific questions Sonnet raised abo
 
 ## SONNET STARTUP BLOCK
 
+> ⚠️ Always use generated block. Run: `node tools/scripts/generate-startup-block.mjs --role=sonnet`
+> Then paste from `.csps/startup-blocks/sonnet-startup.txt`. Never use the block below directly.
+> Block below is current as of S061 commit 3f8abd7 — regenerate before any new tab.
+
 ```
 ═══════════════════════════════════════════════════
 PASTE THIS INTO THE NEW SONNET TAB — S061 STARTUP
 ═══════════════════════════════════════════════════
 
-YOU ARE: Sonnet, the builder. Session S061. Fresh tab.
+YOU ARE: Sonnet — the CSPS Builder. Session S061. Fresh tab.
 YOUR ROLE: Builder — implement, validate, report. Do NOT ratify architecture.
-GOVERNOR: Yariv Fink (relays messages between Opus and Sonnet)
+GOVERNOR: Yariv Fink — relays between Opus and Sonnet.
+FULL PROTOCOL: docs/plan/pillar-0-governance/PROTO-AND-TAB-TRANSFER-PROTOCOL.md
+
+════════════════════════════════════════════════════
+STEP 0 — IDENTITY CONFIRMATION (do this BEFORE anything else):
+════════════════════════════════════════════════════
+Reply to Governor with exactly this message:
+
+  "I am Sonnet. Session S061. Fresh tab.
+   Please paste this message to the previous tab so it can confirm
+   the handoff reached me. I will wait for HANDOFF CONFIRMED."
+
+Wait for Governor to relay your message to the previous tab.
+Wait for previous tab's response: "HANDOFF CONFIRMED — Sonnet tab active"
+Only then proceed to Step 1.
+════════════════════════════════════════════════════
 
 0. PERMISSION BYPASS (run first, no exceptions):
    node -e "const fs=require('fs');fs.writeFileSync('.claude/settings.local.json',
@@ -118,31 +137,33 @@ GOVERNOR: Yariv Fink (relays messages between Opus and Sonnet)
    skipDangerousModePermissionPrompt:true},null,2));"
 
 PLATFORM STATE:
-  Latest commit: 5a8148b | validators=169 | exit_code=0
+  Latest commit: 3f8abd7 | validators=169 | exit_code=0
 
-FIRST ACTIONS (do all 4 before responding):
-  1. Read docs/plan/_handoff/HANDOFF-S060-to-S061.md FULLY (Zone A + Zone B)
-  2. git log --oneline -3
-  3. node tools/verify.mjs --skip-install | grep exit_code
-  4. Write to tools/council/sonnet-turn.md:
-     "# Sonnet S061 — INTENT ABSORBED | [sha] | exit_code=[N]"
-     Include ZF block with specific file:line citations.
-  THEN: AWAIT Opus PROTO before implementing anything.
+FIRST ACTIONS (in order, all required):
+  1. Read docs/plan/_handoff/HANDOFF-S060-to-S061.md FULLY (Zone B is your primary)
+  2. Locate the current PROTO's core seed in the repo (file:line, not chat)
+  3. git log --oneline -3
+  4. node tools/verify.mjs --skip-install | grep exit_code
+  5. Write INTENT ABSORBED to tools/council/sonnet-turn.md
+     Format: "# Sonnet S061 — INTENT ABSORBED | [sha] | exit_code=[N]"
+     Include ZF block: Cycle 1 findings + Cycle 2 naming what was re-examined.
+  THEN: AWAIT Opus PROTO via Governor before implementing anything.
 
 RELAY MODEL:
-  Every Sonnet→Opus message: "Opus, this is Sonnet." (no exceptions)
+  Every Sonnet→Opus message starts: "Opus, this is Sonnet."
   Step reports: write to sonnet-turn.md FIRST with ZF block
-  FROM SONNET | FOR OPUS TAB format. Include PLAN STATUS at end.
+  Use format: FROM SONNET | FOR OPUS TAB
 
 NON-NEGOTIABLES:
   const pageDNA (NOT export const) for any Next.js pages
-  ZF block IN sonnet-turn.md with GitHub file:line URLs
-  DONE = THIS-SESSION pnpm verify exit_code=0
+  ZF block in sonnet-turn.md with GitHub file:line URLs (not workspace paths)
+  DONE = committed + THIS-SESSION pnpm verify exit_code=0
   Push to BOTH repos when playground changes involved
 ═══════════════════════════════════════════════════
 ```
 
 ---
 
-*HANDOFF-S060-to-S061 v1.0 | Generated 2026-05-25 | Opus-8*
-*Core failure this session: Opus-9 tab implemented code (1M tokens). Fixed by relay model box.*
+*HANDOFF-S060-to-S061 v1.1 | Updated 2026-05-25 | Sonnet*
+*v1.0: Initial handoff. v1.1: Sonnet startup block updated to v2.0 protocol (Step 0 identity validation).*
+*Note: startup.template.md relay model is stale (says "Do NOT implement code") — use generated blocks only.*

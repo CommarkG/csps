@@ -1,7 +1,7 @@
 ---
 id: csps.templates.startup
 name: startup.template
-description: "Unified startup template for both Opus (Director) and Sonnet (Builder) tabs. Replaces opus-startup.template.md + sonnet-startup.template.md. Fill {variables} from the latest HANDOFF before pasting. SHARED section = context both roles need. DIRECTOR SECTION = Opus-only. BUILDER SECTION = Sonnet-only."
+description: "SUPERSEDED FOR RELAY MODEL — Use generate-startup-block.mjs instead (node tools/scripts/generate-startup-block.mjs). This manual template is stale: relay model says 'Do NOT implement code' which is false — Opus writes core seeds. Retained as fallback fill-in reference only. Unified startup template for both Opus (Director) and Sonnet (Builder) tabs. Fill {variables} from the latest HANDOFF before pasting."
 type: template
 protection_level: active
 owner: group:finky

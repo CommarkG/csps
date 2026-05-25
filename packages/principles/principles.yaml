@@ -123,6 +123,10 @@ principles:
       - coupling-growth (every reuse couples another caller)
       - conway-violating reuse (forcing two services that should be independent to share)
       - premature-graduation-conflict (CSPS apps depending on platform internals)
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-OP-002
     name: finish-what-we-started
@@ -160,6 +164,10 @@ principles:
       - perpetual-pivot (start everything, finish nothing — Goldratt's bottleneck collapse)
       - silent-park (threads abandoned without explicit park + reason)
       - shiny-object-syndrome (new work always preferred to in-flight closure)
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-OP-003
     name: pcr
@@ -227,6 +235,10 @@ principles:
       - silent-skip (judging "trivial-reversible" without stating the skip + reason; reader can't audit)
       - recommendation-without-load-bearing-factor (opaque decision; future review can't reconstruct rationale)
       - missing-what-would-flip-clause (silent-criteria-shift later is undetectable)
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-OP-004
     name: batched-execution
@@ -260,6 +272,10 @@ principles:
       - micro-approval-drag (per-item approval requests; ~20-40% velocity loss per Code Climate research)
       - silent-scope-creep (mid-batch adjustments without re-confirmation)
       - batch-too-large (N > max_batch_size without intermediate checkpoint)
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-OP-006
     name: completion-priority-dpr
@@ -296,6 +312,10 @@ principles:
     enforcer_count: 2
     ratified: S031
     cross_references: [P-OP-002, P-OP-003, P-OP-004, B_PE_ALIGNMENT_GUARDIAN, B_COMPLETION_OVER_SHINY]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-OP-007
     name: optimal-path-default
@@ -349,6 +369,10 @@ principles:
   # ==========================================================================
   # ARCHITECTURE PRINCIPLES (27 — STUBS; full content + enforcer maps migrated during pillar-1 migration)
   # ==========================================================================
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-001
     name: nothing-stands-alone
@@ -357,6 +381,10 @@ principles:
     statement: "Every artifact lives in exactly one slice. The slice owns DB + admin + customer + tests + audit."
     status: stub
     migration_target: docs/plan/pillar-0-governance/architecture-principles.md (principle 1)
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-002
     name: mechanical-over-procedural
@@ -365,6 +393,10 @@ principles:
     statement: "Every rule that matters is enforced by a linter, CI gate, generator, or runtime check. Rules in a README rot."
     status: stub
     migration_target: docs/plan/pillar-0-governance/architecture-principles.md (principle 2)
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-003
     name: files-are-truth-db-is-index
@@ -372,6 +404,10 @@ principles:
     severity: critical
     statement: "Skills/agents/plugins/catalog live in the monorepo as files; Payload + Postgres mirror them for fast querying and admin UX. Files always win on conflict."
     status: stub
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-004
     name: one-source-of-truth-per-concern
@@ -379,6 +415,10 @@ principles:
     severity: critical
     statement: "ZModel = schema. Glossary = vocabulary. Stripe = entitlements. Catalog = artifacts. Principles.yaml = principles. No concern has two homes."
     status: stub
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-005
     name: three-layer-composition-only
@@ -395,6 +435,10 @@ principles:
   # ==========================================================================
   # GROUP B — TRUTH & SOURCES (P-ARCH-006 to P-ARCH-010)
   # ==========================================================================
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-006
     name: slice-contract-90-percent-to-merge
@@ -408,6 +452,10 @@ principles:
       - { layer: generator-prompt, location: "tools/generators/slice/", description: "Nx slice generator emits scaffold scoring 100% by default; PreToolUse hook refuses Write of slice files when projected score <90%" }
     enforcer_count: 4
     cross_references: [P-ARCH-001, P-ARCH-022]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-007
     name: soft-delete-by-default
@@ -420,6 +468,10 @@ principles:
       - { layer: ci-check, location: "tools/validators/validate-migration-safety.ts", description: "Migration linter — partial unique indexes added for soft-delete uniqueness" }
     enforcer_count: 3
     cross_references: [P-ARCH-008]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-008
     name: audit-by-trigger-not-app-code
@@ -433,6 +485,10 @@ principles:
       - { layer: zenstack-policy, location: "libs/policies/slices/public/audit.zmodel", description: "RLS policy on audit.events — append-only, no UPDATE/DELETE" }
     enforcer_count: 4
     cross_references: [P-ARCH-010]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-009
     name: one-generation-layer-leverage-three-collapse
@@ -444,6 +500,10 @@ principles:
       - { layer: pr-bot, location: "tools/danger/check-meta-generator.ts", description: "Architecture review at code-review time (manual; flagged by reviewer)" }
     enforcer_count: 2
     cross_references: [P-ARCH-005]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-010
     name: defense-in-depth-authz
@@ -461,6 +521,10 @@ principles:
   # ==========================================================================
   # GROUP C — COMPOSITION & GENERATION (P-ARCH-011 to P-ARCH-015)
   # ==========================================================================
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-011
     name: filter-by-entitlement-before-catalog-load
@@ -473,6 +537,10 @@ principles:
       - { layer: eslint-rule, location: "tools/validators/eslint-rules/no-unfiltered-catalog-load.ts", description: "Flags direct catalog reads bypassing the helper" }
     enforcer_count: 3
     cross_references: [P-ARCH-025]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-012
     name: persona-orthogonal-to-agent
@@ -485,6 +553,10 @@ principles:
       - { layer: frontmatter-contract, location: "tools/validators/validate-frontmatter.mjs", description: "Persona slices declare agent: personaChatAgent (not their own agent)" }
     enforcer_count: 3
     cross_references: [P-ARCH-013]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-013
     name: universal-traits-trunk-domain-overlays
@@ -497,6 +569,10 @@ principles:
       - { layer: ci-check, location: "libs/audits/checks/persona-overlay-completeness.ts", description: "Per-persona domain overlay check: personas with domain ∈ {clinical/legal/medical/financial/spiritual} carry the matching non-counsel disclaimer overlay (registered audit slug; planned week-4)" }
     enforcer_count: 3
     cross_references: [P-ARCH-012, P-ARCH-014]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-014
     name: crisis-escalation-load-bearing-v1
@@ -510,6 +586,10 @@ principles:
       - { layer: ci-check, location: "tools/audit-runner/slice-score.ts", description: "Crisis slice meets all 16 checks itself (slice contract)" }
     enforcer_count: 4
     cross_references: [P-ARCH-013, P-ARCH-015]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-015
     name: audit-system-is-itself-a-slice
@@ -526,6 +606,10 @@ principles:
   # ==========================================================================
   # GROUP D — AI ARCHITECTURE (P-ARCH-016 to P-ARCH-020)
   # ==========================================================================
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-016
     name: universal-terms-first
@@ -538,6 +622,10 @@ principles:
       - { layer: pr-bot, location: "tools/danger/check-glossary-additions.ts", description: "Glossary review at PR — new term proposals require justification of why no industry term fits" }
     enforcer_count: 3
     cross_references: [P-ARCH-019]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-017
     name: template-first-reuse-first
@@ -551,6 +639,10 @@ principles:
       - { layer: ci-check, location: "libs/audits/checks/storybook-coverage.ts", description: "Storybook + Chromatic — visual regression on every PR" }
     enforcer_count: 4
     cross_references: [P-OP-001]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-018
     name: schema-per-app
@@ -564,6 +656,10 @@ principles:
       - { layer: zenstack-policy, location: "libs/policies/base.zmodel", description: "Base ZModel datasource declaration scopes schemas array — schema-per-app boundary enforced at ZenStack codegen + Prisma multi-schema preview-feature; runtime queries use fully-qualified names per ADR-0002" }
     enforcer_count: 4
     cross_references: [P-ARCH-022]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-019
     name: glossary-owns-vocabulary
@@ -577,6 +673,10 @@ principles:
       - { layer: ci-check, location: "libs/audits/checks/db-column-vs-glossary.ts", description: "Every DB column name resolves to a glossary canonical term" }
     enforcer_count: 4
     cross_references: [P-ARCH-004, P-ARCH-016]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-020
     name: live-drift-detection
@@ -595,6 +695,10 @@ principles:
   # ==========================================================================
   # GROUP E — MULTI-TENANCY & EXTRACTION (P-ARCH-021 to P-ARCH-023)
   # ==========================================================================
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-021
     name: ratchet-pattern
@@ -608,6 +712,10 @@ principles:
       - { layer: ci-check, location: "libs/audits/checks/cognitive-complexity.ts", description: "Function complexity cannot regress on diff" }
     enforcer_count: 4
     cross_references: [P-ARCH-022]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-022
     name: module-folder-mandatory-above-thresholds
@@ -620,6 +728,10 @@ principles:
       - { layer: generator, location: "tools/generators/split/index.ts", description: "nx g platform:split — mechanical decomposition tool" }
     enforcer_count: 3
     cross_references: [P-ARCH-021]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-023
     name: variants-cascade-defaults-explicit-overrides-win
@@ -635,6 +747,10 @@ principles:
   # ==========================================================================
   # GROUP F — THIRD-PARTY TRUST & ENFORCEMENT SPINE (P-ARCH-024 to P-ARCH-027)
   # ==========================================================================
+    enforcement_tier:
+      tier1_hook: pre-tool-use-frontmatter-enum-check.sh (BLOCKING — validates closed-enum lifecycle_state and closed fields before write)
+      tier2_validator: tools/validators/validate-frontmatter.mjs (BLOCKING — full frontmatter contract enforcement)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-024
     name: small-files-ok-iff-three-preconditions
@@ -647,6 +763,10 @@ principles:
       - { layer: ci-check, location: "libs/audits/checks/catalog-coverage.ts", description: "Catalog scan verifies every file is indexed (precondition c)" }
     enforcer_count: 3
     cross_references: [P-ARCH-023]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-025
     name: third-party-trust-default-deny
@@ -660,6 +780,10 @@ principles:
       - { layer: runtime, location: "libs/agents/dispatcher-middleware.ts", description: "Mastra dispatcher middleware — independent runtime check (defense in depth)" }
     enforcer_count: 4
     cross_references: [P-ARCH-026, P-ARCH-027]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-026
     name: verbatim-vendor-preserved-rewritten-platform-owned
@@ -672,6 +796,10 @@ principles:
       - { layer: frontmatter-contract, location: "skills.lock.yaml", description: "Every adopted skill has full SHA + integrity hash + capabilities digest" }
     enforcer_count: 3
     cross_references: [P-ARCH-025, P-ARCH-027]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-027
     name: capability-declaration-dispatcher-enforcement
@@ -689,6 +817,10 @@ principles:
   # ==========================================================================
   # META-PRINCIPLES (about principles themselves)
   # ==========================================================================
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-001
     name: defense-in-depth-enforcement
@@ -715,6 +847,10 @@ principles:
       - { layer: ci-check,   location: "libs/audits/checks/principle-count-staleness.ts", description: "Greps for hardcoded principle-count text (e.g. 'N meta-principles', 'P-META-001 through P-META-NNN', 'N operating principles', 'P-OP-001 through P-OP-NNN') in active prose; compares against current `^  - id: P-META-` and `^  - id: P-OP-` row counts in principles.yaml; warn on drift; lists offending lines. Exempts snapshot/historical files via audit_exempt_paths (HANDOFF-S*.md, qc-audit-results-S*.md, validation-pass-S*.md, chat-jump-prompt-*.md, principles-snapshot.md). Registered S005 turn 8 per ADR-0022 K=2 auto-ADR; build deferred week-4." }
     enforcer_count: 4
     cross_references: [P-META-002, P-OP-001, P-META-005]
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — meta-audit enforcer count check)
+      tier2_validator: pnpm verify full-pass (indirect via principle-coverage meta-audit)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-002
     name: principles-travel-with-artifacts
@@ -729,6 +865,10 @@ principles:
       - { layer: scorecard,  location: "libs/audits/scorecards/principles-currency.ts", description: "Tracks how far behind extracted apps are from the platform's current principles version" }
     enforcer_count: 3
     cross_references: [P-META-001]
+    enforcement_tier:
+      tier1_hook: pre-tool-use-state-claim-gate.sh (BLOCKING — evidence required before DONE/RATIFIED state transitions)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-003
     name: inheritance-via-shared-runtime
@@ -744,6 +884,10 @@ principles:
       - { layer: ci-check,         location: "libs/audits/checks/inheritance-coverage.ts", description: "Every Mastra agent extends BaseAgent; every app has AGENTS.md cascade; every app's audit-runner is the platform's vendored copy" }
     enforcer_count: 4
     cross_references: [P-META-001, P-META-002]
+    enforcement_tier:
+      tier1_hook: pre-tool-use-state-claim-gate.sh (BLOCKING — evidence required before DONE/RATIFIED state transitions)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-004
     name: stored-content-lifecycle
@@ -797,6 +941,10 @@ principles:
       - knowledge-graveyard (Confluence-rot equivalent — saved-but-unread, no recurring trigger)
       - state-without-transition (lifecycle_state declared but no trigger advances it; treated as bug)
       - stewardship-theater (running the review without actually advancing or retiring items)
+    enforcement_tier:
+      tier1_hook: pre-tool-use-frontmatter-enum-check.sh (BLOCKING — validates closed-enum lifecycle_state and closed fields before write)
+      tier2_validator: tools/validators/validate-frontmatter.mjs (BLOCKING — full frontmatter contract enforcement)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-005
     name: learning-loop
@@ -876,6 +1024,10 @@ principles:
       - meta-loop-rot (resolution-cycle-time degrades silently; meta-loop-audit catches at >20% over 90d)
       - false-positive-flood (extraction precision degrades; weekly extraction-precision audit catches)
       - insight-without-owner (no one accountable; SLA escalation routes; orphans are routing failures)
+    enforcement_tier:
+      tier1_hook: pre-tool-use-vault-write-gate.sh (BLOCKING — learning-loop intake required before closing session)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: learning-loop injection"
 
   - id: P-META-006
     name: zero-findings-discipline
@@ -973,6 +1125,10 @@ principles:
       - premature-cec-zero (declaring "no further opportunities" without explicit walk-trail evidence)
       - essence-extraction-unstated (applying without distilling 1-sentence core; subsequent walks miss applications)
       - ai-default-moving-on (the dominant failure mode; counteracted only by mechanical CEC-trigger at every ratification)
+    enforcement_tier:
+      tier1_hook: pre-tool-use-rzf-evidence-gate.sh + post-stop-rzf-reminder.sh (BLOCKING — ZF evidence required before any DONE/RATIFIED/VALIDATED/CLOSED claim)
+      tier2_validator: pnpm verify full-pass (indirect ZF coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: zero-findings discipline injection"
 
   - id: P-META-007
     name: five-surface-engraving
@@ -1025,6 +1181,10 @@ principles:
       - silent-below-2-surfaces (without explicit deferral note)
       - "I'll engrave if it comes up again (N=2 already costs re-discovery)"
       - catches-noted-not-engraved (B_CATCH_TO_ENGRAVING violation; this principle prevents)
+    enforcement_tier:
+      tier1_hook: pre-tool-use-state-claim-gate.sh (BLOCKING — 5-surface engraving evidence required before catch closure)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: five-surface-engraving injection"
 
   - id: P-META-014
     name: mutual-understanding-validation
@@ -1131,6 +1291,10 @@ principles:
       - 'cross-chat-handshake-not-iterated (one round-trip insufficient; alignment-confirmed-explicit needs explicit user OR new-chat affirmation)'
       - 'silent-context-batch-close (batch ends without validating intent-to-impact drift)'
       - 'intent-to-impact-completion-claimed-without-receiver-acknowledgment (sender declares done; receiver never confirmed; gap)'
+    enforcement_tier:
+      tier1_hook: pre-tool-use-humble-step-gate.sh (BLOCKING — handshake or audit evidence required before session boundary actions)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-012
     name: governor-prompts
@@ -1193,6 +1357,10 @@ principles:
       - 'gp-entries-batch-at-close-only (should be continuous; close is review-not-creation)'
       - 'verbatim-paraphrased (paraphrase loses load-bearing wording; verbatim is mandatory for cardinal)'
       - 'tags-arbitrary-not-schema-aligned (must use closed-enum dimensions per frontmatter-standard)'
+    enforcement_tier:
+      tier1_hook: pre-tool-use-humble-step-gate.sh (BLOCKING — GP coverage evidence required before session close actions)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: governor-prompts injection"
 
   - id: P-META-013
     name: handoff-pre-flight-audit
@@ -1245,6 +1413,10 @@ principles:
       - 'hpfa-findings-silently-skipped (gaps surfaced but not addressed AND not carried-forward with reason)'
       - 'hpfa-checks-cherry-picked (only governor-prompts coverage checked; engraving + cycle + schema skipped)'
       - 'whole-session-walk-superficial (walk says "looks fine" without examining specific catches/engravings/audits)'
+    enforcement_tier:
+      tier1_hook: pre-tool-use-humble-step-gate.sh (BLOCKING — handshake or audit evidence required before session boundary actions)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-011
     name: audit-orchestration
@@ -1285,6 +1457,10 @@ principles:
       - 'audit-without-bidirectional-principle-link (schema graph integrity violation)'
       - 'severity-routing-mismatch (audit declared error but routed only to log)'
       - 'dashboard-divergence (run results not visible in any dashboard)'
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — pipeline membership required)
+      tier2_validator: pnpm verify full-pass (indirect via audit-hub orchestration validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: audit-orchestration injection"
 
   - id: P-META-010
     name: agent-alignment-protocol
@@ -1390,6 +1566,10 @@ principles:
       - 'eval-baseline-stale (last-eval >30 days for non-trivial agent)'
       - 'output-contract-violation (agent returns more than declared max_tokens or wrong shape)'
       - 'preflight-check-skipped-because-trivial (every invocation needs preflight; no exceptions)'
+    enforcement_tier:
+      tier1_hook: pre-tool-use-agent-alignment.sh (BLOCKING — AAP check fires before any agent invocation)
+      tier2_validator: pnpm verify full-pass (indirect coverage via validate-aap-frontmatter.mjs)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: agent-alignment-protocol injection"
 
   - id: P-META-009
     name: cognitive-context-architecture
@@ -1543,6 +1723,10 @@ principles:
       - silent-auto-compact-mid-session (R3 violation; loses governance context; manual /compact preserves intent)
       - context-bleed-between-unrelated-tasks (R4 violation; stale context wastes per-turn rent)
       - tool-output-blob-no-summary (R5 violation; 5K-10K log spew accumulating as raw context vs structured summary)
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — QG1-QG4 quality gates)
+      tier2_validator: pnpm verify full-pass (indirect via validate-token-budget.mjs)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: cognitive-context-architecture injection"
 
   - id: P-META-008
     name: cycle-mandatory-in-plan
@@ -1601,6 +1785,10 @@ principles:
       - 'per-step-validators-undocumented (plans say do X step; don''t say evidence required Y; exit code Z)'
       - close-summary-skips-cycle-evidence-section (closing-summary-template §10.0 is mandatory)
       - 'latent-bug-because-validator-never-ran (S002 to S005 evidence)'
+    enforcement_tier:
+      tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — cycle evidence required; blocks unsubstantiated DONE claims)
+      tier2_validator: tools/validators/validate-implementation-gate.mjs (BLOCKING — PI reference required on implementation commits)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: cycle-mandatory-in-plan injection"
 
   - id: P-META-015
     name: universal-template-first
@@ -1647,6 +1835,10 @@ principles:
       - silent-skip-of-discovery-gate (artifact created bypassing template registry consultation)
       - novel-pending-pattern-evaluation-staleness-ignored (entry sits novel-pending >5 sessions)
       - thinking-layer-templates-imposed (templates applied to mid-conversation native reasoning — kills creativity)
+    enforcement_tier:
+      tier1_hook: pre-tool-use-vault-write-gate.sh (BLOCKING — template citation required on commitment-layer artifact writes)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: universal-template-first injection"
 
   - id: P-META-016
     name: gradual-build-by-foundations
@@ -1701,6 +1893,10 @@ principles:
       - arbitrary-N-part-split (split into 7 parts without rationale; depth not 3/4/5)
       - skip-foundation-shortcut (jump to feature-build without ZF on foundation)
       - tunnel-vision-single-next-item (no PE TRAJECTORY emitted; only next item)
+    enforcement_tier:
+      tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — gradual-build-plan instance required for multi-session topics)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: gradual-build-by-foundations injection"
 
   - id: P-META-017
     name: csps-alignment-over-inner-defaults
@@ -1752,6 +1948,10 @@ principles:
       - 'narrative-comments (training default explains WHAT code does instead of WHY non-obvious)'
       - 'confirmation-seeking-tail (training default Should-I-proceed without 4-condition gate)'
       - 'mock-by-default-in-integration-tests (CSPS aligned uses real DB only; mocks for unit tests)'
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — inner-default override map)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: csps-alignment-over-inner-defaults injection"
 
   - id: P-META-018
     name: pe-alignment-guardian
@@ -1802,6 +2002,10 @@ principles:
       - reflexive-yes (Sure-let-me-do-that without alignment check)
       - enthusiasm-misread (Governor enthusiasm interpreted as priority elevation)
       - positive-only-framing (response acknowledges only positives when misalignment is real)
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — structured deflection required)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: pe-alignment-guardian injection"
 
   - id: P-META-019
     name: structural-prevention-discipline
@@ -1852,6 +2056,10 @@ principles:
       - patch-the-instance-without-structural-fix (recurring pattern fixed only in current instance)
       - low-standards-acceptance (settling for "we'll fix it later" instead of system enhancement)
       - K2-recurring-pattern-not-promoted-to-engraving
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — enhancement proposals mandatory)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: structural-prevention-discipline injection"
 
   - id: P-META-020
     name: concept-first-governance
@@ -1910,6 +2118,10 @@ principles:
       - validator-proliferation (validators as substitute for concept depth; rules growing without bound)
       - concept-load-skip (processing input before loading conceptual frame via Threshold PREAMBLE)
       - interface-pollution (outer sphere concern requiring core schema change = concept violation)
+    enforcement_tier:
+      tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — concept-first gate; plan-coverage required before implementation)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-021
     name: triad-governance
@@ -2012,6 +2224,10 @@ principles:
       - samples-without-ratification (samples authored by AI without Governor ratification → unverified governance)
       - mechanical-as-substitute (adding hooks to avoid understanding the concept → enforcement without navigation)
       - context-without-enforcement (concept understood but no hook fires → reliable only when AI remembers)
+    enforcement_tier:
+      tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — concept-first gate; plan-coverage required before implementation)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-022
     name: human-intent-crystallization
@@ -2037,6 +2253,10 @@ principles:
       - B_BOUNDARY_ALIGNMENT_PROTOCOL
       - B_MUTUAL_UNDERSTANDING_VALIDATION
     session: S023
+    enforcement_tier:
+      tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — concept-first gate; plan-coverage required before implementation)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-023
     name: intent-to-verified-impact
@@ -2069,6 +2289,10 @@ principles:
       - B_HUMBLE_EXECUTOR
     sealed_by_opus_turn: 9
     session: S025
+    enforcement_tier:
+      tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — concept-first gate; plan-coverage required before implementation)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-024
     name: multi-topic-intake-decomposition
@@ -2102,6 +2326,10 @@ principles:
     canonical_ref: docs/plan/_handoff/VAULT/retrograde-principles-s027.md
     sealed_by_opus_turn: 16
     session: S027
+    enforcement_tier:
+      tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — concept-first gate; plan-coverage required before implementation)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-025
     name: context-intent-principle
@@ -2135,6 +2363,10 @@ principles:
     self_check_q: >
       "Am I following the rule, or serving the intent the rule was written for?
        In this situation, do rule and intent align? If they diverge — which wins?"
+    enforcement_tier:
+      tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — concept-first gate; plan-coverage required before implementation)
+      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-META-026
     name: planning-before-implementing
@@ -2259,6 +2491,10 @@ principles:
       - L1-do-not-expand-violation (sealed L1 file gains examples or cross-references)
       - spine-precedence-violated (lower-precedence spine overrides higher without ADR)
       - cross-spine-collision (artifact citing 2+ spines with conflicting CORE rules)
+    enforcement_tier:
+      tier1_hook: pre-tool-use-sacred-file-guard.sh (BLOCKING — L1_CORE spine files are write-protected)
+      tier2_validator: tools/validators/validate-frontmatter.mjs (BLOCKING — core_spine field required on governed artifacts)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: core-spine discipline injection"
 
   - id: P-ARCH-029
     name: naming-policy
@@ -2337,6 +2573,10 @@ principles:
       - abbreviation-when-english-word-clearer (tmpl-reg.md instead of template-registry.md)
       - synonym-drift (introducing module / feature / component for slice concept)
       - canonical-term-renamed-without-adr (renaming P-META-* / B_* / FSE / etc. without ratified ADR)
+    enforcement_tier:
+      tier1_hook: pre-tool-use-frontmatter-enum-check.sh (BLOCKING — validates closed-enum lifecycle_state and closed fields before write)
+      tier2_validator: tools/validators/validate-frontmatter.mjs (BLOCKING — full frontmatter contract enforcement)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
 
   - id: P-ARCH-030
     name: apps-are-ephemeral-trials
@@ -2534,6 +2774,10 @@ principles:
       - per-machine-divergence (different pnpm/node versions across machines)
       - secrets-committed-to-repo (.env or credentials.json in git)
       - android-locked-out (no defined workflow for Android access)
+    enforcement_tier:
+      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — auto-push required before handoff)
+      tier2_validator: pnpm verify full-pass (indirect coverage via git pushed-state checks)
+      tier3_session: "AGENTS.md hard-NO + session-open.sh: zero-laptop-dependency injection"
 
   - id: P-OPER-002
     name: done-right-from-the-start

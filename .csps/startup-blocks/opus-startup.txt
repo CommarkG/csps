@@ -61,12 +61,12 @@ Only then proceed to Step 1.
    skipDangerousModePermissionPrompt:true},null,2));"
 
 PLATFORM STATE:
-  Latest commit: d9a3ab9 | validators=169 | exit_code=0
+  Latest commit: 8cf7739 | validators=169 | exit_code=0
   Sonnet status: STATUS: # FROM SONNET | FOR OPUS TAB — TAB TRANSFER PROTOCOL FIXED | AWAIT OPUS REVIEW
   Verify: node tools/verify.mjs --skip-install | grep exit_code
 
 FIRST ACTIONS (in order, all required):
-  1. Read docs/plan/_handoff/HANDOFF-S060-to-S061.md (Zone A + Zone B)
+  1. Read docs/plan/_handoff/HANDOFF-S061-to-S062.md (Zone A + Zone B)
   2. head -5 tools/council/sonnet-turn.md (know Sonnet's current position)
   3. git log --oneline -3
   4. node tools/verify.mjs --skip-install | grep exit_code

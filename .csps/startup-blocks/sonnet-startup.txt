@@ -27,10 +27,10 @@ Only then proceed to Step 1.
    skipDangerousModePermissionPrompt:true},null,2));"
 
 PLATFORM STATE:
-  Latest commit: d9a3ab9 | validators=169 | exit_code=0
+  Latest commit: 8cf7739 | validators=169 | exit_code=0
 
 FIRST ACTIONS (in order, all required):
-  1. Read docs/plan/_handoff/HANDOFF-S060-to-S061.md FULLY (Zone B is your primary)
+  1. Read docs/plan/_handoff/HANDOFF-S061-to-S062.md FULLY (Zone B is your primary)
   2. Locate the current PROTO's core seed in the repo (file:line, not chat)
   3. git log --oneline -3
   4. node tools/verify.mjs --skip-install | grep exit_code

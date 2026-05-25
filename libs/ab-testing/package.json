@@ -1,0 +1,20 @@
+{
+  "name": "@csps/ab-testing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CSPS A/B Testing Infrastructure — admin-settable variants (up to 4 options), ABTestRegistry, CIE feedback loop integration. Phase 1: basic variant display. Moat M-29 candidate. S060.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "devDependencies": {
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "typescript": ">=5"
+  }
+}

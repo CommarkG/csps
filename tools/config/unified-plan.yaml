@@ -1471,3 +1471,17 @@ items:
       readiness: 1.0
       simplicity_bonus: 0.0
     core_spine: ARCH
+
+  # --- S060 GOVERNOR DIRECTIVES -------------------------------------------
+
+  - id: AB-TESTING-MOAT
+    title: "A/B Testing Infrastructure — admin-settable variants + CIE learning loop"
+    status: planning
+    epoch: E2
+    category: architecture
+    owner: shared
+    batch: BATCH-E
+    pe_score: 88
+    tags: [ab-testing, moat, cie, self-improving, s060]
+    notes: "Governor S060 Q2: test EVERYTHING to find what works. Up to 4 variants per element. Connect to CIE. Heat maps + multi-param cross comparison. Phase 1: basic variant display (libs/ab-testing/ planted S060). Deep dive scheduled with Governor. Spec: docs/plan/pillar-0-governance/AB-TESTING-MOAT.md. Moat candidate M-29."
+    core_spine: AI

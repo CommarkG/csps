@@ -27,7 +27,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '../..');
 
-const FILE_PATTERN = /\b\w[\w-]*\.(md|mjs|sh|ts|tsx|yaml|yml|json|sql|prisma|zmodel)\b/;
+const FILE_PATTERN = /\b\w[\w-]*\.(md|mjs|sh|ts|tsx|yaml|yml|json|sql|prisma|zmodel|txt|env|cjs|mts)\b/;
 const VAGUE_WORDS = /\b(areas|topics|things|sections|content|files|stuff|items|aspects)\b/i;
 const ZF_ACHIEVED = /ZF\s+ACHIEVED/i;
 const CYCLE_PATTERN = /ZF\s+Cycle\s+(\d+)[:\s]/gi;
@@ -74,8 +74,12 @@ function extractZFBlocks(content) {
  */
 function parseCycles(block) {
   const cycles = [];
-  // Match both "ZF Cycle N:" and plain "Cycle N:" patterns
-  const re = /(?:ZF\s+)?Cycle\s+(\d+)[:\s]/gi;
+  // Match both "ZF Cycle N:" and plain "Cycle N:" patterns — but ONLY at line start.
+  // Without the line anchor, mid-text mentions like "now cites Cycle 2 results" would
+  // be parsed as new cycle markers, slicing the actual cycle text and producing false
+  // BLOCKING errors (FINDING-OPUS10-4, S062 — Sonnet's amended Cycle 2 self-referenced
+  // "Cycle 2" in its own text, parser captured the inner mention onward).
+  const re = /(?:^|\n)\s*(?:ZF\s+)?Cycle\s+(\d+)[:\s]/gi;
   let m;
   let lastEnd = 0;
   let lastNum = null;

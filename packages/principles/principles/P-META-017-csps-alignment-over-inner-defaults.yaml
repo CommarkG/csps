@@ -91,3 +91,7 @@ anti_patterns:
   - narrative-comments (training default explains WHAT code does instead of WHY non-obvious)
   - confirmation-seeking-tail (training default Should-I-proceed without 4-condition gate)
   - mock-by-default-in-integration-tests (CSPS aligned uses real DB only; mocks for unit tests)
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — inner-default override map)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: csps-alignment-over-inner-defaults injection'

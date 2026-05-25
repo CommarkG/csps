@@ -72,3 +72,7 @@ anti_patterns:
   - audit-without-bidirectional-principle-link (schema graph integrity violation)
   - severity-routing-mismatch (audit declared error but routed only to log)
   - dashboard-divergence (run results not visible in any dashboard)
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — pipeline membership required)
+  tier2_validator: pnpm verify full-pass (indirect via audit-hub orchestration validators)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: audit-orchestration injection'

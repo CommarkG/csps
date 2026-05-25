@@ -83,3 +83,7 @@ anti_patterns:
   - silent-below-2-surfaces (without explicit deferral note)
   - I'll engrave if it comes up again (N=2 already costs re-discovery)
   - catches-noted-not-engraved (B_CATCH_TO_ENGRAVING violation; this principle prevents)
+enforcement_tier:
+  tier1_hook: pre-tool-use-state-claim-gate.sh (BLOCKING — 5-surface engraving evidence required before catch closure)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: five-surface-engraving injection'

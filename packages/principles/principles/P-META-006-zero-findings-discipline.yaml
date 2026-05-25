@@ -141,3 +141,9 @@ anti_patterns:
   - premature-cec-zero (declaring "no further opportunities" without explicit walk-trail evidence)
   - essence-extraction-unstated (applying without distilling 1-sentence core; subsequent walks miss applications)
   - ai-default-moving-on (the dominant failure mode; counteracted only by mechanical CEC-trigger at every ratification)
+enforcement_tier:
+  tier1_hook: >-
+    pre-tool-use-rzf-evidence-gate.sh + post-stop-rzf-reminder.sh (BLOCKING — ZF evidence required before any
+    DONE/RATIFIED/VALIDATED/CLOSED claim)
+  tier2_validator: pnpm verify full-pass (indirect ZF coverage via contract validators)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: zero-findings discipline injection'

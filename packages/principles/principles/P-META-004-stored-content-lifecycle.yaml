@@ -98,3 +98,9 @@ anti_patterns:
   - knowledge-graveyard (Confluence-rot equivalent — saved-but-unread, no recurring trigger)
   - state-without-transition (lifecycle_state declared but no trigger advances it; treated as bug)
   - stewardship-theater (running the review without actually advancing or retiring items)
+enforcement_tier:
+  tier1_hook: >-
+    pre-tool-use-frontmatter-enum-check.sh (BLOCKING — validates closed-enum lifecycle_state and closed fields before
+    write)
+  tier2_validator: tools/validators/validate-frontmatter.mjs (BLOCKING — full frontmatter contract enforcement)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

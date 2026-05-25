@@ -22,3 +22,9 @@ enforcers:
 enforcer_count: 2
 cross_references:
   - P-ARCH-024
+enforcement_tier:
+  tier1_hook: >-
+    pre-tool-use-frontmatter-enum-check.sh (BLOCKING — validates closed-enum lifecycle_state and closed fields before
+    write)
+  tier2_validator: tools/validators/validate-frontmatter.mjs (BLOCKING — full frontmatter contract enforcement)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

@@ -104,3 +104,7 @@ anti_patterns:
   - arbitrary-N-part-split (split into 7 parts without rationale; depth not 3/4/5)
   - skip-foundation-shortcut (jump to feature-build without ZF on foundation)
   - tunnel-vision-single-next-item (no PE TRAJECTORY emitted; only next item)
+enforcement_tier:
+  tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — gradual-build-plan instance required for multi-session topics)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: gradual-build-by-foundations injection'

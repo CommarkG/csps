@@ -148,3 +148,7 @@ anti_patterns:
   - meta-loop-rot (resolution-cycle-time degrades silently; meta-loop-audit catches at >20% over 90d)
   - false-positive-flood (extraction precision degrades; weekly extraction-precision audit catches)
   - insight-without-owner (no one accountable; SLA escalation routes; orphans are routing failures)
+enforcement_tier:
+  tier1_hook: pre-tool-use-vault-write-gate.sh (BLOCKING — learning-loop intake required before closing session)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: learning-loop injection'

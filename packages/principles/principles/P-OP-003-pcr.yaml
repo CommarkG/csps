@@ -105,3 +105,7 @@ anti_patterns:
   - silent-skip (judging "trivial-reversible" without stating the skip + reason; reader can't audit)
   - recommendation-without-load-bearing-factor (opaque decision; future review can't reconstruct rationale)
   - missing-what-would-flip-clause (silent-criteria-shift later is undetectable)
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

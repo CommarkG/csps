@@ -122,3 +122,9 @@ anti_patterns:
   - abbreviation-when-english-word-clearer (tmpl-reg.md instead of template-registry.md)
   - synonym-drift (introducing module / feature / component for slice concept)
   - canonical-term-renamed-without-adr (renaming P-META-* / B_* / FSE / etc. without ratified ADR)
+enforcement_tier:
+  tier1_hook: >-
+    pre-tool-use-frontmatter-enum-check.sh (BLOCKING — validates closed-enum lifecycle_state and closed fields before
+    write)
+  tier2_validator: tools/validators/validate-frontmatter.mjs (BLOCKING — full frontmatter contract enforcement)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

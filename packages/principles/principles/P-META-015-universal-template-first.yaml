@@ -81,3 +81,7 @@ anti_patterns:
   - silent-skip-of-discovery-gate (artifact created bypassing template registry consultation)
   - novel-pending-pattern-evaluation-staleness-ignored (entry sits novel-pending >5 sessions)
   - thinking-layer-templates-imposed (templates applied to mid-conversation native reasoning — kills creativity)
+enforcement_tier:
+  tier1_hook: pre-tool-use-vault-write-gate.sh (BLOCKING — template citation required on commitment-layer artifact writes)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: universal-template-first injection'

@@ -103,3 +103,7 @@ anti_patterns:
   - per-step-validators-undocumented (plans say do X step; don't say evidence required Y; exit code Z)
   - close-summary-skips-cycle-evidence-section (closing-summary-template §10.0 is mandatory)
   - latent-bug-because-validator-never-ran (S002 to S005 evidence)
+enforcement_tier:
+  tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — cycle evidence required; blocks unsubstantiated DONE claims)
+  tier2_validator: tools/validators/validate-implementation-gate.mjs (BLOCKING — PI reference required on implementation commits)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: cycle-mandatory-in-plan injection'

@@ -177,3 +177,7 @@ anti_patterns:
   - >-
     intent-to-impact-completion-claimed-without-receiver-acknowledgment (sender declares done; receiver never confirmed;
     gap)
+enforcement_tier:
+  tier1_hook: pre-tool-use-humble-step-gate.sh (BLOCKING — handshake or audit evidence required before session boundary actions)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

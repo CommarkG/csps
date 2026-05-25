@@ -84,3 +84,7 @@ anti_patterns:
   - patch-the-instance-without-structural-fix (recurring pattern fixed only in current instance)
   - low-standards-acceptance (settling for "we'll fix it later" instead of system enhancement)
   - K2-recurring-pattern-not-promoted-to-engraving
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — enhancement proposals mandatory)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: structural-prevention-discipline injection'

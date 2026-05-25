@@ -135,3 +135,7 @@ anti_patterns:
   - samples-without-ratification (samples authored by AI without Governor ratification → unverified governance)
   - mechanical-as-substitute (adding hooks to avoid understanding the concept → enforcement without navigation)
   - context-without-enforcement (concept understood but no hook fires → reliable only when AI remembers)
+enforcement_tier:
+  tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — concept-first gate; plan-coverage required before implementation)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

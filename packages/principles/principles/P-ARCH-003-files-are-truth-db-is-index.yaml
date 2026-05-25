@@ -13,3 +13,7 @@ statement: >-
   Skills/agents/plugins/catalog live in the monorepo as files; Payload + Postgres mirror them for fast querying and
   admin UX. Files always win on conflict.
 status: stub
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

@@ -33,3 +33,7 @@ cross_references:
   - P-ARCH-002
   - P-ARCH-003
   - P-ARCH-004
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

@@ -99,3 +99,7 @@ anti_patterns:
   - L1-do-not-expand-violation (sealed L1 file gains examples or cross-references)
   - spine-precedence-violated (lower-precedence spine overrides higher without ADR)
   - cross-spine-collision (artifact citing 2+ spines with conflicting CORE rules)
+enforcement_tier:
+  tier1_hook: pre-tool-use-sacred-file-guard.sh (BLOCKING — L1_CORE spine files are write-protected)
+  tier2_validator: tools/validators/validate-frontmatter.mjs (BLOCKING — core_spine field required on governed artifacts)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: core-spine discipline injection'

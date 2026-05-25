@@ -162,8 +162,8 @@ const t2_coverage_pct = contracts_checked > 0
 // BLOCKING if full_trio DROPS below baseline (regression, not absolute threshold).
 // BLOCKING if no_enforcement INCREASES above baseline (new orphan contracts).
 // Rationale: we never block FORWARD progress, only BACKWARD regression.
-const BASELINE_FULL_TRIO = 39;   // S060 true baseline: 39/66 (59%) after all detection pattern fixes
-const BASELINE_NO_ENFORCEMENT = 0; // S060: zero true orphans — every contract has enforcement declaration
+const BASELINE_FULL_TRIO = 66;   // S060 stability pass: 66/66 (100%) — all contracts declared enforcement_trio
+const BASELINE_NO_ENFORCEMENT = 0; // S060: zero orphans — every contract has enforcement declaration
 
 // ── Output ────────────────────────────────────────────────────────────────────
 

@@ -51,3 +51,7 @@ anti_patterns:
   - micro-approval-drag (per-item approval requests; ~20-40% velocity loss per Code Climate research)
   - silent-scope-creep (mid-batch adjustments without re-confirmation)
   - batch-too-large (N > max_batch_size without intermediate checkpoint)
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

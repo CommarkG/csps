@@ -82,3 +82,7 @@ anti_patterns:
   - per-machine-divergence (different pnpm/node versions across machines)
   - secrets-committed-to-repo (.env or credentials.json in git)
   - android-locked-out (no defined workflow for Android access)
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — auto-push required before handoff)
+  tier2_validator: pnpm verify full-pass (indirect coverage via git pushed-state checks)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: zero-laptop-dependency injection'

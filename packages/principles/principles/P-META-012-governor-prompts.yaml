@@ -96,3 +96,7 @@ anti_patterns:
   - gp-entries-batch-at-close-only (should be continuous; close is review-not-creation)
   - verbatim-paraphrased (paraphrase loses load-bearing wording; verbatim is mandatory for cardinal)
   - tags-arbitrary-not-schema-aligned (must use closed-enum dimensions per frontmatter-standard)
+enforcement_tier:
+  tier1_hook: pre-tool-use-humble-step-gate.sh (BLOCKING — GP coverage evidence required before session close actions)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: governor-prompts injection'

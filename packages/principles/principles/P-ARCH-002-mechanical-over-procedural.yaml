@@ -12,3 +12,7 @@ severity: critical
 statement: Every rule that matters is enforced by a linter, CI gate, generator, or runtime check. Rules in a README rot.
 status: stub
 migration_target: docs/plan/pillar-0-governance/architecture-principles.md (principle 2)
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

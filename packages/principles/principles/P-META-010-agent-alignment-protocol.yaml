@@ -152,3 +152,7 @@ anti_patterns:
   - eval-baseline-stale (last-eval >30 days for non-trivial agent)
   - output-contract-violation (agent returns more than declared max_tokens or wrong shape)
   - preflight-check-skipped-because-trivial (every invocation needs preflight; no exceptions)
+enforcement_tier:
+  tier1_hook: pre-tool-use-agent-alignment.sh (BLOCKING — AAP check fires before any agent invocation)
+  tier2_validator: pnpm verify full-pass (indirect coverage via validate-aap-frontmatter.mjs)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: agent-alignment-protocol injection'

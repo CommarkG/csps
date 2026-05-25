@@ -85,3 +85,7 @@ anti_patterns:
   - hpfa-findings-silently-skipped (gaps surfaced but not addressed AND not carried-forward with reason)
   - hpfa-checks-cherry-picked (only governor-prompts coverage checked; engraving + cycle + schema skipped)
   - whole-session-walk-superficial (walk says "looks fine" without examining specific catches/engravings/audits)
+enforcement_tier:
+  tier1_hook: pre-tool-use-humble-step-gate.sh (BLOCKING — handshake or audit evidence required before session boundary actions)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

@@ -40,3 +40,7 @@ session: S027
 self_check_q: |
   "Am I following the rule, or serving the intent the rule was written for?
    In this situation, do rule and intent align? If they diverge — which wins?"
+enforcement_tier:
+  tier1_hook: pre-tool-use-plan-coverage-gate.sh (BLOCKING — concept-first gate; plan-coverage required before implementation)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

@@ -84,3 +84,7 @@ anti_patterns:
   - reflexive-yes (Sure-let-me-do-that without alignment check)
   - enthusiasm-misread (Governor enthusiasm interpreted as priority elevation)
   - positive-only-framing (response acknowledges only positives when misalignment is real)
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — structured deflection required)
+  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: pe-alignment-guardian injection'

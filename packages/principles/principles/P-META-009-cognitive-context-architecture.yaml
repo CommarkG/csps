@@ -317,3 +317,7 @@ anti_patterns:
   - silent-auto-compact-mid-session (R3 violation; loses governance context; manual /compact preserves intent)
   - context-bleed-between-unrelated-tasks (R4 violation; stale context wastes per-turn rent)
   - tool-output-blob-no-summary (R5 violation; 5K-10K log spew accumulating as raw context vs structured summary)
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — QG1-QG4 quality gates)
+  tier2_validator: pnpm verify full-pass (indirect via validate-token-budget.mjs)
+  tier3_session: 'AGENTS.md hard-NO + session-open.sh: cognitive-context-architecture injection'

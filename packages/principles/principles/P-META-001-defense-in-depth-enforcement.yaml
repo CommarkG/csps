@@ -64,3 +64,7 @@ cross_references:
   - P-META-002
   - P-OP-001
   - P-META-005
+enforcement_tier:
+  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level — meta-audit enforcer count check)
+  tier2_validator: pnpm verify full-pass (indirect via principle-coverage meta-audit)
+  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

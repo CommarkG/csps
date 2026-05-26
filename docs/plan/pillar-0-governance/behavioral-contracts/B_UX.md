@@ -6,13 +6,13 @@ enforcement_trio:
     status: none
   t2:
     tier: validator
-    path: "tools/validators/validate-page-context-coverage.mjs"
+    path: "tools/validators/validate-ux-audit.mjs"
     status: active
   t3:
     tier: memory
     path: "this contract in B_UX.md + AGENTS.md UX Colocation Gate"
     status: active
-  exempt_reason: "T1 hook path not extractable from enforcement_tier prose. Body-scan may still detect coverage via cross-reference text."
+  exempt_reason: "T1 exempt — UX enforcement is judgment-based; no mechanical pre-tool-use gate covers all UX scenarios. T2 path corrected from missing validate-page-context-coverage.mjs to active validate-ux-audit.mjs (Q5 Opus ruling S062)."
 ---
 ---
 id: csps.pillar-0-governance.behavioral-contracts.B_UX

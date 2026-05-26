@@ -1,0 +1,171 @@
+---
+id: csps.data.flow-activity-monitor
+name: flow-activity-monitor
+description: "Register of platform flow elements that are EXPECTED to produce output. Bridges audit-runner.md (what should run) + verify-last-run.md (when it ran) + actual-output-evidence (what it produced). Monitor surfaces dormant flows — elements that exist but produce zero observable output over expected cadence. Addresses FINDING-S063-AI-OUTPUT-CAPTURE-ASYMMETRY + AP-001 EXISTS≠ACTIVE at platform scale."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: audit_scheduling
+session: S063
+authored_by: Opus-10
+date: 2026-05-27
+links:
+  - rel: audit-runner
+    href: ../../docs/plan/pillar-0-governance/audit-runner.md
+  - rel: verify-last-run
+    href: ../verify-last-run.md
+  - rel: improvement-register-finding
+    href: improvement-register.yaml#FINDING-S063-AI-OUTPUT-CAPTURE-ASYMMETRY
+context_question: "Which platform flow elements are registered but produce zero output? What does dormancy reveal about elements that look active but aren't?"
+context_quote: "exists ≠ active. ran ≠ produced. registered ≠ functioning. The monitor checks the third gap."
+---
+
+# Flow Activity Monitor
+
+> Three-layer activity check:
+>   Layer 1: REGISTERED (exists in audit-runner / settings.json / register file)
+>   Layer 2: EXECUTED (last_ran_at within expected cadence per verify-last-run.md)
+>   Layer 3: PRODUCED OUTPUT (the element generated non-trivial output — finding, entry, file, capture)
+>
+> Most platforms check Layer 1 + Layer 2. Layer 3 is the moat — catches dead elements that
+> "ran" but produced nothing meaningful. Surfaces the EXISTS≠ACTIVE failure mode at scale.
+
+## Dormancy thresholds by cadence
+
+```yaml
+dormancy_thresholds:
+  per_session: 3       # dormant if no output for 3 consecutive sessions
+  per_commit:  10      # dormant if no output across last 10 commits
+  weekly:      4       # dormant if no output for 4 weeks
+  monthly:     3       # dormant if no output for 3 months
+  on_demand:   null    # never dormant — only fires when invoked
+```
+
+## Flow element schema
+
+```yaml
+flow_element:
+  id: <slug>                          # matches audit-runner.md slug OR new hook/skill name
+  element_type: validator | hook | skill | register | pipeline | capture_mechanism
+  expected_output:                    # WHAT it should produce
+    output_type: file_entry | log_line | register_row | finding | capture | metric
+    output_location: <path>           # where to look for evidence
+    output_signature: <regex>         # pattern that confirms output existed
+  expected_cadence: per_session | per_commit | weekly | monthly | on_demand
+  last_active_at: <ISO-8601 | null>   # set by validator
+  last_output_count: <int>            # how many outputs in last cadence-window
+  status: active | dormant | dead | not-yet-built | exempt
+  exempt_reason: <string | null>      # required if status=exempt
+  source: <session-id where registered>
+```
+
+## Initial flow elements (7 seed entries — extend in S064)
+
+flow_elements:
+
+  - id: ai_output_exceptional_capture
+    element_type: capture_mechanism
+    expected_output:
+      output_type: register_row
+      output_location: tools/data/exceptional-moments-register.yaml
+      output_signature: '^\s*-\s+id:\s+EM-'
+    expected_cadence: per_session
+    last_active_at: null
+    last_output_count: 0
+    status: not-yet-built
+    exempt_reason: null
+    source: S063
+    notes: "FINDING-S063-AI-OUTPUT-CAPTURE-ASYMMETRY — register doesn't exist yet. Build PROTO-S064-AI-OUTPUT-CAPTURE."
+
+  - id: zf_cycle_format
+    element_type: validator
+    expected_output:
+      output_type: log_line
+      output_location: tools/verify-last-run.md
+      output_signature: '"zf_blocks_checked":\s*\d+'
+    expected_cadence: per_session
+    last_active_at: null  # populated by validator
+    last_output_count: 0  # populated by validator
+    status: active
+    exempt_reason: null
+    source: S053
+    notes: "T2 for B_ZF_TERMINATION_DISCIPLINE. Fires every pnpm verify."
+
+  - id: permanence_coverage
+    element_type: validator
+    expected_output:
+      output_type: metric
+      output_location: tools/verify-last-run.md
+      output_signature: '"full_trio":\s*\d+'
+    expected_cadence: per_session
+    last_active_at: null
+    last_output_count: 0
+    status: active
+    exempt_reason: null
+    source: S060
+    notes: "PROTO-S062-A keystone. Baseline ratcheted to 38."
+
+  - id: gap_recurrence
+    element_type: validator
+    expected_output:
+      output_type: log_line
+      output_location: tools/verify-last-run.md
+      output_signature: '"name":\s*"gap_recurrence"'
+    expected_cadence: per_session
+    last_active_at: null
+    last_output_count: 0
+    status: active
+    exempt_reason: null
+    source: S053
+    notes: "K-count tracker. K=4 entry gap_DONE_CLAIM has fix_committed now."
+
+  - id: pre_commit_claim_validator_gate
+    element_type: hook
+    expected_output:
+      output_type: log_line
+      output_location: stderr  # hook output during git commit
+      output_signature: '\[claim-validator-gate\]'
+    expected_cadence: on_demand
+    last_active_at: null
+    last_output_count: 2  # blocked 2 commits in S063 dog-food
+    status: active
+    exempt_reason: null
+    source: S063
+    notes: "ITEM 1 K=4 fix. Dog-fooded — blocked own initial commits."
+
+  - id: post_stop_learning_loop
+    element_type: hook
+    expected_output:
+      output_type: log_line
+      output_location: ~/.claude/learning-loop-capture.jsonl
+      output_signature: '"event":"learning-loop.post-stop"'
+    expected_cadence: per_session
+    last_active_at: null
+    last_output_count: 0
+    status: active
+    exempt_reason: "Logs event pointer only — content extraction deferred until LearningLoopItem DB ships (weeks 2-6). Output exists but content remains unextracted."
+    source: S040
+    notes: "Asymmetric — captures event but not content. Related to ai_output_exceptional_capture finding."
+
+  - id: threshold_intake_classification
+    element_type: pipeline
+    expected_output:
+      output_type: register_row
+      output_location: tools/data/threshold-intake-log.yaml
+      output_signature: '^- id:\s*"intake_'
+    expected_cadence: per_session
+    last_active_at: null
+    last_output_count: 0
+    status: active
+    exempt_reason: null
+    source: S056
+    notes: "Threshold routing. Should fire on every user prompt trigger match."
+
+# Future flow elements to register (S064 onward):
+#   - cec_propagation_walk (when CEC cycles fire)
+#   - moat_candidate_surfacing (manual now — should be auto)
+#   - behavioral_test_runner (per-validator)
+#   - audit-runner pipelines 1-13 (each separately)
+#   - Each B_* contract enforcement_trio actually firing

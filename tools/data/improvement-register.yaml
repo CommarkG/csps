@@ -373,3 +373,38 @@ entries:
     - PROTO sequencing template should declare gate-tier per STEP
   note: "Per Opus-10 + Governor S062 final turn. Operationalized in RELAY 20."
   status: cec_run
+
+- id: FINDING-S063-AI-OUTPUT-CAPTURE-ASYMMETRY
+  title: "No automatic capture mechanism for AI-output exceptional moments — asymmetric to user-input intake"
+  description: >
+    Platform has rich automatic capture for USER input (user-prompt-submit-intake.sh fires
+    trigger detection + routes to chat-intake-capture.jsonl + Threshold processes). AI output
+    has only post-stop-learning-loop.sh which logs an EVENT POINTER (transcript path) to
+    learning-loop-capture.jsonl with status "captured-pending-extraction" — actual content
+    extraction is deferred until LearningLoopItem DB ships (weeks 2-6). No active extraction
+    of exceptional quotes, moat candidates, structural insights, or "line worth keeping"
+    patterns from AI output. Currently relies on human attention chain (AI writes in chat →
+    Sonnet notices → captures to HANDOFF). If both AI tabs miss it, it evaporates.
+  first_found: S063
+  k_count: 1
+  sessions: [S063]
+  status: open
+  source: "Governor S063 close-question: 'Do we have an automatic saving? In moats? In ai behavior? Elsewhere? If something is exceptional how does the platform identify it and run it through the threshold?'"
+  evidence:
+    - "user-prompt-submit-intake.sh:1-15 — automatic trigger detection on user input"
+    - ".claude/hooks/post-stop-learning-loop.sh — logs event pointer only, no content scan"
+    - "The S063 'line worth keeping' (first session where platform's hooks blocked own commits) survived only because Opus wrote it in chat AND Sonnet noticed AND captured to HANDOFF — pure behavioral, zero mechanical fallback"
+  proposed_fix: |
+    Either (a) extend post-stop-learning-loop.sh to scan transcript for exceptional-pattern
+    markers (phrases like "first session where", "the line worth keeping", "moat moment",
+    "structural insight", "platform's mirror") and auto-file matches to a new register;
+    OR (b) build post-stop-ai-output-intake.sh that mirrors user-prompt-submit-intake.sh
+    trigger detection but on AI output; OR (c) create /capture-exceptional skill that
+    Sonnet/Opus invoke when they notice (lightweight manual but with skill discoverability).
+    Recommend (a) — least new infrastructure, fixes the asymmetry at the existing hook.
+  not_yet_propagated:
+    - PROTO-S064-AI-OUTPUT-CAPTURE candidate (S064 priority)
+    - tools/data/exceptional-moments-register.yaml schema (new register if approach (a))
+    - post-stop-learning-loop.sh extension (regex set + auto-file)
+    - integration with Threshold intake processing
+  note: "Surfaced by Governor S063 close-question. The asymmetric durability gap is real and structurally significant — user-side has Threshold, AI-side has deferred extraction. This is the meta-gap behind R4 trap recurrences."

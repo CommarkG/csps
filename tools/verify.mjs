@@ -1237,6 +1237,18 @@ const CYCLES = [
     },
   },
   {
+    // S063: Flow activity monitor — three-layer check (REGISTERED + EXECUTED + PRODUCED)
+    // BLOCKING: flow with status=active has no output AND no exempt_reason
+    // ADVISORY: flow status=not-yet-built (queued for implementation)
+    // Bridges audit-runner + verify-last-run + actual output evidence. Catches dead validators.
+    name: 'flow_activity_monitor',
+    command: 'node tools/validators/validate-flow-activity-monitor.mjs',
+    parse_output: (out) => {
+      const m = out.match(/total_flows=(\d+)[\s\S]*active=(\d+)[\s\S]*not_yet_built=(\d+)[\s\S]*BLOCKING=(\d+)/);
+      return m ? { total_flows: Number(m[1]), active: Number(m[2]), not_yet_built: Number(m[3]), blocking: Number(m[4]) } : {};
+    },
+  },
+  {
     // S053: ZF cycle format T2 — nominal ZF detection (gap_ZF_NOMINAL_CYCLES K=6)
     // BLOCKING: Cycle 2+ claims ZF ACHIEVED but cites no file names.
     // ADVISORY: Cycle 2+ uses vague words (areas/topics/things) without file names.

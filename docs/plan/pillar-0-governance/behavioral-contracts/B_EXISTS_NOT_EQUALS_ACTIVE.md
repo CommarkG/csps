@@ -1,4 +1,20 @@
 ---
+enforcement_trio:
+  t1:
+    tier: hook
+    path: ".claude/hooks/post-stop-exists-not-equals-active.sh"
+    status: stub
+  t2:
+    tier: validator
+    path: "tools/validators/validate-activation-coverage.mjs"
+    status: active
+  t3:
+    tier: memory
+    path: "docs/plan/pillar-0-governance/anti-patterns.md"
+    status: active
+  exempt_reason: null
+---
+---
 id: B_EXISTS_NOT_EQUALS_ACTIVE
 name: B_EXISTS_NOT_EQUALS_ACTIVE
 type: behavioral-contract

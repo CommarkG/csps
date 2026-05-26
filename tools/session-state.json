@@ -3,7 +3,7 @@
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
   "current_session": "S063",
   "previous_session": "S062",
-  "session_updated_at": "2026-05-26T14:07:58.077Z",
+  "session_updated_at": "2026-05-26T22:30:45.146Z",
   "session_role": "sonnet-builder",
   "_session_role_note": "opus-advisor = Opus Advisor tab (strategic, no implementation). sonnet-builder = Sonnet Builder tab (implementation). Set by Governor when opening the tab.",
   "opus_audit": {
@@ -76,13 +76,6 @@
       "registered_at": "2026-05-10",
       "registered_by": "S022 Sonnet builder",
       "workaround": "Option A: postinstall copy script + manual copy during session"
-    },
-    {
-      "id": "G3-CREDENTIAL-ROTATION",
-      "description": "Credentials flagged by Opus require rotation — DUE TODAY",
-      "status": "open",
-      "owner": "governor",
-      "flagged_at": "2026-05-26"
     }
   ],
   "s022_session3_evidence": {
@@ -247,5 +240,5 @@
     "The Threshold Gate — all inputs governed before processing",
     "Plan Methodology v2 — §HARVEST in every plan, Humble Executor at every milestone"
   ],
-  "primary": "S063 — ITEM 1: K=4 gap fix (pre-commit-claim-validator-gate.sh MUST-FIRST). ITEM 2: R4 reasoning hook. ITEM 3: BATCH-K 6 PROTOs."
+  "primary": "S064 — App #2 domain decision (Business/Personal/Social/Knowledge) → create PE-scored topic-plan → fork apps/template/. Also: audit pipelines 7-13, INPUT-S064-001 transient stop-hook K=3 fix, G3 credential rotation check."
 }

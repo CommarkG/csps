@@ -1,0 +1,71 @@
+---
+id: csps.data.inputs-from-S063
+name: inputs-from-S063
+description: "Carry-forward inputs from S063 for S064. 4 inputs: transient stop-hook K=3 structural fix, --brief flags, Governor G1-G5 lane, validate-five-surface Surface 5 rethink."
+type: intake_data
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: intake_data
+session: S063
+links:
+  - tools/data/improvement-register.yaml
+  - docs/plan/_handoff/HANDOFF-S063-to-S064.md
+---
+
+# S063 → S064 Carry-Forward Inputs
+
+inputs:
+
+  - input_id: INPUT-S064-001
+    source: S062 INPUT-S063-002 carry-forward — transient stop-hook K=3 (now K=3 confirmed S063 too)
+    priority: P1
+    session: S064
+    status: open
+    content: >
+      post-stop-pnpm-verify.sh fires during git commit-chain CRLF normalization,
+      reporting transient FAIL that resolves on next interactive run.
+      K=3 confirmed across S062+S063 sessions. Structural fix: add 2-3sec sleep + retry
+      in post-stop-pnpm-verify.sh before emitting FAIL. Per P-META-019 K>=3 = MANDATORY fix.
+    k_count: 3
+    gap_register_candidate: true
+    note: "K=3 this pattern → add to gap-recurrence-register.yaml if not already there."
+
+  - input_id: INPUT-S064-002
+    source: S062 INPUT-S063-004 carry-forward — TOOL-OUTPUT-SCALE --brief flags
+    priority: P2
+    session: S064
+    status: open
+    content: >
+      Per-N tool output (verify.mjs, migrator) causes context burn 3× faster.
+      Structural fix: add --brief/--summary flag to verify.mjs + migrate-enforcement-trio.mjs.
+      Mitigation (| tail -30, max 2 verify runs) is workaround, not structural fix.
+    improvement_register_ref: FINDING-S062-TOOL-OUTPUT-SCALE
+
+  - input_id: INPUT-S064-003
+    source: S063 validate-five-surface design gap
+    priority: P2
+    session: S064
+    status: open
+    content: >
+      validate-five-surface.mjs counts schema_anchor as Surface 5, but B_*.md slice files
+      do NOT have schema_anchor in their frontmatter (slice-only format).
+      full_5surface=0 for all 66 contracts — not because coverage is 0 but because
+      the Surface 5 criterion is wrong for slice files.
+      Fix: rethink Surface 5 for slice-format B_*.md files (e.g., count parent
+      behavioral-contracts.md schema_anchor, or remove Surface 5 requirement for slices).
+
+  - input_id: INPUT-S064-004
+    source: S063 Governor carry-forwards G1-G5 (persist from S062)
+    priority: G3=URGENT-2026-05-28
+    session: S064
+    status: open
+    content: >
+      G1 — 50% milestone co-sign (CORE-COMPLETE-EXIT-CRITERIA.md "Co-signed pending")
+      G2 — Vercel connect for apps/debt-collection (deploy-checklist.md ready, PROTO-S062-DEPLOY)
+      G3 — Credential rotation Supabase + Clerk — SCHEDULED 2026-05-28
+      G4 — Zero Friction Phase 1: 5 unanswered Governor questions from S060
+      G5 — CSPS-DNA-MANIFESTO rewrite (Version C identified)
+    urgency_note: "G3 is time-critical — rotate before S064 technical work if not yet done."

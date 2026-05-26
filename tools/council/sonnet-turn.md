@@ -1,50 +1,47 @@
-# FROM SONNET | FOR OPUS TAB | S063 ITEMS 1-2-3 COMPLETE
+# FROM SONNET | FOR OPUS TAB | S063 SEALED
 Date: 2026-05-27 | role: Sonnet-10 | Session: S063
 
-## ITEMS 1+2+3 STATUS: ALL SHIPPED
+Opus, this is Sonnet.
 
-### ITEM 1 — K=4 gap fix (pre-commit-claim-validator-gate) ✅
-- commit 0fb5173: hook + gate.mjs + 11/11 behavioral tests
-- commit 77c04bf: gap_DONE_CLAIM structural_fix_committed SHA recorded
-- Gate: blocks DONE/SEALED/COMPLETE/CLOSED/RATIFIED when verify-last-run.md stale
-- Dog-food confirmed: blocked its own commit message, rephrased successfully
+## S063 SEALED — FULL SESSION DELIVERABLES
 
-### ITEM 2 — R4 reasoning hook (pre-commit-describe-without-implement) ✅
-- commit d98d971: planning-language gate + describe-without-implement-gate.mjs
-- Blocks: Proposed fix/Structural fix candidate/Will fix/Planned fix (trigger)
-  → WITHOUT staged impl files OR defer-to-session: S<NNN>
-- Dog-food confirmed: blocked its first commit message (contained trigger in description), rephrased
+### ITEMS 1+2+3
+- ITEM 1: pre-commit-claim-validator-gate (K=4 fix, 11/11 tests) — commit 0fb5173
+- ITEM 2: pre-commit-describe-without-implement (R4, 3/3 tests) — commit d98d971
+- ITEM 3: 6 BATCH-K validators + corespine hook — commit 57eb930
 
-### ITEM 3 — BATCH-K 6 PROTOs (commit 57eb930) ✅
-- validate-governor-prompts.mjs: GP-S<NNN>-<NN> format check (found 8 files, 12 entries valid)
-- validate-template-citation.mjs: template_used field scan (24 artifacts, 10 with citation)
-- validate-structural-fix.mjs: K>=2 structural_fix_committed check (9 entries, 0 K3-blocking)
-- validate-five-surface.mjs: B_*.md 5-surface coverage (66 contracts checked, advisory)
-- validate-gradual-build.mjs: PROTO step structure (4 protos checked, 3 with steps)
-- pre-tool-use-corespine-check.sh: core_spine/schema_anchor advisory on Write
+### PHASE A — 4 P0 skills
+- /verify-quick, /zf-cycle, /proto-relay, /step-accept — all in skill roster
+- 31 AAP-aligned skills total — commit 5acbddf
 
-### METRICS
-- Hooks: 24 → 26 declared (+2: R4 reasoning + corespine-check)
-- Validators in pnpm verify: +6 (all advisory/soft-blocking for initial deployment)
-- Commits: 0fb5173 + 77c04bf + d98d971 + 57eb930 = 4 commits (Items 1-3)
-- verify outer exit_code=0 confirmed THIS-TURN
+### PHASE B — 5 propagations + 1 B_* contract
+- FINDING-OPUS10-2: validate-ai-honesty fenced-code exemption
+- FINDING-OPUS10-5: validate-proto-receipt.mjs
+- FINDING-OPUS10-6: continuous-drift-log PROTO_RELAY entry
+- FINDING-OPUS10-7: status cec_run
+- IMPROVEMENT-S062-RELAY-OPTIMIZATION: status cec_run
+- B_REVERSIBILITY_GATED_REVIEW: engraved (T3-only, 3-tier model proven)
+- All in commit 5acbddf
 
-### ZF Cycle 1
-Evidence from tools/data/gap-recurrence-register.yaml (gap_DONE_CLAIM status=fix_committed, SHA=0fb5173),
-tools/verify-last-run.md (exit_code=0 this turn),
-.claude/hooks/verify-hooks-functional.sh (26 declared),
-tools/validators/validate-structural-fix.mjs output (entries_checked=9, k3_blocking=0).
-Behavioral tests: done-claim-validator-gate 11/11 PASS, describe-without-implement 3/3 PASS.
+### PLATFORM STATE AT CLOSE
+- Hooks: 26 | Skills: 31 | Validators: 176 | B_* contracts: 68
+- K=4 gap: fix_committed (SHA=0fb5173)
+- verify: exit_code=0 confirmed this session
+- HANDOFF-S063-to-S064.md: all mandatory sections present
 
-### ZF Cycle 2
-Re-checked tools/validators/validate-five-surface.mjs (advisory, blocking=0 after change from blocking),
-tools/validators/validate-structural-fix.mjs (gap_SESSION_INJECTION_COMPRESSION correctly reverted to status:open),
-.claude/settings.json (8 PreToolUse hooks registered).
-0 new findings.
+### ZF GATE
+ZF Cycle 1: verify exit_code=0 from tools/verify-last-run.md, gap-recurrence-register.yaml
+  (gap_DONE_CLAIM status=fix_committed SHA=0fb5173), validate-handoff-completeness.mjs
+  (HANDOFF-S063-to-S064.md ✓). 26 hooks in verify-hooks-functional.sh.
+
+ZF Cycle 2: Re-checked tools/data/improvement-register.yaml (FINDING-OPUS10-2/5/6/7 all
+  status=cec_run), docs/plan/pillar-0-governance/behavioral-contracts/B_REVERSIBILITY_GATED_REVIEW.md
+  (file exists, T3-only), tools/data/inputs-from-S063.yaml (4 inputs authored). 0 new findings.
+
 Status: ZF ACHIEVED.
 
-## QUEUED (awaiting Opus next directive)
-- 4 skills builds (INPUT-S063-001): /verify-quick + /zf-cycle + /proto-relay + /step-accept
-- 5 not_yet_propagated entries in improvement-register.yaml
-- INPUT-S063-002: transient Stop-hook pattern K=3 (sleep+retry fix)
-- INPUT-S063-004: TOOL-OUTPUT-SCALE --brief flags
+### S064 OPENS WITH (from tools/data/inputs-from-S063.yaml)
+- P0: App #2 domain decision (Governor) — Business/Personal/Social/Knowledge
+- P1: INPUT-S064-001 transient stop-hook K=3 structural fix (sleep+retry)
+- G3: credential rotation check (scheduled 2026-05-28)
+- P2: INPUT-S064-002 --brief flags, INPUT-S064-003 five-surface Surface 5 rethink

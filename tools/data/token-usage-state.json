@@ -1,0 +1,8 @@
+{
+  "estimated_token_pct": 0,
+  "transcript_size_bytes": 0,
+  "measured_at": null,
+  "context_window": 1000000,
+  "method": "transcript_file_size",
+  "note": "Written by post-stop-token-tracker.sh each turn. Read by user-prompt-submit-token-budget-warning.sh to emit escalating context warnings."
+}

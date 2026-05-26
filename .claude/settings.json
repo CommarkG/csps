@@ -211,6 +211,15 @@
             "command": ".claude/hooks/pre-tool-use-corespine-check.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-commit-bstar-engraving-gate.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [

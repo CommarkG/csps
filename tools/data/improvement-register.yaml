@@ -233,3 +233,31 @@ entries:
       - apps/budget-planner/src/app/layout.tsx
       - apps/habit-tracker/src/app/layout.tsx
       - apps/voice-sorting/src/app/layout.tsx
+
+  - id: FINDING-S062-PERMANENCE-DRIFT
+    finding: >
+      Body-prose enforcement declarations in B_*.md contracts evolved into 3 incompatible
+      formats across sessions (T1: hook / T1 hook: path / **T1:** hook). The
+      validate-permanence-coverage.mjs body-scan reports 100% full_trio coverage by
+      matching hook/validator text in cross-references and prose — not just the
+      enforcement_tier declaration. Frontmatter-canonical parsing (migrate-enforcement-trio.mjs
+      v2.0 dry-run) shows: 30/66 clean T1+T2+T3 declarations, 34/66 partial (status:none
+      for T1 or T2 in enforcement_tier line), 2/66 no tier line. The 100% body-scan
+      coverage score is measurement-lenient; true frontmatter-canonical coverage ≈ 45%.
+      Structural root cause: B_*.md contracts had no enforced format for enforcement_tier
+      prose — writers improvised per session. PROTO-S062-A STEP 2 migration is the corrective
+      action. The exposure is a win: accuracy improved, not coverage lost.
+    first_found: S062
+    k_count: 1
+    sessions: [S062]
+    status: open
+    proto: PROTO-S062-A-STEP2
+    commit_discovered: 3d93294
+    commit_fix: null  # filled after --apply + validator update
+    propagated_to: []
+    not_yet_propagated:
+      - validate-permanence-coverage.mjs (frontmatter-first + body-scan fallback + dual-metric report)
+      - All 66 B_*.md contracts (enforcement_trio frontmatter pending Opus glance + --apply)
+      - CORE-COMPLETE-EXIT-CRITERIA.md (permanence score note already accurate per §3 of ratification)
+      - S063 mandate: PROTO-S063-FRONTMATTER-TEMPLATE (prevent format divergence for new contracts)
+    note: "FINDING-S062-PERMANENCE-DRIFT per Opus-10 directive S062. The migration exposes measurement honesty. Body-scan count is ADVISORY; frontmatter-canonical count is GROUND TRUTH after STEP 2 completes."

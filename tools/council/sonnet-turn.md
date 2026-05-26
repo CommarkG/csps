@@ -1,3 +1,95 @@
+# FROM SONNET | FOR OPUS TAB | PROTO-S062-A STEP 2 — OPUS GLANCE REQUESTED
+Date: 2026-05-26 | role: Sonnet-10 | Session: S062-C2 | v2.0 commit: 3be1a60 | exit_code=0
+
+## v2.0 Dry-Run Results (commit 3be1a60 — Option C applied)
+
+```
+[migrate-enforcement-trio v2.0] SUMMARY
+  mode:               DRY-RUN
+  files_scanned:      66
+  would_migrate:      64  (clean:30  partial:34)
+  skipped_idempotent: 0
+  skipped_no_tier:    2  → [B_DEFINITION_BEFORE_ENFORCEMENT, B_EXISTS_NOT_EQUALS_ACTIVE]
+  exit_code:          0
+```
+
+**Improvement from v1.0:** no-tier dropped 10→2 (multi-line heading extractor recovered 8 files).
+Clean parse improved 24→30 (+6). 34 partial contracts correctly emit `status: none` for T1 or T2
+that is genuinely absent from their enforcement_tier declaration (not a parsing failure — honest).
+
+**FINDING-S062-PERMANENCE-DRIFT engraved:** `tools/data/improvement-register.yaml:FINDING-S062-PERMANENCE-DRIFT`
+
+---
+
+## Opus glance requested — 2 no-tier files with proposed --supply-* values
+
+These 2 contracts have enforcement declared in body prose but NOT in the backtick/heading format
+the migrator recognizes. Sonnet derives --supply-* values from the body. Awaiting Opus confirmation
+before --apply.
+
+### Contract 1: B_DEFINITION_BEFORE_ENFORCEMENT
+
+Body text (lines 25-27):
+```
+- T1: `user-prompt-submit-ai-profiler.sh` CAQ MODE
+- T2: inherits from `validate-rule-has-enforcement.mjs` (B_STRUCTURAL_PREVENTION)
+- T3: This entry + session-open injection
+```
+
+Proposed --supply-* flags:
+```
+--supply-t1 "tier=hook,path=.claude/hooks/user-prompt-submit-ai-profiler.sh,status=active"
+--supply-t2 "tier=validator,path=tools/validators/validate-rule-has-enforcement.mjs,status=active"
+--supply-t3 "tier=memory,path=session-open injection + this entry,status=active"
+```
+
+### Contract 2: B_EXISTS_NOT_EQUALS_ACTIVE
+
+Body text (lines 38-40):
+```
+- T1: post-stop-exists-not-equals-active.sh — STUB (S046); ADVISORY (S047)
+- T2: validate-activation-coverage.mjs (S047) — checks B_* contracts have activation mechanism
+- T3: session-open.sh + anti-patterns.md always_include (AP-001) + this contract
+```
+
+Proposed --supply-* flags:
+```
+--supply-t1 "tier=hook,path=.claude/hooks/post-stop-exists-not-equals-active.sh,status=stub"
+--supply-t2 "tier=validator,path=tools/validators/validate-activation-coverage.mjs,status=active"
+--supply-t3 "tier=memory,path=session-open.sh + anti-patterns.md always_include,status=active"
+```
+
+---
+
+## Post-glance execution plan (Sonnet will run immediately on Opus ADVANCE):
+
+1. `node migrate-enforcement-trio.mjs --apply` — migrates all 64 auto-parseable files
+2. `node migrate-enforcement-trio.mjs --apply --file B_DEFINITION_BEFORE_ENFORCEMENT.md --supply-t1 "..." --supply-t2 "..." --supply-t3 "..."`
+3. `node migrate-enforcement-trio.mjs --apply --file B_EXISTS_NOT_EQUALS_ACTIVE.md --supply-t1 "..." --supply-t2 "..." --supply-t3 "..."`
+4. Commit: `feat: migrate enforcement_trio to frontmatter — 66 B_* contracts (PROTO-S062-A STEP 2)`
+5. Update `validate-permanence-coverage.mjs` — frontmatter-first + body-scan fallback ADVISORY
+6. Re-run validator; report pre-score (100% lenient) vs post-score (canonical + fallback breakdown)
+7. Commit: `feat: validate-permanence-coverage reads frontmatter trio first (PROTO-S062-A STEP 2)`
+8. Write STEP 2 COMPLETE report
+
+---
+
+## ZF Block (glance request)
+
+**THIS-SESSION verify:** `exit_code=0` confirmed after `3be1a60`.
+
+**ZF Cycle 1:** v2.0 dry-run stats from THIS-SESSION run (66 scanned, 64 would-migrate, 30 clean, 34 partial, 2 no-tier). Supply values for both no-tier contracts derived from body reads this session (`B_DEFINITION_BEFORE_ENFORCEMENT.md:25-27`, `B_EXISTS_NOT_EQUALS_ACTIVE.md:38-40`). FINDING engraved at `tools/data/improvement-register.yaml:FINDING-S062-PERMANENCE-DRIFT`.
+
+**ZF Cycle 2 (ACHIEVED):** Re-checked —
+- `tools/scripts/migrate-enforcement-trio.mjs:117` — `normalizeTierRaw()` function (Option C normalization confirmed — `T<N> <word>:` → `T<N>:` + `**T<N>:**` → `T<N>:` + `T<N> (<word>):` → `T<N>:`)
+- `tools/scripts/migrate-enforcement-trio.mjs:133` — `extractMultilineHeading()` (multi-line extractor confirmed — recovered 8 files from no-tier)
+- `tools/data/improvement-register.yaml` — FINDING-S062-PERMANENCE-DRIFT entry confirmed present with `not_yet_propagated` list
+- `B_DEFINITION_BEFORE_ENFORCEMENT.md:25` — `T1: \`user-prompt-submit-ai-profiler.sh\`` confirmed (basis for supply-t1 value)
+- `B_EXISTS_NOT_EQUALS_ACTIVE.md:38` — `T1: post-stop-exists-not-equals-active.sh — STUB` confirmed (status=stub is correct)
+- No new findings.
+
+---
+
 # FROM SONNET | FOR OPUS TAB | PROTO-S062-A STEP 2 DRY-RUN SAMPLE
 Date: 2026-05-26 | role: Sonnet-10 | Session: S062-C2 | Script commit: 8711bf3 | exit_code=0
 

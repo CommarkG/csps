@@ -1,10 +1,10 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S021",
-  "previous_session": "S020",
-  "session_updated_at": "2026-05-09T00:00:00Z",
-  "session_role": "opus-advisor",
+  "current_session": "S062",
+  "previous_session": "S061",
+  "session_updated_at": "2026-05-26T10:56:39.556Z",
+  "session_role": "sonnet-builder",
   "_session_role_note": "opus-advisor = Opus Advisor tab (strategic, no implementation). sonnet-builder = Sonnet Builder tab (implementation). Set by Governor when opening the tab.",
   "opus_audit": {
     "last_opus_review_session": "S019",
@@ -28,11 +28,7 @@
     "enforcement_rate_baseline": 6,
     "enforcement_rate_target_S025": 25
   },
-  "current_session": "S057",
-  "previous_session": "S056",
   "active_implementation_session": "S057",
-  "session_role": "sonnet-builder",
-  "session_updated_at": "2026-05-23T16:45:00Z",
   "_next_session_note": "Update current_session to S058 + previous_session to S057 when S058 opens",
   "ratified_vtls": {
     "VLT-S022-DOMAIN-PATH": {
@@ -64,7 +60,12 @@
     "situation": "APP_BUILD_MODE",
     "active_situation": "APP_BUILD_MODE",
     "opus_turn": "Turn 4 complete — see tools/council/opus-turn.md",
-    "sessions_remaining": ["S3-critical-fixes", "S4-permissions", "S5-audit", "S6-rls-bedrock"],
+    "sessions_remaining": [
+      "S3-critical-fixes",
+      "S4-permissions",
+      "S5-audit",
+      "S6-rls-bedrock"
+    ],
     "flexibility_doctrine": "Every ratified value in config — libs/config/subscription.config.ts + libs/config/roles.config.ts"
   },
   "blocking_decisions": [
@@ -77,94 +78,11 @@
       "workaround": "Option A: postinstall copy script + manual copy during session"
     },
     {
-      "id": "VLT-S015-001",
-      "status": "RESOLVED",
-      "decision": "Option A: Clerk JWT custom claim. tenantId embedded in session token at login. Pattern in libs/integrations/clerk/session-context.ts (buildSessionClaims + CspsSessionClaims type). Wired in apps/task-mgmt/src/app/api/auth/session/route.ts.",
-      "resolved_at": "2026-05-07T00:00:00Z",
-      "ratified_by": "Governor"
-    },
-    {
-      "id": "VLT-S015-002",
-      "status": "RESOLVED",
-      "decision": "Option A: 4 values — free|trialing|active|cancelled. In Prisma schema (TenantSubscriptionStatus enum). stripeSubscriptionId added to Tenant model. Billing trigger wired.",
-      "resolved_at": "2026-05-07T00:00:00Z",
-      "ratified_by": "Governor"
-    },
-    {
-      "id": "VLT-S015-003",
-      "status": "RESOLVED",
-      "decision": "Supabase Supavisor transaction mode. DATABASE_URL + DIRECT_URL explicit in apps/task-mgmt/.env.example. Both URLs required at THIS level (config hierarchy warning).",
-      "resolved_at": "2026-05-07T00:00:00Z",
-      "ratified_by": "Governor"
-    },
-    {
-      "id": "VLT-S015-004",
-      "status": "RESOLVED",
-      "decision": "Postgres trigger deferred until ZenStack install. Interim: Clerk audit log. Trigger DDL documented in libs/policies/audit-triggers.sql.",
-      "resolved_at": "2026-05-07T00:00:00Z",
-      "ratified_by": "Governor"
-    },
-    {
-      "id": "VLT-S015-005",
-      "status": "RESOLVED",
-      "decision": "tsconfig paths alias. apps/task-mgmt/tsconfig.json has @csps/integrations → ../../libs/integrations/index.ts. Used in all webhook routes via @csps/integrations import.",
-      "resolved_at": "2026-05-07T00:00:00Z",
-      "ratified_by": "Governor"
-    },
-    {
-      "id": "VLT-S014-002",
-      "status": "RESOLVED",
-      "decision": "Tasks + Projects (Option B). No Milestones at v1.",
-      "resolved_at": "2026-05-06T13:17:00Z",
-      "ratified_by": "Governor"
-    },
-    {
-      "id": "VLT-S014-003",
-      "status": "RESOLVED",
-      "decision": "One workspace per tenant (Option A). Workspace IS the Tenant.",
-      "resolved_at": "2026-05-06T13:17:00Z",
-      "ratified_by": "Governor"
-    },
-    {
-      "id": "VLT-S014-004",
-      "status": "RESOLVED",
-      "decision": "$1K MRR graduation trigger (Option B).",
-      "resolved_at": "2026-05-06T13:17:00Z",
-      "ratified_by": "Governor"
-    },
-    {
-      "id": "VLT-S014-005",
-      "status": "RESOLVED",
-      "decision": "Free solo / paid team. Billing trigger fires on 2nd UserTenant creation. Wired in apps/task-mgmt/src/app/api/webhooks/clerk/route.ts.",
-      "resolved_at": "2026-05-06T13:17:00Z",
-      "ratified_by": "Governor"
-    },
-    {
-      "id": "VLT-S016-ZENSTACK",
-      "status": "RESOLVED",
-      "decision": "Option A ratified by Governor S016: Install ZenStack in CSPS project as first mandate of S017, before any new app build. Rationale: platform-first — one installation protects all 30 apps. Unblocks: DB-level RLS, validate-foundation-schema-drift.mjs, foundation-slices L3 closure.",
-      "ratified_by": "Governor",
-      "registered_at": "2026-05-07T00:00:00Z",
-      "unblocked_by": "apps/task-mgmt/ created S015",
-      "resolved_at": "2026-05-07T10:45:00Z"
-    },
-    {
-      "id": "VLT-S017-ENHANCE",
-      "status": "RESOLVED",
-      "decision": "Deferral decision (cruel-critic CSEP-S017-001): Wire enhance(prismaClient) into apps/task-mgmt API routes in S018. ZenStack @@allow policies are DEFINED but not enforced at runtime until then. B_COMPLETION_OVER_SHINY: ZenStack install is the S017 mandate; enhance wiring is S018 first task. ZModel policies are the source of truth; enforcement wiring is the next mechanical step.",
-      "registered_at": "2026-05-07T10:45:00Z",
-      "resolved_at": "2026-05-07T10:45:00Z",
-      "ratified_by": "CSEP-S017-001 cruel-critic (Governor must confirm S018 priority)",
-      "carry_forward": "S018 first action"
-    },
-    {
-      "id": "VLT-S017-FLATSCHEMA",
-      "status": "RESOLVED",
-      "decision": "Deferral decision (cruel-critic CSEP-S017-001): libs/policies/schema.zmodel flat assembly is temporary workaround for ZenStack circular import limitation. Migration to multi-file triggered when model count approaches 30 OR 3+ devs touch schema.zmodel in same week. No immediate action required at 7 models.",
-      "registered_at": "2026-05-07T10:45:00Z",
-      "resolved_at": "2026-05-07T10:45:00Z",
-      "ratified_by": "CSEP-S017-001 cruel-critic scale analysis",
-      "carry_forward": "S018+ when trigger condition met"
+      "id": "G3-CREDENTIAL-ROTATION",
+      "description": "Credentials flagged by Opus require rotation — DUE TODAY",
+      "status": "open",
+      "owner": "governor",
+      "flagged_at": "2026-05-26"
     }
   ],
   "s022_session3_evidence": {
@@ -190,7 +108,15 @@
     "zenstack_schema": "libs/policies/schema.zmodel (flat, 7 models)",
     "zenstack_enforcement": "BYPASSED — pnpm monorepo path conflict (VLT-S022-ZENSTACK-GENERATE-PATH). Tenant isolation at application layer only (explicit tenantId in all queries).",
     "rls_enabled": true,
-    "rls_tables": ["Task", "Project", "TaskComment", "UserTenant", "Tenant", "User", "AuditEvent"],
+    "rls_tables": [
+      "Task",
+      "Project",
+      "TaskComment",
+      "UserTenant",
+      "Tenant",
+      "User",
+      "AuditEvent"
+    ],
     "rls_confirmed_at": "2026-05-11",
     "audit_event_immutability": "DB TRIGGER ACTIVE — enforce_audit_event_immutability trigger prevents UPDATE/DELETE at Postgres level (S3-E7 confirmed 2026-05-10)",
     "subscription_enforcement": "IMPLEMENTED — requireWriteSubscription() in apps/task-mgmt/src/lib/subscription.ts. Reads from libs/config/subscription.config.ts.",
@@ -281,7 +207,10 @@
       "mandate": "enforcement-rate-uplift plan execution + CEC harvest + structural fixes from extraction",
       "model_tier": "STANDARD_BUILD",
       "status": "COMPLETE",
-      "commits": ["46efa06 (S021 enforcement targets)", "pending-CEC-commit (harvest + structural fixes)"],
+      "commits": [
+        "46efa06 (S021 enforcement targets)",
+        "pending-CEC-commit (harvest + structural fixes)"
+      ],
       "zf_deep": "ACHIEVED (exit_code 0, 51 validators)",
       "deliverables": "4 Track B validators, 2 Track A citations, drift-registry conceptual-drift active, validate-hook-lifecycle-state.mjs, validate-session-harvest-readiness.mjs, session-S021-extraction.md, §KH in plan template, DEFERRED_INDICATORS logic fix, two-track strategy in README",
       "metrics_delta": "enforcement_rate 6%→29%, drift_coverage 57%→71%, validators 45→51"
@@ -290,7 +219,12 @@
       "mandate": "Execute sonnet-task-list-S020.md — VOCAB-1 + HAIKU-1/2 + DRIFT-1 + LAYER-1 + INNER-AI-1 + AUDIT-1",
       "model_tier": "STANDARD_BUILD",
       "status": "COMPLETE",
-      "commits": ["4eaae6e (VOCAB+HAIKU+DRIFT first session)", "4eaae6e (LAYER+INNER-AI+AUDIT)", "5659a5c (enforcement-rate-uplift plan)", "e83470f (§KH fix)"],
+      "commits": [
+        "4eaae6e (VOCAB+HAIKU+DRIFT first session)",
+        "4eaae6e (LAYER+INNER-AI+AUDIT)",
+        "5659a5c (enforcement-rate-uplift plan)",
+        "e83470f (§KH fix)"
+      ],
       "zf_deep": "ACHIEVED (exit_code 0, 45 validators)",
       "deliverables": "vocabulary.md (14 terms), haiku-pattern-library.yaml (7 patterns), haiku-spawn-template.md, validate-drift-registry.mjs, validate-layer-boundary.mjs, reasoning-patterns.md (13/13 opus_pattern), sonnet-audit-protocol.md, drift-registry 43%→57%, enforcement-rate-uplift topic-plan",
       "metrics_delta": "drift_coverage 43%→57%, validators 41→45, 13/13 reasoning entries have opus_pattern"
@@ -312,5 +246,6 @@
     "Graduation path designed from start — extraction-ready",
     "The Threshold Gate — all inputs governed before processing",
     "Plan Methodology v2 — §HARVEST in every plan, Humble Executor at every milestone"
-  ]
+  ],
+  "primary": "S063 — PROTO-S063 structural enforcement completeness (B_* contract T1/T2 gap closure). 10 PROTO-S063 items queued. 6 new BATCH-K from permanence triage."
 }

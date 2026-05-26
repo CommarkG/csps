@@ -75,5 +75,6 @@ Please return:
 4. Permanence check: at 58% canonical enforcement, how many of these 6 preventions would themselves be detectable by permanence validators?
 5. Deeper root cause question: Is there a single root cause behind GAP-1 through GAP-6? Hypothesis: the AI has no short-term confirmed-recently memory; every governance check reverts to long-term-context lookup. If true, the structural fix is not hooks but behavioral context injection per-turn.
 
-ZF Cycle 1: All 6 S062 gaps included. Root causes and preventions specified. Summary table complete.
-ZF Cycle 2: Re-checked GAP-3 (K=3 per INPUT-S063-002), GAP-6 (41-session staleness), GAP-5 (3 blocks in C5). No new findings. ZF ACHIEVED.
+ZF Cycle 1: All 6 S062 gaps included — sources: tools/data/gap-recurrence-register.yaml (3 open entries), tools/data/improvement-register.yaml (FINDING-S062-TOOL-OUTPUT-SCALE), tools/data/inputs-from-S062.yaml (INPUT-S063-002/003). Root causes and preventions specified.
+ZF Cycle 2: Re-checked tools/data/gap-recurrence-register.yaml K=4 entry (gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS, K=3 transient verify, K=2 injection-compression), tools/data/inputs-from-S062.yaml GAP-5+GAP-6 entries, tools/zf-session-tracker.json (zf_deep_runs=3, iter=26). 0 new gaps found.
+Status: ZF ACHIEVED.

@@ -1,7 +1,7 @@
 ---
 id: csps.data.permanence-partial-triage
 name: permanence-partial-triage
-description: "STEP 5b triage: 34 partial B_*.md contracts classified for enforcement path resolution. Awaiting Opus ADVANCE before applying."
+description: "STEP 5b triage APPLIED: 34 partials → 5b-(a)=10 declared, 5b-(b)=6 buildables filed as S063, 5b-(c)=18 exempt. Post-apply canonical score: 38/66=58%."
 version: "1.0"
 owner: group:finky
 lifecycle: production
@@ -9,7 +9,7 @@ lifecycle_state: active
 core_spine: VALD
 session: S062
 proto: PROTO-S062-A-STEP5b
-status: awaiting_opus_advance
+status: applied
 links:
   - tools/data/improvement-register.yaml
   - tools/validators/validate-permanence-coverage.mjs

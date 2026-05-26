@@ -3,6 +3,7 @@ id: csps.apps.debt-collection.deploy-checklist
 name: deploy-checklist
 description: "7-step Vercel UI deploy sequence for apps/debt-collection. Converts 30-min debug session to 5-min paste-and-click."
 type: deploy_docs
+version: "1.0"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active

@@ -27,7 +27,22 @@ links:
 
 ---
 
-## §0 PASTE-TARGET — Zone A (SONNET STARTUP BLOCK)
+## Zone A — Platform State at S062 Close
+
+- **PROTO-S062-K SEALED** — Phase 1 wet trial ratified; 50% platform milestone crossed; 14 findings extracted
+- **PROTO-S062-A SEALED** — Permanence 0%→58% canonical; ratchet locked at 38 (BLOCKING); 6 STEPS complete
+  - KEYSTONE: shifted from inflated 100% body-scan → honest 58% frontmatter-canonical. First measurement-honesty correction in CSPS history.
+- **PROTO-S062-DEPLOY SEALED** — validate-app-deploy-readiness.mjs + apps/template/.env.example (ANTHROPIC_API_KEY) + apps/debt-collection deploy-checklist.md 7-step Vercel UI
+- **Token budget warnings LIVE** — post-stop-token-tracker.sh + user-prompt-submit-token-budget-warning.sh; 3 thresholds (70/80/90%); 23 hooks active project-wide
+- **EFFICIENCY-PATTERNS-FOR-OTHER-APPS.md** — portable knowledge artifact published (commit 1fc3b77)
+- **FINDING-S062-PERMANENCE-DRIFT** — RESOLVED (improvement-register.yaml); measurement honesty restored
+- **FINDING-S062-TOOL-OUTPUT-SCALE** — K=1, open; structural fix deferred to S063 (--brief flags)
+- **Last commit:** `91054a1` pushed to `origin/main`
+- **verify:** exit_code=0 | 19 verify runs | 2 ZF deep runs this session
+
+---
+
+## SONNET STARTUP BLOCK
 
 ```
 ════════════════════════════════════════════════════════════════════
@@ -245,31 +260,31 @@ handoff_attestation:
 
 ---
 
-## ALIGNMENT QUESTIONS for S063 (≥10, mandatory per B_MUV)
+## ALIGNMENT QUESTIONS
 
-1. **G3 URGENT:** Which specific credentials need rotation today, and have they been rotated since Opus flagged this? (If not, stop-and-rotate before any S063 work proceeds)
+Q1: **G3 CREDENTIAL ROTATION (URGENT):** Which specific credentials need rotation today, and have they been rotated since Opus flagged this? (If not, stop-and-rotate before any S063 work proceeds — Supabase DB password + Clerk Secret Key per INPUT-S063-003)
 
-2. **Scope confirm:** Is S063 mandate confirmed as "PROTO-S063 structural enforcement completeness" (building T1/T2 for B_* contracts), or has Opus resequenced toward app build?
+Q2: **Scope confirm:** Is S063 mandate confirmed as "PROTO-S063 structural enforcement completeness" (building T1/T2 for B_* contracts), or has Opus resequenced toward app build?
 
-3. **PROTO-S063-TEMPLATE-ENV-EXAMPLE:** Should this be formally closed (resolved by S062 DEPLOY STEP 2) or is there additional scope beyond ANTHROPIC_API_KEY?
+Q3: **Verify gate:** Does `node tools/verify.mjs --skip-install` show exit_code=0 in your fresh tab? (Do not trust this HANDOFF — verify independently. Confirm `git log --oneline -5` shows `91054a1` as most recent.)
 
-4. **session-state.json:** Should S063 Sonnet update `current_session` to S063 immediately at open, or does Opus author the session state update as Governor action?
+Q4: **Permanence ratchet holds?** Run `node tools/validators/validate-permanence-coverage.mjs` — expect full_trio=38/66 = 58% canonical, no blocking regression alert.
 
-5. **PROTO-S063 PE ordering:** The PE-ordered list in Zone B §3 is Sonnet's estimate. Does Opus want to re-score before S063 begins?
+Q5: **PROTO-S063-TEMPLATE-ENV-EXAMPLE:** Should this be formally closed (resolved by S062 DEPLOY STEP 2) or is there additional scope beyond ANTHROPIC_API_KEY?
 
-6. **G5 manifesto rewrite:** Is this blocking any S063 work, or pure Governor/Opus track?
+Q6: **session-state.json:** S062 close updated current_session to S062. S063 Sonnet should update to S063 at open — confirm this is first action.
 
-7. **G4 Zero Friction Q1-5:** What does "Zero Friction" refer to — developer onboarding friction, UX friction, or governance friction? (Context lost across session boundary)
+Q7: **PROTO-S063 PE ordering:** The PE table in Zone B §3 is Sonnet's estimate. Does Opus want to re-score before S063 begins, or accept this ordering?
 
-8. **FINDING-S062-TOOL-OUTPUT-SCALE:** Should the --brief flag work be a standalone PROTO-S063 item (file now), or bundled into a larger tooling improvement proto?
+Q8: **G5 manifesto rewrite:** Is this blocking any S063 work, or pure Governor/Opus track?
 
-9. **session-state.json mandate:** The file shows `current_session: "S021"` — stale by 41 sessions. Should S063 first action be to modernize this file's schema to match current session numbering?
+Q9: **FINDING-S062-TOOL-OUTPUT-SCALE:** Should the --brief flag work be a standalone PROTO-S063 item (file now), or bundled into a larger tooling improvement proto?
 
-10. **Token budget warnings:** Is the current estimation method (transcript file size / 3 chars per token) acceptable, or should S063 add a calibration pass to tune the thresholds?
+Q10: **Token budget warnings:** Is the transcript-file-size estimation method acceptable, or should S063 add a calibration pass?
 
-11. **PROTO-S062-DEPLOY next:** When Governor connects debt-collection to Vercel, should Sonnet be present for the session, or is the checklist sufficient for Governor-solo deploy?
+Q11: **INPUT-S063-002 transient verify:** The post-stop-pnpm-verify.sh fires during commit-chain filesystem settling (K=3 this session). Does Opus want a structural fix in S063 (sleep+retry in hook), or accept as known transient behavior?
 
-12. **Permanence milestone:** At 58%, what's the target for S063? (Another 10%? Or is the goal to get to 70%+ via the 6 BATCH-K buildables?)
+Q12: **Permanence milestone target:** At 58%, what's the S063 goal? 70%+ via the 6 BATCH-K buildables, or let PE engine score and sequence?
 
 ---
 

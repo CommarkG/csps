@@ -62,6 +62,7 @@ readonly -a DECLARED_HOOKS=(
   "post-tool-use-zf-level-gate.sh"
   "pre-tool-use-claude-dir-guard.sh"
   "post-stop-session-close-gate.sh"
+  "pre-tool-use-bstar-trio-gate.sh"
 )
 
 echo "[verify-hooks-functional] ACTIVE S041 — checking ${#DECLARED_HOOKS[@]} hooks"

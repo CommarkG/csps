@@ -85,6 +85,10 @@
           {
             "type": "command",
             "command": ".claude/hooks/pre-tool-use-sacred-parts-guard.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-bstar-trio-gate.sh"
           }
         ]
       },

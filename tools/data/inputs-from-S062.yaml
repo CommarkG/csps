@@ -1,0 +1,69 @@
+---
+id: csps.data.inputs-from-S062
+name: inputs-from-S062
+description: "4 carry-forward inputs from S062 for S063. Authored per Opus-10 Governor directive S062 close."
+type: intake_data
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: intake_data
+session: S062
+---
+
+# S062 → S063 Carry-Forward Inputs
+
+inputs:
+
+  - input_id: INPUT-S063-001
+    source: S062 Opus skills proposal P0 build order
+    priority: P0
+    session: S063
+    status: open
+    content: >
+      Approved for S063 build: /verify-quick + /zf-cycle (Opus P0 skills).
+      Both compose with existing /step-accept + /proto-relay (also approved).
+      Build order: 1./verify-quick → 2./zf-cycle → 3./proto-relay → 4./step-accept.
+      Skills proposal items P1+P2+diagnostic NOT yet approved — defer to S063 PE re-rank.
+
+  - input_id: INPUT-S063-002
+    source: S062 transient Stop-hook pattern (K=3 this session)
+    priority: P1
+    session: S063
+    status: open
+    content: >
+      post-stop-pnpm-verify.sh fires DURING commit-chain filesystem settling,
+      reporting transient FAIL that resolves by next interactive verify run.
+      Pattern observed iter 13, iter 15, iter 20 — all transient.
+      Structural fix candidate: add 2-3sec sleep + retry in post-stop hook,
+      OR move post-stop verify to dedicated quiet-state checkpoint.
+    k_count: 3
+    improvement_register_ref: null
+    note: "K=3 this session means structural fix is MANDATORY per B_STRUCTURAL_PREVENTION_DISCIPLINE. File as PROTO-S063 or add to gap-recurrence-register."
+
+  - input_id: INPUT-S063-003
+    source: S062 Governor carry-forwards (G1-G5)
+    priority: G3=URGENT-today
+    session: S063
+    status: open
+    content: >
+      G1 — 50% milestone Governor co-sign in chat (CORE-COMPLETE-EXIT-CRITERIA reads "pending")
+      G2 — Vercel connect for apps/debt-collection (deploy-checklist.md ready — PROTO-S062-DEPLOY)
+      G3 — CREDENTIAL ROTATION (Supabase DB password + Clerk Secret Key) — DUE TODAY 2026-05-26
+      G4 — Zero Friction Phase 1: 5 unanswered Governor questions from S060
+      G5 — CSPS-DNA-MANIFESTO rewrite from Version C
+    urgency_note: "G3 is time-critical — credentials may be exposed. Governor action required before S063 technical work proceeds."
+
+  - input_id: INPUT-S063-004
+    source: S062 PROTO-S062-A FINDING-S062-TOOL-OUTPUT-SCALE K=1 open
+    priority: P2
+    session: S063
+    status: open
+    content: >
+      Already in improvement-register (tools/data/improvement-register.yaml).
+      Status: open, K=1. Structural fix queued:
+      add --brief flags to validate-permanence-coverage + migrator + verify orchestrator.
+      Mitigation in C4 startup block (| tail -30, max 2 verify runs) is workaround.
+    improvement_register_ref: FINDING-S062-TOOL-OUTPUT-SCALE
+    note: "Promote to K=2 and file as PROTO-S063 if recurs in S063."

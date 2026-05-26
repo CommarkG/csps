@@ -37,7 +37,7 @@
  *
  * BASELINES (post PROTO-S062-A STEP 2 migration):
  *   BASELINE_HAS_FRONTMATTER = 66  (all 66 contracts migrated)
- *   BASELINE_FRONTMATTER_FULL_TRIO = 32  (30 clean-parse + 2 supply-needed)
+ *   BASELINE_FRONTMATTER_FULL_TRIO = 38  (32 post-STEP2 + 6 from STEP 5b apply: AGENT_ALIGNMENT_PROTOCOL, CONSOLIDATION_PASS, HANDOFF_PRE_FLIGHT_AUDIT, NAMING_POLICY, NO_IMPLEMENTATION_WITHOUT_PLAN, INHERITANCE_POLICY)
  *   Blocking: regression below these baselines. Not blocking: partial (status:none
  *   represents genuine coverage gaps to fix in STEP 4+, not validator errors).
  *
@@ -260,12 +260,13 @@ const bs_legacy_full_trio_pct = contracts_checked > 0
 // These are set after the S062 migration — do not reduce them without Opus ratification.
 // BASELINE_HAS_FRONTMATTER: all 66 contracts migrated → enforcement_trio frontmatter present.
 //   Any drop = a contract lost its frontmatter block (regression, BLOCKING).
-// BASELINE_FRONTMATTER_FULL_TRIO: 32 contracts with all 3 tiers non-none after S062 migration.
+// BASELINE_FRONTMATTER_FULL_TRIO: 38 contracts with all 3 tiers non-none after S062 STEP 5b apply.
+//   Ratcheted 32→38 on Opus ADVANCE (PROTO-S062-A STEP 6). canonical score: 38/66=58%.
 //   Any drop = a migrated contract regressed (BLOCKING).
 // BASELINE_NO_ORPHANS: 0 contracts with no enforcement section (body or frontmatter).
 //   Any increase = new orphan shipped (BLOCKING).
 const BASELINE_HAS_FRONTMATTER = 66;
-const BASELINE_FRONTMATTER_FULL_TRIO = 32;
+const BASELINE_FRONTMATTER_FULL_TRIO = 38;
 const BASELINE_NO_ORPHANS = 0;
 
 // ── Output ────────────────────────────────────────────────────────────────────

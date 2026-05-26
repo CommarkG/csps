@@ -129,3 +129,56 @@ entries:
     structural_fix_triggered: false
     behavioral_test_exists: false
     note: "K=1. This is the root cause behind gaps 1-6. Structural fix: behavioral test suite (tools/tests/behavioral/) + Gap Recurrence Register validator. This register IS the first step of that fix."
+
+  - id: gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS
+    observation: "Sonnet declares STEP/SESSION COMPLETE/SEALED/DONE in commit message with exit_code=0 claim, but the close validator (validate-handoff-completeness / validate-permanence-coverage / validate-zf-cycle-format / validate-frontmatter) only confirms AFTER the close-commit lands. Each instance required Opus course-correct."
+    first_seen: S062
+    k_count: 4
+    sessions: [S062, S062-C2, S062-C3, S062-C4]
+    instances:
+      - turn: STEP-1-RE-COMPLETE
+        commit: 5db4e1b
+        course_correct: validate-zf-cycle-format blocked — Cycle 2 used .txt extension not in regex
+      - turn: tab-transfer-stability-analysis-commit
+        commit: 8453591
+        course_correct: file missing version/lifecycle/lifecycle_state frontmatter fields
+      - turn: STEP-5b-APPLY-COMPLETE
+        commit: 40e4dc5
+        course_correct: triage classification borderline cases needed Opus glance before apply
+      - turn: SESSION-CLOSE-CLAIMED
+        commit: 91054a1
+        course_correct: HANDOFF-S062-to-S063 missing Zone A title + ALIGNMENT QUESTIONS + SONNET STARTUP BLOCK
+    status: open
+    structural_fix_triggered: true
+    structural_fix_required_since: S062
+    behavioral_test_exists: false
+    proposed_fix: |
+      Pre-commit hook .claude/hooks/pre-commit-claim-validator-gate.sh:
+        IF commit message contains /\b(COMPLETE|SEALED|DONE|CLOSED|RATIFIED)\b/i AND
+           latest THIS-HEAD run of the relevant close-validator (one of:
+           validate-handoff-completeness, validate-permanence-coverage,
+           validate-zf-cycle-format, validate-frontmatter) is exit=0
+        THEN allow commit.
+        ELSE BLOCK with: "Cannot claim <KEYWORD> without THIS-HEAD validator
+                          passing. Run pnpm verify first; if PASS commit; if FAIL fix."
+      Behavioral test: tools/tests/behavioral/done-claim-validator-gate-test.sh
+        INPUT A (nominal — claim message without validator pass) → exit=1 ✓
+        INPUT B (claim message with passing validator) → exit=0 ✓
+    pipeline_owner: |
+      Sonnet builds + Opus writes core seed (regex + validator matrix) + Governor ratifies activation
+    proto_filed: PROTO-S063-DONE-CLAIM-VALIDATOR-GATE
+    proto_filed_at: "2026-05-26"
+    proto_pe_score: 95
+    when: |
+      S063 session-open will surface this K=4 entry as MUST FIX BEFORE new work
+      (per session-open.sh T3 injection of K>=2 entries). First Sonnet directive in
+      S063 must address before any new PROTO work begins.
+      PROTO-S063-DONE-CLAIM-VALIDATOR-GATE filed S062-C5 — BATCH-L pe_score=95.
+    forgetting_prevention:
+      - validate-gap-recurrence.mjs surfaces this entry in pnpm verify per session (T2)
+      - session-open.sh T3 injection lists K>=2 entries with MUST-FIX label
+      - K=5 will fire P-META-019 BLOCKING — session close cannot happen without committed fix
+      - improvement-register.yaml cross-reference (manual but supplementary)
+      - this register is parsed at every session-start per always_include
+      - PROTO-S063-DONE-CLAIM-VALIDATOR-GATE in unified-plan.yaml BATCH-L (pe_score=95 = must-fix-first)
+    note: "K=4 in S062 alone (single session). Pattern is structural: both Sonnet AND Opus underweight 'validator must run before claim' because the commit message FEELS like proof. Only mechanical pre-commit gate breaks the loop. P-META-019 mandates structural fix at K=2; this is K=4 — overdue. The fix is small (~30 lines bash) but its absence costs ~3 turns per session to detect-and-course-correct."

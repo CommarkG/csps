@@ -1599,3 +1599,17 @@ items:
     session_target: S063
     tags: [validator, template-first, citation, b-star, s062-5b-buildable, s063]
     notes: "Source: PROTO-S062-A STEP 5b triage original 5b-(b). No T2 validator exists for template-citation-on-creation. pre-tool-use-frontmatter-enum-check.sh is partial T1 only. T2 needed: validates that new governance artifacts cite their template registry source."
+
+  # ── BATCH-L: P-META-019 structural fix — K=4 MANDATORY before S063 work begins ──
+
+  - id: PROTO-S063-DONE-CLAIM-VALIDATOR-GATE
+    title: "pre-commit-claim-validator-gate.sh — block DONE/SEALED/COMPLETE claims without validator evidence"
+    status: intake
+    epoch: E2
+    category: governance
+    owner: sonnet
+    batch: BATCH-L
+    session_target: S063
+    pe_score: 95
+    tags: [hook, pre-commit, done-claim, validator-gate, p-meta-019, k4, s063, must-fix-first]
+    notes: "K=4 gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS per P-META-019. MANDATORY: must be built BEFORE any other S063 PROTO work. Pre-commit hook that blocks commits containing DONE/SEALED/COMPLETE/CLOSED/RATIFIED keywords unless the relevant close-validator (validate-handoff-completeness/validate-permanence-coverage/validate-zf-cycle-format/validate-frontmatter) has THIS-HEAD exit_code=0. Also requires behavioral test: tools/tests/behavioral/done-claim-validator-gate-test.sh. See tools/data/gap-recurrence-register.yaml id=gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS for full proposed_fix spec."

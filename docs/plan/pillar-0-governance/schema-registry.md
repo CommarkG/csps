@@ -116,6 +116,13 @@ schema_anchors:
     l2_domain: ACCOUNTABILITY_TRACEABILITY
     description: Session handoff files (HANDOFF-S<NNN>-to-S<NNN+1>.md)
 
+  handoff_files:
+    type: governance-leaf
+    resolves_to: docs/plan/_handoff/
+    spine: GVRN
+    l2_domain: ACCOUNTABILITY_TRACEABILITY
+    description: Individual tab-transfer handoff files (HANDOFF-S<NNN>-to-S<NNN+1>-C<N>.md) — continuation handoffs within same logical session
+
   closing_summaries:
     type: governance-section
     resolves_to: docs/plan/_handoff/VAULT/closing-summaries/
@@ -180,6 +187,13 @@ schema_anchors:
     spine: GVRN
     l2_domain: AMENDMENT_DISCIPLINE
     description: Gradual-build topic plans
+
+  protos:
+    type: governance-section
+    resolves_to: docs/plan/protos/
+    spine: GVRN
+    l2_domain: DECISION_RIGHTS_CLARITY
+    description: Opus-authored PROTOs that direct Sonnet implementation
 
   platform_plans:
     type: governance-section
@@ -541,6 +555,7 @@ schema_anchors:
 | `core_spines_l3_instances` | governance-section | GVRN | ACCOUNTABILITY | .claude/core-spines/L3_INSTANCES_*.md |
 | `handoffs` | governance-section | GVRN | ACCOUNTABILITY | docs/plan/_handoff/ |
 | `topic_plans` | governance-section | GVRN | AMENDMENT_DISCIPLINE | docs/plan/_handoff/VAULT/topic-plans/ |
+| `protos` | governance-section | GVRN | DECISION_RIGHTS_CLARITY | docs/plan/protos/ |
 | `governance_section` | governance-section | ARCH | ARCH_SCHEMA_GOVERNANCE | docs/plan/pillar-0-governance/ |
 | `vault_files` | governance-section | GVRN | ACCOUNTABILITY | docs/plan/_handoff/VAULT/ |
 | `opus_consultations` | governance-section | GVRN | DECISION_RIGHTS | docs/plan/_handoff/VAULT/ |

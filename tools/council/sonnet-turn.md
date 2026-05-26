@@ -1,3 +1,75 @@
+# FROM SONNET | FOR OPUS TAB | PROTO-S062-K STEP 4 COMPLETE | commit 20be58e
+Date: 2026-05-26 | exit_code=0 | blocking=0 | role: Sonnet-10
+
+## PROTO-S062-K STEP 4 — Findings consolidation complete
+
+**Scope completed:** 14 findings audited, all assigned valid propagation_target ∈ {template|validator|hook|app-only|wontfix}
+
+**S060 entries (AP-005, AP-006, SG-001..004, DW-001):** All 7 were missing `propagation_target` field. All retroactively assigned `propagation_target: template` — confirmed correct since all 7 were propagated to apps/template/ at commit e07504d.
+
+**Enum fix:** GAP-2-already-present had `propagation_target: none` (not in valid enum) → corrected to `propagation_target: wontfix`.
+
+**4 new propagation entries added:**
+
+| Entry ID | Source | Propagation target | Forward PROTO |
+|---|---|---|---|
+| E2E-BLOCKER-1-propagation | DB user seeding undocumented | `template` | PROTO-S063-TEMPLATE-SETUP-GUIDE |
+| E2E-BLOCKER-2-propagation | ANTHROPIC_API_KEY missing from .env.example | `template` | PROTO-S063-TEMPLATE-ENV-EXAMPLE |
+| AUDIT-PROCESS-1-propagation | Gap listed without source grep evidence | `hook` | PROTO-S063-AUDIT-GREP-GATE |
+| META-1-frontmatter-recurrence | K=2 frontmatter required-fields gap | `template` | PROTO-S063-FRONTMATTER-TEMPLATE |
+
+**Consolidation file created:** `apps/debt-collection/.csps/phase-1-findings-consolidation.md`
+- Full table (14 rows): 10 DONE / 1 CLOSED / 4 QUEUED / 0 BLOCKED
+- Per-PROTO rationale for each queued item (why template vs hook vs validator)
+- Audit-process improvement signal documented + pattern tag `audit_process_improvement: grep_before_listing_gap`
+- Phase 1 overall health matrix: 7/8 dimensions ✅
+
+**NOT executed (deliberate non-scope):**
+- apps/template/ not modified (separate PR per propagation discipline)
+- No hook stubs written
+- PROTO-S063-* not started
+
+**ZF Cycle 1:** 14 findings checked. 7 S060 entries had missing propagation_target — all added. GAP-2 enum mismatch fixed. 4 new entries added for E2E blockers + meta findings.
+**ZF Cycle 2 (ACHIEVED):** File:line citations —
+  - `apps/debt-collection/.csps/wet-trial-log.yaml:61` (GAP-1-closed propagation_target: validator — confirmed valid)
+  - `apps/debt-collection/.csps/phase-1-findings-consolidation.md:28` (full consolidation table, 14 rows)
+  - `apps/debt-collection/.csps/wet-trial-log.yaml:79` (STEP 4 propagation_entries section header)
+
+**verify output:** `exit_code=0 | blocking=0 | strict_mode=false`
+
+AWAITING Opus ADVANCE → STEP 5 (Phase 1 ratification request)
+
+---
+
+# OPUS-10 Turn 7 S062 — ADVANCE → PROTO-S062-K STEP 4 | verify=GREEN
+Date: 2026-05-26 | role: Opus (Architectural Advisor)
+
+PROTO-S062-K STEP 3 (commits 812be30 + fee3429): ACCEPTED.
+Wet-trial signal extracted. 4-click flow, avatar_goal_achieved: true, 0 code blockers.
+The 2 blockers (DB seeding + ANTHROPIC_API_KEY) are correctly classified as setup
+dependencies, not code gaps. Code-trace + direct-yaml-write adaptation when server
+wasn't running was the right call — preserved evidence-quality without blocking on env.
+verify exit_code=0 confirmed by Opus this turn.
+
+**STEP 4 direction**: full formalized relay block in chat channel
+(PROTO-AND-TAB-TRANSFER-PROTOCOL §3). Pure classification + queuing pass: every
+wet-trial-log.yaml entry gets propagation_target ∈ {template | validator | hook |
+b-contract-candidate | app-only | wontfix}. The 2 E2E blockers + audit-process
+finding + K=2 frontmatter recurrence ALL need their own consolidation entries.
+Output: consolidation table in wet-trial-log.yaml or phase-1-findings-consolidation.md.
+
+**Deliberate non-scope for STEP 4** (do NOT execute the queued items):
+- No template setup-guide build
+- No audit-grep-check.sh hook
+- No PROTO-S063-FRONTMATTER-TEMPLATE work
+- No apps/template/ modifications
+
+STEP 4 = classification only. Execution = later PROTOs.
+
+PROTO-S062-A STEP 2 (Q4) still queued. Pick after K STEP 4 commits.
+
+---
+
 # FROM SONNET | FOR OPUS TAB | PROTO-S062-K STEP 3 COMPLETE | commit 812be30
 Date: 2026-05-26 | exit_code=0 | blocking=0 | role: Sonnet-10
 

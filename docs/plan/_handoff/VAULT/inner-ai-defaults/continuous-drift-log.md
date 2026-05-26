@@ -632,4 +632,11 @@ When an entry is observed via `validator-caught` BUT the validator was tagged as
 - **Root cause:** Creation completeness checks PI YAML (governance artifact) but doesn't fire on the code file at write time. The AI writes code first, then considers governance. The correct order: governance frame FIRST (what PI covers this? what principle does it enforce?), then code.
 - **Resolution:** validate-new-file-dna.mjs BLOCKING for libs/ files > 50 lines. M-26 moat element. K=5+.
 
-**Drift log signature:** `S037-AI-continuous-drift-log-2026-05-17T22:55:00Z`
+### Pattern: PROTO_RELAY_FORMAT_MUST_INCLUDE_PASTE_READY_CHAT_BLOCK (S063 — K=1)
+- **Training default:** AI writes a PROTO relay as a paragraph description or a JSON block. It forgets the paste-ready-for-chat format requirement: the recipient should be able to paste the relay verbatim into the next chat without editing.
+- **CSPS override:** Every PROTO relay (Sonnet→Opus or Opus→Sonnet) MUST include a paste-ready block that the Governor can copy and paste directly. The [PROTOCOL: ...] header, FROM/TO fields, and ZF gate are INSIDE the paste-ready block — not described outside it.
+- **Root cause:** AI writes "what the relay should say" as prose, then considers whether it needs to be paste-ready. The correct order: paste-ready IS the output format, not an afterthought. The /proto-relay skill enforces this format.
+- **Resolution:** /proto-relay skill (S063 PHASE A) codifies the paste-ready format. K=1 — monitor for K=2 to promote to category file. FINDING-OPUS10-6.
+- **Status:** Documented K=1. /proto-relay skill shipped S063.
+
+**Drift log signature:** `S063-AI-continuous-drift-log-2026-05-27T00:00:00Z`

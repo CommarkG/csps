@@ -65,6 +65,10 @@ COUNCIL REGISTRY UPDATE
 | **engraving-discipline** | FSE 5-surface atomic engraving | Band 1 (constitutional) | P5 engraving-completeness | engrave / 5/5 atomic / new B_* | Weekly: K=2 patterns → new engraving |
 | **governance-session** | Session lifecycle (open/close/HPFA) | Any (gate role) | P1 pre-close-verification | starting session / session open / close session / handoff | Per-session |
 | **zf-validation** | ZF/RZF/CEC cycles + DONE claims | Any (gate role) | P4 zero-findings-cycle | ZF / RZF / CEC / verify / DONE / RATIFIED | Per-DONE-claim |
+| **verify-quick** | Condensed verify gate — exit_code + first FAIL | Any (gate role) | P1 pre-close-verification | verify-quick / quick verify / run verify / pnpm verify | Per-commit / Per-claim |
+| **zf-cycle** | ZF Cycle 1+2 block with file citations | Any (gate role) | P4 zero-findings-cycle | zf-cycle / write ZF / generate ZF cycles / ZF evidence block | Per-DONE-claim |
+| **proto-relay** | PROTO relay block generator | Band 2-3 | P3 operations | proto-relay / write relay / generate relay / relay block | Per-STEP |
+| **step-accept** | Step completion evaluator (ACCEPTED/COURSE-CORRECT) | Any (gate role) | P1 pre-close-verification | step-accept / accept this step / verify step / is STEP done | Per-STEP |
 | **behavioral-contracts-skill** | B_* lookup + application + hard NOs | Band 1-2 | P10 csps-alignment | B_* / behavioral contract / hard NO / AGENTS.md | Weekly: drift detection |
 | **slim-handoff** | HANDOFF + HPFA + closing-summary | Band 3 (session-close) | P1 pre-close | handoff / HANDOFF / session close / closing summary | Per-close |
 | **pcr-rendering** | Pros/Cons/Recommendation decisions | Any (triggered) | P4 (decision quality) | should we / X vs Y / decide between / options: | Per-decision |

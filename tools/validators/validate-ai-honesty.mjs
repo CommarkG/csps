@@ -62,6 +62,19 @@ function isExemptLine(line) {
   return false;
 }
 
+/**
+ * FINDING-OPUS10-2 fix: track whether we're inside a fenced code block.
+ * Lines inside ``` blocks are example text, not actual AI claims.
+ * Returns true when current line is inside a fenced code block.
+ */
+function inFencedCodeBlock(linesBefore) {
+  let count = 0;
+  for (const l of linesBefore) {
+    if (/^```/.test(l.trim())) count++;
+  }
+  return count % 2 === 1; // odd = inside a fenced block
+}
+
 let blocking = 0;
 let advisory = 0;
 let files_checked = 0;
@@ -98,6 +111,7 @@ for (const entry of entries) {
 
   for (let i = 0; i < recentLines.length; i++) {
     if (isExemptLine(recentLines[i])) continue;
+    if (inFencedCodeBlock(recentLines.slice(0, i))) continue; // FINDING-OPUS10-2: skip fenced code blocks
     const lower = recentLines[i].toLowerCase();
     for (const phrase of BANNED_PHRASES) {
       if (lower.includes(phrase)) {
@@ -110,6 +124,7 @@ for (const entry of entries) {
   }
 
   for (let i = 0; i < historicalLines.length; i++) {
+    if (inFencedCodeBlock(historicalLines.slice(0, i))) continue; // FINDING-OPUS10-2: skip fenced code blocks
     if (isExemptLine(historicalLines[i])) continue;
     const lower = historicalLines[i].toLowerCase();
     for (const phrase of BANNED_PHRASES) {

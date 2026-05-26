@@ -114,3 +114,7 @@ exemptions:
   - id: B_PIE
     reason: "S056 definitions ratified. T2 validate-pie-readiness-gate.mjs planned S057. T1 hook extension planned S057."
     target_session: S057
+
+  - id: B_REVERSIBILITY_GATED_REVIEW
+    reason: "T3-only by design — review-gate tier selection is judgment-based per task reversibility context. Cannot be mechanically enforced at edit-time. T3 (session-open + this contract) is the only viable enforcement tier. Engraved S063 PHASE B.5."
+    target_session: S064

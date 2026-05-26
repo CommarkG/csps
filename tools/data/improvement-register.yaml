@@ -296,7 +296,9 @@ entries:
   first_found: S062
   k_count: 1
   sessions: [S062]
-  status: open
+  status: cec_run
+  propagated_to:
+    - validate-ai-honesty.mjs: fenced-code-block exemption added (S063 PHASE B.1)
   proposed_fix: "Add author_model: frontmatter field OR exempt fenced code blocks. Workaround shipped: {ROLE} placeholder in PROTO example boxes."
   not_yet_propagated:
     - validate-ai-honesty.mjs structural fix (S063)
@@ -341,7 +343,9 @@ entries:
   first_found: S062
   k_count: 1
   sessions: [S062]
-  status: open
+  status: cec_run
+  propagated_to:
+    - unified-plan.yaml BATCH-K PROTO-S063-AUDIT-GREP-GATE (filed S062)
   proposed_fix: "pre-tool-use-audit-grep-check.sh requires source_grep_evidence field per audit gap entry."
   not_yet_propagated:
     - PROTO-S063-AUDIT-GREP-GATE (already filed in unified-plan.yaml BATCH-K)
@@ -365,6 +369,7 @@ entries:
   apply_in: "S063 default execution mode (encoded in RELAY 20 to Sonnet)"
   expected_impact: "~70% reduction in relay overhead. Same outcomes, 3× less Governor-bridge cost."
   not_yet_propagated:
-    - B_REVERSIBILITY_GATED_REVIEW contract candidate (engrave if pattern proves in S063)
+    - B_REVERSIBILITY_GATED_REVIEW: engraved S063 PHASE B.5 (docs/plan/pillar-0-governance/behavioral-contracts/B_REVERSIBILITY_GATED_REVIEW.md)
     - PROTO sequencing template should declare gate-tier per STEP
   note: "Per Opus-10 + Governor S062 final turn. Operationalized in RELAY 20."
+  status: cec_run

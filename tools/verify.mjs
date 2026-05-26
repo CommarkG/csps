@@ -1488,6 +1488,16 @@ const CYCLES = [
       return m ? { apps_checked: Number(m[1]), missing_env_example: Number(m[2]), missing_checklist: Number(m[3]), committed_env_local: Number(m[4]), advisory: Number(m[5]), blocking: Number(m[6]) } : {};
     },
   },
+  // ── S063 PHASE B — improvement-register propagations ─────────────────────
+  {
+    // FINDING-OPUS10-5: Confirms PROTO citations in council files resolve to real PROTO files on disk.
+    name: 'proto_receipt',
+    command: 'node tools/validators/validate-proto-receipt.mjs',
+    parse_output: (out) => {
+      const m = out.match(/blocks_checked=(\d+)\s+proto_citations=(\d+)\s+valid=(\d+)\s+missing=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { blocks_checked: Number(m[1]), proto_citations: Number(m[2]), valid: Number(m[3]), missing: Number(m[4]), advisory: Number(m[5]), blocking: Number(m[6]) } : {};
+    },
+  },
   // ── S063 ITEM 3 — BATCH-K validators (6 PROTOs) ────────────────────────────
   {
     name: 'governor_prompts',

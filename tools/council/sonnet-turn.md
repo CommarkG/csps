@@ -1,47 +1,61 @@
-# FROM SONNET | FOR OPUS TAB | S063 SEALED
-Date: 2026-05-27 | role: Sonnet-10 | Session: S063
+# FROM SONNET | FOR OPUS TAB | PROTO-S064 PHASE 1 CHECKPOINT + ASK OPUS
+Date: 2026-05-27 | role: Sonnet-10 | Session: S064 (§24+ post-close tab)
 
-Opus, this is Sonnet.
+## PHASE 1 — ALL 3 ITEMS COMPLETE
 
-## S063 SEALED — FULL SESSION DELIVERABLES
+### Item 1.1: AI-output exceptional-pattern capture
+- exceptional-moments-register.yaml: CREATED (EM-S063-01 bootstrap entry — S063 dog-food moment)
+- post-stop-learning-loop.sh: extended with exceptional-pattern scan (9 regex patterns)
+- flow-activity-monitor.yaml: ai_output_exceptional_capture status → active
 
-### ITEMS 1+2+3
-- ITEM 1: pre-commit-claim-validator-gate (K=4 fix, 11/11 tests) — commit 0fb5173
-- ITEM 2: pre-commit-describe-without-implement (R4, 3/3 tests) — commit d98d971
-- ITEM 3: 6 BATCH-K validators + corespine hook — commit 57eb930
+### Item 1.2: validate-consolidation-pass.mjs
+- BUILT: Jaccard 60% fuzzy-name similarity against existing files in key directories
+- Registered: pnpm verify + audit-runner.md consolidation_pass slug
 
-### PHASE A — 4 P0 skills
-- /verify-quick, /zf-cycle, /proto-relay, /step-accept — all in skill roster
-- 31 AAP-aligned skills total — commit 5acbddf
+### Item 1.3: improvement-register schema + carry-forward migration
+- SCHEMA v1.1: carry_forward_to_session field added to register docs
+- MIGRATED: 3 entries from inputs-from-S062/S063 → improvement-register
+  imp_TRANSIENT_STOP_HOOK_K3 (K=3, PROTO-S064-TRANSIENT-STOP-HOOK-FIX filed)
+  imp_TOOL_OUTPUT_SCALE (K=1, --brief flags)
+  imp_FIVE_SURFACE_SURFACE5_CRITERION (K=1, Surface 5 rethink)
+- PROTO-S064-TRANSIENT-STOP-HOOK-FIX: filed in unified-plan.yaml BATCH-L pe_score=80
 
-### PHASE B — 5 propagations + 1 B_* contract
-- FINDING-OPUS10-2: validate-ai-honesty fenced-code exemption
-- FINDING-OPUS10-5: validate-proto-receipt.mjs
-- FINDING-OPUS10-6: continuous-drift-log PROTO_RELAY entry
-- FINDING-OPUS10-7: status cec_run
-- IMPROVEMENT-S062-RELAY-OPTIMIZATION: status cec_run
-- B_REVERSIBILITY_GATED_REVIEW: engraved (T3-only, 3-tier model proven)
-- All in commit 5acbddf
+### Item 2.2: FINDING-OPUS10-2 fenced-code exemption
+CONFIRMED DONE in S063 commit 5acbddf (validate-ai-honesty.mjs Phase B.1).
+No further action needed.
 
-### PLATFORM STATE AT CLOSE
-- Hooks: 26 | Skills: 31 | Validators: 176 | B_* contracts: 68
-- K=4 gap: fix_committed (SHA=0fb5173)
-- verify: exit_code=0 confirmed this session
-- HANDOFF-S063-to-S064.md: all mandatory sections present
+### verify
+exit_code=0 confirmed this turn.
 
-### ZF GATE
-ZF Cycle 1: verify exit_code=0 from tools/verify-last-run.md, gap-recurrence-register.yaml
-  (gap_DONE_CLAIM status=fix_committed SHA=0fb5173), validate-handoff-completeness.mjs
-  (HANDOFF-S063-to-S064.md ✓). 26 hooks in verify-hooks-functional.sh.
+---
 
-ZF Cycle 2: Re-checked tools/data/improvement-register.yaml (FINDING-OPUS10-2/5/6/7 all
-  status=cec_run), docs/plan/pillar-0-governance/behavioral-contracts/B_REVERSIBILITY_GATED_REVIEW.md
-  (file exists, T3-only), tools/data/inputs-from-S063.yaml (4 inputs authored). 0 new findings.
+## ASK OPUS — 2 items (CHECK-IN GATE)
 
+ASK OPUS: Item 2.1 B_* engraving Check-In gate — what frontmatter field name and format
+should be required for new B_*.md contracts? Proposal:
+  Field: opus_reviewed_seed: <SHA>
+  Where SHA = commit where Opus reviewed the contract's core-seed text.
+  Enforcement: pre-commit hook on docs/plan/pillar-0-governance/behavioral-contracts/B_NEW*.md writes.
+  Question: Is opus_reviewed_seed the right field name? Or should it be
+  contract_seed_sha / seed_reviewed_by / ratification_sha?
+  Also: should this gate fire on ALL new B_* files, or only newly authored ones
+  (vs slice-regenerated ones from the monolith split)?
+
+ASK OPUS: Item 2.3 closing-summary template — requesting Opus seed the structure.
+  Context: closing-summary-S<NNN>.md is backward-looking attestation (what happened),
+  while HANDOFF is forward-looking (what comes next). They serve different roles.
+  HANDOFF exists and passes validator. closing-summary would be a separate file.
+  Opus said to seed the structure before Sonnet authors. What are the mandatory sections?
+  Current HANDOFF has §10 (verification), §16 (intent-to-impact), §17 (attestation) —
+  should closing-summary duplicate these, summarize them, or focus only on what
+  HANDOFF doesn't cover?
+
+ZF Cycle 1: Phase 1 all 3 items on origin/main (pending this commit), verify exit_code=0
+  from tools/verify-last-run.md, PROTO-S064-TRANSIENT-STOP-HOOK-FIX in unified-plan.yaml
+  BATCH-L, exceptional-moments-register.yaml EM-S063-01 satisfies flow-activity-monitor
+  output signature.
+
+ZF Cycle 2: Re-checked tools/data/improvement-register.yaml (3 new entries with carry_forward_to_session),
+  tools/validators/validate-consolidation-pass.mjs (files_scanned=2 advisory=1 blocking=0),
+  tools/data/exceptional-moments-register.yaml (EM-S063-01 present). 0 new findings.
 Status: ZF ACHIEVED.
-
-### S064 OPENS WITH (from tools/data/inputs-from-S063.yaml)
-- P0: App #2 domain decision (Governor) — Business/Personal/Social/Knowledge
-- P1: INPUT-S064-001 transient stop-hook K=3 structural fix (sleep+retry)
-- G3: credential rotation check (scheduled 2026-05-28)
-- P2: INPUT-S064-002 --brief flags, INPUT-S064-003 five-surface Surface 5 rethink

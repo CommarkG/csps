@@ -1,0 +1,32 @@
+---
+id: csps.data.exceptional-moments-register
+name: exceptional-moments-register
+description: "Register of exceptional AI output moments worth permanently capturing: structural insights, novel cross-connections, elegant solutions, rare clarity events. Feeds into learning-loop improvements. Each entry is a specific moment with evidence. K-count tracks recurrence of pattern type."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: audit_scheduling
+session: S064
+links:
+  - tools/data/flow-activity-monitor.yaml
+  - tools/data/improvement-register.yaml
+---
+
+# Exceptional Moments Register
+
+> Captured by post-stop-learning-loop.sh exceptional-pattern scan.
+> Entry ID format: EM-S<NNN>-<NN>
+> Pattern types: structural_insight | cross_connection | elegant_solution | rare_clarity | self_correction
+
+entries:
+
+  - id: EM-S063-01
+    session: S063
+    timestamp: "2026-05-27T00:00:00Z"
+    pattern_type: self_correction
+    content: "S063 was the first session where the platform's new enforcement gates blocked the platform's own commits. The K=4 gap fix (pre-commit-claim-validator-gate) blocked Sonnet's commit because the message contained DONE before validator confirmation. The R4 hook blocked Sonnet's commit because the message contained 'Proposed fix' without follow-up evidence. Both correct stops, both immediate course-correction. The platform's mirror now also catches the people holding it."
+    significance: "First mechanical self-policing: governance system enforced itself on its own authors. Proves the structural discipline is real, not theater."
+    evidence: "commit 0fb5173 (Item 1 dog-food #1) + commit d98d971 (Item 2 dog-food #2)"
+    status: extracted

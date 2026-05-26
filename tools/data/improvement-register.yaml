@@ -21,6 +21,10 @@ links:
 > k_count = sessions in which this improvement was independently identified.
 > k_count >= 2: CEC REQUIRED (Complete Extraction Cycle — propagate to all relevant surfaces).
 > Status: open → cec_run → propagated → closed
+>
+> SCHEMA v1.1 (S064): Optional field carry_forward_to_session: S<NNN> marks entries
+>   migrated from inputs-from-S*.yaml. inputs-from-S*.yaml files are DEPRECATED — use
+>   this register directly for all carry-forward inputs going forward.
 
 entries:
 
@@ -408,3 +412,70 @@ entries:
     - post-stop-learning-loop.sh extension (regex set + auto-file)
     - integration with Threshold intake processing
   note: "Surfaced by Governor S063 close-question. The asymmetric durability gap is real and structurally significant — user-side has Threshold, AI-side has deferred extraction. This is the meta-gap behind R4 trap recurrences."
+
+- id: FINDING-S063-CONSOLIDATION-DRIFT-NO-VALIDATOR
+  title: "No mechanical validator catches new-file consolidation drift — B_CONSOLIDATION_PASS is contract-only"
+  description: >
+    Platform has B_CONSOLIDATION_PASS contract + consolidation-expert skill, but ZERO
+    mechanical gate that checks new files against existing-similar before commit. Result:
+    inputs-from-S062.yaml + inputs-from-S063.yaml created in 2 consecutive sessions —
+    BOTH duplicate the carry-forward function already covered by improvement-register
+    and gap-recurrence-register. Without intervention, this becomes K=38 by S100
+    (one per session). Closing-summaries/ dir is also dead infrastructure (empty, HANDOFFs
+    replaced the function) — same drift class, undetected.
+  first_found: S063
+  k_count: 1
+  sessions: [S063]
+  status: open
+  source: "Governor S063 directive 'check for consolidation ops... avoid overlapping and duplications... prevention is the key word'"
+  evidence:
+    - "tools/data/inputs-from-S062.yaml + tools/data/inputs-from-S063.yaml — 2 files, schema lighter than improvement-register, K=2 in 2 sessions"
+    - "docs/plan/_handoff/VAULT/closing-summaries/ — empty dir, referenced in protocols, replaced by HANDOFF-*.md"
+    - "B_CONSOLIDATION_PASS exists as contract; consolidation-expert skill exists; no validator enforces it per-session on new file creation"
+  proposed_fix: |
+    Build validate-consolidation-pass.mjs OR pre-commit-consolidation-check.sh:
+    - For every untracked file in git status, scan for fuzzy-name matches against existing
+      files in same directory tree (Levenshtein distance + extension match)
+    - ADVISORY when name-similarity > 60% OR file-pattern repeats (e.g., inputs-from-S*.yaml)
+    - BLOCKING when same-pattern detected K=2+ (e.g., 2nd inputs-from-S*.yaml would block)
+    - Configurable allowlist for legitimate per-session files (HANDOFF-S*-to-S*.md is OK)
+  not_yet_propagated:
+    - PROTO-S064-CONSOLIDATION-PASS-VALIDATOR candidate (S064 priority)
+    - Decision on inputs-from-S*.yaml: merge into improvement-register OR keep separate
+    - Decision on closing-summaries/ dir: delete OR revive
+    - Cross-reference frontmatter validators' tier-distinction in @csps-description headers
+    - Consolidate 2× RELAY-S063-*.md into 1 file with H2 sections
+  note: "Governor S063 directive: 'prevention is the key word'. This is the meta-prevention — without a consolidation validator, drift compounds invisibly. 5 concrete overlap findings (inputs-from-S* / closing-summaries / validate-validators-vs-flow-monitor / 3 frontmatter validators / 2 RELAY-S063 files) all surfaced by the audit but only the validator-fix prevents future occurrences. K=1 now, will recur as K=2+ in S064 if not built."
+
+  # ── MIGRATED FROM inputs-from-S*.yaml (SCHEMA v1.1 carry_forward_to_session) ──
+
+  - id: imp_TRANSIENT_STOP_HOOK_K3
+    finding: "post-stop-pnpm-verify.sh fires during git commit-chain CRLF normalization, reporting transient FAIL that resolves on next interactive run. K=3 across S062+S063."
+    first_found: S062
+    k_count: 3
+    sessions: [S062, S063]
+    status: open
+    carry_forward_to_session: S064
+    plan_item: PROTO-S064-TRANSIENT-STOP-HOOK-FIX
+    proposed_fix: "Add sleep 3 + retry before emitting FAIL in post-stop-pnpm-verify.sh"
+    note: "K=3 = P-META-019 MANDATORY structural fix. Migrated from INPUT-S063-002."
+
+  - id: imp_TOOL_OUTPUT_SCALE
+    finding: "Per-N tool output (verify.mjs, migrator) burns context 3× faster. Tools emit one line per file without --brief mode."
+    first_found: S062
+    k_count: 1
+    sessions: [S062]
+    status: open
+    carry_forward_to_session: S064
+    proposed_fix: "Add --brief/--summary flag to verify.mjs + migrate-enforcement-trio.mjs"
+    note: "K=1 open. Migrated from INPUT-S063-004 / FINDING-S062-TOOL-OUTPUT-SCALE."
+
+  - id: imp_FIVE_SURFACE_SURFACE5_CRITERION
+    finding: "validate-five-surface.mjs Surface 5 (schema_anchor) never counts for B_*.md slice files — they don't have schema_anchor in frontmatter. full_5surface=0 for all 66 contracts."
+    first_found: S063
+    k_count: 1
+    sessions: [S063]
+    status: open
+    carry_forward_to_session: S064
+    proposed_fix: "Rethink Surface 5 for slice-format files: count parent behavioral-contracts.md schema_anchor, or remove Surface 5 requirement for slices"
+    note: "Migrated from INPUT-S064-003."

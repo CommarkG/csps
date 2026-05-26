@@ -1500,6 +1500,17 @@ const CYCLES = [
       return m ? { apps_checked: Number(m[1]), missing_env_example: Number(m[2]), missing_checklist: Number(m[3]), committed_env_local: Number(m[4]), advisory: Number(m[5]), blocking: Number(m[6]) } : {};
     },
   },
+  // ── S064 PROTO Phase 1 — prevention graph completion ──────────────────────
+  {
+    // PROTO-S064 Item 1.2: Scans staged/new files for fuzzy-name duplication against existing.
+    // ADVISORY — 60% Jaccard similarity threshold. Composes with /consolidation-expert skill.
+    name: 'consolidation_pass',
+    command: 'node tools/validators/validate-consolidation-pass.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_scanned=(\d+)\s+potential_duplicates=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { files_scanned: Number(m[1]), potential_duplicates: Number(m[2]), advisory: Number(m[3]), blocking: Number(m[4]) } : {};
+    },
+  },
   // ── S063 PHASE B — improvement-register propagations ─────────────────────
   {
     // FINDING-OPUS10-5: Confirms PROTO citations in council files resolve to real PROTO files on disk.

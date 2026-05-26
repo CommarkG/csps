@@ -72,12 +72,13 @@ flow_elements:
       output_location: tools/data/exceptional-moments-register.yaml
       output_signature: '^\s*-\s+id:\s+EM-'
     expected_cadence: per_session
-    last_active_at: null
+    last_active_at: "2026-05-27"
     last_output_count: 0
-    status: not-yet-built
+    status: active
     exempt_reason: null
     source: S063
-    notes: "FINDING-S063-AI-OUTPUT-CAPTURE-ASYMMETRY — register doesn't exist yet. Build PROTO-S064-AI-OUTPUT-CAPTURE."
+    built_in: S064
+    notes: "Built S064 PROTO-S064 Item 1.1. Register created (exceptional-moments-register.yaml). post-stop-learning-loop.sh extended with exceptional-pattern scan."
 
   - id: zf_cycle_format
     element_type: validator

@@ -1613,3 +1613,15 @@ items:
     pe_score: 95
     tags: [hook, pre-commit, done-claim, validator-gate, p-meta-019, k4, s063, must-fix-first]
     notes: "K=4 gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS per P-META-019. MANDATORY: must be built BEFORE any other S063 PROTO work. Pre-commit hook that blocks commits containing DONE/SEALED/COMPLETE/CLOSED/RATIFIED keywords unless the relevant close-validator (validate-handoff-completeness/validate-permanence-coverage/validate-zf-cycle-format/validate-frontmatter) has THIS-HEAD exit_code=0. Also requires behavioral test: tools/tests/behavioral/done-claim-validator-gate-test.sh. See tools/data/gap-recurrence-register.yaml id=gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS for full proposed_fix spec."
+
+  - id: PROTO-S064-TRANSIENT-STOP-HOOK-FIX
+    title: "post-stop-pnpm-verify.sh sleep+retry — K=3 transient FAIL structural fix"
+    status: intake
+    epoch: E2
+    category: governance
+    owner: sonnet
+    batch: BATCH-L
+    session_target: S064
+    pe_score: 80
+    tags: [hook, verify, transient-fail, p-meta-019, k3, must-fix, s064]
+    notes: "K=3 pattern: post-stop hook fires during git CRLF normalization and reports transient FAIL. Structural fix: add sleep 3 + retry before emitting FAIL. Per P-META-019 K>=3 = MANDATORY. imp_TRANSIENT_STOP_HOOK_K3 in improvement-register."

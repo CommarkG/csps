@@ -6,11 +6,13 @@ type: proto
 protection_level: active
 owner: group:finky
 lifecycle: production
-lifecycle_state: archived
+lifecycle_state: closed
 version: "1.0"
 session: S062
 completed_at: "2026-05-26"
 completion_sealing_commits: [9a7bfbd, 0be431b, 004d17b]
+evidence_block_ref: "tools/council/sonnet-turn.md — STEP 5b APPLY COMPLETE block + ZF Cycle 1/2 citing triage.yaml + 3 representative contracts by bucket"
+cec_walk_trail_ref: "tools/data/permanence-partial-triage.yaml (status:applied) + tools/data/improvement-register.yaml (FINDING-S062-PERMANENCE-DRIFT resolved)"
 core_spine: GVRN
 schema_anchor: protos
 consolidation_cross_refs:

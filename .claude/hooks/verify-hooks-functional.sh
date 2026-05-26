@@ -65,6 +65,7 @@ readonly -a DECLARED_HOOKS=(
   "pre-tool-use-bstar-trio-gate.sh"
   "post-stop-token-tracker.sh"
   "user-prompt-submit-token-budget-warning.sh"
+  "pre-commit-claim-validator-gate.sh"
 )
 
 echo "[verify-hooks-functional] ACTIVE S041 — checking ${#DECLARED_HOOKS[@]} hooks"

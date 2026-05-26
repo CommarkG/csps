@@ -184,6 +184,15 @@
             "command": ".claude/hooks/pre-tool-use-agent-alignment.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-commit-claim-validator-gate.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [

@@ -148,10 +148,12 @@ entries:
       - turn: SESSION-CLOSE-CLAIMED
         commit: 91054a1
         course_correct: HANDOFF-S062-to-S063 missing Zone A title + ALIGNMENT QUESTIONS + SONNET STARTUP BLOCK
-    status: open
+    status: fix_committed
     structural_fix_triggered: true
     structural_fix_required_since: S062
-    behavioral_test_exists: false
+    structural_fix_committed: pending_this_commit
+    behavioral_test_file: tools/tests/behavioral/done-claim-validator-gate-test.sh
+    behavioral_test_exists: true
     proposed_fix: |
       Pre-commit hook .claude/hooks/pre-commit-claim-validator-gate.sh:
         IF commit message contains /\b(COMPLETE|SEALED|DONE|CLOSED|RATIFIED)\b/i AND

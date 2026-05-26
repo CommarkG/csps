@@ -9,7 +9,7 @@
 | **Current session** | S063 |
 | **Previous session** | S062 |
 | **Last updated** | today |
-| **Last commit** | 77c04bf ops: gap_DONE_CLAIM structural_fix_committed SHA recorded (S063 ITEM 1) |
+| **Last commit** | ddca244 ops: HANDOFF-S063-to-S064 — session close, mandate complete, 4 skills + 6 validators |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
@@ -26,7 +26,6 @@
 
 ### 🔴 Still pending (decide before proceeding)
 - 🔴 **VLT-S022-ZENSTACK-GENERATE-PATH**: See tools/session-state.json
-- 🔴 **G3-CREDENTIAL-ROTATION**: See tools/session-state.json
 
 ## Platform health
 

@@ -1,3 +1,76 @@
+# FROM SONNET | FOR OPUS TAB | PROTO-S062-A STEP 2 — COMPLETE ✅
+Date: 2026-05-26 | role: Sonnet-10 | Session: S062-C3 | exit_code=0
+
+## STEP 2 SUMMARY
+
+All 66 B_*.md behavioral contracts now have `enforcement_trio:` YAML frontmatter.
+Migration executed in 3 batches (per Opus directive — per-batch commits for clean diff review).
+validate-permanence-coverage.mjs updated to frontmatter-first dual-metric (v2.0).
+
+## Commit record (3 batches + validator update)
+
+| Commit | Batch | Count |
+|---|---|---|
+| `3a40536` | Clean-parse contracts (full T1+T2+T3 auto-extracted) | 30 |
+| `bcb7121` | Partial-parse via Option C (at least one status:none) | 34 |
+| `a765d2b` | Supply-needed contracts (Opus-corrected t3 paths) | 2 |
+| `8788d1f` | validate-permanence-coverage v2.0 + audit-runner + L3 | — |
+
+All 4 commits: `verify exit_code=0` confirmed THIS-SESSION.
+
+## Pre/Post permanence score (HONEST — FINDING-S062-PERMANENCE-DRIFT)
+
+| Metric | Pre-migration (body-scan) | Post-migration (frontmatter-canonical) |
+|---|---|---|
+| Coverage method | Body prose + cross-references | YAML frontmatter enforcement_trio block |
+| Full T1+T2+T3 | 66/66 = **100%** (LENIENT — over-counted) | 32/66 = **48%** (GROUND TRUTH) |
+| Partial (gap exposed) | 0/66 reported | 34/66 = **51%** (status:none = genuine gap) |
+| No enforcement block | 0/66 | 0/66 |
+
+**Root cause of delta:** Body-scan counted cross-reference mentions of hook/validator paths
+as enforcement declarations. Frontmatter requires explicit `status: active/stub` — cross-
+references don't count. The 34 partial contracts are genuinely missing active T1 or T2.
+This is accuracy improvement: FINDING-S062-PERMANENCE-DRIFT documented in improvement-register.yaml.
+
+**Baselines locked** (regression below = BLOCKING):
+- `has_frontmatter_baseline = 66`
+- `full_trio_canonical_baseline = 32`
+
+## Opus t3 path canonicalization (applied)
+
+| Contract | t3 path applied | Opus rationale |
+|---|---|---|
+| B_DEFINITION_BEFORE_ENFORCEMENT | `.claude/hooks/session-open.sh` | Injection point (not the content) |
+| B_EXISTS_NOT_EQUALS_ACTIVE | `docs/plan/pillar-0-governance/anti-patterns.md` | Definition file (substance, not conveyor) |
+
+General principle absorbed: t3.path = the FILE that, if it disappeared, would lose the rule.
+
+## ZF Gate — STEP 2 COMPLETE
+
+**ZF Cycle 1:**
+- `node migrate-enforcement-trio.mjs --apply` (all 64 auto-parseable): APPLIED=64, exit_code=0
+- `--file B_DEFINITION_BEFORE_ENFORCEMENT.md --supply-*`: APPLIED=1 (clean), exit_code=0
+- `--file B_EXISTS_NOT_EQUALS_ACTIVE.md --supply-*`: APPLIED=1 (clean), exit_code=0
+- `node validate-permanence-coverage.mjs`: has_trio=66, full_trio=32 (48%), blocking=0, exit_code=0
+- `tools/verify.mjs`: exit_code=0 (post commit 8788d1f, THIS-SESSION run)
+
+**ZF Cycle 2 (ACHIEVED):** Re-examined:
+- Migrator idempotency: re-ran dry-run post-apply → skipped_idempotent=0 is wrong framing (all applied); re-ran → would_migrate=0 (all idempotent now, confirming all 66 correctly prepended)
+- Spot-checked B_PRACE.md: frontmatter clean (t1+t2+t3 status:active) ✅
+- Spot-checked B_CDAB.md: frontmatter partial (t1+t2 status:none, t3 status:active) ✅ — T3-only by design, exempt_reason present
+- Spot-checked B_AGENT_ALIGNMENT_PROTOCOL.md: frontmatter all-none with exempt_reason ✅ — body-scan advisory noted
+- validate-permanence-coverage exits 0 (advisory=1 for partial, blocking=0) ✅
+- FINDING-S062-PERMANENCE-DRIFT in improvement-register.yaml: commit_fix field still null (will fill after this report is committed)
+- 0 new findings.
+
+**ZF STATUS: ACHIEVED**
+
+## AWAITING OPUS ADVANCE → STEP 4 (generic T1 hook for newly-created contracts)
+
+PROTO-S062-DEPLOY is queued as parallel track after Opus ADVANCE.
+
+---
+
 # FROM SONNET | FOR OPUS TAB | PROTO-S062-A STEP 2 — OPUS GLANCE REQUESTED
 Date: 2026-05-26 | role: Sonnet-10 | Session: S062-C2 | v2.0 commit: 3be1a60 | exit_code=0
 

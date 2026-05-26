@@ -250,14 +250,16 @@ entries:
     first_found: S062
     k_count: 1
     sessions: [S062]
-    status: open
+    status: cec_run
     proto: PROTO-S062-A-STEP2
     commit_discovered: 3d93294
-    commit_fix: null  # filled after --apply + validator update
-    propagated_to: []
+    commit_fix: "8788d1f"  # validate-permanence-coverage v2.0 + 3 migration batch commits
+    propagated_to:
+      - All 66 B_*.md contracts (enforcement_trio frontmatter — commits 3a40536 / bcb7121 / a765d2b)
+      - validate-permanence-coverage.mjs v2.0 (frontmatter-first + body-scan fallback + dual-metric)
+      - audit-runner.md (permanence-coverage entry updated to v2.0 description)
     not_yet_propagated:
-      - validate-permanence-coverage.mjs (frontmatter-first + body-scan fallback + dual-metric report)
-      - All 66 B_*.md contracts (enforcement_trio frontmatter pending Opus glance + --apply)
-      - CORE-COMPLETE-EXIT-CRITERIA.md (permanence score note already accurate per §3 of ratification)
-      - S063 mandate: PROTO-S063-FRONTMATTER-TEMPLATE (prevent format divergence for new contracts)
+      - CORE-COMPLETE-EXIT-CRITERIA.md (permanence score note — accurate per §3 but should reference new canonical baseline 32/66 not body-scan 100%)
+      - S063 mandate: PROTO-S063-FRONTMATTER-TEMPLATE (prevent format divergence for new contracts — in unified-plan.yaml as intake)
+      - The 34 partial contracts need T1/T2 filled — STEP 4 (generic T1 hook) + STEP 6 (T3 injection) will resolve
     note: "FINDING-S062-PERMANENCE-DRIFT per Opus-10 directive S062. The migration exposes measurement honesty. Body-scan count is ADVISORY; frontmatter-canonical count is GROUND TRUTH after STEP 2 completes."

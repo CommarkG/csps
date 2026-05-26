@@ -8,6 +8,7 @@ findings:
     description: "resolve.dedupe invalid in webpack 5 — Vite-only API used in all next.config.js files"
     impact: "All future apps inherit fix automatically via template"
     commit: e07504d
+    propagation_target: template
 
   - type: bug_fix
     id: AP-006
@@ -15,6 +16,7 @@ findings:
     fix: "resolve.alias to CJS path + NormalModuleReplacementPlugin for inngest/next subpath"
     impact: "Inngest background jobs now work in all CSPS apps"
     commit: e07504d
+    propagation_target: template
 
   - type: structural_gap
     id: SG-001
@@ -22,12 +24,14 @@ findings:
     fix: "Created libs/config/package.json"
     impact: "Template properly resolves @csps/config; subscription config accessible to all libs"
     commit: e07504d
+    propagation_target: template
 
   - type: structural_gap
     id: SG-002
     description: "Bad relative import in @csps/integrations: ../../config/subscription.config breaks in node_modules symlink context"
     fix: "Changed to @csps/config/subscription.config (proper workspace import)"
     commit: e07504d
+    propagation_target: template
 
   - type: deferred_wiring
     id: DW-001
@@ -35,6 +39,7 @@ findings:
     detail: "All 4 job functions migrated: triggers move into config object, handler becomes 2nd arg"
     impact: "Background jobs (welcome email, trial expiry, digest, webhook delivery) now functional"
     commit: e07504d
+    propagation_target: template
 
   - type: structural_gap
     id: SG-003
@@ -42,6 +47,7 @@ findings:
     fix: "Added to template/package.json + debt-collection/package.json"
     impact: "Future forks from template will have all deps from day 1"
     commit: e07504d
+    propagation_target: template
 
   - type: structural_gap
     id: SG-004
@@ -49,6 +55,7 @@ findings:
     fix: "Added export const dynamic = 'force-dynamic' to all app root layouts"
     impact: "All CSPS apps build cleanly without CLERK_PUBLISHABLE_KEY at build time"
     commit: e07504d
+    propagation_target: template
 
   # PROTO-S062-K STEP 2 — Phase 1 gap closures
 
@@ -74,7 +81,7 @@ findings:
     finding: "create/page.tsx:16 relatedPages:['/dashboard','/message'] + message/page.tsx:17 relatedPages:['/dashboard','/create'] — both present since S060 build"
     fix: "No fix required. Gap-audit false positive. Closed as already-present."
     commit: 080041e
-    propagation_target: none
+    propagation_target: wontfix
 
   # PROTO-S062-K STEP 3 — E2E trace results
 
@@ -132,5 +139,48 @@ findings:
     phase_1_code_blockers: 0
     notes: "posthog.track() is no-op stub (wiring_deferred_until: S040). Dashboard empty state, create form, PATCH, status reflect — all verified. generate-message route wired correctly but requires live server + ANTHROPIC_API_KEY for full validation."
     commit: 812be30
+
+  # PROTO-S062-K STEP 4 — Propagation entries (from E2E blockers + meta findings)
+
+  - type: propagation_entry
+    id: E2E-BLOCKER-1-propagation
+    source_finding: BLOCKER-1 (PROTO-S062-K-E2E-1)
+    description: "Dashboard requires db.user.findUnique() — wet trial Governor must pre-seed DB user record or redirect to /sign-in. No code gap, but undocumented setup dependency for every future app fork."
+    propagation_target: template
+    action: "Add 'Phase 1 setup checklist' to apps/template/setup-guide.md (or README.md §Setup). Must reference feedback_clerk_local_dev_setup.md. Must include: seed DB user record step + sign out/in step + verify tenantId in JWT claims."
+    follow_up_proto: PROTO-S063-TEMPLATE-SETUP-GUIDE
+    status: queued
+    session_queued: S062
+
+  - type: propagation_entry
+    id: E2E-BLOCKER-2-propagation
+    source_finding: BLOCKER-2 (PROTO-S062-K-E2E-1)
+    description: "ANTHROPIC_API_KEY must be in .env.local for /api/generate-message to work. Currently missing from apps/template/.env.example. Any AI-powered app forked from template will fail silently on first API call."
+    propagation_target: template
+    action: "Add ANTHROPIC_API_KEY=your_key_here with comment '# Required for AI message generation (get from console.anthropic.com)' to apps/template/.env.example."
+    follow_up_proto: PROTO-S063-TEMPLATE-ENV-EXAMPLE
+    status: queued
+    session_queued: S062
+
+  - type: propagation_entry
+    id: AUDIT-PROCESS-1-propagation
+    source_finding: "GAP-2 false positive (phase-1-gap-audit.md) — audit listed gap without grepping current source first"
+    description: "Audit process gap: STEP 1 audit listed 'relatedPages missing' without verifying against actual file content. 1/3 of STEP 2 effort spent validating a non-issue. Root cause: no structural requirement to cite file:line grep evidence before listing a gap."
+    propagation_target: hook
+    action: "Add pre-tool-use-audit-grep-check.sh (stub) — when AI writes to *gap-audit*.md or *wet-trial-log*.yaml with type:structural_gap, hook warns: 'Did you grep source files to confirm this gap exists? Add source_grep_evidence field.' Hook stub spec only — full implementation S063."
+    follow_up_proto: PROTO-S063-AUDIT-GREP-GATE
+    status: queued
+    session_queued: S062
+
+  - type: propagation_entry
+    id: META-1-frontmatter-recurrence
+    source_finding: "FINDING-OPUS10-3 — k_count=2: new markdown files missing 4 required frontmatter fields (version, owner, lifecycle, lifecycle_state). Hit on tab-transfer-stability-analysis.md (S062) + phase-1-gap-audit.md (S062)."
+    description: "Pattern K=2 confirmed: every new markdown governance artifact missing the same 4 fields. Structural fix: central required-fields config + template inheritance pattern. Until fixed, every new file requires manual frontmatter gap discovery and patch."
+    propagation_target: template
+    action: "PROTO-S063-FRONTMATTER-TEMPLATE: create .csps/templates/governance-doc.md with all required frontmatter pre-filled + placeholder values. All new governance docs fork from this template. Validate with validate-frontmatter.mjs that 0 required fields are missing."
+    follow_up_proto: PROTO-S063-FRONTMATTER-TEMPLATE
+    k_count: 2
+    status: queued
+    session_queued: S062
 
   # PROTO-K-A findings added during feature build phase

@@ -193,6 +193,15 @@
             "command": ".claude/hooks/pre-commit-claim-validator-gate.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-commit-describe-without-implement.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [

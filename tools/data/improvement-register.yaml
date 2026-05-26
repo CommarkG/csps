@@ -286,3 +286,85 @@ entries:
     - migrate-enforcement-trio.mjs --silent flag (S063)
     - PROTO-S063 candidate (promote to K=2 if recurs in S063)
   note: "Per Opus-10 NEW FINDING directive S062. Structural fix deferred to S063."
+
+- id: FINDING-OPUS10-2
+  title: "validate-ai-honesty.mjs has no model-identity awareness — blocks legitimate Opus self-identification"
+  description: >
+    The validator uses substring matching for impersonation phrases with no model-identity verification.
+    Cannot distinguish (a) Sonnet impersonating Opus, (b) Opus self-identifying, (c) example text in
+    code blocks. Caught S062 when Opus-10's INTENT ABSORBED was blocked.
+  first_found: S062
+  k_count: 1
+  sessions: [S062]
+  status: open
+  proposed_fix: "Add author_model: frontmatter field OR exempt fenced code blocks. Workaround shipped: {ROLE} placeholder in PROTO example boxes."
+  not_yet_propagated:
+    - validate-ai-honesty.mjs structural fix (S063)
+  note: "Per Opus-10 directive S062 PROTO-S062-A FINDING-OPUS10-2."
+
+- id: FINDING-OPUS10-5
+  title: "PROTO files lack receipt-confirmation validator"
+  description: >
+    M-37 Core Seeds moat requires PROTO files as architectural anchors but no validator confirms
+    Sonnet cited PROTO file before implementing. Relies on relay-protocol behavioral discipline.
+  first_found: S062
+  k_count: 1
+  sessions: [S062]
+  status: open
+  proposed_fix: "validate-proto-receipt.mjs scans sonnet-turn.md FROM SONNET blocks for PROTO file citations."
+  not_yet_propagated:
+    - tools/validators/validate-proto-receipt.mjs (S063 candidate)
+  note: "Per Opus-10 directive S062 PROTO-S062-K Companion Findings."
+
+- id: FINDING-OPUS10-6
+  title: "PROTO relay format violation — Opus dropped paste-ready chat relay block"
+  description: >
+    PROTO-AND-TAB-TRANSFER-PROTOCOL §3 requires every PROTO issuance carry paste-ready relay text
+    in chat. Opus-10 violated once (PROTO-S062-K initial issuance — directive went to sonnet-turn.md
+    without paste-ready chat block). Governor caught: "you forgot to present the formalized proto
+    and you are freestyling." Behavioral correction applied immediately.
+  first_found: S062
+  k_count: 1
+  sessions: [S062]
+  status: behavior-corrected
+  proposed_fix: "Add drift-log entry: EVERY PROTO issuance MUST include paste-ready chat relay block per §3."
+  not_yet_propagated:
+    - inner-ai-defaults/continuous-drift-log.md entry (S063)
+  note: "Per Opus-10 directive S062. Corrected behaviorally, drift-log engraving pending."
+
+- id: FINDING-OPUS10-7
+  title: "Audit-process discipline — grep current source before listing as a gap"
+  description: >
+    PROTO-S062-K STEP 1 listed GAP-2 as Phase 1 gap. STEP 2 found relatedPages already present
+    since S060. False positive — audit listed gap from spec-vs-validator-output without
+    grep-verifying against current source.
+  first_found: S062
+  k_count: 1
+  sessions: [S062]
+  status: open
+  proposed_fix: "pre-tool-use-audit-grep-check.sh requires source_grep_evidence field per audit gap entry."
+  not_yet_propagated:
+    - PROTO-S063-AUDIT-GREP-GATE (already filed in unified-plan.yaml BATCH-K)
+  note: "Per Opus-10 directive S062 PROTO-S062-K STEP 4 audit-process signal."
+
+- id: IMPROVEMENT-S062-RELAY-OPTIMIZATION
+  title: "Review threshold should scale with reversibility cost, not novelty"
+  description: >
+    S062 had ~17 RELAY cycles where Opus gated per-STEP on work that was reversible single-file
+    edits. Burned ~12-15 turns and 3× Governor relay overhead. Three-tier model surfaced by
+    Governor meta-critique in S062 final turn.
+  first_found: S062
+  k_count: 1
+  sessions: [S062]
+  status: open
+  three_tier_model:
+    auto_execute: "single-file mechanical + matches existing pattern + clear DONE criteria → Sonnet acts, reports when done"
+    check_in_gate: "borderline classification OR mass commit >10 files OR novel pattern → Sonnet pauses for Opus glance (NOT full ADVANCE)"
+    full_advance_gate: "ratification moments OR K≥2 structural fixes OR milestone declarations → Sonnet stops, Opus full review"
+  source: "Governor S062 meta-critique on relay overhead"
+  apply_in: "S063 default execution mode (encoded in RELAY 20 to Sonnet)"
+  expected_impact: "~70% reduction in relay overhead. Same outcomes, 3× less Governor-bridge cost."
+  not_yet_propagated:
+    - B_REVERSIBILITY_GATED_REVIEW contract candidate (engrave if pattern proves in S063)
+    - PROTO sequencing template should declare gate-tier per STEP
+  note: "Per Opus-10 + Governor S062 final turn. Operationalized in RELAY 20."

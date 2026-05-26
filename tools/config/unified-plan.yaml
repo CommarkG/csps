@@ -1531,3 +1531,71 @@ items:
     session_target: S063
     tags: [template, frontmatter, governance-doc, k2-trigger, s062-carryover, s063]
     notes: "Source: PROTO-S062-K Phase 1 carryover (META-1). K=2 recurrence confirmed: frontmatter required-fields gap appeared in wet-trial-log.yaml (missing propagation_target enum) AND phase-1-findings-consolidation.md (required fields absent initially). Structural fix: governance-doc.md template with mandatory frontmatter block pre-filled. propagation_target: template. K=2 means structural fix is mandatory. Do NOT write PROTO file — Opus authors S063."
+
+  # ── BATCH-K: 5b-(b) Buildables from PROTO-S062-A STEP 5b triage (Opus ruling S062) ──
+
+  - id: PROTO-S063-FIVE-SURFACE-VALIDATOR
+    title: "validate-five-surface.mjs — T2 validator for B_FIVE_SURFACE_ENGRAVING atomicity"
+    status: intake
+    epoch: E2
+    category: governance
+    owner: sonnet
+    batch: BATCH-K
+    session_target: S063
+    tags: [validator, five-surface, engraving, b-star, s062-5b-buildable, s063]
+    notes: "Source: PROTO-S062-A STEP 5b triage Q1 Opus ruling. B_FIVE_SURFACE_ENGRAVING needs a dedicated T2 validator that walks all 5 surfaces (schema/validator/hook/memory/contract) per ratification event — not validate-validators.mjs which is meta-only. New build required. Enforces 5/5 atomicity check."
+
+  - id: PROTO-S063-STRUCTURAL-FIX-VALIDATOR
+    title: "validate-structural-fix.mjs — T2 validator for B_STRUCTURAL_PREVENTION_DISCIPLINE"
+    status: intake
+    epoch: E2
+    category: governance
+    owner: sonnet
+    batch: BATCH-K
+    session_target: S063
+    tags: [validator, structural-prevention, gap-recurrence, b-star, s062-5b-buildable, s063]
+    notes: "Source: PROTO-S062-A STEP 5b triage Q4 Opus ruling. B_STRUCTURAL_PREVENTION_DISCIPLINE requires a validator that confirms each gap-recurrence-register K≥2 entry has structural_fix_committed with a real commit SHA — not just register format. validate-improvement-register.mjs only checks existence/format, not discipline compliance."
+
+  - id: PROTO-S063-CORESPINE-T1-HOOK
+    title: "pre-tool-use-corespine-check.sh — T1 hook for B_CORE_SPINE_DISCIPLINE"
+    status: intake
+    epoch: E2
+    category: governance
+    owner: sonnet
+    batch: BATCH-K
+    session_target: S063
+    tags: [hook, core-spine, frontmatter, b-star, s062-5b-buildable, s063]
+    notes: "Source: PROTO-S062-A STEP 5b triage Q6 Opus ruling. B_CORE_SPINE_DISCIPLINE needs a pre-tool-use hook that fires on .md writes and blocks if core_spine + schema_anchor fields are missing from frontmatter. validate-corespine-depth-markers.mjs is T2; this is T1."
+
+  - id: PROTO-S063-GOVERNOR-PROMPTS-VALIDATOR
+    title: "validate-governor-prompts.mjs — T2 validator for B_GOVERNOR_PROMPTS GP tagging"
+    status: intake
+    epoch: E2
+    category: governance
+    owner: sonnet
+    batch: BATCH-K
+    session_target: S063
+    tags: [validator, governor-prompts, gp-logging, b-star, s062-5b-buildable, s063]
+    notes: "Source: PROTO-S062-A STEP 5b triage Q2 Opus ruling (demote). validate-governor-instructions.mjs enforces B_ZERO_NAVIGATION_FOR_GOVERNOR (navigation phrases), NOT B_GOVERNOR_PROMPTS (GP-S<NNN>-<NN> tagging + VAULT/governor-prompts/ storage). Dedicated T2 needed that checks VAULT/governor-prompts/ structure and GP entry format."
+
+  - id: PROTO-S063-GRADUAL-BUILD-ENFORCEMENT
+    title: "validate-gradual-build.mjs + user-prompt-submit-multi-session-detector.sh — T1+T2 for B_GRADUAL_BUILD_BY_FOUNDATIONS"
+    status: intake
+    epoch: E2
+    category: governance
+    owner: sonnet
+    batch: BATCH-K
+    session_target: S063
+    tags: [validator, hook, gradual-build, foundation-stability, b-star, s062-5b-buildable, s063]
+    notes: "Source: PROTO-S062-A STEP 5b triage original 5b-(b). Body mentions planned validators (gradual-build-plan-coverage, foundation-stability-check) — none exist. T1: user-prompt-submit-multi-session-detector.sh (week-4 planned, missing). T2: new validator. Both required for full_trio."
+
+  - id: PROTO-S063-TEMPLATE-CITATION-VALIDATOR
+    title: "validate-template-citation.mjs — T2 validator for B_TEMPLATE_FIRST_CREATION"
+    status: intake
+    epoch: E2
+    category: governance
+    owner: sonnet
+    batch: BATCH-K
+    session_target: S063
+    tags: [validator, template-first, citation, b-star, s062-5b-buildable, s063]
+    notes: "Source: PROTO-S062-A STEP 5b triage original 5b-(b). No T2 validator exists for template-citation-on-creation. pre-tool-use-frontmatter-enum-check.sh is partial T1 only. T2 needed: validates that new governance artifacts cite their template registry source."

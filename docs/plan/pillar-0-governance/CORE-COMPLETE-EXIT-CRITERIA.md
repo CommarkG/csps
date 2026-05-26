@@ -154,4 +154,34 @@ PROTO-K begins: Debt Collection — first CSPS-process-correct app wet trial.
 
 ---
 
-*Ratified: S055 | Developer's Journey Ratified: S059 PROTO-J | Governor: Yariv Fink — 2026-05-24*
+## FIRST APP WET TRIAL — PHASE 1 RATIFICATION RECORD
+
+**Date:** 2026-05-26 | **Session:** S062 | **App:** debt-collection | **Avatar:** The Doer
+**Ratified by:** Opus-10 (Architectural Advisor) | **Co-signed pending:** Governor Yariv Fink
+**PROTO:** [PROTO-S062-K.md](../protos/PROTO-S062-K.md) | **5 steps complete** | **Sealing commit:** 3294f2b
+
+**Wet-trial evidence (verified independently by Opus this session):**
+
+| Check | Evidence | Status |
+|---|---|---|
+| Avatar goal achieved | wet-trial-log.yaml E2E-1 entry `avatar_goal_achieved: true` | ✅ |
+| Under-5-clicks target | 4 clicks recorded in `click_trace` | ✅ |
+| 0 Phase 1 code blockers | `phase_1_code_blockers: 0` (2 blockers were setup deps, not code) | ✅ |
+| 14/14 findings mapped | [phase-1-findings-consolidation.md](../../../apps/debt-collection/.csps/phase-1-findings-consolidation.md) — 100% propagation_target coverage | ✅ |
+| Deletion test (P-ARCH-030) | 8/8 Component B assets survive `rm -rf apps/debt-collection/` | ✅ |
+| Permanence enforcement surface | +1 platform validator (validate-voice-profile.mjs, commit 018555d) | ✅ |
+| 4 forward PROTOs queued | PROTO-S063-TEMPLATE-SETUP-GUIDE + PROTO-S063-TEMPLATE-ENV-EXAMPLE + PROTO-S063-AUDIT-GREP-GATE + PROTO-S063-FRONTMATTER-TEMPLATE | ✅ |
+| verify exit_code=0 | Confirmed THIS session by Opus | ✅ |
+
+**RATIFIED ✅ by Opus-10 — 2026-05-26** | Governor co-sign pending
+
+**Milestone significance:** Per FOUNDATION-COMPLETION-PLAN.md completion forecast, PROTO-K wet trial = 52% overall platform completion. **The 50% milestone is crossed.**
+
+**Honest note on permanence score:** validate-permanence-coverage now reports 100% T1+T2+T3 (66/66 contracts). The lift from S060's 53% includes (a) broader platform work across S060-S062 sessions, (b) commit 5dc3fcb's validator bug fix that corrected baseline detection, and (c) THIS wet trial's specific contribution = +1 new validator. PROTO-S062-K is NOT solely responsible for the score — Sonnet's §3 framed this correctly.
+
+**What Phase 2 unlocks:**
+- Phase 2 of debt-collection (per-userId tenant isolation via ZenStack/Prisma RLS — GAP-5 deferred)
+- 4 forward PROTOs become first-class S063 plan items
+- Apps #2 through #30 inherit all 8 Component B extractions automatically
+
+*Ratified: S055 | Developer's Journey: S059 PROTO-J | First App Wet Trial Phase 1: S062 PROTO-K | Governor: Yariv Fink*

@@ -1,4 +1,20 @@
 ---
+enforcement_trio:
+  t1:
+    tier: hook
+    path: null
+    status: none
+  t2:
+    tier: validator
+    path: "tools/validators/validate-page-context-coverage.mjs"
+    status: active
+  t3:
+    tier: memory
+    path: "this contract in B_UX.md + AGENTS.md UX Colocation Gate"
+    status: active
+  exempt_reason: "T1 hook path not extractable from enforcement_tier prose. Body-scan may still detect coverage via cross-reference text."
+---
+---
 id: csps.pillar-0-governance.behavioral-contracts.B_UX
 name: B_UX
 description: "Frontend UX behavioral contracts for CSPS Tier 2 (playground + apps). Four contracts: Guard Questions, Journey Continuity, Accessible Loading, Error Recovery. Definitions only — validators and hooks planned for S056+."

@@ -1488,6 +1488,47 @@ const CYCLES = [
       return m ? { apps_checked: Number(m[1]), missing_env_example: Number(m[2]), missing_checklist: Number(m[3]), committed_env_local: Number(m[4]), advisory: Number(m[5]), blocking: Number(m[6]) } : {};
     },
   },
+  // ── S063 ITEM 3 — BATCH-K validators (6 PROTOs) ────────────────────────────
+  {
+    name: 'governor_prompts',
+    command: 'node tools/validators/validate-governor-prompts.mjs',
+    parse_output: (out) => {
+      const m = out.match(/gp_files=(\d+)\s+entries_checked=(\d+)\s+valid=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { gp_files: Number(m[1]), entries_checked: Number(m[2]), valid: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
+    name: 'template_citation',
+    command: 'node tools/validators/validate-template-citation.mjs',
+    parse_output: (out) => {
+      const m = out.match(/artifacts_checked=(\d+)\s+with_citation=(\d+)\s+missing_citation=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { artifacts_checked: Number(m[1]), with_citation: Number(m[2]), missing_citation: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
+    name: 'structural_fix',
+    command: 'node tools/validators/validate-structural-fix.mjs',
+    parse_output: (out) => {
+      const m = out.match(/entries_checked=(\d+)\s+k2_needing_fix=(\d+)\s+k3_blocking=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { entries_checked: Number(m[1]), k2_needing_fix: Number(m[2]), k3_blocking: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
+    name: 'five_surface',
+    command: 'node tools/validators/validate-five-surface.mjs',
+    parse_output: (out) => {
+      const m = out.match(/contracts_checked=(\d+)\s+full_5surface=(\d+)\s+partial=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { contracts_checked: Number(m[1]), full_5surface: Number(m[2]), partial: Number(m[3]), blocking: Number(m[4]), advisory: Number(m[5]) } : {};
+    },
+  },
+  {
+    name: 'gradual_build',
+    command: 'node tools/validators/validate-gradual-build.mjs',
+    parse_output: (out) => {
+      const m = out.match(/protos_checked=(\d+)\s+with_steps=(\d+)\s+without_steps=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { protos_checked: Number(m[1]), with_steps: Number(m[2]), without_steps: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
   {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',

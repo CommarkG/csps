@@ -202,6 +202,15 @@
             "command": ".claude/hooks/pre-commit-describe-without-implement.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-corespine-check.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [

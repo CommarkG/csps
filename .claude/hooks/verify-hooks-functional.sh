@@ -67,6 +67,7 @@ readonly -a DECLARED_HOOKS=(
   "user-prompt-submit-token-budget-warning.sh"
   "pre-commit-claim-validator-gate.sh"
   "pre-commit-describe-without-implement.sh"
+  "pre-tool-use-corespine-check.sh"
 )
 
 echo "[verify-hooks-functional] ACTIVE S041 — checking ${#DECLARED_HOOKS[@]} hooks"

@@ -263,3 +263,24 @@ entries:
       - S063 mandate: PROTO-S063-FRONTMATTER-TEMPLATE (prevent format divergence for new contracts — in unified-plan.yaml as intake)
       - The 34 partial contracts need T1/T2 filled — STEP 4 (generic T1 hook) + STEP 6 (T3 injection) will resolve
     note: "FINDING-S062-PERMANENCE-DRIFT per Opus-10 directive S062. The migration exposes measurement honesty. Body-scan count is ADVISORY; frontmatter-canonical count is GROUND TRUTH after STEP 2 completes."
+
+- id: FINDING-S062-TOOL-OUTPUT-SCALE
+  title: "Tool outputs that scale with N must have --brief/--summary mode at source, not via tail-piping"
+  description: >
+    C3 burned context 3× faster than normal because verify.mjs, migrate-enforcement-trio.mjs --apply,
+    and git add all emit per-N output lines (one per contract / one per file). The mitigation in
+    C4 startup block (| tail -30, | tail -10, directory-level git add) is a correct WORKAROUND
+    but not a structural fix. Root cause: no --brief or --summary flag on these tools.
+    Structural fix: add --brief / --summary output mode to tools that emit per-N lines.
+  first_found: S062-C3
+  k_count: 1
+  sessions: [S062]
+  status: open
+  structural_fix_committed: null
+  propagated_to:
+    - C4 startup block workaround (| tail-30, | tail-10, directory-level git add)
+  not_yet_propagated:
+    - verify.mjs --brief flag (S063)
+    - migrate-enforcement-trio.mjs --silent flag (S063)
+    - PROTO-S063 candidate (promote to K=2 if recurs in S063)
+  note: "Per Opus-10 NEW FINDING directive S062. Structural fix deferred to S063."

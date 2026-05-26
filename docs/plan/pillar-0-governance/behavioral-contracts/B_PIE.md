@@ -1,4 +1,20 @@
 ---
+enforcement_trio:
+  t1:
+    tier: hook
+    path: ".claude/hooks/pre-tool-use-plan-coverage-gate.sh"
+    status: stub
+  t2:
+    tier: validator
+    path: "tools/validators/validate-pie-readiness-gate.mjs"
+    status: active
+  t3:
+    tier: memory
+    path: "`CORE-COMPLETE-EXIT-CRITERIA.md` loaded at session open via session-open-context.mjs"
+    status: active
+  exempt_reason: null
+---
+---
 id: csps.pillar-0-governance.behavioral-contracts.B_PIE
 name: B_PIE
 description: "Two PIE behavioral contracts: B_PIE_READINESS_GATE (no item implements before its layer prerequisites are met) and B_PIE_ANTI_SATISFACTION (K≥2 gaps require structural fix, not instance fix). Ratified S056."

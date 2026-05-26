@@ -151,7 +151,7 @@ entries:
     status: fix_committed
     structural_fix_triggered: true
     structural_fix_required_since: S062
-    structural_fix_committed: pending_this_commit
+    structural_fix_committed: 0fb5173
     behavioral_test_file: tools/tests/behavioral/done-claim-validator-gate-test.sh
     behavioral_test_exists: true
     proposed_fix: |

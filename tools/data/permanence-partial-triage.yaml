@@ -1,0 +1,372 @@
+---
+id: csps.data.permanence-partial-triage
+name: permanence-partial-triage
+description: "STEP 5b triage: 34 partial B_*.md contracts classified for enforcement path resolution. Awaiting Opus ADVANCE before applying."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+session: S062
+proto: PROTO-S062-A-STEP5b
+status: awaiting_opus_advance
+links:
+  - tools/data/improvement-register.yaml
+  - tools/validators/validate-permanence-coverage.mjs
+  - docs/plan/protos/PROTO-S062-A.md
+---
+
+# Permanence Partial Triage — 34 contracts
+
+## Bucket definitions
+# 5b-(a): Existing enforcement on disk — declare it with --supply-* immediately on Opus ADVANCE
+# 5b-(b): No enforcement exists — plan T1/T2 build for S063 (do NOT build this session)
+# 5b-(c): Intrinsic-exempt — reasoning/judgment discipline, not pattern-matchable. Mark exempt.
+
+entries:
+
+  # ── 5b-(a) DECLARABLE ──────────────────────────────────────────────────────
+  # Existing hooks/validators already on disk. Supply paths, re-migrate.
+
+  - contract_id: B_AGENT_ALIGNMENT_PROTOCOL
+    current_partial_tiers: [t1, t2, t3]  # all none — migrator couldn't extract
+    bucket: 5b-(a)
+    bucket_reason: >
+      pre-tool-use-agent-alignment.sh EXISTS (.claude/hooks/).
+      validate-aap-frontmatter.mjs EXISTS (tools/validators/). Both ACTIVE in verify.
+      Migrator exempt_reason was parse failure, not genuine absence.
+    planned_action: >
+      --supply-t1 "tier=hook,path=.claude/hooks/pre-tool-use-agent-alignment.sh,status=active"
+      --supply-t2 "tier=validator,path=tools/validators/validate-aap-frontmatter.mjs,status=active"
+      --supply-t3 "tier=memory,path=.claude/hooks/session-open.sh,status=active"
+    pe_score: 9  # high urgency — AAP is architectural
+
+  - contract_id: B_CONSOLIDATION_PASS
+    current_partial_tiers: [t1, t2]  # t3=active
+    bucket: 5b-(a)
+    bucket_reason: >
+      post-stop-consolidation-pass.sh EXISTS (.claude/hooks/).
+      validate-consolidation-check.mjs EXISTS (tools/validators/).
+      Body said "T3-only by design" at creation but both were built post-creation.
+    planned_action: >
+      --supply-t1 "tier=hook,path=.claude/hooks/post-stop-consolidation-pass.sh,status=active"
+      --supply-t2 "tier=validator,path=tools/validators/validate-consolidation-check.mjs,status=active"
+    pe_score: 7
+
+  - contract_id: B_CORE_SPINE_DISCIPLINE
+    current_partial_tiers: [t1, t2]  # t3=active
+    bucket: 5b-(a)
+    bucket_reason: >
+      validate-corespine-depth-markers.mjs EXISTS (tools/validators/) — active in verify.
+      T1: no pre-tool-use hook found. Borderline (a)/(b) for T1.
+    planned_action: >
+      --supply-t2 "tier=validator,path=tools/validators/validate-corespine-depth-markers.mjs,status=active"
+      --supply-t1 "tier=hook,path=null,status=none"  # T1 remains planned (see 5b-b notes)
+      keep exempt_reason for T1=none
+    pe_score: 6
+    opus_review_question: "Should T1 for B_CORE_SPINE_DISCIPLINE be declared none/planned, or is there an existing hook I missed?"
+
+  - contract_id: B_HANDOFF_PRE_FLIGHT_AUDIT
+    current_partial_tiers: [t1, t2, t3]  # all none
+    bucket: 5b-(a)
+    bucket_reason: >
+      post-stop-session-close-gate.sh EXISTS (.claude/hooks/) — fires at session close.
+      validate-handoff-completeness.mjs EXISTS (tools/validators/) — active in verify.
+      Both enforce handoff discipline.
+    planned_action: >
+      --supply-t1 "tier=hook,path=.claude/hooks/post-stop-session-close-gate.sh,status=active"
+      --supply-t2 "tier=validator,path=tools/validators/validate-handoff-completeness.mjs,status=active"
+      --supply-t3 "tier=memory,path=.claude/hooks/session-open.sh,status=active"
+    pe_score: 8
+
+  - contract_id: B_NAMING_POLICY
+    current_partial_tiers: [t1, t2, t3]  # all none
+    bucket: 5b-(a)
+    bucket_reason: >
+      pre-tool-use-frontmatter-enum-check.sh EXISTS (.claude/hooks/) — partial T1.
+      validate-file-naming.mjs EXISTS (tools/validators/).
+    planned_action: >
+      --supply-t1 "tier=hook,path=.claude/hooks/pre-tool-use-frontmatter-enum-check.sh,status=stub"
+      --supply-t2 "tier=validator,path=tools/validators/validate-file-naming.mjs,status=active"
+      --supply-t3 "tier=memory,path=.claude/hooks/session-open.sh,status=active"
+    pe_score: 6
+
+  - contract_id: B_NO_IMPLEMENTATION_WITHOUT_PLAN
+    current_partial_tiers: [t1, t2]  # t3=active
+    bucket: 5b-(a)
+    bucket_reason: >
+      pre-tool-use-plan-coverage-gate.sh EXISTS (.claude/hooks/) — CRITICAL hook.
+      validate-implementation-gate.mjs EXISTS (tools/validators/).
+      Body said "T3-only by design" — wrong, both built post-creation.
+    planned_action: >
+      --supply-t1 "tier=hook,path=.claude/hooks/pre-tool-use-plan-coverage-gate.sh,status=active"
+      --supply-t2 "tier=validator,path=tools/validators/validate-implementation-gate.mjs,status=active"
+    pe_score: 9  # architectural
+
+  - contract_id: B_PCR_FOR_DECISIONS
+    current_partial_tiers: [t1, t2, t3]  # all none
+    bucket: 5b-(a)
+    bucket_reason: >
+      post-stop-pcr-check.sh EXISTS (.claude/hooks/) — in CRITICAL_HOOKS roster.
+      T2: no validate-pcr.mjs found. T2 remains 5b-(b).
+    planned_action: >
+      --supply-t1 "tier=hook,path=.claude/hooks/post-stop-pcr-check.sh,status=active"
+      --supply-t2 "tier=validator,path=null,status=none"  # T2 planned S063
+      --supply-t3 "tier=memory,path=.claude/hooks/session-open.sh,status=active"
+      keep exempt_reason for T2=none (planned S063)
+    pe_score: 7
+
+  - contract_id: B_PRE_CLOSE_VERIFICATION
+    current_partial_tiers: [t1, t2, t3]  # all none
+    bucket: 5b-(a)
+    bucket_reason: >
+      post-stop-pnpm-verify.sh EXISTS (.claude/hooks/) — CRITICAL hook, runs verify before stop.
+      T2: no pcr-completeness validator. Remains 5b-(b).
+    planned_action: >
+      --supply-t1 "tier=hook,path=.claude/hooks/post-stop-pnpm-verify.sh,status=active"
+      --supply-t2 "tier=validator,path=null,status=none"  # planned S063
+      --supply-t3 "tier=memory,path=.claude/hooks/session-open.sh,status=active"
+    pe_score: 8
+
+  - contract_id: B_GOVERNOR_PROMPTS
+    current_partial_tiers: [t1, t2, t3]  # all none
+    bucket: 5b-(a)
+    bucket_reason: >
+      user-prompt-submit-governor-prompts.sh EXISTS (.claude/hooks/) — STUB status.
+      T2: no validate-governor-prompts.mjs (validate-governor-instructions.mjs exists — partial match).
+    planned_action: >
+      --supply-t1 "tier=hook,path=.claude/hooks/user-prompt-submit-governor-prompts.sh,status=stub"
+      --supply-t2 "tier=validator,path=tools/validators/validate-governor-instructions.mjs,status=active"
+      --supply-t3 "tier=memory,path=.claude/hooks/session-open.sh,status=active"
+    pe_score: 6
+    opus_review_question: "Does validate-governor-instructions.mjs enforce B_GOVERNOR_PROMPTS adequately, or should T2=none/planned?"
+
+  - contract_id: B_STRUCTURAL_PREVENTION_DISCIPLINE
+    current_partial_tiers: [t1, t2]  # t3=active, body says "not extractable"
+    bucket: 5b-(a)
+    bucket_reason: >
+      validate-improvement-register.mjs EXISTS (tools/validators/) — partial match (tracks improvements).
+      T1: body says "None declared yet. Ideal T1: PostStop hook that detects instance-patch language."
+      T1 remains 5b-(b). T2 partially declarable.
+    planned_action: >
+      --supply-t2 "tier=validator,path=tools/validators/validate-improvement-register.mjs,status=stub"
+      --supply-t1 "tier=hook,path=null,status=none"  # planned PostStop patch-detector
+    pe_score: 6
+    opus_review_question: "validate-improvement-register.mjs checks the register exists/grows, not the discipline itself. Accept as stub T2 or mark T2=none/planned?"
+
+  - contract_id: B_UX
+    current_partial_tiers: [t1]  # t2=active (but path missing!), t3=active
+    bucket: 5b-(a)
+    bucket_reason: >
+      CRITICAL: t2 declared as validate-page-context-coverage.mjs but that file MISSING on disk.
+      validate-ux-audit.mjs EXISTS — better T2. Rule 5 advisory will fire on current state.
+      Need T2 path corrected. T1: no UX-specific pre-tool-use hook found. T1 remains 5b-(c).
+    planned_action: >
+      --supply-t2 "tier=validator,path=tools/validators/validate-ux-audit.mjs,status=active"  # replace missing path
+      --supply-t1 "tier=hook,path=null,status=none"  # UX enforcement is judgment-based
+    pe_score: 7
+    opus_review_question: "Replace validate-page-context-coverage.mjs (missing) with validate-ux-audit.mjs as T2? T1 should be exempt (UX is judgment-based) or buildable?"
+
+  - contract_id: B_ZERO_LAPTOP_DEPENDENCY
+    current_partial_tiers: [t1, t2, t3]  # all none
+    bucket: 5b-(a)
+    bucket_reason: >
+      validate-no-laptop-secrets.mjs EXISTS (tools/validators/) — T2.
+      validate-laptop-patterns.mjs EXISTS (tools/validators/) — T2 alternative.
+      T1: no pre-tool-use hook; pre-commit hook covers it but is not Claude hook.
+    planned_action: >
+      --supply-t1 "tier=hook,path=null,status=none"  # pre-commit hook, not Claude T1
+      --supply-t2 "tier=validator,path=tools/validators/validate-no-laptop-secrets.mjs,status=active"
+      --supply-t3 "tier=memory,path=.claude/hooks/session-open.sh,status=active"
+    pe_score: 5
+
+  # Special: t1=stub already declared
+  - contract_id: B_FIVE_SURFACE_ENGRAVING
+    current_partial_tiers: [t2]  # t1=stub(cec-trigger), t3=active
+    bucket: 5b-(a)
+    bucket_reason: >
+      T1=stub already declared (post-tool-use-cec-trigger.sh). T2: no validate-five-surface.mjs.
+      validate-validators.mjs EXISTS — partial match (checks validators have enforcement).
+      Borderline (a)/(b) for T2.
+    planned_action: >
+      --supply-t2 "tier=validator,path=tools/validators/validate-validators.mjs,status=stub"
+    pe_score: 6
+    opus_review_question: "validate-validators.mjs is a meta-validator (checks validators exist). Does it meaningfully enforce B_FIVE_SURFACE_ENGRAVING (5-surface atomicity)? Or should T2 be a new build?"
+
+  - contract_id: B_INHERITANCE_POLICY
+    current_partial_tiers: [t2]  # t1=stub(turn-counter), t3=active
+    bucket: 5b-(a)
+    bucket_reason: >
+      T1=stub already declared (user-prompt-submit-turn-counter.sh). T2: validate-handoff-completeness.mjs
+      enforces handoff inheritance rules. Partial match.
+    planned_action: >
+      --supply-t2 "tier=validator,path=tools/validators/validate-handoff-completeness.mjs,status=active"
+    pe_score: 7
+
+  - contract_id: B_GRADUAL_BUILD_BY_FOUNDATIONS
+    current_partial_tiers: [t1, t2, t3]  # all none
+    bucket: 5b-(b)
+    bucket_reason: >
+      Body mentions planned validators (gradual-build-plan-coverage, foundation-stability-check)
+      but NONE exist on disk. T1: user-prompt-submit-multi-session-detector.sh (week-4, missing).
+      pre-tool-use-plan-coverage-gate.sh is partial-adjacent but not the right fit.
+    planned_action: "File as PROTO-S063-GRADUAL-BUILD-ENFORCEMENT (new T2 validator + T1 hook)"
+    pe_score: 4
+
+  - contract_id: B_TEMPLATE_FIRST_CREATION
+    current_partial_tiers: [t1, t2, t3]  # all none
+    bucket: 5b-(b)
+    bucket_reason: >
+      pre-tool-use-frontmatter-enum-check.sh (partial T1 — enum-only), no T2 validator.
+      template-citation-on-creation planned but not built.
+    planned_action: "Declare T1=stub(frontmatter-enum-check, partial). File T2 as PROTO-S063-TEMPLATE-CITATION-VALIDATOR"
+    pe_score: 4
+
+  # ── 5b-(c) INTRINSIC-EXEMPT ────────────────────────────────────────────────
+  # Reasoning/judgment disciplines explicitly declared T3-only at contract creation.
+  # Mark with exempt: true and explicit exempt_reason in frontmatter.
+
+  - contract_id: B_AUTONOMOUS_BATCH_WITH_PREFLIGHT
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Preflight reasoning = judgment, not pattern-matchable. T3-only by design per Governor at creation."
+    planned_action: "Mark t1.status=exempt, t2.status=exempt with reason"
+    exempt_reason: "Preflight reasoning discipline — judgment about whether work is authorized. No mechanical pattern captures this. T3 (session-open awareness) is the only viable enforcement tier."
+    pe_score: 2
+
+  - contract_id: B_BOUNDARY_ALIGNMENT_PROTOCOL
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Communication format enforcement is context-dependent. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Boundary alignment requires context judgment. Pre-tool-use hooks cannot reliably detect missing UNDERSTANDING/ALIGNMENT blocks in context-dependent situations. T3 awareness is primary enforcement."
+    pe_score: 2
+
+  - contract_id: B_CDAB
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Context-depth selection = quality judgment per task. Cannot be mechanically enforced. T3-only by Governor direction."
+    planned_action: "Mark exempt"
+    exempt_reason: "Context-depth-alignment selection is a per-task reasoning judgment (LIGHTWEIGHT vs COMPREHENSIVE). No mechanical gate can reliably distinguish all valid CDAB choices. T3 always-include is the only viable tier."
+    pe_score: 2
+
+  - contract_id: B_COGNITIVE_CONTEXT_DISCIPLINE
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "5-layer context model enforcement = judgment. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Cognitive context layer selection (Permanent/Session/Active/MCP/Subagent) is a reasoning judgment per task type. Not pattern-matchable at edit-time. T3 injection (session-open + this contract) is the only viable tier."
+    pe_score: 2
+
+  - contract_id: B_COMPLETION_OVER_SHINY
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Priority discipline = judgment. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Task-completion priority over new work is a session-level judgment not detectable at edit-time. T3 (session-open injection + PE mandate) is the only viable enforcement tier."
+    pe_score: 2
+
+  - contract_id: B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Inner-defaults alignment = continuous judgment. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "CSPS alignment over AI training defaults requires per-output reasoning judgment. Cannot be mechanically enforced at tool-call level. T3 (session-open + inner-ai-defaults/drift-log) is the only viable tier."
+    pe_score: 2
+
+  - contract_id: B_HUMBLE_EXECUTOR
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Humility as behavior = judgment. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Humble execution (one step at a time, confirm before expanding) is a behavioral posture not detectable by pre-tool-use patterns. T3 injection (session-open + this contract) is the only viable enforcement tier."
+    pe_score: 2
+
+  - contract_id: B_INTENT_CRYSTALLIZATION
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Intent detection = reasoning. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Intent crystallization (DRAFT vs crystallized) is a Threshold-layer reasoning judgment. No pre-tool-use hook can reliably detect missing crystallization across all input types. T3 (session-open + Threshold protocol) is the only viable tier."
+    pe_score: 2
+
+  - contract_id: B_KNOW_HOW_DISCIPLINE
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Meta-discipline for applying know-how = judgment. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Know-how discipline is a meta-reasoning posture (apply platform knowledge before guessing). Not pattern-matchable at edit-time. T3 (session-open injection) is the only viable enforcement tier."
+    pe_score: 2
+
+  - contract_id: B_MUTUAL_UNDERSTANDING_VALIDATION
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Communication validation = judgment at boundaries. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "MUV enforcement (UNDERSTANDING BLOCK + ALIGNMENT CONFIRMATION at boundaries) requires context judgment about whether a communication boundary exists. T3 (validate-boundary-alignment.mjs exists as advisory reference) is the only viable tier."
+    pe_score: 2
+
+  - contract_id: B_NO_AI_IMPERSONATION
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Role labeling = judgment about context. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "AI impersonation prevention (correct role labeling) is enforced via validate-boundary-alignment.mjs advisory check, but T1 hook cannot reliably intercept all impersonation patterns. T3 (session-open G2 guard question) is the primary tier."
+    pe_score: 2
+
+  - contract_id: B_PE_ALIGNMENT_GUARDIAN
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "PE alignment = reasoning judgment. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "PE alignment guardian responses require reasoning about whether input meets ESSENTIAL-bar. No mechanical gate reliably covers all guardian scenarios. T3 (session-open PE mandate + this contract) is the only viable tier."
+    pe_score: 2
+
+  - contract_id: B_POSITIVE_VALUE_EXTRACTION
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Value extraction = CEC cycle judgment. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Positive value extraction (iterate CEC when significant positive event occurs) requires session-level judgment about significance. No pre-tool-use pattern captures this. T3 (session-open + CEC mandate) is the only viable tier."
+    pe_score: 2
+
+  - contract_id: B_SANDBOX_BEFORE_IMPLEMENTATION
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Sandbox workflow = ordering judgment. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Sandbox-before-implementation enforcement would require knowing 'is this the first code for this feature?' — a context judgment. pre-tool-use-plan-coverage-gate covers part of this but not the sandbox spec requirement. T3 injection is the only reliable tier."
+    pe_score: 2
+
+  - contract_id: B_SAVINGS_AND_SSOT_UNIFIED
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "SSOT discipline = design judgment. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "SSOT discipline (single source of truth for all saves) is enforced by knowing the file's canonical location — a design judgment not detectable at edit-time. T3 (session-open + this contract always-include) is the only viable tier."
+    pe_score: 2
+
+  - contract_id: B_TOKEN_BUDGET
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Token discipline = runtime AI judgment. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Token budget compliance is enforced by validate-token-budget.mjs (in pnpm verify) but T1 hook cannot enforce AI response length at edit-time. T3 (session-open token budget mandate) is the viable enforcement tier alongside the validator advisory."
+    pe_score: 2
+    opus_review_question: "validate-token-budget.mjs exists and is in verify — should B_TOKEN_BUDGET T2 be declared as that validator (moving from c to a)?"
+
+  - contract_id: B_TRIAD_GOVERNANCE
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "3-layer governance judgment = reasoning. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Triad governance (context+principle+mechanical minimum viable stack) is a design-layer judgment per consequential decision. Not pattern-matchable at edit-time. T3 (session-open + this contract) is the only viable tier."
+    pe_score: 2
+
+  - contract_id: B_VERBATIM_HUMAN_TEXT
+    current_partial_tiers: [t1, t2]
+    bucket: 5b-(c)
+    bucket_reason: "Verbatim text detection = pattern-matchable but low value as pre-tool-use. T3-only by design."
+    planned_action: "Mark exempt"
+    exempt_reason: "Verbatim human text discipline is enforced by validate-governor-instructions.mjs advisory check. A pre-tool-use T1 hook for verbatim text detection would have high false-positive rate. T3 (session-open instruction) is the viable enforcement tier."
+    pe_score: 2

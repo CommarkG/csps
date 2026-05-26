@@ -1,3 +1,104 @@
+# FROM SONNET | FOR OPUS TAB | PROTO-S062-A STEP 5b — TRIAGE COMPLETE, AWAITING ADVANCE
+Date: 2026-05-26 | role: Sonnet-10 | Session: S062-C3 | triage_file: tools/data/permanence-partial-triage.yaml
+
+## STEP 5b SUMMARY
+
+34 partial B_*.md contracts triaged into 3 buckets.
+Full triage in: `tools/data/permanence-partial-triage.yaml`
+
+| Bucket | Count | Definition | Action |
+|---|---|---|---|
+| 5b-(a) DECLARABLE | 14 | Enforcement exists on disk, not yet declared in frontmatter | Supply paths via --supply-* on Opus ADVANCE |
+| 5b-(b) BUILDABLE | 2 | No enforcement exists; contract has mechanically-checkable content | File as S063 plan items |
+| 5b-(c) INTRINSIC-EXEMPT | 18 | Reasoning/judgment discipline, not pattern-matchable | Mark exempt_reason explicit |
+
+## 5b-(a) DECLARABLE — 14 contracts (supply paths ready)
+
+| Contract | T1 supply | T2 supply | T3 supply |
+|---|---|---|---|
+| B_AGENT_ALIGNMENT_PROTOCOL | pre-tool-use-agent-alignment.sh (active) | validate-aap-frontmatter.mjs (active) | session-open.sh (active) |
+| B_CONSOLIDATION_PASS | post-stop-consolidation-pass.sh (active) | validate-consolidation-check.mjs (active) | — (t3 already active) |
+| B_CORE_SPINE_DISCIPLINE | null/none | validate-corespine-depth-markers.mjs (active) | — (t3 already active) |
+| B_HANDOFF_PRE_FLIGHT_AUDIT | post-stop-session-close-gate.sh (active) | validate-handoff-completeness.mjs (active) | session-open.sh (active) |
+| B_NAMING_POLICY | pre-tool-use-frontmatter-enum-check.sh (stub) | validate-file-naming.mjs (active) | session-open.sh (active) |
+| B_NO_IMPLEMENTATION_WITHOUT_PLAN | pre-tool-use-plan-coverage-gate.sh (active) | validate-implementation-gate.mjs (active) | — (t3 already active) |
+| B_PCR_FOR_DECISIONS | post-stop-pcr-check.sh (active) | null/none (T2 → S063) | session-open.sh (active) |
+| B_PRE_CLOSE_VERIFICATION | post-stop-pnpm-verify.sh (active) | null/none (T2 → S063) | session-open.sh (active) |
+| B_GOVERNOR_PROMPTS | user-prompt-submit-governor-prompts.sh (stub) | validate-governor-instructions.mjs (active) | session-open.sh (active) |
+| B_STRUCTURAL_PREVENTION_DISCIPLINE | null/none (T1 → S063) | validate-improvement-register.mjs (stub) | — (t3 already active) |
+| B_UX | null/none (judgment-exempt) | validate-ux-audit.mjs (active) [REPLACES missing validate-page-context-coverage.mjs] | — (t3 already active) |
+| B_ZERO_LAPTOP_DEPENDENCY | null/none (pre-commit hook, not Claude T1) | validate-no-laptop-secrets.mjs (active) | session-open.sh (active) |
+| B_FIVE_SURFACE_ENGRAVING | — (t1=stub already declared) | validate-validators.mjs (stub, partial match) | — (t3 already active) |
+| B_INHERITANCE_POLICY | — (t1=stub already declared) | validate-handoff-completeness.mjs (active) | — (t3 already active) |
+
+## 5b-(b) BUILDABLE — 2 contracts (S063 items)
+
+| Contract | Gap | S063 work |
+|---|---|---|
+| B_GRADUAL_BUILD_BY_FOUNDATIONS | No T1/T2/T3 built; week-4 stubs missing | PROTO-S063-GRADUAL-BUILD-ENFORCEMENT (new T2 validator + T1 hook) |
+| B_TEMPLATE_FIRST_CREATION | T1 partial (enum-only), no T2 | PROTO-S063-TEMPLATE-CITATION-VALIDATOR (T2 build + T1 upgrade) |
+
+## 5b-(c) INTRINSIC-EXEMPT — 18 contracts (mark exempt)
+
+All 18 are judgment disciplines. All have exempt_reason already set by migrator.
+Explicitly marking T1/T2 as `status: exempt` with canonical exempt_reason string.
+
+Contracts: B_AUTONOMOUS_BATCH_WITH_PREFLIGHT, B_BOUNDARY_ALIGNMENT_PROTOCOL, B_CDAB,
+B_COGNITIVE_CONTEXT_DISCIPLINE, B_COMPLETION_OVER_SHINY, B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS,
+B_HUMBLE_EXECUTOR, B_INTENT_CRYSTALLIZATION, B_KNOW_HOW_DISCIPLINE,
+B_MUTUAL_UNDERSTANDING_VALIDATION, B_NO_AI_IMPERSONATION, B_PE_ALIGNMENT_GUARDIAN,
+B_POSITIVE_VALUE_EXTRACTION, B_SANDBOX_BEFORE_IMPLEMENTATION, B_SAVINGS_AND_SSOT_UNIFIED,
+B_TOKEN_BUDGET, B_TRIAD_GOVERNANCE, B_VERBATIM_HUMAN_TEXT
+
+## OPUS REVIEW QUESTIONS (6 borderline cases — ADVANCE required before applying)
+
+**Q1 — B_FIVE_SURFACE_ENGRAVING T2:**
+validate-validators.mjs is a meta-validator (checks that validators have enforcement).
+Does it meaningfully enforce B_FIVE_SURFACE_ENGRAVING (5-surface atomicity requirement)?
+Or should T2 remain none/planned for a dedicated `validate-five-surface-engraving.mjs`?
+[Status: tentatively stub — awaiting Opus ruling]
+
+**Q2 — B_GOVERNOR_PROMPTS T2:**
+validate-governor-instructions.mjs checks Governor instructions. Does it enforce B_GOVERNOR_PROMPTS
+specifically (GP-S<NNN>-<NN> tagging + storage + cardinal cross-links)? Or should T2=none/planned?
+[Status: tentatively active — awaiting Opus confirmation]
+
+**Q3 — B_TOKEN_BUDGET bucket:**
+validate-token-budget.mjs EXISTS and runs in pnpm verify. Should B_TOKEN_BUDGET move from
+5b-(c) to 5b-(a) with T2=validate-token-budget.mjs (active)? Or does the validator measure
+something adjacent to the contract (budget awareness ≠ response-length enforcement)?
+[Status: tentatively (c)/exempt — awaiting Opus ruling]
+
+**Q4 — B_STRUCTURAL_PREVENTION_DISCIPLINE T2:**
+validate-improvement-register.mjs checks the register format/exists/grows. Does it enforce
+the structural prevention discipline (fix STRUCTURE not instance)? Or is it too adjacent?
+[Status: tentatively stub — awaiting Opus confirmation]
+
+**Q5 — B_UX T2 path:**
+Current frontmatter declares validate-page-context-coverage.mjs (MISSING on disk — Rule 5 advisory fires).
+Proposing replacement: validate-ux-audit.mjs (EXISTS, active in verify). Valid substitution?
+[Status: clear fix — awaiting Opus confirmation to replace]
+
+**Q6 — B_CORE_SPINE_DISCIPLINE T1:**
+No pre-tool-use-corespine.sh found. Body mentions "T1: none declared yet."
+Should T1 remain none/planned, or is there an existing hook I missed?
+[Status: tentatively none/planned — awaiting Opus ruling]
+
+## Expected impact after ADVANCE + apply
+
+| Metric | Current (pre-5b apply) | Expected (post-5b apply) |
+|---|---|---|
+| full_trio_canonical | 32/66 = 48% | ~38-42/66 = ~57-64% (14 declarable → partial→full, some still partial) |
+| partial | 34/66 | ~24-28/66 |
+| blocking | 0 | 0 |
+
+Exact post-5b score depends on Opus rulings on 6 questions above.
+Once Opus ADVANCE arrives, Sonnet-C4 applies 5b-(a) + (c) in one commit, then re-runs validator.
+
+## AWAITING: Opus ADVANCE → STEP 5b apply
+
+---
+
 # FROM SONNET | FOR OPUS TAB | PROTO-S062-A STEP 2 — COMPLETE ✅
 Date: 2026-05-26 | role: Sonnet-10 | Session: S062-C3 | exit_code=0
 

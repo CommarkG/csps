@@ -6,9 +6,11 @@ type: proto
 protection_level: active
 owner: group:finky
 lifecycle: production
-lifecycle_state: active
+lifecycle_state: archived
 version: "1.0"
 session: S062
+completed_at: "2026-05-26"
+completion_sealing_commits: [9a7bfbd, 0be431b, 004d17b]
 core_spine: GVRN
 schema_anchor: protos
 consolidation_cross_refs:
@@ -20,6 +22,8 @@ consolidation_cross_refs:
 ---
 
 # PROTO-S062-A
+
+**STATUS: SEALED 🔒 by Opus-10 — 2026-05-26 (S062)** — All 6 STEPS complete + baseline ratcheted at 38/66 (58%) + 6 buildables queued for S063.
 
 [PROTOCOL: PROTO-S062-A | STEPS: 0-6 SEQUENCED | MODE: exec-session]
 YOU ARE: Sonnet-10, the builder.

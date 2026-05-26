@@ -250,7 +250,10 @@ entries:
     first_found: S062
     k_count: 1
     sessions: [S062]
-    status: cec_run
+    status: resolved
+    resolved_at: "2026-05-26"
+    resolution: "PROTO-S062-A STEP 2-6 migration + ratchet lift. Coverage measurement is now frontmatter-canonical (true 58%), body-scan is advisory-only. Cross-reference over-counting eliminated."
+    resolution_commits: [3a40536, bcb7121, a765d2b, 8788d1f, 4c9ffe7, 681c4af, faa8fff, 9a7bfbd]
     proto: PROTO-S062-A-STEP2
     commit_discovered: 3d93294
     commit_fix: "8788d1f"  # validate-permanence-coverage v2.0 + 3 migration batch commits
@@ -258,11 +261,10 @@ entries:
       - All 66 B_*.md contracts (enforcement_trio frontmatter — commits 3a40536 / bcb7121 / a765d2b)
       - validate-permanence-coverage.mjs v2.0 (frontmatter-first + body-scan fallback + dual-metric)
       - audit-runner.md (permanence-coverage entry updated to v2.0 description)
-    not_yet_propagated:
-      - CORE-COMPLETE-EXIT-CRITERIA.md (permanence score note — accurate per §3 but should reference new canonical baseline 32/66 not body-scan 100%)
-      - S063 mandate: PROTO-S063-FRONTMATTER-TEMPLATE (prevent format divergence for new contracts — in unified-plan.yaml as intake)
-      - The 34 partial contracts need T1/T2 filled — STEP 4 (generic T1 hook) + STEP 6 (T3 injection) will resolve
-    note: "FINDING-S062-PERMANENCE-DRIFT per Opus-10 directive S062. The migration exposes measurement honesty. Body-scan count is ADVISORY; frontmatter-canonical count is GROUND TRUTH after STEP 2 completes."
+      - CORE-COMPLETE-EXIT-CRITERIA.md (permanence sealing row added — PROTO-S062-A 38/66 58%)
+      - PROTO-S063 buildables queued (6 items in unified-plan.yaml BATCH-K for remaining partial T1/T2)
+    not_yet_propagated: []
+    note: "FINDING-S062-PERMANENCE-DRIFT per Opus-10 directive S062. RESOLVED S062 PROTO-S062-A STEP 6. Coverage measurement is now frontmatter-canonical (true 58%), body-scan advisory-only."
 
 - id: FINDING-S062-TOOL-OUTPUT-SCALE
   title: "Tool outputs that scale with N must have --brief/--summary mode at source, not via tail-piping"

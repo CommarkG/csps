@@ -172,6 +172,7 @@ PROTO-K begins: Debt Collection — first CSPS-process-correct app wet trial.
 | Permanence enforcement surface | +1 platform validator (validate-voice-profile.mjs, commit 018555d) | ✅ |
 | 4 forward PROTOs queued | PROTO-S063-TEMPLATE-SETUP-GUIDE + PROTO-S063-TEMPLATE-ENV-EXAMPLE + PROTO-S063-AUDIT-GREP-GATE + PROTO-S063-FRONTMATTER-TEMPLATE | ✅ |
 | verify exit_code=0 | Confirmed THIS session by Opus | ✅ |
+| PROTO-S062-A permanence sealing | All 6 STEPS done; baseline locked at 38/66 = 58% canonical (commit 9a7bfbd) | ✅ |
 
 **RATIFIED ✅ by Opus-10 — 2026-05-26** | Governor co-sign pending
 

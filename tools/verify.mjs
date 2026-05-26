@@ -1478,6 +1478,17 @@ const CYCLES = [
     },
   },
   {
+    // PROTO-S062-DEPLOY STEP 1: Component B deploy-readiness gate.
+    // Checks each app in apps/ has .env.example + deploy-checklist.md + build script + no committed .env.local.
+    // ADVISORY (exit 0 always) — missing_checklist expected until STEP 3 lands per app.
+    name: 'app_deploy_readiness',
+    command: 'node tools/validators/validate-app-deploy-readiness.mjs',
+    parse_output: (out) => {
+      const m = out.match(/apps_checked=(\d+)\s+missing_env_example=(\d+)\s+missing_checklist=(\d+)\s+committed_env_local=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { apps_checked: Number(m[1]), missing_env_example: Number(m[2]), missing_checklist: Number(m[3]), committed_env_local: Number(m[4]), advisory: Number(m[5]), blocking: Number(m[6]) } : {};
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

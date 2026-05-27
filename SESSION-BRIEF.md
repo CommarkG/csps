@@ -6,14 +6,14 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S065 |
-| **Previous session** | S064 |
+| **Current session** | S066 |
+| **Previous session** | S065 |
 | **Last updated** | today |
-| **Last commit** | 18ebd2c ops: HANDOFF-S064-to-S065 — session close, Phase 3 postponed, PAP queued |
+| **Last commit** | b04100c ops: HANDOFF-S065-to-S066 — S065 close, PAP 8 Parts, CAI pending-review (S065) |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
-## What S065 must do
+## What S066 must do
 
 **S023 — APP_BUILD_MODE. S022 fully closed (67 validators, bedrock 22/22, schema page live). Decide: App #2 domain (Business/Personal/Social/Knowledge) → create PE-scored topic-plan → fork apps/template/. See tools/council/S023-session-brief.md for full plan.**
 

@@ -6,16 +6,16 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S066 |
-| **Previous session** | S065 |
+| **Current session** | S067 |
+| **Previous session** | S066 |
 | **Last updated** | today |
-| **Last commit** | a0f7a4f prevent: WAVE-2-STEP-2 — validate-finding-scheduling (PART B) |
+| **Last commit** | 6f251fc ops: S067 open — HANDOFF-S066-to-S067 + session setup + INTENT ABSORBED |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
-## What S066 must do
+## What S067 must do
 
-**S023 — APP_BUILD_MODE. S022 fully closed (67 validators, bedrock 22/22, schema page live). Decide: App #2 domain (Business/Personal/Social/Knowledge) → create PE-scored topic-plan → fork apps/template/. See tools/council/S023-session-brief.md for full plan.**
+**S066 — WAVE 1 prevention-infrastructure: 3 pre-commit gates (shape-check Q2 + core-seed-mandatory Q4 + validator-test Expert C). Resolve K=1 gaps (VALIDATOR_BEHAVIORAL_TEST_COVERAGE + PREVENTION_COVERAGE_GAP). App #2 deferred per Governor S064 3-day postponement (~2026-05-30). Governor #3 priorities incoming (core/threshold/UX journeys). 5 APPROVED S066 entries in improvement-register.yaml.**
 
 
 

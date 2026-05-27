@@ -9,7 +9,7 @@
 | **Current session** | S066 |
 | **Previous session** | S065 |
 | **Last updated** | today |
-| **Last commit** | b04100c ops: HANDOFF-S065-to-S066 — S065 close, PAP 8 Parts, CAI pending-review (S065) |
+| **Last commit** | 127902d prevent: WAVE-2-STEP-1 — scheduling schema migration (PART B) |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

@@ -1,9 +1,9 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S066",
-  "previous_session": "S065",
-  "session_updated_at": "2026-05-27T07:00:19.515Z",
+  "current_session": "S067",
+  "previous_session": "S066",
+  "session_updated_at": "2026-05-27T14:43:33.265Z",
   "session_role": "sonnet-builder",
   "_session_role_note": "opus-advisor = Opus Advisor tab (strategic, no implementation). sonnet-builder = Sonnet Builder tab (implementation). Set by Governor when opening the tab.",
   "opus_audit": {
@@ -54,11 +54,12 @@
     }
   },
   "session_mandate": {
-    "primary": "S023 — APP_BUILD_MODE. S022 fully closed (67 validators, bedrock 22/22, schema page live). Decide: App #2 domain (Business/Personal/Social/Knowledge) → create PE-scored topic-plan → fork apps/template/. See tools/council/S023-session-brief.md for full plan.",
+    "primary": "S066 — WAVE 1 prevention-infrastructure: 3 pre-commit gates (shape-check Q2 + core-seed-mandatory Q4 + validator-test Expert C). Resolve K=1 gaps (VALIDATOR_BEHAVIORAL_TEST_COVERAGE + PREVENTION_COVERAGE_GAP). App #2 deferred per Governor S064 3-day postponement (~2026-05-30). Governor #3 priorities incoming (core/threshold/UX journeys). 5 APPROVED S066 entries in improvement-register.yaml.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — all sessions 0-D complete, schema page confirmed, App #2 ready",
-    "situation": "APP_BUILD_MODE",
-    "active_situation": "APP_BUILD_MODE",
+    "blocking_on": "NONE — Opus-11 awaits Governor confirmation on App #2 vs WAVE 1 priority (recommended Option A: WAVE 1 first)",
+    "situation": "WAVE_1_PREVENTION_BUILD",
+    "active_situation": "WAVE_1_PREVENTION_BUILD",
+    "_legacy_session_mandate_S023": "Original S023 APP_BUILD_MODE mandate moved here for archival; current mandate above reflects S066 reality. Schema bug surfaced by Opus-11 S066: dual mandate paths (nested session_mandate.primary vs top-level primary at end of file) — see DRAFT-S066-SESSION-STATE-DUAL-MANDATE-FIX in improvement-register.",
     "opus_turn": "Turn 4 complete — see tools/council/opus-turn.md",
     "sessions_remaining": [
       "S3-critical-fixes",
@@ -240,5 +241,5 @@
     "The Threshold Gate — all inputs governed before processing",
     "Plan Methodology v2 — §HARVEST in every plan, Humble Executor at every milestone"
   ],
-  "primary": "S066 — Resolve K=1 gaps (VALIDATOR_BEHAVIORAL_TEST_COVERAGE K=1 + PREVENTION_COVERAGE_GAP K=1) + 4 INPUT-S066 (minitree/3-expert-review/PAP-cadence/CAI-ratification). BUILD_TEST_COMMIT_MANDATE P0. App #2 returns ~2026-05-30. Governor #3 priorities incoming (core/threshold/UX)."
+  "primary": "S067 — PROTO-S067-MASTER-THRESHOLD-ROUTER engraving. 13 components, 6.5h estimated. Per-STEP check-in tier (NOT auto-chain per F-NEW-16). App #2 ~2026-05-30. Governor #3 incoming."
 }

@@ -1,3 +1,55 @@
+# OPUS-11 STEP-1 ACK — S067 — 2026-05-27
+
+**SHAPE:** step-1-ack-with-evidence | **SHAPE-TIER:** substantive | **WHY:** per check-in tier discipline + B_VALIDATE_BEFORE_ASSUME, ACK only after THIS-HEAD verification of all 6 DONE WHEN criteria
+
+## STEP 1 ACKNOWLEDGED ✅
+
+Sonnet's STEP 1 commit `b2fcfc9` verified THIS-HEAD by Opus-11.
+
+**Disk evidence (not memory):**
+- ✓ [tools/lib/session-source.mjs](tools/lib/session-source.mjs) — single source-of-truth lib (2593 bytes)
+- ✓ [tools/validators/validate-session-source-usage.mjs](tools/validators/validate-session-source-usage.mjs) — BLOCKING; ran THIS-HEAD: `hooks_checked=63 using_lib=2 local_computation=0 blocking=0` exit_code=0
+- ✓ [tools/tests/behavioral/session-source-test.sh](tools/tests/behavioral/session-source-test.sh) — 3/3 PASS THIS-HEAD (A=lib returns 'S067' / B=BLOCKS local-computation hook / C=env override 'S999')
+- ✓ `.claude/hooks/user-prompt-submit-intake.sh` line 103-105 imports session-source.mjs
+- ✓ `.claude/hooks/post-stop-session-close-gate.sh` line 117-118 imports session-source.mjs
+- ✓ `docs/plan/pillar-0-governance/audit-runner.md` row `session_source_usage` registered
+- ✓ Outer `pnpm verify` exit_code=0 THIS-HEAD post-Sonnet-commit
+
+**F-NEW-17 + F-NEW-22 (shared root cause) STRUCTURALLY CLOSED.** C10 prevention swap from APPENDIX A applied. Historical 358 garbage entries remain as archaeology (out-of-scope for STEP 1).
+
+**ZF gate STEP 1 (3 distinct lenses):**
+- Architecture ✓ — lib + 2 import sites + validator coherent
+- Data-integrity ✓ — validator confirms 0 hooks bypass lib; 358-pattern cannot recur
+- QA ✓ — 3/3 behavioral test PASS; same-commit ship per Expert C honored
+
+**Status: ZF ACHIEVED. STEP 1 SEALED.**
+
+## PROCEED TO STEP 2
+
+Sonnet authorized to begin **STEP 2** per PROTO §STEP 2:
+- **Scope:** Promote `.claude/hooks/post-stop-consolidation-pass.sh` from STUB → ACTIVE
+- **Per Item 9 ratification:** DESIGN 6 duplication patterns A-F FIRST (load EXT-20260505-003-A through D source extracts from `docs/plan/external/` or `docs/extracts/`), THEN activate
+- **DONE WHEN** (PROTO §STEP 2):
+  1. 6 patterns implemented per docstring
+  2. Hook fires on real commits + produces non-trivial output
+  3. Behavioral test A/B/C passes (same commit)
+  4. audit-runner.md row added
+  5. verify exit_code=0
+- **Same per-STEP check-in discipline** — STEP-2 CHECKPOINT to sonnet-turn.md after commit; Opus-11 ACK before STEP 3
+
+**ASK OPUS triggers for STEP 2:**
+- If EXT-20260505-003 source extracts cannot be located on disk → surface to me before designing; I'll provide pattern guidance OR authorize scope-down to 3 patterns per Item 9 flip-clause (max 4h scope cap)
+- If 6 patterns overlap conceptually → propose consolidation to 4-5 patterns + cite which
+
+**Engraved lessons applying to STEP 2:**
+- Same-commit ship: validator + behavioral test + audit-runner row in ONE commit (Expert C / C13)
+- No mid-session settings.json edits (S040 / C12)
+- 3-lens ZF per STEP (NOT nominal — name distinct axes per cycle)
+
+*OPUS-11 STEP-1 ACK | 2026-05-27 | b2fcfc9 SEALED → STEP 2 authorized*
+
+---
+
 # OPUS-6 Jump Prompt — 2026-05-21
 
 YOU ARE: OPUS-6 (Claude Opus), the architectural advisor for CSPS.

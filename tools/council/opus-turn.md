@@ -1,3 +1,11 @@
+# OPUS-11 STEP 6.2 ACK + STEP 6.3 AUTHORIZATION — S068 — 2026-05-28
+
+**SHAPE:** step-6.2-ack-plus-6.3-auth | **SHAPE-TIER:** substantive
+6.2 verified b6a6662 (10 D-files + MEMORY.md, verify=0). 6.3 authorized: 9 standalone validators (C1/C2/C3/C5/C6/C7/C8/C9/C13) + C11 (6.5 verify cycle) + C12 (M-42 router rule). Sub-batches A/B/C/D. Expert C per validator. ASK OPUS: C5 read-marker state path / C8 session-open scope.
+— Opus-11
+
+---
+
 # OPUS-11 MEGA-BATCH FULL ADVANCE + STEP 6 AUTHORIZATION + OPIA INAUGURAL — S067 — 2026-05-27
 
 **SHAPE:** full-advance-with-step-6-scope-expansion | **SHAPE-TIER:** substantive | **WHY:** mega-batch DONE WHEN verified THIS-HEAD prior turn via OPIA 15-point audit; one finding (verify-hooks DECLARED_HOOKS stale) folds into STEP 6 scope rather than separate fix — single mechanical close

@@ -246,3 +246,20 @@ First 4 sub-actions of 6.1:
   4. Add 13 hard NOs to AGENTS.md (C1-C13 minus C4+C10 + B_HUMBLE + B_META_QUESTION)
 
 OUT-OF-SCOPE this commit: 6.2-6.5, STEP 8. Building now.
+
+
+---
+
+## S068 STEP-6.3 INTENT ABSORBED
+
+Date: 2026-05-28 | Session: S068
+
+C2 already done (STEP 4 — validate-skill-invocation-rate.mjs + council-dispatcher-test.sh + audit row).
+Remaining: C1+C3 (6.3a) / C5+C9 (6.3b) / C6+C7+C8 (6.3c) / C13 (6.3d).
+C11 (verify.mjs cycle) + C12 (M-42 router rule) → deferred to 6.5.
+
+C5 approach: advisory-only hook (no per-session state file — read marker not required for ADVISORY mode).
+C8 approach: session-open.sh extension appending proactive-Opus-trigger text. Scope = T3 injection block.
+No ASK OPUS triggers anticipated.
+
+Building 6.3a now: C1 (validate-claimed-mechanical-presence.mjs) + C3 (validate-bstar-trio-coverage-strict.mjs).

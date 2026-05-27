@@ -1,9 +1,9 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S063",
-  "previous_session": "S062",
-  "session_updated_at": "2026-05-26T22:30:45.146Z",
+  "current_session": "S065",
+  "previous_session": "S064",
+  "session_updated_at": "2026-05-27T00:08:11.336Z",
   "session_role": "sonnet-builder",
   "_session_role_note": "opus-advisor = Opus Advisor tab (strategic, no implementation). sonnet-builder = Sonnet Builder tab (implementation). Set by Governor when opening the tab.",
   "opus_audit": {
@@ -240,5 +240,5 @@
     "The Threshold Gate — all inputs governed before processing",
     "Plan Methodology v2 — §HARVEST in every plan, Humble Executor at every milestone"
   ],
-  "primary": "S064 — App #2 domain decision (Business/Personal/Social/Knowledge) → create PE-scored topic-plan → fork apps/template/. Also: audit pipelines 7-13, INPUT-S064-001 transient stop-hook K=3 fix, G3 credential rotation check."
+  "primary": "S065 — PAP (Platform Alignment Plan) 8-part execution. App #2 postponed 3 days per Governor. Governor signaling core/threshold/UX journey priorities incoming."
 }

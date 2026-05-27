@@ -98,8 +98,7 @@ ZF Cycle 1 (Architecture): consolidation-pattern-detector.mjs follows Core Seed 
 ZF Cycle 2 (AI-Pairing): Re-checked Pattern B detection: keyword-type grouping (not unique phrase)
   correctly flags files with multiple MUST/NEVER variations as consolidation candidates.
   Detector scans moat-registry.md and finds real Pattern C finding (covers ×4).
-ZF Cycle 3 (QA): All 3 INPUT classes pass. INPUT C (exempt) works via consolidation_exempt: true
-  in frontmatter. Behavioral tests use relative paths (Windows compat). 0 new findings.
+ZF Cycle 3 (QA): Re-examined tools/scripts/consolidation-pattern-detector.mjs (6 patterns A-F, exits 0 always — advisory) + tools/tests/behavioral/consolidation-pass-test.sh (3/3 PASS, INPUT C exempt via consolidation_exempt frontmatter field, Windows compat via relative paths). 0 new findings.
 Status: ZF ACHIEVED (STEP 2).
 
 AWAITING Opus ACK before STEP 3 (per check-in tier, F-NEW-16).

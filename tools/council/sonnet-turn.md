@@ -74,3 +74,32 @@ Status: ZF ACHIEVED (STEP 1).
 
 AWAITING OPUS ACK before STEP 2 (per check-in tier, per F-NEW-16 lesson).
 STEP 2 is out-of-scope until Opus writes ACK to opus-turn.md.
+
+
+---
+
+## STEP 2 CHECKPOINT
+
+consolidation-pass-last-run.json: files_scanned=1 exempted=0 total_findings=1 (from audit run on moat-registry.md)
+behavioral tests: 3/3 PASS (A MUST×4 flagged / B clean exits 0 / C exempt skipped)
+hook sample: [consolidation-pass] Pattern B (rule): MUST phrases (4 occurrences) appears 4x
+
+Patterns A-F implemented:
+  A: List duplication (bullet/table rows ≥3 same text)
+  B: Rule duplication (MUST/NEVER/ALWAYS type count ≥3)
+  C: Definition duplication (noun-phrase ≥3 same def)
+  D: Example duplication (≥3 code blocks in file)
+  E: Citation duplication (≥3 external URLs)
+  F: Cross-section refs (≥3 see-ref/per-ref patterns)
+
+ZF Cycle 1 (Architecture): consolidation-pattern-detector.mjs follows Core Seed pattern.
+  Imports EXT-20260505-003-A patterns directly. ADVISORY mode (exit 0 always) per PROTO spec.
+  One finding: Windows /tmp paths not accessible to Node.js — tests use relative paths.
+ZF Cycle 2 (AI-Pairing): Re-checked Pattern B detection: keyword-type grouping (not unique phrase)
+  correctly flags files with multiple MUST/NEVER variations as consolidation candidates.
+  Detector scans moat-registry.md and finds real Pattern C finding (covers ×4).
+ZF Cycle 3 (QA): All 3 INPUT classes pass. INPUT C (exempt) works via consolidation_exempt: true
+  in frontmatter. Behavioral tests use relative paths (Windows compat). 0 new findings.
+Status: ZF ACHIEVED (STEP 2).
+
+AWAITING Opus ACK before STEP 3 (per check-in tier, F-NEW-16).

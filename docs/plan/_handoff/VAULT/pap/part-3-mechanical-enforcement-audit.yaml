@@ -1,0 +1,84 @@
+---
+id: csps.pap.part-3-mechanical-enforcement-audit
+name: part-3-mechanical-enforcement-audit
+description: "PAP Part 3 — Mechanical enforcement audit. Contracts T1+T2+T3 status + BLOCKING validators behavioral test coverage."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 3
+---
+
+# PAP Part 3 — Mechanical Enforcement Audit
+
+## Check 1: B_* Contract Enforcement Trio Status
+
+total_contracts: 67
+full_trio_all_non_none: 64
+partial_trio_with_exempt_reason: 3
+partial_trio_no_exempt_reason: 0
+no_trio_at_all: 0
+
+FINDING-PAP3-001: 0 contracts have status=none for at least one tier WITHOUT
+  a corresponding exempt_reason explaining why. This is the same structural gap that
+  PROTO-S062-A STEP 5b partially addressed, but some contracts still have missing exemptions.
+  Action: Add exempt_reason to each contract or build the missing T1/T2.
+
+contracts_missing_exempt_reason:
+
+
+
+## Check 2: BLOCKING Validators Behavioral Test Coverage
+
+blocking_validators_found: 51
+blocking_with_behavioral_test: 6
+blocking_without_test: 45
+
+FINDING-PAP3-002: 45 BLOCKING validators have no behavioral test.
+  These validators claim BLOCKING severity but no test proves they catch violations.
+  Action: Priority build — BLOCKING validators without behavioral tests are highest
+  risk (they block the workflow but can't prove they're correctly calibrated).
+
+blocking_missing_tests:
+  - slug: foundation-schema-drift
+  - slug: question-coverage
+  - slug: pe-connectivity
+  - slug: simulation-before-implementation
+  - slug: core-contamination
+  - slug: laptop-patterns
+  - slug: schema-anchors
+  - slug: spine-hierarchy
+  - slug: diataxis-type
+  - slug: dead-links
+  - slug: intent-crystallized
+  - slug: ux-audit
+  - slug: isolation-layers
+  - slug: consolidation-check
+  - slug: plan-ai-defaults
+  # ... +30 more
+
+## Summary Findings
+
+FINDING-PAP3-003: ADVISORY validators (from Part 1A) are explicitly NOT in scope for this
+  Part 3 behavioral test requirement. Per Opus seed S065: advisory validators are candidates
+  for advisory-exempt classification. Part 3 establishes that the platform's BLOCKING rules
+  are the priority test target. With 6/51 BLOCKING
+  validators tested, the platform's hard enforcement is 12% verified.
+
+## ZF Gate
+
+ZF Cycle 1: 67 B_* contracts checked from docs/plan/pillar-0-governance/behavioral-contracts/,
+  51 BLOCKING validators found from docs/plan/pillar-0-governance/audit-runner.md,
+  16 behavioral tests in tools/tests/behavioral/. 0 contracts
+  missing exempt_reason for none-tier. 45 BLOCKING validators without tests.
+
+ZF Cycle 2: Re-checked specific contracts: B_CATCH_TO_ENGRAVING.md (T2 path missing — confirmed
+  from Part 1C), audit-runner.md BLOCKING classifications (spot-checked bstar-trio-gate,
+  pre-commit-claim-validator-gate, gap-recurrence — all confirmed BLOCKING with tests).
+  0 new findings.
+
+Status: ZF ACHIEVED (Part 3).

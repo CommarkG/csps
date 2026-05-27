@@ -1,0 +1,303 @@
+---
+id: csps.pap.part-2-wiring-audit
+name: part-2-wiring-audit
+description: "PAP Part 2 — Wiring audit. 24 findings traced via 4-edge graph."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 2
+links:
+  - tools/data/improvement-register.yaml
+  - tools/data/gap-recurrence-register.yaml
+  - tools/data/flow-activity-monitor.yaml
+---
+
+# PAP Part 2 — Wiring Audit
+
+## Summary
+
+total_findings_traced: 24
+graph_complete (all 4 edges): 2 (8%)
+partial (1-3 missing edges): 1
+orphan (0 edges): 21
+
+FINDING-PAP2-001: 8% of tracked findings have complete 4-edge wiring.
+  1 findings have partial wiring (missing 1-3 edges).
+  21 findings are fully orphaned (no trigger, no output, no validator, no loop closure).
+  Action: Part 3 (Mechanical Enforcement) will classify each orphan for fix-or-deprecate.
+
+## 4-Edge Graph Notes
+
+Edge definitions:
+  edge_1 = trigger hook fires when finding situation arises
+  edge_2 = trigger produces output_signature in flow-activity-monitor
+  edge_3 = output feeds a T2 validator
+  edge_4 = T2 validator closes the loop to the finding register
+
+The 4-edge graph is ASPIRATIONAL for many findings — the platform built the findings
+before the wiring infrastructure. This Part 2 audit maps the current state honestly.
+
+## All Findings Graph Map
+
+entries:
+  - finding_id: gap_T1_AI_CONCEPTION_VAULT
+    register: gap-recurrence-register
+    k_count: 5
+    status: fix_committed
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: gap_T2_ORPHAN_CONTRACTS
+    register: gap-recurrence-register
+    k_count: 2
+    status: fix_committed
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: gap_ZF_NOMINAL_CYCLES
+    register: gap-recurrence-register
+    k_count: 6
+    status: fix_committed
+    edge_1_trigger: .claude/hooks/post-stop-pnpm-verify.sh
+    edge_2_output_signature: tools/council/sonnet-turn.md ZF blocks
+    edge_3_t2_validator: tools/validators/validate-zf-cycle-format.mjs
+    edge_4_closes_loop: true
+    graph_complete: true
+    missing_edge_count: 0
+  - finding_id: gap_SETTINGS_LOCAL_BYPASS
+    register: gap-recurrence-register
+    k_count: 4
+    status: resolved
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: gap_HANDOFF_STARTUP_BLOCK
+    register: gap-recurrence-register
+    k_count: 3
+    status: fix_committed
+    edge_1_trigger: .claude/hooks/post-stop-session-close-gate.sh
+    edge_2_output_signature: null
+    edge_3_t2_validator: tools/validators/validate-handoff-completeness.mjs
+    edge_4_closes_loop: true
+    graph_complete: false
+    missing_edge_count: 1
+  - finding_id: gap_SESSION_INJECTION_COMPRESSION
+    register: gap-recurrence-register
+    k_count: 2
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: gap_STARTUP_BLOCK_NOT_SURFACED
+    register: gap-recurrence-register
+    k_count: 1
+    status: fix_committed
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: gap_CONCEPTUAL_CLOSURE_NO_TEST
+    register: gap-recurrence-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS
+    register: gap-recurrence-register
+    k_count: 4
+    status: fix_committed
+    edge_1_trigger: .claude/hooks/pre-commit-claim-validator-gate.sh
+    edge_2_output_signature: tools/verify-last-run.md (mtime check)
+    edge_3_t2_validator: tools/validators/validate-gap-recurrence.mjs
+    edge_4_closes_loop: true
+    graph_complete: true
+    missing_edge_count: 0
+  - finding_id: gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE
+    register: gap-recurrence-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: imp_CEC_SPECIFICITY
+    register: improvement-register
+    k_count: 1
+    status: structural_fix_proposed
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: FINDING-S062-TOOL-OUTPUT-SCALE
+    register: improvement-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: FINDING-OPUS10-2
+    register: improvement-register
+    k_count: 1
+    status: cec_run
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: FINDING-OPUS10-5
+    register: improvement-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: FINDING-OPUS10-7
+    register: improvement-register
+    k_count: 1
+    status: cec_run
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: IMPROVEMENT-S062-RELAY-OPTIMIZATION
+    register: improvement-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: FINDING-S063-AI-OUTPUT-CAPTURE-ASYMMETRY
+    register: improvement-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: FINDING-S063-CONSOLIDATION-DRIFT-NO-VALIDATOR
+    register: improvement-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: imp_TRANSIENT_STOP_HOOK_K3
+    register: improvement-register
+    k_count: 3
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: imp_TOOL_OUTPUT_SCALE
+    register: improvement-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: imp_FIVE_SURFACE_SURFACE5_CRITERION
+    register: improvement-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: imp_BEHAVIORAL_TEST_GAP_ADVISORY
+    register: improvement-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: imp_HOOKS_NOT_IN_SETTINGS
+    register: improvement-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+  - finding_id: imp_HOOKS_NOT_IN_VHF
+    register: improvement-register
+    k_count: 1
+    status: open
+    edge_1_trigger: null
+    edge_2_output_signature: null
+    edge_3_t2_validator: null
+    edge_4_closes_loop: false
+    graph_complete: false
+    missing_edge_count: 4
+
+## ZF Gate
+
+ZF Cycle 1: All 24 findings traced from tools/data/improvement-register.yaml and
+  tools/data/gap-recurrence-register.yaml. graph_complete=2 (8%), partial=1, orphan=21.
+  Representative complete graphs: gap_DONE_CLAIM (pre-commit-claim-validator-gate.sh ↔ validate-gap-recurrence.mjs),
+  gap_ZF_NOMINAL_CYCLES (post-stop-pnpm-verify ↔ validate-zf-cycle-format.mjs).
+  Representative orphan: gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE (K=1, no trigger yet — expected for new gaps).
+
+ZF Cycle 2: Re-checked tools/data/gap-recurrence-register.yaml (gap_DONE_CLAIM
+  edge_1=pre-commit-claim-validator-gate.sh confirmed on disk,
+  edge_3=validate-gap-recurrence.mjs confirmed in verify.mjs),
+  tools/data/flow-activity-monitor.yaml (7 active flow elements — gap-recurrence and
+  zf_cycle_format have output signatures). 0 new findings.
+
+Status: ZF ACHIEVED (Part 2).

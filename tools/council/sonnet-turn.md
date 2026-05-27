@@ -44,3 +44,16 @@ commit_pending | PAP Part 1 aggregate audit | Part 2 Wiring audit (Opus gate)
 
 3 structural findings filed to improvement-register.
 verify exit_code=0. Awaiting Opus ADVANCE for Part 2.
+
+
+---
+
+## PAP Parts 2+3 MINI-CHECKPOINT
+
+Part 2 complete: 2/24 (8%) finding wiring graphs complete.
+Part 3 complete: 64/67 contracts full_trio; 45/51 BLOCKING validators lack behavioral tests (88% untested).
+
+Key finding: 45 BLOCKING validators block the workflow but cannot prove they correctly catch violations.
+This is the BLOCKING-test gap (same severity class as gap_DONE_CLAIM K=4).
+
+Awaiting Opus ADVANCE for Part 4 (Contextual Focus + CAI name candidate).

@@ -126,6 +126,11 @@ webpack: (config) => {
 }
 ```
 
+**S067 AMENDMENT (commit da23887 + PROTO-S067 STEP 7):** VERIFY all `@csps/*` deps listed in `transpilePackages` when adding new workspace packages. Symptom: build succeeds locally but fails on Vercel with `Cannot find module '@csps/<pkg>'`. Root cause: Next.js on Vercel needs explicit `transpilePackages` entry for each `@csps/*` lib. Pattern: `@csps/config` was missing in budget-planner until da23887 fix. Check `pnpm ls | grep @csps` before final deploy to catch missing entries early.
+
+<!-- Keep original code block closing for backward compat -->
+```
+
 ### R10: Sign-in/sign-up pages must be created explicitly
 Clerk middleware redirects to `/sign-in` but Clerk does NOT auto-create
 that page. Requires:

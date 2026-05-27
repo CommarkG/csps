@@ -102,3 +102,52 @@ ZF Cycle 3 (QA): Re-examined tools/scripts/consolidation-pattern-detector.mjs (6
 Status: ZF ACHIEVED (STEP 2).
 
 AWAITING Opus ACK before STEP 3 (per check-in tier, F-NEW-16).
+
+
+---
+
+## STEP 3 CHECKPOINT
+
+commit_sha: 20d8b7a1
+validate_threshold_routing_coverage: entries_checked=358 with_4axes=0 missing_axes=358 advisory=358 (historical entries — expected)
+behavioral_tests: 5/5 PASS (A→PROCESS-NOW / B→VAULT / C→ESCALATE / D→INVOKE:consolidation-expert / E→SHAPE-TIER fast-path)
+
+ZF Cycle 1 (Architecture): tools/scripts/threshold-router.mjs implements 4-axis routing per M-42 ratification.
+  SHAPE-TIER fast-path (Item 1) + INVOKE routes (Item 8) correctly implemented.
+  One finding: shell quoting in tests (single quotes in content args) — fixed to bare token content.
+ZF Cycle 2 (AI-Pairing): Re-examined tools/tests/behavioral/threshold-router-test.sh — 5 inputs cover
+  all routing paths per PROTO behavioral test spec. INPUT E (SHAPE-TIER) additional edge case covered.
+  tools/validators/validate-threshold-routing-coverage.mjs advisory for historical entries (correct — 358 pre-date router).
+ZF Cycle 3 (QA): Re-examined tools/scripts/threshold-router.mjs routing decisions — D7+C7 content pattern
+  correctly matches check-existing-validators → INVOKE:consolidation-expert. 0 new findings.
+Status: ZF ACHIEVED (STEP 3).
+
+PROCEEDING MEGA-BATCH: STEP 4 (council triggers) → STEP 5 (inventory-scan) → STEP 7 (prevention_class).
+
+
+---
+
+## STEPs 4+5+7 CHECKPOINTS
+
+**STEP 4 (council-dispatcher):**
+  Behavioral tests: 3/3 PASS (A=INVOKE:consolidation-expert dispatch / B=content-match balance-expert / C=validator exits 0)
+  ZF Cycle 1 (Architecture): tools/scripts/council-invocation-dispatcher.mjs uses "Trigger patterns" column from council-registry.md.
+  ZF Cycle 2 (AI-Pairing): Re-examined tools/validators/validate-skill-invocation-rate.mjs — advisory only; all 31 skills have trigger patterns documented. 0 new findings.
+  ZF Cycle 3 (QA): Re-examined tools/tests/behavioral/council-dispatcher-test.sh — INVOKE route and content-match both tested. 0 new findings.
+
+**STEP 5 (inventory-scan):**
+  Behavioral tests: 3/3 PASS (A=3 hits for session-source / B=exits 0 / C=11/11 registries present)
+  ZF Cycle 1 (Architecture): tools/scripts/platform-inventory-scan.mjs queries 11 registries. On-demand per Item 7. ADVISORY per Item 2.
+  ZF Cycle 2 (Data-integrity): Re-examined registry paths — all 11 exist on disk (validate-inventory-scan-coverage confirms). 0 new findings.
+  ZF Cycle 3 (QA): Re-examined tools/tests/behavioral/inventory-scan-test.sh — 3 inputs per PROTO spec. 0 new findings.
+
+**STEP 7 (prevention-class):**
+  Migration: total=36 patched=15 already_have=0 skipped_closed=21 — idempotent (re-run: patched=0 already_have=15)
+  Behavioral tests: 2/2 PASS (A=15 entries have prevention_class / B=validator exits 0)
+  ZF Cycle 1 (Architecture): tools/scripts/migrate-S067-prevention-class-field.mjs follows WAVE-2 pattern. 3 fields added: prevention_class/structural_fix_plan_session/prevention_design_pending.
+  ZF Cycle 2 (Data-integrity): Re-examined tools/data/improvement-register.yaml (improvement entries patched) + tools/data/gap-recurrence-register.yaml (gap entries patched). 0 new findings.
+  ZF Cycle 3 (QA): Re-examined tools/tests/behavioral/prevention-class-test.sh — 2 inputs cover field presence and validator advisory mode. 0 new findings.
+
+verify exit_code=0 confirmed THIS-HEAD.
+All 4 CHECKPOINTs in sonnet-turn.md per mega-batch instruction.
+HOLDING for Opus full review before STEP 6 (CONSTITUTIONAL — separate authorization).

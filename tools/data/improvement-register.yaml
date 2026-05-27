@@ -128,6 +128,9 @@ entries:
     k_count: 2
     sessions: [S055]
     status: structural_fix_proposed
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S060"
     age_escalation_status: on-time
     plan_item: PROTO-S067-CEC-SPECIFICITY-FIX
@@ -460,6 +463,9 @@ entries:
     k_count: 3
     sessions: [S062, S063]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S067"
     age_escalation_status: on-time
     explicit_defer_reason: "Plan item PROTO-S064-TRANSIENT-STOP-HOOK-FIX filed (pe=80, BATCH-L). Build deferred to S067 after WAVE 1+2 prevention infrastructure ships."
@@ -475,6 +481,9 @@ entries:
     k_count: 1
     sessions: [S062]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S067"
     age_escalation_status: on-time
     explicit_defer_reason: null
@@ -489,6 +498,9 @@ entries:
     k_count: 1
     sessions: [S063]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S068"
     age_escalation_status: on-time
     explicit_defer_reason: null
@@ -505,6 +517,9 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: null
@@ -519,6 +534,9 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: null
@@ -533,6 +551,9 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: null
@@ -606,6 +627,9 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: null
@@ -620,6 +644,9 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: null
@@ -648,6 +675,9 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: null
@@ -662,6 +692,9 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: null

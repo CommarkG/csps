@@ -1536,6 +1536,30 @@ const CYCLES = [
       return m ? { entries_checked: Number(m[1]), with_4axes: Number(m[2]), missing_axes: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
     },
   },
+  {
+    name: 'skill_invocation_rate',
+    command: 'node tools/validators/validate-skill-invocation-rate.mjs',
+    parse_output: (out) => {
+      const m = out.match(/skills_checked=(d+)s+with_triggers=(d+)s+without_triggers=(d+)s+advisory=(d+)s+blocking=(d+)/);
+      return m ? { skills_checked: Number(m[1]), with_triggers: Number(m[2]), without_triggers: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
+    name: 'inventory_scan_coverage',
+    command: 'node tools/validators/validate-inventory-scan-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/registries_present=(d+)s+registries_missing=(d+)/);
+      return m ? { registries_present: Number(m[1]), registries_missing: Number(m[2]) } : {};
+    },
+  },
+  {
+    name: 'prevention_class_required',
+    command: 'node tools/validators/validate-prevention-class-required.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(d+)s+with_class=(d+)s+unclassified=(d+)s+missing_field=(d+)s+advisory=(d+)s+blocking=(d+)/);
+      return m ? { checked: Number(m[1]), with_class: Number(m[2]), unclassified: Number(m[3]), missing_field: Number(m[4]), advisory: Number(m[5]), blocking: Number(m[6]) } : {};
+    },
+  },
   // ── S064 PROTO Phase 1 — prevention graph completion ──────────────────────
   {
     // PROTO-S064 Item 1.2: Scans staged/new files for fuzzy-name duplication against existing.

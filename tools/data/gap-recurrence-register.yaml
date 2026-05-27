@@ -121,6 +121,9 @@ entries:
     k_count: 2
     sessions: [S051, S053]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: "Deferred S067-S070 — behavioral test at turn 10+20 context survival is complex mechanically. T3 session-open injection is mitigation. No structural fix until K=3."
@@ -150,6 +153,9 @@ entries:
     k_count: 1
     sessions: [S053]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: null
@@ -223,6 +229,9 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: null
@@ -250,6 +259,9 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    prevention_class: unclassified
+    structural_fix_plan_session: null
+    prevention_design_pending: true
     must_address_by_session: "S070"
     age_escalation_status: on-time
     explicit_defer_reason: null

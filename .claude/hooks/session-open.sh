@@ -58,6 +58,17 @@ try{
 CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.mjs" 2>/dev/null \
   || printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"[session-open] context load failed — read tools/session-state.json + tools/council/opus-open-items.md manually"}}'
 
+# ─── B_META_QUESTION T3 — false-assumption checklist discipline injection (S067 STEP 6.4) ───
+# Every tab start: inject META-QUESTION reminder before tab-transfer outputs.
+# B_META_QUESTION_DISCIPLINE: before emitting HANDOFF/startup-block/CHECKPOINT/relay-block,
+# run "What are the false assumptions here?" — minimum 10-item checklist required.
+# pre-tool-use-false-assumption-gate.sh (T1) BLOCKS if missing in S068+.
+{
+  printf '\n[B_META_QUESTION] Before any HANDOFF/startup-block/CHECKPOINT/relay: run false-assumption checklist (≥10 items).' >&2
+  printf ' Format: ❌ "<assumption>" / REALITY: <truth> / Fix: <action>' >&2
+  printf '\n[B_META_QUESTION] Template: tools/templates/tab-transfer-template.md (8 sections, 10 example items).' >&2
+} 2>/dev/null || true
+
 # ─── C8 REACTIVE_OPUS PREVENTION — proactive Opus review trigger injection ──────────────────
 # S067 STEP 6.3c: inject proactive Opus review reminder so Governor doesn't have to orchestrate.
 # C8 = REACTIVE_OPUS: Opus was reactive because session-open never injected a review trigger.

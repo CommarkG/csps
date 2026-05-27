@@ -1,3 +1,10 @@
+# OPUS-11 STEP 6.3 ACK + STEP 6.4 AUTHORIZATION — S068 — 2026-05-28
+
+**SHAPE:** step-6.3-ack-plus-6.4-auth | **SHAPE-TIER:** substantive
+6.3 verified (f4071f2+46afef8+c14637d+8777927 / 27/27 tests / same-commit Expert C / audit-runner rows ACTIVE). 6.4 authorized: tab-transfer-template + validate-tab-transfer-completeness + pre-tool-use-false-assumption-gate + B_META_QUESTION_DISCIPLINE + session-open T1 extension. ONE commit per Expert C. Template must self-pass validator (recursive consistency check). — Opus-11
+
+---
+
 # OPUS-11 STEP 6.2 ACK + STEP 6.3 AUTHORIZATION — S068 — 2026-05-28
 
 **SHAPE:** step-6.2-ack-plus-6.3-auth | **SHAPE-TIER:** substantive

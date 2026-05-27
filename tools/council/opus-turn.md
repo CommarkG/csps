@@ -1,3 +1,108 @@
+# OPUS-11 MEGA-BATCH FULL ADVANCE + STEP 6 AUTHORIZATION + OPIA INAUGURAL — S067 — 2026-05-27
+
+**SHAPE:** full-advance-with-step-6-scope-expansion | **SHAPE-TIER:** substantive | **WHY:** mega-batch DONE WHEN verified THIS-HEAD prior turn via OPIA 15-point audit; one finding (verify-hooks DECLARED_HOOKS stale) folds into STEP 6 scope rather than separate fix — single mechanical close
+
+## MEGA-BATCH FULL ADVANCE ✅ — STEPs 3 + 4 + 5 + 7 SEALED
+
+**OPIA 15-point audit results (re-cited from prior Opus turn 37):**
+
+| # | Audit dimension | Result |
+|---|---|---|
+| 1 | All 9 mega-batch artifacts present on disk | ✓ |
+| 2 | Behavioral tests THIS-HEAD: threshold-router 5/5, council-dispatcher 3/3, inventory-scan 3/3, prevention-class 2/2 | ✓ |
+| 3 | Outer `pnpm verify --skip-install` exit_code=0 THIS-HEAD | ✓ (just re-confirmed) |
+| 4 | 4 audit-runner.md rows present + fresh text | ✓ |
+| 5 | `verify-hooks-functional.sh DECLARED_HOOKS` array updated | ✗ **OPIA finding** — folds into STEP 6 |
+| 6 | Settings.json untouched mid-session | ✓ |
+| 7 | M-40 inherits_from declared | ✓ |
+| 8 | ZF cycles cite files (C4 prevention) | ✓ (Sonnet's STEP 3-7 ZF blocks cite specific files per cycle) |
+| 9 | Same-commit ship per Expert C | ✓ |
+| 10 | Mechanical enforcement (hooks fire, validators run) | ✓ |
+| 11 | C9 knowledge writeback to vercel.md R9 | ✓ (S067 AMENDMENT block present) |
+| 12 | C6 cross-finding root-cause cluster | ✓ (F-NEW-17+22 both closed by STEP 1) |
+| 13 | Per-STEP CHECKPOINT in sonnet-turn.md (no silent ship) | ✓ (4 CHECKPOINTs present) |
+| 14 | apps/ typecheck hidden-regression sweep | ⏳ (C11 prevention — folds into STEP 6 verify-pipeline-expansion) |
+| 15 | prevention_class declared on findings | ✓ (11+4 entries migrated) |
+
+**Mega-batch (commits 21e1fe43 → 20d8b7a1 → 80777fbc): FULL ADVANCE GRANTED.**
+
+## STEP 6 AUTHORIZATION — FULL ADVANCE (CONSTITUTIONAL scope)
+
+**Per PROTO §STEP 6 + scope expansion per Opus Turn-37 §3 (OPIA + tab-transfer permanent engraving):**
+
+STEP 6 is now expanded with **7 additional engraving artifacts** to engrave tab-transfer discipline mechanically (closes Governor S067 "tab-transfer permanent default" directive + closes OPIA finding above + closes C11 hidden-regression surface).
+
+**Full STEP 6 file manifest (atomic commit set per Item 10 ratification + 5/5 atomic FSE):**
+
+**Original PROTO §STEP 6 deliverables:**
+1. `docs/plan/principles/P-META-029-humble-consolidation-discipline.md`
+2. `docs/plan/pillar-0-governance/behavioral-contracts/B_HUMBLE_CONSOLIDATION_DISCIPLINE.md`
+3. `docs/plan/pillar-0-governance/moat-registry.md` (add M-42 UNIFIED-THRESHOLD-ROUTER entry)
+4. `docs/plan/_handoff/VAULT/inner-ai-defaults/humble-consolidation-default.md` (D1 entry per APPENDIX B)
+5. 9 more inner-AI-defaults entries D2-D10 (eager-helpfulness / authority-pleasing / surface-completeness / pattern-match / single-pass / verbal-cleverness / action-bias / naming-novelty / recency-bias / cooperative-disagreement-aversion)
+6. `MEMORY.md` index entry
+7. `AGENTS.md` hard NO additions per APPENDIX A swaps
+8. Prevention validators for C1, C2, C3, C5, C6, C7, C8, C9, C11, C12, C13 (12 — STEP 1 already covered C10 + STEP 5 covered C4 via ZF cycle validator)
+
+**Turn-37 §3 additions (tab-transfer permanent engraving):**
+9. `tools/templates/tab-transfer-template.md` — canonical format with mandatory `## False Assumptions Checklist` section (≥10 items)
+10. `tools/validators/validate-tab-transfer-completeness.mjs` — scans startup-block/handoff/relay content for 10 mandatory sections + ≥10-item checklist
+11. `.claude/hooks/pre-tool-use-false-assumption-gate.sh` — BLOCKS Edit/Write to council files / handoffs / startup-blocks lacking false-assumption section
+12. `tools/tests/behavioral/tab-transfer-test.sh` — INPUT A=missing checklist→flag / B=complete→pass / C=<10 items→flag
+13. Extend `session-open.sh` T1 injection with META-QUESTION constitutional injection
+14. `docs/plan/pillar-0-governance/behavioral-contracts/B_META_QUESTION_DISCIPLINE.md` — engraves "What are the false assumptions here?" as mandatory pre-tab-transfer + pre-checkpoint discipline
+15. `AGENTS.md` extension — "Never emit tab-transfer artifact without 10-point false-assumption checklist"
+
+**Turn-37 OPIA framework (close the audit-recursion):**
+16. `tools/council/opia-checklist.md` — engraved permanent 15-point Opus-Post-Implementation-Audit reference (authored from Turn-37 §2)
+17. `tools/validators/validate-opia-audit-completeness.mjs` — ADVISORY S067 → BLOCKING S068; checks every opus-turn.md ACK block contains structured 15-point audit table
+
+**Turn-37 OPIA finding fold-in (closes the one open finding):**
+18. Update `.claude/hooks/verify-hooks-functional.sh` `DECLARED_HOOKS` bash array to include all 64 hooks on disk (sweep — not just the 4 missing S066+S067 additions)
+19. Extend `tools/verify.mjs` cycles list with `apps_typecheck` cycle filtering `./apps/**` (closes C11 hidden-regression-surface)
+
+**Total: 19 file changes / 5/5 atomic FSE / single commit set per Item 10 parallel ratification.**
+
+## EFFORT REVISION
+
+PROTO original estimate: ~3h for STEP 6
+Turn-37 expansion: +~2h (tab-transfer engraving)
+OPIA additions: +~1h (checklist + validator + declared-hooks sweep + apps_typecheck)
+**Revised STEP 6 estimate: ~6h** (still single sub-session for Sonnet; budget OK)
+
+## NON-NEGOTIABLES for STEP 6
+
+- **Atomic commit set** — per Item 10: P-META-029 + B_HUMBLE + M-42 entry + 10 inner-AI-defaults + AGENTS.md + 12 prevention validators + 7 tab-transfer artifacts + OPIA artifacts + hooks-declared-list-update + apps_typecheck = ONE coordinated commit batch (can be split into 3-5 cleanly-themed commits but landed together at session-close)
+- **5/5 atomic FSE per B_FIVE_SURFACE_ENGRAVING** for each new principle/contract/moat
+- **Behavioral test per new validator** (Expert C / F-NEW-14 — same commit)
+- **audit-runner.md row per new validator**
+- **Plan-RZF 6-lens swept** at STEP 6 close (per S066-ratified plan-RZF protocol)
+- **THIS-HEAD verify exit_code=0** at STEP 6 close commit
+- **CHECKPOINT to sonnet-turn.md** with the full 15-point OPIA audit format (engraves the audit framework by exhibiting it)
+
+## ASK OPUS triggers for STEP 6
+
+- 12 prevention validators have cross-dependencies → propose order
+- AGENTS.md hard NO conflicts with existing hard NO → arbitrate
+- Inner-AI-defaults D-entry collides with existing entry → consolidate
+- Plan-RZF 6-lens hits PARTIAL CONVERGENCE → surface open lenses
+
+## STEP 8 PRE-AUTHORIZATION
+
+STEP 8 (whole-WAVE verify + master ratification close + HANDOFF authoring) is PRE-AUTHORIZED to begin immediately after STEP 6 commits land + STEP 6 OPIA audit passes. **Sonnet can chain STEP 6 → STEP 8 in this specific case** — STEP 8 is mechanical close-out (verify + update register + author handoff), no architectural decisions remaining. **No additional Opus ACK needed between STEP 6 SEALED and STEP 8 start** — but full Governor + Opus review at STEP 8 SEALED before session close.
+
+## SIDE-TASK PART C (SIA playground) — DEFERRED to S068
+
+Sonnet correctly identified this as parallel/optional. Decision: **DEFER to S068.** Per balance-expert + DPR — STEP 6 critical path + STEP 8 close is higher priority; SIA playground is RATING-3 (improvement, not blocker). Folding into STEP 6 commit risks scope drift on the highest-blast-radius STEP. S068 opens with SIA wiring as Priority 1 parallel to next mandate.
+
+## OPIA AUDIT FRAMEWORK — INAUGURAL APPLICATION
+
+This ACK block IS the inaugural OPIA application. The 15-point table at top represents the canonical format. STEP 6 file #16 (`tools/council/opia-checklist.md`) engraves this exact format as permanent reference. From this point forward, every Opus ACK to Sonnet uses the 15-point structure — no free-styling.
+
+*OPUS-11 MEGA-BATCH FULL ADVANCE + STEP 6 AUTHORIZATION | 2026-05-27 | mega-batch SEALED (commits 21e1fe43 → 80777fbc); STEP 6 unblocked with 19-file scope; STEP 8 pre-authorized post-STEP-6*
+
+---
+
 # OPUS-11 STEP-2 CONDITIONAL ACK + MEGA-BATCH AUTHORIZATION — S067 — 2026-05-27
 
 **SHAPE:** step-2-conditional-ack-plus-mega-batch | **SHAPE-TIER:** substantive | **WHY:** STEP 2 artifacts verified THIS-HEAD but Sonnet CHECKPOINT text triggers validate-zf-cycle-format BLOCKING; conditional ACK + Governor-authorized mega-batch for STEPs 3+4+5+7

@@ -128,6 +128,10 @@ entries:
     k_count: 1
     sessions: [S055]
     status: structural_fix_proposed
+    must_address_by_session: "S060"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     propagated_to:
       - .claude/hooks/post-tool-use-cec-trigger.sh (session dedup added at 6ae470c — patch)
       - tools/helpers/cec-improvement-check.mjs v2 (S056 — explicit path map replaces keyword extraction)
@@ -455,6 +459,10 @@ entries:
     k_count: 3
     sessions: [S062, S063]
     status: open
+    must_address_by_session: "S067"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     carry_forward_to_session: S064
     plan_item: PROTO-S064-TRANSIENT-STOP-HOOK-FIX
     proposed_fix: "Add sleep 3 + retry before emitting FAIL in post-stop-pnpm-verify.sh"
@@ -466,6 +474,10 @@ entries:
     k_count: 1
     sessions: [S062]
     status: open
+    must_address_by_session: "S067"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     carry_forward_to_session: S064
     proposed_fix: "Add --brief/--summary flag to verify.mjs + migrate-enforcement-trio.mjs"
     note: "K=1 open. Migrated from INPUT-S063-004 / FINDING-S062-TOOL-OUTPUT-SCALE."
@@ -476,6 +488,10 @@ entries:
     k_count: 1
     sessions: [S063]
     status: open
+    must_address_by_session: "S068"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     carry_forward_to_session: S064
     proposed_fix: "Rethink Surface 5 for slice-format files: count parent behavioral-contracts.md schema_anchor, or remove Surface 5 requirement for slices"
     note: "Migrated from INPUT-S064-003."
@@ -488,6 +504,10 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     carry_forward_to_session: S065
     proposed_fix: "Part 3 (Mechanical Enforcement) will classify which advisory validators warrant tests. Then batch-add behavioral tests per session."
     note: "PAP Part 1.A finding FINDING-PAP1-S1. Measured 3.6% coverage — first formal measurement."
@@ -498,6 +518,10 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     carry_forward_to_session: S065
     proposed_fix: "Audit each of the 14 unregistered hooks — either register them in settings.json or delete them as deprecated. See part-1B-hooks-audit.yaml."
     note: "PAP Part 1.B finding FINDING-PAP1-S2."
@@ -508,6 +532,10 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     carry_forward_to_session: S065
     proposed_fix: "Add each hook to DECLARED_HOOKS in verify-hooks-functional.sh. This makes the functional check complete."
     note: "PAP Part 1.B finding FINDING-PAP1-S3."
@@ -577,6 +605,10 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     carry_forward_to_session: S066
     proposed_fix: "Scope 1→10 (today): flat YAML registry works. Scope 10→100: graph-DB or reverse-index. Scope 30→300 (3000+ across 30 apps): federated per-app inheritance. validate-inheritance-graph.mjs S066 candidate."
     note: "Governor-surfaced S065. M-40 Inheritance-as-Default moat engraved S065. Full design work deferred S066."
@@ -587,6 +619,10 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     carry_forward_to_session: S066
     three_expert_proposals:
       expert_A_architecture:
@@ -611,6 +647,10 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     carry_forward_to_session: S066
     proposed_fix: "Run condensed PAP (Parts 1+3+5 only — the 3 measurement parts) each session. Full 8-part PAP quarterly. Condensed PAP = ~1 context window; does not block app work."
     note: "Decision needed in S066: per-session condensed PAP vs quarterly full PAP."
@@ -621,6 +661,350 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     carry_forward_to_session: S066
     proposed_fix: "After Governor types 'CAI-RATIFIED': (1) engrave CAI as M-42, (2) wire 6 dimensions to existing validators, (3) reference CAI in startup blocks and PROTO templates, (4) update B_REVERSIBILITY_GATED_REVIEW to cite CAI Dimension 3."
     note: "CAI-DEFINITION.md at docs/plan/pillar-0-governance/CAI-DEFINITION.md. Governor sign-off required."
+
+- id: DRAFT-S066-MULTI-LENS-ZF-DISCIPLINE
+  title: "Multi-lens ZF discipline — hybrid 3-lens default + 6-CAI-dimension at seal moments"
+  description: "Resolution of Q1 from S065 Opus PCR. 3-lens (A/B/C) Opus-output review default + 6-CAI-dimension audit at session-seal and PROTO-ratification moments. Inherits from CAI-DEFINITION.md (M-40 compliance)."
+  inherits_from: "CAI-DEFINITION.md + M-40 + B_REVERSIBILITY_GATED_REVIEW"
+  first_found: S065
+  k_count: 1
+  sessions: [S065]
+  status: draft-awaiting-governor-approval
+  source: "Governor S065 PCR directive — formalize the multi-lens ZF question"
+  pros_3_lens_default: "operationalized last turn; finds 9 issues single-lens missed; sustainable cadence"
+  cons_3_lens_default: "could miss CAI-dimensions outside A/B/C role-based lenses"
+  pros_6_dimension_seal: "principle-based; inherits from CAI; 5/6 dimensions have existing validators"
+  cons_6_dimension_seal: "twice the cognitive load; some dimensions overlap"
+  recommendation: "HYBRID — 3-lens every substantive Opus turn + 6-CAI-dimension at SEAL/RATIFICATION moments only"
+  proposed_fix: |
+    Engrave B_MULTI_LENS_ZF AFTER K=2 (one more session of practice).
+    For S066: apply hybrid voluntarily; if 3-lens misses a CAI-dimension issue, escalate.
+    For S067: K=2 reached if pattern holds; engrave B_MULTI_LENS_ZF formally.
+    Validator: validate-multi-lens-zf.mjs scans Opus council writes for 3-lens block presence.
+    Behavioral test: INPUT A single-lens-only Opus response → flag; INPUT B 3-lens → pass; INPUT C SEAL moment with only 3-lens → flag (require 6-dim).
+  what_would_flip: "if 3-lens misses an obvious CAI-dimension issue in S066, escalate to 6-lens default immediately"
+  carry_forward_to_session: S066
+  governor_approval_pending: false
+  governor_approval_status: APPROVED
+  governor_approval_session: S066
+  note: "Q1 answered via PCR. Awaits Governor approve/refine before engraving."
+
+- id: DRAFT-S066-PRE-ONSET-SHAPE-CHECK-MECHANICAL
+  title: "Pre-onset SHAPE-CHECK mechanical enforcement — narrower scope than full threshold integration"
+  description: "Resolution of Q2 from S065 Opus PCR. Phase 1 (S066): pre-commit/pre-tool-use SHAPE-CHECK hook. Phase 2 (S068+ on K=2): elevate to threshold pipeline integration. Don't conflate anti-rush mechanism with threshold expansion."
+  inherits_from: "FINDING-S065-PRE-ONSET-SHAPE-CHECK + M-40 + B_REVERSIBILITY_GATED_REVIEW"
+  first_found: S065
+  k_count: 1
+  sessions: [S065]
+  status: draft-awaiting-governor-approval
+  source: "Governor S065 PCR directive — formalize the threshold-Opus-gate question"
+  pros_full_integration: "closes asymmetric capture; single mechanism; anti-rush at platform level"
+  cons_full_integration: "major architecture; threshold today is user-side; over-engineering risk"
+  pros_narrower_hook_first: "smaller scope ships faster; proves mechanism; K=2 escalation triggers bigger work"
+  cons_narrower_hook_first: "doesn't fully close asymmetric capture in Phase 1"
+  recommendation: "PHASE 1 S066: pre-tool-use-shape-check.sh hook only. PHASE 2 S068+: threshold integration ONLY if Phase 1 succeeds AND K=2 reached."
+  proposed_fix: |
+    Phase 1 build (S066):
+      .claude/hooks/pre-tool-use-shape-check.sh — scans Opus council writes for SHAPE block
+      ADVISORY initially; BLOCKING after S067 stability
+      Skip class: conversational replies (pattern: < 200 chars, no Edit/Write tool calls)
+    Phase 2 build (S068+):
+      Integrate with tools/scripts/threshold-routing.mjs (if it exists; create if not)
+      Route Opus council writes through threshold for classification BEFORE generation
+      Add `output_shape:` field to threshold-intake-log entries
+    Behavioral test Phase 1: INPUT A Opus response missing SHAPE → flag; INPUT B with SHAPE → pass; INPUT C conversational reply (short, no edits) → pass (exempt)
+  what_would_flip: "if Governor's #3 priorities require threshold-Opus integration anyway, do Phase 1+2 together"
+  carry_forward_to_session: S066
+  governor_approval_pending: false
+  governor_approval_status: APPROVED
+  governor_approval_session: S066
+  status: implemented-S066
+  implementation_commit_sha: d6e066f
+  note: "Q2 APPROVED + IMPLEMENTED S066 (commit d6e066f, Sonnet WAVE-1 STEP-1). ADVISORY mode active S066; flips BLOCKING S067 after 5 clean Opus substantive turns demonstrated."
+
+- id: DRAFT-S066-THRESHOLD-TIERED-ROUTING
+  title: "Threshold-as-universal-gate with tiered routing — substantive vs conversational fast-path"
+  description: "Resolution of Q3 from S065 Opus PCR. Threshold becomes universal mechanism for input + output routing, but conversational/trivial responses take fast-path without full classification. SHAPE block is routing key."
+  inherits_from: "Threshold pipeline + FINDING-S063-AI-OUTPUT-CAPTURE-ASYMMETRY + DRAFT-S066-PRE-ONSET-SHAPE-CHECK"
+  first_found: S065
+  k_count: 1
+  sessions: [S065]
+  status: draft-awaiting-governor-approval
+  source: "Governor S065 PCR directive — formalize the threshold-everywhere scope question"
+  pros_universal: "fully closes asymmetric capture; single mechanism; anti-rush platform-level"
+  cons_universal: "latency on trivial cases; risk of governance theater (threshold approves everything)"
+  pros_tiered_routing: "preserves universal-mechanism benefit; eliminates latency on trivial; SHAPE block does the routing decision"
+  cons_tiered_routing: "two paths to maintain; routing logic could itself become satisfaction point"
+  recommendation: "TIERED — threshold required for SUBSTANTIVE responses; conversational fast-path bypasses full classification. SHAPE block declares which path."
+  proposed_fix: |
+    SHAPE block addition: SHAPE-TIER: substantive | conversational
+    Threshold logic:
+      IF SHAPE-TIER == conversational: log to threshold-intake (audit trail) + fast-path
+      IF SHAPE-TIER == substantive: full classify + route + apply Opus pre-gen constraints
+    Validator: validate-shape-tier-routing.mjs ensures every Opus output has SHAPE-TIER declared
+    Audit trail: tools/data/threshold-intake-log.yaml grows with both tiers (different status field)
+  what_would_flip: "if Governor wants ALL interactions threshold-tracked for audit (not just classification), proceed universal with explicit latency cost acknowledged"
+  carry_forward_to_session: S066
+  governor_approval_pending: false
+  governor_approval_status: APPROVED
+  governor_approval_session: S066
+  note: "Q3 answered via PCR. Governor APPROVED S066 — engraving proceeds."
+
+- id: DRAFT-S066-CORE-SEED-MANDATORY
+  title: "Core-seed-with-plan-alignment mandatory in every PROTO Opus issues to Sonnet"
+  description: "Q4 from S066 Opus PCR. Today M-37 names Core Seeds + B_REVERSIBILITY_GATED_REVIEW names review tiers + opus_reviewed_seed required for new B_*. NO mechanical gate requires every PROTO-*.md file to contain explicit core_seed section + plan_item_id reference. Sonnet has interpreted correctly mostly, but structural enforcement is missing — leaves room for free-styling drift."
+  inherits_from: "M-37 Core Seeds + B_REVERSIBILITY_GATED_REVIEW + FINDING-OPUS10-6 PROTO relay format violation"
+  first_found: S066
+  k_count: 1
+  sessions: [S066]
+  status: draft-awaiting-governor-approval
+  source: "Governor S066: 'is coreseed with alignment to plan became a mandatory act in each plan and proto you prepare for sonnet? making sure sonnet does not drift free styling and interpret your directions?'"
+  honest_state_today: "M-37 + B_REVERSIBILITY_GATED_REVIEW + opus_reviewed_seed for B_* contracts EXIST. For PROTO files specifically, no mechanical gate. Behavioral discipline only."
+  proposed_fix: |
+    Build pre-commit-proto-core-seed-mandatory.sh:
+    For every commit touching docs/plan/protos/PROTO-*.md (new or modified):
+      REQUIRED frontmatter fields:
+        plan_item_id: <unified-plan-id>  # must exist in tools/config/unified-plan.yaml
+        core_seed_present: true          # validator scans for ## Core Seed section
+        gate_tier: auto-execute | check-in | full-advance  # per B_REVERSIBILITY_GATED_REVIEW
+      REQUIRED body sections:
+        ## Core Seed — the architectural anchor Sonnet builds from (1-3 paragraphs minimum)
+        ## DONE WHEN — verifiable completion criteria
+        ## ZF Gate — per-STEP verification requirements
+      BLOCKING if any required field/section missing.
+
+    Validator: validate-proto-core-seed-mandatory.mjs (per-session check on all PROTO files).
+    Behavioral test:
+      INPUT A: PROTO file missing ## Core Seed section → flag BLOCKING
+      INPUT B: PROTO file with complete frontmatter + sections → PASS
+      INPUT C: PROTO file with plan_item_id pointing to non-existent unified-plan entry → flag BLOCKING
+  what_would_flip: "if Sonnet drift becomes the empirical bottleneck rather than relay drift, escalate to ALSO enforce that Sonnet's first commit on a PROTO must cite the PROTO file path + core_seed reference in commit message"
+  carry_forward_to_session: S066
+  governor_approval_pending: false
+  governor_approval_status: APPROVED
+  governor_approval_session: S066
+  status: implemented-S066
+  implementation_commit_sha: 249991f
+  note: "Q4 APPROVED + IMPLEMENTED S066 (commit 249991f, Sonnet WAVE-1 STEP-2). BLOCKING from S066. Engraved lesson POST-WAVE-1: every new tools/validators/validate-*.mjs requires a matching row in tools/audit-runner.md in same commit (audit_health + audit_slug_coverage FAIL otherwise). Lesson now codified in PROTO-S066-WAVE-1.md §STEP 2."
+
+- id: DRAFT-S066-NEW-TAB-STRESS-TEST-FRAMEWORK
+  title: "New-tab stress-test framework — formalized 'Are you sure that...?' suspicious-critic questions"
+  description: "Per Governor S066: 'act as a critic expert going over what is prepared for a new tab and be suspicious'. Formalize set of Are-you-sure questions across 6 layers (content / context / nuances / intents / ripples / CSPS-alignment) — stress-test every HANDOFF before relay to new tab."
+  inherits_from: "B_INHERITANCE_POLICY + B_ZCA (zero-context-assumption) + B_MUTUAL_UNDERSTANDING_VALIDATION + FINDING-OPUS10-1 absorb-and-wait"
+  first_found: S066
+  k_count: 1
+  sessions: [S066]
+  status: draft-awaiting-governor-approval
+  source: "Governor S066: 'be suspicious and formalize a set of Are you sure that...? that stress test what is prepared'"
+  six_layers:
+    content: |
+      - Are you sure the PROTO file contains the actual core seed text, not just directive description?
+      - Are you sure every claim has a file:line OR commit-SHA reference?
+      - Are you sure no chat-only content is referenced as if it persisted to disk?
+      - Are you sure all required frontmatter fields are present on every new file?
+    context: |
+      - Are you sure the new tab knows the current session number (not assumed from old state)?
+      - Are you sure verify exit_code in HANDOFF Zone A is THIS-HEAD evidence, not memory?
+      - Are you sure the new tab has full access to the prior conversation's reasoning chain via inherits_from chains?
+      - Are you sure the new tab won't open with stale session-state.json mandate?
+    nuances: |
+      - Are you sure the new tab understands "draft-awaiting-governor-approval" vs "approved" status difference?
+      - Are you sure the new tab will read gate-tier (auto-execute / check-in / full-advance) before acting?
+      - Are you sure the new tab won't conflate DRAFT with DONE or COMPLETE?
+      - Are you sure the new tab knows the distinction between PROTO file, RELAY block, and HANDOFF?
+    intents: |
+      - Are you sure the new tab understands WHY this work, not just WHAT?
+      - Are you sure the connection between immediate task and broader platform goal is explicit?
+      - Are you sure the new tab won't pattern-match to a similar-but-different task from training?
+      - Are you sure the original Governor directive that triggered this work is cited in the HANDOFF?
+    ripples: |
+      - Are you sure the new tab will surface downstream effects on dependent artifacts?
+      - Are you sure the new tab knows which cross-references need same-commit updates?
+      - Are you sure the new tab understands K-pipeline escalation if this work surfaces a recurring pattern?
+      - Are you sure the new tab will check inheritance graph for descendants before modifying a parent?
+    csps_alignment: |
+      - Are you sure the new tab will apply M-40 inheritance discipline (declare inherits_from on new artifacts)?
+      - Are you sure the new tab knows B_REVERSIBILITY_GATED_REVIEW gate-tier mapping?
+      - Are you sure the new tab will run multi-lens ZF per S066 Q1 ratification?
+      - Are you sure the new tab will emit SHAPE block per S066 Q2 ratification?
+      - Are you sure the new tab will route through threshold per S066 Q3 ratification?
+      - Are you sure the new tab will respect pre-commit gates (claim-validator-gate / describe-without-implement / bstar-engraving-gate / future shape-check + core-seed-mandatory)?
+  proposed_fix: |
+    Create permanent template: tools/templates/new-tab-stress-test.md (built this turn).
+    Add mechanical check: pre-handoff-stress-test.mjs runs through 6-layer questions
+    against HANDOFF + paste-target before allowing session-state bump to next session.
+    ADVISORY initially; BLOCKING after K=2 sessions show pattern works.
+
+    Integrate into governance-session skill: every session-close MUST emit a "Stress test
+    answered" block to closing-summary §X (carry-forward) confirming each of 6 layers
+    was reviewed.
+  behavioral_test: |
+    INPUT A: HANDOFF missing answers to 3+ stress-test questions → flag
+    INPUT B: HANDOFF with all 6 layers explicitly addressed → pass
+    INPUT C: HANDOFF claims "all clear" without per-layer evidence → flag
+  what_would_flip: "if 6 layers prove redundant in practice (one layer always subsumes another), consolidate to fewer; if new failure modes surface that don't fit the 6 layers, expand"
+  carry_forward_to_session: S066
+  governor_approval_pending: false
+  governor_approval_status: APPROVED
+  governor_approval_session: S066
+  approval_basis: "Implicit via Governor S066 explicit directive 'FORMALIZE ALL OF THIS NOW TO BE PERMANENT'"
+  note: "Critic-expert framework. Permanent file at tools/templates/new-tab-stress-test.md (built S066). M-40 inheritance honored. APPROVED — discipline active S066 forward; every HANDOFF must run stress-test before relay."
+
+- id: DRAFT-S066-SESSION-STATE-DUAL-MANDATE-FIX
+  title: "session-state.json has two mandate paths — dual-source schema bug caught by Opus-11 S066 new-tab"
+  description: "tools/session-state.json contains TWO mandate fields: nested session_mandate.primary (line 57) and top-level primary (line 243). Sonnet's S065 close updated top-level primary to S066 reality but did NOT sync session_mandate.primary which still read 'S023 APP_BUILD_MODE' from 40+ sessions ago. user-prompt-submit-intake.sh reads the legacy nested path, surfacing stale mandate at every session-state injection. Opus-11 caught the conflict on first turn of new tab, applied ASK GOVERNOR protocol correctly."
+  inherits_from: "FINDING-S063-CONSOLIDATION-DRIFT-NO-VALIDATOR + B_CONSOLIDATION_PASS + B_VALIDATE_BEFORE_ASSUME"
+  first_found: S066
+  k_count: 1
+  sessions: [S066]
+  status: open
+  source: "Opus-11 (new tab) ASK GOVERNOR S066: 'session-state.json says S066 mandate = S023 APP_BUILD_MODE but relay says WAVE 1 prevention — these conflict'"
+  immediate_fix_applied_this_turn: |
+    Opus-10 updated session_mandate.primary to S066 reality + added _legacy_session_mandate_S023 note pointing to this draft.
+    Also: blocking_on field updated to name Opus-11's awaiting Governor confirmation on Option A.
+    Commit pending: ops: session-state mandate sync S066 reality (DRAFT-S066-SESSION-STATE-DUAL-MANDATE-FIX immediate fix)
+  permanent_fix_proposal: |
+    Build validate-session-state-schema.mjs:
+    - Detects duplicate mandate fields (session_mandate.primary AND top-level primary both present)
+    - Detects stale mandate (current_session ≠ session referenced in mandate text)
+    - Detects orphan fields (any field with session number > 10 sessions old without _legacy_ prefix)
+    - ADVISORY initially; BLOCKING after K=2.
+    Companion: pre-tool-use-session-state-write.sh hook fires on session-state.json writes,
+    requires writer to confirm only ONE canonical mandate path being updated.
+
+    Bonus: schema-flatten — choose ONE canonical mandate path (recommend top-level primary)
+    and migrate all consumers (user-prompt-submit-intake.sh + session-open-context.mjs +
+    any validator that reads mandate). Deprecate session_mandate.primary nested.
+  behavioral_test: |
+    INPUT A: session-state.json with both mandate paths populated differently → flag
+    INPUT B: session-state.json with single canonical mandate matching current_session → pass
+    INPUT C: session-state.json with mandate referencing session > 10 old → flag
+  what_would_flip: "if pnpm verify can't parse session-state.json reliably for the validator, simplify to grep + sed"
+  carry_forward_to_session: S066
+  governor_approval_pending: true
+  note: "Caught by Opus-11 stress-test discipline on first turn — proves the 6-layer framework works (Layer 2 Context check: 'session-state.json mandate matches current state' would have caught this pre-relay). Same class as FINDING-S063-CONSOLIDATION-DRIFT (parallel structures created without consolidation check). Schema-flatten is the right permanent fix."
+
+- id: DRAFT-S066-PE-COMPOUNDING-FOR-INTERNAL-ENHANCEMENTS
+  title: "PE doesn't score internal recurring enhancements with compounding factor — findings float indefinitely"
+  description: "Three structural gaps Governor surfaced S066: (a) permanent-fix-proposals in improvement-register are text-only — no schedule, no deadline, no auto-trigger; (b) only K-recurrence forces escalation, K=1 entries can sit 10+ sessions; (c) PE formula (urgency × impact / SPI) doesn't weight COMPOUNDING SAVINGS — a fix that saves 30 min × 100 future sessions scores the same as a fix that saves nothing. Result: discipline-engraving fixes (prevent recurring failure) get under-prioritized vs PROTOs that solve novel problems."
+  inherits_from: "FINDING-S063-AI-OUTPUT-CAPTURE-ASYMMETRY (parallel: internal-findings durability gap mirrors AI-output capture gap) + PE Agent skill + B_REVERSIBILITY_GATED_REVIEW"
+  first_found: S066
+  k_count: 1
+  sessions: [S066]
+  status: open
+  source: "Governor S066: 'when are these scheduled? what makes sure process is not floating? how can PE place internal recurring enhancements at high priority?'"
+  three_questions_mapped:
+    q1_scheduling: "Today: NOT scheduled. Text in YAML field. Need: auto-derived must_address_by_session + validator that catches overdue."
+    q2_non_floating: "Today: NOTHING. K=1 entries sit indefinitely. Need: age-escalation (K=1 → K=2 if 3 sessions pass without progress) + session-close gate (top-3 PE findings must be addressed OR explicit-defer-with-Governor-cite)."
+    q3_pe_compounding: "Today: PE = urgency × impact / SPI. Doesn't weight compounding savings. Need: PE_internal = (recurrence_freq × per_session_saving × remaining_sessions) / one_time_build_effort."
+  proposed_fix: |
+    Three-part structural fix (each independent, can ship phased):
+
+    PART A — Auto-PE-scoring for findings (build pe-agent skill extension)
+      Every entry in improvement-register.yaml + gap-recurrence-register.yaml gets
+      auto-computed pe_score field on session-open. Formula:
+        pe_internal = (recurrence_freq × per_session_saving_min × 100) / one_time_build_effort_hours
+      Where recurrence_freq = how many sessions this finding's situation appears (1.0 default)
+            per_session_saving_min = estimated minutes saved per session once fixed
+            100 = projected future sessions (conservative target)
+      Findings with pe_internal > 50 get HIGH-PRIORITY tag.
+
+    PART B — Auto-scheduling deadlines (build validate-finding-scheduling.mjs)
+      Every open finding MUST have must_address_by_session field (default: filing_session + 5).
+      Validator surfaces findings past their must_address_by_session as ADVISORY (K=1) or BLOCKING (K=2).
+      Age-escalation: K=1 entry filed in S<N>, still open at S<N+3>, auto-promotes to K=2.
+      Session-close gate: top-3 highest-PE open findings must have either committed-fix OR
+      explicit-defer-with-reason in closing-summary §X.
+
+    PART C — Session-open surface (extend session-open.sh + intake hook)
+      Top-5 PE findings (compounding-weighted) surfaced at session-open as MUST-CONSIDER alongside
+      mandate. Cannot be silently ignored — session-close validator checks each surfaced item
+      was either addressed OR deferred-with-reason.
+
+  immediate_application_this_session: |
+    Apply PART A formula manually to the S066 findings filed today:
+      - DRAFT-S066-PRE-ONSET-SHAPE-CHECK-MECHANICAL: recurrence_freq=5 (every Opus turn benefits),
+        per_session_saving_min=10 (avoids one re-do), 100 sessions, build_effort=2h
+        pe_internal = (5 × 10 × 100) / 2 = 2500 → CRITICAL PRIORITY
+      - DRAFT-S066-CORE-SEED-MANDATORY: recurrence_freq=2 (every PROTO authored),
+        per_session_saving_min=20 (prevents drift correction), 100 sessions, build_effort=3h
+        pe_internal = (2 × 20 × 100) / 3 = 1333 → CRITICAL PRIORITY
+      - DRAFT-S066-SESSION-STATE-DUAL-MANDATE-FIX: recurrence_freq=1 (every session-open),
+        per_session_saving_min=5 (catches schema bugs), 100 sessions, build_effort=2h
+        pe_internal = (1 × 5 × 100) / 2 = 250 → HIGH PRIORITY
+      - DRAFT-S066-PE-COMPOUNDING (this entry): recurrence_freq=1 (every session re-runs the
+        PE assessment), per_session_saving_min=15 (auto-surface saves manual PE work), build_effort=4h
+        pe_internal = (1 × 15 × 100) / 4 = 375 → HIGH PRIORITY
+
+    Compare against typical PROTO PE (urgency 7 × impact 8 / SPI 1.5 = 37).
+    Even at conservative scoring, ALL FOUR internal enhancements score 7-67× higher
+    than typical PROTOs. This is the missing-compounding-weight Governor named.
+
+  what_would_flip: "if the 100-session projection horizon proves wrong (e.g., platform refactor at S080 invalidates current architecture), shorten horizon to 50 sessions. The relative ranking holds."
+  carry_forward_to_session: S066
+  governor_approval_pending: false
+  governor_approval_status: APPROVED-PART-A-ONLY
+  governor_approval_session: S066
+  approval_decision_basis: "Governor S066 Turn-3 PCR: D1=B (PART A only, defer B+C to S067). Opus-10 + Opus-11 cross-recommendation matched. PART A formula applied this session — PE-FORMULA VALIDATION table now embedded in PROTO-S066-WAVE-1.md validating STEP 1→2→3 sequence (pe_internal 2500/1333/1000 descending)."
+  part_a_status: applied-S066
+  part_b_carry_forward_to_session: S067
+  part_c_carry_forward_to_session: S067
+  escalation_trigger: "if WAVE 1 ships in <2 sub-sessions, escalate Part B (auto-scheduling validator) as S066 STEP 4 — do NOT wait for S067. If WAVE 1 burns ≥2 sub-sessions, hold; Part B+C move to S067 per ratified decision."
+  note: "Third structural gap of this class: FINDING-S063-AI-OUTPUT-CAPTURE-ASYMMETRY (output capture missing) + FINDING-S063-CONSOLIDATION-DRIFT-NO-VALIDATOR (consolidation missing) + DRAFT-S066-PE-COMPOUNDING (PE-internal missing). All three are asymmetric durability gaps where infrastructure exists for ONE direction but not the mirror. Pattern: build the mirror mechanism."
+
+- id: DRAFT-S067-INTRA-SESSION-SYMMETRY-PROTOCOL
+  title: "Intra-session symmetry — eliminate Opus/Sonnet relay-pattern asymmetry; inherit forever via T1 session-open injection"
+  description: "Governor S066 surfaced the asymmetry: Opus→Sonnet flows via paste-ready RELAY block (Governor pastes); Sonnet→Opus flows via sonnet-turn.md file (Opus reads on prompt). Three structural symmetries to engrave: (1) shared-constitution.txt extracted from both startup-block files (single source, zero drift); (2) session-events.yaml log both AIs tail every turn (replaces 'go read sonnet-turn.md' with auto-discovery); (3) symmetric paste-ready RELAY format for both directions — Sonnet emits CHECKPOINT-RELAY block in chat just like Opus emits PROTO-RELAY."
+  inherits_from: "M-22 multi-model council protocol + M-38 T1-T6 stability hierarchy + communication-protocol-shared.md + B_MUTUAL_UNDERSTANDING_VALIDATION + B_ZCA + DRAFT-S066-PE-COMPOUNDING PART C (top-5 surface)"
+  first_found: S066
+  k_count: 1
+  sessions: [S066]
+  status: draft-awaiting-governor-approval
+  source: "Governor S066 Turn 5: 'are you and sonnet use the same files? what is still separated? how come i keep getting all the time request to write in sonnet and over here not? what should be duplicated from you to sonnet solving this? how can it be inherited to any new tab from now and forever?'"
+  five_questions_mapped:
+    q1_same_files: "Mostly YES (90% repo-disk shared). Role-segregated channels: opus-turn/context/protocol/startup vs sonnet equivalents."
+    q2_what_separated: "Chat-context per tab (irreducible); active model+budget per tab; startup-block content (drift risk)."
+    q3_why_only_sonnet_paste: "Asymmetric relay pattern. Opus→Sonnet needs paste; Sonnet→Opus needs 'go read X'. Both Governor-actions, different formats — feels like only Sonnet needs writing."
+    q4_what_to_duplicate: "Paste-ready RELAY pattern itself + shared-constitution.txt extract + session-events.yaml log + symmetric council-channel naming."
+    q5_inherit_forever: "T1 session-open.sh injection (highest stability, before AI reasoning, cannot skip)."
+  proposed_fix: |
+    Three-element structural fix (one PROTO, mechanical):
+    
+    ELEMENT 1 — Shared constitution extraction
+      .csps/startup-blocks/shared-constitution.txt (new)
+      opus-startup.txt + sonnet-startup.txt refactor → role-specific tails only (cat shared-constitution.txt + 20-line role tail)
+      Validator: validate-startup-block-shared-content.mjs (T4 BLOCKING — flags drift)
+    
+    ELEMENT 2 — Session events log
+      tools/data/session-events.yaml (new)
+      Both AIs MUST tail -20 on every turn (added to startup block constitutional content)
+      Schema: [timestamp] [role] [event-type] [SHA-or-ref]
+    
+    ELEMENT 3 — Symmetric paste-ready RELAY
+      tools/templates/sonnet-checkpoint-relay.md (mirror of opus-relay)
+      Sonnet emits CHECKPOINT-RELAY block in chat every STEP-completion (paste-ready for Opus tab)
+      Validator: validate-sonnet-checkpoint-relay.mjs (every sonnet-turn.md CHECKPOINT must have paired chat-emit block)
+    
+    Engrave as B_INTRA_SESSION_SYMMETRY after K=2 sessions of practice.
+  inheritance_ladder:
+    t1_session_open_injection: "session-open.sh injects shared-constitution.txt at session start — HIGHEST stability"
+    t2_claude_md_reference: "CLAUDE.md references shared-constitution.txt + auto-inheritance protocol"
+    t3_startup_blocks_cat_shared: "Both startup-blocks cat shared-constitution.txt — file-mechanical"
+    t4_drift_validator: "validate-startup-block-shared-content.mjs BLOCKS commits where startup-blocks drift from shared"
+    t5_council_channel_frontmatter: "Pre-commit hook ensures new council files declare role_segregation: shared | opus | sonnet"
+    t6_agents_md_hard_no: "AGENTS.md: 'Never duplicate constitutional content across role startup-blocks'"
+  minimum_viable_structural_fix: "T1 + T3 + T4 (others are reinforcements)"
+  what_would_flip: "if T1 injection proves insufficient (e.g., session-open.sh content gets compacted out before AI reads), elevate to T0 (in-line in CLAUDE.md which has stronger persistence)"
+  carry_forward_to_session: S067
+  governor_approval_pending: false
+  governor_approval_status: APPROVED-CARRY-S067
+  governor_approval_session: S066
+  approval_decision_basis: "Governor S066 Turn 6: 'i approve all you recomend' — accepted recommendation (b) defer INTRA-SESSION-SYMMETRY to S067 + fix audit-runner gap now via Sonnet."
+  note: "Authored S066 in response to Governor's 5-question structural audit. Implementation deferred to S067 to keep WAVE 1+2 scope-disciplined. WAVE 2 PROTO (PROTO-S066-WAVE-2.md) ships first; S067 opens with this PROTO as Priority 1."

@@ -31,6 +31,10 @@ entries:
     k_count: 5
     sessions: [S040, S046, S051, S052, S053, S053-turn-11]
     status: fix_committed
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S042
     behavioral_test_exists: true
@@ -44,6 +48,10 @@ entries:
     k_count: 2
     sessions: [S052, S053]
     status: fix_committed
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S052
     behavioral_test_exists: true
@@ -68,6 +76,10 @@ entries:
     k_count: 6
     sessions: [S037, S040, S046, S050, S052, S053]
     status: fix_committed
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S039
     behavioral_test_exists: true
@@ -95,6 +107,10 @@ entries:
     k_count: 3
     sessions: [S051, S052, S053]
     status: fix_committed
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     behavioral_test_exists: false
     current_fix: "sonnet-startup.template.md created (S053-A). validate-handoff-completeness.mjs updated to check."
     note: "Fix committed. Behavioral test: does a new Sonnet tab following the startup block actually produce correct INTENT ABSORBED format? Not yet tested."
@@ -105,6 +121,10 @@ entries:
     k_count: 2
     sessions: [S051, S053]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     structural_fix_triggered: true
     behavioral_test_exists: false
     note: "K=2. No measurement exists for whether injection content survives context compression. Structural fix: behavioral test that verifies injection content is present in fresh tab first response."
@@ -115,6 +135,10 @@ entries:
     k_count: 1
     sessions: [S054]
     status: fix_committed
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     structural_fix_triggered: true
     behavioral_test_exists: false
     current_fix: "post-stop-session-close-gate.sh now extracts and surfaces startup block automatically. AGENTS.md hard NO added. sonnet-report.template.md v2.1 has mandatory PASTE section."
@@ -126,6 +150,10 @@ entries:
     k_count: 1
     sessions: [S053]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     structural_fix_triggered: false
     behavioral_test_exists: false
     note: "K=1. This is the root cause behind gaps 1-6. Structural fix: behavioral test suite (tools/tests/behavioral/) + Gap Recurrence Register validator. This register IS the first step of that fix."
@@ -149,6 +177,10 @@ entries:
         commit: 91054a1
         course_correct: HANDOFF-S062-to-S063 missing Zone A title + ALIGNMENT QUESTIONS + SONNET STARTUP BLOCK
     status: fix_committed
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S062
     structural_fix_committed: 0fb5173
@@ -191,6 +223,10 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S065
     behavioral_test_exists: false
@@ -214,6 +250,10 @@ entries:
     k_count: 1
     sessions: [S065]
     status: open
+    must_address_by_session: "S070"
+    age_escalation_status: on-time
+    explicit_defer_reason: null
+    fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S065
     behavioral_test_exists: false

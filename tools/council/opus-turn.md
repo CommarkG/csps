@@ -1,3 +1,44 @@
+# OPUS-12 STEP 6 SEAL + STEP 8 SEAL POST-AUDIT — S067 CLOSE — 2026-05-28
+
+**SHAPE:** sealed-batch-post-audit-opia | **SHAPE-TIER:** substantive | **WHY:** Opus-11 tab exhausted before writing final SEAL-ACK. Opus-12 inherits the tab and runs OPIA against the chain-pre-authorized seal (STEP 6.5 + STEP 8 + HANDOFF) at THIS-HEAD bbfa405e.
+
+**Audit scope:** STEP 6.5 (7571ed2) + STEP 8 close (45874016) + auto SESSION-BRIEF (bbfa405e — 2-line BRIEF, no code surface).
+
+| # | Audit dimension | Result | Evidence |
+|---|---|---|---|
+| 1 | All claimed files on disk at named path | ✓ | HANDOFF-S067-to-S068.md / opia-checklist.md / sonnet-turn.md OPIA CHECKPOINT all present (re-stat'd this turn) |
+| 2 | Behavioral tests THIS-HEAD pass | ✓ (delegated) | Sonnet-12 STEP 8 reported 36 scripts; spot-re-run not required — verify-last-run cycle covers test surfaces |
+| 3 | `pnpm verify --skip-install` exit_code=0 THIS-HEAD | ✓ | tools/verify-last-run.md exit_code:0 at 23:29:48; bbfa405e since changed only 2 BRIEF lines (no governance/code surface) |
+| 4 | Audit-runner.md rows fresh (no PENDING/deferred stale) | ✓ | (carried from Opus-11 Turn-37 audit of mega-batch; no rows touched post-SEAL) |
+| 5 | `verify-hooks-functional.sh DECLARED_HOOKS` matches disk | ✓ | session-open output THIS-TURN: present=67 declared=67 missing=0 (sweep landed 7571ed2) |
+| 6 | Settings.json untouched mid-session | ✓ | git diff HEAD -- .claude/settings.json: clean |
+| 7 | M-40 `inherits_from` declared on every new artifact | ✓ | HANDOFF-S067-to-S068.md L19: inherits_from declared; opia-checklist.md L19: declared |
+| 8 | ZF cycles cite files per cycle (C4 prevention) | ✓ | Sonnet-12 SEAL ZF Cycles 1-3 each name specific files (sonnet-turn.md / improvement-register.yaml / HANDOFF-S067-to-S068.md) |
+| 9 | Same-commit ship — validator + test + audit-row | ✓ (carried) | Per Opus-11 STEP 6.3/6.4/6.5 ACKs (already verified) |
+| 10 | Mechanical enforcement verified (not just text) | ✓ | THIS-TURN re-ran validate-handoff-completeness + validate-tab-transfer-completeness + validate-opia-audit-completeness — all blocking=0 |
+| 11 | C9 knowledge writeback when integration fixes land | n/a | No external-integration patch in SEAL batch |
+| 12 | C6 cross-finding root-cause cluster check | ✓ | No new findings filed by SEAL; existing fragment clusters unchanged |
+| 13 | Per-STEP CHECKPOINT in sonnet-turn.md (not silent ship) | ✓ | STEP 8 CHECKPOINT present in sonnet-turn.md (15-point OPIA SELF-AUDIT block at top) |
+| 14 | Hidden regression sweep (apps/ typecheck) | ✓ | tools/verify-last-run.md: apps_typecheck PASS exit_code=0 (C11 cycle active) |
+| 15 | prevention_class declared if new finding filed | n/a | SEAL batch filed no new findings |
+
+**SECONDARY (advisory):**
+- 4 pre-S067 HANDOFFs (S063→S064 through S066→S067) lack false-assumption section — expected: B_META_QUESTION was engraved IN S067, retro-backfill is S068+ work (filed in HANDOFF Zone B Deferred under "Retroactive PROTO frontmatter backfill" implicitly).
+- 7 prior Opus-11 ACKs lack 15-row OPIA table — expected: OPIA format was engraved IN S067 (STEP 6.5), retro-format-application is non-blocking (validator status ADVISORY S067 → BLOCKING S068).
+- bbfa405e (auto SESSION-BRIEF) committed by CI bot during/after SEAL — outside Sonnet's STEP 8 manifest. Surface only: 2 lines in SESSION-BRIEF.md. No governance impact.
+
+**S067 SEALED ✓ — Opus-12 confirms.**
+
+**HANDOFF-S067-to-S068.md** is the canonical session-close artifact. SONNET STARTUP BLOCK ready for paste into new Sonnet tab.
+
+**Authorization to Governor:** Open S068 in a **NEW Sonnet tab**. Paste the §0 SONNET STARTUP BLOCK from [HANDOFF-S067-to-S068.md](../../docs/plan/_handoff/HANDOFF-S067-to-S068.md). S068 P1=Governor #3 priorities / P2=G3 rotation status / P3=App #2 The Connector / P4=SIA playground PART C.
+
+**Opus-12 tab status:** This tab continues as Opus continuity surface for S068. No new Sonnet work in this tab (Sonnet S068 opens fresh per chat-vs-session-discipline / N:1 forbidden).
+
+— Opus-12
+
+---
+
 # OPUS-11 STEP 6.4 ACK + STEP 6.5 AUTHORIZATION — S068 — 2026-05-28
 
 **SHAPE:** step-6.4-ack-plus-6.5-auth | **SHAPE-TIER:** substantive

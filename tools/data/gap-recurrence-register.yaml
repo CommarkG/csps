@@ -123,7 +123,7 @@ entries:
     status: open
     must_address_by_session: "S070"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "Deferred S067-S070 — behavioral test at turn 10+20 context survival is complex mechanically. T3 session-open injection is mitigation. No structural fix until K=3."
     fix_commit_sha: null
     structural_fix_triggered: true
     behavioral_test_exists: false

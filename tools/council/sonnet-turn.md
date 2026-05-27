@@ -44,3 +44,25 @@ ZF Cycle 2: Re-checked PROTO §CARRY-FORWARD (PART C at session-open = S067, NOT
 Status: ZF ACHIEVED (INTENT ABSORBED).
 
 Building STEP 1 now.
+
+
+---
+
+## WAVE 2 STEP 1+2+3 CHECKPOINTS
+
+STEP 1 (127902d): migration script 21 entries patched / 4/4 tests
+STEP 2 (a0f7a4f): finding-scheduling validator / 3/3 tests / REAL FINDING: imp_CEC_SPECIFICITY K=1→K=2
+STEP 3 (pending): close-gate-top3-pe-check.mjs / 3/3 tests / 2 defer-reasons added
+
+ZF Cycle 1 (Architecture lens): STEP 1 script (line-by-line YAML parser, CRLF safe, idempotent),
+  STEP 2 validator (16 findings + auto-promote + audit-runner row), STEP 3 gate (top-3 PE check
+  with fix+defer requirement). All files in tools/scripts/ + tools/validators/ + tools/tests/.
+  One finding: STEP 2 originally returned top-0 due to CRLF → fixed to line-by-line parse.
+ZF Cycle 2 (Data-integrity): Re-checked improvement-register.yaml (imp_TRANSIENT_STOP_HOOK_K3
+  and imp_CEC_SPECIFICITY both have explicit_defer_reason now), gap-recurrence-register.yaml
+  (gap_SESSION_INJECTION_COMPRESSION has defer_reason). No existing fields overwritten — only
+  new scheduling fields added by idempotent migration. 0 new findings.
+ZF Cycle 3 (QA lens): All behavioral tests (4+3+3=10 total for WAVE 2) pass. INPUT A/B/C/D
+  per PROTO specifications. close-gate-top3-pe-check.mjs passes on current register state.
+  post-stop-session-close-gate.sh extended with BLOCKING gate for top-3 missing fix+defer.
+Status: ZF ACHIEVED (WAVE 2).

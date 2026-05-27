@@ -163,9 +163,22 @@ else
   STARTUP_MSG="\n\n⚠ STARTUP BLOCK NOT FOUND in latest HANDOFF — check ${LATEST_HANDOFF}"
 fi
 
-# ZF ACHIEVED + HARVEST DONE → surface closing protocol + startup block
+# ── WAVE-2-STEP-3: top-3 PE findings gate (PROTO-S066-WAVE-2) ──────────────
+TOP3_PE_EXIT=0
+TOP3_PE_MSG=""
+TOP3_PE_MSG=$(node "${REPO_ROOT}/tools/scripts/close-gate-top3-pe-check.mjs" 2>&1) || TOP3_PE_EXIT=$?
+if [ "$TOP3_PE_EXIT" -ne 0 ]; then
+  printf '{
+    "systemMessage": "[SESSION-CLOSE-GATE] ⛔ TOP-3-PE GATE BLOCKING\n%s\nFix: add fix_commit_sha or explicit_defer_reason to each blocked finding.\nBypass: add §10.0k section to closing-summary with reason per missing entry.",
+    "continue": false,
+    "stopReason": "top-3-pe-gate blocked session close"
+  }' "$TOP3_PE_MSG"
+  exit 1
+fi
+
+# ZF ACHIEVED + HARVEST DONE + TOP-3-PE OK → surface closing protocol + startup block
 printf '{
-  "systemMessage": "[SESSION-CLOSE-GATE] ✅ ZF ACHIEVED + HARVEST DONE\nClose signal: %s\n\nNOW complete the §10 closing protocol:\n  1. Paste ZF output (above) into §10.0 of closing-summary\n  2. Write closing-summary + HANDOFF artifacts\n  3. git push before handoff (B_ZERO_LAPTOP_DEPENDENCY)\n  4. Paste startup block below into new Sonnet tab%s"
+  "systemMessage": "[SESSION-CLOSE-GATE] ✅ ZF ACHIEVED + HARVEST DONE + TOP-3-PE OK\nClose signal: %s\n\nNOW complete the §10 closing protocol:\n  1. Paste ZF output (above) into §10.0 of closing-summary\n  2. Write closing-summary + HANDOFF artifacts\n  3. git push before handoff (B_ZERO_LAPTOP_DEPENDENCY)\n  4. Paste startup block below into new Sonnet tab%s"
 }' "$CLOSE_REASON" "$STARTUP_MSG"
 
 exit 0

@@ -462,7 +462,7 @@ entries:
     status: open
     must_address_by_session: "S067"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "Plan item PROTO-S064-TRANSIENT-STOP-HOOK-FIX filed (pe=80, BATCH-L). Build deferred to S067 after WAVE 1+2 prevention infrastructure ships."
     fix_commit_sha: null
     carry_forward_to_session: S064
     plan_item: PROTO-S064-TRANSIENT-STOP-HOOK-FIX

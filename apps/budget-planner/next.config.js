@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@csps/integrations'],
+  transpilePackages: ['@csps/integrations', '@csps/config'],
   async headers() {
     return [
       {

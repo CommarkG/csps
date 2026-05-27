@@ -1009,3 +1009,55 @@ entries:
   governor_approval_session: S066
   approval_decision_basis: "Governor S066 Turn 6: 'i approve all you recomend' — accepted recommendation (b) defer INTRA-SESSION-SYMMETRY to S067 + fix audit-runner gap now via Sonnet."
   note: "Authored S066 in response to Governor's 5-question structural audit. Implementation deferred to S067 to keep WAVE 1+2 scope-disciplined. WAVE 2 PROTO (PROTO-S066-WAVE-2.md) ships first; S067 opens with this PROTO as Priority 1."
+
+- id: F-NEW-14-TRANSPILE-PACKAGES-DRIFT
+  title: "Every CSPS app's next.config.js transpilePackages must include every @csps/* workspace package with TS-main entries — no mechanical enforcement"
+  description: "Surfaced S066 via Vercel production deploy failure of apps/budget-planner. next.config.js had transpilePackages: ['@csps/integrations'] but missing '@csps/config'. @csps/config has main: ./index.ts (raw TypeScript). Next.js doesn't transpile TS inside node_modules without explicit allow-list. Webpack hit subscription.config.ts 'as const', failed to parse. Real apps fail production deploys silently; verify never catches because typecheck filter is ./packages/** (excludes apps/) — F-NEW-13 sibling gap."
+  inherits_from: "F-NEW-13 (verify excludes apps/) + M-19 External Integrations Hub + M-26 DNA inheritance + M-20 apps-as-trials"
+  first_found: S066
+  k_count: 1
+  sessions: [S066]
+  status: open
+  source: "Governor S066: 'what is this all about? Failed production deployment'"
+  proposed_fix: |
+    Two-phase structural fix:
+    PHASE 1 — Immediate sweep (S067): for every apps/*/next.config.js, walk import graph + ensure all @csps/* TS-main packages are in transpilePackages.
+    PHASE 2 — Validator (S067+):  validate-transpile-packages-coverage.mjs
+      - For each apps/*/next.config.js extract transpilePackages array
+      - Walk import graph of apps/*/src/ to find imported @csps/* packages
+      - For each imported @csps/* dep, check its package.json main — if main ends in .ts: must be in transpilePackages
+      - Emit BLOCKING if drift detected
+    PHASE 3 — Long-term moat: convert @csps/* shared packages to ship .js (build step before publish), so transpilePackages list becomes unnecessary
+  what_would_flip: "if all @csps/* packages get .js build outputs in S067-S068, validator becomes vacuous and can be removed"
+  carry_forward_to_session: S067
+  governor_approval_pending: false
+  governor_approval_status: APPROVED-CARRY-S067
+  governor_approval_session: S066
+  approval_decision_basis: "Governor S066 auto-execute authorization on (A) immediate budget-planner fix; (B)+(C) structural prevention carry to S067."
+  immediate_fix_S066:
+    file: apps/budget-planner/next.config.js
+    change: "Added '@csps/config' to transpilePackages array"
+    commit_sha_pending: true
+  note: "Discovered via Vercel build error log line 14:17:17.552. WAVE 1 confirmed NOT cause (zero apps/budget-planner touches in WAVE 1 diff). Class of gap: invisible app-regression class — verify reports green while production breaks."
+
+- id: F-NEW-15-POST-STOP-VERIFY-FAILURE-SNAPSHOT-GAP
+  title: "post-stop verify failures don't preserve failing-cycle JSON for next-turn diagnosis — by the time Opus arrives state has moved"
+  description: "S066 Turn 9+11: stop-hook reported 'pnpm verify failed (iter 13)' and 'iter 17'. By the time Opus re-ran verify the failure was gone (transient between-edits state). No diagnostic information persisted across the stop-hook → next-prompt boundary. Opus must speculate or re-run + hope to reproduce. Improvement: post-stop should snapshot the failing-cycle JSON output to tools/data/post-stop-verify-snapshots/iter-NNN.json so next turn has evidence."
+  inherits_from: "P-META-006 RZF + B_PRE_CLOSE_VERIFICATION + post-stop-pnpm-verify.sh"
+  first_found: S066
+  k_count: 1
+  sessions: [S066]
+  status: open
+  source: "Opus-11 self-observation S066 Turn 11: 'F-NEW-15 — post-stop verify failures don't preserve failing tail for later diagnosis'"
+  proposed_fix: |
+    Extend .claude/hooks/post-stop-pnpm-verify.sh:
+    On verify FAIL, snapshot:
+      - tools/verify-last-run.md (full report)
+      - The first failing cycle's tail field
+    To: tools/data/post-stop-verify-snapshots/iter-<N>.json
+    Auto-prune snapshots older than 5 sessions (keep last 5 only).
+    Inject snapshot reference into next session-open output so Opus has THIS-SESSION evidence not memory.
+  what_would_flip: "if transient failures become rare (e.g., fewer mid-response edits), snapshot value decreases"
+  carry_forward_to_session: S067
+  governor_approval_pending: true
+  note: "Diagnostic infrastructure gap. Compounds with F-NEW-14 because real failures get lost in noise vs reproducible signals. Low-effort fix (~30 min)."

@@ -207,3 +207,25 @@ entries:
       - session-open T3 lists K>=2 as MUST-FIX
       - PAP Part 1A YAML documents the 134 specific validators
     note: "Largest single structural gap surfaced by PAP. Same severity-class as gap_DONE_CLAIM K=4. Platform had perceived quality (179 validators) but mechanical quality is 3.6% of perceived. Same pattern as PERMANENCE-DRIFT 100%→58%. Honest framing: advisory validators are aspirational, not mechanical."
+
+  - id: gap_PREVENTION_COVERAGE_GAP
+    observation: "Prevention coverage (moat elements with active T1+T2+output_signature / total moat elements) at 5% per PAP Part 5 (S065). Platform has 41 moat elements but only ~2 have fully wired T1+T2+output evidence. Third measurement-honesty correction: PAP keeps surfacing real mechanical gaps."
+    first_seen: S065
+    k_count: 1
+    sessions: [S065]
+    status: open
+    structural_fix_triggered: true
+    structural_fix_required_since: S065
+    behavioral_test_exists: false
+    source: "PAP Part 5 audit — commit 2e3a9a8, docs/plan/_handoff/VAULT/pap/part-5-prevention-coverage-audit.yaml"
+    proposed_fix: |
+      Two-track: (a) systematic moat-by-moat wiring — assign each moat its T1+T2+output triple;
+      ship hooks/validators for orphan moats (~3-5 sessions). (b) honest moat re-classification —
+      aspirational moats marked status: aspirational (CSEP-pending); enforced moats with mechanical
+      evidence marked status: enforced. Track and ratchet enforced count.
+    pipeline_owner: "Sonnet builds wiring + Opus seeds T1+T2+output triple per moat + Governor ratifies"
+    forgetting_prevention:
+      - K-pipeline surfaces in pnpm verify per session
+      - flow-activity-monitor expands to include moat enforcement_status per element
+      - PAP runs per-session until coverage > 30%
+    note: "Third measurement-honesty correction in S062-S065 arc (PERMANENCE_DRIFT=first, VALIDATOR_BEHAVIORAL_TEST=second, PREVENTION_COVERAGE=third). 5% is honest. K-pipeline owns the ratchet forward."

@@ -511,3 +511,116 @@ entries:
     carry_forward_to_session: S065
     proposed_fix: "Add each hook to DECLARED_HOOKS in verify-hooks-functional.sh. This makes the functional check complete."
     note: "PAP Part 1.B finding FINDING-PAP1-S3."
+
+- id: FINDING-S065-PRE-ONSET-SHAPE-CHECK
+  title: "AI immediate-response trigger has no pre-onset defuse — CSPS guards verify content POST-generation only"
+  description: "CSPS guards (5 Guard Questions, B_VALIDATE_BEFORE_ASSUME, RZF, CONCEPT_LOAD) verify CONTENT after generation begins. None defuse the IMPULSE at [T-1] pre-conscious response-shape pattern-match. Five problematic defaults: helpfulness-compulsion, length-matching, pattern-completion, confirmation-bias, topic-continuation. Governor S065 caught instance: summary-before-ZF ordering despite explicit rule."
+  first_found: S065
+  k_count: 1
+  sessions: [S065]
+  status: open
+  source: "Governor S065: 'defuse inner triggers and defaults of responding immediately to inputs'"
+  evidence:
+    - "Mapping diagram in S065 Opus turn — [T-0]→[T-4] with [T-1] pre-conscious bias named"
+    - "5 defaults D1-D5 identified with current-defuse status (none mechanical)"
+    - "Governor catch S065: ZF cycles must come BEFORE summary — discipline drifted because impulse fired first"
+  proposed_fix: "Engrave B_PRE_ONSET_SHAPE_CHECK. Every substantive Opus response opens with: CONCEPT_LOAD line + SHAPE: <type> | WHY: <one-line> | NOT: <refused defaults>. Shape types: short-answer/structured-list/PCR/RELAY-block/mapping-diagram/refusal/question-back. SHAPE block forces conscious commit BEFORE [T-2] first content token. Validator: validate-pre-onset-shape-check.mjs. Behavioral test: INPUT A missing SHAPE → flag, INPUT B with SHAPE → pass, INPUT C conversational-exempt → pass."
+  not_yet_propagated:
+    - B_PRE_ONSET_SHAPE_CHECK contract (S066 — opus_reviewed_seed gate applies)
+    - tools/validators/validate-pre-onset-shape-check.mjs (S066)
+    - continuous-drift-log entry id=impulse-bias-pre-onset (S066)
+    - CONCEPT_LOAD preamble extension (P-META-020 extension)
+  carry_forward_to_session: S066
+  note: "Maps THE missing defuse layer. Existing guards = content-verifiers post-onset. SHAPE-CHECK = impulse-defuser pre-onset. Together complete the guard stack."
+
+- id: FINDING-S065-MULTI-LEVEL-MINITREE-INHERITANCE
+  title: "Multi-level minitree inheritance graph — M-40 expansion across 3 scopes"
+  description: "M-40 names Inheritance-as-Default-Permanent-Behavior. Inheritance today is distributed text fields (inherits_from per-artifact), not queryable, no validator enforces parent existence. Governor S065: 'feels like multiple levels of minitrees... 3 scopes'. Today ~109 elements; target 30 apps × 10 surfaces = 3000+."
+  first_found: S065
+  k_count: 1
+  sessions: [S065]
+  status: open
+  source: "Governor S065: 'what would top experts improve regarding core tree inheritance across 3 scopes?'"
+  scope_1_to_10: "~109 elements TODAY. Flat YAML registry (tools/data/inheritance-graph.yaml). validate-inheritance-graph.mjs catches orphans + broken refs. M-40 becomes measurable."
+  scope_10_to_100: "~300-1000 artifacts NEXT YEAR. Reverse-indexed registry + depth-limit (max 5 levels) + cycle detection. Queries: 'all descendants of M-40' / 'all orphans' become 1-liner."
+  scope_30_to_300: "3000+ artifacts across 30 apps. Federated per-app inheritance rooted in libs/template + libs/intelligence + libs/audits. Per-app inheritance score makes M-20 deletion test quantitative."
+  proposed_fix: "Phase 1 (S066): inheritance-graph.yaml + validate-inheritance-graph.mjs (orphan check). Phase 2 (S067-S068): reverse-index + depth-limit + cycle detection. Phase 3 (S070+): federated per-app — new app gets inheritance manifest at fork."
+  not_yet_propagated:
+    - tools/data/inheritance-graph.yaml (S066 Phase 1)
+    - tools/validators/validate-inheritance-graph.mjs (S066 Phase 1)
+    - inheritance-graph-viewer playground page (S068 Phase 2)
+    - M-40 extension with structural validator + behavioral test
+    - PAP Part 2 future runs cross-check against inheritance graph
+  carry_forward_to_session: S066
+  note: "M-40 unifies M-04 (depth slices) + M-20 (apps-as-trials) + M-29 (Platform Genome) + M-37 (Core Seeds). Graph makes unification measurable. Same compounding pattern as PAP made alignment measurable."
+
+- id: FINDING-S065-THREE-EXPERT-META-REVIEW
+  title: "Three-expert review of Opus instruction quality + Sonnet implementation patterns + permanent prevention"
+  description: "Governor S065 directive: review how Opus writes instructions to Sonnet / how Opus implements / how Sonnet implements / recurring patterns + permanent prevention solutions. Three top-expert lenses each producing concrete validator + behavioral test + prevention proposal."
+  first_found: S065
+  k_count: 1
+  sessions: [S065]
+  status: open
+  source: "Governor S065 meta-directive — three top-expert points of view"
+  expert_a_architecture: "Lens: inheritance graph traversability. Recurring pattern: inherits_from declared as distributed text — not queryable, no parent enforcement. Permanent prevention: validate-inheritance-graph.mjs (links to FINDING-S065-MULTI-LEVEL-MINITREE-INHERITANCE). PE-rank: foundation, scale-impact at 30-apps stage."
+  expert_b_ai_pairing: "Lens: Opus→Sonnet relay quality. Recurring patterns: relay too long → absorb-and-wait | multiple decisions per relay | implicit gate-tier ambiguity | describe-without-filing R4 trap | inconsistent relay structure. Permanent prevention: validate-relay-quality.mjs checks max 1 decision/relay + explicit gate-tier + SHAPE block. PE-rank: HIGHEST frequency-impact."
+  expert_c_qa: "Lens: validator + behavioral test discipline. Recurring pattern: 134/167 validators untested (PAP S065 3.6%). gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE K=1 already filed. Permanent prevention: pre-commit-validator-test-required.sh — new validators MUST declare @csps-behavioral-test or @csps-test-exempt. Retroactive: PROTO-S066-BEHAVIORAL-TEST-RETROACTIVE-SWEEP. PE-rank: HIGHEST urgency, closes existing K=1."
+  s066_sequencing: "PE order: Expert B (relay quality compounds every Opus turn) → Expert C (closes existing K=1) → Expert A (foundation for 30-app scale). Estimated S066-S070 duration."
+  carry_forward_to_session: S066
+  note: "Three-expert review is Governor's expert-level S065 directive. Each expert produces concrete validator + behavioral test + permanent prevention proposal. Sequenced by PE per the criteria above."
+
+  # ── INPUT-S066 entries from Governor + Opus S065 ─────────────────────────
+
+  - id: INPUT-S066-MULTI-LEVEL-MINITREE-INHERITANCE
+    finding: "Governor S065: 'feels like multiple levels of minitrees' — inheritance graph needs scoping for 1→10 / 10→100 / 30→300 artifact counts. M-40 Inheritance-as-Default needs graph traversal design."
+    first_found: S065
+    k_count: 1
+    sessions: [S065]
+    status: open
+    carry_forward_to_session: S066
+    proposed_fix: "Scope 1→10 (today): flat YAML registry works. Scope 10→100: graph-DB or reverse-index. Scope 30→300 (3000+ across 30 apps): federated per-app inheritance. validate-inheritance-graph.mjs S066 candidate."
+    note: "Governor-surfaced S065. M-40 Inheritance-as-Default moat engraved S065. Full design work deferred S066."
+
+  - id: INPUT-S066-THREE-EXPERT-META-REVIEW
+    finding: "Governor S065 meta-directive: analyze instruction-writing (Opus→Sonnet) + implementation patterns + recurring failures. 3 expert POVs (Architecture/AI-Pairing/QA) to produce 9 permanent prevention proposals."
+    first_found: S065
+    k_count: 1
+    sessions: [S065]
+    status: open
+    carry_forward_to_session: S066
+    three_expert_proposals:
+      expert_A_architecture:
+        - "PAP-RELAY-SCHEMA: [P0 blocker] [P1 this-relay] [P2 context-only] enforced by hook"
+        - "STATE_DELTA_MANIFESTO: compute-session-delta.mjs showing only what changed since last commit"
+        - "RELAY_SIZE_RATCHET: >80 lines advisory, >120 lines BLOCK (pre-commit hook)"
+      expert_B_ai_pairing:
+        - "SINGLE_DECISION_PER_RELAY: B_REVERSIBILITY_GATED_REVIEW extended; detect >3 decisions per relay"
+        - "EVIDENCE_FIRST_FORMAT: claim after proof inline, not proof after claim"
+        - "CONTEXT_SURVIVAL_TEST: at turn 10+20, self-test startup block vs current behavior"
+      expert_C_qa:
+        - "BUILD_TEST_COMMIT_MANDATE: pre-commit gate requiring behavioral test with every new validator"
+        - "BEHAVIORAL_TEST_RUNNER_IN_VERIFY: pnpm test:behavioral in verify chain (auto-run all *.sh tests)"
+        - "ADVISORY_NOISE_FLOOR: track advisory frequency; >80% session rate = promote or remove"
+    priority_P0: BUILD_TEST_COMMIT_MANDATE
+    priority_P1: [RELAY_SIZE_RATCHET, SINGLE_DECISION_PER_RELAY]
+    note: "Governor-surfaced S065. Expert analysis provided in S065 session chat. Permanently filed here. Opus to PE-score and sequence in S066 planning."
+
+  - id: INPUT-S066-PAP-PER-SESSION-CADENCE
+    finding: "PAP currently planned quarterly. Three honesty corrections in one S062-S065 arc argues for per-session cadence until alignment baseline > 30%. After 30%: drop to quarterly."
+    first_found: S065
+    k_count: 1
+    sessions: [S065]
+    status: open
+    carry_forward_to_session: S066
+    proposed_fix: "Run condensed PAP (Parts 1+3+5 only — the 3 measurement parts) each session. Full 8-part PAP quarterly. Condensed PAP = ~1 context window; does not block app work."
+    note: "Decision needed in S066: per-session condensed PAP vs quarterly full PAP."
+
+  - id: INPUT-S066-CAI-RATIFICATION-FOLLOWUP
+    finding: "CAI-DEFINITION.md authored S065, lifecycle_state=pending-review, ratification_status=governor-pending. Governor 'CAI-RATIFIED' signal required to close."
+    first_found: S065
+    k_count: 1
+    sessions: [S065]
+    status: open
+    carry_forward_to_session: S066
+    proposed_fix: "After Governor types 'CAI-RATIFIED': (1) engrave CAI as M-42, (2) wire 6 dimensions to existing validators, (3) reference CAI in startup blocks and PROTO templates, (4) update B_REVERSIBILITY_GATED_REVIEW to cite CAI Dimension 3."
+    note: "CAI-DEFINITION.md at docs/plan/pillar-0-governance/CAI-DEFINITION.md. Governor sign-off required."

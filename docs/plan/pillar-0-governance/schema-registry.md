@@ -540,6 +540,14 @@ schema_anchors:
     spine: VALD
     l2_domain: vald_coverage_discipline
     description: Audit scheduling and gap tracking data — gap-recurrence-register.yaml, threshold-intake-log.yaml, and similar runtime governance data files
+
+  pap_audit:
+    type: pap-audit-output
+    resolves_to: docs/plan/_handoff/VAULT/pap/
+    spine: VALD
+    l2_domain: vald_coverage_discipline
+    description: PAP (Platform Alignment Plan) audit output files per Part — per-element evidence YAMLs
+
 ```
 
 ---
@@ -598,3 +606,10 @@ against this registry. Unknown anchors = ORPHAN. Pre-existing orphans: advisory;
   spine: VALD
   l2_domain: vald_coverage_discipline
   description: Audit scheduling and gap tracking data files — gap-recurrence-register.yaml, threshold-intake-log.yaml, and similar runtime governance data
+
+  pap_audit:
+    type: pap-audit-output
+    resolves_to: docs/plan/_handoff/VAULT/pap/
+    spine: VALD
+    l2_domain: vald_coverage_discipline
+    description: PAP (Platform Alignment Plan) audit output files per Part — per-element evidence YAMLs

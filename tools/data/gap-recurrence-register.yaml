@@ -184,3 +184,26 @@ entries:
       - this register is parsed at every session-start per always_include
       - PROTO-S063-DONE-CLAIM-VALIDATOR-GATE in unified-plan.yaml BATCH-L (pe_score=95 = must-fix-first)
     note: "K=4 in S062 alone (single session). Pattern is structural: both Sonnet AND Opus underweight 'validator must run before claim' because the commit message FEELS like proof. Only mechanical pre-commit gate breaks the loop. P-META-019 mandates structural fix at K=2; this is K=4 — overdue. The fix is small (~30 lines bash) but its absence costs ~3 turns per session to detect-and-course-correct."
+
+  - id: gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE
+    observation: "134 of 167 validators (80%) have no behavioral test proving they catch known violations. Only BLOCKING validators were tested; ADVISORY validators uniformly untested. Validators 'exist' but their catching-power is unverified."
+    first_seen: S065
+    k_count: 1
+    sessions: [S065]
+    status: open
+    structural_fix_triggered: true
+    structural_fix_required_since: S065
+    behavioral_test_exists: false
+    source: "PAP Part 1A audit — commit 9e51f43, docs/plan/_handoff/VAULT/pap/part-1A-validators-audit.yaml"
+    proposed_fix: |
+      (a) Build behavioral tests for all 134 systematically (~3-5 sessions) OR
+      (b) Triage: BLOCKING validators MUST have tests; ADVISORY-only marked
+          behavioral_test_status: advisory-exempt with explicit reason.
+      Recommended: Mixed — build tests for top-30 highest-impact ADVISORY validators;
+      mark remaining advisory validators as exempt with documented reason.
+    pipeline_owner: "Sonnet builds + Opus seeds test pattern per validator class + Governor ratifies activation"
+    forgetting_prevention:
+      - K-pipeline surfaces in pnpm verify per session
+      - session-open T3 lists K>=2 as MUST-FIX
+      - PAP Part 1A YAML documents the 134 specific validators
+    note: "Largest single structural gap surfaced by PAP. Same severity-class as gap_DONE_CLAIM K=4. Platform had perceived quality (179 validators) but mechanical quality is 3.6% of perceived. Same pattern as PERMANENCE-DRIFT 100%→58%. Honest framing: advisory validators are aspirational, not mechanical."

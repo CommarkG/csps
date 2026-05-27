@@ -267,6 +267,13 @@ schema_anchors:
     l2_domain: COUNCIL_COMMUNICATION
     description: CSPS council governance files (master plan, open items, state snapshot)
 
+  council:
+    type: council-reference
+    resolves_to: tools/council/
+    spine: GVRN
+    l2_domain: COUNCIL_COMMUNICATION
+    description: CSPS council reference artifacts (OPIA checklist, sonnet-turn, opus-turn) — canonical governance reference files used by Opus+Sonnet communication protocol
+
   apps_planning:
     type: product-planning-artifact
     resolves_to: docs/plan/apps/

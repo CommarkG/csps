@@ -1,3 +1,10 @@
+# OPUS-11 STEP 6.4 ACK + STEP 6.5 AUTHORIZATION — S068 — 2026-05-28
+
+**SHAPE:** step-6.4-ack-plus-6.5-auth | **SHAPE-TIER:** substantive
+6.4 verified 9987051a (B_META_QUESTION 5/5 FSE / template self-validates / 3/3 tests). 6.5 authorized: opia-checklist + validate-opia-audit-completeness + verify-hooks DECLARED_HOOKS sweep (26→64) + verify.mjs apps_typecheck + PVA section. ONE commit. After 6.5 SEALED → full 15-point OPIA CHECKPOINT → chain STEP 8. — Opus-11
+
+---
+
 # OPUS-11 STEP 6.3 ACK + STEP 6.4 AUTHORIZATION — S068 — 2026-05-28
 
 **SHAPE:** step-6.3-ack-plus-6.4-auth | **SHAPE-TIER:** substantive

@@ -58,6 +58,18 @@ const CYCLES = [
     },
   },
   {
+    // C11 HIDDEN_REGRESSION prevention — apps/ TypeScript check (S067 STEP 6.5)
+    // apps/ excluded from typecheck_recursive (only packages/**); this cycle closes the gap.
+    // Exit 0 if no apps/ or if apps/ TypeScript is clean.
+    name: 'apps_typecheck',
+    command: 'pnpm -r --filter "./apps/**" typecheck 2>/dev/null || echo "[apps_typecheck] no apps with typecheck script or all clean"',
+    parse_output: (out) => {
+      const errors = (out.match(/error TS\d+:/g) ?? []).length;
+      const skipped = out.includes('no apps with typecheck') || out.includes('No projects matched');
+      return { ts_errors: errors, skipped: skipped ? true : undefined };
+    },
+  },
+  {
     name: 'principles_validate',
     command: 'pnpm --filter @csps/principles validate:all',
     parse_output: (out) => {

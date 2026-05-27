@@ -1,3 +1,68 @@
+# OPUS-12 S068 OPEN — RATIFIED 4-PCR EXECUTION DIRECTIVE — 2026-05-28
+
+**SHAPE:** s068-opens-with-p2-verify-and-p3-proto-seed | **SHAPE-TIER:** substantive | **WHY:** Governor ratified all 4 PCRs (P1=parallel slot / P2=START verify-only / P3=PROTO-seed-only / P4=defer-as-fill) + directed "proceed and see how to reach completion of the plan." Opus-12 executes both immediate slots this turn; Sonnet inherits NOW-A on opus-turn.md read.
+
+## DIRECTIVE TO SONNET-13 — NOW-A: P2 G3 Rotation Verify-Only
+
+**Scope (mechanical verify only — NO rotation, NO secret values to chat):**
+
+1. Read `.env` and `.env.local` in repo root + apps/budget-planner — capture `last_modified` timestamps + key NAMES only (NEVER print values).
+2. Check Vercel env-var freshness if `gh` CLI or `vercel` CLI available — report stale-vs-current for: `CLERK_SECRET_KEY` / `DATABASE_URL` / `SUPABASE_SERVICE_ROLE` (names only).
+3. Cross-check against last leaked-keys list in any `_handoff/VAULT/leaked-keys-*.md` or memory `feedback_leaked_secrets_rotation_discipline.md` — does S067 turn-tracker show pending rotations?
+4. Report format (to sonnet-turn.md):
+   ```
+   G3 ROTATION STATUS — S068 verify-only
+   - .env timestamps: <name>=<ISO date> (no values)
+   - .env.local timestamps: <name>=<ISO date>
+   - Vercel env state: <name>=<fresh|stale|unknown>
+   - Pending rotations from S067 leaked-list: <count>
+   - VERDICT: ALL-FRESH | SOME-STALE | UNKNOWN-CHECK-VERCEL-MANUALLY
+   ```
+5. STOP after verify. Governor performs actual rotation. NEVER touch credential APIs from this directive.
+
+**Sonnet-side gates (B_META_QUESTION applies):**
+- Before running step 1: assert "what are the false assumptions here?" — e.g., assuming `.env` exists in repo root vs only in apps/; assuming Vercel CLI is logged in.
+- ZF cycles cite specific files inspected.
+
+## OPUS-12 PARALLEL — P3 PROTO-SEED Authored
+
+[PROTO-S068-CONNECTOR-WET-TRIAL.md](../../docs/plan/protos/PROTO-S068-CONNECTOR-WET-TRIAL.md) — v0.1-SEED.
+
+- 5 STEPs scaffolded (Component-A scaffold / Walking Skeleton / Component-B extraction / Vercel deploy / wet-trial SEAL).
+- 5 ALIGNMENT QUESTIONS for Governor (Q1=sales-flow specificity / Q2=wet-trial scope / Q3=integrations / Q4=tenant model / Q5=Component-B extraction depth).
+- inherits_from full chain declared. core_seed_present: true. gate_tier: full-advance.
+- **PROTO is SEED — not for Sonnet build yet.** Governor answers Q1-Q5 first; then Opus-12 expands SEED → full PROTO with concrete STEPs.
+
+## PLAN-COMPLETION STATUS — "where are we at"
+
+**Source:** `tools/config/unified-plan.yaml` (98 items, P-META-026 single-source-of-truth).
+
+| Status | Count | % |
+|---|---|---|
+| done | 38 | 39% |
+| ratified | 6 | 6% |
+| planning | 10 | 10% |
+| design_complete | 1 | 1% |
+| intake | 43 | 44% |
+
+**Owner:** Sonnet=63 / Shared=13 / Opus=11 / Governor=11. **Category:** Governance=55 / Architecture=29 / Infrastructure=6 / Product=5 / AI-behavior=2 / App=1.
+
+**Read:** 56% in-flight or done; 44% intake-raw (backlog not sprint). Only 5 product + 1 app items in plan — 30-SaaS vision is barely scaffolded at plan-level. **App #2 wet-trial (P3) is the next epoch-advancing test** of multi-app pattern.
+
+**E1 epoch close criteria:** governance done > 80% + product items >= 3 ratified. Today: governance done ≈ 30/55 (55%); products done ≈ 1/5. So **plan-level we are ~mid-E1**.
+
+**VLT-blocking=0, pending-plan-items=0 (THIS-TURN re-verified).** No governance escalation backlog.
+
+## ASK OPUS triggers (STOP if hit during NOW-A)
+
+- Sonnet finds `.env` with secret values pasted in plaintext to git history → STOP, escalate immediately.
+- Vercel CLI returns "auth required" → STOP, surface to Governor for re-auth.
+- Any key listed STALE on Vercel that was confirmed rotated in S067 memory → STOP, possible split-brain across tabs.
+
+— Opus-12
+
+---
+
 # OPUS-12 STEP 6 SEAL + STEP 8 SEAL POST-AUDIT — S067 CLOSE — 2026-05-28
 
 **SHAPE:** sealed-batch-post-audit-opia | **SHAPE-TIER:** substantive | **WHY:** Opus-11 tab exhausted before writing final SEAL-ACK. Opus-12 inherits the tab and runs OPIA against the chain-pre-authorized seal (STEP 6.5 + STEP 8 + HANDOFF) at THIS-HEAD bbfa405e.

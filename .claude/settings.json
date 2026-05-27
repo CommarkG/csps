@@ -229,6 +229,15 @@
             "command": ".claude/hooks/pre-tool-use-shape-check.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-commit-proto-core-seed-mandatory.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [

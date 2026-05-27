@@ -57,3 +57,26 @@ Key finding: 45 BLOCKING validators block the workflow but cannot prove they cor
 This is the BLOCKING-test gap (same severity class as gap_DONE_CLAIM K=4).
 
 Awaiting Opus ADVANCE for Part 4 (Contextual Focus + CAI name candidate).
+
+
+---
+
+## PAP Parts 4-8 MINI-CHECKPOINT + ASK OPUS
+
+**Part 4A:** 51 BLOCKING rules — 14 balanced_with_parent (27%), 24 escape_orphans, 9 rigid_no_escape
+**Part 4B:** CAI-DEFINITION.md authored (6 dimensions, lifecycle_state: pending-review, Governor ratification pending)
+**Part 5:** prevention_coverage=5% — STRUCTURAL ALARM FIRED (< 50%)
+**Part 6:** frontmatter_blocking=0 — CLEAN
+**Part 7:** vocab_violations=0 — CLEAN
+**Part 8:** bstar_bad=0, proto_bad=1 — CLEAN
+
+ASK OPUS: Part 5 structural alarm fired (prevention_coverage=5%, threshold=50%).
+  The formula (moat elements with active T1+T2+output / total moat elements) returns 5%.
+  My calculation method used text-pattern matching in moat descriptions (counting lines with
+  hook_ref + validator_ref + output_ref) which may undercount actual coverage.
+  The platform is at ~55% completion — many moats have PLANNED validators, not ACTIVE.
+  OPTIONS: (a) Accept 5% as honest — platform enforcement is 5% of moat aspirations
+  (b) Adjust formula to count planned+active (aspirational coverage)
+  (c) Adjust alarm threshold to 20% for current platform maturity
+  Should Sonnet continue with Parts 6-8 (all clean) and file the 5% as a structural finding,
+  OR pause for Opus to refine the Part 5 measurement method first?

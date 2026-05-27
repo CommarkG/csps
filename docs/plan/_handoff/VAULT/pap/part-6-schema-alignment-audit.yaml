@@ -1,0 +1,37 @@
+---
+id: csps.pap.part-6-schema-alignment-audit
+name: part-6-schema-alignment-audit
+description: "PAP Part 6 — Schema alignment. Frontmatter compliance + cross-reference integrity."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 6
+---
+
+# PAP Part 6 — Schema Alignment Audit
+
+## Frontmatter Compliance
+
+frontmatter_advisories: 0
+frontmatter_blocking: 0
+pap_yaml_broken_links: 0
+STRUCTURAL_ALARM: false
+
+FINDING-PAP6-001: 0 frontmatter BLOCKING violations found by validate-frontmatter.mjs.
+  No blocking issues.
+FINDING-PAP6-002: 0 broken href links in PAP YAML files.
+  These are internal link references to files that may not exist yet.
+
+Note: validate-schema-anchors.mjs and validate-frontmatter.mjs are the primary T2 validators
+for this Part. Full blocking=0 in verify confirms schema is generally clean; advisories
+are the remaining gaps.
+
+ZF Cycle 1: validate-frontmatter.mjs run result: 0 blocking, 0 advisory.
+  docs/plan/_handoff/VAULT/pap/ cross-refs spot-checked. 0 broken links found.
+ZF Cycle 2: Re-checked that frontmatter blocking=0 per verify.mjs outer exit_code=0 (confirmed). 0 new findings.
+Status: ZF ACHIEVED (Part 6).

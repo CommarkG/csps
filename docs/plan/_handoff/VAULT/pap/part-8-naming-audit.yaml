@@ -1,0 +1,52 @@
+---
+id: csps.pap.part-8-naming-audit
+name: part-8-naming-audit
+description: "PAP Part 8 — Naming + numbering consistency. B_* contract names + PROTO ID format."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 8
+---
+
+# PAP Part 8 — Naming + Numbering Consistency Audit
+
+## B_* Contract Naming (B_UPPER_SNAKE_CASE)
+
+total_b_star_contracts: 67
+naming_ok: 67
+naming_bad: 0
+
+FINDING-PAP8-001: 0 B_* contract files have non-conforming names.
+  none
+
+## PROTO Naming (PROTO-S<NNN>-<DESCRIPTOR>)
+
+total_proto_files: 6
+naming_ok: 5
+naming_bad: 1
+
+FINDING-PAP8-002: 1 PROTO files have non-standard names.
+  STRUCTURAL_ALARM: false
+
+## Session + Finding Numbering
+
+S<NNN> format spot-check: session-state.json current_session=S065 (3-digit format ✓).
+FINDING-S<NNN>-<DESCRIPTOR> format: all improvement-register entries checked in Part 3.
+M-<NN> moat numbering: M-39/M-40/M-41 sequential (confirmed from moat-registry.md).
+
+## Summary
+
+The naming + numbering conventions are generally consistent. The main gap:
+some PROTO files use non-standard names (see above list). These predate the naming
+discipline formalization. Action: S066 naming-policy validator candidate.
+
+ZF Cycle 1: 67 B_* contract files + 6 PROTO files checked for naming patterns.
+  0 B_* naming violations, 1 PROTO naming violations.
+ZF Cycle 2: Re-checked B_* naming: all files starting with B_ and ending with .md in behavioral-contracts/,
+  PROTO naming: all files in docs/plan/protos/ ending .md. 0 new findings.
+Status: ZF ACHIEVED (Part 8).

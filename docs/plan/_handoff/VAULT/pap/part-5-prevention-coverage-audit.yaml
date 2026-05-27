@@ -1,0 +1,49 @@
+---
+id: csps.pap.part-5-prevention-coverage-audit
+name: part-5-prevention-coverage-audit
+description: "PAP Part 5 — Prevention coverage. M-40 formula: moat elements with active T1+T2+output_sig / total."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 5
+---
+
+# PAP Part 5 — Prevention Coverage Audit
+
+## Coverage Score (M-40 Formula)
+
+total_moat_elements: 41
+moat_with_t1_hook_ref: 6
+moat_with_t2_validator_ref: 18
+moat_with_output_evidence: 13
+moat_complete_all_3: 2
+prevention_coverage_score: 5%
+
+STRUCTURAL_ALARM: true
+
+## Analysis
+
+FINDING-PAP5-001: Prevention coverage is 5%. STRUCTURAL ALARM: < 50%.
+  2 of 41 moat elements have T1 hook reference + T2 validator reference + output evidence.
+  The remaining 39 elements have planned but not-yet-built enforcement.
+  This is expected at platform ~55% overall completion — the moat is aspirational, not mechanical yet.
+  PAP Parts 1-3 confirmed the gap: validators exist but behavioral tests are 3.6% coverage.
+  The prevention score WILL improve as PAP findings drive structural fixes in S066+.
+
+FINDING-PAP5-002: M-40 Inheritance dimension adds a new lens: prevention coverage includes
+  whether each moat element has inherits_from parent traceable. Currently only structural
+  moat elements (M-01 through M-20) have explicit parent chains. S065+ moats (M-39/M-40/M-41)
+  have planned validators but no inherits_from chain yet.
+  Action: S066 validate-inheritance-coverage.mjs candidate.
+
+ZF Cycle 1: 41 moat rows from docs/plan/pillar-0-governance/moat-registry.md.
+  Score 5% — each moat element text-analyzed for T1/T2/output references.
+ZF Cycle 2: Re-checked M-39 (PAP YAML evidence ✓), M-40 (validate-inheritance-coverage.mjs planned ✓),
+  M-38 (validate-protocol-stability-tier.mjs planned ✓). All planned moats consistently flagged
+  as CSEP-pending. 0 new findings.
+Status: ZF ACHIEVED (Part 5).

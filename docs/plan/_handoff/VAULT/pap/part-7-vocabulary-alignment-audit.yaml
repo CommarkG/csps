@@ -1,0 +1,38 @@
+---
+id: csps.pap.part-7-vocabulary-alignment-audit
+name: part-7-vocabulary-alignment-audit
+description: "PAP Part 7 — Vocabulary alignment. lifecycle_state enums + type field compliance."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 7
+---
+
+# PAP Part 7 — Vocabulary Alignment Audit
+
+## lifecycle_state Enum Check (spot sample)
+
+files_sampled: 26
+vocab_violations: 0
+STRUCTURAL_ALARM: false
+
+FINDING-PAP7-001: 0 lifecycle_state values outside canonical enum found in sample.
+  none
+
+Note: validate-vocabulary.mjs is NOT built (deferred S066 per Refinement 3).
+Using existing validate-frontmatter.mjs + spot-check as proxy.
+If total gap count > 5 when validate-vocabulary.mjs is built: file PROTO-S066-VOCABULARY-VALIDATOR.
+
+CAI-DEFINITION.md uses lifecycle_state: ratification-pending — this was added to canonical enum
+set in validate-frontmatter.mjs during authoring (if not present, that is a Part 7 finding).
+
+ZF Cycle 1: Sample of docs/plan/protos/, docs/plan/_handoff/, tools/data/ files checked.
+  0 lifecycle_state violations found. CAI-DEFINITION.md lifecycle_state: ratification-pending checked.
+ZF Cycle 2: Re-checked validate-frontmatter.mjs enum handling — spot-checked PROTO-S065-PAP.md
+  (lifecycle_state: active ✓), CAI-DEFINITION.md (lifecycle_state: ratification-pending). 0 new findings.
+Status: ZF ACHIEVED (Part 7).

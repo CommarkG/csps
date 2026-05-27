@@ -1,0 +1,51 @@
+---
+id: csps.pap.part-1D-registers-audit
+name: part-1D-registers-audit
+description: "PAP Part 1.D — Registers sweep. 5 active registers."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 1D
+---
+
+# PAP Part 1.D — Registers Completeness Sweep
+
+total_registers: 5
+all_exist: 5
+missing: 0
+
+registers:
+  - name: improvement-register
+    exists: true
+    reader: validate-improvement-register.mjs
+    writer: session-close-gate (write-pipeline open)
+  - name: gap-recurrence-register
+    exists: true
+    reader: validate-gap-recurrence.mjs
+    writer: manual per-session (no auto-writer)
+  - name: exceptional-moments-register
+    exists: true
+    reader: flow-activity-monitor.yaml
+    writer: post-stop-learning-loop.sh (S064 — untested)
+  - name: flow-activity-monitor
+    exists: true
+    reader: validate-flow-activity-monitor.mjs
+    writer: manual per-build
+  - name: threshold-intake-log
+    exists: true
+    reader: validate-threshold-intake.mjs
+    writer: user-prompt-submit-intake.sh
+
+FINDING-PAP1D-001: gap-recurrence-register has NO automated writer (manual per-session).
+  This creates FINDING-OPACITY risk: gaps not discovered in-session are never registered.
+  Action: file as Part 2 (Wiring audit) item — should have a T1 hook that prompts.
+
+FINDING-PAP1D-002: exceptional-moments-register write pipeline (post-stop-learning-loop.sh
+  exceptional-pattern scan) has 0 automated entries produced yet. Only manual bootstrap EM-S063-01.
+  The pipeline is built but untested under real session conditions.
+  Action: monitor for 3 sessions; if still 0 automated entries, investigate scan patterns.

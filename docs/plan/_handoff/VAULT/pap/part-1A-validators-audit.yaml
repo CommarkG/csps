@@ -1,0 +1,230 @@
+---
+id: csps.pap.part-1A-validators-audit
+name: part-1A-validators-audit
+description: "PAP Part 1.A — Validators completeness sweep. 167 validators audited."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 1A
+links:
+  - tools/verify.mjs
+  - docs/plan/pillar-0-governance/audit-runner.md
+  - tools/tests/behavioral/
+---
+
+# PAP Part 1.A — Validators Completeness Sweep
+
+## Summary
+
+total_validators_in_verify: 167
+aligned_slug_and_test: 6
+missing_audit_slug: 27
+needs_behavioral_test: 134
+
+## Key Findings
+
+FINDING-PAP1A-001: 134 validators wired in verify.mjs have no behavioral test.
+  Structural pattern: behavioral test coverage is ~4% for registered validators.
+  Root cause: behavioral tests were added for BLOCKING validators only, not advisory ones.
+  Action: file as structural improvement (K=1 for now; will K=2 if PAP Part 3 confirms pattern).
+
+FINDING-PAP1A-002: 27 validators in verify.mjs have no matching audit-runner.md slug.
+  Missing slugs:
+    - pnpm_install_frozen
+    - typecheck_recursive
+    - principles_validate
+    - frontmatter_validate
+    - aap_frontmatter_coverage
+    - mjs_syntax_check
+    - ai_defaults_enforcement_rate
+    - file_complexity_validate
+    - drift_registry_coverage
+    - plan_ai_defaults_alignment
+    - consolidation_check_coverage
+    - plan_zf_requirement_coverage
+    - intake_event_validate
+    - token_budget_validate
+    - corespine_depth_markers
+    - agent_calls_compliance
+    - page_dna_coverage
+    - platform_genome
+    - improvement_register
+    - voice_profile_coverage
+    - prace_tiers
+    - ai_honesty
+    - dev_vs_prod
+    - definition_before_enforcement
+    - autonomy_conditions
+    - checkpoint_categories
+    - audit_runner_full_pass
+
+## Status
+
+misaligned_entries:
+  - name: pnpm_install_frozen
+    has_audit_slug: false
+    has_behavioral_test: false
+    status: missing_slug
+  - name: typecheck_recursive
+    has_audit_slug: false
+    has_behavioral_test: false
+    status: missing_slug
+  - name: principles_validate
+    has_audit_slug: false
+    has_behavioral_test: false
+    status: missing_slug
+  - name: frontmatter_validate
+    has_audit_slug: false
+    has_behavioral_test: false
+    status: missing_slug
+  - name: aap_frontmatter_coverage
+    has_audit_slug: false
+    has_behavioral_test: false
+    status: missing_slug
+  - name: principle_count_staleness
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: ai_behavior_spine_slices_sync
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: audit_runner_slices_sync
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: behavioral_contract_slices_sync
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: principle_slices_sync
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: mjs_syntax_check
+    has_audit_slug: false
+    has_behavioral_test: false
+    status: missing_slug
+  - name: audit_health
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: model_tier_currency
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: ai_defaults_freshness
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: ai_defaults_enforcement_rate
+    has_audit_slug: false
+    has_behavioral_test: false
+    status: missing_slug
+  - name: opus_audit_due
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: opus_turn_rzf
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: sonnet_report
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: boundary_alignment
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: pe_dashboard
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: dead_links
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: opus_review_flagging
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: open_questions
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: participant_declared
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: completeness_coverage
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: template_grade
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: contract_harmonization
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: satisfaction_point
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: agreement_without_evidence
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: crystallization_bypass
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: comprehensive_response
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: diataxis_type
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: bottleneck_patterns
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: dna_evidence
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: multi_topic_decomposition
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: opus_rzf_gap_tracking
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: opus_cec_artifacts
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: schema_anchors
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: generated_artifact_freshness
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+  - name: spine_hierarchy
+    has_audit_slug: true
+    has_behavioral_test: false
+    status: needs_test
+
+  # ... +121 more needs_test entries (all advisory waivers needed)

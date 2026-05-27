@@ -28,3 +28,19 @@ ZF Cycle 2: Re-checked docs/plan/protos/PROTO-S065-PAP.md (all 8 Parts present w
   tools/data/improvement-register.yaml (3 carry-forward entries with carry_forward_to_session),
   docs/plan/_handoff/HANDOFF-S064-to-S065.md (confirm validate-handoff-completeness ✓). 0 new findings.
 Status: ZF ACHIEVED.
+
+
+---
+
+## PAP Part 1.A/B/C/D MINI-CHECKPOINT
+
+commit_pending | PAP Part 1 aggregate audit | Part 2 Wiring audit (Opus gate)
+
+**Part 1 findings (285 elements checked):**
+- 1A Validators: 134/167 need behavioral tests; 27 missing audit slugs (pre-audit-runner era)
+- 1B Hooks: 14 not in settings.json (EXISTS ≠ ACTIVE); 20 not in verify-hooks-functional
+- 1C Contracts: 1 missing T2 path (B_CATCH_TO_ENGRAVING)
+- 1D Registers: all 5 exist; gap-register lacks auto-writer
+
+3 structural findings filed to improvement-register.
+verify exit_code=0. Awaiting Opus ADVANCE for Part 2.

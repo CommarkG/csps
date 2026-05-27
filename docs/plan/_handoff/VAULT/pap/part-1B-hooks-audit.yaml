@@ -1,0 +1,127 @@
+---
+id: csps.pap.part-1B-hooks-audit
+name: part-1B-hooks-audit
+description: "PAP Part 1.B — Hooks sweep. 60 hook files."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 1B
+---
+
+# PAP Part 1.B — Hooks Completeness Sweep
+
+total_hook_files: 60
+aligned: 26
+not_in_settings: 14
+not_in_verify_hooks_functional: 20
+
+FINDING-PAP1B-001: 14 hook files exist but not registered in settings.json (will not fire).
+FINDING-PAP1B-002: 20 hooks in settings.json not in verify-hooks-functional DECLARED_HOOKS.
+
+misaligned_hooks:
+  - hook: cron-weekly-tag-status-deep-audit.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: depth-marker-creation-gate.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: post-stop-consolidation-pass.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: post-stop-directive-rzf-gate.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: post-stop-dna-sync-check.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: post-stop-error-harvest.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: post-stop-exists-not-equals-active.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: post-stop-savings-ssot-coverage.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: post-tool-use-design-token-check.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: pre-commit-bstar-engraving-gate.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: pre-commit-delete-guard.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: pre-tool-use-add-not-replace-gate.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: pre-tool-use-agent-alignment.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: pre-tool-use-alignment-gate.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: pre-tool-use-check-existing.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: pre-tool-use-context-question-gate.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: pre-tool-use-humble-step-gate.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: pre-tool-use-permanence-gate.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: pre-tool-use-playground-link-reminder.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: pre-tool-use-rule14-read-before-write.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: pre-tool-use-sacred-file-guard.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: pre-tool-use-sacred-parts-guard.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  - hook: pre-tool-use-schema-registration-gate.sh
+    in_settings: false
+    in_vhf: false
+    status: not_in_settings
+  - hook: pre-tool-use-skill-aap-required.sh
+    in_settings: false
+    in_vhf: true
+    status: not_in_settings
+  - hook: pre-tool-use-state-claim-gate.sh
+    in_settings: true
+    in_vhf: false
+    status: not_in_vhf
+  # ... +9 more

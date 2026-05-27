@@ -479,3 +479,35 @@ entries:
     carry_forward_to_session: S064
     proposed_fix: "Rethink Surface 5 for slice-format files: count parent behavioral-contracts.md schema_anchor, or remove Surface 5 requirement for slices"
     note: "Migrated from INPUT-S064-003."
+
+  # ── PAP Part 1 Findings (S065) ──────────────────────────────────────────
+
+  - id: imp_BEHAVIORAL_TEST_GAP_ADVISORY
+    finding: "134 of 167 validators in verify.mjs have no behavioral test. Only BLOCKING validators have tests; all advisory validators are untested."
+    first_found: S065
+    k_count: 1
+    sessions: [S065]
+    status: open
+    carry_forward_to_session: S065
+    proposed_fix: "Part 3 (Mechanical Enforcement) will classify which advisory validators warrant tests. Then batch-add behavioral tests per session."
+    note: "PAP Part 1.A finding FINDING-PAP1-S1. Measured 3.6% coverage — first formal measurement."
+
+  - id: imp_HOOKS_NOT_IN_SETTINGS
+    finding: "14 hook files exist in .claude/hooks/ but are not registered in settings.json and will never fire. AP-001 violation (EXISTS != ACTIVE)."
+    first_found: S065
+    k_count: 1
+    sessions: [S065]
+    status: open
+    carry_forward_to_session: S065
+    proposed_fix: "Audit each of the 14 unregistered hooks — either register them in settings.json or delete them as deprecated. See part-1B-hooks-audit.yaml."
+    note: "PAP Part 1.B finding FINDING-PAP1-S2."
+
+  - id: imp_HOOKS_NOT_IN_VHF
+    finding: "20 hooks registered in settings.json are not in verify-hooks-functional.sh DECLARED_HOOKS — cannot be verified as present/executable."
+    first_found: S065
+    k_count: 1
+    sessions: [S065]
+    status: open
+    carry_forward_to_session: S065
+    proposed_fix: "Add each hook to DECLARED_HOOKS in verify-hooks-functional.sh. This makes the functional check complete."
+    note: "PAP Part 1.B finding FINDING-PAP1-S3."

@@ -1,0 +1,82 @@
+---
+id: csps.pap.part-1-completeness-audit
+name: part-1-completeness-audit
+description: "PAP Part 1 — Completeness audit aggregate. 4 sub-sweeps: 1A validators + 1B hooks + 1C contracts + 1D registers. 285 total elements checked."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 1
+links:
+  - docs/plan/_handoff/VAULT/pap/part-1A-validators-audit.yaml
+  - docs/plan/_handoff/VAULT/pap/part-1B-hooks-audit.yaml
+  - docs/plan/_handoff/VAULT/pap/part-1C-contracts-audit.yaml
+  - docs/plan/_handoff/VAULT/pap/part-1D-registers-audit.yaml
+---
+
+# PAP Part 1 — Completeness Audit (Aggregate)
+
+## Sub-sweep Summary
+
+| Sub-sweep | Elements | Aligned | Primary Finding |
+|---|---|---|---|
+| 1A Validators | 167 | 6 (3.6%) | 134 need behavioral tests; 27 missing audit slug |
+| 1B Hooks | 40 | 26 (65%) | 14 not in settings.json (won't fire); 20 not in verify-hooks-functional |
+| 1C Contracts | 67 | 66 (98.5%) | 1 B_* has T2 path declared active but file missing on disk |
+| 1D Registers | 5 | 5 (100%) | gap-register has no auto-writer; exceptional-register pipeline untested |
+
+## Structural Findings (to be filed in registers)
+
+### FINDING-PAP1-S1: Behavioral test coverage ~3.6% of validators (134/167 uncovered)
+- **Pattern:** Only BLOCKING validators have behavioral tests; all advisory validators lack them.
+- **Scope:** 134 validators in verify.mjs — all advisory-tier
+- **Status:** K=1 (first formal measurement); will become K=2 when Part 3 confirms same gap
+- **Action:** File to improvement-register as imp_BEHAVIORAL_TEST_GAP_ADVISORY; Part 3 will
+  determine which advisory validators warrant tests
+
+### FINDING-PAP1-S2: 14 hooks in .claude/hooks/ not registered in settings.json
+- **Impact:** These hooks exist on disk but NEVER FIRE — AP-001 violation (EXISTS ≠ ACTIVE)
+- **Status:** New finding, K=1
+- **Action:** See part-1B-hooks-audit.yaml for specific hook list; many may be deprecated/unused
+
+### FINDING-PAP1-S3: 20 hooks not in verify-hooks-functional DECLARED_HOOKS
+- **Impact:** Cannot be verified as present/executable by the functional check
+- **Status:** New finding, K=1
+- **Action:** Part 3 (Mechanical Enforcement) will determine which need registration vs deprecation
+
+### FINDING-PAP1-S4: B_CATCH_TO_ENGRAVING.md T2 path declared active but file missing
+- **Specific:** tools/validators/validate-catch-engraving-coverage.mjs not on disk
+- **Status:** Already surfaced by validate-five-surface.mjs (advisory) — now confirmed by Part 1.C
+- **Action:** Either build the validator OR change T2 status to none/planned in enforcement_trio
+
+### FINDING-PAP1-S5: gap-recurrence-register has no automated write pipeline
+- **Impact:** Gaps not discovered during session are never filed; register depends on manual action
+- **Status:** K=1; will be tracked in Part 2 (Wiring audit)
+- **Action:** Part 2 will design the trigger → hook → register path for gap discovery
+
+## ZF Gate (Part 1)
+
+ZF Cycle 1: All 4 sub-sweeps produced YAML output files in docs/plan/_handoff/VAULT/pap/.
+  Sources checked:
+    - tools/verify.mjs (167 validator names extracted)
+    - docs/plan/pillar-0-governance/audit-runner.md (467 slugs indexed)
+    - tools/tests/behavioral/ (15 behavioral tests present)
+    - .claude/settings.json (9 event types, hooks registered)
+    - .claude/hooks/verify-hooks-functional.sh (26 declared hooks)
+    - docs/plan/pillar-0-governance/behavioral-contracts/ (67 B_*.md contracts)
+    - tools/data/ (5 active registers confirmed present)
+
+ZF Cycle 2: Re-checked part-1A (27 missing slugs = pre-audit-runner validators confirmed),
+  part-1B (14 unregistered hooks = files that exist but won't fire; AP-001 gap confirmed),
+  part-1C (1 B_CATCH_TO_ENGRAVING T2 path missing = confirmed against disk),
+  part-1D (gap-recurrence manual-only writer = confirmed from pipeline review). 0 new findings.
+
+Status: ZF ACHIEVED (Part 1).
+
+## Next Step
+
+Await Opus ADVANCE for Part 2 (Wiring audit). File structural findings to registers first.

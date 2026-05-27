@@ -55,35 +55,31 @@ Three sessions (S062-S064) built prevention infrastructure. The platform now has
 
 ---
 
-## PART 1 — Completeness Audit
+## PART 1 — Completeness Audit (279 elements, 4 sub-sweeps)
 
-**Scope:** Every enforcement artifact registered, wired, and testable.
+**Scope:** Every enforcement artifact registered, wired, and testable. Chunked into 4 sub-sweeps per Refinement 1 — each auto-executes without Opus gate. Aggregate file after all 4 + Opus full checkpoint.
 
-**Check per validator (179 total):**
-- Registered in `docs/plan/pillar-0-governance/audit-runner.md` with matching slug?
-- Wired in `tools/verify.mjs` validator list?
-- Has behavioral test in `tools/tests/behavioral/`? (or explicit ADVISORY waiver)
+### Part 1.A — Validators sweep (179)
+Checks: audit-runner.md slug match | verify.mjs wired | behavioral test exists
+Output: `docs/plan/_handoff/VAULT/pap/part-1A-validators-audit.yaml`
+Schema per entry: validator_path | audit_slug | verify_wired | behavioral_test_path | status
 
-**Check per hook (27 total):**
-- In `settings.json` under correct event type?
-- In `verify-hooks-functional.sh` DECLARED_HOOKS?
-- Exit code documented (0=allow, 1=advisory, 2=block)?
-- Has known output signature in `flow-activity-monitor.yaml`?
+### Part 1.B — Hooks sweep (27)
+Checks: settings.json event type | verify-hooks-functional DECLARED_HOOKS | flow-activity-monitor entry
+Output: `docs/plan/_handoff/VAULT/pap/part-1B-hooks-audit.yaml`
 
-**Check per B_* contract (68 total):**
-- `enforcement_trio` frontmatter present with t1+t2+t3?
-- `opus_reviewed_seed` present (for post-S064 contracts only)?
-- T2 validator path exists on disk (if status=active)?
-- Behavioral test exists? (validate-five-surface currently shows full_5surface=0)
+### Part 1.C — B_* contracts sweep (68)
+Checks: enforcement_trio present | opus_reviewed_seed (post-S064 only) | T2 path on disk | behavioral test
+Output: `docs/plan/_handoff/VAULT/pap/part-1C-contracts-audit.yaml`
 
-**Check per register (5 active: improvement, gap-recurrence, exceptional-moments, flow-activity-monitor, threshold-intake):**
-- Schema documented with required fields?
-- At least one validator reads it?
-- Write pipeline alive (something writes to it per-session)?
+### Part 1.D — Registers sweep (5)
+Checks: schema documented | at least one validator reads it | write pipeline alive per-session
+Output: `docs/plan/_handoff/VAULT/pap/part-1D-registers-audit.yaml`
 
-**Output:** `docs/plan/_handoff/VAULT/pap/part-1-completeness-audit.yaml`
+### Aggregate
+`docs/plan/_handoff/VAULT/pap/part-1-completeness-audit.yaml` — auto-rolled up after all 4 sub-sweeps commit.
 
-**ZF gate:** RZF Cycle 1 cites 3+ specific file:line findings. Cycle 2 re-checks all Cycle 1 files. Findings filed before claiming Part 1 RZF.
+**ZF gate:** RZF Cycle 1 cites 3+ specific file:line findings from sub-sweeps. Cycle 2 re-checks specific files. Findings filed to registers before claiming Part 1 RZF. Then Opus checkpoint before Part 2.
 
 ---
 
@@ -142,12 +138,24 @@ Three sessions (S062-S064) built prevention infrastructure. The platform now has
 
 ## PART 5 — Prevention Coverage Audit
 
-**Scope:** 60% → 100% prevention graph. Every finding/gap/moat has explicit trigger+hook+output.
+**Scope:** Concrete prevention coverage score — verifiable number, not aspiration.
+
+**Metric (Refinement 2):**
+```
+prevention_coverage_score = 
+  count(moat_elements_with_active_T1 AND active_T2 AND output_signature)
+  / count(total_moat_elements_in_registry)
+
+Where:
+  active T1 = hook exists in .claude/hooks/ AND in verify-hooks-functional roster
+  active T2 = validator exists in tools/validators/ AND wired in verify.mjs cycle list
+  output_signature = present in flow-activity-monitor.yaml with status=active AND last_output_count > 0
+```
 
 **Method:** Walk `docs/plan/pillar-0-governance/moat-registry.md` (M-01 through M-38+). For each moat element:
 - Is there a trigger hook that would catch a violation?
 - Is there a validator that confirms the moat is intact?
-- Is the moat element itself tested?
+- Does flow-activity-monitor.yaml have an entry with status=active?
 
 **Output:** `docs/plan/_handoff/VAULT/pap/part-5-prevention-coverage-audit.yaml`
 
@@ -170,11 +178,14 @@ Three sessions (S062-S064) built prevention infrastructure. The platform now has
 
 **Scope:** Closed-enum compliance and no-invention-without-precedent.
 
-**Check via `/vocabulary-canon` skill + planned `validate-vocabulary.mjs`:**
-- `lifecycle_state` enum: all files in canonical list?
-- `type` enum: all file types registered in `schema-registry.md`?
+**Check via existing tools (Refinement 3 — do NOT build validate-vocabulary.mjs inline):**
+- `/vocabulary-canon` skill for ad-hoc checks
+- `validate-frontmatter.mjs` findings (all advisory + blocking)
+- `validate-schema-anchors.mjs` — anchors with no matching files?
+- `lifecycle_state` enum: spot-check against `schema-registry.md` canonical list
 - B_* contract names: follow naming-policy 4-rules?
-- Field names: no invented fields not in `frontmatter-schema.yaml`?
+
+**If gaps > N=5:** file PROTO-S066-VOCABULARY-VALIDATOR as S066 carry-forward. Do NOT build the validator inline.
 
 **Output:** `docs/plan/_handoff/VAULT/pap/part-7-vocabulary-audit.yaml`
 

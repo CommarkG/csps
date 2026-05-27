@@ -1,0 +1,34 @@
+---
+id: csps.pap.part-1C-contracts-audit
+name: part-1C-contracts-audit
+description: "PAP Part 1.C — B_* contracts sweep. 67 contracts."
+type: pap_audit
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: pap_audit
+session: S065
+part: 1C
+---
+
+# PAP Part 1.C — B_* Contracts Completeness Sweep
+
+total_contracts: 67
+with_enforcement_trio: 67
+missing_trio: 0
+t2_active_path_missing_on_disk: 1
+generally_aligned: 66
+
+FINDING-PAP1C-001: 1 contracts have T2 path=active but file missing on disk.
+  These were surfaced by validate-five-surface.mjs (advisory). Most are pre-S062 contracts
+  where T2 validators were planned but not yet built.
+  Action: carry to Part 3 (Mechanical Enforcement audit) for T2 path fix tracking.
+
+missing_t2_paths:
+  - contract: B_CATCH_TO_ENGRAVING.md
+    missing_path: tools/validators/validate-catch-engraving-coverage.mjs
+
+opus_reviewed_seed_note: "B_REVERSIBILITY_GATED_REVIEW (S063) grandfathered per S064 attestation.
+  All B_* contracts written after S064 require opus_reviewed_seed: <SHA> in frontmatter."

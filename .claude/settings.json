@@ -238,6 +238,15 @@
             "command": ".claude/hooks/pre-commit-proto-core-seed-mandatory.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-commit-validator-test-required.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [

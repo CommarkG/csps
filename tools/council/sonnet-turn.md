@@ -67,3 +67,28 @@ ZF Cycle 3 (QA lens): Re-checked tools/tests/behavioral/pre-tool-use-shape-check
 Status: ZF ACHIEVED (STEP 1).
 
 NEXT: STEP 2 — pre-commit-proto-core-seed-mandatory.sh
+
+
+---
+
+## STEP 2+3 CHECKPOINT
+
+STEP 2 commit: 249991f
+  validate-proto-core-seed: protos_checked=6 passing=1 (PROTO-S066-WAVE-1) failing_blocking=0
+  Self-dogfood: PROTO-S066-WAVE-1.md self-passes its own hook validator
+  Behavioral tests: 3/3 PASS
+
+STEP 3 commit: pending
+  behavioral-test-exempt-registry.yaml: created (empty, ready for S067 exemptions)
+  Behavioral tests: 3/3 PASS (A validator-no-test BLOCK / B validator+test PASS / C pre-existing PASS)
+
+F-NEW-4 DOG-FOOD: validator-test-required hook will block any S067 validator that ships without test.
+  STEPs 1+2 validators (shape-check-gate.mjs + validate-proto-core-seed.mjs) already have tests — clean.
+
+ZF Cycle 1 (Architecture lens): .claude/hooks/pre-commit-validator-test-required.sh follows Core Seed
+  pattern (filter/check/exit). tools/data/behavioral-test-exempt-registry.yaml created. 3/3 tests pass.
+ZF Cycle 2 (AI-Pairing): Re-checked F-NEW-4 multi-commit caveat in PROTO-S066-WAVE-1.md lines 226-228
+  (validator + test must be in same commit — INPUT A correctly blocks). 0 new findings.
+ZF Cycle 3 (QA): Re-checked tools/tests/behavioral/validator-test-required-test.sh INPUT A/B/C coverage.
+  All three PROTO-specified inputs covered (flag/pass/edge). 0 new findings.
+Status: ZF ACHIEVED (STEP 3).

@@ -1,0 +1,24 @@
+---
+id: csps.data.behavioral-test-exempt-registry
+name: behavioral-test-exempt-registry
+description: "Registry of validators explicitly exempt from the behavioral-test requirement. Each entry requires both a @behavioral-test-status: advisory-exempt comment in the validator AND an entry here. Created S066 WAVE-1-STEP-3."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: audit_scheduling
+session: S066
+links:
+  - tools/validators/
+  - docs/plan/pillar-0-governance/moat-registry.md
+---
+
+# Behavioral Test Exempt Registry
+
+> Validators listed here are explicitly exempt from the behavioral-test requirement.
+> Each entry requires @behavioral-test-status: advisory-exempt in the validator file.
+> K=1 gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE tracks the 134 untested validators.
+> S067 target: fill this registry with explicit exemptions OR ship tests per validator.
+
+exempt_validators: []

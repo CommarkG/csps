@@ -220,6 +220,15 @@
             "command": ".claude/hooks/pre-commit-bstar-engraving-gate.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-shape-check.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [

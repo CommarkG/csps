@@ -125,12 +125,13 @@ entries:
   - id: imp_CEC_SPECIFICITY
     finding: "CEC hook keyword matching too broad — fires on template/behavioral/vault paths regardless of relevance. 9+ fires per session. Session dedup is a patch, not a fix."
     first_found: S055
-    k_count: 1
+    k_count: 2
     sessions: [S055]
     status: structural_fix_proposed
     must_address_by_session: "S060"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    plan_item: PROTO-S067-CEC-SPECIFICITY-FIX
+    explicit_defer_reason: "Deferred S067+ — CEC path-map.yaml is S056 partial fix (structural_fix_proposed). Full resolution = validate-cec-specificity.mjs or cec-path-map.yaml expansion. Not blocking current prevention infrastructure work."
     fix_commit_sha: null
     propagated_to:
       - .claude/hooks/post-tool-use-cec-trigger.sh (session dedup added at 6ae470c — patch)

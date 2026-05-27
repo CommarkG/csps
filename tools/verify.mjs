@@ -1509,6 +1509,15 @@ const CYCLES = [
       return m ? { protos_checked: Number(m[1]), passing: Number(m[2]), failing_advisory: Number(m[3]), failing_blocking: Number(m[4]) } : {};
     },
   },
+  {
+    // PROTO-S066-WAVE-2 STEP 2: Auto-scheduling validator for both registers.
+    name: 'finding_scheduling',
+    command: 'node tools/validators/validate-finding-scheduling.mjs',
+    parse_output: (out) => {
+      const m = out.match(/findings_checked=(d+)s+on_time=(d+)s+overdue_advisory=(d+)s+overdue_blocking=(d+)s+auto_promoted=(d+)/);
+      return m ? { findings_checked: Number(m[1]), on_time: Number(m[2]), overdue_advisory: Number(m[3]), overdue_blocking: Number(m[4]), auto_promoted: Number(m[5]) } : {};
+    },
+  },
   // ── S064 PROTO Phase 1 — prevention graph completion ──────────────────────
   {
     // PROTO-S064 Item 1.2: Scans staged/new files for fuzzy-name duplication against existing.

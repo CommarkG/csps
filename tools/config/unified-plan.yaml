@@ -1625,3 +1625,15 @@ items:
     pe_score: 80
     tags: [hook, verify, transient-fail, p-meta-019, k3, must-fix, s064]
     notes: "K=3 pattern: post-stop hook fires during git CRLF normalization and reports transient FAIL. Structural fix: add sleep 3 + retry before emitting FAIL. Per P-META-019 K>=3 = MANDATORY. imp_TRANSIENT_STOP_HOOK_K3 in improvement-register."
+
+  - id: PROTO-S067-CEC-SPECIFICITY-FIX
+    title: "validate-cec-specificity.mjs OR expand cec-path-map.yaml — fix CEC hook keyword matching (K=2 auto-promoted)"
+    status: intake
+    epoch: E2
+    category: governance
+    owner: sonnet
+    batch: BATCH-L
+    session_target: S067
+    pe_score: 40
+    tags: [validator, cec, k2, auto-promoted, s066-scheduling, s067]
+    notes: "K=1→K=2 auto-promoted S066 by validate-finding-scheduling.mjs (overdue by 6 sessions). imp_CEC_SPECIFICITY: CEC hook keyword matching too broad — fires on template/behavioral/vault paths regardless of relevance. S056 added cec-path-map.yaml as partial fix. Full fix: validate-cec-specificity.mjs OR expand cec-path-map.yaml to cover all edge cases."

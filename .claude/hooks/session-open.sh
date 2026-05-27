@@ -58,4 +58,16 @@ try{
 CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.mjs" 2>/dev/null \
   || printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"[session-open] context load failed — read tools/session-state.json + tools/council/opus-open-items.md manually"}}'
 
+# ─── C8 REACTIVE_OPUS PREVENTION — proactive Opus review trigger injection ──────────────────
+# S067 STEP 6.3c: inject proactive Opus review reminder so Governor doesn't have to orchestrate.
+# C8 = REACTIVE_OPUS: Opus was reactive because session-open never injected a review trigger.
+# This T3 injection ensures every tab start surfaces: "check opus-turn.md for pending reviews."
+# ADVISORY S067 — structural discipline addition only; no blocking behavior.
+{
+  printf '\n[C8-proactive-opus] Session open: check tools/council/opus-turn.md TOP ENTRY for pending OPIA audit or ACK.' >&2
+  printf ' If Sonnet CHECKPOINT exists without Opus ACK → surface to Governor for relay.' >&2
+  printf '\n[C8-proactive-opus] META-QUESTION: "What are the false assumptions here?" — run before any constitutional proposal.' >&2
+  printf '\n[C8-proactive-opus] D9 recency-bias override: MEMORY.md has 60 entries — cite at least one relevant per substantive turn.' >&2
+} 2>/dev/null || true
+
 exit 0

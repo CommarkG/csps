@@ -229,3 +229,20 @@ PROTOCOL: S067-STEP-6-FULL-ADVANCE | Opus ACK: 8fa3cc0 (tools/council/opus-turn.
   3. Author docs/plan/pillar-0-governance/behavioral-contracts/B_HUMBLE_CONSOLIDATION_DISCIPLINE.md (enforcement_trio + opus_reviewed_seed: 8fa3cc0)
 
 Committing HANDOFF now. STEP 6 executes in new tab.
+
+
+---
+
+## S068 STEP-6 SUB-COMMIT 6.1 INTENT ABSORBED
+
+Date: 2026-05-28 | Role: Sonnet-12 | Session: S068 (STEP 6 build, continuing in S067 tab)
+
+Core Seeds read: Seed 1 (P-META-029), Seed 2 (B_HUMBLE), Seed 3 (M-42 moat row). PCRs ALL AS RECOMMENDED ratified. Implementation plan §3 6.1 DONE WHEN confirmed.
+
+First 4 sub-actions of 6.1:
+  1. Create docs/plan/principles/P-META-029-humble-consolidation-discipline.md (Seed 1)
+  2. Create docs/plan/pillar-0-governance/behavioral-contracts/B_HUMBLE_CONSOLIDATION_DISCIPLINE.md (Seed 2)
+  3. Append M-42 row to moat-registry.md after M-38 (Seed 3)
+  4. Add 13 hard NOs to AGENTS.md (C1-C13 minus C4+C10 + B_HUMBLE + B_META_QUESTION)
+
+OUT-OF-SCOPE this commit: 6.2-6.5, STEP 8. Building now.

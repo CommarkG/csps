@@ -118,3 +118,7 @@ exemptions:
   - id: B_REVERSIBILITY_GATED_REVIEW
     reason: "T3-only by design — review-gate tier selection is judgment-based per task reversibility context. Cannot be mechanically enforced at edit-time. T3 (session-open + this contract) is the only viable enforcement tier. Engraved S063 PHASE B.5."
     target_session: S064
+
+  - id: B_HUMBLE_CONSOLIDATION_DISCIPLINE
+    reason: "Phased rollout per Item 2 ratification S066 — ADVISORY S067. T1 hook ships STEP 5 (pre-tool-use-inventory-scan-required.sh active). T2 validator ships STEP 6.3 (validate-inventory-scan-coverage.mjs). Contract authored STEP 6.1. Activation gap closes when STEP 6.3 commits same-session."
+    target_session: S067

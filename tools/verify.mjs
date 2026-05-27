@@ -1527,6 +1527,15 @@ const CYCLES = [
       return m ? { hooks_checked: Number(m[1]), using_lib: Number(m[2]), local_computation: Number(m[3]), blocking: Number(m[4]) } : {};
     },
   },
+  {
+    // PROTO-S067-MASTER-THRESHOLD-ROUTER STEP 3: validates 4-axis classification in threshold-intake-log.
+    name: 'threshold_routing_coverage',
+    command: 'node tools/validators/validate-threshold-routing-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/entries_checked=(d+)s+with_4axes=(d+)s+missing_axes=(d+)s+advisory=(d+)s+blocking=(d+)/);
+      return m ? { entries_checked: Number(m[1]), with_4axes: Number(m[2]), missing_axes: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
   // ── S064 PROTO Phase 1 — prevention graph completion ──────────────────────
   {
     // PROTO-S064 Item 1.2: Scans staged/new files for fuzzy-name duplication against existing.

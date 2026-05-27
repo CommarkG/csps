@@ -263,3 +263,20 @@ C8 approach: session-open.sh extension appending proactive-Opus-trigger text. Sc
 No ASK OPUS triggers anticipated.
 
 Building 6.3a now: C1 (validate-claimed-mechanical-presence.mjs) + C3 (validate-bstar-trio-coverage-strict.mjs).
+
+
+---
+
+## STEP 6.3 mini-CHECKPOINT
+
+6.3a f4071f2: C1 validate-claimed-mechanical-presence.mjs + C3 validate-bstar-trio-coverage-strict.mjs. 6/6 tests PASS.
+6.3b 46afef8: C5 pre-tool-use-external-integration-gate.sh + C9 pre-commit-knowledge-writeback-required.sh. 6/6 tests PASS.
+6.3c c14637d: C6 validate-cross-finding-cluster.mjs + C7 validate-sonnet-checkpoint-relay.mjs + C8 session-open.sh C8 injection. 9/9 tests PASS.
+6.3d 8777927: C13 validate-per-step-gate-tier.mjs. 3/3 tests PASS.
+
+Total: 9 new validators/hooks × 3 inputs = 27 tests, 27/27 PASS.
+All advisory S067 → BLOCKING S068 (phased rollout). audit-runner rows ACTIVE text (not stale "PENDING").
+C2/C4/C10 pre-done in STEPs 1+3+4. C11/C12 deferred to 6.5. No ASK OPUS triggers fired.
+verify exit_code=0 THIS-HEAD (8777927).
+
+HOLDING for Opus 6.3 ACK before beginning 6.4.

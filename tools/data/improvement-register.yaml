@@ -1094,3 +1094,32 @@ entries:
   carry_forward_to_session: S067
   governor_approval_pending: true
   note: "Diagnostic infrastructure gap. Compounds with F-NEW-14 because real failures get lost in noise vs reproducible signals. Low-effort fix (~30 min)."
+
+- id: DRAFT-S066-MASTER-CONSOLIDATED-RATIFICATION
+  title: "S067 master engraving — P-META-029 HUMBLE-CONSOLIDATION-DISCIPLINE + M-42 UNIFIED THRESHOLD-ROUTER + 13 prevention classes + 10 AI-default overrides"
+  description: "Master ratification entry for PROTO-S067-MASTER-THRESHOLD-ROUTER. Collapses 5 prior deferred PROTOs into one master moat. Engraved S067 via 8 STEPs: session-source-lib / consolidation-pass STUB→ACTIVE / M-42 4-axis classifier / council triggers / inventory-scan / auto-demand schema / CONSTITUTIONAL P-META-029+M-42+D1-D10+C1-C13+B_META_QUESTION+OPIA / whole-WAVE verify+close."
+  inherits_from: "PROTO-S067-MASTER-THRESHOLD-ROUTER + M-16 Threshold + M-17 reuse-first + M-37 Core Seeds + M-38 T1-T6 + M-39 PAP + M-40 Inheritance + M-41 Behavioral Test + P-META-006 RZF + P-META-019 STRUCTURAL_PREVENTION + P-META-020 CONCEPT_LOAD"
+  prevention_class: null
+  structural_fix_plan_session: S067
+  prevention_design_pending: false
+  first_found: S066
+  k_count: 1
+  sessions: [S066, S067]
+  status: implemented-S067
+  implementation_commit_shas:
+    - b2fcfc9  # STEP 1: session-source.mjs
+    - 6996d1e  # STEP 2: consolidation-pass STUB→ACTIVE
+    - 20d8b7a1 # STEP 3: threshold-router.mjs (M-42 4-axis)
+    - 80777fbc # STEPs 4+5+7: council-dispatcher + inventory-scan + prevention-class
+    - 7c069e67 # STEP 6.1: P-META-029 + B_HUMBLE + M-42 moat
+    - b6a6662f # STEP 6.2: D1-D10 inner-AI-defaults
+    - f4071f2a # STEP 6.3a: C1+C3 validators
+    - 46afef8b # STEP 6.3b: C5+C9 hooks
+    - c14637d3 # STEP 6.3c: C6+C7+C8 validators
+    - 87779278 # STEP 6.3d: C13 validator
+    - 9987051a # STEP 6.4: tab-transfer + B_META_QUESTION
+    - 7571ed2  # STEP 6.5: OPIA framework + hooks sweep + apps_typecheck
+  governor_approval_pending: false
+  governor_approval_status: implemented-S067
+  governor_approval_session: S067
+  note: "PROTO-S067-MASTER-THRESHOLD-ROUTER fully implemented S067. All 8 STEPs done. verify --strict exit_code=0 THIS-HEAD. 15-point OPIA CHECKPOINT in sonnet-turn.md. Session closes after HANDOFF-S067-to-S068.md."

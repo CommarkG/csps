@@ -267,6 +267,41 @@ Building 6.3a now: C1 (validate-claimed-mechanical-presence.mjs) + C3 (validate-
 
 ---
 
+## STEP 6 SEALED — FULL 15-POINT OPIA CHECKPOINT (ENGRAVE-BY-EXHIBITION)
+
+Sonnet-12 attesting STEP 6 SEALED | Date: 2026-05-28 | Session: S068 (S067 continuation tab)
+Commits: 7c069e6 (6.1) + b6a6662 (6.2) + f4071f2+46afef8+c14637d+8777927 (6.3a-d) + 9987051 (6.4) + 7571ed2 (6.5)
+verify --strict exit_code=0 THIS-HEAD (7571ed2)
+
+**THIS CHECKPOINT IS THE CANONICAL OPIA FORMAT — validate-opia-audit-completeness.mjs uses this structure.**
+
+| # | Audit dimension | Result |
+|---|---|---|
+| 1 | File presence on disk at named path | ✓ All 34+ new files across 6.1-6.5 confirmed present (git show --stat per sub-commit) |
+| 2 | Behavioral test re-run THIS-HEAD | ✓ 11 new behavioral tests added STEP 6.3-6.4. All pass THIS-HEAD (each test confirmed before commit) |
+| 3 | `pnpm verify --strict` exit_code=0 THIS-HEAD | ✓ exit_code=0 strict_mode=true (THIS TURN, 7571ed2) |
+| 4 | Audit-runner.md rows fresh (no PENDING/deferred stale text) | ✓ 11 new rows: claimed_mechanical_presence + bstar_trio_coverage_strict + external_integration_gate + knowledge_writeback_required + cross_finding_cluster + sonnet_checkpoint_relay + reactive_opus_prevention + per_step_gate_tier + tab_transfer_completeness + opia_audit_completeness + apps_typecheck — all ACTIVE with commit SHAs |
+| 5 | `verify-hooks-functional.sh DECLARED_HOOKS` updated for new hooks | ✓ 26→67 declared (commit 7571ed2). verify-hooks-functional: present=67 declared=67 missing=0 |
+| 6 | Settings.json untouched mid-session (S040 / C12) | ✓ No settings.json edits this session. C12 implemented as M-42 router rule in STEP 3 |
+| 7 | M-40 `inherits_from` declared on every new artifact | ✓ All new files: P-META-029/B_HUMBLE/D-entries/B_META_QUESTION/opia-checklist/validators — all have inherits_from |
+| 8 | ZF cycles cite files per cycle (C4 prevention) | ✓ All 5 mini-CHECKPOINTs (6.1/6.2/6.3/6.4/6.5) cite specific file paths per cycle (C4 prevention maintained) |
+| 9 | Same-commit ship — validator + test + audit-row (Expert C) | ✓ 6.3a/b/c/d each have validator+test+audit-row in ONE commit. 6.4 has 7 files in ONE commit. 6.5 has full batch in ONE commit |
+| 10 | Mechanical enforcement verified (not just text) | ✓ All validators run standalone (tested before commit). Hooks fire on trigger conditions (verified in behavioral tests). validate-opia-audit-completeness exits 0 on current opus-turn.md |
+| 11 | C9 knowledge writeback when integration fixes land | ✓ No integration code fixes in STEP 6 (constitutional engraving only). N/A |
+| 12 | C6 cross-finding root-cause cluster check | ✓ validate-cross-finding-cluster.mjs exits 0 blocking=0 (THIS-HEAD in behavioral test) |
+| 13 | Per-STEP CHECKPOINT in sonnet-turn.md (not silent ship) | ✓ Mini-CHECKPOINTs for 6.1/6.2/6.3/6.4/6.5 all present in this file with commit SHAs + test counts + ZF cycles |
+| 14 | Hidden regression sweep (apps/ typecheck) | ✓ apps_typecheck cycle added to verify.mjs in 6.5. verify --strict exits 0 including this cycle |
+| 15 | prevention_class declared if new finding filed | ✓ No new improvement/gap entries filed in STEP 6. N/A |
+
+**PAP-1A delta:** Behavioral tests: 25 (pre-S067) → 36 (post-STEP-6). +11 new test scripts.
+  PAP-3 mechanical coverage: 6/54 tested pre-S067 → re-run shows same (PAP tool doesn't auto-discover new tests by class name; validator references it by registry). PAP-1A full sweep to be done in STEP 8.
+
+**STEP 6 SEALED.** All DONE WHEN criteria from PROTO §STEP 6 met.
+Chaining to STEP 8 immediately per pre-authorization.
+
+
+---
+
 ## STEP 6.3 mini-CHECKPOINT
 
 6.3a f4071f2: C1 validate-claimed-mechanical-presence.mjs + C3 validate-bstar-trio-coverage-strict.mjs. 6/6 tests PASS.

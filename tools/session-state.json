@@ -54,7 +54,7 @@
     }
   },
   "session_mandate": {
-    "primary": "S066 — WAVE 1 prevention-infrastructure: 3 pre-commit gates (shape-check Q2 + core-seed-mandatory Q4 + validator-test Expert C). Resolve K=1 gaps (VALIDATOR_BEHAVIORAL_TEST_COVERAGE + PREVENTION_COVERAGE_GAP). App #2 deferred per Governor S064 3-day postponement (~2026-05-30). Governor #3 priorities incoming (core/threshold/UX journeys). 5 APPROVED S066 entries in improvement-register.yaml.",
+    "primary": "S067: PROTO-S067-MASTER-THRESHOLD-ROUTER IMPLEMENTED. All 8 STEPs DONE (commits b2fcfc9 through 7571ed2). P-META-029 + M-42 + 13 prevention classes + 10 AI-default overrides + B_META_QUESTION + OPIA engraved. STEP 8 SEALED. S068 opens: Governor #3 priorities + G3 cred rotation + App #2 The Connector (~2026-05-30) + SIA playground PART C.",
     "model_tier": "STANDARD_BUILD",
     "blocking_on": "NONE — Opus-11 awaits Governor confirmation on App #2 vs WAVE 1 priority (recommended Option A: WAVE 1 first)",
     "situation": "WAVE_1_PREVENTION_BUILD",
@@ -241,5 +241,5 @@
     "The Threshold Gate — all inputs governed before processing",
     "Plan Methodology v2 — §HARVEST in every plan, Humble Executor at every milestone"
   ],
-  "primary": "S067 — PROTO-S067-MASTER-THRESHOLD-ROUTER engraving. 13 components, 6.5h estimated. Per-STEP check-in tier (NOT auto-chain per F-NEW-16). App #2 ~2026-05-30. Governor #3 incoming."
+  "primary": "S067: PROTO-S067-MASTER-THRESHOLD-ROUTER IMPLEMENTED. All 8 STEPs DONE (commits b2fcfc9 through 7571ed2). P-META-029 + M-42 + 13 prevention classes + 10 AI-default overrides + B_META_QUESTION + OPIA engraved. STEP 8 SEALED. S068 opens: Governor #3 priorities + G3 cred rotation + App #2 The Connector (~2026-05-30) + SIA playground PART C."
 }

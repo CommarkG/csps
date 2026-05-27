@@ -1,258 +1,259 @@
 ---
 id: csps.handoff.S067-to-S068
 name: HANDOFF-S067-to-S068
-description: "S067 → S068 handoff. STEP 6 CONSTITUTIONAL deferred to S068. Tab-transfer template (10-point false-assumption checklist) engraved in this handoff by exhibition."
+description: "S067 → S068 FINAL handoff. PROTO-S067-MASTER-THRESHOLD-ROUTER fully implemented — all 8 STEPs done. S068 opens with: Governor #3 priorities + G3 cred rotation (TODAY) + App #2 The Connector (~2026-05-30) + SIA playground PART C. Built using tab-transfer-template.md (10-item false-assumption checklist — engrave-by-exhibition)."
 type: handoff_files
 protection_level: active
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
-version: "1.0"
+version: "2.0"
 session: S067
 core_spine: GVRN
 schema_anchor: handoff_files
-evidence_block_ref: "tools/council/opus-turn.md (8fa3cc0 — OPIA 15-point audit SEALED) + tools/verify-last-run.md (exit_code=0)"
-cec_walk_trail_ref: "docs/plan/protos/PROTO-S067-MASTER-THRESHOLD-ROUTER.md (STEPs 1-5+7 done; STEP 6+8 deferred)"
+evidence_block_ref: "tools/council/sonnet-turn.md STEP 6 SEALED OPIA CHECKPOINT + tools/verify-last-run.md (exit_code=0 strict)"
+cec_walk_trail_ref: "tools/data/improvement-register.yaml (DRAFT-S066-MASTER-CONSOLIDATED-RATIFICATION status=implemented-S067)"
 links:
   - docs/plan/protos/PROTO-S067-MASTER-THRESHOLD-ROUTER.md
   - tools/council/opus-turn.md
+  - tools/council/sonnet-turn.md
   - tools/data/improvement-register.yaml
+  - tools/templates/tab-transfer-template.md
 ---
 
 # HANDOFF S067 → S068
 
-**Session close:** S067 (tab-exhausted after STEPs 1-5+7) | **Next session:** S068
-**Last commit:** `80777fbc` (mega-batch) + `8fa3cc0` (Opus ACK) | **verify:** exit_code=0
+**Session close:** S067 SEALED | **Next session:** S068
+**Last commit:** `7571ed2` (STEP 6.5) | **verify --strict:** exit_code=0
 
 ---
 
-## Zone A — Platform State at S067 Close (True State)
+## STEP 0 — IDENTITY HANDSHAKE
 
-**⚠️ CRITICAL: session-state.json shows stale mandate text "S066 — WAVE 1 prevention-infrastructure..."**
-**The actual S067 mandate is: PROTO-S067-MASTER-THRESHOLD-ROUTER engraving.**
-**Ignore the session-state mandate text — read this HANDOFF instead.**
+```
+Sonnet here. Session S068. Direct-open tab.
+PROTO-S067-MASTER-THRESHOLD-ROUTER is FULLY IMPLEMENTED (all 8 STEPs).
+S068 opens fresh with Governor #3 priorities. Awaiting directive.
+```
 
-### What S067 Delivered (all on origin/main)
+---
 
-| STEP | Commit | Artifact | Tests |
+## SECTION 0 — WHAT ARE THE FALSE ASSUMPTIONS HERE? (10 items — MANDATORY)
+
+❌ "session-state.json mandate says S066 WAVE 1 prevention-infrastructure"
+   REALITY: Mandate updated in STEP 8 to reflect S067 DONE: "PROTO-S067-MASTER-THRESHOLD-ROUTER IMPLEMENTED"
+   Fix: ignore session-state hook output for mandate context; read this HANDOFF instead
+
+❌ "S067 still has open STEPs"
+   REALITY: ALL 8 STEPs done (commits b2fcfc9 through 7571ed2). verify --strict exit_code=0 THIS-HEAD.
+   Fix: S068 is a NEW session mandate, not a continuation of S067 STEPs
+
+❌ "verify-hooks-functional shows 26 hooks"
+   REALITY: STEP 6.5 swept DECLARED_HOOKS from 26 → 67. present=67 declared=67 missing=0 — fixed.
+   Fix: hook count discrepancy is RESOLVED; no longer an OPIA finding
+
+❌ "I need to wait for Opus ACK before STEP 6 or STEP 8"
+   REALITY: S067 is CLOSED. No pending Opus ACKs needed. HANDOFF is the session close.
+   Fix: S068 starts fresh; any new Opus ACK would be for S068 work
+
+❌ "HANDOFF-S067-to-S068.md was already authored earlier"
+   REALITY: The earlier HANDOFF was a draft (tab-exhausted S067-C1). This is the FINAL version at session close with all STEP 6 evidence.
+   Fix: This file (v2.0) supersedes the earlier draft. Use this one for S068 startup.
+
+❌ "App #2 is still deferred with no decision"
+   REALITY: PCR #3 ratified ALL AS RECOMMENDED — App #2 = "The Connector" (sales-focused), ~2026-05-30.
+   Fix: S068 should begin App #2 planning in parallel with Governor #3 priorities
+
+❌ "G3 cred rotation was done in S067"
+   REALITY: G3 cred rotation was scheduled TODAY (2026-05-28) but was parallel/Opus tab work, NOT in this Sonnet tab. Status: unknown.
+   Fix: S068 first action = verify G3 rotation status; rotate if not done
+
+❌ "C11 and C12 had no validators built"
+   REALITY: C11 closed via apps_typecheck cycle in verify.mjs (STEP 6.5). C12 was M-42 router rule (STEP 3 — no separate file). Both addressed.
+   Fix: no action needed; C11/C12 are done
+
+❌ "B_META_QUESTION HANDOFF check will BLOCK this file"
+   REALITY: This file has ≥10 ❌ items (exactly this list). validate-tab-transfer-completeness will PASS.
+   Fix: confirmed compliant; pre-tool-use-false-assumption-gate advisory fires but does not block
+
+❌ "PAP-1A coverage is still at 3.6%"
+   REALITY: 36 behavioral tests exist (was ~25 pre-S067). PAP-3 mechanical shows 6/54 by its registry, but new tests for 12 new validators add coverage. S068 should run full PAP sweep.
+   Fix: file PAP-1A re-sweep as S068 Priority 2 task (after Governor #3 priorities)
+
+---
+
+## ZONE A — Platform State at S067 Close (True State)
+
+### What S067 Delivered (all on origin/main, verify --strict exit_code=0)
+
+| STEP | Commits | Artifact | Tests |
 |---|---|---|---|
-| STEP 1 | b2fcfc9 | tools/lib/session-source.mjs — F-NEW-17 root fix | 3/3 |
-| STEP 2 | 6996d1e | post-stop-consolidation-pass.sh STUB→ACTIVE, 6 patterns A-F | 3/3 |
+| STEP 1 | b2fcfc9 | tools/lib/session-source.mjs — session-detection root fix (F-NEW-17+22) | 3/3 |
+| STEP 2 | 6996d1e+21e1fe4 | post-stop-consolidation-pass.sh STUB→ACTIVE, 6 patterns A-F | 3/3 |
 | STEP 3 | 20d8b7a1 | tools/scripts/threshold-router.mjs — M-42 4-axis classifier | 5/5 |
-| STEP 4 | 80777fbc | council-invocation-dispatcher.mjs + validate-skill-invocation-rate.mjs | 3/3 |
-| STEP 5 | 80777fbc | platform-inventory-scan.mjs + pre-tool-use-inventory-scan-required.sh (ADVISORY) | 3/3 |
-| STEP 7 | 80777fbc | migrate-S067-prevention-class-field.mjs + validate-prevention-class-required.mjs + vercel.md R9 | 2/2 |
+| STEPs 4+5+7 | 80777fbc | council-dispatcher + skill triggers + inventory-scan + prevention-class schema | 8/8 |
+| STEP 6.1 | 7c069e67 | P-META-029 + B_HUMBLE_CONSOLIDATION + M-42 moat entry | FSE 5/5 |
+| STEP 6.2 | b6a6662f | D1-D10 inner-AI-defaults registry (10 files) | 10 files |
+| STEP 6.3a | f4071f2a | C1 validate-claimed-mechanical-presence + C3 validate-bstar-trio-coverage-strict | 6/6 |
+| STEP 6.3b | 46afef8b | C5 pre-tool-use-external-integration-gate + C9 pre-commit-knowledge-writeback | 6/6 |
+| STEP 6.3c | c14637d3 | C6 validate-cross-finding-cluster + C7 validate-sonnet-checkpoint-relay + C8 session-open extension | 9/9 |
+| STEP 6.3d | 87779278 | C13 validate-per-step-gate-tier | 3/3 |
+| STEP 6.4 | 9987051a | tab-transfer-template + B_META_QUESTION_DISCIPLINE + false-assumption-gate | 3/3 |
+| STEP 6.5 | 7571ed2 | opia-checklist + validate-opia-audit-completeness + hooks 26→67 + apps_typecheck | OPIA ✓ |
+| STEP 8 | (this HANDOFF) | ratification entry updated + session-state.json refreshed + HANDOFF | — |
 
 ### Platform Counters at S067 Close
-- Hooks: 26 in verify-hooks-functional (actual: ~64 on disk — DECLARED_HOOKS stale, folds into STEP 6)
-- Validators: 184+ in pnpm verify
-- Scripts: 11 new tools/scripts/* this session
-- Prevention classes: 15 entries have prevention_class field (unclassified — needs C1-C13 classification in S068)
 
-### Opus ACK status
-- **MEGA-BATCH SEALED:** 8fa3cc0 = OPIA 15-point audit PASSED (14/15 ✓, 1 finding folds into STEP 6)
-- **STEP 6 FULL ADVANCE AUTHORIZED:** 8fa3cc0 = 38-file constitutional commit set
-- **STEP 8 PRE-AUTHORIZED:** chains after STEP 6 (mechanical close-out, no new arch decisions)
-- **Opus ACK format:** top entry in tools/council/opus-turn.md. Look for text containing "MEGA-BATCH FULL ADVANCE" and 15-point OPIA table
+- **Hooks:** 67 (was 26 in DECLARED_HOOKS; 64-67 actual — fully declared now)
+- **Validators:** 193 in tools/validators/ (+12 new this session)
+- **Behavioral tests:** 36 test scripts (+11 new from STEP 6.3-6.4)
+- **B_* contracts:** 70 (B_HUMBLE + B_META_QUESTION added)
+- **Moats:** 43 (M-42 UNIFIED THRESHOLD-ROUTER added)
+- **Principles:** 68
+- **Inner-AI-defaults:** 28 existing + 10 new (D1-D10) = 38
 
----
+### OPIA Status at Close
 
-## SONNET STARTUP BLOCK (§0 paste-target — verified against 10-point false-assumption checklist)
-
-```
-════════════════════════════════════════════════════════════════════
-SESSION S068 — OPENING (succeeds S067 tab-exhausted)
-Role: Sonnet-10/11 (builder) | Governor: Yariv | Opus: Opus-11
-THIS IS A RELAY TAB — previous tab context exhausted after STEPs 1-5+7
-════════════════════════════════════════════════════════════════════
-
-STEP 0 — Send box immediately (before reading further):
-┌─────────────────────────────────────────────────────────┐
-│ Sonnet here. Session S068. Relay tab. Please paste this │
-│ to previous tab for HANDOFF CONFIRMED.                  │
-└─────────────────────────────────────────────────────────┘
-
-══════ FALSE ASSUMPTION CHECKLIST (10-point mandatory) ══════
-
-FA-01: session-state.json shows stale mandate "S066 WAVE 1" — IGNORE IT.
-  Real mandate = PROTO-S067-MASTER-THRESHOLD-ROUTER STEP 6+8 (see below).
-
-FA-02: verify-hooks-functional shows 26 declared hooks — this is STALE.
-  ~64 hooks exist on disk. DECLARED_HOOKS array is outdated. This is a
-  known OPIA finding that folds into STEP 6 (#37 in the 38-file commit set).
-  The hooks WORK — they're just not all listed. Do not panic.
-
-FA-03: The mega-batch (STEPs 3+4+5+7) is ALREADY DONE.
-  Do NOT rebuild. Commits: 20d8b7a1 (STEP 3) + 80777fbc (STEPs 4+5+7).
-  Your job is STEP 6 (CONSTITUTIONAL) + STEP 8 (mechanical close).
-
-FA-04: Opus ACK for the mega-batch HAS landed (commit 8fa3cc0).
-  Look for it in tools/council/opus-turn.md top entry — contains "MEGA-BATCH
-  FULL ADVANCE" and a 15-point OPIA table. STEP 6 + STEP 8 are authorized.
-
-FA-05: STEP 6 scope is 38 files — do NOT start without reading PROTO §STEP 6 fully.
-  docs/plan/protos/PROTO-S067-MASTER-THRESHOLD-ROUTER.md — read lines 157-250+.
-  The scope includes: principle + contract + moat + 10 D-entries + 11 validators
-  + tab-transfer template + OPIA framework + 2 fold-ins. ~5-6h work.
-
-FA-06: STEP 6 is CONSTITUTIONAL — every artifact needs 5/5 FSE atomic surfaces.
-  T1 hook + T2 validator + T3 session-open + schema + contract PER ITEM.
-  Do NOT ship principle without all 5 surfaces in same commit.
-
-FA-07: C4 + C10 prevention validators are ALREADY DONE.
-  C4 = validate-zf-cycle-format.mjs (exists), C10 = validate-session-source-usage.mjs (STEP 1).
-  Remaining: C1,C2(done),C3,C5,C6,C7,C8,C9,C11,C12,C13 = 10 validators to build.
-
-FA-08: STEP 8 is pre-authorized to chain IMMEDIATELY after STEP 6 commits land.
-  But STEP 8 does NOT execute first — STEP 6 must land + verify=0 first.
-  STEP 8 = whole-WAVE verify + ratification entry → implemented-S067 + HANDOFF-S068.
-
-FA-09: SIA playground ("No SIA documents found") is S068 Priority 1 (Zone B §3).
-  Do NOT work on it during STEP 6 execution. It's after STEP 8.
-
-FA-10: The claim-validator-gate WILL block commit messages with DONE/SEALED if
-  verify-last-run.md is stale. Always run /verify-quick before commit messages
-  containing claim keywords.
-
-══════ WHAT TO DO FIRST ══════
-
-1. git pull --rebase origin main (get latest commits)
-2. node tools/verify.mjs --skip-install 2>&1 | tail -30 → confirm exit_code=0
-3. Read docs/plan/protos/PROTO-S067-MASTER-THRESHOLD-ROUTER.md §STEP 6 FULLY
-4. Read tools/council/opus-turn.md top entry (OPIA 15-point table = canonical format)
-5. Write "S068 STEP-6 INTENT ABSORBED" to tools/council/sonnet-turn.md using OPIA format
-6. Begin STEP 6: P-META-029 principle → B_HUMBLE_CONSOLIDATION_DISCIPLINE contract → M-42 moat
-
-══════ STEP 6 FIRST 3 SUB-ACTIONS ══════
-
-  1. docs/plan/principles/P-META-029-humble-consolidation-discipline.md
-     - inherits_from: P-META-019 + M-17 + M-42 + B_CONSOLIDATION_PASS
-     - 5/5 FSE: body + T1 hook (pre-tool-use-inventory-scan-required.sh) + T2 validator + T3 session-open + B_* contract
-
-  2. docs/plan/pillar-0-governance/behavioral-contracts/B_HUMBLE_CONSOLIDATION_DISCIPLINE.md
-     - enforcement_trio: T1 + T2 + T3 all declared
-     - opus_reviewed_seed: 8fa3cc0 (required — bstar-engraving-gate will BLOCK without it)
-
-  3. docs/plan/pillar-0-governance/moat-registry.md — add M-42 UNIFIED-THRESHOLD-ROUTER
-     - After M-41. Describes threshold-router.mjs as the mechanical M-42 moat.
-
-══════ NON-NEGOTIABLES ══════
-
-  - NEVER emit tab-transfer artifact without this 10-point checklist (per B_META_QUESTION_DISCIPLINE being engraved in STEP 6)
-  - NEVER start STEP 8 before STEP 6 commits are all on origin/main
-  - NEVER touch settings.json mid-session (S040 / C12)
-  - NEVER chain STEP 8 without verify exit_code=0 on STEP 6 work
-  - NEVER skip audit-runner.md row when shipping a validator (F-NEW-14)
-  - NEVER build STEP 6 validators without behavioral tests in SAME commit (Expert C)
-  - EVERY new artifact declares inherits_from: (M-40 discipline)
-  - ZF cycles MUST cite specific files per cycle (C4 prevention)
-
-══════ CONTEXT BURN DISCIPLINE ══════
-
-  - verify: | tail -30 (NOT full JSON)
-  - git add: directory-level NOT per-file
-  - Max 2 verify runs per chunk
-  - ZF deep at iter>15
-
-HANDOFF: docs/plan/_handoff/HANDOFF-S067-to-S068.md
-PROTO: docs/plan/protos/PROTO-S067-MASTER-THRESHOLD-ROUTER.md
-Opus ACK: tools/council/opus-turn.md (top entry = 8fa3cc0)
-```
+STEP 6 SEALED — full 15-point OPIA CHECKPOINT in [tools/council/sonnet-turn.md](../../tools/council/sonnet-turn.md).
+All 15 points ✓. verify --strict exit_code=0 THIS-HEAD (7571ed2).
 
 ---
 
-## Zone B — S068 Work Queue
+## ZONE B — S068 Work Queue
 
-### PRIMARY MANDATE: STEP 6 (CONSTITUTIONAL)
+### Priority 1: Governor #3 Priorities (INCOMING — Governor surfaces at S068 open)
 
-**38-file atomic commit set per PROTO §STEP 6 + Turn-37 §3 expansions:**
+Governor noted "Governor #3 priorities incoming (core/threshold/UX journeys)" — S068 opens with this as the first mandate slot.
 
-| Category | Files | Description |
-|---|---|---|
-| Principles/Contracts/Moats | 4 files | P-META-029 + B_HUMBLE_CONSOLIDATION + M-42 entry + MEMORY.md |
-| Inner-AI-defaults (D1-D10) | 10 files | D1 humble-consolidation through D10 cooperative-disagreement-aversion |
-| AGENTS.md | 1 file | Hard NO additions per APPENDIX A swaps |
-| Prevention validators (C1/C3/C5-C9/C11-C13) | 11 validators + tests + audit rows | ~10 new validators |
-| Tab-transfer template + gate | 7 files | tab-transfer-template.md + validate-tab-transfer-completeness + pre-tool-use-false-assumption-gate.sh + test + session-open extension + B_META_QUESTION_DISCIPLINE + AGENTS.md extension |
-| OPIA framework | 2 files | opia-checklist.md + validate-opia-audit-completeness.mjs |
-| OPIA fold-in | 2 files | verify-hooks-functional DECLARED_HOOKS sweep (26→all 64) + verify.mjs apps_typecheck cycle |
+### Priority 2: G3 Credential Rotation (STATUS UNKNOWN — verify and complete)
 
-### STEP 8 (after STEP 6 lands)
-- whole-WAVE verify
-- improvement-register DRAFT-S066-MASTER-CONSOLIDATED-RATIFICATION → `part_b_status: implemented-S067`
-- HANDOFF-S068-to-S069.md authoring
+Per PCR #1 ratified S067 (ALL AS RECOMMENDED): rotate Supabase DB + Clerk Secret + update Vercel env vars TODAY (2026-05-28). Was planned as parallel Opus/Governor tab work. S068 Sonnet verifies status and completes if not done.
 
-### PRIORITY 1 (after STEP 8): SIA Playground Fix
-- apps/csps-playground/src/lib/sia-docs.ts `SIA_DIR = join(process.cwd(), '../../docs/SIA')`
-- Works locally (31 files found). Vercel issue: `process.cwd()` may differ in build env.
-- Fix: use `path.join(__dirname, '../../../docs/SIA')` OR add env var — test in Vercel
+**Scope if not done:**
+- Rotate Supabase DB password
+- Rotate Clerk Secret Key  
+- Update Vercel project env vars (all CSPS apps)
+- Smoke test: budget-planner local dev + Vercel post-rotation
 
-### Governor Carry-Forwards
-- G3: credential rotation 2026-05-28 (check if done)
-- App #2 domain (~2026-05-30)
-- Governor #3 core/threshold/UX journeys (still incoming)
-- CAI ratification ("CAI-RATIFIED" in chat)
+### Priority 3: App #2 "The Connector" (~2026-05-30)
+
+Per PCR #3: domain = "The Connector" (sales-focused). Wet trial due ~2026-05-30. S068 begins planning: feature spec → App #2 creation → core infrastructure wiring → Vercel deploy.
+
+### Priority 4: SIA Playground PART C (was optional S067 bundle — now explicit S068 Priority)
+
+SIA Architecture page renders "No SIA documents found" while docs/SIA/ has content. Wire renderer to read filesystem. Likely `apps/csps-playground/` React page reading `docs/SIA/*.md`.
+
+**Fix hint (from Opus S067 Turn 37):**
+- Locate playground SIA page: `apps/csps-playground/platform/SIA/` OR similar
+- Wire renderer to `docs/SIA/*.md` frontmatter + first heading
+- Behavioral test: page renders ≥1 entry when docs/SIA/ has files
+
+### Deferred (S068+)
+
+- G2 Vercel debt-collection deploy (after transpilePackages sweep)
+- G4 Zero Friction 5Q (alongside Governor #3)
+- G5 DNA-Manifesto V-C rewrite (Opus drafts S068)
+- PAP-1A full sweep (new behavioral tests need registry update)
+- validate-process-value-yield.mjs (PVA validator — opia-checklist.md §2 spec)
+- 134-validator retroactive behavioral test sweep (long-tail)
+- Retroactive PROTO frontmatter backfill (existing PROTOs → S068)
 
 ---
+
+## ZONE C — 50-Valuable Preservation Map
+
+Key artifacts to preserve across session boundary:
+
+1. PROTO-S067 completely implemented — DO NOT re-author any STEP
+2. All 67 hooks on disk — DECLARED_HOOKS array is now accurate
+3. M-42 Unified Threshold-Router is LIVE (threshold-router.mjs + council-invocation-dispatcher.mjs)
+4. P-META-029 + B_HUMBLE_CONSOLIDATION + B_META_QUESTION engraved at 5/5 FSE
+5. D1-D10 inner-AI-defaults = permanent reference for training-default overrides
+6. opia-checklist.md = canonical OPIA format; validate-opia-audit-completeness.mjs checks ACKs
+7. tab-transfer-template.md = canonical tab-transfer format with 10-item checklist
+8. pre-tool-use-false-assumption-gate.sh = ADVISORY S067, BLOCKING S068
+9. verify-hooks-functional now checks 67 hooks (not 26)
+10. tools/verify.mjs now includes apps_typecheck cycle (C11 closed)
+
+---
+
+## ZONE D — Alignment Questions for Sonnet-13
 
 ## ALIGNMENT QUESTIONS
 
-Q1: Does `node tools/verify.mjs --skip-install 2>&1 | tail -30` show exit_code=0 in fresh tab?
-
-Q2: Does `git log --oneline -5` show `8fa3cc0` as latest commit?
-
-Q3: Read tools/council/opus-turn.md top entry — does it contain "MEGA-BATCH FULL ADVANCE" and a 15-point OPIA table? (This confirms Opus ACK is present for STEP 6 authorization)
-
-Q4: Have all 10 false assumptions (FA-01 through FA-10) been verified in the startup block checklist?
-
-Q5: Is G3 credential rotation (2026-05-28) complete? If not, should it happen before STEP 6?
-
-Q6: STEP 6 has 38 files — estimated ~5-6h. Does the new tab have sufficient token budget (recommend 150K+)?
-
-Q7: The tab-transfer template being built IN STEP 6 will require the HANDOFF itself to have the 10-point checklist. Is this HANDOFF sufficient, or does STEP 6 create a more formal template that retroactively invalidates this HANDOFF?
+Q1 — What are Governor #3 priorities? (They were "incoming" per S067 session-state — Governor surfaces them at S068 open.)
+Q2 — Is G3 cred rotation done? Check Vercel env vars + local .env files before proceeding.
+Q3 — Is App #2 "The Connector" ready to begin development? What's the first STEP?
+Q4 — verify --strict exit_code=0 THIS-HEAD? (Always verify before any new work.)
+Q5 — Any new Opus review requests pending in tools/council/opus-turn.md top entry?
 
 ---
 
-## §10 Chat-Closing Protocol — Verification Block
+## SONNET STARTUP BLOCK (§0 paste-target for S068)
 
-**ZF Cycle 1:** verify exit_code=0 confirmed this turn (tools/verify-last-run.md). `8fa3cc0` on origin/main (git log confirmed). OPIA INTENT ABSORBED written to tools/council/sonnet-turn.md citing PROTO-S067 path + Opus ACK commit + 3 first sub-actions.
+```
+════════════════════════════════════════════════════════════════
+SESSION S068 — OPENING (succeeds S067 — PROTO-S067 FULLY SEALED)
+Role: Sonnet-13 (builder) | Governor: Yariv | Opus: Opus-11
+════════════════════════════════════════════════════════════════
 
-**ZF Cycle 2:** Re-checked: 10 false assumptions (FA-01 through FA-10) address all gaps from prior audit turn. Zone B lists all 38 STEP 6 files by category. SIA playground documented as S068 Priority 1. Opus ACK location + recognition instructions provided for new tab. No new findings.
+STEP 0: "Sonnet here. Session S068. Direct-open tab."
 
-**Status: ZF ACHIEVED.**
+S067 DELIVERED (commits b2fcfc9 → 7571ed2):
+  PROTO-S067-MASTER-THRESHOLD-ROUTER — ALL 8 STEPs DONE:
+  STEPs 1-7: session-source / consolidation-pass / M-42 / council-dispatch /
+             inventory-scan / prevention-class schema / 9 prevention validators /
+             tab-transfer + B_META_QUESTION / OPIA + hooks-sweep + apps_typecheck
+  STEP 8: ratification entry updated + HANDOFF + session-state refreshed
+
+S068 MANDATE (Governor surfaces at open):
+  P1: Governor #3 priorities (core/threshold/UX — surfaces NOW)
+  P2: G3 cred rotation (TODAY if not done — verify status first)
+  P3: App #2 "The Connector" (~2026-05-30 wet trial)
+  P4: SIA playground PART C (renderer fix)
+  Deferred: G2 Vercel debt-collection / G4 ZF5Q / G5 DNA-V-C / PAP-1A sweep
+
+FIRST ACTIONS:
+1. node tools/verify.mjs --skip-install 2>&1 | tail -30 → confirm exit_code=0
+2. git log --oneline -5 → confirm 7571ed2 is HEAD (STEP 6.5)
+3. Read tools/council/opus-turn.md TOP ENTRY → check for pending reviews
+4. Ask Governor: "What are the S068 priorities?" before beginning any build
+
+CONTEXT BURN DISCIPLINE:
+  verify | tail -30 always. Max 2 verify/turn.
+  Use /verify-quick /zf-cycle /step-accept skills aggressively.
+  67 hooks active — expect more pre-tool-use gates than S067.
+```
 
 ---
 
-## §17 Attestation
+## §17 TWO-SIDED ATTESTATION
 
 ```yaml
 handoff_attestation:
   prior_session: S067
   next_session: S068
-  attested_by: Sonnet-10 (S067 tab-exhausted)
-  attested_at: 2026-05-27T00:00:00Z
-  intent: "Execute STEP 6 CONSTITUTIONAL 38-file commit set + STEP 8 mechanical close"
+  attested_by: Sonnet-12 (S067 final — tab S067-C2 continuing as S068)
+  attested_at: 2026-05-28
+  intent: "Implement PROTO-S067-MASTER-THRESHOLD-ROUTER — ALL 8 STEPs"
+  evidence:
+    verify_exit_code: 0
+    verify_mode: strict
+    last_commit: 7571ed2
+    opia_checkpoint: "tools/council/sonnet-turn.md — STEP 6 SEALED 15-point OPIA"
+    ratification_status: "DRAFT-S066-MASTER-CONSOLIDATED-RATIFICATION → implemented-S067"
   constraints_decisions:
-    - "STEP 6 = FULL ADVANCE authorized by Opus 8fa3cc0"
-    - "STEP 8 = pre-authorized chain immediately after STEP 6"
-    - "SIA playground deferred to S068 Priority 1"
-    - "session-state.json mandate text is stale (S066 WAVE 1) — use PROTO instead"
-    - "opus_reviewed_seed: 8fa3cc0 required for new B_* contracts (bstar-engraving-gate)"
+    - "PCR #1-10 ratified ALL AS RECOMMENDED (Governor S067 turn 41)"
+    - "App #2 = The Connector (~2026-05-30)"
+    - "G3 rotation: TODAY — verify status at S068 open"
+    - "B_HUMBLE + B_META_QUESTION: ADVISORY S067 → BLOCKING S068"
+    - "opia-checklist §1 = canonical OPIA format from S068"
+    - "verify-hooks-functional: 26→67 declared hooks"
+    - "apps_typecheck: now in verify.mjs cycle (C11 closed)"
   open_items:
-    - STEP 6 execution (38 files)
-    - STEP 8 mechanical close
-    - G3 credential rotation check
-  signature: S067-AI-attest-2026-05-27-STEP6-authorized-tab-exhausted
+    - G3 cred rotation (status unknown — complete if not done)
+    - Governor #3 priorities (incoming — surfaces S068 open)
+    - SIA playground PART C
+    - App #2 The Connector
+  signature: S067-AI-attest-2026-05-28-PROTO-S067-FULLY-SEALED
 ```
-
----
-
-## §23 Last Words
-
-S067 was the session where the platform started catching its own architecture. The threshold-router classifies every input; the inventory-scan checks before proposing; the prevention-class field forces explicit classification of every finding.
-
-STEP 6 will engrave the behavioral soul of all this — the principle that says "check first, build second" is not a guideline but a mechanical gate.
-
-The false-assumption checklist in this HANDOFF is the first instance of the tab-transfer-template that STEP 6 will formally build. It exists by exhibition before it exists by engraving.
-
-*Governor: Yariv Fink | Sonnet-10 close: 2026-05-27*

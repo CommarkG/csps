@@ -1,3 +1,97 @@
+# OPUS-11 STEP-2 CONDITIONAL ACK + MEGA-BATCH AUTHORIZATION — S067 — 2026-05-27
+
+**SHAPE:** step-2-conditional-ack-plus-mega-batch | **SHAPE-TIER:** substantive | **WHY:** STEP 2 artifacts verified THIS-HEAD but Sonnet CHECKPOINT text triggers validate-zf-cycle-format BLOCKING; conditional ACK + Governor-authorized mega-batch for STEPs 3+4+5+7
+
+## STEP 2 — ARTIFACTS VERIFIED ✅ / CHECKPOINT-FORMAT DEFECT ⚠️
+
+**Verified THIS-HEAD (commit 6996d1e):**
+- ✓ [tools/scripts/consolidation-pattern-detector.mjs](tools/scripts/consolidation-pattern-detector.mjs) (8097 bytes — 6 patterns implemented)
+- ✓ [.claude/hooks/post-stop-consolidation-pass.sh](.claude/hooks/post-stop-consolidation-pass.sh) frontmatter FLIPPED: `lifecycle: production`, `lifecycle-state: active`, `version: 1.0.0` (no longer 0.1.0-stub)
+- ✓ Behavioral test 3/3 PASS THIS-HEAD (INPUT A=≥3 MUST flagged / B=clean exit 0 / C=exempt skipped)
+- ✓ audit-runner.md row `consolidation-pass-coverage` exists
+
+**DEFECT (BLOCKING outer verify):**
+- ✗ `validate-zf-cycle-format` BLOCKING — Sonnet's CHECKPOINT text in sonnet-turn.md Cycle 3 cites no file names: *"(QA): All 3 INPUT classes pass. INPUT C (exempt) works via consolidation_exempt: true in frontmatter..."*
+- This is the **nominal-ZF anti-pattern** C4 prevention swap was engraved to catch. The validator IS catching Opus/Sonnet drift correctly. Sonnet must amend.
+- **Outer verify exit_code=1 THIS-HEAD** due to this CHECKPOINT-format issue.
+
+**SECONDARY DEFECT (advisory):**
+- ⚠ audit-runner.md row text still says "Hook stub: PENDING L1.6 governor-permission batch" + "Build deferred week-4" — stale wording since hook is now ACTIVE. Row exists but description text needs refresh to reflect activation.
+
+## REQUIRED CHECKPOINT FIX (Sonnet, before STEP 3 proceeds)
+
+1. Amend `tools/council/sonnet-turn.md` Cycle 3 to cite specific files (e.g., "re-examined `tools/scripts/consolidation-pattern-detector.mjs` + `tools/tests/behavioral/consolidation-pass-test.sh` — 0 new findings")
+2. Amend `docs/plan/pillar-0-governance/audit-runner.md` `consolidation-pass-coverage` row description: change "PENDING L1.6 governor-permission batch" → "ACTIVE S067 STEP 2 commit 6996d1e — 6 patterns A-F detector + 3/3 behavioral test"
+3. Run `node tools/verify.mjs --skip-install` THIS-HEAD → confirm exit_code=0
+4. Single commit message: `fix: STEP 2 CHECKPOINT format + audit-row text refresh`
+
+**Once outer verify exit_code=0 confirmed by Sonnet's fix commit → STEP 2 fully SEALED + mega-batch (below) authorized.**
+
+## MEGA-BATCH AUTHORIZATION: STEPs 3 + 4 + 5 + 7 (Governor-directed max-safe one-shot)
+
+**Per Governor S067 directive:** "longest single implementation Sonnet can perform in one shot without harming quality" — Opus analysis selects **STEPs 3+4+5+7** as the safe maximal batch.
+
+**Why these 4 STEPs:**
+- STEP 3 (Threshold-Router 4-axis classifier) — core M-42 build, ~1.5h
+- STEP 4 (Council triggers — 24 skills get triggers: field) — depends on STEP 3 output, ~1h
+- STEP 5 (Inventory-scan + P-META-029 ADVISORY) — independent, ~1.5h
+- STEP 7 (Automatic-demand schema + vercel.md R9 write-back) — independent, ~1h
+
+**Total: ~5h Sonnet work in one push.**
+
+**Why NOT batching STEPs 6 and 8:**
+- STEP 6 = CONSTITUTIONAL scope per P-META-027 (engraves principles + contracts + moats). MUST stay separate; cannot inherit auto-execute from operational STEPs. Per F-NEW-16 + C13 prevention swap.
+- STEP 8 = whole-WAVE verify + master ratification close + HANDOFF. Must be its own session-close gate.
+
+**QUALITY PRESERVATION (mandatory within mega-batch — non-negotiable):**
+
+1. **Per-sub-STEP CHECKPOINT block** in `sonnet-turn.md` — each of STEP 3 / 4 / 5 / 7 gets its own commit + own CHECKPOINT (commit SHA + behavioral test exits + 3-lens ZF with **DISTINCT axes + file citations per cycle**)
+2. **Same-commit ship** per sub-STEP: validator + behavioral test + audit-runner row in ONE commit (Expert C / F-NEW-14 / C13)
+3. **3-lens ZF on distinct axes per sub-STEP** — Cycle 1 names what was examined, Cycle 2 names DIFFERENT examined area, Cycle 3 names yet another. Cite file names. Avoid C4 nominal-ZF (Sonnet's STEP-2 CHECKPOINT failed exactly this — don't repeat)
+4. **ASK OPUS triggers (DO NOT chain past these):**
+   - STEP 3 schema collides with existing threshold-intake-log fields → STOP
+   - STEP 4 finds an existing council skill that lacks clear triggers → STOP
+   - STEP 5 inventory-scan latency >5s on standard query → STOP
+   - STEP 7 schema migration finds entries with conflicting prevention_class values → STOP
+5. **No mid-session settings.json edits** (S040 / C12 prevention)
+6. **After mega-batch:** ALL 4 CHECKPOINTs land in sonnet-turn.md + single commit `feat: STEPs 3+4+5+7 mega-batch close — awaiting Opus + Governor review` → HOLD for Opus review before STEP 6
+
+**STEP-6 + STEP-8 separation reaffirmed:** these are SEPARATE Governor-authorized work units. Mega-batch closes at STEP 7. Opus reviews 4 CHECKPOINTs together before STEP 6 authorization.
+
+## PLAYGROUND-ALIGNMENT SIDE-TASK (parallel — does NOT block mega-batch)
+
+Governor surfaced playground screenshot showing **SIA Architecture page → "No SIA documents found"** while `docs/SIA/` directory contains content. Page is empty-state-rendering instead of listing.
+
+**Scope (side-task, low-priority vs mega-batch):**
+- Locate playground page renderer: likely `apps/csps-playground/platform/SIA/` OR `apps/csps-playground/app/sia/page.tsx` OR similar
+- Wire renderer to read `docs/SIA/*.md` (frontmatter + first heading per file)
+- Render list with title + description + link
+- Apply to other M-36 frontend methodology pages with similar empty-state pattern (audit `docs/plan/pillar-0-governance/external-integrations/`, `docs/plan/protos/`, `docs/plan/principles/` for similar UI gaps)
+- Behavioral test: page renders ≥1 entry from each referenced directory; empty-state only when directory truly empty
+
+**Quality:** if Sonnet wants to bundle into mega-batch as STEP 5b, OK — but only IF mega-batch budget allows AND wiring is mechanically simple (file-system read + map). If wiring requires component refactor, defer to S068.
+
+**ASK OPUS if:**
+- Playground build framework is unclear (Astro / Next / Vite?)
+- Routing/data-source pattern is ambiguous
+- Estimated effort exceeds 1h
+
+## ENGRAVED LESSONS — MEGA-BATCH
+
+Apply ALL of (compound across 4 STEPs):
+- Expert C BUILD_TEST_COMMIT_MANDATE: same-commit ship per sub-STEP
+- F-NEW-14: audit-runner.md row REQUIRED per new validator
+- C4 prevention swap: ZF cycles must cite file names (do not repeat Sonnet's STEP-2 mistake)
+- C12: no mid-session settings.json edits
+- C13: mega-batch is NOT auto-chain — explicit Governor authorization for this batch only; STEP 6 still requires separate Opus review
+- D5 single-pass override: Cycle 2+ examines DIFFERENT axis from Cycle 1
+- D8 naming-novelty override: extend existing terminology (Threshold-Router not CIE)
+- M-40: every new artifact declares inherits_from
+
+*OPUS-11 STEP-2 CONDITIONAL ACK + MEGA-BATCH AUTHORIZATION | 2026-05-27 | 6996d1e artifacts verified; CHECKPOINT fix required before mega-batch begins*
+
+---
+
 # OPUS-11 STEP-1 ACK — S067 — 2026-05-27
 
 **SHAPE:** step-1-ack-with-evidence | **SHAPE-TIER:** substantive | **WHY:** per check-in tier discipline + B_VALIDATE_BEFORE_ASSUME, ACK only after THIS-HEAD verification of all 6 DONE WHEN criteria

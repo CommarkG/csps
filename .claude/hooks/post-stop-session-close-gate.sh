@@ -114,7 +114,8 @@ try{
 " 2>/dev/null || true
 
   # INFRA-FLOW Step 9: Auto-capture session evidence at close
-  _SESSION=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('${REPO_ROOT}/tools/session-state.json','utf8'));process.stdout.write(d.current_session||d.active_implementation_session||'unknown');}catch(e){process.stdout.write('unknown');}" 2>/dev/null || echo "unknown")
+  # PROTO-S067-MASTER-THRESHOLD-ROUTER STEP 1: use session-source.mjs (fixes F-NEW-17)
+  _SESSION=$(node "${REPO_ROOT}/tools/lib/session-source.mjs" 2>/dev/null || echo "S000")
   node "${REPO_ROOT}/tools/scripts/capture-session-evidence.mjs" "--session=${_SESSION}" 2>/dev/null || true
 else
   HARVEST_STATUS="MISSING"

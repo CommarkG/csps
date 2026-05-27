@@ -1518,6 +1518,15 @@ const CYCLES = [
       return m ? { findings_checked: Number(m[1]), on_time: Number(m[2]), overdue_advisory: Number(m[3]), overdue_blocking: Number(m[4]), auto_promoted: Number(m[5]) } : {};
     },
   },
+  {
+    // PROTO-S067-MASTER-THRESHOLD-ROUTER STEP 1: blocks hooks with local session computation.
+    name: 'session_source_usage',
+    command: 'node tools/validators/validate-session-source-usage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/hooks_checked=(d+)s+using_lib=(d+)s+local_computation=(d+)s+blocking=(d+)/);
+      return m ? { hooks_checked: Number(m[1]), using_lib: Number(m[2]), local_computation: Number(m[3]), blocking: Number(m[4]) } : {};
+    },
+  },
   // ── S064 PROTO Phase 1 — prevention graph completion ──────────────────────
   {
     // PROTO-S064 Item 1.2: Scans staged/new files for fuzzy-name duplication against existing.

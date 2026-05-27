@@ -100,8 +100,9 @@ try{
     elif echo "$USER_MESSAGE" | grep -Eqi 'structural|principle|always|constitutional|platform'; then _SC="S3"
     fi
 
-    # Get session id
-    _SN=$(node -e "try{const s=JSON.parse(require('fs').readFileSync('$STATE_FILE','utf8'));process.stdout.write(s.current_session||'unknown');}catch(e){process.stdout.write('unknown');}" 2>/dev/null || echo "unknown")
+    # Get session id — via session-source.mjs (PROTO-S067-MASTER-THRESHOLD-ROUTER STEP 1)
+    # Fixes F-NEW-17: replaces inline computation that silently fell back to "unknown"
+    _SN=$(node "${REPO_ROOT}/tools/lib/session-source.mjs" 2>/dev/null || echo "S000")
 
     # Sanitize preview: strip control chars and quotes
     _PV=$(printf '%s' "$USER_MESSAGE" | head -c 80 | tr -d '\001-\031\\')

@@ -9,13 +9,13 @@
 | **Current session** | S067 |
 | **Previous session** | S066 |
 | **Last updated** | today |
-| **Last commit** | 6f251fc ops: S067 open — HANDOFF-S066-to-S067 + session setup + INTENT ABSORBED |
+| **Last commit** | 4587401 feat: STEP 8 — S067 SEALED — whole-WAVE close + HANDOFF-S067-to-S068 (PROTO-S067) |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
 ## What S067 must do
 
-**S066 — WAVE 1 prevention-infrastructure: 3 pre-commit gates (shape-check Q2 + core-seed-mandatory Q4 + validator-test Expert C). Resolve K=1 gaps (VALIDATOR_BEHAVIORAL_TEST_COVERAGE + PREVENTION_COVERAGE_GAP). App #2 deferred per Governor S064 3-day postponement (~2026-05-30). Governor #3 priorities incoming (core/threshold/UX journeys). 5 APPROVED S066 entries in improvement-register.yaml.**
+**S067: PROTO-S067-MASTER-THRESHOLD-ROUTER IMPLEMENTED. All 8 STEPs DONE (commits b2fcfc9 through 7571ed2). P-META-029 + M-42 + 13 prevention classes + 10 AI-default overrides + B_META_QUESTION + OPIA engraved. STEP 8 SEALED. S068 opens: Governor #3 priorities + G3 cred rotation + App #2 The Connector (~2026-05-30) + SIA playground PART C.**
 
 
 

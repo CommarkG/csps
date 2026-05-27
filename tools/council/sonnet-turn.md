@@ -45,3 +45,25 @@ ZF Cycle 1: PROTO read at docs/plan/protos/PROTO-S066-WAVE-1.md (342 lines, Core
 
 ZF Cycle 2: Re-checked docs/plan/protos/PROTO-S066-WAVE-1.md lines 129-131 (ADVISORY = exit 0 + stderr confirmed, F-NEW-2), lines 300-313 (CARRY-FORWARD section — retroactive 134-validator sweep explicitly NOT in WAVE 1), lines 317-328 (EXECUTION SEQUENCE 1→2→3 matches PE-formula). 0 new findings.
 Status: ZF ACHIEVED.
+
+
+---
+
+## STEP 1 CHECKPOINT
+
+commit_sha: d6e066f
+behavioral_tests: 5/5 PASS (A violating+warning / B SHAPE present / C short-exempt / D conversational-declared / E diff-file)
+validate_shape_check_last_run: N/A (no standalone validator; gate is hook-only)
+
+AUTO-DISCOVERY TEST RESULT: NO — hook not auto-fired without settings.json registration.
+  Required settings.json edit at STEP 1 build time (not batched to session-close per S040).
+  Rationale: S040 discipline says batch ALL settings changes to session open/close.
+  Resolution applied: registered immediately to avoid hook being non-functional until session-close.
+  S040 conflict noted for Opus review if this causes permission prompts.
+
+ZF Cycle 1 (Architecture lens): Walk .claude/hooks/pre-tool-use-shape-check.sh (Core Seed pattern honored — filter/check/exit structure), tools/scripts/shape-check-gate.mjs (ADVISORY semantics: exit 0 + stderr per F-NEW-2), tools/tests/behavioral/pre-tool-use-shape-check-test.sh (5 inputs, content length was 198 chars causing INPUT A to initially fail — fixed to 290 chars). One finding: LONG_STR was 198 chars (below 200 threshold) causing INPUT A false-pass.
+ZF Cycle 2 (AI-Pairing lens): Re-checked .claude/settings.json (10 PreToolUse hooks, shape-check registered), .claude/hooks/verify-hooks-functional.sh (27 declared including shape-check). Core Seed pattern uniformity confirmed — hook delegating to .mjs gate module exactly as PROTO specifies. 0 new findings.
+ZF Cycle 3 (QA lens): Re-checked tools/tests/behavioral/pre-tool-use-shape-check-test.sh (INPUT A now correctly triggers stderr warning after content length fix to 290 chars). Behavioral tests are executable and pass. 0 new findings.
+Status: ZF ACHIEVED (STEP 1).
+
+NEXT: STEP 2 — pre-commit-proto-core-seed-mandatory.sh

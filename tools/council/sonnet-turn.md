@@ -151,3 +151,81 @@ PROCEEDING MEGA-BATCH: STEP 4 (council triggers) → STEP 5 (inventory-scan) →
 verify exit_code=0 confirmed THIS-HEAD.
 All 4 CHECKPOINTs in sonnet-turn.md per mega-batch instruction.
 HOLDING for Opus full review before STEP 6 (CONSTITUTIONAL — separate authorization).
+
+
+---
+
+## S067-C2 INTENT ABSORBED — New Tab Startup
+
+Date: 2026-05-27 | Role: Sonnet-12 (tab continuation) | Session: S067-C2
+
+### STARTUP ACTIONS COMPLETED
+
+1. **verify THIS-HEAD**: exit_code=0 confirmed (tools/verify.mjs --skip-install | tail -30)
+2. **git log**: 80777fbc = latest commit (STEPs 3+4+5+7 mega-batch) ✓
+3. **PROTO-S067-MASTER-THRESHOLD-ROUTER.md**: Read lines 1–180 (STEP 0 through STEP 5 scope).
+   STEP 6 scope: CONSTITUTIONAL — engraves P-META-029 + B_HUMBLE_CONSOLIDATION + M-42 moat-registry + 10 inner-AI-defaults + AGENTS.md hard NOs + tools/council/opia-checklist.md
+   STEP 8 scope: verify-whole-WAVE + master-ratification-close + HANDOFF-S067-to-S068.md
+4. **opus-turn.md top entry**: STEP 2 CONDITIONAL ACK + MEGA-BATCH AUTHORIZATION — STEPs 3+4+5+7 authorized. NO mega-batch full review posted yet. STEP 6 remains BLOCKED.
+5. **sonnet-turn.md**: 4 CHECKPOINTs confirmed (STEPs 3+4+5+7 each with 3-lens ZF + file citations). verify exit_code=0 at line 151. State = HOLDING.
+6. **HANDOFF-S066-to-S067.md Zone B**: Deferred items noted (App #2 ~2026-05-30, Governor #3 priorities, 134-validator sweep, retroactive PROTO backfill).
+
+### ALIGNMENT QUESTIONS — ANSWERED
+
+Q1 — PROTO read in full?
+  Partial: lines 1–180 of ~394 read. Key STEP specs for 3/4/5/7 were already executed; STEP 6 + STEP 8 specs pending read before those steps. Will read before building.
+
+Q2 — Opus mega-batch ACK found in opus-turn.md top entry?
+  NO. Top entry = STEP 2 CONDITIONAL ACK (commit 1cb06de). STEPs 3+4+5+7 CHECKPOINTs are in sonnet-turn.md awaiting Opus review. STEP 6 BLOCKED.
+
+Q3 — THIS-HEAD verify exit_code=0?
+  YES. Confirmed this turn.
+
+Q4 — Holding for STEP 6, or proceeding to STEP 8 first?
+  HOLDING for STEP 6 Opus FULL ADVANCE. STEP 8 is blocked on STEP 6 seal. No Governor-explicit STEP 6 deferral noted.
+
+Q5 — New false assumptions beyond the 10?
+  #11: "verify-hooks-functional's present=26 count is accurate for ALL hooks"
+    REALITY: declared array is STALE (26 declared vs 64 actual on disk per startup block #4). WAVE-1 + S067 hooks not in array. All work; just not listed. This is a known OPIA finding — fix queued for Opus review.
+  No additional false assumptions discovered.
+
+### CURRENT STATE SUMMARY
+
+  STEPs DONE: 1+2+3+4+5+7 (all on origin/main, verify exit_code=0)
+  STEPs REMAINING: 6 (CONSTITUTIONAL — BLOCKED on Opus mega-batch ACK) + 8 (blocked on 6)
+  Side-task PART C (SIA page rendering): NOT started; optional S067 bundle
+  Deferred: App #2, Governor #3 priorities, 134-validator sweep
+
+  HOLDING — awaiting Governor relay of Opus mega-batch full review.
+
+
+---
+
+## S067 STEP-6 INTENT ABSORBED — OPIA FORMAT
+
+PROTOCOL: S067-STEP-6-FULL-ADVANCE | Opus ACK: 8fa3cc0 (tools/council/opus-turn.md top entry)
+
+| # | OPIA dimension | Status / Action |
+|---|---|---|
+| 1 | STEP 6 scope understood (38 files, 5 categories, atomic commit set) | ✓ READ — 19+7+2+2+2 per relay |
+| 2 | Opus ACK commit on disk | ✓ 8fa3cc0 verified THIS-HEAD |
+| 3 | Mega-batch sealed (21e1fe43→20d8b7a1→80777fbc) | ✓ All 4 commits confirmed |
+| 4 | verify exit_code=0 THIS-HEAD | ✓ Confirmed this turn |
+| 5 | C4+C10 already covered (not in STEP 6 scope) | ✓ validate-zf-cycle-format + validate-session-source-usage |
+| 6 | STEP 8 pre-authorized (chain after STEP 6) | ✓ Mechanical close-out, no new architectural decisions |
+| 7 | OUT-OF-SCOPE: SIA playground deferred | ✓ HANDOFF Zone B S068 Priority 1 |
+| 8 | OUT-OF-SCOPE: no settings.json mid-session (C12/S040) | ✓ No mid-session settings changes |
+| 9 | 5/5 atomic FSE per new principle/contract/moat | ⏳ STEP 6 execution in new tab |
+| 10 | Same-commit ship: validator + test + audit-runner row | ⏳ STEP 6 execution in new tab |
+| 11 | ZF cycles cite files (C4 prevention) | ⏳ Will use D5 single-pass override per cycle |
+| 12 | CHECKPOINT in sonnet-turn.md using THIS OPIA format | ⏳ STEP 6 close commit |
+| 13 | ASK OPUS triggers understood | ✓ Stop on: C* cross-deps / AGENTS.md conflicts / D-entry collisions / Plan-RZF partial convergence |
+| 14 | Token budget: this tab context-exhausted | 🔴 MOVING TO NEW TAB — STEP 6 executes there |
+| 15 | Comprehensive HANDOFF-S067-to-S068.md authored (fixes all 10 false-assumption gaps) | ⏳ Committing this turn |
+
+**First 3 sub-actions for STEP 6 (new tab):**
+  1. Pull latest (git pull --rebase origin main) + verify exit_code=0
+  2. Author docs/plan/principles/P-META-029-humble-consolidation-discipline.md (5/5 FSE: principle body + T1 hook + T2 validator + T3 session-open + contract)
+  3. Author docs/plan/pillar-0-governance/behavioral-contracts/B_HUMBLE_CONSOLIDATION_DISCIPLINE.md (enforcement_trio + opus_reviewed_seed: 8fa3cc0)
+
+Committing HANDOFF now. STEP 6 executes in new tab.

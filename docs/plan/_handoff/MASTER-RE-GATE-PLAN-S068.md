@@ -832,3 +832,23 @@ Every PART PROTO Opus authors will carry **core seeds on the part AND its ripple
 4. Findings during any step → Finding-Handling Protocol (§2). Active part stays highest priority.
 5. Batch SEAL → triage scheduled findings → next batch.
 6. Phase SEAL → re-validate against North Star + Core-Maximal + Planning Discipline.
+
+---
+
+# AMENDMENT E — THRESHOLD-ACCURACY MANDATE (Governor S068)
+
+> **Governor S068: "The threshold is the main brain, sending things all over our nervous system. Iteration about how the threshold is built is required — review it from different personas and see that ALL aspects are completely accurate. Otherwise the routing itself will create a mess."**
+
+## E.0 — THE MANDATE (placement #1 of 4+)
+
+The threshold-router (PART 2) is NOT a normal build. It is the **classification brain** — every input's spine + pipeline + place is decided here. A wrong axis, a wrong rule, a missed input class = **systemic mis-routing** that propagates silently into every downstream part and is noticed only when the nervous system is already tangled. Therefore: **before Sonnet builds ANY threshold code, Opus authors the classification design and subjects it to a FULL 6-persona accuracy review** (cruel-critic + balance + bottleneck + consolidation + schema + **ux** — mis-routing is felt as broken UX). The review must prove, per class, a correct + unique {spine, pipeline, place} — no overlap, no gap, no default-to-unhandled. Accuracy here is "provably correct across all classes," not "passes a test" (§9 Improve-Not-Just-Pass at its strictest).
+
+## E.1 — Reminders (placements #2-#4)
+
+- **#2 PART 2 / PHASE 2:** PART 2 cannot SEAL until the 6-persona threshold-accuracy review passes with documented per-class routing proof.
+- **#3 Opus-best-parts (D.3):** "Threshold no-fit unification" is upgraded to **"Threshold classification design + 6-persona accuracy review"** — the highest-context, highest-blast-radius Opus-authored section in the plan.
+- **#4 Execution loop (D.5):** at PART 2 a mandatory gate inserts — *no Sonnet threshold build until Opus's 6-persona accuracy review is sealed* (ASK-OPUS-STOP if reached without it).
+
+## E.2 — Why the extra iteration is the cheapest insurance in the plan
+
+Every other part can be fixed locally if wrong. The threshold cannot — a mis-classification is distributed across everything it ever routed. Cost-of-wrong scales with everything built on top (interrupt-condition #1: large-future-reversal). One extra Opus iteration + a 6-persona review here prevents the most expensive failure mode in the system.

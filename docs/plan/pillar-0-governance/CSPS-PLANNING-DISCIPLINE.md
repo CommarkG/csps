@@ -158,4 +158,21 @@ Failing any item = the plan is not ready. Fix the plan, not the symptom.
 
 ---
 
-*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review = M-43 | Formal validator + session-open injection: PART 1 STEP 0 (validators in loop)*
+## §9 — IMPROVE, DON'T JUST PASS (Governor S068)
+
+> **Governor S068: "It's a big flaw to make them in a way that they are not [improved]. This is an ongoing attitude that you must mechanically enforce — reminders that keep popping up while working, reminding that things must be improved."**
+
+**The flaw this prevents:** an AI default is to make an artifact *pass the validator / satisfy the literal ask* and stop. A passing-but-mediocre artifact is a flaw, not a success. Passing is the floor, not the goal.
+
+**The mandate — for every artifact, every step:**
+- Ask not "does this pass?" but "is this the BEST form of this artifact?"
+- A validator going green means *not broken* — it does NOT mean *good*. Hold the higher bar.
+- Connects to P-OP-007 (Optimal-Path-Default — depth over velocity): we have time; build it right.
+
+**Mechanical reminder (built PART 1):** a `post-tool-use-improve-not-pass.sh` reminder + a line in session-open injection: *"Passing ≠ good. Is this artifact in its best form, or merely not-broken?"* Fires during work, not just at review — so the bar is held continuously, not remembered occasionally.
+
+**Self-check (added to §7):** "Did I improve this to its best form, or did I stop at 'it passes'?"
+
+---
+
+*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | Formal validators + session-open injection: PART 1 (validators in loop)*

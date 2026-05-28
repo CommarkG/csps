@@ -71,6 +71,20 @@ CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.
   printf '\n[M-43-diff-review] → advances YOUR marker in tools/data/last-review-markers.json.' >&2
 } 2>/dev/null || true
 
+# ─── VAULT-SUMMARY MANDATE (S069 Governor directive) ────────────────────────────────────────
+# EVERY substantive response MUST end with: "## Vault Summary (this turn)"
+# listing what was saved to vault-pending.yaml / MEMORY.md / vault entries for later processing.
+# Format: | vlt-ID or memory-slug | what was saved | when to process |
+# EMPTY = explicitly state "Nothing vaulted this turn."
+# This makes save-and-schedule VISIBLE (prevents D13: describing saving without doing it).
+# Inherited: session-open.sh T3 + MEMORY.md + AGENTS.md cannot carry it (line limit).
+{
+  printf '\n[VAULT-SUMMARY-MANDATE] Every substantive response: add "## Vault Summary (this turn)" section.' >&2
+  printf ' List what was saved to vault-pending.yaml/MEMORY.md/vault-pending entries.' >&2
+  printf ' Empty section = explicitly write "Nothing vaulted this turn."' >&2
+  printf '\n[VAULT-SUMMARY-MANDATE] Format: | vlt-ID/memory-slug | description | when-to-process |' >&2
+} 2>/dev/null || true
+
 # ─── B_META_QUESTION T3 — false-assumption checklist discipline injection (S067 STEP 6.4) ───
 # Every tab start: inject META-QUESTION reminder before tab-transfer outputs.
 # B_META_QUESTION_DISCIPLINE: before emitting HANDOFF/startup-block/CHECKPOINT/relay-block,

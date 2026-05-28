@@ -103,12 +103,12 @@ fi
 if [ "$FOUND_COVERAGE" = "false" ]; then
   if [[ "$REL_PATH" == libs/* ]] || [[ "$FILE_PATH" == */libs/* ]]; then
     if [ "$IS_NEW_LIBS_FILE" = "true" ]; then
-      # BLOCKING — new file in libs/ without plan coverage (Governor S024 Q2 ratification)
+      # S069 Governor directive: T1 pre-tool-use = ADVISORY (warn, don't block).
+      # T2 pre-commit validators + audit still enforce at commit boundary.
       printf '{
-        "decision": "block",
-        "systemMessage": "🚫 [plan-coverage-gate] BLOCKING (libs/ — new file): No active plan with covered_paths includes %s.\\n\\nGovernor S024 ratification: new files in libs/ require plan coverage.\\nCreate or update a plan with covered_paths first. Plans at: docs/plan/_handoff/VAULT/topic-plans/"
+        "decision": "allow",
+        "systemMessage": "⚠ [plan-coverage-gate] ADVISORY (libs/ — new file, was BLOCKING — S069 T1→advisory): No plan coverage for %s.\\n\\nNote: Governor S024 Q2 ratification requires plan coverage for new libs/ files. Pre-commit validators will flag this. Add covered_paths to a plan before committing to avoid commit-time blocks."
       }' "$REL_PATH"
-      exit 1
     else
       # ADVISORY — edit to existing libs/ file, or non-new file
       printf '{

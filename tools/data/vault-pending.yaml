@@ -259,6 +259,17 @@ entries:
     routing_decision: "S2: PART 2 wire threshold council-dispatch (4->real invocations) + audit the 117 advisory-forever (promote-or-prune, balance-expert). S3: PART 3/4 CIE sub-engine stubs + PVA + Daily-Alignment-Pass. S1: B_PROMOTION_GATE contract (PART 3). Threshold-as-only-gate REQUIRES the dispatch arm actually firing."
     created_session: S068
     context: "Governor S068 'find other things at risk of described-only', 3-scope scan. Biggest: threshold dispatch nearly dead (4/532) + 117 advisory-forever = governance theater. Platform looks governed; large fraction is flag-never-block."
+  - id: vlt-S069-00027
+    raw_summary: "Native AI Profiling — evolve the ai-profiler hook into a full per-session behavioral profile system that tracks actual AI defaults firing vs overridden, with measurable trend across sessions"
+    source: governor
+    vault_type: feature-idea
+    status: pending-triage
+    urgency: post-plan-completion
+    routing_decision: "Re-engage at PART 1 COMPLETION. Preconditions: D1-D10 inner-AI-defaults registry active (S068 STEP 6.2 done) + validate-nodefile-compliance wired (S069 STEP 4 done). Next step: Opus designs behavioral-profile schema — one profile entry per session per default (D1-D10), records: default-fired? override-triggered? evidence-sha. PVA then measures trend. NOT mature enough for PROTO yet — needs Opus design session."
+    maturity_assessment: "low-mature — concept clear, infrastructure partially present (ai-profiler.sh hook exists, D1-D10 registry exists). Missing: profile schema, per-session write, trend validator, PVA integration. Estimate 2-3 sessions to WIRED. Threshold classification: VAULT (not ESCALATE — no current plan dependency)."
+    created_session: S069
+    context: "Governor directive S069: 'add evolvement of native AI profiling to list of things to add when plan is completed.' Noted in chat — saving here to prevent D13 (doc-not-mechanism) loss."
+
   - id: vlt-S068-00026
     raw_summary: "S068 COMPLETION-TO-RZF PASS — full inventory of today's work scheduled as the LAST deep-dive to REAL zero findings (active+wired+measured)"
     source: governor

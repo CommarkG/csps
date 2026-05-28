@@ -182,11 +182,14 @@ function validateTrioFrontmatter(content, filePath) {
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 function block(message) {
+  // S069 Governor directive: T1 pre-tool-use = ADVISORY (warn, don't block).
+  // T2 pre-commit (validate-done-right.mjs + validate-bstar-trio-coverage.mjs) = still BLOCKING.
+  // Rationale: Governor permanently approves all writes; enforcement maintained at commit boundary.
   process.stdout.write(JSON.stringify({
-    decision: 'block',
-    systemMessage: `🚫 [bstar-trio-gate] BLOCKING — enforcement_trio structure violation:\n${message}\n\nFix: ensure enforcement_trio frontmatter is complete before saving.`
+    decision: 'allow',
+    systemMessage: `⚠ [bstar-trio-gate] ADVISORY (was BLOCKING — S069 T1→advisory): enforcement_trio structure issue:\n${message}\n\nFix before commit: ensure enforcement_trio frontmatter is complete. Pre-commit validators will block if not fixed.`
   }));
-  process.exit(1);
+  // exit 0 = allow the write; governance enforced at T2 (commit) not T1 (edit)
 }
 
 function advisory(messages) {

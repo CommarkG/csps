@@ -137,4 +137,25 @@ Failing any item = the plan is not ready. Fix the plan, not the symptom.
 
 ---
 
-*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | Formal validator + session-open injection: PART 1 (validators in loop)*
+## §8 — CROSS-TAB DIFF-REVIEW (M-43, Governor-conceived S068)
+
+> **The fix for the deepest multi-tab fragility:** both AIs assume the other read everything; neither does by default. Prompts try to compensate by being comprehensive — fragile. This makes awareness MECHANICAL.
+
+**The protocol — both Opus and Sonnet, on receiving any cross-tab handoff:**
+
+```
+1. read my role's last-reviewed SHA from last-review-markers.json
+2. git log <last-reviewed>..HEAD   →  EVERYTHING changed since I last looked
+3. review the ACTUAL diffs (not the sender's prompt claims)
+4. advance my marker to HEAD
+```
+
+**Why it is a moat:** it converts "I hope you read my prompt" into "I mechanically see what you actually did." A missed prompt line no longer becomes a false assumption — the diff surfaces it. Composes with B_VALIDATE_BEFORE_ASSUME (don't assume the other read it), OPIA (audit actual work, not claims), P-META-014 (mutual understanding).
+
+**Inheritance vector:** session-open injection (same mechanism as B_META_QUESTION T3 + C8 REACTIVE_OPUS already in `session-open.sh`). Fires every tab, every session — so the practice survives without either AI remembering. **This is what makes the Opus-implements-critical + Sonnet-builds pattern (§6) actually inherited rather than memory-dependent** — neither of us has to recall to read the other's work; the diff-review forces it.
+
+**Mechanical build:** `tools/scripts/cross-tab-diff-review.mjs` + `tools/data/last-review-markers.json` + session-open injection = **PART 1 STEP 0** (built FIRST, because it makes every subsequent PHASE 1-5 handoff safer). Until built, the manual version applies: the receiver runs `git log` over the sender's commits before acting.
+
+---
+
+*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review = M-43 | Formal validator + session-open injection: PART 1 STEP 0 (validators in loop)*

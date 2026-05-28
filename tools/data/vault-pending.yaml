@@ -187,3 +187,21 @@ entries:
     routing_decision: "PART 6 — FIRST consumer of DashboardTemplate (vlt-00012) + foreign-element register. EXTEND /platform/profiles/ai-systems (do not duplicate). Data: .claude/skills/ (24) + agent types + foreign-element register + validate-skill-invocation-rate-last-run.json. Daily refresh: extend tools/config/audit-scheduling.yaml + wire to daily-L2 holistic audit (NOT parallel cron). Full abilities: view/edit-if-permitted/sort/change-logs/permissions/read-only-mode/collapsible-hierarchy/multi-view per Master Dashboard spec."
     created_session: S068
     context: "Governor S068: show all skills+agents in a dashboard using the dashboard template + dynamic stable mechanism to keep up to date >=1/day with all dashboard abilities. High synergy: first proof-of-use for both DashboardTemplate AND foreign-element register (origin+localization_tier columns)."
+  - id: vlt-S068-00018
+    raw_summary: "FOREIGN-ELEMENT-LOCALIZATION is DESCRIBED-ONLY (D13) — validator + hook do not exist; wire it"
+    source: opus
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "PART 1/2 — build validate-foreign-element-coverage.mjs + pre-tool-use-foreign-element-gate.sh + threshold foreign-element-intake route + daily-audit coverage scan. Until then the register is EXISTS≠ACTIVE."
+    created_session: S068
+    context: "HONEST (D13): I authored the register doc + treated it as done; Governor caught that nothing reads/enforces it. Marks the slide pattern — described≠active. This entry wires the fix."
+  - id: vlt-S068-00019
+    raw_summary: "DAILY ALIGNMENT PASS (proactive) — CIE+PE take everything created that day, run 7-question gate, consolidate vaults+pending+existing, re-prioritize"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "PART 4 (holistic audit daily-L2) — wire EXISTING pieces (M-43 git-diff + 7-question gate §13 + consolidation-expert + PE) into one daily pass. Consolidation, not new governance."
+    created_session: S068
+    context: "Governor S068: make CSPS proactive — daily audit of all created-today + CIE/PE go over vaults/pending/existing + consolidate-prioritize. Disciplines exist (5/7 mature); gap is they're reactive + not auto-applied."

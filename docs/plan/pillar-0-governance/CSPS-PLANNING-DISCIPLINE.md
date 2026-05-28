@@ -245,4 +245,37 @@ DRAFT → RESEARCH (external validation) → MULTI-PERSONA REVIEW (the 6 lenses)
 
 ---
 
-*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | §10 Deferral-Must-Be-Wired (D11) | §11 No-Rigid-Number-Without-Context (P-META-025) | §12 Refinement-Before-Ratification (M-44) | Formal validators + session-open injection: PART 1 (validators in loop)*
+## §13 — CREATION-COMPLETENESS GATE + PROACTIVE ALIGNMENT (Governor S068)
+
+> **Governor S068: "AI Core Deep Coding is letting a lot of things slide" — creating without iterating on: wired? measurable value? researched? aligned with what exists? clear pipeline? vocabulary correct? proactive? "Sometimes you don't have to create things from scratch because you have them mature right under your nose. Make this your default."**
+
+**The 7-question gate — every creation answers these, BEFORE it's called done.** Crucially, **each maps to a discipline CSPS already has** (the lesson: consolidate + apply, don't reinvent):
+
+| # | Question | Already-existing discipline to apply |
+|---|---|---|
+| 1 | Is it wired completely (or EXISTS≠ACTIVE)? | AP-001 + post-stop-exists-not-equals-active.sh + §10 |
+| 2 | Will it bring measurable value? | PVA (opia-checklist §2) — *designed, not yet built* |
+| 3 | Should I research it first? | M-44 Refinement-Before-Ratification (research step) |
+| 4 | What exists that must be aligned? | P-OP-001 reuse-first + B_HUMBLE_CONSOLIDATION + consolidation-expert + inventory-scan |
+| 5 | Does it have a clear flawless pipeline? | §10 pipeline_wiring + threshold routing |
+| 6 | Is the vocabulary correct? | vocabulary-canon + §11 + B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK |
+| 7 | How is the system PROACTIVE about it? | holistic-audit daily scope + CIE/PE consolidation — *designed, not yet active* |
+
+**Honest status (the slide):** 5 of 7 disciplines are mature; questions 2 (PVA) + 7 (proactive daily CIE/PE) are *designed-not-built*. The failure is not missing disciplines — it's that **they are scattered + reactive + not auto-applied to my own creations.** A created artifact must declare its honest state: `active | described-only | scheduled-wired` (D13).
+
+**The PROACTIVE mechanism (consolidation, not new): the Daily Alignment Pass.**
+Once per day (daily-L2 holistic audit), CIE + PE:
+1. take **everything created that day** (git diff since last daily pass — M-43 mechanism reused),
+2. run the 7-question gate on each new artifact,
+3. go over **vaults + pending-plans + existing** (consolidation-expert),
+4. **re-prioritize the whole** by consolidating (PE),
+5. flag any `described-only` mechanism lacking wiring → route to threshold.
+This is the proactive system Governor asked for — built by *wiring existing pieces together*, not by adding new governance.
+
+**Make check-what-exists the DEFAULT (D13):** before authoring any mechanism, search whether CSPS already has it mature (it usually does) → EXTEND/APPLY, don't describe-anew. Apply CSPS's own disciplines to CSPS's own creations.
+
+**Self-check (§7):** "Did I run the 7-question gate? Did I check what already exists before creating? Is this active or described-only?"
+
+---
+
+*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | §10 Deferral-Must-Be-Wired (D11) | §11 No-Rigid-Number-Without-Context (P-META-025) | §12 Refinement-Before-Ratification (M-44) | §13 Creation-Completeness-Gate + Proactive Daily Alignment (D13) | Formal validators + session-open injection: PART 1 (validators in loop)*

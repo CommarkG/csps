@@ -250,3 +250,12 @@ entries:
     routing_decision: "WIRING PASS — highest leverage: (1) extend validate-nothing-stands-alone to verify the named parent EXISTS (closes declared-but-absent across ALL dimensions); (2) wire Dimension-3 validators (foreign-element-coverage + product-schema-coverage + apps-inherit-from-core); (3) unique_addition validator; (4) validate-inheritance-orphans unified scan -> Daily Alignment Pass (§13). No new doctrine — pure enforcement-wiring."
     created_session: S068
     context: "Governor S068 'find all places inheritance can be mechanically enforced'. Scan: Dim1+2 strongly enforced (8+ active validators in verify); Dim3 external-use policy-not-enforced (validators described-only). Map in INHERITANCE-MODEL.md."
+  - id: vlt-S068-00025
+    raw_summary: "HIGH-RISK described-only: threshold council-dispatch EXISTS≠INVOKED (4 invocations/532 intakes) + 117 advisory-forever validators (no promotion path = theater) + CIE 3/5 sub-engines stubs + B_PROMOTION_GATE absent + PVA/Daily-Alignment-Pass absent"
+    source: opus
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "S2: PART 2 wire threshold council-dispatch (4->real invocations) + audit the 117 advisory-forever (promote-or-prune, balance-expert). S3: PART 3/4 CIE sub-engine stubs + PVA + Daily-Alignment-Pass. S1: B_PROMOTION_GATE contract (PART 3). Threshold-as-only-gate REQUIRES the dispatch arm actually firing."
+    created_session: S068
+    context: "Governor S068 'find other things at risk of described-only', 3-scope scan. Biggest: threshold dispatch nearly dead (4/532) + 117 advisory-forever = governance theater. Platform looks governed; large fraction is flag-never-block."

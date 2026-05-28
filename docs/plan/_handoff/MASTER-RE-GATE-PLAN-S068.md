@@ -901,3 +901,41 @@ Permanence-by-Default (`pre-tool-use-permanence-gate.sh`, S060) is EXISTING + ac
 | disciplines §1-§14, D11/D13, doctrines | active as governance text; enforcement = wiring backlog |
 
 Honest: the disciplines are real + binding as governance; their MECHANICAL enforcement is the backlog. That distinction is now visible, not hidden.
+
+---
+
+# AMENDMENT G — S068 COMPLETION-TO-RZF PASS (Governor-ratified; runs LAST)
+
+> **Governor S068: list everything handled today; schedule it as the LAST deep-dive to complete until REAL Zero Findings (active + wired + measured). Do NOT overload the active plan.** Per the wiring-weighted slowdown (ratified): no new governance — this pass makes today's DESCRIBED work REAL.
+
+## CORE SEED
+**Intent:** S068 produced a large, honest, routed body of governance — but (own-ZF) ~14 described : 1 wired. This pass exists so that body reaches RZF = every item ACTIVE + WIRED + MEASURED, not described. It runs LAST (after PART 1-8) so it never competes with active build. **Ripple set:** every artifact below + the wiring-state ledger (AMENDMENT F) + the Daily Alignment Pass (§13) which tracks the described→active trend until this pass closes it.
+
+## The S068 inventory (everything handled today — deep-dive each to RZF)
+
+**A. Constitutional / doctrine (active-as-text; enforcement to-wire):**
+North Star Core-maximal quality · CORE-MAXIMAL-DOCTRINE (P-ARCH-031 + P-ARCH-032 GHG + Template-or-Flag) · SPINE-PILLAR-MAP · NODEFILE-CONTRACT · FOREIGN-ELEMENT-LOCALIZATION · INHERITANCE-MODEL (+ enforcement map) · CSPS-PLANNING-DISCIPLINE §1-§15.
+
+**B. Moats:** M-43 cross-tab-diff-review (**ACTIVE** — only wired one) · M-44 refinement-before-ratification (to-wire) · M-45 wiring-completeness (to-wire).
+
+**C. AI-defaults:** D11 verbal-deferral · D13 doc≠mechanism (both active-as-profiling; T1/T2 to-wire).
+
+**D. Plan:** AMENDMENTS A-F (Package A/B absorption · holistic audits · consolidation scan · threshold-accuracy mandate · WIRING PASS).
+
+**E. Vocabulary (ratified):** Capability / Application / Bundle + 2-question test · Pervasive Property (to-engrave-glossary) · element_class field.
+
+**F. Specs (vault):** Master Dashboard · Skills & Agents Dashboard · Research Pipeline · Daily Alignment Pass · 3 research findings (scalability / depth-levels / research-agents).
+
+**G. PROTOs:** PROTO-S068-PART-1-SUBSTRATE (active build) · PROTO-S068-CONNECTOR (parked).
+
+**H. High-risk described-only (vlt-00025):** threshold dispatch 4/532 · 117 advisory-forever validators · CIE 3/5 stubs · B_PROMOTION_GATE absent · PVA + Daily-Pass absent.
+
+**Full per-item backlog + routing:** vault-pending vlt-S068-00001 → 00025 (single source; each has routing_decision + re-engage trigger).
+
+## RZF definition for this pass (REAL Zero Findings)
+An item is DONE only when: **active** (not described) + **wired** (validator in verify / hook registered) + **measured** (a metric or test proves it catches/works) + **wiring_state: active**. Deep-dive runs per item until the partial-marker count + advisory-forever count + described-only count all reach the floor.
+
+## Sequencing (do NOT overload active plan)
+- Runs as the **final pass after PHASES 1-5** (or interleaved by the Daily Alignment Pass at low priority).
+- The Daily Alignment Pass (§13) tracks the trend each day; this pass is where it converges to RZF.
+- Owner: Sonnet (wiring) + Opus (OPIA verification of "real" not "nominal" RZF).

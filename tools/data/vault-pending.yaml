@@ -259,3 +259,12 @@ entries:
     routing_decision: "S2: PART 2 wire threshold council-dispatch (4->real invocations) + audit the 117 advisory-forever (promote-or-prune, balance-expert). S3: PART 3/4 CIE sub-engine stubs + PVA + Daily-Alignment-Pass. S1: B_PROMOTION_GATE contract (PART 3). Threshold-as-only-gate REQUIRES the dispatch arm actually firing."
     created_session: S068
     context: "Governor S068 'find other things at risk of described-only', 3-scope scan. Biggest: threshold dispatch nearly dead (4/532) + 117 advisory-forever = governance theater. Platform looks governed; large fraction is flag-never-block."
+  - id: vlt-S068-00026
+    raw_summary: "S068 COMPLETION-TO-RZF PASS — full inventory of today's work scheduled as the LAST deep-dive to REAL zero findings (active+wired+measured)"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: someday
+    routing_decision: "MASTER-RE-GATE-PLAN AMENDMENT G — runs LAST (after PHASES 1-5); Daily Alignment Pass tracks trend; Opus verifies RZF is REAL not nominal. Inventory = vlt 00001-00025. Wiring-weighted slowdown: no new governance until described:wired improves."
+    created_session: S068
+    context: "Governor S068 ratified the slowdown + asked to list all today's work + schedule deep-dive-to-RZF last, without overloading active plan. ~14 described:1 wired today; this pass converges it to active+wired+measured."

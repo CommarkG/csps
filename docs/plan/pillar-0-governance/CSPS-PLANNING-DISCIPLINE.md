@@ -301,4 +301,26 @@ This is the proactive system Governor asked for — built by *wiring existing pi
 
 ---
 
-*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | §10 Deferral-Must-Be-Wired (D11) | §11 No-Rigid-Number-Without-Context (P-META-025) | §12 Refinement-Before-Ratification (M-44) | §13 Creation-Completeness-Gate + Proactive Daily Alignment (D13) | §14 Wiring-Completeness = Platform DNA (M-45, extends S060 Permanence-by-Default) | Formal validators + session-open injection: PART 1 (validators in loop)*
+## §15 — THE ITERATIVE CONSOLE: 3-Scope Builder Feedback (Governor S068)
+
+> **Governor S068: "Have every proto instruction to Sonnet give deep feedback in three scopes on the implementations he did AND on the instructions he got, including proactively suggesting how to improve. This creates an iterative console that keeps improving; Opus reviews + includes in the next proto or registers it in a pipeline."**
+
+**Mandatory in every PROTO CHECKPOINT (upgrades the existing sonnet-turn.md CHECKPOINT — consolidation, not new):** the builder (Sonnet) closes each STEP/batch with **3-scope feedback**:
+
+| Scope | Feedback on | Question |
+|---|---|---|
+| **S1 — Local** | the implementation just done | What worked? What was awkward/fragile? What did I learn at this STEP? |
+| **S2 — Connectivity** | the INSTRUCTIONS received | Were they clear, complete, correct? What was missing/ambiguous? Did a core seed not fit reality? |
+| **S3 — Architectural** | the whole + proactive improvement | Across the platform: what should improve? Proactive suggestions, named, at depth. |
+
+**The loop (the console):** Sonnet emits 3-scope feedback → **Opus reviews** → each suggestion is either (a) folded into the NEXT PROTO, or (b) registered in vault-pending wired to a pipeline (§10 — never floated). Over iterations, the instructions + the build + the architecture all improve. This is bidirectional: Sonnet improves Opus's instructions; Opus improves Sonnet's build. **It composes with M-44 (refinement) + §13 (daily alignment) + M-43 (diff-review).**
+
+**Why it matters:** without this, feedback is one-directional (Opus → Sonnet) and the instructions never improve from build-reality. The console makes the instruction-quality itself self-improving — the builder's ground truth flows back up.
+
+**Mechanical:** PROTO template gains a mandatory `## 3-SCOPE FEEDBACK` CHECKPOINT block; `validate-checkpoint-has-3scope.mjs` (WIRING PASS) flags a CHECKPOINT missing it. Opus's OPIA ACK must state, per suggestion: folded-to-next-proto | registered-vlt-NNN | declined-with-reason.
+
+**Self-check (§7):** "Did the builder give 3-scope feedback? Did I route every suggestion (fold / register / decline-reason), or let it evaporate?"
+
+---
+
+*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | §10 Deferral-Must-Be-Wired (D11) | §11 No-Rigid-Number-Without-Context (P-META-025) | §12 Refinement-Before-Ratification (M-44) | §13 Creation-Completeness-Gate + Proactive Daily Alignment (D13) | §14 Wiring-Completeness = Platform DNA (M-45, extends S060) | §15 Iterative-Console 3-Scope Builder Feedback | Formal validators + session-open injection: PART 1 (validators in loop)*

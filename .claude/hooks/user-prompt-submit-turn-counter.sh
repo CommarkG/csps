@@ -18,16 +18,39 @@ set -euo pipefail
 
 readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
+# ── Get current session via session-source.mjs (S069 fix — uses PROTO-S067 STEP 1 lib) ─────
+# Same pattern as user-prompt-submit-intake.sh — avoids local session computation (F-NEW-17)
+_CURRENT_SESSION=$(node "${REPO_ROOT}/tools/lib/session-source.mjs" 2>/dev/null || echo "S000")
+
 node -e "
 const fs = require('fs');
 const {join} = require('path');
 const ROOT = process.argv[1];
 
-// ── Read + increment turn counter ──────────────────────────────────────────
+// ── Session already read in bash — pass via argv[2] ────────────────────────
+const currentSession = process.argv[2] || 'S000';
+
+// ── Read tracker + detect session boundary ─────────────────────────────────
 const trackerPath = join(ROOT, 'tools/zf-session-tracker.json');
 let tracker = {};
 try { tracker = JSON.parse(fs.readFileSync(trackerPath, 'utf8')); } catch(e) {}
-tracker.turn_count_this_session = (tracker.turn_count_this_session || 0) + 1;
+
+const trackerSession = tracker.session || tracker.session_id || 'unknown';
+if (trackerSession !== currentSession) {
+  // Session boundary crossed → reset session-scoped fields; preserve monotonic counters
+  tracker.session = currentSession;
+  tracker.session_id = currentSession;
+  tracker.session_reset_at = new Date().toISOString();
+  tracker.turn_count_this_session = 1;
+  tracker.zf_deep_runs_this_session = 0;
+  tracker.zf_deep_last_run_at = null;
+  tracker.zf_deep_last_status = 'not-run-this-session';
+  tracker.harvest_done_this_session = false;
+  tracker.harvest_done_at = null;
+  // verify_runs / blocking_found_total / orchestrator_cycles = monotonic, preserved intentionally
+} else {
+  tracker.turn_count_this_session = (tracker.turn_count_this_session || 0) + 1;
+}
 const turn = tracker.turn_count_this_session;
 try { fs.writeFileSync(trackerPath, JSON.stringify(tracker, null, 2)); } catch(e) {}
 
@@ -123,6 +146,6 @@ console.log(JSON.stringify({
     additionalContext: refresh
   }
 }));
-" "$REPO_ROOT"
+" "$REPO_ROOT" "$_CURRENT_SESSION"
 
 exit 0

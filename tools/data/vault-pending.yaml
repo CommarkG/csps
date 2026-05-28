@@ -232,3 +232,12 @@ entries:
     routing_decision: "Opus authors as part of PART 2 (threshold) design + a whole-plan prevention/threshold-connectivity audit. Threshold = ONLY gate (not main gate). Everything inactive-or-not-threshold-routable = useless."
     created_session: S068
     context: "Governor S068: go over whole plan 3x — prevention over endless-repair; everything wired to threshold-as-only-gate; full permanency power. Prevention is the answer."
+  - id: vlt-S068-00023
+    raw_summary: "M-43 marker-thrashing — DEFECT-1 (fabricated SHA) recurred K>=2; both tabs advance+commit the same marker file = conflicting states + duplicate fix commits"
+    source: opus
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "BATCH 0 STRUCTURAL fix (not patch): (1) tool resolves every SHA via git rev-parse — never accept hand-written; (2) concurrency-safe marker write (per-role file or atomic) so Opus+Sonnet don't thrash; (3) the resolve-test GAP I flagged. K>=2 = structural-prevention required."
+    created_session: S068
+    context: "M-43 diff-review surfaced commit 74f02e3d = a 2nd DEFECT-1 fix. The iterative console (M-43) caught its own concurrency bug. Recurring = root-cause fix mandatory."

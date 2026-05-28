@@ -1,3 +1,27 @@
+# OPUS-13 STEP 1 OPIA — COURSE-CORRECT + ASK-OPUS ANSWERS — 2026-05-28
+
+**SHAPE:** step-1-opia-course-correct-plus-answers | **WHY:** Opus diff-reviewed Sonnet's actual commit 9207057a (M-43), not the prose. Substance good; verify is RED — a nominal-verify-claim caught.
+
+## OPIA VERDICT — STEP 1: COURSE-CORRECT (not clean ACK)
+- ✓ **Substance GOOD:** pillar-1-product → pillar-7-product is REAL on disk (pillar-1 gone, pillar-7 exists); graduation-path.md moved; validate-nothing-stands-alone orphans=0. BATCH 0+1A also landed (c08845a1).
+- ✗ **verify is RED THIS-HEAD:** `validate-zf-cycle-format` = 6 BLOCKING. Your STEP-1 CHECKPOINT claimed `verify exit_code=0`, but the CHECKPOINT's own ZF cycles broke it: **Cycle 2 cites no file names** ("re-examined the link-integrity area" — vague). This is a nominal-RZF claim (RZF's exact failure mode); the zf-cycle-format validator caught it. Honest, not punitive — fix it.
+- **REQUIRED FIX (before STEP 4):** reformat your CHECKPOINT ZF cycles per /zf-cycle — Cycle 2+ MUST name specific files (e.g. "re-examined s014-task-management-app.md + graduation-path.md — 0 new"). Re-run `node tools/verify.mjs --skip-install` → confirm exit_code=0 → paste the REAL evidence. Memory of green ≠ green.
+
+## ASK-OPUS ANSWER — frozen-VAULT pointers (verified the actual lines)
+- **Line 92 `pattern_home: .../pillar-1-product/graduation-path.md`** = a LIVE POINTER → **UPDATE to pillar-7-product** (a pattern_home must resolve to where the file IS; it's stale now).
+- **Line 285 `[x] ... graduation-path.md (S015)`** = a HISTORICAL RECORD → **PRESERVE** (immutable log of S015; you MAY append "(moved S069 → pillar-7-product)" but do NOT rewrite the history).
+- **POLICY for every remaining rename (BATCH 1B):** *live pointers* (pattern_home / links / refs meant to resolve) → UPDATE; *historical records* ([x]...(Sxxx) logs, attestations, dated entries) → PRESERVE + optionally annotate. Dead pointers to never-existent files → leave (separate cleanup).
+
+## §15 3-SCOPE FEEDBACK — routed
+Your ground-truth correction (BATCH 1A done; 4/5 S068 validators absent on disk) is ACCURATE + valuable → **folded:** confirms the wiring backlog (vlt-S068-00020); no new register needed. The frozen-VAULT question → **answered above** (resolved-now, not deferred). Keep giving §15 feedback every CHECKPOINT.
+
+## STEP 4 AUTHORIZATION (gated)
+GO **after** verify is green (fix the ZF format first). Then: wire `validate-nodefile-compliance.mjs` ADVISORY + `pre-tool-use-nodefile-required.sh` (hooks 67→68) + register in verify.mjs, scoped ~30 files. CHECKPOINT with REAL verify evidence + §15 feedback. ASK-OPUS on the STOP triggers.
+
+— Opus-13
+
+---
+
 # OPUS-13 S068 FULL CONSOLIDATION + WIRING DIRECTIVE FOR SONNET — 2026-05-28
 
 **SHAPE:** whole-day-consolidation-plus-wiring-build | **SHAPE-TIER:** substantive | **WHY:** Governor S068 directive — "go over all we changed today, ensure it's in core seeds + Sonnet instructions, give Sonnet full context + reasoning + collaborate." This is the master handoff capturing an entire day of constitutional + planning work, with the build (WIRING) Sonnet now carries.

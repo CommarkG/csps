@@ -75,7 +75,7 @@ patterns:
     escalate_to: sonnet
     severity: ADVISORY
     context: >
-      Architectural Boundary Drift (drift-registry.yaml): billing logic in apps/task-mgmt
+      Architectural Boundary Drift (drift-registry.yaml): billing logic in apps/_trials-vaulted/task-mgmt
       webhook handlers instead of libs/integrations/. At 30 apps, per-app billing code
       creates 30 divergent billing implementations. Belongs in libs/integrations/billing.ts.
       BILLING-1 task (Tier 3, requires Governor ratification) will fix the canonical gap.

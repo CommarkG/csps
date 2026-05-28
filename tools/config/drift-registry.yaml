@@ -112,7 +112,7 @@ drift_types:
       Level 2: dynamic import() expressions — deferred VLT-S020-LAYER-DYNAMIC.
       Level 3: indirect re-exports through intermediate files — deferred VLT-S020-LAYER-INDIRECT.
       Remaining planned: Stripe/billing imports in apps/webhooks outside libs/ — VLT-S019-BILLING-PLACEMENT.
-    confirmed_gap: "Billing trigger (memberCount check) in apps/task-mgmt/api/webhooks/clerk not libs/"
+    confirmed_gap: "Billing trigger (memberCount check) in apps/_trials-vaulted/task-mgmt/api/webhooks/clerk not libs/"
     added_session: S019
     promoted_active_session: S020
     spine: ARCH

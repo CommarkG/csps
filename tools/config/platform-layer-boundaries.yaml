@@ -95,12 +95,12 @@ layers:
 # Boundary Violations Detected S019:
 violations_found_S019:
   - violation: "Billing trigger logic in L2 (app webhook handler) instead of L0 (libs/integrations)"
-    file: "apps/task-mgmt/src/app/api/webhooks/clerk/route.ts"
+    file: "apps/_trials-vaulted/task-mgmt/src/app/api/webhooks/clerk/route.ts"
     correct_location: "libs/integrations — should be in buildTenantBillingHook"
     lesson: "L6 in opus-lessons-S019/part1-schema-and-security.md"
 
   - violation: "stripeSubscriptionId in L2 app schema but not in L0 ZModel"
-    file: "apps/task-mgmt/prisma/schema.prisma"
+    file: "apps/_trials-vaulted/task-mgmt/prisma/schema.prisma"
     resolution: "Added stripeSubscriptionId to L0 libs/policies/schema.zmodel in S019"
     lesson: "L3 in opus-lessons-S019/part1-schema-and-security.md"
 

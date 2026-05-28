@@ -21,6 +21,8 @@ apps:
     current_short_code: VSA
     name_locked: false
     name_pending_validation: true
+    vault_status: vaulted-S068
+    vault_path: apps/_trials-vaulted/voice-sorting
     name_candidates:
       - sortitout.ai
       - IntentCore
@@ -33,29 +35,33 @@ apps:
     domain: Business
     category: Operations
     build_framework: vibe-coding
-    plan_status: D3
+    plan_status: vaulted
 
   - slot: APP-002
     current_name: "Habit Tracker"
     current_slug: habit-tracker
     current_short_code: HT
     name_locked: true
+    vault_status: vaulted-S068
+    vault_path: apps/_trials-vaulted/habit-tracker
     name_references:
-      - apps/habit-tracker/package.json
+      - apps/_trials-vaulted/habit-tracker/package.json
       - docs/plan/apps/
     domain: Private
     category: Productivity
     build_framework: csps-template
-    plan_status: built
+    plan_status: vaulted
 
   - slot: APP-003
     current_name: "Budget Planner"
     current_slug: budget-planner
     current_short_code: BP
     name_locked: true
+    vault_status: vaulted-S068
+    vault_path: apps/_trials-vaulted/budget-planner
     name_references:
-      - apps/budget-planner/package.json
+      - apps/_trials-vaulted/budget-planner/package.json
     domain: Private
     category: Finance
     build_framework: csps-template
-    plan_status: partial
+    plan_status: vaulted

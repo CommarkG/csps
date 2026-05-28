@@ -31,7 +31,7 @@ governed_files:
       - "Type annotations (@db.Uuid) are consistent (Level 4 drift)"
       - "ZenStack @@allow policies are tested against actual DB behavior"
 
-  - path_pattern: "apps/task-mgmt/prisma/schema.prisma"
+  - path_pattern: "apps/_trials-vaulted/task-mgmt/prisma/schema.prisma"
     triggers_when: modified
     required_validators:
       - "node tools/validators/validate-foundation-schema-drift.mjs"

@@ -10,4 +10,5 @@ packages:
   - "packages/*"
   - "libs/*"
   - "apps/*"
+  - "!apps/_trials-vaulted/**"
   - "tools/*"

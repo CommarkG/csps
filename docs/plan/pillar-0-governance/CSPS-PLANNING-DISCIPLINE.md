@@ -215,4 +215,34 @@ A bare number/absolute with NO tag = forbidden (creation-time gate + audit flag)
 
 ---
 
-*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | §10 Deferral-Must-Be-Wired (D11) | §11 No-Rigid-Number-Without-Context (strengthens P-META-025) | Formal validators + session-open injection: PART 1 (validators in loop)*
+## §12 — REFINEMENT-BEFORE-RATIFICATION (Governor S068 — the needle-mover; M-44)
+
+> **Governor S068, reflecting on a full day's work: "We gained tons of value just by iterating, researching, going back, checking ourselves, looking at connectivity, the essence of items, the larger scope, defining core elements. If we had ratified the first draft, how much accumulating gaps and problems would we have created with our own hands?"**
+
+**The principle:** for any **consequential or foundational** decision, the first draft is NEVER ratified. It passes through a refinement loop first. The cost of refinement is tiny; the cost of un-doing a bad ratified decision compounds with everything built on top of it (interrupt-condition #1, §3).
+
+**The refinement loop (what created today's value — now formalized):**
+```
+DRAFT → RESEARCH (external validation) → MULTI-PERSONA REVIEW (the 6 lenses)
+      → CONNECTIVITY CHECK (how does it wire to everything else?)
+      → ESSENCE CHECK (what is the core of this item, precisely?)
+      → SCOPE CHECK (zoom out — does it fit the larger architecture?)
+      → REFINE → only THEN RATIFY
+```
+
+**The evidence today (why this is not theory):** in a single day the loop caught — depth-levels are *unproven* (would have shipped a false moat), the apps-vault has a *14-config ripple* (would have orphaned references), a deferral was *floating* not persisted (D11), a capability test used a *rigid wrong number* (≥2 apps), the threshold is a *bottleneck risk* at scale. **Every one of those was caught by iterating, not by the first draft.** First-draft ratification would have engraved all five into the foundation.
+
+**The three perspectives (Governor asked to view it from 3 directions):**
+1. **Method:** refinement-loop > draft-then-ratify, for consequential decisions. Refinement is a *gate*, not optional polish.
+2. **Economics:** refinement is the highest-ROI activity for foundational work — each cheap pass removes an expensive post-ratification gap. (Refinement ROI = cost-of-undo ÷ cost-of-pass, which is large for foundations.)
+3. **Risk:** first-draft ratification = self-inflicted accumulating gaps ("problems we create with our own hands"). Refinement-before-ratification is the insurance against compounding foundational error.
+
+**Mechanical (built PART 1):** a consequential/foundational decision (high-blast-radius, touches NodeFile/spine/threshold/vocabulary) cannot be marked RATIFIED without a **refinement-evidence trail** (research cited + personas run + connectivity/essence/scope checked). `validate-refinement-before-ratification.mjs` flags a foundational ratification lacking the trail. Trivial-reversible decisions are exempt (P-OP-003 counterweight).
+
+**Self-check (§7):** "Is this consequential? If yes — did it pass the refinement loop, or am I ratifying a first draft?"
+
+**Moat:** M-44 REFINEMENT-BEFORE-RATIFICATION.
+
+---
+
+*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | §10 Deferral-Must-Be-Wired (D11) | §11 No-Rigid-Number-Without-Context (P-META-025) | §12 Refinement-Before-Ratification (M-44) | Formal validators + session-open injection: PART 1 (validators in loop)*

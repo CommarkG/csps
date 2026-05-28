@@ -1,0 +1,10 @@
+{
+  "_comment": "M-43 Cross-Tab Diff-Review markers. Each value = last commit SHA that role has reviewed. Run tools/scripts/cross-tab-diff-review.mjs --role <opus|sonnet> to see new commits + advance marker.",
+  "_schema": "https://github.com/CommarkG/csps (CSPS S068 M-43)",
+  "opus": "181392aabf04b8df8e0e6a8ea87ac7f25dfbbccf",
+  "sonnet": "4587401636c8f5824dcf7530fece24570b5b6a2c",
+  "_note_opus": "Opus has reviewed through cd22b9d3 (their own last commit — M-43 moat entry)",
+  "_note_sonnet": "Sonnet has reviewed through 45874016 (S067 STEP 8 SEALED — before Opus S068 commits). After running diff-review this session, advance to cd22b9d3.",
+  "updated_at": "2026-05-28",
+  "session": "S068"
+}

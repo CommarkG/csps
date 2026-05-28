@@ -58,6 +58,16 @@ try{
 CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.mjs" 2>/dev/null \
   || printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"[session-open] context load failed — read tools/session-state.json + tools/council/opus-open-items.md manually"}}'
 
+# ─── M-43 CROSS-TAB DIFF-REVIEW injection (S068 PART 1 STEP 0) ──────────────────────────────
+# Every tab start: remind Sonnet to run diff-review for cross-tab awareness.
+# Converts "I hope Opus read my commits" into mechanically inherited awareness.
+# Spec: CSPS-PLANNING-DISCIPLINE §8 + M-43 moat entry.
+{
+  printf '\n[M-43-diff-review] RUN NOW: node tools/scripts/cross-tab-diff-review.mjs --role sonnet' >&2
+  printf ' — see what Opus committed since your last review.' >&2
+  printf '\n[M-43-diff-review] Advances marker in tools/data/last-review-markers.json automatically.' >&2
+} 2>/dev/null || true
+
 # ─── B_META_QUESTION T3 — false-assumption checklist discipline injection (S067 STEP 6.4) ───
 # Every tab start: inject META-QUESTION reminder before tab-transfer outputs.
 # B_META_QUESTION_DISCIPLINE: before emitting HANDOFF/startup-block/CHECKPOINT/relay-block,

@@ -110,13 +110,25 @@ GATE PASSED → apps may begin development
 ### DONE WHEN
 
 - [x] Pillar-1 duplicate fixed (`pillar-1-product` → `pillar-7-product`); validate-nothing-stands-alone passes (S069 STEP 1, orphans=0)
-- [ ] [NODEFILE-CONTRACT.md](docs/plan/pillar-0-governance/NODEFILE-CONTRACT.md) authored + ratified
-- [ ] [SPINE-PILLAR-MAP.md](docs/plan/pillar-0-governance/SPINE-PILLAR-MAP.md) authored + ratified
-- [ ] validate-nodefile-compliance.mjs scans 647 governance files; ADVISORY mode
-- [ ] pending-nodes.yaml created + generalized from pending-plan-items.yaml
-- [ ] Hook installed; verify-hooks-functional shows 68 hooks (was 67)
-- [ ] Behavioral test 3/3 passes
-- [ ] verify --strict exit_code=0 at SEAL commit
+- [x] [NODEFILE-CONTRACT.md](docs/plan/pillar-0-governance/NODEFILE-CONTRACT.md) authored + ratified (Opus-12/13 S068)
+- [x] [SPINE-PILLAR-MAP.md](docs/plan/pillar-0-governance/SPINE-PILLAR-MAP.md) authored + ratified (Opus-12/13 S068)
+- [x] validate-nodefile-compliance.mjs WIRED + ADVISORY (S069 STEP 4). NOTE: Q4 ratified scope = CORE+L1/L2+pillar-headers (~36 files). Full 647 files = DEFERRED (WIRING PASS). Verify: files_scanned=36, advisory=201, blocking=0.
+- [x] pending-nodes v2.0 created + generalized from empty pending-plan-items.yaml (S069 STEP 5); pending_type discriminator; GHG STOP-gate protocol; 0 entries lost
+- [x] Hooks: 67 (S067 STEP 6.5) → 68 (S069 STEP 4: pre-tool-use-nodefile-required) → 69 (S069 T2: pre-commit-plan-coverage); verify-hooks-functional present=69 declared=69 missing=0
+- [x] Behavioral tests 3/3 PASS: nodefile-contract-test + turn-counter-session-reset + plan-coverage-t2
+- [x] verify --strict exit_code=0 THIS-HEAD (commit 281e018b)
+
+**PART 1 SEALED — S069 (commits 9207057a → 281e018b)**
+
+CARRY-FORWARD (WIRING PASS — NOT done, explicitly tracked per Opus-13):
+- validate-foreign-element-coverage.mjs — described-only; wiring_state: described-only; vlt ref: wiring-pass
+- validate-refinement-before-ratification.mjs — described-only; wiring_state: described-only
+- validate-gap-harmonization.mjs — described-only; wiring_state: described-only
+- NodeFile delta-field backfill (~36 files lacking pillar/element_class/d_level/wiring_state/ripple_seeds/unique_addition)
+- 4-register consolidation (gap-vault + vault-pending + pending-nodes + improvement-register → fuller consolidation)
+- pre-tool-use-permanence-gate.sh §14 extension (verify declared T1/T2/T3 EXIST + wired)
+- vlt-S069-00028 (post-stop-pnpm-verify session-boundary gap)
+- vlt-S069-00029 (L1 CORE spine T2 — build or add sacred frontmatter)
 
 ### ZF gate
 
@@ -526,7 +538,7 @@ Each persona emits a one-paragraph judgment; Opus-12 synthesizes BEFORE writing 
 
 All 8 PARTs DONE-WHEN passed:
 
-- [ ] PART 1 SEALED (substrate)
+- [x] PART 1 SEALED (substrate — S069 commits 9207057a → 281e018b)
 - [ ] PART 2 SEALED (threshold complete — Condition #1)
 - [ ] PART 3 SEALED (Product Schema — Condition #4)
 - [ ] PART 4 SEALED (Governance Constitution)

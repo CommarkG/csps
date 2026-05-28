@@ -315,3 +315,87 @@ C2/C4/C10 pre-done in STEPs 1+3+4. C11/C12 deferred to 6.5. No ASK OPUS triggers
 verify exit_code=0 THIS-HEAD (8777927).
 
 HOLDING for Opus 6.3 ACK before beginning 6.4.
+
+
+---
+
+## S068 PART 1 STEP 0 — DIFF-REVIEW LOG (evidence artifact per CSPS-PLANNING-DISCIPLINE §8)
+
+Date: 2026-05-28 | Role: Sonnet | M-43 diff-review run THIS TAB
+
+### Opus-12 commits reviewed (12 total, bbfa405e..181392aa):
+
+| SHA | What changed |
+|---|---|
+| 1ffe7d96 | S067 final OPIA ACK from Opus-12 (council/opus-turn.md) |
+| 54020fbd | 4-PCR ratification + PROTO-S068-CONNECTOR-WET-TRIAL seed |
+| 0ac4a57b | PROTO-S068-CONNECTOR-WET-TRIAL fix: DONE WHEN + ZF gate headings |
+| cf212426 | 4 Governor uploads → VAULT + MASTER-RE-GATE-PLAN-S068 (8 parts) |
+| 8b001c58 | PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION authored + Sonnet directive |
+| 2909d836 | Package A+B absorbed + 6-persona re-optimization (AMENDMENT A) |
+| 366050b4 | CORE-MAXIMAL-DOCTRINE (P-ARCH-031/032 + Template-or-Flag) |
+| 97f55002 | Template-or-Flag operating mode + holistic audits + consolidation scan |
+| 70633877 | CSPS-PLANNING-DISCIPLINE v1.0 (joint) + consolidated phase plan |
+| 9dc71ec4 | SPINE-PILLAR-MAP + NODEFILE-CONTRACT (Opus critical sections) |
+| cd22b9d3 | M-43 moat entry + PLANNING-DISCIPLINE §8 (tool referenced, not yet built) |
+| 181392aa | §9 Improve-Not-Just-Pass + Threshold-Accuracy Mandate (AMENDMENT E) |
+
+### Sonnet commits (M-43 build 5413ca2 + Opus defect fix 6a979c72):
+
+| SHA | What changed |
+|---|---|
+| 5413ca21 | M-43 tool built: cross-tab-diff-review.mjs + markers + test 3/3 + session-open injection |
+| 6a979c72 | Fix: Opus marker had fabricated SHA — corrected by Opus |
+
+### Key files read (carry Opus core seeds):
+- CSPS-PLANNING-DISCIPLINE.md (§7 self-audit + §9 improve-not-pass)
+- CORE-MAXIMAL-DOCTRINE.md (Template-or-Flag + P-ARCH-031/032)
+- SPINE-PILLAR-MAP.md (Spines route, Pillars group — Q2 ratified)
+- NODEFILE-CONTRACT.md (8 self-identification questions, ~30-file scope)
+- MASTER-RE-GATE-PLAN-S068.md (8 parts, AMENDMENTS A-E)
+- PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION.md (Sonnet directive spec)
+
+### BATCH 1A step A1 findings:
+
+Real external refs (excl. .next/ build artifacts + internal):
+- debt-collection: 26 files ✅ SAFE
+- voice-sorting: 18 files ✅ SAFE
+- habit-tracker: 24 files ✅ SAFE
+- sandbox: 107 total, but only ~13 app-specific refs ✅ LIKELY SAFE
+- budget-planner: 66 files — 1 ACTIVE CODE REF in habit-tracker/inngest/route.ts 🔴 ASK OPUS
+- task-mgmt: 78 files — 1 ACTIVE CODE REF in budget-planner/clerk/route.ts 🔴 ASK OPUS
+
+**Cross-app dependency discovered:** budget-planner ↔ task-mgmt are code-coupled.
+Vaulting either independently could break the other. Awaiting Opus guidance.
+
+HOLDING BATCH 1A for Opus guidance on the 2 cross-app code deps.
+
+
+---
+
+## S068 BATCH 0 — DIFF-REVIEW LOG (Opus-13 commits, evidence per §8)
+
+M-43 run: `node tools/scripts/cross-tab-diff-review.mjs --role sonnet` | HEAD: e9c9fecb | 2026-05-28
+
+| SHA | What changed |
+|---|---|
+| 2982e6d3 | §10 Deferral-Must-Be-Wired + §11 No-Rigid-Number-Without-Context + D11 (verbal-deferral-feels-like-action) |
+| 33eae7cd | Research: threshold scalability + node depth-levels (2 agents, persisted per §10) |
+| 400edc7e | Persist Governor specs (master-dashboard, research-pipeline, depth-proof, dashboard-upgrade, AI-research-mapping) |
+| 2624174c | Research: agent design patterns (3rd agent) — validates Opus/Sonnet model |
+| af254c0a | FOREIGN-ELEMENT-LOCALIZATION pipeline + §12 Refinement-Before-Ratification (M-44) |
+| a92b4c50 | Skills & Agents Dashboard added to PART 6 (first DashboardTemplate consumer) |
+| bccd6b68 | §13 Creation-Completeness-Gate + D13 (doc≠mechanism) + proactive Daily Alignment Pass |
+| 807e871b | §14 Wiring-Completeness = platform DNA (M-45) + WIRING PASS + honest partial-surface map |
+| e9c9fecb | OPUS-13 full-day consolidation + WIRING directive for Sonnet (full context + core seeds) |
+
+**Key internalized:** 4 of 5 described validators absent on disk. My job = WIRING (described → active). Per §14: nothing DONE until wired + active + measurable.
+
+## BATCH 0 CHECKPOINT
+
+DEFECT-2 fix: session-open.sh injection now role-aware (both `--role sonnet` + `--role opus` shown)
+GAP fix: behavioral test INPUT C uses `git cat-file -e` to validate both marker SHAs resolve to real commits
+Test: 4/4 PASS (INPUT A=dry-run/up-to-date / B=invalid-role exits 1 / C=SHA validates / D=role-aware)
+verify exit_code=0 THIS-HEAD
+
+commit pending.

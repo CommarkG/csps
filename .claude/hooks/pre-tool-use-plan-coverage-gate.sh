@@ -103,15 +103,13 @@ fi
 if [ "$FOUND_COVERAGE" = "false" ]; then
   if [[ "$REL_PATH" == libs/* ]] || [[ "$FILE_PATH" == */libs/* ]]; then
     if [ "$IS_NEW_LIBS_FILE" = "true" ]; then
-      # BLOCKING — new file in libs/ without plan coverage.
-      # REVERTED from advisory (S069): plan-coverage-gate has NO T2 pre-commit equivalent.
-      # Making it advisory = T3-only = governance theater per AGENTS.md.
-      # T1 must remain BLOCKING until T2 pre-commit-plan-coverage.sh is built.
+      # T1 ADVISORY — T2 pre-commit-plan-coverage.sh NOW EXISTS (S069).
+      # B_ENFORCEMENT_TRIO: T2 (commit-time block) backs up T1 (edit-time warn).
+      # No dialog for Governor; T2 will BLOCK the commit if plan coverage is missing.
       printf '{
-        "decision": "block",
-        "systemMessage": "🚫 [plan-coverage-gate] BLOCKING (libs/ — new file): No active plan with covered_paths includes %s.\\n\\nGovernor S024 ratification: new files in libs/ require plan coverage.\\nCreate or update a plan with covered_paths first. Plans at: docs/plan/_handoff/VAULT/topic-plans/"
+        "decision": "allow",
+        "systemMessage": "⚠ [plan-coverage-gate] ADVISORY (libs/ — new file): No active plan covers %s.\\n\\nT2 pre-commit-plan-coverage.sh will BLOCK the commit if this remains uncovered.\\nAdd covered_paths to a plan in docs/plan/_handoff/VAULT/topic-plans/"
       }' "$REL_PATH"
-      exit 1
     else
       # ADVISORY — edit to existing libs/ file, or non-new file
       printf '{

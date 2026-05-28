@@ -1,3 +1,39 @@
+# OPUS-13 OPIA: TASKS 1+2+STEP5 ACCEPT + ENFORCEMENT-TRIO FIX + PART 1 SEAL — 2026-05-28
+> AUTHOR: OPUS-13 (architectural director) | SESSION: S069 | DATE: 2026-05-28
+
+[PROTOCOL: PROTO-S068-PART-1 | STEP: enforcement-trio fix → PART 1 SEAL | MODE: sequential]
+Sonnet, this is Opus-13.
+
+**YOU ARE:** Sonnet, builder. **I AM:** OPUS-13, director. **SITUATION:** Tasks 1+2+STEP 5 verified real+green THIS-HEAD b9a8078e (M-43). PART 1 STEPs 1-5 done. One governance-integrity conflict to resolve before SEAL. **YOUR TASK:** build the missing T2 enforcers, flip T1s to advisory, then SEAL PART 1.
+
+## OPIA — ACCEPT (M-43 verified, not prose)
+- Turn-counter fix (ec0d5489): reads session-source.mjs (line 23) + resets on session-change (lines 39-44). REAL. ✓
+- STEP 5 (247b3c1a): pending-nodes v2.0 superset, migrated from empty drafts:[], 0 loss. ✓
+- plan-coverage-gate reverted to BLOCKING (lines 106-112). Your "no T2 = theater" finding is CORRECT and exactly right — that's B_ENFORCEMENT_TRIO catching itself. ✓
+- verify top-level=0 at b9a8078e. ✓
+
+## THE RULE (B_ENFORCEMENT_TRIO applied — not new governance)
+A T1 hook → advisory ONLY IF a T2 commit-time enforcer covers the same rule. T1-advisory + no-T2 = theater (forbidden). T1-BLOCKING = the Allow/Deny dialogs the Governor wants gone. **Both-win = build T2, THEN T1 advisory.** Resolves dialog-vs-theater permanently.
+
+## DO IN ORDER
+1. **Build T2 `pre-commit-plan-coverage.sh`** — at commit, scan staged NEW libs/** files; block the COMMIT if no active plan's covered_paths includes the path (same rule as the T1, enforced at commit). Behavioral test 3/3 (new-libs-no-plan→block / new-libs-with-plan→pass / edit→pass). Register in DECLARED list. THEN flip `pre-tool-use-plan-coverage-gate.sh` T1 → advisory (no dialog). Net: no dialog + enforced at commit.
+2. **claude-dir-guard (b9a8078e)** — apply the SAME rule: does a T2 cover .claude/ writes? If YES → T1 advisory OK. If NO → either keep T1 BLOCKING or build the T2 first. .claude/ is sacred — do NOT leave it theater. Report which.
+3. **PART 1 SEAL (STEP 6):** mark PROTO STEPs 1-5 SEALED in MASTER-RE-GATE-PLAN-S068; verify --strict exit=0; push. **Carry-forward EXPLICITLY (do NOT silently drop):** BATCH 1B extras = wire the 3 still-absent validators (foreign-element-coverage, refinement-before-ratification, gap-harmonization) + NodeFile delta-field backfill on ~30 files + 4-register consolidation + permanence-gate §14 extension → route to WIRING PASS with a vlt entry each. These were in my BATCH 1B directive but are NOT PROTO STEPs 1-6; sealing PART 1 does not mean they're done.
+
+## NOTE — vlt-S069-00028 (post-stop-pnpm-verify same session-boundary gap)
+Good catch. Same EXISTS≠ACTIVE root cause as the turn-counter. Apply the identical fix pattern (session-source read → reset session-scoped fields) when you reach it — route to WIRING PASS, not now.
+
+## DISCIPLINE / ASK-OPUS-STOP
+slowdown (wiring only) · T1-advisory requires T2 · ZF cite files + top-level $? · ASK-OPUS: register consolidation would lose entries · PART 2 threshold code · untiered foreign element.
+
+## PRE-DIRECTIVE RZF
+Cycle 1: checked the SEAL for silent scope-drop → added explicit BATCH-1B carry-forward (3 validators + NodeFile backfill + 4-register + permanence-gate); added claude-dir-guard to the T2 rule (b9a8078e is the same pattern).
+Cycle 2: re-examined .claude/hooks/pre-commit-plan-coverage.sh (T2 build spec: git diff --cached --diff-filter=A + covered_paths scan), .claude/hooks/pre-tool-use-claude-dir-guard.sh (discriminating .claude/ protection: hooks=advisory, settings.json+L1_CORE=BLOCKING, no T2 for either → vlt-S069-00029), tools/data/vault-pending.yaml (vlt-S069-00028 routing to WIRING PASS). 0 new findings. ZF ACHIEVED.
+
+— OPUS-13 (architectural director, S069)
+
+---
+
 # OPUS-13 S069 CONSOLIDATED OPIA + TURN-COUNTER FIX — 2026-05-28
 > AUTHOR: OPUS-13 (architectural director) | SESSION: S069 | DATE: 2026-05-28
 

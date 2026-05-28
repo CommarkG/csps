@@ -40,9 +40,10 @@ readonly -a CRITICAL_HOOKS=(
   "post-stop-banned-phrase.sh"          # ADVISORY-ACTIVE: phrase detection
 )
 
-# ── All declared hooks (S067 STEP 6.5 = 67; S069 STEP 4 = 68: +pre-tool-use-nodefile-required) ──
+# ── All declared hooks (S067 STEP 6.5=67; S069 STEP 4=68; S069 T2=69: +pre-commit-plan-coverage) ──
 # Sweeps all .claude/hooks/*.sh files on disk. Closes EXISTS≠DECLARED (OPIA finding).
 readonly -a DECLARED_HOOKS=(
+  "pre-commit-plan-coverage.sh"
   "pre-tool-use-nodefile-required.sh"
   "cron-weekly-tag-status-deep-audit.sh"
   "depth-marker-creation-gate.sh"

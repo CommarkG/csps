@@ -259,6 +259,16 @@ entries:
     routing_decision: "S2: PART 2 wire threshold council-dispatch (4->real invocations) + audit the 117 advisory-forever (promote-or-prune, balance-expert). S3: PART 3/4 CIE sub-engine stubs + PVA + Daily-Alignment-Pass. S1: B_PROMOTION_GATE contract (PART 3). Threshold-as-only-gate REQUIRES the dispatch arm actually firing."
     created_session: S068
     context: "Governor S068 'find other things at risk of described-only', 3-scope scan. Biggest: threshold dispatch nearly dead (4/532) + 117 advisory-forever = governance theater. Platform looks governed; large fraction is flag-never-block."
+  - id: vlt-S069-00029
+    raw_summary: "L1 CORE spines (.claude/core-spines/L1_*.md) lack sacred frontmatter — sacred-file-guard doesn't protect them; claude-dir-guard made selective BLOCKING for these but no T2 exists yet"
+    source: sonnet-audit
+    vault_type: structural-gap
+    status: pending-triage
+    urgency: post-part-1
+    routing_decision: "Fix: add sacred frontmatter to L1_CORE_*.md files so sacred-file-guard catches writes at T1, AND build pre-commit-l1-sealed-guard.sh as T2. OR: accept that claude-dir-guard T1 BLOCKING is sufficient (L1 spines are rarely edited). Route to WIRING PASS."
+    created_session: S069
+    context: "Opus-13 asked: verify T2 covers .claude/ writes. FINDING: NO T2. L1 CORE spines are SEALED (P-ARCH-028) but lack the 'sacred' protection_level that would trigger sacred-file-guard. claude-dir-guard now discriminates: BLOCKING for L1_CORE + settings.json, ADVISORY for hooks/skills."
+
   - id: vlt-S069-00028
     raw_summary: "Platform audit: similar EXISTS≠ACTIVE session-boundary patterns found in post-stop-pnpm-verify.sh + zf-session-tracker.json (session_id='unknown' across sessions; verify_runs not reset)"
     source: sonnet-audit

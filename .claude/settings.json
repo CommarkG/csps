@@ -199,6 +199,15 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/hooks/pre-commit-plan-coverage.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
             "command": ".claude/hooks/pre-commit-describe-without-implement.sh"
           }
         ]

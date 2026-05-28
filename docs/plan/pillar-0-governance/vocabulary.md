@@ -41,6 +41,40 @@ context_question: "Before relying on this governance document: is it current wit
 
 ---
 
+## Most Commonly Used Acronyms
+
+> Quick-reference for the abbreviations that appear most often in CSPS sessions, council relays, and directives. One-line glosses; fuller definitions live in **Locked Terms** below and the [companion vocabulary](../pillar-1-architecture-and-stack/vocabulary.md). Added S069 (Governor request).
+
+| Acronym | Stands for | One-line meaning |
+|---|---|---|
+| **CSPS** | Core Sights Platform System | The governed multi-tenant SaaS platform this repo builds. |
+| **OPIA** | Opus Post-Implementation Audit | The structured review Opus runs on Sonnet's actual commits (M-43 diff-review, not prose) before accept/seal. |
+| **PCR** | Pros / Cons / Recommendation | Canonical 3-block format for any non-trivial decision (P-OP-003). |
+| **CIE** | Continuous Intelligence Engine | The platform's continuous measurement/intelligence layer (sub-engines: scope router, seeds monitor, docs engine…). |
+| **PE** | Priority Engine | Scores items by urgency × impact / SPI to sequence work + propose bundles (pe-agent). |
+| **ZF** | Zero Findings | A verification cycle terminates only when it finds nothing new. |
+| **RZF** | Re-Zero Findings | Re-run the ZF cycle — "re-run IS the proof" (P-META-006). |
+| **CEC** | Complete Extraction Cycle | Walk every surface to extract maximum value from a ratified insight, until 0 new applications. |
+| **PVA** | Practical Validation Audit | Evidence gate that promotes an ADVISORY validator to BLOCKING only after it's shown to catch real drift. |
+| **GHG** | Gap-Harmonization-Gate | When no governed element fits → STOP + ratify; never guess (Template-or-Flag). |
+| **DPR** | (build-interrupt rating) | Rate a new mid-build input 1–5 → defer (1–2) / interrupt-at-boundary (3) / stop (4–5). P-OP-006. |
+| **ZCA** | Zero-Context Assumption | Every cross-boundary message assumes the receiver has zero prior context (P-UX-002). |
+| **MUV** | Mutual Understanding Validation | Every AI communication boundary closes the I→I loop (P-META-014). |
+| **FSE** | Five-Surface Engraving | A catch hits 5 surfaces atomically: schema + validator + hook + memory + contract. |
+| **VLT / vlt** | Vault entry | A persisted, wired idea/finding (`vlt-S###-#####`) so nothing floats. |
+| **DNA** | (inheritable governance essence) | What every CSPS element carries from its parent — no orphans (Inheritance Model). |
+| **T1 / T2 / T3** | Enforcement Trio | T1 = pre-tool-use hook · T2 = validator / pre-commit (commit-time block) · T3 = session-open injection. |
+| **B_\*** | Behavioral Contract | A named, enforceable AI-behavior rule (e.g. B_ENFORCEMENT_TRIO). |
+| **M-NN** | Moat | A compounding capability that strengthens the platform (e.g. M-43 cross-tab-diff-review). |
+| **P-META / P-ARCH / P-OP(ER)** | Principle namespaces | Governance principles by domain — meta, architecture, operations. |
+| **Core Spines** | GVRN · ARCH · AI · OPER · VALD | The 5 routing spines; precedence GVRN > VALD > ARCH > AI > OPER (P-ARCH-028). |
+| **NodeFile** | (governed artifact) | Any CSPS artifact that answers the 8 self-identification questions (NODEFILE-CONTRACT). |
+| **HPFA** | Handoff Pre-Flight Audit | Whole-session 7-check gate before writing a handoff (P-META-013). |
+| **AAP** | Agent Alignment Protocol | Every agent passes alignment checks before invocation (P-META-010). |
+| **SROF** | (architectural review request) | Structured Opus-level review (Q1–Q6) for design decisions — not routine step-done reports. |
+
+---
+
 ## Locked Terms
 
 ### AppendOnlyBase

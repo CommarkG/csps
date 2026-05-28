@@ -397,12 +397,18 @@ Plus: `libs/ui/src/templates/index.ts` exports + extend `libs/ui/src/index.ts` r
 - FormTemplate composes existing GuardQuestionForm + VoiceFileInput — pure composition.
 - DO NOT introduce new atoms; templates are 100% composition of existing 8.
 
+### Master Dashboard + first consumer (Governor S068)
+
+- **DashboardTemplate is the MASTER** per spec vlt-S068-00012: View · Edit (wired to tiers+permissions + read-only-mode on ALL dashboards) · Sort · creation-date + change-logs (date+hour) + who-did-what · AI-context-enhancement slot · create-new + delete-if-permitted · MANDATORY collapsible hierarchy + multiple named default-views with per-user permissions. Sub-templates toggle per need. Available in BOTH Developer Journey + User Journey.
+- **First consumer = SKILLS & AGENTS DASHBOARD** (vlt-S068-00017): EXTEND `/platform/profiles/ai-systems`; show ALL skills (24 native) + agents + their `origin: native|foreign` + `localization_tier` (proves DashboardTemplate AND the foreign-element register). Daily auto-refresh: extend `tools/config/audit-scheduling.yaml` + wire to the daily-L2 holistic audit (NOT parallel cron). Full Master-Dashboard abilities.
+
 ### DONE WHEN
 
-- [ ] 10 template files in libs/ui/src/templates/
+- [ ] 10 template files in libs/ui/src/templates/ (DashboardTemplate = the Master per spec)
 - [ ] index.ts exports all 10 + types
 - [ ] Behavioral test per template (10 tests)
 - [ ] At least 1 existing app page rewrapped in a template as proof
+- [ ] Skills & Agents Dashboard built (first DashboardTemplate consumer) + daily refresh wired
 - [ ] COMPONENT-LIBRARY.bundle.yaml updated to v1.1 with templates listed
 - [ ] verify --strict exit_code=0
 

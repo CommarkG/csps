@@ -178,3 +178,12 @@ entries:
     routing_decision: "AI-defaults registry — new D12 research-behavior-default + the governed Research Pipeline (vlt-S068-00013)"
     created_session: S068
     context: "Governor S068: wants full mapping of AI research triggers/defaults; currently research defaults to surface-breadth + chat-ephemeral results unless governed (D3 surface-completeness + D7 action-bias adjacent)."
+  - id: vlt-S068-00017
+    raw_summary: "SKILLS & AGENTS DASHBOARD — playground dashboard (DashboardTemplate) showing ALL skills + agents, native vs foreign + localization_tier; daily auto-refresh; full dashboard abilities"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "PART 6 — FIRST consumer of DashboardTemplate (vlt-00012) + foreign-element register. EXTEND /platform/profiles/ai-systems (do not duplicate). Data: .claude/skills/ (24) + agent types + foreign-element register + validate-skill-invocation-rate-last-run.json. Daily refresh: extend tools/config/audit-scheduling.yaml + wire to daily-L2 holistic audit (NOT parallel cron). Full abilities: view/edit-if-permitted/sort/change-logs/permissions/read-only-mode/collapsible-hierarchy/multi-view per Master Dashboard spec."
+    created_session: S068
+    context: "Governor S068: show all skills+agents in a dashboard using the dashboard template + dynamic stable mechanism to keep up to date >=1/day with all dashboard abilities. High synergy: first proof-of-use for both DashboardTemplate AND foreign-element register (origin+localization_tier columns)."

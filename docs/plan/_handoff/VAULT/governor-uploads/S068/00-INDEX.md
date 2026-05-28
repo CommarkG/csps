@@ -35,6 +35,8 @@ context_question: "Which of the 4 Governor uploads is canonical for the question
 | 02 | [profile-product-handoff-contract-V1](02-profile-product-handoff-contract-V1.md) | 3-Layer Identity/Intelligence/Configuration governance + Promotion Gate + Schema Registry + Audit/Diff | PART 3 (Product Schema) + PART 4 (Governance Constitution) |
 | 03 | [question-placement-schema-V1](03-question-placement-schema-V1.md) | Every question = governed system object; 6 vaults; placement schema before question bank | PART 5 (Question Placement Schema) |
 | 04 | [governance-constitution-V1](04-governance-constitution-V1.md) | 10 doctrines A-J governing adaptive AI behavior | PART 4 (Governance Constitution) |
+| 05 | [package-A-dynamic-onboarding-V1](05-package-A-dynamic-onboarding-V1.md) | Dynamic onboarding & continuous enrichment; "help first, ask better later"; 5-stage flow | PART 7 (Frictionless Onboarding) |
+| 06 | [package-B-business-intelligence-layer-V1](06-package-B-business-intelligence-layer-V1.md) | BI Layer for product configuration; user-vs-tenant context separation; 5 responsibilities; transparency screen | PART 3 (schema) + PART 7 (onboarding) |
 
 ## Absorption Status
 

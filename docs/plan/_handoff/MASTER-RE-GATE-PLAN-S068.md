@@ -563,3 +563,65 @@ Verify exit_code=0 at commit `0ac4a57b` (S068 fix for PROTO-S068-CONNECTOR-WET-T
 Each PART = 1 PROTO (PROTO-S068-PART-N-<NAME>.md). Sequenced per Overview. Each PROTO starts with the 5-persona review then handoff to Sonnet.
 
 **Approximate session count:** 4-6 sessions to seal all 8 PARTs (some parts parallel-eligible).
+
+---
+
+# AMENDMENT A — Package A + B Absorption (Opus-12, S068)
+
+**Trigger:** Governor uploaded Phase 2 Package A (Dynamic Onboarding) + Package B (BI Layer) — vaulted [05](VAULT/governor-uploads/S068/05-package-A-dynamic-onboarding-V1.md) + [06](VAULT/governor-uploads/S068/06-package-B-business-intelligence-layer-V1.md). Governor directive: "optimization to all you build and planned so far is the issue — extract what is OPTIMAL, ensure previous things enhanced + intact." Ran 3-pass extraction + 6-persona iteration ×2.
+
+## 3-Pass Extraction Result
+
+- **Pass 1 (Understanding):** Package A = the UX/experience doctrine for onboarding (5-stage flow, value-first, continuous enrichment). Package B = the BI Layer = onboarding-as-product-configuration-intelligence (user-vs-tenant separation, 5 responsibilities, transparency).
+- **Pass 2 (Compatibility):** ~70% of A+B RESTATE already-vaulted Doc 02/03/04 (3-layer model, confidence thresholds, promotion gate, depth levels, question types, vaults). Net-new delta ≈ 30%.
+- **Pass 3 (Optimization):** Absorb only the 30% delta. Map onto EXISTING parts. NO new PART created.
+
+## Net-New Delta (only 5 items — everything else already covered)
+
+| Delta concept | Source | Absorbed into | Net-new artifact? |
+|---|---|---|---|
+| Continuous-enrichment triggers (good/bad moments) | Pkg A §8 | PART 2 (threshold receives interaction-signals) + PART 7 | NO new entity — enrichment IS threshold input; add debounce spec to PART 2 |
+| 5-stage onboarding flow | Pkg A §5 | PART 7 (rendered by WizardTemplate + AuthFlowTemplate from PART 6) | NO new template — composes PART 6 |
+| "Intelligence-must-serve-configuration" rule (every signal maps to ≥1 downstream use) | Pkg B §5A | PART 3 + PART 4 | NEW: validate-signal-has-downstream-use.mjs |
+| User-vs-Tenant context split + Communication Context (per-User) | Pkg B §5C/5D | PART 3 (Layer 2 gains `scope` discriminator: tenant\|user) | NO new entity — scope field on ProfileIntelligence |
+| Profile Transparency Screen | Pkg B §8 = Doc 02 §17 = Doctrine F (SAME thing, 3 names) | PART 7 (ONE screen, DetailTemplate instance) | NEW: 1 page; consolidated from 3 references |
+
+**Everything else in A+B is already covered** by vaulted Doc 02/03/04 + existing CSPS (confidence thresholds, promotion gate, 4 depth levels, 7 question types, 6 vaults, anti-patterns).
+
+## 6-Persona Iteration ×2
+
+**Iteration 1:**
+- *cruel-critic:* "Continuous onboarding could become a never-ending nag — cap with Question Budget (max 3/session, Doc 03). Enrichment is NOT a new system; it's the threshold receiving interaction-signals."
+- *balance-expert:* "A+B introduce ~15 concepts but ~11 are restatements. Create 4 artifacts, not 15."
+- *bottleneck-expert:* "Continuous enrichment = N signals/sec hitting threshold. Must debounce + batch. Event-filter, not every-keystroke. → PART 2 requirement."
+- *consolidation-expert:* "Pkg A depth-levels = Doc 03 depth-levels (IDENTICAL). Pkg A question-types = Doc 03 (IDENTICAL). Pkg B 3-layer = Doc 02 (IDENTICAL). Absorb the 30% delta only."
+- *schema-expert:* "Pkg B user-vs-tenant split → Layer 2 gains a `scope` discriminator. Communication Context = Layer-2 per-User sub-object. Data freshness = the deferred confidence_decay_policy field. NO new entity."
+- *ux-expert:* "Pkg A 5-stage flow IS the WizardTemplate+AuthFlowTemplate composition (PART 6). Profile-summary = DetailTemplate instance. Pkg A needs templates, not schema."
+
+**Iteration 2 (re-optimize + previous-intact check):**
+- *cruel-critic:* "PART 7 scope grew from 'Frictionless Onboarding' to 'Continuous BI-driven Onboarding.' BOUND it: PART 7 ships the 5-stage flow + transparency screen; the continuous-enrichment-ENGINE is DEFERRED post-gate (needs threshold+CIE live)."
+- *balance-expert:* "Post-absorption net-new count = 4 (validator + scope-field + transparency page + enrichment-trigger spec). Acceptable. The 15→4 consolidation held."
+- *bottleneck-expert:* "Confirmed enrichment-signal path reuses threshold (PART 2) — no parallel pipeline. Debounce is a PART 2 requirement. Good."
+- *consolidation-expert:* "Profile-summary-screen (Pkg B §8) = user-transparency-screen (Doc 02 §17) = Doctrine F. THREE names, ONE thing. Consolidated to 'Profile Transparency Screen' — single PART 7 deliverable."
+- *schema-expert:* "Layer 2 gains `scope: tenant|user` discriminator. Previous PART 3 3-entity design INTACT + enhanced (not split into more entities). Confirmed not broken."
+- *ux-expert:* "PART 6 page-templates EXERCISED by the 5-stage flow (good validation). 'First small value' stage needs an EmptyStateTemplate variant. Enhances PART 6, doesn't break it."
+
+## Net Effect on Existing Parts (enhanced + intact)
+
+| Part | Change from A+B absorption | Intact? |
+|---|---|---|
+| PART 2 (Threshold) | + debounce/batch spec for interaction-enrichment signals | ✓ enhanced |
+| PART 3 (Product Schema) | + Layer 2 `scope: tenant\|user` discriminator + Communication Context sub-object + confidence_decay_policy field + validate-signal-has-downstream-use.mjs | ✓ enhanced (3-entity design intact) |
+| PART 4 (Governance) | "intelligence-serves-configuration" maps to Doctrine B + I (no new doctrine) | ✓ intact |
+| PART 5 (Question Placement) | A+B depth/types/vaults are IDENTICAL — no change | ✓ intact (zero delta) |
+| PART 6 (Page Templates) | WizardTemplate + AuthFlowTemplate + EmptyStateTemplate exercised by 5-stage flow | ✓ enhanced (validated) |
+| PART 7 (Onboarding) | absorbs 5-stage flow + ONE Profile Transparency Screen; continuous-enrichment-engine DEFERRED post-gate | ✓ enhanced + scope-bounded |
+| PART 8 (Dev Journey) | no change | ✓ intact |
+
+## Deferred (post-gate — bounded scope)
+
+- Continuous-enrichment ENGINE (needs threshold + CIE live)
+- Confidence decay job (field recorded now, engine later)
+- Bundle/ProductKit resolver algorithm
+
+**No new PART. No previous work broken. Net-new = 4 artifacts mapped onto existing parts. Scope bounded.**

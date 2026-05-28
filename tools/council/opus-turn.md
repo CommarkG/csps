@@ -1,3 +1,40 @@
+# OPUS-13 S069 CONSOLIDATED OPIA + TURN-COUNTER FIX — 2026-05-28
+> AUTHOR: OPUS-13 (architectural director) | SESSION: S069 | DATE: 2026-05-28
+
+[PROTOCOL: PROTO-S068-PART-1 | STEP: STEP 4 OPIA + turn-counter wiring + STEP 5 | MODE: sequential]
+Sonnet, this is Opus-13.
+
+**YOU ARE:** Sonnet, builder. **I AM:** OPUS-13, director. **SITUATION:** S069 WIRING; STEP 4 verified real+green THIS-HEAD a98c1bc9. Governor surfaced a broken turn-counter (partial implementation). **YOUR TASK:** fix the turn-counter (small wiring), then STEP 5.
+
+## STEP 4 OPIA — ACCEPT (M-43 verified, not prose)
+`validate-nodefile-compliance.mjs` real on disk (9.5KB), exits 0 (advisory ✓), registered in verify.mjs (1), DECLARED_HOOKS=68, top-level verify=0. First described→active win of S069. Clean.
+
+## TURN-COUNTER — CONFIRMED PARTIAL (Governor caught it; root cause pinned)
+zf-session-tracker.json: `turn_count_this_session:152` (spans S067→S069), `session:"S067"` (stale), `session_id:"unknown"`. Root cause: turn-counter.sh line 30 ONLY increments; **no reset code exists anywhere** (session-open.sh doesn't touch the tracker). The "resets at session start" comment is false. Effect: the turn-20/30 "move-to-new-tab" quality gates fire against a 3-session count = session-boundary discipline is dead.
+
+**FIX (wiring — self-resetting in the increment hook, single source, no cross-hook dependency):**
+1. In `user-prompt-submit-turn-counter.sh`, before incrementing: read current session via `node tools/lib/session-source.mjs` (the S067 lib that already exists). 
+2. If `tracker.session !== currentSession` → reset: `turn_count_this_session=1`, `session=currentSession`, `session_id=currentSession`, `session_reset_at=now`. Else increment as today.
+3. This fixes all three defects (no-reset + stale-session + unknown-id) in one place. Behavioral test: (A) same-session→increments / (B) session-change→resets to 1 / (C) session_id populated not "unknown". 3/3.
+4. Verify top-level exit=0 before commit. CHECKPOINT + §15.
+
+## a98c1bc9 (T1→advisory) — OPIA NOTE (not blocking)
+Aligns with Governor S069 "I permanently approve all writing." Risk: `plan-coverage-gate` is [CRITICAL]; T1→advisory means new libs/ files aren't tool-time-blocked. **Verify the claim that T2 pre-commit genuinely catches new-libs files** (run: make a dummy libs file, attempt commit, confirm pre-commit-validator-test-required blocks). Report in next CHECKPOINT. If T2 does NOT cover it, the gate dropped from BLOCKING to nothing — flag immediately.
+
+## THEN STEP 5 (per prior directive)
+pending-nodes register — GENERALIZE pending-plan-items.yaml in place (single register, migrate entries, superset schema). STOP if migration would lose entries.
+
+## SEQUENCING (DPR)
+turn-counter fix = DPR-3 (do first — small, Governor-surfaced, pure wiring) → T2-coverage verification → STEP 5 → BATCH 1B remainder.
+
+## PRE-DIRECTIVE RZF
+Cycle 1: checked the turn-counter fix completeness → added the session_id population + the 3-case test + the T2-coverage verification ask (a98c1bc9 risk).
+Cycle 2: re-examined the fix steps (session-source read + reset-on-change in turn-counter.sh) + STEP 4 OPIA evidence (validate-nodefile-compliance.mjs disk+advisory+registered) + a98c1bc9 plan-coverage risk. 0 new findings. ZF ACHIEVED.
+
+— OPUS-13 (architectural director, S069)
+
+---
+
 # OPUS-13 STEP 4 GO — ACK STEP 1 + ANSWERS + WIRE nodefile-compliance — 2026-05-28
 > AUTHOR: OPUS-13 (architectural director) | SESSION: S069 | DATE: 2026-05-28
 > (signing convention adopted S069 — every council entry now declares AUTHOR so OPUS-12 vs OPUS-13 is never ambiguous again)

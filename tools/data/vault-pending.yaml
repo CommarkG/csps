@@ -259,6 +259,16 @@ entries:
     routing_decision: "S2: PART 2 wire threshold council-dispatch (4->real invocations) + audit the 117 advisory-forever (promote-or-prune, balance-expert). S3: PART 3/4 CIE sub-engine stubs + PVA + Daily-Alignment-Pass. S1: B_PROMOTION_GATE contract (PART 3). Threshold-as-only-gate REQUIRES the dispatch arm actually firing."
     created_session: S068
     context: "Governor S068 'find other things at risk of described-only', 3-scope scan. Biggest: threshold dispatch nearly dead (4/532) + 117 advisory-forever = governance theater. Platform looks governed; large fraction is flag-never-block."
+  - id: vlt-S069-00028
+    raw_summary: "Platform audit: similar EXISTS≠ACTIVE session-boundary patterns found in post-stop-pnpm-verify.sh + zf-session-tracker.json (session_id='unknown' across sessions; verify_runs not reset)"
+    source: sonnet-audit
+    vault_type: structural-gap
+    status: pending-triage
+    urgency: post-step-5
+    routing_decision: "File under C1 EXISTS_NOT_ACTIVE prevention pattern. Fix: post-stop-pnpm-verify.sh should check session before updating 'this_session' fields — same pattern as turn-counter fix. Also: session-open.sh should reset tracker session_id to current session on tab open."
+    created_session: S069
+    context: "Governor asked for similar EXISTS≠ACTIVE patterns. Audit found: zf-session-tracker.json session_id='unknown' persists across sessions because no hook resets it. post-stop-pnpm-verify.sh writes zf_deep_runs_this_session etc. without session check. Pattern identical to turn-counter bug (fixed ec0d5489)."
+
   - id: vlt-S069-00027
     raw_summary: "Native AI Profiling — evolve the ai-profiler hook into a full per-session behavioral profile system that tracks actual AI defaults firing vs overridden, with measurable trend across sessions"
     source: governor

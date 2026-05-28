@@ -71,4 +71,46 @@ Apps and localized foreign elements inherit core DNA by bundling / localization 
 
 ## The Deep Point
 
-All three are the **same DNA-flow law** at different boundaries. Naming them as one (this doc) means a single mental model governs handoffs, core growth, and app/foreign production — and the daily alignment pass (§13) can audit "any orphan, any dimension" in one scan. No new mechanism: the value is the unification + the two wiring gaps now visible (unique_addition validator, foreign-element validator).
+All three are the **same DNA-flow law** at different boundaries. Naming them as one (this doc) means a single mental model governs handoffs, core growth, and app/foreign production — and the daily alignment pass (§13) can audit "any orphan, any dimension" in one scan. No new mechanism: the value is the unification + the wiring gaps now visible.
+
+---
+
+## MECHANICAL ENFORCEMENT MAP (every place inheritance is/should-be enforced)
+
+Expert scan of the live enforcement surface. Honest active-vs-to-wire (§14 — described ≠ enforced).
+
+### Dimension 1 — Cross-Boundary (WELL-ENFORCED ✓)
+| Measure | Type | State |
+|---|---|---|
+| `validate-handoff-completeness.mjs` (Zone A/B/ALIGNMENT mandatory) | T2 validator (in verify) | **active** |
+| `validate-governor-instructions` + `validate-participant-declared` | T2 | active |
+| `session-open.sh` inheritance injection (T1+T2+T3 at boundary) | T3 | active |
+| M-43 `cross-tab-diff-review.mjs` (receiver reviews actual diffs) | tool | active |
+| **GAP:** M-43 marker-thrashing structural fix | — | **to-wire (vlt-00023)** |
+
+### Dimension 2 — Core-Creation (WELL-ENFORCED ✓)
+| Measure | Type | State |
+|---|---|---|
+| `validate-new-file-dna.mjs` (code carries CSPS DNA) | T2 (in verify) | **active** |
+| `validate-universal-alignment.mjs` (inherits_from present) | T2 (in verify) | **active** |
+| `validate-nothing-stands-alone.mjs` (no orphan / connectivity) | T2 (in verify, advisory) | **active** |
+| `pre-tool-use-permanence-gate.sh` (T1/T2/T3 declared) | T1 hook | active |
+| `validate-enforcement-trio-assigned` + `validate-five-surface` | T2 | active |
+| **GAP A:** `validate-nothing-stands-alone` checks inherits_from is *declared* — NOT that the named parent *exists* | enhance | **to-wire** |
+| **GAP B:** `unique_addition` field validator (NodeFile) — child must add something its parent doesn't | T2 | **to-wire** |
+
+### Dimension 3 — External-Use (WEAK — mostly described-only ✗)
+| Measure | Type | State |
+|---|---|---|
+| Core-Maximal P-ARCH-031 (apps = bundles of core) | policy | active as text |
+| B_APPS_ARE_TRIALS (Component B = core extraction) | contract | active as text |
+| `validate-foreign-element-coverage.mjs` (foreign declares tier + inherits_from) | T2 | **to-wire (described-only)** |
+| `validate-product-schema-coverage` (every app declares which core capabilities it bundles) | T2 | **to-wire** |
+| `pre-tool-use-foreign-element-gate.sh` (untiered foreign stopped) | T1 | **to-wire** |
+| **GAP:** no active check that an app actually inherits-from/bundles core (vs builds net-new) | T2 | **to-wire** |
+
+### Cross-dimension (the unifier)
+- **`validate-inheritance-orphans.mjs`** — ONE scan: any element, any dimension, with no *existing* declared parent → orphan → flag. Wraps all three. **to-wire** → folds into the **Daily Alignment Pass (§13)**.
+
+### Expert verdict
+Inheritance is **strongly enforced for Dimensions 1+2** (≥8 active hooks/validators in the verify pipeline) and **weak for Dimension 3** (external-use is policy-not-enforced — the foreign + product-schema validators are described-only). The highest-leverage wiring: (1) extend `validate-nothing-stands-alone` to verify the parent EXISTS (closes declared-but-absent across all dimensions), (2) wire the Dimension-3 validators, (3) the unified orphan scan in the daily pass. All routed to the WIRING PASS (vlt-00024). No new doctrine — pure enforcement-wiring.

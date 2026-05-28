@@ -133,3 +133,48 @@ entries:
     routing_decision: "feeds Capability definition (PART 3 vocabulary) — capability defining-test must NOT require an existing app"
     created_session: S068
     context: "Governor S068: rejected 'reusable across >=2 apps' as rigid; capabilities can/should precede the 1st app of a type"
+  - id: vlt-S068-00012
+    raw_summary: "MASTER DASHBOARD spec — one master template, sub-templates enable/disable per need; wired into Developer Journey + User Journey"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "PART 6 (Page-Type Templates) — build DashboardTemplate as the MASTER per this spec; sub-templates toggle per need"
+    created_session: S068
+    context: "Governor S068 full spec per item: View; Edit (CORE SEED: wire to tiers+permissions + 'read-only' mode on ALL dashboards, e.g. view-only for potential developer); Sorting; creation-date + change-logs (date+hour) + who-did-what; a place to enhance AI context/nuances; clear create-new + delete-if-permitted; MANDATORY collapsible hierarchy infra + multiple named default-views with per-user permissions. ALL part of ONE master dashboard. Available in BOTH Developer Journey + User Journey."
+  - id: vlt-S068-00013
+    raw_summary: "RESEARCH PIPELINE (governed) — where initial results land (local fix), 3-scope processing, 3rd-scope multi-persona extraction, each finding wired to a processing pipeline"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: monthly
+    routing_decision: "design after PART 2 (threshold) — research is an input class routed by threshold; results -> local result -> 3-scope -> multi-persona 3rd scope -> findings wired to pipeline (no float, per §10)"
+    created_session: S068
+    context: "Governor S068: research currently lands ephemeral in chat or vault-if-remembered; needs a governed pipeline so every finding is mechanically processed + connected to PE/CIE"
+  - id: vlt-S068-00014
+    raw_summary: "PROVE depth-levels actually work — demo activating different d_level mixes for different tasks (currently EXISTS≠ACTIVE: only S056-TEST run, both engines D1)"
+    source: opus
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "PART 1/2 — before claiming d_level is a moat, build a proof: task A activates {nodeX:D2, nodeY:D1}; task B activates {nodeX:D1, nodeY:D3}. Honest gate."
+    created_session: S068
+    context: "Governor S068 asked 'does it really work, can you prove?' Honest: NO — cie-state.yaml shows only one S056-TEST run, both engines d_level=1, never a varying mix. Schema-present, behavior-unproven."
+  - id: vlt-S068-00015
+    raw_summary: "Dashboards are read-only-ish (live data + some interactivity) but NOT developer-tools (no Edit/permissions/change-log/read-only-mode/collapsible-hierarchy/multi-view)"
+    source: opus
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "PART 6 — upgrade dashboards to the master-dashboard spec (vlt-S068-00012)"
+    created_session: S068
+    context: "Governor S068 asked 'placeholder or actual tools?' Honest: partial — 27 React signals in audits page, 14 in completion; real-ish but not the full CRUD+permissions+audit-log+hierarchy spec."
+  - id: vlt-S068-00016
+    raw_summary: "AI research-behavior mapping — add a D-default for how Opus/Sonnet behave on 'do research / deep research / go over things'"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: monthly
+    routing_decision: "AI-defaults registry — new D12 research-behavior-default + the governed Research Pipeline (vlt-S068-00013)"
+    created_session: S068
+    context: "Governor S068: wants full mapping of AI research triggers/defaults; currently research defaults to surface-breadth + chat-ephemeral results unless governed (D3 surface-completeness + D7 action-bias adjacent)."

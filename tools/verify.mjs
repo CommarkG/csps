@@ -505,6 +505,15 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/overrides=(\d+) covered=(\d+) uncovered=(\d+)/); return m ? { overrides: Number(m[1]), covered: Number(m[2]), uncovered: Number(m[3]) } : {}; },
   },
   {
+    // S069 STEP 4 LIVE — NodeFile contract compliance (ADVISORY; ~36 CORE+L1/L2+pillar-headers)
+    name: 'nodefile_compliance',
+    command: 'node tools/validators/validate-nodefile-compliance.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_scanned=(\d+) cached=(\d+) scanned=(\d+) advisory=(\d+) mismatches=(\d+) blocking=(\d+)/);
+      return m ? { files_scanned: Number(m[1]), cached: Number(m[2]), scanned: Number(m[3]), advisory: Number(m[4]), mismatches: Number(m[5]), blocking: Number(m[6]) } : {};
+    },
+  },
+  {
     // S036 LIVE — wiring completeness (WIRED/DEFERRED/ORPHAN per exported symbol)
     name: 'wiring_completeness',
     command: 'node tools/validators/validate-wiring-completeness.mjs',

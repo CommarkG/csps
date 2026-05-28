@@ -625,3 +625,56 @@ Each PART = 1 PROTO (PROTO-S068-PART-N-<NAME>.md). Sequenced per Overview. Each 
 - Bundle/ProductKit resolver algorithm
 
 **No new PART. No previous work broken. Net-new = 4 artifacts mapped onto existing parts. Scope bounded.**
+
+---
+
+# AMENDMENT B — Core-Maximal Doctrine + Gap-Harmonization-Gate (Opus-12, S068)
+
+**Trigger:** Governor S068 North-Star-level directive. Ratified Core-maximal + added the Gap-Harmonization-Gate (the "DNA-forever" element), apps-80/20, unlimited-granularity, templates-everywhere, node-connectivity, nightly-audits, apps-to-vault. Canonical doctrine: [CORE-MAXIMAL-DOCTRINE.md](../pillar-0-governance/CORE-MAXIMAL-DOCTRINE.md). North Star sharpened with Core-maximal quality (sacred edit, ratified).
+
+## B.1 — PART 1 STEP 5 UPGRADED (pending-nodes → Gap-Harmonization STOP gate)
+
+The original PART 1 STEP 5 made `pending-nodes.yaml` a passive log. **Upgrade:** it is now an active **STOP gate** (P-ARCH-032). On any no-perfect-fit:
+- bundling/build HALTS (not just logs)
+- writes pending-gap row + notifies Opus-review-queue
+- requires human ratification before the element can be created
+- new hook `pre-tool-use-gap-harmonization-gate.sh` blocks app-bundled elements lacking ratified-core precedent
+- consolidates B_ASK_WHEN_FILLING_GAPS + B_NO_FORCE_FIT + B_BLOCKER_NO_SILENT_DROP + B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK (no 5th contract)
+
+## B.2 — NEW PART 0 (precedes PART 1): Constitutional Engraving (DONE this turn + PART 1 formalization)
+
+- [x] North Star Core-maximal quality (sacred edit, S068) — DONE
+- [x] [CORE-MAXIMAL-DOCTRINE.md](../pillar-0-governance/CORE-MAXIMAL-DOCTRINE.md) (P-ARCH-031 + P-ARCH-032 canonical text) — DONE
+- [ ] Formal principles.yaml + slice registration for P-ARCH-031 + P-ARCH-032 (PART 1, validators in loop — avoids blind-registration verify break)
+- [ ] B_APPS_ARE_TRIALS reconciliation: add trial→bundle lifecycle + 80/20 clause (PART 1)
+
+## B.3 — SECONDARY PLAN: Nightly Alignment Audits ("calmly at night")
+
+New recurring audit suite (cron, off-hours) covering whole-platform alignment with all prior content + context. Scope per night:
+- **Gap-lineage scan** — every element has a ratified-core lineage; flag silently-filled gaps (P-ARCH-032 enforcement over time)
+- **Core-maximal compliance** — no capability built in-app that should be in-core (parallel-path detection)
+- **Node-connectivity completeness** — every node declares its connectivity fields
+- **NS-orphan scan** — every artifact declares ns_quality
+- **Cross-content drift** — new artifacts consistent with prior ratified doctrine
+- **Output:** findings → Opus-review-queue; K≥2 recurring → structural fix demanded
+- **Build:** folds into existing audit-runner.md weekly cron infra (extend, don't duplicate). Detailed PROTO: PART 4 (Governance) follow-up.
+
+## B.4 — Templates Everywhere + One-Sensible-Default
+
+Cross-cutting principle (CORE-MAXIMAL-DOCTRINE §Templates). Affects PART 6 (page-templates) + PART 7 (onboarding default + "Create new template") + bundling system. Every reusable element ships ONE sensible default + a create-new-template path. Folds into existing parts; no new part.
+
+## B.5 — Existing Apps → Vault (PENDING GOVERNOR CONFIRM)
+
+Governor proposed: vault the 6 trial apps (budget-planner / debt-collection / voice-sorting / task-mgmt / habit-tracker / sandbox), separate from system, build infra first, then dogfood through Developer's Journey as inputs. **csps-playground + template are NOT trial apps — they stay** (playground = the platform's own reference surface; template = the bundling base). This is a consequential move — awaiting explicit confirm before any `git mv`. Proposed destination: `_trials-vaulted/` (out of `apps/`, preserved in git, removed from active workspace).
+
+## B.6 — 3× Pending-Plan Scan (first pass this turn; full = nightly audit)
+
+Governor: scan pending plans 3× from different angles for CSPS-principle compliance.
+- **Angle 1 (Core-maximal):** master plan PARTs 1-8 are all CORE work — compliant by construction. The ONE misalignment: parked PROTO-S068-CONNECTOR "clone budget-planner" framing → fix to "bundle from core" (carried, app is parked).
+- **Angle 2 (Gap-Harmonization):** PART 3 schema work must route every undefined field through GHG, not guess defaults — added as PART 3 requirement.
+- **Angle 3 (ripple core-seeds):** core seeds must sit on ripple effects, not just the implemented thing — added as a per-PART authoring requirement (every PROTO declares its ripple-set + seeds each).
+- Full recurring 3× scan = the nightly audit suite (B.3).
+
+## B.7 — Core Seeds on Ripple Effects
+
+Discipline (Governor S068): when engraving anything, place core seeds not only on the specific artifact but on its **ripple set** (every element the change touches). Added to NodeFile contract (PART 1) as a `ripple_seeds` field + to each PROTO's DONE-WHEN.

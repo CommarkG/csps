@@ -57,6 +57,10 @@ Every CSPS artifact must declare which qualities it serves (`ns_quality` field i
 | **AI-optimized** | Designed for efficient AI execution within governed boundaries | "An AI agent executing this element can do so within session budget" |
 | **Governed without rigidity** | Rules hold AND exception protocol exists within governance | "FAIL-CLOSED by default; Governor override path exists and is documented" |
 | **Self-improving** | Gets better through use — data, feedback, iteration | "Every session adds evidence; the element is more accurate over time" |
+| **Core-maximal** | The core holds everything reusable; apps are the thinnest bundling layer over a maximal core. Any capability an app needs is added to the CORE first (at its pillar/sub-pillar), then bundled in — apps build nothing net-new. The stack is unlimited in granularity (sub-branches + leaves without limit); CIE + Priority Engine activate only what each need requires. When no perfect-fit core element exists, the system STOPS and ratifies a harmonized addition with the human — never guesses-and-fills silently (Gap-Harmonization-Gate). | "Does this app contain only bundling + app-specific config, with every reusable capability in the core? On a gap, did the system stop-notify-ratify rather than guess?" |
+
+> **Core-maximal doctrine (ratified S068):** Full architecture, the L0→L1→L2/L3→Apps layering, and the Gap-Harmonization-Gate live in [CORE-MAXIMAL-DOCTRINE.md](CORE-MAXIMAL-DOCTRINE.md).
+> AUTHORIZED: Governor Yariv ratified the Core-maximal quality + amendments, S068.
 
 ---
 

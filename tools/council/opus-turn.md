@@ -1,3 +1,44 @@
+# OPUS-12 PART 1 AUTHORIZATION — SUBSTRATE RECONCILIATION — 2026-05-28
+
+**SHAPE:** re-gate-part-1-proto-authored-plus-sonnet-directive | **SHAPE-TIER:** substantive | **WHY:** Governor ratified the full 8-part MASTER-RE-GATE-PLAN-S068 ("All ratifies"). Opus-12 authored PART 1 PROTO with 5-persona pre-review + Core Seed + DONE WHEN + ZF gate. Sonnet-13 builds STEP 1-6.
+
+## DIRECTIVE TO SONNET-13 — PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION
+
+Build [PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION.md](../../docs/plan/protos/PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION.md) STEPs 1-6 in sequence. Check-in tier — CHECKPOINT in sonnet-turn.md after EACH step; Opus-12 ACKs before next step.
+
+**STEP 1 (Pillar-1 fix) — CRITICAL ORDER:**
+- `grep -rn "pillar-1-product"` FIRST — enumerate ALL inbound references before any move
+- THEN `git mv docs/plan/pillar-1-product docs/plan/pillar-7-product`
+- Update every reference; assert no orphaned links
+- This is the riskiest step (touches inbound refs) — grep-before-move is mandatory
+
+**STEP 2 (SPINE-PILLAR-MAP):** 5 Core Spines = routing axis; 8 pillars = content groupings; map each pillar→spine; cite P-ARCH-028 precedence.
+
+**STEP 3 (NODEFILE-CONTRACT):** map 8 self-id questions → frontmatter (6 exist + delta fields); Dewey numbering `<SPINE>.<NN>.<ARTIFACT>.<PART>`; lazy vault; internal_parts taxonomy.
+
+**STEP 4 (validator + hook):** ADVISORY mode; changed-file + hash cache; scope ~30 files (CORE+L1/L2+pillar headers); hook 67→68; behavioral test 3/3.
+
+**STEP 5 (pending-nodes):** GENERALIZE pending-plan-items.yaml in-place; migrate entries; single register (NOT parallel); Opus-review-queue + weekly cron escalation.
+
+**STEP 6 (SEAL):** all CHECKPOINTs present; verify --strict=0; Opus-12 OPIA; mark PART 1 SEALED in MASTER plan; push.
+
+**Sonnet-side gates:**
+- B_META_QUESTION before each STEP: "what are the false assumptions here?"
+- ZF cycles cite specific files + grep-counts + test exit codes per STEP
+- B_HUMBLE: inventory-scan before STEP 3 NODEFILE-CONTRACT authoring (confirm which frontmatter fields already exist)
+
+## ASK OPUS triggers (STOP if hit)
+- STEP 1 grep finds >50 inbound references to pillar-1-product → STOP, surface scope before mass-edit
+- validate-nodefile-compliance scoped scan exceeds 30 files → STOP, re-confirm scope with Q4
+- pending-plan-items migration would lose existing entries → STOP (currently drafts:[] so should be clean)
+
+## PARALLEL (still open, Sonnet may interleave)
+- G3 cred rotation verify-only (NOW-A directive below) — independent of PART 1
+
+— Opus-12
+
+---
+
 # OPUS-12 S068 OPEN — RATIFIED 4-PCR EXECUTION DIRECTIVE — 2026-05-28
 
 **SHAPE:** s068-opens-with-p2-verify-and-p3-proto-seed | **SHAPE-TIER:** substantive | **WHY:** Governor ratified all 4 PCRs (P1=parallel slot / P2=START verify-only / P3=PROTO-seed-only / P4=defer-as-fill) + directed "proceed and see how to reach completion of the plan." Opus-12 executes both immediate slots this turn; Sonnet inherits NOW-A on opus-turn.md read.

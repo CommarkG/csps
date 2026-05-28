@@ -127,3 +127,31 @@ App #1 (budget-planner) demonstrated the CSPS app-build pipeline: Vercel + apps/
 - Component B v2 extraction (if STEP 3 surfaced patterns not yet extractable)
 - App #3 domain selection (extends precedent further)
 - Integration adapters (deferred from wet-trial per Q3 recommendation)
+
+---
+
+## DONE WHEN
+
+This PROTO as a whole is DONE WHEN all 5 STEPs above are individually DONE per their per-STEP `**DONE WHEN:**` blocks, AND:
+- HANDOFF-S068-to-S069.md authored using tab-transfer-template
+- Opus-12 final OPIA 15-point audit passes
+- verify --strict exit_code=0 on the seal commit
+- Component B deletion test passes (apps/connector removable; libs/app-template-v2 intact)
+- Wet-trial findings landed in `tools/data/gap-recurrence-register.yaml` with prevention_class
+
+---
+
+## ZF gate
+
+Sonnet-13 emits ZF Cycles after each STEP CHECKPOINT in [sonnet-turn.md](../../../tools/council/sonnet-turn.md):
+- Cycle 1: names files touched in this STEP + behavioral test exit codes
+- Cycle 2: re-checks Cycle 1 areas + 0 new findings → if non-zero, add Cycle 3
+- Status: ZF ACHIEVED only when latest cycle returns 0 new
+
+Opus-12 runs 15-point OPIA audit per [opia-checklist.md](../../../tools/council/opia-checklist.md) before any STEP advance.
+
+---
+
+## RE-GATE NOTE (added S068 Opus-12)
+
+**This PROTO is currently PARKED pending Governor's S068 re-gate ratification** (4 preconditions: Threshold-complete / Frictionless-onboarding / Developer's-journey-complete / Product-schema). App #2 wet-trial does NOT proceed until re-gate passes. Maintained on disk as design reference; do NOT begin STEP 1 build until re-gate ratified.

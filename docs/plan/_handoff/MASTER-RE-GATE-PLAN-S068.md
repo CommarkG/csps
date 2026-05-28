@@ -733,3 +733,102 @@ Per Governor "each thing put aside is saved clearly + scheduled." Set-aside item
 | Holistic audit full build | PART 4 follow-up |
 | G3 cred rotation verify | parallel anytime (Sonnet) |
 | Governor #3 priorities | when Governor surfaces |
+
+---
+
+# AMENDMENT D — THE CONSOLIDATED PLAN (Opus-12, S068) — Phases / Batches / Sessions
+
+**Governor S068:** consolidate ALL pending partial planning into ONE plan, divided phases/batches/sessions. **This master plan IS that one plan.** All prior partial plans are absorbed or referenced below — no parallel plans remain.
+
+## D.0 — Plan Consolidation (no parallel plans)
+
+| Prior partial plan | Disposition |
+|---|---|
+| [FOUNDATION-COMPLETION-PLAN.md](FOUNDATION-COMPLETION-PLAN.md) (S059) | SUPERSEDED for re-gate scope; its done items (PROTO-F/G) are historical record; its open intent folds into PHASES below |
+| [unified-plan.yaml](../../tools/config/unified-plan.yaml) (98 items) | REMAINS the item registry; each PART below maps its work into unified-plan item IDs at build time |
+| PROTOs (S062-S068) | Historical + the S068-PART PROTOs are the executable units of this plan |
+| MASTER-RE-GATE-PLAN-S068 (this file) | **THE single consolidated plan.** Source of truth for sequencing. |
+
+## D.1 — FINDING-HANDLING IS THE BACKBONE (mentioned here, and at every PHASE below, by design)
+
+Per [CSPS-PLANNING-DISCIPLINE.md §2](../pillar-0-governance/CSPS-PLANNING-DISCIPLINE.md): every mid-work finding → ASSESS IMPACT → if not immediate-significant: **SAVE to vault-pending + DRAFT to the correct plan part + place core seeds + schedule re-engage + RETURN to active work (highest priority).** Interrupt ONLY on the 2 conditions (large-future-reversal / large-blast-radius). **This rule governs every PHASE, BATCH, and SESSION below.** Both Opus + Sonnet self-audit against it (§7 of the discipline).
+
+## D.2 — PHASE / BATCH / SESSION STRUCTURE
+
+```
+PHASE 0 — CONSTITUTIONAL  ✅ DONE (S068, this session)
+  North Star Core-maximal · CORE-MAXIMAL-DOCTRINE (P-ARCH-031 + P-ARCH-032 +
+  Template-or-Flag) · CSPS-PLANNING-DISCIPLINE · AMENDMENTS A-D
+  → the orienting layer every later phase traces to. FINDING-HANDLING: applies from here on.
+
+PHASE 1 — SUBSTRATE + WORKSPACE CLEAN        (~2 sessions)
+  Batch 1A · PROTO-S068-TRIALS-VAULT — vault 6 trials, fix ~14 refs + workspace, verify
+  Batch 1B · PART 1 Substrate — pillar-1 fix · SPINE-PILLAR-MAP · NODEFILE-CONTRACT ·
+             4-register consolidation (pending_type discriminator) · GHG STOP-gate ·
+             validate-nodefile (ADVISORY) · pending-nodes
+  FINDING-HANDLING: any substrate finding → save+schedule; interrupt only if it would
+  force later reversal of PART 2+ work.
+
+PHASE 2 — THRESHOLD + SCHEMA SPINE           (~2-3 sessions)
+  Batch 2A · PART 2 Threshold Complete — exhaustive routing · no-fit unification
+             (3 mechanisms → 1) · intake-log consolidation (2 → 1) · threshold-event +
+             council-invocation entities · debounce for enrichment signals
+  Batch 2B · PART 3 Product Schema + 3-Layer (GATED on Q1-Q5) — ProductNode ·
+             ProfileIdentity/Intelligence/ConfigurationContract · scope discriminator ·
+             /platform/architecture/schema page · B_PROMOTION_GATE_DISCIPLINE
+  FINDING-HANDLING: schema findings are HIGH large-future-reversal risk → these MAY
+  legitimately interrupt (condition 1). Everything else → save+schedule.
+
+PHASE 3 — GOVERNANCE + INTELLIGENCE          (~2 sessions)
+  Batch 3A · PART 4 Governance Constitution (10 doctrines → 6 new B_*) + holistic audit
+             suite build (extends audit-runner) + PVA validator
+  Batch 3B · PART 5 Question Placement (governed-question entity · 6 vaults · placement validator)
+  FINDING-HANDLING: save+schedule default; the holistic audit itself becomes the
+  standing finding-harvester from here.
+
+PHASE 4 — PRODUCTIVE SURFACE                 (~2 sessions)
+  Batch 4A · PART 6 Page-Type Templates (10 archetypes composing the 8 atoms)
+  Batch 4B · PART 7 Frictionless Onboarding (Package A 5-stage flow + Package B BI layer +
+             ONE Profile Transparency Screen + Template-or-Flag default+create-new)
+  FINDING-HANDLING: UX findings → save+schedule; interrupt only on large-blast-radius
+  (condition 2) e.g. a template pattern that all apps would inherit wrongly.
+
+PHASE 5 — JOURNEY + GATE                      (~1-2 sessions)
+  Batch 5A · PART 8 Developer's Journey re-completion (re-walk 9 INFRA-FLOW + integrate
+             new disciplines + wizard outputs land in Product Schema)
+  Batch 5B · GATE VERIFICATION — all 4 preconditions + page-templates confirmed →
+             apps unblock → re-engage vault-pending vlt-S068-00001 (App #2)
+  FINDING-HANDLING: at the gate, ALL scheduled findings from PHASES 1-4 are re-surfaced
+  for triage (completion = scheduled-findings triaged, per discipline §4).
+```
+
+**Total:** ~9-11 sessions across PHASE 1-5 (PHASE 0 done). Some batches parallel-eligible (e.g. 3A/3B, 4A/4B).
+
+## D.3 — OPUS-BEST PARTS (intersections / sensitive / high-context — Opus implements personally)
+
+Per [discipline §6](../pillar-0-governance/CSPS-PLANNING-DISCIPLINE.md): Opus authors these critical sections + their core seeds; Sonnet carries the rest from Opus's seeds.
+
+| Opus-implements | Why it's Opus-best | Phase |
+|---|---|---|
+| **SPINE-PILLAR-MAP** | Cross-cutting routing axis; one wrong mapping ripples everywhere | 1B |
+| **NODEFILE-CONTRACT** | The meta-schema every artifact inherits; high-context, sets the shape of all nodes | 1B |
+| **GHG STOP-gate logic** | Constitutional enforcement; the no-guess gate must be exactly right | 1B |
+| **Threshold no-fit unification** | Convergence of 3 mechanisms into 1; sensitive intersection | 2A |
+| **3-Layer Profile schema** | The irreversible schema decision (shared-vs-per-app, Q1-Q5); highest blast radius | 2B |
+| **Holistic audit framework design** | Whole-platform; 6 scopes × 3 depths; must not become parallel cron | 3A |
+| **Each PART's core-seed set** | The alignment points carrying original intent into Sonnet's build | all |
+
+Sonnet builds: scaffolds, validators, hooks, tests, page-templates, entity CRUD, the long mechanical implementation — each grounded in Opus's core seeds + full context/reasoning per discipline §1.
+
+## D.4 — CORE SEEDS AS ALIGNMENT POINTS
+
+Every PART PROTO Opus authors will carry **core seeds on the part AND its ripple set** ([discipline §1+§5](../pillar-0-governance/CSPS-PLANNING-DISCIPLINE.md)). A core seed = the architect's original intent, frozen as an alignment point, so when Sonnet builds (or a later audit checks) the result is verified against intent, not against the AI's in-the-moment defaults. Placeholders get core seeds so the system remembers to complete them under ripple-checking audits.
+
+## D.5 — HOW THIS PLAN IS EXECUTED
+
+1. Opus authors the next PROTO (5-persona pre-review + core seeds + full context/reasoning).
+2. Sonnet builds STEP-by-STEP (check-in CHECKPOINTs + ZF cycles + self-audit vs discipline).
+3. Opus runs OPIA per STEP/batch before advance.
+4. Findings during any step → Finding-Handling Protocol (§2). Active part stays highest priority.
+5. Batch SEAL → triage scheduled findings → next batch.
+6. Phase SEAL → re-validate against North Star + Core-Maximal + Planning Discipline.

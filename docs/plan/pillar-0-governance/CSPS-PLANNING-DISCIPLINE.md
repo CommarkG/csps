@@ -278,4 +278,27 @@ This is the proactive system Governor asked for — built by *wiring existing pi
 
 ---
 
-*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | §10 Deferral-Must-Be-Wired (D11) | §11 No-Rigid-Number-Without-Context (P-META-025) | §12 Refinement-Before-Ratification (M-44) | §13 Creation-Completeness-Gate + Proactive Daily Alignment (D13) | Formal validators + session-open injection: PART 1 (validators in loop)*
+## §14 — WIRING-COMPLETENESS = THE PLATFORM'S DNA (Governor S068; M-45)
+
+> **Governor S068: "Make your defaults to make things permanent and complete. A lot of times we build things nicely, enforce them to exist locally, but if they are not WIRED they will never become real, measurable valuables. Find how to enforce that this is the vibe of the platform — part of its DNA."**
+
+**This is platform DNA, stated as the vibe:** *In CSPS, nothing is "done" until it is WIRED + ACTIVE + measurable. A described mechanism, a declared-but-absent validator, an advisory-forever rule, a stub — these are NOT done. They are debt. Permanent-complete-wired is the default; partial is the exception that must be scheduled to completion.*
+
+**Consolidation (it's mature under our nose):** Permanence-by-Default already exists — `pre-tool-use-permanence-gate.sh` (S060) makes a new artifact *declare* T1/T2/T3. **The gap it does NOT close: it verifies declaration, not EXISTENCE + WIRING of the declared enforcement.** §14 closes that gap.
+
+**The Wiring-Completeness rule:** when an artifact declares enforcement (T1 hook / T2 validator / T3 injection), the declared items must **exist on disk AND be wired** (hook in `.claude/hooks/` + registered; validator in the `verify.mjs` pipeline). A declared-but-absent enforcement = `described-only` = debt, not done. Every created mechanism carries an honest **`wiring_state: active | described-only | scheduled-wired`** field.
+
+**The honest partial surface (S068 scan — real data):** 283 files with partial markers; 141 advisory validators (not yet blocking); 4 of 5 S068 validators described-only. This is the **Wiring Backlog** — it goes into a dedicated plan WIRING PASS (divided into iterations; we are not in a hurry), processed by the Daily Alignment Pass (§13) until partial→permanent.
+
+**Mechanical (extend the EXISTING active hook — do not add a parallel one):**
+- Extend `pre-tool-use-permanence-gate.sh` (S060): when an artifact declares T1/T2/T3, verify each declared file EXISTS + is wired; if absent → require `wiring_state: scheduled-wired` + a vault entry, else flag.
+- `validate-wiring-completeness.mjs` (Sonnet, WIRING PASS) — scans declared-vs-existing enforcement across the platform; reports the partial surface; feeds the Daily Alignment Pass.
+- *Honest note (D13): this validator is itself currently described-only — it is in the Wiring Backlog, marked scheduled-wired, NOT claimed active.*
+
+**Self-check (§7):** "Is this WIRED + active, or merely declared/described? If not wired, did I set wiring_state + schedule it?"
+
+**Moat:** M-45 WIRING-COMPLETENESS. **The vibe, enforced:** session-open injection states it every tab — "permanent-complete-wired is the default; partial is debt."
+
+---
+
+*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | §10 Deferral-Must-Be-Wired (D11) | §11 No-Rigid-Number-Without-Context (P-META-025) | §12 Refinement-Before-Ratification (M-44) | §13 Creation-Completeness-Gate + Proactive Daily Alignment (D13) | §14 Wiring-Completeness = Platform DNA (M-45, extends S060 Permanence-by-Default) | Formal validators + session-open injection: PART 1 (validators in loop)*

@@ -205,3 +205,12 @@ entries:
     routing_decision: "PART 4 (holistic audit daily-L2) — wire EXISTING pieces (M-43 git-diff + 7-question gate §13 + consolidation-expert + PE) into one daily pass. Consolidation, not new governance."
     created_session: S068
     context: "Governor S068: make CSPS proactive — daily audit of all created-today + CIE/PE go over vaults/pending/existing + consolidate-prioritize. Disciplines exist (5/7 mature); gap is they're reactive + not auto-applied."
+  - id: vlt-S068-00020
+    raw_summary: "WIRING BACKLOG — 283 partial-marker files + 141 advisory validators + 4 described-only S068 validators + libs stubs"
+    source: opus
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "WIRING PASS (master plan AMENDMENT F) — Sonnet wires in iterations; advisory->blocking where stable; partial-count must decrease. Daily Alignment Pass tracks trend."
+    created_session: S068
+    context: "S068 6-pass scan (Governor-requested). Real permanent-vs-partial map. M-45 Wiring-Completeness + §14 platform-DNA. Honest: most S068 'engravings' are described-only; this is the backlog to make them real."

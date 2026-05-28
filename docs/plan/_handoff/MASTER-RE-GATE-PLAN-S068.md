@@ -858,3 +858,46 @@ The threshold-router (PART 2) is NOT a normal build. It is the **classification 
 ## E.2 — Why the extra iteration is the cheapest insurance in the plan
 
 Every other part can be fixed locally if wrong. The threshold cannot — a mis-classification is distributed across everything it ever routed. Cost-of-wrong scales with everything built on top (interrupt-condition #1: large-future-reversal). One extra Opus iteration + a 6-persona review here prevents the most expensive failure mode in the system.
+
+---
+
+# AMENDMENT F — THE WIRING PASS (Governor S068; the permanency backlog)
+
+> **Governor S068: permanent-complete-wired is the platform DNA. Built-but-unwired never becomes real value. We are not in a hurry — divide into more parts for build/audit/refine.**
+
+## F.0 — The honest partial surface (S068 scan, real data)
+
+- **283** files with partial markers (described-only / stub / "PART 1/2" / EXISTS≠ACTIVE)
+- **141** advisory validators (enforcement not yet blocking)
+- **4 of 5** S068 validators are described-only (validate-nodefile-compliance / validate-foreign-element-coverage / validate-refinement-before-ratification / validate-process-value-yield). Only cross-tab-diff-review.mjs exists.
+- libs stubs: intelligence sub-engines (Scope Router / Seeds Monitor / Docs Engine), ab-testing, audits dispatcher.
+
+This is the **Wiring Backlog**. It is debt, not done (§14 / M-45).
+
+## F.1 — The WIRING PASS (a recurring plan part, divided into iterations)
+
+A standing part — runs in iterations across PHASES 1-5, not all at once (we are not in a hurry). Each iteration:
+1. Take a slice of the Wiring Backlog (start with the highest-leverage: the S068 validators + the foreign-element register).
+2. Wire it: validator into verify.mjs pipeline + hook registered + tested + `wiring_state: active`.
+3. Advisory → blocking promotion where the rule has proven stable.
+4. Re-scan; the partial count must monotonically decrease.
+**Owner:** Sonnet (the long mechanical work — preserves Opus context for sensitive design). **Gate:** Daily Alignment Pass (§13) tracks partial-count trend.
+
+## F.2 — Extend, don't duplicate (the lesson)
+
+Permanence-by-Default (`pre-tool-use-permanence-gate.sh`, S060) is EXISTING + active. The WIRING PASS extends it to verify declared-enforcement EXISTS + is wired (§14 / M-45) — not a parallel system.
+
+## F.3 — Wiring-state ledger (every S068 creation, honest)
+
+| Artifact | wiring_state |
+|---|---|
+| cross-tab-diff-review.mjs (M-43) | active |
+| FOREIGN-ELEMENT-LOCALIZATION register | described-only → vlt-00018 |
+| validate-nodefile-compliance | described-only → PART 1 |
+| validate-foreign-element-coverage | described-only → PART 1/2 |
+| validate-refinement-before-ratification (M-44) | described-only → PART 1 |
+| validate-wiring-completeness (M-45) | described-only → WIRING PASS |
+| Daily Alignment Pass (§13) | described-only → PART 4 |
+| disciplines §1-§14, D11/D13, doctrines | active as governance text; enforcement = wiring backlog |
+
+Honest: the disciplines are real + binding as governance; their MECHANICAL enforcement is the backlog. That distinction is now visible, not hidden.

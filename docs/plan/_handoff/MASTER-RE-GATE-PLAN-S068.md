@@ -109,7 +109,7 @@ GATE PASSED → apps may begin development
 
 ### DONE WHEN
 
-- [ ] Pillar-1 duplicate fixed (`pillar-1-product` → `pillar-7-product`); validate-nothing-stands-alone passes
+- [x] Pillar-1 duplicate fixed (`pillar-1-product` → `pillar-7-product`); validate-nothing-stands-alone passes (S069 STEP 1, orphans=0)
 - [ ] [NODEFILE-CONTRACT.md](docs/plan/pillar-0-governance/NODEFILE-CONTRACT.md) authored + ratified
 - [ ] [SPINE-PILLAR-MAP.md](docs/plan/pillar-0-governance/SPINE-PILLAR-MAP.md) authored + ratified
 - [ ] validate-nodefile-compliance.mjs scans 647 governance files; ADVISORY mode

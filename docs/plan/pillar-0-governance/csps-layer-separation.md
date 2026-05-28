@@ -26,7 +26,7 @@ impl_status: swift-implemented
 consolidation_cross_refs:
   - docs/plan/pillar-0-governance/csps-bedrock.md
   - docs/plan/pillar-0-governance/csps-core-manifest.md
-  - docs/plan/pillar-1-product/graduation-path.md
+  - docs/plan/pillar-7-product/graduation-path.md
 links:
   - { rel: parent, href: ./README.md }
   - { rel: bedrock, href: ./csps-bedrock.md }
@@ -140,6 +140,6 @@ The PE score for any App layer activity is automatically capped below the PE sco
 
 ## §5 Graduation (long-term)
 
-At $1K MRR (VLT-S014-004), task-mgmt graduates from CSPS: it gets its own repo, its own schema.prisma, and connects to the CSPS platform via `@csps/foundation` package rather than direct libs/ imports. See [graduation-path.md](../pillar-1-product/graduation-path.md) for the extraction design.
+At $1K MRR (VLT-S014-004), task-mgmt graduates from CSPS: it gets its own repo, its own schema.prisma, and connects to the CSPS platform via `@csps/foundation` package rather than direct libs/ imports. See [graduation-path.md](../pillar-7-product/graduation-path.md) for the extraction design.
 
 Until graduation: `apps/task-mgmt/` lives in the CSPS monorepo but is treated as App layer, not Core layer.

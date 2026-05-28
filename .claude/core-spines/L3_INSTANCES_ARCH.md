@@ -94,7 +94,7 @@ Generated: 2026-05-26T06:07:20.781Z | Total instances: 84
 - [`docs/plan/pillar-1-architecture-and-stack/tech-stack.md`](../../docs/plan/pillar-1-architecture-and-stack/tech-stack.md) — tech-stack
 - [`docs/plan/pillar-1-architecture-and-stack/vocabulary-as-code.md`](../../docs/plan/pillar-1-architecture-and-stack/vocabulary-as-code.md) — vocabulary-as-code
 - [`docs/plan/pillar-1-architecture-and-stack/vocabulary.md`](../../docs/plan/pillar-1-architecture-and-stack/vocabulary.md) — vocabulary
-- [`docs/plan/pillar-1-product/graduation-path.md`](../../docs/plan/pillar-1-product/graduation-path.md) — graduation-path
+- [`docs/plan/pillar-7-product/graduation-path.md`](../../docs/plan/pillar-7-product/graduation-path.md) — graduation-path
 - [`docs/plan/pillar-3-platform-services/sandboxed-skill-governance.md`](../../docs/plan/pillar-3-platform-services/sandboxed-skill-governance.md) — sandboxed-skill-governance
 - [`docs/plan/pillar-3-platform-services/stripe-clerk-wiring.md`](../../docs/plan/pillar-3-platform-services/stripe-clerk-wiring.md) — stripe-clerk-wiring
 - [`docs/plan/pillar-4-developer-experience/developer-journey/02-planning-grid.md`](../../docs/plan/pillar-4-developer-experience/developer-journey/02-planning-grid.md) — developer-planning-grid

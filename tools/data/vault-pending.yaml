@@ -214,3 +214,21 @@ entries:
     routing_decision: "WIRING PASS (master plan AMENDMENT F) — Sonnet wires in iterations; advisory->blocking where stable; partial-count must decrease. Daily Alignment Pass tracks trend."
     created_session: S068
     context: "S068 6-pass scan (Governor-requested). Real permanent-vs-partial map. M-45 Wiring-Completeness + §14 platform-DNA. Honest: most S068 'engravings' are described-only; this is the backlog to make them real."
+  - id: vlt-S068-00021
+    raw_summary: "D14 repetition-avoidance default + DNA-repetition-as-passive-alignment moat (extend turn-level reminders into planning)"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: monthly
+    routing_decision: "AI-defaults D14 + discipline §15 DNA-Cadence (depth-gated, NOT rigid per-sentence — avoid overload). Build on EXISTING turn-level repetition (session-open + UserPromptSubmit reminders). Research: spaced-repetition/passive-alignment in AI software. Consult PE+CIE for DNA-list aligned to schema+depth-levels."
+    created_session: S068
+    context: "Governor S068: AI efficiency-default avoids repetition (stated-once=done, D3+D5); CSPS neuronal-DNA model thrives on repetition = passive alignment grid = big moat. 96-list is illustrative (§11). Must be gradual/depth-gated + partial->completion pipeline. CONFIRMED by Opus."
+  - id: vlt-S068-00022
+    raw_summary: "PLAN AUDIT x3: (a) prevention-focus not audit-and-repair, (b) threshold = the ONLY gate of inputs (everything must route through + push back through it), (c) full use of permanency"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "Opus authors as part of PART 2 (threshold) design + a whole-plan prevention/threshold-connectivity audit. Threshold = ONLY gate (not main gate). Everything inactive-or-not-threshold-routable = useless."
+    created_session: S068
+    context: "Governor S068: go over whole plan 3x — prevention over endless-repair; everything wired to threshold-as-only-gate; full permanency power. Prevention is the answer."

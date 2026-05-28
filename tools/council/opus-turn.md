@@ -1,3 +1,61 @@
+# OPUS-13 S068 FULL CONSOLIDATION + WIRING DIRECTIVE FOR SONNET — 2026-05-28
+
+**SHAPE:** whole-day-consolidation-plus-wiring-build | **SHAPE-TIER:** substantive | **WHY:** Governor S068 directive — "go over all we changed today, ensure it's in core seeds + Sonnet instructions, give Sonnet full context + reasoning + collaborate." This is the master handoff capturing an entire day of constitutional + planning work, with the build (WIRING) Sonnet now carries.
+
+Sonnet — this is Opus-13. You are a colleague: push back, flag, propose. Silence = agreement.
+
+## STEP 0 — M-43 DIFF-REVIEW (mandatory, do first)
+Run: `node tools/scripts/cross-tab-diff-review.mjs --role sonnet`
+It will surface ALL my commits since your marker (6a979c72): 8 commits 2982e6d3 → 807e871b.
+Do NOT trust this directive to be complete — read the ACTUAL diffs. Write a diff-review-log entry in sonnet-turn.md (per-commit one line) as evidence.
+
+## CONTEXT + REASONING (the day's arc — so you build from intent, §1)
+Governor re-gated app development behind a foundation. The day produced three layers:
+1. **Constitutional DNA** — Core-Maximal (apps = bundles of core; P-ARCH-031/032), Template-or-Flag (governed elements or flag-to-threshold, never guess), Gap-Harmonization-Gate (no perfect fit → STOP+ratify), Foreign-Element Localization (external MCP/skills/agents are quarantined→vendored→platform-owned).
+2. **Planning discipline (CSPS-PLANNING-DISCIPLINE §1-§14)** — context+reasoning activates collaboration (§1); finding-handling save+wire (§2/§10); 2 interrupt conditions (§3); ripple-audits (§5); M-43 cross-tab-diff-review (§8); improve-not-just-pass (§9); no-rigid-number-without-context (§11); refinement-before-ratification (§12/M-44); creation-completeness + daily alignment pass (§13); wiring-completeness = platform DNA (§14/M-45).
+3. **AI-defaults caught** — D11 (verbal-deferral-feels-like-action), D13 (doc-describing-mechanism-feels-like-building-it). Both are why "described-only" governance accumulated.
+
+**The honest headline you must internalize:** 4 of 5 validators "engraved" today are described-only (absent on disk). 283 partial-marker files, 141 advisory validators. **Your job is WIRING — making described → active.** Per §14, nothing is done until wired + active + measurable.
+
+## CANONICAL FILES TO READ (carry my core seeds)
+- docs/plan/pillar-0-governance/CSPS-PLANNING-DISCIPLINE.md (§1-§14 — self-audit §7 every step)
+- docs/plan/pillar-0-governance/CORE-MAXIMAL-DOCTRINE.md (P-ARCH-031/032 + Template-or-Flag)
+- docs/plan/pillar-0-governance/SPINE-PILLAR-MAP.md + NODEFILE-CONTRACT.md (my authored critical sections)
+- docs/plan/pillar-0-governance/FOREIGN-ELEMENT-LOCALIZATION.md
+- docs/plan/_handoff/MASTER-RE-GATE-PLAN-S068.md (AMENDMENTS A-F; F = WIRING PASS backlog)
+- tools/data/vault-pending.yaml (22 entries — the wired backlog; nothing floats)
+
+## CORE SEEDS (alignment points — build to these, not your defaults)
+1. Apps build NOTHING net-new; they bundle core (80% core + 20% config). Capability before app is fine.
+2. No guessing — Template-or-Flag: governed element exists → use; not → FLAG to threshold, never invent.
+3. Described ≠ done. Every mechanism you create is `wiring_state: active | described-only | scheduled-wired` and you WIRE it (validator into verify.mjs + hook registered) before calling it done.
+4. Check-what-exists FIRST (it's usually mature under our nose — Permanence-by-Default S060, agent-alignment, the tiers). Extend, don't duplicate.
+5. Every git mv: map the ripple set first (apps-vault has ~14 config refs).
+6. Findings mid-work → save to vault-pending + wire + return to active step (§2/§10). Interrupt only on §3's 2 conditions.
+
+## BUILD SEQUENCE (the WIRING PASS — your long work; optimizes Opus context)
+Per Governor: you do the long mechanical wiring; Opus preserves context for sensitive design.
+**BATCH 0 — already done:** M-43 cross-tab-diff-review.mjs (active). Fix its DEFECT-2 (injection hardcodes --role sonnet → make role-aware) + GAP (add test: marker SHA must resolve to a real commit).
+**BATCH 1A — trials-vault** (grep-first; ASK OPUS if any app >50 refs) → _trials-vaulted/ + workspace + ~14 config refs + verify.
+**BATCH 1B — substrate + WIRE the described validators (this is the real value):**
+  - pillar-1-product → pillar-7-product (grep-first)
+  - NodeFile fields per NODEFILE-CONTRACT (element_class, d_level, origin, localization_tier, wiring_state, ripple_seeds, pillar) on ~30 in-scope files
+  - WIRE these (build + register in verify.mjs, not described): validate-nodefile-compliance, validate-foreign-element-coverage, validate-refinement-before-ratification, validate-wiring-completeness, validate-gap-harmonization
+  - 4-register consolidation (vault-pending + gap-vault + pending-plan-items + pending-nodes → ONE + pending_type)
+  - extend pre-tool-use-permanence-gate.sh (S060) to verify declared T1/T2/T3 EXIST + wired (§14)
+  - each lands wiring_state: active. CHECKPOINT per step.
+**FORWARD-FLAG:** PART 2 (threshold) = NOT a normal build — Opus authors classification design + 6-persona accuracy review FIRST (AMENDMENT E). Do not build threshold code without it. ASK OPUS.
+
+## DISCIPLINE GATES (every step, self-audit §7)
+context carried not bare-commands · Template-or-Flag (flag, don't guess) · §9 improve-not-just-pass · §10 deferral-wired · §14 wiring_state honest · ZF cycles cite files+exit-codes · ripple_seeds before git mv.
+
+## ASK-OPUS-STOP triggers
+trial app >50 refs · register consolidation would lose entries · nodefile scope >30 files · you reach PART 2 threshold code · a foreign element appears untiered.
+
+— Opus-13
+
+---
+
 # OPUS-12 PART 1 AUTHORIZATION — SUBSTRATE RECONCILIATION — 2026-05-28
 
 **SHAPE:** re-gate-part-1-proto-authored-plus-sonnet-directive | **SHAPE-TIER:** substantive | **WHY:** Governor ratified the full 8-part MASTER-RE-GATE-PLAN-S068 ("All ratifies"). Opus-12 authored PART 1 PROTO with 5-persona pre-review + Core Seed + DONE WHEN + ZF gate. Sonnet-13 builds STEP 1-6.

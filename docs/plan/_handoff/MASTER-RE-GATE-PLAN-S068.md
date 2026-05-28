@@ -678,3 +678,58 @@ Governor: scan pending plans 3× from different angles for CSPS-principle compli
 ## B.7 — Core Seeds on Ripple Effects
 
 Discipline (Governor S068): when engraving anything, place core seeds not only on the specific artifact but on its **ripple set** (every element the change touches). Added to NodeFile contract (PART 1) as a `ripple_seeds` field + to each PROTO's DONE-WHEN.
+
+---
+
+# AMENDMENT C — Template-or-Flag + Holistic Audits + Consolidation Scan (Opus-12, S068)
+
+## C.1 — Template-or-Flag = the Universal Operating Mode (engraved)
+
+P-ARCH-032 §B in [CORE-MAXIMAL-DOCTRINE.md](../pillar-0-governance/CORE-MAXIMAL-DOCTRINE.md). Every attitude-of-use → governed template OR mandatory flag → Threshold. Native AI defaults forbidden as behavior source. Applies even in chat (flag + offer refine-now / vault-to-prioritize). **Cross-cutting requirement on ALL 8 parts:** no part may ship a behavior sourced from AI defaults; each reusable behavior is a governed element or a flagged-to-threshold gap.
+
+## C.2 — Holistic Multi-Scope Audit Framework (replaces B.3 nightly-only)
+
+Per Governor S068: nightly is ONE option; CSPS-DNA answer is a **holistic multi-scope** suite, proactively offered. Six cadence scopes × 3 depth levels:
+
+| Scope | Cadence | Default depth | Catches |
+|---|---|---|---|
+| Hourly | every hour (off-peak) | L1 shallow | active-session drift, broken verify, hot-path regressions |
+| Daily | nightly | L1-L2 | gap-lineage scan, NS-orphans, node-connectivity completeness |
+| Weekly | existing audit-runner cron | L2 | core-maximal compliance (parallel-path detection), PVA yield |
+| Monthly | 1st of month | L2-L3 | cross-content drift, dead-value pruning, consolidation debt |
+| Quarterly | per quarter | L3 deep | full AI-default re-registration, doctrine re-validation |
+| Annual | yearly | L3 deep + human | North Star Gate 3 revalidation, whole-platform coherence |
+
+**3 depth levels:** L1 (presence/exit-code), L2 (lineage/compliance), L3 (semantic coherence with all prior content+context). **Builds by EXTENDING audit-runner.md cron infra (NOT parallel cron) — see C.3 consolidation #4.** Detailed PROTO: PART 4 follow-up. Supersedes B.3.
+
+## C.3 — 3-Iteration Consolidation Scan (anti-parallel — formalized for implementation)
+
+Governor: decrease parallel elements. Ran 3 iterations; found 4 real parallel-paths to consolidate (these become PART 1 / PART 2 implementation items):
+
+**Iteration 1 (registers):** FOUR pending-ish registers exist/planned — `vault-pending.yaml` + `gap-vault.yaml` + `pending-plan-items.yaml` + planned `pending-nodes.yaml`. **Consolidate to ONE register with a `pending_type` discriminator** (gap | node | plan-item | external-research). Prevents 4-way drift. → PART 1 STEP 5.
+
+**Iteration 2 (no-fit routing):** THREE mechanisms route "no match found" — GHG STOP-gate (PART 1) + threshold place-not-found (PART 2) + vault-pending routing. **These are ONE flow:** no-fit → threshold → pending register → ratify. Unify; do not build 3 paths. → PART 2.
+
+**Iteration 3 (intake logs + audit cron):** TWO threshold intake logs (`tools/data/threshold-intake-log.yaml` + `.csps/threshold/intake-log.yaml`) → consolidate to ONE SSoT. AND holistic audits must EXTEND `audit-runner.md` + `cron-weekly-tag-status-deep-audit.sh` (existing), NOT spawn parallel cron. → PART 2 + PART 4.
+
+**Permanent-prevention activation:** these consolidations + the Template-or-Flag mode become checks in the holistic audit (C.2): the daily L2 scan flags any NEW parallel register/log/cron; the weekly L2 scan runs core-maximal parallel-path detection. Anti-parallel is thus mechanically enforced in planning (validate-nodefile + GHG) AND auditing (holistic suite).
+
+## C.4 — Apps-Vault as a PROTO (ratified move, ripple-safe execution)
+
+Governor ratified: vault 6 trials (budget-planner / debt-collection / voice-sorting / task-mgmt / habit-tracker / sandbox); keep playground (submodule) + template. **Ripple finding:** the 6 apps are referenced in ~14 config files (app-name-registry / build-verification-map / drift-registry / unified-plan / etc.) AND `apps/*` is a pnpm-workspace glob. A raw git mv orphans references + alters the build workspace. **Per P-ARCH-032 (don't blind-execute a ripple-heavy gap), this gets a dedicated PROTO** — `PROTO-S068-TRIALS-VAULT` — that atomically: (a) git mv 6 dirs → `_trials-vaulted/`, (b) update pnpm-workspace glob to exclude vaulted, (c) update the ~14 config references (or mark them vaulted), (d) verify exit_code=0. Sequenced EARLY (before PART 2 threshold work touches app routing). Approved-in-principle; PROTO handles clean execution.
+
+## C.5 — Deferred Items: Saved + Scheduled (Governor's condition)
+
+Per Governor "each thing put aside is saved clearly + scheduled." Set-aside items this turn, logged to [vault-pending.yaml](../../tools/data/vault-pending.yaml) (existing register — no new one):
+
+| Item | Re-engage trigger |
+|---|---|
+| App #2 Connector wet-trial | after PART 1-8 gate passes |
+| Continuous-enrichment ENGINE | after threshold + CIE live (post PART 2) |
+| Confidence decay job | after PART 3 |
+| Bundle/ProductKit resolver | after PART 3 Layer 2+3 live |
+| PVA validator build | after PART 4 |
+| Apps-vault execution | PROTO-S068-TRIALS-VAULT (early, before PART 2) |
+| Holistic audit full build | PART 4 follow-up |
+| G3 cred rotation verify | parallel anytime (Sonnet) |
+| Governor #3 priorities | when Governor surfaces |

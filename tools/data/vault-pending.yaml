@@ -33,4 +33,85 @@ links:
 #   created_session: [session id]
 #   context: "[why this was vaulted, not acted on immediately]"
 
-entries: []
+entries:
+  - id: vlt-S068-00001
+    raw_summary: "App #2 The Connector wet-trial — PROTO-S068-CONNECTOR parked behind re-gate"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: someday
+    routing_decision: "re-engage after PART 1-8 re-gate passes; reframe clone->bundle per Core-Maximal"
+    created_session: S068
+    context: "Apps blocked until 4 preconditions + page-templates land (MASTER-RE-GATE-PLAN)"
+  - id: vlt-S068-00002
+    raw_summary: "Continuous-enrichment ENGINE (Package A) — needs threshold + CIE live"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: monthly
+    routing_decision: "build after PART 2 threshold-complete + CIE projection live"
+    created_session: S068
+    context: "Pkg A continuous onboarding; enrichment is threshold input, engine deferred"
+  - id: vlt-S068-00003
+    raw_summary: "Confidence decay job (Layer 2 ProfileIntelligence freshness)"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: monthly
+    routing_decision: "field recorded in PART 3; decay job built after PART 3"
+    created_session: S068
+    context: "Doc 02 + Pkg B data-freshness; field now, engine later"
+  - id: vlt-S068-00004
+    raw_summary: "Bundle/ProductKit resolver algorithm (persona x signals -> kit)"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: monthly
+    routing_decision: "build after PART 3 Layer 2+3 live"
+    created_session: S068
+    context: "Doc 02 section 14 bundle resolution; needs intelligence layer first"
+  - id: vlt-S068-00005
+    raw_summary: "PVA (Process-Value-Audit) validator build — yield-rate measurement"
+    source: opus
+    vault_type: pending
+    status: triaged
+    urgency: monthly
+    routing_decision: "build after PART 4 governance; folds into holistic audit weekly L2"
+    created_session: S068
+    context: "opia-checklist section 2; platform yield-blindness; critical but not gate-blocking"
+  - id: vlt-S068-00006
+    raw_summary: "Apps-vault execution (6 trials -> _trials-vaulted/) — ripple-heavy"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "PROTO-S068-TRIALS-VAULT — atomic move + workspace + ~14 config refs + verify; before PART 2"
+    created_session: S068
+    context: "Ratified in principle; raw git mv would orphan ~14 config refs + alter pnpm workspace (P-ARCH-032 ripple)"
+  - id: vlt-S068-00007
+    raw_summary: "Holistic multi-scope audit suite (hourly/daily/weekly/monthly/quarterly/annual x 3 depth)"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: monthly
+    routing_decision: "build extending audit-runner.md cron (NOT parallel); PART 4 follow-up"
+    created_session: S068
+    context: "Governor S068: CSPS-DNA holistic answer vs nightly-only; AMENDMENT C.2"
+  - id: vlt-S068-00008
+    raw_summary: "4-register consolidation (vault-pending + gap-vault + pending-plan-items + pending-nodes -> ONE)"
+    source: opus
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "PART 1 STEP 5 — unify with pending_type discriminator"
+    created_session: S068
+    context: "Consolidation scan iteration 1: 4 parallel pending registers detected"
+  - id: vlt-S068-00009
+    raw_summary: "2 threshold intake logs -> ONE SSoT (tools/data + .csps/threshold)"
+    source: opus
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "PART 2 — consolidate to single intake log"
+    created_session: S068
+    context: "Consolidation scan iteration 3: parallel intake logs detected"

@@ -95,6 +95,49 @@ These 4 become the behavioral surfaces of ONE enforced gate. No 5th parallel con
 
 ---
 
+## P-ARCH-032 §B — The Universal Operating Mode: TEMPLATE-OR-FLAG
+
+> **Governor S068: "This must become the ONLY way CSPS does things — not by native AI defaults, because they are not governed by CSPS."**
+
+The Gap-Harmonization-Gate is not only a build-time gate. It is the platform's **universal operating mode** for EVERY attitude-of-use. Native AI defaults are NOT a fallback — they are ungoverned and therefore forbidden as a source of behavior.
+
+**The rule — for every reusable behavior the system reaches for:**
+
+```
+ATTITUDE OF USE (any of):
+  page template · wizard protocol · questionnaire ·
+  external-user communication tone (MUST offer several options) ·
+  date/hour presentation · reminder type (developer or end-user) ·
+  ...any reusable behavior whatsoever
+        │
+        ▼
+  Does a governed CSPS template/element exist?
+        │
+   ┌────┴────┐
+  YES        NO
+   │          │
+   ▼          ▼
+ USE it    MANDATORY FLAG — do NOT guess, do NOT assume, do NOT invent.
+ (one-     Raise: "A new element must be created in the schema."
+ sensible-      → route to THRESHOLD → CSPS governed-creation process
+ default +      → human ratifies → element becomes governed core
+ create-new-    → THEN use it
+ template)
+```
+
+**This applies even in chat.** If the Governor asks for something that has no governed element, the AI MUST NOT silently produce it from native defaults. It MUST flag: *"Let's define it and run it through the Threshold,"* and offer two paths:
+
+1. **Refine now** — spend a few minutes defining it + route through Threshold immediately (for urgent/immediate needs)
+2. **Vault to prioritize** — refine briefly, place core seeds, save to `vault-pending.yaml`, schedule for later prioritization (for non-urgent needs)
+
+**Completing what we are doing at each phase is the backbone of CSPS development.** Placing core seeds on mature-enough placeholders means even a stub reminds the system to handle it later — under cautious ripple-checking audits that verify every addition only enhances and never harms.
+
+**Why native AI defaults are forbidden as a behavior source:** they are not governed by CSPS — no spine, no pipeline, no audit, no precedent. Using them creates exactly the ungoverned parallel paths the platform exists to prevent. The Template-or-Flag mode replaces "AI guesses a sensible default" with "AI uses a governed element OR flags for governed creation." This is the heart of human-AI collaboration: rigid boundaries as guardrails, the gap-fill decision held in collaboration, never in AI autonomy.
+
+**ns_quality:** governed-without-rigidity, core-maximal, core-first.
+
+---
+
 ## Templates Everywhere + One-Sensible-Default
 
 **Principle:** Every reusable element in the platform ships with **ONE sensible default** (chosen by common sense for the most common case) AND a **"Create new template"** path. Templates are part of optional bundling — present in whatever exists in the platform.

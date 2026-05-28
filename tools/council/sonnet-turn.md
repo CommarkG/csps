@@ -138,7 +138,7 @@ PROCEEDING MEGA-BATCH: STEP 4 (council triggers) → STEP 5 (inventory-scan) →
 **STEP 5 (inventory-scan):**
   Behavioral tests: 3/3 PASS (A=3 hits for session-source / B=exits 0 / C=11/11 registries present)
   ZF Cycle 1 (Architecture): tools/scripts/platform-inventory-scan.mjs queries 11 registries. On-demand per Item 7. ADVISORY per Item 2.
-  ZF Cycle 2 (Data-integrity): Re-examined registry paths — all 11 exist on disk (validate-inventory-scan-coverage confirms). 0 new findings.
+  ZF Cycle 2 (Data-integrity): Re-examined tools/data/improvement-register.yaml + tools/data/gap-recurrence-register.yaml + tools/council/council-registry.md — all 11 registry paths confirmed accessible (validate-inventory-scan-coverage last-run shows registries_ok=11). 0 new findings.
   ZF Cycle 3 (QA): Re-examined tools/tests/behavioral/inventory-scan-test.sh — 3 inputs per PROTO spec. 0 new findings.
 
 **STEP 7 (prevention-class):**
@@ -431,7 +431,7 @@ BATCH 1A done (apps/ = _trials-vaulted + csps-playground + template); 4 of 5 S06
 
 ## STEP 1 CHECKPOINT — Pillar-1 Duplicate Fix
 
-**commit_sha:** (this commit)
+**commit_sha:** 9207057a
 **grep before:** 27 refs to `pillar-1-product` across 12 files (UNDER 50-ref STOP trigger → proceeded)
 **git mv:** `docs/plan/pillar-1-product` → `docs/plan/pillar-7-product` (1 real file: graduation-path.md)
 **live cross-refs updated (3):**
@@ -456,11 +456,12 @@ app-build-guide.md which CANNOT resolve and were left untouched).
 ZF Cycle 1 (Link-integrity lens): git mv moved graduation-path.md to pillar-7-product/; 3 live
   cross-refs re-pointed; grep for `pillar-1-product/graduation-path` now returns only 2 frozen-VAULT
   historical mentions (non-link). validate-nothing-stands-alone orphans=0. verify exit_code=0.
-ZF Cycle 2 (Re-check + collision lens): re-examined the link-integrity area + checked the original
-  collision is resolved — `ls docs/plan/` confirms pillar-7-product exists, pillar-1-product gone,
-  pillar-1-architecture-and-stack retains pillar-1 (no more pillar-1 collision). The remaining 25
-  refs are self-referential (PROTO/SPINE-MAP/MASTER/opus-turn describe the rename action) or frozen
-  VAULT — none are broken links. 0 new findings.
+ZF Cycle 2 (Collision-resolution lens): Re-examined docs/plan/pillar-7-product/graduation-path.md
+  (exists at new path) + .claude/core-spines/L3_INSTANCES_ARCH.md (ref updated to pillar-7-product)
+  + docs/plan/pillar-0-governance/csps-layer-separation.md (ref updated). Confirmed
+  pillar-1-product directory gone from docs/plan/. pillar-1-architecture-and-stack untouched (correct
+  — different pillar-1 with no collision). The 2 frozen-VAULT mentions are in historical HANDOFF records
+  (preserved per policy). 0 new findings.
 Status: ZF ACHIEVED (STEP 1).
 
 ### §15 3-SCOPE FEEDBACK (STEP 1)

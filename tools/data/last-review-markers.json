@@ -1,8 +1,8 @@
 {
   "_comment": "M-43 Cross-Tab Diff-Review markers. Each value = last commit SHA that role has reviewed. Run tools/scripts/cross-tab-diff-review.mjs --role <opus|sonnet> to see new commits + advance marker.",
   "_schema": "https://github.com/CommarkG/csps (CSPS S068 M-43)",
-  "opus": "5413ca2127a1486c460d590037e510e93910e036",
-  "sonnet": "5413ca2127a1486c460d590037e510e93910e036",
+  "opus": "9207057ae92d7bfdcbc94220ddd33a48cab696f9",
+  "sonnet": "3eb27c01b0fb5a637a61051b174468a2ebcb0a03",
   "_note_opus": "Opus marker = real full hash of 181392aa (threshold-mandate, Opus last commit pre-Sonnet-M43). FIXED S068 DEFECT-1: prior value was a fabricated SHA, caught by M-43 on its own first use. Re-run advances opus to HEAD after review.",
   "_note_sonnet": "Sonnet reviewed through 5413ca2 (its own M-43 build commit).",
   "updated_at": "2026-05-28",

@@ -175,4 +175,44 @@ Failing any item = the plan is not ready. Fix the plan, not the symptom.
 
 ---
 
-*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | Formal validators + session-open injection: PART 1 (validators in loop)*
+## §10 — DEFERRAL MUST BE WIRED, NOT FLOATED (Governor S068)
+
+> **Governor S068, catching Opus in the act: "the hidden slippery gap is letting it just be there and not placed in a correct location that is part of a pipeline that will be mechanically enforcing it to be processed... part of not leaving orphans or floating elements."**
+
+**The default this kills (D11):** the AI treats a *verbal deferral* ("not chasing now" / "saving for later" / "I'll vault this" / "deferred") as if the saying IS the doing. It is not. The sentence floats; nothing is persisted; the item becomes an orphan that is never processed because the platform is continuously dynamic.
+
+**The rule — a deferral is INCOMPLETE until ALL hold:**
+1. An actual **register entry is written** (not just mentioned) — verifiable on disk.
+2. The register is **wired to a pipeline connected to PE + CIE** — so the item WILL be scheduled + processed, not merely stored. An unwired register is a graveyard.
+3. The entry has a **concrete re-engage trigger** (a plan part / a condition), per §4.
+
+**Connection requirement (Governor S068):** "If things are not wired to the PE and to the CIE, then there is a chance they will never be addressed." Every vault/register that holds deferred work MUST be read by a pipeline on a cadence (the holistic audit scopes) that is connected to PE prioritization + CIE awareness. Connection may be indirect (register → pipeline → PE/CIE), but the chain must exist + be declared.
+
+**Mechanical (built PART 1):** `post-stop-deferral-wired-check.sh` scans the turn's output for deferral-phrases; if found without a matching register write THIS session → flag. Plus: every register file declares its `pipeline_wiring:` (which pipeline reads it + its PE/CIE connection) — unwired = audit failure.
+
+**Self-check (added to §7):** "Did I actually WRITE the deferral to a wired register, or did I only say I would?"
+
+---
+
+## §11 — NO RIGID NUMBER OR DEFINITE TERM WITHOUT CONTEXT (Governor S068; strengthens P-META-025)
+
+> **Governor S068: "forbid mentioning a number or definite word without (1) mentioning they are a general sample for clarification, or (2) giving context in a predefined way."**
+
+**The default this kills:** the AI emits a number ("≥2 applications", "~30 files", "max 3 questions", "80/20") or an absolute term ("always", "never", "must") as if it were a measured law, when it was an illustrative guess. The bare number then hardens into a false rule that drifts and mis-governs. (The capability test "reusable across ≥2 applications" was exactly this — a bare rigid number that was also *wrong*, since capabilities can precede the 1st app.)
+
+**The rule — every number + definite/absolute term MUST carry one framing tag:**
+- `(sample)` — illustrative, NOT a threshold. e.g. "scope ~30 files `(sample — actual set is whatever matches CORE+L1/L2)`".
+- `(gate: <reason>)` — a real hard threshold, with the reason. e.g. "k_count ≥ 3 `(gate: recurrence proves structural failure)`".
+- `(measured: <source>)` — a value observed from data, with source. e.g. "67 hooks `(measured: verify-hooks-functional)`".
+
+A bare number/absolute with NO tag = forbidden (creation-time gate + audit flag).
+
+**Connects:** P-META-025 (numbers are evidence not targets) — this makes it mechanical. Also B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK (definite vocabulary needs precedent/context).
+
+**Mechanical (built PART 1):** wall-to-wall audit scans artifacts for unframed numbers/absolutes; creation-time hook gate; **mandatory NodeFile field** `number_framing: enforced` (every node attests its numbers are framed). The holistic audit (daily L2) re-scans.
+
+**Self-check (added to §7):** "Did I tag every number/absolute as (sample) / (gate: why) / (measured: source)?"
+
+---
+
+*CSPS Planning Discipline v1.0 | RATIFIED S068 | Joint Opus+Sonnet constitution | §8 Cross-Tab Diff-Review (M-43) | §9 Improve-Not-Just-Pass | §10 Deferral-Must-Be-Wired (D11) | §11 No-Rigid-Number-Without-Context (strengthens P-META-025) | Formal validators + session-open injection: PART 1 (validators in loop)*

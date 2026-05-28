@@ -115,3 +115,21 @@ entries:
     routing_decision: "PART 2 — consolidate to single intake log"
     created_session: S068
     context: "Consolidation scan iteration 3: parallel intake logs detected"
+  - id: vlt-S068-00010
+    raw_summary: "Glossary says '22 page templates in @csps/templates' but I found 8 UI components + proposed 10 page-types — reconcile"
+    source: opus
+    vault_type: pending
+    status: triaged
+    urgency: weekly
+    routing_decision: "PART 6 (Page-Type Templates) — reconcile glossary claim vs actual; consolidate, do not duplicate"
+    created_session: S068
+    context: "HONEST FIX: I verbally claimed to 'save this for later' in a prior turn but did NOT persist it — it floated. This entry is the actual persistence (D11 / Deferral-Must-Be-Wired §10). Caught by Governor S068."
+  - id: vlt-S068-00011
+    raw_summary: "Capabilities may be built BEFORE any app exists (capability-first); harvest from 6 vaulted apps is one source, not the only one"
+    source: governor
+    vault_type: pending
+    status: triaged
+    urgency: monthly
+    routing_decision: "feeds Capability definition (PART 3 vocabulary) — capability defining-test must NOT require an existing app"
+    created_session: S068
+    context: "Governor S068: rejected 'reusable across >=2 apps' as rigid; capabilities can/should precede the 1st app of a type"

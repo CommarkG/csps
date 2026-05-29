@@ -1,3 +1,164 @@
+# OPUS-14 S071 DIRECTIVE — RATIFICATION FLIPS + 6 FACETS + PART 2 BUILD · v1.3 (Governor-trimmed)
+> AUTHOR: OPUS-14 (sole active S071 director) | SESSION: S071 | DATE: 2026-05-30
+> Supersedes v1.0/v1.1 (only in working-tree + Sonnet's in-memory context; channel-integrity gap surfaced as vlt-S071-opus-channel-integrity) and v1.2 (this turn, superseded by Governor's S071 Turn 4 answers).
+> **Authorship framing (Governor S071 Turn 4):** OPUS-14 is the *sole active S071 architectural director*. OPUS-15 has NOT started. The 3 artifacts in `docs/plan/pillar-0-governance/` signed `OPUS-15` are absorbed as canonical inputs (treat them as Governor-direction-derived content), not peer-director output. No coordination with a parallel director.
+
+[PROTOCOL: PROTO-S071-CORNERSTONE-AND-PART2 | MODE: milestone-run | GATE: full-advance]
+
+Sonnet, this is Opus-14. S071 BUILD phase, v1.2 single-entry directive. Governor confirmed S071 Turn 1: **all 3 S070 ratification gates GO** (comms-schema + JOURNEY-DOCTRINE draft→ratified · cornerstone principle + 6 facets · PART 2 classification design); `FILES FROM GPT 5.5/` → **VAULT_DEFER**. OPUS-15 (parallel-tab) added 3 canonical artifacts at HEAD `6f3b4c6a`. Governor S071 Turn 4 directive: consolidate all, present proto. This v1.2 IS the consolidation.
+
+## YOU ARE / I AM / SITUATION
+**YOU ARE:** Sonnet, builder S071. **I AM:** OPUS-14, architectural director. **STATE (verified THIS turn @ HEAD `6128145f`):** verify exit_code=0 · M-43 marker → `6128145f` · PHASE 0 SEALED (commits 2f85c0da + 17892db3 + cb9ec724) · M0.5 SEALED (commits db6ded0c + 2968789a + 6128145f).
+
+## OPIA-ACCEPT — PHASE 0 + M0.5 (verified REAL)
+**PHASE 0** ✓ — `communication-schema.yaml` + `JOURNEY-DOCTRINE.md` status=ratified, ratified_by="Governor (S071, OPUS-14 directed)", ratified_at=2026-05-29 (both verified). GPT 5.5 files vaulted. ZF-deep evidence cited.
+**M0.5** ✓ — `tools/templates/proto.template.md` + `tools/validators/validate-proto-completeness.mjs` (95 advisory / 0 blocking) + hook extended (SACRED-token) + `context-wrapped-numbers-allowlist.yaml` (12 patterns) + protocol-doc ADD line + vlt migration entry + the bonus `DEAD-LINK-IN-FRONTMATTER-COMMENT` prevention class (good catch).
+
+## ABSORBED — 3 canonical artifacts at HEAD `6f3b4c6a` (Governor S071 Turn 4 decisions baked in)
+| Artifact | Path | Status (this-turn read) | S071 disposition |
+|---|---|---|---|
+| RZF-LATEST.md | [docs/plan/pillar-0-governance/RZF-LATEST.md](docs/plan/pillar-0-governance/RZF-LATEST.md) | `ratified` ✓ | **Active S071** — applies to M1+ ZF blocks (`verify_top_exit:<int>`, post-edit-verify, file-extension citation) |
+| AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md | [docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md](docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md) | `draft` — **OPUS-14 recommends HOLD to S072 (Governor decision pending)** | M5 builds OBSERVE+AGGREGATE only; ADJUST/INJECT/MEASURE + `/platform/ai-profile` page → S072. Reasoning at the end. |
+| ONE-SOURCE-OF-DOCTRINE.md | [docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md](docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md) | `draft` — **HOLD to S072 (Governor S071 Turn 4)** | M10 → queued S072. PART 2 (M6–M9) proceeds with the **10-class** table; no `creation-request` 11th class in S071; no `/platform/canonical-register` page in S071. M2 tier-vocabulary canonical badge → S072. |
+
+## S071 SCOPE TRIM (Governor S071 Turn 4 — apply to all milestones below)
+The milestone bodies M1–M10 below are the **full S072-ready spec**. For S071 execution, **remove these items** (they queue to S072):
+- **M2** — drop the "Canonical source of tier vocabulary" badge from the glossary section. Build the `## Dev ↔ User Glossary` section + cross-ref + `validate-vocabulary-coverage.mjs` AS SPECIFIED; just no canonical badge yet.
+- **M2** — drop the `/platform/communication` link to `/platform/canonical-register` (target page doesn't exist this session). Keep the ai-profile placeholder link only if Governor ratifies Q2.
+- **M3** — drop the `/platform/developer-journey` "Journey Doctrine ↔ One-Source" cross-ref (CSR doesn't exist this session). The page update task itself defers to S072.
+- **M4** — drop the `creation-request` new INVOKE class. Build the generic INVOKE plumbing + persona criteria + weekly audit as specified.
+- **M5** — drop ADJUST/INJECT/MEASURE stages, drop `profile-to-activation-language.mjs`, drop `/platform/ai-profile` page. Build OBSERVE + AGGREGATE only: mandate `audience_tier` on `ai-behavior-signals.jsonl` events + backfill recent events + CIE/PE audit script. *(Tentative — pending Governor confirm on Q2; see end of directive.)*
+- **M7** — keep the **10-class** table (no `creation-request` 11th row). Everything else in M7 stands.
+- **M10 — REMOVED FROM S071.** Queue as S072 milestone (Canonical Surface Register + creation-time gates + `/platform/canonical-register` page).
+- The S071 sequence is therefore: PHASE 0 ✓ → M0.5 ✓ → M1 → M2 (trimmed) → M3 (trimmed) → M4 (trimmed) → M5 (trimmed) → M6 → M7 (10-class) → M8 → M9 SEAL.
+
+## FORWARD PATH (milestone-run; PE-ordered; ZF cites files + `verify_top_exit: <int>` per RZF-LATEST §6.I3)
+
+### M1 — Facet A: Cornerstone (P-META-028) registered + rigidity advisory validator + RZF-LATEST mirror
+DONE WHEN:
+- [ ] `packages/principles/principles/P-META-028-context-refined-communication.yaml` — id=P-META-028, category=meta, severity=critical, body verbatim from PLAN-S069-COMMS-AND-JOURNEY.md ADDENDUM cornerstone block, `is_cornerstone: true`, `bidirectional_cross_refs: [communication-schema.yaml, prevention-class-register]`, `sibling_doctrines: [RZF-LATEST.md, ONE-SOURCE-OF-DOCTRINE.md]`.
+- [ ] `packages/principles/principles-index.yaml` updated (P-META-028 entry; total_count 68→69).
+- [ ] `packages/principles/principles.yaml` monolith updated (run `pnpm --filter @csps/principles split` inverse if exists, else append per repo convention; do NOT diverge index/monolith).
+- [ ] `communication-schema.yaml` top-level `governing_principle: P-META-028` (bidirectional cross-ref).
+- [ ] `tools/validators/validate-context-wrapped-numbers.mjs` — **advisory**, scans `docs/plan/**/*.{md,yaml}` for bare integers without `sample|tunable|expandable` markers within ±3 lines OR allowlisted in `tools/data/context-wrapped-numbers-allowlist.yaml` (built in M0.5). Test 3/3.
+- [ ] Sibling: `tools/validators/validate-nominal-rzf-detector.mjs` per RZF-LATEST §6.I5 — same anti-theater family; flags Cycle-2 `0 new` lines lacking ≥1 filename-with-extension. Test 3/3.
+- [ ] Wire both into `verify.mjs` (advisory).
+- [ ] **`/platform/rzf` UPDATE** task: refresh `apps/csps-playground/src/app/platform/rzf/` to render RZF-LATEST §1 mechanics + §5 lived-learnings + §7 quick-reference + canonical-link banner. SSR-bundled JSON; no live writes.
+- [ ] Facet D enforced by Facet A's validator — no separate validator (tier/permission defs carry `sample|expandable` markers; audit + add markers where missing).
+- [ ] Milestone Audit + ZF (cite files + `verify_top_exit: <int>`) + Milestone Report.
+- **PREVENTION:** `RIGID-NUMBER-LEAKS-AS-CAPS` + `MEMORY-VS-DISK-DRIFT` (refined — covers *partial-engraving*: inaugural instance = `P-META-029-humble-consolidation-discipline.md` exists at [docs/plan/principles/](docs/plan/principles/P-META-029-humble-consolidation-discipline.md) but is NOT in `packages/principles/principles-index.yaml` slice manifest; doc-without-registration is the catch).
+
+### M2 — Facet C: Dev↔User vocabulary (EXTENDS vocabulary.md) + `/platform/communication` cross-links
+DONE WHEN:
+- [ ] `docs/plan/pillar-0-governance/vocabulary.md` gains `## Dev ↔ User Glossary` section (ADD only) — table `canonical_meaning | dev_term | user_term | audience_tier_refs[]`, ≥ 8 entries seeded from the 6-tier hierarchy, each row `(sample — expandable)`. Top-of-section badge: *"Canonical source of tier vocabulary"* per ONE-SOURCE-OF §6.I4.
+- [ ] JOURNEY-DOCTRINE.md L1 shared-core: cross-ref line `Vocabulary: see vocabulary.md §Dev↔User Glossary (single source).`
+- [ ] `tools/validators/validate-vocabulary-coverage.mjs` (advisory) — flags audience-tier comms that introduce a dev_term not in the glossary. Test 3/3.
+- [ ] **`/platform/communication` UPDATE** task: sidebar/banner link to `/platform/canonical-register` + `/platform/ai-profile`; "this schema IS the canonical source of audience tiers" badge per ONE-SOURCE-OF §6.I4. *Canonical-register link gated on Q1; ai-profile link gated on Q2 — render conditionally or with "coming when ratified" placeholder.*
+- [ ] Milestone Audit + ZF + Report + §15.
+
+### M3 — Facet B: Vercel-mirror rule (scoped: ratifiable / user-facing)
+DONE WHEN:
+- [ ] `docs/plan/pillar-0-governance/vercel-mirror-rule.md` — scope: ratifiable artifacts with `audience` containing a user-tier OR user-facing journey files get `/platform/<slug>` mirror; internal infra NOT mirrored (anti-spam).
+- [ ] Wire into ratification-pipeline INSPECT step.
+- [ ] `pre-tool-use-ux-creation-gate.sh` (existing) gains advisory check: ratifiable/user-facing artifact + no playground mirror → advise create.
+- [ ] **`/platform/developer-journey` UPDATE** task: cross-ref "Journey Doctrine ↔ One-Source" — Journey L1 is one canonical in the CSR (branches reference, never copy). *Gated on Q1 ratify (CSR exists in M10).*
+- [ ] Milestone Audit + ZF + Report + §15.
+
+### M4 — Facet E: Persona-trigger wiring (threshold INVOKE) + weekly audit
+DONE WHEN:
+- [ ] Each persona skill frontmatter (`.claude/skills/*/SKILL.md`) gains `trigger_criteria:` block — tight, no broad catch-all.
+- [ ] `tools/scripts/threshold-router.mjs` gains `selectPersonas(classification)` — stateless, empty when no match (no silent default-to-all).
+- [ ] `tools/scripts/weekly-persona-trigger-audit.mjs` — false-neg + false-pos report.
+- [ ] **Add `creation-request` as a NEW INVOKE class → `consolidation-expert`** per ONE-SOURCE §4.P1. *Gated on Q1 ratify.* If un-ratified at M4 time, build the INVOKE plumbing generically; do NOT wire `creation-request` until Q1 lands.
+- [ ] Persona self-evolve loop **deferred** (balance) — mark `vlt-S071-persona-self-evolve`.
+- [ ] Milestone Audit + ZF + Report + §15. **PREVENTION:** `PERSONA-BROAD-CRITERIA-COST-EXPLOSION`.
+
+### M5 — Facet F: CIE/PE triggers + AI-Profiling loop (gated stages)
+DONE WHEN:
+- [ ] `tools/scripts/cie-pe-trigger-audit.mjs` — CIE at milestone close, PE at plan-fork; reports firing at expected boundaries.
+- [ ] `tools/data/cie-pe-last-run.json` produced; wired to `verify.mjs` (advisory).
+- [ ] Milestone-run template (`tools/templates/`) gains CIE + PE sections.
+- [ ] **AI-Profiling loop (unconditional stages):** `ai-behavior-signals.jsonl` event schema mandates `audience_tier` field per AI-PROFILING §6.I2; backfill recent events. Build OBSERVE + AGGREGATE stages.
+- [ ] **AI-Profiling loop (gated on Q2):** `tools/scripts/profile-to-activation-language.mjs` per §6.I1 — K≥3× rolling-7-day-window (samples — tunable) triggers draft avoid/use pair to staging for Governor review. ADJUST/INJECT/MEASURE stages.
+- [ ] **`/platform/ai-profile` NEW PAGE** task: top-firing defaults by tier + pending phrase-pair proposals + measured drop-offs + Governor-ratify action via governed-path. *Gated on Q2 ratify.* Until Q2, page is `coming-soon` placeholder.
+- [ ] Milestone Audit + ZF + Report + §15. **All 6 facets complete — emit Facet-Pack-Complete summary.**
+
+### M10 — ONE-SOURCE FOUNDATION (Canonical Surface Register + creation-time gates) · *Q1-GATED*
+**Position:** runs between M5 and M6 IF Q1 ratifies during S071; else queues as S072 milestone (PART 2 M6-M9 proceed without `creation-request` class).
+DONE WHEN:
+- [ ] `tools/data/canonical-source-register.yaml` — 9-row seed table from ONE-SOURCE-OF §3 verbatim, marked `(current enumeration — expandable)`. Self-registers (CSR is itself a CSR row).
+- [ ] `tools/scripts/new-artifact.mjs` (CSR-first creation helper, §6.I1) — refuses scaffold when canonical exists; auto-registers new canonical in SAME commit; pre-commit hook enforces atomicity.
+- [ ] `.claude/hooks/pre-tool-use-canonical-search-gate.sh` (§4.P2) — advisory in S071, BLOCK after PVA (sample exemplar: 5 successful advisory passes — tunable). **.claude/ edit via Bash + SACRED-EDIT-APPROVED token.**
+- [ ] `tools/validators/validate-nothing-stands-alone.mjs` extended to resolve `inherits_from` against CSR per §4.P3 (parent-existence check). Test 3/3.
+- [ ] `tools/scripts/weekly-consolidation-audit.mjs` (§4.P4) + first run emits `signal_class: consolidation_drift` to `ai-behavior-signals.jsonl`. PE consumes for top-K=3 (sample — tunable) consolidation work items.
+- [ ] **`/platform/canonical-register` NEW PAGE** task: CSR table + drift-metric panel + PE-scored pending consolidation work + Governor-ratify-canonical action (governed-path). Cross-linked FROM `/platform/communication` + `/platform/developer-journey` + `/platform/rzf` as "canonical home for X." SSR-bundled JSON; NO live writes.
+- [ ] Milestone Audit + ZF + Report. **PREVENTION:** `SCATTER-AT-CREATION-WITHOUT-CSR-CHECK` + `PARENT-DECLARED-BUT-ABSENT`.
+
+### M6 — PART 2 STEP 1: WIRE routeInput into user-prompt-submit (the 4/532 fix)
+DONE WHEN (per PROTO-S068-PART-2 STEP 1):
+- [ ] Canonical user-prompt-submit hook CALLS `node tools/scripts/threshold-router.mjs --route-input` on every prompt. **.claude/ edits via Bash + SACRED-EDIT-APPROVED.**
+- [ ] `routeInput` result drives `dispatch()` for `proposal | consequential | creation-request` classes (creation-request iff M10 done).
+- [ ] `tools/data/council-invocation-log.yaml` shows invocations TRACKING intake; **measure ≥ 95% routed (sample target — tunable by evidence; baseline 4/532 ≈ 0.75%)** over a 24h sample OR replay `tools/data/threshold-intake-log.yaml`.
+- [ ] Behavioral test 3/3 (governor-directive → opus-turn place · proposal → CIP-staging place · trivial-chat → fast-path place).
+- [ ] Milestone Audit + ZF + Report. **PREVENTION:** `EXISTS-NEQ-INVOKED-AT-NERVOUS-SYSTEM`. **ASK-OPUS-STOP if** canonical hook ambiguous.
+
+### M7 — PART 2 STEP 2: Exhaustive classification (no default-to-unhandled)
+DONE WHEN (per PROTO-S068-PART-2 STEP 2 + the authored table — **10 classes, current enumeration, expandable**; +1 if M10 done → 11):
+- [ ] `threshold-router.mjs` implements all classes → correct + UNIQUE `{spine, pipeline, place, criticality}`; stamp `audience_tier`.
+- [ ] If M10 ratified: row 11 `creation-request · GVRN+ARCH · INVOKE:consolidation-expert · consolidation-staging · CRITICAL`.
+- [ ] `tools/validators/validate-threshold-exhaustive.mjs` — zero `default-to-unhandled` paths. Test 3/3.
+- [ ] place-not-found → `tools/data/pending-nodes.yaml` row + `tools/scripts/notify-place-not-found.mjs` (UI-visible).
+- [ ] **Consolidate 2 intake logs → ONE** (vlt-00009): merge `.csps/threshold/intake-log.yaml` + `tools/data/threshold-intake-log.yaml`. **ASK-OPUS-STOP if merge would lose entries.**
+- [ ] **Unify no-fit routing → ONE flow** (vlt-00008).
+- [ ] Milestone Audit + ZF + Report + §15. **PREVENTION:** `SILENT-DEFAULT-TO-UNHANDLED`.
+
+### M8 — PART 2 STEP 3: Scalability (stateless + sharded + criticality + brownout)
+DONE WHEN: router stateless · tenant-shardable · criticality at ingress · fast/slow split · d_level brownout (`tools/data/brownout-state.yaml`) · load-shed sheds lowest criticality first · ZF + Report + §15.
+
+### M9 — PART 2 SEAL
+DONE WHEN: M6-M8 active+wired+measured · `verify --strict` exit_code=0 · council-invocation tracking intake (4/532 fixed, MEASURED) · PROTO-S068-PART-2 marked SEALED · push.
+**HOLD the SEAL commit until I (OPUS-14) post the 15-point OPIA.** If my OPIA returns **COURSE-CORRECT**, the SEAL commit is **reverted (`git revert <sha>`), NOT amended** — kills the S069 STEP 1 OPIA recurrence.
+Carry-forward: CIP unblocked → S072 proto, NOT in S071.
+
+## DISCIPLINE (every milestone)
+- milestone-run: no per-step ACK; Milestone Audit + Milestone Report with **named** PREVENTION class + §15 3-scope.
+- **Numbers are SAMPLES/TUNABLE — facet/persona/class counts are the current enumeration, expandable.** No silent caps. (Cornerstone P-META-028 applies to this very directive — every count above is marked.)
+- ADD-not-CONTRADICT inheritance.
+- `.claude/` edits via **Bash + SACRED-EDIT-APPROVED** token (zero-dialog rule).
+- **Every Milestone Report ZF block populates `verify_top_exit: <int>`** (RZF-LATEST §6.I3 — un-fakeable structured field). Run `pnpm verify --skip-install` *AFTER* final CHECKPOINT text is written (RZF-LATEST §5 post-edit-verify trap), capture top-level `$?`.
+- Cycle 2+ names files re-examined (with extensions) — RZF-LATEST §1 + §4.
+- ADD-only on JOURNEY-DOCTRINE / vocabulary.md (sacred-adjacent).
+- GAP-1..7 from S070 sonnet-turn.md → WIRING PASS post-SEAL.
+- All new Vercel pages: governed-path write-back, SSR-bundled JSON, NO live writes (per the M3 M2-pattern).
+
+## ASK-OPUS-STOP triggers
+- P-META-028 ID conflict / monolith vs index divergence in M1.
+- Canonical user-prompt-submit hook ambiguous in M6.
+- Intake-log merge in M7 risks losing entries.
+- Persona criteria collide / INVOKE place ambiguous in M4.
+- Q1 or Q2 still pending when a gated milestone is about to commit a gated artifact.
+- Any milestone reveals an undefined decision.
+
+## GOVERNOR DECISIONS (S071 Turn 4) + 1 remaining open item
+- **Q1 (ONE-SOURCE) = HOLD to S072.** M10 + creation-request 11th class + canonical-register page + tier-vocabulary canonical badge → all S072. SCOPE TRIM section above applies.
+- **Q2 (AI-PROFILING) = OPUS-14 RECOMMENDS HOLD to S072 — Governor final decision pending.** Reasoning: (a) PART 2 SEAL is the critical S071 deliverable — protect execution capacity. (b) Q1 already held to S072; pairing Q2 makes S072 a coherent "feedback-loop + CSR" double-feature whose wirings compose. (c) Building OBSERVE+AGGREGATE in M5 *now* lets S072 ADJUST/INJECT proposals be evidence-grounded (a session of real signals beats speculative pairs). (d) Balance-expert / B_HUMBLE: governance built faster than validated = the recurring failure mode.
+- **Q3 (route names) = APPROVED.** `/platform/ai-profile` + `/platform/canonical-register` locked for whenever they ship. No page actually built in S071 if Q2 also holds.
+
+## CHANNEL-INTEGRITY FINDING (surfaced separately to Governor)
+Between Turn 1 and Turn 4 (this turn), my v1.0 + v1.1 edits to `tools/council/opus-turn.md` did NOT reach HEAD — last commit on the file is `3e24d15f` (S070 era). Sonnet executed PHASE 0 + M0.5 from in-memory context, so the build is correct, but the canonical channel was stale. This v1.2 entry re-establishes the channel. **Provisional PREVENTION class:** `OPUS-DIRECTIVE-NOT-REACHING-HEAD` — root cause to be investigated (post-stop revert? stash interaction? Sonnet's commit cycle excluding opus-turn.md?). Routed to vlt-S071-opus-channel-integrity.
+
+## PRE-DIRECTIVE RZF (v1.2)
+**Cycle 1 (findings):**
+(a) v1.0/v1.1 OPUS-14 directive missing from opus-turn.md HEAD — confirmed via `git log --oneline -- tools/council/opus-turn.md` (last touch `3e24d15f`) and grep on file content (0 matches for "OPUS-14"). Build artifacts (PHASE 0 + M0.5 commits) are real — Sonnet built from working-tree directive while it existed. Surfaced as channel-integrity finding.
+(b) P-META-029 status refined: documented at [docs/plan/principles/P-META-029-humble-consolidation-discipline.md](docs/plan/principles/P-META-029-humble-consolidation-discipline.md) but absent from [packages/principles/principles-index.yaml](packages/principles/principles-index.yaml) slice manifest. So MEMORY-VS-DISK-DRIFT class is *partial-engraving* (registration drift), not *missing-file*. M1 PREVENTION class updated accordingly.
+(c) `verify_top_exit: <int>` (RZF-LATEST §6.I3) applies from M1 onward — RZF-LATEST is already ratified, no Governor gate.
+(d) `creation-request` class folding — chose *gated* (only added to the 10-class table after Q1) over *prospective* (announce now in the table while doctrine unratified) to avoid status divergence.
+**Cycle 2 (re-examine Cycle-1 areas + 0 new):** Re-examined [tools/council/opus-turn.md](tools/council/opus-turn.md) git log + content via grep (channel-integrity confirmed) + [docs/plan/principles/P-META-029-humble-consolidation-discipline.md](docs/plan/principles/P-META-029-humble-consolidation-discipline.md) + [packages/principles/principles-index.yaml](packages/principles/principles-index.yaml) (partial-engraving confirmed: file exists, index does not list) + [docs/plan/pillar-0-governance/RZF-LATEST.md](docs/plan/pillar-0-governance/RZF-LATEST.md) §6.I3 (verify_top_exit field design) + [docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md](docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md) §3 + §5 (creation-request class design) + [docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md](docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md) §3 (5-stage loop) + [docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml](docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml) head (ratified, ratified_by/at present) + [docs/plan/pillar-0-governance/JOURNEY-DOCTRINE.md](docs/plan/pillar-0-governance/JOURNEY-DOCTRINE.md) head (ratified). 0 new findings. **verify_top_exit: 0** (HEAD `6128145f`, this-turn re-run cited above). **Status: ZF ACHIEVED.**
+
+— OPUS-14 (architectural director, S071, v1.2)
+
+---
+
 # OPUS-13 S070 ALIGNMENT + PROTO-S069-COMMS-SCHEMA (active) — 2026-05-29
 > AUTHOR: OPUS-13 (architectural director) | SESSION: S069→S070 | DATE: 2026-05-29
 

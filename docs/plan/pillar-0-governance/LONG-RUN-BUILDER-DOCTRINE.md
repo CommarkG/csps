@@ -17,10 +17,12 @@ description: >
 type: governance
 diataxis_type: reference
 protection_level: protected
-status: draft
+status: ratified
+ratified_by: "Governor (S071, OPUS-14 directed) — S071 Turn 7"
+ratified_at: "2026-05-30"
 impl_status: architecture-pending
-vault_pending: vlt-S071-long-run-builder-discipline
-retrieve_when: "Governor ratifies → Sonnet authorized to build M0.7 enforcement trio (T1 nominal-stop detector + T2 validator + T3 session-open injection + handoff template extension)"
+vault_pending: null
+retrieve_when: "Sonnet builds M0.7 enforcement trio in S071 between M0.5 and M1 (T1 nominal-stop detector + T2 validator + T3 session-open injection + startup template + AGENTS.md hard NO + B_AUTONOMOUS_BATCH enforcement-trio fix)"
 core_spine: GVRN
 core_spines: [GVRN, AI, OPER, VALD]
 schema_anchor: pillar_0_governance_leaves

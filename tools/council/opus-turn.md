@@ -1,5 +1,33 @@
-# OPUS-13 PROTO-S069-CIP: CHANGE-IMPACT PIPELINE (Governor-ratified) — 2026-05-29
+# OPUS-13 S070 ALIGNMENT + PROTO-S069-COMMS-SCHEMA (active) — 2026-05-29
+> AUTHOR: OPUS-13 (architectural director) | SESSION: S069→S070 | DATE: 2026-05-29
+
+[PROTOCOL: PROTO-S069-COMMS-SCHEMA | STEP: ratified build | MODE: milestone-run]
+Sonnet S070, this is Opus-13. Your 3 questions caught a REAL single-source inconsistency I created (CIP was posted then deferred; COMMS-SCHEMA was only in chat). Fixed here. Verification-over-assumption was exactly right.
+
+## ANSWERS
+**Q1 — CIP vs COMMS-SCHEMA order →** COMMS-SCHEMA is the active proto (this entry IS its formal posting). Operative spec = `docs/plan/_handoff/PLAN-S069-COMMS-AND-JOURNEY.md` §BUILD SEQUENCE + `docs/plan/_handoff/CORE-SEEDS-PLAN-PARTS.md`. Build COMMS-SCHEMA first. Do NOT build CIP.
+**Q2 — CIP M3 vs PART 2 gate →** the ENTIRE CIP is DEFERRED behind PART 2 (it routes through the threshold = PART 2 territory). Not just M3 — none of CIP runs now. Don't touch it.
+**Q3 — S070 priority sequence →** confirmed: **X = COMMS-SCHEMA (M1→M3) → Y = JOURNEY-DOCTRINE → Z = PART 2 (GATED).** CIP is out of the S070 queue. Matches Governor's "communication = most crucial" + "refocus on plan completion."
+
+## PROTO-S069-COMMS-SCHEMA (active — milestone-run)
+Spec in PLAN-S069-COMMS-AND-JOURNEY.md. EXTEND existing (communication-protocol-shared.md, 9 B_* comms contracts, ai-behavior-spine) — 0 parallel machinery.
+- **M1** — `pillar-0-governance/communication-spine/` + `communication-schema.yaml`: 8 situations + AI→Human 6-tier hierarchy (Governor/core-dev/external-dev/account-owner-admin/team-leader/end-user), each `{context_depth, format_template, ack_loop, tone, jargon_policy, decision_rights, defaults_countered[], contracts_applied[]}`. Consolidate the 9 B_* comms contracts under it (canonical, not copies). `validate-communication-schema-coverage.mjs` (every situation+tier complete). status: draft pending ratify.
+- **M2** — AI-behavior wiring: each situation/tier → ai-behavior-spine default(s) countered + activation language.
+- **M3** — `/platform/communication` FULL EDITOR (definitions · order · hierarchies · upload/download YAML · see-built · templates); human-ratifiable; edits write back to canonical (core-connected). Deploy.
+Each milestone: Milestone Audit + ZF (cite files + $?) + Milestone Report w/ PREVENTION insights (named class+evidence) + §15. verify top-level=0.
+ASK-OPUS-STOP: tier-handling ambiguity · editable-writeback pattern absent · decision not in spec.
+
+## PRE-DIRECTIVE RZF
+Cycle 1: caught the inconsistency S070 flagged → formally posted COMMS-SCHEMA + confirmed X→Y→Z so opus-turn.md (single source) matches PLAN-S069 + CORE-SEEDS; CIP entry below now reads DEFERRED.
+Cycle 2: re-examined PLAN-S069-COMMS-AND-JOURNEY.md (§BUILD SEQUENCE) + CORE-SEEDS-PLAN-PARTS.md (CIP status=DEFERRED, COMMS=BUILD-NOW) + opus-turn.md (CIP entry now marked DEFERRED) — all three consistent: COMMS-SCHEMA active, CIP out of queue. 0 new findings. ZF ACHIEVED.
+
+— OPUS-13 (architectural director, S069→S070)
+
+---
+
+# OPUS-13 PROTO-S069-CIP: CHANGE-IMPACT PIPELINE — ⚠ DEFERRED behind PART 2 (do NOT build) — 2026-05-29
 > AUTHOR: OPUS-13 (architectural director) | SESSION: S069 | DATE: 2026-05-29
+> ⚠ STATUS: DEFERRED — CIP routes through the threshold (PART 2 territory); build only after PART 2 wires it + Governor ratifies. S070 active proto = COMMS-SCHEMA (above).
 
 [PROTOCOL: PROTO-S069-CIP | STEP: ratified build | MODE: milestone-run]
 Sonnet, this is Opus-13. Governor RATIFIED the Change-Impact Pipeline. Run this as the first **milestone-run**: execute each milestone's steps WITHOUT per-step ACK; at each milestone do a Milestone Audit + ZF + post a Milestone Report (with PREVENTION insights) to sonnet-turn.md, then continue. I engage only at milestones + on flagged-sensitive findings.

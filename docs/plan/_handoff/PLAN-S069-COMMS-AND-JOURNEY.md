@@ -107,3 +107,48 @@ Each milestone: Milestone Audit + ZF + Milestone Report with PREVENTION insights
 - Re-examined the dashboard editor scope: definition/order/hierarchies/upload/download/see-built/templates all enumerated; write-back-to-canonical keeps single-source (no parallel copy).
 - Re-examined the design index (5 ratified): all extend existing infra (communication-protocol-shared, B_* contracts, ai-behavior-spine, threshold, prevention-class register) — 0 net-new parallel machinery; milestone-run is the build mode.
 - 0 new findings. **Status: ZF ACHIEVED (twice-iterated).**
+
+---
+
+# ADDENDUM (Governor-ratified S069) — Cornerstone + 6 Facets + Journey Architecture + Ratification Pipeline
+
+> All numbers below are **samples/tunable, not caps** (per the cornerstone). Definitions are written to allow expansion + scale.
+
+## CORNERSTONE PRINCIPLE (proposed P-META — to register)
+**"Context-Refined Communication is the Primary Prevention Tool."** However deep an insight, if communicated rigidly or without context, the intent never delivers the exact result aimed for. Every instruction/number/rule/definition is wrapped in interpretable context; samples are marked as samples; thresholds marked tunable; definitions written to allow expansion, never silent caps. Sits above the comms-schema (the *why*) and IS a prevention class. Cross-referenced FROM comms-schema + prevention-class register (bidirectional).
+
+## 6 FACETS (applications of the cornerstone)
+- **A. Rigidity review** — a rigidity CHECK (not a wholly new persona — consolidated into existing personas) + thin `validate-context-wrapped-numbers` (advisory-first; context-allowlist so it isn't itself rigid). Flags numbers/rules not wrapped/sample-marked.
+- **B. Vercel mirror** — plan rule: every **ratifiable / user-facing** element (scoped — NOT every internal file, to avoid mirror-spam) has a playground mirror. Wired into element-creation gate + ratification INSPECT step.
+- **C. Dev↔User vocabulary** — shared glossary EXTENDS `vocabulary.md` (one source; dev-term ↔ user-term ↔ canonical meaning). L1 journey-core references it.
+- **D. Tier scale-language** — tier/permission defs written to allow expansion; sample counts marked sample; no hard caps. Enforced by Facet A.
+- **E. Persona evolvement** — existing personas gain review points (rigidity, scale, vocabulary, context-wrapping) + a **trigger criterion** wired to the threshold INVOKE path (tight criteria + fast-path cheap inputs, per bottleneck) + a weekly audit "did criteria fire when they should?" Self-evolve loop deferred to a later band (per balance).
+- **F. CIE + PE triggers** — CIE = continuous measurement at each milestone/journey-step; PE = priority/sequence at each plan-fork; both added to the recurring weekly audit + milestone-run reporting.
+
+## JOURNEY ARCHITECTURE (ratified)
+Journey = **L1 shared-core** (Journey Doctrine + universal skeleton + the comms-schema tier model — one source) → **L2 branches** (developer / user — add-only deltas; identified so far, expandable) → **L3 tier-instances** (the comms-schema tiers — current set, a sample of the model). Inheritance law: branches ADD, never CONTRADICT L1. Guardrail law: a step must match the participant's permission tier (no orphan steps). Build order (PE): L1 core → end-user branch (highest reach) → developer branch → tiers.
+
+## RATIFICATION PIPELINE (ratified — consolidated, reused for every artifact)
+`INSPECT (dashboard) → RIPPLE-QC (CIP: net-positive vs prior plans) → RATIFY (status draft→ratified via governed-path commit, SACRED token if sacred) → PROPAGATE (activate dependents) → TERMINAL (ratified | rejected | superseded — no perpetual-draft)`.
+
+## PERSONA ITERATION — to real zero findings
+
+### Cycle 1 (findings → fixes)
+- **cruel-critic:** building 6 facets at once during the slowdown = governance faster than validation. → FIX: sequence + advisory-first + prove each before the next. Rigidity validator could itself be rigid → context-allowlist + advisory.
+- **consolidation-expert:** a new "rigidity-critic" persona would duplicate cruel-critic / internal-deep-review. → FIX: rigidity is a CHECK folded into existing personas + a thin validator, not a new persona. Vocabulary EXTENDS vocabulary.md.
+- **balance-expert:** complexity spike. → FIX: defer the persona self-evolve loop to a later band; build principle + rigidity-check + vocabulary first.
+- **ux-expert:** "mirror every element" → mirror-spam. → FIX: scope to ratifiable/user-facing elements.
+- **bottleneck-expert:** persona-auto-invoke on broad criteria = cost explosion. → FIX: tight criteria + threshold fast-path for cheap inputs.
+- **synergy-master:** ensure the cornerstone is referenced bidirectionally (comms-schema + prevention-register). → FIX: added to the principle spec.
+- **scale + rigidity (dogfood):** plan had bare sample numbers. → FIX: all counts marked sample/tunable; defs allow expansion.
+
+### Cycle 2 (re-examine Cycle-1 areas — 0 new)
+- Re-examined cruel-critic fix: facets now sequenced + advisory-first; rigidity validator advisory + allowlisted. ✓
+- Re-examined consolidation fix: rigidity = check-in-existing-personas + thin validator (no new persona); vocabulary extends vocabulary.md (one source). ✓
+- Re-examined balance fix: self-evolve loop deferred; build order = principle → rigidity-check → vocabulary first. ✓
+- Re-examined ux fix: Vercel-mirror scoped to ratifiable/user-facing (no spam). ✓
+- Re-examined bottleneck fix: persona criteria tight + fast-path cheap inputs. ✓
+- Re-examined synergy fix: bidirectional cross-ref present. ✓
+- Re-examined scale/rigidity fix: all numbers marked sample/tunable; expansion-allowing defs. ✓
+- **0 new findings. Status: ZF ACHIEVED (persona-iterated to real zero per persona).**
+

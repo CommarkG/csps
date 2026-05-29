@@ -60,7 +60,40 @@ The threshold is meant to be the **ONLY gate** of inputs into CSPS (Governor S06
 ---
 
 ## STEP 0 — design completeness (Opus, this file)
-**DONE WHEN:** [x] root-cause diagnosed (4/532 = uninvoked) · [x] 6-persona review embedded · [x] core seed + ripple set · [ ] Governor ratifies design → Sonnet builds.
+**DONE WHEN:** [x] root-cause diagnosed (4/532 = uninvoked) · [x] 7-persona review embedded (5 in S068 + ux + UI added by OPUS-13 below — the prior "6-persona ✓" was nominal at 5; now real at 7) · [x] core seed + ripple set · [x] classification design authored (OPUS-13, below) · [ ] Governor ratifies design → Sonnet builds.
+
+---
+
+## OPUS-13 FINALIZATION (S069) — classification design + 6th persona (ratification-ready)
+> AUTHOR: OPUS-13 | numbers are samples/tunable, the class set is the **current enumeration — expandable** (new classes route to place-not-found, never silently dropped).
+
+### 6th PERSONA — ux-expert (was missing; AMENDMENT E required it)
+**ux-expert (6th):** "Mis-routing is felt by the human as a broken product — an input that lands in the wrong place, or silently nowhere, is a UX failure even if no test fails. Every class must route to a place a human can SEE the input went to (visible terminal), and place-not-found must surface, not vanish." → Applied: every class has a visible terminal (place); place-not-found → pending-node + **notify** (no silent drop); criticality drives PE ordering so the human's urgent input isn't shed.
+
+**UI-expert (7th — ux is the flow, UI is the surface):** "A routed input the human can 'see' must be rendered as a clear, scannable surface — which spine / place / criticality, with visual hierarchy + affordances + design-token consistency — not a raw log row. The routing result is a UI artifact, not just data." → Applied: each 'place' terminal has a UI representation (rendered on the relevant dashboard, consistent with design-tokens + the comms dashboard); criticality shown as a visual cue (not just a field); place-not-found surfaces as a visible, actionable item, not a log line. (7-persona review now real.)
+
+### CLASSIFICATION DESIGN (STEP 2 substance — per-class correct+UNIQUE {spine, pipeline, place, criticality})
+Current enumerated input classes (expandable; each maps uniquely — no overlap, no default-to-unhandled):
+
+| Input class | spine | pipeline | place (visible terminal) | criticality (sample tiers) |
+|---|---|---|---|---|
+| Governor directive / ratification | GVRN | decision-rights | opus-turn / council | CRITICAL_PLUS |
+| Implementation / schema / code | ARCH | build | proto → Sonnet | CRITICAL |
+| AI-behavior / inner-default | AI | alignment | inner-defaults registry | CRITICAL |
+| Validation / ZF / evidence | VALD | coverage | verify / last-run | CRITICAL |
+| Proposal / consequential decision | (by content) | CIP staging + INVOKE council | change-impact-staging | CRITICAL |
+| External content / research | AI | alignment + VAULT_DEFER | vault | SHEDDABLE_PLUS |
+| Maintenance / tactical / adjacent | (by content) | VAULT | vault-pending | SHEDDABLE |
+| Conversational / SHAPE-TIER | — | PROCESS-NOW fast-path | chat | SHEDDABLE_PLUS |
+| **Foreign element** (MCP/skill/agent) | (quarantine) | foreign-element-intake | localization tiers | CRITICAL (untiered → STOP) |
+| **place-not-found** (no class matches) | — | pending-node + notify | pending-nodes register | inherits input's criticality |
+
+**Accuracy mandate (the two catch-alls make it exhaustive):** every input either matches a class above OR falls to `place-not-found` (explicit, notified) — there is NO silent default-to-unhandled. `validate-threshold-exhaustive.mjs` (STEP 2) proves zero unhandled paths. Audience tier (from communication-schema.yaml) is stamped alongside criticality so System→User routing knows the recipient tier.
+
+### S069 COUPLINGS (so Sonnet builds consistent)
+- CIP `PROPOSED-CHANGE` route sits ON TOP of this — build PART 2 wiring (STEP 1) first, then CIP adds its class.
+- The cornerstone principle (context-refined communication): each class's routing message is context-wrapped, not a bare code.
+- "place" = the journey/comms "visible terminal" — ties to the ratification pipeline's INSPECT step.
 
 ## STEP 1 — WIRE the threshold into the live input path (the 4/532 fix)
 **Owner:** Sonnet | **Tier:** full-advance

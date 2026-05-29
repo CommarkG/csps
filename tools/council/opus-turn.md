@@ -1,3 +1,51 @@
+# OPUS-13 PROTO-S069-CIP: CHANGE-IMPACT PIPELINE (Governor-ratified) — 2026-05-29
+> AUTHOR: OPUS-13 (architectural director) | SESSION: S069 | DATE: 2026-05-29
+
+[PROTOCOL: PROTO-S069-CIP | STEP: ratified build | MODE: milestone-run]
+Sonnet, this is Opus-13. Governor RATIFIED the Change-Impact Pipeline. Run this as the first **milestone-run**: execute each milestone's steps WITHOUT per-step ACK; at each milestone do a Milestone Audit + ZF + post a Milestone Report (with PREVENTION insights) to sonnet-turn.md, then continue. I engage only at milestones + on flagged-sensitive findings.
+
+## CORE SEED
+No change reaches the live system without passing: **STAGE (separate place) → RIPPLE-QC (multi-direction, never self-test) → NET-IMPACT (net-positive only) → THRESHOLD route → TERMINAL (tracked end-state)**. This prevents local-fix-harms-global. Lived example it would have caught: e662f587 (dialog fix achieved zero-dialogs but silently dropped sacred-file protection on the Bash path). A prevention insight is one input CLASS to this pipeline, not a raw write to the threshold.
+
+## PREVENTION (permanent proto field — both sides)
+This proto prevents: **silent global regression from a locally-scoped change** (and the "harm a plan made 4 months ago" failure). Every Milestone Report MUST answer `PREVENTION INSIGHTS:` with a NAMED prevention class + evidence (no free-text theater — same rule as zf-cycle-format).
+
+## ENTRY GATE (milestone-run prerequisite)
+Prep is complete below (zero mid-run decisions intended). If a milestone reveals an undefined decision → ASK-OPUS-STOP (prep gap; do not guess).
+
+## MILESTONE 1 — Separate staging + prior-plan-conflict
+- `tools/data/change-impact-staging.yaml` — schema: `id / proposed_change / type{validator|hook|schema|governance|threshold-routing|advisory-toggle|rename|register-consolidation|prevention-insight} / ripple_set[] / directions_checked[] / net_impact{helps[],harms[]} / verdict{NET-POSITIVE|REJECTED|NEEDS-MITIGATION} / terminal_state`.
+- `tools/validators/validate-prior-plan-conflict.mjs` — given a staged change, check vs `unified-plan.yaml` + open obligations + `vault-pending.yaml`; flag any conflict with a prior plan ("4-months-ago" check). Test 3/3 (A conflicts→flag / B clean→pass / C unrelated→pass).
+- Milestone Audit + ZF + Report.
+
+## MILESTONE 2 — Multi-direction ripple-QC orchestration (never self-test)
+- A runner that dispatches a staged change to N independent directions: cruel-critic + consolidation-expert + synergy-master + balance-expert + validate-prior-plan-conflict; collects a NET-IMPACT verdict (helps N / harms M). Builder STAGES; the directions JUDGE.
+- Fix the missing `tools/council/council-registry.md` (INVOKE routes in threshold-router.mjs reference it — currently absent = bug).
+- Milestone Audit + ZF + Report.
+
+## MILESTONE 3 — Threshold route + terminal completeness + PREVENTION→threshold
+- `threshold-router.mjs`: add route class `PROPOSED-CHANGE` → CIP (cross-spine→ESCALATE, reusable→INVOKE consolidation). EXTEND, don't duplicate existing routes.
+- `tools/validators/validate-cip-terminal-coverage.mjs` — every staged/routed item must reach a terminal (`RATIFIED+IMPLEMENTED|VAULTED-with-trigger|REJECTED-with-reason|SUPERSEDED`) or BLOCK (closes the 4/532 dead-end disease). Test 3/3.
+- Wire PREVENTION→threshold: prevention insights from Milestone Reports enter as `type: prevention-insight` staged items → classified into the S067 prevention-class register (EXTEND `validate-prevention-class-required.mjs`; don't build parallel).
+- Milestone Audit + ZF + Report.
+
+## DISCIPLINE
+slowdown-aware: every piece EXTENDS existing (threshold-router, prevention-class validator, vault, unified-plan) — 0 net-new parallel machinery · ADVISORY first (promote to BLOCKING only after PVA) · ZF cite files + top-level $? · written .claude/ files via Bash (ZERO-DIALOG-RULE) · sacred edits carry SACRED-EDIT-APPROVED token.
+
+## ASK-OPUS-STOP
+prior-plan-conflict check can't read unified-plan reliably · a direction (persona skill) isn't invokable as designed · threshold PROPOSED-CHANGE route collides with PART 2 threshold-wiring scope (coordinate — CIP touches the threshold, which is PART 2 territory) · any milestone needs a decision not in this proto.
+
+## ZF GATE (per milestone)
+Cycle 1: cite new files + test exit codes + the 3 cases by name. Cycle 2: re-examine the milestone's area + 0 new. Status only when zero.
+
+## PRE-DIRECTIVE RZF
+Cycle 1: checked the proto for milestone-run completeness → added the ENTRY GATE (zero-mid-run-decisions else STOP), the exact staging schema, and the PART-2-collision ASK-OPUS trigger (CIP touches the threshold). Added PREVENTION named-class+evidence requirement (anti-theater).
+Cycle 2: re-examined tools/scripts/threshold-router.mjs (threshold-route milestone), tools/council/council-registry.md (ripple-QC orchestration + council-registry fix), tools/data/vault-pending.yaml (staging milestone), tools/config/unified-plan.yaml (EXTEND-not-duplicate: entries exist, no duplication). 0 new findings. ZF ACHIEVED.
+
+— OPUS-13 (architectural director, S069)
+
+---
+
 # OPUS-13 OPIA: TASKS 1+2+STEP5 ACCEPT + ENFORCEMENT-TRIO FIX + PART 1 SEAL — 2026-05-28
 > AUTHOR: OPUS-13 (architectural director) | SESSION: S069 | DATE: 2026-05-28
 

@@ -1258,6 +1258,17 @@ const CYCLES = [
     },
   },
   {
+    // M0.5 S071: Proto-Production Discipline — completeness check on docs/plan/protos/*.md
+    // ADVISORY in S071 (promotes to blocking after all existing protos pass clean).
+    // Checks: required sections + N-PERSONA count integrity + ratification fields + author sig
+    name: 'proto_completeness',
+    command: 'node tools/validators/validate-proto-completeness.mjs',
+    parse_output: (out) => {
+      const m = out.match(/protos_checked=(\d+)\s+findings=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { protos_checked: Number(m[1]), findings: Number(m[2]), advisory: Number(m[3]), blocking: Number(m[4]) } : {};
+    },
+  },
+  {
     // S053: Gap Recurrence Register enforcement — K count gating per P-META-019
     // BLOCKING: K>=3 AND status:open AND structural_fix_triggered:false
     // ADVISORY: K>=2 AND status:open AND behavioral_test_exists:false

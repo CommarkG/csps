@@ -1,0 +1,69 @@
+# context-wrapped-numbers-allowlist.yaml
+# CSPS — allowlist for bare integers that do NOT need (sample|tunable|expandable) markers.
+# Used by validate-context-wrapped-numbers.mjs (M1 Facet A validator).
+# Add entries when a bare number is contextually unambiguous and should not be flagged.
+#
+# Pattern: regex string matching the line containing the bare number.
+# Why: version strings, principle IDs, line-number citations, timestamps are not
+#      "caps" on enumerable sets — they are identifiers or measurements.
+#
+# Format:
+#   - pattern: "<regex matching the line>"
+#     reason: "<why this is allowlisted>"
+#     added_session: S<NNN>
+
+allowlisted_patterns:
+  # Version strings — version: "1.0", version: "2.3", etc.
+  - pattern: 'version:\s*["\']\d'
+    reason: "Version strings are identifiers, not counts of enumerable items"
+    added_session: S071
+
+  # Principle IDs — P-META-028, P-ARCH-031, etc.
+  - pattern: 'P-(?:META|ARCH|OP|OPER|UX)-\d+'
+    reason: "Principle IDs are identifiers, not counts"
+    added_session: S071
+
+  # Session references — S067, S068, etc.
+  - pattern: '\bS\d{3}\b'
+    reason: "Session numbers are identifiers, not counts"
+    added_session: S071
+
+  # Exit codes — exit_code=0, exit_code=1, exit_code: 0
+  - pattern: 'exit_code[=:]\s*[01]'
+    reason: "Exit codes are binary pass/fail identifiers, not enumerable caps"
+    added_session: S071
+
+  # Git SHAs (8+ hex chars on a line) — commit references
+  - pattern: '\b[0-9a-f]{8,}\b'
+    reason: "Git SHAs are identifiers, not counts"
+    added_session: S071
+
+  # Line numbers in citations — [file:42], line 47, line: 23
+  - pattern: '(?:line|:\s*)\d+[:\s\)]'
+    reason: "Line number citations are locators, not enumerable caps"
+    added_session: S071
+
+  # Year / date numbers — 2026, 2026-05-29, timestamps
+  - pattern: '202[0-9]'
+    reason: "Year numbers are temporal identifiers, not enumerable caps"
+    added_session: S071
+
+  # Port numbers — port 6543, :5432, etc.
+  - pattern: ':\d{4,5}\b'
+    reason: "Port/connection numbers are technical identifiers"
+    added_session: S071
+
+  # Percentage thresholds in SRE/criticality context — already context is clear
+  - pattern: '\d+\s*%'
+    reason: "Percentage values are measurements, not caps on enumerable sets"
+    added_session: S071
+
+  # Count fields that ARE the measurement (not a cap on a set)
+  - pattern: '(?:total_count|count|checked|errors|warnings|blocking|advisory)\s*[=:]\s*\d+'
+    reason: "These are reported measurements, not declared caps"
+    added_session: S071
+
+  # Behavioral test counts — 3/3 test format
+  - pattern: '\d+/\d+\s*(?:test|passing|pass)'
+    reason: "Test pass ratios are result measurements, not caps"
+    added_session: S071

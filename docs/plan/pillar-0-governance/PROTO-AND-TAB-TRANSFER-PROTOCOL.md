@@ -166,6 +166,8 @@ The core seed anchors:
 | UI component following existing pageDNA | **Sonnet** — pageDNA already anchors intent |
 | Routine wiring, dependency installs, file cleanup | **Sonnet** — operational, not architectural |
 
+> **S071 M0.5 — Proto-Production Discipline:** Every new proto begins by copying `tools/templates/proto.template.md`; the completeness validator (`validate-proto-completeness.mjs`) catches deviations from the mandatory section structure and persona-count integrity. ADD only — existing protocol text above is unchanged.
+
 ---
 
 ## PART 2 — The Relay Cycle

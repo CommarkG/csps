@@ -78,3 +78,21 @@ profiler_modes:
     description: "Declaring governance artifacts complete — mechanical enforcement check"
     patterns:
       - '\b(new.*contract|new.*validator|Hard NO|add.*AGENTS|enforcement.*active|validator.*LIVE|hook.*active|T1.*T2|enforcement trio|wired.*verify|mechanical enforcement|B_CSPS_INHERITANCE|B_ZERO_NAVIGATION|behavioral contract.*new|now enforced|enforcement.*complete)\b'
+
+  # D-DEFAULT FIRING SIGNALS (S069 — routes to ai-behavior-signals.jsonl for weekly deep-dive)
+  - id: d_default_firing
+    description: "Governor signals AI training default is firing — routes to behavior-signal pipeline"
+    score: 2
+    signal_class: d_default
+    patterns:
+      - '\b(you keep (failing|doing|making)|false (assumption|default)|40 times|[0-9]+ times and you|wrong layer|you always|your default|AI default)\b'
+      - '\b(take a deep breath|acknowledge|none of them work|different (root cause|approach)|stop (trying|doing) this)\b'
+      - '\b(why do you (always|keep)|what triggers you|your pattern|your instinct|how you (think|approach)|bias)\b'
+
+  - id: enhancement_proposal
+    description: "Platform enhancement signal — something structural could be improved"
+    score: 1
+    signal_class: enhancement
+    patterns:
+      - '\b(can you think of.*way|create.*system|platform.*could|enhance.*permanently|save.*permanently|inherit|always)\b'
+      - '\b(loop|pipeline|compound|weekly|trigger.*save|route.*later|accumulate)\b'

@@ -45,7 +45,27 @@ try {
       if (new RegExp(pat, 'i').test(prompt)) { caqScore += (ct.score || 1); break; }
     }
   }
-  if (caqScore >= 2) { process.stdout.write('caq'); process.exit(0); }
+  if (caqScore >= 2) {
+    // Check if any matching type has signal_class: d_default or enhancement
+    // → write non-blocking signal to ai-behavior-signals.jsonl for weekly deep-dive
+    const signalingTypes = caqTypes.filter(ct => ct.signal_class && ct.patterns?.some(p => new RegExp(p,'i').test(prompt)));
+    if (signalingTypes.length > 0) {
+      try {
+        const signalsFile = path.join(ROOT, 'tools/data/ai-behavior-signals.jsonl');
+        // Note: session omitted to avoid local-computation (session-source.mjs is bash-only)
+        // Weekly aggregator uses date-based session inference
+        const signal = JSON.stringify({
+          date: new Date().toISOString().slice(0,10),
+          signal_class: signalingTypes[0].signal_class,
+          trigger: prompt.slice(0, 200),
+          caq_types_fired: signalingTypes.map(t => t.id),
+          source: 'ai-profiler-caq-detection'
+        });
+        fs.appendFileSync(signalsFile, signal + '\n');
+      } catch(e) { /* non-blocking — signal loss acceptable */ }
+    }
+    process.stdout.write('caq'); process.exit(0);
+  }
 
   // Mode detection: last match wins (enforcement > governance > implementation > architectural)
   let mode = 'standard';

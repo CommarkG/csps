@@ -122,6 +122,15 @@ fi
 echo "[weekly-health] next_run=Monday_08:03_local"
 echo "[weekly-health] PARTIAL-ACTIVE (S011 §24+++++); week-4 promotes to full tag/status state-machine validation"
 
+# ── AI Behavior Deep-Dive (S069 — non-urgent enhancement pipeline) ─────────────
+echo ""
+echo "[weekly-health] §AI-BEHAVIOR — Weekly AI behavior deep-dive (D-default compounding analysis)"
+if node "${REPO_ROOT}/tools/scripts/weekly-ai-behavior-deep-dive.mjs" 2>/dev/null; then
+  echo "[weekly-health] AI behavior deep-dive: complete — check VAULT/ai-enhancement-proposals/"
+else
+  echo "[weekly-health] AI behavior deep-dive: skipped (no signals or error)"
+fi
+
 # Write report stub
 cat > "${REPORT_FILE}" << REPORT
 # Weekly Health Audit — W${WEEK_NUM}

@@ -1,6 +1,6 @@
-# OPUS-14 S071 DIRECTIVE — RATIFICATION FLIPS + 6 FACETS + PART 2 BUILD · v1.3 (Governor-trimmed)
+# OPUS-14 S071 DIRECTIVE — RATIFICATION FLIPS + LONG-RUN + 6 FACETS + PART 2 BUILD · v1.4 (M0.7 inserted)
 > AUTHOR: OPUS-14 (sole active S071 director) | SESSION: S071 | DATE: 2026-05-30
-> Supersedes v1.0/v1.1 (only in working-tree + Sonnet's in-memory context; channel-integrity gap surfaced as vlt-S071-opus-channel-integrity) and v1.2 (this turn, superseded by Governor's S071 Turn 4 answers).
+> Supersedes v1.0/v1.1 (working-tree only — vlt-S071-opus-channel-integrity), v1.2 (Governor-trimmed), v1.3 (Q2 locked). v1.4 adds M0.7 (Long-Run Builder Discipline enforcement trio) between M0.5 and M1 per Governor S071 Turn 6 directive ("plant core seed for the longest sonnet implementation plan").
 > **Authorship framing (Governor S071 Turn 4):** OPUS-14 is the *sole active S071 architectural director*. OPUS-15 has NOT started. The 3 artifacts in `docs/plan/pillar-0-governance/` signed `OPUS-15` are absorbed as canonical inputs (treat them as Governor-direction-derived content), not peer-director output. No coordination with a parallel director.
 
 [PROTOCOL: PROTO-S071-CORNERSTONE-AND-PART2 | MODE: milestone-run | GATE: full-advance]
@@ -20,6 +20,7 @@ Sonnet, this is Opus-14. S071 BUILD phase, v1.2 single-entry directive. Governor
 | RZF-LATEST.md | [docs/plan/pillar-0-governance/RZF-LATEST.md](docs/plan/pillar-0-governance/RZF-LATEST.md) | `ratified` ✓ | **Active S071** — applies to M1+ ZF blocks (`verify_top_exit:<int>`, post-edit-verify, file-extension citation) |
 | AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md | [docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md](docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md) | `draft` — **HOLD to S072 (Governor S071 Turn 5)** | M5 builds OBSERVE+AGGREGATE only; ADJUST/INJECT/MEASURE + `/platform/ai-profile` page → S072 alongside ONE-SOURCE (coherent feedback-loop + CSR double-feature). |
 | ONE-SOURCE-OF-DOCTRINE.md | [docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md](docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md) | `draft` — **HOLD to S072 (Governor S071 Turn 4)** | M10 → queued S072. PART 2 (M6–M9) proceeds with the **10-class** table; no `creation-request` 11th class in S071; no `/platform/canonical-register` page in S071. M2 tier-vocabulary canonical badge → S072. |
+| LONG-RUN-BUILDER-DOCTRINE.md (NEW v1.4) | [docs/plan/pillar-0-governance/LONG-RUN-BUILDER-DOCTRINE.md](docs/plan/pillar-0-governance/LONG-RUN-BUILDER-DOCTRINE.md) | `draft` — **Governor S071 Turn 6 ratification pending** | M0.7 (NEW) builds T1+T2+T3+template+AGENTS.md enforcement trio. Consolidates B_AUTONOMOUS_BATCH (S016 CONSTITUTIONAL — GO side) + B_CONSENSUS_BEFORE_PROCEEDING (S011 CONSTITUTIONAL — STOP side) + B_NO_CONFIRMATION_SEEKING. Closes the EXISTS≠ACTIVE gap on B_AUTONOMOUS_BATCH (T1=none + T2=none + exempt_reason "no mechanical pattern" disproven). |
 
 ## S071 SCOPE TRIM (Governor S071 Turn 4 — apply to all milestones below)
 The milestone bodies M1–M10 below are the **full S072-ready spec**. For S071 execution, **remove these items** (they queue to S072):
@@ -30,7 +31,23 @@ The milestone bodies M1–M10 below are the **full S072-ready spec**. For S071 e
 - **M5** — drop ADJUST/INJECT/MEASURE stages, drop `profile-to-activation-language.mjs`, drop `/platform/ai-profile` page. Build OBSERVE + AGGREGATE only: mandate `audience_tier` on `ai-behavior-signals.jsonl` events + backfill recent events + CIE/PE audit script. **Locked by Governor S071 Turn 5.**
 - **M7** — keep the **10-class** table (no `creation-request` 11th row). Everything else in M7 stands.
 - **M10 — REMOVED FROM S071.** Queue as S072 milestone (Canonical Surface Register + creation-time gates + `/platform/canonical-register` page).
-- The S071 sequence is therefore: PHASE 0 ✓ → M0.5 ✓ → M1 → M2 (trimmed) → M3 (trimmed) → M4 (trimmed) → M5 (trimmed) → M6 → M7 (10-class) → M8 → M9 SEAL.
+- The S071 sequence is therefore: PHASE 0 ✓ → M0.5 ✓ → **M0.7 (NEW v1.4)** → M1 → M2 (trimmed) → M3 (trimmed) → M4 (trimmed) → M5 (trimmed) → M6 → M7 (10-class) → M8 → M9 SEAL.
+
+## M0.7 — Long-Run Builder Discipline (T1+T2+T3 enforcement trio) · NEW in v1.4 · **Q4-gated**
+**Why this is M0.7 (between M0.5 and M1):** Governor S071 Turn 6 directive — "plant core seed for the longest sonnet implementation plan that DOES NOT COMPROMISE QUALITY and yet skips technical 'stops' that actually are not reviewed but technically approved." The doctrine (`LONG-RUN-BUILDER-DOCTRINE.md`) is planted by OPUS-14 this turn; M0.7 builds the mechanical enforcement BEFORE M1 so every subsequent milestone (M1–M9) executes under it. Closes EXISTS≠ACTIVE on B_AUTONOMOUS_BATCH_WITH_PREFLIGHT (CONSTITUTIONAL S016, T1+T2=none + wrong exempt_reason).
+
+**Q4-gate:** If Governor S071 Turn 7 returns `Ratify LONG-RUN-BUILDER-DOCTRINE.md` → M0.7 runs in S071 between M0.5 and M1. If HOLD → M0.7 queues to S072 alongside Q1/Q2; S071 proceeds M0.5→M1 with the existing-but-EXISTS≠ACTIVE doctrine in place.
+
+DONE WHEN:
+- [ ] **T1 hook** — `.claude/hooks/pre-tool-use-nominal-stop-detector.sh` (advisory) — scans Sonnet's pending output for N1–N8 patterns (per `LONG-RUN-BUILDER-DOCTRINE.md §2`) when session-state is mid-milestone AND the response is NOT a Milestone Report. Warns; does NOT block (yet). Bash + SACRED-EDIT-APPROVED token. **PRIOR ART:** `post-stop-banned-phrase.sh` already does phrase-detection on output — extend the pattern, no parallel machinery.
+- [ ] **T2 validator** — `tools/validators/validate-no-nominal-stops-mid-milestone.mjs` (advisory in S071; blocking after sample exemplar pass count = **5** — tunable per the cornerstone). Scans `tools/council/sonnet-turn.md` recent entries; flags N1–N8 patterns inside milestone-run blocks (heuristic: pattern in section NOT headed `## …MILESTONE REPORT` AND NOT inside an `## ASK-OPUS-STOP` block AND NOT inside a real-stop trigger R1–R9). Test 3/3 (A nominal-stop mid-milestone → flag · B real-stop R3 → pass · C Milestone Report header → pass). Wire into `verify.mjs` (advisory).
+- [ ] **T3 inheritance** — `tools/scripts/session-open-context.mjs` extended to inject the doctrine + the R1–R9 / N1–N8 taxonomy summary at every tab boundary. *Upgrades B_AUTONOMOUS_BATCH's T3 claim from "claimed but not actually injected" to "actually injected."* This was the EXISTS≠ACTIVE gap.
+- [ ] **Template** — `tools/templates/startup.template.md` SONNET STARTUP BLOCK gains a one-line reminder: *"Long-run discipline: pause only for R1–R9 (real stops); proceed through N1–N8 (nominal stops). See LONG-RUN-BUILDER-DOCTRINE.md §2 for the taxonomy."*
+- [ ] **AGENTS.md hard NO** — add entry: *"Inserting nominal-stop phrases (N1–N8) mid-milestone in a ratified plan."* ADD only.
+- [ ] **B_AUTONOMOUS_BATCH_WITH_PREFLIGHT.md update** — replace `t1: { path: null, status: none }` and `t2: { path: null, status: none }` with the actual paths from M0.7 builds; **remove the wrong exempt_reason** (disproven by M0.7's mechanical enforcement). Add a `superseded_by: csps.governance.long-run-builder-doctrine` cross-ref.
+- [ ] Milestone Audit + ZF (cite the 5 new artifacts + their test exit codes + `verify_top_exit: <int>` per RZF-LATEST §6.I3) + Milestone Report. **PREVENTION classes:** `EXISTS-NEQ-ACTIVE-AT-CONSTITUTIONAL-DOCTRINE` (the inaugural instance: B_AUTONOMOUS_BATCH was CONSTITUTIONAL with T1/T2=none for sessions S016 → S071) + `NOMINAL-STOP-INTERRUPTS-MILESTONE-RUN`.
+
+**M0.7 ASK-OPUS-STOP:** the pattern-detection regex would also flag a legitimate Milestone Report header phrase (false-positive risk: tighten the heuristic before promoting T2 to blocking) · `session-open-context.mjs` injection point ambiguous (multiple potential places — pick the canonical one) · AGENTS.md "hard NO" wording collides with B_NO_CONFIRMATION_SEEKING wording (de-dup needed).
 
 ## FORWARD PATH (milestone-run; PE-ordered; ZF cites files + `verify_top_exit: <int>` per RZF-LATEST §6.I3)
 
@@ -139,12 +156,11 @@ Carry-forward: CIP unblocked → S072 proto, NOT in S071.
 - Q1 or Q2 still pending when a gated milestone is about to commit a gated artifact.
 - Any milestone reveals an undefined decision.
 
-## GOVERNOR DECISIONS — LOCKED (S071 Turn 4 + Turn 5)
+## GOVERNOR DECISIONS — LOCKED + 1 new open item (S071 Turn 4 + Turn 5 + Turn 6)
 - **Q1 (ONE-SOURCE) = HOLD to S072.** M10 + creation-request 11th class + canonical-register page + tier-vocabulary canonical badge → all S072.
-- **Q2 (AI-PROFILING) = HOLD to S072.** M5 builds OBSERVE+AGGREGATE only this session. ADJUST/INJECT/MEASURE + `/platform/ai-profile` page → S072 alongside ONE-SOURCE. Reasoning (Governor-confirmed): protect PART 2 SEAL execution capacity · pair with Q1 for coherent S072 double-feature · accumulate real signals before phrase-pair proposals · B_HUMBLE/balance.
+- **Q2 (AI-PROFILING) = HOLD to S072.** M5 builds OBSERVE+AGGREGATE only this session. ADJUST/INJECT/MEASURE + `/platform/ai-profile` page → S072 alongside ONE-SOURCE. Reasoning: protect PART 2 SEAL execution capacity · pair with Q1 for coherent S072 double-feature · accumulate real signals before phrase-pair proposals · B_HUMBLE/balance.
 - **Q3 (route names) = APPROVED.** `/platform/ai-profile` + `/platform/canonical-register` locked for S072 shipping. No new pages built in S071.
-
-S071 scope is now fully locked. No further Governor gates for the S071 sequence — Sonnet executes M1 → M9 SEAL per SCOPE TRIM.
+- **Q4 (LONG-RUN-BUILDER-DOCTRINE.md, NEW Turn 6) = OPEN — Governor decision pending.** Ratify (M0.7 GO) or hold (M0.7 → S072). OPUS-14 recommends **RATIFY + M0.7 in S071** because: (a) every subsequent S071 milestone (M1–M9) executes under the doctrine, so building it AFTER M9 forfeits S071's own quality-protection; (b) the work is small (5 surfaces, ~½ day milestone vs M9's full PART 2 SEAL); (c) it closes a documented EXISTS≠ACTIVE on a CONSTITUTIONAL contract — a higher-priority pattern than building net-new; (d) Governor's directive explicitly asked for "permanent and inherited" — that's the M0.7 surfaces.
 
 ## CHANNEL-INTEGRITY FINDING (surfaced separately to Governor)
 Between Turn 1 and Turn 4 (this turn), my v1.0 + v1.1 edits to `tools/council/opus-turn.md` did NOT reach HEAD — last commit on the file is `3e24d15f` (S070 era). Sonnet executed PHASE 0 + M0.5 from in-memory context, so the build is correct, but the canonical channel was stale. This v1.2 entry re-establishes the channel. **Provisional PREVENTION class:** `OPUS-DIRECTIVE-NOT-REACHING-HEAD` — root cause to be investigated (post-stop revert? stash interaction? Sonnet's commit cycle excluding opus-turn.md?). Routed to vlt-S071-opus-channel-integrity.

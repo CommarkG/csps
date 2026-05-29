@@ -397,6 +397,15 @@ schema_anchors:
     l2_domain: INNER_DEFAULTS_OVERRIDE
     description: Inner AI defaults registry files
 
+  communication:
+    type: governance-section
+    resolves_to: docs/plan/pillar-0-governance/communication-spine/
+    spine: AI
+    l2_domain: INNER_DEFAULTS_OVERRIDE
+    description: >
+      CSPS Communication Spine — communication-schema.yaml (8 situations × handling specs
+      + AI→Human 6-tier audience hierarchy + 9 B_* contracts consolidated). Built S070 M1.
+
   inner_ai_defaults_drift_log:
     type: governance-section
     resolves_to: docs/plan/_handoff/VAULT/inner-ai-defaults/continuous-drift-log.md
@@ -577,6 +586,7 @@ schema_anchors:
 | `know_how_error_patterns` | governance-section | GVRN | ACCOUNTABILITY | docs/plan/_intake/know-how/ |
 | `platform_audit` | governance-section | VALD | COVERAGE_DISCIPLINE | docs/plan/pillar-0-governance/audit-runner.md |
 | `inner-ai-defaults` | governance-section | AI | INNER_DEFAULTS_OVERRIDE | docs/plan/_handoff/VAULT/inner-ai-defaults/ |
+| `communication` | governance-section | AI | INNER_DEFAULTS_OVERRIDE | docs/plan/pillar-0-governance/communication-spine/ |
 | `schema_index` | governance-section | ARCH | SCHEMA_GOVERNANCE | this file |
 | *(+ 28 more — see YAML above)* | | | | |
 
@@ -620,3 +630,13 @@ against this registry. Unknown anchors = ORPHAN. Pre-existing orphans: advisory;
     spine: VALD
     l2_domain: vald_coverage_discipline
     description: PAP (Platform Alignment Plan) audit output files per Part — per-element evidence YAMLs
+
+- anchor: communication
+  type: governance-section
+  resolves_to: docs/plan/pillar-0-governance/communication-spine/
+  spine: AI
+  l2_domain: inner_defaults_override
+  description: >
+    CSPS Communication Spine — communication-schema.yaml (8 situations × handling specs
+    + AI→Human 6-tier audience hierarchy + 9 B_* contracts consolidated). Built S070 M1.
+    Wired to ai-behavior-spine (D1-D13 default suppression per situation/tier).

@@ -77,6 +77,7 @@ const KNOWN_MAPPINGS = {
   'validate-improvement-register': ['improvement-register-cec', 'improvement-register', 'improvement_register'],
   'validate-apps-are-trials': ['apps-are-trials', 'apps_are_trials', 'app-scope-isolation'],
   'validate-communication-quality': ['communication-quality', 'communication_quality'],
+  'validate-communication-schema-coverage': ['communication-schema-coverage', 'communication_schema_coverage'],
   'validate-zf-cycle-format': ['zf-cycle-format', 'zf_cycle_format'],
   'validate-gap-recurrence': ['gap-recurrence', 'gap_recurrence'],
   'validate-threshold-intake': ['threshold-intake', 'threshold_intake'],

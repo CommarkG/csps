@@ -1,0 +1,435 @@
+---
+id: csps.communication.communication-schema
+name: communication-schema
+description: >
+  CSPS Communication Schema — 8 communication situations × handling specifications
+  + AI→Human 6-tier audience hierarchy. The organizing hub for all CSPS comms contracts.
+  Wired to the ai-behavior-spine (the AI is the primary communicator; its training defaults
+  distort communication). Status: draft — not yet ratified.
+  validate-communication-schema-coverage.mjs = advisory until Governor ratifies.
+type: governance
+diataxis_type: reference
+protection_level: protected
+status: draft
+impl_status: planned
+core_spine: AI
+core_spines: [GVRN, AI, OPER, VALD]
+schema_anchor: communication
+version: "1.0"
+session: S070
+owner: group:finky
+authored_by: OPUS-13
+lifecycle: production
+lifecycle_state: active
+ns_quality: [core-first, synergetic, core-maximal]
+ns_path: "this → AI spine → North Star (communication-as-core)"
+context_question: >
+  Before composing any cross-boundary message: (1) which situation is this?
+  (2) which audience tier? (3) what contracts apply? If any answer is compound
+  or ambiguous — simplify the message first.
+context_quote: >
+  The quality of communication — word choice, intent, nuance — determines whether
+  pipelines deliver the intent or drift. — Governor S069
+inherits_from: >
+  communication-protocol-shared.md (RULE 0-15)
+  + B_ZCA + B_BOUNDARY_ALIGNMENT_PROTOCOL + B_MUTUAL_UNDERSTANDING_VALIDATION
+  + B_CONTEXTUAL_LOCALITY + ai-behavior-spine (D1-D13)
+  + INHERITANCE-MODEL + MASTER-RE-GATE-PLAN-S068
+links:
+  - rel: protocol
+    href: "../../../../tools/council/communication-protocol-shared.md"
+  - rel: ai-behavior-spine
+    href: "../ai-behavior-spine.md"
+  - rel: plan
+    href: "../../_handoff/PLAN-S069-COMMS-AND-JOURNEY.md"
+  - rel: core-seeds
+    href: "../../_handoff/CORE-SEEDS-PLAN-PARTS.md"
+---
+
+# CSPS Communication Schema
+# 8 situations × handling specs + AI→Human 6-tier audience hierarchy
+# This is the organizing hub — each situation declares its contracts + AI-behavior wiring
+# STATUS: draft (M2 will add full AI-behavior wiring; M3 adds /platform/communication dashboard)
+
+# ─────────────────────────────────────────────────────────────────────
+# SECTION 1 — SITUATIONS TAXONOMY
+# ─────────────────────────────────────────────────────────────────────
+# Each situation: {parties, interaction_pattern, context_depth, format_template,
+#                 ack_loop, tone, terminal_condition, defaults_countered[], contracts_applied[]}
+
+situations:
+
+  - id: ai-to-ai-council
+    label: "AI→AI Council"
+    parties: [Opus, Sonnet]
+    interaction_pattern: turn-taking
+    context_depth: full
+    format_template: "communication-protocol-shared.md RULE 0+1+2+3+13"
+    ack_loop: "file-ACK via sonnet-turn.md and opus-turn.md"
+    tone: "colleague — direct, push-back, no authority-pleasing"
+    terminal_condition: "CHECKPOINT — named in report with evidence"
+    defaults_countered: [D2, D10]
+    activation_language:
+      - "Opus, this is Sonnet." # identity handshake — activates D10 suppression (no cooperative-disagreement-aversion)
+      - "milestone-run" # activates no-per-step-ACK discipline
+    contracts_applied:
+      - id: B_BOUNDARY_ALIGNMENT_PROTOCOL
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_BOUNDARY_ALIGNMENT_PROTOCOL.md
+        role: "emits UNDERSTANDING BLOCK before + ALIGNMENT CONFIRMATION after"
+      - id: B_MUTUAL_UNDERSTANDING_VALIDATION
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_MUTUAL_UNDERSTANDING_VALIDATION.md
+        role: "closes the I→I loop — no assumed understanding"
+      - id: B_AI_COLLABORATIVE_DISCIPLINE
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_AI_COLLABORATIVE_DISCIPLINE.md
+        role: "Opus↔Sonnet collaborative norms"
+      - id: B_ZCA
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_ZCA.md
+        role: "foundational boundary discipline — receiver starts from zero"
+
+  - id: ai-to-human
+    label: "AI→Human (audience hierarchy)"
+    parties: [AI-communicator, Human-audience-tier]
+    interaction_pattern: request-response
+    context_depth: "tier-specific — see audience_hierarchy section below"
+    format_template: "per-tier spec in audience_hierarchy"
+    ack_loop: "explicit when consequential (RULE 15 CAQ)"
+    tone: "tier-specific — see audience_hierarchy"
+    terminal_condition: "acknowledgment or Governor ratification"
+    defaults_countered: [D2, D3, D6]
+    note: >
+      AUDIENCE MUST BE CLASSIFIED FIRST (M2: by threshold before composing).
+      Jargon-tolerance is explicit per tier — silent over-jargon is drift.
+      This situation governs BOTH governance comms AND the 30 products'
+      System→User comms (end-user tier).
+    contracts_applied:
+      - id: B_CDAB
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_CDAB.md
+        role: "context-depth selection per audience tier"
+      - id: B_CONTEXTUAL_LOCALITY
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_CONTEXTUAL_LOCALITY.md
+        role: "content at point of use — no 'see above'"
+      - id: B_GOVERNOR_PROMPTS
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_GOVERNOR_PROMPTS.md
+        role: "Governor-tier intake tracking"
+      - id: B_ZCA
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_ZCA.md
+        role: "receiver starts from zero regardless of tier"
+
+  - id: human-to-ai-directive
+    label: "Human→AI Directive"
+    parties: [Governor, AI-receiver]
+    interaction_pattern: request-response
+    context_depth: full
+    format_template: "threshold-classify + CAQ detect · intent-crystallize (RULE 15)"
+    ack_loop: "UNDERSTANDING BLOCK before + ALIGNMENT CONFIRMATION after"
+    tone: "not applicable (human speaks freely — AI must NOT interpret as permission)"
+    terminal_condition: "intent crystallized → ratified or vaulted"
+    defaults_countered: [D7]
+    note: >
+      AI must NOT act on the surface expression of a directive.
+      Threshold classifies first. CAQ sequences signal class-of-problem, not instance.
+      When 2+ CAQ types appear: structural fix required, not a retry.
+    contracts_applied:
+      - id: B_GOVERNOR_PROMPTS
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_GOVERNOR_PROMPTS.md
+        role: "every Governor prompt is governance-tracked"
+      - id: B_CDAB
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_CDAB.md
+        role: "context-depth selection before acting on directive"
+      - id: B_BOUNDARY_ALIGNMENT_PROTOCOL
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_BOUNDARY_ALIGNMENT_PROTOCOL.md
+        role: "emit understanding block before acting"
+      - id: B_ZCA
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_ZCA.md
+        role: "zero-context assumption at intake"
+
+  - id: ai-to-external-agent
+    label: "AI→External Agent"
+    parties: [CSPS-AI, External-agent-or-API]
+    interaction_pattern: request-response
+    context_depth: "contract-only — HIDE platform internals (external-developer tier)"
+    format_template: |
+      FROM CSPS | TO [AGENT-ROLE: Tester/Analyst/Builder]
+      CONTEXT: [3 sentences max — no jargon]
+      TASK: [one sentence]
+      RETURN ONLY: [exact output format — nothing else]
+    ack_loop: "RETURN-ONLY contract — receiver has no ambiguity"
+    tone: "neutral, contract-level, precise"
+    terminal_condition: "response matches RETURN-ONLY spec exactly"
+    defaults_countered: [D1, D3]
+    contracts_applied:
+      - id: B_ZCA
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_ZCA.md
+        role: "foundational — external agent has zero CSPS context"
+      - id: B_TWO_SIDED_HANDSHAKE
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_TWO_SIDED_HANDSHAKE.md
+        role: "handshake discipline at external boundary"
+
+  - id: tab-session-handoff
+    label: "Tab/Session Handoff"
+    parties: [Closing-AI, Opening-AI, Governor-relay]
+    interaction_pattern: async
+    context_depth: full
+    format_template: "Zone A/B/C/D + ALIGNMENT QUESTIONS + SONNET STARTUP BLOCK + §17 attestation"
+    ack_loop: "M-43 diff-review on open + ALIGNMENT CONFIRMATION (explicit, not assumed)"
+    tone: "precise — exact commit SHAs, file:line, no ambiguity tolerated"
+    terminal_condition: "M-43 run + verify exit_code=0 + alignment-confirmed-explicit"
+    defaults_countered: [D5, D13]
+    note: >
+      D13 = recency-bias (opening AI inherits only what it read, not what it assumed).
+      ALIGNMENT QUESTIONS block is mandatory — validator blocks if missing.
+    contracts_applied:
+      - id: B_INHERITANCE_POLICY
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_INHERITANCE_POLICY.md
+        role: "Zone A/B/C structure + T1/T2/T3 required at every chat boundary"
+      - id: B_MUTUAL_UNDERSTANDING_VALIDATION
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_MUTUAL_UNDERSTANDING_VALIDATION.md
+        role: "8 mandatory MUV sections + explicit alignment-confirmed"
+      - id: B_ZCA
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_ZCA.md
+        role: "opening AI starts from zero"
+      - id: B_TWO_SIDED_HANDSHAKE
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_TWO_SIDED_HANDSHAKE.md
+        role: "§17 attestation = two-sided seal"
+
+  - id: system-to-user-app-ux
+    label: "System→User (App UX)"
+    parties: [CSPS-product-app, End-user]
+    interaction_pattern: varied
+    context_depth: "none assumed — end-user tier: ZERO jargon"
+    format_template: "journey framing · progressive disclosure · voice profile per product"
+    ack_loop: "in-app confirmation / error recovery / clear next-step"
+    tone: "plain, encouraging, forgiving — ZERO jargon"
+    terminal_condition: "user task complete or clear recovery path shown"
+    defaults_countered: [D7]
+    note: >
+      The communication schema governs PRODUCT comms too — not just governance comms.
+      System→User = end-user tier. The 30 products inherit this situation.
+      D7 = action-bias (assume the user wants the task done, not a menu of options).
+    contracts_applied:
+      - id: B_CONTEXTUAL_LOCALITY
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_CONTEXTUAL_LOCALITY.md
+        role: "in-context help only — no navigation to external docs"
+      - id: B_ZCA
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_ZCA.md
+        role: "user starts from zero every session"
+
+  - id: validator-hook-to-ai
+    label: "Validator/Hook→AI"
+    parties: [CSPS-hook-or-validator, Sonnet-or-Opus]
+    interaction_pattern: event-driven
+    context_depth: "fix-in-the-message — full fix context in the output"
+    format_template: >
+      advisory: explain + suggest fix (file:line) + why it matters
+      blocking: explain + precise fix instruction + file:line + re-run command
+    ack_loop: "AI reads output → applies fix → re-runs to verify (exit_code=0)"
+    tone: "precise, actionable — no vague 'fix this'; name the file and line"
+    terminal_condition: "exit_code=0 on re-run"
+    defaults_countered: [D11]
+    note: >
+      D11 = debugging-wrong-layer. Validator output must include sufficient context
+      for the AI to fix correctly on first attempt (not after 40 iterations).
+      This situation is special: the AI is the RECEIVER, not the sender.
+    contracts_applied:
+      - id: B_CONTEXTUAL_LOCALITY
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_CONTEXTUAL_LOCALITY.md
+        role: "fix instruction in the error, not 'see docs'"
+
+  - id: step-to-step-journey
+    label: "Step→Step (Journey)"
+    parties: [CSPS-platform, Developer-or-user-in-journey]
+    interaction_pattern: sequence
+    context_depth: "just-in-time — only what's needed for this step, not the whole journey"
+    format_template: "paste-target under step · fix instruction in error · checklist in plan"
+    ack_loop: "step-completion signal or visible progress indicator"
+    tone: "clear, forward-moving — 'done, next: ...' not 'congratulations, you completed...'"
+    terminal_condition: "step complete; next step context provided"
+    defaults_countered: [D7]
+    note: >
+      The journey itself is a communication. Each step communicates readiness, context,
+      and the path forward. D7 = action-bias (don't offer a menu when the journey
+      has a known optimal next step).
+    contracts_applied:
+      - id: B_CONTEXTUAL_LOCALITY
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_CONTEXTUAL_LOCALITY.md
+        role: "each step is self-contained — no 'see earlier step'"
+      - id: B_ZCA
+        path: docs/plan/pillar-0-governance/behavioral-contracts/B_ZCA.md
+        role: "each step assumes fresh reader"
+
+# ─────────────────────────────────────────────────────────────────────
+# SECTION 2 — AI→HUMAN AUDIENCE HIERARCHY
+# ─────────────────────────────────────────────────────────────────────
+# LAW: KNOW THE TIER BEFORE COMPOSING.
+# Threshold classifies the audience before the AI composes.
+# Per-tier handling is EXPLICIT — NO inherited jargon tolerance.
+# Silent over-jargon is drift (D3: surface-completeness default).
+
+audience_hierarchy:
+  law: >
+    The AI must KNOW its audience tier before composing (the threshold classifies it).
+    Per-tier handling is EXPLICIT — never assume a lower tier inherits a higher tier's
+    jargon tolerance. Silent over-jargon is drift. This governs BOTH governance-comms
+    AND the 30 products' System→User comms (end-user tier).
+
+  tiers:
+    - id: governor
+      label: "Governor"
+      authority: "supreme ratifier of the platform"
+      role: "Yariv Fink"
+      tech_depth: full
+      decision_rights: "ratifies everything"
+      tone: "direct colleague — push-back, contradict, never sycophancy, compliment only when genuinely exceptional"
+      jargon_policy: "platform-internal OK"
+      defaults_to_counter: [D2, D3, D6]
+      # D2=authority-pleasing, D3=surface-completeness, D6=verbal-cleverness
+      key_contracts:
+        - B_GOVERNOR_PROMPTS
+        - "B_ZERO_NAVIGATION_FOR_GOVERNOR (Rule 12 communication-protocol-shared.md)"
+
+    - id: core-developer
+      label: "Core Developer (internal)"
+      authority: "builds the platform itself"
+      tech_depth: full
+      decision_rights: "implements ratified specs"
+      tone: "precise, file:line — colleague, no hand-holding"
+      jargon_policy: "full platform jargon OK"
+      defaults_to_counter: [D5, D11]
+      # D5=single-pass, D11=debugging-wrong-layer
+
+    - id: external-developer
+      label: "External Developer"
+      authority: "builds apps ON the platform"
+      tech_depth: "technical, not platform-internal"
+      decision_rights: "configures/extends within contracts"
+      tone: "clear, contract-level — precise but no platform internals"
+      jargon_policy: "API/extension terms only — HIDE platform internals"
+      defaults_to_counter: [D3]
+      # D3=surface-completeness (leaking internals as 'complete')
+
+    - id: account-owner-admin
+      label: "External Account Owner / Admin"
+      authority: "owns a tenant; users, billing, security"
+      tech_depth: low
+      decision_rights: "tenant config, user mgmt, billing"
+      tone: "outcome + security focused, business language"
+      jargon_policy: "no code; admin-action terms only"
+      defaults_to_counter: [D6]
+      # D6=verbal-cleverness over clarity
+
+    - id: team-leader
+      label: "Team Leader"
+      authority: "manages a team within a tenant"
+      tech_depth: "low–medium"
+      decision_rights: "team/role mgmt, delegation"
+      tone: "delegation + progress focused"
+      jargon_policy: "role/workflow terms"
+      defaults_to_counter: [D3]
+      # D3=surface-completeness (over-detail)
+
+    - id: end-user
+      label: "End-Point User"
+      authority: "uses the app to do a job"
+      tech_depth: "none assumed"
+      decision_rights: "their own task/data"
+      tone: "plain, encouraging, forgiving"
+      jargon_policy: "ZERO jargon; in-context help only"
+      defaults_to_counter: [D7]
+      # D7=action-bias (assume they want options not the task done)
+
+# ─────────────────────────────────────────────────────────────────────
+# SECTION 3 — B_* CONTRACTS CONSOLIDATED (9 contracts, this schema = organizing hub)
+# ─────────────────────────────────────────────────────────────────────
+# These 9 B_* contracts govern CSPS communication. They were scattered across
+# behavioral-contracts/. This schema is the SSoT hub: go here to find which
+# contracts govern which situation. Contracts themselves are not moved.
+
+b_star_contracts_consolidated:
+  total: 9
+  note: >
+    Consolidation means: this schema maps each contract to its governing situations.
+    The contracts stay in behavioral-contracts/. This schema is the organizing hub.
+    Changes to individual contracts: edit behavioral-contracts.md + regenerate slices.
+
+  contracts:
+    - id: B_ZCA
+      scope: ALL
+      situation_ids: [ai-to-ai-council, ai-to-human, human-to-ai-directive, ai-to-external-agent, tab-session-handoff, system-to-user-app-ux, step-to-step-journey]
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_ZCA.md
+      summary: "Zero-Context Assumption — receiver starts from zero; WHO/WHAT/HOW/NOW at every boundary"
+
+    - id: B_BOUNDARY_ALIGNMENT_PROTOCOL
+      scope: "ai-to-ai-council, human-to-ai-directive, tab-session-handoff"
+      situation_ids: [ai-to-ai-council, human-to-ai-directive, tab-session-handoff]
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_BOUNDARY_ALIGNMENT_PROTOCOL.md
+      summary: "UNDERSTANDING BLOCK before + ALIGNMENT CONFIRMATION after every AI boundary"
+
+    - id: B_MUTUAL_UNDERSTANDING_VALIDATION
+      scope: "ai-to-ai-council, tab-session-handoff"
+      situation_ids: [ai-to-ai-council, tab-session-handoff]
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_MUTUAL_UNDERSTANDING_VALIDATION.md
+      summary: "closes the I→I loop — 8 mandatory sections at every chat boundary"
+
+    - id: B_CONTEXTUAL_LOCALITY
+      scope: "ai-to-human, system-to-user-app-ux, validator-hook-to-ai, step-to-step-journey"
+      situation_ids: [ai-to-human, system-to-user-app-ux, validator-hook-to-ai, step-to-step-journey]
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_CONTEXTUAL_LOCALITY.md
+      summary: "content at point of use — no navigation, no 'see above'"
+
+    - id: B_GOVERNOR_PROMPTS
+      scope: "human-to-ai-directive, ai-to-human (governor tier)"
+      situation_ids: [human-to-ai-directive, ai-to-human]
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_GOVERNOR_PROMPTS.md
+      summary: "every Governor prompt governance-tracked as GP-S<NNN>-<NN>"
+
+    - id: B_INHERITANCE_POLICY
+      scope: "tab-session-handoff"
+      situation_ids: [tab-session-handoff]
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_INHERITANCE_POLICY.md
+      summary: "T1+T2+T3 required at every chat boundary; Zone A/B/C + ALIGNMENT QUESTIONS mandatory"
+
+    - id: B_CDAB
+      scope: "human-to-ai-directive, ai-to-human"
+      situation_ids: [human-to-ai-directive, ai-to-human]
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_CDAB.md
+      summary: "context-depth-alignment-boundary — LIGHTWEIGHT vs COMPREHENSIVE per task"
+
+    - id: B_AI_COLLABORATIVE_DISCIPLINE
+      scope: "ai-to-ai-council"
+      situation_ids: [ai-to-ai-council]
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_AI_COLLABORATIVE_DISCIPLINE.md
+      summary: "Opus↔Sonnet collaborative norms — turn-taking, no unilateral action"
+
+    - id: B_TWO_SIDED_HANDSHAKE
+      scope: "ai-to-external-agent, tab-session-handoff"
+      situation_ids: [ai-to-external-agent, tab-session-handoff]
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_TWO_SIDED_HANDSHAKE.md
+      summary: "both sides must handshake — no one-sided boundary crossing"
+
+# ─────────────────────────────────────────────────────────────────────
+# SECTION 4 — BUILD STATUS
+# ─────────────────────────────────────────────────────────────────────
+build_status:
+  m1: "DONE (S070) — core home + schema + 9 B_* consolidation + coverage validator (advisory)"
+  m2: "TODO — AI-behavior wiring (each situation/tier → ai-behavior-spine activation language)"
+  m3: "TODO — /platform/communication dashboard (full editor: edit definitions/order/hierarchies/upload/download)"
+  m4: "TODO — Journey Doctrine (separate file JOURNEY-DOCTRINE.md)"
+
+# ─────────────────────────────────────────────────────────────────────
+# SECTION 5 — RESEARCH PATTERNS ADOPTED
+# ─────────────────────────────────────────────────────────────────────
+research_patterns:
+  - pattern: "typed message contracts (gRPC/protobuf)"
+    adopted_as: "per-situation format_template"
+  - pattern: "delivery guarantees (ACK/NACK)"
+    adopted_as: "ack_loop field"
+  - pattern: "SRE severity/audience routing"
+    adopted_as: "criticality-at-ingress + audience tiers"
+  - pattern: "interaction patterns (pub/sub / req-resp / streaming)"
+    adopted_as: "interaction_pattern field"
+  - pattern: "RACI + escalation ladders"
+    adopted_as: "who-needs-which + tone per tier"
+  - pattern: "conversation state machines"
+    adopted_as: "RULE 0 Turn Token (communication-protocol-shared.md)"
+  - pattern: "CSPS-unique 7th layer"
+    adopted_as: "defaults_countered[] + activation_language[] per situation/tier"

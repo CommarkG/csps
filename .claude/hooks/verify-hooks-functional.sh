@@ -41,6 +41,8 @@ readonly -a CRITICAL_HOOKS=(
 )
 
 # ── All declared hooks (S067 STEP 6.5=67; S069 STEP 4=68; S069 T2=69: +pre-commit-plan-coverage) ──
+# NOTE: commit-msg hook (PROTO-S069-SACRED-T2) is in tools/scripts/git-hooks/ (git hook, not .claude/)
+# verified separately: ls tools/scripts/git-hooks/commit-msg (PASS = present)
 # Sweeps all .claude/hooks/*.sh files on disk. Closes EXISTS≠DECLARED (OPIA finding).
 readonly -a DECLARED_HOOKS=(
   "pre-commit-plan-coverage.sh"

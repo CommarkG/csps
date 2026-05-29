@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+# CSPS Commit-Msg Gate — Sacred File Protection (S069 PROTO-S069-SACRED-T2)
+#
+# PURPOSE: T2 commit-time guard for .claude/ sacred files.
+# SACRED SET: .claude/settings.json · .claude/settings.local.json · .claude/core-spines/L1_CORE_*.md
+# APPROVAL TOKEN: include "SACRED-EDIT-APPROVED:<reason>" in commit message to bypass.
+#
+# WHY commit-msg stage (not pre-commit):
+#   pre-commit hook fires BEFORE the message is known.
+#   commit-msg receives the message file as argv[1] — can check both staged files AND message.
+#   git diff --cached still works at this stage (index not yet written to history).
+#
+# Installation: cp tools/scripts/git-hooks/commit-msg .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg
+# Or:           tools/scripts/setup-git-hooks.sh installs both hooks.
+
+set -euo pipefail
+
+COMMIT_MSG_FILE="${1:-}"
+[ -z "$COMMIT_MSG_FILE" ] && exit 0
+
+# Read the commit message
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE" 2>/dev/null || echo "")
+
+# Define sacred paths
+SACRED_PATTERNS=(
+  ".claude/settings.json"
+  ".claude/settings.local.json"
+  ".claude/core-spines/L1_CORE_AI.md"
+  ".claude/core-spines/L1_CORE_ARCH.md"
+  ".claude/core-spines/L1_CORE_GVRN.md"
+  ".claude/core-spines/L1_CORE_OPER.md"
+  ".claude/core-spines/L1_CORE_VALD.md"
+)
+
+# Get staged files
+STAGED=$(git diff --cached --name-only 2>/dev/null || true)
+[ -z "$STAGED" ] && exit 0
+
+# Check for sacred files in staged
+SACRED_STAGED=()
+for pattern in "${SACRED_PATTERNS[@]}"; do
+  if echo "$STAGED" | grep -qF "$pattern"; then
+    SACRED_STAGED+=("$pattern")
+  fi
+done
+
+# No sacred files staged → pass
+[ ${#SACRED_STAGED[@]} -eq 0 ] && exit 0
+
+# Sacred file staged — check for approval token
+if echo "$COMMIT_MSG" | grep -q "SACRED-EDIT-APPROVED:"; then
+  # Token present → pass (deliberate edit)
+  REASON=$(echo "$COMMIT_MSG" | grep -o "SACRED-EDIT-APPROVED:[^)\"]*" | head -1)
+  echo "[sacred-t2] PASS: sacred file edit approved — $REASON" >&2
+  exit 0
+fi
+
+# No token → BLOCK
+echo "[sacred-t2] BLOCKING: Sacred .claude/ file staged without approval token:" >&2
+for f in "${SACRED_STAGED[@]}"; do
+  echo "  🔒 $f" >&2
+done
+echo "" >&2
+echo "To approve: add 'SACRED-EDIT-APPROVED:<your-reason>' to the commit message." >&2
+echo "Example: git commit -m 'fix: update S069 SACRED-EDIT-APPROVED:add new hook registration'" >&2
+echo "" >&2
+echo "Sacred set: .claude/settings.json · .claude/settings.local.json · .claude/core-spines/L1_CORE_*.md" >&2
+echo "Rationale: L1 CORE spines are SEALED (P-ARCH-028); settings.json is CONSTITUTIONAL (C12)." >&2
+exit 2

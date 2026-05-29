@@ -13,6 +13,7 @@ type: vault
 diataxis_type: reference
 protection_level: archival
 status: vaulted
+evidence_block_ref: "Vaulted per CONCEPT_LOAD discipline (external content → AI L2 + VAULT_DEFER); absorption decisions recorded in sibling INDEX.md; Governor S071 Turn 9 ratified Option-1 (vault + small RZF-LATEST v1.1 amendment)"
 core_spine: AI
 core_spines: [AI, GVRN]
 schema_anchor: vault_files
@@ -21,7 +22,7 @@ session: S071
 owner: group:finky
 authored_by: external-source (pasted by Governor)
 lifecycle: production
-lifecycle_state: archived
+lifecycle_state: closed
 inherits_from: "RZF-LATEST.md v1.0 (the doctrine this prompt proposed refining)"
 links:
   - { rel: index, href: ./INDEX.md }

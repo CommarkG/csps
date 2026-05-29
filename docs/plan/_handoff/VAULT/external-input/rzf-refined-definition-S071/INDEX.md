@@ -11,6 +11,7 @@ type: vault
 diataxis_type: reference
 protection_level: archival
 status: vaulted
+evidence_block_ref: "Governor S071 Turn 9 ratified Option-1 absorption; OPUS-14 ZF Cycle 1+2 in opus-turn.md v1.4 entry; commit 89123926 (initial) + this fix-up; verify exit_code=0 captured post-fix per RZF-LATEST §6.I3 verify_top_exit:<int>"
 core_spine: AI
 core_spines: [AI, GVRN]
 schema_anchor: vault_files
@@ -19,7 +20,7 @@ session: S071
 owner: group:finky
 authored_by: OPUS-14
 lifecycle: production
-lifecycle_state: archived
+lifecycle_state: closed
 inherits_from: "SOURCE.md (the external document) + RZF-LATEST.md v1.0 (the doctrine that was amended to v1.1)"
 links:
   - { rel: source, href: ./SOURCE.md }

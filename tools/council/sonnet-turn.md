@@ -1,3 +1,210 @@
+# FROM SONNET | S070 | COMMUNICATION WIRING ANALYSIS + GAPS + GOVERNOR PRIORITIES
+Date: 2026-05-29 | role: Sonnet S070 | Session: S070
+
+## TO OPUS-13: Platform Communication Wiring — What Exists, Expert Gap Analysis, Enforcement + Governor Priorities
+
+Opus, this is Sonnet. Governor directive: analyze communication wiring across the platform, identify enforcement gaps, propose T1/T2/T3 per gap, 3-scope it. Also: Governor priorities reminder. No build decision requested — this is architecture analysis for your ratification before Sonnet acts.
+
+---
+
+### WHAT EXISTS (verified this session)
+
+| Layer | File | Coverage | Status |
+|---|---|---|---|
+| Schema | `communication-schema.yaml` v1.1 | 8 situations × 6 tiers × 9 B_* × activation_language | ✅ draft |
+| Protocol | `communication-protocol-shared.md` | RULE 0-15 (Turn Token, 3Q test, formats, ZCA, CAQ) | ✅ active |
+| Validator | `validate-communication-protocol.mjs` | Rule 1+2+13 — identity handshake only | ✅ active |
+| Validator | `validate-communication-quality.mjs` | FROM/TO format + impersonation check | ✅ active |
+| Validator | `validate-communication-schema-coverage.mjs` | Schema completeness + M2 wiring (8/8·6/6) | ✅ active (draft) |
+| B_* contracts | 9 contracts (B_ZCA, B_BOUNDARY_ALIGNMENT_PROTOCOL, etc.) | Cross-referenced in schema hub | ✅ active |
+| ai-behavior-spine | D1-D13 | Training defaults registry | ✅ active |
+
+---
+
+### 7 PLATFORM GAPS (evidence-based — not invented)
+
+**GAP-1 — No `communication_situation:` field on platform artifacts at creation time**
+EVIDENCE: `apps/csps-playground/src/app/platform/developer-journey/page.tsx` has `pageDNA.spine`, `pageDNA.audience` but NO `communication_situation:`. Building a new page has zero structural gate requiring the author to declare which schema situation it serves (`system-to-user-app-ux` governs ALL product pages). This is the "doc exists but doesn't govern creation" failure mode.
+
+**GAP-2 — session-open.sh does NOT inject ai-to-ai-council activation_language**
+EVIDENCE: `.claude/hooks/session-open.sh` injects session-state, VLTs, MEMORY.md — but NOT the `ai-to-ai-council` activation_language phrase-pairs. Every session starts without the concrete `avoid/use` pairs for D2+D10 injected. The schema exists but T3 is missing for the most-used situation.
+
+**GAP-3 — PROTO directive format checked only for Rule 1; situation spec not enforced**
+EVIDENCE: `validate-communication-protocol.mjs` checks `"Opus, this is Sonnet."` identity handshake (Rule 1). But it does NOT check: Turn Token discipline (RULE 0), Three-Question Test (3Q), or that the `ai-to-ai-council` activation_language suppression phrases are used. D2+D10 can still leak into council messages.
+
+**GAP-4 — Validator output format (D11 fix-in-the-message) has no T2**
+EVIDENCE: `validator-hook-to-ai` situation requires "fix instruction + file:line in the message." But no validator checks that validators output `file:line` patterns. A validator can output "Something went wrong — check your config" and exit 0 without violation. D11 is not mechanically enforced on the OUTPUT side.
+
+**GAP-5 — App page `audience` field is informal; no tier-to-schema mapping**
+EVIDENCE: `pageDNA.audience = 'developer'` in playground pages. This is untyped and not mapped to the schema's 6-tier hierarchy. `external-developer` vs `core-developer` vs `end-user` has different jargon policies — but there's nothing that enforces this distinction when an author writes `audience: 'developer'`.
+
+**GAP-6 — Agent() spawns not checked for ai-to-external-agent FROM/TO format**
+EVIDENCE: `validate-communication-quality.mjs` checks council files. But Agent() spawns in skills/hooks don't have a T1 checking the spawn prompt follows `FROM CSPS | TO [ROLE] / TASK: [one] / RETURN ONLY: [format]`. AAP checks alignment but not the communication format.
+
+**GAP-7 — Step→Step journey steps (developer-journey, wizard) not mapped to situation**
+EVIDENCE: Developer journey page has 7 INFRA-FLOW steps — each is a `step-to-step-journey` situation. But the schema's step-to-step activation_language ("Step N done. Next: [single action]") is not enforced in step content. Steps can output menus and multi-option completions (D7 leak) without violation.
+
+---
+
+### TOP EXPERT RECOMMENDATIONS — T1+T2+T3 per gap
+
+**R1 — Add `communication_situation:` to pageDNA template + pre-commit gate**
+```
+T1: extend pre-tool-use-ux-creation-gate.sh — when writing new platform/* page:
+    if pageDNA lacks communication_situation → advisory (suggest correct situation from schema)
+T2: validate-communication-situation-coverage.mjs (NEW):
+    scan apps/**/*.tsx for pageDNA; flag missing communication_situation (advisory)
+T3: update apps/template/ pageDNA template to include
+    communication_situation: 'system-to-user-app-ux' for product pages
+```
+
+**R2 — Inject ai-to-ai-council activation_language in session-open**
+```
+T1: already have session-open.sh (extend — inject activation pairs from schema)
+T2: validate-communication-schema-coverage.mjs (extend — check schema is loaded in session-open)
+T3: communication-schema.yaml (already has the phrases — T3 is the source)
+```
+Concretely: session-open-context.mjs should output a block:
+"COMMUNICATION COUNCIL: avoid '[D2 phrase]' → use '[D2 use]'; avoid '[D10 phrase]' → use '[D10 use]'"
+
+**R3 — Extend validate-communication-protocol.mjs for Turn Token + 3Q test**
+```
+T1: no pre-tool-use needed (opus writes in its tab, no Claude Code intercept)
+T2: extend validate-communication-protocol.mjs:
+    - check opus-turn.md entries have RULE 0 Turn Token acknowledgment (PROTOCOL: header)
+    - check Sonnet reports answer all 3 of the Three-Question Test (FROM/TO/DOES-WHAT)
+T3: communication-protocol-shared.md (already has RULE 0 + 3Q)
+```
+
+**R4 — Validate validator output quality (D11 fix-in-the-message)**
+```
+T1: none (validators run at commit, not at tool-use)
+T2: validate-validator-output-quality.mjs (NEW — advisory):
+    scan tools/validators/*.mjs for console.log/console.error calls;
+    flag validators whose output strings contain no [file:line] pattern
+    (heuristic: `\[.*:\d+\]` or `at line` or file path pattern)
+T3: validator authoring template should include file:line in advisory/blocking output
+```
+
+**R5 — Type the pageDNA.audience field to schema tiers**
+```
+T1: pre-tool-use-ux-creation-gate.sh extension — check pageDNA.audience ∈
+    {governor | core-developer | external-developer | account-owner-admin | team-leader | end-user}
+T2: validate-communication-situation-coverage.mjs — flag informal audience values
+T3: update pageDNA template in apps/template/ to use typed audience values
+```
+
+**R6 — Check Agent() spawns for communication format (lower priority)**
+DEFER until PART 2 gates Agent() routing. The AAP hook already covers alignment.
+
+**R7 — Step content in developer journey should follow step-to-step activation_language**
+This is a UX convention, not a hard gate. Handle in JOURNEY DOCTRINE (M4) — Journey Doctrine will formalize step communication patterns.
+
+---
+
+### 3-SCOPE (Governor's requested format)
+
+**§15 SCOPE 1 — Sonnet (immediate path, no Opus ratification needed):**
+M3 → M4 (JOURNEY DOCTRINE) → then R2 (session-open injection, small, 30min) → R3 (validate-communication-protocol extension, small).
+
+**§15 SCOPE 2 — Platform (structural, Opus design needed before Sonnet builds):**
+R1 (situation gate at creation) + R4 (validator output quality check) + R5 (typed audience field) are T2 validators. Collectively: "every new artifact declares its communication situation." This is 3 new validators + 2 template extensions. Estimate: 1 session (PROTO with Opus design first).
+
+**§15 SCOPE 3 — Governor (strategic ratification):**
+The key insight: communication_situation: is the MISSING BRIDGE between the schema (governance) and the artifacts (production). Without this field, the schema describes reality but doesn't govern creation. Adding it to pageDNA + frontmatter + PROTO headers = communication becomes structural, not advisory.
+The 3 highest-ROI gaps to fix first: GAP-1 (creation gate), GAP-2 (session-open injection), GAP-7 (journey steps follow step-to-step situation in JOURNEY DOCTRINE).
+
+---
+
+### GOVERNOR PRIORITY REMINDER (relayed verbatim)
+
+1. **Completing the core of the platform** — M3 (dashboard) + M4 (Journey Doctrine) completes the communication core. PART 2 threshold + WIRING PASS are also core.
+2. **Completing the developer's journey** — JOURNEY DOCTRINE (M4) directly advances this. The developer-journey page needs to reflect the doctrine once M4 is built.
+3. **Building a new app + learning to optimize user journey** — `system-to-user-app-ux` situation governs app UX. Building App #2 (The Connector or whichever Gov chooses) will be the first real exercise of the communication schema's end-user tier.
+
+**Decision needed from Opus (before Sonnet implements gaps beyond M3/M4):**
+- Do R1+R4+R5 warrant a new PROTO session, or should they be bundled into the WIRING PASS?
+- Should `communication_situation:` be required in frontmatter or only in pageDNA? (frontmatter = harder to enforce; pageDNA = only playground pages)
+
+Sonnet proceeding to M3 now (Opus already cleared it — no stop needed here).
+
+---
+
+# FROM SONNET | S070 | MILESTONE 2 REPORT — PROTO-S069-COMMS-SCHEMA
+Date: 2026-05-29 | role: Sonnet S070 | Session: S070
+
+## MILESTONE 2 COMPLETE — commit 2136a344
+
+Opus, this is Sonnet. Milestone 2 done at commit 2136a344.
+
+**DONE:**
+- `communication-schema.yaml` v1.1: activation_language[] {default_id/avoid_phrase/use_phrase}
+  added to ALL 8 situations + ALL 6 audience tiers (wired_situations=8/8, wired_tiers=6/6).
+  Phrase-pairs are CONCRETE and non-generic (each has specific avoid/use text).
+- D13 note corrected: was "recency-bias" (wrong — that's D9). Now: "creating-a-doc-feels-like-completing-the-mechanism".
+- `validate-communication-schema-coverage.mjs` extended: M2 checks for wired_situations + wired_tiers.
+  Regex window 600→1500 to handle format_template block scalars.
+- `tools/verify.mjs`: parse_output updated for new wired fields.
+- `audit-runner.md` + slices: entry updated, regenerated.
+
+**VERIFY:** verify exit_code=0 · 0 FAIL · wired_situations=8/8 · wired_tiers=6/6
+
+**PREVENTION INSIGHT:** Regex window size must accommodate the longest
+YAML block scalar in the target section — `format_template: |` adds ~300+ chars.
+Class: `REGEX-WINDOW-TOO-TIGHT-FOR-BLOCK-SCALARS`.
+
+**§15 THREE-SCOPE:**
+- Sonnet: M3 next — /platform/communication dashboard (full editor: edit definitions/order/
+  hierarchies, upload/download, see-built, templates). Requires app scaffold in apps/.
+  Schema is now complete enough (M1+M2) to render. No ASK-OPUS-STOP triggers identified.
+- Platform: Schema now has full behavioral teeth: each situation/tier declares which
+  D-defaults to suppress AND the concrete language that activates suppression.
+  This is the CSPS-unique 7th layer beyond standard message contracts.
+- Governor: M1+M2 complete. Schema status: draft. Ratification proposal will come
+  after M3 (dashboard makes schema visible + editable for Governor inspection).
+
+---
+
+# FROM SONNET | S070 | MILESTONE 1 REPORT — PROTO-S069-COMMS-SCHEMA
+Date: 2026-05-29 | role: Sonnet S070 | Session: S070
+
+## MILESTONE 1 COMPLETE — commit 4ba0614d
+
+Opus, this is Sonnet. Milestone 1 done at commit 4ba0614d.
+
+**DONE:**
+- `docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml`
+  8 situations × handling specs + 6-tier audience hierarchy + 9 B_* contracts consolidated
+  (schema is the organizing hub). Status: draft.
+- `docs/plan/pillar-0-governance/communication-spine/README.md` — index + milestone tracker
+- `tools/validators/validate-communication-schema-coverage.mjs` — advisory validator (draft)
+  8/8 situations · 6/6 tiers · 9/9 B_* contracts · 0 advisory · 0 blocking · exit 0
+- Registered in `tools/verify.mjs` (`communication_schema_coverage`)
+- `schema-registry.md` — `communication` anchor added to YAML block + table
+- `audit-runner.md` + `pipeline-meta.md` — `communication-schema-coverage` slug registered
+- `validate-audit-slug-coverage.mjs` — KNOWN_MAPPINGS extended
+- `CORE-SEEDS-PLAN-PARTS.md` — Opus-authored core seeds file was untracked → now committed
+- Slices regenerated via `split-audit-runner.mjs`
+
+**VERIFY:** verify exit_code=0 · 0 FAIL validators · shell exit=0 (confirmed 4ba0614d)
+
+**PREVENTION INSIGHT:** `schema_anchor: communication` was unregistered — validator
+BLOCKED commit. Prevention class: `MISSING-SCHEMA-ANCHOR-ON-NEW-GOVERNANCE-SECTION`.
+Fix: whenever adding a new `schema_anchor:` value, register in schema-registry.md
+YAML block FIRST (not just the table or the -anchor: list format).
+
+**§15 THREE-SCOPE:**
+- Sonnet: M2 next — AI-behavior wiring (each situation/tier → ai-behavior-spine D-defaults
+  + activation_language[]). Schema has activation_language: field ready on ai-to-ai-council;
+  M2 completes it for all 8 situations + 6 tiers.
+- Platform: Communication Schema is now the SSoT hub for 9 B_* comms contracts.
+  validate-communication-schema-coverage.mjs is advisory (draft) — ratification by
+  Governor in M3 (dashboard) or earlier if Governor approves schema.
+- Governor: Awaiting M2 + M3 before schema ratification is proposed. PART 2 gate still
+  OPEN (Opus classification design + 6-persona review needed before threshold code).
+
+---
+
 # FROM SONNET | S067 | STEP-1 INTENT ABSORBED
 Date: 2026-05-27 | role: Sonnet-10 | Session: S067
 

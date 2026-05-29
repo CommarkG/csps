@@ -35,7 +35,7 @@ lifecycle_state: active
 | File | Purpose | Status |
 |---|---|---|
 | [communication-schema.yaml](./communication-schema.yaml) | **The schema** — 8 situations × handling specs + 6-tier audience hierarchy + 9 B_* cross-refs | draft |
-| [JOURNEY-DOCTRINE.md](./JOURNEY-DOCTRINE.md) | Journey Doctrine (M4) — what makes a journey good | not started (S070 priority Y) |
+| [JOURNEY-DOCTRINE.md](../JOURNEY-DOCTRINE.md) | Journey Doctrine (M4, system-wide) — §1-§9 + 4 comms demos | draft (S070) |
 
 ---
 
@@ -57,7 +57,7 @@ lifecycle_state: active
 | **M1** | Core home + `communication-schema.yaml` (8 situations + 6-tier hierarchy) + 9 B_* consolidation + coverage validator (advisory) | ✅ DONE S070 |
 | **M2** | AI-behavior wiring — each situation/tier → ai-behavior-spine D-defaults + activation language | TODO |
 | **M3** | `/platform/communication` dashboard (full editor: definitions/order/hierarchies/upload/download/see-built/templates) | TODO |
-| **M4** | Journey Doctrine engraved + dev-journey Vercel page (editable) | TODO — separate file JOURNEY-DOCTRINE.md |
+| **M4** | Journey Doctrine engraved (`pillar-0-governance/JOURNEY-DOCTRINE.md`) + dev-journey Vercel section (editable) | ✅ DONE S070 |
 
 ---
 

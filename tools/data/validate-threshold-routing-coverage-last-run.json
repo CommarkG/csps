@@ -1,0 +1,190 @@
+{
+  "entries_checked": 234,
+  "with_4axes": 0,
+  "missing_axes": 234,
+  "advisory": 234,
+  "blocking": 0,
+  "findings": [
+    {
+      "id": "intake_2026-05-23T04-00-54-593Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T04-35-25-701Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T05-02-50-055Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T05-11-07-705Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T05-15-45-520Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T05-21-43-077Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T05-27-10-726Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T05-39-01-939Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T05-40-19-730Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T06-14-50-667Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T06-26-46-465Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T06-30-17-066Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T06-30-39-926Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T06-51-52-235Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T07-02-28-098Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T07-10-34-476Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T07-23-21-423Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T07-26-39-495Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T07-31-34-039Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    },
+    {
+      "id": "intake_2026-05-23T07-36-24-666Z",
+      "missing": [
+        "scope",
+        "intent",
+        "mandate_relation",
+        "route"
+      ]
+    }
+  ],
+  "ran_at": "2026-05-29T10:39:07.072Z"
+}

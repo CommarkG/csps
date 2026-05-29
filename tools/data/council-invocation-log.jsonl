@@ -1,0 +1,4 @@
+{"ts":"2026-05-27T18:40:24.276Z","route":"INVOKE:consolidation-expert","skill":"consolidation-expert","triggered_by":["consolidation-expert"],"source":"cli","content":"check-existing"}
+{"ts":"2026-05-27T18:40:24.381Z","route":"","skill":"balance-expert","triggered_by":["over-engineering","balance","too complex"],"score":3,"source":"cli"}
+{"ts":"2026-05-27T18:58:37.392Z","route":"INVOKE:consolidation-expert","skill":"consolidation-expert","triggered_by":["consolidation-expert"],"source":"cli","content":"check-existing"}
+{"ts":"2026-05-27T18:58:37.501Z","route":"","skill":"balance-expert","triggered_by":["over-engineering","balance","too complex"],"score":3,"source":"cli"}

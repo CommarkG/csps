@@ -15,7 +15,7 @@ impl_status: swift-implemented
 core_spine: GVRN
 core_spines: [GVRN, VALD, AI]
 schema_anchor: pillar_0_governance_leaves
-version: "1.0"
+version: "1.1"
 session: S071
 owner: group:finky
 authored_by: OPUS-15
@@ -25,6 +25,7 @@ ns_quality: [core-first, synergetic]
 ns_path: "this → GVRN spine → North Star (evidence-based completion)"
 context_question: "Before any DONE/RATIFIED/COMPLETE claim: does THIS turn cite a re-run of verify whose top-level $? = 0, and does Cycle 2+ name the specific files it re-examined?"
 context_quote: "The cost of ONE false-clean is far greater than the cost of N validator runs. Mechanical re-execution is the only proof that holds. — CSP S333"
+context_quote_sibling: "Iteration is a virtue until it becomes avoidance of closure. RZF is the discipline that preserves improvement without sacrificing completion. — external-research absorption S071 Turn 9 (vaulted at _handoff/VAULT/external-input/rzf-refined-definition-S071/)"
 inherits_from: "zero-findings-discipline.md (long-form canon) + B_RZF (contract) + zf-mandate-protocol + EP-008 nominal-rzf + P-META-006 (RZF principle) + P-META-028 cornerstone (context-refined communication)"
 links:
   - { rel: long-form, href: ./zero-findings-discipline.md }
@@ -40,7 +41,8 @@ links:
 
 ## 1 · Mechanics (the discipline)
 - **Cycle.** A ZF cycle is one pass of "what did I miss / what is wrong or incomplete here?" Each finding is named, with file/line if applicable.
-- **Termination.** The cycle terminates only when **0 new findings**. A cycle that *finds something* is non-terminal; the next cycle is mandatory.
+- **Classify-before-fix (v1.1 — external absorption).** For each finding, classify severity at surface BEFORE deciding fix-now-vs-vault: `BLOCKING` (gates the current scope — fix in this cycle) · `ADVISORY` (warn-level — note in PREVENTION, proceed) · `DEFERRABLE-to-vault-pending` (real value, wrong cycle — route to `tools/data/vault-pending.yaml` with traceable context). Skipping classification = scatter; everything-treated-as-blocker = closure failure; everything-treated-as-advisory = nominal-RZF.
+- **Termination.** The cycle terminates only when **0 new findings** at the BLOCKING level. A cycle that *finds a BLOCKING something* is non-terminal; the next cycle is mandatory. ADVISORY + DEFERRABLE findings do NOT block termination — they are noted/vaulted.
 - **Cycle 1 / Cycle 2 rule.** Cycle 1 surfaces findings (or none). Cycle 2+ **re-examines Cycle-1 areas by NAME** (files, validators, registries) and confirms 0 new. *"Cycle 2: 0 new findings"* without naming areas is **nominal** — not real (EP-008).
 - **Re-run is the proof.** Every DONE/RATIFIED/COMPLETE claim cites a re-run of `node tools/verify.mjs --skip-install` whose **top-level `$?` = 0** in THIS turn. The per-validator JSON `exit_code: 0` lines are not the top-level — checking only those is the recurring trap.
 - **Cycle count is measurement, not target.** N cycles is data about how iteration-rich the work was. A turn that genuinely has 0 new after 2 cycles is DONE.
@@ -49,13 +51,24 @@ links:
 ## 2 · CEC — the positive companion
 CEC (Complete Extraction Cycle) runs after any significant finding/ratification: "where does the essence of this enhance other platform elements?" — walk until 0 new applications. CEC + RZF together convert *"I think it's done"* into *"evidence shows it's done + maximally extracted."*
 
-## 3 · The failure mode (named) — EP-008 Nominal-RZF
+## 3 · Failure modes (named — taxonomy, v1.1)
+RZF has two parent failure-mode classes and one named subclass. Each is a separate diagnostic — the prevention surface differs per class.
+
+### 3.A · FCC — False Completion Claim (parent class · v1.1)
+A `DONE / READY / COMPLETE / RATIFIED / SEALED` claim made without this-session evidence sufficient to support the scope claimed. Broader than FZF/nominal-RZF: covers cases where the claim isn't strictly a ZF assertion but is still un-evidenced (e.g., *"deployed"* without verifying the URL responds, *"feature works"* without testing). **Inaugural instance:** the S070 M3 dashboard-404 incident (claimed M3 DONE before WebFetch confirmed `/platform/communication` rendered). Prevention surface: the post-edit-verify trap (§5) + `verify_top_exit:<int>` (§6.I3) + sealed-milestone OPIA (the director's verification check).
+
+### 3.B · EP-008 Nominal-RZF (subclass of FCC · CSPS-native)
 Claiming ZF/PASS without this-session re-run evidence — narrative assertion instead of evidence. Forms it takes:
 - "Cycle 2: 0 new findings" without naming areas (vague).
 - Citing per-validator `exit_code:0` while top-level `$?` is non-zero.
 - Re-using memory of an earlier green run as proof.
 - Editing a CHECKPOINT *after* the verify run, then claiming "verify=0" (the CHECKPOINT change itself can introduce a RED).
 - Timestamp-touching or `verify --bypass` to manufacture a green.
+
+Prevention surface: `validate-zf-cycle-format.mjs` (Cycle 2+ requires named files with extensions) + `validate-rzf-evidence.mjs` + `validate-nominal-rzf-detector.mjs` (planned M1 sibling).
+
+### 3.C · PSP — Premature Satisfaction Point (parent class · v1.1, external absorption)
+Claiming termination by consulting ONE signal when the discipline mandates consulting multiple — declaring "done" because one indicator went green while other required indicators were never checked. Distinct from FCC (FCC = no evidence at all; PSP = partial evidence misread as complete). **Inaugural instance:** S014 single-source-navigation reminder (`#4` in this session's turn-discipline header) — *"Consulting ONLY session-state = satisfaction point"* — the named failure mode where a consequential decision consulted session-state but skipped PENDING VLTs / open-plan-levels / PE scoring. Prevention surface: the SINGLE-SOURCE NAVIGATION WARNING in every turn-discipline header + the ALL-FOUR-MUST-AGREE rule for consequential decisions.
 
 ## 4 · Active enforcement (validators)
 - `validate-zf-cycle-format.mjs` — Cycle 2+ must name specific files (extension required by the regex, e.g., `.md / .mjs / .yaml`).
@@ -87,4 +100,17 @@ Status: ZF ACHIEVED.
 verify_top_exit: <$? of `node tools/verify.mjs --skip-install`>
 ```
 
-— OPUS-15 (S071) · authored 2026-05-29
+## 8 · v1.1 acknowledgment (S071 Turn 9 — external absorption)
+v1.1 absorbed 3 named items + 1 cycle-mechanic refinement from external research vaulted at [_handoff/VAULT/external-input/rzf-refined-definition-S071/](../_handoff/VAULT/external-input/rzf-refined-definition-S071/INDEX.md):
+1. **PSP — Premature Satisfaction Point** (new parent class — §3.C)
+2. **FCC — False Completion Claim** (new parent class — §3.A; EP-008 nominal-RZF is now its subclass §3.B)
+3. **Iteration-vs-closure aphorism** (sibling `context_quote:` in frontmatter)
+4. **Explicit classify-before-fix step** (§1 mechanics — BLOCKING / ADVISORY / DEFERRABLE-to-vault-pending)
+
+Rejected (preserved decision-of-record in [INDEX.md](../_handoff/VAULT/external-input/rzf-refined-definition-S071/INDEX.md) §REJECTED): the external doc's RZF acronym ("Repeated" — collides with CSPS canonical "Real") · CEC (already CSPS-native) · Material/Non-Material (already BLOCKING/ADVISORY platform-wide) · Declared-Review-Scope/Named-Re-Examination (already in §1 + `validate-zf-cycle-format`) · Save-and-Schedule (already VAULT_DEFER + `vault-pending.yaml` + WIRING PASS) · `completion_evidence:` YAML block (duplicate of ZF block + `verify_top_exit:<int>`).
+
+CSPS-native vocabulary preserved (no RZF acronym reassignment; no parallel taxonomies). S071 milestone scope unaffected — v1.1 is additive.
+
+— OPUS-14 (S071 v1.1 amendment · 2026-05-30)
+
+— OPUS-15 (S071 v1.0 author) · authored 2026-05-29

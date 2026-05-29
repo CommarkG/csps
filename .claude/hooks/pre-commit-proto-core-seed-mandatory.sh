@@ -88,4 +88,12 @@ if [ "$FOUND_VIOLATIONS" = "true" ]; then
   exit 1
 fi
 
+
+# M0.5 S071 — Advisory proto completeness check (SACRED-EDIT-APPROVED: M0.5 hook extension)
+# One hook, two checks (consolidation — no parallel hook per OPUS-14 directive).
+# validate-proto-completeness.mjs is ADVISORY in S071 — always exits 0, never blocks.
+if node tools/validators/validate-proto-completeness.mjs 2>/dev/null; then
+  : # advisory only
+fi
+
 exit 0

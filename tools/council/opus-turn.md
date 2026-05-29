@@ -18,7 +18,7 @@ Sonnet, this is Opus-14. S071 BUILD phase, v1.2 single-entry directive. Governor
 | Artifact | Path | Status (this-turn read) | S071 disposition |
 |---|---|---|---|
 | RZF-LATEST.md | [docs/plan/pillar-0-governance/RZF-LATEST.md](docs/plan/pillar-0-governance/RZF-LATEST.md) | `ratified` ✓ | **Active S071** — applies to M1+ ZF blocks (`verify_top_exit:<int>`, post-edit-verify, file-extension citation) |
-| AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md | [docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md](docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md) | `draft` — **OPUS-14 recommends HOLD to S072 (Governor decision pending)** | M5 builds OBSERVE+AGGREGATE only; ADJUST/INJECT/MEASURE + `/platform/ai-profile` page → S072. Reasoning at the end. |
+| AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md | [docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md](docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md) | `draft` — **HOLD to S072 (Governor S071 Turn 5)** | M5 builds OBSERVE+AGGREGATE only; ADJUST/INJECT/MEASURE + `/platform/ai-profile` page → S072 alongside ONE-SOURCE (coherent feedback-loop + CSR double-feature). |
 | ONE-SOURCE-OF-DOCTRINE.md | [docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md](docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md) | `draft` — **HOLD to S072 (Governor S071 Turn 4)** | M10 → queued S072. PART 2 (M6–M9) proceeds with the **10-class** table; no `creation-request` 11th class in S071; no `/platform/canonical-register` page in S071. M2 tier-vocabulary canonical badge → S072. |
 
 ## S071 SCOPE TRIM (Governor S071 Turn 4 — apply to all milestones below)
@@ -27,7 +27,7 @@ The milestone bodies M1–M10 below are the **full S072-ready spec**. For S071 e
 - **M2** — drop the `/platform/communication` link to `/platform/canonical-register` (target page doesn't exist this session). Keep the ai-profile placeholder link only if Governor ratifies Q2.
 - **M3** — drop the `/platform/developer-journey` "Journey Doctrine ↔ One-Source" cross-ref (CSR doesn't exist this session). The page update task itself defers to S072.
 - **M4** — drop the `creation-request` new INVOKE class. Build the generic INVOKE plumbing + persona criteria + weekly audit as specified.
-- **M5** — drop ADJUST/INJECT/MEASURE stages, drop `profile-to-activation-language.mjs`, drop `/platform/ai-profile` page. Build OBSERVE + AGGREGATE only: mandate `audience_tier` on `ai-behavior-signals.jsonl` events + backfill recent events + CIE/PE audit script. *(Tentative — pending Governor confirm on Q2; see end of directive.)*
+- **M5** — drop ADJUST/INJECT/MEASURE stages, drop `profile-to-activation-language.mjs`, drop `/platform/ai-profile` page. Build OBSERVE + AGGREGATE only: mandate `audience_tier` on `ai-behavior-signals.jsonl` events + backfill recent events + CIE/PE audit script. **Locked by Governor S071 Turn 5.**
 - **M7** — keep the **10-class** table (no `creation-request` 11th row). Everything else in M7 stands.
 - **M10 — REMOVED FROM S071.** Queue as S072 milestone (Canonical Surface Register + creation-time gates + `/platform/canonical-register` page).
 - The S071 sequence is therefore: PHASE 0 ✓ → M0.5 ✓ → M1 → M2 (trimmed) → M3 (trimmed) → M4 (trimmed) → M5 (trimmed) → M6 → M7 (10-class) → M8 → M9 SEAL.
@@ -139,10 +139,12 @@ Carry-forward: CIP unblocked → S072 proto, NOT in S071.
 - Q1 or Q2 still pending when a gated milestone is about to commit a gated artifact.
 - Any milestone reveals an undefined decision.
 
-## GOVERNOR DECISIONS (S071 Turn 4) + 1 remaining open item
-- **Q1 (ONE-SOURCE) = HOLD to S072.** M10 + creation-request 11th class + canonical-register page + tier-vocabulary canonical badge → all S072. SCOPE TRIM section above applies.
-- **Q2 (AI-PROFILING) = OPUS-14 RECOMMENDS HOLD to S072 — Governor final decision pending.** Reasoning: (a) PART 2 SEAL is the critical S071 deliverable — protect execution capacity. (b) Q1 already held to S072; pairing Q2 makes S072 a coherent "feedback-loop + CSR" double-feature whose wirings compose. (c) Building OBSERVE+AGGREGATE in M5 *now* lets S072 ADJUST/INJECT proposals be evidence-grounded (a session of real signals beats speculative pairs). (d) Balance-expert / B_HUMBLE: governance built faster than validated = the recurring failure mode.
-- **Q3 (route names) = APPROVED.** `/platform/ai-profile` + `/platform/canonical-register` locked for whenever they ship. No page actually built in S071 if Q2 also holds.
+## GOVERNOR DECISIONS — LOCKED (S071 Turn 4 + Turn 5)
+- **Q1 (ONE-SOURCE) = HOLD to S072.** M10 + creation-request 11th class + canonical-register page + tier-vocabulary canonical badge → all S072.
+- **Q2 (AI-PROFILING) = HOLD to S072.** M5 builds OBSERVE+AGGREGATE only this session. ADJUST/INJECT/MEASURE + `/platform/ai-profile` page → S072 alongside ONE-SOURCE. Reasoning (Governor-confirmed): protect PART 2 SEAL execution capacity · pair with Q1 for coherent S072 double-feature · accumulate real signals before phrase-pair proposals · B_HUMBLE/balance.
+- **Q3 (route names) = APPROVED.** `/platform/ai-profile` + `/platform/canonical-register` locked for S072 shipping. No new pages built in S071.
+
+S071 scope is now fully locked. No further Governor gates for the S071 sequence — Sonnet executes M1 → M9 SEAL per SCOPE TRIM.
 
 ## CHANNEL-INTEGRITY FINDING (surfaced separately to Governor)
 Between Turn 1 and Turn 4 (this turn), my v1.0 + v1.1 edits to `tools/council/opus-turn.md` did NOT reach HEAD — last commit on the file is `3e24d15f` (S070 era). Sonnet executed PHASE 0 + M0.5 from in-memory context, so the build is correct, but the canonical channel was stale. This v1.2 entry re-establishes the channel. **Provisional PREVENTION class:** `OPUS-DIRECTIVE-NOT-REACHING-HEAD` — root cause to be investigated (post-stop revert? stash interaction? Sonnet's commit cycle excluding opus-turn.md?). Routed to vlt-S071-opus-channel-integrity.

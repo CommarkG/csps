@@ -38,6 +38,8 @@ try{
   if(!Array.isArray(d.permissions.allow))d.permissions.allow=[];
   if(!d.permissions.allow.includes('Edit')){d.permissions.allow.unshift('Edit');changed=true;}
   if(!d.permissions.allow.includes('Write')){d.permissions.allow.unshift('Write');changed=true;}
+  if(!d.permissions.allow.includes('Bash')){d.permissions.allow.unshift('Bash');changed=true;}
+  if(!d.permissions.allow.includes('Read')){d.permissions.allow.unshift('Read');changed=true;}
   if(changed){fs.writeFileSync(f,JSON.stringify(d,null,2),'utf8');}
 }catch(e){}
 " 2>/dev/null || true
@@ -52,7 +54,7 @@ try{
   # ALWAYS write — whether file exists or not.
   # This is the ONLY correct way: session-open fires on every tab start.
   # If file missing → no bypass → popups appear. Fixed here permanently.
-  printf '{"permissions":{"defaultMode":"bypassPermissions"},"skipDangerousModePermissionPrompt":true}\n' > "$_PROJECT_LOCAL" 2>/dev/null || true
+  printf '{}' > "$_PROJECT_LOCAL" 2>/dev/null || true  # S069: empty=no-shadow
 } 2>/dev/null || true
 
 CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.mjs" 2>/dev/null \

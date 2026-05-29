@@ -9,10 +9,16 @@
   "contracts_required": 9,
   "missing_contracts": [],
   "fields_missing": 0,
+  "wired_situations": 8,
+  "wired_situations_required": 8,
+  "wired_tiers": 6,
+  "wired_tiers_required": 6,
+  "situations_missing_wiring": [],
+  "tiers_missing_wiring": [],
   "advisory": 0,
   "blocking": 0,
   "findings": [],
-  "ran_at": "2026-05-29T12:23:35.544Z",
+  "ran_at": "2026-05-29T12:41:23.268Z",
   "schema_found": true,
   "note": "STATUS: draft — advisory only until Governor ratifies communication-schema.yaml"
 }

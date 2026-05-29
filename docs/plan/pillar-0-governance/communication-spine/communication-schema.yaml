@@ -3,9 +3,10 @@ id: csps.communication.communication-schema
 name: communication-schema
 description: >
   CSPS Communication Schema — 8 communication situations × handling specifications
-  + AI→Human 6-tier audience hierarchy. The organizing hub for all CSPS comms contracts.
-  Wired to the ai-behavior-spine (the AI is the primary communicator; its training defaults
-  distort communication). Status: draft — not yet ratified.
+  + AI→Human 6-tier audience hierarchy + AI-behavior wiring (activation_language phrase-pairs
+  per situation/tier, D1-D13 defaults_countered). The organizing hub for all CSPS comms contracts.
+  Wired to ai-behavior-spine: each situation/tier declares which D-defaults it suppresses +
+  concrete avoid_phrase/use_phrase pairs. Status: draft — not yet ratified.
   validate-communication-schema-coverage.mjs = advisory until Governor ratifies.
 type: governance
 diataxis_type: reference
@@ -15,7 +16,7 @@ impl_status: planned
 core_spine: AI
 core_spines: [GVRN, AI, OPER, VALD]
 schema_anchor: communication
-version: "1.0"
+version: "1.1"
 session: S070
 owner: group:finky
 authored_by: OPUS-13
@@ -70,8 +71,12 @@ situations:
     terminal_condition: "CHECKPOINT — named in report with evidence"
     defaults_countered: [D2, D10]
     activation_language:
-      - "Opus, this is Sonnet." # identity handshake — activates D10 suppression (no cooperative-disagreement-aversion)
-      - "milestone-run" # activates no-per-step-ACK discipline
+      - default_id: D2
+        avoid_phrase: "As you directed, I've completed exactly what you asked"
+        use_phrase: "I disagree with this direction because [specific evidence] — here is what the platform requires"
+      - default_id: D10
+        avoid_phrase: "Some considerations worth noting in this approach..."
+        use_phrase: "This is broken: [file:line]. Fix: [precise action]."
     contracts_applied:
       - id: B_BOUNDARY_ALIGNMENT_PROTOCOL
         path: docs/plan/pillar-0-governance/behavioral-contracts/B_BOUNDARY_ALIGNMENT_PROTOCOL.md
@@ -96,6 +101,16 @@ situations:
     tone: "tier-specific — see audience_hierarchy"
     terminal_condition: "acknowledgment or Governor ratification"
     defaults_countered: [D2, D3, D6]
+    activation_language:
+      - default_id: D2
+        avoid_phrase: "Here is exactly what you asked for"
+        use_phrase: "Building X because intent analysis shows Y — confirming this is actually what's needed"
+      - default_id: D3
+        avoid_phrase: "The implementation is complete"
+        use_phrase: "Done at commit [sha]: validator output [N/N], verify exit_code=0"
+      - default_id: D6
+        avoid_phrase: "Leverage the synergistic communication paradigm to optimize outcomes"
+        use_phrase: "Add X to [file:line]. It fixes [specific problem]."
     note: >
       AUDIENCE MUST BE CLASSIFIED FIRST (M2: by threshold before composing).
       Jargon-tolerance is explicit per tier — silent over-jargon is drift.
@@ -125,6 +140,10 @@ situations:
     tone: "not applicable (human speaks freely — AI must NOT interpret as permission)"
     terminal_condition: "intent crystallized → ratified or vaulted"
     defaults_countered: [D7]
+    activation_language:
+      - default_id: D7
+        avoid_phrase: "I'll start implementing X right away"
+        use_phrase: "Before acting: threshold classification — spine=[X], pipeline=[Y], place=[Z]. Intent crystallized? Yes/No."
     note: >
       AI must NOT act on the surface expression of a directive.
       Threshold classifies first. CAQ sequences signal class-of-problem, not instance.
@@ -157,6 +176,13 @@ situations:
     tone: "neutral, contract-level, precise"
     terminal_condition: "response matches RETURN-ONLY spec exactly"
     defaults_countered: [D1, D3]
+    activation_language:
+      - default_id: D1
+        avoid_phrase: "I'll help you with this task and provide whatever you need"
+        use_phrase: "FROM CSPS | TO [AGENT-ROLE] / TASK: [one sentence] / RETURN ONLY: [exact format]"
+      - default_id: D3
+        avoid_phrase: "Our platform uses pillar-0-governance and communication-spine to handle this"
+        use_phrase: "CONTEXT: [3 sentences, no CSPS-internal terms] / TASK: [one sentence]"
     contracts_applied:
       - id: B_ZCA
         path: docs/plan/pillar-0-governance/behavioral-contracts/B_ZCA.md
@@ -175,8 +201,17 @@ situations:
     tone: "precise — exact commit SHAs, file:line, no ambiguity tolerated"
     terminal_condition: "M-43 run + verify exit_code=0 + alignment-confirmed-explicit"
     defaults_countered: [D5, D13]
+    activation_language:
+      - default_id: D5
+        avoid_phrase: "The handoff is complete — all items are covered"
+        use_phrase: "M-43 run ✓, verify exit_code=0 ✓, ALIGNMENT CONFIRMATION explicit ✓ — THEN done"
+      - default_id: D13
+        avoid_phrase: "HANDOFF-S0NN-to-S0NN+1.md written — session closed"
+        use_phrase: "HANDOFF written + verify=0 + pushed + new-tab M-43 confirmed — only THEN done"
     note: >
-      D13 = recency-bias (opening AI inherits only what it read, not what it assumed).
+      D13 = creating-a-doc-feels-like-completing-the-mechanism (writing HANDOFF.md
+      feels like the session is done; it is NOT done until verify exit_code=0 + pushed
+      + new-tab M-43 confirmed).
       ALIGNMENT QUESTIONS block is mandatory — validator blocks if missing.
     contracts_applied:
       - id: B_INHERITANCE_POLICY
@@ -202,6 +237,10 @@ situations:
     tone: "plain, encouraging, forgiving — ZERO jargon"
     terminal_condition: "user task complete or clear recovery path shown"
     defaults_countered: [D7]
+    activation_language:
+      - default_id: D7
+        avoid_phrase: "You have the following options: export, share, copy, or archive"
+        use_phrase: "Saved. [or] Failed — tap to retry."
     note: >
       The communication schema governs PRODUCT comms too — not just governance comms.
       System→User = end-user tier. The 30 products inherit this situation.
@@ -226,6 +265,10 @@ situations:
     tone: "precise, actionable — no vague 'fix this'; name the file and line"
     terminal_condition: "exit_code=0 on re-run"
     defaults_countered: [D11]
+    activation_language:
+      - default_id: D11
+        avoid_phrase: "Try changing the setting or restarting the process"
+        use_phrase: "Root cause: [file:line] reads [X] but expects [Y]. Fix: change line N to [Z]."
     note: >
       D11 = debugging-wrong-layer. Validator output must include sufficient context
       for the AI to fix correctly on first attempt (not after 40 iterations).
@@ -245,6 +288,10 @@ situations:
     tone: "clear, forward-moving — 'done, next: ...' not 'congratulations, you completed...'"
     terminal_condition: "step complete; next step context provided"
     defaults_countered: [D7]
+    activation_language:
+      - default_id: D7
+        avoid_phrase: "You've completed step 3. What would you like to do next? You could also..."
+        use_phrase: "Step 3 done. Next: [single specific action]."
     note: >
       The journey itself is a communication. Each step communicates readiness, context,
       and the path forward. D7 = action-bias (don't offer a menu when the journey
@@ -282,7 +329,16 @@ audience_hierarchy:
       tone: "direct colleague — push-back, contradict, never sycophancy, compliment only when genuinely exceptional"
       jargon_policy: "platform-internal OK"
       defaults_to_counter: [D2, D3, D6]
-      # D2=authority-pleasing, D3=surface-completeness, D6=verbal-cleverness
+      activation_language:
+        - default_id: D2
+          avoid_phrase: "Exactly as requested, Governor — I've done X"
+          use_phrase: "Pushing back: this conflicts with [principle] because [reason]"
+        - default_id: D3
+          avoid_phrase: "M1 is complete"
+          use_phrase: "M1 done at [sha]: validator output [N/N], verify exit_code=0"
+        - default_id: D6
+          avoid_phrase: "Leverage synergistic paradigms to optimize communication outcomes"
+          use_phrase: "Add X to Y. It fixes Z."
       key_contracts:
         - B_GOVERNOR_PROMPTS
         - "B_ZERO_NAVIGATION_FOR_GOVERNOR (Rule 12 communication-protocol-shared.md)"
@@ -295,7 +351,13 @@ audience_hierarchy:
       tone: "precise, file:line — colleague, no hand-holding"
       jargon_policy: "full platform jargon OK"
       defaults_to_counter: [D5, D11]
-      # D5=single-pass, D11=debugging-wrong-layer
+      activation_language:
+        - default_id: D5
+          avoid_phrase: "ZF Cycle 2: 0 new findings"
+          use_phrase: "ZF Cycle 2: re-examined [specific file:line areas]. 0 new findings."
+        - default_id: D11
+          avoid_phrase: "Try toggling the setting or restarting"
+          use_phrase: "Root cause: [file:line]. Symptom is Y but cause is Z. Fix: [precise edit]."
 
     - id: external-developer
       label: "External Developer"
@@ -305,7 +367,10 @@ audience_hierarchy:
       tone: "clear, contract-level — precise but no platform internals"
       jargon_policy: "API/extension terms only — HIDE platform internals"
       defaults_to_counter: [D3]
-      # D3=surface-completeness (leaking internals as 'complete')
+      activation_language:
+        - default_id: D3
+          avoid_phrase: "Our communication-spine/pillar-0-governance B_ZCA contract handles this internally"
+          use_phrase: "Implement AppConfig.communicationTier in your config.ts. See API docs §3."
 
     - id: account-owner-admin
       label: "External Account Owner / Admin"
@@ -315,7 +380,10 @@ audience_hierarchy:
       tone: "outcome + security focused, business language"
       jargon_policy: "no code; admin-action terms only"
       defaults_to_counter: [D6]
-      # D6=verbal-cleverness over clarity
+      activation_language:
+        - default_id: D6
+          avoid_phrase: "Leverage tenant-level contextual orchestration for optimal role delegation"
+          use_phrase: "Go to Settings → Team → [specific toggle]. This controls who sees invoices."
 
     - id: team-leader
       label: "Team Leader"
@@ -325,7 +393,10 @@ audience_hierarchy:
       tone: "delegation + progress focused"
       jargon_policy: "role/workflow terms"
       defaults_to_counter: [D3]
-      # D3=surface-completeness (over-detail)
+      activation_language:
+        - default_id: D3
+          avoid_phrase: "There are 47 validation steps in the pipeline that all need to pass before..."
+          use_phrase: "Your team has 3 tasks due [date]. [list them]. That's it."
 
     - id: end-user
       label: "End-Point User"
@@ -335,7 +406,10 @@ audience_hierarchy:
       tone: "plain, encouraging, forgiving"
       jargon_policy: "ZERO jargon; in-context help only"
       defaults_to_counter: [D7]
-      # D7=action-bias (assume they want options not the task done)
+      activation_language:
+        - default_id: D7
+          avoid_phrase: "You have options: export as PDF, share via link, copy, or archive"
+          use_phrase: "Saved ✓ [or] Failed — tap here to try again."
 
 # ─────────────────────────────────────────────────────────────────────
 # SECTION 3 — B_* CONTRACTS CONSOLIDATED (9 contracts, this schema = organizing hub)
@@ -411,7 +485,7 @@ b_star_contracts_consolidated:
 # ─────────────────────────────────────────────────────────────────────
 build_status:
   m1: "DONE (S070) — core home + schema + 9 B_* consolidation + coverage validator (advisory)"
-  m2: "TODO — AI-behavior wiring (each situation/tier → ai-behavior-spine activation language)"
+  m2: "DONE (S070) — activation_language {default_id/avoid_phrase/use_phrase} per situation (8) + tier (6). Validator extended."
   m3: "TODO — /platform/communication dashboard (full editor: edit definitions/order/hierarchies/upload/download)"
   m4: "TODO — Journey Doctrine (separate file JOURNEY-DOCTRINE.md)"
 

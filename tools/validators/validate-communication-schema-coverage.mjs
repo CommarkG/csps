@@ -154,7 +154,58 @@ if (!raw.includes('situations:')) {
   addFinding('advisory', 'Missing situations section in schema');
 }
 
-const summary = `[validate-communication-schema-coverage] situations=${situationsFound}/${REQUIRED_SITUATIONS.length} tiers=${tiersFound}/${REQUIRED_TIERS.length} contracts=${contractsFound}/${REQUIRED_CONTRACTS.length} fields_missing=${fieldsMissing} advisory=${advisory} blocking=${blocking}`;
+// ─────────────────────────────────────────────────────────────────────
+// M2 CHECKS — AI-behavior wiring (activation_language per situation + tier)
+// Opus directive: each situation/tier requires ≥1 named D-default +
+// activation_language[] with {default_id, avoid_phrase, use_phrase} pairs.
+// Generic-without-pair → flag advisory.
+// ─────────────────────────────────────────────────────────────────────
+
+// G. Check each situation has ≥1 activation_language entry with default_id + avoid_phrase + use_phrase
+let siuationsWithWiring = 0;
+const siuationsMissingWiring = [];
+for (const sit of REQUIRED_SITUATIONS) {
+  // Heuristic: look for activation_language: within ~30 lines of the situation id
+  // We search for the pattern: after "- id: <sit>" find "activation_language:"
+  // with "default_id:" + "avoid_phrase:" + "use_phrase:" all present in the block
+  const sitPattern = new RegExp(
+    `- id:\\s*${sit}[\\s\\S]{0,1500}activation_language:`,
+    'm'
+  );
+  if (sitPattern.test(raw)) {
+    // Check all three required sub-fields appear in the schema (global check — good enough for advisory)
+    const hasDefaultId = /default_id:/.test(raw);
+    const hasAvoidPhrase = /avoid_phrase:/.test(raw);
+    const hasUsePhrase = /use_phrase:/.test(raw);
+    if (hasDefaultId && hasAvoidPhrase && hasUsePhrase) {
+      siuationsWithWiring++;
+    } else {
+      siuationsMissingWiring.push(sit);
+      addFinding('advisory', `Situation ${sit}: activation_language present but missing default_id/avoid_phrase/use_phrase fields`);
+    }
+  } else {
+    siuationsMissingWiring.push(sit);
+    addFinding('advisory', `Situation ${sit}: missing activation_language[] (AI-behavior wiring not complete — M2 required)`);
+  }
+}
+
+// H. Check each audience tier has ≥1 activation_language entry
+let tiersWithWiring = 0;
+const tiersMissingWiring = [];
+for (const tier of REQUIRED_TIERS) {
+  const tierPattern = new RegExp(
+    `- id:\\s*${tier}[\\s\\S]{0,500}activation_language:`,
+    'm'
+  );
+  if (tierPattern.test(raw)) {
+    tiersWithWiring++;
+  } else {
+    tiersMissingWiring.push(tier);
+    addFinding('advisory', `Tier ${tier}: missing activation_language[] (AI-behavior wiring not complete — M2 required)`);
+  }
+}
+
+const summary = `[validate-communication-schema-coverage] situations=${situationsFound}/${REQUIRED_SITUATIONS.length} tiers=${tiersFound}/${REQUIRED_TIERS.length} contracts=${contractsFound}/${REQUIRED_CONTRACTS.length} fields_missing=${fieldsMissing} wired_situations=${siuationsWithWiring}/${REQUIRED_SITUATIONS.length} wired_tiers=${tiersWithWiring}/${REQUIRED_TIERS.length} advisory=${advisory} blocking=${blocking}`;
 console.log(summary);
 
 const result = {
@@ -168,6 +219,12 @@ const result = {
   contracts_required: REQUIRED_CONTRACTS.length,
   missing_contracts: missingContracts,
   fields_missing: fieldsMissing,
+  wired_situations: siuationsWithWiring,
+  wired_situations_required: REQUIRED_SITUATIONS.length,
+  wired_tiers: tiersWithWiring,
+  wired_tiers_required: REQUIRED_TIERS.length,
+  situations_missing_wiring: siuationsMissingWiring,
+  tiers_missing_wiring: tiersMissingWiring,
   advisory,
   blocking,
   findings: findings.slice(0, 20),

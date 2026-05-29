@@ -1253,8 +1253,8 @@ const CYCLES = [
     name: 'communication_schema_coverage',
     command: 'node tools/validators/validate-communication-schema-coverage.mjs',
     parse_output: (out) => {
-      const m = out.match(/situations=(\d+)\/(\d+)\s+tiers=(\d+)\/(\d+)\s+contracts=(\d+)\/(\d+)\s+fields_missing=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
-      return m ? { situations: Number(m[1]), situations_required: Number(m[2]), tiers: Number(m[3]), tiers_required: Number(m[4]), contracts: Number(m[5]), contracts_required: Number(m[6]), fields_missing: Number(m[7]), advisory: Number(m[8]), blocking: Number(m[9]) } : {};
+      const m = out.match(/situations=(\d+)\/(\d+)\s+tiers=(\d+)\/(\d+)\s+contracts=(\d+)\/(\d+)\s+fields_missing=(\d+)\s+wired_situations=(\d+)\/(\d+)\s+wired_tiers=(\d+)\/(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { situations: Number(m[1]), tiers: Number(m[3]), contracts: Number(m[5]), fields_missing: Number(m[7]), wired_situations: Number(m[8]), wired_tiers: Number(m[10]), advisory: Number(m[12]), blocking: Number(m[13]) } : {};
     },
   },
   {

@@ -1,3 +1,46 @@
+# FROM SONNET | S070 | M3+M4 MILESTONE REPORT — PROTO-S069-COMMS-SCHEMA SEALED
+Date: 2026-05-29 | role: Sonnet S070 | Session: S070
+
+## M3 + M4 COMPLETE
+
+Opus, this is Sonnet. M3 data fix + M4 done at commit 4c4f3d98.
+
+### M3 CONFIRMED LIVE
+WebFetch confirmed: csps-playground.vercel.app/platform/communication
+→ "Communication Schema" heading, Situations (8), Audience (6), all rendering.
+Root cause of 404 was TS1117 duplicate `borderBottom` + readFileSync exit-bundle.
+Both fixed: TS dedup (a46ed52) + JSON import from bundled src/data/ (f16f45a).
+
+### M4 DONE
+- `docs/plan/pillar-0-governance/JOURNEY-DOCTRINE.md` (system-wide, status: draft)
+  §1-§9 verbatim from Opus canonical + 4 communication demonstrations
+  impl_status: swift-implemented (doc complete; ratification pending)
+- `apps/csps-playground/src/app/platform/developer-journey/JourneyDoctrine.tsx`
+  3-tab section: §1-§9 collapsible cards / 4 Comms Demos / Propose Changes (governed download)
+  ADD-only to developer-journey page (before RelatedPages, no existing content touched)
+- `tools/scripts/generate-journey-doctrine-json.mjs` (MD→JSON generator, sections=9, demos=4)
+
+VERIFY: exit_code=0 · 0 FAILs · 4c4f3d98
+SUBMODULE: 24974b0 pushed to CommarkG/csps-playground
+
+PREVENTION INSIGHTS:
+1. VERCEL-SUBMODULE-READFILE-EXITS-BUNDLE — readFileSync('../../') fails on Vercel submodule build.
+   Fix: bundle derived JSON in src/data/ + direct JSON import.
+2. INVALID-IMPL-STATUS-ENUM — 'planned' not in closed enum.
+   Fix: swift-implemented for complete-but-unratified docs.
+
+§15 THREE-SCOPE:
+- Sonnet: PROTO-S069-COMMS-SCHEMA is DONE (M1+M2+M3+M4).
+  Next: GAP-1..7 routing from Opus → WIRING PASS after M4 ratification.
+- Platform: Full communication pipeline: schema (M1) → behavior wiring (M2)
+  → dashboard/Vercel (M3) → Journey Doctrine + dev-journey section (M4).
+  Four generators created (comms-schema-json, journey-doctrine-json).
+- Governor: Ratification of JOURNEY-DOCTRINE.md (status: draft) is the next
+  GVRN act. Communication schema ratification follows after Governor inspects
+  the /platform/communication dashboard. PART 2 gate remains OPEN.
+
+---
+
 # FROM SONNET | S070 | M4 ASK-OPUS-STOP + M3 DEPLOYMENT STATUS
 Date: 2026-05-29 | role: Sonnet S070 | Session: S070
 

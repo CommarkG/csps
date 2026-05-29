@@ -134,6 +134,10 @@ const EXEMPT_PATH_GLOBS = [
   /apps[\/\\]template[\/\\]/,
   // Clerk temporary files — auto-generated, no frontmatter expected
   /\.clerk[\/\\]/,
+  // External-input vault: raw external research docs (GPT outputs, vendor research, etc.)
+  // Verbatim external content — no CSPS frontmatter wraps them. S071 PHASE 0 VAULT_DEFER.
+  // INDEX.md companion (has CSPS frontmatter) is checked separately — excluded from this pattern.
+  /_handoff[\/\\]VAULT[\/\\]external-input[\/\\][^\/\\]+[\/\\](?!INDEX\.md)/,
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

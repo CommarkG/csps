@@ -24,7 +24,7 @@ if (!existsSync(SOURCE)) {
   process.exit(1)
 }
 
-const raw = readFileSync(SOURCE, 'utf-8')
+const raw = readFileSync(SOURCE, 'utf-8').replace(/\r\n/g, '\n')
 
 // Remove frontmatter
 const bodyStart = raw.indexOf('\n---\n', 4) + 4

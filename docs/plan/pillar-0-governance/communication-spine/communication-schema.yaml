@@ -6,13 +6,14 @@ description: >
   + AI→Human 6-tier audience hierarchy + AI-behavior wiring (activation_language phrase-pairs
   per situation/tier, D1-D13 defaults_countered). The organizing hub for all CSPS comms contracts.
   Wired to ai-behavior-spine: each situation/tier declares which D-defaults it suppresses +
-  concrete avoid_phrase/use_phrase pairs. Status: draft — not yet ratified.
-  validate-communication-schema-coverage.mjs = advisory until Governor ratifies.
+  concrete avoid_phrase/use_phrase pairs. Governing principle: P-META-028.
 type: governance
 diataxis_type: reference
 protection_level: protected
-status: draft
-impl_status: planned
+status: ratified
+impl_status: audit-1-complete
+ratified_by: "Governor (S071, OPUS-14 directed)"
+ratified_at: "2026-05-29"
 core_spine: AI
 core_spines: [GVRN, AI, OPER, VALD]
 schema_anchor: communication

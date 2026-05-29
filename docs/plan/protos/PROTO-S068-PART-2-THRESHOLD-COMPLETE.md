@@ -60,7 +60,7 @@ The threshold is meant to be the **ONLY gate** of inputs into CSPS (Governor S06
 ---
 
 ## STEP 0 — design completeness (Opus, this file)
-**DONE WHEN:** [x] root-cause diagnosed (4/532 = uninvoked) · [x] 7-persona review embedded (5 in S068 + ux + UI added by OPUS-13 below — the prior "6-persona ✓" was nominal at 5; now real at 7) · [x] core seed + ripple set · [x] classification design authored (OPUS-13, below) · [ ] Governor ratifies design → Sonnet builds.
+**DONE WHEN:** [x] root-cause diagnosed (4/532 = uninvoked) · [x] 7-persona review embedded (5 in S068 + ux + UI added by OPUS-13 below — the prior "6-persona ✓" was nominal at 5; now real at 7) · [x] core seed + ripple set · [x] classification design authored (OPUS-13, below) · [x] Governor ratifies design → Sonnet builds. (S071, OPUS-14 directed, 2026-05-29)
 
 ---
 

@@ -10,8 +10,10 @@ description: >
 type: governance
 diataxis_type: reference
 protection_level: protected
-status: draft
-impl_status: swift-implemented
+status: ratified
+impl_status: audit-1-complete
+ratified_by: "Governor (S071, OPUS-14 directed)"
+ratified_at: "2026-05-29"
 core_spine: GVRN
 core_spines: [GVRN, AI, OPER]
 schema_anchor: platform_governance

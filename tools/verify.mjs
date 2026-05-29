@@ -1269,6 +1269,17 @@ const CYCLES = [
     },
   },
   {
+    // M0.7 S071: Long-Run Builder Discipline — nominal-stop pattern detector in sonnet-turn.md
+    // ADVISORY in S071 (promotes to BLOCKING after 5 sample exemplar passes — tunable per P-META-028).
+    // Checks N1-N8 nominal-stop patterns in recent sonnet-turn.md entries; exempt: Milestone Reports + ASK-OPUS-STOP.
+    name: 'no_nominal_stops',
+    command: 'node tools/validators/validate-no-nominal-stops-mid-milestone.mjs',
+    parse_output: (out) => {
+      const m = out.match(/findings=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { findings: Number(m[1]), advisory: Number(m[2]), blocking: Number(m[3]) } : {};
+    },
+  },
+  {
     // S053: Gap Recurrence Register enforcement — K count gating per P-META-019
     // BLOCKING: K>=3 AND status:open AND structural_fix_triggered:false
     // ADVISORY: K>=2 AND status:open AND behavioral_test_exists:false

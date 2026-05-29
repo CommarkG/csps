@@ -658,8 +658,8 @@ RUNNING NOW (0 questions) | WAITING (N questions above)
 - memory: `feedback_autonomous_batch_preflight.md` + MEMORY.md index
 - contract: this entry + AGENTS.md no-confirmation-seeking hard NO + plan-methodology-v2.md §2
 
-**Cross-references:** B_HUMBLE_EXECUTOR (Humble Executor is the post-batch twin; B_AUTONOMOUS_BATCH is the pre-batch twin) / B_COMPLETION_OVER_SHINY (pre-flight Q-COMPLETE enforces completion bias check) / B_PLATFORM_FIRST_OPTIMIZATION (pre-flight Q-GLOBAL enforces platform generalizability check) / B_NO_CONFIRMATION_SEEKING (pre-flight replaces turn-by-turn confirmation loops).
-- **enforcement_tier:** `{ tier: session-only, no-hook, no-validator, T3 session-open injection + AGENTS.md hard-NO, permanence: low (T3-only) }`
+**Cross-references:** B_HUMBLE_EXECUTOR (Humble Executor is the post-batch twin; B_AUTONOMOUS_BATCH is the pre-batch twin) / B_COMPLETION_OVER_SHINY (pre-flight Q-COMPLETE enforces completion bias check) / B_PLATFORM_FIRST_OPTIMIZATION (pre-flight Q-GLOBAL enforces platform generalizability check) / B_NO_CONFIRMATION_SEEKING (pre-flight replaces turn-by-turn confirmation loops) / **LONG-RUN-BUILDER-DOCTRINE.md (S071 M0.7 — GO side wired mechanically; closes EXISTS≠ACTIVE)**.
+- **enforcement_tier S071 M0.7 FIX:** `{ T1: pre-tool-use-nominal-stop-detector.sh (advisory), T2: validate-no-nominal-stops-mid-milestone.mjs (advisory → blocking after 5 exemplar passes), T3: session-open-context.mjs LONG-RUN injection (actually-injected) + AGENTS.md B_LONG_RUN_BUILDER_DOCTRINE hard-NO }` Superseded_by: LONG-RUN-BUILDER-DOCTRINE.md. The exempt_reason ("no mechanical pattern captures this") was disproven by post-stop-banned-phrase.sh prior art.
 
 ---
 

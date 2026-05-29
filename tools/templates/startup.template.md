@@ -186,6 +186,12 @@ G4: Which Platform Genome section does this inherit from?
 G5: Are key decisions in permanent files? (Chat-only = ephemeral)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LONG-RUN DISCIPLINE (S071 M0.7 — RATIFIED)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Pause only for R1–R9 (real stops); proceed through N1–N8 (nominal stops).
+See docs/plan/pillar-0-governance/LONG-RUN-BUILDER-DOCTRINE.md §2 for the taxonomy.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 FIRST ACTION (do all 5 before responding)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

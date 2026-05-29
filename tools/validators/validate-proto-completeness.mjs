@@ -109,10 +109,12 @@ function checkProto(filePath) {
   const personaHeaderLine = lines.find(l => /^## \d+[-\s]PERSONA REVIEW/i.test(l))
   if (personaHeaderLine) {
     const headerNum = parseInt(personaHeaderLine.match(/## (\d+)/)?.[1] ?? '0')
-    // Count persona blocks: lines starting with "- **<persona-name>:**"
-    const personaBlocks = lines.filter(l => /^\s*-\s+\*\*[a-z][-a-z ]+\*\*\s*:/i.test(l))
+    // Count persona blocks: "- **name:**" (colon inside) OR "- **name**:" (colon outside)
+    // Both formats appear in CSPS protos — validator must handle both.
+    const personaBlocks = lines.filter(l => /^\s*-\s+\*\*[a-z][-a-z ]+:?\*\*\s*:?/i.test(l))
     const actualCount = personaBlocks.length
-    if (headerNum !== actualCount && headerNum > 0 && actualCount > 0) {
+    // Flag when header says N but count differs (incl. actualCount=0 with headerNum>0 = all formats unrecognized)
+    if (headerNum !== actualCount && headerNum > 0) {
       findings.push({
         level: 'advisory',
         msg: `N-PERSONA REVIEW header says ${headerNum} but found ${actualCount} persona blocks — nominal count (kills M4 root-cause at source)`,

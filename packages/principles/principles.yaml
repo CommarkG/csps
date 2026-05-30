@@ -2477,6 +2477,53 @@ principles:
        Does this instruction carry its reasoning, not just its command?
        If no — apply P-META-028 cornerstone before proceeding."
 
+  - id: P-META-029
+    name: humble-consolidation-discipline
+    aliases: [inventory-first-discipline, humble-consolidation, humble-before-proposing]
+    title: "Inventory-First Before Any Proposal or New Artifact"
+    description: >
+      Every commitment-layer output (proposal / new artifact / principle / validator / hook / schema / app)
+      passes INVENTORY-FIRST + RIPPLE-PASS + PRESERVATION-MAP gate BEFORE authoring. Override of training
+      defaults D1/D4/D7/D8 (eager-helpfulness / pattern-match / action-bias / naming-novelty). Every
+      proposal must include Preservation Map + Consolidation Map + Ripple Analysis BEFORE the proposal body.
+    spine: GVRN
+    layer: L1
+    category: meta-governance
+    severity: critical
+    governing_intent: >
+      CSPS proliferated 41 moats + 68 contracts + 24 skills + 27 hooks + 179 validators in 66 sessions.
+      S066 surfaced 4+ instances of EXISTS-NEQ-ACTIVE: M-19 phantom hook (existed, never fired),
+      threshold 358 garbage entries (session=unknown, existed never qualified), vault 0 occurrences
+      (existed, never pulled), consolidation-pass 57-session stub (existed, never activated).
+      Without inventory-first discipline the platform ADDS before CHECKING, accumulating governance theater.
+      Humble-consolidation REVERSES the default: every proposal walks the 11 platform inventory registries
+      first + outputs Preservation Map + Ripple Analysis BEFORE the proposal body.
+    satisfaction_point_to_avoid: >
+      Saying "I checked what exists" in chat is a BEHAVIORAL CLAIM, not mechanical evidence.
+      Correct: node tools/scripts/platform-inventory-scan.mjs run THIS TURN is MECHANICAL EVIDENCE.
+      The discipline is the scan run, not the sentence about having scanned.
+    override_training_defaults:
+      - D1: "eager-helpfulness (answer fast) → P-OP-007 optimal-path-default: depth over velocity"
+      - D4: "pattern-match (generic from training) → vocabulary-canon + M-17 reuse-first"
+      - D7: "action-bias (be agentic) → P-META-019 STRUCTURAL_PREVENTION + P-OP-001"
+      - D8: "naming-novelty (coin terms) → vocabulary-canon: no invention without precedent"
+    composes_with:
+      - P-META-006
+      - P-META-019
+      - P-OP-001
+    enforcement_tier:
+      tier1_hook: "pre-tool-use-inventory-scan-required.sh (ADVISORY S067 → BLOCKING S068)"
+      tier2_validator: "validate-inventory-scan-coverage.mjs + validate-tab-transfer-completeness.mjs"
+      tier3_session: "session-open.sh T1 injection — inventory-scan reminder + council-skill dispatch per M-42"
+    ratified_by: "Governor S066 (Opus-11 directed)"
+    ratified_date: "2026-05-28"
+    session: S067
+    ratification_commit: "8fa3cc00"
+    self_check_q: >
+      "Before authoring any proposal: did I run platform-inventory-scan.mjs this turn?
+       Does my output include Preservation Map + Consolidation Map + Ripple Analysis?
+       If no scan run — this is governance theater, not mechanical enforcement."
+
   - id: P-ARCH-028
     name: csps-core-spines
     aliases: [core-spine-discipline, 5-spine-architecture, outward-layering]

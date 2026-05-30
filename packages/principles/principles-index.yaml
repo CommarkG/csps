@@ -5,8 +5,8 @@
 # Source: packages/principles/principles.yaml
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
-  total_count: 69
-  generated_at: '2026-05-29'
+  total_count: 70
+  generated_at: '2026-05-30'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
   usage: >-
@@ -318,6 +318,11 @@ principles:
     category: meta-governance
     severity: critical
     path: ./principles/P-META-028-context-refined-communication.yaml
+  - id: P-META-029
+    name: humble-consolidation-discipline
+    category: meta-governance
+    severity: critical
+    path: ./principles/P-META-029-humble-consolidation-discipline.yaml
   - id: P-ARCH-028
     name: csps-core-spines
     category: architecture

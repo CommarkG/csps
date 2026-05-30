@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-05-30T17:59:38.018Z",
-  "staged_checked": 0,
-  "conflicts_found": 0,
-  "advisory": 0,
+  "run_at": "2026-05-30T18:41:23.044Z",
+  "staged_checked": 2,
+  "conflicts_found": 1,
+  "advisory": 1,
   "blocking": 0
 }

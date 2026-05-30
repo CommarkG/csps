@@ -14,9 +14,8 @@
  *   cip_required: true AND verdict: null (not yet cleared by ripple-QC):
  *
  *   1. Unified-plan conflict: does the proposed_change contradict any open
- *      plan item in docs/plan/_handoff/MASTER-RE-GATE-PLAN-S068.md or unified-plan.yaml?
- *      (keyword match: does the change mention the same system/validator/hook that
- *      an open plan item owns?)
+ *      plan item in tools/config/unified-plan.yaml (status != done/intake)?
+ *      (keyword match: ≥3 shared keywords between proposed_change and plan item title+description)
  *
  *   2. Vault-pending conflict: does the proposed_change duplicate or supersede
  *      any deferred vault entry in tools/data/vault-pending.yaml?
@@ -42,10 +41,8 @@ const ROOT = resolve(process.cwd());
 const STAGING_PATH = join(ROOT, 'tools/data/change-impact-staging.yaml');
 const VAULT_PENDING_PATH = join(ROOT, 'tools/data/vault-pending.yaml');
 const AUDIT_RUNNER_PATH = join(ROOT, 'docs/plan/pillar-0-governance/audit-runner.md');
-// CIP M1.1: unified-plan.yaml not yet built; use pending-plan-items.yaml as plan source
-// (upgrade to unified-plan.yaml when it ships in PART 4 / Governance Constitution)
-const PLAN_PATH = join(ROOT, 'tools/data/pending-plan-items.yaml');
-const MASTER_RE_GATE_PATH = join(ROOT, 'docs/plan/_handoff/MASTER-RE-GATE-PLAN-S068.md');
+// CIP M1.1: unified-plan.yaml at tools/config/ (S043 canonical plan source)
+const UNIFIED_PLAN_PATH = join(ROOT, 'tools/config/unified-plan.yaml');
 const LAST_RUN_PATH = join(ROOT, 'tools/data/validate-prior-plan-conflict-last-run.json');
 
 // ── Simple YAML field extraction (no full YAML parser — extracts top-level arrays) ─────
@@ -83,15 +80,24 @@ function containsKeyword(text, keywords) {
   return keywords.some(kw => lower.includes(kw.toLowerCase()));
 }
 
-/** Extract meaningful keywords from a proposed_change description. */
+/** Extract meaningful keywords from a proposed_change description.
+ * Also splits hyphen-compound terms (validate-activation-coverage → validate, activation, coverage)
+ * so plan item titles with hyphenated names match against staged change prose words.
+ */
 function extractKeywords(text) {
   if (!text) return [];
-  // Extract validator names, hook names, and significant nouns (3+ chars, not common words)
   const STOP_WORDS = new Set(['the', 'and', 'for', 'that', 'this', 'with', 'from', 'into',
     'have', 'has', 'had', 'are', 'was', 'not', 'but', 'its', 'also', 'will', 'adds',
-    'adds', 'add', 'new', 'per', 'all', 'any', 'can', 'set', 'via']);
-  const words = text.toLowerCase().match(/[a-z][a-z0-9-_]{2,}/g) || [];
-  return [...new Set(words.filter(w => !STOP_WORDS.has(w)))];
+    'adds', 'add', 'new', 'per', 'all', 'any', 'can', 'set', 'via', 'mjs', 'yaml']);
+  const lower = text.toLowerCase();
+  // First pass: whole compound tokens (validate-activation-coverage)
+  const compoundWords = lower.match(/[a-z][a-z0-9-_]{2,}/g) || [];
+  // Second pass: split compound tokens on hyphens/dots to get individual components
+  const atomicWords = compoundWords.flatMap(w => w.split(/[-_.]+/));
+  // Also extract plain words (no hyphens) from original text
+  const plainWords = lower.match(/[a-z]{3,}/g) || [];
+  const allWords = [...compoundWords, ...atomicWords, ...plainWords];
+  return [...new Set(allWords.filter(w => w.length >= 3 && !STOP_WORDS.has(w)))];
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
@@ -138,15 +144,12 @@ function main() {
   const auditRunnerContent = existsSync(AUDIT_RUNNER_PATH)
     ? readFileSync(AUDIT_RUNNER_PATH, 'utf8')
     : '';
-  // CIP M1.1: plan sources for Check 1 (unified-plan conflict)
-  const planContent = existsSync(PLAN_PATH)
-    ? readFileSync(PLAN_PATH, 'utf8')
-    : '';
-  const masterReGateContent = existsSync(MASTER_RE_GATE_PATH)
-    ? readFileSync(MASTER_RE_GATE_PATH, 'utf8')
+  // CIP M1.1: load unified-plan.yaml for Check 1
+  const unifiedPlanContent = existsSync(UNIFIED_PLAN_PATH)
+    ? readFileSync(UNIFIED_PLAN_PATH, 'utf8')
     : '';
   const vaultEntries = extractYamlEntryBlocks(vaultContent);
-  const planEntries = extractYamlEntryBlocks(planContent);
+  const planEntries = extractYamlEntryBlocks(unifiedPlanContent);
 
   // ── 3. Check each pending staged change ───────────────────────────────────
 
@@ -159,40 +162,29 @@ function main() {
 
     const keywords = extractKeywords(proposedChange);
 
-    // ── Check 1: Unified-plan / pending-plan-items conflict (CIP M1.1) ───────
-    // Does this staged change contradict or duplicate an open plan item?
-    // Source: tools/data/pending-plan-items.yaml + MASTER-RE-GATE-PLAN-S068.md
+    // ── Check 1: Unified-plan conflict (CIP M1.1) ────────────────────────────
+    // Does this staged change contradict an open plan item in tools/config/unified-plan.yaml?
+    // Open = status NOT in {done, intake} — items in planning/ratified/implementing/activation
+    // Source: tools/config/unified-plan.yaml (S043 canonical plan — status field authoritative)
     for (const planBlock of planEntries) {
       const planId = extractField(planBlock, 'id') || '';
       const planTitle = extractField(planBlock, 'title') || '';
-      const planStatus = extractField(planBlock, 'status') || '';
-      const planDesc = extractField(planBlock, 'description') || planTitle;
+      const planStatus = (extractField(planBlock, 'status') || '').toLowerCase();
 
-      // Skip closed/done plan items
-      if (['done', 'closed', 'sealed', 'complete', 'resolved'].some(s => planStatus.toLowerCase().includes(s))) continue;
+      // Only check items that are actively in progress (skip done + intake which are not yet real)
+      if (planStatus === 'done' || planStatus === 'intake' || planStatus === '' ) continue;
 
-      const planKeywords = extractKeywords(planTitle + ' ' + planDesc);
+      const planKeywords = extractKeywords(planTitle);
       const overlap = keywords.filter(k => planKeywords.includes(k));
 
       if (overlap.length >= 3) { // (sample — tunable per P-META-028)
         conflicts_found++;
         advisory++;
         findings.push(
-          `[ADVISORY] staged:${id} → possible plan-item overlap with ${planId || planTitle}` +
+          `[ADVISORY] staged:${id} → conflict with open plan item ${planId} ("${planTitle}", status=${planStatus})` +
           ` (shared keywords: ${overlap.slice(0, 5).join(', ')})` +
-          ` — verify this change doesn't contradict open plan item before proceeding`
+          ` — verify change doesn't contradict or duplicate this in-progress plan item`
         );
-      }
-    }
-
-    // Also check MASTER-RE-GATE-PLAN keywords if plan entries is sparse
-    if (masterReGateContent && keywords.length >= 3) {
-      const masterKeywords = extractKeywords(masterReGateContent.slice(0, 5000)); // First 5KB sample
-      const overlap = keywords.filter(k => masterKeywords.includes(k));
-      // Only flag if very high overlap (sample threshold: 5 — tunable, avoids false positives on general terms)
-      if (overlap.length >= 5) { // (sample — tunable per P-META-028)
-        // Don't add as separate finding — covered by plan entries above for known items
-        // Log only if no plan entries found this
       }
     }
 

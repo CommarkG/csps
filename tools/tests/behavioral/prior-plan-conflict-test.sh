@@ -144,6 +144,45 @@ else
   ERRORS+=("INPUT C: SHEDDABLE change not exempted")
 fi
 
+# ── INPUT D: overlap with open unified-plan item → advisory fires ─────────────
+# Staged change keywords match VALIDATE-ACTIVATION-COVERAGE (status=ratified, open).
+# Keywords: validate, activation, coverage, contracts → ≥3 overlap → advisory fires.
+
+cat > "$STAGING_FILE" << 'STAGING_EOF'
+---
+id: csps.data.change-impact-staging
+name: change-impact-staging
+description: "Test staging file — INPUT D"
+entries:
+  - id: cip-test-D-plan-conflict
+    proposed_change: "Remove validate activation coverage validator and disable contract activation checks"
+    type: validator
+    cip_required: true
+    ripple_set: []
+    directions_checked: []
+    net_impact:
+      helps: []
+      harms: []
+    verdict: null
+    terminal_state: null
+    staged_at: "2026-05-30"
+    staged_by: "test"
+STAGING_EOF
+
+echo ""
+echo "Input D: staged change overlaps with open plan item VALIDATE-ACTIVATION-COVERAGE → advisory fires"
+OUTPUT=$(node "$VALIDATOR" 2>&1)
+
+if echo "$OUTPUT" | tr -d '\r' | grep -q "\[ADVISORY\]"; then
+  echo "  ✓ INPUT D: advisory fired (conflict with open plan item detected)"
+  PASS=$((PASS + 1))
+else
+  echo "  ✗ INPUT D: no advisory — overlap with open plan item should have fired"
+  echo "    Output: $(echo "$OUTPUT" | tr -d '\r' | tail -3)"
+  FAIL=$((FAIL + 1))
+  ERRORS+=("INPUT D: no advisory on plan-item overlap")
+fi
+
 # ── Restore real staging file ─────────────────────────────────────────────────
 
 cp "$STAGING_BACKUP" "$STAGING_FILE" 2>/dev/null || true

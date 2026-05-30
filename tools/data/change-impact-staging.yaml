@@ -59,7 +59,43 @@ proto_ref: PROTO-S072-CIP
 #   REJECTED-with-reason   — declined: reason recorded; future re-entry requires new evidence
 #   SUPERSEDED             — replaced by a higher-scope change that covers this intent
 
-entries: []
+entries:
+  # CIP M2/M3 paused per OPUS-15 S072 directive — resume after journeys and PART 3
+  - id: cip-M2-ripple-qc-runner
+    proposed_change: "Build cip-ripple-qc-runner.mjs — multi-direction ripple-QC orchestration + council-registry.md fix + SHEDDABLE bypass"
+    type: infrastructure
+    cip_required: true
+    ripple_set:
+      - "tools/scripts/threshold-router.mjs (M3 will extend to 15-class)"
+      - "tools/council/council-registry.md (absent — needs fix in M2)"
+      - "Facet E selectPersonas() (M2 extends for ripple-QC dispatch)"
+    directions_checked: []
+    net_impact:
+      helps: []
+      harms: []
+    verdict: null
+    terminal_state: VAULTED-with-trigger
+    staged_at: "2026-05-30"
+    staged_by: "OPUS-15 S072"
+    notes: "PAUSED — resume after journeys + PART 3 ships. M2 trigger: Governor ratifies PART 3 completion OR explicit OPUS-N resume directive. PROTO-S072-CIP M2/M3."
+
+  - id: cip-M3-threshold-15th-class
+    proposed_change: "Add proposed-change as 15th threshold input class + validate-cip-terminal-coverage + PREVENTION→threshold wire"
+    type: threshold-routing
+    cip_required: true
+    ripple_set:
+      - "tools/scripts/threshold-router.mjs (extend 14→15 classes)"
+      - "tools/validators/validate-threshold-exhaustive.mjs (update test fixtures)"
+      - "tools/validators/validate-cip-terminal-coverage.mjs (new validator)"
+    directions_checked: []
+    net_impact:
+      helps: []
+      harms: []
+    verdict: null
+    terminal_state: VAULTED-with-trigger
+    staged_at: "2026-05-30"
+    staged_by: "OPUS-15 S072"
+    notes: "PAUSED — depends on CIP M2 completing first. Trigger same as M2. PROTO-S072-CIP M3."
 
 # ── Sample entry structure (comment — copy to entries: when staging a change) ──────
 #

@@ -165,6 +165,93 @@ export function routeInput({ type, spine, urgency, scope, content = '', shapeTie
   };
 }
 
+// ─── M4 S071 Facet E: selectPersonas — stateless persona selector ───────────
+/**
+ * PERSONA CRITERIA REGISTRY (M4 S071 — stateless inline copy of SKILL.md trigger_criteria)
+ * Mirrors .claude/skills/{skill}/SKILL.md trigger_criteria blocks.
+ * Returns empty when no match — no silent default-to-all (bottleneck-expert finding).
+ * All criteria are TIGHT per PERSONA-BROAD-CRITERIA-COST-EXPLOSION prevention class.
+ * Numbers are sample/tunable per P-META-028 cornerstone.
+ */
+const PERSONA_CRITERIA = [
+  {
+    skill: 'cruel-critic',
+    invoke_on: ['consequential_architectural_proposal', 'CSEP_review', 'high_stakes_design'],
+    match: ({ classificationClass, scope, urgency, content }) =>
+      (classificationClass === 'proposal' || classificationClass === 'architectural_decision') &&
+      (scope === 'architectural' || scope === 'constitutional') &&
+      urgency === 'high' &&
+      /CSEP|stability|scalabilit|challenge|what could go wrong|devil|scale this to/i.test(content),
+  },
+  {
+    skill: 'consolidation-expert',
+    invoke_on: ['reusable_surface_detected', 'duplicate_risk'],
+    match: ({ classificationClass, content }) =>
+      classificationClass === 'proposal' &&
+      /reuse|existing|duplicate|already.*have|check.*exist|what.*exist/i.test(content),
+  },
+  {
+    skill: 'vocabulary-canon',
+    invoke_on: ['naming_decision', 'frontmatter_enum_question'],
+    match: ({ content }) =>
+      /\bname\b|\bnaming\b|\bfrontmatter\b|\benum\b|\bvocabular|\brename\b|\bglossary\b/i.test(content),
+  },
+  {
+    skill: 'balance-expert',
+    invoke_on: ['governance_complexity_spike', 'over_engineering_signal'],
+    match: ({ classificationClass, content }) =>
+      classificationClass === 'proposal' &&
+      /over-engineer|complexity|too many|balance.*expert|simplif|occam/i.test(content),
+  },
+  {
+    skill: 'bottleneck-expert',
+    invoke_on: ['scale_or_performance_decision', 'throughput_concern'],
+    match: ({ classificationClass, scope, content }) =>
+      classificationClass === 'architectural_decision' &&
+      (scope === 'architectural' || scope === 'constitutional') &&
+      /\bscale\b|\bperformance\b|\bbottleneck\b|\blatency\b|\bthroughput\b|\b10[xX]\b|\b100[xX]\b|\bload\b/i.test(content),
+  },
+  {
+    skill: 'schema-expert',
+    invoke_on: ['schema_design_decision', 'rls_or_tenant_isolation_question'],
+    match: ({ classificationClass, content }) =>
+      classificationClass === 'architectural_decision' &&
+      /\bZModel\b|\bschema\b.*\b(design|decision)\b|\bPrisma\b|\bRLS\b|\btenant_id\b|\bdatabase schema\b|\brow-level\b/i.test(content),
+  },
+  {
+    skill: 'ux-expert',
+    invoke_on: ['ux_flow_decision', 'user_journey_design'],
+    match: ({ classificationClass, content }) =>
+      (classificationClass === 'proposal' || classificationClass === 'question') &&
+      /\bUX\b|\buser flow\b|\bjourney\b|\bfriction\b|\binterface\b|\busabilit|\bDX\b|\bonboarding\b/i.test(content),
+  },
+  {
+    skill: 'synergy-master',
+    invoke_on: ['cross_synergy_analysis', 'ratification_propagation'],
+    match: ({ classificationClass, content }) =>
+      (classificationClass === 'ratification' || classificationClass === 'proposal') &&
+      /\bsynergy\b|\bCSEP\b|\bpropagate\b|\bcross-synergy\b|\bcross-enhancement\b/i.test(content),
+  },
+];
+
+/**
+ * selectPersonas — returns the matched persona set for a classification.
+ * Stateless: no shared mutable state. Returns [] when no criteria match (no silent default-to-all).
+ * @param {{ classificationClass: string, scope: string, urgency: string, content: string }} classification
+ * @returns {string[]} — list of skill names to invoke (sample — expandable as criteria evolve)
+ */
+export function selectPersonas({ classificationClass = '', scope = '', urgency = '', content = '' }) {
+  const matched = [];
+  for (const { skill, match } of PERSONA_CRITERIA) {
+    try {
+      if (match({ classificationClass, scope, urgency, content })) {
+        matched.push(skill);
+      }
+    } catch { /* skip criteria that error */ }
+  }
+  return matched; // empty = no persona invocation (not default-to-all)
+}
+
 // CLI mode
 if (process.argv[1]?.endsWith('threshold-router.mjs')) {
   const args = Object.fromEntries(

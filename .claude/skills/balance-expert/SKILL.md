@@ -42,6 +42,12 @@ scope_level: S1
 batch: BATCH-A
 template_depth: L2
 parent_template: skill-base
+trigger_criteria:
+  # M4 S071 — tight criteria per bottleneck-expert finding (PERSONA-BROAD-CRITERIA-COST-EXPLOSION)
+  invoke_on: ["governance_complexity_spike","over_engineering_signal"]
+  classification_class: ["proposal"]
+  content_signals: ["over-engineer","complexity","too many","balance","simplif","occam"]
+  notes: "Complexity or over-engineering signals — tight pattern to avoid false positives"
 ---
 
 # /balance-expert — Anti-overengineering + Complexity tracking

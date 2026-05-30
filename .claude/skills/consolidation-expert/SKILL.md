@@ -41,6 +41,12 @@ scope_level: S1
 batch: BATCH-C
 template_depth: L2
 parent_template: skill-base
+trigger_criteria:
+  # M4 S071 — tight criteria per bottleneck-expert finding (PERSONA-BROAD-CRITERIA-COST-EXPLOSION)
+  invoke_on: ["reusable_surface_detected","duplicate_risk"]
+  classification_class: ["proposal"]
+  content_signals: ["reuse","existing","duplicate","already have","check existing","what exists"]
+  notes: "Proposals that touch reusable surfaces or risk duplication — NOT all proposals"
 ---
 
 # /consolidation-expert — Find what exists; consolidate before creating

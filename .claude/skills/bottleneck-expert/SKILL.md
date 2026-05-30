@@ -40,6 +40,13 @@ scope_level: S1
 batch: BATCH-C
 template_depth: L2
 parent_template: skill-base
+trigger_criteria:
+  # M4 S071 — tight criteria per bottleneck-expert finding (PERSONA-BROAD-CRITERIA-COST-EXPLOSION)
+  invoke_on: ["scale_or_performance_decision","throughput_concern"]
+  classification_class: ["architectural_decision"]
+  scope_required: ["architectural"]
+  content_signals: ["scale","performance","bottleneck","latency","throughput","10x","100x","load"]
+  notes: "Scale and performance decisions only — requires architectural scope signal"
 ---
 
 # /bottleneck-expert — Find what breaks at scale before it breaks in production

@@ -41,6 +41,14 @@ scope_level: S1
 batch: BATCH-C
 template_depth: L2
 parent_template: skill-base
+trigger_criteria:
+  # M4 S071 — tight criteria per bottleneck-expert finding (PERSONA-BROAD-CRITERIA-COST-EXPLOSION)
+  invoke_on: ["consequential_architectural_proposal","CSEP_review","high_stakes_design"]
+  classification_class: ["proposal","architectural_decision"]
+  scope_required: ["architectural","constitutional"]
+  urgency_required: ["high"]
+  content_signals: ["CSEP","stability","scalability","challenge","what could go wrong","devil s advocate","scale this to"]
+  notes: "High-stakes architectural proposals only — NOT routine proposals (cost explosion if too broad)"
 ---
 
 # /cruel-critic — Stability & Scalability Review

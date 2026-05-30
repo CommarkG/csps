@@ -39,6 +39,12 @@ scope_level: S1
 batch: BATCH-C
 template_depth: L2
 parent_template: skill-base
+trigger_criteria:
+  # M4 S071 — tight criteria per bottleneck-expert finding (PERSONA-BROAD-CRITERIA-COST-EXPLOSION)
+  invoke_on: ["ux_flow_decision","user_journey_design"]
+  classification_class: ["proposal","question"]
+  content_signals: ["UX","user flow","journey","friction","interface","usability","DX","onboarding"]
+  notes: "UX/flow/journey decisions — also fires for governance DX (developer experience of CSPS tooling)"
 ---
 
 # /ux-expert — UX flows, friction, and developer experience

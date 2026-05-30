@@ -325,3 +325,15 @@ entries:
     related_doctrine: "docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md"
     related_principle: "docs/plan/principles/P-META-029-humble-consolidation-discipline.md"
     prevention_class: "MEMORY-VS-DISK-DRIFT"
+
+  - id: vlt-S071-persona-self-evolve
+    title: "Persona self-evolve loop — criteria evolution + weekly-audit feedback cycle (Facet E deferred)"
+    status: deferred
+    urgency: low
+    routing_decision: "DEFERRED per OPUS-14 v1.4 directive + balance-expert finding (governance faster than validation). Build only after M4 weekly-persona-trigger-audit.mjs accumulates 5+ sessions of false-neg/pos data to evidence what needs evolving. Wiring PASS candidate."
+    created_session: S071
+    context: "Persona self-evolve loop: weekly-persona-trigger-audit detects false-negatives/positives in criteria; the loop would auto-propose trigger_criteria updates to SKILL.md files via governed-path draft + Governor review. Deferred because building the evolution mechanism before we have evidence of what needs evolving is premature optimization per balance-expert."
+    retrieve_when: "After 5+ sample sessions of weekly-persona-trigger-audit data show systematic false-neg/pos patterns — then build the auto-propose loop in a dedicated WIRING PASS session"
+    related_audit: "tools/scripts/weekly-persona-trigger-audit.mjs"
+    related_criteria: ".claude/skills/*/SKILL.md trigger_criteria blocks"
+    prevention_class: "PERSONA-BROAD-CRITERIA-COST-EXPLOSION"

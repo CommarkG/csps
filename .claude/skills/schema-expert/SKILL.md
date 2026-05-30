@@ -45,6 +45,12 @@ scope_level: S1
 batch: BATCH-E
 template_depth: L2
 parent_template: skill-base
+trigger_criteria:
+  # M4 S071 — tight criteria per bottleneck-expert finding (PERSONA-BROAD-CRITERIA-COST-EXPLOSION)
+  invoke_on: ["schema_design_decision","rls_or_tenant_isolation_question"]
+  classification_class: ["architectural_decision"]
+  content_signals: ["ZModel","schema","Prisma","RLS","tenant_id","database schema","row-level"]
+  notes: "Data schema decisions — tight to avoid triggering on casual schema mentions"
 ---
 
 # /schema-expert — ZModel + RLS + multi-tenant schema design

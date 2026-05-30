@@ -43,6 +43,12 @@ scope_level: S1
 batch: BATCH-C
 template_depth: L2
 parent_template: skill-base
+trigger_criteria:
+  # M4 S071 — tight criteria per bottleneck-expert finding (PERSONA-BROAD-CRITERIA-COST-EXPLOSION)
+  invoke_on: ["cross_synergy_analysis","ratification_propagation"]
+  classification_class: ["ratification","proposal"]
+  content_signals: ["synergy","cross-synergy","CSEP","propagate","enhance","cross-enhancement"]
+  notes: "Cross-synergy analysis after ratification or on CSEP proposals — NOT routine proposals"
 ---
 
 # /synergy-master — Core Cross-Synergy Analysis

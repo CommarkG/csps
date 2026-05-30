@@ -36,7 +36,8 @@ const EXPECTED_DOCTRINES = [
   { file: 'ONE-SOURCE-OF-DOCTRINE.md', node_match: /ONE.SOURCE.OF/i },
   { file: 'AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md', node_match: /AI.PROFILING/i },
   { file: 'PLATFORM-OBSERVATION-DOCTRINE.md', node_match: /PLATFORM.OBSERVATION/i },
-  { file: 'JOURNEY-DOCTRINE.md', node_match: /Journey Doctrine/i }
+  { file: 'JOURNEY-DOCTRINE.md', node_match: /Journey Doctrine/i },
+  { file: 'NAIVE-PERSONAS-DOCTRINE.md', node_match: /Naive Personas/i }
 ]
 
 function main() {

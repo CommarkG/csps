@@ -387,3 +387,17 @@ entries:
     related_template: "tools/templates/boundary-prompt.template.md"
     related_disciplines: ["B_ZCA", "B_BOUNDARY_ALIGNMENT_PROTOCOL", "B_MUTUAL_UNDERSTANDING_VALIDATION", "communication-protocol-shared.md Rule 7"]
     prevention_class: "FREESTYLE-BOUNDARY-PROMPT-WITHOUT-FORMAL-HEADERS"
+
+  - id: vlt-S072-naive-personas-doctrine
+    title: "Naive Personas Doctrine — 11 naive personas (5 user · 4 dev · 2 plan) for journey/UI/plan audits + Pillar 7+8 completion"
+    status: deferred
+    urgency: high
+    routing_decision: "Queue to S072 alongside other doctrine work. Governor S072 Turn 3 directive: 'when you [native ai of claude code] go over a journey or any user interface for this matter... you are absorbed inevitably with your native ai persona — neither are the typical end user.' OPUS-14 authored doctrine + research grounding (Cooper personas + PersonaGPT + Wizard-of-Oz + multi-agent debate + LangChain agent role-play — all extend to CSPS via existing Facet E selectPersonas() + 8 expert personas — NO parallel machinery). Sample set: 5 user-tier (first-time / anxious-evaluator / task-focused / mobile-on-the-go / return-user-2-weeks-later) + 4 dev-tier (junior / integration-focused-external / time-pressed-mid / security-conscious) + 2 plan-audit (non-technical-stakeholder / future-maintainer-6-months-later) = 11. PE order L1-L5 ~3-4h. Used to COMPLETE Pillar 7 (frictionless onboarding) + Pillar 8 (developer's journey) per Governor's 'let formalize that and complete the developer's and user journeys.'"
+    created_session: S072
+    context: "Existing 8 personas (cruel-critic · consolidation-expert · bottleneck-expert · balance-expert · schema-expert · ux-expert · synergy-master · vocabulary-canon) all audit from architectural altitude — domain experts critiquing rigor. Native AI (Opus/Sonnet) is itself an expert-tier reviewer by construction: reads dense YAML naturally, knows internal jargon, has unlimited patience for nested structures. The actual end user has none of those. Naive personas close EXPERT-PERSONA-AUDIT-BIAS by simulating the audience from below."
+    retrieve_when: "S072 — high-priority alongside CIP (per Governor's PE recommendation). Composes with all other S072-queued doctrines: AI-PROFILING (naive findings expose D6/D3/D7 defaults) + PLATFORM-OBSERVATION (findings flow through OBSERVE→...→MEASURE-AGAIN) + ONE-SOURCE-OF (CSR row for persona registry) + CIP RIPPLE-QC (every PROPOSED-CHANGE to user-facing artifact routes through ≥1 naive persona)."
+    related_doctrine: "docs/plan/pillar-0-governance/NAIVE-PERSONAS-DOCTRINE.md"
+    related_skills: ".claude/skills/* (8 existing expert personas + 11 new naive personas to be built)"
+    related_mechanisms: ["tools/scripts/threshold-router.mjs selectPersonas()", "tools/scripts/weekly-persona-trigger-audit.mjs"]
+    composes_with: ["AI-PROFILING ADJUST/INJECT/MEASURE (Q2 hold)", "PLATFORM-OBSERVATION L1-L5", "ONE-SOURCE-OF M10 (Q1 hold)", "CIP M2 RIPPLE-QC orchestration (P1)"]
+    prevention_class: "EXPERT-PERSONA-AUDIT-BIAS"

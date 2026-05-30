@@ -132,11 +132,20 @@ function main() {
   let missing_headers_count = 0;
   let missing_attestation_count = 0;
   let advisory = 0;
-  const blocking = 0; // Always 0 in S072 — advisory only
+  // S072 M-CA: council-file findings are now BLOCKING (exit 1).
+  // Chat-jump-prompt-*.md findings remain ADVISORY (exit 0 — pre-discipline corpus exempt).
+  // Scope: opus-turn.md + sonnet-turn.md sections only.
+  let blocking = 0;
 
   const findings = [];
 
-  // ── Scan council files (section-by-section) ──────────────────────────────────
+  // ── Scan council files (section-by-section) — TOP ENTRY BLOCKING ─────────────
+  //
+  // SCOPE: Only the FIRST (TOP/MOST-RECENT) boundary-prompt-attempting section per
+  // council file is BLOCKING. Historical sections (pre-discipline, further down the file)
+  // are ADVISORY only. This matches "NEW/TOP entries only" per PROTO-S072-COUNCIL-ADDRESS.
+  // Rationale: T1 hook prevents new non-addressed entries from being written at all.
+  // T2 verifies that the current top entry (most recent write) is compliant.
 
   for (const relPath of COUNCIL_FILES) {
     const filePath = join(ROOT, relPath);
@@ -144,6 +153,8 @@ function main() {
 
     const content = readFileSync(filePath, 'utf8');
     const sections = parseSections(content);
+
+    let isTopEntry = true; // First matching section = blocking; subsequent = advisory
 
     for (const section of sections) {
       const { missing_headers, has_attestation, is_boundary_prompt } =
@@ -153,18 +164,27 @@ function main() {
       if (!is_boundary_prompt) continue;
 
       entries_checked++;
+      const isBlocking = isTopEntry; // Only the top entry is blocking
+      isTopEntry = false; // Subsequent sections are advisory
 
       if (missing_headers.length > 0) {
         missing_headers_count++;
-        advisory++;
-        findings.push(
-          `[ADVISORY] ${relPath} § "${section.heading}" — missing headers: ${missing_headers.join(', ')}`
-        );
+        if (isBlocking) {
+          blocking++;
+          findings.push(
+            `[BLOCKING] ${relPath} § "${section.heading}" — missing headers: ${missing_headers.join(', ')}`
+          );
+        } else {
+          advisory++;
+          findings.push(
+            `[ADVISORY] ${relPath} § "${section.heading}" — missing headers: ${missing_headers.join(', ')} (pre-discipline)`
+          );
+        }
       }
 
       if (!has_attestation) {
         missing_attestation_count++;
-        advisory++;
+        advisory++; // Attestation always advisory (recommended but not yet blocking)
         findings.push(
           `[ADVISORY] ${relPath} § "${section.heading}" — CROSS-REVIEW ATTESTATION missing`
         );
@@ -172,7 +192,7 @@ function main() {
     }
   }
 
-  // ── Scan chat-jump-prompt-*.md files (whole-file) ───────────────────────────
+  // ── Scan chat-jump-prompt-*.md files (whole-file) — ADVISORY only ────────────
 
   const chatJumpFiles = collectChatJumpFiles();
 
@@ -180,19 +200,16 @@ function main() {
     const relPath = filePath.replace(ROOT + '/', '').replace(ROOT + '\\', '');
     const content = readFileSync(filePath, 'utf8');
 
-    // For chat-jump files: check whole file as one boundary prompt
-    // Only flag if the file contains ANY of the 4 header markers (or is recent — after S071 Turn 27)
-    // Simple approach: check all chat-jump files; pre-discipline ones get advisory finding
+    // Chat-jump files: pre-discipline corpus → advisory only (do NOT retrofit).
+    // New chat-jump files created after S072 M-CA should pass T1 hook at write time.
     const { missing_headers, has_attestation, is_boundary_prompt } =
       checkBoundaryPromptBlock(content);
 
-    // For chat-jump files, treat the whole file as a boundary prompt candidate
-    // even if it has 0 headers (pre-discipline format)
     entries_checked++;
 
     if (missing_headers.length > 0) {
       missing_headers_count++;
-      advisory++;
+      advisory++; // ADVISORY: chat-jump files are pre-discipline corpus
       findings.push(
         `[ADVISORY] ${relPath} — missing headers: ${missing_headers.join(', ')}` +
         (missing_headers.length === REQUIRED_HEADERS.length ? ' (pre-discipline format)' : '')
@@ -237,7 +254,11 @@ function main() {
     // Non-fatal — last-run write failure doesn't affect validation result
   }
 
-  // Advisory only — always exits 0
+  // BLOCKING if council-file sections missing headers (scoped: opus-turn.md + sonnet-turn.md)
+  // ADVISORY if chat-jump-prompt-*.md files missing (pre-discipline corpus)
+  if (blocking > 0) {
+    process.exit(1);
+  }
   process.exit(0);
 }
 

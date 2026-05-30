@@ -40,7 +40,7 @@ readonly -a CRITICAL_HOOKS=(
   "post-stop-banned-phrase.sh"          # ADVISORY-ACTIVE: phrase detection
 )
 
-# ── All declared hooks (S067 STEP 6.5=67; S069 STEP 4=68; S069 T2=69: +pre-commit-plan-coverage) ──
+# ── All declared hooks (S067 STEP 6.5=67; S069 STEP 4=68; S069 T2=69: +pre-commit-plan-coverage; S072 M-CA=70: +council-address-required) ──
 # NOTE: commit-msg hook (PROTO-S069-SACRED-T2) is in tools/scripts/git-hooks/ (git hook, not .claude/)
 # verified separately: ls tools/scripts/git-hooks/commit-msg (PASS = present)
 # Sweeps all .claude/hooks/*.sh files on disk. Closes EXISTS≠DECLARED (OPIA finding).
@@ -114,6 +114,7 @@ readonly -a DECLARED_HOOKS=(
   "user-prompt-submit-token-budget-warning.sh"
   "user-prompt-submit-turn-counter.sh"
   "verify-hooks-functional.sh"
+  "pre-tool-use-council-address-required.sh"
 )
 
 echo "[verify-hooks-functional] ACTIVE S041 — checking ${#DECLARED_HOOKS[@]} hooks"

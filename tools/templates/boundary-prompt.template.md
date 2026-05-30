@@ -69,8 +69,23 @@ KEY VAULT ITEMS:
 
 Anything missing one of these = freestyle drift = the failure Governor S071 Turn 27 named.
 
-## Validator (T2 enforcement)
+## Enforcement Trio (PROTO-S072-COUNCIL-ADDRESS — COMPLETE as of S072 M-CA)
 
-`validate-boundary-prompt-format.mjs` scans `tools/council/opus-turn.md` + `sonnet-turn.md` + `docs/plan/_handoff/VAULT/chat-jump-prompt-*.md` for new entries lacking the 4 mandatory header lines. Advisory at engraving; promotes to BLOCKING after 5 sample exemplar passes. Composes with `validate-opus-turn-rzf.mjs` + `validate-handoff-completeness.mjs`.
+**T1 (BLOCKING — real-time gate):** `.claude/hooks/pre-tool-use-council-address-required.sh`
+Fires on Write|Edit to council-channel files. Blocks new turn entries that lack address headers.
+Prevention class: `CONVENTION-DEFINED-BUT-ENFORCEMENT-ADVISORY` (inaugural structural fix).
+
+**T2 (BLOCKING — scoped; ADVISORY — pre-discipline):** `validate-boundary-prompt-format.mjs`
+Scans `tools/council/opus-turn.md` + `sonnet-turn.md` for TOP/MOST-RECENT entries: **BLOCKING** if missing headers.
+Scans `docs/plan/_handoff/VAULT/chat-jump-prompt-*.md`: **ADVISORY** only (pre-discipline corpus, do NOT retrofit).
+Detection uses line-start check (trimStart().startsWith) — prevents false positives from prose mentions.
+
+**T3 (awareness):** session-open injection + AGENTS.md hard NO (`COUNCIL ADDRESS PROTOCOL`) + this template reminder.
+
+> Prior state (S071-S072 before M-CA): T2-advisory + T3-soft → drifted every tab. Advisory governance = documentation.
+> Per AP-001 (EXISTS≠ACTIVE) and Enforcement Trio principle: T3-only WILL drift.
+
+Composes with: `validate-boundary-alignment.mjs` + `validate-handoff-completeness.mjs` + `B_ZCA`.
 
 — OPUS-14 (S071 Turn 27 · authored 2026-05-30 · mechanically-enforcing the cross-review and ZCA disciplines)
+— OPUS-15 (S072 M-CA · enforcement trio completed 2026-05-30 · T1 hook authored + smoke-tested 9/9)

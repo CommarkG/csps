@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-30T22:55:48.764Z
-- finished_at: 2026-05-30T22:56:10.421Z
+- ran_at: 2026-05-30T23:03:58.205Z
+- finished_at: 2026-05-30T23:04:20.275Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-30T22:55:48.764Z",
-    "finished_at": "2026-05-30T22:56:10.421Z",
+    "ran_at": "2026-05-30T23:03:58.205Z",
+    "finished_at": "2026-05-30T23:04:20.275Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 70,
         "findings_total": 24
       },
@@ -48,7 +48,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "scanned": 689,
         "errors": 0,
         "warnings": 177,
@@ -191,7 +191,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 170,
         "links": 714,
         "broken": 71
@@ -783,7 +783,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -1647,7 +1647,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 302,
+        "total_entries": 303,
         "sessions": 2,
         "advisory": true
       },

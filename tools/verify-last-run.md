@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-30T14:35:19.768Z
-- finished_at: 2026-05-30T14:35:42.494Z
-- exit_code: 1
+- ran_at: 2026-05-30T14:36:52.687Z
+- finished_at: 2026-05-30T14:37:15.515Z
+- exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-30T14:35:19.768Z",
-    "finished_at": "2026-05-30T14:35:42.494Z",
+    "ran_at": "2026-05-30T14:36:52.687Z",
+    "finished_at": "2026-05-30T14:37:15.515Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.8,
         "principles_loaded": 70,
         "findings_total": 24
       },
@@ -48,7 +48,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "scanned": 687,
         "errors": 0,
         "warnings": 176,
@@ -119,10 +119,9 @@
       {
         "name": "audit_health",
         "command": "node tools/validators/validate-audit-health.mjs",
-        "status": "FAIL",
-        "exit_code": 1,
-        "duration_seconds": 0.1,
-        "tail": "\n1 warning(s) — audit mechanism health issues:\n  ⚠ [CHECK B FRESHNESS] 1 validator(s) newer than audit-runner.md — descriptions may be stale:\n  → validate-boundary-prompt-format.mjs\n"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
       },
       {
         "name": "model_tier_currency",
@@ -222,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.8,
+        "duration_seconds": 2.7,
         "checked": 130,
         "advisories": 119
       },
@@ -356,7 +355,7 @@
         "command": "node tools/validators/validate-schema-anchors.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "checked": 631,
         "clean": 631,
         "blocking": 0,
@@ -615,7 +614,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -784,7 +783,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -1059,7 +1058,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 1,
+        "warnings": 2,
         "advisory": true
       },
       {
@@ -1648,7 +1647,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 268,
+        "total_entries": 269,
         "sessions": 2,
         "advisory": true
       },
@@ -1737,7 +1736,7 @@
         "command": "node tools/validators/validate-dev-vs-prod.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "files_checked": 201,
         "blocking": 0,
         "advisory": 3
@@ -1940,7 +1939,7 @@
         "skip_reason": "audit-runner ships week-4 (planned per build-order.md week 4)"
       }
     ],
-    "exit_code": 1,
+    "exit_code": 0,
     "strict_mode": false
   }
 }

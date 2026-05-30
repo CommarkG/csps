@@ -84,4 +84,37 @@ if [ "$HAS_PURPOSE" = "false" ]; then
   exit 0
 fi
 
+
+# M3 S071 Facet B — Vercel mirror advisory check (SACRED-EDIT-APPROVED: M3 hook extension)
+# ADD: when creating a ratifiable + user-facing governance artifact WITHOUT a /platform/<slug> mirror
+# → outputs an ADVISORY (not blocking). Pre-tool-use; exit 0 always.
+
+# Fire only on Write of .md / .yaml governance files in docs/plan/
+if [[ "$TOOL_NAME" == "Write" ]] && [[ "$FILE_PATH" == */docs/plan/*.md || "$FILE_PATH" == */docs/plan/*.yaml ]]; then
+  CONTENT2="$CONTENT"
+  # Check if artifact is ratifiable (has status: draft or ratified)
+  IS_RATIFIABLE=false
+  if echo "$CONTENT2" | grep -qE '^status:s*(draft|ratified|protected)'; then
+    IS_RATIFIABLE=true
+  fi
+  # Check if audience is user-facing (any non-ai-agent audience)
+  IS_USER_FACING=false
+  if echo "$CONTENT2" | grep -qE 'audience:.*developer|audience:.*account|audience:.*team|audience:.*end.user|audience:.*governor'; then
+    IS_USER_FACING=true
+  fi
+  # If ratifiable + user-facing, advise about mirror
+  if [[ "$IS_RATIFIABLE" == "true" ]] && [[ "$IS_USER_FACING" == "true" ]]; then
+    SLUG=$(basename "$(dirname "$FILE_PATH")" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g')
+    MIRROR_EXISTS=false
+    if ls apps/csps-playground/src/app/platform/"$SLUG"/ 2>/dev/null; then
+      MIRROR_EXISTS=true
+    fi
+    if [[ "$MIRROR_EXISTS" == "false" ]]; then
+      echo "[ux-creation-gate] ADVISORY (M3 Facet B): ratifiable user-facing artifact created without /platform/$SLUG mirror." >&2
+      echo "[ux-creation-gate] Per vercel-mirror-rule.md: consider building apps/csps-playground/src/app/platform/$SLUG/page.tsx" >&2
+      echo "[ux-creation-gate] Advisory only — proceed. Wire mirror before ratification (INSPECT step)." >&2
+    fi
+  fi
+fi
+
 exit 0

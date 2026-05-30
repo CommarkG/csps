@@ -131,6 +131,11 @@ Journey = **L1 shared-core** (Journey Doctrine + universal skeleton + the comms-
 ## RATIFICATION PIPELINE (ratified — consolidated, reused for every artifact)
 `INSPECT (dashboard) → RIPPLE-QC (CIP: net-positive vs prior plans) → RATIFY (status draft→ratified via governed-path commit, SACRED token if sacred) → PROPAGATE (activate dependents) → TERMINAL (ratified | rejected | superseded — no perpetual-draft)`.
 
+**INSPECT step includes (S071 M3 Facet B wire):**
+- If artifact is ratifiable + user-facing (per `vercel-mirror-rule.md`): verify `/platform/<slug>` mirror exists and renders correctly before proceeding.
+- If no mirror is required (internal infra per vercel-mirror-rule.md §2): skip dashboard check, proceed.
+- Format: `INSPECT — /platform/<slug> renders correctly → proceed to RIPPLE-QC`
+
 ## PERSONA ITERATION — to real zero findings
 
 ### Cycle 1 (findings → fixes)

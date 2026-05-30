@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 /**
- * route-input-wrapper.mjs — M6 S071 PART 2 thin wrapper
+ * route-input-wrapper.mjs — M6+M8 S071 PART 2 thin wrapper
  * @csps-dna core_spine: ARCH
  *
  * Called by user-prompt-submit-intake.sh to route each input through routeInput()
  * + selectPersonas() using environment variables (avoids bash quoting issues).
+ * M8: reads brownout-state.yaml and passes brownout param (stateless pattern —
+ * file I/O happens once here, not inside routeInput, keeping the router pure).
  *
  * Env vars read:
  *   ROUTE_CONTENT  — input content (first 200 chars sample)
@@ -21,7 +23,10 @@
  */
 
 import { routeInput, selectPersonas } from './threshold-router.mjs'
+import { readFileSync, existsSync } from 'fs'
+import { join, resolve } from 'path'
 
+const ROOT = resolve(process.cwd())
 const content = process.env.ROUTE_CONTENT || ''
 const type = process.env.ROUTE_TYPE || 'governor_directive'
 const spine = process.env.ROUTE_SPINE || 'GVRN'
@@ -29,8 +34,18 @@ const urgency = process.env.ROUTE_URGENCY || 'medium'
 const scope = process.env.ROUTE_SCOPE || 'tactical'
 const shapeTier = process.env.ROUTE_SHAPE === 'true'
 
+// M8: Read brownout-state.yaml ONCE here (stateless pattern — not inside routeInput)
+let brownout = false
 try {
-  const result = routeInput({ type, spine, urgency, scope, content, shapeTier })
+  const brownoutPath = join(ROOT, 'tools/data/brownout-state.yaml')
+  if (existsSync(brownoutPath)) {
+    const raw = readFileSync(brownoutPath, 'utf-8')
+    brownout = /active:\s*true/i.test(raw)
+  }
+} catch { /* if unreadable, brownout stays false (safe default) */ }
+
+try {
+  const result = routeInput({ type, spine, urgency, scope, content, shapeTier, brownout })
 
   // Compose with Facet E selectPersonas() — stateless, empty when no match
   const personas_matched = selectPersonas({

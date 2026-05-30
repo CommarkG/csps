@@ -1,0 +1,23 @@
+# brownout-state.yaml — M8 S071 PART 2 STEP 3 — d_level brownout lever
+# Controls graceful degradation of the threshold router under load.
+# When active: route at D1 only (fast-path SHAPE-TIER for all inputs).
+# SHEDDABLE and SHEDDABLE_PLUS inputs → VAULT (deferred, not dropped).
+# CRITICAL and CRITICAL_PLUS inputs → still route normally (not shed).
+#
+# Per PROTO-S068-PART-2 STEP 3: "d_level brownout lever: under load, route at D1 only."
+# Config file read at hook invocation — NOT read inside routeInput (stateless).
+# To activate: set active: true. To deactivate: set active: false.
+# Numbers are sample/tunable per P-META-028 cornerstone.
+
+brownout:
+  active: false
+  reason: ""
+  activated_at: null
+  activated_by: null
+  shed_below_criticality: CRITICAL  # shed SHEDDABLE + SHEDDABLE_PLUS (sample — tunable)
+  resume_condition: "manual deactivation OR context free > 30% (sample threshold)"
+  note: >
+    D1 = depth-level 1 routing = fast-path SHAPE-TIER only.
+    Under brownout: all new inputs with criticality < CRITICAL route to VAULT:defer.
+    Critical work (governor directives, implementations, validations) continues unaffected.
+    Brownout is a graceful degradation tool, not an emergency stop.

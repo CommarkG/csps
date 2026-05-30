@@ -99,10 +99,20 @@ const CRITICALITY = {
  * @param {string} [input.scope] - constitutional | architectural | operational | tactical
  * @param {string} [input.content] - preview of input content for pattern detection
  * @param {boolean} [input.shapeTier] - true if SHAPE-TIER: conversational (fast-path)
- * @returns {{ route: string, axis_classification: Object, rationale: string }}
+ * @param {boolean} [input.brownout] - true if d_level brownout active (shed SHEDDABLE inputs)
+ * @returns {{ route: string, axis_classification: Object, criticality: string, input_class: string, rationale: string }}
+ *
+ * M8 S071 PART 2 STEP 3 — Scalability architecture:
+ * STATELESS: pure function, no shared mutable state, no file I/O. Read brownout-state.yaml
+ *   at HOOK invocation (not here) and pass result as `brownout` param → tenant-shardable.
+ * FAST PATH (D1): SHAPE-TIER + brownout SHEDDABLE → in-memory classify, no deep routing.
+ * SLOW PATH: constitutional/architectural/high-urgency → full 10-class classification.
+ * CRITICALITY at ingress: CRITICAL_PLUS → CRITICAL → SHEDDABLE_PLUS → SHEDDABLE
+ *   drives PE ordering + load-shedding (brownout sheds below CRITICAL).
  */
-export function routeInput({ type, spine, urgency, scope, content = '', shapeTier = false }) {
-  // SHAPE-TIER fast-path: conversational inputs bypass full classification (Class 8)
+export function routeInput({ type, spine, urgency, scope, content = '', shapeTier = false, brownout = false }) {
+  // ─── FAST PATH — D1 (in-memory, no deep routing) ──────────────────────────
+  // Case 1: SHAPE-TIER fast-path: conversational inputs bypass full classification (Class 8)
   if (shapeTier) {
     return {
       route: ROUTES.PROCESS_NOW,
@@ -113,6 +123,26 @@ export function routeInput({ type, spine, urgency, scope, content = '', shapeTie
     };
   }
 
+  // Case 2: BROWNOUT D1-mode fast-path — under load, shed SHEDDABLE inputs (graceful degradation)
+  // brownout param is READ from brownout-state.yaml by the hook (not here — stateless).
+  if (brownout) {
+    // CRITICAL_PLUS and CRITICAL still route normally (never shed essential work)
+    // SHEDDABLE_PLUS and SHEDDABLE → VAULT:defer (graceful degradation, not drop)
+    if (urgency !== 'high' && type !== 'governor_directive' && type !== 'implementation' &&
+        type !== 'validation' && type !== 'ai_behavior') {
+      return {
+        route: ROUTES.VAULT_DEFER,
+        axis_classification: { spine, scope: scope || 'tactical', intent: 'brownout_shed', mandate_relation: 'adjacent' },
+        criticality: CRITICALITY.SHEDDABLE,
+        input_class: 'brownout_shed',
+        rationale: `BROWNOUT D1: load-shedding active. Input shed to VAULT:defer (SHEDDABLE). ` +
+          `CRITICAL+ work continues unaffected. Resume: brownout-state.yaml active=false.`,
+      }
+    }
+    // CRITICAL inputs still route normally through slow path (fall through)
+  }
+
+  // ─── SLOW PATH — full 10-class classification ──────────────────────────────
   // Axis 2: scope detection (if not provided, infer)
   let detectedScope = scope || 'operational';
   if (!scope) {

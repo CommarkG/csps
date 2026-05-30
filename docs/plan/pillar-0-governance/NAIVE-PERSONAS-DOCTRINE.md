@@ -39,7 +39,7 @@ links:
   - { rel: weekly-audit, href: ../../../tools/scripts/weekly-persona-trigger-audit.mjs }
   - { rel: ai-profiling, href: ./AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md }
   - { rel: platform-observation, href: ./PLATFORM-OBSERVATION-DOCTRINE.md }
-  - { rel: developer-journey, href: ../developer-journey/ }
+  - { rel: developer-journey, href: ../pillar-4-developer-experience/developer-journey/01-developer-threshold.md }
 ---
 
 # Naive Personas Doctrine · Draft (S072)

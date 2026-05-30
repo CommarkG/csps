@@ -1744,6 +1744,19 @@ const CYCLES = [
     },
   },
   {
+    // S072 vlt-S072-boundary-prompt-format-validator: T2 enforcer for boundary-prompt.template.md
+    // Ratified Governor S071 Turn 27 (OPUS-14 anti-freestyle directive).
+    // Scans council files + chat-jump prompts for 4 mandatory header lines + CROSS-REVIEW ATTESTATION.
+    // ADVISORY in S072; promotes to BLOCKING after 5 sample exemplar passes (tunable per P-META-028).
+    // PREVENTION CLASS: FREESTYLE-BOUNDARY-PROMPT-WITHOUT-FORMAL-HEADERS
+    name: 'boundary_prompt_format',
+    command: 'node tools/validators/validate-boundary-prompt-format.mjs',
+    parse_output: (out) => {
+      const m = out.match(/entries_checked=(\d+)\s+missing_headers=(\d+)\s+missing_attestation=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { entries_checked: Number(m[1]), missing_headers: Number(m[2]), missing_attestation: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
     name: 'audit_runner_full_pass',
     command: 'pnpm audit:run --strict',
     skip: true,

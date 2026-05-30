@@ -489,3 +489,18 @@ entries:
     composes_with: ["vlt-S073-core-spine-mandatory-question-framework (3 core-spine Qs)", "vlt-S073-vault-pipeline-active-monitoring-escalation (escalation Qs)", "vlt-S073-schema-vault-vs-session-vault-consensus (vault-classification Qs)", "vlt-S073-completion-permanence-cross-tab-inheritance (displacement Q)"]
     prevention_class: "ROUTING-LOGIC-SCATTERED-WITHOUT-CANONICAL-QUESTION-REGISTRY"
     governor_directive_verbatim: "place direct questions as an organic routing. For example, asking when the threshold is absorbing something, even here in the chat, is it significant to handle now within the active plan? If the answer is no, you simply send it forward. Think widely, as a TYPE of question, not just A question."
+
+  - id: vlt-S073-relative-not-rigid-discipline-for-vault-entries
+    title: "Relative-not-rigid framing discipline — vault entries are frames, not specs"
+    status: deferred
+    urgency: high
+    framing_only: true
+    routing_decision: "DELIBERATELY NO concrete-deliverable / PE-order / time-estimate fields here — per the discipline itself."
+    what_was_raised: "Governor S072 Turn 7 push-back: 'super careful about even saving things in a rigid way. Everything must be written before processing as a relative thing and not there as a rigid thing.' OPUS-14's recent 5 vault entries (vlt-S073-core-spine-mandatory-question-framework + completion-permanence + vault-pipeline-monitoring + schema-vs-session-vault-consensus + question-driven-routing) all had CONCRETE DELIVERABLE blocks with components a/b/c/d, PE-order estimates, pre-baked architecture. That's the rigid anti-pattern: AI pretends to think for Governor later by pre-specifying."
+    why_it_might_matter: "Vault entries that arrive as finished specs lose the thinking-together step. The thinking should happen WHEN retrieved with Governor, not at vault-time. Composes with completion-discipline (don't bake new branches before consensus) + B_INTENT_CRYSTALLIZATION (Layer 1 expression is draft; consensus reaches Layer 2/3)."
+    what_is_genuinely_open: "Should existing 5 vault entries be retroactively softened or left as-is and discipline starts fresh? What's the minimal field-set for a relative-vault-entry (vs rigid-spec)? Does this need its own validator that flags vault entries with `concrete_deliverable:` fields as anti-pattern?"
+    possible_shapes_not_specs: "Vault frontmatter could carry `framing_only: true` boolean — present on this entry as inaugural example. Validator could surface but not block. Or this could just be a memory + discipline rather than mechanical at all. Unclear what's right — needs S073 conversation with Governor."
+    created_session: S072
+    composition_signals: ["B_INTENT_CRYSTALLIZATION (drafting vs ratified)", "B_COMPLETION_OVER_SHINY (no premature finishing)", "completion-discipline (vlt-S073-completion-permanence-cross-tab-inheritance)", "vault-pipeline-monitoring (vlt-S073-vault-pipeline-active-monitoring-escalation)", "P-META-022 human-intent-crystallization"]
+    prevention_class: "VAULT-ENTRY-WRITTEN-AS-FINISHED-SPEC-INSTEAD-OF-RELATIVE-FRAME"
+    governor_directive_verbatim: "I'm ordering you to be super careful about even saving things in a rigid way. Everything must be written before processing as a relative thing and not there as a rigid thing."

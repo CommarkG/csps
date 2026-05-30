@@ -243,13 +243,85 @@ Before any journey branch can be built beyond fragments:
 
 ## §6 — Open Questions for Governor Ratification
 
-Q1 — Is the trunk-and-branches framing correct? Or should it be a 3-layer model (universal trunk → audience trunk → audience branches)?
-Q2 — Does the external-user sub-trunk (zero-jargon + single-next-action + visible-progress) belong as a separate `/platform/external-user-journey-trunk` page, or should it live inside `/platform/user-journey`?
-Q3 — `/platform/simulation` and `/platform/consult` routes exist in the route list — do they belong in the journey taxonomy? (Not verified this session.)
-Q4 — Should the developer's journey page at `/platform/developer-journey` be updated to embed the TRUNK elements explicitly (T1-T6), or is it correct as-is (journey-specific content only)?
-Q5 — PART 7 sequencing: does Governor want to build frictionless onboarding before PART 3 is complete (light prototype using mock data) or only after PART 3 ships?
+Q1 — Is the trunk-and-branches framing correct? Or should it be a 3-layer model?
+**DECIDED by OPUS-15 S072:** The trunk/branches taxonomy is replaced by the Platform Attitude model in §7. See §7.
+
+Q2 — Sub-trunk page home?
+**DECIDED by OPUS-15 S072:** ONE new `/platform/journey` page (not fragmented). See §7 + M-J1b v2.
+
+Q3 — `/platform/simulation` and `/platform/consult`: journey taxonomy?
+**DECIDED by Sonnet S072 (verified):** EXCLUDED — simulation (spine=VALD, new-tab simulation tool) and consult (spine=GVRN, architecture Q&A interface) are governance/developer tools, not user-facing journey pages.
+
+Q4 — Developer-journey page: embed T1-T6 or cross-reference?
+**DECIDED by OPUS-15 S072:** Cross-reference only. Developer-journey page stays journey-specific. Do not embed T1-T6 inline.
+
+Q5 — PART 7 sequencing: build before or after PART 3?
+**DECIDED by OPUS-15 S072:** Build only what needs NO PART 3/6 now (the static journey page). Do NOT start PART 7 / per-tier branches until PART 3 ships.
 
 ---
 
-*Status: DRAFT — not RATIFIED. Present to OPUS-15 for review before Governor ratification.*
-*Authored: Sonnet S072 · 2026-05-30 · PROTO-S072-JOURNEY-CONSOLIDATION-DRAFT per OPUS-15 directive*
+## §7 — PLATFORM ATTITUDE (Governor-ratified S072 Turn — SUPERSEDES §2/§3 flat taxonomy)
+
+> **Core principle:** A platform ships a DEFAULT journey any app inherits free, zero-config + VARIETY of variants the app can swap in. An app builds THE one journey. A platform NEVER hardcodes one answer.
+
+Three layers replace the old trunk/branches model:
+
+### Layer 1 — SUBSTRATE (always-on, not selectable)
+
+The old §2 TRUNK (T1-T6) IS the substrate. Always present in every journey. Not optional.
+
+| # | Element | Source | Role |
+|---|---|---|---|
+| T1 | Threshold / Intake Entry | threshold-router.mjs M6 | The gate before all journeys |
+| T2 | Audience-Aware Messaging (6-tier) | communication-schema.yaml | HOW each step communicates |
+| T3 | JOURNEY-DOCTRINE 5 Principles | JOURNEY-DOCTRINE.md | Optimal order · Progressive disclosure · Early win · Peak-end · Avoid-list |
+| T4 | Profiles / Personas | /platform/profiles + communication-schema | Who is in the journey |
+| T5 | B_ZCA at every boundary | B_ZCA.md + P-UX-002 | Zero-context assumption at every step transition |
+| T6 | Council Address (T1-enforced) | pre-tool-use-council-address-required.sh | Tab/session boundary addressing |
+
+### Layer 2 — DEFAULT JOURNEY (one opinionated, COMPLETE, SHIPPABLE path)
+
+What every new app gets for free, working, zero-config. Not abstract — a real, usable journey.
+
+**External-user default path (assembled from substrate):**
+```
+threshold intake
+  → profile/tier detection (comms-schema audience_tier classified)
+  → zero-jargon welcome (system→user JOURNEY-DOCTRINE §8: no dump-everything)
+  → single-next-action (one clear step, not a menu)
+  → first early-win (JOURNEY-DOCTRINE §8: fast time-to-value)
+  → peak-end close (JOURNEY-DOCTRINE §8: deliberately designed ending)
+```
+
+**Developer default path:** The existing 8-step INFRA-FLOW (Steps 01-08, all RATIFIED) IS the developer default journey. Works now, ships free with every CSPS app.
+
+### Layer 3 — VARIETY (selectable variants — what makes a platform, not an app)
+
+Named variants the app can pick instead of the default:
+
+**External-user variants (per audience tier):**
+| Variant | Audience | What changes from default |
+|---|---|---|
+| `admin-config-heavy` | account-owner-admin | Onboarding step added: tenant config / billing / user roles BEFORE feature use |
+| `team-invite` | team-leader | Entry point is invite flow → team setup → first delegation action |
+| `end-user-minimal` | end-user | Strip all config steps; straight to first task (lowest friction) |
+
+**Developer variants (per build depth):**
+| Variant | When | What changes from default |
+|---|---|---|
+| `depth-3` | Velocity / exploration | Default 8-step but abbreviated (skip optional governance rounds) |
+| `depth-4` | Quality build | Default + explicit review checkpoints per step |
+| `depth-5` | Platform-critical | Default + full 5-surface engraving + OPIA at each milestone |
+
+### Why this matters architecturally
+
+The old trunk/branches model described WHAT elements exist (accurate). The Platform Attitude model describes HOW to USE them (actionable). The difference:
+- Old: "these 6 elements are universal" (true but passive)
+- New: "ship the default and expose the variety" (the platform discipline that makes CSPS different from app code)
+
+This applies beyond journeys: every platform feature should have a DEFAULT + VARIETY shape. The journey is the proof-of-concept visible to the Governor.
+
+---
+
+*Status: DRAFT v2 (OPIA-ACCEPTED by OPUS-15 — Platform Attitude reframe added S072 M-J1b v2). Governor ratification pending.*
+*Authored: Sonnet S072 · 2026-05-30 · PROTO-S072-JOURNEY-CONSOLIDATION-DRAFT → v2 per PROTO-S072-M-J1 v2 (OPUS-15)*

@@ -375,3 +375,15 @@ entries:
     retrieve_when: "S072 — high-priority engraving alongside core-seeds-currency (same Turn 26 cluster)"
     related_existing: ["B_MUTUAL_UNDERSTANDING_VALIDATION", "B_BOUNDARY_ALIGNMENT_PROTOCOL", "communication-protocol-shared.md"]
     prevention_class: "BOUNDARY-PROMPT-SENT-WITHOUT-COUNTERPART-REVIEW"
+
+  - id: vlt-S072-boundary-prompt-format-validator
+    title: "validate-boundary-prompt-format.mjs — T2 enforcer for the 4 mandatory header lines (I AM / YOU ARE / THIS IS / DO NOW)"
+    status: deferred
+    urgency: high
+    routing_decision: "Queue to S072. S071 Turn 27 OPUS-14 authored tools/templates/boundary-prompt.template.md after Governor freestyle-drift catch. The template specifies 4 mandatory header lines + CROSS-REVIEW ATTESTATION + CONTEXT + DISCIPLINE INHERITED + KEY VAULT ITEMS + GATES + author signature. T2 validator scans tools/council/opus-turn.md + sonnet-turn.md + docs/plan/_handoff/VAULT/chat-jump-prompt-*.md for new entries; flags entries lacking the 4 mandatory header lines. Advisory at engraving; promotes to BLOCKING after 5 sample exemplar passes (tunable per P-META-028). Composes with validate-opus-turn-rzf.mjs + validate-handoff-completeness.mjs."
+    created_session: S071
+    context: "Governor S071 Turn 27 caught OPUS-14 freestyling the v2 startup prompt without the formal communication header. Quote: 'what the hell happent to the formal communication??? I am opus #14 you are new sonnet tab .... and then all that is needed. make it mechanicaly enforsed as keep freestyling each time and it is the sure path to drifts.' This is a B_ZCA violation + B_BOUNDARY_ALIGNMENT_PROTOCOL violation. Template authored T0 (template surface); validator queued T2; pre-commit hook queued T1; session-open injection T3 already covered by template referenced in core seeds."
+    retrieve_when: "S072 — pair with vlt-S072-cross-tab-prompt-review-discipline (same Turn 26-27 cluster; both are boundary-discipline engraving)"
+    related_template: "tools/templates/boundary-prompt.template.md"
+    related_disciplines: ["B_ZCA", "B_BOUNDARY_ALIGNMENT_PROTOCOL", "B_MUTUAL_UNDERSTANDING_VALIDATION", "communication-protocol-shared.md Rule 7"]
+    prevention_class: "FREESTYLE-BOUNDARY-PROMPT-WITHOUT-FORMAL-HEADERS"

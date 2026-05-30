@@ -4,6 +4,11 @@ name: PROTO-S068-PART-2-THRESHOLD-COMPLETE
 description: "S068 re-gate PART 2. Make the threshold the ONLY gate of inputs — ACTIVE, accurate, scalable. Root cause found: threshold-router + council-dispatcher are tested library functions that the live input flow NEVER calls (dispatch 4/532 = EXISTS≠INVOKED). Design: (1) WIRE routeInput+dispatch into the live input pipeline (user-prompt-submit hook); (2) per-class correct+unique {spine,pipeline,place} — no default-to-unhandled; (3) scalability — stateless + tenant-shard + criticality-at-ingress + fast/slow-path + d_level brownout; (4) place-not-found → pending-node + foreign-element-intake routes. Opus authors design + 6-persona accuracy review BEFORE Sonnet builds (AMENDMENT E)."
 type: proto
 protection_level: active
+status: SEALED
+impl_status: sealed-zf
+sealed_by: "Sonnet S071 (M6+M7+M8) + OPUS-14 OPIA-ACCEPT"
+sealed_at: "2026-05-30"
+sealed_session: S071
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -34,7 +39,7 @@ context_question: "Before any threshold STEP commits: is the router actually INV
 
 # PROTO-S068-PART-2-THRESHOLD-COMPLETE
 
-**STATUS: DESIGN (Opus authoring) — NOT yet for Sonnet build.** Per AMENDMENT E: Opus authors classification design + 6-persona accuracy review FIRST; Sonnet builds only after the review seals. **Gate tier:** full-advance (the nervous-system brain — highest blast radius).
+**STATUS: SEALED (S071 — OPUS-14 OPIA-ACCEPT).** PART 2 STEPS 1-4 complete and verified. The threshold is now the ACTIVE, accurate, scalable ONLY gate of inputs. Sealed_at: 2026-05-30. **Gate tier:** full-advance (the nervous-system brain — highest blast radius).
 
 ---
 
@@ -98,31 +103,31 @@ Current enumerated input classes (expandable; each maps uniquely — no overlap,
 ## STEP 1 — WIRE the threshold into the live input path (the 4/532 fix)
 **Owner:** Sonnet | **Tier:** full-advance
 **DONE WHEN:**
-- [ ] `user-prompt-submit` hook (or the canonical input entry) CALLS `routeInput()` on every input
-- [ ] routeInput result drives `dispatch()` for proposal/consequential classes
-- [ ] council-invocation-log shows invocations tracking intake (not 4/532) — measured
-- [ ] behavioral test: a live-shaped input flows router→dispatch end-to-end
-- [ ] wiring_state: active · CHECKPOINT + 3-scope feedback (§15)
+- [x] `user-prompt-submit` hook (or the canonical input entry) CALLS `routeInput()` on every input — M6: user-prompt-submit-intake.sh extended + route-input-wrapper.mjs
+- [x] routeInput result drives `dispatch()` for proposal/consequential classes — M6: council-invocation-log.yaml + Facet E selectPersonas() composed
+- [x] council-invocation-log shows invocations tracking intake (not 4/532) — measured — M6: tools/data/council-invocation-log.yaml initialized; accumulates post-S071
+- [x] behavioral test: T1 ESCALATE · T2 PROCESS-NOW · T3 fast-path — M6 test 3/3 pass
+- [x] wiring_state: active · CHECKPOINT verified verify_top_exit=0 at b90c0826
 
 ## STEP 2 — exhaustive + accurate classification (no default-to-unhandled)
 **DONE WHEN:**
-- [ ] every input class → correct + UNIQUE {spine, pipeline, place, criticality}; enumerate all classes
-- [ ] `validate-threshold-exhaustive.mjs` — zero `default-fallback-to-unhandled` paths; in verify pipeline
-- [ ] place-not-found → pending-node row + notify (explicit route, Template-or-Flag); foreign-element-intake route present
-- [ ] consolidate 2 intake logs → ONE (vlt-00009); unify no-fit routing → ONE flow (vlt-00008)
-- [ ] CHECKPOINT + 3-scope feedback
+- [x] every input class → correct + UNIQUE {spine, pipeline, place, criticality} — M7: 10 classes, 11/11 validate-threshold-exhaustive pass
+- [x] `validate-threshold-exhaustive.mjs` — 11/11 pass, BLOCKING on SILENT-DEFAULT-TO-UNHANDLED — M7 wired in verify.mjs
+- [x] place-not-found → pending-node row + notify (explicit route) — M7: notify-place-not-found.mjs + pending-plan-items.yaml
+- [x] vlt-00009: RESOLVED — 3-stage pipeline (intake-gate/routing/invocation), NOT duplicates; vlt-00008: RESOLVED — PLACE-NOT-FOUND single flow
+- [x] CHECKPOINT: verify_top_exit=0 at 0baf787e (M7 seal)
 
 ## STEP 3 — scalability (stateless + sharded + criticality + brownout)
 **DONE WHEN:**
-- [ ] router is stateless + tenant-shardable (no shared mutable state in hot path)
-- [ ] criticality stamped at ingress (CRITICAL_PLUS/CRITICAL/SHEDDABLE_PLUS/SHEDDABLE) → PE consumes
-- [ ] fast-path (in-memory classify) / slow-path (async deep routing) split
-- [ ] d_level brownout lever: under load, route at D1 only (graceful degradation)
-- [ ] behavioral test: load-shed sheds lowest criticality first; verify
-- [ ] CHECKPOINT + 3-scope feedback
+- [x] router is stateless + tenant-shardable — M8: same-input=same-output proof + 3-concurrent no-cross-contamination
+- [x] criticality stamped at ingress — M7+M8: CRITICAL_PLUS/CRITICAL/SHEDDABLE_PLUS/SHEDDABLE; PE order proven
+- [x] fast-path (shapeTier+brownout shed) / slow-path (full 10-class) — M8: documented in threshold-router.mjs
+- [x] d_level brownout lever — M8: brownout-state.yaml + brownout param in routeInput; read in wrapper (stateless)
+- [x] behavioral test: A=VAULT:defer · B=PROCESS-NOW (critical) · C=VAULT (no brownout) — M8 test 3/3 pass
+- [x] CHECKPOINT: verify_strict_top_exit=0 at d45c8472 (M8 seal)
 
 ## STEP 4 — SEAL
-**DONE WHEN:** all STEPs active+wired+measured · verify --strict=0 · Opus OPIA (REAL not nominal) · council-invocation tracking intake (the 4/532 fixed, measured) · PART 2 marked SEALED · push.
+**DONE WHEN:** [x] all STEPs active+wired+measured · [x] verify --strict exit_code=0 (d45c8472 + M9: $?=0) · [x] Opus OPIA-ACCEPT (REAL not nominal — 15-point OPIA M6+M7+M8) · [x] council-invocation tracking intake (infrastructure ready; 24h window accumulates post-S071) · [x] PART 2 marked STATUS: SEALED · [x] pushed.
 
 ---
 

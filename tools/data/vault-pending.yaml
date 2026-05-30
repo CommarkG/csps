@@ -595,3 +595,78 @@ entries:
     urgency: high
     created_session: S072
     governor_directive_verbatim: "the moat should have a buffer in the form of a vault that should be processed. It should create a protocol for what deserves to be entering the moat and what not."
+
+  - id: vlt-S073-T1-boundary-prompt-realtime-hook
+    raw: "Sonnet S072 honest assessment: validate-boundary-prompt-format is T2-only batch advisory · exits 0 always · doesn't block real-time. 'If Opus-14 posts a freestyle CIP PROTO to opus-turn.md right now without the 4 mandatory headers, nothing stops it.' Sonnet's S073 recommendation: build pre-tool-use-boundary-prompt-check.sh T1 hook that fires when writing to opus-turn.md or sonnet-turn.md — checks 4 mandatory headers, blocks new posts (not retrofits)."
+    context: "Governor S072 — Sonnet self-honest-disclosure of advisory-means-doesnt-block. The T2 already catches violations after the fact; T1 would close the real-time gate. Composes with the M0.7 long-run discipline pattern (T1+T2+T3 trio)."
+    insight: "Completes the boundary-prompt enforcement trio. Same shape as M0.7 pattern. Build needs ~1h. Composes with vlt-S072-boundary-prompt-format-validator (already DONE — the T2 sibling)."
+    status: deferred
+    urgency: high
+    created_session: S072
+    sonnet_recommendation_verbatim: "build a pre-tool-use-boundary-prompt-check.sh hook that fires when writing to opus-turn.md or sonnet-turn.md — checks if new content contains the 4 mandatory headers. Blocks on missing headers in new posts (not retrofits)."
+
+  - id: vlt-S073-cross-tab-review-discipline-doctrine
+    raw: "Cross-tab review discipline established Turn 26 (Governor: 'both tabs will review each other's prompts as i see that you contribute to each other each time'). vlt-S072-cross-tab-prompt-review-discipline already vaulted. But: no formal doctrine.md authored yet; just the discipline concept + reflexive practice."
+    context: "Inaugural instance: Sonnet caught 4+2 on OPUS-14's v1→v3 startup-block. Working in practice but not engraved as canonical doctrine."
+    insight: "Composes with B_MUTUAL_UNDERSTANDING_VALIDATION (which addresses 5 boundary types). Cross-tab review is a sixth type or an extension of the AI-to-AI subagent type. Doctrine should formalize: who reviews whose prompt, when, what catches surface. Probably 30 min author."
+    status: deferred
+    urgency: medium
+    created_session: S072
+
+  - id: vlt-S073-L1-mutual-consolidated-elements-survey
+    raw: "Turn 11 OPUS-14 recommendation: while Sonnet builds CIP, productively author a 'L1 mutual-consolidated elements survey' identifying what BOTH developer-journey AND user-journey share — to pre-map the L1 shared-core before S074+ opens journey work. Not building, just surveying."
+    context: "Governor S072 Turn 10 asked 'are we ready to dive into developer and user journey [focused on mutual consolidated elements]?' Answer: ready for design-planning, not execution. Survey is the design-planning."
+    insight: "Output would be a brief markdown (~1h) listing the 8-10 ratified elements that BOTH branches inherit (Journey Doctrine + Cornerstone + RZF + Long-Run + Threshold M6 + Communication Schema + Vocabulary §Dev↔User + Facets A-F + boundary-prompt template + cross-review). Use this as inheritance scaffold for PART 7 (user-journey) + PART 8 (developer-journey) when those start."
+    status: deferred
+    urgency: medium
+    created_session: S072
+
+  - id: vlt-S073-3-stage-intake-pipeline-formal-doctrine
+    raw: "Turn 17 OPUS-14 RESOLVED vlt-S068-00009 (intake-log merge ASK-OPUS-STOP) by identifying that the 2 logs are sequential STAGES of one pipeline, not duplicates. But no formal doctrine.md authored."
+    context: "3 stages: intake-gate (tools/data/threshold-intake-log.yaml, 246 entries, status/source/input_preview) → routing (.csps/threshold/intake-log.yaml, ~170 entries, raw/pipelines/escalated) → invocation (tools/data/council-invocation-log.yaml, M6, post-dispatch)."
+    insight: "Naturally pairs with PLATFORM-OBSERVATION L1 (3-stage intake formalization). Doctrine would add pipeline_stage field + cross-link shared id. Could be subsumed under PLATFORM-OBSERVATION doctrine or stand alone as its own."
+    status: deferred
+    urgency: medium
+    created_session: S072
+
+  - id: vlt-S073-OPIA-template-formalization
+    raw: "OPUS-14 has been authoring OPIA reports (15-point M9 SEAL OPIA, smaller per-milestone OPIAs) but no canonical opia.template.md exists in tools/templates/. Format varies per milestone scope."
+    context: "OPIA = Opus Post-Implementation Audit. Codifies the director's verification of builder's claims (M-43 + on-disk check + behavioral test re-run)."
+    insight: "Composes with boundary-prompt template (Turn 27) + proto.template.md (M0.5). OPIA template would standardize: per-evidence-item table format + verdict (ACCEPTED / COURSE-CORRECT) + revert-not-amend rule on COURSE-CORRECT + N-point variant (per-milestone smaller, SEAL larger). ~30 min author."
+    status: deferred
+    urgency: medium
+    created_session: S072
+
+  - id: vlt-S073-opus-channel-integrity-root-cause-investigation
+    raw: "vlt-S071-opus-channel-integrity opened S071 Turn 4 when OPUS-14's v1/v1.1 edits to opus-turn.md silently never reached HEAD. Root cause never investigated. Subsequent v1.3/v1.4 reached HEAD reliably so the failure may have resolved on its own, but the mechanism was never identified."
+    context: "S071 Turn 4 finding. Candidates: post-stop hook revert · stash interaction · Sonnet's commit cycle excluding opus-turn.md from staging. Failure has not recurred since Turn 4, but the vlt is still OPEN."
+    insight: "Low urgency given no recurrence. But should be either investigated (~30min git log/reflog forensics) or formally closed-without-fix with note that monitoring continues. PLATFORM-OBSERVATION pipeline (S073-queued) would naturally catch a recurrence."
+    status: deferred
+    urgency: low
+    created_session: S071-Turn4
+
+  - id: vlt-S073-vault-pending-scan-interface
+    raw: "vault-pending.yaml currently has 40+ entries with mixed urgency. No interface for Governor to scan quickly — just the raw YAML file. Could be a /platform/vault-pending page (per Vercel-mirror rule M3 scope: ratifiable + user-facing artifact)."
+    context: "Composes with vlt-S073-vault-pipeline-active-monitoring-escalation (Governor Turn 5 directive: 'monitored + escalation + measurable value'). Without a scan interface, the active-monitoring is harder to execute."
+    insight: "Could be subsumed under PLATFORM-OBSERVATION L3 /platform/observation page (which already plans to render aggregated audit state) — vault scan is one observation class. OR could be its own page. Decide during PLATFORM-OBSERVATION design."
+    status: deferred
+    urgency: medium
+    created_session: S072
+
+  - id: vlt-S073-question-hub-corpus-extraction
+    raw: "Get all the questions that run in the system, then analyze and extract their essence into context and methodology carriers and use it. I want a series of questions like this saved to be later processed."
+    context: "Governor S072 Turn 12 directive. The platform has questions scattered across: context_question fields in governed artifacts (every .md/.yaml frontmatter), the 16 decision hygiene questions in session-open injection, G1-G5 guard questions, CAQ patterns (caq-patterns.yaml), PCR check triggers (post-stop-pcr-check.sh), persona review synthesis questions, ZF cycle questions. None are aggregated into a canonical corpus. Governor wants them collected, their essence distilled, and reused as methodology carriers."
+    insight: "This is the question analog of what core-seeds-currency does for core seeds — surface what already exists. A question-hub validator could scan governed artifacts for context_question fields and aggregate into a methodology map. The essence extraction (what PATTERN do these questions share?) is the deeper value — probably finds 3-5 recurring archetypes (state-verification, conflict-detection, scope-check, prevention-check, completion-verification). Composes with validate-core-seeds-currency + audit-runner pipeline concept."
+    status: deferred
+    urgency: high
+    created_session: S072
+    governor_directive_verbatim: "I want a series of questions like this saved to be later processed. Let's get all the questions that run in the system, and then we will analyze them and extract their essence into context and methodology carriers and use it."
+
+  - id: vlt-S073-push-mandatory-discipline
+    raw: "Create a comprehensive, wall-to-wall, deep instruction making sure all that is created is saved and pushed not only in these steps but in previous steps. This must have become a mandatory issue."
+    context: "Governor S072 Turn 12 — surfaced by 16 commits built locally without pushing (S072 governance debt). The gap: commits are made but push is manual and often deferred. Governor wants this mandatory, not voluntary. validate-push-status.mjs built S072 as the T2 batch surface (advisory, surfaces unpushed count in every verify run). T1 (real-time reminder at commit time or session close) and T3 (session-open injection) are the missing surfaces."
+    insight: "The push discipline is a B_ZERO_LAPTOP_DEPENDENCY extension — work not on origin is not permanent. The session-close gate (post-stop-session-close-gate.sh) is the right T1 surface: intercept session close if unpushed_count > 0 and surface a mandatory push prompt. This is different from blocking (which breaks the flow) — it's a reminder+action bundled at the right moment. T3: session-open injection should surface 'LAST PUSH: <date> | <N> commits since push' as a status line."
+    status: deferred
+    urgency: high
+    created_session: S072
+    governor_directive_verbatim: "Create a comprehensive, wall-to-wall, deep instruction, well planned, making sure that all that is created is saved and pushed not only in these steps but in previous steps. This must have become a mandatory issue."

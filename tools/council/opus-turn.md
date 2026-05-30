@@ -1,3 +1,99 @@
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-14, architectural director, S072 (sole active per Governor S071 Turn 4 — continuity through S072)
+YOU ARE: Sonnet, builder S072 (P4 P-META-029 ✓ at eedf12eb · boundary-prompt validator ✓ at 6432cf1e · proto-completeness 2 migrations ✓ at 3955838c · 16 commits pushed to origin at f6e07558 — governance debt cleared)
+THIS IS: PROTO-S072-CIP build directive (3-milestone proto · the long-promised CIP unblocked by PART 2 SEAL · first PROTO authored under boundary-prompt.template.md Turn 27 ratified format)
+DO NOW: Read this PROTO + PROTO-S069-CIP (S069 design carries forward) + apply boundary-prompt template format to your milestone reports + begin M1 (staging schema + validate-prior-plan-conflict).
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION (per S071 Turn 26 + Turn 27 discipline):
+  Reviewed by: OPUS-14 self-review (applying boundary-prompt template format reflexively)
+  Cross-review pending: YOU (receiving Sonnet S072) — flag back any catches before M1 commits
+  Inherits prior cross-review from v1.4 directive (Sonnet S071 caught 4+2 on v1→v2→v3)
+
+# PROTO-S072-CIP — Change-Impact Pipeline Build (S072 P1 · OPUS-14 authored 2026-05-30)
+> AUTHOR: OPUS-14 | SESSION: S072 | DATE: 2026-05-30 | DISCIPLINE: boundary-prompt.template.md Turn 27 format
+> Supersedes the DEFERRED PROTO-S069-CIP entry below — PART 2 SEAL at cb925cd1 unblocks this build.
+
+[PROTOCOL: PROTO-S072-CIP | STEP: ratified build | MODE: milestone-run | GATE: full-advance | TIER: blast-radius high]
+
+## CORE SEED
+No change reaches the live system without passing: **STAGE (separate place) → RIPPLE-QC (multi-direction, never self-test) → NET-IMPACT (net-positive only) → THRESHOLD route → TERMINAL (tracked end-state)**. Prevents local-fix-harms-global. Lived example it would have caught: e662f587 sacred-file-protection regression (dialog fix achieved zero-dialogs but silently dropped sacred-file protection on the Bash path). With threshold M6 active + 14-class router + Facet E selectPersonas() + RZF-LATEST v1.1 severity classification + Long-Run R/N taxonomy + boundary-prompt template — CIP composes ON TOP of all of these as PROPOSED-CHANGE 15th input class.
+
+## INHERITS / ALIGNS-WITH
+- **PROTO-S069-CIP** (S069 original design — superseded by this PROTO-S072-CIP under boundary-prompt format)
+- **PART 2 SEAL** at cb925cd1 (threshold ACTIVE; CIP composes on top)
+- **Facet E selectPersonas()** (M4) — ripple-QC dispatch uses existing persona pool, no parallel
+- **RZF-LATEST v1.1** §1 classify-before-fix (BLOCKING/ADVISORY/DEFERRABLE) — RIPPLE-QC verdicts inherit this severity taxonomy
+- **Long-Run R/N taxonomy** (M0.7) — CIP stops are R-class real stops only; not nominal
+- **PLATFORM-OBSERVATION pipeline** (S073-queued) — CIP audit findings flow through OBSERVE→AGGREGATE→...→MEASURE-AGAIN when L5 lands
+- **boundary-prompt.template.md** (Turn 27 ratified) — this PROTO uses it; Sonnet's milestone reports inherit
+
+## ASK-OPUS-STOP TRIGGERS (real-stops per Long-Run R-class — pause + ask)
+- R3-class: validate-prior-plan-conflict.mjs design requires architectural decision not covered here (e.g., what counts as "conflict" between staged change + prior plan — exact match vs semantic overlap?)
+- R3-class: council-registry.md is absent — threshold-router.mjs references it (S068 design noted as bug) — fix-or-stub decision
+- R3-class: PROPOSED-CHANGE 15th class collides with existing 14-class table semantics (current cornerstone-expandable enumeration)
+- R8-class: TypeScript error in validate-cip-terminal-coverage requires schema-design choice (not syntax fix)
+- R9-class: any milestone reveals a gap that re-shapes PROTO-S069-CIP's core seed assumptions
+
+## 3-PERSONA REVIEW (this PROTO authored after considering)
+- **cruel-critic:** CIP is "the right design but if it just becomes ceremony — every change wrapped in staging without real ripple-QC — it's a satisfaction point not a gate. M2's multi-direction discipline must actually invoke independent personas, not self-review."
+  → APPLIED: M2 spec mandates ≥3 independent persona invocations per staged change; same-builder-self-review explicitly forbidden in DONE-WHEN.
+- **bottleneck-expert:** "Every change going through CIP could become the throughput ceiling. Critical/SHEDDABLE classification at ingress is mandatory — trivial changes (typo fixes, comment edits) must NOT block on full ripple-QC."
+  → APPLIED: M1 staging schema includes `cip_required: bool` derived from criticality; SHEDDABLE/trivial classes bypass to lightweight verdict; CRITICAL+ classes go full ripple-QC.
+- **consolidation-expert:** "CIP must extend M-42 + Facet E + RZF severity — not build parallel persona-dispatch or parallel severity taxonomy. The temptation to fork is real."
+  → APPLIED: every milestone explicitly cites the existing infra it extends; M2 dispatch uses Facet E selectPersonas(); M3 terminal-coverage uses RZF-LATEST classify-before-fix output.
+
+## STEP 0 — design completeness (this PROTO)
+**DONE WHEN:** [x] core seed cited (PROTO-S069-CIP carry-forward) · [x] 3-persona review embedded · [x] inherits/aligns-with declared · [x] ASK-OPUS-STOP triggers enumerated · [x] PROPOSED-CHANGE 15th class semantically defined (current enumeration, expandable per cornerstone) · [x] boundary-prompt template format applied · [ ] Governor ratifies (implicit per S069 Turn 1 ratification of PROTO-S069-CIP + S071 Turn 4 director continuity).
+
+## M1 — Staging schema + prior-plan-conflict (~2h)
+**DONE WHEN:**
+- [ ] `tools/data/change-impact-staging.yaml` exists with schema: `id / proposed_change / type{validator|hook|schema|governance|threshold-routing|advisory-toggle|rename|register-consolidation|prevention-insight|...} / cip_required (derived from criticality) / ripple_set[] / directions_checked[] / net_impact{helps[],harms[]} / verdict{NET-POSITIVE|REJECTED|NEEDS-MITIGATION} / terminal_state{RATIFIED+IMPLEMENTED|VAULTED-with-trigger|REJECTED-with-reason|SUPERSEDED}` — type enum expandable per cornerstone (sample — tunable).
+- [ ] `tools/validators/validate-prior-plan-conflict.mjs` — given a staged change id, checks vs `unified-plan.yaml` open items + `vault-pending.yaml` entries + `audit-runner.md` pipelines; flags conflicts (4-months-ago check). Behavioral test 3/3 (A conflicts→flag · B clean→pass · C unrelated→pass).
+- [ ] verify_top_exit:<int> cited · PREVENTION class named (suggested: `LOCAL-FIX-HARMS-GLOBAL-WITHOUT-RIPPLE-CHECK`) · §15 3-scope.
+- [ ] Wire validator into verify.mjs as `cip_prior_plan_conflict` advisory · register in audit-runner.md row · regenerate audit-runner slices (avoid Turn 26 orphan-validator R2).
+
+## M2 — Multi-direction ripple-QC orchestration (~2h)
+**DONE WHEN:**
+- [ ] `tools/scripts/cip-ripple-qc-runner.mjs` — dispatches a staged change to ≥3 independent directions: cruel-critic + consolidation-expert + synergy-master + balance-expert + validate-prior-plan-conflict (composes with Facet E selectPersonas() — no parallel dispatch). Same-builder self-review explicitly forbidden (cruel-critic finding applied).
+- [ ] Collects `net_impact{helps[N],harms[M]}` verdict per direction; aggregates into NET-POSITIVE/REJECTED/NEEDS-MITIGATION classification.
+- [ ] **Fix missing `tools/council/council-registry.md`** (S068 design referenced it but it's absent — bug carried forward from S068).
+- [ ] SHEDDABLE/SHEDDABLE_PLUS classes (criticality at ingress per M7) bypass full ripple-QC with lightweight verdict (bottleneck-expert finding applied).
+- [ ] verify_top_exit:<int> + PREVENTION class named (suggested: `SELF-REVIEW-PASSES-AS-RIPPLE-QC`) + §15 3-scope.
+
+## M3 — Threshold route PROPOSED-CHANGE + terminal coverage + PREVENTION→threshold (~2h)
+**DONE WHEN:**
+- [ ] `tools/scripts/threshold-router.mjs` adds 15th input class `proposed-change` → routes to CIP staging (cross-spine→ESCALATE, reusable→INVOKE consolidation-expert). EXTEND M7 10-class table (current enumeration → 15 — expandable per cornerstone). Update validate-threshold-exhaustive.mjs test fixtures.
+- [ ] `tools/validators/validate-cip-terminal-coverage.mjs` — every staged item reaches a terminal state (RATIFIED+IMPLEMENTED | VAULTED-with-trigger | REJECTED-with-reason | SUPERSEDED) or BLOCK at the staging timeout (sample 30 days — tunable). Closes the 4/532 dead-end disease at the change-staging layer. Test 3/3.
+- [ ] Wire PREVENTION→threshold: prevention insights from Milestone Reports enter as `type: prevention-insight` staged items → classified into S067 prevention-class register (EXTEND `validate-prevention-class-required.mjs`; no parallel).
+- [ ] PLATFORM-OBSERVATION L5 dependency: when L5 builds in S073, audit findings ROUTE through CIP as `proposed-change` — composition note only; not blocking M3 SEAL.
+- [ ] verify_top_exit:<int> + PREVENTION class named (suggested: `CHANGE-STAGED-WITHOUT-TERMINAL-CLOSURE`) + §15 3-scope.
+
+## SEAL (after M1+M2+M3 ACTIVE+WIRED+MEASURED)
+**DONE WHEN:** verify --strict exit_code=0 · 15-class threshold confirmed (M7's 10-class table extended) · council-registry.md fixed · cip-ripple-qc-runner invokes ≥3 directions independently · prior-plan-conflict validator BLOCKING in verify · terminal-coverage validator BLOCKING in verify · PROTO-S072-CIP marked SEALED · OPUS-14 15-point OPIA confirms REAL not nominal · revert-not-amend if COURSE-CORRECT (Turn 27 amendment d preserved).
+
+## ZF GATE (per milestone)
+Cycle 1: cite new files + test exit codes + the 3 cases by name. Cycle 2: re-examine the milestone's area + 0 new findings + `verify_top_exit:<int>` populated. Status only when zero. Apply RZF-LATEST v1.1 classify-before-fix (BLOCKING/ADVISORY/DEFERRABLE) to each finding.
+
+## PREVENTION CLASSES (named per milestone)
+- M1: `LOCAL-FIX-HARMS-GLOBAL-WITHOUT-RIPPLE-CHECK`
+- M2: `SELF-REVIEW-PASSES-AS-RIPPLE-QC`
+- M3: `CHANGE-STAGED-WITHOUT-TERMINAL-CLOSURE`
+- SEAL: `NOMINAL-SEAL-WITHOUT-INDEPENDENT-RIPPLE-EVIDENCE`
+
+## §15 3-SCOPE FEEDBACK (mandatory per milestone)
+Sonnet · Platform · Governor — explicit per Milestone Report.
+
+## DISCIPLINE
+slowdown-aware: every piece EXTENDS existing (threshold-router, Facet E selectPersonas, RZF-LATEST severity, prevention-class validator, vault, unified-plan) — 0 net-new parallel machinery · advisory→blocking promotion only after 5 sample exemplar passes (tunable per P-META-028) · ZF cite files + top-level `$?` · .claude/ writes via Bash + SACRED-EDIT-APPROVED (zero-dialog rule) · ADD-not-CONTRADICT inheritance · post-edit verify trap (RZF-LATEST §5) · long-run R-class only, N1-N8 nominal stops blocked · register validators in audit-runner.md BEFORE wiring in verify.mjs (avoid Turn 26 orphan-validator R2).
+
+## AUTHOR SIGNATURE
+**OPUS-14** | **SESSION: S072** | **PROTO-S072-CIP** | **DATE: 2026-05-30** | **HEAD-AT-AUTHORING: f6e07558** | **format: boundary-prompt.template.md Turn 27 (first PROTO under this discipline — sets precedent for future OPUS-N+1 inheritance)**
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
 # OPUS-14 S071 DIRECTIVE — RATIFICATION FLIPS + LONG-RUN + 6 FACETS + PART 2 BUILD · v1.4 (M0.7 inserted)
 > AUTHOR: OPUS-14 (sole active S071 director) | SESSION: S071 | DATE: 2026-05-30
 > Supersedes v1.0/v1.1 (working-tree only — vlt-S071-opus-channel-integrity), v1.2 (Governor-trimmed), v1.3 (Q2 locked). v1.4 adds M0.7 (Long-Run Builder Discipline enforcement trio) between M0.5 and M1 per Governor S071 Turn 6 directive ("plant core seed for the longest sonnet implementation plan").

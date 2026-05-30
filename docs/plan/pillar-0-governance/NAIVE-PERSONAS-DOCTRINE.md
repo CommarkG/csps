@@ -16,8 +16,10 @@ diataxis_type: reference
 protection_level: protected
 status: draft
 impl_status: architecture-pending
-vault_pending: vlt-S072-naive-personas-doctrine
-retrieve_when: "Governor ratifies → Sonnet builds 11 .claude/skills/naive-* persona files + threshold wiring + first audit pass on dev-journey + user-journey"
+vault_pending: vlt-S073-naive-personas-doctrine
+retrieve_when: "Governor ratifies → Sonnet builds the persona engine (3 core archetypes + 6 parameter axes + tools/scripts/persona-engine.mjs) + threshold wiring + first audit pass. **Disposition (per Governor S072 Turn 4 completion-discipline call): VAULT for S073 absorption window. NOT in S072 active queue.** S072 stays focused on CIP build + boundary-prompt validator + queued doctrine ratifications."
+research_tagged: true
+research_vault_ref: "docs/plan/_handoff/VAULT/research/S072-naive-personas-research.md"
 core_spine: AI
 core_spines: [AI, GVRN, OPER]
 schema_anchor: pillar_0_governance_leaves
@@ -63,7 +65,81 @@ links:
 
 **CSPS-native equivalent:** the existing 8 expert personas + Facet E `selectPersonas()` + threshold INVOKE = already the M4 mechanism. **Add naive personas to that registry; they invoke through the same routing path. No parallel machinery.**
 
-## 3 · The naive persona set (sample — expandable per P-META-028)
+## 3 · v2 architecture — Core-Spine application (Governor S072 Turn 4 refinement)
+
+**v1 problem (cruel-critic to self):** 11 hardcoded personas violates Core-Spine precedence + balance-expert (governance growing faster than validation) + Cooper §6.4 *Persona Pruning* (static libraries scale poorly).
+
+**v2 architecture (research-grounded — see `research_vault_ref`):**
+```
+L1 — CORE ARCHETYPES (sealed · 3 · expansion requires Governor ratify)
+   naive-end-user-core | naive-developer-core | naive-plan-audit-core
+
+L2 — PARAMETER AXES (sealed · 6 · map directly to AI-PROFILING D1-D13 registry)
+   jargon_tolerance   (low/med/high)        ← maps D6 cleverness, D3 surface-completeness
+   attention_span     (2min / 10min / 30min) ← maps D7 action-bias
+   domain_familiarity (none / basic / deep)  ← maps D4 pattern-match
+   frustration_threshold (low / med / high)  ← maps D10 cooperative-disagreement-aversion
+   mental_model_template (transactional / exploratory / evaluative) ← maps D5 single-pass
+   trust_baseline     (low / med / high)     ← maps D2 authority-pleasing
+
+L3 — TUNED INSTANCES (tunable · generated on demand · vaulted if useful · K≥3 invocations)
+   naive-anxious-evaluator  = end-user-core + (jargon=low, attention=2min, trust=low,  frustration=low)
+   naive-junior-developer   = developer-core + (jargon=med, attention=10min, domain=basic, trust=med)
+   naive-time-pressed-mid-dev = developer-core + (jargon=high, attention=10min, frustration=high)
+   … expandable per evidence-driven promotion
+```
+
+**The engine** — `tools/scripts/persona-engine.mjs` (queued L1 build):
+- Input: `{archetype: L1, axes: L2 tuning}` + artifact reference
+- Process: load archetype profile + apply axes overrides → produce simulation prompt → run LLM in persona mode → return `{findings[], abandonment_risk, blocking_jargon[], confusion_points[]}`
+- Output: same shape as existing 8 expert personas — plugs into Facet E `selectPersonas()` with no parallel machinery.
+
+**Core-Spine precedence applied:** L1 archetypes are GVRN-sealed; L2 axes are VALD-sealed; L3 instances are ARCH-tunable; engine implementation is OPER. Adheres to GVRN>VALD>ARCH>AI>OPER precedence (P-ARCH-028).
+
+## 3.5 · Existing CSPS abilities supporting this (no parallel machinery)
+
+| Existing ability | How naive personas use it |
+|---|---|
+| Facet E `selectPersonas()` (M4) | Engine-output personas plug in as additional pool members |
+| Threshold M6 (active) + 14-class router | New 15th class `naive_audit_request` (expansion per cornerstone) routes to engine |
+| AI-PROFILING D1-D13 registry (M5 partial) | **Direct mapping** — D-defaults ARE the L2 parameter axes; no new axis taxonomy invented |
+| `communication-schema.yaml audience_hierarchy[]` (6 tiers) | Each tier seeds an archetype tuning preset (Governor / core-dev / external-dev / account-owner-admin / team-leader / end-user) |
+| `vocabulary.md §Dev↔User Glossary` (10 entries) | Jargon-tolerance axis consults glossary for evidence |
+| `ai-behavior-signals.jsonl` (M5 stream) | Engine emits invocation events; aggregator detects which archetypes/axes fire productively → L3 promotion candidates |
+| PLATFORM-OBSERVATION pipeline (L1-L5 queued) | Naive findings flow through OBSERVE→AGGREGATE→...→MEASURE-AGAIN like all other audit signals |
+| CIP RIPPLE-QC (S072 P1, building) | Every PROPOSED-CHANGE to a user-facing artifact gets naive persona as one ripple-direction |
+| Weekly-persona-trigger-audit (M4 active) | Extended to count engine invocations + axes-tuning patterns |
+
+**Net:** 9 existing abilities support the doctrine. ZERO new infrastructure beyond the engine itself.
+
+## 4 · Situations of activation (the mapping)
+
+The threshold (M6) routes to the engine when ANY of these fire:
+1. **Artifact has `audience_tier:`** including a user-tier value (end-user / account-owner-admin / team-leader) — engine seeds archetype from tier.
+2. **Ratification gate fires** for a user-facing artifact (CIP RIPPLE-QC stage extension) — engine runs as one ripple direction.
+3. **Weekly-audit detects high-jargon-density** artifact (jargon count > sample threshold per vocabulary.md) — engine flags + runs.
+4. **Governor explicitly invokes** via the /platform/personas page (manual audit replay).
+5. **Doctrine/plan-part lacks rationale-presence** (per `naive-future-maintainer` mapping) — engine flags during plan-coverage validator pass.
+
+## 4.5 · The validate-improve-expand loop
+
+```
+ITER 1 (post-ratify): 3 cores + engine + 6 axes built (advisory). Opt-in invocation on Pillar 7 (user journey) + Pillar 8 (developer journey) only.
+   ↓
+ITER 2: signal accumulates in ai-behavior-signals.jsonl — which archetypes fire most, which axes-tunings produce actionable findings.
+   ↓
+ITER 3 (K≥3 evidence): recurring tuning patterns get vaulted as named L3 instances (e.g., 'anxious-evaluator' becomes a registered profile after firing K≥3× productively).
+   ↓
+ITER 4 (CIE/PE measure-again): tunings that produce findings → fix → measure-drop in next cycle get PROMOTED from advisory to required-invocation for matching artifacts.
+   ↓
+ITER N: expansion is evidence-driven — new tunings emerge from real signal, not from theoretical taxonomy growth.
+```
+
+Failure mode prevented: PERSONA-EXPLOSION-WITHOUT-EVIDENCE (Cooper §6.4 cited in research vault).
+
+## 3 · DEPRECATED v1 enumeration (kept below for traceability — superseded by §3 v2 architecture)
+
+> **Note:** the 11-persona hardcoded list below is the v1 design. v2 (§3 above) generates these as L3 instances via the engine. The list below is preserved for traceability of which tunings the v1 thinking surfaced; v2 implementation produces them on demand.
 
 ### USER-tier naive personas (5)
 
@@ -136,19 +212,21 @@ Before any Governor ratification gate fires, **naive-non-technical-stakeholder +
 - Rationale presence audit (WHY this design, not just WHAT)
 - Business-impact statement (so non-technical stakeholders can buy into the plan)
 
-## 6 · Build PE order (post-ratification, S072 work)
+## 6 · Build PE order (v2 architecture · POST-RATIFY · DEFERRED to S073 per Governor S072 Turn 4 completion-discipline call)
 
-L1 (~1h) — Author 11 .claude/skills/naive-* SKILL.md files using existing persona-skill template (trigger_criteria + simulate method spec). PE rationale: foundational; everything depends on the persona registry existing.
+L1 (~1h) — Author 3 .claude/skills/naive-{end-user,developer,plan-audit}-core/SKILL.md files (CORE archetypes only) + tools/scripts/persona-engine.mjs (takes archetype + axes → produces persona profile + simulation prompt).
 
-L2 (~30min) — Extend `tools/scripts/threshold-router.mjs` selectPersonas() to route by content-type (journey/plan/UI) to naive personas in addition to expert. Wire `naive_audit_request` as input_class.
+L2 (~30min) — Extend `tools/scripts/threshold-router.mjs` selectPersonas() to invoke the engine when input_class = `naive_audit_request`. Wire as 15th class (expansion per cornerstone).
 
-L3 (~1h) — First audit pass: invoke `naive-junior-developer` + `naive-first-time-user` + `naive-non-technical-stakeholder` against existing CSPS artifacts (vocabulary.md §Dev↔User Glossary · /platform/communication dashboard · CORE-SEEDS-PLAN-PARTS.md). Findings → vault-pending → review.
+L3 (~1h) — First audit pass: engine invoked on 3 existing CSPS artifacts (vocabulary.md §Dev↔User Glossary · /platform/communication dashboard · CORE-SEEDS-PLAN-PARTS.md). Findings → vault-pending → review.
 
-L4 (~30min) — Extend weekly-persona-trigger-audit.mjs to also count naive-persona invocations. PLATFORM-OBSERVATION L1-L5 absorption: naive findings are first-class data through the OBSERVE→...→IMPLEMENT pipeline.
+L4 (~30min) — Extend weekly-persona-trigger-audit.mjs to also count engine invocations + axes-tuning patterns. PLATFORM-OBSERVATION L1-L5 absorption: naive findings flow through OBSERVE→...→MEASURE-AGAIN like all other audit signals.
 
-L5 (variable) — Apply the first-audit-pass findings to journey-completion (Pillar 7 + Pillar 8).
+L5 (variable) — Apply first-audit-pass findings to journey-completion (Pillar 7 frictionless onboarding + Pillar 8 developer's journey).
 
-Total ~3-4h spread across S072 alongside other doctrine work.
+L6 (~1h) — `/platform/personas` page (see §10 below).
+
+Total ~3.5-4.5h. **Disposition: S073 absorption window** (not S072) per Governor completion-discipline directive — S072 stays focused on CIP + boundary-prompt validator + queued doctrine ratifications.
 
 ## 7 · Discipline + composition
 
@@ -172,4 +250,53 @@ Total ~3-4h spread across S072 alongside other doctrine work.
 - **Risk:** Persona-explosion (every new audience tier gets a persona). **Mitigation:** sample set fixed at 11 for v1; expansion requires Governor ratification + new vlt entry (controlled growth).
 - **Risk:** "Audited by naive persona" becomes a satisfaction point (PSP — RZF-LATEST v1.1 §3.C). **Mitigation:** every Milestone Report that cites naive-persona audit must also cite measure-again evidence (CIE/PE) showing the finding was acted on.
 
-— OPUS-14 (S072 · authored 2026-05-30 · ratification + S072 build queued)
+## 10 · Front-end spec — `/platform/personas` page
+
+Per the Vercel-mirror rule (M3 scope: ratifiable + user-facing artifact). The persona registry IS ratifiable governance state — therefore mirrored.
+
+### Layout (3-panel)
+
+**Panel A — L1 ARCHETYPES (sealed)**
+- 3 cards: naive-end-user-core / naive-developer-core / naive-plan-audit-core
+- Each card shows: name · profile summary · invocation count · last-fired timestamp · linked-artifacts audited
+- Governor-only action: propose-new-archetype (governed-path → PR → ratify)
+
+**Panel B — L2 AXES (sealed)**
+- 6 axis sliders shown read-only (visible state, not editable on page): jargon_tolerance / attention_span / domain_familiarity / frustration_threshold / mental_model_template / trust_baseline
+- Each axis links to its AI-PROFILING D-default mapping (so the source-of-truth is visible)
+- Governor-only action: propose-new-axis (high bar — adds dimension to the engine's parameter space)
+
+**Panel C — L3 INSTANCES (tunable)**
+- Table of vaulted tuned instances: name · archetype · axis-tuning summary · K-count · findings-actionable rate · status (advisory|promoted)
+- Per-instance action: replay-audit (re-runs the engine simulation on the bound artifact + emits findings to PLATFORM-OBSERVATION OBSERVE stream)
+- Governor action: promote-instance (advisory → required-for-matching-artifacts)
+- Engine action: propose-new-instance (when K≥3 evidence of recurring axes-tuning, surfaces to Governor for review)
+
+### Cross-links
+
+- /platform/communication — naive personas surface confusion signals on the comms-schema audience tiers
+- /platform/ai-profile (S072 P3 queued) — D-default firings per tier ARE the persona axis tunings; bidirectional cross-link
+- /platform/canonical-register (S072 P2 queued) — persona engine is itself a canonical (CSR row)
+- /platform/observation (S072 P5 queued) — naive findings render as one observation class
+
+### Drift metrics (visible)
+
+- archetype-tuning-drift: how often each archetype gets axes-tuned vs runs as-default
+- finding-actionable-rate: per-archetype, per-instance — drives promotion decisions
+- coverage-gap: which artifacts have audience_tier but no naive-audit history
+
+### SSR + governed write-back
+
+- Read-only on Vercel (per S070 M3 pattern)
+- Edits travel ratification pipeline (no live writes)
+- Governed-path download → PR → Governor ratify → re-render
+
+## 11 · Research attestation (NEW — Governor S072 Turn 4 mandatory)
+
+`research_tagged: true` + `research_vault_ref: docs/plan/_handoff/VAULT/research/S072-naive-personas-research.md`
+
+The vaulted research file contains: 5 patterns synthesized (Cooper personas · PersonaGPT · Wizard-of-Oz · multi-agent debate · agent role-play) + critical research finding (static libraries scale poorly per Cooper §6.4 → parameter-driven engine is the consensus modern pattern) + 5 sources cited.
+
+**Mandatory engraving queued** (vlt-S073-research-attestation-discipline): every doctrine in `docs/plan/pillar-0-governance/*.md` must declare `research_tagged: <bool>` + `research_vault_ref: <path>|null` + (if null) `research_basis: native-design`. Validator `validate-doctrine-research-attestation.mjs` enforces.
+
+— OPUS-14 (S072 Turn 4 · authored 2026-05-30 · v2 architecture · core-spine applied · research vaulted · S073 disposition · vault-for-S073 per completion-discipline)

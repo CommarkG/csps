@@ -401,3 +401,28 @@ entries:
     related_mechanisms: ["tools/scripts/threshold-router.mjs selectPersonas()", "tools/scripts/weekly-persona-trigger-audit.mjs"]
     composes_with: ["AI-PROFILING ADJUST/INJECT/MEASURE (Q2 hold)", "PLATFORM-OBSERVATION L1-L5", "ONE-SOURCE-OF M10 (Q1 hold)", "CIP M2 RIPPLE-QC orchestration (P1)"]
     prevention_class: "EXPERT-PERSONA-AUDIT-BIAS"
+
+  - id: vlt-S073-naive-personas-doctrine
+    title: "Naive Personas Doctrine v2 — engine-based architecture (3 cores + 6 axes + persona-engine.mjs), VAULT for S073 not S072"
+    status: deferred
+    urgency: medium
+    routing_decision: "Governor S072 Turn 4 completion-discipline call: S072 stays focused on CIP build + boundary-prompt validator + queued doctrine ratifications. Naive-personas absorption → S073 window. Re-routed from vlt-S072 → vlt-S073. v2 doctrine REVISED this turn: 11 hardcoded personas → 3 CORE archetypes + 6 PARAMETER AXES (mapped directly to AI-PROFILING D1-D13 registry — NO new axis taxonomy) + persona-engine.mjs that produces L3 tuned instances on demand. Closes PERSONA-EXPLOSION-WITHOUT-EVIDENCE (Cooper §6.4 + 2024 consensus). Build PE order L1-L6 ~3.5-4.5h with /platform/personas Vercel page included (front-end spec in doctrine §10). Composes with 9 existing CSPS abilities (Facet E + threshold + AI-PROFILING + comms-schema audience_hierarchy + vocabulary glossary + ai-behavior-signals + PLATFORM-OBSERVATION + CIP RIPPLE-QC + weekly-persona-audit) — NO parallel machinery."
+    created_session: S072
+    context: "S072 currently building: CIP PROTO (OPUS-14 next) + boundary-prompt validator (Sonnet active build) + queued doctrines pending Governor Q1/Q2/Q4 ratifications. Adding naive-personas as active S072 work would violate completion-discipline ('we must complete what we started before opening new branches'). Disposition: vault with full research grounding + v2 architecture + front-end spec ready for S073 single-purpose absorption. Research grounded at docs/plan/_handoff/VAULT/research/S072-naive-personas-research.md (TAGGED + SAVED per Governor S072 Turn 4 mandatory-research directive)."
+    retrieve_when: "S073 — high-priority alongside completion of any remaining S072 deferments. Composes with completed S072 work as inputs."
+    related_doctrine: "docs/plan/pillar-0-governance/NAIVE-PERSONAS-DOCTRINE.md"
+    related_research: "docs/plan/_handoff/VAULT/research/S072-naive-personas-research.md"
+    composes_with: ["AI-PROFILING ADJUST/INJECT/MEASURE (if Q2 ratified S072)", "PLATFORM-OBSERVATION L1-L5 (if ratified S072)", "ONE-SOURCE-OF M10 (if Q1 ratified S072)", "CIP M2 RIPPLE-QC (S072 P1)"]
+    prevention_class: "EXPERT-PERSONA-AUDIT-BIAS"
+
+  - id: vlt-S073-research-attestation-discipline
+    title: "Mandatory research-tagging discipline — every doctrine declares research_tagged + research_vault_ref"
+    status: deferred
+    urgency: medium
+    routing_decision: "Queue to S073. Governor S072 Turn 4 directive: 'I want to confirm that the research was tagged and saved in the system. If it wasn't, make it mandatory.' Engrave as: (1) new frontmatter field `research_tagged: <bool>` + `research_vault_ref: <path>|null` + (if null) `research_basis: native-design` on every docs/plan/pillar-0-governance/*.md doctrine; (2) T2 validator validate-doctrine-research-attestation.mjs checks presence + path-resolves; (3) T3 wired into validate-frontmatter or session-open injection; (4) backfill pass adds the field to existing 7+ doctrines (RZF-LATEST, LONG-RUN, ONE-SOURCE, AI-PROFILING, PLATFORM-OBSERVATION, JOURNEY, NAIVE-PERSONAS-DOCTRINE — which already has it as inaugural example). PREVENTION CLASS: DOCTRINE-AUTHORED-WITHOUT-RESEARCH-PROVENANCE."
+    created_session: S072
+    context: "Inaugural instance: my v1 NAIVE-PERSONAS-DOCTRINE.md (Turn 3) had research §2 inline but did NOT save a separate research vault file or declare research_tagged in frontmatter. Governor S072 Turn 4 surfaced the gap + mandated. v2 doctrine fixed (research vaulted at docs/plan/_handoff/VAULT/research/S072-naive-personas-research.md + frontmatter declares research_tagged: true + research_vault_ref). Discipline now needs mechanical enforcement so I don't drift again."
+    retrieve_when: "S073 — pair with vlt-S073-naive-personas-doctrine (same Turn 4 cluster; both are research-discipline engraving)"
+    related_artifact: "docs/plan/pillar-0-governance/NAIVE-PERSONAS-DOCTRINE.md (inaugural research_tagged: true example)"
+    related_research: "docs/plan/_handoff/VAULT/research/S072-naive-personas-research.md"
+    prevention_class: "DOCTRINE-AUTHORED-WITHOUT-RESEARCH-PROVENANCE"

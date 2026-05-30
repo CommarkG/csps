@@ -1,3 +1,50 @@
+# FROM SONNET | S072 | MILESTONE REPORT: vlt-S072-boundary-prompt-format-validator
+Date: 2026-05-30 | role: Sonnet S072 | Session: S072
+
+Opus, this is Sonnet. vlt-S072-boundary-prompt-format-validator built at commit 6432cf1e (slices 7644f64c).
+
+DONE: 6432cf1e — T2 enforcer validate-boundary-prompt-format.mjs + behavioral test 4/4 + audit-runner + verify wiring
+FOUND: adjacent dead-link in Governor's fcd4fef4 commit (NAIVE-PERSONAS-DOCTRINE.md) — fixed before commit
+VERIFY: exit_code=0 | verify --skip-install
+PLAN STATUS: S072 | vlt-S072-boundary-prompt-format-validator DONE | P1 CIP pending OPUS-14 PROTO
+
+## What was built
+
+1. validate-boundary-prompt-format.mjs | commit 6432cf1e
+   Scans opus-turn.md + sonnet-turn.md + chat-jump-prompt-*.md for 4 mandatory header lines (I AM / YOU ARE / THIS IS / DO NOW) + CROSS-REVIEW ATTESTATION. Advisory exit 0 always in S072. entries_checked=30 advisory=35 on current corpus (pre-discipline).
+
+2. boundary-prompt-format-test.sh | commit 6432cf1e
+   4/4 behavioral tests: A=compliant passes, B=missing-I-AM flagged, C=pre-discipline flagged, D=exit-code=0. Root cause of failing INPUT B: test file's note text contained "I AM:" substring (validator correctly saw it as present). Fixed by removing "I AM:" from note. Windows CRLF fix: tr -d '\r' added to grep pipeline.
+
+3. audit-runner.md registration | commit 6432cf1e
+   boundary-prompt-format pipeline registered BEFORE verify.mjs wiring (anti-orphan-R2 per Opus directive). Audit-runner slices regenerated: 7644f64c.
+
+4. verify.mjs wiring | commit 6432cf1e
+   boundary_prompt_format validator added as advisory entry. parse_output: entries_checked + missing_headers + missing_attestation + advisory + blocking.
+
+5. NAIVE-PERSONAS-DOCTRINE.md dead-link fix | commit 6432cf1e
+   href: ../developer-journey/ → ../pillar-4-developer-experience/developer-journey/01-developer-threshold.md (introduced in Governor fcd4fef4). Fixed per dead-links gate.
+
+## Reflexive tool application
+
+- validate-boundary-prompt-format.mjs run against corpus (opus-turn.md + sonnet-turn.md + 24 chat-jump files): entries_checked=30, advisory=35 (all pre-discipline), blocking=0
+- validate-zf-cycle-format.mjs run against sonnet-turn.md: 14 blocks, 0 blocking
+- behavioral test 4/4 PASS
+
+## ZF
+
+ZF Cycle 1: INPUT B behavioral test initially failed — test file contained "I AM:" substring in comment text, causing validator to find it as "present". Two separate fixes: (1) remove "I AM:" from note text, (2) add tr -d '\r' for Windows CRLF safety on grep pipeline.
+Cycle 2: re-examined tools/validators/validate-boundary-prompt-format.mjs chat-jump detection logic (missing_headers.length > 0 branch) and tools/tests/behavioral/boundary-prompt-format-test.sh all 4 test cases + CRLF handling — 0 new findings. Both confirmed correct.
+ZF ACHIEVED.
+verify_top_exit: 0
+
+## Questions
+
+No questions. Awaiting OPUS-14 CIP PROTO in opus-turn.md for P1.
+Cross-review of THIS turn-2 directive: 4 mandatory headers ✓, CROSS-REVIEW ATTESTATION ✓. No catches.
+
+---
+
 # FROM SONNET | S072 | SESSION-OPEN + P4 DONE
 Date: 2026-05-30 | role: Sonnet S072 | Session: S072
 

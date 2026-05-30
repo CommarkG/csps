@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-30T11:05:15.392Z
-- finished_at: 2026-05-30T11:05:37.263Z
+- ran_at: 2026-05-30T11:06:12.148Z
+- finished_at: 2026-05-30T11:06:33.970Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-30T11:05:15.392Z",
-    "finished_at": "2026-05-30T11:05:37.263Z",
+    "ran_at": "2026-05-30T11:06:12.148Z",
+    "finished_at": "2026-05-30T11:06:33.970Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.4,
         "ts_errors": 0
       },
       {
@@ -69,7 +69,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "stale_count_files": 0
       },
       {
@@ -191,7 +191,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 169,
         "links": 709,
         "broken": 71
@@ -221,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.6,
+        "duration_seconds": 2.7,
         "checked": 130,
         "advisories": 119
       },
@@ -1543,7 +1543,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "zf_blocks_checked": 14,
+        "zf_blocks_checked": 15,
         "blocking": 0,
         "advisory": 0
       },
@@ -1625,8 +1625,8 @@
         "duration_seconds": 0.1,
         "total": 197,
         "deferred": 2,
-        "empty_output": 23,
-        "zero_numeric": 20,
+        "empty_output": 22,
+        "zero_numeric": 21,
         "advisory": 3,
         "blocking": 0
       },
@@ -1926,10 +1926,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "entries_checked": 30,
-        "missing_headers": 29,
-        "missing_attestation": 6,
-        "advisory": 35,
+        "entries_checked": 32,
+        "missing_headers": 31,
+        "missing_attestation": 7,
+        "advisory": 38,
         "blocking": 0
       },
       {

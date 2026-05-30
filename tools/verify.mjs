@@ -1311,6 +1311,17 @@ const CYCLES = [
     },
   },
   {
+    // M5 S071 Facet F: CIE+PE trigger audit — checks CIE fired at milestone close
+    // + PE fired at plan-fork + audience_tier mandate on ai-behavior-signals.jsonl.
+    // ADVISORY always; OBSERVE+AGGREGATE stages only (ADJUST/INJECT/MEASURE deferred S072 Q2).
+    name: 'cie_pe_audit',
+    command: 'node tools/scripts/cie-pe-trigger-audit.mjs',
+    parse_output: (out) => {
+      const m = out.match(/observe=(\d+)\s+cie_milestones=(\d+)\s+pe_entries=(\d+)\s+advisories=(\d+)/);
+      return m ? { observe: Number(m[1]), cie_milestones: Number(m[2]), pe_entries: Number(m[3]), advisories: Number(m[4]) } : {};
+    },
+  },
+  {
     // S053: Gap Recurrence Register enforcement — K count gating per P-META-019
     // BLOCKING: K>=3 AND status:open AND structural_fix_triggered:false
     // ADVISORY: K>=2 AND status:open AND behavioral_test_exists:false

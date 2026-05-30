@@ -1,0 +1,29 @@
+{
+  "ran_at": "2026-05-30T02:41:39.698Z",
+  "observe_stage": {
+    "total": 2,
+    "with_tier": 2,
+    "missing_tier": 0
+  },
+  "cie_milestone_audit": {
+    "milestones_checked": 0,
+    "cie_present": 0,
+    "cie_absent": 0
+  },
+  "pe_plan_fork_audit": {
+    "pe_entries": 25,
+    "scored_entries": 0
+  },
+  "advisories": [
+    "25 improvement entries but 0 have pe_score — PE scoring not firing at plan-forks"
+  ],
+  "advisory_count": 1,
+  "blocking": 0,
+  "stages": {
+    "OBSERVE": "active — ai-behavior-signals.jsonl (audience_tier mandated M5)",
+    "AGGREGATE": "active — weekly-ai-behavior-deep-dive.mjs",
+    "ADJUST": "deferred S072 Q2 hold",
+    "INJECT": "deferred S072 Q2 hold",
+    "MEASURE": "deferred S072 Q2 hold"
+  }
+}

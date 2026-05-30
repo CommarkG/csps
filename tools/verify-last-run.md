@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-30T11:06:12.148Z
-- finished_at: 2026-05-30T11:06:33.970Z
+- ran_at: 2026-05-30T14:26:56.103Z
+- finished_at: 2026-05-30T14:27:17.921Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-30T11:06:12.148Z",
-    "finished_at": "2026-05-30T11:06:33.970Z",
+    "ran_at": "2026-05-30T14:26:56.103Z",
+    "finished_at": "2026-05-30T14:27:17.921Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 70,
         "findings_total": 24
       },
@@ -48,10 +48,10 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 686,
+        "duration_seconds": 0.3,
+        "scanned": 687,
         "errors": 0,
-        "warnings": 174,
+        "warnings": 176,
         "exempt": 342
       },
       {
@@ -69,7 +69,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -191,7 +191,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 169,
         "links": 709,
         "broken": 71
@@ -356,8 +356,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 630,
-        "clean": 630,
+        "checked": 631,
+        "clean": 631,
         "blocking": 0,
         "registry": 68
       },
@@ -440,8 +440,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 775,
-        "advisory": 110
+        "scanned": 776,
+        "advisory": 111
       },
       {
         "name": "file_naming",
@@ -1439,8 +1439,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "protos_checked": 11,
-        "findings": 95,
-        "advisory": 95,
+        "findings": 79,
+        "advisory": 79,
         "blocking": 0
       },
       {
@@ -1459,9 +1459,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 644,
-        "findings": 8515,
-        "advisory": 8515
+        "files_checked": 645,
+        "findings": 8540,
+        "advisory": 8540
       },
       {
         "name": "nominal_rzf_detector",
@@ -1647,7 +1647,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 262,
+        "total_entries": 266,
         "sessions": 2,
         "advisory": true
       },

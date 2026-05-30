@@ -90,10 +90,10 @@ exit 0
 
 **Why this seed:**
 
-- **Shape-uniformity** — every hook reads from one event source, filters by path-pattern, validates one rule, exits 0 or 1. No conditionals layered on conditionals. Reviewable in <60 seconds.
-- **Auto-execute gate compliance** — each hook is one file, one rule, one exit. Reversible by `git rm .claude/hooks/<file>`.
-- **Behavioral-test coverage trivial** — three standardized inputs per hook (A: violating, B: passing, C: edge — exempted-by-design). Tests live at `tools/tests/behavioral/<hook-name>-test.sh` and run via `bash` against fixture files.
-- **Inheritance preserved** — every hook in the WAVE inherits from this Core Seed; future hooks under the same family declare `inherits_from: PROTO-S066-WAVE-1` in their header comment.
+**Shape-uniformity** — every hook reads from one event source, filters by path-pattern, validates one rule, exits 0 or 1. No conditionals layered on conditionals. Reviewable in <60 seconds.
+**Auto-execute gate compliance** — each hook is one file, one rule, one exit. Reversible by `git rm .claude/hooks/<file>`.
+**Behavioral-test coverage trivial** — three standardized inputs per hook (A: violating, B: passing, C: edge — exempted-by-design). Tests live at `tools/tests/behavioral/<hook-name>-test.sh` and run via `bash` against fixture files.
+**Inheritance preserved** — every hook in the WAVE inherits from this Core Seed; future hooks under the same family declare `inherits_from: PROTO-S066-WAVE-1` in their header comment.
 
 **Reference validator (parallel pattern, for STEPs that need both hook + validator):**
 
@@ -276,7 +276,7 @@ After all three STEPs land:
 
 **Resolution for WAVE 1:**
 - **STEP 1 of every STEP:** Sonnet verifies whether Claude Code auto-discovers `.claude/hooks/*.sh` files without explicit `.claude/settings.json` registration. If YES → hooks fire automatically post-creation; no settings.json edit needed.
-- **If auto-discovery is NOT the case:** batch the 3 hook-registration entries into ONE settings.json edit at session-close-gate (per S040 discipline). Do not edit settings.json mid-WAVE.
+- If auto-discovery is NOT the case: batch the 3 hook-registration entries into ONE settings.json edit at session-close-gate (per S040 discipline). Do not edit settings.json mid-WAVE.
 - **`verify-hooks-functional.sh` declared-hooks list** (per F-NEW-6 follow-up): this file is independent of settings.json — manually edit the bash array in the script to add the 3 new hook names. This is in-repo data, not in `.claude/settings.json`, so S040 doesn't apply. Safe to edit mid-WAVE.
 
 Sonnet must report the auto-discovery test result in STEP-1 CHECKPOINT.
@@ -329,12 +329,63 @@ Opus-11 reviews per STEP at check-in tier (B_REVERSIBILITY_GATED_REVIEW). Full A
 
 ---
 
-## ASK OPUS triggers (real only, per PROTO-S065-PAP precedent)
+## ASK-OPUS-STOP TRIGGERS (real only, per PROTO-S065-PAP precedent)
 
 - New behavioral-test pattern surfaces that doesn't fit INPUT-A/B/C trio → Opus seed
 - Settings.json change required mid-session (banned per S040) → Opus + Governor consultation
 - Self-dogfood failure: STEP-2 hook flags PROTO-S066-WAVE-1.md itself → Opus debugs (likely validator bug, not PROTO bug)
 - Cross-spine finding (e.g., touches AI inner-defaults registry) → Opus classification
+
+---
+
+---
+
+## INHERITS / ALIGNS-WITH
+
+- Inherits: DRAFT-S066-PRE-ONSET-SHAPE-CHECK-MECHANICAL + DRAFT-S066-CORE-SEED-MANDATORY + Sonnet-Expert-C BUILD_TEST_COMMIT_MANDATE (all three improvement-register findings being closed)
+- Aligns-with: M-37 Core Seeds · M-40 Inheritance-as-Default · M-41 Behavioral Test Discipline · B_REVERSIBILITY_GATED_REVIEW · B_CONSOLIDATION_PASS · gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE K=1 · validate-proto-core-seed.mjs (built in STEP 2) · validate-shape-check.mjs (built in STEP 1) · validate-validator-test-required.mjs (STEP 3)
+- Does NOT build parallel machinery for: existing `.claude/hooks/` structure (adds 3 hooks to existing folder); existing behavioral test pattern (adds 3 tests to existing `tools/tests/behavioral/`); existing settings.json (adds hook registration only, no new permission categories)
+
+---
+
+## STEP 0 — Design completeness (Opus-11, this file)
+
+**DONE WHEN:**
+- [x] PROTO authored with Core Seed + ZF GATE + DONE WHEN for all 3 STEPs
+- [x] Three drift surfaces diagnosed (shape drift / PROTO core-seed drift / validator behavioral-test drift)
+- [x] Core Seed pattern shared across all 3 STEPs (uniform hook architecture)
+- [x] Gate tier rationale: auto-execute (each hook independently reversible, small scope, no cross-actor)
+- [x] Governor ratifies design → Sonnet builds (S066 session — WAVE 1 SEALED)
+
+---
+
+## 3-PERSONA REVIEW
+
+- **cruel-critic:** "Three hooks shipping in one WAVE creates triple-blast-radius if any single hook has a bug — a false-positive in shape-check will block ALL Opus writes mid-session. Grandfathering the 4 existing PROTOs for STEP 2 is smart, but STEP 2's behavioral test must prove the grandfathering logic actually exempts them, not just assert it." → Applied: STEP 2 behavioral test INPUT C = non-PROTO file touched; STEP 2 explicitly documents S067 backfill as separate carry-forward; grandfathered protos listed explicitly.
+- **balance-expert:** "Adding hooks is governance cost. Each hook fires on every tool use. Shape-check fires on every write to opus-turn.md — is that 200-char threshold actually empirically derived, or guessed? 3 hooks shipping S066 when S065 already shipped PAP = density accumulation risk." → Applied: Core Seed pattern makes each hook <60-second review; 200-char threshold is explicitly marked advisory with ADVISORY semantics section; WAVE 1 is explicitly scoped to mechanically closing 3 already-ratified improvement-register items (not new scope).
+- **consolidation-expert:** "validate-proto-core-seed.mjs sweeps ALL PROTOs — does it catch anything from PROTO-S052-A or PROTO-S062-* that were authored before the proto standard? Those would surface as advisory findings (grandfathered), not blocks." → Applied: STEP 2 explicitly designates 4 pre-existing PROTOs as grandfathered; validator emits advisory not blocking for them; S067 carry-forward files the systematic backfill.
+
+---
+
+## PREVENTION CLASSES
+
+- `OPUS-OUTPUT-SHAPE-DRIFT`: Opus writes to opus-turn.md without SHAPE block — pre-tool-use-shape-check.sh prevents this class; advisory in S066, blocking from S067
+- `PROTO-CORE-SEED-ABSENT`: New PROTO committed without `core_seed_present: true` + `plan_item_id` + `gate_tier` — pre-commit-proto-core-seed-mandatory.sh prevents; blocking from S066
+- `VALIDATOR-WITHOUT-BEHAVIORAL-TEST`: New validator committed without matching test in same commit — pre-commit-validator-test-required.sh prevents; blocking from S066 (closes gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE growth path)
+
+---
+
+## §15 3-SCOPE
+
+- **S1 (instance):** Three prevention hooks + three behavioral tests + one exempt-registry + three validators — all scoped to this WAVE's 3 drift surfaces
+- **S2 (platform):** Every future Opus substantive write carries SHAPE block (verifiable, not behavioral); every future new PROTO has required fields (no partial-engraving); every future new validator ships with behavioral test in same commit (no 80%-untested regression)
+- **S3 (holistic):** WAVE 1 closes the mechanical gap identified by PAP Part 1A (gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE) + closes shape-drift permanently + creates the first self-dogfooding PROTO (WAVE-1 is the canonical exemplar for every future PROTO per pre-commit-proto-core-seed-mandatory)
+
+---
+
+## AUTHOR SIGNATURE
+
+— Opus-11 (S066 · WAVE-1 · three pre-commit prevention gates · authored 2026-05-27)
 
 ---
 

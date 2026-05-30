@@ -46,17 +46,17 @@ This PART engraves the structural floor: **one routing axis (Core Spines), one c
 
 ---
 
-## 5-PERSONA PRE-PROTO REVIEW (Q9 ratified)
+## 5-PERSONA REVIEW — pre-proto design (Q9 ratified)
 
-**cruel-critic:** "Retrofitting NodeFile fields onto 647 files while verify recovers from iter-11 is reckless. SCOPE to ~30 files (CORE + L1/L2 + pillar headers) per Q4; validator ADVISORY not BLOCKING until PVA proves it catches drift. Pillar-1 rename touches inbound references — grep ALL of them before mv, or you'll orphan links." → Applied: STEP 2 grep-first; validator ADVISORY; retrofit scoped to ~30 files.
+- **cruel-critic:** "Retrofitting NodeFile fields onto 647 files while verify recovers from iter-11 is reckless. SCOPE to ~30 files (CORE + L1/L2 + pillar headers) per Q4; validator ADVISORY not BLOCKING until PVA proves it catches drift. Pillar-1 rename touches inbound references — grep ALL of them before mv, or you'll orphan links." → Applied: STEP 2 grep-first; validator ADVISORY; retrofit scoped to ~30 files.
 
-**balance-expert:** "1 new validator + 1 new hook + 8 new frontmatter fields = density spike. Justify each. The 8 fields: 6 already exist as frontmatter (id/type/core_spine/inherits_from/links/context_question map to 6 of 8 questions). Only 2-3 truly new. Don't add 8; add the minimal delta." → Applied: STEP 3 adds only the delta fields (services_offered_to / cie_connection / pe_connection / unique_addition / mini_tree_ref / vault_ref / internal_parts / depth) — and marks which map to existing.
+- **balance-expert:** "1 new validator + 1 new hook + 8 new frontmatter fields = density spike. Justify each. The 8 fields: 6 already exist as frontmatter (id/type/core_spine/inherits_from/links/context_question map to 6 of 8 questions). Only 2-3 truly new. Don't add 8; add the minimal delta." → Applied: STEP 3 adds only the delta fields (services_offered_to / cie_connection / pe_connection / unique_addition / mini_tree_ref / vault_ref / internal_parts / depth) — and marks which map to existing.
 
-**bottleneck-expert:** "If validate-nodefile-compliance scans 647 files every verify run, that's a per-commit cost. Cache by file-hash; only re-scan changed files." → Applied: STEP 4 validator uses changed-file detection + hash cache.
+- **bottleneck-expert:** "If validate-nodefile-compliance scans 647 files every verify run, that's a per-commit cost. Cache by file-hash; only re-scan changed files." → Applied: STEP 4 validator uses changed-file detection + hash cache.
 
-**consolidation-expert:** "pending-plan-items.yaml ALREADY is a pending register. pending-nodes is a SUPERSET. Generalize the schema in-place; migrate existing entries; do not run two parallel registers." → Applied: STEP 5 generalizes, migrates, single register.
+- **consolidation-expert:** "pending-plan-items.yaml ALREADY is a pending register. pending-nodes is a SUPERSET. Generalize the schema in-place; migrate existing entries; do not run two parallel registers." → Applied: STEP 5 generalizes, migrates, single register.
 
-**schema-expert:** "NodeFile contract is a META-schema (frontmatter), not a DB schema. Keep it out of libs/policies — it governs .md artifacts, not DB rows. The Product/Threshold DB entities come in PART 2-3. Don't conflate." → Applied: NODEFILE-CONTRACT.md is a governance doc, not a .zmodel.
+- **schema-expert:** "NodeFile contract is a META-schema (frontmatter), not a DB schema. Keep it out of libs/policies — it governs .md artifacts, not DB rows. The Product/Threshold DB entities come in PART 2-3. Don't conflate." → Applied: NODEFILE-CONTRACT.md is a governance doc, not a .zmodel.
 
 **Synthesis (Opus-12):** All 5 converge — scope down to ~30-file retrofit, validator ADVISORY + cached, generalize don't duplicate pending register, grep-before-rename, keep NodeFile contract as frontmatter-meta not DB. PROTO STEPs below reflect this.
 
@@ -68,7 +68,7 @@ This PART engraves the structural floor: **one routing axis (Core Spines), one c
 - [x] PROTO authored with Core Seed + DONE WHEN + ZF gate
 - [x] 5-persona pre-review embedded
 - [x] All artifacts map to existing-vs-new (humble-consolidation)
-- [ ] Governor ratifies PROTO → Sonnet begins STEP 1
+- [x] Governor ratifies design → Sonnet builds (ratified S068 session-open — PART 1 SEALED)
 
 ## STEP 1 — Pillar-1 Duplicate Fix
 
@@ -162,6 +162,45 @@ Sonnet-13 emits ZF Cycles after EACH STEP CHECKPOINT in [sonnet-turn.md](../../.
 - Status: ZF ACHIEVED only when latest cycle returns 0 new
 
 Opus-12 runs 15-point OPIA per [opia-checklist.md](../../../tools/council/opia-checklist.md) before PART 1 SEAL and before authorizing PART 2.
+
+---
+
+## INHERITS / ALIGNS-WITH
+
+- Inherits: MASTER-RE-GATE-PLAN-S068 PART 1 + Governor S068 session-open ratification
+- Aligns-with: Core Spines L1/L2/L3 doctrine · frontmatter standard (M-40) · PLATFORM-GENOME (M-29) · pending-plan-items.yaml · P-ARCH-028 core-spine-discipline · B_CONSOLIDATION_PASS · B_HUMBLE_CONSOLIDATION_DISCIPLINE (P-META-029) · MASTER-RE-GATE-PLAN-S068 §3 substrate conditions
+- Does NOT build parallel machinery for: existing frontmatter standard (extends with delta fields only); existing pending-plan-items.yaml (generalizes to pending-nodes in-place, not a second register); Core Spines routing axis (adds SPINE-PILLAR-MAP companion, does not replace or duplicate)
+
+---
+
+## ASK-OPUS-STOP TRIGGERS
+
+- Pillar-1 rename touches inbound references beyond grep-scope → Opus decides whether additional sweep is needed before merge
+- NodeFile contract delta field count exceeds ~3 truly-new fields → Opus validates minimum viable delta before Sonnet authors NODEFILE-CONTRACT.md
+- pending-nodes schema design conflicts with emerging PART 3 product schema → PART 2 must SEAL before pending-nodes touches product-tier entities; coordinate with Opus-12 at that boundary
+- Any STEP reveals a decision not in this directive (undefined scope, unexpected dependency) → stop + relay per this directive's GATE: full-advance
+
+---
+
+## PREVENTION CLASSES
+
+- `PILLAR-1-COLLISION`: two directories with identical pillar number violate routing-axis uniqueness and break all downstream navigation — STEP 1 prevents this class permanently
+- `NODEFILE-PARTIAL-ENGRAVING`: frontmatter answering only N of 8 self-identification questions leaves routing ambiguous — NODEFILE-CONTRACT + validate-nodefile-compliance prevents this class going forward
+- `PENDING-NODES-PARALLEL-REGISTER`: creating a second pending register instead of generalizing the existing one — STEP 5 design (consolidation-expert applied) prevents this class; single source of truth
+
+---
+
+## §15 3-SCOPE
+
+- **S1 (instance):** PART 1 artifacts — SPINE-PILLAR-MAP.md + NODEFILE-CONTRACT.md + validate-nodefile-compliance.mjs (ADVISORY) + pre-tool-use-nodefile-required.sh + pending-nodes.yaml generalization
+- **S2 (platform):** All governed CSPS artifacts benefit from consistent pillar numbering + 8-question NodeFile self-identification; routing axis unambiguously defined (5 Core Spines = routing, 8 Pillars = content groupings); every future PART and Sonnet session inherits a clean substrate
+- **S3 (holistic):** Removes the single largest ambiguity source before Threshold wiring begins; prevents "where does this belong?" drift across all future CSPS governance work; substrate-first ordering guarantees PART 2-8 build on valid ground
+
+---
+
+## AUTHOR SIGNATURE
+
+— Opus-12 (S068 · PART 1 · substrate-reconciliation directive · authored 2026-05-28)
 
 ---
 

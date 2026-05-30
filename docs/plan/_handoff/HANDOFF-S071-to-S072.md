@@ -99,6 +99,8 @@ Total: ~6-7h across S072.
 
 ## ZONE C — Core Seeds for S072
 
+> **CANONICAL SOURCE:** [CORE-SEEDS-PLAN-PARTS.md](CORE-SEEDS-PLAN-PARTS.md) is the single canonical index for plan-part core seeds (ANCHOR · ALIGNS · STATUS per node). Updated S071 Turn 24 with all S072-queued items: PART 2 SEALED · CIP UNBLOCKED → S072 P1 · Cornerstone P-META-028 ratified + 6 facets enforced · Long-Run Builder Doctrine ratified + 5-surface enforced · RZF-LATEST v1.1 ratified · ONE-SOURCE-OF doctrine draft (Q1 hold → S072 P2) · AI-PROFILING ADJUST/INJECT/MEASURE draft (Q2 hold → S072 P3) · P-META-029 backfill queued S072 P4 · PLATFORM-OBSERVATION doctrine draft → S072 P5. **Read it before acting.** The list below is operational gotchas + discipline-layer reminders that don't fit the plan-part schema.
+
 1. **settings.local.json = `{}`** — never let it have a `permissions` object. session-open.sh writes `{}`.
 
 2. **D11 debugging-wrong-layer** — after 2 failed attempts: STOP, read `tools/data/gap-recurrence-register.yaml` + `git log --all --grep=symptom`. Don't attempt #3 without reading first.

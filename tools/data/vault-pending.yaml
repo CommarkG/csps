@@ -352,3 +352,26 @@ entries:
     related_audits: ["tools/scripts/cie-pe-trigger-audit.mjs", "tools/scripts/weekly-persona-trigger-audit.mjs", "tools/scripts/pap-part2-wiring-audit.mjs", ".claude/hooks/cron-weekly-tag-status-deep-audit.sh"]
     composes_with: ["CIP (S072 queued)", "ONE-SOURCE-OF M10 (S072 queued)", "AI-PROFILING ADJUST/INJECT/MEASURE (S072 queued)", "P-META-029 backfill (S072 queued)"]
     prevention_class: "PSP-AUDITS-NEVER-CLOSE-INTO-RATIFIED-IMPROVEMENT"
+
+  - id: vlt-S072-core-seeds-currency-full-engraving
+    title: "Core-Seeds Currency Discipline — full T1+T2+T3 engraving (advisory→blocking promotion + HPFA extension)"
+    status: deferred
+    urgency: high
+    routing_decision: "Queue to S072. S071 Turn 26 OPUS-14 engraved v1: validate-core-seeds-currency.mjs (advisory, wired in verify.mjs). Full T1+T2+T3 still needed: (T1) pre-commit hook that blocks HANDOFF-S*.md commits when core_seeds_currency status≠PASS; (T2) extend validator to compare each NODE STATUS line vs linked artifact's status: field — surfaces 'NODE says ratified but artifact still draft' divergence; (T3) extend HPFA (handoff-pre-flight-audit) 7-check → 8-check including core-seeds-currency. Promotion to BLOCKING after 5 sample exemplar advisory passes (tunable per P-META-028)."
+    created_session: S071
+    context: "Inaugural CORE-SEEDS-INDEX-NOT-UPDATED-AT-MILESTONE-BOUNDARY instance (S071 Turn 24): 6 doctrines authored in S071 (Cornerstone P-META-028 + Long-Run + RZF-LATEST v1.1 + ONE-SOURCE-OF + AI-PROFILING + PLATFORM-OBSERVATION) had no CORE-SEEDS-PLAN-PARTS.md nodes until Governor S071 Turn 24 surfaced the gap. OPUS-14 had treated as instance-fix (Turn 24) NOT pattern-catch — Governor S071 Turn 26 challenge corrected: must engrave permanent prevention so a future tab doesn't re-encounter the same gap. v1 validator advisory now; full T1+T2+T3 queues here."
+    retrieve_when: "S072 — natural sibling work to ONE-SOURCE-OF M10 (both canonical-registration domain) OR PLATFORM-OBSERVATION L1 (both index-currency discipline)"
+    related_validator: "tools/validators/validate-core-seeds-currency.mjs"
+    related_doctrine: "docs/plan/_handoff/CORE-SEEDS-PLAN-PARTS.md"
+    prevention_class: "CORE-SEEDS-INDEX-NOT-UPDATED-AT-MILESTONE-BOUNDARY"
+
+  - id: vlt-S072-cross-tab-prompt-review-discipline
+    title: "Cross-Tab Prompt-Review Discipline — Opus⇄Sonnet prompts reviewed by the other tab before send"
+    status: deferred
+    urgency: high
+    routing_decision: "Queue to S072. Discipline: ANY tab→tab boundary prompt (Opus→Sonnet startup-block, Sonnet→Opus directive, OPUS-N→OPUS-N+1 handoff) is REVIEWED by the OTHER active tab BEFORE Governor relays. Reviewer catches improvements, missing-context, ambiguity, gates-skipped, format-non-compliance. Reviewer's findings folded back into the prompt by the AUTHORING tab; Governor relays only the post-review version. Inaugural instance: Governor S071 Turn 26 — Sonnet reviewed OPUS-14's STARTUP BLOCK for new Sonnet tab, caught 4 real improvements (ZF-deep iter signal · settings.local fix path · Bash-for-.claude rule · advisory-validator warning) + 2 minor (P-META-029 explicit steps · M-43 baseline SHA). Engrave: (1) add to communication-protocol-shared.md as RULE 16 'Boundary Prompts Get Reviewed By The Receiving-Side-Counterpart Tab' OR as new B_BOUNDARY_PROMPT_CROSS_REVIEW; (2) extend HPFA check to require cross-review attestation; (3) session-open inject the reminder; (4) handoff template gains 'cross-review attestation' field."
+    created_session: S071
+    context: "Governor S071 Turn 26: 'I want to establish that when wanting to move to a new tab [opus or sonnet] both tabs will review each other's prompts as i see that you contribute to each other each time!!!' Composes with B_MUTUAL_UNDERSTANDING_VALIDATION (the 5 boundary types — extends them with cross-review) + B_BOUNDARY_ALIGNMENT_PROTOCOL (the UNDERSTANDING BLOCK + ALIGNMENT CONFIRMATION pattern). Inaugural lived instance produced 4 real catches in ~30 lines of review work — high-ROI discipline. Distinct from B_AGENT_ALIGNMENT_PROTOCOL (which gates agent invocation by frontmatter check) — this is content-review of prompt CORRECTNESS, not agent-pre-flight."
+    retrieve_when: "S072 — high-priority engraving alongside core-seeds-currency (same Turn 26 cluster)"
+    related_existing: ["B_MUTUAL_UNDERSTANDING_VALIDATION", "B_BOUNDARY_ALIGNMENT_PROTOCOL", "communication-protocol-shared.md"]
+    prevention_class: "BOUNDARY-PROMPT-SENT-WITHOUT-COUNTERPART-REVIEW"

@@ -1311,6 +1311,20 @@ const CYCLES = [
     },
   },
   {
+    // S071 Turn 26 OPUS-14: validate-core-seeds-currency catches doctrines that
+    // exist in docs/plan/pillar-0-governance/ but lack NODE entries in
+    // CORE-SEEDS-PLAN-PARTS.md (the canonical single-source per its own description).
+    // Inaugural instance: 6 S071 doctrines missing nodes until Governor surfaced.
+    // PREVENTION CLASS: CORE-SEEDS-INDEX-NOT-UPDATED-AT-MILESTONE-BOUNDARY.
+    // ADVISORY in S071; promotes to BLOCKING after 5 sample exemplar passes (tunable).
+    name: 'core_seeds_currency',
+    command: 'node tools/validators/validate-core-seeds-currency.mjs',
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+missing_nodes=(\d+)\s+status=(\S+)/);
+      return m ? { checked: Number(m[1]), missing_nodes: Number(m[2]), status: m[3] } : {};
+    },
+  },
+  {
     // M5 S071 Facet F: CIE+PE trigger audit — checks CIE fired at milestone close
     // + PE fired at plan-fork + audience_tier mandate on ai-behavior-signals.jsonl.
     // ADVISORY always; OBSERVE+AGGREGATE stages only (ADJUST/INJECT/MEASURE deferred S072 Q2).

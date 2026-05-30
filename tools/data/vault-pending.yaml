@@ -426,3 +426,53 @@ entries:
     related_artifact: "docs/plan/pillar-0-governance/NAIVE-PERSONAS-DOCTRINE.md (inaugural research_tagged: true example)"
     related_research: "docs/plan/_handoff/VAULT/research/S072-naive-personas-research.md"
     prevention_class: "DOCTRINE-AUTHORED-WITHOUT-RESEARCH-PROVENANCE"
+
+  - id: vlt-S073-core-spine-mandatory-question-framework
+    title: "Core-Spine as mandatory operating-mode — definition + 3-question framework for every artifact"
+    status: deferred
+    urgency: high
+    routing_decision: "Governor S072 Turn 5: 'be honest and answer how can now have the core spine be mandatory in the way you approach things? what is the definition of corespine in the platform? one way could be a set of questions: what would be the universal things concerning this topic? what would be the pillars? what would be a good example of branch coming out of a pillar and sub branch coming out of it and a leaf?' Queue to S073 for structured answer + engraving. CONCRETE DELIVERABLE: (a) authoritative definition of CORE SPINE in docs/plan/pillar-0-governance/core-spine-definition.md citing existing P-ARCH-028 + spine-pillar-map; (b) 3-question framework engraved as B_CORE_SPINE_QUESTIONS contract — every new artifact/proto/doctrine MUST answer Q1 'universal-of-topic' Q2 'pillars' Q3 'branch/sub-branch/leaf example'; (c) validate-core-spine-questions-answered.mjs T2 enforcer; (d) frontmatter fields core_spine_universal / core_spine_pillars / core_spine_example_chain. PE-ordered build ~2-3h. INAUGURAL TEST: the doctrines authored in S071-S072 (RZF-LATEST · LONG-RUN · ONE-SOURCE · AI-PROFILING · PLATFORM-OBSERVATION · NAIVE-PERSONAS) all should retroactively answer the 3 questions — backfill pass exposes which were authored core-spine-blind."
+    created_session: S072
+    context: "Governor's question is itself the deliverable design — 3 questions become the mandatory frontmatter discipline. Composes with P-ARCH-028 (Core-Spine precedence GVRN>VALD>ARCH>AI>OPER) + existing validate-corespine-check.sh hook (T1 partial) — extends with T2 question-answering enforcer."
+    retrieve_when: "S073 — foundational discipline that all subsequent S073+ artifacts inherit; build BEFORE other S073 doctrines so they're authored under it"
+    related_existing: ["P-ARCH-028 Core-Spine Precedence", "docs/plan/pillar-0-governance/SPINE-PILLAR-MAP.md", ".claude/hooks/pre-tool-use-corespine-check.sh"]
+    prevention_class: "ARTIFACT-AUTHORED-WITHOUT-CORE-SPINE-GROUNDING"
+    governor_directive_verbatim: "be honest and answer how can now have the core spine be mandatory in the way you approach things?"
+
+  - id: vlt-S073-completion-permanence-cross-tab-inheritance
+    title: "Completion-discipline permanence — make it inherited mechanically across Opus + Sonnet tabs"
+    status: deferred
+    urgency: high
+    routing_decision: "Governor S072 Turn 5: 'Go over it again and see that whatever you did is permanent and will be inherited and will affect both opus tabs and Sony tabs. Go over your consolidation patterns and see if they can be mechanically and permanently improved.' CONCRETE DELIVERABLE: (a) audit existing completion-related disciplines (B_AUTONOMOUS_BATCH_WITH_PREFLIGHT + B_COMPLETION_OVER_SHINY + Long-Run Builder Doctrine + Proto-Production Discipline + Cross-Tab Cross-Review) — answer the questions: are these inherited at session-open? do they fire on both Opus + Sonnet tabs? does new-branch-opening violate any? (b) build validate-active-plan-displacement.mjs that BLOCKS commits which introduce new doctrines/protos while existing in-progress doctrines/protos are still draft (the 'don't open new branches before completing' enforcement). (c) extend session-open-context.mjs injection to surface the completion-state (open milestones, open vault items at K≥3 K-count, open doctrines pending ratification) at every tab start. PREVENTION CLASS: NEW-BRANCH-OPENED-WHILE-ACTIVE-PLAN-INCOMPLETE."
+    created_session: S072
+    context: "Governor's reminder applied this turn (naive-personas vlt-S072→vlt-S073) — discipline IS the right call but it's currently in-AI-memory not mechanically enforced. The 3-question consolidation: (Q1) what does 'completion' mean per artifact type? (Q2) what's the inheritance mechanism — session-open injection? validator BLOCKING? both? (Q3) what's an example of healthy side-quest vs unhealthy new-branch?"
+    retrieve_when: "S073 — pair with vlt-S073-core-spine-mandatory-question-framework (both are foundational disciplines)"
+    related_existing: ["B_AUTONOMOUS_BATCH_WITH_PREFLIGHT", "B_COMPLETION_OVER_SHINY", "LONG-RUN-BUILDER-DOCTRINE", "tools/scripts/session-open-context.mjs"]
+    prevention_class: "NEW-BRANCH-OPENED-WHILE-ACTIVE-PLAN-INCOMPLETE"
+    governor_directive_verbatim: "Go over it again and see that whatever you did is permanent and will be inherited and will affect both opus tabs and Sonnet tabs."
+
+  - id: vlt-S073-vault-pipeline-active-monitoring-escalation
+    title: "Vault + Pipeline active monitoring with escalation until processed-into-measurable-value"
+    status: deferred
+    urgency: high
+    routing_decision: "Governor S072 Turn 5: 'Iterate on the Vault and Pipeline, and make sure that they are monitored and proactively managed with an escalation until they are processed and bring real value, measurable value to the platform. Don't let things hang.' CONCRETE DELIVERABLE: (a) vault-pending.yaml entries gain `created_at` + `escalation_threshold_days` + `last_reviewed_at` + `measurable_value_outcome` fields (currently lifecycle/urgency only); (b) tools/scripts/weekly-vault-pipeline-audit.mjs surfaces stale entries (>N days no review, where N = urgency-derived: high=7, medium=14, low=30); (c) PLATFORM-OBSERVATION pipeline (queued S073) consumes vault stale-rate as a CIE signal — escalation fires when stale-rate crosses threshold; (d) every vault entry MUST close with a measurable_value_outcome citation when processed (not just 'done' — what was the MEASURED effect on the platform?). PREVENTION CLASS: VAULT-ENTRY-HANGS-WITHOUT-ESCALATION-OR-MEASURABLE-OUTCOME."
+    created_session: S072
+    context: "vault-pending.yaml currently has 30+ entries with mixed urgency and no escalation mechanism. Governor's directive: don't let things hang. The active-monitoring + escalation pattern composes with PLATFORM-OBSERVATION (the doctrine I authored S071) which already designs OBSERVE→AGGREGATE→...→MEASURE-AGAIN — vault staleness becomes one observation class."
+    retrieve_when: "S073 — natural sibling work to PLATFORM-OBSERVATION L1-L5 build (vault-monitoring IS one layer of platform observation)"
+    related_existing: ["tools/data/vault-pending.yaml", "PLATFORM-OBSERVATION-DOCTRINE L3 /platform/observation page", "weekly-consolidation-audit (ONE-SOURCE-OF §4.P4)"]
+    prevention_class: "VAULT-ENTRY-HANGS-WITHOUT-ESCALATION-OR-MEASURABLE-OUTCOME"
+    governor_directive_verbatim: "Iterate on the Vault and Pipeline, and make sure that they are monitored and proactively managed with an escalation until they are processed and bring real value, measurable value to the platform. Don't let things hang."
+
+  - id: vlt-S073-schema-vault-vs-session-vault-consensus
+    title: "Two vault uses — session-vault (for next session) vs schema-vault (in the schema, populated constantly)"
+    status: deferred
+    urgency: high
+    routing_decision: "Governor S072 Turn 5 directive: 'i am identifying two uses: 1 vaulting to next session [which is good providing it is going through cie and pe; 2 vaulting in the schema. i want to reach consensus between you and me on how to have these two as we will be going to another phase focused on developer and user journeys and then external saas and apps and i want the SCHEMA VAULT SYSTEM to be populated constantly with dynamic.' CONCRETE DELIVERABLE: reach explicit consensus on the 2-vault model: (a) SESSION-VAULT (existing vault-pending.yaml) — queues items for the NEXT session, goes through CIE/PE for prioritization, has measurable_value_outcome closure; (b) SCHEMA-VAULT (new — to design) — embedded IN the schema (NodeFile / frontmatter / per-pillar registry) for dynamic ongoing population as developer-journey/user-journey/SaaS-apps phase generates artifacts. Questions to resolve in S073: Q1 'what's the SCHEMA-VAULT data structure — per-pillar yaml? frontmatter field? separate registry?' Q2 'what triggers population — every Write tool call? every pillar artifact creation? every Governor directive?' Q3 'how does it differ from session-vault — finer-grained? lower-friction? automatic?' Q4 'how do the two interact — does schema-vault promote to session-vault on K≥N? does session-vault demote to schema-vault on someday-urgency?' PREVENTION CLASS: TWO-VAULT-USES-WITHOUT-CONSENSUS-MODEL."
+    created_session: S072
+    context: "Governor explicitly identifies the upcoming phase focus (developer/user journeys + external SaaS/apps) requires the SCHEMA-VAULT system to be populated constantly. This isn't a small concern — it's a foundational governance-architecture question that affects every artifact in the upcoming PARTS 3-8 work + the 30 SaaS apps. Must reach consensus BEFORE building those parts."
+    retrieve_when: "S073 OPEN — high-priority foundational design question; resolve BEFORE PART 3 (Product Schema) or PART 7/8 (journeys) starts to ensure the schema-vault is wired in at the right layer"
+    related_existing: ["tools/data/vault-pending.yaml (current session-vault implementation)", "NodeFile contract", "per-pillar registries (TBD)"]
+    needs_consensus: true
+    consensus_format: "Governor + OPUS-14 reach explicit 2-vault model in S073 Q-A turn; OPUS-14 authors SCHEMA-VAULT-DOCTRINE.md after consensus + Governor ratifies"
+    prevention_class: "TWO-VAULT-USES-WITHOUT-CONSENSUS-MODEL"
+    governor_directive_verbatim: "i am identifying two uses 1 vaulting to next session [which is good providing it is going through cie and pe; 2 vaulting in the schema. i want to reach consensus between you and me on how to have these two as we will be going to another phase focused on developer and user journeies and then external saas and appa and i want the SCHEMA VAULT SYSTEM to be populated constantly with dynamic"

@@ -17,6 +17,7 @@ version: "1.0"
 session: S072
 owner: group:finky
 authored_by: OPUS-14
+lifecycle: production
 lifecycle_state: closed
 evidence_block_ref: "Authored S072 Turn 4 per Governor mandatory-research-tagging directive; sources cited verbatim; vault path referenced from doctrine frontmatter research_vault_ref"
 inherits_from: "Governor S072 Turn 4 directive: 'I want to confirm that the research was tagged and saved in the system. If it wasn't, make it mandatory.'"

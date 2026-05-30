@@ -40,7 +40,7 @@ inherits_from: "B_AUTONOMOUS_BATCH_WITH_PREFLIGHT (S016 CONSTITUTIONAL) + B_CONS
 links:
   - { rel: go-contract, href: ./behavioral-contracts/B_AUTONOMOUS_BATCH_WITH_PREFLIGHT.md }
   - { rel: stop-contract, href: ./behavioral-contracts/B_CONSENSUS_BEFORE_PROCEEDING.md }
-  - { rel: cornerstone, href: ../../../packages/principles/principles-index.yaml }
+  - { rel: cornerstone, href: ../../../packages/principles/principles/P-META-028-context-refined-communication.yaml }
   - { rel: rzf-canonical, href: ./RZF-LATEST.md }
   - { rel: existing-banned-phrase-pattern, href: ../../../.claude/hooks/post-stop-banned-phrase.sh }
   - { rel: session-open-injection-point, href: ../../../tools/scripts/session-open-context.mjs }

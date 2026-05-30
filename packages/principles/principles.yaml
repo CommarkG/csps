@@ -2434,6 +2434,49 @@ principles:
        Which T1 hook fires on violation? Which T2 validator BLOCKS commits?
        If I cannot answer all three — this rule is not enforced."
 
+  - id: P-META-028
+    name: context-refined-communication
+    aliases: [context-refined-communication-principle, cornerstone-communication, communication-is-prevention, crcp]
+    title: "Context-Refined Communication is the Primary Prevention Tool"
+    description: >
+      However deep an insight, if communicated rigidly or without context, the intent never delivers
+      the exact result aimed for. Every instruction/number/rule/definition is wrapped in interpretable
+      context; samples are marked as samples; thresholds marked tunable; definitions written to allow
+      expansion, never silent caps. Sits above the comms-schema (the *why*) and IS a prevention class.
+      Cross-referenced FROM comms-schema + prevention-class register (bidirectional). The cornerstone
+      of the Facet pack (Facets A-F in PLAN-S069 ADDENDUM).
+    spine: GVRN
+    layer: L1
+    category: meta-governance
+    severity: critical
+    is_cornerstone: true
+    governing_intent: >
+      Numbers stay tunable. Definitions stay expandable. Instructions carry context.
+      A rule without its 'why' is a command that invites wrong execution. Rigid communication
+      is the primary failure mode of governance drift.
+    bidirectional_cross_refs:
+      - docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml
+      - tools/data/prevention-class-register.yaml
+    sibling_doctrines:
+      - docs/plan/pillar-0-governance/RZF-LATEST.md
+      - docs/plan/pillar-0-governance/LONG-RUN-BUILDER-DOCTRINE.md
+    composes_with:
+      - P-META-006
+      - P-META-019
+      - P-META-027
+    enforcement_tier:
+      tier1_hook: "validate-context-wrapped-numbers.mjs (advisory scan)"
+      tier2_validator: "validate-context-wrapped-numbers.mjs + context-wrapped-numbers-allowlist.yaml"
+      tier3_session: "context_question field + session-open injection"
+    ratified_by: "Governor S071 (OPUS-14 directed)"
+    ratified_date: "2026-05-30"
+    session: S071
+    self_check_q: >
+      "Is this number marked (sample/tunable/expandable)?
+       Is this definition written to allow expansion, not a silent cap?
+       Does this instruction carry its reasoning, not just its command?
+       If no — apply P-META-028 cornerstone before proceeding."
+
   - id: P-ARCH-028
     name: csps-core-spines
     aliases: [core-spine-discipline, 5-spine-architecture, outward-layering]

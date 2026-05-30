@@ -17,6 +17,7 @@ ratified_at: "2026-05-29"
 core_spine: AI
 core_spines: [GVRN, AI, OPER, VALD]
 schema_anchor: communication
+governing_principle: P-META-028
 version: "1.1"
 session: S070
 owner: group:finky

@@ -1,0 +1,219 @@
+{
+  "files_checked": 637,
+  "findings": 8425,
+  "advisory": 8425,
+  "blocking": 0,
+  "all_findings": [
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 46,
+      "content": "onboarding flow steps, voice profile text, CTA labels, email subjects — to run up to **4 simultaneou",
+      "number": "4",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 70,
+      "content": "> against measured user behavior and the CIE learns the winner. The compound effect: after 12 months",
+      "number": "12",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 79,
+      "content": "× user segment produced retention at 30 days.\" This depth of analysis requires infrastructure,",
+      "number": "30",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 124,
+      "content": "variants: ABVariant[]             // max 4",
+      "number": "4",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 170,
+      "content": "These must be answered before Phase 3 (analysis dashboard) and Phase 4 (CIE integration) build start",
+      "number": "4",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 182,
+      "content": "20–500 users per app?",
+      "number": "20",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 211,
+      "content": "- `ABTest` React component — renders the active variant's content, accepts all 4 slots",
+      "number": "4",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 226,
+      "content": "**Gate:** 48 hours of tracking data collected on at least 1 live test.",
+      "number": "48",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 238,
+      "content": "**Research gate:** Heat map tech + significance thresholds resolved from §4 before Phase 3 starts.",
+      "number": "4",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 246,
+      "content": "- Auto-propagation → voice profiles + template content (for text-only winners at >95% confidence)",
+      "number": "95",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 275,
+      "content": "pe_score: 88",
+      "number": "88",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/AB-TESTING-MOAT.md",
+      "line": 281,
+      "content": "Phases 2–4 require Governor ratification of the research answers in §4.",
+      "number": "4",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/adr-process.md",
+      "line": 41,
+      "content": "Michael Nygard's 2011 ADR pattern is the canonical reference; Martin Fowler popularized it via [mart",
+      "number": "2011",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/adr-process.md",
+      "line": 132,
+      "content": "The audit runner has a check `adr-no-stale-proposed` (warn if `proposed` > 14 days).",
+      "number": "14",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/adr-process.md",
+      "line": 191,
+      "content": "- Michael Nygard — [Documenting Architecture Decisions (2011)](https://www.cognitect.com/blog/2011/1",
+      "number": "2011",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 31,
+      "content": "agent (including claude-code-builtin Explore/Plan/general-purpose) must pass. User S005 turn 25",
+      "number": "25",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 116,
+      "content": "output_max_tokens: 1500       # focused output, not synthesis",
+      "number": "1500",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 157,
+      "content": "max_tokens: 1500",
+      "number": "1500",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 218,
+      "content": "OUTPUT CONTRACT: return findings + data; max ~500 tokens of summary; structured",
+      "number": "500",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 265,
+      "content": "**Honest meta-finding:** until S006 retrofit lands, **5 active CSPS skills + 5 Claude Code built-in ",
+      "number": "5",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 285,
+      "content": "- The discipline scales: 100 future agents → same protocol; no per-agent custom alignment",
+      "number": "100",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 335,
+      "content": "All 16 existing SKILL.md (7 packages/skills + 9 .claude/skills) currently have only the 7-field AAP ",
+      "number": "16",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 340,
+      "content": "- Phase 1: 2 new fields scanned; missing → warn (logged but exit_code 0); existing 7 fields → error ",
+      "number": "7",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 345,
+      "content": "1. **S010 (this engraving):** schema + validator + hook + memory + contract surfaces updated atomica",
+      "number": "5",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 346,
+      "content": "2. **S011 backfill pass:** retrofit all 16 SKILL.md with `principle_compliance` + `consolidation_cro",
+      "number": "16",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 347,
+      "content": "3. **S012 promotion:** validator warn → error; `aap-9-field-coverage` audit slug status promoted; ve",
+      "number": "16",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 348,
+      "content": "4. **Forward:** all new agents (Class A SKILL.md / Class B spawn templates / Class C zmodel / Class ",
+      "number": "9",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
+      "line": 367,
+      "content": "- User S005 turn 25 directive — no wildcards mandate",
+      "number": "25",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/ai-behavior-improvement-plan.md",
+      "line": 4,
+      "content": "description: Comprehensive plan for mechanically enforcing AI behavior discipline in CSPS. Covers th",
+      "number": "6",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/ai-behavior-improvement-plan.md",
+      "line": 28,
+      "content": "read_protocol: \"L1 = 6 AI defaults + mechanical measures. L2 = INTERNAL_DEEP_REVIEW protocol + Opus ",
+      "number": "6",
+      "level": "advisory"
+    }
+  ],
+  "ran_at": "2026-05-29T23:20:50.379Z"
+}

@@ -80,6 +80,8 @@ const KNOWN_MAPPINGS = {
   'validate-communication-schema-coverage': ['communication-schema-coverage', 'communication_schema_coverage'],
   'validate-proto-completeness': ['proto-completeness', 'proto_completeness'],
   'validate-no-nominal-stops-mid-milestone': ['no-nominal-stops', 'no_nominal_stops', 'nominal-stops'],
+  'validate-context-wrapped-numbers': ['context-wrapped-numbers', 'context_wrapped_numbers'],
+  'validate-nominal-rzf-detector': ['nominal-rzf-detector', 'nominal_rzf_detector'],
   'validate-zf-cycle-format': ['zf-cycle-format', 'zf_cycle_format'],
   'validate-gap-recurrence': ['gap-recurrence', 'gap_recurrence'],
   'validate-threshold-intake': ['threshold-intake', 'threshold_intake'],

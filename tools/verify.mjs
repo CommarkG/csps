@@ -1280,6 +1280,26 @@ const CYCLES = [
     },
   },
   {
+    // M1 S071 Facet A: P-META-028 cornerstone — scans for bare integers without context markers
+    // ADVISORY always (rigidity-validator cannot itself be rigid — per P-META-028)
+    name: 'context_wrapped_numbers',
+    command: 'node tools/validators/validate-context-wrapped-numbers.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_checked=(\d+)\s+findings=(\d+)\s+advisory=(\d+)/);
+      return m ? { files_checked: Number(m[1]), findings: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // M1 S071 Facet A sibling: RZF-LATEST §6.I5 — flags Cycle-2+ "0 new" without file citations
+    // ADVISORY in S071
+    name: 'nominal_rzf_detector',
+    command: 'node tools/validators/validate-nominal-rzf-detector.mjs',
+    parse_output: (out) => {
+      const m = out.match(/findings=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { findings: Number(m[1]), advisory: Number(m[2]), blocking: Number(m[3]) } : {};
+    },
+  },
+  {
     // S053: Gap Recurrence Register enforcement — K count gating per P-META-019
     // BLOCKING: K>=3 AND status:open AND structural_fix_triggered:false
     // ADVISORY: K>=2 AND status:open AND behavioral_test_exists:false

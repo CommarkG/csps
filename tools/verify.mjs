@@ -1300,6 +1300,17 @@ const CYCLES = [
     },
   },
   {
+    // M2 S071 Facet C: Dev↔User vocabulary coverage — advisory validator
+    // Flags user-facing content that uses dev_terms without paired user_term translation
+    // Glossary source: vocabulary.md §Dev↔User Glossary (8+ entries, sample-expandable per P-META-028)
+    name: 'vocabulary_coverage',
+    command: 'node tools/validators/validate-vocabulary-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_checked=(\d+)\s+glossary_entries=(\d+)\s+findings=(\d+)\s+advisory=(\d+)/);
+      return m ? { files_checked: Number(m[1]), glossary_entries: Number(m[2]), findings: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
     // S053: Gap Recurrence Register enforcement — K count gating per P-META-019
     // BLOCKING: K>=3 AND status:open AND structural_fix_triggered:false
     // ADVISORY: K>=2 AND status:open AND behavioral_test_exists:false

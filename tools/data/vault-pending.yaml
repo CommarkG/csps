@@ -312,14 +312,7 @@ entries:
     related_validator: "tools/validators/validate-proto-completeness.mjs"
     migration_approach: "Fix 1-2 protos per session starting from the most-recently-active (PROTO-S068-PART-2-THRESHOLD-COMPLETE.md first)"
 
-  - id: vlt-S071-PROTO-COMPLETENESS-MIGRATION
-    title: "Proto completeness migration — existing protos need template compliance pass"
-    status: deferred
-    urgency: someday
-    routing_decision: "Advisory-first per M0.5 S071. After all existing protos gain required sections, promote validate-proto-completeness.mjs to blocking. Systematic fix in a future session (WIRING PASS). Do NOT expand S071 scope."
-    created_session: S071
-    context: "validate-proto-completeness.mjs found 95 advisory findings across 11 existing protos (missing required sections, persona count issues). All pre-M0.5 protos lack proto.template.md structure. Migration = add required sections to each proto gradually. Exemplar gate: when all protos pass clean, validator promotes to blocking."
-    retrieve_when: "WIRING PASS or designated S07x migration session"
+  # vlt-S071-PROTO-COMPLETENESS-MIGRATION: merged into vlt-S071-proto-completeness-migration (lowercase canonical) S071 M2 side-quest
 
   - id: vlt-S072-pmeta-029-registry-backfill
     title: "P-META-029 backfill — humble-consolidation-discipline doc-without-registration (MEMORY-VS-DISK-DRIFT inaugural)"

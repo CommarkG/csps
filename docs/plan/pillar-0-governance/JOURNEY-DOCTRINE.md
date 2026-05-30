@@ -59,9 +59,11 @@ build_status:
 
 # CSPS Journey Doctrine
 
-> **System-wide, status: draft.** Governs every journey on the platform — onboarding, session, handoff, app-build. Not dev-journey-only. Each section answers one fundamental question about what a journey is and how to design it well.
+> **System-wide, status: ratified (S071).** Governs every journey on the platform — onboarding, session, handoff, app-build. Not dev-journey-only. Each section answers one fundamental question about what a journey is and how to design it well.
 >
 > *"A journey is the difference between 'the steps exist' and 'the participant actually arrives, aligned and capable.'" — OPUS-13, S069*
+>
+> **Vocabulary:** see `vocabulary.md §Dev↔User Glossary` (single source — canonical tier vocabulary mapping dev ↔ user terms).
 
 ---
 

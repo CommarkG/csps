@@ -216,3 +216,25 @@ Import flow is L2 → L1 → L0 → External ONLY. Reverse imports (L0 importing
 **First introduced:** S019 Part2
 **Canonical location:** `docs/plan/pillar-0-governance/sonnet-audit-protocol.md` (AUDIT-1 task)
 **Session-close:** Sweeps 2+5 mandatory; full 6-sweep on architectural sessions
+
+---
+
+## Dev ↔ User Glossary
+
+> **Single source for tier vocabulary.** Each row maps one canonical concept to its dev-facing term (as used in CSPS platform code, governance docs, and API contracts) and its user-facing term (as shown in product UI, help text, and error messages). Audience tier refs indicate which tiers each term is relevant to. All entries marked (sample — expandable per P-META-028 cornerstone).
+>
+> Cross-referenced by: `communication-schema.yaml §audience_hierarchy` + `JOURNEY-DOCTRINE.md §L1 shared-core`.
+
+| canonical_meaning | dev_term | user_term | audience_tier_refs |
+|---|---|---|---|
+| Organizational tenant (the root entity owning a workspace) | `tenant` / `tenantId` | workspace | account-owner-admin · team-leader · end-user (sample — expandable) |
+| A named set of capabilities assigned to a user | `role` / `user_role` | permission level | account-owner-admin · team-leader (sample — expandable) |
+| A rule that checks data correctness before persistence | `validator` / `validation_rule` | check | core-developer · external-developer (sample — expandable) |
+| A discrete unit in an ordered, intentional progression | `step` / `milestone` | stage | all tiers (sample — expandable) |
+| A single classification of who the AI is communicating with | `audience_tier` / `communication_tier` | (internal concept — not surfaced to end users) | governor · core-developer (sample — expandable) |
+| The mechanism that verifies who the user is | `auth` / `credentials` / `JWT` | sign in · log in | external-developer · account-owner-admin · end-user (sample — expandable) |
+| A record of a system event for accountability | `audit_log` / `AuditEvent` | activity history | account-owner-admin · team-leader (sample — expandable) |
+| The typed definition of a data entity's fields and relationships | `schema` / `ZModel` | form layout · data structure | core-developer · external-developer (sample — expandable) |
+| The saved state of a user's current work context | `session_state` / `session_context` | current session | core-developer · end-user (sample — expandable) |
+
+> **How to add entries:** Row must include all 4 columns + audience_tier_refs with (sample — expandable) marker. Cross-ref the new term in `context-wrapped-numbers-allowlist.yaml` if it introduces a new number. Validate-vocabulary-coverage.mjs enforces tier-term alignment.

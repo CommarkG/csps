@@ -680,3 +680,26 @@ entries:
     created_session: S072
     prevention_class: "FREESTYLE-STARTUP-BLOCK-WHEN-FORMAL-TOOL-EXISTS"
     governor_directive_verbatim: "don't you have a formal way of having the instructions for a new tab in a detailed manner and not just by pasting this file?"
+
+  - id: vlt-S073-end-of-tab-mechanical-trigger-platform-wide
+    raw: "Governor S072 Turn 14: 'I have this mechanically enforced. I try to figure out a way to trigger this end of tab and prepare for the next new tab. To be mechanically enforced, I don't want to keep reminding you each time to do it properly. You might move it a layer or T1, T2, T2, or whatever you're doing. Just make it permanent. This after so long must be flawless. handle the consistent execution of this but also deep dive into the essense of things that are obviously meant to be permanent and strait forward with a permenent template. map your inner instructions and triggers, understand what happens again and again, save it to ai profiling. suggest a platform wide permanent solution. ** and note... governer is never to run anything you can run. do your job.'"
+    context: "Governor S072 Turn 14 — corrective on TWO patterns: (1) end-of-tab/prep-of-new-tab needs mechanical trigger, not Governor reminders each time; (2) AI defaulting to 'Governor: run X' when AI can run X (D7-INVERTED). Both engraved as ai-behavior-signals.jsonl entries this turn."
+    insight: "Two-layered solution: (A) END-OF-TAB DETECTOR — extend post-stop-session-close-gate.sh (CRITICAL hook, already wired) to auto-fire: generate-startup-block.mjs for both roles + author HANDOFF-template stub + list unharvested items via grep on chat-md if present + verify final state. This converts the reminder loop into a hook event. (B) AI-DOES-ITS-JOB ENFORCEMENT — pre-tool-use hook scans pending Opus output for patterns 'Governor: paste X' / 'Governor: run X' / 'Governor: cat X' / 'Governor pastes Y' / 'Governor opens Z' where Z is an executable command — flags advisory: 'You can run this. Do it yourself.' Composes with B_NO_CONFIRMATION_SEEKING + the AI-PROFILING D-defaults registry. Both engravings have ~2h scope each (~4h total)."
+    status: deferred
+    urgency: high
+    created_session: S072
+    prevention_class_A: "TAB-CLOSE-WITHOUT-MECHANICAL-TRIGGER-FOR-NEW-TAB-PREP"
+    prevention_class_B: "AI-OFFLOADS-EXECUTABLE-COMMAND-TO-GOVERNOR-INSTEAD-OF-DOING-ITS-JOB"
+    governor_directive_verbatim: "governer is never to run anything you can run. do your job"
+    related_signals: ["ai-behavior-signals.jsonl D7-INVERTED entry Turn 14", "USE-EXISTING-INFRA-IGNORED 3-instance pattern", "DISCIPLINE-DRIFT-WITHIN-SAME-TURN-AS-AUTHORING meta-pattern"]
+    composes_with: ["post-stop-session-close-gate.sh (existing CRITICAL hook — extension target)", "generate-startup-block.mjs (existing — auto-invoke at session close)", "AI-PROFILING-TO-COMMUNICATION-FEEDBACK doctrine (signals stream)", "pre-tool-use-nominal-stop-detector.sh (sibling pattern — phrase-detection)"]
+
+  - id: vlt-S073-discipline-drift-within-authoring-turn-meta-pattern
+    raw: "Pattern observed S071-S072 multiple times: I author discipline X (e.g. boundary-prompt template Turn 27, core-seeds-currency Turn 26, relative-not-rigid Turn 7) then in the SAME or NEXT turn VIOLATE X (Turn 12 inline OPUS-15 STARTUP BLOCK violated boundary-prompt + formal-tool discipline; Turn 26 orphan validator violated register-before-wire; Turn 5-6 vault entries violated relative-not-rigid I had just authored)."
+    context: "Most recurring meta-pattern across S071-S072. Authoring a discipline does not internalize it. The discipline lives as text-on-disk but not as operating-mode until mechanical enforcement fires."
+    insight: "Mechanical solution: session-open-context.mjs auto-injects 'recently-authored disciplines' for next 3 turns after authoring. Detects via git log --since '1 hour ago' --grep 'discipline|engrave|doctrine' + injects discipline content as a header reminder. Lower barrier from text-on-disk to operating-mode. Companion: validate-author-follows-own-doctrine.mjs scans my next 3 commits for discipline-X violations. Composes with cross-tab review (Turn 26) — receiving tab can flag drift before commit."
+    status: deferred
+    urgency: high
+    created_session: S072
+    prevention_class: "DISCIPLINE-DRIFT-WITHIN-AUTHORING-TURN"
+    governor_directive_verbatim: "this after so long must be flawless. handle the consistent execution of this but also deep dive into the essense of things that are obviously meant to be permanent and strait forward with a permenent template"

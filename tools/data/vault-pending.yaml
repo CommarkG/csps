@@ -320,3 +320,15 @@ entries:
     created_session: S071
     context: "validate-proto-completeness.mjs found 95 advisory findings across 11 existing protos (missing required sections, persona count issues). All pre-M0.5 protos lack proto.template.md structure. Migration = add required sections to each proto gradually. Exemplar gate: when all protos pass clean, validator promotes to blocking."
     retrieve_when: "WIRING PASS or designated S07x migration session"
+
+  - id: vlt-S072-pmeta-029-registry-backfill
+    title: "P-META-029 backfill — humble-consolidation-discipline doc-without-registration (MEMORY-VS-DISK-DRIFT inaugural)"
+    status: deferred
+    urgency: medium
+    routing_decision: "Queue to S072 alongside ONE-SOURCE-OF-DOCTRINE absorption (same domain: canonical registration sweep). Governor S071 Turn 10 PCR decision: protect S071 locked sequence from side quest. Backfill is small (~15 min) but belongs with the canonical-registration sweep."
+    created_session: S071
+    context: "Sonnet's M1 milestone report named MEMORY-VS-DISK-DRIFT as inaugural PREVENTION class (the partial-engraving variant added in opus-turn.md v1.2 amendment). Inaugural instance: docs/plan/principles/P-META-029-humble-consolidation-discipline.md exists at the doc layer (authored S067) but is NOT in packages/principles/principles-index.yaml slice manifest. Fix path: (1) Read the existing P-META-029 doc; (2) translate frontmatter to current monolith schema if needed; (3) append entry to packages/principles/principles.yaml after P-META-028 (line ~2437); (4) run pnpm principles:split; (5) verify principles-index.yaml total_count 69→70 and new slice file exists; (6) commit."
+    retrieve_when: "S072 opens — alongside ONE-SOURCE-OF-DOCTRINE M10 build"
+    related_doctrine: "docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md"
+    related_principle: "docs/plan/principles/P-META-029-humble-consolidation-discipline.md"
+    prevention_class: "MEMORY-VS-DISK-DRIFT"

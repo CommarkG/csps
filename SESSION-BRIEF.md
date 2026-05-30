@@ -9,7 +9,7 @@
 | **Current session** | S067 |
 | **Previous session** | S066 |
 | **Last updated** | 2 day(s) ago |
-| **Last commit** | c652608 ops: submodule pointer → a220da1 (M1 /platform/rzf RZF-LATEST section) |
+| **Last commit** | 21eb2ea vault(S072-Turn8): soften 5 rigid entries (mark as samples) + 3 new relative entries |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

@@ -1744,6 +1744,17 @@ const CYCLES = [
     },
   },
   {
+    // S072 PROTO-S072-CIP M1 — cip_prior_plan_conflict: checks staged changes vs existing plans
+    // Advisory in S072 (exits 0). Checks change-impact-staging.yaml entries with cip_required=true
+    // against unified-plan + vault-pending + audit-runner pipeline. PREVENTION: LOCAL-FIX-HARMS-GLOBAL
+    name: 'cip_prior_plan_conflict',
+    command: 'node tools/validators/validate-prior-plan-conflict.mjs',
+    parse_output: (out) => {
+      const m = out.match(/staged_checked=(\d+)\s+conflicts_found=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { staged_checked: Number(m[1]), conflicts_found: Number(m[2]), advisory: Number(m[3]), blocking: Number(m[4]) } : {};
+    },
+  },
+  {
     // S072 Governor Turn 12 — vlt-S073-push-mandatory-discipline: surfaces unpushed commits
     // Advisory always (exits 0). Thresholds: >5 = warn, >10 = strong-warn (samples — tunable per P-META-028).
     // T1+T3 queued vlt-S073-push-mandatory-discipline. PREVENTION: GOVERNANCE-WORK-NOT-PUSHED-TO-ORIGIN

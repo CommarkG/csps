@@ -1,0 +1,83 @@
+---
+id: csps.data.change-impact-staging
+name: change-impact-staging
+description: >
+  CIP (Change-Impact Pipeline) staging register. Every proposed change to the platform
+  enters here BEFORE it reaches the live system. The pipeline enforces:
+  STAGE (isolated record) → RIPPLE-QC (multi-direction, never self-test) →
+  NET-IMPACT (net-positive only) → THRESHOLD route (PROPOSED-CHANGE 15th class, M3) →
+  TERMINAL (tracked end-state). Prevents LOCAL-FIX-HARMS-GLOBAL pattern.
+  Lived example it would have caught: e662f587 sacred-file-protection regression.
+type: register
+protection_level: active
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+version: "1.0"
+session: S072
+core_spine: GVRN
+core_spines: [GVRN, VALD, ARCH]
+schema_anchor: data_files
+context_question: "Before applying any change to the platform: has it been staged here, received ≥3 independent ripple-QC verdicts, and confirmed NET-POSITIVE? If not, stage it first."
+context_quote: "No change reaches the live system without passing: STAGE → RIPPLE-QC → NET-IMPACT → THRESHOLD route → TERMINAL. — PROTO-S072-CIP CORE SEED"
+governing_principle: P-META-028
+prevention_class: LOCAL-FIX-HARMS-GLOBAL-WITHOUT-RIPPLE-CHECK
+authored_by: Sonnet S072
+authored_at: "2026-05-30"
+proto_ref: PROTO-S072-CIP
+
+# ── Type enum (current enumeration — expandable per cornerstone P-META-028) ───────
+#
+# type values (sample — expandable as CIP matures):
+#   validator            — adds/modifies a validator in tools/validators/
+#   hook                 — adds/modifies a .claude/hooks/ file
+#   schema               — modifies a frontmatter schema or data register schema
+#   governance           — modifies a principle, contract, or governance doc
+#   threshold-routing    — adds/modifies a threshold class or routing rule
+#   advisory-toggle      — promotes a validator from advisory to blocking
+#   rename               — renames a file, directory, or field
+#   register-consolidation — merges two existing registers into one
+#   prevention-insight   — a new prevention class derived from a session finding
+#   proto-dependency     — a cross-PROTO dependency (one PROTO's output feeds another)
+#   infrastructure       — modifies core infra (session-open, verify.mjs, audit-runner)
+#
+# cip_required derivation (criticality mapping from M7 threshold):
+#   true  (CRITICAL+ classes): governor_directive, implementation_proposal, creation_request,
+#          consequential_decision, consolidation_pass, validation_query, external_research,
+#          advisory-toggle, infrastructure, rename (if cross-referenced)
+#   false (SHEDDABLE classes): standard_chat, routine_operation, unclassified,
+#          purely-additive governance docs with no cross-references (sample — tunable)
+#
+# verdict values:
+#   NET-POSITIVE        — approved: helps[] > harms[] across all directions checked
+#   REJECTED-with-reason — declined: harms[] not mitigable or outweigh helps[]
+#   NEEDS-MITIGATION    — conditional: net-positive IF listed harms are addressed first
+#
+# terminal_state values:
+#   RATIFIED+IMPLEMENTED   — approved + built + pushed + verified (done)
+#   VAULTED-with-trigger   — deferred: vlt entry created with retrieve_when condition
+#   REJECTED-with-reason   — declined: reason recorded; future re-entry requires new evidence
+#   SUPERSEDED             — replaced by a higher-scope change that covers this intent
+
+entries: []
+
+# ── Sample entry structure (comment — copy to entries: when staging a change) ──────
+#
+# - id: cip-YYYY-MM-DD-NNN  (unique id per staged change — sample pattern, tunable)
+#   proposed_change: "One-sentence description of what is being changed and why"
+#   type: validator          # from type enum above
+#   cip_required: true       # derived from criticality (see mapping above)
+#   ripple_set:
+#     - "tools/verify.mjs (wiring point — adding this validator changes exit_code behavior)"
+#     - "docs/plan/pillar-0-governance/audit-runner.md (registration required)"
+#     - "tools/tests/behavioral/ (behavioral test required by pre-commit-validator-test-required.sh)"
+#   directions_checked: []   # populated during RIPPLE-QC (M2): list of persona/direction invoked
+#   net_impact:
+#     helps: []              # populated during RIPPLE-QC: what this benefits
+#     harms: []              # populated during RIPPLE-QC: what this could break or add cost to
+#   verdict: null            # set after ≥3 directions checked: NET-POSITIVE | REJECTED | NEEDS-MITIGATION
+#   terminal_state: null     # set at closure: RATIFIED+IMPLEMENTED | VAULTED-with-trigger | REJECTED | SUPERSEDED
+#   staged_at: ""
+#   staged_by: ""
+#   closed_at: null
+#   notes: ""

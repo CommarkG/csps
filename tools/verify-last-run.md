@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-30T11:04:15.054Z
-- finished_at: 2026-05-30T11:04:36.901Z
+- ran_at: 2026-05-30T11:05:15.392Z
+- finished_at: 2026-05-30T11:05:37.263Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-30T11:04:15.054Z",
-    "finished_at": "2026-05-30T11:04:36.901Z",
+    "ran_at": "2026-05-30T11:05:15.392Z",
+    "finished_at": "2026-05-30T11:05:37.263Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.8,
         "principles_loaded": 70,
         "findings_total": 24
       },
@@ -69,7 +69,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "stale_count_files": 0
       },
       {
@@ -221,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.7,
+        "duration_seconds": 2.6,
         "checked": 130,
         "advisories": 119
       },
@@ -1622,7 +1622,13 @@
         "command": "node tools/validators/validate-validators.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.1,
+        "total": 197,
+        "deferred": 2,
+        "empty_output": 23,
+        "zero_numeric": 20,
+        "advisory": 3,
+        "blocking": 0
       },
       {
         "name": "positive_reflexivity",
@@ -1836,7 +1842,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 1,
+        "files_scanned": 0,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0

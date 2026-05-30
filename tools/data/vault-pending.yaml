@@ -577,3 +577,21 @@ entries:
     created_session: S072
     prevention_class: "MOAT-CANDIDATES-NOT-REVIEWED-AT-SESSION-CLOSE"
     governor_directive_verbatim: "Go over the chat and add things to the moat."
+
+  - id: vlt-S073-vault-attitude-codified-simple
+    raw: "save raw thing and adding context and insight. It is simple. save as is and add context and insight. It is raw material to be processed. Think of it simply. Save what is not for immediate processing. Add context and add some insights if you have. Similar to the core seeds, these are seeds of ideas or potential directions to explore. just drop the processing issue."
+    context: "Governor S072 Turn 9 — corrective to my Turn 7/8 vault entries which were still over-processed (had framing_only + what_was_raised + why_it_might_matter + what_is_genuinely_open + possible_shapes_not_specs — too many sub-fields). Governor's simpler shape: 4 fields only — raw + context + insight + sit-until-processed. This entry is the FIRST written in the new simple shape, as inaugural example."
+    insight: "Vault entries are SEEDS not PLANS. Discipline is restraint at write-time. The 5 fields I used Turn 7 were already a step too far. The processing happens at retrieval — with Governor — not at vault-write. Composes with B_HUMBLE_EXECUTOR (no premature finishing) + the relative-not-rigid Turn 7 entry which itself was still over-processed (recursive irony noted)."
+    status: deferred
+    urgency: high
+    created_session: S072
+    governor_directive_verbatim: "The general atitude of vault should be saving raw thing and adding context and insight. It is simple. save as is and add context and insight. It is raw material to be processed. Think of it simply. just drop the processing issue."
+
+  - id: vlt-S073-moat-admission-protocol
+    raw: "having a wall-to-wall narrative that is saying that the moat should have a buffer in the form of a vault that should be processed. It should create a protocol for what deserves to be entering the moat and what not."
+    context: "Governor S072 Turn 9 — response to my surfacing 7 moat candidates from S072 chat (vlt-S073-moat-additions-from-S072-cluster). Governor wants a PROTOCOL for moat-admission BEFORE candidates get promoted. Moat currently has M-26 through M-45 (M-1 through M-25 are earlier eras); admission criteria implicit, not codified."
+    insight: "Moat-admission protocol IS itself moat-worthy if it codifies what makes CSPS structurally unique. Likely buffer pattern: Vault → Buffer-for-review → Process-with-Governor → either Moat OR Reject. Possible admission tests: structural (does it close a named failure mode at the mechanism layer)? compounding (does it make subsequent work easier or just adds surface)? CSPS-unique (does this exist elsewhere or is it ours)? K-evidence (has this pattern fired K=N times in real sessions)? Don't pre-decide — these are sketches, not specs."
+    status: deferred
+    urgency: high
+    created_session: S072
+    governor_directive_verbatim: "the moat should have a buffer in the form of a vault that should be processed. It should create a protocol for what deserves to be entering the moat and what not."

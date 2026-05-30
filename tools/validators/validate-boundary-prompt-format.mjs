@@ -97,12 +97,20 @@ function parseSections(content) {
 /**
  * Check a text block for boundary prompt compliance.
  * Returns { missing_headers, has_attestation, is_boundary_prompt }
+ *
+ * DETECTION RULE: headers must appear at the START of a line (optionally with leading whitespace).
+ * This prevents false positives from description text that mentions the header names in prose
+ * (e.g. "Scans for I AM: / YOU ARE: markers" inside a milestone report description).
  */
+function headerPresentAtLineStart(text, header) {
+  return text.split('\n').some(line => line.trimStart().startsWith(header));
+}
+
 function checkBoundaryPromptBlock(text) {
-  const headersFound = REQUIRED_HEADERS.filter(h => text.includes(h));
-  const missing_headers = REQUIRED_HEADERS.filter(h => !text.includes(h));
+  const headersFound = REQUIRED_HEADERS.filter(h => headerPresentAtLineStart(text, h));
+  const missing_headers = REQUIRED_HEADERS.filter(h => !headerPresentAtLineStart(text, h));
   const has_attestation = text.includes(ATTESTATION_MARKER);
-  const is_boundary_prompt = headersFound.length >= 1; // at least 1 header = "attempting" the format
+  const is_boundary_prompt = headersFound.length >= 1; // at least 1 header at line-start = "attempting" the format
 
   return { missing_headers, has_attestation, is_boundary_prompt };
 }

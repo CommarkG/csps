@@ -62,6 +62,11 @@
  * INVOKE vocabulary-canon: naming/frontmatter/enum questions (D4+D8)
  */
 
+// ─── M7 S071 PART 2 STEP 2: 10-class exhaustive routing ────────────────────
+// Verbatim from PROTO-S068-PART-2-THRESHOLD-COMPLETE.md §CLASSIFICATION DESIGN
+// Current enumeration (expandable — new classes route to PLACE_NOT_FOUND, never silently dropped)
+// Numbers are sample/tunable per P-META-028 cornerstone.
+
 const ROUTES = {
   PROCESS_NOW: 'PROCESS-NOW',
   VAULT: 'VAULT',
@@ -69,6 +74,20 @@ const ROUTES = {
   INVOKE_CONSOLIDATION: 'INVOKE:consolidation-expert',
   INVOKE_CRUEL_CRITIC: 'INVOKE:cruel-critic',
   INVOKE_VOCAB: 'INVOKE:vocabulary-canon',
+  // M7 NEW: explicit routes for all 10 classes
+  FOREIGN_ELEMENT: 'FOREIGN-ELEMENT:quarantine',  // class 9 — MCP/skill/agent
+  PLACE_NOT_FOUND: 'PLACE-NOT-FOUND:pending-node', // class 10 — explicit catch-all (never silent)
+  VAULT_DEFER: 'VAULT:defer',  // class 6 — external content/research
+  CIP_STAGING: 'CIP:staging',  // class 5 — proposal/consequential
+};
+
+// Criticality tiers per PROTO-S068-PART-2 + SRE-class severity model
+// Values are samples/tunable per P-META-028; not hard caps.
+const CRITICALITY = {
+  CRITICAL_PLUS: 'CRITICAL_PLUS',   // Governor directive/ratification — highest
+  CRITICAL: 'CRITICAL',              // Implementation, AI-behavior, validation, proposal
+  SHEDDABLE_PLUS: 'SHEDDABLE_PLUS', // Conversational, external research
+  SHEDDABLE: 'SHEDDABLE',           // Maintenance, tactical
 };
 
 /**
@@ -83,12 +102,14 @@ const ROUTES = {
  * @returns {{ route: string, axis_classification: Object, rationale: string }}
  */
 export function routeInput({ type, spine, urgency, scope, content = '', shapeTier = false }) {
-  // SHAPE-TIER fast-path: conversational inputs bypass full classification
+  // SHAPE-TIER fast-path: conversational inputs bypass full classification (Class 8)
   if (shapeTier) {
     return {
       route: ROUTES.PROCESS_NOW,
       axis_classification: { spine, scope: 'tactical', intent: 'conversational', mandate_relation: 'adjacent' },
-      rationale: 'SHAPE-TIER fast-path: conversational input, no full routing required',
+      criticality: CRITICALITY.SHEDDABLE_PLUS,
+      input_class: 'conversational',
+      rationale: 'SHAPE-TIER fast-path: conversational input → chat, no full routing. SHEDDABLE_PLUS.',
     };
   }
 
@@ -101,7 +122,7 @@ export function routeInput({ type, spine, urgency, scope, content = '', shapeTie
     else detectedScope = 'tactical';
   }
 
-  // Axis 3: intent from type
+  // Axis 3: intent from type (M7: extended to cover all 10 classes)
   const intentMap = {
     'governor_directive': 'directive',
     'proposal': 'proposal',
@@ -110,47 +131,132 @@ export function routeInput({ type, spine, urgency, scope, content = '', shapeTie
     'governor': 'directive',
     'core_seed': 'directive',
     'session_harvest': 'maintenance',
+    // M7 new type mappings
+    'implementation': 'implementation',
+    'ai_behavior': 'ai_behavior',
+    'validation': 'validation',
+    'external_research': 'external_research',
+    'foreign_element': 'foreign_element',
+    'conversational': 'conversational',
+    'error': 'validation',
+    'solution': 'validation',
+    'correction': 'directive',
   };
-  const intent = intentMap[type] || 'directive';
+  const intent = intentMap[type] || 'unknown'; // 'unknown' → place-not-found (not 'directive')
 
   // Axis 4: mandate-relation (simplified heuristic)
   let mandateRelation = 'in-mandate';
   if (/governor.*#3|ux.*journey|threshold.*core|app.*#2/i.test(content)) mandateRelation = 'orthogonal';
   else if (/adjacent|carry-forward|optional/i.test(content)) mandateRelation = 'adjacent';
 
-  // ROUTING DECISIONS
-  let route = ROUTES.PROCESS_NOW;
+  // ─── ROUTING DECISIONS — 10-class exhaustive (M7 S071, expandable) ─────────
+  // Order matters: more specific checks first.
+  // NO silent default-to-unhandled: every path terminates in an explicit route.
+  // Audience tier stamped per communication-schema.yaml hierarchy.
+  let route = ROUTES.PLACE_NOT_FOUND; // explicit catch-all — not a silent default
   let rationale = '';
+  let criticality = CRITICALITY.CRITICAL; // default; overridden per class
+  let input_class = 'unclassified'; // for logging
 
-  // ESCALATE: constitutional scope changes (C12/C13 classes)
-  if (detectedScope === 'constitutional' && intent === 'directive') {
-    route = ROUTES.ESCALATE;
-    rationale = 'Constitutional scope + directive intent → requires Opus full-advance gate (C12/C13)';
+  // CLASS 9: Foreign element (MCP/skill/agent not tiered in the platform)
+  // Must check BEFORE other classes — untiered foreign elements = CRITICAL stop
+  if (type === 'foreign_element' || /\bMCP\b|\bskill-agent\b|\bforeign.*element\b/i.test(content)) {
+    route = ROUTES.FOREIGN_ELEMENT;
+    criticality = CRITICALITY.CRITICAL;
+    input_class = 'foreign_element';
+    rationale = 'Foreign element (MCP/skill/agent) → quarantine route. Untiered foreign → STOP per FOREIGN-ELEMENT-LOCALIZATION.';
   }
-  // INVOKE consolidation-expert: proposals involving reusable surfaces (D7+C7)
+  // CLASS 8: Conversational / SHAPE-TIER (fast-path; already handled above but kept for completeness)
+  else if (shapeTier || type === 'conversational' || (intent === 'question' && urgency === 'low' && detectedScope === 'tactical')) {
+    route = ROUTES.PROCESS_NOW;
+    criticality = CRITICALITY.SHEDDABLE_PLUS;
+    input_class = 'conversational';
+    rationale = 'SHAPE-TIER fast-path: conversational input → chat, no full routing.';
+  }
+  // CLASS 1: Governor directive / ratification (constitutional)
+  else if (type === 'governor_directive' && detectedScope === 'constitutional') {
+    route = ROUTES.ESCALATE;
+    criticality = CRITICALITY.CRITICAL_PLUS;
+    input_class = 'governor_directive';
+    rationale = 'Governor directive + constitutional scope → opus-turn/council (C12/C13 gate). CRITICAL_PLUS.';
+  }
+  // CLASS 1: Governor directive (non-constitutional)
+  else if (type === 'governor_directive' || intent === 'directive') {
+    route = ROUTES.PROCESS_NOW;
+    criticality = CRITICALITY.CRITICAL_PLUS;
+    input_class = 'governor_directive';
+    rationale = 'Governor directive → PROCESS-NOW in active mandate. CRITICAL_PLUS.';
+  }
+  // CLASS 6: External content / research (VAULT_DEFER)
+  else if (type === 'external_research' || /EXT-ID|uploaded|external.research|paste below/i.test(content)) {
+    route = ROUTES.VAULT_DEFER;
+    criticality = CRITICALITY.SHEDDABLE_PLUS;
+    input_class = 'external_research';
+    rationale = 'External content/research → AI alignment + VAULT_DEFER. SHEDDABLE_PLUS.';
+  }
+  // CLASS 5: Proposal / consequential — with consolidation persona
   else if (intent === 'proposal' && /reuse|existing|duplicate|already.*have|check.*exist/i.test(content)) {
     route = ROUTES.INVOKE_CONSOLIDATION;
-    rationale = 'Proposal-class with reusable surface pattern → invoke consolidation-expert (D7 action-bias override)';
+    criticality = CRITICALITY.CRITICAL;
+    input_class = 'proposal_consolidation';
+    rationale = 'Proposal with reusable surface → CIP staging + consolidation-expert (D7 override). CRITICAL.';
   }
-  // INVOKE cruel-critic: high-stakes architectural decisions (D2+D10)
-  else if (detectedScope === 'architectural' && intent === 'proposal' && urgency === 'high') {
+  // CLASS 5: Proposal / consequential — high-stakes architectural
+  else if (intent === 'proposal' && detectedScope === 'architectural' && urgency === 'high') {
     route = ROUTES.INVOKE_CRUEL_CRITIC;
-    rationale = 'High-stakes architectural proposal → invoke cruel-critic (D2 authority-pleasing override)';
+    criticality = CRITICALITY.CRITICAL;
+    input_class = 'proposal_consequential';
+    rationale = 'High-stakes architectural proposal → CIP staging + cruel-critic. CRITICAL.';
   }
-  // INVOKE vocabulary-canon: naming/frontmatter questions (D4+D8)
+  // CLASS 5: Proposal / consequential — general
+  else if (intent === 'proposal') {
+    route = ROUTES.CIP_STAGING;
+    criticality = CRITICALITY.CRITICAL;
+    input_class = 'proposal';
+    rationale = 'Proposal/consequential → CIP staging + INVOKE council. CRITICAL.';
+  }
+  // CLASS 2: Implementation / schema / code (ARCH spine or implementation type)
+  else if (type === 'implementation' || spine === 'ARCH') {
+    route = ROUTES.PROCESS_NOW;
+    criticality = CRITICALITY.CRITICAL;
+    input_class = 'implementation';
+    rationale = 'Implementation/schema/code → proto→Sonnet build path. CRITICAL.';
+  }
+  // CLASS 3: AI-behavior / inner-default (AI spine or ai_behavior type)
+  else if (type === 'ai_behavior' || (spine === 'AI' && intent !== 'external_research')) {
+    route = ROUTES.PROCESS_NOW;
+    criticality = CRITICALITY.CRITICAL;
+    input_class = 'ai_behavior';
+    rationale = 'AI-behavior/inner-default → alignment pipeline + inner-defaults registry. CRITICAL.';
+  }
+  // CLASS 4: Validation / ZF / evidence (VALD spine or validation type)
+  else if (type === 'validation' || type === 'error' || type === 'solution' || spine === 'VALD') {
+    route = ROUTES.PROCESS_NOW;
+    criticality = CRITICALITY.CRITICAL;
+    input_class = 'validation';
+    rationale = 'Validation/ZF/evidence → coverage pipeline + verify/last-run. CRITICAL.';
+  }
+  // VOCAB invoke: naming/frontmatter/enum questions (cross-class pattern)
   else if (/\bname\b|\bfrontmatter\b|\benum\b|\bvocabular/i.test(content)) {
     route = ROUTES.INVOKE_VOCAB;
-    rationale = 'Naming/vocabulary question → invoke vocabulary-canon (D4/D8 naming-novelty override)';
+    criticality = CRITICALITY.SHEDDABLE_PLUS;
+    input_class = 'vocabulary';
+    rationale = 'Naming/vocabulary question → vocabulary-canon (D4/D8 override). SHEDDABLE_PLUS.';
   }
-  // VAULT: low-weight internal (tactical/maintenance/adjacent)
+  // CLASS 7: Maintenance / tactical / adjacent (VAULT)
   else if (detectedScope === 'tactical' || intent === 'maintenance' || mandateRelation === 'adjacent') {
     route = ROUTES.VAULT;
-    rationale = 'Low-weight internal input → VAULT (defer; not in active mandate)';
+    criticality = CRITICALITY.SHEDDABLE;
+    input_class = 'maintenance';
+    rationale = 'Maintenance/tactical → VAULT (vault-pending; not in active mandate). SHEDDABLE.';
   }
-  // PROCESS-NOW: default for in-mandate directives
+  // CLASS 10: place-not-found — explicit, notified, NEVER silent
+  // This is the exhaustive catch-all: every unmatched input lands here with visibility.
   else {
-    route = ROUTES.PROCESS_NOW;
-    rationale = `In-mandate ${intent} (${spine} spine, ${detectedScope} scope) → PROCESS-NOW`;
+    route = ROUTES.PLACE_NOT_FOUND;
+    criticality = urgency === 'high' ? CRITICALITY.CRITICAL : CRITICALITY.SHEDDABLE_PLUS;
+    input_class = 'place_not_found';
+    rationale = `No class matched → PLACE-NOT-FOUND (pending-node + notify). criticality=${criticality}. Inherits urgency-based criticality.`;
   }
 
   return {
@@ -161,6 +267,8 @@ export function routeInput({ type, spine, urgency, scope, content = '', shapeTie
       intent,
       mandate_relation: mandateRelation,
     },
+    criticality,
+    input_class,
     rationale,
   };
 }

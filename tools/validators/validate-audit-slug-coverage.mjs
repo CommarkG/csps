@@ -83,6 +83,7 @@ const KNOWN_MAPPINGS = {
   'validate-context-wrapped-numbers': ['context-wrapped-numbers', 'context_wrapped_numbers'],
   'validate-nominal-rzf-detector': ['nominal-rzf-detector', 'nominal_rzf_detector'],
   'validate-vocabulary-coverage': ['vocabulary-coverage', 'vocabulary_coverage'],
+  'validate-threshold-exhaustive': ['threshold-exhaustive', 'threshold_exhaustive'],
   'validate-zf-cycle-format': ['zf-cycle-format', 'zf_cycle_format'],
   'validate-gap-recurrence': ['gap-recurrence', 'gap_recurrence'],
   'validate-threshold-intake': ['threshold-intake', 'threshold_intake'],

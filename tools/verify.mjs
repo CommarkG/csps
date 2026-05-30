@@ -1322,6 +1322,17 @@ const CYCLES = [
     },
   },
   {
+    // M7 S071 PART 2 STEP 2: Exhaustive 10-class classification check.
+    // BLOCKING if any class routes to PLACE-NOT-FOUND when it shouldn't (SILENT-DEFAULT-TO-UNHANDLED).
+    // Test 3/3: A matched-class → correct route · B unmatched → PLACE-NOT-FOUND explicit · C foreign → quarantine.
+    name: 'threshold_exhaustive',
+    command: 'node tools/validators/validate-threshold-exhaustive.mjs',
+    parse_output: (out) => {
+      const m = out.match(/test_cases=(\d+)\s+passed=(\d+)\s+failed=(\d+)\s+blocking=(\d+)/);
+      return m ? { test_cases: Number(m[1]), passed: Number(m[2]), failed: Number(m[3]), blocking: Number(m[4]) } : {};
+    },
+  },
+  {
     // S053: Gap Recurrence Register enforcement — K count gating per P-META-019
     // BLOCKING: K>=3 AND status:open AND structural_fix_triggered:false
     // ADVISORY: K>=2 AND status:open AND behavioral_test_exists:false

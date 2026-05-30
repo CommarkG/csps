@@ -431,6 +431,8 @@ entries:
     title: "Core-Spine as mandatory operating-mode — definition + 3-question framework for every artifact"
     status: deferred
     urgency: high
+    is_sample_for_audit_formula_20_samples: true
+    rigid_form_acknowledged: "Saved as SAMPLE per Governor S072 Turn 8. Original CONCRETE DELIVERABLE form preserved below as data for the 20-samples audit-formula discipline (vlt-S073-audit-formula-20-samples-discipline). Numbers/PE/components below are samples-of-rigid-thinking, NOT prescriptions. Relative-form discipline applies going forward."
     routing_decision: "Governor S072 Turn 5: 'be honest and answer how can now have the core spine be mandatory in the way you approach things? what is the definition of corespine in the platform? one way could be a set of questions: what would be the universal things concerning this topic? what would be the pillars? what would be a good example of branch coming out of a pillar and sub branch coming out of it and a leaf?' Queue to S073 for structured answer + engraving. CONCRETE DELIVERABLE: (a) authoritative definition of CORE SPINE in docs/plan/pillar-0-governance/core-spine-definition.md citing existing P-ARCH-028 + spine-pillar-map; (b) 3-question framework engraved as B_CORE_SPINE_QUESTIONS contract — every new artifact/proto/doctrine MUST answer Q1 'universal-of-topic' Q2 'pillars' Q3 'branch/sub-branch/leaf example'; (c) validate-core-spine-questions-answered.mjs T2 enforcer; (d) frontmatter fields core_spine_universal / core_spine_pillars / core_spine_example_chain. PE-ordered build ~2-3h. INAUGURAL TEST: the doctrines authored in S071-S072 (RZF-LATEST · LONG-RUN · ONE-SOURCE · AI-PROFILING · PLATFORM-OBSERVATION · NAIVE-PERSONAS) all should retroactively answer the 3 questions — backfill pass exposes which were authored core-spine-blind."
     created_session: S072
     context: "Governor's question is itself the deliverable design — 3 questions become the mandatory frontmatter discipline. Composes with P-ARCH-028 (Core-Spine precedence GVRN>VALD>ARCH>AI>OPER) + existing validate-corespine-check.sh hook (T1 partial) — extends with T2 question-answering enforcer."
@@ -443,6 +445,8 @@ entries:
     title: "Completion-discipline permanence — make it inherited mechanically across Opus + Sonnet tabs"
     status: deferred
     urgency: high
+    is_sample_for_audit_formula_20_samples: true
+    rigid_form_acknowledged: "Saved as SAMPLE per Governor S072 Turn 8. Original CONCRETE DELIVERABLE form preserved below as data for the 20-samples audit-formula discipline. Numbers/PE/components below are samples-of-rigid-thinking, NOT prescriptions."
     routing_decision: "Governor S072 Turn 5: 'Go over it again and see that whatever you did is permanent and will be inherited and will affect both opus tabs and Sony tabs. Go over your consolidation patterns and see if they can be mechanically and permanently improved.' CONCRETE DELIVERABLE: (a) audit existing completion-related disciplines (B_AUTONOMOUS_BATCH_WITH_PREFLIGHT + B_COMPLETION_OVER_SHINY + Long-Run Builder Doctrine + Proto-Production Discipline + Cross-Tab Cross-Review) — answer the questions: are these inherited at session-open? do they fire on both Opus + Sonnet tabs? does new-branch-opening violate any? (b) build validate-active-plan-displacement.mjs that BLOCKS commits which introduce new doctrines/protos while existing in-progress doctrines/protos are still draft (the 'don't open new branches before completing' enforcement). (c) extend session-open-context.mjs injection to surface the completion-state (open milestones, open vault items at K≥3 K-count, open doctrines pending ratification) at every tab start. PREVENTION CLASS: NEW-BRANCH-OPENED-WHILE-ACTIVE-PLAN-INCOMPLETE."
     created_session: S072
     context: "Governor's reminder applied this turn (naive-personas vlt-S072→vlt-S073) — discipline IS the right call but it's currently in-AI-memory not mechanically enforced. The 3-question consolidation: (Q1) what does 'completion' mean per artifact type? (Q2) what's the inheritance mechanism — session-open injection? validator BLOCKING? both? (Q3) what's an example of healthy side-quest vs unhealthy new-branch?"
@@ -455,6 +459,8 @@ entries:
     title: "Vault + Pipeline active monitoring with escalation until processed-into-measurable-value"
     status: deferred
     urgency: high
+    is_sample_for_audit_formula_20_samples: true
+    rigid_form_acknowledged: "Saved as SAMPLE per Governor S072 Turn 8. Original CONCRETE DELIVERABLE form preserved below as data for the 20-samples audit-formula discipline. Numbers/PE/components below are samples-of-rigid-thinking, NOT prescriptions."
     routing_decision: "Governor S072 Turn 5: 'Iterate on the Vault and Pipeline, and make sure that they are monitored and proactively managed with an escalation until they are processed and bring real value, measurable value to the platform. Don't let things hang.' CONCRETE DELIVERABLE: (a) vault-pending.yaml entries gain `created_at` + `escalation_threshold_days` + `last_reviewed_at` + `measurable_value_outcome` fields (currently lifecycle/urgency only); (b) tools/scripts/weekly-vault-pipeline-audit.mjs surfaces stale entries (>N days no review, where N = urgency-derived: high=7, medium=14, low=30); (c) PLATFORM-OBSERVATION pipeline (queued S073) consumes vault stale-rate as a CIE signal — escalation fires when stale-rate crosses threshold; (d) every vault entry MUST close with a measurable_value_outcome citation when processed (not just 'done' — what was the MEASURED effect on the platform?). PREVENTION CLASS: VAULT-ENTRY-HANGS-WITHOUT-ESCALATION-OR-MEASURABLE-OUTCOME."
     created_session: S072
     context: "vault-pending.yaml currently has 30+ entries with mixed urgency and no escalation mechanism. Governor's directive: don't let things hang. The active-monitoring + escalation pattern composes with PLATFORM-OBSERVATION (the doctrine I authored S071) which already designs OBSERVE→AGGREGATE→...→MEASURE-AGAIN — vault staleness becomes one observation class."
@@ -467,6 +473,8 @@ entries:
     title: "Two vault uses — session-vault (for next session) vs schema-vault (in the schema, populated constantly)"
     status: deferred
     urgency: high
+    is_sample_for_audit_formula_20_samples: true
+    rigid_form_acknowledged: "Saved as SAMPLE per Governor S072 Turn 8. Original CONCRETE DELIVERABLE form preserved below as data for the 20-samples audit-formula discipline. Numbers/PE/components below are samples-of-rigid-thinking, NOT prescriptions."
     routing_decision: "Governor S072 Turn 5 directive: 'i am identifying two uses: 1 vaulting to next session [which is good providing it is going through cie and pe; 2 vaulting in the schema. i want to reach consensus between you and me on how to have these two as we will be going to another phase focused on developer and user journeys and then external saas and apps and i want the SCHEMA VAULT SYSTEM to be populated constantly with dynamic.' CONCRETE DELIVERABLE: reach explicit consensus on the 2-vault model: (a) SESSION-VAULT (existing vault-pending.yaml) — queues items for the NEXT session, goes through CIE/PE for prioritization, has measurable_value_outcome closure; (b) SCHEMA-VAULT (new — to design) — embedded IN the schema (NodeFile / frontmatter / per-pillar registry) for dynamic ongoing population as developer-journey/user-journey/SaaS-apps phase generates artifacts. Questions to resolve in S073: Q1 'what's the SCHEMA-VAULT data structure — per-pillar yaml? frontmatter field? separate registry?' Q2 'what triggers population — every Write tool call? every pillar artifact creation? every Governor directive?' Q3 'how does it differ from session-vault — finer-grained? lower-friction? automatic?' Q4 'how do the two interact — does schema-vault promote to session-vault on K≥N? does session-vault demote to schema-vault on someday-urgency?' PREVENTION CLASS: TWO-VAULT-USES-WITHOUT-CONSENSUS-MODEL."
     created_session: S072
     context: "Governor explicitly identifies the upcoming phase focus (developer/user journeys + external SaaS/apps) requires the SCHEMA-VAULT system to be populated constantly. This isn't a small concern — it's a foundational governance-architecture question that affects every artifact in the upcoming PARTS 3-8 work + the 30 SaaS apps. Must reach consensus BEFORE building those parts."
@@ -481,6 +489,8 @@ entries:
     title: "Direct questions as organic routing — first-class question-registry + question-router engine across all routing layers"
     status: deferred
     urgency: high
+    is_sample_for_audit_formula_20_samples: true
+    rigid_form_acknowledged: "Saved as SAMPLE per Governor S072 Turn 8. Original CONCRETE DELIVERABLE form preserved below as data for the 20-samples audit-formula discipline. Numbers/PE/components below are samples-of-rigid-thinking, NOT prescriptions."
     routing_decision: "Governor S072 Turn 6 directive: 'place direct questions as an organic routing. For example, asking when the threshold is absorbing something is it significant to handle now within the active plan? If no, send it forward. Think widely, as a TYPE of question, not just A question.' CONCRETE DELIVERABLE: (a) authoritative routing-question type definition — binary/small-arity + compositional + self-documenting + LLM-answerable + has default-answer + has prevention_class; (b) tools/data/routing-questions-registry.yaml — canonical registry, all routing questions across pipelines first-class governance artifacts; (c) tools/scripts/question-router.mjs — engine that walks question trees, asks each Q in order (LLM-prompts or deterministic), records audit trail (which Qs fired + answers + final route); (d) RETROFIT existing routing into the registry — threshold input_class becomes question-walk · plan-coverage becomes 'q-has-plan-item-id?' · vault becomes 'q-stale-threshold-exceeded?' · engraving becomes 'q-pattern-K-count>=2?' · cross-review becomes 'q-counterpart-reviewed?'. PE-ordered build ~4-5h. Inaugural example for the schema: Governor's own question ('is this significant to handle now within the active plan?') becomes q-significance-active-plan with yes/no/defer arity + default=defer + routes_per_answer → schema-vault | session-vault | proceed."
     created_session: S072
     context: "Already half-built across 8 layers (5 Guard Questions session-open + B_AUTONOMOUS_BATCH 5 Qs + B_CONSENSUS_BEFORE_PROCEEDING 6 stages + B_META_QUESTION + Long-Run R/N taxonomy + RZF v1.1 classify-before-fix + naive-personas axes + threshold input_class) — scattered, no canonical registry, no engine, no audit trail per-question. Governor surfaces the meta-pattern: CONSOLIDATE + ELEVATE the question pattern as the primary routing mechanism. Composes with: vlt-S073-vault-pipeline-active-monitoring-escalation (escalation = 'q-staleness-exceeded?') + vlt-S073-schema-vault-vs-session-vault-consensus (the 2 vault uses ARE answers to 'q-significance-to-current-work?'). Recursive self-application check: I applied this very pattern to this directive in Turn 6 — 'is this significant to active S072 plan?' → NO → vault."
@@ -504,3 +514,66 @@ entries:
     composition_signals: ["B_INTENT_CRYSTALLIZATION (drafting vs ratified)", "B_COMPLETION_OVER_SHINY (no premature finishing)", "completion-discipline (vlt-S073-completion-permanence-cross-tab-inheritance)", "vault-pipeline-monitoring (vlt-S073-vault-pipeline-active-monitoring-escalation)", "P-META-022 human-intent-crystallization"]
     prevention_class: "VAULT-ENTRY-WRITTEN-AS-FINISHED-SPEC-INSTEAD-OF-RELATIVE-FRAME"
     governor_directive_verbatim: "I'm ordering you to be super careful about even saving things in a rigid way. Everything must be written before processing as a relative thing and not there as a rigid thing."
+
+  - id: vlt-S073-audit-formula-20-samples-discipline
+    title: "Audit-formula 20-samples discipline — accumulate ≥20 (sample threshold — tunable) before mechanizing any audit pattern"
+    status: deferred
+    urgency: high
+    framing_only: true
+    what_was_raised: "Governor S072 Turn 8: 'I want you to retroactively soften the five rigid entries and save them as samples to be processed in future sessions, because this must be done with at least 20 samples in an audit formula. That will determine how things are being written.' The pattern: before any audit/discipline is mechanized, accumulate sample corpus of ≥20 instances so the writing-pattern can be DERIVED from data rather than imposed by AI pre-specification."
+    why_it_might_matter: "Composes with relative-not-rigid (vlt-S073-relative-not-rigid-discipline-for-vault-entries) — instead of AI pre-specifying audit shape, the audit shape emerges from 20+ samples. This is one of the deepest CSPS-unique disciplines per Governor: 'this is one of the deepest things that will make CSPS unique.' Composes with M-26 DNA Inheritance + M-43 cross-tab diff review + B_STRUCTURAL_PREVENTION_DISCIPLINE (K-recurrence pattern) — the 20-samples threshold IS the K-recurrence pattern at scale. Numbers everywhere in CSPS audits/validators should declare themselves as samples (sample — tunable per P-META-028), explicitly."
+    what_is_genuinely_open: "What counts as a sample (one full vault entry? one audit-finding? one ZF cycle?)? What's the sample-source diversity requirement (must samples come from N different sessions / authors)? How does this interact with the existing advisory→blocking promotion threshold (which CSPS uses sample N=5 for many validators)? Is N=20 itself a sample or a derived number from prior research?"
+    possible_shapes_not_specs: "Could be a memory + frontmatter-level discipline (every audit declares its sample_corpus_size + sample_threshold). Could be a validator that flags audits attempting mechanization below threshold. Could be a meta-doctrine in pillar-0-governance. Unclear which — that's the S073 conversation."
+    composition_signals: ["M-26 DNA Inheritance", "M-43 cross-tab diff review", "B_STRUCTURAL_PREVENTION_DISCIPLINE K-recurrence", "P-META-028 cornerstone (numbers as samples)", "RZF-LATEST §6.I4 (cycle count is measurement not target)", "the 5 Turn 5-6 rigid entries (now marked is_sample_for_audit_formula_20_samples: true) as initial sample corpus"]
+    created_session: S072
+    prevention_class: "AI-PRE-SPECIFIES-AUDIT-SHAPE-BEFORE-SAMPLE-CORPUS-EXISTS"
+    governor_directive_verbatim: "this must be done with at least 20 samples in an audit formula. That will determine how things are being written."
+
+  - id: vlt-S073-recurring-audits-context-vs-rigid-whole-system-scan
+    title: "Recurring audits — whole-system scan ensuring every audit declares context-not-rigid + numbers-as-samples"
+    status: deferred
+    urgency: high
+    framing_only: true
+    what_was_raised: "Governor S072 Turn 8: 'how can you create audits that cover all bases, making sure that all instructions are according to our AI behavior attitude of having things focused on context and having rigid things as boundaries? Mentioning specifically and clearly each time that numbers are relative and they are just a sample, not something to stick to rigidly.' And: 'another thing that must be saved now for later is to deep dive into the recurring audits and to have the whole system scanned for this issue, because this is one of the deepest things that will make CSPS unique.'"
+    why_it_might_matter: "CSPS has ~200+ validators + ~30 audit-runner pipelines + ~70 hooks. Many were authored at different times under different discipline maturity. Some likely have rigid-number framing (thresholds without sample/tunable markers, hard-coded counts without context wrappers, prescriptive shapes without flexibility). Governor names this as one of the DEEPEST CSPS-unique aspects — context-as-default + rigidity-only-at-boundaries. Composes with P-META-028 cornerstone (context-refined-communication) — applied not just to artifacts but to AUDITS THEMSELVES. The cornerstone meta-applied to its own enforcement layer."
+    what_is_genuinely_open: "What's the scan methodology — grep for bare integers? frontmatter audit? per-audit text review? Should AI native auditors flag findings or is this a Governor-eyes-only review? What counts as 'context-not-rigid' framing in an audit (must say 'sample'? must explain WHEN to deviate? must declare prevention class?)? How does this interact with the boundary-prompt format I just engraved (Turn 27) — should audits themselves use the I AM/YOU ARE/THIS IS/DO NOW template internally? Probably no, but the question matters."
+    possible_shapes_not_specs: "Could be a scan-pass that produces a report (per-audit + score). Could be a backfill pass where each audit gets a 'context_framing_attestation' field. Could be a new audit-of-audits validator. Could be a doctrine that says 'every audit must include sample/tunable language explicitly' + validator. Unclear shape — S073 conversation determines."
+    composition_signals: ["P-META-028 cornerstone (numbers as samples)", "validate-context-wrapped-numbers (advisory, M1 Facet A)", "audit-runner.md (28 pipelines)", "tools/validators/*.mjs (~200 validators)", ".claude/hooks/*.sh (~70 hooks)", "vlt-S073-audit-formula-20-samples-discipline (sibling — what counts as enough samples to mechanize)"]
+    created_session: S072
+    prevention_class: "AUDITS-AUTHORED-WITHOUT-CONTEXT-FRAMING-NUMBERS-PRESENTED-AS-RIGID"
+    governor_directive_verbatim: "deep dive into the recurring audits and to have the whole system scanned for this issue, because this is one of the deepest things that will make CSPS unique."
+
+  - id: vlt-S073-moat-additions-from-S072-cluster
+    title: "S072 moat candidates — items from S072 session that may warrant M-NN registration"
+    status: deferred
+    urgency: medium
+    framing_only: true
+    what_was_raised: "Governor S072 Turn 8: 'Go over the chat and add things to the moat.' Surveying S072 chat for items that may warrant moat-registry.md M-NN entries (highest current = M-45)."
+    why_it_might_matter: "Moat = platform-unique structural protections that compound over sessions. CSPS moat includes M-26 DNA Inheritance · M-27 PRACE · M-42 router · M-43 cross-tab diff review. S072 produced several candidates worth review."
+    moat_candidates_for_review:
+      - candidate: "Long-Run Builder Discipline mechanical enforcement (T1+T2+T3 across 5 surfaces)"
+        why: "Closes EXISTS≠ACTIVE on CONSTITUTIONAL B_AUTONOMOUS_BATCH_WITH_PREFLIGHT that had been doctrine-only for 50+ sessions"
+        next_M: "M-46 candidate"
+      - candidate: "Boundary-Prompt Template + Cross-Tab Review discipline"
+        why: "Mechanically prevents freestyle drift on tab-boundary prompts; CSPS-unique cross-tab review pattern not standard in AI multi-agent frameworks"
+        next_M: "M-47 candidate"
+      - candidate: "Core-Seeds-Currency validator + auto-disciplined doctrine authoring"
+        why: "Catches doc-without-index-entry gap (MEMORY-VS-DISK-DRIFT partial-engraving variant); second-occurrence proof Turn 26→Turn 27"
+        next_M: "M-48 candidate"
+      - candidate: "Research-Tagging mandatory discipline (research_tagged + research_vault_ref frontmatter)"
+        why: "Closes DOCTRINE-AUTHORED-WITHOUT-RESEARCH-PROVENANCE; vaulted research becomes audit-trail not just inline citation"
+        next_M: "M-49 candidate"
+      - candidate: "Relative-not-rigid vault-entry discipline (framing_only + sample corpus)"
+        why: "Closes VAULT-ENTRY-WRITTEN-AS-FINISHED-SPEC; AI's habit of pre-specifying for Governor caught + corrected"
+        next_M: "M-50 candidate"
+      - candidate: "Audit-Formula 20-samples discipline (mechanizing audit shape only after sample corpus)"
+        why: "Governor named as 'one of the deepest things that will make CSPS unique' Turn 8"
+        next_M: "M-51 candidate"
+      - candidate: "Question-driven routing as organic pattern (Type-of-X scope questions)"
+        why: "Consolidates 8 scattered question-pattern surfaces into first-class routing artifact class"
+        next_M: "M-52 candidate"
+    what_is_genuinely_open: "Which of the 7 candidates above are TRUE moat (compounding structural protection) vs nice-to-have? Does the moat registry have admission criteria? Should all 7 be M-NN'd as a batch in S073 or staged?"
+    composition_signals: ["docs/plan/pillar-0-governance/moat-registry.md (current M-45 highest)", "M-26 DNA Inheritance precedent", "M-43 cross-tab diff review precedent"]
+    created_session: S072
+    prevention_class: "MOAT-CANDIDATES-NOT-REVIEWED-AT-SESSION-CLOSE"
+    governor_directive_verbatim: "Go over the chat and add things to the moat."

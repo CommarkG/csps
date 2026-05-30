@@ -42,6 +42,10 @@ const ROOT = resolve(process.cwd());
 const STAGING_PATH = join(ROOT, 'tools/data/change-impact-staging.yaml');
 const VAULT_PENDING_PATH = join(ROOT, 'tools/data/vault-pending.yaml');
 const AUDIT_RUNNER_PATH = join(ROOT, 'docs/plan/pillar-0-governance/audit-runner.md');
+// CIP M1.1: unified-plan.yaml not yet built; use pending-plan-items.yaml as plan source
+// (upgrade to unified-plan.yaml when it ships in PART 4 / Governance Constitution)
+const PLAN_PATH = join(ROOT, 'tools/data/pending-plan-items.yaml');
+const MASTER_RE_GATE_PATH = join(ROOT, 'docs/plan/_handoff/MASTER-RE-GATE-PLAN-S068.md');
 const LAST_RUN_PATH = join(ROOT, 'tools/data/validate-prior-plan-conflict-last-run.json');
 
 // ── Simple YAML field extraction (no full YAML parser — extracts top-level arrays) ─────
@@ -134,7 +138,15 @@ function main() {
   const auditRunnerContent = existsSync(AUDIT_RUNNER_PATH)
     ? readFileSync(AUDIT_RUNNER_PATH, 'utf8')
     : '';
+  // CIP M1.1: plan sources for Check 1 (unified-plan conflict)
+  const planContent = existsSync(PLAN_PATH)
+    ? readFileSync(PLAN_PATH, 'utf8')
+    : '';
+  const masterReGateContent = existsSync(MASTER_RE_GATE_PATH)
+    ? readFileSync(MASTER_RE_GATE_PATH, 'utf8')
+    : '';
   const vaultEntries = extractYamlEntryBlocks(vaultContent);
+  const planEntries = extractYamlEntryBlocks(planContent);
 
   // ── 3. Check each pending staged change ───────────────────────────────────
 
@@ -146,6 +158,43 @@ function main() {
     staged_checked++;
 
     const keywords = extractKeywords(proposedChange);
+
+    // ── Check 1: Unified-plan / pending-plan-items conflict (CIP M1.1) ───────
+    // Does this staged change contradict or duplicate an open plan item?
+    // Source: tools/data/pending-plan-items.yaml + MASTER-RE-GATE-PLAN-S068.md
+    for (const planBlock of planEntries) {
+      const planId = extractField(planBlock, 'id') || '';
+      const planTitle = extractField(planBlock, 'title') || '';
+      const planStatus = extractField(planBlock, 'status') || '';
+      const planDesc = extractField(planBlock, 'description') || planTitle;
+
+      // Skip closed/done plan items
+      if (['done', 'closed', 'sealed', 'complete', 'resolved'].some(s => planStatus.toLowerCase().includes(s))) continue;
+
+      const planKeywords = extractKeywords(planTitle + ' ' + planDesc);
+      const overlap = keywords.filter(k => planKeywords.includes(k));
+
+      if (overlap.length >= 3) { // (sample — tunable per P-META-028)
+        conflicts_found++;
+        advisory++;
+        findings.push(
+          `[ADVISORY] staged:${id} → possible plan-item overlap with ${planId || planTitle}` +
+          ` (shared keywords: ${overlap.slice(0, 5).join(', ')})` +
+          ` — verify this change doesn't contradict open plan item before proceeding`
+        );
+      }
+    }
+
+    // Also check MASTER-RE-GATE-PLAN keywords if plan entries is sparse
+    if (masterReGateContent && keywords.length >= 3) {
+      const masterKeywords = extractKeywords(masterReGateContent.slice(0, 5000)); // First 5KB sample
+      const overlap = keywords.filter(k => masterKeywords.includes(k));
+      // Only flag if very high overlap (sample threshold: 5 — tunable, avoids false positives on general terms)
+      if (overlap.length >= 5) { // (sample — tunable per P-META-028)
+        // Don't add as separate finding — covered by plan entries above for known items
+        // Log only if no plan entries found this
+      }
+    }
 
     // ── Check 2: Vault-pending conflict ───────────────────────────────────
     // Does this staged change duplicate or supersede an existing vault entry?

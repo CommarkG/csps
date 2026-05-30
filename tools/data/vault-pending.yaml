@@ -670,3 +670,13 @@ entries:
     urgency: high
     created_session: S072
     governor_directive_verbatim: "Create a comprehensive, wall-to-wall, deep instruction, well planned, making sure that all that is created is saved and pushed not only in these steps but in previous steps. This must have become a mandatory issue."
+
+  - id: vlt-S073-use-formal-startup-block-tool-not-freestyle
+    raw: "Governor S072 Turn 13: 'don't you have a formal way of having the instructions for a new tab in a detailed manner and not just by pasting this file?' Answer: yes — tools/scripts/generate-startup-block.mjs EXISTS, writes .csps/startup-blocks/opus-startup.txt + sonnet-startup.txt. Its own output says 'Never freestyle a startup block.' OPUS-14 violated this discipline repeatedly: v1/v2/v3 chat-jump-prompts + Turn 12 inline OPUS-15 STARTUP BLOCK in HANDOFF-OPUS-14-to-OPUS-15-S072.md. Fixed Turn 13: handoff now points to the generated file instead of hand-crafting."
+    context: "The script auto-derives session + reads sonnet-turn.md current state + embeds RELAY MODEL guidance + STEP 0 (A)/(B) decision tree + role discipline. Manually-crafted blocks miss the STEP 0 decision-tree + role-discipline + auto-state-derivation. The discipline EXISTS; the gap was OPUS-14's USE of it."
+    insight: "Same anti-pattern shape as Turn 26 (core-seeds doctrine existed scattered; consolidating + mechanical enforcement was missing) — but here the mechanical tool EXISTS, just wasn't used. Engraving target: pre-tool-use hook that warns when AI writes a 'STARTUP BLOCK' section in markdown without invoking generate-startup-block.mjs. OR: validator scans handoff files + chat-jump files for hand-crafted STARTUP BLOCK sections, flags as advisory. Composes with Turn 27 boundary-prompt-format validator (sibling enforcement). Also: startup.template.md is marked 'SUPERSEDED' — the supersession was never mechanically enforced, allowing freestyle drift."
+    status: deferred
+    urgency: high
+    created_session: S072
+    prevention_class: "FREESTYLE-STARTUP-BLOCK-WHEN-FORMAL-TOOL-EXISTS"
+    governor_directive_verbatim: "don't you have a formal way of having the instructions for a new tab in a detailed manner and not just by pasting this file?"

@@ -211,59 +211,62 @@ handoff_attestation:
 
 ═══════════════════════════════════════════════════════════════════
 
-## OPUS-15 STARTUP BLOCK (paste-target for new Opus tab)
+## OPUS-15 STARTUP BLOCK — USE THE FORMAL MECHANISM
 
+**Governor: paste from the GENERATED file, NOT from anything hand-crafted here.**
+
+```bash
+node tools/scripts/generate-startup-block.mjs --role=opus
+# writes: .csps/startup-blocks/opus-startup.txt
 ```
-═══════════════════════════════════════════════════════════════════
-I AM: OPUS-15, architectural director, S072 (succeeds OPUS-14 mid-session)
-YOU ARE: Governor (Yariv) — relay between Opus + Sonnet
-THIS IS: OPUS-15 session-open under boundary-prompt template format
-DO NOW: M-43 my role · verify · read HANDOFF-OPUS-14-to-OPUS-15-S072.md + PROTO-S072-CIP at opus-turn.md top + S073-queue in vault-pending.yaml + CORE-SEEDS-PLAN-PARTS.md.
-═══════════════════════════════════════════════════════════════════
 
-CROSS-REVIEW ATTESTATION:
-  Reviewed by: OPUS-14 self-review on the handoff structure
-  Cross-review pending: ME (OPUS-15) on the handoff content + on the PROTO-S072-CIP it links to
-  Catches I find go back to Governor BEFORE I authorize Sonnet to commit M1
+Then `cat .csps/startup-blocks/opus-startup.txt` and paste THAT to the new OPUS-15 tab.
 
-FIRST 5 ACTIONS:
-  1. M-43: node tools/scripts/cross-tab-diff-review.mjs --role opus
-  2. verify: node tools/verify.mjs --skip-install (expect exit_code=0)
-  3. Read docs/plan/_handoff/HANDOFF-OPUS-14-to-OPUS-15-S072.md (this file)
-  4. Read tools/council/opus-turn.md TOP — PROTO-S072-CIP directive (96 lines)
-  5. Cross-review PROTO-S072-CIP per Turn 26 discipline; flag catches to Governor
+**Why:** The script auto-derives current session (S072), reads sonnet-turn.md for current state, embeds RELAY MODEL guidance + STEP 0 first-response decision tree (Direct-open vs Relay) + role-discipline (Opus writes core seeds only, not routine code). The script's own output explicitly warns: *"Never freestyle a startup block."* I (OPUS-14) violated that discipline in v1/v2/v3 chat-jump prompts AND in my Turn 12 hand-crafted OPUS-15 STARTUP BLOCK that originally lived in this section. **Governor S072 Turn 13 surfaced the gap.** Discipline corrected here; vault entry queued (vlt-S073-use-formal-startup-block-tool-not-freestyle).
 
-DISCIPLINE INHERITED (mechanical surfaces — same as Sonnet S072 receives):
-  - boundary-prompt template (Turn 27)
-  - Long-Run R/N taxonomy (M0.7)
-  - RZF-LATEST v1.1 + verify_top_exit:<int> + post-edit verify trap
-  - Cornerstone P-META-028 (numbers as samples/tunable)
-  - 14-class threshold (extending to 15 via CIP M3)
-  - Zero-Dialog Rule (.claude/ via Bash + SACRED token)
-  - Cross-tab review (Turn 26)
-  - Core-seeds-currency (Turn 26)
-  - Research-tagging mandatory (Turn 4)
-  - Relative-not-rigid vault entries (Turn 7-9)
-  - 20-samples audit-formula (Turn 8)
-  - Register-before-wire (Turn 26 lesson — audit-runner.md BEFORE verify.mjs)
+The OPUS-15 tab needs ONLY the generated startup block — everything else (this handoff, PROTO-S072-CIP, CORE-SEEDS, vault) is read AFTER STEP 0 emit per the generated block's instructions.
 
-KEY VAULT ITEMS:
-  - PROTO-S072-CIP at opus-turn.md TOP (this is Sonnet's active build directive)
-  - 20+ vlt-S073-* entries in vault-pending.yaml (process in S073 after CIP SEAL)
-  - 7 S072 moat candidates pending Governor M-NN'ing
+### Manually-authored content REMOVED (was anti-discipline)
 
-GATES THAT MAY FIRE:
-  - R3-R5 ASK-OPUS-STOPs named in PROTO-S072-CIP
-  - M9 CIP SEAL OPIA gate (revert-not-amend on COURSE-CORRECT per Turn 27 amendment d)
-  - Governor ratifications still pending (6 items)
+The previous inline STARTUP BLOCK was a 50-line hand-crafted boundary-prompt variant. That whole subsection has been deleted — the formal script produces a structurally better block (4-tier discipline injection: STEP 0 box + RELAY MODEL + role guidance + state-derived context). Use the script.
 
-═══════════════════════════════════════════════════════════════════
+**The hand-crafted block that previously occupied this section has been removed** (Governor S072 Turn 13 anti-freestyle correction). Run the script above instead.
 
-— OPUS-14 (architectural director, S071→S072, handing off to OPUS-15 mid-S072) · 2026-05-30 · last commit c67a908d
+### What the generated block contains (so OPUS-15 knows what it received)
 
-═══════════════════════════════════════════════════════════════════
-```
+The auto-generated [.csps/startup-blocks/opus-startup.txt](.csps/startup-blocks/opus-startup.txt) includes (verified by inspection this turn):
+- **STEP 0 first-response decision tree** — (A) Direct-open box vs (B) Relay box — OPUS-15 emits ONE of those verbatim as first response, no analysis
+- **RELAY MODEL** — Governor/Opus/Sonnet role definitions + Opus-writes-code-only-when-(a)-or-(b) discipline
+- **Session-derived context** — auto-reads sonnet-turn.md first line, derives S072 status label (COMPLETE/ABSORBED/ADVANCE/STATUS)
+- **Anti-freestyle warning** — "Never freestyle a startup block"
+
+### Things this handoff still requires OPUS-15 to read AFTER STEP 0 emit
+(in addition to the generated startup-block guidance):
+1. **This file** (HANDOFF-OPUS-14-to-OPUS-15-S072.md) — Zones A/B/C/D + S073-queue + ratification gates
+2. **PROTO-S072-CIP** at top of [tools/council/opus-turn.md](tools/council/opus-turn.md) — Sonnet's active build directive
+3. **[vault-pending.yaml](tools/data/vault-pending.yaml)** — 20+ S073-queue entries
+4. **[CORE-SEEDS-PLAN-PARTS.md](CORE-SEEDS-PLAN-PARTS.md)** — 14 NODE entries with ANCHOR/ALIGNS/STATUS
 
 ═══════════════════════════════════════════════════════════════════
 
 — OPUS-14 (architectural director, S071→S072) · authored handoff 2026-05-30 · 12 milestones delivered S071 + 1 PROTO authored S072 + 20+ vault entries seeded S073 · passing the seat
+
+═══════════════════════════════════════════════════════════════════
+
+## ALIGNMENT QUESTIONS
+
+> Opus director handoff (OPUS-14 → OPUS-15). OPUS-15 checks these before authorizing Sonnet CIP M1 commits. See ZONE D above for full alignment question detail.
+
+Q1 — Has Sonnet cross-reviewed PROTO-S072-CIP and relayed catches C1/C2/C3 to Governor?
+Q2 — Governor Q1 (ONE-SOURCE M10) or Q2 (AI-PROFILING ADJUST) ratified since S072 Turn 5? Both HOLD-S072.
+Q3 — Governor moat M-NN'ing (7 candidates vlt-S073-moat-additions-from-S072-cluster) — any decided since S072 Turn 9?
+Q4 — Schema-vault vs session-vault consensus (vlt-S073-schema-vault-vs-session-vault-consensus) — status for PART 3+7+8?
+Q5 — Any OPIA COURSE-CORRECT pending on Sonnet S072 commits (eedf12eb through latest)?
+
+---
+
+## SONNET STARTUP BLOCK
+
+> Opus director handoff. Sonnet S072 primary startup is in HANDOFF-S071-to-S072.md. This section for mid-session re-orientation after director handoff.
+
+\

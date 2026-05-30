@@ -1744,6 +1744,17 @@ const CYCLES = [
     },
   },
   {
+    // S072 Governor Turn 12 — vlt-S073-push-mandatory-discipline: surfaces unpushed commits
+    // Advisory always (exits 0). Thresholds: >5 = warn, >10 = strong-warn (samples — tunable per P-META-028).
+    // T1+T3 queued vlt-S073-push-mandatory-discipline. PREVENTION: GOVERNANCE-WORK-NOT-PUSHED-TO-ORIGIN
+    name: 'push_status',
+    command: 'node tools/validators/validate-push-status.mjs',
+    parse_output: (out) => {
+      const m = out.match(/unpushed_count=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { unpushed_count: Number(m[1]), advisory: Number(m[2]), blocking: Number(m[3]) } : {};
+    },
+  },
+  {
     // S072 vlt-S072-boundary-prompt-format-validator: T2 enforcer for boundary-prompt.template.md
     // Ratified Governor S071 Turn 27 (OPUS-14 anti-freestyle directive).
     // Scans council files + chat-jump prompts for 4 mandatory header lines + CROSS-REVIEW ATTESTATION.

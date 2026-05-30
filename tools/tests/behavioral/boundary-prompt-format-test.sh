@@ -112,6 +112,27 @@ else
   ERRORS+=("EXIT CODE: non-zero exit")
 fi
 
+# ── INPUT D: sonnet-turn.md sections with prose 'I AM:' → NOT flagged as prompts ─────
+# Regression test for the line-start detection fix.
+# sonnet-turn.md milestone reports describe "I AM:" in their text but are NOT boundary prompts.
+# If detection regresses to text.includes(), these sections would be falsely flagged.
+# This tests COUNCIL FILE section detection (sections with prose mentions ≠ boundary prompts).
+
+echo ""
+echo "Input D: sonnet-turn.md milestone sections with prose 'I AM:' — should NOT appear in advisory"
+VALIDATOR_OUTPUT=$(node "$VALIDATOR" 2>&1)
+
+# Check that sonnet-turn.md 'What was built' section is NOT flagged
+# (it contains "I AM /" in its description text but is NOT a boundary prompt)
+if echo "$VALIDATOR_OUTPUT" | tr -d '\r' | grep -q "sonnet-turn.md.*What was built"; then
+  echo "  ✗ INPUT D: false positive — 'What was built' section flagged (prose 'I AM:' triggering detection)"
+  FAIL=$((FAIL + 1))
+  ERRORS+=("INPUT D: false positive on sonnet-turn.md prose mention")
+else
+  echo "  ✓ INPUT D: sonnet-turn.md 'What was built' not flagged (line-start detection holding)"
+  PASS=$((PASS + 1))
+fi
+
 # ── Cleanup ───────────────────────────────────────────────────────────────────
 
 rm -f "$TEST_FILE_A" "$TEST_FILE_B" "$TEST_FILE_C"

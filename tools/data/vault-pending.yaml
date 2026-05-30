@@ -112,8 +112,10 @@ entries:
     vault_type: pending
     status: triaged
     urgency: weekly
-    routing_decision: "PART 2 — consolidate to single intake log"
+    routing_decision: "OPUS-14 S071 Turn 17 RESOLUTION (Sonnet ASK-OPUS-STOP M7): NOT a duplicate-merge. The 2 logs are sequential STAGES of one pipeline: (a) tools/data/threshold-intake-log.yaml = INTAKE-GATE STAGE (status/source/input_preview — 246 entries); (b) .csps/threshold/intake-log.yaml = ROUTING STAGE (raw/pipelines/escalated — ~170 entries); (c) M6's tools/data/council-invocation-log.yaml = INVOCATION STAGE. Formalize the 3-STAGE INTAKE PIPELINE with explicit pipeline_stage field + shared id cross-links. Routes to PLATFORM-OBSERVATION-DOCTRINE.md L1 (queued S072). Sonnet UNBLOCKED for M8: NO merge action."
     created_session: S068
+    resolved_session: S071
+    revised_by: OPUS-14
     context: "Consolidation scan iteration 3: parallel intake logs detected"
   - id: vlt-S068-00010
     raw_summary: "Glossary says '22 page templates in @csps/templates' but I found 8 UI components + proposed 10 page-types — reconcile"
@@ -337,3 +339,16 @@ entries:
     related_audit: "tools/scripts/weekly-persona-trigger-audit.mjs"
     related_criteria: ".claude/skills/*/SKILL.md trigger_criteria blocks"
     prevention_class: "PERSONA-BROAD-CRITERIA-COST-EXPLOSION"
+
+  - id: vlt-S072-platform-observation-doctrine
+    title: "Platform Observation Doctrine — single observation→ratified-improvement pipeline (L1-L5 build)"
+    status: deferred
+    urgency: high
+    routing_decision: "Queue to S072 alongside CIP build + ONE-SOURCE-OF M10 + AI-PROFILING ADJUST. Authored by OPUS-14 S071 Turn 17 per Governor directive to research/plan monitoring without interrupting S071 execution. Doctrine consolidates 4 audits + 201 validators + ai-behavior-signals + 3-stage intake pipeline into ONE named pipeline (OBSERVE → AGGREGATE → CLASSIFY → ROUTE → STAGE → RATIFY → IMPLEMENT → MEASURE-AGAIN). Closes the PSP-by-construction failure mode where audits produce data nobody acts on. Build PE order: L1 3-stage intake formalization (~30min) → L4 ZF-deep auto-trigger (~1h) → L2 platform-observation-aggregator.mjs (~2h) → L3 /platform/observation page (~3h) → L5 audit→CIP integration (after CIP M3 lands). Total ~6-7h across S072."
+    created_session: S071
+    context: "Governor S071 Turn 17 directive: 'research and see how it is optimal to have automatic sample windows or other recurring processes that will keep what really happens monitored, then placed correctly into a processing pipeline making the insights validated true proven improvements in the platform.' Honest test failed in survey: cannot name an audit finding from last 3 sessions that became a ratified improvement → audits are PSP-machines per RZF-LATEST v1.1 §3.C. Doctrine drafted at docs/plan/pillar-0-governance/PLATFORM-OBSERVATION-DOCTRINE.md. Status: draft pending Governor ratification at S072 open."
+    retrieve_when: "S072 opens — second priority after CIP build (which the doctrine's L5 depends on); L1 can start in parallel with anything as it has no dependencies"
+    related_doctrine: "docs/plan/pillar-0-governance/PLATFORM-OBSERVATION-DOCTRINE.md"
+    related_audits: ["tools/scripts/cie-pe-trigger-audit.mjs", "tools/scripts/weekly-persona-trigger-audit.mjs", "tools/scripts/pap-part2-wiring-audit.mjs", ".claude/hooks/cron-weekly-tag-status-deep-audit.sh"]
+    composes_with: ["CIP (S072 queued)", "ONE-SOURCE-OF M10 (S072 queued)", "AI-PROFILING ADJUST/INJECT/MEASURE (S072 queued)", "P-META-029 backfill (S072 queued)"]
+    prevention_class: "PSP-AUDITS-NEVER-CLOSE-INTO-RATIFIED-IMPROVEMENT"

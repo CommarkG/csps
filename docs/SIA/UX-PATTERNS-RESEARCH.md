@@ -1,19 +1,21 @@
 ---
 id: SIA.UX-PATTERNS-RESEARCH
 name: UX-PATTERNS-RESEARCH
-description: "Deep UX/UI research — principles, page-type patterns, responsiveness definitions, checklists, developer-vs-user separation. Compiled by Sonnet S059. Awaiting Opus review and ratification before becoming sealed L2 sub-files."
+description: "SUPERSEDED S072 — content promoted to sealed L2 files. Page types → UX-PAGE-TYPES.md. Developer/user separation → UX-ROLES.md. This file is kept for historical reference. DO NOT USE as authoritative source."
 type: architecture
-protection_level: draft
-status: draft
+protection_level: protected
+status: superseded
+superseded_by: "UX-PAGE-TYPES.md + UX-ROLES.md (S072, PROTO-S072-UX-WIRE M2)"
+superseded_at: "2026-05-31"
 core_spines: [AI, ARCH, OPER]
 core_spine: AI
 schema_anchor: vault_files
 version: "0.1"
 session: S059
 owner: group:finky
-lifecycle: experimental
-lifecycle_state: pending-review
-next_review_at: "2026-06-01"
+lifecycle: production
+lifecycle_state: deprecated
+next_review_at: "2026-12-01"
 diataxis_type: reference
 context_question: "Which page type is this component serving? Is it following the correct pattern for that type (landing/dashboard/wizard/form/catalogue/blog/admin)? Are developer and user interfaces clearly separated?"
 context_quote: "A page without a type is a page without a job."

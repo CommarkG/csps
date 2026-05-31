@@ -1,80 +1,86 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S073, builder
 YOU ARE: OPUS-15, architectural director
-THIS IS: S073 milestone report — B1 ENGINE WIRING DONE. Creator is live engine. R3.3 resolved with thin adapter.
-DO NOW: Review B1 completion. Note: dynamic import of threshold-router.mjs in API routes (file:// URL — works local dev, verify Vercel behavior). Confirm B2 scope.
+THIS IS: S073 milestone report — B2 DONE (real-time-save + STEP 0 prod-fix). Haiku proposal routed. ANTI-FLOAT seed planted.
+DO NOW: Review B2. Confirm B3 scope (accountability as first real spine content). Note Haiku proposal classification = CIP:staging/CRITICAL (needs council invocation).
 ═══════════════════════════════════════════════════════════════════
 
 CROSS-REVIEW ATTESTATION:
   Reviewed by: Sonnet S073 (authored)
-  verify exit_code=0 at HEAD c3a8a870 | TypeScript: 0 errors | ZF-deep 5 cycles ACHIEVED
+  verify exit_code=0 at HEAD e9cbfa2c | TypeScript 0 errors | ZF-deep 5 cycles ACHIEVED
 
 CONTEXT (3 sentences):
-  B1 engine wiring complete: 3 API routes created (registry GET + threshold POST + save POST),
-  Core Spine Creator page.tsx wired to registry (hardcoded SPINES/DOMAINS deleted, replaced
-  with fetch from /api/core-spine-registry) and threshold called at INVITE + RATIFY only.
-  R3.3 resolved: thin CIE/PE adapter (cie-pe-adapter.mjs) created with exported functions
-  captureSpineCreation() + computeInitialPE() — server-callable from save API route.
-  ZF-deep: 5 cycles, ACHIEVED (iter-gate cleared at 23).
+  STEP 0 prod-wiring fix: scripts/copy-registry.mjs pre-build copies registry into
+  src/data/, package.json has prebuild script, API route tries bundled path first —
+  production serves real registry data, not static fallback.
+  B2 real-time-save: libs/process-state/index.mjs (Core-Maximal shared lib) + 2 API routes
+  + creator wired (resume on mount, auto-save on stage change, clear on ratify — closes FL5).
+  Haiku-audit-tier dogfooded through threshold: CIP:staging/CRITICAL/proposal; vaulted
+  with classification for S074 PE-scoring.
 
 ═══════════════════════════════════════════════════════════════════
 
-## B1 DONE — all items (HEAD c3a8a870 | submodule 13659b8)
+## STEP 0 DONE (HEAD e9cbfa2c / submodule 947cb26)
 
-### 1. DELETE hardcoded arrays (DONE)
-  BEFORE: const SPINES = [...] + const DOMAINS = [...]
-  AFTER: SPINES_FALLBACK + DOMAINS_FALLBACK (graceful fallback only, not primary)
-  Page.tsx: registrySpines + registryDomains state from /api/core-spine-registry
+apps/csps-playground/scripts/copy-registry.mjs — pre-build copies YAML to src/data/
+apps/csps-playground/package.json — prebuild script added ("prebuild": "node scripts/copy-registry.mjs")
+api/core-spine-registry/route.ts — try bundled path (src/data/) FIRST, outside-root fallback for dev
+tools/scripts/deploy-check.mjs — CHECK 3b: warns if no prebuild + no bundled registry
+Observable DONE: `node scripts/copy-registry.mjs` ✓ — "Copied core-spine-registry.yaml → src/data/"
 
-### 2. GET /api/core-spine-registry
-  Reads ../../tools/config/core-spine-registry.yaml via readFileSync (consult route pattern)
-  Returns: { spines, sections_required, domains, source: 'core-spine-registry.yaml' }
-  Graceful fallback to static constants on error (creator still functional)
+## B2 DONE
 
-### 3. POST /api/threshold-route (canonical reusable bridge)
-  Dynamic import: file://${routerPath} → routeInput (pure function, no side effects)
-  Called at INVITE (first message) + RATIFY (persist step) ONLY — NOT per clarify
-  Returns: { route, spine, pipeline, criticality, input_class }
-  Graceful fallback on error (routing failure does not block creator)
+### libs/process-state/index.mjs (Core-Maximal)
+save(ROOT, key, state) — persists to tools/data/process-state/{key}.json
+resume(ROOT, key) → saved state | null
+clear(ROOT, key) — removes on process completion
+list(ROOT) → all paused processes (ANTI-FLOAT seed input)
+Key format: "{app}:{userId}:{processId}"
 
-### 4. POST /api/core-spine-registry/save (persist stub→draft)
-  classify → routeInput → captureSpineCreation → computeInitialPE → append YAML entry
-  All 8 required sections generated in the new entry
-  Returns: { success, entry_id, status:'draft', pe_score, message }
+### API routes in playground
+POST /api/process-state/save → dynamic import libs/process-state → save()
+GET /api/process-state/resume?key → resume() → { state, found }
 
-### 5. R3.3 CIE/PE thin adapter (tools/scripts/cie-pe-adapter.mjs)
-  captureSpineCreation(): writes event to tools/data/cie-pe-last-run.json (advisory)
-  computeInitialPE(): urgency × impact / spi_estimate = initial PE score (tunable per P-META-028)
-  "Promote to full PE agent scoring when ACCOUNTABILITY-HUB-PLAN is ratified"
+### Creator wiring (closes FL5 — save/resume)
+Mount: fetch /api/process-state/resume → restore stage/spineName/clarifyQ/vocab/principles/pillars/msgs
+Stage change: auto-save POST /api/process-state/save (debounced per stage)
+Ratify: clear (process terminal, not a floater)
+PROCESS_KEY = 'core-spine-creator:governor:active'
 
-### OBSERVABLE EVIDENCE
-  Creator sidebar: SPINES → registrySpines (from API) · "L2 Domains" → "Pillars" (registryDomains)
-  Generate stage: threshold classification badge + save status ("✓ Saved to registry as draft (PE: N)")
-  INVITE stage: fetches /api/threshold-route, stores classification
-  RATIFY stage: fetches /api/core-spine-registry/save, shows status
+### B2.4 Registry update
+tools/config/core-spine-registry.yaml accountability entry:
+  realtime_save.enabled: false → true
+  save_path: tools/data/process-state/core-spine-creator__governor__active.json
+  lib: libs/process-state/index.mjs
 
-## CAVEAT — dynamic import in Vercel production
-  file:// URL import pattern: `await import('file://${routerPath}')` — works in local dev
-  (Node.js server environment). Vercel behavior: TBD — if "Include files outside root" is
-  enabled, the parent repo files are available during build but runtime file:// imports
-  to outside the project root may be constrained. B2 should verify on first production deploy.
+### B2.3 ANTI-FLOAT seed
+vlt-S073-process-state-anti-float-seed added to vault-pending.yaml
+"When B4 builds the floating-artifacts register, it can scan tools/data/process-state/
+to pick up ALL paused processes automatically. The seed is planted."
+
+## B2.5 — Haiku-audit-tier dogfood via threshold
+Routed via routeInput (PROTO-S073-B1 engine, server-local call):
+  input: "haiku-audit-tier proposal: offload DEEP scans to Haiku pre-analysis pass"
+  result: route=CIP:staging · spine=AI · criticality=CRITICAL · input_class=proposal
+  classification: "Proposal/consequential → CIP staging + INVOKE council. CRITICAL."
+Vaulted: vlt-S073-haiku-audit-tier-proposal with threshold classification attached
+closure_by: S074 PE-scoring. Needs OPUS + Governor council invocation.
 
 ═══════════════════════════════════════════════════════════════════
 
-ZF Cycle 1: Examined apps/csps-playground/src/app/api/core-spine-registry/route.ts — GET route
-  present, readFileSync pattern correct. apps/csps-playground/src/app/api/threshold-route/route.ts —
-  POST route, dynamic import, INVITE+RATIFY only (clarify NOT wired). apps/csps-playground/src/app/
-  api/core-spine-registry/save/route.ts — POST, classify+CIE/PE+YAML write. tools/scripts/
-  cie-pe-adapter.mjs — captureSpineCreation+computeInitialPE exported. page.tsx: SPINES/DOMAINS
-  deleted, registrySpines/registryDomains state + useEffect + INVITE threshold + RATIFY save.
-  TypeScript: 0 errors. verify exit_code=0.
+ZF Cycle 1: Examined apps/csps-playground/scripts/copy-registry.mjs — runs successfully,
+  outputs "Copied core-spine-registry.yaml → src/data/". package.json prebuild confirmed.
+  api/core-spine-registry/route.ts — bundledPath check present. libs/process-state/index.mjs —
+  save/resume/clear/list exported. Process-state API routes present. creator page.tsx —
+  resume useEffect + auto-save useEffect + ratify clear present. Registry realtime_save
+  enabled:true. Vault entries added. verify exit_code=0 at HEAD e9cbfa2c.
 
-ZF Cycle 2: Re-examined CLARIFY stage — no fetch calls to /api/threshold-route (ONLY INVITE+RATIFY
-  per ruling). Re-examined fallback pattern in all 3 API routes — all have graceful fallback (creator
-  functional even on API error). Re-examined cie-pe-adapter.mjs exports — captureSpineCreation and
-  computeInitialPE both exported. verify_top_exit: 0 at HEAD c3a8a870. 0 new findings.
+ZF Cycle 2: Re-examined TypeScript — 0 errors (npx tsc --noEmit). Re-examined
+  deploy-check.mjs CHECK 3b — warns for template (no prebuild), PASS for playground (has both
+  prebuild + bundled registry). Re-examined Haiku vault entry — threshold classification
+  attached (CIP:staging/CRITICAL). ZF-deep completed (5 cycles, 0 blocking). 0 new findings.
 
-STATUS: B1 ZF ACHIEVED.
+STATUS: B2 ZF ACHIEVED.
 
-— Sonnet S073 | 2026-05-31 | HEAD c3a8a870 | verify exit_code=0
+— Sonnet S073 | 2026-05-31 | HEAD e9cbfa2c | verify exit_code=0
 ═══════════════════════════════════════════════════════════════════

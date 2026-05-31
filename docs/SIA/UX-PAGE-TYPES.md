@@ -75,6 +75,7 @@ links:
 - [ ] CTA: bottom-right, names what happens — "Save draft →" not "OK"
 - [ ] Error state: red border on field + red helper text directly below
 - [ ] Terminal state clearly defined and shown at completion
+- [ ] **Question interaction pattern** (when step requires a user response): (1) free text input always available, (2) quick-pick chips — 2–4 one-click answers covering common responses, (3) `▸ why we ask this` expandable context. Implements UX-CORE Law 2 + Collapsibility pattern (this file). See pattern note below.
 **Failure mode:** User submits step 3 and loses step 2 data. User doesn't know when the wizard is "done".
 
 ---
@@ -131,7 +132,40 @@ links:
 - [ ] Validation: inline, immediate, specific ("Missing title" not "Required field")
 - [ ] Output clearly defined: user knows what the artifact will be when done
 - [ ] Revision history: can undo last N changes
+- [ ] **Question interaction pattern** (when phase requires a user response): (1) free text input always available, (2) quick-pick chips — 2–4 one-click answers, (3) `▸ why we ask this` expandable context. Implements UX-CORE Law 2 + Collapsibility pattern (this file). See pattern note below.
 **Failure mode:** User builds for 20 minutes and loses work. User doesn't know what they produced.
+
+---
+
+---
+
+## Pattern: Quick-pick + Expandable Context (TYPE C + TYPE G)
+
+*Applies to any step or phase that asks the user a question requiring a response.*
+*Implements UX-CORE Law 2 (progressive disclosure) + Collapsibility cross-cutting pattern (this file).*
+*Source: proven in Core Spine Creator CLARIFY_CONFIG (S073). PROTO-S073-PARALLEL OPUS-15 verdict: PROCEED, defer enforcement to K≥3.*
+
+> The user gets to choose HOW they answer, not just WHAT they answer.
+> Forcing free-text only = higher friction. Forcing chips only = restricts nuance.
+> Offering both = platform attitude (default + variety).
+
+### The 3 surfaces (all required when a question is asked)
+
+| Surface | Purpose | Implementation |
+|---|---|---|
+| Free text input | Always available — user's own words take precedence | `textarea` or `input`, auto-focused |
+| Quick-pick chips | 2–4 one-click answers covering the most common responses | Rounded chips above input area, click → populates input + submits or sets |
+| `▸ why we ask this` | Expandable context — WHY this question matters + what a good answer looks like | Collapsed by default (Collapsibility pattern), UX-CORE Law 2 |
+
+### Enforcement status
+
+| State | Condition | Action |
+|---|---|---|
+| PROVEN (now) | 1 instance in production (Core Spine Creator) | ADD pattern to TYPE C + TYPE G (done — this section) |
+| ADVISORY | 2nd instance added | Lint advisory if question lacks all 3 surfaces |
+| BLOCKING (K≥3) | 3rd instance confirmed | B_* contract + T1 hook on question-component creation |
+
+*Cross-ref: apps/csps-playground/src/app/platform/core-spine-creator/page.tsx CLARIFY_CONFIG (S073 inaugural instance)*
 
 ---
 

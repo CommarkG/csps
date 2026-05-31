@@ -16,7 +16,7 @@
  *   F. status: draft (advisory — schema not yet ratified)
  */
 
-import { readFileSync, existsSync, writeFileSync } from 'fs';
+import { readFileSync, existsSync, writeFileSync, readdirSync, statSync } from 'fs';
 import { join } from 'path';
 
 const ROOT = process.cwd();
@@ -205,7 +205,60 @@ for (const tier of REQUIRED_TIERS) {
   }
 }
 
-const summary = `[validate-communication-schema-coverage] situations=${situationsFound}/${REQUIRED_SITUATIONS.length} tiers=${tiersFound}/${REQUIRED_TIERS.length} contracts=${contractsFound}/${REQUIRED_CONTRACTS.length} fields_missing=${fieldsMissing} wired_situations=${siuationsWithWiring}/${REQUIRED_SITUATIONS.length} wired_tiers=${tiersWithWiring}/${REQUIRED_TIERS.length} advisory=${advisory} blocking=${blocking}`;
+// ─────────────────────────────────────────────────────────────────────
+// CHECK I — Platform tool question text jargon scan (S073 P2-D)
+// Scans apps/**/src/**/*.tsx for question-like strings containing
+// platform-internal terms inappropriate for user-facing UI text.
+// Prevention class: COMMS-SCHEMA-JARGON-IN-TOOL-QUESTIONS
+// ADVISORY only — baseline unknown at first run.
+// ─────────────────────────────────────────────────────────────────────
+
+// Terms appropriate in governance docs but NOT in user-facing question strings
+const PLATFORM_JARGON_IN_QUESTIONS = [
+  'PROTO-', 'B_', 'P-META-', 'P-ARCH-', 'P-OPER-', 'P-UX-',
+  'lifecycle_state', 'core_spine', 'schema_anchor', 'ZF cycle', 'RZF',
+  'behavioral contract', 'enforcement tier', 'threshold router',
+  'frontmatter', 'CSPS', 'GVRN', 'VALD',
+];
+
+function findTsxFiles(dir, found = []) {
+  let entries;
+  try { entries = readdirSync(dir, { withFileTypes: true }); } catch { return found; }
+  for (const e of entries) {
+    if (e.name === 'node_modules' || e.name === '.next' || e.name === '_trials-vaulted') continue;
+    const full = join(dir, e.name);
+    if (e.isDirectory()) findTsxFiles(full, found);
+    else if (e.name.endsWith('.tsx') || e.name.endsWith('.ts')) found.push(full);
+  }
+  return found;
+}
+
+const appsDir = join(ROOT, 'apps');
+let toolJargonFindings = 0;
+if (existsSync(appsDir)) {
+  const tsxFiles = findTsxFiles(appsDir);
+  for (const file of tsxFiles) {
+    let content;
+    try { content = readFileSync(file, 'utf-8'); } catch { continue; }
+    // Find string literals that look like questions (contain ?, length > 30)
+    const questionStrings = content.match(/["'`][^"'`]{30,}\?[^"'`]*["'`]/g) || [];
+    for (const qs of questionStrings) {
+      for (const jargon of PLATFORM_JARGON_IN_QUESTIONS) {
+        if (qs.includes(jargon)) {
+          toolJargonFindings++;
+          const rel = file.replace(ROOT + '/', '').replace(ROOT + '\\', '');
+          addFinding('advisory', `Tool question text jargon: "${jargon}" in ${rel} — consider audience-tier calibration`);
+          break; // one finding per question string per file
+        }
+      }
+    }
+  }
+}
+
+const toolJargonSummary = `tool_jargon_findings=${toolJargonFindings}`;
+console.log(`  ${toolJargonFindings > 0 ? '⚠' : '✓'} CHECK I (tool-text jargon): ${toolJargonFindings} question string(s) with platform-internal terms (ADVISORY — baseline S073)`);
+
+const summary = `[validate-communication-schema-coverage] situations=${situationsFound}/${REQUIRED_SITUATIONS.length} tiers=${tiersFound}/${REQUIRED_TIERS.length} contracts=${contractsFound}/${REQUIRED_CONTRACTS.length} fields_missing=${fieldsMissing} wired_situations=${siuationsWithWiring}/${REQUIRED_SITUATIONS.length} wired_tiers=${tiersWithWiring}/${REQUIRED_TIERS.length} ${toolJargonSummary} advisory=${advisory} blocking=${blocking}`;
 console.log(summary);
 
 const result = {
@@ -225,6 +278,7 @@ const result = {
   wired_tiers_required: REQUIRED_TIERS.length,
   situations_missing_wiring: siuationsMissingWiring,
   tiers_missing_wiring: tiersMissingWiring,
+  tool_jargon_findings: toolJargonFindings,
   advisory,
   blocking,
   findings: findings.slice(0, 20),
@@ -236,5 +290,4 @@ const result = {
 writeFileSync(LAST_RUN_PATH, JSON.stringify(result, null, 2), 'utf-8');
 
 // DRAFT STATUS: always advisory — never blocks
-// (schema status:draft means validate is coverage-check only, not gate)
 process.exit(0);

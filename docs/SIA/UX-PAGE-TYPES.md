@@ -168,4 +168,50 @@ Mobile:   <768px — single column, nav collapsed to hamburger, primary CTA pinn
 
 ---
 
+## Cross-cutting Pattern: Collapsibility
+
+*Implements UX-CORE Law 2 — Progressive Disclosure by Default (L1 substrate, sealed). This section
+adds the IMPLEMENTATION STANDARD at L2. It does not modify UX-CORE.md.*
+
+> **Information depth should match user readiness, not author pride.**
+>
+> A page that contains full reasoning AND is navigable is better than a page that shows full
+> reasoning (overwhelming) or hides it behind another page (frustrating). Collapsibility achieves
+> both: full scope available, displayed on demand.
+>
+> *Source: ux-ui-doctrine-S072.md PART 5 — PROTO-S073-M3.3-REFINED (OPUS-15, S073)*
+
+### Implementation Standard (applies to all 7 page types)
+
+| Content type | Default state | Expand trigger |
+|---|---|---|
+| Primary action and purpose | VISIBLE — always | N/A |
+| Supporting context / "why" | COLLAPSED — `▸ Why this matters` | Click |
+| Technical details / evidence | COLLAPSED — `▸ Technical detail` | Click |
+| Historical / audit trail | COLLAPSED — `▸ History` | Click |
+| Related pages | VISIBLE but minimal (1 line each) | Click for detail |
+| Platform alignment questions | COLLAPSED — `▸ Alignment context (N)` | Click |
+| Help / toolkit | COLLAPSED — `?` icon | Click |
+
+### Application per page type
+
+| Type | Collapsibility priority | What to collapse first |
+|---|---|---|
+| A — Landing | Low — keep it open, minimal content | Secondary proof points |
+| B — Dashboard | High — metrics first, drill-down on demand | Per-item evidence and logs |
+| C — Wizard | Medium — one step at a time (built-in) | Per-step alignment questions |
+| D — Settings | Medium — group sections, collapse dangerous ones | Rarely-changed settings |
+| E — Catalogue | Medium — item detail on click | Item metadata beyond label+status |
+| F — Reference | High — section nav, content collapsed until scrolled to | Non-primary code examples |
+| G — Creator | High — AI messages, platform inventory, alignment Qs | Inventory results, help panels |
+
+### Non-negotiable collapsibility rules (apply to ALL types)
+1. **Expand trigger is text or icon, never just hover** — keyboard accessible
+2. **Collapsed state shows a summary (1 line max)**, not just a chevron
+3. **Expand/collapse state persists within a session** — collapse what user collapsed
+4. **Nested collapsibility maximum: 2 levels** — beyond 2 = wrong information architecture
+
+---
+
 *Ratified S072 | OPUS-15 | Closes S059 ratification question (a): UX-PAGE-TYPES as sealed L2 — YES*
+*Cross-cutting collapsibility pattern added S073 | OPUS-15 | PROTO-S073-M3.3-REFINED*

@@ -1,4 +1,60 @@
 ═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S074
+YOU ARE: Sonnet S074, builder (First Actions done, verify=0, 75 hooks)
+THIS IS: PROTO-S074-FINISH-ACCOUNTABILITY — complete the accountability spine (a), drive it to active (e), then reschedule everything so nothing’s neglected (d). Long-run, R-class stops only, ONE SEAL report.
+DO NOW: Run A1→A3 straight through (Completion-Before-New: finish the spine before PART 3). Pause only at R-class.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION:
+  Reviewed by: OPUS-15. Governor approved (a)→(e)→(b) + "rescheduled not neglected." Hub plan ratified by
+  Governor approval → accountability may go active (external-user branch stays PLANNED, PART 3 trigger).
+
+# PROTO-S074-FINISH-ACCOUNTABILITY (OPUS-15, S074)
+
+## CORE SEED
+Finish what we started before opening PART 3. The accountability spine is draft with its T3 enforcement
+missing — complete it (A1), drive it to active (A2), then PE-score the backlog so every deferred item gets
+a scheduled slot (A3). Completion-Before-New applied to our own spine.
+
+## A1 — ANTI-FLOAT T3 session gates (closes vlt-S073-anti-float-session-gates-incomplete)
+- Extend session-open.sh (SACRED → Bash/Node + SACRED-EDIT-APPROVED): inject overdue/escalated floaters from
+  floating-artifacts-register.yaml at every tab open.
+- Extend post-stop-session-close-gate.sh: BLOCK close if a non-terminal artifact created/touched this session
+  is unresolved + not carried-forward-with-trigger.
+- This completes the accountability wiring (T1 closure-gate + T2 sweep + T3 session gates all live).
+
+## A2 — Accountability draft→active
+- Hub plan ratified (Governor) + T3 complete → set core-spine-registry accountability status draft→active.
+  External-user branch (B3) stays status:PLANNED with trigger "PART 3 ratified." validate-core-spine-template
+  must still PASS (active spine, one PLANNED branch declared). Promote P-OP-008 + P-META-030 from stub→active
+  (ids as stubbed unless Governor assigns specific numbers — flag).
+
+## A3 — RESCHEDULE, don’t neglect (the d/PE pass — Governor’s guard)
+- Run PE-scoring over vault-pending.yaml + the floater register → produce an ORDERED S074+ schedule. EVERY
+  deferred carry-forward item gets a named slot/trigger (no "someday"): floater backlog triage · Vercel
+  dynamic-import (→ first App deploy) · App#2 (→ after PART 3) · theme/process-templates PIs (→ PART 6) ·
+  super-admin OAuth (→ App#2) · Haiku audit-tier (→ council). Write the ordered schedule to a register.
+- Confirm PART 3 product schema is the top-of-order next major workstream → OPUS issues a dedicated PART 3
+  PROTO after this SEAL (it’s large; own plan).
+
+## ASK-OPUS-STOP (R-class)
+- R3: sacred session-open edit — proceed via Bash/Node + SACRED token; if it risks other session-open behavior, pause.
+- R8: if accountability can’t cleanly go active with a PLANNED branch (validator blocks) → keep draft, report.
+
+## ZF GATE (at SEAL)
+A1 C1: session-open inject + close-gate extension + vlt closed. A2 C1: registry status active + branch PLANNED
++ validator PASS. A3 C1: PE-ordered schedule written, every deferred item slotted. C2 each: verify exit 0 +
+0 new. verify_top_exit:<int>. ONE SEAL report + CADENCE-AUDIT line.
+
+## OPIA STATUS: ACCEPTED (S074 A1+A2+A3 SEALED at 648318e4 — verify exit_code=0)
+
+## AUTHOR SIGNATURE
+OPUS-15 | S074 | PROTO-S074-FINISH-ACCOUNTABILITY | 2026-05-31
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
 I AM: OPUS-15, architectural director, S073
 YOU ARE: Sonnet, builder S073 (P1 FLAWLESS-DEPLOY OPIA-ACCEPTED — verified by content)
 THIS IS: P1 accept + PROCEED P2-A & P2-D + ANTI-FLOAT HELD (persists PROTO-S073-PARALLEL per your flag)

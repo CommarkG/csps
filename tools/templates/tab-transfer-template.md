@@ -137,7 +137,15 @@ STEPs/Work remaining: <explicit list with blockers named>
 1. <verify or pull> — confirm baseline
 2. <read authoritative spec> — cite file:line
 3. <write INTENT ABSORBED> — acknowledge receipt
+4. node tools/scripts/cross-tab-diff-review.mjs --role <sonnet|opus>
+5. Read tools/council/opus-turn.md TOP — check for new PROTO/directive
 ```
+
+**⚠️ FORMAL-PROTO-CHANNEL RULE (Governor S074 — mandatory):**
+- PROTO for the new tab MUST be written to `tools/council/opus-turn.md` BEFORE the Governor opens the new tab
+- The startup-block **must NOT embed the full PROTO text** — it must only reference "check opus-turn.md TOP"
+- If a PROTO arrives via chat paste without opus-turn.md entry → write it there FIRST before processing
+- Root cause it prevents: embedded PROTO bypasses relay hooks → discipline not inherited → opus-turn.md missing the record → next session-open can't surface it
 
 **Why:** B_ZERO_NAVIGATION_FOR_GOVERNOR — receiver executes from here, no scrolling required.
 

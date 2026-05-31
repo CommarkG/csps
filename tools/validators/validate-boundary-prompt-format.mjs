@@ -226,6 +226,46 @@ function main() {
     }
   }
 
+  // ── Embedded-PROTO detection in startup-blocks / chat-jump files (S074) ──────
+  // FORMAL-PROTO-CHANNEL discipline: PROTOs MUST pre-exist in opus-turn.md.
+  // They must NEVER be embedded in chat-jump-prompt or HANDOFF startup-blocks.
+  // Detection: ═══...═══ fenced blocks containing PROTO-S\d+ pattern = embedded PROTO.
+  const PROTO_FENCE_RE = /═{10,}[\s\S]*?PROTO-S\d{3}[\s\S]*?═{10,}/m;
+
+  for (const filePath of chatJumpFiles) {
+    const relPath = filePath.replace(ROOT + '/', '').replace(ROOT + '\\', '');
+    const content = readFileSync(filePath, 'utf8');
+    if (PROTO_FENCE_RE.test(content)) {
+      advisory++;
+      findings.push(
+        `[ADVISORY] ${relPath} — contains embedded PROTO block (FORMAL-PROTO-CHANNEL violation). ` +
+        `PROTOs must be written to tools/council/opus-turn.md BEFORE tab open, not embedded in startup-blocks. ` +
+        `Governor S074 directive.`
+      );
+    }
+  }
+
+  // Also check HANDOFF files for embedded PROTOs
+  const handoffDir = join(ROOT, 'docs/plan/_handoff');
+  const vaultDir = join(handoffDir, 'VAULT');
+  for (const dir of [handoffDir, vaultDir]) {
+    try {
+      const hFiles = readdirSync(dir).filter(f => f.endsWith('.md') && f.startsWith('HANDOFF-'));
+      for (const hFile of hFiles) {
+        const hPath = join(dir, hFile);
+        const hRelPath = hPath.replace(ROOT + '/', '').replace(ROOT + '\\', '');
+        const hContent = readFileSync(hPath, 'utf8');
+        if (PROTO_FENCE_RE.test(hContent)) {
+          advisory++;
+          findings.push(
+            `[ADVISORY] ${hRelPath} — contains embedded PROTO block (FORMAL-PROTO-CHANNEL). ` +
+            `PROTO body should live in opus-turn.md; HANDOFF may reference by name only.`
+          );
+        }
+      }
+    } catch { /* dir may not exist */ }
+  }
+
   // ── Output ────────────────────────────────────────────────────────────────────
 
   for (const f of findings) {

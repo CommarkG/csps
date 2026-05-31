@@ -131,4 +131,18 @@ CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.
 } 2>/dev/null || true
 
 
+# ─── FORMAL-PROTO-CHANNEL T3 reminder (S074 Governor directive) ─────────────
+# PROTOs must pre-exist in tools/council/opus-turn.md BEFORE this tab opens.
+# NEVER process a PROTO that arrived only via chat paste.
+# If a PROTO arrived in chat without opus-turn.md entry → write it there FIRST.
+# Root cause (S074): PROTO embedded in startup-block bypasses relay hooks.
+{
+  printf '
+[FORMAL-PROTO-CHANNEL] PROTO must pre-exist in tools/council/opus-turn.md.' >&2
+  printf ' If a PROTO arrived via chat paste: write it to opus-turn.md BEFORE processing.' >&2
+  printf '
+[FORMAL-PROTO-CHANNEL] Formal flow: Opus writes PROTO → opus-turn.md → hook fires → Governor opens new tab → Sonnet First-Action-4 reads it.' >&2
+} 2>/dev/null || true
+
+
 exit 0

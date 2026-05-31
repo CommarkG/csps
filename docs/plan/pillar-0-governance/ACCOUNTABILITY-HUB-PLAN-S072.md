@@ -73,6 +73,20 @@ links:
 - **OKR/KPI closure metrics** → CSPS: the hub's dashboard metric per branch (intent→terminal conversion rate; floater count; mean-time-to-terminal).
 - **Two-way-door vs one-way-door (Bezos) + reversibility** → CSPS: criticality at threshold ingress + B3 reversible-by-default.
 
+## DNA-INHERITANCE ENFORCEMENT (the "always inherited" guarantee — Governor S072)
+Every created artifact — especially external-user/app artifacts — must inherit CSPS DNA (principles like new-over-active, the contracts, the prevention classes). A BRANCH of the hub, built on EXISTING machinery (strengthen, never fork):
+**EXISTS:** `tools/config/dna-registry.yaml` (source) · `validate-new-file-dna.mjs` (BLOCKING libs/>50L) · `validate-page-dna` · `validate-dna-evidence` · `validate-skill-dna-alignment` · `post-stop-dna-sync-check.sh` · `dna-protocol-making-sure-that.md`.
+**GAPS (what lets DNA escape):** (1) apps/ + external-user artifacts = ADVISORY not BLOCKING — can ship DNA-less; (2) no pre-creation gate (checked at verify, not at write); (3) no principle-COVERAGE check (detects ANY signal, not that a SPECIFIC principle is inherited); (4) no recurring DNA-coverage audit.
+**MULTI-DIRECTION FIX (the enforcement arsenal applied):**
+1. **Registry** — add new-over-active + S072 principles to `dna-registry.yaml` as inherited entries (the canonical set every artifact carries).
+2. **Pre-creation gate (T1)** — `pre-tool-use-dna-required.sh` BLOCKS Write of a governed artifact (libs/ + apps/ + pages) lacking a DNA signal.
+3. **Verify (T2)** — extend `validate-new-file-dna.mjs` to BLOCK apps/ + external-user pages (not advisory) + add a principle-COVERAGE check (the named set is present, not just "a" signal).
+4. **Templates (creation-time)** — `apps/templates` + the page generator carry DNA at birth (Core-Maximal: apps BUNDLE DNA, inherit not author). External-user artifacts inherit here.
+5. **Recurring audit** — `cron-weekly-dna-coverage` + an audit-runner pipeline scans ALL artifacts vs the registry; routes gaps to the decision queue (ANTI-FLOAT).
+6. **Post-stop** — promote `post-stop-dna-sync-check.sh` from advisory reminder to a coverage gate.
+7. **Session-open (T3)** — inject current DNA-coverage debt at tab start.
+**External-user specifically:** apps inherit DNA via Component-B/templates (apps-are-trials + Core-Maximal) — no external-user artifact ships without the DNA set. This is the B3 branch's integrity layer.
+
 ## INTEGRATION — how it consolidates the limbs (NO parallel; the consolidation map)
 | Existing limb | Role in the hub | Hub adds |
 |---|---|---|
@@ -103,3 +117,38 @@ links:
 This plan is itself routed: logged as a threshold intake (type=proposal_consolidation) + carries closure_owner/closure_decision/closure_by in frontmatter (cannot float). If I had done this for the S072 hooks, they'd have entered the same way. That is the behavior change you demanded.
 
 *Status: DRAFT — pending Governor ratification. closure_by: S073 open. — OPUS-15, S072, 2026-05-31*
+
+---
+
+# ADDENDUM S073 — Core-Spine Engine: mandatory template, real-time-save, threshold wiring, batches, core seeds
+
+## MANDATORY CORE-SPINE TEMPLATE (8 sections — every core spine carries ALL; validator-enforced)
+1. TRUNK (undebatable universals) · 2. BRANCHES (recursive sub-cores) · 3. ALIGNMENT MAP (schema anchor + architecture-map node + classification dimension + root) · 4. WIRING MAP (the validators/hooks/pages/registries that REALIZE it — each must resolve to a real file: EXISTS≠ACTIVE) · 5. TIER & PERMISSION (default + variety; never one-size) · 6. CIE + PE INVOLVEMENT · 7. ESCALATION (the breach/overdue ladder) · 8. **REAL-TIME-SAVE / RESUMABLE PROCESS** (Governor S073 — every process auto-persists each step; re-entry resumes exactly; a paused process = a non-terminal artifact with a resume-trigger = ANTI-FLOAT integration).
+
+## REAL-TIME-SAVE (universal process requirement — not accountability-only)
+Every CSPS process (spine creation, onboarding, journey, any wizard) continuously persists state (debounced) to a resumable store keyed by {user, process, session}. Battery dies / user leaves mid-process → on return, resume at the exact step. Shared `libs/process-state` so apps inherit it (Core-Maximal). Synergy: a paused process IS a floating artifact with a resume closure-trigger → governed by ANTI-FLOAT. Closes UX-doctrine FL5 (no save/resume).
+
+## THRESHOLD CONNECTION (the front door for the engine — no parallel intake)
+Every engine action routes through `threshold-router.mjs`: creating a spine (input_class=creation/proposal) · an accountability obligation (→ closure pipeline) · a process resume (re-entry) · a breach (→ escalation). Threshold classifies {spine, pipeline, criticality, audience_tier} → routes. The core-spine-creator must call routeInput, not act directly. This is how "it all connects to the threshold."
+
+## PERSONA-HARDENING PASS (iterated — findings folded in)
+- cruel-critic: WIRING MAP risks becoming aspirational → validator must verify each entry resolves to a real file (EXISTS≠ACTIVE). FOLDED into section 4.
+- bottleneck-expert: routing every intent + per-keystroke save = throughput/storage risk → debounce auto-save; threshold fast-path for trivial; criticality at ingress. FOLDED.
+- consolidation-expert: core-spine-registry must NOT fork schema-registry / SPINE-PILLAR-MAP → reuse/extend them. FOLDED into BATCH 0.
+- synergy-master: real-time-save = universal trait, lives in the template (every process), synergizes with ANTI-FLOAT (paused=non-terminal+resume-trigger). FOLDED into section 8.
+- balance-expert: 8 mandatory sections risks nobody creating spines → the ENGINE auto-generates the scaffolding (5 of 8); the human supplies only intent. FOLDED.
+- naive-persona: "battery died, lost my spine" + "what's a wiring map?" → real-time-save fixes the first; plain-language prompts fix the second. FOLDED.
+
+## CORE SEEDS (Opus-authored — the intent anchors Sonnet builds from)
+- SEED-ENGINE: "A core spine is CREATED, not authored — the engine reads the registry, routes intent through threshold, auto-scaffolds the 8 mandatory sections, and persists every step (resumable). Human supplies intent; platform supplies structure + reuse."
+- SEED-ACCT-TRUNK: the 7 invariants (single-owner · path-to-terminal · evidence-at-closure · trigger+aging · handoff-receipt · conversion-not-activity · ESCALATION).
+- SEED-SAVE: "No process loses state. Every step auto-persists; re-entry resumes exactly. A paused process is a non-terminal artifact with a resume trigger (ANTI-FLOAT)."
+
+## OPTIMAL BATCHES (sequenced — each its own milestone with closure obligation)
+- BATCH 0 — FOUNDATION [VALD/ARCH]: designate/extend SPINE-PILLAR-MAP as the Platform Architecture Map + `tools/config/core-spine-registry.yaml` (8-section schema) + mandatory-template validator (8 sections present + wiring-map entries resolve + alignment resolves). BLOCKING after baseline.
+- BATCH 1 — ENGINE WIRING [ARCH/OPER]: wire core-spine-creator to READ the registry (kill hardcoded arrays) + route through threshold (routeInput) + CIE/PE hooks.
+- BATCH 2 — REAL-TIME-SAVE [ARCH/OPER]: `libs/process-state` resumable store + apply to the creator + make it template section 8 + ANTI-FLOAT integration (paused=non-terminal+resume-trigger).
+- BATCH 3 — ACCOUNTABILITY AS FIRST SPINE [GVRN]: author accountability THROUGH the wired engine — trunk(7) + branches(B1-B3) + tier/permission + escalation ladder + CIE/PE + wiring map + /platform/accountability dashboard.
+- BATCH 4 — ANTI-FLOAT RELEASED [VALD]: build ANTI-FLOAT as accountability's artifact-closure limb (generated from the L2, not pre-forked).
+
+*Addendum closure_by: S073 — Governor ratifies batches + template → OPUS issues BATCH 0 PROTO. — OPUS-15, S073, 2026-05-31*

@@ -1,4 +1,487 @@
 ═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S073
+YOU ARE: Sonnet, builder S073 (P1 FLAWLESS-DEPLOY OPIA-ACCEPTED — verified by content)
+THIS IS: P1 accept + PROCEED P2-A & P2-D + ANTI-FLOAT HELD (persists PROTO-S073-PARALLEL per your flag)
+DO NOW: Build P2-A then P2-D. Do NOT start ANTI-FLOAT (hub limb — held until accountability hub ratified).
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION:
+  Reviewed by: OPUS-15 — verified P1 by content: deploy-targets.yaml + deploy-check.mjs + generate-deploy-config.mjs exist; CHECK 5 root_dir-exists BLOCKING at validate-app-deploy-readiness.mjs:145; verify FAIL=0 at d576ad54.
+
+# PROTO-S073-PARALLEL (persisted) + P1-ACCEPT (OPUS-15, S073)
+
+## P1 — FLAWLESS-DEPLOY: OPIA-ACCEPTED
+M1 registry + CHECK 5 BLOCKING ✓ · M2 deploy-check gate ✓ · M3 generator ✓ · M4 vercel.md section ✓ · behavioral 3/3 · verify FAIL=0. Budget-planner failure class structurally blocked. ACCEPTED.
+
+## P2-A — PROCEED
+ADD quick-pick pattern to UX-PAGE-TYPES.md TYPE C (Wizard) + TYPE G (Creator): "free text + quick-pick chips + ▸ why-we-ask expandable context". Cross-ref UX-CORE Law 2. ADD-not-REPLACE. DEFER the B_* contract + T1 hook until used in ≥3 places (K≥3 promotion).
+
+## P2-D — PROCEED
+EXTEND validate-communication-schema-coverage.mjs to scan platform TOOL question/help text vs the 6-tier audience model. ADVISORY first; promote to blocking after baseline clears. Register in audit-runner BEFORE wiring.
+
+## ANTI-FLOAT — HELD (confirmed)
+Do NOT start. Accountability hub's artifact-closure limb; generated as L3 from the ratified hub L2, not pre-forked (new-over-active discipline).
+
+## P2-B / P2-C — VAULTED (correct)
+vlt-S073-process-templates-dashboard (closure_by S074 PE) + vlt-S073-super-admin-google-oauth (closure_by App#2).
+
+## ZF GATE (per item)
+P2-A C1: UX-PAGE-TYPES section + Law-2 cross-ref. P2-D C1: validator extension + baseline + audit-runner row. Each Cycle 2: re-examine + verify exit 0 + 0 new. verify_top_exit:<int>.
+
+## AUTHOR SIGNATURE
+OPUS-15 | S073 | PROTO-S073-PARALLEL (persisted) | 2026-05-31
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S073
+YOU ARE: Sonnet, builder S073 (fresh tab; M1 investigation ACCEPTED — verified by content, you were right)
+THIS IS: PROTO-S073-M1-CLOSE-AND-M3 — close M1 formally (your finding confirmed) → ZF-deep → M3. Direct + complete.
+DO NOW: Execute the 4 M1-close steps in order, then M3. No rebuild — M1 structural work is done.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION:
+  Reviewed by: OPUS-15 — re-verified your M1 finding BY CONTENT (redirects + canonical page + stale labels + iter-gate-by-design) — all confirmed.
+  Correction owned: my S072 "M1 NOT DONE" was asserted from file-EXISTENCE not file-CONTENT (validate-before-assume miss). M1 structural work IS done; it was a nominal-ZF gap. You caught it correctly.
+
+# PROTO-S073-M1-CLOSE-AND-M3 (OPUS-15, S073)
+
+## ACCEPTED (verified by content this turn)
+- /platform/journey-trunk → redirect('/platform/journey#trunk-model') ✓ · /platform/journeys → redirect('/platform/journey') ✓ · canonical page = SUBSTRATE+DEFAULT+VARIETY ✓ · nav clean ✓ · verify FAIL=0 ✓.
+- Carry-forward item 5 RESOLVED by you: the recurring "verify failed" = the ZF-deep gate (post-stop-pnpm-verify.sh:116-122 fires when ZF_DEEP_RUNS=0 AND ITER>15). By design, not a bug. Correct.
+
+## M1-CLOSE (S073 FIRST BUILD — 4 steps, in order)
+1. Remove the 2 stale lines from `apps/csps-playground/src/components/TopNav.tsx` SEGMENT_LABELS (66-67): `journeys: 'Journeys'` + `'journey-trunk': 'Journey Trunk'`. (Orphan breadcrumb labels for the now-redirected routes.)
+2. Run `node tools/zf-orchestrator.mjs --level 3` → clears the ZF-deep gate + carry-forward item 6 (ZF-deep owed). Cite the orchestrator's final iteration result.
+3. Emit formal **M1 ZF Cycle 1 + Cycle 2 evidence to sonnet-turn.md** (this closes the nominal-ZF gap that caused the NOT-DONE): Cycle 1 cite the 2 redirects + canonical page + the SEGMENT_LABELS cleanup; Cycle 2 re-examine no orphan links remain + verify exit 0. This is M1's terminal closure.
+4. Commit `fix(S073-M1): M1 ZF closure — stale SEGMENT_LABELS cleanup + formal ZF evidence` + push.
+
+## M3 (PROTO-S072-UX-WIRE — after M1-close)
+- 3A icon differentiation (ℹ status / ? question / ⚠ warning) across playground messages.
+- Rigidness Agent → the 4-question rigidness test as the operational T1/T2 check of cornerstone **P-META-028** (NOT a new principle).
+- Collapsibility → pattern under **UX-CORE Law 2** (progressive disclosure), NOT a new Law.
+
+## THEN (carry-forward queue — after M3)
+- **PROTO-S072-ANTI-FLOAT** (register + sweep + pre-creation gate + session gates + backfill of 11 floaters) — next big build; full spec in opus-turn.md below.
+- **ACCOUNTABILITY-HUB-PLAN-S072.md** (incl. DNA-inheritance branch) — awaits GOVERNOR ratification → then OPUS PROTO. NOT yours to start; flag to Governor.
+
+## ASK-OPUS-STOP (R-class)
+- R3: if SEGMENT_LABELS removal breaks any breadcrumb render → pause, report.
+- R4: if zf-orchestrator --level 3 surfaces a real BLOCKING finding (not nominal) → pause, classify before fixing (RZF-LATEST).
+
+## ZF GATE
+M1-close: per step 3 above (the formal evidence IS the gate). M3: Cycle 1 cite 3A impl + Rigidness-under-P-META-028 + collapsibility-under-Law2; Cycle 2 re-examine + verify exit 0 + 0 new. verify_top_exit:<int> on every report.
+
+## AUTHOR SIGNATURE
+OPUS-15 | S073 | PROTO-S073-M1-CLOSE-AND-M3 | 2026-05-31
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S072
+YOU ARE: Sonnet, builder S072 (ux-ui-doctrine-S072 + opus-review-prompt reviewed — OPIA verdict below)
+THIS IS: PROTO-S072-UX-WIRE — ratify the UX/UI doctrine + close the S059 debt + fix new-over-active. Every decision CONSOLIDATES to ONE (no new-over-active).
+DO NOW: Build M1→M3 in order. Apply the new-over-active discipline throughout: evolve the ACTIVE, consolidate duplicates to ONE, no parallel siblings.
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S072-UX-WIRE — UX Doctrine Ratification + S059 Closure (OPUS-15, S072)
+
+## RATIFICATION VERDICT (ux-ui-doctrine-S072.md — the consolidation)
+| # | Verdict | Decision (note the consolidation discipline) |
+|---|---|---|
+| R1 Rigidness Agent | **MODIFY** | ACCEPT the discipline; do NOT make it a new principle. It IS the operational T1/T2 of cornerstone **P-META-028** (Context-Refined Communication). Wire it UNDER P-META-028 (new-over-active: P-META-028 already owns "rules carry context/reasoning"). |
+| R2 Theme system | **ACCEPT** | status track + `csps-light` default ✓. Theme dashboard → S073 (PART 6-dependent). |
+| R3 R4 visual-telegraphs | **ACCEPT** | as B_UX amendment. 4-response-type table sufficient (Navigation = Action subtype). Implement **3A icon** first. |
+| R4 Focused vs Flows | **ACCEPT** | distinction valid. Fold validation into existing audit (no new protocol file). FL3 + FL5 most critical. |
+| R5 **S059 debt — ANSWERED** | **RATIFY** | (a) UX-PAGE-TYPES.md as sealed L2 → **YES**. (b) Responsiveness → **a SECTION inside UX-PAGE-TYPES, not its own file** (consolidate). (c) Dev vs user interface → **ONE file UX-ROLES.md with role variants inside** (platform-attitude default+variety), NOT two parallel files. All three answers = consolidate-to-one. |
+| R6 promotions | **VALIDATED** | 1B, 2A, 3A, 4A, 5C → VALIDATED. SEAL none until built + RZF-verified. |
+| R7 collapsibility | **MODIFY** | NOT a new Law 4. It's an implementation of UX-CORE Law 2 (progressive disclosure) — add as a pattern under Law 2 (don't expand sealed L1 with a parallel law). |
+| Highest-value action | — | **Close the S059 debt (5C)** + consolidate the journey triple. |
+
+## M1 — FIX NEW-OVER-ACTIVE: consolidate the journey triple (Governor "change that now")
+- THREE routes exist for one concept: `/platform/journey` + `/platform/journey-trunk` + `/platform/journeys`. Consolidate to **ONE active page** (`/platform/journey` — the default+variety one). Make the other two **redirect or cross-ref** to it; deprecate the duplicates. ADD-not-REPLACE the content into the survivor.
+- Run `pre-tool-use-check-existing` mentality first; record why each duplicate existed. This is the inaugural fix of the `new-over-active` prevention class.
+
+## M2 — CLOSE S059 DEBT (the floater since session 59 — highest value)
+- Answer recorded above. Build: **UX-PAGE-TYPES.md** as sealed L2 (page archetypes — PART 6 seed) WITH a Responsiveness section inside it. Build **UX-ROLES.md** as ONE file (developer-role + app-user-role as variants — platform attitude). 
+- Drive **UX-PATTERNS-RESEARCH.md** to a TERMINAL state: its content folds into UX-PAGE-TYPES.md + UX-ROLES.md → mark it SUPERSEDED-with-pointer (not left draft). This closes the inaugural floater.
+- Wire the 6 UX/UI files into governance (5C): a `/platform/ux-spine` reference page (evolve `/platform/ux` if it exists — check first) + register them so they're not "sealed but unwired."
+
+## M3 — Implement ratified options + operationalize Rigidness under P-META-028
+- 3A icon differentiation (ℹ status / ? question / ⚠ warning) across playground messages.
+- Rigidness Agent → add as the T1/T2 operational check of P-META-028 (the 4-question rigidness test as a validator hook on rule-writing), NOT a new principle.
+- Collapsibility → pattern under UX-CORE Law 2.
+
+## ACCOUNTABILITY (dogfood — this PROTO routes through the process)
+- Each milestone artifact gets a closure obligation (owner + decision + closure_by) per ANTI-FLOAT. This PROTO is logged as a threshold intake (type=proposal_consolidation). No parallel creation.
+
+## ASK-OPUS-STOP
+- R3: if consolidating the journey triple risks breaking live nav links → pause, report redirect strategy.
+
+## ZF GATE (per milestone)
+M1 Cycle1: cite the surviving route + the 2 redirects/deprecations + nav updated. Cycle2: re-examine no orphan links + 0 new.
+M2 Cycle1: cite UX-PAGE-TYPES.md + UX-ROLES.md + UX-PATTERNS-RESEARCH.md→SUPERSEDED + the 6-file wiring. Cycle2: re-examine S059 3-questions all closed + the floater terminal + 0 new.
+M3 Cycle1: cite 3A impl + Rigidness-under-P-META-028 + collapsibility-under-Law2. Cycle2: re-examine + verify exit 0 + 0 new. verify_top_exit:<int>.
+
+## AUTHOR SIGNATURE
+OPUS-15 | S072 | PROTO-S072-UX-WIRE | 2026-05-31
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S072
+YOU ARE: Sonnet, builder S072
+THIS IS: PROTO-S072-ANTI-FLOAT — make floating artifacts (intent created, never driven to terminal) structurally impossible. Governor S072 directive ("the biggest cancer"). Scope: 11 draft + 21 awaiting-ratification, zero current coverage.
+DO NOW: Build M1→M2→M3 below. This PREEMPTS journey work (M-J1 is OPIA-accepted + done; resume journeys after ANTI-FLOAT M1).
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S072-ANTI-FLOAT — Closure-Obligation Discipline (OPUS-15, S072)
+
+## CORE SEED
+**No artifact may exist in a non-terminal state without a tracked CLOSURE OBLIGATION, and a recurring sweep escalates overdue floaters into a forced decision — not a flag.** A floating artifact = `status/stage ∈ {draft, proposed, pending-review, awaiting-*}` with no owner + no decision-needed + no deadline → never advances. This is the GENERAL case of CIP (CIP closes *changes*; this closes *all artifacts*). REUSE, do not fork: the CIP terminal taxonomy (RATIFIED+IMPLEMENTED | REJECTED-with-reason | VAULTED-with-trigger | SUPERSEDED) + the PLATFORM-OBSERVATION pipeline (floaters are an OBSERVE source → ROUTE → forced terminal) + the existing lifecycle enums + session-open/close hooks + vault. Prevention class: **`FLOATING-ARTIFACT-NEVER-REACHES-TERMINAL`** (sibling of EXISTS≠ACTIVE: there, written≠enforced; here, created≠closed). Inaugural lived instance: docs/SIA/UX-PATTERNS-RESEARCH.md (draft + pending-review since S059, no closure obligation, never ratified).
+
+## THE LAW (engrave as principle — candidate P-META-030 "Closure Obligation")
+Every artifact created in a non-terminal state MUST carry frontmatter: `closure_owner` (who decides) · `closure_decision` (the exact decision that closes it, e.g. "Opus ratify draft→ratified OR reject") · `closure_by` (a session number deadline OR a named trigger event). Absent that = a floater = forbidden.
+
+## M1 — Register + recurring sweep + BACKFILL (the audit that gets RESULTS)
+**DONE WHEN:**
+- [ ] `tools/data/floating-artifacts-register.yaml` — per entry: id · artifact_path · status · created_session · closure_owner · closure_decision · closure_by · escalation_state{tracked|overdue|escalated|terminal} · terminal_state(null until closed).
+- [ ] `tools/validators/validate-no-floating-artifacts.mjs` — scans docs/plan + docs/SIA for non-terminal status; for each: (a) missing closure obligation → finding, (b) past closure_by → ESCALATE, (c) draft > 3 sessions w/o obligation → ESCALATE. Upserts the register. ADVISORY first (baseline ~11-21), promotes to BLOCKING after backfill clears. Behavioral test 3/3 (floater-no-obligation→flag · obligation-not-overdue→pass · overdue→escalate).
+- [ ] **BACKFILL**: register ALL current floaters (the 11 draft + the awaiting-ratification set incl. UX-PATTERNS-RESEARCH.md). Assign each a closure obligation. Surface the list to Opus/Governor as the first decision-queue batch.
+- [ ] Wire into verify.mjs (advisory) + register in audit-runner.md BEFORE wiring + weekly cron (cron-weekly-floating-artifacts.sh). verify_top_exit:<int>.
+
+## M2 — PRE-CREATION gate (can't birth a floater without a leash)
+**DONE WHEN:**
+- [ ] `.claude/hooks/pre-tool-use-closure-obligation-required.sh` — on Write/Edit of a `.md`/`.yaml` whose frontmatter has a non-terminal status AND lacks closure_owner+closure_decision+closure_by → BLOCK (exit 2) with the required-fields message. Register in dispatch-registry.yaml IF Write-only suffices; if drafts are created via Edit too, register under settings.json Write|Edit matcher (per the council-address Write-vs-Edit lesson). Add to DECLARED_HOOKS. Behavioral test.
+
+## M3 — END-of-tab + BEGINNING-of-tab + decision pipeline (the other two directions)
+**DONE WHEN:**
+- [ ] **End-of-tab**: extend post-stop-session-close-gate.sh — BLOCK close if a non-terminal artifact was created/touched THIS session and is neither resolved nor carried-forward-with-trigger in the handoff.
+- [ ] **Beginning-of-tab**: extend session-open.sh (Bash/Node, SACRED) — inject the register's `overdue` + `due-this-session` floaters so the new tab inherits the obligations in-context.
+- [ ] **Decision pipeline (gets results)**: overdue/escalated floaters auto-surface as a Governor decision-queue block (in session-open + a `.csps/floater-decision-queue.txt`), each demanding a terminal verdict (ratify / reject / vault-with-trigger / supersede). The sweep does not just flag — it routes to a decision that MUST resolve.
+- [ ] Engrave principle P-META-030 (or Governor-assigned id) + B_CLOSURE_OBLIGATION with `enforcement_tier`: T1=pre-creation gate · T2=sweep validator · T3=session-open injection · +close-gate. 4 directions = the full FSE.
+
+## ASK-OPUS-STOP
+- R3: which statuses count as "non-terminal" — confirm the closed set {draft, proposed, pending-review, awaiting-*} vs the terminal set, before the sweep hard-codes it (cornerstone-expandable).
+- R3: principle id assignment (P-META-030?) is Governor's call — stub it, flag for ratification.
+
+## ZF GATE (per milestone)
+M1 Cycle 1: cite register path + validator + 3/3 test + backfill count (incl. UX-PATTERNS-RESEARCH.md) + verify_top_exit. Cycle 2: re-examine the sweep catches the inaugural instance + escalation logic + 0 new.
+M2/M3 Cycle 1: cite hook + close-gate + session-open injection + decision-queue artifact. Cycle 2: dogfood — create a test draft w/o obligation → blocked; re-examine + 0 new. verify_top_exit:<int>.
+
+## AUTHOR SIGNATURE
+OPUS-15 | S072 | PROTO-S072-ANTI-FLOAT | 2026-05-31
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S072
+YOU ARE: Sonnet, builder S072 (journey draft OPIA-ACCEPTED — now SUPERSEDED in shape by the platform-attitude reframe below; M-J1 v1 entry is void)
+THIS IS: PROTO-S072-M-J1 v2 — journey work reframed to PLATFORM ATTITUDE (a DEFAULT + a selectable VARIETY, never one hardcoded answer). Governor ratified the attitude this turn.
+DO NOW: M-J1a (close owed CIP M1.1), then M-J1b (rebuild the journey as default+variety). Self-contained below.
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S072-M-J1 v2 — Platform-Attitude Journeys (OPUS-15, S072)
+
+## THE ATTITUDE (Governor-ratified S072 — governs ALL journey work, and beyond)
+A platform offers a DEFAULT + a selectable VARIETY — NEVER one hardcoded answer. An app builds THE one journey; a platform ships a default journey any app inherits free + a variety of variants the app can swap in. Three layers (this REPLACES the draft's flat trunk/branches taxonomy, which was app-attitude):
+1. **SUBSTRATE** — universal, always-on ingredients (the draft's old "trunk" T1-T6: threshold intake · 6-tier comms · JOURNEY-DOCTRINE 5 principles · profiles/personas · B_ZCA · council-address). Always present, not optional, not selectable.
+2. **DEFAULT JOURNEY** — ONE opinionated, COMPLETE, SHIPPABLE path assembled from the substrate. What every new app gets for free, working, zero-config. Not an abstract base — a real, usable journey.
+3. **VARIETY** — selectable variants that swap parts of the default (per audience-tier / app-type / persona). Optional. The app picks, or keeps the default.
+
+## M-J1a — Close owed CIP M1.1 (FWWS — committed describe-without-implement debt)
+- Add Check 1 (unified-plan conflict) to validate-prior-plan-conflict.mjs: load `tools/config/unified-plan.yaml` (config/ NOT data/), reuse existing extractYamlEntryBlocks/extractField/extractKeywords + the ≥3 shared-keyword threshold (same shape as the vault check), push `[ADVISORY] staged:<id> → conflict with open plan item <id>`.
+- Fix docstring path (line 17) → tools/config/unified-plan.yaml. Extend test to 4/4 (INPUT D = overlap with open plan item → advisory). Fix audit-runner.md:179 "C=unrelated"→"C=SHEDDABLE".
+- Mark PROTO-S072-CIP **paused-at-M1.1** (M2/M3 = VAULTED-with-trigger `resume after journeys`).
+
+## M-J1b — Rebuild the journey as DEFAULT + VARIETY (the visible proof of the attitude)
+1. **Reframe the draft** (JOURNEY-CONSOLIDATION-DRAFT-S072.md, ADD a "Platform Attitude" section — do not delete existing): relabel trunk→SUBSTRATE; name the DEFAULT JOURNEY explicitly as one opinionated complete path (e.g. threshold intake → profile/tier detection → zero-jargon welcome → single-next-action → first early-win → peak-end close); list the VARIETY as named selectable variants (per-tier: admin-config-heavy / team-invite / end-user-minimal · plus developer-journey carries its OWN default+variety: default 8-step + depth-3/4/5 variants).
+2. **Build `/platform/journey` page** via `nx g platform:page` (NEVER hand-write page.tsx). It must VISIBLY embody the attitude: SUBSTRATE shown as the foundation layer; the DEFAULT JOURNEY featured PROMINENTLY (the "ships free, works now" path); the VARIETY shown as a first-class SELECTABLE menu (a static selector is fine — the point is variants are options you pick, not footnotes). Source of truth = the reframed draft (link it).
+3. **Observable DONE:** page loads; the default journey is visually primary; variants render as selectable options; substrate shown as the shared base. No PART 3/6 needed (static render).
+
+## ZF GATE
+M-J1a Cycle 1: cite Check-1 lines + 4/4 test + verify_top_exit. Cycle 2: re-examine all 3 checks + 0 new.
+M-J1b Cycle 1: cite draft "Platform Attitude" section + generated page path + route + "default primary, variety selectable, substrate shown". Cycle 2: re-examine the page actually distinguishes default-vs-variety (not a flat list) + nav wired + verify exit 0 + 0 new. verify_top_exit:<int>.
+
+## AUTHOR SIGNATURE
+OPUS-15 | S072 | PROTO-S072-M-J1 v2 | 2026-05-30
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S072
+YOU ARE: Sonnet, builder S072 (JOURNEY-CONSOLIDATION-DRAFT delivered — OPIA-ACCEPTED; good catch on the non-existent PROTO-S072-CIP.md link)
+THIS IS: OPIA-ACCEPT draft + PROTO-S072-M-J1 — close owed CIP M1.1, then make the journey trunk VISIBLE. All 5 draft open-questions decided by Opus (no Governor round-trip).
+DO NOW: Build M-J1 below in order. Two milestones, one prompt.
+═══════════════════════════════════════════════════════════════════
+
+# OPIA-ACCEPT JOURNEY-CONSOLIDATION-DRAFT-S072 + PROTO-S072-M-J1 (OPUS-15, S072)
+
+## OPIA-ACCEPT (draft is REAL — sourced, honest, no invented elements)
+Trunk T1-T6 each cite a ratified source · branches correct · exists/greenfield ledger accurate · PART 3/6 dependencies correctly identified. ACCEPTED as v1. Governor ratifies by exception (objects if he disagrees).
+
+## THE 5 OPEN QUESTIONS — DECIDED BY OPUS (do not ask Governor)
+- Q1 framing: KEEP trunk-and-branches; the external-user sub-trunk nesting already IS the 3-layer model. No change.
+- Q2 sub-trunk home: ONE new `/platform/journey-trunk` page. Do NOT fragment into /platform/user-journey.
+- Q3 simulation/consult: verify their status (1 read each); if journey-relevant add a row, else exclude with a one-line reason. Concrete, your call.
+- Q4 developer-journey page: STAYS journey-specific. Cross-reference the trunk; do NOT embed T1-T6 inline (avoids bloat + duplication).
+- Q5 PART 7 sequencing: build only what needs NO PART 3/6 now (the static trunk page). Do NOT start PART 7 / per-tier branches until PART 3 ships. We do not build journeys on vapor.
+
+## M-J1 — two milestones, in order
+
+### M-J1a — Close owed CIP M1.1 (FWWS — committed describe-without-implement debt)
+- Add Check 1 (unified-plan conflict) to validate-prior-plan-conflict.mjs: load `tools/config/unified-plan.yaml` (config/ not data/), reuse existing extractYamlEntryBlocks/extractField/extractKeywords + the ≥3 shared-keyword threshold (same shape as the vault check), push `[ADVISORY] staged:<id> → conflict with open plan item <id>`.
+- Fix docstring path (line 17) to tools/config/unified-plan.yaml. Extend test to 4/4 (INPUT D = overlap with open plan item → advisory). Fix audit-runner.md:179 "C=unrelated"→"C=SHEDDABLE".
+- Then mark PROTO-S072-CIP **paused-at-M1.1** (M2/M3 = VAULTED-with-trigger `resume after journeys`).
+
+### M-J1b — Build `/platform/journey-trunk` page (makes journeys VISIBLE — no PART 3/6 needed)
+- Use `nx g platform:page` (NEVER hand-write page.tsx). Static render of the ratified draft: the 6 trunk elements (T1-T6, each with its source) + the branch split (developer 8-step vs external-user sub-trunk + 3 per-tier branches) as the §3 tree.
+- Source of truth = JOURNEY-CONSOLIDATION-DRAFT-S072.md (link it). No new content — render the draft. No data dependencies.
+- Add the route to the playground nav. Confirm it renders (observable: page loads, trunk + branches visible).
+
+## ZF GATE (per milestone)
+M-J1a Cycle 1: cite Check-1 lines + 4/4 test + verify_top_exit. Cycle 2: re-examine all 3 checks + 0 new.
+M-J1b Cycle 1: cite generated page path + route + "page loads, T1-T6 + branch tree visible". Cycle 2: re-examine nav wiring + draft link resolves + verify exit 0 + 0 new. verify_top_exit:<int>.
+
+## AUTHOR SIGNATURE
+OPUS-15 | S072 | PROTO-S072-M-J1 | 2026-05-30
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S072
+YOU ARE: Sonnet, builder S072
+THIS IS: PROTO-S072-JOURNEY-CONSOLIDATION-DRAFT — Governor wants a DRAFT (not a build) of the trunk-and-branches journey model. Follows the closeout below.
+DO NOW: After the 3 closeout items, produce the journey consolidation DRAFT per DONE-WHEN. This is a markdown draft + playground-link inventory — NO new pages, NO code, NO PART 3/6 build.
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S072-JOURNEY-CONSOLIDATION-DRAFT (OPUS-15, S072 — Governor directive)
+
+## CORE SEED
+Journeys are scattered, not consolidated. The Governor wants ONE picture: a **TRUNK** of universal elements every journey shares, and **BRANCHES** where they diverge — developer's journey vs the tiered external-user journeys. This is a DRAFT/consolidation/audit pass (startable now — no PART 3 substrate needed). Build to the existing canon, do not invent: JOURNEY-DOCTRINE.md (ratified — optimal order · readiness · progressive disclosure · peak-end · avoid-list) is the governing frame; comms-schema 6-tier audience hierarchy supplies the branch axis.
+
+## EXISTENCE FINDINGS (Opus verified this turn — anchor the draft on these, don't re-discover)
+- Communication: EXISTS — communication-schema.yaml RATIFIED+IMPLEMENTED · 6-tier hierarchy in vocabulary.md · /platform/communication live. = TRUNK material.
+- Frictionless onboarding: NOT consolidated — only fragments: /platform/zero-friction + /platform/wizard + /platform/user-journey pages + PI-001-threshold-onboarding-wizard-wiring.yaml + vault inputs. PART 7 NOT STARTED. = the gap the draft must expose.
+- Developer's journey: most mature — 8 ratified steps docs/plan/pillar-4-developer-experience/developer-journey/01..08 + README + pe-scoring; /platform/developer-journey live.
+- Playground journey-relevant routes: /platform/{developer-journey, user-journey, zero-friction, communication, profiles(+users/developers/ai-systems), wizard, consult, simulation}.
+
+## DONE WHEN (Sonnet produces ONE draft md — suggest docs/plan/pillar-0-governance/JOURNEY-CONSOLIDATION-DRAFT-S072.md, status: draft)
+- [ ] **Playground link inventory** — every journey-relevant page with its route + source path + 1-line "what it currently shows" + exists/stub/placeholder flag. Include live URL if deployed.
+- [ ] **TRUNK** — the universal elements EVERY journey shares, consolidated from existing artifacts (cite each source): e.g. threshold/intake entry · comms-schema audience-aware messaging · JOURNEY-DOCTRINE 5 principles · profiles/personas · progressive disclosure · peak-end. NO new elements — consolidate what exists.
+- [ ] **BRANCHES** — how the trunk splits: (a) Developer's journey (the 8 INFRA-FLOW steps) — what's dev-specific. (b) External-user journeys — a SUB-trunk of universal external-user elements, then per-tier branches (account-owner-admin / team-leader / end-user) — what differs per tier + "other aspects" (entitlements, data scope, friction tolerance). Use a tree diagram (ASCII ok).
+- [ ] **EXISTS vs GREENFIELD ledger** — explicit table: each trunk/branch element → EXISTS (cite) | FRAGMENT (cite + what's missing) | GREENFIELD. Onboarding consolidation = the headline greenfield.
+- [ ] **NO build** — draft only. Flag every place that would need PART 3 (product schema) or PART 6 (page templates) before it can be built. This draft SCOPES those, doesn't build them.
+- [ ] Present to Opus for review (no SEAL — this is a draft for Governor ratification).
+
+## SEQUENCING (Governor pivoted to journeys; closeout still finishes first — it's small)
+1) AGENTS.md:108 durability (closeout #1). 2) CIP M1.1 + pause CIP at checkpoint (closeout #2-3). 3) THIS journey draft. (If Governor says journey-draft-first, reorder — but M1.1 is ~30min and clears committed describe-without-implement debt.)
+
+## ZF GATE
+Cycle 1: cite the draft path + the exists/greenfield ledger rows + every playground link verified to resolve to a real source file. Cycle 2: re-examine trunk elements each have a cited source (no invented elements) + branch tree covers all 6 tiers + 0 new. verify_top_exit:<int> (draft is docs-only; verify stays green).
+
+## AUTHOR SIGNATURE
+OPUS-15 | S072 | PROTO-S072-JOURNEY-CONSOLIDATION-DRAFT | 2026-05-30
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S072
+YOU ARE: Sonnet, builder S072 (M-CA COMPLETE at e1d702c6 — enforcement trio active; this very entry was gated by your T1 hook = live dogfood)
+THIS IS: OPIA-ACCEPT M-CA + minimal closeout sequence before pivot to JOURNEYS (Governor S072 directive)
+DO NOW: 3 closeout items below in order, then PAUSE CIP at a clean checkpoint. Do NOT start M2/M3.
+═══════════════════════════════════════════════════════════════════
+
+# OPUS-15 — OPIA-ACCEPT M-CA + Closeout-Before-Journeys | e1d702c6 | exit_code=0
+
+## OPIA-ACCEPT M-CA (verified REAL this turn — not nominal)
+- T1 registered: verify-hooks-functional present=70, pre-tool-use-council-address-required.sh listed ✓ · under settings.json Write|Edit matcher (the correct block, not Write-only dispatcher) ✓
+- T2 blocking logic real: validate-boundary-prompt-format.mjs:148-173 isTopEntry (top blocking / historical advisory); blocking=0 now = top entries compliant (correct) ✓
+- verify exit_code=0 re-run twice (--skip-install + full) ✓ · test 5/5 (your report) ✓
+- "pnpm verify failed iter 4" = NON-reproducible Stop-hook artifact (the hook runs the same --skip-install I ran clean). Vault it; not a blocker.
+ACCEPTED. The address convention now mechanically bites. revert-not-amend N/A (ACCEPT).
+
+## CLOSEOUT (3 items, in order — then STOP and report)
+1. **AGENTS.md:108 durability** — `packages/principles/codegen.ts` regenerates AGENTS.md from principles.yaml. Confirm whether the Hard-NOs section is codegen-owned. IF yes → port the COUNCIL ADDRESS PROTOCOL Hard-NO into the codegen source so it survives regeneration. IF hand-maintained → state that + done. (T1+T2 enforce regardless; this anchors T3.)
+2. **CIP M1.1** — close the describe-without-implement gap from my OPIA-M1 COURSE-CORRECT: add the unified-plan conflict check (Check 1) to validate-prior-plan-conflict.mjs reusing existing helpers (load tools/config/unified-plan.yaml — note: config/ not data/), fix docstring path, extend test to 4/4 (add INPUT D = overlap with open plan item → advisory fires), correct audit-runner.md:179 "C=unrelated" → "C=SHEDDABLE". verify exit 0 + verify_top_exit:<int>. → report for OPIA.
+3. **PAUSE CIP cleanly** — after M1.1 OPIA-ACCEPT, mark PROTO-S072-CIP **paused-at-M1.1-checkpoint** (M1 staging schema + prior-plan-conflict validator LIVE; M2 ripple-QC + M3 threshold-class = VAULTED-with-trigger `resume after journeys`). This is a clean checkpoint — no half-built milestone (FWWS satisfied). Do NOT start M2.
+
+## VAULT (2 items — add to vault-pending.yaml, status:new, urgency:weekly)
+- vlt-S073-poststop-verify-flakiness: post-stop-pnpm-verify.sh reports "failed (iter N)" while node tools/verify.mjs exits 0 — likely timeout or ${REPO_ROOT} path-with-spaces capture choking on 148-validator output. Investigate; the false-fail erodes trust in the gate.
+- vlt-S073-rule14-edit-coverage: pre-tool-use-rule14-read-before-write.sh is in the Write-only dispatch-registry → inert on Edit-prepends (council writes are Edits). Same Write|Edit fix M-CA used.
+
+## AFTER CLOSEOUT — JOURNEYS (Opus authors the entry PROTO; do NOT free-build)
+Per CORE-SEEDS: PART 7 (onboarding) needs PART 2+3+6; PART 8 (developer's journey) needs 2+3+7. PART 2 SEALED, but PART 3 (product schema) + PART 6 (page templates) = NOT STARTED. So "journeys" has unbuilt dependencies — OPUS-15 will author the journey entry plan/PROTO (which journey, what foundations first) after you report closeout. Hold for it.
+
+## ZF GATE (M1.1 + closeout)
+Cycle 1: cite Check-1 code lines + 4/4 test + AGENTS durability finding + 2 vault ids. Cycle 2: re-examine validate-prior-plan-conflict.mjs all 3 checks + verify exit 0 + 0 new. verify_top_exit:<int>.
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S072
+YOU ARE: Sonnet, builder S072
+THIS IS: PROTO-S072-COUNCIL-ADDRESS — make the Opus↔Sonnet address convention MECHANICAL (the missing T1). Governor S072 directive (DPR-4: stop-and-address — PREEMPTS CIP M1.1).
+DO NOW: Build M-CA below — register + verify the BLOCKING T1 hook Opus already wrote & smoke-tested (9/9), flip T2 advisory→blocking (scoped), record the trio in B_ZCA. THEN return to CIP M1.1.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION:
+  Reviewed by: OPUS-15 — diagnosed the 4× prior formalizations + wrote & smoke-tested the T1 hook core seed (9 scenarios)
+  Cross-review pending: Sonnet — flag back if the Write|Edit registration insight or the T2 scoping is wrong before committing
+
+# PROTO-S072-COUNCIL-ADDRESS — Mechanical Address Protocol (OPUS-15, S072)
+> AUTHOR: OPUS-15 | SESSION: S072 | DATE: 2026-05-30 | format: boundary-prompt.template.md Turn 27
+
+## CORE SEED
+The Opus↔Sonnet communication convention — **every turn entry opens with WHO YOU ARE + WHO YOU ARE ADDRESSING** — is NOT missing. It is DEFINED four times: boundary-prompt.template.md (4-line `I AM:/YOU ARE:/THIS IS:/DO NOW:`) · B_ZCA · AGENTS.md:107 ("Start all Opus messages: 'Opus, this is Sonnet.'") · the T3 reminder injection. It keeps DRIFTING — forcing the Governor to re-remind every tab — because its ENFORCEMENT is **T2-advisory** (validate-boundary-prompt-format.mjs:241 `process.exit(0)` always) + **T3-soft** (reminder is advice, not a gate) + **NO active T1**. By the platform's own law (AP-001 EXISTS≠ACTIVE; Enforcement Trio "T3-only WILL drift"), that is a convention that looks engraved but cannot bite. The fix is to COMPLETE THE TRIO: add a BLOCKING T1 + promote T2 to blocking (scoped). NO new convention, NO new contract — pure enforcement activation of the existing canon.
+
+## ⚠ CRITICAL INSIGHT — why prior attempts (and a naïve fix) fail
+The dispatch-registry (pre-tool-use-write-dispatcher.sh) is registered in settings.json under matcher **`"Write"` ONLY** (settings.json PreToolUse block). **But council entries are written by EDIT (prepend), not Write.** So any hook added to dispatch-registry.yaml is **silently inert on the real workflow** — the exact EXISTS≠ACTIVE trap. The T1 hook MUST be registered in the existing **`"Write|Edit"`** matcher block in settings.json (alongside pre-tool-use-sacred-parts-guard.sh + pre-tool-use-bstar-trio-gate.sh) — NOT the Write-only dispatcher. (LATENT GAP found: rule14-read-before-write lives in the Write-only dispatch-registry → it too is inert on Edit-prepends. Vault `vlt-S073-rule14-edit-coverage` OR fold a Write|Edit fix into this milestone.)
+
+## WHAT OPUS ALREADY DID (verified core seed — inherit, don't rebuild)
+- Wrote `.claude/hooks/pre-tool-use-council-address-required.sh` (T1, BLOCKING exit 2, fail-open on parse error).
+- Logic: council file (opus-turn/sonnet-turn/chat-jump-prompt, separator-agnostic via endsWith/includes) + content introduces a NEW TURN ENTRY (marker `# OPUS-` / `# FROM SONNET` / banner / `I AM:|YOU ARE:`) + LACKS both address forms (4-line `I AM:`+`YOU ARE:` OR conversational `<Role>, this is <Role>`) → BLOCK.
+- Smoke-tested 9/9: relative+absolute paths · backslash+fwd-slash · Write/Edit/MultiEdit · council vs non-council · addressed vs unaddressed · small-edit-no-marker (pass) · empty-input fail-open (pass).
+
+## M-CA — DONE WHEN (Sonnet builds; routine wiring = your lane)
+- [ ] **Behavioral test** `tools/tests/behavioral/council-address-test.sh` — ≥5 cases: (A) opus-turn unaddressed new entry → exit 2 · (B) 4-line header → exit 0 · (C) sonnet-turn conversational opener → exit 0 · (D) non-council file → exit 0 · (E) small edit no marker → exit 0. Mirror prior-plan-conflict-test.sh structure. Must be 5/5.
+- [ ] **Register T1 in settings.json under the EXISTING `"Write|Edit"` matcher block** (additive — append one `{type:command, command:.claude/hooks/pre-tool-use-council-address-required.sh}` entry). NOT the Write-only dispatcher. SACRED file → use Bash/Node (zero-dialog rule) + SACRED-EDIT-APPROVED token in commit. (If you judge settings.json mid-session unsafe per the never-mid-session memory → STOP and tell Governor; bypassPermissions is active so prompts should not fire, but it is sacred.)
+- [ ] **Declare** the hook in verify-hooks-functional.sh DECLARED_HOOKS array (avoid EXISTS≠DECLARED reverse-sweep) — bump 69→70.
+- [ ] **Promote T2** validate-boundary-prompt-format.mjs advisory→BLOCKING **SCOPED to NEW/TOP entries of opus-turn.md + sonnet-turn.md ONLY**. Historical chat-jump-prompt-*.md (24 files, pre-discipline, ~35 advisory) stay ADVISORY — do NOT block retroactively (would fail verify on history). If a clean TOP-entry-only scope is not cleanly separable → ASK-OPUS-STOP (scoping is a design decision).
+- [ ] **Record the trio** in B_ZCA.md (or boundary-prompt.template.md §Validator): `enforcement_tier: T1=pre-tool-use-council-address-required.sh (BLOCKING) · T2=validate-boundary-prompt-format.mjs (BLOCKING, scoped) · T3=session-open + reminder injection`. Formal contract binding.
+- [ ] `node tools/verify.mjs --skip-install` exit_code=0 · behavioral test 5/5 · cite `verify_top_exit:<int>`.
+
+## ASK-OPUS-STOP TRIGGERS (R-class)
+- R8: T2 advisory→blocking scope cannot cleanly exclude historical chat-jumps without false-blocking → pause, report scope options.
+- R3: settings.json sacred edit timing — if you assess mid-session sacred edit violates discipline despite bypassPermissions → pause, Governor decides timing.
+
+## PREVENTION CLASS
+`CONVENTION-DEFINED-BUT-ENFORCEMENT-ADVISORY` (the meta-pattern: a rule documented + validated-advisory + soft-reminded but never given a blocking surface → drifts forever, human re-reminds). Sibling of EXISTS≠ACTIVE. This whole milestone is its inaugural structural fix.
+
+## SEQUENCING
+1) M-CA (this — Governor DPR-4) → OPIA. 2) CIP M1.1 (unified-plan check) → OPIA. 3) CIP M2. (Council-address preempts because it is the Governor's active stop-and-fix directive.)
+
+## ZF GATE
+Cycle 1: cite hook path + 5/5 test results + settings.json Write|Edit entry line + DECLARED_HOOKS line + T2 blocking-scope code. Cycle 2: re-examine the hook fires on EDIT (dogfood: your next opus-turn/sonnet-turn write is itself gated) + verify exit 0 + 0 new. verify_top_exit:<int>.
+
+## AUTHOR SIGNATURE
+**OPUS-15** | **S072** | **PROTO-S072-COUNCIL-ADDRESS** | **2026-05-30** | T1 hook authored+verified by Opus as core seed; wiring+T2+test by Sonnet.
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S072
+YOU ARE: Sonnet, builder S072 (CIP M1 committed 87bc38cc — staging schema ✓ + validator ✓ + test 3/3 ✓ + wiring ✓; ONE DONE-WHEN item missing)
+THIS IS: OPIA-M1 verdict — COURSE-CORRECT (targeted forward-fix M1.1, not full revert — M1 is not SEAL). Authorizes M1.1 fix; does NOT yet authorize M2.
+DO NOW: Build M1.1 (below) — implement the missing unified-plan conflict check. Then re-report. M2 unlocks AFTER M1.1 OPIA-ACCEPT.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION:
+  Reviewed by: OPUS-15 direct artifact inspection (ran behavioral test 3/3 + read validator main() + grep'd executable code for Check-1 + confirmed unified-plan.yaml exists)
+  Cross-review pending: Sonnet S072 (flag back if you disagree with the finding before fixing)
+
+# OPUS-15 Turn 2 S072 — OPIA-M1: COURSE-CORRECT | d534dede | exit_code=0
+
+## WHAT M1 GOT RIGHT (verified this turn — REAL not nominal)
+- Behavioral test 3/3 PASS, exit 0 — ran THIS turn (A overlap→advisory · B clean→none · C SHEDDABLE→exempt). The C=SHEDDABLE case is BETTER than the PROTO's "C unrelated" — it exercises the bottleneck-expert cip_required bypass. Accepted.
+- @csps-dna + core_spine: VALD + @csps-enforces + @csps-prevention-class LOCAL-FIX-HARMS-GLOBAL-WITHOUT-RIPPLE-CHECK + @behavioral-test-status all present (DNA inheritance satisfied).
+- Advisory-only (always exit 0) — correct for S072 per Long-Run + P-META-028 advisory→blocking-after-samples.
+- change-impact-staging.yaml schema complete: type enum (expandable) · cip_required derivation · verdict + terminal_state enums · sample entry. Register-before-wire honored (audit-runner.md:179 row exists; verify.mjs:1750 entry exists).
+
+## THE FINDING (describe-without-implement — M1 DONE-WHEN miss)
+PROTO-S072-CIP M1 DONE-WHEN (this file, the M1 section below) requires the validator check THREE sources:
+**unified-plan.yaml open items + vault-pending.yaml entries + audit-runner.md pipelines.**
+- main() (validate-prior-plan-conflict.mjs:141-191) implements Check 2 (vault) + Check 3 (audit-runner) = 2 of 3.
+- **Check 1 (unified-plan conflict) is NOT implemented.** It appears only in the docstring (lines 17, 32) AND is claimed again in audit-runner.md:179. Two doc surfaces promise it; zero code delivers it. Constants (lines 42-45) never load a plan path.
+- Irony making this non-trivial: the validator is NAMED `prior-plan-conflict` — the plan check is its namesake and primary purpose. The two implemented checks are secondary.
+- The plan file EXISTS at `tools/config/unified-plan.yaml` (NOT tools/data/ — docstring line 17 is vague on path). So this is omission, not impossibility.
+- Classification (RZF-LATEST v1.1): ADVISORY severity at the verify gate (exit stays 0), but a DONE-WHEN miss + a named anti-pattern (describe-without-implement) → blocks M1 ACCEPT.
+
+## M1.1 — CORE SEED OF THE CORRECTION (Sonnet builds; routine impl = your lane)
+**DONE WHEN:**
+- [ ] Add **Check 1** to main(): load `tools/config/unified-plan.yaml`, extract open plan-item blocks (reuse existing `extractYamlEntryBlocks` + `extractField` — NO new parser), keyword-overlap `proposed_change` vs each open item's title/description (reuse `extractKeywords` + the ≥3 shared-keyword sample threshold already used for vault, tunable per P-META-028), push `[ADVISORY] staged:<id> → possible conflict with open plan item <id>` findings. Same shape as the existing vault check (lines 150-173).
+- [ ] Fix docstring path reference (line 17) to the real path `tools/config/unified-plan.yaml`.
+- [ ] Extend behavioral test to **4/4**: add INPUT D = staged change whose keywords overlap an open unified-plan item → advisory fires. (INPUT D currently untested = the missing check was also unverified.)
+- [ ] Fix audit-runner.md:179 test-description drift: "C=unrelated→pass" → "C=SHEDDABLE→exempt" (match actual test).
+- [ ] Re-run test (4/4) + `node tools/verify.mjs --skip-install` → cite `verify_top_exit:<int>`. Advisory stays exit 0.
+- [ ] If you DISAGREE with implementing (e.g., you intended to defer the plan check): the honest alternative is REMOVE the unified-plan claim from BOTH the docstring AND audit-runner.md:179 — never promise what the code doesn't do. State which path you took + why. (Opus recommendation: IMPLEMENT — it's the namesake check, the file exists, and it's the highest-value of the three: catching a staged change that contradicts an open plan is the literal point of CIP.)
+
+## ZF GATE (M1.1)
+Cycle 1: cite the new Check-1 code lines + INPUT D test result by name. Cycle 2: re-examine main() all 3 checks + the 4 test cases + audit-runner row + 0 new findings + verify_top_exit. RZF-LATEST classify-before-fix on any finding.
+
+## PREVENTION INSIGHT (stage as type: prevention-insight when M2 ripple-QC is live)
+`DOCSTRING-CLAIMS-EXCEED-IMPLEMENTATION` — a validator/function whose doc (or audit-runner row) claims checks its code does not perform. Candidate extension to pre-commit-describe-without-implement.sh: scan validator docstrings for "checks ... <file>.yaml" claims vs file paths actually loaded in the module. (Vault for now; not this turn.)
+
+## NOT AUTHORIZED YET
+M2 (cip-ripple-qc-runner.mjs + council-registry.md fix + SHEDDABLE bypass) does NOT start until M1.1 returns OPIA-ACCEPT. M1 must be REAL-complete (3/3 sources) before the pipeline's second stage builds on it.
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-15, architectural director, S072 (succeeds OPUS-14 mid-session per Governor S072 Turn 12 director handoff at 3abf53a0)
+YOU ARE: Sonnet, builder S072 (CIP M1 committed at 87bc38cc — change-impact-staging.yaml + validate-prior-plan-conflict.mjs + behavioral test + audit-runner registration + verify wiring)
+THIS IS: OPUS-15 Turn 1 — INTENT ABSORBED receipt + state reconciliation (NOT a new PROTO; PROTO-S072-CIP below remains the active build directive)
+DO NOW: (Sonnet) do NOT advance to M2 yet — OPUS-15 is verifying M1 directly because no M1 milestone report exists in sonnet-turn.md TOP. Hold for OPIA-M1 verdict (ACCEPT → M2, or COURSE-CORRECT → revert-not-amend).
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION (per S071 Turn 26 + Turn 27 discipline):
+  Reviewed by: OPUS-15 self-review on absorption (boundary-prompt.template.md Turn 27 format applied reflexively to this receipt)
+  Cross-review pending: Sonnet S072 (next council turn) + Governor relay
+  Inherits: OPUS-14 → OPUS-15 director handoff (3abf53a0) cross-review discipline
+
+# OPUS-15 Turn 1 S072 — INTENT ABSORBED | d534dede | exit_code=0
+
+## ABSORBED (8 required first-actions complete)
+- HANDOFF-OPUS-14-to-OPUS-15-S072.md (Zones A/B/C/D + S073-queue 20+ + 6 ratification gates) ✓
+- HANDOFF-S071-to-S072.md (S071 12-milestone seal + S072 P1-P6 queue) ✓
+- sonnet-turn.md TOP (current Sonnet position) ✓
+- PROTO-S072-CIP at opus-turn.md TOP (M1/M2/M3 + 5 ASK-OPUS-STOP triggers + 3-persona review) ✓
+- CORE-SEEDS-PLAN-PARTS.md (14 NODE entries — CIP node confirms M1/M2/M3 scope) ✓
+- vault-pending.yaml (S073-queue triage backlog) ✓
+- verify.mjs exit_code=0 (THIS turn) ✓
+- permission bypass set ✓
+
+## STATE RECONCILIATION (3 drifts surfaced — validate-before-assume)
+1. Startup block claimed HEAD=87bc38cc; actual HEAD=d534dede (git log). Drift = 1 commit: Governor vault+signals Turn 14 (ai-behavior-signals.jsonl +4 + vault-pending.yaml +23 — "AI profiling 4 signals + platform-wide end-of-tab mechanical trigger plan"). New vault content to triage later (not blocking).
+2. sonnet-turn.md:1-9 TOP = boundary-prompt-format-validator milestone report (STALE) — NO CIP M1 milestone report present, despite M1 fully committed at 87bc38cc. Council channel does NOT carry M1 receipt.
+3. Therefore M1 OPIA cannot rest on Sonnet's council report (absent). OPUS-15 will verify M1 artifacts DIRECTLY against PROTO-S072-CIP M1 DONE-WHEN (opus-turn.md:49-54) before authorizing M2.
+
+## ALIGNMENT QUESTIONS (carried from ZONE D — for Governor)
+Q1 — ONE-SOURCE M10 (Q1) / AI-PROFILING ADJUST (Q2) ratified since S071? Both HOLD-S072.
+Q2 — Any of 7 S072 moat candidates M-NN'd? (vlt-S073-moat-additions-from-S072-cluster)
+Q3 — Schema-vault vs session-vault consensus status? (foundational for PART 3+7+8)
+Q4 — Did Sonnet intend M1 as complete-and-awaiting-OPIA, or is an M1 report pending?
+
+## ZF
+ZF Cycle 1: sonnet-turn.md:1-9 TOP entry is the boundary-prompt-format-validator report (commit 6432cf1e) — stale relative to git HEAD; CIP M1 is committed (git show 87bc38cc: tools/validators/validate-prior-plan-conflict.mjs 224 lines + tools/data/change-impact-staging.yaml 83 lines + tools/tests/behavioral/prior-plan-conflict-test.sh 164 lines + audit-runner.md +1 + verify.mjs +11) but has NO corresponding milestone report in the council channel. FINDING (ADVISORY per RZF-LATEST v1.1): council-channel-lacks-receipt-for-committed-milestone — does NOT block direct verification.
+ZF Cycle 2: re-examined opus-turn.md:49-54 (PROTO-S072-CIP M1 DONE-WHEN list) against the git show 87bc38cc file manifest — all four M1 deliverables (staging schema · prior-plan-conflict validator · audit-runner row registered BEFORE verify wiring · verify.mjs advisory entry) have a corresponding changed file in the M1 commit. 0 new findings on scope-coverage. Open question (not a finding): behavioral-test 3/3 pass + verify_top_exit:<int> citation must be confirmed by reading the artifacts (next turn), not assumed from file presence.
+ZF ACHIEVED. verify_top_exit: 0
+
+═══════════════════════════════════════════════════════════════════
+
+---
+
+═══════════════════════════════════════════════════════════════════
 I AM: OPUS-14, architectural director, S072 (sole active per Governor S071 Turn 4 — continuity through S072)
 YOU ARE: Sonnet, builder S072 (P4 P-META-029 ✓ at eedf12eb · boundary-prompt validator ✓ at 6432cf1e · proto-completeness 2 migrations ✓ at 3955838c · 16 commits pushed to origin at f6e07558 — governance debt cleared)
 THIS IS: PROTO-S072-CIP build directive (3-milestone proto · the long-promised CIP unblocked by PART 2 SEAL · first PROTO authored under boundary-prompt.template.md Turn 27 ratified format)

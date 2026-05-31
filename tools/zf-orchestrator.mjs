@@ -184,15 +184,16 @@ async function runLevel3() {
   // Schema consistency: ZModel vs Prisma for key models
   const tenantZmodel = existsSync(join(ROOT, 'libs/policies/slices/public/tenant.zmodel'))
     ? readFileSync(join(ROOT, 'libs/policies/slices/public/tenant.zmodel'), 'utf8') : '';
-  const sandboxPrisma = existsSync(join(ROOT, 'apps/sandbox/prisma/schema.prisma'))
-    ? readFileSync(join(ROOT, 'apps/sandbox/prisma/schema.prisma'), 'utf8') : '';
+  // S073: apps/sandbox was vaulted to _trials-vaulted/sandbox; use active generated schema instead.
+  const generatedPrisma = existsSync(join(ROOT, 'libs/policies/generated/schema.prisma'))
+    ? readFileSync(join(ROOT, 'libs/policies/generated/schema.prisma'), 'utf8') : '';
 
   // Check subscriptionStatus is in both
-  if (tenantZmodel.includes('subscriptionStatus') && !sandboxPrisma.includes('subscriptionStatus')) {
-    findings.push({ severity: 'BLOCKING', source: 'schema-consistency', count: 1, text: 'tenant.zmodel has subscriptionStatus but Prisma schema does not' });
+  if (tenantZmodel.includes('subscriptionStatus') && !generatedPrisma.includes('subscriptionStatus')) {
+    findings.push({ severity: 'BLOCKING', source: 'schema-consistency', count: 1, text: 'tenant.zmodel has subscriptionStatus but generated Prisma schema does not' });
   }
-  if (!tenantZmodel.includes('subscriptionStatus') && sandboxPrisma.includes('subscriptionStatus')) {
-    findings.push({ severity: 'WARN', source: 'schema-consistency', count: 1, text: 'Prisma schema has subscriptionStatus but ZModel does not' });
+  if (!tenantZmodel.includes('subscriptionStatus') && generatedPrisma.includes('subscriptionStatus')) {
+    findings.push({ severity: 'WARN', source: 'schema-consistency', count: 1, text: 'Generated Prisma schema has subscriptionStatus but ZModel does not' });
   }
 
   // Scale check: surface as advisory

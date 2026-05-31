@@ -1263,10 +1263,21 @@ const CYCLES = [
     // S070 M1: Communication Schema coverage — 8 situations + 6 tiers + 9 B_* contracts
     // ADVISORY (draft — not blocking until Governor ratifies communication-schema.yaml)
     // Reads: docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml
+    // S073 B4: ANTI-FLOAT T2 sweep — scans docs/plan + docs/SIA for floaters w/o closure obligation
+    // DEEP (860+ file corpus, non-cornerstone). ADVISORY baseline=27. PROTO-S073-B4.
+    run_tier: 'DEEP',
+    name: 'no_floating_artifacts',
+    command: 'node tools/validators/validate-no-floating-artifacts.mjs',
+    skip: true,
+    skip_reason: 'run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3',
+    parse_output: (out) => {
+      const m = out.match(/floaters_found=(\d+)\s+missing_obligation=(\d+)\s+overdue=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { floaters_found: Number(m[1]), missing_obligation: Number(m[2]), overdue: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
     // S073 B0: Core Spine Registry template validator — 8-section schema + wiring_map resolution
-    // DEFERRED-WITH-REASON: pnpm-verify-cycles at hard_limit 200 (platform-capacity BLOCKING).
-    // Run manually: node tools/validators/validate-core-spine-template.mjs
-    // Promotes to active cycle when pnpm verify tiering is implemented (P-META-028 tunable).
+    // DEFERRED: pnpm-verify-cycles at hard_limit (DEEP tier + skip). Run manually.
     name: 'core_spine_template',
     command: 'node tools/validators/validate-core-spine-template.mjs',
     skip: true,

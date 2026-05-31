@@ -5,7 +5,7 @@
 # Source: packages/principles/principles.yaml
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
-  total_count: 70
+  total_count: 71
   generated_at: '2026-05-31'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
@@ -323,6 +323,11 @@ principles:
     category: meta-governance
     severity: critical
     path: ./principles/P-META-029-humble-consolidation-discipline.yaml
+  - id: P-META-030
+    name: closure-obligation
+    category: meta-governance
+    severity: critical
+    path: ./principles/P-META-030-closure-obligation.yaml
   - id: P-ARCH-028
     name: csps-core-spines
     category: architecture

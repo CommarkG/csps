@@ -139,16 +139,16 @@ spines:
         status: ACTIVE
       - file: tools/data/floating-artifacts-register.yaml
         role: "ANTI-FLOAT register — closure obligation discipline, all floaters tracked (T4+T7)"
-        status: PLANNED
-        target_batch: B4
+        status: ACTIVE
+        promoted: S073-B4
       - file: apps/csps-playground/src/app/platform/accountability/page.tsx
         role: "/platform/accountability — renders this spine from the registry (default+variety)"
-        status: PLANNED
-        target_batch: B3
+        status: ACTIVE
+        promoted: S073-B3
       - file: docs/plan/pillar-0-governance/escalation-ladder.md
         role: "Escalation ladder — unresolved obligations path to higher authority (T7)"
-        status: PLANNED
-        target_batch: B4
+        status: ACTIVE
+        promoted: S073-B4
     # ── 5. tier_permission ───────────────────────────────────────────────────
     # Per-actor tier permissions — NOT one-size-fits-all.
     tier_permission:

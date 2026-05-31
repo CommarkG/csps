@@ -117,6 +117,7 @@ readonly -a DECLARED_HOOKS=(
   "pre-tool-use-council-address-required.sh"
   "post-tool-use-proto-inline.sh"
   "post-tool-use-sonnet-relay-inline.sh"
+  "pre-tool-use-closure-obligation-required.sh"
 )
 
 echo "[verify-hooks-functional] ACTIVE S041 — checking ${#DECLARED_HOOKS[@]} hooks"

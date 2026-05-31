@@ -268,6 +268,15 @@
             "command": ".claude/hooks/pre-commit-validator-test-required.sh"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-bash-governed-write-guard.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [

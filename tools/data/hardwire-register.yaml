@@ -1,0 +1,42 @@
+id: csps.data.hardwire-register
+name: hardwire-register
+description: >
+  Registry of all HARDWIRE items — things the Governor has invoked HARDWIRE for. HARDWIRE = 7-surface treatment: T1
+  BLOCKS + T2 exits 1 + T3 session-open fires + BLOCK-TEST pasted + SP-registry entry + audit-runner registered + verify
+  exits 0. No HARDWIRE-DONE claim until all 7 surfaces present AND block_test_output recorded. Source:
+  PROTO-S074-HARDWIRE-BUILD BATCH 2 (H1). Code word: Governor says HARDWIRE [X].
+version: '1.0'
+session: S074
+authored_by: Sonnet S074
+core_spine: GVRN
+schema_anchor: vault_files
+closure_owner: group:finky
+closure_decision: Living register — add rows per HARDWIRE invocation
+closure_by: ongoing
+rows:
+  - id: hardwire-001
+    thing: HARDWIRE protocol itself (meta — the protocol governs its own engraving)
+    governor_invocation: 'S074 emergency directive: HARDWIRE the permanent-default pattern'
+    surfaces:
+      t1_hook: pre-tool-use-bash-governed-write-guard.sh (BATCH 3 — blocks Bash on council files)
+      t2_validator: validate-hardwire-completeness.mjs (this validator)
+      t3_session: 'session-open.sh: HARDWIRE reminder + satisfaction-point-registry T3'
+      sp_registry_entry: hardwire-item-complete
+      audit_runner_row: hardwire_completeness (BATCH 2 — to be registered)
+    block_test_output: >
+      [validate-hardwire-completeness] BATCH 2 BLOCK-TEST: row id=hardwire-TEST-DUMMY: block_test_output is empty —
+      HARDWIRE-DONE claim blocked. blocking=1 advisory=0 EXIT:1
+    status: hardwire-done
+    session_sealed: S074
+  - id: hardwire-002
+    thing: council-file write via Write/Edit tool (formal relay channel)
+    governor_invocation: 'S074: HARDWIRE the council file write mechanism'
+    surfaces:
+      t1_hook: pre-tool-use-bash-governed-write-guard.sh (BATCH 3)
+      t2_validator: post-tool-use-proto-inline.sh fixed to use stdin (BATCH 3)
+      t3_session: 'session-open.sh: FORMAL-PROTO-CHANNEL T3 + SATISFACTION-POINT-REGISTRY T3'
+      sp_registry_entry: council-file-written
+      audit_runner_row: proto_inline_relay (BATCH 3)
+    block_test_output: PENDING — BATCH 3 block-test output to be pasted here
+    status: in-progress
+    session_sealed: null

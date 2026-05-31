@@ -1,7 +1,7 @@
 {
-  "files_checked": 637,
-  "findings": 8425,
-  "advisory": 8425,
+  "files_checked": 654,
+  "findings": 8663,
+  "advisory": 8663,
   "blocking": 0,
   "all_findings": [
     {
@@ -89,6 +89,69 @@
       "level": "advisory"
     },
     {
+      "file": "docs/plan/pillar-0-governance/ACCOUNTABILITY-HUB-PLAN-S072.md",
+      "line": 60,
+      "content": "4. **Handoff-attestation** — every boundary crossing (Opus↔Sonnet, session→session, AI→human) emits ",
+      "number": "17",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/ACCOUNTABILITY-HUB-PLAN-S072.md",
+      "line": 81,
+      "content": "**GAPS (what lets DNA escape):** (1) apps/ + external-user artifacts = ADVISORY not BLOCKING — can s",
+      "number": "4",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/ACCOUNTABILITY-HUB-PLAN-S072.md",
+      "line": 141,
+      "content": "- balance-expert: 8 mandatory sections risks nobody creating spines → the ENGINE auto-generates the ",
+      "number": "8",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/ACCOUNTABILITY-HUB-PLAN-S072.md",
+      "line": 145,
+      "content": "- SEED-ENGINE: \"A core spine is CREATED, not authored — the engine reads the registry, routes intent",
+      "number": "8",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/ACCOUNTABILITY-HUB-PLAN-S072.md",
+      "line": 146,
+      "content": "- SEED-ACCT-TRUNK: the 7 invariants (single-owner · path-to-terminal · evidence-at-closure · trigger",
+      "number": "7",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/ACCOUNTABILITY-HUB-PLAN-S072.md",
+      "line": 150,
+      "content": "- BATCH 0 — FOUNDATION [VALD/ARCH]: designate/extend SPINE-PILLAR-MAP as the Platform Architecture M",
+      "number": "8",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/ACCOUNTABILITY-HUB-PLAN-S072.md",
+      "line": 152,
+      "content": "- BATCH 2 — REAL-TIME-SAVE [ARCH/OPER]: `libs/process-state` resumable store + apply to the creator ",
+      "number": "8",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/ACCOUNTABILITY-HUB-PLAN-S072.md",
+      "line": 153,
+      "content": "- BATCH 3 — ACCOUNTABILITY AS FIRST SPINE [GVRN]: author accountability THROUGH the wired engine — t",
+      "number": "7",
+      "level": "advisory"
+    },
+    {
+      "file": "docs/plan/pillar-0-governance/ACCOUNTABILITY-HUB-PLAN-S072.md",
+      "line": 154,
+      "content": "- BATCH 4 — ANTI-FLOAT RELEASED [VALD]: build ANTI-FLOAT as accountability's artifact-closure limb (",
+      "number": "4",
+      "level": "advisory"
+    },
+    {
       "file": "docs/plan/pillar-0-governance/adr-process.md",
       "line": 41,
       "content": "Michael Nygard's 2011 ADR pattern is the canonical reference; Martin Fowler popularized it via [mart",
@@ -150,70 +213,7 @@
       "content": "- The discipline scales: 100 future agents → same protocol; no per-agent custom alignment",
       "number": "100",
       "level": "advisory"
-    },
-    {
-      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
-      "line": 335,
-      "content": "All 16 existing SKILL.md (7 packages/skills + 9 .claude/skills) currently have only the 7-field AAP ",
-      "number": "16",
-      "level": "advisory"
-    },
-    {
-      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
-      "line": 340,
-      "content": "- Phase 1: 2 new fields scanned; missing → warn (logged but exit_code 0); existing 7 fields → error ",
-      "number": "7",
-      "level": "advisory"
-    },
-    {
-      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
-      "line": 345,
-      "content": "1. **S010 (this engraving):** schema + validator + hook + memory + contract surfaces updated atomica",
-      "number": "5",
-      "level": "advisory"
-    },
-    {
-      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
-      "line": 346,
-      "content": "2. **S011 backfill pass:** retrofit all 16 SKILL.md with `principle_compliance` + `consolidation_cro",
-      "number": "16",
-      "level": "advisory"
-    },
-    {
-      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
-      "line": 347,
-      "content": "3. **S012 promotion:** validator warn → error; `aap-9-field-coverage` audit slug status promoted; ve",
-      "number": "16",
-      "level": "advisory"
-    },
-    {
-      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
-      "line": 348,
-      "content": "4. **Forward:** all new agents (Class A SKILL.md / Class B spawn templates / Class C zmodel / Class ",
-      "number": "9",
-      "level": "advisory"
-    },
-    {
-      "file": "docs/plan/pillar-0-governance/agent-alignment-protocol.md",
-      "line": 367,
-      "content": "- User S005 turn 25 directive — no wildcards mandate",
-      "number": "25",
-      "level": "advisory"
-    },
-    {
-      "file": "docs/plan/pillar-0-governance/ai-behavior-improvement-plan.md",
-      "line": 4,
-      "content": "description: Comprehensive plan for mechanically enforcing AI behavior discipline in CSPS. Covers th",
-      "number": "6",
-      "level": "advisory"
-    },
-    {
-      "file": "docs/plan/pillar-0-governance/ai-behavior-improvement-plan.md",
-      "line": 28,
-      "content": "read_protocol: \"L1 = 6 AI defaults + mechanical measures. L2 = INTERNAL_DEEP_REVIEW protocol + Opus ",
-      "number": "6",
-      "level": "advisory"
     }
   ],
-  "ran_at": "2026-05-29T23:20:50.379Z"
+  "ran_at": "2026-05-31T22:14:19.445Z"
 }

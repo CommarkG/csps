@@ -35,6 +35,8 @@ Skills auto-load with full detail when their domain is referenced. List below is
 
 ### Governance + workflow
 - ❌ **Freestyle startup blocks are PROHIBITED (S059 Governor directive):** Never write a startup block for a new Opus or Sonnet tab from memory or chat. Always run `node tools/scripts/generate-startup-block.mjs` — it generates the correct block from current platform state. Freestyle blocks = inconsistent, incomplete, unverifiable. The generated files are at `.csps/startup-blocks/opus-startup.txt` and `.csps/startup-blocks/sonnet-startup.txt`.
+- ❌ **HARDWIRE — S074 code word:** `HARDWIRE [X]` = 7 surfaces: T1 BLOCKS + T2 exits-1 + T3 fires + BLOCK-TEST pasted + SP-registry entry + audit-runner row + verify=0. No HARDWIRE-DONE until `validate-hardwire-completeness.mjs` exits 0. Register: `tools/data/hardwire-register.yaml`.
+- ❌ **Satisfaction-point-registry — S074 (kills D7):** DONE = `verify_mechanically` passes (exits 0), NOT "code written." Registry: `tools/data/satisfaction-point-registry.yaml`. `validate-satisfaction-point-coverage.mjs` BLOCKS if empty. Covers: council-write · T1-hook · B*-contract · proto-relay · handoff · plan-step · HARDWIRE-item.
 - ❌ **Conceptual DONE is not DONE (S059 Governor directive):** Never declare something fixed without naming and running the observable verification test. "session-open.sh updated" ≠ DONE. "New tab opened, zero popups observed" = DONE. Every DONE claim requires a measurable final result, not a description of what was changed. See `memory/feedback_satisfaction_point_final_result.md`.
 - ❌ Never edit `AGENTS.md` directly — edit [`packages/principles/principles.yaml`](packages/principles/principles.yaml) + run `pnpm principles:codegen`
 - ❌ Never edit `nav.js`, `styles.css` Design Attitudes section, or `platform/templates/vault/*.html` without: (1) showing the exact diff, (2) stating which pages are affected, (3) receiving explicit Governor YES. (Sacred Elements — 1C ratified Opus Turn 96)
@@ -194,7 +196,5 @@ See [agents-navigation.md](docs/plan/pillar-0-governance/agents-navigation.md) f
 ## Per-directory cascade + update workflow
 Per-app (`apps/<scope>/<name>/AGENTS.md`) and per-package (`packages/<name>/AGENTS.md`) extend with scope-specific rules. Inheritance: AGENTS.md cascade + shared MCP (`csps-principles-mcp`) + Mastra `BaseAgent` + audit-runner.
 **Do not edit `AGENTS.md` directly.** Generated from [`packages/principles/principles.yaml`](packages/principles/principles.yaml) via `pnpm principles:codegen`. Workflow: edit principles.yaml → run codegen → commit both. CI fails if drift. Manual maintenance until codegen ships (week-4 build-order.md).
-## Compact + session boundaries (B_TOKEN_BUDGET R3+R4)  
-- `/compact <focus>` at IMPL_BATCH boundaries; `/clear` between unrelated tasks (domain change → session boundary; P-META-014).
-- Cardinal: tokens are INVESTMENT in reasoning quality, NOT budget to minimize.
-## Open frontiers — [`docs/plan/pillar-6-operations-and-delivery/open-frontiers.md`](docs/plan/pillar-6-operations-and-delivery/open-frontiers.md) tracks items not yet final. Don't lock in behavior on those without checking latest state.
+## Compact + session boundaries — `/compact <focus>` at IMPL_BATCH boundaries; tokens = INVESTMENT in reasoning quality, NOT budget to minimize. B_TOKEN_BUDGET R3+R4 · P-META-014.
+## Open frontiers — [`open-frontiers.md`](docs/plan/pillar-6-operations-and-delivery/open-frontiers.md) tracks items not yet final.

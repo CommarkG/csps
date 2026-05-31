@@ -1263,6 +1263,30 @@ const CYCLES = [
     // S070 M1: Communication Schema coverage — 8 situations + 6 tiers + 9 B_* contracts
     // ADVISORY (draft — not blocking until Governor ratifies communication-schema.yaml)
     // Reads: docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml
+    // S074 H1: HARDWIRE completeness — BLOCKING if any hardwire-done row has empty block_test_output.
+    // Ensures HARDWIRE-DONE claims are supported by pasted BLOCKED output (not inferred). STANDARD tier.
+    // Source: PROTO-S074-HARDWIRE-BUILD BATCH 2. Tools: hardwire-register.yaml.
+    name: 'hardwire_completeness',
+    command: 'node tools/validators/validate-hardwire-completeness.mjs',
+    run_tier: 'STANDARD',
+    parse_output: (out) => {
+      const m = out.match(/rows=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { rows: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // S074 H4: Satisfaction-point-coverage — BLOCKING if any registry entry has empty verify_mechanically.
+    // Kills D7 (action-bias): "content written" ≠ done. STANDARD tier.
+    // Source: PROTO-S074-HARDWIRE BATCH 1. Tools: satisfaction-point-registry.yaml.
+    name: 'satisfaction_point_coverage',
+    command: 'node tools/validators/validate-satisfaction-point-coverage.mjs',
+    run_tier: 'STANDARD',
+    parse_output: (out) => {
+      const m = out.match(/entries=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { entries: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // S073 E1: Completion-Before-New — scans docs/plan/protos for open PROTOs with unchecked milestones
     // STANDARD tier. ADVISORY always. P-OP-008 + P-OP-002 FWWS. COMPLETION-DISCIPLINE-PLAN-S073.
     name: 'completion_before_new',

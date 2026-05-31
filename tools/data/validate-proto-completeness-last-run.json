@@ -1,7 +1,7 @@
 {
   "protos_checked": 11,
-  "findings_count": 95,
-  "advisory": 95,
+  "findings_count": 79,
+  "advisory": 79,
   "blocking": 0,
   "all_findings": [
     {
@@ -245,15 +245,15 @@
       "msg": "missing AUTHOR SIGNATURE line (— OPUS-N or — Sonnet)"
     },
     {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S066-WAVE-1.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S066-WAVE-2.md",
       "level": "advisory",
       "msg": "missing required section: INHERITS / ALIGNS-WITH"
     },
     {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S066-WAVE-1.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S066-WAVE-2.md",
       "level": "advisory",
       "msg": "missing required section: ASK-OPUS-STOP TRIGGERS"
     }
   ],
-  "ran_at": "2026-05-29T21:14:28.575Z"
+  "ran_at": "2026-05-31T22:14:19.105Z"
 }

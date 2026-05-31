@@ -1,9 +1,9 @@
 {
-  "run_at": "2026-05-30T16:46:29.940Z",
-  "entries_checked": 30,
+  "run_at": "2026-05-31T22:14:24.967Z",
+  "entries_checked": 43,
   "missing_headers": 25,
-  "missing_attestation": 2,
-  "advisory": 27,
+  "missing_attestation": 9,
+  "advisory": 38,
   "blocking": 0,
-  "findings_count": 27
+  "findings_count": 38
 }

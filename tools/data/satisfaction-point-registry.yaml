@@ -1,0 +1,72 @@
+id: csps.data.satisfaction-point-registry
+name: satisfaction-point-registry
+description: >
+  Registry of mechanical satisfaction points for governed things in CSPS. Kills D7 (action-bias): "content written" ≠
+  done. "verify_mechanically command exits 0" = done. Every DONE claim for a registered thing requires its
+  verify_mechanically command to pass. Source: PROTO-S074-HARDWIRE (OPUS-16) · HARDWIRE protocol · Governor S074
+  emergency directive.
+version: '1.0'
+session: S074
+authored_by: Sonnet S074
+core_spine: GVRN
+schema_anchor: vault_files
+closure_owner: group:finky
+closure_decision: Living registry — add entries when new permanent things are established
+closure_by: ongoing
+entries:
+  - thing: council-file-written
+    satisfaction_point: hook systemMessage visible in same turn's output; last-proto-relay.txt or last-sonnet-relay.txt updated this turn
+    verify_mechanically: >-
+      node -e "const fs=require('fs'); const f='.csps/last-proto-relay.txt'; const s=fs.statSync(f);
+      if(Date.now()-s.mtimeMs>30000) process.exit(1);"
+    channel: Write or Edit tool on tools/council/*.md — never Bash
+    notes: 'HARDWIRE instance #1. Bash bypass = D4+D7 defaults. Fixed BATCH 3.'
+  - thing: t1-hook-active
+    satisfaction_point: attempted violation exits non-zero from the hook (BLOCKED)
+    verify_mechanically: node tools/tests/behavioral/ (run behavioral test for the hook; non-zero = not active)
+    channel: pre-tool-use hook registered in settings.json with correct matcher
+    notes: 'EXISTS≠ACTIVE: hook file present ≠ hook blocking. Test must exit non-zero on violation.'
+  - thing: bstar-contract-engraved
+    satisfaction_point: '5/5 surfaces present: schema+validator+hook+memory+contract'
+    verify_mechanically: node tools/validators/validate-bstar-engraving.mjs 2>&1 | grep -q 'blocking=0'
+    channel: engraving-discipline skill; 5 tool writes (one per surface)
+    notes: P-META-007. Fewer than 5 surfaces = not engraved.
+  - thing: proto-relayed
+    satisfaction_point: post-tool-use-proto-inline.sh emitted systemMessage this turn AND .csps/last-proto-relay.txt updated within 30s
+    verify_mechanically: >-
+      node -e "const fs=require('fs'); const f='.csps/last-proto-relay.txt'; const s=fs.statSync(f);
+      if(Date.now()-s.mtimeMs>30000) process.exit(1);"
+    channel: Edit/Write tool on tools/council/opus-turn.md — never Bash
+    notes: Core of FORMAL-PROTO-CHANNEL discipline. Broken on win32 via env var approach; fixed BATCH 3.
+  - thing: advisory-validator-not-theater
+    satisfaction_point: validator has promotion_trigger OR death_date declared
+    verify_mechanically: node tools/validators/validate-advisory-has-promotion-path.mjs 2>&1 | grep -q 'blocking=0'
+    channel: validator source file frontmatter + audit-runner.md registration
+    notes: 141 advisory validators without path = measuring theater. Fixed BATCH 5.
+  - thing: principle-ratified
+    satisfaction_point: principle appears in MCP list_principles output AND enforcer_layer field set
+    verify_mechanically: >-
+      node -e "const {execSync}=require('child_process'); execSync('node tools/scripts/list-principles.mjs --id
+      P-XXX',{stdio:'pipe'});"
+    channel: principles.yaml edit + pnpm principles:split
+    notes: Replace XXX with actual ID. Generic template; instantiate per principle.
+  - thing: hardwire-item-complete
+    satisfaction_point: 7 surfaces all present + block_test_output recorded in hardwire-register.yaml
+    verify_mechanically: node tools/validators/validate-hardwire-completeness.mjs 2>&1 | grep -q 'blocking=0'
+    channel: hardwire-register.yaml row + 7-surface build
+    notes: The meta-satisfaction-point. HARDWIRE-DONE claim without this = nominal.
+  - thing: schema-field-closed-enum
+    satisfaction_point: enum field registered in frontmatter-closed-enums.md AND validate-frontmatter exits 0
+    verify_mechanically: node tools/validators/validate-frontmatter.mjs 2>&1 | grep -q 'errors=0'
+    channel: frontmatter-closed-enums.md update + validate-frontmatter
+    notes: S049 STATUS-CONSOLIDATION. Unregistered enum = invisible constraint.
+  - thing: handoff-written
+    satisfaction_point: 4 zones present + SONNET STARTUP BLOCK section + handoff validator exits 0
+    verify_mechanically: node tools/validators/validate-handoff-completeness.mjs 2>&1 | grep -q 'blocking=0'
+    channel: Write tool on HANDOFF-S*.md (triggers post-tool-use-handoff-relay-inline.sh)
+    notes: B_INHERITANCE_POLICY. Missing SONNET STARTUP BLOCK = relay breaks.
+  - thing: plan-step-done
+    satisfaction_point: implied validators re-run THIS session + step-accept verdict ACCEPTED
+    verify_mechanically: 'node tools/verify.mjs --skip-install 2>&1 | grep -q ''"exit_code": 0'''
+    channel: node tools/verify.mjs --skip-install AND step-accept skill
+    notes: Memory of earlier runs ≠ evidence. Re-run IS the proof. P-META-006 RZF.

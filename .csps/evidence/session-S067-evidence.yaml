@@ -1,10 +1,10 @@
 {
   "session": "S067",
-  "captured_at": "2026-05-29T10:39:08.424Z",
+  "captured_at": "2026-05-31T20:38:45.164Z",
   "verify": {
     "exit_code": 0,
-    "validators_checked": 194,
-    "ran_at": "2026-05-29T10:38:46.035Z"
+    "validators_checked": 208,
+    "ran_at": "2026-05-31T20:38:21.209Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
@@ -16,5 +16,5 @@
     "gap_SESSION_INJECTION_COMPRESSION K=2 (open)",
     "gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS K=4 (fix_committed)"
   ],
-  "sonnet_summary": "Date: 2026-05-27 | role: Sonnet-10 | Session: S067\r | PROTO read: docs/plan/protos/PROTO-S067-MASTER-THRESHOLD-ROUTER.md (394 lines, 8 STEPs, 4 appendices).\r | Commit: afbff34 | Gate tier: full-advanc"
+  "sonnet_summary": "═══════════════════════════════════════════════════════════════════ | I AM: Sonnet S073, builder | YOU ARE: OPUS-15, architectural director"
 }

@@ -119,11 +119,26 @@ for (const { id, lines: spineLines } of actualSpines) {
   }
 
   // 3. Check wiring_map[] entries resolve (each "file:" key must point to a real path)
-  const wiringFileMatches = [...content.matchAll(/^\s+- file:\s+(\S+)/gm)];
-  for (const [, filePath] of wiringFileMatches) {
-    const resolved = join(ROOT, filePath.trim().replace(/['",]/g, ''));
+  // B3 extension: status:PLANNED entries are declared-not-required-to-resolve (governed by target_batch).
+  // Only status:ACTIVE (or no status field) → existsSync check. Line-by-line block scan.
+  const contentLines = content.split('\n');
+  for (let li = 0; li < contentLines.length; li++) {
+    const fileMatch = contentLines[li].match(/^\s+- file:\s+(\S+)/);
+    if (!fileMatch) continue;
+    const filePath = fileMatch[1].trim().replace(/['",]/g, '');
+    // Look ahead up to 10 lines for status field (stops at next list item or section header)
+    let entryStatus = 'ACTIVE';
+    for (let lj = li + 1; lj < Math.min(li + 10, contentLines.length); lj++) {
+      const nextLine = contentLines[lj];
+      // Stop at next wiring entry (another "- file:" or "- id:")
+      if (/^\s+- (?:file:|id:)/.test(nextLine)) break;
+      const sm = nextLine.match(/^\s+status:\s*(\S+)/);
+      if (sm) { entryStatus = sm[1].trim().toUpperCase(); break; }
+    }
+    if (entryStatus === 'PLANNED') continue; // declared future entry — governed by target_batch
+    const resolved = join(ROOT, filePath);
     if (!existsSync(resolved)) {
-      addFinding(mode, `spine "${id}": wiring_map entry "file: ${filePath}" does not exist on disk (EXISTS≠ACTIVE)`);
+      addFinding(mode, `spine "${id}": wiring_map ACTIVE entry "file: ${filePath}" does not exist on disk (EXISTS≠ACTIVE). If not yet built, set status:PLANNED.`);
     }
   }
 

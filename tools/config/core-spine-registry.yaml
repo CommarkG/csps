@@ -49,44 +49,152 @@ spines:
 
   - id: accountability
     spine: GVRN
-    status: stub
+    status: draft
+    authored_session: S073
+    authored_by: OPUS-15
+    ratified_by: null  # Governor ratification pending
     # ── 1. trunk ─────────────────────────────────────────────────────────────
+    # The 7 universal invariants (GVRN-primary, always-on, undebatable).
+    # Source: ACCOUNTABILITY-HUB-PLAN-S072.md §PLATFORM-ATTITUDE STRUCTURE (default)
     trunk:
-      description: "Accountability obligations every app inherits — who owns what, how decisions are tracked, how obligations are closed."
-      elements: []
+      description: "Accountability = a tracked path from threshold-intake to terminal, with a NAMED accountable party at every handoff, for every class of intent."
+      elements:
+        - id: T1
+          name: single-owner
+          statement: "Every obligation has exactly one named Accountable party at every point in its lifecycle. No orphan intent."
+          failure_mode: "Intent created with no owner → floats until a session explicitly claims it (the primary floater pattern)"
+        - id: T2
+          name: path-to-terminal
+          statement: "Every obligation has a documented path to a terminal state: RATIFIED+IMPLEMENTED | REJECTED | VAULTED-with-trigger | SUPERSEDED."
+          failure_mode: "No terminal path = the obligation can exist indefinitely without resolution"
+        - id: T3
+          name: evidence-at-closure
+          statement: "Closing a DONE claim requires THIS-SESSION verify evidence, not description. Re-run IS the proof."
+          failure_mode: "Nominal DONE — session N+1 rediscovers and re-fails the same thing"
+        - id: T4
+          name: trigger-plus-aging
+          statement: "Every obligation has a trigger event AND an aging mechanism. Obligations past closure_by escalate automatically to a decision queue."
+          failure_mode: "closure_by without enforcement = advisory deadline that gets ignored"
+        - id: T5
+          name: handoff-receipt
+          statement: "At every boundary crossing (Opus→Sonnet, session→session, AI→human), the receiver explicitly confirms intake via council-address + §17 attestation."
+          failure_mode: "Boundary crossed without receipt → obligation dropped at handoff, never picked up"
+        - id: T6
+          name: conversion-not-activity
+          statement: "Accountability is measured by converted obligations (intents → terminal states), NOT by activity count (commits, turns, hooks added)."
+          failure_mode: "High activity, low conversion → platform grows in complexity but not in resolved obligations"
+        - id: T7
+          name: escalation
+          statement: "Unresolved obligations escalate to a higher authority until terminal. No obligation can stay open forever — it either resolves or escalates to a forced decision."
+          failure_mode: "No escalation path = obligation floats forever without forced resolution"
     # ── 2. branches ──────────────────────────────────────────────────────────
-    branches: []
+    # Platform-attitude VARIETY: actor-class branches on top of the default trunk.
+    # Source: ACCOUNTABILITY-HUB-PLAN-S072.md §VARIETY (actor-class branches)
+    branches:
+      - id: B1
+        name: inner-platform
+        audience: "Sonnet ↔ Opus (AI council, both directions)"
+        unique: "PROTO→build→OPIA→ADVANCE/COURSE-CORRECT loop; receipt-before-PROTO; council-address; OPIA acceptance IS the accountability gate (Sonnet cannot self-accept; Opus cannot skip review)"
+        metric: "directives issued → terminal verdicts (no PROTO without an OPIA close)"
+        status: active
+      - id: B2
+        name: developer
+        audience: "Yariv + future contributors"
+        unique: "plan-item ownership (unified-plan.yaml), DoD per milestone (RZF evidence), register-before-wire, FWWS (no half-built milestone), engraving completeness (5-surface)"
+        metric: "committed work → verified+wired+closed"
+        status: active
+      - id: B3
+        name: external-user
+        audience: "account-owner-admin / team-leader / end-user (recurses to 6-tier)"
+        unique: "consent+entitlement scope, audit-event trail, data-scope boundaries, reversible actions + confirmation, SLA on support/response. NEEDS PART 3 (product schema)"
+        metric: "user action → traceable + reversible + tier-appropriate"
+        status: planned
+        note: "B3 build needs PART 3 product schema — flag for S074"
     # ── 3. alignment_map ─────────────────────────────────────────────────────
     alignment_map:
       schema_anchor: vault_files
       architecture_map_node: "pillar-0-governance"
       classification_dimension: GVRN
-      root: null  # set to .claude/core-spines/L1_CORE_GVRN.md path when B3 content is built
+      root: .claude/core-spines/L1_CORE_GVRN.md
     # ── 4. wiring_map ────────────────────────────────────────────────────────
-    wiring_map: []  # entries: { file: path, role: description } — each file must exist
+    # ACTIVE entries must resolve to real files. PLANNED = declared future, governed by target_batch.
+    wiring_map:
+      - file: tools/scripts/threshold-router.mjs
+        role: "Routes every intake through classification → input_class + pipeline (T2 path-to-terminal gate)"
+        status: ACTIVE
+      - file: tools/verify.mjs
+        role: "RZF evidence-at-closure gate — terminal claims require THIS-SESSION verify exit_code=0 (T3)"
+        status: ACTIVE
+      - file: tools/council/opia-checklist.md
+        role: "OPIA acceptance protocol — Sonnet cannot self-accept; Opus reviews and closes (B1 accountability gate)"
+        status: ACTIVE
+      - file: tools/templates/boundary-prompt.template.md
+        role: "§17 handoff-attestation template — boundary crossing receipt (T5 handoff-receipt)"
+        status: ACTIVE
+      - file: tools/data/gap-recurrence-register.yaml
+        role: "K≥2 debt tracker — structural fix triggered when gap recurs (T6 conversion metric)"
+        status: ACTIVE
+      - file: tools/data/improvement-register.yaml
+        role: "Propagation tracker — improvements approved but not yet enacted (T4 aging)"
+        status: ACTIVE
+      - file: tools/data/floating-artifacts-register.yaml
+        role: "ANTI-FLOAT register — closure obligation discipline, all floaters tracked (T4+T7)"
+        status: PLANNED
+        target_batch: B4
+      - file: apps/csps-playground/src/app/platform/accountability/page.tsx
+        role: "/platform/accountability — renders this spine from the registry (default+variety)"
+        status: PLANNED
+        target_batch: B3
+      - file: docs/plan/pillar-0-governance/escalation-ladder.md
+        role: "Escalation ladder — unresolved obligations path to higher authority (T7)"
+        status: PLANNED
+        target_batch: B4
     # ── 5. tier_permission ───────────────────────────────────────────────────
+    # Per-actor tier permissions — NOT one-size-fits-all.
     tier_permission:
-      min_tier: governor
+      inner_platform:
+        actors: [governor, opus, sonnet]
+        can_create_obligation: true
+        can_close_obligation: false  # Sonnet cannot self-accept
+        close_requires: "OPIA acceptance by Opus OR Governor ratification"
+      developer:
+        actors: [governor]
+        can_create_obligation: true
+        can_close_obligation: true
+        close_requires: "RZF evidence + verify exit_code=0"
+      external_user:
+        actors: [account-owner-admin, team-leader, end-user]
+        can_create_obligation: false  # not yet (PART 3 dependency)
+        can_close_obligation: false
+        note: "External-user accountability governed by product schema PART 3 (pending)"
       ratification_required: true
+      min_tier_to_ratify: governor
     # ── 6. cie_pe ─────────────────────────────────────────────────────────────
     cie_pe:
-      pe_score: null
+      pe_score: 8.5  # sample: urgency=high(3) × impact=platform-wide(3) / spi=1.0 ≈ 9, derated for dependency on PART 3
       urgency: high
       impact: platform-wide
-      note: "PE-score assigned when Governor ratifies ACCOUNTABILITY-HUB-PLAN-S072.md"
+      pe_rationale: "Accountability is the meta-discipline — every other spine depends on it for closure. PE = high × platform-wide / 1.0 = 9 (sample, tunable)"
+      cie_capture_enabled: true
+      note: "Haiku-audit-tier proposal routed through threshold S073 B2.5 — classified CIP:staging/CRITICAL"
     # ── 7. escalation ─────────────────────────────────────────────────────────
     escalation:
       owner: group:finky
-      escalation_path: "Governor → OPUS architectural review"
+      escalation_path: "Sonnet flags → Opus reviews → Governor ratifies → if stale past closure_by: BLOCKED"
+      ladder:
+        L1: "Sonnet reports in milestone report (ZF evidence)"
+        L2: "Opus reviews at OPIA boundary (blocking if not OPIA-accepted)"
+        L3: "Governor ratifies at session close (handoff-attestation)"
+        L4: "Escalated to session-open block if closure_by past (ANTI-FLOAT gate — B4)"
       closure_owner: group:finky
-      closure_decision: "B3 content built + validated + all wiring_map entries resolve"
-      closure_by: "ACCOUNTABILITY-HUB-PLAN ratification + B3 sprint"
+      closure_decision: "B3 content ratified + all ACTIVE wiring resolves + /platform/accountability renders from registry"
+      closure_by: "B3 sprint (S073)"
     # ── 8. realtime_save ──────────────────────────────────────────────────────
     realtime_save:
       enabled: true
       save_path: tools/data/process-state/core-spine-creator__governor__active.json
       lib: libs/process-state/index.mjs
-      note: "B2 realtime-save implemented — libs/process-state + API routes in playground"
+      note: "B2 realtime-save wired — creator auto-persists per stage, resumes on re-entry"
 
 # ── How to add a new spine entry ─────────────────────────────────────────────
 # 1. Copy the accountability stub above

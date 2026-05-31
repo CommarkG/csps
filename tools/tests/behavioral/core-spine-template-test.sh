@@ -113,6 +113,44 @@ else
   FAIL=$((FAIL+1))
 fi
 
+# ── INPUT D: PLANNED wiring entry with non-existent path → PASS (PLANNED = declared, not required) ─
+mkdir -p "$TMP/d/tools/config" "$TMP/d/tools/data"
+cat > "$TMP/d/tools/config/core-spine-registry.yaml" << 'YML'
+spines:
+  - id: planned-spine
+    spine: GVRN
+    status: active
+    trunk:
+      description: test
+    branches: []
+    alignment_map:
+      schema_anchor: vault_files
+      architecture_map_node: pillar-0-governance
+      classification_dimension: GVRN
+      root: null
+    wiring_map:
+      - file: does/not/exist-yet.mjs
+        role: planned future file
+        status: PLANNED
+        target_batch: B4
+    tier_permission:
+      min_tier: governor
+    cie_pe:
+      pe_score: null
+    escalation:
+      owner: group:finky
+    realtime_save:
+      enabled: false
+YML
+OUT=$(cd "$TMP/d" && node "$V" 2>&1) || true
+if echo "$OUT" | grep -q "blocking=0"; then
+  echo "  ✓ INPUT D: PLANNED wiring entry with non-existent path → no blocking (declared-not-required)"
+  PASS=$((PASS+1))
+else
+  echo "  ✗ INPUT D: expected blocking=0 for PLANNED wiring, got: $OUT"
+  FAIL=$((FAIL+1))
+fi
+
 echo ""
 echo "[core-spine-template-test] PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ] && exit 0 || exit 1

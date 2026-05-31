@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-31T07:49:14.249Z
-- finished_at: 2026-05-31T07:49:40.783Z
-- exit_code: 1
+- ran_at: 2026-05-31T07:50:35.197Z
+- finished_at: 2026-05-31T07:51:01.764Z
+- exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-31T07:49:14.249Z",
-    "finished_at": "2026-05-31T07:49:40.783Z",
+    "ran_at": "2026-05-31T07:50:35.197Z",
+    "finished_at": "2026-05-31T07:51:01.764Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1,
         "principles_loaded": 70,
         "findings_total": 24
       },
@@ -221,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.9,
+        "duration_seconds": 2.8,
         "checked": 132,
         "advisories": 121
       },
@@ -344,7 +344,7 @@
         "command": "node tools/validators/validate-opus-cec-artifacts.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "sections": 19,
         "applied_yes": 0,
         "cited": 0,
@@ -356,8 +356,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "checked": 636,
-        "clean": 636,
+        "checked": 637,
+        "clean": 637,
         "blocking": 0,
         "registry": 68
       },
@@ -691,7 +691,7 @@
         "command": "node tools/validators/validate-context-question-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "with_cq": 258,
         "total": 543,
         "pct": 48
@@ -781,11 +781,10 @@
       {
         "name": "universal_alignment",
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
-        "status": "FAIL",
-        "exit_code": 1,
+        "status": "PASS",
+        "exit_code": 0,
         "duration_seconds": 0.2,
-        "files": 0,
-        "tail": "\n⚠ docs/plan/_handoff/VAULT/chat-jump-prompt-S072-to-S073-SONNET-v1.md (2 alignment gap(s)):\n  → Missing core_spine — run core-spine-expert to classify\n  → Missing schema_anchor — add schema anchor per schema-index.md\n"
+        "files": 0
       },
       {
         "name": "import_quarantine",
@@ -1058,7 +1057,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -1627,7 +1626,7 @@
         "total": 199,
         "deferred": 2,
         "empty_output": 22,
-        "zero_numeric": 19,
+        "zero_numeric": 20,
         "advisory": 3,
         "blocking": 0
       },
@@ -1961,7 +1960,7 @@
         "skip_reason": "audit-runner ships week-4 (planned per build-order.md week 4)"
       }
     ],
-    "exit_code": 1,
+    "exit_code": 0,
     "strict_mode": false
   }
 }

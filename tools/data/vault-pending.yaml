@@ -727,3 +727,33 @@ entries:
     closure_owner: group:finky
     closure_decision: "Google OAuth live, Yariv can log in as super admin, role verified in Clerk metadata"
     closure_by: "App#2 (The Connector) first production deploy"
+
+  - id: vlt-S073-process-state-anti-float-seed
+    raw: "B2 ANTI-FLOAT seed: a paused core-spine process = non-terminal artifact with resume_trigger. Listed in libs/process-state/index.mjs as closure_decision."
+    context: "When a core-spine creation is paused mid-process, libs/process-state records it with resume_trigger. This is the seed of B4 ANTI-FLOAT — the paused process IS a floater per the CLOSURE OBLIGATION law (P-META-030 candidate). The full floating-artifacts register (PROTO-S072-ANTI-FLOAT) will govern these when the accountability hub is ratified."
+    insight: "Every save() call in libs/process-state creates an entry with paused:true + resume_trigger. When B4 builds the floating-artifacts register, it can scan tools/data/process-state/ to pick up ALL paused processes automatically. The seed is planted."
+    status: deferred
+    urgency: medium
+    created_session: S073
+    routing_decision: "Queue to B4 (ANTI-FLOAT full build). closure_by: B4 sprint"
+    closure_owner: group:finky
+    closure_decision: "B4 builds floating-artifacts register that includes process-state paused entries"
+    closure_by: "B4 sprint (after ACCOUNTABILITY-HUB-PLAN ratification)"
+
+  - id: vlt-S073-haiku-audit-tier-proposal
+    raw: "haiku-audit-tier: offload mechanical/DEEP scans (frontmatter, dead-link, DNA-tag, jargon, coverage) to Haiku as a pre-analysis pass before Sonnet session starts."
+    context: "Threshold classification (S073 B1 dogfood via routeInput): route=CIP:staging · spine=AI · criticality=CRITICAL · input_class=proposal. This means it requires CIP staging + council invocation. The proposal: run DEEP validators (context_wrapped_numbers, nominal_rzf_detector, vocabulary_coverage, etc.) as a Haiku batch before each Sonnet session. Haiku is fast + cheap for mechanical pattern matching. Sonnet receives a pre-analyzed report, not raw validator output."
+    insight: "This directly addresses the 193/200 verify-cycles pressure. DEEP validators become a Haiku pre-pass; Sonnet only sees findings, not raw output. Tiering becomes CRITICAL/STANDARD/HAIKU instead of CRITICAL/STANDARD/DEEP. Haiku handles the corpus scans; Sonnet handles reasoning."
+    status: deferred
+    urgency: medium
+    created_session: S073
+    threshold_classification:
+      route: CIP:staging
+      spine: AI
+      criticality: CRITICAL
+      input_class: proposal
+      rationale: "Proposal/consequential → CIP staging + INVOKE council. CRITICAL."
+    routing_decision: "Queue as PI item. PE-score in S074 with OPUS. closure_by: S074 PE scoring"
+    closure_owner: group:finky
+    closure_decision: "Governor + OPUS ratify as PI item with PE score and session assignment"
+    closure_by: "S074 PE scoring session"

@@ -83,9 +83,10 @@ spines:
       closure_by: "ACCOUNTABILITY-HUB-PLAN ratification + B3 sprint"
     # ── 8. realtime_save ──────────────────────────────────────────────────────
     realtime_save:
-      enabled: false
-      save_path: null
-      note: "Enabled in B2 (realtime-save lib) — not yet built"
+      enabled: true
+      save_path: tools/data/process-state/core-spine-creator__governor__active.json
+      lib: libs/process-state/index.mjs
+      note: "B2 realtime-save implemented — libs/process-state + API routes in playground"
 
 # ── How to add a new spine entry ─────────────────────────────────────────────
 # 1. Copy the accountability stub above

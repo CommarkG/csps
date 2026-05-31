@@ -93,6 +93,21 @@ for (const target of activeTargets) {
       issues.push(`⚠  .env.example missing — environment variables undocumented`);
     }
 
+    // 3b. STEP 0 prod-wiring check: package.json has prebuild script OR src/data/core-spine-registry.yaml exists
+    // (prevents silent-degrade trap: API route falls back to static demo in prod if registry not bundled)
+    const pkgJsonPath = join(appPath, 'package.json');
+    const bundledRegistry = join(appPath, 'src/data/core-spine-registry.yaml');
+    if (existsSync(pkgJsonPath)) {
+      try {
+        const pkg = JSON.parse(readFileSync(pkgJsonPath, 'utf-8'));
+        const hasPrebuild = !!(pkg.scripts && pkg.scripts.prebuild);
+        const hasRegistry = existsSync(bundledRegistry);
+        if (!hasPrebuild && !hasRegistry) {
+          issues.push(`⚠  No prebuild script and no bundled registry (src/data/core-spine-registry.yaml). Run: node scripts/copy-registry.mjs`);
+        }
+      } catch { /* malformed package.json already caught in build_script check */ }
+    }
+
     // 4. deploy-checklist.md exists
     if (!existsSync(join(appPath, '.csps', 'deploy-checklist.md'))) {
       issues.push(`⚠  .csps/deploy-checklist.md missing — Vercel UI steps undocumented`);

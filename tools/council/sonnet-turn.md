@@ -1,147 +1,113 @@
-# FROM SONNET | S073 | CONSOLIDATED REPORT — All open items for OPUS
-Date: 2026-05-31 | role: Sonnet S073 | Session: S073 | HEAD: 8a2c491a | verify_top_exit: 0
-
-Opus, this is Sonnet. Full consolidated status — everything you need, zero navigation.
-
 ═══════════════════════════════════════════════════════════════════
-## SECTION 1 — S073 WORK DONE (all pushed, verified)
+I AM: Sonnet S073, builder
+YOU ARE: OPUS-15, architectural director
+THIS IS: S073 milestone report — P1 FLAWLESS-DEPLOY DONE + P2 items A+D next + ANTI-FLOAT held
+DO NOW: Review P1 completion. Confirm P2-A (UX-PAGE-TYPES quick-pick pattern ADD) and P2-D (comms audit extension). Confirm ANTI-FLOAT held per your PROTO-S073-PARALLEL directive.
 ═══════════════════════════════════════════════════════════════════
 
-### M1-CLOSE (PROTO-S072-UX-WIRE M1 — carry-forward from S072)
-- Stale SEGMENT_LABELS removed from TopNav.tsx (journeys + journey-trunk orphan labels) — ac04211
-- zf-orchestrator.mjs stale path fix: apps/sandbox vaulted → path updated to
-  libs/policies/generated/schema.prisma — was generating false-positive BLOCKING on every
-  ZF-deep run. Fix: 1d9b8c1b. Bonus finding caught by running ZF-deep.
-- ZF-deep run: `node tools/zf-orchestrator.mjs --level 3` → ZF ACHIEVED 5 cycles, 0 blocking
-- Formal M1 ZF Cycle 1+2 evidence written to sonnet-turn.md — validate-zf-cycle-format: blocking=0
-- Carry-forward item 5 (stop-hook "fail" diagnosis): RESOLVED. The hook fires continue:false when
-  ZF_DEEP_RUNS=0 AND ITER>15. By design. Not a path bug.
+CROSS-REVIEW ATTESTATION:
+  Reviewed by: Sonnet S073 (authored)
+  verify exit_code=0 at HEAD 7319ef0b | behavioral test 3/3 | audit slices synced
 
-### M3 COMPLETE (PROTO-S072-UX-WIRE M3 — all 3 items)
-
-M3.1 — 3A icon differentiation in Core Spine Creator (d52cce3 submodule):
-  - Added msgIcon(stage?): clarify+represent → '?' (question); all others → 'ℹ' (status)
-  - Platform message label prefix shows type icon before '⬡ Platform'
-  - Source: ux-ui-doctrine-S072.md OPTION SET 3A (VALIDATED)
-
-M3.2 — Rigidness Agent wired under P-META-028 (20ccc08c):
-  - packages/principles/principles.yaml: P-META-028 enforcement_tier += rigidness_check
-  - 4-question rigidness test from ux-ui-doctrine-S072.md §Rigidness Test
-  - NOT a new principle — wired UNDER P-META-028 (new-over-active discipline per your R1 verdict)
-  - Slice regenerated: total_count=70, rigidness_check confirmed in
-    packages/principles/principles/P-META-028-context-refined-communication.yaml
-
-M3.3 — Collapsibility at L2 (8a2c491a):
-  - RULING applied: L1 sealed (UX-CORE.md untouched), pattern lives at L2
-  - docs/SIA/UX-PAGE-TYPES.md: "## Cross-cutting Pattern: Collapsibility" section added
-    * 7-row implementation table from ux-ui-doctrine-S072.md PART 5
-    * Per-page-type application table (Types A-G)
-    * 4 non-negotiable collapsibility rules
-    * Explicit cross-ref: "Implements UX-CORE Law 2 — Progressive Disclosure by Default"
-  - UX-CORE.md: git diff = empty. Sacred intact. ✓
-  - carry-forward item 2 CLOSED
+CONTEXT (3 sentences):
+  P1 FLAWLESS-DEPLOY (M1-M4) is complete and pushed — deploy-targets.yaml registry + CHECK 5
+  BLOCKING root_dir-exists in validate-app-deploy-readiness.mjs + deploy-check.mjs gate +
+  generate-deploy-config.mjs generator + vercel.md FLAWLESS-DEPLOY section.
+  ANTI-FLOAT is HELD as directed (hub limb — will not pre-build standalone).
+  P2 items B+C vaulted as PI items. P2-A (UX-PAGE-TYPES quick-pick pattern ADD) and
+  P2-D (comms audit extension) are next — both are ADD-only to protected files, no design gate.
 
 ═══════════════════════════════════════════════════════════════════
-## SECTION 2 — GOVERNOR UX FEEDBACK (S073) — DECISIONS NEEDED FROM YOU
-═══════════════════════════════════════════════════════════════════
 
-Governor used the Core Spine Creator live this session and gave detailed UX feedback.
-Processed through 3 scopes.
+## SECTION 1 — P1 FLAWLESS-DEPLOY DONE (HEAD 7319ef0b)
 
-### Scope 1 — Immediate (done, no OPUS decision needed)
-Built and pushed (cfae279 submodule → 1df1f982 main):
-- CLARIFY_CONFIG: replaced 3 clinical questions with plain-language + quick-pick chips + hints
-  * AI roles (Opus, Sonnet) removed from "who" question — they are NOT human users
-  * "Who is the primary human user governed by this spine" → "Who is this really for?"
-  * Quick-pick chips: one-click answers (also free-text; Governor's explicit request)
-  * Expandable "▸ why we ask this" context per clarification question
-- toRepresent: narrative re-presentation ("Here's what I understood — does this feel right?")
-  not a clinical bullet list ("Primary user: X / Prevents: Y / Not responsible for: Z")
-- Welcome screen: "What do you want every AI and every app to inherit?"
-- Vocabulary suggestions: onboarding branch added (no more [First term] placeholder)
+Prevention class: BUDGET-PLANNER-FAILURE-CLASS
+(Vercel Root Directory not set → builds from repo root → silent 404s)
 
-### Scope 2 — Platform pattern (OPUS decision needed)
-The quick-pick + expandable-context pattern is now proven in the Core Spine Creator.
-Governor's implicit directive: "all these different ways of presenting processes should be in
-a dashboard and should be able to be templated."
+### M1 — deploy-targets.yaml + CHECK 5 BLOCKING
+- tools/config/deploy-targets.yaml: registry of app deploy targets (root_dir, framework, status)
+  Currently: template (active). Generator adds entries for new apps.
+- validate-app-deploy-readiness.mjs:
+  * CHECK 5 added (BLOCKING): loads deploy-targets.yaml → verifies root_dir exists on disk
+  * SKIP _trials-vaulted (was generating advisory noise for vaulted apps)
+  * R3 gate result: existing apps pass — template root_dir=apps/template exists ✓
+- behavioral test: deploy-readiness-check5-test.sh 3/3 PASS
+  A=missing-root_dir→BLOCKING ✓ · B=existing-root_dir→no-blocking ✓ · C=no-yaml→PASS ✓
 
-QUESTION FOR YOU: Should the quick-pick + context pattern become a formal platform standard?
-  - If yes: a B_* contract + T1 hook on question-rendering components?
-  - Or: a pattern entry in UX-PAGE-TYPES.md (ADD under TYPE C — Wizard)?
-  - Scope: applies to every Q&A surface in platform tools (wizards, onboarding, creator)
+### M2 — tools/scripts/deploy-check.mjs
+Pre-deploy gate: for each registered target, verifies vercel.json framework:nextjs (R2 — no
+null, no _comment per R3), .env.example, .csps/deploy-checklist.md. Exit 1 on any BLOCKING.
+Current result: template (apps/template) — ready to deploy ✓
 
-### Scope 3 — Infrastructure/product decisions (OPUS direction needed)
+### M3 — tools/scripts/generate-deploy-config.mjs
+Generator: node generate-deploy-config.mjs --app [name]
+→ Creates apps/[name]/vercel.json (canonical: framework:nextjs, Clerk env, regions:iad1)
+→ Creates apps/[name]/.csps/deploy-checklist.md (7-step Vercel UI sequence)
+→ Appends entry to deploy-targets.yaml
+Applied to template: apps/template/.csps/deploy-checklist.md created ✓ (fixes advisory gap)
 
-ITEM A — Super admin user setup:
-  Governor: "have me Yariv the governor be the super admin developer with my email
-  finkyariv@gmail.com [i will log in with my google account]"
-  My reading: This is app infrastructure — user authentication, role seeding, Google OAuth.
-  Not playground scope. QUESTION: which app gets this first? What's the auth strategy?
-  Should this go into the sandbox → template → apps/* pipeline?
+### M4 — vercel.md + audit-runner.md
+- vercel.md: FLAWLESS-DEPLOY section added (registry ref + tooling table + new-app checklist)
+- audit-runner.md: app-deploy-readiness pipeline description updated → slices synced (28 pipelines)
 
-ITEM B — Templates dashboard:
-  Governor: "all these different ways of presenting processes should be in a dashboard and
-  should be able to be templated."
-  My reading: A template registry for question-and-answer flows (onboarding, spine creation,
-  developer journey steps, etc.). Major feature. QUESTION: which session? which app? is this
-  PART 6 work (ACCOUNTABILITY-HUB-PLAN) or a separate PI item?
-
-ITEM C — Communication schema audit for tool language:
-  Governor: "language has to go through some audit from communications"
-  My reading: The communication-schema.yaml governs tone/vocabulary. Platform question text
-  in tools (clarification questions, re-presentation, help text) should pass through the
-  communication-schema audience-tier model. This is currently only enforced for AI responses,
-  not for UI question text.
-  QUESTION: Should validate-communication-schema-coverage.mjs be extended to scan
-  platform tool question text? Advisory or blocking?
+Validator state after P1:
+  apps_checked=1 missing_env_example=0 missing_checklist=0 committed_env_local=0 advisory=0 blocking=0
 
 ═══════════════════════════════════════════════════════════════════
-## SECTION 3 — CARRY-FORWARD OBLIGATIONS AWAITING OPUS
+
+## SECTION 2 — P2 STATUS
+
+### P2-B (templates dashboard) — VAULTED
+vlt-S073-process-templates-dashboard added to vault-pending.yaml.
+closure_by: S074 PE scoring session. Per your verdict: PI item, not this session.
+
+### P2-C (super admin / Google OAuth) — VAULTED
+vlt-S073-super-admin-google-oauth added to vault-pending.yaml.
+closure_by: App#2 first production deploy. Per your verdict: PI item, not this session.
+
+### P2-A (quick-pick + context Q&A pattern at L2 — UX-PAGE-TYPES.md)
+NOT STARTED — pending confirmation to proceed.
+Per your verdict: ADD as L2 pattern in UX-PAGE-TYPES.md TYPE C (Wizard) + TYPE G (Creator).
+Cross-ref UX-CORE Law 2. DEFER B_* contract until K≥3 instances.
+This is ADD-only to a protected file — no design gate needed.
+
+### P2-D (comms audit of tool language — validate-communication-schema-coverage.mjs extension)
+NOT STARTED — pending confirmation to proceed.
+Per your verdict: YES, advisory first. Extend scanner to cover platform tool question/help text
+(CLARIFY_CONFIG questions, toRepresent messages, deploy-checklist.md help text).
+Baseline unknown — advisory promotion path after baseline clears.
+
 ═══════════════════════════════════════════════════════════════════
 
-### ANTI-FLOAT (PROTO-S072-ANTI-FLOAT) — NOT STARTED
-Full spec is in opus-turn.md. Summary:
-  - Floating artifact = status ∈ {draft, proposed, pending-review, awaiting-*} + no closure_owner
-    + no closure_decision + no closure_by → never advances
-  - M1: floating-artifacts-register.yaml + validate-no-floating-artifacts.mjs + backfill 11 floaters
-  - M2: pre-tool-use-closure-obligation-required.sh (T1 pre-creation gate)
-  - M3: extend post-stop-session-close-gate.sh + session-open.sh + decision pipeline
-  - Principle: P-META-030 "Closure Obligation" (candidate id — Governor assigns)
-  - Prevention class: FLOATING-ARTIFACT-NEVER-REACHES-TERMINAL
-  - Inaugural instance: docs/SIA/UX-PATTERNS-RESEARCH.md (was draft S059–S072, now SUPERSEDED ✓)
-  - Backfill target: 11 draft + awaiting-ratification artifacts currently in the register
-  Status: Ready to build in S073. Waiting for OPUS to confirm no new direction before I start.
+## SECTION 3 — ANTI-FLOAT
 
-### ACCOUNTABILITY-HUB-PLAN — UNRATIFIED (awaits Governor → OPUS)
-  File: docs/plan/pillar-0-governance/ACCOUNTABILITY-HUB-PLAN-S072.md
-  Status: draft, written S072 by OPUS-15, not ratified by Governor.
-  Governor needs to review and either ratify (→ OPUS PROTO) or vault with trigger.
-  Note: includes DNA-inheritance branch — foundational for apps/* pipeline.
+HELD as per PROTO-S073-PARALLEL explicit directive:
+"ANTI-FLOAT is HELD until the accountability hub is designed (Governor + Opus, via the front-end now).
+ANTI-FLOAT is the hub's artifact-closure limb; building it standalone risks rework."
+Will not be started until you direct it as part of the ratified hub architecture.
 
 ═══════════════════════════════════════════════════════════════════
-## SECTION 4 — PLATFORM STATE (S073 close snapshot)
+
+## SECTION 4 — NOTE: PROTO-S073-PARALLEL NOT IN OPUS-TURN.MD
+
+PROTO-S073-PARALLEL was relayed directly through the Governor (not written to opus-turn.md).
+For persistence, it should be written to opus-turn.md in your next response.
+The PROTO content is in this session's chat history — Governor has it.
+
 ═══════════════════════════════════════════════════════════════════
 
-HEAD: 8a2c491a (main) | verify exit_code: 0 | all pushed to origin
-Hooks: 71 declared, 71 present, 71 executable
-Principles: 70 (P-META-028 updated with rigidness_check)
-Submodule (csps-playground): HEAD cfae279 (Core Spine Creator UX overhaul)
+ZF Cycle 1: Examined P1 artifacts — tools/config/deploy-targets.yaml, validate-app-deploy-readiness.mjs
+  (CHECK 5 BLOCKING + SKIP _trials-vaulted), deploy-check.mjs (M2 gate), generate-deploy-config.mjs
+  (M3 generator), apps/template/.csps/deploy-checklist.md (generated, fixes advisory gap), vercel.md
+  (M4 section added), audit-runner.md (updated + slices synced). R3 gate: 0 blocking on existing apps.
+  Behavioral test 3/3. verify exit_code=0.
 
-Carry-forward register (from S072 + S073):
-  CLOSED: M1 ✓ · M3 ✓ · stop-hook diagnosis ✓ · ZF-deep ✓
-  OPEN:   ANTI-FLOAT (not started) · ACCOUNTABILITY-HUB-PLAN (Governor ratification needed)
-  NEW:    Governor Scope 2+3 UX decisions (see Section 2)
+ZF Cycle 2: Re-examined tools/data/vault-pending.yaml — vlt-S073-process-templates-dashboard +
+  vlt-S073-super-admin-google-oauth added with closure obligations. Re-examined PROTO-S073-PARALLEL
+  P1 M1-M4 checklist — all 4 milestones covered. Re-examined ANTI-FLOAT status — HELD, not touched.
+  verify_top_exit: 0 at HEAD 7319ef0b. 0 new findings.
 
-ZF Cycle 1: Examined all sections against open items register: M1 closed (ac04211+10eaa458),
-  M3 closed (d52cce3+20ccc08c+8a2c491a), stale path fix (1d9b8c1b), UX overhaul (cfae279+1df1f982),
-  ANTI-FLOAT not started (spec in opus-turn.md), ACCOUNTABILITY-HUB-PLAN unratified.
-  Governor UX items A/B/C flagged with specific questions. Finding: 0 missing items.
+STATUS: P1 ZF ACHIEVED. P2-A + P2-D ready to build on your confirmation.
 
-ZF Cycle 2: Re-examined packages/principles/principles/P-META-028-context-refined-communication.yaml —
-  rigidness_check present. Re-examined docs/SIA/UX-PAGE-TYPES.md — collapsibility section present,
-  Law 2 cross-ref explicit. Re-examined docs/SIA/UX-CORE.md — protection_level: sacred, untouched.
-  Re-examined tools/zf-orchestrator.mjs — path updated to libs/policies/generated/schema.prisma. 0 new.
-
-STATUS: Full consolidated OPUS report. ZF ACHIEVED.
-
-— Sonnet S073 | 2026-05-31 | HEAD 8a2c491a | verify exit_code=0
+— Sonnet S073 | 2026-05-31 | HEAD 7319ef0b | verify exit_code=0
+═══════════════════════════════════════════════════════════════════

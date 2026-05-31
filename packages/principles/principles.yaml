@@ -2468,6 +2468,18 @@ principles:
       tier1_hook: "validate-context-wrapped-numbers.mjs (advisory scan)"
       tier2_validator: "validate-context-wrapped-numbers.mjs + context-wrapped-numbers-allowlist.yaml"
       tier3_session: "context_question field + session-open injection"
+      rigidness_check:
+        description: "4-question Rigidness Test — operational T1/T2 check of P-META-028 for every rule written or ratified"
+        applies_to: "every rule / principle / definition being authored or ratified"
+        source: "ux-ui-doctrine-S072.md §Rigidness Test — R1 verdict PROTO-S073-M1-CLOSE-AND-M3 (OPUS-15 S073)"
+        note: "NOT a new principle — wired UNDER P-META-028 per new-over-active discipline (OPUS-15 S072 ratification verdict R1)"
+        questions:
+          - "Does this rule give the REASONING or just the PRESCRIPTION?"
+          - "Could an AI follow this rule perfectly and still produce the wrong result?"
+          - "Is this still true in edge cases (mobile, RTL, dense data, empty state)?"
+          - "Would removing the prescription and leaving only the reasoning produce BETTER outcomes?"
+        trigger: "BEFORE every rule written; AFTER session audit; AT Opus ratification"
+        if_3_or_4_yes: "Rule is rigid — rewrite to embed reasoning, not just prescription"
     ratified_by: "Governor S071 (OPUS-14 directed)"
     ratified_date: "2026-05-30"
     session: S071

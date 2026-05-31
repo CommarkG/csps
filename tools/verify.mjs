@@ -15,8 +15,15 @@
  *   node tools/verify.mjs --strict        # warnings also fail
  *   node tools/verify.mjs --skip-install  # skip pnpm install (already frozen)
  *   node tools/verify.mjs --deep          # include DEEP validators (expensive corpus scans)
- *                                         # Default: CRITICAL+STANDARD only (198 cycles)
+ *                                         # Default: CRITICAL+STANDARD only (~193 cycles)
  *                                         # --deep: CRITICAL+STANDARD+DEEP (run weekly/pre-seal)
+ *
+ * Tiering rule (B0.5 — PROTO-S073-B0.5, refined PROTO-S073-B1):
+ *   CRITICAL: gates that block commits/sessions — must never skip
+ *   STANDARD: default — runs every verify; includes cornerstone-enforcers regardless of cost
+ *   DEEP: expensive corpus scans that are NOT cornerstone-enforcing — cron/pre-seal only
+ *   RULE: cornerstone-enforcing validators (P-META-006, P-META-028, etc.) are ≥ STANDARD
+ *         even if they scan large file sets. Cost does not override doctrine enforcement.
  *
  * Per closing-summary-template.md §10.0: paste this script's stdout into §10.0 of every close summary.
  */
@@ -1303,7 +1310,7 @@ const CYCLES = [
   {
     // M1 S071 Facet A: P-META-028 cornerstone — scans for bare integers without context markers
     // ADVISORY always (rigidity-validator cannot itself be rigid — per P-META-028)
-    run_tier: 'DEEP', // scans 637+ files for bare integers without context markers
+    run_tier: 'STANDARD', // cornerstone-enforcer (P-META-028) — must surface every session despite corpus cost (B0.5 tiering rule: cornerstone-enforcing ≥ STANDARD)
     name: 'context_wrapped_numbers',
     command: 'node tools/validators/validate-context-wrapped-numbers.mjs',
     parse_output: (out) => {
@@ -1314,7 +1321,7 @@ const CYCLES = [
   {
     // M1 S071 Facet A sibling: RZF-LATEST §6.I5 — flags Cycle-2+ "0 new" without file citations
     // ADVISORY in S071
-    run_tier: 'DEEP', // scans council files for nominal ZF patterns — corpus scan
+    run_tier: 'STANDARD', // cornerstone-enforcer (P-META-006 RZF + P-META-028) — must surface every session (B0.5 tiering rule: cornerstone-enforcing ≥ STANDARD)
     name: 'nominal_rzf_detector',
     command: 'node tools/validators/validate-nominal-rzf-detector.mjs',
     parse_output: (out) => {

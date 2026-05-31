@@ -79,13 +79,14 @@ function measure(id) {
         const f = join(ROOT, 'tools/verify.mjs');
         if (!existsSync(f)) return null;
         const text = readFileSync(f, 'utf8');
-        // Count active validator entries: have name: + command: but NOT skip: true
-        // Split by { to get rough entry blocks, then filter out deferred entries
-        // S073: DEFERRED-WITH-REASON entries have skip: true and do NOT consume verify cycles
+        // Count CRITICAL+STANDARD validators (active per-run cycles)
+        // Exclude: skip:true (DEFERRED-WITH-REASON) + run_tier:'DEEP' (not in default run)
+        // B0.5 TIERING: DEEP validators run weekly/pre-seal via --deep or zf-orchestrator
         const nameMatches = [...text.matchAll(/name:\s*['"]([^'"]+)['"][\s\S]{0,300}?command:/g)];
         const total = nameMatches.length;
         const deferredCount = (text.match(/skip:\s*true/g) || []).length;
-        return Math.max(0, total - deferredCount);
+        const deepCount = (text.match(/run_tier:\s*['"]?DEEP['"]?/g) || []).length;
+        return Math.max(0, total - deferredCount - deepCount);
       }
 
       case 'deferred-audit-slugs': {

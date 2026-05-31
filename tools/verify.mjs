@@ -12,8 +12,11 @@
  *
  * Usage:
  *   node tools/verify.mjs              # default — errors fail; warnings reported
- *   node tools/verify.mjs --strict     # warnings also fail
+ *   node tools/verify.mjs --strict        # warnings also fail
  *   node tools/verify.mjs --skip-install  # skip pnpm install (already frozen)
+ *   node tools/verify.mjs --deep          # include DEEP validators (expensive corpus scans)
+ *                                         # Default: CRITICAL+STANDARD only (198 cycles)
+ *                                         # --deep: CRITICAL+STANDARD+DEEP (run weekly/pre-seal)
  *
  * Per closing-summary-template.md §10.0: paste this script's stdout into §10.0 of every close summary.
  */
@@ -29,6 +32,9 @@ const ROOT = resolve(__dirname, '..');
 const args = process.argv.slice(2);
 const STRICT = args.includes('--strict');
 const SKIP_INSTALL = args.includes('--skip-install');
+// B0.5 VALIDATOR TIERING (PROTO-S073-B0.5): CRITICAL=always · STANDARD=default · DEEP=--deep only
+// Prevents pnpm-verify-cycles from hitting hard_limit (P-META-028 tunable). Tiering NOT limit-raising.
+const DEEP_RUN = args.includes('--deep');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Cycle definitions — per P-META-008 cycle_types
@@ -1264,6 +1270,7 @@ const CYCLES = [
     },
   },
   {
+    run_tier: 'DEEP', // scans all .tsx files in apps/ (CHECK I) + yaml corpus — expensive
     name: 'communication_schema_coverage',
     command: 'node tools/validators/validate-communication-schema-coverage.mjs',
     parse_output: (out) => {
@@ -1296,6 +1303,7 @@ const CYCLES = [
   {
     // M1 S071 Facet A: P-META-028 cornerstone — scans for bare integers without context markers
     // ADVISORY always (rigidity-validator cannot itself be rigid — per P-META-028)
+    run_tier: 'DEEP', // scans 637+ files for bare integers without context markers
     name: 'context_wrapped_numbers',
     command: 'node tools/validators/validate-context-wrapped-numbers.mjs',
     parse_output: (out) => {
@@ -1306,6 +1314,7 @@ const CYCLES = [
   {
     // M1 S071 Facet A sibling: RZF-LATEST §6.I5 — flags Cycle-2+ "0 new" without file citations
     // ADVISORY in S071
+    run_tier: 'DEEP', // scans council files for nominal ZF patterns — corpus scan
     name: 'nominal_rzf_detector',
     command: 'node tools/validators/validate-nominal-rzf-detector.mjs',
     parse_output: (out) => {
@@ -1317,6 +1326,7 @@ const CYCLES = [
     // M2 S071 Facet C: Dev↔User vocabulary coverage — advisory validator
     // Flags user-facing content that uses dev_terms without paired user_term translation
     // Glossary source: vocabulary.md §Dev↔User Glossary (8+ entries, sample-expandable per P-META-028)
+    run_tier: 'DEEP', // scans user-facing docs for jargon without user_term translations
     name: 'vocabulary_coverage',
     command: 'node tools/validators/validate-vocabulary-coverage.mjs',
     parse_output: (out) => {
@@ -1388,6 +1398,7 @@ const CYCLES = [
     // BLOCKING: Cycle 2+ claims ZF ACHIEVED but cites no file names.
     // ADVISORY: Cycle 2+ uses vague words (areas/topics/things) without file names.
     // Scans tools/council/sonnet-turn.md + tools/council/opus-turn.md by default.
+    run_tier: 'CRITICAL', // ZF format gate — ensures non-nominal ZF evidence every session
     name: 'zf_cycle_format',
     command: 'node tools/validators/validate-zf-cycle-format.mjs',
     parse_output: (out) => {
@@ -1628,6 +1639,7 @@ const CYCLES = [
     // PROTO-S062-DEPLOY STEP 1: Component B deploy-readiness gate.
     // Checks each app in apps/ has .env.example + deploy-checklist.md + build script + no committed .env.local.
     // ADVISORY (exit 0 always) — missing_checklist expected until STEP 3 lands per app.
+    run_tier: 'CRITICAL', // BLOCKING for committed .env.local (secrets) — cannot skip
     name: 'app_deploy_readiness',
     command: 'node tools/validators/validate-app-deploy-readiness.mjs',
     parse_output: (out) => {
@@ -1655,6 +1667,7 @@ const CYCLES = [
   },
   {
     // PROTO-S067-MASTER-THRESHOLD-ROUTER STEP 1: blocks hooks with local session computation.
+    run_tier: 'DEEP', // scans session files for local computation patterns — corpus scan
     name: 'session_source_usage',
     command: 'node tools/validators/validate-session-source-usage.mjs',
     parse_output: (out) => {
@@ -1680,6 +1693,7 @@ const CYCLES = [
     },
   },
   {
+    run_tier: 'DEEP', // scans platform inventory coverage — expensive full-platform scan
     name: 'inventory_scan_coverage',
     command: 'node tools/validators/validate-inventory-scan-coverage.mjs',
     parse_output: (out) => {
@@ -1772,6 +1786,7 @@ const CYCLES = [
     // S072 Governor Turn 12 — vlt-S073-push-mandatory-discipline: surfaces unpushed commits
     // Advisory always (exits 0). Thresholds: >5 = warn, >10 = strong-warn (samples — tunable per P-META-028).
     // T1+T3 queued vlt-S073-push-mandatory-discipline. PREVENTION: GOVERNANCE-WORK-NOT-PUSHED-TO-ORIGIN
+    run_tier: 'CRITICAL', // push discipline gate — every milestone must be pushed
     name: 'push_status',
     command: 'node tools/validators/validate-push-status.mjs',
     parse_output: (out) => {
@@ -1785,6 +1800,7 @@ const CYCLES = [
     // Scans council files + chat-jump prompts for 4 mandatory header lines + CROSS-REVIEW ATTESTATION.
     // ADVISORY in S072; promotes to BLOCKING after 5 sample exemplar passes (tunable per P-META-028).
     // PREVENTION CLASS: FREESTYLE-BOUNDARY-PROMPT-WITHOUT-FORMAL-HEADERS
+    run_tier: 'CRITICAL', // boundary protocol gate — every tab handoff must have proper headers
     name: 'boundary_prompt_format',
     command: 'node tools/validators/validate-boundary-prompt-format.mjs',
     parse_output: (out) => {
@@ -1846,6 +1862,13 @@ async function main() {
     if (cycle.skip) {
       entry.status = 'DEFERRED-WITH-REASON';
       entry.skip_reason = cycle.skip_reason;
+      results.push(entry);
+      continue;
+    }
+    // B0.5 TIERING: skip DEEP validators unless --deep flag is passed
+    if (cycle.run_tier === 'DEEP' && !DEEP_RUN) {
+      entry.status = 'DEFERRED-WITH-REASON';
+      entry.skip_reason = 'run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3';
       results.push(entry);
       continue;
     }

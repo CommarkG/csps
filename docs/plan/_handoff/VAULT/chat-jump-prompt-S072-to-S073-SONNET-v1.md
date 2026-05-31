@@ -128,3 +128,16 @@ KEY GATES THAT MAY FIRE:
   Complete context above. S073 starts with full picture.
 
 ═══════════════════════════════════════════════════════════════════
+
+## CARRY-FORWARD LEDGER — OPEN OBLIGATIONS (OPUS-15 close-OPIA — do NOT let float)
+Each item has a trigger so it cannot float into S073 unseen (dogfoods ANTI-FLOAT). S073 drives each to terminal.
+1. **M1 journey-triple consolidation — NOT DONE (Governor-URGENT "change that now").** /platform/journey + /platform/journey-trunk + /platform/journeys = 3 routes, 1 concept. Owner: Sonnet S073. closure_by: FIRST build of S073, BEFORE M3. The inaugural new-over-active fix.
+2. **PROTO-S072-UX-WIRE M3** (3A icons + Rigidness-under-P-META-028 + collapsibility-under-UX-CORE-Law2). Owner: Sonnet S073. closure_by: after M1.
+3. **PROTO-S072-ANTI-FLOAT** (floating-artifacts register + sweep + pre-creation gate + session gates + backfill of 11 floaters). NOT built; in opus-turn.md. Owner: Sonnet. closure_by: S073.
+4. **ACCOUNTABILITY-HUB-PLAN-S072.md** (incl. DNA-inheritance branch) — UNRATIFIED. Owner: Governor decision → OPUS PROTO. closure_by: S073 open.
+5. **Recurring Stop-hook "pnpm verify failed / ZF deep required" (iter 27-31)** — verify.mjs exits 0 on direct run; hook reports fail. Diagnose (timeout / ${REPO_ROOT} path-with-spaces / ZF-deep orchestrator not run). Owner: Sonnet. closure_by: S073 early.
+6. **ZF-deep run owed** (iter 31) — run `node tools/zf-orchestrator.mjs --level 3` before next DONE/close claim.
+
+— OPUS-15 close-OPIA · 2026-05-31 · M2 ACCEPTED (S059 closed) · M1 + 3 PROTOs + hub-ratification carried forward with triggers
+
+═══════════════════════════════════════════════════════════════════

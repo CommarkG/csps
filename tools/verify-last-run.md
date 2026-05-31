@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-31T10:52:57.387Z
-- finished_at: 2026-05-31T10:53:20.317Z
+- ran_at: 2026-05-31T13:14:08.983Z
+- finished_at: 2026-05-31T13:14:32.637Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-31T10:52:57.387Z",
-    "finished_at": "2026-05-31T10:53:20.317Z",
+    "ran_at": "2026-05-31T13:14:08.983Z",
+    "finished_at": "2026-05-31T13:14:32.637Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 70,
         "findings_total": 24
       },
@@ -121,7 +121,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -307,7 +307,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 9,
-        "validators": 204,
+        "validators": 205,
         "models": 0,
         "advisories": 0
       },
@@ -557,7 +557,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 278,
+        "checked": 279,
         "blocking": 0,
         "advisories": 0
       },
@@ -703,7 +703,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S067",
-        "validators": 205
+        "validators": 206
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -1085,9 +1085,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 205,
+        "validators_checked": 206,
         "orphans": 0,
-        "registered": 205
+        "registered": 206
       },
       {
         "name": "token_budget_validate",
@@ -1418,6 +1418,12 @@
         "samples_loaded": true
       },
       {
+        "name": "core_spine_template",
+        "command": "node tools/validators/validate-core-spine-template.mjs",
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "pnpm-verify-cycles at hard_limit 200 — deferred until verify tiering implemented (platform-capacity)"
+      },
+      {
         "name": "communication_schema_coverage",
         "command": "node tools/validators/validate-communication-schema-coverage.mjs",
         "status": "PASS",
@@ -1452,8 +1458,8 @@
         "exit_code": 0,
         "duration_seconds": 0.3,
         "files_checked": 651,
-        "findings": 8643,
-        "advisory": 8643
+        "findings": 8650,
+        "advisory": 8650
       },
       {
         "name": "nominal_rzf_detector",
@@ -1615,8 +1621,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 199,
-        "deferred": 2,
+        "total": 200,
+        "deferred": 3,
         "empty_output": 23,
         "zero_numeric": 21,
         "advisory": 3,
@@ -1639,7 +1645,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 332,
+        "total_entries": 335,
         "sessions": 2,
         "advisory": true
       },
@@ -1846,10 +1852,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocks_checked": 0,
-        "proto_citations": 65,
+        "proto_citations": 66,
         "valid": 6,
-        "missing": 59,
-        "advisory": 59,
+        "missing": 60,
+        "advisory": 60,
         "blocking": 0
       },
       {

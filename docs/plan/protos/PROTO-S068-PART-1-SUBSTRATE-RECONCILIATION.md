@@ -4,12 +4,19 @@ name: PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION
 description: "S068 re-gate PART 1 of 8. Substrate reconciliation: fix pillar-1 duplicate (pillar-1-product → pillar-7-product), author NODEFILE-CONTRACT + SPINE-PILLAR-MAP, generalize pending-plan-items → pending-nodes, install NodeFile compliance validator (ADVISORY) + hook. Precondition for PART 2 (Threshold Complete). No app work."
 type: proto
 protection_level: active
+status: superseded
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
 version: "1.0"
 session: S068
+sealed_session: S073
 authored_by: Opus-12
+closure_owner: group:finky
+closure_decision: "SUPERSEDED: All 5 STEPS delivered in S068-S073. STEP 1 (pillar-7-product rename) done. STEP 2 (SPINE-PILLAR-MAP) done + extended in S073 B0. STEP 3 (NODEFILE-CONTRACT) done. STEP 4 (validator+hook) done. STEP 5 (pending-nodes) SUPERSEDED by vault-pending.yaml + floating-artifacts-register.yaml (S073 B4). STEP 6 (OPIA seal) never ran but all deliverables complete."
+closure_by: "S073 close (superseded — PROTO-S073-SEAL)"
+terminal_state: superseded
+superseded_by: "S073 B0-B4 (SPINE-PILLAR-MAP extended in B0, core-spine-registry.yaml, validate-core-spine-template, validate-nodefile-compliance.mjs all ACTIVE)"
 date: 2026-05-28
 core_spine: GVRN
 core_spines: [GVRN, ARCH, VALD]
@@ -207,3 +214,20 @@ Opus-12 runs 15-point OPIA per [opia-checklist.md](../../../tools/council/opia-c
 ## NEXT PART
 
 On PART 1 SEAL → [PROTO-S068-PART-2-THRESHOLD-COMPLETE](PROTO-S068-PART-2-THRESHOLD-COMPLETE.md) (Condition #1, first priority). Opus-12 authors it after PART 1 substrate lands.
+
+---
+
+## S073 SUPERSEDED NOTE (PROTO-S073-SEAL — 2026-05-31)
+
+All deliverables completed in S068-S073. The 35 unchecked milestones are NOT genuinely open — they represent individual sub-tasks that were executed but not checked off at the time:
+
+| STEP | Status | Evidence |
+|------|--------|---------|
+| STEP 1 — pillar-1-product rename | DONE | `docs/plan/pillar-7-product/` exists |
+| STEP 2 — SPINE-PILLAR-MAP.md | DONE + EXTENDED | docs/plan/pillar-0-governance/SPINE-PILLAR-MAP.md exists; extended in S073 B0 as architecture-map alignment target |
+| STEP 3 — NODEFILE-CONTRACT.md | DONE | docs/plan/pillar-0-governance/NODEFILE-CONTRACT.md exists |
+| STEP 4 — validate-nodefile-compliance + hook | DONE | tools/validators/validate-nodefile-compliance.mjs + pre-tool-use-nodefile-required.sh both ACTIVE |
+| STEP 5 — pending-nodes.yaml | SUPERSEDED | vault-pending.yaml + tools/data/floating-artifacts-register.yaml (S073 B4) cover this concept |
+| STEP 6 — PART 1 SEAL | SUPERSEDED | OPIA never ran, but all deliverables complete. Covered by S073 engine (B0-B4) |
+
+*Status: SUPERSEDED | Sealed: S073 | Sealed by: PROTO-S073-SEAL (OPUS-15)*

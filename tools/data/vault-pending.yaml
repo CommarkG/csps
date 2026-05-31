@@ -757,3 +757,15 @@ entries:
     closure_owner: group:finky
     closure_decision: "Governor + OPUS ratify as PI item with PE score and session assignment"
     closure_by: "S074 PE scoring session"
+
+  - id: vlt-S073-theme-dashboard-pi
+    raw: "Theme dashboard (§8 question 5 from ux-ui-doctrine-S072.md): build a theme management dashboard with view/preview/create/edit/validate/promote/deprecate capabilities per the theme registry (csps-light default, csps-dark, etc.)"
+    context: "ux-ui-doctrine-S072.md §8 open question 5: 'Build now (5A MVP) or queue for S073?' Answered S073: deferred, PART 6-dependent. The theme registry and theme system are defined in ux-ui-doctrine PART 2 + UX-ROLES.md. The dashboard requires PART 6 (app-level page templates) to be built correctly."
+    insight: "Theme management dashboard is a TYPE B (Dashboard/Overview) + TYPE G (Creator) page. Reads from a theme registry YAML. Preview side-by-side. Status lifecycle: DRAFT→VALIDATED→ACTIVE. Feeds into the platform-attitude-default+variety pattern across all 30+ apps."
+    status: deferred
+    urgency: medium
+    created_session: S073
+    routing_decision: "Queue as PI item. PE-score in S074 with OPUS. closure_by: PART 6 / after accountability hub ratified"
+    closure_owner: group:finky
+    closure_decision: "Governor + OPUS ratify as PI with PE score and session assignment when PART 6 is ready"
+    closure_by: "PART 6 sprint (post-S074 PE scoring)"

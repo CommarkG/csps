@@ -52,9 +52,9 @@ entries:
     closure_owner: group:finky
     closure_decision: "Governor ratifies §1-§7 content (all OPUS-15 verdicts applied in S073); §8 open questions → vault as separate PI items"
     closure_by: "S074"
-    escalation_state: tracked
-    terminal_state: null
-    note: "R3 FLAG: §8 has 8 open questions that should be vaulted as PI items separately. The doctrine §1-§7 content IS ratified (OPUS-15 ruled on R1-R7 in S072-S073). Governor can mark §1-§7 RATIFIED and vault §8 questions."
+    escalation_state: terminal
+    terminal_state: ratified
+    note: "S073 SEALED: §1-§7 RATIFIED (OPUS-15 R1-R7 verdicts). §8 Q5 vaulted as vlt-S073-theme-dashboard-pi. The doctrine §1-§7 content IS ratified (OPUS-15 ruled on R1-R7 in S072-S073). Governor can mark §1-§7 RATIFIED and vault §8 questions."
 
   # ── GOVERNANCE DOCTRINES (docs/plan/pillar-0-governance/) ────────────────────
 

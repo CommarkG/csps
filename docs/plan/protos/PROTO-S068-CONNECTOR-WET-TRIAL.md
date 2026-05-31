@@ -4,9 +4,16 @@ name: PROTO-S068-CONNECTOR-WET-TRIAL
 description: "S068 App #2 wet-trial — 'The Connector' (sales-focused). 5-STEP scaffold per App #1 budget-planner precedent + B_APPS_ARE_TRIALS Component A/B split. Wet-trial target ~2026-05-30. PROTO-SEED authored by Opus-12 ahead of Sonnet build; full STEP expansion + Component B (libs/template) extraction follows Governor #3 priority slot."
 type: proto
 protection_level: active
+status: vaulted
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
+closure_owner: group:finky
+closure_decision: "VAULTED-with-trigger: App#2 (The Connector) resumes when PART 3 product schema + page-templates are ready. Seed PROTO preserved as architectural seed."
+closure_by: "PART 3 + page-templates unblocked (S074+)"
+terminal_state: vaulted
+vaulted_trigger: "PART 3 product schema ratified + page-templates (PART 6) scaffolded → App#2 resumes from this SEED"
+sealed_session: S073
 version: "0.1-SEED"
 session: S068
 authored_by: Opus-12

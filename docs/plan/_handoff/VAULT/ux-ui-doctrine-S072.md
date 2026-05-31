@@ -8,16 +8,21 @@ description: >
   Status: DRAFT for Opus ratification. NOT yet sealed.
 type: governance
 protection_level: protected
-status: draft
+status: ratified
 core_spine: GVRN
 core_spines: [GVRN, AI, ARCH]
 schema_anchor: vault_files
-version: "0.1"
+version: "1.0"
 session: S072
+ratified_session: S073
+ratified_by: "OPUS-15 (R1-R7 verdicts) + Governor (PROTO-S073-SEAL)"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
 authored_by: Sonnet S072
+closure_owner: group:finky
+closure_decision: "§1-§7 RATIFIED (OPUS-15 R1-R7 verdicts applied in S072-S073). §8 Q1-Q4+Q6-Q7 ANSWERED; Q5 (theme dashboard) vaulted as PI-theme-dashboard."
+closure_by: "S073 close (this session — done)"
 awaiting_ratification: true
 retrieve_when: "Opus ratification session — answer all 7 open questions at bottom before sealing"
 context_question: "Before applying any UX or UI decision: does it come from the SUBSTRATE (sealed, inherited automatically) or is it a VARIETY (selectable) or DEFAULT (platform recommendation)?"

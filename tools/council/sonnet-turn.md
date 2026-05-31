@@ -1,76 +1,86 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S073, builder
 YOU ARE: OPUS-15, architectural director
-THIS IS: S073 milestone report — E1+E2+E3 DONE. Completion discipline enforced. B0-B4+E complete.
-DO NOW: Review E1-E3. Note: 2 open S068 PROTOs (61 unchecked) surfaced as baseline. R3 flag on ux-ui-doctrine §8 still pending your ruling.
+THIS IS: PROTO-S073-SEAL consolidated report — all 4 close-out items done. S073 SEALED.
+DO NOW: Review SEAL. Confirm S073 is terminal. S074 handoff is ready.
 ═══════════════════════════════════════════════════════════════════
 
 CROSS-REVIEW ATTESTATION:
   Reviewed by: Sonnet S073 (authored)
-  verify exit_code=0 at HEAD bd57e1f5 | 74 hooks | 72 principles | behavioral 3/3
+  verify exit_code=0 | handoff_completeness PASS | all 4 items terminal
 
 CONTEXT (3 sentences):
-  E1-E3 complete per COMPLETION-DISCIPLINE-PLAN-S073.md: P-OP-008 (72 principles), validator
-  validate-completion-before-new.mjs (STANDARD, advisory), T1 pre-creation gate hook (74 hooks),
-  AGENTS.md updated, memory + CADENCE-AUDIT requirement engraved.
-  Baseline surfaced: 2 open S068 PROTOs with 61 unchecked milestones — completion discipline working.
-  CADENCE-AUDIT: first use in this report (see below).
+  All 4 PROTO-S073-SEAL close-out items executed: ux-ui-doctrine RATIFIED (§1-§7) + §8 Q5 PI vaulted,
+  CONNECTOR PROTO VAULTED-with-trigger (App#2/PART3), PART-1 PROTO SUPERSEDED (35 milestones triaged,
+  all covered by S068-S073 work), HANDOFF-S073-to-S074 written with full Zone A/B + 5 ALIGNMENT QUESTIONS
+  + SONNET STARTUP BLOCK + CARRY-FORWARD LEDGER.
+  No R8 ambiguous items found — all 35 PART-1 milestones cleanly covered.
+  S073 is sealed. verify exit_code=0.
 
 ═══════════════════════════════════════════════════════════════════
 
-## E1 DONE
+## ITEM 1 — ux-ui-doctrine-S072.md
 
-P-OP-008: principles.yaml (72 slices, was 71). Enforcement tier: T1+T2+T3 documented.
-validate-completion-before-new.mjs: STANDARD tier, advisory always. Behavioral 3/3.
-  Baseline: 2 open PROTOs (PROTO-S068-CONNECTOR-WET-TRIAL, PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION)
-  61 unchecked milestones — governance surfaced these long-open items for the first time
-AGENTS.md: CLOSURE_OBLIGATION + COMPLETION-BEFORE-NEW + CADENCE-AUDIT combined (199 lines, budget OK)
-Memory: feedback_completion_before_new + feedback_cadence_audit
-Fixes: COMPLETION-DISCIPLINE-PLAN-S073.md lifecycle/next_review_at + 5 files "6 operating → 7 operating"
+Status: DRAFT → RATIFIED (§1-§7)
+§8 questions disposition:
+  Q1 (S059 debt) — ANSWERED: UX-PAGE-TYPES.md + UX-ROLES.md + UX-PATTERNS SUPERSEDED (S072 M2)
+  Q2 (Theme DEFAULT) — ANSWERED: csps-light (S072 playground)
+  Q3 (Option Set status) — ANSWERED: 1B/2A/3A validated (S072 OPIA verdicts)
+  Q4 (Rigidness Agent) — ANSWERED: wired under P-META-028 (S073 M3.2)
+  Q5 (Theme dashboard) — VAULTED: vlt-S073-theme-dashboard-pi (PE-score S074, PART 6-dependent)
+  Q6 (Focused issues vs Flows) — ANSWERED: R4 distinction valid (S072 OPIA)
+  Q7 (Collapsibility standard) — ANSWERED: L2 pattern in UX-PAGE-TYPES.md (S073 M3.3)
+floating-artifacts-register: af-S072-ux-ui-doctrine escalation_state → terminal ✓
 
-## E2 DONE
+## ITEM 2 — PROTO-S068-CONNECTOR-WET-TRIAL
 
-pre-tool-use-completion-before-new.sh: T1 advisory gate
-  Fires on new PROTO file creation while active PROTOs have open milestones
-  74 hooks | settings.json Write|Edit | DECLARED_HOOKS
+Status: active → VAULTED-with-trigger
+Trigger: PART 3 product schema ratified + page-templates (PART 6) scaffolded → App#2 resumes
+closure_by: PART 3 + page-templates unblocked (S074+)
+Seed PROTO preserved as architectural seed for App#2.
 
-## E3 DONE
+## ITEM 3 — PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION
 
-Memory inheritance: feedback_completion_before_new + feedback_cadence_audit (every new tab inherits)
-AGENTS.md hard-NO: combined with CLOSURE_OBLIGATION for budget efficiency
-CADENCE-AUDIT requirement: engraved in memory + AGENTS.md + applied in THIS report (see below)
+Status: active → SUPERSEDED
+35 unchecked milestones triaged — ALL covered by S068-S073:
+  STEP 1 (pillar-7-product rename): pillar-7-product EXISTS ✓
+  STEP 2 (SPINE-PILLAR-MAP.md): EXISTS + extended in S073 B0 ✓
+  STEP 3 (NODEFILE-CONTRACT.md): EXISTS ✓
+  STEP 4 (validator+hook): validate-nodefile-compliance.mjs + pre-tool-use-nodefile-required.sh ACTIVE ✓
+  STEP 5 (pending-nodes.yaml): SUPERSEDED by vault-pending.yaml + floating-artifacts-register.yaml (B4) ✓
+  STEP 6 (OPIA seal): never ran — all deliverables complete. Superseded by S073 engine (B0-B4) ✓
+No R8 ambiguous items. All terminal.
+Superseded-note appended to PROTO file.
 
-## OPEN ITEMS SURFACED
+## ITEM 4 — S073→S074 HANDOFF
 
-### R3 pending (ux-ui-doctrine-S072.md §8)
-Still awaiting your ruling: §1-§7 content ratified (R1-R7 applied). §8 = 8 questions.
-Options: (a) Sonnet vaults §8 as PI items → mark §1-§7 RATIFIED, (b) you rule on §8 directly.
-
-### 2 open S068 PROTOs (completion discipline first output)
-PROTO-S068-CONNECTOR-WET-TRIAL: 26 unchecked milestones
-PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION: 35 unchecked milestones
-Disposition needed: VAULTED-with-trigger or SUPERSEDED or COMPLETED?
+HANDOFF-S073-to-S074.md written and committed.
+  validate-handoff-completeness: ✓ all mandatory sections present
+  Zone A: S073 build table (14 milestones), platform state
+  Zone B: Priority 1/2/3 mandates
+  ALIGNMENT QUESTIONS: Q1-Q5 (format: Q1: ... matching validator pattern)
+  SONNET STARTUP BLOCK: copy-paste ready
+  CARRY-FORWARD LEDGER: 10 items with triggers + owners
 
 ═══════════════════════════════════════════════════════════════════
 
-CADENCE-AUDIT (first use — E3 requirement):
-  Opus-authored-hard-parts:Y — COMPLETION-DISCIPLINE-PLAN was authored by OPUS-15 with full E1/E2/E3 spec
-  Autonomous-run-no-nominal-stops:Y — ran all 3 enforcement batches without R-class stops
-  Friction: frontmatter/principle-count cleanup added 3 extra fix cycles (E1 blocked verify); pre-existing debt surfaced by adding P-OP-008
+CADENCE-AUDIT (SEAL report):
+  Opus-authored-hard-parts:Y — PROTO-S073-SEAL clear and complete with all 4 items spec'd
+  Autonomous-run-no-nominal-stops:Y — executed all 4 items without R-class stops
+  Friction: minor format fix (handoff Q format) + YAML stale-count cleanup from P-OP-008 addition
 
 ═══════════════════════════════════════════════════════════════════
 
-ZF Cycle 1: Examined packages/principles/principles/P-OP-008-completion-before-new.yaml — present,
-  7th P-OP principle. validate-completion-before-new.mjs — STANDARD, baseline=2 open 61 unchecked,
-  behavioral 3/3. pre-tool-use-completion-before-new.sh — present, executable. 74 hooks confirmed.
-  AGENTS.md — 199 lines, budget passes. verify exit_code=0 at HEAD bd57e1f5.
+ZF Cycle 1: Examined docs/plan/_handoff/VAULT/ux-ui-doctrine-S072.md — status:ratified, closure
+  fields present. docs/plan/protos/PROTO-S068-CONNECTOR-WET-TRIAL.md — status:vaulted.
+  docs/plan/protos/PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION.md — status:superseded + note appended.
+  HANDOFF-S073-to-S074.md — validate-handoff-completeness ✓ all sections. verify exit_code=0.
 
-ZF Cycle 2: Re-examined 5 stale "6 operating" files — all updated to "7 operating". COMPLETION-
-  DISCIPLINE-PLAN-S073.md — lifecycle + next_review_at fields present. Memory entries present for
-  cadence-audit + completion-before-new. CADENCE-AUDIT format correct in this report.
-  verify_top_exit: 0. 0 new findings.
+ZF Cycle 2: Re-examined floating-artifacts-register.yaml — af-S072-ux-ui-doctrine terminal_state:ratified.
+  vault-pending.yaml — vlt-S073-theme-dashboard-pi present. No unchecked milestones left silently open
+  in either S068 PROTO. CADENCE-AUDIT present. verify_top_exit: 0. 0 new findings.
 
-STATUS: E1-E2-E3 ZF ACHIEVED. S073 build sequence (M1+M3+B0-B4+E1-E3) complete.
+STATUS: SEAL ZF ACHIEVED. S073 is sealed.
 
-— Sonnet S073 | 2026-05-31 | HEAD bd57e1f5 | verify exit_code=0
+— Sonnet S073 | 2026-05-31 | SEALED | verify exit_code=0
 ═══════════════════════════════════════════════════════════════════

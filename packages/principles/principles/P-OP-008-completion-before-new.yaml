@@ -41,4 +41,6 @@ self_check_q: |
   "Is there an OPEN active plan (unchecked milestones)? If yes, does this new intent
    route through the threshold to a future plan — or am I about to disrupt the active plan?
    Did Opus author the hard parts up front? Can I run autonomously without nominal stops?"
-note: Governor assigns final P-OP-008 id. Candidate — may become P-OP-002 mechanical arm.
+note: >-
+  ID confirmed as P-OP-008 (S074 active). Governor may reassign if it becomes P-OP-002 mechanical arm — currently
+  standalone. T3 session-open injection wired S074.

@@ -121,4 +121,14 @@ CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.
   printf '\n[C8-proactive-opus] D9 recency-bias override: MEMORY.md has 60 entries — cite at least one relevant per substantive turn.' >&2
 } 2>/dev/null || true
 
+# ─── ANTI-FLOAT T3: overdue floater injection + decision queue (S074 A1) ─────
+# Per P-META-030 enforcement_tier.tier3_session. T1=pre-tool-use-closure-obligation-required.sh
+# T2=validate-no-floating-artifacts.mjs · T3=THIS (session-open injection).
+# Reads floating-artifacts-register.yaml → injects overdue floaters into context +
+# writes .csps/floater-decision-queue.txt for Governor decision-making.
+{
+  CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-floater-inject.mjs" 2>&1 >&2 || true
+} 2>/dev/null || true
+
+
 exit 0

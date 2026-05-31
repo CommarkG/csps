@@ -13,11 +13,13 @@ description: >
 type: governance
 diataxis_type: explanation
 protection_level: protected
-status: draft
-lifecycle_state: pending-review
-quality_state: draft
-impl_status: swift-implemented
-next_review_at: "2026-06-30"
+status: ratified
+lifecycle_state: ratified
+quality_state: certified
+impl_status: sealed-zf
+ratified_by: "Governor S074 (PROTO-S074-FINISH-ACCOUNTABILITY)"
+ratified_date: "2026-05-31"
+next_review_at: "2026-08-31"
 core_spine: GVRN
 core_spines: [GVRN, VALD, OPER, AI]
 schema_anchor: pillar_0_governance_leaves

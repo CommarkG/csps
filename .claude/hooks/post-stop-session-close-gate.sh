@@ -177,6 +177,20 @@ if [ "$TOP3_PE_EXIT" -ne 0 ]; then
   exit 1
 fi
 
+
+# ─── ANTI-FLOAT T3: current-session floater check (S074 A1) ──────────────────
+# BLOCKS if non-terminal artifacts created THIS session have no closure path.
+# Per P-META-030 + ANTI-FLOAT T3.
+FLOATER_CHECK_EXIT=0
+FLOATER_CHECK_OUTPUT=$(CSPS_REPO_ROOT="${REPO_ROOT}" node "${REPO_ROOT}/tools/scripts/close-gate-floater-check.mjs" 2>&1) || FLOATER_CHECK_EXIT=$?
+if [ "$FLOATER_CHECK_EXIT" -ne 0 ]; then
+  FLOATER_MSG=$(echo "$FLOATER_CHECK_OUTPUT" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);process.stdout.write(j.message||'');}catch(e){process.stdout.write(d);}});" 2>/dev/null || echo "$FLOATER_CHECK_OUTPUT")
+  printf '{"systemMessage": "[SESSION-CLOSE-GATE] ⛔ NEW FLOATERS UNRESOLVED
+%s
+
+Fix: update tools/data/floating-artifacts-register.yaml -- set escalation_state: terminal + terminal_state for each new item, then retry close.", "continue": false, "stopReason": "session-close blocked: new floaters without terminal state"}' "$FLOATER_MSG"
+  exit 1
+fi
 # ZF ACHIEVED + HARVEST DONE + TOP-3-PE OK → surface closing protocol + startup block
 printf '{
   "systemMessage": "[SESSION-CLOSE-GATE] ✅ ZF ACHIEVED + HARVEST DONE + TOP-3-PE OK\nClose signal: %s\n\nNOW complete the §10 closing protocol:\n  1. Paste ZF output (above) into §10.0 of closing-summary\n  2. Write closing-summary + HANDOFF artifacts\n  3. git push before handoff (B_ZERO_LAPTOP_DEPENDENCY)\n  4. Paste startup block below into new Sonnet tab%s"

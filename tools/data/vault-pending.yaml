@@ -774,13 +774,15 @@ entries:
     raw: "B4 ANTI-FLOAT M3 session gates were NOT built: (1) post-stop-session-close-gate.sh extension (block close if non-terminal artifact created THIS session without closure obligation), (2) session-open.sh injection (inject overdue floaters into context at tab start), (3) decision pipeline (.csps/floater-decision-queue.txt auto-surfaced to Governor)."
     context: "PROTO-S072-ANTI-FLOAT M3 scope: T1 pre-creation gate (done in B4) + end-of-tab close-gate (NOT built) + beginning-of-tab session-open injection (NOT built) + decision pipeline (NOT built). The escalation-ladder.md was built but the hook extensions were not. Also: E3 said 'session-open injection' for completion-before-new but only memory+AGENTS.md were done; session-open.sh was NOT extended."
     insight: "These are the T3 layer for ANTI-FLOAT + Completion-Before-New. Without them, the disciplines are partially enforced (T1+T2 active, T3 missing). The session-open injection is the 'always-in-context' surface that makes these disciplines truly inherited every tab. Priority: medium (T1+T2 already catch most violations; T3 adds awareness layer)."
-    status: deferred
+    status: resolved
     urgency: medium
     created_session: S073
     routing_decision: "Queue to S074 as focused task. closure_by: S074 early build"
     closure_owner: group:finky
     closure_decision: "T3 session-open + session-close-gate extensions built + verified"
     closure_by: "S074 early (before new PROTO work)"
+    resolved_session: S074
+    resolution: "A1 complete: (1) session-open-floater-inject.mjs built + wired into session-open.sh; (2) close-gate-floater-check.mjs built + wired into post-stop-session-close-gate.sh; (3) .csps/floater-decision-queue.txt auto-written at every tab start. T3 fully active."
 
   - id: vlt-S073-vercel-dynamic-import-risk
     raw: "B1-B2 API routes use file:// dynamic imports to reach tools/ files outside the playground project root. These work in local dev (Node.js) but Vercel serverless functions may restrict file:// imports to outside-root paths at runtime."

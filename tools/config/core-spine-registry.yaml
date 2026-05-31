@@ -49,10 +49,12 @@ spines:
 
   - id: accountability
     spine: GVRN
-    status: draft
+    status: active
     authored_session: S073
     authored_by: OPUS-15
-    ratified_by: null  # Governor ratification pending
+    ratified_session: S074
+    ratified_by: "Governor S074 (Hub Plan approved — PROTO-S074-FINISH-ACCOUNTABILITY)"
+    ratified_date: "2026-05-31"
     # ── 1. trunk ─────────────────────────────────────────────────────────────
     # The 7 universal invariants (GVRN-primary, always-on, undebatable).
     # Source: ACCOUNTABILITY-HUB-PLAN-S072.md §PLATFORM-ATTITUDE STRUCTURE (default)

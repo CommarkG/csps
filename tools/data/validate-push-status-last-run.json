@@ -1,0 +1,9 @@
+{
+  "run_at": "2026-05-31T20:51:10.722Z",
+  "unpushed_count": 0,
+  "remote_check_ok": true,
+  "advisory": 0,
+  "blocking": 0,
+  "advisory_threshold": 5,
+  "strong_warn_threshold": 10
+}

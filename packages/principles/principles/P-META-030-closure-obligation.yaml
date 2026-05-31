@@ -37,11 +37,15 @@ enforcement_tier:
     fields)
   tier2_validator: validate-no-floating-artifacts.mjs (DEEP advisory sweep — scan docs/plan + docs/SIA)
   tier3_session: session-open injection of overdue floaters (B4 M3) · post-stop-session-close-gate extension
-ratified_by: Governor S073 (OPUS-15 PROTO-S073-B4 directed) — stub awaiting final id assignment
+ratified_by: >-
+  Governor S073 (OPUS-15 PROTO-S073-B4 directed) · active S074 (T3 wired: session-open injection + close-gate floater
+  check)
 ratified_date: '2026-05-31'
 session: S073
 self_check_q: |
   "Does this artifact have closure_owner, closure_decision, AND closure_by?
    If status is non-terminal and any of these are missing — it is a floater.
    If it is past closure_by without a terminal state — escalate NOW."
-note: Governor assigns final P-META-030 id. This stub records the discipline ratified in S073 B4.
+note: >-
+  ID confirmed as P-META-030 (S074 active). T3 enforcement fully wired: session-open-floater-inject.mjs +
+  close-gate-floater-check.mjs + pre-tool-use-closure-obligation-required.sh + validate-no-floating-artifacts.mjs.

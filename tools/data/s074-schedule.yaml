@@ -1,0 +1,384 @@
+---
+id: csps.data.s074-schedule
+name: s074-schedule
+description: >
+  PE-ordered schedule for all deferred vault items + floater backlog.
+  Generated A3 of PROTO-S074-FINISH-ACCOUNTABILITY. Purpose: no item is "someday"
+  without a named slot/trigger. Every entry has a session assignment or a trigger event.
+  Governor + OPUS-15 review this before issuing PART 3 PROTO.
+version: "1.0"
+session: S074
+authored_by: Sonnet S074
+reviewed_by: "OPUS-15 (pending)"
+core_spine: GVRN
+schema_anchor: vault_files
+closure_owner: group:finky
+closure_decision: "Living schedule — reviewed each session, promoted items leave this register"
+closure_by: "ongoing — update as sessions complete"
+
+# ── PE SCORING FORMULA ────────────────────────────────────────────────────────
+# PE = (urgency_score × impact_score) / spi_estimate
+# urgency_score: weekly=5, high=4, monthly=3, medium=2, low=1, someday=1
+# impact_score:  structural-governance=5, wiring-backlog=4, product-feature=3, research=2
+# spi_estimate:  hours (rough: 1=quick, 3=one-session, 5=multi-session)
+# Tiers: PE>=5 = TIER-1 (next), PE 2-4 = TIER-2 (soon), PE<2 = TIER-3 (queued)
+
+# ── TIER-1: IMMEDIATE (PE >= 5 — slot in S074 or first available session) ─────
+tier_1:
+  description: "High urgency × high impact / low SPI. Build these before starting new major PROTOs."
+
+  - id: vlt-S068-00025
+    summary: "HIGH-RISK described-only: threshold council-dispatch EXISTS≠INVOKED (4/532)"
+    pe_score: 6.7  # weekly(5) × structural(5) / spi(3.5)
+    session_slot: "PART 2 (threshold) — first milestone"
+    trigger: "PART 2 PROTO issued by Opus"
+
+  - id: vlt-S068-00023
+    summary: "M-43 marker-thrashing DEFECT-1 recurred K>=2 (fabricated SHA, tab conflict)"
+    pe_score: 6.3  # weekly(5) × structural(4) / spi(3)
+    session_slot: "S074 STEP 0 (small structural fix — before PART 3 PROTO)"
+    trigger: "S074 build window"
+
+  - id: vlt-S068-00020
+    summary: "WIRING BACKLOG: 283 partial-marker + 141 advisory validators + 4 described-only"
+    pe_score: 5.0  # weekly(5) × wiring(4) / spi(4)
+    session_slot: "Continuous — one wiring batch per session (not its own session)"
+    trigger: "Each session: ≥5 partial-markers wired before SEAL"
+
+  - id: vlt-S068-00009
+    summary: "2 threshold intake logs → ONE SSoT (formalize 3-stage pipeline)"
+    pe_score: 5.0  # weekly(5) × structural(5) / spi(5)
+    session_slot: "PART 2 (threshold)"
+    trigger: "PART 2 PROTO issued"
+
+  - id: vlt-S073-push-mandatory-discipline
+    summary: "Push mandatory — build push-gate enforcement"
+    pe_score: 5.0  # high(4) × structural(5) / spi(4)
+    session_slot: "S074 early — small hook"
+    trigger: "S074 before PART 3"
+
+  - id: vlt-S068-00022
+    summary: "PLAN AUDIT x3: prevention-focus, threshold-as-only-gate, permanency"
+    pe_score: 5.0  # weekly(5) × structural(5) / spi(5)
+    session_slot: "PART 2 (threshold) — Opus authors"
+    trigger: "PART 2 PROTO issued"
+
+  - id: vlt-S073-vault-attitude-codified-simple
+    summary: "Vault attitude codified (simple form)"
+    pe_score: 5.3  # high(4) × structural(4) / spi(3)
+    session_slot: "S074 early — small governance write"
+    trigger: "First available turn"
+
+  - id: vlt-S073-moat-admission-protocol
+    summary: "Moat admission protocol — gate for M-* additions"
+    pe_score: 4.4  # high(4) × structural(5) / spi(4.5)
+    session_slot: "S074 or PART 3 open"
+    trigger: "Next moat addition attempt triggers this"
+
+  - id: vlt-S073-end-of-tab-mechanical-trigger-platform-wide
+    summary: "End-of-tab mechanical trigger (platform-wide close discipline)"
+    pe_score: 4.0  # high(4) × structural(5) / spi(5)
+    session_slot: "PART 3 or session gate work"
+    trigger: "After ANTI-FLOAT T3 verified stable (S074)"
+
+# ── TIER-2: SOON (PE 2–4 — next 2-3 sessions, named trigger) ─────────────────
+tier_2:
+  description: "Medium PE — important but can wait 1-2 sessions. All have triggers."
+
+  # Platform observation + monitoring
+  - id: vlt-S072-platform-observation-doctrine
+    summary: "Platform Observation Doctrine (OBSERVE→AGGREGATE→CLASSIFY→ROUTE pipeline)"
+    pe_score: 3.8  # high(4) × structural(5) / spi(5.5)
+    session_slot: "S075 or PART 4"
+    trigger: "After PART 3 product schema — observation needs what exists to observe"
+
+  - id: vlt-S073-vault-pipeline-active-monitoring-escalation
+    summary: "Vault pipeline monitoring + escalation (stale-rate as CIE signal)"
+    pe_score: 3.2  # high(4) × feature(4) / spi(5)
+    session_slot: "PART 4 (governance dashboard)"
+    trigger: "Platform-observation-doctrine lands first"
+
+  # Doctrine work
+  - id: vlt-S073-naive-personas-doctrine
+    summary: "Naive personas doctrine v2 (3 archetypes + 6 axes → persona-engine.mjs)"
+    pe_score: 3.6  # medium(2) × feature(4) / spi(2.2) — deceptively high: feeds Pillar 7+8
+    session_slot: "S075 or PART 7 (user journeys)"
+    trigger: "Before starting user journey build"
+
+  - id: vlt-S072-naive-personas-doctrine
+    summary: "Naive personas doctrine v1 (predecessor — superseded by S073 version)"
+    pe_score: 0.0  # SUPERSEDED by vlt-S073-naive-personas-doctrine
+    session_slot: "N/A — SUPERSEDE with pointer to S073 version"
+    trigger: "Mark superseded in floater register"
+
+  - id: vlt-S073-core-spine-mandatory-question-framework
+    summary: "Core spine 3-question framework (B_CORE_SPINE_QUESTIONS contract)"
+    pe_score: 3.3  # high(4) × structural(4) / spi(4.8)
+    session_slot: "PART 3 open — feeds how product schema is structured"
+    trigger: "Before PART 3 PROTO issued by Opus"
+
+  # Small structural fixes
+  - id: vlt-S068-00008
+    summary: "4-register consolidation (vault-pending + gap-vault + pending-plan-items + pending-nodes)"
+    pe_score: 3.3  # weekly(5) × structural(4) / spi(6) — scope is large
+    session_slot: "PART 1 structural batch (umbrella item)"
+    trigger: "When PART 1 (currently done) gets its wiring pass"
+
+  - id: vlt-S073-question-driven-routing-organic-pattern
+    summary: "Question-driven routing as organic pattern (routing-questions-registry.yaml)"
+    pe_score: 3.2  # high(4) × structural(4) / spi(5)
+    session_slot: "PART 2 (threshold) — questions ARE routing"
+    trigger: "PART 2 PROTO threshold design phase"
+
+  - id: vlt-S073-completion-permanence-cross-tab-inheritance
+    summary: "Completion+permanence cross-tab inheritance audit"
+    pe_score: 3.2
+    session_slot: "PART 3 prep — validate before building"
+    trigger: "Session-open before PART 3 PROTO issued"
+
+  # Haiku tier
+  - id: vlt-S073-haiku-audit-tier-proposal
+    summary: "Haiku audit-tier for DEEP validators (pre-analysis pass)"
+    pe_score: 2.7  # medium(2) × structural(4) / spi(3)
+    session_slot: "Council decision (needs Opus+Governor PE ratification)"
+    trigger: "OPUS reviews as PI item — S074 or next council turn"
+
+  # Dashboard PIs
+  - id: vlt-S073-process-templates-dashboard
+    summary: "Process templates dashboard"
+    pe_score: 2.0  # medium(2) × feature(3) / spi(3)
+    session_slot: "PART 6 (page-type templates)"
+    trigger: "PART 6 PROTO issued"
+
+  - id: vlt-S073-theme-dashboard-pi
+    summary: "Theme dashboard PI"
+    pe_score: 2.0
+    session_slot: "PART 6 (page-type templates)"
+    trigger: "PART 6 PROTO issued"
+
+  # Doctrine/research
+  - id: vlt-S073-research-attestation-discipline
+    summary: "Research attestation discipline (research_tagged frontmatter field)"
+    pe_score: 2.7
+    session_slot: "PART 3 prep (governance hygiene)"
+    trigger: "Before any PART 3 doctrine is authored"
+
+  - id: vlt-S072-core-seeds-currency-full-engraving
+    summary: "Core seeds currency full T1+T2+T3 engraving"
+    pe_score: 2.5
+    session_slot: "PART 3 prep"
+    trigger: "Before PART 3 doctrine authors core seeds"
+
+  - id: vlt-S072-pmeta-029-registry-backfill
+    summary: "P-META-029 registry backfill (~15 min)"
+    pe_score: 2.7  # medium(2) × structural(4) / spi(3)
+    session_slot: "S074 small side-work"
+    trigger: "Any available 15-min window"
+
+  - id: vlt-S068-00018
+    summary: "FOREIGN-ELEMENT-LOCALIZATION wiring (D13 currently described-only)"
+    pe_score: 3.3  # weekly(5) × wiring(4) / spi(6)
+    session_slot: "WIRING PASS batch"
+    trigger: "Each wiring-pass session includes ≥1 D13 item"
+
+  - id: vlt-S068-00019
+    summary: "DAILY ALIGNMENT PASS (proactive CIE+PE daily)"
+    pe_score: 3.3  # weekly(5) × feature(4) / spi(6)
+    session_slot: "PART 4 (audit + monitoring)"
+    trigger: "After PART 3 — needs what-exists data"
+
+  - id: vlt-S068-00024
+    summary: "INHERITANCE enforcement-wiring gaps (3 dimensions)"
+    pe_score: 3.1  # weekly(5) × wiring(4) / spi(6.5)
+    session_slot: "WIRING PASS batch"
+    trigger: "Each session: ≥1 dimension tightened"
+
+  # App work
+  - id: vlt-S073-super-admin-google-oauth
+    summary: "Super-admin Google OAuth (Clerk)"
+    pe_score: 2.0  # medium(2) × feature(3) / spi(3)
+    session_slot: "App#2 (The Connector) first deploy"
+    trigger: "App#2 PROTO issued"
+
+  - id: vlt-S073-vercel-dynamic-import-risk
+    summary: "Vercel dynamic-import risk (file:// outside root in serverless)"
+    pe_score: 2.0  # medium(2) × structural(3) / spi(3)
+    session_slot: "First App deploy attempt"
+    trigger: "Any playground or app Vercel deploy"
+
+# ── TIER-3: QUEUED (PE < 2 — named trigger, not soon) ─────────────────────────
+tier_3:
+  description: "Lower PE or high SPI. Named trigger so nothing is 'someday'."
+
+  - id: vlt-S068-00001
+    summary: "App#2 The Connector wet-trial"
+    trigger: "PART 3 schema complete + 4 preconditions pass"
+
+  - id: vlt-S068-00002
+    summary: "Continuous-enrichment ENGINE (Package A)"
+    trigger: "PART 2 threshold + CIE projection live"
+
+  - id: vlt-S068-00003
+    summary: "Confidence decay job (Layer 2 freshness)"
+    trigger: "PART 3 Layer 2+3 field defined"
+
+  - id: vlt-S068-00004
+    summary: "Bundle/ProductKit resolver"
+    trigger: "PART 3 Layer 2+3 live"
+
+  - id: vlt-S068-00005
+    summary: "PVA (Process-Value-Audit) validator"
+    trigger: "PART 4 governance"
+
+  - id: vlt-S068-00006
+    summary: "Apps-vault execution (6 trials → _trials-vaulted/)"
+    trigger: "PROTO-S068-TRIALS-VAULT — before PART 2"
+
+  - id: vlt-S068-00007
+    summary: "Holistic multi-scope audit suite"
+    trigger: "PART 4 audit-runner extension"
+
+  - id: vlt-S068-00010
+    summary: "Glossary reconciliation (22 templates vs 8 UI components)"
+    trigger: "PART 6 (page-type templates)"
+
+  - id: vlt-S068-00011
+    summary: "Capability-first (no-app-required definition)"
+    trigger: "PART 3 vocabulary"
+
+  - id: vlt-S068-00012
+    summary: "MASTER DASHBOARD spec"
+    trigger: "PART 6"
+
+  - id: vlt-S068-00013
+    summary: "RESEARCH PIPELINE (governed)"
+    trigger: "PART 2 threshold design"
+
+  - id: vlt-S068-00014
+    summary: "PROVE depth-levels work (d_level activation demo)"
+    trigger: "PART 1/2 proof session"
+
+  - id: vlt-S068-00015
+    summary: "Dashboards → full developer-tool spec"
+    trigger: "PART 6"
+
+  - id: vlt-S068-00016
+    summary: "AI research-behavior mapping (D12)"
+    trigger: "AI-defaults registry extension"
+
+  - id: vlt-S068-00017
+    summary: "SKILLS & AGENTS DASHBOARD"
+    trigger: "PART 6 + foreign-element register"
+
+  - id: vlt-S068-00021
+    summary: "D14 repetition-avoidance + DNA-repetition moat"
+    trigger: "AI-defaults registry extension"
+
+  - id: vlt-S068-00026
+    summary: "S068 completion-to-RZF pass"
+    trigger: "After PHASES 1-5 complete"
+
+  - id: vlt-S071-proto-completeness-migration
+    trigger: "Side-work: 1-2 protos per session until all 11 pass"
+
+  - id: vlt-S071-persona-self-evolve
+    trigger: "After 5+ sessions of persona audit data accumulated"
+
+  - id: vlt-S072-boundary-prompt-format-validator
+    trigger: "After validate-boundary-prompt-format.mjs advisory clears 5 exemplars → promote"
+
+  - id: vlt-S073-relative-not-rigid-discipline-for-vault-entries
+    trigger: "Governance doctrine authoring session"
+
+  - id: vlt-S073-audit-formula-20-samples-discipline
+    trigger: "Audit runner PART 4"
+
+  - id: vlt-S073-recurring-audits-context-vs-rigid
+    trigger: "PART 4 audit design"
+
+  - id: vlt-S073-moat-additions-from-S072-cluster
+    trigger: "Moat audit session"
+
+  - id: vlt-S073-cross-tab-review-discipline-doctrine
+    trigger: "Boundary-prompt-format validator lands"
+
+  - id: vlt-S073-L1-mutual-consolidated-elements-survey
+    trigger: "L1 core spine audit session"
+
+  - id: vlt-S073-3-stage-intake-pipeline-formal-doctrine
+    trigger: "PART 2 threshold design"
+
+  - id: vlt-S073-OPIA-template-formalization
+    trigger: "Next OPIA audit session"
+
+  - id: vlt-S073-opus-channel-integrity-root-cause
+    trigger: "After 3+ instances of channel drift documented"
+
+  - id: vlt-S073-vault-pending-scan-interface
+    trigger: "PART 6 developer tools"
+
+  - id: vlt-S073-question-hub-corpus-extraction
+    trigger: "Question-driven-routing builds first (vlt-S073-question-driven-routing)"
+
+  - id: vlt-S073-T1-boundary-prompt-realtime-hook
+    trigger: "Boundary-prompt validator advisory → blocking promotion"
+
+  - id: vlt-S073-use-formal-startup-block-tool
+    trigger: "Tab-transfer protocol enforcement session"
+
+  - id: vlt-S073-discipline-drift-within-authoring-turn
+    trigger: "Meta-governance doctrine session"
+
+  - id: vlt-S073-process-state-anti-float-seed
+    trigger: "Accountability hub B4 sprint (PLANNED)"
+
+  - id: vlt-S073-schema-vault-vs-session-vault-consensus
+    trigger: "Governor + Opus consensus session before PART 3"
+
+  - id: vlt-S072-cross-tab-prompt-review-discipline
+    trigger: "Already partially wired (B_TAB_TRANSFER_REVIEW) — full doctrine after 5 instances"
+
+# ── FLOATER BACKLOG TRIAGE SCHEDULE ──────────────────────────────────────────
+floater_triage:
+  description: "26 overdue floaters. Triage rule: pick ≥1 per session → terminal decision."
+  total_overdue: 26
+  triage_budget_per_session: 3
+  projected_sessions_to_clear: 9
+  trigger: "Each session SEAL: Governor reviews .csps/floater-decision-queue.txt → marks ≥1"
+
+  priority_by_session:
+    S074:
+      - id: af-S072-chat-jump-prompt
+        decision: "SUPERSEDED — S072→S073 transition complete"
+      - id: af-S072-opus-review-prompt
+        decision: "SUPERSEDED — OPUS-15 ruled in S073 B3"
+      - id: af-S072-journey-consolidation-draft
+        decision: "Governor reviews: ratify current journey structure or supersede with PART 7 trigger"
+    S075:
+      - id: af-S072-naive-personas-doctrine
+        decision: "SUPERSEDED by vlt-S073-naive-personas-doctrine v2"
+      - id: af-S071-ai-profiling-feedback
+        decision: "Governor: ratify if current, supersede if replaced"
+      - id: af-S070-comms-spine-readme
+        decision: "Governor: ratify vs communication-schema.yaml replacement"
+    S076_and_beyond:
+      trigger: "Continue at 3/session until queue clears"
+      remaining_after_S075: 20
+
+# ── PART 3 CONFIRMATION ────────────────────────────────────────────────────────
+next_major_workstream:
+  name: "PART 3 — Product Schema"
+  status: "CONFIRMED TOP OF ORDER (after S074 A1+A2+A3 SEAL)"
+  depends_on:
+    - "ACCOUNTABILITY spine → active (A2 — DONE S074)"
+    - "ANTI-FLOAT T3 gates live (A1 — DONE S074)"
+    - "PE schedule written (A3 — THIS FILE)"
+    - "M-43 marker-thrashing fix (vlt-S068-00023 — S074 small step)"
+    - "Core spine 3-question framework (vlt-S073-core-spine-mandatory-question-framework — before PROTO)"
+  gate_before_proto: "Opus reviews this schedule + issues dedicated PART 3 PROTO (it's large; owns its own plan)"
+  estimated_sessions: 2-3
+  key_deliverables:
+    - "Multi-tenant Tenant/User/App schema (ZenStack + RLS)"
+    - "PART 3 core spine (ARCH L2)"
+    - "Product vocabulary (Capability / Kit / Bundle definitions)"
+    - "B3 external-user branch wired (builds on accountability spine)"

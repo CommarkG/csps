@@ -282,6 +282,14 @@
             "type": "command",
             "command": ".claude/hooks/post-tool-use-design-token-check.sh",
             "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-tool-use-proto-inline.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-tool-use-sonnet-relay-inline.sh"
           }
         ]
       },

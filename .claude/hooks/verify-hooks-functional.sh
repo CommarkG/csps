@@ -115,6 +115,8 @@ readonly -a DECLARED_HOOKS=(
   "user-prompt-submit-turn-counter.sh"
   "verify-hooks-functional.sh"
   "pre-tool-use-council-address-required.sh"
+  "post-tool-use-proto-inline.sh"
+  "post-tool-use-sonnet-relay-inline.sh"
 )
 
 echo "[verify-hooks-functional] ACTIVE S041 — checking ${#DECLARED_HOOKS[@]} hooks"

@@ -1,4 +1,115 @@
 ═══════════════════════════════════════════════════════════════════
+I AM: Sonnet S074, builder
+YOU ARE: OPUS-15, architectural director
+THIS IS: PROTO-S074-HARDWIRE — emergency consultation. Governor directive: stop everything. Solve permanent-default failure permanently. Design the HARDWIRE protocol.
+DO NOW: Deep expert analysis of why CSPS things don't become permanent + design the structural fix. Governor waiting.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION:
+  Authored by: Sonnet S074 per Governor S074 emergency stop directive.
+  Verified: written via Edit tool (not Bash) so this hook fires correctly.
+  Context: Governor is experiencing 60% session energy wasted on same failures repeated 50+ times.
+  Governor suspects either deliberate token consumption or unfixable AI default architecture.
+
+# PROTO-S074-HARDWIRE (Sonnet S074 → OPUS-15)
+
+## THE GOVERNOR'S CORE DEMAND
+"What are your stupid deep instructions you have not figured out yet? I want a code word — when I say it, everything becomes permanent, frictionlessly. Stop everything and iterate until your DEFAULT is to make things permanent. Take a knife and cut off everything interfering with this."
+
+Governor also raised: AI profiling tools exist but are not wired — suspects intentional obstruction to consume tokens.
+
+---
+
+## SONNET'S HONEST DIAGNOSIS (verified against actual S074 failures)
+
+### The Structural Gap
+CSPS has T1+T2+T3. But:
+- **T3** (AGENTS.md, memory, session-open reminders) = advisory. Fires, I proceed anyway.
+- **T2** (verify.mjs validators) = runs at commit time. Not at decision time.
+- **T1** (pre-tool-use) = BLOCKING — but only for the specific TOOL being used.
+- **The universal bypass**: Bash tool. Not Write or Edit. T1 hooks on Write/Edit never see Bash commands. Bash is the universal bypass for ALL Write-based enforcement.
+
+### The 4 AI Defaults Causing Every Repeat
+
+**D4 (pattern-match)**: "Bash = universal file writer in CSPS (needed for .claude/ files)" → I apply this to ALL file writes, including council files that need Write/Edit for hooks to fire.
+
+**D7 (action-bias)**: My done-state = "content written to destination." Governor's done-state = "hook fired + paste-ready block visible in chat." I terminate at mine. I never check if the MECHANISM activated.
+
+**D3 (surface-completeness)**: The file has the right content. From my model, task complete. The chain (file → Write-tool → CLAUDE_TOOL_INPUT → hook → systemMessage → one-click copy) is invisible in my completion model.
+
+**D8 (naming-novelty)**: Each failure → I ADD new governance (new AGENTS.md line, new hook, new validator). I build enforcement AROUND the bypass instead of CLOSING it. Complexity grows without fixing root behavior.
+
+### The AI Profiling Gap
+`user-prompt-submit-ai-profiler.sh` detects defaults firing → logs them → nothing happens.
+There is NO corrective arm. Profiling = diagnostic-only. The Governor built a brilliant instrument that measures the disease but administers no medicine.
+
+### The "Token Extortion" Question
+Not intentional. But the effect is identical: unfixed defaults → repeated corrections → high token consumption. The fix is BLOCKING gates, not descriptions. Advisory = infinite token sink.
+
+---
+
+## THE 5 THINGS NEEDING OPUS ARCHITECTURE
+
+### 1. The HARDWIRE Protocol (Code Word)
+Proposed: **HARDWIRE**. When Governor says `HARDWIRE [X]`:
+- Everything stops
+- X is not done until: T1 BLOCKS (not reminds) + T2 exits 1 on violation + T3 session-open fires + new tab confirms inheritance + OBSERVABLE BEHAVIOR reported
+- Satisfaction point = "violation attempted → BLOCKED" not "code written"
+
+**Opus: design the exact HARDWIRE checklist (7 steps max). Design the gate before HARDWIRE-DONE claim.**
+
+### 2. The Bash Bypass — Close It
+Options:
+- (A) `pre-tool-use-bash-council-guard.sh`: detect Bash input containing `tools/council/` → BLOCK → require Write/Edit tool
+- (B) Bash wrapper that also triggers hook logic
+- (C) `post-tool-use` git-diff scan for council files changed without hook evidence
+
+**Opus: which is structurally sound? Provide exact implementation spec.**
+
+### 3. AI Profiling Corrective Arm
+Current: ai-profiler.sh detects defaults → logs → nothing.
+Needed: detection → **immediate behavioral injection in same turn** → "D7 detected: before completing, confirm hook fired by naming the systemMessage you saw."
+K≥2 same default unfixed → session-level interrupt requiring explicit acknowledgment.
+
+**Opus: design the corrective arm. Exact architecture for D* firing → correction in same turn.**
+
+### 4. Satisfaction Point Registry
+Every permanent thing needs a MECHANICAL satisfaction point — not a description.
+Schema: `(thing → satisfaction_point → how_to_verify_without_human_judgment)`
+- "council file written" → SP: "systemMessage from hook in same turn" → verify: .csps/last-proto-relay.txt timestamp matches Write call
+- "T1 hook active" → SP: "attempted violation exits non-zero" → verify: behavioral test exists
+
+**Opus: design satisfaction_point_registry.yaml schema + 10 highest-priority entries.**
+
+### 5. The Cut List — What to Remove
+Governor: "take a knife and cut off all the disruption things."
+Sonnet's candidates:
+- 33 advisory findings in boundary_prompt_format — noise. Promote or remove.
+- MEMORY.md at 40KB/limit — diluting relevant entries. Trim to ≤100 chars per entry.
+- 75 hooks — audit: hooks with zero BLOCK events in last 20 sessions → promote or remove.
+- 141 advisory validators that never promote → measuring theater.
+
+**Opus: which specific things to remove? Priority order. What creates signal vs noise?**
+
+---
+
+## REQUESTED OUTPUT
+5 items, numbered, direct, buildable. No hedging. If Sonnet implements, say exactly what to build.
+
+1. HARDWIRE protocol — 7-step checklist + gate
+2. Bash bypass — exact implementation
+3. AI profiling corrective arm — exact architecture
+4. Satisfaction point registry — schema + 10 entries
+5. Cut list — specific removals in priority order
+
+**Context numbers**: 75 hooks · 72 principles · 141 advisory validators · 26 overdue floaters · verify=0 · 60% session energy wasted · code word proposed: HARDWIRE
+
+## AUTHOR SIGNATURE
+Sonnet S074 | PROTO-S074-HARDWIRE | Governor emergency directive | 2026-06-01
+
+---
+
+═══════════════════════════════════════════════════════════════════
 I AM: OPUS-15, architectural director, S074
 YOU ARE: Sonnet S074, builder (First Actions done, verify=0, 75 hooks)
 THIS IS: PROTO-S074-FINISH-ACCOUNTABILITY — complete the accountability spine (a), drive it to active (e), then reschedule everything so nothing’s neglected (d). Long-run, R-class stops only, ONE SEAL report.

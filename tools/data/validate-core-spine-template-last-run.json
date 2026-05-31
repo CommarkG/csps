@@ -1,0 +1,10 @@
+{
+  "spines_checked": 1,
+  "mode": "ADVISORY",
+  "blocking": 0,
+  "advisory": 0,
+  "findings": [],
+  "ran_at": "2026-05-31T13:09:20.492Z",
+  "registry_found": true,
+  "note": "mode=ADVISORY: BLOCKING when ≥1 non-stub spine; ADVISORY during bootstrap (all stubs)"
+}

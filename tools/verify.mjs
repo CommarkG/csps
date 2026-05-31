@@ -1250,6 +1250,20 @@ const CYCLES = [
     // S070 M1: Communication Schema coverage — 8 situations + 6 tiers + 9 B_* contracts
     // ADVISORY (draft — not blocking until Governor ratifies communication-schema.yaml)
     // Reads: docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml
+    // S073 B0: Core Spine Registry template validator — 8-section schema + wiring_map resolution
+    // DEFERRED-WITH-REASON: pnpm-verify-cycles at hard_limit 200 (platform-capacity BLOCKING).
+    // Run manually: node tools/validators/validate-core-spine-template.mjs
+    // Promotes to active cycle when pnpm verify tiering is implemented (P-META-028 tunable).
+    name: 'core_spine_template',
+    command: 'node tools/validators/validate-core-spine-template.mjs',
+    skip: true,
+    skip_reason: 'pnpm-verify-cycles at hard_limit 200 — deferred until verify tiering implemented (platform-capacity)',
+    parse_output: (out) => {
+      const m = out.match(/spines_checked=(\d+)\s+mode=(\S+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { spines_checked: Number(m[1]), mode: m[2], blocking: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
     name: 'communication_schema_coverage',
     command: 'node tools/validators/validate-communication-schema-coverage.mjs',
     parse_output: (out) => {

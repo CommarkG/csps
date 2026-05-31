@@ -1,0 +1,96 @@
+---
+id: csps.config.core-spine-registry
+name: core-spine-registry
+description: >
+  Registry of all CSPS core spines with their 8-section mandatory schema.
+  The engine (B1) reads this to auto-scaffold creation, routing, and wiring.
+  Every entry must have all 8 sections; validate-core-spine-template.mjs BLOCKS if any missing.
+  Source of truth for alignment_map targets → SPINE-PILLAR-MAP.md.
+version: "1.0"
+session: S073
+owner: group:finky
+core_spine: GVRN
+schema_anchor: vault_files
+closure_owner: group:finky
+closure_decision: "Living registry — terminal when all spines are non-stub and wiring_map fully resolves"
+closure_by: "ongoing — add entry per new core spine, update status to active after content built"
+
+# 8 mandatory sections per spine entry (enforced by validate-core-spine-template.mjs):
+#   trunk · branches · alignment_map · wiring_map · tier_permission · cie_pe · escalation · realtime_save
+
+sections_required:
+  - trunk
+  - branches
+  - alignment_map
+  - wiring_map
+  - tier_permission
+  - cie_pe
+  - escalation
+  - realtime_save
+
+architecture_map_nodes_valid:
+  - "pillar-0-governance"
+  - "pillar-1-architecture-and-stack"
+  - "pillar-2-data-and-schema"
+  - "pillar-3-platform-services"
+  - "pillar-4-developer-experience"
+  - "pillar-5-ai-systems"
+  - "pillar-6-operations-and-delivery"
+  - "pillar-7-product"
+
+classification_dimensions_valid:
+  - GVRN
+  - VALD
+  - ARCH
+  - AI
+  - OPER
+
+spines:
+
+  - id: accountability
+    spine: GVRN
+    status: stub
+    # ── 1. trunk ─────────────────────────────────────────────────────────────
+    trunk:
+      description: "Accountability obligations every app inherits — who owns what, how decisions are tracked, how obligations are closed."
+      elements: []
+    # ── 2. branches ──────────────────────────────────────────────────────────
+    branches: []
+    # ── 3. alignment_map ─────────────────────────────────────────────────────
+    alignment_map:
+      schema_anchor: vault_files
+      architecture_map_node: "pillar-0-governance"
+      classification_dimension: GVRN
+      root: null  # set to .claude/core-spines/L1_CORE_GVRN.md path when B3 content is built
+    # ── 4. wiring_map ────────────────────────────────────────────────────────
+    wiring_map: []  # entries: { file: path, role: description } — each file must exist
+    # ── 5. tier_permission ───────────────────────────────────────────────────
+    tier_permission:
+      min_tier: governor
+      ratification_required: true
+    # ── 6. cie_pe ─────────────────────────────────────────────────────────────
+    cie_pe:
+      pe_score: null
+      urgency: high
+      impact: platform-wide
+      note: "PE-score assigned when Governor ratifies ACCOUNTABILITY-HUB-PLAN-S072.md"
+    # ── 7. escalation ─────────────────────────────────────────────────────────
+    escalation:
+      owner: group:finky
+      escalation_path: "Governor → OPUS architectural review"
+      closure_owner: group:finky
+      closure_decision: "B3 content built + validated + all wiring_map entries resolve"
+      closure_by: "ACCOUNTABILITY-HUB-PLAN ratification + B3 sprint"
+    # ── 8. realtime_save ──────────────────────────────────────────────────────
+    realtime_save:
+      enabled: false
+      save_path: null
+      note: "Enabled in B2 (realtime-save lib) — not yet built"
+
+# ── How to add a new spine entry ─────────────────────────────────────────────
+# 1. Copy the accountability stub above
+# 2. Fill all 8 sections (validator BLOCKS if any missing)
+# 3. Set alignment_map.classification_dimension to one of: GVRN | VALD | ARCH | AI | OPER
+# 4. Set alignment_map.architecture_map_node to a node from SPINE-PILLAR-MAP.md §Architecture Map
+# 5. Add wiring_map[] entries pointing to REAL files (validator checks existence)
+# 6. Run: node tools/validators/validate-core-spine-template.mjs

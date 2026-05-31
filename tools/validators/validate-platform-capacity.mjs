@@ -79,9 +79,13 @@ function measure(id) {
         const f = join(ROOT, 'tools/verify.mjs');
         if (!existsSync(f)) return null;
         const text = readFileSync(f, 'utf8');
-        // Count objects with name: + command: fields (active validators)
-        const matches = text.match(/name: ['"][^'"]+['"]/g) || [];
-        return matches.length;
+        // Count active validator entries: have name: + command: but NOT skip: true
+        // Split by { to get rough entry blocks, then filter out deferred entries
+        // S073: DEFERRED-WITH-REASON entries have skip: true and do NOT consume verify cycles
+        const nameMatches = [...text.matchAll(/name:\s*['"]([^'"]+)['"][\s\S]{0,300}?command:/g)];
+        const total = nameMatches.length;
+        const deferredCount = (text.match(/skip:\s*true/g) || []).length;
+        return Math.max(0, total - deferredCount);
       }
 
       case 'deferred-audit-slugs': {

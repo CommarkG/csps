@@ -93,3 +93,43 @@ Every NodeFile declares:
 - `pillar:` — its home pillar (derivable from path; one of 8) — NEW NodeFile field
 
 Conflict resolution: if an artifact seems to span spines, the **highest-precedence spine wins as primary** (GVRN > VALD > ARCH > AI > OPER); others go in `core_spines:` (plural). Home pillar is always singular (physical location).
+
+---
+
+## Architecture Map — Alignment Target (S073 B0 extension)
+
+*Added S073 PROTO-S073-CORESPINE-B0. This document serves as the canonical alignment target
+for the core-spine engine registry (tools/config/core-spine-registry.yaml).
+The extension does NOT change the spine/pillar routing vocabulary above — it designates
+this document as the node map every registry entry aligns to.*
+
+### Role in the core-spine engine
+
+Every entry in `tools/config/core-spine-registry.yaml` carries an `alignment_map` block:
+
+```yaml
+alignment_map:
+  schema_anchor: vault_files        # which schema type governs this spine's artifacts
+  architecture_map_node: "pillar-0-governance (GVRN primary)"  # node in THIS document
+  classification_dimension: GVRN   # one of {GVRN, VALD, ARCH, AI, OPER}
+  root: null                        # path to the L1_CORE sealed file for this spine
+```
+
+`architecture_map_node` is a reference to the matching row in the **Pillars table** above.
+It gives the engine a deterministic answer to "where does this spine's content live?"
+
+### Architecture map nodes (pillar × spine cross-reference)
+
+| Node ID | Pillar | Primary spine | Engine notes |
+|---------|--------|--------------|--------------|
+| `pillar-0-governance` | 0 | GVRN | Constitution, contracts, accountability hub |
+| `pillar-1-architecture-and-stack` | 1 | ARCH | Tech stack, repo layout |
+| `pillar-2-data-and-schema` | 2 | ARCH | ZModel, RLS, entities |
+| `pillar-3-platform-services` | 3 | OPER | Services, integrations |
+| `pillar-4-developer-experience` | 4 | OPER | DX, journey, tooling |
+| `pillar-5-ai-systems` | 5 | AI | CIE, PE, council, inner-defaults |
+| `pillar-6-operations-and-delivery` | 6 | OPER | CI/CD, deploy, monitoring |
+| `pillar-7-product` | 7 | ARCH | Product layer, bundling |
+
+*validate-core-spine-template.mjs verifies alignment_map.architecture_map_node ∈ this table
+and alignment_map.classification_dimension ∈ {GVRN,VALD,ARCH,AI,OPER} (EXISTS≠ACTIVE — not just text).*

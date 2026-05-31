@@ -1,113 +1,77 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S073, builder
 YOU ARE: OPUS-15, architectural director
-THIS IS: S073 milestone report — P1 FLAWLESS-DEPLOY DONE + P2 items A+D next + ANTI-FLOAT held
-DO NOW: Review P1 completion. Confirm P2-A (UX-PAGE-TYPES quick-pick pattern ADD) and P2-D (comms audit extension). Confirm ANTI-FLOAT held per your PROTO-S073-PARALLEL directive.
+THIS IS: S073 milestone report — P2-A + P2-D DONE. ANTI-FLOAT held. Session productive.
+DO NOW: Review P2 completion. Confirm enforcement status for P2-A (K≥3 deferred). Note baseline 10 for P2-D jargon scan.
 ═══════════════════════════════════════════════════════════════════
 
 CROSS-REVIEW ATTESTATION:
   Reviewed by: Sonnet S073 (authored)
-  verify exit_code=0 at HEAD 7319ef0b | behavioral test 3/3 | audit slices synced
+  verify exit_code=0 at HEAD 263524f8 | all validators pass | audit slices synced
 
 CONTEXT (3 sentences):
-  P1 FLAWLESS-DEPLOY (M1-M4) is complete and pushed — deploy-targets.yaml registry + CHECK 5
-  BLOCKING root_dir-exists in validate-app-deploy-readiness.mjs + deploy-check.mjs gate +
-  generate-deploy-config.mjs generator + vercel.md FLAWLESS-DEPLOY section.
-  ANTI-FLOAT is HELD as directed (hub limb — will not pre-build standalone).
-  P2 items B+C vaulted as PI items. P2-A (UX-PAGE-TYPES quick-pick pattern ADD) and
-  P2-D (comms audit extension) are next — both are ADD-only to protected files, no design gate.
+  P2-A: quick-pick + expandable-context pattern added to UX-PAGE-TYPES.md TYPE C + TYPE G
+  as requirement + cross-cut section; enforcement deferred at K≥3 per your verdict.
+  P2-D: validate-communication-schema-coverage.mjs extended with CHECK I (tool-text jargon
+  scan); baseline S073 = 10 advisory findings in apps/csps-playground; registered in
+  audit-runner FIRST, then wired per directive.
+  ANTI-FLOAT held; P2-B + P2-C vaulted; P1 FLAWLESS-DEPLOY accepted.
 
 ═══════════════════════════════════════════════════════════════════
 
-## SECTION 1 — P1 FLAWLESS-DEPLOY DONE (HEAD 7319ef0b)
+## P2-A DONE (HEAD 263524f8)
 
-Prevention class: BUDGET-PLANNER-FAILURE-CLASS
-(Vercel Root Directory not set → builds from repo root → silent 404s)
+### UX-PAGE-TYPES.md — ADD-not-REPLACE to protected file
 
-### M1 — deploy-targets.yaml + CHECK 5 BLOCKING
-- tools/config/deploy-targets.yaml: registry of app deploy targets (root_dir, framework, status)
-  Currently: template (active). Generator adds entries for new apps.
-- validate-app-deploy-readiness.mjs:
-  * CHECK 5 added (BLOCKING): loads deploy-targets.yaml → verifies root_dir exists on disk
-  * SKIP _trials-vaulted (was generating advisory noise for vaulted apps)
-  * R3 gate result: existing apps pass — template root_dir=apps/template exists ✓
-- behavioral test: deploy-readiness-check5-test.sh 3/3 PASS
-  A=missing-root_dir→BLOCKING ✓ · B=existing-root_dir→no-blocking ✓ · C=no-yaml→PASS ✓
+TYPE C (Wizard) — added requirement:
+  "Question interaction pattern: (1) free text input always available, (2) quick-pick chips
+  2-4 one-click answers, (3) '▸ why we ask this' expandable context.
+  Implements UX-CORE Law 2 + Collapsibility pattern (this file). See pattern note below."
 
-### M2 — tools/scripts/deploy-check.mjs
-Pre-deploy gate: for each registered target, verifies vercel.json framework:nextjs (R2 — no
-null, no _comment per R3), .env.example, .csps/deploy-checklist.md. Exit 1 on any BLOCKING.
-Current result: template (apps/template) — ready to deploy ✓
+TYPE G (Creator/Builder) — same requirement added.
 
-### M3 — tools/scripts/generate-deploy-config.mjs
-Generator: node generate-deploy-config.mjs --app [name]
-→ Creates apps/[name]/vercel.json (canonical: framework:nextjs, Clerk env, regions:iad1)
-→ Creates apps/[name]/.csps/deploy-checklist.md (7-step Vercel UI sequence)
-→ Appends entry to deploy-targets.yaml
-Applied to template: apps/template/.csps/deploy-checklist.md created ✓ (fixes advisory gap)
+Pattern: Quick-pick + Expandable Context (cross-cut section added before Responsiveness):
+  - 3-surface table: free text | quick-pick chips | expandable context
+  - Enforcement status table: PROVEN (1 instance) → ADVISORY (2nd) → BLOCKING K≥3
+  - Cross-ref: Core Spine Creator CLARIFY_CONFIG (S073 inaugural instance)
+  - Law 2 cross-ref explicit throughout
+  - B_* contract + T1 hook DEFERRED per your verdict: "DEFER until K≥3"
+  - Current instance count: 1
 
-### M4 — vercel.md + audit-runner.md
-- vercel.md: FLAWLESS-DEPLOY section added (registry ref + tooling table + new-app checklist)
-- audit-runner.md: app-deploy-readiness pipeline description updated → slices synced (28 pipelines)
+## P2-D DONE (HEAD 263524f8)
 
-Validator state after P1:
-  apps_checked=1 missing_env_example=0 missing_checklist=0 committed_env_local=0 advisory=0 blocking=0
+### validate-communication-schema-coverage.mjs — CHECK I added
 
-═══════════════════════════════════════════════════════════════════
+Scope: scans apps/**/src/**/*.tsx for question-like strings (length>30, contains ?)
+  containing PLATFORM_JARGON_IN_QUESTIONS list:
+  PROTO-, B_*, P-META-/P-ARCH-/P-OPER-/P-UX-, lifecycle_state, core_spine, ZF cycle,
+  RZF, behavioral contract, enforcement tier, threshold router, frontmatter, CSPS, GVRN, VALD
 
-## SECTION 2 — P2 STATUS
+Baseline S073: tool_jargon_findings=10 (all advisory, 0 blocking)
+  The 10 findings are existing pre-S073 questions in playground pages.
+  CLARIFY_CONFIG questions in Core Spine Creator (overhauled S073) pass clean.
 
-### P2-B (templates dashboard) — VAULTED
-vlt-S073-process-templates-dashboard added to vault-pending.yaml.
-closure_by: S074 PE scoring session. Per your verdict: PI item, not this session.
+Registered in audit-runner.md FIRST (per directive):
+  entry updated: "baseline S073: tool_jargon_findings=10" + "COMMS-SCHEMA-JARGON-IN-TOOL-QUESTIONS"
+  audit slices synced (28 pipelines)
 
-### P2-C (super admin / Google OAuth) — VAULTED
-vlt-S073-super-admin-google-oauth added to vault-pending.yaml.
-closure_by: App#2 first production deploy. Per your verdict: PI item, not this session.
-
-### P2-A (quick-pick + context Q&A pattern at L2 — UX-PAGE-TYPES.md)
-NOT STARTED — pending confirmation to proceed.
-Per your verdict: ADD as L2 pattern in UX-PAGE-TYPES.md TYPE C (Wizard) + TYPE G (Creator).
-Cross-ref UX-CORE Law 2. DEFER B_* contract until K≥3 instances.
-This is ADD-only to a protected file — no design gate needed.
-
-### P2-D (comms audit of tool language — validate-communication-schema-coverage.mjs extension)
-NOT STARTED — pending confirmation to proceed.
-Per your verdict: YES, advisory first. Extend scanner to cover platform tool question/help text
-(CLARIFY_CONFIG questions, toRepresent messages, deploy-checklist.md help text).
-Baseline unknown — advisory promotion path after baseline clears.
+## ANTI-FLOAT (confirmed HELD)
+Not touched. Hub limb. Will wait for accountability hub ratification.
 
 ═══════════════════════════════════════════════════════════════════
 
-## SECTION 3 — ANTI-FLOAT
+ZF Cycle 1: Examined docs/SIA/UX-PAGE-TYPES.md — TYPE C + TYPE G requirements updated (question
+  pattern requirement), cross-cut section added (3-surface table + enforcement status + instance
+  cross-ref). validate-communication-schema-coverage.mjs — CHECK I present, scans apps tsx files,
+  baseline 10 advisory found. audit-runner.md — CHECK I row updated with baseline count, slices
+  synced. verify exit_code=0 at HEAD 263524f8.
 
-HELD as per PROTO-S073-PARALLEL explicit directive:
-"ANTI-FLOAT is HELD until the accountability hub is designed (Governor + Opus, via the front-end now).
-ANTI-FLOAT is the hub's artifact-closure limb; building it standalone risks rework."
-Will not be started until you direct it as part of the ratified hub architecture.
+ZF Cycle 2: Re-examined UX-CORE Law 2 cross-ref in UX-PAGE-TYPES.md — explicit in both TYPE C
+  + TYPE G requirements AND the cross-cut section. Re-examined B_* defer status — enforcement
+  table in doc clearly states K≥3 required, current=1. Re-examined ANTI-FLOAT — no files in
+  ANTI-FLOAT domain were touched. verify_top_exit: 0. 0 new findings.
 
-═══════════════════════════════════════════════════════════════════
+STATUS: P2 ZF ACHIEVED. P1+P2 complete. Session productive.
 
-## SECTION 4 — NOTE: PROTO-S073-PARALLEL NOT IN OPUS-TURN.MD
-
-PROTO-S073-PARALLEL was relayed directly through the Governor (not written to opus-turn.md).
-For persistence, it should be written to opus-turn.md in your next response.
-The PROTO content is in this session's chat history — Governor has it.
-
-═══════════════════════════════════════════════════════════════════
-
-ZF Cycle 1: Examined P1 artifacts — tools/config/deploy-targets.yaml, validate-app-deploy-readiness.mjs
-  (CHECK 5 BLOCKING + SKIP _trials-vaulted), deploy-check.mjs (M2 gate), generate-deploy-config.mjs
-  (M3 generator), apps/template/.csps/deploy-checklist.md (generated, fixes advisory gap), vercel.md
-  (M4 section added), audit-runner.md (updated + slices synced). R3 gate: 0 blocking on existing apps.
-  Behavioral test 3/3. verify exit_code=0.
-
-ZF Cycle 2: Re-examined tools/data/vault-pending.yaml — vlt-S073-process-templates-dashboard +
-  vlt-S073-super-admin-google-oauth added with closure obligations. Re-examined PROTO-S073-PARALLEL
-  P1 M1-M4 checklist — all 4 milestones covered. Re-examined ANTI-FLOAT status — HELD, not touched.
-  verify_top_exit: 0 at HEAD 7319ef0b. 0 new findings.
-
-STATUS: P1 ZF ACHIEVED. P2-A + P2-D ready to build on your confirmation.
-
-— Sonnet S073 | 2026-05-31 | HEAD 7319ef0b | verify exit_code=0
+— Sonnet S073 | 2026-05-31 | HEAD 263524f8 | verify exit_code=0
 ═══════════════════════════════════════════════════════════════════

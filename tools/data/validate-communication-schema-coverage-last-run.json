@@ -15,10 +15,52 @@
   "wired_tiers_required": 6,
   "situations_missing_wiring": [],
   "tiers_missing_wiring": [],
-  "advisory": 0,
+  "tool_jargon_findings": 10,
+  "advisory": 10,
   "blocking": 0,
-  "findings": [],
-  "ran_at": "2026-05-29T12:41:23.268Z",
+  "findings": [
+    {
+      "level": "advisory",
+      "msg": "Tool question text jargon: \"core_spine\" in apps\\csps-playground\\src\\app\\platform\\ai-behavior\\page.tsx — consider audience-tier calibration"
+    },
+    {
+      "level": "advisory",
+      "msg": "Tool question text jargon: \"B_\" in apps\\csps-playground\\src\\app\\platform\\ai-behavior\\page.tsx — consider audience-tier calibration"
+    },
+    {
+      "level": "advisory",
+      "msg": "Tool question text jargon: \"CSPS\" in apps\\csps-playground\\src\\app\\platform\\core-spine-creator\\page.tsx — consider audience-tier calibration"
+    },
+    {
+      "level": "advisory",
+      "msg": "Tool question text jargon: \"PROTO-\" in apps\\csps-playground\\src\\app\\platform\\core-spine-creator\\page.tsx — consider audience-tier calibration"
+    },
+    {
+      "level": "advisory",
+      "msg": "Tool question text jargon: \"P-META-\" in apps\\csps-playground\\src\\app\\platform\\rzf\\page.tsx — consider audience-tier calibration"
+    },
+    {
+      "level": "advisory",
+      "msg": "Tool question text jargon: \"CSPS\" in apps\\csps-playground\\src\\app\\platform\\self-validation\\page.tsx — consider audience-tier calibration"
+    },
+    {
+      "level": "advisory",
+      "msg": "Tool question text jargon: \"frontmatter\" in apps\\csps-playground\\src\\app\\platform\\sia\\[slug]\\page.tsx — consider audience-tier calibration"
+    },
+    {
+      "level": "advisory",
+      "msg": "Tool question text jargon: \"frontmatter\" in apps\\csps-playground\\src\\app\\platform\\sia\\[slug]\\page.tsx — consider audience-tier calibration"
+    },
+    {
+      "level": "advisory",
+      "msg": "Tool question text jargon: \"core_spine\" in apps\\csps-playground\\src\\app\\platform\\sia\\[slug]\\page.tsx — consider audience-tier calibration"
+    },
+    {
+      "level": "advisory",
+      "msg": "Tool question text jargon: \"frontmatter\" in apps\\csps-playground\\src\\lib\\sia-docs.ts — consider audience-tier calibration"
+    }
+  ],
+  "ran_at": "2026-05-31T10:53:14.908Z",
   "schema_found": true,
   "note": "STATUS: draft — advisory only until Governor ratifies communication-schema.yaml"
 }

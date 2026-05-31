@@ -703,3 +703,27 @@ entries:
     created_session: S072
     prevention_class: "DISCIPLINE-DRIFT-WITHIN-AUTHORING-TURN"
     governor_directive_verbatim: "this after so long must be flawless. handle the consistent execution of this but also deep dive into the essense of things that are obviously meant to be permanent and strait forward with a permenent template"
+
+  - id: vlt-S073-process-templates-dashboard
+    raw: "Governor S073: 'all these different ways of presenting processes should be in a dashboard and should be able to be templated'"
+    context: "Observed during Core Spine Creator live use. Governor wants a dashboard where question-and-answer process flows (spine creation, onboarding, developer journey steps) can be managed and templated as first-class citizens."
+    insight: "Relates to PART 6 page-templates + accountability hub dashboard. Likely: a TYPE B (Dashboard/Overview) + TYPE G (Creator) combo page. Template registry would store CLARIFY_CONFIG-style question flows as named templates with version history. Pattern already proven in Core Spine Creator (S073)."
+    status: deferred
+    urgency: medium
+    created_session: S073
+    routing_decision: "Queue as PI item. PE-score with OPUS before scheduling. Likely PART 6 or post-App#2. closure_by: PE scoring in S074"
+    closure_owner: group:finky
+    closure_decision: "Governor + OPUS ratify as PI item with PE score and session assignment"
+    closure_by: "S074 PE scoring session"
+
+  - id: vlt-S073-super-admin-google-oauth
+    raw: "Governor S073: 'have me Yariv the governor be the super admin developer with my email finkyariv@gmail.com [i will log in with my google account]'"
+    context: "Governor wants a super-admin user seeded with finkyariv@gmail.com + Google OAuth in the first real app deployment. Involves: Clerk Google OAuth provider setup, role seeding (Governor tier), user creation on first login."
+    insight: "Infrastructure decision: Clerk already supports Google OAuth as social login. Needs: (1) Enable Google OAuth in Clerk dashboard, (2) Seed user with governor role on first login (Clerk webhook → set public_metadata.role='governor'), (3) First app to deploy gets this setup. This is per-app, not platform-level — goes into apps/template + deployment guide."
+    status: deferred
+    urgency: medium
+    created_session: S073
+    routing_decision: "Queue as PI item. Depends on: first app deployment + Clerk Google OAuth setup. closure_by: App#2 (The Connector) first deploy"
+    closure_owner: group:finky
+    closure_decision: "Google OAuth live, Yariv can log in as super admin, role verified in Clerk metadata"
+    closure_by: "App#2 (The Connector) first production deploy"

@@ -155,6 +155,39 @@ Each project gets 3 URL types:
 
 Only use the first one as the canonical URL.
 
+---
+
+## FLAWLESS-DEPLOY — Registry + Gates (S073)
+
+*Added S073 PROTO-S073-PARALLEL M4. Source: `tools/config/deploy-targets.yaml`.*
+
+### Deploy Targets Registry
+
+`tools/config/deploy-targets.yaml` is the single source of truth for all registered app deploy targets.
+It records `root_dir`, `framework`, `vercel_project`, `status`, and `deploy_url` per app.
+
+**The budget-planner failure class prevention:** `validate-app-deploy-readiness.mjs CHECK 5` BLOCKS
+if an app is registered in deploy-targets.yaml with a `root_dir` that doesn't exist on disk.
+This catches mis-configuration before it reaches Vercel.
+
+### Tooling
+
+| Tool | Purpose |
+|------|---------|
+| `node tools/scripts/generate-deploy-config.mjs --app [name]` | Create vercel.json + deploy-checklist.md + registry entry |
+| `node tools/scripts/deploy-check.mjs` | Pre-deploy gate: verify all registered targets are ready |
+| `node tools/validators/validate-app-deploy-readiness.mjs` | CI validator: env.example + checklist + root_dir (BLOCKING) |
+
+### Adding a New App — Checklist
+
+```
+1. Create the app: nx g platform:app [name] (or fork from apps/template)
+2. Run generator: node tools/scripts/generate-deploy-config.mjs --app [name]
+3. Run gate:       node tools/scripts/deploy-check.mjs
+4. Follow:         apps/[name]/.csps/deploy-checklist.md (7-step Vercel UI sequence)
+5. After deploy:   update tools/config/deploy-targets.yaml status:deployed + deploy_url
+```
+
 ## Deployment Checklist (copy for each new app)
 
 - [ ] Create Vercel project linked to CommarkG/csps

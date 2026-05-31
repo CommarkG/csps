@@ -1,0 +1,39 @@
+---
+# tools/config/deploy-targets.yaml
+# Registry of CSPS Vercel deploy targets — source of truth for validate-app-deploy-readiness.mjs CHECK 5.
+# See: docs/plan/pillar-0-governance/external-integrations/vercel.md for full deployment protocol.
+#
+# root_dir = the "Root Directory" value set in the Vercel UI (Project Settings → Build and Deployment).
+# Pattern for all CSPS apps: apps/[app]
+#
+# PREVENTION CLASS: budget-planner failure class (FLAWLESS-DEPLOY P1)
+# Root cause: Vercel Root Directory not set → Vercel builds from repo root → 404 on all routes.
+# Fix: register root_dir here; CHECK 5 in validate-app-deploy-readiness.mjs BLOCKS if dir missing.
+#
+# How to add a new app:
+#   node tools/scripts/generate-deploy-config.mjs --app [appname]
+#   → Creates apps/[appname]/vercel.json + apps/[appname]/.csps/deploy-checklist.md + entry here
+#
+schema_version: "1.0"
+session: S073
+owner: group:finky
+closure_owner: group:finky
+closure_decision: "Living registry — terminal state is DEPLOYED for all active apps"
+closure_by: "ongoing — add entry per new app, mark status:deployed after first production deploy"
+
+targets:
+  - app: template
+    root_dir: apps/template
+    framework: nextjs
+    vercel_project: csps-template
+    status: active
+    deploy_url: null
+    note: "Canonical starting point — all new CSPS apps fork from this."
+    closure_owner: group:finky
+    closure_decision: "First production deploy verified — set status:deployed + deploy_url"
+    closure_by: "before App#2 (The Connector) goes to production"
+
+# --- Status enum ---
+# active:     directory exists, not yet deployed to Vercel production
+# deployed:   successfully deployed, deploy_url confirmed working
+# deprecated: superseded, no longer deployed

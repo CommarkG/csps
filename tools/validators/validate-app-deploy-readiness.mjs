@@ -35,8 +35,8 @@ import { execSync } from 'child_process';
 const ROOT = process.cwd();
 const APPS_DIR = join(ROOT, 'apps');
 
-// Apps to skip (infrastructure, not deployable SaaS apps)
-const SKIP_APPS = new Set(['csps-playground']);
+// Apps to skip (infrastructure, not deployable SaaS apps, or vaulted trial directories)
+const SKIP_APPS = new Set(['csps-playground', '_trials-vaulted']);
 
 let apps_checked = 0;
 let missing_env_example = 0;
@@ -138,6 +138,36 @@ for (const app of appDirs) {
       }
     } catch (e) {
       // Not tracked — good
+    }
+  }
+}
+
+// CHECK 5: root_dir-exists (BLOCKING) — kills the budget-planner failure class
+// Loads tools/config/deploy-targets.yaml; for each registered target, verifies root_dir
+// directory exists on disk. Missing = Vercel would build from wrong dir → silent 404s.
+// Prevention class: budget-planner failure class (FLAWLESS-DEPLOY P1 — PROTO-S073-PARALLEL).
+const deployTargetsPath = join(ROOT, 'tools/config/deploy-targets.yaml');
+if (existsSync(deployTargetsPath)) {
+  const dtContent = readFileSync(deployTargetsPath, 'utf-8');
+  const lines = dtContent.split('\n');
+  let currentApp = null;
+  for (const line of lines) {
+    const appMatch = line.match(/^\s+- app:\s+(\S+)/);
+    if (appMatch) currentApp = appMatch[1].trim();
+    const rootDirMatch = line.match(/^\s+root_dir:\s+(\S+)/);
+    if (rootDirMatch && currentApp) {
+      const rootDir = rootDirMatch[1].trim();
+      const absolutePath = join(ROOT, rootDir);
+      if (!existsSync(absolutePath)) {
+        blocking++;
+        findings.push({
+          severity: 'BLOCKING',
+          app: currentApp,
+          check: 'root_dir_exists',
+          message: `BLOCKING: deploy-targets.yaml registers ${currentApp} with root_dir=${rootDir} but that directory does not exist`,
+          remediation: `Create apps/${currentApp}/ with full app scaffold OR remove entry from tools/config/deploy-targets.yaml`
+        });
+      }
     }
   }
 }

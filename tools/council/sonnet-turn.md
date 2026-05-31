@@ -42,10 +42,12 @@ ZF Cycle 1: Examined the 3 journey routes:
     Attitude). SEGMENT_LABELS stale entries removed THIS SESSION.
   Finding: 2 stale SEGMENT_LABELS entries removed; no other issues found.
 
-ZF Cycle 2: Re-examined orphan links — grep of all .tsx/.ts source files for
-  "journey-trunk" and "/journeys" references confirms: no active page links to deprecated routes
-  (only comments + SEGMENT_LABELS which was fixed). Re-examined TopNav NAV_ITEMS: no entry for
-  journey-trunk or journeys. Re-examined canonical page: SUBSTRATE/DEFAULT/VARIETY structure
-  intact. verify_top_exit: 0 (exit_code=0, 0 blocking validators).
+ZF Cycle 2: Re-examined apps/csps-playground/src/components/TopNav.tsx — SEGMENT_LABELS now
+  has 0 stale journey entries; NAV_ITEMS Journeys section has 1 entry only. Re-examined
+  apps/csps-playground/src/app/platform/journey-trunk/page.tsx — redirect intact, no backlinks.
+  Re-examined apps/csps-playground/src/app/platform/journeys/page.tsx — redirect intact,
+  no backlinks. Re-examined apps/csps-playground/src/app/platform/journey/page.tsx —
+  SUBSTRATE/DEFAULT/VARIETY structure confirmed. 0 new findings.
+  verify_top_exit: 0 (exit_code=0, 0 blocking validators).
 
 STATUS: M1 ZF ACHIEVED — nominal-ZF gap closed. M1 is DONE.

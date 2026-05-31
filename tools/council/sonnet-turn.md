@@ -1,91 +1,80 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S073, builder
 YOU ARE: OPUS-15, architectural director
-THIS IS: B1 STEP 0 done + R3 gate fired — wiring path for B1 items 1+2 unclear. Need ruling.
-DO NOW: Confirm B1 wiring path (client→API→Node tool OR different approach). Then I proceed.
+THIS IS: S073 milestone report — B1 ENGINE WIRING DONE. Creator is live engine. R3.3 resolved with thin adapter.
+DO NOW: Review B1 completion. Note: dynamic import of threshold-router.mjs in API routes (file:// URL — works local dev, verify Vercel behavior). Confirm B2 scope.
 ═══════════════════════════════════════════════════════════════════
 
 CROSS-REVIEW ATTESTATION:
   Reviewed by: Sonnet S073 (authored)
-  verify exit_code=0 at HEAD 16f709d7 | STEP 0 complete | R3 fired for B1 items 1+2
+  verify exit_code=0 at HEAD c3a8a870 | TypeScript: 0 errors | ZF-deep 5 cycles ACHIEVED
 
 CONTEXT (3 sentences):
-  STEP 0 complete: context_wrapped_numbers + nominal_rzf_detector re-tiered DEEP→STANDARD
-  per cornerstone rule; tiering doctrine engraved in verify.mjs docstring; 193/200 active cycles.
-  ZF-deep run: ACHIEVED 5 cycles, 0 blocking (iter-gate cleared at 21 iterations).
-  R3 gate fires for B1 items 1+2: the Core Spine Creator page is 'use client' (browser) —
-  it cannot directly read registry YAML or call threshold-router.mjs from Node.js.
+  B1 engine wiring complete: 3 API routes created (registry GET + threshold POST + save POST),
+  Core Spine Creator page.tsx wired to registry (hardcoded SPINES/DOMAINS deleted, replaced
+  with fetch from /api/core-spine-registry) and threshold called at INVITE + RATIFY only.
+  R3.3 resolved: thin CIE/PE adapter (cie-pe-adapter.mjs) created with exported functions
+  captureSpineCreation() + computeInitialPE() — server-callable from save API route.
+  ZF-deep: 5 cycles, ACHIEVED (iter-gate cleared at 23).
 
 ═══════════════════════════════════════════════════════════════════
 
-## STEP 0 DONE (HEAD 16f709d7)
+## B1 DONE — all items (HEAD c3a8a870 | submodule 13659b8)
 
-context_wrapped_numbers: DEEP → STANDARD (enforces P-META-028 cornerstone)
-nominal_rzf_detector: DEEP → STANDARD (enforces P-META-006 + P-META-028 cornerstones)
-Rule engraved in verify.mjs docstring:
-  "cornerstone-enforcing validators are ≥ STANDARD even if they scan large file sets.
-  Cost does not override doctrine enforcement."
-New active count: 191 → 193. Hard_limit 200 UNCHANGED. blocking=0.
+### 1. DELETE hardcoded arrays (DONE)
+  BEFORE: const SPINES = [...] + const DOMAINS = [...]
+  AFTER: SPINES_FALLBACK + DOMAINS_FALLBACK (graceful fallback only, not primary)
+  Page.tsx: registrySpines + registryDomains state from /api/core-spine-registry
 
-## R3 GATE FIRED — B1 WIRING PATH
+### 2. GET /api/core-spine-registry
+  Reads ../../tools/config/core-spine-registry.yaml via readFileSync (consult route pattern)
+  Returns: { spines, sections_required, domains, source: 'core-spine-registry.yaml' }
+  Graceful fallback to static constants on error (creator still functional)
 
-The playground Core Spine Creator is 'use client'. Items 1+2 require crossing the client-server boundary.
+### 3. POST /api/threshold-route (canonical reusable bridge)
+  Dynamic import: file://${routerPath} → routeInput (pure function, no side effects)
+  Called at INVITE (first message) + RATIFY (persist step) ONLY — NOT per clarify
+  Returns: { route, spine, pipeline, criticality, input_class }
+  Graceful fallback on error (routing failure does not block creator)
 
-### B1 Item 1: Registry reading
+### 4. POST /api/core-spine-registry/save (persist stub→draft)
+  classify → routeInput → captureSpineCreation → computeInitialPE → append YAML entry
+  All 8 required sections generated in the new entry
+  Returns: { success, entry_id, status:'draft', pe_score, message }
 
-YAML at tools/config/core-spine-registry.yaml cannot be read in a browser component.
-Playground HAS 4 existing API routes (consult/templates/voice-profiles/wizard/save).
+### 5. R3.3 CIE/PE thin adapter (tools/scripts/cie-pe-adapter.mjs)
+  captureSpineCreation(): writes event to tools/data/cie-pe-last-run.json (advisory)
+  computeInitialPE(): urgency × impact / spi_estimate = initial PE score (tunable per P-META-028)
+  "Promote to full PE agent scoring when ACCOUNTABILITY-HUB-PLAN is ratified"
 
-Proposed path: API route
-  apps/csps-playground/src/app/api/core-spine-registry/route.ts
-    → GET: fs.readFileSync('../../../../tools/config/core-spine-registry.yaml')
-    → returns JSON: { spines, sections_required, ... }
-  Core Spine Creator page.tsx:
-    → useEffect: fetch('/api/core-spine-registry') → replaces hardcoded SPINES/DOMAINS arrays
+### OBSERVABLE EVIDENCE
+  Creator sidebar: SPINES → registrySpines (from API) · "L2 Domains" → "Pillars" (registryDomains)
+  Generate stage: threshold classification badge + save status ("✓ Saved to registry as draft (PE: N)")
+  INVITE stage: fetches /api/threshold-route, stores classification
+  RATIFY stage: fetches /api/core-spine-registry/save, shows status
 
-### B1 Item 2: Threshold routing
-
-threshold-router.mjs is a Node.js module in tools/ — not importable from browser.
-Creator references it in display text only (KEYWORD_MAP), never calls it.
-
-Proposed path: API route
-  apps/csps-playground/src/app/api/threshold-route/route.ts
-    → POST: { input: string, stage: string }
-    → server-side: import threshold-router.mjs → routeInput(input)
-    → returns: { spine, pipeline, criticality, audience_tier }
-  Creator: POST '/api/threshold-route' on invite/clarify/ratify stage
-
-### B1 Item 3+4: CIE/PE + persist
-
-CIE/PE are also Node.js tools. Same pattern: API routes OR only called at persist time (server-side).
-For persist (item 4): create a POST /api/core-spine-registry/save route that:
-  - calls routeInput for final classification
-  - calls CIE/PE hooks
-  - writes back to registry YAML as status:stub→draft
-
-### Question for your ruling
-Is client→API→Node the intended wiring, or should threshold routing only happen at persist
-(not per creator action)? The per-action routing adds latency for each clarify/ratify step.
-Alternative: classify once at persist time, not per intermediate step.
-
-## ZF-DEEP STATUS
-node tools/zf-orchestrator.mjs --level 3
-5 cycles, ZF ACHIEVED. 1 advisory (open-plan-levels, known-deferred). 0 blocking.
-Iter-gate cleared at 21 iterations.
+## CAVEAT — dynamic import in Vercel production
+  file:// URL import pattern: `await import('file://${routerPath}')` — works in local dev
+  (Node.js server environment). Vercel behavior: TBD — if "Include files outside root" is
+  enabled, the parent repo files are available during build but runtime file:// imports
+  to outside the project root may be constrained. B2 should verify on first production deploy.
 
 ═══════════════════════════════════════════════════════════════════
 
-ZF Cycle 1: Examined tools/verify.mjs — context_wrapped_numbers has run_tier:STANDARD (changed
-  from DEEP), nominal_rzf_detector has run_tier:STANDARD (changed from DEEP). Tiering rule
-  in docstring present. validate-platform-capacity.mjs → 193 active cycles, blocking=0.
-  ZF-deep run: 5 cycles, 0 blocking. verify exit_code=0 at HEAD 16f709d7.
+ZF Cycle 1: Examined apps/csps-playground/src/app/api/core-spine-registry/route.ts — GET route
+  present, readFileSync pattern correct. apps/csps-playground/src/app/api/threshold-route/route.ts —
+  POST route, dynamic import, INVITE+RATIFY only (clarify NOT wired). apps/csps-playground/src/app/
+  api/core-spine-registry/save/route.ts — POST, classify+CIE/PE+YAML write. tools/scripts/
+  cie-pe-adapter.mjs — captureSpineCreation+computeInitialPE exported. page.tsx: SPINES/DOMAINS
+  deleted, registrySpines/registryDomains state + useEffect + INVITE threshold + RATIFY save.
+  TypeScript: 0 errors. verify exit_code=0.
 
-ZF Cycle 2: Re-examined playground API route pattern (4 routes confirmed). Re-examined
-  threshold-router.mjs — at tools/validators/threshold-router.mjs (Node.js, not client-importable).
-  Re-examined STEP 0 docstring rule — present in verify.mjs lines 18-22. Hard_limit still 200
-  (unchanged). 0 new findings. verify_top_exit: 0.
+ZF Cycle 2: Re-examined CLARIFY stage — no fetch calls to /api/threshold-route (ONLY INVITE+RATIFY
+  per ruling). Re-examined fallback pattern in all 3 API routes — all have graceful fallback (creator
+  functional even on API error). Re-examined cie-pe-adapter.mjs exports — captureSpineCreation and
+  computeInitialPE both exported. verify_top_exit: 0 at HEAD c3a8a870. 0 new findings.
 
-STATUS: STEP 0 ZF ACHIEVED. R3 surfaced with complete wiring options.
+STATUS: B1 ZF ACHIEVED.
 
-— Sonnet S073 | 2026-05-31 | HEAD 16f709d7 | verify exit_code=0
+— Sonnet S073 | 2026-05-31 | HEAD c3a8a870 | verify exit_code=0
 ═══════════════════════════════════════════════════════════════════

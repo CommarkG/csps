@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-31T07:47:11.083Z
-- finished_at: 2026-05-31T07:47:38.796Z
-- exit_code: 0
+- ran_at: 2026-05-31T07:49:14.249Z
+- finished_at: 2026-05-31T07:49:40.783Z
+- exit_code: 1
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-31T07:47:11.083Z",
-    "finished_at": "2026-05-31T07:47:38.796Z",
+    "ran_at": "2026-05-31T07:49:14.249Z",
+    "finished_at": "2026-05-31T07:49:40.783Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -52,7 +52,7 @@
         "scanned": 694,
         "errors": 0,
         "warnings": 181,
-        "exempt": 342
+        "exempt": 343
       },
       {
         "name": "aap_frontmatter_coverage",
@@ -440,7 +440,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 781,
+        "scanned": 782,
         "advisory": 113
       },
       {
@@ -529,7 +529,7 @@
         "command": "node tools/validators/validate-wiring-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "wired": 12,
         "deferred": 41,
         "orphan": 0
@@ -556,7 +556,7 @@
         "command": "node tools/validators/validate-core-contamination.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "checked": 277,
         "blocking": 0,
         "advisories": 0
@@ -680,7 +680,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -691,7 +691,7 @@
         "command": "node tools/validators/validate-context-question-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "with_cq": 258,
         "total": 543,
         "pct": 48
@@ -781,10 +781,11 @@
       {
         "name": "universal_alignment",
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
-        "status": "PASS",
-        "exit_code": 0,
+        "status": "FAIL",
+        "exit_code": 1,
         "duration_seconds": 0.2,
-        "files": 0
+        "files": 0,
+        "tail": "\n⚠ docs/plan/_handoff/VAULT/chat-jump-prompt-S072-to-S073-SONNET-v1.md (2 alignment gap(s)):\n  → Missing core_spine — run core-spine-expert to classify\n  → Missing schema_anchor — add schema anchor per schema-index.md\n"
       },
       {
         "name": "import_quarantine",
@@ -889,7 +890,7 @@
         "command": "node tools/validators/validate-pe-connectivity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 21,
         "total_gaps": 21
@@ -1057,7 +1058,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -1275,7 +1276,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 1
+        "advisories": 0
       },
       {
         "name": "agent_calls_compliance",
@@ -1349,7 +1350,7 @@
         "command": "node tools/validators/validate-activation-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "contracts_checked": 69,
         "activated": 56,
         "no_activation": 13,
@@ -1400,7 +1401,7 @@
         "command": "node tools/validators/validate-apps-are-trials.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "apps_checked": 3,
         "libs_packages": 11,
         "blocking": 0,
@@ -1459,9 +1460,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 650,
-        "findings": 8630,
-        "advisory": 8630
+        "files_checked": 651,
+        "findings": 8640,
+        "advisory": 8640
       },
       {
         "name": "nominal_rzf_detector",
@@ -1601,7 +1602,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files_checked": 148,
         "blocking": 0,
         "advisory": 25
@@ -1626,7 +1627,7 @@
         "total": 199,
         "deferred": 2,
         "empty_output": 22,
-        "zero_numeric": 20,
+        "zero_numeric": 19,
         "advisory": 3,
         "blocking": 0
       },
@@ -1726,7 +1727,7 @@
         "command": "node tools/validators/validate-ai-honesty.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.3,
         "files_checked": 29,
         "blocking": 0,
         "advisory": 0
@@ -1842,7 +1843,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 1,
+        "files_scanned": 2,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0
@@ -1947,7 +1948,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "entries_checked": 36,
+        "entries_checked": 37,
         "missing_headers": 25,
         "missing_attestation": 8,
         "advisory": 33,
@@ -1960,7 +1961,7 @@
         "skip_reason": "audit-runner ships week-4 (planned per build-order.md week 4)"
       }
     ],
-    "exit_code": 0,
+    "exit_code": 1,
     "strict_mode": false
   }
 }

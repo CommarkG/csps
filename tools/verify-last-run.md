@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-05-31T13:14:08.983Z
-- finished_at: 2026-05-31T13:14:32.637Z
+- ran_at: 2026-05-31T13:42:41.423Z
+- finished_at: 2026-05-31T13:43:07.191Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-05-31T13:14:08.983Z",
-    "finished_at": "2026-05-31T13:14:32.637Z",
+    "ran_at": "2026-05-31T13:42:41.423Z",
+    "finished_at": "2026-05-31T13:43:07.191Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -421,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 0
       },
@@ -439,7 +439,7 @@
         "command": "node tools/validators/validate-file-complexity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "scanned": 782,
         "advisory": 113
       },
@@ -529,7 +529,7 @@
         "command": "node tools/validators/validate-wiring-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "wired": 12,
         "deferred": 41,
         "orphan": 0
@@ -540,7 +540,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisory": 1
+        "advisory": 2
       },
       {
         "name": "active_protocol_compliance",
@@ -680,7 +680,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -1057,7 +1057,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "warnings": 1,
         "advisory": true
       },
@@ -1426,9 +1426,8 @@
       {
         "name": "communication_schema_coverage",
         "command": "node tools/validators/validate-communication-schema-coverage.mjs",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 0.1
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3"
       },
       {
         "name": "proto_completeness",
@@ -1454,33 +1453,20 @@
       {
         "name": "context_wrapped_numbers",
         "command": "node tools/validators/validate-context-wrapped-numbers.mjs",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 0.3,
-        "files_checked": 651,
-        "findings": 8650,
-        "advisory": 8650
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3"
       },
       {
         "name": "nominal_rzf_detector",
         "command": "node tools/validators/validate-nominal-rzf-detector.mjs",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 0.1,
-        "findings": 32,
-        "advisory": 32,
-        "blocking": 0
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3"
       },
       {
         "name": "vocabulary_coverage",
         "command": "node tools/validators/validate-vocabulary-coverage.mjs",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 0.1,
-        "files_checked": 248,
-        "glossary_entries": 8,
-        "findings": 50,
-        "advisory": 50
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3"
       },
       {
         "name": "core_seeds_currency",
@@ -1599,7 +1585,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files_checked": 148,
         "blocking": 0,
         "advisory": 25
@@ -1622,8 +1608,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "total": 200,
-        "deferred": 3,
-        "empty_output": 23,
+        "deferred": 9,
+        "empty_output": 20,
         "zero_numeric": 21,
         "advisory": 3,
         "blocking": 0
@@ -1645,7 +1631,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 335,
+        "total_entries": 337,
         "sessions": 2,
         "advisory": true
       },
@@ -1802,9 +1788,8 @@
       {
         "name": "session_source_usage",
         "command": "node tools/validators/validate-session-source-usage.mjs",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 0.1
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3"
       },
       {
         "name": "threshold_routing_coverage",
@@ -1823,9 +1808,8 @@
       {
         "name": "inventory_scan_coverage",
         "command": "node tools/validators/validate-inventory-scan-coverage.mjs",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 0.1
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3"
       },
       {
         "name": "prevention_class_required",

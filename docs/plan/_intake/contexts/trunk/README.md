@@ -47,7 +47,7 @@ If the content fits inside ANY pillar (even if it's cross-cutting across leaves 
 - "We should rename the platform from CSPS to Y" → trunk
 - "The tier vocabulary should be 5 tiers, not 4" → trunk
 - "Pillar 5 (AI Systems) should split into Pillar 5a (Personas) + 5b (Mastra Runtime)" → trunk
-- "The 6 operating principles need a 5th: <X>" → trunk + governance/operating-principles
+- "The 7 operating principles need a 5th: <X>" → trunk + governance/operating-principles
 
 ## Anti-pattern
 

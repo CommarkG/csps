@@ -106,6 +106,10 @@
           {
             "type": "command",
             "command": ".claude/hooks/pre-tool-use-closure-obligation-required.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-completion-before-new.sh"
           }
         ]
       },

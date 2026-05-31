@@ -366,13 +366,46 @@ principles:
     ratified: S051
     cross_references: [P-OP-002, P-OP-006, B_HUMBLE_EXECUTION_PIPELINE, B_COMPLETION_OVER_SHINY, B_GRADUAL_BUILD_BY_FOUNDATIONS]
 
-  # ==========================================================================
-  # ARCHITECTURE PRINCIPLES (27 — STUBS; full content + enforcer maps migrated during pillar-1 migration)
-  # ==========================================================================
+  - id: P-OP-008
+    name: completion-before-new
+    aliases: [completion-before-new-principle, fwws-mechanical-arm, active-plan-first]
+    title: "Completion-Before-New — Active Plan Completes Before New Things Start"
+    description: >
+      The active plan (incomplete milestones) completes (or reaches a clean checkpoint)
+      before a new plan starts. New intent arising mid-plan routes through threshold-router.mjs
+      → vault/PI → PE-sized → future plan. Never injected into the active plan.
+      Prevents false efficiency: chasing new ideas mid-flight stresses context, leaves partial
+      implementations, and breaks completion metrics. Consolidates P-OP-002 FWWS + Long-Run M0.7
+      + SPI batch-sizing + the Opus-authors-hard-parts / Sonnet-runs-autonomous cadence.
+      Source: COMPLETION-DISCIPLINE-PLAN-S073.md + Governor S073 directive.
+    spine: GVRN
+    layer: L1
+    category: operating-principles
+    severity: critical
+    governing_intent: >
+      Completion = conversion, not activity. An unfinished plan is a floater. New ideas earn
+      their place in the NEXT plan, not the current one. The threshold is the front door;
+      everything else is disruption.
+    composes_with:
+      - P-OP-002
+      - P-META-030
+      - P-META-019
     enforcement_tier:
-      tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
-      tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
-      tier3_session: "AGENTS.md hard-NO + session-open.sh principle injection"
+      tier1_hook: "pre-tool-use-completion-before-new.sh (advisory on new-item-into-active-plan-without-threshold)"
+      tier2_validator: "validate-completion-before-new.mjs (STANDARD — scans for open PROTOs + injected items)"
+      tier3_session: "session-open injection of active-plan-first reminder + CADENCE-AUDIT in milestone reports"
+    ratified_by: "Governor S073 (OPUS-15 directed) — COMPLETION-DISCIPLINE-PLAN-S073.md"
+    ratified_date: "2026-05-31"
+    session: S073
+    self_check_q: >
+      "Is there an OPEN active plan (unchecked milestones)? If yes, does this new intent
+       route through the threshold to a future plan — or am I about to disrupt the active plan?
+       Did Opus author the hard parts up front? Can I run autonomously without nominal stops?"
+    note: "Governor assigns final P-OP-008 id. Candidate — may become P-OP-002 mechanical arm."
+
+  # ==========================================================================
+  # ARCHITECTURE PRINCIPLES (27 — STUBS)
+  # ==========================================================================
 
   - id: P-ARCH-001
     name: nothing-stands-alone

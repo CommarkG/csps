@@ -1263,6 +1263,16 @@ const CYCLES = [
     // S070 M1: Communication Schema coverage — 8 situations + 6 tiers + 9 B_* contracts
     // ADVISORY (draft — not blocking until Governor ratifies communication-schema.yaml)
     // Reads: docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml
+    // S073 E1: Completion-Before-New — scans docs/plan/protos for open PROTOs with unchecked milestones
+    // STANDARD tier. ADVISORY always. P-OP-008 + P-OP-002 FWWS. COMPLETION-DISCIPLINE-PLAN-S073.
+    name: 'completion_before_new',
+    command: 'node tools/validators/validate-completion-before-new.mjs',
+    parse_output: (out) => {
+      const m = out.match(/open_protos=(\d+)\s+sealed_protos=(\d+)\s+open_milestones=(\d+)\s+advisory=(\d+)/);
+      return m ? { open_protos: Number(m[1]), sealed_protos: Number(m[2]), open_milestones: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
     // S073 B4: ANTI-FLOAT T2 sweep — scans docs/plan + docs/SIA for floaters w/o closure obligation
     // DEEP (860+ file corpus, non-cornerstone). ADVISORY baseline=27. PROTO-S073-B4.
     run_tier: 'DEEP',

@@ -1,0 +1,20 @@
+{
+  "open_protos": 2,
+  "sealed_protos": 10,
+  "open_milestones": 61,
+  "open_proto_list": [
+    {
+      "file": "PROTO-S068-CONNECTOR-WET-TRIAL.md",
+      "unchecked": 26,
+      "status": "unknown"
+    },
+    {
+      "file": "PROTO-S068-PART-1-SUBSTRATE-RECONCILIATION.md",
+      "unchecked": 35,
+      "status": "unknown"
+    }
+  ],
+  "advisory": 1,
+  "ran_at": "2026-05-31T19:21:39.081Z",
+  "note": "P-OP-008 completion-before-new discipline. ADVISORY always. Complete active plan before starting new ones."
+}

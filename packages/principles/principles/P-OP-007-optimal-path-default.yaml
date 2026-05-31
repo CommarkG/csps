@@ -68,7 +68,3 @@ cross_references:
   - B_HUMBLE_EXECUTION_PIPELINE
   - B_COMPLETION_OVER_SHINY
   - B_GRADUAL_BUILD_BY_FOUNDATIONS
-enforcement_tier:
-  tier1_hook: AGENTS.md enforcement + session-open.sh guidance (behavioral level)
-  tier2_validator: pnpm verify full-pass (indirect coverage via contract validators)
-  tier3_session: AGENTS.md hard-NO + session-open.sh principle injection

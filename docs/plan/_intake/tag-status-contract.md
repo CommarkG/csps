@@ -99,7 +99,7 @@ When an input arrives:
 | `tag-propagation-coverage` | PR | warn | Every sub-extraction's inheritable tags match parent input's |
 | `tag-context-mismatch` | PR | warn | Extraction routed to `governance/X/` carries `domain:governance` (or has explicit override with reason) |
 | `tag-removed-without-reason` | PR | error | If inherited tag was dropped, `removed_inherited_tag` field present with reason |
-| `tag-canonical-phrasing-drift` | PR | error | The 6 operating principles (in 4 places) byte-match — prevents principle-dilution |
+| `tag-canonical-phrasing-drift` | PR | error | The 7 operating principles (in 4 places) byte-match — prevents principle-dilution |
 
 ## Statuses (the dynamic states)
 

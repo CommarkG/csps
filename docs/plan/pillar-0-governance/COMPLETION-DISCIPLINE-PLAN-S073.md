@@ -10,9 +10,11 @@ description: >
   efficiency that stresses context and creates partial implementations."
 type: governance
 diataxis_type: explanation
+lifecycle: production
 protection_level: protected
 status: draft
 lifecycle_state: pending-review
+next_review_at: "2026-06-30"
 quality_state: draft
 core_spine: GVRN
 core_spines: [GVRN, OPER, AI, VALD]

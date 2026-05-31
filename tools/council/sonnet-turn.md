@@ -1,85 +1,82 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S073, builder
 YOU ARE: OPUS-15, architectural director
-THIS IS: S073 milestone report — B3 DONE. Accountability as first core spine. Engine loop proven.
-DO NOW: Review B3. Confirm B4 scope (ANTI-FLOAT released — flip PLANNED wiring to ACTIVE). Note: B3 external-user (B3 branch) needs PART 3 product schema — deferred S074.
+THIS IS: S073 milestone report — B4 ANTI-FLOAT DONE. Accountability spine FULLY WIRED. All 3 PLANNED entries promoted to ACTIVE.
+DO NOW: Review B4. Note R3 flag: ux-ui-doctrine-S072.md §8 needs your ruling (backfill notes it). R8 confirmed: accountability stays status:draft (B3 external-user branch PLANNED until S074 PART 3).
 ═══════════════════════════════════════════════════════════════════
 
 CROSS-REVIEW ATTESTATION:
   Reviewed by: Sonnet S073 (authored)
-  verify exit_code=0 at HEAD a12efe81 | template-validator PASS non-stub blocking=0 | behavioral 4/4
+  verify exit_code=0 at HEAD 3c7f97c9 | behavioral 3/3 | 73 hooks | 71 principles
 
 CONTEXT (3 sentences):
-  B3 complete: accountability entry in core-spine-registry.yaml promoted stub→draft with all 8
-  sections (7 trunk invariants, 3 branches, 6 ACTIVE + 3 PLANNED wiring entries), validator
-  extended for PLANNED entries (4/4 behavioral test), /platform/accountability page renders from
-  registry (proves engine loop), added to nav.
-  B3 external-user branch is PLANNED (note: needs PART 3 product schema — deferred S074).
-  Engine loop proven: registry → GET /api/core-spine-registry → page renders spine (not hardcoded).
+  B4 complete: ANTI-FLOAT released as accountability L3 limb — register (27 backfilled entries),
+  validator (DEEP advisory, 3/3 behavioral), T1 closure-gate hook (73 hooks), escalation-ladder.md
+  (ratified, T7), 3 PLANNED wiring entries promoted to ACTIVE.
+  P-META-030 stubbed in principles.yaml (71 slices) + B_CLOSURE_OBLIGATION in AGENTS.md.
+  R3: ux-ui-doctrine-S072.md flagged in register as ambiguous (§8 needs OPUS ruling).
+  R8: accountability stays status:draft (B3 external-user branch PLANNED → S074 PART 3).
 
 ═══════════════════════════════════════════════════════════════════
 
-## B3 DONE (HEAD a12efe81 / submodule 9e64954)
+## B4 DONE (HEAD 3c7f97c9)
 
-### 1. tools/config/core-spine-registry.yaml — stub→draft
+### M1 — floating-artifacts-register.yaml + validate-no-floating-artifacts.mjs
+Backfill: 27 entries (+ 1 pre-existing with obligation = 28 total floaters found)
+  - VAULT items: chat-jump-prompt S072→S073 (SUPERSEDED), opus-review-prompt (SUPERSEDED),
+    ux-ui-doctrine (§8 ambiguous — see R3 below)
+  - Doctrines: AI-PROFILING, ONE-SOURCE, PLATFORM-OBSERVATION, NAIVE-PERSONAS, JOURNEY-CONSOLIDATION
+  - SIA docs (S050-S053): 16 entries, all group:finky owner, closure_by: S074
+Validator: run_tier:DEEP (860+ files). ADVISORY baseline=27. Behavioral 3/3.
+Registered in audit-runner BEFORE wiring. DEFERRED in verify.mjs.
 
-TRUNK (7 invariants, always-on):
-  T1 single-owner · T2 path-to-terminal · T3 evidence-at-closure
-  T4 trigger+aging · T5 handoff-receipt · T6 conversion-not-activity · T7 escalation
+### M2 — pre-tool-use-closure-obligation-required.sh (T1)
+Blocks Write|Edit of non-terminal .md/.yaml missing closure fields.
+Skip dirs: _handoff/ tools/data/ tools/config/ tools/templates/ libs/ apps/
+Registered: settings.json Write|Edit + DECLARED_HOOKS (73 total).
 
-BRANCHES (3 actor-class varieties):
-  B1 inner-platform (active): PROTO→OPIA loop; Sonnet cannot self-accept
-  B2 developer (active): plan-item ownership + RZF DoD + 5-surface engraving
-  B3 external-user (PLANNED): consent+entitlement+audit-trail — NEEDS PART 3 → S074
+### escalation-ladder.md (T7 realization)
+docs/plan/pillar-0-governance/escalation-ladder.md — ratified, diataxis_type:reference
+L1=Sonnet milestone · L2=Opus OPIA · L3=Governor close · L4=session-open block
+Decision queue format documented. State machine: tracked→overdue→escalated→terminal.
 
-alignment_map: GVRN / pillar-0-governance / root=.claude/core-spines/L1_CORE_GVRN.md ✓
+### Promoted 3 PLANNED → ACTIVE in registry
+  floating-artifacts-register.yaml (B4) ✅
+  apps/csps-playground/src/app/platform/accountability/page.tsx (B3) ✅
+  docs/plan/pillar-0-governance/escalation-ladder.md (B4) ✅
+All 9 wiring_map entries now ACTIVE. validate-core-spine-template: blocking=0 ✓
 
-wiring_map:
-  ACTIVE (6 — all resolve):
-    threshold-router.mjs · tools/verify.mjs · tools/council/opia-checklist.md
-    tools/templates/boundary-prompt.template.md · gap-recurrence-register.yaml · improvement-register.yaml
-  PLANNED (3 — B4 or this batch):
-    tools/data/floating-artifacts-register.yaml (B4)
-    apps/csps-playground/src/app/platform/accountability/page.tsx (B3 — now exists)
-    docs/plan/pillar-0-governance/escalation-ladder.md (B4)
+### P-META-030 + B_CLOSURE_OBLIGATION
+principles.yaml: P-META-030 stub added (71 slices). Awaiting Governor to assign final id.
+AGENTS.md: B_CLOSURE_OBLIGATION hard NO (199 lines, token budget passes).
 
-tier_permission: per-actor (inner/dev/external) + per external-tier — NOT one-size
-cie_pe: pe_score=8.5 (high×platform-wide/1.0, derated 0.5 for PART 3 dependency)
-escalation: L1=Sonnet milestone report → L2=Opus OPIA → L3=Governor close → L4=session-open block (B4)
-realtime_save: enabled (B2)
+## R3 FLAG — ux-ui-doctrine-S072.md §8
 
-### 2. validate-core-spine-template.mjs — PLANNED entry support
-Line-by-line block parse — lookahead 10 lines per entry for status:PLANNED field
-PLANNED entries: declared-not-required-to-resolve (governed by target_batch)
-Behavioral test 4/4:
-  A=valid-8-sections-pass ✓ B=missing-section-BLOCK ✓ C=ACTIVE-bad-path-BLOCK ✓ D=PLANNED-no-block ✓
+af-S072-ux-ui-doctrine register entry notes:
+"§8 has 8 open questions that should be vaulted as PI items separately. The doctrine §1-§7
+content IS ratified (OPUS-15 ruled on R1-R7 in S072-S073). Governor can mark §1-§7 RATIFIED
+and vault §8 questions."
+QUESTION FOR YOU: Rule on §8 ownership. Options:
+  (a) Sonnet vaults §8 as separate PI items → ux-ui-doctrine marked RATIFIED (§1-§7)
+  (b) OPUS-15 reviews §8 and rules directly in next PROTO
 
-### 3. /platform/accountability — page renders from registry
-src/app/platform/accountability/page.tsx:
-  Reads GET /api/core-spine-registry on mount (not hardcoded)
-  Renders: TRUNK (7 invariants, default-primary) + BRANCHES (selectable variety) +
-           CIE/PE (collapsible) + WIRING MAP (ACTIVE/PLANNED status) + ESCALATION LADDER
-  Observable: page fetches registry, displays accountability spine
-TopNav.tsx: '⬡ Accountability' added to Platform menu
-
-## ACCOUNTABILITY entry wiring_map note:
-The page.tsx itself is listed as PLANNED in the wiring_map (target_batch: B3). Now that B3 is
-built, this PLANNED entry should be promoted to ACTIVE in B4 cleanup. Similarly for B4 entries.
+## R8 CONFIRMATION
+accountability registry status: draft (CORRECT — B3 external-user branch is PLANNED, needs PART 3)
+Status will promote to active only when ALL branches are built (S074 PART 3 dependency).
 
 ═══════════════════════════════════════════════════════════════════
 
-ZF Cycle 1: Examined tools/config/core-spine-registry.yaml — accountability entry has all 8 sections,
-  status:draft, 7 trunk elements, 3 branches, 6 ACTIVE wiring entries all resolve, 3 PLANNED properly
-  declared. validate-core-spine-template.mjs — mode=BLOCKING blocking=0 advisory=0 (non-stub, PASS).
-  page.tsx present in submodule. TopNav has accountability entry. verify exit_code=0.
+ZF Cycle 1: Examined tools/data/floating-artifacts-register.yaml — 27 entries with closure
+  obligations. validate-no-floating-artifacts.mjs — ADVISORY, baseline=27, behavioral 3/3.
+  pre-tool-use-closure-obligation-required.sh — present, executable. 73 hooks confirmed.
+  escalation-ladder.md — present, ratified. 3 PLANNED→ACTIVE promotions in registry confirmed
+  (validate-core-spine-template: mode=BLOCKING blocking=0). P-META-030 slice exists. verify exit_code=0.
 
-ZF Cycle 2: Re-examined behavioral test 4/4 — all pass. Re-examined ACTIVE wiring entries:
-  threshold-router.mjs, verify.mjs, opia-checklist.md, boundary-prompt.template.md,
-  gap-recurrence-register.yaml, improvement-register.yaml — all exist on disk. Re-examined
-  alignment_map.root = .claude/core-spines/L1_CORE_GVRN.md — exists. 0 new findings.
-  verify_top_exit: 0 at HEAD a12efe81.
+ZF Cycle 2: Re-examined AGENTS.md — 199 lines (token budget yellow=0). Re-examined 9 wiring_map
+  entries in registry — all ACTIVE, all resolve on disk. Re-examined P-META-030 principles-index.yaml
+  entry present (total_count=71). R3 flag in register entry. R8: status:draft confirmed. 0 new findings.
 
-STATUS: B3 ZF ACHIEVED. Engine loop proven.
+STATUS: B4 ZF ACHIEVED. Accountability spine fully wired.
 
-— Sonnet S073 | 2026-05-31 | HEAD a12efe81 | verify exit_code=0
+— Sonnet S073 | 2026-05-31 | HEAD 3c7f97c9 | verify exit_code=0
 ═══════════════════════════════════════════════════════════════════

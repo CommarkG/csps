@@ -39,7 +39,96 @@ nodes:
 
 ## Migration log
 
-Prior entries (v1.0 pending-plan-items.yaml): `drafts: []` (empty — no entries to migrate)
+Prior entries (v1.0 pending-plan-items.yaml): `drafts:
+  - source_id: imp_TOOL_OUTPUT_SCALE
+    generated: 2026-06-01
+    first_found: S062
+    k_count: 2
+    suggested_id: TOOL-OUTPUT-SCALE
+    suggested_title: "Per-N tool output (verify.mjs, migrator) burns context 3× faster. Tools emit one"
+    suggested_pe_score: 75
+    status: draft
+    review_note: "K>=2 positive finding — needs Opus review and promotion to unified-plan.yaml"
+
+  - source_id: imp_FIVE_SURFACE_SURFACE5_CRITERION
+    generated: 2026-06-01
+    first_found: S063
+    k_count: 2
+    suggested_id: FIVE-SURFACE-SURFACE5-CRITERION
+    suggested_title: "validate-five-surface.mjs Surface 5 (schema_anchor) never counts for B_*.md slic"
+    suggested_pe_score: 75
+    status: draft
+    review_note: "K>=2 positive finding — needs Opus review and promotion to unified-plan.yaml"
+
+  - source_id: imp_BEHAVIORAL_TEST_GAP_ADVISORY
+    generated: 2026-06-01
+    first_found: S065
+    k_count: 2
+    suggested_id: BEHAVIORAL-TEST-GAP-ADVISORY
+    suggested_title: "134 of 167 validators in verify.mjs have no behavioral test. Only BLOCKING valid"
+    suggested_pe_score: 75
+    status: draft
+    review_note: "K>=2 positive finding — needs Opus review and promotion to unified-plan.yaml"
+
+  - source_id: imp_HOOKS_NOT_IN_SETTINGS
+    generated: 2026-06-01
+    first_found: S065
+    k_count: 2
+    suggested_id: HOOKS-NOT-IN-SETTINGS
+    suggested_title: "14 hook files exist in .claude/hooks/ but are not registered in settings.json an"
+    suggested_pe_score: 75
+    status: draft
+    review_note: "K>=2 positive finding — needs Opus review and promotion to unified-plan.yaml"
+
+  - source_id: imp_HOOKS_NOT_IN_VHF
+    generated: 2026-06-01
+    first_found: S065
+    k_count: 2
+    suggested_id: HOOKS-NOT-IN-VHF
+    suggested_title: "20 hooks registered in settings.json are not in verify-hooks-functional.sh DECLA"
+    suggested_pe_score: 75
+    status: draft
+    review_note: "K>=2 positive finding — needs Opus review and promotion to unified-plan.yaml"
+
+  - source_id: INPUT-S066-MULTI-LEVEL-MINITREE-INHERITANCE
+    generated: 2026-06-01
+    first_found: S065
+    k_count: 2
+    suggested_id: INPUT-S066-MULTI-LEVEL-MINITREE-INHERITANCE
+    suggested_title: "Governor S065: 'feels like multiple levels of minitrees' — inheritance graph nee"
+    suggested_pe_score: 75
+    status: draft
+    review_note: "K>=2 positive finding — needs Opus review and promotion to unified-plan.yaml"
+
+  - source_id: INPUT-S066-THREE-EXPERT-META-REVIEW
+    generated: 2026-06-01
+    first_found: S065
+    k_count: 2
+    suggested_id: INPUT-S066-THREE-EXPERT-META-REVIEW
+    suggested_title: "Governor S065 meta-directive: analyze instruction-writing (Opus→Sonnet) + implem"
+    suggested_pe_score: 75
+    status: draft
+    review_note: "K>=2 positive finding — needs Opus review and promotion to unified-plan.yaml"
+
+  - source_id: INPUT-S066-PAP-PER-SESSION-CADENCE
+    generated: 2026-06-01
+    first_found: S065
+    k_count: 2
+    suggested_id: INPUT-S066-PAP-PER-SESSION-CADENCE
+    suggested_title: "PAP currently planned quarterly. Three honesty corrections in one S062-S065 arc "
+    suggested_pe_score: 75
+    status: draft
+    review_note: "K>=2 positive finding — needs Opus review and promotion to unified-plan.yaml"
+
+  - source_id: INPUT-S066-CAI-RATIFICATION-FOLLOWUP
+    generated: 2026-06-01
+    first_found: S065
+    k_count: 2
+    suggested_id: INPUT-S066-CAI-RATIFICATION-FOLLOWUP
+    suggested_title: "CAI-DEFINITION.md authored S065, lifecycle_state=pending-review, ratification_st"
+    suggested_pe_score: 75
+    status: draft
+    review_note: "K>=2 positive finding — needs Opus review and promotion to unified-plan.yaml"` (empty — no entries to migrate)
 pending-nodes.yaml: DID NOT EXIST (no entries to migrate)
 Migration: clean — zero entries lost.
 

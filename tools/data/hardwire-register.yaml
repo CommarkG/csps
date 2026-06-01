@@ -59,3 +59,20 @@ rows:
       → [validate-bypass-settings] blocking=1 advisory=0 EXIT:1 ✓
     status: hardwire-done
     session_sealed: S074
+
+  - id: hardwire-004
+    thing: "relay hooks (proto-inline, sonnet-relay, handoff-relay) use file-read approach on win32"
+    governor_invocation: "S074 BATCH 3: relay hooks dead on win32 — HARDWIRE the fix"
+    surfaces:
+      t1_hook: "post-tool-use-proto-inline.sh v6.1 (file-read + 60s mtime guard)"
+      t2_validator: "satisfaction-point-registry verify_mechanically for proto-relayed (mtime check)"
+      t3_session: "session-open.sh: FORMAL-PROTO-CHANNEL T3 + SATISFACTION-POINT-REGISTRY T3"
+      sp_registry_entry: "proto-relayed"
+      audit_runner_row: "weekly-hardwire-audit (L2 re-test — BATCH 6)"
+    block_test_command: "node -e \"const fs=require('fs');const s=fs.statSync('.csps/last-proto-relay.txt');if(Date.now()-s.mtimeMs>60000)process.exit(1);\" && echo 'RELAY FRESH' || echo 'RELAY STALE'"
+    block_test_output: |
+      Edit to tools/council/opus-turn.md → .csps/last-proto-relay.txt mtime UPDATED
+      AFTER: 1780265812580 > 1780165685607 UPDATED: true ✓
+      File content: ═══ I AM: Sonnet S074 (PROTO-S074-PERMANENT-DNA) — hook fired correctly
+    status: hardwire-done
+    session_sealed: S074

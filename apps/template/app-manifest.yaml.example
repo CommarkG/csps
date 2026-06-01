@@ -25,3 +25,16 @@ component_b_extractions:
   #   target: libs/path/to/where-it-belongs.ts
 
 graduation_session: null       # set when mrr_usd reached + deletion_test: PASS
+
+# ── HARDWIRE DNA INHERITANCE (S074 BATCH 7 — L4 DNA-at-birth) ────────────────
+# Every new permanent thing in this app needs a satisfaction_point entry.
+# Before claiming DONE on any app capability:
+#   1. Check: is this thing in tools/data/satisfaction-point-registry.yaml?
+#   2. If not, add an entry before claiming DONE.
+#   3. SP verify_mechanically must exit 0.
+# The HARDWIRE code word applies to app permanence too:
+#   HARDWIRE [capability] = T1 BLOCKS + T2 exits-1 + T3 fires + block-test-pasted
+hardwire_awareness:
+  satisfaction_point_required: true   # every permanent capability needs an SP entry
+  code_word: HARDWIRE                 # Governor uses this when permanence is required
+  sp_registry: tools/data/satisfaction-point-registry.yaml

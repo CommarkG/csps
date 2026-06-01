@@ -31,9 +31,9 @@ entries:
     k_count: 5
     sessions: [S040, S046, S051, S052, S053, S053-turn-11]
     status: fix_committed
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S042
@@ -48,9 +48,9 @@ entries:
     k_count: 2
     sessions: [S052, S053]
     status: fix_committed
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S052
@@ -76,9 +76,9 @@ entries:
     k_count: 6
     sessions: [S037, S040, S046, S050, S052, S053]
     status: fix_committed
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S039
@@ -107,9 +107,9 @@ entries:
     k_count: 3
     sessions: [S051, S052, S053]
     status: fix_committed
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     behavioral_test_exists: false
     current_fix: "sonnet-startup.template.md created (S053-A). validate-handoff-completeness.mjs updated to check."
@@ -124,7 +124,7 @@ entries:
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
     explicit_defer_reason: "Deferred S067-S070 — behavioral test at turn 10+20 context survival is complex mechanically. T3 session-open injection is mitigation. No structural fix until K=3."
     fix_commit_sha: null
@@ -135,12 +135,12 @@ entries:
   - id: gap_STARTUP_BLOCK_NOT_SURFACED
     observation: "Session close response does not paste the SONNET STARTUP BLOCK inline — Governor has to navigate to HANDOFF to find it"
     first_seen: S054
-    k_count: 1
+    k_count: 2
     sessions: [S054]
     status: fix_committed
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     structural_fix_triggered: true
     behavioral_test_exists: false
@@ -150,15 +150,15 @@ entries:
   - id: gap_CONCEPTUAL_CLOSURE_NO_TEST
     observation: "Solutions are designed and described (cognitive match) without being tested against known violations. The model of the solution is treated as the solution."
     first_seen: S053
-    k_count: 1
+    k_count: 2
     sessions: [S053]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     structural_fix_triggered: false
     behavioral_test_exists: false
@@ -183,9 +183,9 @@ entries:
         commit: 91054a1
         course_correct: HANDOFF-S062-to-S063 missing Zone A title + ALIGNMENT QUESTIONS + SONNET STARTUP BLOCK
     status: fix_committed
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S062
@@ -226,15 +226,15 @@ entries:
   - id: gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE
     observation: "134 of 167 validators (80%) have no behavioral test proving they catch known violations. Only BLOCKING validators were tested; ADVISORY validators uniformly untested. Validators 'exist' but their catching-power is unverified."
     first_seen: S065
-    k_count: 1
+    k_count: 2
     sessions: [S065]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S065
@@ -262,9 +262,9 @@ entries:
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S065

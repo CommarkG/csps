@@ -82,6 +82,15 @@ enforcer_layers:
 # ============================================================================
 # PRINCIPLES
 # ============================================================================
+# SCHEMA NOTE (S074 BATCH 7 — HARDWIRE DNA): Principles with active enforcement
+# should declare satisfaction_point field:
+#   satisfaction_point:
+#     thing: "<principle-slug>"               # matches satisfaction-point-registry.yaml
+#     verify_mechanically: "<shell command>"  # exits 0 when SP achieved
+#     block_test: "<description>"             # how to verify the gate fires
+# This is OPTIONAL but MANDATORY for any principle ratified via HARDWIRE protocol.
+# validate-satisfaction-point-coverage.mjs BLOCKS if a registered SP has empty verify.
+# ============================================================================
 principles:
 
   # ==========================================================================

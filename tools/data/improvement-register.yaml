@@ -466,7 +466,7 @@ entries:
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S067"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
     explicit_defer_reason: "Plan item PROTO-S064-TRANSIENT-STOP-HOOK-FIX filed (pe=80, BATCH-L). Build deferred to S067 after WAVE 1+2 prevention infrastructure ships."
     fix_commit_sha: null
@@ -478,15 +478,15 @@ entries:
   - id: imp_TOOL_OUTPUT_SCALE
     finding: "Per-N tool output (verify.mjs, migrator) burns context 3× faster. Tools emit one line per file without --brief mode."
     first_found: S062
-    k_count: 1
+    k_count: 2
     sessions: [S062]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S067"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     carry_forward_to_session: S064
     proposed_fix: "Add --brief/--summary flag to verify.mjs + migrate-enforcement-trio.mjs"
@@ -495,15 +495,15 @@ entries:
   - id: imp_FIVE_SURFACE_SURFACE5_CRITERION
     finding: "validate-five-surface.mjs Surface 5 (schema_anchor) never counts for B_*.md slice files — they don't have schema_anchor in frontmatter. full_5surface=0 for all 66 contracts."
     first_found: S063
-    k_count: 1
+    k_count: 2
     sessions: [S063]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S068"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     carry_forward_to_session: S064
     proposed_fix: "Rethink Surface 5 for slice-format files: count parent behavioral-contracts.md schema_anchor, or remove Surface 5 requirement for slices"
@@ -514,15 +514,15 @@ entries:
   - id: imp_BEHAVIORAL_TEST_GAP_ADVISORY
     finding: "134 of 167 validators in verify.mjs have no behavioral test. Only BLOCKING validators have tests; all advisory validators are untested."
     first_found: S065
-    k_count: 1
+    k_count: 2
     sessions: [S065]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     carry_forward_to_session: S065
     proposed_fix: "Part 3 (Mechanical Enforcement) will classify which advisory validators warrant tests. Then batch-add behavioral tests per session."
@@ -531,15 +531,15 @@ entries:
   - id: imp_HOOKS_NOT_IN_SETTINGS
     finding: "14 hook files exist in .claude/hooks/ but are not registered in settings.json and will never fire. AP-001 violation (EXISTS != ACTIVE)."
     first_found: S065
-    k_count: 1
+    k_count: 2
     sessions: [S065]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     carry_forward_to_session: S065
     proposed_fix: "Audit each of the 14 unregistered hooks — either register them in settings.json or delete them as deprecated. See part-1B-hooks-audit.yaml."
@@ -548,15 +548,15 @@ entries:
   - id: imp_HOOKS_NOT_IN_VHF
     finding: "20 hooks registered in settings.json are not in verify-hooks-functional.sh DECLARED_HOOKS — cannot be verified as present/executable."
     first_found: S065
-    k_count: 1
+    k_count: 2
     sessions: [S065]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     carry_forward_to_session: S065
     proposed_fix: "Add each hook to DECLARED_HOOKS in verify-hooks-functional.sh. This makes the functional check complete."
@@ -624,15 +624,15 @@ entries:
   - id: INPUT-S066-MULTI-LEVEL-MINITREE-INHERITANCE
     finding: "Governor S065: 'feels like multiple levels of minitrees' — inheritance graph needs scoping for 1→10 / 10→100 / 30→300 artifact counts. M-40 Inheritance-as-Default needs graph traversal design."
     first_found: S065
-    k_count: 1
+    k_count: 2
     sessions: [S065]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     carry_forward_to_session: S066
     proposed_fix: "Scope 1→10 (today): flat YAML registry works. Scope 10→100: graph-DB or reverse-index. Scope 30→300 (3000+ across 30 apps): federated per-app inheritance. validate-inheritance-graph.mjs S066 candidate."
@@ -641,15 +641,15 @@ entries:
   - id: INPUT-S066-THREE-EXPERT-META-REVIEW
     finding: "Governor S065 meta-directive: analyze instruction-writing (Opus→Sonnet) + implementation patterns + recurring failures. 3 expert POVs (Architecture/AI-Pairing/QA) to produce 9 permanent prevention proposals."
     first_found: S065
-    k_count: 1
+    k_count: 2
     sessions: [S065]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     carry_forward_to_session: S066
     three_expert_proposals:
@@ -672,15 +672,15 @@ entries:
   - id: INPUT-S066-PAP-PER-SESSION-CADENCE
     finding: "PAP currently planned quarterly. Three honesty corrections in one S062-S065 arc argues for per-session cadence until alignment baseline > 30%. After 30%: drop to quarterly."
     first_found: S065
-    k_count: 1
+    k_count: 2
     sessions: [S065]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     carry_forward_to_session: S066
     proposed_fix: "Run condensed PAP (Parts 1+3+5 only — the 3 measurement parts) each session. Full 8-part PAP quarterly. Condensed PAP = ~1 context window; does not block app work."
@@ -689,15 +689,15 @@ entries:
   - id: INPUT-S066-CAI-RATIFICATION-FOLLOWUP
     finding: "CAI-DEFINITION.md authored S065, lifecycle_state=pending-review, ratification_status=governor-pending. Governor 'CAI-RATIFIED' signal required to close."
     first_found: S065
-    k_count: 1
+    k_count: 2
     sessions: [S065]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
     prevention_design_pending: true
-    must_address_by_session: "S070"
+    must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: null
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
     fix_commit_sha: null
     carry_forward_to_session: S066
     proposed_fix: "After Governor types 'CAI-RATIFIED': (1) engrave CAI as M-42, (2) wire 6 dimensions to existing validators, (3) reference CAI in startup blocks and PROTO templates, (4) update B_REVERSIBILITY_GATED_REVIEW to cite CAI Dimension 3."

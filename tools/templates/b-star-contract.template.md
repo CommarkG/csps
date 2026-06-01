@@ -85,6 +85,17 @@ enforcement_trio:
 > T3-only = will drift within 3 sessions (permanence-mechanics.md §2).
 > MINIMUM viable = T2+T3. Target = T1+T2+T3.
 
+**satisfaction_point (MANDATORY — HARDWIRE-003 S074):**
+```yaml
+satisfaction_point:
+  thing: "<contract-slug>"                       # matches satisfaction-point-registry.yaml entry
+  verify_mechanically: "<shell command exits 0 when SP achieved>"
+  block_test: "<description of how to verify gate fires>"
+```
+> SP entry MUST be added to `tools/data/satisfaction-point-registry.yaml` same-commit as this contract.
+> No HARDWIRE-DONE claim without SP entry AND `validate-satisfaction-point-coverage.mjs` passing.
+> HARDWIRE code word: when Governor says HARDWIRE [contract], 7-surface treatment required.
+
 **Cross-references:** <P-XXX-NNN> / <P-OTHER> (<composition rationale>) /
 <P-OTHER> (<composition rationale>) / <up to 5 cross-refs minimum 3>.
 

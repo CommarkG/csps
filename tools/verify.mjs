@@ -668,6 +668,7 @@ const CYCLES = [
     // Implements Governor directive: "mechanical enforcement every several turns when mature enough"
     name: 'session_harvest_readiness',
     command: 'node tools/validators/validate-session-harvest-readiness.mjs',
+    advisory_exit_ok: true, // exits 1 = HARVEST_READY (informational), not blocking
     parse_output: (out) => {
       const m = out.match(/session=(\S+)\s+validators=(\d+).*status=(\w+)/);
       return m ? { session: m[1], validators: Number(m[2]), status: m[3] } : {};
@@ -1284,6 +1285,28 @@ const CYCLES = [
     parse_output: (out) => {
       const m = out.match(/rows=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
       return m ? { rows: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // S074 BATCH 5: advisory-has-promotion-path — ADVISORY if any advisory validator lacks promotion_trigger or death_date.
+    // 141 advisory validators without path = theater. ADVISORY tier initially (promotes per P-META-028).
+    name: 'advisory_has_promotion_path',
+    command: 'node tools/validators/validate-advisory-has-promotion-path.mjs',
+    run_tier: 'STANDARD',
+    parse_output: (out) => {
+      const m = out.match(/blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {};
+    },
+  },
+  {
+    // S074 BATCH 7: hardwire-dna-coverage — ADVISORY if new permanent file lacks SP-registry entry.
+    // L4 DNA-at-birth. Promotes to BLOCKING after 5 exemplar passes.
+    name: 'hardwire_dna_coverage',
+    command: 'node tools/validators/validate-hardwire-dna-coverage.mjs',
+    run_tier: 'STANDARD',
+    parse_output: (out) => {
+      const m = out.match(/new_permanent_files=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { new_permanent_files: Number(m[1]), advisory: Number(m[2]), blocking: Number(m[3]) } : {};
     },
   },
   {
@@ -1945,7 +1968,10 @@ async function main() {
     Object.assign(entry, parsed);
     if (r.code !== 0) {
       entry.tail = (r.stderr || r.stdout).split('\n').slice(-10).join('\n');
-      anyFailed = true;
+      // session_harvest_readiness exits 1 = HARVEST_READY (informational, not blocking)
+      // advisory_window validators also exempt from anyFailed
+      const isAdvisoryExit = cycle.advisory_exit_ok === true || parsed.advisory_window === true;
+      if (!isAdvisoryExit) anyFailed = true;
     }
     results.push(entry);
   }

@@ -2312,3 +2312,13 @@ entries:
   source: governor_directive
   status: new
   raw: ""
+- id: "thr-S067-1780292155759"
+  session: "S067"
+  timestamp: "2026-06-01T05:35:55.759Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""

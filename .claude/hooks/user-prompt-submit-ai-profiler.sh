@@ -80,7 +80,34 @@ try {
 
 # Standard chat — no injection needed
 if [ "$MODE" = "standard" ]; then
-  printf '{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":""}}'
+  
+# ─── D* CORRECTIVE ARM (S074 BATCH 4) ────────────────────────────────────────
+# Detects D7 (action-bias) from governance/enforcement mode and surfaces correction
+{
+  _TRACKER_FILE="/tools/zf-session-tracker.json"
+  _CORR_FILE="/tools/data/default-correction-registry.yaml"
+  if [ -f "\" ] && [ -f "\" ]; then
+    node -e "
+const fs=require('fs'),yaml=require('js-yaml');
+const t=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));
+const r=yaml.load(fs.readFileSync(process.argv[2],'utf8'));
+const mode=process.env.CSPS_MODE||'standard';
+const modeDefaults={'governance':['D3','D7','D8'],'enforcement':['D3','D7','D8'],'implementation':['D4','D7'],'architectural':['D8','D6']};
+const fired=(modeDefaults[mode]||[]);
+if(fired.length){
+  const kc=t.d_default_k_counts||{};
+  fired.forEach(id=>{kc[id]=(kc[id]||0)+1;});
+  t.d_default_k_counts=kc;
+  fs.writeFileSync(process.argv[1],JSON.stringify(t,null,2));
+  const k2=fired.filter(id=>kc[id]>=2);
+  if(k2.length){const defs=r.defaults||[];const cc=k2.map(id=>{const d=defs.find(x=>x.id===id);return d?d.counter_instruction:'';}).filter(Boolean);if(cc.length)process.stderr.write('[D*-CORRECTIVE] K>=2: '+cc[0].substring(0,120));}
+}
+" "\" "\" 2>&1 >&2 || true
+  fi
+} 2>/dev/null || true
+
+
+printf '{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":""}}'
   exit 0
 fi
 

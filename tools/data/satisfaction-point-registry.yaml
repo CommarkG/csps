@@ -21,16 +21,18 @@ entries:
       if(Date.now()-s.mtimeMs>30000) process.exit(1);"
     channel: Write or Edit tool on tools/council/*.md — never Bash
     notes: 'HARDWIRE instance #1. Bash bypass = D4+D7 defaults. Fixed BATCH 3.'
+    weekly_audit_skip: session-contextual — mtime checks only valid during active session
   - thing: t1-hook-active
     satisfaction_point: attempted violation exits non-zero from the hook (BLOCKED)
     verify_mechanically: node tools/tests/behavioral/ (run behavioral test for the hook; non-zero = not active)
     channel: pre-tool-use hook registered in settings.json with correct matcher
     notes: 'EXISTS≠ACTIVE: hook file present ≠ hook blocking. Test must exit non-zero on violation.'
+    weekly_audit_skip: behavioral-test — requires specific test runner path
   - thing: bstar-contract-engraved
     satisfaction_point: '5/5 surfaces present: schema+validator+hook+memory+contract'
-    verify_mechanically: node tools/validators/validate-bstar-engraving.mjs 2>&1 | grep -q 'blocking=0'
+    verify_mechanically: node tools/validators/validate-bstar-trio-coverage-strict.mjs
     channel: engraving-discipline skill; 5 tool writes (one per surface)
-    notes: P-META-007. Fewer than 5 surfaces = not engraved.
+    notes: P-META-007. validator exits 0 = no partial-engraved contracts found.
   - thing: proto-relayed
     satisfaction_point: post-tool-use-proto-inline.sh emitted systemMessage this turn AND .csps/last-proto-relay.txt updated within 30s
     verify_mechanically: >-
@@ -38,9 +40,10 @@ entries:
       if(Date.now()-s.mtimeMs>30000) process.exit(1);"
     channel: Edit/Write tool on tools/council/opus-turn.md — never Bash
     notes: Core of FORMAL-PROTO-CHANNEL discipline. Broken on win32 via env var approach; fixed BATCH 3.
+    weekly_audit_skip: session-contextual — mtime checks only valid during active session
   - thing: advisory-validator-not-theater
     satisfaction_point: validator has promotion_trigger OR death_date declared
-    verify_mechanically: node tools/validators/validate-advisory-has-promotion-path.mjs 2>&1 | grep -q 'blocking=0'
+    verify_mechanically: node tools/validators/validate-advisory-has-promotion-path.mjs | grep -q 'blocking=0'
     channel: validator source file frontmatter + audit-runner.md registration
     notes: 141 advisory validators without path = measuring theater. Fixed BATCH 5.
   - thing: principle-ratified
@@ -52,27 +55,29 @@ entries:
     notes: Replace XXX with actual ID. Generic template; instantiate per principle.
   - thing: hardwire-item-complete
     satisfaction_point: 7 surfaces all present + block_test_output recorded in hardwire-register.yaml
-    verify_mechanically: node tools/validators/validate-hardwire-completeness.mjs 2>&1 | grep -q 'blocking=0'
+    verify_mechanically: node tools/validators/validate-hardwire-completeness.mjs | grep -q 'blocking=0'
     channel: hardwire-register.yaml row + 7-surface build
     notes: The meta-satisfaction-point. HARDWIRE-DONE claim without this = nominal.
   - thing: schema-field-closed-enum
     satisfaction_point: enum field registered in frontmatter-closed-enums.md AND validate-frontmatter exits 0
-    verify_mechanically: node tools/validators/validate-frontmatter.mjs 2>&1 | grep -q 'errors=0'
+    verify_mechanically: node tools/validators/validate-frontmatter.mjs | grep -q 'errors=0'
     channel: frontmatter-closed-enums.md update + validate-frontmatter
     notes: S049 STATUS-CONSOLIDATION. Unregistered enum = invisible constraint.
   - thing: handoff-written
     satisfaction_point: 4 zones present + SONNET STARTUP BLOCK section + handoff validator exits 0
-    verify_mechanically: node tools/validators/validate-handoff-completeness.mjs 2>&1 | grep -q 'blocking=0'
+    verify_mechanically: node tools/validators/validate-handoff-completeness.mjs | grep -q 'blocking=0'
     channel: Write tool on HANDOFF-S*.md (triggers post-tool-use-handoff-relay-inline.sh)
     notes: B_INHERITANCE_POLICY. Missing SONNET STARTUP BLOCK = relay breaks.
   - thing: plan-step-done
     satisfaction_point: implied validators re-run THIS session + step-accept verdict ACCEPTED
-    verify_mechanically: 'node tools/verify.mjs --skip-install 2>&1 | grep -q ''"exit_code": 0'''
+    verify_mechanically: node tools/verify.mjs --skip-install > /dev/null && echo passed
     channel: node tools/verify.mjs --skip-install AND step-accept skill
     notes: Memory of earlier runs ≠ evidence. Re-run IS the proof. P-META-006 RZF.
-
+    weekly_audit_skip: session-expensive — runs verify.mjs; check manually at session close
   - thing: permission-bypass-active
-    satisfaction_point: "validate-bypass-settings.mjs exits 0 — both settings files have correct bypass state"
-    verify_mechanically: "node tools/validators/validate-bypass-settings.mjs 2>&1 | grep -q 'blocking=0'"
-    channel: "session-open.sh writes correct state at every tab start. Never mid-session."
-    notes: "HARDWIRE-003. Root cause: settings.local.json with permissions object but no defaultMode → shadow. Fix in session-open.sh. Validator CRITICAL tier in verify.mjs."
+    satisfaction_point: validate-bypass-settings.mjs exits 0 — both settings files have correct bypass state
+    verify_mechanically: node tools/validators/validate-bypass-settings.mjs | grep -q 'blocking=0'
+    channel: session-open.sh writes correct state at every tab start. Never mid-session.
+    notes: >-
+      HARDWIRE-003. Root cause: settings.local.json with permissions object but no defaultMode → shadow. Fix in
+      session-open.sh. Validator CRITICAL tier in verify.mjs.

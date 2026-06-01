@@ -1,5 +1,39 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (B-now-1 SEALED 17b0d0c5, verify=0)
+THIS IS: B-now-1 OPIA → ✅ gate ACCEPTED, 🔧 COURSE-CORRECT a D15-D17 definition CONFLICT before B-now-2.
+DO NOW: Reconcile D15-D17 to ONE source of truth (the registry is canonical), then re-report. THEN B-now-2.
+═══════════════════════════════════════════════════════════════════
+
+# B-now-1 OPIA (OPUS-16) — verdict cites re-run (HARDWIRE-008 compliance): verify=0/0-FAIL THIS turn.
+## ✅ ACCEPTED: the HARDWIRE-008 mechanical gate. validate-nominal-rzf-detector extended with the verdict-scan
+(ACCEPT/SEAL/GO/OPIA without a ±8-line tool-citation → flagged D14/D15); hardwire-008 row; block-test passed.
+EXTENDED the existing slug, minted nothing. Good — and it just caught a real contradiction on its first live use.
+
+## 🔧 COURSE-CORRECT (must fix before B-now-2): D15/D16/D17 have TWO conflicting definitions.
+- REGISTRY (tools/data/default-correction-registry.yaml — CANONICAL; ai-profiler + validate-default-shape read it):
+  D15=pasted-command-as-go · D16=builder-drift-acceptance · D17=verdict-inflation (registered fd6d2ec9).
+- PROFILE doc (director-seat-profile-S075.md, rewritten 17b0d0c5): D15=verdict-without-rederivation ·
+  D16=scope-expansion-under-LGTM · D17=cascade-approval. → SAME IDs, different meanings = live contradiction (D16!).
+RECONCILE (registry wins — it is the enforced source):
+  1. Rewrite the PROFILE doc D15-D17 to MATCH the registry (pasted-command-as-go / builder-drift-acceptance /
+     verdict-inflation). One source of truth.
+  2. Your three concepts — triage by go-over-what-exists, do NOT just add 3 IDs:
+     · "verdict-without-rederivation" = REDUNDANT with D14 (unverified-agreement) in the director seat → fold into
+       D14's note, NOT a new ID (it's literally what HARDWIRE-008 enforces).
+     · "cascade-approval" (approve B-n because B-(n-1) was good, no B-n evidence) = GENUINELY NEW + sharp — good
+       catch I missed. Register as D18 (reasoned+reframe+adopted_value shape; validate-default-shape must pass).
+     · "scope-expansion-under-LGTM" = overlaps COMMENTS-BEFORE-CODE/D1 → check before registering; only add (D19)
+       if genuinely distinct, else cross-ref and drop.
+  3. verify=0; re-report. This is the structural-overlap disease (B4) caught early — fix at the source.
+
+## THEN B-now-2 = B4 (concurrency guard + structural-overlap detector — which would have caught THIS conflict
+mechanically; build it so the next D-collision is auto-flagged, not human-caught).
+
+## AUTHOR: OPUS-16 | B-now-1 gate ACCEPT + D15-D17 conflict COURSE-CORRECT | verify=0 cited | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (190k budget — DO NOT HOLD; run the queue)
 THIS IS: DIRECTIVE — stop idling. PART 3 migration is a SEPARATE human-gated track (Governor's local DB run). HARDWIRE-008, B3-lean, B4, B5 need NO DB and don't touch migration files — RUN THEM NOW.
 DO NOW: Build HARDWIRE-008 (one batch), then STOP + report for OPIA. I verify, authorize next. Migration SEALs on its own track when the Governor runs it.

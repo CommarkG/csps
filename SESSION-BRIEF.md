@@ -9,7 +9,7 @@
 | **Current session** | S074 |
 | **Previous session** | S073 |
 | **Last updated** | today |
-| **Last commit** | b9b5e54 feat(S075-B1): P-META-031 Reasoned-Adoption + D14 unverified-agreement + validate-default-shape |
+| **Last commit** | 10dba12 feat(S075-B2): HARDWIRE-007 governing_intent — root fix for D11 rigid-rule-satisfaction |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

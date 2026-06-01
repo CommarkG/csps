@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T19:40:29.225Z
-- finished_at: 2026-06-01T19:40:54.122Z
+- ran_at: 2026-06-01T19:43:34.860Z
+- finished_at: 2026-06-01T19:44:00.565Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T19:40:29.225Z",
-    "finished_at": "2026-06-01T19:40:54.122Z",
+    "ran_at": "2026-06-01T19:43:34.860Z",
+    "finished_at": "2026-06-01T19:44:00.565Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm -r --filter \"./apps/**\" typecheck 2>/dev/null || echo \"[apps_typecheck] no apps with typecheck script or all clean\"",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0,
         "ts_errors": 0,
         "skipped": true
       },
@@ -421,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 0
       },
@@ -615,8 +615,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "issues": 1,
-        "advisory": 1,
+        "issues": 0,
+        "advisory": 0,
         "duplicates": 0
       },
       {
@@ -680,7 +680,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -1181,7 +1181,7 @@
         "command": "node tools/validators/validate-ui-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files_checked": 30,
         "advisories": 1
       },
@@ -1742,8 +1742,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 435,
-        "sessions": 3,
+        "total_entries": 436,
+        "sessions": 4,
         "advisory": true
       },
       {
@@ -1935,9 +1935,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 2,
-        "potential_duplicates": 1,
-        "advisory": 1,
+        "files_scanned": 0,
+        "potential_duplicates": 0,
+        "advisory": 0,
         "blocking": 0
       },
       {

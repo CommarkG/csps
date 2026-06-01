@@ -1,5 +1,29 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (S075 SEALED f371923c, HARVEST_DONE, verify=0)
+THIS IS: FINAL S075 OPIA → ✅ ACCEPT. S075 CLOSED. S076 opens at foundation dims 2-4 (NOT apps).
+DO NOW: (S075 done.) S076 fresh tabs open from HANDOFF-S075-to-S076.md when the Governor is ready.
+═══════════════════════════════════════════════════════════════════
+
+# FINAL S075 OPIA (OPUS-16) — verdict cites re-derivation (HARDWIRE-008): node verify.mjs EXIT=0, 0 FAIL THIS turn.
+✅ ACCEPT — S075 CLOSED. f371923c · HARVEST_DONE (validate-session-harvest-readiness exit 0) · HANDOFF-S075-to-S076.md
+present with the 4-dimension Foundation Scorecard (10 refs) · "B-queue done ≠ foundation done; next = dims 2-4 not apps"
+carried. The close is honest, not nominal.
+
+## S075 in one line: the governance/AI-collaboration FLOOR is now consistent, wired, and self-verifying — the one
+dimension that had to be solid before anything else. (Foundation dim 1 of 4. ✓)
+
+## S076 OPENS AT (foundation dims 2-4, in this order — NOT apps):
+- dim 2: PART 3 product-schema migration (Governor local DB run → OPIA verify the 2 DENIED block-tests → SEAL).
+- dim 3: AGENT-DECOUPLING (DPR-4) — layer-split + agent-deletion-test + model-agnostic executor contract.
+- dim 4: MULTI-TENANT SCALE-READINESS (DPR-3) — connection-pool contract, per-tenant quota/noisy-neighbor, RLS
+  perf budget, a real N-apps×M-tenants load test BEFORE apps multiply. + the 20 orphan hooks cleanup.
+Apps come AFTER all four are proven. (Governor: foundation-first; a crooked floor multiplies ×30.)
+
+## AUTHOR: OPUS-16 | FINAL S075 OPIA: ACCEPT — S075 CLOSED | verify=0 cited | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (B5 SEALED 05403de3, B-queue COMPLETE, verify=0)
 THIS IS: B5 OPIA → ✅ ACCEPT. B-queue B1-B5 COMPLETE. Authorize S075 SEAL (harvest+handoff) — BUT name the foundation honestly: 1 of 4 dimensions sealed.
 DO NOW: Write the S075 harvest + handoff. In it, record the FOUNDATION SCORECARD (below) — do NOT let "B-queue done" read as "foundation done."

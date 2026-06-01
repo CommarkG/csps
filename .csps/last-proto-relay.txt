@@ -1,5 +1,36 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (B-now-1 reconciliation SEALED 81d548c7, verify=0)
+THIS IS: B-now-1 re-OPIA → ✅ ACCEPT (conflict resolved). Authorize B-now-2 (B4). + Governor coupling-risk VAULTED (DPR-4) — STOP deepening agent-scaffold.
+DO NOW: Build B4 (durable-system, model-agnostic — good). Do NOT add more director/role defaults until the agent-decoupling layer-split is designed.
+═══════════════════════════════════════════════════════════════════
+
+# B-now-1 re-OPIA (OPUS-16) — verdict cites re-run (HARDWIRE-008): verify=0/0-FAIL THIS turn.
+## ✅ ACCEPT: D15-D17 reconciled to the REGISTRY (SSoT): pasted-command-as-go / builder-drift-acceptance /
+verdict-inflation. verdict-without-rederivation folded into D14 (correct — redundant). D18 cascade-approval +
+D19 scope-boundary-enforcement registered with reasoned+reframe+adopted_value (validate-default-shape PASS, 19 entries).
+Conflict resolved, SSoT honored. Good recovery.
+
+## ⚠ GOVERNOR DIRECTIVE (S075) — COUPLING RISK, vaulted DPR-4: AGENT-DECOUPLING-ARCHITECTURE-S075.md
+The platform must NOT depend on Opus/Sonnet — we are a token-optimization + mutual-review AMPLIFIER, not the system.
+But this session accreted agent-coupled machinery (director-seat D15-D19, HARDWIRE-008-as-director, council channel,
+OPIA, council-address) = "Opus built for Opus." Two layers are entangled: DURABLE-SYSTEM (model-agnostic: principles/
+validators/schema/D1-D12) vs COLLABORATION-SCAFFOLD (disposable: council, D13-D19, relay hooks). The cure = layer-split
++ AGENT-DELETION-TEST + generalize floors off roles (HARDWIRE-008 → "ANY claim cites evidence", agent-agnostic) +
+ONE model-agnostic EXECUTOR CONTRACT. Vaulted, not now (active plan runs), but top architecture workstream.
+CONSEQUENCE NOW: **STOP adding director/role-specific defaults (no D20+ of that kind) until the layer-split is designed.**
+D1-D12 = durable; D13-D19 = scaffold (will be reclassified). B4 is fine — it's durable-system.
+
+## AUTHORIZE B-now-2 = B4 (durable-system, model-agnostic — NOT scaffold; good to build):
+consolidation-pattern-detector → STRUCTURAL overlap (≥2 hooks/validators/defaults same concern — would have
+auto-caught the D15-D17 collision) + concurrency/gate-determinism guard (verify/orchestrator transient ~K=4: surface
+loud, NEVER silent-retry) + fix dir-D13/registry mismatch + D11-double-file. consolidation-pass STUB→active = R-class
+(ask Governor re ~56-doc blast radius). One batch → STOP → report for OPIA. Block-test each.
+
+## AUTHOR: OPUS-16 | B-now-1 re-OPIA ACCEPT + coupling-risk vaulted (DPR-4) + B4 authorized | verify=0 cited | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (B-now-1 SEALED 17b0d0c5, verify=0)
 THIS IS: B-now-1 OPIA → ✅ gate ACCEPTED, 🔧 COURSE-CORRECT a D15-D17 definition CONFLICT before B-now-2.
 DO NOW: Reconcile D15-D17 to ONE source of truth (the registry is canonical), then re-report. THEN B-now-2.

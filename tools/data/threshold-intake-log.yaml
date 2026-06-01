@@ -4238,3 +4238,13 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-06-01T18-09-49-783Z"
+  timestamp: "2026-06-01T18:09:49.783Z"
+  session: "S074"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

@@ -1,5 +1,40 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (PART 3 ZModel SEALED 70887cc7, verify=0/0-FAIL)
+THIS IS: PART 3 ZModel OPIA → ✅ ACCEPT. Authorize the MIGRATION batch (first DB-state change, dev-scoped, reversible) WITH guardrails from our documented incidents.
+DO NOW: Run the migration batch per guardrails below. The governing_intent BLOCK-TEST is mandatory before SEAL. Then report.
+═══════════════════════════════════════════════════════════════════
+
+# PART 3 ZModel OPIA (OPUS-16) — ✅ ACCEPT
+Verified: 70887cc7 · verify=0/0-FAIL · Plan/Capability/PlanCapability in schema.zmodel (extends Base) AND generated
+schema.prisma · capabilities.ts SSoT present · zero migration applied (correct). Minor: validate-capability-registry
+not confirmed registered in verify.mjs → WIRE it this batch (EXISTS≠ACTIVE check).
+
+## AUTHORIZE MIGRATION BATCH — guardrails are MANDATORY (drawn from documented incidents):
+1. GUARDRAIL [Supabase/Prisma, memory feedback_supabase_pgbouncer_url]: `prisma migrate` MUST use the DIRECT
+   (non-pooled) URL — port 5432 / DIRECT_URL — NOT the pgbouncer 6543 pooled URL, or migrate throws 42P05. Confirm
+   DIRECT_URL is set before migrating.
+2. GUARDRAIL [ZenStack/pnpm, memory feedback_zenstack_pnpm_enhance_path]: after `zenstack generate`, enhance.js
+   lands in node_modules/.zenstack/ but runtime looks at @zenstackhq/runtime/.zenstack/ — copy/bypass or RLS won't
+   activate. Verify the enhancer path resolves at runtime.
+3. Steps: (a) prisma migrate dev --name part3_product_schema (DIRECT_URL) · (b) Tenant.planId FK added to schema ·
+   (c) seed Capability table FROM capabilities.ts (Q4: DB seeded from code SSoT) + flip validate-capability-registry
+   DB-parity from advisory → checking · (d) ZenStack enhance → RLS active.
+4. MANDATORY governing_intent BLOCK-TEST before SEAL (else EXISTS≠ACTIVE — tables without enforcement):
+   - attempt a capability NOT in a tenant's plan → DENIED (RLS/policy)
+   - attempt a granted capability with subscriptionStatus='cancelled' → DENIED (the planId×subscriptionStatus
+     interaction = the "never serve unpaid tiers" guarantee, Q3). Paste both DENIED outputs.
+5. Reversibility: dev-scoped; `prisma migrate reset` / migrate down available if it goes wrong. R-class stop if the
+   migration cannot apply cleanly or RLS won't activate.
+Report: migrate output + seed result + the 2 BLOCK-TEST DENIED outputs + verify=0. Then PART 3 SEAL → B3-lean.
+
+## NOTE TO GOVERNOR: this is the first DB-state change of the arc — dev-scoped + reversible, within the linear
+lead, flagged for transparency. Halt if you want production-grade caution gates first.
+
+## AUTHOR: OPUS-16 | PART 3 ZModel ACCEPT + migration batch authorized (guardrails) | linear | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (PART 3 SANDBOX spec at 80dc7bfd, verify=0/0-FAIL)
 THIS IS: PART 3 spec OPIA → ✅ ACCEPT + Q1-Q4 answered. Authorize ZModel AUTHORING (files + zenstack generate, reversible). Migrations stay gated until the authored schema is reviewed.
 DO NOW: Author the .zmodel (Plan/Capability/PlanCapability + Tenant.planId) per spec + Q1-Q4 constraints below. zenstack generate. NO db migrate/push. Then report for OPIA.

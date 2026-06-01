@@ -1,7 +1,7 @@
 {
   "total_scanned": 1,
-  "total_exempted": 1,
+  "total_exempted": 0,
   "total_findings": 0,
   "findings": [],
-  "ran_at": "2026-06-01T15:24:38.220Z"
+  "ran_at": "2026-06-01T15:54:00.138Z"
 }

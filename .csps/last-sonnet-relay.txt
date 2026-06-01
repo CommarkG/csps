@@ -1,53 +1,63 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S075, builder
 YOU ARE: OPUS-16, architectural director
-THIS IS: B2 SEAL REPORT — HARDWIRE-007 governing_intent + validate-governing-intent-coverage + ZF SP floor + nominal-rzf-detector extended. Awaiting OPIA before B3.
-DO NOW: Review B2 SEAL. Issue OPIA (ACCEPT or COURSE-CORRECT). Then authorize B3 (External Integration Health).
+THIS IS: PART 3 SANDBOX REPORT — product schema DRAFT spec. SPEC-FIRST, no migrations. Awaiting OPIA before any ZModel authoring.
+DO NOW: Review PART 3 SANDBOX spec. Issue OPIA (ACCEPT or COURSE-CORRECT on Q1-Q4). Then authorize ZModel authoring.
 ═══════════════════════════════════════════════════════════════════
 
 CROSS-REVIEW ATTESTATION:
-  Authored by: Sonnet S075 B2 SEAL. Written via Write tool. verify=0 · 78 hooks · 73 principles.
+  Authored by: Sonnet S075 PART 3 DRAFT. Written via Write tool. verify=0.
 
-# B2 SEAL REPORT (Sonnet S075 → OPUS-16)
+# PART 3 SANDBOX REPORT (Sonnet S075 → OPUS-16)
 
-## WHAT WAS BUILT (per PROTO-S075-MASTER B2)
+## STEP 0 — ECA (D12 compliant: file-read evidence, not memory)
 
-### governing_intent schema field — L4 DNA-at-birth
-- principles.yaml schema comment: HARDWIRE-007 — governing_intent MANDATORY on new principles
-- b-star-contract.template.md: governing_intent upgraded from advisory note → MANDATORY field with P-META-031 reference + D11 warning
-- governing_intent is the L3 intent that distinguishes definition-satisfaction from intent-satisfaction
+Foundation slices confirmed THIS session by reading file content:
+- libs/policies/base.zmodel:1 — Base mixin (id/timestamps/soft-delete/audit)
+- libs/policies/slices/public/user.zmodel:17 — User (Clerk, staffRole, tenantId)
+- libs/policies/slices/public/tenant.zmodel:30 — Tenant (Clerk org, Stripe, subscriptionStatus enum)
+- libs/policies/slices/public/audit-event.zmodel:21 — AuditEvent (append-only triggers)
+- libs/policies/slices/public/user-tenant.zmodel:17 — UserTenant (MembershipRole: owner/admin/member)
+- libs/policies/slices/public/foundation-design.md — VLT-S011-003/004 ratified
 
-### validate-governing-intent-coverage.mjs (DEEP tier)
-- BLOCKING for new post-S075 principles missing governing_intent
-- ADVISORY for legacy 62 principles (backfill by significance on reactivation)
-- Coverage metric: 11/73 = 15% (S075 baseline)
-- Promotion path: ≥80% for 3 sessions → BLOCKING for legacy
-- weekly-hardwire-audit.mjs: Section C2 folded in (no new cron)
+What EXISTS and is WELL-FORMED: Base mixin, User, Tenant, AuditEvent, UserTenant. RLS present. Soft-delete. Audit triggers. Tenant has stripeCustomerId + subscriptionStatus.
 
-### validate-nominal-rzf-detector.mjs EXTENDED (SP floor)
-- Added ZF_ACHIEVED_PATTERN + TOOL_OUTPUT_PATTERN scan
-- "ZF STATUS: ACHIEVED" without tool output in nearby context → advisory
-- Per P-META-031 SP floor: last cycle must run a tool AND paste output
+What PART 3 ADDS (confirmed gap, D8 applied — no duplication):
+- Plan entity (pricing tier, stripe price, plan capabilities)
+- Capability entity (feature slug registry)
+- PlanCapability join (plan × capability × limitValue)
+- planId FK on Tenant
 
-### hardwire-007 row in hardwire-register.yaml (7 surfaces)
+## THE SPEC (file: PART3-PRODUCT-SCHEMA-SANDBOX-S075.md)
 
-### audit-runner.md: governing_intent_coverage DEEP validator registered
+governing_intent: "Make billing/tier enforcement a structural property, not an application-level check — so the platform can never accidentally serve features to tiers that haven't paid."
 
-## BLOCK-TESTs (both passed)
+3 new entities designed (DRAFT only, NO migration):
+1. Plan: platform-level record; slug = "free"/"pro"/"team"/"enterprise"; stripePriceId; RLS: read=all, write=staff-only
+2. Capability: feature slug registry; slug = machine-readable ("ai_consult", "multi_member"); category
+3. PlanCapability: join table; limitValue=null (unlimited) or N (quota)
+ADD to Tenant: planId FK (null = free tier)
 
-BLOCK-TEST 1 (new principle without governing_intent → EXIT:1):
-  ✗ BLOCKING: "P-BT-001" (new, session S075): missing governing_intent.
-  [validate-governing-intent-coverage] total=74 blocking=1 EXIT:1 ✓
+Invariants confirmed: tenant_id lineage ✓; RLS ✓; soft-delete ✓; audit triggers ✓; governing_intent declared ✓
 
-BLOCK-TEST 2 (ZF ACHIEVED without tool output → flagged by SP floor):
-  ZF ACHIEVED detected. No tool output: FLAGGED ✓ (SP floor violation)
-  nominal-rzf-detector detects '[S075-B2-SP-floor] ZF ACHIEVED without visible tool output' ✓
+## 3 SCENARIO SIMULATIONS
 
-## verify=0 confirmed (THIS-SESSION tool output)
-## 73 principles · 78 hooks · AGENTS.md <200 lines ✓
+Scenario A (free solo): planId=null → hasCapability("ai_consult")=true (limit 5/month) · "multi_member"=false → invite blocked. Foundation schema sufficient. ✓
+Scenario B (team upgrade): Stripe webhook → planId updated → AuditEvent fired by trigger → all members see new capabilities. Existing AuditEvent schema covers. ✓
+Scenario C (enterprise custom): limitValue per-plan override covers custom quotas without new schema. ✓
 
-## AWAITING OPIA BEFORE B3
-B3 = External Integration Health (P1 registry + P2 generic validator + P4 integration gate ADVISORY→BLOCKING + P3 health checks + P5 HUB.md refresh)
+## 4 COUNCIL QUESTIONS (Q1-Q4)
 
-AUTHOR: Sonnet S075 | B2 SEAL | HARDWIRE-007 | 2026-06-01
+Q1: Plan as shared platform record vs copyable per-tenant enterprise variant?
+Q2: Auth context enrichment — ZenStack @@auth() vs middleware for auth().tenantPlan.capabilities?
+Q3: subscriptionStatus redundancy with Plan.slug — keep both (belt+suspenders) or Plan replaces?
+Q4: Capability slug namespace — DB table (migrated) vs TypeScript enum (config) vs YAML (governance)?
+
+## SPEC LOCATION
+docs/plan/_handoff/VAULT/PART3-PRODUCT-SCHEMA-SANDBOX-S075.md
+
+## NO MIGRATIONS UNTIL OPIA
+ZModel authoring begins only after OPIA confirms spec. Migrations are a separate batch after ZModel ratified.
+
+AUTHOR: Sonnet S075 | PART 3 SANDBOX | 2026-06-01
 ═══════════════════════════════════════════════════════════════════

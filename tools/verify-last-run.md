@@ -1,28 +1,30 @@
 # verify last run
 
-- ran_at: 2026-06-01T17:34:47.530Z
-- finished_at: 2026-06-01T17:35:13.773Z
+- ran_at: 2026-06-01T17:38:18.776Z
+- finished_at: 2026-06-01T17:38:51.755Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T17:34:47.530Z",
-    "finished_at": "2026-06-01T17:35:13.773Z",
+    "ran_at": "2026-06-01T17:38:18.776Z",
+    "finished_at": "2026-06-01T17:38:51.755Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "DEFERRED-WITH-REASON",
-        "skip_reason": "flag --skip-install"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 7.6,
+        "packages_resolved": null
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.4,
         "ts_errors": 0
       },
       {
@@ -30,7 +32,7 @@
         "command": "pnpm -r --filter \"./apps/**\" typecheck 2>/dev/null || echo \"[apps_typecheck] no apps with typecheck script or all clean\"",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0,
         "ts_errors": 0,
         "skipped": true
       },
@@ -39,7 +41,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.7,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -221,7 +223,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3,
+        "duration_seconds": 3.1,
         "checked": 139,
         "advisories": 128
       },
@@ -680,7 +682,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -1736,7 +1738,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 418,
+        "total_entries": 419,
         "sessions": 3,
         "advisory": true
       },

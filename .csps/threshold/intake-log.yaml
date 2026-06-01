@@ -2775,3 +2775,23 @@ entries:
   pipelines: [research, sandbox-spec, council-ratify]
   vault_ref: docs/plan/_handoff/VAULT/CANDIDATE-dynamic-batch-planning-engine-S075.md
   raw: "Engine for the optimal (contextual not rigid) way to implement batches — tight oversight on sensitive parts, long uninterrupted runs for low-risk technical parts. Research dynamic batch planning. DPR-3: process after active plan unless Governor elevates."
+- id: "thr-S074-1780335464114"
+  session: "S074"
+  timestamp: "2026-06-01T17:37:44.114Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-S074-1780335861309"
+  session: "S074"
+  timestamp: "2026-06-01T17:44:21.308Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""

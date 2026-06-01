@@ -1276,6 +1276,17 @@ const CYCLES = [
     },
   },
   {
+    // S075 B3-lean P2: external-integration-health — BLOCKING if active integration missing health_check_command.
+    // DEEP tier: registry scan + potential live checks. Weekly audit covers this. HARDWIRE-006 generalized.
+    name: 'external_integration_health',
+    command: 'node tools/validators/validate-external-integration-health.mjs',
+    run_tier: 'DEEP',
+    parse_output: (out) => {
+      const m = out.match(/entries=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { entries: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // S074 HARDWIRE-003: bypass-settings — BLOCKING if either settings.local.json has wrong bypass state.
     // Prevents recurring permission prompts (S069, S074 recurring). CRITICAL tier (every session).
     // Source: HARDWIRE-003 · Governor S074 directive.

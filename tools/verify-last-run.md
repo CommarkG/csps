@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T18:31:21.236Z
-- finished_at: 2026-06-01T18:31:45.980Z
+- ran_at: 2026-06-01T18:41:15.804Z
+- finished_at: 2026-06-01T18:41:41.497Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T18:31:21.236Z",
-    "finished_at": "2026-06-01T18:31:45.980Z",
+    "ran_at": "2026-06-01T18:41:15.804Z",
+    "finished_at": "2026-06-01T18:41:41.497Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -48,7 +48,7 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.4,
         "scanned": 709,
         "errors": 0,
         "warnings": 183,
@@ -307,7 +307,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 14,
-        "validators": 216,
+        "validators": 217,
         "models": 0,
         "advisories": 0
       },
@@ -557,7 +557,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 296,
+        "checked": 297,
         "blocking": 0,
         "advisories": 0
       },
@@ -703,7 +703,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S074",
-        "validators": 217
+        "validators": 218
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -1085,9 +1085,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 217,
+        "validators_checked": 218,
         "orphans": 0,
-        "registered": 217
+        "registered": 218
       },
       {
         "name": "token_budget_validate",
@@ -1428,6 +1428,12 @@
         "advisory": 0
       },
       {
+        "name": "external_integration_health",
+        "command": "node tools/validators/validate-external-integration-health.mjs",
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3"
+      },
+      {
         "name": "bypass_settings",
         "command": "node tools/validators/validate-bypass-settings.mjs",
         "status": "PASS",
@@ -1483,8 +1489,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "new_permanent_files": 0,
-        "advisory": 0,
+        "new_permanent_files": 1,
+        "advisory": 1,
         "blocking": 0
       },
       {
@@ -1563,8 +1569,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 277,
-        "advisory": 277,
+        "findings": 278,
+        "advisory": 278,
         "blocking": 0
       },
       {
@@ -1690,7 +1696,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files_checked": 150,
         "blocking": 0,
         "advisory": 25
@@ -1712,10 +1718,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 211,
+        "total": 212,
         "deferred": 10,
         "empty_output": 20,
-        "zero_numeric": 23,
+        "zero_numeric": 21,
         "advisory": 3,
         "blocking": 0
       },
@@ -1736,7 +1742,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 427,
+        "total_entries": 429,
         "sessions": 3,
         "advisory": true
       },
@@ -1929,7 +1935,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 0,
+        "files_scanned": 1,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0
@@ -2034,10 +2040,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 59,
+        "entries_checked": 60,
         "missing_headers": 25,
-        "missing_attestation": 18,
-        "advisory": 47,
+        "missing_attestation": 19,
+        "advisory": 48,
         "blocking": 0
       },
       {

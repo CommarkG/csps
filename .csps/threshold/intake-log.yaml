@@ -2865,3 +2865,23 @@ entries:
   source: governor_directive
   status: new
   raw: ""
+- id: "thr-S074-1780338824428"
+  session: "S074"
+  timestamp: "2026-06-01T18:33:44.427Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-S074-1780339136922"
+  session: "S074"
+  timestamp: "2026-06-01T18:38:56.921Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""

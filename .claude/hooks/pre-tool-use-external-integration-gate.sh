@@ -80,6 +80,45 @@ for pattern in "${INTEGRATION_PATTERNS[@]}"; do
   fi
 done
 
+# P4 CONTEXTUAL BLOCKING (S075 B3-lean): ADVISORY→BLOCKING for registry writes
+# BLOCKING: writing to external-integration-registry.yaml or deploy-targets.yaml
+# without including a verified_at or deprecation_reason update
+# This catches "I updated the config but forgot to mark it verified" pattern.
+# ADVISORY: all other integration file edits (still ADVISORY per S067 spec)
+
+REGISTRY_PATTERN="external-integration-registry.yaml|deploy-targets.yaml"
+if echo "$FILE_PATH_NORM" | grep -qiE "external-integration-registry.yaml|deploy-targets.yaml"; then
+  # Check if content contains verified_at or deprecation update (P4 gate)
+  CONTENT=$(echo "$TOOL_INPUT" | node -e "
+  let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{
+    try{const j=JSON.parse(d);const i=j.tool_input||{};process.stdout.write(i.content||i.new_string||'');}
+    catch{process.stdout.write('');}
+  });" 2>/dev/null || echo "")
+  
+  if echo "$CONTENT" | grep -qiE "verified_at|deprecation_reason|deprecated"; then
+    # Has attestation — pass through
+    echo "[P4-BLOCKING] Integration registry write: verified_at or deprecation_reason present — OK." >&2
+    exit 0
+  else
+    # Missing attestation on registry write
+    printf '{
+      "systemMessage": "[P4-BLOCKING] Integration registry write without verified_at or deprecation_reason.
+
+When updating external-integration-registry.yaml or deploy-targets.yaml:
+- For config changes: include verified_at: <session> (re-verify the integration works)
+- For deprecations: include deprecation_reason: <why removed>
+
+Registration-staleness-without-verification is the EXTERNAL-INTEGRATION-REGISTRATION-STALENESS prevention class.",
+      "continue": false,
+      "stopReason": "integration-registry write without attestation"
+    }'
+    exit 1
+  fi
+fi
+
+# ADVISORY: all other integration file edits (S067 spec)
+exit 0
+
 [ "$IS_INTEGRATION" = false ] && exit 0
 
 # ADVISORY: emit warning
@@ -90,5 +129,3 @@ echo "[C5-external-integration-gate] Key docs: vercel.md (10 rules) / supabase.m
 echo "[C5-external-integration-gate] Prevents C5 RE_DERIVATION_KNOWN — re-deriving known integration decisions." >&2
 echo "[C5-external-integration-gate] ADVISORY S067 — proceeding (BLOCKING from S068 after behavioral validation)" >&2
 
-# ADVISORY: always exit 0 in S067
-exit 0

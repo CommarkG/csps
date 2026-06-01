@@ -4268,3 +4268,23 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-06-01T18-33-44-477Z"
+  timestamp: "2026-06-01T18:33:44.477Z"
+  session: "S074"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-06-01T18-38-56-975Z"
+  timestamp: "2026-06-01T18:38:56.975Z"
+  session: "S074"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

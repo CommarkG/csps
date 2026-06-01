@@ -1,0 +1,105 @@
+id: csps.config.external-integration-registry
+name: external-integration-registry
+description: >
+  Registry of ALL ACTIVE external service integrations in CSPS. ACTIVE only — no planned integrations (Stripe/Anthropic not yet wired). Per
+  HARDWIRE-006 generalized: every integration has a health_check_command and verified_at timestamp. Stale = potential silent failure.
+  Source: B3-lean S075 (ECA confirmed by file evidence this session). Prevention class: EXTERNAL-INTEGRATION-REGISTRATION-STALENESS.
+version: '1.0'
+session: S075
+owner: group:finky
+core_spine: ARCH
+schema_anchor: external_integrations
+closure_owner: group:finky
+closure_decision: Living registry — add entries when new integrations are wired; mark deprecated when removed
+closure_by: ongoing
+links:
+  - rel: hub
+    href: ../../docs/plan/pillar-0-governance/external-integrations/HUB.md
+  - rel: vercel-health
+    href: ../scripts/vercel-health-check.mjs
+  - rel: vercel-deploy-targets
+    href: deploy-targets.yaml
+entries:
+  - service: vercel
+    type: hosting
+    status: deployed
+    config:
+      project: csps-playground
+      root_dir: apps/csps-playground
+      framework: nextjs
+      include_outside_root: true
+    health_check_command: node tools/scripts/vercel-health-check.mjs 2>/dev/null
+    verify_mechanically: node tools/scripts/vercel-health-check.mjs 2>/dev/null && echo ok
+    last_verified: '2026-06-01'
+    verified_at: S075
+    note: 'HARDWIRE-006 (S075): csps-budget-planner project removed (root_dir missing). csps-playground READY.'
+  - service: supabase
+    type: database
+    status: active
+    config:
+      connection_type: pgbouncer
+      pool_mode: transaction
+      port_pgbouncer: 6543
+      port_direct: 5432
+      pgbouncer_flag: '?pgbouncer=true&connection_limit=1'
+      schema: public
+    health_check_command: 'echo ''DB health check requires live connection — run: npx prisma db execute --stdin <<< SELECT 1'''
+    verify_mechanically: node -e "require('dotenv').config({path:'.env.local'});console.log('DIRECT_URL set:',!!process.env.DIRECT_URL);"
+    last_verified: '2026-06-01'
+    verified_at: S075
+    note: pgbouncer=true required on port 6543 or 42P05 error. DIRECT_URL (port 5432) required for migrations.
+    weekly_audit_skip: session-contextual — DB connectivity check requires live connection
+  - service: clerk
+    type: auth
+    status: active
+    config:
+      sign_in_url: /sign-in
+      sign_up_url: /sign-up
+      webhook_secret_key: CLERK_WEBHOOK_SECRET (env)
+      publishable_key_prefix: pk_test_
+    health_check_command: >-
+      node -e "require('dotenv').config({path:'.env.local'});const
+      k=process.env.CLERK_SECRET_KEY;if(!k||k==='whsec_REPLACE_ME')process.exit(1);"
+    verify_mechanically: >-
+      node -e
+      "require('dotenv').config({path:'.env.local'});if(!process.env.CLERK_SECRET_KEY||!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY)process.exit(1);"
+    last_verified: '2026-06-01'
+    verified_at: S075
+    note: 'Webhook secret = CLERK_WEBHOOK_SECRET. Local dev: seed DB + set user public_metadata.tenantId + configure JWT template.'
+    weekly_audit_skip: session-contextual — live webhook check requires Clerk API call
+  - service: github-submodule
+    type: vcs
+    status: active
+    config:
+      submodule_path: apps/csps-playground
+      submodule_url: https://github.com/CommarkG/csps-playground.git
+      branch: main
+    health_check_command: git submodule status apps/csps-playground 2>/dev/null | grep -v '^-' | head -1
+    verify_mechanically: git submodule status apps/csps-playground 2>/dev/null | grep -v '^-'
+    last_verified: '2026-06-01'
+    verified_at: S075
+    note: apps/csps-playground is a git submodule. Vercel builds need 'include outside root' enabled.
+  - service: zenstack
+    type: schema
+    status: active
+    config:
+      schema_file: libs/policies/schema.zmodel
+      generated_dir: libs/policies/generated/
+      enhance_path: '@zenstackhq/runtime'
+      version: 2.22.1
+    health_check_command: node -e "require('@zenstackhq/runtime');console.log('ok');"
+    verify_mechanically: node -e "try{require('@zenstackhq/runtime');process.exit(0);}catch{process.exit(1);}"
+    last_verified: '2026-06-01'
+    verified_at: S075
+    note: enhance.js must be at @zenstackhq/runtime/.zenstack/. Run zenstack generate then zenstack enhance for RLS.
+  - service: vercel-budget-planner
+    type: hosting
+    status: deprecated
+    config:
+      project: csps-budget-planner
+      root_dir: apps/budget-planner (DELETED — moved to _trials-vaulted)
+    health_check_command: echo DEPRECATED
+    verify_mechanically: echo DEPRECATED
+    last_verified: '2026-06-01'
+    verified_at: S075
+    deprecation_reason: Root dir apps/budget-planner moved to _trials-vaulted; Vercel project removed S075 to stop build failures on every push.

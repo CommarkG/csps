@@ -9,7 +9,7 @@
 | **Current session** | S074 |
 | **Previous session** | S073 |
 | **Last updated** | today |
-| **Last commit** | b32ef21 feat(S074-HARDWIRE-B6B7B4B5): PROTO-S074-PERMANENT-DNA — 4-layer permanence SEALED |
+| **Last commit** | b9b5e54 feat(S075-B1): P-META-031 Reasoned-Adoption + D14 unverified-agreement + validate-default-shape |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

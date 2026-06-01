@@ -167,3 +167,9 @@ governing_intent (D11 meta-fix, Q1-Q4) → WS8 External-Integration-Health (P1�
 overlap + concurrency guard → significance scoring-formula ratification → P6 → PART 3 product schema.
 BALANCE NOTE (honest): governance hardening is now large; PART 3 (product) must not be infinitely deferred —
 it stays top-of-order after this consolidated governance batch.
+
+## GOVERNOR-RATIFIED ORDER (2026-06-01): B1 (Reasoned-Adoption + D14 unverified-agreement) → B2 (HARDWIRE-007
+governing_intent, ROOT fix for all D*) → PART 3 product schema (pulled forward) → B3-LEAN (P1 active-only registry
++ P2 generic health validator; DEFER P3) → B4 (loud concurrency guard, surface-not-mask) → B5 significance
+ratification → P6. Collaboration outcome (Sonnet S075 comments accepted): D14 renamed unverified-agreement;
+P-META-031 now requires a cited SP per reasoned override (else D11); B3 scoped to active integrations only.

@@ -37,10 +37,10 @@ override with no SP cited → flagged D11.
 validator folded into weekly-hardwire-audit + concrete promotion gate above + ZF governing_intent + SP floor +
 extend nominal-rzf-detector. L4 DNA-at-birth for new rules.
 
-## OPEN SCHEDULING (Governor's call — recommended): B1 → B2 → **PART 3** (pull forward: your significance-view
-ranked it k=4, Governor waiting since S068, and B1+B2 are the small high-leverage root fix) → B3-LEAN (P1 registry
-active-only + P2 generic validator; DEFER P3 Clerk/Supabase scripts) → B4 (loud concurrency guard) → B5 significance
-ratification → P6. Awaiting Governor's confirm on PART-3 placement; build B1+B2 meanwhile.
+## SCHEDULING — GOVERNOR RATIFIED (2026-06-01): B1 → B2 → **PART 3 product schema** → B3-LEAN (P1 registry
+active-only + P2 generic validator; DEFER P3 Clerk/Supabase scripts) → B4 (loud concurrency guard, surface-not-mask)
+→ B5 significance ratification → P6. PART 3 pulled forward after the B1+B2 root fix per significance-view (k=4) +
+the long wait since S068. Build straight through B1→B2→PART 3; R-class stops only.
 
 ## (c)-signal noted: significance-view ranking ZF-nominal k=6/7.0 on first real-data run = engine directionally
 right in sandbox. Good. Feeds B5 ratification.

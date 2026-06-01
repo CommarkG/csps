@@ -1,15 +1,7 @@
 {
-  "total_scanned": 2,
-  "total_exempted": 0,
-  "total_findings": 1,
-  "findings": [
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "adopted value",
-      "count": 3,
-      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\inner-ai-defaults\\director-seat-profile-S075.md"
-    }
-  ],
-  "ran_at": "2026-06-01T17:27:39.175Z"
+  "total_scanned": 3,
+  "total_exempted": 1,
+  "total_findings": 0,
+  "findings": [],
+  "ran_at": "2026-06-01T17:33:41.278Z"
 }

@@ -4,8 +4,9 @@ name: CANDIDATE-dynamic-batch-planning-engine
 description: "Governor S075 idea (VAULTED, not interrupting the active plan): an engine for the OPTIMAL way to implement batches — contextual not rigid. Tight oversight on sensitive parts (reduce-then-Governor-overview), long uninterrupted runs for technical/low-risk parts. Research dynamic batch planning (how it's defined + made to work), present best option."
 version: 1.0
 owner: group:finky
-lifecycle: draft
-lifecycle_state: candidate
+lifecycle: production
+lifecycle_state: sandbox
+next_review_at: "2026-07-01"
 core_spine: OPER
 core_spines: [OPER, GVRN]
 schema_anchor: vault_files

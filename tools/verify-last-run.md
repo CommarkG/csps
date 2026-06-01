@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T17:31:37.042Z
-- finished_at: 2026-06-01T17:32:03.399Z
+- ran_at: 2026-06-01T17:34:47.530Z
+- finished_at: 2026-06-01T17:35:13.773Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T17:31:37.042Z",
-    "finished_at": "2026-06-01T17:32:03.399Z",
+    "ran_at": "2026-06-01T17:34:47.530Z",
+    "finished_at": "2026-06-01T17:35:13.773Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm -r --filter \"./apps/**\" typecheck 2>/dev/null || echo \"[apps_typecheck] no apps with typecheck script or all clean\"",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0,
+        "duration_seconds": 0.1,
         "ts_errors": 0,
         "skipped": true
       },
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -49,7 +49,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "scanned": 706,
+        "scanned": 707,
         "errors": 0,
         "warnings": 183,
         "exempt": 344
@@ -355,9 +355,9 @@
         "command": "node tools/validators/validate-schema-anchors.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "checked": 649,
-        "clean": 649,
+        "duration_seconds": 0.1,
+        "checked": 650,
+        "clean": 650,
         "blocking": 0,
         "registry": 68
       },
@@ -440,7 +440,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 794,
+        "scanned": 795,
         "advisory": 113
       },
       {
@@ -1092,15 +1092,14 @@
       {
         "name": "token_budget_validate",
         "command": "node tools/validators/validate-token-budget.mjs",
-        "status": "FAIL",
-        "exit_code": 1,
+        "status": "PASS",
+        "exit_code": 0,
         "duration_seconds": 0.1,
         "modes": 5,
         "red": 0,
-        "yellow": 1,
+        "yellow": 0,
         "info": 2,
-        "advisory_window": true,
-        "tail": "\nYELLOW findings:\n  [Mode 1] ⚠ AGENTS.md has 211 lines (target: <200; warn: 200-300)\n       → Consider moving verbose sections to pillar-leaf files\n"
+        "advisory_window": true
       },
       {
         "name": "corespine_depth_markers",
@@ -1443,7 +1442,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "rows": 7,
+        "rows": 8,
         "blocking": 0,
         "advisory": 0
       },
@@ -1494,7 +1493,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "entries": 12,
+        "entries": 13,
         "blocking": 0,
         "advisory": 0
       },
@@ -1554,9 +1553,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 663,
-        "findings": 8704,
-        "advisory": 8704
+        "files_checked": 664,
+        "findings": 8706,
+        "advisory": 8706
       },
       {
         "name": "nominal_rzf_detector",
@@ -1691,7 +1690,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 150,
         "blocking": 0,
         "advisory": 25
@@ -1816,7 +1815,7 @@
         "command": "node tools/validators/validate-ai-honesty.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "files_checked": 29,
         "blocking": 0,
         "advisory": 0
@@ -1909,7 +1908,7 @@
         "command": "node tools/validators/validate-skill-invocation-rate.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2
+        "duration_seconds": 0.1
       },
       {
         "name": "inventory_scan_coverage",
@@ -1929,7 +1928,7 @@
         "command": "node tools/validators/validate-consolidation-pass.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.4,
+        "duration_seconds": 0.2,
         "files_scanned": 0,
         "potential_duplicates": 0,
         "advisory": 0,
@@ -2034,7 +2033,7 @@
         "command": "node tools/validators/validate-boundary-prompt-format.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.7,
+        "duration_seconds": 0.6,
         "entries_checked": 56,
         "missing_headers": 25,
         "missing_attestation": 15,

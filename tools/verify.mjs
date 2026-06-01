@@ -1311,6 +1311,17 @@ const CYCLES = [
     },
   },
   {
+    // S075 PART 3: capability-registry — validates TS const format + advisory DB parity (pre-migration).
+    // DEEP tier: advisory pre-migration; promotes to STANDARD after prisma db push. Wired per OPIA minor.
+    name: 'capability_registry',
+    command: 'node tools/validators/validate-capability-registry.mjs',
+    run_tier: 'DEEP',
+    parse_output: (out) => {
+      const m = out.match(/slugs=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { slugs: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // S075 B1: default-shape — BLOCKING if new D* entry lacks reasoning+reframe+adopted_value (P-META-031).
     // Enforce the floor: counter_instruction alone = T3-only = drifts. STANDARD tier.
     name: 'default_shape',

@@ -1,30 +1,28 @@
 # verify last run
 
-- ran_at: 2026-06-01T15:22:37.417Z
-- finished_at: 2026-06-01T15:23:11.182Z
+- ran_at: 2026-06-01T15:52:50.536Z
+- finished_at: 2026-06-01T15:53:19.612Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T15:22:37.417Z",
-    "finished_at": "2026-06-01T15:23:11.182Z",
+    "ran_at": "2026-06-01T15:52:50.536Z",
+    "finished_at": "2026-06-01T15:53:19.612Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 7.7,
-        "packages_resolved": null
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "flag --skip-install"
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -32,7 +30,7 @@
         "command": "pnpm -r --filter \"./apps/**\" typecheck 2>/dev/null || echo \"[apps_typecheck] no apps with typecheck script or all clean\"",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0,
+        "duration_seconds": 0.1,
         "ts_errors": 0,
         "skipped": true
       },
@@ -41,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.7,
+        "duration_seconds": 0.9,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -123,7 +121,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -223,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3.2,
+        "duration_seconds": 3.1,
         "checked": 139,
         "advisories": 128
       },
@@ -357,7 +355,7 @@
         "command": "node tools/validators/validate-schema-anchors.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "checked": 648,
         "clean": 648,
         "blocking": 0,
@@ -682,7 +680,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -752,7 +750,7 @@
         "status": "CLEAN",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 317,
+        "files_scanned": 319,
         "violations": 0
       },
       {
@@ -891,7 +889,7 @@
         "command": "node tools/validators/validate-pe-connectivity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "blocking": 0,
         "advisory": 21,
         "total_gaps": 21
@@ -1199,7 +1197,7 @@
         "command": "node tools/validators/validate-new-file-dna.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files_checked": 0,
         "dna_ok": 0,
         "advisory": 0,
@@ -1276,8 +1274,8 @@
         "command": "node tools/validators/validate-implementation-gate.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
-        "advisories": 1
+        "duration_seconds": 0.2,
+        "advisories": 0
       },
       {
         "name": "agent_calls_compliance",
@@ -1451,6 +1449,12 @@
       {
         "name": "governing_intent_coverage",
         "command": "node tools/validators/validate-governing-intent-coverage.mjs",
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3"
+      },
+      {
+        "name": "capability_registry",
+        "command": "node tools/validators/validate-capability-registry.mjs",
         "status": "DEFERRED-WITH-REASON",
         "skip_reason": "run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3"
       },
@@ -1708,10 +1712,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 210,
-        "deferred": 9,
+        "total": 211,
+        "deferred": 10,
         "empty_output": 20,
-        "zero_numeric": 22,
+        "zero_numeric": 23,
         "advisory": 3,
         "blocking": 0
       },
@@ -1732,7 +1736,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 404,
+        "total_entries": 405,
         "sessions": 3,
         "advisory": true
       },
@@ -2030,10 +2034,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 54,
+        "entries_checked": 55,
         "missing_headers": 25,
-        "missing_attestation": 13,
-        "advisory": 42,
+        "missing_attestation": 14,
+        "advisory": 43,
         "blocking": 0
       },
       {

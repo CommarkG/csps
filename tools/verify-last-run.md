@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T17:47:49.209Z
-- finished_at: 2026-06-01T17:48:14.062Z
+- ran_at: 2026-06-01T18:00:44.419Z
+- finished_at: 2026-06-01T18:01:09.947Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T17:47:49.209Z",
-    "finished_at": "2026-06-01T17:48:14.062Z",
+    "ran_at": "2026-06-01T18:00:44.419Z",
+    "finished_at": "2026-06-01T18:01:09.947Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1.1,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -221,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3,
+        "duration_seconds": 3.1,
         "checked": 139,
         "advisories": 128
       },
@@ -1442,7 +1442,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "rows": 8,
+        "rows": 9,
         "blocking": 0,
         "advisory": 0
       },
@@ -1563,8 +1563,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 49,
-        "advisory": 49,
+        "findings": 274,
+        "advisory": 274,
         "blocking": 0
       },
       {
@@ -1736,7 +1736,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 420,
+        "total_entries": 422,
         "sessions": 3,
         "advisory": true
       },
@@ -1815,7 +1815,7 @@
         "command": "node tools/validators/validate-ai-honesty.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "files_checked": 29,
         "blocking": 0,
         "advisory": 0
@@ -2034,10 +2034,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 56,
+        "entries_checked": 57,
         "missing_headers": 25,
-        "missing_attestation": 15,
-        "advisory": 44,
+        "missing_attestation": 16,
+        "advisory": 45,
         "blocking": 0
       },
       {

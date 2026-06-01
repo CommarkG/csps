@@ -35,6 +35,12 @@ const SCAN_FILES = [
 ]
 const LAST_RUN_PATH = join(ROOT, 'tools/data/validate-nominal-rzf-detector-last-run.json')
 
+// HARDWIRE-008 (S075): Director verdict patterns — ACCEPT/SEAL/GO/OPIA without this-turn tool re-run
+// D14/D15: A director verdict is NOT a trust signal — it IS the verification.
+// If Opus didn't re-run, the verdict is as nominal as Sonnet's DONE claim without evidence.
+const VERDICT_PATTERN = /\b(?:OPIA|ACCEPT|SEAL|✅\s*ACCEPT|GO|ACCEPTED|OPIA:\s*✅)/i
+const VERDICT_EXEMPT = /reviewed|cross-review attestation|authored by|CROSS-REVIEW/i
+
 // Patterns for ZF cycle lines that claim completion without evidence
 const NOMINAL_ZF_PATTERNS = [
   /\bCycle\s+[2-9]\b[^.]*\b0\s+new\b/i,
@@ -104,6 +110,31 @@ for (const filePath of SCAN_FILES) {
       console.log(`    "${line.trim().slice(0, 100)}"`)
       console.log(`    Fix: name the files re-examined (e.g. "re-examined tools/verify.mjs + audit-runner.md — 0 new")`)
       console.log(`    Per RZF-LATEST §6.I5 + P-META-006 RZF discipline`)
+    }
+  }
+
+  // HARDWIRE-008 (S075): Verdict-block scan — ACCEPT/SEAL/GO/OPIA without tool re-run
+  // D14/D15: director verdicts must cite a this-turn tool re-run. ADVISORY + promotion-path.
+  for (let k = 0; k < lines.length; k++) {
+    const kLine = lines[k]
+    if (!VERDICT_PATTERN.test(kLine)) continue
+    if (VERDICT_EXEMPT.test(kLine)) continue
+    // Check nearby context (±8 lines) for tool output indicators
+    const vctx = lines.slice(Math.max(0, k - 8), Math.min(lines.length, k + 5)).join(' ')
+    const hasToolEvidence = TOOL_OUTPUT_PATTERN.test(vctx) || FILE_EXTENSION_PATTERN.test(vctx)
+    if (!hasToolEvidence) {
+      findings++
+      advisory++
+      all_findings.push({
+        file: fileName,
+        line: k + 1,
+        content: `[HARDWIRE-008 D14/D15] Verdict "${kLine.trim().slice(0, 60)}" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.`,
+        level: 'advisory',
+      })
+      if (all_findings.length <= 14) {
+        console.log(`  ⚠ [HARDWIRE-008 D14/D15] ${fileName}:${k + 1}: Verdict block missing tool re-run citation.`)
+        console.log(`    Fix: cite this-turn tool output (e.g. verify=0, exit_code=0) in same block as verdict.`)
+      }
     }
   }
 

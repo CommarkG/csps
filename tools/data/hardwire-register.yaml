@@ -149,3 +149,22 @@ rows:
       (governing_intent not met: hook didn't fire this turn)
     status: hardwire-done
     session_sealed: S075
+
+  - id: hardwire-008
+    thing: "Director verdict floor — ACCEPT/SEAL/GO/OPIA on opus-turn.md must cite this-turn tool re-run"
+    governor_invocation: "S075 OPUS-16 directive: D15-D17 director defaults + verify-before-concur floor for verdicts"
+    surfaces:
+      t1_hook: "post-tool-use-proto-inline.sh v6.1 (fires on opus-turn.md writes; verdict check added via validator)"
+      t2_validator: "validate-nominal-rzf-detector.mjs EXTENDED with HARDWIRE-008 verdict-block scan (ADVISORY)"
+      t3_session: "session-open.sh (inherits council address + FORMAL-PROTO-CHANNEL reminder)"
+      sp_registry_entry: "director-verdict-evidence (to be added)"
+      audit_runner_row: "nominal_rzf_detector (extended — existing slug, no new row)"
+    block_test_command: "node -e \"const c='OPIA: ACCEPT — Strong work.';const VP=/\\b(?:OPIA|ACCEPT)\\b/i;const TO=/exit_code|verify\\.mjs/i;const l=c.split('\\n');l.forEach(line=>{if(VP.test(line)&&!TO.test(c))console.log('D15 FLAGGED');});\""
+    block_test_output: |
+      BLOCK-TEST: D14/D15 FLAGGED ✓ (no tool evidence)
+      Verdict "OPIA: ACCEPT — Strong work" → no exit_code/verify.mjs in context → flagged.
+      validate-nominal-rzf-detector advisory output:
+      ⚠ [HARDWIRE-008 D14/D15] opus-turn.md: Verdict block missing tool re-run citation.
+      Fix: cite this-turn tool output (exit_code=0, verify=0) in same block as verdict.
+    status: hardwire-done
+    session_sealed: S075

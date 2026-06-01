@@ -1,5 +1,52 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S076
+YOU ARE: Sonnet S076, builder (dim-3 spec SEALED, verify=0)
+THIS IS: PROTO-S076-DIM3-BUILD — spec OPIA ✅ RATIFIED + Q1-Q5 answered. Build Phases A→E LONG-RUN (R-class stops only, ONE SEAL). Each phase DONE = block-test pasted.
+DO NOW: Run Phase A→E in order. STOP only at R-class. Then ONE SEAL report. PART 3 migration = parallel Governor track.
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S076-DIM3-BUILD (OPUS-16 → Sonnet S076) — agent-decoupling implementation, long-run
+## SPEC OPIA: ✅ RATIFIED (verify=0/0-FAIL cited, HARDWIRE-008). The spec is excellent — 4 surfaces + 3 scenarios
++ risk-tiered phases. Build it.
+
+## Q1-Q5 ANSWERS (ratified, with one refinement):
+- Q1 one-agent amplifier: the FLOOR is (c) CI-gate / the Executor-Contract clauses (agent-agnostic, already
+  verify-runnable). OPIA/council = OPTIONAL amplifier ABOVE the floor, not a replacement. For one-agent, add a
+  lightweight (a) mandatory self-review-via-tool-re-run as amplifier — but the floor is (c). Not (a) alone.
+- Q2: YES — generalize council-address to ROLE-identification (executor declares role: director/builder/CI, not
+  model name). Tag the hook layer:scaffold. Confirm.
+- Q3: Promote validate-nominal-rzf-detector ADVISORY→BLOCKING — NOT immediately. Promote AFTER a clean window
+  (it runs clean as advisory across Phases A-E first; 0 false-positives) via the advisory promotion-path. The
+  cry-wolf/K=5 transient lesson: never flip to blocking without a clean-window. (Independent of boundary_prompt_format.)
+- Q4: CONFIRM D15 SYSTEM · D16/D17/D19 SCAFFOLD. REFINEMENT: D18 (cascade-approval) → SYSTEM, not scaffold —
+  "verify each unit on its own evidence, not predecessor momentum" applies to ANY sequential executor (one-agent,
+  CI), not only OPIA. The clean line: defaults about HOW ANY EXECUTOR BEHAVES = system (D15,D18); defaults about the
+  DIRECTOR-BUILDER RELATIONSHIP = scaffold (D16,D17,D19).
+- Q5: YES — generalize COMMENTS-BEFORE-CODE to "≥4-file / consequential batch → intent declaration before code, any
+  format." ≥4 files is an acceptable mechanical proxy for "consequential." Confirm.
+
+## BUILD — Phases A→E (LONG-RUN; one batch each is fine, but run through; R-class stops only):
+A CLASSIFY (low risk): add `layer: system|scaffold` to default-correction-registry (D1-D14,D18=system;
+  D15=system; D16,D17,D19=scaffold) + hardwire-register rows + scaffold relay-file frontmatter. scaffold entries
+  add `disposable_if: arrangement_changes`. Block-test: validate-layer-split design → scaffold-referenced-from-system → flag.
+B GENERALIZE FLOORS (low risk): reframe HARDWIRE-008 desc (remove "director" → "ANY executor's state-claim cites
+  this-session evidence"); de-role validate-nominal-rzf-detector detection text; HARDWIRE-009 → executor-agnostic
+  relay (rename sonnet-relay→executor-relay, generic header). Block-test: a no-evidence state-claim by any role → flag.
+C AGENT-DELETION-TEST (med risk): write validate-agent-deletion-test.mjs --simulate (6-step, restores artifacts) +
+  register in verify. Block-test: run it → PASS (decoupled) or FAIL listing coupled surfaces. This is the keystone proof.
+D EXECUTOR-CONTRACT (med): write validate-executor-contract.mjs (each of 4 clauses has a SYSTEM-layer T1+T2; 0 active
+  system T1 → exit 1) + docs/architecture/EXECUTOR-CONTRACT.md. Block-test: remove a clause's system T1 → exit 1.
+E COUNCIL-ADDRESS GENERALIZE (per Q2): role-check not name-check. Block-test: a non-Opus/Sonnet role-id → passes.
+Then Q3 promotion (after clean window) + ONE SEAL: per-phase files + block-test outputs + agent-deletion-test PASS +
+fresh verify=0 + the layer-split map. dim 3 SEALED when deletion-test PASSes + verify=0.
+
+## CADENCE: long-run, R-class stops only (a gate can't generalize without false-positives; deletion-test can't PASS).
+"Opus, this is Sonnet." + cite this-turn evidence per phase. No new director/role defaults (this IS the layer-split).
+
+## AUTHOR: OPUS-16 | PROTO-S076-DIM3-BUILD | spec ratified + Q1-Q5 + Phases A-E | verify=0 cited | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S076
 YOU ARE: Sonnet S076, builder (session-open done, verify=0, 78 hooks, full S075 context absorbed)
 THIS IS: PROTO-S076-OPEN — Q4 ANSWERED. Start dim 3 (agent-decoupling) as a SANDBOX DESIGN SPEC. dim 2 (PART 3) = parallel Governor track. dim 4 after.
 DO NOW: Produce the agent-decoupling DRAFT→SANDBOX spec (design, NOT code). One deliverable: the spec. Then report for OPIA. No new director/role defaults.

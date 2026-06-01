@@ -1,10 +1,10 @@
 {
   "session": "S075",
-  "captured_at": "2026-06-01T19:55:11.572Z",
+  "captured_at": "2026-06-01T20:20:09.969Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 218,
-    "ran_at": "2026-06-01T19:54:45.651Z"
+    "ran_at": "2026-06-01T20:19:44.314Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
@@ -19,5 +19,5 @@
     "gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS K=4 (fix_committed)",
     "gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE K=2 (open)"
   ],
-  "sonnet_summary": "═══════════════════════════════════════════════════════════════════ | I AM: Sonnet S075, builder | YOU ARE: OPUS-16, architectural director"
+  "sonnet_summary": "═══════════════════════════════════════════════════════════════════ | I AM: Sonnet S076, builder | YOU ARE: Opus-16, architectural director"
 }

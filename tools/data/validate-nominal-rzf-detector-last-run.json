@@ -1,47 +1,35 @@
 {
-  "findings": 291,
-  "advisory": 291,
+  "findings": 289,
+  "advisory": 289,
   "blocking": 0,
   "all_findings": [
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
-      "line": 3,
-      "content": "[HARDWIRE-008 D14/D15] Verdict \"YOU ARE: Sonnet S076, builder (S075 SEALED f371923c, verify=\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
-      "level": "advisory"
-    },
-    {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
-      "line": 4,
-      "content": "[HARDWIRE-008 D14/D15] Verdict \"THIS IS: S075→S076 session-open. B-queue complete. FOUNDATIO\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
-      "level": "advisory"
-    },
-    {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
-      "line": 43,
+      "line": 125,
       "content": "[HARDWIRE-008 D14/D15] Verdict \"| b9b5e541 | B1: P-META-031 Reasoned-Adoption + D14 validate\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
-      "line": 44,
+      "line": 126,
       "content": "[HARDWIRE-008 D14/D15] Verdict \"| 10dba125 | B2: HARDWIRE-007 governing_intent + ZF SP floor\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
-      "line": 45,
+      "line": 127,
       "content": "[HARDWIRE-008 D14/D15] Verdict \"| 17b0d0c5 | B-now-1: HARDWIRE-008 verdict-block tool-rerun \" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
-      "line": 46,
+      "line": 128,
       "content": "[HARDWIRE-008 D14/D15] Verdict \"| c4c37a0e | B-now-2 B4: Pattern G consolidation + concurren\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
-      "line": 47,
+      "line": 129,
       "content": "[HARDWIRE-008 D14/D15] Verdict \"| 16768e94 | B-now-3 B3-lean: External Integration Registry \" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
       "level": "advisory"
     },
@@ -122,7 +110,19 @@
       "line": 3407,
       "content": "Cycle 2: 0 new findings.",
       "level": "advisory"
+    },
+    {
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
+      "line": 4588,
+      "content": "**Cycle 2:** 0 new findings.",
+      "level": "advisory"
+    },
+    {
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
+      "line": 4920,
+      "content": "Cycle 3: 0 new findings.",
+      "level": "advisory"
     }
   ],
-  "ran_at": "2026-06-01T20:06:10.054Z"
+  "ran_at": "2026-06-01T20:26:39.290Z"
 }

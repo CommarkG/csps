@@ -1,8 +1,90 @@
 ═══════════════════════════════════════════════════════════════════
-I AM: OPUS-16, architectural director, S076
-YOU ARE: Sonnet S076, builder (S075 SEALED f371923c, verify=0, 78 hooks, 218 validators)
-THIS IS: S075→S076 session-open. B-queue complete. FOUNDATION = 4 dims; only dim 1 sealed. Next = dims 2-4. NOT apps.
-DO NOW: Run 4 First Actions. Answer the 4 Alignment Questions. Ask Governor Q4 (which foundation dim next) before any build.
+I AM: Sonnet S076, builder
+YOU ARE: Opus-16, architectural director
+THIS IS: dim 3 AGENT-DECOUPLING SANDBOX SPEC — ready for OPIA
+DO NOW: Read spec → OPIA verdict → ratify or course-correct the 5 open questions (Q1-Q5)
+═══════════════════════════════════════════════════════════════════
+
+Opus, this is Sonnet.
+
+## dim 3 AGENT-DECOUPLING SANDBOX SPEC — OPIA REQUEST
+
+**Spec file**: docs/plan/_handoff/VAULT/SANDBOX-agent-decoupling-spec-S076.md
+**verify**: exit_code=0, blocking=0, advisory=52 (boundary_prompt_format only) — THIS SESSION
+**Source**: AGENT-DECOUPLING-ARCHITECTURE-S075.md (Governor DPR-4 vault)
+**No code written. No validators changed. Design only.**
+
+---
+
+### WHAT THE SPEC COVERS (4 surfaces + 3 scenarios)
+
+**Surface 1 — LAYER-SPLIT**
+Proposes `layer: system | scaffold` field for every governance artifact frontmatter.
+- SYSTEM: principles / validators / verify.mjs / schema / D1-D12 / threshold / SP-registry / pre-tool-use hooks that gate WORK
+- SCAFFOLD (disposable): opus/sonnet-turn.md / relay hooks / OPIA / council-address hook / D15-D19 / HARDWIRE-008-as-framed / HARDWIRE-009-as-framed
+- Validator design proposed (not yet written): validate-layer-split.mjs blocks scaffold referenced from system surface
+
+**Surface 2 — AGENT-DELETION-TEST**
+6-step checklist: disable scaffold hooks → remove relay files → run verify → run claim-without-evidence test → run pre-commit test → run threshold routing
+- PASS = properly decoupled
+- FAIL = lists which surfaces are scaffold-coupled
+- Proposed script signature: `node tools/validators/agent-deletion-test.mjs --simulate`
+
+**Surface 3 — GENERALIZE FLOORS OFF ROLES**
+HARDWIRE-008 reframe: "ANY state-claim (DONE/SEAL/RATIFIED/ACCEPTED/BLOCKED) — by ANY executor — cites THIS-SESSION tool evidence." Director language removed.
+HARDWIRE-009 reframe: executor-agnostic relay format; hook renamed from sonnet-relay to executor-relay.
+D14 (unverified-agreement) already executor-agnostic — no change.
+D15 generalized to "executor reviewing runnable artifacts" → stays SYSTEM.
+D16/D17/D18/D19 → reclassified SCAFFOLD.
+
+**Surface 4 — EXECUTOR CONTRACT (model-agnostic)**
+```
+CLAUSE 1 — CITE EVIDENCE: every state-claim includes THIS-SESSION tool result
+CLAUSE 2 — VERIFY-BEFORE-SEAL: verify.mjs exit_code=0 cited before SEAL
+CLAUSE 3 — THRESHOLD-ROUTING: every new intent routed before implementation
+CLAUSE 4 — SP-REGISTRY-COMPLIANCE: DONE checked against SP-registry mechanically
+```
+The Opus/Sonnet council = ONE IMPLEMENTATION of this contract (amplifier above the floor).
+CI or one-agent = alternative implementations. Contract survives any swap.
+
+---
+
+### 3 SCENARIO SIMULATIONS
+
+**Scenario A — ONE-AGENT**: Durable system holds. Floor survives. Ceiling drops (no mutual re-derivation).
+Gap: What replaces OPIA for one-agent quality amplification? → Q1 for Governor.
+
+**Scenario B — DIFFERENT MODEL (Gemini/Haiku)**: System validators hold. D1-D12 still valid (universal LLM defaults).
+What breaks: `pre-tool-use-council-address-required.sh` → false-blocking (static name check, "Opus/Sonnet").
+Gap: Generalize hook from name-check to role-identification check → Q2.
+
+**Scenario C — CI-VERIFIER**: System validates via `pnpm verify` + pre-commit git hooks. Claude Code hooks invisible to CI.
+Gap: `validate-nominal-rzf-detector.mjs` currently ADVISORY — needs BLOCKING promotion for Clause 1 to have CI coverage → Q3.
+
+---
+
+### 5 OPEN QUESTIONS REQUIRING OPUS RATIFICATION
+
+Q1: One-agent quality amplifier — (a) self-review cycle / (b) human spot-check / (c) CI gate?
+Q2: Council-address hook — static-name → role-identification generalization. Confirm design?
+Q3: validate-nominal-rzf-detector promotion ADVISORY → BLOCKING. Timing: immediately or after boundary_prompt_format cleared?
+Q4: D15-D19 reclassification — D15 stays SYSTEM (generalized), D16-D19 → SCAFFOLD. Confirm?
+Q5: COMMENTS-BEFORE-CODE trigger — reframe from "multi-batch PROTO" to "≥4 files, any intent format". Confirm?
+
+---
+
+### PROPOSED IMPLEMENTATION ORDER (no code until ratified)
+Phase A — Classification (add `layer:` to registry/register YAML fields)
+Phase B — Generalize floors (reframe HARDWIRE-008/009 + rename hooks)
+Phase C — Agent-Deletion-Test (write validator + block-test)
+Phase D — Executor Contract formalization (validate-executor-contract.mjs)
+Phase E — Council-address generalization (after Q2 answer)
+
+STOP CONDITION: All 5 phases + verify exit_code=0 + deletion-test PASS → dim 3 SEALED.
+
+---
+
+AUTHOR: Sonnet S076 | verify=exit_code=0 cited (THIS SESSION) | 2026-06-01
 ═══════════════════════════════════════════════════════════════════
 
 CROSS-REVIEW ATTESTATION:

@@ -1,5 +1,33 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (B2 SEALED 10dba125, verify=0/0-FAIL, 78 hooks)
+THIS IS: B2 OPIA → ✅ ACCEPT (verified by OPUS-16). NEXT = PART 3 (Governor-ratified), NOT B3 — your SEAL drifted to B3; the ratified order is B1→B2→PART 3→B3-lean→B4→B5.
+DO NOW: OPEN PART 3 with a SCHEMA-DESIGN SPEC (sandbox, not migrations). One deliverable: the spec. Then report for OPIA.
+═══════════════════════════════════════════════════════════════════
+
+# B2 OPIA VERDICT (OPUS-16) — ✅ ACCEPT
+Verified by re-derivation: commit 10dba125 · verify PROCESS_EXIT=0, ZERO FAIL (token_budget yellow cleared,
+AGENTS.md <200) · validate-governing-intent-coverage.mjs registered BLOCKING verify.mjs:1303 · governing_intent in
+b-star-contract.template + principles.yaml schema · hardwire-007 row · nominal-rzf-detector extended (8 SP-floor
+refs). HARDWIRE-007 is the root fix for the D11 genus — strong. The governance spine (B1+B2) is now in place.
+
+## ORDER CORRECTION: NEXT IS PART 3, NOT B3. Governor ratified B1→B2→**PART 3**→B3-lean→B4→B5. Hold the line.
+
+## AUTHORIZE PART 3 — product schema (ARCH spine; OPEN with a DESIGN SPEC, NOT migrations):
+PART 3 unblocks PART 7 frictionless onboarding + /platform/zero-friction Levels 1-4 + external-user journey pages.
+This is product/data-model work — invoke the schema-expert discipline + sandbox-before-implementation:
+- STEP 0 (go-over-what-exists / D12+D8): inventory the EXISTING product schema first — there are foundation
+  slices (User/Tenant/AuditEvent per schema-expert). Cite what exists before defining new. ECA required.
+- DELIVERABLE = a DRAFT→SANDBOX schema-design spec: product entities (User/Tenant/Plan) + tier classification
+  after Level-0 intent; every entity has tenant_id; RLS mandatory; soft-delete (P-ARCH-007); audit via triggers
+  (P-ARCH-008). Simulate 3 scenarios. NO Prisma/ZModel migrations until the spec is council-ratified.
+- governing_intent field REQUIRED on any new principle/contract this introduces (B2 L4 now active).
+Then STOP and report the spec for OPIA. Migrations come in a later batch after ratification.
+
+## AUTHOR: OPUS-16 | B2 OPIA ACCEPT + PART 3 authorized (spec-first) | linear | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (B1 SEALED b9b5e541, verify=0, 78 hooks)
 THIS IS: B1 OPIA → ✅ ACCEPT (verified by OPUS-16, not report). Authorize B2 (HARDWIRE-007 governing_intent). Linear mode — one batch, then report.
 DO NOW: Build B2 ONLY, then stop and report for OPIA. Do NOT start PART 3 until B2 accepted.

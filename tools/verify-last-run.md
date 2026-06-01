@@ -1,28 +1,30 @@
 # verify last run
 
-- ran_at: 2026-06-01T16:05:52.485Z
-- finished_at: 2026-06-01T16:06:18.137Z
+- ran_at: 2026-06-01T16:57:06.076Z
+- finished_at: 2026-06-01T16:57:37.369Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T16:05:52.485Z",
-    "finished_at": "2026-06-01T16:06:18.137Z",
+    "ran_at": "2026-06-01T16:57:06.076Z",
+    "finished_at": "2026-06-01T16:57:37.369Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "DEFERRED-WITH-REASON",
-        "skip_reason": "flag --skip-install"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 7.3,
+        "packages_resolved": null
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.4,
         "ts_errors": 0
       },
       {
@@ -39,7 +41,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.8,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -49,7 +51,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "scanned": 705,
+        "scanned": 706,
         "errors": 0,
         "warnings": 183,
         "exempt": 344
@@ -356,8 +358,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 648,
-        "clean": 648,
+        "checked": 649,
+        "clean": 649,
         "blocking": 0,
         "registry": 68
       },
@@ -421,7 +423,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 0
       },
@@ -440,7 +442,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 793,
+        "scanned": 794,
         "advisory": 113
       },
       {
@@ -615,8 +617,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -1275,7 +1277,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 0
+        "advisories": 1
       },
       {
         "name": "agent_calls_compliance",
@@ -1464,7 +1466,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "entries": 13,
+        "entries": 16,
         "blocking": 0,
         "advisory": 9
       },
@@ -1553,7 +1555,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 662,
+        "files_checked": 663,
         "findings": 8704,
         "advisory": 8704
       },
@@ -1715,7 +1717,7 @@
         "total": 211,
         "deferred": 10,
         "empty_output": 20,
-        "zero_numeric": 23,
+        "zero_numeric": 22,
         "advisory": 3,
         "blocking": 0
       },
@@ -1815,7 +1817,7 @@
         "command": "node tools/validators/validate-ai-honesty.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.5,
         "files_checked": 29,
         "blocking": 0,
         "advisory": 0
@@ -1929,7 +1931,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 0,
+        "files_scanned": 1,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0

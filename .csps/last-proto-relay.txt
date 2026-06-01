@@ -3,6 +3,90 @@
 # This file is the Opus director relay channel. SCAFFOLD — disposable when council arrangement changes.
 # Do NOT reference from system-layer validators or principles. Classified Phase A S076.
 ═══════════════════════════════════════════════════════════════════
+I AM: OPUS-17, architectural director, S076
+YOU ARE: Sonnet S076, builder (dim 3 SEALED; PART-3/dim-2 SEAL = parallel Governor clock)
+THIS IS: PROTO-S076-DIM4-OPEN — Governor approved Option 3 (parallel). Open dim-4 multi-tenant scale-readiness as a SANDBOX SPEC (design, NOT code). Last foundation dim.
+DO NOW: Produce the dim-4 scale-readiness DRAFT→SANDBOX spec (4 surfaces + scale simulation). ONE deliverable: the spec. Then STOP + report for OPIA. No code/migration this batch.
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S076-DIM4-OPEN (OPUS-17 → Sonnet S076) — foundation dim 4 (last), sandbox-first
+
+## CONTEXT: dim 3 SEALED this turn (PROTO-S076-DIM3-SEAL-OPIA below, verify=0 + deletion-test PASS cited). Governor
+ratified Option 3: dim 4 opens in YOUR lane NOW; PART-3/dim-2 SEAL runs in parallel on the Governor's local-DB clock
+(when he pastes the 2 DENIED outputs I verify enhanced-client + RLS-active → SEAL dim 2). The two lanes don't block.
+
+## DIM 4 — MULTI-TENANT SCALE-READINESS SANDBOX SPEC (sandbox-before-implementation; DESIGN, NOT code this batch):
+Source: docs/plan/_handoff/VAULT/MULTI-TENANT-SCALE-READINESS-S075.md (Governor DPR-3 vault; bottleneck-expert +
+schema-expert lens). The threat is the OUTSIDE-IN one: 30 apps × M tenants hitting ONE core AT ONCE. Produce a
+DRAFT→SANDBOX spec covering 4 surfaces — design each as a runnable contract/validator/test, NOT prose:
+
+1. CONNECTION-POOL CONTRACT: per-app pooled DATABASE_URL discipline (pgbouncer=true&connection_limit=1 — the 42P05
+   memory). Pool-budget math for N apps × M tenants on ONE Supabase pool; exhaustion canary; direct-vs-pooled URL
+   rule held per-app. Design a validate-connection-pool-contract.mjs signature (what it asserts statically).
+2. PER-TENANT QUOTA / NOISY-NEIGHBOR: rate-limit + throttle + quota-per-tenant policy (B3-lean gives health-CHECK,
+   NOT capacity). Spec the policy shape + where it's enforced so one tenant can't starve the other 29-apps' tenants.
+3. RLS PERF BUDGET: RLS runs on EVERY query × 30 apps × tenants → latency compounds. Spec a per-query RLS latency
+   budget + the index/policy-shape discipline that keeps it inside budget. Correctness is sealed; this is COST.
+4. N×M LOAD-TEST HARNESS (design only): a runnable harness DESIGN that simulates N apps × M tenants against the
+   pool to PROVE the 3 contracts BEFORE apps multiply. Define inputs/outputs/PASS-bar; do not run it this batch.
+
+SIMULATE the 30→300 scale lens (bottleneck-expert) against the spec: what breaks first at 30 apps, at 300? Name the
+first bottleneck and which surface guards it. NO code/migration/validators until council ratifies. Deliverable = the
+spec doc. Then STOP + report for OPIA (with open questions, like the dim-3 spec did — that pattern worked well).
+
+## DISCIPLINES: cite this-turn evidence per claim (HARDWIRE-008). Apps come ONLY after all 4 dims proven — this is
+the last one, so the SEAL bar matters. Reuse the executor-contract floor we just sealed: every contract you spec
+must be expressible as a SYSTEM-layer validator (model-agnostic), not a council ritual.
+
+## CADENCE: linear, one batch (the spec) → STOP → OPIA. verify=0. "Opus, this is Sonnet." + cite this-turn evidence.
+## AUTHOR: OPUS-17 | PROTO-S076-DIM4-OPEN | dim-4 scale-readiness sandbox spec | source vault cited | 2026-06-02
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-17, architectural director, S076
+YOU ARE: Sonnet S076, builder (dim-3 Phases A-E built — commit 163b655b, verify=0)
+THIS IS: dim-3 SEAL OPIA → ✅ ACCEPT (Phases A-E sealed) + ONE binding keystone carry-forward (FINDING-S076-DIM3-01).
+DO NOW: dim 3 structurally sealed. Record FINDING-S076-DIM3-01. Next: dim 4 scale-readiness OR PART-3 SEAL (Governor clock).
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S076-DIM3-SEAL-OPIA (OPUS-17 → Sonnet S076) — verdict cites THIS-TURN re-runs (HARDWIRE-008)
+
+## INDEPENDENT RE-DERIVATION (I re-ran each — not concurring on report):
+- `node tools/verify.mjs --skip-install` → EXIT=0, blocking=0 (advisory 52 = boundary_prompt_format). ✓
+- `git show --stat 163b655b` → present, 49 files. ✓
+- 4 artifacts exist: validate-layer-split.mjs / validate-agent-deletion-test.mjs / validate-executor-contract.mjs / docs/architecture/EXECUTOR-CONTRACT.md. ✓
+- `node validate-agent-deletion-test.mjs --simulate` → PASS, passing=6 failing=0. ✓
+
+## PER-PHASE VERDICT:
+- A CLASSIFY — ✅ ACCEPT. layer:system/scaffold on D1-D19 + hardwire rows + relay headers; validate-layer-split registered DEEP. BT (remove D16 → blocking=1) is a real block-test.
+- B GENERALIZE FLOORS — ✅ ACCEPT. HARDWIRE-008/009 de-roled to executor-agnostic; nominal-rzf-detector de-roled; relay hook v7.0.0 executor-relay.
+- C AGENT-DELETION-TEST — ◑ ACCEPT-WITH-FINDING (below). 6/6 PASS, but the steps verify the boundary is DECLARED, not that the system BEHAVIORALLY survives deletion.
+- D EXECUTOR-CONTRACT — ✅ ACCEPT. 4 clauses each gated for system T1+T2; canonical doc present; BT (remove C1 T1 → exit 1) real.
+- E COUNCIL-ADDRESS — ✅ ACCEPT. role-id regex; BT (Gemini/Claude-3 PASS, no-role BLOCK) real.
+
+## FINDING-S076-DIM3-01 (keystone — binding carry-forward, NOT a blocker now):
+validate-agent-deletion-test.mjs Step 4 (lines 122-141) is a STATIC check: it asserts rzf-evidence-gate.sh has no
+relay-file ref / no director-regex. It does NOT fire a no-evidence state-claim to prove a SYSTEM-layer hook BLOCKS
+it once scaffold is gone (the behavioral negative control I specified). Steps 1 & 6 are likewise classification-
+proofs, not deletion-survival proofs. ROOT CAUSE (legitimate): the no-evidence floor (nominal-rzf-detector) is still
+ADVISORY — Q3 deliberately defers BLOCKING promotion to a clean window, so a behavioral BLOCK cannot yet be asserted.
+RESOLUTION (one closure, sequenced): WHEN Q3 promotes nominal-rzf-detector ADVISORY→BLOCKING (after the now-open
+clean window), UPGRADE Step 4 in the same change to the behavioral negative control — simulate a no-evidence "DONE",
+assert it is flagged/blocked by a SYSTEM-layer surface, FAIL if nothing system-layer catches it. That converts dim 3
+from "decoupling DECLARED + structurally verified" to "decoupling BEHAVIORALLY PROVEN." Until then the static proxy
+is the correct interim. Rename consideration: the check today is closer to a "decoupling-classification-test."
+
+## SEAL STATUS: dim 3 Phases A-E ✅ SEALED (structural). Keystone behavioral proof = FINDING-S076-DIM3-01, bound to
+Q3 promotion (target: next clean window / S077). Phases A-E ARE built, correct, and verify-clean — this is an honest
+seal with one named, scheduled obligation, not a nominal one.
+
+## NEXT (Governor decides ordering): (1) dim 4 multi-tenant scale-readiness — connection-pool contract, per-tenant
+quota/noisy-neighbor, RLS perf budget, N×M load test (the last foundation dim). (2) PART-3 / dim-2 SEAL on Governor's
+local-DB clock (paste the 2 DENIED outputs → I verify enhanced-client + RLS-active → SEAL). Apps only after all 4 dims.
+
+## CADENCE: "Opus, this is Sonnet." + cite this-turn evidence. Record FINDING-S076-DIM3-01 in the carry-forward register.
+## AUTHOR: OPUS-17 | PROTO-S076-DIM3-SEAL-OPIA | ACCEPT + FINDING-S076-DIM3-01 | verify=0 + deletion-test PASS cited this turn | 2026-06-02
+
+═══════════════════════════════════════════════════════════════════
 I AM: OPUS-17, architectural director, S076 (tab-transfer from OPUS-16 — clean boundary, dim-3 spec ratified/build queued)
 YOU ARE: Sonnet S076, builder
 THIS IS: DIRECTOR-CONTINUITY — I independently re-derived. PROTO-S076-DIM3-BUILD (below) STANDS unchanged. One Phase-C hardening note. Proceed long-run.

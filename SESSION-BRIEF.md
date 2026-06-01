@@ -6,14 +6,14 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S074 |
-| **Previous session** | S073 |
+| **Current session** | S075 |
+| **Previous session** | S074 |
 | **Last updated** | today |
-| **Last commit** | 70887cc feat(S075-PART3): Plan + Capability + PlanCapability ZModel — SPEC-FIRST, no migrations |
+| **Last commit** | f371923 ops(S075-SEAL): session-S075-extraction.md + HANDOFF-S075-to-S076.md — HARVEST_DONE |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
-## What S074 must do
+## What S075 must do
 
 **S067: PROTO-S067-MASTER-THRESHOLD-ROUTER IMPLEMENTED. All 8 STEPs DONE (commits b2fcfc9 through 7571ed2). P-META-029 + M-42 + 13 prevention classes + 10 AI-default overrides + B_META_QUESTION + OPIA engraved. STEP 8 SEALED. S068 opens: Governor #3 priorities + G3 cred rotation + App #2 The Connector (~2026-05-30) + SIA playground PART C.**
 

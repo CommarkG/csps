@@ -1300,6 +1300,17 @@ const CYCLES = [
     },
   },
   {
+    // S075 B2: governing-intent-coverage — BLOCKING for new (post-S075) principles without governing_intent.
+    // DEEP tier: corpus scan of all 73 principles — run with --deep or weekly-hardwire-audit. HARDWIRE-007.
+    name: 'governing_intent_coverage',
+    command: 'node tools/validators/validate-governing-intent-coverage.mjs',
+    run_tier: 'DEEP',
+    parse_output: (out) => {
+      const m = out.match(/total=(\d+)\s+with_intent=(\d+)\s+coverage=(\d+)%\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { total: Number(m[1]), with_intent: Number(m[2]), coverage_pct: Number(m[3]), blocking: Number(m[4]), advisory: Number(m[5]) } : {};
+    },
+  },
+  {
     // S075 B1: default-shape — BLOCKING if new D* entry lacks reasoning+reframe+adopted_value (P-META-031).
     // Enforce the floor: counter_instruction alone = T3-only = drifts. STANDARD tier.
     name: 'default_shape',

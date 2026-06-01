@@ -1,23 +1,21 @@
 # verify last run
 
-- ran_at: 2026-06-01T11:18:54.971Z
-- finished_at: 2026-06-01T11:19:26.886Z
+- ran_at: 2026-06-01T13:02:35.423Z
+- finished_at: 2026-06-01T13:03:02.924Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T11:18:54.971Z",
-    "finished_at": "2026-06-01T11:19:26.886Z",
+    "ran_at": "2026-06-01T13:02:35.423Z",
+    "finished_at": "2026-06-01T13:03:02.924Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 7.1,
-        "packages_resolved": null
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "flag --skip-install"
       },
       {
         "name": "typecheck_recursive",
@@ -41,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -123,7 +121,7 @@
         "command": "node tools/validators/validate-audit-health.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -309,7 +307,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 14,
-        "validators": 214,
+        "validators": 215,
         "models": 0,
         "advisories": 0
       },
@@ -357,7 +355,7 @@
         "command": "node tools/validators/validate-schema-anchors.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "checked": 647,
         "clean": 647,
         "blocking": 0,
@@ -434,14 +432,14 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocking": 0,
-        "advisory": 4
+        "advisory": 3
       },
       {
         "name": "file_complexity_validate",
         "command": "node tools/validators/validate-file-complexity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "scanned": 792,
         "advisory": 113
       },
@@ -531,7 +529,7 @@
         "command": "node tools/validators/validate-wiring-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "wired": 12,
         "deferred": 41,
         "orphan": 0
@@ -559,7 +557,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 294,
+        "checked": 295,
         "blocking": 0,
         "advisories": 0
       },
@@ -682,7 +680,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -705,7 +703,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S074",
-        "validators": 215
+        "validators": 216
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -1087,22 +1085,21 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 215,
+        "validators_checked": 216,
         "orphans": 0,
-        "registered": 215
+        "registered": 216
       },
       {
         "name": "token_budget_validate",
         "command": "node tools/validators/validate-token-budget.mjs",
-        "status": "FAIL",
-        "exit_code": 1,
+        "status": "PASS",
+        "exit_code": 0,
         "duration_seconds": 0.1,
         "modes": 5,
         "red": 0,
-        "yellow": 1,
+        "yellow": 0,
         "info": 2,
-        "advisory_window": true,
-        "tail": "\nYELLOW findings:\n  [Mode 1] ⚠ AGENTS.md has 201 lines (target: <200; warn: 200-300)\n       → Consider moving verbose sections to pillar-leaf files\n"
+        "advisory_window": true
       },
       {
         "name": "corespine_depth_markers",
@@ -1403,7 +1400,7 @@
         "command": "node tools/validators/validate-apps-are-trials.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "apps_checked": 3,
         "libs_packages": 12,
         "blocking": 0,
@@ -1445,9 +1442,15 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "rows": 6,
+        "rows": 7,
         "blocking": 0,
         "advisory": 0
+      },
+      {
+        "name": "governing_intent_coverage",
+        "command": "node tools/validators/validate-governing-intent-coverage.mjs",
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "run_tier:DEEP — run with --deep or node tools/zf-orchestrator.mjs --level 3"
       },
       {
         "name": "default_shape",
@@ -1474,8 +1477,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "new_permanent_files": 0,
-        "advisory": 0,
+        "new_permanent_files": 1,
+        "advisory": 1,
         "blocking": 0
       },
       {
@@ -1554,8 +1557,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 32,
-        "advisory": 32,
+        "findings": 50,
+        "advisory": 50,
         "blocking": 0
       },
       {
@@ -1703,10 +1706,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 209,
+        "total": 210,
         "deferred": 8,
         "empty_output": 20,
-        "zero_numeric": 24,
+        "zero_numeric": 22,
         "advisory": 3,
         "blocking": 0
       },
@@ -1727,7 +1730,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 397,
+        "total_entries": 398,
         "sessions": 3,
         "advisory": true
       },
@@ -1920,7 +1923,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 0,
+        "files_scanned": 1,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0
@@ -2025,10 +2028,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 53,
+        "entries_checked": 54,
         "missing_headers": 27,
-        "missing_attestation": 10,
-        "advisory": 41,
+        "missing_attestation": 11,
+        "advisory": 42,
         "blocking": 0
       },
       {

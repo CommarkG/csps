@@ -42,6 +42,12 @@ const NOMINAL_ZF_PATTERNS = [
   /\bCycle\s+[2-9]\b.*\bno\s+new\s+findings\b/i,
 ]
 
+// S075 B2 SP floor: ZF ACHIEVED claims must have tool output pasted (exit_code / verified)
+// Pattern: "ZF STATUS: ACHIEVED" or "ZF ACHIEVED" WITHOUT "exit_code" or tool output nearby
+const ZF_ACHIEVED_PATTERN = /\bZF\s+(?:STATUS:?\s*)?ACHIEVED\b/i
+// Tool output indicators — presence means real verification
+const TOOL_OUTPUT_PATTERN = /(?:exit_code|EXIT:|blocking=|advisory=|verified|✓|node tools\/|pnpm|verify\.mjs|PASS|READY)/i
+
 // File extension pattern — presence indicates real file citation
 const FILE_EXTENSION_PATTERN = /\b\w[\w./\-]*\.(mjs|sh|yaml|yml|md|ts|tsx|json|mts)\b/
 
@@ -98,6 +104,29 @@ for (const filePath of SCAN_FILES) {
       console.log(`    "${line.trim().slice(0, 100)}"`)
       console.log(`    Fix: name the files re-examined (e.g. "re-examined tools/verify.mjs + audit-runner.md — 0 new")`)
       console.log(`    Per RZF-LATEST §6.I5 + P-META-006 RZF discipline`)
+    }
+  }
+
+  // S075 B2 SP floor: scan for ZF ACHIEVED without tool output in nearby context
+  // P-META-031 governing_intent floor: last ZF cycle must run a tool AND paste output
+  for (let j = 0; j < lines.length; j++) {
+    const jLine = lines[j]
+    if (!ZF_ACHIEVED_PATTERN.test(jLine)) continue
+    // Check nearby context (±5 lines) for tool output indicators
+    const ctx = lines.slice(Math.max(0, j - 5), Math.min(lines.length, j + 3)).join(' ')
+    const hasTool = TOOL_OUTPUT_PATTERN.test(ctx) || FILE_EXTENSION_PATTERN.test(ctx)
+    if (!hasTool) {
+      findings++
+      advisory++
+      all_findings.push({
+        file: fileName,
+        line: j + 1,
+        content: `[S075-B2-SP-floor] ZF ACHIEVED without tool output evidence. Per P-META-031: last cycle must run a tool + paste output. "${jLine.trim().slice(0, 80)}"`,
+        level: 'advisory',
+      })
+      if (all_findings.length <= 12) {
+        console.log(`  ⚠ [S075-B2-SP-floor] ${fileName}:${j + 1}: ZF ACHIEVED without visible tool output. Run verify/check and paste output before claiming ZF ACHIEVED.`)
+      }
     }
   }
 }

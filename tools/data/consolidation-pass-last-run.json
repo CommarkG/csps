@@ -1,29 +1,7 @@
 {
-  "total_scanned": 3,
+  "total_scanned": 1,
   "total_exempted": 1,
-  "total_findings": 3,
-  "findings": [
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "do now",
-      "count": 3,
-      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    },
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "authored by",
-      "count": 4,
-      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    },
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "opus",
-      "count": 4,
-      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    }
-  ],
-  "ran_at": "2026-06-01T11:06:19.145Z"
+  "total_findings": 0,
+  "findings": [],
+  "ran_at": "2026-06-01T11:21:46.540Z"
 }

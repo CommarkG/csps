@@ -114,3 +114,21 @@ rows:
       (restored deploy-targets.yaml after test)
     status: hardwire-done
     session_sealed: S075
+
+  - id: hardwire-007
+    thing: "governing_intent field — root fix for D11 (rigid-rule-satisfaction) on all new principles and B_* contracts"
+    governor_invocation: "S075 B2 (HARDWIRE-007): governing_intent required on all new rules to prevent D11 exploitation"
+    surfaces:
+      t1_hook: "user-prompt-submit-comments-before-code.sh (D12/D8/D11 applied before building = checks governing_intent)"
+      t2_validator: "validate-governing-intent-coverage.mjs (STANDARD — BLOCKING for new post-S075 principles)"
+      t3_session: "session-open.sh: SATISFACTION-POINT-REGISTRY T3 (includes governing-intent-over-definition via D11)"
+      sp_registry_entry: "governing-intent-active (to be added)"
+      audit_runner_row: "governing_intent_coverage (STANDARD — registered S075 B2)"
+    block_test_command: "node -e \"const yaml=require('js-yaml'),fs=require('fs');const p=yaml.load(fs.readFileSync('packages/principles/principles.yaml','utf8'));p.principles.push({id:'P-BT-001',name:'bt',description:'t',spine:'AI',layer:'L1',category:'test',session:'S075'});fs.writeFileSync('packages/principles/principles.yaml',yaml.dump(p,{lineWidth:140}),'utf8');\" && node tools/validators/validate-governing-intent-coverage.mjs; echo EXIT:$?"
+    block_test_output: |
+      ✗ BLOCKING: "P-BT-001" (new, session S075): missing governing_intent. HARDWIRE-007: every new principle must declare governing_intent (L3 intent). Without it, D11 will satisfy the definition while missing the intent.
+      [validate-governing-intent-coverage] total=74 with_intent=11 coverage=15% blocking=1 advisory=62
+      EXIT:1 ✓
+      (test entry removed after block-test)
+    status: hardwire-done
+    session_sealed: S075

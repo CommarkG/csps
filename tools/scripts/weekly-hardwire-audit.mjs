@@ -162,6 +162,29 @@ try {
   addFinding('ADVISORY', `Floater register parse error: ${e.message}`, 'registry-error');
 }
 
+// ── (c2) HARDWIRE-007: governing_intent coverage check ───────────────────────
+console.log('[weekly-hardwire-audit] Section C2: governing_intent coverage (HARDWIRE-007)...');
+try {
+  const { execSync } = await import('node:child_process');
+  const giResult = execSync('node tools/validators/validate-governing-intent-coverage.mjs', {
+    cwd: ROOT, shell: true, stdio: 'pipe', timeout: 15000
+  }).toString();
+  const giMatch = giResult.match(/coverage=(\d+)%\s+blocking=(\d+)/);
+  if (giMatch) {
+    const coverage = parseInt(giMatch[1], 10);
+    const blocking = parseInt(giMatch[2], 10);
+    if (blocking > 0) {
+      addFinding('CRITICAL', `governing_intent: ${blocking} new principle(s) missing governing_intent (HARDWIRE-007). D11 will exploit the gap.`, 'governing-intent-blocking');
+    } else if (coverage < 80) {
+      addFinding('ADVISORY', `governing_intent coverage=${coverage}% (target ≥80% for promotion). ${73 - Math.round(0.01 * coverage * 73)} legacy principles still need backfill.`, 'governing-intent-coverage');
+    } else {
+      console.log(`  ✓ governing_intent coverage=${coverage}% — at or above 80% target`);
+    }
+  }
+} catch (e) {
+  addFinding('ADVISORY', `governing_intent coverage check failed: ${e.message}`, 'governing-intent-error');
+}
+
 // ── (d) Gap recurrence: K≥3 audit failures → gap-recurrence-register ──────────
 console.log('[weekly-hardwire-audit] Section D: gap recurrence check...');
 let prevRun = { findings: [] };

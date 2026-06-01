@@ -1,7 +1,15 @@
 {
   "total_scanned": 2,
   "total_exempted": 1,
-  "total_findings": 0,
-  "findings": [],
-  "ran_at": "2026-06-01T10:14:12.863Z"
+  "total_findings": 1,
+  "findings": [
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "reality",
+      "count": 11,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\templates\\tab-transfer-template.md"
+    }
+  ],
+  "ran_at": "2026-06-01T10:16:15.760Z"
 }

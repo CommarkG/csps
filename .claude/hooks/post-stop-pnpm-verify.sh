@@ -56,7 +56,10 @@ try{
 
 # ─── Output with MANDATORY iteration count ─────────────────────────────────
 
-if [ "$VERIFY_EXIT" -ne 0 ] || [ "$FAIL_COUNT" -gt 0 ]; then
+if [ "$VERIFY_EXIT" -ne 0 ]; then
+  # S075 K=3 cry-wolf fix: key ONLY on the orchestrator's authoritative exit_code.
+  # Advisory validators (e.g. token_budget yellow) carry "status":"FAIL" with exit_code 0
+  # and MUST NOT false-block — they stay surfaced in tools/verify-last-run.md. (B4 family.)
   FAILURES=$(echo "$VERIFY_OUTPUT" | grep -A2 '"status": "FAIL"' | grep '"name"' | sed 's/.*"name": "\([^"]*\)".*/\1/' | tr '\n' ', ' || echo "unknown")
 
   printf '{

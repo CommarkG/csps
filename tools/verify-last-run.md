@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T15:59:16.580Z
-- finished_at: 2026-06-01T15:59:42.383Z
+- ran_at: 2026-06-01T16:05:52.485Z
+- finished_at: 2026-06-01T16:06:18.137Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T15:59:16.580Z",
-    "finished_at": "2026-06-01T15:59:42.383Z",
+    "ran_at": "2026-06-01T16:05:52.485Z",
+    "finished_at": "2026-06-01T16:06:18.137Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -421,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 0
       },
@@ -1275,7 +1275,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 1
+        "advisories": 0
       },
       {
         "name": "agent_calls_compliance",
@@ -1715,7 +1715,7 @@
         "total": 211,
         "deferred": 10,
         "empty_output": 20,
-        "zero_numeric": 22,
+        "zero_numeric": 23,
         "advisory": 3,
         "blocking": 0
       },
@@ -1736,7 +1736,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 407,
+        "total_entries": 410,
         "sessions": 3,
         "advisory": true
       },
@@ -1815,7 +1815,7 @@
         "command": "node tools/validators/validate-ai-honesty.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "files_checked": 29,
         "blocking": 0,
         "advisory": 0
@@ -1976,7 +1976,7 @@
         "command": "node tools/validators/validate-structural-fix.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "entries_checked": 11,
         "k2_needing_fix": 3,
         "k3_blocking": 0,
@@ -2012,7 +2012,7 @@
         "command": "node tools/validators/validate-prior-plan-conflict.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "staged_checked": 2,
         "conflicts_found": 2,
         "advisory": 2,

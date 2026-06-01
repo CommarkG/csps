@@ -2652,3 +2652,33 @@ entries:
   source: governor_directive
   status: new
   raw: ""
+- id: "thr-S074-1780329603077"
+  session: "S074"
+  timestamp: "2026-06-01T16:00:03.076Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-S074-1780329771195"
+  session: "S074"
+  timestamp: "2026-06-01T16:02:51.194Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-S074-1780329935442"
+  session: "S074"
+  timestamp: "2026-06-01T16:05:35.441Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""

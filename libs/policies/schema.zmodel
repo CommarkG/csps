@@ -165,6 +165,10 @@ model Tenant extends Base {
   subscriptionStatus   TenantSubscriptionStatus @default(free)
   // Plan tier — separate from billing status (free/pro/enterprise/custom)
   plan                 String                   @default("free")
+  // C3 fix (OPUS-16 S075): planId FK → Plan entity (PART 3 migration batch)
+  // null = free tier. Coexists with plan:String field until planId FK migration complete.
+  planId               String?
+  planRelation         Plan?    @relation("TenantPlanFK", fields: [planId], references: [id])
   // Feature flags enabled for this tenant (e.g. ["ai-assist", "webhooks"])
   features             String[]                 @default([])
   // Resource limits override (null = use plan defaults)
@@ -520,7 +524,7 @@ model Plan extends Base {
   monthlyPriceUsd Decimal? @db.Decimal(10, 2)
   stripePriceId   String?
 
-  // tenants Tenant[] — back-reference added when Tenant.planId FK migration is authorized
+  tenants      Tenant[]         @relation("TenantPlanFK")  // C3 fix: back-reference now that Tenant.planId is in schema
   capabilities PlanCapability[]
 
   @@schema("public")

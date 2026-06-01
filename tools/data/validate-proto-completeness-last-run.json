@@ -5,255 +5,255 @@
   "blocking": 0,
   "all_findings": [
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
       "level": "advisory",
       "msg": "missing required section: CORE SEED"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
       "level": "advisory",
       "msg": "missing required section: INHERITS / ALIGNS-WITH"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
       "level": "advisory",
       "msg": "missing required section: ASK-OPUS-STOP TRIGGERS"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
       "level": "advisory",
       "msg": "missing required section: N-PERSONA REVIEW"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
       "level": "advisory",
       "msg": "missing required section: STEP 0"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
       "level": "advisory",
       "msg": "missing required section: ZF GATE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
       "level": "advisory",
       "msg": "missing required section: PREVENTION CLASSES"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
       "level": "advisory",
       "msg": "missing required section: §15 3-SCOPE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
       "level": "advisory",
       "msg": "missing required section: AUTHOR SIGNATURE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S052-A.md",
       "level": "advisory",
       "msg": "missing AUTHOR SIGNATURE line (— OPUS-N or — Sonnet)"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
       "level": "advisory",
       "msg": "missing required section: CORE SEED"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
       "level": "advisory",
       "msg": "missing required section: INHERITS / ALIGNS-WITH"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
       "level": "advisory",
       "msg": "missing required section: ASK-OPUS-STOP TRIGGERS"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
       "level": "advisory",
       "msg": "missing required section: N-PERSONA REVIEW"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
       "level": "advisory",
       "msg": "missing required section: ZF GATE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
       "level": "advisory",
       "msg": "missing required section: PREVENTION CLASSES"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
       "level": "advisory",
       "msg": "missing required section: §15 3-SCOPE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
       "level": "advisory",
       "msg": "missing required section: AUTHOR SIGNATURE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
       "level": "advisory",
       "msg": "STEP 0 missing ratification checkbox (\"Governor ratifies design → Sonnet builds\")"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-A.md",
       "level": "advisory",
       "msg": "missing AUTHOR SIGNATURE line (— OPUS-N or — Sonnet)"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
       "level": "advisory",
       "msg": "missing required section: CORE SEED"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
       "level": "advisory",
       "msg": "missing required section: INHERITS / ALIGNS-WITH"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
       "level": "advisory",
       "msg": "missing required section: ASK-OPUS-STOP TRIGGERS"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
       "level": "advisory",
       "msg": "missing required section: N-PERSONA REVIEW"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
       "level": "advisory",
       "msg": "missing required section: STEP 0"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
       "level": "advisory",
       "msg": "missing required section: PREVENTION CLASSES"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
       "level": "advisory",
       "msg": "missing required section: §15 3-SCOPE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
       "level": "advisory",
       "msg": "missing required section: AUTHOR SIGNATURE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-DEPLOY.md",
       "level": "advisory",
       "msg": "missing AUTHOR SIGNATURE line (— OPUS-N or — Sonnet)"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
       "level": "advisory",
       "msg": "missing required section: CORE SEED"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
       "level": "advisory",
       "msg": "missing required section: INHERITS / ALIGNS-WITH"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
       "level": "advisory",
       "msg": "missing required section: ASK-OPUS-STOP TRIGGERS"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
       "level": "advisory",
       "msg": "missing required section: N-PERSONA REVIEW"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
       "level": "advisory",
       "msg": "missing required section: STEP 0"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
       "level": "advisory",
       "msg": "missing required section: ZF GATE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
       "level": "advisory",
       "msg": "missing required section: PREVENTION CLASSES"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
       "level": "advisory",
       "msg": "missing required section: §15 3-SCOPE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
       "level": "advisory",
       "msg": "missing required section: AUTHOR SIGNATURE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S062-K.md",
       "level": "advisory",
       "msg": "missing AUTHOR SIGNATURE line (— OPUS-N or — Sonnet)"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
       "level": "advisory",
       "msg": "missing required section: CORE SEED"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
       "level": "advisory",
       "msg": "missing required section: INHERITS / ALIGNS-WITH"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
       "level": "advisory",
       "msg": "missing required section: ASK-OPUS-STOP TRIGGERS"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
       "level": "advisory",
       "msg": "missing required section: N-PERSONA REVIEW"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
       "level": "advisory",
       "msg": "missing required section: STEP 0"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
       "level": "advisory",
       "msg": "missing required section: PREVENTION CLASSES"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
       "level": "advisory",
       "msg": "missing required section: §15 3-SCOPE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
       "level": "advisory",
       "msg": "missing required section: AUTHOR SIGNATURE"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S065-PAP.md",
       "level": "advisory",
       "msg": "missing AUTHOR SIGNATURE line (— OPUS-N or — Sonnet)"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S066-WAVE-2.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S066-WAVE-2.md",
       "level": "advisory",
       "msg": "missing required section: INHERITS / ALIGNS-WITH"
     },
     {
-      "file": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S066-WAVE-2.md",
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\protos\\PROTO-S066-WAVE-2.md",
       "level": "advisory",
       "msg": "missing required section: ASK-OPUS-STOP TRIGGERS"
     }
   ],
-  "ran_at": "2026-06-01T18:46:31.704Z"
+  "ran_at": "2026-06-01T19:05:53.488Z"
 }

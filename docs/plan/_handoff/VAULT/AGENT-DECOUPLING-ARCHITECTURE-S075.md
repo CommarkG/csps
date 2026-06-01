@@ -4,8 +4,9 @@ name: AGENT-DECOUPLING-ARCHITECTURE
 description: "Governor S075 risk (VAULTED, DPR-4, very important): the platform must NOT depend on Opus or Sonnet. They are a token-optimization + mutual-review AMPLIFIER, not part of the system. The durable system must rely on a consolidated, constant, wired, MODEL-AGNOSTIC AI contract — not on something Sonnet built for Sonnet or Opus built for Opus. Present the path to decouple."
 version: 1.0
 owner: group:finky
-lifecycle: draft
-lifecycle_state: candidate
+lifecycle: production
+lifecycle_state: sandbox
+next_review_at: "2026-07-01"
 core_spine: ARCH
 core_spines: [ARCH, GVRN, AI]
 schema_anchor: vault_files

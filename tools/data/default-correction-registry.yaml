@@ -141,6 +141,26 @@ defaults:
       Pattern-memory is a hypothesis. Tool-call output is evidence. Name the tool call that confirms the existence-claim, run it this turn,
       paste the output. Only then does the claim become evidence.
     adopted_value: tool-output-before-existence-claim
+  - id: D13
+    name: doc-feels-like-mechanism
+    description: >-
+      Writing a governance doc that DESCRIBES a mechanism feels like BUILDING the mechanism. AI authors doc with description of a
+      pipeline/hook/validator but no wiring exists — described, not active (AP-001 EXISTS≠ACTIVE).
+    detection_signal: AI writes governance doc describing mechanism but no corresponding validator/hook/CIE-PE wiring is created in the same turn
+    counter_instruction: >-
+      D13 DETECTED: describing a mechanism ≠ building it. AP-001: EXISTS≠ACTIVE. Write the doc AND wire the mechanism. If deferring wiring,
+      register explicitly with closure_owner+by.
+    k_count_gate: 2
+    note: >-
+      S068 original. Legacy entry (predates P-META-031 shape requirement). Sibling of D11 (verbal-deferral). Registered in
+      default-correction-registry.yaml in B4 S075 — was in vault docs only before.
+    reasoning: >-
+      Writing documentation about a mechanism activates the same completion feeling as building it. The AI has "done something" about the
+      gap — it wrote about it. The act of description satisfies the D3 surface-completeness pattern at the governance level.
+    reframe: >-
+      A doc that describes a mechanism is a PROPOSAL, not a mechanism. The mechanism only exists when a validator exits 1 on violation, a
+      hook BLOCKS, or a CIE-PE pipeline fires. Until then, AP-001: EXISTS≠ACTIVE applies to the doc itself.
+    adopted_value: wiring-before-documenting
   - id: D14
     name: unverified-agreement
     description: >-

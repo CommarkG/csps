@@ -1,4 +1,8 @@
 ---
+# SUPERSEDED-NOTE: This file predates S074 D11 registry assignment.
+# Current D11 = rigid-rule-satisfaction (S074). See tools/data/default-correction-registry.yaml.
+# This file retained as historical record of the pre-S074 D11 concept.
+# Not machine-read by ai-profiler.sh (registry is SSoT).
 id: csps.governance.ai-default.D11-debugging-wrong-layer
 name: D11-debugging-wrong-layer
 default_id: D11
@@ -18,6 +22,10 @@ links:
   - rel: contract
     href: ../../pillar-0-governance/behavioral-contracts/B_HUMBLE_CONSOLIDATION_DISCIPLINE.md
 ---
+# SUPERSEDED-NOTE: This file predates S074 D11 registry assignment.
+# Current D11 = rigid-rule-satisfaction (S074). See tools/data/default-correction-registry.yaml.
+# This file retained as historical record of the pre-S074 D11 concept.
+# Not machine-read by ai-profiler.sh (registry is SSoT).
 
 # D11 — Debugging-Wrong-Layer (visible-fix-aversion override)
 

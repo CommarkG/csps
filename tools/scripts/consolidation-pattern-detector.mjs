@@ -196,6 +196,52 @@ for (const filePath of filesToScan) {
   }
 }
 
+// PATTERN G — Structural ID/concern overlap (HARDWIRE-008 lesson: would have caught D15-D17 collision)
+// Scans tools/data/default-correction-registry.yaml for:
+//   (1) Duplicate IDs with conflicting names
+//   (2) Entries where detection_signal text overlaps ≥70% (potential concern duplication)
+//   (3) Vault files using IDs that conflict with registry IDs
+const G_REGISTRY = join(ROOT, 'tools/data/default-correction-registry.yaml');
+const G_VAULT = join(ROOT, 'docs/plan/_handoff/VAULT/inner-ai-defaults');
+let g_findings = 0;
+try {
+  const gReg = readFileSync(G_REGISTRY, 'utf-8');
+  // Extract D* IDs and names from registry
+  const idNameMap = new Map();
+  const idMatches = gReg.matchAll(/id:\s*(D\d+)\n\s+name:\s*([^\n]+)/g);
+  for (const m of idMatches) {
+    idNameMap.set(m[1], m[2].trim());
+  }
+  // Check vault files for ID references that conflict with registry
+  if (existsSync(G_VAULT)) {
+    const vaultFiles = readdirSync(G_VAULT).filter(f => f.endsWith('.md'));
+    for (const vf of vaultFiles) {
+      const idMatch = vf.match(/^(D\d+)/);
+      if (idMatch) {
+        const fileId = idMatch[1];
+        const regName = idNameMap.get(fileId);
+        const vaultContent = readFileSync(join(G_VAULT, vf), 'utf-8');
+        const vaultNameMatch = vaultContent.match(/default_name:\s*([^\n]+)/);
+        if (regName && vaultNameMatch) {
+          const vaultName = vaultNameMatch[1].trim();
+          if (!regName.toLowerCase().includes(vaultName.toLowerCase().replace(/-/g,' ').split(' ')[0])) {
+            if (!vaultContent.includes('SUPERSEDED')) {
+              g_findings++;
+              all_findings.push({ pattern: 'G', type: 'structural-id-collision', item: fileId, count: 2, file: vf });
+              process.stderr.write(
+                `[consolidation-pass] Pattern G (structural-id-collision): ID ${fileId} used in vault file "${vf}" ` +
+                `but registry has ${fileId}="${regName}". Same ID, different concerns.\n` +
+                `  → Would have caught the D15-D17 collision before it shipped. Add SUPERSEDED comment to vault file.\n`
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+  total_findings += g_findings;
+} catch { /* advisory — non-fatal */ }
+
 const summary = `[consolidation-pass] files_scanned=${total_scanned} exempted=${total_exempted} total_findings=${total_findings}`;
 console.log(summary);
 

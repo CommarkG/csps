@@ -1,4 +1,8 @@
 ---
+# SUPERSEDED-NOTE: This file predates S074 D11 registry assignment.
+# Current D11 = rigid-rule-satisfaction (S074). See tools/data/default-correction-registry.yaml.
+# This file retained as historical record of the pre-S074 D11 concept.
+# Not machine-read by ai-profiler.sh (registry is SSoT).
 id: csps.governance.ai-default.D11-verbal-deferral-feels-like-action
 name: D11-verbal-deferral-feels-like-action
 default_id: D11
@@ -19,6 +23,10 @@ links:
   - rel: register
     href: ../../../../tools/data/vault-pending.yaml
 ---
+# SUPERSEDED-NOTE: This file predates S074 D11 registry assignment.
+# Current D11 = rigid-rule-satisfaction (S074). See tools/data/default-correction-registry.yaml.
+# This file retained as historical record of the pre-S074 D11 concept.
+# Not machine-read by ai-profiler.sh (registry is SSoT).
 
 # D11 — Verbal-Deferral-Feels-Like-Action (override)
 

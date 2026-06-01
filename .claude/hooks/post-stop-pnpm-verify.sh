@@ -62,11 +62,29 @@ if [ "$VERIFY_EXIT" -ne 0 ]; then
   # and MUST NOT false-block — they stay surfaced in tools/verify-last-run.md. (B4 family.)
   FAILURES=$(echo "$VERIFY_OUTPUT" | grep -A2 '"status": "FAIL"' | grep '"name"' | sed 's/.*"name": "\([^"]*\)".*/\1/' | tr '\n' ', ' || echo "unknown")
 
+  # B4 CONCURRENCY/GATE-DETERMINISM GUARD (S075 K=4 transient fix):
+  # NEVER silent-retry. Surface LOUD advisory when a gate fails transiently.
+  # Known transient: platform_capacity fails when a validator is added mid-session (hard_limit=200)
+  # Known transient: session_harvest_readiness exits 1 = HARVEST_READY (advisory_exit_ok — should not reach here)
+  # When a "known transient" fails: emit LOUD diagnostic, NOT silent block.
+  TRANSIENT_INDICATOR=""
+  if echo "$FAILURES" | grep -q "platform_capacity"; then
+    TRANSIENT_INDICATOR="⚠ KNOWN TRANSIENT: platform_capacity (pnpm-verify-cycles at hard_limit). Fix: tier a STANDARD validator to DEEP, or check verify.mjs for advisory_exit_ok. This is a gate-determinism issue, not a real build failure."
+  fi
+  if echo "$FAILURES" | grep -q "session_harvest_readiness"; then
+    TRANSIENT_INDICATOR="⚠ KNOWN TRANSIENT: session_harvest_readiness exits 1 = HARVEST_READY. This is advisory_exit_ok — should not reach here. Check verify.mjs advisory_exit_ok setting."
+  fi
+
+  TRANSIENT_NOTE=""
+  if [ -n "$TRANSIENT_INDICATOR" ]; then
+    TRANSIENT_NOTE="\\n\\n${TRANSIENT_INDICATOR}\\n→ Do NOT retry silently. Surface this gate failure explicitly and fix the root cause."
+  fi
+
   printf '{
-    "systemMessage": "[ZF-iter-%s] VERIFY FAILED — exit_code=%s | failing: %s\\n\\nIteration %s this session. Per P-META-006 RZF: no DONE claim valid without exit_code 0.\\nFix before proceeding. Iteration count is MEASUREMENT — this run found blockers.",
+    "systemMessage": "[ZF-iter-%s] VERIFY FAILED — exit_code=%s | failing: %s\\n\\nIteration %s this session. Per P-META-006 RZF: no DONE claim valid without exit_code 0.\\nFix before proceeding. Iteration count is MEASUREMENT — this run found blockers.%s",
     "continue": false,
     "stopReason": "pnpm verify failed (iter %s). Fix: %s"
-  }' "$ITER_COUNT" "$VERIFY_EXIT" "$FAILURES" "$ITER_COUNT" "$ITER_COUNT" "$FAILURES"
+  }' "$ITER_COUNT" "$VERIFY_EXIT" "$FAILURES" "$ITER_COUNT" "$TRANSIENT_NOTE" "$ITER_COUNT" "$FAILURES"
   exit 1
 fi
 

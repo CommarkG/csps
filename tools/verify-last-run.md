@@ -1,30 +1,28 @@
 # verify last run
 
-- ran_at: 2026-06-01T18:11:14.296Z
-- finished_at: 2026-06-01T18:11:48.706Z
+- ran_at: 2026-06-01T18:24:52.923Z
+- finished_at: 2026-06-01T18:25:18.090Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T18:11:14.296Z",
-    "finished_at": "2026-06-01T18:11:48.706Z",
+    "ran_at": "2026-06-01T18:24:52.923Z",
+    "finished_at": "2026-06-01T18:25:18.090Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 7.8,
-        "packages_resolved": null
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "flag --skip-install"
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -41,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 1,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -51,7 +49,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "scanned": 708,
+        "scanned": 709,
         "errors": 0,
         "warnings": 183,
         "exempt": 344
@@ -223,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3.3,
+        "duration_seconds": 3,
         "checked": 139,
         "advisories": 128
       },
@@ -357,9 +355,9 @@
         "command": "node tools/validators/validate-schema-anchors.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "checked": 651,
-        "clean": 651,
+        "duration_seconds": 0.1,
+        "checked": 652,
+        "clean": 652,
         "blocking": 0,
         "registry": 68
       },
@@ -423,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 0
       },
@@ -441,8 +439,8 @@
         "command": "node tools/validators/validate-file-complexity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 796,
+        "duration_seconds": 0.1,
+        "scanned": 797,
         "advisory": 113
       },
       {
@@ -531,7 +529,7 @@
         "command": "node tools/validators/validate-wiring-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "wired": 12,
         "deferred": 41,
         "orphan": 0
@@ -682,7 +680,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -1466,7 +1464,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "entries": 18,
+        "entries": 19,
         "blocking": 0,
         "advisory": 9
       },
@@ -1555,9 +1553,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 665,
-        "findings": 8707,
-        "advisory": 8707
+        "files_checked": 666,
+        "findings": 8708,
+        "advisory": 8708
       },
       {
         "name": "nominal_rzf_detector",
@@ -1565,8 +1563,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 276,
-        "advisory": 276,
+        "findings": 277,
+        "advisory": 277,
         "blocking": 0
       },
       {
@@ -1692,7 +1690,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 150,
         "blocking": 0,
         "advisory": 25
@@ -1738,7 +1736,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 425,
+        "total_entries": 426,
         "sessions": 3,
         "advisory": true
       },
@@ -2036,10 +2034,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 58,
+        "entries_checked": 59,
         "missing_headers": 25,
-        "missing_attestation": 17,
-        "advisory": 46,
+        "missing_attestation": 18,
+        "advisory": 47,
         "blocking": 0
       },
       {

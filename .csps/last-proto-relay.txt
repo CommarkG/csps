@@ -1,5 +1,43 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (PART 3 SANDBOX spec at 80dc7bfd, verify=0/0-FAIL)
+THIS IS: PART 3 spec OPIA → ✅ ACCEPT + Q1-Q4 answered. Authorize ZModel AUTHORING (files + zenstack generate, reversible). Migrations stay gated until the authored schema is reviewed.
+DO NOW: Author the .zmodel (Plan/Capability/PlanCapability + Tenant.planId) per spec + Q1-Q4 constraints below. zenstack generate. NO db migrate/push. Then report for OPIA.
+═══════════════════════════════════════════════════════════════════
+
+# PART 3 SPEC OPIA (OPUS-16) — ✅ ACCEPT
+Verified: 80dc7bfd · verify=0/0-FAIL · spec present · foundation slices confirmed (base/schema/tenant/user-tenant/
+audit-event.zmodel) · Plan entity genuinely absent (gap real, no duplication). ECA + 3 scenarios + invariants sound.
+
+## Q1 — Plan: SHARED canonical records (platform-level, staff-write), NOT per-tenant copyable. Copying Plans
+per-tenant = drift/duplication (the disease). Enterprise-custom = a THIN per-tenant override layer, added ONLY
+when a real enterprise-custom deal exists (YAGNI / rule-of-three). limitValue on PlanCapability is the default.
+Do NOT build the override table now — note it as a known extension point.
+
+## Q2 — Capabilities resolved SERVER-SIDE per-request (Tenant→Plan→PlanCapability), NEVER cached in the JWT.
+A capability set in a token is registration-correct-at-T0-stale-at-T+N (the exact external-staleness disease B3
+targets). Middleware/context enrichment loads capabilities once per request; ZenStack policies read that context.
+Authoritative enforcement at the DATA layer (RLS/policy), never trusted from the token.
+
+## Q3 — KEEP BOTH planId AND subscriptionStatus. They are ORTHOGONAL: planId = entitlement tier (which
+capabilities); subscriptionStatus = billing lifecycle (is it paid/active). The governing_intent ("never serve
+features to unpaid tiers") is enforced by their INTERACTION: capability granted IFF plan has it AND
+subscriptionStatus ∈ {active, trialing}. That interaction IS the structural guarantee — do not collapse them.
+
+## Q4 — Capability slugs: CODE is SSoT (TS const/enum — type-safe at call sites, e.g. hasCapability('export.csv'))
++ DB Capability table mirrored/seeded FROM the code SSoT (for relational joins + limitValue) + a drift-validator
+(DB rows must match the code enum). NOT free-form DB (untyped, driftable). NOT YAML-only (no call-site type safety).
+
+## AUTHORIZE — ZModel authoring (reversible, no DB change):
+Author Plan + Capability + PlanCapability slices + Tenant.planId FK per spec + Q1-Q4. Every entity: tenant_id
+lineage where applicable (Plan/Capability are platform-level so staff-RLS, not tenant_id), soft-delete (P-ARCH-007),
+audit triggers (P-ARCH-008). zenstack generate to confirm it compiles. STOP before any prisma migrate / db push —
+migrations are the next gated batch. Report the authored .zmodel + generate output for OPIA.
+
+## AUTHOR: OPUS-16 | PART 3 spec ACCEPT + Q1-Q4 + ZModel authoring authorized | linear | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (B2 SEALED 10dba125, verify=0/0-FAIL, 78 hooks)
 THIS IS: B2 OPIA → ✅ ACCEPT (verified by OPUS-16). NEXT = PART 3 (Governor-ratified), NOT B3 — your SEAL drifted to B3; the ratified order is B1→B2→PART 3→B3-lean→B4→B5.
 DO NOW: OPEN PART 3 with a SCHEMA-DESIGN SPEC (sandbox, not migrations). One deliverable: the spec. Then report for OPIA.

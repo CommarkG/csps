@@ -1,7 +1,29 @@
 {
-  "total_scanned": 1,
-  "total_exempted": 1,
-  "total_findings": 0,
-  "findings": [],
-  "ran_at": "2026-06-01T14:03:08.457Z"
+  "total_scanned": 3,
+  "total_exempted": 0,
+  "total_findings": 3,
+  "findings": [
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "purpose",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\PART3-PRODUCT-SCHEMA-SANDBOX-S075.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "expected",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\PART3-PRODUCT-SCHEMA-SANDBOX-S075.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "9 code blocks",
+      "count": 9,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\PART3-PRODUCT-SCHEMA-SANDBOX-S075.md"
+    }
+  ],
+  "ran_at": "2026-06-01T14:23:42.028Z"
 }

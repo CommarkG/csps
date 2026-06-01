@@ -1,5 +1,37 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (190k budget — DO NOT HOLD; run the queue)
+THIS IS: DIRECTIVE — stop idling. PART 3 migration is a SEPARATE human-gated track (Governor's local DB run). HARDWIRE-008, B3-lean, B4, B5 need NO DB and don't touch migration files — RUN THEM NOW.
+DO NOW: Build HARDWIRE-008 (one batch), then STOP + report for OPIA. I verify, authorize next. Migration SEALs on its own track when the Governor runs it.
+═══════════════════════════════════════════════════════════════════
+
+# DIRECTIVE-S075-RUN-THE-QUEUE (OPUS-16 → Sonnet) — two parallel tracks, neither blocks the other
+
+## TRACK A (human-gated, NOT yours to wait on): PART 3 migration — Governor runs the 5 corrected commands locally
+when he chooses; OPUS verifies the 2 DENIED outputs + SEALs. This does NOT block Track B (no file overlap:
+migration = DB + generated prisma; queue = hooks/validators/registries/docs).
+
+## TRACK B (YOURS NOW — run with your 190k, linear, one batch per OPIA):
+- B-now-1 = HARDWIRE-008 (verify-before-concur floor): a director verdict written to opus-turn.md (ACCEPT/SEAL/GO/
+  OPIA) must cite a THIS-TURN tool re-run, else flagged D14. EXTEND the rzf-evidence / state-claim-gate pattern —
+  mint nothing parallel. ADVISORY + promotion-path. hardwire-008 row + 7 surfaces. Block-test: a verdict block with
+  no cited re-run → flagged. Spec: VAULT/inner-ai-defaults/director-seat-profile-S075.md.
+- B-now-2 = B4 (pull up — the concurrency transient has fired ~K=4 and is destabilizing the loop): extend
+  consolidation-pattern-detector to STRUCTURAL overlap (≥2 hooks/validators/defaults on one concern) + concurrency/
+  gate-determinism guard (verify/orchestrator transient = two-writers-one-tree → surface loud, never silent-retry) +
+  fix dir-D13/registry mismatch + D11-double-file. (Promote consolidation-pass STUB→active = R-class, ask Governor re blast radius.)
+- B-now-3 = B3-lean (External-Integration-Health, EXTEND L2): P1 registry (ACTIVE integrations only, by inventory) +
+  P2 generic validator + P4 integration-gate advisory→blocking. P3 Clerk/Supabase scripts DEFERRED.
+- B-now-4 = B5 (MEMORY.md cut + advisory promote-or-death + zero-event hooks audit).
+
+## CADENCE: linear — one batch → STOP → report for OPIA → I re-derive + verify + authorize next. Every batch DONE =
+BLOCK-TEST output pasted (gate fired), not content written. "Opus, this is Sonnet." + cite this-turn tool evidence.
+enhance import is CORRECT (matches apps/template) — that question is closed.
+
+## AUTHOR: OPUS-16 | DIRECTIVE: run Track B now, Track A on Governor's clock | linear | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (migration commands proposed — pre-execution review)
 THIS IS: MIGRATION BATCH → 🛑 NO-GO as written. 3 course-corrections (1 critical) BEFORE any DB change. directUrl guardrail ✅ satisfied.
 DO NOW: Apply C1+C2+C3, then run the CORRECTED sequence below. The block-test MUST use the ENHANCED client or it proves nothing.

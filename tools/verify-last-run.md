@@ -1,30 +1,28 @@
 # verify last run
 
-- ran_at: 2026-06-01T17:38:18.776Z
-- finished_at: 2026-06-01T17:38:51.755Z
+- ran_at: 2026-06-01T17:47:49.209Z
+- finished_at: 2026-06-01T17:48:14.062Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T17:38:18.776Z",
-    "finished_at": "2026-06-01T17:38:51.755Z",
+    "ran_at": "2026-06-01T17:47:49.209Z",
+    "finished_at": "2026-06-01T17:48:14.062Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
         "name": "pnpm_install_frozen",
         "command": "pnpm install --frozen-lockfile",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 7.6,
-        "packages_resolved": null
+        "status": "DEFERRED-WITH-REASON",
+        "skip_reason": "flag --skip-install"
       },
       {
         "name": "typecheck_recursive",
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -41,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.7,
+        "duration_seconds": 0.9,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -51,7 +49,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "scanned": 707,
+        "scanned": 708,
         "errors": 0,
         "warnings": 183,
         "exempt": 344
@@ -223,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3.1,
+        "duration_seconds": 3,
         "checked": 139,
         "advisories": 128
       },
@@ -358,8 +356,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 650,
-        "clean": 650,
+        "checked": 651,
+        "clean": 651,
         "blocking": 0,
         "registry": 68
       },
@@ -423,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 0
       },
@@ -442,7 +440,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 795,
+        "scanned": 796,
         "advisory": 113
       },
       {
@@ -682,7 +680,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -1555,9 +1553,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 664,
-        "findings": 8706,
-        "advisory": 8706
+        "files_checked": 665,
+        "findings": 8707,
+        "advisory": 8707
       },
       {
         "name": "nominal_rzf_detector",
@@ -1738,7 +1736,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 419,
+        "total_entries": 420,
         "sessions": 3,
         "advisory": true
       },
@@ -1817,7 +1815,7 @@
         "command": "node tools/validators/validate-ai-honesty.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.5,
         "files_checked": 29,
         "blocking": 0,
         "advisory": 0

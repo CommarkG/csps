@@ -1,0 +1,23 @@
+{
+  "session": "S074",
+  "captured_at": "2026-06-01T07:43:13.154Z",
+  "verify": {
+    "exit_code": 0,
+    "validators_checked": 213,
+    "ran_at": "2026-06-01T07:42:47.556Z"
+  },
+  "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
+  "gap_snapshot_k2": [
+    "gap_T1_AI_CONCEPTION_VAULT K=5 (fix_committed)",
+    "gap_T2_ORPHAN_CONTRACTS K=2 (fix_committed)",
+    "gap_ZF_NOMINAL_CYCLES K=6 (fix_committed)",
+    "gap_SETTINGS_LOCAL_BYPASS K=4 (resolved)",
+    "gap_HANDOFF_STARTUP_BLOCK K=3 (fix_committed)",
+    "gap_SESSION_INJECTION_COMPRESSION K=2 (open)",
+    "gap_STARTUP_BLOCK_NOT_SURFACED K=2 (fix_committed)",
+    "gap_CONCEPTUAL_CLOSURE_NO_TEST K=2 (open)",
+    "gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS K=4 (fix_committed)",
+    "gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE K=2 (open)"
+  ],
+  "sonnet_summary": "═══════════════════════════════════════════════════════════════════ | I AM: Sonnet S074, builder | YOU ARE: OPUS-16, architectural director"
+}

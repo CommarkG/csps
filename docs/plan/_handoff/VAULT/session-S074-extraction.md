@@ -197,4 +197,53 @@ Per PROTO-S074-FINISH-ACCOUNTABILITY + s074-schedule.yaml:
 
 ---
 
-*Extraction authored by Sonnet S074 · OPIA ACCEPT-WITH-ONE-GATE from OPUS-16 · 2026-06-01*
+## 10. The Significance-Accumulation Engine (Governor directive — S074, post-SEAL)
+
+**Governor directive (cardinal):** "Is the system automatically gathering all insights? It is a big waste if we
+are not collecting each part and organizing it to make inner wisdom better — otherwise we are on endless
+gap-filling. Build a decision engine, in CSPS spirit, organic — not something you monitor/audit/check/remind.
+Save things and devalue them, process only when they gain accumulated significance, not quantity. Research the
+best systems; produce real, valid, measurable value, respecting the time and iterations to do it right."
+
+**Honest finding (the meta-disease):** CSPS insight-capture itself had decayed silently — `governor-insights/`
+died at S018 (56 sessions uncaptured); session extractions done ~13% of sessions; `improvement-register.yaml` =
+77KB `not_yet_propagated` WAREHOUSE. The positive/negative pipelines exist (gap-recurrence + improvement-register +
+positive-reflexivity S055) but are **binary K≥2 triggers** — no significance-weighting, no decay, no outcome loop.
+This is the same EXISTS≠ACTIVE / D11 / silent-decay family the rest of S074 diagnosed, applied to LEARNING itself.
+
+**The principle (6 best-in-world systems converge):** significance is EMERGENT and EARNED — through recurrence +
+connection + downstream outcome — never assigned at capture. Capture cheaply, let most decay, pay the expensive
+crystallization cost only when an insight proves its weight. (Zettelkasten link-density>volume · spaced-repetition
+decay-is-a-feature · Rule-of-Three crystallize at 3rd occurrence · SRE postmortems need an outcome loop · Amazon
+COE 5-Whys + cross-pollinate · Toyota hansei reflect-on-success-too, never process-for-its-own-sake.)
+
+**The engine (significance LAYER over existing organs — connect, do not add a hook):**
+MOVE 1 capture is free (council/ZF/friction/CADENCE-AUDIT already emit → one ±valence `significance-ledger`) ·
+MOVE 2 significance accrues, never assigned (recurrence + reactivation + link-density + outcome; ledger SHRINKS
+under neglect) · MOVE 3 crystallization is event-driven (threshold-crossing surfaces ONE candidate into a moment
+already happening; never a cron) · MOVE 4 outcome loop (falsifiable prediction "reduces recurrence of X" →
+later checked; didn't → reopen, different abstraction — hansei). Anti-theater: zero scheduled work (pull), success
+metric = recurrence-reduction not capture-count (ungameable), reflects on success too.
+
+**Status:** DESIGN captured, NOT built (intent-crystallization-first + no-rush). Tracked as
+`improvement-register: DRAFT-S074-SIGNIFICANCE-ENGINE`. Recommended first step (PCR, OPUS-16): read-only
+significance VIEW over existing data (gap-recurrence + improvement-register + extractions), surfacing only
+threshold-crossers — the engine must EARN expansion by its own rule (dogfood). Self-test caveat: the engine must
+be subject to L2 (recurring synthetic re-test) of its OWN capture freshness, or it decays like governor-insights did.
+
+**Floating-Items → Durable Home (the practical pipeline — nothing left floating):**
+
+| Floating item | Routed to (durable home) | Status |
+|---|---|---|
+| 4-layer permanence + silent-decay | this file §1,§7 + memory:feedback_advisory_is_the_disease | ✅ |
+| D11 rigid-rule-satisfaction | this file §4 + memory:feedback_rigid_definition_drift | ✅ |
+| Significance-engine design | this file §10 + improvement-register DRAFT-S074-SIGNIFICANCE-ENGINE | ✅ |
+| Governor cardinal directive (engine) | memory:feedback_organic_significance_accumulation + this file §10 | ✅ |
+| Course-correct C0 (same-moment verify) | opus-turn.md OPIA verdict + this file | ✅ |
+| PART 3 product schema | s074-schedule.yaml (next workstream) | carry-forward |
+| Floater backlog (26) | .csps/floater-decision-queue.txt + s074-schedule.yaml | carry-forward |
+| Opus Q1-Q4 (D11/governing_intent) | sonnet-turn.md checkpoint | pending relay |
+
+---
+
+*Extraction authored by Sonnet S074 · §10 + pipeline appended by OPUS-16 · OPIA ACCEPT-WITH-ONE-GATE · 2026-06-01*

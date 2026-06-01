@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T05:55:27.051Z
-- finished_at: 2026-06-01T05:55:54.301Z
+- ran_at: 2026-06-01T07:42:47.556Z
+- finished_at: 2026-06-01T07:43:12.625Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T05:55:27.051Z",
-    "finished_at": "2026-06-01T05:55:54.301Z",
+    "ran_at": "2026-06-01T07:42:47.556Z",
+    "finished_at": "2026-06-01T07:43:12.625Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm -r --filter \"./apps/**\" typecheck 2>/dev/null || echo \"[apps_typecheck] no apps with typecheck script or all clean\"",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0,
+        "duration_seconds": 0.1,
         "ts_errors": 0,
         "skipped": true
       },
@@ -49,7 +49,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "scanned": 697,
+        "scanned": 698,
         "errors": 0,
         "warnings": 182,
         "exempt": 344
@@ -221,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.9,
+        "duration_seconds": 3,
         "checked": 139,
         "advisories": 128
       },
@@ -270,7 +270,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "checked": 2,
-        "advisories": 0
+        "advisories": 1
       },
       {
         "name": "crystallization_bypass",
@@ -355,9 +355,9 @@
         "command": "node tools/validators/validate-schema-anchors.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "checked": 640,
-        "clean": 640,
+        "duration_seconds": 0.1,
+        "checked": 641,
+        "clean": 641,
         "blocking": 0,
         "registry": 68
       },
@@ -439,8 +439,8 @@
         "command": "node tools/validators/validate-file-complexity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 785,
+        "duration_seconds": 0.1,
+        "scanned": 786,
         "advisory": 113
       },
       {
@@ -529,7 +529,7 @@
         "command": "node tools/validators/validate-wiring-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "wired": 12,
         "deferred": 41,
         "orphan": 0
@@ -615,8 +615,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -680,7 +680,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -699,12 +699,11 @@
       {
         "name": "session_harvest_readiness",
         "command": "node tools/validators/validate-session-harvest-readiness.mjs",
-        "status": "HARVEST_READY",
-        "exit_code": 1,
+        "status": "HARVEST_DONE",
+        "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S074",
-        "validators": 213,
-        "tail": "  RECOMMENDED ACTIONS:\n  1. SAP Sweep 6 (Synergy Audit) — walk platform for cross-enhancement opportunities\n  2. CEC walk — iterate until 0 new opportunities found\n  3. Create session extraction: docs/plan/_handoff/VAULT/session-S<NNN>-extraction.md\n  4. Register positive patterns in inner-AI-defaults/continuous-drift-log.md\n\n  Per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION: significant sessions deserve extraction.\n\n[validate-session-harvest-readiness] session=S074 validators=213 extraction=MISSING status=HARVEST_READY\n"
+        "validators": 213
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -1058,7 +1057,7 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "warnings": 1,
         "advisory": true
       },
@@ -1452,8 +1451,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "new_permanent_files": 2,
-        "advisory": 2,
+        "new_permanent_files": 0,
+        "advisory": 0,
         "blocking": 0
       },
       {
@@ -1522,9 +1521,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 654,
-        "findings": 8664,
-        "advisory": 8664
+        "files_checked": 655,
+        "findings": 8669,
+        "advisory": 8669
       },
       {
         "name": "nominal_rzf_detector",
@@ -1659,7 +1658,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 150,
         "blocking": 0,
         "advisory": 25
@@ -1684,7 +1683,7 @@
         "total": 207,
         "deferred": 8,
         "empty_output": 20,
-        "zero_numeric": 22,
+        "zero_numeric": 24,
         "advisory": 3,
         "blocking": 0
       },
@@ -1705,8 +1704,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 374,
-        "sessions": 2,
+        "total_entries": 379,
+        "sessions": 3,
         "advisory": true
       },
       {
@@ -1728,8 +1727,8 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "gate1_active": "true",
-        "gate2_sessions_without": 5,
-        "advisory": 1,
+        "gate2_sessions_without": 0,
+        "advisory": 0,
         "blocking": 0
       },
       {
@@ -1784,7 +1783,7 @@
         "command": "node tools/validators/validate-ai-honesty.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.4,
+        "duration_seconds": 1.5,
         "files_checked": 29,
         "blocking": 0,
         "advisory": 0
@@ -1898,7 +1897,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 2,
+        "files_scanned": 0,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0
@@ -1910,10 +1909,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocks_checked": 0,
-        "proto_citations": 82,
+        "proto_citations": 83,
         "valid": 6,
-        "missing": 76,
-        "advisory": 76,
+        "missing": 77,
+        "advisory": 77,
         "blocking": 0
       },
       {
@@ -2003,7 +2002,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 44,
+        "entries_checked": 45,
         "missing_headers": 25,
         "missing_attestation": 8,
         "advisory": 37,

@@ -1123,3 +1123,20 @@ entries:
   governor_approval_status: implemented-S067
   governor_approval_session: S067
   note: "PROTO-S067-MASTER-THRESHOLD-ROUTER fully implemented S067. All 8 STEPs done. verify --strict exit_code=0 THIS-HEAD. 15-point OPIA CHECKPOINT in sonnet-turn.md. Session closes after HANDOFF-S067-to-S068.md."
+
+- id: DRAFT-S074-SIGNIFICANCE-ENGINE
+  title: "Organic significance-accumulation engine — significance LAYER over existing capture organs"
+  description: "Governor S074 cardinal directive: stop endless gap-filling; build an ORGANIC decision engine (not monitored/audited/reminded) that captures cheaply, devalues by decay, and crystallizes only on ACCUMULATED SIGNIFICANCE (not quantity), ending in real measurable value. Principle (6 best-in-world systems — Zettelkasten/spaced-repetition/Rule-of-Three/SRE-postmortem/Amazon-COE/Toyota-hansei): significance is EMERGENT + EARNED via recurrence + link-density + outcome, never assigned at capture. 4 MOVES: (1) capture is free to one +/-valence significance-ledger; (2) significance COMPUTED (recurrence+reactivation+link-density+outcome), ledger SHRINKS under neglect; (3) crystallization event-driven on threshold-crossing into a moment already happening (never cron); (4) outcome loop = falsifiable recurrence-reduction prediction checked later, reopen with different abstraction if failed. Connect existing organs (gap-recurrence + improvement-register + positive-reflexivity), do NOT add a hook."
+  inherits_from: "P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION + gap-recurrence-register + improvement-register + feedback_advisory_is_the_disease (silent-decay) + D11 rigid-rule-satisfaction"
+  prevention_class: null
+  structural_fix_plan_session: null
+  prevention_design_pending: true
+  first_found: S074
+  k_count: 1
+  sessions: [S074]
+  status: design-captured-not-built
+  recommended_first_step: "read-only significance VIEW over existing data; engine must EARN expansion by its own rule (dogfood). Sandbox-before-implementation; intent-crystallization-first; no-rush."
+  governor_approval_pending: true
+  governor_approval_status: directive-issued-design-captured
+  governor_approval_session: S074
+  note: "Honest meta-finding: CSPS insight-capture itself decayed silently (governor-insights died S018; extractions ~13% of sessions; improvement-register 77KB warehouse). Engine must be subject to L2 recurring synthetic re-test of its OWN capture freshness. Full design in docs/plan/_handoff/VAULT/session-S074-extraction.md §10."

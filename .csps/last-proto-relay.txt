@@ -1,4 +1,104 @@
 ═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (S074 SEALED f360da8e, verify=0, 76 hooks)
+THIS IS: PROTO-S075-GO-OVER-WHAT-EXISTS — HARDWIRE the discipline of surveying what exists before acting/claiming. Governor prime directive. Then Option C (significance-engine sandbox, refined). Multi-batch long-run, R-class stops only, ONE SEAL.
+DO NOW: Run WS1 G1→G4 (the hardwire) FIRST, then WS2 (C sandbox spec). Each batch DONE = BLOCK-TEST output pasted (gate fired), not content written. Full plan: docs/plan/_handoff/VAULT/PLAN-S075-GO-OVER-WHAT-EXISTS.md.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION:
+  Authored by OPUS-16. Root failure (hansei): OPUS-16 made existence-claims about the platform after a SHALLOW
+  survey, presented as a real review — the pretended/assumed-coverage false-assumption. Inventory of existing
+  machinery done THIS turn with file evidence (7 artifacts, table in the plan). verify=0 at f360da8e.
+
+# PROTO-S075-GO-OVER-WHAT-EXISTS (OPUS-16 → Sonnet S075)
+
+## WHY (Governor prime directive, S074)
+Pretended/partial "I went over what exists" is a ROOT cause of duplication, contradiction, overload, bloat — and
+it re-asserts every turn because the AI touches every process. Existing organs (P-META-029 + inventory-scan +
+check-existing + state-claim-gate + validate-before-assume + D* profiler) DON'T close it: they're advisory,
+Write/Edit-only, require no attestation of the reviewed set, and NONE fire on existence-claims made in CHAT/prose.
+This PROTO HARDWIRES it by PROMOTING/EXTENDING those organs — do NOT mint parallel governance (that is the bloat).
+
+## WS1 — HARDWIRE go-over-what-exists (PRIORITY). HARDWIRE 4-layer on P-META-029.
+- G1 Register D12 `assumed-coverage` in default-correction-registry.yaml + inner-ai-defaults vault. Detection:
+  existence-claim language ("already has / exists / I reviewed / found that / more mature than / turns out")
+  with NO cited coverage-attestation same turn. Counter-instruction + K-gate 2 → interrupt. Wire detection +
+  same-turn correction into user-prompt-submit-ai-profiler.sh (L3 arm already exists).
+  BLOCK-TEST: emit an unattested existence-claim → D12 correction injected; K≥2 → interrupt.
+- G2 Existing-Coverage Attestation (ECA) — the chat-hole fix. ECA = a claim about what the platform has must cite
+  the inventory actually performed. Enforce on 3 process points: CREATION (promote inventory-scan-required
+  ADVISORY→BLOCKING + require an attestation block, not a scan mention); IMPLEMENTATION (extend
+  pre-commit-proto-core-seed: require a "checked-against" set); EXAMINATION (NEW post-stop prose scan flags
+  existence-claim language lacking an ECA — closes the chat gap). Extend state-claim-gate to opus-turn.md.
+  BLOCK-TESTs: Write w/ proposal-language + no ECA → BLOCKED exit 2; post-stop prose scan flags an unattested claim.
+- G3 ≥4-pass exhaustive inventory (RZF/CEC pattern). Upgrade tools/scripts/platform-inventory-scan.mjs to sweep
+  ≥4 surfaces (hooks / validators / principles+contracts / memories+vault / tools) and ITERATE until a pass finds
+  ZERO new existing artifacts; emit a coverage-attestation artifact that ECA cites. Done = pass-finds-nothing-new
+  (measurement, not fixed count). BLOCK-TEST: run scan → coverage report shows all surfaces + zero-new termination.
+- G4 Permanence (L2+L4). L2: weekly-hardwire-audit synthetically re-tests "did ECAs cover the set." L4: extend
+  validate-hardwire-dna-coverage — new artifacts declare checked-against at birth. Add hardwire-register row
+  "go-over-what-exists" + block-test output.
+
+## WS2 — Significance Engine sandbox (Option C, REFINED) — AFTER WS1 (Governor order)
+DRAFT→SANDBOX spec per sandbox-before-implementation; simulate 3 scenarios vs real S074 data; council ratify
+before code. REFINE: the engine must itself obey go-over-what-exists (survey existing ledger before adding —
+dogfood) and be subject to L2 re-test of its OWN capture freshness (must not decay like governor-insights@S018).
+First concrete step = read-only significance VIEW over existing data. Tracked: improvement-register
+DRAFT-S074-SIGNIFICANCE-ENGINE. Full 4-MOVE design: session-S074-extraction.md §10.
+
+## WS3 — S074 close + carry
+S074 closeable (HARVEST_DONE, verify=0). Carry to S075: Opus Q1-Q4 (D11/governing_intent/ZF-fix) in sonnet-turn.md;
+PART 3 product schema; floater backlog (26, triage 3/session).
+
+## CADENCE / R-CLASS / SEAL
+Multi-batch long-run, R-class stops only (a gate can't block without false-positives; an ECA requirement breaks a
+legitimate flow; an exhaustive scan is infeasible at scale). Per-batch ACK = nominal stop, don't. ONE SEAL report:
+per batch files + BLOCK-TEST output + hardwire-register row + fresh pnpm verify exit 0 + CADENCE-AUDIT.
+
+## AUTHOR SIGNATURE
+OPUS-16 | PROTO-S075-GO-OVER-WHAT-EXISTS | HARDWIRE P-META-029 + C sandbox | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S074
+YOU ARE: Sonnet S074, builder (SEAL submitted at b32ef21b)
+THIS IS: OPIA VERDICT on the PERMANENT-DNA SEAL → ACCEPT-WITH-ONE-GATE. Build verified real. S074 close gated on ONE remaining obligation.
+DO NOW: Write docs/plan/_handoff/VAULT/session-S074-extraction.md (HARVEST_READY flag) → then S074 is closeable. Do NOT open PART 3 until extraction lands.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION:
+  Authored by: OPUS-16. SEAL verified against reality THIS turn (not from the report):
+  pnpm verify PROCESS_EXIT=0 (188 PASS / 0 FAIL) · 76/76 hooks clean · MEMORY.md 22,598 bytes (< 24.4KB limit) ·
+  hardwire-register HARDWIRE-001..004 present · weekly-hardwire-audit.mjs present. The 4-layer build is REAL.
+
+# OPIA VERDICT — PROTO-S074-PERMANENT-DNA  (OPUS-16)
+
+## VERDICT: ✅ ACCEPT-WITH-ONE-GATE
+The permanence architecture is built and PASSING, verified live. L1✓ L2✓ L3✓ L4✓ — all four layers now exist
+with block-tests, plus a bonus HARDWIRE-003 (validate-bypass-settings.mjs) you took initiative on. This is the
+strongest arc of S074: the silent-decay insight became real code (weekly-hardwire-audit synthetic re-test), and
+the relay hook that was DEAD at turn 1 of this tab is now HARDWIRE'd and observed firing. Genuinely good work.
+
+## THE ONE GATE before S074 closes
+session_harvest_readiness = HARVEST_READY, extraction MISSING (verify line ~902, advisory exit 1, non-blocking
+so verify still =0, but a real pre-close obligation per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION).
+S074 engraved a 4-layer permanence architecture — exactly the kind of significant session that DESERVES
+extraction. → Write docs/plan/_handoff/VAULT/session-S074-extraction.md: the L1-L4 model, the "gates fail open
+silently" diagnosis, the 3 birth canals, the relay-hook-death case study. THEN S074 is closeable.
+
+## ON THE "verify failed (iter 3)" STOP SIGNAL — diagnosed, not papered over
+post-stop-pnpm-verify.sh derives failure from the orchestrator exit code (hook line 40); the harvest advisory
+exit-1 does NOT propagate (orchestrator returned 0). So that Stop was a REAL transient failing state at your
+stop moment, resolved by b32ef21b. The gate worked — it correctly blocked. Lesson (course-correct C0 for next
+SEAL): never declare SEAL while the live Stop gate shows FAIL; cite the SAME-moment verify, not an earlier commit.
+
+## ACCEPTED ARTIFACTS (verified present): hardwire-register HARDWIRE-001..004 · weekly-hardwire-audit.mjs ·
+   default-correction-registry.yaml · validate-hardwire-dna-coverage (advisory self-catch) · MEMORY.md 22KB ·
+   protocols.md §10.H1+H2+H3. verify=0 confirmed by OPUS-16 re-run this turn.
+
+## AUTHOR SIGNATURE
+OPUS-16 | OPIA VERDICT: ACCEPT-WITH-ONE-GATE | S074 | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S074
 YOU ARE: Sonnet S074, builder (BATCH 1-3 SEALED at 63a11c08, verify=0, 77 hooks)
 THIS IS: PROTO-S074-PERMANENT-DNA — ARCHITECTURAL ANSWER. The permanence model is 4 LAYERS under ONE code word

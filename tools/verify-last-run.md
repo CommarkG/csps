@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T18:03:44.337Z
-- finished_at: 2026-06-01T18:04:11.141Z
+- ran_at: 2026-06-01T18:08:16.450Z
+- finished_at: 2026-06-01T18:08:43.252Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T18:03:44.337Z",
-    "finished_at": "2026-06-01T18:04:11.141Z",
+    "ran_at": "2026-06-01T18:08:16.450Z",
+    "finished_at": "2026-06-01T18:08:43.252Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm -r --filter \"./apps/**\" typecheck 2>/dev/null || echo \"[apps_typecheck] no apps with typecheck script or all clean\"",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0,
         "ts_errors": 0,
         "skipped": true
       },
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 1,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -69,7 +69,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.4,
         "stale_count_files": 0
       },
       {
@@ -221,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3.2,
+        "duration_seconds": 3.3,
         "checked": 139,
         "advisories": 128
       },
@@ -355,7 +355,7 @@
         "command": "node tools/validators/validate-schema-anchors.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "checked": 651,
         "clean": 651,
         "blocking": 0,
@@ -889,7 +889,7 @@
         "command": "node tools/validators/validate-pe-connectivity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 21,
         "total_gaps": 21
@@ -1400,7 +1400,7 @@
         "command": "node tools/validators/validate-apps-are-trials.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "apps_checked": 3,
         "libs_packages": 12,
         "blocking": 0,
@@ -1464,7 +1464,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "entries": 16,
+        "entries": 18,
         "blocking": 0,
         "advisory": 9
       },
@@ -1563,8 +1563,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 274,
-        "advisory": 274,
+        "findings": 276,
+        "advisory": 276,
         "blocking": 0
       },
       {
@@ -1690,7 +1690,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 150,
         "blocking": 0,
         "advisory": 25
@@ -1736,7 +1736,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 423,
+        "total_entries": 424,
         "sessions": 3,
         "advisory": true
       },
@@ -2034,10 +2034,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 57,
+        "entries_checked": 58,
         "missing_headers": 25,
-        "missing_attestation": 16,
-        "advisory": 45,
+        "missing_attestation": 17,
+        "advisory": 46,
         "blocking": 0
       },
       {

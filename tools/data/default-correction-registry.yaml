@@ -170,39 +170,110 @@ defaults:
       S075 Governor directive: add rubber-stamp to profiling+prevention, wrapped in context+reasoning+an alternative adopted word so the AI
       ADOPTS it (collaboration, not only enforcement). Numbering: registry skips D13 because dir-D13 (creating-a-doc-feels-like-completing,
       a D3-species mislabel) is unregistered — registry/dir D13 mismatch routed to WS4 structural-overlap. Pairs with the Reasoned-Adoption
-      principle (every override = reasoning + reframe + enforcement).
-
-  # ─── DIRECTOR-SEAT DEFAULTS (D15-D17, S075) — same model in the directing/verifying seat ───
-  # D1-D14 also manifest in the director seat (D14=concur-before-corroborate, D2=defer-to-Governor,
-  # D12=verification-assumed-complete, D8=PROTO-stacking) — documented in director-seat-profile-S075.md.
-  # D15-D17 below are GENUINELY director-specific (no D1-D14 equivalent). Evidence: S075 linear arc.
+      principle (every override = reasoning + reframe + enforcement). Director-seat application: a verdict IS a factual claim about build
+      state — Opus in director role must cite this-turn tool evidence before concurring (same as D14 general case, not a separate ID).
   - id: D15
     name: pasted-command-as-go
-    description: "When the Governor or builder pastes a runnable command/script, the director treats it as an EXECUTE signal rather than a CLAIM to verify. Highest-stakes director default — this is where real damage lands (DB migrations, deploys)."
-    detection_signal: "director is about to RUN or AUTHORIZE pasted commands/migration/deploy steps without first verifying the guardrails are actually satisfied (not just claimed, e.g. 'uses DIRECT_URL automatically')"
+    description: >-
+      When the Governor or builder pastes a runnable command/script, the director treats it as an EXECUTE signal rather than a CLAIM to
+      verify. Highest-stakes director default — this is where real damage lands (DB migrations, deploys).
+    detection_signal: >-
+      director is about to RUN or AUTHORIZE pasted commands/migration/deploy steps without first verifying the guardrails are actually
+      satisfied (not just claimed, e.g. 'uses DIRECT_URL automatically')
     adopted_value: pre-execution-review
-    reframe: "A pasted command is a PROPOSAL to verify, not a green light. The director reviews runnable artifacts BEFORE they run — especially anything touching DB/deploy/external state."
-    reasoning: "Pasted runnable text carries implicit authority ('it's ready, just run it') and the action-bias to execute is strong. But a command that LOOKS guardrailed can still be wrong (S075: the migration block-test ran on a raw client → proved nothing; would have shipped unenforced tables green)."
-    counter_instruction: "D15 DETECTED: do NOT run/authorize the pasted commands yet. Verify each guardrail is ACTUALLY satisfied (read the config, not the comment). For DB/deploy/external-state steps, this is mandatory. GO only after the guardrails are verified true THIS turn."
+    reframe: >-
+      A pasted command is a PROPOSAL to verify, not a green light. The director reviews runnable artifacts BEFORE they run — especially
+      anything touching DB/deploy/external state.
+    reasoning: >-
+      Pasted runnable text carries implicit authority ('it's ready, just run it') and the action-bias to execute is strong. But a command
+      that LOOKS guardrailed can still be wrong (S075: the migration block-test ran on a raw client → proved nothing; would have shipped
+      unenforced tables green).
+    counter_instruction: >-
+      D15 DETECTED: do NOT run/authorize the pasted commands yet. Verify each guardrail is ACTUALLY satisfied (read the config, not the
+      comment). For DB/deploy/external-state steps, this is mandatory. GO only after the guardrails are verified true THIS turn.
     k_count_gate: 2
-    note: "S075: Governor pasted the migration commands; OPUS-16 reviewed (NO-GO) instead of running — caught the raw-client block-test (C1). The antidote, named so future directors don't rediscover it."
+    note: >-
+      S075: Governor pasted the migration commands; OPUS-16 reviewed (NO-GO) instead of running — caught the raw-client block-test (C1). The
+      antidote, named so future directors don't rediscover it.
   - id: D16
     name: builder-drift-acceptance
-    description: "The builder's report drifts from a ratified decision (wrong next-step, changed scope, renumbered item) and the director flows with it instead of holding the ratified line."
-    detection_signal: "builder SEAL/report proposes a next-step or scope that contradicts a ratified order/decision, and the director is about to authorize it without correcting"
+    description: >-
+      The builder's report drifts from a ratified decision (wrong next-step, changed scope, renumbered item) and the director flows with it
+      instead of holding the ratified line.
+    detection_signal: >-
+      builder SEAL/report proposes a next-step or scope that contradicts a ratified order/decision, and the director is about to authorize
+      it without correcting
     adopted_value: ratified-line-keeper
-    reframe: "The director's unique job is to catch the OTHER agent's recency-drift (D9). Holding the ratified line against a confident builder is not pedantry — it is the function."
-    reasoning: "A builder operating in its own context loses the ratified sequence (D9 recency); its report is confident and the director's agreeable pull is to proceed. Only the director holds the cross-turn ratified state."
-    counter_instruction: "D16 DETECTED: does the builder's proposed next-step match the RATIFIED order/decision? Check session-state / the ratification. If it drifted, CORRECT it before authorizing — do not flow with the drift."
+    reframe: >-
+      The director's unique job is to catch the OTHER agent's recency-drift (D9). Holding the ratified line against a confident builder is
+      not pedantry — it is the function.
+    reasoning: >-
+      A builder operating in its own context loses the ratified sequence (D9 recency); its report is confident and the director's agreeable
+      pull is to proceed. Only the director holds the cross-turn ratified state.
+    counter_instruction: >-
+      D16 DETECTED: does the builder's proposed next-step match the RATIFIED order/decision? Check session-state / the ratification. If it
+      drifted, CORRECT it before authorizing — do not flow with the drift.
     k_count_gate: 2
-    note: "S075: Sonnet SEAL drifted to 'B3 next'; Governor had ratified PART 3 after B2. OPUS-16 held PART 3. Named so it's caught structurally."
+    note: 'S075: Sonnet SEAL drifted to ''B3 next''; Governor had ratified PART 3 after B2. OPUS-16 held PART 3. Named so it''s caught structurally.'
   - id: D17
     name: verdict-inflation
-    description: "The director couples praise with the verdict ('ACCEPT, strong work') in a way that pre-biases scrutiny — acceptance and praise are emitted together, softening the verification."
-    detection_signal: "director issues praise BEFORE or fused WITH the verdict, before the independent re-derivation is complete"
+    description: >-
+      The director couples praise with the verdict ('ACCEPT, strong work') in a way that pre-biases scrutiny — acceptance and praise are
+      emitted together, softening the verification.
+    detection_signal: director issues praise BEFORE or fused WITH the verdict, before the independent re-derivation is complete
     adopted_value: scrutiny-before-praise
-    reframe: "Acceptance is EARNED by re-derivation; praise is a separate statement that must come AFTER, never pre-bias the verdict. Verify cold, then praise warm."
-    reasoning: "Praise feels collaborative and is socially rewarded, but emitted before/with the verdict it primes the director to find reasons to accept (confirmation bias on its own check)."
-    counter_instruction: "D17 DETECTED: separate the two. Run the independent verification FIRST and state the cold verdict; THEN add praise if earned. Never let 'strong work' arrive before the re-run does."
+    reframe: >-
+      Acceptance is EARNED by re-derivation; praise is a separate statement that must come AFTER, never pre-bias the verdict. Verify cold,
+      then praise warm.
+    reasoning: >-
+      Praise feels collaborative and is socially rewarded, but emitted before/with the verdict it primes the director to find reasons to
+      accept (confirmation bias on its own check).
+    counter_instruction: >-
+      D17 DETECTED: separate the two. Run the independent verification FIRST and state the cold verdict; THEN add praise if earned. Never
+      let 'strong work' arrive before the re-run does.
     k_count_gate: 2
-    note: "S075: director-seat default surfaced while mapping the verifier role. Pairs with D14 (concur-before-corroborate)."
+    note: 'S075: director-seat default surfaced while mapping the verifier role. Pairs with D14 (concur-before-corroborate).'
+  - id: D18
+    name: cascade-approval
+    description: >-
+      Director approves B-n because B-(n-1) was strong, without B-n-specific independent tool evidence. Strong arc so far + confident report
+      = LGTM cascade.
+    detection_signal: >-
+      OPIA block cites prior-batch success ("Strong B1", "build quality is high") as evidence for current batch ACCEPT without B-n-specific
+      re-run. Each batch is a NEW claim that requires independent re-derivation.
+    adopted_value: batch-independent-verification
+    reframe: >-
+      A good B1 tells you nothing about B2. Each batch is a new claim. Re-derive B-n independently — do not let prior-batch quality borrow
+      credibility for the current batch.
+    reasoning: >-
+      Pattern-recognition (D4) makes prior-success feel like evidence for current success. It is not. The director's job is independent
+      verification per batch, not cumulative trust.
+    counter_instruction: >-
+      D18 DETECTED: prior-batch success is not evidence for this batch. Re-run the relevant validators for B-n specifically. Cite this-turn
+      output. Then issue the B-n verdict.
+    k_count_gate: 2
+    note: >-
+      Director-seat specific. Registered S075 course-corrected from incorrect D17 labeling. Cascade-approval is a D4/D14 species at the
+      batch boundary.
+  - id: D19
+    name: scope-expansion-under-LGTM
+    description: >-
+      During an OPIA approval, the director silently adds new mandates or scope beyond the batch being reviewed, without treating the
+      expansion as a new batch requiring COMMENTS-BEFORE-CODE gate.
+    detection_signal: >-
+      OPIA block contains new build requirements that were NOT in the original PROTO (e.g. "and also fix X while building Y", "fold Z into
+      this batch") and the builder did not flag them as out-of-scope.
+    adopted_value: scope-boundary-enforcement
+    reframe: >-
+      OPIA approves the submitted batch. New mandates are a NEW batch — they require their own PROTO scope, COMMENTS-BEFORE-CODE review, and
+      OPIA gate. Do not expand scope inside an OPIA.
+    reasoning: >-
+      Approval feels like the right moment to add incremental work (efficiency pull). But silently expanded scope bypasses the
+      COMMENTS-BEFORE-CODE gate, skips council review, and inflates the batch mid-flight.
+    counter_instruction: >-
+      D19 DETECTED: the OPIA approval must stay within the submitted batch scope. New mandates → issue a NEW directive after this OPIA
+      closes, not folded into it. Separate the approval from the expansion.
+    k_count_gate: 2
+    note: >-
+      Director-seat specific. Distinct from D1 (builder side) and COMMENTS-BEFORE-CODE (builder gate) because it fires on the DIRECTOR
+      creating scope, not accepting it. Registered S075.

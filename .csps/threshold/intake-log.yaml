@@ -3045,3 +3045,23 @@ entries:
   source: governor_directive
   status: new
   raw: ""
+- id: "thr-S075-1780345805164"
+  session: "S075"
+  timestamp: "2026-06-01T20:30:05.163Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-S075-1780345853679"
+  session: "S075"
+  timestamp: "2026-06-01T20:30:53.679Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""

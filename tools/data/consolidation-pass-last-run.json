@@ -1,8 +1,36 @@
 {
-  "total_scanned": 2,
-  "total_exempted": 0,
-  "total_findings": 1,
+  "total_scanned": 4,
+  "total_exempted": 1,
+  "total_findings": 5,
   "findings": [
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "enforced by",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\SANDBOX-agent-decoupling-spec-S076.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "setup",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\SANDBOX-agent-decoupling-spec-S076.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "verdict",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\SANDBOX-agent-decoupling-spec-S076.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "9 code blocks",
+      "count": 9,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\SANDBOX-agent-decoupling-spec-S076.md"
+    },
     {
       "pattern": "G",
       "type": "structural-id-collision",
@@ -11,5 +39,5 @@
       "file": "D1-humble-consolidation-default.md"
     }
   ],
-  "ran_at": "2026-06-01T20:18:02.444Z"
+  "ran_at": "2026-06-01T20:33:51.706Z"
 }

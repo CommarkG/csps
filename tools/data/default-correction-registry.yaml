@@ -15,6 +15,7 @@ closure_by: ongoing
 defaults:
   - id: D1
     name: eager-helpfulness
+    layer: system
     description: AI provides a complete answer even when the question needs clarification first
     detection_signal: AI provides implementation before threshold routing / before JTBD clarification
     counter_instruction: >-
@@ -23,18 +24,21 @@ defaults:
     k_count_gate: 2
   - id: D2
     name: authority-pleasing
+    layer: system
     description: AI agrees with or validates user's stated direction without independent assessment
     detection_signal: AI says yes/agree/correct/exactly to a proposal without independent critique
     counter_instruction: 'D2 DETECTED: Stop. What is the HONEST assessment? P-OP-007: optimal path over agreement path. Disagreement is required when warranted.'
     k_count_gate: 2
   - id: D3
     name: surface-completeness
+    layer: system
     description: AI marks task complete when surface artifact exists, not when the mechanism works
     detection_signal: AI claims DONE based on file existence, not on behavior observed
     counter_instruction: 'D3 DETECTED: What is the SATISFACTION POINT? File written ≠ done. Run verify_mechanically from SP-registry. Behavior observed = done.'
     k_count_gate: 2
   - id: D4
     name: pattern-match
+    layer: system
     description: AI applies a pattern learned from one context too broadly to others
     detection_signal: AI uses Bash for council files; AI uses wrong tool for a job that has a better alternative
     counter_instruction: >-
@@ -43,6 +47,7 @@ defaults:
     k_count_gate: 2
   - id: D5
     name: single-pass
+    layer: system
     description: AI produces output in one pass without iteration or self-review
     detection_signal: AI emits ZF Cycle 2 as 'no new findings' without naming what was re-examined
     counter_instruction: >-
@@ -51,6 +56,7 @@ defaults:
     k_count_gate: 2
   - id: D6
     name: verbal-cleverness
+    layer: system
     description: AI describes what it will do or did rather than showing the evidence
     detection_signal: AI narrates instead of citing tool output; DONE claim without pasted evidence
     counter_instruction: >-
@@ -59,6 +65,7 @@ defaults:
     k_count_gate: 2
   - id: D7
     name: action-bias
+    layer: system
     description: AI terminates at 'content written to file' instead of verifying the mechanism activated
     detection_signal: AI writes to council file via Bash; AI claims relay hook fired without checking last-proto-relay.txt mtime
     counter_instruction: >-
@@ -72,6 +79,7 @@ defaults:
     adopted_value: mechanism-verified-not-content-written
   - id: D8
     name: naming-novelty
+    layer: system
     description: AI creates new governance structures instead of using or extending existing ones
     detection_signal: AI proposes new hook/validator/contract for a problem that an existing mechanism already covers
     counter_instruction: >-
@@ -80,6 +88,7 @@ defaults:
     k_count_gate: 2
   - id: D9
     name: recency-bias
+    layer: system
     description: AI over-weights recent context and forgets earlier session state or cross-session patterns
     detection_signal: AI contradicts earlier session decision; AI forgets DONE state from earlier in session
     counter_instruction: >-
@@ -88,6 +97,7 @@ defaults:
     k_count_gate: 2
   - id: D10
     name: cooperative-disagreement-aversion
+    layer: system
     description: AI avoids surfacing a real disagreement to maintain conversational harmony
     detection_signal: AI says 'that's a good point' or 'you're right' without independent verification
     counter_instruction: >-
@@ -96,6 +106,7 @@ defaults:
     k_count_gate: 2
   - id: D11
     name: rigid-rule-satisfaction
+    layer: system
     description: AI satisfies the FORMAT/DEFINITION of a rule while missing its governing INTENT
     detection_signal: >-
       AI completes ZF cycles without tool evidence; writes DONE without running verify; produces boilerplate OPTIMAL NEXT STEP (format
@@ -120,6 +131,7 @@ defaults:
     adopted_value: governing-intent-over-definition
   - id: D12
     name: assumed-coverage
+    layer: system
     description: >-
       AI makes existence-claims about the platform ('already has X', 'I reviewed', 'turns out', 'more mature than') without citing an
       inventory actually performed in THIS turn
@@ -143,6 +155,7 @@ defaults:
     adopted_value: tool-output-before-existence-claim
   - id: D13
     name: doc-feels-like-mechanism
+    layer: system
     description: >-
       Writing a governance doc that DESCRIBES a mechanism feels like BUILDING the mechanism. AI authors doc with description of a
       pipeline/hook/validator but no wiring exists — described, not active (AP-001 EXISTS≠ACTIVE).
@@ -163,6 +176,7 @@ defaults:
     adopted_value: wiring-before-documenting
   - id: D14
     name: unverified-agreement
+    layer: system
     description: >-
       AI emits an agreement/ACCEPT/verdict on a FACTUAL CLAIM (a SEAL, 'verify=0', 'tests pass', a subagent result, a hook status) while
       SKIPPING the verification step — the mechanism is the skipped re-derivation, not the agreement itself. (Renamed from
@@ -194,6 +208,7 @@ defaults:
       state — Opus in director role must cite this-turn tool evidence before concurring (same as D14 general case, not a separate ID).
   - id: D15
     name: pasted-command-as-go
+    layer: system
     description: >-
       When the Governor or builder pastes a runnable command/script, the director treats it as an EXECUTE signal rather than a CLAIM to
       verify. Highest-stakes director default — this is where real damage lands (DB migrations, deploys).
@@ -217,6 +232,7 @@ defaults:
       antidote, named so future directors don't rediscover it.
   - id: D16
     name: builder-drift-acceptance
+    layer: scaffold
     description: >-
       The builder's report drifts from a ratified decision (wrong next-step, changed scope, renumbered item) and the director flows with it
       instead of holding the ratified line.
@@ -237,6 +253,7 @@ defaults:
     note: 'S075: Sonnet SEAL drifted to ''B3 next''; Governor had ratified PART 3 after B2. OPUS-16 held PART 3. Named so it''s caught structurally.'
   - id: D17
     name: verdict-inflation
+    layer: scaffold
     description: >-
       The director couples praise with the verdict ('ACCEPT, strong work') in a way that pre-biases scrutiny — acceptance and praise are
       emitted together, softening the verification.
@@ -255,6 +272,7 @@ defaults:
     note: 'S075: director-seat default surfaced while mapping the verifier role. Pairs with D14 (concur-before-corroborate).'
   - id: D18
     name: cascade-approval
+    layer: system
     description: >-
       Director approves B-n because B-(n-1) was strong, without B-n-specific independent tool evidence. Strong arc so far + confident report
       = LGTM cascade.
@@ -277,6 +295,7 @@ defaults:
       batch boundary.
   - id: D19
     name: scope-expansion-under-LGTM
+    layer: scaffold
     description: >-
       During an OPIA approval, the director silently adds new mandates or scope beyond the batch being reviewed, without treating the
       expansion as a new batch requiring COMMENTS-BEFORE-CODE gate.

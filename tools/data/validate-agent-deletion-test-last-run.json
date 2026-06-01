@@ -1,0 +1,38 @@
+{
+  "outcome": "PASS",
+  "passing": 6,
+  "failing": 0,
+  "results": [
+    {
+      "step": 1,
+      "status": "PASS",
+      "msg": "Scaffold relay hooks (hardwire-002, hardwire-004) classified layer:scaffold in register — not system-load-bearing"
+    },
+    {
+      "step": 2,
+      "status": "PASS",
+      "msg": "Both relay files (opus-turn.md, sonnet-turn.md) carry layer:scaffold + disposable_if — deletable without system loss"
+    },
+    {
+      "step": 3,
+      "status": "PASS",
+      "msg": "validate-layer-split.mjs: blocking=0 — layer split declared on all artifacts"
+    },
+    {
+      "step": 4,
+      "status": "PASS",
+      "msg": "pre-tool-use-rzf-evidence-gate.sh: no scaffold dependency (no relay file refs, no director-specific patterns)"
+    },
+    {
+      "step": 5,
+      "status": "PASS",
+      "msg": "8/8 pre-commit hooks are system-layer (no scaffold dep) — CI-compatible quality gates exist"
+    },
+    {
+      "step": 6,
+      "status": "PASS",
+      "msg": "D1-D12 all layer:system — universal LLM defaults apply to any executor (model-agnostic)"
+    }
+  ],
+  "ran_at": "2026-06-01T20:47:19.582Z"
+}

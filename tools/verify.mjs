@@ -1466,6 +1466,52 @@ const CYCLES = [
     },
   },
   {
+    // S076 Phase A: Agent-Decoupling Layer-Split — validates layer:system|scaffold on all governed artifacts
+    // Blocking: any artifact missing layer: field. Advisory: scaffold ref from system validator.
+    // Foundation dim 3 Phase A — see SANDBOX-agent-decoupling-spec-S076.md
+    // DEEP: structural invariant — layer: fields don't change session-to-session; capacity-constrained per validate-platform-capacity
+    run_tier: 'DEEP',
+    name: 'layer_split',
+    command: 'node tools/validators/validate-layer-split.mjs',
+    parse_output: (out) => {
+      const m = out.match(/blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {};
+    },
+  },
+  {
+    // S076 Phase C: Agent-Deletion-Test — proves durable system holds without scaffold layer
+    // PASS = properly decoupled. FAIL = lists scaffold-coupled surfaces.
+    // Foundation dim 3 keystone validator — see SANDBOX-agent-decoupling-spec-S076.md
+    // DEEP: simulation-heavy; structural result stable between sessions; capacity-constrained
+    run_tier: 'DEEP',
+    name: 'agent_deletion_test',
+    command: 'node tools/validators/validate-agent-deletion-test.mjs',
+    parse_output: (out) => {
+      const passMatch = out.match(/passing=(\d+)/);
+      const failMatch = out.match(/failing=(\d+)/);
+      const outcomeMatch = out.match(/PASS — PROPERLY DECOUPLED|FAIL — (\d+) surfaces/);
+      const decoupled = outcomeMatch ? out.includes('PASS — PROPERLY DECOUPLED') : null;
+      return {
+        passing: passMatch ? Number(passMatch[1]) : null,
+        failing: failMatch ? Number(failMatch[1]) : null,
+        decoupled,
+      };
+    },
+  },
+  {
+    // S076 Phase D: Executor Contract validator — each of 4 clauses must have system-layer T1+T2
+    // Blocking: any clause missing T1 or T2. Foundation dim 3 contract enforcement.
+    // See docs/architecture/EXECUTOR-CONTRACT.md
+    // DEEP: T1+T2 hook existence is stable between sessions; capacity-constrained
+    run_tier: 'DEEP',
+    name: 'executor_contract',
+    command: 'node tools/validators/validate-executor-contract.mjs',
+    parse_output: (out) => {
+      const m = out.match(/blocking=(\d+)\s+advisory=(\d+)\s+clauses_checked=(\d+)/);
+      return m ? { blocking: Number(m[1]), advisory: Number(m[2]), clauses_checked: Number(m[3]) } : {};
+    },
+  },
+  {
     // M2 S071 Facet C: Dev↔User vocabulary coverage — advisory validator
     // Flags user-facing content that uses dev_terms without paired user_term translation
     // Glossary source: vocabulary.md §Dev↔User Glossary (8+ entries, sample-expandable per P-META-028)

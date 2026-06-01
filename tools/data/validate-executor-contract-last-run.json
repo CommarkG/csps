@@ -1,0 +1,20 @@
+{
+  "blocking": 0,
+  "advisory": 3,
+  "clauses_checked": 4,
+  "all_findings": [
+    {
+      "level": "advisory",
+      "msg": "C1 (cite-evidence): T1 hook exists but has no exit-1/exit-2 gate — may not be blocking"
+    },
+    {
+      "level": "advisory",
+      "msg": "C3 (threshold-routing): T1 hook exists but has no exit-1/exit-2 gate — may not be blocking"
+    },
+    {
+      "level": "advisory",
+      "msg": "C4 (sp-registry-compliance): T1 hook exists but has no exit-1/exit-2 gate — may not be blocking"
+    }
+  ],
+  "ran_at": "2026-06-01T20:47:19.664Z"
+}

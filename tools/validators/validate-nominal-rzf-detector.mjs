@@ -35,9 +35,9 @@ const SCAN_FILES = [
 ]
 const LAST_RUN_PATH = join(ROOT, 'tools/data/validate-nominal-rzf-detector-last-run.json')
 
-// HARDWIRE-008 (S075): Director verdict patterns — ACCEPT/SEAL/GO/OPIA without this-turn tool re-run
-// D14/D15: A director verdict is NOT a trust signal — it IS the verification.
-// If Opus didn't re-run, the verdict is as nominal as Sonnet's DONE claim without evidence.
+// HARDWIRE-008 (S076 Phase B: de-roled): Executor state-claim patterns — any executor ACCEPT/SEAL/GO/OPIA without tool evidence
+// D14: ANY executor's state-claim is NOT a trust signal — it IS the claim to verify.
+// Applies equally to Opus, Sonnet, one-agent, CI, Governor. Executor-agnostic floor.
 const VERDICT_PATTERN = /\b(?:OPIA|ACCEPT|SEAL|✅\s*ACCEPT|GO|ACCEPTED|OPIA:\s*✅)/i
 const VERDICT_EXEMPT = /reviewed|cross-review attestation|authored by|CROSS-REVIEW/i
 
@@ -113,8 +113,8 @@ for (const filePath of SCAN_FILES) {
     }
   }
 
-  // HARDWIRE-008 (S075): Verdict-block scan — ACCEPT/SEAL/GO/OPIA without tool re-run
-  // D14/D15: director verdicts must cite a this-turn tool re-run. ADVISORY + promotion-path.
+  // HARDWIRE-008 (S076 Phase B: de-roled): State-claim scan — any executor ACCEPT/SEAL/GO/OPIA without tool evidence
+  // D14: ANY executor's state-claim must cite this-turn tool re-run. Executor-agnostic floor. ADVISORY + promotion-path.
   for (let k = 0; k < lines.length; k++) {
     const kLine = lines[k]
     if (!VERDICT_PATTERN.test(kLine)) continue
@@ -128,12 +128,12 @@ for (const filePath of SCAN_FILES) {
       all_findings.push({
         file: fileName,
         line: k + 1,
-        content: `[HARDWIRE-008 D14/D15] Verdict "${kLine.trim().slice(0, 60)}" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.`,
+        content: `[HARDWIRE-008] Any executor: State-claim "${kLine.trim().slice(0, 60)}" has no this-turn tool evidence. Any ACCEPT/SEAL/DONE must cite exit_code/verify output. Advisory + promotion-path.`,
         level: 'advisory',
       })
       if (all_findings.length <= 14) {
-        console.log(`  ⚠ [HARDWIRE-008 D14/D15] ${fileName}:${k + 1}: Verdict block missing tool re-run citation.`)
-        console.log(`    Fix: cite this-turn tool output (e.g. verify=0, exit_code=0) in same block as verdict.`)
+        console.log(`  ⚠ [HARDWIRE-008] ${fileName}:${k + 1}: State-claim (any executor) missing this-turn tool evidence.`)
+        console.log(`    Fix: cite this-turn tool output (e.g. verify=0, exit_code=0) in same block as claim.`)
       }
     }
   }

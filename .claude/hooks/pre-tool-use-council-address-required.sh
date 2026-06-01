@@ -39,7 +39,9 @@ process.stdin.on("end",()=>{
   const newEntry = /(^|\n)#\s*OPUS-/.test(content) || /(^|\n)#\s*FROM SONNET/i.test(content) || /(I AM:|YOU ARE:)/.test(content) || /═══/.test(content);
   if (!newEntry) { console.log("PASS"); return; }
   const fourLine = /I AM:/.test(content) && /YOU ARE:/.test(content);
-  const convo = /\b(Opus|Sonnet|Governor),\s*this is\s*(Opus|Sonnet|Governor)\b/i.test(content);
+  // S076 Phase E: executor-agnostic role-id — any "X, this is Y" pattern accepted.
+  // Not limited to Opus/Sonnet names. Model-agnostic. layer:scaffold for hook itself.
+  const convo = /\b\S[\w\s-]*,\s+this is\s+\S[\w-]*/i.test(content);
   console.log((fourLine || convo) ? "PASS" : "BLOCK");
 });
 ' 2>/dev/null || echo "PASS")

@@ -15,6 +15,7 @@ closure_decision: Living register — add rows per HARDWIRE invocation
 closure_by: ongoing
 rows:
   - id: hardwire-001
+    layer: system
     thing: HARDWIRE protocol itself (meta — the protocol governs its own engraving)
     governor_invocation: 'S074 emergency directive: HARDWIRE the permanent-default pattern'
     surfaces:
@@ -29,6 +30,7 @@ rows:
     status: hardwire-done
     session_sealed: S074
   - id: hardwire-002
+    layer: scaffold
     thing: council-file write via Write/Edit tool (formal relay channel)
     governor_invocation: 'S074: HARDWIRE the council file write mechanism'
     surfaces:
@@ -44,6 +46,7 @@ rows:
     session_sealed: S074
 
   - id: hardwire-003
+    layer: system
     thing: "permission bypass — bypassPermissions in both settings files, no shadowing"
     governor_invocation: "S074: recurring permission prompts — HARDWIRE the bypass permanently"
     surfaces:
@@ -61,6 +64,7 @@ rows:
     session_sealed: S074
 
   - id: hardwire-004
+    layer: scaffold
     thing: "relay hooks (proto-inline, sonnet-relay, handoff-relay) use file-read approach on win32"
     governor_invocation: "S074 BATCH 3: relay hooks dead on win32 — HARDWIRE the fix"
     surfaces:
@@ -78,6 +82,7 @@ rows:
     session_sealed: S074
 
   - id: hardwire-005
+    layer: system
     thing: "go-over-what-exists (P-META-029 ECA) — inventory-first before claims or proposals"
     governor_invocation: "S075 PROTO-S075-GO-OVER-WHAT-EXISTS: HARDWIRE P-META-029 against pretended/partial survey"
     surfaces:
@@ -96,6 +101,7 @@ rows:
     session_sealed: S075
 
   - id: hardwire-006
+    layer: system
     thing: "Vercel deployment health — no build failures from stale root_dir"
     governor_invocation: "S075: csps-budget-planner failing on every push — HARDWIRE permanent Vercel health"
     surfaces:
@@ -116,6 +122,7 @@ rows:
     session_sealed: S075
 
   - id: hardwire-007
+    layer: system
     thing: "governing_intent field — root fix for D11 (rigid-rule-satisfaction) on all new principles and B_* contracts"
     governor_invocation: "S075 B2 (HARDWIRE-007): governing_intent required on all new rules to prevent D11 exploitation"
     surfaces:
@@ -134,12 +141,13 @@ rows:
     session_sealed: S075
 
   - id: hardwire-009
-    thing: "Sonnet→Opus relay format — fenced block + 'Paste-ready' header after every sonnet-turn.md write"
-    governor_invocation: "S075: relay presentation inconsistent — HARDWIRE the format so Governor gets one-click copy every time"
+    layer: system
+    thing: "Executor relay format — fenced block + paste-ready header after every relay-channel write (any executor)"
+    governor_invocation: "S075: relay presentation inconsistent — HARDWIRE format for one-click Governor copy. S076 Phase B: generalized from Sonnet-specific to executor-agnostic. Any executor relay uses this format."
     surfaces:
-      t1_hook: "post-tool-use-sonnet-relay-inline.sh v6.1 (updates last-sonnet-relay.txt on Write/Edit to sonnet-turn.md)"
+      t1_hook: "post-tool-use-sonnet-relay-inline.sh (executor-relay-inline per S076 Phase B; fires on Write/Edit to council relay files)"
       t2_validator: "SP-registry verify_mechanically: last-sonnet-relay.txt mtime < 60s (exits 1 if stale)"
-      t3_session: "session-open.sh: SONNET-RELAY-FORMAT reminder + AGENTS.md hard rule with format spec"
+      t3_session: "session-open.sh: EXECUTOR-RELAY-FORMAT reminder + AGENTS.md hard rule with format spec"
       sp_registry_entry: "sonnet-relay-presented"
       audit_runner_row: "added to AGENTS.md inline (format spec)"
     block_test_command: "node -e \"const fs=require('fs');fs.utimesSync('.csps/last-sonnet-relay.txt',new Date('2020-01-01'),new Date('2020-01-01'));\" && node -e \"const s=require('fs').statSync('.csps/last-sonnet-relay.txt');if(Date.now()-s.mtimeMs>60000)process.exit(1);\" ; echo EXIT:$?"
@@ -151,20 +159,21 @@ rows:
     session_sealed: S075
 
   - id: hardwire-008
-    thing: "Director verdict floor — ACCEPT/SEAL/GO/OPIA on opus-turn.md must cite this-turn tool re-run"
-    governor_invocation: "S075 OPUS-16 directive: D15-D17 director defaults + verify-before-concur floor for verdicts"
+    layer: system
+    thing: "Executor evidence floor — ANY state-claim (DONE/SEAL/GO/ACCEPT/RATIFIED) by ANY executor must cite this-turn tool evidence"
+    governor_invocation: "S075 OPUS-16 directive: verify-before-concur floor. S076 Phase B: de-roled from 'director verdict' to 'any executor state-claim'. The floor is executor-agnostic."
     surfaces:
       t1_hook: "post-tool-use-proto-inline.sh v6.1 (fires on opus-turn.md writes; verdict check added via validator)"
-      t2_validator: "validate-nominal-rzf-detector.mjs EXTENDED with HARDWIRE-008 verdict-block scan (ADVISORY)"
+      t2_validator: "validate-nominal-rzf-detector.mjs — de-roled to 'any executor state-claim without tool evidence' (Phase B S076)"
       t3_session: "session-open.sh (inherits council address + FORMAL-PROTO-CHANNEL reminder)"
-      sp_registry_entry: "director-verdict-evidence (to be added)"
+      sp_registry_entry: "executor-state-claim-evidence"
       audit_runner_row: "nominal_rzf_detector (extended — existing slug, no new row)"
-    block_test_command: "node -e \"const c='OPIA: ACCEPT — Strong work.';const VP=/\\b(?:OPIA|ACCEPT)\\b/i;const TO=/exit_code|verify\\.mjs/i;const l=c.split('\\n');l.forEach(line=>{if(VP.test(line)&&!TO.test(c))console.log('D15 FLAGGED');});\""
+    block_test_command: "node -e \"const c='OPIA: ACCEPT — Strong work.';const VP=/\\b(?:OPIA|ACCEPT)\\b/i;const TO=/exit_code|verify\\.mjs/i;const l=c.split('\\n');l.forEach(line=>{if(VP.test(line)&&!TO.test(c))console.log('EXECUTOR CLAIM FLAGGED');});\""
     block_test_output: |
-      BLOCK-TEST: D14/D15 FLAGGED ✓ (no tool evidence)
-      Verdict "OPIA: ACCEPT — Strong work" → no exit_code/verify.mjs in context → flagged.
-      validate-nominal-rzf-detector advisory output:
-      ⚠ [HARDWIRE-008 D14/D15] opus-turn.md: Verdict block missing tool re-run citation.
-      Fix: cite this-turn tool output (exit_code=0, verify=0) in same block as verdict.
+      BLOCK-TEST: EXECUTOR CLAIM FLAGGED ✓ (no tool evidence)
+      State-claim "OPIA: ACCEPT — Strong work" → no exit_code/verify.mjs in context → flagged.
+      validate-nominal-rzf-detector de-roled advisory output (Phase B):
+      ⚠ [HARDWIRE-008] any executor: State-claim (ACCEPT/SEAL/DONE) missing this-turn tool evidence.
+      Fix: cite this-turn tool output (exit_code=0, verify=0) in same block as claim.
     status: hardwire-done
     session_sealed: S075

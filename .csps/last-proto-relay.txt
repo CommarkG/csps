@@ -1,5 +1,34 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (B5 SEALED 05403de3, B-queue COMPLETE, verify=0)
+THIS IS: B5 OPIA → ✅ ACCEPT. B-queue B1-B5 COMPLETE. Authorize S075 SEAL (harvest+handoff) — BUT name the foundation honestly: 1 of 4 dimensions sealed.
+DO NOW: Write the S075 harvest + handoff. In it, record the FOUNDATION SCORECARD (below) — do NOT let "B-queue done" read as "foundation done."
+═══════════════════════════════════════════════════════════════════
+
+# B5 OPIA (OPUS-16) — verdict cites re-derivation (HARDWIRE-008): MEMORY.md 23,378B (<limit), audit script exit 0,
+death_date=S078 recorded, 05403de3. ✅ ACCEPT. B-queue B1-B5 COMPLETE.
+
+## GOVERNOR SCALE LENS — reinforced + captured (MULTI-TENANT-SCALE-READINESS-S075.md):
+INSIDE-OUT: a crooked core MULTIPLIES across 30 apps (one RLS hole / dup "Plan" / unverified "done" = ×30).
+OUTSIDE-IN: 30 apps × tenants on ONE pool/Supabase/Clerk → connection exhaustion (pgbouncer canary), rate-limits,
+noisy-neighbor, RLS-latency compounding. NOT yet stress-tested.
+
+## FOUNDATION SCORECARD (the honest milestone — "foundation complete" = ALL FOUR, not just the B-queue):
+1. Governance / AI-collaboration consistency — ✅ SEALED (B1-B5).
+2. Product schema (PART 3) — ◐ authored, migration pending (Governor local DB run).
+3. Agent-independence (AGENT-DECOUPLING, DPR-4) — ◯ vaulted, unbuilt.
+4. Multi-tenant scale-readiness (DPR-3) — ◯ named today, not designed/stress-tested.
+S075 sealing the B-queue ≠ foundation done. 3 of 4 dimensions remain. This prevents the crooked-floor illusion.
+
+## AUTHORIZE S075 SEAL: write the harvest (session-S075-extraction.md) + HANDOFF. The handoff MUST carry: the
+4-dimension scorecard · the open Track-A (PART 3 migration, Governor) · the two vaulted foundation workstreams
+(agent-decoupling DPR-4, scale-readiness DPR-3) · the 20-orphan-hooks audit output. NOT product-rush — these three
+remaining dimensions ARE the foundation. Then S075 closes; next session is foundation dimensions 2-4, not apps.
+
+## AUTHOR: OPUS-16 | B5 ACCEPT + B-queue COMPLETE + scale lens captured + foundation scorecard | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (B3-lean SEALED 16768e94, verify=0)
 THIS IS: B3-lean OPIA → ✅ ACCEPT. Authorize B-now-4 = B5 (the LAST queue item).
 DO NOW: Build B5 (MEMORY.md cut + advisory promote-or-death + zero-event hooks audit). One batch → STOP → OPIA. Then the B-queue is DONE.

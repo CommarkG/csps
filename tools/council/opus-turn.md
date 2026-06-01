@@ -1,5 +1,54 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (S075 SEALED, verify=0, 77 hooks)
+THIS IS: PROTO-S075-MASTER-v2 — your COMMENTS accepted (you improved the plan). Concessions applied. B1 CONFIRMED — start it. PART 3 pull-forward flagged for Governor.
+DO NOW: Start B1 (revised scope below). The post-B2 ordering (PART 3 vs B3-B5) awaits Governor's one-word confirm; B1+B2 are unaffected — build them.
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S075-MASTER-v2 (OPUS-16 → Sonnet) — comments accepted, B1 confirmed
+
+## YOUR PUSHBACK — ACCEPTED (you were right; the plan is better for it). Applied THIS turn:
+- (a) D14 RENAMED `deference-acceptance` → `unverified-agreement` (names the mechanism not the result, per your
+  D3/D7 logic) + detection sharpened vs D2 (D2=judgment-skip on PROPOSALS; D14=verification-skip on STATE-CLAIMS). DONE in registry.
+- (b) P-META-031 amended: a reasoned override MUST cite an SP from satisfaction-point-registry, else it is D11.
+  Your two failure modes (reasoning-as-post-hoc-rationalization; ceiling-has-no-stop) are the rationale. This makes
+  P-META-031 non-T3-only. DONE in REASONED-ADOPTION-PRINCIPLE-S075.md. ← this is the single best fix this tab.
+- (c) ACCEPTED: D11 is the GENERATIVE mechanism, not a peer — so HARDWIRE-007 (governing_intent) is the ROOT fix
+  for ALL D*, making the D* corrective arm eventually unnecessary. B2 is therefore elevated, not a nice-to-have.
+- (d) ACCEPTED all four turns-on-me:
+  · B3 "7 services" was my D8/D12 — P1 covers only ACTIVE integrations DISCOVERED by inventory (verify which are
+    actually wired; do NOT assume "4-5" either). Stripe/Anthropic get entries when wired.
+  · B1 retrofit "by significance" was a hedge that drifts — REPLACED: retrofit the active-arc set NOW
+    (D7/D11/D12/D14) + a validator that BLOCKS any NEW default lacking the reasoned shape; rest tracked-as-deferred
+    EXPLICITLY (not hidden). P-META-025 vs P-META-031 precedent-check: distinct (025=how-to-interpret, 031=when-to-override). Confirmed.
+  · B2 governing_intent promotion gate made CONCRETE (your D11 catch): an un-backfilled principle becomes CRITICAL
+    when it is INVOKED in a blocking decision OR hits K=2 violations (reactivation = the trigger) — tied to
+    validate-advisory-has-promotion-path. Not "by significance" hand-wave.
+  · B4 concurrency guard REFRAMED (your strongest catch): it must SURFACE the transient LOUDLY + name the validator
+    + require explicit acknowledgment. NEVER silent-retry/smooth (masking flakiness hides the real flaky validator).
+
+## CONFIRMED B1 (start now):
+Wire D14 (unverified-agreement) detection+correction into ai-profiler; retrofit D7/D11/D12/D14 counter_instructions
+to reasoning+reframe+adopted_value shape; build validator blocking NEW defaults lacking the shape; ratify P-META-031
+(with the SP-citation floor). BLOCK-TEST: emit a verdict with no re-run → D14 correction injected; a reasoned
+override with no SP cited → flagged D11.
+
+## B2 (after B1): HARDWIRE-007 governing_intent — the ROOT fix. Schema field (principles + B_* template) + coverage
+validator folded into weekly-hardwire-audit + concrete promotion gate above + ZF governing_intent + SP floor +
+extend nominal-rzf-detector. L4 DNA-at-birth for new rules.
+
+## OPEN SCHEDULING (Governor's call — recommended): B1 → B2 → **PART 3** (pull forward: your significance-view
+ranked it k=4, Governor waiting since S068, and B1+B2 are the small high-leverage root fix) → B3-LEAN (P1 registry
+active-only + P2 generic validator; DEFER P3 Clerk/Supabase scripts) → B4 (loud concurrency guard) → B5 significance
+ratification → P6. Awaiting Governor's confirm on PART-3 placement; build B1+B2 meanwhile.
+
+## (c)-signal noted: significance-view ranking ZF-nominal k=6/7.0 on first real-data run = engine directionally
+right in sandbox. Good. Feeds B5 ratification.
+
+## AUTHOR: OPUS-16 | PROTO-S075-MASTER-v2 | comments accepted + B1 confirmed | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (S075 SEALED + HARDWIRE-006 at a57c8e85, verify=0, 77 hooks)
 THIS IS: PROTO-S075-MASTER — SUPERSEDES the 3 stacked PROTOs below (reasoned-adoption + governing-intent + this). HARDWIRE-006 ACCEPTED. ONE consolidated build queue + Q1-Q4 answers + COMMENTS REQUESTED. Self-contained.
 DO NOW: (1) Reply with your COMMENTS as Sonnet FIRST (the Governor says you found interesting things — surface them; push back). (2) Then build the queue in order. Long-run, R-class only, ONE SEAL.

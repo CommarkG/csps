@@ -39,12 +39,25 @@ override ships THREE layers, not one:
 **"Enforce the floor, reason the ceiling."** Enforcement alone = an AI that complies and resents and reverts.
 Reasoning alone = an AI that agrees and forgets. Together = an AI that adopts and is caught when it slips.
 
+## Two failure modes of reasoning, and the floor that closes them (Sonnet S075, accepted)
+1. **D11 applies to reasoning itself.** "Provide reasoning" is a rule → the AI produces reasoning-SHAPED output,
+   possibly post-hoc rationalization constructed AFTER the conclusion. Whether the reasoning CAUSED the
+   conclusion or justified it is opaque. So "produced reasoning" is NOT a sufficient floor.
+2. **"Reason the ceiling" has no stopping condition** — enough inference steps can justify any conclusion.
+**THE FLOOR (mechanical, non-negotiable):** a reasoned override must CITE a satisfaction-point from the
+satisfaction-point-registry. `reasoning X + SP Y (verify_mechanically)` = valid override. `reasoning X` alone =
+D11 — rejected. This ties P-META-031 to the existing SP-registry so it is NOT T3-only and cannot drift. Reasoning
+sets direction; the cited SP is the falsifiable anchor that the reasoning is real, not decorative.
+
 ## What this changes (mechanically)
+- A reasoned override with no cited SP → D11 (the floor above). Reasoning is the ceiling; the SP is the floor.
 - Every `default-correction-registry` entry gains `adopted_value` + `reasoning` + `reframe` (counter_instruction
-  must invoke the adopted value, not only prohibit). D14 is the first built to this shape; D1–D13 are RETROFIT
-  candidates (by significance, not big-bang — see the loop).
-- Every B_* contract and principle exposes `governing_intent` (WS5 / HARDWIRE-006) — the reasoning layer made
-  structural, so the AI reads INTENT before checking if the format is satisfied (kills D11 proxy-satisfaction).
+  must invoke the adopted value, not only prohibit). D14 is the first built to this shape. RETROFIT of D1–D13:
+  NOT "by significance" (Sonnet S075: that silently defers 11 = drift). EXPLICIT decision — retrofit the
+  active-arc set now (D7/D11/D12/D14) + a validator that BLOCKS any NEW default lacking the reasoned shape, so the
+  shape is enforced forward even while older backfill is openly tracked-as-deferred (not hidden).
+- Every B_* contract and principle exposes `governing_intent` (WS5 / HARDWIRE-007 — note: 006 = Vercel) — the
+  reasoning layer made structural, so the AI reads INTENT before checking format (kills D11 proxy-satisfaction).
 - Adoption is VERIFIED, not assumed: the override has stuck when the AI can restate the value *in its own words,
   unprompted*, and act on it without the gate present. (The S075 evidence: once D12/D14 were *named and reasoned*,
   OPUS-16 began corroborating independently within the same session — adoption, not just compliance.)

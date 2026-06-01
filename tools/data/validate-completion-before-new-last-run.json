@@ -10,6 +10,6 @@
     }
   ],
   "advisory": 1,
-  "ran_at": "2026-06-01T09:08:32.926Z",
+  "ran_at": "2026-06-01T09:10:25.847Z",
   "note": "P-OP-008 completion-before-new discipline. ADVISORY always. Complete active plan before starting new ones."
 }

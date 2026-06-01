@@ -1140,3 +1140,19 @@ entries:
   governor_approval_status: directive-issued-design-captured
   governor_approval_session: S074
   note: "Honest meta-finding: CSPS insight-capture itself decayed silently (governor-insights died S018; extractions ~13% of sessions; improvement-register 77KB warehouse). Engine must be subject to L2 recurring synthetic re-test of its OWN capture freshness. Full design in docs/plan/_handoff/VAULT/session-S074-extraction.md §10."
+
+- id: DRAFT-S075-STRUCTURAL-OVERLAP-PREVENTION
+  title: "Structural parallel-prevention detection — extend+promote existing consolidation machinery (do NOT build parallel)"
+  description: "S075 overlap audit (Governor directive) of all S074+S075 new artifacts found: (F1) relay-hook TRIO (proto-inline/sonnet-relay/handoff-relay) = 3 parallel ~25-line implementations of one read-file-after-write→relay pattern (all consistent v6.1, no live bug, but maintenance-duplication hazard); (F2 FIXED S075) default detection-signals D8/D11/D12 overlapped → could triple-fire — disambiguated to mutually-exclusive; (F3 META) the existing duplicate-detector (consolidation-pattern-detector.mjs + post-stop-consolidation-pass.sh / B_CONSOLIDATION_PASS) is a STUB ('week-4 promotes to active') AND only covers DOC-content word-frequency duplication, NOT structural overlap among hooks/validators/defaults — which is why F1/F2 slipped in. Empirically VALIDATES WS1 R1: duplications entered through the UNGATED code-creation surface (new hooks/defaults), not PROTO/PLAN."
+  inherits_from: "B_CONSOLIDATION_PASS + consolidation-pattern-detector.mjs + validate-consolidation-pass.mjs + validate-validators.mjs + P-META-029 + WS1 R1 (inventory-scan scope) + D8 + D12"
+  prevention_class: null
+  prevention_design_pending: true
+  first_found: S075
+  k_count: 1
+  sessions: [S075]
+  status: audit-done-fix-partial
+  recommended_first_step: "HARDWIRED PREVENTION (after WS2, blast-radius decision is Governor's): (a) extend consolidation-pattern-detector to detect STRUCTURAL overlap — ≥2 hooks/validators/defaults targeting the same concern/trigger; (b) promote post-stop-consolidation-pass STUB→active; (c) widen WS1 inventory-scan/ECA gate to cover new hook/validator/default creation (the R1 fork). DO NOT build a parallel detector — extend the existing one."
+  governor_approval_pending: true
+  governor_approval_status: audit-reported-F2-fixed
+  governor_approval_session: S075
+  note: "F2 fixed live this turn (default-correction-registry D11 disambiguation). F1 (relay trio) + F3 (stub promotion + structural-overlap extension) NOT done live — blast radius (consolidation-pass would start blocking 56 pre-existing doc findings) + Sonnet active on WS2 → R-class, routed here for post-WS2. Audit method: file-inventory + relay grep + default-signal grep + ran consolidation-pattern-detector.mjs (doc-scoped, 56 findings, none structural)."

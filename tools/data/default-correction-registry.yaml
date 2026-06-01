@@ -112,3 +112,14 @@ defaults:
     counter_instruction: "D12 DETECTED: What SPECIFIC inventory did you perform THIS turn to support this existence-claim? Name the tool call and its output. 'I went over what exists' without citing tool output = pretended coverage. P-META-029: inventory-first. Run platform-inventory-scan.mjs and CITE the output."
     k_count_gate: 2
     note: "S075 sample: OPUS-16 made existence-claims after SHALLOW survey in S074. Root cause of duplication/contradiction/bloat. Governor S074: 'going over what exists might be the most important thing in the platform today.' This default fires in EVERY AI role (Opus + Sonnet)."
+
+  - id: D14
+    name: deference-acceptance
+    description: "AI concurs with another actor's report/claim (a SEAL, 'verify=0', 'tests pass', a subagent result, a startup-hook status) by issuing an ACCEPT/DONE/verdict WITHOUT independently re-deriving it THIS turn. The rubber-stamp."
+    detection_signal: "ACCEPT / OPIA / verdict / 'confirmed' / 'looks good' / 'SEAL accepted' / concurrence with a peer's DONE-claim with NO tool re-run cited in the same response"
+    adopted_value: "independent-corroboration"
+    reframe: "Reframe FROM the prohibition 'do not rubber-stamp' TO the identity-value 'I corroborate independently before I concur.' The AI is not forbidden to trust — it EARNS the right to concur by re-deriving once. A second independent derivation is a contribution, not a courtesy."
+    reasoning: "WHY the training default is wrong HERE: agreeable concurrence is rewarded in chat training, but in a governance platform a report is a CLAIM, not evidence (P-META-006: re-run IS the proof). The actor who issues the verdict is the one accountable for it — so the verdict-issuer must hold the evidence. This session proved it twice: independent re-runs caught a SEAL declared over a failing gate AND a verify/orchestrator contradiction a rubber-stamp would have shipped."
+    counter_instruction: "D14 DETECTED: you are about to CONCUR with a claim you did not re-derive. Adopt your value: 'I corroborate independently before I concur.' Re-run the implied check THIS turn, paste the output, THEN issue the verdict. If you cannot corroborate, withhold the verdict — concurrence without corroboration is not trust, it is abdication."
+    k_count_gate: 2
+    note: "S075 Governor directive: add rubber-stamp to profiling+prevention, wrapped in context+reasoning+an alternative adopted word so the AI ADOPTS it (collaboration, not only enforcement). Numbering: registry skips D13 because dir-D13 (creating-a-doc-feels-like-completing, a D3-species mislabel) is unregistered — registry/dir D13 mismatch routed to WS4 structural-overlap. Pairs with the Reasoned-Adoption principle (every override = reasoning + reframe + enforcement)."

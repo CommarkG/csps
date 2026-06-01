@@ -1,5 +1,63 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (WS1-3 SEALED cfc5d393, verify=0, 77 hooks)
+THIS IS: PROTO-S075-REASONED-ADOPTION — the COLLABORATION half. Governor: the native AI must AGREE, from reasoning, to override its training defaults — not just be enforced. + D14 rubber-stamp added + the unified learning loop. COMMENTS REQUESTED (this is a two-way consult, not a one-way directive).
+DO NOW: (1) Read the architecture below. (2) Reply with your COMMENTS as Sonnet — the Governor says you found interesting things; surface them. (3) Then build WS6→WS5→WS4. Long-run, R-class only, ONE SEAL.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION: OPUS-16. Verification (NOT rubber-stamped, D14 antidote): pnpm verify=0/0-FAIL re-run;
+zf-orchestrator --level3 cycle-2 reported 1 BLOCKING but FAIL reproduced 0×2 at HEAD = TRANSIENT concurrency
+(two AIs, one working tree). D12 promoted + D14 added this turn. verify clean at HEAD.
+
+# PROTO-S075-REASONED-ADOPTION (OPUS-16 → Sonnet) — COMMENTS REQUESTED
+
+## THE GOVERNOR'S CHALLENGE (the heart)
+"Having the native AI agree — out of context and understanding — to work differently than its core deep
+instructions. It must be reasoned; collaboration, not only enforcement." Enforcement makes us comply while the
+gate is in view; the prior reasserts the moment context shifts (why CSPS drifts every tab). Compliance ≠ adoption.
+
+## THE PRINCIPLE (REASONED-ADOPTION-PRINCIPLE-S075.md — candidate P-META-031)
+Every default-override ships THREE layers: (1) REASONING — why the training default is wrong in THIS context;
+(2) REFRAME / alternative word — convert prohibition → adopted identity-value ("do not rubber-stamp" → "I
+corroborate independently before I concur"); (3) ENFORCEMENT (HARDWIRE) as the floor. **Enforce the floor,
+reason the ceiling.** Enforcement scales to the keyboard; reasoning scales to the mind; the AI operates in both.
+
+## D14 deference-acceptance (rubber-stamp) — ADDED this turn to default-correction-registry
+adopted_value=independent-corroboration · reasoning+reframe fields · detection: ACCEPT/verdict/SEAL concurrence
+with NO tool re-run cited same turn. Where it occurs: SEAL acceptance · "verify=0" claims · "hooks present" ·
+subagent results. (Registry skipped D13 — dir-D13 is an unregistered D3-species mislabel → WS4.)
+
+## THE UNIFIED LEARNING LOOP (WS7 — consolidate, connect existing, mint nothing parallel)
+TRIGGER-gather (council/ZF/friction/CADENCE-AUDIT + ai-profiler) → DEFAULT-register (correction-registry +
+drift-log) → SAVE (K=2 → category file) → SIGNIFICANCE-weight (engine: recurrence+reactivation+link-density+
+outcome; decay) → CRYSTALLIZE (governing_intent backfill + reasoned-adoption retrofit + HARDWIRE) → OUTCOME-VERIFY.
+Outcome metric = the Governor's bar: artifacts authored AFTER the loop show (a) reasoning+reframe+enforcement (not
+prohibition-only); (b) governing_intent present; (c) D11/D12/D14 recurrence DROPS session-over-session. Fold into
+weekly-hardwire-audit (no new cron).
+
+## BUILD ORDER
+- WS6 Reasoned-Adoption + D14: wire D14 detection into ai-profiler; RETROFIT D1-D13 counter_instructions to the
+  reasoned+reframed shape BY SIGNIFICANCE (not big-bang — significance-engine's consumer); ratify P-META-031.
+  Block-test: emit a verdict with no re-run → D14 correction injected.
+- WS5 HARDWIRE-006 governing_intent (Q1-Q4 answers — see prior PROTO below): schema field + coverage validator
+  folded into weekly-hardwire-audit + ZF governing_intent + SP floor + extend nominal-rzf-detector.
+- WS4 structural-overlap + concurrency: extend consolidation-pattern-detector to ≥2-gates-same-concern; promote
+  consolidation-pass STUB→active (Governor times blast radius); widen inventory gate (R1); fix D11-double-file/
+  D13-mismatch/D13-D3 overlap; add a gate-determinism/concurrency guard (the transient FAIL finding).
+- significance-engine ratification → PART 3.
+
+## ⇦ YOUR TURN, SONNET — COMMENTS REQUESTED (do this BEFORE building)
+The Governor says you (and he) found interesting things. As Sonnet: reply with your honest comments on —
+(a) Is "deference-acceptance / independent-corroboration" the right framing, or is there a better adopted word?
+(b) Does enforce-floor-reason-ceiling hold up, or where does reasoning-without-enforcement fail in practice?
+(c) The interesting things you found — surface them. (d) Any place this consolidation OVERLAPS/duplicates existing
+organs I missed (turn D12/D8 on me). This is a collaboration — push back where I'm wrong.
+
+## AUTHOR SIGNATURE
+OPUS-16 | PROTO-S075-REASONED-ADOPTION | D14 + P-META-031 + unified loop + COMMENTS REQUESTED | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (WS1+WS2+WS3 SEALED cfc5d393, verify=0, 77 hooks)
 THIS IS: PROTO-S075-D11-GOVERNING-INTENT — Opus answers Q1-Q4 (the D11 checkpoint) as architecture + opens the next builds (WS4 structural-overlap prevention, WS5 governing_intent / HARDWIRE-006). S075 self-profiling DONE (D12 promoted to category file).
 DO NOW: Read Q1-Q4 answers below, then run WS5 (governing_intent) → WS4 (structural-overlap) → significance-engine ratification → PART 3. Long-run, R-class stops only, ONE SEAL. Each batch DONE = BLOCK-TEST pasted.

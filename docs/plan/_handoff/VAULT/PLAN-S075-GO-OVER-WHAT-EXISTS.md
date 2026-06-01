@@ -113,3 +113,28 @@ promote post-stop-consolidation-pass STUB→active (Governor blast-radius timing
 new-artifact creation (R1) + fix D11-double-file / D13-overlap from self-profiling.
 
 ## SEQUENCING: WS5 → WS4 → significance-engine council ratification → PART 3. Long-run, R-class stops only.
+
+## WS6 — Reasoned-Adoption + D14 deference-acceptance (rubber-stamp)  [Governor S075]
+Built this turn (Opus authorship): D14 `deference-acceptance` registered (adopted_value=independent-corroboration,
+reasoning+reframe fields) + REASONED-ADOPTION-PRINCIPLE-S075.md (candidate P-META-031). Where rubber-stamp occurs:
+SEAL acceptance · "verify=0" claims · "hooks present" · subagent results. Build (Sonnet): D14 detection in
+ai-profiler + counter-instruction; RETROFIT D1-D13 counter_instructions to the reasoned+reframed shape (BY
+SIGNIFICANCE, not big-bang — significance-engine consumer); ratify P-META-031. Enforce-the-floor-reason-the-ceiling.
+
+## WS7 — The unified learning loop (consolidate; outcome = better authoring, VERIFIED)
+ONE pipeline (connect existing organs, mint nothing parallel): TRIGGER-gather (council/ZF/friction/CADENCE-AUDIT +
+ai-profiler signals) → DEFAULT-register (default-correction-registry + drift-log) → SAVE properly (K=2 → category
+file; this turn: D12 promoted, D14 added) → SIGNIFICANCE-weight (significance-engine: recurrence+reactivation+
+link-density+outcome; decay) → CRYSTALLIZE on threshold (governing_intent backfill + reasoned-adoption retrofit +
+HARDWIRE) → OUTCOME-VERIFY. The outcome metric is the Governor's bar: "verified to be improved in the way the
+platform WRITES instructions/protocols/wizards." Measure on artifacts authored AFTER the loop: (a) override entries
+carry reasoning+reframe+enforcement (not prohibition-only); (b) governing_intent present; (c) recurrence of
+D11/D12/D14 incidents DROPS session-over-session. Folded into weekly-hardwire-audit (no new cron).
+
+## FINDING (this turn, routed): verify/orchestrator concurrency cry-wolf
+`pnpm verify`=0/0-FAIL but `zf-orchestrator --level 3` cycle-2 reported 1 BLOCKING (`"status":"FAIL"` count);
+reproduced FAIL=0 twice at HEAD → TRANSIENT from two AIs writing the same working tree (torn-state scan). A
+flaky/cry-wolf gate TRAINS rubber-stamping (D14) — so it matters. Route to WS4 (gate-determinism / concurrency guard).
+
+## SEQUENCING v2: WS6 (reasoned-adoption, partly done) → WS5 (governing_intent) → WS4 (overlap+concurrency) →
+significance ratification → PART 3.

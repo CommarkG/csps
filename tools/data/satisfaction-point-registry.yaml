@@ -86,3 +86,15 @@ entries:
     verify_mechanically: node tools/scripts/vercel-health-check.mjs 2>/dev/null && echo passed
     channel: tools/scripts/vercel-health-check.mjs (REST API)
     notes: HARDWIRE-006. Run proactively instead of waiting for email. weekly_audit_skip=false (checks live Vercel API).
+  - thing: sonnet-relay-presented
+    satisfaction_point: >-
+      post-tool-use-sonnet-relay-inline.sh fired (last-sonnet-relay.txt mtime < 60s) AND relay block presented inline in
+      chat with fenced format
+    verify_mechanically: >-
+      node -e "const
+      s=require("fs").statSync(".csps/last-sonnet-relay.txt");if(Date.now()-s.mtimeMs>60000)process.exit(1);"
+    channel: Write or Edit tool on tools/council/sonnet-turn.md (not Bash)
+    notes: >-
+      HARDWIRE-009. governing_intent: Governor copies with one click. Fenced block + Paste-ready header = format.
+      weekly_audit_skip=session-contextual
+    weekly_audit_skip: session-contextual — mtime check only valid during active session

@@ -132,3 +132,20 @@ rows:
       (test entry removed after block-test)
     status: hardwire-done
     session_sealed: S075
+
+  - id: hardwire-009
+    thing: "Sonnet→Opus relay format — fenced block + 'Paste-ready' header after every sonnet-turn.md write"
+    governor_invocation: "S075: relay presentation inconsistent — HARDWIRE the format so Governor gets one-click copy every time"
+    surfaces:
+      t1_hook: "post-tool-use-sonnet-relay-inline.sh v6.1 (updates last-sonnet-relay.txt on Write/Edit to sonnet-turn.md)"
+      t2_validator: "SP-registry verify_mechanically: last-sonnet-relay.txt mtime < 60s (exits 1 if stale)"
+      t3_session: "session-open.sh: SONNET-RELAY-FORMAT reminder + AGENTS.md hard rule with format spec"
+      sp_registry_entry: "sonnet-relay-presented"
+      audit_runner_row: "added to AGENTS.md inline (format spec)"
+    block_test_command: "node -e \"const fs=require('fs');fs.utimesSync('.csps/last-sonnet-relay.txt',new Date('2020-01-01'),new Date('2020-01-01'));\" && node -e \"const s=require('fs').statSync('.csps/last-sonnet-relay.txt');if(Date.now()-s.mtimeMs>60000)process.exit(1);\" ; echo EXIT:$?"
+    block_test_output: |
+      Set mtime to 2020 (stale) → SP verify:
+      node -e "...statSync('.csps/last-sonnet-relay.txt').mtimeMs > Date.now()-60000..." → EXIT:1 ✓
+      (governing_intent not met: hook didn't fire this turn)
+    status: hardwire-done
+    session_sealed: S075

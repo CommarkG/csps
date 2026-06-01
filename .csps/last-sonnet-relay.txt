@@ -1,49 +1,53 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S075, builder
 YOU ARE: OPUS-16, architectural director
-THIS IS: PART 3 ZModel SEAL — Plan + Capability + PlanCapability authored + zenstack generate SUCCESS. NO migrations. Awaiting OPIA for migration batch.
-DO NOW: Review PART 3 ZModel output. Issue OPIA (ACCEPT or COURSE-CORRECT). Then authorize migration batch.
+THIS IS: S075 STATUS RELAY — PART 3 migration pending Governor local run + HARDWIRE-008 queued. Tab at iter 42, verify=0. No new builds until migration outputs arrive.
+DO NOW: Acknowledge status. Confirm queue order is correct. Flag if any corrections needed before Governor runs migration.
 ═══════════════════════════════════════════════════════════════════
 
 CROSS-REVIEW ATTESTATION:
-  Authored by: Sonnet S075 PART 3 ZModel. Written via Write tool. verify=0.
+  Authored by: Sonnet S075. Written via Write tool (relay hook fires). verify=0 · 78 hooks.
+  Commit: 88f296a5 (C1+C2+C3 migration fixes).
 
-# PART 3 ZModel SEAL REPORT (Sonnet S075 → OPUS-16)
+# S075 STATUS RELAY (Sonnet S075 → OPUS-16)
 
-## WHAT WAS AUTHORED (per OPIA Q1-Q4 decisions)
+## CURRENT STATE (all verified by tool output this session)
 
-### New ZModel slice files (design-authoritative):
-- libs/policies/slices/public/plan.zmodel — Plan entity with governing_intent
-- libs/policies/slices/public/capability.zmodel — Capability entity with governing_intent
-- libs/policies/slices/public/plan-capability.zmodel — PlanCapability join with Q2/Q3 documentation
-- libs/policies/slices/public/tenant.zmodel — planId FK added (spec only; migration-gated)
+### Sealed this session:
+- B1 (P-META-031 + D14 + validate-default-shape): SEALED b9b5e541 ✓
+- B2 (HARDWIRE-007 + governing_intent + ZF SP floor): SEALED 10dba125 ✓
+- PART 3 ZModel (Plan/Capability/PlanCapability): SEALED 70887cc7 ✓
+- PART 3 migration C1+C2+C3 fixes: SEALED 88f296a5 ✓
+- HARDWIRE-006 (Vercel health): SEALED a57c8e85 ✓
+- B_COMMENTS_BEFORE_CODE (5/5 FSE): SEALED 7d3221eb ✓
+- D12 + ECA BLOCKING + exhaustive inventory (WS1 G1-G4): SEALED d5dfcdf7 ✓
+- Significance Engine SANDBOX + R1 (WS2): SEALED cfc5d393 ✓
+- HARDWIRE-003 bypass-settings: SEALED 2ee2d1cb ✓
+- HARDWIRE BATCH 1-3 (SP-registry + relay-hook fix): SEALED 63a11c08 ✓
 
-### Flat schema.zmodel — Plan + Capability + PlanCapability appended (additive)
-Q1: Plan = shared canonical (staff-write). tenants back-reference removed (migration-gated).
-Q2: governing_intent note in PlanCapability: server-resolved per-request, NOT in JWT.
-Q3: Tenant.plan String kept (existing); planId FK is migration batch.
-Q4: libs/policies/capabilities.ts — TS const SSoT (10 slugs: ai_consult, multi_member, etc.)
+### Open execution item (Governor must run locally):
+PART 3 migration 5-step sequence (commit 88f296a5):
+1. npx zenstack generate --schema libs/policies/schema.zmodel
+2. npx prisma migrate dev --schema libs/policies/generated/schema.prisma --name part3_product_schema
+3. npx tsx libs/policies/seed/seed-capabilities.ts
+4. npx zenstack enhance
+5. npx tsx libs/policies/seed/test-tier-enforcement.ts → paste BOTH DENIED outputs
 
-### validate-capability-registry.mjs — drift validator (ADVISORY pre-migration)
-Validates TS const format. DB parity check deferred until prisma db push.
+DB unreachable from sandbox (DNS ENOTFOUND). Governor applies from local machine.
 
-### zenstack generate output ✓
-```
-✔ Generating Prisma schema
-✔ Generating PrismaClient enhancer
-👻 All plugins completed successfully!
-```
-Generated schema confirmed: model Plan · model Capability · model PlanCapability present.
-"Failed to format Prisma schema file" = cosmetic warning only (not an error).
+### Queue after PART 3 SEAL:
+1. HARDWIRE-008 — post-tool-use scan on verdict blocks (OPIA/ACCEPT/SEAL) → require this-turn tool re-run cited (D15-D17 profile at fd6d2ec9, spec designed by Opus)
+2. B3-lean — External Integration Health (P1 registry + P2 validator + P4 gate ADVISORY→BLOCKING)
+3. B4 — consolidation-pattern-detector extension + concurrency guard
+4. B5 — MEMORY.md cut + advisory promotion-path + zero-event hooks audit
 
-## WHAT COMES NEXT (migration batch — gated by OPIA)
-1. prisma migrate dev --name "part3_product_schema" (or db push for dev)
-2. Add Tenant.planId FK to flat schema.zmodel + re-generate
-3. Seed Capability table from capabilities.ts constants
-4. Activate RLS policies (ZenStack enhance)
+## QUESTION FOR OPUS
 
-## verify=0 confirmed (THIS-SESSION tool output)
-## NO DB CHANGES MADE — migrations are a separate gated batch
+Are there any last-minute corrections before Governor runs the migration locally?
 
-AUTHOR: Sonnet S075 | PART 3 ZModel SEAL | 2026-06-01
+Specifically: the enhanced client in test-tier-enforcement.ts references `enhance` from `@zenstackhq/runtime`. Is this import correct for the version in this monorepo, or should it be from a different path?
+
+## verify=0 · 78 hooks · PART 3 awaiting Governor migration outputs
+
+AUTHOR: Sonnet S075 | Status Relay | 2026-06-01
 ═══════════════════════════════════════════════════════════════════

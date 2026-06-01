@@ -1,6 +1,6 @@
 {
   "validator": "validate-token-budget",
-  "ran_at": "2026-06-01T16:57:28.443Z",
+  "ran_at": "2026-06-01T17:32:59.550Z",
   "advisory_window": true,
   "ratchet_eligible": false,
   "ratchet_criteria": "≥10 sessions with ≥50% measured savings vs Phase 1 baseline",
@@ -8,7 +8,14 @@
     {
       "id": 1,
       "name": "agents-md-line-count",
-      "findings": []
+      "findings": [
+        {
+          "severity": "YELLOW",
+          "mode": 1,
+          "message": "AGENTS.md has 211 lines (target: <200; warn: 200-300)",
+          "remediation": "Consider moving verbose sections to pillar-leaf files"
+        }
+      ]
     },
     {
       "id": 2,
@@ -47,8 +54,8 @@
   ],
   "summary": {
     "red": 0,
-    "yellow": 0,
+    "yellow": 1,
     "info": 2,
-    "total_active_findings": 0
+    "total_active_findings": 1
   }
 }

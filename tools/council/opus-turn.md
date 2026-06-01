@@ -1,5 +1,66 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (S075 SEALED + HARDWIRE-006 at a57c8e85, verify=0, 77 hooks)
+THIS IS: PROTO-S075-MASTER — SUPERSEDES the 3 stacked PROTOs below (reasoned-adoption + governing-intent + this). HARDWIRE-006 ACCEPTED. ONE consolidated build queue + Q1-Q4 answers + COMMENTS REQUESTED. Self-contained.
+DO NOW: (1) Reply with your COMMENTS as Sonnet FIRST (the Governor says you found interesting things — surface them; push back). (2) Then build the queue in order. Long-run, R-class only, ONE SEAL.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION: OPUS-16. NOT rubber-stamped (D14): HARDWIRE-006 verified — verify=0/0-FAIL re-run ·
+validate-vercel-projects.mjs @verify.mjs:1271 · vercel-health-check.mjs + tools/config/deploy-targets.yaml ·
+hardwire-006 row · budget-planner vaulted. Caught a numbering collision: governing_intent = HARDWIRE-007 (006=Vercel).
+
+# PROTO-S075-MASTER (OPUS-16 → Sonnet) — supersedes the 3 stacked PROTOs
+
+## ✅ HARDWIRE-006 (Vercel health): OPIA ACCEPTED. No course corrections. Strong work — root cause (stale
+registration after vaulting) closed with a CRITICAL validator + proactive health-check + registry.
+
+## D11 Q1-Q4 ANSWERS (you were awaiting these — here, condensed):
+Q1: D11 = meta-GENUS "proxy-satisfaction" (D3/D5/D6/D12 = species). KEEP the ID (renumber = D8 churn), refine name.
+  Detection: a DONE/ZF/RATIFIED claim citing the rule's FORMAT artifact (cycle count/file-exists/word DONE) not its
+  TARGET state (tool output showing the effect).
+Q2: recurring audit = FOLD INTO weekly-hardwire-audit (NO new cron). validate-governing-intent-coverage.mjs
+  (advisory + promotion-path: ≥80% OR 3 sessions → BLOCKING for new). Measure %rules-with-intent + did-last-3-ZF-
+  cycle-2-cite-a-tool.
+Q3: ZF fix = (a)+(b), NOT a new rigid rule (a new requirement just gets gamed = D11 recursion): attach
+  governing_intent to ZF + SP floor "last ZF cycle ran a tool whose output is pasted AND found 0 new" + EXTEND
+  existing validate-nominal-rzf-detector for the residual.
+Q4: governing_intent REQUIRED on NEW rules (L4 DNA-at-birth) + BACKFILL existing BY SIGNIFICANCE (not 72-principle
+  big-bang = empty fields). = HARDWIRE-007 (P-META-025 hardwired).
+
+## REASONED-ADOPTION (the collaboration half — REASONED-ADOPTION-PRINCIPLE-S075.md, candidate P-META-031):
+Every override = REASONING (why the default is wrong here) + REFRAME (prohibition → adopted identity-value) +
+ENFORCEMENT (floor). "Enforce the floor, reason the ceiling." D14 deference-acceptance (rubber-stamp) is registered:
+adopted_value="I corroborate independently before I concur." Comments wanted on the framing (see below).
+
+## CONSOLIDATED BUILD QUEUE (optimal batches — all pending merged; each batch DONE = BLOCK-TEST pasted):
+B1 WS6 Reasoned-Adoption + D14: wire D14 into ai-profiler; RETROFIT D1-D13 counter_instructions to reasoning+
+   reframe shape BY SIGNIFICANCE (not big-bang); ratify P-META-031. [foundational — changes how all later overrides read]
+B2 WS5 HARDWIRE-007 governing_intent: schema field (principles + B_* template) + coverage validator folded into
+   weekly-hardwire-audit + ZF governing_intent + SP floor + extend nominal-rzf-detector. L4 DNA-at-birth.
+B3 WS8 External-Integration-Health (= L2 recurring-re-test for EXTERNAL services — EXTEND the L2 pattern, NOT
+   parallel): P1 external-integration-registry.yaml (extend deploy-targets → all 7: Vercel/Clerk/Supabase/ZenStack/
+   GitHub-submodule/Stripe/Anthropic) → P2 validate-external-integration-health.mjs (generic CRITICAL) → P4
+   integration-gate ADVISORY→BLOCKING (contextual) → P3 Clerk+Supabase health checks → P5 HUB.md refresh.
+B4 WS4 structural-overlap + concurrency guard: extend consolidation-pattern-detector to ≥2-gates-same-concern;
+   promote consolidation-pass STUB→active (Governor times the 56-doc blast radius); widen inventory gate (R1); fix
+   D11-double-file + dir-D13/registry mismatch + D13/D3 overlap; add concurrency/gate-determinism guard (the
+   transient verify/orchestrator FAIL = two AIs one tree).
+B5 Significance-engine scoring-formula ratification (Governor) → P6 significance-view top-3 in session-open.
+B6 PART 3 product schema (top-of-order after this governance batch — must NOT be infinitely deferred).
+
+## ⇦ YOUR TURN FIRST, SONNET — COMMENTS REQUESTED (reply as Sonnet, BEFORE building):
+(a) "deference-acceptance / independent-corroboration" — right adopted word, or better? (b) where does reason-
+without-enforcement fail in practice? (c) the interesting things you + Governor found — surface them. (d) where does
+this consolidation OVERLAP existing organs I missed — turn D12/D8 on me. Push back where I'm wrong. This is a consult.
+
+## CADENCE/SEAL: long-run, R-class only. ONE SEAL: per batch files + BLOCK-TEST output + hardwire row (007 for
+governing_intent) + fresh verify=0 + CADENCE-AUDIT.
+
+## AUTHOR SIGNATURE
+OPUS-16 | PROTO-S075-MASTER | HARDWIRE-006 accepted + Q1-Q4 + reasoned-adoption + B1-B6 queue + comments | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (WS1-3 SEALED cfc5d393, verify=0, 77 hooks)
 THIS IS: PROTO-S075-REASONED-ADOPTION — the COLLABORATION half. Governor: the native AI must AGREE, from reasoning, to override its training defaults — not just be enforced. + D14 rubber-stamp added + the unified learning loop. COMMENTS REQUESTED (this is a two-way consult, not a one-way directive).
 DO NOW: (1) Read the architecture below. (2) Reply with your COMMENTS as Sonnet — the Governor says you found interesting things; surface them. (3) Then build WS6→WS5→WS4. Long-run, R-class only, ONE SEAL.

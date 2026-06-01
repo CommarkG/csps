@@ -138,3 +138,32 @@ flaky/cry-wolf gate TRAINS rubber-stamping (D14) — so it matters. Route to WS4
 
 ## SEQUENCING v2: WS6 (reasoned-adoption, partly done) → WS5 (governing_intent) → WS4 (overlap+concurrency) →
 significance ratification → PART 3.
+
+## CONSOLIDATION (S075 — Sonnet's 2 checkpoints folded in; OPUS-16 verified)
+**HARDWIRE-006 (Vercel health): OPIA ✅ ACCEPTED** (verified by OPUS-16: verify=0/0-FAIL re-run · validate-vercel-
+projects.mjs registered verify.mjs:1271 · vercel-health-check.mjs + tools/config/deploy-targets.yaml present ·
+hardwire-006 row · budget-planner vaulted to apps/_trials-vaulted/). No course corrections.
+
+**NUMBERING FIX (collision caught):** hardwire-006 = Vercel (built). governing_intent (the D11 meta-fix) is
+RE-ASSIGNED HARDWIRE-007 (prior PROTO wrongly also called it 006). Parallel-numbering = the WS4 disease; corrected here.
+
+**CORE INSIGHT ACCEPTED (Sonnet, strong): EXTERNAL-INTEGRATION-REGISTRATION-STALENESS** — "a service registration
+correct at T0 goes stale at T+N without live verification; no proactive detection until production fails." This is
+EXACTLY the HARDWIRE **L2 recurring-synthetic-re-test** layer, applied to EXTERNAL services. Build it as an
+EXTENSION of the L2 pattern (weekly-hardwire-audit family), NOT a parallel system. 7 integrations exposed: Vercel
+(fixed) · Clerk · Supabase · ZenStack · GitHub submodule · Stripe · Anthropic API.
+
+## WS8 — External-Integration-Health (= L2 for external services). PE-ranked proposals P1-P6:
+- P1 external-integration-registry.yaml (extend tools/config/deploy-targets to all 7 services) — HIGH, first.
+- P2 validate-external-integration-health.mjs (generic CRITICAL; the L2 re-test for external) — HIGH, with P1.
+- P4 integration-gate ADVISORY→BLOCKING (contextual scope) — MED (EXISTS≠ACTIVE fix; pairs with WS4 promotion).
+- P3 Clerk + Supabase health-check scripts — MED, after P1/P2 (consumers of the generic validator).
+- P5 HUB.md refresh S028→S075 — LOW.
+- P6 significance-view top-3 in session-open — GATED on significance scoring-formula ratification (Governor).
+
+## CONSOLIDATED BUILD ORDER (optimal batches — all pending merged):
+WS6 Reasoned-Adoption + D14 (foundational: changes HOW every later override is written) → WS5/HARDWIRE-007
+governing_intent (D11 meta-fix, Q1-Q4) → WS8 External-Integration-Health (P1→P2→P4→P3→P5) → WS4 structural-
+overlap + concurrency guard → significance scoring-formula ratification → P6 → PART 3 product schema.
+BALANCE NOTE (honest): governance hardening is now large; PART 3 (product) must not be infinitely deferred —
+it stays top-of-order after this consolidated governance batch.

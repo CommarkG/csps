@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-06-01T08:38:15.645Z",
+  "run_at": "2026-06-01T09:08:32.503Z",
   "blocking": 0,
   "advisory": 11,
   "note": "ADVISORY only initially. Promotes to blocking after 5 sample exemplar passes (P-META-028)."

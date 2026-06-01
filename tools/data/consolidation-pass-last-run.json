@@ -1,7 +1,400 @@
 {
-  "total_scanned": 3,
-  "total_exempted": 1,
-  "total_findings": 0,
-  "findings": [],
-  "ran_at": "2026-06-01T08:27:43.152Z"
+  "total_scanned": 18,
+  "total_exempted": 2,
+  "total_findings": 56,
+  "findings": [
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "scope",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\AB-TESTING-MOAT.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "gate",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\AB-TESTING-MOAT.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "4 code blocks",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\AB-TESTING-MOAT.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "3 code blocks",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\adr-process.md"
+    },
+    {
+      "pattern": "E",
+      "type": "citation",
+      "item": "6 unique external URLs",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\adr-process.md"
+    },
+    {
+      "pattern": "B",
+      "type": "rule",
+      "item": "MUST phrases (3 occurrences)",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\agent-alignment-protocol.md"
+    },
+    {
+      "pattern": "B",
+      "type": "rule",
+      "item": "REQUIRED phrases (6 occurrences)",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\agent-alignment-protocol.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "10 code blocks",
+      "count": 10,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\agent-alignment-protocol.md"
+    },
+    {
+      "pattern": "E",
+      "type": "citation",
+      "item": "4 unique external URLs",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\agent-alignment-protocol.md"
+    },
+    {
+      "pattern": "F",
+      "type": "cross-ref",
+      "item": "4 cross-section refs",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\agent-alignment-protocol.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "cannot",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\ai-collaboration-charter.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "must",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\ai-collaboration-charter.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "7 code blocks",
+      "count": 7,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\ai-collaboration-charter.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "name",
+      "count": 5,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\anti-patterns.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "first observed",
+      "count": 5,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\anti-patterns.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "scope",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\anti-patterns.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "related",
+      "count": 5,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\anti-patterns.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "4 code blocks",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\anti-patterns.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "statement",
+      "count": 27,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\architecture-principles.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "severity",
+      "count": 13,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\architecture-principles.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "trigger",
+      "count": 10,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\audit-hub.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "schema connection",
+      "count": 10,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\audit-hub.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "handling",
+      "count": 8,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\audit-hub.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "purpose",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\audit-hub.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "14 code blocks",
+      "count": 14,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\audit-hub.md"
+    },
+    {
+      "pattern": "E",
+      "type": "citation",
+      "item": "3 unique external URLs",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\audit-hub.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "t2: validate-rule-has-enforcement.mjs (a",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-AI.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "t3: session-open.sh + agents.md hard-no",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-AI.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "**enforcement_tier:** `{ tier: session-o",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-AI.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "contract: this entry + agents.md hard no",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-AI.md"
+    },
+    {
+      "pattern": "B",
+      "type": "rule",
+      "item": "NEVER phrases (7 occurrences)",
+      "count": 7,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-AI.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "source",
+      "count": 8,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-AI.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "canonical",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-AI.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "3 code blocks",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-AI.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "contract: this entry + agents.md hard no",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "**enforcement_tier:** `{ tier: session-o",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "**enforcement_tier:** `{ t1: .claude/hoo",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "memory: `~/.claude/projects/.../memory/f",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "B",
+      "type": "rule",
+      "item": "MUST phrases (12 occurrences)",
+      "count": 12,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "source",
+      "count": 8,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "canonical",
+      "count": 5,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "governing intent",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "3 code blocks",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "contract: this entry",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-OPER.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "**enforcement_tier:** `{ t1: .claude/hoo",
+      "count": 11,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-OPER.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "contract: this entry + agents.md hard no",
+      "count": 7,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-OPER.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "**enforcement_tier:** `{ tier: t1+t3, t1",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-OPER.md"
+    },
+    {
+      "pattern": "B",
+      "type": "rule",
+      "item": "MUST phrases (5 occurrences)",
+      "count": 5,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-OPER.md"
+    },
+    {
+      "pattern": "B",
+      "type": "rule",
+      "item": "REQUIRED phrases (7 occurrences)",
+      "count": 7,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-OPER.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "source",
+      "count": 15,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-OPER.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "canonical",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-OPER.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "counterweight",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-OPER.md"
+    },
+    {
+      "pattern": "F",
+      "type": "cross-ref",
+      "item": "4 cross-section refs",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-OPER.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "**enforcement_tier:** `{ t1: .claude/hoo",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-VALD.md"
+    },
+    {
+      "pattern": "B",
+      "type": "rule",
+      "item": "MUST phrases (6 occurrences)",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-VALD.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "source",
+      "count": 9,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-VALD.md"
+    }
+  ],
+  "ran_at": "2026-06-01T09:06:10.893Z"
 }

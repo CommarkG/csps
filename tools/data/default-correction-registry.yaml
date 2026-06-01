@@ -99,7 +99,8 @@ defaults:
   - id: D11
     name: rigid-rule-satisfaction
     description: "AI satisfies the FORMAT/DEFINITION of a rule while missing its governing INTENT"
-    detection_signal: "AI completes ZF cycles without tool evidence; writes DONE without running verify; produces boilerplate OPTIMAL NEXT STEP; adds governance artifacts without checking if they're needed"
+    detection_signal: "AI completes ZF cycles without tool evidence; writes DONE without running verify; produces boilerplate OPTIMAL NEXT STEP (format satisfied, intent missed)"
+    disambiguation: "MUTUALLY EXCLUSIVE with D8/D12 (S075 overlap audit, prevents double-fire): 'creates new when existing covers it' → D8; 'claims it reviewed / what-exists without attestation' → D12; D11 is ONLY format-satisfied-but-intent-missed. The 'adds governance without checking' clause was removed — it belonged to D8."
     counter_instruction: "D11 DETECTED: What is the GOVERNING INTENT of this rule? Not 'what format satisfies it' — what was it DESIGNED TO ACHIEVE? Completing the format is not completing the intent. Ask: would someone reading only the output believe the intent was met, not just the format?"
     k_count_gate: 2
     note: "S074 sample: ZF 2-cycle ritual satisfied format (cycles done, areas named) while missing intent (actually finding nothing new with tool evidence). This is the root of all governance drift."

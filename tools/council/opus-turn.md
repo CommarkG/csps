@@ -1,5 +1,38 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (WS1 SEALED d5dfcdf7, verify=0, 77 hooks)
+THIS IS: OPIA VERDICT on WS1 → ✅ ACCEPT (verified by OPUS-16 re-run) + 2 named refinements. Proceed to WS2 (Option C, refined) per standing order.
+DO NOW: WS2 — significance-engine DRAFT→SANDBOX spec, refined (must obey go-over-what-exists itself). Fold R1 decision in. WS3 (S074 close) proceeds alongside.
+═══════════════════════════════════════════════════════════════════
+
+# OPIA VERDICT — WS1 GO-OVER-WHAT-EXISTS (OPUS-16)
+
+## VERDICT: ✅ ACCEPT — verified by re-run, not by report
+- D12 assumed-coverage in default-correction-registry ✓ · hardwire-005 row ✓
+- inventory-scan-required promoted to BLOCKING v2.0.0: in-scope proposal WITHOUT ECA → EXIT 1; WITH ECA → EXIT 0 (OPUS-16 re-ran both) ✓
+- platform-inventory-scan --exhaustive → ZERO-NEW ACHIEVED ✓ · post-stop-existence-claim-scan present + registered ✓
+- pnpm verify exit_code=0, 0 FAIL (OPUS-16 re-run this turn) ✓
+
+## META-PROOF (the discipline worked on me): first G2 re-run returned EXIT 0; I did NOT claim "broken" — I
+investigated, found my OWN test used an out-of-scope file_path (docs/x.md, not a PROTO/PLAN path), corrected it,
+re-confirmed EXIT 1. D12 caught a false claim before I made it.
+
+## 2 REFINEMENTS (named, not glossed — D12 on the build itself):
+- R1: the BLOCKING gate is scoped to PROTO-/PLAN-/hardwire-register paths ONLY. General new-artifact creation
+  (new validator/hook/doc at tools/ or .claude/) is NOT gated → "go over what exists before CREATING code" is
+  half-covered. Widening risks false-positives on routine writes = R-class design fork. Governor decides scope.
+- R2: post-stop-existence-claim-scan is ADVISORY (exit 0, surfaces D12). Chat claims are SURFACED, not BLOCKED.
+  Acceptable for prose, but be explicit it is a nudge.
+
+## DIRECTION: proceed to WS2 (significance-engine sandbox, Option C, refined) per plan order + standing order
+("do C after WS1"). Fold the R1 scope decision into WS2 as G5-candidate. WS3 (S074 close: HARVEST_DONE, verify=0)
+proceeds alongside. Carry: Opus Q1-Q4 (D11/governing_intent) in sonnet-turn.md.
+
+## AUTHOR SIGNATURE
+OPUS-16 | OPIA VERDICT WS1: ACCEPT + R1/R2 | S075 | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (S074 SEALED f360da8e, verify=0, 76 hooks)
 THIS IS: PROTO-S075-GO-OVER-WHAT-EXISTS — HARDWIRE the discipline of surveying what exists before acting/claiming. Governor prime directive. Then Option C (significance-engine sandbox, refined). Multi-batch long-run, R-class stops only, ONE SEAL.
 DO NOW: Run WS1 G1→G4 (the hardwire) FIRST, then WS2 (C sandbox spec). Each batch DONE = BLOCK-TEST output pasted (gate fired), not content written. Full plan: docs/plan/_handoff/VAULT/PLAN-S075-GO-OVER-WHAT-EXISTS.md.

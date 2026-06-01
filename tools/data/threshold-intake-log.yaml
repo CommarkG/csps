@@ -3818,3 +3818,33 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-06-01T08-43-13-130Z"
+  timestamp: "2026-06-01T08:43:13.130Z"
+  session: "S074"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-06-01T08-59-24-894Z"
+  timestamp: "2026-06-01T08:59:24.894Z"
+  session: "S074"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-06-01T09-03-38-097Z"
+  timestamp: "2026-06-01T09:03:38.097Z"
+  session: "S074"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

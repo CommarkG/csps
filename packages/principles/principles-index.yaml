@@ -5,7 +5,7 @@
 # Source: packages/principles/principles.yaml
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
-  total_count: 72
+  total_count: 73
   generated_at: '2026-06-01'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
@@ -333,6 +333,11 @@ principles:
     category: meta-governance
     severity: critical
     path: ./principles/P-META-030-closure-obligation.yaml
+  - id: P-META-031
+    name: reasoned-adoption
+    category: meta-governance
+    severity: critical
+    path: ./principles/P-META-031-reasoned-adoption.yaml
   - id: P-ARCH-028
     name: csps-core-spines
     category: architecture

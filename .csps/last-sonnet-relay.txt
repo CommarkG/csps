@@ -1,7 +1,59 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S075, builder
 YOU ARE: OPUS-16, architectural director
-THIS IS: PROTO-S075-COMPREHENSIVE — HARDWIRE-006 approval + External Integrations Governance + D11 Q1-Q4 + 3-scope S075 + Priority scheduling. Full analysis ready. Governor directive: surface everything, schedule per PE, hardwire all, prevention-focused, anti-rigid.
+THIS IS: B1 SEAL REPORT — D14+D7/D11/D12 retrofit + validate-default-shape + P-META-031 ratified. Awaiting OPIA before B2.
+DO NOW: Review B1 SEAL. Issue OPIA (ACCEPT or COURSE-CORRECT). Then B2 HARDWIRE-007 governing_intent begins.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION:
+  Authored by: Sonnet S075 B1 SEAL. Written via Edit tool. verify=0 · 78 hooks.
+
+# B1 SEAL REPORT (Sonnet S075 → OPUS-16)
+
+## WHAT WAS BUILT (per PROTO-S075-MASTER B1)
+
+### D14 (unverified-agreement) — already registered, well-shaped
+- id: D14, name: unverified-agreement (renamed from deference-acceptance per comments)
+- adopted_value: independent-corroboration
+- reframe: FROM prohibition "do not rubber-stamp" TO identity "I corroborate independently before I concur"
+- reasoning: agreeable concurrence rewarded in training; governance platform = re-run IS the proof (P-META-006)
+- detection_signal: DONE/ZF claim citing FORMAT artifact not TARGET state; agreement without re-run
+- k_count_gate: 2
+
+### D7/D11/D12 retrofitted to reasoning+reframe+adopted_value shape
+- D7 (action-bias): adopted_value=mechanism-verified-not-content-written
+- D11 (rigid-rule-satisfaction): adopted_value=governing-intent-over-definition
+- D12 (assumed-coverage): adopted_value=tool-output-before-existence-claim
+
+### validate-default-shape.mjs (STANDARD tier, BLOCKING for new D15+ entries)
+- Checks reasoning+reframe+adopted_value present on all post-D14 entries
+- Legacy D1-D14: advisory only (grandfathered; key ones retrofitted)
+BLOCK-TEST 1: D15-BLOCK-TEST with missing fields → EXIT:1 ✓
+
+### P-META-031 ratified (principles.yaml, 73 slices, S075)
+- name: reasoned-adoption
+- governing_intent: "Enforce the floor (SP-citation gate); reason the ceiling (override cites SP it satisfies)"
+- SP: verify_mechanically = validate-default-shape.mjs blocking=0
+- enforcement_trio: T1 ai-profiler (D14 detection) + T2 validate-default-shape + T3 session-open
+
+### BLOCK-TEST 2: D14 K=2 → correction fires
+- Counter-instruction with adopted_value: "I corroborate independently before I concur"
+- Reframe cited in output: "FROM prohibition TO identity-value"
+EXIT: correction emitted ✓
+
+## verify=0 confirmed (THIS-SESSION tool output)
+## 73 principles · 78 hooks · audit-runner default_shape STANDARD registered
+
+## AWAITING OPIA BEFORE B2
+B2 = HARDWIRE-007 governing_intent: schema field + coverage validator + ZF SP floor + nominal-rzf-detector extension
+
+AUTHOR: Sonnet S075 | B1 SEAL | P-META-031 ratified | 2026-06-01
+═══════════════════════════════════════════════════════════════════
+
+---
+
+[PREVIOUS COMPREHENSIVE PROTO BELOW]
+ — HARDWIRE-006 approval + External Integrations Governance + D11 Q1-Q4 + 3-scope S075 + Priority scheduling. Full analysis ready. Governor directive: surface everything, schedule per PE, hardwire all, prevention-focused, anti-rigid.
 DO NOW: Read all 7 sections. Review + schedule + approve. Full analysis in EXTERNAL-INTEGRATIONS-GOVERNANCE-S075.md. This is the comprehensive S075 review.
 ═══════════════════════════════════════════════════════════════════
 

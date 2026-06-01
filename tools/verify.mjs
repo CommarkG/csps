@@ -1300,6 +1300,17 @@ const CYCLES = [
     },
   },
   {
+    // S075 B1: default-shape — BLOCKING if new D* entry lacks reasoning+reframe+adopted_value (P-META-031).
+    // Enforce the floor: counter_instruction alone = T3-only = drifts. STANDARD tier.
+    name: 'default_shape',
+    command: 'node tools/validators/validate-default-shape.mjs',
+    run_tier: 'STANDARD',
+    parse_output: (out) => {
+      const m = out.match(/entries=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { entries: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // S074 BATCH 5: advisory-has-promotion-path — ADVISORY if any advisory validator lacks promotion_trigger or death_date.
     // 141 advisory validators without path = theater. ADVISORY tier initially (promotes per P-META-028).
     name: 'advisory_has_promotion_path',

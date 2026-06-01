@@ -9,7 +9,7 @@
 | **Current session** | S074 |
 | **Previous session** | S073 |
 | **Last updated** | today |
-| **Last commit** | 10dba12 feat(S075-B2): HARDWIRE-007 governing_intent — root fix for D11 rigid-rule-satisfaction |
+| **Last commit** | 70887cc feat(S075-PART3): Plan + Capability + PlanCapability ZModel — SPEC-FIRST, no migrations |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

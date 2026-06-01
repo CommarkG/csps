@@ -505,3 +505,61 @@ model WebhookEndpoint extends Base {
 
   @@index([tenantId, active])
 }
+
+// ============================================================================
+// PART 3 — Product Schema (S075)
+// Plan + Capability + PlanCapability
+// NOTE: Tenant.planId FK is in the migration batch (separate gated step).
+//       These models compile clean now. DB migration authorizated by Opus OPIA.
+// ============================================================================
+
+model Plan extends Base {
+  slug            String   @unique
+  name            String
+  description     String?
+  monthlyPriceUsd Decimal? @db.Decimal(10, 2)
+  stripePriceId   String?
+
+  // tenants Tenant[] — back-reference added when Tenant.planId FK migration is authorized
+  capabilities PlanCapability[]
+
+  @@schema("public")
+  @@allow("read", true)
+  @@allow("create,update", auth().staffRole != null)
+  @@deny("delete", true)
+  @@index([slug])
+}
+
+model Capability extends Base {
+  slug        String   @unique
+  name        String
+  description String?
+  category    String?
+  deprecated  Boolean  @default(false)
+
+  plans PlanCapability[]
+
+  @@schema("public")
+  @@allow("read", true)
+  @@allow("create,update", auth().staffRole != null)
+  @@deny("delete", true)
+  @@index([slug])
+  @@index([category])
+}
+
+model PlanCapability extends Base {
+  planId        String
+  capabilityId  String
+  limitValue    Int?
+
+  plan       Plan       @relation(fields: [planId],       references: [id])
+  capability Capability @relation(fields: [capabilityId], references: [id])
+
+  @@unique([planId, capabilityId])
+  @@schema("public")
+  @@allow("read", true)
+  @@allow("create,update", auth().staffRole != null)
+  @@deny("delete", true)
+  @@index([planId])
+  @@index([capabilityId])
+}

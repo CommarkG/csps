@@ -1,0 +1,18 @@
+{
+  "run_at": "2026-06-01T14:58:00.050Z",
+  "slugs_found": 10,
+  "slugs": [
+    "ai_consult",
+    "ai_multi_model",
+    "multi_member",
+    "rbac",
+    "audit_history_full",
+    "audit_export",
+    "analytics_full",
+    "reports_custom",
+    "webhooks",
+    "api_access"
+  ],
+  "blocking": 0,
+  "advisory": 1
+}

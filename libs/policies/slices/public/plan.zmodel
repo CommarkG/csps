@@ -1,0 +1,48 @@
+// ============================================================================
+// Plan — Product tier slice (PART 3)
+// ============================================================================
+// Platform-level billing tier. A Plan defines what a Tenant is entitled to.
+// Q1 decision: SHARED canonical record (staff-write). No per-tenant copies.
+// Enterprise customisation = thin PlanCapability override, added later (YAGNI).
+//
+// governing_intent: Plan is the contract between the platform and its tenants.
+// It lives at platform level (not tenant-scoped) so that plan changes propagate
+// across all tenants on that plan without manual per-tenant updates.
+// The "never serve features to unpaid tiers" guarantee is enforced by combining
+// Plan.capabilities (what the tier unlocks) with Tenant.subscriptionStatus
+// (billing lifecycle: active|trialing = entitled; cancelled|free = restricted).
+//
+// Per P-ARCH-007: hard delete denied; plans deprecate, not delete.
+// Per P-ARCH-008: no audit trigger on Plan (platform record, not tenant data).
+//
+// Source of truth: docs/plan/_handoff/VAULT/PART3-PRODUCT-SCHEMA-SANDBOX-S075.md
+// Paired with:     libs/policies/slices/public/plan-capability.zmodel
+//                  libs/policies/slices/public/capability.zmodel
+// TS SSoT:         libs/policies/capabilities.ts (capability slug constants)
+// ============================================================================
+
+import "../../base"
+
+model Plan extends Base {
+  slug           String    @unique                       // e.g. "free" | "pro" | "team" | "enterprise"
+  name           String                                  // display name
+  description    String?
+
+  // Billing
+  monthlyPriceUsd Decimal? @db.Decimal(10, 2)           // null = free forever
+  stripePriceId   String?                               // Stripe Price ID (recurring billing)
+
+  // Relationships
+  tenants      Tenant[]         @relation("TenantPlan")
+  capabilities PlanCapability[]
+
+  @@schema("public")
+
+  // Plans are public (pricing page) — anyone can read the plan catalogue.
+  // Only platform staff can create or update plans.
+  @@allow("read", true)
+  @@allow("create,update", auth().staffRole == "staff" || auth().staffRole == "admin" || auth().staffRole == "super")
+  @@deny("delete", true)                                // soft-delete only per P-ARCH-007
+
+  @@index([slug])                                       // primary lookup by tier name
+}

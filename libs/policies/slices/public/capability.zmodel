@@ -1,0 +1,44 @@
+// ============================================================================
+// Capability — Feature/ability registry (PART 3)
+// ============================================================================
+// Defines a named capability the platform provides.
+// Q4 decision: TS const (libs/policies/capabilities.ts) = SSoT for slug names.
+// DB Capability table is seeded FROM the TS const via a seed script.
+// A drift-validator (validate-capability-registry.mjs) ensures DB ↔ TS parity.
+//
+// governing_intent: Capabilities are the vocabulary of what the platform can do.
+// Declaring them explicitly (rather than hardcoding feature flags) makes the
+// tier system schema-driven and auditable — new capabilities are registered
+// in the TS const, seeded to DB, and linked to plans via PlanCapability.
+//
+// Why not YAML-only? Type safety at call sites (TypeScript catches typos).
+// Why not free-form DB? Drift between code and data causes silent failures.
+// Why not TS-only? DB row enables JOINs in RLS policies + Prisma queries.
+//
+// Per P-ARCH-007: hard delete denied (capabilities deprecate, not delete).
+// Source of truth: docs/plan/_handoff/VAULT/PART3-PRODUCT-SCHEMA-SANDBOX-S075.md
+// TS SSoT: libs/policies/capabilities.ts
+// ============================================================================
+
+import "../../base"
+
+model Capability extends Base {
+  slug        String    @unique                         // machine-readable from capabilities.ts
+  name        String                                    // human display name
+  description String?
+  category    String?                                   // grouping: "ai" | "collaboration" | "reporting"
+  deprecated  Boolean   @default(false)                 // soft-deprecation without deletion
+
+  plans PlanCapability[]
+
+  @@schema("public")
+
+  // Capabilities are public (feature comparison pages).
+  // Only staff can create/update/deprecate.
+  @@allow("read", true)
+  @@allow("create,update", auth().staffRole != null)
+  @@deny("delete", true)                               // soft-delete only per P-ARCH-007
+
+  @@index([slug])
+  @@index([category])
+}

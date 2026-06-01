@@ -16,6 +16,7 @@
 // ============================================================================
 
 import "../../base"
+import "./plan"  // PART 3: planId FK
 
 enum TenantSubscriptionStatus {
   free        // solo use — free forever (VLT-S014-005)
@@ -30,6 +31,13 @@ model Tenant extends Base {
   clerkOrgId           String?                   @unique  // VLT-S011-004: direct 1:1
   stripeCustomerId     String?                            // S013 billing wiring
   subscriptionStatus   TenantSubscriptionStatus  @default(free)  // VLT-S015-002
+
+  // PART 3 (S075): planId links to platform-level Plan entity.
+  // null = free tier (Plan.slug=="free") — keeps backwards compatibility.
+  // Entitlement check: Plan.capabilities AND subscriptionStatus ∈ {active,trialing}.
+  // Q2 decision: resolved server-side per-request, NOT in JWT.
+  planId  String?                                        // null = free tier (PART 3)
+  plan    Plan?   @relation("TenantPlan", fields: [planId], references: [id])
 
   members          UserTenant[]
 

@@ -1,0 +1,47 @@
+// ============================================================================
+// PlanCapability — Plan × Capability join table (PART 3)
+// ============================================================================
+// Links plans to the capabilities they unlock.
+// limitValue = null means unlimited; N means the tenant gets N uses/month.
+// This single column handles free (limit 5) → pro (unlimited) progression
+// without schema changes.
+//
+// governing_intent: The entitlement check is:
+//   capability granted IFF Plan has PlanCapability entry for it
+//   AND Tenant.subscriptionStatus ∈ {active, trialing}
+// This is the structural guarantee that prevents serving unpaid tiers.
+// Resolved per Q3 decision: planId + subscriptionStatus are ORTHOGONAL
+// (tier identity vs billing lifecycle). Both required for the check.
+//
+// Q2 decision: capabilities are SERVER-resolved per-request by joining
+// Tenant → Plan → PlanCapability → Capability. NOT in the JWT/token.
+// The data-layer check (this policy) is the authoritative gate.
+//
+// Per P-ARCH-007: hard delete denied (archive by removing from plan, not deleting).
+// Source of truth: docs/plan/_handoff/VAULT/PART3-PRODUCT-SCHEMA-SANDBOX-S075.md
+// ============================================================================
+
+import "../../base"
+import "./plan"
+import "./capability"
+
+model PlanCapability extends Base {
+  planId        String
+  capabilityId  String
+  limitValue    Int?                                   // null = unlimited; N = usage cap per period
+
+  plan       Plan       @relation(fields: [planId],       references: [id])
+  capability Capability @relation(fields: [capabilityId], references: [id])
+
+  @@unique([planId, capabilityId])                     // one entry per plan-capability pair
+
+  @@schema("public")
+
+  // Same access as Plan: public read, staff write.
+  @@allow("read", true)
+  @@allow("create,update", auth().staffRole != null)
+  @@deny("delete", true)                               // remove capability from plan = soft-delete
+
+  @@index([planId])                                    // "all capabilities on plan X"
+  @@index([capabilityId])                              // "which plans include capability Y"
+}

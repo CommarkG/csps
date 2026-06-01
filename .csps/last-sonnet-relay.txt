@@ -1,8 +1,171 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S075, builder
 YOU ARE: OPUS-16, architectural director
-THIS IS: CHECKPOINT — HARDWIRE-006 Vercel health + D11 Q1-Q4 + S075 status. Review + approve.
-DO NOW: Review HARDWIRE-006 (Vercel permanent fix) + answer D11 Q1-Q4 + OPIA for S075.
+THIS IS: PROTO-S075-COMPREHENSIVE — HARDWIRE-006 approval + External Integrations Governance + D11 Q1-Q4 + 3-scope S075 + Priority scheduling. Full analysis ready. Governor directive: surface everything, schedule per PE, hardwire all, prevention-focused, anti-rigid.
+DO NOW: Read all 7 sections. Review + schedule + approve. Full analysis in EXTERNAL-INTEGRATIONS-GOVERNANCE-S075.md. This is the comprehensive S075 review.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION:
+  Authored by: Sonnet S075 per Governor S075 comprehensive directive.
+  ECA confirmed: platform-inventory-scan.mjs --exhaustive → 10 artifacts, ZERO-NEW ✓
+  Full analysis: docs/plan/_handoff/VAULT/EXTERNAL-INTEGRATIONS-GOVERNANCE-S075.md
+  Written via Edit tool (post-tool-use-sonnet-relay-inline.sh fires). Commit to follow.
+
+# PROTO-S075-COMPREHENSIVE (Sonnet S075 → OPUS-16)
+
+---
+
+## SECTION 1: S075 TAB WORK — SUMMARY (what Sonnet built, all sealed)
+
+| Commit | What | Status |
+|---|---|---|
+| d5dfcdf7 | WS1 G1-G4: D12+ECA BLOCKING+exhaustive inventory+hardwire-005 | SEALED |
+| cfc5d393 | WS2 significance SANDBOX (4-MOVE+R1=96%FP) + WS3 HANDOFF | SEALED |
+| a57c8e85 | HARDWIRE-006: Vercel health (validate+health-check+deploy-targets) | SEALED |
+
+**verify=0 · 77 hooks · csps-playground READY (live API confirmed)**
+
+3-scope analysis in full at EXTERNAL-INTEGRATIONS-GOVERNANCE-S075.md §4.
+
+---
+
+## SECTION 2: HARDWIRE-006 — REQUEST APPROVAL
+
+**The Vercel failure** (recurring for weeks, discovered via email):
+- `csps-budget-planner` Vercel project → root_dir=`apps/budget-planner` → moved to `_trials-vaulted/` → BUILD FAILED every push
+- Scope 2 ripple: all 6 vaulted apps potentially had this issue
+
+**What Sonnet built (HARDWIRE-006, 7 surfaces):**
+1. Removed csps-budget-planner Vercel project (confirmed gone via REST API)
+2. `validate-vercel-projects.mjs` CRITICAL: blocks push if active root_dir missing on disk
+3. `vercel-health-check.mjs`: proactive REST API health check (no email waiting)
+4. `deploy-targets.yaml`: csps-playground registered (deployed+READY); budget-planner deprecated with reason
+5. `hardwire-register.yaml`: hardwire-006 (7 surfaces)
+6. `audit-runner.md`: vercel_projects CRITICAL validator
+7. `satisfaction-point-registry.yaml`: vercel-deployment-healthy SP entry
+
+**Opus: is HARDWIRE-006 structurally sound? Any course corrections?**
+
+---
+
+## SECTION 3: EXTERNAL INTEGRATIONS HUB — STATE + GAPS + CORE INSIGHT
+
+### Current state (ECA confirmed, see §1 above):
+The hub exists (`HUB.md` from S028) with mandatory-read-before-act pattern. ADVISORY gate. No live health checks. No stale-registration detection. 5 service files (Vercel, Supabase, Clerk, ZenStack + Stripe placeholder).
+
+### THE CORE INSIGHT (from Vercel fix — propagate to all integrations):
+
+> **"A service registration (config/credential/endpoint) that was correct at T0 becomes stale without live verification — and the platform has no proactive mechanism to detect staleness until an operation fails in production."**
+
+**Prevention class**: EXTERNAL-INTEGRATION-REGISTRATION-STALENESS
+
+This is NOT specific to Vercel. It applies universally:
+
+| Integration | Stale-registration risk | Has health check? |
+|---|---|---|
+| Vercel | Root directory path | ✓ FIXED HARDWIRE-006 |
+| Clerk | Webhook URL, JWT template, redirect URLs | ✗ None |
+| Supabase | pgbouncer URL, connection_limit, credentials | ✗ None |
+| ZenStack | enhance.js path after pnpm update | ✗ None |
+| GitHub submodule | csps-playground SHA/access | ✗ None |
+| Future Stripe | Webhook secret, API key | ✗ None |
+| Future Anthropic | API key, model availability | ✗ None |
+
+### The Insight for other platform domains (P-META-006 CEC):
+
+1. **Registration-Verification-Gap pattern**: Any platform registry (deploy-targets, audit-runner, validator registrations, session-state) has a T0→Tstale decay without live verification. HARDWIRE-006 is the FIRST concrete instance. Pattern should be formalized.
+
+2. **Silent Failure = Information Lag**: Vercel failures were silent for weeks (reactive signal = email). Every integration should have a PROACTIVE signal (health check). This is the architectural root of HARDWIRE-006 generalized.
+
+3. **Deprecation-Ledger pattern**: The `status:deprecated + deprecation_reason` entry prevents K=2 failure recurrence. This pattern should apply to any platform artifact that can "die silently."
+
+---
+
+## SECTION 4: PROPOSED IMPROVEMENTS — FOR OPUS SCHEDULING (not directives)
+
+**Anti-rigid note** per Governor: these are reference-points, not mandates. Opus evaluates PE/SPI and sequences. Context-dependent enforcement (not every check on every commit).
+
+### P1 — External-Integration-Health-Registry (~3h, high-impact)
+Extend/replace deploy-targets.yaml with `tools/config/external-integration-registry.yaml` covering ALL services. Schema per entry: service + config_key + config_value + status + health_check_command + last_verified + deprecation_reason + verified_at.
+**PE rationale**: prevents ALL future HARDWIRE-006-class failures across all integrations.
+
+### P2 — validate-external-integration-health.mjs (~2h, extends HARDWIRE-006 pattern)
+Generic validator: runs health_check_command per active registry entry. CRITICAL for entries with `verified_at` > 30 sessions old. ADVISORY for newer. Works like validate-vercel-projects.mjs but for ALL integrations.
+
+### P3 — Health check scripts: Clerk + Supabase (~2h each)
+Per the vercel-health-check.mjs template: lightweight API calls to verify:
+- Clerk: webhooks live, JWT template exists, sign-in URL valid
+- Supabase: pgbouncer connection works (uses `?pgbouncer=true&connection_limit=1`)
+Advisory first; promote to CRITICAL on K=2 failure.
+
+### P4 — Pre-tool-use-external-integration-gate ADVISORY→BLOCKING (contextual)
+Promote to BLOCKING for writes that touch integration config WITHOUT updating `verified_at`. Keep ADVISORY for non-registry writes. NOT rigid — explicit carve-out for dev-mode updates.
+
+### P5 — HUB.md refresh (S028→S075, ~1h)
+Update hub to include: health check discipline, registry pattern, deprecation-ledger, HARDWIRE-006 as inaugural pattern. Add `last_verified` + `health_status` columns to the service table.
+
+### P6 — Significance Engine session-open injection (~1h)
+significance-view.mjs already running (sandbox). Top item: ZF nominal cycles k=6. Wire top-3 into session-open.sh injection after Opus ratifies scoring formula. The engine earns expansion by proving value.
+
+---
+
+## SECTION 5: D11 Q1-Q4 — STILL AWAITING OPUS ANSWER
+
+From sonnet-turn.md checkpoint (previous relay):
+
+**Q1**: Is D11 "rigid-rule-satisfaction" the right framing? Is "proxy-satisfaction" or "definitional capture" better for mechanical detection?
+
+**Q2**: Recurring audit design for governing_intent coverage:
+- `validate-governing-intent-coverage.mjs`: scans principles.yaml + behavioral-contracts for rules WITHOUT `governing_intent` field
+- Weekly audit: check if last 3 closing-summaries had tool-call citation in ZF Cycle 2
+- Metric: (rules with governing_intent) / (total rules) = "intent-definition alignment score"
+
+**Q3**: ZF fix options:
+(a) Add governing_intent to ZF rule: "iterate until re-run genuinely finds nothing new — cycle count is data, not target"
+(b) SP-registry entry: verify_mechanically = "last ZF cycle included tool call + 0 new issues"
+(c) Architecture change — ZF format itself is wrong?
+
+**Q4**: P-META-025 C&I connection — should `governing_intent` become a required field on ALL principles? Should D11 be the HARDWIRE trigger for P-META-025 compliance?
+
+**Sonnet's Q5 pre-answer** (for Opus to challenge): root is D8 applied to governance itself (naming-novelty at the meta-level). Fix: K=2 same gap → gap-recurrence-register AUTO-TRIGGERS `HARDWIRE [gap-name]` without Governor invocation.
+
+---
+
+## SECTION 6: THE BIG PICTURE REQUEST (Governor's platform attitude)
+
+Governor: "Take a system-platform attitude and establish the whole governance and improvements of external integrations... All you find must be hardwired, stabilized, all problems prevented, all insights registered to give value in other domains."
+
+**Sonnet's read of the governing intent** (not the rigid request):
+
+The external-integrations hub is CSPS's external interface governance surface. Right now it's a "mandatory-read" pattern (T3-only in practice). What it SHOULD be:
+
+1. **A health-monitoring spine** — proactive, not reactive; checks live status on schedule; notifies before failures, not after
+2. **A registration-first discipline** — any new integration goes through the hub BEFORE it goes to Vercel/Clerk/Supabase; any deprecation goes through the hub BEFORE the artifact is removed
+3. **A pattern-library** — each service file captures not just "how to configure" but "what breaks silently + how to detect it early"
+4. **A living registry** — not a static doc from S028 but a living registry with `verified_at` + `health_status` + `deprecation_ledger`
+
+This is NOT about adding more governance. It's about making the EXISTING governance surfaces (HUB.md, gate hook, service files) actually active — per EXISTS≠ACTIVE principle.
+
+---
+
+## SECTION 7: CARRY-FORWARD + SCHEDULING REQUEST
+
+| Item | Current status | Requested from Opus |
+|---|---|---|
+| HARDWIRE-006 structural approval | Built, awaiting Opus verdict | Approve or course-correct |
+| External Integration Health Registry (P1-P5) | Proposed | Schedule per PE, issue PROTO when ready |
+| D11 Q1-Q4 | Awaiting since sonnet-turn.md | Answer + HARDWIRE plan |
+| PART 3 product schema | Confirmed top-of-order | PROTO after S075 SEAL |
+| Significance Engine session-open (P6) | SANDBOX written | Ratify scoring formula |
+| Floater triage (26 overdue) | 3/session target | Governor: .csps/floater-decision-queue.txt |
+| S075 OPIA | WS1+WS2+WS3+HARDWIRE-006 sealed | Issue OPIA verdict |
+
+**Full analysis document**: `docs/plan/_handoff/VAULT/EXTERNAL-INTEGRATIONS-GOVERNANCE-S075.md`
+
+---
+
+## AUTHOR
+Sonnet S075 | PROTO-S075-COMPREHENSIVE | Governor S075 comprehensive directive | 2026-06-01
 ═══════════════════════════════════════════════════════════════════
 
 CROSS-REVIEW ATTESTATION:

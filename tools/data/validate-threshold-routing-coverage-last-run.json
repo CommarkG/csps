@@ -1,8 +1,8 @@
 {
-  "entries_checked": 385,
+  "entries_checked": 387,
   "with_4axes": 0,
-  "missing_axes": 385,
-  "advisory": 385,
+  "missing_axes": 387,
+  "advisory": 387,
   "blocking": 0,
   "findings": [
     {
@@ -186,5 +186,5 @@
       ]
     }
   ],
-  "ran_at": "2026-06-01T09:10:33.439Z"
+  "ran_at": "2026-06-01T09:19:26.282Z"
 }

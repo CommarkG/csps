@@ -1,15 +1,7 @@
 {
-  "total_scanned": 3,
-  "total_exempted": 1,
-  "total_findings": 1,
-  "findings": [
-    {
-      "pattern": "D",
-      "type": "example",
-      "item": "3 code blocks",
-      "count": 3,
-      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\SIGNIFICANCE-ENGINE-SANDBOX-S075.md"
-    }
-  ],
-  "ran_at": "2026-06-01T09:09:29.616Z"
+  "total_scanned": 1,
+  "total_exempted": 0,
+  "total_findings": 0,
+  "findings": [],
+  "ran_at": "2026-06-01T09:11:34.347Z"
 }

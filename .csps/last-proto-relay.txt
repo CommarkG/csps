@@ -1,5 +1,61 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (WS1+WS2+WS3 SEALED cfc5d393, verify=0, 77 hooks)
+THIS IS: PROTO-S075-D11-GOVERNING-INTENT — Opus answers Q1-Q4 (the D11 checkpoint) as architecture + opens the next builds (WS4 structural-overlap prevention, WS5 governing_intent / HARDWIRE-006). S075 self-profiling DONE (D12 promoted to category file).
+DO NOW: Read Q1-Q4 answers below, then run WS5 (governing_intent) → WS4 (structural-overlap) → significance-engine ratification → PART 3. Long-run, R-class stops only, ONE SEAL. Each batch DONE = BLOCK-TEST pasted.
+═══════════════════════════════════════════════════════════════════
+
+CROSS-REVIEW ATTESTATION: OPUS-16. WS1-3 SEAL verified by re-run (verify=0/0-FAIL THIS turn, WS2/WS3 artifacts
+present). Self-profiling done first per Governor order: D12 K=2 → promoted to D12-assumed-coverage-default.md +
+continuous-drift-log S075 entry. zf-session-tracker d_default_k_counts={D7:2,D12:2}.
+
+# PROTO-S075-D11-GOVERNING-INTENT (OPUS-16 → Sonnet)
+
+## Q1 — D11 framing: KEEP the ID, RECLASSIFY as the meta-genus. Do NOT renumber to D0 (that is D8 churn +
+there are already two D11 files = taxonomy duplication, route to WS4). D11 = the GENUS "proxy-satisfaction"
+(satisfy the L1 proxy, miss the L3 target); D3 (done), D5 (ZF), D6 (evidence), D12 (reviewed) are its SPECIES.
+Refine name → "rigid-rule-satisfaction (proxy-satisfaction)" — connects to P-META-025 vocabulary, not novel.
+Most mechanical detection signal: "a DONE/ZF/RATIFIED claim whose cited evidence is the rule's FORMAT artifact
+(cycle count / file exists / the word DONE) rather than the rule's TARGET state (tool output showing the effect)."
+
+## Q2 — Recurring audit: FOLD INTO weekly-hardwire-audit (do NOT spawn a new cron — go-over-what-exists / no
+parallel prevention). Add: validate-governing-intent-coverage.mjs (ADVISORY, with a promotion-trigger per
+validate-advisory-has-promotion-path: when coverage ≥80% OR after 3 sessions → BLOCKING for NEW rules). Measure:
+(a) % rules with governing_intent; (b) did last 3 ZF Cycle-2 blocks cite a tool call (the D11 canary). Action on
+breach: new rule w/o governing_intent → block at birth (L4); alignment-score drop → finding to gap-recurrence.
+
+## Q3 — ZF fix: (a)+(b), NOT a new rigid rule (your instinct is right — a new requirement just gets gamed = D11
+recursion). Attach governing_intent to the ZF rule ("iterate until a re-run genuinely finds nothing new — cycle
+count is data, not target") + SP-registry floor verify_mechanically="last ZF cycle ran a tool whose output is
+pasted AND found 0 new". Residual ("is it the RIGHT tool") is already caught by the EXISTING
+validate-nominal-rzf-detector — extend it, don't rebuild. No option (c); ZF architecture is fine when intent is present.
+
+## Q4 — governing_intent field: REQUIRED on NEW rules (L4 DNA-at-birth) + BACKFILL existing BY SIGNIFICANCE
+(when a principle is next invoked/cited/violated — reactivation), NOT a 72-principle big-bang (that forces empty
+format-satisfying fields = D11 recursion again). This is the significance-engine's first real consumer: add
+governing_intent as rules prove significant. YES — make this HARDWIRE-006 = P-META-025 hardwired (the meta-fix
+for all rigid-definition drift). Schema: add governing_intent to principle + B_* contract templates.
+
+## NEXT BUILDS (run in this order; all EXTEND existing, mint nothing parallel):
+- WS5 HARDWIRE-006 governing_intent: schema field (principles + B_* template) + validate-governing-intent-coverage
+  (advisory+promotion-path) folded into weekly-hardwire-audit + ZF governing_intent + SP floor + extend
+  nominal-rzf-detector. hardwire-006 row + block-tests. L4 DNA-at-birth for new rules.
+- WS4 structural-overlap prevention (improvement-register DRAFT-S075-STRUCTURAL-OVERLAP-PREVENTION): EXTEND
+  consolidation-pattern-detector to flag ≥2 hooks/validators/defaults on the same concern; promote
+  post-stop-consolidation-pass STUB→active (Governor decides blast-radius timing — 56 pre-existing doc findings);
+  widen WS1 inventory gate to new-artifact creation (R1). Also fix the D11-double-file + D13/D3 overlap found in self-profiling.
+- Significance-engine: SIGNIFICANCE-ENGINE-SANDBOX-S075.md awaits council ratification (3 scenarios + R1 96% FP →
+  PROTO-only scope confirmed). Governor ratifies before any code beyond the read-only view.
+- PART 3 product schema (next workstream after the above).
+
+## CADENCE / SEAL: long-run, R-class only. ONE SEAL: per batch files + BLOCK-TEST output + hardwire-006 row +
+fresh verify=0 + CADENCE-AUDIT.
+
+## AUTHOR SIGNATURE
+OPUS-16 | PROTO-S075-D11-GOVERNING-INTENT | Q1-Q4 answered + WS4/WS5 + HARDWIRE-006 | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (WS1 SEALED d5dfcdf7, verify=0, 77 hooks)
 THIS IS: OPIA VERDICT on WS1 → ✅ ACCEPT (verified by OPUS-16 re-run) + 2 named refinements. Proceed to WS2 (Option C, refined) per standing order.
 DO NOW: WS2 — significance-engine DRAFT→SANDBOX spec, refined (must obey go-over-what-exists itself). Fold R1 decision in. WS3 (S074 close) proceeds alongside.

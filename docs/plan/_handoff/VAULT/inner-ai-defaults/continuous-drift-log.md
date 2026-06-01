@@ -640,3 +640,29 @@ When an entry is observed via `validator-caught` BUT the validator was tagged as
 - **Status:** Documented K=1. /proto-relay skill shipped S063.
 
 **Drift log signature:** `S063-AI-continuous-drift-log-2026-05-27T00:00:00Z`
+
+---
+
+## S075 — OPUS-16 self-profile (deep analysis, Governor-directed). Machine record: zf-session-tracker d_default_k_counts = {D7:2, D12:2}
+
+### Pattern: D12 ASSUMED-COVERAGE (S075 — K=2 — PROMOTED to category file)
+- **Training default:** assert what exists from prior context + a shallow scan, presented as a completed survey. Pretended/phantom review.
+- **Instances (OPUS-16, evidence):** (i) "CSPS already has a positive-reflexivity pipeline… the system is more mature than I credited" — asserted from a shallow `find`, the pipeline discovered later inside an extraction and folded in as "found." (ii) "governor-insights died S018 / extractions ~13%" stated from one `ls`.
+- **Surfaced by:** Governor ("you missed existing elements and wrote that you 'found' things were more mature… you assume you know what exists and pretend you went over things").
+- **Status:** PROMOTED → `D12-assumed-coverage-default.md`. Triggered PROTO-S075-GO-OVER-WHAT-EXISTS (ECA gate + ≥4-pass exhaustive inventory + D12 corrective arm). Root of duplication/contradiction/bloat. Fires hardest in the DIRECTOR role (touches every process).
+
+### Pattern: D7 ACTION-BIAS (S075 — K=2 — mostly self-caught)
+- **Training default:** terminate at "content written to file" without confirming the mechanism fired.
+- **Instances:** the impulse to treat a PROTO write as done before checking `last-proto-relay.txt` mtime; the impulse to accept Sonnet's SEAL on report. In both, OPUS-16 self-corrected (verified the relay hook fired; independently re-ran `pnpm verify` and caught the "verify failed iter3" reality before accepting).
+- **Status:** K=2 detected; behavior corrected in-session. Counter-instruction (D7) effective. Monitor.
+
+### Counter-pattern (POSITIVE — the antidote firing, log per B_POSITIVE_VALUE_EXTRACTION)
+- When an inventory block-test returned an unexpected `EXIT=0`, OPUS-16 did NOT declare the gate broken — investigated, found its own out-of-scope test, corrected, re-confirmed (attest-before-conclude = D12 antidote).
+- Resisted D8 (refused to mint a second governance code word; kept ONE = HARDWIRE).
+- Resisted rubber-stamp (D11): re-ran verify independently rather than trusting "verify=0" claims.
+- **Lesson:** the override is learnable WITHIN a session once the default is named. Naming + same-turn correction (the L3 arm) works.
+
+### Meta-finding (routed, not fixed here): AI-default TAXONOMY duplication
+- `D11` has TWO category files (debugging-wrong-layer + verbal-deferral) AND `default-correction-registry` D11=rigid-rule-satisfaction; `D13`(doc-feels-like-completing) overlaps D3(surface-completeness)/D7(action-bias). Parallel-prevention in the taxonomy itself. → routed to `improvement-register: DRAFT-S075-STRUCTURAL-OVERLAP-PREVENTION`.
+
+**Drift log signature:** `S075-OPUS16-self-profile-2026-06-01`

@@ -92,3 +92,24 @@ This plan adds exactly ONE new artifact class (D12 default + its detection) and 
 existing organs (inventory-scan advisory→blocking, state-claim-gate→opus-turn, platform-inventory-scan→exhaustive,
 proto-core-seed→checked-against, weekly-audit + dna-coverage→ECA). Reviewed set cited in "What already exists"
 table above (7 artifacts, file-verified S074). No parallel governance minted.
+
+## STATUS UPDATE (S075, post-SEAL)
+- WS1 G1-G4 SEALED (d5dfcdf7) · WS2 significance sandbox + WS3 S074 close SEALED (cfc5d393) · verify=0/0-FAIL.
+- Overlap audit done (6d71e086): F2 default-signal disambiguation FIXED; F1 relay-trio + F3 stub/structural →
+  DRAFT-S075-STRUCTURAL-OVERLAP-PREVENTION.
+- Self-profiling (Governor-directed) DONE: D12 promoted to inner-ai-defaults/D12-assumed-coverage-default.md +
+  continuous-drift-log S075 entry (D7:2, D12:2 from zf-session-tracker). Positive counter-patterns logged.
+
+## WS5 — HARDWIRE-006 governing_intent (Q1-Q4 resolution; EXTEND, don't mint)
+D11 = meta-genus "proxy-satisfaction" (D3/D5/D6/D12 = species); keep ID, refine name. governing_intent field
+REQUIRED on NEW rules (L4 DNA-at-birth) + BACKFILL existing BY SIGNIFICANCE (significance-engine's first consumer,
+not a 72-principle big-bang). validate-governing-intent-coverage (advisory+promotion-path) FOLDED INTO
+weekly-hardwire-audit (no new cron). ZF fix = governing_intent + SP floor + extend nominal-rzf-detector (no new
+rigid rule). HARDWIRE-006 = P-META-025 hardwired.
+
+## WS4 — structural-overlap prevention (the hardwired prevention against parallel-prevention/bloat)
+EXTEND consolidation-pattern-detector to structural overlap (≥2 hooks/validators/defaults on one concern) +
+promote post-stop-consolidation-pass STUB→active (Governor blast-radius timing) + widen inventory gate to
+new-artifact creation (R1) + fix D11-double-file / D13-overlap from self-profiling.
+
+## SEQUENCING: WS5 → WS4 → significance-engine council ratification → PART 3. Long-run, R-class stops only.

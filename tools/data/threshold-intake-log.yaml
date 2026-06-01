@@ -4408,3 +4408,23 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-06-01T20-07-12-721Z"
+  timestamp: "2026-06-01T20:07:12.721Z"
+  session: "S075"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-06-01T20-09-09-215Z"
+  timestamp: "2026-06-01T20:09:09.215Z"
+  session: "S075"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

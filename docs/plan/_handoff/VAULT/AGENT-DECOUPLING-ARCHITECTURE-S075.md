@@ -72,3 +72,12 @@ delete the director and the floor goes with it.
 Active plan runs (PART 3 migration track + B-queue). This is foundational, not urgent-this-turn — Governor: "doesn't
 have to be now, send through threshold, but very important." Top architecture workstream. Honest note: this session
 itself produced the coupling (Opus authored director-seat + HARDWIRE-008) — the deletion test + layer-split is the cure.
+
+## DESIGN GOAL 6 (Governor S076): MINIMIZE FRESH-TAB SYNC COST — orient from the SYSTEM, not a briefing
+Per-tab handoff cost is BUILD-TIME ONLY (the running platform is stateless: schema/RLS/validators/deployed code —
+no tab/handoff in the request path). But heavy per-tab sync is a SYMPTOM of an under-wired core. Target: a fresh
+tab becomes correct by reading the WIRED STATE (run verify + read session-state + the one current PROTO), NOT by
+re-absorbing session history. Test: if a tab needs a large narrative briefing to avoid being wrong, the GATES
+aren't carrying enough truth — fix the system, not the briefing. The executor-contract (point 5) is what makes
+sync cheap: any executor that passes verify + respects the gates is correct regardless of how much it was "told."
+Convergence target: sync cost BOUNDED and SHRINKING as the core is wired — never growing with platform size.

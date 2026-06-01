@@ -1,5 +1,5 @@
 {
-  "total_scanned": 1,
+  "total_scanned": 2,
   "total_exempted": 1,
   "total_findings": 1,
   "findings": [
@@ -11,5 +11,5 @@
       "file": "D1-humble-consolidation-default.md"
     }
   ],
-  "ran_at": "2026-06-01T20:02:23.264Z"
+  "ran_at": "2026-06-01T20:05:50.535Z"
 }

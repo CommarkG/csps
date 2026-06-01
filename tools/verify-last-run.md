@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T20:02:23.275Z
-- finished_at: 2026-06-01T20:02:48.888Z
+- ran_at: 2026-06-01T20:05:50.560Z
+- finished_at: 2026-06-01T20:06:15.720Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T20:02:23.275Z",
-    "finished_at": "2026-06-01T20:02:48.888Z",
+    "ran_at": "2026-06-01T20:05:50.560Z",
+    "finished_at": "2026-06-01T20:06:15.720Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -221,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3,
+        "duration_seconds": 3.1,
         "checked": 139,
         "advisories": 128
       },
@@ -421,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 0
       },
@@ -680,7 +680,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -1569,8 +1569,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 285,
-        "advisory": 285,
+        "findings": 291,
+        "advisory": 291,
         "blocking": 0
       },
       {
@@ -1696,7 +1696,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files_checked": 150,
         "blocking": 0,
         "advisory": 25
@@ -1742,7 +1742,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 440,
+        "total_entries": 441,
         "sessions": 4,
         "advisory": true
       },
@@ -1947,10 +1947,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocks_checked": 0,
-        "proto_citations": 98,
+        "proto_citations": 101,
         "valid": 6,
-        "missing": 92,
-        "advisory": 92,
+        "missing": 95,
+        "advisory": 95,
         "blocking": 0
       },
       {
@@ -2040,10 +2040,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 63,
+        "entries_checked": 64,
         "missing_headers": 25,
-        "missing_attestation": 22,
-        "advisory": 51,
+        "missing_attestation": 23,
+        "advisory": 52,
         "blocking": 0
       },
       {

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T19:08:35.885Z
-- finished_at: 2026-06-01T19:09:01.738Z
+- ran_at: 2026-06-01T19:40:29.225Z
+- finished_at: 2026-06-01T19:40:54.122Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T19:08:35.885Z",
-    "finished_at": "2026-06-01T19:09:01.738Z",
+    "ran_at": "2026-06-01T19:40:29.225Z",
+    "finished_at": "2026-06-01T19:40:54.122Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -49,7 +49,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "scanned": 709,
+        "scanned": 712,
         "errors": 0,
         "warnings": 183,
         "exempt": 344
@@ -261,7 +261,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 3
+        "advisories": 7
       },
       {
         "name": "agreement_without_evidence",
@@ -356,8 +356,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 652,
-        "clean": 652,
+        "checked": 655,
+        "clean": 655,
         "blocking": 0,
         "registry": 68
       },
@@ -440,7 +440,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 797,
+        "scanned": 800,
         "advisory": 113
       },
       {
@@ -615,8 +615,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "issues": 0,
-        "advisory": 0,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -680,7 +680,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -693,7 +693,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "with_cq": 258,
-        "total": 547,
+        "total": 548,
         "pct": 47
       },
       {
@@ -702,7 +702,7 @@
         "status": "HARVEST_DONE",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "session": "S074",
+        "session": "S075",
         "validators": 218
       },
       {
@@ -1559,9 +1559,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 666,
-        "findings": 8708,
-        "advisory": 8708
+        "files_checked": 669,
+        "findings": 8742,
+        "advisory": 8742
       },
       {
         "name": "nominal_rzf_detector",
@@ -1569,8 +1569,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 278,
-        "advisory": 278,
+        "findings": 279,
+        "advisory": 279,
         "blocking": 0
       },
       {
@@ -1696,7 +1696,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 150,
         "blocking": 0,
         "advisory": 25
@@ -1742,7 +1742,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 433,
+        "total_entries": 435,
         "sessions": 3,
         "advisory": true
       },
@@ -1935,9 +1935,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 0,
-        "potential_duplicates": 0,
-        "advisory": 0,
+        "files_scanned": 2,
+        "potential_duplicates": 1,
+        "advisory": 1,
         "blocking": 0
       },
       {
@@ -2040,10 +2040,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 61,
+        "entries_checked": 62,
         "missing_headers": 25,
-        "missing_attestation": 20,
-        "advisory": 49,
+        "missing_attestation": 21,
+        "advisory": 50,
         "blocking": 0
       },
       {

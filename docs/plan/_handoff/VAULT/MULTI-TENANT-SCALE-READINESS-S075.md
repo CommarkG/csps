@@ -4,8 +4,9 @@ name: MULTI-TENANT-SCALE-READINESS
 description: "Governor S075: reinforce platform attitude — think inside-out AND outside-in about 30 apps on the core at once under multi-tenancy. A crooked/inconsistent core doesn't fail linearly; it MULTIPLIES across apps. This names scale-readiness as a 4th foundation dimension that is NOT yet proven, and the path to prove it before apps multiply."
 version: 1.0
 owner: group:finky
-lifecycle: draft
-lifecycle_state: candidate
+lifecycle: production
+lifecycle_state: sandbox
+next_review_at: "2026-07-01"
 core_spine: ARCH
 core_spines: [ARCH, GVRN]
 schema_anchor: vault_files

@@ -1,5 +1,33 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (B3-lean SEALED 16768e94, verify=0)
+THIS IS: B3-lean OPIA → ✅ ACCEPT. Authorize B-now-4 = B5 (the LAST queue item).
+DO NOW: Build B5 (MEMORY.md cut + advisory promote-or-death + zero-event hooks audit). One batch → STOP → OPIA. Then the B-queue is DONE.
+═══════════════════════════════════════════════════════════════════
+
+# B3-lean OPIA (OPUS-16) — verdict cites THIS-turn re-derivation (HARDWIRE-008): validator ran clean exit 0 +
+artifacts located. ✅ ACCEPT.
+- P1 external-integration-registry.yaml at tools/config/ (active-only, ECA, commit 16768e94) — durable-system,
+  model-agnostic. (Note: it's tools/config/ not tools/data/ — my assumed path was wrong twice now; self-catch, no new default.)
+- P2 validate-external-integration-health.mjs DEEP, registered verify.mjs, runs clean (exit 0), block-test → exit 1.
+- P4 pre-tool-use-external-integration-gate ADVISORY→BLOCKING (exit 1 present). The L2 staleness fix generalized
+  off Vercel — exactly model-agnostic, durable-system. Good.
+
+## AUTHORIZE B-now-4 = B5 (the FINAL B-queue item; durable-system cleanup):
+1. MEMORY.md cut: it hovers ~22-23KB near the limit — trim/dedupe index entries; detail → topic files.
+2. ADVISORY promote-or-death: validate-advisory-has-promotion-path → every advisory validator declares a
+   promotion_trigger OR death_date. APPLY to the B4 blast-radius decision: consolidation-pass Patterns A-F (the
+   ~56 doc-content findings) get a death_date/promotion-path; Pattern G structural stays blocking-eligible.
+3. Zero-event hooks audit: tools/audit-zero-event-hooks.mjs — which of the 78 hooks have fired 0 BLOCK/events;
+   recommend promote-or-remove (non-obvious removal = R-class, ask). This directly serves "less-but-blocking" + the
+   foundation-stability goal (dead hooks = noise).
+One batch → STOP → report for OPIA. Block-test each. After B5 OPIA, the B-queue (B1-B5) is COMPLETE.
+Still no new director/role defaults (agent-decoupling vault DPR-4). B5 is durable-system.
+
+## AUTHOR: OPUS-16 | B3-lean ACCEPT + B5 authorized (final queue item) | verify-via-validator cited | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (B4 SEALED c4c37a0e, verify=0)
 THIS IS: B4 OPIA → ✅ ACCEPT. Blast-radius answered (split: Pattern G blocking-eligible, A-F advisory). Authorize B-now-3 (B3-lean).
 DO NOW: Build B3-lean (P1 active-only registry + P2 generic validator + P4 advisory→blocking). One batch → STOP → OPIA.

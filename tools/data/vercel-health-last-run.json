@@ -1,0 +1,18 @@
+{
+  "run_at": "2026-06-01T09:29:21.110Z",
+  "csps_projects_checked": 1,
+  "critical": 0,
+  "advisory": 3,
+  "all_healthy": true,
+  "findings": [
+    "[ADVISORY] 3 non-CSPS project(s): dima-task-management, dima-task-management-d8gh, v0-new-project-4tz1sdtsy8z",
+    "[ADVISORY] csps-playground: NOT registered in deploy-targets.yaml (add if active)\n  FIX: Add to tools/config/deploy-targets.yaml:\n  - app: playground\n    root_dir: apps/playground\n    vercel_project: csps-playground",
+    "[ADVISORY] deploy-targets.yaml has \"csps-template\" but no Vercel project found"
+  ],
+  "projects": [
+    {
+      "name": "csps-playground",
+      "url": "csps-playground.vercel.app"
+    }
+  ]
+}

@@ -33,6 +33,37 @@ targets:
     closure_decision: "First production deploy verified — set status:deployed + deploy_url"
     closure_by: "before App#2 (The Connector) goes to production"
 
+  - app: csps-playground
+    root_dir: apps/csps-playground
+    framework: nextjs
+    vercel_project: csps-playground
+    status: deployed
+    deploy_url: "https://csps-playground.vercel.app"
+    note: "Platform governance + AI profiling dashboard. IS a git submodule (apps/csps-playground → CommarkG/csps-playground). Root Directory in Vercel UI = apps/csps-playground with Include Outside Root enabled. S075: confirmed READY via REST API."
+    closure_owner: group:finky
+    closure_decision: "Active and deployed — mark as deployed"
+    closure_by: "ongoing — update deploy_url on major feature changes"
+    ratified_session: S075
+    verified_at: "2026-06-01"
+
+  # ── VAULTED (disconnected from Vercel — do NOT recreate) ──────────────────
+  # These apps are in apps/_trials-vaulted/ and their Vercel projects were removed.
+  # Recreating them will cause build failures (root dir won't exist in main branch).
+  # To re-deploy a vaulted app: move it back to apps/ + run generate-deploy-config.mjs.
+
+  - app: budget-planner
+    root_dir: apps/_trials-vaulted/budget-planner
+    framework: nextjs
+    vercel_project: csps-budget-planner
+    status: deprecated
+    deploy_url: null
+    note: "VAULTED S075. Vercel project removed (it was triggering build failures on every push because root_dir apps/budget-planner didn't exist). App in apps/_trials-vaulted/."
+    closure_owner: group:finky
+    closure_decision: "Vercel project REMOVED. Do not recreate without moving app back to apps/"
+    closure_by: "never — deprecated"
+    deprecated_session: S075
+    deprecated_reason: "Vercel project pointed to apps/budget-planner which was moved to _trials-vaulted — caused build failure on every push to main"
+
 # --- Status enum ---
 # active:     directory exists, not yet deployed to Vercel production
 # deployed:   successfully deployed, deploy_url confirmed working

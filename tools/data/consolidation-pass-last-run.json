@@ -1,7 +1,43 @@
 {
-  "total_scanned": 1,
-  "total_exempted": 0,
-  "total_findings": 0,
-  "findings": [],
-  "ran_at": "2026-06-01T09:11:34.347Z"
+  "total_scanned": 4,
+  "total_exempted": 1,
+  "total_findings": 5,
+  "findings": [
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "drift log signature",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\inner-ai-defaults\\continuous-drift-log.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "observed",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\inner-ai-defaults\\continuous-drift-log.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "default activated",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\inner-ai-defaults\\continuous-drift-log.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "resolution",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\inner-ai-defaults\\continuous-drift-log.md"
+    },
+    {
+      "pattern": "D",
+      "type": "example",
+      "item": "9 code blocks",
+      "count": 9,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\inner-ai-defaults\\continuous-drift-log.md"
+    }
+  ],
+  "ran_at": "2026-06-01T09:22:23.188Z"
 }

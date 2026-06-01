@@ -94,3 +94,23 @@ rows:
       Passes with ECA block (## Checked-Against + ran inventory): EXIT:0 ✓
     status: hardwire-done
     session_sealed: S075
+
+  - id: hardwire-006
+    thing: "Vercel deployment health — no build failures from stale root_dir"
+    governor_invocation: "S075: csps-budget-planner failing on every push — HARDWIRE permanent Vercel health"
+    surfaces:
+      t1_hook: "pre-commit-delete-guard.sh (existing) + apps/_trials-vaulted/ move discipline"
+      t2_validator: "validate-vercel-projects.mjs (CRITICAL — root_dir missing → exit 1)"
+      t3_session: "vercel-health-check.mjs — run any time to see status without waiting for email"
+      sp_registry_entry: "vercel-deployment-healthy (to be added)"
+      audit_runner_row: "vercel_projects (CRITICAL — registered S075)"
+    block_test_command: "node -e \"const yaml=require('js-yaml'),fs=require('fs');const d=yaml.load(fs.readFileSync('tools/config/deploy-targets.yaml','utf8'));d.targets.push({app:'test-bad',root_dir:'apps/nonexistent',vercel_project:'csps-test',status:'active'});fs.writeFileSync('tools/config/deploy-targets.yaml',yaml.dump(d),'utf8');\" && node tools/validators/validate-vercel-projects.mjs; echo EXIT:$?"
+    block_test_output: |
+      Added fake target with nonexistent root_dir → validate-vercel-projects.mjs:
+      ✗ BLOCKING: "test-bad" (csps-test): root_dir "apps/nonexistent" does not exist on disk.
+      Every push to main will cause Vercel build failure.
+      [validate-vercel-projects] targets=3 blocking=1 advisory=0
+      EXIT:1 ✓
+      (restored deploy-targets.yaml after test)
+    status: hardwire-done
+    session_sealed: S075

@@ -81,3 +81,8 @@ entries:
     notes: >-
       HARDWIRE-003. Root cause: settings.local.json with permissions object but no defaultMode → shadow. Fix in
       session-open.sh. Validator CRITICAL tier in verify.mjs.
+  - thing: vercel-deployment-healthy
+    satisfaction_point: vercel-health-check.mjs exits 0 — all CSPS projects in READY state, no orphaned projects
+    verify_mechanically: node tools/scripts/vercel-health-check.mjs 2>/dev/null && echo passed
+    channel: tools/scripts/vercel-health-check.mjs (REST API)
+    notes: HARDWIRE-006. Run proactively instead of waiting for email. weekly_audit_skip=false (checks live Vercel API).

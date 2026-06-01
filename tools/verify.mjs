@@ -1264,6 +1264,18 @@ const CYCLES = [
     // S070 M1: Communication Schema coverage — 8 situations + 6 tiers + 9 B_* contracts
     // ADVISORY (draft — not blocking until Governor ratifies communication-schema.yaml)
     // Reads: docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml
+    // S075 HARDWIRE-006: vercel-projects — BLOCKING if any active deploy-target has a missing root_dir.
+    // Prevents "root directory does not exist" Vercel build failures on every push.
+    // PREVENTION CLASS: VERCEL-DEPLOY-FAILURE-SILENT-UNTIL-EMAIL
+    name: 'vercel_projects',
+    command: 'node tools/validators/validate-vercel-projects.mjs',
+    run_tier: 'CRITICAL',
+    parse_output: (out) => {
+      const m = out.match(/targets=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { targets: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // S074 HARDWIRE-003: bypass-settings — BLOCKING if either settings.local.json has wrong bypass state.
     // Prevents recurring permission prompts (S069, S074 recurring). CRITICAL tier (every session).
     // Source: HARDWIRE-003 · Governor S074 directive.

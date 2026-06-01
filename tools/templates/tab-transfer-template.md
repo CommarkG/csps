@@ -151,6 +151,12 @@ STEPs/Work remaining: <explicit list with blockers named>
 
 ---
 
+**⚠️ COMMENTS-BEFORE-CODE RULE (Governor S075 — mandatory for multi-batch PROTOs):**
+- If this startup block describes a PROTO with ≥2 batches: respond with COMMENTS FIRST (no build tool calls)
+- Apply D12 (assumed-coverage) + D8 (naming-novelty) + D11 (rigid-rule-satisfaction) TO THE PROTO ITSELF
+- Flag scheduling risks. WAIT for Opus to confirm direction is sound before executing any batch
+- Anti-D2: never start building just because a PROTO arrived. Council confirmation = the gate.
+
 ## Section 4 — NON-NEGOTIABLES (BLOCKING gates)
 
 ```

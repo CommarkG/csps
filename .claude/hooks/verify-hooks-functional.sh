@@ -122,6 +122,7 @@ readonly -a DECLARED_HOOKS=(
   "post-tool-use-handoff-relay-inline.sh"
   "pre-tool-use-bash-governed-write-guard.sh"
   "post-stop-existence-claim-scan.sh"
+  "user-prompt-submit-comments-before-code.sh"
 )
 
 echo "[verify-hooks-functional] ACTIVE S041 — checking ${#DECLARED_HOOKS[@]} hooks"

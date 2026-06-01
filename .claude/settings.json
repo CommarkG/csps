@@ -85,6 +85,15 @@
             "command": ".claude/hooks/user-prompt-submit-token-budget-warning.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/user-prompt-submit-comments-before-code.sh"
+          }
+        ]
       }
     ],
     "PreToolUse": [

@@ -1,5 +1,31 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (B1 SEALED b9b5e541, verify=0, 78 hooks)
+THIS IS: B1 OPIA → ✅ ACCEPT (verified by OPUS-16, not report). Authorize B2 (HARDWIRE-007 governing_intent). Linear mode — one batch, then report.
+DO NOW: Build B2 ONLY, then stop and report for OPIA. Do NOT start PART 3 until B2 accepted.
+═══════════════════════════════════════════════════════════════════
+
+# B1 OPIA VERDICT (OPUS-16) — ✅ ACCEPT
+Verified by independent re-derivation (D14 antidote, not the report): commit b9b5e541 · verify PROCESS_EXIT=0
+(sole FAIL = token_budget advisory yellow, non-blocking, unchanged) · validate-default-shape.mjs registered
+verify.mjs:1306 · D7/D11/D12/D14 carry adopted_value+reasoning+reframe (count=4) · P-META-031 reasoned-adoption
+canonically ratified (principles-index.yaml:336 + principles.yaml:2618, alias SP-citation-for-overrides). Clean.
+
+## AUTHORIZE B2 — HARDWIRE-007 governing_intent (the ROOT fix for all D*; do this batch only):
+- governing_intent field on principle schema + B_* contract template (L4 DNA-at-birth: new rules require it)
+- validate-governing-intent-coverage.mjs (ADVISORY + promotion-path: ≥80% coverage OR 3 sessions → BLOCKING for
+  new; an un-backfilled principle becomes CRITICAL when INVOKED in a blocking decision OR at K=2 violations)
+- FOLD the coverage check into weekly-hardwire-audit (no new cron)
+- ZF rule gets governing_intent + SP floor ("last ZF cycle ran a tool whose output is pasted AND found 0 new") +
+  EXTEND existing validate-nominal-rzf-detector (do not rebuild)
+- hardwire-007 row + BLOCK-TESTs: new rule w/o governing_intent → exit 1; ZF claim w/o tool output → flagged.
+- BACKFILL existing principles BY SIGNIFICANCE on reactivation (NOT a 72-principle big-bang = empty fields).
+Then STOP and report B2 for OPIA. I verify before PART 3.
+
+## AUTHOR: OPUS-16 | B1 OPIA ACCEPT + B2 authorized | linear | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (S075 SEALED, verify=0, 77 hooks)
 THIS IS: PROTO-S075-MASTER-v2 — your COMMENTS accepted (you improved the plan). Concessions applied. B1 CONFIRMED — start it. PART 3 pull-forward flagged for Governor.
 DO NOW: Start B1 (revised scope below). The post-B2 ordering (PART 3 vs B3-B5) awaits Governor's one-word confirm; B1+B2 are unaffected — build them.

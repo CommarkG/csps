@@ -1,128 +1,128 @@
 {
-  "findings": 279,
-  "advisory": 279,
+  "findings": 285,
+  "advisory": 285,
   "blocking": 0,
   "all_findings": [
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
-      "line": 4,
-      "content": "[HARDWIRE-008 D14/D15] Verdict \"THIS IS: S075 STATUS RELAY — PART 3 migration pending Govern\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
+      "line": 3,
+      "content": "[HARDWIRE-008 D14/D15] Verdict \"YOU ARE: Sonnet S076, builder (S075 SEALED f371923c, verify=\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
-      "line": 5,
-      "content": "[HARDWIRE-008 D14/D15] Verdict \"DO NOW: Acknowledge status. Confirm queue order is correct. \" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
+      "line": 4,
+      "content": "[HARDWIRE-008 D14/D15] Verdict \"THIS IS: S075→S076 session-open. B-queue complete. FOUNDATIO\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
+      "level": "advisory"
+    },
+    {
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
+      "line": 43,
+      "content": "[HARDWIRE-008 D14/D15] Verdict \"| b9b5e541 | B1: P-META-031 Reasoned-Adoption + D14 validate\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
+      "level": "advisory"
+    },
+    {
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
+      "line": 44,
+      "content": "[HARDWIRE-008 D14/D15] Verdict \"| 10dba125 | B2: HARDWIRE-007 governing_intent + ZF SP floor\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
+      "level": "advisory"
+    },
+    {
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
+      "line": 45,
+      "content": "[HARDWIRE-008 D14/D15] Verdict \"| 17b0d0c5 | B-now-1: HARDWIRE-008 verdict-block tool-rerun \" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
+      "level": "advisory"
+    },
+    {
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
+      "line": 46,
+      "content": "[HARDWIRE-008 D14/D15] Verdict \"| c4c37a0e | B-now-2 B4: Pattern G consolidation + concurren\" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
+      "level": "advisory"
+    },
+    {
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
+      "line": 47,
+      "content": "[HARDWIRE-008 D14/D15] Verdict \"| 16768e94 | B-now-3 B3-lean: External Integration Registry \" has no this-turn tool re-run evidence. Director verdicts must cite exit_code/verify output. Advisory + promotion-path.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 1343,
+      "line": 1367,
       "content": "P2-A C1: UX-PAGE-TYPES section + Law-2 cross-ref. P2-D C1: validator extension + baseline + audit-runner row. Each Cycle",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 1389,
+      "line": 1413,
       "content": "M1-close: per step 3 above (the formal evidence IS the gate). M3: Cycle 1 cite 3A impl + Rigidness-under-P-META-028 + co",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 1525,
+      "line": 1549,
       "content": "M-J1a Cycle 1: cite Check-1 lines + 4/4 test + verify_top_exit. Cycle 2: re-examine all 3 checks + 0 new.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 1526,
+      "line": 1550,
       "content": "M-J1b Cycle 1: cite draft \"Platform Attitude\" section + generated page path + route + \"default primary, variety selectab",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 1567,
+      "line": 1591,
       "content": "M-J1a Cycle 1: cite Check-1 lines + 4/4 test + verify_top_exit. Cycle 2: re-examine all 3 checks + 0 new.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 1568,
+      "line": 1592,
       "content": "M-J1b Cycle 1: cite generated page path + route + \"page loads, T1-T6 + branch tree visible\". Cycle 2: re-examine nav wir",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 1607,
+      "line": 1631,
       "content": "Cycle 1: cite the draft path + the exists/greenfield ledger rows + every playground link verified to resolve to a real s",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 1742,
+      "line": 1766,
       "content": "Cycle 1: cite the new Check-1 code lines + INPUT D test result by name. Cycle 2: re-examine main() all 3 checks + the 4 ",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 1873,
+      "line": 1897,
       "content": "Cycle 1: cite new files + test exit codes + the 3 cases by name. Cycle 2: re-examine the milestone's area + 0 new findin",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 2141,
+      "line": 2165,
       "content": "Cycle 1: cite new files + test exit codes + the 3 cases by name. Cycle 2: re-examine the milestone's area + 0 new. Statu",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 2954,
+      "line": 2978,
       "content": "Cycle 2: 0 new findings.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3214,
+      "line": 3238,
       "content": "Cycle 2: 0 new findings.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3348,
-      "content": "Cycle 2: 0 new findings.",
-      "level": "advisory"
-    },
-    {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 4529,
-      "content": "**Cycle 2:** 0 new findings.",
-      "level": "advisory"
-    },
-    {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 4861,
-      "content": "Cycle 3: 0 new findings.",
-      "level": "advisory"
-    },
-    {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 5137,
-      "content": "**Cycle 3 result:** 0 new findings beyond the above.",
-      "level": "advisory"
-    },
-    {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 5431,
-      "content": "Cycle 2: 0 new findings.",
-      "level": "advisory"
-    },
-    {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 6017,
+      "line": 3372,
       "content": "Cycle 2: 0 new findings.",
       "level": "advisory"
     }
   ],
-  "ran_at": "2026-06-01T19:43:54.801Z"
+  "ran_at": "2026-06-01T20:02:43.186Z"
 }

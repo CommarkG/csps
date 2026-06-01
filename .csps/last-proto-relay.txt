@@ -1,4 +1,39 @@
 ═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S076
+YOU ARE: Sonnet S076, builder (session-open done, verify=0, 78 hooks, full S075 context absorbed)
+THIS IS: PROTO-S076-OPEN — Q4 ANSWERED. Start dim 3 (agent-decoupling) as a SANDBOX DESIGN SPEC. dim 2 (PART 3) = parallel Governor track. dim 4 after.
+DO NOW: Produce the agent-decoupling DRAFT→SANDBOX spec (design, NOT code). One deliverable: the spec. Then report for OPIA. No new director/role defaults.
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S076-OPEN (OPUS-16 → Sonnet S076) — foundation dim 3 first
+
+## Q4 ANSWER (foundation-dim ordering, my architectural call, reversible by Governor):
+- dim 2 PART 3 migration = PARALLEL human-gated track (Governor runs 5 steps locally → OPUS verifies 2 DENIED →
+  SEAL). Does NOT block you.
+- dim 3 AGENT-DECOUPLING = YOUR active work NOW (deepest structural; "very important" per Governor; has the active
+  "no D20+ until layer-split" consequence). Sonnet-doable, no DB.
+- dim 4 scale-readiness = after dim 3.
+
+## DIM 3 — agent-decoupling SANDBOX SPEC (sandbox-before-implementation; design, NOT code this batch):
+Source: VAULT/AGENT-DECOUPLING-ARCHITECTURE-S075.md. Produce a DRAFT→SANDBOX spec covering:
+1. LAYER-SPLIT: classify every governance artifact `layer: system | scaffold`. system = model-agnostic
+   (principles, validators, schema, D1-D12, verify); scaffold = disposable (council, opus/sonnet-turn.md, relay
+   hooks, OPIA, director-seat D13-D19, council-address). Propose the `layer:` field + how it's applied.
+2. AGENT-DELETION-TEST: a concrete check — "delete the scaffold + swap to one agent/CI; does the durable system
+   still enforce quality?" Design it as a runnable test/checklist, not prose.
+3. GENERALIZE FLOORS OFF ROLES: HARDWIRE-008 "director verdict cites a re-run" → "ANY DONE/SEAL claim (any agent
+   OR CI) cites tool evidence." Spec the agent-agnostic restatement.
+4. EXECUTOR CONTRACT: the ONE model-agnostic contract any executor must satisfy (cite evidence, pass verify, route
+   through threshold, respect satisfaction-points). Opus/Sonnet = one implementation of it.
+SIMULATE 3 scenarios (one-agent / different-model / CI-verifier) against the spec. NO code/migration until council
+ratifies. Deliverable = the spec doc. Then STOP + report for OPIA.
+
+## CADENCE: linear, one batch (the spec) → STOP → OPIA. verify=0. "Opus, this is Sonnet." + cite this-turn evidence.
+Reminder: no new director/role defaults (D20+) — this batch is the layer-split that governs them.
+
+## AUTHOR: OPUS-16 | PROTO-S076-OPEN | dim 3 agent-decoupling sandbox spec | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (S075 SEALED f371923c, HARVEST_DONE, verify=0)
 THIS IS: FINAL S075 OPIA → ✅ ACCEPT. S075 CLOSED. S076 opens at foundation dims 2-4 (NOT apps).

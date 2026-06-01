@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T19:43:34.860Z
-- finished_at: 2026-06-01T19:44:00.565Z
+- ran_at: 2026-06-01T20:02:23.275Z
+- finished_at: 2026-06-01T20:02:48.888Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T19:43:34.860Z",
-    "finished_at": "2026-06-01T19:44:00.565Z",
+    "ran_at": "2026-06-01T20:02:23.275Z",
+    "finished_at": "2026-06-01T20:02:48.888Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.6,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -540,7 +540,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisory": 1
+        "advisory": 2
       },
       {
         "name": "active_protocol_compliance",
@@ -1181,7 +1181,7 @@
         "command": "node tools/validators/validate-ui-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 30,
         "advisories": 1
       },
@@ -1569,8 +1569,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 279,
-        "advisory": 279,
+        "findings": 285,
+        "advisory": 285,
         "blocking": 0
       },
       {
@@ -1671,9 +1671,9 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "state_session": "S57",
-        "council_session": "S75",
-        "gap": 18,
-        "session_spread": 1,
+        "council_session": "S78",
+        "gap": 21,
+        "session_spread": 4,
         "advisory": 1,
         "blocking": 0
       },
@@ -1742,7 +1742,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 436,
+        "total_entries": 440,
         "sessions": 4,
         "advisory": true
       },
@@ -2040,10 +2040,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 62,
+        "entries_checked": 63,
         "missing_headers": 25,
-        "missing_attestation": 21,
-        "advisory": 50,
+        "missing_attestation": 22,
+        "advisory": 51,
         "blocking": 0
       },
       {

@@ -1,40 +1,46 @@
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.pre-tool-use-inventory-scan-required
 # @csps-name pre-tool-use-inventory-scan-required
-# @csps-description PreToolUse hook — ADVISORY S067. P-META-029 HUMBLE-CONSOLIDATION.
-#   When Edit/Write contains proposal-language without inventory-scan context,
-#   emits advisory warning. BLOCKING in S068 after adoption period.
-#   Per Item 2 ratification: phased rollout ADVISORY→BLOCKING.
-#   PROTO-S067-MASTER-THRESHOLD-ROUTER STEP 5.
-# @csps-version 1.0.0
+# @csps-description PreToolUse hook — S075 G2: BLOCKING (promoted from ADVISORY S067).
+#   P-META-029 HUMBLE-CONSOLIDATION + ECA (Existing-Coverage Attestation).
+#   When Edit/Write contains proposal-language (create/build/add/NEW:) without
+#   an ECA block (## Checked-Against: / INVENTORY: / checked_against:), BLOCK.
+#   ECA = attestation of inventory performed: name the tool call + what was found.
+#   CARVE-OUT: if content contains checked_against / INVENTORY: / ## Checked-Against →
+#   attestation present → pass through. Also passes if no proposal-language.
+# @csps-version 2.0.0 S075-G2-BLOCKING
 # @csps-owner group:finky
 # @csps-lifecycle production
 # @csps-lifecycle-state active
 # @csps-tags type:hook domain:governance audience:ai-agent
-# @csps-enforces B_STRUCTURAL_PREVENTION_DISCIPLINE P-META-029
-# inherits_from: PROTO-S067-MASTER-THRESHOLD-ROUTER STEP 5
+# @csps-enforces P-META-029 B_HUMBLE_CONSOLIDATION D12-assumed-coverage
 
 set -euo pipefail
 readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
-# Read stdin
 STDIN=$(cat)
 
-# Only fire on Write/Edit tool calls
 TOOL_NAME=$(echo "$STDIN" | node -e "process.stdin.setEncoding('utf8');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);process.stdout.write(j.tool_name||j.toolName||'');}catch(e){}});" 2>/dev/null || echo "")
 if [ "$TOOL_NAME" != "Write" ] && [ "$TOOL_NAME" != "Edit" ]; then exit 0; fi
 
-# Get content
 CONTENT=$(echo "$STDIN" | node -e "process.stdin.setEncoding('utf8');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);const i=j.tool_input||j.toolInput||{};process.stdout.write(i.content||i.new_string||'');}catch(e){}});" 2>/dev/null || echo "")
 
-# Check for proposal-language (D7 action-bias pattern)
-PROPOSAL_PATTERN='NEW:|add.*validator|build.*hook|create.*script|I propose|we should build|let.s create'
+# Only check PROTO/plan files (docs/plan/, tools/data/hardwire-register)
+FILE_PATH=$(echo "$STDIN" | node -e "process.stdin.setEncoding('utf8');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);const i=j.tool_input||j.toolInput||{};process.stdout.write(i.file_path||i.path||'');}catch(e){}});" 2>/dev/null || echo "")
+if ! echo "$FILE_PATH" | grep -qiE '(docs/plan/protos|PROTO-|PLAN-|hardwire-register)'; then exit 0; fi
+
+# Check for proposal-language
+PROPOSAL_PATTERN='(^|\n)(NEW:|## BATCH|## WS[0-9]|Build:|## G[0-9]|add.*validator|build.*hook|create.*script|I propose|we should build)'
 if ! echo "$CONTENT" | grep -qiE "$PROPOSAL_PATTERN"; then exit 0; fi
 
-# ADVISORY: emit warning but exit 0 (BLOCKING in S068)
-echo "[inventory-scan-required][ADVISORY S067] Proposal-language detected without inventory-scan context." >&2
-echo "  P-META-029 HUMBLE-CONSOLIDATION: run inventory scan first:" >&2
-echo "  node tools/scripts/platform-inventory-scan.mjs --query=\"<what you're building>\"" >&2
-echo "  Confirm nothing equivalent exists before proceeding. BLOCKING from S068." >&2
+# Check for ECA attestation block (checked_against / INVENTORY / ## Checked-Against)
+ECA_PATTERN='(checked_against:|INVENTORY:|## Checked-Against|attestation:|# WHAT ALREADY EXISTS|verified.*file evidence)'
+if echo "$CONTENT" | grep -qiE "$ECA_PATTERN"; then exit 0; fi
 
-exit 0
+# BLOCKING — proposal without ECA
+printf '{
+  "systemMessage": "[INVENTORY-SCAN-REQUIRED] BLOCKED: Proposal-language detected in %s without Existing-Coverage Attestation (ECA).\n\nECA required: cite the inventory you performed THIS turn.\nFormat: ## Checked-Against\n- ran: node tools/scripts/platform-inventory-scan.mjs\n- found: [what exists that covers this]\n- gap: [what does NOT exist, justifying this build]\n\nD12 (assumed-coverage): existence-claims without tool-call attestation are the root of duplication/bloat.\nP-META-029: inventory-first. Run inventory, cite output, then build.",
+  "continue": false,
+  "stopReason": "proposal without ECA — inventory-first required"
+}' "$FILE_PATH"
+exit 1

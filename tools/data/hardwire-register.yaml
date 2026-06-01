@@ -76,3 +76,21 @@ rows:
       File content: ═══ I AM: Sonnet S074 (PROTO-S074-PERMANENT-DNA) — hook fired correctly
     status: hardwire-done
     session_sealed: S074
+
+  - id: hardwire-005
+    thing: "go-over-what-exists (P-META-029 ECA) — inventory-first before claims or proposals"
+    governor_invocation: "S075 PROTO-S075-GO-OVER-WHAT-EXISTS: HARDWIRE P-META-029 against pretended/partial survey"
+    surfaces:
+      t1_hook: "pre-tool-use-inventory-scan-required.sh v2.0 BLOCKING (proposal without ECA → exit 1)"
+      t2_validator: "validate-inventory-scan-coverage.mjs (existing) + platform-inventory-scan.mjs --exhaustive"
+      t3_session: "session-open.sh: P-META-029 HUMBLE-CONSOLIDATION reminder + D12 K-count injection"
+      sp_registry_entry: "existence-coverage-attestation (to be added)"
+      audit_runner_row: "inventory_scan_coverage (existing) + weekly-hardwire-audit G4 extension"
+    block_test_command: "echo '{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"docs/plan/protos/TEST.md\",\"content\":\"## BATCH\nNEW: validator\"}}' | bash .claude/hooks/pre-tool-use-inventory-scan-required.sh"
+    block_test_output: |
+      echo '{"tool_name":"Write","tool_input":{"file_path":"docs/plan/protos/PROTO-TEST.md","content":"## BATCH 1\nNEW: validator"}}' | bash .claude/hooks/pre-tool-use-inventory-scan-required.sh
+      → {"systemMessage": "[INVENTORY-SCAN-REQUIRED] BLOCKED: Proposal-language detected in docs/plan/protos/PROTO-TEST.md without Existing-Coverage Attestation (ECA)..."
+      → continue: false, stopReason: "proposal without ECA" EXIT:1 ✓
+      Passes with ECA block (## Checked-Against + ran inventory): EXIT:0 ✓
+    status: hardwire-done
+    session_sealed: S075

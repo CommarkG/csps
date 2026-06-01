@@ -385,6 +385,15 @@
             "command": ".claude/hooks/post-stop-token-tracker.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-existence-claim-scan.sh"
+          }
+        ]
       }
     ]
   },

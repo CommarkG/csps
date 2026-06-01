@@ -80,35 +80,62 @@ try {
 
 # Standard chat — no injection needed
 if [ "$MODE" = "standard" ]; then
-  
-# ─── D* CORRECTIVE ARM (S074 BATCH 4) ────────────────────────────────────────
-# Detects D7 (action-bias) from governance/enforcement mode and surfaces correction
+
+# ─── D* CORRECTIVE ARM (S074 B4 fixed + S075 G1: D12 existence-claims) ───────
+# Fixes: broken var refs from S074 injection. Adds D12 content-based detection.
 {
-  _TRACKER_FILE="/tools/zf-session-tracker.json"
-  _CORR_FILE="/tools/data/default-correction-registry.yaml"
-  if [ -f "\" ] && [ -f "\" ]; then
-    node -e "
+  _TRACKER="${PROJECT_ROOT}/tools/zf-session-tracker.json"
+  _CORR="${PROJECT_ROOT}/tools/data/default-correction-registry.yaml"
+  _TRANSCRIPT="${CLAUDE_TRANSCRIPT_PATH:-}"
+  if [ -f "$_TRACKER" ] && [ -f "$_CORR" ]; then
+    CSPS_MODE_VAR="$MODE" CSPS_TRANSCRIPT="$_TRANSCRIPT" node -e "
 const fs=require('fs'),yaml=require('js-yaml');
-const t=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));
-const r=yaml.load(fs.readFileSync(process.argv[2],'utf8'));
-const mode=process.env.CSPS_MODE||'standard';
-const modeDefaults={'governance':['D3','D7','D8'],'enforcement':['D3','D7','D8'],'implementation':['D4','D7'],'architectural':['D8','D6']};
-const fired=(modeDefaults[mode]||[]);
-if(fired.length){
+const trackerPath=process.argv[1];
+const corrPath=process.argv[2];
+try{
+  const t=JSON.parse(fs.readFileSync(trackerPath,'utf8'));
+  const r=yaml.load(fs.readFileSync(corrPath,'utf8'));
+  const mode=process.env.CSPS_MODE_VAR||'standard';
   const kc=t.d_default_k_counts||{};
-  fired.forEach(id=>{kc[id]=(kc[id]||0)+1;});
-  t.d_default_k_counts=kc;
-  fs.writeFileSync(process.argv[1],JSON.stringify(t,null,2));
-  const k2=fired.filter(id=>kc[id]>=2);
-  if(k2.length){const defs=r.defaults||[];const cc=k2.map(id=>{const d=defs.find(x=>x.id===id);return d?d.counter_instruction:'';}).filter(Boolean);if(cc.length)process.stderr.write('[D*-CORRECTIVE] K>=2: '+cc[0].substring(0,120));}
-}
-" "\" "\" 2>&1 >&2 || true
+  const modeMap={'governance':['D3','D7','D8'],'enforcement':['D3','D7','D8'],'implementation':['D4','D7'],'architectural':['D8','D6'],'caq':['D1','D2']};
+  const modeFired=(modeMap[mode]||[]);
+  let d12fired=false;
+  try{
+    const tp=process.env.CSPS_TRANSCRIPT;
+    if(tp&&fs.existsSync(tp)){
+      const lines=fs.readFileSync(tp,'utf8').split('\n').filter(Boolean);
+      const phrases=['already has','the system already','i reviewed','we have','turns out','found that','more mature than','the platform has','csps already'];
+      for(let i=lines.length-1;i>=0;i--){
+        try{const e=JSON.parse(lines[i]);
+          if(e.role==='assistant'||(e.type&&e.type.includes('assistant'))){
+            const txt=JSON.stringify(e).toLowerCase();
+            if(phrases.some(p=>txt.includes(p))&&!txt.includes('tool_use')){d12fired=true;}
+            break;
+          }
+        }catch{}
+      }
+    }
+  }catch{}
+  const allFired=[...new Set([...modeFired,...(d12fired?['D12']:[])])];
+  if(allFired.length){
+    allFired.forEach(id=>{kc[id]=(kc[id]||0)+1;});
+    t.d_default_k_counts=kc;
+    fs.writeFileSync(trackerPath,JSON.stringify(t,null,2));
+    const k2=allFired.filter(id=>kc[id]>=2);
+    const defs=r.defaults||[];
+    if(k2.length){
+      const cc=k2.map(id=>{const d=defs.find(x=>x.id===id);return d?('['+d.id+'] '+d.counter_instruction):'';}).filter(Boolean);
+      if(cc.length)process.stderr.write('[D*-CORRECTIVE K>=2] '+cc[0].substring(0,160));
+    }else if(d12fired){
+      const d=defs.find(x=>x.id==='D12');
+      if(d)process.stderr.write('[D12-DETECTED] '+d.counter_instruction.substring(0,130));
+    }
+  }
+}catch(e){}
+" "$_TRACKER" "$_CORR" 2>&1 >&2 || true
   fi
 } 2>/dev/null || true
 
-
-printf '{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":""}}'
-  exit 0
 fi
 
 # ── Mode-specific injection ───────────────────────────────────────────────────

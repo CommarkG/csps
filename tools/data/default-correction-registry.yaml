@@ -103,3 +103,11 @@ defaults:
     counter_instruction: "D11 DETECTED: What is the GOVERNING INTENT of this rule? Not 'what format satisfies it' — what was it DESIGNED TO ACHIEVE? Completing the format is not completing the intent. Ask: would someone reading only the output believe the intent was met, not just the format?"
     k_count_gate: 2
     note: "S074 sample: ZF 2-cycle ritual satisfied format (cycles done, areas named) while missing intent (actually finding nothing new with tool evidence). This is the root of all governance drift."
+
+  - id: D12
+    name: assumed-coverage
+    description: "AI makes existence-claims about the platform ('already has X', 'I reviewed', 'turns out', 'more mature than') without citing an inventory actually performed in THIS turn"
+    detection_signal: "existence-claim language without attestation: 'already has / the system already / I reviewed / we have / turns out / found that / more mature than / the platform has / CSPS already / as we know'"
+    counter_instruction: "D12 DETECTED: What SPECIFIC inventory did you perform THIS turn to support this existence-claim? Name the tool call and its output. 'I went over what exists' without citing tool output = pretended coverage. P-META-029: inventory-first. Run platform-inventory-scan.mjs and CITE the output."
+    k_count_gate: 2
+    note: "S075 sample: OPUS-16 made existence-claims after SHALLOW survey in S074. Root cause of duplication/contradiction/bloat. Governor S074: 'going over what exists might be the most important thing in the platform today.' This default fires in EVERY AI role (Opus + Sonnet)."

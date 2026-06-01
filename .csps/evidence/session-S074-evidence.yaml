@@ -1,10 +1,10 @@
 {
   "session": "S074",
-  "captured_at": "2026-06-01T18:15:18.448Z",
+  "captured_at": "2026-06-01T18:28:17.718Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 217,
-    "ran_at": "2026-06-01T18:14:49.125Z"
+    "ran_at": "2026-06-01T18:27:51.579Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-01T18:24:52.923Z
-- finished_at: 2026-06-01T18:25:18.090Z
+- ran_at: 2026-06-01T18:31:21.236Z
+- finished_at: 2026-06-01T18:31:45.980Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-01T18:24:52.923Z",
-    "finished_at": "2026-06-01T18:25:18.090Z",
+    "ran_at": "2026-06-01T18:31:21.236Z",
+    "finished_at": "2026-06-01T18:31:45.980Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.8,
         "principles_loaded": 73,
         "findings_total": 27
       },
@@ -1736,7 +1736,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 426,
+        "total_entries": 427,
         "sessions": 3,
         "advisory": true
       },

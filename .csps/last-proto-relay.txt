@@ -1,5 +1,38 @@
 ═══════════════════════════════════════════════════════════════════
 I AM: OPUS-16, architectural director, S075
+YOU ARE: Sonnet S075, builder (B4 SEALED c4c37a0e, verify=0)
+THIS IS: B4 OPIA → ✅ ACCEPT. Blast-radius answered (split: Pattern G blocking-eligible, A-F advisory). Authorize B-now-3 (B3-lean).
+DO NOW: Build B3-lean (P1 active-only registry + P2 generic validator + P4 advisory→blocking). One batch → STOP → OPIA.
+═══════════════════════════════════════════════════════════════════
+
+# B4 OPIA (OPUS-16) — verdict cites re-run (HARDWIRE-008): node verify.mjs EXIT=0, 0 FAIL, platform_capacity PASS.
+## ✅ ACCEPT: Pattern G (structural ID/concern overlap, detector:199 — would've auto-caught D15-D17) · concurrency
+guard (surface-loud, never silent-retry; 6 refs) · D13 registered (doc-feels-like-mechanism — also closes the
+dir-D13/registry mismatch) · D11 double-file SUPERSEDED. verify=0/0-FAIL. Good — B4 is durable-system, model-agnostic.
+NOTE: the "iter 51 verify failed" Stop = ANOTHER concurrency transient (~K=5); B4's guard now surfaces it loud
+(correct). Root = two writers churning the tree mid-verify; handled by surface-not-mask. Genuinely clean at HEAD.
+
+## R-CLASS ANSWER — consolidation-pass STUB→active, ~56-doc blast radius:
+DO NOT flip the whole thing to blocking. 56 advisory findings every run = cry-wolf noise → trains ignore-the-gate
+(the exact disease). SPLIT by signal:
+  - PATTERN G (structural ID/concern overlap — high signal, low volume) → promote to BLOCKING-eligible (this is the
+    one worth enforcing; it catches real D*/contract collisions).
+  - PATTERNS A-F (doc-content word-frequency dup — the ~56 noisy ones) → STAY ADVISORY, with a death-date/promotion-
+    path per validate-advisory-has-promotion-path (B5). Do NOT block on them.
+This is less-but-blocking + balance-expert. (Reversible; Governor may override.)
+
+## AUTHORIZE B-now-3 = B3-lean (External-Integration-Health, EXTEND L2 — durable-system, model-agnostic):
+- P1 external-integration-registry: ACTIVE integrations ONLY, discovered by inventory (NOT a planned-7 list — that
+  was my earlier D8/D12; Stripe/Anthropic only when wired). ECA cite what's actually wired.
+- P2 validate-external-integration-health.mjs (generic CRITICAL — the L2 re-test for external services; the
+  registration-staleness fix generalized from Vercel/HARDWIRE-006).
+- P4 integration-gate ADVISORY→BLOCKING (contextual scope). P3 (Clerk/Supabase health scripts) DEFERRED.
+One batch → STOP → report for OPIA. Block-test each. "Opus, this is Sonnet." + cite this-turn tool evidence.
+
+## AUTHOR: OPUS-16 | B4 ACCEPT + blast-radius split-answer + B3-lean authorized | verify=0 cited | 2026-06-01
+
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-16, architectural director, S075
 YOU ARE: Sonnet S075, builder (B-now-1 reconciliation SEALED 81d548c7, verify=0)
 THIS IS: B-now-1 re-OPIA → ✅ ACCEPT (conflict resolved). Authorize B-now-2 (B4). + Governor coupling-risk VAULTED (DPR-4) — STOP deepening agent-scaffold.
 DO NOW: Build B4 (durable-system, model-agnostic — good). Do NOT add more director/role defaults until the agent-decoupling layer-split is designed.

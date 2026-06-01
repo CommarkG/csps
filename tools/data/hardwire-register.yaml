@@ -37,6 +37,25 @@ rows:
       t3_session: 'session-open.sh: FORMAL-PROTO-CHANNEL T3 + SATISFACTION-POINT-REGISTRY T3'
       sp_registry_entry: council-file-written
       audit_runner_row: proto_inline_relay (BATCH 3)
-    block_test_output: PENDING — BATCH 3 block-test output to be pasted here
-    status: in-progress
-    session_sealed: null
+    block_test_output: |
+      BATCH 3.0: last-proto-relay.txt mtime UPDATED (1780265024568 > 1780165685607) — hook fired ✓
+      BATCH 3.1: echo '{"tool_name":"Bash","tool_input":{"command":"echo test >> tools/council/opus-turn.md"}}' | bash .claude/hooks/pre-tool-use-bash-governed-write-guard.sh → EXIT:1 + continue:false ✓
+    status: hardwire-done
+    session_sealed: S074
+
+  - id: hardwire-003
+    thing: "permission bypass — bypassPermissions in both settings files, no shadowing"
+    governor_invocation: "S074: recurring permission prompts — HARDWIRE the bypass permanently"
+    surfaces:
+      t1_hook: "session-open.sh — writes bypassPermissions to global + {} to project settings.local.json"
+      t2_validator: "validate-bypass-settings.mjs (CRITICAL — blocking on wrong bypass state)"
+      t3_session: "session-open.sh T1 IS the T3 here — runs at every tab start"
+      sp_registry_entry: "permission-bypass-active (to be added)"
+      audit_runner_row: "bypass_settings (CRITICAL — registered S074)"
+    block_test_output: |
+      printf '{"permissions":{"allow":["Bash","Edit"]}}' > .claude/settings.local.json
+      node tools/validators/validate-bypass-settings.mjs
+      → BLOCKING: .claude/settings.local.json has "permissions" WITHOUT "defaultMode:bypassPermissions"
+      → [validate-bypass-settings] blocking=1 advisory=0 EXIT:1 ✓
+    status: hardwire-done
+    session_sealed: S074

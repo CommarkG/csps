@@ -1263,6 +1263,18 @@ const CYCLES = [
     // S070 M1: Communication Schema coverage — 8 situations + 6 tiers + 9 B_* contracts
     // ADVISORY (draft — not blocking until Governor ratifies communication-schema.yaml)
     // Reads: docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml
+    // S074 HARDWIRE-003: bypass-settings — BLOCKING if either settings.local.json has wrong bypass state.
+    // Prevents recurring permission prompts (S069, S074 recurring). CRITICAL tier (every session).
+    // Source: HARDWIRE-003 · Governor S074 directive.
+    name: 'bypass_settings',
+    command: 'node tools/validators/validate-bypass-settings.mjs',
+    run_tier: 'CRITICAL',
+    parse_output: (out) => {
+      const m = out.match(/blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {};
+    },
+  },
+  {
     // S074 H1: HARDWIRE completeness — BLOCKING if any hardwire-done row has empty block_test_output.
     // Ensures HARDWIRE-DONE claims are supported by pasted BLOCKED output (not inferred). STANDARD tier.
     // Source: PROTO-S074-HARDWIRE-BUILD BATCH 2. Tools: hardwire-register.yaml.

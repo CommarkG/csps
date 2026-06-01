@@ -70,3 +70,9 @@ entries:
     verify_mechanically: 'node tools/verify.mjs --skip-install 2>&1 | grep -q ''"exit_code": 0'''
     channel: node tools/verify.mjs --skip-install AND step-accept skill
     notes: Memory of earlier runs ≠ evidence. Re-run IS the proof. P-META-006 RZF.
+
+  - thing: permission-bypass-active
+    satisfaction_point: "validate-bypass-settings.mjs exits 0 — both settings files have correct bypass state"
+    verify_mechanically: "node tools/validators/validate-bypass-settings.mjs 2>&1 | grep -q 'blocking=0'"
+    channel: "session-open.sh writes correct state at every tab start. Never mid-session."
+    notes: "HARDWIRE-003. Root cause: settings.local.json with permissions object but no defaultMode → shadow. Fix in session-open.sh. Validator CRITICAL tier in verify.mjs."

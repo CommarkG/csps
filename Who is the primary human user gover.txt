@@ -1,0 +1,50 @@
+Who is the primary human user governed by this spine — Governor, Opus, Sonnet, external developer, or end user?
+this is a very professional language. turn to a more friendly 
+primary... spine... 
+lets solve these through the onboarding and have the onboarding appear at the beginning 
+have me Yariv  the governor be the super admin developer with my email finkyariv@gmail.com [i will log in with my google account]
+
++I liked seeing opus and sonnet... you mean that if a plan is to be executed it will go through what is defined here?
+
+===
+
+Who is the primary human user governed by this spine — Governor, Opus, Sonnet, external developer, or end user?
+
+First of all you are asking about the human user and mentioning Opus and Sonnet. This must be rearranged. And it is not really intuitive for me when you say "primary" and "governed". Use simpler words. 
++ This is a classic situation about whether we make answering questions a difficult experience or a flowing one.
+Language has to go through some audit from communications.
+And it must be so that there is an available way of seeing more context or guidance by toolkits and other things.
+And every time a question is presented there must be some kind of a draft showing the kind of answers and some context about reasoning, considerations, something that will help the user think about it in the alignment the question is meant for.
+Not doing it is a classic false assumption, assuming that the user knows what is going on. In CSPS it should be the other way around: assuming the user doesn't know what is going on. This is a great UX, assuming the user does not know and not overloading with explanation but making them very very available and expandable. The user should be able to expand them.
+===
+
+Also there is a mismatch. I'm having a hard time to pinpoint it but you must help me. As I wrote that I want onboarding and then you ask me questions that seem to create a situation where you are not aware of who I am. Therefore things get blurred. 
+
+i wrote 
+i want to create a core spine for onboarding 
+might be under ux 
+Onboarding are created by default AI and they are random and not really professionally adjusted to each situation and each need.
+
+and you ask 
+Who is the primary human user governed by this spine — Governor, Opus, Sonnet, external developer, or end user?
+
+It seems like there is a mix between me developing the process on the platform and it doesn't fit that you are asking about an end user. Or maybe you are correct and an end user will have this option. Thinking about it, you are totally correct. 
+
+And what do you say if next to each question there will be a clickable optional answer, always starting with a free text but have these options as one-click answers? 
+
+I like that as a default and all these different ways of presenting processes should be in a dashboard and should be able to be templated. 
+
+====
+
+Here is my understanding:
+
+**AI** — a domain-specific architectural spine.
+
+Primary user: governer
+Prevents: rigid onboarding not considering what the user writes
+repeating questions on data already provided
+Not responsible for: [to confirm]
+
+Is this correct? Click Approve, or type a correction.
+
+This seems very uninspiring in a sense that it is like a technical summary of someone who wants to get it over with. This seems very uninspiring, in a sense that it is like a technical summary of someone who wants to get it over with, finding a process to make it the best there is. 

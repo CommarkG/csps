@@ -1,0 +1,31 @@
+Let deep dive into the core spines
+* what is it 
+* what is its roll
+* what are the lists of test we could schedule monthly until ZF that makes sure all is perfect?
+* what is its uniqness vs the equivalent solutions in the industry? 
+
+
+==============
+
+let see what 4 different top expert in architecture and optimization of ai integrated systems would say of formalizing the ai profiling of the native ai and create a pro process of:
+TRIGGERS + DEFAULTS + SATISFUCTION POINTS + FALSE ASSUMPTIONS 
+
+- Identifying them 
+- registration of them with clear logic 
+- Avoiding duplications 
+- Optimizing placing content in the ai profile to follow consistent logic
+- Have it placed in ALL!!! the relevant places in order to prevent drift and misalignments with csps DNA and native ai deep narratives
+- enhance PREVENTION 
+- enhance audits 
+- enhance  CREATION 
+
+=========
+
+I want you to formalize Tab graduation for you and for sonnet 
++ make this another CSPS unique consideration - find all the places it is relevant 
++ make sure inheritance in enhanced on all internal platform core and the creation of external users interfaces and backend 
+
+====
+
+can plans work with several sonnet tabs simultaneously? handling issues that are far from each other?  
+

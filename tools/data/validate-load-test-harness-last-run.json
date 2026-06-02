@@ -1,0 +1,12 @@
+{
+  "validator": "validate-load-test-harness",
+  "timestamp": "2026-06-02T16:35:09.032Z",
+  "blocking": 0,
+  "advisory": 0,
+  "scenarios_checked": 4,
+  "deferred_items": [
+    "scenario-c full measurement (Pro+)",
+    "N=30 foundation gate (boundary-003)"
+  ],
+  "findings": []
+}

@@ -1,9 +1,9 @@
 {
-  "checked": 20,
-  "with_class": 0,
-  "unclassified": 13,
+  "checked": 22,
+  "with_class": 1,
+  "unclassified": 14,
   "missing_field": 7,
-  "advisory": 20,
+  "advisory": 21,
   "blocking": 0,
   "findings": [
     {
@@ -87,5 +87,5 @@
       "issue": "prevention_class: unclassified — needs classification"
     }
   ],
-  "ran_at": "2026-06-01T22:54:39.706Z"
+  "ran_at": "2026-06-02T16:35:14.028Z"
 }

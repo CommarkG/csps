@@ -1,14 +1,14 @@
 {
-  "total_scanned": 3,
-  "total_exempted": 3,
+  "total_scanned": 2,
+  "total_exempted": 2,
   "total_findings": 2,
   "findings": [
     {
       "pattern": "D",
       "type": "example",
-      "item": "3 code blocks",
-      "count": 3,
-      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\architecture\\EXECUTOR-CONTRACT.md"
+      "item": "6 code blocks",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\load-tests\\README.md"
     },
     {
       "pattern": "G",
@@ -18,5 +18,5 @@
       "file": "D1-humble-consolidation-default.md"
     }
   ],
-  "ran_at": "2026-06-01T22:48:11.807Z"
+  "ran_at": "2026-06-02T16:32:56.398Z"
 }

@@ -1,0 +1,17 @@
+
+
+New M-J1b page (default + variety):
+
+https://csps-playground.vercel.app/platform/journey ← the one you want to eyeball
+Journey cluster:
+
+https://csps-playground.vercel.app/platform/journey-trunk
+https://csps-playground.vercel.app/platform/journeys
+https://csps-playground.vercel.app/platform/developer-journey
+https://csps-playground.vercel.app/platform/user-journey
+https://csps-playground.vercel.app/platform/zero-friction
+Substrate / supporting:
+
+https://csps-playground.vercel.app/platform/communication
+https://csps-playground.vercel.app/platform/profiles · /developers · /users · /ai-systems
+https://csps-playground.vercel.app/platform/wizard

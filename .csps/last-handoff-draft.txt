@@ -1,116 +1,232 @@
 ---
-id: csps.handoff.S075-to-S076
-name: HANDOFF-S075-to-S076
+id: csps.handoff.S076-to-S077
+name: HANDOFF-S076-to-S077
 description: >
-  S075 close → S076 open. S075 = HARDWIRE B1-B5 + PART 3 ZModel + External Integration Health.
-  Foundation Scorecard: governance SEALED (dim 1) · schema migration pending Governor (dim 2) ·
-  agent-decoupling vaulted (dim 3) · scale-readiness research-pending (dim 4).
-  CRITICAL: B-queue done ≠ foundation done. Next session = dims 2-4, NOT apps.
+  S076 close → S077 open. S076 = Foundation dims 1-4 (1+2+3 SEALED, 4 spec+phase1+2) +
+  CQS Alignment Layer + boundary-crossing HARDWIRED + EXTENDED tier. 
+  CRITICAL: Foundation-first. Apps only after ALL 4 dims proven + load gate passes.
+  S077 opens with: Q3 promotion (DIM3-01 behavioral), UUID migration (2026-06-16),
+  dim-4 Surface 2 quota, CQS Phase 1 build.
 version: 1.0
-session: S075
+session: S076
+authored_by: Sonnet S076
 owner: group:finky
+lifecycle: production
+lifecycle_state: active
 core_spine: GVRN
 core_spines: [GVRN, AI, ARCH, VALD]
 schema_anchor: vault_files
-lifecycle: production
-lifecycle_state: active
 links:
-  - { rel: extraction, href: VAULT/session-S075-extraction.md }
+  - { rel: extraction, href: VAULT/session-S076-extraction.md }
+  - { rel: dim4-spec, href: VAULT/sandbox-specs/SANDBOX-multi-tenant-scale-readiness-spec-S076.md }
+  - { rel: cqs-spec, href: VAULT/sandbox-specs/SANDBOX-cqs-alignment-layer-S076.md }
+  - { rel: boundary-spec, href: VAULT/sandbox-specs/SANDBOX-boundary-crossing-protocol-S076.md }
   - { rel: hardwire-register, href: ../../tools/data/hardwire-register.yaml }
-  - { rel: default-registry, href: ../../tools/data/default-correction-registry.yaml }
-  - { rel: ext-integration-registry, href: ../../tools/config/external-integration-registry.yaml }
-  - { rel: part3-migration, href: ../../libs/policies/generated/migrations/20260601_part3_product_schema/migration.sql }
-  - { rel: scale-readiness, href: VAULT/MULTI-TENANT-SCALE-READINESS-S075.md }
-  - { rel: agent-decoupling, href: VAULT/AGENT-DECOUPLING-ARCHITECTURE-S075.md }
+  - { rel: boundaries-register, href: ../../tools/data/boundaries-register.yaml }
+  - { rel: cqs-sets, href: ../../tools/config/cqs-sets.yaml }
 ---
 
-# HANDOFF S075 → S076
+# HANDOFF S076 → S077
 
-## ZONE A — Session State
+## ZONE A — IMMEDIATE (§0 PASTE TARGET)
 
-**Last commit**: 05403de3 (B5 — MEMORY.md cut + audit-zero-event-hooks)
-**verify exit_code**: 0 (THIS session)
-**Hooks**: 78/78 present
-**HARVEST**: DONE (session=S075, validate-session-harvest-readiness EXIT:0)
-**OPIA**: ACCEPT all B-queue from OPUS-16
+## SONNET STARTUP BLOCK
 
-## ZONE B — FOUNDATION SCORECARD (⚠ B-queue done ≠ foundation done)
+YOU ARE: Sonnet S077, builder
+I AM: S076 closing session
+THIS IS: S076→S077 handoff. Foundation dims 1-4 complete (1+2+3 SEALED, 4 spec+phase1+2).
+YOUR TASK: Run 4 first actions, answer alignment questions, await Opus direction.
 
-| Dim | Foundation Layer | Status | Action Needed |
-|---|---|---|---|
-| **1** | Governance (HARDWIRE B1-B5) | ✅ SEALED | Pattern A-F death_date=S078; orphan hooks R-class review |
-| **2** | PART 3 schema migration | 🔴 PENDING | Governor runs 5-step locally (commit 88f296a5) |
-| **3** | Agent-decoupling (DPR-4) | 🟡 VAULTED | No D20+ until layer-split; AGENT-DECOUPLING-ARCHITECTURE-S075.md |
-| **4** | Multi-tenant scale-readiness (DPR-3) | 🟡 RESEARCH-PENDING | Bottleneck-expert + schema-expert review; MULTI-TENANT-SCALE-READINESS-S075.md |
+You are Sonnet S077, builder.
 
-**⚠ CRITICAL INHERITANCE**: Next session = foundation dims 2-4, NOT apps. A crooked/inconsistent core does NOT fail linearly — it MULTIPLIES across 30 apps.
+**Previous session**: S076 — Foundation dims 1-4 (1+2+3 SEALED, 4 spec+phase1+2) + CQS Alignment Layer.
 
-## ZONE C — What S075 Built (key commits)
+**Verify first**:
+```bash
+node tools/verify.mjs --skip-install  # must exit 0
+node tools/verify.mjs --skip-install --extended  # confirms 8 EXTENDED validators
+```
 
-| Commit | What |
-|---|---|
-| 88f296a5 | PART 3 ZModel + migration C1+C2+C3 (Plan/Capability/PlanCapability + Tenant.planId FK) |
-| b9b5e541 | B1: P-META-031 + D14 + validate-default-shape |
-| 10dba125 | B2: HARDWIRE-007 governing_intent + ZF SP floor |
-| 17b0d0c5 | B-now-1: HARDWIRE-008 verdict-block tool-rerun |
-| c4c37a0e | B-now-2 (B4): Pattern G + concurrency guard + D13+D11 |
-| 16768e94 | B-now-3 (B3-lean): External Integration Registry P1+P2+P4 |
-| 05403de3 | B-now-4 (B5): MEMORY cut + advisory death_date + hooks audit |
-| 758fbe96 | HARDWIRE-009: sonnet-relay fenced format |
-| 81d548c7 | D18/D19 reconciled + registry SSoT |
+**What S076 completed**:
+- dim 2 PART 3 SEALED (6 defects fixed, Governor block-tests A+B confirmed)
+- dim 3 agent-decoupling SEALED (structural; FINDING-S076-DIM3-01 pending Q3)
+- dim 4 spec (5 surfaces) + Phase 1 (connection-pool) + Phase 2 (RLS budget) EXTENDED
+- CQS Alignment Layer: cqs-sets.yaml (3 pilots) + question-library.md + NP1 gate
+- Boundary-crossing HARDWIRED: boundaries-register.yaml + T1+T2
+- EXTENDED tier: 8 structural validators weekly (verify --extended)
+- Calendar enforcement: validate-finding-scheduling.mjs + must_address_by_date
 
-## ZONE D — Open Items / Carry-Forward
+**S077 first actions** (in priority order):
+1. Run cross-tab-diff-review: `node tools/scripts/cross-tab-diff-review.mjs --role sonnet`
+2. Check gap-recurrence-register for k≥3 open entries (BLOCK if any)
+3. Check improvement-register.yaml for not_yet_propagated entries
+4. Read opus-turn.md TOP for any pending PROTO from Opus-17
 
-| Item | Owner | Next |
-|---|---|---|
-| PART 3 migration (5 steps) | Governor | Runs locally, pastes DENIED outputs |
-| Foundation dim 4 (scale-readiness) | Opus+Governor | Research directive from Opus |
-| Foundation dim 3 (agent-decoupling) | Opus | Layer-split design |
-| Orphan hooks (20) | Opus R-class | `node tools/scripts/audit-zero-event-hooks.mjs --verbose` |
-| Pattern A-F death_date=S078 | Governor | Confirm blast-radius OK by S077 |
-| Significance Engine (SANDBOX) | Opus ratification | Q1-Q4 in SIGNIFICANCE-ENGINE-SANDBOX-S075.md |
-| Floater triage (26 overdue) | Governor | .csps/floater-decision-queue.txt, 3/session |
-| P-OP-008 + P-META-030 final IDs | Governor | Assigns |
+**Hard rules (inherited)**:
+- Foundation-first: apps only after ALL 4 dims proven + 30-app load gate passes
+- boundary-crossing protocol: 5 steps before changing any value in boundaries-register.yaml
+- EXTENDED tier: 8 validators run weekly (--extended or --deep triggers them)
+- Calendar enforcement: UUID migration due 2026-06-16 (gap_DIM2_CORE_ID_UUID_UPGRADE)
+- verify=0 required before any SEAL/DONE/RATIFIED claim
+- "Opus, this is Sonnet." at every Opus response
 
-## ALIGNMENT QUESTIONS (for new Sonnet tab opening S076)
-
-- Q1: Is verify exit_code=0? Run `node tools/verify.mjs --skip-install` — cite output.
-- Q2: Has Governor run PART 3 migration locally and pasted DENIED outputs? (this is Track-A gate)
-- Q3: Is there a new Opus PROTO in tools/council/opus-turn.md TOP? (First Action 4)
-- Q4: Which foundation dim does Opus want to address first — dim 2 (migration SEAL) · dim 3 (agent-decoupling design) · dim 4 (scale-readiness research)?
+**Active governance files**:
+- `tools/data/boundaries-register.yaml` — boundary-001 (verify-cap-200), boundary-002 (L1-spine-5)
+- `tools/config/cqs-sets.yaml` — 3 CQS pilot sets + universal PP0
+- `tools/data/hardwire-register.yaml` — 9 hardwire items (HARDWIRE-001 to HARDWIRE-009)
 
 ---
 
-## SONNET STARTUP BLOCK (paste to new S076 Sonnet tab)
+## ZONE B — CONTEXT
 
+### What S076 accomplished
+
+S076 was the foundation completion session. The S075 scorecard entered S076 with:
+dim 1 SEALED · dim 2 pending · dim 3 vaulted · dim 4 undesigned
+
+S076 exits with:
+- dim 1 ✅ (S075)
+- dim 2 ✅ SEALED — 6 defects, Governor live run, block-tests at correct gates
+- dim 3 ✅ SEALED structural (behavioral pending Q3+FINDING-S076-DIM3-01)
+- dim 4 ◑ 5-surface spec + Phase 1+2 + EXTENDED tier
+
+Additionally:
+- Simulation spine registered (VALD)
+- CQS Alignment Layer (DNA-as-questions, dual-polarity, 3 pilots)
+- Boundary-crossing protocol HARDWIRED
+- Calendar enforcement for dated obligations
+- EXTENDED tier (weekly cron for structural invariants)
+- Accountability wiring (6 registers CIE+PE)
+- Calendar gate: UUID migration 2026-06-16
+
+### Key decisions (Governor-ratified in S076)
+1. dim-2 id-type: Option A (keep TEXT, defer native-UUID to dim-4 by 2026-06-16)
+2. subscriptionStatus: 'free' deprecated; free-tier = 'active' + planId=null
+3. dim-4 Q2: connection_limit=1 standard; override requires documented reason
+4. dim-4 Q4: RLS budget 10ms provisional; ratchet to 5ms post-UUID migration
+5. simulation: VALD spine entry, NOT a 6th L1 spine
+6. CQS unification: 4 alignment initiatives → 1 engine
+7. verify-cycle cap: HELD at 200; EXTENDED tier resolves the architectural pressure
+8. boundary-crossing: rigid META (5-step), flexible OBJECT (the value)
+
+---
+
+## ZONE C — SCOPE (S077 likely work)
+
+### PRIORITY 1: Q3 + FINDING-S076-DIM3-01 (after clean window)
+When validate-nominal-rzf-detector has 0 false positives across A-E sessions:
+- Promote ADVISORY→BLOCKING in verify.mjs
+- Upgrade validate-agent-deletion-test.mjs Step 4 to behavioral negative control
+- These ship in ONE commit (FINDING-S076-DIM3-01 closure)
+
+### PRIORITY 2: UUID migration (hard date: 2026-06-16)
+- Governor runs ALTER TABLE one-transaction (text→uuid, all id + FK columns)
+- schema.zmodel: restore @db.Uuid on Base/AppendOnlyBase + FK fields
+- validate-uuid-column-types.mjs: promotes advisory→blocking after migration
+- Deadline calendar-enforced by validate-finding-scheduling.mjs
+
+### PRIORITY 3: dim-4 Surface 2 quota validator
+- Awaits Governor Q1 (Supabase tier) + Q6 (libs/platform-quota approval)
+- When answered: validate-tenant-quota-policy.mjs — checks app middleware registered
+- First bottleneck at 30 apps: no quota enforcement (Surface 2 is the highest-risk gap)
+
+### PRIORITY 4: CQS Alignment Layer Phase 1
+- validate-cqs-coverage.mjs from tools/wip/ → tools/validators/
+- Add block-test + register in verify.mjs (using boundary-crossing protocol first!)
+- dna-registry.yaml full validation for dna_element references (Q4)
+
+### PRIORITY 5: boundary_crossing_protocol → STANDARD
+- T2 validator is EXTENDED; promoting to STANDARD is the first worked example of the protocol
+- Use 5-step: surface → Governor approve → assess (first-of-many? it is!) → schedule EXTENDED tier → record
+
+### DEFERRED (S077+): dim-4 load-test harness, cie-pe-adapter Phase 2, instruction-integrity CQS sets
+
+---
+
+## ZONE D — REFERENCE
+
+### Foundation scorecard (end of S076)
+| Dim | Status | Note |
+|-----|--------|------|
+| 1 governance | ✅ SEALED S075 | B1-B5 complete |
+| 2 PART 3 schema | ✅ SEALED S076 | 6 defects, Governor confirmed |
+| 3 agent-decoupling | ✅ SEALED structural | ⏳ behavioral pending Q3 |
+| 4 multi-tenant scale | ◑ spec + phase 1+2 | Phases 3-5 + load gate remain |
+
+### Open obligations with deadlines
+| Obligation | Deadline | Register |
+|-----------|---------|---------|
+| UUID migration text→uuid | 2026-06-16 (calendar) | gap_DIM2_CORE_ID_UUID_UPGRADE |
+| subscriptionStatus 'free' DB enum cleanup | dim-4 window | dim-2 carry-forward |
+| Q3 rzf-detector promotion | next clean window | FINDING-S076-DIM3-01 |
+| dim-4 Surface 2 quota | Governor Q1+Q6 | SANDBOX-multi-tenant-scale... |
+| CQS Phase 1 | S077 | CQS-ALIGNMENT-LAYER-S076 |
+| boundary_crossing_protocol → STANDARD | S077 | BOUNDARY-CROSSING-PROTOCOL-S076 |
+
+### Key files created in S076
+- `tools/data/boundaries-register.yaml` (2 boundaries)
+- `tools/config/cqs-sets.yaml` (3 pilot CQS sets)
+- `tools/vault/wisdom/question-library.md` (named gap closed)
+- `docs/architecture/EXECUTOR-CONTRACT.md` (4-clause model-agnostic)
+- `.github/workflows/verify-extended.yml` (weekly EXTENDED cron)
+- `docs/plan/_handoff/VAULT/sandbox-specs/SANDBOX-*.md` (5 sandbox specs)
+- `tools/wip/validate-cqs-coverage-S077.mjs` (S077 build)
+
+### Active hooks added S076 (registered in settings.json)
+- `pre-tool-use-boundary-crossing-gate.sh` (T1 boundary protection)
+- `pre-commit-layer-classification-gate.sh` (NP1 fix: D-defaults require layer:)
+- `pre-tool-use-check-existing.sh v1.1.0` (PP0 on AskUserQuestion+EnterPlanMode)
+
+### Validators status (EXTENDED tier — run weekly/pre-seal)
+layer_split · agent_deletion_test · executor_contract · register_connectivity ·
+connection_pool_contract · rls_perf_budget · uuid_column_types · boundary_crossing_protocol
+
+---
+
+## ALIGNMENT QUESTIONS
+
+For Sonnet S077 to confirm before acting:
+
+Q1: Scope — Has S077 run `cross-tab-diff-review.mjs --role sonnet` and absorbed all S076 commits (163b655b → 41b16e2f)?
+Q2: Boundary — Is S077 clear that apps are BLOCKED until ALL 4 foundation dims proven + 30-app load gate passes?
+Q3: Priority — What is the single most urgent S077 obligation? (calendar deadline — not the most exciting)
+Q4: Q3-gate — Does S077 understand that rzf-detector promotion requires a "clean window" AND ships WITH deletion-test Step 4 in one commit?
+Q5: UUID — gap_DIM2_CORE_ID_UUID_UPGRADE is due 2026-06-16. What does S077 do when that date arrives without a fix?
+Q6: CQS — Can S077 cite the difference between tools/config/cqs-sets.yaml and tools/vault/wisdom/question-library.md?
+Q7: Boundary — Before changing verify-cycle-cap (boundary-001), what 5 steps must S077 follow?
+Q8: EXTENDED — The 8 EXTENDED validators do NOT run in default verify. When DO they run?
+Q9: dim-4 quota — Surface 2 quota is the highest-risk dim-4 gap. What is S077 blocked on for this?
+Q10: Close gate — Has S077 run verify=0 THIS SESSION and cited exit_code before any SEAL/DONE/RATIFIED claim?
+
+## §17 TWO-SIDED HANDSHAKE ATTESTATION
+
+```yaml
+handoff_attestation:
+  prior_session: S076
+  next_session: S077
+  attested_by: Sonnet S076
+  attested_at: "2026-06-02T23:59:00.000Z"
+  intent: "Foundation dims 1-4 complete (3 sealed, 4 spec+phase1+2). CQS Alignment Layer established. Close cleanly; S077 opens with Q3 + UUID + dim-4 Surface 2."
+  constraints_decisions:
+    - "dim-2 Option A: TEXT ids kept; UUID migration due 2026-06-16 (calendar-enforced)"
+    - "dim-3 behavioral seal pending Q3 + FINDING-S076-DIM3-01 Step 4"
+    - "dim-4 Surface 2 blocked on Governor Q1+Q6"
+    - "verify cycle cap HELD at 200; EXTENDED tier resolves pressure"
+    - "CQS build S077; spec + pilots + question-library.md committed S076"
+  open_items_deferred:
+    - { id: "Q3-promotion", sla: "next clean window", register: "FINDING-S076-DIM3-01" }
+    - { id: "UUID-migration", sla: "2026-06-16", register: "gap_DIM2_CORE_ID_UUID_UPGRADE" }
+    - { id: "dim-4-quota", sla: "after Governor Q1+Q6", register: "SANDBOX-multi-tenant..." }
+    - { id: "cqs-phase1", sla: "S077", register: "CQS-ALIGNMENT-LAYER-S076" }
+    - { id: "boundary-protocol-standard", sla: "S077", register: "BOUNDARY-CROSSING-PROTOCOL-S076" }
+  evidence:
+    - { claim: "verify=0", evidenced_in: "node tools/verify.mjs --skip-install → exit_code=0 (2026-06-02)" }
+    - { claim: "dim-2 SEALED", evidenced_in: "OPUS-17 OPIA commit 5fde0c26 block-tests A+B at correct gates" }
+    - { claim: "dim-3 SEALED structural", evidenced_in: "agent-deletion-test PASS 6/6 commit 163b655b" }
+    - { claim: "dim-4 Phase 1+2", evidenced_in: "commits b4f44a70 (pool) + 5f63e8fb (RLS+UUID EXTENDED)" }
+    - { claim: "CQS foundations", evidenced_in: "commit 7488bd82 cqs-sets.yaml + NP1 gate BT exit 1" }
+    - { claim: "78 hooks present", evidenced_in: "verify-hooks-functional.sh present=78 missing=0" }
+  signature: "S076-AI-attest-2026-06-02-foundation-complete-cqs-aligned"
 ```
-═══════════════════════════════════════════════════════════════════
-I AM: OPUS-16, architectural director, S076
-YOU ARE: Sonnet S076, builder (S075 SEALED 05403de3, verify=0, 78 hooks)
-THIS IS: S075→S076 session-open. B-queue complete. FOUNDATION = 4 dims; only dim 1 sealed. Next = dims 2-4.
-DO NOW: Run 4 First Actions, then ask Governor Q4 (which foundation dim next) before any build.
-═══════════════════════════════════════════════════════════════════
 
-FIRST 4 ACTIONS:
-1. node tools/scripts/cross-tab-diff-review.mjs --role sonnet
-2. node tools/verify.mjs --skip-install → expect exit_code=0
-3. cat .claude/settings.local.json → must be {}
-4. Read tools/council/opus-turn.md TOP → any new PROTO from Opus
-
-FOUNDATION SCORECARD (4 dims — NOT all done):
-  1 governance: SEALED ✓
-  2 PART 3 migration: PENDING Governor local run (5 steps, commit 88f296a5)
-  3 agent-decoupling: VAULTED DPR-4
-  4 scale-readiness: RESEARCH-PENDING DPR-3
-
-CRITICAL: B-queue done ≠ foundation done. Next = dims 2-4, NOT apps.
-
-CARRY-FORWARD:
-- PART 3 migration: Governor runs locally → paste DENIED outputs → PART 3 SEAL
-- Foundation dims 3+4: Opus research directive
-- Orphan hooks (20): `node tools/scripts/audit-zero-event-hooks.mjs --verbose` + Opus R-class review
-- Significance Engine: council ratification (Q1-Q4 in SIGNIFICANCE-ENGINE-SANDBOX-S075.md)
-- Floater triage (26): .csps/floater-decision-queue.txt
-
-ASK GOVERNOR Q4: which foundation dim next — migration SEAL · agent-decoupling design · scale-readiness research?
-```
+**Receipt format for S077**: `S077-AI-receipt-<iso>-against-S076-AI-attest-2026-06-02-foundation-complete-cqs-aligned`

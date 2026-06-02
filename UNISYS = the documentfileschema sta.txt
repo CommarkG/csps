@@ -1,0 +1,43 @@
+UNISYS = the document/file/schema standard for the whole universal ecosystem
+UPCES = excellence before code
+UWH   = reusable wisdom capture and reinjection
+UCL   = communication and intent-transfer governance
+OSM   = optimal sequencing of what to build/review first
+ACT (as in "active" / "activated")
+The state where something is actually doing its job, not just written. In CSPS: a hook, validator, or rule is ACT when it fires on real inputs and produces real effects. The platform disease we've been fighting is things that exist but are never invoked — EXISTS≠ACTIVE. M6 (routing all inputs through routeInput) was the biggest ACT upgrade this session.
+
+M-CA??
+CIP??
+
+SEAL
+The formal, irreversible closure of a PROTO milestone block. A SEAL commit means: "this block of work is done, verified by OPIA, and locked." Nothing changes after SEAL. If OPIA returns COURSE-CORRECT instead of ACCEPT, the SEAL commit is reverted (not amended) — so a green SEAL can never outlive a failed director review. M9 SEAL = the final gate for PART 2.
+
+Facet-Pack-Complete
+All 6 Facets of the P-META-028 cornerstone principle finished and verified. Each Facet is a specific enforcement surface:
+A = number-wrapping validator · B = Vercel mirror rule · C = Dev↔User vocabulary · D = tier scale-language · E = persona trigger wiring · F = CIE/PE boundary audit.
+When all 6 are done → the cornerstone has mechanical teeth across every application domain.
+
+OPIA
+Opus-Performed Implementation Audit. After Sonnet reports a milestone is done, Opus reads the actual commits, diffs, and file contents at the real SHA — then verifies whether Sonnet's claims are true. Returns ACCEPT (work is real, correct, complete) or COURSE-CORRECT (something is wrong — Sonnet must fix before advancing). OPIA is what prevents nominal DONE claims from slipping through.
+
+OPIA matrix
+The structured evidence table inside an OPIA block. Two columns: "Sonnet claimed X" vs "Opus verified at [file:line]." Not Opus taking Sonnet's word for it — Opus reads the disk. Every OPIA you've seen in this session has had this: a row-by-row verification of each claim against actual file contents at the actual HEAD SHA.
+
+PREVENTION class name
+A named structural failure pattern, not just a one-off bug fix. Instead of "I fixed a mistake in file X," you name the class of mistake: EXISTS-NEQ-INVOKED-AT-NERVOUS-SYSTEM, NOMINAL-PERSONA-COUNT-AT-SOURCE, MEMORY-VS-DISK-DRIFT. Naming the class means: (a) future builders can recognize and avoid it, (b) the platform can build a T1/T2/T3 enforcer for it, (c) it shows up in the gap-recurrence register. Every milestone report must name at least one.
+
+HEAD
+Git's pointer to "the current latest commit on this branch." Whatever HEAD points to is what verify.mjs runs against. When Sonnet says "verify_top_exit: 0 at HEAD b90c0826" it means: "I ran the full validator suite on the code at that specific commit, and it passed." HEAD moves forward with every new commit. Citing HEAD SHA = proof of which version was tested.
+
+SHA
+The unique 8–40 character fingerprint of a specific git commit (e.g., b90c0826). Git computes it by hashing the full contents of the commit — change anything by one byte and you get a completely different SHA. In CSPS, a SHA is the primary evidence token: "I verified this exact version, not some other version that might have changed since." You cannot alter a commit without changing its SHA, which is why OPIA cites SHAs rather than trusting "the latest version."
+go over all we did in this tab and present question that can be added to all the mentioned elements 
+
+present for each one :
+* Prevention questions [what to avoid]
+* Communication questions and quotes [evolving the ai profiling and creating instructions and proto's and PACKs avoiding unwanted trigger words and providing context and reasoning + alternative vocabulary so ai will collaborate optimally]
+* Enhancement questions and routing looking for valuable to extract harvest and route to the 3 scopes and the threshold
+
++ see how all you find can become permanent 
++ how this populating elements with core questions can be added to audits and become an ongoing task to be completed gradually  
++ how can you  enhance adding questions and quotes and context and reasoning to all new things created !! can you do it and avoid native ai from freestyling without csps approach and mandatory questions quotes context and reasoning? 

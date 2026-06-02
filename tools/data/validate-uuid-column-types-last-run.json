@@ -1,43 +1,10 @@
 {
   "blocking": 0,
-  "advisory": 8,
+  "advisory": 0,
   "deadline": "2026-06-16",
   "blocking_date": "2026-06-30",
   "today": "2026-06-02",
   "status": "pre-deadline",
-  "all_findings": [
-    {
-      "level": "advisory",
-      "msg": "Base.id: missing @db.Uuid — native UUID storage not set. Due: 2026-06-16. Run ALTER TABLE migration per dim-4 Surface 5 spec."
-    },
-    {
-      "level": "advisory",
-      "msg": "AppendOnlyBase.id: missing @db.Uuid — native UUID storage not set. Due: 2026-06-16."
-    },
-    {
-      "level": "advisory",
-      "msg": "FK field 'clerkId': missing @db.Uuid — apply after Base/AppendOnlyBase migration"
-    },
-    {
-      "level": "advisory",
-      "msg": "FK field 'tenantId': missing @db.Uuid — apply after Base/AppendOnlyBase migration"
-    },
-    {
-      "level": "advisory",
-      "msg": "FK field 'clerkOrgId': missing @db.Uuid — apply after Base/AppendOnlyBase migration"
-    },
-    {
-      "level": "advisory",
-      "msg": "FK field 'stripeCustomerId': missing @db.Uuid — apply after Base/AppendOnlyBase migration"
-    },
-    {
-      "level": "advisory",
-      "msg": "FK field 'stripeSubscriptionId': missing @db.Uuid — apply after Base/AppendOnlyBase migration"
-    },
-    {
-      "level": "advisory",
-      "msg": "... and 26 more FK fields missing @db.Uuid (suppressed)"
-    }
-  ],
-  "ran_at": "2026-06-02T03:52:28.452Z"
+  "all_findings": [],
+  "ran_at": "2026-06-02T16:35:09.179Z"
 }

@@ -1,0 +1,2 @@
+How can we enhance the profiling to be a practical tool inside CSPS?
+How can it become the core of these feature branching to AI and humans in their different rolls and well connected to the communication elements and ai behavior ?

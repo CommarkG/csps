@@ -1,0 +1,13 @@
+{
+  "validator": "validate-tenant-quota-policy",
+  "timestamp": "2026-06-02T16:35:08.957Z",
+  "blocking": 0,
+  "advisory": 0,
+  "findings": [],
+  "free_tier_constants": {
+    "max_db_connections": 60,
+    "db_connections_per_app": 1,
+    "platform_app_count": 30,
+    "headroom_pct": 50
+  }
+}

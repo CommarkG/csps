@@ -1,0 +1,9 @@
+an idea for later processing 
+
+having each pipeline tested using clude co worker and give professional feedback using our csps personas.
+do the same with developer's journey... 
+Each user journey? 
+
+bottom line enhancing the simulation abilities by running what we can through canvacing the code, iterating and improving what is found and then use the external test through browser... get feedback and extract value on:
+1 what to improve on this specific tested element
+2 what to improve so next time all what was found through web 

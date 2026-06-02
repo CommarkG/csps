@@ -26,7 +26,7 @@
     {
       "step": 5,
       "status": "PASS",
-      "msg": "8/8 pre-commit hooks are system-layer (no scaffold dep) — CI-compatible quality gates exist"
+      "msg": "9/9 pre-commit hooks are system-layer (no scaffold dep) — CI-compatible quality gates exist"
     },
     {
       "step": 6,
@@ -34,5 +34,5 @@
       "msg": "D1-D12 all layer:system — universal LLM defaults apply to any executor (model-agnostic)"
     }
   ],
-  "ran_at": "2026-06-01T22:39:56.630Z"
+  "ran_at": "2026-06-02T16:35:08.651Z"
 }

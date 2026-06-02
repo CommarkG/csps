@@ -1,0 +1,9 @@
+The .env file is in your workspace folder now. 
+Open it directly on your machine, paste your three keys after the = signs, and save. 
+When I run Core Cycle API calls, I'll load from that file — keys stay on your machine, never in chat.
+
+[System.Environment]::SetEnvironmentVariable("GEMINI_API_KEY", "AIzaSyAZ8rVWpKArFUX4h2UncTWaLeTNYkpS10M", "User")
+
+[System.Environment]::SetEnvironmentVariable('ANTHROPIC_API_KEY', "curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \    -H 'anthropic-version: 2023-06-01' \    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"", "User")
+
+$key = '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'[System.Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY", $key, "User")

@@ -1218,3 +1218,33 @@ entries:
     - B_SIMULATION_COMPARISON.md disambiguation comment (BEFORE/AFTER/DELTA, not sim mode)
     - realtime_save wiring (after Phase 2 cie-pe-adapter ships)
   note: "Authored S076 per PROTO-S076-SIMULATION-SPINE (OPUS-17 directive). Consolidation-led: no content forked. Spin entry is the index/taxonomy only. All canonical homes preserved."
+
+- id: BOUNDARY-CROSSING-PROTOCOL-S076
+  title: "Boundary-Crossing Protocol — governed 5-step process for crossing any ratified boundary"
+  description: >
+    Governor S076 directive: replace rigid "never go over X" with rigid META (how you cross)
+    + flexible OBJECT (what the value is). 5-step: STOP+SURFACE → GOVERNOR-FIRST-APPROVAL →
+    DEEP-ASSESSMENT (one-off or first-of-many? re-derive vs except?) → SCHEDULED-ENTERPRISE-
+    RESOLUTION (dated obligation, same machinery as UUID 2026-06-16) → RECORD-PRECEDENT+K-COUNT.
+    Consolidates with gap_INSTRUCTION_INTEGRITY (same root: intent+provenance, never bare surface text).
+    First instance = verify cycle cap (200, HELD — no raise until this protocol exists).
+    Sandbox spec authored; HARDWIRE (T1+T2+BOUNDARIES-REGISTER) pending Opus OPIA ratification.
+  first_found: S076
+  k_count: 1
+  sessions: [S076]
+  status: open
+  cie_connection: "requires_promotion"
+  pe_connection: "input"
+  pe_urgency_input: true
+  cie_observation_class: design_gap
+  must_address_by_session: "S077"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Opus OPIA ratification of sandbox spec
+    - Phase A: tools/data/boundaries-register.yaml (new file)
+    - Phase B: pre-tool-use-boundary-crossing-gate.sh (T1 hook)
+    - Phase C: validate-boundary-crossing-protocol.mjs (T2 validator)
+    - Phase D: Executor Contract C5 clause
+    - gap_INSTRUCTION_INTEGRITY cross-ref to this spec
+    - rigid-rule-anti-pattern.md cross-ref (escape-hatch sharpened)
+  note: "PROTO-S076-BOUNDARY-CROSSING-PROTOCOL per OPUS-17/Governor S076. Design-first. Spec at VAULT/sandbox-specs/SANDBOX-boundary-crossing-protocol-S076.md. No build until ratified."

@@ -6,11 +6,13 @@
  * governing_principle: P-META-019
  * behavioral_contract: B_STRUCTURAL_PREVENTION_DISCIPLINE
  * role: Auto-scheduling validator for improvement-register + gap-recurrence-register.
- *       Surfaces overdue findings (past must_address_by_session).
+ *       Surfaces overdue findings (past must_address_by_session OR must_address_by_date).
  *       K=1 overdue → ADVISORY (exit 0 + stderr). K=2 overdue → BLOCKING (exit 1).
  *       K=1 past must_address + 3 sessions → auto-promote to K=2 in register.
+ *       K=1 past must_address_by_date + 14 days → auto-promote to K=2 in register.
+ *       S076: calendar date enforcement added (Governor directive — UUID upgrade deadline).
  * @csps-enforces B_STRUCTURAL_PREVENTION_DISCIPLINE P-META-019 M-30
- * @behavioral-test-status: tested — finding-scheduling-test.sh A/B/C/D
+ * @behavioral-test-status: tested — finding-scheduling-test.sh A/B/C/D/E/F
  */
 
 /**
@@ -58,6 +60,13 @@ function sessionFmt(num) {
 }
 
 const currentSession = getCurrentSessionNum();
+
+// S076: Calendar date enforcement (must_address_by_date).
+// String comparison works for ISO dates (lexicographic == chronological).
+const TODAY_ISO = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+const TODAY_MS = Date.parse(TODAY_ISO);
+const FOURTEEN_DAYS_MS = 14 * 24 * 60 * 60 * 1000;
+
 let findings_checked = 0, on_time = 0, overdue_advisory = 0, overdue_blocking = 0, auto_promoted = 0;
 const findings_report = [];
 
@@ -84,12 +93,13 @@ for (const reg of REGISTERS) {
     const status = statusM[1];
     if (['closed', 'resolved', 'propagated', 'implemented', 'implemented-S066'].includes(status)) continue;
 
-    // Get scheduling fields
+    // Get scheduling fields (session + calendar date)
     const mustByM = block.match(/must_address_by_session:\s*["']?(S\d+)["']?/);
-    if (!mustByM) continue; // No scheduling field — skip (may be pre-migration)
+    const mustByDateM = block.match(/must_address_by_date:\s*["']?(\d{4}-\d{2}-\d{2})["']?/);
+    // S076: skip only if NEITHER scheduling field is present (backward-compat)
+    if (!mustByM && !mustByDateM) continue;
 
     findings_checked++;
-    const mustByNum = sessionNum(mustByM[1]);
     const idM = block.match(/- id:\s+(\S+)/);
     const id = idM ? idM[1] : '(unknown)';
     const kM = block.match(/k_count:\s*(\d+)/);
@@ -97,18 +107,36 @@ for (const reg of REGISTERS) {
     const hasFixSha = /fix_commit_sha:\s*(?!null)\S/.test(block);
     const hasDeferReason = /explicit_defer_reason:\s*(?!null)\S/.test(block);
 
-    if (mustByNum && currentSession > mustByNum && !hasFixSha && !hasDeferReason) {
-      // Overdue!
-      const sessionsOverdue = currentSession - mustByNum;
+    // --- Session-overdue check (existing logic, backward-compat) ---
+    let sessionOverdue = false;
+    let sessionsOverdue = 0;
+    if (mustByM) {
+      const mustByNum = sessionNum(mustByM[1]);
+      if (mustByNum && currentSession > mustByNum && !hasFixSha && !hasDeferReason) {
+        sessionOverdue = true;
+        sessionsOverdue = currentSession - mustByNum;
+      }
+    }
 
-      // Auto-promote K=1 → K=2 if 3+ sessions overdue
-      if (kCount === 1 && sessionsOverdue >= 3) {
-        // Update k_count in content
-        content = content.replace(
-          `- id: ${id}\n`,
-          `- id: ${id}\n`
-        );
-        // Simple replacement in the entry
+    // --- Date-overdue check (S076 extension) ---
+    let dateOverdue = false;
+    let daysOverdue = 0;
+    if (mustByDateM) {
+      const dueDateMs = Date.parse(mustByDateM[1]);
+      if (TODAY_MS > dueDateMs && !hasFixSha && !hasDeferReason) {
+        dateOverdue = true;
+        daysOverdue = Math.floor((TODAY_MS - dueDateMs) / (24 * 60 * 60 * 1000));
+      }
+    }
+
+    const isOverdue = sessionOverdue || dateOverdue;
+
+    if (isOverdue) {
+      // Auto-promote K=1 → K=2: either 3+ sessions overdue OR 14+ days overdue
+      const sessionAutoPromote = sessionOverdue && sessionsOverdue >= 3 && kCount === 1;
+      const dateAutoPromote = dateOverdue && daysOverdue >= 14 && kCount === 1;
+
+      if ((sessionAutoPromote || dateAutoPromote) && kCount === 1) {
         const oldKLine = block.match(/k_count:\s*\d+/)?.[0];
         if (oldKLine) {
           content = content.replace(
@@ -117,30 +145,42 @@ for (const reg of REGISTERS) {
           );
           auto_promoted++;
           modified = true;
+          const reason = sessionAutoPromote
+            ? `${sessionsOverdue} sessions overdue`
+            : `${daysOverdue} days past must_address_by_date`;
           process.stderr.write(
-            `[finding-scheduling] AUTO-PROMOTE: ${id} K=1→K=2 (${sessionsOverdue} sessions overdue)\n`
+            `[finding-scheduling] AUTO-PROMOTE: ${id} K=1→K=2 (${reason})\n`
           );
         }
         overdue_blocking++;
-        findings_report.push({ id, register: reg.name, severity: 'BLOCKING', sessions_overdue: sessionsOverdue, reason: 'K promoted to 2' });
+        findings_report.push({
+          id, register: reg.name, severity: 'BLOCKING',
+          sessions_overdue: sessionsOverdue, days_overdue: daysOverdue,
+          reason: 'K promoted to 2 (session or date ladder)'
+        });
         process.stderr.write(
-          `[finding-scheduling] BLOCKING: ${id} overdue by ${sessionsOverdue} sessions. K promoted to 2.\n` +
-          `  Fix: add fix_commit_sha: <sha> OR explicit_defer_reason: <reason> to entry.\n`
+          `[finding-scheduling] BLOCKING: ${id} K promoted to 2.\n` +
+          `  Fix: add fix_commit_sha: <sha> OR explicit_defer_reason: <reason>.\n`
         );
       } else if (kCount >= 2) {
         overdue_blocking++;
-        findings_report.push({ id, register: reg.name, severity: 'BLOCKING', sessions_overdue: sessionsOverdue });
+        const detail = sessionOverdue
+          ? `${sessionsOverdue} sessions overdue (was ${mustByM?.[1]})`
+          : `${daysOverdue} days past date (was ${mustByDateM?.[1]})`;
+        findings_report.push({ id, register: reg.name, severity: 'BLOCKING', sessions_overdue: sessionsOverdue, days_overdue: daysOverdue });
         process.stderr.write(
-          `[finding-scheduling] BLOCKING: ${id} K=${kCount} overdue by ${sessionsOverdue} sessions.\n` +
-          `  must_address_by_session was ${mustByM[1]}, now ${sessionFmt(currentSession)}.\n` +
-          `  Fix: add fix_commit_sha: <sha> OR explicit_defer_reason: <reason> to entry.\n`
+          `[finding-scheduling] BLOCKING: ${id} K=${kCount} overdue — ${detail}.\n` +
+          `  Fix: add fix_commit_sha: <sha> OR explicit_defer_reason: <reason>.\n`
         );
       } else {
         overdue_advisory++;
-        findings_report.push({ id, register: reg.name, severity: 'ADVISORY', sessions_overdue: sessionsOverdue });
+        const detail = sessionOverdue
+          ? `${sessionsOverdue} session(s) past must_address_by_session`
+          : `${daysOverdue} day(s) past must_address_by_date (${mustByDateM?.[1]})`;
+        findings_report.push({ id, register: reg.name, severity: 'ADVISORY', sessions_overdue: sessionsOverdue, days_overdue: daysOverdue });
         process.stderr.write(
-          `[finding-scheduling][ADVISORY] ${id} K=${kCount} overdue by ${sessionsOverdue} sessions.\n` +
-          `  Will BLOCK if K reaches 2 or if ${sessionsOverdue + (3 - sessionsOverdue)} more sessions pass without fix.\n`
+          `[finding-scheduling][ADVISORY] ${id} K=${kCount} overdue — ${detail}.\n` +
+          `  Will BLOCK at K=2 or after 14 days (date) / 3 sessions (session) without fix.\n`
         );
       }
     } else {

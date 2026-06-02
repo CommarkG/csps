@@ -1248,3 +1248,34 @@ entries:
     - gap_INSTRUCTION_INTEGRITY cross-ref to this spec
     - rigid-rule-anti-pattern.md cross-ref (escape-hatch sharpened)
   note: "PROTO-S076-BOUNDARY-CROSSING-PROTOCOL per OPUS-17/Governor S076. Design-first. Spec at VAULT/sandbox-specs/SANDBOX-boundary-crossing-protocol-S076.md. No build until ratified."
+
+- id: CQS-ALIGNMENT-LAYER-S076
+  title: "CQS Alignment Layer — DNA-as-questions engine, dual-polarity, unifies 4 alignment initiatives"
+  description: >
+    Governor S076 directive: Core Questions Sets (CQS) = DNA-as-questions with dual polarity
+    (positive pole: enable/intend/cover; negative pole: prevent/failure-mode/what-breaks-if-absent).
+    Per artifact-type. CREATION mode (answer-before-build) + DEEP-DIVE mode (surface missing DNA).
+    UNIFIES into ONE Alignment Layer: CQS (engine) + instruction-integrity (incoming instructions)
+    + consolidation-protocol (deep-dive over what exists) + boundary-crossing Step 3 (highest-stakes CQS).
+    Sandbox spec authored with 3 pilot sets (core-spine / validator / protocol) + simulation.
+    CQS deep-dive on validate-layer-split.mjs surfaced NP1 real gap (no pre-commit layer: gate on new D-defaults).
+    ABSORBS: gap_INSTRUCTION_INTEGRITY + consolidation-protocol standalone PROTOs.
+  first_found: S076
+  k_count: 1
+  sessions: [S076]
+  status: open
+  cie_connection: "requires_promotion"
+  pe_connection: "input"
+  pe_urgency_input: true
+  cie_observation_class: design_gap
+  must_address_by_session: "S077"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Opus OPIA ratification of sandbox spec
+    - tools/vault/wisdom/question-library.md (canonical home, does not exist yet)
+    - validate-cqs-coverage.mjs (deep-dive mode enforcement)
+    - Pre-commit CQS creation gate (T1 template per artifact type)
+    - Update gap_INSTRUCTION_INTEGRITY + consolidation-protocol entries to cross-ref this spec
+    - Pilot scale to remaining 16 artifact types
+    - NP1 gap from simulation: pre-commit layer: gate for new D-defaults
+  note: "PROTO-S076-CQS-ALIGNMENT-LAYER per OPUS-17/Governor S076. 3 pilots + simulation done. No build until ratified. Spec at VAULT/sandbox-specs/SANDBOX-cqs-alignment-layer-S076.md."

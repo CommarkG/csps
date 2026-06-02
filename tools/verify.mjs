@@ -1525,6 +1525,20 @@ const CYCLES = [
     },
   },
   {
+    // S076 dim-4 Phase 1: Connection-Pool Contract — every app DATABASE_URL must use port 6543 +
+    // pgbouncer=true + connection_limit=1 (Q2: override allowed with CONNECTION_LIMIT_OVERRIDE_REASON).
+    // Blocking: port 5432 in DATABASE_URL | missing pgbouncer | missing connection_limit.
+    // BT: port 5432 in DATABASE_URL → exit 1. See SANDBOX-multi-tenant-scale-readiness-spec-S076.md Surface 1.
+    // DEEP: .env.example files are stable between sessions; capacity-constrained
+    run_tier: 'DEEP',
+    name: 'connection_pool_contract',
+    command: 'node tools/validators/validate-connection-pool-contract.mjs',
+    parse_output: (out) => {
+      const m = out.match(/apps_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { apps_checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // M2 S071 Facet C: Dev↔User vocabulary coverage — advisory validator
     // Flags user-facing content that uses dev_terms without paired user_term translation
     // Glossary source: vocabulary.md §Dev↔User Glossary (8+ entries, sample-expandable per P-META-028)

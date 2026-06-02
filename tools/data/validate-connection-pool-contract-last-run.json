@@ -1,0 +1,28 @@
+{
+  "apps_checked": 8,
+  "blocking": 4,
+  "advisory": 1,
+  "all_findings": [
+    {
+      "level": "blocking",
+      "msg": "__bt2/.env.example: DATABASE_URL uses port 5432 (direct URL) — MUST use port 6543 (pooled). Risk: 42P05 under concurrency."
+    },
+    {
+      "level": "blocking",
+      "msg": "__bt2/.env.example: DATABASE_URL does not use port 6543 — Supabase pgBouncer pooler required for serverless/multi-app."
+    },
+    {
+      "level": "blocking",
+      "msg": "__bt2/.env.example: DATABASE_URL missing pgbouncer=true — required for transaction-mode connection pooling."
+    },
+    {
+      "level": "blocking",
+      "msg": "__bt2/.env.example: DATABASE_URL missing connection_limit=N — set connection_limit=1 (default). Override: add CONNECTION_LIMIT_OVERRIDE_REASON comment."
+    },
+    {
+      "level": "advisory",
+      "msg": "__bt2/.env.example: DIRECT_URL not found in .env.example — needed for 'prisma db push/migrate' (port 5432 is OK there)."
+    }
+  ],
+  "ran_at": "2026-06-02T02:20:56.765Z"
+}

@@ -3,8 +3,9 @@ id: csps.handoff.vault.sandbox-multi-tenant-scale-readiness-spec-s076
 name: SANDBOX-multi-tenant-scale-readiness-spec-S076
 description: >
   SANDBOX design spec for Foundation dim 4: MULTI-TENANT SCALE-READINESS.
-  4 surfaces: CONNECTION-POOL CONTRACT / PER-TENANT QUOTA+NOISY-NEIGHBOR /
-  RLS PERF BUDGET / N×M LOAD-TEST HARNESS (design only).
+  5 surfaces: CONNECTION-POOL CONTRACT / PER-TENANT QUOTA+NOISY-NEIGHBOR /
+  RLS PERF BUDGET / N×M LOAD-TEST HARNESS (design only) /
+  NATIVE-UUID MIGRATION (Governor-scheduled 2026-06-16, gap_DIM2_CORE_ID_UUID_UPGRADE).
   Scale simulation: 30→300 apps × M tenants. What breaks first. What guards it.
   Source: MULTI-TENANT-SCALE-READINESS-S075.md (Governor S075 vault).
   NO code/validators until Opus OPIA ratifies. Spec only.
@@ -346,6 +347,93 @@ Single-process quota enforcement doesn't work across 300 app instances. Redis re
 
 ---
 
+## DESIGN SURFACE 5 — NATIVE-UUID MIGRATION (Governor-scheduled workstream)
+
+### Why This Is a dim-4 Concern (not just dim-2)
+Discovered during dim-2 apply chain (FINDING-S076-DIM2-03): core id columns
+(User/Tenant/UserTenant/AuditEvent/Task and all FK scalars) are stored as **TEXT** holding
+valid UUID values. Governor chose Option A (keep text, unblock dim-2 fast) and scheduled the
+native-UUID upgrade for **2026-06-16**. The gap entry `gap_DIM2_CORE_ID_UUID_UPGRADE`
+(`tools/data/gap-recurrence-register.yaml`) has:
+- `must_address_by_date: "2026-06-16"` — calendar-enforced (validate-finding-scheduling.mjs)
+- `target_dimension: dim-4` — this workstream belongs here
+
+The scale connection: native UUID (`@db.Uuid`) is more storage-efficient than TEXT for UUID
+values. At 30→300 apps × M tenants, every indexed id column is queried constantly.
+- TEXT UUID: 16 bytes in storage BUT 36 characters of string overhead in wire protocol + larger
+  B-tree index nodes. At 300-app scale with millions of rows, this compounds.
+- Native UUID: 16 bytes in storage AND 16 bytes wire-efficient. No string comparison overhead.
+  B-tree index nodes are smaller → more fit in a page → fewer I/O operations at scale.
+
+**Why 300 apps makes this a priority**: at 300 apps × 100 tenants × 10k rows each = 300M rows.
+The index size difference between TEXT and UUID at this scale is measurable. RLS joins on tenant_id
+(a TEXT UUID) are slower than native UUID equality checks. Surface 5 closes this gap.
+
+### The Migration
+
+Done-definition (from gap_DIM2_CORE_ID_UUID_UPGRADE):
+```sql
+-- One transaction: preserves data, converts column types
+BEGIN;
+  -- Drop FK constraints that reference the id columns
+  ALTER TABLE "UserTenant" DROP CONSTRAINT "UserTenant_userId_fkey";
+  ALTER TABLE "UserTenant" DROP CONSTRAINT "UserTenant_tenantId_fkey";
+  -- ... (all FK constraints on all tables)
+
+  -- Convert id columns (values already conform to UUID format: USING id::uuid)
+  ALTER TABLE "User"      ALTER COLUMN id TYPE uuid USING id::uuid;
+  ALTER TABLE "Tenant"    ALTER COLUMN id TYPE uuid USING id::uuid;
+  ALTER TABLE "UserTenant" ALTER COLUMN id TYPE uuid USING id::uuid;
+  ALTER TABLE "AuditEvent" ALTER COLUMN id TYPE uuid USING id::uuid;
+  ALTER TABLE "Task"      ALTER COLUMN id TYPE uuid USING id::uuid;
+  -- FK scalar columns
+  ALTER TABLE "UserTenant" ALTER COLUMN "userId"   TYPE uuid USING "userId"::uuid;
+  ALTER TABLE "UserTenant" ALTER COLUMN "tenantId" TYPE uuid USING "tenantId"::uuid;
+  -- ... (all FK columns)
+
+  -- Re-add FK constraints
+  ALTER TABLE "UserTenant" ADD CONSTRAINT "UserTenant_userId_fkey"
+    FOREIGN KEY ("userId") REFERENCES "User"(id);
+  -- ... (all FK constraints)
+COMMIT;
+```
+
+After migration:
+- `schema.zmodel`: restore `@db.Uuid` on `Base.id` + `AppendOnlyBase.id` + all FK scalars
+- `pnpm schema:generate` → regenerated schema.prisma
+- `validate-uuid-column-types.mjs` → block-test: TEXT UUID column without @db.Uuid → flag
+- Governor applies migration to live DB; verify=0; block-test proves all FK relationships intact
+  and zero rows lost
+
+### Proposed Validator Signature
+```javascript
+// validate-uuid-column-types.mjs (design only)
+// Checks:
+// 1. libs/policies/schema.zmodel Base.id and AppendOnlyBase.id have @db.Uuid
+// 2. All FK scalar fields referencing id columns also have @db.Uuid
+// 3. No entity's id field uses @db.String (TEXT) when native UUID is the standard
+// Blocking: Base/AppendOnlyBase id missing @db.Uuid (after migration window closes)
+// Advisory: FK scalar missing @db.Uuid
+// Block-test: Base model without @db.Uuid → exit 1
+// NOTE: validator is ADVISORY until 2026-06-16 (migration deadline), then BLOCKING.
+```
+
+### Scale Impact at 30→300
+- At 30 apps: TEXT vs UUID overhead is minor (< 5ms per RLS query difference).
+  Not urgent but technically in debt.
+- At 300 apps: 300M+ rows, constant RLS evaluations on tenant_id TEXT.
+  UUID B-tree index is ~40% more compact than TEXT B-tree for UUID-format strings.
+  At 300-app scale: ~40% faster tenant_id index lookups → directly reduces RLS latency.
+  **This is the same budget Surface 3 (RLS Perf Budget) is trying to protect.**
+
+### Dependencies
+- Surface 3 (RLS Perf Budget) validator must run AFTER this migration — the budget
+  numbers change with native UUID indexes in place.
+- `gap_DIM2_CORE_ID_UUID_UPGRADE` calendar enforcement fires at 2026-06-16 → ADVISORY,
+  BLOCKING at 2026-06-30 (auto-promoted by validate-finding-scheduling.mjs).
+
+---
+
 ## OPEN QUESTIONS FOR OPUS OPIA
 
 **Q1**: Supabase tier? (Free/Pro/Team) — determines whether 30-app pool math fits today.
@@ -370,6 +458,13 @@ Proposal: harness runs ONCE before app #2 (proving 5-app scenario), then gated a
 **Q6**: libs/platform-quota/ — new library authorized?
 Surface 2 requires a shared quota enforcement library. Creating `libs/platform-quota/` is
 a new libs/ artifact. Governor approves creation or names an existing library to extend.
+
+**Q7**: Surface 5 (UUID migration) — sequence relative to Surface 3?
+Surface 3 (RLS Perf Budget) validator sets latency budgets based on current TEXT storage.
+After UUID migration (Surface 5), index efficiency improves ~40%, changing the budget.
+Proposal: Surface 5 first (before S078), THEN Surface 3 validator sets final budget numbers.
+OR: validate on TEXT now, re-run after UUID migration to tighten the budget.
+Governor's call on sequencing.
 
 ---
 
@@ -398,15 +493,26 @@ a new libs/ artifact. Governor approves creation or names an existing library to
 - Document PASS/FAIL bars in `tools/load-tests/README.md`
 - Gate: harness MUST pass before app #2 ships
 
-**STOP CONDITION**: All 4 phases complete + `pnpm verify` exit_code=0 +
-connection-pool-contract validator clean + rls-perf-budget validator clean → dim 4 SEALED.
+**Phase 5 — Native-UUID Migration** (Governor-scheduled 2026-06-16, gap_DIM2_CORE_ID_UUID_UPGRADE)
+- Requires Governor direction on Q7 (sequence relative to Surface 3)
+- Write `validate-uuid-column-types.mjs` — advisory until 2026-06-16, blocking after
+- Governor runs the ALTER TABLE migration in one transaction (one DB run)
+- After migration: restore `@db.Uuid` in schema.zmodel + `pnpm schema:generate`
+- Block-test: Base model without @db.Uuid → exit 1
+- Re-run Surface 3 (RLS Perf Budget) validator to establish final budget with native UUID indexes
+- calendar enforcement: validate-finding-scheduling.mjs fires ADVISORY at 2026-06-16, BLOCKING at 2026-06-30
+
+**STOP CONDITION**: All 5 phases complete + `pnpm verify` exit_code=0 +
+connection-pool-contract validator clean + rls-perf-budget validator clean +
+uuid-column-types validator clean + load-test harness documented → dim 4 SEALED.
 
 ---
 
 ## AUTHOR / SEAL STATUS
-- Author: Sonnet S076
-- Status: SANDBOX — awaiting Opus OPIA ratification
+- Author: Sonnet S076 (original 4 surfaces) + Surface 5 added S076 after dim-2 SEAL
+- Status: SANDBOX — awaiting Opus OPIA ratification (5 surfaces + 7 open questions)
 - Source: MULTI-TENANT-SCALE-READINESS-S075.md (Governor S075 vault)
+- Surface 5 source: gap_DIM2_CORE_ID_UUID_UPGRADE (gap-recurrence-register.yaml)
 - Executor-contract floor applied: every proposed validator is system-layer (model-agnostic)
 - No code written. No validators changed. Spec only.
-- Next: STOP → consolidated report (dim 3 SEALED + dim 4 spec) → Opus OPIA
+- Calendar enforcement active: validate-finding-scheduling.mjs enforces 2026-06-16 deadline

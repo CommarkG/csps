@@ -118,10 +118,13 @@ export async function handleClerkWebhook(
       await db.userTenant.create({ data: { userId: user.id, tenantId: tenant.id, role: mapClerkRole(role) } })
 
       // Q-09: trial triggers on 2nd member joining a free org — reads from config
+      // S076: free-tier = status 'active' + planId null (Governor ratified). Legacy: also check status='free'.
       const memberCount = await db.userTenant.count({ where: { tenantId: tenant.id, deletedAt: null } })
+      const isFreeOrg = tenant.subscriptionStatus === 'active' && tenant.planId === null ||
+                        tenant.subscriptionStatus === 'free' // legacy backward-compat during migration
       if (
         memberCount === SUBSCRIPTION_CONFIG.trial.triggerOnMemberCount &&
-        tenant.subscriptionStatus === 'free'
+        isFreeOrg
       ) {
         const trialEndsAt = new Date()
         trialEndsAt.setDate(trialEndsAt.getDate() + SUBSCRIPTION_CONFIG.trial.durationDays)

@@ -108,9 +108,12 @@ enum LifecycleState {
 
 // From: slices/public/tenant.zmodel
 enum TenantSubscriptionStatus {
-  free        // solo use — free forever (VLT-S014-005)
+  // SEMANTIC (Governor S076): status = billing good-standing; plan = entitlement.
+  // free-tier = status 'active' + planId null (no paid plan). 'free' is DEPRECATED as a status value.
+  // DB migration needed to fully remove 'free' from the enum (defer to dim-4 UUID migration window).
+  free        // DEPRECATED (S076): use status='active' + planId=null for free-tier tenants
   trialing    // 14-day trial when 2nd member joins before paying
-  active      // paid — 2+ members, Stripe subscription active
+  active      // billing good-standing — free-tier (planId=null) OR paid (planId set)
   cancelled   // was paid, now cancelled; read-only until reactivated
 
   @@schema("public")
@@ -167,7 +170,8 @@ model Tenant extends Base {
   clerkOrgId           String?                  @unique
   stripeCustomerId     String?
   stripeSubscriptionId String?
-  subscriptionStatus   TenantSubscriptionStatus @default(free)
+  // S076: @default changed from free → active (Governor ratified: free-tier = active + planId null)
+  subscriptionStatus   TenantSubscriptionStatus @default(active)
   // Plan tier — separate from billing status (free/pro/enterprise/custom)
   plan                 String                   @default("free")
   // C3 fix (OPUS-16 S075): planId FK → Plan entity (PART 3 migration batch)

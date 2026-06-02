@@ -129,13 +129,16 @@ async function main() {
   console.log('NOTE: Requires live DB + migration applied + seed run + zenstack enhance.\n');
 
   // --- SETUP: create test data ---
-  // Free-tier tenant with NO plan
+  // Free-tier tenant with NO plan.
+  // FINDING-S076-DIM2-06 fix: subscriptionStatus='active' (billing good-standing), planId=null (no paid plan).
+  // Governor ratified S076: free-tier = status 'active' + plan null. 'free' is no longer a valid status value.
+  // Status='active' is required so BLOCK-TEST A reaches the CAPABILITY gate (not the status gate).
   const freeTenant = await prisma.tenant.create({
     data: {
       slug: 'test-free-tenant-' + Date.now(),
       name: 'Test Free Tenant',
-      subscriptionStatus: 'free',
-      planId: null,  // free tier — no plan
+      subscriptionStatus: 'active',  // free-tier billing good-standing
+      planId: null,                   // free tier — no paid plan
     },
   });
 
@@ -153,12 +156,16 @@ async function main() {
     },
   });
 
-  // --- BLOCK-TEST A: capability NOT in free plan → DENIED ---
-  const dbFree = getEnhancedClient(freeTenant.id, null, 'free');
+  // --- BLOCK-TEST A: capability NOT in free plan → DENIED at CAPABILITY gate (not status gate) ---
+  // FINDING-S076-DIM2-06 fix: enhanced client uses status='active' + planId=null (free-tier).
+  // The capability gate (not the status gate) must deny ANALYTICS_FULL for free tenants.
+  // 3rd assertion (prevention-class: block-tests must assert SPECIFIC reason, not just granted=false):
+  // resultA.reason MUST contain "not included in the free plan" — if it doesn't, the test fired at the WRONG gate.
+  const dbFree = getEnhancedClient(freeTenant.id, null, 'active');
   const resultA = await checkCapabilityAccess(dbFree, freeTenant.id, CAPABILITY.ANALYTICS_FULL);
-  console.log('BLOCK-TEST A — Capability not in plan (free tier):');
+  console.log('BLOCK-TEST A — Capability not in plan (free tier, capability gate):');
   console.log(JSON.stringify(resultA, null, 2));
-  console.log('Expected: granted=false, reason includes "DENIED"\n');
+  console.log('Expected: granted=false, reason includes "not included in the free plan"\n');
 
   // --- BLOCK-TEST B: plan has capability but subscription is cancelled → DENIED ---
   const dbCancelled = getEnhancedClient(cancelledTenant.id, teamPlan.id, 'cancelled');
@@ -167,19 +174,36 @@ async function main() {
   console.log(JSON.stringify(resultB, null, 2));
   console.log('Expected: granted=false, reason includes "DENIED" and "cancelled"\n');
 
-  // --- Validate block-tests actually blocked ---
+  // --- Validate block-tests actually blocked AND at the CORRECT gate ---
   const aBlocked = !resultA.granted;
   const bBlocked = !resultB.granted;
+  // FINDING-S076-DIM2-06 prevention: assert SPECIFIC reason, not just granted=false.
+  // A must fire at the CAPABILITY gate ("not included in the free plan"), not the STATUS gate.
+  const aCorrectGate = resultA.reason.includes('not included in the free plan');
+  // B must fire at the STATUS gate ("subscriptionStatus" or "cancelled").
+  const bCorrectGate = resultB.reason.toLowerCase().includes('cancelled') || resultB.reason.includes('subscriptionStatus');
+
   console.log('=== RESULTS ===');
-  console.log(`BLOCK-TEST A: ${aBlocked ? '✓ BLOCKED (correct)' : '✗ PASSED (wrong — should be DENIED)'}`);
-  console.log(`BLOCK-TEST B: ${bBlocked ? '✓ BLOCKED (correct)' : '✗ PASSED (wrong — should be DENIED)'}`);
+  console.log(`BLOCK-TEST A: ${aBlocked ? '✓ BLOCKED' : '✗ PASSED'} | Gate: ${aCorrectGate ? '✓ CAPABILITY gate (correct)' : '✗ WRONG GATE — not the capability gate'}`);
+  console.log(`BLOCK-TEST B: ${bBlocked ? '✓ BLOCKED' : '✗ PASSED'} | Gate: ${bCorrectGate ? '✓ STATUS gate (correct)' : '✗ WRONG GATE — not the status gate'}`);
 
   if (!aBlocked || !bBlocked) {
     console.error('\n⛔ ENFORCEMENT NOT WORKING — do not seal PART 3');
     process.exit(1);
   }
+  if (!aCorrectGate) {
+    console.error('\n⛔ BLOCK-TEST A fired at WRONG GATE — capability-tier enforcement UNPROVEN');
+    console.error('  Expected reason to contain "not included in the free plan". Got:', resultA.reason);
+    console.error('  FINDING-S076-DIM2-06: a block-test must assert the SPECIFIC reason, not just granted=false.');
+    process.exit(1);
+  }
+  if (!bCorrectGate) {
+    console.error('\n⛔ BLOCK-TEST B fired at WRONG GATE — subscription-status gate UNPROVEN');
+    console.error('  Got:', resultB.reason);
+    process.exit(1);
+  }
 
-  console.log('\n✓ Both block-tests confirmed. Paste outputs above in PART 3 SEAL report.');
+  console.log('\n✓ Both block-tests confirmed at CORRECT gates. Paste outputs above in PART 3 SEAL report.');
 
   // --- Cleanup test data ---
   await prisma.tenant.delete({ where: { id: freeTenant.id } });

@@ -26,6 +26,9 @@ export const SUBSCRIPTION_CONFIG = {
   },
 } as const;
 
+// S076 Governor ratification: 'free' is DEPRECATED as a subscriptionStatus.
+// Free-tier = status 'active' + planId null. Keep 'free' in the type union for
+// backward-compat with existing DB rows until the enum migration runs (dim-4 window).
 export type SubscriptionStatus = 'free' | 'trialing' | 'active' | 'cancelled';
 
 export function getMaxSeats(status: SubscriptionStatus): number {
@@ -36,11 +39,18 @@ export function getMaxSeats(status: SubscriptionStatus): number {
 export function getSubscriptionTier(status: SubscriptionStatus): 'free' | 'paid' | 'inactive' {
   if (status === 'active') return 'paid';
   if (status === 'cancelled') return 'inactive';
-  return 'free'; // free + trialing both return 'free' tier
+  return 'free'; // trialing returns 'free' tier; legacy 'free' status also maps here
 }
 
 export function isTierActive(status: SubscriptionStatus): boolean {
-  return status === 'free' || status === 'trialing' || status === 'active';
+  // S076: 'active' and 'trialing' are entitled. 'free' is DEPRECATED (use active+planId=null).
+  // Legacy 'free' rows still get access during the DB migration window (backward compat).
+  return status === 'active' || status === 'trialing' || status === 'free'; // free kept for legacy rows
+}
+
+export function isNewTenantFree(status: SubscriptionStatus, planId: string | null): boolean {
+  // S076 canonical check for "is this a free-tier tenant?" — use this instead of status==='free'
+  return status === 'active' && planId === null;
 }
 
 export function isWriteAllowed(status: SubscriptionStatus): boolean {

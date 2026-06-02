@@ -1543,6 +1543,22 @@ const CYCLES = [
     },
   },
   {
+    // S077 dim-4 Surface 2: TENANT QUOTA POLICY — per-tenant quota + noisy-neighbor isolation
+    // Q6=A: libs/platform-quota/ SSoT (not per-app). Q1=FREE: Supabase Free conservative numbers.
+    // Checks: quota lib present + DNA + conservative constants + pool math + no per-app drift.
+    // Blocking: quota lib missing | pool math exceeds Free limit | per-app quota definitions.
+    // Advisory: approaching headroom threshold | missing tier-upgrade obligation.
+    // BT A: --block-test-a flag (PLATFORM_APP_COUNT_TARGET=100) → pool math exceeds → exit 1.
+    // EXTENDED: promoted to prevent boundary-001 violation (verify cycles at 200/200 hard limit).
+    run_tier: 'EXTENDED',
+    name: 'tenant_quota_policy',
+    command: 'node tools/validators/validate-tenant-quota-policy.mjs',
+    parse_output: (out) => {
+      const m = out.match(/blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {};
+    },
+  },
+  {
     // S076 dim-4 Phase 2: RLS PERF BUDGET — ZModel index discipline for tenant-scoped RLS
     // Q4 applied: 10ms provisional budget, ratchet → 5ms post-UUID migration (Q7/Surface 5).
     // Blocking: entity with tenant-scoped RLS and no tenantId index. Advisory: subquery/join pattern.

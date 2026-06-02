@@ -42,8 +42,9 @@ jobs:
 
       - name: Run EXTENDED structural validators
         run: |
-          echo "=== EXTENDED tier validators (S076 — layer_split, agent_deletion_test, executor_contract,"
-          echo "    register_connectivity, connection_pool_contract, rls_perf_budget, uuid_column_types, boundary_crossing_protocol) ==="
+          echo "=== EXTENDED tier validators (S076+S077 — layer_split, agent_deletion_test, executor_contract,"
+          echo "    register_connectivity, connection_pool_contract, rls_perf_budget, uuid_column_types,"
+          echo "    boundary_crossing_protocol, tenant_quota_policy) ==="
           echo "Running: node tools/verify.mjs --skip-install --extended"
           node tools/verify.mjs --skip-install --extended
           EXIT_CODE=$?
@@ -67,3 +68,4 @@ jobs:
           echo "- rls_perf_budget (RLS index discipline)" >> $GITHUB_STEP_SUMMARY
           echo "- uuid_column_types (UUID migration status)" >> $GITHUB_STEP_SUMMARY
           echo "- boundary_crossing_protocol (crossing artifacts)" >> $GITHUB_STEP_SUMMARY
+          echo "- tenant_quota_policy (dim-4 S2 quota + noisy-neighbor + libs/platform-quota)" >> $GITHUB_STEP_SUMMARY

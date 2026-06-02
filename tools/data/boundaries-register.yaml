@@ -75,3 +75,32 @@ entries:
     status_note: >
       S076: simulation registered as a VALD ENTRY (not a new L1 spine) per Governor Option A.
       L1 count holds at 5. Any 6th L1 spine requires 5-step crossing protocol.
+
+  - id: boundary-003
+    name: "supabase-free-tier-connection-limit"
+    governing_intent: >
+      Supabase Free plan has a hard limit of 60 max Postgres connections. With 30 apps each using
+      connection_limit=1 via pgbouncer, the platform uses 30/60 = 50% of Free headroom at steady
+      state. Under burst (2 concurrent invocations/app), usage hits 60/60 = 100% — the hard limit.
+      Exceeding Free tier = ALL tenants on ALL apps are degraded simultaneously (noisy-neighbor
+      failure). The discipline: when approaching 80% headroom, schedule Supabase tier upgrade via
+      boundary-crossing protocol. Do NOT silently exceed; surface and approve.
+    current_value: 60
+    unit: "max Postgres connections on Supabase Free plan"
+    canonical_source: "libs/platform-quota/src/supabase-free.ts (FREE_MAX_DB_CONNECTIONS)"
+    cie_connection: requires_promotion
+    pe_connection: input
+    k_count: 0
+    crossings: []
+    status: ratified
+    status_note: >
+      S077 Q1=FREE: established at session open per Opus directive. Conservative numbers in
+      libs/platform-quota (60 max, 1 per app, 30 app target = 50% headroom at steady state).
+      Trigger: when isFreeHeadroomApproached(appCount) returns true → schedule Supabase Pro
+      upgrade via boundary-crossing protocol. validate-tenant-quota-policy.mjs enforces.
+    scheduled_upgrade:
+      must_address_by_date: null
+      upgrade_target: "Supabase Pro (200 max_connections)"
+      trigger_condition: "PLATFORM_APP_COUNT_TARGET × FREE_DB_CONNECTIONS_PER_APP ≥ 48 (80% of 60)"
+      current_app_count: 1
+      trigger_app_count: 48

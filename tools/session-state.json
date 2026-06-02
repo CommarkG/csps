@@ -56,9 +56,9 @@
     }
   },
   "session_mandate": {
-    "primary": "S077: UUID migration authored (schema.zmodel + migration SQL — Gov applies to live DB). dim-3 behavioral pending Q3+FINDING-S076-DIM3-01. dim-4 Surface 2 quota: Q6=A (libs/platform-quota/) + Q1=FREE (conservative limits) — UNBLOCKED, builds after UUID lands. CQS Phase 1 + boundary_crossing first use: S077 obligations.",
+    "primary": "S077: UUID MIGRATION COMMITTED (gap_DIM2_CORE_ID_UUID_UPGRADE RESOLVED, 14 days ahead of deadline). dim-4 S5 SEALED. Queue #2 = libs/platform-quota/ + validate-tenant-quota-policy.mjs (Supabase Free conservative limits). dim-3 behavioral pending Q3+FINDING-S076-DIM3-01. dim-4 S2 quota: Q6=A + Q1=FREE — UNBLOCKED.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — UUID migration ready for Governor to apply (DIRECT_URL port 5432). Queue #2 (libs/platform-quota/) starts after Gov confirms migration applied.",
+    "blocking_on": "NONE — Queue #2 open. libs/platform-quota/ next. Opus OPIA pending for dim-4 Surface 5 seal.",
     "situation": "WAVE_1_PREVENTION_BUILD",
     "active_situation": "WAVE_1_PREVENTION_BUILD",
     "_legacy_session_mandate_S023": "Original S023 APP_BUILD_MODE mandate moved here for archival; current mandate above reflects S066 reality. Schema bug surfaced by Opus-11 S066: dual mandate paths (nested session_mandate.primary vs top-level primary at end of file) — see DRAFT-S066-SESSION-STATE-DUAL-MANDATE-FIX in improvement-register.",

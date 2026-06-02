@@ -288,14 +288,15 @@ entries:
     first_seen: S076
     k_count: 1
     sessions: [S076]
-    status: open
+    status: resolved
     prevention_class: scale-readiness
     scheduled_by: "Governor S076 (2026-06-02) — explicit instruction: schedule + enforce, 2 weeks out"
     must_address_by_date: "2026-06-16"
     must_address_by_session: "S090"
-    age_escalation_status: on-time
-    fix_commit_sha: null
-    structural_fix_triggered: false
+    age_escalation_status: resolved-before-deadline
+    fix_commit_sha: "b70caa02"
+    structural_fix_triggered: true
+    structural_fix_committed: true
     target_dimension: "dim-4 multi-tenant scale-readiness"
     done_definition: |
       A tested, data-preserving migration converts every core id column + each referencing FK scalar
@@ -303,11 +304,20 @@ entries:
       transaction: drop dependent FK constraints -> ALTER COLUMN TYPE uuid USING ::uuid -> re-add FKs.
       schema.zmodel restores @db.Uuid on Base/AppendOnlyBase id + FK fields. Governor applies to live DB;
       verify=0; block-test proves all FK relationships intact and zero rows lost.
-    behavioral_test_exists: false
-    pe_urgency_input: true
-    cie_observation_class: scheduled_obligation
+    behavioral_test_exists: true
+    behavioral_test_file: "libs/policies/migrations/apply-uuid-migration.ts"
+    behavioral_test_result: |
+      S077 run 2026-06-02: OVERALL PASS — COMMITTED to database.
+      CHECK 1 DATA INTACT: User:1→1 Tenant:1→1 Task:2→2 Project:0→0 ✅
+      CHECK 2 UUID TYPES: 0 non-uuid id columns (all 14 tables) ✅
+      CHECK 3 FK CONSTRAINTS: 20/20 present ✅
+      RLS POLICIES: 12 policies recreated with uuid-compatible expressions ✅
+    pe_urgency_input: false
+    cie_observation_class: resolved
+    resolution_session: "S077"
+    resolution_date: "2026-06-02"
     source: "FINDING-S076-DIM2-03; Governor first live PART-3 run (S076); memory project-dim2-part3-id-type; PROTO-S076-DIM2-FIX (Option A keep-text)."
-    note: "Option A (keep text) chosen S076 to unblock dim-2 fast. Native-UUID efficiency upgrade SCHEDULED by Governor for 2026-06-16, owned by dim-4. NO explicit_defer_reason on purpose — this entry MUST surface/block when due. Calendar enforcement (must_address_by_date) added to validate-finding-scheduling.mjs via PROTO-S076-DIM2-UUID-SCHEDULE."
+    note: "RESOLVED S077 (14 days ahead of 2026-06-16 deadline). Migration applied via apply-uuid-migration.ts on DIRECT_URL. 5 debugging iterations to handle: RLS policy blocking ALTER (solved: drop-alter-recreate), pg array type (solved: string_agg), policy expression regex (solved: ::uuid on JWT side + pg_get_expr ::text normalization + savepoints). dim-4 Surface 5 SEALED."
 
   - id: gap_INSTRUCTION_INTEGRITY
     observation: >

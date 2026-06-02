@@ -1,0 +1,222 @@
+---
+id: csps.config.cqs-sets
+name: cqs-sets
+description: >
+  Core Questions Sets (CQS) — DNA-as-questions engine, dual-polarity (positive+negative pole).
+  Per artifact-type. Canonical machine-readable source for validate-cqs-coverage.mjs.
+  Prose companion: tools/vault/wisdom/question-library.md.
+  dna_element values validated against tools/config/dna-registry.yaml (Q4 constraint).
+  PP0 is universal across ALL sets (does this concept already exist in CSPS?).
+  Per PROTO-S076-CQS-ALIGNMENT-LAYER OPIA ✅ (OPUS-17, S076).
+version: "1.0"
+session: S076
+authored_by: Sonnet S076
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+core_spines: [GVRN, AI, VALD]
+schema_anchor: cqs_patterns
+links:
+  - { rel: prose-companion, href: ../../tools/vault/wisdom/question-library.md }
+  - { rel: caq-patterns, href: caq-patterns.yaml }
+  - { rel: dna-registry, href: dna-registry.yaml }
+  - { rel: spec, href: ../../docs/plan/_handoff/VAULT/sandbox-specs/SANDBOX-cqs-alignment-layer-S076.md }
+---
+
+# CQS Sets — Machine-Readable
+
+# SCHEMA per set:
+#   id: cqs-<artifact-type>
+#   artifact_type: string
+#   description: one-line
+#   mode_primary: create | deep-dive | both
+#   positive_pole: [{id, question, dna_element, failure_if_skipped}]
+#   negative_pole: [{id, question, dna_element, failure_if_skipped}]
+#   dna_map: [{question_id, spine, principle_or_default, inner_default}]
+#   enforcement: {creation: str, deep_dive: str, answers_required_for_done: [id,...]}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# UNIVERSAL QUESTION: PP0 is prepended to EVERY set's positive_pole.
+# Governor directive: any ? or new framing MUST check what exists first.
+# This mechanically embodies "search vocabulary/scope/principles before naming anything new."
+# ─────────────────────────────────────────────────────────────────────────────
+universal_pp0:
+  id: PP0
+  question: "Does this concept, term, or mechanism ALREADY EXIST in CSPS? (Cite the platform-inventory-scan or vocabulary search result before proceeding. Cannot be answered by memory alone.)"
+  dna_element: "P-META-029 (humble-consolidation) + B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK"
+  failure_if_skipped: "D8 (naming-novelty) fires — new governance structure created for a problem that an existing mechanism already covers"
+
+sets:
+
+  # ─── CQS-01: core-spine ─────────────────────────────────────────────────────
+  - id: cqs-core-spine
+    artifact_type: core-spine
+    description: "Proves a spine entry carries domain definition, enforcement wiring, and anti-inflation guardrails"
+    mode_primary: both
+
+    positive_pole:
+      # PP0 is universal — always prepend from universal_pp0 above
+      - id: PP1
+        question: "What fundamental domain does this spine govern? Name 5 concrete artifacts that unambiguously belong to it."
+        dna_element: "P-ARCH-028 (spine-classification)"
+        failure_if_skipped: "spine labels a method as a domain; inflation begins"
+      - id: PP2
+        question: "What is the governing intent? (the L3 WHY — not the label or description)"
+        dna_element: "P-META-025 (C&I)"
+        failure_if_skipped: "spine enforced as label; entries added by surface similarity not intent alignment"
+      - id: PP3
+        question: "Which T1+T2+T3 enforcement surfaces make this spine real? If removed, does the spine still enforce?"
+        dna_element: "AP-001 (EXISTS≠ACTIVE)"
+        failure_if_skipped: "spine is documented theater; no actual enforcement exists"
+      - id: PP4
+        question: "What metrics prove this spine is active? (validator passes, artifact classification counts, this-session evidence)"
+        dna_element: "P-META-006 (ZF discipline)"
+        failure_if_skipped: "nominal seal; spine declared active without this-session evidence"
+
+    negative_pole:
+      - id: NP1
+        question: "What is OUT of scope? Name 3 artifacts that look like they belong but must not be classified here."
+        dna_element: "B_BALANCE_EXPERT (scope discipline)"
+        failure_if_skipped: "spine inflation; edges unclear; AI adds artifacts to wrong spine"
+      - id: NP2
+        question: "What breaks first if this spine disappears? Name the specific failure mode and which session history illustrates it."
+        dna_element: "cruel-critic (surface edge cases)"
+        failure_if_skipped: "spine removability not assessed; platform fragility hidden"
+      - id: NP3
+        question: "How would a rushing AI misclassify an artifact INTO this spine incorrectly? What is the D4 pattern-match trap?"
+        dna_element: "D4 (pattern-match default)"
+        failure_if_skipped: "D4 trap not named; AI will fire it at first opportunity"
+      - id: NP4
+        question: "If this entry is copied for the next spine, what would the copier get wrong?"
+        dna_element: "P-META-029 (humble-consolidation)"
+        failure_if_skipped: "context-specific parts become universal; next entry inherits wrong values"
+
+    dna_map:
+      - { question_id: PP1, spine: ARCH, principle: P-ARCH-028, inner_default: D8 }
+      - { question_id: PP2, spine: AI,   principle: P-META-025, inner_default: D11 }
+      - { question_id: PP3, spine: VALD, principle: P-META-006, inner_default: D3 }
+      - { question_id: PP4, spine: VALD, principle: P-META-006, inner_default: D6 }
+      - { question_id: NP1, spine: GVRN, principle: B_BALANCE_EXPERT, inner_default: D4 }
+      - { question_id: NP2, spine: VALD, principle: cruel-critic, inner_default: D5 }
+      - { question_id: NP3, spine: AI,   principle: P-META-029, inner_default: D4 }
+      - { question_id: NP4, spine: GVRN, principle: P-META-025, inner_default: D9 }
+
+    enforcement:
+      creation: "Required before any spine entry is written; answers embedded in the entry body"
+      deep_dive: "Run quarterly or on core-spine-registry.yaml changes"
+      answers_required_for_done: [PP0, PP1, PP2, PP3, NP1, NP2]
+
+  # ─── CQS-02: validator ──────────────────────────────────────────────────────
+  - id: cqs-validator
+    artifact_type: validator
+    description: "Proves a validator carries its SP-registry anchor, behavioral test, block-test, and coverage boundary"
+    mode_primary: both
+
+    positive_pole:
+      - id: PP1
+        question: "What satisfaction point does this validator verify? Cite the SP-registry entry or explain why none exists."
+        dna_element: "AP-001 (EXISTS≠ACTIVE)"
+        failure_if_skipped: "validator runs but proves nothing specific; satisfaction point absent"
+      - id: PP2
+        question: "What is the governing_intent? One sentence: 'This validator exists because WITHOUT it, X breaks by Y session.'"
+        dna_element: "P-META-025 (C&I)"
+        failure_if_skipped: "validator drifts over time; original purpose forgotten"
+      - id: PP3
+        question: "Is there a block-test with pasted output proving the BLOCK behavior? (Not description — pasted evidence.)"
+        dna_element: "P-META-006 (ZF — re-run IS the proof)"
+        failure_if_skipped: "nominal DONE; validator may not block what it claims"
+      - id: PP4
+        question: "Where is this validator in the verify.mjs hierarchy? STANDARD/DEEP/EXTENDED? Is the tier justified by discovery delay?"
+        dna_element: "boundary-001 (verify-cycle-cap) + FINDING-S076-DIM4-EXT-01"
+        failure_if_skipped: "wrong tier; validator placed in tier that doesn't match the discovery-delay risk"
+
+    negative_pole:
+      - id: NP1
+        question: "What failure modes does this validator NOT catch? Name 2 adjacent gaps it deliberately excludes."
+        dna_element: "cruel-critic (surface edge cases)"
+        failure_if_skipped: "false confidence; AI treats this validator as comprehensive coverage"
+      - id: NP2
+        question: "What does nominal compliance look like? How would someone PASS this validator without satisfying its intent?"
+        dna_element: "AP-001 (nominal pass = structural failure mode)"
+        failure_if_skipped: "nominal passing allowed; validator theater replaces real enforcement"
+      - id: NP3
+        question: "If removed, how long before discovery? What is the discovery delay at the current tier?"
+        dna_element: "FINDING-S076-DIM4-EXT-01 (EXTENDED validators: up to 1 week delay)"
+        failure_if_skipped: "validator removed silently; enforcement decays without detection"
+      - id: NP4
+        question: "Is the block-test itself tested? What if the block-test has a false negative (passes when it should block)?"
+        dna_element: "D3 (surface-completeness — block-test completeness ≠ block-test correctness)"
+        failure_if_skipped: "block-test is theater; validator appears tested but isn't"
+
+    dna_map:
+      - { question_id: PP1, spine: VALD, principle: P-META-006, inner_default: D3 }
+      - { question_id: PP2, spine: AI,   principle: P-META-025, inner_default: D11 }
+      - { question_id: PP3, spine: VALD, principle: P-META-006, inner_default: D6 }
+      - { question_id: PP4, spine: ARCH, principle: boundary-001, inner_default: D7 }
+      - { question_id: NP1, spine: VALD, principle: cruel-critic, inner_default: D5 }
+      - { question_id: NP2, spine: GVRN, principle: AP-001, inner_default: D3 }
+      - { question_id: NP3, spine: VALD, principle: FINDING-S076-DIM4-EXT-01, inner_default: D7 }
+      - { question_id: NP4, spine: VALD, principle: P-META-028, inner_default: D5 }
+
+    enforcement:
+      creation: "Required before any validator is added to verify.mjs"
+      deep_dive: "Run during HPFA or when validator flags unexpectedly"
+      answers_required_for_done: [PP0, PP1, PP2, PP3, NP1, NP2]
+
+  # ─── CQS-03: protocol ───────────────────────────────────────────────────────
+  - id: cqs-protocol
+    artifact_type: protocol
+    description: "Proves a protocol carries problem-class definition, governing_intent, escape hatch, and recurrence rules"
+    mode_primary: both
+
+    positive_pole:
+      - id: PP1
+        question: "What PROBLEM CLASS does this protocol solve? One sentence: 'This protocol fires when X, preventing Y.'"
+        dna_element: "P-META-020 (concept-first — class not instance)"
+        failure_if_skipped: "protocol applied to wrong problem class; over-fires or under-fires"
+      - id: PP2
+        question: "What is the governing_intent? What would be CATASTROPHICALLY wrong (not just suboptimal) if skipped?"
+        dna_element: "P-META-025 (C&I) + PRACE (mechanical enforcement of intent)"
+        failure_if_skipped: "protocol nominally followed; governing_intent absent; surface satisfaction"
+      - id: PP3
+        question: "What are the 3 mandatory permanent artifacts this protocol produces? Are they in durable files (not chat)?"
+        dna_element: "G5 PERMANENCE (session-open guard question)"
+        failure_if_skipped: "protocol run produces chat-only artifacts; next session starts from zero"
+      - id: PP4
+        question: "What is the ESCAPE HATCH? Under what conditions is this protocol explicitly suspended, and who authorizes?"
+        dna_element: "B_CONTEXT_SENSITIVE_GOVERNANCE (escape_hatch_required)"
+        failure_if_skipped: "protocol becomes a rigid wall; blocks legitimate exceptions without governance"
+
+    negative_pole:
+      - id: NP1
+        question: "What does NOMINAL compliance look like? How would an AI APPEAR to follow this protocol without actually following it?"
+        dna_element: "AP-001 (nominal protocol = theater)"
+        failure_if_skipped: "nominal execution accepted; protocol produces right files but wrong outcomes"
+      - id: NP2
+        question: "What breaks when this protocol fires at the WRONG time? Name the over-trigger failure mode."
+        dna_element: "rigid-rule-anti-pattern (scope must be initiation-pattern, not activity class)"
+        failure_if_skipped: "protocol over-fires; every session blocked by false positives"
+      - id: NP3
+        question: "If this protocol fails twice (k=2), what does that signal? Does the PROTOCOL itself need re-derivation?"
+        dna_element: "boundary-crossing NP (k≥2 = mechanism wrong, not circumstance)"
+        failure_if_skipped: "protocol failure treated as instance problem; root cause not addressed"
+      - id: NP4
+        question: "What is the MINIMUM viable version that still prevents the failure mode? Is the current version over-engineered?"
+        dna_element: "B_BALANCE_EXPERT (Occam's razor — complexity score)"
+        failure_if_skipped: "protocol accumulates steps; compliance cost rises; AI skips steps nominally"
+
+    dna_map:
+      - { question_id: PP1, spine: GVRN, principle: P-META-020, inner_default: D4 }
+      - { question_id: PP2, spine: AI,   principle: P-META-025, inner_default: D11 }
+      - { question_id: PP3, spine: GVRN, principle: G5-PERMANENCE, inner_default: D13 }
+      - { question_id: PP4, spine: GVRN, principle: B_CONTEXT_SENSITIVE_GOVERNANCE, inner_default: D10 }
+      - { question_id: NP1, spine: VALD, principle: AP-001, inner_default: D3 }
+      - { question_id: NP2, spine: GVRN, principle: rigid-rule-anti-pattern, inner_default: D4 }
+      - { question_id: NP3, spine: GVRN, principle: boundary-crossing-protocol, inner_default: D9 }
+      - { question_id: NP4, spine: GVRN, principle: B_BALANCE_EXPERT, inner_default: D1 }
+
+    enforcement:
+      creation: "Required before any protocol is authored"
+      deep_dive: "Run when protocol fails or suspected of nominal compliance"
+      answers_required_for_done: [PP0, PP1, PP2, PP4, NP1, NP2]

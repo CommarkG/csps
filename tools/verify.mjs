@@ -1585,6 +1585,19 @@ const CYCLES = [
     },
   },
   {
+    // S076 CQS Alignment Layer: coverage validator for CQS sets integrity
+    // Checks cqs-sets.yaml: all sets have PP+NP+dna_map+enforcement + PP0 in required answers
+    // Blocking: missing sections or PP0 not mandatory. Advisory: question-library.md absent.
+    // EXTENDED: structural — CQS sets change only when new pilots are authored
+    run_tier: 'EXTENDED',
+    name: 'cqs_coverage',
+    command: 'node tools/validators/validate-cqs-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/sets_checked=(\d+)\s+dna_elements_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { sets_checked: Number(m[1]), dna_elements: Number(m[2]), blocking: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
     // M2 S071 Facet C: Dev↔User vocabulary coverage — advisory validator
     // Flags user-facing content that uses dev_terms without paired user_term translation
     // Glossary source: vocabulary.md §Dev↔User Glossary (8+ entries, sample-expandable per P-META-028)

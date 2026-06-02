@@ -336,4 +336,4 @@ entries:
     explicit_defer_reason: null
     behavioral_test_exists: false
     source: "Governor S076 — 'resolved = amazing; unresolved = suffer like other AI systems.' PROTO-S076-INSTRUCTION-INTEGRITY (Opus-17 directive). Both faces: anti-rogue (ambient injection) + anti-rigidity (bare-text misfiring) share ONE root."
-    note: "High-priority design gap. Sandbox spec OPIA required before any build. Consolidation-first: extend existing validate-context-wrapped-numbers.mjs + P-META-025 + governing_intent pattern. Do NOT fork a parallel system. PROTO-S076-INSTRUCTION-INTEGRITY queued for dim-4 parallel workstream."
+    note: "S076 CQS-ABSORBED: gap_INSTRUCTION_INTEGRITY is now a FACET of the CQS Alignment Layer (PROTO-S076-CQS-ALIGNMENT-LAYER OPIA ✅ RATIFIED). Face A (anti-rogue) = CQS incoming-instruction set. Face B (anti-rigidity) = CQS rule set. Canonical home: SANDBOX-cqs-alignment-layer-S076.md + tools/config/cqs-sets.yaml. No standalone PROTO-S076-INSTRUCTION-INTEGRITY needed — absorbed."

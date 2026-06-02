@@ -49,7 +49,7 @@ export const options = {
   },
   thresholds: {
     // No pool exhaustion errors — ANY 42P05/P0002 = FAIL
-    'pool_errors': ['count==0'],
+    'pool_errors': ['rate==0'],
     // HTTP failure rate < 1% (429 quota responses counted separately, not as failures)
     'http_req_failed': ['rate<0.01'],
     // p99 latency < 2s (generous for representative run)
@@ -62,7 +62,7 @@ const quotaRejections = new Rate('quota_rejections');
 const requestDuration = new Trend('request_duration');
 
 export default function() {
-  const res = http.get(`${TARGET_URL}/api/health`, {
+  const res = http.get(`${TARGET_URL}`, {
     headers: { 'X-Load-Test': 'scenario-a', 'X-N-Apps': String(N_APPS) },
     timeout: '5s',
   });

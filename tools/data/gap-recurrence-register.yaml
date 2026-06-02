@@ -389,3 +389,44 @@ entries:
       are post-dim-4: (a) session-close uncommitted-file gate, (b) memory-store git backup.
       The gap is now in git (this entry) — survives laptop loss. memory entry also written
       (feedback_no_laptop_hardwire_gap.md) as cross-reference.
+
+  - id: gap_DIM4_LIVE_LOAD_PROOF
+    observation: >
+      dim-4 Surface 4 (k6 load harness) was built and validated structurally (validate-load-test-harness.mjs
+      blocking=0). The representative k6 run (scenario-a) was attempted against httpbin.org — which proves
+      the script executes but pool_errors=0 is trivially true (no real Supabase connection pool was tested).
+      The empirical live-load proof — scenario-a GREEN against a real CSPS app endpoint — is deferred because
+      apps were gated on foundation, and foundation had no deployed app at S077 close.
+      Honest resolution: the chicken-and-egg. You cannot load-test a platform with no app on it.
+    first_seen: S077
+    k_count: 1
+    sessions: [S077]
+    status: open
+    prevention_class: scale-readiness
+    structural_fix_plan_session: "S078"
+    structural_fix_triggered: false
+    must_address_by_session: "S079"
+    age_escalation_status: on-time
+    fix_commit_sha: null
+    behavioral_test_exists: false
+    target_dimension: "dim-4 multi-tenant scale-readiness"
+    done_definition: |
+      scenario-a (tools/load-tests/k6/scenario-a-concurrent-burst.js) runs against a real CSPS
+      app (app#1 Vercel URL — not httpbin.org or any stub). Output shows:
+        Pool errors (42P05/P0002): 0 (expect 0) ✅
+        HTTP failure rate: <1% (expect <1%) ✅
+        p99 latency: <2000ms ✅
+        OVERALL: ✅ PASS
+      Governor pastes output to Opus → Opus issues OPIA → dim-4 empirically SEALED.
+      GATE: must happen before app#2 build. In practice: app#1 test-drive IS the load proof run.
+    pe_urgency_input: true
+    cie_observation_class: deferred_gate
+    source: >
+      Opus-17 S077: 'pool_errors=0 against httpbin is trivially true — no real pool was tested.
+      Register gap_DIM4_LIVE_LOAD_PROOF.' Rejected nominal seal on httpbin evidence. Correct call.
+      Ref: dim-4 SANDBOX spec §DESIGN SURFACE 4, PASS BAR.
+    note: >
+      dim-4 declared MECHANISM-COMPLETE (not empirically sealed) at S077 close. All 5 surfaces'
+      machinery built + validated. Live proof gated to app#1: scenario-a must run GREEN against the
+      actual Vercel deployment before app#2 is authorized. This RESOLVES the chicken-and-egg honestly:
+      foundation is complete enough to build app#1; app#1 test-drive provides the empirical seal.

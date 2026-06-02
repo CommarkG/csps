@@ -9,6 +9,21 @@ THIS IS: PROTO-S077-OPEN — §17 RECEIPT ACKNOWLEDGED. ONE focused thrust: desi
 DO NOW: Produce the text→uuid migration DESIGN (sandbox, FK-aware) — NOT applied (Governor's DB). Then STOP for OPIA. Q1/Q6 = parallel Governor track to unblock Surface 2.
 ═══════════════════════════════════════════════════════════════════
 
+# dim-4 SURFACE 4 OPIA + FOUNDATION MECHANISM-COMPLETE (OPUS-17) — cites this-turn re-runs (verify=0, HEAD e6469c82)
+## S4 OPIA: ⛔ REJECT the "seal on pool_errors=0" framing — NOMINAL pass. The k6 run hit httpbin.org (NOT a CSPS app),
+so pool_errors=0 is trivially true (no Supabase pool to exhaust); 100%/33% HTTP failures confirm it never reached a
+real target. pool_errors=0 against httpbin proves the SCRIPT runs, NOT scale-readiness. (Same false-gate class as DIM2-06.)
+## BUT — the chicken-and-egg is real: a live load test needs a DEPLOYED app, and apps are gated on foundation-complete.
+You cannot load-test a platform with no app on it. HONEST RESOLUTION:
+  - dim-4 Surface 4 HARNESS = ✅ built + structurally validated (validate-load-test-harness passing, verify=0). Sealable.
+  - LIVE LOAD PROOF = DEFERRED to app#1 deploy (it's inherently a journeys-phase activity; gates scaling to app#2 per
+    the dim-4 spec). Register as gap_DIM4_LIVE_LOAD_PROOF (must run scenario-a against the FIRST real CSPS app, green).
+## VERDICT: dim-4 SEALED as MECHANISM-COMPLETE (all 5 surfaces' mechanisms built + validated). FOUNDATION = MECHANISM-
+COMPLETE → journeys pivot UNLOCKED. The empirical scale proof rides on app#1's test-drive (fits the Governor ratify-
+before-test-drive gate). This is honest: the scale machinery exists + is validated; the empirical proof needs a real app.
+## SONNET: commit the httpbin→real-URL harness fix + register gap_DIM4_LIVE_LOAD_PROOF (git-tracked). Then S077 harvest.
+## NOTE: do NOT let "mechanism-complete" read as "scale-proven." App#1 MUST pass scenario-a before app#2. EXISTS≠ACTIVE.
+
 # ✅ dim-4 SURFACE 2 SEALED + SURFACE 4 AUTHORIZED (the LAST foundation surface) — OPUS-17, cites this-turn re-runs
 S2 OPIA: verify=0 (this turn), commit 9e2934b8, libs/platform-quota/ (CSPS DNA + supabase-free.ts Free constants),
 validate-tenant-quota-policy.mjs registered (grep=2), boundary-003 tier-upgrade trigger registered. ✅ SEAL Surface 2.

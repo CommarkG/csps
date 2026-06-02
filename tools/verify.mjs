@@ -1539,6 +1539,35 @@ const CYCLES = [
     },
   },
   {
+    // S076 dim-4 Phase 2: RLS PERF BUDGET — ZModel index discipline for tenant-scoped RLS
+    // Q4 applied: 10ms provisional budget, ratchet → 5ms post-UUID migration (Q7/Surface 5).
+    // Blocking: entity with tenant-scoped RLS and no tenantId index. Advisory: subquery/join pattern.
+    // BT: model with auth().tenantId == tenantId RLS + no @@index([tenantId]) → exit 1.
+    // DEFERRED: verify cycle cap at 199/200 — promote to DEEP when Governor raises cap to 220.
+    skip: true,
+    skip_reason: 'cycle cap at 199/200 — promote to DEEP when Governor raises cap to 220',
+    name: 'rls_perf_budget',
+    command: 'node tools/validators/validate-rls-perf-budget.mjs',
+    parse_output: (out) => {
+      const m = out.match(/models_checked=(\d+)\s+models_with_tenant_rls=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { models_checked: Number(m[1]), models_with_rls: Number(m[2]), blocking: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
+    // S076 dim-4 Surface 5: UUID COLUMN TYPES — advisory until 2026-06-16, blocking after 2026-06-30
+    // Checks Base.id + AppendOnlyBase.id have @db.Uuid after native-UUID migration.
+    // Advisory pre-2026-06-16 (migration not yet due). Calendar-enforced by validate-finding-scheduling.mjs.
+    // DEFERRED: advisory-only pre-deadline + cycle cap at 199/200. Promote when migration applied + cap raised.
+    skip: true,
+    skip_reason: 'advisory-only until 2026-06-16; promote to DEEP when migration applied and cap raised to 220',
+    name: 'uuid_column_types',
+    command: 'node tools/validators/validate-uuid-column-types.mjs',
+    parse_output: (out) => {
+      const m = out.match(/blocking=(\d+)\s+advisory=(\d+)\s+deadline=(\S+)/);
+      return m ? { blocking: Number(m[1]), advisory: Number(m[2]), deadline: m[3] } : {};
+    },
+  },
+  {
     // M2 S071 Facet C: Dev↔User vocabulary coverage — advisory validator
     // Flags user-facing content that uses dev_terms without paired user_term translation
     // Glossary source: vocabulary.md §Dev↔User Glossary (8+ entries, sample-expandable per P-META-028)

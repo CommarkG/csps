@@ -1192,3 +1192,29 @@ entries:
     - validate-agent-deletion-test.mjs Step 4 behavioral upgrade (blocked on Q3 promotion)
   note: "FINDING-S076-DIM3-01 per OPUS-17 OPIA directive. dim 3 SEALED (structural). Behavioral seal completes when Q3 + Step 4 upgrade ship together in the same commit."
   note: "F2 fixed live this turn (default-correction-registry D11 disambiguation). F1 (relay trio) + F3 (stub promotion + structural-overlap extension) NOT done live — blast radius (consolidation-pass would start blocking 56 pre-existing doc findings) + Sonnet active on WS2 → R-class, routed here for post-WS2. Audit method: file-inventory + relay grep + default-signal grep + ran consolidation-pattern-detector.mjs (doc-scoped, 56 findings, none structural)."
+
+- id: SIMULATION-SPINE-S076
+  title: "Simulation spine entry — 4-mode taxonomy registered in core-spine-registry.yaml (parent VALD)"
+  description: >
+    Governor S076 ratified Option A: simulation = a SPINE ENTRY in core-spine-registry.yaml (parent VALD),
+    NOT a 6th L1 spine. 5 scattered simulation senses consolidated into 1 canonical entry with 4 real modes
+    (scenario / scale / persona / deletion-decoupling). B_SIMULATION_COMPARISON disambiguated as
+    BEFORE/AFTER/DELTA evidence pattern (not a simulation mode). 8-section schema (accountability template);
+    validate-core-spine-template PASSES. Awaiting Opus OPIA for full ratification.
+  first_found: S076
+  k_count: 1
+  sessions: [S076]
+  status: open
+  cie_connection: "requires_promotion"
+  pe_connection: "input"
+  pe_urgency_input: true
+  cie_observation_class: design_gap
+  must_address_by_session: "S077"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Opus OPIA ratification of spine entry (status: sandbox → ratified)
+    - Cross-ref additions to B_SANDBOX_BEFORE_IMPLEMENTATION.md → simulation spine entry
+    - Cross-ref additions to NAIVE-PERSONAS-DOCTRINE.md → simulation spine entry
+    - B_SIMULATION_COMPARISON.md disambiguation comment (BEFORE/AFTER/DELTA, not sim mode)
+    - realtime_save wiring (after Phase 2 cie-pe-adapter ships)
+  note: "Authored S076 per PROTO-S076-SIMULATION-SPINE (OPUS-17 directive). Consolidation-led: no content forked. Spin entry is the index/taxonomy only. All canonical homes preserved."

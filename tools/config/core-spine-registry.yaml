@@ -198,6 +198,171 @@ spines:
       lib: libs/process-state/index.mjs
       note: "B2 realtime-save wired — creator auto-persists per stage, resumes on re-entry"
 
+  - id: simulation
+    spine: VALD
+    status: sandbox
+    authored_session: S076
+    authored_by: Sonnet S076
+    ratified_session: null  # awaiting Opus OPIA
+    ratified_by: null
+    ratified_date: null
+    # ── CONSOLIDATION INVENTORY (Preservation/Consolidation/Ripple) ──────────
+    # 5 scattered simulation senses → 1 canonical spine entry (no content fork):
+    #  1 scenario-sim  → B_SANDBOX_BEFORE_IMPLEMENTATION.md (PRESERVE + cross-ref here)
+    #  2 scale-sim     → SANDBOX-multi-tenant-scale-readiness-spec-S076.md (PRESERVE + cross-ref)
+    #  3 persona-sim   → NAIVE-PERSONAS-DOCTRINE.md (PRESERVE + cross-ref here)
+    #  4 deletion-sim  → validate-agent-deletion-test.mjs --simulate (PRESERVE + cross-ref here)
+    #  5 comparison    → B_SIMULATION_COMPARISON.md (DISAMBIGUATE: BEFORE/AFTER/DELTA, NOT a sim mode)
+    # RIPPLE: each surface gets a cross-ref to this entry; nothing is forked.
+    # ── 1. trunk ─────────────────────────────────────────────────────────────
+    # The 7 universal invariants of simulation discipline.
+    # Canonical definition: "generate evidence about behaviour BEFORE committing to reality."
+    trunk:
+      description: "Simulation = generating evidence about behaviour BEFORE committing to reality. The discipline governs WHEN to simulate, WHICH mode to choose, and HOW to cite the evidence so downstream decisions rest on real proof not description."
+      elements:
+        - id: T1
+          name: evidence-before-commitment
+          statement: "No implementation begins without simulation evidence proving the spec works. Simulation is EXECUTION, not reading."
+          failure_mode: "Spec described but not executed → implementation built on untested assumptions; defects discovered in production"
+        - id: T2
+          name: scenario-coverage
+          statement: "Every simulation covers ≥3 distinct scenarios. Single-scenario simulation proves one path; it does not prove the boundary conditions."
+          failure_mode: "Happy-path-only simulation misses edge cases; nominal pass hides real failures"
+        - id: T3
+          name: result-citation
+          statement: "Simulation outcomes are cited as THIS-SESSION evidence (tool output, concrete numbers, specific failures). Description of a past simulation ≠ evidence."
+          failure_mode: "Memory of simulation ≠ proof. Next session re-discovers the same failure."
+        - id: T4
+          name: mode-appropriate
+          statement: "The correct simulation mode (scenario / scale / persona / deletion-decoupling) is matched to the risk class. Using the wrong mode generates evidence about the wrong failure."
+          failure_mode: "Scale-sim used for a design question → no evidence about usability. Scenario-sim used for a load question → no evidence about bottlenecks."
+        - id: T5
+          name: lifecycle-gate
+          statement: "Simulation follows DRAFT→SANDBOX→SIMULATED→RATIFIED→IMPLEMENTING lifecycle. No stage may be skipped. simulation_status: pass required before RATIFIED."
+          failure_mode: "lifecycle_state jumps from sandbox to implementing without SIMULATED → ratification is nominal"
+        - id: T6
+          name: opia-before-build
+          statement: "No implementation proceeds without Opus OPIA ratification of the simulation results. Sonnet cannot self-ratify simulation evidence."
+          failure_mode: "Builder ratifies own simulation → D14 (unverified-agreement) + HARDWIRE-008 false-pass risk"
+        - id: T7
+          name: evidence-not-reality
+          statement: "Simulation artifacts are never committed to production without explicit Governor promotion. Simulated state is a staging construct, not a production commitment."
+          failure_mode: "Simulation data enters production DB or live config → real users affected by test artifacts"
+    # ── 2. branches ──────────────────────────────────────────────────────────
+    # 4 REAL simulation modes (taxonomy). B_SIMULATION_COMPARISON EXCLUDED (BEFORE/AFTER/DELTA, not simulation).
+    branches:
+      - id: B1
+        name: scenario
+        description: "Sandbox specification simulation — execute spec against 3+ real scenarios to prove design works before any code."
+        when_to_use: "Any new feature, policy, or architectural decision expressed as a sandbox spec. Required by B_SANDBOX_BEFORE_IMPLEMENTATION."
+        enforcement: "validate-simulation-before-implementation.mjs (T6 gate — advisory→blocking) + simulation_status: pass frontmatter"
+        canonical_home: "docs/plan/pillar-0-governance/behavioral-contracts/B_SANDBOX_BEFORE_IMPLEMENTATION.md"
+        status: active
+      - id: B2
+        name: scale
+        description: "N×M load simulation — simulate N apps × M tenants (or N requests × M users) at target scale to find bottlenecks before they hit production."
+        when_to_use: "Any infrastructure or architecture decision that affects shared resources (DB connections, rate limits, RLS policies). Required before apps #2..#30."
+        enforcement: "dim-4 sandbox spec Surface 4 (k6 harness design) + bottleneck-expert skill 30→300 lens"
+        canonical_home: "docs/plan/_handoff/VAULT/sandbox-specs/SANDBOX-multi-tenant-scale-readiness-spec-S076.md §DESIGN SURFACE 4"
+        status: sandbox
+      - id: B3
+        name: persona
+        description: "Naive persona simulation — simulate naive user perspectives (non-expert, non-developer) to catch design failures before real deployment."
+        when_to_use: "Any user-facing feature or UX decision. Required by NAIVE-PERSONAS-DOCTRINE before finalizing UX flows."
+        enforcement: "NAIVE-PERSONAS-DOCTRINE.md + UX-expert skill persona review gate"
+        canonical_home: "docs/plan/pillar-0-governance/NAIVE-PERSONAS-DOCTRINE.md"
+        status: active
+      - id: B4
+        name: deletion-decoupling
+        description: "Scaffold deletion simulation — simulate removing a layer, module, or arrangement to prove the durable system remains functional without it."
+        when_to_use: "Agent-decoupling, layer-split decisions, any claim that 'the system works without X'. Required before declaring decoupling complete."
+        enforcement: "validate-agent-deletion-test.mjs --simulate (6-step, restores all artifacts)"
+        canonical_home: "tools/validators/validate-agent-deletion-test.mjs"
+        status: active
+    # ── DISAMBIGUATION ──────────────────────────────────────────────────────
+    # B_SIMULATION_COMPARISON is NOT a simulation mode.
+    # It is an evidence comparison pattern: BEFORE/AFTER/DELTA (compare two states, don't generate new behavior).
+    # Cross-ref: tools/vault/ai-conception/B_SIMULATION_COMPARISON.md → reclassified as evidence-comparison
+    disambiguation:
+      excluded: "B_SIMULATION_COMPARISON"
+      reason: "BEFORE/AFTER/DELTA comparison is not simulation (not generating behavioural evidence before committing). It's an evidence-presentation pattern. Governed under VALD as a comparison/evidence tool, not a simulation mode."
+      reclassified_to: "evidence-comparison pattern (VALD spine, evidence-presentation class)"
+    # ── 3. alignment_map ─────────────────────────────────────────────────────
+    alignment_map:
+      schema_anchor: vault_files
+      architecture_map_node: "simulation-discipline"
+      classification_dimension: VALD
+      root: .claude/core-spines/L1_CORE_VALD.md
+    # ── 4. wiring_map ────────────────────────────────────────────────────────
+    wiring_map:
+      - file: docs/plan/pillar-0-governance/behavioral-contracts/B_SANDBOX_BEFORE_IMPLEMENTATION.md
+        role: "Canonical policy for scenario-sim (B1) — lifecycle DRAFT→SANDBOX→SIMULATED→RATIFIED + simulation_status: pass gate"
+        status: ACTIVE
+      - file: tools/validators/validate-simulation-before-implementation.mjs
+        role: "T6 gate enforcement — blocks implementing without SIMULATED state + Opus ratification"
+        status: ACTIVE
+      - file: docs/plan/pillar-0-governance/NAIVE-PERSONAS-DOCTRINE.md
+        role: "Canonical policy for persona-sim (B3) — naive perspective requirement before UX finalization"
+        status: ACTIVE
+      - file: tools/validators/validate-agent-deletion-test.mjs
+        role: "Canonical tool for deletion-decoupling-sim (B4) — 6-step scaffold deletion simulation"
+        status: ACTIVE
+      - file: docs/plan/_handoff/VAULT/sandbox-specs/SANDBOX-multi-tenant-scale-readiness-spec-S076.md
+        role: "Canonical scale-sim spec (B2) — dim-4 Surface 4, N×M k6 harness design, 30→300 lens"
+        status: ACTIVE
+      - file: tools/templates/simulation-template.md
+        role: "Template for scenario-sim (B1) — standard simulation documentation format"
+        status: ACTIVE
+      - file: tools/vault/ai-conception/B_SIMULATION_COMPARISON.md
+        role: "DISAMBIGUATED (not a sim mode) — BEFORE/AFTER/DELTA evidence-comparison pattern; cross-ref only"
+        status: ACTIVE
+        note: "Reclassified S076: NOT simulation, IS evidence-comparison. See disambiguation block above."
+    # ── 5. tier_permission ───────────────────────────────────────────────────
+    tier_permission:
+      inner_platform:
+        actors: [governor, opus, sonnet]
+        can_simulate: true
+        can_ratify_simulation: false  # Sonnet cannot self-ratify (T6)
+        ratification_requires: "Opus OPIA or Governor ratification of simulation results"
+      developer:
+        actors: [governor]
+        can_simulate: true
+        can_ratify_simulation: true
+        ratification_requires: "THIS-SESSION simulation output cited + verify exit_code=0"
+      external_user:
+        actors: [account-owner-admin, team-leader, end-user]
+        can_simulate: false  # external users do not run platform simulations
+      ratification_required: true
+      min_tier_to_ratify: governor
+    # ── 6. cie_pe ─────────────────────────────────────────────────────────────
+    cie_pe:
+      pe_score: 7.0  # urgency=high(3) × impact=all-builds(2.5) / spi=1.0 = 7.5, derated for sandbox state
+      urgency: high
+      impact: all-builds  # every feature must be simulated before implementation
+      pe_rationale: "Simulation discipline gates ALL implementation work (T6). Without it, every build is a gamble. PE = high × all-builds / 1.0 = 7.5 (sample, tunable). Derated while in sandbox state."
+      cie_connection: requires_promotion
+      pe_connection: input
+      cie_capture_enabled: false  # promote when adapter OBSERVE pipeline ships (Phase 2)
+      note: "S076 Phase 1 wiring declared; Phase 2 (cie-pe-adapter OBSERVE) promotes cie_connection to always_active"
+    # ── 7. escalation ─────────────────────────────────────────────────────────
+    escalation:
+      owner: group:finky
+      escalation_path: "Sonnet flags missing simulation → Opus HOLDS at OPIA (T6) → Governor blocks session close if T5 lifecycle violated"
+      ladder:
+        L1: "Sonnet cites simulation_status: pass in milestone report"
+        L2: "Opus refuses ACCEPT at OPIA if simulation evidence missing (HARDWIRE-008)"
+        L3: "Governor reviews carry-forwards at session close (handoff-attestation)"
+        L4: "validate-simulation-before-implementation.mjs BLOCKS any implementing-state plan without SIMULATED"
+      closure_owner: group:finky
+      closure_decision: "All 4 modes have ACTIVE enforcement + validate-core-spine-template passes + Opus OPIA ratifies this entry"
+      closure_by: "S077 (after Opus OPIA on this spec)"
+    # ── 8. realtime_save ──────────────────────────────────────────────────────
+    realtime_save:
+      enabled: false  # not yet wired (B2 realtime-save not applied to simulation spine)
+      save_path: tools/data/process-state/core-spine-simulation__governor__active.json
+      lib: libs/process-state/index.mjs
+      note: "Wire after Opus OPIA ratification + Phase 2 cie-pe-adapter OBSERVE pipeline"
+
 # ── How to add a new spine entry ─────────────────────────────────────────────
 # 1. Copy the accountability stub above
 # 2. Fill all 8 sections (validator BLOCKS if any missing)

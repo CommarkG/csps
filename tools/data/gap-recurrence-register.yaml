@@ -347,3 +347,45 @@ entries:
     behavioral_test_exists: false
     source: "Governor S076 — 'resolved = amazing; unresolved = suffer like other AI systems.' PROTO-S076-INSTRUCTION-INTEGRITY (Opus-17 directive). Both faces: anti-rogue (ambient injection) + anti-rigidity (bare-text misfiring) share ONE root."
     note: "S076 CQS-ABSORBED: gap_INSTRUCTION_INTEGRITY is now a FACET of the CQS Alignment Layer (PROTO-S076-CQS-ALIGNMENT-LAYER OPIA ✅ RATIFIED). Face A (anti-rogue) = CQS incoming-instruction set. Face B (anti-rigidity) = CQS rule set. Canonical home: SANDBOX-cqs-alignment-layer-S076.md + tools/config/cqs-sets.yaml. No standalone PROTO-S076-INSTRUCTION-INTEGRITY needed — absorbed."
+
+  - id: gap_NO_LAPTOP_HARDWIRE_GAP
+    observation: >
+      Zero-Laptop policy (P-ZERO-LAPTOP, feedback_zero_laptop_dependency.md) is HALF-hardwired.
+      validate-push-status.mjs catches unpushed COMMITS — but two blindspots remain:
+      (1) Untracked/uncommitted files under docs/, tools/, .csps/, libs/ — governance artifacts
+          created mid-session but never staged can be stranded on the laptop silently.
+          Demonstrated S077: OPUS-TAB-TRANSFER-S077.md appeared as untracked, never committed.
+      (2) ~/.claude/ memory store (MEMORY.md + individual memory files) — laptop-only,
+          outside git, not synced. If laptop is lost, 5+ sessions of accumulated memory is gone.
+          The irony: the memory file ABOUT zero-laptop dependency lives only on the laptop.
+    first_seen: S077
+    k_count: 1
+    sessions: [S077]
+    status: open
+    prevention_class: zero-laptop-dependency
+    structural_fix_plan_session: "S078+"
+    structural_fix_triggered: false
+    must_address_by_session: "S080"
+    age_escalation_status: on-time
+    fix_commit_sha: null
+    behavioral_test_exists: false
+    target_dimension: "governance-infrastructure"
+    done_definition: |
+      (a) Session-close gate flags any untracked governance files (docs/, tools/, .csps/, libs/)
+          with clear warning: "X files untracked — stage before closing or stranded on laptop."
+          Implemented as post-stop hook or pre-close validator. Block-test: create untracked
+          governance file → validator catches it.
+      (b) Memory store backed up: either (i) ~/.claude/projects/*/memory/ synced to a
+          monitored git repo or cloud path, OR (ii) session-close writes a memory-manifest
+          to the CSPS repo root so at minimum the INDEX is in git even if files are local.
+    pe_urgency_input: true
+    cie_observation_class: governance_gap
+    source: >
+      Opus-17 S077 directive: 'register in gap-recurrence-register (git-tracked, NOT just memory)'.
+      Demonstrated live: OPUS-TAB-TRANSFER-S077.md untracked + ~/.claude memory store laptop-only.
+      Reference: feedback_zero_laptop_dependency + AP-001 (exists≠active) + P-ARCH-024 (zero-laptop).
+    note: >
+      Structural fix DEFERRED per foundation-focus completion directive (S077). Both fixes
+      are post-dim-4: (a) session-close uncommitted-file gate, (b) memory-store git backup.
+      The gap is now in git (this entry) — survives laptop loss. memory entry also written
+      (feedback_no_laptop_hardwire_gap.md) as cross-reference.

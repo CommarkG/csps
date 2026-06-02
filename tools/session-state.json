@@ -1,9 +1,9 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S076",
-  "previous_session": "S075",
-  "session_updated_at": "2026-06-02T23:59:00.000Z",
+  "current_session": "S077",
+  "previous_session": "S076",
+  "session_updated_at": "2026-06-02T00:00:00.000Z",
   "session_role": "sonnet-builder",
   "active_hardwire_items": [],
   "_active_hardwire_note": "Items currently in-progress via HARDWIRE protocol. Update at session close. hardwire-002 = council-write relay channel (BATCH 3 done, block-test recorded).",
@@ -56,9 +56,9 @@
     }
   },
   "session_mandate": {
-    "primary": "S076: Foundation dims 1-4 complete (1+2+3 SEALED, 4 spec+phase1+2). CQS Alignment Layer. Boundary-crossing HARDWIRED. EXTENDED tier. dim-2 SEALED (6 defects). dim-3 SEALED structural (FINDING-S076-DIM3-01 pending Q3). S077 opens: Q3 promotion + UUID migration (2026-06-16) + dim-4 Surface 2 quota + CQS Phase 1.",
+    "primary": "S077: UUID migration authored (schema.zmodel + migration SQL — Gov applies to live DB). dim-3 behavioral pending Q3+FINDING-S076-DIM3-01. dim-4 Surface 2 quota: Q6=A (libs/platform-quota/) + Q1=FREE (conservative limits) — UNBLOCKED, builds after UUID lands. CQS Phase 1 + boundary_crossing first use: S077 obligations.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — Opus-11 awaits Governor confirmation on App #2 vs WAVE 1 priority (recommended Option A: WAVE 1 first)",
+    "blocking_on": "NONE — UUID migration ready for Governor to apply (DIRECT_URL port 5432). Queue #2 (libs/platform-quota/) starts after Gov confirms migration applied.",
     "situation": "WAVE_1_PREVENTION_BUILD",
     "active_situation": "WAVE_1_PREVENTION_BUILD",
     "_legacy_session_mandate_S023": "Original S023 APP_BUILD_MODE mandate moved here for archival; current mandate above reflects S066 reality. Schema bug surfaced by Opus-11 S066: dual mandate paths (nested session_mandate.primary vs top-level primary at end of file) — see DRAFT-S066-SESSION-STATE-DUAL-MANDATE-FIX in improvement-register.",

@@ -114,13 +114,29 @@ if (appendOnlyMatch) {
 }
 
 // Check FK scalar fields for @db.Uuid
-// Pattern: String field ending in "Id" that references a model with native UUID id
+// Pattern: String field ending in "Id" that references a model with native UUID id.
+// EXCLUSION LIST: external-system IDs that are NOT CSPS UUIDs — keep as TEXT.
+const EXTERNAL_ID_FIELDS = new Set([
+  'clerkId',             // Clerk user ID (external auth system)
+  'clerkOrgId',          // Clerk org ID (external auth system)
+  'stripeCustomerId',    // Stripe customer ID (external billing)
+  'stripeSubscriptionId',// Stripe subscription ID (external billing)
+  'stripePriceId',       // Stripe price ID (external billing)
+  'resourceId',          // Generic resource reference in AuditEvent — not a CSPS FK
+])
+
 const fkFields = schema.matchAll(/^\s+(\w+Id)\s+String(?:\?)?(?!\s+@id)(?!\s+@unique\s+@id)([^\n]*)/gm)
 let fk_missing = 0
 let fk_present = 0
+let fk_excluded = 0
 for (const match of fkFields) {
   const fieldName = match[1]
   const fieldDef = match[2]
+  // Skip known external-system ID fields — they MUST stay as TEXT
+  if (EXTERNAL_ID_FIELDS.has(fieldName)) {
+    fk_excluded++
+    continue
+  }
   const hasDbUuid = /@db\.Uuid/.test(fieldDef)
   if (!hasDbUuid) {
     fk_missing++
@@ -134,6 +150,9 @@ for (const match of fkFields) {
 }
 if (fk_missing > 5) {
   flag('advisory', `... and ${fk_missing - 5} more FK fields missing @db.Uuid (suppressed)`)
+}
+if (fk_excluded > 0) {
+  console.log(`  ↳ ${fk_excluded} external-system ID fields correctly excluded from @db.Uuid (clerkId, stripeCustomerId, etc.)`)
 }
 console.log(`  FK fields: ${fk_present} with @db.Uuid, ${fk_missing} without (all advisory pre-migration)`)
 

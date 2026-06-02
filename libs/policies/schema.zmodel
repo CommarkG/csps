@@ -57,11 +57,11 @@ plugin enhancer {
 // Per P-ARCH-007: hard delete denied by default.
 
 abstract model Base {
-  // S076 FINDING-S076-DIM2-03 (Option A): @db.Uuid removed — live DB stores ids as TEXT
-  // (values are valid UUIDs, e.g. a428ee70-3094-44b8-83cd-1e81181c6170). Native-UUID
-  // upgrade deferred to dim-4 scale-readiness. Do NOT add @db.Uuid back without a
-  // proper type-migration plan tested against the 30→300 load model.
-  id        String    @id @default(uuid())
+  // S077 UUID migration: @db.Uuid restored on id.
+  // Governor applies migration 20260602_uuid_native_types (ALTER COLUMN TYPE uuid USING ::uuid).
+  // All values already conform (valid UUID v4 strings). Migration is data-preserving.
+  // Deadline: 2026-06-16. Register: gap_DIM2_CORE_ID_UUID_UPGRADE.
+  id        String    @id @default(uuid()) @db.Uuid
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
@@ -72,8 +72,8 @@ abstract model Base {
 // Append-only entities (AuditEvent): no update, no delete, no soft-delete.
 // Intentionally omits updatedAt + deletedAt — immutability by schema.
 abstract model AppendOnlyBase {
-  // S076 FINDING-S076-DIM2-03 (Option A): @db.Uuid removed — see Base comment above.
-  id        String   @id @default(uuid())
+  // S077 UUID migration: @db.Uuid restored — see Base comment above.
+  id        String   @id @default(uuid()) @db.Uuid
   createdAt DateTime @default(now())
 
   @@schema("public")
@@ -136,7 +136,7 @@ model User extends Base {
   email       String  @unique
   displayName String?
   staffRole   String?
-  tenantId    String?
+  tenantId    String? @db.Uuid  // denormalized default-tenant; no FK constraint — ALTER COLUMN only
 
   memberships    UserTenant[]
   tasksCreated   Task[]         @relation("TaskCreatedBy")
@@ -176,7 +176,7 @@ model Tenant extends Base {
   plan                 String                   @default("free")
   // C3 fix (OPUS-16 S075): planId FK → Plan entity (PART 3 migration batch)
   // null = free tier. Coexists with plan:String field until planId FK migration complete.
-  planId               String?
+  planId               String?  @db.Uuid  // already UUID in DB (PART 3 migration); schema alignment only
   planRelation         Plan?    @relation("TenantPlanFK", fields: [planId], references: [id])
   // Feature flags enabled for this tenant (e.g. ["ai-assist", "webhooks"])
   features             String[]                 @default([])
@@ -206,8 +206,8 @@ model Tenant extends Base {
 
 // From: slices/public/user-tenant.zmodel
 model UserTenant extends Base {
-  userId   String
-  tenantId String
+  userId   String @db.Uuid
+  tenantId String @db.Uuid
   role     MembershipRole
 
   user   User   @relation(fields: [userId],   references: [id])
@@ -234,11 +234,11 @@ model UserTenant extends Base {
 // From: slices/public/audit-event.zmodel
 // Append-only: write via Postgres triggers only (P-ARCH-008)
 model AuditEvent extends AppendOnlyBase {
-  tenantId     String
-  actorId      String?
+  tenantId     String  @db.Uuid
+  actorId      String? @db.Uuid  // references User.id; nullable (system actions have no actor)
   action       String
   resourceType String
-  resourceId   String
+  resourceId   String             // generic resource — NOT a CSPS UUID FK; keep as TEXT
   data         Json?
 
   tenant Tenant @relation(fields: [tenantId], references: [id])
@@ -284,7 +284,7 @@ enum TaskPriority {
 
 // From: slices/public/project.zmodel
 model Project extends Base {
-  tenantId    String
+  tenantId    String @db.Uuid
   name        String
   description String?
   status      ProjectStatus @default(active)
@@ -304,15 +304,15 @@ model Project extends Base {
 
 // From: slices/public/task.zmodel
 model Task extends Base {
-  tenantId    String
-  projectId   String?
+  tenantId    String  @db.Uuid
+  projectId   String? @db.Uuid
   title       String
   description String?
   status      TaskStatus    @default(todo)
   priority    TaskPriority  @default(none)
   dueDate     DateTime?
-  createdById String
-  assigneeId  String?
+  createdById String  @db.Uuid
+  assigneeId  String? @db.Uuid
 
   tenant    Tenant      @relation(fields: [tenantId],    references: [id])
   project   Project?    @relation(fields: [projectId],   references: [id])
@@ -341,7 +341,7 @@ model Task extends Base {
 // Budget category: income/expense classification with monthly limit
 // AppendOnlyBase: soft-delete only (no hard delete)
 model BudgetCategory extends Base {
-  tenantId     String
+  tenantId     String @db.Uuid
   name         String        // e.g. "Rent", "Food", "Salary"
   type         BudgetCategoryType  @default(expense)
   monthlyLimit Float?        // optional spending cap
@@ -364,8 +364,8 @@ model BudgetCategory extends Base {
 // A single financial transaction (income or expense)
 // AppendOnlyBase: immutable once recorded (financial integrity)
 model Transaction extends Base {
-  tenantId   String
-  categoryId String
+  tenantId   String @db.Uuid
+  categoryId String @db.Uuid
   amount     Float         // always positive; type determines direction
   type       BudgetCategoryType  // income or expense
   note       String?       // optional description
@@ -389,7 +389,7 @@ model Transaction extends Base {
 // Created when user completes the 3 Threshold questions (the non-skippable gate)
 // Human-authored fields: goal + targets (Q2c + Q3c from threshold-intake-protocol.md)
 model BudgetGoal extends Base {
-  tenantId      String  @unique  // one goal per tenant (solo user = one per person)
+  tenantId      String  @unique @db.Uuid  // one goal per tenant (solo user = one per person)
   goalStatement String            // Q2c: "What would financial control look like in 30 days?"
   budgetTargets Json              // Q3c: [{categoryName, monthlyLimit}] — human's own words
   completedAt   DateTime @default(now())
@@ -416,8 +416,8 @@ enum BudgetCategoryType {
 // From: slices/public/task-comment.zmodel
 // Immutable once posted (no update); soft-delete via deletedAt only
 model TaskComment extends Base {
-  taskId   String
-  authorId String
+  taskId   String @db.Uuid
+  authorId String @db.Uuid
   body     String
 
   task   Task @relation(fields: [taskId],   references: [id])
@@ -437,8 +437,8 @@ model TaskComment extends Base {
 // Users can read and mark their own notifications as read.
 
 model Notification extends Base {
-  tenantId   String
-  userId     String
+  tenantId   String @db.Uuid
+  userId     String @db.Uuid
   type       String    // e.g. "task.assigned", "mention", "system"
   title      String
   body       String
@@ -466,7 +466,7 @@ model Notification extends Base {
 
 // A habit the user wants to track daily (e.g. "Exercise", "Read 20 minutes")
 model Habit extends Base {
-  tenantId String
+  tenantId String @db.Uuid
   name     String    // user-defined habit name
   logs     HabitLog[]
 
@@ -482,8 +482,8 @@ model Habit extends Base {
 
 // A single day check-off for a habit — one per habit per day
 model HabitLog extends Base {
-  habitId  String
-  tenantId String
+  habitId  String @db.Uuid
+  tenantId String @db.Uuid
   date     DateTime  // date only — store as midnight UTC of the day
 
   habit  Habit  @relation(fields: [habitId], references: [id])
@@ -501,7 +501,7 @@ model HabitLog extends Base {
 }
 
 model WebhookEndpoint extends Base {
-  tenantId        String
+  tenantId        String @db.Uuid
   url             String
   secret          String    // HMAC signing secret — never expose in read responses
   events          String[]  @default([])  // e.g. ["task.created", "member.added"]
@@ -561,8 +561,8 @@ model Capability extends Base {
 }
 
 model PlanCapability extends Base {
-  planId        String
-  capabilityId  String
+  planId        String @db.Uuid  // already UUID in DB (PART 3); schema alignment only
+  capabilityId  String @db.Uuid  // already UUID in DB (PART 3); schema alignment only
   limitValue    Int?
 
   plan       Plan       @relation(fields: [planId],       references: [id])

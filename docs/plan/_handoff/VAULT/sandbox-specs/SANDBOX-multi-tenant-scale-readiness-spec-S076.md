@@ -247,6 +247,11 @@ EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM "Plan" WHERE tenant_id = $1;
 
 ## DESIGN SURFACE 4 — N×M LOAD-TEST HARNESS (design only — NOT run this batch)
 
+> **Simulation spine cross-ref (S076 RIPPLE)**: Surface 4 is the canonical implementation of
+> **simulation mode B2 (scale-sim)** in the platform simulation discipline.
+> See `tools/config/core-spine-registry.yaml#simulation` B2 branch for the taxonomy entry.
+> "Generate evidence about behaviour BEFORE committing to reality" — scale edition.
+
 ### Purpose
 Prove Surfaces 1-3 BEFORE apps multiply. The load test is the governor on "apps may scale."
 No app #2..#30 ships without this harness running and showing PASS on all three surfaces.

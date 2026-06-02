@@ -4,6 +4,8 @@
  * @csps-dna
  * core_spine: ARCH
  * @csps-enforces P-ARCH-030 (agent-decoupling) — Foundation dim 3
+ * @csps-simulation-spine: B4 deletion-decoupling-sim (tools/config/core-spine-registry.yaml#simulation)
+ *   S076 RIPPLE cross-ref: this file IS the canonical enforcement for simulation mode B4.
  * Phase C S076: AGENT-DELETION-TEST — proves the durable system holds without scaffold
  *
  * What it checks (simulation mode — restores all artifacts after test):

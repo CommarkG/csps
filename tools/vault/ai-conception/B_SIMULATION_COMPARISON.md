@@ -19,6 +19,12 @@ links:
 context_question: "When proposing an improvement, what is the concrete BEFORE state, the concrete AFTER state, and the measurable DELTA?"
 context_quote: "An improvement without a BEFORE/AFTER comparison is an opinion. With it, it becomes evidence."
 inherits_from: "Platform Genome §1 Behavioral Contracts"
+# S076 DISAMBIGUATION (PROTO-S076-SIMULATION-SPINE): This is NOT a simulation mode.
+# B_SIMULATION_COMPARISON = BEFORE/AFTER/DELTA evidence-comparison pattern (show two states, measure the delta).
+# Simulation = generate behavioural evidence before committing to reality (see tools/config/core-spine-registry.yaml#simulation).
+# These are distinct: comparison presents evidence about states; simulation generates evidence about behaviour.
+# Reclassified S076: evidence-comparison pattern under VALD, NOT part of the 4-mode simulation taxonomy.
+disambiguation_S076: "evidence-comparison pattern — BEFORE/AFTER/DELTA; NOT simulation mode B1/B2/B3/B4"
 ---
 
 # B_SIMULATION_COMPARISON

@@ -42,6 +42,7 @@ links:
   - { rel: ai-profiling, href: ./AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md }
   - { rel: platform-observation, href: ./PLATFORM-OBSERVATION-DOCTRINE.md }
   - { rel: developer-journey, href: ../pillar-4-developer-experience/developer-journey/01-developer-threshold.md }
+  - { rel: simulation-spine, href: ../../../tools/config/core-spine-registry.yaml, note: "B3 persona-sim canonical home — S076 RIPPLE cross-ref to simulation spine entry" }
 ---
 
 # Naive Personas Doctrine · Draft (S072)

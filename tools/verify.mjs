@@ -1567,6 +1567,21 @@ const CYCLES = [
     },
   },
   {
+    // S076 Phase C BOUNDARY-CROSSING-PROTOCOL: T2 completeness validator
+    // Checks boundaries-register.yaml: every crossing (k_count>0) has 4 required artifacts
+    // (governor_approval, assessment_ref, scheduled_resolution.must_address_by_date, crossings array).
+    // Blocking: crossing missing any artifact. k_count>=2 → re-derivation required.
+    // BT: crossing with null governor_approval → exit 1 ✓.
+    // EXTENDED: self-referential — promoting to STANDARD IS the first worked example of the protocol.
+    run_tier: 'EXTENDED',
+    name: 'boundary_crossing_protocol',
+    command: 'node tools/validators/validate-boundary-crossing-protocol.mjs',
+    parse_output: (out) => {
+      const m = out.match(/boundaries_checked=(\d+)\s+crossings_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { boundaries_checked: Number(m[1]), crossings_checked: Number(m[2]), blocking: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
     // M2 S071 Facet C: Dev↔User vocabulary coverage — advisory validator
     // Flags user-facing content that uses dev_terms without paired user_term translation
     // Glossary source: vocabulary.md §Dev↔User Glossary (8+ entries, sample-expandable per P-META-028)

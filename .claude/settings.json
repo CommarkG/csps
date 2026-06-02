@@ -106,6 +106,10 @@
           },
           {
             "type": "command",
+            "command": ".claude/hooks/pre-tool-use-boundary-crossing-gate.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/pre-tool-use-bstar-trio-gate.sh"
           },
           {

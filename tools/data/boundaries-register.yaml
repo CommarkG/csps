@@ -1,0 +1,77 @@
+---
+id: csps.data.boundaries-register
+name: boundaries-register
+description: >
+  Registry of all ratified platform boundaries: hard limits, sealed decisions, and "never" rules
+  that have specific values. Crossing any entry requires the 5-step Boundary-Crossing Protocol
+  (SANDBOX-boundary-crossing-protocol-S076.md): STOP+SURFACE → GOVERNOR-FIRST-APPROVAL →
+  DEEP-ASSESSMENT → SCHEDULED-ENTERPRISE-RESOLUTION → RECORD-PRECEDENT+K-COUNT.
+  Rigid META (how you cross), flexible OBJECT (what the value is). Per PROTO-S076-BOUNDARY-CROSSING-PROTOCOL.
+version: "1.0"
+session: S076
+authored_by: Sonnet S076
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: vault_files
+cie_connection: "requires_promotion"
+pe_connection: "input"
+crossing_protocol_ref: "docs/plan/_handoff/VAULT/sandbox-specs/SANDBOX-boundary-crossing-protocol-S076.md"
+links:
+  - { rel: protocol-spec, href: ../../docs/plan/_handoff/VAULT/sandbox-specs/SANDBOX-boundary-crossing-protocol-S076.md }
+  - { rel: calendar-enforcement, href: validate-finding-scheduling.mjs }
+---
+
+# Boundaries Register
+
+> Every entry = a ratified boundary. Crossing one = governed 5-step event.
+> k_count = sessions in which this boundary has been crossed.
+> k_count >= 2 for SAME boundary → mandatory re-derivation of the boundary, not another exception.
+> Status: ratified | pending-derivation | re-deriving
+>
+> CROSSING SCHEMA: each crossing records:
+>   { session, from_value, to_value, governor_approval, assessment_ref, scheduled_resolution }
+
+entries:
+
+  - id: boundary-001
+    name: "verify-cycle-cap"
+    governing_intent: >
+      Prevent pnpm verify from accumulating so many validators it becomes slow enough to impede
+      the fast-feedback loop. The cap is a forcing function for architecture (tiering, EXTENDED
+      tier, DEEP tier) — not a maximum quality ceiling. When the cap feels too tight, the right
+      fix is architectural (EXTENDED tier, weekly cron) not a higher number.
+      Current state (S076): EXTENDED tier implemented — 5 structural invariants moved to weekly
+      cron, freeing headroom for active validators. Cap HELD at 200.
+    current_value: 200
+    unit: "active validator cycles in verify.mjs (CRITICAL+STANDARD; excludes DEEP+EXTENDED+skip)"
+    canonical_source: "tools/validators/validate-platform-capacity.mjs (pnpm-verify-cycles)"
+    cie_connection: requires_promotion
+    pe_connection: input
+    k_count: 0
+    crossings: []
+    status: ratified
+    status_note: > at 200. EXTENDED tier created (5 structural invariants weekly-only).
+      Phase 2+S5 promoted from DEFERRED to EXTENDED. Active cycles = 199.
+      Any future change to 200 requires 5-step crossing protocol.
+
+  - id: boundary-002
+    name: "l1-core-spine-count"
+    governing_intent: >
+      The L1 core spines (GVRN/VALD/ARCH/AI/OPER) are sealed. They represent the 5 fundamental
+      domains of the platform — governance, validation, architecture, AI behavior, operations.
+      A new L1 spine = a claim that a fundamentally new domain exists, requiring full Governor +
+      Opus council ratification + balance-expert review. The discipline: spines are methods (like
+      simulation → VALD entry), not separate domains. Protect the 5-spine model from inflation.
+    current_value: 5
+    unit: "sealed L1 core spines in GVRN/VALD/ARCH/AI/OPER"
+    canonical_source: "tools/config/core-spine-registry.yaml (root_spines list)"
+    cie_connection: requires_promotion
+    pe_connection: input
+    k_count: 0
+    crossings: []
+    status: ratified
+    status_note: >
+      S076: simulation registered as a VALD ENTRY (not a new L1 spine) per Governor Option A.
+      L1 count holds at 5. Any 6th L1 spine requires 5-step crossing protocol.

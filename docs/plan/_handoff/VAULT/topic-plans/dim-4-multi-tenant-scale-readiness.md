@@ -15,7 +15,9 @@ priority_band: 1
 know_how_consulted: true
 covered_paths:
   - libs/platform-quota/
+  - tools/load-tests/
   - tools/validators/validate-tenant-quota-policy.mjs
+  - tools/validators/validate-load-test-harness.mjs
   - tools/validators/validate-connection-pool-contract.mjs
   - tools/validators/validate-rls-perf-budget.mjs
   - tools/validators/validate-uuid-column-types.mjs
@@ -43,7 +45,7 @@ Foundation dimension 4 — 5 design surfaces for 30-app multi-tenant scale.
 | S1 Connection pool contract | ✅ SEALED | validate-connection-pool-contract.mjs | S076 |
 | S2 Per-tenant quota | ✅ BUILT (EXTENDED) | validate-tenant-quota-policy.mjs | S077 |
 | S3 RLS perf budget | ✅ SEALED (EXTENDED) | validate-rls-perf-budget.mjs | S076 |
-| S4 k6 load harness | ⏳ pending | — | S077/S078 |
+| S4 k6 load harness | ✅ BUILT (EXTENDED) | validate-load-test-harness.mjs | S077 |
 | S5 Native UUID | ✅ SEALED (EXTENDED) | validate-uuid-column-types.mjs | S077 |
 
 ## Key decisions

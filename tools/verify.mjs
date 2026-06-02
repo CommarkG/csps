@@ -1559,6 +1559,20 @@ const CYCLES = [
     },
   },
   {
+    // S077 dim-4 Surface 4: LOAD-TEST HARNESS — k6 N×M scenarios A-D structure validator
+    // Checks: harness dir + 4 scenarios + DNA + thresholds + DEFERRED notation + boundary-003 ref
+    // Scenario A: concurrent burst | B: pool stress | C: RLS latency (DEFERRED) | D: noisy-neighbor
+    // BT-A: --block-test-a (missing scenario-a) → exit 1 ✓
+    // EXTENDED: keeps verify cycles within boundary-001 (200 hard limit)
+    run_tier: 'EXTENDED',
+    name: 'load_test_harness',
+    command: 'node tools/validators/validate-load-test-harness.mjs',
+    parse_output: (out) => {
+      const m = out.match(/blocking=(\d+)\s+advisory=(\d+)\s+scenarios=(\d+)/);
+      return m ? { blocking: Number(m[1]), advisory: Number(m[2]), scenarios: Number(m[3]) } : {};
+    },
+  },
+  {
     // S076 dim-4 Phase 2: RLS PERF BUDGET — ZModel index discipline for tenant-scoped RLS
     // Q4 applied: 10ms provisional budget, ratchet → 5ms post-UUID migration (Q7/Surface 5).
     // Blocking: entity with tenant-scoped RLS and no tenantId index. Advisory: subquery/join pattern.

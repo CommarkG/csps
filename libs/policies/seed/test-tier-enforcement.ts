@@ -15,11 +15,21 @@
  * Run: npx tsx libs/policies/seed/test-tier-enforcement.ts
  */
 
-import { PrismaClient } from '../generated/generated/client';
+// FINDING-S076-DIM2-05: changed from '../generated/generated/client' (stale stub) to '@prisma/client'.
+// enhance() still binds — @zenstackhq/runtime wraps any PrismaClient instance (confirmed OPUS-17 S076).
+// See seed-plans.ts for root-cause explanation.
+import { PrismaClient } from '@prisma/client';
 import { enhance } from '@zenstackhq/runtime';
 import { CAPABILITY } from '../capabilities';
 
 const prisma = new PrismaClient();
+
+// GUARD (FINDING-S076-DIM2-05): verify @prisma/client has Tenant + Plan models.
+if (!(prisma as any).tenant || !(prisma as any).plan) {
+  console.error('[GUARD-DIM2-05] prisma.tenant or prisma.plan is undefined — @prisma/client is stale.');
+  console.error('  Fix: npx prisma db push --schema libs/policies/generated/schema.prisma');
+  process.exit(1);
+}
 
 /**
  * Creates an enhanced client for a specific tenant auth context.

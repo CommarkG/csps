@@ -23,9 +23,20 @@
  * PlanCapability entry AND Tenant.subscriptionStatus ∈ {active,trialing}.
  */
 
-import { PrismaClient } from '../generated/generated/client';
+// FINDING-S076-DIM2-05: changed from '../generated/generated/client' (stale stub — zero model accessors)
+// to '@prisma/client' (refreshed by 'npx prisma db push --schema libs/policies/generated/schema.prisma').
+// The generated/generated/client path has no output directive → db push writes to node_modules/@prisma/client.
+import { PrismaClient } from '@prisma/client';
 
 const db = new PrismaClient();
+
+// GUARD (FINDING-S076-DIM2-05): verify @prisma/client has Plan model.
+// If db.plan is undefined, db push has not run with the current schema.
+if (!(db as any).plan) {
+  console.error('[GUARD-DIM2-05] db.plan is undefined — @prisma/client is stale or missing Plan model.');
+  console.error('  Fix: npx prisma db push --schema libs/policies/generated/schema.prisma');
+  process.exit(1);
+}
 
 const PLAN_DEFINITIONS: Array<{
   slug: string;

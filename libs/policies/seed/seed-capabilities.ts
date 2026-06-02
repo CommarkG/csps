@@ -11,10 +11,19 @@
  * validate-capability-registry.mjs --check-db verifies parity after seeding.
  */
 
-import { PrismaClient } from '../generated/generated/client';
+// FINDING-S076-DIM2-05: changed from '../generated/generated/client' (stale stub) to '@prisma/client'.
+// See seed-plans.ts for root-cause explanation.
+import { PrismaClient } from '@prisma/client';
 import { CAPABILITY } from '../capabilities';
 
 const db = new PrismaClient();
+
+// GUARD (FINDING-S076-DIM2-05): verify @prisma/client has Capability model.
+if (!(db as any).capability) {
+  console.error('[GUARD-DIM2-05] db.capability is undefined — @prisma/client is stale or missing Capability model.');
+  console.error('  Fix: npx prisma db push --schema libs/policies/generated/schema.prisma');
+  process.exit(1);
+}
 
 const CAPABILITY_DEFINITIONS: Array<{
   slug: string;

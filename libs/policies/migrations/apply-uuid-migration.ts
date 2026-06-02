@@ -108,30 +108,32 @@ interface PolicyRow {
   policy_name: string
   cmd: string         // r=SELECT a=INSERT w=UPDATE d=DELETE *=ALL
   permissive: boolean
-  role_names: string[] | null
+  role_names_csv: string | null  // comma-separated role names, null = public (all roles)
   using_expr: string | null
   with_check_expr: string | null
 }
 
 // ─── Load all RLS policies on the affected tables ─────────────────
+// NOTE: uses string_agg (not array_agg) — pg returns pg arrays as raw strings
+// like '{role1,role2}' which require manual parsing; string_agg returns plain text.
 async function loadPolicies(client: Client): Promise<PolicyRow[]> {
   const tableList = ORIGINAL_TABLES.map(t => `'${t}'`).join(', ')
   const res = await client.query<PolicyRow>(`
     SELECT
-      c.relname                                           AS table_name,
-      p.polname                                           AS policy_name,
-      p.polcmd::text                                      AS cmd,
-      p.polpermissive                                     AS permissive,
-      CASE WHEN p.polroles = '{}'::oid[]
+      c.relname                                              AS table_name,
+      p.polname                                              AS policy_name,
+      p.polcmd::text                                         AS cmd,
+      p.polpermissive                                        AS permissive,
+      CASE WHEN p.polroles IS NULL OR p.polroles = '{}'::oid[]
         THEN NULL
         ELSE (
-          SELECT array_agg(r.rolname ORDER BY r.rolname)
+          SELECT string_agg(r.rolname, ', ' ORDER BY r.rolname)
           FROM   pg_roles r
           WHERE  r.oid = ANY(p.polroles)
         )
-      END                                                 AS role_names,
-      pg_get_expr(p.polqual,      p.polrelid, true)       AS using_expr,
-      pg_get_expr(p.polwithcheck, p.polrelid, true)       AS with_check_expr
+      END                                                    AS role_names_csv,
+      pg_get_expr(p.polqual,      p.polrelid, true)          AS using_expr,
+      pg_get_expr(p.polwithcheck, p.polrelid, true)          AS with_check_expr
     FROM   pg_policy    p
     JOIN   pg_class     c ON p.polrelid = c.oid
     JOIN   pg_namespace n ON c.relnamespace = n.oid
@@ -149,7 +151,7 @@ function buildCreatePolicy(p: PolicyRow): string {
   }
   const cmd  = cmdMap[p.cmd] ?? 'ALL'
   const perm = p.permissive ? 'PERMISSIVE' : 'RESTRICTIVE'
-  const to   = p.role_names?.length ? p.role_names.join(', ') : 'public'
+  const to   = p.role_names_csv ?? 'public'
 
   const usingExpr     = makeUuidCompatible(p.using_expr)
   const withCheckExpr = makeUuidCompatible(p.with_check_expr)

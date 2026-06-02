@@ -1,13 +1,11 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S075",
-  "previous_session": "S074",
-  "session_updated_at": "2026-06-01T19:39:26.784Z",
+  "current_session": "S076",
+  "previous_session": "S075",
+  "session_updated_at": "2026-06-02T23:59:00.000Z",
   "session_role": "sonnet-builder",
-  "active_hardwire_items": [
-    "hardwire-002"
-  ],
+  "active_hardwire_items": [],
   "_active_hardwire_note": "Items currently in-progress via HARDWIRE protocol. Update at session close. hardwire-002 = council-write relay channel (BATCH 3 done, block-test recorded).",
   "_session_role_note": "opus-advisor = Opus Advisor tab (strategic, no implementation). sonnet-builder = Sonnet Builder tab (implementation). Set by Governor when opening the tab.",
   "opus_audit": {
@@ -58,7 +56,7 @@
     }
   },
   "session_mandate": {
-    "primary": "S067: PROTO-S067-MASTER-THRESHOLD-ROUTER IMPLEMENTED. All 8 STEPs DONE (commits b2fcfc9 through 7571ed2). P-META-029 + M-42 + 13 prevention classes + 10 AI-default overrides + B_META_QUESTION + OPIA engraved. STEP 8 SEALED. S068 opens: Governor #3 priorities + G3 cred rotation + App #2 The Connector (~2026-05-30) + SIA playground PART C.",
+    "primary": "S076: Foundation dims 1-4 complete (1+2+3 SEALED, 4 spec+phase1+2). CQS Alignment Layer. Boundary-crossing HARDWIRED. EXTENDED tier. dim-2 SEALED (6 defects). dim-3 SEALED structural (FINDING-S076-DIM3-01 pending Q3). S077 opens: Q3 promotion + UUID migration (2026-06-16) + dim-4 Surface 2 quota + CQS Phase 1.",
     "model_tier": "STANDARD_BUILD",
     "blocking_on": "NONE — Opus-11 awaits Governor confirmation on App #2 vs WAVE 1 priority (recommended Option A: WAVE 1 first)",
     "situation": "WAVE_1_PREVENTION_BUILD",
@@ -245,5 +243,5 @@
     "The Threshold Gate — all inputs governed before processing",
     "Plan Methodology v2 — §HARVEST in every plan, Humble Executor at every milestone"
   ],
-  "primary": "S067: PROTO-S067-MASTER-THRESHOLD-ROUTER IMPLEMENTED. All 8 STEPs DONE (commits b2fcfc9 through 7571ed2). P-META-029 + M-42 + 13 prevention classes + 10 AI-default overrides + B_META_QUESTION + OPIA engraved. STEP 8 SEALED. S068 opens: Governor #3 priorities + G3 cred rotation + App #2 The Connector (~2026-05-30) + SIA playground PART C."
+  "primary": "S076: Foundation dims 1-4 complete (1+2+3 SEALED, 4 spec+phase1+2). CQS Alignment Layer. Boundary-crossing HARDWIRED. EXTENDED tier. dim-2 SEALED (6 defects). dim-3 SEALED structural (FINDING-S076-DIM3-01 pending Q3). S077 opens: Q3 promotion + UUID migration (2026-06-16) + dim-4 Surface 2 quota + CQS Phase 1."
 }

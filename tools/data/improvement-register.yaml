@@ -7,7 +7,8 @@ owner: group:finky
 lifecycle: production
 lifecycle_state: active
 core_spine: VALD
-schema_anchor: audit_scheduling
+cie_connection: "requires_promotion"
+pe_connection: "input"
 context_question: "Has this positive finding been applied everywhere it should? If CEC has not been run, this entry is incomplete."
 context_quote: "Negative findings go into the gap register with K counts and blocking. Positive findings go into chat and disappear. The asymmetry compounds over 50+ sessions."
 links:

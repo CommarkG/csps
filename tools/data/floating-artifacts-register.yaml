@@ -8,7 +8,8 @@ description: >
   Source: PROTO-S072-ANTI-FLOAT + PROTO-S073-B4. Inaugural sweep: S073.
 version: "1.0"
 session: S073
-owner: group:finky
+cie_connection: "requires_promotion"
+pe_connection: "not_applicable"
 closure_owner: group:finky
 closure_decision: "Living register — terminal when all entries have terminal_state"
 closure_by: "ongoing — validate-no-floating-artifacts.mjs sweeps per session"

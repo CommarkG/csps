@@ -9,7 +9,8 @@ version: '1.0'
 session: S074
 authored_by: Sonnet S074
 core_spine: GVRN
-schema_anchor: vault_files
+cie_connection: "shadow"
+pe_connection: "not_applicable"
 closure_owner: group:finky
 closure_decision: Living register — add rows per HARDWIRE invocation
 closure_by: ongoing

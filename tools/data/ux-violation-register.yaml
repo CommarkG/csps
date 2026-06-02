@@ -7,7 +7,8 @@ owner: group:finky
 lifecycle: production
 lifecycle_state: active
 core_spine: VALD
-schema_anchor: vault_files
+cie_connection: "requires_promotion"
+pe_connection: "input"
 session: S059
 context_question: "Are any UX violations at K>=2? Those require structural fix proposals, not instance fixes."
 links:

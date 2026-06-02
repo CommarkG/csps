@@ -1512,6 +1512,19 @@ const CYCLES = [
     },
   },
   {
+    // S076 Phase 1 ACCOUNTABILITY-PE-CIA-WIRING: accountability registers must declare CIE+PE connections
+    // Blocking: any of the 6 registers missing cie_connection or pe_connection per NODEFILE-CONTRACT
+    // Governs: gap-recurrence / improvement / ux-violation / floating-artifacts / exceptional-moments / hardwire
+    // DEEP: structural invariant — register headers don't change session-to-session; capacity-constrained
+    run_tier: 'DEEP',
+    name: 'register_connectivity',
+    command: 'node tools/validators/validate-register-connectivity.mjs',
+    parse_output: (out) => {
+      const m = out.match(/registers_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { registers_checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // M2 S071 Facet C: Dev↔User vocabulary coverage — advisory validator
     // Flags user-facing content that uses dev_terms without paired user_term translation
     // Glossary source: vocabulary.md §Dev↔User Glossary (8+ entries, sample-expandable per P-META-028)

@@ -7,7 +7,8 @@ owner: group:finky
 lifecycle: production
 lifecycle_state: active
 core_spine: VALD
-schema_anchor: audit_scheduling
+cie_connection: "requires_promotion"
+pe_connection: "input"
 session: S064
 links:
   - tools/data/flow-activity-monitor.yaml

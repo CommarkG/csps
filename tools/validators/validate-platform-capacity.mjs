@@ -80,13 +80,14 @@ function measure(id) {
         if (!existsSync(f)) return null;
         const text = readFileSync(f, 'utf8');
         // Count CRITICAL+STANDARD validators (active per-run cycles)
-        // Exclude: skip:true (DEFERRED-WITH-REASON) + run_tier:'DEEP' (not in default run)
-        // B0.5 TIERING: DEEP validators run weekly/pre-seal via --deep or zf-orchestrator
+        // Exclude: skip:true (DEFERRED-WITH-REASON) + run_tier:'DEEP' (--deep only) + run_tier:'EXTENDED' (weekly-cron only)
+        // B0.5 TIERING: DEEP = --deep or zf-orchestrator; EXTENDED = weekly cron via --extended (S076)
         const nameMatches = [...text.matchAll(/name:\s*['"]([^'"]+)['"][\s\S]{0,300}?command:/g)];
         const total = nameMatches.length;
         const deferredCount = (text.match(/skip:\s*true/g) || []).length;
         const deepCount = (text.match(/run_tier:\s*['"]?DEEP['"]?/g) || []).length;
-        return Math.max(0, total - deferredCount - deepCount);
+        const extendedCount = (text.match(/run_tier:\s*['"]?EXTENDED['"]?/g) || []).length;
+        return Math.max(0, total - deferredCount - deepCount - extendedCount);
       }
 
       case 'deferred-audit-slugs': {

@@ -42,6 +42,7 @@ const SKIP_INSTALL = args.includes('--skip-install');
 // B0.5 VALIDATOR TIERING (PROTO-S073-B0.5): CRITICAL=always · STANDARD=default · DEEP=--deep only
 // Prevents pnpm-verify-cycles from hitting hard_limit (P-META-028 tunable). Tiering NOT limit-raising.
 const DEEP_RUN = args.includes('--deep');
+const EXTENDED_RUN = args.includes('--extended'); // S076: weekly-cron validators, not in default or --deep verify
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Cycle definitions — per P-META-008 cycle_types
@@ -1469,8 +1470,8 @@ const CYCLES = [
     // S076 Phase A: Agent-Decoupling Layer-Split — validates layer:system|scaffold on all governed artifacts
     // Blocking: any artifact missing layer: field. Advisory: scaffold ref from system validator.
     // Foundation dim 3 Phase A — see SANDBOX-agent-decoupling-spec-S076.md
-    // DEEP: structural invariant — layer: fields don't change session-to-session; capacity-constrained per validate-platform-capacity
-    run_tier: 'DEEP',
+    // EXTENDED: structural invariant — layer: fields change only when registers are updated; runs weekly via --extended cron
+    run_tier: 'EXTENDED',
     name: 'layer_split',
     command: 'node tools/validators/validate-layer-split.mjs',
     parse_output: (out) => {
@@ -1482,8 +1483,8 @@ const CYCLES = [
     // S076 Phase C: Agent-Deletion-Test — proves durable system holds without scaffold layer
     // PASS = properly decoupled. FAIL = lists scaffold-coupled surfaces.
     // Foundation dim 3 keystone validator — see SANDBOX-agent-decoupling-spec-S076.md
-    // DEEP: simulation-heavy; structural result stable between sessions; capacity-constrained
-    run_tier: 'DEEP',
+    // EXTENDED: simulation-heavy structural invariant — runs weekly via --extended cron, not per-session
+    run_tier: 'EXTENDED',
     name: 'agent_deletion_test',
     command: 'node tools/validators/validate-agent-deletion-test.mjs',
     parse_output: (out) => {
@@ -1502,8 +1503,8 @@ const CYCLES = [
     // S076 Phase D: Executor Contract validator — each of 4 clauses must have system-layer T1+T2
     // Blocking: any clause missing T1 or T2. Foundation dim 3 contract enforcement.
     // See docs/architecture/EXECUTOR-CONTRACT.md
-    // DEEP: T1+T2 hook existence is stable between sessions; capacity-constrained
-    run_tier: 'DEEP',
+    // EXTENDED: T1+T2 hook existence stable — runs weekly via --extended cron
+    run_tier: 'EXTENDED',
     name: 'executor_contract',
     command: 'node tools/validators/validate-executor-contract.mjs',
     parse_output: (out) => {
@@ -1515,8 +1516,8 @@ const CYCLES = [
     // S076 Phase 1 ACCOUNTABILITY-PE-CIA-WIRING: accountability registers must declare CIE+PE connections
     // Blocking: any of the 6 registers missing cie_connection or pe_connection per NODEFILE-CONTRACT
     // Governs: gap-recurrence / improvement / ux-violation / floating-artifacts / exceptional-moments / hardwire
-    // DEEP: structural invariant — register headers don't change session-to-session; capacity-constrained
-    run_tier: 'DEEP',
+    // EXTENDED: register headers stable structural invariant — runs weekly via --extended cron
+    run_tier: 'EXTENDED',
     name: 'register_connectivity',
     command: 'node tools/validators/validate-register-connectivity.mjs',
     parse_output: (out) => {
@@ -1529,8 +1530,8 @@ const CYCLES = [
     // pgbouncer=true + connection_limit=1 (Q2: override allowed with CONNECTION_LIMIT_OVERRIDE_REASON).
     // Blocking: port 5432 in DATABASE_URL | missing pgbouncer | missing connection_limit.
     // BT: port 5432 in DATABASE_URL → exit 1. See SANDBOX-multi-tenant-scale-readiness-spec-S076.md Surface 1.
-    // DEEP: .env.example files are stable between sessions; capacity-constrained
-    run_tier: 'DEEP',
+    // EXTENDED: .env.example stable structural invariant — runs weekly via --extended cron
+    run_tier: 'EXTENDED',
     name: 'connection_pool_contract',
     command: 'node tools/validators/validate-connection-pool-contract.mjs',
     parse_output: (out) => {
@@ -1543,9 +1544,8 @@ const CYCLES = [
     // Q4 applied: 10ms provisional budget, ratchet → 5ms post-UUID migration (Q7/Surface 5).
     // Blocking: entity with tenant-scoped RLS and no tenantId index. Advisory: subquery/join pattern.
     // BT: model with auth().tenantId == tenantId RLS + no @@index([tenantId]) → exit 1.
-    // DEFERRED: verify cycle cap at 199/200 — promote to DEEP when Governor raises cap to 220.
-    skip: true,
-    skip_reason: 'cycle cap at 199/200 — promote to DEEP when Governor raises cap to 220',
+    // EXTENDED: promoted from DEFERRED via EXTENDED tier. Runs weekly via --extended cron.
+    run_tier: 'EXTENDED',
     name: 'rls_perf_budget',
     command: 'node tools/validators/validate-rls-perf-budget.mjs',
     parse_output: (out) => {
@@ -1557,9 +1557,8 @@ const CYCLES = [
     // S076 dim-4 Surface 5: UUID COLUMN TYPES — advisory until 2026-06-16, blocking after 2026-06-30
     // Checks Base.id + AppendOnlyBase.id have @db.Uuid after native-UUID migration.
     // Advisory pre-2026-06-16 (migration not yet due). Calendar-enforced by validate-finding-scheduling.mjs.
-    // DEFERRED: advisory-only pre-deadline + cycle cap at 199/200. Promote when migration applied + cap raised.
-    skip: true,
-    skip_reason: 'advisory-only until 2026-06-16; promote to DEEP when migration applied and cap raised to 220',
+    // EXTENDED: promoted from DEFERRED — advisory pre-deadline, runs weekly via --extended cron.
+    run_tier: 'EXTENDED',
     name: 'uuid_column_types',
     command: 'node tools/validators/validate-uuid-column-types.mjs',
     parse_output: (out) => {

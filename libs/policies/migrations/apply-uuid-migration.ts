@@ -106,16 +106,20 @@ function makeUuidCompatible(expr: string | null): string | null {
   })
 
   // Step 2: add ::uuid to JWT ->> text extractions (they return TEXT; need UUID)
-  //   Pattern: (auth.jwt() ->> PLACEHOLDER) → (auth.jwt() ->> PLACEHOLDER)::uuid
+  //   pg_get_expr() normalizes string literals to 'key'::text internally, so the
+  //   actual pattern seen is (auth.jwt() ->> 'key'::text) — NOT (auth.jwt() ->> 'key').
+  //   The placeholder captures 'key' but leaves ::text outside the placeholder,
+  //   so we must allow an optional ::TYPE after the placeholder before the closing ).
+  //   Pattern: (auth.jwt() ->> PLACEHOLDER[::type]?) → add ::uuid after the )
   processed = processed.replace(
-    /\(auth\.jwt\(\)\s*->>\s*\x01LIT\d+\x01\)(?!::)/g,
+    /\(auth\.jwt\(\)\s*->>\s*\x01LIT\d+\x01(?:::[a-zA-Z]+)?\)(?!::)/g,
     (m) => `${m}::uuid`,
   )
 
   // Step 3: add ::uuid to current_setting JSON extractions (also return TEXT)
-  //   Pattern: (current_setting(...)::json ->> PLACEHOLDER) → ...::uuid
+  //   Same pg_get_expr normalization applies — allow optional ::type after each placeholder.
   processed = processed.replace(
-    /\(current_setting\(\x01LIT\d+\x01(?:,\s*\x01LIT\d+\x01)?\)(?:::(?:text|json))?->>\s*\x01LIT\d+\x01\)(?!::)/g,
+    /\(current_setting\(\x01LIT\d+\x01(?:::[a-zA-Z]+)?(?:,\s*\x01LIT\d+\x01(?:::[a-zA-Z]+)?)?\)(?:::(?:text|json))?->>\s*\x01LIT\d+\x01(?:::[a-zA-Z]+)?\)(?!::)/g,
     (m) => `${m}::uuid`,
   )
 

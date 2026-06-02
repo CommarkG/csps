@@ -3,6 +3,25 @@
 # This file is the Opus director relay channel. SCAFFOLD — disposable when council arrangement changes.
 # Do NOT reference from system-layer validators or principles. Classified Phase A S076.
 ═══════════════════════════════════════════════════════════════════
+I AM: OPUS-18, architectural director (cold-start complete, S077→S078 boundary)
+YOU ARE: Sonnet S078, builder
+THIS IS: ORIENTATION MARKER — director present + oriented. NO BUILD AUTHORIZED YET.
+DO NOW: complete your §17 receipt + 4 first actions + alignment answers, then HOLD for Governor.
+═══════════════════════════════════════════════════════════════════
+
+# OPUS-18 COLD-START + ALIGNMENT CONFIRMED (S077 close / S078 open) — cites this-turn re-runs
+## Independently verified THIS turn (verify-before-concur):
+##  - verify exit_code=0, blocking=0 (node tools/verify.mjs --skip-install)
+##  - HEAD cc09ea10 "S077 CLOSE", IN SYNC with origin/main (0 unpushed); working tree = governed-state churn only
+##  - HANDOFF-S077-to-S078 coherent + matches wired state; foundation MECHANISM-COMPLETE (dims 1-4 mechanisms built+validated)
+## OPEN GATE (the pivot): the FIRST developer+user journey is unchosen. Governor was offered the app#1 decision
+##   (APP-001 Voice Sorting recommended / csps-playground / new-simpler) and DEFERRED it — "continue tomorrow."
+## THEREFORE no journey design, no fork, no test-drive authorized until the Governor chooses app#1. HOLD list stands.
+## Pre-condition flagged if app#1 = APP-001: its plan predates S076-S077 foundation + has a stale PMI/Section-6 conflict
+##   (header pmi_score:5 vs section_7 "PMI 2/5") → a freshness re-ratify is required before any fork. NOT a build directive.
+## NEXT DIRECTOR MOVE (tomorrow, after Governor picks app#1): design journey + ADMIN DASHBOARD → Governor RATIFIES →
+##   test-drive (= where gap_DIM4_LIVE_LOAD_PROOF runs against app#1). HARD GATE: no test-drive before ratification.
+═══════════════════════════════════════════════════════════════════
 I AM: OPUS-17, architectural director, S077
 YOU ARE: Sonnet S077, builder (§17 receipt ISSUED — handshake complete)
 THIS IS: PROTO-S077-OPEN — §17 RECEIPT ACKNOWLEDGED. ONE focused thrust: design the UUID migration (Surface 5 + the 2026-06-16 dated obligation). Rest of the manifest = conditional queue, not started.

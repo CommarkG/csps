@@ -81,25 +81,52 @@ function parseStatements(file: string): string[] {
 }
 
 // ─── Make policy expression UUID-compatible ────────────────────────
-// When UUID columns were TEXT, policies compared them to ::text cast values.
-// Now that columns are UUID, we add ::text to column refs so the comparison
-// becomes: text_value = uuid_column::text  (both text, always valid).
+// STRATEGY: after migration, UUID columns are now UUID type.
+// JWT text extractions like (auth.jwt() ->> 'key') return TEXT.
+// Fix: add ::uuid to the JWT side — NOT ::text to the column side.
+//
+// Why NOT ::text on columns:
+//   "taskId"::text IN (SELECT "Task".id ...) breaks when Task.id is now UUID
+//   (TEXT IN (UUID) → type mismatch)
+//
+// Why ::uuid on JWT side works for ALL cases:
+//   "tenantId" = (auth.jwt() ->> 'key')::uuid  → UUID = UUID ✅
+//   "taskId" IN (SELECT "Task".id WHERE "Task"."tenantId" = (auth.jwt() ->> 'key')::uuid) ✅
+//
+// String literal protection: SQL 'key' values are replaced with placeholders
+// before regex runs so 'tenantId' inside a string is never modified.
 function makeUuidCompatible(expr: string | null): string | null {
   if (!expr) return null
-  let result = expr
-  for (const col of UUID_COLUMNS) {
-    // Quoted column refs: "colName" → "colName"::text  (only if not already cast)
-    result = result.replace(
-      new RegExp(`"${col}"(?!::)`, 'g'),
-      `"${col}"::text`,
-    )
-    // Unquoted column refs: \bcolName\b (not preceded/followed by identifier chars)
-    result = result.replace(
-      new RegExp(`(?<![._"a-zA-Z0-9])\\b${col}\\b(?![a-zA-Z_0-9":])(?!::)`, 'g'),
-      `${col}::text`,
-    )
-  }
-  return result
+
+  // Step 1: protect SQL string literals from regex substitution
+  const literals: string[] = []
+  let processed = expr.replace(/'(?:[^']|'')*'/g, (match) => {
+    const idx = literals.push(match) - 1
+    return `\x01LIT${idx}\x01`
+  })
+
+  // Step 2: add ::uuid to JWT ->> text extractions (they return TEXT; need UUID)
+  //   Pattern: (auth.jwt() ->> PLACEHOLDER) → (auth.jwt() ->> PLACEHOLDER)::uuid
+  processed = processed.replace(
+    /\(auth\.jwt\(\)\s*->>\s*\x01LIT\d+\x01\)(?!::)/g,
+    (m) => `${m}::uuid`,
+  )
+
+  // Step 3: add ::uuid to current_setting JSON extractions (also return TEXT)
+  //   Pattern: (current_setting(...)::json ->> PLACEHOLDER) → ...::uuid
+  processed = processed.replace(
+    /\(current_setting\(\x01LIT\d+\x01(?:,\s*\x01LIT\d+\x01)?\)(?:::(?:text|json))?->>\s*\x01LIT\d+\x01\)(?!::)/g,
+    (m) => `${m}::uuid`,
+  )
+
+  // Step 4: auth.uid()::text → auth.uid()
+  //   auth.uid() already returns UUID; the ::text cast was needed when id was TEXT.
+  processed = processed.replace(/\bauth\.uid\(\)::text\b/g, 'auth.uid()')
+
+  // Step 5: restore string literals
+  processed = processed.replace(/\x01LIT(\d+)\x01/g, (_, i) => literals[+i])
+
+  return processed
 }
 
 // ─── Policy row shape ─────────────────────────────────────────────
@@ -192,6 +219,7 @@ async function main(): Promise<void> {
 
   const checks: Array<{ name: string; pass: boolean; detail: string }> = []
   let txOpen = false
+  let policyFailed = false  // hoisted — set in RECREATE step, read in DECISION
 
   try {
     await client.query('BEGIN')
@@ -233,16 +261,23 @@ async function main(): Promise<void> {
     console.log()
 
     // ── RECREATE RLS POLICIES (UUID-compatible) ──────────────────
+    // Uses savepoints: if one policy fails, ROLLBACK TO savepoint keeps the
+    // transaction alive (not aborted) so subsequent policies can still be tried.
     if (policies.length > 0) {
-      console.log('RECREATING RLS POLICIES (with ::text casts on UUID columns)…')
+      console.log('RECREATING RLS POLICIES (jwt expressions cast to ::uuid)…')
       let recreated = 0
-      let policyFailed = false
       for (const p of policies) {
         const sql = buildCreatePolicy(p)
+        // Savepoint name: alphanumeric only
+        const sp = `sp_${p.table_name}_${p.policy_name}`.replace(/[^a-zA-Z0-9]/g, '_')
+        await client.query(`SAVEPOINT ${sp}`)
         try {
           await client.query(sql)
+          await client.query(`RELEASE SAVEPOINT ${sp}`)
           recreated++
         } catch (e: unknown) {
+          // Roll back to savepoint: transaction remains live, only this policy is undone
+          await client.query(`ROLLBACK TO SAVEPOINT ${sp}`)
           const msg = e instanceof Error ? e.message : String(e)
           fail(`Failed to recreate policy "${p.policy_name}" on ${p.table_name}: ${msg}`)
           info(`  SQL attempted:\n${sql.split('\n').map(l => '    ' + l).join('\n')}`)
@@ -251,6 +286,8 @@ async function main(): Promise<void> {
       }
       if (!policyFailed) {
         ok(`Recreated ${recreated} policies with UUID-compatible expressions`)
+      } else {
+        fail(`${policies.length - recreated}/${policies.length} policies failed — ROLLBACK will fire`)
       }
       console.log()
     }
@@ -322,13 +359,19 @@ async function main(): Promise<void> {
     console.log()
 
     // ── DECISION ────────────────────────────────────────────────
-    const allPass = checks.every(c => c.pass)
+    const allChecksPass = checks.every(c => c.pass)
+    const allPass = allChecksPass && !policyFailed
 
     console.log(SEP)
     console.log('  SUMMARY')
     console.log(SEP)
     for (const c of checks) {
       console.log(`  ${c.pass ? '✅' : '❌'}  ${c.name.padEnd(18)} ${c.detail}`)
+    }
+    if (policies.length > 0) {
+      const policyCount = policies.length
+      const failed = policyFailed ? 'SOME FAILED — see above' : 'all recreated'
+      console.log(`  ${policyFailed ? '❌' : '✅'}  RLS POLICIES       ${policyCount} policies (${failed})`)
     }
     console.log()
 

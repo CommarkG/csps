@@ -23,42 +23,48 @@ Authored (non-generated) SQL migrations for the CSPS platform schema.
 `libs/policies/generated/` is gitignored (ZenStack/Prisma generated output).
 Migration SQL files are authored artifacts (not generated), so they live here.
 
-## Apply a migration
+## ⚠ IMPORTANT: Apply path for `20260602_uuid_native_types`
+
+**Do NOT use `prisma migrate deploy`** — DB was bootstrapped via `prisma db push` (no baseline → P3005 error).
+**Do NOT use `prisma db push`** — cannot cast `text→uuid` column type.
+
+**Correct: one command, atomic, self-verifying:**
 
 ```bash
-# From a machine with Supabase credentials
-# MUST use DIRECT_URL (port 5432) — not pgbouncer — for migrations
-npx prisma migrate deploy --schema libs/policies/generated/schema.prisma
+npx tsx --env-file=.env libs/policies/migrations/apply-uuid-migration.ts
 ```
 
-Prisma reads from the `migrations/` path configured in the generated schema (or point it to this directory).
+The script:
+1. Reads `DIRECT_URL` from `.env` (Supabase → Settings → Database → URI, port 5432)
+2. Captures pre-migration row counts
+3. Applies the migration SQL in one transaction
+4. Runs 3 block-tests INSIDE the transaction
+5. **COMMITs if all pass** / **ROLLBACKs if any fail** (no partial damage)
+6. Prints PASS/FAIL per check + overall result
+
+**Paste the output to Opus for OPIA + dim-4 Surface 5 SEAL.**
 
 ## Migrations
 
 | Directory | Session | Description |
 |-----------|---------|-------------|
 | `20260601_part3_product_schema/` | S075 | Plan + Capability + PlanCapability + Tenant.planId FK |
-| `20260602_uuid_native_types/` | S077 | TEXT→UUID type migration for all id + FK columns. Deadline: 2026-06-16. Register: gap_DIM2_CORE_ID_UUID_UPGRADE |
+| `20260602_uuid_native_types/` | S077 | TEXT→UUID migration — all id + FK columns. Deadline 2026-06-16. Apply via apply-uuid-migration.ts |
 
-## Block-test after applying `20260602_uuid_native_types`
+## Governor sequence for `20260602_uuid_native_types`
 
-Run these queries against the live DB:
+```bash
+# 1. Apply + verify (one command, all-in-one)
+npx tsx --env-file=.env libs/policies/migrations/apply-uuid-migration.ts
 
-```sql
--- 1. Zero rows lost
-SELECT COUNT(*) FROM "public"."User";  -- must equal pre-migration count
-
--- 2. id columns are now uuid type
-SELECT column_name, data_type, table_name
-FROM information_schema.columns
-WHERE table_schema = 'public' AND column_name = 'id' AND data_type != 'uuid'
-  AND table_name NOT IN ('_prisma_migrations');
--- Must return 0 rows
-
--- 3. FK constraints restored (expect 20)
-SELECT COUNT(*) FROM pg_constraint
-WHERE contype = 'f' AND conrelid::regclass::text LIKE 'public.%'
-  AND conname LIKE '%_fkey'
-  AND conname NOT IN ('Tenant_planId_fkey', 'PlanCapability_planId_fkey', 'PlanCapability_capabilityId_fkey');
--- Must return 20
+# 2. Paste the printed output to Opus → OPIA + dim-4 Surface 5 SEAL
 ```
+
+That's it. The script handles everything.
+
+## If the script fails
+
+- `DIRECT_URL not found` → add `DIRECT_URL=postgresql://postgres.xxx:password@...supabase.com:5432/postgres` to `.env`
+- `relation "public"."User" does not exist` → migration may not be applicable to this DB state
+- `CHECK 2 FAIL: still TEXT id columns` → SQL may not have executed; check error above
+- `CHECK 3 FAIL: FK constraints missing` → STEP 4 may have failed; check for constraint name conflicts

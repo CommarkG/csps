@@ -12,8 +12,12 @@
 --   Tenant.planId / PlanCapability.planId / PlanCapability.capabilityId — already UUID.
 --   AuditEvent.resourceId — generic external reference; NOT a CSPS UUID FK; kept as TEXT.
 --
--- RUN: npx prisma migrate deploy --schema libs/policies/generated/schema.prisma
---      (MUST use DIRECT_URL port 5432, NOT pgbouncer — migration path requires direct connection)
+-- DO NOT run manually. Use the apply script (one command, atomic, self-verifying):
+--   npx tsx --env-file=.env libs/policies/migrations/apply-uuid-migration.ts
+--
+-- WHY NOT prisma migrate deploy: DB was bootstrapped via prisma db push (P3005 — no baseline).
+-- WHY NOT prisma db push: cannot cast text→uuid (Opus FINDING S077).
+-- CORRECT path: raw SQL via apply-uuid-migration.ts on DIRECT_URL (port 5432).
 --
 -- governing_intent: Native UUID types give correct storage + index efficiency at 30-app scale.
 --   The TEXT→UUID cast is safe because all existing values are valid UUID v4 strings.
@@ -231,8 +235,9 @@ ALTER TABLE "public"."BudgetGoal"
         FOREIGN KEY ("tenantId") REFERENCES "public"."Tenant"("id")
         ON DELETE SET NULL ON UPDATE CASCADE;
 
--- ── STEP 5: Update Prisma migration history ──
--- prisma migrate deploy reads this file and records it in _prisma_migrations.
--- No manual INSERT needed — deploy handles checksum tracking.
+-- ── STEP 5: Verification ──
+-- apply-uuid-migration.ts runs CHECK 1/2/3 inside this transaction before committing.
+-- Migration history is NOT tracked by Prisma (_prisma_migrations table does not exist;
+-- DB was bootstrapped via prisma db push, not prisma migrate). No action needed here.
 
 COMMIT;

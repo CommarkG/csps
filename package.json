@@ -53,9 +53,11 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "@types/pg": "^8.20.0",
     "@zenstackhq/runtime": "^2.22.1",
     "gpt-tokenizer": "^3.4.0",
     "js-yaml": "^4.1.0",
+    "pg": "^8.21.0",
     "prettier": "^3.4.0",
     "prisma": "6.19.3",
     "tsx": "^4.0.0",

@@ -6,16 +6,16 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S076 |
-| **Previous session** | S075 |
-| **Last updated** | -1 day(s) ago |
-| **Last commit** | 90b0a9e ops(S076): S076 CLOSE — HANDOFF-S076-to-S077 + closing-summary + session-state + §17 |
+| **Current session** | S077 |
+| **Previous session** | S076 |
+| **Last updated** | today |
+| **Last commit** | 78c8e7d feat(S077-uuid-migration): UUID native types — schema.zmodel + migration SQL + validator cleanup |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
-## What S076 must do
+## What S077 must do
 
-**S076: Foundation dims 1-4 complete (1+2+3 SEALED, 4 spec+phase1+2). CQS Alignment Layer. Boundary-crossing HARDWIRED. EXTENDED tier. dim-2 SEALED (6 defects). dim-3 SEALED structural (FINDING-S076-DIM3-01 pending Q3). S077 opens: Q3 promotion + UUID migration (2026-06-16) + dim-4 Surface 2 quota + CQS Phase 1.**
+**S077: UUID migration authored (schema.zmodel + migration SQL — Gov applies to live DB). dim-3 behavioral pending Q3+FINDING-S076-DIM3-01. dim-4 Surface 2 quota: Q6=A (libs/platform-quota/) + Q1=FREE (conservative limits) — UNBLOCKED, builds after UUID lands. CQS Phase 1 + boundary_crossing first use: S077 obligations.**
 
 
 

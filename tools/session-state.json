@@ -56,9 +56,9 @@
     }
   },
   "session_mandate": {
-    "primary": "S077: UUID MIGRATION COMMITTED (gap_DIM2_CORE_ID_UUID_UPGRADE RESOLVED, 14 days ahead of deadline). dim-4 S5 SEALED. Queue #2 = libs/platform-quota/ + validate-tenant-quota-policy.mjs (Supabase Free conservative limits). dim-3 behavioral pending Q3+FINDING-S076-DIM3-01. dim-4 S2 quota: Q6=A + Q1=FREE — UNBLOCKED.",
+    "primary": "S077 CLOSED: Foundation MECHANISM-COMPLETE (dims 1-4 machinery built+validated). UUID COMMITTED. dim-4 S2 quota + S4 harness built. Honest OPIA: empirical load proof DEFERRED (gap_DIM4_LIVE_LOAD_PROOF — scenario-a must run GREEN against app#1 before app#2). JOURNEYS PHASE OPEN. S078 opens with Opus-18.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — Queue #2 open. libs/platform-quota/ next. Opus OPIA pending for dim-4 Surface 5 seal.",
+    "blocking_on": "NONE — Journeys phase open. gap_DIM4_LIVE_LOAD_PROOF at app#1 test-drive.",
     "situation": "WAVE_1_PREVENTION_BUILD",
     "active_situation": "WAVE_1_PREVENTION_BUILD",
     "_legacy_session_mandate_S023": "Original S023 APP_BUILD_MODE mandate moved here for archival; current mandate above reflects S066 reality. Schema bug surfaced by Opus-11 S066: dual mandate paths (nested session_mandate.primary vs top-level primary at end of file) — see DRAFT-S066-SESSION-STATE-DUAL-MANDATE-FIX in improvement-register.",

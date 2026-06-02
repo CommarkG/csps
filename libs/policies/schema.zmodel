@@ -57,7 +57,11 @@ plugin enhancer {
 // Per P-ARCH-007: hard delete denied by default.
 
 abstract model Base {
-  id        String    @id @default(uuid()) @db.Uuid
+  // S076 FINDING-S076-DIM2-03 (Option A): @db.Uuid removed — live DB stores ids as TEXT
+  // (values are valid UUIDs, e.g. a428ee70-3094-44b8-83cd-1e81181c6170). Native-UUID
+  // upgrade deferred to dim-4 scale-readiness. Do NOT add @db.Uuid back without a
+  // proper type-migration plan tested against the 30→300 load model.
+  id        String    @id @default(uuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
@@ -68,7 +72,8 @@ abstract model Base {
 // Append-only entities (AuditEvent): no update, no delete, no soft-delete.
 // Intentionally omits updatedAt + deletedAt — immutability by schema.
 abstract model AppendOnlyBase {
-  id        String   @id @default(uuid()) @db.Uuid
+  // S076 FINDING-S076-DIM2-03 (Option A): @db.Uuid removed — see Base comment above.
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
 
   @@schema("public")

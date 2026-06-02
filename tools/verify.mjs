@@ -42,7 +42,10 @@ const SKIP_INSTALL = args.includes('--skip-install');
 // B0.5 VALIDATOR TIERING (PROTO-S073-B0.5): CRITICAL=always · STANDARD=default · DEEP=--deep only
 // Prevents pnpm-verify-cycles from hitting hard_limit (P-META-028 tunable). Tiering NOT limit-raising.
 const DEEP_RUN = args.includes('--deep');
-const EXTENDED_RUN = args.includes('--extended'); // S076: weekly-cron validators, not in default or --deep verify
+// S076 INTERIM FIX (FINDING-S076-DIM4-EXT-01): --deep also runs EXTENDED (existing pre-seal trigger).
+// DURABLE: .github/workflows/verify-extended.yml runs weekly verify --extended.
+// Without this, EXTENDED validators had no trigger and were inert.
+const EXTENDED_RUN = args.includes('--extended') || DEEP_RUN; // verify.mjs:45
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Cycle definitions — per P-META-008 cycle_types

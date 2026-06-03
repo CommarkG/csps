@@ -9,13 +9,13 @@
 | **Current session** | S077 |
 | **Previous session** | S076 |
 | **Last updated** | 1 day(s) ago |
-| **Last commit** | 58ee447 feat(S078-principles): P-META-032 + P-META-033 + residue hook + CIE signals SACRED-EDIT-APPROVED:add post-stop-decision-residue-capture hook to settings.json Stop array per P-META-033 |
+| **Last commit** | 484432c ops(S078-CLOSE): S078 CLOSE — closing-summary + HANDOFF-S078-to-S079 + harvest + session-state |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
 ## What S077 must do
 
-**S077 CLOSED: Foundation MECHANISM-COMPLETE (dims 1-4 machinery built+validated). UUID COMMITTED. dim-4 S2 quota + S4 harness built. Honest OPIA: empirical load proof DEFERRED (gap_DIM4_LIVE_LOAD_PROOF — scenario-a must run GREEN against app#1 before app#2). JOURNEYS PHASE OPEN. S078 opens with Opus-18.**
+**S078 CLOSED: IZFC moat + B_COUNCIL_PEER + P-META-032 (Demonstrated Truth) + P-META-033 (No-Lost-Threads) engraved. CSP professional reports delivered + accuracy-corrected. Vault defused (149→63). Principles 75/80. Journeys pivot pending Governor app#1 choice. PARKED CHAIN: A2-cycles-audit → DIM3-01 → stale-prune → D1-marker → core-seed → journeys.**
 
 
 

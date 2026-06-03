@@ -430,3 +430,44 @@ entries:
       machinery built + validated. Live proof gated to app#1: scenario-a must run GREEN against the
       actual Vercel deployment before app#2 is authorized. This RESOLVES the chicken-and-egg honestly:
       foundation is complete enough to build app#1; app#1 test-drive provides the empirical seal.
+
+  - id: gap_IZFC_COMPREHENSIVE_RENAME
+    observation: >
+      The platform has latent ZF/RZF/IZFC terminology ambiguity. RZF was ratified as RETIRED (S078),
+      IZFC adopted as the governing concept, ZF kept as terminal-state shorthand. BUT the platform
+      still has ZF/RZF references in: docs/plan principles, behavioral-contracts, AGENTS.md, memories,
+      and hook FILENAMES (validate-nominal-rzf-detector.mjs etc. — names kept per Opus directive).
+      Under context-pressure compression, the parallel ZF/RZF/IZFC terms can be mis-resolved and
+      corrupt a major process — latent ambiguity. Eliminate, do not paper over.
+    first_seen: S078
+    k_count: 1
+    sessions: [S078]
+    status: open
+    prevention_class: governance-terminology
+    structural_fix_plan_session: "S079"
+    structural_fix_triggered: false
+    must_address_by_date: "2026-07-01"
+    must_address_by_session: "S090"
+    age_escalation_status: on-time
+    fix_commit_sha: null
+    behavioral_test_exists: false
+    target_dimension: "governance-terminology"
+    escalation_policy: >
+      overdue+14d (2026-07-15) → auto-K2, blocks new work.
+      K3 (k_count>=3 open) → session BLOCKS until structural fix exists.
+      Governor-directed: insist until DONE COMPLETELY.
+    done_definition: |
+      Every ZF/RZF reference in docs/plan, principles, behavioral-contracts, AGENTS.md,
+      and memory files → updated to "IZFC discipline" or explicit alias.
+      Hook FILENAMES keep their names but each gets an IZFC header comment.
+      Completeness proof: grep audit returns 0 un-aliased stale references (scripted, cited).
+      verify=0 + committed.
+    pe_urgency_input: true
+    cie_observation_class: governance_debt
+    source: >
+      Opus-18 S078 PROTO-S078-IZFC addendum: 'register gap_IZFC_COMPREHENSIVE_RENAME with 2026-07-01
+      deadline; escalation: overdue+14d → auto-K2 → K3 session BLOCKS; insist until DONE COMPLETELY.'
+    note: >
+      Hook filenames intentionally kept: validate-nominal-rzf-detector.mjs, validate-zf-cycle-format.mjs
+      etc. — Opus directive S078. Only semantic references need updating; filenames are operational 
+      shorthand. The injection (enforcement #6) already updated to IZFC. Memory + register = this gap.

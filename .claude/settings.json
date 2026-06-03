@@ -413,8 +413,13 @@
         ]
       },
       {
-        "type": "command",
-        "command": ".claude/hooks/post-stop-decision-residue-capture.sh"
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-decision-residue-capture.sh"
+          }
+        ]
       }
     ]
   },

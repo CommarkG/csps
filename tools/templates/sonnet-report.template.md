@@ -77,6 +77,13 @@ ZF ACHIEVED.
      uncertainty. Opus verify-before-concur = re-derive these with THIS-TURN evidence.
      Format: "HIGH-VALUE CLAIM: [claim] | UNCERTAINTY: [why uncertain]" -->
 
+<!-- EVIDENCE-PASTE DISCIPLINE (imp_SONNET_EVIDENCE_PASTE — S078):
+     For any factual claim about: file/path exists, validator is wired, hook is active,
+     named entity resolves, "0 residuals" of any pattern — you MUST paste the tool output
+     that proves it. A recollection ('I checked, found nothing') is NOT evidence.
+     The grep/read/ls with its output = evidence. No output = no claim.
+     Example: "No stale D-labels remain" is ONLY valid if followed by pasted grep output. -->
+
 [Specific claims requiring Opus independent verification — or "No claims require special verification this PROTO."]
 
 ## Questions (numbered, blockers only)

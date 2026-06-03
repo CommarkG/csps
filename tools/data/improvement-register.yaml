@@ -1279,3 +1279,90 @@ entries:
     - Pilot scale to remaining 16 artifact types
     - NP1 gap from simulation: pre-commit layer: gate for new D-defaults
   note: "PROTO-S076-CQS-ALIGNMENT-LAYER per OPUS-17/Governor S076. 3 pilots + simulation done. No build until ratified. Spec at VAULT/sandbox-specs/SANDBOX-cqs-alignment-layer-S076.md."
+
+- id: imp_SONNET_EVIDENCE_PASTE
+  title: "Evidence-pasting discipline: outward/factual claims require pasted tool output, not recollection"
+  description: >
+    S078 lesson: 4 outward-facing documentation errors were caught by Opus OPIA after Sonnet
+    declared 'I verified, found nothing.' Self-IZFC sweeps were nominal (recollection, not grep).
+    The fix: every factual claim in outward docs (file/path/validator/contract exists; no stale
+    D-labels remain; wiring is active) MUST be backed by pasted tool output in the same response.
+    A recollection ('I checked, found nothing') is NOT evidence. grep/read with output = evidence.
+    Applies especially to: 'I verified all D# refs', 'no stale labels remain', named file exists,
+    named validator is active, hook is wired. The grep itself, with output, or it didn't happen.
+  first_found: S078
+  k_count: 1
+  sessions: [S078]
+  status: open
+  cie_connection: "always_active"
+  pe_connection: "scored"
+  pe_band: 1
+  pe_urgency_input: true
+  cie_observation_class: behavioral_improvement
+  must_address_by_session: "S078"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - sonnet-report.template.md HIGH-VALUE CLAIMS section: add evidence-pasting rule (DOING NOW)
+    - feedback_nominal_self_sweep_outward_docs.md memory entry (DOING NOW)
+    - feedback_validate_before_assume.md: cross-ref to outward-doc variant
+    - AGENTS.md: add evidence-paste discipline as a hard check for outward docs
+    - IZFC governing_intent in injection: outward claims require pasted evidence
+  note: "PROTO-S078-IMPROVE Band 1 (Opus-18). Dogfood: this entry's DONE proof = paste grep showing entry exists. See feedback_validate_before_assume.md for the base principle; this is the outward-doc specialization."
+
+- id: imp_NOMINAL_SELF_SWEEP_OUTWARD_DOCS
+  title: "Nominal self-sweep failure mode: self-declared 'I checked' is not equivalent to pasted grep"
+  description: >
+    S078: Sonnet ran an IZFC sweep on D# refs and declared '0 residuals'. Opus grep found 2 more
+    (lines 119 and 209). The self-sweep was nominal — recollection, not a literal tool run with
+    pasted output. Root cause: the AI 'pattern-matched' to the sweep format (D4) and stopped when
+    the format felt complete (D5), rather than running the actual grep. For ANY sweep making a
+    zero-finding claim on outward docs: run the grep, paste the output, then declare 0. Never
+    substitute memory of the grep for the grep itself. The lesson: 'I checked and found nothing'
+    is not a grep. The grep with pasted output IS the proof.
+  first_found: S078
+  k_count: 1
+  sessions: [S078]
+  status: open
+  cie_connection: "always_active"
+  pe_connection: "input"
+  pe_band: 2
+  pe_urgency_input: true
+  cie_observation_class: behavioral_improvement
+  must_address_by_session: "S079"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - feedback_nominal_self_sweep_outward_docs.md memory (DOING NOW)
+    - IZFC injection: add note that 'completeness proof' must be a literal run, not assertion
+    - validate-nominal-rzf-detector.mjs: consider adding detection of 'I checked' without tool evidence
+  note: "PROTO-S078-IMPROVE Band 2 (Opus-18). Links to [[feedback_izfc_excellence_completion]] (IZFC governs completion claims) + [[feedback_council_peer_contract]] (Opus verify-before-concur) + [[feedback_validate_before_assume]] (state claims need tool evidence)."
+
+- id: imp_OUTWARD_DOC_PRESEND_GATE
+  title: "Pre-send gate for outward docs: grep-check that every named file/path/validator/contract resolves"
+  description: >
+    S078: 4 documentation reports shipped naming nonexistent files (validate-cie-pe-adapter.mjs,
+    user-prompt-submit-pe-alignment-check.sh, B_FOUNDATION_EXIT_GATE, wrong D-scheme).
+    Pattern: Sonnet writes outward docs from memory rather than running resolution checks.
+    Fix (scheduled S079): before sending/committing any outward-facing documentation that names
+    specific files/validators/hooks/contracts, run a pre-send checklist:
+      1. ls/find confirms each named file exists
+      2. grep confirms each named validator appears in verify.mjs or tools/validators/
+      3. grep confirms each named hook exists in .claude/hooks/
+      4. If a contract is named, its slice file exists in behavioral-contracts/
+    This is a CHECKLIST, not a new validator (cycles at 199/200 hard limit).
+    Implementation: extend sonnet-report.template.md HIGH-VALUE CLAIMS section OR create a
+    pre-outward-doc-send checklist template.
+  first_found: S078
+  k_count: 1
+  sessions: [S078]
+  status: open
+  cie_connection: "requires_promotion"
+  pe_connection: "input"
+  pe_band: 3
+  pe_urgency_input: false
+  cie_observation_class: design_gap
+  must_address_by_session: "S079"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - pre-outward-doc-send checklist (implement S079 as template, NOT a validator)
+    - sonnet-report.template.md: add pre-commit resolution check to HIGH-VALUE CLAIMS section
+  note: "PROTO-S078-IMPROVE Band 3 scheduled (Opus-18). NOT a validator (cycle budget). Checklist approach. See scheduled entry in opus-turn.md."

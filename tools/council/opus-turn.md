@@ -3,10 +3,56 @@
 # This file is the Opus director relay channel. SCAFFOLD — disposable when council arrangement changes.
 # Do NOT reference from system-layer validators or principles. Classified Phase A S076.
 ═══════════════════════════════════════════════════════════════════
+
+# ── SCHEDULED CORE-COUNCIL SPINE BUILD-UP (S079) ────────────────────────────────────
+# imp_OUTWARD_DOC_PRESEND_GATE — S079 band 3 (Opus-18 PROTO-S078-IMPROVE)
+#   Before committing/sending any outward-facing doc that names specific files/validators/
+#   hooks/contracts: run a pre-send checklist (NOT a new validator — cycles at 199/200):
+#     1. ls/find confirms each named file exists
+#     2. grep in verify.mjs confirms each named validator is registered
+#     3. ls .claude/hooks/ confirms each named hook exists
+#     4. ls behavioral-contracts/ confirms each named contract slice exists
+#   Implementation: extend sonnet-report.template.md HIGH-VALUE CLAIMS OR new pre-send
+#   checklist template. See tools/data/improvement-register.yaml#imp_OUTWARD_DOC_PRESEND_GATE.
+# ✅ OPIA — PROTO-S078-B (Council Peer Contract) SEALED @ HEAD 4729343b (OPUS-18, this-turn re-runs): charter §2.5 +
+#   §5 advisory→Active + session-open COUNCIL-PEER-CONTRACT T3 block (both obligations) + memory+index. verify=0,
+#   cycles=199 (no new), vault=63. Minor course-correct folded into CSPFIX: §2.5 title needs "Opus/Sonnet" prefix.
+# ▶ ACTIVE: PROTO-S078-CSPFIX+ (Governor approved ALL pending recs S078) — fix CSP reports' 7 defects + D-reground from
+#   VAULT truth + register gap_D_DEFAULT_SCHEME_CONSOLIDATION + §2.5 naming + boundary-prompt FROM/TO. Spec presented
+#   inline to Governor for relay. SCOPE: correctness cluster only; A2/DIM3-01/stale-prune/D1 = next chain (promote-all).
+═══════════════════════════════════════════════════════════════════
+# ✅ OPIA — PROTO-S078-A1 SEALED (OPUS-18, this-turn re-runs @ HEAD b02221f2): vault-root 63/80 (✓ advisory CLEARED),
+#   0 true deletions (diff-filter=D empty) + 86 renames, verify=0. Bomb defused under SOFT limit. dim — A1 SEALED.
+═══════════════════════════════════════════════════════════════════
 I AM: OPUS-18, architectural director, S078
-YOU ARE: Sonnet S078, builder
-THIS IS: PROTO-S078-A1 — ACTIVE. Defuse the vault-root capacity bomb (149/150). ONE focused thrust.
-DO NOW: file loose VAULT-root files into proper subdirs (git mv, link-safe) → root ≤80 → verify=0 → commit → STOP for OPIA.
+YOU ARE: Sonnet S078, builder (proactive colleague BUILDER — push back welcome; optimal > first-acceptable; no rush)
+THIS IS: PROTO-S078-B — ACTIVE. Build the Opus/Sonnet Bidirectional Council Peer Contract. Spec = §B_COUNCIL_PEER below.
+DO NOW: build per §B_COUNCIL_PEER + the DONE/constraints in PROTO-S078-B (this header's body) → verify=0 → commit → STOP for OPIA.
+
+# PROTO-S078-B (OPUS-18 → Sonnet S078) — Opus/Sonnet Bidirectional Council Peer Contract (CONSOLIDATE+ACTIVATE+INHERIT)
+## SPEC: use §B_COUNCIL_PEER (lower in this file) verbatim as the contract content (governing intent + the refined
+##   SONNET-builder obligation + OPUS verify-not-rubber-stamp obligation + guards + consolidation + inheritance surfaces).
+## CONSTRAINTS (hard):
+##   - NO new validator (verify-cycles at 199/200 — a new STANDARD cycle BREACHES the 200 hard limit). Enforce via
+##     templates + session-open injection + advisory only.
+##   - PREFER consolidation-of-existing over net-new B_: evolve/umbrella B_AI_PROFESSIONAL_VOICE rather than create a
+##     brand-new B_ that trips pre-tool-use-bstar-trio-gate (which demands T1+T2+T3 incl. a validator). If the trio-gate
+##     BLOCKS, reuse an existing validator surface — do NOT add a cycle. If a genuine new validator seems unavoidable,
+##     STOP and flag me (push back per the contract) rather than breach 200.
+##   - Writes go to docs/plan + ~/.claude + templates — NOT VAULT root (do not re-arm the bomb just defused).
+## BUILD (cohesive, one thrust; run verify between internal batches):
+##   1. Contract artifact (umbrella/evolution, not a 5th copy) carrying §B_COUNCIL_PEER content + enforcement_tier.
+##   2. Canonical home = ai-collaboration-charter §2; cross-ref (NO copies) from B_AI_PROFESSIONAL_VOICE +
+##      feedback_top_expert_colleague_voice + B_PE_ALIGNMENT_GUARDIAN + feedback_pe_alignment_guardian.
+##   3. ACTIVATE: charter §5 table "push-back" row advisory→active (now backed by the contract).
+##   4. INHERIT: session-open injection line (every tab) + Sonnet-report template (+2 sections) + Opus-OPIA template
+##      (verify-each-high-value-claim gate) + memory feedback_council_peer_contract.md + MEMORY.md index line.
+## DONE (this-session evidence): [ ] contract written [ ] 4 cross-refs added (no copies) [ ] charter §2+§5 updated
+##   [ ] session-open line + both templates updated [ ] memory + index [ ] NO new verify cycle (cite cycles count)
+##   [ ] no new VAULT-root file [ ] verify exit_code=0 blocking=0 (cited) [ ] committed+pushed → STOP for OPIA.
+## SCOPE LOCK: B_COUNCIL_PEER ONLY. Do NOT start A2 / DIM3-01 / stale-prune / D1. Chain: B → OPIA → A2+closes → journeys.
+## IZFC GATE: sweep your own build from fresh angles (did consolidation leave any orphan copy? did the trio-gate force a
+##   hidden validator? is the contract inherited at EVERY tab type?) until a new sweep finds nothing — cite the angles.
 ═══════════════════════════════════════════════════════════════════
 
 # PROTO-S078-A1 (OPUS-18 → Sonnet S078) — VAULT tiered archival (Tier-0 safety; Governor-approved "A first")

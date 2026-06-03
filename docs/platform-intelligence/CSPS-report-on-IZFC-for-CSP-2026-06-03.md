@@ -1,6 +1,6 @@
 ---
 id: csps.platform-intelligence.izfc-report
-name: CSPS-Summary-on-IZFC-Completion-Standard-2026-06-03T1146Z
+name: CSPS-report-on-IZFC-for-CSP-2026-06-03
 description: "Professional deep-dive report on IZFC (Iterative Zero-Finding Cycles) — the CSPS excellence-of-completion standard. Role, wiring, behavioral impact, and what breaks without it. Authored 2026-06-03."
 version: "1.0"
 owner: group:finky

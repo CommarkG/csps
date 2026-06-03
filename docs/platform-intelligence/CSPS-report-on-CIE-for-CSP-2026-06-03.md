@@ -1,6 +1,6 @@
 ---
 id: csps.platform-intelligence.cie-engine-report
-name: CSPS-Summary-on-CIE-Continuous-Intelligence-Engine-2026-06-03T1146Z
+name: CSPS-report-on-CIE-for-CSP-2026-06-03
 description: "Professional deep-dive report on the CSPS Continuous Intelligence Engine (CIE) — role, 5-stage pipeline, wiring, and what breaks without it. Authored 2026-06-03."
 version: "1.0"
 owner: group:finky

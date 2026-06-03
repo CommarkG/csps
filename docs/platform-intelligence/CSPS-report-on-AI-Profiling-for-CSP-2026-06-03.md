@@ -1,6 +1,6 @@
 ---
 id: csps.platform-intelligence.ai-profiling-report
-name: CSPS-Summary-on-AI-Profiling-System-2026-06-03T1146Z
+name: CSPS-report-on-AI-Profiling-for-CSP-2026-06-03
 description: "Professional deep-dive report on the CSPS AI Profiling System — how the platform observes, classifies, and counteracts AI training defaults. Role, wiring, and what breaks without it. Authored 2026-06-03."
 version: "1.0"
 owner: group:finky

@@ -1,6 +1,6 @@
 ---
 id: csps.platform-intelligence.pe-engine-report
-name: CSPS-Summary-on-Priority-Engine-2026-06-03T1146Z
+name: CSPS-report-on-Priority-Engine-for-CSP-2026-06-03
 description: "Professional deep-dive report on the CSPS Priority Engine (PE) — role, wiring, importance, and what breaks without it. Authored 2026-06-03."
 version: "1.0"
 owner: group:finky

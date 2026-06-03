@@ -15,10 +15,10 @@ tags:
   - audience:admin
   - maturity:stable
 links:
-  - { rel: pe-engine-report, href: ./CSPS-Summary-on-Priority-Engine-2026-06-03T1146Z.md }
-  - { rel: cie-report, href: ./CSPS-Summary-on-CIE-Continuous-Intelligence-Engine-2026-06-03T1146Z.md }
-  - { rel: izfc-report, href: ./CSPS-Summary-on-IZFC-Completion-Standard-2026-06-03T1146Z.md }
-  - { rel: ai-profiling-report, href: ./CSPS-Summary-on-AI-Profiling-System-2026-06-03T1146Z.md }
+  - { rel: pe-engine-report, href: ./CSPS-report-on-Priority-Engine-for-CSP-2026-06-03.md }
+  - { rel: cie-report, href: ./CSPS-report-on-CIE-for-CSP-2026-06-03.md }
+  - { rel: izfc-report, href: ./CSPS-report-on-IZFC-for-CSP-2026-06-03.md }
+  - { rel: ai-profiling-report, href: ./CSPS-report-on-AI-Profiling-for-CSP-2026-06-03.md }
 ---
 
 # CSPS Platform Intelligence — Professional Reports
@@ -31,10 +31,10 @@ links:
 
 | Report | Topic | Date | Core Spine |
 |--------|-------|------|------------|
-| [PE Engine](./CSPS-Summary-on-Priority-Engine-2026-06-03T1146Z.md) | Priority Engine — sequencing, deflection, Foundation Exit Gate, full wiring | 2026-06-03 | GVRN |
-| [CIE](./CSPS-Summary-on-CIE-Continuous-Intelligence-Engine-2026-06-03T1146Z.md) | Continuous Intelligence Engine — 5-stage learn loop, CIE connectivity, OBSERVE/AGGREGATE active | 2026-06-03 | GVRN |
-| [IZFC](./CSPS-Summary-on-IZFC-Completion-Standard-2026-06-03T1146Z.md) | Iterative Zero-Finding Cycles — excellence-of-completion standard, per-turn moat, D4/D10 fix | 2026-06-03 | VALD |
-| [AI Profiling](./CSPS-Summary-on-AI-Profiling-System-2026-06-03T1146Z.md) | AI Profiling System — D1-D13 defaults, CAQ mode, mode classification, feedback loop | 2026-06-03 | AI |
+| [PE Engine](./CSPS-report-on-Priority-Engine-for-CSP-2026-06-03.md) | Priority Engine — sequencing, deflection, Foundation Exit Gate, full wiring | 2026-06-03 | GVRN |
+| [CIE](./CSPS-report-on-CIE-for-CSP-2026-06-03.md) | Continuous Intelligence Engine — 5-stage learn loop, CIE connectivity, OBSERVE/AGGREGATE active | 2026-06-03 | GVRN |
+| [IZFC](./CSPS-report-on-IZFC-for-CSP-2026-06-03.md) | Iterative Zero-Finding Cycles — excellence-of-completion standard, per-turn moat, D4/D5 fix | 2026-06-03 | VALD |
+| [AI Profiling](./CSPS-report-on-AI-Profiling-for-CSP-2026-06-03.md) | AI Profiling System — D1-D13 defaults, CAQ mode, mode classification, feedback loop | 2026-06-03 | AI |
 
 ---
 

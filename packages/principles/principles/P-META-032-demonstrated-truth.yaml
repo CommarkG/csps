@@ -25,9 +25,12 @@ governing_intent: >
   Confident false claims cause downstream work (Opus catches in OPIA, Sonnet fixes, session cost multiplies). The
   prevention is not checking harder — it is ordering: evidence-output first, then the claim. If the check is not run,
   the claim cannot be made. This turns validation from a post-hoc sweep into a pre-condition.
+parent_principle: P-META-034
+parent_note: mechanism of P-META-034 (Reality-Tested Completion) — claim-scale expression
 composes_with:
   - P-META-006
   - P-META-028
+  - P-META-034
 expressions:
   - B_VALIDATE_BEFORE_ASSUME (state claims require tool evidence — S002)
   - IZFC evidence-floor (IZFC sweeps must be literal runs, not recollections — S078)

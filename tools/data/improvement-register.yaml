@@ -1354,18 +1354,20 @@ entries:
   first_found: S078
   k_count: 1
   sessions: [S078]
-  status: open
+  status: active
   cie_connection: "requires_promotion"
   pe_connection: "input"
   pe_band: 3
   pe_urgency_input: false
   cie_observation_class: design_gap
   must_address_by_session: "S079"
+  activated_session: S079
+  activation_trigger: "imp_CSP_PREVENTION_MD + imp_CSP_INHERITANCE_MD (Phase-2 outward docs) are this gate's trigger — activated S079 per PROTO-S079-PARENT"
   fix_commit_sha: null
   not_yet_propagated:
     - pre-outward-doc-send checklist (implement S079 as template, NOT a validator)
     - sonnet-report.template.md: add pre-commit resolution check to HIGH-VALUE CLAIMS section
-  note: "PROTO-S078-IMPROVE Band 3 scheduled (Opus-18). NOT a validator (cycle budget). Checklist approach. See scheduled entry in opus-turn.md."
+  note: "PROTO-S078-IMPROVE Band 3. Moved scheduled→active S079 (PROTO-S079-PARENT). Phase-2 outward MDs are the trigger. NOT a validator (cycle budget). Checklist approach."
 
 - id: imp_OPUS_VERIFY_BOTTLENECK
   title: "Opus OPIA bottleneck: verify-not-rubber-stamp caught a defect in every S078 deliverable"
@@ -1467,3 +1469,57 @@ entries:
     - After journeys phase is underway: extract docs/platform-intelligence/ as a reusable template
     - CSP sister platform documentation sprint (deferred, queued)
   note: "S078 queued idea. CSP = CoreSights Platform (the original sister). CSPS = CoreSights Platform Services (this repo). Registered per P-META-033 (no-lost-threads) — surfaced during S078 professional reports authorship."
+
+- id: imp_CSP_PREVENTION_MD
+  title: "Phase-2 outward doc: CSPS prevention architecture summary for CSP (cross-platform sharing)"
+  description: >
+    S079: CSPS adopted CSP's B_PROVE_REAL_BEFORE_DONE as P-META-034 (PROTO-S079-PARENT). Phase-2 follow-through:
+    write a platform-intelligence doc that summarizes CSPS's behavioral-prevention architecture for CSP.
+    Covers: how CSPS structures behavioral prevention (B_* contracts, IZFC, P-META chain, T1/T2/T3 tiers),
+    what gaps remain open (gap-recurrence-register k≥2), and the structural-prevention-discipline (A→E fidelity).
+    This is a OBSERVE-phase CIE artifact — cross-platform intelligence flowing FROM CSPS TO CSP, balanced with
+    the CSPS-reply-to-CSP-PROVE-REAL that documented the reverse.
+    Prerequisite: imp_OUTWARD_DOC_PRESEND_GATE checklist must be applied to this doc before sending.
+  first_found: S079
+  k_count: 1
+  sessions: [S079]
+  status: open
+  cie_connection: "observe"
+  pe_connection: "input"
+  pe_band: 2
+  pe_urgency_input: false
+  cie_observation_class: cross_platform_learning
+  cie_phase: phase-2
+  must_address_by_session: "journeys-phase"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Write docs/platform-intelligence/CSPS-prevention-architecture-for-CSP-<date>.md
+    - Apply imp_OUTWARD_DOC_PRESEND_GATE checklist before committing
+  note: "PROTO-S079-PARENT Phase-2 item. CIE OBSERVE tier. Prerequisite: presend-gate checklist (imp_OUTWARD_DOC_PRESEND_GATE). Lens: P-META-034 (Reality-Tested Completion) as the unifying parent."
+
+- id: imp_CSP_INHERITANCE_MD
+  title: "Phase-2 outward doc: CSPS principle-inheritance model for CSP (how children express one parent)"
+  description: >
+    S079: CSPS reparented P-META-032 / IZFC / B_COUNCIL_PEER / ZF under P-META-034 (Reality-Tested Completion).
+    Phase-2 follow-through: write a platform-intelligence doc that explains CSPS's parent-child principle model
+    for CSP — how one governing disposition (P-META-034) is expressed through 4 distinct mechanisms at different
+    scales. This is an architectural pattern CSP can apply to its own principle ecosystem: instead of growing
+    independent rules, grow parent dispositions with child mechanisms.
+    Design note: this is descriptive (how CSPS does it), not prescriptive (what CSP must do). OBSERVE phase.
+    Prerequisite: imp_OUTWARD_DOC_PRESEND_GATE checklist must be applied before sending.
+  first_found: S079
+  k_count: 1
+  sessions: [S079]
+  status: open
+  cie_connection: "observe"
+  pe_connection: "input"
+  pe_band: 2
+  pe_urgency_input: false
+  cie_observation_class: cross_platform_learning
+  cie_phase: phase-2
+  must_address_by_session: "journeys-phase"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Write docs/platform-intelligence/CSPS-principle-inheritance-model-for-CSP-<date>.md
+    - Apply imp_OUTWARD_DOC_PRESEND_GATE checklist before committing
+  note: "PROTO-S079-PARENT Phase-2 item. CIE OBSERVE tier. Pattern: parent-disposition + child-mechanisms as a scalable principle architecture. Prerequisite: presend-gate checklist."

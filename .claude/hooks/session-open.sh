@@ -145,4 +145,16 @@ CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.
 } 2>/dev/null || true
 
 
+
+# ─── COUNCIL PEER CONTRACT T3 (S078 — ai-collaboration-charter §2.5) ─────────
+# Injects the bidirectional council peer obligation at every tab open.
+# Full contract: docs/plan/pillar-0-governance/ai-collaboration-charter.md §2.5
+{
+  printf '
+[COUNCIL-PEER-CONTRACT] Sonnet: surface what directive missed + label HIGH-VALUE/MOST-UNCERTAIN claims.' >&2
+  printf ' Opus: verify-before-concur on every high-value ratification (re-derive with THIS-TURN evidence).' >&2
+  printf ' ai-collaboration-charter §2.5 — inherited every tab.' >&2
+} 2>/dev/null || true
+
+
 exit 0

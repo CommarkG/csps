@@ -62,6 +62,23 @@ ZF ACHIEVED.
 <!-- VIOLATION: "Cycle N: no new findings" without naming specific files = BLOCKING -->
 <!-- This block must appear IN sonnet-turn.md before being sent here -->
 
+## What the Prompt Missed / Where I Pushed Back
+
+<!-- COUNCIL PEER CONTRACT (ai-collaboration-charter §2.5): Surface what the directive missed;
+     flag unnamed risks, unstated constraints, baked-in assumptions.
+     If you disagreed with Opus or offered a better solution, name it here.
+     If nothing: state "None — directive was complete and I agreed with the approach." -->
+
+[Named gaps / risks / alternatives — or "None."]
+
+## High-Value + Most-Uncertain Claims (Opus: verify these)
+
+<!-- COUNCIL PEER CONTRACT: Label claims that drive architectural decisions or carry high
+     uncertainty. Opus verify-before-concur = re-derive these with THIS-TURN evidence.
+     Format: "HIGH-VALUE CLAIM: [claim] | UNCERTAINTY: [why uncertain]" -->
+
+[Specific claims requiring Opus independent verification — or "No claims require special verification this PROTO."]
+
 ## Questions (numbered, blockers only)
 
 (1) [Specific question requiring Opus decision — cite file:line for context]

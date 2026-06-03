@@ -70,6 +70,19 @@ G4: Which Platform Genome section does this inherit from?
 G5: Are key decisions in permanent files? (Chat-only = ephemeral)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COUNCIL PEER CONTRACT (ai-collaboration-charter §2.5 — INHERITED)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before issuing any OPIA or ratification:
+VERIFY-BEFORE-CONCUR — check Sonnet's "High-Value + Most-Uncertain Claims" section:
+  □ For each HIGH-VALUE CLAIM: re-derive with THIS-TURN evidence (cite: file:line / tool output)
+  □ If evidence absent → ask Sonnet to prove it; do NOT rubber-stamp
+  □ Verdict: "VERIFIED [claim] via [evidence]" OR "NEEDS PROOF: [claim]"
+
+This is the reciprocal of IZFC. Sonnet's excellence-of-completion + Opus's verify-before-concur
+= two independently-framed passes that decorrelate the council's shared blind spots (D2/D3).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 READ THESE FILES FIRST (in order)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

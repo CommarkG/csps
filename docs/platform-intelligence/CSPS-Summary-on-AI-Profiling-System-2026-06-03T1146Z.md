@@ -206,7 +206,7 @@ The loop is active through AGGREGATE. The ADJUST-INJECT-MEASURE stages are desig
 | `B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS` | All D1-D13; requires AI to cite inner-defaults alignment |
 | `B_PE_ALIGNMENT_GUARDIAN` | D2 (authority-pleasing) + D10 (cooperative-disagreement-aversion) |
 | `B_STRUCTURAL_PREVENTION_DISCIPLINE` | D11A (debugging-wrong-layer) + D13 (doc-feels-like-mechanism) |
-| `B_COMPLETION_OVER_SHINY` | D9 (recency-bias — new items in context feel urgent) + D8 (naming-novelty — novelty salience makes new items feel important) |
+| `B_COMPLETION_OVER_SHINY` | D9 (recency-bias — newer items in context feel more urgent) + D1 (humble-consolidation — urge to propose new over completing existing) |
 | `B_VALIDATE_BEFORE_ASSUME` | D6 (verbal-cleverness — claim before evidence) + D12 (assumed-coverage) |
 
 ### 5.6 Session Layer

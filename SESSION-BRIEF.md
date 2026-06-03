@@ -9,7 +9,7 @@
 | **Current session** | S077 |
 | **Previous session** | S076 |
 | **Last updated** | 1 day(s) ago |
-| **Last commit** | a3281e1 feat(S079-parent): P-META-034 Reality-Tested Completion — parent principle + reparent + CSP reply + Phase-2 register |
+| **Last commit** | a6eec53 fix(S079-parent-fix): P-META-034 construct-validity layer — SEED-001 + 3 cautions + CSP reply propagated |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

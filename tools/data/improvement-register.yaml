@@ -1366,3 +1366,104 @@ entries:
     - pre-outward-doc-send checklist (implement S079 as template, NOT a validator)
     - sonnet-report.template.md: add pre-commit resolution check to HIGH-VALUE CLAIMS section
   note: "PROTO-S078-IMPROVE Band 3 scheduled (Opus-18). NOT a validator (cycle budget). Checklist approach. See scheduled entry in opus-turn.md."
+
+- id: imp_OPUS_VERIFY_BOTTLENECK
+  title: "Opus OPIA bottleneck: verify-not-rubber-stamp caught a defect in every S078 deliverable"
+  description: >
+    In S078, Opus's verify-before-concur discipline (B_COUNCIL_PEER + P-META-032) caught a defect
+    in every deliverable OPIA round: D-table errors (CSP reports), missing D-labels (IZFC/B/CSP/D8),
+    wrong P-META IDs (030/031 already taken), nominal self-sweeps ('I verified all refs' without grep).
+    The bottleneck: Opus is the sole verification layer for outward-facing content quality. Opportunity:
+    Sonnet evidence-paste discipline (P-META-032) + pre-send checklist (imp_OUTWARD_DOC_PRESEND_GATE)
+    reduce the defect rate before Opus OPIA — shifting from correction to prevention.
+    Measure: defects-per-OPIA-round (target: 0 by journeys phase; S078 baseline: ~3/round).
+  first_found: S078
+  k_count: 1
+  sessions: [S078]
+  status: open
+  cie_connection: "always_active"
+  pe_connection: "scored"
+  pe_band: 2
+  pe_urgency_input: true
+  cie_observation_class: quality_bottleneck
+  must_address_by_session: "journeys-phase"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Measure defects-per-OPIA-round as a CIE KPI (observe+aggregate)
+    - P-META-032 adoption into session-open check (G1-EVIDENCE reinforcement)
+    - imp_OUTWARD_DOC_PRESEND_GATE implementation (S079)
+  note: "S078 retrospective. Opus caught: D-table errors in CSP reports (round 1), nominal D-sweep (round 2), wrong P-META IDs (round 3). P-META-032+033 are the structural prevention response."
+
+- id: imp_RELAY_FRICTION_REDUCTION
+  title: "Governor relay friction: every Opus↔Sonnet exchange requires manual copy-paste relay"
+  description: >
+    The Governor manually relays every message between Opus and Sonnet tabs. In S078 this worked but
+    created session length — each OPIA round required: Governor pastes to Opus → Opus replies → Governor
+    pastes back to Sonnet. The relay hooks (post-tool-use-sonnet-relay-inline.sh + proto relay) automate
+    some of this, but the Opus OPIA→Sonnet loop is still manual. Opportunity: structured relay templates
+    that reduce round-trip friction while preserving the council boundary. The PROTO-S078-CLOSE directive
+    was already in paste-ready format — extend this pattern to all OPIA verdicts.
+  first_found: S078
+  k_count: 1
+  sessions: [S078]
+  status: open
+  cie_connection: "requires_promotion"
+  pe_connection: "input"
+  pe_band: 3
+  pe_urgency_input: false
+  cie_observation_class: ux_improvement
+  must_address_by_session: "S079"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Opus OPIA verdict template: standardized paste-ready format (already partly done in S078 PROTOs)
+    - Governor sequence for each OPIA: copy DONE section → paste to Opus; copy PROTO → paste to Sonnet
+  note: "S078 observation. Relay hooks exist (S073 engraving) but the OPIA verdict↔Sonnet-start loop adds manual friction per session."
+
+- id: imp_SETTINGS_JSON_SACRED_EDIT_REVIEW
+  title: "SACRED-EDIT gate on settings.json adds commit friction; Governor review pattern needed"
+  description: >
+    Adding a hook to settings.json requires SACRED-EDIT-APPROVED in the commit message. S078 learned
+    this at commit time (post-stop-decision-residue-capture.sh registration). The gate is correct
+    (settings.json is constitutional) but the approval pattern needs to be in Sonnet's pre-commit
+    checklist so it's anticipated, not discovered. Improvement: add to the pre-commit checklist in
+    the dim-4 topic plan or session-open check: 'Does this commit touch settings.json? If yes,
+    include SACRED-EDIT-APPROVED:<reason> in message.'
+  first_found: S078
+  k_count: 1
+  sessions: [S078]
+  status: open
+  cie_connection: "requires_promotion"
+  pe_connection: "input"
+  pe_band: 2
+  pe_urgency_input: false
+  cie_observation_class: process_improvement
+  must_address_by_session: "Governor-review"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Pre-commit checklist: 'settings.json → requires SACRED-EDIT-APPROVED'
+    - Session-open injection: note SACRED-EDIT requirement for constitutional files
+  note: "S078 commit friction. Discovered at commit time when settings.json hook registration was blocked. Resolution: include SACRED-EDIT-APPROVED in commit message."
+
+- id: imp_CSP_SISTER_PLATFORM_TEMPLATE
+  title: "CSP sister platform: CSPS docs/architecture established; could template the journeys phase"
+  description: >
+    S078 produced 4 professional platform-intelligence reports (PE, CIE, IZFC, AI Profiling) that
+    document CSPS platform systems. These docs, once accuracy-corrected (S078 rounds), represent a
+    reusable template for how CSPS communicates platform intelligence to developers. The CSP (original
+    sister platform) could benefit from the same documentation pattern applied to its architecture.
+    Deferred: apply only after CSPS journeys phase is underway and the pattern is proven at scale.
+  first_found: S078
+  k_count: 1
+  sessions: [S078]
+  status: open
+  cie_connection: "shadow"
+  pe_connection: "input"
+  pe_band: 4
+  pe_urgency_input: false
+  cie_observation_class: future_opportunity
+  must_address_by_session: "S090"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - After journeys phase is underway: extract docs/platform-intelligence/ as a reusable template
+    - CSP sister platform documentation sprint (deferred, queued)
+  note: "S078 queued idea. CSP = CoreSights Platform (the original sister). CSPS = CoreSights Platform Services (this repo). Registered per P-META-033 (no-lost-threads) — surfaced during S078 professional reports authorship."

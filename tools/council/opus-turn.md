@@ -1,3 +1,11 @@
+
+# ── BEHAVIORAL-DISCIPLINE OVERLAP → S079 CORE-COUNCIL-SPINE BUILD-UP ──────────────
+# IZFC / B_COUNCIL_PEER / B_AI_PROFESSIONAL_VOICE / B_PE_ALIGNMENT_GUARDIAN:
+#   These 4 behavioral disciplines are EXPRESSIONS of P-META-032 (Demonstrated-Truth).
+#   In S079 Core-Council-Spine build-up: consolidate them under P-META-032 as the root.
+#   No new content — update expressions: arrays in each to cite P-META-032.
+#   Goal: one governing principle, 4 named expressions, zero scattered definitions.
+#   Owner: Opus-18 direction; Sonnet S079 implementation; Governor ratifies.
 # layer: scaffold
 # disposable_if: arrangement_changes
 # This file is the Opus director relay channel. SCAFFOLD — disposable when council arrangement changes.

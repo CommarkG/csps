@@ -518,3 +518,35 @@ entries:
       The underlying scheme consolidation (one canonical registry, D11 collision fix,
       memory file update) is deferred per no-date-pressure constraint from Opus-18.
       This entry tracks the deferred obligation.
+
+  - id: gap_RESIDUE_HOOK_FALSE_POSITIVE
+    observation: >
+      post-stop-decision-residue-capture.sh (P-META-033 advisory hook, S078) uses loose pattern
+      matching for PCR/option-set detection. Many turns use PCR language ("should we", "options:") 
+      without needing residue registration (e.g., within a larger DONE response, clarifying questions).
+      The hook flags these as advisory but the signal-to-noise ratio is unknown. Pattern refinement
+      needed when the hook has collected 1-2 weeks of real data (post-journeys phase).
+    first_seen: S078
+    k_count: 1
+    sessions: [S078]
+    status: open
+    prevention_class: false-positive-advisory
+    structural_fix_plan_session: "refine-when-touched"
+    structural_fix_triggered: false
+    must_address_by_session: "S083"
+    age_escalation_status: on-time
+    fix_commit_sha: null
+    behavioral_test_exists: false
+    target_dimension: "governance-tooling"
+    done_definition: |
+      After 2+ weeks of hook data: analyze ai-behavior-signals.jsonl for p_meta_033 signal rate.
+      If signal_class: p_meta_033_uncaptured_residue fires on >30% of turns that contain PCR language
+      but no actual decision → refine the pattern to require 'chose' + 'alternative' context.
+      Behavioral test: turn with PCR + explicit register entry → no hook flag; turn with PCR + no
+      register entry → hook flag.
+    pe_urgency_input: false
+    cie_observation_class: tooling_gap
+    source: >
+      S078 building post-stop-decision-residue-capture.sh. Pattern matching noted as potentially
+      loose during IZFC sweep. Registered per P-META-033 (no-lost-threads).
+    note: "Advisory only (exit 0). Low urgency. Refine pattern after observing real data."

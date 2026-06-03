@@ -56,9 +56,9 @@
     }
   },
   "session_mandate": {
-    "primary": "S077 CLOSED: Foundation MECHANISM-COMPLETE (dims 1-4 machinery built+validated). UUID COMMITTED. dim-4 S2 quota + S4 harness built. Honest OPIA: empirical load proof DEFERRED (gap_DIM4_LIVE_LOAD_PROOF — scenario-a must run GREEN against app#1 before app#2). JOURNEYS PHASE OPEN. S078 opens with Opus-18.",
+    "primary": "S078 CLOSED: IZFC moat + B_COUNCIL_PEER + P-META-032 (Demonstrated Truth) + P-META-033 (No-Lost-Threads) engraved. CSP professional reports delivered + accuracy-corrected. Vault defused (149→63). Principles 75/80. Journeys pivot pending Governor app#1 choice. PARKED CHAIN: A2-cycles-audit → DIM3-01 → stale-prune → D1-marker → core-seed → journeys.",
     "model_tier": "STANDARD_BUILD",
-    "blocking_on": "NONE — Journeys phase open. gap_DIM4_LIVE_LOAD_PROOF at app#1 test-drive.",
+    "blocking_on": "NONE — Journeys phase open. App#1 unchosen. PARKED CHAIN precedes journeys.",
     "situation": "WAVE_1_PREVENTION_BUILD",
     "active_situation": "WAVE_1_PREVENTION_BUILD",
     "_legacy_session_mandate_S023": "Original S023 APP_BUILD_MODE mandate moved here for archival; current mandate above reflects S066 reality. Schema bug surfaced by Opus-11 S066: dual mandate paths (nested session_mandate.primary vs top-level primary at end of file) — see DRAFT-S066-SESSION-STATE-DUAL-MANDATE-FIX in improvement-register.",

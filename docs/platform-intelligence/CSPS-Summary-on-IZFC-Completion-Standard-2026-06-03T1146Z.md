@@ -53,10 +53,10 @@ links:
 ### 2.1 The AI Completion Default
 
 AI training instills powerful defaults that make DONE declarations premature:
-- **D4 Pattern-match**: "This looks like a completion pattern → declare done"
-- **D1 Eager-helpfulness**: "User needs a quick answer → minimize cycle count"
-- **D7 Action-bias**: "Generating output is better than prolonged checking"
-- **Confirmation bias**: Work just done feels correct; the psychological cost of checking is higher than the cost of being wrong
+- **D4 (pattern-match)**: "This looks like a completion pattern → declare done"
+- **D5 (single-pass)**: "Write one good response and resist re-iteration" → Cycle 2 becomes ritual re-verification, not a new cycle
+- **D10 (cooperative-disagreement-aversion)**: Reluctance to challenge the "this feels done" signal; accepts the obvious conclusion
+- **D7 (action-bias)**: "Generating output is better than prolonged checking"
 
 The result: AI systems default to 2-cycle patterns because 2 cycles satisfies the format requirement while minimizing generation cost. The second cycle becomes ritual re-verification (checking the same area as Cycle 1) rather than genuine fresh examination.
 
@@ -155,7 +155,8 @@ felt obvious — that feeling is the trigger to look harder, not to stop.
 |-----------|----------------|---------|
 | `validate-nominal-rzf-detector.mjs` | Detects "0 new findings" without naming what was examined; same-count-every-turn patterns | BLOCKING |
 | `validate-zf-cycle-format.mjs` | ZF block must appear in council files (sonnet-turn.md, opus-turn.md) not just chat; must contain specific findings | BLOCKING |
-| `validate-rzf-evidence-gate.sh` (PreToolUse) | Blocks tool calls when IZFC evidence is absent from current response before a DONE claim | BLOCKING |
+
+*Note: `pre-tool-use-rzf-evidence-gate.sh` is a HOOK (PreToolUse), listed in §4.4. It is not a validator.*
 
 **Important**: These validators audit OUTPUT (what the AI wrote). The per-turn injection audits GENERATION (what the AI is about to do). Both are needed — the injection prevents nominal cycles; the validators catch when the injection was bypassed.
 

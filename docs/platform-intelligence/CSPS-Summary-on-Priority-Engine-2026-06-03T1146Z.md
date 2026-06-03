@@ -38,7 +38,7 @@ PE answers three questions at all times:
 
 The PE formula for individual items:
 ```
-PE_SCORE = B×0.30 + D×0.30 + I×0.15 + Bn×0.10 + PAS×0.15 × 10
+PE_SCORE = (B×0.30 + D×0.30 + I×0.15 + Bn×0.10 + PAS×0.15) × 10
 
 B   = Business impact (0-10): does shipping this grow the platform meaningfully?
 D   = Developer need (0-10): does a developer need this to move forward?
@@ -137,8 +137,9 @@ Without PE, every session decision requires the Governor to manually enforce seq
 | Hook | Trigger | Effect |
 |------|---------|--------|
 | `session-open.sh` | Session start | Surfaces top-5 PE items; sets session mandate; Foundation Exit Gate check |
-| `user-prompt-submit-pe-alignment-check.sh` | Every user prompt | Detects if prompt contradicts top PE item; emits deflection reminder |
 | `post-stop-session-close-gate.sh` | Session end | Requires verify=0 before close; checks mandate completeness |
+
+*Note: `user-prompt-submit-pe-alignment-check.sh` was designed but is NOT built. It appears in §6 as a deferred item.*
 
 ### 4.4 Behavioral Contract Layer (What Blocks at the AI Level)
 
@@ -146,7 +147,7 @@ Without PE, every session decision requires the Governor to manually enforce seq
 |----------|------------|
 | `B_PE_ALIGNMENT_GUARDIAN` | CONSTITUTIONAL. AI MUST respond with 3-block deflection when human input misaligns with PE top-priority. Direct behavioral blocker. |
 | `B_COMPLETION_OVER_SHINY` | AI rejects new work while active plan is incomplete. PE-backed. |
-| `B_FOUNDATION_EXIT_GATE` | No app-layer work while foundation dims are incomplete. PE's Foundation Exit Gate in behavioral form. |
+| Foundation Exit Gate (PE mechanism) | The Foundation Exit Gate is a PE SCORING RULE (multiplicative zero on app-layer items during foundation phase), not a behavioral contract. No B_FOUNDATION_EXIT_GATE contract file exists. See §1 for the mechanism description. |
 
 ### 4.5 Session-Open Injection
 

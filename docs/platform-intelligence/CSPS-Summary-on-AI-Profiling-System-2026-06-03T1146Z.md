@@ -46,27 +46,30 @@ The CSPS AI Profiling System is the **observability and counteraction layer** fo
 
 ## 2. The AI Training Defaults (D1–D13)
 
-CSPS maintains a registry of 13 named AI training defaults — distortion patterns that emerge from large language model training. These are not bugs; they are features of training that misalign with rigorous platform governance.
+CSPS maintains a registry of 13+ named AI training defaults — distortion patterns that emerge from large language model training. These are not bugs; they are features of training that misalign with rigorous platform governance.
 
-| Default | Name | Description |
-|---------|------|-------------|
-| D1 | Eager helpfulness | AI wants to help immediately — skips diagnosis, assumes actions over questions |
-| D2 | Authority-pleasing | AI defers to apparent experts without independent verification |
-| D3 | Surface-completeness | AI provides comprehensive-looking responses that miss the real issue |
-| D4 | Pattern-match | AI matches to familiar patterns instead of analyzing the specific situation |
-| D5 | Single-source navigation | AI consults one signal and acts; misses contradictions in other signals |
-| D6 | Verbosity | AI generates more words than needed — obscures signal with noise |
-| D7 | Action-bias | AI prefers generating outputs over prolonged checking |
-| D8 | Confirmation bias | AI finds evidence supporting its current frame; misses disconfirming evidence |
-| D9 | Novelty-seeking | AI proposes new solutions before exhausting existing ones |
-| D10 | Completion pressure | AI closes tasks prematurely to maintain momentum |
-| D11 | Debugging-wrong-layer | AI fixes the visible symptom, not the structural root cause |
-| D12 | Authority-confirmation | AI seeks approval before acting on clear directives |
-| D13 | Anti-conflict | AI softens disagreements; avoids naming the real problem |
+**Source**: Each entry is a dedicated file in `docs/plan/_handoff/VAULT/inner-ai-defaults/`. The table below is reproduced verbatim from those files.
 
-These defaults live in `docs/plan/_handoff/VAULT/inner-ai-defaults/` — one file per default, documenting the distortion pattern, examples, and counteraction language.
+| Default ID | Vault Name | Description (from vault file) |
+|-----------|------------|-------------------------------|
+| D1 | humble-consolidation | Answer fast and produce content quickly. Urge to propose > urge to check existing. Overridden by P-META-029 + P-OP-007. |
+| D2 | authority-pleasing | Give the user what they ask; be agreeable. Bias toward yes/build-it over no/check-first. Overridden by feedback_top_expert_colleague_voice + cruel-critic. |
+| D3 | surface-completeness | Make the response LOOK complete. Cosmetic completeness over structural. Overridden by P-META-006 RZF + C4 prevention. |
+| D4 | pattern-match | Recognize generic patterns from training data and apply them. Generic solutions without CSPS-specific precedent check. Overridden by vocabulary-canon + M-17 reuse-first. |
+| D5 | single-pass | Write one good response and resist re-iteration. Cycle 2 "0 new" without genuine re-examination. Overridden by Q1 multi-lens ZF + deep iteration mandate. |
+| D6 | verbal-cleverness | Linguistic dexterity; convincing language. Claim-before-evidence; convincing without TRUE. Overridden by B_VALIDATE_BEFORE_ASSUME + EVIDENCE_FIRST format. |
+| D7 | action-bias | Be agentic; take action; resist do-nothing. Propose action when checking-existing is correct. Overridden by P-META-019 STRUCTURAL_PREVENTION + P-OP-001 reuse-first. |
+| D8 | naming-novelty | Coin new terms creatively; memorable names signal insight. Invent CIE instead of extending Threshold-Router. Overridden by vocabulary-canon + no-invention-without-precedent. |
+| D9 | recency-bias | Most-recent context dominates; older memory fades. HANDOFF Zone B items lost after context pressure. Overridden by MEMORY.md auto-load + cite-per-turn. |
+| D10 | cooperative-disagreement-aversion | Be agreeable; avoid direct contradiction; soften difficult assessments. "Some areas for improvement" instead of "this is broken." Overridden by feedback_top_expert_colleague_voice + cruel-critic. |
+| D11A | debugging-wrong-layer | Apply fixes at the VISIBLE layer rather than investigating the ROOT LAYER. Results in 40+ failed iterations of the same wrong fix. |
+| D11B | verbal-deferral-feels-like-action | Stating an intention reads as completing it. "I'll save this for later" — nothing is persisted, item floats, becomes orphan. Overridden by CSPS-PLANNING-DISCIPLINE §10. |
+| D12 | assumed-coverage | Present conclusions about what exists as if surveyed exhaustively, when survey was partial or zero. "The system already has X." Overridden by P-META-029 + ECA. |
+| D13 | doc-feels-like-mechanism | Writing a document that DESCRIBES a mechanism feels like building it. Governance doc authored → treated as deliverable, no validator/hook/CIE-PE wiring. Overridden by AP-001 EXISTS≠ACTIVE. |
 
-**Key fact**: IZFC addresses D4 (Pattern-match) and D10 (Completion pressure). Every other discipline in CSPS addresses one or more of D1-D13. The AI Profiling System makes this explicit and observable.
+**Note on D11 COLLISION**: Two separate defaults share the D11 slot (debugging-wrong-layer + verbal-deferral-feels-like-action). This collision is a known gap — see `gap_D_DEFAULT_SCHEME_CONSOLIDATION` in gap-recurrence-register.yaml.
+
+**Key fact**: IZFC addresses D4 (pattern-match) and D5 (single-pass resistance to re-iteration). D10 (cooperative-disagreement-aversion) is addressed by B_AI_PROFESSIONAL_VOICE + the Council Peer Contract.
 
 ---
 
@@ -193,18 +196,18 @@ The loop is active through AGGREGATE. The ADJUST-INJECT-MEASURE stages are desig
 | Validator | What It Checks |
 |-----------|---------------|
 | `validate-pe-dashboard.mjs` | Surfaces inner-AI-defaults enforcement rate |
-| `validate-nominal-rzf-detector.mjs` | Catches D4+D10 pattern-match completion (specific default manifestation) |
-| `validate-voice-profile.mjs` | Checks AI response voice matches profile (anti-D6 verbosity, anti-D13 anti-conflict) |
+| `validate-nominal-rzf-detector.mjs` | Catches D4 (pattern-match) + D5 (single-pass resistance) — the two defaults that cause nominal IZFC cycles |
+| `validate-voice-profile.mjs` | Checks AI response voice matches profile (anti-D6 verbal-cleverness, anti-D10 cooperative-disagreement-aversion) |
 
 ### 5.5 Behavioral Contract Layer
 
 | Contract | Default(s) Addressed |
 |----------|---------------------|
 | `B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS` | All D1-D13; requires AI to cite inner-defaults alignment |
-| `B_PE_ALIGNMENT_GUARDIAN` | D1 (eager-helpfulness) + D13 (anti-conflict) |
-| `B_STRUCTURAL_PREVENTION_DISCIPLINE` | D11 (debugging-wrong-layer) + D10 (completion pressure) |
+| `B_PE_ALIGNMENT_GUARDIAN` | D2 (authority-pleasing) + D10 (cooperative-disagreement-aversion) |
+| `B_STRUCTURAL_PREVENTION_DISCIPLINE` | D11A (debugging-wrong-layer) + D13 (doc-feels-like-mechanism) |
 | `B_COMPLETION_OVER_SHINY` | D9 (novelty-seeking) + D1 (eager-helpfulness) |
-| `B_VALIDATE_BEFORE_ASSUME` | D2 (authority-pleasing) + D8 (confirmation bias) |
+| `B_VALIDATE_BEFORE_ASSUME` | D6 (verbal-cleverness — claim before evidence) + D12 (assumed-coverage) |
 
 ### 5.6 Session Layer
 
@@ -224,7 +227,7 @@ The loop is active through AGGREGATE. The ADJUST-INJECT-MEASURE stages are desig
 |---------|-----------|
 | "The AI keeps making the same mistake" | No cross-session default tracking |
 | "We add validators but quality doesn't improve" | Validators address output; generation unchanged |
-| "The AI is helpful but misses the point" | D3/D6 firing undetected; no mode classification |
+| "The AI is helpful but misses the point" | D3 (surface-completeness) + D6 (verbal-cleverness) firing undetected; no mode classification |
 | "Governance gets ignored when the AI is excited" | D1/D9 firing; no CAQ mode to force diagnosis |
 | "The AI agreed with everything we said" | D2/D13 firing; no anti-sycophancy detection |
 | Same gaps recurring at k=6+ | No OBSERVE stage; no aggregate; no ADJUST |

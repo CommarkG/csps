@@ -471,3 +471,50 @@ entries:
       Hook filenames intentionally kept: validate-nominal-rzf-detector.mjs, validate-zf-cycle-format.mjs
       etc. — Opus directive S078. Only semantic references need updating; filenames are operational 
       shorthand. The injection (enforcement #6) already updated to IZFC. Memory + register = this gap.
+
+  - id: gap_D_DEFAULT_SCHEME_CONSOLIDATION
+    observation: >
+      Two conflicting D-default numbering schemes exist in the platform:
+      (1) VAULT ground truth (docs/plan/_handoff/VAULT/inner-ai-defaults/D*.md files):
+          D1=humble-consolidation, D2=authority-pleasing, D3=surface-completeness,
+          D4=pattern-match, D5=single-pass, D6=verbal-cleverness, D7=action-bias,
+          D8=naming-novelty, D9=recency-bias, D10=cooperative-disagreement-aversion,
+          D11A=debugging-wrong-layer, D11B=verbal-deferral-feels-like-action,
+          D12=assumed-coverage, D13=doc-feels-like-mechanism.
+      (2) Memory file (feedback_csps_alignment_over_inner_defaults.md, from S006):
+          D1=eager-helpfulness, D5=single-source-navigation, D10=completion-pressure,
+          D13=anti-conflict — conflicting with the vault on 4+ entries.
+      ALSO: D11 collision — two distinct defaults share the same D11 slot.
+      RESULT: Any reference to "D1 (eager helpfulness)", "D10 (completion pressure)",
+      or "D13 (anti-conflict)" in platform docs is false. The vault is the ground truth.
+    first_seen: S078
+    k_count: 1
+    sessions: [S078]
+    status: open
+    prevention_class: governance-terminology
+    structural_fix_plan_session: "S079"
+    structural_fix_triggered: false
+    must_address_by_date: null
+    must_address_by_session: "S085"
+    age_escalation_status: on-time
+    fix_commit_sha: null
+    behavioral_test_exists: false
+    target_dimension: "ai-default-registry"
+    done_definition: |
+      One canonical D-registry with no collisions:
+        - D11 collision resolved (merge or renumber to D11 + D14, or suffix A/B formally)
+        - Memory file feedback_csps_alignment_over_inner_defaults.md updated to match vault
+        - All platform docs (reports, principles, behavioral-contracts) reference only vault names
+        - grep audit: 0 stale D1=eager-helpfulness / D10=completion-pressure / D13=anti-conflict refs
+        - verify=0 + committed
+    pe_urgency_input: false
+    cie_observation_class: governance_debt
+    source: >
+      Opus-18 S078: OPIA caught false D-default descriptions in docs/platform-intelligence/
+      reports. AI Profiling report §2 table was entirely wrong, sourced from S006 memory file
+      instead of VAULT ground truth. Fixed in S078 report edits; underlying scheme conflict remains.
+    note: >
+      S078: Fixed the 4 platform-intelligence reports to use vault D-names correctly.
+      The underlying scheme consolidation (one canonical registry, D11 collision fix,
+      memory file update) is deferred per no-date-pressure constraint from Opus-18.
+      This entry tracks the deferred obligation.

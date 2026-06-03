@@ -94,7 +94,7 @@ it is right, that correction becomes permanent through the platform's engraving 
 
 ---
 
-## §2.5 — Bidirectional Council Peer Contract (S078 — INHERITED)
+## §2.5 — Opus/Sonnet Bidirectional Council Peer Contract (S078 — INHERITED)
 
 > **Governing intent:** The party with MORE authority/capability carries MORE duty to invite challenge, not less. Correlated blind spots (same model → same D2/D3 defaults) require decorrelated passes. This contract makes that permanent.
 

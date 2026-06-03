@@ -81,15 +81,18 @@ Every CSPS artifact (node) must declare its CIE connection. This is not optional
 | `not_applicable` | This node type does not feed CIE (e.g., pure reference docs) |
 | `FLAGGED-TO-THRESHOLD` | Unknown — route to Threshold for co-building |
 
-**The 6 registers that must declare CIE connectivity** (validated by `validate-register-connectivity.mjs`):
-1. `tools/data/gap-recurrence-register.yaml` → `cie_connection: requires_promotion`
-2. `tools/data/improvement-register.yaml` → `cie_connection: [input]`
-3. `tools/data/ux-violation-register.yaml` → `cie_connection: [declared]`
-4. `tools/data/floating-artifacts-register.yaml` → `cie_connection: [declared]`
-5. `tools/data/exceptional-moments-register.yaml` → `cie_connection: [declared]`
-6. `tools/data/hardwire-register.yaml` → `cie_connection: [declared]`
+**The 6 registers that must declare CIE connectivity** (validated by `validate-register-connectivity.mjs`; values read from actual register frontmatter):
 
-All 6 must have `cie_connection` AND `pe_connection` or the validator blocks.
+| Register | `cie_connection` | `pe_connection` |
+|----------|-----------------|----------------|
+| `tools/data/gap-recurrence-register.yaml` | `requires_promotion` | `input` |
+| `tools/data/improvement-register.yaml` | `requires_promotion` | `input` |
+| `tools/data/ux-violation-register.yaml` | `requires_promotion` | `input` |
+| `tools/data/floating-artifacts-register.yaml` | `requires_promotion` | `not_applicable` |
+| `tools/data/exceptional-moments-register.yaml` | `requires_promotion` | `input` |
+| `tools/data/hardwire-register.yaml` | `shadow` | `not_applicable` |
+
+All 6 must have valid `cie_connection` AND `pe_connection` or `validate-register-connectivity.mjs` blocks.
 
 ---
 
@@ -138,7 +141,7 @@ With CIE completing its loop: the ADJUST stage modifies the communication-schema
 | `user-prompt-submit-ai-profiler.sh` | Detects mode (architectural/implementation/governance/enforcement) from prompt; triggers CAQ mode if score ≥ 2 |
 | `tools/config/caq-patterns.yaml` | Detection logic externalized (thin-reader pattern); lists 5 CAQ types + 4 profiler modes |
 | `tools/data/ai-behavior-signals.jsonl` | Append-only signal log: date, signal_class, trigger text |
-| `tools/data/gap-recurrence-register.yaml` | Tracks recurring gaps (k_count); `always_active` CIE input |
+| `tools/data/gap-recurrence-register.yaml` | Tracks recurring gaps (k_count); `cie_connection: requires_promotion` |
 | `tools/data/improvement-register.yaml` | Tracks platform improvements; `pe_connection: input` |
 | `D1-D13 inner-AI-defaults registry` | Documents training defaults that distort AI output; stored in VAULT/inner-ai-defaults/ |
 | Closing summary §10.0h/i | Per-session: AI defaults citation + session-level improvement extracted |
@@ -147,7 +150,7 @@ With CIE completing its loop: the ADJUST stage modifies the communication-schema
 
 | Component | Role |
 |-----------|------|
-| `tools/validators/validate-cie-pe-adapter.mjs` | Audit that all 6 accountability registers have declared CIE+PE connections |
+| `tools/validators/validate-register-connectivity.mjs` | Audit that all 6 accountability registers have declared valid CIE+PE connections (BLOCKING) |
 | `tools/data/cie-pe-last-run.json` | Last run output: observe_stage, cie_milestone_audit, pe_plan_fork_audit, stage states |
 | Weekly cron (EXTENDED tier) | Runs deep-dive aggregation on signal patterns |
 
@@ -179,7 +182,6 @@ This is the full closed loop. Building these three stages closes the CIE, transf
 | Validator | What It Enforces |
 |-----------|-----------------|
 | `validate-register-connectivity.mjs` | All 6 registers declare valid `cie_connection` + `pe_connection` (BLOCKING) |
-| `validate-cie-pe-adapter.mjs` | CIE-PE wiring completeness audit |
 
 ### 5.5 Connection Field Summary
 

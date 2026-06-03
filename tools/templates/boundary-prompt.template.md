@@ -62,7 +62,7 @@ KEY VAULT ITEMS:
 
 ## Notes on the 4 mandatory header lines
 
-1. **I AM:** specific role + instance/session — kills ambiguity about who's writing. Sonnet CANNOT write "I AM: Governor" (G2 identity guard).
+1. **I AM:** specific role + instance/session — kills ambiguity about who's writing. Sonnet CANNOT claim Governor identity in the I AM field (G2 identity guard). Use `FROM SONNET | FOR OPUS TAB` framing when writing boundary prompts that reference the Governor's relay role.
 2. **YOU ARE:** specific role + session — the receiver's identity is named so the prompt isn't generic.
 3. **THIS IS:** the artifact type — boundary prompt, milestone directive, OPIA, handoff, etc. — so the receiver knows the protocol.
 4. **DO NOW:** one-sentence first action — kills the "where do I start?" friction.

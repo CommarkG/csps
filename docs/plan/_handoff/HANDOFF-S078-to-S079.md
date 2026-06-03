@@ -123,7 +123,7 @@ Q10: Has S079 run verify=0 THIS SESSION and cited the exit_code as proof (not me
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S079, builder
 YOU ARE: Opus-18, architectural director
-THIS IS: S079 fresh tab — S078 CLOSED (58ee4470, verify=0, pushed)
+THIS IS: S079 fresh tab — S078 CLOSED (484432c9, verify=0, pushed)
 DO NOW: §17 receipt → 4 first actions → alignment questions → await Opus-18 directive
 ═══════════════════════════════════════════════════════════════════
 
@@ -150,7 +150,7 @@ FIRST ACTIONS:
 4. cat .claude/settings.local.json → must be {}
 
 HANDOFF: docs/plan/_handoff/HANDOFF-S078-to-S079.md
-AUTHORED: Sonnet S078 | HEAD 58ee4470 | pushed | 2026-06-03
+AUTHORED: Sonnet S078 | HEAD 484432c9 | pushed | 2026-06-03
 ```
 
 ---

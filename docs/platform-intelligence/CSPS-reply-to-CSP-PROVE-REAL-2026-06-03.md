@@ -65,6 +65,13 @@ CSP's B_PROVE_REAL_BEFORE_DONE named the root that CSPS had been circling withou
 
 **Governing intent:** Before any CSPS output exists as a truth-claim — at any scale, from a single assertion to a completed deliverable to an architectural ratification — it must pass through reality-testing that is independent of AI pattern-matching confidence. AI confidence ≠ external verification. Reality-testing is the prerequisite disposition, not a post-hoc sweep.
 
+**Construct-validity layer (the SEED-001 heart, adopted verbatim from CSP):** Crucially, the evidence or test itself can be virtual — a self-confirming or mis-calibrated construct can pass while reality reverses it. CSP's SEED-001 is the canonical example: a synthetic-calibrated metric reported FAIL on a real photo the architect could plainly see was better. So reality-testing demands a **valid construct** — professional comparison against independent real results — not merely "some evidence." This is the layer above P-META-032: 032 says show tool-output; P-META-034 says the construct producing that output must itself contact reality. The confident or elegant feeling is the warning.
+
+**Three added cautions (construct-validity specific):**
+- *Not measure-everything (Goodhart/McNamara):* a bad real metric is worse than honest uncertainty — construct-validity first; high-quality expert/qualitative contact counts as real evidence.
+- *Duhem-Quine:* a 'failed' test may be a bad instrument, not a false claim (SEED-001's wrong FAIL) — professional comparison means choosing the RIGHT test, not any test.
+- *Virtual conclusions are WELCOME as hypotheses/maps — the gate governs consequential COMPLETION, never thinking.*
+
 **Caution (P-META-032 ≠ P-META-034):** This principle is a DISPOSITION, not a procedure. P-META-032 (Demonstrated Truth) and IZFC (Iterative Zero-Finding Cycles) are the procedures. The parent is silent where the children are specific — it governs the WHY, they govern the HOW.
 
 ---

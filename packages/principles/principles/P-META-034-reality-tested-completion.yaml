@@ -30,7 +30,12 @@ governing_intent: >
   scale — single assertion, completed deliverable, architectural ratification), it must pass through reality-testing
   that is independent of AI pattern-matching confidence. AI confidence is not external verification. Reality-testing is
   not a step added after the work — it is the prerequisite disposition that shapes how the work is done. Adopted from
-  CSP B_PROVE_REAL_BEFORE_DONE (Governor ratification S079).
+  CSP B_PROVE_REAL_BEFORE_DONE (Governor ratification S079). Crucially, the EVIDENCE OR TEST ITSELF can be virtual: a
+  self-confirming or mis-calibrated construct can pass while reality reverses it (CSP's SEED-001 — a
+  synthetic-calibrated metric reported FAIL on a real photo the architect could plainly see was better). So
+  reality-testing demands a VALID CONSTRUCT — professional comparison against independent real results — not merely
+  'some evidence.' This is the layer above P-META-032: 032 says show tool-output; P-META-034 says the construct
+  producing that output must itself contact reality. The confident or elegant feeling is the warning.
 tagline: AI confidence is not evidence. Reality is. Test before claiming.
 cautions:
   - >-
@@ -42,6 +47,13 @@ cautions:
   - >-
     The parent is silent where the children are specific — always enforce via the named child expression, not by citing
     the parent alone.
+  - >-
+    Not measure-everything (Goodhart/McNamara): a bad real metric is worse than honest uncertainty — construct-validity
+    first; high-quality expert/qualitative contact counts as real evidence.
+  - >-
+    Duhem-Quine: a 'failed' test may be a bad instrument, not a false claim (SEED-001's wrong FAIL) — professional
+    comparison means choosing the RIGHT test, not any test.
+  - Virtual conclusions are WELCOME as hypotheses/maps — the gate governs consequential COMPLETION, never thinking.
 lineage:
   root: true
   parent_principle: null

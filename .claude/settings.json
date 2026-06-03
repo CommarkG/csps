@@ -411,6 +411,10 @@
             "command": ".claude/hooks/post-stop-existence-claim-scan.sh"
           }
         ]
+      },
+      {
+        "type": "command",
+        "command": ".claude/hooks/post-stop-decision-residue-capture.sh"
       }
     ]
   },

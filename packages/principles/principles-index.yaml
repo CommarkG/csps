@@ -5,8 +5,8 @@
 # Source: packages/principles/principles.yaml
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
-  total_count: 73
-  generated_at: '2026-06-01'
+  total_count: 75
+  generated_at: '2026-06-03'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
   usage: >-
@@ -338,6 +338,16 @@ principles:
     category: meta-governance
     severity: critical
     path: ./principles/P-META-031-reasoned-adoption.yaml
+  - id: P-META-032
+    name: demonstrated-truth
+    category: meta-governance
+    severity: critical
+    path: ./principles/P-META-032-demonstrated-truth.yaml
+  - id: P-META-033
+    name: no-lost-threads
+    category: meta-governance
+    severity: critical
+    path: ./principles/P-META-033-no-lost-threads.yaml
   - id: P-ARCH-028
     name: csps-core-spines
     category: architecture

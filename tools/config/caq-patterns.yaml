@@ -96,3 +96,25 @@ profiler_modes:
     patterns:
       - '\b(can you think of.*way|create.*system|platform.*could|enhance.*permanently|save.*permanently|inherit|always)\b'
       - '\b(loop|pipeline|compound|weekly|trigger.*save|route.*later|accumulate)\b'
+
+  # P-META-032 CIE OBSERVE SIGNAL: assert-without-evidence rate
+  # Routes to ai-behavior-signals.jsonl when Opus catches an assertion without pasted tool output.
+  # Feeds CIE AGGREGATE stage for weekly pattern detection.
+  - id: assert_without_evidence
+    description: "P-META-032 signal: Opus or Governor catches a factual claim without pasted evidence"
+    score: 2
+    signal_class: p_meta_032_assert_without_evidence
+    patterns:
+      - '\b(caught (without|no) evidence|assertion without (proof|grep|tool)|claimed without showing|recollection is not)\b'
+      - '\b(you said you (checked|verified) but|I found no grep|where is the output|paste the (grep|result|output))\b'
+      - '\b(nominal sweep|no tool output|asserted not shown|false claim caught)\b'
+
+  # P-META-033 CIE OBSERVE SIGNAL: uncaptured-decision-residue count
+  # Routes to ai-behavior-signals.jsonl when a decision/PCR turn has no register entry.
+  - id: uncaptured_decision_residue
+    description: "P-META-033 signal: decision made but non-selected options not registered to platform"
+    score: 1
+    signal_class: p_meta_033_uncaptured_residue
+    patterns:
+      - '\b(where.*other options|what happened to (option|alternative)|not in (register|queue)|lost thread)\b'
+      - '\b(non-selected.*not registered|deferred.*nowhere|option.*disappeared|residue.*missing)\b'

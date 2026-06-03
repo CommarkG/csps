@@ -116,7 +116,7 @@ When a prompt scores 2+ on the CAQ type matrix, CAQ MODE fires. This forces **Sc
 
 **Example trigger**: "Why does this STILL keep happening? What would a top expert say is the permanent fix?" → scores diagnostic(1) + persistence(1) + expert_simulation(1) + permanence_commitment(1) = 4 → CAQ MODE fires strongly.
 
-**Effect of CAQ MODE**: AI must diagnose root cause before proposing any solution. Blocks D1 (eager-helpfulness) and D7 (action-bias) at the source.
+**Effect of CAQ MODE**: AI must diagnose root cause before proposing any solution. Blocks D1 (humble-consolidation — urge to propose quickly over checking existing) and D7 (action-bias) at the source.
 
 ---
 
@@ -206,7 +206,7 @@ The loop is active through AGGREGATE. The ADJUST-INJECT-MEASURE stages are desig
 | `B_CSPS_ALIGNMENT_OVER_INNER_DEFAULTS` | All D1-D13; requires AI to cite inner-defaults alignment |
 | `B_PE_ALIGNMENT_GUARDIAN` | D2 (authority-pleasing) + D10 (cooperative-disagreement-aversion) |
 | `B_STRUCTURAL_PREVENTION_DISCIPLINE` | D11A (debugging-wrong-layer) + D13 (doc-feels-like-mechanism) |
-| `B_COMPLETION_OVER_SHINY` | D9 (novelty-seeking) + D1 (eager-helpfulness) |
+| `B_COMPLETION_OVER_SHINY` | D9 (recency-bias — new items in context feel urgent) + D8 (naming-novelty — novelty salience makes new items feel important) |
 | `B_VALIDATE_BEFORE_ASSUME` | D6 (verbal-cleverness — claim before evidence) + D12 (assumed-coverage) |
 
 ### 5.6 Session Layer

@@ -63,7 +63,7 @@ PAS = Platform-alignment score (0-10): is it foundation-first, not app-first?
 
 ### 2.1 The Problem It Solves
 
-In any AI-assisted development environment, the AI has powerful training defaults toward **eager helpfulness** (D1), **shiny object attraction** (building what's interesting, not what's needed), and **sycophancy** (building what the human asks for even when it contradicts the stated plan). Without PE, every session is at risk of drifting to whatever is mentioned most recently, whatever sounds most exciting, or whatever the AI's training most strongly associates with "being helpful."
+In any AI-assisted development environment, the AI has powerful training defaults toward **D1 (humble-consolidation — urge to propose over checking existing)**, **D8 (naming-novelty — shiny object attraction, building what's interesting)**, and **D2 (authority-pleasing — sycophancy, building what the human asks for even when it contradicts the stated plan)**. Without PE, every session is at risk of drifting to whatever is mentioned most recently, whatever sounds most exciting, or whatever the AI's training most strongly associates with immediate helpfulness.
 
 CSPS sessions are long and involve complex multi-session plans. Without a mechanical sequencing system, the platform would exhibit:
 - Sessions spending time on mid-priority governance when foundation dims are incomplete
@@ -103,7 +103,7 @@ CSPS sessions are long and involve complex multi-session plans. Without a mechan
 Without PE, every session decision requires the Governor to manually enforce sequence. This fails under:
 - Context compression (session context window fills; earlier mandates are lost)
 - Multi-session spans (what was the priority 3 sessions ago?)
-- AI training default D1 (eager helpfulness eagerly builds whatever was most recently requested)
+- AI training defaults D1 (humble-consolidation — urge to propose quickly) + D9 (recency-bias — most-recent request dominates older mandate)
 - Sycophancy (AI tells Governor yes when PE should say no)
 
 **The outcome without PE**: a 30-app platform that ships apps with a leaky schema, no RLS, and no quota enforcement — because each session "helped" in isolation without a binding sequencing mechanism.

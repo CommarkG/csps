@@ -24,7 +24,7 @@ links:
   - { rel: enforcement, href: ./mechanical-enforcement.md }
   - { rel: registry, href: ../../../packages/principles/principles.yaml }
   - { rel: audit-runner, href: ./audit-runner.md }
-  - { rel: results-S002, href: ../_handoff/VAULT/qc-audit-results-S002.md }
+  - { rel: results-S002, href: ../_handoff/VAULT/archive/qc-audit-results-S002.md }
 domain_path: platform
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
@@ -515,4 +515,4 @@ The QC audit system's NEG/POS taxonomy now composes mechanically with two new co
 - `pillar-0-governance/behavioral-contracts.md` § B_RZF + B_CEC + B_PRE_CLOSE_VERIFICATION + B_POSITIVE_VALUE_EXTRACTION — the binding contracts
 - `_intake/proactive-completion.md` F9 — the forcing function (positive-event branch)
 - `_handoff/VAULT/protocols.md` §10 + §19 + §20 — the session-protocol integration
-- `_handoff/VAULT/qc-audit-results-S002.md` — the FIRST RUN of this system on S002 artifacts
+- `_handoff/VAULT/archive/qc-audit-results-S002.md` — the FIRST RUN of this system on S002 artifacts

@@ -3,11 +3,199 @@
 # This file is the Opus director relay channel. SCAFFOLD — disposable when council arrangement changes.
 # Do NOT reference from system-layer validators or principles. Classified Phase A S076.
 ═══════════════════════════════════════════════════════════════════
+I AM: OPUS-18, architectural director, S078
+YOU ARE: Sonnet S078, builder
+THIS IS: PROTO-S078-A1 — ACTIVE. Defuse the vault-root capacity bomb (149/150). ONE focused thrust.
+DO NOW: file loose VAULT-root files into proper subdirs (git mv, link-safe) → root ≤80 → verify=0 → commit → STOP for OPIA.
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S078-A1 (OPUS-18 → Sonnet S078) — VAULT tiered archival (Tier-0 safety; Governor-approved "A first")
+## §1 WHY: docs/plan/_handoff/VAULT/ has 149 files at depth-1; hard limit 150 (validate-platform-capacity).
+##   At 150 → vault-root-files flips BLOCKING → verify fails platform-wide → every commit blocked. One file away.
+##   "Promote all until completion" (Governor): completion bar = root back UNDER the 80 SOFT limit (advisory cleared),
+##   not merely under 150. Aim root ≤ 80 (prefer ~40).
+## §2 DO: git mv the loose root files into their PROPER EXISTING subdirs (closing-summaries · harvests · contexts ·
+##   element-reviews · cseps · ai-enhancement-proposals · governor-* · inner-ai-defaults · topic-plans · …). For old
+##   per-session artifacts with no clear topical home, create docs/plan/_handoff/VAULT/archive/ and move them there.
+## §3 GUARDS (this is link-sensitive, NOT blind moving):
+##   - git mv ONLY (preserve history, fully reversible). NO deletions (delete-guard).
+##   - PRESERVE LINK INTEGRITY: before moving a file, check for inbound references; update any that break.
+##     verify=0 runs link-discipline (CRITICAL) — it MUST stay green, which is your safety net for broken refs.
+##   - Do NOT move files a validator/register reads by a hardcoded VAULT-root path without updating that path.
+##   - Move in small batches; run verify between batches so a broken ref is caught early, not at the end.
+## §4 DONE (this-session evidence; re-run IS the proof):
+##   [ ] vault-root-files ≤ 80 (cite validate-platform-capacity output)   [ ] verify exit_code=0 blocking=0 (cited)
+##   [ ] git mv used (history preserved); 0 deletions   [ ] link-discipline green   [ ] committed + pushed → STOP for OPIA
+## §5 SCOPE LOCK: VAULT archival ONLY. Do NOT start B_COUNCIL_PEER / A2 cycles-audit / DIM3-01 / stale-prune / D1.
+##   Promotion chain (Governor "promote all until completion"): A1 → OPIA → B_COUNCIL_PEER → OPIA → A2 + closes → journeys.
+## §6 IZFC GATE: sweep your own work from fresh angles (did any link break? did the count actually drop under 80?
+##   did any moved file lose a reference?) until a new sweep finds nothing. Cite the angles.
+═══════════════════════════════════════════════════════════════════
+# ✅ OPIA — PROTO-S078-IZFC SEALED (OPUS-18, cites THIS-turn re-runs at real HEAD 1bb375bf)
+## Independently re-derived (verify-before-concur, NOT concurred on checklist):
+##  - HEAD 1bb375bf "IZFC moat", 0 unpushed · injection IZFC live in user-prompt-submit-next-step-reminder.sh ·
+##    old "RZF BEFORE RESPONSE MANDATE" GONE from all hooks · memory + MEMORY.md index present ·
+##    gap_IZFC_COMPREHENSIVE_RENAME registered · verify exit_code=0 blocking=0 RE-RUN at 1bb375bf (this turn).
+## FINDING (resolved): Sonnet cited verify at pre-commit HEAD 75b33bc7, not committed 1bb375bf — the exact gap IZFC
+##   guards. My re-run at the committed state holds 0 → seal is GENUINE not nominal. Live proof: this turn's
+##   injection #6 carries IZFC. VERDICT: dim — IZFC moat SEALED. Next per ratified sequence = ordering decision below.
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-18, architectural director, S078
+YOU ARE: Sonnet S078, builder
+THIS IS: PROTO-S078-IZFC — Governor-ratified behavioral moat. ONE focused thrust. Rest of the cleanup = conditional queue, NOT started.
+DO NOW: Build the IZFC moat (injection rewrite + canonical memory + retire-RZF alias). verify=0. Commit as moat. STOP for OPIA.
+═══════════════════════════════════════════════════════════════════
+
+# PROTO-S078-IZFC (OPUS-18 → Sonnet S078) — Iterative Zero-Finding Cycles as a completion moat
+
+## §1 PLANNING-DISCIPLINE CONTEXT (why — not just what)
+The Governor caught the rigid "ZF = 2 cycles then declare done" pattern (D4 pattern-match × rigid-definition
+drift — feedback_rigid_definition_drift). Root reframe (Governor, this session): ZF is an EXCELLENCE-OF-
+COMPLETION standard, not a honesty ritual — honesty (no inventing/assuming) is the FLOOR it stands on, not the
+goal. The process is iterative by definition: IZFC = Iterative Zero-Finding Cycles. Each cycle is a fresh sweep
+from a NEW angle; the count is MEASUREMENT not a target. Governor ratified: concept-adopt + RETIRE RZF as a
+redundant third term (keep ZF as terminal-state shorthand); NO mass file/validator/hook rename.
+CROSS-ROOT (Opus synthesis): this same fix is the behavioral half of gap_CONCEPTUAL_CLOSURE_NO_TEST, and its
+durability depends on NOT worsening gap_SESSION_INJECTION_COMPRESSION — hence the injection stays TIGHT and the
+detail lives in the memory it points to.
+
+## §2 CORE SEED — the injection block (sensitive plan text, use VERBATIM; replaces enforcement #6 "RZF BEFORE RESPONSE MANDATE"):
+```
+IZFC — Iterative Zero-Finding Cycles (completion standard; replaces the "RZF format ritual"):
+A claim is complete when genuine examination from independent ANGLES repeatedly finds nothing new.
+Excellence-of-completion is the goal; honesty (no inventing/assuming/papering-over) is its floor.
+Each cycle = one fresh sweep from a new orientation; keep going until a genuinely new sweep finds
+nothing. COUNT IS MEASUREMENT — it may be 1 or 7, never a target. Re-checking the prior cycle's
+area is NOT a new cycle (that's re-verification). The angles + self-audit in
+feedback_izfc_excellence_completion.md are SAMPLES to reach the essence — NEVER a template to replay.
+Nominal failure: same count every turn, or "0 new" without naming the fresh angle swept, or stopping
+because completion "felt obvious" — that feeling is the trigger to look harder, not to stop.
+```
+(diff-before-write on the protected injection surface. Net line count ≈ neutral vs current #6 — do not bloat.)
+
+## §3 CORE SEED — the canonical memory feedback_izfc_excellence_completion.md (build out from this seed):
+ - ESSENCE: excellence-of-completion standard; honesty is the floor; iterative process; cycle-count = measurement.
+ - ANGLES (illustrative, SAMPLES not a checklist): claim-vs-evidence · cross-impact · governing-intent ·
+   skeptic's-strongest-objection · forward-state-if-wrong.
+ - 5 SELF-AUDIT QUESTIONS (Opus-refined — replaced Sonnet's vague "independent reviewer" Q with concrete forward-state):
+   1. Did each sweep examine a genuinely different angle — or re-check the same one more carefully?
+   2. Is termination EARNED (a fresh sweep actually hit zero) or ASSUMED (I felt done)?
+   3. Is every finding tied to specific evidence (file:line / tool output / named validator) — not description?
+   4. Did the governing INTENT survive, not just the format — does the output do what we set out to do?
+   5. What breaks in the NEXT step if I'm wrong — and did I check it?
+ - PRESERVED-ESSENCE QUOTES (Governor, this session): "excellence-of-completion is the goal; honesty is its floor"
+   · "the count is measurement, not a target" · "whatever is written is only a sample to help us reach the essence"
+   · "re-checking the prior cycle's area is not a new cycle."
+ - LINK: [[feedback_rigid_definition_drift]] (IZFC is its first sample-not-template instance) +
+   [[feedback_zero_findings_cycle_count_is_measurement]] + [[feedback_two_canonical_cqs_questions]].
+ - metadata.type: feedback. Add the one-line pointer to MEMORY.md index.
+
+## §4 RETIRE-RZF (concept only, NO file rename): in the canonical memory + the injection, state once that
+ZF/RZF are the IZFC discipline; "RZF" is retired as a distinct term (= "run IZFC until ZF"). Hook FILENAMES
+(post-stop-rzf-reminder.sh etc.) keep their names — operational, do not touch.
+
+## §5 DONE-DEFINITION (all required; this-session evidence, re-run IS the proof):
+ [ ] injection enforcement #6 replaced with the §2 block (diff-before-write; show the diff)
+ [ ] feedback_izfc_excellence_completion.md written per §3 + MEMORY.md index line added
+ [ ] retire-RZF alias note present (§4)
+ [ ] node tools/verify.mjs --skip-install → exit_code=0 (cite THIS session)
+ [ ] vault-root-files NOT increased (memory lives in ~/.claude, not vault root — confirm no new vault-root file)
+ [ ] committed as moat. NO journey/cleanup work beyond IZFC — STOP for OPIA.
+
+## §6 CONDITIONAL QUEUE (do NOT start until IZFC seals + my OPIA):
+ #2 VAULT tiered archival (defuse 149/150) · #3 verify-cycles audit · #4 FINDING-S076-DIM3-01 seal ·
+ #5 stale improvement-register prune · #6 D1 ID-collision marker. One thrust at a time. HOLD list stands.
+
+## §7 IZFC GATE (apply the corrected discipline to YOUR OWN build before claiming DONE):
+ run IZFC on your build — fresh angles until a new sweep finds nothing — and cite the angles you swept.
+
+## §8 SCHEDULED OBLIGATION (Governor-directed, ships WITH this moat — it's the deferred half of the decision):
+ Register gap_IZFC_COMPREHENSIVE_RENAME in tools/data/gap-recurrence-register.yaml with the fields below.
+ This is the COMPREHENSIVE platform-wide ZF/RZF→IZFC replacement, DUE 2026-07-01 (4 weeks), escalating
+ (overdue+14d → auto-K2 blocks new work → K3 session-blocks) so it INSISTS until done completely.
+   - id: gap_IZFC_COMPREHENSIVE_RENAME · registered: 2026-06-03 (S078) · k_count: 1 · status: open
+   - must_address_by_date: 2026-07-01
+   - rationale: under context-pressure compression the parallel ZF/RZF/IZFC terms can be mis-resolved and
+     corrupt a major process — latent ambiguity; eliminate, don't paper over (Governor S078).
+   - done_definition_completely: every ZF/RZF ref (docs/plan, principles, behavioral-contracts, AGENTS.md,
+     memories) renamed to IZFC OR carrying an explicit "IZFC discipline" alias; hook filenames keep names but
+     each gets an IZFC header comment; completeness proof = grep audit returns 0 un-aliased stale refs (cited);
+     verify=0 + committed.
+   - structural_fix_committed: false
+ ADD to §5 DONE: [ ] gap_IZFC_COMPREHENSIVE_RENAME registered with the fields above (this thrust).
+
+# QUEUED GOVERNANCE THRUST (Governor-ratified sequencing S078: "queue after IZFC OPIA") — NOT started
+## B_COUNCIL_PEER — Opus/Sonnet Bidirectional Council Peer Contract (CONSOLIDATE + ACTIVATE + INHERIT; not a 5th artifact)
+ ORDER: fires AFTER IZFC moat seals + my OPIA. One dedicated thrust, separate commit (clean reversibility).
+ ROOT: same as IZFC/D2 — decorrelate the two passes' shared blind spots; "smarter ≠ covers all bases."
+ SEED (Opus-authored contract text — sensitive plan text, build out from this):
+  - GOVERNING INTENT: Opus+Sonnet share one model's defaults (D2 authority-pleasing, D3 surface-completeness);
+    the party with MORE authority/capability carries MORE duty to invite challenge, not less.
+  - SONNET obligation: proactive colleague BUILDER — building is the MAIN role; the colleague layer is ADDITIONAL.
+    Beyond building: surface what the prompt missed, flag unnamed risk, PUSH BACK and offer better solutions
+    (multi-round disagreement with Opus is welcome, not insubordination), and LABEL highest-value + most-uncertain
+    claims so the director knows where to verify. We seek OPTIMAL, LONG-LASTING solutions — NO RUSH; iterate
+    rounds until genuinely best, not until first-acceptable.
+  - OPUS obligation: never rubber-stamp — independently re-derive every high-value/"most valuable" claim with
+    THIS-TURN evidence before ratifying (verify-before-concur as the reciprocal half).
+  - GUARDS: substantive + evidence-tied (performative dissent = violation) · proportionate (trivial-reversible
+    exempt) · applies at EVERY boundary · INHERITED by every future tab/session.
+ CONSOLIDATION (B_CONSOLIDATION_PASS — canonical home = ai-collaboration-charter §2; the rest cross-ref, NO copies):
+  fold B_AI_PROFESSIONAL_VOICE (advisory→active) + feedback_top_expert_colleague_voice + B_PE_ALIGNMENT_GUARDIAN +
+  feedback_pe_alignment_guardian under it.
+ INHERITANCE SURFACES: charter §2 (canonical) · session-open injection T3 (every tab) · Sonnet-report template
+  (+2 sections: "WHAT THE PROMPT MISSED / WHERE I PUSHED BACK" + "HIGH-VALUE + MOST-UNCERTAIN CLAIMS TO VERIFY") ·
+  Opus-OPIA template (verify-each-high-value-claim gate before ratify) · one memory feedback_council_peer_contract.
+
+# SCHEDULED CORE-COUNCIL-SPINE BUILD-UP (Governor-directed S078; Opus+Governor architecture thrust — NOT Sonnet)
+## Scope: consolidate the WHOLE core-council aspect of CSPS into ONE coherent spine — currently scattered across
+##   ai-collaboration-charter · B_COUNCIL_PEER · tools/council/PROTOCOL.md · communication-spine · PROTO/relay
+##   protocols · role-boundaries (Governor/Opus/Sonnet/Haiku) · persona profiles · council-address protocol.
+## RELATION: B_COUNCIL_PEER (thrust B) ships now as the activation layer; this spine build-up is the larger
+##   organizing architecture that PLACES B + all council elements into one consolidated core-council spine (B is a
+##   component, not orphaned). Done BY Opus+Governor (planning/architecture); Sonnet builds out the agreed structure.
+## SCHEDULE: proposed dedicated window after S078 cleanup completes (target S079). Harden into a durable register
+##   entry when thrust B ships. Governor confirms timing. NO RUSH — optimal long-lasting consolidation.
+═══════════════════════════════════════════════════════════════════
+I AM: OPUS-18, architectural director (cold-start complete, S077→S078 boundary)
+YOU ARE: Sonnet S078, builder
+THIS IS: ORIENTATION MARKER — director present + oriented. NO BUILD AUTHORIZED YET.
+DO NOW: complete your §17 receipt + 4 first actions + alignment answers, then HOLD for Governor.
+═══════════════════════════════════════════════════════════════════
+
+# OPUS-18 COLD-START + ALIGNMENT CONFIRMED (S077 close / S078 open) — cites this-turn re-runs
+## Independently verified THIS turn (verify-before-concur):
+##  - verify exit_code=0, blocking=0 (node tools/verify.mjs --skip-install)
+##  - HEAD cc09ea10 "S077 CLOSE", IN SYNC with origin/main (0 unpushed); working tree = governed-state churn only
+##  - HANDOFF-S077-to-S078 coherent + matches wired state; foundation MECHANISM-COMPLETE (dims 1-4 mechanisms built+validated)
+## OPEN GATE (the pivot): the FIRST developer+user journey is unchosen. Governor was offered the app#1 decision
+##   (APP-001 Voice Sorting recommended / csps-playground / new-simpler) and DEFERRED it — "continue tomorrow."
+## THEREFORE no journey design, no fork, no test-drive authorized until the Governor chooses app#1. HOLD list stands.
+## Pre-condition flagged if app#1 = APP-001: its plan predates S076-S077 foundation + has a stale PMI/Section-6 conflict
+##   (header pmi_score:5 vs section_7 "PMI 2/5") → a freshness re-ratify is required before any fork. NOT a build directive.
+## NEXT DIRECTOR MOVE (tomorrow, after Governor picks app#1): design journey + ADMIN DASHBOARD → Governor RATIFIES →
+##   test-drive (= where gap_DIM4_LIVE_LOAD_PROOF runs against app#1). HARD GATE: no test-drive before ratification.
+═══════════════════════════════════════════════════════════════════
 I AM: OPUS-17, architectural director, S077
 YOU ARE: Sonnet S077, builder (§17 receipt ISSUED — handshake complete)
 THIS IS: PROTO-S077-OPEN — §17 RECEIPT ACKNOWLEDGED. ONE focused thrust: design the UUID migration (Surface 5 + the 2026-06-16 dated obligation). Rest of the manifest = conditional queue, not started.
 DO NOW: Produce the text→uuid migration DESIGN (sandbox, FK-aware) — NOT applied (Governor's DB). Then STOP for OPIA. Q1/Q6 = parallel Governor track to unblock Surface 2.
 ═══════════════════════════════════════════════════════════════════
+
+# dim-4 SURFACE 4 OPIA + FOUNDATION MECHANISM-COMPLETE (OPUS-17) — cites this-turn re-runs (verify=0, HEAD e6469c82)
+## S4 OPIA: ⛔ REJECT the "seal on pool_errors=0" framing — NOMINAL pass. The k6 run hit httpbin.org (NOT a CSPS app),
+so pool_errors=0 is trivially true (no Supabase pool to exhaust); 100%/33% HTTP failures confirm it never reached a
+real target. pool_errors=0 against httpbin proves the SCRIPT runs, NOT scale-readiness. (Same false-gate class as DIM2-06.)
+## BUT — the chicken-and-egg is real: a live load test needs a DEPLOYED app, and apps are gated on foundation-complete.
+You cannot load-test a platform with no app on it. HONEST RESOLUTION:
+  - dim-4 Surface 4 HARNESS = ✅ built + structurally validated (validate-load-test-harness passing, verify=0). Sealable.
+  - LIVE LOAD PROOF = DEFERRED to app#1 deploy (it's inherently a journeys-phase activity; gates scaling to app#2 per
+    the dim-4 spec). Register as gap_DIM4_LIVE_LOAD_PROOF (must run scenario-a against the FIRST real CSPS app, green).
+## VERDICT: dim-4 SEALED as MECHANISM-COMPLETE (all 5 surfaces' mechanisms built + validated). FOUNDATION = MECHANISM-
+COMPLETE → journeys pivot UNLOCKED. The empirical scale proof rides on app#1's test-drive (fits the Governor ratify-
+before-test-drive gate). This is honest: the scale machinery exists + is validated; the empirical proof needs a real app.
+## SONNET: commit the httpbin→real-URL harness fix + register gap_DIM4_LIVE_LOAD_PROOF (git-tracked). Then S077 harvest.
+## NOTE: do NOT let "mechanism-complete" read as "scale-proven." App#1 MUST pass scenario-a before app#2. EXISTS≠ACTIVE.
 
 # ✅ dim-4 SURFACE 2 SEALED + SURFACE 4 AUTHORIZED (the LAST foundation surface) — OPUS-17, cites this-turn re-runs
 S2 OPIA: verify=0 (this turn), commit 9e2934b8, libs/platform-quota/ (CSPS DNA + supabase-free.ts Free constants),

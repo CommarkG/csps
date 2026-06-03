@@ -11,7 +11,7 @@ diataxis_type: explanation
 links:
   - { rel: source-leaf, href: ../plan/pillar-1-architecture-and-stack/frontmatter-standard.md }
   - { rel: prior-adr, href: ./0014-adopt-madr-for-adr-format.md }
-  - { rel: source-finding, href: ../plan/_handoff/VAULT/gaps-and-duplications-S005.md }
+  - { rel: source-finding, href: ../plan/_handoff/VAULT/archive/gaps-and-duplications-S005.md }
 context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
@@ -91,7 +91,7 @@ The skeleton-tier validator exempted these via path globs. **The decision requir
 
 ## Sources
 
-- `docs/plan/_handoff/VAULT/gaps-and-duplications-S005.md` §C3.1 secondary finding (skeleton-tier validator surfaced 34 errors revealing schema split)
+- `docs/plan/_handoff/VAULT/archive/gaps-and-duplications-S005.md` §C3.1 secondary finding (skeleton-tier validator surfaced 34 errors revealing schema split)
 - `docs/plan/pillar-1-architecture-and-stack/frontmatter-standard.md` (universal CSPS spec)
 - `docs/adr/0014-adopt-madr-for-adr-format.md` (MADR adoption — preserved as auxiliary on top of universal core)
 - [agents.md spec](https://agents.md/) (cross-vendor; no-frontmatter convention)

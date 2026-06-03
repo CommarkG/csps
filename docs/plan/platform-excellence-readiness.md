@@ -31,7 +31,7 @@ links:
   - { rel: foundation-slices, href: ./_handoff/VAULT/topic-plans/foundation-slices.md }
   - { rel: core-manifest, href: ./pillar-0-governance/csps-core-manifest.md }
   - { rel: bedrock, href: ./pillar-0-governance/csps-bedrock.md }
-  - { rel: session-extraction, href: ./_handoff/VAULT/session-S021-extraction.md }
+  - { rel: session-extraction, href: ./_handoff/VAULT/harvests/session-S021-extraction.md }
 domain_path: platform
 scope_level: S1
 ---

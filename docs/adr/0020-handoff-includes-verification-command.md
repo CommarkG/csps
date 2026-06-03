@@ -9,7 +9,7 @@ lifecycle: production
 lifecycle_state: active
 diataxis_type: explanation
 links:
-  - { rel: source-leaf, href: ../plan/_handoff/VAULT/validation-pass-S002.md }
+  - { rel: source-leaf, href: ../plan/_handoff/VAULT/archive/validation-pass-S002.md }
   - { rel: source-protocols, href: ../plan/_handoff/VAULT/protocols.md }
 context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
@@ -56,5 +56,5 @@ Output is the verifiable fingerprint. The new session runs this FIRST, compares 
 
 ## Sources
 
-- `_handoff/VAULT/validation-pass-S002.md` (S002 §3.2 origin)
+- `_handoff/VAULT/archive/validation-pass-S002.md` (S002 §3.2 origin)
 - CSP carry-forward: SESSION_LIFECYCLE_PROTOCOL "validators_re_run_state" pattern

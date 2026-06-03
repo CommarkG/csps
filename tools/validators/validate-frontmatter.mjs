@@ -82,12 +82,16 @@ const TERMINAL_STATES = new Set(['validated', 'closed']);
 const SCAN_PATHS = ['docs', 'packages', 'libs', 'apps', 'tools'];
 const SKIP_DIRS = new Set(['node_modules', '.git', '.claude', 'dist', 'build', '.next', 'tmp', 'coverage']);
 // Snapshot/historical files exempt from full schema (intentionally frozen point-in-time records)
+// S078 update: patterns updated to match both VAULT root AND VAULT/archive/ subdir
 const EXEMPT_PATH_GLOBS = [
-  /_handoff[\/\\]VAULT[\/\\]chat-jump-prompt-/,
-  /_handoff[\/\\]VAULT[\/\\]qc-audit-results-/,
-  /_handoff[\/\\]VAULT[\/\\]validation-pass-/,
-  /_handoff[\/\\]VAULT[\/\\]gaps-and-duplications-/,
-  /_handoff[\/\\]VAULT[\/\\]blockers-/,
+  /_handoff[\/\\]VAULT[\/\\](?:archive[\/\\])?chat-jump-prompt-/,
+  /_handoff[\/\\]VAULT[\/\\](?:archive[\/\\])?chat-jump-S/,
+  /_handoff[\/\\]VAULT[\/\\](?:archive[\/\\])?chat-transfer-S/,
+  /_handoff[\/\\]VAULT[\/\\](?:archive[\/\\])?qc-audit-results-/,
+  /_handoff[\/\\]VAULT[\/\\](?:archive[\/\\])?validation-pass-/,
+  /_handoff[\/\\]VAULT[\/\\](?:archive[\/\\])?gaps-and-duplications-/,
+  /_handoff[\/\\]VAULT[\/\\](?:archive[\/\\])?blockers-/,
+  /_handoff[\/\\]VAULT[\/\\]archive[\/\\](?:comprehensive-handoff|s013-new-chat|opus2-chat)/,
   /_legacy[\/\\]/,
   // ADRs use MADR frontmatter (id/title/status/date/deciders/tags) — distinct from universal CSPS
   // frontmatter (id/name/description/version/owner). Carry-forward to S006: decide whether to

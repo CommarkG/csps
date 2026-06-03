@@ -23,7 +23,7 @@ links:
   - { rel: build-order, href: ./build-order.md }
   - { rel: stewardship, href: ../pillar-0-governance/stewardship-protocol.md }
   - { rel: open-questions, href: ../_handoff/VAULT/open-questions-ledger.md }
-  - { rel: blockers, href: ../_handoff/VAULT/blockers-S002.md }
+  - { rel: blockers, href: ../_handoff/VAULT/archive/blockers-S002.md }
 created-new-because: |
   No prior leaf consolidated open frontiers. v1.3 §19 had a bullet list. This leaf locks the
   contract: each frontier has a discovery-trigger + interim posture; distinct from immediate

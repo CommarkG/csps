@@ -9,7 +9,7 @@ lifecycle: production
 lifecycle_state: active
 diataxis_type: explanation
 links:
-  - { rel: source-leaf, href: ../plan/_handoff/VAULT/validation-pass-S002.md }
+  - { rel: source-leaf, href: ../plan/_handoff/VAULT/archive/validation-pass-S002.md }
   - { rel: source-handoff, href: ../plan/_handoff/HANDOFF-S001-to-S002.md }
 context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
@@ -41,7 +41,7 @@ The user's S001 directive *"humbly validate all you are doing now at least 3 tim
 
 ## Consequences
 
-- `_handoff/VAULT/validation-pass-S002.md` is the first instance.
+- `_handoff/VAULT/archive/validation-pass-S002.md` is the first instance.
 - Every future session's validation pass includes per-perspective limits.
 - Audit `validation-includes-limits-line` (planned week 4) verifies presence.
 
@@ -52,5 +52,5 @@ The user's S001 directive *"humbly validate all you are doing now at least 3 tim
 
 ## Sources
 
-- `_handoff/VAULT/validation-pass-S002.md` (S002 §3.2 origin)
+- `_handoff/VAULT/archive/validation-pass-S002.md` (S002 §3.2 origin)
 - User S001 directive: "humbly validate"

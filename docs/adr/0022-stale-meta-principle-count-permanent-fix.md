@@ -11,8 +11,8 @@ diataxis_type: explanation
 links:
   - { rel: source-leaf, href: ../plan/pillar-0-governance/learning-loop.md }
   - { rel: principle, href: ../../packages/principles/principles.yaml }
-  - { rel: prior-recurrence-k1, href: ../plan/_handoff/VAULT/qc-audit-results-S002.md }
-  - { rel: prior-recurrence-k2, href: ../plan/_handoff/VAULT/validation-pass-S003.md }
+  - { rel: prior-recurrence-k1, href: ../plan/_handoff/VAULT/archive/qc-audit-results-S002.md }
+  - { rel: prior-recurrence-k2, href: ../plan/_handoff/VAULT/archive/validation-pass-S003.md }
 context_question: "Before relying on this decision: has the constraint that drove it changed? If platform needs have shifted, this ADR may need reassessment."
 ---
 
@@ -91,8 +91,8 @@ CEC walk note: operating-principle count gets the same treatment as meta-princip
 
 - `docs/plan/_handoff/HANDOFF-S003-to-S004.md` §C3.2 — K=2 mandate identification
 - `docs/plan/_handoff/HANDOFF-S002-to-S003.md` lines 71-72, 92, 175 — K=1 incident (P-META-006 ratification gap)
-- `docs/plan/_handoff/VAULT/qc-audit-results-S002.md` lines 46-60 — K=1 detection trail
-- `docs/plan/_handoff/VAULT/validation-pass-S003.md` lines 119-121 — K=2 detection trail
+- `docs/plan/_handoff/VAULT/archive/qc-audit-results-S002.md` lines 46-60 — K=1 detection trail
+- `docs/plan/_handoff/VAULT/archive/validation-pass-S003.md` lines 119-121 — K=2 detection trail
 - `docs/plan/pillar-0-governance/learning-loop.md` — P-META-005 K=2 auto-ADR mechanism
 - `packages/principles/principles.yaml#P-META-005` — Learning Loop principle
 - `packages/principles/principles.yaml#P-ARCH-004` — one-source-of-truth-per-concern (the architectural rationale)

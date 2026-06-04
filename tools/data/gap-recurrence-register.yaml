@@ -550,3 +550,24 @@ entries:
       S078 building post-stop-decision-residue-capture.sh. Pattern matching noted as potentially
       loose during IZFC sweep. Registered per P-META-033 (no-lost-threads).
     note: "Advisory only (exit 0). Low urgency. Refine pattern after observing real data."
+
+  - id: gap_CYCLE_COUNTER_DISCREPANCY
+    observation: >
+      verify.mjs skip_reason for pnpm-verify-cycles reads "at hard_limit 200 — deferred" but the HANDOFF-S078
+      parked-chain item #1 (A2-cycles-audit) described cycles as "199/200 approaching." Discrepancy: either
+      the counter is 199 and hard_limit triggers at 199 (off-by-one in the description), or it is at 200 and
+      the handoff was stale. Must reconcile in A2: read the actual cycle-count logic in verify.mjs, audit which
+      validators are STANDARD vs EXTENDED, confirm the exact number before any new standard validator is added.
+    first_seen: S079
+    k_count: 1
+    sessions: [S079]
+    status: open
+    prevention_class: state-discrepancy
+    structural_fix_plan_session: "S080-A2"
+    structural_fix_triggered: false
+    must_address_by_session: "S080"
+    age_escalation_status: on-time
+    fix_commit_sha: null
+    behavioral_test_exists: false
+    pe_band: 2
+    note: "A2-scope. Reconcile before any new standard validator. back-ref: S079 close (PROTO-S079-CLOSE)."

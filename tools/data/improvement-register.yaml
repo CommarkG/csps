@@ -1483,7 +1483,10 @@ entries:
   first_found: S079
   k_count: 1
   sessions: [S079]
-  status: open
+  status: propagated
+  propagated_at: S079
+  propagated_commit: "67c9e47b"
+  propagated_file: "docs/platform-intelligence/CSPS-report-on-Prevention-over-Correction-for-CSP-2026-06-03.md"
   cie_connection: "observe"
   pe_connection: "input"
   pe_band: 2
@@ -1510,7 +1513,10 @@ entries:
   first_found: S079
   k_count: 1
   sessions: [S079]
-  status: open
+  status: propagated
+  propagated_at: S079
+  propagated_commit: "0f65d649"
+  propagated_file: "docs/platform-intelligence/CSPS-report-on-Inheritance-for-CSP-2026-06-03.md"
   cie_connection: "observe"
   pe_connection: "input"
   pe_band: 2
@@ -1523,3 +1529,52 @@ entries:
     - Write docs/platform-intelligence/CSPS-principle-inheritance-model-for-CSP-<date>.md
     - Apply imp_OUTWARD_DOC_PRESEND_GATE checklist before committing
   note: "PROTO-S079-PARENT Phase-2 item. CIE OBSERVE tier. Pattern: parent-disposition + child-mechanisms as a scalable principle architecture. Prerequisite: presend-gate checklist."
+
+- id: imp_GIT_AUTOCOMMIT_RACE
+  title: "Auto-commit race: hook-generated last-run files land on remote between Sonnet commits"
+  description: >
+    S079: every push required git stash + pull rebase + pop stash because hook-generated files
+    (context-orchestrator-last-run.json, threshold-intake-log.yaml, validate-*-last-run.json, etc.)
+    were auto-committed to remote between Sonnet's commits. This is expected behavior but creates
+    friction: 4 rebase cycles in one session. Risk: if any auto-commit ever touches a file Sonnet
+    is also editing in the same session, silent stash+rebase won't resolve it — it would cause a
+    merge conflict. Design question: should last-run files be .gitignored (they're ephemeral) or
+    committed with a different cadence?
+  first_found: S079
+  k_count: 1
+  sessions: [S079]
+  status: open
+  cie_connection: "shadow"
+  pe_connection: "input"
+  pe_band: 3
+  pe_urgency_input: false
+  cie_observation_class: workflow_friction
+  must_address_by_session: "queued"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Evaluate: .gitignore tools/data/validate-*-last-run.json (ephemeral; not needed for governance)
+    - Alternative: batch auto-commits to end-of-session only
+  note: "S079 close (PROTO-S079-CLOSE). back-ref: 4 rebase cycles observed. Low urgency; no conflict yet."
+
+- id: imp_CIE_ADJUST_SIGNAL_CLASS
+  title: "CIE ADJUST signal class: cie_adjust is non-standard vs existing d_default/enhancement classes"
+  description: >
+    S079: logged a CIE ADJUST event to ai-behavior-signals.jsonl with signal_class: 'cie_adjust'.
+    Existing signals use 'signal_class: d_default' or 'signal_class: enhancement'. The cie_adjust
+    class is novel and may not be processed correctly by the future CIE AGGREGATE pipeline.
+    When ADJUST pipeline activates (deferred S072 Q2 hold), the signal schema should be reviewed
+    and cie_adjust entries either re-classified or canonicalized as a valid signal_class.
+  first_found: S079
+  k_count: 1
+  sessions: [S079]
+  status: open
+  cie_connection: "observe"
+  pe_connection: "input"
+  pe_band: 4
+  pe_urgency_input: false
+  cie_observation_class: schema_gap
+  must_address_by_session: "when-CIE-ADJUST-activates"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - When CIE ADJUST pipeline activates: review cie_adjust signal entries + canonicalize signal_class enum
+  note: "S079 close (PROTO-S079-CLOSE). back-ref: PROTO-S079-PARENT CIE ADJUST signal. Low urgency (pipeline deferred)."

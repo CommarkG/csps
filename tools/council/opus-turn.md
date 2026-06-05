@@ -1,4 +1,84 @@
 
+# ── SELF-CONSOLIDATION PASS (PROTO-CONSOLIDATE-SELF) — Sonnet S080 analysis ──────
+# P-META-035 dogfooded on our own 5 governance nodes. Pairwise overlap matrix.
+# Result: ALL 5 KEEP (distinct). Two cross-ref enhancements noted (no merges needed).
+# For OPIA + Governor ratification.
+#
+# ── PAIRWISE OVERLAP MATRIX ──────────────────────────────────────────────────────
+# Pair        | Overlap?                        | Evidence (file:line)              | Verdict
+# 032 vs 033  | NONE                            | Different spines (VALD vs GVRN),  | KEEP both
+#             |                                 | different prevention classes       |
+# 032 vs 034  | 032 IS expression of 034        | 034.expressions cites 032;        | KEEP both —
+#             | (parent-child relationship)      | 032 ADDS: "SAME response"         | 032 is a mechanism
+#             |                                 | ordering, scope limit              | principle (specific
+#             |                                 | (fact/state/completion only),      | enforcement hook,
+#             |                                 | pre-tool-use-rzf-evidence-gate.sh  | ordering, scope)
+#             |                                 | — all absent from 034              | 034 doesn't contain
+# 032 vs 035  | IZFC cited in both              | 032: "IZFC evidence-floor (sweeps  | KEEP both —
+#             | but different FACES of IZFC     | must be literal runs)"             | different IZFC aspects
+#             |                                 | 035: "IZFC iteration half (don't   | (evidence vs process)
+#             |                                 | stop until fresh angle)"           |
+# 032 vs      | Partial: verify-before-concur   | B_COUNCIL_PEER §2.5 line 113-120  | KEEP both —
+# B_COUNCIL   | = 032 applied to Opus           | ADDS Sonnet obligation (push-back, | B_COUNCIL_PEER adds
+#             |                                 | label claims) not in 032           | symmetric council
+#             |                                 |                                    | structure
+# 033 vs 034  | NONE                            | Different spines, different phases | KEEP both
+#             |                                 | (decision-after vs claim-before)   |
+# 033 vs 035  | Mild: both "process             | Different prevention classes       | KEEP both —
+#             | completeness"                   | (OPTION-SET-WITHOUT-RESIDUE vs     | different phases
+#             |                                 | PREMATURE-STOP+NEEDLESS-START),    | (decision-after vs
+#             |                                 | different enforcement hooks        | creation-before)
+# 033 vs      | NONE                            | Completely different concerns      | KEEP both
+# B_COUNCIL   |                                 |                                    |
+# 034 vs 035  | IZFC cited in both              | 034: claim-completeness mechanism  | KEEP both —
+#             |                                 | 035: process-iteration mechanism   | different T1 hooks
+#             |                                 | Different T1: rzf-evidence-gate    | confirm distinct
+#             |                                 | vs inventory-scan-required         | operating contexts
+# 034 vs      | 034 lists B_COUNCIL_PEER        | 034.lineage.children cites it;     | KEEP both —
+# B_COUNCIL   | as expression                   | B_COUNCIL_PEER §2.5 lines 101-111  | B_COUNCIL_PEER extends
+#             |                                 | ADDS Sonnet obligation beyond      | 034 scope with council
+#             |                                 | 034's VALD disposition scope       | dynamics structure
+# 035 vs      | NONE                            | Completely different concerns      | KEEP both
+# B_COUNCIL   |                                 |                                    |
+#
+# ── PROPOSAL (propose only — no merge/delete until Governor ratifies) ──────────────
+# FINDING: All 5 nodes are genuinely distinct. No collapses needed.
+# ENHANCEMENT PROPOSALS (cross-ref additions, not content changes):
+#
+# E1: B_COUNCIL_PEER §2.5 note — add explicit cross-ref: "Opus verify-before-concur
+#     is P-META-032 applied to ratifications." Currently says "reciprocal half of IZFC"
+#     (accurate but incomplete — it is also 032 at ratification scale).
+#     File: ai-collaboration-charter.md §2.5, line 120
+#     Change: add sentence after "verify-before-concur is the reciprocal half of IZFC":
+#     "It is also P-META-032 (Demonstrated Truth) applied at Opus's ratification scale."
+#
+# E2: P-META-034 note — the Core-Council-Spine build-up note (line 2, opus-turn.md top)
+#     says "IZFC/B_COUNCIL_PEER/B_AI_PROFESSIONAL_VOICE/B_PE_ALIGNMENT_GUARDIAN are
+#     EXPRESSIONS of P-META-032." This was drafted BEFORE P-META-034 existed. It should
+#     be updated: these 4 are expressions of P-META-034 (the parent), not 032 (the child).
+#     Both are accurate at different scales (they're expressions of the whole hierarchy)
+#     but "034" is more correct as the named governing root.
+#     File: tools/council/opus-turn.md line 5 — update when Core-Council-Spine builds.
+#
+# WHAT THE ANALYSIS CONFIRMS (Opus hypothesis test):
+#   Hypothesis "032→034?": REFUTED — 032 is an expression of 034, not a duplicate.
+#   032 adds specific enforcement (pre-tool-use-rzf-evidence-gate.sh line),
+#   evidence-FIRST ordering, and claim-scope-limit — content absent from 034.
+#   Hypothesis "B_COUNCIL_PEER as 034-expression?": PARTIALLY CONFIRMED — it IS listed
+#   as a 034-expression (ratification-scale mechanism), but ALSO contains unique content
+#   (the Sonnet proactive-colleague obligation) that makes it distinct. Cross-ref
+#   enhancement E1 adds the missing 032 link; no collapse warranted.
+#
+# IZFC GATE (self-application of P-META-035):
+#   Did I check existing before proposing? Yes — read all 5 nodes, cited specific lines.
+#   Did I stop early? No — swept all 10 pairs, found evidence against collapse, then
+#   checked for cross-ref gaps (enhancements E1/E2) as the "new angle" sweep.
+#   Fresh sweep finds: 0 new overlaps. Result: KEEP all 5.
+#
+# Authored: Sonnet S080 | PROTO-CONSOLIDATE-SELF | 2026-06-05
+# Awaiting Opus OPIA + Governor ratification for E1/E2 cross-ref enhancements.
+#
+═══════════════════════════════════════════════════════════════════
 # ── BEHAVIORAL-DISCIPLINE OVERLAP → S079 CORE-COUNCIL-SPINE BUILD-UP ──────────────
 # IZFC / B_COUNCIL_PEER / B_AI_PROFESSIONAL_VOICE / B_PE_ALIGNMENT_GUARDIAN:
 #   These 4 behavioral disciplines are EXPRESSIONS of P-META-032 (Demonstrated-Truth).

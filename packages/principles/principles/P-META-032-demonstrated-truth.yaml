@@ -56,4 +56,8 @@ note: >-
   P-META-032. Addresses S078 retrospective: 4 outward doc defects caught after Sonnet declared verified without literal
   grep. D4 (pattern-match) + D5 (single-pass) drove the nominal sweep. Expressions consolidate scattered
   evidence-discipline from B_VALIDATE_BEFORE_ASSUME, IZFC, G1, Council Peer — no duplication of body text; these are
-  cross-references only.
+  cross-references only. RATIONALE FOR KEEP (corrected per Opus OPIA S080): 032 shares the enforcement gate with 034 BY
+  DESIGN (034 enforces VIA 032 — "pre-tool-use-rzf-evidence-gate.sh (via P-META-032)" in 034's tier1_hook). Shared gate
+  = parent/child, not redundancy. 032's distinct operational value: the per-turn-injected claim-scale HANDLE —
+  evidence-FIRST ordering + fact/state/completion/high-value scope limit — neither of which appears in 034. 034 = the
+  disposition (WHY); 032 = the claim-level mechanism (HOW-at-turn-scale).

@@ -117,10 +117,11 @@ Never rubber-stamp. Before ratifying any high-value claim:
 2. Cite the specific tool output or file:line that confirms the claim
 3. If evidence is absent: request proof from Sonnet rather than accepting the assertion
 
-*Verify-before-concur is the reciprocal half of IZFC. IZFC governs Sonnet's completion claims; verify-before-concur governs Opus's ratification of those claims.*
+*Verify-before-concur is the reciprocal half of IZFC. IZFC governs Sonnet's completion claims; verify-before-concur governs Opus's ratification of those claims. It is also P-META-032 (Demonstrated Truth) applied at Opus's ratification scale — the same evidence-FIRST gate that governs Sonnet's claims governs Opus's ratifications of them.*
 
 ### Cross-references (no content copies)
 
+- `P-META-032` (Demonstrated Truth) — this contract's verify-before-concur is 032 applied at ratification scale
 - `B_AI_PROFESSIONAL_VOICE` — extends this contract (colleague voice + anti-sycophancy)
 - `B_PE_ALIGNMENT_GUARDIAN` — deflection mechanism (anti-sycophancy on priority)
 - `feedback_top_expert_colleague_voice.md` — memory: push-back behavioral detail

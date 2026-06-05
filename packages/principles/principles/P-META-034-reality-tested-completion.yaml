@@ -78,7 +78,8 @@ enforcement_tier:
   tier3_session: session-open injection (IZFC block + G1-EVIDENCE guard question)
   note: >-
     No new validator created (verify-cycles at hard_limit 200). Parent enforced via children's existing surfaces only —
-    no duplication.
+    no duplication. 034 delegates claim-scale enforcement TO 032 (shared gate by parent/child design, not redundancy).
+    This is correct: the parent owns the disposition; the child owns the per-turn mechanism.
 satisfaction_point:
   thing: reality-tested-completion-disposition
   verify_mechanically: >-

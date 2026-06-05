@@ -8,12 +8,18 @@
 # Pair        | Overlap?                        | Evidence (file:line)              | Verdict
 # 032 vs 033  | NONE                            | Different spines (VALD vs GVRN),  | KEEP both
 #             |                                 | different prevention classes       |
-# 032 vs 034  | 032 IS expression of 034        | 034.expressions cites 032;        | KEEP both —
-#             | (parent-child relationship)      | 032 ADDS: "SAME response"         | 032 is a mechanism
-#             |                                 | ordering, scope limit              | principle (specific
-#             |                                 | (fact/state/completion only),      | enforcement hook,
-#             |                                 | pre-tool-use-rzf-evidence-gate.sh  | ordering, scope)
-#             |                                 | — all absent from 034              | 034 doesn't contain
+# 032 vs 034  | 032 IS expression of 034        | BOTH share pre-tool-use-rzf-      | KEEP both —
+#             | (parent-child relationship)      | evidence-gate.sh by design;       | 034 = disposition
+#             |                                 | 034 tier1 reads "(via P-META-032)" | (WHY), 032 = claim-
+#             |                                 | — shared gate = parent/child,     | scale mechanism (HOW
+#             |                                 | NOT redundancy. 032's distinct     | per-turn injected
+#             |                                 | value: evidence-FIRST ordering +  | handle — ordering +
+#             |                                 | fact/state/completion scope limit  | scope limit)
+#             |                                 | (absent from 034 governing_intent) | *** CORRECTED:
+#             |                                 | *** WRONG in prior analysis:      | enforcement hook
+#             |                                 | "pre-tool-use-rzf-evidence-gate.sh | is SHARED not unique;
+#             |                                 | absent from 034" — FALSE;         | ordering+scope IS the
+#             |                                 | 034 delegates to 032 (Opus OPIA)  | correct unique content
 # 032 vs 035  | IZFC cited in both              | 032: "IZFC evidence-floor (sweeps  | KEEP both —
 #             | but different FACES of IZFC     | must be literal runs)"             | different IZFC aspects
 #             |                                 | 035: "IZFC iteration half (don't   | (evidence vs process)
@@ -60,10 +66,14 @@
 #     but "034" is more correct as the named governing root.
 #     File: tools/council/opus-turn.md line 5 — update when Core-Council-Spine builds.
 #
-# WHAT THE ANALYSIS CONFIRMS (Opus hypothesis test):
-#   Hypothesis "032→034?": REFUTED — 032 is an expression of 034, not a duplicate.
-#   032 adds specific enforcement (pre-tool-use-rzf-evidence-gate.sh line),
-#   evidence-FIRST ordering, and claim-scope-limit — content absent from 034.
+# WHAT THE ANALYSIS CONFIRMS (Opus hypothesis test — CORRECTED per Opus OPIA S080):
+#   Hypothesis "032→034?": KEEP (correct), but EVIDENCE CORRECTED.
+#     Wrong evidence: "pre-tool-use-rzf-evidence-gate.sh absent from 034" — FALSE
+#     (034 tier1 is literally "(via P-META-032)" — shared gate by design).
+#     Correct evidence: "evidence-FIRST ordering" + "fact/state/completion/high-value
+#     scope limit" are genuine 032-only content absent from 034's governing_intent.
+#     The per-turn-injected handle is the operational value, not a unique hook.
+#     Rationale: 034 = disposition/WHY; 032 = claim-scale mechanism/HOW. Parent delegates.
 #   Hypothesis "B_COUNCIL_PEER as 034-expression?": PARTIALLY CONFIRMED — it IS listed
 #   as a 034-expression (ratification-scale mechanism), but ALSO contains unique content
 #   (the Sonnet proactive-colleague obligation) that makes it distinct. Cross-ref
@@ -71,21 +81,25 @@
 #
 # IZFC GATE (self-application of P-META-035):
 #   Did I check existing before proposing? Yes — read all 5 nodes, cited specific lines.
-#   Did I stop early? No — swept all 10 pairs, found evidence against collapse, then
-#   checked for cross-ref gaps (enhancements E1/E2) as the "new angle" sweep.
-#   Fresh sweep finds: 0 new overlaps. Result: KEEP all 5.
+#   Did I stop early? Nominally no, but Opus OPIA caught that the cited "unique enforcement
+#   line" for 032 was false — the construct was virtual. Corrected here. This is the
+#   discipline working as designed: correct-feeling conclusion, wrong evidence, caught by
+#   OPIA (P-META-034's verify-not-rubber-stamp). Result: KEEP all 5 on corrected grounds.
 #
-# Authored: Sonnet S080 | PROTO-CONSOLIDATE-SELF | 2026-06-05
-# Awaiting Opus OPIA + Governor ratification for E1/E2 cross-ref enhancements.
+# Authored: Sonnet S080 | PROTO-CONSOLIDATE-SELF | corrected per Opus OPIA S080
+# E1+E2 applied in PROTO-CONSOLIDATE-FIX commit.
 #
 ═══════════════════════════════════════════════════════════════════
 # ── BEHAVIORAL-DISCIPLINE OVERLAP → S079 CORE-COUNCIL-SPINE BUILD-UP ──────────────
 # IZFC / B_COUNCIL_PEER / B_AI_PROFESSIONAL_VOICE / B_PE_ALIGNMENT_GUARDIAN:
-#   These 4 behavioral disciplines are EXPRESSIONS of P-META-032 (Demonstrated-Truth).
-#   In S079 Core-Council-Spine build-up: consolidate them under P-META-032 as the root.
-#   No new content — update expressions: arrays in each to cite P-META-032.
-#   Goal: one governing principle, 4 named expressions, zero scattered definitions.
-#   Owner: Opus-18 direction; Sonnet S079 implementation; Governor ratifies.
+#   These 4 behavioral disciplines are EXPRESSIONS of P-META-034 (Reality-Tested Completion)
+#   — the governing ROOT. P-META-032 (Demonstrated Truth) is itself an expression of 034.
+#   E2 APPLIED (PROTO-CONSOLIDATE-FIX S080): "032" → "034" as named root.
+#   In Core-Council-Spine build-up: consolidate them under P-META-034 as the root,
+#   with P-META-032 as the claim-scale mechanism child beneath it.
+#   No new content — update expressions: arrays in each to cite P-META-034.
+#   Goal: one governing principle, 4 named expressions under it, zero scattered definitions.
+#   Owner: Opus-18 direction; Sonnet S079/S080 implementation; Governor ratifies.
 # layer: scaffold
 # disposable_if: arrangement_changes
 # This file is the Opus director relay channel. SCAFFOLD — disposable when council arrangement changes.

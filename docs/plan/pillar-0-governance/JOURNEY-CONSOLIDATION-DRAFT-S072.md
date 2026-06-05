@@ -13,7 +13,6 @@ protection_level: protected
 status: ratified
 ratified_by: "Governor (S081, OPUS-18 directed)"
 ratified_at: "2026-06-05"
-ratification_note: "Platform Attitude model (SUBSTRATE+DEFAULT+VARIETY) is the governing model. §7 supersedes the flat trunk-branches taxonomy of §2/§3. M1 routing consolidation (journey-trunk+journeys redirect to /platform/journey) already executed in S072."
 impl_status: audit-1-complete
 core_spine: GVRN
 core_spines: [GVRN, AI, OPER]
@@ -37,7 +36,7 @@ links:
 
 # Journey Consolidation Draft — S072
 
-> **Status: DRAFT** for Governor ratification. No new pages built. No code. This draft exposes the current state, maps trunk vs. branches, and identifies greenfield gaps.
+> **Status: RATIFIED** — Governor S081, OPUS-18 directed. The Platform Attitude model (§7: SUBSTRATE + DEFAULT + VARIETY) is the governing model; it supersedes the flat trunk-branches taxonomy of §2/§3. The M1 routing consolidation (journey-trunk + journeys redirect to /platform/journey) was already executed in S072.
 
 ---
 

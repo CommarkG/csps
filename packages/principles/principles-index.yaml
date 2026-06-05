@@ -5,7 +5,7 @@
 # Source: packages/principles/principles.yaml
 # Run `pnpm --filter @csps/principles split` to regenerate after editing principles.yaml
 meta:
-  total_count: 77
+  total_count: 78
   generated_at: '2026-06-05'
   source: packages/principles/principles.yaml
   slices_dir: packages/principles/principles/
@@ -358,6 +358,11 @@ principles:
     category: meta-governance
     severity: critical
     path: ./principles/P-META-035-iteration-and-reuse.yaml
+  - id: P-META-036
+    name: no-orphans-law
+    category: meta-governance
+    severity: critical
+    path: ./principles/P-META-036-no-orphans-law.yaml
   - id: P-ARCH-028
     name: csps-core-spines
     category: architecture

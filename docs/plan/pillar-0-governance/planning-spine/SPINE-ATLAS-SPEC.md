@@ -20,16 +20,25 @@ tags:
   - maturity:draft
 links:
   - { rel: planning-spine, href: PLANNING-SPINE.md }
+  - { rel: no-orphans-law, href: ../../../../packages/principles/principles/P-META-036-no-orphans-law.yaml }
+  - { rel: platform-attitude-ratified, href: ../JOURNEY-CONSOLIDATION-DRAFT-S072.md }
   - { rel: platform-inventory-scan, href: ../../../../tools/scripts/platform-inventory-scan.mjs }
   - { rel: existing-seed-canonical-concepts, href: ../../../../tools/config/canonical-concepts-registry.yaml }
   - { rel: existing-seed-platform-genome, href: ../PLATFORM-GENOME.md }
-  - { rel: a2-cycles-audit, href: ../../../../docs/plan/_handoff/HANDOFF-S079-to-S080.md }
+  - { rel: a2-cycles-audit, href: ../../../../docs/plan/_handoff/HANDOFF-S080-to-S081.md }
 ---
 
 # Spine Atlas — Specification
 
 > **⚠️ TOOLING BLOCKED:** Implementation requires A2-cycles-audit to free an EXTENDED-tier validator slot.
 > This file is the **design spec** only. No tooling built here.
+
+## Foundation
+
+The Atlas rests on two ratified foundations:
+
+- **P-META-036 (No-Orphans Law)** — every node must declare spine parent + canonical home at creation. The Atlas ENFORCES this law by requiring registration at the moment of creation. Without P-META-036, the Atlas is a map of the already-scatter-free world; with it, the law and the map are built simultaneously.
+- **Platform Attitude (JOURNEY-CONSOLIDATION-DRAFT-S072.md, ratified S081)** — every platform output follows SUBSTRATE + DEFAULT + VARIETY. The Atlas's output — when queried — follows this same pattern: substrate (always-on spine taxonomy) + default (the canonical home answer) + variety (aliases + deprecated labels that redirect).
 
 ---
 

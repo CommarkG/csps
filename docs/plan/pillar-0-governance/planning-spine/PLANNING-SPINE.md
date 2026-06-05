@@ -106,7 +106,20 @@ A re-entrant gate is not a stage you visit once — it is a test that fires agai
 
 - **P-META-034** (Reality-Tested Completion) — governs COMPLETION-TEST: exit the loop only when genuine examination from independent angles repeatedly finds nothing new
 - **P-META-035** (Iteration & Reuse) — governs the loop and re-entrant gates: iterate before stopping; reuse before creating
+- **P-META-036** (No-Orphans Law) — governs CLASSIFY: every artifact created by the Spine must declare its spine parent + canonical home at creation time. No orphan nodes may exit the loop.
+- **JOURNEY-CONSOLIDATION-DRAFT-S072.md** (Platform Attitude — RATIFIED S081) — the trunk model that defines SUBSTRATE + DEFAULT + VARIETY: the Spine's output is always one DEFAULT + named VARIETY options; never hardcodes one answer.
 - **CSPS-PLANNING-DISCIPLINE.md** — governs the Opus+Sonnet role split inside this loop; full planning constitution
+
+---
+
+## Foundation (ratified prerequisites)
+
+The Planning Spine rests on two ratified artifacts:
+
+| Foundation | What it provides | Status |
+|-----------|-----------------|--------|
+| **JOURNEY-CONSOLIDATION-DRAFT-S072.md** (Platform Attitude) | The output model: SUBSTRATE (always-on) + DEFAULT (one shippable path) + VARIETY (named selectable variants). Every spine output follows this pattern. | ✅ RATIFIED S081 |
+| **P-META-036** (No-Orphans Law) | Every node created through the spine must declare its spine parent. No artifact without a home. | ✅ ENGRAVED S081 |
 
 ---
 
@@ -114,7 +127,7 @@ A re-entrant gate is not a stage you visit once — it is a test that fires agai
 
 | Artifact | Role in spine |
 |---------|--------------|
-| `SPINE-ATLAS-SPEC.md` | Substrate: what CHECK-EXISTS queries; tooling BLOCKED on A2-cycles-audit |
+| `SPINE-ATLAS-SPEC.md` | Substrate: what CHECK-EXISTS queries; includes the 6-rank sensitive-places gate; tooling BLOCKED on A2-cycles-audit |
 | `RESEARCH-INPUT.md` | How research enters the loop; what triggers it; schema |
 | `ITERATION-REUSE-DYNAMICS.md` | Deep dive on how P-META-035 is expressed in the loop |
 | `INHERITANCE-MODEL.md` | Carry-forward; how planning decisions propagate across sessions and audits |

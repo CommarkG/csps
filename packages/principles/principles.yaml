@@ -3915,6 +3915,76 @@ principles:
       stopping (IZFC), reuse before creating (P-META-016 + check-existing + satisfaction-point-registry + EXISTS≠ACTIVE).
       The two principles together cover: don't stop without reality-testing claims (P-META-034) AND don't stop or
       start without exhausting existing process paths (P-META-035). Principles 35/80.
+  - id: P-META-036
+    name: no-orphans-law
+    aliases:
+      - no-orphans-principle
+      - spine-membership-required
+      - creation-equals-declaration
+      - anti-scatter-keystone
+    title: "No-Orphans Law — Every Node Declares Its Home at Birth"
+    description: >
+      An orphan is a platform node — principle, contract, validator, hook, document, route, register — that
+      exists without a spine parent, without a canonical home, and without Atlas registration. Orphans cannot
+      be found, cannot be consolidated, and cannot be audited. They are the origin point of scatter. The
+      No-Orphans Law: creation equals declaration. No node may be promoted to a persisted artifact without
+      declaring (1) its primary spine (GVRN/ARCH/AI/OPER/VALD), (2) its canonical home path, and
+      (3) an Atlas entry (when the Atlas exists) or a frontmatter `core_spine:` + `schema_anchor:` pair
+      (the current equivalent). Prevention class: ARTIFACT-WITHOUT-SPINE-DECLARATION.
+    spine: GVRN
+    layer: L1
+    category: meta-governance
+    severity: critical
+    governing_intent: >
+      Every platform node must belong to exactly one canonical spine at creation time.
+      The Spine Atlas can only consolidate nodes that are already registered — it cannot retroactively assign
+      spine membership to artifacts that never declared one. Therefore creation IS declaration: a node without
+      a spine parent does not yet exist as a governed artifact; it is a draft that may become scatter.
+      This is the structural prerequisite for the Atlas and the anti-scatter keystone that prevents future
+      principle-scatter itself: if every node must declare its home at birth, the 25-partial-index disease
+      cannot form, because each new index would require naming where it lives before it may be written.
+      P-META-035 governs the process (check existing before creating). This law governs the structure (declare
+      spine + home in the same action as creation). Together they close both scatter-formation vectors:
+      P-META-035 prevents needless-start; P-META-036 ensures any start is self-locating.
+    tagline: "A node without a home is not a node — it is future scatter."
+    cautions:
+      - "This is a STRUCTURAL LAW, not a process disposition (P-META-035 is the process). P-META-036 governs what the artifact declares; P-META-035 governs what the AI checks before creating."
+      - "Declaration without accuracy is worse than no declaration. A node with `core_spine: GVRN` that belongs to ARCH is an actively misleading orphan. The declaration must be correct, not just present."
+      - "Phase-B enforcement upgrade is required for full effect. The current gate (pre-tool-use-corespine-check.sh) is advisory (exit 0 always). This law is structurally correct but partially enforced until Phase-B ships."
+    lineage:
+      parent_principle: null
+      complements: P-META-035
+      complement_note: "P-META-035 governs the process (check existing before creating). P-META-036 governs the artifact (declare spine + home at creation). Both are required to prevent scatter at the origin."
+    composes_with:
+      - P-META-035
+      - P-META-028
+    expressions:
+      - "pre-tool-use-corespine-check.sh (T1 gate — CURRENTLY ADVISORY, exit 0 always; Phase-B upgrade to blocking per No-Orphans Law enforcement tier)"
+      - "core_spine: + schema_anchor: frontmatter fields (declaration surface — current Atlas-equivalent at every artifact)"
+      - "Spine Atlas SPINE-ATLAS-SPEC.md (Atlas registration — full declaration surface; tooling BLOCKED on A2-cycles-audit)"
+      - "threshold-classify.mjs + threshold-router.mjs (CLASSIFY re-entrant gate in Planning Spine — spine declaration at process entry)"
+    enforcement_tier:
+      tier1_hook: "pre-tool-use-corespine-check.sh (CURRENTLY ADVISORY — warns, exit 0 always; Phase-B build upgrades to blocking per this law)"
+      tier2_validator: "validate-spine-atlas-currency.mjs (DESIGNED, not built — asserts every node has Atlas entry; BLOCKED on A2-cycles-audit + Phase-B)"
+      tier3_session: "session-open injection + CONCEPT_LOAD per-turn (spine classification at every turn)"
+      phase_b_note: "No-Orphans Law enforcement upgrade = Phase-B build: corespine-check exit-1 on Write without core_spine. Requires: EXTENDED validator slot (A2-cycles-audit) + Governor ratification of blocking severity."
+    satisfaction_point:
+      thing: no-orphans-law-active
+      verify_mechanically: "grep 'P-META-036' packages/principles/principles.yaml | wc -l"
+      block_test: "Write a governance .md without core_spine: → pre-tool-use-corespine-check.sh warns (currently advisory; blocking after Phase-B)"
+    ratified_by: "Opus-18 S081 (PROTO-CONCEPT-FOUNDATION). Governor ratification pending."
+    ratified_date: '2026-06-05'
+    session: S081
+    self_check_q: |
+      "Does this new artifact declare its spine parent (core_spine:) + canonical home (schema_anchor:)?
+       If no declaration: the artifact cannot be created per No-Orphans Law.
+       If the Atlas exists: is it registered? (Atlas = full enforcement; frontmatter = current-equivalent)"
+    note: >-
+      P-META-036. The anti-scatter keystone: every node must declare spine + home at birth.
+      Structural complement to P-META-035 (process disposition). Together: P-META-035 prevents
+      needless-start; P-META-036 ensures every start is self-locating. Enforcement upgrade (Phase-B):
+      corespine-check T1 advisory → blocking. Full enforcement: Spine Atlas + validate-spine-atlas-currency.mjs.
+      Principles 36/80.
   - id: P-ARCH-028
     name: csps-core-spines
     aliases:

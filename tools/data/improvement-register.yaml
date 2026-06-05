@@ -1578,3 +1578,55 @@ entries:
   not_yet_propagated:
     - When CIE ADJUST pipeline activates: review cie_adjust signal entries + canonicalize signal_class enum
   note: "S079 close (PROTO-S079-CLOSE). back-ref: PROTO-S079-PARENT CIE ADJUST signal. Low urgency (pipeline deferred)."
+
+- id: imp_PLANNING_IMPLEMENTING_INHERITANCE_GAP
+  title: "Planning→Implementing inheritance: Sonnet builds from recent-turn context, missing Opus planning constraints"
+  description: >
+    S080 (PROTO-PLANNING-SPINE-02): identified in INHERITANCE-MODEL.md Domain 2. When Opus designs a plan with
+    specific constraints (spine, scope, sequence), Sonnet builds from the last few turns of context rather than
+    the full planning intent — implementation is technically correct but misses governance constraints.
+    Known cases: S072 journey-trunk built as standalone (violating M1 consolidation decision same session);
+    S078 P-META-032 built without parent cross-ref (caught in OPIA — constraint was in PROTO, compressed by turn 20).
+    Fix path: (1) make PROTO scope-lock mandatory in validate-proto-completeness checks; (2) CLASSIFY re-fire
+    at planning→implementing boundary; (3) satisfaction-point-registry entry for "planning constraints inherited."
+  first_found: S080
+  k_count: 1
+  sessions: [S080]
+  status: open
+  cie_connection: "observe"
+  pe_connection: "input"
+  pe_band: 2
+  pe_urgency_input: true
+  cie_observation_class: inheritance_gap
+  must_address_by_session: "before-journeys-build"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Add scope-lock to validate-proto-completeness.mjs required fields
+    - Add audit back-reference field to closing-summary template
+    - Register in satisfaction-point-registry.yaml
+  note: "INHERITANCE-MODEL.md Domain 2. back-ref: PROTO-PLANNING-SPINE-02 S080."
+
+- id: imp_IMPLEMENTING_AUDITING_INHERITANCE_GAP
+  title: "Implementing→Auditing inheritance: audit evaluates commit, not original planning intent (7-session drift example)"
+  description: >
+    S080 (PROTO-PLANNING-SPINE-02): identified in INHERITANCE-MODEL.md Domain 3 as the weakest domain.
+    Audit artifacts (OPIA verdicts, closing-summaries) evaluate against the implementation commit and Zone A
+    state — NOT the original planning intent which may be 3-5 sessions back in the handoff archive.
+    Canonical case: Platform Attitude model ratification gap — planned S072 (Opus OPIA-accepted), untraced
+    by S079 audit 7 sessions later. Fix path: audit artifacts carry back-reference to original planning decision;
+    COMPLETION-TEST Stage 6 requires "does this satisfy the crystallized intent from Stage 3?"
+  first_found: S080
+  k_count: 1
+  sessions: [S080]
+  status: open
+  cie_connection: "observe"
+  pe_connection: "input"
+  pe_band: 2
+  pe_urgency_input: true
+  cie_observation_class: inheritance_gap
+  must_address_by_session: "before-journeys-audit"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - Add planning_decision_origin field to closing-summary template
+    - COMPLETION-TEST Stage 6 self-check Q (governing intent satisfaction)
+  note: "INHERITANCE-MODEL.md Domain 3. back-ref: PROTO-PLANNING-SPINE-02 S080. Platform Attitude gap is the canonical example."

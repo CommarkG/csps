@@ -21,7 +21,7 @@ links:
   - { rel: session-state, href: ../../tools/session-state.json }
   - { rel: cross-tab-diff-review, href: ../../tools/scripts/cross-tab-diff-review.mjs }
   - { rel: gap-session-injection-compression, href: ../../tools/data/gap-recurrence-register.yaml }
-  - { rel: inner-ai-defaults, href: ../../docs/plan/_handoff/VAULT/inner-ai-defaults/ }
+  - { rel: inner-ai-defaults, href: ../../docs/plan/_handoff/VAULT/inner-ai-defaults/README.md }
 ---
 
 # CSPS: How Inheritance Works

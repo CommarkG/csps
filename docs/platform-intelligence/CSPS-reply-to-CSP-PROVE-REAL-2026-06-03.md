@@ -19,7 +19,7 @@ tags:
 links:
   - { rel: parent-principle, href: ../../packages/principles/principles/P-META-034-reality-tested-completion.yaml }
   - { rel: p-meta-032, href: ../../packages/principles/principles/P-META-032-demonstrated-truth.yaml }
-  - { rel: izfc-memory, href: "C:/Users/finky/.claude/projects/c--Users-finky-Desktop-Claude-Code-Csps/memory/feedback_izfc_excellence_completion.md" }
+  - { rel: iteration-reuse, href: ../../packages/principles/principles/P-META-035-iteration-and-reuse.yaml }
   - { rel: council-peer-charter, href: ../plan/pillar-0-governance/ai-collaboration-charter.md }
 ---
 

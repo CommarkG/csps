@@ -1,9 +1,9 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S079",
-  "previous_session": "S078",
-  "session_updated_at": "2026-06-04T00:00:00.000Z",
+  "current_session": "S080",
+  "previous_session": "S079",
+  "session_updated_at": "2026-06-05T00:00:00.000Z",
   "session_role": "sonnet-builder",
   "active_hardwire_items": [],
   "_active_hardwire_note": "Items currently in-progress via HARDWIRE protocol. Update at session close. hardwire-002 = council-write relay channel (BATCH 3 done, block-test recorded).",
@@ -56,7 +56,7 @@
     }
   },
   "session_mandate": {
-    "primary": "S079 CLOSED: P-META-034 Reality-Tested Completion engraved (parent of P-META-032/IZFC/B_COUNCIL_PEER/ZF). CSP exchange complete (Prevention MD + Inheritance MD). Principles 76/80. Cycles 199/200 (DISCREPANT — reconcile in A2). Vault 63/80. PARKED CHAIN: A2-cycles-audit (A2 = FIRST: reconcile cycle counter discrepancy + STANDARD→EXTENDED tier) → DIM3-01 → stale-prune → D1-marker → core-seed → journeys.",
+    "primary": "S080 CLOSED: P-META-034/035 + B_COUNCIL_PEER engraved. Planning Spine scaffold (7-stage loop + SPINE-ATLAS-SPEC + sensitive-places map). Self-consolidation dogfood: 5 principles all KEEP on corrected evidence. CSP exchange sealed. Principles 77/80. Cycles 199/200 (DISCREPANT). Vault 63/80. OPEN THREADS: intent-alignment fold → thin slice (journey front-door through Spine) → A2-cycles-audit → S072 ratify → DIM3-01 → stale-prune → D1 → core-seed → journeys.",
     "model_tier": "STANDARD_BUILD",
     "blocking_on": "NONE — Journeys phase open. App#1 unchosen. PARKED CHAIN precedes journeys.",
     "situation": "WAVE_1_PREVENTION_BUILD",

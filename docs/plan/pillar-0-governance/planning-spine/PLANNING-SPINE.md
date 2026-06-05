@@ -9,6 +9,8 @@ lifecycle_state: active
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
 status: draft
+ratification_ready: true
+ratification_unit: "Planning Spine cluster — PLANNING-SPINE.md + stages/01-06 + SPINE-ATLAS-SPEC.md + RESEARCH-INPUT.md + ITERATION-REUSE-DYNAMICS.md + INHERITANCE-MODEL.md + P-META-035 + sensitive-places map. S080 LOCKED. Governor ratification pending."
 authored_by: Sonnet S080
 authored_at: "2026-06-05"
 tags:

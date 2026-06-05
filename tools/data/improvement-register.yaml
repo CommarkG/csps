@@ -1633,3 +1633,31 @@ entries:
     - Add planning_decision_origin field to closing-summary template
     - COMPLETION-TEST Stage 6 self-check Q (governing intent satisfaction)
   note: "INHERITANCE-MODEL.md Domain 3. back-ref: PROTO-PLANNING-SPINE-02 S080. Platform Attitude gap is the canonical example."
+
+- id: imp_DEAD_LINKS_CRLF_FRONTMATTER
+  title: "validate-dead-links.mjs: CRLF frontmatter detection fails — 2000-char fallback truncates hrefs"
+  description: >
+    S081: validate-dead-links.mjs detects frontmatter end via content.indexOf('\n---\n', 4).
+    Windows CRLF files use '\r\n---\r\n'; indexOf returns -1 and the validator falls back to
+    content.slice(0, 2000). Any href appearing near index 2000 is truncated — producing a false
+    broken-link report. In S081 this caused ratification_note to push ./PLATFORM-OBSERVATION-
+    DOCTRINE.md past index 2000, yielding href: ./PLA (reported as BLOCKING new break).
+    Verify-instrument fragility: a flaky gate produces false results, violating P-META-034
+    (the construct producing the output must itself contact reality — a truncated path is not reality).
+    Fix (Phase B): normalize CRLF before indexOf: content.replace(/\r\n/g, '\n') OR match \r?\n---\r?\n.
+    Also affects: any CSPS governance doc with large frontmatter on Windows.
+  first_found: S081
+  k_count: 1
+  sessions: [S081]
+  status: open
+  cie_connection: "observe"
+  pe_connection: "input"
+  pe_band: 2
+  pe_urgency_input: true
+  cie_observation_class: verify_instrument_fragility
+  must_address_by_session: "S082-phase-b"
+  fix_commit_sha: null
+  not_yet_propagated:
+    - "tools/validators/validate-dead-links.mjs: add CRLF normalization before indexOf frontmatter detection"
+    - "Test: CRLF file with frontmatter > 2000 chars — verify reports 0 new breaks"
+  note: "S081 close. back-ref: PROTO-FOUNDATION-FIX root cause. Needs Phase-B with A2-cycles-audit (EXTENDED slot). P-META-034 verify-instrument-fragility class."

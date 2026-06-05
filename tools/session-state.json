@@ -1,8 +1,8 @@
 {
   "_comment": "CSPS Session State — committed seed file. Updated at session close. Surfaced automatically by user-prompt-submit-intake.sh on session open. The mechanical bridge between sessions.",
   "_schema": "tools/model-tier-registry.yaml + docs/plan/_handoff/VAULT/topic-plans/ for context",
-  "current_session": "S080",
-  "previous_session": "S079",
+  "current_session": "S081",
+  "previous_session": "S080",
   "session_updated_at": "2026-06-05T00:00:00.000Z",
   "session_role": "sonnet-builder",
   "active_hardwire_items": [],
@@ -56,7 +56,7 @@
     }
   },
   "session_mandate": {
-    "primary": "S080 CLOSED: P-META-034/035 + B_COUNCIL_PEER engraved. Planning Spine scaffold (7-stage loop + SPINE-ATLAS-SPEC + sensitive-places map). Self-consolidation dogfood: 5 principles all KEEP on corrected evidence. CSP exchange sealed. Principles 77/80. Cycles 199/200 (DISCREPANT). Vault 63/80. OPEN THREADS: intent-alignment fold → thin slice (journey front-door through Spine) → A2-cycles-audit → S072 ratify → DIM3-01 → stale-prune → D1 → core-seed → journeys.",
+    "primary": "S081 CLOSED: P-META-036 No-Orphans Law engraved. S072 ratified (Platform Attitude SUBSTRATE+DEFAULT+VARIETY). CRLF dead-links bug found + fixed. Principles 78/80. Cycles 199/200 (DISCREPANT). Vault 63/80. CONCEPT 2/7 done. REMAINING: intent-align fold → threshold weave → spine-as-core-spine → AI-profiling → ratify cluster. Then Phase B: stabilize verify instrument → thin slice test-drive → journeys.",
     "model_tier": "STANDARD_BUILD",
     "blocking_on": "NONE — Journeys phase open. App#1 unchosen. PARKED CHAIN precedes journeys.",
     "situation": "WAVE_1_PREVENTION_BUILD",

@@ -9,7 +9,7 @@
 | **Current session** | S079 |
 | **Previous session** | S078 |
 | **Last updated** | 1 day(s) ago |
-| **Last commit** | 9de74b6 feat(S080-planning-spine): P-META-035 Iteration&Reuse + Planning Spine scaffold (6 DRAFT docs) |
+| **Last commit** | b06131b fix(S080-consolidate-fix): correct 032-keep rationale + E1/E2 cross-refs |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

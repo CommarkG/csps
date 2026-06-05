@@ -9,7 +9,7 @@
 | **Current session** | S080 |
 | **Previous session** | S079 |
 | **Last updated** | today |
-| **Last commit** | 21ab26b ops(S080-CLOSE): S080 CLOSE — extraction + HANDOFF + closing-summary + session-state |
+| **Last commit** | 27113ce feat(S081-concept-foundation): P-META-036 No-Orphans Law + S072 ratified + Spine docs updated |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

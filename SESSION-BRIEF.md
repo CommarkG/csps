@@ -6,16 +6,16 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S079 |
-| **Previous session** | S078 |
-| **Last updated** | 1 day(s) ago |
-| **Last commit** | b06131b fix(S080-consolidate-fix): correct 032-keep rationale + E1/E2 cross-refs |
+| **Current session** | S080 |
+| **Previous session** | S079 |
+| **Last updated** | today |
+| **Last commit** | 21ab26b ops(S080-CLOSE): S080 CLOSE — extraction + HANDOFF + closing-summary + session-state |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
-## What S079 must do
+## What S080 must do
 
-**S079 CLOSED: P-META-034 Reality-Tested Completion engraved (parent of P-META-032/IZFC/B_COUNCIL_PEER/ZF). CSP exchange complete (Prevention MD + Inheritance MD). Principles 76/80. Cycles 199/200 (DISCREPANT — reconcile in A2). Vault 63/80. PARKED CHAIN: A2-cycles-audit (A2 = FIRST: reconcile cycle counter discrepancy + STANDARD→EXTENDED tier) → DIM3-01 → stale-prune → D1-marker → core-seed → journeys.**
+**S080 CLOSED: P-META-034/035 + B_COUNCIL_PEER engraved. Planning Spine scaffold (7-stage loop + SPINE-ATLAS-SPEC + sensitive-places map). Self-consolidation dogfood: 5 principles all KEEP on corrected evidence. CSP exchange sealed. Principles 77/80. Cycles 199/200 (DISCREPANT). Vault 63/80. OPEN THREADS: intent-alignment fold → thin slice (journey front-door through Spine) → A2-cycles-audit → S072 ratify → DIM3-01 → stale-prune → D1 → core-seed → journeys.**
 
 
 

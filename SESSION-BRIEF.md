@@ -6,16 +6,16 @@
 
 | Field | Value |
 |---|---|
-| **Current session** | S080 |
-| **Previous session** | S079 |
+| **Current session** | S081 |
+| **Previous session** | S080 |
 | **Last updated** | today |
-| **Last commit** | 27113ce feat(S081-concept-foundation): P-META-036 No-Orphans Law + S072 ratified + Spine docs updated |
+| **Last commit** | 45a5a2b ops(S081-CLOSE): S081 CLOSE — extraction + HANDOFF + CRLF register + session-state |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 
-## What S080 must do
+## What S081 must do
 
-**S080 CLOSED: P-META-034/035 + B_COUNCIL_PEER engraved. Planning Spine scaffold (7-stage loop + SPINE-ATLAS-SPEC + sensitive-places map). Self-consolidation dogfood: 5 principles all KEEP on corrected evidence. CSP exchange sealed. Principles 77/80. Cycles 199/200 (DISCREPANT). Vault 63/80. OPEN THREADS: intent-alignment fold → thin slice (journey front-door through Spine) → A2-cycles-audit → S072 ratify → DIM3-01 → stale-prune → D1 → core-seed → journeys.**
+**S081 CLOSED: P-META-036 No-Orphans Law engraved. S072 ratified (Platform Attitude SUBSTRATE+DEFAULT+VARIETY). CRLF dead-links bug found + fixed. Principles 78/80. Cycles 199/200 (DISCREPANT). Vault 63/80. CONCEPT 2/7 done. REMAINING: intent-align fold → threshold weave → spine-as-core-spine → AI-profiling → ratify cluster. Then Phase B: stabilize verify instrument → thin slice test-drive → journeys.**
 
 
 

@@ -29,6 +29,20 @@ links:
 
 ## Report Index
 
+## Exchange Infrastructure (S082)
+
+| File | Purpose |
+|------|---------|
+| [exchange-log.yaml](./exchange-log.yaml) | SSoT — all items both directions, absorption status |
+| [absorption-validation.md](./absorption-validation.md) | Human-readable validation checklist |
+| [CROSS-PLATFORM-EXCHANGE-SPEC.md](./CROSS-PLATFORM-EXCHANGE-SPEC.md) | Full framework spec + communication template |
+
+**7 outgoing reports pending CSP confirmation.** 0 incoming. Use `§10.11c Cross-Platform Exchange` in closing summaries.
+
+---
+
+## Outgoing Reports
+
 | Report | Topic | Date | Core Spine |
 |--------|-------|------|------------|
 | [PE Engine](./CSPS-report-on-Priority-Engine-for-CSP-2026-06-03.md) | Priority Engine — sequencing, deflection, Foundation Exit Gate, full wiring | 2026-06-03 | GVRN |

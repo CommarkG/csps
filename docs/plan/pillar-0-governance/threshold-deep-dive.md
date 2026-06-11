@@ -22,8 +22,8 @@ tags:
   - audience:ai-agent
   - maturity:stable
 links:
-  - { rel: layer-1-spec, href: ./threshold-gate.md }
-  - { rel: layer-1-v2, href: ./threshold-gate-v2.md }
+  - { rel: layer-1-canonical, href: ./threshold-gate-v2.md }
+  - { rel: layer-1-v1-archived, href: ./threshold-gate.md }
   - { rel: layer-2-protocol, href: ./threshold-intake-protocol.md }
   - { rel: layer-3-wizard, href: ./meta-platform/threshold-gate.md }
   - { rel: implementation, href: ../../../libs/threshold/src/intake.ts }
@@ -39,6 +39,8 @@ context_question: "Is this document current with the active session's Threshold 
 ---
 
 # The Threshold — Complete Reference
+
+> **Canonical gate (Layer 1):** [`threshold-gate-v2.md`](./threshold-gate-v2.md) — as of S082, this is the canonical governance gate doc (v3). Read that file for the authoritative pipeline, PARK 4-lane model, DNA-stamp, and No-Orphans cascade. This deep-dive is the **3-layer comprehensive reference** that also covers Layer 2 (I→VI discipline) and Layer 3 (OnboardingWizard).
 
 > **The central claim:** Every input that enters CSPS — user prompts, external files, agent outputs, AI behavioral defaults, competitor intelligence — crosses The Threshold before any processing occurs. No exceptions. No bypasses. The Threshold is not a filter. It is a **transformer**: raw inputs become typed, classified, routed events. This is how governance happens at the INPUT STREAM level, not just at merge time.
 

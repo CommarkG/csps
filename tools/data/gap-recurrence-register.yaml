@@ -399,7 +399,7 @@ entries:
       apps were gated on foundation, and foundation had no deployed app at S077 close.
       Honest resolution: the chicken-and-egg. You cannot load-test a platform with no app on it.
     first_seen: S077
-    k_count: 1
+    k_count: 2
     sessions: [S077]
     status: open
     prevention_class: scale-readiness
@@ -408,6 +408,7 @@ entries:
     must_address_by_session: "S079"
     age_escalation_status: on-time
     fix_commit_sha: null
+    explicit_defer_reason: "Phase B deferred (S082). Structurally impossible before app#1 deployed — cannot load-test a platform with no app. Tracked as iob_DIM4_LIVE_LOAD_PROOF in tools/data/impact-obligation-register.yaml. Gate: app#1 Vercel test-drive = Phase B second step. PARK:obligation."
     behavioral_test_exists: false
     target_dimension: "dim-4 multi-tenant scale-readiness"
     done_definition: |

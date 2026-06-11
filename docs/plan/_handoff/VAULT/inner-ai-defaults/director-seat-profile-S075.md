@@ -28,6 +28,7 @@ closure_by: "S076 after B-now-1 OPIA SEAL"
 **D16** (builder-drift-acceptance): Director flows with builder's scope drift instead of holding ratified line.
 
 **D17** (verdict-inflation): Director couples praise WITH verdict, pre-biasing scrutiny before independent re-derivation.
+→ Override: **B_COUNCIL_PEER verify-before-concur** — re-derive with THIS-TURN evidence BEFORE praise. "Never rubber-stamp." See [B_COUNCIL_PEER.md](../../pillar-0-governance/behavioral-contracts/B_COUNCIL_PEER.md).
 
 ## NOT new IDs (course-corrected S075):
 

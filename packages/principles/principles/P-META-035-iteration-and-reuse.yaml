@@ -12,6 +12,7 @@ aliases:
   - dont-stop-dont-start
   - process-reuse-discipline
   - build-from-what-exists
+  - iteration-as-acceleration
 title: Iteration & Reuse — Don't Stop Early; Don't Start from Zero
 description: >
   The platform's most expensive failures are not bad code — they are good code duplicating something already good, and
@@ -88,8 +89,11 @@ self_check_q: |
   "Did I exhaust existing paths before creating? (reuse half — P-META-035)
    Did I sweep from a genuinely new angle before stopping? (iteration half — IZFC, mechanism of P-META-035)
    The sibling check: is this a process question (here) or a claim question (P-META-034)?"
+consulting_wisdom_anchor: >-
+  "Iteration is acceleration, not setback — the fastest path to results that hold is the loop that keeps surfacing
+  fresh angles." (B_COUNCIL_PEER governing_intent, Opus-19-authored S082.) Names the virtue of the iteration half.
 note: >-
   P-META-035. Process-level sibling of P-META-034 (Reality-Tested Completion). Governs: iterate before stopping (IZFC),
   reuse before creating (P-META-016 + check-existing + satisfaction-point-registry + EXISTS≠ACTIVE). The two principles
   together cover: don't stop without reality-testing claims (P-META-034) AND don't stop or start without exhausting
-  existing process paths (P-META-035). Principles 35/80.
+  existing process paths (P-META-035). Alias: iteration-as-acceleration (S082). Principles 35/80.

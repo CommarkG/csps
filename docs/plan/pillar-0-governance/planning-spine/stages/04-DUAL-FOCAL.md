@@ -2,11 +2,11 @@
 id: csps.governance.planning-spine.stage-dual-focal
 name: planning-spine-stage-dual-focal
 description: "Stage 4 — DUAL-FOCAL. Holds the why (governance/architectural) and how (implementation) simultaneously before committing to a direction. Canonical: csps-dual-focal-plan.yaml."
-version: "0.1-draft"
+version: "0.1"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
-status: draft
+status: ratified
 re_entrant: false
 canonical_artifact: docs/plan/csps-dual-focal-plan.yaml
 ---
@@ -34,4 +34,4 @@ DUAL-FOCAL is the bridge between INTENT-CRYSTALLIZE (which produces the WHY) and
 `CSPS-PLANNING-DISCIPLINE.md` §context+reasoning mandates: "When presented correctly with context and reasoning, AI collaborates flawlessly. Without it, AI pushes its own directive of doing things now." DUAL-FOCAL is the structural implementation of this: force both lenses before proceeding.
 
 ---
-*DRAFT — part of Planning Spine scaffold. Not built until Governor ratifies loop model.*
+*RATIFIED — part of Planning Spine cluster. Ratified S082 · 2026-06-11.*

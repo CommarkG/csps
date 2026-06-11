@@ -37,7 +37,9 @@ scope_level: S1
 context_question: "Before relying on this governance document: is it current with the active session, or does it reflect an older platform state?"
 ---
 
-# The Threshold — CSPS Universal Input Gate
+# The Threshold — CSPS Universal Input Gate (v1 — Archived)
+
+> **⚠️ S082 Consolidation:** This v1 spec has been superseded by [`threshold-gate-v2.md`](./threshold-gate-v2.md) (the canonical v3 gate doc). Content from §4 (import quarantine), §5 (B_INTAKE_GATE), and §6 (platform moat) was absorbed into v2. This file is kept for link stability. Read `threshold-gate-v2.md` for current governance.
 
 > **"All inputs cross The Threshold or they don't enter CSPS."**  
 > Raw inputs become typed `IntakeEvent` envelopes before any processing occurs.

@@ -2,11 +2,11 @@
 id: csps.governance.planning-spine.stage-classify
 name: planning-spine-stage-classify
 description: "Stage 1 — CLASSIFY. RE-ENTRANT gate. Identifies spine, audience_tier, pipeline route before any planning work begins. Re-fires on goal-refine, new-research, and post-completion-test loop-back."
-version: "0.1-draft"
+version: "0.1"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
-status: draft
+status: ratified
 re_entrant: true
 re_entrant_triggers:
   - goal-refine
@@ -41,4 +41,4 @@ CLASSIFY fires again when:
 A once-classified input that is never re-classified drifts. S076 Dimension-4 was initially classified as a performance spike; it was actually a multi-tenant quota architecture question (ARCH). The classification gap caused 3 sessions of misrouted work. Re-classification at goal-refine prevents this.
 
 ---
-*DRAFT — part of Planning Spine scaffold. Not built until Governor ratifies loop model.*
+*RATIFIED — part of Planning Spine cluster. Ratified S082 · 2026-06-11.*

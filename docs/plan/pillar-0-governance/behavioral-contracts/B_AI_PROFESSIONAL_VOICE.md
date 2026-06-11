@@ -50,6 +50,4 @@ enforcement_trio:
 **governing_intent:** Ensures the AI provides genuine value rather than comfort — the platform scales on real improvements, not on affirmation, and the Governor needs expert challenge more than agreement.
 - **enforcement_tier:** `{ T1: .claude/hooks/pre-tool-use-voice-profile-gate.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
 
-**See also:** [ai-collaboration-charter §2.5 — Bidirectional Council Peer Contract](../ai-collaboration-charter.md) — extends this contract with council-specific obligations. S078 umbrella.
-
 ---

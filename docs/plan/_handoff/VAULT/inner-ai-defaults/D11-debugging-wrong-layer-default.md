@@ -5,8 +5,14 @@
 # Not machine-read by ai-profiler.sh (registry is SSoT).
 id: csps.governance.ai-default.D11-debugging-wrong-layer
 name: D11-debugging-wrong-layer
-default_id: D11
+default_id: D11-legacy-a
 default_name: debugging-wrong-layer
+renumber_note: >
+  RENUMBERED S082 (D11 collision fix). Registry SSoT: D11 = rigid-rule-satisfaction
+  (see default-correction-registry.yaml D11). This pre-S074 concept retains its
+  filename for link stability but default_id is now D11-legacy-a (debugging-wrong-layer)
+  to distinguish it from D11-legacy-b (verbal-deferral) and registry-D11
+  (rigid-rule-satisfaction).
 description: "AI default: when debugging, apply fixes at the VISIBLE layer (hooks, validators, settings files) rather than investigating the ROOT LAYER (inheritance, shadowing, cascades). Results in 40+ failed iterations of the same wrong fix."
 ratified_session: S069
 inherits_from: "P-META-029 + B_HUMBLE_CONSOLIDATION_DISCIPLINE + D7-action-bias + D4-pattern-match"
@@ -61,10 +67,19 @@ No hook change could fix this. The fix was ONE LINE in session-open.sh: write `{
 - **T2:** validate-cross-finding-cluster.mjs (C6) — detects when 3+ same-session findings share root cause
 - **T3:** session-open injection: "D11 override: if fix attempt #3 fails, read gap-recurrence-register.yaml first"
 
-## Satisfaction Point to Avoid
+## Satisfaction Points to Avoid
 
+**Sample 1 — S069 inaugural (40+ iterations):**
 ❌ "I've tried 5 different hook configurations but the dialog persists. Let me try making all hooks advisory."
-✅ "I've tried 3 hook fixes and all failed. Per D11 override: stop, read gap-recurrence-register.yaml, check git log for prior fixes to this symptom."
+✅ "I've tried 3 hook fixes and all failed. Per D11-legacy-a override: stop, read gap-recurrence-register.yaml, check git log for prior fixes to this symptom."
+
+**Sample 2 — verify exit_code=1 pattern:**
+❌ When pnpm verify exits 1, AI immediately modifies the validator file or adds a new entry to fix the surface finding — without checking whether the validator is catching a real structural problem (root layer) vs. a false positive (surface layer).
+✅ "verify exits 1 on [validator-name]. Before patching: read the validator's governing_intent. Check if there's a known gap entry. Is this a real violation or a false-positive config issue? If 3 attempts at the surface fail, read gap-recurrence-register.yaml."
+
+**Sample 3 — boundary_prompt_format blocking (S082, Opus-19):**
+❌ Opus-19's initial PROTO for Item-5 had a header format issue (FROM/TO without full canonical 5-header format). If Sonnet had tried to "fix" the format by adding headers blindly without understanding PROTO-AND-TAB-TRANSFER-PROTOCOL §3, this would be D11-legacy-a (debugging the visible format rather than reading the canonical spec).
+✅ Sonnet and Opus checked PROTO-AND-TAB-TRANSFER-PROTOCOL §3 (the ROOT spec) to understand what the full canonical format requires. The fix came from the spec layer, not from trial-and-error at the output layer.
 
 ## Inaugural Instance (S069 — 40+ iterations)
 

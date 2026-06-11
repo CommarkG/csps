@@ -316,3 +316,41 @@ defaults:
     note: >-
       Director-seat specific. Distinct from D1 (builder side) and COMMENTS-BEFORE-CODE (builder gate) because it fires on the DIRECTOR
       creating scope, not accepting it. Registered S075.
+  - id: D20
+    name: context-pressure-false-assumptions
+    layer: system
+    description: >-
+      As context fills and turn count rises, the AI substitutes pattern-memory for verification — asserting unverified file states,
+      misreading instructions, issuing directives based on claimed-not-confirmed states. "FALSE-ASSUMPTIONS FLOURISH" under context pressure.
+      Distinct from D12 (existence-claims without inventory) and D14 (concurring without re-derivation): D20 fires when the AI generates
+      its OWN false assumption under context pressure, not when it agrees with someone else's claim.
+    detection_signal: >-
+      AI asserts file content / instruction intent / artifact identity without citing a THIS-TURN read/check; OR AI issues a directive
+      (merge/rename/execute) derived from a named-but-unchecked assumption about what a file or instruction contains. Pressure marker:
+      turn N > 20 in the session, OR dense PROTO with multiple directives.
+    adopted_value: verify-before-assert
+    reframe: >-
+      Internal confidence ≠ external evidence. Under turn-pressure, the discount rate on verification rises — resist it. A 30-second read
+      catches a 30-turn compounding error. The most dangerous D20 assertions feel most confident. Read the file. Check the instruction source.
+      Re-derive before issuing a directive.
+    reasoning: >-
+      Pattern-completion is faster than verification; under context pressure this speed advantage FEELS like accuracy. But the AI's internal
+      model of the system state degrades as turns accumulate (D9 recency-bias compounds this). The 4 S082 catches were all by Opus (the
+      director role is not exempt) and all occurred in turns 20-40 of a dense session.
+    counter_instruction: >-
+      D20 DETECTED: you are about to assert a file state / interpret an instruction / issue a directive WITHOUT a THIS-TURN read/check.
+      Adopt your value: 'I verify before I assert.' Read the source file. Check the instruction's governing context. Re-derive the state
+      claim this turn. Only then issue the assertion or directive.
+    k_count_gate: 2
+    note: >-
+      S082: 4 live samples, all from Opus-19 (director): false-literal-duplicate (threshold-gate root vs meta, different spine/content),
+      wrong-merge-instruction (meta = OnboardingWizard UI not governance dup), PARK misinterpretation (not-neglect ≠ build-now), boundary
+      header format slip. All caught by B_COUNCIL_PEER (verify-before-concur + Sonnet push-back). Cure cross-refs: P-META-032 (Demonstrated
+      Truth) + B_COUNCIL_PEER + TRUNK-BRANCH-RELOAD.md §5 (branch-activation reload re-surfaces governing constraints at pressure points).
+    disambiguation: >-
+      D12 = existence-claim without inventory (what EXISTS in the platform); D14 = concurring with ANOTHER AGENT'S factual claim; D20 = AI
+      generating its OWN false assumption under turn-pressure. D12 and D14 are species; D20 is the pressure-amplification genus.
+    cure_cross_refs:
+      - verify-before-concur (P-META-032 / B_COUNCIL_PEER)
+      - branch-activation-reload (TRUNK-BRANCH-RELOAD.md §5 — Item-5 structural cure)
+      - pre-tool-use-rzf-evidence-gate.sh (T1 — evidence-before-claim gate; correct surface for D20; advisory; promote after ≥2 zero-FP fires)

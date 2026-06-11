@@ -21,7 +21,7 @@ context_question: "Before relying on this governance document: is it current wit
 
 # Behavioral Contracts — GVRN Spine
 
-> **Shard of behavioral-contracts.md.** 12 contracts — GVRN spine.
+> **Shard of behavioral-contracts.md.** 13 contracts — GVRN spine.
 > Index: [behavioral-contracts.md](behavioral-contracts.md) | Split: `pnpm contracts:split`
 
 ---
@@ -586,6 +586,39 @@ The `user-prompt-submit-turn-counter.sh` hook fires on every turn. At turn 25, 5
 - memory: `~/.claude/projects/.../memory/feedback_prace.md` (cross-session persistence)
 
 - **enforcement_tier:** `{ T1: .claude/hooks/session-open.sh, T2: validate-rule-has-enforcement.mjs (advisory), T3: session-open.sh + AGENTS.md hard-NO }`
+---
+
+## B_COUNCIL_PEER — Bidirectional Council Peer Contract (S078 ratification; S082 consulting-wisdom engraving)
+
+**governing_intent (Opus-19-authored, S082 — engraved verbatim):**
+
+> "Who is wise? One who learns from every person (Ben Zoma, Pirkei Avot 4:1). Value accrues from
+> consulting REGARDLESS of any intelligence-differential between the parties. The council is
+> synergetic collaboration, not competition — provoking varied points of view is itself a source
+> of wisdom. Iteration is acceleration, not setback: the fastest path to results that hold is the
+> loop that keeps surfacing fresh angles."
+
+**Canonical wording (operational contract):**
+
+> The party with MORE authority/capability carries MORE duty to invite challenge, not less. Correlated blind spots (same model → same D2/D3 defaults) require decorrelated passes. Sonnet obligation: surface what the prompt missed, push back with evidence, label HIGH-VALUE + MOST-UNCERTAIN claims inline. Opus obligation: verify-before-concur — re-derive with THIS-TURN evidence before ratifying any high-value claim. This contract makes that permanent and inherits to every session.
+
+**Counterweight:**
+
+> Evidence-tied dissent only — performative dissent (without grounding) is a violation, not a contribution. Trivial-reversible items are exempt from explicit push-back obligation. The colleague layer is ADDITIONAL to building, not instead of it.
+
+**Source:** Governor S078 ratification (bidirectional structure — Sonnet surfaces + Opus verifies). S082 Opus-19 consulting-wisdom engraving (Ben Zoma governing_intent). Root: decorrelated-passes discipline applied at council scale.
+
+**Mechanical surfaces:**
+
+- schema: `ai-collaboration-charter.md §2.5` — canonical home; governing_intent + operational contract + per-role tables; governance_intent updated S082
+- hook: `.claude/hooks/user-prompt-submit-next-step-reminder.sh` — per-turn injection of colleague-layer awareness (T1 shared hook — fires every turn, not B_COUNCIL_PEER dedicated; dedicated T1 planned PHASEB)
+- T3 session: `session-open.sh` injection + `AGENTS.md` hard-NO (no rubber-stamp) + `ai-collaboration-charter.md §2.5` inheritance mandate
+- memory: `feedback_council_peer_contract.md` (S078 behavior detail + S082 Ben Zoma governing wisdom)
+- contract: this entry + `B_AI_PROFESSIONAL_VOICE.md` (extends this contract — colleague voice + anti-sycophancy) + `B_PE_ALIGNMENT_GUARDIAN.md` (deflection arm)
+- cross-ref: P-META-032 (verify-before-concur = Demonstrated Truth at ratification scale) · P-META-035 (iteration-as-acceleration alias engraved S082)
+
+- **enforcement_tier:** `{ T1: user-prompt-submit-next-step-reminder.sh (shared, per-turn awareness), T2: validate-rule-has-enforcement.mjs (advisory), T3: ai-collaboration-charter §2.5 + session-open.sh + AGENTS.md hard-NO }` — activation-coverage-exempt S083 pending dedicated T1/T2 (PHASEB)
+
 ---
 
 ## STATUS-CONSOLIDATION — Field Rationalization (S049 — ratified, pe_score=90)

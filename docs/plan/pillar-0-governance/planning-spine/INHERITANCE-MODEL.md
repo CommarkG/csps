@@ -2,20 +2,20 @@
 id: csps.governance.planning-spine.inheritance-model
 name: INHERITANCE-MODEL
 description: "How planning decisions propagate across sessions (carry-forward), into implementation, and into auditing. Extends the inheritance model to the two weak domains identified in Opus audit: implementing and auditing inheritance."
-version: "0.1-draft"
+version: "0.1"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
-status: draft
+status: ratified
 authored_by: Sonnet S080
 authored_at: "2026-06-05"
 tags:
   - domain:governance
   - type:reference
   - audience:developer
-  - maturity:draft
+  - maturity:stable
 links:
   - { rel: handoff-s079-to-s080, href: ../../_handoff/HANDOFF-S079-to-S080.md }
   - { rel: planning-spine, href: PLANNING-SPINE.md }
@@ -57,12 +57,16 @@ This is where planning decisions most frequently lose inheritance.
 - S072: journey-trunk page built as standalone (violating M1 consolidation decision from the same session)
 - S078: Sonnet built P-META-032 without the parent cross-ref (caught in OPIA — the constraint was in the Opus PROTO, compressed by turn 20)
 
-**What would close this gap:**
-- PROTO directives should carry a "SCOPE LOCK" section (already in some PROTOs) — make it required
-- The planning-to-implementing boundary should trigger a CLASSIFY re-fire: "what is the governing constraint from the Opus plan?" before Sonnet begins building
-- The satisfaction-point-registry.yaml should have an entry for "planning constraints inherited by implementation" — currently absent
+**Structural cure — Branch-Activation Reload (S082):**
 
-**Honest status:** WEAK. No structural fix committed. This is a known inheritance gap.
+The trunk-branch-reload model (`TRUNK-BRANCH-RELOAD.md §5`) defines the Domain-2 cure: when a domain branch activates for implementation, it emits a **trunk-reload bundle** containing:
+- `crystallized_intent` — the Stage-3 named output field (what the plan was supposed to achieve)
+- `scope_lock` — the Opus PROTO's DO NOW section verbatim
+- `no_orphans_home` — the declared spine + schema_anchor
+
+This re-surfaces the planning constraint at the build boundary, preventing the compression-loss failure. The PROTO scope-lock (existing convention in many PROTOs) becomes mandatory and formally structured as the reload trigger.
+
+**Status:** STRUCTURAL FIX DESIGNED (S082). Enforcement = PHASEB (gated on cycle-counter reconciliation). See `TRUNK-BRANCH-RELOAD.md §5`.
 
 ---
 
@@ -78,12 +82,17 @@ The weakest inheritance domain. Once implementation completes, the audit often e
 2. Sonnet implements in S072: builds the redirect consolidation
 3. Audit in S079: confirms "6 routes, consolidation done" — but doesn't check whether the Platform Attitude model itself was ratified (the core planning decision is untraced 7 sessions later)
 
-**What would close this gap:**
-- Audit artifacts (closing-summaries, OPIA verdicts) should carry a back-reference to the original planning decision, not just the implementation commit
-- The planning-spine COMPLETION-TEST (Stage 6) should be the anchor: "does this implementation satisfy the intent crystallized in Stage 3 of the planning loop?"
-- An "audit spine" (separate from the planning spine) that traces decisions back to their planning origin
+**Structural cure — Branch-Activation Reload at Audit Boundary (S082):**
 
-**Honest status:** WEAKEST. No structural fix committed. gap_SESSION_INJECTION_COMPRESSION is a symptom of this — the planning intent survives in HANDOFF files but is not surfaced during audit unless someone reads the archive.
+The trunk-branch-reload model (`TRUNK-BRANCH-RELOAD.md §5`) defines the Domain-3 cure: when an audit begins (OPIA, closing-summary §10.0), it loads the **branch-activation-reload bundle** from the implementing session. The bundle contains:
+- `crystallized_intent` — the Stage-3 named field (the original planning intent)
+- `completion_criteria` — the Stage-6 definition from the planning loop
+
+The audit now evaluates against the planning origin, not just the commit. The OPIA verdict back-references `crystallized_intent` rather than only the implementation state.
+
+This also closes the gap identified in INHERITANCE-MODEL improvement item 3: "At COMPLETION-TEST (Stage 6): require explicit 'does this satisfy the original crystallized intent?' question" — that question now reads from the named `crystallized_intent` field, not from AI memory.
+
+**Status:** STRUCTURAL FIX DESIGNED (S082). Enforcement = PHASEB. See `TRUNK-BRANCH-RELOAD.md §5`.
 
 ---
 
@@ -111,5 +120,5 @@ Auditing (OPIA / closing-summary)
 3. At COMPLETION-TEST (Stage 6): require explicit "does this satisfy the original crystallized intent?" question
 
 ---
-*DRAFT v0.1 | Sonnet S080 | 2026-06-05*
+*RATIFIED v0.1 | Sonnet S080 | Ratified S082 · 2026-06-11*
 *Gap noted: implementing+auditing inheritance weakness registered for structural fix in improvement-register (not yet added — will register at commit time per P-META-033)*

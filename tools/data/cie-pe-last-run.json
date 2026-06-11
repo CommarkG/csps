@@ -1,8 +1,8 @@
 {
-  "ran_at": "2026-06-03T11:19:29.873Z",
+  "ran_at": "2026-06-11T12:11:47.625Z",
   "observe_stage": {
-    "total": 6,
-    "with_tier": 6,
+    "total": 7,
+    "with_tier": 7,
     "missing_tier": 0
   },
   "cie_milestone_audit": {

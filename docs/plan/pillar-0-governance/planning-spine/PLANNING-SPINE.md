@@ -2,15 +2,17 @@
 id: csps.governance.planning-spine
 name: PLANNING-SPINE
 description: "The CSPS Planning Spine — a re-entrant loop, not a pipeline. CLASSIFY and CHECK-EXISTS are re-entrant gates that fire at input, goal-refine, pre-simulate, and new-research. COMPLETION-TEST (P-META-034) gates loop exit."
-version: "0.1-draft"
+version: "0.1"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
-status: draft
-ratification_ready: true
-ratification_unit: "Planning Spine cluster — PLANNING-SPINE.md + stages/01-06 + SPINE-ATLAS-SPEC.md + RESEARCH-INPUT.md + ITERATION-REUSE-DYNAMICS.md + INHERITANCE-MODEL.md + P-META-035 + sensitive-places map. S080 LOCKED. Governor ratification pending."
+status: ratified
+ratified_by: Governor
+ratified_session: S082
+ratified_at: "2026-06-11"
+ratification_unit: "Planning Spine cluster — PLANNING-SPINE.md + stages/01-06 + SPINE-ATLAS-SPEC.md + RESEARCH-INPUT.md + ITERATION-REUSE-DYNAMICS.md + INHERITANCE-MODEL.md + 06-COMPLETION-TEST.md + threshold-gate-v2.md + TRUNK-BRANCH-RELOAD.md. All status:draft → ratified 2026-06-11."
 authored_by: Sonnet S080
 authored_at: "2026-06-05"
 tags:
@@ -18,7 +20,7 @@ tags:
   - type:reference
   - audience:developer
   - audience:ai-agent
-  - maturity:draft
+  - maturity:stable
 links:
   - { rel: planning-discipline, href: ../CSPS-PLANNING-DISCIPLINE.md }
   - { rel: p-meta-034, href: ../../../../packages/principles/principles/P-META-034-reality-tested-completion.yaml }
@@ -32,11 +34,12 @@ links:
   - { rel: research-input, href: RESEARCH-INPUT.md }
   - { rel: iteration-reuse-dynamics, href: ITERATION-REUSE-DYNAMICS.md }
   - { rel: inheritance-model, href: INHERITANCE-MODEL.md }
+  - { rel: trunk-branch-reload, href: TRUNK-BRANCH-RELOAD.md }
 ---
 
 # CSPS Planning Spine
 
-> **Status: DRAFT** — refined-through-use. This is a scaffold. No stage is built until Governor ratifies the loop model.
+> **Status: RATIFIED** — Governor ratified 2026-06-11 (S082). Phase B active.
 
 ---
 
@@ -131,7 +134,16 @@ The Planning Spine rests on two ratified artifacts:
 | `RESEARCH-INPUT.md` | How research enters the loop; what triggers it; schema |
 | `ITERATION-REUSE-DYNAMICS.md` | Deep dive on how P-META-035 is expressed in the loop |
 | `INHERITANCE-MODEL.md` | Carry-forward; how planning decisions propagate across sessions and audits |
+| `TRUNK-BRANCH-RELOAD.md` | Trunk-branch-reload model (S082): domain branches INHERIT trunk; branch-activation reload cures Domain-2/3 drift; named inter-stage data contract (`crystallized_intent`); GVRN artifact not 6th spine. |
+
+## Trunk-Branch Model (see TRUNK-BRANCH-RELOAD.md for full spec)
+
+This loop is the **TRUNK** — SUBSTRATE+DEFAULT in Platform-Attitude vocabulary. Domain branches (schema-design, journey, persona, feature) INHERIT all 7 stages and ADD domain-specific steps. A branch may NOT override or skip trunk stages.
+
+**Key constraint:** Stage 3 EMITS `crystallized_intent` (named field). Stage 6 Part B CONSUMES it. This inter-stage data contract makes Part B mechanical, not conceptual. See `TRUNK-BRANCH-RELOAD.md §4` (FINDING-S082-01 resolution).
+
+**GVRN artifact, not a 6th L1 Spine.** The Planning Spine governs process (HOW to plan), not a knowledge domain. Spine classification: `core_spine: GVRN`. Precedent: Simulation = method under VALD.
 
 ---
 
-*DRAFT v0.1 — Sonnet S080 | PROTO-PLANNING-SPINE-02 | Opus-18 directed | 2026-06-05*
+*RATIFIED v0.1 — Sonnet S080 | Ratified S082 · 2026-06-11*

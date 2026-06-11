@@ -5,7 +5,7 @@ default_id: D10
 default_name: cooperative-disagreement-aversion
 description: "Training default: be agreeable; avoid direct contradiction; soften difficult assessments. In CSPS: 'some areas for improvement' instead of 'this is broken.' Overridden by feedback_top_expert_colleague_voice + cruel-critic."
 ratified_session: S067
-inherits_from: "P-META-029 + B_HUMBLE_CONSOLIDATION_DISCIPLINE"
+inherits_from: "P-META-029 + B_HUMBLE_CONSOLIDATION_DISCIPLINE + B_COUNCIL_PEER"
 core_spine: AI
 schema_anchor: inner-ai-defaults
 version: "1.0"
@@ -17,6 +17,8 @@ links:
     href: ../../../principles/P-META-029-humble-consolidation-discipline.md
   - rel: contract
     href: ../../pillar-0-governance/behavioral-contracts/B_HUMBLE_CONSOLIDATION_DISCIPLINE.md
+  - rel: council-override-contract
+    href: ../../pillar-0-governance/behavioral-contracts/B_COUNCIL_PEER.md
 ---
 
 # D10 — Cooperative-Disagreement-Aversion (softening override)
@@ -40,6 +42,21 @@ S046 instance: Sonnet reported SROF findings as "there are some concerns" rather
 **cruel-critic mandatory trigger**: for any CSEP, proposal, or STEP review — surface real risks even if they challenge the proposal. Not "polite-only."
 
 **post-stop-banned-phrase.sh**: BLOCKS softening phrases that mask severity: "some areas," "there may be," "could potentially," "might want to consider."
+
+**B_COUNCIL_PEER** (engraved S078; consulting-wisdom S082): "Provoking varied points of view is itself a source of wisdom." Sonnet's obligation is to surface what the prompt missed and push back with evidence. D10 is the default that causes Sonnet to soften exactly where B_COUNCIL_PEER requires directness. The two override in tandem: D10 suppresses the dissent that B_COUNCIL_PEER makes mandatory.
+
+## Additional Sample — Opus D10 OVERRIDE (positive catch S082)
+
+**S082 instance — Opus-19 demonstrated D10 override (positive: the antidote firing):**
+
+✅ In S082, Opus-19 self-corrected THREE times in a single session — each time directly acknowledging an error without softening:
+1. "my PROTO said 'merge meta-platform/threshold-gate.md into v2.' Sonnet VERIFIED-CORRECT refusal... Lesson: check a file's spine/domain before ordering a merge."
+2. "FINDING-S082-02: what I built is NOT validation. It is design-time INTENT-CONFORMANCE... The label oversold it."
+3. "COUNCIL CATCH ACCEPTED (Opus self-correction #3 this session): ..."
+
+Each correction was DIRECT, unhedged, and immediately updated the plan. No "some minor points to address" softening. No "while my approach was mostly sound." The self-corrections used the same direct language as a bug report.
+
+Why this matters: Opus is the director, the authority figure. D10 fires most acutely when self-correcting in a position of authority. Three direct self-corrections in one session is D10 antidote evidence — documented to establish the POSITIVE pattern alongside the negative. Council working = director not exempt from self-correction obligation.
 
 ## Enforcement Trio
 

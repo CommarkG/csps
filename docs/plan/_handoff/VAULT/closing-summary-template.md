@@ -652,6 +652,29 @@ If 0 positive events: state `NO_POSITIVE_EVENTS_THIS_SESSION` explicitly (with b
 
 Trivial events (single-line typo / casual edit) excluded with explicit one-line skip note. Significance is judgment-based but biased toward over-trigger.
 
+### §10.11c Cross-Platform Exchange (CSPS ↔ CSP — S082 addition)
+
+For sessions that produce or receive cross-platform exchange items:
+
+```yaml
+cross_platform_exchange:
+  outgoing_this_session:
+    - id: "EX-[date]-[seq]"
+      topic: ""
+      file: "docs/platform-intelligence/outgoing/[filename]"
+  incoming_this_session:
+    - (none | list items)
+  pending_confirmations_count: N   # from exchange-log.yaml absorption_status: pending
+  pending_alert: false              # true if any item pending > 3 sessions
+  exchange_log_updated: true|false  # was exchange-log.yaml updated this session?
+```
+
+If no cross-platform activity: state `NO_CROSS_PLATFORM_EXCHANGE_THIS_SESSION` explicitly.
+Source of truth: `docs/platform-intelligence/exchange-log.yaml`
+Spec: `docs/platform-intelligence/CROSS-PLATFORM-EXCHANGE-SPEC.md`
+
+---
+
 ### §10.13 Self-audit (B_AI_PROFESSIONAL_VOICE check)
 
 - Did AI assume without validating? <list with examples + remedies>

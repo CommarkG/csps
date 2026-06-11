@@ -40,7 +40,7 @@ context_question: "Before relying on this governance document: is it current wit
 
 | Shard | Spine | Contracts | Approx tokens |
 |---|---|---|---|
-| [behavioral-contracts-GVRN.md](behavioral-contracts-GVRN.md) | GVRN | 12 | ~14K |
+| [behavioral-contracts-GVRN.md](behavioral-contracts-GVRN.md) | GVRN | 13 | ~14K |
 | [behavioral-contracts-AI.md](behavioral-contracts-AI.md) | AI | 12 | ~12K |
 | [behavioral-contracts-ARCH.md](behavioral-contracts-ARCH.md) | ARCH | 12 | ~12K |
 | [behavioral-contracts-VALD.md](behavioral-contracts-VALD.md) | VALD | 10 | ~10K |
@@ -119,6 +119,7 @@ context_question: "Before relying on this governance document: is it current wit
 | [B_INHERITANCE_POLICY](behavioral-contracts/B_INHERITANCE_POLICY.md) | GVRN | [shard](behavioral-contracts-GVRN.md) |
 | [B_PRACE](behavioral-contracts/B_PRACE.md) | GVRN | [shard](behavioral-contracts-GVRN.md) |
 | [B_DEFINITION_BEFORE_ENFORCEMENT](behavioral-contracts/B_DEFINITION_BEFORE_ENFORCEMENT.md) | VALD | [shard](behavioral-contracts-VALD.md) |
+| [B_COUNCIL_PEER](behavioral-contracts/B_COUNCIL_PEER.md) | GVRN | [shard](behavioral-contracts-GVRN.md) |
 
 ---
 

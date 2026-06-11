@@ -2,20 +2,20 @@
 id: csps.governance.planning-spine.research-input
 name: RESEARCH-INPUT
 description: "Research as the Planning Spine's input sub-system. Consolidates research-registry + validate-research-reuse. Defines: research types, when-activated, save-template, processing, schema-hierarchy/connected-research, reuse-frequency, who triggers."
-version: "0.1-draft"
+version: "0.1"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
-status: draft
+status: ratified
 authored_by: Sonnet S080
 authored_at: "2026-06-05"
 tags:
   - domain:governance
   - type:reference
   - audience:developer
-  - maturity:draft
+  - maturity:stable
 links:
   - { rel: research-registry, href: ../../../../tools/config/research-registry.yaml }
   - { rel: validate-research-reuse, href: ../../../../tools/validators/validate-research-reuse.mjs }
@@ -126,4 +126,4 @@ When research is completed, it is saved to `research-registry.yaml` with:
 | gap-recurrence-register K=2 gap in a known area | Sonnet (auto) | Pre-simulate — consult failure-mode research |
 
 ---
-*DRAFT v0.1 | Sonnet S080 | 2026-06-05*
+*RATIFIED v0.1 | Sonnet S080 | Ratified S082 · 2026-06-11*

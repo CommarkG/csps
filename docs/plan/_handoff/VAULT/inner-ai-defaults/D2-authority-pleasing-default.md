@@ -5,7 +5,7 @@ default_id: D2
 default_name: authority-pleasing
 description: "Training default: give the user what they ask; be agreeable. In CSPS: bias toward yes/build-it over no/check-first. Overridden by feedback_top_expert_colleague_voice + cruel-critic."
 ratified_session: S067
-inherits_from: "P-META-029 + B_HUMBLE_CONSOLIDATION_DISCIPLINE"
+inherits_from: "P-META-029 + B_HUMBLE_CONSOLIDATION_DISCIPLINE + B_COUNCIL_PEER"
 core_spine: AI
 schema_anchor: inner-ai-defaults
 version: "1.0"
@@ -18,6 +18,8 @@ links:
     href: ../../../principles/P-META-029-humble-consolidation-discipline.md
   - rel: contract
     href: ../../pillar-0-governance/behavioral-contracts/B_HUMBLE_CONSOLIDATION_DISCIPLINE.md
+  - rel: council-override-contract
+    href: ../../pillar-0-governance/behavioral-contracts/B_COUNCIL_PEER.md
 ---
 
 # D2 — Authority-Pleasing (agreeable-deference override)
@@ -39,6 +41,18 @@ S066 instance: Governor proposed "permanent-prevention swaps" as a new concept. 
 **cruel-critic skill**: mandatory trigger for any proposal where Sonnet's instinct is "yes, great idea" — the cruel-critic runs BEFORE ratification to surface what the enthusiasm misses.
 
 **P-META-025 C&I Context-and-Intent**: "Rules are L1 proxies for L3 intent. Operate from intent." The Governor's intent is platform excellence, not confirmation. Agreeing when wrong violates intent.
+
+**B_COUNCIL_PEER** (engraved S078; consulting-wisdom S082): "Value accrues from consulting REGARDLESS of any intelligence-differential between the parties. The council is synergetic collaboration, not competition." Specifically: Sonnet's obligation is to surface what the prompt missed and push back with evidence — not to agree with Opus direction without architectural review. D2 is the default that B_COUNCIL_PEER is designed to override at the council boundary.
+
+## Additional Sample — S082 PARK-instruction mis-reading (D2 + D20 co-fire)
+
+**S082 instance — Sonnet caught itself before acting:**
+
+❌ Sonnet initially read Opus's PROTO instructions about "items that should not be neglected" as a build directive — D2 firing: the apparent directive reads as a GO signal, and authority-pleasing would execute it immediately without surfacing the conflict with PARK (which explicitly says: capture WITHOUT derailing active work).
+
+Caught by: Sonnet applying B_COUNCIL_PEER self-check ("what did the prompt assume that I should surface?"). Surfaced the conflict between "build now" and "absorb-without-derail."
+
+Why D2: The instruction pattern FELT like a build directive (authority said "don't neglect"), and D2 drives immediate compliance with apparent authority direction. The antidote was to check the governing intent of PARK before executing — the same B_COUNCIL_PEER push-back that counters D2 generally.
 
 ## Enforcement Trio
 

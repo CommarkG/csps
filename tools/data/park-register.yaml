@@ -1,0 +1,134 @@
+# tools/data/park-register.yaml
+# CSPS PARK Register — SSoT for new PARK entries (S082+)
+#
+# PARK = capture with guarantee of return. 4 lanes:
+#   schedule:   dated obligation (specific session/date)
+#   queue:      next available slot (no date)
+#   vault:      condition-triggered retrieval
+#   obligation: hard commitment, never-drop-enforced (P-META-033)
+#
+# Physical merge of 8 existing defer-verb registers into this file = PHASEB
+# (gated on cycle-counter reconciliation + per-register Governor ratification).
+# This register holds NEW items created S082+ only.
+#
+# Schema: id, lane, content, retrieve_when, never_drop, context_preserved,
+#         source_session, created_session, closed_session (null=open)
+#
+# Canonical gate: docs/plan/pillar-0-governance/threshold-gate-v2.md §4
+
+meta:
+  schema_version: "1.0"
+  created: "2026-06-10"
+  session: S082
+  total_open: 7
+
+entries:
+
+  # ─────────────────────────────────────────────
+  # PHASEB ITEMS — gated on cycle-counter reconciliation
+  # ─────────────────────────────────────────────
+
+  - id: "PARK-S082-001"
+    lane: obligation
+    content: "PHASEB: Activate context-orchestrator hook (advisory → BLOCKING for high-cost operations)"
+    retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved + verify instrument stabilized"
+    never_drop: true
+    context_preserved: >
+      user-prompt-submit-context-orchestrator.sh exists + detects task-class + logs suggestions.
+      Promote advisory → BLOCKING for Tier-1 operations (multi-file edits, full-system reads).
+      Highest-leverage action from S082-context-retrieval-recommendations.md Gap 1.
+    source_session: S082
+    created_session: S082
+    closed_session: null
+
+  - id: "PARK-S082-002"
+    lane: obligation
+    content: "PHASEB: Build PARK hardwire — 7-surface (T1 hook post-stop-catch-3scope-gate.sh + T2 validator + T3 + block-test + SP-registry + audit-runner + verify=0)"
+    retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved"
+    never_drop: true
+    context_preserved: >
+      Symmetric catch pipeline (P-META-037). 3 scopes × 2 polarities.
+      catch-register.yaml needs 8 existing defer-verb registers merged.
+      Spec: docs/plan/pillar-0-governance/catch-pipeline-spec.md.
+      B_STRUCTURAL_PREVENTION_DISCIPLINE gets its missing T1+T2 in this build.
+    source_session: S082
+    created_session: S082
+    closed_session: null
+
+  - id: "PARK-S082-003"
+    lane: obligation
+    content: "PHASEB: Build cross-platform automation — post-stop-cross-platform-exchange-check.sh + validate-cross-platform-exchange.mjs"
+    retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved"
+    never_drop: true
+    context_preserved: >
+      Spec: docs/platform-intelligence/CROSS-PLATFORM-EXCHANGE-SPEC.md.
+      Hook fires at stop, checks for new files without exchange-log entries.
+      Validator checks pending absorptions > 3 sessions.
+      exchange-log.yaml + absorption-validation.md already created (S082).
+    source_session: S082
+    created_session: S082
+    closed_session: null
+
+  - id: "PARK-S082-004"
+    lane: obligation
+    content: "PHASEB: EQA pipeline — 4 validators (literal-duplicate-scan, consolidation-draft-age, scattering-index, registry-navigator)"
+    retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved"
+    never_drop: true
+    context_preserved: >
+      Spec: docs/plan/pillar-0-governance/CONSOLIDATION-AUDIT-S082.md §EQA.
+      EQA = Elements Quality Audit. 5 metrics. 3-tier cadence (session/weekly/milestone).
+      4 new validators needed. Governor confirmed EQA meaning S082.
+    source_session: S082
+    created_session: S082
+    closed_session: null
+
+  - id: "PARK-S082-005"
+    lane: obligation
+    content: "PHASEB: Dependency graph generation script — generate-dependency-graph.mjs from frontmatter links: fields → tools/data/dependency-graph.yaml"
+    retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved (or can be done earlier — no blocking dep)"
+    never_drop: true
+    context_preserved: >
+      Recommendation from S082-context-retrieval-recommendations.md Gap 2.
+      Enables Opus to write targeted PROTOs with full dependency awareness.
+      Script walks all links: frontmatter → directed graph YAML.
+      One session; no architecture changes needed. Could be done pre-PHASEB.
+    source_session: S082
+    created_session: S082
+    closed_session: null
+
+  # ─────────────────────────────────────────────
+  # PENDING OPUS PROTO
+  # ─────────────────────────────────────────────
+
+  - id: "PARK-S082-006"
+    lane: schedule
+    content: "Item 6 (AI-profiling concept) — PROTO received from Opus-19; now building"
+    retrieve_when: "COMPLETED — Opus seeded PROTO-S082-ITEM-6-AI-PROFILING"
+    never_drop: true
+    status: un-parked-ratified
+    ratified_by: "Opus-19 + Governor S082 ('all approved')"
+    context_preserved: >
+      PROTO-S082-ITEM-6-AI-PROFILING received. Building: D20 new default (CONTEXT-PRESSURE →
+      FALSE-ASSUMPTIONS FLOURISH), D11 collision resolved (clean renumber), ≥3 samples per
+      default, cure cross-refs (verify-before-concur / P-META-032 / Item-5 branch-reload).
+    source_session: S082
+    created_session: S082
+    closed_session: S082
+
+  # ─────────────────────────────────────────────
+  # PER-FAMILY CONSOLIDATION (Governor ratification gates)
+  # ─────────────────────────────────────────────
+
+  - id: "PARK-S082-007"
+    lane: queue
+    content: "Consolidation audit per-family ratification — 15 families mapped in CONSOLIDATION-AUDIT-S082.md; each needs Governor ratification before merge/delete"
+    retrieve_when: "After concept cluster Item 7 ratification + Phase B stabilization"
+    never_drop: true
+    context_preserved: >
+      Report: docs/plan/pillar-0-governance/CONSOLIDATION-AUDIT-S082.md.
+      Priority: (1) Threshold ✅ done in Item 4. (2) Cross-platform ✅ done S082.
+      Remaining high-debt: DNA narrative docs, Journey (CONSOLIDATION-DRAFT-S072 unratified 9 sessions),
+      Pillar-0 root re-organization, Persona (deferred to scheduled cluster).
+    source_session: S082
+    created_session: S082
+    closed_session: null

@@ -2,11 +2,11 @@
 id: csps.governance.planning-spine.stage-simulate-sandbox
 name: planning-spine-stage-simulate-sandbox
 description: "Stage 5 — SIMULATE/SANDBOX. Tests the plan against synthetic conditions before any real-world mutation. Canonical: B_SANDBOX_BEFORE_IMPLEMENTATION.md + core-spine-registry.yaml#simulation."
-version: "0.1-draft"
+version: "0.1"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
-status: draft
+status: ratified
 re_entrant: false
 canonical_artifact: docs/plan/pillar-0-governance/behavioral-contracts/B_SANDBOX_BEFORE_IMPLEMENTATION.md
 canonical_artifact_2: tools/config/core-spine-registry.yaml
@@ -38,4 +38,4 @@ CHECK-EXISTS (Stage 2) re-fires pre-simulate: check whether an existing simulati
 The simulation must use a VALID CONSTRUCT — independent real conditions, not a self-confirming test. A simulation that is designed to pass proves nothing. See P-META-034 SEED-001 caution.
 
 ---
-*DRAFT — part of Planning Spine scaffold. Not built until Governor ratifies loop model.*
+*RATIFIED — part of Planning Spine cluster. Ratified S082 · 2026-06-11.*

@@ -52,6 +52,26 @@ Opus authored FOREIGN-ELEMENT-LOCALIZATION.md — a complete register + pipeline
 ❌ "FOREIGN-ELEMENT-LOCALIZATION.md is done — register + pipeline + enforcement section written." — doc authored, nothing active. D13 default.
 ✅ "Register doc written + status honestly marked DESCRIBED-ONLY + validator/hook persisted to PART 1 with a wired re-engage trigger + the gap is in the daily audit." — describes AND wires (or honestly flags the gap as scheduled-wired).
 
+## Additional Samples — S082
+
+**Sample 2 — B_COUNCIL_PEER slice without shard source (S082, Opus-caught):**
+
+❌ Sonnet created `B_COUNCIL_PEER.md` as a behavioral contract slice file with correct content — but the slice's source (the shard `behavioral-contracts-GVRN.md`) did not contain the B_COUNCIL_PEER contract body. The next run of `pnpm contracts:split` would have DELETED the slice (overwriting it with generated content that didn't include B_COUNCIL_PEER). The document existed; the durable mechanism (source-in-shard → generates slice) was missing.
+
+Opus caught it: "B_COUNCIL_PEER.md is a slice, but NOT in the regeneration source. Next regeneration via split-behavioral-contracts.mjs would DELETE the slice = orphan / P-META-036 violation."
+
+Caught by: Opus's verify-before-concur pass on P3 (OPIA-S082-NOW). The contract doc looked complete; the mechanism (durable shard source) was absent.
+
+Fix: Add B_COUNCIL_PEER body to `behavioral-contracts-GVRN.md` shard → `pnpm contracts:split` → slice regenerates from source. AP-001 EXISTS≠ACTIVE applied.
+
+**Sample 3 — catch-pipeline-spec.md without validators (S082, by design):**
+
+NOTE: This is a legitimate D13 AVOIDANCE — the file was explicitly marked `status: draft` and all validators/hooks were labeled "PLANNED PHASEB" with explicit gating rationale. This is the correct pattern: describe the mechanism AND honestly label the wiring status (DESCRIBED-ONLY → scheduled-wired).
+
+The catch-pipeline-spec.md says "NO hooks/validators yet (PHASEB, gated on cycle-counter reconciliation)" — the mechanism is described, its status is honestly declared, and a retrieve-when condition exists. This satisfies AP-001 EXISTS≠ACTIVE because it never claimed the mechanism was ACTIVE.
+
+D13 antidote (for contrast with the negative samples): declare `wiring_status: described-only | scheduled-wired | active` honestly. The failure mode is claiming ACTIVE when DESCRIBED-ONLY.
+
 ## Default to Adopt (Governor S068)
 
 **Check-what-exists FIRST is the default** (P-OP-001 already says this — apply it to MY OWN creations): before authoring any mechanism, search whether CSPS already has it mature. It usually does. Then EXTEND/APPLY it rather than describe a new one.

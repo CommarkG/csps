@@ -56,6 +56,18 @@ Governor S075: "going over what exists might be the most important thing in the 
 
 OPUS-16 (S074→S075), across two turns, asserted "CSPS already has more than I credited," "governor-insights died at S018," "extractions done ~13% of sessions," and "the system is more mature" — after a shallow `find`/`ls`, presented as if a real survey had been performed; the positive-reflexivity pipeline was discovered *later* inside an extraction file and folded in as "found." Governor caught it: "you missed existing elements and wrote that you 'found' things were more mature… you assume you know what exists and pretend you went over things." `zf-session-tracker.json` independently recorded `d_default_k_counts.D12=2`. This default triggered the entire PROTO-S075-GO-OVER-WHAT-EXISTS hardwire + this category-file promotion. It fires in EVERY AI role (Opus director included — arguably *most* dangerous there, since the director touches every process).
 
+## Additional Sample — S082 threshold-gate false-duplicate claim (D20 co-fire)
+
+**S082 instance — Opus-19 (director, not just Sonnet):**
+
+❌ Opus-19 asserted in PROTO-S082-ITEM-4: `"threshold-gate.md (root, 146 ln) + meta-platform/threshold-gate.md (79 ln) → DIFF both, preserve distinct content, fold into v2."` — this implied both files were variants of the SAME concept (governance threshold), an existence-claim about their content similarity based on name alone without reading either file.
+
+Actual state (found on reading): `meta-platform/threshold-gate.md` = OnboardingWizard UI entry flow (core_spine: ARCH, session: S037, description: "OnboardingWizard Entry Flow"). `threshold-gate.md` = governance input pipeline (core_spine: GVRN). Not a variant — an entirely different concept.
+
+Caught by: Sonnet reading both files and pushing back (B_COUNCIL_PEER obligation — surface what the prompt missed). Opus confirmed: "my PROTO said 'merge meta-platform/threshold-gate.md into v2.' Sonnet VERIFIED-CORRECT refusal... check a file's spine/domain before ordering a merge. B_COUNCIL_PEER working."
+
+This is D12 because the false-duplicate claim was an existence-claim without inventory. It is also a D20 instance (context-pressure false assumption) — both defaults co-fire on the same catch.
+
 ## Counter-pattern observed (the antidote firing — log positive too)
 
 Same session, S075: when an inventory block-test returned an unexpected `EXIT=0`, OPUS-16 did NOT declare "the gate is broken" — it investigated, found its OWN test used an out-of-scope file_path, corrected it, and re-confirmed. That is the D12 antidote (attest-before-concluding) working. The override is learnable in-session once named.

@@ -1,0 +1,130 @@
+# docs/platform-intelligence/exchange-log.yaml
+# CSPS ↔ CSP Cross-Platform Exchange Log — SSoT for ALL exchange items (both directions)
+# Schema: id, direction, topic, type, file, sent_date, sent_session,
+#         absorption_status (pending|confirmed|deferred),
+#         absorption_confirmed_date, absorption_confirmed_by,
+#         csps_absorbed, csps_absorbed_evidence, notes
+#
+# Spec: docs/platform-intelligence/CROSS-PLATFORM-EXCHANGE-SPEC.md
+# Governor-ratified: S082 ("all approved")
+
+meta:
+  schema_version: "1.0"
+  total_outgoing: 7
+  total_incoming: 0
+  created: "2026-06-10"
+  session: S082
+
+exchanges:
+  - id: "EX-2026-06-03-001"
+    direction: "CSPS→CSP"
+    topic: "Priority Engine deep-dive"
+    type: "report"
+    file: "outgoing/CSPS-report-on-Priority-Engine-for-CSP-2026-06-03.md"
+    sent_date: "2026-06-03"
+    sent_session: "S081"
+    absorption_status: pending
+    absorption_confirmed_date: null
+    absorption_confirmed_by: null
+    csps_absorbed: true
+    csps_absorbed_evidence: "tools/validators/validate-pe-connectivity.mjs + apps/csps-playground/platform/pe"
+    notes: "PE Engine — sequencing, deflection, Foundation Exit Gate, full wiring"
+
+  - id: "EX-2026-06-03-002"
+    direction: "CSPS→CSP"
+    topic: "CIE (Continuous Intelligence Engine)"
+    type: "report"
+    file: "outgoing/CSPS-report-on-CIE-for-CSP-2026-06-03.md"
+    sent_date: "2026-06-03"
+    sent_session: "S081"
+    absorption_status: pending
+    absorption_confirmed_date: null
+    absorption_confirmed_by: null
+    csps_absorbed: true
+    csps_absorbed_evidence: ".csps/intelligence/cie-state.yaml + pipeline"
+    notes: "5-stage learn loop, CIE connectivity, OBSERVE/AGGREGATE active"
+
+  - id: "EX-2026-06-03-003"
+    direction: "CSPS→CSP"
+    topic: "IZFC (Iterative Zero-Finding Cycles)"
+    type: "report"
+    file: "outgoing/CSPS-report-on-IZFC-for-CSP-2026-06-03.md"
+    sent_date: "2026-06-03"
+    sent_session: "S081"
+    absorption_status: pending
+    absorption_confirmed_date: null
+    absorption_confirmed_by: null
+    csps_absorbed: true
+    csps_absorbed_evidence: "feedback_izfc_excellence_completion.md + per-turn moat + D4/D5 fix"
+    notes: "Excellence-of-completion standard, per-turn moat, D4/D5 fix"
+
+  - id: "EX-2026-06-03-004"
+    direction: "CSPS→CSP"
+    topic: "AI Profiling System"
+    type: "report"
+    file: "outgoing/CSPS-report-on-AI-Profiling-for-CSP-2026-06-03.md"
+    sent_date: "2026-06-03"
+    sent_session: "S081"
+    absorption_status: pending
+    absorption_confirmed_date: null
+    absorption_confirmed_by: null
+    csps_absorbed: true
+    csps_absorbed_evidence: "docs/plan/_handoff/VAULT/inner-ai-defaults/D1-D13 + claude-code-native-profile.md"
+    notes: "D1-D13 defaults, CAQ mode, mode classification, feedback loop"
+
+  - id: "EX-2026-06-03-005"
+    direction: "CSPS→CSP"
+    topic: "Prevention over Correction"
+    type: "report"
+    file: "outgoing/CSPS-report-on-Prevention-over-Correction-for-CSP-2026-06-03.md"
+    sent_date: "2026-06-03"
+    sent_session: "S081"
+    absorption_status: pending
+    absorption_confirmed_date: null
+    absorption_confirmed_by: null
+    csps_absorbed: true
+    csps_absorbed_evidence: "P-META-019 structural-prevention-discipline + B_STRUCTURAL_PREVENTION_DISCIPLINE"
+    notes: ""
+
+  - id: "EX-2026-06-03-006"
+    direction: "CSPS→CSP"
+    topic: "PROVE REAL reply"
+    type: "reply"
+    file: "outgoing/CSPS-reply-to-CSP-PROVE-REAL-2026-06-03.md"
+    sent_date: "2026-06-03"
+    sent_session: "S081"
+    absorption_status: pending
+    absorption_confirmed_date: null
+    absorption_confirmed_by: null
+    csps_absorbed: true
+    csps_absorbed_evidence: "P-META-032 Demonstrated Truth + feedback_demonstrated_truth_and_no_lost_threads.md"
+    notes: "Response to CSP challenge on evidence-first discipline"
+
+  - id: "EX-2026-06-03-007"
+    direction: "CSPS→CSP"
+    topic: "Inheritance System"
+    type: "report"
+    file: "outgoing/CSPS-report-on-Inheritance-for-CSP-2026-06-03.md"
+    sent_date: "2026-06-03"
+    sent_session: "S081"
+    absorption_status: pending
+    absorption_confirmed_date: null
+    absorption_confirmed_by: null
+    csps_absorbed: true
+    csps_absorbed_evidence: "docs/plan/pillar-0-governance/planning-spine/INHERITANCE-MODEL.md"
+    notes: ""
+
+# --- INCOMING FROM CSP ---
+# (none yet — add when CSP sends to CSPS)
+# Template:
+# - id: "EX-YYYY-MM-DD-NNN"
+#   direction: "CSP→CSPS"
+#   topic: ""
+#   type: "report|reply|proposal|update"
+#   file: "incoming/[filename]"
+#   sent_date: "YYYY-MM-DD"
+#   sent_session: "SXXX"
+#   absorption_status: pending
+#   absorption_confirmed_date: null
+#   absorption_confirmed_by: null
+#   notes: ""

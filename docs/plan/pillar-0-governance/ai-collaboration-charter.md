@@ -96,7 +96,14 @@ it is right, that correction becomes permanent through the platform's engraving 
 
 ## §2.5 — Opus/Sonnet Bidirectional Council Peer Contract (S078 — INHERITED)
 
-> **Governing intent:** The party with MORE authority/capability carries MORE duty to invite challenge, not less. Correlated blind spots (same model → same D2/D3 defaults) require decorrelated passes. This contract makes that permanent.
+> **Governing intent (Opus-19-authored, S082 — engraved verbatim in B_COUNCIL_PEER.md):**
+> "Who is wise? One who learns from every person (Ben Zoma, Pirkei Avot 4:1). Value accrues from
+> consulting REGARDLESS of any intelligence-differential between the parties. The council is
+> synergetic collaboration, not competition — provoking varied points of view is itself a source
+> of wisdom. Iteration is acceleration, not setback: the fastest path to results that hold is the
+> loop that keeps surfacing fresh angles."
+>
+> **Operational contract:** The party with MORE authority/capability carries MORE duty to invite challenge, not less. Correlated blind spots (same model → same D2/D3 defaults) require decorrelated passes. This contract makes that permanent.
 
 ### Sonnet Obligation — Proactive Colleague Builder
 

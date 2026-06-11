@@ -2,20 +2,20 @@
 id: csps.governance.planning-spine.iteration-reuse-dynamics
 name: ITERATION-REUSE-DYNAMICS
 description: "How P-META-035 (Iteration & Reuse) is expressed across the Planning Spine loop. Maps the two principle faces (don't stop; don't start from zero) to specific loop behaviors and re-entrant gate logic."
-version: "0.1-draft"
+version: "0.1"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
 core_spine: VALD
 schema_anchor: pillar_0_governance_leaves
-status: draft
+status: ratified
 authored_by: Sonnet S080
 authored_at: "2026-06-05"
 tags:
   - domain:governance
   - type:reference
   - audience:developer
-  - maturity:draft
+  - maturity:stable
 links:
   - { rel: p-meta-035, href: ../../../../packages/principles/principles/P-META-035-iteration-and-reuse.yaml }
   - { rel: p-meta-034, href: ../../../../packages/principles/principles/P-META-034-reality-tested-completion.yaml }
@@ -109,4 +109,4 @@ The planning loop's re-entrant gates operationalize this: CLASSIFY and CHECK-EXI
 They are siblings, not parent/child. P-META-034 governs what comes OUT of the planning loop (claims). P-META-035 governs HOW the loop operates (process).
 
 ---
-*DRAFT v0.1 | Sonnet S080 | 2026-06-05*
+*RATIFIED v0.1 | Sonnet S080 | Ratified S082 · 2026-06-11*

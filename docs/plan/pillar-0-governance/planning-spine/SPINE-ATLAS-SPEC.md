@@ -2,13 +2,13 @@
 id: csps.governance.planning-spine.spine-atlas-spec
 name: SPINE-ATLAS-SPEC
 description: "Specification for the Spine Atlas — the generated, always-current canonical map of every platform node. SUBSTRATE artifact. Tooling implementation BLOCKED on A2-cycles-audit (verify-cycles at hard_limit)."
-version: "0.1-draft"
+version: "0.1"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
-status: draft
+status: ratified
 authored_by: Sonnet S080
 authored_at: "2026-06-05"
 tooling_blocked_on: A2-cycles-audit
@@ -17,7 +17,7 @@ tags:
   - domain:governance
   - type:reference
   - audience:developer
-  - maturity:draft
+  - maturity:stable
 links:
   - { rel: planning-spine, href: PLANNING-SPINE.md }
   - { rel: no-orphans-law, href: ../../../../packages/principles/principles/P-META-036-no-orphans-law.yaml }
@@ -154,5 +154,5 @@ A "promotion event" is the instant something moves from idea → persisted (a Wr
 All implementation: BLOCKED on A2-cycles-audit (EXTENDED validator slot required).
 
 ---
-*DRAFT v0.1 — Sensitive-Places Map folded in per PROTO-CONSOLIDATE-SELF (Opus-18 S080)*
+*RATIFIED v0.1 — Sensitive-Places Map folded in per PROTO-CONSOLIDATE-SELF. Ratified S082 · 2026-06-11.*
 *tooling BLOCKED on A2-cycles-audit | Sonnet S080 | 2026-06-05*

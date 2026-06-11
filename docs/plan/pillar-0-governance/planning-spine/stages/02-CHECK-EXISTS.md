@@ -2,11 +2,11 @@
 id: csps.governance.planning-spine.stage-check-exists
 name: planning-spine-stage-check-exists
 description: "Stage 2 — CHECK-EXISTS. RE-ENTRANT gate. Queries the canonical map (Spine Atlas when available; pre-tool-use-check-existing.sh + pre-tool-use-inventory-scan-required.sh now) before any creation. Re-fires on pre-simulate and new-research."
-version: "0.1-draft"
+version: "0.1"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
-status: draft
+status: ratified
 re_entrant: true
 re_entrant_triggers:
   - pre-simulate
@@ -53,4 +53,4 @@ The S072 journey pages (6 routes created where 2 would have sufficed) are the ca
 A found artifact must be verified as ACTIVE, not just present. `post-stop-exists-not-equals-active.sh` monitors this. The check queries for existence AND activation status.
 
 ---
-*DRAFT — part of Planning Spine scaffold. Not built until Governor ratifies loop model.*
+*RATIFIED — part of Planning Spine cluster. Ratified S082 · 2026-06-11.*

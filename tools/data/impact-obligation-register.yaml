@@ -1,0 +1,76 @@
+# tools/data/impact-obligation-register.yaml
+# CSPS Impact Obligation Register — SSoT for deferred impact-validation obligations
+#
+# PURPOSE: Tracks obligations emitted by Stage 6 Part B (INTENT-CONFORMANCE) when
+#          real-world impact is not yet observable at plan-exit.
+#          Closed by Stage 6 Part C (IMPACT-VALIDATION) at the real-world boundary.
+#
+# CONSOLIDATION: Cross-refs gap_DIM4_LIVE_LOAD_PROOF (gap-recurrence-register.yaml)
+#                and the test-drive obligation (session state Phase B).
+#                DO NOT duplicate gap entries — cross-ref only.
+#
+# Schema:
+#   id:                  unique identifier (iob_ prefix)
+#   cross_ref:           if entry duplicates a gap, point to canonical; do NOT copy body
+#   source_plan:         which plan/dimension emitted this obligation
+#   intent:              what the work was supposed to ACHIEVE (outcome, not activity)
+#   impact_signal:       the measurable real-world signal that proves impact
+#   revisit_condition:   when/where the signal becomes observable
+#   status:              pending | met | diverged
+#   emitted_session:     session when Part B emitted this row
+#   closed_session:      session when Part C closed this row (null = open)
+#   closed_sha:          git SHA of the closing evidence commit (null = open)
+#
+# Status values:
+#   pending  — impact_signal not yet observed; revisit_condition not yet met
+#   met      — impact_signal observed GREEN; obligation closed
+#   diverged — execution result did not match intent; loop-back to CLASSIFY required
+#
+# Canonical gate: docs/plan/pillar-0-governance/planning-spine/stages/06-COMPLETION-TEST.md
+
+meta:
+  schema_version: "1.0"
+  total_count: 2
+  owner: group:finky
+  created: "2026-06-05"
+  session: S082
+
+obligations:
+
+  - id: iob_DIM4_LIVE_LOAD_PROOF
+    cross_ref: "tools/data/gap-recurrence-register.yaml#gap_DIM4_LIVE_LOAD_PROOF"
+    note: >
+      Cross-ref ONLY — canonical entry lives in gap-recurrence-register.yaml.
+      Mirrored here so Stage 6 Part C has a single register to consult for all
+      open impact-obligations. Do not update this row independently; keep in sync
+      with gap-recurrence-register.yaml.
+    source_plan: dim-4 multi-tenant scale-readiness
+    intent: >
+      The connection pool handles concurrent tenants without 42P05/P0002 errors at
+      burst load — proven against a real CSPS app endpoint, not an httpbin stub.
+    impact_signal: >
+      k6 scenario-a (tools/load-tests/k6/scenario-a-concurrent-burst.js) runs GREEN
+      against the real Vercel deployment: pool_errors=0, HTTP failure rate <1%,
+      p99 latency <2000ms. Output pasted by Governor → Opus issues OPIA → dim-4 empirically SEALED.
+    revisit_condition: "app#1 test-drive — the first deployed Vercel endpoint; gate before app#2 build"
+    status: pending
+    emitted_session: S077
+    closed_session: null
+    closed_sha: null
+
+  - id: iob_THIN_SLICE_TESTDRIVE
+    source_plan: Phase B — thin slice test-drive + journeys ratification
+    intent: >
+      The platform's first end-to-end user journey functions correctly when a real user
+      navigates through it in the deployed app (sign-up → dashboard → tenant-scoped data).
+      Governor-ratified journey + admin dashboard must be confirmed before journeys work begins.
+    impact_signal: >
+      Governor-observed test-drive report: user signs up, hits dashboard, sees correct
+      tenant-scoped data, no errors. Opus-ratified OPIA acknowledges the test-drive result.
+    revisit_condition: >
+      Phase B: after verify instrument stabilized (cycle-counter reconciled) + thin slice
+      deployed to Vercel. Happens before journeys ratification (memory: feedback_journeys_ratify_before_testdrive.md).
+    status: pending
+    emitted_session: S082
+    closed_session: null
+    closed_sha: null

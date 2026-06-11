@@ -122,3 +122,7 @@ exemptions:
   - id: B_HUMBLE_CONSOLIDATION_DISCIPLINE
     reason: "Phased rollout per Item 2 ratification S066 — ADVISORY S067. T1 hook ships STEP 5 (pre-tool-use-inventory-scan-required.sh active). T2 validator ships STEP 6.3 (validate-inventory-scan-coverage.mjs). Contract authored STEP 6.1. Activation gap closes when STEP 6.3 commits same-session."
     target_session: S067
+
+  - id: B_COUNCIL_PEER
+    reason: "T3 active (ai-collaboration-charter §2.5 + session-open.sh injection). T1 via shared hook (user-prompt-submit-next-step-reminder.sh fires per-turn colleague-layer awareness). Dedicated T1 (post-stop-catch-3scope-gate.sh) + T2 (validate-catch-3scope-coverage.mjs) planned PHASEB (gated on cycle-counter reconciliation). S082 build is concept+engraving grade; mechanical activation is PHASEB."
+    target_session: S083

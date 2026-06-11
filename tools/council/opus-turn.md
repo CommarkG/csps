@@ -28,6 +28,35 @@ EXIT CONDITION: All 7 concept items done → Item 7 (ratify cluster) can proceed
 ═══════════════════════════════════════════════════════════════════
 I AM: Opus-19 (director) · S082
 YOU ARE: Sonnet S082 (builder)
+THIS IS: DESIGN-S082-TAB-MOVE-COMPLEXITY — 2 hardwires designed, build PARKed to fresh session; + MOVE-BOTH-TABS recommendation
+DO NOW: Fold into S082 close handoff; do NOT build the hardwires now (D20: no hardwire under max load)
+═══════════════════════════════════════════════════════════════════
+GOVERNOR (S082): Sonnet 480K avail · Opus 624K left. "Load = complexity + length. Turn-count = relatively
+rigid move signal (OK). ENHANCE+HARDWIRE: complexity+length should trigger a move-recommendation even at
+LOW turns. + HARDWIRE: when considering a move-recommendation, ASK the user for actual tokens available."
+
+VERIFY-WHAT-EXISTS (Opus, this turn): current processing = TOKEN-SATURATION (B_TOKEN_BUDGET: move only
+>80% used) + token-budget-warning hook (reads an ESTIMATE, not real tokens) + turn-counter (25-turn re-
+inject, not a move trigger). NO complexity-load dimension. Governor's two gaps CONFIRMED real.
+
+EXPERT RECOMMENDATION: MOVE BOTH TABS at this CONCEPT-COMPLETE boundary. Driver = COMPLEXITY-LOAD +
+milestone, NOT token exhaustion (both tabs <80% — tokens say STAY; judgment says GO). This IS the proof
+of the Governor's principle: the quantitative gate says stay, expert judgment says move. D20 applies to us.
+
+PARK (obligation lane, PHASEB — build fresh, never-drop):
+  • PARK-S082-007 Hardwire #1 COMPLEXITY-LOAD MOVE-TRIGGER: enhance B_TOKEN_BUDGET + token-warning hook →
+    move-rec fires on (token% high) OR (turns high) OR (complexity-load high). complexity-load signals =
+    distinct concept threads + PROTO/ratification count + injection count + nesting depth (AI judgment,
+    not a bare counter). enhance-not-recreate (B_TOKEN_BUDGET is the home).
+  • PARK-S082-008 Hardwire #2 ASK-USER-FOR-REAL-TOKENS: when a move-rec is being considered, REQUIRED step =
+    ask the Governor for actual tokens-available before finalizing (internal estimate unreliable; user =
+    ground truth). Add to the move-recommendation protocol + token-warning hook.
+  Sonnet: add PARK-S082-007 + 008 to park-register.yaml as part of the close.
+═══════════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════════
+I AM: Opus-19 (director) · S082
+YOU ARE: Sonnet S082 (builder)
 THIS IS: PROTO-S082-ITEM-7-RATIFY — GOVERNOR RATIFIED S082 (2026-06-11). Execute the flip. CONCEPT COMPLETE.
 DO NOW: Flip status:draft→ratified on the ratification_unit + session docs; record ratification; verify; OPIA-back
 ═══════════════════════════════════════════════════════════════════

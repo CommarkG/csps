@@ -1,7 +1,7 @@
 {
-  "files_checked": 710,
-  "findings": 9156,
-  "advisory": 9156,
+  "files_checked": 714,
+  "findings": 9206,
+  "advisory": 9206,
   "blocking": 0,
   "all_findings": [
     {
@@ -215,5 +215,5 @@
       "level": "advisory"
     }
   ],
-  "ran_at": "2026-06-11T12:11:46.067Z"
+  "ran_at": "2026-06-11T12:45:49.299Z"
 }

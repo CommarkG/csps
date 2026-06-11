@@ -115,6 +115,36 @@ entries:
     created_session: S082
     closed_session: S082
 
+  - id: "PARK-S082-007"
+    lane: obligation
+    content: "PHASEB: complexity-load move-trigger — when session context approaches threshold, AI must trigger a chat-move rather than compressing governance quality"
+    retrieve_when: "Any PHASEB build session approaching context limit (B_TOKEN_BUDGET R3/R4 threshold)"
+    never_drop: true
+    context_preserved: >
+      D20 (context-pressure-false-assumptions) shows the failure mode: false assertions flourish
+      under context pressure. Structural prevention: at context threshold, MOVE rather than compress
+      governance. The chat-move preserves quality; compression corrupts it. Threshold: when
+      B_TOKEN_BUDGET R3 /compact would lose governance context, trigger move instead.
+      Connects to: chat-move criteria (feedback_chat_move_criteria.md) + B_TOKEN_BUDGET R4.
+    source_session: S082
+    created_session: S082
+    closed_session: null
+
+  - id: "PARK-S082-008"
+    lane: obligation
+    content: "PHASEB: ask-user-for-real-tokens — before any PHASEB hardwire build, measure actual session token costs using /cost (B_TOKEN_BUDGET R6)"
+    retrieve_when: "Before PHASEB Phase 1 build begins (stabilize verify instrument gate)"
+    never_drop: true
+    context_preserved: >
+      B_TOKEN_BUDGET R6 says: run /cost measurement to get actual token costs.
+      This has never been done. The 60-80% savings estimate in B_TOKEN_BUDGET R6 cross-reference
+      is ESTIMATED not measured. Before PHASEB hardwire builds (which will be expensive),
+      establish the real baseline. Ask Governor to run a representative session and paste /cost
+      output so actual token consumption is recorded.
+    source_session: S082
+    created_session: S082
+    closed_session: null
+
   # ─────────────────────────────────────────────
   # PER-FAMILY CONSOLIDATION (Governor ratification gates)
   # ─────────────────────────────────────────────

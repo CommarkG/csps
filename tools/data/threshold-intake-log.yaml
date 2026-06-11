@@ -5998,3 +5998,33 @@
   status: new
   source: governor
   input_preview: ""
+- id: "intake_2026-06-11T12-22-40-823Z"
+  timestamp: "2026-06-11T12:22:40.823Z"
+  session: "S082"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-06-11T12-27-07-257Z"
+  timestamp: "2026-06-11T12:27:07.257Z"
+  session: "S082"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""
+- id: "intake_2026-06-11T12-31-10-242Z"
+  timestamp: "2026-06-11T12:31:10.242Z"
+  session: "S082"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: new
+  source: governor
+  input_preview: ""

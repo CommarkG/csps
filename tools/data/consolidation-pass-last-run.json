@@ -1,15 +1,120 @@
 {
-  "total_scanned": 4,
+  "total_scanned": 20,
   "total_exempted": 0,
-  "total_findings": 1,
+  "total_findings": 16,
   "findings": [
     {
-      "pattern": "G",
-      "type": "structural-id-collision",
-      "item": "D1",
-      "count": 2,
-      "file": "D1-humble-consolidation-default.md"
+      "pattern": "B",
+      "type": "rule",
+      "item": "MUST phrases (11 occurrences)",
+      "count": 11,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\closing-summary-template.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "caught by",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\inner-ai-defaults\\D20-context-pressure-false-assumptions-default.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "cure",
+      "count": 4,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\inner-ai-defaults\\D20-context-pressure-false-assumptions-default.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "`apps/csps-playground/src/app/platform/j",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\CONSOLIDATION-AUDIT-S082.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "debt",
+      "count": 9,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\CONSOLIDATION-AUDIT-S082.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "cannot",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\ai-collaboration-charter.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "must",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\ai-collaboration-charter.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "contract: this entry + agents.md hard no",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "**enforcement_tier:** `{ tier: session-o",
+      "count": 6,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "**enforcement_tier:** `{ t1: .claude/hoo",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "A",
+      "type": "list",
+      "item": "memory: `~/.claude/projects/.../memory/f",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "B",
+      "type": "rule",
+      "item": "MUST phrases (12 occurrences)",
+      "count": 12,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "source",
+      "count": 9,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "canonical",
+      "count": 5,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "governing intent",
+      "count": 3,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts-GVRN.md"
+    },
+    {
+      "pattern": "B",
+      "type": "rule",
+      "item": "REQUIRED phrases (7 occurrences)",
+      "count": 7,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\pillar-0-governance\\behavioral-contracts\\B_AGENT_ALIGNMENT_PROTOCOL.md"
     }
   ],
-  "ran_at": "2026-06-11T12:06:08.993Z"
+  "ran_at": "2026-06-11T12:29:54.514Z"
 }

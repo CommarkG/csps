@@ -4595,3 +4595,33 @@ entries:
   source: governor_directive
   status: new
   raw: ""
+- id: "thr-S082-1781180560773"
+  session: "S082"
+  timestamp: "2026-06-11T12:22:40.763Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-S082-1781180827206"
+  session: "S082"
+  timestamp: "2026-06-11T12:27:07.205Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""
+- id: "thr-S082-1781181070185"
+  session: "S082"
+  timestamp: "2026-06-11T12:31:10.184Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: new
+  raw: ""

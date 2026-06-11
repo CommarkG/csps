@@ -1,6 +1,6 @@
 {
-  "findings": 382,
-  "advisory": 382,
+  "findings": 385,
+  "advisory": 385,
   "blocking": 0,
   "all_findings": [
     {
@@ -17,112 +17,112 @@
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3246,
+      "line": 3275,
       "content": "P2-A C1: UX-PAGE-TYPES section + Law-2 cross-ref. P2-D C1: validator extension + baseline + audit-runner row. Each Cycle",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3292,
+      "line": 3321,
       "content": "M1-close: per step 3 above (the formal evidence IS the gate). M3: Cycle 1 cite 3A impl + Rigidness-under-P-META-028 + co",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3428,
+      "line": 3457,
       "content": "M-J1a Cycle 1: cite Check-1 lines + 4/4 test + verify_top_exit. Cycle 2: re-examine all 3 checks + 0 new.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3429,
+      "line": 3458,
       "content": "M-J1b Cycle 1: cite draft \"Platform Attitude\" section + generated page path + route + \"default primary, variety selectab",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3470,
+      "line": 3499,
       "content": "M-J1a Cycle 1: cite Check-1 lines + 4/4 test + verify_top_exit. Cycle 2: re-examine all 3 checks + 0 new.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3471,
+      "line": 3500,
       "content": "M-J1b Cycle 1: cite generated page path + route + \"page loads, T1-T6 + branch tree visible\". Cycle 2: re-examine nav wir",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3510,
+      "line": 3539,
       "content": "Cycle 1: cite the draft path + the exists/greenfield ledger rows + every playground link verified to resolve to a real s",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3645,
+      "line": 3674,
       "content": "Cycle 1: cite the new Check-1 code lines + INPUT D test result by name. Cycle 2: re-examine main() all 3 checks + the 4 ",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 3776,
+      "line": 3805,
       "content": "Cycle 1: cite new files + test exit codes + the 3 cases by name. Cycle 2: re-examine the milestone's area + 0 new findin",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 4044,
+      "line": 4073,
       "content": "Cycle 1: cite new files + test exit codes + the 3 cases by name. Cycle 2: re-examine the milestone's area + 0 new. Statu",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 4857,
+      "line": 4886,
       "content": "Cycle 2: 0 new findings.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 5117,
+      "line": 5146,
       "content": "Cycle 2: 0 new findings.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 5251,
+      "line": 5280,
       "content": "Cycle 2: 0 new findings.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 6432,
+      "line": 6461,
       "content": "**Cycle 2:** 0 new findings.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 6764,
+      "line": 6793,
       "content": "Cycle 3: 0 new findings.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 7040,
+      "line": 7069,
       "content": "**Cycle 3 result:** 0 new findings beyond the above.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 7334,
+      "line": 7363,
       "content": "Cycle 2: 0 new findings.",
       "level": "advisory"
     },
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 7920,
+      "line": 7949,
       "content": "Cycle 2: 0 new findings.",
       "level": "advisory"
     }
   ],
-  "ran_at": "2026-06-11T12:11:46.191Z"
+  "ran_at": "2026-06-11T12:45:49.419Z"
 }

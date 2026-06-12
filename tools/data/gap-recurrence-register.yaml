@@ -562,13 +562,15 @@ entries:
     first_seen: S079
     k_count: 1
     sessions: [S079]
-    status: open
+    status: resolved
     prevention_class: state-discrepancy
-    structural_fix_plan_session: "S080-A2"
-    structural_fix_triggered: false
+    structural_fix_plan_session: "S083-B1"
+    structural_fix_triggered: true
     must_address_by_session: "S080"
-    age_escalation_status: on-time
-    fix_commit_sha: null
+    age_escalation_status: resolved
+    fix_commit_sha: pending-B1-commit
     behavioral_test_exists: false
     pe_band: 2
-    note: "A2-scope. Reconcile before any new standard validator. back-ref: S079 close (PROTO-S079-CLOSE)."
+    resolution_session: S083
+    resolution_date: "2026-06-12"
+    note: "Resolved S083-B1: live=199, cap=200. Defect was verify.mjs:1413 skip_reason printing cap-as-current ('at hard_limit 200') instead of canonical 'at 199/200'. Wording corrected. Also fixed: park-register.yaml total_open 7→8; duplicate PARK-S082-007 renumbered to PARK-S082-009; session-state.json PARK ref 001..005→001..008. fix_commit_sha to be updated after B1 commit."

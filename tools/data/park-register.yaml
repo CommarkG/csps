@@ -20,7 +20,7 @@ meta:
   schema_version: "1.0"
   created: "2026-06-10"
   session: S082
-  total_open: 7
+  total_open: 8
 
 entries:
 
@@ -149,7 +149,7 @@ entries:
   # PER-FAMILY CONSOLIDATION (Governor ratification gates)
   # ─────────────────────────────────────────────
 
-  - id: "PARK-S082-007"
+  - id: "PARK-S082-009"
     lane: queue
     content: "Consolidation audit per-family ratification — 15 families mapped in CONSOLIDATION-AUDIT-S082.md; each needs Governor ratification before merge/delete"
     retrieve_when: "After concept cluster Item 7 ratification + Phase B stabilization"

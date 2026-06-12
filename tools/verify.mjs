@@ -1410,7 +1410,7 @@ const CYCLES = [
     name: 'core_spine_template',
     command: 'node tools/validators/validate-core-spine-template.mjs',
     skip: true,
-    skip_reason: 'pnpm-verify-cycles at hard_limit 200 — deferred until verify tiering implemented (platform-capacity)',
+    skip_reason: 'pnpm-verify-cycles at 199/200 (1 slot below hard_limit 200) — deferred to DEEP/EXTENDED tier pending verify tiering (platform-capacity)',
     parse_output: (out) => {
       const m = out.match(/spines_checked=(\d+)\s+mode=(\S+)\s+blocking=(\d+)\s+advisory=(\d+)/);
       return m ? { spines_checked: Number(m[1]), mode: m[2], blocking: Number(m[3]), advisory: Number(m[4]) } : {};

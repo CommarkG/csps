@@ -568,7 +568,7 @@ entries:
     structural_fix_triggered: true
     must_address_by_session: "S080"
     age_escalation_status: resolved
-    fix_commit_sha: pending-B1-commit
+    fix_commit_sha: "795bfe9d"
     behavioral_test_exists: false
     pe_band: 2
     resolution_session: S083

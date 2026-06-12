@@ -5,7 +5,7 @@
 # are present + executable. Exits 1 if ANY critical hook is missing or not executable.
 # Non-critical hooks report advisory only. The meta-gap closed: the hook that validates
 # hooks was STUB exits 0 — meaning a broken post-stop-rzf-reminder.sh would go undetected.
-# @csps-version 1.0.0-active
+# @csps-version 1.1.0-active
 # @csps-owner group:finky
 # @csps-lifecycle production
 # @csps-lifecycle-state active
@@ -20,6 +20,7 @@
 # OPEN-048 S041 — upgraded from STUB to ACTIVE.
 # Critical hooks: those with PRODUCTION/ACTIVE status that enforcement depends on.
 # Non-critical hooks: STUB tier — advisory warning, not blocking.
+# S083-A2 W2: normal output = 1 summary line; full roster only when missing>0 or not_executable>0.
 
 set -euo pipefail
 
@@ -125,14 +126,13 @@ readonly -a DECLARED_HOOKS=(
   "user-prompt-submit-comments-before-code.sh"
 )
 
-echo "[verify-hooks-functional] ACTIVE S041 — checking ${#DECLARED_HOOKS[@]} hooks"
-echo "[verify-hooks-functional] hooks_dir: ${HOOKS_DIR}"
 echo ""
 
 declare -i present=0
 declare -i missing=0
 declare -i not_executable=0
 declare -i critical_failures=0
+declare -a hook_lines=()
 
 for hook in "${DECLARED_HOOKS[@]}"; do
   hook_path="${HOOKS_DIR}/${hook}"
@@ -145,28 +145,38 @@ for hook in "${DECLARED_HOOKS[@]}"; do
     present=$((present + 1))
     git_mode=$(git ls-files --format='%(objectmode)' -- "${hook_path}" 2>/dev/null || echo "")
     if [[ -x "${hook_path}" ]] || [[ "${git_mode}" == "100755" ]]; then
-      printf "  ✓ %s%s\n" "${hook}" "$($is_critical && echo ' [CRITICAL]' || echo '')"
+      hook_lines+=("  ✓ ${hook}$($is_critical && echo ' [CRITICAL]' || echo '')")
     else
       not_executable=$((not_executable + 1))
       if $is_critical; then
         critical_failures=$((critical_failures + 1))
-        printf "  ✗ %s [CRITICAL — not executable: chmod +x required]\n" "${hook}"
+        hook_lines+=("  ✗ ${hook} [CRITICAL — not executable: chmod +x required]")
       else
-        printf "  ⚠ %s (not executable — advisory)\n" "${hook}"
+        hook_lines+=("  ⚠ ${hook} (not executable — advisory)")
       fi
     fi
   else
     missing=$((missing + 1))
     if $is_critical; then
       critical_failures=$((critical_failures + 1))
-      printf "  ✗ %s [CRITICAL — MISSING: enforcement gap]\n" "${hook}"
+      hook_lines+=("  ✗ ${hook} [CRITICAL — MISSING: enforcement gap]")
     else
-      printf "  ⚠ %s (missing — non-critical, advisory)\n" "${hook}"
+      hook_lines+=("  ⚠ ${hook} (missing — non-critical, advisory)")
     fi
   fi
 done
 
-echo ""
+# Print full roster ONLY when there are issues; normal = single summary line
+if [[ ${missing} -gt 0 ]] || [[ ${not_executable} -gt 0 ]]; then
+  echo "[verify-hooks-functional] ACTIVE S041 — checking ${#DECLARED_HOOKS[@]} hooks"
+  echo "[verify-hooks-functional] hooks_dir: ${HOOKS_DIR}"
+  echo ""
+  for line in "${hook_lines[@]}"; do
+    echo "${line}"
+  done
+  echo ""
+fi
+
 echo "[verify-hooks-functional] summary: present=${present} missing=${missing} not_executable=${not_executable} total_declared=${#DECLARED_HOOKS[@]}"
 
 if [[ ${critical_failures} -gt 0 ]]; then

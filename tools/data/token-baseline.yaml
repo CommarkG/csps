@@ -1,0 +1,47 @@
+---
+id: csps.data.token-baseline
+name: token-baseline
+description: "Measured token consumption baselines for CSPS sessions. Closes PARK-S082-008 (ask-user-for-real-tokens). Class labels: opus-advisory = Opus strategic turn; sonnet-build = Sonnet implementation session."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: OPER
+schema_anchor: reference_data
+---
+
+# Token Baseline Register
+
+> Append-only. Add a new entry per /context measurement.
+> purpose: calibrate B_TOKEN_BUDGET R6 "60-80% savings estimate" against actuals.
+> method: Governor runs /context at session start; paste output; Sonnet extracts numbers.
+
+entries:
+
+  - id: baseline-S083-001
+    class: opus-advisory
+    session: S083
+    date: "2026-06-13"
+    context_window: 1048576
+    used_total_k: 125.9
+    used_pct: 12.6
+    breakdown:
+      system_k: 3.9
+      tools_k: 8.6
+      memory_k: 11.6
+      memory_note: "MEMORY.md 10.7k; project memories 0.9k"
+      skills_k: 5.3
+      messages_k: 98.3
+    note: "S083 session open (governance-session skill + handoff reads + 2 build turns). Sonnet tab. Messages (98.3k) = dominant component — primarily the hook system-reminder injections + multi-turn context. System+tools+memory+skills = 29.4k overhead per session start."
+    source: "Opus-20 PROTO-S082-A2 W1 directive — measured S083 session start context"
+    b_token_budget_r6_implication: "Overhead (system+tools+memory+skills) = 29.4k/125.9k = 23% of used tokens at session start. Messages 78% of used. Real savings from caching: est. 20-30k per cache-warm session (system+tools+memory reuse). The 60-80% figure in B_TOKEN_BUDGET R6 likely refers to INPUT token savings for Anthropic billing via prompt caching — not window reduction."
+
+  - id: baseline-S083-002
+    class: sonnet-build
+    session: S083
+    date: "2026-06-13"
+    context_window: 1048576
+    used_total_k: null
+    used_pct: null
+    note: "PENDING — capture at end of A2 build session. Governor: run /context after A2 table is complete and paste output for Sonnet to record."
+    source: "PROTO-S082-A2 W1 — 'capture 2nd /context at END of THIS build session (class: sonnet-build)'"

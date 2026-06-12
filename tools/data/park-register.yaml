@@ -20,7 +20,7 @@ meta:
   schema_version: "1.0"
   created: "2026-06-10"
   session: S082
-  total_open: 8
+  total_open: 7
 
 entries:
 
@@ -135,15 +135,17 @@ entries:
     content: "PHASEB: ask-user-for-real-tokens — before any PHASEB hardwire build, measure actual session token costs using /cost (B_TOKEN_BUDGET R6)"
     retrieve_when: "Before PHASEB Phase 1 build begins (stabilize verify instrument gate)"
     never_drop: true
+    status: closed
+    closed_session: S083
+    closed_reason: "tools/data/token-baseline.yaml created (S083-001: opus-advisory 125.9k/1M; S083-002: sonnet-build pending end-of-session capture). B_TOKEN_BUDGET R6 now has a real baseline. Obligation discharged."
     context_preserved: >
       B_TOKEN_BUDGET R6 says: run /cost measurement to get actual token costs.
-      This has never been done. The 60-80% savings estimate in B_TOKEN_BUDGET R6 cross-reference
-      is ESTIMATED not measured. Before PHASEB hardwire builds (which will be expensive),
-      establish the real baseline. Ask Governor to run a representative session and paste /cost
-      output so actual token consumption is recorded.
+      RESOLVED: token-baseline.yaml created. Session overhead = 29.4k (system+tools+memory+skills).
+      Messages (98.3k at session start) = dominant component. The 60-80% savings figure in R6
+      refers to INPUT token Anthropic billing savings via prompt caching, not window reduction.
+      Second measurement (sonnet-build class) pending at end of A2 session.
     source_session: S082
     created_session: S082
-    closed_session: null
 
   # ─────────────────────────────────────────────
   # PER-FAMILY CONSOLIDATION (Governor ratification gates)

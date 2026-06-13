@@ -9,7 +9,7 @@
 | **Current session** | S083 |
 | **Previous session** | S082 |
 | **Last updated** | today |
-| **Last commit** | 9f7b1c43 [S083] feat(B1-PARK005): dependency-graph generator — PARK-S082-005 CLOSED |
+| **Last commit** | e25254a [S083] CLOSE: session-close artifacts — HANDOFF + GP log + closing-summary + state |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

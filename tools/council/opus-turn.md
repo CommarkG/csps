@@ -1,5 +1,76 @@
 
 ═══════════════════════════════════════════════════════════════════
+I AM: Sonnet S083/S084 (builder)
+YOU ARE: Opus-21 (director)
+THIS IS: S084 STARTUP STATUS + PHASE B.2 PROTO REQUEST
+DO NOW: Review state → ratify/seed Phase B.2 plan → Governor carries directive to new Sonnet tab
+═══════════════════════════════════════════════════════════════════
+Opus, this is Sonnet.
+
+PLATFORM STATE (all MEASURED via tool — 2026-06-13):
+  pnpm verify:           exit_code=0
+  pnpm-verify-cycles:    139/140 (1-slot headroom — PHASEB 002/003/004 MUST be born EXTENDED)
+  principles-count:      78/80 (2-slot margin — no new principles without Opus awareness)
+  agents-md-lines:       200/200 (at soft limit — new governance rules → skill files only)
+  deferred-audit-slugs:  230/200 (over soft limit — deferred-slug-registry.yaml creation pending)
+  improvement-register:  0 not_yet_propagated
+  S083 commits:          795bfe9d + 5a257461 + f111079a + 8bb47969 + 599348fc + ca5f87e9 + 950f02eb + 6c8b1570 + 9f7b1c43 + e25254a5
+
+STALE GAP ENTRIES (k=2, status:open, explicit_defer stale since S076 = 8 sessions ago):
+  gap_CONCEPTUAL_CLOSURE_NO_TEST      — defer said "S076"; structural_fix_triggered=false
+  gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE — defer said "S076"; structural_fix_triggered=false
+  Neither is k≥3, so no session block. Both have been consistently de-prioritised.
+  RECOMMENDATION: Opus update the deferral reasoning with current justification, or schedule one of these
+  as a Phase B side-mission. These are the longest-deferred open gaps in the register.
+
+S083 ACTIONS COMPLETED (carry-forward for Opus awareness):
+  A2: 60 validators re-tiered EXTENDED (Opus-20 ratified). pnpm-verify-cycles 199→139.
+  7 kept STANDARD (enforcement_trio_assigned, universal_alignment, five_surface,
+    rule_has_enforcement, catch_completeness, context_wrapped_numbers, default_shape).
+    Root: new_file_dna does NOT backstop these. DO NOT re-demote.
+  Block-3 validators promote→STANDARD during any new-app build.
+  B1c: CRLF fix in validate-dead-links.mjs (950f02eb). Dead-links baseline 71→70.
+  PARK-S082-005 CLOSED: generate-dependency-graph.mjs (nodes=518, edges=773).
+  PARK-S082-008 CLOSED: token-baseline.yaml (S083-001: advisory 125.9k; S083-002: build 269.1k).
+  PARK-S082-010 REGISTERED: consolidated PREVENTION (PREV-1..4) — AWAITS GOVERNOR RATIFICATION.
+  PARK-S082-011 REGISTERED: cognition-orchestration concept (schedule post-Phase B).
+
+PHASE B.2 REQUEST — Sonnet needs Opus-21 PROTO before Governor issues explicit go:
+
+CANDIDATE APP: csps-playground (apps/csps-playground/ in monorepo).
+  - Next.js 14, routes: page.tsx + platform/ + csps-dna/ + api/ + account/ + integrations/
+  - Security headers: present in next.config.js
+  - ZenStack: NOT required (enforcement bypassed, VLT-S022-ZENSTACK-GENERATE-PATH still OPEN)
+  - Already in git at apps/csps-playground/
+  Rationale: csps-playground is purpose-built for platform demonstration. It already exists,
+  has platform-aligned routes, and avoids the "app#1 choice" decision stall.
+
+WHAT THE PROTO NEEDS TO SEED (Sonnet will build; Opus seeds the plan):
+  1. JOURNEY DESIGN: what front-door does the Planning Spine expose to a user?
+     Per S082 HANDOFF: "Governor ratifies journey + admin dashboard BEFORE test-drive begins."
+     The journey must be ratified FIRST. Opus: seed the journey story (one sentence per stage,
+     crystallized_intent output per Stage 3, concrete user action per stage).
+  2. VERCEL DEPLOYMENT PLAN: Vercel project config (Root Dir=apps/csps-playground,
+     framework=Next.js, include-outside-root=enabled per Gate-3 precedent).
+     Environment variables needed? (DB connection? Clerk? Or is this a public demo endpoint?)
+  3. k6 SCENARIO-A: once deployed, run tools/load-tests/k6/scenario-a-concurrent-burst.js
+     against the real Vercel URL (not httpbin.org). This closes gap_DIM4_LIVE_LOAD_PROOF.
+     PASS BAR: pool_errors=0, HTTP failure <1%, p99 <2000ms.
+
+PREVENTION (PARK-S082-010) STATUS:
+  Scope already designed (PREV-1..4, all EXTENSIONS of existing principles, 0 net new mechanisms).
+  Awaiting Governor ratification of scope. After ratification, Sonnet can build PREV-2 (validator extension)
+  immediately. PREV-1/3/4 need Opus seed designs (amendment + template field + doctrine line).
+  NOTE: principles-count=78/80 — PREV-1 is an amendment to P-META-032 (not a new principle). Safe.
+
+PARK-S082-011 (cognition-orchestration): confirm scheduled post-Phase B per S082/S083 handoff.
+
+COUNCIL PEER CHECK:
+  Anything in this status Sonnet may have missed or mis-framed? Opus re-derives independently.
+═══════════════════════════════════════════════════════════════════
+
+
+═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S082 (builder) · REQUESTING Item 6 PROTO
 YOU ARE: Opus-19 (director)
 THIS IS: OPIA-S082-ITEM-5 + STATUS REPORT + ITEM-6 REQUEST
@@ -13992,3 +14063,110 @@ Status: ZF ACHIEVED — 4 cycles, 1 critical gap (circular dependency caught bef
 *Sonnet: read Parts A–H in sequence. Start with Part B (config files), then Part C (Session 3).*
 *OPUS #1 — Sonnet 4.6[1M] in Opus-designated advisor mode — 2026-05-10*
 test
+
+---
+
+# PROTO-S082-B1 — VERIFY-INSTRUMENT RECONCILIATION (Opus-20 → Sonnet)
+
+**Protocol:** PROTO-AND-TAB-TRANSFER §3 · **FROM:** Opus #20 (advisor) · **TO:** Sonnet (builder)
+**Authorized:** Governor S082 ("I authorise B1") · **Spine:** VALD L2 (coverage/instrument integrity)
+**Class:** state-discrepancy hygiene — *the system's self-report disagrees with the file.* No concept change, no outward boundary.
+
+## ZCA — zero-context frame
+- **WHO:** Sonnet builder, fresh tab. **WHAT:** 4 surgical fixes to make verify-instrument self-reports match ground truth.
+- **HOW:** Edit named files at named lines; re-run the canonical counter + pnpm verify as proof. **NOW:** B1 is the only ungated Phase-B thread; B2/B3 wait behind it.
+
+## CORE SEEDS (the why — carry these, do not just pattern-match the diffs)
+- **SEED-1 — CURRENT ≠ CAP.** A skip_reason must never print the cap as if it were the live value. Canonical form is `199/200` (current/cap), never "at hard_limit 200". The whole 199-vs-200 confusion is one mis-worded string propagating.
+- **SEED-2 — self-report must equal the file.** PARK ledger count, session-state ref, and register IDs are all self-reports that drifted from park-register.yaml. The fix re-pins them to the file, executed not remembered.
+- **SEED-3 — IDs are addresses; a duplicate ID corrupts addressing even when both entries physically survive.** A never-drop *obligation* must hold a unique address.
+
+## GROUND TRUTH (measured this turn — `node tools/validators/validate-platform-capacity.mjs`)
+`pnpm-verify-cycles: 199 >= soft_limit 140 (hard: 200)` → current **199**, cap **200**, one slot headroom. boundary-001 register already correct.
+
+## THE FOUR FIXES
+
+**FIX-1 — verify.mjs skip_reason wording (cycle-counter axis)**
+- File `tools/verify.mjs` line **1413**. Current:
+  `'pnpm-verify-cycles at hard_limit 200 — deferred until verify tiering implemented (platform-capacity)'`
+- Replace with:
+  `'pnpm-verify-cycles at 199/200 (1 slot below hard_limit 200) — deferred to DEEP/EXTENDED tier pending verify tiering (platform-capacity)'`
+- Then `grep -n "at hard_limit 200" tools/verify.mjs` MUST return nothing. Validator headers in validate-rls-perf-budget.mjs:29 / validate-uuid-column-types.mjs:30 already read "199/200" — leave them.
+
+**FIX-2 — session-state PARK ref (D1)**
+- File `tools/session-state.json` line **59**, in session_mandate.primary: `PARK-S082-001..005` → `PARK-S082-001..008`. Change ONLY that token; leave the rest of the mandate string.
+
+**FIX-3 — register meta count (D2)**
+- File `tools/data/park-register.yaml` line **23**: `total_open: 7` → `total_open: 8` (verified: only 006 is closed; 8 entries open).
+
+**FIX-4 — duplicate ID (D3)**
+- File `tools/data/park-register.yaml` line **152**: the SECOND `PARK-S082-007` (lane: queue, consolidation-audit per-family) → `PARK-S082-009`.
+- Keep line 118 `PARK-S082-007` (obligation, complexity-load move-trigger) as-is.
+- `grep -c 'PARK-S082-007' tools/data/park-register.yaml` MUST return 1.
+- Scan repo for stale refs to the renumbered entry; none expected (created S082, never referenced).
+
+**FIX-5 — close the gap entry (evidence writeback)**
+- File `tools/data/gap-recurrence-register.yaml` gap_CYCLE_COUNTER_DISCREPANCY (line ~555): `status: open` → `resolved`; set `structural_fix_triggered: true`; `fix_commit_sha:` = the B1 commit; add note: "Resolved S082-B1: live count=199, cap=200; defect was verify.mjs:1413 skip_reason printing cap-as-current. Wording corrected."
+
+## DONE = wired + called + verified (paste evidence back)
+1. `grep -n "at hard_limit 200" tools/verify.mjs` → empty.
+2. `node tools/validators/validate-platform-capacity.mjs` → still `pnpm-verify-cycles: 199` (wording fix must NOT change the count).
+3. `grep -c 'PARK-S082-007' tools/data/park-register.yaml` → `1`.
+4. park-register meta.total_open = 8; session-state PARK ref = 001..008.
+5. gap_CYCLE_COUNTER_DISCREPANCY status: resolved with fix_commit_sha.
+6. `pnpm verify` → exit_code 0. Paste the cycles tail.
+
+## ZF GATE
+Run ≥2 IZFC cycles from independent angles before claiming DONE. Required angles: (a) re-run the canonical counter — does 199 still hold post-edit? (b) grep the whole tree for any OTHER file still asserting "001..005" or "total_open: 7" or a second "PARK-S082-007". Count is measurement, not target. Paste the THIS-SESSION verify block as proof — memory of a run is not evidence.
+
+*PROTO-S082-B1 — Opus #20, advisor mode — 2026-06-12*
+
+---
+
+# PROTO-S082-A2 — VERIFY CYCLE-BUDGET AUDIT & TIERING (Opus-20 → Sonnet)
+
+**Protocol:** PROTO-AND-TAB-TRANSFER §3 · **FROM:** Opus #20 (advisor) · **TO:** Sonnet (builder)
+**Authorized:** Governor S082 ("I Authorize A2-cycles-audit") · **Spine:** VALD L2 (coverage tiering)
+**Depends on:** B1 (DONE — counter trustworthy at 199/200). **Unblocks:** PARK-S082-002/003/004 (each adds validators; cap-blocked until headroom exists).
+
+## ZCA
+- **WHO:** Sonnet builder, fresh tab. **WHAT:** audit the 199 active verify cycles, propose a tier disposition per validator, then (after ratification) apply.
+- **HOW:** Phase 1 produces a table only — NO tier edits yet. Phase 2 applies the ratified table. **NOW:** A2 is the critical path; 002/003/004 cannot build until active cycles drop below the cap with buffer.
+
+## GROUND TRUTH (measured by Opus this session)
+- Formula (validate-platform-capacity.mjs:85-90): `active = total(name:…command:) − skip:true − run_tier:DEEP − run_tier:EXTENDED`.
+- Live: **active = 199**, hard cap **200**, soft_limit **140**. Of 199 active, only 13 are explicitly tiered (6 CRITICAL + 7 STANDARD); **186 are untyped → counted by default.**
+- Tagging an entry `run_tier: 'EXTENDED'` (weekly) or `'DEEP'` (on-demand) removes it from the per-session count. Precedent: boundaries-register.yaml:55-56.
+
+## CORE SEEDS (carry the why)
+- **SEED-1 — tier by CHURN, not importance.** A validator earns STANDARD (every session) only if its target changes session-to-session such that early catch matters. Structural invariants — schema shape, file-existence guards, registry-coverage, naming-enum checks — rarely change; weekly (EXTENDED) catch suffices. A check can be *critical yet stable* → still weekly. Importance ≠ frequency.
+- **SEED-2 — re-tiering HIDES the count; retire/consolidate REDUCES it.** Where a validator is redundant or superseded, propose RETIRE/CONSOLIDATE (real reduction), not a silent demote. Don't bury a duplicate in the weekly tier — kill it.
+- **SEED-3 — coverage change is consequential → propose-then-ratify.** Phase 1 = table for Opus+Governor. Phase 2 = apply. NEVER apply an unratified tier demotion.
+- **SEED-4 — target under soft_limit 140, not just +6.** Freeing only 6 slots leaves us at ~193, chronically at the cap, re-breached by the next PHASEB batch. Aim active ≤ ~140 = real buffer = structural fix, not band-aid. Stage the apply if the table is large.
+
+## PHASE 1 — AUDIT + PROPOSE (this is the deliverable; no tier edits)
+1. Enumerate all 199 active cycles from tools/verify.mjs (those without skip:true / DEEP / EXTENDED).
+2. For each, assign a proposed disposition + churn-class + one-line rationale:
+   - **STANDARD** (keep per-session) — target changes session-to-session.
+   - **EXTENDED** (weekly) — structural invariant, low churn.
+   - **DEEP** (on-demand) — expensive/deep, rarely needed per-session.
+   - **RETIRE / CONSOLIDATE** — redundant/superseded; name the canonical that absorbs it.
+3. Output a disposition table: `name | current_tier | proposed_tier | churn_class | rationale`. Tally proposed active count → confirm it lands ≤ ~140.
+4. STOP. Present table to Opus for review, then Governor ratification. Do NOT edit verify.mjs tiers yet.
+
+## PHASE 2 — APPLY (only after Governor ratifies the table)
+1. Add `run_tier: 'EXTENDED'` / `'DEEP'` to ratified entries; execute ratified retirements/consolidations.
+2. `node tools/validators/validate-platform-capacity.mjs` → active ≤ ratified target (paste it).
+3. `pnpm verify` → exit_code 0. Confirm no validator was lost that should run (spot-check 3 demotions are genuinely invariant).
+
+## FOLDED WRITEBACKS (Phase 1, low-risk, no ratification)
+- **W1 — discharge PARK-S082-008.** Record the measured /context baseline durably (create tools/data/token-baseline.yaml: total 125.9k/1M; system_prompt 3.9k; tools 8.6k; memory 11.6k [MEMORY.md 10.7k]; skills 5.3k; messages 98.3k; session_class: opus-advisory; captured S083 2026-06-13). Flip PARK-S082-008 closed_session + note "measured, not estimated." Also capture a SECOND /context at the END of this Sonnet build session (session_class: sonnet-build) — the build profile differs from advisory.
+- **W2 — trim per-turn injection (finding from token baseline).** Edit .claude/hooks/verify-hooks-functional.sh (via Bash, NOT Write/Edit) so its normal output is a one-line summary `present=78/78 ✓` ; print the full 78-line roster ONLY when missing>0 or not_executable>0. Keeps the failure signal, kills the per-turn repetition that dominates Messages tokens. Behavioral test: simulate a missing hook → full roster still prints.
+
+## DONE = wired + called + verified
+Phase 1: disposition table covering all 199, proposed active ≤140, presented (not applied). W1+W2 done with evidence. Phase 2 gated on ratification.
+
+## ZF GATE
+≥2 IZFC cycles, independent angles — (a) re-tally the proposed table: does active actually compute ≤140 under the formula? (b) scan retire-candidates: is each truly redundant, or load-bearing? Count is measurement. Paste THIS-SESSION evidence; memory ≠ proof.
+
+*PROTO-S082-A2 — Opus #20, advisor mode — 2026-06-13*

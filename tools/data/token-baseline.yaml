@@ -40,8 +40,27 @@ entries:
     class: sonnet-build
     session: S083
     date: "2026-06-13"
+    captured: "S083 2026-06-13 session-close"
+    model: "claude-sonnet-4-6[1m]"
     context_window: 1048576
-    used_total_k: null
-    used_pct: null
-    note: "PENDING — capture at end of A2 build session. Governor: run /context after A2 table is complete and paste output for Sonnet to record."
-    source: "PROTO-S082-A2 W1 — 'capture 2nd /context at END of THIS build session (class: sonnet-build)'"
+    used_total_k: 269.1
+    used_pct: 27
+    free_k: 729.3
+    breakdown:
+      system_prompt_k: 2.9
+      system_tools_k: 6.4
+      memory_k: 8.0
+      memory_note: "MEMORY.md 7.5k"
+      skills_k: 4.0
+      messages_k: 249.4
+    note: >
+      Build ≈2.1× advisory total (269.1k vs 125.9k S083-001).
+      Messages 2.5× higher (249.4k vs 98.3k) — cost driver = per-turn injection × turns,
+      not governance apparatus. Fixed overhead LOWER (21.3k vs 29.4k).
+      Window peak 27% — complexity-load move-trigger NOT tripped.
+    source: "Opus-20 PROTO task close directive — /context measurement at S083 session end"
+    b_token_budget_r6_implication: >
+      Confirms: messages (not system/tools/memory) dominate build sessions.
+      Fixed overhead (system+tools+memory+skills) = 21.3k = 7.9% of used 269.1k.
+      Message growth is the primary scaling concern in long sessions, not governance overhead.
+      Complexity-load trigger should fire on MESSAGE count, not fixed overhead.

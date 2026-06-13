@@ -1651,15 +1651,21 @@ entries:
   first_found: S081
   k_count: 1
   sessions: [S081]
-  status: open
+  status: resolved
   cie_connection: "observe"
   pe_connection: "input"
   pe_band: 2
   pe_urgency_input: true
   cie_observation_class: verify_instrument_fragility
   must_address_by_session: "S082-phase-b"
-  fix_commit_sha: null
-  not_yet_propagated:
-    - "tools/validators/validate-dead-links.mjs: add CRLF normalization before indexOf frontmatter detection"
-    - "Test: CRLF file with frontmatter > 2000 chars — verify reports 0 new breaks"
-  note: "S081 close. back-ref: PROTO-FOUNDATION-FIX root cause. Needs Phase-B with A2-cycles-audit (EXTENDED slot). P-META-034 verify-instrument-fragility class."
+  fix_commit_sha: pending-task1-commit
+  resolution_session: S083
+  resolution_date: "2026-06-13"
+  not_yet_propagated: []
+  note: >
+    S083 Phase B.1 RESOLVED. Fix: extractLinksFromFrontmatter now normalizes \r\n→\n before
+    indexOf; hasFrontmatter guard added; 2000-char truncation fallback removed entirely.
+    Evidence: ai-collaboration-charter.md (CRLF) — old indexOf returned -1 (fallback),
+    new indexOf returns 1488 (correct), 5 links now properly parsed.
+    Baseline shift: broken links 71→70 (one CRLF false-positive eliminated). exit=0.
+    ZF-MEASURED: files=180 links=784 broken=70 new_breaks=0 [validate-dead-links.mjs S083].

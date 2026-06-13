@@ -46,12 +46,20 @@ function isLocalHref(href) {
 
 function extractLinksFromFrontmatter(content) {
   const links = [];
+  // S083 CRLF fix: normalize \r\n → \n before boundary detection.
+  // Windows files use \r\n---\r\n; indexOf('\n---\n') returns -1 on CRLF content,
+  // causing the old 2000-char fallback to truncate hrefs and produce false broken-link reports.
+  const normalized = content.replace(/\r\n/g, '\n');
   // Match links: array entries: { rel: xxx, href: yyy }
   const hrefPattern = /href:\s*([^\s,}\]'"]+|'[^']*'|"[^"]*")/g;
   let m;
-  // Only look in frontmatter (between first --- markers)
-  const frontmatterEnd = content.indexOf('\n---\n', 4);
-  const frontmatter = frontmatterEnd > 0 ? content.slice(0, frontmatterEnd) : content.slice(0, 2000);
+  // Only extract from frontmatter. If no frontmatter present, return empty (body hrefs not validated).
+  const hasFrontmatter = normalized.startsWith('---\n');
+  if (!hasFrontmatter) return links;
+  const frontmatterEnd = normalized.indexOf('\n---\n', 4);
+  // If closing --- not found (malformed frontmatter), skip rather than truncating at 2000 chars.
+  if (frontmatterEnd < 0) return links;
+  const frontmatter = normalized.slice(0, frontmatterEnd);
   while ((m = hrefPattern.exec(frontmatter)) !== null) {
     let href = m[1].replace(/^['"]|['"]$/g, '').trim();
     if (isLocalHref(href)) {

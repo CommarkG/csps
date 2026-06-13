@@ -110,6 +110,7 @@ const CYCLES = [
   },
   {
     // NEW S005 turn 26 — converts agent-alignment-coverage from DECLARED-DEFERRED to ACTIVE-MECHANICAL today
+    run_tier: 'EXTENDED',
     name: 'aap_frontmatter_coverage',
     command: 'node tools/validators/validate-aap-frontmatter.mjs',
     parse_output: (out) => {
@@ -121,6 +122,7 @@ const CYCLES = [
   },
   {
     // NEW S005 turn 26 — converts principle-count-staleness from DECLARED-DEFERRED to ACTIVE-MECHANICAL today
+    run_tier: 'EXTENDED',
     name: 'principle_count_staleness',
     command: 'node tools/validators/validate-principle-count-staleness.mjs',
     parse_output: (out) => {
@@ -130,6 +132,7 @@ const CYCLES = [
   },
   {
     // NEW S010 Phase 7 Candidate #4 — verifies all 10 ai-behavior-spine section slices are present
+    run_tier: 'EXTENDED',
     name: 'ai_behavior_spine_slices_sync',
     command: 'node tools/validators/validate-ai-behavior-spine-slices.mjs',
     parse_output: (out) => {
@@ -139,6 +142,7 @@ const CYCLES = [
   },
   {
     // NEW S010 Phase 7 Candidate #3 — verifies all 28 audit-runner pipeline slice files are present
+    run_tier: 'EXTENDED',
     name: 'audit_runner_slices_sync',
     command: 'node tools/validators/validate-audit-runner-slices.mjs',
     parse_output: (out) => {
@@ -148,6 +152,7 @@ const CYCLES = [
   },
   {
     // NEW S010 Phase 7 Candidate #2 — verifies all 39 behavioral contract slice files are present
+    run_tier: 'EXTENDED',
     name: 'behavioral_contract_slices_sync',
     command: 'node tools/validators/validate-behavioral-contract-slices.mjs',
     parse_output: (out) => {
@@ -157,6 +162,7 @@ const CYCLES = [
   },
   {
     // NEW S010 Phase 7 Candidate #1 — verifies all 53 principle slice files are present and valid
+    run_tier: 'EXTENDED',
     name: 'principle_slices_sync',
     command: 'node tools/validators/validate-principle-slices.mjs',
     parse_output: (out) => {
@@ -190,6 +196,7 @@ const CYCLES = [
   },
     {
     // NEW S011 §24++++++++++++ — ai-defaults-freshness: inner-ai-defaults registry is current for running model
+    run_tier: 'EXTENDED',
     name: 'ai_defaults_freshness',
     command: 'node tools/validators/validate-inner-ai-defaults-freshness.mjs',
     parse_output: (out) => {
@@ -290,11 +297,13 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/plans_checked=(\d+)\s+questions_total=(\d+)\s+questions_open=(\d+)/); return m ? { plans: Number(m[1]), total: Number(m[2]), open: Number(m[3]) } : {}; },
   },
   {
+    run_tier: 'EXTENDED',
     name: 'participant_declared',
     command: 'node tools/validators/validate-participant-declared.mjs',
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
   },
   {
+    run_tier: 'EXTENDED',
     name: 'completeness_coverage',
     command: 'node tools/validators/validate-completeness-coverage.mjs',
     parse_output: (out) => { const m = out.match(/contracts=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/); return m ? { contracts: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; },
@@ -303,11 +312,13 @@ const CYCLES = [
     // NEW S025 — Template Grade A/B/C/D enforcement (advisory Phase 1).
     // Grade A templates must have research_ref. Existing templates need grade assignment (Turn 10).
     // Opus Turn 9 ratified the grade system: A=council, B=standard, C=provisional, D=experimental.
+    run_tier: 'EXTENDED',
     name: 'template_grade',
     command: 'node tools/validators/validate-template-grade.mjs',
     parse_output: (out) => { const m = out.match(/graded=(\d+)\s+advisories=(\d+)/); return m ? { graded: Number(m[1]), advisories: Number(m[2]) } : {}; },
   },
   {
+    run_tier: 'EXTENDED',
     name: 'contract_harmonization',
     command: 'node tools/validators/validate-contract-harmonization.mjs',
     parse_output: (out) => { const m = out.match(/contracts=(\d+)\s+orphans=(\d+)\s+tensions=(\d+)\s+overlaps=(\d+)/); return m ? { contracts: Number(m[1]), orphans: Number(m[2]), tensions: Number(m[3]), overlaps: Number(m[4]) } : {}; },
@@ -365,6 +376,7 @@ const CYCLES = [
     // Class B: O(N) validator file-walkers — pnpm verify degrades from 30s to 300s at 30 apps
     // Class C: Missing @@index([tenantId]) — full table scans per tenant query
     // All advisory. PE=65. Spec: bottleneck-and-gradual-structures-S019.md §1.
+    run_tier: 'EXTENDED',
     name: 'bottleneck_patterns',
     command: 'node tools/validators/validate-bottleneck-patterns.mjs',
     parse_output: (out) => { const m = out.match(/routes_checked=(\d+)\s+validators_checked=(\d+)\s+models_checked=(\d+)\s+advisories=(\d+)/); return m ? { routes: Number(m[1]), validators: Number(m[2]), models: Number(m[3]), advisories: Number(m[4]) } : {}; },
@@ -419,6 +431,7 @@ const CYCLES = [
     // S028 — Spine hierarchy: validates L1/L2/L3 structural rules per spine-graduation-principle.md
     // BLOCKING: missing sealed fields in L1, missing parent_l1_doctrine in L2/L3, non-canonical spines
     // ADVISORY: do_not_expand violations in sealed L1 files. PE=67.
+    run_tier: 'EXTENDED',
     name: 'spine_hierarchy',
     command: 'node tools/validators/validate-spine-hierarchy.mjs',
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisories: Number(m[3]) } : {}; },
@@ -457,12 +470,14 @@ const CYCLES = [
     // S028 — Scope conflict: detects S2 proposals for S1 requirements in procedure docs.
     // K=2 already reached: 3+ violations in S028 (credentials, vercel link, root directory).
     // Advisory Phase 1 → BLOCKING Phase 2. Closes the PROPOSAL-level enforcement gap.
+    run_tier: 'EXTENDED',
     name: 'scope_conflict',
     command: 'node tools/validators/validate-scope-conflict.mjs',
     parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisories=(\d+)/); return m ? { checked: Number(m[1]), advisories: Number(m[2]) } : {}; },
   },
   {
     // E1 LIVE S030 — mini-tree bidirectional integrity check (Turn 34)
+    run_tier: 'EXTENDED',
     name: 'mini_tree_integrity',
     command: 'node tools/validators/validate-mini-tree-integrity.mjs',
     parse_output: (out) => { const m = out.match(/blocking=(\d+) advisory=(\d+)/); return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {}; },
@@ -493,12 +508,15 @@ const CYCLES = [
   },
   {
     // S032-D LIVE — BLOCKING: apps/*/next.config.js must import + use securityHeaders()
+    // EXTENDED: promote→STANDARD during any new app build (Opus-20 A2)
+    run_tier: 'EXTENDED',
     name: 'security_headers_compliance',
     command: 'node tools/validators/validate-security-headers.mjs',
     parse_output: (out) => { const m = out.match(/apps=(\d+) passing=(\d+) blocking=(\d+) skipped=(\d+)/); return m ? { apps: Number(m[1]), passing: Number(m[2]), blocking: Number(m[3]), skipped: Number(m[4]) } : {}; },
   },
   {
     // ADR-0027 Phase 1 LIVE S032 — scope_level on governed artifacts (206 missing, advisory until backfill)
+    run_tier: 'EXTENDED',
     name: 'scope_level_declared',
     command: 'node tools/validators/validate-scope-level-declared.mjs',
     parse_output: (out) => { const m = out.match(/checked=(\d+) missing=(\d+) invalid=(\d+) exempt=(\d+)/); return m ? { checked: Number(m[1]), missing: Number(m[2]), invalid: Number(m[3]), exempt: Number(m[4]) } : {}; },
@@ -517,12 +535,14 @@ const CYCLES = [
   },
   {
     // S036 LIVE — error registry coverage (inner-ai-defaults overrides have EP-ERR files)
+    run_tier: 'EXTENDED',
     name: 'error_registry_coverage',
     command: 'node tools/validators/validate-error-registry-coverage.mjs',
     parse_output: (out) => { const m = out.match(/overrides=(\d+) covered=(\d+) uncovered=(\d+)/); return m ? { overrides: Number(m[1]), covered: Number(m[2]), uncovered: Number(m[3]) } : {}; },
   },
   {
     // S069 STEP 4 LIVE — NodeFile contract compliance (ADVISORY; ~36 CORE+L1/L2+pillar-headers)
+    run_tier: 'EXTENDED',
     name: 'nodefile_compliance',
     command: 'node tools/validators/validate-nodefile-compliance.mjs',
     parse_output: (out) => {
@@ -571,11 +591,13 @@ const CYCLES = [
     // Skill DNA alignment: validates all SKILL.md files are current with platform DNA.
     // Checks: scope_level, template_grade, backed_by_principle exists, backed_by_contract exists.
     // Advisory: skill references stale principle/contract. Governor directive S028.
+    run_tier: 'EXTENDED',
     name: 'skill_dna_alignment',
     command: 'node tools/validators/validate-skill-dna-alignment.mjs',
     parse_output: (out) => { const m = out.match(/skills_checked=(\d+)\s+advisories=(\d+)/); return m ? { skills: Number(m[1]), advisories: Number(m[2]) } : {}; },
   },
   {
+    run_tier: 'EXTENDED',
     name: 'question_coverage',
     command: 'node tools/validators/validate-question-coverage.mjs',
     parse_output: (out) => { const m = out.match(/plans=(\d+)\s+wizard_templates=(\d+)\s+issues:\s*Z=(\d+)\s+C=(\d+)\s+G=(\d+)/); return m ? { plans: Number(m[1]), templates: Number(m[2]), z_missing: Number(m[3]), c_missing: Number(m[4]), g_missing: Number(m[5]) } : {}; },
@@ -583,6 +605,7 @@ const CYCLES = [
   {
     // NEW S021 Governor directive — gradual-bundling: comprehensive check of all 7 bundling elements
     // Checks: depth discipline, humble batching, core spiral, GEP enforce_stage, PE alignment
+    run_tier: 'EXTENDED',
     name: 'gradual_bundling',
     command: 'node tools/validators/validate-gradual-bundling.mjs',
     parse_output: (out) => {
@@ -613,6 +636,7 @@ const CYCLES = [
   {
     // NEW S021 Governor directive — completion-circle: surfaces elements missing developer/user coverage
     // Stage: measurement (exits 0 always) — defines COMPLETE as full closed circle
+    run_tier: 'EXTENDED',
     name: 'completion_circle',
     command: 'node tools/validators/validate-completion-circle.mjs',
     parse_output: (out) => {
@@ -633,6 +657,7 @@ const CYCLES = [
   {
     // NEW S021 CEC — hook-lifecycle-state: surfaces STUB vs active hooks (N3 structural fix)
     // Enables accurate Track A estimation — prevents counting STUB hooks as live enforcement
+    run_tier: 'EXTENDED',
     name: 'hook_lifecycle_state',
     command: 'node tools/validators/validate-hook-lifecycle-state.mjs',
     parse_output: (out) => {
@@ -661,6 +686,7 @@ const CYCLES = [
   },
   {
     // S052: documentation-in-schema T2 advisory — context_question coverage across governed files
+    run_tier: 'EXTENDED',
     name: 'context_question_coverage',
     command: 'node tools/validators/validate-context-question-coverage.mjs',
     parse_output: (out) => {
@@ -733,6 +759,7 @@ const CYCLES = [
     // NEW S020 DRIFT-1 — drift-registry coverage: tracks % of 7 drift types with active validators
     // ADVISORY when coverage < 50%; BLOCKING when < 25% AND critical drift type has no VLT
     // Current baseline: 43% (3/7 active); target 71% (5/7) by S025
+    run_tier: 'EXTENDED',
     name: 'drift_registry_coverage',
     command: 'node tools/validators/validate-drift-registry.mjs',
     parse_output: (out) => {
@@ -751,6 +778,7 @@ const CYCLES = [
   },
     {
     // NEW S011 §24+++++++++ — council-coverage: all 24 skills registered in council-registry.md
+    run_tier: 'EXTENDED',
     name: 'council_coverage',
     command: 'node tools/validators/validate-council-coverage.mjs',
     parse_output: (out) => {
@@ -769,6 +797,7 @@ const CYCLES = [
   },
     {
     // NEW S011 §24++++++++ — threshold/import-quarantine: imports have CSPS DNA
+    run_tier: 'EXTENDED',
     name: 'import_quarantine',
     command: 'node tools/validators/validate-import-quarantine.mjs',
     parse_output: (out) => {
@@ -778,6 +807,7 @@ const CYCLES = [
   },
   {
     // NEW S011 §24++++++++ — nothing-stands-alone: P-ARCH-001 connectivity (advisory)
+    run_tier: 'EXTENDED',
     name: 'nothing_stands_alone',
     command: 'node tools/validators/validate-nothing-stands-alone.mjs',
     parse_output: (out) => {
@@ -787,6 +817,7 @@ const CYCLES = [
   },
     {
     // NEW S011 §24+++++++ — moat-coverage: all 15 moat elements have active recurring audit coverage
+    run_tier: 'EXTENDED',
     name: 'moat_coverage',
     command: 'node tools/validators/validate-moat-coverage.mjs',
     parse_output: (out) => {
@@ -823,6 +854,7 @@ const CYCLES = [
   },
   {
     // NEW S014 ZF audit — instruction-context: checks B_* contracts, principles, hooks have WHY reasoning (P-META-020)
+    run_tier: 'EXTENDED',
     name: 'instruction_context',
     command: 'node tools/validators/validate-instruction-context.mjs',
     parse_output: (out) => {
@@ -895,6 +927,7 @@ const CYCLES = [
   },
   {
     // Session A: ZF requirement — ADVISORY, lists plans missing zf_required_level
+    run_tier: 'EXTENDED',
     name: 'plan_zf_requirement_coverage',
     command: 'node tools/validators/validate-plan-zf-requirement.mjs',
     parse_output: (out) => {
@@ -916,18 +949,19 @@ const CYCLES = [
   // Session C+S023 monitoring validators
   // S023 Sandbox Ratification Policy validators
   { name: 'simulation_before_implementation', command: 'node tools/validators/validate-simulation-before-implementation.mjs', parse_output: (out) => { const m = out.match(/checked=(d+)s+blocking=(d+)s+advisory=(d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; } },
-  { name: 'sandbox_lifecycle', command: 'node tools/validators/validate-sandbox-lifecycle.mjs', parse_output: (out) => { const m = out.match(/checked=(d+)s+advisory=(d+)/); return m ? { checked: Number(m[1]), advisory: Number(m[2]) } : {}; } },
+  { run_tier: 'EXTENDED', name: 'sandbox_lifecycle', command: 'node tools/validators/validate-sandbox-lifecycle.mjs', parse_output: (out) => { const m = out.match(/checked=(d+)s+advisory=(d+)/); return m ? { checked: Number(m[1]), advisory: Number(m[2]) } : {}; } },
   { name: 'intent_crystallized',        command: 'node tools/validators/validate-intent-crystallized.mjs',        parse_output: (out) => { const m = out.match(/checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/); return m ? { checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; } },
   { name: 'routing_declared',           command: 'node tools/validators/validate-routing-declared.mjs',           parse_output: (out) => { const m = out.match(/plans_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/); return m ? { plans_checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}; } },
   { name: 'ux_principles_declared',     command: 'node tools/validators/validate-ux-principles-declared.mjs',     parse_output: (out) => { const m = out.match(/pages_checked=(\d+)\s+with_principle=(\d+)\s+advisory=(\d+)/); return m ? { pages_checked: Number(m[1]), with_principle: Number(m[2]), advisory: Number(m[3]) } : {}; } },
-  { name: 'isolation_layers',            command: 'node tools/validators/validate-isolation-layers.mjs',            parse_output: (out) => { const m = out.match(/blocking=(\d+)\s+advisory=(\d+)/); return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {}; } },
-  { name: 'webhook_idempotency',         command: 'node tools/validators/validate-webhook-idempotency.mjs',         parse_output: (out) => { const m = out.match(/cases=(\d+)\s+advisory=(\d+)/); return m ? { cases: Number(m[1]), advisory: Number(m[2]) } : {}; } },
-  { name: 'solo_user_flow',              command: 'node tools/validators/validate-solo-user-flow.mjs',              parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisory=(\d+)/); return m ? { checked: Number(m[1]), advisory: Number(m[2]) } : {}; } },
+  { run_tier: 'EXTENDED', name: 'isolation_layers',            command: 'node tools/validators/validate-isolation-layers.mjs',            parse_output: (out) => { const m = out.match(/blocking=(\d+)\s+advisory=(\d+)/); return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {}; } },
+  { run_tier: 'EXTENDED', name: 'webhook_idempotency',         command: 'node tools/validators/validate-webhook-idempotency.mjs',         parse_output: (out) => { const m = out.match(/cases=(\d+)\s+advisory=(\d+)/); return m ? { cases: Number(m[1]), advisory: Number(m[2]) } : {}; } },
+  { run_tier: 'EXTENDED', name: 'solo_user_flow',              command: 'node tools/validators/validate-solo-user-flow.mjs',              parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisory=(\d+)/); return m ? { checked: Number(m[1]), advisory: Number(m[2]) } : {}; } },
   { name: 'pe_situation_declared',       command: 'node tools/validators/validate-pe-situation-declared.mjs',       parse_output: (out) => { const m = out.match(/situation=(\S+)\s+registry=(\S+)/); return m ? { situation: m[1], registry: m[2] } : {}; } },
-  { name: 'gdpr_erasure_path',           command: 'node tools/validators/validate-gdpr-erasure-path.mjs',           parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisory=(\d+)/); return m ? { checked: Number(m[1]), advisory: Number(m[2]) } : {}; } },
-  { name: 'subscription_error_handling', command: 'node tools/validators/validate-subscription-error-handling.mjs', parse_output: (out) => { const m = out.match(/routes_checked=(\d+)\s+with_gate=(\d+)\s+advisory=(\d+)/); return m ? { routes_checked: Number(m[1]), with_gate: Number(m[2]), advisory: Number(m[3]) } : {}; } },
+  { run_tier: 'EXTENDED', name: 'gdpr_erasure_path',           command: 'node tools/validators/validate-gdpr-erasure-path.mjs',           parse_output: (out) => { const m = out.match(/checked=(\d+)\s+advisory=(\d+)/); return m ? { checked: Number(m[1]), advisory: Number(m[2]) } : {}; } },
+  { run_tier: 'EXTENDED', name: 'subscription_error_handling', command: 'node tools/validators/validate-subscription-error-handling.mjs', parse_output: (out) => { const m = out.match(/routes_checked=(\d+)\s+with_gate=(\d+)\s+advisory=(\d+)/); return m ? { routes_checked: Number(m[1]), with_gate: Number(m[2]), advisory: Number(m[3]) } : {}; } },
   {
     // NEW S011 unified-intake L3 — source-class coverage: all 4 source classes have normalizers
+    run_tier: 'EXTENDED',
     name: 'intake_source_class_coverage',
     command: 'node tools/validators/validate-source-class-coverage.mjs',
     parse_output: (out) => {
@@ -993,6 +1027,7 @@ const CYCLES = [
   },
   {
     // NEW S011 Phase 9 9f — L1_CORE HUB file_depth_markers validator (EXT-004-D Improvement #8)
+    run_tier: 'EXTENDED',
     name: 'corespine_depth_markers',
     command: 'node tools/validators/validate-corespine-depth-markers.mjs',
     parse_output: (out) => {
@@ -1023,6 +1058,7 @@ const CYCLES = [
   {
     // S016 BEDROCK COMPLETION GATE — platform core must be complete before app #2
     // Reads csps-bedrock.md §3 checklist. 2 root decisions missing = 7 downstream items gated.
+    run_tier: 'EXTENDED',
     name: 'bedrock_completion',
     command: 'node tools/validators/validate-bedrock.mjs',
     parse_output: (out) => {
@@ -1054,6 +1090,7 @@ const CYCLES = [
     // S017 ZENSTACK DRIFT GATE — ZModel → Prisma schema consistency
     // Runs zenstack generate on libs/policies/schema.zmodel, compares generated
     // model list against apps/task-mgmt/prisma/schema.prisma. Blocks on drift.
+    run_tier: 'EXTENDED',
     name: 'foundation_schema_drift',
     command: 'node tools/validators/validate-foundation-schema-drift.mjs',
     parse_output: (out) => {
@@ -1123,6 +1160,7 @@ const CYCLES = [
   {
     // S037-C LIVE — Persona Chain Gate (OPEN-008): PI files with status: implementing must have
     // all 6 persona reviews complete (consolidation/balance/domain/ux/critic/synergy). ADVISORY.
+    run_tier: 'EXTENDED',
     name: 'persona_chain_complete',
     command: 'node tools/validators/validate-persona-chain-complete.mjs',
     parse_output: (out) => { const m = out.match(/pi_checked=(\d+)\s+implementing=(\d+)\s+advisories=(\d+)/); return m ? { pi_checked: Number(m[1]), implementing: Number(m[2]), advisories: Number(m[3]) } : {}; },
@@ -1153,6 +1191,7 @@ const CYCLES = [
   },
   {
     // S044 Step 3: invariant coverage — checks T1+T2 exist per invariant in invariant-registry.yaml
+    run_tier: 'EXTENDED',
     name: 'invariant_coverage',
     command: 'node tools/validators/validate-invariant-coverage.mjs',
     parse_output: (out) => {
@@ -1171,6 +1210,7 @@ const CYCLES = [
   },
   {
     // S043-E: DNA block enforcement — advisory check on playground pages
+    run_tier: 'EXTENDED',
     name: 'page_dna_coverage',
     command: 'node tools/validators/validate-page-dna.mjs',
     parse_output: (out) => {
@@ -1180,6 +1220,7 @@ const CYCLES = [
   },
   {
     // S043-F: Unified plan sync check — advisory when plan-api.json is stale
+    run_tier: 'EXTENDED',
     name: 'unified_plan_sync',
     command: 'node tools/validators/validate-unified-plan-sync.mjs',
     parse_output: (out) => {
@@ -1189,6 +1230,7 @@ const CYCLES = [
   },
   {
     // S047 CORE-REMINDER-DNA: checks csps_core_reminder field coverage + stale refs
+    run_tier: 'EXTENDED',
     name: 'core_reminder',
     command: 'node tools/validators/validate-core-reminder.mjs',
     parse_output: (out) => {
@@ -1207,6 +1249,7 @@ const CYCLES = [
   },
   {
     // S047 VALIDATE-PAGE-SCHEMA-CONSISTENCY: checks PAGES registration vs directory structure
+    run_tier: 'EXTENDED',
     name: 'page_schema_consistency',
     command: 'node tools/validators/validate-page-schema-consistency.mjs',
     parse_output: (out) => {
@@ -1225,6 +1268,7 @@ const CYCLES = [
   },
   {
     // S054: Platform Genome guardian — 10 sections check + links per section
+    run_tier: 'EXTENDED',
     name: 'platform_genome',
     command: 'node tools/validators/validate-platform-genome.mjs',
     parse_output: (out) => {
@@ -1245,6 +1289,7 @@ const CYCLES = [
     // S054: B_APPS_ARE_TRIALS T2 (constitutional backfitting, gap_T2_ORPHAN_CONTRACTS)
     // BLOCKING: apps/* contains nested package.json naming a @csps/* libs package (reimplementation)
     // ADVISORY: platform-procedure files inside apps/, relative imports bypassing @csps/ API
+    run_tier: 'EXTENDED',
     name: 'apps_are_trials',
     command: 'node tools/validators/validate-apps-are-trials.mjs',
     parse_output: (out) => {
@@ -1658,6 +1703,7 @@ const CYCLES = [
     // M7 S071 PART 2 STEP 2: Exhaustive 10-class classification check.
     // BLOCKING if any class routes to PLACE-NOT-FOUND when it shouldn't (SILENT-DEFAULT-TO-UNHANDLED).
     // Test 3/3: A matched-class → correct route · B unmatched → PLACE-NOT-FOUND explicit · C foreign → quarantine.
+    run_tier: 'EXTENDED',
     name: 'threshold_exhaustive',
     command: 'node tools/validators/validate-threshold-exhaustive.mjs',
     parse_output: (out) => {
@@ -1716,6 +1762,7 @@ const CYCLES = [
     // S057: SETTINGS-SHADOW validator — detects .claude/settings.local.json shadowing
     // project settings.json permissions (causes permission popups on every new tab).
     // BLOCKING if settings.local.json has "permissions" key.
+    run_tier: 'EXTENDED',
     name: 'settings_shadow',
     command: 'node tools/validators/validate-settings-shadow.mjs',
     parse_output: (out) => {
@@ -1748,6 +1795,7 @@ const CYCLES = [
   {
     // S055: CONTEXTUAL-LOCALITY T2 — B_CONTEXTUAL_LOCALITY (gap_T2_ORPHAN_CONTRACTS).
     // BLOCKING: navigation phrases in council/*.md. ADVISORY: same in governance docs.
+    run_tier: 'EXTENDED',
     name: 'contextual_locality',
     command: 'node tools/validators/validate-contextual-locality.mjs',
     parse_output: (out) => {
@@ -1758,6 +1806,7 @@ const CYCLES = [
   {
     // S055: DONE-RIGHT T2 — B_DONE_RIGHT_FROM_THE_START (gap_T2_ORPHAN_CONTRACTS).
     // BLOCKING: B_*.md missing enforcement_tier. ADVISORY: T1+T2 both pending (T3-only drift risk).
+    run_tier: 'EXTENDED',
     name: 'done_right',
     command: 'node tools/validators/validate-done-right.mjs',
     parse_output: (out) => {
@@ -1868,6 +1917,7 @@ const CYCLES = [
     // S061 gap_T2_ORPHAN_CONTRACTS: PRACE tiers — B_PRACE T2.
     // ADVISORY: B_* contracts declaring T3-only enforcement (no real T1 hook / T2 validator).
     // Surfaces PRACE violations where governance theater exists: written rule, no mechanical check.
+    run_tier: 'EXTENDED',
     name: 'prace_tiers',
     command: 'node tools/validators/validate-prace-tiers.mjs',
     parse_output: (out) => {
@@ -1879,6 +1929,7 @@ const CYCLES = [
     // S061 gap_T2_ORPHAN_CONTRACTS: AI honesty — B_NO_AI_IMPERSONATION T2.
     // BLOCKING: Sonnet claiming to be Opus or Governor in council files (recent 100 lines).
     // ADVISORY: historical impersonation phrases in older council content.
+    run_tier: 'EXTENDED',
     name: 'ai_honesty',
     command: 'node tools/validators/validate-ai-honesty.mjs',
     parse_output: (out) => {
@@ -1890,6 +1941,7 @@ const CYCLES = [
     // S061 gap_T2_ORPHAN_CONTRACTS: dev vs prod — B_DEVELOPMENT_VS_PRODUCTION T2.
     // BLOCKING: hardcoded Opus model strings in production API routes.
     // ADVISORY: Opus references in dev/playground paths (expected, but surfaces visibility).
+    run_tier: 'EXTENDED',
     name: 'dev_vs_prod',
     command: 'node tools/validators/validate-dev-vs-prod.mjs',
     parse_output: (out) => {
@@ -1912,6 +1964,7 @@ const CYCLES = [
     // S061 gap_T2_ORPHAN_CONTRACTS: autonomy conditions — B_AUTONOMY_4_CONDITIONS T2.
     // ADVISORY: "AI proceeds" language in council files without all 4 conditions cited nearby.
     // Ratified/reversible/mechanical/no-cross-actor must ALL be present when autonomy claimed.
+    run_tier: 'EXTENDED',
     name: 'autonomy_conditions',
     command: 'node tools/validators/validate-autonomy-conditions.mjs',
     parse_output: (out) => {
@@ -1923,6 +1976,7 @@ const CYCLES = [
     // S061 gap_T2_ORPHAN_CONTRACTS: checkpoint categories — B_CHECKPOINT_8_CATEGORIES T2.
     // ADVISORY: scope expansion / constitutional change language in council files without PCR cite.
     // The 8 stop-and-ask categories must trigger explicit PCR when referenced in AI output.
+    run_tier: 'EXTENDED',
     name: 'checkpoint_categories',
     command: 'node tools/validators/validate-checkpoint-categories.mjs',
     parse_output: (out) => {
@@ -1972,6 +2026,7 @@ const CYCLES = [
   },
   {
     // PROTO-S067-MASTER-THRESHOLD-ROUTER STEP 3: validates 4-axis classification in threshold-intake-log.
+    run_tier: 'EXTENDED',
     name: 'threshold_routing_coverage',
     command: 'node tools/validators/validate-threshold-routing-coverage.mjs',
     parse_output: (out) => {

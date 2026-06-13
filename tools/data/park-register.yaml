@@ -20,7 +20,7 @@ meta:
   schema_version: "1.0"
   created: "2026-06-10"
   session: S082
-  total_open: 9
+  total_open: 8
 
 entries:
 
@@ -87,6 +87,9 @@ entries:
     content: "PHASEB: Dependency graph generation script — generate-dependency-graph.mjs from frontmatter links: fields → tools/data/dependency-graph.yaml"
     retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved (or can be done earlier — no blocking dep)"
     never_drop: true
+    status: closed
+    closed_session: S083
+    closed_reason: "tools/scripts/generate-dependency-graph.mjs built + run S083. Output: tools/data/dependency-graph.yaml. nodes=518 edges=773 (resolved) files_scanned=472. GUARD confirmed: 0 new verify cycles added (pnpm-verify-cycles remains 139). ZF cycle (b): 3 sample edges all resolve to real nodes (non-dangling)."
     context_preserved: >
       Recommendation from S082-context-retrieval-recommendations.md Gap 2.
       Enables Opus to write targeted PROTOs with full dependency awareness.

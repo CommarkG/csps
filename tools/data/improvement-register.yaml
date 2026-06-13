@@ -1658,7 +1658,7 @@ entries:
   pe_urgency_input: true
   cie_observation_class: verify_instrument_fragility
   must_address_by_session: "S082-phase-b"
-  fix_commit_sha: pending-task1-commit
+  fix_commit_sha: "950f02eb"
   resolution_session: S083
   resolution_date: "2026-06-13"
   not_yet_propagated: []

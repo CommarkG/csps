@@ -20,7 +20,7 @@ meta:
   schema_version: "1.0"
   created: "2026-06-10"
   session: S082
-  total_open: 11
+  total_open: 9
 
 entries:
 
@@ -166,73 +166,54 @@ entries:
     closed_session: null
 
   # ─────────────────────────────────────────────
-  # S083 A2 PREVENTION ITEMS (Opus-20 directive)
-  # Await Governor ratification before building any.
-  # All EXTEND existing principles — do not create new ones.
+  # S083 PREVENTION + COGNITION items (Governor S083 revised OPIA tail)
+  # PARK-S082-010: consolidated prevention obligation (await Governor ratification)
+  # PARK-S082-011: cognition-orchestration layer concept (schedule post-Phase B)
   # ─────────────────────────────────────────────
 
-  - id: "PARK-S083-P1"
-    lane: queue
-    content: "A2-P1: Provenance-tags — every run_tier annotation includes the governance source (PROTO/session ID)"
-    retrieve_when: "Governor ratifies; before any future tiering batch"
+  - id: "PARK-S082-010"
+    lane: obligation
+    content: "PROTO-S082-PREVENTION — consolidated prevention from A2 session. Net new mechanisms: 0 validators, 0 hooks, 0 contracts. All extensions."
+    retrieve_when: "Governor ratifies PREVENTION scope; await ratification before any build"
     never_drop: true
     context_preserved: >
-      Opus-20 A2 prevention item. Root: tiering decisions made in S083-A2 lack inline
-      provenance — a future reader cannot trace WHY a validator is EXTENDED without reading
-      the PROTO. Pattern: add a comment after run_tier: 'EXTENDED' lines citing the PROTO
-      that ratified the demotion (e.g., // A2-S083 Opus-20 ratified).
-      Extends P-META-025 C&I (governing_intent per rule). Do not create new principle.
-      Implementation: one-pass sed/node over verify.mjs to add inline provenance comments.
+      Governor S083 revised OPIA tail (replaces S083-P1..P4).
+      PREV-1: amend P-META-032 — claims carry measured/predicted/assumed labels;
+        'verified' = measured only. Extend false-assumption-gate.sh output to surface
+        assumption class. governing_intent, NOT format-rigid.
+      PREV-2: widen validate-principle-count-staleness scope → also checks session-state
+        counts + cycle count. DO NOT create a new validator — extend the existing one.
+      PREV-3: add LOAD-BEARING ASSUMPTIONS field to proto.template.md +
+        sonnet-report.template.md. Sample shape (not a fill-in form).
+      PREV-4: boundary-001 doctrine line: target = limit − committed-future-load.
+        (Fixes the 139/140 tight-margin issue from A2.)
+      ALSO (separate scoped item within this PARK): full hardwire-completion sweep —
+        78 hooks actual vs hardwire-register.yaml declared. Identify gaps.
     source_session: S083
     created_session: S083
     closed_session: null
 
-  - id: "PARK-S083-P2"
-    lane: queue
-    content: "A2-P2: No-hardcoded-counts — tiering apply-scripts must compute active count from validate-platform-capacity, not assume a static number"
-    retrieve_when: "Governor ratifies; before any future tiering batch"
+  - id: "PARK-S082-011"
+    lane: schedule
+    content: "COGNITION-ORCHESTRATION LAYER — centralize which brain (skill/persona/engine) fires when, into one governed orchestrator wired to PE + CIE"
+    retrieve_when: "After Phase B (A2 + PREVENTION) + parked chain completes; opens as gradual-build topic-plan depth-4/5"
     never_drop: true
-    context_preserved: >
-      Opus-20 A2 prevention item. Root: apply-a2-extended-tiers.mjs used hardcoded 199.
-      If future batch runs after validator additions, stale count misleads formula.
-      Pattern: apply-scripts call validate-platform-capacity.mjs FIRST, extract live active
-      count, then compute proposed-active = live - proposals.
-      Extends P-META-032 Demonstrated Truth + validate-before-assume.
-      Implementation: update reusable apply-script template in tools/scripts/.
-    source_session: S083
-    created_session: S083
-    closed_session: null
-
-  - id: "PARK-S083-P3"
-    lane: queue
-    content: "A2-P3: Load-bearing-assumptions section — tiering proposals using 'covered by X' must prove X's scope with tool evidence"
-    retrieve_when: "Governor ratifies; before any future tiering batch"
-    never_drop: true
-    context_preserved: >
-      Opus-20 A2 prevention item. Root: 7 validators proposed EXTENDED with 'covered by
-      new_file_dna (STANDARD)' — DISPROVEN. validate-new-file-dna.mjs only checks
-      @csps-description on TS/JS files; does not cover trio/five-surface/universal/numbers.
-      Pattern: every Phase 1 tiering proposal using 'covered by X' must list each X with
-      its actual grep-evidenced scope in a §LOAD-BEARING-ASSUMPTIONS block.
-      Extends P-META-032 Demonstrated Truth. Implementation: add section to tiering PROTO template.
-    source_session: S083
-    created_session: S083
-    closed_session: null
-
-  - id: "PARK-S083-P4"
-    lane: queue
-    content: "A2-P4: Targets-net-future-load — headroom calculation must project proposed_active + PHASEB_additions ≤ soft_limit - safety_margin(5)"
-    retrieve_when: "Governor ratifies; before any future tiering batch"
-    never_drop: true
-    context_preserved: >
-      Opus-20 A2 prevention item. Root: 139/140 (1-slot headroom) looked valid in isolation
-      but PHASEB adds ~6 validators → active reaches 145 > soft_limit 140. Opus resolved by
-      instructing PHASEB validators built run_tier:EXTENDED from birth — workaround not pattern.
-      Pattern: tiering batches must project 'active_after_PHASEB = proposed + N_phaseb' and
-      target proposed_active ≤ soft_limit - N_phaseb - 5.
-      Formula for S083: target ≤ 140 - 6 - 5 = 129. Actual result: 139 (too tight).
-      Extends P-OP-007 Optimal-Path-Default (no minimal-and-forget). Do not create new principle.
-      Implementation: add 'future_load_estimate' field to tiering PROTO template.
+    pe_provisional: "urgency=HIGH impact=VERY_HIGH spi=LARGE (pe_score blocked — PE not firing, 0/25)"
+    cie_class: "structural/orchestration-gap — largest AP-001 EXISTS≠ACTIVE instance"
+    governing_intent: >
+      Centralize which brain (expert-skill / persona / engine) fires when, into one governed
+      orchestrator wired to PE + CIE, so the right cognition engages every time and less
+      is left to un-aligned native AI defaults. Fixes recurring hidden-satisfaction-points
+      (right brain never fired) and the partial-activation trigger system.
+    scope_captured:
+      - "consolidate ~24 expert-skills + personas → one cognitive-unit registry (remove-before-add)"
+      - "orchestrator = router + PE-rank + batch (bottleneck/overload guard, O(1) selection at scale)"
+      - "likely AI-L2 domain, NOT a 6th L1 spine (resolve via core-spine-expert; simulation precedent)"
+      - "reactivate CIE ADJUST/INJECT/MEASURE (deferred S072) + make PE actually score at plan-forks"
+      - "Activation-Maturity Ladder L0..L4 (wired/triggered/hardwired/context-correct) — sample scaffold"
+      - "convergence of threshold + PE + CIE + context-orchestrator into one decision point"
+      - "cruel-critic: orchestrator mis-select degradation + backup path"
+    deep_dive_deliverable_at_unpark: "research-grade consolidation/harmonization/activation plan"
     source_session: S083
     created_session: S083
     closed_session: null

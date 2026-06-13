@@ -20,7 +20,7 @@ meta:
   schema_version: "1.0"
   created: "2026-06-10"
   session: S082
-  total_open: 7
+  total_open: 11
 
 entries:
 
@@ -163,4 +163,76 @@ entries:
       Pillar-0 root re-organization, Persona (deferred to scheduled cluster).
     source_session: S082
     created_session: S082
+    closed_session: null
+
+  # ─────────────────────────────────────────────
+  # S083 A2 PREVENTION ITEMS (Opus-20 directive)
+  # Await Governor ratification before building any.
+  # All EXTEND existing principles — do not create new ones.
+  # ─────────────────────────────────────────────
+
+  - id: "PARK-S083-P1"
+    lane: queue
+    content: "A2-P1: Provenance-tags — every run_tier annotation includes the governance source (PROTO/session ID)"
+    retrieve_when: "Governor ratifies; before any future tiering batch"
+    never_drop: true
+    context_preserved: >
+      Opus-20 A2 prevention item. Root: tiering decisions made in S083-A2 lack inline
+      provenance — a future reader cannot trace WHY a validator is EXTENDED without reading
+      the PROTO. Pattern: add a comment after run_tier: 'EXTENDED' lines citing the PROTO
+      that ratified the demotion (e.g., // A2-S083 Opus-20 ratified).
+      Extends P-META-025 C&I (governing_intent per rule). Do not create new principle.
+      Implementation: one-pass sed/node over verify.mjs to add inline provenance comments.
+    source_session: S083
+    created_session: S083
+    closed_session: null
+
+  - id: "PARK-S083-P2"
+    lane: queue
+    content: "A2-P2: No-hardcoded-counts — tiering apply-scripts must compute active count from validate-platform-capacity, not assume a static number"
+    retrieve_when: "Governor ratifies; before any future tiering batch"
+    never_drop: true
+    context_preserved: >
+      Opus-20 A2 prevention item. Root: apply-a2-extended-tiers.mjs used hardcoded 199.
+      If future batch runs after validator additions, stale count misleads formula.
+      Pattern: apply-scripts call validate-platform-capacity.mjs FIRST, extract live active
+      count, then compute proposed-active = live - proposals.
+      Extends P-META-032 Demonstrated Truth + validate-before-assume.
+      Implementation: update reusable apply-script template in tools/scripts/.
+    source_session: S083
+    created_session: S083
+    closed_session: null
+
+  - id: "PARK-S083-P3"
+    lane: queue
+    content: "A2-P3: Load-bearing-assumptions section — tiering proposals using 'covered by X' must prove X's scope with tool evidence"
+    retrieve_when: "Governor ratifies; before any future tiering batch"
+    never_drop: true
+    context_preserved: >
+      Opus-20 A2 prevention item. Root: 7 validators proposed EXTENDED with 'covered by
+      new_file_dna (STANDARD)' — DISPROVEN. validate-new-file-dna.mjs only checks
+      @csps-description on TS/JS files; does not cover trio/five-surface/universal/numbers.
+      Pattern: every Phase 1 tiering proposal using 'covered by X' must list each X with
+      its actual grep-evidenced scope in a §LOAD-BEARING-ASSUMPTIONS block.
+      Extends P-META-032 Demonstrated Truth. Implementation: add section to tiering PROTO template.
+    source_session: S083
+    created_session: S083
+    closed_session: null
+
+  - id: "PARK-S083-P4"
+    lane: queue
+    content: "A2-P4: Targets-net-future-load — headroom calculation must project proposed_active + PHASEB_additions ≤ soft_limit - safety_margin(5)"
+    retrieve_when: "Governor ratifies; before any future tiering batch"
+    never_drop: true
+    context_preserved: >
+      Opus-20 A2 prevention item. Root: 139/140 (1-slot headroom) looked valid in isolation
+      but PHASEB adds ~6 validators → active reaches 145 > soft_limit 140. Opus resolved by
+      instructing PHASEB validators built run_tier:EXTENDED from birth — workaround not pattern.
+      Pattern: tiering batches must project 'active_after_PHASEB = proposed + N_phaseb' and
+      target proposed_active ≤ soft_limit - N_phaseb - 5.
+      Formula for S083: target ≤ 140 - 6 - 5 = 129. Actual result: 139 (too tight).
+      Extends P-OP-007 Optimal-Path-Default (no minimal-and-forget). Do not create new principle.
+      Implementation: add 'future_load_estimate' field to tiering PROTO template.
+    source_session: S083
+    created_session: S083
     closed_session: null

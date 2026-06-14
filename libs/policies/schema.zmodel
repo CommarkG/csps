@@ -576,3 +576,63 @@ model PlanCapability extends Base {
   @@index([planId])
   @@index([capabilityId])
 }
+
+// ─── Journey (B.2 schema slice) ───────────────────────────────────────────────
+// Ratifiable from /platform/journey-admin dashboard.
+// Governed write-back: ratify click → status draft→ratified in DB → SPEC.md updated.
+// D1: Gap-Int ordering on JourneyStage.order (1000-gap seed; reorder = single UPDATE).
+// D3: tenantId denormalized on both models for direct RLS (no join in policy expressions).
+// D4: query cap enforced at API layer (≤50 journeys per GET).
+// D5: single-include pattern: findMany({ include: { stages: { orderBy: { order: 'asc' } } } }).
+
+enum JourneyType {
+  developer
+  user
+}
+
+enum JourneyStatus {
+  draft
+  ratified
+}
+
+model Journey extends Base {
+  tenantId    String        @db.Uuid
+  name        String
+  type        JourneyType   @default(user)
+  status      JourneyStatus @default(draft)
+  description String?
+  stages      JourneyStage[]
+
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)
+  @@allow("update", auth().tenantId == tenantId)
+  @@deny("delete",  true)
+
+  @@index([tenantId, type])
+  @@index([tenantId, status])
+}
+
+model JourneyStage extends Base {
+  tenantId     String  @db.Uuid        // D3: denormalized — direct RLS, no join
+  journeyId    String  @db.Uuid
+  name         String
+  description  String?
+  order        Int                     // D1: Gap-Int (seed ×1000 at insert); reorder = single UPDATE
+  exitCriteria String?
+  buildStatus  String  @default("PLANNED")  // ACTIVE | PLANNED — mirrors developer-journey page
+  variants     Json?                   // per-stage variant overrides (admin-config-heavy etc.)
+
+  journey Journey @relation(fields: [journeyId], references: [id])
+
+  @@schema("public")
+  @@allow("read",   auth().tenantId == tenantId)
+  @@allow("create", auth().tenantId == tenantId)
+  @@allow("update", auth().tenantId == tenantId)
+  @@deny("delete",  true)
+
+  @@index([tenantId, journeyId, order])  // D5: covers include+orderBy in one index
+  @@index([journeyId, order])            // D1: covers single-UPDATE reorder queries
+}

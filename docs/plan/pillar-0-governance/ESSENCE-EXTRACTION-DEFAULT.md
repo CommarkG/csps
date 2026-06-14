@@ -242,7 +242,8 @@ Both branch specs are **status: draft** — Governor ratification required befor
 
 *Each entry = DETECT → EXTRACT step output. EVALUATE + ENGRAVE are tracked separately per entry.*
 
-### ESSENCE-S084-001: Developer artifacts ≠ User artifacts
+### ESSENCE-S084-002: Developer artifacts ≠ User artifacts
+*(renamed from -001 — ESSENCE-S084-001 is reserved for the ratification-cadence essence, ratified prior to this harvest log)*
 **Source:** Opus-21 OPIA S084 (MEASURED — OPIA course-correct)
 **Instance caught:** USER-JOURNEY-SPEC.md incorrectly framed `/platform/wizard` as a user-journey
 Stage 2 onboarding instance. The wizard is "INFRA-FLOW Step 3" (WizardClient.tsx:2 — developer
@@ -257,6 +258,15 @@ and are built FOR the developer building the product, not FOR the user using the
 new journey artifact classification. Worth a T3 session-open checklist item: "before classifying
 any artifact as user-journey: does it use CSPS vocabulary? If yes → developer-journey."
 **ENGRAVE status:** Not yet engraved (Phase 1a — registered only). Phase 2 candidate.
+
+### ESSENCE-S084-003: Substrate-Without-Interface
+**Source:** Governor S084 directive ("humans ratify from frontends, not from reading YAML") + Opus-21 B.2 PROTO Option A ratification [MEASURED]
+**Instance caught:** DEVELOPER-JOURNEY-SPEC.md + USER-JOURNEY-SPEC.md were created as markdown-only artifacts. No frontend interface existed for humans to view, edit, or ratify them.
+**Essence (extracted, actor-independent):** Machine artifacts (YAML/MD specs) are AI substrate — they are the source of truth the AI reads and enforces from. Human ratification happens through frontend interfaces with governed write-back, not through reading specs. Every ratifiable spec must have: (1) a frontend editor where humans can see, edit, and approve; (2) a governed write-back channel that keeps the spec in sync with what the human approved; (3) the AI reads from the spec file, which reflects the human's ratified state.
+**Prevention class:** SUBSTRATE-WITHOUT-INTERFACE
+**EVALUATE status:** Passes all 3 gates (novelty, generality, proportionality). Applies to every future governance artifact that requires human ratification — principles, contracts, journeys, communication specs, all SPEC.md files.
+**ENGRAVE status:** Partially enacted (B.2 journey-admin dashboard built S084 — the first instance). Phase 2: propagate this pattern to communication-schema M3 dashboard + all future SPEC.md files. Full engraving: add to AGENTS.md hard-NO list "never create a ratifiable spec without a frontend editor."
+**Cross-ref:** COMMUNICATION-CORE.md §application-registry B1 (Opus↔Sonnet ratification via frontend) · communication-schema.yaml M3 (planned communication dashboard — same pattern).
 
 ### PHASE-2 CONSOLIDATION NOTE (do NOT act now — registered per P-META-033)
 **5 journey pages exist but only 2 branches:**

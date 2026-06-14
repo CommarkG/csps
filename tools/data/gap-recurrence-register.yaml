@@ -159,11 +159,11 @@ entries:
     prevention_design_pending: true
     must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
+    explicit_defer_reason: "Subsumed by PREVENTION arc S084 (PROTO-S084-PREVENTION PREV-2): behavioral test written for validate-principle-count-staleness.mjs (longest-stale family). Re-assess coverage breadth post-Phase-B."
     fix_commit_sha: null
     structural_fix_triggered: false
     behavioral_test_exists: false
-    note: "K=1. This is the root cause behind gaps 1-6. Structural fix: behavioral test suite (tools/tests/behavioral/) + Gap Recurrence Register validator. This register IS the first step of that fix."
+    note: "K=1. This is the root cause behind gaps 1-6. Structural fix: behavioral test suite (tools/tests/behavioral/) + Gap Recurrence Register validator. This register IS the first step of that fix. S084: first behavioral test written under PREVENTION arc — principle-count-staleness-test.sh."
 
   - id: gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS
     observation: "Sonnet declares STEP/SESSION COMPLETE/SEALED/DONE in commit message with exit_code=0 claim, but the close validator (validate-handoff-completeness / validate-permanence-coverage / validate-zf-cycle-format / validate-frontmatter) only confirms AFTER the close-commit lands. Each instance required Opus course-correct."
@@ -235,11 +235,13 @@ entries:
     prevention_design_pending: true
     must_address_by_session: "S076"
     age_escalation_status: on-time
-    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076"
+    explicit_defer_reason: "S074 HARDWIRE focus; carried to S076. S084 PREV-2: behavioral test written for validate-principle-count-staleness.mjs (Thread 3 — longest-stale family). Partial progress, not resolved."
     fix_commit_sha: null
     structural_fix_triggered: true
     structural_fix_required_since: S065
-    behavioral_test_exists: false
+    behavioral_test_exists: true
+    behavioral_test_path: "tools/tests/behavioral/principle-count-staleness-test.sh"
+    behavioral_test_note: "S084 PREV-2 — 3 cases (INPUT A: stale detection, INPUT B: clean pass, INPUT C: session-state advisory)"
     source: "PAP Part 1A audit — commit 9e51f43, docs/plan/_handoff/VAULT/pap/part-1A-validators-audit.yaml"
     proposed_fix: |
       (a) Build behavioral tests for all 134 systematically (~3-5 sessions) OR

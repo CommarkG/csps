@@ -20,7 +20,7 @@ meta:
   schema_version: "1.0"
   created: "2026-06-10"
   session: S082
-  total_open: 8
+  total_open: 11
 
 entries:
 
@@ -176,8 +176,11 @@ entries:
 
   - id: "PARK-S082-010"
     lane: obligation
-    content: "PROTO-S082-PREVENTION — consolidated prevention from A2 session. Net new mechanisms: 0 validators, 0 hooks, 0 contracts. All extensions."
-    retrieve_when: "Governor ratifies PREVENTION scope; await ratification before any build"
+    content: "PROTO-S084-PREVENTION (was S082) — consolidated prevention. RATIFIED Governor S084. Net new mechanisms: 0 validators, 0 hooks, 0 contracts. All extensions. PREV-1 enforcement target = false-assumption-gate.sh (Option A). Build pending."
+    retrieve_when: "RATIFIED — Sonnet builds PREV-2 first (no seed), then PREV-3, then PREV-1/4 deltas"
+    status: ratified-build-pending
+    ratified_by: "Governor S084"
+    ratified_at: "2026-06-14"
     never_drop: true
     context_preserved: >
       Governor S083 revised OPIA tail (replaces S083-P1..P4).
@@ -219,4 +222,64 @@ entries:
     deep_dive_deliverable_at_unpark: "research-grade consolidation/harmonization/activation plan"
     source_session: S083
     created_session: S083
+    closed_session: null
+
+  # ─────────────────────────────────────────────
+  # S084 — PCR flip-condition followups (No-Lost-Threads, P-META-033)
+  # The "what would change my recommendation" clause must resurface, not evaporate.
+  # ─────────────────────────────────────────────
+
+  - id: "PARK-S084-001"
+    lane: vault
+    content: "FINDING-S084-02 escalation watch — PREV-1 enforcement chose Option A (artifact gate, false-assumption-gate.sh). IF provenance mislabels escape into commits without an artifact-gate catch first, Option C (extend BOTH gates) becomes warranted."
+    retrieve_when: "commit-surface-only provenance catches reach K=2 (sensor: PREV-1 instruments rzf-evidence-gate.sh to count catches the artifact gate never flagged)"
+    trigger_condition: "commit_surface_only_provenance_catches >= 2"
+    never_drop: true
+    decision_back_ref: "FINDING-S084-02 (PROTO-S084-PREVENTION, opus-turn.md S084) — Governor locked Option A"
+    escalation: "resurface to Governor for Option A→C decision WITH evidence (K-count + offending commit SHAs). NEVER auto-flip — decision reserved to Governor (SCOPE 3)."
+    context_preserved: >
+      3-scope followup mechanism (Governor S084 directive "what makes sure the followup is done?").
+      SCOPE 1 Sonnet/sensor: the counter only exists once PREV-1 builds the commit-gate instrumentation.
+      SCOPE 2 Platform/never-drop: THIS entry + validate-finding-scheduling.mjs check (model: boundary-003.scheduled_upgrade).
+      SCOPE 3 Governor/decision-rights: flip reserved to Governor.
+      DORMANT until PREV-1 sensor exists; do not arm trigger before then.
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-002"
+    lane: queue
+    content: "FINDING-S084-03 (generalization) — every PCR 'what would change my recommendation' clause is a deferred conditional with lost-thread risk. PROPOSAL: PCR flip-conditions auto-register as vault-lane PARK entries. 0 new mechanism (PARK vault lane + finding-scheduling validator)."
+    retrieve_when: "Governor ratifies the generalization (raised under PROTO-S084-PREVENTION; not yet ratified — captured per P-META-033)"
+    never_drop: true
+    decision_back_ref: "FINDING-S084-03 (PROTO-S084-PREVENTION, opus-turn.md S084)"
+    status: awaits-governor-ratification
+    context_preserved: >
+      Surfaced by Governor S084 pressing on the followup mechanism for FINDING-S084-02.
+      Would extend pcr-rendering skill output: each flip-condition emits a vault-lane PARK entry
+      with trigger_condition. Sharpens P-META-033 No-Lost-Threads to cover PCR flip-conditions
+      specifically, not just non-selected options.
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  # ─────────────────────────────────────────────
+  # S084 PREVENTION BUILD items
+  # ─────────────────────────────────────────────
+
+  - id: "PARK-S084-003"
+    lane: vault
+    content: "LOAD-BEARING ASSUMPTIONS field 3-session review — check if the field is reflexively 'None' in every PROTO/report (theater risk). If so: consider dropping or demoting to optional."
+    retrieve_when: "S087 or first session where Governor reviews PROTO artifacts post-PREVENTION build"
+    trigger_condition: "session >= S087"
+    never_drop: true
+    context_preserved: >
+      S084 PREV-3 added LOAD-BEARING ASSUMPTIONS to proto.template.md + sonnet-report.template.md.
+      Escape hatch: "None — all inputs [MEASURED] this turn."
+      Theater risk: if >80% of PROTOs reflexively say "None", the field is theater and should be
+      dropped or made optional. Review criteria: if <50% of PROTOs in S085-S087 use "None" →
+      field is working. If >80% say "None" → drop the mandatory field.
+      This PARK entry IS the structural prevention against theater-by-design (per PREV-3 spec).
+    source_session: S084
+    created_session: S084
     closed_session: null

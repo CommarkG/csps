@@ -38,6 +38,21 @@ context_question: "Before any STEP commits: is what's being built real (called +
 
 ---
 
+## LOAD-BEARING ASSUMPTIONS
+
+<!-- S084 PREV-3: every PROTO surfaces the assumptions it rests on BEFORE shipping.
+     Purpose: make warrant visible so Opus can verify-before-concur on what matters.
+     Format: one bullet per assumption, provenance label mandatory.
+     Labels: [MEASURED:<tool>] = tool output in THIS response | [PREDICTED] = reasoned, not run | [ASSUMED] = carried from prior context
+     Escape hatch (use when genuinely none): "None — all inputs [MEASURED] this turn."
+     Reviewer note: if every PROTO says "None" → field is theater → flag for review. -->
+
+- [MEASURED:<tool>] [assumption about current state — e.g. "pnpm verify exit_code=0 at session open"]
+- [PREDICTED] [design assumption — e.g. "extending validator X will not add a new cycle"]
+- [ASSUMED] [context assumption — e.g. "boundary-001 hard_limit remains 200"]
+
+---
+
 ## CORE SEED
 
 [Architectural anchor — the single sentence that explains the root cause being fixed and what this proto does to fix it. Must be specific and evidence-based, not aspirational.]

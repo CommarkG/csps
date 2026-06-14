@@ -34,6 +34,19 @@ FOUND: [any blockers or unexpected findings — one line each, or "none"]
 VERIFY: exit_code=0 | validators=[N]
 PLAN STATUS: [SESSION] | Item [N] of [TOTAL] complete | Current: [plan item ID]
 
+## LOAD-BEARING ASSUMPTIONS
+
+<!-- S084 PREV-3: surface assumptions this report rests on.
+     Provenance labels required: [MEASURED:<tool>] | [PREDICTED] | [ASSUMED]
+     Escape hatch: "None — all inputs [MEASURED] this turn."
+     Reviewer alert: reflexive "None" pattern → field is theater → review in 3 sessions. -->
+
+- [MEASURED:<tool>] [assumption with evidence — e.g. "verify exit_code=0, cycles=139 [MEASURED:verify.mjs this turn]"]
+- [PREDICTED] [design claim not yet verified — e.g. "PREV-3 adds 0 cycles (already EXTENDED)"]
+- [ASSUMED] [context carried from prior — e.g. "principles_count=78 unchanged this session"]
+
+---
+
 ## What was built
 
 1. [ITEM-ID]: [One-line description] | commit [SHA]

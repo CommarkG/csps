@@ -23,4 +23,23 @@ try{
   process.stdout.write(JSON.stringify({systemMessage:'⚠ MANDATORY [HARDWIRE-009 EXECUTOR-RELAY]: relay channel written. Present FULL paste-ready block inline NOW — I AM/YOU ARE/THIS IS/DO NOW header + fenced content. ONE-CLICK copy for Governor. Executor-agnostic format (any model). Auto-saved: .csps/last-sonnet-relay.txt'})+'\n');
 }catch(e){}
 " "$SONNETFILE" 2>/dev/null || true
+# S084 COMM-CORE S7: Also fire on opus-turn.md PROTO writes (ELEMENT 3 ACTION)
+# When Opus writes a PROTO to opus-turn.md, surface one-click relay block requirement.
+# Prevents drift: Opus writes PROTO → Governor cannot one-click relay → ELEMENT 3 ACTION lost.
+OPUSFILE="${REPO_ROOT}/tools/council/opus-turn.md"
+if [ -f "$OPUSFILE" ]; then
+  OPUS_MTIME=$(stat -c %Y "$OPUSFILE" 2>/dev/null || echo "0")
+  OPUS_AGE=$((NOW - OPUS_MTIME))
+  if [ "$OPUS_AGE" -le 60 ] 2>/dev/null; then
+    node -e "
+      const fs=require('fs');
+      try{
+        const c=fs.readFileSync(process.argv[1],'utf8');
+        if(!c.includes('═══')&&!c.includes('PROTO-S'))process.exit(0);
+        process.stdout.write(JSON.stringify({systemMessage:'⚠ MANDATORY [COMM-CORE ELEMENT 3]: PROTO written to opus-turn.md. Emit ONE-CLICK relay block for Governor before closing. Format: From OPUS | For SONNET TAB + fenced content. Prevents lost ACTION at boundary.'})+" ");
+      }catch(e){}
+    " "$OPUSFILE" 2>/dev/null || true
+  fi
+fi
+
 exit 0

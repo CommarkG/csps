@@ -80,4 +80,43 @@ if (advisory === 0) {
   console.log('  Ref: tools/council/communication-protocol-shared.md RULE 1')
 }
 console.log(`[validate-communication-protocol] advisory=${advisory}`)
+
+// S084 COMM-CORE S5: WARRANT + ACTION checks (--extended mode only)
+// Born run_tier:'EXTENDED' — wired as a separate EXTENDED entry in verify.mjs (0 new STANDARD cycles).
+// Checks Rule 16 ELEMENT 2 (WARRANT provenance labels) + Rule 0 ELEMENT 3 (ACTION single-next-step).
+if (process.argv.includes('--extended')) {
+  let extAdvisory = 0
+  const extIssues = []
+
+  for (const file of [join(ROOT, 'tools/council/opus-turn.md'), join(ROOT, 'tools/council/sonnet-turn.md')]) {
+    if (!existsSync(file)) continue
+    const fc = readFileSync(file, 'utf8')
+    const fname = file.endsWith('opus-turn.md') ? 'opus-turn.md' : 'sonnet-turn.md'
+    const lines = fc.split('\n')
+    // ELEMENT 2 WARRANT: number + 'verified'/'confirmed' without [MEASURED:] tag
+    for (let i = 0; i < lines.length; i++) {
+      const l = lines[i]
+      if (/\b(verified|confirmed)\b/i.test(l) && /[0-9]/.test(l) && !/\[MEASURED:/.test(l)) {
+        extAdvisory++
+        extIssues.push(`  ⚠ WARRANT ${fname}:${i+1}: "${l.trim().slice(0, 80)}" — needs [MEASURED:<tool>]/[PREDICTED]/[ASSUMED]`)
+      }
+    }
+    // ELEMENT 3 ACTION: latest entry should have a single action signal
+    if (!fc.includes('▶') && !fc.includes('OPTIMAL NEXT STEP') &&
+        !fc.includes('DO NOW:') && !fc.includes('Next step:') && !fc.includes('DO NOW')) {
+      extAdvisory++
+      extIssues.push(`  ⚠ ACTION ${fname}: no single-action signal found (▶ OPTIMAL NEXT STEP / DO NOW: / Next step:)`)
+    }
+  }
+
+  if (extAdvisory === 0) {
+    console.log('[validate-communication-protocol] ✓ --extended: WARRANT (Element 2) + ACTION (Element 3) passed')
+  } else {
+    console.log(`[validate-communication-protocol] --extended: ${extAdvisory} advisory(ies)`)
+    extIssues.forEach(i => console.log(i))
+    console.log('  Ref: COMMUNICATION-CORE.md + communication-protocol-shared.md Rule 16')
+  }
+  console.log(`[validate-communication-protocol] extended_advisory=${extAdvisory}`)
+}
+
 process.exit(0) // ADVISORY only

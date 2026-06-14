@@ -347,6 +347,34 @@ When 2+ CAQ types appear in one message, the Governor is signaling:
 
 ---
 
+## RULE 16 — WARRANT: Every Cross-Boundary Claim Carries Provenance (S084 — COMMUNICATION CORE ELEMENT 2)
+
+**Applies to:** Every cross-boundary message — Opus→Sonnet PROTO, Sonnet→Opus report, AI→human output, handoff artifacts. No exceptions for numeric/state/completion claims.
+
+**The three labels (P-META-032 provenance_labels_clause — S084 amendment):**
+
+| Label | Meaning | Required when |
+|-------|---------|---------------|
+| `[MEASURED:<tool>]` | Tool run cited IN THIS response; output in same message | Any value produced by verify / grep / read / node / validate-platform-capacity this turn |
+| `[PREDICTED]` | Reasoned or estimated; tool not yet run | Design assertions, projected values, pre-build estimates, "should be" claims |
+| `[ASSUMED]` | Carried from memory or prior session context; not re-verified | Any value not freshly measured this turn |
+
+**Constitutional rule:** `verified` and `confirmed` are **reserved for `[MEASURED]` only.** Labeling a `[PREDICTED]` or `[ASSUMED]` value as "verified" = **PREDICTED-AS-MEASURED** prevention class.
+
+**Canonical failure (S083 OPIA instance):** Opus advisory cited `principles_count=82` as "verified." Live count was 78 ([MEASURED:validate-platform-capacity]). The value was [ASSUMED] from context. The message format passed (WHO ✓); the substance failed (WARRANT ✗). Cost: one Opus correction cycle.
+
+**Enforcement:**
+- T1: `pre-tool-use-council-address-required.sh` extension (S084 ADVISORY) — number adjacent to 'verified'/'confirmed' in council message without [MEASURED:] tag → advisory warning
+- T1: `pre-tool-use-false-assumption-gate.sh` (S084 ADVISORY) — same check on tab-transfer artifacts
+- T2: `validate-communication-protocol.mjs --extended` (EXTENDED tier) — checks WARRANT compliance in council messages
+- T3: This rule (session-open injection) + LOAD-BEARING ASSUMPTIONS section in sonnet-report.template.md + proto.template.md
+
+**Escape hatch (legitimate use):** "None — all inputs [MEASURED] this turn." Valid ONLY when every number in the message was produced by a tool run cited in the same message. If even one number is carried from memory → [ASSUMED] label required.
+
+**Enforcement ladder (S067→S068 pattern):** ADVISORY now → BLOCKING at K=2 incidents per gap-recurrence-register.yaml trigger.
+
+---
+
 ## WHERE THIS IS READ
 
 - **Sonnet:** session-open.sh injects this file's rules at every session start

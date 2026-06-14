@@ -168,6 +168,10 @@
             "type": "command",
             "command": ".claude/hooks/pre-tool-use-alignment-gate.sh",
             "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-rule14-read-before-write.sh"
           }
         ]
       },

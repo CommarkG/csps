@@ -39,6 +39,8 @@ inherits_from: >
   + B_CONTEXTUAL_LOCALITY + ai-behavior-spine (D1-D13)
   + INHERITANCE-MODEL + MASTER-RE-GATE-PLAN-S068
 links:
+  - rel: core
+    href: "./COMMUNICATION-CORE.md"
   - rel: protocol
     href: "../../../../tools/council/communication-protocol-shared.md"
   - rel: ai-behavior-spine
@@ -47,6 +49,8 @@ links:
     href: "../../_handoff/PLAN-S069-COMMS-AND-JOURNEY.md"
   - rel: core-seeds
     href: "../../_handoff/CORE-SEEDS-PLAN-PARTS.md"
+  - rel: registry-entry
+    href: "../../../../tools/config/core-spine-registry.yaml"
 ---
 
 # CSPS Communication Schema

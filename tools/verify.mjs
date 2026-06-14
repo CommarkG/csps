@@ -563,6 +563,15 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/advisory=(\d+)/); return m ? { advisory: Number(m[1]) } : {}; },
   },
   {
+    // S084 COMM-CORE S5 — WARRANT (Element 2) + ACTION (Element 3) checks (EXTENDED — weekly cron only)
+    // Born run_tier:'EXTENDED' per PROTO-S084-COMM-CORE constraint: 0 new STANDARD cycles.
+    // Checks Rule 16 provenance labels + Rule 0 single-action signal in council messages.
+    run_tier: 'EXTENDED',
+    name: 'communication_protocol_warrant',
+    command: 'node tools/validators/validate-communication-protocol.mjs --extended',
+    parse_output: (out) => { const m = out.match(/extended_advisory=(\d+)/); return m ? { extended_advisory: Number(m[1]) } : {}; },
+  },
+  {
     // S036-PROTO LIVE — active protocol compliance (no parallel directives, tracks active_directive)
     name: 'active_protocol_compliance',
     command: 'node tools/validators/validate-active-protocol.mjs',

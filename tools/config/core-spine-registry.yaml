@@ -363,6 +363,171 @@ spines:
       lib: libs/process-state/index.mjs
       note: "Wire after Opus OPIA ratification + Phase 2 cie-pe-adapter OBSERVE pipeline"
 
+  - id: communication
+    spine: AI
+    status: active
+    authored_session: S084
+    authored_by: "Opus-21 (core seed) + Sonnet S084 (implementation)"
+    ratified_session: S084
+    ratified_by: "Governor S084 (PROTO-S084-COMM-CORE ratified)"
+    ratified_date: "2026-06-14"
+    # Spine fork rationale: Option A — registry entry under AI dimension.
+    # Communication is a METHOD, not a domain. Simulation precedent (VALD entry S076).
+    # A 6th L1 would pay boundary-002 crossing tax for a taxonomy win only.
+    # AI L1 covers AI behavior at boundary crossings — communication IS that behavior.
+    # ── 1. trunk ─────────────────────────────────────────────────────────────
+    # 3-element trunk: WHO (identity) / WARRANT (provenance) / ACTION (single next step).
+    # WARRANT is the missing element — the 82-vs-78 mislabel shipped inside
+    # a correctly-formatted message because WHO passed but WARRANT was absent.
+    trunk:
+      description: "Communication = crossing a boundary without losing intent or importing a false assumption. Three mandatory per-message elements: WHO (identity), WARRANT (provenance of claims), ACTION (single next step). All three must be present; absence of any is act-time detectable."
+      elements:
+        - id: T1
+          name: who
+          statement: "Every cross-boundary message declares its sender and receiver in canonical form. Identity ambiguity → wrong role acts on directive."
+          failure_mode: "Message without sender → D2 (authority-pleasing) fires; receiver doesn't know they can push back"
+          enforcement: "pre-tool-use-council-address-required.sh (T1 BLOCKING) — council files enforced S072"
+        - id: T2
+          name: warrant
+          statement: "Every factual/state/completion/numeric claim in a cross-boundary message carries exactly one provenance label: [MEASURED:<tool>] / [PREDICTED] / [ASSUMED]. 'verified'/'confirmed' reserved for [MEASURED] only."
+          failure_mode: "PREDICTED-AS-MEASURED — a predicted number labeled 'verified' ships in a council message; Opus ratifies a false assumption. S083 instance: principles_count=82 [ASSUMED] labeled as verified when live was 78 [MEASURED]."
+          enforcement: "pre-tool-use-council-address-required.sh extension (S084 ADVISORY) + pre-tool-use-false-assumption-gate.sh (S084 ADVISORY) + validate-communication-protocol.mjs --extended (EXTENDED)"
+        - id: T3
+          name: action
+          statement: "Every cross-boundary message specifies exactly one action the receiver must do next. A list of possible next steps = no clear next step."
+          failure_mode: "D5 (single-pass) fires: receiver selects one action from five arbitrarily; intent imported incompletely"
+          enforcement: "communication-protocol-shared.md Rule 0 THREE-QUESTION TEST (T3) + B_OPTIMAL_NEXT_STEP per-turn (T3) + post-tool-use-sonnet-relay-inline.sh one-click relay (S7)"
+        - id: T4
+          name: boundary-zero
+          statement: "Receiver starts from zero context at every boundary. No assumptions about what the receiver knows from prior turns, sessions, or context."
+          failure_mode: "D20 (context-pressure) fires: sender compresses context under time/token pressure; receiver misses critical assumptions"
+          enforcement: "B_ZCA (foundational, all situations) + B_BOUNDARY_ALIGNMENT_PROTOCOL (ai-to-ai + human-to-ai)"
+        - id: T5
+          name: orphan-prevention
+          statement: "Communication produces artifacts that are permanently reachable. No intent dropped at chat/session/tab boundary."
+          failure_mode: "HANDOFF misses a thread; Opus writes directive to opus-turn.md before reading sonnet-turn.md (Rule 14)"
+          enforcement: "pre-tool-use-rule14-read-before-write.sh (T1 BLOCKING — wired S084 S4)"
+    # ── 2. branches ──────────────────────────────────────────────────────────
+    branches:
+      - id: B1
+        name: ai-to-ai-council
+        description: "Opus↔Sonnet (PROTO directive + milestone report). First application — highest value because failures multiply to Opus correction cycles."
+        activation_state: "L4 (hardwired) for WHO — L2 (triggered) for WARRANT (S084 extension)"
+        canonical_home: "tools/council/communication-protocol-shared.md + ai-collaboration-charter.md §2.5"
+        status: active
+      - id: B2
+        name: ai-to-human
+        description: "AI to Governor/developer/admin/user. 6-tier audience hierarchy governs tone/jargon per tier."
+        activation_state: "L3 (context-correct) for WHO — WARRANT wiring pending"
+        canonical_home: "docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml §audience_hierarchy"
+        status: active
+      - id: B3
+        name: human-to-ai-directive
+        description: "Governor→AI directive intake. Threshold classifies before AI acts; CAQ detects class-of-problem."
+        activation_state: "L3 (context-correct) for ACTION (intent crystallization) — WARRANT not applicable (human speaker)"
+        canonical_home: "docs/plan/pillar-0-governance/threshold-gate-v2.md + communication-protocol-shared.md Rule 15"
+        status: active
+      - id: B4
+        name: ai-to-subagent
+        description: "AI→subagent (Agent() calls). UNDERSTANDING BLOCK before + ALIGNMENT CONFIRMATION after."
+        activation_state: "L4 (hardwired) for WHO (B_BOUNDARY_ALIGNMENT_PROTOCOL Type B BLOCKING) — WARRANT pending"
+        canonical_home: "docs/plan/pillar-0-governance/behavioral-contracts/B_BOUNDARY_ALIGNMENT_PROTOCOL.md"
+        status: active
+      - id: B5
+        name: ai-to-external
+        description: "AI→MCP/API/external agents. RETURN ONLY contract; hides platform internals."
+        activation_state: "L1 (wired, not triggered) — T3 only"
+        canonical_home: "communication-schema.yaml §ai-to-external-agent situation"
+        status: planned
+    # ── 3. alignment_map ─────────────────────────────────────────────────────
+    alignment_map:
+      schema_anchor: communication
+      architecture_map_node: "pillar-0-governance"
+      classification_dimension: AI
+      root: .claude/core-spines/L1_CORE_AI.md
+      l2_domain_target: .claude/core-spines/L2_DOMAIN_AI_ALIGNMENT_PROTOCOL.md
+      note: "Communication discipline extends AI alignment protocol — each message is an alignment event"
+    # ── 4. wiring_map ────────────────────────────────────────────────────────
+    wiring_map:
+      - file: docs/plan/pillar-0-governance/communication-spine/COMMUNICATION-CORE.md
+        role: "3-element trunk canonical home (this spine's primary artifact)"
+        status: ACTIVE
+      - file: docs/plan/pillar-0-governance/communication-spine/communication-schema.yaml
+        role: "8 situations × handling specs + 6-tier audience hierarchy — the application registry"
+        status: ACTIVE
+      - file: tools/council/communication-protocol-shared.md
+        role: "Rules 0-16 — the canonical rule set for all council communication"
+        status: ACTIVE
+      - file: .claude/hooks/pre-tool-use-council-address-required.sh
+        role: "T1 BLOCKING — WHO (Element 1) enforcement for council files"
+        status: ACTIVE
+      - file: .claude/hooks/pre-tool-use-false-assumption-gate.sh
+        role: "T1 ADVISORY — WARRANT (Element 2) enforcement for tab-transfer artifacts"
+        status: ACTIVE
+      - file: .claude/hooks/pre-tool-use-rule14-read-before-write.sh
+        role: "T1 BLOCKING — orphan-prevention (T5 trunk) — Opus reads sonnet-turn.md before writing PROTO"
+        status: ACTIVE
+      - file: tools/validators/validate-communication-protocol.mjs
+        role: "T2 WHO check (STANDARD) + T2 WARRANT check (--extended, EXTENDED) — council message compliance"
+        status: ACTIVE
+      - file: docs/plan/pillar-0-governance/ai-collaboration-charter.md
+        role: "Charter home for Opus↔Sonnet council (B1 branch primary home)"
+        status: ACTIVE
+      - file: docs/plan/pillar-0-governance/behavioral-contracts/B_COUNCIL_PEER.md
+        role: "Council-scale expression of Elements 1+2 — verify-before-concur = WARRANT at ratification scale"
+        status: ACTIVE
+      - file: docs/plan/pillar-0-governance/behavioral-contracts/B_BOUNDARY_ALIGNMENT_PROTOCOL.md
+        role: "B4 branch (AI→subagent) canonical contract — Type B BLOCKING"
+        status: ACTIVE
+      - file: packages/principles/principles/P-META-032-demonstrated-truth.yaml
+        role: "WARRANT principle anchor — provenance_labels_clause (S084 amendment)"
+        status: ACTIVE
+    # ── 5. tier_permission ───────────────────────────────────────────────────
+    tier_permission:
+      inner_platform:
+        actors: [governor, opus, sonnet]
+        can_create_obligation: true
+        can_close_obligation: false
+        close_requires: "All 3 elements verified by validate-communication-protocol.mjs + Governor ratification of WARRANT wiring"
+      developer:
+        actors: [governor]
+        can_create_obligation: true
+        can_close_obligation: true
+        close_requires: "T1 blocking for all 3 elements on all 5 branches (currently: B1 WHO=T1, B4 WHO=T1; remaining promotions scheduled)"
+      external_user:
+        actors: [external-developer, account-owner-admin, end-user]
+        can_create_obligation: false
+        can_close_obligation: false
+        note: "External-user communication governed by communication-schema.yaml §audience_hierarchy"
+      ratification_required: true
+      min_tier_to_ratify: governor
+    # ── 6. cie_pe ─────────────────────────────────────────────────────────────
+    cie_pe:
+      pe_score: 9.2
+      urgency: critical
+      impact: platform-wide
+      pe_rationale: "Communication is the failure surface for every other discipline. Each mislabeled claim in a PROTO costs one Opus correction cycle. At 84 sessions (S084) × ~10 PROTOs each, the WARRANT gap has caused hundreds of correction cycles. WARRANT wiring pays back immediately."
+      cie_connection: always_active
+      cie_capture_enabled: true
+    # ── 7. escalation ─────────────────────────────────────────────────────────
+    escalation:
+      owner: group:finky
+      escalation_path: "Sonnet flags WARRANT violation → advisory gate fires → Opus verifies-before-concur (B_COUNCIL_PEER) → Governor reviews at session close"
+      ladder:
+        L1: "pre-tool-use advisory fires on mislabeled claim (act-time)"
+        L2: "validate-communication-protocol.mjs --extended catches WARRANT gap in council messages (EXTENDED tier)"
+        L3: "B_COUNCIL_PEER verify-before-concur: Opus re-derives high-value claims with THIS-TURN evidence"
+        L4: "Governor reviews gap-recurrence-register for WARRANT-class failures"
+      closure_owner: group:finky
+      closure_decision: "All 5 branches have T1 BLOCKING for WHO + T1 ADVISORY for WARRANT + validate-core-spine-template passes"
+      closure_by: "PHASEB (WARRANT: advisory → blocking at K=2 incidents per S067→S068 ladder)"
+    # ── 8. realtime_save ──────────────────────────────────────────────────────
+    realtime_save:
+      enabled: false
+      save_path: tools/data/process-state/core-spine-communication__governor__active.json
+      lib: libs/process-state/index.mjs
+      note: "Wire after /platform/communication dashboard M3 ships (communication-schema.yaml build_status m3)"
+
 # ── How to add a new spine entry ─────────────────────────────────────────────
 # 1. Copy the accountability stub above
 # 2. Fill all 8 sections (validator BLOCKS if any missing)

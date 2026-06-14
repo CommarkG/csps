@@ -67,4 +67,34 @@ if [ "$VERDICT" = "BLOCK" ]; then
   echo ""
   exit 2
 fi
+
+# S084 COMM-CORE S3: ELEMENT 2 WARRANT check — ADVISORY (Rule 16)
+# Fires when council file write contains number + 'verified'/'confirmed' without [MEASURED:].
+# ADVISORY only — S067 ladder: promotion to BLOCKING at K=2 incidents.
+if [ "$VERDICT" != "BLOCK" ] && [ -n "$TOOL_INPUT" ]; then
+  COUNCIL_WARRANT=$(printf '%s' "$TOOL_INPUT" | node -e '
+    let d="";
+    process.stdin.on("data",c=>d+=c);
+    process.stdin.on("end",()=>{
+      try{
+        const j=JSON.parse(d);
+        const fp=String(j.file_path||j.path||"").toLowerCase();
+        if(!fp.endsWith("opus-turn.md")&&!fp.endsWith("sonnet-turn.md")){process.stdout.write("0");return;}
+        let c=String(j.content||j.new_string||"");
+        if(Array.isArray(j.edits))c+="\n"+j.edits.map(function(e){return(e&&e.new_string)||"";}).join("\n");
+        let n=0;
+        c.split("\n").forEach(function(l){
+          if(/\b(verified|confirmed)\b/i.test(l)&&/[0-9]/.test(l)&&!/\[MEASURED:/.test(l))n++;
+        });
+        process.stdout.write(String(n));
+      }catch{process.stdout.write("0");}
+    });
+  ' 2>/dev/null || echo "0")
+  if [ "${COUNCIL_WARRANT:-0}" -gt "0" ] 2>/dev/null; then
+    echo "[council-warrant-gate] ADVISORY: ${COUNCIL_WARRANT} line(s) in council message have a number adjacent to 'verified'/'confirmed' without [MEASURED:...] tag" >&2
+    echo "[council-warrant-gate] COMM-CORE Rule 16 ELEMENT 2 WARRANT: use [MEASURED:<tool>] for measured, [PREDICTED] for estimated, [ASSUMED] for carried" >&2
+    echo "[council-warrant-gate] Advisory only — not blocking. Promotion at K=2 incidents." >&2
+  fi
+fi
+
 exit 0

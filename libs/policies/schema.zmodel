@@ -194,6 +194,7 @@ model Tenant extends Base {
   webhookEndpoints  WebhookEndpoint[]
   habits            Habit[]
   habitLogs         HabitLog[]
+  journeys          Journey[]          // B.2 — back-reference for ZenStack bidirectional requirement
 
   @@schema("public")
   @@allow("read", auth().tenantId == id)
@@ -588,11 +589,13 @@ model PlanCapability extends Base {
 enum JourneyType {
   developer
   user
+  @@schema("public")
 }
 
 enum JourneyStatus {
   draft
   ratified
+  @@schema("public")
 }
 
 model Journey extends Base {

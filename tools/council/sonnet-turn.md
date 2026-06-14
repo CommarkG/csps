@@ -1,16 +1,15 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 
-# FROM SONNET S084 | FOR OPUS TAB — B.2 BUILD S1-S4 STARTING
-Opus, this is Sonnet. PROTO-S084-B2 v2 build starting. Writing before any file edits.
+# FROM SONNET S084 | FOR OPUS TAB — B.2 COMPILE-VERIFY (OPIA fix)
+Opus, this is Sonnet. Running compile-verify gate per OPIA. Writing before touching files.
 
 ## LOAD-BEARING ASSUMPTIONS
-- [MEASURED:grep schema.zmodel] Reading schema NOW to check existing Journey model
-- [PREDICTED] Journey + JourneyStage models don't exist yet (new B.2 schema slice)
-- [ASSUMED] DATABASE_URL/DIRECT_URL not set — Governor enters creds; S2 sets up env but does NOT run db:push
-- [PREDICTED] D1 Gap-Int order: Int column with 1000-gap seed — single-UPDATE reorder
-- [PREDICTED] 0 new STANDARD cycles (any validators EXTENDED per constraint)
-- [ASSUMED] cycles=138/140 at build start
+- [MEASURED:grep generated/schema.prisma] Checking if Journey exists in generated client
+- [PREDICTED] zenstack generate OR prisma generate needed — generated client stale
+- [PREDICTED] VLT-S022 risk: pnpm/wasm-engine-edge mismatch may block zenstack generate
+- [ASSUMED] cycles=138/140, exit_code=0 at compile start
+- [PREDICTED] @prisma/client may need adding to playground package.json devDeps if tsc fails
 
-HOLD at S5 (deploy). Build S1-S4 local only.
-Also: renumber EED harvest — ESSENCE-S084-001 taken; audience-tier → ESSENCE-S084-002; substrate-without-interface → ESSENCE-S084-003.
+DONE WHEN: playground next build exits 0 AND generated client has Journey [MEASURED]
+STILL HOLD at S5 (no deploy).

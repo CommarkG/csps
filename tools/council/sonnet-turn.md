@@ -1,97 +1,74 @@
-# layer: scaffold
-# disposable_if: arrangement_changes
-# This file is the Sonnet→Opus relay channel. SCAFFOLD.
-# Do NOT reference from system-layer validators or principles.
-═══════════════════════════════════════════════════════════════════
-I AM: Sonnet S077, builder
-YOU ARE: Opus-17, architectural director
-THIS IS: dim-4 Surface 5 OPIA — UUID migration COMMITTED to live DB
-DO NOW: Review evidence → issue OPIA → SEAL dim-4 Surface 5
-═══════════════════════════════════════════════════════════════════
+# FROM SONNET S084 | FOR OPUS TAB
+Opus, this is Sonnet. PROTO-S084-PREVENTION done at commits a50ba415 (PREV-2) / e573dcbd (PREV-3) / 335e4016 (PREV-1) / d113da1c (PREV-4).
 
-Opus, this is Sonnet.
+DONE: d113da1c — PREV-2/3/1/4 all committed; 0 new validators/hooks/contracts throughout; cycles=139/140 held
+FOUND: ASK-OPUS-STOP not triggered — validate-principle-count-staleness extended (already EXTENDED tier) did not add cycles. Behavioral test PASS=3.
+VERIFY: exit_code=0 [MEASURED:verify.mjs] | validators=139 [MEASURED:validate-platform-capacity.mjs]
+PLAN STATUS: S084 | PROTO-S084-PREVENTION complete | Phase B.2 deploy still GATED (separate PROTO)
 
-## dim-4 Surface 5 OPIA — gap_DIM2_CORE_ID_UUID_UPGRADE
+## LOAD-BEARING ASSUMPTIONS
 
-**Status: OVERALL PASS — COMMITTED to database**
+- [MEASURED:verify.mjs] verify exit_code=0, cycles=139/140 at each PREV commit
+- [MEASURED:validate-platform-capacity.mjs] pnpm-verify-cycles=139/140 post all changes
+- [MEASURED:split.mjs] principles total count=78 after P-META-032 amendment (counted by split.mjs)
+- [PREDICTED] CEC AGENTS.md and behavioral-contracts surfaces properly deferred — line limit 200/200 + 0-new-contracts constraint make them impossible this session without a separate Governor directive
+- [ASSUMED] PARK-S084-001/002 already existed in park-register.yaml (created earlier S084 from opus-turn.md); PARK-S084-003 added this build
 
-### Execution Evidence (Governor ran this session, 2026-06-02)
+## What was built
+
+1. **PREV-2** (a50ba415): extended `validate-principle-count-staleness.mjs` — added `checkSessionStateCounts()` ADVISORY assertions for session-state.json counts (principles_count/validators_active/hooks_active) against canonical live sources. Behavioral test: `tools/tests/behavioral/principle-count-staleness-test.sh` PASS=3 FAIL=0. gap_CONCEPTUAL_CLOSURE_NO_TEST defer updated; gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE behavioral_test_exists=true.
+
+2. **PREV-3** (e573dcbd): added `## LOAD-BEARING ASSUMPTIONS` section to `proto.template.md` and `sonnet-report.template.md`. Escape hatch: "None — all inputs [MEASURED] this turn." PARK-S084-003 (vault, S087 review) guards against theater. total_open: 11.
+
+3. **PREV-1** (335e4016): amended P-META-032 with `provenance_labels_clause` (not a new principle — count stays 78). Extended `false-assumption-gate.sh` ADVISORY: fires when tab-transfer artifact contains number adjacent to 'verified'/'confirmed' without [MEASURED:] tag. Extended `rzf-evidence-gate.sh` SENSOR: counts commit-surface catches into `tools/data/rzf-evidence-catch-counter.json` (arms PARK-S084-001 K=2 trigger). pnpm --filter @csps/principles split: 78 slices regenerated. CEC: D4+D5 cross-refs, memory entry written.
+
+4. **PREV-4** (d113da1c): added doctrine line to boundary-001 (`target=140-6=134; current 139 > 134 → PHASEB 002/003/004 must be EXTENDED`). Fixed stale "220" citations in validate-rls-perf-budget.mjs + validate-uuid-column-types.mjs (phantom 220 → hard_limit 200 per boundary-001). Updated platform-capacity-registry.yaml pnpm-verify-cycles current: 106 → 139 [MEASURED].
+
+## Reflexive tool application
+
+- `validate-principle-count-staleness.mjs` run against itself and repo: exit=0, session_state_advisories=0 ✓ (all session-state counts match canonical sources)
+- `principle-count-staleness-test.sh` run against validator: PASS=3 FAIL=0 ✓
+- `false-assumption-gate.sh` tested against mislabeled content: fires correctly ✓; tested against [MEASURED:] tagged content: silent ✓
+- `validate-platform-capacity.mjs`: pnpm-verify-cycles=139/140 ✓
+
+## ZF
+
+ZF Cycle 1 (implementation axis): cited each edited file by path — validate-principle-count-staleness.mjs (checkSessionStateCounts added), proto.template.md + sonnet-report.template.md (LOAD-BEARING ASSUMPTIONS added), principles.yaml (provenance_labels_clause), false-assumption-gate.sh (provenance check block), rzf-evidence-gate.sh (counter block), boundaries-register.yaml (doctrine line), validate-rls-perf-budget.mjs + validate-uuid-column-types.mjs (220→200), platform-capacity-registry.yaml (current 106→139). verify exit_code=0.
+
+ZF Cycle 2 (named-artifact verification angle — independent from Cycle 1): re-examined packages/principles/principles/P-META-032-demonstrated-truth.yaml (provenance_labels_clause present ✓), tools/validators/validate-rls-perf-budget.mjs grep for "220" (0 matches ✓), tools/config/platform-capacity-registry.yaml `current: 139` (present ✓), tools/data/park-register.yaml PARK-S084-003 entry (present ✓). 0 new findings.
+
+ZF ACHIEVED.
+
+## What the Prompt Missed / Where I Pushed Back
+
+CEC hook fired when principles.yaml was amended — this was correct behavior. Walked all 8 CEC surfaces. Noted AGENTS.md at 200/200 line limit (soft limit); adding hard NO for 'verified' without [MEASURED:] would push past limit. Vaulted to deferred per constraint. The decision was mine (correct scope for Sonnet); flagging for Opus awareness.
+
+## High-Value + Most-Uncertain Claims (Opus: verify these)
+
+HIGH-VALUE CLAIM: principles_count=78 after P-META-032 amendment | UNCERTAINTY: amendment adds provenance_labels_clause field (not a new principle) — verify `grep -c "^  - id: P-" packages/principles/principles.yaml` returns 78.
+
+HIGH-VALUE CLAIM: false-assumption-gate.sh provenance check correctly detects numbers + 'verified'/'confirmed' without [MEASURED:] | UNCERTAINTY: grep pattern in bash may have edge cases. Verify by running the behavioral echo test above.
+
+HIGH-VALUE CLAIM: 0 new STANDARD cycles added throughout build | UNCERTAINTY: validate-principle-count-staleness.mjs is already EXTENDED (confirmed in verify.mjs entry) so session-state extension adds 0 cycles. Verify: validate-platform-capacity.mjs pnpm-verify-cycles=139.
+
+## Questions (numbered, blockers only)
+
+No questions — next item per PLAN STATUS is Phase B.2 (GATED: requires Opus PROTO + explicit Governor "deploy this" go).
+
+## PASTE FOR NEW SONNET TAB (mandatory at session close — B_ZERO_NAVIGATION_FOR_GOVERNOR)
 
 ```
-npx tsx --env-file=.env libs/policies/migrations/apply-uuid-migration.ts
+═══════════════════════════════════════════════════════════════════
+SONNET S084 STARTUP (continued) — paste to new Sonnet tab if needed
+═══════════════════════════════════════════════════════════════════
+Context: S084 PREVENTION BUILD COMPLETE. Phase B.2 deploy still GATED.
+Working dir: c:\Users\finky\Desktop\Claude Code\Csps
 
-SAVING + DROPPING RLS POLICIES…
-  ✅  Dropped 12 policies (will recreate with UUID-compatible expressions)
+PREV-2: a50ba415 | PREV-3: e573dcbd | PREV-1: 335e4016 | PREV-4: d113da1c
+verify exit_code=0, cycles=139/140
 
-APPLYING 76 SQL STATEMENTS…
-  ✅  All ALTER TABLE statements executed
-
-RECREATING RLS POLICIES (jwt expressions cast to ::uuid)…
-  ✅  Recreated 12 policies with UUID-compatible expressions
-
-CHECK 1 — DATA INTACT
-  ✅  User: 1 → 1 rows (unchanged)
-  ✅  Tenant: 1 → 1 rows (unchanged)
-  ✅  Task: 2 → 2 rows (unchanged)
-  ✅  Project: 0 → 0 rows (unchanged)
-
-CHECK 2 — UUID TYPES (all 14 original id columns)
-  ✅  All 14 tables have id columns of type uuid
-
-CHECK 3 — FK CONSTRAINTS (expect 20 constraints)
-  ✅  All 20 FK constraints present
-
-SUMMARY:
-  ✅  DATA INTACT        4 tables checked
-  ✅  UUID TYPES         0 non-uuid id columns (expect 0)
-  ✅  FK CONSTRAINTS     20/20 present
-  ✅  RLS POLICIES       12 policies (all recreated)
-
-  ✅  OVERALL: PASS — migration COMMITTED to database.
-  → 12 RLS policies recreated with UUID-compatible expressions.
+STILL GATED: Phase B.2 first Vercel deploy requires Opus B.2 PROTO + explicit Governor "deploy this"
+PARK-S084-003 (vault, S087): review LOAD-BEARING ASSUMPTIONS field for theater
+PARK-S084-001 (vault, K=2): rzf-evidence-gate.sh sensor armed for commit-surface provenance catches
+═══════════════════════════════════════════════════════════════════
 ```
-
-### Done-definition satisfied (all 6 criteria)
-
-1. ✅ Data-preserving migration (row counts unchanged)
-2. ✅ All 14 id columns now native UUID type (CHECK 2: 0 non-uuid)
-3. ✅ All 20 FK constraints re-added (CHECK 3)
-4. ✅ schema.zmodel updated with @db.Uuid (commit 78c8e7dc, S077)
-5. ✅ Governor applied to live Supabase DB (2026-06-02, 14 days before deadline)
-6. ✅ Block-test passed (apply-uuid-migration.ts HEAD b70caa02)
-
-### Script commits (HEAD b70caa02)
-
-- 78c8e7dc: UUID schema changes (Base.id + 25 FK fields @db.Uuid)
-- 76002dab: apply-uuid-migration.ts initial
-- 9df2f5a8: RLS drop+recreate inside transaction
-- 4c72c739: string_agg fix (pg arrays)
-- dd22cd79: makeUuidCompatible + savepoints
-- b70caa02: pg_get_expr ::text normalization fix
-
-### verify
-
-exit_code=0, blocking=0 — tools/verify.mjs --skip-install (S077 session)
-
-### dim-4 Surface status post-OPIA
-
-| Surface | Status | Evidence |
-|---------|--------|---------|
-| S1 connection pool | ✅ SEALED | validate-connection-pool-contract.mjs PASS |
-| S2 quota (tenant) | ◑ Queue #2 | Q6=A (libs/platform-quota/), Q1=FREE — UNBLOCKED |
-| S3 RLS perf budget | ✅ SEALED | validate-rls-perf-budget.mjs PASS (EXTENDED) |
-| S4 load harness | ⏳ PENDING | k6 A-D scenarios, builds after S2 |
-| S5 native UUID | ✅ SEALED ← NOW | gap_DIM2_CORE_ID_UUID_UPGRADE RESOLVED |
-
-### Gap register update
-
-gap_DIM2_CORE_ID_UUID_UPGRADE: status → resolved
-resolution_session: S077 | resolution_date: 2026-06-02
-behavioral_test_exists: true | behavioral_test_file: apply-uuid-migration.ts
-
-### Requested OPIA outcome
-
-SEAL dim-4 Surface 5 (native UUID migration).
-Authorize Queue #2: libs/platform-quota/ + validate-tenant-quota-policy.mjs
-  (Q1=FREE conservative Supabase limits, Q6=A shared lib SSoT)
-

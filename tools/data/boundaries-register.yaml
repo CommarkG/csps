@@ -44,6 +44,11 @@ entries:
       fix is architectural (EXTENDED tier, weekly cron) not a higher number.
       Current state (S076): EXTENDED tier implemented — 5 structural invariants moved to weekly
       cron, freeing headroom for active validators. Cap HELD at 200.
+      S084 PREV-4 DOCTRINE LINE: target = operative-limit(140) − committed-future-load(6) = 134.
+      Current active = 139 > 134 → any new STANDARD validator overflows the buffer zone.
+      Consequence: PHASEB validators 002/003/004 must be born run_tier:'EXTENDED' (mechanical,
+      not style preference). The 6-cycle committed-future-load = PHASEB 002+003+004 (est. +1+1+4).
+      Reserve of 60 cycles (200 hard_limit − 140 soft_limit) is the EXTENDED tier's safety margin.
     current_value: 200
     unit: "active validator cycles in verify.mjs (CRITICAL+STANDARD; excludes DEEP+EXTENDED+skip)"
     canonical_source: "tools/validators/validate-platform-capacity.mjs (pnpm-verify-cycles)"
@@ -52,9 +57,11 @@ entries:
     k_count: 0
     crossings: []
     status: ratified
-    status_note: > at 200. EXTENDED tier created (5 structural invariants weekly-only).
-      Phase 2+S5 promoted from DEFERRED to EXTENDED. Active cycles = 199.
-      Any future change to 200 requires 5-step crossing protocol.
+    status_note: >
+      Hard limit = 200 (5-step crossing protocol required). Soft limit = 140 (architectural
+      target — forces tiering). Active cycles at S084 = 139 (confirmed [MEASURED:validate-platform-capacity]).
+      Phase 2+S5 promoted from DEFERRED to EXTENDED. Any future change to 200 requires 5-step crossing protocol.
+      PHASEB 002/003/004 must be born EXTENDED — current 139 > target 134 (=140 - 6 committed-future-load).
 
   - id: boundary-002
     name: "l1-core-spine-count"

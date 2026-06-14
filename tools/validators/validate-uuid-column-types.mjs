@@ -28,7 +28,7 @@
  *
  * Audit slug: uuid_column_types
  * Status: DEFERRED-WITH-REASON — verify cycle cap at 199/200 + advisory-only until 2026-06-16
- *   Promote to DEEP when: (1) cap raised to 220, AND (2) migration applied (Governor DB run)
+ *   Promote to DEEP when: (1) Governor authorization + cycles drop below target 134 (hard_limit=200, soft_limit=140), AND (2) migration applied (Governor DB run)
  */
 
 import { readFileSync, existsSync, writeFileSync } from 'fs'

@@ -79,14 +79,15 @@ elements:
 
   - id: pnpm-verify-cycles
     description: "Number of active validator cycles in pnpm verify"
-    current: 106
+    current: 139
     soft_limit: 140
     hard_limit: 200
     scope_level: S1
-    at_risk: false
-    growth_rate: "2-3 cycles/session"
-    five_session_projection: 118
-    ten_session_projection: 131
+    at_risk: true
+    growth_rate: "0-1 cycles/session (PHASEB validators born EXTENDED; STANDARD capped at 134 target)"
+    five_session_projection: 139
+    ten_session_projection: 140
+    last_measured: "S084 PREV-4 [MEASURED:validate-platform-capacity.mjs 2026-06-14]"
     mitigation_strategy: >
       Tier validators: CRITICAL (run always), STANDARD (run at session close),
       DEEP (run weekly). Tiered pnpm verify splits the load.

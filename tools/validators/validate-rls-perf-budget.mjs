@@ -27,7 +27,7 @@
  *
  * Audit slug: rls_perf_budget
  * Status: DEFERRED-WITH-REASON — verify cycle cap at 199/200 (see validate-platform-capacity)
- *   Promote to DEEP when cap raised to 220 (Governor authorization pending)
+ *   Promote to DEEP when: Governor authorization + cycles drop below target 134 (hard_limit=200, soft_limit=140)
  */
 
 import { readFileSync, existsSync, writeFileSync } from 'fs'

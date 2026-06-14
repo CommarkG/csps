@@ -50,6 +50,10 @@ S066 instance: Sonnet used "Consolidated Input Engine (CIE)" as the working name
 ❌ "I'll use a 'routing engine' pattern here" — generic training-data pattern, no CSPS precedent check
 ✅ `vocabulary-canon` skill invoked → "CSPS precedent: M-16 Threshold (moat) + threshold-intake-log.yaml. Extending: 'Threshold-Router' per D8 override." — platform-specific pattern
 
+## S084 Extension — PROVENANCE LABELS (P-META-032 amendment)
+
+D4 drives a specific provenance failure: a pattern-matched number (e.g. "82 principles" remembered from prior session) gets reported as "verified" without running the canonical tool. The number FEELS correct because it matches the training pattern. The fix: every numeric claim carries `[MEASURED:<tool>]` / `[PREDICTED]` / `[ASSUMED]` label. D4 fires when `[ASSUMED]` is silently upgraded to `[MEASURED]` — PREDICTED-AS-MEASURED prevention class. Cross-ref: P-META-032 provenance_labels_clause (S084 amendment).
+
 ## Inaugural Instance (S067 canonical — D4+D8 combined failure)
 
 S067 STEP 3 pre-build: initial working name "CIE (Consolidated Input Engine)". PROTO-S067 draft used "Unified Input Classification Engine". Opus redirected to "Threshold-Router" and "Unified Threshold-Router" (M-42) — extending M-16 Threshold terminology. The D4 fire was "apply the generic dispatcher pattern from training"; the D8 fire was "coin a new acronym (CIE)." Both overridden by: M-17 reuse-first → check what CSPS already calls this → extend that name.

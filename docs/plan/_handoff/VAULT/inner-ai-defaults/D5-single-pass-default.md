@@ -50,6 +50,10 @@ S067 STEP 2 CHECKPOINT: Cycle 3 "(QA): All 3 INPUT classes pass." This was D5 fi
 ❌ "ZF Cycle 2: re-examined — 0 new findings. ZF ACHIEVED." — same area re-labeled, D5 satisfied
 ✅ "ZF Cycle 2 (Data-integrity lens): Re-examined `tools/data/improvement-register.yaml` entries with prevention_class field (15 patched). Distinct from Cycle 1 (Architecture lens: validator + migration script structure). 0 new findings."
 
+## S084 Extension — PROVENANCE LABELS (P-META-032 amendment)
+
+D5 drives provenance skipping at the completion step: after declaring a result, AI doesn't re-derive the supporting numbers (single-pass). A value from prior session gets re-stated as current without re-measurement. The fix: `[ASSUMED]` label on any carried value forces the receiver to decide if they need `[MEASURED]` evidence. D5 fires when "I checked earlier" substitutes for "I ran the tool this turn." Cross-ref: P-META-032 provenance_labels_clause (S084 amendment) + IZFC (each cycle must be a fresh angle, not a D5 re-statement).
+
 ## Inaugural Instance (S067 STEP 2 — validate-zf-cycle-format.mjs origin story)
 
 STEP 2 CHECKPOINT ZF Cycle 3: "(QA): All 3 INPUT classes pass. INPUT C (exempt) works via consolidation_exempt: true in frontmatter." No file names. This was D5 + D3 combined: Cycle 3 didn't examine a new axis (D5 = single-pass) and cited nothing concrete (D3 = surface-completeness). Opus's conditional ACK made fixing this the unlock condition for STEP 3. validate-zf-cycle-format.mjs was born from this incident — it is the mechanical override of D5.

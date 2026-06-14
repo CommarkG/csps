@@ -84,6 +84,22 @@ process.stdin.on('end', () => {
   } catch { process.stdout.write(''); }
 });" 2>/dev/null <<< "$TOOL_INPUT" || echo "")
 
+# S084 PREV-1(b): P-META-032 PROVENANCE LABELS check — ADVISORY
+# Fires when a number appears on the same line as 'verified' or 'confirmed'
+# but the line does NOT contain '[MEASURED:' provenance tag.
+# Matches S067→S068 advisory ladder (advisory only; promotion at K=2 incidents).
+# Prevention class: PREDICTED-AS-MEASURED.
+PROV_MISLABEL_COUNT=0
+if [ -n "$CONTENT" ]; then
+  PROV_MISLABEL_COUNT=$(printf '%s
+' "$CONTENT" | grep -iE '\b(verified|confirmed)\b' | grep -E '[0-9]' | grep -cv '\[MEASURED:' 2>/dev/null || echo "0")
+fi
+if [ "${PROV_MISLABEL_COUNT:-0}" -gt 0 ]; then
+  echo "[provenance-gate] ADVISORY: ${PROV_MISLABEL_COUNT} line(s) in $(basename "$FILE_PATH") have a number adjacent to 'verified'/'confirmed' without [MEASURED:...] tag" >&2
+  echo "[provenance-gate] P-META-032 PROVENANCE LABELS (S084): use [MEASURED:<tool>] for measured values, [PREDICTED] or [ASSUMED] for others" >&2
+  echo "[provenance-gate] 'verified'/'confirmed' reserved for [MEASURED] values ONLY. ADVISORY — not blocking." >&2
+fi
+
 # Check for false-assumption section in content being written
 HAS_FA_SECTION=0
 FA_ITEM_COUNT=0

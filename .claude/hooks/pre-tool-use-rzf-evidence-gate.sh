@@ -55,6 +55,16 @@ if [ "$ZF_DEEP_RUNS" -eq 0 ] 2>/dev/null; then
   printf '{
     "systemMessage": "⚠ [rzf-evidence-gate] ADVISORY: Commit contains DONE/RATIFIED/COMPLETE claim but ZF deep cycle has NOT been run this session (zf_deep_runs_this_session=0).\\n\\nPer B_RZF: THIS-SESSION evidence required. Run: node tools/zf-orchestrator.mjs --level 3\\nThen re-commit with ZF output referenced.\\n\\nProceeding (ADVISORY, not blocking). Promotion to BLOCKING at K=2 incidents."
   }'
+
+# S084 PREV-1(c): SENSOR — count commit-surface provenance catches (arms PARK-S084-001)
+# Counter only; no behavior change. K=2 triggers PARK-S084-001 escalation.
+readonly COUNTER_PATH="${REPO_ROOT}/tools/data/rzf-evidence-catch-counter.json"
+_COUNT=0
+if [ -f "$COUNTER_PATH" ]; then
+  _COUNT=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('${COUNTER_PATH}','utf8'));process.stdout.write(String(d.commit_surface_catches||0))}catch{process.stdout.write('0')}" 2>/dev/null || echo "0")
+fi
+_NEW_COUNT=$(( _COUNT + 1 ))
+node -e "require('fs').writeFileSync('${COUNTER_PATH}',JSON.stringify({commit_surface_catches:${_NEW_COUNT},last_catch:'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'},null,2),'utf8')" 2>/dev/null || true
 fi
 
 exit 0

@@ -85,9 +85,14 @@ Key options (per /platform/user-journey page): organic search · referral · dir
 
 Key options: context-capture (3Q) · role-calibration · problem-statement · preference-setup · skip
 
-**The B.2 wizard is an INSTANCE of this stage.** The 7-stage planning wizard at `/platform/wizard`
-provides one specific onboarding flow for developer-facing products. End-user onboarding has
-different options appropriate to end-user-tier (lower friction, zero CSPS vocabulary).
+**IMPORTANT CLASSIFICATION:** The planning wizard at `/platform/wizard` is NOT a user-journey
+instance. It belongs to the **DEVELOPER journey** (INFRA-FLOW Step 3 per WizardClient.tsx:2).
+Developer planning tools are developer-journey artifacts, not end-user onboarding.
+
+**Canonical user-journey Stage 2 instance:** The task-mgmt trial app (`apps/_trials-vaulted/task-mgmt`)
+onboarding flow — user authenticates via Clerk, lands on tasks dashboard, zero-jargon UI, no
+platform terminology visible. Stage 2 exit: user has seen their task list (BehaviorProfile context:
+empty state or pre-seeded tasks). This is the first real end-user onboarding instance in CSPS.
 
 ---
 
@@ -101,6 +106,10 @@ different options appropriate to end-user-tier (lower friction, zero CSPS vocabu
 | Avoid | Walls of features before first outcome; requiring setup before first value |
 
 The first value moment must be reachable in <3 actions from Stage 2 completion (I1 Single Next Action applied ×3).
+
+**Canonical Stage 3 instance:** task-mgmt trial — user creates first task or marks one complete.
+The visible result (task appears in list, green checkmark fires) IS the first value moment.
+AuditEvent fires in Supabase (system-layer confirmation), invisible to user (correct).
 
 ---
 
@@ -150,7 +159,7 @@ The first value moment must be reachable in <3 actions from Stage 2 completion (
 Before ratifying this spec, confirm:
 - [ ] The 5 stages match the current user-journey page option space (live source)
 - [ ] Branch invariants UI1-UI4 don't conflict with existing UX contracts (B_CONTEXTUAL_LOCALITY, B_ZCA)
-- [ ] The B.2 wizard is correctly scoped as ONE INSTANCE of Stage 2, not the whole branch
+- [ ] The planning wizard (/platform/wizard) is correctly labeled DEVELOPER journey (INFRA-FLOW Step 3), NOT a user-journey instance
 - [ ] Variants (admin-config-heavy / team-invite / end-user-minimal) align with communication-schema.yaml audience tiers
 - [ ] UI2 (3-action ceiling) is a design constraint, not a validator (no new cycle added)
 

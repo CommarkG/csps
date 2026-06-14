@@ -61,11 +61,13 @@ context_question: >
 
 *Extracted from [/platform/developer-journey](../../../apps/csps-playground/src/app/platform/developer-journey/page.tsx). Cross-ref only — page is canonical status source.*
 
-| Step | Name | Trunk principle applied | DONE criteria | Status |
-|---|---|---|---|---|
-| 0 | **THRESHOLD INTAKE** | T1 Optimal Order (classify before act) | Input classified → {spine, pipeline, audience_tier} | ACTIVE (S056) |
-| 1 | **7 CREATION QUESTIONS** | T2 Progressive Disclosure (questions crystallize intent before code) | Intent crystallized → planning wizard ready | ACTIVE (S057) |
-| 2 | **7-SECTION PLANNING WIZARD** | T3 Early Win (wizard = first concrete output) + T2 | Wizard complete → YAML plan item produced | ACTIVE (/platform/wizard) |
+*Step numbering note: WizardClient.tsx labels itself "INFRA-FLOW Step 3" (1-indexed). The developer-journey page uses 0-based `n:` field (wizard = n:2). This table uses 0-based indexing matching the page. WizardClient's "Step 3" = this table's "Step 2". Both refer to the same artifact.*
+
+| Step (0-based) | INFRA-FLOW label | Name | Trunk principle applied | DONE criteria | Status |
+|---|---|---|---|---|---|
+| 0 | Step 1 | **THRESHOLD INTAKE** | T1 Optimal Order (classify before act) | Input classified → {spine, pipeline, audience_tier} | ACTIVE (S056) |
+| 1 | Step 2 | **7 CREATION QUESTIONS** | T2 Progressive Disclosure (questions crystallize intent before code) | Intent crystallized → planning wizard ready | ACTIVE (S057) |
+| 2 | **Step 3** | **7-SECTION PLANNING WIZARD** | T3 Early Win (wizard = first concrete output) + T2 | Wizard complete → YAML plan item produced | ACTIVE (/platform/wizard) |
 | 3 | **FORK + DELTA** | T1 Optimal Order (fork only after plan ratified) | apps/template/ forked → package renamed → DNA blocks added | ACTIVE (fork-app.mjs S056) |
 | 4 | **VALIDATE** | I4 Reversibility (validate before shipping) | pnpm verify exit_code=0 | ACTIVE (138 validators [ASSUMED]) |
 | 5 | **DEPLOY** | T4 Peak-End (deploy = the peak moment) | Vercel live, domain resolved, first user visit logged | PLANNED (Phase B.2 GATED) |
@@ -87,9 +89,10 @@ context_question: >
 ## THE B.2 INSTANCE
 
 The current Phase B.2 (thin-slice test-drive, first live Vercel deploy) is an **instance** of Step 5
-of this developer journey. It is not a separate process — it is the journey reaching its deploy step.
+(INFRA-FLOW Step 6 / 1-indexed) of this developer journey. It is not a separate process — it is
+the journey reaching its deploy step.
 
-The bottleneck analysis for B.2 surfaces 5 design-ins that apply at Step 3 (FORK + DELTA):
+The bottleneck analysis for B.2 surfaces 5 design-ins that apply at Step 3 (0-based) / INFRA-FLOW Step 4 (FORK + DELTA):
 - D1: Gap-Int ordering for JourneyStage.order (O(N²) reorder prevention)
 - D2: `unstable_cache` strategy (thundering-herd prevention)
 - D3: tenantId guard helper (correctness at multi-tenant scale)

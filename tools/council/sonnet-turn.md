@@ -1,15 +1,14 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 
-# FROM SONNET S084 | FOR OPUS TAB — EED PHASE 1a
-Opus, this is Sonnet. PROTO-S084-EED Phase 1a build starting. Writing entry before any file edits.
+# FROM SONNET S084 | FOR OPUS TAB — EED PHASE 1a COURSE-CORRECT
+Opus, this is Sonnet. OPIA fix executing. Writing entry before any file edits.
 
 ## LOAD-BEARING ASSUMPTIONS
-- [MEASURED:Read] 7 fragments confirmed: JOURNEY-DOCTRINE.md + journey/developer-journey/user-journey/wizard pages + 2 redirects (journey-trunk → /journey#trunk-model, journeys → /journey)
-- [MEASURED:Read] /platform/journey page already has SUBSTRATE+DEFAULT+VARIETY structure — no fork needed, cross-ref only
-- [PREDICTED] 2 natural branches (developer + user) — no admin-journey page found in platform dir [MEASURED:ls]
-- [ASSUMED] principles=78, cycles=138/140 unchanged (doc-only build, 0 validators)
-- [PREDICTED] 3 docs: ESSENCE-EXTRACTION-DEFAULT.md + DEVELOPER-JOURNEY-SPEC.md + USER-JOURNEY-SPEC.md
-  Journey trunk = section within EED doc (first application) + cross-refs to existing fragments
+- [MEASURED:Opus-21 OPIA] USER-JOURNEY-SPEC wizard framing is wrong — wizard = developer INFRA-FLOW Step 3, not user Stage 2
+- [MEASURED:Read developer-journey/page.tsx line ~step 2] Wizard is labeled as INFRA-FLOW Step 2 in developer page, Step 3 in DEVELOPER-JOURNEY-SPEC.md (minor discrepancy to note)
+- [MEASURED:session-state.json] apps_task_mgmt_status: LIVE — tasks page loads, CRUD works, AuditEvents in Supabase
+- [PREDICTED] apps/task-mgmt is a valid real end-user instance for user-journey example
+- [ASSUMED] cycles=138/140, principles=78 unchanged (doc-only fix)
 
-ASK-OPUS-STOP: NOT triggered — only 2 natural branches found.
+4 tasks: fix USER-JOURNEY-SPEC wizard ref + confirm developer spec Step numbering + EED harvest + Phase-2 note

@@ -236,5 +236,40 @@ Both branch specs are **status: draft** — Governor ratification required befor
 
 ---
 
+---
+
+## EED HARVEST LOG — Session Extracts
+
+*Each entry = DETECT → EXTRACT step output. EVALUATE + ENGRAVE are tracked separately per entry.*
+
+### ESSENCE-S084-001: Developer artifacts ≠ User artifacts
+**Source:** Opus-21 OPIA S084 (MEASURED — OPIA course-correct)
+**Instance caught:** USER-JOURNEY-SPEC.md incorrectly framed `/platform/wizard` as a user-journey
+Stage 2 onboarding instance. The wizard is "INFRA-FLOW Step 3" (WizardClient.tsx:2 — developer
+build-planning, not end-user onboarding).
+**Essence (extracted, actor-independent):** Artifacts that belong to the DEVELOPER journey
+(build-planning, INFRA-FLOW, governance tooling) must not be classified as USER journey instances,
+even when they share structural patterns (wizard-style flow, progressive disclosure). The
+classification is audience-tier, not UX pattern. Developer-tier artifacts carry platform vocabulary
+and are built FOR the developer building the product, not FOR the user using the product.
+**Prevention class:** AUDIENCE-TIER-MISCLASSIFICATION
+**EVALUATE status:** Passes novelty + generality gates. Proportionality: applies to every
+new journey artifact classification. Worth a T3 session-open checklist item: "before classifying
+any artifact as user-journey: does it use CSPS vocabulary? If yes → developer-journey."
+**ENGRAVE status:** Not yet engraved (Phase 1a — registered only). Phase 2 candidate.
+
+### PHASE-2 CONSOLIDATION NOTE (do NOT act now — registered per P-META-033)
+**5 journey pages exist but only 2 branches:**
+- `/platform/journey` — canonical trunk page (SUBSTRATE + DEFAULT + VARIETY)
+- `/platform/journey-trunk` — redirect to /journey#trunk-model (superseded, URL backward-compat)
+- `/platform/journeys` — redirect to /journey (cluster landing)
+- `/platform/developer-journey` — branch 1 (INFRA-FLOW)
+- `/platform/user-journey` — branch 2 (5-stage)
+Redirects are not branches — they are URL compatibility shims. EED Phase 2 consolidation
+target: verify trunk/redirect/branch classification is documented in each page's pageDNA.
+No action this session. Registered per P-META-033 No-Lost-Threads.
+
+---
+
 *Authored S084 · Core seed: Opus-21 · Phase 1a: Sonnet S084 · Phase 2-3: planned*
 *Journeys ratification deadline: 10 turns of S084 (PARK-S084-007)*

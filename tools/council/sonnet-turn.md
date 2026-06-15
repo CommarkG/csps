@@ -1,15 +1,14 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 
-# FROM SONNET S084 | FOR OPUS TAB — B.2 COMPILE-VERIFY (OPIA fix)
-Opus, this is Sonnet. Running compile-verify gate per OPIA. Writing before touching files.
+# FROM SONNET S084 | FOR OPUS TAB — B.2 DEPLOY-PREP (5 tasks, HOLD at deploy)
+Opus, this is Sonnet. PROTO-S084-B2 S5 deploy-prep starting. Pre-read then build.
 
 ## LOAD-BEARING ASSUMPTIONS
-- [MEASURED:grep generated/schema.prisma] Checking if Journey exists in generated client
-- [PREDICTED] zenstack generate OR prisma generate needed — generated client stale
-- [PREDICTED] VLT-S022 risk: pnpm/wasm-engine-edge mismatch may block zenstack generate
-- [ASSUMED] cycles=138/140, exit_code=0 at compile start
-- [PREDICTED] @prisma/client may need adding to playground package.json devDeps if tsc fails
+- [ASSUMED] cycles=138/140, gov verify exit_code=0 from prior turn
+- [PREDICTED] /api/journey-admin GET does NOT read ../../docs (spec-seed is hardcoded) — confirm with grep
+- [PREDICTED] ratify route existsSync guard already present — confirm it returns {wrote:false} cleanly
+- [MEASURED:will check] k6 scenario-a file exists at tools/load-tests/k6/scenario-a-concurrent-burst.js
+- [PREDICTED] submodule remote = github.com/CommarkG/csps-playground
 
-DONE WHEN: playground next build exits 0 AND generated client has Journey [MEASURED]
-STILL HOLD at S5 (no deploy).
+Tasks: 1=graceful-degradation-confirm, 2=db-health endpoint(2a+2b), 3=DEPLOY-NOTES.md, 4=submodule push, 5=EED harvest

@@ -13,6 +13,10 @@
 //   - HTTP failure rate < 1% (429 quota responses ARE expected, not failures)
 //   - p99 response time < 2000ms
 //
+// S084 B.2: TARGET updated to /api/db-health (uncached real DB hit — gap_DIM4 validity).
+// /api/db-health opens a new Supabase connection every call + surfaces pool errors in body.
+// Do NOT target the root / or cached GET /api/journey-admin — trivially-true pool_errors=0.
+//
 // RUN (representative — Free tier, 1 app):
 //   k6 run --env TARGET_URL=https://your-app.vercel.app tools/load-tests/k6/scenario-a-concurrent-burst.js
 //
@@ -27,8 +31,10 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { Rate, Trend } from 'k6/metrics';
 
-// Target URL (required via env)
+// Target base URL (required via env — do NOT include /api/db-health suffix here)
 const TARGET_URL = __ENV.TARGET_URL || 'http://localhost:3000';
+// S084 B.2: /api/db-health is the uncached real-DB target for pool-exhaustion detection
+const DB_HEALTH_PATH = '/api/db-health';
 // Scale inputs — default to representative (Free-tier) run
 const N_APPS = parseInt(__ENV.N_APPS || '1');
 const BURST_MULTIPLIER = 2;
@@ -62,7 +68,8 @@ const quotaRejections = new Rate('quota_rejections');
 const requestDuration = new Trend('request_duration');
 
 export default function() {
-  const res = http.get(`${TARGET_URL}`, {
+  // S084 B.2: target /api/db-health — uncached real Supabase connection every call
+  const res = http.get(`${TARGET_URL}${DB_HEALTH_PATH}`, {
     headers: { 'X-Load-Test': 'scenario-a', 'X-N-Apps': String(N_APPS) },
     timeout: '5s',
   });
@@ -83,7 +90,8 @@ export default function() {
 
   check(res, {
     'no pool exhaustion (42P05/P0002)': () => !isPoolError,
-    'response received (200 or 429)': (r) => r.status === 200 || r.status === 429,
+    // 200=ok, 503=db-error-surfaced (correct behavior), 429=quota (not a failure)
+    'response received (200 or 503 or 429)': (r) => r.status === 200 || r.status === 503 || r.status === 429,
     'latency under 2s': (r) => r.timings.duration < 2000,
   });
 

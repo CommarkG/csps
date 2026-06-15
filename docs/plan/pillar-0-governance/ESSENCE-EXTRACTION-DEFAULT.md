@@ -268,6 +268,22 @@ any artifact as user-journey: does it use CSPS vocabulary? If yes → developer-
 **ENGRAVE status:** Partially enacted (B.2 journey-admin dashboard built S084 — the first instance). Phase 2: propagate this pattern to communication-schema M3 dashboard + all future SPEC.md files. Full engraving: add to AGENTS.md hard-NO list "never create a ratifiable spec without a frontend editor."
 **Cross-ref:** COMMUNICATION-CORE.md §application-registry B1 (Opus↔Sonnet ratification via frontend) · communication-schema.yaml M3 (planned communication dashboard — same pattern).
 
+### ESSENCE-S084-004: Never swallow DB errors into 200-ok
+**Source:** Opus-21 OPIA S084 + ADDENDUM 2a (MEASURED — explicit directive)
+**Instance caught:** A hypothetical try/catch returning `{status:"ok", pool_errors:0}` on DB connection failure creates a trivially-true PASS bar for gap_DIM4 load testing. k6 body-scans for 42P05/P0002/pool-exhaustion strings — those strings never appear if errors are swallowed into 200.
+**Essence (extracted, actor-independent):** Any health/validation endpoint designed to detect failure MUST propagate failure signals into the response — body AND status code. A defensive try/catch that returns 200-ok on any internal error makes the endpoint lie about system health. For pool exhaustion detection specifically: the error message (42P05, P0002, "prepared statement", "pool exhaustion") must appear verbatim in the response body so external monitors (k6, uptime tools, observability) can detect it.
+**Prevention class:** TRIVIALLY-TRUE-HEALTH-CHECK
+**EVALUATE status:** Passes all 3 gates. General principle: applies to every health endpoint, every integration test endpoint, every validator that reports "0 errors" — the question is always "can this return 0 errors when there ARE errors?" If yes → the zero is not evidence.
+**ENGRAVE status:** Enacted in /api/db-health route.ts (S084). Phase 2: add to CSPS validation doctrine for all future API health endpoints. T3 session-open checklist: "for any endpoint reporting 0 errors — can it distinguish real-zero from swallowed-error?"
+
+### ESSENCE-S084-005: Monorepo-relative file paths + writeFileSync don't survive Vercel serverless
+**Source:** Opus-21 OPIA S084 ADDENDUM 2b + deploy-prep analysis (MEASURED — Vercel FS constraint)
+**Instance caught:** `/api/journey-admin/ratify` used `writeFileSync(../../docs/plan/...SPEC.md)` to write back governance spec files. In Vercel serverless, the lambda FS is read-only — `writeFileSync` throws. Additionally, `../../docs` may not be present if `include-outside-root` is not enabled or the file wasn't traced during build.
+**Essence (extracted, actor-independent):** In serverless environments (Vercel, AWS Lambda, Cloudflare Workers), the filesystem is read-only at runtime. File paths that cross app-boundary (e.g. `../../docs/` in a monorepo) work during local development but fail in production unless: (1) the build system traces and bundles the files, AND (2) the runtime allows writes. Governed write-back to monorepo docs is therefore a local-dev convenience only. In production: the database is the canonical state; spec files are updated via git commit after human ratification.
+**Prevention class:** SERVERLESS-FS-ASSUMPTION
+**EVALUATE status:** Passes all 3 gates. Critical for any CSPS app that reads or writes files outside its `src/` directory. The pattern is: write-back is dev-only → guard with `process.env.VERCEL === '1'` → return `{wrote:false, reason:'prod-serverless-readonly-fs'}` in prod.
+**ENGRAVE status:** Enacted in /api/journey-admin/ratify/route.ts (S084). Phase 2: add to CSPS "outward boundary" checklist — any file write that crosses app-boundary is a serverless risk.
+
 ### PHASE-2 CONSOLIDATION NOTE (do NOT act now — registered per P-META-033)
 **5 journey pages exist but only 2 branches:**
 - `/platform/journey` — canonical trunk page (SUBSTRATE + DEFAULT + VARIETY)

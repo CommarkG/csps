@@ -56,7 +56,7 @@
     }
   },
   "session_mandate": {
-    "primary": "S084 ACTIVE. B.2 FIRST LIVE DEPLOY COMPLETE — csps-playground.vercel.app live (commit 55209bc). db-health confirmed connected (latency 1467ms, pool_error=false, journey_stage_count=0). Journey Admin dashboard renders spec-seed correctly. gap_DIM4 k6 load test PENDING (Governor-run). PARK-S084-009 (P0 security: pw rotation 2026-06-17). PARK-S084-010 (deploy-hardening validators: PL1+PL2+PL3+PL6+PL7+PL8 — next session). B.3 (journey ratification test-drive) = next milestone.",
+    "primary": "S084 ACTIVE. B.2 FULLY SEALED — csps-playground.vercel.app live. db-health ok (latency 1467ms, pool_error=false). Journey Admin renders. gap_DIM4 RESOLVED (k6 run: pool_errors=0, http_req_failed=0%, p99<4000ms, 48 iters clean). PARK-S084-009 (P0 security: pw rotation 2026-06-17). PARK-S084-010 (deploy-hardening: PL1+PL2+PL3+PL6+PL7+PL8 — next session). B.3 (journey ratification test-drive) = next milestone.",
     "model_tier": "STANDARD_BUILD",
     "blocking_on": "Phase B.2 gate: Governor explicit go-ahead for first Vercel deploy (outward boundary). PARK-S082-010 PREVENTION scope awaits Governor ratification. Journeys (B.3) gated on Governor journey + admin-dashboard ratification.",
     "situation": "WAVE_1_PREVENTION_BUILD",

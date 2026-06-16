@@ -11,7 +11,8 @@
 //   - Zero 42P05 (prepared statement conflict) errors
 //   - Zero P0002 (connection refused) errors
 //   - HTTP failure rate < 1% (429 quota responses ARE expected, not failures)
-//   - p99 response time < 2000ms
+//   - p99 response time < 4000ms (free-tier cross-region budget: iad1→eu-central-1 + cold-start)
+//   NOTE: tighten to <2000ms when same-region or Supabase Pro
 //
 // S084 B.2: TARGET updated to /api/db-health (uncached real DB hit — gap_DIM4 validity).
 // /api/db-health opens a new Supabase connection every call + surfaces pool errors in body.
@@ -58,8 +59,9 @@ export const options = {
     'pool_errors': ['rate==0'],
     // HTTP failure rate < 1% (429 quota responses counted separately, not as failures)
     'http_req_failed': ['rate<0.01'],
-    // p99 latency < 2s (generous for representative run)
-    'http_req_duration': ['p(99)<2000'],
+    // p99 latency < 4s for free-tier cross-region (iad1→eu-central-1 + cold-start budget)
+    // Note: same-region or Pro-tier deployments should tighten to <2000ms
+    'http_req_duration': ['p(99)<4000'],
   },
 };
 
@@ -102,9 +104,11 @@ export default function() {
 export function handleSummary(data) {
   const poolErrCount = data.metrics?.pool_errors?.values?.count ?? 0;
   const failRate = data.metrics?.http_req_failed?.values?.rate ?? 0;
-  const p99 = data.metrics?.http_req_duration?.values?.['p(99)'] ?? 0;
+  // k6 summary data uses 'p(99)' key in the values object for Trend/built-in metrics
+  const durValues = data.metrics?.http_req_duration?.values ?? {};
+  const p99 = durValues['p(99)'] ?? durValues['p99'] ?? 0;
 
-  const pass = poolErrCount === 0 && failRate < 0.01 && p99 < 2000;
+  const pass = poolErrCount === 0 && failRate < 0.01 && p99 < 4000;
 
   return {
     stdout: `

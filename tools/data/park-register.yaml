@@ -20,7 +20,7 @@ meta:
   schema_version: "1.0"
   created: "2026-06-10"
   session: S082
-  total_open: 11
+  total_open: 18
 
 entries:
 
@@ -248,9 +248,10 @@ entries:
     closed_session: null
 
   - id: "PARK-S084-002"
-    lane: queue
+    lane: schedule
+    scheduled_date: "2026-07-12"
     content: "FINDING-S084-03 (generalization) — every PCR 'what would change my recommendation' clause is a deferred conditional with lost-thread risk. PROPOSAL: PCR flip-conditions auto-register as vault-lane PARK entries. 0 new mechanism (PARK vault lane + finding-scheduling validator)."
-    retrieve_when: "Governor ratifies the generalization (raised under PROTO-S084-PREVENTION; not yet ratified — captured per P-META-033)"
+    retrieve_when: "2026-07-12 (Governor S084 scheduled +4wk) OR earlier if Governor ratifies the generalization"
     never_drop: true
     decision_back_ref: "FINDING-S084-03 (PROTO-S084-PREVENTION, opus-turn.md S084)"
     status: awaits-governor-ratification
@@ -280,6 +281,188 @@ entries:
       dropped or made optional. Review criteria: if <50% of PROTOs in S085-S087 use "None" →
       field is working. If >80% say "None" → drop the mandatory field.
       This PARK entry IS the structural prevention against theater-by-design (per PREV-3 spec).
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  # ─────────────────────────────────────────────
+  # S084 — Governor-scheduled deferred enhancements (+4 weeks → 2026-07-12)
+  # "park the other enhancements and schedule them for four weeks from now"
+  # ─────────────────────────────────────────────
+
+  - id: "PARK-S084-004"
+    lane: schedule
+    scheduled_date: "2026-07-12"
+    content: "VLT-S022 ZenStack clean enforcement (PCR#2 Option B not-taken) — fix the pnpm/Prisma generate-path so declarative @@allow policies enforce at the client, replacing the app-layer tenantId workaround. Makes csps-playground (+ all apps) governance-wired at the DECLARATIVE level, not just app-layer."
+    retrieve_when: "2026-07-12 (Governor S084 scheduled +4wk). MUST land BEFORE significant multi-user/parallel activity — app-layer enforcement is the scale-safety gap (see S084 scalability review)."
+    trigger_condition: "date >= 2026-07-12 OR a quick-fix spike resolves the path in <1 session OR real multi-user traffic approaches"
+    flip_condition_back_ref: "PCR#2 Option A 'what would change it' (S084) — a quick VLT-S022 fix flips A→B. Timeboxed spike registered HERE."
+    never_drop: true
+    context_preserved: >
+      VLT-S022-ZENSTACK-GENERATE-PATH OPEN since S022. Option C (generate from app dir) failed:
+      Prisma version mismatch (wasm-engine-edge.js missing for @prisma+client@6.7.0). Workaround in
+      use: app-layer explicit tenantId + Postgres RLS (task-mgmt runs on this live). Clean fix =
+      root-level postinstall hook OR align Prisma version in root package.json.
+      REFINEMENT (S084 OPIA, ESSENCE-S084-004 candidate): zenstack generate SUCCEEDED from the ROOT
+      schema path during B.2; the VLT-S022 bug triggers ONLY on SUB-PACKAGE generate (pnpm path
+      conflict). Clean fix may be as simple as "always generate from root." SCALE NOTE: app-layer
+      enforcement is one-forgotten-tenantId away from a cross-tenant leak; declarative policy is the
+      scale-safe form. Schedule honors "nothing stands alone" axis 3 (governance-wired) at full strength.
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-005"
+    lane: obligation
+    content: "PROTO-S084-COMM-CORE — Communication Core as a spine ENTRY under AI dimension (not 6th L1). 3-element trunk WHO/WARRANT/ACTION; WARRANT (provenance) is the missing element; Opus<->Sonnet = first application. Authored + core-seeded S084; awaits Governor ratification before build."
+    retrieve_when: "RATIFIED Governor S084 (scope + spine-fork Option A) -> Sonnet builds S1-S6"
+    status: ratified-build-pending
+    ratified_by: "Governor S084"
+    ratified_at: "2026-06-14"
+    never_drop: true
+    decision_back_ref: "PROTO-S084-COMM-CORE (opus-turn.md TOP, S084) — Governor directive 'create the optimal solution + core seed it'"
+    context_preserved: >
+      Root causes: R1 no spine owner (orphan, 3 parents) / R2 T3-only rules wiped by D20 / R3 format
+      enforced, substance ignored (82-vs-78 shipped inside a valid council message) / R4 scatter no SSoT.
+      Cure: register communication entry (dimension AI) home=communication-spine/ dir (elevate not fork);
+      trunk = WHO/WARRANT/ACTION; S3 extends council-address hook for SUBSTANCE (0 new hooks); S4 wires
+      the orphaned rule14 T1 hook; S5 validator EXTENDED (cycle budget). 0 new principles/hooks/contracts.
+      Connects P-META-032/PREV-1 (artifact layer) UP into the communication layer.
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  # ─────────────────────────────────────────────
+  # S084 — ONGOING PLANS (Governor directives, multi-session, PE-scored)
+  # ─────────────────────────────────────────────
+
+  - id: "PARK-S084-006"
+    lane: obligation
+    content: "ONGOING PLAN — Essence Extraction Default (EED). Candidate principle P-META (number on ratification). By default, in EVERY situation, the platform harvests improvable essence — regardless of SOURCE, POLARITY, or who noticed — and converts it to improved DNA/defaults. Actor-agnostic, polarity-agnostic. Consolidates 7 existing fragments (catch-to-engraving, B_POSITIVE_VALUE_EXTRACTION, CEC, P-META-019, P-META-029, P-META-007, synergy/CSEP) into ONE trunk; they become branches."
+    retrieve_when: "RATIFIED Governor S084. Gradual-build topic-plan (depth-4). Phase 1 = journeys as first application; Phase 2 = EED trunk + wall-to-wall; Phase 3 = 3-scope default."
+    status: ratified-ongoing-plan
+    ratified_by: "Governor S084 ('EED APPROVED')"
+    ratified_at: "2026-06-14"
+    pe_provisional: "urgency=HIGH impact=PLATFORM-WIDE(wall-to-wall) spi=LARGE → highest-value-but-large → ongoing plan, not single PROTO"
+    never_drop: true
+    decision_back_ref: "Governor S084 directive — 'expand correction to insight/improvement/error-analysis/prevention as triggers; make it an ongoing significant DEFAULT; essence not actors; 3 scopes; wall-to-wall'"
+    governing_intent: >
+      Pipeline DETECT essence -> EXTRACT (essence, not instance, not actor) -> EVALUATE for DNA/default
+      fit -> ENGRAVE wall-to-wall -> VERIFY coverage. WALL-TO-WALL surfaces (all hardwired):
+      PLANNING (essence-harvest obligation in every plan/PROTO; consolidates HARVEST/KH) +
+      RECURRING AUDITS (audit checks essence-extraction COVERAGE) + IMPLEMENTING (milestone extraction;
+      consolidates CEC) + QC (closing-summary essence-harvest block; consolidates positive-value +
+      enhancement-proposals 10.0j). THREE SCOPES: Sonnet/immediate (scan every turn, any source) +
+      Platform/structural (essence-register -> DNA updates + coverage audit) + Governor/strategic
+      (ratify which essences become engraved defaults). KEY: trigger = essence EXISTS, NOT who caught it.
+    first_essence_harvested:
+      id: "ESSENCE-S084-001 (RATIFICATION-CADENCE-BY-CLASS)"
+      detected: "Governor S084 asked 'do you have a clear definition of WHEN/how-many-times/how-much to insist on human ratification?' — answer: NO; only the 2 extremes are legislated, the middle is per-decision judgment (the cause of this session's over-asking + one-click miss + gap_DIM4 flip-flop)."
+      essence: "Human-in-the-loop cadence should be keyed to DECISION CLASS, not frequency: C1 outward/irreversible=always; C2 direction-setting=ratify once-per-direction before build; C3 implementation-in-ratified-direction=NO human gate (free Opus<->Sonnet loop); C4 reversible-preference=Opus decides. Substantive push-back is ALWAYS-ON, independent of class (asking-for-feedback != holding-a-position)."
+      evaluate_for: "candidate principle (P-META) or B_* contract — the ratification-cadence default; wire into EED Phase 2 wall-to-wall (planning gate asks 'which class is this decision?')."
+      status: RATIFIED-ACTIVE (Governor S084) — operating rule now; formal engraving via EED Phase 2
+      ratified_by: "Governor S084"
+      ratified_at: "2026-06-14"
+    scope_captured:
+      - "consolidate 7 fragments -> 1 trunk (remove-before-add; P-META-029 humble-consolidation on the extraction disciplines themselves)"
+      - "actor-agnostic + polarity-agnostic trigger (correction OR insight OR improvement OR error-analysis OR prevention OR positive-pattern)"
+      - "wall-to-wall: planning + recurring-audits + implementing + QC, all hardwired (T1/T2 not T3)"
+      - "3-scope default (Sonnet/Platform/Governor)"
+      - "PE-scored; consolidated-trunk first then branched-specifications"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-007"
+    lane: schedule
+    content: "DEADLINE (Governor S084): ratify the DEVELOPER JOURNEY + the USER JOURNEY within max 10 turns. Start from CONSOLIDATED parts, then BRANCHED specifications (same trunk-then-branch shape as EED)."
+    retrieve_when: "within 10 turns of S084 (hard ceiling). Inputs: JOURNEY-DOCTRINE.md (ratified S071) + csps-playground journey pages + B.2 schema-wire journey (7-stage wizard)."
+    scheduled_by_turn: "S084 + 10 turns"
+    status: scheduled-deadline
+    never_drop: true
+    decision_back_ref: "Governor S084 — 'within a maximum of ten turns, ratify the developers journey and the user journey, consolidated parts then branched specifications'"
+    context_preserved: >
+      Two journeys to ratify: DEVELOPER journey (how a developer builds on CSPS) + USER journey
+      (how an end-user moves through a product). Method: consolidate shared trunk first (JOURNEY-DOCTRINE
+      already ratified S071 as the doctrine), then branch the two specifications. Connects to B.2
+      (the 7-stage wizard is a DEVELOPER-journey instance — INFRA-FLOW Step 3, CORRECTED S084 OPIA;
+      user-journey instance = task-mgmt). RATIFICATION via the B.2 journey-admin dashboard, NOT markdown
+      (Option A, ESSENCE-S084-003). Specs at DEVELOPER-JOURNEY-SPEC.md + USER-JOURNEY-SPEC.md (status:draft).
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-008"
+    lane: vault
+    content: "DEADLINE-RESCUE fallback (extracted from PCR Option C, S084 — Governor 'extract value from B&C'). IF B.2 journey-admin dashboard cannot be completed within the 10-turn journey deadline (PARK-S084-007), interim-ratify the journey ARCHITECTURE (trunk + 2 branch specs) from the markdown specs as a one-time architect-tier act, then dashboard-ratify the per-deployment INSTANCES afterward."
+    retrieve_when: "ONLY IF the journey-admin dashboard build is at risk of missing the 10-turn deadline. Default path = Option A (ratify via dashboard). This is the rescue, not the design."
+    trigger_condition: "10-turn journey deadline (PARK-S084-007) at risk AND dashboard not yet ratifiable"
+    never_drop: true
+    decision_back_ref: "PCR Option C residual value (S084) — distinguishes architecture-ratification (one-time, developer-tier) from instance-ratification (ongoing, admin-tier)"
+    context_preserved: >
+      Option B residual value (reusable substrate-API-frontend-writeback pattern) was INJECTED into
+      B.2 S3 (build on core-spine-creator pattern so communication M3 inherits it) — not parked.
+      Option C residual value (trunk-readonly/branch-editable UX) also INJECTED into B.2 S3.
+      Only this deadline-rescue remains parked (conditional). Closes when journeys are ratified (any path).
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  # ─────────────────────────────────────────────
+  # S084 — FIRST LIVE DEPLOY harvest (EED 2nd application) — Deploy-Hardening
+  # ─────────────────────────────────────────────
+
+  - id: "PARK-S084-009"
+    lane: obligation
+    content: "P0 SECURITY — DB password surfaced into a transcript (prior session) via a hook reading .env.local. Rotation scheduled cloud-agent 2026-06-17 but OPEN. PL6 structural fix: NO hook/auto-context-loader may READ .env files; only Sonnet on explicit Governor direction with a LEAK-WARNING."
+    retrieve_when: "IMMEDIATE — confirm/execute password rotation (consider rotating NOW, 2-day exposure window); build PL6 leak-symmetry hook next session."
+    status: OPEN-P0-security
+    never_drop: true
+    decision_back_ref: "S084 deploy harvest Issue 7 + PL6; leaked-secrets-rotation discipline"
+    context_preserved: >
+      Credential-protection hook correctly BLOCKS .env WRITES (Issue 4) but the hook system READS
+      .env.local and surfaces DATABASE_URL (real password) into system-reminder → transcript. Asymmetric.
+      Fix = .env never read by any automated context-loader. Rotation: dev/playground Supabase; exposure
+      is in Governor's own transcript (not public) — lower urgency than a public leak but still P0.
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-010"
+    lane: obligation
+    content: "DEPLOY-HARDENING plan (EED 2nd application — first-live-deploy harvest). PE-ranked prevention bundle. Core essence: WARRANT failures at the human<->external-infra boundary (placeholders/example-values/platform-mismatched-commands cross unchecked because the non-expert Governor is the executor and nothing validates inputs at act-time)."
+    retrieve_when: "Next session — author PROTOs for Governor ratification. P0 security (PARK-009) first."
+    status: ongoing-plan-awaits-proto
+    pe_provisional: "urgency=HIGH (7+ turns burned/deploy) impact=ALL-FUTURE-DEPLOYS spi=MEDIUM → high-value bundle"
+    never_drop: true
+    decision_back_ref: "Governor S084 'read and execute, do your thing, instruct Sonnet' — deploy harvest 3-scope report"
+    pe_ranked_items:
+      - "P1 PL1 validate-env-local-placeholders.mjs — fail on [..]/<..>/user:pass/example.com in any .env value (prevented Issues 2,3 = 7+ turns). Born EXTENDED."
+      - "P1 PL3 DEPLOY-NOTES template reform — NO full-URL examples (copy-paste traps); annotated <PLACEHOLDER> format + 'how to find your values' anatomy + dual-form (bash + PowerShell) commands (PL4)."
+      - "P2 PL2 validate-submodule-standalone.mjs — apps/* deploying standalone must self-declare all runtime deps + own prisma/schema.prisma, no ../ in postinstall (prevented Issue 1). + P-ARCH amendment: submodule self-containment doctrine (a 'nothing stands alone' wiring axis)."
+      - "P3 PL7 + PL8 — DEPLOY-NOTES S5 post-deploy steps: advance submodule pointer + update session-state (deploy=milestone)."
+      - "PL5 banner-text accuracy contract: 'DB not configured' FORBIDDEN when DB IS configured; spec-seed banner must say 'No journeys in DB'. (immediate fix done by Sonnet this turn)."
+    governing_intent: >
+      The deploy boundary had no act-time validation of human inputs before they hit external infra.
+      Prevention = validators that fail BEFORE git push/deploy (PL1/PL2) + authoring that can't be
+      mis-copied (PL3/PL4) + the credential-leak symmetry (PL6/PARK-009). EED pipeline applied:
+      DETECT 10 issues -> EXTRACT WARRANT-at-infra-boundary essence -> ENGRAVE validators -> VERIFY.
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-011"
+    lane: queue
+    content: "PERMISSION-TIERS formal core-spine review. Governor surfaced 5 distinct actor classes during B.3 journey-admin test-drive: (1) Core admin / Governor — full platform authority; (2) Developer with core permissions to platform internals; (3) External backend developer hired for specific layers — scoped write; (4) Platform-builder developer — creates journeys/branches for their own products; (5) End-user with their own sub-hierarchy. Gap: no formal tier model covers permission gradients across these 5 classes. Also: (a) SEALED as formal governance state distinct from COMPLETE/RATIFIED; (b) multi-stage ratification DRAFT→IN_REVIEW→RATIFIED→SEALED; (c) TRUNK+BRANCH as formal P-ARCH pattern for any multi-persona content."
+    retrieve_when: "After PARK-S084-010 deploy-hardening closed AND Opus reviewed journey-admin meta-pattern. Prerequisite: schema slice for User permission tiers authoring-ready."
+    never_drop: true
+    decision_back_ref: "Governor S084 B.3 test-drive — 'correct separation between core admin / developer tiers / external users with hierarchies?'"
+    governing_intent: >
+      5-actor-class question reveals CSPS needs a formal TIER MODEL mapping trust levels to platform
+      access: Governor → Core-dev → Scoped-dev → Platform-builder → End-user. The journey admin
+      interface is the first surface where this becomes visible (who can view/edit/ratify/seal a journey?).
+      Process formally with schema + governance contract + enforcement trio.
+    related_parks: ["PARK-S084-010"]
     source_session: S084
     created_session: S084
     closed_session: null

@@ -1,9 +1,15 @@
 ---
 id: P-ARCH-TRUNK-BRANCH-PATTERN
 name: Trunk-Branch Pattern for Multi-Persona Content
+description: "Formal pattern for multi-persona content: sealed Governor-owned trunk (shared constitution) + persona-scoped editable branches. First instance: journey admin. Candidate P-ARCH principle pending ratification."
+version: "0.1"
 status: draft
 maturity: seed
 core_spine: ARCH
+owner: group:finky
+lifecycle: experimental
+lifecycle_state: active
+diataxis_type: reference
 session: S084
 author: Opus-21 (seed) + Sonnet S084 (authoring)
 ratified_by: PENDING — Governor ratification required

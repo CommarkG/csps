@@ -594,7 +594,9 @@ enum JourneyType {
 
 enum JourneyStatus {
   draft
-  ratified
+  in_review  // Opus OPIA in progress — not yet Governor-ratified
+  ratified   // Governor C2 ratification complete
+  sealed     // Permanent lock — re-open only via boundary-crossing protocol
   @@schema("public")
 }
 

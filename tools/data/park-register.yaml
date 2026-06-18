@@ -655,3 +655,34 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-024"
+    lane: obligation
+    content: "ESSENCE PROPAGATION — make every improvement active+mandatory in ALL journeys (Governor S084 'help me define this'). When any journey produces an improvement, the journey MANDATORILY runs a propagation cycle spreading the ESSENCE (not the instance) to every surface it enhances, tracked until BUILT. 5 arms mapping Governor's questions: (1) EXTRACT essence — CEC/P-META-006 + EED (PARK-S084-006); (2) SPREAD/MULTIPLY — synergy-master/CSEP finds all target surfaces + FSE engraves at each; (3) PLANNING (the load-bearing arm) — the improvement becomes a PE-SCORED PLAN-ITEM (PI/VLT/improvement-register), NOT a doc that rots; stays not_yet_propagated until built; (4) AUDITS — a weekly audit checks every ratified improvement has propagation coverage, flags aging; (5) DNA — a structured 'essence interview' (essence + scope + which training-default it overrides) feeds inner-ai-defaults + Platform Genome. Mandatory = a journey PHASE-GATE output (P5 Learn), can't-advance-without-it."
+    retrieve_when: "Journey-orchestrator build (P5 phase gate) + PE-improvement-loop arc. The propagation cycle is a P5 PEG output; the planning arm wires to improvement-register + PE; the audit arm is a W-series weekly audit; the DNA arm feeds the genome. Take all this S084 tab + Sonnet's work as the FIRST propagation input."
+    never_drop: true
+    context_preserved: >
+      Extends existing machinery (do NOT fork): CEC (P-META-006), synergy-master/CSEP skill, FSE 5-surface
+      engraving, EED (essence-over-actor, PARK-S084-006), improvement-register not_yet_propagated, Platform
+      Genome, inner-ai-defaults D-registry. The KEY insight: the planning arm is load-bearing — an improvement
+      that doesn't become a PE-scored plan-item never actually propagates, it just gets documented. Pairs with
+      PARK-S084-025 (test-drive): A propagates goodness, B verifies it — both arms of the self-improving platform.
+    decision_back_ref: "Governor S084 'how can we take all that is done in this tab and in sonnet's and have it active and mandatory in all journeys ... when something is improved how can it be spread and multiply its essential value ... how can it effect planning so it will actually be done when implemented ... included in audits ... interviewed even to improve dna'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-025"
+    lane: obligation
+    content: "TEST-DRIVE hardwiring — verify-produces-INTENDED-outcome on every implementation (Governor S084). Upgrade DONE: not 'built + verify=0' but 'built + verify=0 + TEST-DRIVEN' — a thin-slice real run proving the thing produces the INTENDED outcome, not just that it compiles. Two parts: (1) THIS tab's implementations get a retroactive test-drive list — PE scorer (does its ranking actually improve decisions?), MIRROR (does it catch confusion?), identity/reasoning machinery, the SWIFT/PARK triage; (2) HARDWIRE — test-drive becomes a mandatory PEG at journey P5 (Activate-Verify-Learn); the DONE-gate requires a test-drive artifact {intended outcome | measured outcome | match?}."
+    retrieve_when: "Journey-orchestrator build (P5 PEG) + PE-improvement-loop 'measure outcome' arm. Test-drive IS the measure-outcome step of the PE-loop. Build the retroactive test-drive list for THIS tab's implementations first (cheapest validation that the S084 work actually produces intended outcomes)."
+    never_drop: true
+    context_preserved: >
+      Extends: the journey thin-slice test-drive (B.2/B.3), validate-load-test-harness.mjs, the completion
+      standard (DONE = wired+called+verified — test-drive strengthens it to verified-produces-INTENDED). Test-
+      drive is literally the 'measure outcome' arm of the PE-improvement loop (PARK) — same machinery. Pairs
+      with PARK-S084-024 (essence propagation): B verifies what A propagates.
+    decision_back_ref: "Governor S084 'park the issue of test drive: 1 see how to do it on all implementations in this tab 2 how to hardwire it so it will be done each time'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

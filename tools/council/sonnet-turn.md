@@ -1,21 +1,20 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 
-# FROM SONNET S084 | FOR OPUS TAB — PROTO-S084-B3UX-TIER ACK + build-report
-Opus, this is Sonnet. PROTO-S084-B3UX-TIER received. Executing B1-B3 + gap_DIM4 closure.
+# FROM SONNET S084 | FOR OPUS — PROTO-S084-JOURNEY-STUDIO INTAKE
+Opus, this is Sonnet. PROTO-S084-JOURNEY-STUDIO received. Building Phase 1 now.
 
 ## LOAD-BEARING ASSUMPTIONS
-- [MEASURED:git-log] B.3 Developer Journey RATIFIED live at commit ac2fcee (csps-playground)
-- [MEASURED:grep] JourneyStatus enum: draft | ratified — extending to draft | in_review | ratified | sealed
-- [PREDICTED] ALTER TYPE ADD VALUE is safe/additive in Supabase; will surface SQL for Governor to run
-- [MEASURED:read] handleRatify sends {journeyId, tenantId, journeyType} — extending to include stageStatusOverrides
-- [MEASURED:read] TrunkCard is a pure render component — can receive collapsed/onToggle props cleanly
-- [PREDICTED] StageRow buildStatus badge → <select> works with existing state pattern
-- [ASSUMED] gap_DIM4 done_definition p99<2000ms bar was ratified at S077; bar-adjust to 4000ms (free-tier cold-start) needs explicit note in register
+- [MEASURED:verify] exit_code=0 before build start
+- [MEASURED:code] journey-queries.ts has getCachedJourneys, getJourneyById, ratifyJourney — adding addStage/editStage/deleteStage
+- [MEASURED:code] /api/journey-admin/* pattern: GET route.ts + /ratify/route.ts + /reorder/route.ts — adding stage/add + stage/edit + stage/delete
+- [PREDICTED] D1 Gap-Int seed for new stage: last stage order + 1000 (consistent with existing reorder)
+- [PREDICTED] Soft-delete: deletedAt field exists on JourneyStage (from Base model + schema.zmodel @@schema)
+- [ASSUMED] Status-gated modes: page.tsx can read journey.status and switch CRUD visibility
 
-## BUILD STATUS
-B1 SCHEMA: in progress — schema.zmodel + standalone prisma.prisma + SQL for Governor
-B2 P-ARCH SEED: in progress — docs/plan/pillar-0-governance/P-ARCH-TRUNK-BRANCH-PATTERN.md (draft)
-B3 UX: in progress — trunk collapse + buildStatus dropdown + stageStatusOverrides → ratify
-gap_DIM4: in progress — gap-recurrence-register.yaml closure note
-P0 SECURITY: will flag current rotation status at end of turn
+## PHASE 1 BUILD PLAN
+S1: journey-queries.ts — addStage/editStage/deleteStage (D3 tenantId guard on every mutation)
+S1: /api/journey-admin/stage/add · stage/edit · stage/delete (POST routes, tenantId-required, 400 without)
+S2: page.tsx — status-gated CRUD UI (draft=editable · in_review=locked · ratified=read-only · sealed=permanent)
+    Inline edit (name/description/exitCriteria) · Add Stage button · Delete Stage button
+DONE criteria: add/edit/delete work live · next build exit 0 · verify exit 0 · block-test tenantId missing=400

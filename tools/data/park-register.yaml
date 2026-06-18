@@ -777,3 +777,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-033"
+    lane: obligation
+    content: "CSPS-DNA AUDIT SCHEMA — consolidate ALL platform DNA + general platform characteristics into a machine-usable SCHEMA aligned with the platform's schema, purpose-built for INTERNAL AUDITS (Governor S084). Every CSPS principle / behavioral-contract / insight / inner-default / solution / pattern becomes a CHECKABLE audit dimension. Example use: take a JOURNEY (or any artifact) and check whether it is OPTIMIZED against ALL relevant CSPS principles+insights+solutions — the audit refers to EVERYTHING that exists when producing its output (no blind spots). It is DNA-as-audit-criteria: the audit walks an artifact against the full consolidated DNA and reports per-dimension gaps + optimization score."
+    retrieve_when: "AI-behaviour/audit arc. Build as the schema that internal-deep-review + the audit-runner + the journey P5 gate CONSUME. Connects: Platform Genome, principles-mcp, behavioral-contracts shards, inner-ai-defaults D-registry, audit-runner, essence-propagation (PARK-024), the journey orchestrator (a journey audited against full DNA)."
+    never_drop: true
+    context_preserved: >
+      This is the READ side of essence-propagation (PARK-024): 024 spreads improvements INTO the DNA; 033 is
+      the consolidated DNA used to AUDIT artifacts against it. Together: improvements flow in, audits check
+      compliance out. Aligns with the platform schema so it is queryable, not prose. The 'refers to all that
+      exists' requirement = the anti-blind-spot guarantee (consolidation + completeness).
+    decision_back_ref: "Governor S084 'consolidate all that related to csps platform dna and general platform characteristics, arranged like a schema aligned with the platform schema but meant for internal audits — e.g. go over a journey and see if it is optimized to all csps relevant principles and insights and solutions ... referring to all of what exists when producing its outputs'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

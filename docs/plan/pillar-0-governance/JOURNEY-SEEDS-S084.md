@@ -19,7 +19,7 @@ status: draft
 impl_status: architecture-pending
 vault_pending:
   vlt: VLT-S084-JOURNEY-SEEDS-BUILD
-  retrieve_when: "Sonnet CROSS-ACCEPT audit of the authored seeds passes, then Sonnet builds B1-B5 from SEED-1..9"
+  retrieve_when: "CROSS-ACCEPT complete (F1-F11 folded, S084). Retrieve when Governor ratifies + Sonnet builds B1-B5 from corrected SEED-1..9"
 precedent_checked: true
 links:
   - { rel: build-plan, href: JOURNEY-ORCHESTRATOR-PLAN.md }
@@ -61,8 +61,11 @@ GateMode:           [blocking, advisory, silent]                 # per gate_mode
 PolicyResult:       [allow, deny, warn, require_approval, auto_upgrade]  # R4 (SEED-2)
 RippleSeverity:     [P0, P1, P2, P3]                             # block-activation / block-verify / ticket / log
 ChangeClass:        [none, advisory, required_before_next_peg, forced_before_activation, legacy_continues]  # R1 (SEED-9)
-Scope:              [platform, tenant]                            # R5 — tenant_extension LOCKED OUT (see SEED-1 C5)
+DefinitionScope:    [platform_def, tenant_def]                   # F2 — definition OWNERSHIP, NOT instance tenant_id; tenant_def LOCKED OUT in MVP (SEED-1 C5)
 ```
+> **F2 [folded]:** renamed `Scope`→`DefinitionScope` (values `platform_def|tenant_def`) so it is never confused
+> with the per-instance `tenant_id` (RLS isolation, SEED-8). `DefinitionScope` = "who authored this definition";
+> `tenant_id` = "which tenant this running instance belongs to". Two different axes.
 
 **ANCHOR — the SELECTOR rule (risk-class PRIMARY, persona OVERLAY):**
 
@@ -72,7 +75,12 @@ selectVariant(intent, actor) -> { risk_class, variant, persona_overlay, compatib
         auto-UPGRADE to >= elevated on: core-schema | security | billing | cross-tenant touch
   2. variant     = risk_class -> VariantType
         low->fast · standard->standard · elevated->governed · critical->governed
-        (exploratory is OPT-IN, never auto-selected — it relaxes gates and must be explicitly chosen)
+  2b. EXPLORATORY OPT-IN (F1 — explicit, never auto):  overrideToExploratory(actor, justification)
+        - permission floor: actor.tier >= core_dev (low-tier personas cannot opt in)
+        - REQUIRES a non-empty justification string
+        - does NOT bypass gates: exploratory only RELAXES gate_mode where the matrix allows; the
+          relaxation IS the ratified decision and flows through R8 (the override + justification are
+          shown to the ratifier and logged to SEED-8). A rejected override falls back to the risk_class variant.
   3. persona_overlay = actor.tier -> visibility + permission (NOT risk; risk owns the gate)
   4. compatibility_check: low-tier persona on a governed variant -> ESCALATE or NARROW-SCOPE (C5)
   RETURNS to SEED-1 as the instantiation pre-condition. A journey instance CANNOT bind a variant
@@ -131,8 +139,8 @@ classify (M-16/M-42) · vocabulary-canon (closed-enum discipline).
         name: verify-against-acceptance-criteria
         statement: "Completion = verified against DECLARED acceptance criteria + a confidence level +
           a monitoring/rollback plan. 'Verify-completely' is false confidence and is BANNED as a claim.
-          SCOPE INVARIANT: journeys are scope:platform | scope:tenant ONLY. tenant_extension is LOCKED
-          OUT in MVP (no tenant-authored variants). Expansion requires the protocol in §SEED-1 EXPANSION."
+          SCOPE INVARIANT: a journey DEFINITION is DefinitionScope: platform_def | tenant_def ONLY.
+          tenant_def is LOCKED OUT in MVP (no tenant-authored variants). Expansion requires §SEED-1 EXPANSION."
         failure_mode: "Unbounded 'fully verified' claim; OR ad-hoc tenant variants with no inheritance rule."
     phases:
       - { id: P1, name: intent,           intent: "Crystallize + classify the goal; selector runs (SEED-6); risk_class ratified (R8)." }
@@ -148,6 +156,15 @@ classify (M-16/M-42) · vocabulary-canon (closed-enum discipline).
   tier_permission: # 6-tier persona overlay (SEED-6 PersonaTier); trunk sealed-view-only
   escalation:      # council (inner/expert/external) + R8 ratification-interface ladder
   realtime_save:   # Journey / JourneyStage instance persistence (version-bound per SEED-9)
+    # F3 [folded] — the Journey INSTANCE row carries these explicit, machine-readable fields
+    # (NOT derived from an event-log query at every PEG):
+    journey_instance_fields:
+      - id: uuid
+      - tenant_id: uuid                  # RLS isolation (≠ DefinitionScope, see F2)
+      - ratified_risk_class: RiskClass   # F3 — SET at P1 after R8 ratification; READ by SEED-2 gate_mode at every PEG
+      - variant: VariantType             # bound after selectVariant (R7)
+      - version_binding: InstanceVersionBinding   # SEED-9 (the 6 def versions)
+      - status: 4-state                  # canon Journey status
 ```
 
 **ANCHOR — R8 RATIFICATION-INTERFACE CONTRACT (the human surface; touches SEED-6/8/2):**
@@ -215,6 +232,35 @@ GateDef:
 | **PE** | blocking at PEG-3 (decide) only | blocking at PEG-3 on standard+ |
 | **CIE** | **never blocks by default — emits + logs**; blocks ONLY on critical/structural findings | never silent (always emits) |
 
+**ANCHOR — F4 [folded]: the CONCRETE gate_mode matrix (Sonnet COPIES this; does NOT interpret).**
+Cells = `blocking | advisory | silent`. Rows = RiskClass, Cols = phase PEG-1..5. Reshapeable per deployment
+only WITHIN the hard floors above (a deployment may tighten, never relax below the floor).
+
+```
+THRESHOLD          P1        P2        P3        P4        P5(activation)
+  low           blocking  advisory  advisory  advisory  advisory
+  standard      blocking  advisory  advisory  advisory  blocking
+  elevated      blocking  advisory  advisory  advisory  blocking
+  critical      blocking  advisory  advisory  advisory  blocking
+  # PLUS event-triggered (any risk): scope-change | cross-tenant | dep-expand mid-journey = blocking re-classify
+
+ZF / EVIDENCE      P1        P2        P3        P4        P5
+  low           silent    advisory  advisory  advisory  advisory
+  standard      silent    advisory  blocking  blocking  blocking
+  elevated      advisory  blocking  blocking  blocking  blocking
+  critical      blocking  blocking  blocking  blocking  blocking
+
+PE                 P1        P2        P3(decide) P4       P5
+  low           silent    silent    advisory  silent    silent
+  standard      silent    silent    blocking  silent    silent
+  elevated      silent    silent    blocking  silent    advisory
+  critical      silent    advisory  blocking  advisory  advisory
+
+CIE                P1        P2        P3        P4        P5
+  low..critical  advisory  advisory  advisory  advisory  advisory   # emits+logs every PEG; NEVER silent
+  # EXCEPTION (all risk): a CIE finding tagged critical|structural => blocking, regardless of phase/risk
+```
+
 **ANCHOR — R4 POLICY-EVALUATION CONTRACT (admission-controller; ONE boundary; was smeared across SEED-2/6/8):**
 
 ```
@@ -237,6 +283,11 @@ BlockedMessage:
   severity: P0|P1|P2|P3
   what_unblocks: "<the specific evidence/approval that flips this to allow>"
   expiry: <timestamp>        # blockers age; past-expiry escalates (accountability T4)
+  expiry_rule:               # F5 [folded] — computed from created_at; Governor may override per-instance
+    P0: "+24h"               # P0 block-activation: hours, not days
+    P1: "+72h"
+    P2: "+7d"
+    P3: "+30d"
 ```
 
 **RUNG-4 DECISIONS:** **R4** policy contract anchored as a sealed subsection here (admission-controller pattern,
@@ -286,22 +337,29 @@ ripple(changedNodeId, changeType, graph_version) -> { blastRadius[], updates[], 
 
 ```yaml
 GraphContract:
-  owner: <named accountable party for graph accuracy>
+  owner: "Governor (group:finky)"   # F8 [folded] — explicit; the accountable party for all registered artifacts
   guarantee: "graph is validated CONTINUOUSLY (static-declared edges), NOT inferred at fire-time"
   stale_handling: "if graph snapshot != reality at commit -> ABORT + re-snapshot, never silent-merge"
-  circuit_breaker:
-    max_depth: <N>           # hard cap on ripple recursion depth
-    ttl: <duration>          # ripple->re-run->state-change->ripple is an infinite async loop without this
+  circuit_breaker:            # F7 [folded] — concrete anchors (calibratable; observed dep-graph max ~6-7 levels)
+    max_depth: 8             # observed max depth ~6-7 + 1 buffer; below this = freeze legit cascades, above = unbounded
+    ttl: "30s"               # longer than any pnpm verify run, shorter than a session; caps the async ripple loop
     on_trip: "FREEZE + surface to owner; do not auto-continue"
 ```
 
 **ANCHOR — R2b COUPLING (SEED-4 output → SEED-5 input):**
 
 ```
-SEED-4.blastRadius  ──dictates──▶  SEED-5.scopes_to_rerun
+SEED-4.blastRadius (node PATHS)  ──via coverage map──▶  SEED-5.scopes_to_rerun (validator SLUGS)
   A ripple invalidates downstream EVIDENCE. SEED-4's blast radius IS the set of SEED-5 live re-runs that
   must fire. They are COUPLED, not independent: ripple(P0/P1) => the invalidated evidence contracts re-run.
 ```
+
+**F6 [folded — TYPE BRIDGE, the R2b coupling point]:** `blastRadius[]` holds dependency-graph node IDs which
+are FILE PATHS (verified: `dependency-graph.yaml` ids = `"docs/plan/.../X.md"`). But `zfGate`/`pnpm verify`
+filter by validator SLUGS (verified: `pnpm --filter <pkg>` / validator names), NOT paths. The ripple engine
+MUST maintain a `path → validator_slug[]` COVERAGE MAP, e.g. `schema.zmodel → [validate-schema-drift,
+validate-zenstack-generate]`. SEED-5 `scope` = the union of validator slugs covering the blast-radius nodes —
+never the raw node paths. Unmapped path => surfaced as a coverage gap (do not silently skip).
 
 **RUNG-4 DECISIONS:** **R2** graph contract + max-depth/TTL circuit-breaker anchored. **R2b** SEED-4→SEED-5
 binding anchored. **R6** universal-ripple ENGINE is **load-bearing in MVP** (generic from day 1); only the
@@ -322,10 +380,13 @@ detect + circuit breaker) day-1; implement the 3 named handlers; wire `ripple.bl
 
 ```
 zfGate(scope) -> { mode: rerun | hashverify, exit_code, evidence_hash }
-  scope        = SEED-4.blastRadius  (R2b — the invalidated evidence dictates what re-runs)
-  TIERING RULE :
+  scope        = validator SLUGS for SEED-4.blastRadius nodes (F6 coverage map; NOT raw node paths)
+  TIERING RULE (F9 [folded] — formal, maps to the existing validator run_tier field):
     cheap / unchanged   -> hashverify  (SHA-bound tracker; pass if hash matches last green)
-    high-stakes PEG / ratify / seal / activation -> live re-run (exit_code MUST be 0 THIS session)
+        cheap := run_tier:STANDARD  (<=5s, no DB, no network)  AND  gate is PEG-1/2/3  AND  risk_class in {low,standard}
+    high-stakes         -> live re-run (exit_code MUST be 0 THIS session)
+        high-stakes := run_tier:EXTENDED  OR  gate is PEG-4/PEG-5  OR  risk_class in {elevated,critical}
+                       OR the boundary is ratify | seal | activation
   ANTI-NOMINAL : evidence_hash binds the exact tree state; a timestamp-touch or bypass does NOT satisfy it.
   emits exit_code + evidence_hash -> SEED-8 event (policy_version + graph_version stamped).
 ```
@@ -378,8 +439,20 @@ transaction as an async batch commit (§0b C3 — workspace decoupled from regis
 **RUNG-4 DECISIONS:** **R3** — reuse is GATED on the storage-level immutability audit; fields confirmed
 (causation/correlation/idempotency/policy_version/graph_version/event_version).
 
-**BUILD HANDOFF (Sonnet):** run the pre-condition audit + PASTE the grep/SQL evidence (no UPDATE/DELETE path)
-BEFORE wiring; then reuse-or-harden per the result; add the missing fields; optimistic-concurrency on saves.
+**F10 [folded — verified by Opus]:** the immutability mechanism is NOT uniformly active today. Evidence:
+`libs/policies/audit-triggers.sql` has an ACTIVE `no_direct_write` RLS policy on the `audit.events` store, but
+the `enforce_audit_event_immutability` trigger on `public."AuditEvent"` is **COMMENTED OUT** (lines ~163-173).
+So the R3 pre-condition audit is genuinely load-bearing — it may find immutability is NOT enforced on the Prisma
+model. Two consequences: (a) prefer the RLS-protected `audit.events` store as the reuse target where possible;
+(b) adding columns to `public."AuditEvent"` is an `ALTER TABLE` against a table with RLS/trigger policies — per
+[[feedback_postgresql_rls_blocks_alter]], DROP the policy → ALTER → RECREATE the policy, using SAVEPOINTs
+([[feedback_savepoints_cascade_prevention]]); or use an idempotent `DO $$ BEGIN ALTER ... EXCEPTION WHEN
+duplicate_column THEN NULL; END $$` block. (ADD COLUMN is lower-risk than ALTER COLUMN TYPE, but the policy
+interaction + the inactive trigger mean the audit + savepoint discipline are mandatory, not optional.)
+
+**BUILD HANDOFF (Sonnet):** run the pre-condition audit + PASTE the grep/SQL evidence (no UPDATE/DELETE path,
+trigger active?) BEFORE wiring; then reuse-or-harden per the result; add the missing fields via the safe
+ALTER pattern above; optimistic-concurrency on saves.
 
 **ALIGNS:** AuditEvent (P-ARCH-008 audit-via-triggers) · §0b C3 + 10-non-negotiables · feedback_postgresql_rls.
 
@@ -416,9 +489,16 @@ REPLAY: any audit replay evaluates an instance under its BOUND policy version, n
 found. Without it, the first edit to a sealed seed = risky backfill OR two incompatible platform versions
 running at once.
 
+**F11 [folded — caller + layer + timing, so the logic does not land in the wrong layer]:**
+`classifyDefChange` is called by the **definition-edit API endpoint BEFORE committing** any change to
+PhaseDef/GateDef/VariantDef (NOT at runtime during a PEG transition — that is too late to stop a bad migration).
+The returned `ChangeClass` is stored on the edit record; in-flight instances are then QUERIED for the required
+response. A `forced_before_activation` class BLOCKS P5 activation of every in-flight instance until it adopts the
+new version. A `legacy_continues` class lets in-flight instances run to terminal on their bound versions.
+
 **BUILD HANDOFF (Sonnet):** stamp the version binding on every `Journey` row at creation; implement
-`classifyDefChange` as the gate any definition edit passes through; the replay path reads bound versions.
-This is what makes the audit log trustworthy across seed evolution.
+`classifyDefChange` at the definition-edit API boundary (per F11) as the gate any definition edit passes through;
+the replay path reads bound versions. This is what makes the audit log trustworthy across seed evolution.
 
 **ALIGNS:** SEED-8 (event_version + policy_version stamping) · SEED-1 (instantiation binds versions) ·
 §0b C4 (expand→migrate→contract; upstream publishes new version, downstream pinned + flagged).
@@ -461,11 +541,40 @@ SEED-7 ──reads──▶ SEED-8 events + registers   (READ-only)
 R6: universal ripple ENGINE is MVP-load-bearing; 3 hardest handlers prove it.
 ```
 
+## CROSS-ACCEPT FOLD — F1–F11 (Sonnet S084 audit → Opus #22 verified + folded)
+
+Sonnet ran STEELMAN-AGAINST + NAME-THE-TELL across all 9 seeds (no actor accepts its own work). 11 findings,
+3 P0. Opus #22 **verified-before-concur** (the 2 architectural P0s checked against live evidence) and folded all 11.
+
+| # | Seed | Sev | Finding | Resolution (folded inline) | Opus verify |
+|---|---|---|---|---|---|
+| F1 | 6 | P1 | exploratory opt-in path unspecified | `overrideToExploratory(actor, justification)`, tier≥core_dev, via R8 | concur |
+| F2 | 6 | P1 | `Scope` collides with instance `tenant_id` | renamed `DefinitionScope: [platform_def, tenant_def]` | concur |
+| F3 | 1 | **P0** | no persistent `ratified_risk_class` on instance | added explicit `journey_instance_fields` (set P1, read every PEG) | concur |
+| F4 | 2 | P1 | gate_mode 4×5 values not concrete | added the COPY-not-interpret matrix (all 4 risk × 5 phase) | concur |
+| F5 | 2 | P2 | `expiry` has no calc rule | added `expiry_rule` P0=+24h/P1=+72h/P2=+7d/P3=+30d | concur |
+| F6 | 4/5 | **P0** | blastRadius (paths) ≠ zfGate scope (slugs) | added `path→validator_slug[]` coverage map | **verified**: dep-graph ids = paths; verify filters by slug |
+| F7 | 4 | P1 | circuit-breaker values placeholder | `max_depth: 8`, `ttl: 30s` (calibratable anchors) | concur |
+| F8 | 4 | P2 | GraphContract.owner placeholder | `owner: Governor (group:finky)` | concur |
+| F9 | 5 | P1 | "cheap" tiering undefined | formal def via existing `run_tier` (STANDARD vs EXTENDED) | concur |
+| F10 | 8 | **P0** | AuditEvent ALTER hits RLS/trigger | drop-policy→ALTER→recreate + savepoints; idempotent DO-block | **verified+enriched**: immutability trigger is COMMENTED OUT in source; prefer `audit.events` RLS store |
+| F11 | 9 | P1 | classifyDefChange caller/layer unspecified | called at definition-edit API BEFORE commit; forced→blocks P5 | concur |
+
+**STRUCTURAL (Scope-3, from the F1/F4/F7/F8/F9 pattern):** five findings share ONE root — an **anchor shipped
+with an unresolved placeholder** (`<N>`, `<duration>`, `<named party>`, "cheap", "opt-in") that the builder
+would otherwise INVENT. Scope-1 = these resolved here. Scope-2 = the pattern "authored anchors must not ship
+build-time placeholders." Scope-3 = a `validate-anchor-placeholder-completeness` check that flags `<…>`/TBD
+tokens inside a seed/contract BUILD HANDOFF before relay. **Registered → PARK-S084-038** (do not build now =
+scope-creep on this task; applied manually this turn by resolving every placeholder).
+
 ## Authoring ZF gate (this file)
 - **Cycle 1 (existence):** 9 seeds authored, each with ANCHOR + RUNG-4 DECISION + BUILD HANDOFF + ALIGNS.
   Every R1–R8 + R2b encoded and tagged. Cross-seed map present. No floating reference (every SEED-N referenced).
 - **Cycle 2 (fresh angle — instantiation-order consistency):** re-read for the R7 trap — confirmed SEED-6 is
   read-first and declared SEED-1's pre-condition; SEED-1 `branches` binds AFTER `selectVariant`; no seed assumes
-  a variant bound before classification. Confirmed R8 ratified-risk-class is what SEED-2 gate_mode reads (not the
-  raw suggestion) in all three places (SEED-1 R8 contract, SEED-2 matrix note, SEED-6 selector return).
-- **CROSS-ACCEPT REQUIRED:** these anchors are not sealed until Sonnet audits (STEELMAN-AGAINST) + Governor ratifies.
+  a variant bound before classification. Confirmed R8 ratified-risk-class is what SEED-2 gate_mode reads.
+- **Cycle 3 (fresh angle — post-fold consistency, S084 cross-accept):** after folding F1–F11, re-swept for
+  introduced contradictions: `DefinitionScope` rename propagated to SEED-1 C5 (F2↔F3 distinct from `tenant_id`);
+  `ratified_risk_class` now has ONE home (instance field) read by the SEED-2 matrix (F3↔F4 coherent); SEED-5
+  `scope` is slugs everywhere via the F6 coverage map (no residual path-typed scope). 0 new findings.
+- **CROSS-ACCEPT COMPLETE** (Sonnet → Opus #22). Not SEALED until Governor ratifies + Sonnet builds + verify=0.

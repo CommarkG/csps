@@ -843,3 +843,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-038"
+    lane: queue
+    content: "ANCHOR-PLACEHOLDER-COMPLETENESS validator (Opus #22 S084, surfaced by Sonnet cross-accept of JOURNEY-SEEDS). Scope-3 structural fix for the pattern behind cross-accept findings F1/F4/F7/F8/F9: an authored ANCHOR/contract shipped with an unresolved placeholder (<N>, <duration>, <named party>, 'cheap', 'opt-in') that the BUILDER then INVENTS — a silent drift surface between Opus-authoring and Sonnet-build. BUILD: validate-anchor-placeholder-completeness.mjs that flags <...>/TBD/<named>/unquantified-adjective tokens inside any seed or contract BUILD HANDOFF block BEFORE the relay to the builder. run_tier: EXTENDED. INSTANCE-OF PARK-S084-037 (the mechanical 3-scopes engine would mandate this class of check)."
+    retrieve_when: "Journey-orchestrator build hardening OR the AI-behaviour/audit arc. Build alongside PARK-037 (auto-log) — both are anti-drift between authoring and build. First pass: lint the existing seed/contract corpus for residual placeholders."
+    never_drop: true
+    context_preserved: >
+      Lived instance: 5 of 11 Sonnet cross-accept findings on JOURNEY-SEEDS-S084 were placeholder-invention
+      risks. Opus resolved all manually this turn (Scope-1), but the prevention (Scope-3) is a validator so the
+      next authoring pass cannot relay an under-specified anchor. Connects PARK-037 (mechanical 3-scopes),
+      CROSS-ACCEPT (M5 reasoning-trigger), the seed-authoring boundary (Opus anchors -> Sonnet builds).
+    decision_back_ref: "Sonnet S084 cross-accept (F1/F4/F7/F8/F9 share root: unresolved anchor placeholders) + Opus #22 Scope-3 escalation"
+    source_session: S084
+    created_session: S084
+    closed_session: null

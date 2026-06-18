@@ -103,6 +103,8 @@ links:
   INHERITS (the 518-node graph) not generates, and that inheritance has no governance. Add: graph owner +
   accuracy/consistency guarantee + what SEED-4 does when the graph is STALE vs reality + a hard Max-Depth
   circuit-breaker/TTL (ripple→re-run→state-change→ripple = infinite async loop under load).
+  **R2b [Gemini Q1] SEED-4↔SEED-5 are COUPLED** — a ripple invalidates downstream evidence, so SEED-4's
+  blast-radius DICTATES which SEED-5 live re-runs must fire. Bind them (SEED-4 output → SEED-5 input), not independent.
 - **R3 [3/3] AuditEvent reuse = YES, GATED.** First audit: does ANY code path UPDATE/DELETE AuditEvent rows?
   (storage-level immutability, not convention). If not truly append-only → harden or build dedicated. Confirm
   fields: causation/correlation/idempotency/policy_version/graph_version/event_version.
@@ -116,6 +118,14 @@ links:
 - **R6 [3/3] universal-ripple ENGINE is load-bearing in MVP** (generic from day 1); only per-class HANDLERS defer.
   Pick the 3 HARDEST classes to prove the pattern: schema/object-def · validator/policy-rule · UI/workflow-binding.
   "Universal ripple" = phased expansion with a defined extension protocol, NOT a simple defer.
+- **R7 [Claude Q1a] SEED-6 selector is an ENTRY dependency of SEED-1**, not a downstream consumer — a journey
+  instance cannot bind a variant before the selector has run. Absorb the selector into SEED-1 or explicitly
+  declare it a SEED-1 pre-condition (ordering fix; else SEED-1 and SEED-6 make incompatible instantiation assumptions).
+- **R8 [Claude Q1b] missing RATIFICATION-INTERFACE seed** — the human surface where a PA/owner sees a system-
+  SUGGESTED risk-class upgrade, reviews the WHY, and confirms or downgrades. NOT pure UX: it touches SEED-6
+  (selector output), SEED-8 (the override must be logged), SEED-2 (gate_mode depends on the RATIFIED risk-class).
+  Anchor the ratification CONTRACT (suggestion → review → confirm/downgrade+reason → log) or three seeds assume
+  incompatible ratification flows.
 - **PROCESS [GPT — for the rung-4 PROTOCOL, parked]:** future external prompts = Pass A blind-review THEN Pass B
   reconciliation (don't pre-frame the consensus); strip internal jargon from the relay box; require severity +
   retrofit-cost tags + a Q7 versioning vector. NOTE: GPT still converged with the other two DESPITE the anchoring

@@ -639,3 +639,19 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-023"
+    lane: obligation
+    content: "FULL FSE ENGRAVING of B_SWIFT_OR_PARK (Governor S084 'game changer if hardwired'). Canonical wording captured in memory feedback_swift_or_park.md NOW (SWIFT, low-blast). PARKED = the higher-blast mechanical surfaces: (1) the contract added to the GVRN behavioral-contracts shard + regenerate slices via split-behavioral-contracts.mjs; (2) T1 hook that fires on new-input-during-active-process and forces the 3-way triage; (3) the EVIDENCE-GATE on the 'significant impact' claim (asserted-without-evidence routes to PARK by default — the core anti-rationalization mechanism); (4) T2 validator; (5) the CONTROLLED-STOP branch high-gated to Governor/threshold. The principle: new input during active process -> evidence-gated triage -> PARK / SWIFT-minimal+park-rest / controlled-STOP."
+    retrieve_when: "PE-improvement-loop / threshold-gate build arc. The triage IS the threshold front-door logic; build it WITH the PE {DO/PARK/DROP} output (same machinery). The evidence-gate is the highest-value piece (anti-shiny-rationalization)."
+    never_drop: true
+    context_preserved: >
+      Dogfooded on its own engraving: editing the generated multi-shard contract system mid-PE-SWIFT-build
+      EXCEEDED the SWIFT ceiling (blast not LOW, generator+verify risk), so per the principle itself the full
+      contract was PARKED and only the minimal real thing (memory capture) done now. Consolidates
+      PE_ALIGNMENT_GUARDIAN path_swift/path_vault + DPR 1-5 + threshold-gate + B_COMPLETION_OVER_SHINY +
+      minimal-now. Opus added the 3rd branch (controlled-stop) the Governor's 2-branch model missed.
+    decision_back_ref: "Governor S084 'swift is a brilient concept ... it is relevant when there is an active process and a new input ... if not significant impact -> park ... if significant impact -> check minimal lowest blast radius and park the rest ... if hardwired as it should it is a game changer'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

@@ -703,3 +703,32 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-027"
+    lane: queue
+    content: "OPTIMAL WEIGHT OF THE SCOPES IN PE — deepdive (Governor S084). What are the SWEET SPOTS between enhancing PERMANENT INFRASTRUCTURE (bears fruit many times — high blast, compounding moat) vs making LOCAL FIXES (instance scope, fast value)? When do they OVERLAP (a local fix that also hardens infrastructure)? What MUST be considered when approaching a DEEP change (blast radius, reversibility, migration cost, in-flight instances per rung-4 R1, ripple per SEED-4)? This calibrates the PE B/D dimension weights + the depth-scope modulation (class×1.2/pattern×1.1/instance×1.0) + moat_score + completion-multiplier interplay. The question: where does infra-investment's compounding return justify its higher cost+risk over a cheap local fix — and the engine should make THAT tradeoff visible, not hidden."
+    retrieve_when: "PE-improvement-loop calibration arc (PARK-S084-026) — this IS the weight-calibration the outcome-vault validates. Use real outcome data: did high-blast infra work actually bear fruit N times? Tune the depth-scope multipliers + completion gate against measured returns, not a-priori."
+    never_drop: true
+    context_preserved: >
+      Connects PE schema §1 (B/D weights) + the Opus decision B (depth-scope modulates B+D) + moat_score §1c +
+      completion-multiplier (decision A) + PARK-026 (PE-improvement loop validates the weights from outcomes).
+      The deep-change considerations overlap rung-4 R1 (in-flight instance migration) + R2 (ripple blast). The
+      sweet-spot question is the heart of 'completion as a parameter' + 'infrastructure vs local fix' tension.
+    decision_back_ref: "Governor S084 'park a deepdive on the optimal weight of the scopes in pe. what are the sweet spots between enhancing permanent infrastructure that will bare fruit many times and making local fixes... when do they overlap? what things must be considered when approaching a deep change?'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-028"
+    lane: queue
+    content: "RUNG-4 EXTERNAL-REVIEW PROTOCOL improvement (GPT meta-critique, S084). Future external-LLM review prompts must: (1) split PASS A blind-review (review the design only, assume prior reviewers may be wrong) from PASS B reconciliation (compare against prior findings; flag convergence/divergence/false-consensus) — the box currently pre-frames the adopted corrections + internal findings, which ANCHORS the external models; (2) strip internal jargon from the relay box (ZF/PE/CIE/Governor/moats/rung-4/C1 → plain terms); (3) require per-answer Severity + Retrofit-cost tags + Keep/Modify/Split/Defer/Block; (4) add a versioning/migration question vector (Q7). NOTE: despite the anchoring, GPT still converged with Gemini+Claude on R1/R3/R5/R6 — independent convergence held, which is itself evidence the findings are robust."
+    retrieve_when: "Before the NEXT rung-4 external review (any C1/irreversible artifact). Update the S084-seed-design-external-review-prompt.md pattern into a reusable two-pass template with the jargon-strip + severity-tag + Q7."
+    never_drop: true
+    context_preserved: >
+      The independence-contamination risk is real for rung-4 (the most expensive ladder rung — must produce
+      DISAGREEMENT not consensus-theater). Two-pass blind→reconcile is the fix. Folds into the external-review
+      step of the Independence Ladder (PARK-S084-020) + the journey council deep-dive (PARK-S084-014).
+    decision_back_ref: "GPT external review S084 — 'do not send as-is; the prompt weakens independence by pre-framing convergence + internal findings; split blind review from reconciliation; remove jargon; add severity + retrofit-cost; add Q7 versioning'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

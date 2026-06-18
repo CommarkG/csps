@@ -605,8 +605,11 @@ model Journey extends Base {
   name        String
   type        JourneyType   @default(user)
   status      JourneyStatus @default(draft)
-  description String?
-  stages      JourneyStage[]
+  description       String?
+  ratifiedRiskClass RiskClass?    // F3 — SET at P1 after R8 ratification; READ by SEED-2 gate_mode
+  variant           VariantType?  // bound after selectVariant (SEED-6 R7)
+  versionBinding    Json?         // InstanceVersionBinding — the 6 def versions (SEED-9)
+  stages            JourneyStage[]
 
   tenant Tenant @relation(fields: [tenantId], references: [id])
 
@@ -640,4 +643,130 @@ model JourneyStage extends Base {
 
   @@index([tenantId, journeyId, order])  // D5: covers include+orderBy in one index
   @@index([journeyId, order])            // D1: covers single-UPDATE reorder queries
+}
+
+// ── Journey Orchestrator: closed enums (SEED-6) — Sonnet S084 B1 ────────────
+
+enum DefinitionScope {
+  platform_def
+  tenant_def   // F2 — definition OWNERSHIP, NOT instance tenant_id; tenant_def LOCKED OUT in MVP (C5)
+  @@schema("public")
+}
+
+enum RiskClass {
+  low
+  standard
+  elevated
+  critical
+  // SEED-6 selector primary output; SET at P1 after R8 ratification; READ by SEED-2 gate_mode at every PEG
+  @@schema("public")
+}
+
+enum VariantType {
+  fast
+  standard     // low->fast · standard->standard · elevated/critical->governed
+  governed
+  exploratory  // F1: explicit opt-in only (never auto); permission floor: core_dev+
+  @@schema("public")
+}
+
+enum GateModeValue {
+  blocking
+  advisory
+  silent
+  // SEED-2 gate_mode matrix cell values
+  @@schema("public")
+}
+
+enum PolicyResult {
+  allow
+  deny
+  warn
+  require_approval
+  auto_upgrade
+  // R4 policy-evaluation result — single admission-controller boundary (SEED-2)
+  @@schema("public")
+}
+
+enum RippleSeverity {
+  P0
+  P1
+  P2
+  P3
+  // SEED-4 blast-radius severity: P0/P1 block activation, P2 ticket, P3 log
+  @@schema("public")
+}
+
+enum ChangeClass {
+  none
+  advisory
+  required_before_next_peg
+  forced_before_activation
+  legacy_continues
+  // SEED-9 definition versioning change classification (in-flight instance migration)
+  @@schema("public")
+}
+
+// ── Journey Meta-Model (SEED-1/2/3/6) — Sonnet S084 B1 ──────────────────────
+// Platform-level DEFINITION rows (no tenant scope — these are definition templates, not instances).
+// Any authenticated user reads; staff (staffRole != null) creates/updates.
+// Hard delete denied by Base; platform definitions are permanent references.
+
+model PhaseDef extends Base {
+  phaseId     String  @unique    // P1 | P2 | P3 | P4 | P5
+  name        String
+  intent      String
+  moats       Json?              // SEED-3: moat list for this phase (M-NN slugs)
+  councilType String?            // SEED-3: inner | expert | external
+  loopEmits   String?            // SEED-3: alignment | optimization | anti-drift
+
+  gates       GateDef[]
+
+  @@schema("public")
+  @@allow("read",          auth() != null)
+  @@allow("create,update", auth().staffRole != null)
+}
+
+model GateDef extends Base {
+  pegId                  String        @unique   // PEG-1 | PEG-2 | PEG-3 | PEG-4 | PEG-5
+  phaseDefId             String        @db.Uuid
+  minimumExitEvidence    Json?                   // evidence contracts (SEED-5)
+  gateModeMatrix         Json                    // RiskClass×Phase matrix VERBATIM from SEED-2 F4
+  zfGateMode             GateModeValue @default(blocking)
+  zfGateProof            String        @default("rerun")  // rerun | hashverify
+  thresholdRequired      Boolean       @default(true)
+  peRequired             Boolean       @default(false)    // true only at PEG-3 (decide)
+  cieEmit                Boolean       @default(true)     // always emits; never silent per SEED-2 matrix
+  policyRef              String?
+  blockedMessageTemplate Json?                           // BlockedMessage template (SEED-2)
+
+  phaseDef PhaseDef @relation(fields: [phaseDefId], references: [id])
+
+  @@schema("public")
+  @@allow("read",          auth() != null)
+  @@allow("create,update", auth().staffRole != null)
+}
+
+model VariantDef extends Base {
+  variantType     VariantType @unique
+  displayName     String
+  riskClassFloor  RiskClass              // minimum risk class that maps to this variant
+  description     String?
+  gateRelaxations Json?                 // permitted gate relaxations within trunk floors (SEED-2)
+
+  @@schema("public")
+  @@allow("read",          auth() != null)
+  @@allow("create,update", auth().staffRole != null)
+}
+
+model BranchAxisBinding extends Base {
+  axisId      String       // SEED-6 BranchAxis: depth | drive_auto | vocabulary | permission | focal
+  variantType VariantType
+  axisValue   String       // axis setting for this variant
+  description String?
+
+  @@schema("public")
+  @@unique([axisId, variantType])
+  @@allow("read",          auth() != null)
+  @@allow("create,update", auth().staffRole != null)
 }

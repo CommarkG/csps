@@ -1,0 +1,156 @@
+---
+id: csps.governance.journey-closed-enums
+name: journey-closed-enums
+description: >
+  Closed enum vocabularies for the Journey Orchestrator meta-model (SEED-6).
+  Validator-accessible reference — every enum value used in SEED-1..9 is declared here.
+  Source of truth: JOURNEY-SEEDS-S084.md SEED-6 (OPUS-22 authored).
+  Machine-checked by validate-journey-gate.mjs (B3) and the core-spine-registry wiring_map.
+version: "1.0"
+session: S084
+authored_by: "OPUS-22 (seed SEED-6) + Sonnet S084 (authoring)"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+diataxis_type: reference
+schema_anchor: vault_files
+links:
+  - { rel: seeds-source, href: JOURNEY-SEEDS-S084.md }
+  - { rel: schema, href: ../../../libs/policies/schema.zmodel }
+  - { rel: registry, href: ../../../tools/config/core-spine-registry.yaml }
+---
+
+# Journey Orchestrator — Closed Enums (SEED-6)
+
+> **Source:** JOURNEY-SEEDS-S084.md SEED-6 (OPUS-22 authored, S084).
+> **Rule:** every value used in the meta-model schema, gate_mode matrix, selector, or
+> audit event MUST appear in this file. Invented values = vocabulary-canon violation.
+
+enums:
+
+  VariantType:
+    values: [fast, standard, governed, exploratory]
+    prisma_model: VariantType
+    description: >
+      Journey variant type — bound after selectVariant (SEED-6 R7).
+      Selector mapping: low->fast · standard->standard · elevated->governed · critical->governed.
+      exploratory = explicit opt-in only (F1); never auto-assigned; permission floor: core_dev+.
+    notes:
+      - "low-risk intents get 'fast' (advisory gates)"
+      - "standard is the platform default (blocking at PEG-3/4/5)"
+      - "governed = full PEG enforcement + expert council"
+      - "exploratory: requires justification + logged; gates relaxed within trunk floors only"
+    locked_out_mvp: []
+
+  RiskClass:
+    values: [low, standard, elevated, critical]
+    prisma_model: RiskClass
+    description: >
+      Journey risk classification — the SEED-6 selector primary output.
+      SET at P1 after R8 ratification (Governor/PA confirms or downgrades system suggestion).
+      READ by SEED-2 gate_mode at every PEG.
+    auto_upgrade_triggers:
+      - "core-schema change"
+      - "security change"
+      - "billing change"
+      - "cross-tenant touch"
+    notes:
+      - "auto-UPGRADE fires on the listed triggers; downgrade requires permission-tier check + reason (C5)"
+      - "RATIFIED risk_class (not raw suggestion) is what gate_mode matrix reads"
+    locked_out_mvp: []
+
+  BranchAxis:
+    values: [depth, drive_auto, vocabulary, permission, focal]
+    prisma_model: "BranchAxisBinding.axisId (string, not enum — 5 canonical values)"
+    description: >
+      The 5 axes of the journey branch system (JOURNEY-ID-SCHEMA-S084).
+      Each VariantType binds each axis to a specific value via BranchAxisBinding rows.
+    axis_definitions:
+      depth:      "how many phases/gates are activated in full (all 5 / compressed / guided)"
+      drive_auto: "automation level: manual / semi-auto / fully-auto"
+      vocabulary: "jargon register: technical / plain / domain-specific"
+      permission:  "decision authority: solo / peer-review / committee"
+      focal:      "scope focus: task-level / milestone-level / strategic"
+    locked_out_mvp: []
+
+  PersonaTier:
+    values: [governor, core_dev, external_dev, account_owner_admin, team_leader, end_user]
+    prisma_model: "no Prisma enum — maps to User.staffRole + auth context"
+    description: >
+      6-tier persona hierarchy — comms-schema audience hierarchy (communication spine B2).
+      Persona overlay = visibility + permission (NOT risk; risk owns the gate per SEED-6).
+      Compatibility check: low-tier persona on a governed variant → ESCALATE or NARROW-SCOPE (C5).
+    locked_out_mvp: []
+
+  GateMode:
+    values: [blocking, advisory, silent]
+    prisma_model: GateModeValue
+    description: >
+      PEG gate mode — per §0b C1 (NOT uniformly blocking; uniformly blocking = compliance theater).
+      Cell values in the SEED-2 gate_mode matrix (THRESHOLD / ZF / PE / CIE × RiskClass × Phase).
+    hard_floors:
+      threshold: "blocking at P1 entry, always (all risk classes)"
+      zf_evidence: "blocking at P4/P5 on governed (elevated/critical)"
+      pe: "blocking at PEG-3 for standard/elevated/critical"
+      cie: "NEVER silent — always emits+logs; EXCEPTION: critical|structural finding => blocking"
+    locked_out_mvp: []
+
+  PolicyResult:
+    values: [allow, deny, warn, require_approval, auto_upgrade]
+    prisma_model: PolicyResult
+    description: >
+      R4 policy-evaluation result — single admission-controller boundary (SEED-2).
+      evaluate() is called EXACTLY ONCE per PEG transition; no gate logic elsewhere reads policy.
+      Records policy_version on every decision (10-non-negotiables) → audit_payload → SEED-8 event.
+    value_semantics:
+      allow:           "transition proceeds immediately"
+      deny:            "transition blocked; BlockedMessage emitted with owner + expiry"
+      warn:            "transition proceeds with advisory logged"
+      require_approval: "transition held; human confirmation needed (R8 surface)"
+      auto_upgrade:    "risk_class upgraded automatically (core-schema|security|billing|cross-tenant)"
+    locked_out_mvp: []
+
+  RippleSeverity:
+    values: [P0, P1, P2, P3]
+    prisma_model: RippleSeverity
+    description: >
+      Blast-radius severity (SEED-4 ripple-pass contract).
+      GATE ONLY on P0/P1 — not the whole matrix (avoid cascading halts on every change).
+    value_semantics:
+      P0: "block-activation — immediate halt; must resolve before any PEG advance (+24h expiry)"
+      P1: "block-verify — blocks PEG-4/5 advance; resolution within +72h"
+      P2: "ticket — creates accountability obligation; does not block PEG"
+      P3: "log — recorded for audit; no blocking action"
+    locked_out_mvp: []
+
+  ChangeClass:
+    values: [none, advisory, required_before_next_peg, forced_before_activation, legacy_continues]
+    prisma_model: ChangeClass
+    description: >
+      Definition versioning change classification (SEED-9).
+      classifyDefChange(old_def, new_def) -> ChangeClass.
+      RULE: a running instance NEVER silently inherits a definition edit — it runs its bound versions to terminal.
+    value_semantics:
+      none:                      "cosmetic/non-semantic — in-flight instances unaffected"
+      advisory:                  "in-flight may adopt; surfaced, not forced"
+      required_before_next_peg:  "in-flight must adopt before their NEXT gate transition"
+      forced_before_activation:  "in-flight must adopt before P5 activation (e.g. security/policy fix)"
+      legacy_continues:          "in-flight run to terminal on OLD def; new instances use new def"
+    notes:
+      - "REPLAY: any audit replay evaluates an instance under its BOUND policy version, never current"
+    locked_out_mvp: []
+
+  DefinitionScope:
+    values: [platform_def, tenant_def]
+    prisma_model: DefinitionScope
+    description: >
+      F2 — definition OWNERSHIP axis (NOT instance tenant_id).
+      platform_def: authored and owned by the platform team (Governor/OPUS).
+      tenant_def:   authored by a specific tenant. LOCKED OUT in MVP (C5 invariant).
+      DO NOT confuse with Journey.tenantId (RLS isolation of the running instance).
+    expansion_protocol: >
+      §SEED-1 EXPANSION — to add tenant_def later:
+      (1) add enum value + 3 fields (parent_platform_def_id + compatibility_version + inheritance_rule);
+      (2) tenant variants may TIGHTEN gates, never relax a platform invariant;
+      (3) change runs through SEED-9 versioning (forced_before_activation class).
+    locked_out_mvp: [tenant_def]

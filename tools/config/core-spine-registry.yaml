@@ -528,6 +528,200 @@ spines:
       lib: libs/process-state/index.mjs
       note: "Wire after /platform/communication dashboard M3 ships (communication-schema.yaml build_status m3)"
 
+  - id: journeys
+    spine: GVRN
+    status: sandbox
+    authored_session: S084
+    authored_by: "OPUS-22 (seed) + Sonnet S084 (build)"
+    ratified_session: null  # Governor seals the trunk at B1 exit gate (OPIA)
+    ratified_by: null
+    ratified_date: null
+    # ── 1. trunk — THE SEALED CORE: invariants C1-C5 + phases P1-P5 ──────────
+    # Verbatim from JOURNEY-SEEDS-S084.md SEED-1 (OPUS-22 authored).
+    # SEALED — changing any C-invariant or P-phase requires boundary-crossing protocol.
+    trunk:
+      description: "A journey = a tracked path from a classified intent to verified completion, run through 5 phases, each closed by a Phase Exit Gate (PEG), with risk-classed gate modes, full event logging, and version-bound instances. The trunk is SEALED — changing it is a boundary-crossing event."
+      invariants:
+        - id: C1
+          name: no-silent-skip
+          statement: "A phase, gate, or evidence requirement may be compressed, overridden, or marked N/A — but NEVER unrecorded. Every skip writes an event (actor, reason, scope) to the log (SEED-8)."
+          failure_mode: "Silent skip → the audit log lies; 'done' is not reproducible from events."
+        - id: C2
+          name: humble-first
+          statement: "Every phase begins by consulting what already exists (precedent / prior instances / canonical sources) before generating new. Existing-Before-New is a phase pre-step, not advice."
+          failure_mode: "Parallel-creation disease — new node when an existing one should have evolved."
+        - id: C3
+          name: evidence-at-gate
+          statement: "No PEG advances without THIS-SESSION evidence bound to the gate (SEED-5). Memory of a prior run is not evidence. Re-run (or hash-verify for cheap scopes) IS the proof."
+          failure_mode: "Nominal DONE — the next instance rediscovers and re-fails the same thing."
+        - id: C4
+          name: decide-with-pe-and-cie
+          statement: "Every DECIDE (PEG-3) selects among options with a PE score; every PEG emits a CIE signal on exit. Neither the decision nor the emission may be silent."
+          failure_mode: "Path chosen by recency/authority, not priority; phases close leaving no learning signal."
+        - id: C5
+          name: verify-against-acceptance-criteria
+          statement: "Completion = verified against DECLARED acceptance criteria + a confidence level + a monitoring/rollback plan. SCOPE INVARIANT: a journey DEFINITION is DefinitionScope: platform_def | tenant_def ONLY; tenant_def LOCKED OUT in MVP."
+          failure_mode: "Unbounded 'fully verified' claim; OR ad-hoc tenant variants with no inheritance rule."
+      phases:
+        - id: P1
+          name: intent
+          intent: "Crystallize + classify the goal; selector runs (SEED-6); risk_class ratified (R8)."
+        - id: P2
+          name: audit
+          intent: "Consult what exists (C2); gather evidence; map the dependency surface."
+        - id: P3
+          name: decide
+          intent: "Choose the path with a PE score (C4); register non-selected options (no-lost-threads)."
+        - id: P4
+          name: validate
+          intent: "Run the build/change; ZF evidence at the gate (C3); ripple pass (SEED-4)."
+        - id: P5
+          name: activate-verify-learn
+          intent: "Activate; verify against acceptance criteria (C5); emit CIE; propagate essence (PARK-024)."
+    # ── 2. branches — 4 variants (SEED-6 VariantType) + 5 axes (BranchAxis) ───
+    branches:
+      - id: B1
+        name: fast
+        variant: fast
+        risk_class_map: "low -> fast"
+        description: "Lightweight journey variant for low-risk intents. ZF/PE advisory at P2/P3."
+        status: sandbox
+      - id: B2
+        name: standard
+        variant: standard
+        risk_class_map: "standard -> standard"
+        description: "Default journey variant. Blocking gates at PEG-3 (PE) and PEG-4/5 (ZF). Inner council."
+        status: sandbox
+      - id: B3
+        name: governed
+        variant: governed
+        risk_class_map: "elevated|critical -> governed"
+        description: "Full PEG enforcement. Expert council at P3; cross-actor ratify-ZF at P4. External council on critical."
+        status: sandbox
+      - id: B4
+        name: exploratory
+        variant: exploratory
+        activation: "Explicit opt-in only (F1). Permission floor: core_dev+. Non-empty justification required. Override + justification logged (SEED-8). Rejected override falls back to risk_class variant."
+        description: "Research/experimental variant. Gates relaxed where matrix allows; never below trunk floors."
+        status: sandbox
+    # ── 3. alignment_map ─────────────────────────────────────────────────────
+    alignment_map:
+      schema_anchor: vault_files
+      architecture_map_node: "pillar-0-governance"
+      classification_dimension: GVRN
+      root: .claude/core-spines/L1_CORE_GVRN.md
+      note: "Journeys = primary build method for all CSPS deliverables. GVRN classification: the 5-phase method governs every build."
+    # ── 4. wiring_map — SEED-3 phase→moat/council/loop real-file bindings ────
+    wiring_map:
+      - file: tools/scripts/threshold-router.mjs
+        role: "P1: threshold-router classifies every intent (M-16/M-42); blocking gate at P1 entry for all risk classes"
+        status: ACTIVE
+      - file: tools/pe-compute.mjs
+        role: "P3: PE scorer — blocking at PEG-3 for standard/elevated/critical; P5: CIE + essence-propagation"
+        status: ACTIVE
+      - file: tools/verify.mjs
+        role: "P4: ZF evidence gate — live re-run required at PEG-4/5 for elevated/critical (SEED-5 high-stakes tier)"
+        status: ACTIVE
+      - file: docs/plan/pillar-0-governance/JOURNEY-ORCHESTRATOR-PLAN.md
+        role: "Orchestrator build plan §2 B1-B5; lifecycle DRAFT→SANDBOX→SIMULATED→RATIFIED→IMPLEMENTING"
+        status: ACTIVE
+      - file: docs/plan/pillar-0-governance/JOURNEY-SEEDS-S084.md
+        role: "OPUS-22 authored anchors SEED-1..9; constitution text + contracts + closed enums + R8 interface"
+        status: ACTIVE
+      - file: libs/policies/schema.zmodel
+        role: "Meta-model schema: PhaseDef/GateDef/VariantDef/BranchAxisBinding + Journey F3 fields + 7 closed enums (S084 B1)"
+        status: ACTIVE
+      - file: docs/plan/pillar-0-governance/journey-closed-enums.yaml
+        role: "SEED-6 closed enum reference for validators: all 8 enum types with values + governing_intent"
+        status: ACTIVE
+      - file: tools/data/improvement-register.yaml
+        role: "P3 no-lost-threads register — non-selected options registered at PEG-3 per C4"
+        status: ACTIVE
+      - file: apps/csps-playground/src/app/platform/journey-admin/page.tsx
+        role: "Journey admin dashboard — trunk-branch pattern first live instance (P-ARCH-TRUNK-BRANCH-PATTERN)"
+        status: ACTIVE
+      - file: tools/validators/validate-journey-gate.mjs
+        role: "PEG enforcement validator — each gate refuses missing-evidence advance; block-test suite (B3)"
+        status: PLANNED
+        target_batch: "B3"
+    # ── 5. tier_permission — 6-tier PersonaTier overlay (SEED-6) ─────────────
+    tier_permission:
+      governor:
+        actors: [governor]
+        can_view_trunk: true
+        can_modify_trunk: true  # via boundary-crossing protocol only
+        can_create_journey: true
+        can_ratify_risk_class: true  # R8 ratification-interface owner
+        can_exploratory_opt_in: true
+      core_dev:
+        actors: [core_dev]
+        can_view_trunk: true
+        can_modify_trunk: false
+        can_create_journey: true
+        can_ratify_risk_class: false
+        can_exploratory_opt_in: true  # F1 permission floor: core_dev+
+      external_dev:
+        actors: [external_dev]
+        can_view_trunk: true
+        can_modify_trunk: false
+        can_create_journey: true  # within assigned scope
+        can_ratify_risk_class: false
+        can_exploratory_opt_in: false
+      account_owner_admin:
+        actors: [account_owner_admin]
+        can_view_trunk: true  # summary view only
+        can_create_journey: false
+        can_ratify_risk_class: false
+      team_leader:
+        actors: [team_leader]
+        can_view_trunk: false
+        can_create_journey: false
+      end_user:
+        actors: [end_user]
+        can_view_trunk: false
+        can_create_journey: false
+      ratification_required: true
+      min_tier_to_ratify: governor
+    # ── 6. cie_pe ─────────────────────────────────────────────────────────────
+    cie_pe:
+      pe_score: 13.7  # [MEASURED: pe-compute.mjs S084 validation run, rank #1 of 6]
+      urgency: critical
+      impact: platform-wide
+      pe_rationale: "Journeys = the primary build method for all future CSPS deliverables. Every build, change, and feature flows through a 5-phase journey. PE blocking at PEG-3 for standard+; CIE emitted at every PEG; never silent."
+      cie_connection: always_active
+      cie_capture_enabled: true
+      pe_gate: "PEG-3 (decide) — blocking for standard/elevated/critical; advisory for fast (low)"
+      cie_emit: "every PEG P1..P5; EXCEPTION: CIE finding tagged critical|structural => blocking (all phases)"
+    # ── 7. escalation — SEED-2 BlockedMessage + R8 + council ladder ──────────
+    escalation:
+      owner: group:finky
+      escalation_path: "SEED-2 BlockedMessage (owner+expiry) → inner council → Opus HOLDS at OPIA → Governor blocks session close if trunk violated"
+      council_types:
+        P1_P2: inner
+        P3: "expert (+ external on critical risk)"
+        P4: "inner (+ cross-actor ratify-ZF on elevated/critical)"
+        P5: "inner + Governor ratify"
+      r8_ratification_interface: "Governor/PA confirms or downgrades suggested risk_class at P1; every confirm/downgrade logged as immutable event (SEED-8)"
+      expiry_rules:  # from SEED-2 BlockedMessage — blockers age; past-expiry escalates (accountability T4)
+        P0: "+24h"
+        P1: "+72h"
+        P2: "+7d"
+        P3: "+30d"
+      ladder:
+        L1: "Gate emits BlockedMessage with single owner + severity + expiry_rule (SEED-2)"
+        L2: "P0 blocker → inner council + expert (on governed) within +24h"
+        L3: "Past expiry → accountability T4 aging + decision queue escalation"
+        L4: "Trunk violated → boundary-crossing protocol (P-ARCH-TRUNK-BRANCH-PATTERN R2)"
+      closure_owner: group:finky
+      closure_decision: "All 5 PEG gates have ACTIVE T1/T2 enforcement + validate-journey-gate.mjs PASS + Opus OPIA"
+      closure_by: "B3 (PEG enforcement build)"
+    # ── 8. realtime_save ──────────────────────────────────────────────────────
+    realtime_save:
+      enabled: false  # Journey/JourneyStage persist to Supabase via Prisma (live). Process-state save: B2.
+      save_path: tools/data/process-state/core-spine-journeys__governor__active.json
+      lib: libs/process-state/index.mjs
+      note: "Wire realtime_save after /platform/journey-admin B2 dashboard reshaper ships (B2 milestone)"
+
 # ── How to add a new spine entry ─────────────────────────────────────────────
 # 1. Copy the accountability stub above
 # 2. Fill all 8 sections (validator BLOCKS if any missing)

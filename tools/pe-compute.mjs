@@ -204,9 +204,11 @@ function scoreItem(item) {
 
   // Opus decision A: completion = graduated MULTIPLIER, GATED by base >= 5.0,
   //   DECAYED by I dimension (high idle = value decay — not boosting idle items).
-  //   Idle decay: multiply boost by max(0, 1 - (I-1)/9) so I=10 → ×0 boost.
+  //   GRACE PERIOD (Opus S084 calibration): I<=2 → decay=1.0 (full boost; item still active).
+  //   Decay begins at I>=3: max(0, 1 - (I-2)/8) → I=3→0.875 … I=10→0.0.
+  //   HEURISTIC — not truth; PE-improvement-loop validates this curve empirically.
   const completion_pct = item.completion_pct ?? 0;
-  const idle_decay     = Math.max(0, 1 - (I - 1) / 9);
+  const idle_decay     = I <= 2 ? 1.0 : Math.max(0, 1 - (I - 2) / 8);
   const completion_boost = (base >= 5.0 && completion_pct > 0)
     ? (completion_pct / 100) * 1.5 * idle_decay
     : 0;
@@ -339,7 +341,8 @@ function runScore(items) {
   console.log('\n  LEGEND:');
   console.log('    B_m/D_m = B/D after depth-scope modulation (class×1.2, pattern×1.1, instance×1.0)');
   console.log('    +moat   = moat_score × 0.5 (compounding=8→+4, structural=6→+3, differentiation=4→+2)');
-  console.log('    +comp   = (pct/100)×1.5×idle_decay, GATED: base<5.0→0 (Opus decision A)');
+  console.log('    +comp   = (pct/100)×1.5×idle_decay [HEURISTIC], GATED: base<5.0→0 (Opus decision A)');
+  console.log('              idle_decay: I<=2→1.0 (grace), I>=3→max(0,1-(I-2)/8), I=10→0.0');
   console.log('    +spi    = +2.0 if attributed spine has ≥3 open findings');
   console.log('    MOAT-PRIORITY: final ≥ 10 (constitutional/compounding moat)');
   console.log('\n  BAND THRESHOLDS: BLOCKING ≥8.0 | HIGH 7.0-7.99 | MEDIUM 4.0-6.99 | VAULTED <4.0');

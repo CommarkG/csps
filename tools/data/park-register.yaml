@@ -828,3 +828,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-037"
+    lane: obligation
+    content: "3-SCOPES WITHOUT COGNITIVE/CONTEXT DEPENDENCY (Governor S084 deepdive). Every problem/error/improvement must trigger the 3 scopes MECHANICALLY, not dependent on the AI remembering under cognitive pressure or context-window pressure (the exact failure: deep in a long session, the AI defaults to LOCAL fixes and skips pattern/class escalation). DESIGN: Scope-1 (fix the instance) always happens; Scope-2 (pattern) + Scope-3 (class/structural) are carried by AUTO-LOGGING every problem into gap-recurrence-register -> mechanical K-count -> mechanical escalation at K>=2 (structural-fix-mandatory) — cognitive-independent by construction. BUILD: a hook that auto-logs every verify-FAIL + every 'fixed X' event to gap-recurrence-register (registration is settings-gated -> sanctioned session-close path). PROVEN PATTERN this session: the architecture-pending<->vault_pending template-pairing was the Scope-3 prevention (done); but it took the Governor catching it because the escalation wasn't mechanical."
+    retrieve_when: "AI-behaviour arc (highest-priority PARK-030) + threshold-input-pipeline (PARK-032 — problems are INPUTS that must route to gap-recurrence each time). Build the auto-log hook + wire to gap-recurrence K-escalation. Same pattern as post-stop-one-click-relay-check (S084) but for fix/error events."
+    never_drop: true
+    context_preserved: >
+      The deepest lever: the AI under context-pressure (D20) drops scope-escalation and satisfies with local
+      fixes (satisfaction-point + D11/D13). Mechanical auto-logging removes the dependency on the AI's cognitive
+      state entirely. Connects: gap-recurrence-register (the mechanical K-counter that already exists),
+      catch-to-engraving, five-surface-engraving, PARK-032 (universal threshold input), PARK-026 (PE-loop).
+    decision_back_ref: "Governor S084 'how can the 3 scopes be done each time you see a problem error of improvement WITHOUT DEPENDENCY ON COGNITIVE PRESSURE OR CONTEXT WINDOW ... park what you did for deep dive later'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

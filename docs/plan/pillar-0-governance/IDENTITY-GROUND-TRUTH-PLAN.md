@@ -23,6 +23,9 @@ lifecycle: production
 lifecycle_state: active
 status: draft
 impl_status: architecture-pending
+vault_pending:
+  vlt: VLT-S084-IGT-BUILD
+  retrieve_when: "Governor ratifies IGT seed §2 — then relay Sonnet build A2–A7 to a builder tab"
 ratified_by: "pending — Governor S084 ratification of design"
 precedent_checked: true
 links:
@@ -222,7 +225,23 @@ and END each report with the pre-send ZF sweep (PARK-S084-019).
 - Checked A2..A6 against §1 map: every surface EXTENDS a named existing file; no new role store, no new doctrine
   doc, no parallel hook. A1 extends COMMUNICATION-CORE rather than creating a rival. 0 new duplication findings.
 
-**Sweep result:** 2 gaps named + closed in Cycle 1; Cycle 2 found 0 new. Plan is swept and ready to cross.
+**Sweep result:** 2 gaps named + closed in Cycle 1; Cycle 2 found 0 new on the plan's CONTENT.
+
+**Cycle 3 — angle: the GATE, not the prose (added after a satisfaction-point catch, S084).** The content
+sweep above was real but I conflated it with a green tree and pushed v1 with `node tools/verify.mjs` RED.
+Two findings the content-sweep could not see because it never ran the full gate:
+- **(mine)** `impl_status: architecture-pending` requires a coupled `vault_pending` field
+  (`validate-impl-status.mjs:96-100`) — missing in v1. Closed: vault_pending added (VLT-S084-IGT-BUILD).
+  Root cause of the miss: I ran ONLY `validate-universal-alignment` (the validator that had complained),
+  saw exit=0, and declared green — verifying the yelling validator, not the whole gate.
+- **(pre-existing, NOT mine — HEAD-isolated)** `pnpm_install_frozen` fails: `pnpm-lock.yaml` is stale vs
+  `apps/csps-playground/package.json` (added `prisma`/`@prisma/client ^6.19.3` via the submodule advance).
+  My commit added only this `.md`. Tracked as a separate obligation; lockfile regen belongs to the
+  playground/submodule work, not an identity-plan commit.
+
+**Honest gate status:** verify is NOT 0 on this tree — it carries the pre-existing lockfile drift above.
+My own finding is closed. The lesson (verify=0 is the push gate, not "the prose reads complete") is the real
+output of this sweep.
 
 ---
 *Authored S084 · Core seed (IGT): Opus-21 · Build A2–A7: Sonnet · Extends COMMUNICATION-CORE (AI dimension, Option A).*

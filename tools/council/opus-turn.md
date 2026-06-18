@@ -1,8 +1,41 @@
 
 ═══════════════════════════════════════════════════════════════════
 I AM: Opus-21 (director) · S084
-YOU ARE: Sonnet S084 (builder/auditor) + Governor (ratifier)
-THIS IS: PROTO-S084-CROSS-ACCEPT-AUDIT — mandatory Sonnet audit of two RATIFIED plans BEFORE any build.
+YOU ARE: Sonnet S084 (builder)
+THIS IS: PROTO-S084-PE-SWIFT — make pe-compute a REAL 5-dim scorer (SWIFT; spec already exists) + park-output.
+DO NOW: Implement the 5-dim PE score from priority-engine.schema.yaml; print a live ranking of the open threads.
+═══════════════════════════════════════════════════════════════════
+WHO RESET: FROM Opus-21, DIRECTOR. You are Sonnet, BUILDER. This is a SWIFT build — minimal real scorer,
+validate on ONE ranking, NO UI (UI is PARK-S084-021 deepdive). Governor approved S084.
+
+## CORE SEED — the PE is design-RICH / impl-THIN
+pe-compute.mjs currently does ONLY read_budget. The full 5-dimension formula is fully specified in
+tools/templates/priority-engine.schema.yaml. SWIFT = implement the spec minimally + validate on a real ranking.
+
+## THREE OPUS DESIGN DECISIONS (Governor-approved S084 — bake these in)
+A. COMPLETION = graduated MULTIPLIER, never a base dimension (anti-sunk-cost). Use completion_proximity_boost
+   (pct/100 ×1.5), GATED by base-value (do NOT boost low-value near-done items above a value floor), and
+   DECAYED by idle-time (the I dimension). Completion breaks ties; it never overrides Blast/Dependency.
+B. The 3 problem-depth scopes (instance/pattern/class) MODULATE B (blast) + D (dependency) — a class-level /
+   recurrence-preventing item scores higher B+D. Scopes are NOT a 6th dimension.
+C. PARK as a first-class OUTPUT: for each scored item emit {DO-NOW | PARK(retrieve_when) | DROP}, derived from
+   band (VAULTED -> PARK-candidate). PE RECOMMENDS park; it does NOT auto-park. Wire the recommendation to the
+   tools/data/park-register.yaml schema. (Parked-never-resurfaced becomes a future PE-accuracy signal.)
+
+## BUILD (SWIFT — minimal, real)
+1. pe-compute.mjs: add a `--score` mode computing PE = B·0.30 + D·0.30 + I·0.15 + Bn·0.10 + PAS·0.15, with
+   pe_context re-weight (PLATFORM/CUSTOMER/USER) + moat/completion/spine-findings boosts per the schema.
+2. Score the CURRENT OPEN THREADS as the validation set: reasoning-collab-layer · IGT build · journey
+   SEED-1..8 · PE-improvement-loop · PE-interface (PARK-021) · cost-adaptive audit ladder (PARK-022).
+   Emit a ranked table: item | B/D/I/Bn/PAS | base+boosts=final | band | {DO/PARK/DROP}.
+3. Validate: the ranking must be defensible — paste the table; confirm A (completion multiplier) + C (park
+   output) behave. This is the SWIFT proof.
+
+## DONE / REPORT
+A real PE ranking of the open threads printed + verify=0. NO UI. Report FROM SONNET | FOR OPUS, [MEASURED]
+tags, END with the pre-send ZF sweep (name the fresh angle each cycle). Write to sonnet-turn.md + present inline.
+
+═══════════════════════════════════════════════════════════════════
 DO NOW: Audit REASONING-COLLABORATION-LAYER-PLAN + IDENTITY-GROUND-TRUTH-PLAN; return a structured finding-list.
 ═══════════════════════════════════════════════════════════════════
 WHO RESET (Communication Core ELEMENT 1): FROM Opus-21, DIRECTOR. You are Sonnet, the BUILDER acting here as

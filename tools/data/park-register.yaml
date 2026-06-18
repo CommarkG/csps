@@ -624,3 +624,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-022"
+    lane: queue
+    content: "COST-ADAPTIVE AUDIT LADDER with learning loop (Governor S084). Run HAIKU to audit until it reaches RZF (0 findings) → then SONNET runs the same audit pass → compare what each tier ACTUALLY finds → determine the most cost-effective tier per audit-TYPE WITHOUT dropping quality → optimally involve OPUS for final review ONLY where it adds findings the cheaper tiers missed → + a LEARNING LOOP that updates the tier-assignment as data accumulates (which tier catches what class of finding, at what cost). This is the Independence Ladder (PARK-S084-020) applied specifically to AUDITING, made COST-ADAPTIVE and SELF-IMPROVING. The measured output (tier × finding-class × cost) IS training data for the PE-improvement loop."
+    retrieve_when: "With the PE-improvement-loop / CROSS-ACCEPT build arc. First experiment: pick ONE recurring audit (e.g. a validator-coverage sweep), run Haiku→Sonnet→Opus on it, record findings-per-tier + cost, derive the cheapest-without-quality-loss assignment."
+    never_drop: true
+    context_preserved: >
+      Connects PARK-S084-020 (Independence Ladder / Model PE dimension 3) + the PE-improvement loop's
+      OUTCOMES->learning arm + CROSS-ACCEPT (M5). The cost/quality data per tier is exactly the
+      'gradual change only after consistent validated results' the Governor asked for — applied to
+      WHO audits. Dogfoods: cheapest tier that reaches RZF, escalate only on residual findings.
+    decision_back_ref: "Governor S084 'using haiku to audit and see what it actually finds until reaching rzf then activate sonnet to do the same and see what is most cost effective without dropping quality and optimally involve opus for final review also include a loop so it will always improve'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

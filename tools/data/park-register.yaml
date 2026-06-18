@@ -20,7 +20,7 @@ meta:
   schema_version: "1.0"
   created: "2026-06-10"
   session: S082
-  total_open: 18
+  total_open: 26
 
 entries:
 
@@ -463,6 +463,149 @@ entries:
       interface is the first surface where this becomes visible (who can view/edit/ratify/seal a journey?).
       Process formally with schema + governance contract + enforcement trio.
     related_parks: ["PARK-S084-010"]
+    opus_disposition: >
+      PROTO-S084-B3UX-TIER (opus-turn.md S084) answers Q1-Q5: SEALED = journey-level GOVERNANCE state
+      (not a stage state; trunk = SEALED-equivalent read-only); JourneyStatus → draft|in_review|ratified|
+      sealed (seeded now, cheap); 5-actor model = ALIGN to existing comm-schema 6-tier audience hierarchy
+      + a PERMISSION overlay (edit/ratify scope on trunk vs branch) — NO new taxonomy/fork → own
+      topic-plan, SEED ONLY now; Trunk+Branch NAMED as a P-ARCH pattern (DRAFT doc, journeys = first
+      instance). BUILD now: enum seed + P-ARCH seed + presentation UX (status dropdown + trunk tooltip).
+      HOLD ratification-preview modal until tier seed defines who-ratifies. Transitions keyed to
+      ESSENCE-S084-001 cadence. PRIORITY (Q4): P0 security (PARK-009) → seeds → presentation UX →
+      deploy-hardening PL1 parallel.
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-012"
+    lane: obligation
+    content: "JOURNEY-AS-PROCESS orchestrator (the HEART — Governor S084: journey = platform's operating method, NOT a dashboard). Formalize the 14-step method wired to the 12 existing machineries; build the missing ORCHESTRATOR. Trunk = 14-step method (universal); branches per persona on 5 axes (depth/drive-vs-auto/vocabulary/permission/focal-point)."
+    retrieve_when: "Governor picks orchestrator-depth (PCR A/B/C, Opus rec=C: spec+14-step gate now, active runner incremental) + external-research comments returned."
+    status: ongoing-plan-awaits-direction
+    never_drop: true
+    decision_back_ref: "Governor S084 'journeys are the heart... switch to platform planner/architect, not app-builder'"
+    persona_audit_ref: "docs/plan/pillar-0-governance/JOURNEY-PERSONA-AUDIT-S084.md (CORE = 14-step trunk C1-C5; 5 branch axes; decisive finding: end-user branch AUTO-COLLAPSES trunk behind a 1-question door)"
+    external_research_ref: "docs/plan/_handoff/VAULT/research/S084-journey-external-research-prompt.md (relayed out; comments PENDING — bring back to learn)"
+    gaps_from_audit:
+      - "G1 no persona-tier SELECTOR (actor → 5 branch-axis settings)"
+      - "G2 no AUTO-RUN of middle steps for naive users (biggest gap — the drive-vs-auto axis)"
+      - "G3 no focal-point field on a journey instance (verify-completely can't check actor's definition of done)"
+      - "G4 vocabulary tiering exists in comm-schema but not wired to journey-step rendering"
+    related_parks: ["PARK-S084-007 (user-journey)", "PARK-S084-011 (tier model)"]
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-013"
+    lane: obligation
+    content: "AI-PERSONA DEFINITION (ESSENCE-S084-008 — our own personas were stale/ad-hoc). TRUNK done: AI-PERSONA-WORKING-WITH-GOVERNOR.md (Governor's ratified profile, applies to all AIs working with him) + memory. REMAINING: (a) refresh profiles.ts AI entries (stale: opus-4-7/OPUS-6/Sonnet-S050 → current) + thicken to real definitions; (b) define the ROLE-BRANCH artifacts (Opus-director / Sonnet-builder: model+authority+decision-rights+boundaries); (c) WIRE the persona into session-open injection so BOTH tabs load it every session (the truly-permanent step)."
+    retrieve_when: "Next session OR alongside the journey-orchestrator persona-tier selector (audit gap G1) — the persona definition IS the selector's input."
+    status: trunk-done-branches-pending
+    never_drop: true
+    decision_back_ref: "Governor S084 'permanently implement the persona working with me, call it AI persona working with governor' + 'is it the same as Sonnet?'"
+    context_preserved: >
+      The persona-definition cluster: this (013) + PARK-S084-011 (5-actor tier model) + ESSENCE-S084-006
+      (Comm-Core WHO on manual tab-relays) + the parked cognition-orchestration concept (PARK-S082-011)
+      are ONE theme: who-is-acting, with what authority, is not yet first-class. The journey-orchestrator's
+      persona-tier selector (audit gap G1) consumes these. Dog-food gap: we build a persona platform while
+      our own personas were 2 stale lines in profiles.ts.
+    related_parks: ["PARK-S084-011", "PARK-S084-012", "PARK-S082-011"]
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-014"
+    lane: queue
+    content: "CORE COUNCIL deep-dive (PENDING-FOR-PROCESSING — Governor S084 'include clearly with pending'). The council is INSERTED into the journey as its deliberation layer (3 types: inner / expert / external; fires at phases 1/3/4/5 per JOURNEY-CONNECTIVITY-AND-COUNCIL-S084.md). DEEP-DIVE deferred: council TYPES × ITERATION protocols (rounds before ratify) × CONSULTING depth (when expert vs external) keyed to risk-class."
+    retrieve_when: "After the journey-orchestrator frame is ratified; processed as a depth-4 sub-topic of the orchestrator. Do NOT build council-iteration logic before this is processed."
+    status: included-deepdive-pending
+    never_drop: true
+    decision_back_ref: "Governor S084 'insert core council into journeys, park the deep-dive of types/iterations/consulting with a pending for processing'"
+    context_preserved: >
+      Connectivity-expert pass (same turn) traced the change→effect chain: classify (M-16/M-42) → connect
+      (M-18 links/DNA M-26) → council (M-11) → PE score + CIE observe → ZF gate (M-07 minimum_exit_evidence)
+      → wiring (M-45) → staged activate → emit to 3 core loops. add/edit/delete update matrix documented.
+      Deep-dive to process: which experts per work-type, how many council iterations, when to escalate
+      inner→expert→external (we used external — Claude/GPT/Gemini — S084 for the journey itself).
+    related_parks: ["PARK-S084-012 (orchestrator)", "PARK-S082-011 (cognition-orchestration)"]
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  # ─────────────────────────────────────────────
+  # S084 — journey-orchestrator pre-build obligations (no-drop; see HANDOFF-S084-to-S085.md)
+  # ─────────────────────────────────────────────
+
+  - id: "PARK-S084-015"
+    lane: obligation
+    content: "6-EXPERT SONNET REVIEW (Governor S084) — Sonnet reviews ALL S084 journey-orchestrator work using 6 experts (cruel-critic · bottleneck · schema · consolidation · balance · ux/naive-persona) on the CORRECTED plan (JOURNEY-ORCHESTRATOR-PLAN §0b). NEXT before any build."
+    retrieve_when: "Immediately next — before SEED authoring + MVP-narrow build."
+    never_drop: true
+    decision_back_ref: "Governor S084 'let Sonnet review all you did using 6 different experts'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-016"
+    lane: obligation
+    content: "VOCABULARY REALIGNMENT (Governor S084) — vocab = the platform alignment point-of-reference. Add/adjust improved concepts platform-wide: no-silent-skip · verify-against-acceptance-criteria · gate_mode matrix · severity-ripple (P0-P3) · risk-class-suggested · PEG · journeys-corespine + all S084 changes. Update vocabulary.md + ripple to every usage."
+    retrieve_when: "After the journey frame is build-ratified; run as a ripple-pass demonstration."
+    never_drop: true
+    decision_back_ref: "Governor S084 'go over our vocabulary and adjust the improved concepts on all that changed'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-017"
+    lane: obligation
+    content: "RE-RUN-IS-THE-PROOF deep audit + hardwire (Governor S084) — the principle is NOT mechanically enforced (ZF gates trust stored verify-last-run, touchable). Highest-standard fix: high-stakes gates RE-RUN verify live + hash-bind evidence; mandatory + hardwired across journeys think/plan/implement/validate. Folds into ZF ladder #3 + SEED-5."
+    retrieve_when: "With the ZF-hardwire build (B3 of the orchestrator plan)."
+    never_drop: true
+    decision_back_ref: "Governor S084 'run a deep audit on re-run IS the proof ... highest standard ... hardwired to journeys'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-018"
+    lane: schedule
+    scheduled_date: "2026-06-25"
+    content: "1-WEEK ITERATION REVIEW (Governor S084) — Sonnet iterates/reviews ALL Opus+Sonnet work produced in this S084 tab (the full journey-orchestrator design arc + the B.2/B.3 builds), one week out."
+    retrieve_when: "2026-06-25 (Governor S084 scheduled +1wk)."
+    never_drop: true
+    decision_back_ref: "Governor S084 'park iteration cycles by sonnet for a week from now on all you and sonnet did this tab'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-019"
+    lane: obligation
+    content: "ZF-ON-EVERY-COMMUNICATION (Governor S084, both polarities) — ZF is currently a COMPLETION gate (fires on DONE/commit), NOT a BOUNDARY gate. Caught by dogfood failure: a chat-jump (a communication) was sent without a pre-send ZF sweep. FIX: every cross-boundary artifact (handoff/relay/PROTO/report/chat-jump/ratification) carries a pre-send ZF sweep IN the artifact (Cycle1 name-gaps → Cycle2 re-examine → 0 new) BEFORE it crosses, on POSITIVE (creation/relay) AND NEGATIVE (correction)."
+    retrieve_when: "With the ZF-hardwire build (orchestrator B3) — fold into Communication Core as element 4 SWEPT + every journey PEG output."
+    never_drop: true
+    decision_back_ref: "Governor S084 'rzf on any negating and POSITIVE things + all communications ... optimal way of orchestrating and hardwiring'"
+    context_preserved: >
+      Orchestration: Communication Core trunk becomes WHO/WARRANT/ACTION/SWEPT. The boundary-crossing is the
+      ZF trigger, not completion, and not polarity. Hardwire = pre-Write/Edit gate on cross-boundary artifacts
+      requires the ZF block, advisory→BLOCKING (ZF-ladder #5 sharpened to communications, both polarities).
+      Would have auto-blocked the un-swept S084 handoff. Connects ZF + EED (both polarities) + Communication Core.
+    related_parks: ["PARK-S084-017 (re-run-is-proof)", "PARK-S084-012 (orchestrator)", "PARK-S084-005 (comm-core)"]
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-020"
+    lane: queue
+    content: "INDEPENDENCE LADDER — roster allocation across Opus/Sonnet/Haiku/virtual-personas/external-LLMs (Governor S084). Excellence-promoter = independence-stacking (same artifact passes through increasingly independent minds as stakes rise); efficiency-promoter = ascend only to the rung the decision's risk-class demands. 5 rungs: 0 SELF (STEELMAN-AGAINST) · 1 FAST-SCOUT (Haiku, mechanical fan-out, never judgment) · 2 PEER (CROSS-ACCEPT Opus<->Sonnet, =M5) · 3 VIRTUAL PANEL (6 personas, cheapest fresh-angle) · 4 EXTERNAL CONSENSUS (Gemini+GPT+Claude, irreversible only). Mapping reuses ratification-cadence-by-class: C4->rung0-1, C3->rung2, C2->rung3, C1->rung4. CROSS-ACCEPT (M5) is rung 2 — so this is the ROSTER dimension of the same collaboration spine, folds in as a new section of REASONING-COLLABORATION-LAYER-PLAN, NOT a new doc."
+    retrieve_when: "STEP 3 — when consolidating Sonnet's CROSS-ACCEPT audit findings into REASONING-COLLABORATION-LAYER-PLAN. Add as section 'Independence Ladder (roster)'. Parked NOW (not edited into the plan now) because Sonnet is auditing the plan at commit 6d5b201f — editing mid-audit moves the target."
+    never_drop: true
+    context_preserved: >
+      Roster: Opus=rung-4-eligible decisions+seeds+synthesis+verify-before-concur, never routine code.
+      Sonnet=full build + rung-2 audit of Opus. Haiku=rung-1 mechanical scouting only (a wrong Haiku verdict
+      trusted = the expensive failure). Personas=rung-3 fresh-angle without external relay cost. External
+      LLMs=rung-4 convergence signal on irreversible architecture (the journey §0b 3-way pattern, proven).
+      The efficiency rule IS the risk-class->rung map. Builds on: M5 CROSS-ACCEPT, the 6-persona panel already
+      run this session, the journey §0b 3-way external consensus, haiku-pattern-library, model-tier-registry.
+    decision_back_ref: "Governor S084 'tell me and add to the plan the most efficient and excellence promoter on using opus sonnet haiku and virtual external personas and external llms ... you can park it for later'"
     source_session: S084
     created_session: S084
     closed_session: null

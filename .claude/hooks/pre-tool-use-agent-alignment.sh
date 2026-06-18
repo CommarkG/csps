@@ -37,6 +37,15 @@ PROMPT=$(echo "$STDIN_JSON" | node -e "
   });
 " 2>/dev/null || echo "")
 
+# CONTEXT BUDGET advisory (S084 Haiku-overflow incident) — NON-BLOCKING nudge.
+# Large embedded prompt content is a proxy for payload-not-pointer; in a heavy-MCP env the
+# inherited tool surface + pasted content overflows the subagent context window before it runs.
+# Pointers (paths + line ranges) over payloads; small mechanical scans run INLINE, not spawned.
+PROMPT_LEN=${#PROMPT}
+if (( PROMPT_LEN > 8000 )); then
+  echo "[agent-alignment] ADVISORY CONTEXT-BUDGET: Agent prompt is ${PROMPT_LEN} chars — likely pasting payload, not pointers. Pass file PATHS + line ranges (not contents); restrict tools (Explore, not full MCP surface); run ≤3-op mechanical scans INLINE. See tools/templates/haiku-spawn-template.md §1.5 + feedback_subagent_spawn_context_budget." 1>&2
+fi
+
 # Check for UNDERSTANDING BLOCK patterns (any form counts)
 if echo "$PROMPT" | grep -qiE \
   "INTENT ABSORBED|BOUNDARY CROSSING|UNDERSTANDING BLOCK|I understand the request|alignment preamble|CSPS alignment|You are.*CSPS"; then

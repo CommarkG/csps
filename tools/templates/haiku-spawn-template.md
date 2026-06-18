@@ -52,6 +52,33 @@ Use for ANY Agent() call with `model: "haiku"` that performs:
 
 ---
 
+## §1.5 — CONTEXT BUDGET (MANDATORY pre-spawn gate — S084, after the Haiku-overflow incident)
+
+> **Root cause (S084):** a Haiku spawn died with `Prompt is too long · ~209,550 tokens (limit 200,000)`
+> while "this conversation is only ~4,514 tokens — the rest is system prompt, **tool definitions**, and
+> attachment content." In a heavy-MCP environment the inherited **tool-definition surface alone** (hundreds
+> of MCP tools) exceeds the model's context window BEFORE the task loads. A correct task still fails.
+
+**Before any subagent spawn, run this 3-question gate:**
+
+1. **Is a spawn even warranted?** If the task is ≤ ~3 mechanical operations (a few grep/read/SQL checks),
+   **DO IT INLINE** in the main session (Read/Grep/Bash). Spawning has a fixed context-inheritance cost that,
+   in this environment, EXCEEDS a small task. *Inline is the default for small mechanical scans.*
+2. **Restrict the tool surface.** If a spawn IS warranted, use a **restricted-tool agent type** (e.g. `Explore`
+   — Read/Grep/Glob/Bash only) NOT a full-surface spawn. Haiku scouts need file tools only; they must NEVER
+   inherit the Canva/Cloudflare/Gmail/WordPress MCP surface.
+3. **Pass POINTERS, not payloads.** Give the subagent file PATHS + line ranges + the pattern to scan for.
+   NEVER paste file contents, the governance corpus, or large attachments into the prompt — let the subagent
+   read only the bounded slice it needs. Prompt should be < ~2 KB of task text.
+
+**Hard rule:** `inherited_tools + prompt + attachments  MUST be  ≪  model_context_limit`. If you cannot
+guarantee this, the task runs INLINE. A spawn that overflows produces ZERO work — strictly worse than inline.
+
+**Enforcement:** `pre-tool-use-agent-alignment.sh` emits an advisory CONTEXT-BUDGET nudge when an Agent prompt
+carries large embedded content (proxy for payload-not-pointer). Memory: `feedback_subagent_spawn_context_budget`.
+
+---
+
 ## §2 — Spawn template (copy + fill)
 
 ```

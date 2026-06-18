@@ -415,6 +415,15 @@ PRE-CONDITION (Sonnet runs FIRST, before any event wiring):
   This is a STORAGE-level guarantee. "We never update it in app code" is convention, NOT immutability.
 ```
 
+**R3 AUDIT RESULT (S084, completed INLINE by Opus #22 — replaces the failed Haiku spawn):**
+`public."AuditEvent"` is **NOT storage-level immutable today.** Evidence: (a) the `enforce_audit_event_immutability`
+trigger is COMMENTED OUT in `libs/policies/audit-triggers.sql:163-173`; (b) the generated Prisma client exposes
+`AuditEventUpdate/DeleteArgs` (`libs/policies/generated/.../index.d.ts:1133-1149`). No app-code mutation path is
+currently called, but the capability is open ⇒ append-only by CONVENTION only. The separate `audit.events` (audit
+schema) store DOES have an ACTIVE `no_direct_write` RLS policy (`audit-triggers.sql:145`). **Gate decision for B1:**
+either (a) reuse the RLS-protected `audit.events` store, OR (b) HARDEN `public."AuditEvent"` (uncomment+deploy the
+trigger, via the F10 drop-policy→ALTER→recreate pattern) BEFORE using it as the journey event substrate.
+
 **ANCHOR — required event fields (the append-only substrate; "done" reproducible from this log):**
 
 ```yaml

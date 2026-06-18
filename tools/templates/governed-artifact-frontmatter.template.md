@@ -156,6 +156,11 @@ links:
 
 # === OPTIONAL — Implementation quality status (per frontmatter-closed-enums.md §impl_status) ===
 # impl_status: swift-implemented   # swift-implemented | audit-1-complete | sealed-zf | recurring-audit-pending | architecture-pending | deprecated
+# ⚠ COUPLING (validate-impl-status BLOCKS otherwise): impl_status: architecture-pending REQUIRES a vault_pending block —
+#   vault_pending:
+#     vlt: VLT-S<NNN>-<SLUG>
+#     retrieve_when: "<the condition that resurfaces this deferred work>"
+#   (Recurring K>=3 trap S084: architecture-pending authored without vault_pending. Pair them ALWAYS.)
 # impl_audit_batch: weekly         # weekly | monthly | quarterly — when recurring-audit-pending items are processed
 # impl_sealed_at: S<NNN>           # session when sealed-zf was achieved (evidence of quality milestone)
 

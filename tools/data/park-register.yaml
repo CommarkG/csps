@@ -808,3 +808,23 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: "S084 (core BLOCKING hook live; follow-on: extend markers + flip banned-phrase nav-class to exit 1)"
+
+  - id: "PARK-S084-035"
+    lane: obligation
+    content: "HAIKU PERFORMANCE LEARNING LOOP (Governor S084). A recurring loop that ANALYSES Haiku's performance (what it caught vs missed per task-type, at what cost) and BUILDS improved protocols supporting its technical abilities — turning recurring insights into upgrades to haiku-pattern-library.yaml + haiku-spawn-template.md. When Sonnet/Opus catch something Haiku missed -> that miss becomes a new Haiku protocol; K recurring misses -> engrave into the spawn template. The tier×finding-class×cost data feeds the PE-improvement loop (PARK-026)."
+    retrieve_when: "AI-behaviour arc + PE-improvement-loop. Build alongside PARK-022 (cost-adaptive audit ladder) — same data. See HAIKU-OPTIMAL-USAGE-DRAFT-S084.md §4."
+    never_drop: true
+    decision_back_ref: "Governor S084 'park covering a learning loop analysing haiku performance and building improved protocols supporting its technical abilities with recuring insights'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-036"
+    lane: queue
+    content: "MODEL-UPLIFT deepdive (Governor S084) — improving a cheaper model to cover recurring things a BETTER model saw and fixed (distillation via recurring insights). When Opus repeatedly catches+fixes a pattern, that pattern becomes standard coverage for Sonnet/Haiku -> over time the cheaper tiers cover more, Opus is needed less. Investigate the existing 'virtual opus' (docs/plan/pillar-0-governance/virtual-opus-audit.md + internal-deep-review skill — currently a doc/skill, NOT a live always-on loop): is it active? how to make model-uplift a continuous loop? KEY: the recurring-fix corpus (gap-recurrence + Opus catches) is the training signal."
+    retrieve_when: "AI-behaviour arc (highest-priority, PARK-030). First: assess virtual-opus-audit.md + internal-deep-review (active? value?); then design the recurring-fix -> cheaper-tier-protocol uplift loop. Connects PARK-035 (Haiku loop) + PARK-026 (PE-loop) + PARK-024 (essence propagation INTO the models/DNA)."
+    never_drop: true
+    decision_back_ref: "Governor S084 'the virtual opus? is it active? can park a deep dive into this thing of improving a model to cover recuring things better model saw and fixed'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

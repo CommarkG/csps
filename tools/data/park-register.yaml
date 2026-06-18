@@ -706,7 +706,7 @@ entries:
 
   - id: "PARK-S084-027"
     lane: queue
-    content: "OPTIMAL WEIGHT OF THE SCOPES IN PE — deepdive (Governor S084). What are the SWEET SPOTS between enhancing PERMANENT INFRASTRUCTURE (bears fruit many times — high blast, compounding moat) vs making LOCAL FIXES (instance scope, fast value)? When do they OVERLAP (a local fix that also hardens infrastructure)? What MUST be considered when approaching a DEEP change (blast radius, reversibility, migration cost, in-flight instances per rung-4 R1, ripple per SEED-4)? This calibrates the PE B/D dimension weights + the depth-scope modulation (class×1.2/pattern×1.1/instance×1.0) + moat_score + completion-multiplier interplay. The question: where does infra-investment's compounding return justify its higher cost+risk over a cheap local fix — and the engine should make THAT tradeoff visible, not hidden."
+    content: "OPTIMAL WEIGHT OF THE SCOPES IN PE — deepdive (Governor S084). What are the SWEET SPOTS between enhancing PERMANENT INFRASTRUCTURE (bears fruit many times — high blast, compounding moat) vs making LOCAL FIXES (instance scope, fast value)? When do they OVERLAP (a local fix that also hardens infrastructure)? What MUST be considered when approaching a DEEP change (blast radius, reversibility, migration cost, in-flight instances per rung-4 R1, ripple per SEED-4)? This calibrates the PE B/D dimension weights + the depth-scope modulation (class×1.2/pattern×1.1/instance×1.0) + moat_score + completion-multiplier interplay. The question: where does infra-investment's compounding return justify its higher cost+risk over a cheap local fix — and the engine should make THAT tradeoff visible, not hidden. AMEND (Governor S084): the PE's intelligence MUST include SHORT / MEDIUM / LONG-term aspects and explicitly MENTION them in its reasoning (a local fix = short-term value; permanent infrastructure = long-term compounding) — reason across all three horizons, never just the immediate."
     retrieve_when: "PE-improvement-loop calibration arc (PARK-S084-026) — this IS the weight-calibration the outcome-vault validates. Use real outcome data: did high-blast infra work actually bear fruit N times? Tune the depth-scope multipliers + completion gate against measured returns, not a-priori."
     never_drop: true
     context_preserved: >
@@ -729,6 +729,51 @@ entries:
       DISAGREEMENT not consensus-theater). Two-pass blind→reconcile is the fix. Folds into the external-review
       step of the Independence Ladder (PARK-S084-020) + the journey council deep-dive (PARK-S084-014).
     decision_back_ref: "GPT external review S084 — 'do not send as-is; the prompt weakens independence by pre-framing convergence + internal findings; split blind review from reconciliation; remove jargon; add severity + retrofit-cost; add Q7 versioning'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-029"
+    lane: queue
+    content: "AI PROFILING rewire (Governor S084). Go over the AI profiling we built (BehaviorProfile / avatar-schema / profiling-hub / ai-behavioral-profile) — audit what is WIRED vs theater — and rewire it so it ACTUALLY WORKS and gives best value we can VERIFY and MEASURE. Output: a measurable, test-driven profiling that produces verifiable value (not a doc nobody reads). Pairs with PARK-025 test-drive (prove the profiling produces intended outcome) + PARK-030 (AI-behaviour is the highest-priority class)."
+    retrieve_when: "AI-behaviour arc (highest-priority per PARK-030). First: inventory what AI-profiling artifacts exist + which are actually consumed by a runtime path vs orphaned; then rewire the consumed ones to measurable value."
+    never_drop: true
+    decision_back_ref: "Governor S084 'park going over the ai profiling we built and see how to rewire it so it actually works and gives best value we could verify and measure'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-030"
+    lane: obligation
+    content: "AI-BEHAVIOUR is the HIGHEST-priority class (Governor S084 'place high ... the most challenging thing in what we are building'). Anything touching AI-behaviour TRIGGERS / inner-DEFAULTS (D1-D20) / SATISFACTION-POINTS is the hardest + most important work. This is a PE PRIORITY-POLICY: such items get an elevated priority weight (treat like a high-blast/high-moat class). The PE + every planning pass + the PE-loop weight-calibration (PARK-026/027) MUST honor this elevation. Connects: reasoning-collaboration-layer (D11/MIRROR/NAME-THE-TELL/CROSS-ACCEPT), inner-ai-defaults registry, identity-ground-truth, B_SWIFT_OR_PARK."
+    retrieve_when: "EVERY planning pass + PE weight calibration — standing priority policy, not a one-time task. Encode as a PE class-weight (AI-behaviour class boost) when the PE-loop is built."
+    never_drop: true
+    decision_back_ref: "Governor S084 'place high what ever concerns ai bhaviour triggers and defaults and satisfaction point as it is the most challanging thing in what we are building'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-031"
+    lane: schedule
+    content: "TEST-DRIVE THE ACTUAL JOURNEYS after the plan is built (Governor S084). When the journey-orchestrator PLAN is finished/built, ALIGN and go back to TEST-DRIVE real journeys through it — verify they produce the intended outcomes end-to-end (not just that the orchestrator compiles). This is PARK-025 (test-drive) applied to the journeys themselves; B.3 'journey ratification test-drive' is the milestone marker."
+    retrieve_when: "After journey-orchestrator build (post SEED-1..9 + B1-B5). Mandatory alignment + journey test-drive before declaring the orchestrator DONE."
+    never_drop: true
+    decision_back_ref: "Governor S084 'park that when plan is finished we must align and go back to test drive the actual journies'"
+    source_session: S084
+    created_session: S084
+    closed_session: null
+
+  - id: "PARK-S084-032"
+    lane: obligation
+    content: "TAB-MOVE UNIVERSAL INPUT PIPELINE — harvest -> extract -> consolidate -> THRESHOLD, mandatory both actors (Governor S084). When a tab is about to MOVE (close/handoff) for Opus OR Sonnet: (1) AUTO harvest+extract the tab's essence (learnings/improvements/findings/decisions) — currently PARTIAL (post-stop-error-harvest + decision-residue-capture + learning-loop hooks fire fragments; NO complete essence-harvest); (2) every finding MANDATORILY routed to the THRESHOLD intake (.csps/threshold/intake-log.yaml EXISTS; harvest->threshold routing does NOT); (3) CONSOLIDATE the harvest (dedup vs existing + link registers) via a predefined repeatable process reusing what exists; (4) inputs flow threshold -> classify -> route -> queue -> PE each time. ALSO build an AGGREGATE VIEW of the last ~25 Opus+Sonnet tab harvests (currently NOT visible/loaded — scattered). KEY PRINCIPLE: once a SWIFT is done (B_SWIFT_OR_PARK), its outputs + every PARK'd item + every harvested essence are JUST INPUTS that must pass through the THRESHOLD — the threshold is the UNIVERSAL front-door for ALL inputs (Governor prompts, harvests, extractions, SWIFT outputs, resurfaced parks, findings)."
+    retrieve_when: "Essence-propagation (PARK-024) + handoff/new-tab machinery + threshold-pipeline build. The threshold-as-universal-input-front-door is the spine; harvest/extract/SWIFT/park all feed it. Build the harvest->threshold routing FIRST (highest value: nothing learned is lost or unrouted)."
+    never_drop: true
+    context_preserved: >
+      Unifies: threshold-intake (exists), mid-plan-injection-to-threshold (existing memory), B_SWIFT_OR_PARK
+      (SWIFT outputs = inputs), essence-propagation (PARK-024), PE-improvement loop (PARK-026). The honest
+      current state (MEASURED this session): harvest is fragmentary + auto-but-incomplete; no cross-tab
+      aggregate view; findings NOT mandatorily threshold-routed; no consolidate-each-time process.
+    decision_back_ref: "Governor S084 'what happens when a tab is about to move ... is harvesting and extractions done automatically? do you see the results of the last 25 tabs? where findings are sent? it must be mandatory sent to the threshold ... is it consolidated? triggered each time? predefined process using what exists? sent to threshold each time? once swift is done they are just INPUTS that should go through the threshold pipline'"
     source_session: S084
     created_session: S084
     closed_session: null

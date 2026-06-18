@@ -12,6 +12,10 @@ diataxis_type: how-to
 lifecycle: production
 lifecycle_state: active
 status: draft
+impl_status: architecture-pending
+vault_pending:
+  vlt: VLT-S084-HAIKU-USAGE
+  retrieve_when: "Haiku usage build / PE-improvement-loop — refine this draft into the spawn protocol + learning loops (PARK-035/036)"
 links:
   - { rel: ladder, href: ../../../tools/data/park-register.yaml }
   - { rel: pattern-library, href: ../_handoff/VAULT/inner-ai-defaults/reasoning-patterns.md }

@@ -37,13 +37,20 @@ PROMPT=$(echo "$STDIN_JSON" | node -e "
   });
 " 2>/dev/null || echo "")
 
-# CONTEXT BUDGET advisory (S084 Haiku-overflow incident) — NON-BLOCKING nudge.
-# Large embedded prompt content is a proxy for payload-not-pointer; in a heavy-MCP env the
-# inherited tool surface + pasted content overflows the subagent context window before it runs.
-# Pointers (paths + line ranges) over payloads; small mechanical scans run INLINE, not spawned.
+# CONTEXT BUDGET gate (S084 Haiku-overflow incident) — BLOCKING.
+# Root cause: in a heavy-MCP env the inherited tool-definition surface alone overflows a subagent's
+# context window BEFORE the task loads. The spawn-vs-inline decision must be MECHANICAL, not remembered
+# (PARK-037: no dependency on cognitive/context pressure). Every Agent spawn must carry a CONTEXT-BUDGET:
+# attestation line proving the spawner ran the gate (spawn-warranted + tools-restricted + pointers-only).
+if ! echo "$PROMPT" | grep -qiE "CONTEXT-BUDGET"; then
+  printf '{"continue": false, "stopReason": "BLOCKED [agent-alignment] CONTEXT-BUDGET gate (S084 Haiku-overflow): every Agent() spawn must address the context budget. If the task is <=3 grep/read/SQL checks, DO NOT SPAWN — run it INLINE (Read/Grep/Bash); a spawn that overflows produces zero work. If a spawn IS warranted: restrict tools (Explore, not the full MCP surface) + pass file PATHS + line ranges (never file contents/corpus), then add this line to the prompt: CONTEXT-BUDGET: spawn-warranted | tools-restricted | pointers-only. Ref: tools/templates/haiku-spawn-template.md 1.5 + feedback_subagent_spawn_context_budget."}'
+  exit 1
+fi
+
+# Extra advisory signal: a large prompt is a payload-not-pointer smell even with attestation present.
 PROMPT_LEN=${#PROMPT}
 if (( PROMPT_LEN > 8000 )); then
-  echo "[agent-alignment] ADVISORY CONTEXT-BUDGET: Agent prompt is ${PROMPT_LEN} chars — likely pasting payload, not pointers. Pass file PATHS + line ranges (not contents); restrict tools (Explore, not full MCP surface); run ≤3-op mechanical scans INLINE. See tools/templates/haiku-spawn-template.md §1.5 + feedback_subagent_spawn_context_budget." 1>&2
+  echo "[agent-alignment] ADVISORY: Agent prompt is ${PROMPT_LEN} chars — verify you are passing POINTERS (paths+ranges), not pasted file contents." 1>&2
 fi
 
 # Check for UNDERSTANDING BLOCK patterns (any form counts)

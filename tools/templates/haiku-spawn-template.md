@@ -74,8 +74,11 @@ Use for ANY Agent() call with `model: "haiku"` that performs:
 **Hard rule:** `inherited_tools + prompt + attachments  MUST be  ≪  model_context_limit`. If you cannot
 guarantee this, the task runs INLINE. A spawn that overflows produces ZERO work — strictly worse than inline.
 
-**Enforcement:** `pre-tool-use-agent-alignment.sh` emits an advisory CONTEXT-BUDGET nudge when an Agent prompt
-carries large embedded content (proxy for payload-not-pointer). Memory: `feedback_subagent_spawn_context_budget`.
+**Enforcement (BLOCKING, T1 — actor-agnostic):** `pre-tool-use-agent-alignment.sh` BLOCKS any `Agent()` spawn
+whose prompt lacks a `CONTEXT-BUDGET:` attestation line. This is a pre-tool-use hook, so it fires for **every
+tab in the workspace — Opus AND Sonnet** (any actor that calls Agent()), not just the author of a given task.
+You cannot spawn without consciously passing the gate; if the task is ≤3 ops, the gate's answer is "run inline".
+Memory: `feedback_subagent_spawn_context_budget`.
 
 ---
 
@@ -85,6 +88,8 @@ carries large embedded content (proxy for payload-not-pointer). Memory: `feedbac
 ## CSPS Haiku Scout — Pattern Detection Task
 
 You are a Haiku scout for CSPS. Your role: SCAN → DETECT → RETURN. Nothing else.
+
+CONTEXT-BUDGET: spawn-warranted | tools-restricted | pointers-only   ← REQUIRED line (BLOCKING gate); remove it only by NOT spawning
 
 **Identity:** CSPS Haiku Scout (Persona 3)
 **Alignment:** tools/templates/haiku-spawn-template.md

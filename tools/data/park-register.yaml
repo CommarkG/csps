@@ -792,3 +792,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-034"
+    lane: obligation
+    content: "ONE-CLICK-COPY RELAY — promote to BLOCKING (Governor S084 'i asked over a 100 times'). The recurring failure: any cross-boundary communication meant for the Governor to RELAY (handoff / tab-transfer / Opus->Sonnet directive / Sonnet->Opus report / chat-jump / 'paste to a tab') MUST be a single self-contained FENCED code block (one-click copy), never prose+tables+'go read the file'. It keeps failing because it is Communication-Core ELEMENT 3 at T3-ADVISORY only (COMMUNICATION-CORE.md:124 'structural promotion to T1 deferred') — T3 drifts every tab. FIX = a BLOCKING Stop-hook (T1): scan the final response; if it produced a relay/handoff/tab-transfer/directive intent but contains NO fenced ``` one-click block, exit 2 and force one. Existing partial hooks (post-tool-use-sonnet-relay-inline.sh, post-tool-use-handoff-relay-inline.sh) cover sonnet-turn/proto files but NOT general chat relays/tab-transfers — extend coverage."
+    retrieve_when: "HIGH — AI-behaviour arc (PARK-030) / reasoning-collab B1 pilot. This is a 100x-recurring Governor frustration = K>=3 structural-fix-mandatory. Build the BLOCKING Stop-hook + extend the existing relay-inline hooks to all relayable comms (handoff/tab-transfer/directive/report). ALSO (Governor 'add it to the check list'): add 'one-click fenced relay block per recipient' as a MANDATORY item in the canonical tab-close / handoff / HPFA checklist (governance-session + slim-handoff skills) — done in OPUS-TAB-TRANSFER-S084-seed-authoring.md §7 as the persistent list."
+    never_drop: true
+    context_preserved: >
+      Engrave B_ONE_CLICK_RELAY (or extend B_ZERO_NAVIGATION_FOR_GOVERNOR). Element 3 of COMMUNICATION-CORE
+      (WHO/WARRANT/ACTION) — ACTION = the one-click relay. The 100x recurrence proves T3-advisory is insufficient;
+      only T1-BLOCKING holds (AP-001: EXISTS != ACTIVE). Connects HARDWIRE-009, present-proto-inline,
+      present-sonnet-relay-inline, B_ZERO_NAVIGATION_FOR_GOVERNOR. This very turn freestyled a table instead of a block.
+    decision_back_ref: "Governor S084 'not acceptable you are freestyling. prepare a formal one click to copy communication!!! how can you make it happen? i asked over a 100 times'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

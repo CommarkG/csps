@@ -92,4 +92,14 @@ parks 020–033, memory (B_SWIFT_OR_PARK + IGT), this transfer doc — all commi
 **Pass 2 (Governor asks captured?):** every directive this tab → a park or a plan edit (checked: profiling→029,
 short/med/long→027, ai-behaviour-high→030, journey-testdrive→031, harvest/threshold→032, DNA-audit-schema→033,
 SWIFT→B_SWIFT_OR_PARK+023, scopes-weight→027). 0 dropped.
+**Pass 3 (ONE-CLICK RELAY — the recurring miss, now a permanent checklist item):** every recipient (new Opus
+tab + Sonnet tab) has a self-contained FENCED ` ``` ` one-click-copy block in the relay message — NOT prose +
+tables + "go read the file". ✓ delivered this tab. (Promote to BLOCKING Stop-hook = PARK-S084-034.)
+
 **Inheritance:** a fresh tab reading THIS doc + park-register + JOURNEY-ORCHESTRATOR-PLAN has everything to author SEED-1..9.
+
+## 7. TAB-CLOSE CHECKLIST (mandatory each tab-move — verify ALL before declaring closeable)
+- [x] consolidate all (this transfer doc) · [x] park all (PARK-020..034) · [x] harvest all (§3) · [x] core-seed
+  decisions captured (§1, §3) · [x] detailed plan updated (§0c) · [x] go twice over (§6 Pass 1+2, MEASURED) ·
+  [x] **ONE-CLICK fenced relay block per recipient (§ blocks above) — the 100x-recurring miss; NEVER skip** ·
+  [x] verify=0 + all pushed. (This list = the persistent tab-close checklist; Governor S084 "add it to the check list".)

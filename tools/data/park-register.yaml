@@ -609,3 +609,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-021"
+    lane: queue
+    content: "PE CONFIGURATION INTERFACE deepdive (Governor S084 emphasis+park). Governor recalls a built interface showing PE parameters/weights + core-spine connection + save-configs-as-templates-for-orchestrator. ACCURATE STATE (MEASURED this session): the PARAMETERS+WEIGHTS are fully SPECIFIED in tools/templates/priority-engine.schema.yaml (5-dim B0.30/D0.30/I0.15/Bn0.10/PAS0.15 + 3 pe_context re-weightings PLATFORM/CUSTOMER/USER + MOAT/completion/spine-findings/model-tier boosts + 4 bands) and the COMPOSITION weight-matrices (governance/build/growth/emergency, spine weights GVRN×2.0 etc.) live in priority-engine.md/pe-dashboard.md, SELECTED by context-orchestrator. CORE-SPINE connection EXISTS (PAS dimension = Core-Spine alignment + §13 spine_findings_boost +2.0). SAVE-AS-TEMPLATE-FOR-ORCHESTRATOR exists as the pe_context + composition SCHEMA, NOT a built editor UI. GAPS: (a) NO live web UI — the 'interface' is pe-dashboard.md markdown; (b) pe-compute.mjs does ONLY read_budget, not full 5-dim scoring; (c) all 8 scoring validators §10 are impl_status: registered-pending-author; (d) pe-history.jsonl + spine-attribution-history impl-deferred. So: design-RICH, implementation-THIN."
+    retrieve_when: "When the PE-improvement-loop arc opens (after current reasoning-collab WIP closes). Deepdive scope: (1) wire pe-compute full 5-dim scoring, (2) build the params/weights config UI with save-as-template, (3) bind templates to context-orchestrator selection, (4) author the 8 pending validators, (5) connect to the OUTCOMES->learning arm (PARK PE-loop)."
+    never_drop: true
+    context_preserved: >
+      The PE config-template system = PE Dimension 3 (Model PE) + the pe_context/composition layer = the
+      Independence Ladder (PARK-S084-020). Making it accurate + building the editor + wiring outcomes is the
+      same arc as the PE-improvement loop. SWIFT path: implement the minimal full-5-dim scorer first
+      (schema already specifies it), validate on one real ranking, THEN build the UI editor.
+    decision_back_ref: "Governor S084 'i remember you built an interface showing pe parameters and weights + connected to core spine + save configs as templates for orchestrator ... park it for a deepdive later ... make it accurate'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

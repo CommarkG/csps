@@ -686,3 +686,20 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-026"
+    lane: obligation
+    content: "PE-IMPROVEMENT LOOP — the OUTCOMES->learning arm (Governor S084 'might be the most important element in CSPS'). THE PARENT ARC that 9 other retrieve_when targets point at but which had no entry of its own (caught by ZF iter-19 no-lost-threads sweep). It is the DEAD arm of priority-engine.md §5/§8 made live: PE decides -> build -> TEST-DRIVE (measure outcome, PARK-025) -> ACCOUNTABILITY (predicted-vs-actual) -> OUTCOME/USE-CASE VAULT (gather cases; does not exist yet) -> GRADUAL CHANGE only after CONSISTENT validated results -> RE-WEIGHT the PE formula/heuristics. Makes the PE able to LEARN whether its past calls were right (today it cannot — pe-compute is manual, the learning arm is 'planned' per schema §8). Scored #2 (11.97) by the PE itself."
+    retrieve_when: "After the #1 (journey SEED-1..8) closes — OR sooner if Governor elevates it. Its arms/feeders (build together): PARK-020 (Independence Ladder = Model PE dim 3), 021 (PE config interface/UI), 022 (cost-adaptive audit ladder = training data), 023 (SWIFT/PARK = {DO/PARK/DROP} output), 024 (essence propagation = improvements become PE-scored plan-items), 025 (test-drive = the measure-outcome step). SWIFT first: the smallest real outcome-vault + one predicted-vs-actual record, validate, expand."
+    never_drop: true
+    context_preserved: >
+      Connects priority-engine.md §5 (continuous loop, OUTCOMES arm planned-not-active) + §8 + CIE
+      MEASURE/ADJUST signals + the journey's 3 core loops (alignment/optimization/anti-drift). The
+      gap the Governor kept circling: the PE computes priority but never learns from whether its past
+      priorities produced good outcomes, so it can be confidently wrong forever (the un-PE'd recency-
+      driven prioritization caught this S084 tab). The outcome/use-case vault does NOT exist yet (gap).
+      This is the registered HOME for all PE-loop references in this register.
+    decision_back_ref: "Governor S084 'do we have a loop that improves it (PE)? ... create and enhance the loop of ever improving the PE. It might be the most important element in CSPS'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

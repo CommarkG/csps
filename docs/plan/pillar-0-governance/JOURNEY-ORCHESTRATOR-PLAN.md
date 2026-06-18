@@ -22,6 +22,7 @@ ratified_at: "2026-06-18"
 impl_status: audit-1-complete
 precedent_checked: true
 links:
+  - { rel: seed-anchors, href: JOURNEY-SEEDS-S084.md }
   - { rel: corrected-model, href: ../_handoff/VAULT/research/S084-journey-external-consolidation.md }
   - { rel: persona-audit, href: JOURNEY-PERSONA-AUDIT-S084.md }
   - { rel: moat-map, href: JOURNEY-MOAT-MAP-S084.md }

@@ -21,12 +21,13 @@ schema_anchor: communication
 governing_principle: P-META-032
 lifecycle: production
 lifecycle_state: active
-status: draft
+status: ratified
 impl_status: architecture-pending
 vault_pending:
   vlt: VLT-S084-IGT-BUILD
-  retrieve_when: "Governor ratifies IGT seed §2 — then relay Sonnet build A2–A7 to a builder tab"
-ratified_by: "pending — Governor S084 ratification of design"
+  retrieve_when: "Sonnet audit of IGT seed passes (CROSS-ACCEPT) — then relay Sonnet build A2–A7 to a builder tab"
+ratified_by: "Governor S084 ('I approve all')"
+ratified_at: "2026-06-18"
 precedent_checked: true
 links:
   - { rel: extends, href: communication-spine/COMMUNICATION-CORE.md }

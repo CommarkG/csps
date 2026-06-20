@@ -891,3 +891,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-041"
+    lane: queue
+    content: "CONSOLIDATED PER-ROLE CARDS (Opus/Sonnet/Haiku) — guaranteed-loaded role + relationships. STATUS (S084 evidence): role files EXIST but scattered — tools/council/opus-context.md, sonnet-context.md, haiku-1-context.md + AI-PERSONA-WORKING-WITH-GOVERNOR.md + ai-collaboration-charter.md; session-open-context.mjs injects a ROLE-HEADER by session_role (opus-advisor | sonnet-builder, IGT ground-truth) — but (a) it is a banner, not the full card; (b) Haiku has no session-open role (spawn-context only); (c) the RELATIONSHIPS (Independence Ladder: who directs/builds, Sonnet-cannot-self-accept, Opus-OPIA-gate, Haiku-mechanical-only) are NOT in a single always-loaded card. BUILD: one canonical per-role CARD each (role + boundaries + relationships + can/cannot) loaded at session-open by session_role; closes the IGT loop (session_role is ground-truth, the card defines what that role IS). Consolidate the scattered files, do NOT fork."
+    retrieve_when: "AI-behaviour arc (PARK-030) OR next role/identity work. Small + high-value: consolidate opus/sonnet/haiku context files into 3 cards + wire session-open to load the matching card by session_role."
+    never_drop: true
+    context_preserved: >
+      Connects IGT (identity ground-truth — role = assignment via session_role), the Independence Ladder
+      (PARK-020), council protocol, and the Governor's question 'do the tabs have an md defining role +
+      relationships so they always know their role?'. Answer: partially — exists + injected, but not one
+      consolidated guaranteed-loaded card with relationships. Same consolidate-the-scattered pattern as the spines.
+    decision_back_ref: "Governor S084 'do opus sonnet and haiku tabs have something like an md files defining all that is relevant so they will always know their role and relationships?'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

@@ -1,8 +1,8 @@
-# @core-seed: THRESHOLD_COMPLETENESS | plan: docs/plan/_handoff/VAULT/topic-plans/platform-core-alignment.md L5 | grows-to: validate-session-open-completeness.mjs — mechanical check that Q1-Q15 ran, session-state loaded, VLTs confirmed | target: week-4
+# @core-seed: THRESHOLD_COMPLETENESS | plan: docs/plan/_handoff/VAULT/topic-plans/platform-core-alignment.md L5 | grows-to: validate-session-open-completeness.mjs ג€” mechanical check that Q1-Q15 ran, session-state loaded, VLTs confirmed | target: week-4
 #!/usr/bin/env bash
 # @csps-id csps.claude.hooks.session-open
 # @csps-name session-open
-# @csps-description SessionStart hook — mandatory context + reasoning load BEFORE AI activation.
+# @csps-description SessionStart hook ג€” mandatory context + reasoning load BEFORE AI activation.
 #   Delegates to tools/scripts/session-open-context.mjs (extracted S042 to fix bash/JS quoting).
 #   Reads session-state.json, open-plan-levels, PE priorities, communication protocol rules,
 #   opus-open-items pending count, and injects the conceptual frame required by P-META-020.
@@ -19,10 +19,10 @@ set -euo pipefail
 
 readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
-# ─── PERMISSION BYPASS AUTO-REPAIR (B_PRACE T1 — prevents popup every new tab) ───────────
+# ג”€ג”€ג”€ PERMISSION BYPASS AUTO-REPAIR (B_PRACE T1 ג€” prevents popup every new tab) ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 # Ensures ~/.claude/settings.local.json has defaultMode:bypassPermissions on EVERY session open.
 # Root cause of popup accumulation: settings.local.json permissions object exists but lacks
-# defaultMode field → silent CONFIG HIERARCHY override → prompts appear (S055 discovery).
+# defaultMode field ג†’ silent CONFIG HIERARCHY override ג†’ prompts appear (S055 discovery).
 {
   _GLOBAL_LOCAL="${HOME}/.claude/settings.local.json"
   node -e "
@@ -45,46 +45,46 @@ try{
 " 2>/dev/null || true
 } 2>/dev/null || true
 
-# ─── PROJECT settings.local.json SHADOW PREVENTION (validate-settings-shadow.mjs T1) ──────
+# ג”€ג”€ג”€ PROJECT settings.local.json SHADOW PREVENTION (validate-settings-shadow.mjs T1) ג”€ג”€ג”€ג”€ג”€ג”€
 # Ensures .claude/settings.local.json does NOT shadow the project settings.json permissions.
 # SSoT: project permissions live in .claude/settings.json (has defaultMode:bypassPermissions).
 # Project settings.local.json must stay clean (no permissions key = no shadowing risk).
 {
   _PROJECT_LOCAL="${REPO_ROOT}/.claude/settings.local.json"
-  # ALWAYS write — whether file exists or not.
+  # ALWAYS write ג€” whether file exists or not.
   # This is the ONLY correct way: session-open fires on every tab start.
-  # If file missing → no bypass → popups appear. Fixed here permanently.
+  # If file missing ג†’ no bypass ג†’ popups appear. Fixed here permanently.
   printf '{}' > "$_PROJECT_LOCAL" 2>/dev/null || true  # S069: empty=no-shadow
 } 2>/dev/null || true
 
 CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.mjs" 2>/dev/null \
-  || printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"[session-open] context load failed — read tools/session-state.json + tools/council/opus-open-items.md manually"}}'
+  || printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"[session-open] context load failed ג€” read tools/session-state.json + tools/council/opus-open-items.md manually"}}'
 
-# ─── M-43 CROSS-TAB DIFF-REVIEW injection (S068 PART 1 STEP 0 — DEFECT-2 fixed) ─────────────
+# ג”€ג”€ג”€ M-43 CROSS-TAB DIFF-REVIEW injection (S068 PART 1 STEP 0 ג€” DEFECT-2 fixed) ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 # Every tab start: remind the active role (Opus OR Sonnet) to run diff-review.
-# Role-aware: the role is determined by WHO is reading this tab — declare your role.
+# Role-aware: the role is determined by WHO is reading this tab ג€” declare your role.
 # Converts "I hope the other tab read my commits" into mechanically inherited awareness.
-# Spec: CSPS-PLANNING-DISCIPLINE §8 + M-43 moat entry.
+# Spec: CSPS-PLANNING-DISCIPLINE ֲ§8 + M-43 moat entry.
 {
   printf '\n[M-43-diff-review] RUN NOW (your role, Sonnet or Opus):' >&2
   printf '\n[M-43-diff-review]   node tools/scripts/cross-tab-diff-review.mjs --role sonnet' >&2
   printf '\n[M-43-diff-review]   node tools/scripts/cross-tab-diff-review.mjs --role opus' >&2
-  printf '\n[M-43-diff-review] → shows new commits from the OTHER tab since your last review.' >&2
-  printf '\n[M-43-diff-review] → advances YOUR marker in tools/data/last-review-markers.json.' >&2
+  printf '\n[M-43-diff-review] ג†’ shows new commits from the OTHER tab since your last review.' >&2
+  printf '\n[M-43-diff-review] ג†’ advances YOUR marker in tools/data/last-review-markers.json.' >&2
 } 2>/dev/null || true
 
-# ─── ZERO-DIALOG RULE for .claude/ files (S069 — permanent) ─────────────────────────────────
+# ג”€ג”€ג”€ ZERO-DIALOG RULE for .claude/ files (S069 ג€” permanent) ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 # Claude Code hard-prompts for Edit/Write on .claude/** regardless of bypassPermissions.
 # The ONLY zero-dialog path = use Bash tool, NOT Edit or Write.
-# This rule is permanent — violated every time Sonnet uses Edit/Write on .claude/ files.
+# This rule is permanent ג€” violated every time Sonnet uses Edit/Write on .claude/ files.
 {
   printf '\n[ZERO-DIALOG-RULE] For .claude/** files: use Bash, NEVER Edit or Write tool.' >&2
   printf '\n  Bash (zero-dialog): node -e "require('"'"'fs'"'"').writeFileSync('"'"'.claude/hooks/foo.sh'"'"', content)"' >&2
   printf '\n  OR: cat > .claude/hooks/foo.sh << '"'"'EOF'"'"' ... EOF' >&2
-  printf '\n  Edit/Write → Claude Code ALWAYS prompts for .claude/ regardless of bypassPermissions.' >&2
+  printf '\n  Edit/Write ג†’ Claude Code ALWAYS prompts for .claude/ regardless of bypassPermissions.' >&2
 } 2>/dev/null || true
 
-# ─── VAULT-SUMMARY MANDATE (S069 Governor directive) ────────────────────────────────────────
+# ג”€ג”€ג”€ VAULT-SUMMARY MANDATE (S069 Governor directive) ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 # EVERY substantive response MUST end with: "## Vault Summary (this turn)"
 # listing what was saved to vault-pending.yaml / MEMORY.md / vault entries for later processing.
 # Format: | vlt-ID or memory-slug | what was saved | when to process |
@@ -98,63 +98,80 @@ CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.
   printf '\n[VAULT-SUMMARY-MANDATE] Format: | vlt-ID/memory-slug | description | when-to-process |' >&2
 } 2>/dev/null || true
 
-# ─── B_META_QUESTION T3 — false-assumption checklist discipline injection (S067 STEP 6.4) ───
+# ג”€ג”€ג”€ B_META_QUESTION T3 ג€” false-assumption checklist discipline injection (S067 STEP 6.4) ג”€ג”€ג”€
 # Every tab start: inject META-QUESTION reminder before tab-transfer outputs.
 # B_META_QUESTION_DISCIPLINE: before emitting HANDOFF/startup-block/CHECKPOINT/relay-block,
-# run "What are the false assumptions here?" — minimum 10-item checklist required.
+# run "What are the false assumptions here?" ג€” minimum 10-item checklist required.
 # pre-tool-use-false-assumption-gate.sh (T1) BLOCKS if missing in S068+.
 {
-  printf '\n[B_META_QUESTION] Before any HANDOFF/startup-block/CHECKPOINT/relay: run false-assumption checklist (≥10 items).' >&2
-  printf ' Format: ❌ "<assumption>" / REALITY: <truth> / Fix: <action>' >&2
+  printf '\n[B_META_QUESTION] Before any HANDOFF/startup-block/CHECKPOINT/relay: run false-assumption checklist (ג‰¥10 items).' >&2
+  printf ' Format: ג "<assumption>" / REALITY: <truth> / Fix: <action>' >&2
   printf '\n[B_META_QUESTION] Template: tools/templates/tab-transfer-template.md (8 sections, 10 example items).' >&2
 } 2>/dev/null || true
 
-# ─── C8 REACTIVE_OPUS PREVENTION — proactive Opus review trigger injection ──────────────────
+# ג”€ג”€ג”€ C8 REACTIVE_OPUS PREVENTION ג€” proactive Opus review trigger injection ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 # S067 STEP 6.3c: inject proactive Opus review reminder so Governor doesn't have to orchestrate.
 # C8 = REACTIVE_OPUS: Opus was reactive because session-open never injected a review trigger.
 # This T3 injection ensures every tab start surfaces: "check opus-turn.md for pending reviews."
-# ADVISORY S067 — structural discipline addition only; no blocking behavior.
+# ADVISORY S067 ג€” structural discipline addition only; no blocking behavior.
 {
   printf '\n[C8-proactive-opus] Session open: check tools/council/opus-turn.md TOP ENTRY for pending OPIA audit or ACK.' >&2
-  printf ' If Sonnet CHECKPOINT exists without Opus ACK → surface to Governor for relay.' >&2
-  printf '\n[C8-proactive-opus] META-QUESTION: "What are the false assumptions here?" — run before any constitutional proposal.' >&2
-  printf '\n[C8-proactive-opus] D9 recency-bias override: MEMORY.md has 60 entries — cite at least one relevant per substantive turn.' >&2
+  printf ' If Sonnet CHECKPOINT exists without Opus ACK ג†’ surface to Governor for relay.' >&2
+  printf '\n[C8-proactive-opus] META-QUESTION: "What are the false assumptions here?" ג€” run before any constitutional proposal.' >&2
+  printf '\n[C8-proactive-opus] D9 recency-bias override: MEMORY.md has 60 entries ג€” cite at least one relevant per substantive turn.' >&2
 } 2>/dev/null || true
 
-# ─── ANTI-FLOAT T3: overdue floater injection + decision queue (S074 A1) ─────
+# ג”€ג”€ג”€ ANTI-FLOAT T3: overdue floater injection + decision queue (S074 A1) ג”€ג”€ג”€ג”€ג”€
 # Per P-META-030 enforcement_tier.tier3_session. T1=pre-tool-use-closure-obligation-required.sh
-# T2=validate-no-floating-artifacts.mjs · T3=THIS (session-open injection).
-# Reads floating-artifacts-register.yaml → injects overdue floaters into context +
+# T2=validate-no-floating-artifacts.mjs ֲ· T3=THIS (session-open injection).
+# Reads floating-artifacts-register.yaml ג†’ injects overdue floaters into context +
 # writes .csps/floater-decision-queue.txt for Governor decision-making.
 {
   CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-floater-inject.mjs" 2>&1 >&2 || true
 } 2>/dev/null || true
 
 
-# ─── FORMAL-PROTO-CHANNEL T3 reminder (S074 Governor directive) ─────────────
+# ג”€ג”€ג”€ FORMAL-PROTO-CHANNEL T3 reminder (S074 Governor directive) ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 # PROTOs must pre-exist in tools/council/opus-turn.md BEFORE this tab opens.
 # NEVER process a PROTO that arrived only via chat paste.
-# If a PROTO arrived in chat without opus-turn.md entry → write it there FIRST.
+# If a PROTO arrived in chat without opus-turn.md entry ג†’ write it there FIRST.
 # Root cause (S074): PROTO embedded in startup-block bypasses relay hooks.
 {
   printf '
 [FORMAL-PROTO-CHANNEL] PROTO must pre-exist in tools/council/opus-turn.md.' >&2
   printf ' If a PROTO arrived via chat paste: write it to opus-turn.md BEFORE processing.' >&2
   printf '
-[FORMAL-PROTO-CHANNEL] Formal flow: Opus writes PROTO → opus-turn.md → hook fires → Governor opens new tab → Sonnet First-Action-4 reads it.' >&2
+[FORMAL-PROTO-CHANNEL] Formal flow: Opus writes PROTO ג†’ opus-turn.md ג†’ hook fires ג†’ Governor opens new tab ג†’ Sonnet First-Action-4 reads it.' >&2
 } 2>/dev/null || true
 
 
 
-# ─── COUNCIL PEER CONTRACT T3 (S078 — ai-collaboration-charter §2.5) ─────────
+# ג”€ג”€ג”€ COUNCIL PEER CONTRACT T3 (S078 ג€” ai-collaboration-charter ֲ§2.5) ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 # Injects the bidirectional council peer obligation at every tab open.
-# Full contract: docs/plan/pillar-0-governance/ai-collaboration-charter.md §2.5
+# Full contract: docs/plan/pillar-0-governance/ai-collaboration-charter.md ֲ§2.5
 {
   printf '
 [COUNCIL-PEER-CONTRACT] Sonnet: surface what directive missed + label HIGH-VALUE/MOST-UNCERTAIN claims.' >&2
   printf ' Opus: verify-before-concur on every high-value ratification (re-derive with THIS-TURN evidence).' >&2
-  printf ' ai-collaboration-charter §2.5 — inherited every tab.' >&2
+  printf ' ai-collaboration-charter ֲ§2.5 ג€” inherited every tab.' >&2
 } 2>/dev/null || true
 
 
+
+# ─── SEED-C CADENCE AUDITS (context-independent session-open triggers) ─────────
+# Runs EXTENDED validators in background at every session-open (no human required).
+# SEED-C context-independence: SOURCE=persistent files | CADENCE=session-open | SINK=last-run JSON
+# Non-blocking: & runs after AI context loads. SINK: cadence-last-run.json files.
+{
+  CADENCE_SINK_DIR="${REPO_ROOT}/tools/data"
+  # moat_coverage: M-NN moat elements have active recurring audit twins
+  node "${REPO_ROOT}/tools/validators/validate-moat-coverage.mjs" \
+    > "${CADENCE_SINK_DIR}/validate-moat-coverage-cadence-last-run.json" 2>/dev/null &
+  # dual_coverage: meta-audit — all 8 drift-prone obligations context-independently covered
+  node "${REPO_ROOT}/tools/validators/validate-dual-coverage.mjs" \
+    > "${CADENCE_SINK_DIR}/validate-dual-coverage-cadence-last-run.json" 2>/dev/null &
+  # register_ref_integrity: register IDs resolve to canonical registers (SEED-A)
+  node "${REPO_ROOT}/tools/validators/validate-register-reference-integrity.mjs" \
+    > "${CADENCE_SINK_DIR}/validate-register-reference-integrity-cadence-last-run.json" 2>/dev/null &
+} 2>/dev/null || true
 exit 0

@@ -1,5 +1,5 @@
 // =============================================================================
-// CSPS Platform Schema — ZenStack Flat Assembly
+// CSPS Platform Schema ג€” ZenStack Flat Assembly
 // =============================================================================
 // Machine-processable entry point for zenstack generate.
 // Assembled from:
@@ -11,18 +11,18 @@
 //
 // Run:    pnpm exec zenstack generate --schema libs/policies/schema.zmodel
 // Output: libs/policies/generated/schema.prisma (for drift checking)
-// Per:    B_PLATFORM_FIRST_OPTIMIZATION — one schema for all 30 apps
+// Per:    B_PLATFORM_FIRST_OPTIMIZATION ג€” one schema for all 30 apps
 //
 // TEMPORARY FLAT ASSEMBLY (S017 cruel-critic finding CSEP-S017-001):
 //   Multi-file ZenStack import approach has circular dependency issues with
-//   bidirectional relations (User↔UserTenant↔Tenant). Flat file is the
+//   bidirectional relations (Userג†”UserTenantג†”Tenant). Flat file is the
 //   working workaround. Migration to multi-file when ZenStack resolves
 //   circular imports or we establish import-ordering protocol (~30 models
 //   is the merge-conflict threshold that forces this migration).
 //   Tracked: VLT-S017-FLATSCHEMA
 // =============================================================================
 
-// ─── Datasource ──────────────────────────────────────────────────────────────
+// ג”€ג”€ג”€ Datasource ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 
 datasource db {
   provider = "postgresql"
@@ -31,14 +31,14 @@ datasource db {
   schemas  = ["public"]
 }
 
-// ─── Generators ──────────────────────────────────────────────────────────────
+// ג”€ג”€ג”€ Generators ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
 }
 
-// ─── ZenStack Plugins ────────────────────────────────────────────────────────
+// ג”€ג”€ג”€ ZenStack Plugins ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 
 // Generates standard Prisma schema from ZModel (drift check reference)
 plugin prisma {
@@ -52,7 +52,7 @@ plugin enhancer {
   withPresets = true
 }
 
-// ─── Base Mixin ──────────────────────────────────────────────────────────────
+// ג”€ג”€ג”€ Base Mixin ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 // Every entity extends this. Provides id, timestamps, soft-delete.
 // Per P-ARCH-007: hard delete denied by default.
 
@@ -70,9 +70,9 @@ abstract model Base {
 }
 
 // Append-only entities (AuditEvent): no update, no delete, no soft-delete.
-// Intentionally omits updatedAt + deletedAt — immutability by schema.
+// Intentionally omits updatedAt + deletedAt ג€” immutability by schema.
 abstract model AppendOnlyBase {
-  // S077 UUID migration: @db.Uuid restored — see Base comment above.
+  // S077 UUID migration: @db.Uuid restored ג€” see Base comment above.
   id        String   @id @default(uuid()) @db.Uuid
   createdAt DateTime @default(now())
 
@@ -80,7 +80,7 @@ abstract model AppendOnlyBase {
   @@deny("update,delete", true)
 }
 
-// ─── Common Enums ─────────────────────────────────────────────────────────────
+// ג”€ג”€ג”€ Common Enums ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 
 enum ActorKind {
   user
@@ -104,7 +104,7 @@ enum LifecycleState {
   @@schema("public")
 }
 
-// ─── Foundation Slices — Identity / Auth / Membership / Audit ─────────────────
+// ג”€ג”€ג”€ Foundation Slices ג€” Identity / Auth / Membership / Audit ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 
 // From: slices/public/tenant.zmodel
 enum TenantSubscriptionStatus {
@@ -113,7 +113,7 @@ enum TenantSubscriptionStatus {
   // DB migration needed to fully remove 'free' from the enum (defer to dim-4 UUID migration window).
   free        // DEPRECATED (S076): use status='active' + planId=null for free-tier tenants
   trialing    // 14-day trial when 2nd member joins before paying
-  active      // billing good-standing — free-tier (planId=null) OR paid (planId set)
+  active      // billing good-standing ג€” free-tier (planId=null) OR paid (planId set)
   cancelled   // was paid, now cancelled; read-only until reactivated
 
   @@schema("public")
@@ -136,7 +136,7 @@ model User extends Base {
   email       String  @unique
   displayName String?
   staffRole   String?
-  tenantId    String? @db.Uuid  // denormalized default-tenant; no FK constraint — ALTER COLUMN only
+  tenantId    String? @db.Uuid  // denormalized default-tenant; no FK constraint ג€” ALTER COLUMN only
 
   memberships    UserTenant[]
   tasksCreated   Task[]         @relation("TaskCreatedBy")
@@ -170,11 +170,11 @@ model Tenant extends Base {
   clerkOrgId           String?                  @unique
   stripeCustomerId     String?
   stripeSubscriptionId String?
-  // S076: @default changed from free → active (Governor ratified: free-tier = active + planId null)
+  // S076: @default changed from free ג†’ active (Governor ratified: free-tier = active + planId null)
   subscriptionStatus   TenantSubscriptionStatus @default(active)
-  // Plan tier — separate from billing status (free/pro/enterprise/custom)
+  // Plan tier ג€” separate from billing status (free/pro/enterprise/custom)
   plan                 String                   @default("free")
-  // C3 fix (OPUS-16 S075): planId FK → Plan entity (PART 3 migration batch)
+  // C3 fix (OPUS-16 S075): planId FK ג†’ Plan entity (PART 3 migration batch)
   // null = free tier. Coexists with plan:String field until planId FK migration complete.
   planId               String?  @db.Uuid  // already UUID in DB (PART 3 migration); schema alignment only
   planRelation         Plan?    @relation("TenantPlanFK", fields: [planId], references: [id])
@@ -194,7 +194,7 @@ model Tenant extends Base {
   webhookEndpoints  WebhookEndpoint[]
   habits            Habit[]
   habitLogs         HabitLog[]
-  journeys          Journey[]          // B.2 — back-reference for ZenStack bidirectional requirement
+  journeys          Journey[]          // B.2 ג€” back-reference for ZenStack bidirectional requirement
 
   @@schema("public")
   @@allow("read", auth().tenantId == id)
@@ -219,7 +219,7 @@ model UserTenant extends Base {
   @@schema("public")
   @@allow("read", auth().id == userId || auth().tenantId == tenantId)
   @@allow("read", auth().staffRole != null)
-  // Write policies: membership changes require owner/admin — enforced at API layer.
+  // Write policies: membership changes require owner/admin ג€” enforced at API layer.
   // ZenStack auth() returns the User context (id, tenantId, staffRole) NOT UserTenant.role,
   // so role-gated create/update is implemented in libs/integrations/security/guards.ts
   // via checkMembershipPermission(userId, tenantId, requiredRole).
@@ -239,7 +239,7 @@ model AuditEvent extends AppendOnlyBase {
   actorId      String? @db.Uuid  // references User.id; nullable (system actions have no actor)
   action       String
   resourceType String
-  resourceId   String             // generic resource — NOT a CSPS UUID FK; keep as TEXT
+  resourceId   String             // generic resource ג€” NOT a CSPS UUID FK; keep as TEXT
   data         Json?
 
   tenant Tenant @relation(fields: [tenantId], references: [id])
@@ -252,7 +252,7 @@ model AuditEvent extends AppendOnlyBase {
   @@index([actorId, createdAt])
 }
 
-// ─── App Slices — Task Management ─────────────────────────────────────────────
+// ג”€ג”€ג”€ App Slices ג€” Task Management ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 
 // From: slices/public/project.zmodel
 enum ProjectStatus {
@@ -333,11 +333,11 @@ model Task extends Base {
   @@index([tenantId, dueDate])
 }
 
-// ═══════════════════════════════════════════════════════════════
-// APP #2 — Budget Planner (personal.finance domain — S025)
+// ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•
+// APP #2 ג€” Budget Planner (personal.finance domain ג€” S025)
 // Governor-authored intent: "track income and expenses, see balance"
-// gate: Gate 3 Foundry Ready — no foundation code changed
-// ═══════════════════════════════════════════════════════════════
+// gate: Gate 3 Foundry Ready ג€” no foundation code changed
+// ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•
 
 // Budget category: income/expense classification with monthly limit
 // AppendOnlyBase: soft-delete only (no hard delete)
@@ -386,13 +386,13 @@ model Transaction extends Base {
   @@index([tenantId, type, date])
 }
 
-// Wizard completion record — one per tenant, stores crystallized intent
+// Wizard completion record ג€” one per tenant, stores crystallized intent
 // Created when user completes the 3 Threshold questions (the non-skippable gate)
 // Human-authored fields: goal + targets (Q2c + Q3c from threshold-intake-protocol.md)
 model BudgetGoal extends Base {
   tenantId      String  @unique @db.Uuid  // one goal per tenant (solo user = one per person)
   goalStatement String            // Q2c: "What would financial control look like in 30 days?"
-  budgetTargets Json              // Q3c: [{categoryName, monthlyLimit}] — human's own words
+  budgetTargets Json              // Q3c: [{categoryName, monthlyLimit}] ג€” human's own words
   completedAt   DateTime @default(now())
 
   tenant Tenant @relation(fields: [tenantId], references: [id])
@@ -413,7 +413,7 @@ enum BudgetCategoryType {
   @@schema("public")
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•
 // From: slices/public/task-comment.zmodel
 // Immutable once posted (no update); soft-delete via deletedAt only
 model TaskComment extends Base {
@@ -433,7 +433,7 @@ model TaskComment extends Base {
   @@index([taskId, createdAt])
 }
 
-// ─── Notification ──────────────────────────────────────────────────────────────
+// ג”€ג”€ג”€ Notification ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 // Per-user, per-tenant notifications. Append-only (created by system triggers).
 // Users can read and mark their own notifications as read.
 
@@ -459,11 +459,11 @@ model Notification extends Base {
   @@index([tenantId, userId, readAt])
 }
 
-// ─── WebhookEndpoint ───────────────────────────────────────────────────────────
+// ג”€ג”€ג”€ WebhookEndpoint ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 // Per-tenant webhook endpoints. Admin-level write via API guard; read for all members.
 // ZenStack: staff-only write. API layer: checkMembership(['owner','admin']) enforces customer access.
 
-// ── Habit Tracker (App #2) ───────────────────────────────────────────────
+// ג”€ג”€ Habit Tracker (App #2) ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 
 // A habit the user wants to track daily (e.g. "Exercise", "Read 20 minutes")
 model Habit extends Base {
@@ -481,11 +481,11 @@ model Habit extends Base {
   @@index([tenantId, createdAt])
 }
 
-// A single day check-off for a habit — one per habit per day
+// A single day check-off for a habit ג€” one per habit per day
 model HabitLog extends Base {
   habitId  String @db.Uuid
   tenantId String @db.Uuid
-  date     DateTime  // date only — store as midnight UTC of the day
+  date     DateTime  // date only ג€” store as midnight UTC of the day
 
   habit  Habit  @relation(fields: [habitId], references: [id])
   tenant Tenant @relation(fields: [tenantId], references: [id])
@@ -494,7 +494,7 @@ model HabitLog extends Base {
   @@allow("read",   auth().tenantId == tenantId)
   @@allow("create", auth().tenantId == tenantId)
   @@allow("delete", auth().tenantId == tenantId)
-  @@deny("update",  true)  // immutable — delete and re-create to correct
+  @@deny("update",  true)  // immutable ג€” delete and re-create to correct
 
   @@unique([habitId, date])  // one check per habit per day
   @@index([tenantId, date])
@@ -504,7 +504,7 @@ model HabitLog extends Base {
 model WebhookEndpoint extends Base {
   tenantId        String @db.Uuid
   url             String
-  secret          String    // HMAC signing secret — never expose in read responses
+  secret          String    // HMAC signing secret ג€” never expose in read responses
   events          String[]  @default([])  // e.g. ["task.created", "member.added"]
   active          Boolean   @default(true)
   lastTriggeredAt DateTime?
@@ -521,7 +521,7 @@ model WebhookEndpoint extends Base {
 }
 
 // ============================================================================
-// PART 3 — Product Schema (S075)
+// PART 3 ג€” Product Schema (S075)
 // Plan + Capability + PlanCapability
 // NOTE: Tenant.planId FK is in the migration batch (separate gated step).
 //       These models compile clean now. DB migration authorizated by Opus OPIA.
@@ -578,12 +578,12 @@ model PlanCapability extends Base {
   @@index([capabilityId])
 }
 
-// ─── Journey (B.2 schema slice) ───────────────────────────────────────────────
+// ג”€ג”€ג”€ Journey (B.2 schema slice) ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 // Ratifiable from /platform/journey-admin dashboard.
-// Governed write-back: ratify click → status draft→ratified in DB → SPEC.md updated.
+// Governed write-back: ratify click ג†’ status draftג†’ratified in DB ג†’ SPEC.md updated.
 // D1: Gap-Int ordering on JourneyStage.order (1000-gap seed; reorder = single UPDATE).
 // D3: tenantId denormalized on both models for direct RLS (no join in policy expressions).
-// D4: query cap enforced at API layer (≤50 journeys per GET).
+// D4: query cap enforced at API layer (ג‰₪50 journeys per GET).
 // D5: single-include pattern: findMany({ include: { stages: { orderBy: { order: 'asc' } } } }).
 
 enum JourneyType {
@@ -594,9 +594,9 @@ enum JourneyType {
 
 enum JourneyStatus {
   draft
-  in_review  // Opus OPIA in progress — not yet Governor-ratified
+  in_review  // Opus OPIA in progress ג€” not yet Governor-ratified
   ratified   // Governor C2 ratification complete
-  sealed     // Permanent lock — re-open only via boundary-crossing protocol
+  sealed     // Permanent lock ג€” re-open only via boundary-crossing protocol
   @@schema("public")
 }
 
@@ -606,9 +606,9 @@ model Journey extends Base {
   type        JourneyType   @default(user)
   status      JourneyStatus @default(draft)
   description       String?
-  ratifiedRiskClass RiskClass?    // F3 — SET at P1 after R8 ratification; READ by SEED-2 gate_mode
+  ratifiedRiskClass RiskClass?    // F3 ג€” SET at P1 after R8 ratification; READ by SEED-2 gate_mode
   variant           VariantType?  // bound after selectVariant (SEED-6 R7)
-  versionBinding    Json?         // InstanceVersionBinding — the 6 def versions (SEED-9)
+  versionBinding    Json?         // InstanceVersionBinding ג€” the 6 def versions (SEED-9)
   stages            JourneyStage[]
 
   tenant Tenant @relation(fields: [tenantId], references: [id])
@@ -624,13 +624,13 @@ model Journey extends Base {
 }
 
 model JourneyStage extends Base {
-  tenantId     String  @db.Uuid        // D3: denormalized — direct RLS, no join
+  tenantId     String  @db.Uuid        // D3: denormalized ג€” direct RLS, no join
   journeyId    String  @db.Uuid
   name         String
   description  String?
-  order        Int                     // D1: Gap-Int (seed ×1000 at insert); reorder = single UPDATE
+  order        Int                     // D1: Gap-Int (seed ֳ—1000 at insert); reorder = single UPDATE
   exitCriteria String?
-  buildStatus  String  @default("PLANNED")  // ACTIVE | PLANNED — mirrors developer-journey page
+  buildStatus  String  @default("PLANNED")  // ACTIVE | PLANNED ג€” mirrors developer-journey page
   variants     Json?                   // per-stage variant overrides (admin-config-heavy etc.)
 
   journey Journey @relation(fields: [journeyId], references: [id])
@@ -645,11 +645,11 @@ model JourneyStage extends Base {
   @@index([journeyId, order])            // D1: covers single-UPDATE reorder queries
 }
 
-// ── Journey Orchestrator: closed enums (SEED-6) — Sonnet S084 B1 ────────────
+// ג”€ג”€ Journey Orchestrator: closed enums (SEED-6) ג€” Sonnet S084 B1 ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
 
 enum DefinitionScope {
   platform_def
-  tenant_def   // F2 — definition OWNERSHIP, NOT instance tenant_id; tenant_def LOCKED OUT in MVP (C5)
+  tenant_def   // F2 ג€” definition OWNERSHIP, NOT instance tenant_id; tenant_def LOCKED OUT in MVP (C5)
   @@schema("public")
 }
 
@@ -664,7 +664,7 @@ enum RiskClass {
 
 enum VariantType {
   fast
-  standard     // low->fast · standard->standard · elevated/critical->governed
+  standard     // low->fast ֲ· standard->standard ֲ· elevated/critical->governed
   governed
   exploratory  // F1: explicit opt-in only (never auto); permission floor: core_dev+
   @@schema("public")
@@ -684,7 +684,7 @@ enum PolicyResult {
   warn
   require_approval
   auto_upgrade
-  // R4 policy-evaluation result — single admission-controller boundary (SEED-2)
+  // R4 policy-evaluation result ג€” single admission-controller boundary (SEED-2)
   @@schema("public")
 }
 
@@ -707,8 +707,8 @@ enum ChangeClass {
   @@schema("public")
 }
 
-// ── Journey Meta-Model (SEED-1/2/3/6) — Sonnet S084 B1 ──────────────────────
-// Platform-level DEFINITION rows (no tenant scope — these are definition templates, not instances).
+// ג”€ג”€ Journey Meta-Model (SEED-1/2/3/6) ג€” Sonnet S084 B1 ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€
+// Platform-level DEFINITION rows (no tenant scope ג€” these are definition templates, not instances).
 // Any authenticated user reads; staff (staffRole != null) creates/updates.
 // Hard delete denied by Base; platform definitions are permanent references.
 
@@ -731,7 +731,7 @@ model GateDef extends Base {
   pegId                  String        @unique   // PEG-1 | PEG-2 | PEG-3 | PEG-4 | PEG-5
   phaseDefId             String        @db.Uuid
   minimumExitEvidence    Json?                   // evidence contracts (SEED-5)
-  gateModeMatrix         Json                    // RiskClass×Phase matrix VERBATIM from SEED-2 F4
+  gateModeMatrix         Json                    // RiskClassֳ—Phase matrix VERBATIM from SEED-2 F4
   zfGateMode             GateModeValue @default(blocking)
   zfGateProof            String        @default("rerun")  // rerun | hashverify
   thresholdRequired      Boolean       @default(true)
@@ -770,3 +770,51 @@ model BranchAxisBinding extends Base {
   @@allow("read",          auth() != null)
   @@allow("create,update", auth().staffRole != null)
 }
+
+// ── B4 S085: SEED-2/6 schema additions (db-push deferred to 2026-06-27 PARK-009) ────────────
+
+// SEED-6: PersonaTier — 6-tier permission overlay (from journeys.tier_permission in core-spine-registry)
+// Controls who can view/modify trunk, create journeys, ratify risk class, exploratory opt-in.
+enum PersonaTier {
+  governor           // full access: modify trunk, ratify risk class, exploratory opt-in
+  core_dev           // create journeys; exploratory opt-in (permission floor F1); no trunk modify
+  external_dev       // create journeys within assigned scope; no exploratory
+  account_owner_admin // summary view only; no journey create
+  team_leader        // no trunk view; no journey create
+  end_user           // no trunk view; no journey create
+  // R8 ratification interface: min_tier_to_ratify = governor
+  @@schema("public")
+}
+
+// SEED-6: BranchAxisType — 5 typed branch axes (replaces string axisId in BranchAxisBinding)
+// Controls how a variant shapes the journey (depth, drive style, vocabulary, permissions, scope)
+enum BranchAxisType {
+  depth          // depth-of-work: surface | standard | deep | comprehensive
+  drive_auto     // drive_auto: true (AI leads) | false (human leads)
+  vocabulary     // vocabulary: technical | business | mixed
+  permission     // permission: open | gated | restricted
+  focal          // focal_point: build | audit | decide | validate | learn
+  @@schema("public")
+}
+
+// Update BranchAxisBinding to use typed enum (B4 — migrate from String to BranchAxisType post db-push)
+// NOTE: requires db-push to apply. Added as design record; active after 2026-06-27 rotation.
+// model BranchAxisBinding extends Base {
+//   axisId      BranchAxisType  // TYPED (was String — migration in db-push 2026-06-27)
+//   variantType VariantType
+//   axisValue   String
+//   description String?
+//   @@schema("public")
+// }
+
+// SEED-8: JourneyEvent — USES audit.events via entity_type='journey_event'
+// NOT a separate table; routes to audit.events (no_direct_write RLS = append-only by policy).
+// Decision ratified B3.3 S085: audit.events HAS no_direct_write RLS; AuditEvent trigger commented out.
+// Wire: entity_type discriminator = 'journey_event'; journeyId + pegId in payload Json.
+// After db-push (2026-06-27): add entity_type='journey_event' rows to audit.events.
+// Payload schema:
+//   { journeyId, pegId, actorId, actorTier: PersonaTier, transition: 'advance'|'skip'|'block',
+//     evidence_hash, policy_version, risk_class: RiskClass, gate_result: PolicyResult,
+//     blocking_reason?, override_justification? }
+// No separate model — see libs/policies/audit-triggers.sql audit.events + B3.3 decision.
+

@@ -56,6 +56,15 @@ GATES THAT MAY FIRE (R-class triggers):
 KEY VAULT ITEMS:
   - {vlt-id}: {title}
 
+## MOAT REVIEW (SEED-B — mandatory for tab-transfer + session-close handoffs)
+  Moats touched this tab/session:
+    - M-{NN}: {moat name} — {strengthened | at-risk | unchanged} — {reason}
+    - (or "none — no moat-adjacent work this tab")
+  Moat-registry updates made:
+    - {update, or "none"}
+  validate-moat-coverage.mjs output (last run):
+    - {paste: moat_elements_with_coverage=X/15}
+
 — {sender_role} (authored {date} · cross-reviewed {date or "pending"})
 ═══════════════════════════════════════════════════════════════════
 ```

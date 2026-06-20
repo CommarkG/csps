@@ -80,6 +80,14 @@ const ADVISORY_CHECKS = [
     label: 'ZF Evidence',
     patterns: [/ZF\s+(ACHIEVED|EVIDENCE|evidence|Cycle)/m, /pnpm verify.*exit_code/m, /exit_code.*0/m],
     message: 'No ZF/verification evidence found. Add "## ZF EVIDENCE" section with pnpm verify output.'
+  },
+  {
+    // SEED-B S085: MOAT REVIEW required at every tab/session boundary.
+    // ADVISORY Phase 1 -> BLOCKING after first incident (S067 ladder).
+    id: 'moat-review',
+    label: 'MOAT REVIEW (SEED-B)',
+    patterns: [/##\s+MOAT\s+REVIEW/i, /MOAT\s+REVIEW/i],
+    message: 'Missing MOAT REVIEW block (SEED-B S085). Add: which moats touched/strengthened/at-risk this session. Template: tools/templates/boundary-prompt.template.md ## MOAT REVIEW section.'
   }
 ];
 

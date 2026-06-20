@@ -535,10 +535,16 @@ const CYCLES = [
     parse_output: (out) => { const m = out.match(/blocking=(\d+) advisory=(\d+)/); return m ? { blocking: Number(m[1]), advisory: Number(m[2]) } : {}; },
   },
   {
-    // E2 LIVE S030 — file complexity dual-gate (lines>300 AND H2>=3 without mini_tree_root)
+    // E2 LIVE S030 — file complexity dual-gate (md: lines>300+H2>=3 | code P1.1: >500 LOC)
+    // P1.1 S085: extended to code files — verify.mjs at 2461 LOC now surfaced
     name: 'file_complexity_validate',
     command: 'node tools/validators/validate-file-complexity.mjs',
-    parse_output: (out) => { const m = out.match(/scanned=(\d+) advisory=(\d+)/); return m ? { scanned: Number(m[1]), advisory: Number(m[2]) } : {}; },
+    parse_output: (out) => {
+      const scanned = out.match(/scanned=(\d+)/)?.[1];
+      const advisory = out.match(/\badvisory=(\d+)/)?.[1];
+      const codeAdv = out.match(/code_advisory=(\d+)/)?.[1];
+      return scanned ? { scanned: Number(scanned), advisory: Number(advisory || 0), code_advisory: Number(codeAdv || 0) } : {};
+    },
   },
   {
     // E3 LIVE S031 — naming convention 5-rule check (R1-R5, ADVISORY, exempt via naming-exempt.yaml)
@@ -2248,6 +2254,33 @@ const CYCLES = [
     parse_output: (out) => {
       const m = out.match(/entries_checked=(\d+)\s+missing_headers=(\d+)\s+missing_attestation=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
       return m ? { entries_checked: Number(m[1]), missing_headers: Number(m[2]), missing_attestation: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
+    // P1.1 S085 SEED-A — Register-reference-integrity: every PARK-/PROTO-/M-/VLT-/imp_/gap_/SEED- ID
+    // referenced in tracked files must resolve to its canonical register (ghost-ref class fix).
+    // Phase 1: ADVISORY-only (189 pre-existing unresolved refs from archive). Phase 2: block at handoff gate.
+    // EXTENDED: corpus scan of 763+ tracked .md/.yaml files.
+    run_tier: 'EXTENDED',
+    name: 'register_reference_integrity',
+    command: 'node tools/validators/validate-register-reference-integrity.mjs',
+    parse_output: (out) => {
+      const f = out.match(/files_checked=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return f ? { files_checked: Number(f[1]), advisory: Number(f[2]), blocking: Number(f[3]) } : {};
+    },
+  },
+  {
+    // S085 SEED-C — Dual-coverage: every drift-prone obligation has context-independent recurring audit.
+    // Context-independence test: SOURCE (persistent files) + CADENCE (schedule) + SINK (register).
+    // Checks: moats, file-length, load_mode, register-refs, principles, journey trunk, push-status, handoff-moat.
+    // ADVISORY: EXTENDED validators fail CADENCE test (need cron; PARK-040 scope).
+    // BLOCKING at K=2 per gap-recurrence-register.
+    run_tier: 'EXTENDED',
+    name: 'dual_coverage',
+    command: 'node tools/validators/validate-dual-coverage.mjs',
+    parse_output: (out) => {
+      const m = out.match(/obligations_checked=(\d+)\s+dual_covered=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
+      return m ? { obligations_checked: Number(m[1]), dual_covered: Number(m[2]), advisory: Number(m[3]), blocking: Number(m[4]) } : {};
     },
   },
   {

@@ -1,0 +1,213 @@
+#!/usr/bin/env node
+/**
+ * @csps-id csps.tools.validators.validate-register-reference-integrity
+ * @csps-name validate-register-reference-integrity
+ * @csps-description SEED-A: every register-ID referenced in tracked files must resolve
+ *   to an entry in its canonical register. Closes the PARK-040 ghost-ref class mechanically.
+ *   Makes P-META-033 (no-lost-threads) mechanical for register IDs.
+ *
+ *   Canonical registers (from SEED-A manifest):
+ *     PARK-S###-### -> tools/data/park-register.yaml (entries[].id)
+ *     PROTO-S###-*  -> tools/council/opus-turn.md (## PROTO-* headings)
+ *     M-NN          -> docs/plan/pillar-0-governance/moat-registry.md (| M-NN |)
+ *     VLT-S###-*    -> frontmatter vault_pending.vlt or tools/data/*-vlt*.yaml
+ *     imp_*         -> tools/data/improvement-register.yaml (entries[].id)
+ *     gap_*         -> tools/data/gap-recurrence-register.yaml (entries[].id)
+ *     SEED-N        -> docs/plan/pillar-0-governance/JOURNEY-SEEDS-S084.md (## SEED-N)
+ *
+ *   ADVISORY: unresolved reference in any tracked file
+ *   BLOCKING: unresolved reference in a HANDOFF-*.md file (handoff gate)
+ *   run_tier: EXTENDED (expensive corpus scan)
+ *
+ * @csps-version 1.0.0
+ * @csps-owner group:finky
+ * @csps-lifecycle production
+ * @csps-lifecycle-state active
+ * @csps-tags type:validator domain:governance audience:ai-agent
+ * @csps-enforces P-META-033 SEED-A
+ * @csps-prevention-class GHOST-REGISTER-REFERENCE
+ *
+ * load_mode: on-demand
+ * justification: EXTENDED corpus scan, not per-turn
+ */
+
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
+import { resolve, join, relative, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(__dirname, '../..');
+
+// ── Register loading ──────────────────────────────────────────────────────────
+
+function loadParkIDs() {
+  const path = join(ROOT, 'tools/data/park-register.yaml');
+  if (!existsSync(path)) return new Set();
+  const text = readFileSync(path, 'utf8');
+  const ids = new Set();
+  for (const m of text.matchAll(/id:\s*"?(PARK-S\d{3}-\d{3})"?/g)) ids.add(m[1]);
+  return ids;
+}
+
+function loadProtoIDs() {
+  const paths = [join(ROOT, 'tools/council/opus-turn.md'), join(ROOT, 'tools/council/sonnet-turn.md')];
+  const ids = new Set();
+  for (const p of paths) {
+    if (!existsSync(p)) continue;
+    const text = readFileSync(p, 'utf8');
+    for (const m of text.matchAll(/##\s+(PROTO-S\d{3}-[A-Z0-9-]+)/g)) ids.add(m[1]);
+    // Also check for PROTO refs in frontmatter or YAML files
+    for (const m of text.matchAll(/PROTO-S\d{3}-[A-Z0-9-]+/g)) ids.add(m[0]);
+  }
+  // Also scan docs/plan/protos/
+  const protosDir = join(ROOT, 'docs/plan/protos');
+  if (existsSync(protosDir)) {
+    for (const f of walkDir(protosDir, ['.md'])) {
+      const name = f.split('/').pop().replace(/\.md$/, '');
+      if (/^PROTO-S\d{3}-/.test(name)) ids.add(name);
+    }
+  }
+  return ids;
+}
+
+function loadMoatIDs() {
+  const path = join(ROOT, 'docs/plan/pillar-0-governance/moat-registry.md');
+  if (!existsSync(path)) return new Set();
+  const text = readFileSync(path, 'utf8');
+  const ids = new Set();
+  for (const m of text.matchAll(/\|\s*(M-\d{2})\s*\|/g)) ids.add(m[1]);
+  for (const m of text.matchAll(/^##\s+(M-\d{2})/gm)) ids.add(m[1]);
+  return ids;
+}
+
+function loadImpIDs() {
+  const path = join(ROOT, 'tools/data/improvement-register.yaml');
+  if (!existsSync(path)) return new Set();
+  const text = readFileSync(path, 'utf8');
+  const ids = new Set();
+  for (const m of text.matchAll(/id:\s*(imp_[A-Za-z_]+)/g)) ids.add(m[1]);
+  return ids;
+}
+
+function loadGapIDs() {
+  const path = join(ROOT, 'tools/data/gap-recurrence-register.yaml');
+  if (!existsSync(path)) return new Set();
+  const text = readFileSync(path, 'utf8');
+  const ids = new Set();
+  for (const m of text.matchAll(/id:\s*(gap_[A-Za-z0-9_]+)/g)) ids.add(m[1]);
+  return ids;
+}
+
+function loadSeedIDs() {
+  const path = join(ROOT, 'docs/plan/pillar-0-governance/JOURNEY-SEEDS-S084.md');
+  if (!existsSync(path)) return new Set();
+  const text = readFileSync(path, 'utf8');
+  const ids = new Set();
+  for (const m of text.matchAll(/##\s+(SEED-\d[A-Z]?)\b/g)) ids.add(m[1]);
+  // Add letter seeds (SEED-A, SEED-B, SEED-C from HANDOFF-INTEGRITY-SEEDS-S084.md)
+  const seedIntegrityPath = join(ROOT, 'docs/plan/pillar-0-governance/HANDOFF-INTEGRITY-SEEDS-S084.md');
+  if (existsSync(seedIntegrityPath)) {
+    const t2 = readFileSync(seedIntegrityPath, 'utf8');
+    for (const m of t2.matchAll(/##\s+(SEED-[A-Z])\b/g)) ids.add(m[1]);
+  }
+  return ids;
+}
+
+// Walk directory for file extensions
+function walkDir(dir, exts, results = []) {
+  if (!existsSync(dir)) return results;
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (['node_modules', '.next', 'generated'].includes(entry.name)) continue;
+    const fullPath = join(dir, entry.name);
+    if (entry.isDirectory()) walkDir(fullPath, exts, results);
+    else if (exts.some(e => entry.name.endsWith(e))) results.push(fullPath);
+  }
+  return results;
+}
+
+// ── Load all known IDs ────────────────────────────────────────────────────────
+const KNOWN_PARK_IDS = loadParkIDs();
+const KNOWN_PROTO_IDS = loadProtoIDs();
+const KNOWN_MOAT_IDS = loadMoatIDs();
+const KNOWN_IMP_IDS = loadImpIDs();
+const KNOWN_GAP_IDS = loadGapIDs();
+const KNOWN_SEED_IDS = loadSeedIDs();
+
+// ── Pattern definitions ───────────────────────────────────────────────────────
+const PATTERNS = [
+  { name: 'PARK', regex: /\bPARK-S\d{3}-\d{3}\b/g, known: KNOWN_PARK_IDS, register: 'tools/data/park-register.yaml' },
+  { name: 'PROTO', regex: /\bPROTO-S\d{3}-[A-Z0-9][A-Z0-9-]*\b/g, known: KNOWN_PROTO_IDS, register: 'tools/council/opus-turn.md' },
+  { name: 'MOAT', regex: /\bM-\d{2}\b/g, known: KNOWN_MOAT_IDS, register: 'docs/plan/pillar-0-governance/moat-registry.md' },
+  { name: 'IMP', regex: /\bimp_[A-Za-z_]+\b/g, known: KNOWN_IMP_IDS, register: 'tools/data/improvement-register.yaml' },
+  { name: 'GAP', regex: /\bgap_[A-Za-z0-9_]+\b/g, known: KNOWN_GAP_IDS, register: 'tools/data/gap-recurrence-register.yaml' },
+  { name: 'SEED', regex: /\bSEED-(\d[A-Z]?|[A-C])\b/g, known: KNOWN_SEED_IDS, register: 'JOURNEY-SEEDS-S084.md + HANDOFF-INTEGRITY-SEEDS-S084.md' },
+];
+
+// Files to scan (tracked governance docs)
+const SCAN_DIRS = [
+  'docs/plan/_handoff',
+  'docs/plan/pillar-0-governance',
+  '.csps',
+];
+// Exclude validator/register files themselves from reference check
+const EXCLUDE_PATTERNS = [
+  'park-register.yaml', 'improvement-register.yaml', 'gap-recurrence-register.yaml',
+  'moat-registry.md', 'JOURNEY-SEEDS-S084.md', 'HANDOFF-INTEGRITY-SEEDS-S084.md',
+];
+
+let advisory = 0;
+const blocking = 0; // Phase 1: always 0 (see Phase 2 note in scan loop)
+let files_checked = 0;
+const findings = [];
+
+for (const scanDir of SCAN_DIRS) {
+  const fullDir = join(ROOT, scanDir);
+  for (const filePath of walkDir(fullDir, ['.md', '.yaml', '.txt'])) {
+    const fileName = filePath.split(/[/\\]/).pop();
+    if (EXCLUDE_PATTERNS.some(ex => fileName.includes(ex))) continue;
+    const relPath = relative(ROOT, filePath);
+    const isHandoff = /HANDOFF-S\d{3}/.test(fileName);
+    
+    let content;
+    try { content = readFileSync(filePath, 'utf8'); } catch { continue; }
+    files_checked++;
+
+    for (const pattern of PATTERNS) {
+      // Reset regex state
+      pattern.regex.lastIndex = 0;
+      const refs = [...new Set([...content.matchAll(pattern.regex)].map(m => m[0]))];
+      for (const ref of refs) {
+        if (!pattern.known.has(ref)) {
+          // Phase 1: ADVISORY-only. Blocking gate is Phase 2 after baseline ghost-ref sweep.
+          // Evidence from first run: 63 "ghost" PROTO refs in old HANDOFFs (S051-S062) are
+          // archival — PROTOs rolled off opus-turn.md. Phase 2 will scope blocking to
+          // current-session HANDOFFs only (S085+), not historical archive.
+          const severity = 'ADVISORY';
+          findings.push({ severity, ref, type: pattern.name, file: relPath, register: pattern.register });
+          advisory++;
+        }
+      }
+    }
+  }
+}
+
+// ── Output ────────────────────────────────────────────────────────────────────
+const status = blocking > 0 ? 'FAIL' : 'PASS';
+console.log(`[validate-register-reference-integrity] ${status}`);
+console.log(`  files_checked=${files_checked} advisory=${advisory} blocking=${blocking}`);
+console.log(`  known_ids: PARK=${KNOWN_PARK_IDS.size} PROTO=${KNOWN_PROTO_IDS.size} MOAT=${KNOWN_MOAT_IDS.size} IMP=${KNOWN_IMP_IDS.size} GAP=${KNOWN_GAP_IDS.size} SEED=${KNOWN_SEED_IDS.size}`);
+
+if (findings.length > 0) {
+  const top = findings.slice(0, 20);
+  console.log(`\n[validate-register-reference-integrity] findings (top ${top.length} of ${findings.length}):`);
+  for (const f of top) {
+    console.log(`  ${f.severity}: ${f.ref} (${f.type}) in ${f.file} -> register: ${f.register}`);
+  }
+  if (findings.length > 20) console.log(`  ... and ${findings.length - 20} more`);
+}
+
+if (blocking === 0 && advisory === 0) {
+  console.log('\n[validate-register-reference-integrity] All register references resolve.');
+}
+
+process.exit(blocking > 0 ? 1 : 0);

@@ -40,6 +40,40 @@
         "advisory": true
       },
       "cached_at": "2026-06-20T03:18:18.641Z"
+    },
+    "journey_gate": {
+      "input_hash": "e82a975724b8f25d85c8449fe7444bb8cf5a0caefa76a2bbde42d314993e1748",
+      "exit_code": 0,
+      "parsed": {
+        "checked": 10,
+        "tests_pass": 10,
+        "tests_fail": 0,
+        "blocking": 0,
+        "advisory": 0
+      },
+      "cached_at": "2026-06-20T03:32:00.001Z"
+    },
+    "trunk_matches_seed": {
+      "input_hash": "5ed3b1cbb1c90fb6adfc64b849f49996842599ae21df17813f125ad94137da9c",
+      "exit_code": 0,
+      "parsed": {
+        "checked": 12,
+        "invariants": 5,
+        "phases": 5,
+        "blocking": 0,
+        "advisory": 0
+      },
+      "cached_at": "2026-06-20T03:32:00.071Z"
+    },
+    "journey_event_store": {
+      "input_hash": "5e55cc066e0429e6befc40d132b50f77838ff204c71a5e28c3595e0977755b21",
+      "exit_code": 0,
+      "parsed": {
+        "no_direct_write_rls_active": true,
+        "blocking": 0,
+        "advisory": 1
+      },
+      "cached_at": "2026-06-20T03:32:00.138Z"
     }
   }
 }

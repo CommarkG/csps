@@ -2251,6 +2251,48 @@ const CYCLES = [
     },
   },
   {
+    // B3.1 S085 — Journey PEG enforcement (validate-journey-gate): block-tests that SEED-2 matrix
+    // refuses missing-evidence advances at blocking gates. 10 block-tests × gate × mechanism × risk_class.
+    // BLOCKING if any blocking gate returns 'allow' for missing evidence.
+    // EXTENDED: runs with --extended; matrix changes only on SEED-2 boundary-crossing events.
+    run_tier: 'EXTENDED',
+    name: 'journey_gate',
+    command: 'node tools/validators/validate-journey-gate.mjs',
+    input_files: ['tools/data/seed2-gate-mode-matrix.json', 'tools/validators/validate-journey-gate.mjs'],
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+tests_pass=(\d+)\s+tests_fail=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { checked: Number(m[1]), tests_pass: Number(m[2]), tests_fail: Number(m[3]), blocking: Number(m[4]), advisory: Number(m[5]) } : {};
+    },
+  },
+  {
+    // B3.2 S085 — Trunk matches SEED-1 (validate-trunk-matches-seed): core-spine-registry journeys
+    // trunk must contain all C1-C5 invariants + P1-P5 phases verbatim from SEED-1 (OPUS-22 authored).
+    // BLOCKING if any C-invariant or phase is missing (transcription drift prevention).
+    name: 'trunk_matches_seed',
+    command: 'node tools/validators/validate-trunk-matches-seed.mjs',
+    input_files: ['tools/config/core-spine-registry.yaml', 'docs/plan/pillar-0-governance/JOURNEY-SEEDS-S084.md'],
+    parse_output: (out) => {
+      const m = out.match(/checked=(\d+)\s+invariants_present=(\d+)\/5\s+phases_present=(\d+)\/5/);
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      return m ? { checked: Number(m[1]), invariants: Number(m[2]), phases: Number(m[3]), blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0 } : {};
+    },
+  },
+  {
+    // B3.3 S085 — Journey event store wiring (validate-journey-event-store): SEED-8 decision wired.
+    // Opus R3 audit: audit.events has no_direct_write RLS; AuditEvent trigger commented out.
+    // Decision: reuse audit.events (entity_type=journey_event) for all journey events.
+    // BLOCKING if no_direct_write RLS not active (event store has no immutability guarantee).
+    // ADVISORY: AuditEvent trigger still commented out (harden in B4/B5).
+    name: 'journey_event_store',
+    command: 'node tools/validators/validate-journey-event-store.mjs',
+    input_files: ['libs/policies/audit-triggers.sql', 'docs/plan/pillar-0-governance/JOURNEY-SEEDS-S084.md'],
+    parse_output: (out) => {
+      const m = out.match(/no_direct_write_rls_active=(\w+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { no_direct_write_rls_active: m[1] === 'true', blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // PROTO-S084-HASH-CACHE block-test: proves anti-nominal DONE guard is structurally wired.
     // Checks: cache structure valid + always_rerun validators not cached + --no-cache in push-gate hook.
     // BLOCKING if any HIGH-STAKES validator found in cache (would mean guard is broken).

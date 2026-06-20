@@ -1,0 +1,35 @@
+{
+  "_comment": "SEED-2 verbatim gate_mode matrices. Source: JOURNEY-SEEDS-S084.md SEED-2 F4 ANCHOR. Do NOT edit without SEED-1 boundary-crossing protocol.",
+  "_source": "JOURNEY-SEEDS-S084.md SEED-2 ANCHOR + apps/csps-playground/src/app/api/journey-admin/meta-model/route.ts SEED2_MATRICES",
+  "_authored": "OPUS-22 S084",
+  "PEG-1": {
+    "THRESHOLD": { "low": "blocking", "standard": "blocking", "elevated": "blocking", "critical": "blocking" },
+    "ZF":        { "low": "silent",   "standard": "silent",   "elevated": "advisory", "critical": "blocking" },
+    "PE":        { "low": "silent",   "standard": "silent",   "elevated": "silent",   "critical": "silent"   },
+    "CIE":       { "low": "advisory", "standard": "advisory", "elevated": "advisory", "critical": "advisory" }
+  },
+  "PEG-2": {
+    "THRESHOLD": { "low": "advisory", "standard": "advisory", "elevated": "advisory", "critical": "advisory" },
+    "ZF":        { "low": "advisory", "standard": "advisory", "elevated": "blocking", "critical": "blocking" },
+    "PE":        { "low": "silent",   "standard": "silent",   "elevated": "silent",   "critical": "advisory" },
+    "CIE":       { "low": "advisory", "standard": "advisory", "elevated": "advisory", "critical": "advisory" }
+  },
+  "PEG-3": {
+    "THRESHOLD": { "low": "advisory", "standard": "advisory", "elevated": "advisory", "critical": "advisory" },
+    "ZF":        { "low": "advisory", "standard": "blocking", "elevated": "blocking", "critical": "blocking" },
+    "PE":        { "low": "advisory", "standard": "blocking", "elevated": "blocking", "critical": "blocking" },
+    "CIE":       { "low": "advisory", "standard": "advisory", "elevated": "advisory", "critical": "advisory" }
+  },
+  "PEG-4": {
+    "THRESHOLD": { "low": "advisory", "standard": "advisory", "elevated": "advisory", "critical": "advisory" },
+    "ZF":        { "low": "advisory", "standard": "blocking", "elevated": "blocking", "critical": "blocking" },
+    "PE":        { "low": "silent",   "standard": "silent",   "elevated": "silent",   "critical": "advisory" },
+    "CIE":       { "low": "advisory", "standard": "advisory", "elevated": "advisory", "critical": "advisory" }
+  },
+  "PEG-5": {
+    "THRESHOLD": { "low": "advisory", "standard": "blocking", "elevated": "blocking", "critical": "blocking" },
+    "ZF":        { "low": "advisory", "standard": "blocking", "elevated": "blocking", "critical": "blocking" },
+    "PE":        { "low": "silent",   "standard": "silent",   "elevated": "advisory", "critical": "advisory" },
+    "CIE":       { "low": "advisory", "standard": "advisory", "elevated": "advisory", "critical": "advisory" }
+  }
+}

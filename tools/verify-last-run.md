@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-20T02:44:32.749Z
-- finished_at: 2026-06-20T02:44:55.702Z
+- ran_at: 2026-06-20T02:58:50.646Z
+- finished_at: 2026-06-20T02:59:13.357Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-20T02:44:32.749Z",
-    "finished_at": "2026-06-20T02:44:55.702Z",
+    "ran_at": "2026-06-20T02:58:50.646Z",
+    "finished_at": "2026-06-20T02:59:13.357Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 78,
         "findings_total": 32
       },
@@ -221,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "checked": 174,
         "advisories": 163
       },
@@ -622,7 +622,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "issues": 17,
         "advisory": 17,
         "duplicates": 0
@@ -1067,7 +1067,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 1,
+        "warnings": 2,
         "advisory": true
       },
       {
@@ -1825,7 +1825,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files_checked": 167,
         "blocking": 0,
         "advisory": 26
@@ -1871,7 +1871,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 800,
+        "total_entries": 802,
         "sessions": 10,
         "advisory": true
       },
@@ -2158,7 +2158,7 @@
         "command": "node tools/validators/validate-push-status.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "unpushed_count": 0,
         "advisory": 0,
         "blocking": 0
@@ -2168,7 +2168,7 @@
         "command": "node tools/validators/validate-boundary-prompt-format.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.7,
+        "duration_seconds": 0.6,
         "entries_checked": 66,
         "missing_headers": 4,
         "missing_attestation": 51,

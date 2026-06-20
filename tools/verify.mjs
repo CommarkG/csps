@@ -31,7 +31,8 @@
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
-import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { writeFileSync, mkdirSync, existsSync, readFileSync as fsReadFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -46,6 +47,51 @@ const DEEP_RUN = args.includes('--deep');
 // DURABLE: .github/workflows/verify-extended.yml runs weekly verify --extended.
 // Without this, EXTENDED validators had no trigger and were inert.
 const EXTENDED_RUN = args.includes('--extended') || DEEP_RUN; // verify.mjs:45
+// PROTO-S084-HASH-CACHE: force-live run flag (push-gate, commit hooks, DONE/SEALED claims).
+// When set: ALL validators run live; cache is bypassed entirely.
+// ANTI-NOMINAL GUARD: a cached PASS must NEVER satisfy a DONE/SEALED/RATIFIED claim.
+const NO_CACHE = args.includes('--no-cache');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PROTO-S084-HASH-CACHE: Validator Input Manifest cache infrastructure
+// Standard validators with declared input_files skip re-exec when inputs unchanged.
+// HIGH-STAKES validators use always_rerun: true (external state / seal gates).
+// ─────────────────────────────────────────────────────────────────────────────
+const CACHE_PATH = resolve(__dirname, '../tools/data/validator-input-cache.json');
+
+function loadValidatorCache() {
+  try {
+    if (existsSync(CACHE_PATH)) {
+      const raw = fsReadFileSync(CACHE_PATH, 'utf8');
+      const c = JSON.parse(raw);
+      if (c && c.version === 1) return c;
+    }
+  } catch { /* corrupt cache — treat as empty */ }
+  return { version: 1, entries: {} };
+}
+
+function saveValidatorCache(cache) {
+  try {
+    mkdirSync(resolve(__dirname, '../tools/data'), { recursive: true });
+    writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2) + '\n');
+  } catch { /* non-fatal */ }
+}
+
+function computeManifestHash(inputFiles) {
+  // inputFiles: string[] — paths relative to ROOT
+  const h = createHash('sha256');
+  for (const f of [...inputFiles].sort()) {
+    const fullPath = resolve(ROOT, f);
+    try {
+      const content = fsReadFileSync(fullPath);
+      h.update(`${f}:${content.length}:`);
+      h.update(content);
+    } catch {
+      h.update(`${f}:MISSING`);
+    }
+  }
+  return h.digest('hex');
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Cycle definitions — per P-META-008 cycle_types
@@ -989,6 +1035,8 @@ const CYCLES = [
   },
   {
     // NEW S011 zero-laptop L1 — git-pushed-state: all governed-path changes pushed to remote
+    // always_rerun: git remote state changes outside file content (external-state validator)
+    always_rerun: true,
     name: 'git_pushed_state',
     command: 'node tools/validators/validate-git-pushed-state.mjs',
     parse_output: (out) => {
@@ -1287,6 +1335,8 @@ const CYCLES = [
   },
   {
     // S054: Improvement register T2 — positive pipeline CEC enforcement
+    // PROTO-S084-HASH-CACHE: cached when improvement-register.yaml unchanged
+    input_files: ['tools/data/improvement-register.yaml', 'tools/validators/validate-improvement-register.mjs'],
     name: 'improvement_register',
     command: 'node tools/validators/validate-improvement-register.mjs',
     parse_output: (out) => {
@@ -1360,6 +1410,8 @@ const CYCLES = [
     // S074 H1: HARDWIRE completeness — BLOCKING if any hardwire-done row has empty block_test_output.
     // Ensures HARDWIRE-DONE claims are supported by pasted BLOCKED output (not inferred). STANDARD tier.
     // Source: PROTO-S074-HARDWIRE-BUILD BATCH 2. Tools: hardwire-register.yaml.
+    // PROTO-S084-HASH-CACHE: cached when hardwire-register.yaml unchanged
+    input_files: ['tools/data/hardwire-register.yaml', 'tools/validators/validate-hardwire-completeness.mjs'],
     name: 'hardwire_completeness',
     command: 'node tools/validators/validate-hardwire-completeness.mjs',
     run_tier: 'STANDARD',
@@ -1427,6 +1479,8 @@ const CYCLES = [
     // S074 H4: Satisfaction-point-coverage — BLOCKING if any registry entry has empty verify_mechanically.
     // Kills D7 (action-bias): "content written" ≠ done. STANDARD tier.
     // Source: PROTO-S074-HARDWIRE BATCH 1. Tools: satisfaction-point-registry.yaml.
+    // PROTO-S084-HASH-CACHE: cached when satisfaction-point-registry.yaml unchanged
+    input_files: ['tools/data/satisfaction-point-registry.yaml', 'tools/validators/validate-satisfaction-point-coverage.mjs'],
     name: 'satisfaction_point_coverage',
     command: 'node tools/validators/validate-satisfaction-point-coverage.mjs',
     run_tier: 'STANDARD',
@@ -1874,6 +1928,8 @@ const CYCLES = [
     // S053: THRESHOLD R1.4.1 T2 — advisory report on intake log classification
     // Reads tools/data/threshold-intake-log.yaml. Reports total entries + type distribution.
     // Advisory always. Grows as governor prompts accumulate per-session.
+    // PROTO-S084-HASH-CACHE: cached when threshold-intake-log.yaml unchanged
+    input_files: ['tools/data/threshold-intake-log.yaml', 'tools/validators/validate-threshold-intake.mjs'],
     name: 'threshold_intake',
     command: 'node tools/validators/validate-threshold-intake.mjs',
     parse_output: (out) => {
@@ -2170,6 +2226,8 @@ const CYCLES = [
     // S072 Governor Turn 12 — vlt-S073-push-mandatory-discipline: surfaces unpushed commits
     // Advisory always (exits 0). Thresholds: >5 = warn, >10 = strong-warn (samples — tunable per P-META-028).
     // T1+T3 queued vlt-S073-push-mandatory-discipline. PREVENTION: GOVERNANCE-WORK-NOT-PUSHED-TO-ORIGIN
+    // always_rerun: git remote state changes outside file content (external-state validator)
+    always_rerun: true,
     run_tier: 'CRITICAL', // push discipline gate — every milestone must be pushed
     name: 'push_status',
     command: 'node tools/validators/validate-push-status.mjs',
@@ -2190,6 +2248,19 @@ const CYCLES = [
     parse_output: (out) => {
       const m = out.match(/entries_checked=(\d+)\s+missing_headers=(\d+)\s+missing_attestation=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
       return m ? { entries_checked: Number(m[1]), missing_headers: Number(m[2]), missing_attestation: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
+    // PROTO-S084-HASH-CACHE block-test: proves anti-nominal DONE guard is structurally wired.
+    // Checks: cache structure valid + always_rerun validators not cached + --no-cache in push-gate hook.
+    // BLOCKING if any HIGH-STAKES validator found in cache (would mean guard is broken).
+    name: 'hash_cache',
+    command: 'node tools/validators/validate-hash-cache.mjs',
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const e = out.match(/cache_entries=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, cache_entries: e ? Number(e[1]) : 0 };
     },
   },
   {
@@ -2241,6 +2312,11 @@ async function main() {
   const results = [];
   let anyFailed = false;
 
+  // PROTO-S084-HASH-CACHE: load persisted input-manifest cache
+  const validatorCache = loadValidatorCache();
+  let cacheHits = 0;
+  let cacheMisses = 0;
+
   for (const cycle of CYCLES) {
     const entry = { name: cycle.name, command: cycle.command };
     if (cycle.skip) {
@@ -2256,6 +2332,27 @@ async function main() {
       results.push(entry);
       continue;
     }
+
+    // PROTO-S084-HASH-CACHE: cache check for STANDARD validators with declared input_files
+    // GUARD: always_rerun=true OR --no-cache → force live (external state / push-gate / DONE claims)
+    const canCache = !cycle.always_rerun && !NO_CACHE && Array.isArray(cycle.input_files);
+    if (canCache) {
+      const hash = computeManifestHash(cycle.input_files);
+      const cached = validatorCache.entries[cycle.name];
+      if (cached && cached.input_hash === hash && cached.exit_code === 0) {
+        // Cache HIT: skip execution, carry previous PASS
+        entry.status = 'CACHED';
+        entry.exit_code = 0;
+        entry.cached_at = cached.cached_at;
+        entry.input_hash_prefix = hash.slice(0, 8);
+        Object.assign(entry, cached.parsed || {});
+        results.push(entry);
+        cacheHits = cacheHits + 1;
+        continue;
+      }
+      cacheMisses = cacheMisses + 1;
+    }
+
     process.stderr.write(`[verify] running: ${cycle.command}\n`);
     const r = await runCommand(cycle.command, ROOT);
     const parsed = cycle.parse_output(r.stdout + '\n' + r.stderr) ?? {};
@@ -2270,8 +2367,24 @@ async function main() {
       const isAdvisoryExit = cycle.advisory_exit_ok === true || parsed.advisory_window === true;
       if (!isAdvisoryExit) anyFailed = true;
     }
+
+    // PROTO-S084-HASH-CACHE: update cache on PASS for cacheable validators
+    if (r.code === 0 && canCache) {
+      const hash = computeManifestHash(cycle.input_files);
+      validatorCache.entries[cycle.name] = {
+        input_hash: hash,
+        exit_code: 0,
+        parsed,
+        cached_at: new Date().toISOString(),
+      };
+    }
+
     results.push(entry);
   }
+
+  // Persist cache updates (no-op if nothing changed)
+  saveValidatorCache(validatorCache);
+  process.stderr.write(`[verify] hash-cache: hits=${cacheHits} misses=${cacheMisses} no_cache_flag=${NO_CACHE}\n`);
 
   const exit_code = anyFailed ? 1 : 0;
   const finishedAt = new Date().toISOString();

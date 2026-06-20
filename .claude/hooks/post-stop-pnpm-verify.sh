@@ -37,7 +37,7 @@ try {
 
 # ─── Run pnpm verify ───────────────────────────────────────────────────────
 VERIFY_EXIT=0
-VERIFY_OUTPUT=$(node "${REPO_ROOT}/tools/verify.mjs" --skip-install 2>&1) || VERIFY_EXIT=$?
+VERIFY_OUTPUT=$(node "${REPO_ROOT}/tools/verify.mjs" --skip-install --no-cache 2>&1) || VERIFY_EXIT=$?
 
 PASS_COUNT=$(echo "$VERIFY_OUTPUT" | grep -c '"status": "PASS"' || echo "0")
 FAIL_COUNT=$(echo "$VERIFY_OUTPUT" | grep -c '"status": "FAIL"' || echo "0")

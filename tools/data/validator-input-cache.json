@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "entries": {
+    "improvement_register": {
+      "input_hash": "d07d80de813f8d4e93e9b93c90774d2302d44d44206c15e4d275649efea4abc1",
+      "exit_code": 0,
+      "parsed": {
+        "entries": 25,
+        "cec_needed": 1,
+        "blocking": 0
+      },
+      "cached_at": "2026-06-20T03:18:15.383Z"
+    },
+    "hardwire_completeness": {
+      "input_hash": "26b12605fb61b46f824ae684b2cc899615c14f1f5b4a1236e7dc110e9fca179a",
+      "exit_code": 0,
+      "parsed": {
+        "rows": 9,
+        "blocking": 0,
+        "advisory": 0
+      },
+      "cached_at": "2026-06-20T03:18:15.776Z"
+    },
+    "satisfaction_point_coverage": {
+      "input_hash": "43de3be9b3ffc33f9e18b3d815b2a17caf113f8df35a7e584a2f3ee1605f9e07",
+      "exit_code": 0,
+      "parsed": {
+        "entries": 13,
+        "blocking": 0,
+        "advisory": 0
+      },
+      "cached_at": "2026-06-20T03:18:16.142Z"
+    },
+    "threshold_intake": {
+      "input_hash": "822d283d28400ed844d10fd1144dc6af7f0c5a445df9856a91d606338906588b",
+      "exit_code": 0,
+      "parsed": {
+        "total_entries": 804,
+        "sessions": 10,
+        "advisory": true
+      },
+      "cached_at": "2026-06-20T03:18:18.641Z"
+    }
+  }
+}

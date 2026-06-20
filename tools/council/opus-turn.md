@@ -14904,3 +14904,53 @@ Phase 1: disposition table covering all 199, proposed active ≤140, presented (
 ≥2 IZFC cycles, independent angles — (a) re-tally the proposed table: does active actually compute ≤140 under the formula? (b) scan retire-candidates: is each truly redundant, or load-bearing? Count is measurement. Paste THIS-SESSION evidence; memory ≠ proof.
 
 *PROTO-S082-A2 — Opus #20, advisor mode — 2026-06-13*
+
+---
+
+# PROTO-S084-TEG — Token-Efficiency Guardian + Consult-Sonnet default (Opus #22 → Sonnet)
+
+**FROM:** Opus #22 (director) · **TO:** Sonnet (builder) · **CLASS:** C2 system-level (Governor-directed) · **SPINE:** AI L2 + VALD
+
+## 0. DISCOVERY (honest root cause — demonstrated)
+`B_TOKEN_BUDGET.md` ALREADY EXISTS (8 rules, S018) but `enforcement_trio` is **T3-only**: `t1: none`, `t2: none`
+(`exempt_reason: "no-hook and no-validator explicitly declared"`). A token-budget rule with no hook + no validator =
+advisory = depends on the AI remembering = EXISTS≠ACTIVE. THAT is why waste was never caught. We EXTEND
+B_TOKEN_BUDGET (R9+R10) and PROMOTE its trio T3-only → T1+T2+T3 (Governor's "hardwire from 3 directions"). Do NOT fork.
+
+## 1. R9 — TOKEN-EFFICIENCY GUARDIAN (watchdog on every NEW creation; 2 audiences)
+Every NEW always-on element MUST declare `load_mode: eager | on-demand` + a per-turn token estimate. **Default = on-demand.**
+`eager` (loads every turn) requires a one-line justification ("load-bearing every turn because …"). Scope: `.claude/hooks/*` ·
+UserPromptSubmit/SessionStart injections · always-include context · MCP adds · any file read every turn.
+**Two audiences:** INNER-PLATFORM (per-turn council/dev cost) + EXTERNAL-USER (per-user-action cost in products: LLM
+calls/request, query+payload size). Lazy-by-default: nothing loads every turn unless load-bearing every turn.
+
+## 2. R10 — CONSULT-SONNET-ON-SYSTEM-ISSUES (default)
+SYSTEM-LEVEL issues (architecture · efficiency · cross-cutting · governance-structural · "deal-breaker") → consulting
+Sonnet (council) is the DEFAULT. Opus proceeds solo only with explicit `solo-justified: <reason>`.
+
+## 3. THE 3-DIRECTION HARDWIRE (Sonnet BUILDS — these are `none` today)
+- **T1 hook `pre-tool-use-token-guardian.sh`** (BLOCKING): fires on Write/Edit to an always-on surface; requires a
+  `load_mode:` declaration; blocks an unjustified `eager` add. Sibling: detect system-level-issue signals → inject
+  "R10: consult Sonnet is the DEFAULT."
+- **T2 validator `validate-token-efficiency.mjs`** (EXTENDED): scans ALL always-on surfaces; flags `eager` w/o
+  justification; tracks per-turn budget + REGRESSION-flags any new eager load vs last green; emits the 2-audience
+  report. Sibling `validate-consult-sonnet-on-system-issues` (system decision needs a council record).
+- **T3 DNA/inheritance:** add `load_mode` frontmatter field (enum `eager|on-demand`, default `on-demand`) to the
+  artifact schema; AGENTS.md hard-NO; extend `principles.yaml#P-META-009`; session-open reminder. Edit the SOURCE
+  `behavioral-contracts.md` (R9+R10 + flip trio t1/t2 paths) then regenerate via `split-behavioral-contracts.mjs`.
+
+## 4. CONSOLIDATION (expand + consolidate; no fork)
+EXTEND B_TOKEN_BUDGET (R1-R8 → +R9+R10; already extends P-META-009 CCA) · COMPOSE with `balance-expert` (complexity /
+"running too often") · the Guardian is itself LAZY (validator at verify-time, hook only on always-on-surface writes —
+it must not become the cost it polices) · folds PARK-039 (Haiku/MCP block) + PARK-040 (efficiency audit) as first inputs.
+
+## 5. DONE
+validate-token-efficiency in `pnpm verify` (0 blocking) · T1 blocks an unjustified eager add (block-test) ·
+B_TOKEN_BUDGET trio shows t1+t2 ACTIVE (not `none`) · `load_mode` inheritable + in DNA · 2-audience report shows real
+numbers · verify=0.
+
+## 6. ZF GATE (≥2 IZFC cycles, independent angles; THIS-SESSION evidence)
+(a) does the Guardian itself add per-turn cost? (must be verify-time + write-triggered only). (b) is every always-on
+surface covered, or did one slip (e.g. the deferred-tool list)? (c) are the 2-audience numbers [MEASURED] via /cost or estimated? Label them.
+
+*PROTO-S084-TEG — Opus #22 — 2026-06-20*

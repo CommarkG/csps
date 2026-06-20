@@ -638,7 +638,16 @@ spines:
         role: "P3 no-lost-threads register — non-selected options registered at PEG-3 per C4"
         status: ACTIVE
       - file: apps/csps-playground/src/app/platform/journey-admin/page.tsx
-        role: "Journey admin dashboard — trunk-branch pattern first live instance (P-ARCH-TRUNK-BRANCH-PATTERN)"
+        role: "Journey admin dashboard — C1-C5/P1-P5 trunk + MetaModelPanel + F3 fields (B2)"
+        status: ACTIVE
+      - file: apps/csps-playground/src/app/api/journey-admin/meta-model/route.ts
+        role: "GET meta-model — PhaseDef+GateDef+VariantDef; SEED-2/6 static fallback pre-db-push"
+        status: ACTIVE
+      - file: apps/csps-playground/src/app/api/journey-admin/seed-meta-model/route.ts
+        role: "POST seed-meta-model — upserts SEED-2 PhaseDef/GateDef + SEED-6 VariantDef; idempotent"
+        status: ACTIVE
+      - file: tools/validators/validate-gate-mode-matrix.mjs
+        role: "EXTENDED validator — GateDef.gateModeMatrix conforms to SEED-2 closed enums + hard floors (B2)"
         status: ACTIVE
       - file: tools/validators/validate-journey-gate.mjs
         role: "PEG enforcement validator — each gate refuses missing-evidence advance; block-test suite (B3)"

@@ -560,7 +560,7 @@ spines:
           failure_mode: "Path chosen by recency/authority, not priority; phases close leaving no learning signal."
         - id: C5
           name: verify-against-acceptance-criteria
-          statement: "Completion = verified against DECLARED acceptance criteria + a confidence level + a monitoring/rollback plan. SCOPE INVARIANT: a journey DEFINITION is DefinitionScope: platform_def | tenant_def ONLY; tenant_def LOCKED OUT in MVP."
+          statement: "Completion = verified against DECLARED acceptance criteria + a confidence level + a monitoring/rollback plan. 'Verify-completely' is false confidence and is BANNED as a claim. SCOPE INVARIANT: a journey DEFINITION is DefinitionScope: platform_def | tenant_def ONLY; tenant_def LOCKED OUT in MVP (no tenant-authored variants). Expansion requires §SEED-1 EXPANSION."
           failure_mode: "Unbounded 'fully verified' claim; OR ad-hoc tenant variants with no inheritance rule."
       phases:
         - id: P1

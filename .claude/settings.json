@@ -36,6 +36,11 @@
             "type": "command",
             "command": ".claude/hooks/session-open.sh",
             "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/verify-hooks-functional.sh",
+            "timeout": 30
           }
         ]
       }
@@ -50,10 +55,6 @@
           {
             "type": "command",
             "command": ".claude/hooks/user-prompt-submit-governor-prompts.sh"
-          },
-          {
-            "type": "command",
-            "command": ".claude/hooks/verify-hooks-functional.sh"
           },
           {
             "type": "command",
@@ -219,7 +220,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -228,7 +229,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -241,7 +242,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -250,7 +251,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Write",
         "hooks": [
           {
             "type": "command",
@@ -259,7 +260,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -268,7 +269,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Write",
         "hooks": [
           {
             "type": "command",
@@ -277,7 +278,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -286,7 +287,7 @@
         ]
       },
       {
-        "matcher": "",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -308,10 +309,6 @@
       {
         "matcher": "Write|Edit",
         "hooks": [
-          {
-            "type": "command",
-            "command": ".claude/hooks/post-tool-use-validate-before-assume.sh"
-          },
           {
             "type": "command",
             "command": ".claude/hooks/post-tool-use-cec-trigger.sh"

@@ -77,7 +77,41 @@ tab/session touched, strengthened, or put at risk, and any moat-registry update 
 **Why:** moats are the platform's durable advantages; an unreviewed moat is an unguarded one. This makes moat
 stewardship a boundary obligation (accountability T5 handoff-receipt), inheritable by every tab.
 
+## SEED-C — DUAL-COVERAGE + Context-Independent Audit standard (the durable layer)
+
+**Top-expert definition (the principle):** every governance obligation that can drift is covered by TWO layers —
+a **handoff step** (SOFT: context-dependent, in-the-moment, depends on a tab remembering — convenient but shaky)
+AND a **recurring audit** (HARD: context-INDEPENDENT, mechanical, runs whether or not anyone remembers — the
+guarantee). The handoff is never the guarantee; the audit is. This generalizes PARK-S084-037 (context-independence)
+from 3-scopes to ALL governance, and is the precise meaning of "active" (vs EXISTS≠ACTIVE / AP-001).
+
+**CONTEXT-INDEPENDENCE TEST — an audit qualifies as the hard layer iff ALL THREE hold:**
+```
+1. SOURCE: reads ONLY persistent artifacts (files / registers / git / db). ZERO dependence on conversation,
+           temp memory, session context, or a tab choosing to do it.
+2. CADENCE: fires on a schedule (cron / session-open-due / verify-gate) — NOT on someone remembering to run it.
+3. SINK:    writes findings to a PERSISTENT register surfaced at session-close — not only into chat.
+```
+An "audit" that fails any of the three is still SOFT (a dressed-up reminder) and does NOT count as coverage.
+
+**DUAL-COVERAGE rule:** for every drift-prone obligation (moats · parks/obligations · register-refs · file-length ·
+`load_mode` · principle-registration · the journey invariants · …) there MUST exist a context-independent recurring
+audit. A handoff step with no audit twin = a shaky obligation.
+
+**BUILD HANDOFF (Sonnet):**
+- Add `context_independent: true|false` + the 3-part proof (source/cadence/sink) as a REQUIRED field on every audit
+  row in `audit-runner.md`. Any `false` = surfaced as a coverage hole.
+- Build `validate-dual-coverage.mjs` (EXTENDED): walk the drift-prone obligations / handoff steps; for each, confirm
+  a recurring-audit twin EXISTS and PASSES the context-independence test. Missing twin → ADVISORY (BLOCKING at K=2).
+- ACTIVATE the recurring audit-runner as the cadence engine — it is the execution of the entire hard layer.
+- Apply to the seeds in THIS file: SEED-A (register-ref-integrity) and SEED-B (moat-review) each get their recurring-
+  audit twin so they are not handoff-only.
+
+**Why permanent:** this is the standard that makes "we hardwired it" TRUE — coverage that survives every tab, with no
+dependence on memory. It is the structural answer to "handoffs are good but shaky."
+
 ## ZF gate (this seed)
-- Cycle 1: both seeds have Rule + canonical manifest/step + BUILD HANDOFF + why-permanent. No floating ref.
-- Cycle 2 (fresh angle — self-application): SEED-A's own manifest lists every register THIS doc cites
-  (PARK/PROTO/M/VLT/imp/gap/SEED) — so the validator that builds from it would validate this very file. Coherent.
+- Cycle 1: SEED-A/B/C each have Rule + criteria/manifest/step + BUILD HANDOFF + why-permanent. No floating ref.
+- Cycle 2 (fresh angle — self-application): SEED-A's manifest lists every register THIS doc cites; SEED-C's
+  context-independence test, applied to SEED-A/B's own validators, requires they read persistent state + run on
+  cadence + write to a register — which the BUILD HANDOFFs specify. Coherent; the doc passes its own standard.

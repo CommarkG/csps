@@ -10,12 +10,23 @@ tools: Read, Grep, Glob, Bash
 model: haiku
 ---
 
-# Haiku Scout — bounded platform sub-agent (overflow-proof by construction)
+# Haiku Scout — bounded platform sub-agent (CORRECT SPEC; BLOCKED in this harness)
 
-> **Why this is bounded:** the `tools:` allowlist above is Read/Grep/Glob/Bash ONLY. By omission it
-> EXCLUDES the heavy global MCP tool surface (Canva/Cloudflare/Gmail/WordPress, ~200k tokens) that makes
-> a standalone Haiku tab overflow. Spawned this way, Haiku gets a tiny context and runs. This is rung-1 of
-> the Independence Ladder (Model-PE dim 3) made executable. Doctrine: HAIKU-OPTIMAL-USAGE-DRAFT-S084.md +
+> ## ⛔ NOT ACTIVATABLE IN THIS ENVIRONMENT — proven S084 (do not claim it runs)
+> Two activation tests, both failed:
+> 1. `Agent(subagent_type: "haiku-scout")` → **"agent type not found"** — this VS Code Claude Code harness
+>    does NOT load `.claude/agents/` custom definitions; available agents are a fixed built-in set.
+> 2. `Agent(subagent_type: "Explore", model: "haiku")` → **overflow ~203,208 tokens** (conversation only
+>    ~2,156; the rest is the global MCP tool surface). Even the narrowest built-in agent inherits ~200k of
+>    MCP tool definitions, and Haiku lacks Tool Search (lazy MCP loading) that lets Opus/Sonnet cope.
+> **ROOT CAUSE:** the heavy MCP servers (Otosan/Canva/Cloudflare/Gmail) are loaded GLOBALLY (the user's
+> Claude Code config), injected into every tab AND every sub-agent. CSPS cannot strip them from inside the repo.
+> **UNBLOCK (PARK-S084-039):** scope/disable those global MCP servers for CSPS sessions, OR wait for Haiku to
+> gain Tool Search. UNTIL THEN: cheap mechanical scans run INLINE on Opus/Sonnet (Independence Ladder rung-1
+> is not realizable here). This file is kept as the CORRECT spec for when the unblock lands — NOT as a live tool.
+
+> **Why this is bounded (the intended design, once activatable):** the `tools:` allowlist is Read/Grep/Glob/Bash
+> ONLY — by omission it excludes the MCP surface. Doctrine: HAIKU-OPTIMAL-USAGE-DRAFT-S084.md +
 > tools/templates/haiku-spawn-template.md (return schema) + tools/config/haiku-pattern-library.yaml.
 
 CONTEXT-BUDGET: spawn-warranted | tools-restricted | pointers-only

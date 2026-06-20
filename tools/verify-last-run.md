@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-20T02:34:01.604Z
-- finished_at: 2026-06-20T02:34:24.928Z
+- ran_at: 2026-06-20T02:44:32.749Z
+- finished_at: 2026-06-20T02:44:55.702Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-20T02:34:01.604Z",
-    "finished_at": "2026-06-20T02:34:24.928Z",
+    "ran_at": "2026-06-20T02:44:32.749Z",
+    "finished_at": "2026-06-20T02:44:55.702Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -221,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "checked": 174,
         "advisories": 163
       },
@@ -421,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 2
       },
@@ -622,7 +622,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "issues": 17,
         "advisory": 17,
         "duplicates": 0
@@ -1598,8 +1598,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 427,
-        "advisory": 427,
+        "findings": 429,
+        "advisory": 429,
         "blocking": 0
       },
       {
@@ -1825,7 +1825,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 167,
         "blocking": 0,
         "advisory": 26
@@ -1871,7 +1871,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 799,
+        "total_entries": 800,
         "sessions": 10,
         "advisory": true
       },
@@ -2076,10 +2076,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocks_checked": 0,
-        "proto_citations": 182,
+        "proto_citations": 183,
         "valid": 6,
-        "missing": 176,
-        "advisory": 176,
+        "missing": 177,
+        "advisory": 177,
         "blocking": 0
       },
       {
@@ -2158,7 +2158,7 @@
         "command": "node tools/validators/validate-push-status.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "unpushed_count": 0,
         "advisory": 0,
         "blocking": 0
@@ -2168,7 +2168,7 @@
         "command": "node tools/validators/validate-boundary-prompt-format.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 0.7,
         "entries_checked": 66,
         "missing_headers": 4,
         "missing_attestation": 51,

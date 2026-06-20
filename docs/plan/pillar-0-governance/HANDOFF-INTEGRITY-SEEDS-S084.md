@@ -135,6 +135,10 @@ WHAT-NOT-TO-DO · FIRST ACTIONS · KEY TECH FACTS.
 return-format) but RADICALLY compressed — it CANNOT carry the full block (overflow). Haiku gets: WHO-YOU-ARE (1 line) +
 SCAN→DETECT→RETURN JSON contract + CONTEXT-BUDGET line + its measured envelope (reliable/unreliable) + the one task.
 Pointers, never payloads. This is the role nuance that matters most — same standard, scaled to the model.
+**Haiku's RETURN must carry the comm-core wrapper (Governor S086 — it was omitting it):** every Haiku return is
+prefixed WHO (`Haiku Scout → <requester>`) + WARRANT (`[MEASURED] scanned <file>, <N> entries`) + ACTION (the JSON +
+`escalate set-ops to Sonnet`). Same WHO/WARRANT/ACTION as the team — compressed, never skipped. Enforce in the
+haiku-spawn-template + haiku-scout agent + the per-role card (PARK-041).
 
 **BUILD HANDOFF (Sonnet, S086 with PARK-041):** make the backbone the canonical slim-handoff template; generate the
 role instance by `session_role` (opus-startup / sonnet-startup / haiku-startup-minimal); extend

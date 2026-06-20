@@ -31,7 +31,7 @@
  * justification: EXTENDED corpus scan, not per-turn
  */
 
-import { readFileSync, existsSync, readdirSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { resolve, join, relative, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -156,9 +156,18 @@ const EXCLUDE_PATTERNS = [
 ];
 
 let advisory = 0;
-const blocking = 0; // Phase 1: always 0 (see Phase 2 note in scan loop)
+let blocking = 0; // Phase 2 (S085 Opus #24-D): BLOCKING for current-session HANDOFF ghost-refs
 let files_checked = 0;
 const findings = [];
+
+// Phase 2: current-session = HANDOFF file modified within last 24h (proxy for this session)
+// Historical HANDOFFs (S051-S084) stay ADVISORY — PROTOs rolled off opus-turn.md legitimately.
+const NOW = Date.now();
+const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
+function isCurrentSession(filePath) {
+  try { return (NOW - statSync(filePath).mtimeMs) < TWENTY_FOUR_HOURS_MS; }
+  catch { return false; }
+}
 
 for (const scanDir of SCAN_DIRS) {
   const fullDir = join(ROOT, scanDir);
@@ -167,7 +176,8 @@ for (const scanDir of SCAN_DIRS) {
     if (EXCLUDE_PATTERNS.some(ex => fileName.includes(ex))) continue;
     const relPath = relative(ROOT, filePath);
     const isHandoff = /HANDOFF-S\d{3}/.test(fileName);
-    
+    const isCurrentHandoff = isHandoff && isCurrentSession(filePath);
+
     let content;
     try { content = readFileSync(filePath, 'utf8'); } catch { continue; }
     files_checked++;
@@ -178,13 +188,13 @@ for (const scanDir of SCAN_DIRS) {
       const refs = [...new Set([...content.matchAll(pattern.regex)].map(m => m[0]))];
       for (const ref of refs) {
         if (!pattern.known.has(ref)) {
-          // Phase 1: ADVISORY-only. Blocking gate is Phase 2 after baseline ghost-ref sweep.
-          // Evidence from first run: 63 "ghost" PROTO refs in old HANDOFFs (S051-S062) are
-          // archival — PROTOs rolled off opus-turn.md. Phase 2 will scope blocking to
-          // current-session HANDOFFs only (S085+), not historical archive.
-          const severity = 'ADVISORY';
+          // Phase 2 (S085 Opus #24-D): BLOCKING for current-session HANDOFF ghost-refs.
+          // Historical HANDOFFs stay ADVISORY (PROTOs rolled off opus-turn.md after S062).
+          // S067 ladder: first current-session incident = BLOCKING (not K=2 graduated).
+          const severity = isCurrentHandoff ? 'BLOCKING' : 'ADVISORY';
           findings.push({ severity, ref, type: pattern.name, file: relPath, register: pattern.register });
-          advisory++;
+          if (isCurrentHandoff) blocking++;
+          else advisory++;
         }
       }
     }

@@ -77,28 +77,32 @@ fi
 # ─── PARK-040 AUTO-CAPTURE ARM (S085) ────────────────────────────────────────
 # Captures patterns at post-stop into pending-auto-parks.yaml (CAPTURE ARM ONLY).
 # Governor reviews + promotes. Non-blocking.
+# ALIGN (Opus #24-A): each stub carries WHO+WARRANT+ACTION per comm-core trunk.
 {
   _R="${CSPS_REPO_ROOT:-.}"
   _PF="${_R}/tools/data/pending-auto-parks.yaml"
   _T="${CLAUDE_TRANSCRIPT_PATH:-}"
   _S="${CLAUDE_SESSION_ID:-unknown}"
   _TS="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-  _TRG=false; _PAT="general"; _PE=60; _URG="medium"
+  _TRG=false; _PAT="general"; _PE=60; _URG="medium"; _ML=""
   if [ -f "$_T" ]; then
     if grep -qiE "(K=2|K=3|structural.fix|recurrence|always_rerun)" "$_T" 2>/dev/null; then
       _TRG=true; _PAT="structural_pattern"; _PE=75; _URG="high"
+      _ML=$(grep -iE "(K=2|K=3|structural.fix|recurrence|always_rerun)" "$_T" 2>/dev/null | head -1 | tr -d '"' | cut -c1-80 || echo "")
     elif grep -qiE "(ghost.ref|context.independent|handoff.only)" "$_T" 2>/dev/null; then
       _TRG=true; _PAT="governance_gap"; _PE=65; _URG="medium"
+      _ML=$(grep -iE "(ghost.ref|context.independent|handoff.only)" "$_T" 2>/dev/null | head -1 | tr -d '"' | cut -c1-80 || echo "")
     elif grep -qiE "(first real win|dogfood|dual.coverage)" "$_T" 2>/dev/null; then
       _TRG=true; _PAT="insight"; _PE=55; _URG="low"
+      _ML=$(grep -iE "(first real win|dogfood|dual.coverage)" "$_T" 2>/dev/null | head -1 | tr -d '"' | cut -c1-80 || echo "")
     fi
   fi
   if [ "$_TRG" = "true" ]; then
     _EX=$(grep -c "PARK-.*-AUTO" "$_PF" 2>/dev/null || echo "0")
     _N=$(printf "%03d" $((_EX + 1)))
     [ -f "$_PF" ] || printf '# pending-auto-parks.yaml\n# PARK-040 auto-capture S085.\nentries:\n' > "$_PF" 2>/dev/null
-    printf '  - id: "PARK-%s-AUTO-%s"\n    session: %s\n    timestamp: "%s"\n    pattern_type: %s\n    auto_pe_score: %s\n    urgency: %s\n    content: "[Auto: %s]"\n    status: pending_review\n' \
-      "$_S" "$_N" "$_S" "$_TS" "$_PAT" "$_PE" "$_URG" "$_PAT" >> "$_PF" 2>/dev/null || true
+    printf '  - id: "PARK-%s-AUTO-%s"\n    session: %s\n    timestamp: "%s"\n    pattern_type: %s\n    auto_pe_score: %s\n    urgency: %s\n    who: "post-stop-learning-loop.sh (tab-agnostic)"\n    warrant: "[MEASURED] pattern=%s | trigger: %s"\n    action: "Governor review + promote to PARK register"\n    content: "[Auto: %s]"\n    status: pending_review\n' \
+      "$_S" "$_N" "$_S" "$_TS" "$_PAT" "$_PE" "$_URG" "$_PAT" "$_ML" "$_PAT" >> "$_PF" 2>/dev/null || true
   fi
 } 2>/dev/null || true
 

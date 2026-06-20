@@ -143,16 +143,27 @@ for hook in "${DECLARED_HOOKS[@]}"; do
 
   if [[ -f "${hook_path}" ]]; then
     present=$((present + 1))
-    git_mode=$(git ls-files --format='%(objectmode)' -- "${hook_path}" 2>/dev/null || echo "")
-    if [[ -x "${hook_path}" ]] || [[ "${git_mode}" == "100755" ]]; then
-      hook_lines+=("  ✓ ${hook}$($is_critical && echo ' [CRITICAL]' || echo '')")
-    else
+    # Syntax check — HARDWIRE S085 (Opus #24-A): bash -n prevents corrupt hooks shipping green
+    if ! bash -n "${hook_path}" 2>/dev/null; then
       not_executable=$((not_executable + 1))
       if $is_critical; then
         critical_failures=$((critical_failures + 1))
-        hook_lines+=("  ✗ ${hook} [CRITICAL — not executable: chmod +x required]")
+        hook_lines+=("  ✗ ${hook} [CRITICAL — SYNTAX ERROR: bash -n failed — hook crashes at runtime]")
       else
-        hook_lines+=("  ⚠ ${hook} (not executable — advisory)")
+        hook_lines+=("  ⚠ ${hook} [SYNTAX ERROR: bash -n failed — advisory]")
+      fi
+    else
+      git_mode=$(git ls-files --format='%(objectmode)' -- "${hook_path}" 2>/dev/null || echo "")
+      if [[ -x "${hook_path}" ]] || [[ "${git_mode}" == "100755" ]]; then
+        hook_lines+=("  ✓ ${hook}$($is_critical && echo ' [CRITICAL]' || echo '')")
+      else
+        not_executable=$((not_executable + 1))
+        if $is_critical; then
+          critical_failures=$((critical_failures + 1))
+          hook_lines+=("  ✗ ${hook} [CRITICAL — not executable: chmod +x required]")
+        else
+          hook_lines+=("  ⚠ ${hook} (not executable — advisory)")
+        fi
       fi
     fi
   else

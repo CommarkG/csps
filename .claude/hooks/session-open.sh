@@ -158,6 +158,23 @@ CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.
 
 
 
+
+# ─── AUTO-PARK REVIEW CADENCE (Opus #24-E, S085) ────────────────────────────
+# Surface pending-auto-parks.yaml at session-open when stubs > 5.
+# Governor reviews + promotes or dismisses each stub before count grows stale.
+{
+  _APF="${REPO_ROOT}/tools/data/pending-auto-parks.yaml"
+  if [ -f "$_APF" ]; then
+    _STUB_COUNT=$(grep -c "status: pending_review" "$_APF" 2>/dev/null || echo "0")
+    if [ "$_STUB_COUNT" -gt 5 ]; then
+      printf '\n[PARK-040-REVIEW] %s pending auto-park stubs await Governor review.\n' "$_STUB_COUNT" >&2
+      printf '[PARK-040-REVIEW] File: tools/data/pending-auto-parks.yaml\n' >&2
+      printf '[PARK-040-REVIEW] Action: Governor reviews each stub → promote to PARK register or dismiss.\n' >&2
+      printf '[PARK-040-REVIEW] Command: cat tools/data/pending-auto-parks.yaml\n' >&2
+    fi
+  fi
+} 2>/dev/null || true
+
 # ─── SEED-C CADENCE AUDITS (context-independent session-open triggers) ─────────
 # Runs EXTENDED validators in background at every session-open (no human required).
 # SEED-C context-independence: SOURCE=persistent files | CADENCE=session-open | SINK=last-run JSON

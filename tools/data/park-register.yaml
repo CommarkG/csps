@@ -415,8 +415,8 @@ entries:
   - id: "PARK-S084-009"
     lane: obligation
     content: "P0 SECURITY — DB password surfaced into a transcript (prior session) via a hook reading .env.local. Rotation scheduled cloud-agent 2026-06-17 but OPEN. PL6 structural fix: NO hook/auto-context-loader may READ .env files; only Sonnet on explicit Governor direction with a LEAK-WARNING."
-    retrieve_when: "IMMEDIATE — confirm/execute password rotation (consider rotating NOW, 2-day exposure window); build PL6 leak-symmetry hook next session."
-    status: OPEN-P0-security
+    retrieve_when: "DEFERRED 1 WEEK by Governor 2026-06-20 → revisit 2026-06-27. Then rotate password + db push the B2 schema. Exposure is in Governor's own transcript (dev/playground DB), so a 1-week defer is Governor-accepted risk. B3 validators do NOT need the db push and proceed now; only the B2 schema migration waits."
+    status: DEFERRED-to-2026-06-27
     never_drop: true
     decision_back_ref: "S084 deploy harvest Issue 7 + PL6; leaked-secrets-rotation discipline"
     context_preserved: >

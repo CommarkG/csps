@@ -1,3 +1,20 @@
+---
+id: csps.handoff.HANDOFF-S085-to-S086
+name: HANDOFF-S085-to-S086
+description: "S085→S086 handoff. Opus#24 rulings A-E sealed (ALIGN+HARDWIRE+INHERIT+Phase2+CadenceE). Journey-wiring expert review absorbed (PARK-043). 5 B5/B6 hardwires queued (post db-push 2026-06-27). verify=0 HEAD c57636f8."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+authored_by: Sonnet S085
+authored_at: "2026-06-20"
+core_spine: GVRN
+diataxis_type: reference
+schema_anchor: vault_files
+impl_status: audit-1-complete
+precedent_checked: true
+---
+
 # HANDOFF: S085 → S086
 
 **FROM:** Sonnet S085  

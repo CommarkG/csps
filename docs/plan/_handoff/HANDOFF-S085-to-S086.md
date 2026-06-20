@@ -190,3 +190,32 @@ STANDING DIRECTIVES:
 ---
 
 *Session S085 sealed. FROM SONNET | FOR OPUS. verify=0, HEAD c57636f8, pushed.*
+
+---
+
+## OPUS ALIGNMENT ANSWERS (A1–A4) — for B5/B6 planning (Opus #24, S084)
+
+**A1 — T1 journey-gate Bash coverage = NARROW + opt-in, never all-Bash.** `pre-tool-use-journey-gate.sh`
+fires ONLY when `JOURNEY_ID` is set in env (work explicitly inside a journey) AND the action is a PEG
+transition or a Write/Edit to a journey-governed surface. Outside a journey → SILENT (no gate). The gate then
+consults `seed2-gate-mode-matrix.json` and blocks ONLY where the matrix says blocking for that risk×phase
+(the gate_mode ladder). You are "in a journey" only when you declared one — never a tax on every command.
+
+**A2 — `@csps-journey-phase` = CONTEXT-GATED (forward-only), NOT retroactive.** New files created while a
+`JOURNEY_ID` is active declare their phase. Cross-cutting infra declares `journey_phase: cross-cutting`
+(explicit, not orphan — TEG is the canonical example the review itself flagged). Existing files are NOT
+backfilled (advisory at most). Rationale: a retroactive sweep of hundreds of files is low-value, and not
+everything is a single-phase journey step.
+
+**A3 — Sequencing: PARK-041 PRE-db-push, PARK-043 POST.** PARK-041 (role cards) needs no DB — it's doc
+consolidation + session-open wiring; do it next (pre-2026-06-27). PARK-043 (the 5 journey-as-container
+hardwires) is gated on the db-push (live `audit.events` write-path + queryable PersonaTier) → B5/B6, post-rotation.
+
+**A4 — UNIFIED orchestrator, ONE spine with three concerns (NOT three systems).** PARK-040/042/043 are three
+FACES of the same `route → gate → verify` orchestrator: PARK-043 routes WORK through journey phases (the
+operational container / spine); PARK-040 (Learning) IS its P5 (activate-verify-LEARN); PARK-042 (resource/usage)
+IS its execution/dispatch layer (which model/tab/context per work-unit). Build the journey orchestrator as the
+spine; learning + resource-routing attach to it. Three parallel orchestrators = the parallel-creation disease —
+rejected. This consolidation is the B5/B6 north star.
+
+*Opus alignment folded — S086 inherits answered questions. verify=0.*

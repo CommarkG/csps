@@ -906,3 +906,19 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-042"
+    lane: obligation
+    content: "CLAUDE-CODE USAGE REVIEW + SESSION/WORK ORCHESTRATOR — review how we use Claude Code and ALL elements (tabs, models, subagents, MCP servers, skills, hooks, parallel sessions, context lifecycle) and assess whether a meta-ORCHESTRATOR improves cost+quality. EVIDENCE BASE (Claude Code usage insights, last 24h, 2026-06-20): 86% of usage at >150k context (long sessions expensive even cached → /compact mid-task, /clear on task-switch); 26% from subagent-heavy sessions (each subagent = own requests → be deliberate, cheaper model for simple subagents); 24% while 4+ sessions ran in parallel (all share ONE limit → queue, don't run all at once). ORCHESTRATOR HYPOTHESIS: a CSPS session/work orchestrator that (1) routes each work-unit to the CHEAPEST capable member (Haiku mechanical+counting / Sonnet build / Opus synthesis — per the measured Team envelope), (2) manages context lifecycle (auto /compact at IMPL_BATCH boundary, /clear on task-switch), (3) QUEUES parallel sessions instead of 4+ concurrent on one shared limit, (4) defers MCP + restricts tools per tab (the Haiku-overflow fix generalized), (5) schedules the cadence-ladder audits. ASSESS: build vs not; what it consolidates. NOTE the measured Haiku envelope as a routing input: reliable for count/single-pattern/judgment-refusal, UNRELIABLE for cross-file set-ops (T2+T5 both over-reported) → orchestrator routes set-ops to Sonnet, raw scans to Haiku."
+    retrieve_when: "Token-efficiency / AI-behaviour arc, alongside PARK-040 (Learning Orchestrator) + the Token-Efficiency Guardian. This review's output likely FEEDS PARK-040 (the orchestrator that routes work IS the team's operating layer). Use the live Claude Code usage insights as the before/after metric."
+    never_drop: true
+    context_preserved: >
+      Consolidates the recurring 'smart orchestrator' thread (audits orchestrator, on-demand loading,
+      cheap-model delegation) with the MEASURED cost drivers. The orchestrator is the same shape as the
+      journey orchestrator (route → gate → verify) applied to OUR OWN tool usage — dogfooding. Connects
+      PARK-040 (Learning Orchestrator), Token-Efficiency Guardian (B_TOKEN_BUDGET T1+T2+T3), cadence ladder
+      (SEED-C), Team Learning Loop (member routing by measured envelope), feedback_sonnet_1m_for_complex_long_builds.
+    decision_back_ref: "Governor S084 'park a review on how we use claude code and all elements and see if it can be improved by an orchestrator' + Claude Code usage insights (86% >150k context, 26% subagent-heavy, 24% 4+ parallel)"
+    source_session: S084
+    created_session: S084
+    closed_session: null

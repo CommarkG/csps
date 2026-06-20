@@ -104,6 +104,16 @@ try{
     # Fixes F-NEW-17: replaces inline computation that silently fell back to "unknown"
     _SN=$(node "${REPO_ROOT}/tools/lib/session-source.mjs" 2>/dev/null || echo "S000")
 
+    # --- 4-axis from threshold-router.mjs (P1a consumption loop) ---
+    _WRAPPER2="${REPO_ROOT}/tools/scripts/route-input-wrapper.mjs"
+    _4A_RAW='{}'
+    if [ -f "$_WRAPPER2" ] && [ "${#USER_MESSAGE}" -gt 5 ]; then
+      _4A_RAW=$(ROUTE_CONTENT="$(printf '%s' "$USER_MESSAGE" | head -c 200)"         ROUTE_SESSION="$_SN"         node "$_WRAPPER2" 2>/dev/null || echo '{}')
+    fi
+    THRESHOLD_SCOPE4=$(R4A="$_4A_RAW" node -e "try{const j=JSON.parse(process.env.R4A||'{}');process.stdout.write((j.axis_classification||{}).scope||'operational');}catch(e){process.stdout.write('operational');}" 2>/dev/null || echo 'operational')
+    THRESHOLD_INTENT=$(R4A="$_4A_RAW" node -e "try{const j=JSON.parse(process.env.R4A||'{}');process.stdout.write((j.axis_classification||{}).intent||'directive');}catch(e){process.stdout.write('directive');}" 2>/dev/null || echo 'directive')
+    THRESHOLD_MANDATE=$(R4A="$_4A_RAW" node -e "try{const j=JSON.parse(process.env.R4A||'{}');process.stdout.write((j.axis_classification||{}).mandate_relation||'in-mandate');}catch(e){process.stdout.write('in-mandate');}" 2>/dev/null || echo 'in-mandate')
+    THRESHOLD_ROUTE=$(R4A="$_4A_RAW" node -e "try{const j=JSON.parse(process.env.R4A||'{}');process.stdout.write(j.route||'PROCESS-NOW');}catch(e){process.stdout.write('PROCESS-NOW');}" 2>/dev/null || echo 'PROCESS-NOW')
     # Sanitize preview: strip control chars and quotes
     _PV=$(printf '%s' "$USER_MESSAGE" | head -c 80 | tr -d '\001-\031\\')
 
@@ -141,7 +151,7 @@ try{
     # Append to intake log via node (env-var passing avoids bash/node quoting issues)
     THRESHOLD_TYPE="$_TY" THRESHOLD_SPINE="$_SP" THRESHOLD_SCOPE="$_SC" \
     THRESHOLD_URGENCY="$_UR" THRESHOLD_SESSION="$_SN" THRESHOLD_PREVIEW="$_PV" \
-    THRESHOLD_LOG="$_LOG" node -e "
+    THRESHOLD_SCOPE4="${THRESHOLD_SCOPE4:-operational}"     THRESHOLD_INTENT="${THRESHOLD_INTENT:-directive}"     THRESHOLD_MANDATE="${THRESHOLD_MANDATE:-in-mandate}"     THRESHOLD_ROUTE="${THRESHOLD_ROUTE:-PROCESS-NOW}"     THRESHOLD_LOG="$_LOG" node -e "
 const fs=require('fs'),p=require('path');
 try{
   const ts=new Date().toISOString();
@@ -159,6 +169,10 @@ try{
     '  status: processed',
     '  source: governor',
     '  routing_decision: '+(process.env.THRESHOLD_ROUTE||'PROCESS-NOW'),
+    '  scope: '+(process.env.THRESHOLD_SCOPE4||'operational'),
+    '  intent: '+(process.env.THRESHOLD_INTENT||'directive'),
+    '  mandate_relation: '+(process.env.THRESHOLD_MANDATE||'in-mandate'),
+    '  route: '+(process.env.THRESHOLD_ROUTE||'PROCESS-NOW'),
     '  input_preview: '+JSON.stringify((process.env.THRESHOLD_PREVIEW||'').slice(0,150)),
   ].join('\n')+'\n';
   fs.appendFileSync(log,lines);

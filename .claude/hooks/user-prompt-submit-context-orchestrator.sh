@@ -141,3 +141,22 @@ else
 fi
 
 exit 0
+
+# ─── P2 S086: PARKS-AWARE GATE — fires on build/new-work intent ─────────────
+# Extends "consult all signals" rule: before any new build, surface PE context
+# bundle (park-register + improvement-register + open-plan-levels + consolidation).
+# Non-blocking — advisory only. Pattern: detect build keyword → emit bundle.
+{
+  _BUILD_INTENT=false
+  if echo "$PROMPT_LOWER" | grep -qiE "build|implement|create new|add.*hook|add.*validator|write.*file|new.*feature|new.*page|new.*api|scaffold|generate"; then
+    _BUILD_INTENT=true
+  fi
+
+  if [ "$_BUILD_INTENT" = "true" ]; then
+    REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+    if [ -f "${REPO_ROOT}/tools/pe-compute.mjs" ]; then
+      >&2 echo "[pe-parks-gate] build intent detected — consulting all signals..."
+      node "${REPO_ROOT}/tools/pe-compute.mjs" --parks-context 2>/dev/null || true
+    fi
+  fi
+} 2>/dev/null || true

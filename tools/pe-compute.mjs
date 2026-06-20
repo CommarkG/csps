@@ -20,6 +20,7 @@
  */
 
 import { readFileSync, existsSync, writeFileSync, statSync } from 'node:fs';
+import { execSync } from 'node:child_process';
 import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -364,8 +365,156 @@ function runScore(items) {
   return scored;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// P2 (S086): Parks-aware context bundle — reads park-register, improvement-
+// register, and open-plan-levels last-run to surface active obligations before
+// any new build. Called via --parks-context flag.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function readParksContext() {
+  const PARK_PATH = join(ROOT, 'tools/data/park-register.yaml');
+  const IMP_PATH  = join(ROOT, 'tools/data/improvement-register.yaml');
+  const OPL_PATH  = join(ROOT, 'tools/data/validate-open-plan-levels-last-run.json');
+  const SEP = '─'.repeat(80);
+
+  console.log('\n' + SEP);
+  console.log('  PE DECISION CONTEXT BUNDLE — consult before starting any new build');
+  console.log('  Source: park-register + improvement-register + open-plan-levels');
+  console.log(SEP + '\n');
+
+  // ── 1. PARK-REGISTER ──────────────────────────────────────────────────────
+  if (!existsSync(PARK_PATH)) {
+    console.log('  [parks] park-register.yaml NOT FOUND — skip');
+  } else {
+    const raw = readFileSync(PARK_PATH, 'utf8');
+    const lines = raw.split('\n');
+    // Simple YAML extraction: collect id, lane, content, status, retrieve_when
+    const parks = [];
+    let cur = null;
+    for (const line of lines) {
+      if (/^  - id:/.test(line)) {
+        if (cur) parks.push(cur);
+        cur = { id: line.replace(/^  - id:\s*["']?/, '').replace(/["'\r\n]+$/, '').trim(), lane: '', status: 'open', content: '', retrieve_when: '' };
+      } else if (cur) {
+        const lm = line.match(/^\s+lane:\s+(.+)/);       if (lm) cur.lane = lm[1].replace(/\r$/, '').trim();
+        const sm = line.match(/^\s+status:\s+(.+)/);     if (sm) cur.status = sm[1].replace(/\r$/, '').trim();
+        const cm = line.match(/^\s+content:\s+"(.+?)["']?\r?$/); if (cm) cur.content = cm[1].slice(0, 80);
+        const rw = line.match(/^\s+retrieve_when:\s+"(.+?)["']?\r?$/); if (rw) cur.retrieve_when = rw[1].slice(0, 80);
+        const sd = line.match(/^\s+scheduled_date:\s+(.+)/); if (sd) cur.scheduled_date = sd[1].replace(/\r$/, '').trim();
+      }
+    }
+    if (cur) parks.push(cur);
+
+    const CLOSED = new Set(['closed', 'un-parked-ratified']);
+    const open = parks.filter(p => !CLOSED.has(p.status));
+    const obligations = open.filter(p => p.lane === 'obligation');
+    const scheduled   = open.filter(p => p.lane === 'schedule');
+    const queued      = open.filter(p => p.lane === 'queue');
+
+    console.log(`  ── PARKS (open=${open.length}  obligation=${obligations.length}  schedule=${scheduled.length}  queue=${queued.length})`);
+
+    // Surface top obligations first
+    if (obligations.length) {
+      console.log('\n  OBLIGATIONS (build-committed, never-drop):');
+      for (const p of obligations.slice(0, 8)) {
+        console.log(`    ${p.id.padEnd(20)}  ${p.content.slice(0, 72)}`);
+      }
+      if (obligations.length > 8) console.log(`    … and ${obligations.length - 8} more`);
+    }
+
+    // Near-term schedules
+    const today = new Date().toISOString().slice(0, 10);
+    const near = scheduled.filter(p => p.scheduled_date && p.scheduled_date <= '2026-07-15');
+    if (near.length) {
+      console.log('\n  SCHEDULED (≤ 2026-07-15):');
+      for (const p of near) {
+        console.log(`    ${p.id.padEnd(20)}  [${String(p.scheduled_date).replace(/["'\[\]]/g, '')}]  ${p.content.slice(0, 60)}`);
+      }
+    }
+    console.log('');
+  }
+
+  // ── 2. IMPROVEMENT-REGISTER ────────────────────────────────────────────────
+  if (!existsSync(IMP_PATH)) {
+    console.log('  [improvement] improvement-register.yaml NOT FOUND — skip');
+  } else {
+    const raw = readFileSync(IMP_PATH, 'utf8');
+    // Count entries with non-empty not_yet_propagated arrays (not just the key)
+    const nypBlocks = raw.split(/(?=^  - id:)/m).filter(b =>
+      /not_yet_propagated:/.test(b) && /- /.test(b.split('not_yet_propagated:')[1] ?? '')
+    );
+    console.log(`  ── IMPROVEMENT-REGISTER  not_yet_propagated entries: ${nypBlocks.length}`);
+    if (nypBlocks.length > 0) {
+      const ids = nypBlocks.slice(0, 5).map(b => {
+        const m = b.match(/id:\s+(\S+)/); return m ? m[1] : '?';
+      });
+      console.log(`    Top: ${ids.join(', ')}${nypBlocks.length > 5 ? ` … +${nypBlocks.length - 5} more` : ''}`);
+      console.log('    → Run CEC before marking new work DONE (P-META-006)');
+    }
+    console.log('');
+  }
+
+  // ── 3. OPEN-PLAN-LEVELS (run inline, parse stdout) ────────────────────────
+  {
+    try {
+      const oplOut = execSync('node tools/validators/validate-open-plan-levels.mjs', {
+        cwd: ROOT, encoding: 'utf8', stdio: ['pipe','pipe','pipe'],
+      });
+      const m = oplOut.match(/plans_checked=(\d+)\s+plans_with_open=(\d+)\s+total_open_items=(\d+)/);
+      if (m) {
+        console.log(`  ── OPEN-PLAN-LEVELS  plans_checked=${m[1]}  plans_with_open=${m[2]}  total_open_items=${m[3]}`);
+      } else {
+        console.log('  ── OPEN-PLAN-LEVELS  (could not parse output)');
+      }
+    } catch (e) {
+      const m = String(e.stdout).match(/plans_checked=(\d+)\s+plans_with_open=(\d+)\s+total_open_items=(\d+)/);
+      if (m) console.log(`  ── OPEN-PLAN-LEVELS  plans_checked=${m[1]}  plans_with_open=${m[2]}  total_open_items=${m[3]}`);
+      else console.log('  ── OPEN-PLAN-LEVELS  (validator errored — check tools/validators/validate-open-plan-levels.mjs)');
+    }
+  }
+
+  // ── 4. CONSOLIDATION SIGNAL (run inline) ─────────────────────────────────
+  {
+    try {
+      const cpOut = execSync('node tools/validators/validate-consolidation-pass.mjs', {
+        cwd: ROOT, encoding: 'utf8', stdio: ['pipe','pipe','pipe'],
+      });
+      const m = cpOut.match(/potential_duplicates=(\d+)/);
+      const dup = m ? parseInt(m[1], 10) : 0;
+      console.log(`\n  ── CONSOLIDATION-PASS  potential_duplicates=${dup}`);
+      if (dup > 0) console.log('    ⚠ Run /consolidation-expert before creating new files — check for overlap');
+    } catch (e) {
+      const m = String(e.stdout).match(/potential_duplicates=(\d+)/);
+      const dup = m ? parseInt(m[1], 10) : '?';
+      console.log(`\n  ── CONSOLIDATION-PASS  potential_duplicates=${dup}`);
+    }
+  }
+
+  console.log('\n' + SEP);
+  console.log('  GATE RULE: review the above before ANY new build decision.');
+  console.log('  Obligations must be tracked. Near-deadline parks resurface first.');
+  console.log('  CEC required if improvement-register has not_yet_propagated items.');
+  console.log(SEP + '\n');
+
+  // Save last-run
+  const outPath = join(ROOT, 'tools/data/pe-parks-context-last-run.json');
+  try {
+    writeFileSync(outPath, JSON.stringify({
+      ran_at: new Date().toISOString(),
+      session: 'S086',
+      signal_sources: ['park-register', 'improvement-register', 'open-plan-levels', 'consolidation-pass'],
+    }, null, 2));
+  } catch { /* non-fatal */ }
+}
+
 async function main() {
   const args = process.argv.slice(2);
+
+  // ── PARKS-CONTEXT MODE (P2 S086) ─────────────────────────────────────────
+  if (args.includes('--parks-context')) {
+    readParksContext();
+    process.exit(0);
+  }
 
   // ── SCORE MODE (PROTO-S084-PE-SWIFT) ──────────────────────────────────────
   if (args.includes('--score')) {

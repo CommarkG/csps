@@ -110,8 +110,43 @@ audit. A handoff step with no audit twin = a shaky obligation.
 **Why permanent:** this is the standard that makes "we hardwired it" TRUE — coverage that survives every tab, with no
 dependence on memory. It is the structural answer to "handoffs are good but shaky."
 
+## SEED-D — PER-ROLE STARTUP-BLOCK STANDARD (Opus + Sonnet + Haiku; same backbone, role nuance)
+
+**Rule (Governor S084):** every role's session/spawn opens with the SAME canonical startup-block backbone + the SAME
+enforcements, generated each time (inherited, not hand-crafted), with role-appropriate nuances. The Governor-approved
+S086 Sonnet block is the reference instance.
+
+**SHARED BACKBONE (all three roles):** IDENTITY (self + the full team incl. Haiku) · REPO STATE (HEAD + verify=0) ·
+WHAT WAS SEALED / INHERITED · OPEN PARKS (full content, no register read) · ENFORCEMENT SYSTEM (T1/Stop/cadence) ·
+GOVERNANCE CORE (IZFC · WHO/WARRANT/ACTION · ratification cadence · push/park discipline) · TEAM ROUTING ENVELOPE ·
+WHAT-NOT-TO-DO · FIRST ACTIONS · KEY TECH FACTS.
+
+**PER-ROLE NUANCE:**
+| Axis | OPUS | SONNET | HAIKU |
+|---|---|---|---|
+| role | director/architect/synthesis; authors seeds; OPIA gate; verify-before-concur | builder; full build-out; cannot self-accept C2 | scout; mechanical breadth; cannot decide |
+| context mode | 1M allowed (synthesis) | STANDARD default; 1M only pre-declared complex+long | minimal — restricted tools, pointers-only |
+| block SIZE | FULL (architect flavor) | FULL (builder flavor) | **MINIMAL — must fit Haiku's budget; the full block OVERFLOWS it (~203k). Compressed scout contract only.** |
+| first actions | read sonnet-turn.md + opus-turn.md; clear OPIA backlog; answer alignment Qs; ratify by class | read opus-turn.md top; verify=0; cross-tab diff; build | none — execute the one bounded scan |
+| what-not-to-do | don't write routine code (anchors only); don't rubber-stamp (verify-before-concur); don't over-ask C3/C4 | don't self-accept C2; don't push on red; don't fork | don't decide/synthesize; don't cross-file set-ops; don't scope-creep |
+| also-learns (team) | beneficiary of S→O + H→O (implementation reality + raw data) | beneficiary of O→S (architecture POVs) | beneficiary of O+S→H (scan discipline) |
+
+**HAIKU CONSTRAINT (load-bearing):** Haiku's "same pattern" is the same SHAPE (identity · contract · enforcement ·
+return-format) but RADICALLY compressed — it CANNOT carry the full block (overflow). Haiku gets: WHO-YOU-ARE (1 line) +
+SCAN→DETECT→RETURN JSON contract + CONTEXT-BUDGET line + its measured envelope (reliable/unreliable) + the one task.
+Pointers, never payloads. This is the role nuance that matters most — same standard, scaled to the model.
+
+**BUILD HANDOFF (Sonnet, S086 with PARK-041):** make the backbone the canonical slim-handoff template; generate the
+role instance by `session_role` (opus-startup / sonnet-startup / haiku-startup-minimal); extend
+`validate-handoff-completeness` to be ROLE-AWARE — require the backbone sections for opus/sonnet, the compressed
+scout-contract sections for haiku; missing any → blocked. The per-role cards (PARK-041) feed the IDENTITY box.
+
+**Why permanent:** turns "best block I've seen" into "the block every role produces every time" — inherited, enforced,
+team-complete, with Haiku correctly scaled so it never overflows.
+
 ## ZF gate (this seed)
-- Cycle 1: SEED-A/B/C each have Rule + criteria/manifest/step + BUILD HANDOFF + why-permanent. No floating ref.
+- Cycle 1: SEED-A/B/C/D each have Rule + criteria/manifest/step + BUILD HANDOFF + why-permanent. No floating ref.
 - Cycle 2 (fresh angle — self-application): SEED-A's manifest lists every register THIS doc cites; SEED-C's
   context-independence test, applied to SEED-A/B's own validators, requires they read persistent state + run on
-  cadence + write to a register — which the BUILD HANDOFFs specify. Coherent; the doc passes its own standard.
+  cadence + write to a register. SEED-D's Haiku-minimal rule is self-consistent with the measured Haiku-overflow
+  (PARK-039) — the standard refuses to overflow its weakest member. Coherent; the doc passes its own standard.

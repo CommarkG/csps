@@ -938,3 +938,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-044"
+    lane: obligation
+    content: "GOVERNED INTERFACE TO OPUS — Governor: 'i will not allow anyone to communicate directly with you ... what can we do to have a governed interface?'. Need to expose Opus's value (architecture/synthesis/system-access) through CONTROLS, not a direct chat line. KEY REFRAME: the governed interface is NOT new to invent — it IS the journey orchestrator pointed at Opus-access (threshold classify → risk-class gate → tier_permission → SEED-8 immutable audit) with Opus as the high-capability agent at the far end. OPTIONS (PCR'd S086): (1) THRESHOLD REQUEST-QUEUE — async, Governor-gated inbox; requests enter the threshold classified, Governor approves which reach Opus; minimal build (reuses threshold), you stay in control, full audit; con: async + Governor-bottleneck + doesn't scale. (2) COUNCIL-LIAISON — one governed role (Sonnet/Opus-gateway) is the SOLE interface; protocol-governed; con: bottleneck + fidelity risk. (3) GOVERNED AGENT API (endgame) — Opus as a sandboxed Agent-SDK service behind a policy-gated API/front-end (auth→classify→risk+tier gate→bounded tools+RLS→audit→rate-limit); scales to devs/users, full capability behind hard controls; con: big build + SERIOUS security surface, needs PARK-043 journey-gate + tier_permission + security design first. RECOMMENDATION: STAGED — #1 NOW (formalize threshold as Opus's governed inbox; rides threshold-stabilization), → #3 LATER (post PARK-043 + security design); #2 only if a non-Governor relay is needed before #3. Don't fork a parallel access-control system — same threshold + journey-gate + SEED-8 serve both."
+    retrieve_when: "When formalizing the threshold (P1 Sonnet queue) — add the Opus-inbox lane (#1) then. Escalate to #3 (Agent-API) when a real external dev/user must reach Opus-level help THROUGH the product (the flip condition) — gated on PARK-043 journey orchestrator + a security design. Consolidates with PARK-042 (usage orchestrator) + PARK-043 (journey-as-container) — same route→gate→verify."
+    never_drop: true
+    context_preserved: >
+      Load-bearing factor: WHO needs to reach Opus + how soon + real-time-vs-async. Internal/async/Governor-gated
+      → #1 indefinitely. Real product users needing architect-level help → #3 design starts. The security surface
+      (an agent that edits/commits/runs behind a UI) is why #3 is gated on the journey-gate + sandboxing + audit.
+      Connects PARK-042/043, SEED-8 (audit substrate), tier_permission (SEED-1/6), threshold (journey P1).
+    decision_back_ref: "Governor S086 'i will not allow anyone to communicate directly with you ... what can we do to have a governed interface? what are the options? pcr them!'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

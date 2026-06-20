@@ -335,7 +335,7 @@ entries:
       rigid-definition-drift feedback · HARDWIRE-007 (governing_intent field). Gap: no unified
       source taxonomy, no review-before-act gate for non-authoritative ambient instructions.
     first_seen: S076
-    k_count: 1
+    k_count: 2
     sessions: [S076]
     status: open
     prevention_class: instruction-integrity
@@ -345,7 +345,7 @@ entries:
     pe_urgency_input: true
     cie_observation_class: design_gap
     fix_commit_sha: null
-    explicit_defer_reason: null
+    explicit_defer_reason: "Absorbed into the CQS Alignment Layer (PROTO-S076-CQS, RATIFIED) — it is a FACET (Face A anti-rogue / Face B anti-rigidity), not a standalone fix. The journey-as-operational-container (PARK-043, B5/B6) is its natural home: instruction-intent wrapping belongs at the T1 journey-gate. Defer to S088 / post-B5. Not skipped — re-homed."
     behavioral_test_exists: false
     source: "Governor S076 — 'resolved = amazing; unresolved = suffer like other AI systems.' PROTO-S076-INSTRUCTION-INTEGRITY (Opus-17 directive). Both faces: anti-rogue (ambient injection) + anti-rigidity (bare-text misfiring) share ONE root."
     note: "S076 CQS-ABSORBED: gap_INSTRUCTION_INTEGRITY is now a FACET of the CQS Alignment Layer (PROTO-S076-CQS-ALIGNMENT-LAYER OPIA ✅ RATIFIED). Face A (anti-rogue) = CQS incoming-instruction set. Face B (anti-rigidity) = CQS rule set. Canonical home: SANDBOX-cqs-alignment-layer-S076.md + tools/config/cqs-sets.yaml. No standalone PROTO-S076-INSTRUCTION-INTEGRITY needed — absorbed."
@@ -551,15 +551,16 @@ entries:
       The hook flags these as advisory but the signal-to-noise ratio is unknown. Pattern refinement
       needed when the hook has collected 1-2 weeks of real data (post-journeys phase).
     first_seen: S078
-    k_count: 1
+    k_count: 2
     sessions: [S078]
     status: open
     prevention_class: false-positive-advisory
     structural_fix_plan_session: "refine-when-touched"
     structural_fix_triggered: false
-    must_address_by_session: "S083"
+    must_address_by_session: "S088"
     age_escalation_status: on-time
     fix_commit_sha: null
+    explicit_defer_reason: "By its own done_definition this requires 2+ weeks of collected hook data before pattern refinement (post-journeys phase). The data window opens once journeys RUN (B5/B6). Scheduled to S088, not skipped — refining before data would be guessing."
     behavioral_test_exists: false
     target_dimension: "governance-tooling"
     done_definition: |

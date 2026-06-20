@@ -1,0 +1,920 @@
+{
+  "surfaces_checked": 151,
+  "hook_count": 84,
+  "eager_count": 1,
+  "on_demand_count": 0,
+  "undeclared_count": 83,
+  "blocking": 0,
+  "advisory": 83,
+  "regression_flagged": false,
+  "findings": [
+    {
+      "level": "ADVISORY",
+      "surface": "cron-weekly-tag-status-deep-audit.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "depth-marker-creation-gate.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-banned-phrase.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-consolidation-pass.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-decision-residue-capture.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-directive-rzf-gate.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-dna-sync-check.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-error-harvest.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-existence-claim-scan.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-exists-not-equals-active.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-learning-loop.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-link-discipline.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-one-click-relay-check.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-pcr-check.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-pnpm-verify.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-rzf-reminder.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-savings-ssot-coverage.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-session-close-gate.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-stop-token-tracker.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-tool-use-cec-trigger.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-tool-use-design-token-check.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-tool-use-handoff-relay-inline.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-tool-use-proto-inline.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-tool-use-sonnet-relay-inline.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-tool-use-validate-before-assume.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "post-tool-use-zf-level-gate.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "pre-commit-bstar-engraving-gate.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "pre-commit-claim-validator-gate.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "pre-commit-delete-guard.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    },
+    {
+      "level": "ADVISORY",
+      "surface": "pre-commit-describe-without-implement.sh",
+      "msg": "missing load_mode declaration (add # load_mode: on-demand or eager+justification to header)"
+    }
+  ],
+  "surfaces_summary": [
+    {
+      "name": "cron-weekly-tag-status-deep-audit.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 6173
+    },
+    {
+      "name": "depth-marker-creation-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3516
+    },
+    {
+      "name": "post-stop-banned-phrase.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4772
+    },
+    {
+      "name": "post-stop-consolidation-pass.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4226
+    },
+    {
+      "name": "post-stop-decision-residue-capture.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 1817
+    },
+    {
+      "name": "post-stop-directive-rzf-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3387
+    },
+    {
+      "name": "post-stop-dna-sync-check.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2290
+    },
+    {
+      "name": "post-stop-error-harvest.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2152
+    },
+    {
+      "name": "post-stop-existence-claim-scan.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2859
+    },
+    {
+      "name": "post-stop-exists-not-equals-active.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 887
+    },
+    {
+      "name": "post-stop-learning-loop.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4770
+    },
+    {
+      "name": "post-stop-link-discipline.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3723
+    },
+    {
+      "name": "post-stop-one-click-relay-check.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2989
+    },
+    {
+      "name": "post-stop-pcr-check.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2315
+    },
+    {
+      "name": "post-stop-pnpm-verify.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 9557
+    },
+    {
+      "name": "post-stop-rzf-reminder.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3523
+    },
+    {
+      "name": "post-stop-savings-ssot-coverage.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4137
+    },
+    {
+      "name": "post-stop-session-close-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 10079
+    },
+    {
+      "name": "post-stop-token-tracker.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2360
+    },
+    {
+      "name": "post-tool-use-cec-trigger.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 5376
+    },
+    {
+      "name": "post-tool-use-design-token-check.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3545
+    },
+    {
+      "name": "post-tool-use-handoff-relay-inline.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 1383
+    },
+    {
+      "name": "post-tool-use-proto-inline.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 1219
+    },
+    {
+      "name": "post-tool-use-sonnet-relay-inline.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2491
+    },
+    {
+      "name": "post-tool-use-validate-before-assume.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4734
+    },
+    {
+      "name": "post-tool-use-zf-level-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 6191
+    },
+    {
+      "name": "pre-commit-bstar-engraving-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 971
+    },
+    {
+      "name": "pre-commit-claim-validator-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 1406
+    },
+    {
+      "name": "pre-commit-delete-guard.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4756
+    },
+    {
+      "name": "pre-commit-describe-without-implement.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 1123
+    },
+    {
+      "name": "pre-commit-knowledge-writeback-required.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3101
+    },
+    {
+      "name": "pre-commit-layer-classification-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3183
+    },
+    {
+      "name": "pre-commit-plan-coverage.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4185
+    },
+    {
+      "name": "pre-commit-proto-core-seed-mandatory.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4188
+    },
+    {
+      "name": "pre-commit-validator-test-required.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4172
+    },
+    {
+      "name": "pre-tool-use-add-not-replace-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4356
+    },
+    {
+      "name": "pre-tool-use-agent-alignment.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3668
+    },
+    {
+      "name": "pre-tool-use-alignment-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3367
+    },
+    {
+      "name": "pre-tool-use-bash-governed-write-guard.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2710
+    },
+    {
+      "name": "pre-tool-use-boundary-crossing-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3700
+    },
+    {
+      "name": "pre-tool-use-bstar-trio-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 1006
+    },
+    {
+      "name": "pre-tool-use-check-existing.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3911
+    },
+    {
+      "name": "pre-tool-use-claude-dir-guard.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2863
+    },
+    {
+      "name": "pre-tool-use-closure-obligation-required.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3202
+    },
+    {
+      "name": "pre-tool-use-completion-before-new.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2988
+    },
+    {
+      "name": "pre-tool-use-context-question-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2449
+    },
+    {
+      "name": "pre-tool-use-corespine-check.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 829
+    },
+    {
+      "name": "pre-tool-use-council-address-required.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 5368
+    },
+    {
+      "name": "pre-tool-use-external-integration-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 5201
+    },
+    {
+      "name": "pre-tool-use-false-assumption-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 5715
+    },
+    {
+      "name": "pre-tool-use-frontmatter-enum-check.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2345
+    },
+    {
+      "name": "pre-tool-use-humble-step-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3919
+    },
+    {
+      "name": "pre-tool-use-inventory-scan-required.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3390
+    },
+    {
+      "name": "pre-tool-use-nodefile-required.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2829
+    },
+    {
+      "name": "pre-tool-use-nominal-stop-detector.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 1873
+    },
+    {
+      "name": "pre-tool-use-permanence-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 5174
+    },
+    {
+      "name": "pre-tool-use-plan-coverage-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4620
+    },
+    {
+      "name": "pre-tool-use-playground-link-reminder.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 1569
+    },
+    {
+      "name": "pre-tool-use-rule14-read-before-write.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3023
+    },
+    {
+      "name": "pre-tool-use-rzf-evidence-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3385
+    },
+    {
+      "name": "pre-tool-use-sacred-file-guard.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3666
+    },
+    {
+      "name": "pre-tool-use-sacred-parts-guard.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2783
+    },
+    {
+      "name": "pre-tool-use-schema-registration-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4075
+    },
+    {
+      "name": "pre-tool-use-shape-check.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 1841
+    },
+    {
+      "name": "pre-tool-use-skill-aap-required.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2524
+    },
+    {
+      "name": "pre-tool-use-state-claim-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3923
+    },
+    {
+      "name": "pre-tool-use-text-input-standard-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2410
+    },
+    {
+      "name": "pre-tool-use-token-guardian.sh",
+      "load_mode": "eager",
+      "size_bytes": 6291
+    },
+    {
+      "name": "pre-tool-use-ux-creation-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 5000
+    },
+    {
+      "name": "pre-tool-use-vault-write-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2487
+    },
+    {
+      "name": "pre-tool-use-voice-profile-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3059
+    },
+    {
+      "name": "pre-tool-use-write-dispatcher.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2178
+    },
+    {
+      "name": "pre-tool-use-zf-termination-gate.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3435
+    },
+    {
+      "name": "session-open.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 10501
+    },
+    {
+      "name": "user-prompt-submit-ai-profiler.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 10845
+    },
+    {
+      "name": "user-prompt-submit-comments-before-code.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 2074
+    },
+    {
+      "name": "user-prompt-submit-context-orchestrator.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 6346
+    },
+    {
+      "name": "user-prompt-submit-governor-prompts.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 3265
+    },
+    {
+      "name": "user-prompt-submit-intake.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 10628
+    },
+    {
+      "name": "user-prompt-submit-next-step-reminder.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 4147
+    },
+    {
+      "name": "user-prompt-submit-raw-comments.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 1424
+    },
+    {
+      "name": "user-prompt-submit-token-budget-warning.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 5655
+    },
+    {
+      "name": "user-prompt-submit-turn-counter.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 8667
+    },
+    {
+      "name": "verify-hooks-functional.sh",
+      "load_mode": "undeclared",
+      "size_bytes": 8321
+    },
+    {
+      "name": "SessionStart:session-open.sh",
+      "load_mode": "eager",
+      "size_bytes": 29
+    },
+    {
+      "name": "UserPromptSubmit:user-prompt-submit-intake.sh",
+      "load_mode": "eager",
+      "size_bytes": 42
+    },
+    {
+      "name": "UserPromptSubmit:user-prompt-submit-governor-prompts.sh",
+      "load_mode": "eager",
+      "size_bytes": 52
+    },
+    {
+      "name": "UserPromptSubmit:verify-hooks-functional.sh",
+      "load_mode": "eager",
+      "size_bytes": 40
+    },
+    {
+      "name": "UserPromptSubmit:user-prompt-submit-context-orchestrator.sh",
+      "load_mode": "eager",
+      "size_bytes": 56
+    },
+    {
+      "name": "UserPromptSubmit:user-prompt-submit-next-step-reminder.sh",
+      "load_mode": "eager",
+      "size_bytes": 54
+    },
+    {
+      "name": "UserPromptSubmit:user-prompt-submit-raw-comments.sh",
+      "load_mode": "eager",
+      "size_bytes": 48
+    },
+    {
+      "name": "UserPromptSubmit:user-prompt-submit-turn-counter.sh",
+      "load_mode": "eager",
+      "size_bytes": 48
+    },
+    {
+      "name": "UserPromptSubmit:user-prompt-submit-ai-profiler.sh",
+      "load_mode": "eager",
+      "size_bytes": 47
+    },
+    {
+      "name": "UserPromptSubmit:user-prompt-submit-token-budget-warning.sh",
+      "load_mode": "eager",
+      "size_bytes": 56
+    },
+    {
+      "name": "UserPromptSubmit:user-prompt-submit-comments-before-code.sh",
+      "load_mode": "eager",
+      "size_bytes": 56
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-token-guardian.sh",
+      "load_mode": "eager",
+      "size_bytes": 44
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-sacred-parts-guard.sh",
+      "load_mode": "eager",
+      "size_bytes": 48
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-boundary-crossing-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 52
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-bstar-trio-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 45
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-council-address-required.sh",
+      "load_mode": "eager",
+      "size_bytes": 54
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-closure-obligation-required.sh",
+      "load_mode": "eager",
+      "size_bytes": 57
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-completion-before-new.sh",
+      "load_mode": "eager",
+      "size_bytes": 51
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-write-dispatcher.sh",
+      "load_mode": "eager",
+      "size_bytes": 46
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-ux-creation-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 46
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-add-not-replace-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 50
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-voice-profile-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 48
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-zf-termination-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 49
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-state-claim-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 46
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-humble-step-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 46
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-alignment-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 44
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-rule14-read-before-write.sh",
+      "load_mode": "eager",
+      "size_bytes": 54
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-claude-dir-guard.sh",
+      "load_mode": "eager",
+      "size_bytes": 46
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-plan-coverage-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 48
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-frontmatter-enum-check.sh",
+      "load_mode": "eager",
+      "size_bytes": 52
+    },
+    {
+      "name": "PreToolUse:depth-marker-creation-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 43
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-rzf-evidence-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 47
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-agent-alignment.sh",
+      "load_mode": "eager",
+      "size_bytes": 45
+    },
+    {
+      "name": "PreToolUse:pre-commit-claim-validator-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 48
+    },
+    {
+      "name": "PreToolUse:pre-commit-plan-coverage.sh",
+      "load_mode": "eager",
+      "size_bytes": 41
+    },
+    {
+      "name": "PreToolUse:pre-commit-layer-classification-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 53
+    },
+    {
+      "name": "PreToolUse:pre-commit-describe-without-implement.sh",
+      "load_mode": "eager",
+      "size_bytes": 54
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-corespine-check.sh",
+      "load_mode": "eager",
+      "size_bytes": 45
+    },
+    {
+      "name": "PreToolUse:pre-commit-bstar-engraving-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 48
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-shape-check.sh",
+      "load_mode": "eager",
+      "size_bytes": 41
+    },
+    {
+      "name": "PreToolUse:pre-commit-proto-core-seed-mandatory.sh",
+      "load_mode": "eager",
+      "size_bytes": 53
+    },
+    {
+      "name": "PreToolUse:pre-commit-validator-test-required.sh",
+      "load_mode": "eager",
+      "size_bytes": 51
+    },
+    {
+      "name": "PreToolUse:pre-tool-use-bash-governed-write-guard.sh",
+      "load_mode": "eager",
+      "size_bytes": 55
+    },
+    {
+      "name": "PostToolUse:post-tool-use-validate-before-assume.sh",
+      "load_mode": "eager",
+      "size_bytes": 53
+    },
+    {
+      "name": "PostToolUse:post-tool-use-cec-trigger.sh",
+      "load_mode": "eager",
+      "size_bytes": 42
+    },
+    {
+      "name": "PostToolUse:post-tool-use-zf-level-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 44
+    },
+    {
+      "name": "PostToolUse:post-tool-use-design-token-check.sh",
+      "load_mode": "eager",
+      "size_bytes": 49
+    },
+    {
+      "name": "PostToolUse:post-tool-use-proto-inline.sh",
+      "load_mode": "eager",
+      "size_bytes": 43
+    },
+    {
+      "name": "PostToolUse:post-tool-use-sonnet-relay-inline.sh",
+      "load_mode": "eager",
+      "size_bytes": 50
+    },
+    {
+      "name": "PostToolUse:post-tool-use-handoff-relay-inline.sh",
+      "load_mode": "eager",
+      "size_bytes": 51
+    },
+    {
+      "name": "PostToolUse:post-tool-use-validate-before-assume.sh",
+      "load_mode": "eager",
+      "size_bytes": 53
+    },
+    {
+      "name": "Stop:post-stop-session-close-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 45
+    },
+    {
+      "name": "Stop:post-stop-directive-rzf-gate.sh",
+      "load_mode": "eager",
+      "size_bytes": 45
+    },
+    {
+      "name": "Stop:post-stop-learning-loop.sh",
+      "load_mode": "eager",
+      "size_bytes": 40
+    },
+    {
+      "name": "Stop:post-stop-pcr-check.sh",
+      "load_mode": "eager",
+      "size_bytes": 36
+    },
+    {
+      "name": "Stop:post-stop-link-discipline.sh",
+      "load_mode": "eager",
+      "size_bytes": 42
+    },
+    {
+      "name": "Stop:post-stop-banned-phrase.sh",
+      "load_mode": "eager",
+      "size_bytes": 40
+    },
+    {
+      "name": "Stop:post-stop-one-click-relay-check.sh",
+      "load_mode": "eager",
+      "size_bytes": 48
+    },
+    {
+      "name": "Stop:post-stop-pnpm-verify.sh",
+      "load_mode": "eager",
+      "size_bytes": 38
+    },
+    {
+      "name": "Stop:post-stop-consolidation-pass.sh",
+      "load_mode": "eager",
+      "size_bytes": 45
+    },
+    {
+      "name": "Stop:post-stop-savings-ssot-coverage.sh",
+      "load_mode": "eager",
+      "size_bytes": 48
+    },
+    {
+      "name": "Stop:post-stop-rzf-reminder.sh",
+      "load_mode": "eager",
+      "size_bytes": 39
+    },
+    {
+      "name": "Stop:post-stop-dna-sync-check.sh",
+      "load_mode": "eager",
+      "size_bytes": 41
+    },
+    {
+      "name": "Stop:post-stop-token-tracker.sh",
+      "load_mode": "eager",
+      "size_bytes": 40
+    },
+    {
+      "name": "Stop:post-stop-existence-claim-scan.sh",
+      "load_mode": "eager",
+      "size_bytes": 47
+    },
+    {
+      "name": "Stop:post-stop-decision-residue-capture.sh",
+      "load_mode": "eager",
+      "size_bytes": 51
+    },
+    {
+      "name": "settings.json",
+      "load_mode": "eager",
+      "size_bytes": 12385
+    }
+  ],
+  "ran_at": "2026-06-20T02:30:55.106Z"
+}

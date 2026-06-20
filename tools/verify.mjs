@@ -173,7 +173,7 @@ const CYCLES = [
   {
     // NEW S011 §24++ — node --check syntax validation for all tools/**/*.mjs (prevents ESM bugs like require-in-esm)
     name: 'mjs_syntax_check',
-    command: 'node --check tools/verify.mjs tools/pe-compute.mjs tools/validators/validate-aap-frontmatter.mjs tools/validators/validate-token-budget.mjs tools/validators/validate-corespine-depth-markers.mjs tools/validators/validate-audit-slug-coverage.mjs tools/validators/validate-frontmatter.mjs tools/validators/validate-gate-mode-matrix.mjs',
+    command: 'node --check tools/verify.mjs tools/pe-compute.mjs tools/validators/validate-aap-frontmatter.mjs tools/validators/validate-token-budget.mjs tools/validators/validate-corespine-depth-markers.mjs tools/validators/validate-audit-slug-coverage.mjs tools/validators/validate-frontmatter.mjs tools/validators/validate-gate-mode-matrix.mjs tools/validators/validate-token-efficiency.mjs',
     parse_output: (out) => ({ syntax_ok: !out.includes('SyntaxError') }),
   },
   {
@@ -1456,6 +1456,19 @@ const CYCLES = [
     parse_output: (out) => {
       const m = out.match(/floaters_found=(\d+)\s+missing_obligation=(\d+)\s+overdue=(\d+)\s+advisory=(\d+)\s+blocking=(\d+)/);
       return m ? { floaters_found: Number(m[1]), missing_obligation: Number(m[2]), overdue: Number(m[3]), advisory: Number(m[4]), blocking: Number(m[5]) } : {};
+    },
+  },
+  {
+    // S084 TEG: Token-Efficiency Guardian validator — T2 of B_TOKEN_BUDGET enforcement trio.
+    // Scans .claude/hooks/*.sh + settings.json for load_mode declarations.
+    // BLOCKING: eager without justification. ADVISORY: missing declaration (grandfathered).
+    // T1 pre-tool-use-token-guardian.sh blocks NEW unjustified eager adds at creation time.
+    run_tier: 'EXTENDED',
+    name: 'token_efficiency',
+    command: 'node tools/validators/validate-token-efficiency.mjs',
+    parse_output: (out) => {
+      const m = out.match(/eager_count=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { eager_count: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
     },
   },
   {

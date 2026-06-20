@@ -102,6 +102,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/hooks/pre-tool-use-token-guardian.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/pre-tool-use-sacred-parts-guard.sh"
           },
           {
@@ -372,6 +376,11 @@
           {
             "type": "command",
             "command": ".claude/hooks/post-stop-banned-phrase.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-one-click-relay-check.sh",
+            "timeout": 15
           },
           {
             "type": "command",

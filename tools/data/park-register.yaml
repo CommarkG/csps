@@ -874,3 +874,20 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-040"
+    lane: obligation
+    content: "LEARNING ORCHESTRATOR (Self-Improvement Loop) — CONSOLIDATES the scattered self-improvement arc into ONE active, hardwired loop. Governor S084: 'what will be using the enhancements extracted from analyzing opus insights/abilities and have them as essential instructions to sonnet so it gradually covers recurring POV opus finds? same haiku from sonnet+opus. do we have an active loop doing this that works, hardwired?' ANSWER (evidence S084): NO active loop — lesson-capture via memory/feedback_*.md is live (lesson -> inherited each session) but it is NOT model-targeted and coverage is NOT measured; model-uplift is parked (PARK-035/036); auto-park+PE is manual (PARK-037 not built); audit orchestrator does not exist (audit-runner.md = 535-row catalog but pnpm audit:run is deferred week-4, no cadence orchestrator); essence-propagation parked (PARK-024); PE-loop parked (PARK-026). The AI (Opus) is CURRENTLY the loop by hand (notices/parks/scores/distills) — the exact remember-dependent fragility Governor attacks. DESIGN (3 directions): CAPTURE T1 = every issue/insight/Opus-correction auto-logged at the boundary (post-stop hook, no manual parking); ROUTE T2 = each item auto-PE-scored + auto-parked to lane (session-close validator/runner); PROPAGATE T3/DNA = distilled essence -> MODEL-TARGETED permanent instructions (Opus-POV -> Sonnet inheritance -> Haiku), WITH a coverage metric proving the weaker model now catches what the stronger used to. CONSOLIDATES PARK-024/026/035/036/037 + the audit-orchestrator gap; the Token-Efficiency Guardian (PROTO-TEG, built S084) is the FIRST active piece of this loop (the pattern: T3-only -> T1+T2+T3). NOTE: verify what post-stop-learning-loop.sh + process-learning-loop.mjs already do before building (consolidate, don't fork)."
+    retrieve_when: "After journey-orchestrator B4/B5 (completion-discipline) OR if Governor pivots — this is the self-improving-platform arc. Build order: (1) inventory existing learning-loop hook/script, (2) auto-park+PE capture (T1+T2), (3) model-targeted essence propagation + coverage metric (T3), (4) activate the audit-runner as the cadence orchestrator that feeds CAPTURE."
+    never_drop: true
+    context_preserved: >
+      The deepest moat: a platform that improves its weaker models from its stronger ones, automatically,
+      with measured gradual coverage — so the expensive model is needed less over time. All facets exist as
+      parked design (024/026/035/036/037) + dormant mechanisms (learning-loop hook, audit catalog); the gap is
+      that none is an ACTIVE wired loop. Same EXISTS≠ACTIVE/AP-001 root as B_TOKEN_BUDGET (now fixed via TEG).
+      Connects: Independence Ladder (PARK-020), AI-profiling (PARK-029, currently STALE since 2026-06-03),
+      essence-over-actor default, the journey P5 propagation gate.
+    decision_back_ref: "Governor S084 'why retire the virtual opus? ... gradually cover recurring POV opus finds ... do we have an active loop, hardwired? are audits aligned to schema + smart orchestrator? do you auto-park + use PE each time or does this need 3-direction enhancement?'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

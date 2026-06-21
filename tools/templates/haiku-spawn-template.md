@@ -118,7 +118,16 @@ Load relevant patterns: <list pattern IDs from the library, e.g.: coverage_heade
 
 ## Required Return Format: haiku_scout_return
 
-Return EXACTLY this structure (JSON or YAML — your choice):
+**SEED-D (S086): Every Haiku return MUST start with WHO/WARRANT/ACTION wrapper.**
+The wrapper is NOT optional — it enforces the comm-core contract at the scout level.
+
+```
+WHO:     Haiku Scout → Sonnet S<NNN>
+WARRANT: [MEASURED] scanned <glob or file>, <N> entries examined
+ACTION:  <JSON below> | escalate set-ops to Sonnet
+```
+
+Then the JSON:
 
 ```json
 {

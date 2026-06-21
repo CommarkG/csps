@@ -88,7 +88,30 @@ const ADVISORY_CHECKS = [
     label: 'MOAT REVIEW (SEED-B)',
     patterns: [/##\s+MOAT\s+REVIEW/i, /MOAT\s+REVIEW/i],
     message: 'Missing MOAT REVIEW block (SEED-B S085). Add: which moats touched/strengthened/at-risk this session. Template: tools/templates/boundary-prompt.template.md ## MOAT REVIEW section.'
-  }
+  },
+  // SEED-D (S086): Startup block backbone sections — ADVISORY (BLOCKING after first incident).
+  // Per PARK-041: startup block must contain TEAM ROUTING + OPEN PARKS + WHAT NOT TO DO.
+  {
+    id: 'seed-d-team-routing',
+    label: 'SEED-D: Team routing / Haiku mention in startup block',
+    patterns: [/HAIKU|haiku.*scout|team.*routing|routing.*envelope/i],
+    message: 'SEED-D: Startup block missing team routing / Haiku team member mention. Add TEAM ROUTING ENVELOPE section per SEED-D backbone (tools/council/sonnet-context.md).',
+    minSession: 86, // only check S086+
+  },
+  {
+    id: 'seed-d-open-parks',
+    label: 'SEED-D: Open parks surfaced in startup block',
+    patterns: [/PARK-S0\d\d-\d+|OPEN PARKS|open.*park/i],
+    message: 'SEED-D: Startup block missing OPEN PARKS section. Surface at least one open park to establish the obligation context for the incoming tab.',
+    minSession: 86,
+  },
+  {
+    id: 'seed-d-what-not-to-do',
+    label: 'SEED-D: WHAT NOT TO DO in startup block',
+    patterns: [/WHAT\s*NOT\s*TO\s*DO|DO\s+NOT\s+build|DO\s+NOT\s+push\s+on\s+red/i],
+    message: 'SEED-D: Startup block missing WHAT NOT TO DO section. Required per SEED-D backbone.',
+    minSession: 86,
+  },
 ];
 
 if (!existsSync(HANDOFF_DIR)) {
@@ -155,8 +178,10 @@ for (const { name, path } of files) {
 
   // Check advisory sections
   for (const check of ADVISORY_CHECKS) {
+    // minSession: skip check for handoffs authored before the rule existed
+    if (check.minSession && sessionNum < check.minSession) continue;
     if (!check.patterns.some(p => p.test(content))) {
-      fileAdvisory.push(check.message);
+      fileAdvisory.push(check.message ?? check.label);
       advisory++;
     }
   }

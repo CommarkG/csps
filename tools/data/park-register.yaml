@@ -1058,14 +1058,35 @@ entries:
   - id: "PARK-S084-047"
     lane: vault
     content: "ACCOUNTING DOMAIN — FOUNDATION RESEARCH (Governor S086, external Claude co-worker research; AI-L2/vault-defer). Open-source accounting/finance to LEARN-FROM + pick copy-vs-adjust: FULL SYSTEMS — Bigcapital (Node/React/Postgres, closest STACK match to CSPS; ledger+invoicing+reports+bank-feeds); ERPNext (Python/Frappe full ERP, OVERKILL+stack-mismatch — learn its tax/VAT + reconciliation DATA MODELS only); Akaunting (PHP); Frappe Books (Electron). LEDGER PRIMITIVE — Blnk (Go, API-first double-entry ledger engine — clean primitive to learn). AI LAYER — OpenAccountants (MCP server, 1000+ accounting/tax skills incl ISRAEL, plugs into Claude — THE standout for CSPS, Claude-Agent-native; 192-jurisdiction Claude-Code plugin); Accounts AI (Python; categorization/forecast/anomaly). Co-worker recommended Path A (fork Bigcapital) / Path C (hybrid). OPUS #25 CSPS-LENS CORRECTION: CSPS does NOT fork-a-monolith (apps-ephemeral / libs-genome permanent / build-on-spine) — forking Bigcapital makes IT the platform + CSPS a wrapper. CSPS-CORRECT PATH = HARVEST domain models (Blnk ledger states + ERPNext tax/recon models + OpenAccountants skill taxonomy) into the schema-spine; USE OpenAccountants MCP for AI/tax (matches CSPS agent arch, covers Israel); reference Bigcapital schema/reports as a domain MAP not an adopt. Shape as CSPS JOURNEYS (invoice→ledger→reconcile→report) under the journey orchestrator + front-end-completeness moat M-47 + classification machinery. DECISION DEFERRED — C2 new-domain expansion; must NOT derail S086 threshold/journey/completeness."
-    retrieve_when: "When the Governor opens the accounting/finance product domain. First: harvest Blnk ledger-state model + OpenAccountants skill taxonomy + ERPNext tax/recon models into the schema-spine as the domain seed; wire OpenAccountants MCP for AI/tax; scope the invoice→ledger→reconcile→report journeys. Do NOT fork a monolith app as the platform."
+    confirmed_vision: "Governor S086 CONFIRMED: a finance/accounting domain BUILT AS A CORE SPINE with branches + sub-branches, consumable in PARTS by apps/SaaS, BUNDLED per user/dev request + payment-tier + permission (different tiers unlock different functionality sets)."
+    activation_pointers: |
+      ITER-1 (structure): register `accounting` as a CORE-SPINE entry (canon 8-section schema, like accountability/
+        communication). TRUNK = double-entry invariants (every transaction balances · immutable ledger · audit-event
+        per entry — REUSE SEED-8/audit.events as the ledger audit substrate, do not build a new one). BRANCHES =
+        OCR/intake · invoicing · expenses/bills · LEDGER (Blnk model) · bank-reconciliation · TAX/VAT (OpenAccountants
+        MCP, Israel) · reports (P&L/balance/cashflow) · payroll · multi-currency · AI-BRAIN (categorize/anomaly/forecast).
+        SUB-BRANCHES = the functions within each branch. Each branch = a JOURNEY (invoice→ledger→reconcile→report).
+      ITER-2 (repos+wiring): HARVEST Blnk ledger state-model + ERPNext tax/recon data-models into the schema-spine
+        (ZModel: Account/LedgerEntry/Invoice/TaxRule — ALL tenant_id + RLS, non-negotiable for financial data).
+        ADOPT OpenAccountants MCP as the tax + AI-brain SERVICE (Claude-native, covers Israel). REFERENCE Bigcapital
+        schema/reports as a domain map. NO monolith fork (apps-are-trials).
+      ITER-3 (tier/permission bundling — the Governor's core ask): the per-tier functionality gating = the EXISTING
+        core-spine `tier_permission` section + the journey VARIANT-SELECTOR (SEED-6) + a NEW `payment_tier` dimension
+        (free/pro/enterprise → which branches/sub-branches/functions UNLOCK). Bundling-per-request = the journey
+        orchestrator selects branches/variants by {user/dev request × payment_tier × permission}. Connects PARK-011
+        (permission-tiers, 5 actor classes). Every accounting page inherits the M-47 front-end-completeness moat.
+        Apps/SaaS = EPHEMERAL consumers of the permanent accounting core-spine + libs.
+      GATES: C2 new-domain — needs Governor ratification of the spine structure BEFORE build; needs the journey
+        orchestrator (PARK-043) OPERATIONAL (post-2026-06-27 db-push) as the delivery mechanism; needs PARK-011
+        permission-tiers resolved. Do NOT start before those.
+    retrieve_when: "When the Governor opens the accounting/finance domain (post journey-orchestrator B5/B6 + PARK-011). Execute ITER-1→2→3 above. Ratify spine structure first; harvest-not-fork; bundle via tier_permission + SEED-6 + payment_tier."
     never_drop: true
     context_preserved: >
-      External-content vault entry. Strategic question = fork-vs-harvest: the co-worker's app-centric paths (fork
-      Bigcapital) conflict with CSPS build-on-genome doctrine (B_APPS_ARE_TRIALS, schema-spine, journey orchestrator).
-      The Claude-native piece (OpenAccountants MCP) is the highest-value adopt. Connects M-47 front-end-completeness,
-      PARK-043 journey orchestrator, schema-expert, apps-are-trials.
-    decision_back_ref: "Governor S086 'review this accounting research (existing solutions as foundation for a csps domain — learn + pick what to copy + adjust); comment + park it'"
+      Strategic question resolved = HARVEST not fork. The domain is a CORE SPINE (permanent) that apps/SaaS consume
+      in tier-gated parts — pure CSPS doctrine (schema-spine + journey orchestrator + tier_permission + apps-are-trials).
+      OpenAccountants MCP = highest-value adopt (Claude-native). Connects M-47, PARK-043 (journey orchestrator),
+      PARK-011 (permission-tiers), SEED-8 (ledger audit substrate), SEED-6 (variant selector for bundling), schema-expert.
+    decision_back_ref: "Governor S086 'i want a finance accounting domain within CSPS built as a core spine with branches + sub-branches; apps/SaaS use it or parts, bundled per user/dev request + tiers + permissions (payment-tier-gated functionality); iterate 3x over repos + implications + wiring; set the park with pointers for activation'"
     source_session: S084
     created_session: S084
     closed_session: null

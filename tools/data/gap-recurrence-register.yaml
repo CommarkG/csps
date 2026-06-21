@@ -605,6 +605,6 @@ entries:
     status: structural_fix_committed
     structural_fix_committed: true
     structural_fix_description: "STRUCTURAL-FIX S086 (Opus #25 item 4): post-tool-use-sonnet-relay-inline.sh v7.1.0 auto-injects '# layer: scaffold + # disposable_if: arrangement_changes' at top of sonnet-turn.md and opus-turn.md on any write. Write-time injection prevents recurrence without human action."
-    fix_commit_sha: "pending-this-turn"
+    fix_commit_sha: "e0355f81"
     created_session: S086
     prevention_class: "SCAFFOLD-LAYER-DRIFT"

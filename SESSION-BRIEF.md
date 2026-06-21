@@ -9,7 +9,7 @@
 | **Current session** | S086 |
 | **Previous session** | S085 |
 | **Last updated** | 1 day(s) ago |
-| **Last commit** | ce1b65e [S086] fix(hooks): stdin .prompt input — resurrect 6 dead UserPromptSubmit hooks + threshold consume loop live + router contract ratified |
+| **Last commit** | 0ed74e5 [S086] hardwire(inheritance-loop): activation-smoke + stdin-source guard + frontmatter SSoT + SOL + blocking gates + B_ACTIVATION_STEADY_STATE_VERIFY |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

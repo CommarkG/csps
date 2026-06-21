@@ -2270,6 +2270,21 @@ const CYCLES = [
     },
   },
   {
+    // S086 PARK-046 — Consolidation safety: verifies consolidation-ledger.yaml completeness.
+    // Every consolidation must have: ability_inventory + ripple_inbound/outbound + before_after_diff
+    // + restore_procedure + no BLOCKING-severity open defects.
+    // EXTENDED: runs on consolidation arcs + --extended flag. Does NOT duplicate register-ref-integrity.
+    // Extends B_CONSOLIDATION_PASS. First retro-verify: S086 MERGE-A/B/C/D + DROP-015/041/005.
+    run_tier: 'EXTENDED',
+    name: 'consolidation_safety',
+    command: 'node tools/validators/validate-consolidation-safety.mjs',
+    parse_output: (out) => {
+      const m = out.match(/ledger_operations=(\d+)\s+elements_checked=(\d+)\s+defects_checked=(\d+)/);
+      const b = out.match(/blocking=(\d+)\s+advisory=(\d+)/);
+      return { ...(m ? { ledger_operations: Number(m[1]), elements_checked: Number(m[2]), defects_checked: Number(m[3]) } : {}), ...(b ? { blocking: Number(b[1]), advisory: Number(b[2]) } : {}) };
+    },
+  },
+  {
     // S085 SEED-C — Dual-coverage: every drift-prone obligation has context-independent recurring audit.
     // Context-independence test: SOURCE (persistent files) + CADENCE (schedule) + SINK (register).
     // Checks: moats, file-length, load_mode, register-refs, principles, journey trunk, push-status, handoff-moat.

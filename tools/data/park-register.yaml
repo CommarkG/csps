@@ -578,8 +578,8 @@ entries:
     retrieve_when: "Immediately next — before SEED authoring + MVP-narrow build."
     never_drop: true
     status: closed
-    closed_session: S085
-    closed_reason: "DROP (Opus #25 S086 consolidation): 6-expert review was executed S085 — it generated the cross-accept findings that produced PARK-038 + absorbed into S085 SROF. Obligation discharged."
+    closed_session: S084
+    closed_reason: "DROP (Opus #25 S086 consolidation): 6-expert review executed S084 (DEFECT-S086-DROP-015-A corrected — original closed_reason wrongly said S085). Evidence: JOURNEY-SEEDS-S084.md F1/F4/F7/F8/F9 cross-accept findings + OPUS-TAB-TRANSFER-S084-seed-authoring.md 'externally validated (self→6-expert→rung-4→ZF)' + PARK-038 created S084. Obligation discharged."
     decision_back_ref: "Governor S084 'let Sonnet review all you did using 6 different experts'"
     source_session: S084
     created_session: S084

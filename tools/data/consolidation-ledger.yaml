@@ -1,0 +1,588 @@
+# tools/data/consolidation-ledger.yaml
+# APPEND-ONLY consolidation restore ledger (PARK-046).
+# Every consolidation commits one entry per operation here.
+# Restore = revert to pre_merge_sha OR remove absorbed/closed annotations from park-register.yaml.
+#
+# Schema: operation_id, type (absorb|drop), pre_merge_sha, applied_commit, applied_session,
+#   elements[], ability_inventory[], ripple_inbound[], ripple_outbound[], before_after_diff,
+#   defects[], restore_procedure
+#
+# First entry: S086 retro-verify of MERGE-A/B/C/D + DROP-015/041/005.
+# validate-register-reference-integrity PASS blocking=0 EXIT:0 (run 2026-06-21 this session).
+
+---
+ledger:
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # S086-MERGE-A — PARK-S084-020/021/022/027 absorbed into PARK-S084-026
+  # ─────────────────────────────────────────────────────────────────────────────
+  - ledger_id: "S086-MERGE-A"
+    operation_type: absorb
+    applied_session: S086
+    applied_commit: "387f2562"
+    pre_merge_sha: "9ac60a8d"
+    canonical_home: "PARK-S084-026"
+    merged_ids: [PARK-S084-020, PARK-S084-021, PARK-S084-022, PARK-S084-027]
+    register_ref_integrity_at_verify: "blocking=0 EXIT:0 (2026-06-21)"
+
+    elements:
+
+      - id: PARK-S084-020
+        verbatim_fields:
+          lane: queue
+          content: >
+            INDEPENDENCE LADDER — roster allocation across Opus/Sonnet/Haiku/virtual-personas/external-LLMs.
+            Excellence-promoter = independence-stacking. 5 rungs: 0 SELF / 1 FAST-SCOUT (Haiku) /
+            2 PEER (CROSS-ACCEPT Opus<->Sonnet, =M5) / 3 VIRTUAL PANEL / 4 EXTERNAL CONSENSUS.
+            Mapping: C4→rung0-1, C3→rung2, C2→rung3, C1→rung4. NOT a new doc — folds into
+            REASONING-COLLABORATION-LAYER-PLAN as a new 'Independence Ladder (roster)' section.
+          retrieve_when: "STEP 3 — when consolidating Sonnet's CROSS-ACCEPT audit findings into REASONING-COLLABORATION-LAYER-PLAN"
+          source_session: S084
+        ability_inventory:
+          - "DESIGN: 5-rung AI-tier roster allocation table (Opus/Sonnet/Haiku/virtual/external)"
+          - "MAPPING: C-class → rung selection rule (C4=rung0-1, C3=rung2, C2=rung3, C1=rung4)"
+          - "CONSTRAINT: Haiku=rung-1 only (mechanical, never judgment); cross-file set-ops→Sonnet"
+          - "PLACEMENT: add as section to REASONING-COLLABORATION-LAYER-PLAN (not a new doc)"
+          - "No live enforcement mechanism — pure design obligation"
+        ripple_inbound:
+          - "docs/plan/_handoff/OPUS-TAB-TRANSFER-S084-seed-authoring.md (name reference)"
+        ripple_outbound:
+          - "PARK-S084-022 (cost-adaptive audit = Haiku→Sonnet tiered escalation = rung ladder applied to auditing)"
+          - "PARK-S082-011 (cognition-orchestration layer)"
+          - "REASONING-COLLABORATION-LAYER-PLAN.md (planned fold-in location)"
+        before_after_diff:
+          ability_survives: true
+          where: "PARK-S084-026 arms_absorbed[0] + original entry preserved in park-register.yaml (content unchanged, status:absorbed added)"
+          note: "Full detail accessible in the absorbed entry; PARK-026 arms_absorbed breadcrumb links to it"
+          edge_dangling: false
+        defects: []
+
+      - id: PARK-S084-021
+        verbatim_fields:
+          lane: queue
+          content: >
+            PE CONFIGURATION INTERFACE deepdive. GAPS: (a) NO live web UI — pe-dashboard.md is markdown;
+            (b) pe-compute.mjs does ONLY read_budget, not full 5-dim scoring; (c) all 8 scoring validators §10
+            are impl_status: registered-pending-author; (d) pe-history.jsonl + spine-attribution-history deferred.
+            SWIFT path: implement minimal full-5-dim scorer first, validate on one real ranking, THEN build UI editor.
+          retrieve_when: "When PE-improvement-loop arc opens (after reasoning-collab WIP closes)"
+          source_session: S084
+        ability_inventory:
+          - "AUDIT: 4 measured gaps in pe-compute.mjs (no 5-dim scoring, no UI, 8 validators unbuilt, history deferred)"
+          - "DESIGN: build full 5-dim scorer → save-as-template UI → bind to context-orchestrator"
+          - "REFERENCE: pe-compute.mjs specific gap list for PE-loop build arc"
+          - "No live enforcement mechanism"
+        ripple_inbound:
+          - ".csps/last-proto-relay.txt (ephemeral runtime file)"
+          - "tools/council/opus-turn.md (PE-improvement discussion)"
+        ripple_outbound:
+          - "tools/templates/priority-engine.schema.yaml (the spec to implement)"
+          - "tools/scripts/pe-compute.mjs (the file with the measured gaps)"
+          - "PARK-S084-026 (PE-loop parent arc)"
+        before_after_diff:
+          ability_survives: true
+          where: "PARK-S084-026 arms_absorbed[1] + original entry preserved in park-register.yaml"
+          edge_dangling: false
+        defects: []
+
+      - id: PARK-S084-022
+        verbatim_fields:
+          lane: queue
+          content: >
+            COST-ADAPTIVE AUDIT LADDER with learning loop. Run HAIKU to audit until RZF → SONNET same pass →
+            compare tier findings → determine cheapest-without-quality-loss tier per audit-TYPE → learning loop
+            updates tier-assignment as data accumulates. Independence Ladder applied to AUDITING.
+          retrieve_when: "With PE-improvement-loop / CROSS-ACCEPT build arc"
+          source_session: S084
+        ability_inventory:
+          - "DESIGN: tiered audit protocol (Haiku→Sonnet→Opus) with outcome learning loop"
+          - "METRIC: tier × finding-class × cost = PE-loop training data"
+          - "CONSTRAINT: escalate only on residual findings; cheapest tier that reaches RZF"
+          - "No live enforcement mechanism"
+        ripple_inbound:
+          - "NONE (no files outside park-register reference this ID)"
+        ripple_outbound:
+          - "PARK-S084-020 (Independence Ladder applied to auditing = rung ladder instance)"
+          - "PARK-S084-026 (PE-loop outcomes arm receives this data)"
+        before_after_diff:
+          ability_survives: true
+          where: "PARK-S084-026 arms_absorbed[2] + original entry preserved in park-register.yaml"
+          edge_dangling: false
+        defects: []
+
+      - id: PARK-S084-027
+        verbatim_fields:
+          lane: queue
+          content: >
+            OPTIMAL WEIGHT OF THE SCOPES IN PE — deepdive. Sweet spots between infra-investment (high blast,
+            compounding) vs local-fixes (instance scope, fast). SHORT/MEDIUM/LONG-term aspects must be
+            mentioned explicitly in PE reasoning. Calibrates B/D dimension weights + depth-scope modulation.
+          retrieve_when: "PE-improvement-loop calibration arc (PARK-S084-026) — weight-calibration the outcome-vault validates"
+          source_session: S084
+        ability_inventory:
+          - "DESIGN: PE weight calibration framework (infra vs local fix sweet-spot)"
+          - "REQUIREMENT: PE must explicitly reason across S/M/L horizons"
+          - "METRIC: tune depth-scope multipliers + completion gate against measured returns"
+          - "No live enforcement mechanism"
+        ripple_inbound:
+          - "NONE (no files outside park-register reference this ID)"
+        ripple_outbound:
+          - "tools/templates/priority-engine.schema.yaml §1 (B/D weights the calibration applies to)"
+          - "PARK-S084-026 (PE-loop validates the weights)"
+        before_after_diff:
+          ability_survives: true
+          where: "PARK-S084-026 arms_absorbed[3] + original entry preserved in park-register.yaml"
+          edge_dangling: false
+        defects: []
+
+    restore_procedure: >
+      git revert 387f2562 (partial: park-register.yaml only) and remove arms_absorbed from PARK-026.
+      OR: in current park-register.yaml, remove status:absorbed + absorbed_into + closed_session +
+      closed_reason from each of the 4 entries. Their content fields are unchanged — verbatim original
+      content is still in the file. No downstream file modifications needed (IDs still resolve).
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # S086-MERGE-B — PARK-S084-042 kept distinct; cross_links added to 040+043
+  # ─────────────────────────────────────────────────────────────────────────────
+  - ledger_id: "S086-MERGE-B"
+    operation_type: cross-link-only
+    applied_session: S086
+    applied_commit: "387f2562"
+    pre_merge_sha: "9ac60a8d"
+    canonical_home: "PARK-S084-042 (unchanged, stays distinct)"
+    note: "NOT an absorb operation. Only cross_links: [PARK-S084-040, PARK-S084-043] added. No ability change."
+
+    elements:
+
+      - id: PARK-S084-042
+        verbatim_fields:
+          lane: obligation
+          content: >
+            CLAUDE-CODE USAGE REVIEW + SESSION/WORK ORCHESTRATOR. Evidence: 86% >150k context;
+            26% subagent-heavy; 24% 4+ parallel. Orchestrator hypothesis: route work-unit to cheapest
+            capable member; manage context lifecycle; queue parallel sessions; defer MCP+restrict tools
+            per tab; schedule cadence-ladder audits.
+          retrieve_when: "Token-efficiency / AI-behaviour arc, alongside PARK-040 + Token-Efficiency Guardian"
+          source_session: S084
+        ability_inventory:
+          - "DESIGN: session/work orchestrator routing to cheapest capable team member"
+          - "EVIDENCE BASE: measured Claude Code usage patterns (86%/26%/24% cost drivers)"
+          - "SCOPE: all Claude Code elements (tabs/models/subagents/MCPs/skills/hooks/parallel/context)"
+          - "PENDING: build vs not-build assessment (PARK-042-ASSESSMENT-S086.md written S086)"
+        ripple_inbound:
+          - "docs/plan/pillar-0-governance/PARK-042-ASSESSMENT-S086.md"
+          - ".csps/last-handoff-draft.txt (ephemeral)"
+          - "docs/plan/_handoff/HANDOFF-S085-to-S086.md"
+        ripple_outbound:
+          - "PARK-S084-040 (Learning Orchestrator — same shape, cross-linked)"
+          - "PARK-S084-043 (journey container — defines work 042 orchestrates)"
+        before_after_diff:
+          ability_survives: true
+          change: "Only cross_links field added. All original fields unchanged. 042 remains open obligation."
+          edge_dangling: false
+        defects: []
+
+    restore_procedure: >
+      Remove cross_links and cross_link_rationale fields from PARK-S084-042 in park-register.yaml.
+      No other changes needed. ID resolves; entry open; no downstream impact.
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # S086-MERGE-C — S082-001/002/003/004/007 → PHASEB-BUNDLE
+  # ─────────────────────────────────────────────────────────────────────────────
+  - ledger_id: "S086-MERGE-C"
+    operation_type: absorb
+    applied_session: S086
+    applied_commit: "387f2562"
+    pre_merge_sha: "9ac60a8d"
+    canonical_home: "PHASEB-BUNDLE (new entry added in same commit)"
+    merged_ids: [PARK-S082-001, PARK-S082-002, PARK-S082-003, PARK-S082-004, PARK-S082-007]
+    register_ref_integrity_at_verify: "blocking=0 EXIT:0 (2026-06-21)"
+
+    elements:
+
+      - id: PARK-S082-001
+        verbatim_fields:
+          lane: obligation
+          content: "PHASEB: Activate context-orchestrator hook (advisory → BLOCKING for high-cost operations)"
+          retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved + verify instrument stabilized"
+          source_session: S082
+        ability_inventory:
+          - "BUILD: promote user-prompt-submit-context-orchestrator.sh from advisory to BLOCKING for Tier-1 ops"
+          - "GATE: multi-file edits, full-system reads require explicit intent declaration before proceeding"
+          - "STATUS: hook exists + detects task-class + logs suggestions (advisory); BLOCKING gate not yet built"
+        ripple_inbound:
+          - ".csps/last-proto-relay.txt (ephemeral)"
+          - "docs/plan/_handoff/HANDOFF-S082-to-S083.md"
+          - "docs/plan/_handoff/HANDOFF-S083-to-S084.md"
+          - "docs/plan/_handoff/OPUS-TAB-TRANSFER-S082.md"
+          - "docs/plan/_handoff/VAULT/closing-summaries/closing-summary-S082.md"
+        ripple_outbound:
+          - ".claude/hooks/user-prompt-submit-context-orchestrator.sh (the hook to promote)"
+        before_after_diff:
+          ability_survives: true
+          where: "PHASEB-BUNDLE arms[0] + original entry preserved in park-register.yaml"
+          edge_dangling: false
+        defects: []
+
+      - id: PARK-S082-002
+        verbatim_fields:
+          lane: obligation
+          content: "PHASEB: Build PARK hardwire — 7-surface (T1 hook post-stop-catch-3scope-gate.sh + T2 validator + T3 + block-test + SP-registry + audit-runner + verify=0)"
+          retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved"
+          source_session: S082
+        ability_inventory:
+          - "BUILD: 7-surface catch hardwire for symmetric catch pipeline (P-META-037)"
+          - "SURFACES: T1 hook + T2 validator + T3 + block-test + SP-registry + audit-runner + verify=0"
+          - "SPEC: docs/plan/pillar-0-governance/catch-pipeline-spec.md"
+          - "STATUS: unbuilt; gated on PHASEB gate-opener"
+        ripple_inbound:
+          - ".csps/last-proto-relay.txt (ephemeral)"
+          - "docs/plan/_handoff/HANDOFF-S082-to-S083.md"
+          - "docs/plan/_handoff/HANDOFF-S083-to-S084.md"
+          - "docs/plan/_handoff/OPUS-TAB-TRANSFER-S082.md"
+          - "tools/council/opus-turn.md (discussion)"
+        ripple_outbound:
+          - "docs/plan/pillar-0-governance/catch-pipeline-spec.md (the spec to implement)"
+          - "tools/data/hardwire-register.yaml (will add an entry when built)"
+        before_after_diff:
+          ability_survives: true
+          where: "PHASEB-BUNDLE arms[1] + original entry preserved"
+          edge_dangling: false
+        defects: []
+
+      - id: PARK-S082-003
+        verbatim_fields:
+          lane: obligation
+          content: "PHASEB: Build cross-platform automation — post-stop-cross-platform-exchange-check.sh + validate-cross-platform-exchange.mjs"
+          retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved"
+          source_session: S082
+        ability_inventory:
+          - "BUILD: post-stop hook checking new files have exchange-log entries"
+          - "BUILD: validator checking pending absorptions > 3 sessions"
+          - "ARTIFACTS: exchange-log.yaml + absorption-validation.md already created (S082)"
+          - "SPEC: docs/platform-intelligence/CROSS-PLATFORM-EXCHANGE-SPEC.md"
+          - "STATUS: unbuilt (hook+validator); infrastructure exists"
+        ripple_inbound:
+          - "docs/plan/_handoff/HANDOFF-S082-to-S083.md"
+          - "docs/plan/_handoff/HANDOFF-S083-to-S084.md"
+          - "docs/plan/_handoff/OPUS-TAB-TRANSFER-S082.md"
+        ripple_outbound:
+          - "docs/platform-intelligence/CROSS-PLATFORM-EXCHANGE-SPEC.md"
+          - "tools/data/exchange-log.yaml (infrastructure already exists)"
+        before_after_diff:
+          ability_survives: true
+          where: "PHASEB-BUNDLE arms[2] + original entry preserved"
+          edge_dangling: false
+        defects: []
+
+      - id: PARK-S082-004
+        verbatim_fields:
+          lane: obligation
+          content: "PHASEB: EQA pipeline — 4 validators (literal-duplicate-scan, consolidation-draft-age, scattering-index, registry-navigator)"
+          retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved"
+          source_session: S082
+        ability_inventory:
+          - "BUILD: 4 new validators for Element Quality Audit pipeline"
+          - "VALIDATORS: literal-duplicate-scan, consolidation-draft-age, scattering-index, registry-navigator"
+          - "SPEC: docs/plan/pillar-0-governance/CONSOLIDATION-AUDIT-S082.md §EQA"
+          - "STATUS: all 4 unbuilt; registered in audit-runner.md"
+        ripple_inbound:
+          - ".csps/last-sonnet-relay.txt (ephemeral)"
+          - "docs/plan/_handoff/HANDOFF-S082-to-S083.md"
+          - "docs/plan/_handoff/HANDOFF-S083-to-S084.md"
+          - "docs/plan/_handoff/OPUS-TAB-TRANSFER-S082.md"
+          - "tools/council/sonnet-turn.md (SROF reference)"
+        ripple_outbound:
+          - "docs/plan/pillar-0-governance/CONSOLIDATION-AUDIT-S082.md §EQA (the spec)"
+          - "docs/plan/pillar-0-governance/audit-runner.md (will add entries when built)"
+        before_after_diff:
+          ability_survives: true
+          where: "PHASEB-BUNDLE arms[3] + original entry preserved"
+          edge_dangling: false
+        defects: []
+
+      - id: PARK-S082-007
+        verbatim_fields:
+          lane: obligation
+          content: "PHASEB: complexity-load move-trigger — when session context approaches threshold, AI must trigger a chat-move rather than compressing governance quality"
+          retrieve_when: "Any PHASEB build session approaching context limit (B_TOKEN_BUDGET R3/R4 threshold)"
+          source_session: S082
+        ability_inventory:
+          - "BEHAVIORAL: trigger chat-move (not /compact) when context pressure would corrupt governance"
+          - "PRINCIPLE: D20 (context-pressure-false-assumptions) prevention at structural level"
+          - "OVERLAP: PARK-S084-045 (compact-vs-new-tab mechanism) covers this same concern more specifically"
+          - "STATUS: not formally enforced; absorbed_into note references 045 as the more specific treatment"
+        ripple_inbound:
+          - ".csps/last-proto-relay.txt (ephemeral)"
+          - "docs/plan/_handoff/HANDOFF-S082-to-S083.md"
+          - "docs/plan/_handoff/HANDOFF-S083-to-S084.md"
+          - "docs/plan/_handoff/OPUS-TAB-TRANSFER-S082.md"
+          - "docs/plan/_handoff/VAULT/governor-prompts/S083.md"
+        ripple_outbound:
+          - "PARK-S084-045 (compact-vs-new-tab mechanism — more specific treatment of same concern)"
+          - "B_TOKEN_BUDGET (R3/R4 the thresholds this triggers on)"
+        before_after_diff:
+          ability_survives: true
+          where: "PHASEB-BUNDLE arms[4] + PARK-S084-045 (more specific) + original entry preserved"
+          edge_dangling: false
+        defects: []
+
+    restore_procedure: >
+      Remove PHASEB-BUNDLE entry from park-register.yaml AND remove status:absorbed + absorbed_into +
+      closed_session + closed_reason from PARK-S082-001/002/003/004/007. Their content is unchanged.
+      No downstream file changes needed.
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # S086-MERGE-D — PARK-S084-017/031 absorbed into PARK-S084-025
+  # ─────────────────────────────────────────────────────────────────────────────
+  - ledger_id: "S086-MERGE-D"
+    operation_type: absorb
+    applied_session: S086
+    applied_commit: "387f2562"
+    pre_merge_sha: "9ac60a8d"
+    canonical_home: "PARK-S084-025"
+    merged_ids: [PARK-S084-017, PARK-S084-031]
+    register_ref_integrity_at_verify: "blocking=0 EXIT:0 (2026-06-21)"
+
+    elements:
+
+      - id: PARK-S084-017
+        verbatim_fields:
+          lane: obligation
+          content: "RE-RUN-IS-THE-PROOF deep audit + hardwire. Highest-standard fix: high-stakes gates RE-RUN verify live + hash-bind evidence; mandatory + hardwired across journeys think/plan/implement/validate. Folds into ZF ladder #3 + SEED-5."
+          retrieve_when: "With the ZF-hardwire build (B3 of the orchestrator plan)"
+          source_session: S084
+        ability_inventory:
+          - "AUDIT: deep audit of re-run-is-the-proof enforcement gaps"
+          - "BUILD: wire high-stakes gates to RE-RUN verify live + hash-bind evidence"
+          - "SCOPE: journeys think/plan/implement/validate phases"
+          - "INTEGRATION: ZF ladder #3 + SEED-5 (journey seeds)"
+          - "STATUS: unbuilt; gated on orchestrator B3 build"
+        ripple_inbound:
+          - "NONE (no files outside park-register reference this ID)"
+        ripple_outbound:
+          - "PARK-S084-019 (ZF-on-every-communication — related enforcement)"
+          - "PARK-S084-025 (test-drive = the measure-outcome step that proves re-run)"
+          - "docs/plan/pillar-0-governance/JOURNEY-SEEDS-S084.md SEED-5"
+        before_after_diff:
+          ability_survives: true
+          where: "PARK-S084-025 arms_absorbed[0] + original entry preserved"
+          edge_dangling: false
+        defects: []
+
+      - id: PARK-S084-031
+        verbatim_fields:
+          lane: schedule
+          content: "TEST-DRIVE THE ACTUAL JOURNEYS after the plan is built. Align and go back to test-drive real journeys through the orchestrator — verify they produce intended outcomes end-to-end. B.3 'journey ratification test-drive' is the milestone marker."
+          retrieve_when: "After journey-orchestrator build (post SEED-1..9 + B1-B5)"
+          source_session: S084
+        ability_inventory:
+          - "MILESTONE: B.3 journey ratification test-drive (mandatory before orchestrator DONE)"
+          - "SCOPE: all real journeys through the built orchestrator end-to-end"
+          - "PROOF: verify intended outcomes produced (not just compiles)"
+          - "STATUS: unbuilt; gated on orchestrator B5 completion"
+        ripple_inbound:
+          - "NONE (no files outside park-register reference this ID)"
+        ripple_outbound:
+          - "PARK-S084-025 (parent: test-drive hardwiring arc)"
+          - "PARK-S084-043 (journey container must exist before test-drive)"
+        before_after_diff:
+          ability_survives: true
+          where: "PARK-S084-025 arms_absorbed[1] + original entry preserved"
+          edge_dangling: false
+        defects: []
+
+    restore_procedure: >
+      Remove arms_absorbed + arms_note from PARK-S084-025 in park-register.yaml AND remove
+      status:absorbed + absorbed_into + closed_session + closed_reason from 017 + 031.
+      Their content is unchanged. No downstream changes.
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # S086-DROP-015 — PARK-S084-015 closed (6-expert review declared done)
+  # ─────────────────────────────────────────────────────────────────────────────
+  - ledger_id: "S086-DROP-015"
+    operation_type: drop
+    applied_session: S086
+    applied_commit: "387f2562"
+    pre_merge_sha: "9ac60a8d"
+    canonical_home: "CLOSED"
+
+    elements:
+
+      - id: PARK-S084-015
+        verbatim_fields:
+          lane: obligation
+          content: "6-EXPERT SONNET REVIEW (Governor S084) — Sonnet reviews ALL S084 journey-orchestrator work using 6 experts (cruel-critic · bottleneck · schema · consolidation · balance · ux/naive-persona) on the CORRECTED plan (JOURNEY-ORCHESTRATOR-PLAN §0b). NEXT before any build."
+          retrieve_when: "Immediately next — before SEED authoring + MVP-narrow build"
+          source_session: S084
+        ability_inventory:
+          - "REVIEW: 6-expert structured review of journey-orchestrator design"
+          - "EXPERTS: cruel-critic / bottleneck / schema / consolidation / balance / ux-naive-persona"
+          - "SCOPE: ALL S084 journey work on CORRECTED plan (§0b corrections applied)"
+          - "GATE: must precede SEED authoring + MVP-narrow build"
+        evidence_of_discharge:
+          - "JOURNEY-SEEDS-S084.md line 572: references F1/F4/F7/F8/F9 findings pattern (cross-accept output)"
+          - "PARK-S084-038 decision_back_ref: 'Sonnet S084 cross-accept (F1/F4/F7/F8/F9 share root)'"
+          - "HANDOFF-S084-to-S085.md frontmatter: 'Journey-orchestrator design COMPLETE + externally reviewed'"
+          - "OPUS-TAB-TRANSFER-S084-seed-authoring.md: 'journey-orchestrator DESIGN complete + externally validated (self → 6-expert → rung-4 → ZF)'"
+        ripple_inbound:
+          - "NONE (no files outside park-register reference this ID)"
+        ripple_outbound:
+          - "JOURNEY-ORCHESTRATOR-PLAN §0b (the plan reviewed)"
+          - "PARK-S084-038 (anchor-placeholder-completeness validator — Scope-3 output of review)"
+        before_after_diff:
+          ability_survives: true
+          evidence: "6-expert review confirmed executed in S084 (not S085 as closed_reason states)"
+          edge_dangling: false
+        defects:
+          - defect_id: "DEFECT-S086-DROP-015-A"
+            severity: MINOR
+            description: >
+              closed_reason says 'executed S085' but evidence shows review executed S084:
+              JOURNEY-SEEDS-S084.md F1/F4/F7/F8/F9 findings + OPUS-TAB-TRANSFER-S084 '6-expert validated'
+              confirm S084 execution. The ability IS discharged; session attribution is wrong.
+            impact: documentation accuracy only — ability confirmed discharged
+            action_required: >
+              Update closed_reason in park-register.yaml PARK-S084-015 to read
+              'executed S084 (not S085 as originally written)'. No code/build impact.
+
+    restore_procedure: >
+      In park-register.yaml, remove status:closed + closed_session + closed_reason from PARK-S084-015,
+      restoring it to the original open state. No downstream file changes (ID still in register as closed
+      during restore period). Verify would pass since closed entries are not blocked.
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # S086-DROP-041 — PARK-S084-041 closed (per-role cards built)
+  # ─────────────────────────────────────────────────────────────────────────────
+  - ledger_id: "S086-DROP-041"
+    operation_type: drop
+    applied_session: S086
+    applied_commit: "387f2562"
+    pre_merge_sha: "9ac60a8d"
+    canonical_home: "CLOSED (ability built — commit 9ac60a8d)"
+
+    elements:
+
+      - id: PARK-S084-041
+        verbatim_fields:
+          lane: queue
+          content: >
+            CONSOLIDATED PER-ROLE CARDS (Opus/Sonnet/Haiku) — guaranteed-loaded role + relationships.
+            BUILD: one canonical per-role CARD each (role + boundaries + relationships + can/cannot)
+            loaded at session-open by session_role. Consolidate scattered files, do NOT fork.
+            EXTENDED S084: make SEED-D startup block format canonical + extend validate-handoff-completeness
+            to REQUIRE its sections. Haiku team-member job section.
+          retrieve_when: "AI-behaviour arc (PARK-030) OR next role/identity work"
+          source_session: S084
+        ability_inventory:
+          - "BUILD: 3 canonical per-role cards (Opus SEED-D v5.0, Sonnet SEED-D v5.0, Haiku SEED-D MINIMAL v3.0)"
+          - "BUILD: WHO/WARRANT/ACTION wrapper in haiku-spawn-template.md §2"
+          - "BUILD: 3 new ADVISORY_CHECKS in validate-handoff-completeness.mjs (minSession:86)"
+          - "ENFORCE: validate-handoff-completeness minSession filter in advisory loop"
+          - "CONSOLIDATE: opus/sonnet/haiku context files → 3 cards (remove-before-add)"
+        evidence_of_discharge:
+          - "commit 9ac60a8d: tools/council/opus-context.md v5.0 SEED-D (8 sections)"
+          - "commit 9ac60a8d: tools/council/sonnet-context.md v5.0 SEED-D (SROF + CADENCE-AUDIT)"
+          - "commit 9ac60a8d: tools/council/haiku-1-context.md v3.0 SEED-D MINIMAL"
+          - "commit 9ac60a8d: tools/templates/haiku-spawn-template.md WHO/WARRANT/ACTION in §2"
+          - "commit 9ac60a8d: validate-handoff-completeness.mjs 3 SEED-D checks + minSession loop filter"
+          - "verify exit_code=0 at HEAD (this session)"
+        ripple_inbound:
+          - ".csps/last-handoff-draft.txt (ephemeral)"
+          - "docs/plan/_handoff/HANDOFF-S085-to-S086.md"
+        ripple_outbound:
+          - "tools/council/opus-context.md (the built artifact)"
+          - "tools/council/sonnet-context.md (the built artifact)"
+          - "tools/council/haiku-1-context.md (the built artifact)"
+        before_after_diff:
+          ability_survives: true
+          evidence: "All abilities built and committed. verify=0. No ability lost."
+          edge_dangling: false
+        defects: []
+
+    restore_procedure: >
+      Remove status:closed + closed_session + closed_reason from PARK-S084-041 in park-register.yaml.
+      The built artifacts (3 context files + validator extension) would remain built — restore here only
+      means re-opening the obligation entry, not removing the builds.
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # S086-DROP-005 — PARK-S084-005 closed (COMM-CORE S1-S6 built)
+  # ─────────────────────────────────────────────────────────────────────────────
+  - ledger_id: "S086-DROP-005"
+    operation_type: drop
+    applied_session: S086
+    applied_commit: "a1aaa117"
+    pre_merge_sha: "9ac60a8d"
+    canonical_home: "CLOSED (ability built S084 swift-impl, verified S086)"
+
+    elements:
+
+      - id: PARK-S084-005
+        verbatim_fields:
+          lane: obligation
+          content: >
+            PROTO-S084-COMM-CORE — Communication Core as spine ENTRY under AI dimension (not 6th L1).
+            3-element trunk WHO/WARRANT/ACTION. WARRANT (provenance) is the missing element.
+            Opus<->Sonnet = first application. Awaits Governor ratification → Sonnet builds S1-S6.
+          retrieve_when: "RATIFIED Governor S084 → Sonnet builds S1-S6"
+          source_session: S084
+        ability_inventory:
+          - "S1: COMMUNICATION-CORE.md + core-spine-registry entry (spine owner fixed)"
+          - "S2: Rule 16 WARRANT added to communication-protocol-shared.md"
+          - "S3: pre-tool-use-council-address-required.sh extended with WARRANT substance check (ADVISORY)"
+          - "S4: pre-tool-use-rule14-read-before-write.sh registered in settings.json line 179"
+          - "S5: validate-communication-protocol.mjs --extended WARRANT+ACTION checks (EXTENDED tier)"
+          - "S6: wiring_map in COMMUNICATION-CORE.md cross-references scattered fragments"
+        evidence_of_discharge:
+          - "docs/plan/pillar-0-governance/communication-spine/COMMUNICATION-CORE.md impl_status:swift-implemented (S084)"
+          - "tools/config/core-spine-registry.yaml: communication entry at line 366"
+          - "tools/council/communication-protocol-shared.md: Rule 16 WARRANT"
+          - ".claude/hooks/pre-tool-use-council-address-required.sh: WARRANT extension at line 71"
+          - ".claude/settings.json line 179: pre-tool-use-rule14-read-before-write.sh registered"
+          - "tools/validators/validate-communication-protocol.mjs --extended: WARRANT+ACTION lines 84+"
+          - "validate-core-spine-template: spines_checked=4 blocking=0 (verified this session)"
+          - "verify exit_code=0 at HEAD (this session)"
+        ripple_inbound:
+          - ".csps/last-sonnet-relay.txt (ephemeral)"
+          - "tools/council/sonnet-turn.md (SROF reference)"
+        ripple_outbound:
+          - "docs/plan/pillar-0-governance/communication-spine/ (the built artifacts)"
+          - ".claude/hooks/pre-tool-use-council-address-required.sh (extended)"
+          - "tools/validators/validate-communication-protocol.mjs (extended)"
+        before_after_diff:
+          ability_survives: true
+          evidence: "All S1-S6 verified built. validate-core-spine-template blocking=0. verify=0."
+          edge_dangling: false
+        defects: []
+
+    restore_procedure: >
+      Remove status:closed + closed_session + closed_reason from PARK-S084-005.
+      The built artifacts (COMMUNICATION-CORE.md, Rule 16, hooks, validator extension) would remain —
+      restore means re-opening the obligation, not removing the implementations.
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # SUMMARY
+  # ─────────────────────────────────────────────────────────────────────────────
+  retro_verify_summary:
+    applied_session: S086
+    operations_verified: 7
+    total_elements_reviewed: 14
+    defects_found: 1
+    defect_severity_breakdown:
+      MINOR: 1  # DEFECT-S086-DROP-015-A (wrong session number in closed_reason)
+      MAJOR: 0
+      BLOCKING: 0
+    abilities_lost: 0
+    ripple_edges_severed: 0
+    register_ref_integrity_result: "PASS blocking=0 EXIT:0"
+    conclusion: >
+      All 7 S086 operations are NON-HARMFUL and REVERSIBLE. No ability was lost.
+      No ripple edge was severed. All absorbed entries still exist verbatim in park-register.yaml
+      with intact content fields; only status/absorbed_into/closed annotations were added.
+      Restore of any operation requires only removing those annotation fields (or git revert 387f2562).
+      One MINOR DEFECT found: DROP-015 closed_reason cites 'S085' but evidence confirms S084 execution.
+      Recommend: fix closed_reason attribution. No build or enforcement impact.
+    action_items:
+      - "Fix DEFECT-S086-DROP-015-A: update closed_reason for PARK-S084-015 (session S084 not S085)"
+      - "Build validate-consolidation-safety.mjs (EXTENDED tier) to mechanically enforce this ledger pattern going forward"
+      - "Register consolidation-ledger.yaml in audit-runner.md under 'consolidation_safety' slug"

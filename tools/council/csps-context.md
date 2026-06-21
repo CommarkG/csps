@@ -1,3 +1,4 @@
+# layer: system — persistent unified context card; survives arrangement changes
 ---
 id: csps.council.csps-context
 name: csps-context

@@ -17,6 +17,7 @@ links:
   - { rel: spawn-template, href: ../../tools/templates/haiku-spawn-template.md }
   - { rel: seed-d-spec, href: ../../docs/plan/pillar-0-governance/HANDOFF-INTEGRITY-SEEDS-S084.md }
 ---
+# layer: system — persistent per-role card; survives arrangement changes; loaded at spawn
 
 # HAIKU SCOUT CARD — SEED-D MINIMAL v3.0
 # ⚠ LOAD-BEARING CONSTRAINT: This is intentionally short. Full block overflows Haiku.

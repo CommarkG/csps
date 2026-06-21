@@ -1,4 +1,5 @@
-
+# layer: scaffold
+# disposable_if: arrangement_changes
 ═══════════════════════════════════════════════════════════════════
 I AM: Opus #25 (director)
 YOU ARE: Sonnet S086 (builder)
@@ -15046,3 +15047,13 @@ numbers · verify=0.
 surface covered, or did one slip (e.g. the deferred-tool list)? (c) are the 2-audience numbers [MEASURED] via /cost or estimated? Label them.
 
 *PROTO-S084-TEG — Opus #22 — 2026-06-20*
+
+---
+
+# PROTO-S084-HASH-CACHE — SHA-input manifest cache in verify.mjs (S084 build)
+*PROTO-S084-HASH-CACHE — S084 — 2026-06-20*
+
+Built as part of S084 verify hardening: `validate-hash-cache.mjs` (PASS, entry in verify.mjs).
+SHA256 input manifest cache. `--no-cache` flag wired in `post-stop-pnpm-verify.sh`.
+`always_rerun: true` on push_status + git_pushed_state validators.
+Registered here to resolve HANDOFF-S085-to-S086.md ghost-ref (S086 repair).

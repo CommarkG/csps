@@ -598,3 +598,13 @@ entries:
     resolution_session: S083
     resolution_date: "2026-06-12"
     note: "Resolved S083-B1: live=199, cap=200. Defect was verify.mjs:1413 skip_reason printing cap-as-current ('at hard_limit 200') instead of canonical 'at 199/200'. Wording corrected. Also fixed: park-register.yaml total_open 7→8; duplicate PARK-S082-007 renumbered to PARK-S082-009; session-state.json PARK ref 001..005→001..008. fix_commit_sha to be updated after B1 commit."
+
+  - id: gap_RELAY_LAYER_DRIFT
+    description: "Council relay files (opus-turn.md, sonnet-turn.md, *-context.md) missing # layer: scaffold / # disposable_if: arrangement_changes comments — agent-deletion-test Step 2 FAILS and validate-layer-split emits warnings."
+    k_count: 2
+    status: structural_fix_committed
+    structural_fix_committed: true
+    structural_fix_description: "STRUCTURAL-FIX S086 (Opus #25 item 4): post-tool-use-sonnet-relay-inline.sh v7.1.0 auto-injects '# layer: scaffold + # disposable_if: arrangement_changes' at top of sonnet-turn.md and opus-turn.md on any write. Write-time injection prevents recurrence without human action."
+    fix_commit_sha: "pending-this-turn"
+    created_session: S086
+    prevention_class: "SCAFFOLD-LAYER-DRIFT"

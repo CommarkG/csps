@@ -351,9 +351,11 @@ entries:
     lane: obligation
     content: "PROTO-S084-COMM-CORE — Communication Core as a spine ENTRY under AI dimension (not 6th L1). 3-element trunk WHO/WARRANT/ACTION; WARRANT (provenance) is the missing element; Opus<->Sonnet = first application. Authored + core-seeded S084; awaits Governor ratification before build."
     retrieve_when: "RATIFIED Governor S084 (scope + spine-fork Option A) -> Sonnet builds S1-S6"
-    status: ratified-build-pending
+    status: closed
     ratified_by: "Governor S084"
     ratified_at: "2026-06-14"
+    closed_session: S086
+    closed_reason: "PARK-005 COMM-CORE BUILT S084/S086 (VERIFIED S086). All 6 steps complete: S1 COMMUNICATION-CORE.md + core-spine-registry entry; S2 Rule 16 WARRANT in communication-protocol-shared.md; S3 council-address-required.sh WARRANT extension (ADVISORY); S4 rule14 in settings.json line 179; S5 validate-communication-protocol.mjs --extended WARRANT+ACTION; S6 wiring_map in COMMUNICATION-CORE.md. validate-core-spine-template spines_checked=4 blocking=0. verify exit_code=0. WHO/WARRANT/ACTION now in all 3 per-role cards (PARK-041). COMM-CORE is the first application; Haiku WHO/WARRANT/ACTION wrapper is the second (S086)."
     never_drop: true
     decision_back_ref: "PROTO-S084-COMM-CORE (opus-turn.md TOP, S084) — Governor directive 'create the optimal solution + core seed it'"
     context_preserved: >
@@ -365,7 +367,6 @@ entries:
       Connects P-META-032/PREV-1 (artifact layer) UP into the communication layer.
     source_session: S084
     created_session: S084
-    closed_session: null
 
   # ─────────────────────────────────────────────
   # S084 — ONGOING PLANS (Governor directives, multi-session, PE-scored)

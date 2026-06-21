@@ -30,7 +30,7 @@ links:
   - rel: protocol
     href: "../../../../tools/council/communication-protocol-shared.md"
   - rel: ai-spine-l1
-    href: "../../../.claude/core-spines/L1_CORE_AI.md"
+    href: "../../../../.claude/core-spines/L1_CORE_AI.md"
   - rel: registry
     href: "../../../../tools/config/core-spine-registry.yaml"
   - rel: p-meta-032

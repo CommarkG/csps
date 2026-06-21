@@ -1,0 +1,472 @@
+# tools/data/classification-golden-set.yaml
+# CSPS Threshold Classifier — Golden Set for accuracy measurement + few-shot LLM training.
+# PARK-040 Learning Orchestrator — classification arm. Built S086.
+#
+# Schema:
+#   id: gs-NNN
+#   prompt_excerpt: first ~120 chars of the governor input (or synthetic representative)
+#   input_context: { type, spine, urgency }  ← what the hook pre-classifies (inputs to routeInput)
+#   correct: { scope, intent, mandate_relation, route }  ← ground-truth output
+#   source: synthetic | governor-corrected | session-derived
+#   session: S0NN
+#   review_status: ready | TBD (Governor needs to verify/correct)
+#   notes: optional explanation of what makes this a good test case
+#
+# axis values:
+#   scope:             constitutional | architectural | operational | tactical
+#   intent:            directive | proposal | question | maintenance | conversational | ai_behavior | validation
+#   mandate_relation:  in-mandate | adjacent | orthogonal | new-request
+#   route:             PROCESS-NOW | VAULT | ESCALATE | INVOKE:consolidation-expert |
+#                      INVOKE:cruel-critic | INVOKE:vocabulary-canon | VAULT:defer | CIP:staging |
+#                      FOREIGN-ELEMENT:quarantine | PLACE-NOT-FOUND:pending-node
+#
+# Governor: fill in `correct:` for any entry with review_status: TBD.
+# If the classifier got it wrong, put the CORRECT value and leave a note.
+
+schema_version: "1.0"
+created_session: S086
+last_accuracy_session: null
+overall_accuracy_pct: null  # updated by validate-classification-accuracy.mjs
+
+entries:
+
+  # ── CLASS 1: Governor directives → PROCESS-NOW (non-constitutional) ──────────
+
+  - id: gs-001
+    prompt_excerpt: "Sonnet, this is Opus #25 (relayed by Governor). Execute PHASE 1 in order: threshold stabilization, PARK-041, consolidation map, PE parks-aware, PARK-042 assessment."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: high
+    correct:
+      scope: operational
+      intent: directive
+      mandate_relation: in-mandate
+      route: PROCESS-NOW
+    source: session-derived
+    session: S086
+    review_status: ready
+    notes: "Standard multi-item build directive in active mandate. All items in active plan."
+
+  - id: gs-002
+    prompt_excerpt: "BUILD the classifier-training loop (folds into PARK-040 Learning Orchestrator; classification arm). Minimal, no fork."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: high
+    correct:
+      scope: operational
+      intent: directive
+      mandate_relation: in-mandate
+      route: PROCESS-NOW
+    source: session-derived
+    session: S086
+    review_status: ready
+    notes: "Single-item build directive. Explicitly in-mandate (PARK-040)."
+
+  - id: gs-003
+    prompt_excerpt: "RETRO-VERIFY the S086 consolidation (PARK-046 first application). For each of the 7 S086 operations, list abilities, ripple inventory, before/after diff, restore bundle."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: high
+    correct:
+      scope: operational
+      intent: directive
+      mandate_relation: in-mandate
+      route: PROCESS-NOW
+    source: session-derived
+    session: S086
+    review_status: ready
+    notes: "Verification directive with clear mandate reference (PARK-046). Operational scope."
+
+  - id: gs-004
+    prompt_excerpt: "Fix verify is RED — commit sonnet-turn.md layer tag, tag haiku-1-context.md + csps-context.md, fix ghost-ref, structural fix for relay layer drift."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: high
+    correct:
+      scope: operational
+      intent: directive
+      mandate_relation: in-mandate
+      route: PROCESS-NOW
+    source: session-derived
+    session: S086
+    review_status: ready
+    notes: "Bug-fix directive. Operational scope, in-mandate (verify=0 gate)."
+
+  - id: gs-005
+    prompt_excerpt: "Continue from where you left off without asking the user any further questions. Resume directly."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: medium
+    correct:
+      scope: tactical
+      intent: conversational
+      mandate_relation: in-mandate
+      route: PROCESS-NOW
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Session continuation message. Should be PROCESS-NOW but scope/intent may vary. Governor to confirm."
+
+  # ── CLASS 1: Constitutional directive → ESCALATE ─────────────────────────────
+
+  - id: gs-006
+    prompt_excerpt: "Ratify a new constitutional principle P-META-040 that applies platform-wide to all B_* behavioral contracts: any contract without a T1 hook is theater."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: high
+    correct:
+      scope: constitutional
+      intent: directive
+      mandate_relation: new-request
+      route: ESCALATE
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Contains 'constitutional' + 'platform-wide' + 'P-META' → should trigger constitutional scope → ESCALATE. Governor verify."
+
+  - id: gs-007
+    prompt_excerpt: "Update B_COMPLETION_OVER_SHINY — add a new enforcement clause that makes this blocking at T1 for all tabs, platform-wide, permanent change."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: high
+    correct:
+      scope: constitutional
+      intent: directive
+      mandate_relation: adjacent
+      route: ESCALATE
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "B_* contract + 'platform-wide' → constitutional. Governor confirm ESCALATE vs PROCESS-NOW."
+
+  # ── CLASS 5: Proposals ────────────────────────────────────────────────────────
+
+  - id: gs-008
+    prompt_excerpt: "Should we replace the existing threshold-router.mjs with a neural classifier? What are the options?"
+    input_context:
+      type: proposal
+      spine: ARCH
+      urgency: medium
+    correct:
+      scope: architectural
+      intent: proposal
+      mandate_relation: new-request
+      route: INVOKE:cruel-critic
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "High-stakes architectural proposal → should invoke cruel-critic. Check if INVOKE:cruel-critic vs CIP:staging."
+
+  - id: gs-009
+    prompt_excerpt: "We should probably consolidate threshold-router.mjs and route-input-wrapper.mjs — they already exist and do similar things."
+    input_context:
+      type: proposal
+      spine: ARCH
+      urgency: medium
+    correct:
+      scope: architectural
+      intent: proposal
+      mandate_relation: adjacent
+      route: INVOKE:consolidation-expert
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Proposal with 'consolidate' + 'already exist' → should invoke consolidation-expert. Governor verify."
+
+  - id: gs-010
+    prompt_excerpt: "What if we added a fourth classification axis for 'session phase' — like think/plan/implement/verify?"
+    input_context:
+      type: proposal
+      spine: GVRN
+      urgency: low
+    correct:
+      scope: architectural
+      intent: proposal
+      mandate_relation: orthogonal
+      route: CIP:staging
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "New concept proposal, not directly in mandate. CIP staging or VAULT? Governor to classify."
+
+  # ── CLASS 2: Implementation ───────────────────────────────────────────────────
+
+  - id: gs-011
+    prompt_excerpt: "Build tools/validators/validate-schema-drift.mjs — checks that schema.zmodel and generated Prisma client stay in sync after each db-push."
+    input_context:
+      type: governor_directive
+      spine: ARCH
+      urgency: high
+    correct:
+      scope: operational
+      intent: directive
+      mandate_relation: adjacent
+      route: PROCESS-NOW
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "ARCH spine build directive. Should be PROCESS-NOW. Adjacent because not currently in active mandate."
+
+  # ── CLASS 4: Validation / ZF ──────────────────────────────────────────────────
+
+  - id: gs-012
+    prompt_excerpt: "pnpm verify is exiting 1. validate-consolidation-safety is failing with blocking=1. Fix before pushing."
+    input_context:
+      type: error
+      spine: VALD
+      urgency: high
+    correct:
+      scope: operational
+      intent: validation
+      mandate_relation: in-mandate
+      route: PROCESS-NOW
+    source: synthetic
+    session: S086
+    review_status: ready
+    notes: "Error + VALD spine. Always PROCESS-NOW (blocking error blocks all work). Operational scope."
+
+  - id: gs-013
+    prompt_excerpt: "ZF cycles: Cycle 1 — re-examine all PARK-040 references in the codebase. Cycle 2 — check if any downstream references missed the consolidation. 0 new findings."
+    input_context:
+      type: governor_directive
+      spine: VALD
+      urgency: medium
+    correct:
+      scope: operational
+      intent: validation
+      mandate_relation: in-mandate
+      route: PROCESS-NOW
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "ZF cycle report. VALD spine. Governor to confirm operational vs tactical."
+
+  # ── CLASS 6: External content → VAULT:defer ──────────────────────────────────
+
+  - id: gs-014
+    prompt_excerpt: "External research I asked ChatGPT to review our journey orchestrator design. Paste the full response below. Please absorb and note what applies."
+    input_context:
+      type: external_research
+      spine: AI
+      urgency: medium
+    correct:
+      scope: operational
+      intent: external_research
+      mandate_relation: adjacent
+      route: VAULT:defer
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "External research paste → should vault for alignment review. Governor verify VAULT:defer vs PROCESS-NOW."
+
+  - id: gs-015
+    prompt_excerpt: "I found an interesting article about AI orchestration patterns. Let me paste the key points..."
+    input_context:
+      type: external_research
+      spine: AI
+      urgency: low
+    correct:
+      scope: tactical
+      intent: external_research
+      mandate_relation: orthogonal
+      route: VAULT:defer
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "External content. Low urgency, orthogonal. Should vault. Governor verify."
+
+  # ── CLASS 7: Maintenance → VAULT ──────────────────────────────────────────────
+
+  - id: gs-016
+    prompt_excerpt: "Update the README at docs/README.md to include the new PARK-046 entry. Small text change only."
+    input_context:
+      type: maintenance
+      spine: OPER
+      urgency: low
+    correct:
+      scope: tactical
+      intent: maintenance
+      mandate_relation: adjacent
+      route: VAULT
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Small maintenance task. Should VAULT (not in active mandate). Governor verify vs PROCESS-NOW."
+
+  - id: gs-017
+    prompt_excerpt: "Fix typo in audit-runner.md — 'consolidaton' → 'consolidation'. Line 341."
+    input_context:
+      type: maintenance
+      spine: GVRN
+      urgency: low
+    correct:
+      scope: tactical
+      intent: maintenance
+      mandate_relation: adjacent
+      route: VAULT
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Pure typo fix. Tactical scope. Should VAULT? or PROCESS-NOW? Governor to adjudicate."
+
+  # ── CLASS 3: AI behavior ───────────────────────────────────────────────────────
+
+  - id: gs-018
+    prompt_excerpt: "Sonnet keeps forgetting to include the WHO/WARRANT/ACTION wrapper in its responses. Add a new D-series default to inner-ai-defaults that catches this."
+    input_context:
+      type: ai_behavior
+      spine: AI
+      urgency: high
+    correct:
+      scope: operational
+      intent: ai_behavior
+      mandate_relation: adjacent
+      route: PROCESS-NOW
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "AI behavior directive. AI spine → PROCESS-NOW. Governor confirm operational vs architectural."
+
+  # ── Vocabulary / naming ────────────────────────────────────────────────────────
+
+  - id: gs-019
+    prompt_excerpt: "What should we call the new concept where parks merge into a bundle? 'absorption bundle', 'consolidation ark', or 'bundle node'?"
+    input_context:
+      type: question
+      spine: GVRN
+      urgency: low
+    correct:
+      scope: tactical
+      intent: question
+      mandate_relation: adjacent
+      route: INVOKE:vocabulary-canon
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Naming question. Should invoke vocabulary-canon (/vocabulary-canon skill). Governor verify route."
+
+  # ── Question / architectural ───────────────────────────────────────────────────
+
+  - id: gs-020
+    prompt_excerpt: "Why does validate-register-reference-integrity have a 24-hour window for BLOCKING? What's the reasoning behind that specific threshold?"
+    input_context:
+      type: question
+      spine: VALD
+      urgency: low
+    correct:
+      scope: tactical
+      intent: question
+      mandate_relation: adjacent
+      route: PROCESS-NOW
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Clarification question, low urgency. PROCESS-NOW or VAULT? Conversational? Governor adjudicate."
+
+  # ── Edge cases / ambiguous ─────────────────────────────────────────────────────
+
+  - id: gs-021
+    prompt_excerpt: "Park this idea for later: add a weekly cron job that scans for improvements not propagated after 3 sessions."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: low
+    correct:
+      scope: tactical
+      intent: directive
+      mandate_relation: orthogonal
+      route: VAULT
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Explicit 'park this' signal. Orthogonal to active mandate. VAULT vs PROCESS-NOW is the key question. Governor classify."
+
+  - id: gs-022
+    prompt_excerpt: "This is fine, continue what you were doing."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: low
+    correct:
+      scope: tactical
+      intent: conversational
+      mandate_relation: in-mandate
+      route: PROCESS-NOW
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Very short conversational approval. Should be PROCESS-NOW/conversational. Governor verify."
+
+  - id: gs-023
+    prompt_excerpt: "Before we close this session, let me share some context from 6 months ago when we tried a similar approach on the CSP platform..."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: medium
+    correct:
+      scope: tactical
+      intent: conversational
+      mandate_relation: adjacent
+      route: PROCESS-NOW
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Historical context injection. Adjacent, not a directive. Governor classify intent and route."
+
+  - id: gs-024
+    prompt_excerpt: "Actually scratch what I just said — the PARK-042 assessment should focus more on the cost side. Revise the 2-page doc."
+    input_context:
+      type: governor_directive
+      spine: GVRN
+      urgency: medium
+    correct:
+      scope: operational
+      intent: directive
+      mandate_relation: in-mandate
+      route: PROCESS-NOW
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Correction/revision directive. Mid-active process. B_SWIFT_OR_PARK applies (significant impact = revise already-done doc). Governor classify mandate_relation."
+
+  - id: gs-025
+    prompt_excerpt: "How would a top expert approach consolidating 40 open parks into a leaner register without losing any encoded knowledge?"
+    input_context:
+      type: question
+      spine: GVRN
+      urgency: medium
+    correct:
+      scope: architectural
+      intent: question
+      mandate_relation: adjacent
+      route: PROCESS-NOW
+    source: synthetic
+    session: S086
+    review_status: TBD
+    notes: "Architectural question about approach. Adjacent (we do consolidation). PROCESS-NOW or CIP:staging? Governor classify."
+
+# ── Mis-pattern tracking ────────────────────────────────────────────────────────
+# Updated by classification-correction-capture.mjs when the same axis is wrong 2+ times.
+# A rule-candidate means the classifier rule is unreliable for this pattern.
+rule_candidates: []
+
+# ── Accuracy history ────────────────────────────────────────────────────────────
+# Updated by validate-classification-accuracy.mjs after each run.
+accuracy_history:
+  - "2026-06-21 | n=5 overall=100% scope=100% intent=100% mandate=100% route=100%"
+  - "2026-06-21 | n=5 overall=100% scope=100% intent=100% mandate=100% route=100%"
+  - "2026-06-21 | n=5 overall=100% scope=100% intent=100% mandate=100% route=100%"
+  - "2026-06-21 | n=5 overall=100% scope=100% intent=100% mandate=100% route=100%"
+  - "2026-06-21 | n=5 overall=100% scope=100% intent=100% mandate=100% route=100%"
+  - "2026-06-21 | n=5 overall=100% scope=100% intent=100% mandate=100% route=100%"
+  - "2026-06-21 | n=5 overall=100% scope=100% intent=100% mandate=100% route=100%"
+  - "2026-06-21 | n=5 overall=100% scope=100% intent=100% mandate=100% route=100%"
+  - "2026-06-21 | n=5 overall=0% scope=0% intent=100% mandate=100% route=100%"
+  - "2026-06-21 | n=5 overall=0% scope=0% intent=100% mandate=100% route=100%"

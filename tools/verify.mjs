@@ -2275,6 +2275,20 @@ const CYCLES = [
     // + restore_procedure + no BLOCKING-severity open defects.
     // EXTENDED: runs on consolidation arcs + --extended flag. Does NOT duplicate register-ref-integrity.
     // Extends B_CONSOLIDATION_PASS. First retro-verify: S086 MERGE-A/B/C/D + DROP-015/041/005.
+    // S086 PARK-040 — Classifier accuracy: runs threshold-router over golden-set entries,
+    // reports accuracy % per axis. BLOCKING if < 50% on any axis (systematic mis-rule).
+    // ADVISORY if < 80% or any misclassification. EXTENDED: on-demand + --extended.
+    // Golden set: tools/data/classification-golden-set.yaml. Governor fills TBD entries.
+    run_tier: 'EXTENDED',
+    name: 'classification_accuracy',
+    command: 'node tools/validators/validate-classification-accuracy.mjs',
+    parse_output: (out) => {
+      const m = out.match(/entries_tested=(\d+)\s+correct_all_axes=(\d+)\s+accuracy=(\d+)%/);
+      const b = out.match(/blocking=(\d+)\s+advisory=(\d+)/);
+      return { ...(m ? { entries_tested: Number(m[1]), correct: Number(m[2]), accuracy_pct: Number(m[3]) } : {}), ...(b ? { blocking: Number(b[1]), advisory: Number(b[2]) } : {}) };
+    },
+  },
+  {
     run_tier: 'EXTENDED',
     name: 'consolidation_safety',
     command: 'node tools/validators/validate-consolidation-safety.mjs',

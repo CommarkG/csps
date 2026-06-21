@@ -144,10 +144,22 @@ export function routeInput({ type, spine, urgency, scope, content = '', shapeTie
 
   // ─── SLOW PATH — full 10-class classification ──────────────────────────────
   // Axis 2: scope detection (if not provided, infer)
+  // S086 FIX (golden-set finding gs-001..gs-004): governor_directive type defaults to operational,
+  // not tactical. Tactical = explicitly conversational/low-urgency. Training data confirms:
+  // "Execute PHASE 1...", "BUILD the classifier...", "Fix verify is RED..." all = operational.
   let detectedScope = scope || 'operational';
   if (!scope) {
     if (/constitutional|platform-wide|PROTO.*gate|B_\w+|P-META/i.test(content)) detectedScope = 'constitutional';
     else if (/schema|migrate|architecture|cross-pillar/i.test(content)) detectedScope = 'architectural';
+    else if (type === 'governor_directive' || type === 'governor' || type === 'correction' || type === 'implementation') {
+      // Governor directives without explicit scope markers are operational by default
+      // Exception: low-urgency + conversational patterns → tactical
+      if (urgency === 'low' && /^(yes|no|ok|continue|thanks|good|fine)\b/i.test(content.trim())) {
+        detectedScope = 'tactical';
+      } else {
+        detectedScope = 'operational';
+      }
+    }
     else if (/fix|patch|update|clean/i.test(content)) detectedScope = 'operational';
     else detectedScope = 'tactical';
   }

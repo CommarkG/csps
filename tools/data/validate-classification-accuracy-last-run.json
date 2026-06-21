@@ -1,0 +1,16 @@
+{
+  "run_at": "2026-06-21T10:28:46.149Z",
+  "entries_tested": 5,
+  "overall_accuracy_pct": 100,
+  "axis_accuracy": {
+    "scope": 100,
+    "intent": 100,
+    "mandate_relation": 100,
+    "route": 100
+  },
+  "misclassified_count": 0,
+  "llm_escalate_count": 0,
+  "llm_escalate_ids": [],
+  "blocking": 0,
+  "advisory": 0
+}

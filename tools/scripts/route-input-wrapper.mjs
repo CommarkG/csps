@@ -31,7 +31,7 @@ const content = process.env.ROUTE_CONTENT || ''
 const type = process.env.ROUTE_TYPE || 'governor_directive'
 const spine = process.env.ROUTE_SPINE || 'GVRN'
 const urgency = process.env.ROUTE_URGENCY || 'medium'
-const scope = process.env.ROUTE_SCOPE || 'tactical'
+const scope = process.env.ROUTE_SCOPE || ''  // S086: pass empty for inference
 const shapeTier = process.env.ROUTE_SHAPE === 'true'
 
 // M8: Read brownout-state.yaml ONCE here (stateless pattern — not inside routeInput)

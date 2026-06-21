@@ -20,7 +20,9 @@ meta:
   schema_version: "1.0"
   created: "2026-06-10"
   session: S082
-  total_open: 26
+  total_open: 40
+  last_consolidation_session: S086
+  last_consolidation_map: "MERGE-A(020/021/022/027→026) + MERGE-B-REFINED(042 cross-link 040+043) + MERGE-C(S082-001/002/003/004/007→PHASEB-BUNDLE) + MERGE-D(025←031+017) + DROP(015)"
 
 entries:
 
@@ -33,19 +35,26 @@ entries:
     content: "PHASEB: Activate context-orchestrator hook (advisory → BLOCKING for high-cost operations)"
     retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved + verify instrument stabilized"
     never_drop: true
+    status: absorbed
+    absorbed_into: "PHASEB-BUNDLE"
+    closed_session: S086
+    closed_reason: "MERGE-C (Opus #25 S086 consolidation): absorbed into PHASEB-BUNDLE. Context preserved in PHASEB-BUNDLE arms[0]."
     context_preserved: >
       user-prompt-submit-context-orchestrator.sh exists + detects task-class + logs suggestions.
       Promote advisory → BLOCKING for Tier-1 operations (multi-file edits, full-system reads).
       Highest-leverage action from S082-context-retrieval-recommendations.md Gap 1.
     source_session: S082
     created_session: S082
-    closed_session: null
 
   - id: "PARK-S082-002"
     lane: obligation
     content: "PHASEB: Build PARK hardwire — 7-surface (T1 hook post-stop-catch-3scope-gate.sh + T2 validator + T3 + block-test + SP-registry + audit-runner + verify=0)"
     retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved"
     never_drop: true
+    status: absorbed
+    absorbed_into: "PHASEB-BUNDLE"
+    closed_session: S086
+    closed_reason: "MERGE-C (Opus #25 S086): absorbed into PHASEB-BUNDLE arms[1]."
     context_preserved: >
       Symmetric catch pipeline (P-META-037). 3 scopes × 2 polarities.
       catch-register.yaml needs 8 existing defer-verb registers merged.
@@ -53,13 +62,16 @@ entries:
       B_STRUCTURAL_PREVENTION_DISCIPLINE gets its missing T1+T2 in this build.
     source_session: S082
     created_session: S082
-    closed_session: null
 
   - id: "PARK-S082-003"
     lane: obligation
     content: "PHASEB: Build cross-platform automation — post-stop-cross-platform-exchange-check.sh + validate-cross-platform-exchange.mjs"
     retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved"
     never_drop: true
+    status: absorbed
+    absorbed_into: "PHASEB-BUNDLE"
+    closed_session: S086
+    closed_reason: "MERGE-C (Opus #25 S086): absorbed into PHASEB-BUNDLE arms[2]."
     context_preserved: >
       Spec: docs/platform-intelligence/CROSS-PLATFORM-EXCHANGE-SPEC.md.
       Hook fires at stop, checks for new files without exchange-log entries.
@@ -67,20 +79,22 @@ entries:
       exchange-log.yaml + absorption-validation.md already created (S082).
     source_session: S082
     created_session: S082
-    closed_session: null
 
   - id: "PARK-S082-004"
     lane: obligation
     content: "PHASEB: EQA pipeline — 4 validators (literal-duplicate-scan, consolidation-draft-age, scattering-index, registry-navigator)"
     retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved"
     never_drop: true
+    status: absorbed
+    absorbed_into: "PHASEB-BUNDLE"
+    closed_session: S086
+    closed_reason: "MERGE-C (Opus #25 S086): absorbed into PHASEB-BUNDLE arms[3]."
     context_preserved: >
       Spec: docs/plan/pillar-0-governance/CONSOLIDATION-AUDIT-S082.md §EQA.
       EQA = Elements Quality Audit. 5 metrics. 3-tier cadence (session/weekly/milestone).
       4 new validators needed. Governor confirmed EQA meaning S082.
     source_session: S082
     created_session: S082
-    closed_session: null
 
   - id: "PARK-S082-005"
     lane: obligation
@@ -97,7 +111,6 @@ entries:
       One session; no architecture changes needed. Could be done pre-PHASEB.
     source_session: S082
     created_session: S082
-    closed_session: null
 
   # ─────────────────────────────────────────────
   # PENDING OPUS PROTO
@@ -123,6 +136,10 @@ entries:
     content: "PHASEB: complexity-load move-trigger — when session context approaches threshold, AI must trigger a chat-move rather than compressing governance quality"
     retrieve_when: "Any PHASEB build session approaching context limit (B_TOKEN_BUDGET R3/R4 threshold)"
     never_drop: true
+    status: absorbed
+    absorbed_into: "PHASEB-BUNDLE"
+    closed_session: S086
+    closed_reason: "MERGE-C (Opus #25 S086): absorbed into PHASEB-BUNDLE arms[4]. See also PARK-S084-045 (compact-vs-new-tab mechanism) which covers this concern more specifically."
     context_preserved: >
       D20 (context-pressure-false-assumptions) shows the failure mode: false assertions flourish
       under context pressure. Structural prevention: at context threshold, MOVE rather than compress
@@ -131,7 +148,6 @@ entries:
       Connects to: chat-move criteria (feedback_chat_move_criteria.md) + B_TOKEN_BUDGET R4.
     source_session: S082
     created_session: S082
-    closed_session: null
 
   - id: "PARK-S082-008"
     lane: obligation
@@ -149,6 +165,25 @@ entries:
       Second measurement (sonnet-build class) pending at end of A2 session.
     source_session: S082
     created_session: S082
+
+  # ─────────────────────────────────────────────
+  # PHASEB-BUNDLE (S086 MERGE-C) — consolidated PHASEB gated obligations
+  # ─────────────────────────────────────────────
+
+  - id: "PHASEB-BUNDLE"
+    lane: obligation
+    content: "Consolidated PHASEB obligations (gated on cycle-counter reconciliation + verify instrument stabilized). 5 arms: (1) S082-001 context-orchestrator advisory→BLOCKING; (2) S082-002 PARK hardwire 7-surface; (3) S082-003 cross-platform automation hook+validator; (4) S082-004 EQA pipeline 4 validators; (5) S082-007 complexity-load chat-move trigger."
+    retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved + verify instrument stabilized + Governor ratification per arm (each arm individually, not a single giant build)"
+    never_drop: true
+    arms:
+      - {id: "PARK-S082-001", label: "context-orchestrator advisory→BLOCKING"}
+      - {id: "PARK-S082-002", label: "PARK hardwire 7-surface (catch-pipeline-spec.md)"}
+      - {id: "PARK-S082-003", label: "cross-platform automation hook+validator"}
+      - {id: "PARK-S082-004", label: "EQA pipeline 4 validators"}
+      - {id: "PARK-S082-007", label: "complexity-load move-trigger (see also PARK-S084-045)"}
+    build_sequence: "Arm 2 (PARK hardwire) first (highest impact); then 1+3+4 parallel; 5 absorbed by PARK-S084-045."
+    created_session: S086
+    closed_session: null
 
   # ─────────────────────────────────────────────
   # PER-FAMILY CONSOLIDATION (Governor ratification gates)
@@ -541,10 +576,12 @@ entries:
     content: "6-EXPERT SONNET REVIEW (Governor S084) — Sonnet reviews ALL S084 journey-orchestrator work using 6 experts (cruel-critic · bottleneck · schema · consolidation · balance · ux/naive-persona) on the CORRECTED plan (JOURNEY-ORCHESTRATOR-PLAN §0b). NEXT before any build."
     retrieve_when: "Immediately next — before SEED authoring + MVP-narrow build."
     never_drop: true
+    status: closed
+    closed_session: S085
+    closed_reason: "DROP (Opus #25 S086 consolidation): 6-expert review was executed S085 — it generated the cross-accept findings that produced PARK-038 + absorbed into S085 SROF. Obligation discharged."
     decision_back_ref: "Governor S084 'let Sonnet review all you did using 6 different experts'"
     source_session: S084
     created_session: S084
-    closed_session: null
 
   - id: "PARK-S084-016"
     lane: obligation
@@ -561,10 +598,13 @@ entries:
     content: "RE-RUN-IS-THE-PROOF deep audit + hardwire (Governor S084) — the principle is NOT mechanically enforced (ZF gates trust stored verify-last-run, touchable). Highest-standard fix: high-stakes gates RE-RUN verify live + hash-bind evidence; mandatory + hardwired across journeys think/plan/implement/validate. Folds into ZF ladder #3 + SEED-5."
     retrieve_when: "With the ZF-hardwire build (B3 of the orchestrator plan)."
     never_drop: true
+    status: absorbed
+    absorbed_into: "PARK-S084-025"
+    closed_session: S086
+    closed_reason: "MERGE-D (Opus #25 S086): re-run-is-the-proof hardwire absorbed into PARK-S084-025 (test-drive hardwiring) as the verification arm. Both are about proving INTENDED outcomes."
     decision_back_ref: "Governor S084 'run a deep audit on re-run IS the proof ... highest standard ... hardwired to journeys'"
     source_session: S084
     created_session: S084
-    closed_session: null
 
   - id: "PARK-S084-018"
     lane: schedule
@@ -606,9 +646,12 @@ entries:
       The efficiency rule IS the risk-class->rung map. Builds on: M5 CROSS-ACCEPT, the 6-persona panel already
       run this session, the journey §0b 3-way external consensus, haiku-pattern-library, model-tier-registry.
     decision_back_ref: "Governor S084 'tell me and add to the plan the most efficient and excellence promoter on using opus sonnet haiku and virtual external personas and external llms ... you can park it for later'"
+    status: absorbed
+    absorbed_into: "PARK-S084-026"
+    closed_session: S086
+    closed_reason: "MERGE-A (Opus #25 S086): absorbed as arm of PARK-S084-026 (PE-improvement loop). Independence Ladder IS the roster dimension of Model PE dim 3."
     source_session: S084
     created_session: S084
-    closed_session: null
 
   - id: "PARK-S084-021"
     lane: queue
@@ -621,9 +664,12 @@ entries:
       same arc as the PE-improvement loop. SWIFT path: implement the minimal full-5-dim scorer first
       (schema already specifies it), validate on one real ranking, THEN build the UI editor.
     decision_back_ref: "Governor S084 'i remember you built an interface showing pe parameters and weights + connected to core spine + save configs as templates for orchestrator ... park it for a deepdive later ... make it accurate'"
+    status: absorbed
+    absorbed_into: "PARK-S084-026"
+    closed_session: S086
+    closed_reason: "MERGE-A (Opus #25 S086): PE config interface is an arm of the PE-improvement loop (PARK-026). Build the minimal full-5-dim scorer first (within 026 arc), then UI editor."
     source_session: S084
     created_session: S084
-    closed_session: null
 
   - id: "PARK-S084-022"
     lane: queue
@@ -636,9 +682,12 @@ entries:
       'gradual change only after consistent validated results' the Governor asked for — applied to
       WHO audits. Dogfoods: cheapest tier that reaches RZF, escalate only on residual findings.
     decision_back_ref: "Governor S084 'using haiku to audit and see what it actually finds until reaching rzf then activate sonnet to do the same and see what is most cost effective without dropping quality and optimally involve opus for final review also include a loop so it will always improve'"
+    status: absorbed
+    absorbed_into: "PARK-S084-026"
+    closed_session: S086
+    closed_reason: "MERGE-A (Opus #25 S086): cost-adaptive audit ladder is the training-data arm of PARK-026 (PE-improvement loop). Retrieve from within 026 arc."
     source_session: S084
     created_session: S084
-    closed_session: null
 
   - id: "PARK-S084-023"
     lane: obligation
@@ -683,6 +732,10 @@ entries:
       drive is literally the 'measure outcome' arm of the PE-improvement loop (PARK) — same machinery. Pairs
       with PARK-S084-024 (essence propagation): B verifies what A propagates.
     decision_back_ref: "Governor S084 'park the issue of test drive: 1 see how to do it on all implementations in this tab 2 how to hardwire it so it will be done each time'"
+    arms_absorbed:
+      - {id: "PARK-S084-017", label: "re-run-is-the-proof deep audit + hardwire (ZF ladder #3, SEED-5)"}
+      - {id: "PARK-S084-031", label: "test-drive ACTUAL journeys post build (B.3 milestone marker)"}
+    arms_note: "MERGE-D (Opus #25 S086): 017+031 absorbed. 025 is the combined test-drive hardwiring arc: (A) implementations prove intended outcome; (B) journeys test-driven end-to-end; (C) re-run-is-the-proof wired at high-stakes gates."
     source_session: S084
     created_session: S084
     closed_session: null
@@ -700,6 +753,12 @@ entries:
       driven prioritization caught this S084 tab). The outcome/use-case vault does NOT exist yet (gap).
       This is the registered HOME for all PE-loop references in this register.
     decision_back_ref: "Governor S084 'do we have a loop that improves it (PE)? ... create and enhance the loop of ever improving the PE. It might be the most important element in CSPS'"
+    arms_absorbed:
+      - {id: "PARK-S084-020", label: "Independence Ladder (roster allocation — Model PE dim 3)"}
+      - {id: "PARK-S084-021", label: "PE config interface + save-as-template deepdive"}
+      - {id: "PARK-S084-022", label: "cost-adaptive audit ladder (training data for PE-loop)"}
+      - {id: "PARK-S084-027", label: "optimal weight of scopes in PE (sweet spots + SML horizons)"}
+    arms_note: "MERGE-A (Opus #25 S086): 020+021+022+027 are feeders of the PE-improvement loop. Absorbed as named arms; retrieve by opening 026."
     source_session: S084
     created_session: S084
     closed_session: null
@@ -715,9 +774,12 @@ entries:
       The deep-change considerations overlap rung-4 R1 (in-flight instance migration) + R2 (ripple blast). The
       sweet-spot question is the heart of 'completion as a parameter' + 'infrastructure vs local fix' tension.
     decision_back_ref: "Governor S084 'park a deepdive on the optimal weight of the scopes in pe. what are the sweet spots between enhancing permanent infrastructure that will bare fruit many times and making local fixes... when do they overlap? what things must be considered when approaching a deep change?'"
+    status: absorbed
+    absorbed_into: "PARK-S084-026"
+    closed_session: S086
+    closed_reason: "MERGE-A (Opus #25 S086): weight-calibration deepdive is the calibration arm of PARK-026 (PE-improvement loop). The outcome-vault validates the weights; retrieve from within 026 arc."
     source_session: S084
     created_session: S084
-    closed_session: null
 
   - id: "PARK-S084-028"
     lane: queue
@@ -758,10 +820,13 @@ entries:
     content: "TEST-DRIVE THE ACTUAL JOURNEYS after the plan is built (Governor S084). When the journey-orchestrator PLAN is finished/built, ALIGN and go back to TEST-DRIVE real journeys through it — verify they produce the intended outcomes end-to-end (not just that the orchestrator compiles). This is PARK-025 (test-drive) applied to the journeys themselves; B.3 'journey ratification test-drive' is the milestone marker."
     retrieve_when: "After journey-orchestrator build (post SEED-1..9 + B1-B5). Mandatory alignment + journey test-drive before declaring the orchestrator DONE."
     never_drop: true
+    status: absorbed
+    absorbed_into: "PARK-S084-025"
+    closed_session: S086
+    closed_reason: "MERGE-D (Opus #25 S086): journey-test-drive absorbed as arm of PARK-025 (test-drive hardwiring arc). Retrieve as arm B of PARK-025."
     decision_back_ref: "Governor S084 'park that when plan is finished we must align and go back to test drive the actual journies'"
     source_session: S084
     created_session: S084
-    closed_session: null
 
   - id: "PARK-S084-032"
     lane: obligation
@@ -903,9 +968,11 @@ entries:
       relationships so they always know their role?'. Answer: partially — exists + injected, but not one
       consolidated guaranteed-loaded card with relationships. Same consolidate-the-scattered pattern as the spines.
     decision_back_ref: "Governor S084 'do opus sonnet and haiku tabs have something like an md files defining all that is relevant so they will always know their role and relationships?'"
+    status: closed
+    closed_session: S086
+    closed_reason: "PARK-041 BUILT S086: opus-context.md v5.0 + sonnet-context.md v5.0 + haiku-1-context.md v3.0 (SEED-D MINIMAL). validate-handoff-completeness extended with 3 SEED-D advisory checks (minSession:86). haiku-spawn-template §2 WHO/WARRANT/ACTION wrapper added. verify exit_code=0. Committed 6bfa5382."
     source_session: S084
     created_session: S084
-    closed_session: null
 
   - id: "PARK-S084-042"
     lane: obligation
@@ -919,6 +986,8 @@ entries:
       PARK-040 (Learning Orchestrator), Token-Efficiency Guardian (B_TOKEN_BUDGET T1+T2+T3), cadence ladder
       (SEED-C), Team Learning Loop (member routing by measured envelope), feedback_sonnet_1m_for_complex_long_builds.
     decision_back_ref: "Governor S084 'park a review on how we use claude code and all elements and see if it can be improved by an orchestrator' + Claude Code usage insights (86% >150k context, 26% subagent-heavy, 24% 4+ parallel)"
+    cross_links: ["PARK-S084-040", "PARK-S084-043"]
+    cross_link_rationale: "MERGE-B REFINED (Opus #25 S086): 042 is KEPT DISTINCT (separate concerns: usage/cost orchestration ≠ learning loop ≠ journey container). Cross-linked to 040 (Learning Orchestrator — same route→gate→verify shape) and 043 (journey-as-container — the work 042 orchestrates). Build 042 after 043 (the container defines what work gets routed)."
     source_session: S084
     created_session: S084
     closed_session: null

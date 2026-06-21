@@ -14,7 +14,9 @@
 
 set -euo pipefail
 
-RAW_COMMENT="${CLAUDE_USER_PROMPT:-${1:-}}"
+STDIN_JSON="$(cat 2>/dev/null || true)"
+RAW_COMMENT="$(STDIN_JSON="$STDIN_JSON" node -e 'try{const j=JSON.parse(process.env.STDIN_JSON||"{}");process.stdout.write(j.prompt||"")}catch(e){}' 2>/dev/null || true)"
+RAW_COMMENT="${RAW_COMMENT:-${CLAUDE_USER_PROMPT:-${1:-}}}"
 SESSION_ID="${CLAUDE_SESSION_ID:-unknown}"
 TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 DATE_PART="$(date -u +"%Y-%m-%d")"

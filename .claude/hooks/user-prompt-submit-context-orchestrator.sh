@@ -22,7 +22,9 @@ TEMPLATES_DIR="$(dirname "$0")/../../tools/templates/context-loading"
 LOG_FILE="$(dirname "$0")/../../tools/context-orchestrator-last-run.json"
 
 # Normalise prompt for matching
-PROMPT="${CLAUDE_USER_PROMPT:-}"
+STDIN_JSON="$(cat 2>/dev/null || true)"
+PROMPT="$(STDIN_JSON="$STDIN_JSON" node -e 'try{const j=JSON.parse(process.env.STDIN_JSON||"{}");process.stdout.write(j.prompt||"")}catch(e){}' 2>/dev/null || true)"
+PROMPT="${PROMPT:-${CLAUDE_USER_PROMPT:-}}"
 PROMPT_LOWER=$(echo "$PROMPT" | tr '[:upper:]' '[:lower:]')
 
 # Task-class detection (ordered by specificity — most-specific patterns first)

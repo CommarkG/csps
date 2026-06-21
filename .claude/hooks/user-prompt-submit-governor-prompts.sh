@@ -11,7 +11,10 @@
 
 set -euo pipefail
 
-readonly PROMPT_TEXT="${CLAUDE_USER_PROMPT:-${HOOK_INPUT_text:-${1:-}}}"
+STDIN_JSON="$(cat 2>/dev/null || true)"
+PROMPT_TEXT="$(STDIN_JSON="$STDIN_JSON" node -e 'try{const j=JSON.parse(process.env.STDIN_JSON||"{}");process.stdout.write(j.prompt||"")}catch(e){}' 2>/dev/null || true)"
+PROMPT_TEXT="${PROMPT_TEXT:-${CLAUDE_USER_PROMPT:-${HOOK_INPUT_text:-${1:-}}}}"
+readonly PROMPT_TEXT
 readonly SESSION_ID="${CLAUDE_SESSION_ID:-unknown}"
 readonly TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 readonly DATE_STR="$(date -u +"%Y-%m-%d")"

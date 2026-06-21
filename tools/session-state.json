@@ -243,5 +243,21 @@
     "The Threshold Gate — all inputs governed before processing",
     "Plan Methodology v2 — §HARVEST in every plan, Humble Executor at every milestone"
   ],
-  "primary": "S076: Foundation dims 1-4 complete (1+2+3 SEALED, 4 spec+phase1+2). CQS Alignment Layer. Boundary-crossing HARDWIRED. EXTENDED tier. dim-2 SEALED (6 defects). dim-3 SEALED structural (FINDING-S076-DIM3-01 pending Q3). S077 opens: Q3 promotion + UUID migration (2026-06-16) + dim-4 Surface 2 quota + CQS Phase 1."
+  "primary": "S076: Foundation dims 1-4 complete (1+2+3 SEALED, 4 spec+phase1+2). CQS Alignment Layer. Boundary-crossing HARDWIRED. EXTENDED tier. dim-2 SEALED (6 defects). dim-3 SEALED structural (FINDING-S076-DIM3-01 pending Q3). S077 opens: Q3 promotion + UUID migration (2026-06-16) + dim-4 Surface 2 quota + CQS Phase 1.",
+  "ratified_contracts": {
+    "THRESHOLD-ROUTER-CONTRACT": {
+      "status": "RATIFIED",
+      "description": "routeInput/selectPersonas 10-class exhaustive threshold router with explicit PLACE-NOT-FOUND catch-all; 11/11 tests passing",
+      "ratified_by": "Governor",
+      "ratified_at": "2026-06-21",
+      "session": "S086",
+      "components": [
+        "tools/scripts/threshold-router.mjs (routeInput + selectPersonas)",
+        "tools/scripts/route-input-wrapper.mjs (M6+M8 env-var bridge)",
+        "tools/data/threshold-intake-log.yaml (append-only log)",
+        "tools/data/classification-golden-set.yaml (golden set for accuracy)"
+      ],
+      "fix_applied": "S086 PROTO-S086-HOOK-INPUT-FIX: all 6 UserPromptSubmit hooks now read .prompt from STDIN JSON (not CLAUDE_USER_PROMPT which was never set by Claude Code)"
+    }
+  }
 }

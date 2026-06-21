@@ -16,7 +16,9 @@
 
 set -euo pipefail
 
-PROMPT="${CLAUDE_USER_PROMPT:-}"
+STDIN_JSON="$(cat 2>/dev/null || true)"
+PROMPT="$(STDIN_JSON="$STDIN_JSON" node -e 'try{const j=JSON.parse(process.env.STDIN_JSON||"{}");process.stdout.write(j.prompt||"")}catch(e){}' 2>/dev/null || true)"
+PROMPT="${PROMPT:-${CLAUDE_USER_PROMPT:-}}"
 [ -z "$PROMPT" ] && exit 0
 
 # Detect multi-batch PROTO pattern in user prompt

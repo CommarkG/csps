@@ -1038,3 +1038,19 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-046"
+    lane: obligation
+    content: "CONSOLIDATION-SAFETY HARNESS (Governor S086 — 'how would a top expert consolidate WITHOUT harming previously-built abilities + each consolidation must have a full-detail FALL-BACK enabling restore'). Two bundled solutions, hardwired+permanent+inherited; EXTENDS B_CONSOLIDATION_PASS + validate-consolidation-pass + SEED-A register-ref-integrity (NO fork). SOLUTION 1 — ABILITY+RIPPLE INVENTORY → BEFORE/AFTER DIFF: before consolidating, snapshot each element's ABILITIES (what it does/enforces/provides) + RIPPLE CONNECTIONS (inbound: who references/depends on it; outbound: what it depends on). Consolidate. Then re-inventory the canonical RESULT and DIFF: every pre-ability must be present in the result OR explicitly dropped-with-reason; every ripple edge preserved or re-pointed (no dangling). A LOST ability or SEVERED edge without sign-off = consolidation DEFECT → BLOCK. (The ripple-edge check IS SEED-A applied to consolidation — a merged/dropped ID must leave zero dangling references.) SOLUTION 2 — FULL RESTORE FALLBACK: every consolidation emits a RESTORE BUNDLE = the original entries VERBATIM + their ability/edge snapshot + the pre-merge git SHA, stored in an append-only consolidation-ledger.yaml. Restore = revert to the bundle exactly. HARDWIRE (T1+T2+T3): validate-consolidation-safety.mjs requires inventory + before/after diff + restore-bundle on any consolidation commit; consolidation-ledger.yaml (append-only); session-open + DNA. LIVED INSTANCE: S086 MERGE-A/B/C/D + drops (015/041/005) were applied WITHOUT this harness — FIRST application = retro-generate the inventory + restore-bundle for those 4 merges + 3 drops as the first ledger entries, and verify no ability/edge was lost."
+    retrieve_when: "Consolidation arc / next consolidation pass. URGENT-FIRST: retro-verify the S086 MERGE-A/B/C/D + drops did not lose any ability or sever any ripple edge (build the inventory+diff+restore-bundle for them retroactively). Then build validate-consolidation-safety.mjs + consolidation-ledger.yaml as the standing harness."
+    never_drop: true
+    context_preserved: >
+      The risk consolidation creates: merging 3→1 or dropping a superseded element can SILENTLY remove an
+      ability the canonical home lacks, or sever a dependency that referenced the old ID/path. The harness makes
+      consolidation REVERSIBLE (restore bundle) + PROVABLY non-harmful (before/after ability+edge diff). Connects
+      B_CONSOLIDATION_PASS, consolidation-expert skill, validate-consolidation-pass, SEED-A (ripple integrity),
+      P-META-029 humble-consolidation, and the S086 MERGE-A/B/C/D just applied.
+    decision_back_ref: "Governor S086 'park bundling improvements of consolidation: how would a top expert handle consolidation + avoid harming previously built abilities (list abilities + ripple connections + before/after comparison; hardwired/permanent/inherited) + each consolidation must have a full-detail fall-back enabling restore'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

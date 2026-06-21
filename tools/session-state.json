@@ -259,5 +259,21 @@
       ],
       "fix_applied": "S086 PROTO-S086-HOOK-INPUT-FIX: all 6 UserPromptSubmit hooks now read .prompt from STDIN JSON (not CLAUDE_USER_PROMPT which was never set by Claude Code)"
     }
+  },
+  "resolved_questions": {
+    "Q3-PARK-041-sequencing": {
+      "question": "PARK-041 (per-role cards) vs PARK-042 (usage orchestrator assessment): which first?",
+      "resolution": "PARK-041 FIRST (pre-db-push, no gate). PARK-042 assessment written (PARK-042-ASSESSMENT-S086.md). Both done S086.",
+      "resolved_by": "Opus #25 directive + Sonnet S086 build",
+      "resolved_at": "2026-06-21",
+      "session": "S086"
+    },
+    "Q4-unified-orchestrator": {
+      "question": "Unified orchestrator vs separate orchestrators (PARK-040/042/043)?",
+      "resolution": "Three-face model: 040=Learning/042=Usage/043=Container. PARK-042 kept distinct with cross_links. Not unified — separate concerns. MERGE-B REFINED per Opus #25.",
+      "resolved_by": "Opus #25 directive (MERGE-B REFINED)",
+      "resolved_at": "2026-06-21",
+      "session": "S086"
+    }
   }
 }

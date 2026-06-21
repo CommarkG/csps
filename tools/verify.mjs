@@ -2270,11 +2270,55 @@ const CYCLES = [
     },
   },
   {
-    // S086 PARK-046 — Consolidation safety: verifies consolidation-ledger.yaml completeness.
-    // Every consolidation must have: ability_inventory + ripple_inbound/outbound + before_after_diff
-    // + restore_procedure + no BLOCKING-severity open defects.
-    // EXTENDED: runs on consolidation arcs + --extended flag. Does NOT duplicate register-ref-integrity.
-    // Extends B_CONSOLIDATION_PASS. First retro-verify: S086 MERGE-A/B/C/D + DROP-015/041/005.
+    // S086 B1 INHERITANCE-LOOP — Hook prompt-source guard (BLOCKING): every user-prompt-submit-*.sh
+    // MUST read from stdin .prompt; CLAUDE_USER_PROMPT-only primary = FAIL (Claude Code never sets it).
+    // Block-test: env-var-only fixture MUST be BLOCKING. Per PROTO-S086-INHERITANCE-LOOP Phase B1.
+    // S086 C3 INHERITANCE-LOOP — Session-close completeness (BLOCKING if handoff exists but SROF stale):
+    // IZFC at session scope. Handoff + SROF must be in sync; chat-only threads = FAIL.
+    run_tier: 'EXTENDED',
+    name: 'session_close_completeness',
+    command: 'node tools/validators/validate-session-close-completeness.mjs',
+    parse_output: (out) => {
+      const m = out.match(/session=(\S+)\s+handoff_exists=(\S+)\s+sonnet_fresh=(\S+)/);
+      const b = out.match(/blocking=(\d+)\s+advisory=(\d+)/);
+      return { ...(m ? { session: m[1], handoff_exists: m[2] === 'true', sonnet_fresh: m[3] === 'true' } : {}), ...(b ? { blocking: Number(b[1]), advisory: Number(b[2]) } : {}) };
+    },
+  },
+  {
+    // S086 C4 INHERITANCE-LOOP — Inheritance integrity (BLOCKING if session-state malformed or channels broken):
+    // (a) no obligation lives only in chat, (b) cross-artifact decision propagation,
+    // (c) inheritance channels parse: session-state.json valid, registers parseable.
+    run_tier: 'EXTENDED',
+    name: 'inheritance_integrity',
+    command: 'node tools/validators/validate-inheritance-integrity.mjs',
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)\s+advisory=(\d+)/);
+      return b ? { blocking: Number(b[1]), advisory: Number(b[2]) } : {};
+    },
+  },
+  {
+    run_tier: 'EXTENDED',
+    name: 'hook_prompt_source',
+    command: 'node tools/validators/validate-hook-prompt-source.mjs',
+    parse_output: (out) => {
+      const m = out.match(/hooks_checked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      const bt = out.match(/block_test=(PASS|FAIL)/);
+      return { ...(m ? { hooks_checked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}), block_test: bt?.[1] || 'unknown' };
+    },
+  },
+  {
+    // S086 B3 INHERITANCE-LOOP — Hook activation smoke (BLOCKING if crash/bad-frontmatter):
+    // pipes SMOKE prompt to each hook; asserts (a) no crash, (b) written files have frontmatter.
+    // "EXISTS≠ACTIVE" (AP-001): hooks present on disk ≠ hooks that function at runtime.
+    run_tier: 'EXTENDED',
+    name: 'hook_activation_smoke',
+    command: 'node tools/validators/validate-hook-activation-smoke.mjs',
+    parse_output: (out) => {
+      const m = out.match(/hooks_tested=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { hooks_tested: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // S086 MOAT-M47 — Page completeness machine: enumerates every interactive element per
     // platform page, verifies each is wired and non-dead. BLOCKING on any dead element.
     // Checks: onClick={undefined/null}, dead Link href, missing API route, infinite spinner.

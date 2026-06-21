@@ -175,6 +175,19 @@ CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.
   fi
 } 2>/dev/null || true
 
+# ─── C6 S086 INHERITANCE-LOOP — session-open obligations surfacing ──────────────
+# Re-derives open obligation count from committed files each session-open (never from tab memory).
+# Part of PROTO-S086-INHERITANCE-LOOP: the recurring-completeness loop fires at every tab boundary.
+{
+  _SOL_COUNT=$(node "${REPO_ROOT}/tools/lib/obligations-ledger.mjs" 2>/dev/null | grep "total_open=" | grep -oP "total_open=d+" | grep -oP "d+" || echo "?")
+  _SMOKE_STATUS=$(node "${REPO_ROOT}/tools/validators/validate-hook-activation-smoke.mjs" 2>/dev/null | tail -2 | grep "PASS|FAIL" | head -1 || echo "unknown")
+  printf '
+[INHERITANCE-LOOP] obligations_open=%s | activation_smoke=%s
+' "$_SOL_COUNT" "$_SMOKE_STATUS" >&2
+  printf '[INHERITANCE-LOOP] Ledger: tools/lib/obligations-ledger.mjs | Loop: PROTO-S086-INHERITANCE-LOOP.md
+' >&2
+} 2>/dev/null || true
+
 # ─── SEED-C CADENCE AUDITS (context-independent session-open triggers) ─────────
 # Runs EXTENDED validators in background at every session-open (no human required).
 # SEED-C context-independence: SOURCE=persistent files | CADENCE=session-open | SINK=last-run JSON

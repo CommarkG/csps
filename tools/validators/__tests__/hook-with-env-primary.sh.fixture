@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# BLOCK-TEST FIXTURE for validate-hook-prompt-source.mjs
+# This hook INTENTIONALLY uses CLAUDE_USER_PROMPT as the primary/only prompt source.
+# validate-hook-prompt-source.mjs MUST detect this as BLOCKING.
+# If the validator returns PASS on this fixture → machine is broken.
+#
+# Dead pattern: Claude Code never sets CLAUDE_USER_PROMPT — prompt arrives via STDIN JSON.
+# This is the exact pattern that caused 842/845 threshold entries to have empty previews.
+
+PROMPT="${CLAUDE_USER_PROMPT:-}"
+[ -z "$PROMPT" ] && exit 0
+echo "Would process prompt: $PROMPT"
+exit 0

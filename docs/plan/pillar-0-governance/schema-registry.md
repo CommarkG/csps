@@ -564,6 +564,20 @@ schema_anchors:
     l2_domain: vald_coverage_discipline
     description: PAP (Platform Alignment Plan) audit output files per Part — per-element evidence YAMLs
 
+  proto_files:
+    type: governance-section
+    resolves_to: docs/plan/protos/
+    spine: GVRN
+    l2_domain: DECISION_RIGHTS_CLARITY
+    description: PROTO-S* directive files authored by Opus and ratified before Sonnet builds.
+
+  governance_log:
+    type: governance-section
+    resolves_to: docs/plan/_handoff/VAULT/
+    spine: GVRN
+    l2_domain: DECISION_RIGHTS_CLARITY
+    description: Auto-generated governance log files (governor-prompts/*.md + governor-comments/*.md). Per B_GOVERNOR_PROMPTS.
+
 ```
 
 ---
@@ -640,3 +654,17 @@ against this registry. Unknown anchors = ORPHAN. Pre-existing orphans: advisory;
     CSPS Communication Spine — communication-schema.yaml (8 situations × handling specs
     + AI→Human 6-tier audience hierarchy + 9 B_* contracts consolidated). Built S070 M1.
     Wired to ai-behavior-spine (D1-D13 default suppression per situation/tier).
+
+  proto_files:
+    type: governance-section
+    resolves_to: docs/plan/protos/
+    spine: GVRN
+    l2_domain: DECISION_RIGHTS_CLARITY
+    description: PROTO-S* directive files authored by Opus and ratified before Sonnet builds. Per FORMAL-PROTO-CHANNEL.
+
+  governance_log:
+    type: governance-section
+    resolves_to: docs/plan/_handoff/VAULT/
+    spine: GVRN
+    l2_domain: DECISION_RIGHTS_CLARITY
+    description: Auto-generated governance log files (governor-prompts/*.md + governor-comments/*.md). Per B_GOVERNOR_PROMPTS.

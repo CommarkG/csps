@@ -953,3 +953,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-045"
+    lane: queue
+    content: "COMPACT-VS-NEW-TAB MECHANISM (Governor S086 — 'entertaining compacting Sonnet/Opus in some cases instead of moving to a new tab; PCR + mechanism on when/if'). REFINES B_TOKEN_BUDGET R3 (/compact) + R4 (/clear) + consolidates feedback_chat_move_criteria — NOT a new system. PCR: COMPACT (stay) = cheap/fast/continuity/reuses cache BUT lossy + compaction-debt + no durable artifact; NEW-TAB (handoff) = durable+ratifiable+clean-cache+forces-thread-enumeration BUT expensive+slow. RECOMMENDED 3-STEP MECHANISM: (1) HARD GUARD — externalize ALL consequential state to disk (commit parks/decisions/seeds, update handoff-draft) BEFORE either; never compact/move with uncommitted threads (compaction loses them). CSPS state lives on disk → chat is disposable once externalized. (2) arc COMPLETE (session-close/task-done/role-change) → NEW-TAB (ratifiable checkpoint). (3) mid-arc + context high → COMPACT to continue, UNLESS compaction-debt high (2-3x already → fidelity decay) → NEW-TAB even mid-arc. NET: new-tab at boundaries / durable-checkpoint / high-debt; compact mid-long-arc when externalized. INCLUDES OPUS: commit-every-decision makes Opus context reproducible-from-disk → safe to /compact or fresh-tab with ZERO structural loss (dogfooding proof). PENDING: Sonnet short research (Claude Code /compact internals, compaction-debt, auto-compact, cost compact-vs-restart) + review this PCR."
+    retrieve_when: "Token-efficiency arc (with PARK-042 usage orchestrator). After Sonnet's short research lands, fold the validated mechanism into B_TOKEN_BUDGET R3/R4 (edit source + regenerate) + a session-open advisory that nudges compact-vs-new-tab by the 3-step gate. Connects feedback_chat_move_criteria + prompt-caching research."
+    never_drop: true
+    context_preserved: >
+      The deeper principle: an AI's context is DISPOSABLE iff its decisions are externalized to disk each turn —
+      then compact (lossy) or new-tab both lose nothing structural. This is the same externalize-then-dispose
+      insight behind handoff-integrity (SEED-A/B/C) + 'CSPS state lives on disk not chat'. Connects B_TOKEN_BUDGET
+      R3/R4/R8, feedback_chat_move_criteria, PARK-042 (usage orchestrator), the prompt-caching research (S084).
+    decision_back_ref: "Governor S086 'on csp we are entertaining compacting sonnet in some cases instead of moving to a new tab. pcr it + suggest mechanism when to do it / when to move to new tab. include yourself (290k tokens). go over what exists. ask sonnet short research + review'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

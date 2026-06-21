@@ -1054,3 +1054,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S084-047"
+    lane: vault
+    content: "ACCOUNTING DOMAIN — FOUNDATION RESEARCH (Governor S086, external Claude co-worker research; AI-L2/vault-defer). Open-source accounting/finance to LEARN-FROM + pick copy-vs-adjust: FULL SYSTEMS — Bigcapital (Node/React/Postgres, closest STACK match to CSPS; ledger+invoicing+reports+bank-feeds); ERPNext (Python/Frappe full ERP, OVERKILL+stack-mismatch — learn its tax/VAT + reconciliation DATA MODELS only); Akaunting (PHP); Frappe Books (Electron). LEDGER PRIMITIVE — Blnk (Go, API-first double-entry ledger engine — clean primitive to learn). AI LAYER — OpenAccountants (MCP server, 1000+ accounting/tax skills incl ISRAEL, plugs into Claude — THE standout for CSPS, Claude-Agent-native; 192-jurisdiction Claude-Code plugin); Accounts AI (Python; categorization/forecast/anomaly). Co-worker recommended Path A (fork Bigcapital) / Path C (hybrid). OPUS #25 CSPS-LENS CORRECTION: CSPS does NOT fork-a-monolith (apps-ephemeral / libs-genome permanent / build-on-spine) — forking Bigcapital makes IT the platform + CSPS a wrapper. CSPS-CORRECT PATH = HARVEST domain models (Blnk ledger states + ERPNext tax/recon models + OpenAccountants skill taxonomy) into the schema-spine; USE OpenAccountants MCP for AI/tax (matches CSPS agent arch, covers Israel); reference Bigcapital schema/reports as a domain MAP not an adopt. Shape as CSPS JOURNEYS (invoice→ledger→reconcile→report) under the journey orchestrator + front-end-completeness moat M-47 + classification machinery. DECISION DEFERRED — C2 new-domain expansion; must NOT derail S086 threshold/journey/completeness."
+    retrieve_when: "When the Governor opens the accounting/finance product domain. First: harvest Blnk ledger-state model + OpenAccountants skill taxonomy + ERPNext tax/recon models into the schema-spine as the domain seed; wire OpenAccountants MCP for AI/tax; scope the invoice→ledger→reconcile→report journeys. Do NOT fork a monolith app as the platform."
+    never_drop: true
+    context_preserved: >
+      External-content vault entry. Strategic question = fork-vs-harvest: the co-worker's app-centric paths (fork
+      Bigcapital) conflict with CSPS build-on-genome doctrine (B_APPS_ARE_TRIALS, schema-spine, journey orchestrator).
+      The Claude-native piece (OpenAccountants MCP) is the highest-value adopt. Connects M-47 front-end-completeness,
+      PARK-043 journey orchestrator, schema-expert, apps-are-trials.
+    decision_back_ref: "Governor S086 'review this accounting research (existing solutions as foundation for a csps domain — learn + pick what to copy + adjust); comment + park it'"
+    source_session: S084
+    created_session: S084
+    closed_session: null

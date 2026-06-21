@@ -2275,6 +2275,21 @@ const CYCLES = [
     // + restore_procedure + no BLOCKING-severity open defects.
     // EXTENDED: runs on consolidation arcs + --extended flag. Does NOT duplicate register-ref-integrity.
     // Extends B_CONSOLIDATION_PASS. First retro-verify: S086 MERGE-A/B/C/D + DROP-015/041/005.
+    // S086 MOAT-M47 — Page completeness machine: enumerates every interactive element per
+    // platform page, verifies each is wired and non-dead. BLOCKING on any dead element.
+    // Checks: onClick={undefined/null}, dead Link href, missing API route, infinite spinner.
+    // Block-test: fixture with 3 deliberate dead elements → machine must FAIL on it.
+    // Per FRONT-END-COMPLETENESS-MOAT-S086.md. EXTENDED: full corpus scan.
+    run_tier: 'EXTENDED',
+    name: 'page_completeness',
+    command: 'node tools/validators/validate-page-completeness.mjs',
+    parse_output: (out) => {
+      const m = out.match(/pages_scanned=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      const bt = out.match(/block_test=(PASS|FAIL)/);
+      return { ...(m ? { pages_scanned: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {}), block_test: bt?.[1] || 'unknown' };
+    },
+  },
+  {
     // S086 PARK-040 — Classifier accuracy: runs threshold-router over golden-set entries,
     // reports accuracy % per axis. BLOCKING if < 50% on any axis (systematic mis-rule).
     // ADVISORY if < 80% or any misclassification. EXTENDED: on-demand + --extended.

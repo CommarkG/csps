@@ -24,7 +24,7 @@ vault_pending:
   retrieve_when: "Sonnet builds validate-page-completeness.mjs (the validation machine) + the creation-gate + page-template enforcement"
 precedent_checked: true
 links:
-  - { rel: izfc, href: ../../../packages/principles/principles/P-META-006-rzf.yaml }
+  - { rel: izfc, href: ../../../packages/principles/principles/P-META-006-zero-findings-discipline.yaml }
   - { rel: page-dna, href: ../../../tools/validators/validate-page-dna.mjs }
   - { rel: moat-registry, href: moat-registry.md }
 ---

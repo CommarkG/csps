@@ -9,7 +9,7 @@
 | **Current session** | S086 |
 | **Previous session** | S085 |
 | **Last updated** | 1 day(s) ago |
-| **Last commit** | 61b5b4a [S084] PARK-045 compact-vs-new-tab mechanism (refines B_TOKEN_BUDGET R3/R4) |
+| **Last commit** | ce1b65e [S086] fix(hooks): stdin .prompt input — resurrect 6 dead UserPromptSubmit hooks + threshold consume loop live + router contract ratified |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

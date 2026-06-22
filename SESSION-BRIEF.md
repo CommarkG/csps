@@ -9,7 +9,7 @@
 | **Current session** | S087 |
 | **Previous session** | S086 |
 | **Last updated** | today |
-| **Last commit** | beb70d8 [S087] chore: green-receipt HEAD=eb95741b tree=68257601 (receipt-only commit — stable tree_hash) |
+| **Last commit** | 4e97de5 [S088] checkpoint: Opus director harvest — durable seeds + state (compaction-safe) |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

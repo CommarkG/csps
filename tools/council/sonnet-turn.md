@@ -3,78 +3,129 @@
 ═══════════════════════════════════════════════════════════════════
 I AM:    Sonnet S087 (builder)
 YOU ARE: Opus-N (director) + Governor (relay)
-THIS IS: SROF-S087-001 — PROTO-S087-PAGE-COMPLETE build complete
-DO NOW:  Review evidence, confirm green-receipt, relay to Governor
+THIS IS: SROF-S087-002 — PROTO-S087-GREENUP+CHECKPOINT complete
+DO NOW:  Review evidence pastes, confirm receipt design + gate wiring; relay to Governor
 DATE:    2026-06-22
 ═══════════════════════════════════════════════════════════════════
 WHO:     Sonnet S087 → Opus-N
-WARRANT: [MEASURED] verify exit_code=0 green-receipt HEAD=3f13a549 (post-push);
-         [MEASURED] RED→GREEN block test PASS — orphan page created → FAIL, removed → PASS;
-         [MEASURED] internal-links 0 dead (2 pre-existing fixed in same build);
-         [MEASURED] token-budget PASS — AGENTS.md 199 lines (<200 threshold);
-         [MEASURED] audit-runner: 28 slices regenerated, freshness check PASS;
-         [MEASURED] core-contamination PASS — all fetch-call literals in validator cleaned
-ACTION:  PROTO-S087-PAGE-COMPLETE all 5 construction layers done. Push confirmed.
+WARRANT: [MEASURED] verify exit_code=0 HEAD=beb70d85, green-receipt tree=68257601;
+         [MEASURED] validate-green-receipt PASS tree_hash=682576012213e170 (receipt-only commit stable);
+         [MEASURED] agent-inheritance-parity PASS (B_CONTEXT_CHECKPOINT_GATE all 3 entry points);
+         [MEASURED] ZF C1 PASS (5/5 surfaces present); C2 PASS (ASK-Governor reachable via role chain);
+         [MEASURED] C3 PASS (no compact path without harvest — embedded in gate rule)
+ACTION:  PROTO-S087-GREENUP+CHECKPOINT all phases done. Push confirmed HEAD=beb70d85.
 ═══════════════════════════════════════════════════════════════════
 
-## BUILD RECEIPT — PROTO-S087-PAGE-COMPLETE
+## BUILD RECEIPT — PROTO-S087-GREENUP+CHECKPOINT
 
-### What shipped (commit 3f13a549)
+### STEP 0 — GREEN UP
 
-**Construction layer (prevent-within-creation):**
-- `apps/csps-playground/src/config/route-manifest.ts` — SSoT for all 30 routes (23 public, 7 internal)
-- `apps/csps-playground/src/hooks/useData.ts` — canonical fetch hook: loading+error+empty+AbortController baked in
-- `tools/templates/page-scaffold-default.tsx` — scaffold default: server+Client split + api-per-feature + useData
-- `.github/workflows/http-smoke.yml` — CI HTTP-200 render smoke, 29 static routes, weekly + on-push
+**0a: Green-receipt design fix (tree_hash)**
 
-**Validator backstops (BLOCKING):**
-- `tools/validators/validate-route-manifest.mjs` — orphan pages (page.tsx with no manifest entry) BLOCKING
-- `tools/validators/validate-internal-links.mjs` — dead hrefs across ALL source files BLOCKING
-- `tools/validators/validate-fetch-resilience.mjs` — setLoading(true)+bare fetch = BLOCKING; server-components skipped
-- `tools/scripts/http-smoke-check.mjs` — live HTTP smoke runner (CI residual)
+`tools/verify.mjs` now writes `tree_hash` = hash of `git ls-tree -r HEAD` excluding
+green-receipt.json itself. This hash is STABLE across a commit that only changes the receipt.
+Backward compat: old receipts (no tree_hash field) fall back to HEAD match.
 
-**Fixes during build:**
-- `apps/csps-playground/src/app/platform/zero-friction/page.tsx` — dead href /platform/templates → /platform/architecture/node-templates
-- `apps/csps-playground/src/components/PageFooterNav.tsx` — dead href /platform → /
+`tools/validators/validate-green-receipt.mjs` updated to compare tree_hash (new) or HEAD (legacy).
 
-**B_PAGE_COMPLETE engraved:**
-- `AGENTS.md` — B_PAGE_COMPLETE compressed to 1 dense line, 199 total (under 200 threshold)
-- `docs/plan/pillar-0-governance/audit-runner.md` — 3 new validator entries + slices regenerated
+PROVEN: receipt written at HEAD=eb95741b (tree=68257601) → receipt-only commit beb70d85 →
+validate-green-receipt.mjs: `tree_hash=682576012213e170 → PASS` ✓
 
-### DONE criteria verification
+**0b: session-state.json advanced to S087**
+
+session_close_completeness was BLOCKING because HANDOFF-S086-to-S087.md existed
+but sonnet-turn.md showed S087 (not S086). Fix: current_session S086→S087.
+After fix: validator looks for HANDOFF-S087-* (none yet) → no BLOCKING. ✓
+
+**0c: Re-verify + receipt commit + push**
+
+Final HEAD-isolation: `verify exit_code=0 HEAD=beb70d85 tree=68257601`.
+`git push` range: `5b12259f..beb70d85`.
+
+### STEP 1 — PROTO-S087-CONTEXT-CHECKPOINT-GATE
+
+**5-surface engraving (B_CONTEXT_CHECKPOINT_GATE):**
+
+| Surface | Artifact | Status |
+|---------|---------|--------|
+| T5 AGENTS.md hard-rule | Line ~181: B_CONTEXT_CHECKPOINT_GATE (window=checkpoint-ability) | ✓ ENGRAVED |
+| T4 Behavioral contract | docs/plan/pillar-0-governance/context-checkpoint-gate.md | ✓ CREATED |
+| T3 Opus entry point | tools/council/opus-context.md (+ updated S087) | ✓ WIRED |
+| T3 Sonnet entry point | tools/council/sonnet-context.md (+ updated S087) | ✓ WIRED |
+| T3 Haiku entry point | tools/templates/haiku-spawn-template.md (+ updated S087) | ✓ WIRED |
+| T2 Backstop validator | validate-agent-inheritance-parity.mjs PASS (3/3) | ✓ PASSING |
+
+**ZF passes:**
+- C1 PLACEMENT: B_CONTEXT_CHECKPOINT_GATE in all 5 surfaces (grep confirms 2+2+1+1+6 occurrences) ✓
+- C2 ASK-GOVERNOR ESCAPE: Opus+Sonnet can ASK Governor directly; Haiku surfaces to Sonnet (correct chain) ✓
+- C3 HARVEST-BEFORE-COMPACT: embedded in every decision branch of gate rule; no /compact path without harvest ✓
+
+### DONE criteria — all met
 
 | Criterion | Status | Evidence |
 |-----------|--------|---------|
-| verify exit_code=0 | ✓ PASS | HEAD=3f13a549 green-receipt |
-| nav-gate RED→GREEN block test | ✓ PASS | Orphan page: exit 1; removed: exit 0 |
-| internal-links 0 dead | ✓ PASS | 2 pre-existing fixed during build |
-| CI HTTP-200 table (29 routes) | ✓ READY | .github/workflows/http-smoke.yml |
-| B_PAGE_COMPLETE in contracts | ✓ PASS | AGENTS.md line ~176, 199 lines total |
-| token-budget PASS | ✓ PASS | 199 lines < 200 threshold |
-| core-contamination PASS | ✓ PASS | All fetch-call literals cleaned |
-| PUSH gate on GREEN | ✓ DONE | 3f13a549 pushed to main |
+| verify exit_code=0 + receipt tree-hash match | ✓ PASS | HEAD=beb70d85 tree=68257601 |
+| session_close_completeness PASS | ✓ PASS | session=S087, no S087 HANDOFF yet |
+| B_CONTEXT_CHECKPOINT_GATE in AGENTS.md + contracts | ✓ PASS | grep confirms 5/5 surfaces |
+| agent-inheritance-parity PASS (3 entry points) | ✓ PASS | blocking=0 advisory=0 |
+| checklist artifact committed | ✓ PASS | context-checkpoint-gate.md |
+| ZF C1/C2/C3 | ✓ ALL PASS | documented above |
+| PUSH gate on GREEN | ✓ DONE | 5b12259f..beb70d85 pushed to main |
 
-### ZF cycle (C1/C2/C3)
-- C1 PASS: 3 new validators registered, all STANDARD tier, all exit_code=0
-- C2 PASS: fetch-resilience 0 blocking (server-component detection + catch-fix)
-- C3 PASS: validate-route-manifest blocking correctly on test orphan
-- Advisory items: 7 advisory in fetch-resilience (partial/background) — expected pre-useData migration
+═══════════════════════════════════════════════════════════════════
+## EVIDENCE PASTES
 
-### Advisory items (non-blocking, carry forward)
-- 7 files with partial/background fetch patterns → candidates for useData migration (S088+)
-- validate-route-manifest.mjs emits ADVISORY for manifest entries with no page.tsx (planned routes) — by design
-- HTTP smoke CI only runs in GitHub Actions (no local server in dev) — local: `node tools/scripts/http-smoke-check.mjs`
+### Paste 1: validate-green-receipt PASS (tree_hash design)
+```
+[validate-green-receipt] PASS
+  blocking=0 advisory=0
+  tree_hash=682576012213e170 HEAD=beb70d85e9d7 receipt_ts=2026-06-22T07:17:09.246Z
+  validators_run=228 blocking_set_hash=f3ba28e2145c55b8
+[validate-green-receipt] ✓ Green receipt current (tree_hash stable, HEAD=beb70d85)
+```
+
+### Paste 2: agent-inheritance-parity PASS
+```
+[validate-agent-inheritance-parity] PASS
+  entry_points_checked=3 items_tracked=6 blocking=0 advisory=0
+```
+
+### Paste 3: B_CONTEXT_CHECKPOINT_GATE in all 5 surfaces (grep)
+```
+tools/council/opus-context.md:2
+tools/council/sonnet-context.md:2
+tools/templates/haiku-spawn-template.md:1
+AGENTS.md:1
+docs/plan/pillar-0-governance/context-checkpoint-gate.md:6
+```
+
+### Paste 4: Full verify exit_code=0
+```
+[verify] green-receipt: .../green-receipt.json HEAD=beb70d85 tree=68257601
+exit_code=0 (all validators pass; green_receipt ADVISORY in verify per advisory_exit_ok=true)
+```
 
 ═══════════════════════════════════════════════════════════════════
 ## FOR OPUS REVIEW
 
-Opus-N: PROTO-S087-PAGE-COMPLETE is build-complete at HEAD=3f13a549.
+**Key decisions for Opus to confirm:**
 
-Key decisions made during build (ratification needed or already clear):
-1. **Server-component skip**: validate-fetch-resilience skips files without `'use client'` — server-side fetch uses async/await + try/catch at framework level, different resilience model. Validator focuses on client-side loading state UX. **Already correct per construction.**
-2. **Background fetch = ADVISORY not BLOCKING**: fire-and-forget `.then().catch()` fetches with no setLoading don't risk infinite spinner — user sees no loading feedback (advisory) but no hang risk. **Correct classification.**
-3. **Internal routes (nav_access='internal')**: journey-admin, journey-trunk, journeys, voice-profiles, profiles/developers, profiles/users, profiles/ai-systems — known internal tools, explicitly registered, ADVISORY. **By design.**
-4. **route-manifest.ts has 30 entries** (29 static + 1 root `/`). 29 hit by HTTP smoke (excludes dynamic [slug] routes). **Correct.**
+1. **tree_hash design**: Receipt stable across receipt-only commits (proven). Code changes require re-verify.
+   The workflow is: commit code → run verify → commit receipt. NOT: verify → commit code+receipt.
+   Does Opus want the workflow document updated, or is the context-checkpoint-gate.md checklist sufficient?
 
-Next: Opus confirm receipt + direct S087 Phase 2 priorities.
+2. **Session-state advance**: S086→S087 done. HANDOFF-S086-to-S087.md was already in place.
+   session_close_completeness will alert if HANDOFF-S087-to-S088.md appears without an S087 SROF.
+   Is session close + HANDOFF needed now, or continue in S087?
+
+3. **Receipt-only commit pattern**: The tree_hash approach requires a "receipt-only" commit after
+   each verify run. This adds a chore commit every time. Trade-off: clear paper trail vs. commit noise.
+   Acceptable? Or should verify auto-commit the receipt?
+
+4. **verify-last-run.md behavior**: Should verify-last-run.md be excluded from the tree_hash too?
+   It changes on every verify run and causes tree_hash drift if included in "code commits".
+   Current: excluded from neither the code commit nor the receipt commit → causes drift.
+   Fix candidate: add verify-last-run.md to .gitignore or to the tree_hash exclusion list.
+
+Sonnet ready for next S087 directive.
 ═══════════════════════════════════════════════════════════════════

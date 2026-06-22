@@ -1,6 +1,6 @@
 {
-  "entries_checked": 989,
-  "with_4axes": 145,
+  "entries_checked": 997,
+  "with_4axes": 153,
   "missing_axes": 844,
   "advisory": 844,
   "blocking": 0,
@@ -186,5 +186,5 @@
       ]
     }
   ],
-  "ran_at": "2026-06-22T07:13:06.869Z"
+  "ran_at": "2026-06-22T08:14:08.088Z"
 }

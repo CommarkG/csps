@@ -1,0 +1,49 @@
+# treehash-exclude.txt — SSoT exclusion list for tree_hash computation
+# (PROTO-S087-RECEIPT-STABILIZE)
+#
+# Purpose: tree_hash must be stable between a code commit and its paired receipt commit.
+# These files change on every verify/commit/rebase cycle even when NO intentional code
+# change is made. Excluding them prevents spurious tree_hash churn.
+#
+# Format:
+#   - One pattern per line. # = comment. Blank lines ignored.
+#   - Exact path:       tools/verify-last-run.md
+#   - Glob (*):         tools/data/*-last-run.json  (* = any chars in that segment)
+#   - Dir prefix (/)    docs/plan/_handoff/VAULT/governor-comments/
+#
+# Rule: ONLY exclude files that change on every verify/commit/session cycle.
+# Do NOT exclude intentionally-authored files (config, validators, schemas, plans).
+# When in doubt: INCLUDE (exclude less, not more).
+#
+# SSoT: read by tools/verify.mjs AND tools/validators/validate-green-receipt.mjs.
+# validate-agent-inheritance-parity: verifies both files reference this path.
+
+# ── The receipt itself ────────────────────────────────────────────────────────
+tools/data/green-receipt.json
+
+# ── Verify runtime outputs ────────────────────────────────────────────────────
+tools/verify-last-run.md
+tools/validate-token-budget-last-run.json
+tools/context-orchestrator-last-run.json
+tools/zf-session-tracker.json
+
+# ── Per-validator last-run records (tools/data/*-last-run.json) ───────────────
+tools/data/*-last-run.json
+
+# ── Hash cache (validator input cache — regenerated each verify) ──────────────
+tools/data/validator-input-cache.json
+
+# ── Session / council runtime logs ───────────────────────────────────────────
+tools/data/council-invocation-log.yaml
+tools/data/threshold-intake-log.yaml
+
+# ── .csps session-relay files (updated every session by hooks) ───────────────
+.csps/floater-decision-queue.txt
+.csps/last-handoff-draft.txt
+.csps/last-proto-relay.txt
+.csps/last-sonnet-relay.txt
+.csps/threshold/intake-log.yaml
+
+# ── Auto-generated per-session artifacts ─────────────────────────────────────
+SESSION-BRIEF.md
+docs/plan/_handoff/VAULT/governor-comments/

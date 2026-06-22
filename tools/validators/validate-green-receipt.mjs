@@ -45,6 +45,24 @@ import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 
+// RECEIPT-STABILIZE helper (PROTO-S087-RECEIPT-STABILIZE):
+// Must match tools/verify.mjs::matchTreeExclusion exactly — same SSoT algorithm.
+function matchTreeExclusion(path, patterns) {
+  for (const pattern of patterns) {
+    if (pattern.endsWith('/')) {
+      if (path.startsWith(pattern)) return true;
+    } else if (pattern.includes('*')) {
+      const starIdx = pattern.indexOf('*');
+      const prefix = pattern.slice(0, starIdx);
+      const suffix = pattern.slice(starIdx + 1);
+      if (path.startsWith(prefix) && path.endsWith(suffix) && path.length >= prefix.length + suffix.length) return true;
+    } else {
+      if (path === pattern) return true;
+    }
+  }
+  return false;
+}
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '../..');
 const RECEIPT_PATH = join(ROOT, 'tools/data/green-receipt.json');
@@ -79,10 +97,12 @@ if (receipt.exit_code !== 0) {
 }
 
 // ── 3. Check tree_hash (new design) OR HEAD (backward compat) ───────────────
-// B_DETERMINISTIC_GATE design fix (PROTO-S087-GREENUP):
-// tree_hash = hash of git ls-tree -r HEAD (excluding the receipt file itself).
-// Stable across a commit that ONLY changes the receipt — no code change = no tree_hash change.
-// If receipt has tree_hash (new receipts): use tree_hash. Else fall back to HEAD match (old receipts).
+// RECEIPT-STABILIZE (PROTO-S087-RECEIPT-STABILIZE):
+// tree_hash = sha256( git ls-files --stage | filter(treehash-exclude.txt) | normalize | sort ).
+// SSoT: tools/config/treehash-exclude.txt — excludes all runtime/session-log files.
+// Uses INDEX (not HEAD) — consistent with verify.mjs which also reads the index pre-commit.
+// Stable across receipt-only commits AND runtime-file changes. Single-commit cadence enabled.
+// If receipt has tree_hash (new receipts): use this algorithm. Else fall back to HEAD (legacy).
 
 let currentHead;
 try {
@@ -95,12 +115,31 @@ try {
 }
 
 if (receipt.tree_hash) {
-  // ── New design: tree_hash comparison (stable across receipt-only commits) ──
+  // ── RECEIPT-STABILIZE (PROTO-S087-RECEIPT-STABILIZE):
+  // Recompute tree_hash with SAME algorithm as verify.mjs:
+  //   git ls-files --stage + tools/config/treehash-exclude.txt + normalize + sort + sha256.
+  // Uses INDEX not HEAD → consistent with verify.mjs pre-commit computation.
+  // After `git commit`, INDEX == HEAD, so this is always stable post-commit too.
   let currentTreeHash;
   try {
-    const lsTreeOut = execSync('git ls-tree -r HEAD', { cwd: ROOT, encoding: 'utf-8' });
-    const treeLines = lsTreeOut.trim().split('\n')
-      .filter(l => l && !l.includes('tools/data/green-receipt.json'));
+    const excludeFile = resolve(ROOT, 'tools/config/treehash-exclude.txt');
+    const excludePatterns = existsSync(excludeFile)
+      ? readFileSync(excludeFile, 'utf-8').split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'))
+      : ['tools/data/green-receipt.json']; // fallback if exclusion file missing
+    const stageOut = execSync('git ls-files --stage', { cwd: ROOT, encoding: 'utf-8' });
+    const treeLines = stageOut.trim().split('\n').filter(Boolean)
+      .filter(l => {
+        const path = (l.split('\t')[1] || '').trim();
+        return !matchTreeExclusion(path, excludePatterns);
+      })
+      .map(l => {
+        // Normalize: "<mode> <sha> <stage>\t<path>" → "<sha>\t<path>"
+        const tabIdx = l.indexOf('\t');
+        const path = l.slice(tabIdx + 1).trim();
+        const sha = (l.slice(0, tabIdx).trim().split(' ')[1] || '').trim();
+        return `${sha}\t${path}`;
+      })
+      .sort();
     currentTreeHash = createHash('sha256').update(treeLines.join('\n')).digest('hex').slice(0, 16);
   } catch (e) {
     console.log('[validate-green-receipt] PASS (advisory)');

@@ -1,8 +1,16 @@
 {
-  "findings": 0,
-  "advisory": 0,
+  "findings": 1,
+  "advisory": 1,
   "blocking": 0,
   "advisory_promotion_threshold": 5,
-  "all_findings": [],
-  "ran_at": "2026-06-22T07:12:59.586Z"
+  "all_findings": [
+    {
+      "id": "N1",
+      "pattern": "/ready for next\\??/i",
+      "matched": "ready for next",
+      "context": "4. **verify-last-run.md behavior**: Should verify-last-run.md be excluded from the tree_hash too?\n   It changes on every verify run and causes tree_hash drift if included in \"code commits\".\n   Current",
+      "level": "advisory"
+    }
+  ],
+  "ran_at": "2026-06-22T08:14:00.497Z"
 }

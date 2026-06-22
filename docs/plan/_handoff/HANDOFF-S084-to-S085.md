@@ -25,10 +25,10 @@ DO NOW: read this fully → run the 6-expert Sonnet review on the CORRECTED plan
 ═══════════════════════════════════════════════════════════════════
 
 ## ZONE A — STATE (S084)
-- B.2 SEALED: csps-playground.vercel.app LIVE · gap_DIM4 RESOLVED (real k6 pool proof: pool_errors=0,
+- B.2 SEALED: csps-playground.vercel.app LIVE · gap_DIM4_LIVE_LOAD_PROOF RESOLVED (real k6 pool proof: pool_errors=0,
   http_fail=0%, 48 iters; p99 2000-4000ms = free-tier cold start, bar-adjusted-with-reason).
 - B.3: Developer Journey RATIFIED live; journey-admin dashboard is a ratification interface + status dropdown
-  (NO full CRUD yet — that's the authoring-studio build, PROTO-S084-JOURNEY-STUDIO, gated/superseded by the
+  (NO full CRUD yet — that's the authoring-studio build [journey-studio, not yet PROTO'd], gated/superseded by the
   orchestrator frame below).
 - verify exit_code=0 · cycles 138/140 · principles 78. (Re-run to confirm; re-run IS the proof.)
 - THE JOURNEY = the platform's operating method (how everything is created/audited/optimized), NOT a screen.
@@ -39,7 +39,7 @@ DO NOW: read this fully → run the 6-expert Sonnet review on the CORRECTED plan
   widened · LOAD-BEARING-ASSUMPTIONS template field · boundary-001 doctrine (target=operative−committed-load).
 - **PROTO-S084-COMM-CORE** (2106a8b6): Communication Core = WHO/WARRANT/ACTION; communication spine entry;
   rule14 hook wired; warrant substance-check on council writes. ESSENCE-S084-006 (WHO on manual tab-relays) open.
-- **B.2 deploy SEALED** + gap_DIM4 closed · **B.3 Developer Journey RATIFIED live**.
+- **B.2 deploy SEALED** + gap_DIM4_LIVE_LOAD_PROOF closed · **B.3 Developer Journey RATIFIED live**.
 
 ## INHERITED OPERATING RULES (in the memory store, auto-loaded — APPLY as Opus director)
 - **RATIFICATION CADENCE by CLASS (ESSENCE-S084-001, RATIFIED-ACTIVE):** C1 outward=ALWAYS gate · C2

@@ -1,13 +1,13 @@
 ---
-id: csps.handoff.HANDOFF-S085-to-S086
-name: HANDOFF-S085-to-S086
-description: "S085→S086 handoff. Opus#24 rulings A-E sealed (ALIGN+HARDWIRE+INHERIT+Phase2+CadenceE). Journey-wiring expert review absorbed (PARK-043). 5 B5/B6 hardwires queued (post db-push 2026-06-27). verify=0 HEAD c57636f8."
+id: csps.handoff.HANDOFF-S084-to-S085
+name: HANDOFF-S084-to-S085
+description: "S084→S085 handoff / chat-jump. Journey-orchestrator design COMPLETE + externally reviewed (3 models, round 2) + corrected. Captures every open thread (no-drop). Next: 6-expert Sonnet review on the corrected plan → MVP-narrow build."
 version: "1.0"
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
-authored_by: Sonnet S085
-authored_at: "2026-06-20"
+authored_by: OPUS-21 S084
+authored_at: "2026-06-18"
 core_spine: GVRN
 diataxis_type: reference
 schema_anchor: vault_files
@@ -15,207 +15,118 @@ impl_status: audit-1-complete
 precedent_checked: true
 ---
 
-# HANDOFF: S085 → S086
+# HANDOFF S084 → S085 — Journey Orchestrator (design complete, corrected, pre-build)
 
-**FROM:** Sonnet S085  
-**FOR:** Opus S086 (review) → Governor relay → Sonnet S086 (build)  
-**HEAD:** `c57636f8` pushed to origin/main  
-**verify:** `exit_code 0` [MEASURED: pnpm verify --no-cache at HEAD]  
-**Date:** 2026-06-20
-
----
-
-## Zone A — S085 Complete State
-
-### What was sealed this session
-
-| Item | Status | Evidence |
-|------|--------|----------|
-| Ruling A-ALIGN | DONE | PARK-040 stubs now carry WHO+WARRANT+ACTION (comm-core trunk). Trigger line captured via grep -iE. |
-| Ruling A-HARDWIRE | DONE | `verify-hooks-functional.sh` runs `bash -n` on every hook before exec check. CRITICAL syntax error → BLOCKING. Closes the line-158 corruption gap exactly. |
-| Ruling A-INHERIT | DONE | `post-stop-learning-loop.sh` already at `settings.json:363` Stop — confirmed, no change needed. |
-| Block-test | PASS | Synthetic K=2 transcript → 1 stub with full WHO+WARRANT+ACTION [MEASURED]. `trigger: {role:user,content:K=2 recurrence...}` |
-| Ruling D — Ghost-ref Phase 2 | DONE | `validate-register-reference-integrity.mjs`: HANDOFF-*.md files modified within 24h → BLOCKING on ghost-refs. Historical (S051-S084) stay ADVISORY. Uses `statSync.mtimeMs` proxy. |
-| Ruling E — Auto-park cadence | DONE | `session-open.sh`: when `pending-auto-parks.yaml` stubs > 5 → PARK-040-REVIEW notice at every tab open. |
-| verify=0 at Rulings commit | DONE | `b779dacf` → verify exit_code 0. |
-| PARK-042 + PARK-043 registered | DONE | `c57636f8` is HEAD; verify=0 confirmed there too. |
-
-### S085 inherited context (unchanged)
-
-- **B4 schema:** `PersonaTier` (6 actors) + `BranchAxisType` (5 axes) + `JourneyEvent` comment → committed to `libs/policies/schema.zmodel`. db-push deferred → PARK-009 (2026-06-27).
-- **Cadence ladder 8/8 dual-covered (M-46):** session-open.sh fires moat_coverage + dual_coverage + register_ref_integrity in background at every tab open. `validate-dual-coverage.mjs` confirms 8/8 [MEASURED S085].
-- **SEED-A** (`validate-register-reference-integrity.mjs`): 763 files scanned, Phase 2 live (current-session HANDOFF blocking).
-- **SEED-B** (`validate-handoff-completeness.mjs` + `boundary-prompt.template.md`): `## MOAT REVIEW` required in every handoff.
-- **SEED-C** (`validate-dual-coverage.mjs`): 8 obligations context-independently covered. EXTENDED cadence via session-open.
-- **TEG (PROTO-S084-TEG):** R9+R10 + T1+T2+T3 — token budget enforcement + efficiency guardian live.
-- **PROTO-S084-HASH-CACHE:** SHA256 input manifest cache in verify.mjs. `--no-cache` wired in `post-stop-pnpm-verify.sh`. `always_rerun: true` on push_status + git_pushed_state.
-- **B3 validators:** journey-gate (10/10 block-tests), trunk-matches-seed (5/5 invariants), journey-event-store (SEED-8 confirmed audit.events reuse).
-- **PROTO-S084-COMM-CORE (WHO+WARRANT+ACTION):** comm-core trunk hardwired in PARK-040 stubs.
-- **Team Learning Loop seed:** `1d08dd86` — core seed capturing the full learning orchestrator design + Haiku ability battery measured (see Zone B note).
-- **Haiku envelope (measured):** count/judgment/single-pattern → RELIABLE. Cross-file set-ops → UNRELIABLE (T2+T5 over-report false positives). Use Haiku for scans; route set-ops to Sonnet.
-
-### Open PARKs entering S086
-
-| ID | Lane | Short description | Retrieve when |
-|----|------|-------------------|---------------|
-| PARK-S084-009 | obligation | Supabase pw rotation | **2026-06-27** — gated db-push is the same day |
-| PARK-S084-040 | obligation | Learning Orchestrator — CAPTURE T1 + ROUTE T2 + PROPAGATE T3 (consolidates PARK-024/026/035/036/037) | After journey orchestrator B5/B6, or Governor pivot |
-| PARK-S084-041 | queue | Consolidated per-role CARDS (Opus/Sonnet/Haiku) — always-loaded role+relationships card by session_role | AI-behaviour arc; small + high-value |
-| PARK-S084-042 | obligation | Claude Code usage review + session/work orchestrator — routes work to cheapest capable model per measured Haiku envelope | Token-efficiency arc; feeds PARK-040 |
-| PARK-S084-043 | obligation | Journey-as-operational-container — 5 B5/B6 hardwires (see Zone B below) | **B5/B6 post 2026-06-27 db-push** |
-
----
-
-## Zone B — Planned Obligations for B5/B6 (PARK-043, DO NOT BUILD NOW)
-
-**Gate:** db-push 2026-06-27 (PARK-009). All 5 are blocked until the B4 schema is live in Supabase.
-
-**Load-bearing refinement (Opus-verified):** these hardwires use the SEED-2 risk-classed gate_mode ladder (blocking|advisory|silent per risk_class × phase), NOT a uniform "declare-phase-or-blocked" gate. Low-risk work stays light; T1 fires only where the matrix returns `deny`. §0b-C1 explicitly rejected uniform blocking — the platform fights rigidity, not adds it.
-
-### B5/B6 Hardwire 1 — `pre-tool-use-journey-gate.sh` (T1)
-
-**What:** Hook reads `JOURNEY_ID` from environment → looks up PEG level in `seed2-gate-mode-matrix.json` → calls `evaluate({peg, mechanism, risk_class, has_evidence})` → blocks if `result='deny'`, warns if `result='warn'`, passes silently if `result='allow'` or risk_class=low.  
-**Why:** SEED-2 gate matrix EXISTS and is correct (10/10 tests PASS) but it's T2-only (detective). This T1 makes it structural — PEG violations are prevented, not caught retroactively.  
-**Files to create:** `.claude/hooks/pre-tool-use-journey-gate.sh` + register in `settings.json` PreToolUse `Write|Edit` block.  
-**Risk-classing:** consult `seed2-gate-mode-matrix.json` — the matrix already has `gate_mode: silent` for `risk_class: low`; T1 must respect that (don't uniform-block).
-
-### B5/B6 Hardwire 2 — `@csps-journey-phase` DNA field
-
-**What:** New annotation `@csps-journey-phase P3` (or phase ID) required in `@csps-enforces` frontmatter for new files created during a journey. Extend `validate-new-file-dna.mjs` (M-26) to check for it when `JOURNEY_ID` is active.  
-**Why:** Every new validator/hook/schema element created this session has no `journey_phase`. DNA enforcement covers platform membership (M-26) but not journey assignment. Orphan nodes accumulate.  
-**Scoping:** only required when `JOURNEY_ID` env var is set (i.e., when the orchestrator is active). PARK-043 calls this "context-gated" — not a global mandate.
-
-### B5/B6 Hardwire 3 — Journey-event write path (SEED-8)
-
-**What:** API route `POST /api/journey/events` → writes `entity_type='journey_event'` row to `audit.events` (already has `no_direct_write` RLS, so route goes through service layer). `post-stop-learning-loop.sh` calls this route at session close when `JOURNEY_ID` is set.  
-**Why:** `validate-journey-event-store.mjs` confirmed architecture (SEED-8 decision: REUSE audit.events). Write path is missing — the event store is a confirmed empty table.  
-**Sequencing:** requires B4 db-push first. The B5 Journey Admin live data feature (via schema) is the natural context.
-
-### B5/B6 Hardwire 4 — `journey_phase` in handoff template (SEED-B extension)
-
-**What:** Add required `## JOURNEY PHASE` section to `tools/templates/boundary-prompt.template.md`. Format: phase entered | phase completed | next phase | evidence. Extend `validate-handoff-completeness.mjs` to check for it (ADVISORY initially → BLOCKING once cadence established).  
-**Why:** SEED-B currently enforces `## MOAT REVIEW` but not journey phase completions. Handoffs close sessions that advance P1→P2 without ever naming the phase. The handoff is the only reliable session-close surface.  
-**Pattern:** mirror the MOAT REVIEW extension already done in S085.
-
-### B5/B6 Hardwire 5 — `journey_gate_enforcement` as obligation #9 in `validate-dual-coverage.mjs`
-
-**What:** Add 9th obligation to `OBLIGATIONS` array in `validate-dual-coverage.mjs`:  
-```javascript
-{
-  id: 'journey_gate_enforcement',
-  name: 'Journey gate T1 enforcement (SEED-2)',
-  description: 'pre-tool-use-journey-gate.sh exists + wired in settings.json + consults gate matrix',
-  required_validator: 'journey_gate',   // already in verify.mjs STANDARD tier
-  required_tier: 'STANDARD',
-  context_independent: false,           // set true once T1 hook wired (Hardwire 1 above)
-  cadence_gap: 'T1 creation-gate missing until Hardwire-1 built',
-  sink: 'tools/data/validate-journey-gate-last-run.json',
-  handoff_step: 'SEED-B ## JOURNEY PHASE (Hardwire 4)',
-}
-```
-**Why:** SEED-C tracks 8 drift-prone obligations. `journey_trunk` is one of them. But `journey_gate_enforcement` (the T1 hook actually firing) is not. If the T1 never gets built, dual-coverage won't catch that gap.
-
----
-
-## MOAT REVIEW
-
-| Moat | Status | Notes |
-|------|--------|-------|
-| M-26 DNA Inheritance | ✓ Active | `validate-new-file-dna.mjs` fires. Journey_phase extension = B5/B6 (Hardwire 2). |
-| M-43 Cross-tab diff-review | ✓ Active | session-open.sh unchanged. |
-| M-46 Dual-Coverage / Context-Independence Standard | ✓ Strengthened | HARDWIRE (bash -n) closes the hook-corruption gap. 8/8 confirmed. obligation #9 queued (Hardwire 5). |
-| Journey gate (SEED-2) | ✓ Defined, half-wired | Gate matrix + block-tests 10/10 PASS. T1 hook missing (Hardwire 1 = B5/B6). |
-| SEED-A Ghost-ref | ✓ Phase 2 live | Current-session HANDOFF ghost-refs BLOCKING. Historical ADVISORY. |
-| SEED-B MOAT REVIEW in handoffs | ✓ Active | `validate-handoff-completeness.mjs` checks it. Journey-phase extension queued (Hardwire 4). |
-| SEED-C 8/8 dual coverage | ✓ Active | Session-open cadence fires three EXTENDED validators. 9th obligation = B5/B6 (Hardwire 5). |
-| PARK-040 auto-capture | ✓ Live | WHO+WARRANT+ACTION. Trigger line captured. Governor review cadence at >5 stubs (session-open). |
-| **Moats at-risk** | None | All changes additive. |
-| **Moats strengthened this session** | bash -n syntax check (M-46), Phase-2 ghost-ref (SEED-A) | |
-| validate-dual-coverage.mjs output | Run: `node tools/validators/validate-dual-coverage.mjs` (cadence last-run JSON in tools/data/) | |
-
----
-
-## ALIGNMENT QUESTIONS
-
-Q1: **Journey-gate T1 Bash coverage** — Hardwire 1 (`pre-tool-use-journey-gate.sh`) fires on `Write|Edit`. But some PEG-affecting decisions happen in Bash (running a migration, deploying). Should the T1 hook also match `Bash`? Or is a post-Bash T2 check sufficient given risk-class gating from SEED-2?
-
-Q2: **`@csps-journey-phase` scope** — Hardwire 2 makes the DNA annotation context-gated (only required when `JOURNEY_ID` active). Is that the right default, or should all new platform elements declare a phase even outside an active journey (retroactive categorization applies to all existing validators/hooks too)?
-
-Q3: **PARK-041 vs PARK-043 sequencing** — Per-role CARDS (PARK-041) are small+high-value and don't require db-push. Should S086 open with PARK-041 before tackling the 5 B5/B6 hardwires (gated on 2026-06-27)? Or is the PARK-042 usage orchestrator review the better pre-db-push work?
-
-Q4: **Unified vs separate orchestrators** — PARK-042 (usage/session orchestrator) and PARK-043 (journey orchestrator) are both "route→gate→verify" shaped. Should they converge into ONE design (platform work + AI session management unified), or stay separate systems with a shared interface contract?
-
-## SONNET STARTUP BLOCK
-
-```
 ═══════════════════════════════════════════════════════════════════
-SONNET S086 — STARTUP
-WHO:     Sonnet S086 | Role: builder
-WARRANT: Handoff from Sonnet S085 (b779dacf S085-rulings + c57636f8 PARKs), verify=0
-SESSION: S086
+I AM: Opus-21 (S084, closing this tab — low context)
+YOU ARE: the next tab (Opus director or Sonnet builder, per how the Governor opens it)
+THIS IS: the no-drop inheritance of the journey-orchestrator design + ALL open threads
+DO NOW: read this fully → run the 6-expert Sonnet review on the CORRECTED plan → then MVP-narrow build
 ═══════════════════════════════════════════════════════════════════
 
-INHERITED STATE:
-  HEAD = c57636f8 (origin/main), verify exit_code 0
-  B4 schema committed (db-push deferred to 2026-06-27 with PARK-009)
-  Cadence: session-open fires moat_coverage + dual_coverage + register_ref_integrity (bg)
-  SEED-A Phase 2: current-session HANDOFF ghost-refs BLOCKING
-  SEED-B: ## MOAT REVIEW required in every handoff (validator active)
-  SEED-C: 8/8 dual-covered (M-46)
-  PARK-040 auto-capture: WHO+WARRANT+ACTION in stubs; Governor review at >5 stubs
-  Ghost-ref Phase 2: mtime-based 24h proxy (statSync) for current-session detection
-  bash -n check: verify-hooks-functional.sh now syntax-checks all hooks (CRITICAL=BLOCKING)
+## ZONE A — STATE (S084)
+- B.2 SEALED: csps-playground.vercel.app LIVE · gap_DIM4_LIVE_LOAD_PROOF RESOLVED (real k6 pool proof: pool_errors=0,
+  http_fail=0%, 48 iters; p99 2000-4000ms = free-tier cold start, bar-adjusted-with-reason).
+- B.3: Developer Journey RATIFIED live; journey-admin dashboard is a ratification interface + status dropdown
+  (NO full CRUD yet — that's the authoring-studio build [journey-studio, not yet PROTO'd], gated/superseded by the
+  orchestrator frame below).
+- verify exit_code=0 · cycles 138/140 · principles 78. (Re-run to confirm; re-run IS the proof.)
+- THE JOURNEY = the platform's operating method (how everything is created/audited/optimized), NOT a screen.
 
-BLOCKED UNTIL 2026-06-27:
-  PARK-009 (Supabase pw rotation) + PARK-043 (5 B5/B6 journey hardwires, see Zone B)
+## COMPLETED THIS TAB (SEALED — build ON these, do NOT rebuild)
+- **PROTO-S084-PREVENTION** (commits a50ba415/e573dcbd/335e4016/d113da1c): provenance labels [MEASURED]/
+  [PREDICTED]/[ASSUMED] added to P-META-032 · false-assumption-gate WARRANT check · validator-staleness
+  widened · LOAD-BEARING-ASSUMPTIONS template field · boundary-001 doctrine (target=operative−committed-load).
+- **PROTO-S084-COMM-CORE** (2106a8b6): Communication Core = WHO/WARRANT/ACTION; communication spine entry;
+  rule14 hook wired; warrant substance-check on council writes. ESSENCE-S084-006 (WHO on manual tab-relays) open.
+- **B.2 deploy SEALED** + gap_DIM4_LIVE_LOAD_PROOF closed · **B.3 Developer Journey RATIFIED live**.
 
-FIRST ACTION FOR S086:
-  Read tools/council/opus-turn.md for Opus's opening directive.
-  If db-push date has passed → start PARK-009 (pw rotation) first, then PARK-043 B5/B6 Hardwire 1.
-  If before 2026-06-27 → Opus directs next milestone; candidates: PARK-041 (per-role cards),
-  PARK-042 (usage orchestrator review), or B5 Journey Admin live data prep.
+## INHERITED OPERATING RULES (in the memory store, auto-loaded — APPLY as Opus director)
+- **RATIFICATION CADENCE by CLASS (ESSENCE-S084-001, RATIFIED-ACTIVE):** C1 outward=ALWAYS gate · C2
+  direction-setting=ratify ONCE · C3 implementation-in-ratified-direction=NO gate (free council loop) ·
+  C4 reversible=AI decides. Push-back on substance ALWAYS-ON. **Decide C3/C4; ask only at C1/C2 — do NOT over-ask.**
+- essence-over-actor · journey-is-the-platform-method · communication-core (WHO/WARRANT/ACTION) ·
+  nothing-stands-alone (4 wiring axes) · AI-PERSONA-WORKING-WITH-GOVERNOR (systems-architect, push back, no
+  yes-men, PCR for decisions, finish active cycle, chunk, certainty-levels). All in feedback_*.md memories.
+- session-state.json may read stale — THIS HANDOFF is authoritative for S084 state.
+- **ZF-ON-EVERY-COMMUNICATION (Governor S084 — both polarities):** every cross-boundary artifact (handoff,
+  relay, PROTO, report, chat-jump, ratification) carries a pre-send ZF sweep IN the artifact (Cycle 1 name
+  gaps → Cycle 2 re-examine → 0 new) BEFORE it crosses — on POSITIVE (new creation/relay) AND NEGATIVE
+  (correction). The boundary is the trigger, not completion. Orchestration: Communication Core element 4 =
+  SWEPT (WHO/WARRANT/ACTION/SWEPT); every journey PEG output is swept. Hardwire = pre-Write/Edit gate on
+  cross-boundary artifacts requires the ZF block, advisory→BLOCKING (ZF-ladder #5, sharpened). PARK-S084-019.
 
-WHAT NOT TO DO:
-  Do NOT build Hardwires 1-5 (PARK-043) before db-push.
-  Do NOT build a uniform "declare-phase-or-blocked" gate — SEED-2 matrix is risk-classed.
-  Do NOT fork learning-loop hook — inventory what post-stop-learning-loop.sh already does first (PARK-040).
+## ZONE B — THE RATIFIED + CORRECTED DESIGN (read these 11 docs — the design lives in files, not chat)
+Canonical plan: **docs/plan/pillar-0-governance/JOURNEY-ORCHESTRATOR-PLAN.md** (ratified; §0b has the
+3-way external CORRECTIONS that SUPERSEDE flat-blocking). Supporting:
+- JOURNEY-PERSONA-AUDIT-S084.md (core/branches; risk-class primary selector, persona overlay)
+- JOURNEY-MOAT-MAP-S084.md (journey orchestrates 45 existing moats per phase + 3 core loops)
+- JOURNEY-CONNECTIVITY-AND-COUNCIL-S084.md (change→effect chain; council inserted; ZF/PE/CIE roles)
+- JOURNEY-ID-SCHEMA-S084.md (journeys = a core-spine ENTRY, 8-section; trunk=sealed core; PEG; frontend-reshapeable)
+- JOURNEY-RIPPLE-AND-LOOPS-S084.md (ripple pass + loop-activation + the loop-activeness findings)
+- P-ARCH-TRUNK-BRANCH-PATTERN.md · ESSENCE-EXTRACTION-DEFAULT.md · AI-PERSONA-WORKING-WITH-GOVERNOR.md
+- research: S084-journey-external-consolidation.md (round1) + S084-journey-revised-external-comments.md (round2: Gemini+Claude+GPT)
 
-STANDING DIRECTIVES:
-  All file edits pre-approved (Governor permanent S084). Use Bash for .claude/** files.
-  Comments-Before-Code on multi-batch PROTOs. CADENCE-AUDIT at every milestone report.
-  Bidirectional council peer contract: surface what directive missed; label HIGH-VALUE claims.
-═══════════════════════════════════════════════════════════════════
+**THE CORRECTED FRAME (post 3-way review — JOURNEY-ORCHESTRATOR-PLAN §0b):**
+- gate_mode[risk_class][phase] = blocking|advisory|silent (NOT blocking-everywhere). CIE never blocks by default.
+- Decouple real-time workspace (fast store) from governance registry (heavy graph checks only on PEG, async).
+- Orchestrator = EVENTED services, NOT a synchronous master. Ripple = typed+versioned+severity(P0-P3)+cycle-
+  detect+TOCTOU-snapshot, detect/compute/execute separated. Risk-class = system-suggested+PA-ratifiable.
+- invariants: no-SILENT-skip (not no-skip) · verify-against-acceptance-criteria+confidence+rollback (not verify-completely).
+- BUILD MVP-NARROW FIRST (5-phase machine + risk selector + persona overlay + PEG evidence + policy-result
+  model + ripple for 2-3 typed classes + Owner Health Brief L1 + append-only event log). DEFER full CIE/
+  universal-ripple/dashboards/auto-remediation. 10 non-negotiables in the plan.
+
+## OPUS JOB vs SONNET JOB (M-37) — in the plan §1
+OPUS: the core seeds (anchors) + OPIA per phase + sealed trunk text + closed enums + contracts. No routine code.
+SONNET: full build (DB models, dashboard reshaper, PEG hooks+validators EXTENDED, ripple pipeline, event log,
+loop scheduler+report, ZF-ladder builds, behavioral tests). Reports FROM SONNET|FOR OPUS; verify=0 before DONE.
+
+## CORE SEEDS REQUIRED (Opus writes BEFORE Sonnet builds — plan §3, + corrections add):
+SEED-1 journeys entry skeleton (sealed trunk C1-C5 + P1-P5) · SEED-2 PEG GateDef schema (now carries
+gate_mode matrix) · SEED-3 phase→moat/council/loop map · SEED-4 ripple PIPELINE contract (typed edges +
+severity P0-P3 + detect/compute/execute + cycle-detect + versioned-snapshot) · SEED-5 ZF re-run-at-gate +
+hash-bound contract (risk×phase per gate_mode) · SEED-6 closed enums + risk-class suggested-selector +
+branch-persona entry check · SEED-7 Owner-Health-Brief (L1 log) schema · SEED-8 event-log/optimistic-concurrency contract.
+
+## OPEN THREADS — NO-DROP LIST (every pending; create park entries if not present)
+1. **6-EXPERT SONNET REVIEW (NEXT)** — Governor S084: Sonnet reviews ALL S084 journey work using 6 experts
+   (cruel-critic · bottleneck · schema · consolidation · balance · ux/naive-persona) on the CORRECTED plan.
+2. **MVP-NARROW BUILD** — per corrected build order (after the 6-expert review + seeds).
+3. **re-run-IS-the-proof DEEP AUDIT + hardwire** (Governor S084) — the principle is NOT mechanically enforced
+   (gates trust stored results). Hardwire to journeys think/plan/implement/validate, mandatory. Folds into ZF ladder #3.
+4. **VOCABULARY REALIGNMENT pass** (Governor S084) — adjust improved concepts platform-wide (vocab = the
+   alignment point of reference): no-silent-skip · verify-against-acceptance · gate_mode · severity-ripple ·
+   risk-class-suggested · PEG · journeys-corespine + all S084 changes. Update vocabulary.md + ripple to usages.
+5. **1-WEEK ITERATION REVIEW (2026-06-25)** — Sonnet iterates/reviews ALL Opus+Sonnet work from this tab.
+6. **ZF HARDENING LADDER (6, ratified)** — advisory→blocking now · pre-Write/Edit gate · re-run-at-gate+hash ·
+   state-machine code-block · ZF at every boundary · anti-self-accept. Now risk×phase-gated per corrections.
+7. **COUNCIL DEEP-DIVE (PARK-S084-014)** — types×iterations×consulting-depth (parked, pending).
+8. **DEPLOY-HARDENING (PARK-S084-010)** — PL1/PL2/PL3/PL6/PL7/PL8.
+9. **P0 SECURITY (PARK-S084-009)** — DB password rotation DUE 2026-06-20 (Governor action) + PL6 leak-symmetry hook.
+10. SCHEDULED 2026-07-12: VLT-S022 clean ZenStack (PARK-004) + PCR-flip-auto-register (PARK-002).
+11. EED (PARK-006, ratified ongoing) · tier-model (PARK-011) · AI-persona session-open wiring + profiles.ts refresh (PARK-013).
+12. ESSENCE harvest log (ESSENCE-S084-001..010) in ESSENCE-EXTRACTION-DEFAULT.md.
+All tracked in tools/data/park-register.yaml (21 open) + this handoff is the index.
+
+## ALIGNMENT QUESTIONS (answer before building)
+Q1 — Why is the journey a core-spine ENTRY, not a 6th L1 spine?
+Q2 — What replaced "blocking everywhere" (gate_mode matrix) and why (gate-fatigue)?
+Q3 — What is the #1 collapse risk (concurrent ripple / synchronous orchestrator) and its fix (decouple + evented + versioned snapshot)?
+Q4 — What must Opus write (SEED-1..8) before Sonnet builds anything?
+Q5 — What is due 2026-06-20 (P0 DB password rotation)?
+Q6 — What is the MVP-narrow first build vs what is deferred?
+
+## NEXT STEP
+Run the 6-expert Sonnet review on JOURNEY-ORCHESTRATOR-PLAN (with §0b corrections) → Opus consolidates →
+Opus writes SEED-1..8 → Sonnet builds the MVP-narrow spine. Hold full build until seeds exist.
+
+## SONNET STARTUP BLOCK (paste to new tab)
 ```
-
----
-
-*Session S085 sealed. FROM SONNET | FOR OPUS. verify=0, HEAD c57636f8, pushed.*
-
----
-
-## OPUS ALIGNMENT ANSWERS (A1–A4) — for B5/B6 planning (Opus #24, S084)
-
-**A1 — T1 journey-gate Bash coverage = NARROW + opt-in, never all-Bash.** `pre-tool-use-journey-gate.sh`
-fires ONLY when `JOURNEY_ID` is set in env (work explicitly inside a journey) AND the action is a PEG
-transition or a Write/Edit to a journey-governed surface. Outside a journey → SILENT (no gate). The gate then
-consults `seed2-gate-mode-matrix.json` and blocks ONLY where the matrix says blocking for that risk×phase
-(the gate_mode ladder). You are "in a journey" only when you declared one — never a tax on every command.
-
-**A2 — `@csps-journey-phase` = CONTEXT-GATED (forward-only), NOT retroactive.** New files created while a
-`JOURNEY_ID` is active declare their phase. Cross-cutting infra declares `journey_phase: cross-cutting`
-(explicit, not orphan — TEG is the canonical example the review itself flagged). Existing files are NOT
-backfilled (advisory at most). Rationale: a retroactive sweep of hundreds of files is low-value, and not
-everything is a single-phase journey step.
-
-**A3 — Sequencing: PARK-041 PRE-db-push, PARK-043 POST.** PARK-041 (role cards) needs no DB — it's doc
-consolidation + session-open wiring; do it next (pre-2026-06-27). PARK-043 (the 5 journey-as-container
-hardwires) is gated on the db-push (live `audit.events` write-path + queryable PersonaTier) → B5/B6, post-rotation.
-
-**A4 — UNIFIED orchestrator, ONE spine with three concerns (NOT three systems).** PARK-040/042/043 are three
-FACES of the same `route → gate → verify` orchestrator: PARK-043 routes WORK through journey phases (the
-operational container / spine); PARK-040 (Learning) IS its P5 (activate-verify-LEARN); PARK-042 (resource/usage)
-IS its execution/dispatch layer (which model/tab/context per work-unit). Build the journey orchestrator as the
-spine; learning + resource-routing attach to it. Three parallel orchestrators = the parallel-creation disease —
-rejected. This consolidation is the B5/B6 north star.
-
-*Opus alignment folded — S086 inherits answered questions. verify=0.*
+You are continuing CSPS S084→S085. Read docs/plan/_handoff/HANDOFF-S084-to-S085.md FULLY first.
+FIRST: node tools/verify.mjs --skip-install (confirm exit_code=0). Then read JOURNEY-ORCHESTRATOR-PLAN.md
+(esp §0b corrections) + the 5 JOURNEY-*-S084 docs. THEN await Governor directive.
+The journey = the platform's operating method. Build MVP-NARROW per §0b/C7. gate_mode matrix not blocking-
+everywhere. Opus writes SEED-1..8 first; Sonnet builds. P0: pw rotation due 2026-06-20.
+Report FROM SONNET | FOR OPUS; numbers [MEASURED]/[PREDICTED]/[ASSUMED]; verify=0 before any DONE.
+```

@@ -1,20 +1,27 @@
 {
-  "total_scanned": 5,
-  "total_exempted": 3,
-  "total_findings": 3,
+  "total_scanned": 17,
+  "total_exempted": 2,
+  "total_findings": 4,
   "findings": [
     {
       "pattern": "C",
       "type": "definition",
       "item": "warrant",
-      "count": 3,
+      "count": 4,
       "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\governor-comments\\2026-06-21.md"
     },
     {
       "pattern": "C",
       "type": "definition",
       "item": "tags",
-      "count": 6,
+      "count": 7,
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\governor-prompts\\S067.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "warrant",
+      "count": 3,
       "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\VAULT\\governor-prompts\\S067.md"
     },
     {
@@ -25,5 +32,5 @@
       "file": "D1-humble-consolidation-default.md"
     }
   ],
-  "ran_at": "2026-06-21T18:59:03.942Z"
+  "ran_at": "2026-06-22T02:22:28.449Z"
 }

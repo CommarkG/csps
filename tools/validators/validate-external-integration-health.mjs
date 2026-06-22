@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * validate-external-integration-health.mjs
+ * @determinism-exempt: new Date()/Date.now() used only for output metadata (ran_at, ts fields in last-run JSON). All blocking decisions are structural/deterministic (field presence, count checks, schema conformance). Not in any blocking decision path.
+ *
  * @csps-dna
  * core_spine: ARCH
  * @csps-enforces HARDWIRE-006 EXTERNAL-INTEGRATION-REGISTRATION-STALENESS

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-22T03:25:37.916Z
-- finished_at: 2026-06-22T03:26:05.808Z
+- ran_at: 2026-06-22T04:08:00.371Z
+- finished_at: 2026-06-22T04:08:28.925Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-22T03:25:37.916Z",
-    "finished_at": "2026-06-22T03:26:05.808Z",
+    "ran_at": "2026-06-22T04:08:00.371Z",
+    "finished_at": "2026-06-22T04:08:28.925Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -191,7 +191,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 200,
         "links": 875,
         "broken": 71
@@ -261,7 +261,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 2
+        "advisories": 5
       },
       {
         "name": "agreement_without_evidence",
@@ -307,7 +307,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 25,
-        "validators": 245,
+        "validators": 246,
         "models": 0,
         "advisories": 0
       },
@@ -440,8 +440,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 1515,
-        "advisory": 132,
+        "scanned": 1516,
+        "advisory": 133,
         "code_advisory": 9
       },
       {
@@ -565,8 +565,8 @@
         "command": "node tools/validators/validate-core-contamination.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "checked": 330,
+        "duration_seconds": 0.1,
+        "checked": 331,
         "blocking": 0,
         "advisories": 0
       },
@@ -689,7 +689,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -712,8 +712,8 @@
         "exit_code": 1,
         "duration_seconds": 0.1,
         "session": "S086",
-        "validators": 246,
-        "tail": "  RECOMMENDED ACTIONS:\n  1. SAP Sweep 6 (Synergy Audit) — walk platform for cross-enhancement opportunities\n  2. CEC walk — iterate until 0 new opportunities found\n  3. Create session extraction: docs/plan/_handoff/VAULT/session-S<NNN>-extraction.md\n  4. Register positive patterns in inner-AI-defaults/continuous-drift-log.md\n\n  Per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION: significant sessions deserve extraction.\n\n[validate-session-harvest-readiness] session=S086 validators=246 extraction=MISSING status=HARVEST_READY\n"
+        "validators": 247,
+        "tail": "  RECOMMENDED ACTIONS:\n  1. SAP Sweep 6 (Synergy Audit) — walk platform for cross-enhancement opportunities\n  2. CEC walk — iterate until 0 new opportunities found\n  3. Create session extraction: docs/plan/_handoff/VAULT/session-S<NNN>-extraction.md\n  4. Register positive patterns in inner-AI-defaults/continuous-drift-log.md\n\n  Per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION: significant sessions deserve extraction.\n\n[validate-session-harvest-readiness] session=S086 validators=247 extraction=MISSING status=HARVEST_READY\n"
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -1095,9 +1095,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 246,
+        "validators_checked": 247,
         "orphans": 0,
-        "registered": 246
+        "registered": 247
       },
       {
         "name": "token_budget_validate",
@@ -1458,8 +1458,8 @@
         "command": "node tools/validators/validate-hardwire-completeness.mjs",
         "status": "CACHED",
         "exit_code": 0,
-        "cached_at": "2026-06-20T03:18:15.776Z",
-        "input_hash_prefix": "26b12605",
+        "cached_at": "2026-06-22T04:02:28.529Z",
+        "input_hash_prefix": "9cfbe169",
         "rows": 9,
         "blocking": 0,
         "advisory": 0
@@ -1501,8 +1501,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "new_permanent_files": 3,
-        "advisory": 3,
+        "new_permanent_files": 1,
+        "advisory": 1,
         "blocking": 0
       },
       {
@@ -1510,8 +1510,8 @@
         "command": "node tools/validators/validate-satisfaction-point-coverage.mjs",
         "status": "CACHED",
         "exit_code": 0,
-        "cached_at": "2026-06-20T03:18:16.142Z",
-        "input_hash_prefix": "43de3be9",
+        "cached_at": "2026-06-22T04:02:28.964Z",
+        "input_hash_prefix": "b3a3a6eb",
         "entries": 13,
         "blocking": 0,
         "advisory": 0
@@ -1593,8 +1593,8 @@
         "exit_code": 0,
         "duration_seconds": 0.3,
         "files_checked": 753,
-        "findings": 9493,
-        "advisory": 9493
+        "findings": 9494,
+        "advisory": 9494
       },
       {
         "name": "nominal_rzf_detector",
@@ -1851,9 +1851,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 241,
+        "total": 242,
         "deferred": 11,
-        "empty_output": 21,
+        "empty_output": 20,
         "zero_numeric": 23,
         "advisory": 3,
         "blocking": 0
@@ -1875,7 +1875,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 926,
+        "total_entries": 942,
         "sessions": 11,
         "advisory": true
       },
@@ -2068,9 +2068,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 5,
-        "potential_duplicates": 1,
-        "advisory": 1,
+        "files_scanned": 1,
+        "potential_duplicates": 0,
+        "advisory": 0,
         "blocking": 0
       },
       {
@@ -2162,7 +2162,7 @@
         "command": "node tools/validators/validate-push-status.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "unpushed_count": 0,
         "advisory": 0,
         "blocking": 0
@@ -2186,7 +2186,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "files_checked": 774,
-        "advisory": 189,
+        "advisory": 191,
         "blocking": 0
       },
       {
@@ -2223,7 +2223,7 @@
         "command": "node tools/validators/validate-hook-activation-smoke.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3.8,
+        "duration_seconds": 3.9,
         "hooks_tested": 9,
         "blocking": 0,
         "advisory": 4
@@ -2234,8 +2234,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_scanned": 245,
-        "blocking": 43,
+        "validators_scanned": 246,
+        "blocking": 0,
         "advisory": 12
       },
       {
@@ -2243,7 +2243,9 @@
         "command": "node tools/validators/validate-green-receipt.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.1,
+        "head_prefix": "8a4d89ee",
+        "receipt_ts": "2026-06-22T04:07:56.549Z"
       },
       {
         "name": "agent_inheritance_parity",
@@ -2253,7 +2255,16 @@
         "duration_seconds": 0.1,
         "items_tracked": 5,
         "blocking": 0,
-        "advisory": 5
+        "advisory": 0
+      },
+      {
+        "name": "completion_gate",
+        "command": "node tools/validators/validate-completion-gate.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "this_session_undisposed": 0,
+        "older_undisposed": 21
       },
       {
         "name": "page_completeness",

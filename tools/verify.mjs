@@ -2357,14 +2357,28 @@ const CYCLES = [
   {
     // B_DETERMINISTIC_GATE item 6 (PROTO-S086-CLOSE): agent inheritance parity.
     // Checks that preventions/contracts in any one agent entry point exist in all three
-    // (Opus context, Sonnet context, Haiku spawn template). Advisory initially.
-    // Source: PROTO-S086-CLOSE. Prevention class: AGENT-INHERITANCE-GAP.
+    // (Opus context, Sonnet context, Haiku spawn template). BLOCKING (exit 1) for 1/3 coverage.
+    // Source: PROTO-S086-CLOSE + PROTO-S086-COMPLETION. Prevention class: AGENT-INHERITANCE-GAP.
     run_tier: 'EXTENDED',
     name: 'agent_inheritance_parity',
     command: 'node tools/validators/validate-agent-inheritance-parity.mjs',
     parse_output: (out) => {
       const m = out.match(/items_tracked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
       return m ? { items_tracked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // B_INSIST_ON_COMPLETION (PROTO-S086-COMPLETION): session-close completeness gate.
+    // BLOCKS if any obligation-lane park item created this session lacks a disposition
+    // {answered, decided, parked+owner+trigger}. Every open gets a disposition; no drift.
+    // Cross-agent: referenced in opus-context.md + sonnet-context.md + haiku-spawn-template.md
+    // Source: PROTO-S086-COMPLETION. Prevention class: OPEN-DRIFT SESSION-CLOSE-INCOMPLETENESS.
+    run_tier: 'EXTENDED',
+    name: 'completion_gate',
+    command: 'node tools/validators/validate-completion-gate.mjs',
+    parse_output: (out) => {
+      const m = out.match(/this_session_undisposed=(\d+)\s+older_undisposed=(\d+)/);
+      return m ? { this_session_undisposed: Number(m[1]), older_undisposed: Number(m[2]) } : {};
     },
   },
   {

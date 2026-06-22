@@ -123,17 +123,25 @@ These were identified in SROF-S086-004 but NOT scheduled. Governor/Opus must dec
 - C6 Opus receipt never written this session
 - Fix: validate-session-close-completeness.mjs should check for HANDOFF file existence AND Opus receipt
 
-## OPEN THREADS — NO-DROP LIST
+## OPEN THREADS — NO-DROP LIST (dispositions written S086-COMPLETION)
 
-1. **C6 — Opus inheritance receipt** (PENDING): Opus must acknowledge PROTO-S086-INHERITANCE-LOOP receipt in opus-turn.md. Not done this session.
-2. **PHASE 2 (2026-06-27)**: PARK-009 rotate→db-push + password rotation. Governor action.
-3. **PARK-043** (journey orchestrator 5 hardwires): GATED on PHASE 2. Do not touch until db-push confirmed.
-4. **Consolidation gaps A-F**: all unscheduled. Needs Opus disposition.
-5. **AQ1**: Threshold backfill — should S085 classifications be backfilled to threshold-intake-log.yaml?
-6. **AQ2**: PARK-042 assessment written (PARK-042-ASSESSMENT-S086.md) — next action?
-7. **AQ3**: PARK-045 prerequisite — what must be confirmed before compact-vs-new-tab goes live?
-8. **AQ4**: "Insights" signal source for validate-session-insight-capture — definition needed.
-9. **session-state.json**: still shows stale `current_session: S086` + many legacy S015-S022 fields. Needs a session-state update pass.
+1. **C6 — Opus inheritance receipt** (PENDING): Opus must acknowledge PROTO-S086-INHERITANCE-LOOP receipt in opus-turn.md. Not done this session. → `disposition: parked | owner: Opus | trigger: Opus opens next directive turn; write receipt in opus-turn.md ## S086 — C6 RECEIPT section`
+
+2. **PHASE 2 (2026-06-27)**: PARK-009 rotate→db-push + password rotation. Governor action. → `disposition: parked | owner: Governor | trigger: 2026-06-27 date reaches. Unlocks PARK-043 B5/B6 build. NO Sonnet touch.`
+
+3. **PARK-043** (journey orchestrator 5 hardwires): GATED on PHASE 2. → `disposition: parked | owner: Sonnet-S087 | trigger: PHASE 2 complete + db-push confirmed by Governor. Read PARK-S084-043 in park-register for the 5 hardwires plan before building.`
+
+4. **Consolidation gaps A-F**: → `disposition: parked | owner: Opus | trigger: S087 opening — Governor/Opus must decide which become S087 immediate tasks. See PARK-S086-049 in park-register. Quick wins: B (fixture rename, done), C/E (done in S086); A (AMENDMENT-1 formal PROTO) + F (session-close earlier) = S087 first priorities.`
+
+5. **AQ1**: Threshold backfill (should S085 classifications be backfilled?) → `disposition: parked | owner: Governor | trigger: S087 opening alignment — Yes/No decision needed before threshold-intake-log.yaml work starts.`
+
+6. **AQ2**: PARK-042 assessment written — next action? → `disposition: parked | owner: Opus | trigger: Governor reads PARK-042-ASSESSMENT-S086.md and decides: accept (fold into PARK-043 as one orchestrator face) / defer / schedule separately.`
+
+7. **AQ3**: PARK-045 prerequisite — what must be confirmed before compact-vs-new-tab goes live? → `disposition: parked | owner: Governor | trigger: After Sonnet's short research on Claude Code /compact internals lands (part of PARK-045 content). Research not done yet.`
+
+8. **AQ4**: "Insights" signal source for validate-session-insight-capture — definition needed. → `disposition: parked | owner: Governor | trigger: definition request — see PARK-S086-050 in park-register with question text and 5 options (A-E) for Governor to choose from before Sonnet wires the signal.`
+
+9. **session-state.json**: stale `current_session: S086` + legacy S015-S022 fields. → `disposition: parked | owner: Sonnet-S087 | trigger: S087 session-open cleanup pass. Update current_session to S087 + prune legacy fields.`
 
 ## ALIGNMENT QUESTIONS (answer before S087 build)
 

@@ -31,8 +31,9 @@
  * @csps-prevention-class TEMPORAL-BLOCKING-PATH
  *
  * Coverage Levels:
- *   Phase 1 (now): ADVISORY-only (exit 0 always) — measurement pass; 43 pre-existing validators have this pattern.
- *   Phase 2 (post-cleanup): BLOCKING if NEW validator (created after S086) has time-dependent blocking path.
+ *   Phase 1 (S086 build): ADVISORY-only — 43 pre-existing validators measured.
+ *   Phase 2 (S086-COMPLETION, current): BLOCKING enforced. All 43 annotated @determinism-exempt: with justification.
+ *     New validators that add time-in-blocking-path without @determinism-exempt: → FAIL (exit 1).
  *   The @determinism-exempt: annotation allows individual files to declare their time-use is intentional.
  *
  * run_tier: STANDARD (light scan — reads validator source files, no subprocess)
@@ -175,7 +176,8 @@ if (blocking === 0 && advisory === 0) {
   console.log('[validate-blocking-determinism] ✓ No time-dependent blocking paths detected');
 }
 
-// Phase 1: advisory-only. Exit 0 always — measurement pass.
-// 43 pre-existing validators detected; document for cleanup.
-// Phase 2 (post-S086 cleanup): exit 1 when blocking > 0.
-process.exit(0);
+// Phase 2 (S086 completion): BLOCKING enforced.
+// All 43 pre-existing validators annotated with @determinism-exempt: and justification (S086-COMPLETION).
+// New validators without @determinism-exempt: that have time-in-blocking-path → FAIL (exit 1).
+// @csps-version 2.0.0
+process.exit(blocking > 0 ? 1 : 0);

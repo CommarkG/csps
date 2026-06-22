@@ -15113,3 +15113,11 @@ Inline/modal/popup vs dedicated-page = DNA axis (registered in park-register.yam
 - Every prevention applies to Opus + Sonnet + Haiku (not Opus-only)
 
 *PROTO-S086-CLOSE — Opus #25 — 2026-06-21/22*
+
+## C6 — OPUS INHERITANCE RECEIPT (S086, Opus #25) — HEAD 8a4d89ee
+[MEASURED] Re-derived ground truth from committed files only (verify, green-receipt.json, the 3 new validators, obligations-ledger) — 0 from tab/temp memory.
+- verify exit_code=0 reproduces independently (HEAD-isolation) at 8a4d89ee.
+- green-receipt HEAD == current HEAD (8a4d89ee), exit 0 → green is sha-bound and reproducible by construction. B_DETERMINISTIC_GATE proven this round.
+- Obligations re-derived from committed registers, not chat/tab memory.
+RESIDUALS (NOT sealed — carried to completion sweep): blocking-determinism backstop in ADVISORY (43 pre-existing time-dependent blocking validators not yet migrated → B_DETERMINISTIC_GATE not fully ENFORCING); agent-inheritance-parity scan incomplete; green-receipt advisory-ordering limitation; D-fold (audit pre-commit) unbuilt; AQ PARK-042/045/insights pending disposition.
+WHO=Opus#25 · WARRANT=independent HEAD-isolation verify of 8a4d89ee · ACTION=receipt written + completion sweep insisted.

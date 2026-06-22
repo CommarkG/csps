@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 /**
+ * @determinism-exempt: uses fs.mtime to detect uncommitted freshness drift. Not wall-clock — compares committed-file mtimes. Known fresh-clone false-negative; accepted until hash-based tracking ships.
+ *
  * validate-audit-health.mjs — THE AUDITOR OF AUDITORS
  *
  * The insight: the audit mechanism must itself be audited. Validators that check

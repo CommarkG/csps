@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 /**
+ * @determinism-exempt: new Date()/Date.now() used only for output metadata (ran_at, ts fields). Blocking decisions are structural/deterministic. Not in any blocking decision path.
+ *
  * validate-inner-ai-defaults-freshness.mjs — AI defaults registry currency check
  *
  * ROOT CAUSE TARGETED: inner-ai-defaults/ was calibrated for Claude 3.x/4.x era at S006.

@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * validate-context-wrapped-numbers.mjs
+ * @determinism-exempt: new Date()/Date.now() used only for output metadata (ran_at, ts fields in last-run JSON). All blocking decisions are structural/deterministic (field presence, count checks, schema conformance). Not in any blocking decision path.
+ *
  * @csps-dna
  * core_spine: VALD
  * @csps-enforces P-META-028 (context-refined-communication cornerstone)

@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * validate-threshold-exhaustive.mjs
+ * @determinism-exempt: new Date()/Date.now() used only for output metadata (ran_at, ts fields in last-run JSON). All blocking decisions are structural/deterministic (field presence, count checks, schema conformance). Not in any blocking decision path.
+ *
  * @csps-dna
  * core_spine: VALD
  * @csps-enforces PROTO-S068-PART-2-THRESHOLD-COMPLETE STEP 2 + P-META-019

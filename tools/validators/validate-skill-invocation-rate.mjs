@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 /**
+ * @determinism-exempt: new Date()/Date.now() used only for output metadata (ran_at, ts fields in last-run JSON). All blocking decisions are structural/deterministic (field presence, count checks, schema conformance). Not in any blocking decision path.
+ *
  * @csps-dna
  * inherits_from: tools/validators/ + PROTO-S067-MASTER-THRESHOLD-ROUTER STEP 4
  * core_spine: VALD

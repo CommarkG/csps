@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 /**
+ * @determinism-exempt: uses fs.mtime to detect uncommitted freshness drift. Not wall-clock — compares committed-file mtimes. Known fresh-clone false-negative; accepted until hash-based tracking ships.
+ *
  * validate-slice-freshness.mjs — detects monolith files edited without running split
  *
  * ROOT CAUSE: behavioral-contracts.md / audit-runner.md / principles.yaml / ai-behavior-spine.md

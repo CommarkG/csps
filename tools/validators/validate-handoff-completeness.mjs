@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 /**
+ * @determinism-exempt: uses fs.mtime to detect uncommitted freshness drift (file-A newer than file-B = author forgot to update file-B). Not a wall-clock gate — both files are committed. Known limitation: mtime is reset on fresh git clone (false-negative). Accepted until hash-based freshness tracking ships (S087+).
+ *
  * @csps-id csps.tools.validators.validate-handoff-completeness
  * @csps-name validate-handoff-completeness
  * @csps-description Handoff Completeness Gate: scans HANDOFF-*.md files in last 90 days.

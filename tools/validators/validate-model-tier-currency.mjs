@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 /**
+ * @determinism-exempt: uses current date for scheduling/calendar checks. This is a SCHEDULED validator by design — blocking path IS intentionally time-dependent. Exempt per B_DETERMINISTIC_GATE §scheduled-validators.
+ *
  * validate-model-tier-currency.mjs — model tier registry is current
  *
  * Checks that tools/model-tier-registry.yaml is present, has all required tiers,

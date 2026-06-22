@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 /**
+ * @determinism-exempt: uses fs.mtime to detect uncommitted freshness drift (file-A newer than file-B = author forgot to update file-B). Not a wall-clock gate — both files are committed. Known limitation: mtime is reset on fresh git clone (false-negative). Accepted until hash-based freshness tracking ships (S087+).
+ *
  * @csps-id csps.tools.validators.validate-hook-activation-smoke
  * @csps-name validate-hook-activation-smoke
  * @csps-description B3 S086 INHERITANCE-LOOP: smoke-tests every user-prompt-submit-*.sh hook

@@ -69,9 +69,13 @@ const CROSS_AGENT_PATTERNS = [
 // Items that are legitimately role-scoped (not cross-agent)
 // Format: exact string match
 const ROLE_SCOPED_EXEMPT = new Set([
-  'B_OPIA',   // Opus-only architectural review protocol
-  'B_OPUS_TURN_RZF',
-  'P-META-001', // Basic principles — everywhere by default
+  'B_OPIA',                 // Opus-only architectural review protocol
+  'B_OPUS_TURN_RZF',        // Opus turn rhythm — Opus-only
+  'P-META-001',             // Basic principles — everywhere by default
+  // Role-scoped by design (PROTO-S086-COMPLETION annotation):
+  'B_AI_PROFESSIONAL_VOICE', // Haiku spawn template: explicit reminder for scout return format;
+                             // implicit in Opus/Sonnet governance (already professional by role)
+  'B_SWIFT_OR_PARK',        // Sonnet turn-discipline: mid-process input triage; not a Haiku/Opus concern
 ]);
 
 function extractItems(content) {
@@ -123,17 +127,18 @@ for (const item of [...allItems].sort()) {
   if (missingFrom.length === 0) continue; // All three have it
 
   if (missingFrom.length === 2) {
-    // Only ONE entry point has it — most concerning
-    // Advisory for now (cross-agent parity is a new standard)
+    // Only ONE entry point has it — BLOCKING (PROTO-S086-COMPLETION: parity must be enforced)
+    // If a prevention/contract is platform-wide, it must be in ALL THREE entry points.
+    // Use @role-scoped: annotation in the source file or ROLE_SCOPED_EXEMPT set above to exempt.
     findings.push({
-      status: 'ADVISORY',
+      status: 'BLOCKING',
       item,
       present_in: presentIn.map(ep => ep.role),
       missing_from: missingFrom.map(ep => ep.role),
     });
-    advisory++;
+    blocking++;
   } else if (missingFrom.length === 1) {
-    // Two entry points have it — partial coverage
+    // Two entry points have it — ADVISORY (partial coverage; should be addressed)
     findings.push({
       status: 'ADVISORY',
       item,
@@ -172,17 +177,27 @@ if (missingFiles.length > 0) {
   }
 }
 
-if (advisory > 0) {
-  const worstFindings = findings
-    .filter(f => f.status === 'ADVISORY' && f.present_in.length === 1)
-    .slice(0, 10);
-  if (worstFindings.length > 0) {
-    console.log(`\n[validate-agent-inheritance-parity] Top parity gaps (present in 1/3 entry points):`);
-    for (const f of worstFindings) {
-      console.log(`  ℹ ${f.item}: only in ${f.present_in.join(', ')} — missing from ${f.missing_from.join(', ')}`);
-    }
+// BLOCKING parity findings (present in only 1/3 entry points)
+const blockingParity = findings.filter(f => f.status === 'BLOCKING' && f.present_in.length > 0);
+if (blockingParity.length > 0) {
+  console.error(`\n[validate-agent-inheritance-parity] BLOCKING parity gaps (present in only 1/3 entry points):`);
+  for (const f of blockingParity) {
+    console.error(`  ✗ ${f.item}: only in ${f.present_in.join(', ')} — must also be in ${f.missing_from.join(', ')}`);
+    console.error(`    Fix: add reference to ${f.missing_from.join('+')} entry point, OR add to ROLE_SCOPED_EXEMPT if truly role-scoped`);
   }
-  console.log(`  (Total: ${advisory} items with incomplete cross-agent coverage)`);
+}
+
+// ADVISORY parity findings (present in 2/3 entry points)
+const advisoryParity = findings.filter(f => f.status === 'ADVISORY');
+if (advisoryParity.length > 0) {
+  console.log(`\n[validate-agent-inheritance-parity] ADVISORY parity gaps (present in 2/3 entry points):`);
+  for (const f of advisoryParity.slice(0, 10)) {
+    console.log(`  ℹ ${f.item}: in ${f.present_in.join(', ')} — missing from ${f.missing_from.join(', ')}`);
+  }
+  if (advisoryParity.length > 10) {
+    console.log(`  ... and ${advisoryParity.length - 10} more`);
+  }
+  console.log(`  (Total: ${advisoryParity.length} items with partial cross-agent coverage)`);
 }
 
 if (blocking === 0 && advisory === 0) {

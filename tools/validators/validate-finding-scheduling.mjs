@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 /**
+ * @determinism-exempt: uses current date for scheduling/calendar checks (due-date comparison, model-currency window, etc.). The blocking path IS intentionally time-dependent — this validator is a SCHEDULED type by design; scheduling cannot be deterministic without a date. Exempt per B_DETERMINISTIC_GATE §scheduled-validators.
+ *
  * @csps-dna
  * inherits_from: tools/validators/ + PROTO-S066-WAVE-2 Core Seed pattern
  * core_spine: VALD

@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 /**
+ * @determinism-exempt: new Date()/Date.now() used only for output metadata (ran_at, ts fields). Blocking decisions are structural/deterministic. Not in any blocking decision path.
+ *
  * validate-token-budget.mjs — 5-mode token budget governance validator
  *
  * SELF-DESCRIBING (6-commitment #5):

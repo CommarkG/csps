@@ -172,6 +172,8 @@ entries:
 
   - id: "PHASEB-BUNDLE"
     lane: obligation
+    disposition_text: "parked | owner: Opus | trigger: gap_CYCLE_COUNTER_DISCREPANCY resolved + verify instrument stabilized; each arm individually ratified by Governor before build. Arm 2 (PARK hardwire 7-surface) highest-priority first."
+    disposition_session: S086
     content: "Consolidated PHASEB obligations (gated on cycle-counter reconciliation + verify instrument stabilized). 5 arms: (1) S082-001 context-orchestrator advisory→BLOCKING; (2) S082-002 PARK hardwire 7-surface; (3) S082-003 cross-platform automation hook+validator; (4) S082-004 EQA pipeline 4 validators; (5) S082-007 complexity-load chat-move trigger."
     retrieve_when: "gap_CYCLE_COUNTER_DISCREPANCY resolved + verify instrument stabilized + Governor ratification per arm (each arm individually, not a single giant build)"
     never_drop: true
@@ -450,6 +452,8 @@ entries:
 
   - id: "PARK-S084-009"
     lane: obligation
+    disposition_text: "parked | owner: Governor | trigger: 2026-06-27 date reaches — rotate Supabase password + db-push B2 schema. Governor-only action (no Sonnet touch). Unlocks PARK-043 journey orchestrator B5/B6 build."
+    disposition_session: S086
     content: "P0 SECURITY — DB password surfaced into a transcript (prior session) via a hook reading .env.local. Rotation scheduled cloud-agent 2026-06-17 but OPEN. PL6 structural fix: NO hook/auto-context-loader may READ .env files; only Sonnet on explicit Governor direction with a LEAK-WARNING."
     retrieve_when: "DEFERRED 1 WEEK by Governor 2026-06-20 → revisit 2026-06-27. Then rotate password + db push the B2 schema. Exposure is in Governor's own transcript (dev/playground DB), so a 1-week defer is Governor-accepted risk. B3 validators do NOT need the db push and proceed now; only the B2 schema migration waits."
     status: DEFERRED-to-2026-06-27
@@ -995,6 +999,8 @@ entries:
 
   - id: "PARK-S084-043"
     lane: obligation
+    disposition_text: "parked | owner: Sonnet-S087 | trigger: PHASE 2 complete (2026-06-27 db-push + password rotation confirmed by Governor). BLOCKED until then — do NOT build B5/B6 journey hardwires before db-push. Post-PHASE 2: Governor ratification of 5 hardwires plan before build starts."
+    disposition_session: S086
     content: "JOURNEY-AS-OPERATIONAL-CONTAINER (Sonnet internal-deep-review, Opus-verified S084). ROOT FINDING (3 claims VERIFIED: no pre-tool-use-journey-gate.sh; validate-dual-coverage tracks 8 obligations with journey_gate ABSENT; no journey_phase DNA field): the journey is DEFINED (SEED-1 trunk + SEED-2 gate matrix + validate-trunk-matches-seed) and DRIFT-DETECTED, but NOT the OPERATIONAL CONTAINER — work happens then is checked retroactively (verify catches drift next session). This is AP-001/EXISTS≠ACTIVE at the JOURNEY level; the missing piece = the Orchestrator (T1 gates that make journeys structural not detective). FIVE HARDWIRES (B5/B6, post db-push 2026-06-27): (1) pre-tool-use-journey-gate.sh T1 hook — reads JOURNEY_ID, looks up PEG in seed2-gate-mode-matrix.json, blocks if gate=deny; (2) @csps-journey-phase DNA annotation + validate-new-file-dna extension (every new element declares its phase); (3) journey event API route POST -> audit.events (entity_type=journey_event), session-close calls it (write-path for SEED-8); (4) journey_phase section in handoff template (SEED-B extension); (5) journey_gate_enforcement as obligation #9 in validate-dual-coverage. OPUS REFINEMENT (load-bearing): the container MUST use the risk-classed gate_mode ladder (SEED-2 blocking|advisory|silent per risk×phase), NOT a uniform 'declare-phase-or-blocked' on every action — §0b-C1 rejected uniform blocking; low-risk work stays light, heavy T1 gates fire only where the matrix says blocking. Else we rebuild the rigidity the platform fights."
     retrieve_when: "B5/B6 (after PARK-009 db-push 2026-06-27). This IS the journey-orchestrator nervous system; converges with PARK-040 (Learning Orchestrator) + PARK-042 (usage orchestrator) — the same route->gate->verify shape applied to work itself. Build the 5 hardwires risk-classed."
     never_drop: true
@@ -1093,6 +1099,8 @@ entries:
 
   - id: "PARK-S086-048"
     lane: obligation
+    disposition_text: "parked | owner: Sonnet-S087 | trigger: PARK-043 journey-orchestrator build (post-2026-06-27) OR any new app-facing feature area; resurface alongside M-47 and PARK-043. No build before PHASE 2 db-push confirmed."
+    disposition_session: S086
     content: "INLINE/MODAL/POPUP vs DEDICATED-PAGE DNA AXIS (Governor S086, PROTO-S086-CLOSE Opus #25). Presentation mode for content/actions is a PLATFORM-LEVEL ARCHITECTURAL AXIS, not a per-feature UX decision. Options: inline (contextual, no navigation cost), modal/popup (interruption OK, focused action), dedicated page (complex forms, full focus required, back-navigation expected). This axis must be DECIDED + JUSTIFIED at the DNA level for every new feature area, NOT discovered during implementation. Currently absent from: the journey orchestrator UX decisions (PARK-043 builds), the platform DNA template (docs/plan/pillar-0-governance/csps-platform-dna.md), and the UX/UI planning template. BUILD: (1) add 'presentation_mode: inline|modal|dedicated' + 'presentation_mode_rationale' fields to the DNA §6 element checklist; (2) add a 'presentation-mode decision' question to the UX/UI planning template and the journey PEG review template; (3) update validate-dna-evidence.mjs to check presentation_mode is declared for new app-facing elements. Resurface alongside PARK-043 (journey containers define UX) + M-47 (front-end completeness moat)."
     retrieve_when: "PARK-043 (journey-as-operational-container build, post-2026-06-27) OR any new app-facing feature area that involves user decisions. Add presentation_mode declaration to DNA template FIRST, then the specific journey/feature design. Connects M-47 (front-end completeness) + PARK-043 (journey UX) + csps-platform-dna.md §6."
     never_drop: true
@@ -1102,6 +1110,41 @@ entries:
       'platform offers default+variety' doctrine) so the reasoning is platform-level and inherited, not per-feature
       improvisation. Connects B_PLATFORM_ATTITUDE (default+variety), M-47, PARK-043 journey UX, validate-dna-evidence.
     decision_back_ref: "PROTO-S086-CLOSE (Opus #25 S086 close directive): 'add a decide+justify this axis line to the journey + UX/UI planning AND audit/review templates (DNA, not just a parked note). Resurface w/ PARK-043 + M-47'"
+    source_session: S086
+    created_session: S086
+    closed_session: null
+
+  - id: "PARK-S086-049"
+    lane: obligation
+    disposition_text: "parked | owner: Opus | trigger: S087 opening directive — Governor/Opus must decide which of A-F become S087 immediate tasks vs longer-park. Recommendation: B (fixture rename) + D (audit-runner pre-commit) as S087 quick wins; A (AMENDMENT-1 formal PROTO registration) and F (session-close earlier) as S087 first priorities; C/E already partially addressed."
+    disposition_session: S086
+    content: "CONSOLIDATION GAPS A-F (SROF-S086-004, S086 close): six gaps identified during S086 but not scheduled. A=PROTO-S086-AMENDMENT-1 not formally registered in opus-turn.md (HIGH); B=block-test fixture rename misleading hook-with-env-primary→hook-without-canonical-reader (LOW — done in S086); C=tools/lib has no README/inventory (MEDIUM — done in S086); D=audit-runner.md 3-step ritual has no pre-commit gate (MEDIUM); E=smoke validator env gap (MEDIUM — done in S086); F=session-close artifacts written only at compaction warning, not proactively (HIGH — structural pattern to break)."
+    retrieve_when: "S087 opening (before any new build) — Governor/Opus must disposition each gap: build-now or longer-park. Items A and F are highest priority (governance completeness gaps). Items B, C, E done in S086 — verify they're committed."
+    never_drop: true
+    context_preserved: >
+      These 6 gaps were discovered organically during S086 build work. None were in the pre-session plan.
+      A/F are structural platform health items. D is a recurring enforcement gap (5 times this session
+      we forgot to update audit-runner.md after adding validators — only caught at verify time).
+      B/C/E were completed during S086 as part of PROTO-S086-CLOSE Fold directives.
+    decision_back_ref: "SROF-S086-004 (Sonnet S086 consolidation/permanence report) + PROTO-S086-CLOSE Opus #25 FOLD A-F"
+    source_session: S086
+    created_session: S086
+    closed_session: null
+
+  - id: "PARK-S086-050"
+    lane: obligation
+    disposition_text: "parked | owner: Governor | trigger: validate-session-insight-capture requires definition before it can be enforced; Governor must define 'insight signal' before S087 builds the BLOCKING version of the validator."
+    disposition_session: S086
+    content: "INSIGHTS SIGNAL DEFINITION — AQ4 (S086). validate-session-insight-capture is advisory and tracks 'session insights' but the signal definition is missing: QUESTION: What is an 'insight' signal for the capture validator? Options: (A) any Opus-ratified NEW principle/pattern (new P-META-* or B_* ratified this session); (B) any SROF that contains a 'new insight' marker; (C) any gap-recurrence-register entry newly created with k_count=1; (D) any memory.md file written this session; (E) Governor-defined: a moment when the team realizes a pattern that will change future behavior — must be captured in sonnet-turn.md SROF AND memory file. The validator cannot be BLOCKING until this definition is precise and testable."
+    retrieve_when: "When making validate-session-insight-capture BLOCKING (post PHASE 2). Governor must choose one of options A-E (or combine) before Sonnet can wire the signal. Without this definition, the validator is advisory-theater."
+    never_drop: true
+    context_preserved: >
+      The validator exists (validate-session-insight-capture.mjs) but the signal it's supposed to detect
+      is undefined. 'Insights' in the platform context means different things: learned principles,
+      recurring patterns, positive value extraction moments. The validator needs a PRECISE testable
+      definition before it can be meaningful. Connects P-META-032 (provenance) + positive-value-extraction
+      memory feedback + sonnet-turn.md SROF capture format.
+    decision_back_ref: "HANDOFF-S086-to-S087 AQ4 + PROTO-S086-COMPLETION Opus directive item 5 'insights-signal park MUST include its question text'"
     source_session: S086
     created_session: S086
     closed_session: null

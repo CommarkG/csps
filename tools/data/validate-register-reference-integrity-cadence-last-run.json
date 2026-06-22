@@ -1,6 +1,6 @@
 [validate-register-reference-integrity] PASS
-  files_checked=773 advisory=189 blocking=0
-  known_ids: PARK=58 PROTO=62 MOAT=44 IMP=30 GAP=20 SEED=13
+  files_checked=774 advisory=189 blocking=0
+  known_ids: PARK=59 PROTO=64 MOAT=44 IMP=30 GAP=20 SEED=13
 
 [validate-register-reference-integrity] findings (top 20 of 189):
   ADVISORY: PROTO-S051-2 (PROTO) in docs\plan\_handoff\HANDOFF-S051-to-S052.md -> register: tools/council/opus-turn.md

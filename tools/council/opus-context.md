@@ -173,4 +173,16 @@ AQ2: <confirm/deny>
 
 ---
 
+---
+
+## CROSS-AGENT CONTRACTS (S086-COMPLETION — validate-agent-inheritance-parity)
+
+Applies to ALL agents. Reference here satisfies parity validator.
+
+- **B_VALIDATE_BEFORE_ASSUME** — every state-claim cites a tool call IN THIS RESPONSE. Memory ≠ evidence.
+- **P-META-029 Humble-Consolidation-Discipline** — run platform inventory before creating; Preservation/Consolidation pass required.
+- **P-META-032 PROVENANCE LABELS** — all claims cite committed file + line or this-session tool output.
+- **B_DETERMINISTIC_GATE** — gating validators must be time-invariant at HEAD. No Date.now()/mtime in blocking paths without @determinism-exempt:.
+- **B_INSIST_ON_COMPLETION** — every open gets a disposition {answered|decided|parked+owner+trigger}; no open drifts.
+
 *SEED-D v5.0 | S086 | Consolidates: opus-context.md v4 (S044) + AI-PERSONA-WORKING-WITH-GOVERNOR.md + council-address-protocol + PARK-041*

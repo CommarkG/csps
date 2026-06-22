@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * validate-uuid-column-types.mjs
+ * @determinism-exempt: uses current date for scheduling/calendar checks (due-date comparison, model-currency window, etc.). The blocking path IS intentionally time-dependent — this validator is a SCHEDULED type by design; scheduling cannot be deterministic without a date. Exempt per B_DETERMINISTIC_GATE §scheduled-validators.
+ *
  * @csps-dna
  * core_spine: ARCH
  * @csps-enforces dim-4 Surface 5 (NATIVE-UUID MIGRATION)

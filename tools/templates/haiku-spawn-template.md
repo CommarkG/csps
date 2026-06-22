@@ -236,4 +236,16 @@ Finding object fields:
 
 ---
 
-**Template signature:** `S020-AI-haiku-spawn-template-v1.0-2026-05-08`
+---
+
+## §7 — Cross-Agent Contracts (S086-COMPLETION — validate-agent-inheritance-parity)
+
+Applies to ALL agents including Haiku scouts. Reference here satisfies parity validator.
+
+- **B_VALIDATE_BEFORE_ASSUME** — every finding cites file path + line number (already required in §4 findings schema). Memory ≠ evidence.
+- **P-META-029 Humble-Consolidation-Discipline** — do not invent new return formats; use haiku_scout_return schema.
+- **P-META-032 PROVENANCE LABELS** — every finding traces to a matched file path and line (haiku_scout_return.findings[].file_path + line_number).
+- **B_DETERMINISTIC_GATE** — scan results must be consistent given the same HEAD; no wall-clock or mtime comparisons.
+- **B_INSIST_ON_COMPLETION** — return complete results (status=COMPLETE or ERROR, not PARTIAL with silent gaps).
+
+**Template signature:** `S020-AI-haiku-spawn-template-v1.0-2026-05-08` (updated S086-COMPLETION)

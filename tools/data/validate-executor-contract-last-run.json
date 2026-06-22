@@ -16,5 +16,5 @@
       "msg": "C4 (sp-registry-compliance): T1 hook exists but has no exit-1/exit-2 gate — may not be blocking"
     }
   ],
-  "ran_at": "2026-06-22T10:17:46.274Z"
+  "ran_at": "2026-06-22T10:19:47.164Z"
 }

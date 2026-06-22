@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-22T10:17:29.225Z
-- finished_at: 2026-06-22T10:17:58.606Z
-- exit_code: 1
+- ran_at: 2026-06-22T10:19:30.487Z
+- finished_at: 2026-06-22T10:19:59.579Z
+- exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-22T10:17:29.225Z",
-    "finished_at": "2026-06-22T10:17:58.606Z",
+    "ran_at": "2026-06-22T10:19:30.487Z",
+    "finished_at": "2026-06-22T10:19:59.579Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.7,
+        "duration_seconds": 1.5,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm -r --filter \"./apps/**\" typecheck 2>/dev/null || echo \"[apps_typecheck] no apps with typecheck script or all clean\"",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0,
         "ts_errors": 0,
         "skipped": true
       },
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.8,
         "principles_loaded": 78,
         "findings_total": 32
       },
@@ -191,7 +191,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 202,
         "links": 886,
         "broken": 71
@@ -421,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 2
       },
@@ -624,8 +624,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "issues": 1,
-        "advisory": 1,
+        "issues": 0,
+        "advisory": 0,
         "duplicates": 0
       },
       {
@@ -791,11 +791,10 @@
       {
         "name": "universal_alignment",
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
-        "status": "FAIL",
-        "exit_code": 1,
-        "duration_seconds": 0.2,
-        "files": 0,
-        "tail": "\n⚠ docs/plan/pillar-0-governance/JOURNEY-CORE-SPINE.md (1 alignment gap(s)):\n  → Missing impl_status — add swift-implemented|audit-1-complete|sealed-zf per frontmatter-closed-enums.md\n"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files": 0
       },
       {
         "name": "import_quarantine",
@@ -828,7 +827,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "checked": 159,
-        "with_status": 97,
+        "with_status": 98,
         "warnings": 0
       },
       {
@@ -1209,8 +1208,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_checked": 1,
-        "dna_ok": 1,
+        "files_checked": 0,
+        "dna_ok": 0,
         "advisory": 0,
         "blocking": 0
       },
@@ -1501,9 +1500,9 @@
         "command": "node tools/validators/validate-hardwire-dna-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "new_permanent_files": 2,
-        "advisory": 1,
+        "duration_seconds": 0.1,
+        "new_permanent_files": 0,
+        "advisory": 0,
         "blocking": 0
       },
       {
@@ -1830,7 +1829,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files_checked": 173,
         "blocking": 0,
         "advisory": 26
@@ -1876,7 +1875,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 1080,
+        "total_entries": 1082,
         "sessions": 12,
         "advisory": true
       },
@@ -1955,7 +1954,7 @@
         "command": "node tools/validators/validate-ai-honesty.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.5,
+        "duration_seconds": 2.6,
         "files_checked": 29,
         "blocking": 0,
         "advisory": 0
@@ -2069,7 +2068,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 1,
+        "files_scanned": 0,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0
@@ -2163,8 +2162,8 @@
         "command": "node tools/validators/validate-push-status.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "unpushed_count": 0,
+        "duration_seconds": 0.1,
+        "unpushed_count": 1,
         "advisory": 0,
         "blocking": 0
       },
@@ -2273,10 +2272,11 @@
       {
         "name": "green_receipt",
         "command": "node tools/validators/validate-green-receipt.mjs",
-        "status": "FAIL",
-        "exit_code": 1,
-        "duration_seconds": 0.1,
-        "tail": "[validate-green-receipt] FAIL\n  blocking=1 advisory=0\n  BLOCKING: tree_hash mismatch — tracked content changed since last verify\n    receipt tree_hash: 7f0429431cd0a3c4\n    current tree_hash: 468711b48ad8b9f5\n    Code or config changed after the last successful verify run.\n    FIX: run `node tools/verify.mjs --skip-install` to refresh the receipt.\n"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.2,
+        "head_prefix": "d1bb9b6d",
+        "receipt_ts": "2026-06-22T10:18:59.258Z"
       },
       {
         "name": "agent_inheritance_parity",
@@ -2385,8 +2385,8 @@
         "command": "node tools/validators/validate-journey-conformance.mjs",
         "status": "CACHED",
         "exit_code": 0,
-        "cached_at": "2026-06-22T10:16:15.929Z",
-        "input_hash_prefix": "c1f7d8be",
+        "cached_at": "2026-06-22T10:18:59.195Z",
+        "input_hash_prefix": "b8c741ec",
         "blocking": 0,
         "advisory": 0,
         "passes": 8
@@ -2408,7 +2408,7 @@
         "skip_reason": "audit-runner ships week-4 (planned per build-order.md week 4)"
       }
     ],
-    "exit_code": 1,
+    "exit_code": 0,
     "strict_mode": false
   }
 }

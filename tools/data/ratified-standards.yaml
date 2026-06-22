@@ -1,0 +1,169 @@
+---
+id: csps.data.ratified-standards
+name: ratified-standards
+description: >
+  Registry of all ratified platform standards. Each entry links to BOTH:
+  (a) creation_standard — the file/surface that enforces conformance AT CREATION TIME
+  (b) audit_entry — the validator + audit-runner cadence that enforces conformance AT VERIFY TIME
+  Together these make ratifications "stick": ratify → engrave → creation-path → audit → conform.
+  validate-ratification-propagation.mjs (BLOCKING) enforces this registry.
+schema_version: "1.0"
+updated_session: S088
+standing_rule: "ratified ⇒ platform standard + audit (Governor ratified S087)"
+---
+
+standards:
+
+  - id: journey-core-spine
+    name: Journey Core Spine (L0 definition)
+    ratified_session: S088
+    ratified_by: "PROTO-S088-JOURNEY-CORE-SPINE (Opus #25 Governor-ratified directive)"
+    ratified_at: "2026-06-22"
+    description: >
+      Journey = governed goal→verified-completion. Sealed L0 definition with mandatory parts
+      (Threshold intake → 4-axis classify → PE-significance → phase sequence → completion gate),
+      mandatory connections (Threshold→PE→CIE⟲→Tiers→completion-verify), fork points, and
+      developer/external-user branches. Trunk C1-C5 + P1-P5 sealed.
+    propagation_status: complete
+    creation_standard:
+      type: sealed-spine-doc
+      path: docs/plan/pillar-0-governance/JOURNEY-CORE-SPINE.md
+      requirement: >
+        Any new journey artifact must have JOURNEY-CORE-SPINE.md in its links section
+        (or explicitly document which L0 parts it implements). validate-journey-conformance.mjs
+        backstop enforces structural spine completeness.
+    audit_entry:
+      validator: validate-journey-conformance.mjs
+      cadence: per-session
+      audit_runner_key: journey-conformance
+
+  - id: deterministic-gate
+    name: B_DETERMINISTIC_GATE
+    ratified_session: S086
+    ratified_by: "Governor S086"
+    ratified_at: "2026-06-20"
+    description: >
+      Gating is a pure function of the tree at HEAD. No clock/cadence/mtime/runtime value may
+      flip a blocking exit. Green = sha-bound receipt (tree_hash from git ls-files --stage,
+      filtered by SSoT exclusion list, normalized to sha+path, SHA-256 16-char hex).
+    propagation_status: complete
+    creation_standard:
+      type: ssot-exclusion-file
+      path: tools/config/treehash-exclude.txt
+      requirement: >
+        Any runtime-output file that changes on every verify/commit cycle MUST be in
+        tools/config/treehash-exclude.txt to maintain tree_hash stability.
+        verify.mjs and validate-green-receipt.mjs both read this SSoT file.
+    audit_entry:
+      validator: validate-green-receipt.mjs
+      cadence: pre-handoff + always_rerun
+      audit_runner_key: green_receipt
+
+  - id: two-party-seal
+    name: B_TWO_PARTY_SEAL
+    ratified_session: S086
+    ratified_by: "Governor S086"
+    ratified_at: "2026-06-20"
+    description: >
+      SEAL = builder green-receipt + DIRECTOR counter-signed receipt at same HEAD.
+      Builder may only set BUILD-COMPLETE. Director runs independent verify and counter-signs.
+      Ends director-as-manual-safety-net pattern.
+    propagation_status: pending
+    pending_reason: >
+      PARK-S087-001: mechanization seed needed from Opus at S088 open.
+      Pending choice: (a) extend green-receipt.json with director_countersign field,
+      or (b) separate director-receipt.json. Until resolved, two-party seal is manual.
+    creation_standard:
+      type: pending
+      path: null
+      requirement: "pending mechanization (PARK-S087-001)"
+    audit_entry:
+      validator: null
+      cadence: null
+      audit_runner_key: null
+
+  - id: insist-on-completion
+    name: B_INSIST_ON_COMPLETION
+    ratified_session: S086
+    ratified_by: "Governor S086"
+    ratified_at: "2026-06-20"
+    description: >
+      Every open obligation gets a disposition (answered/decided/parked+owner+trigger) before
+      session close. No drift via assume/guess/avoid-confrontation. Delay OK; drift not.
+      Applies to Opus+Sonnet+Haiku.
+    propagation_status: complete
+    creation_standard:
+      type: enforcement-validator
+      path: tools/validators/validate-completion-gate.mjs
+      requirement: >
+        Any new obligation (PARK entry, PROTO item, open question) created this session
+        must receive a disposition before session-close. validate-completion-gate.mjs
+        BLOCKS session close if current-session items lack disposition.
+    audit_entry:
+      validator: validate-completion-gate.mjs
+      cadence: session-close + --extended
+      audit_runner_key: completion_gate
+
+  - id: context-checkpoint-gate
+    name: B_CONTEXT_CHECKPOINT_GATE
+    ratified_session: S087
+    ratified_by: "PROTO-S087-CONTEXT-CHECKPOINT-GATE (5-surface engraving)"
+    ratified_at: "2026-06-22"
+    description: >
+      Window choice = checkpoint-ability, not size. 200K+compact if unit reaches
+      green+committed in-window; else 1M. BORDERLINE → ASK Governor for real remaining context.
+      Harvest-before-compact (never compact uncommitted build state). Both Opus+Sonnet assess.
+    propagation_status: complete
+    creation_standard:
+      type: engraving-checklist
+      path: docs/plan/pillar-0-governance/context-checkpoint-gate.md
+      requirement: >
+        Any new AI entry point (Opus/Sonnet/Haiku context doc, spawn template) must
+        include B_CONTEXT_CHECKPOINT_GATE assessment rule. validate-agent-inheritance-parity.mjs
+        backstop enforces cross-agent parity.
+    audit_entry:
+      validator: validate-agent-inheritance-parity.mjs
+      cadence: per-session + --extended
+      audit_runner_key: agent_inheritance_parity
+
+  - id: page-complete
+    name: B_PAGE_COMPLETE
+    ratified_session: S087
+    ratified_by: "PROTO-S087-PAGE-COMPLETE"
+    ratified_at: "2026-06-22"
+    description: >
+      Pages complete-by-construction: nav-registered (no orphans) + fetch has loading/error/empty
+      + elements wired + renders 200 + manifest-verified. Gate at creation. Live HTTP smoke = CI residual.
+    propagation_status: complete
+    creation_standard:
+      type: registration-gate
+      path: apps/csps-playground/src/config/route-manifest.ts
+      requirement: >
+        Any new page.tsx in csps-playground MUST be registered in route-manifest.ts before commit.
+        validate-route-manifest.mjs BLOCKS if any page.tsx lacks a manifest entry (orphan prevention).
+    audit_entry:
+      validator: validate-route-manifest.mjs
+      cadence: page-creation + per-session
+      audit_runner_key: route_manifest
+
+  - id: uniform-dna
+    name: Uniform Platform DNA
+    ratified_session: S086
+    ratified_by: "Governor S086"
+    ratified_at: "2026-06-20"
+    description: >
+      DNA (modularity/depth/spine-fit) is ONE platform law all spines CONFORM to (not per-node
+      AI-default). Plans open with DNA-pillars preamble. Capabilities decomposed at intake into
+      core+layers+cross-domain branches. Candidate P-ARCH.
+    propagation_status: complete
+    creation_standard:
+      type: dna-manifesto
+      path: docs/plan/pillar-0-governance/CSPS-DNA-MANIFESTO.md
+      requirement: >
+        Any new platform artifact must include @csps-dna annotation block in frontmatter or
+        header comment (core_spine + governing_principle fields required).
+        validate-frontmatter.mjs backstop enforces field presence.
+    audit_entry:
+      validator: validate-frontmatter.mjs
+      cadence: per-session
+      audit_runner_key: frontmatter-completeness

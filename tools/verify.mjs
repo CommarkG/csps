@@ -2553,6 +2553,31 @@ const CYCLES = [
     },
   },
   {
+    // S088 PROTO-S088-RATIFICATION-PROPAGATION — Pipeline A: ratify→engrave→creation-path→audit.
+    // Reads tools/data/ratified-standards.yaml. For each complete standard: (a) creation_standard.path
+    // EXISTS on disk; (b) audit_runner_key in audit-runner.md. BLOCKING on complete entries missing
+    // either surface. ADVISORY on pending (B_TWO_PARTY_SEAL awaiting PARK-S087-001).
+    name: 'ratification_propagation',
+    command: 'node tools/validators/validate-ratification-propagation.mjs',
+    input_files: [
+      'tools/data/ratified-standards.yaml',
+      'docs/plan/pillar-0-governance/audit-runner.md',
+      'tools/validators/validate-ratification-propagation.mjs',
+    ],
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      const c = out.match(/standards_checked=(\d+)/);
+      return {
+        blocking: b ? Number(b[1]) : 0,
+        advisory: a ? Number(a[1]) : 0,
+        passes: p ? Number(p[1]) : 0,
+        standards_checked: c ? Number(c[1]) : 0,
+      };
+    },
+  },
+  {
     // PROTO-S084-HASH-CACHE block-test: proves anti-nominal DONE guard is structurally wired.
     // Checks: cache structure valid + always_rerun validators not cached + --no-cache in push-gate hook.
     // BLOCKING if any HIGH-STAKES validator found in cache (would mean guard is broken).

@@ -40,6 +40,7 @@
  */
 
 import { readFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
@@ -77,7 +78,12 @@ if (receipt.exit_code !== 0) {
   process.exit(1);
 }
 
-// ── 3. Check HEAD match ──────────────────────────────────────────────────────
+// ── 3. Check tree_hash (new design) OR HEAD (backward compat) ───────────────
+// B_DETERMINISTIC_GATE design fix (PROTO-S087-GREENUP):
+// tree_hash = hash of git ls-tree -r HEAD (excluding the receipt file itself).
+// Stable across a commit that ONLY changes the receipt — no code change = no tree_hash change.
+// If receipt has tree_hash (new receipts): use tree_hash. Else fall back to HEAD match (old receipts).
+
 let currentHead;
 try {
   currentHead = execSync('git rev-parse HEAD', { cwd: ROOT, encoding: 'utf-8' }).trim();
@@ -88,22 +94,57 @@ try {
   process.exit(0);
 }
 
-if (receipt.HEAD !== currentHead) {
-  console.error('[validate-green-receipt] FAIL');
-  console.error(`  blocking=1 advisory=0`);
-  console.error(`  BLOCKING: HEAD mismatch`);
-  console.error(`    receipt HEAD: ${receipt.HEAD?.slice(0, 12)}`);
-  console.error(`    current HEAD: ${currentHead.slice(0, 12)}`);
-  console.error(`    The green receipt was written for a different commit.`);
-  console.error(`    FIX: run \`node tools/verify.mjs --skip-install\` to refresh the receipt for the current HEAD.`);
-  process.exit(1);
-}
+if (receipt.tree_hash) {
+  // ── New design: tree_hash comparison (stable across receipt-only commits) ──
+  let currentTreeHash;
+  try {
+    const lsTreeOut = execSync('git ls-tree -r HEAD', { cwd: ROOT, encoding: 'utf-8' });
+    const treeLines = lsTreeOut.trim().split('\n')
+      .filter(l => l && !l.includes('tools/data/green-receipt.json'));
+    currentTreeHash = createHash('sha256').update(treeLines.join('\n')).digest('hex').slice(0, 16);
+  } catch (e) {
+    console.log('[validate-green-receipt] PASS (advisory)');
+    console.log('  blocking=0 advisory=1');
+    console.log(`  ADVISORY: could not compute tree hash (git error: ${e.message})`);
+    process.exit(0);
+  }
 
-// ── PASS ─────────────────────────────────────────────────────────────────────
-console.log('[validate-green-receipt] PASS');
-console.log(`  blocking=0 advisory=0`);
-console.log(`  HEAD=${currentHead.slice(0, 12)} receipt_ts=${receipt.ts}`);
-console.log(`  validators_run=${receipt.validators_run} blocking_set_hash=${receipt.blocking_set_hash}`);
-console.log(`[validate-green-receipt] ✓ Green receipt is current for HEAD ${currentHead.slice(0, 8)}`);
+  if (receipt.tree_hash !== currentTreeHash) {
+    console.error('[validate-green-receipt] FAIL');
+    console.error(`  blocking=1 advisory=0`);
+    console.error(`  BLOCKING: tree_hash mismatch — tracked content changed since last verify`);
+    console.error(`    receipt tree_hash: ${receipt.tree_hash}`);
+    console.error(`    current tree_hash: ${currentTreeHash}`);
+    console.error(`    Code or config changed after the last successful verify run.`);
+    console.error(`    FIX: run \`node tools/verify.mjs --skip-install\` to refresh the receipt.`);
+    process.exit(1);
+  }
+
+  // PASS (tree_hash)
+  console.log('[validate-green-receipt] PASS');
+  console.log(`  blocking=0 advisory=0`);
+  console.log(`  tree_hash=${receipt.tree_hash} HEAD=${currentHead.slice(0, 12)} receipt_ts=${receipt.ts}`);
+  console.log(`  validators_run=${receipt.validators_run} blocking_set_hash=${receipt.blocking_set_hash}`);
+  console.log(`[validate-green-receipt] ✓ Green receipt current (tree_hash stable, HEAD=${currentHead.slice(0, 8)})`);
+
+} else {
+  // ── Backward compat: HEAD match (old receipts without tree_hash) ─────────
+  if (receipt.HEAD !== currentHead) {
+    console.error('[validate-green-receipt] FAIL');
+    console.error(`  blocking=1 advisory=0`);
+    console.error(`  BLOCKING: HEAD mismatch (legacy receipt — no tree_hash)`);
+    console.error(`    receipt HEAD: ${receipt.HEAD?.slice(0, 12)}`);
+    console.error(`    current HEAD: ${currentHead.slice(0, 12)}`);
+    console.error(`    FIX: run \`node tools/verify.mjs --skip-install\` to refresh the receipt (will write tree_hash).`);
+    process.exit(1);
+  }
+
+  // PASS (legacy HEAD match)
+  console.log('[validate-green-receipt] PASS');
+  console.log(`  blocking=0 advisory=0`);
+  console.log(`  HEAD=${currentHead.slice(0, 12)} receipt_ts=${receipt.ts} (legacy HEAD-match)`);
+  console.log(`  validators_run=${receipt.validators_run} blocking_set_hash=${receipt.blocking_set_hash}`);
+  console.log(`[validate-green-receipt] ✓ Green receipt current for HEAD ${currentHead.slice(0, 8)} (upgrade receipt by re-running verify)`);
+}
 
 process.exit(0);

@@ -178,8 +178,8 @@ Skills auto-load with full detail when their domain is referenced. List below is
 - ❌ **FOUNDATION_EXIT_GATE: Never open Phase N while any active topic plan has unchecked exit criteria in Phase N-1 or earlier.** PE score for the gated phase = 0 until gate is CLEAN. Validator: `validate-phase-exit-criteria.mjs` (exit code 1 = BLOCKING). Wired into: pnpm verify + ZF orchestrator Level 1 + session-open. Options: (a) complete the criterion, (b) explicitly defer with documented WHY. Silent deferral = anti-pattern. (S015 major discovery — engraved 5/5 FSE)
 - ❌ **Never emit a HANDOFF without a §CORE-PILLARS section in Zone A** listing all 5 Core Spine statuses + FOUNDATION_EXIT_GATE result. Incoming AI reads Zone A first — infrastructure gaps invisible in Zone A = mandate bias = freestyling in the next session. (S015 companion discovery)
 - ❌ **B_ACTIVATION_STEADY_STATE_VERIFY (S086):** EXISTS ≠ ACTIVE ≠ FUNCTIONING. verify=0 proves well-formed; hooks present on disk ≠ hooks that function. Run `validate-hook-activation-smoke` at tab-open. (AP-001 + PROTO-S086-INHERITANCE-LOOP)
+- ❌ **B_CONTEXT_CHECKPOINT_GATE (S087):** Window = checkpoint-ability not size. 200K+harvest-before-compact if unit reaches green+committed in-window; else 1M (accept one cache-miss). BORDERLINE → ASK Governor for real remaining context (sanctioned, not failure). NEVER compact uncommitted build state. Both Opus+Sonnet assess at: build-unit start · as window fills · before any compaction. Checklist: [context-checkpoint-gate.md](docs/plan/pillar-0-governance/context-checkpoint-gate.md). (PROTO-S087-CONTEXT-CHECKPOINT-GATE)
 ## Skills (auto-load on relevant trigger; full detail on-demand)
-
 | Skill | Domain | When triggered |
 |---|---|---|
 | [`/governance-session`](.claude/skills/governance-session/SKILL.md) | Session protocols | "session", "handoff", "S<NNN>", "fresh chat" |

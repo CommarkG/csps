@@ -2677,7 +2677,7 @@ async function main() {
   // This prevents "stale green" — claiming exit_code=0 from a HEAD that never actually passed verify.
   if (exit_code === 0) {
     try {
-      // Derive HEAD commit (git rev-parse HEAD)
+      // Derive HEAD commit (git rev-parse HEAD) — stored as metadata only
       const gitResult = await runCommand('git rev-parse HEAD', ROOT);
       const HEAD = (gitResult.stdout || '').trim();
 
@@ -2692,18 +2692,33 @@ async function main() {
         .digest('hex')
         .slice(0, 16);
 
+      // B_CONTEXT_CHECKPOINT_GATE / B_DETERMINISTIC_GATE DESIGN FIX (PROTO-S087-GREENUP):
+      // tree_hash = hash of `git ls-tree -r HEAD` excluding green-receipt.json.
+      // This is STABLE across a commit that only changes the receipt file itself
+      // (e.g., the commit that bundles the receipt with a SROF/chore change).
+      // validate-green-receipt.mjs recomputes the same hash and compares.
+      // HEAD is kept as metadata but is NOT the validation key.
+      let treeHash = null;
+      try {
+        const lsTreeResult = await runCommand('git ls-tree -r HEAD', ROOT);
+        const treeLines = (lsTreeResult.stdout || '').trim().split('\n')
+          .filter(l => l && !l.includes('tools/data/green-receipt.json'));
+        treeHash = createHash('sha256').update(treeLines.join('\n')).digest('hex').slice(0, 16);
+      } catch { /* non-fatal — fall back to HEAD-only validation */ }
+
       const receipt = {
         HEAD,
+        tree_hash: treeHash,   // VALIDATION KEY: stable across receipt-only commits
         exit_code: 0,
         blocking_set_hash: blockingSetHash,
         validators_run: blockingSetNames.length,
         ts: finishedAt,
-        note: 'B_DETERMINISTIC_GATE: cite this HEAD in handoff/green-claims. validate-green-receipt.mjs verifies HEAD matches.',
+        note: 'B_DETERMINISTIC_GATE+B_CONTEXT_CHECKPOINT_GATE: tree_hash is the validation key (stable across receipt commit). HEAD is metadata. validate-green-receipt.mjs verifies tree_hash matches.',
       };
 
       const receiptPath = resolve(ROOT, 'tools/data/green-receipt.json');
       writeFileSync(receiptPath, JSON.stringify(receipt, null, 2) + '\n');
-      process.stderr.write(`[verify] green-receipt: ${receiptPath} HEAD=${HEAD.slice(0, 8)}\n`);
+      process.stderr.write(`[verify] green-receipt: ${receiptPath} HEAD=${HEAD.slice(0, 8)} tree=${treeHash?.slice(0, 8) ?? 'n/a'}\n`);
     } catch (receiptErr) {
       // Non-fatal: receipt write failure should not block the verify run
       process.stderr.write(`[verify] green-receipt: WARN — could not write receipt: ${receiptErr.message}\n`);

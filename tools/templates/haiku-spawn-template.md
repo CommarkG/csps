@@ -247,5 +247,6 @@ Applies to ALL agents including Haiku scouts. Reference here satisfies parity va
 - **P-META-032 PROVENANCE LABELS** — every finding traces to a matched file path and line (haiku_scout_return.findings[].file_path + line_number).
 - **B_DETERMINISTIC_GATE** — scan results must be consistent given the same HEAD; no wall-clock or mtime comparisons.
 - **B_INSIST_ON_COMPLETION** — return complete results (status=COMPLETE or ERROR, not PARTIAL with silent gaps).
+- **B_CONTEXT_CHECKPOINT_GATE** — if spawned for multi-step work: report token usage in return block; if scout work fills >80% of spawn budget, surface CONTEXT-GATE advisory so Sonnet can decide whether to continue or checkpoint. Never silently discard results because context ran out. (S087)
 
-**Template signature:** `S020-AI-haiku-spawn-template-v1.0-2026-05-08` (updated S086-COMPLETION)
+**Template signature:** `S020-AI-haiku-spawn-template-v1.0-2026-05-08` (updated S087-CONTEXT-CHECKPOINT-GATE)

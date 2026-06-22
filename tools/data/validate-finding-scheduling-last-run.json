@@ -4,14 +4,14 @@
   "overdue_advisory": 1,
   "overdue_blocking": 0,
   "auto_promoted": 0,
-  "current_session": "S086",
-  "ran_at": "2026-06-22T06:30:19.162Z",
+  "current_session": "S087",
+  "ran_at": "2026-06-22T07:13:06.782Z",
   "findings_report": [
     {
       "id": "gap_D_DEFAULT_SCHEME_CONSOLIDATION",
       "register": "gap-recurrence-register",
       "severity": "ADVISORY",
-      "sessions_overdue": 1,
+      "sessions_overdue": 2,
       "days_overdue": 0
     }
   ]

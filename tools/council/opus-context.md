@@ -8,8 +8,8 @@ lifecycle: production
 lifecycle_state: active
 core_spine: GVRN
 schema_anchor: council_state
-last_updated_session: S086
-last_updated: "2026-06-21"
+last_updated_session: S087
+last_updated: "2026-06-22"
 seed_anchor: SEED-D
 links:
   - { rel: sonnet-peer, href: sonnet-context.md }
@@ -184,5 +184,6 @@ Applies to ALL agents. Reference here satisfies parity validator.
 - **P-META-032 PROVENANCE LABELS** — all claims cite committed file + line or this-session tool output.
 - **B_DETERMINISTIC_GATE** — gating validators must be time-invariant at HEAD. No Date.now()/mtime in blocking paths without @determinism-exempt:.
 - **B_INSIST_ON_COMPLETION** — every open gets a disposition {answered|decided|parked+owner+trigger}; no open drifts.
+- **B_CONTEXT_CHECKPOINT_GATE** — window = checkpoint-ability not size. 200K+harvest-before-compact if unit reaches green+committed in-window; else 1M. BORDERLINE → ASK Governor for real remaining context (sanctioned). NEVER compact uncommitted build state. Assess at: unit-start · window-fills · before-compact. Both Opus+Sonnet assess. Checklist: docs/plan/pillar-0-governance/context-checkpoint-gate.md. (S087)
 
-*SEED-D v5.0 | S086 | Consolidates: opus-context.md v4 (S044) + AI-PERSONA-WORKING-WITH-GOVERNOR.md + council-address-protocol + PARK-041*
+*SEED-D v5.0 | S087 | Consolidates: opus-context.md v4 (S044) + AI-PERSONA-WORKING-WITH-GOVERNOR.md + council-address-protocol + PARK-041 + B_CONTEXT_CHECKPOINT_GATE*

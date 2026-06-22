@@ -32,14 +32,14 @@
       "cached_at": "2026-06-20T03:18:16.142Z"
     },
     "threshold_intake": {
-      "input_hash": "822d283d28400ed844d10fd1144dc6af7f0c5a445df9856a91d606338906588b",
+      "input_hash": "9406867a75176269034ea7a8a4538215389b4ca8ecbafc1c24b3069bceb50d9b",
       "exit_code": 0,
       "parsed": {
-        "total_entries": 804,
-        "sessions": 10,
+        "total_entries": 890,
+        "sessions": 11,
         "advisory": true
       },
-      "cached_at": "2026-06-20T03:18:18.641Z"
+      "cached_at": "2026-06-22T02:03:33.623Z"
     },
     "journey_gate": {
       "input_hash": "e82a975724b8f25d85c8449fe7444bb8cf5a0caefa76a2bbde42d314993e1748",

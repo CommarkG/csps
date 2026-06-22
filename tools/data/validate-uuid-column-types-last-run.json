@@ -1,10 +1,23 @@
 {
   "blocking": 0,
-  "advisory": 0,
+  "advisory": 3,
   "deadline": "2026-06-16",
   "blocking_date": "2026-06-30",
-  "today": "2026-06-11",
-  "status": "pre-deadline",
-  "all_findings": [],
-  "ran_at": "2026-06-11T12:45:50.373Z"
+  "today": "2026-06-22",
+  "status": "past-deadline",
+  "all_findings": [
+    {
+      "level": "advisory",
+      "msg": "FK field 'phaseId': missing @db.Uuid — apply after Base/AppendOnlyBase migration"
+    },
+    {
+      "level": "advisory",
+      "msg": "FK field 'pegId': missing @db.Uuid — apply after Base/AppendOnlyBase migration"
+    },
+    {
+      "level": "advisory",
+      "msg": "FK field 'axisId': missing @db.Uuid — apply after Base/AppendOnlyBase migration"
+    }
+  ],
+  "ran_at": "2026-06-22T02:03:32.500Z"
 }

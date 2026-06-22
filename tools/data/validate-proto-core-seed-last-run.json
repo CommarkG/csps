@@ -1,6 +1,6 @@
 {
-  "protos_checked": 11,
-  "passing": 6,
+  "protos_checked": 12,
+  "passing": 7,
   "failing_advisory": 5,
   "failing_blocking": 0,
   "findings": [
@@ -68,5 +68,5 @@
       "reason": "grandfathered (pre-hook era)"
     }
   ],
-  "ran_at": "2026-06-11T12:45:55.974Z"
+  "ran_at": "2026-06-22T02:03:37.004Z"
 }

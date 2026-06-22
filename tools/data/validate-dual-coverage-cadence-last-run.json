@@ -1,0 +1,10 @@
+[validate-dual-coverage] PASS
+  obligations_checked=8 dual_covered=8 advisory=0 blocking=0
+
+[validate-dual-coverage] All drift-prone obligations have context-independent audit twins.
+
+[validate-dual-coverage] Context-independence test (SEED-C):
+  SOURCE: reads only persistent artifacts (files/registers/git/db)
+  CADENCE: fires on schedule (cron/session-open/verify-gate); EXTENDED tier = not yet cadenced
+  SINK: writes findings to persistent register at session-close
+  Cadence gap: EXTENDED validators need cron wiring (PARK-040 scope, B5/B6)

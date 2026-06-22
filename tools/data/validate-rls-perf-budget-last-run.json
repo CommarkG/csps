@@ -1,9 +1,9 @@
 {
-  "models_checked": 17,
-  "models_with_rls": 10,
+  "models_checked": 23,
+  "models_with_rls": 12,
   "blocking": 0,
   "advisory": 0,
   "rls_budget_ms": 10,
   "all_findings": [],
-  "ran_at": "2026-06-11T12:45:50.288Z"
+  "ran_at": "2026-06-22T02:03:32.439Z"
 }

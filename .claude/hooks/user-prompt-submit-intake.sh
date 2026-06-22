@@ -4,9 +4,7 @@
 set -euo pipefail
 
 CAPTURE_LOG="${CSPS_CHAT_INTAKE_LOG:-${HOME}/.claude/chat-intake-capture.jsonl}"
-STDIN_JSON="$(cat 2>/dev/null || true)"
-USER_MESSAGE="$(STDIN_JSON="$STDIN_JSON" node -e 'try{const j=JSON.parse(process.env.STDIN_JSON||"{}");process.stdout.write(j.prompt||"")}catch(e){}' 2>/dev/null || true)"
-USER_MESSAGE="${USER_MESSAGE:-${CLAUDE_USER_PROMPT:-${1:-}}}"
+USER_MESSAGE="$("$REPO_ROOT/tools/lib/hook-read-prompt.sh")"
 MSG_LEN="${#USER_MESSAGE}"
 TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 

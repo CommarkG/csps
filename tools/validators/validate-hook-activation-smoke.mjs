@@ -102,7 +102,7 @@ for (const hook of hooks) {
     encoding: 'utf-8',
     cwd: ROOT,
     timeout: 10000,
-    env: { ...process.env, PATH: process.env.PATH },
+    env: { ...process.env, PATH: process.env.PATH, REPO_ROOT: ROOT },
   });
 
   const hookResult = {

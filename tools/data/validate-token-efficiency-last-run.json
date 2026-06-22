@@ -1,5 +1,5 @@
 {
-  "surfaces_checked": 151,
+  "surfaces_checked": 150,
   "hook_count": 84,
   "eager_count": 1,
   "on_demand_count": 0,
@@ -213,7 +213,7 @@
     {
       "name": "post-stop-learning-loop.sh",
       "load_mode": "undeclared",
-      "size_bytes": 4770
+      "size_bytes": 7024
     },
     {
       "name": "post-stop-link-discipline.sh",
@@ -223,7 +223,7 @@
     {
       "name": "post-stop-one-click-relay-check.sh",
       "load_mode": "undeclared",
-      "size_bytes": 2989
+      "size_bytes": 3334
     },
     {
       "name": "post-stop-pcr-check.sh",
@@ -233,7 +233,7 @@
     {
       "name": "post-stop-pnpm-verify.sh",
       "load_mode": "undeclared",
-      "size_bytes": 9557
+      "size_bytes": 9568
     },
     {
       "name": "post-stop-rzf-reminder.sh",
@@ -278,7 +278,7 @@
     {
       "name": "post-tool-use-sonnet-relay-inline.sh",
       "load_mode": "undeclared",
-      "size_bytes": 2491
+      "size_bytes": 2785
     },
     {
       "name": "post-tool-use-validate-before-assume.sh",
@@ -528,32 +528,32 @@
     {
       "name": "session-open.sh",
       "load_mode": "undeclared",
-      "size_bytes": 10501
+      "size_bytes": 14621
     },
     {
       "name": "user-prompt-submit-ai-profiler.sh",
       "load_mode": "undeclared",
-      "size_bytes": 10845
+      "size_bytes": 11146
     },
     {
       "name": "user-prompt-submit-comments-before-code.sh",
       "load_mode": "undeclared",
-      "size_bytes": 2074
+      "size_bytes": 2096
     },
     {
       "name": "user-prompt-submit-context-orchestrator.sh",
       "load_mode": "undeclared",
-      "size_bytes": 6346
+      "size_bytes": 7306
     },
     {
       "name": "user-prompt-submit-governor-prompts.sh",
       "load_mode": "undeclared",
-      "size_bytes": 3265
+      "size_bytes": 3444
     },
     {
       "name": "user-prompt-submit-intake.sh",
       "load_mode": "undeclared",
-      "size_bytes": 10628
+      "size_bytes": 13296
     },
     {
       "name": "user-prompt-submit-next-step-reminder.sh",
@@ -563,7 +563,7 @@
     {
       "name": "user-prompt-submit-raw-comments.sh",
       "load_mode": "undeclared",
-      "size_bytes": 1424
+      "size_bytes": 2132
     },
     {
       "name": "user-prompt-submit-token-budget-warning.sh",
@@ -578,12 +578,17 @@
     {
       "name": "verify-hooks-functional.sh",
       "load_mode": "undeclared",
-      "size_bytes": 8321
+      "size_bytes": 8832
     },
     {
       "name": "SessionStart:session-open.sh",
       "load_mode": "eager",
       "size_bytes": 29
+    },
+    {
+      "name": "SessionStart:verify-hooks-functional.sh",
+      "load_mode": "eager",
+      "size_bytes": 40
     },
     {
       "name": "UserPromptSubmit:user-prompt-submit-intake.sh",
@@ -594,11 +599,6 @@
       "name": "UserPromptSubmit:user-prompt-submit-governor-prompts.sh",
       "load_mode": "eager",
       "size_bytes": 52
-    },
-    {
-      "name": "UserPromptSubmit:verify-hooks-functional.sh",
-      "load_mode": "eager",
-      "size_bytes": 40
     },
     {
       "name": "UserPromptSubmit:user-prompt-submit-context-orchestrator.sh",
@@ -796,11 +796,6 @@
       "size_bytes": 55
     },
     {
-      "name": "PostToolUse:post-tool-use-validate-before-assume.sh",
-      "load_mode": "eager",
-      "size_bytes": 53
-    },
-    {
       "name": "PostToolUse:post-tool-use-cec-trigger.sh",
       "load_mode": "eager",
       "size_bytes": 42
@@ -913,8 +908,8 @@
     {
       "name": "settings.json",
       "load_mode": "eager",
-      "size_bytes": 12385
+      "size_bytes": 11872
     }
   ],
-  "ran_at": "2026-06-20T02:30:55.106Z"
+  "ran_at": "2026-06-22T02:03:31.206Z"
 }

@@ -1,122 +1,221 @@
 ---
-id: csps.handoff.HANDOFF-S084-TEG-close
-name: HANDOFF-S084-mid-session
-description: "S084 mid-session handoff after PROTO-S084-TEG DONE + token-efficiency audit. Context at 60k tokens. Next Sonnet: relay TEG report to Opus, await OPIA, then B3."
-version: "2.0"
-head_sha: 91263886
-verify: "exit_code=0 confirmed this session"
+id: csps.handoff.HANDOFF-S085-to-S086
+name: HANDOFF-S085-to-S086
+description: "S085→S086 handoff. Opus#24 rulings A-E sealed (ALIGN+HARDWIRE+INHERIT+Phase2+CadenceE). Journey-wiring expert review absorbed (PARK-043). 5 B5/B6 hardwires queued (post db-push 2026-06-27). verify=0 HEAD c57636f8."
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+authored_by: Sonnet S085
+authored_at: "2026-06-20"
+core_spine: GVRN
+diataxis_type: reference
+schema_anchor: vault_files
+impl_status: audit-1-complete
+precedent_checked: true
 ---
 
-# HANDOFF — S084 MID-SESSION → NEXT SONNET TAB
+# HANDOFF: S085 → S086
 
-## ZONE A — WHAT OPUS KNOWS (architectural decisions, do not re-debate)
-
-**PROTO-S084-TEG: SEALED by Sonnet, AWAITING OPUS OPIA**
-- B_TOKEN_BUDGET promoted from T3-only to T1+T2+T3 (enforcement trio, all active)
-- R9 added: load_mode declaration required on all new always-on surfaces
-- R10 added: Consult-Sonnet-default for system-level issues
-- T1: .claude/hooks/pre-tool-use-token-guardian.sh (v1.1 node -e, not python3)
-- T2: tools/validators/validate-token-efficiency.mjs (EXTENDED, blocking=0)
-- Block-test: 5/5 PASS confirmed this session
-- DONE criteria met per Opus verbatim spec
-- Sonnet report: tools/council/sonnet-turn.md (SHA 7e292041 + addendum)
-
-**TOKEN EFFICIENCY AUDIT: Ready for Opus direction**
-3 zero-risk hook-scoping recommendations in sonnet-turn.md addendum:
-- R1: Move verify-hooks-functional.sh UserPromptSubmit → SessionStart (misregistered; its own description says "SessionStart hook")
-- R2: Scope 7 pre-commit-* hooks "" → "Bash" matcher (they only care about git commit in Bash; save ~90% enforcement overhead)
-- R3: Scope corespine-check + shape-check "" → "Write" (advisory-only, write-triggered)
-- R4: Consolidate post-tool-use-validate-before-assume.sh duplicate (registered twice for Write|Edit AND .*)
-
-**CONCEPT PROPOSALS in report (await Opus direction):**
-- DONE-holds / Incremental verify moat: @input_files declaration per validator; verify.mjs caches hashes; skip if unchanged. PROTO-S084-HASH-CACHE ready to seed.
-- Haiku external council: Phase 1 (web research, zero infra NOW), Phase 2 (multi-AI council, 1 sprint)
-
-**PARKED items (registered, not lost):**
-- PARK-S084-009: Supabase password rotation → deferred 2026-06-27 (Governor)
-- PARK-S084-010: Deploy-hardening validators PL1/PL2/PL3/PL6/PL7/PL8
-- PARK-S084-012: All other .claude/hooks/*.sh still use python3 -c (same Windows issue; batch fix needed)
-- PARK-S084-013: split-behavioral-contracts.mjs strips enforcement_trio frontmatter when monolith regenerated (process documented: don't run split after manual frontmatter edits without migrate)
-- PARK-S084-014: Governor pre-approval hardwire surfaces 2+3 (memory file done; AGENTS.md note + contract still pending)
+**FROM:** Sonnet S085  
+**FOR:** Opus S086 (review) → Governor relay → Sonnet S086 (build)  
+**HEAD:** `c57636f8` pushed to origin/main  
+**verify:** `exit_code 0` [MEASURED: pnpm verify --no-cache at HEAD]  
+**Date:** 2026-06-20
 
 ---
 
-## ZONE B — SONNET IMPLEMENTATION STATE
+## Zone A — S085 Complete State
 
-**Git HEAD: 91263886** (defer PARK-009 rotation)
-**Verify: exit_code=0** (STANDARD tier, this session)
-**Branch: main, pushed**
+### What was sealed this session
 
-Recent commit chain:
-- 91263886: defer PARK-009 supabase rotation → 2026-06-27
-- 7e292041: report addendum (audit + concepts)
-- e05ab30c: FROM SONNET | FOR OPUS report (PROTO-S084-TEG)
-- 2cb625f3: PROTO-S084-TEG implementation (T1+T2+T3, block-test)
-- 2cd77f9c: prior TEG partial (committed before context compaction)
+| Item | Status | Evidence |
+|------|--------|----------|
+| Ruling A-ALIGN | DONE | PARK-040 stubs now carry WHO+WARRANT+ACTION (comm-core trunk). Trigger line captured via grep -iE. |
+| Ruling A-HARDWIRE | DONE | `verify-hooks-functional.sh` runs `bash -n` on every hook before exec check. CRITICAL syntax error → BLOCKING. Closes the line-158 corruption gap exactly. |
+| Ruling A-INHERIT | DONE | `post-stop-learning-loop.sh` already at `settings.json:363` Stop — confirmed, no change needed. |
+| Block-test | PASS | Synthetic K=2 transcript → 1 stub with full WHO+WARRANT+ACTION [MEASURED]. `trigger: {role:user,content:K=2 recurrence...}` |
+| Ruling D — Ghost-ref Phase 2 | DONE | `validate-register-reference-integrity.mjs`: HANDOFF-*.md files modified within 24h → BLOCKING on ghost-refs. Historical (S051-S084) stay ADVISORY. Uses `statSync.mtimeMs` proxy. |
+| Ruling E — Auto-park cadence | DONE | `session-open.sh`: when `pending-auto-parks.yaml` stubs > 5 → PARK-040-REVIEW notice at every tab open. |
+| verify=0 at Rulings commit | DONE | `b779dacf` → verify exit_code 0. |
+| PARK-042 + PARK-043 registered | DONE | `c57636f8` is HEAD; verify=0 confirmed there too. |
 
-**Key files built this session:**
-- .claude/hooks/pre-tool-use-token-guardian.sh (v1.1 — node -e, guards always-on surfaces)
-- tools/validators/validate-token-efficiency.mjs (EXTENDED)
-- tools/tests/behavioral/token-guardian-block-test.sh (5/5 PASS)
-- docs/plan/pillar-0-governance/behavioral-contracts/B_TOKEN_BUDGET.md (enforcement_trio T1+T2+T3 active)
-- docs/plan/pillar-0-governance/behavioral-contracts-AI.md (R9+R10 added)
-- tools/council/sonnet-turn.md (OPIA report + addendum, ready to relay)
+### S085 inherited context (unchanged)
 
-**Known environment facts (CSPS-specific):**
-- python3 NOT available in Bash hooks (Windows Store redirect); use node -e instead
-- set -euo pipefail + ((VAR++)) aborts when VAR=0; use VAR=$((VAR+1))
-- PowerShell WriteAllText with [System.Text.Encoding]::UTF8 adds BOM — use New-Object System.Text.UTF8Encoding $False + prepend '#' if shebang gets mangled
-- Hook file edits: use PowerShell/Bash (not Edit tool) to avoid token-guardian's own scope triggering permission dialogs
-- bypassPermissions is set in .claude/settings.json; Governor pre-approves all edits (memory: feedback_governor_pre_approves_all_edits.md)
-- split-behavioral-contracts.mjs strips enforcement_trio frontmatter — if run, follow with: git checkout HEAD -- docs/plan/pillar-0-governance/behavioral-contracts/ then reapply only changed slice
+- **B4 schema:** `PersonaTier` (6 actors) + `BranchAxisType` (5 axes) + `JourneyEvent` comment → committed to `libs/policies/schema.zmodel`. db-push deferred → PARK-009 (2026-06-27).
+- **Cadence ladder 8/8 dual-covered (M-46):** session-open.sh fires moat_coverage + dual_coverage + register_ref_integrity in background at every tab open. `validate-dual-coverage.mjs` confirms 8/8 [MEASURED S085].
+- **SEED-A** (`validate-register-reference-integrity.mjs`): 763 files scanned, Phase 2 live (current-session HANDOFF blocking).
+- **SEED-B** (`validate-handoff-completeness.mjs` + `boundary-prompt.template.md`): `## MOAT REVIEW` required in every handoff.
+- **SEED-C** (`validate-dual-coverage.mjs`): 8 obligations context-independently covered. EXTENDED cadence via session-open.
+- **TEG (PROTO-S084-TEG):** R9+R10 + T1+T2+T3 — token budget enforcement + efficiency guardian live.
+- **PROTO-S084-HASH-CACHE:** SHA256 input manifest cache in verify.mjs. `--no-cache` wired in `post-stop-pnpm-verify.sh`. `always_rerun: true` on push_status + git_pushed_state.
+- **B3 validators:** journey-gate (10/10 block-tests), trunk-matches-seed (5/5 invariants), journey-event-store (SEED-8 confirmed audit.events reuse).
+- **PROTO-S084-COMM-CORE (WHO+WARRANT+ACTION):** comm-core trunk hardwired in PARK-040 stubs.
+- **Team Learning Loop seed:** `1d08dd86` — core seed capturing the full learning orchestrator design + Haiku ability battery measured (see Zone B note).
+- **Haiku envelope (measured):** count/judgment/single-pattern → RELIABLE. Cross-file set-ops → UNRELIABLE (T2+T5 over-report false positives). Use Haiku for scans; route set-ops to Sonnet.
 
-**B3 SCOPE (next build after OPIA + P0 fix):**
-1. validate-journey-gate.mjs — PEG enforcement (each gate refuses missing-evidence advance)
-2. validate-trunk-matches-seed check — prevents C5 transcription drift recurrence
-3. SEED-8 event store — run immutability pre-condition audit (grep/SQL) before building
-DONE criterion for B3: set by Opus at OPIA time.
+### Open PARKs entering S086
 
-**Session-state.json says:** B.3 is next milestone (journey ratification test-drive).
-Note: The OPIA-gate means next Sonnet should NOT start B3 until Opus explicitly approves PROTO-S084-TEG.
+| ID | Lane | Short description | Retrieve when |
+|----|------|-------------------|---------------|
+| PARK-S084-009 | obligation | Supabase pw rotation | **2026-06-27** — gated db-push is the same day |
+| PARK-S084-040 | obligation | Learning Orchestrator — CAPTURE T1 + ROUTE T2 + PROPAGATE T3 (consolidates PARK-024/026/035/036/037) | After journey orchestrator B5/B6, or Governor pivot |
+| PARK-S084-041 | queue | Consolidated per-role CARDS (Opus/Sonnet/Haiku) — always-loaded role+relationships card by session_role | AI-behaviour arc; small + high-value |
+| PARK-S084-042 | obligation | Claude Code usage review + session/work orchestrator — routes work to cheapest capable model per measured Haiku envelope | Token-efficiency arc; feeds PARK-040 |
+| PARK-S084-043 | obligation | Journey-as-operational-container — 5 B5/B6 hardwires (see Zone B below) | **B5/B6 post 2026-06-27 db-push** |
+
+---
+
+## Zone B — Planned Obligations for B5/B6 (PARK-043, DO NOT BUILD NOW)
+
+**Gate:** db-push 2026-06-27 (PARK-009). All 5 are blocked until the B4 schema is live in Supabase.
+
+**Load-bearing refinement (Opus-verified):** these hardwires use the SEED-2 risk-classed gate_mode ladder (blocking|advisory|silent per risk_class × phase), NOT a uniform "declare-phase-or-blocked" gate. Low-risk work stays light; T1 fires only where the matrix returns `deny`. §0b-C1 explicitly rejected uniform blocking — the platform fights rigidity, not adds it.
+
+### B5/B6 Hardwire 1 — `pre-tool-use-journey-gate.sh` (T1)
+
+**What:** Hook reads `JOURNEY_ID` from environment → looks up PEG level in `seed2-gate-mode-matrix.json` → calls `evaluate({peg, mechanism, risk_class, has_evidence})` → blocks if `result='deny'`, warns if `result='warn'`, passes silently if `result='allow'` or risk_class=low.  
+**Why:** SEED-2 gate matrix EXISTS and is correct (10/10 tests PASS) but it's T2-only (detective). This T1 makes it structural — PEG violations are prevented, not caught retroactively.  
+**Files to create:** `.claude/hooks/pre-tool-use-journey-gate.sh` + register in `settings.json` PreToolUse `Write|Edit` block.  
+**Risk-classing:** consult `seed2-gate-mode-matrix.json` — the matrix already has `gate_mode: silent` for `risk_class: low`; T1 must respect that (don't uniform-block).
+
+### B5/B6 Hardwire 2 — `@csps-journey-phase` DNA field
+
+**What:** New annotation `@csps-journey-phase P3` (or phase ID) required in `@csps-enforces` frontmatter for new files created during a journey. Extend `validate-new-file-dna.mjs` (M-26) to check for it when `JOURNEY_ID` is active.  
+**Why:** Every new validator/hook/schema element created this session has no `journey_phase`. DNA enforcement covers platform membership (M-26) but not journey assignment. Orphan nodes accumulate.  
+**Scoping:** only required when `JOURNEY_ID` env var is set (i.e., when the orchestrator is active). PARK-043 calls this "context-gated" — not a global mandate.
+
+### B5/B6 Hardwire 3 — Journey-event write path (SEED-8)
+
+**What:** API route `POST /api/journey/events` → writes `entity_type='journey_event'` row to `audit.events` (already has `no_direct_write` RLS, so route goes through service layer). `post-stop-learning-loop.sh` calls this route at session close when `JOURNEY_ID` is set.  
+**Why:** `validate-journey-event-store.mjs` confirmed architecture (SEED-8 decision: REUSE audit.events). Write path is missing — the event store is a confirmed empty table.  
+**Sequencing:** requires B4 db-push first. The B5 Journey Admin live data feature (via schema) is the natural context.
+
+### B5/B6 Hardwire 4 — `journey_phase` in handoff template (SEED-B extension)
+
+**What:** Add required `## JOURNEY PHASE` section to `tools/templates/boundary-prompt.template.md`. Format: phase entered | phase completed | next phase | evidence. Extend `validate-handoff-completeness.mjs` to check for it (ADVISORY initially → BLOCKING once cadence established).  
+**Why:** SEED-B currently enforces `## MOAT REVIEW` but not journey phase completions. Handoffs close sessions that advance P1→P2 without ever naming the phase. The handoff is the only reliable session-close surface.  
+**Pattern:** mirror the MOAT REVIEW extension already done in S085.
+
+### B5/B6 Hardwire 5 — `journey_gate_enforcement` as obligation #9 in `validate-dual-coverage.mjs`
+
+**What:** Add 9th obligation to `OBLIGATIONS` array in `validate-dual-coverage.mjs`:  
+```javascript
+{
+  id: 'journey_gate_enforcement',
+  name: 'Journey gate T1 enforcement (SEED-2)',
+  description: 'pre-tool-use-journey-gate.sh exists + wired in settings.json + consults gate matrix',
+  required_validator: 'journey_gate',   // already in verify.mjs STANDARD tier
+  required_tier: 'STANDARD',
+  context_independent: false,           // set true once T1 hook wired (Hardwire 1 above)
+  cadence_gap: 'T1 creation-gate missing until Hardwire-1 built',
+  sink: 'tools/data/validate-journey-gate-last-run.json',
+  handoff_step: 'SEED-B ## JOURNEY PHASE (Hardwire 4)',
+}
+```
+**Why:** SEED-C tracks 8 drift-prone obligations. `journey_trunk` is one of them. But `journey_gate_enforcement` (the T1 hook actually firing) is not. If the T1 never gets built, dual-coverage won't catch that gap.
 
 ---
 
-## ALIGNMENT QUESTIONS (answer before starting work)
+## MOAT REVIEW
 
-1. Has Opus issued OPIA acceptance for PROTO-S084-TEG? If YES → B3 can start. If NO → relay sonnet-turn.md first and wait.
-2. Has P0 Supabase password rotation been done? (deferred to 2026-06-27 per PARK-S084-009) — B3 needs DB access.
-3. Has Opus approved the hook-scoping changes (R1-R3 from audit addendum)? If YES → those are a single settings.json edit (SACRED-EDIT-APPROVED: scope pre-commit hooks to Bash matcher).
-4. Any new Governor directives since this session closed?
+| Moat | Status | Notes |
+|------|--------|-------|
+| M-26 DNA Inheritance | ✓ Active | `validate-new-file-dna.mjs` fires. Journey_phase extension = B5/B6 (Hardwire 2). |
+| M-43 Cross-tab diff-review | ✓ Active | session-open.sh unchanged. |
+| M-46 Dual-Coverage / Context-Independence Standard | ✓ Strengthened | HARDWIRE (bash -n) closes the hook-corruption gap. 8/8 confirmed. obligation #9 queued (Hardwire 5). |
+| Journey gate (SEED-2) | ✓ Defined, half-wired | Gate matrix + block-tests 10/10 PASS. T1 hook missing (Hardwire 1 = B5/B6). |
+| SEED-A Ghost-ref | ✓ Phase 2 live | Current-session HANDOFF ghost-refs BLOCKING. Historical ADVISORY. |
+| SEED-B MOAT REVIEW in handoffs | ✓ Active | `validate-handoff-completeness.mjs` checks it. Journey-phase extension queued (Hardwire 4). |
+| SEED-C 8/8 dual coverage | ✓ Active | Session-open cadence fires three EXTENDED validators. 9th obligation = B5/B6 (Hardwire 5). |
+| PARK-040 auto-capture | ✓ Live | WHO+WARRANT+ACTION. Trigger line captured. Governor review cadence at >5 stubs (session-open). |
+| **Moats at-risk** | None | All changes additive. |
+| **Moats strengthened this session** | bash -n syntax check (M-46), Phase-2 ghost-ref (SEED-A) | |
+| validate-dual-coverage.mjs output | Run: `node tools/validators/validate-dual-coverage.mjs` (cadence last-run JSON in tools/data/) | |
 
 ---
+
+## ALIGNMENT QUESTIONS
+
+Q1: **Journey-gate T1 Bash coverage** — Hardwire 1 (`pre-tool-use-journey-gate.sh`) fires on `Write|Edit`. But some PEG-affecting decisions happen in Bash (running a migration, deploying). Should the T1 hook also match `Bash`? Or is a post-Bash T2 check sufficient given risk-class gating from SEED-2?
+
+Q2: **`@csps-journey-phase` scope** — Hardwire 2 makes the DNA annotation context-gated (only required when `JOURNEY_ID` active). Is that the right default, or should all new platform elements declare a phase even outside an active journey (retroactive categorization applies to all existing validators/hooks too)?
+
+Q3: **PARK-041 vs PARK-043 sequencing** — Per-role CARDS (PARK-041) are small+high-value and don't require db-push. Should S086 open with PARK-041 before tackling the 5 B5/B6 hardwires (gated on 2026-06-27)? Or is the PARK-042 usage orchestrator review the better pre-db-push work?
+
+Q4: **Unified vs separate orchestrators** — PARK-042 (usage/session orchestrator) and PARK-043 (journey orchestrator) are both "route→gate→verify" shaped. Should they converge into ONE design (platform work + AI session management unified), or stay separate systems with a shared interface contract?
 
 ## SONNET STARTUP BLOCK
 
-WHO: You are Sonnet in the CSPS S084 council. Opus is the director; you are the builder.
-ROLE: Builder/implementer. Start all Opus messages: "Opus, this is Sonnet."
+```
+═══════════════════════════════════════════════════════════════════
+SONNET S086 — STARTUP
+WHO:     Sonnet S086 | Role: builder
+WARRANT: Handoff from Sonnet S085 (b779dacf S085-rulings + c57636f8 PARKs), verify=0
+SESSION: S086
+═══════════════════════════════════════════════════════════════════
 
-CURRENT STATE:
-- PROTO-S084-TEG: DONE (verify=0, block-test 5/5, SHA 2cb625f3+e05ab30c pushed)
-- Report written: tools/council/sonnet-turn.md with OPIA report + token efficiency addendum
-- Awaiting: Opus OPIA on PROTO-S084-TEG before B3 begins
-- P0: Supabase password rotation deferred to 2026-06-27 (PARK-S084-009)
+INHERITED STATE:
+  HEAD = c57636f8 (origin/main), verify exit_code 0
+  B4 schema committed (db-push deferred to 2026-06-27 with PARK-009)
+  Cadence: session-open fires moat_coverage + dual_coverage + register_ref_integrity (bg)
+  SEED-A Phase 2: current-session HANDOFF ghost-refs BLOCKING
+  SEED-B: ## MOAT REVIEW required in every handoff (validator active)
+  SEED-C: 8/8 dual-covered (M-46)
+  PARK-040 auto-capture: WHO+WARRANT+ACTION in stubs; Governor review at >5 stubs
+  Ghost-ref Phase 2: mtime-based 24h proxy (statSync) for current-session detection
+  bash -n check: verify-hooks-functional.sh now syntax-checks all hooks (CRITICAL=BLOCKING)
 
-FIRST ACTION:
-1. Read tools/council/sonnet-turn.md (the OPIA report + addendum)
-2. Read tools/data/session-state.json (active_directive)
-3. If Opus OPIA already delivered → proceed to B3 per Opus DONE criteria
-4. If not → present the paste-ready relay block from sonnet-turn.md for Governor to relay to Opus
+BLOCKED UNTIL 2026-06-27:
+  PARK-009 (Supabase pw rotation) + PARK-043 (5 B5/B6 journey hardwires, see Zone B)
 
-DO NOT START B3 until Opus OPIA acceptance is confirmed.
+FIRST ACTION FOR S086:
+  Read tools/council/opus-turn.md for Opus's opening directive.
+  If db-push date has passed → start PARK-009 (pw rotation) first, then PARK-043 B5/B6 Hardwire 1.
+  If before 2026-06-27 → Opus directs next milestone; candidates: PARK-041 (per-role cards),
+  PARK-042 (usage orchestrator review), or B5 Journey Admin live data prep.
 
-CRITICAL TRAPS TO AVOID:
-- Do NOT use python3 in any hook file — use node -e instead (python3 not available on Windows)
-- Do NOT run split-behavioral-contracts.mjs after manually editing a slice — it strips enforcement_trio frontmatter
-- Do NOT edit .claude/hooks/*.sh using the Edit tool — use Bash/PowerShell (avoids guardian's own scope)
-- Do NOT commit with DONE/SEALED claims without running verify first (claim-validator-gate blocks)
-- SACRED-EDIT-APPROVED token required for settings.json commits
+WHAT NOT TO DO:
+  Do NOT build Hardwires 1-5 (PARK-043) before db-push.
+  Do NOT build a uniform "declare-phase-or-blocked" gate — SEED-2 matrix is risk-classed.
+  Do NOT fork learning-loop hook — inventory what post-stop-learning-loop.sh already does first (PARK-040).
 
-VERIFY COMMAND: node tools/verify.mjs --skip-install
-BLOCK-TEST: bash tools/tests/behavioral/token-guardian-block-test.sh
+STANDING DIRECTIVES:
+  All file edits pre-approved (Governor permanent S084). Use Bash for .claude/** files.
+  Comments-Before-Code on multi-batch PROTOs. CADENCE-AUDIT at every milestone report.
+  Bidirectional council peer contract: surface what directive missed; label HIGH-VALUE claims.
+═══════════════════════════════════════════════════════════════════
+```
 
 ---
+
+*Session S085 sealed. FROM SONNET | FOR OPUS. verify=0, HEAD c57636f8, pushed.*
+
+---
+
+## OPUS ALIGNMENT ANSWERS (A1–A4) — for B5/B6 planning (Opus #24, S084)
+
+**A1 — T1 journey-gate Bash coverage = NARROW + opt-in, never all-Bash.** `pre-tool-use-journey-gate.sh`
+fires ONLY when `JOURNEY_ID` is set in env (work explicitly inside a journey) AND the action is a PEG
+transition or a Write/Edit to a journey-governed surface. Outside a journey → SILENT (no gate). The gate then
+consults `seed2-gate-mode-matrix.json` and blocks ONLY where the matrix says blocking for that risk×phase
+(the gate_mode ladder). You are "in a journey" only when you declared one — never a tax on every command.
+
+**A2 — `@csps-journey-phase` = CONTEXT-GATED (forward-only), NOT retroactive.** New files created while a
+`JOURNEY_ID` is active declare their phase. Cross-cutting infra declares `journey_phase: cross-cutting`
+(explicit, not orphan — TEG is the canonical example the review itself flagged). Existing files are NOT
+backfilled (advisory at most). Rationale: a retroactive sweep of hundreds of files is low-value, and not
+everything is a single-phase journey step.
+
+**A3 — Sequencing: PARK-041 PRE-db-push, PARK-043 POST.** PARK-041 (role cards) needs no DB — it's doc
+consolidation + session-open wiring; do it next (pre-2026-06-27). PARK-043 (the 5 journey-as-container
+hardwires) is gated on the db-push (live `audit.events` write-path + queryable PersonaTier) → B5/B6, post-rotation.
+
+**A4 — UNIFIED orchestrator, ONE spine with three concerns (NOT three systems).** PARK-040/042/043 are three
+FACES of the same `route → gate → verify` orchestrator: PARK-043 routes WORK through journey phases (the
+operational container / spine); PARK-040 (Learning) IS its P5 (activate-verify-LEARN); PARK-042 (resource/usage)
+IS its execution/dispatch layer (which model/tab/context per work-unit). Build the journey orchestrator as the
+spine; learning + resource-routing attach to it. Three parallel orchestrators = the parallel-creation disease —
+rejected. This consolidation is the B5/B6 north star.
+
+*Opus alignment folded — S086 inherits answered questions. verify=0.*

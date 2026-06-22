@@ -14,11 +14,10 @@
 
 set -euo pipefail
 
-STDIN_JSON="$(cat 2>/dev/null || true)"
-PROMPT="$(STDIN_JSON="$STDIN_JSON" node -e 'try{const j=JSON.parse(process.env.STDIN_JSON||"{}");process.stdout.write(j.prompt||"")}catch(e){}' 2>/dev/null || true)"
-PROMPT="${PROMPT:-${CLAUDE_USER_PROMPT:-}}"
 HOOKS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${HOOKS_DIR}/../.." && pwd)"
+# AMENDMENT-1 S086: canonical prompt reader
+PROMPT="$("${PROJECT_ROOT}/tools/lib/hook-read-prompt.sh")"
 PATTERNS_FILE="${PROJECT_ROOT}/tools/config/caq-patterns.yaml"
 
 # ── Mode detection via YAML config (thin reader) ─────────────────────────────

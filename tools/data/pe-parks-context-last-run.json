@@ -1,0 +1,10 @@
+{
+  "ran_at": "2026-06-21T03:11:52.945Z",
+  "session": "S086",
+  "signal_sources": [
+    "park-register",
+    "improvement-register",
+    "open-plan-levels",
+    "consolidation-pass"
+  ]
+}

@@ -1,0 +1,14 @@
+# pending-auto-parks.yaml
+# PARK-040 auto-capture S085.
+entries:
+  - id: "PARK-S085-TEST-AUTO-001"
+    session: S085-TEST
+    timestamp: "2026-06-20T15:17:46Z"
+    pattern_type: structural_pattern
+    auto_pe_score: 75
+    urgency: high
+    who: "post-stop-learning-loop.sh (tab-agnostic)"
+    warrant: "[MEASURED] pattern=structural_pattern | trigger: "
+    action: "Governor review + promote to PARK register"
+    content: "[Auto: structural_pattern]"
+    status: pending_review

@@ -1,7 +1,7 @@
 {
-  "protos_checked": 11,
-  "findings_count": 79,
-  "advisory": 79,
+  "protos_checked": 12,
+  "findings_count": 87,
+  "advisory": 87,
   "blocking": 0,
   "all_findings": [
     {
@@ -255,5 +255,5 @@
       "msg": "missing required section: ASK-OPUS-STOP TRIGGERS"
     }
   ],
-  "ran_at": "2026-06-11T12:45:48.863Z"
+  "ran_at": "2026-06-22T02:03:31.336Z"
 }

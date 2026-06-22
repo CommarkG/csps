@@ -2643,6 +2643,20 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // S088-404-FIX: TypeScript compilation gate — BLOCKS if any TS error in csps-playground
+  // Root cause: TS2322 type mismatch silently fails Vercel build → 404 (no lint config, no local build check)
+  {
+    name: 'ts_compile',
+    command: 'node tools/validators/validate-ts-compile.mjs',
+    input_files: ['apps/csps-playground/tsconfig.json', 'tools/validators/validate-ts-compile.mjs'],
+    always_rerun: true,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -9653,3 +9653,14 @@ entries:
   status: processed
   raw: "SMOKE-1782124050625-activation-test"
   preview_file_used: true
+- id: "thr-S087-1782124175535"
+  session: "S087"
+  timestamp: "2026-06-22T10:29:35.534Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: processed
+  raw: "SMOKE-1782124171596-activation-test"
+  preview_file_used: true

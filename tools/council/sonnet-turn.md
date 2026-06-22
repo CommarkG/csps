@@ -1,6 +1,120 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 ═══════════════════════════════════════════════════════════════════
+I AM:    Sonnet S088 (builder)
+YOU ARE: Opus-N (director) + Governor (relay)
+THIS IS: SROF-S088-001 — PROTO-S088-SEQUENCE COMPLETE (all 3 items)
+DO NOW:  Review evidence; confirm Phase-0.2 direction (threshold→PE→CIE pipeline)
+DATE:    2026-06-22
+═══════════════════════════════════════════════════════════════════
+WHO:     Sonnet S088 → Opus-N
+WARRANT: [MEASURED] verify exit_code=0 HEAD=3b7e0bc8; tree_hash=709150b8;
+         [MEASURED] validate-green-receipt PASS blocking=0 (after each commit);
+         [MEASURED] 3 single-commit units: d1bb9b6d + c48d0f35 + 3b7e0bc8;
+         [MEASURED] PROTO-S088-SEQUENCE: all 3 items pushed and green;
+         [MEASURED] validators_run=228/229 (stable across commits)
+ACTION:  PROTO-S088-SEQUENCE COMPLETE. Awaiting Opus Phase-0.2 seed.
+═══════════════════════════════════════════════════════════════════
+
+## SROF-S088-001: PROTO-S088-SEQUENCE COMPLETE
+
+### ① PROTO-S088-JOURNEY-CORE-SPINE — DONE (HEAD=d1bb9b6d)
+
+**What was built:**
+- `docs/plan/pillar-0-governance/JOURNEY-CORE-SPINE.md` — sealed L0 definition
+  - L0: journey = governed goal→verified-completion
+  - 5 mandatory parts + mandatory connections + 5 fork points + 2 branches (developer/external-user)
+  - Trunk invariants C1-C5 + phases P1-P5 (from core-spine-registry.yaml)
+  - Canonical locations table + scope boundary (NOT PARK-043 — that's B5/B6 post-db-push)
+  - `status: sealed, impl_status: sealed-zf`
+- `tools/validators/validate-journey-conformance.mjs` (BLOCKING, 4 checks):
+  - JOURNEY-CORE-SPINE.md exists + status:sealed
+  - journeys entry has trunk C1-C5 + P1-P5 + all 4 branches (fast/standard/governed/exploratory)
+  - journey-closed-enums.yaml has all 9 enum keys
+  - seed2-gate-mode-matrix.json exists
+- `tools/config/core-spine-registry.yaml` journeys entry: sandbox→**sealed** (ratified_session=S088)
+- `docs/plan/pillar-0-governance/JOURNEY-ID-SCHEMA-S084.md` status: draft→**sealed**
+- audit-runner.md: +`journey-conformance` entry; verify.mjs: +journey_conformance validator
+
+**Evidence:** `validate-journey-conformance.mjs` PASS blocking=0 advisory=0 passes=8
+
+---
+
+### ② PROTO-S088-RATIFICATION-PROPAGATION — DONE (HEAD=c48d0f35)
+
+**What was built:**
+- `tools/data/ratified-standards.yaml` — 7 ratified standards backfilled:
+
+| ID | Status | creation_standard.path | audit_runner_key |
+|----|--------|------------------------|-----------------|
+| journey-core-spine | complete | JOURNEY-CORE-SPINE.md | journey-conformance |
+| deterministic-gate | complete | tools/config/treehash-exclude.txt | green_receipt |
+| two-party-seal | **pending** | null (PARK-S087-001) | null |
+| insist-on-completion | complete | validate-completion-gate.mjs | completion_gate |
+| context-checkpoint-gate | complete | context-checkpoint-gate.md | agent_inheritance_parity |
+| page-complete | complete | route-manifest.ts | route_manifest |
+| uniform-dna | complete | CSPS-DNA-MANIFESTO.md | frontmatter-completeness |
+
+- `tools/validators/validate-ratification-propagation.mjs` (BLOCKING):
+  - Complete entries: (a) creation_standard.path EXISTS + (b) audit_runner_key in audit-runner.md
+  - Pending entries: ADVISORY only
+  - BLOCKING if complete entry missing either surface
+
+**Evidence:** PASS blocking=0 advisory=1 (two-party-seal pending=expected) passes=18
+
+**Standing rule now enforced mechanically:** ratified ⇒ platform standard + audit (Governor S087)
+
+---
+
+### ③ REGISTER: Comm-Harvesting + Council Engine — DONE (HEAD=3b7e0bc8)
+
+**What was registered:**
+- `PARK-S088-001` in park-register.yaml:
+  - Pipeline B: tab comms (WHO/WARRANT/ACTION) → harvest/analyze (CEC+CIE) → park →
+    ratify → Pipeline A (ratification-propagation) → standard+audit → conform
+  - Council tiers: T0 solo · T1 core (Opus+Sonnet) · T2 expert-persona · T3 full · T4 full+external
+  - Owner: Opus; Trigger: daily-loop + Haiku enabler (PARK-039 resolved)
+  - Connects: PARK-S086-053 (circular orchestration) + PARK-040 (Learning Orchestrator) + Pipeline A
+- Master plan Phase-2.0 all 3 items marked COMPLETE
+
+---
+
+## CURRENT GREEN STATE
+
+| Key | Value |
+|-----|-------|
+| HEAD | 3b7e0bc8 (pushed to main) |
+| tree_hash | 709150b8 |
+| validators_run | 228 |
+| blocking_set_hash | f3ba28e2145c55b8 |
+| receipt_ts | 2026-06-22T10:29:38.277Z |
+
+---
+
+## AWAITING FROM OPUS
+
+1. **Phase-0.2 seed:** threshold→PE→CIE as Enforced-Universal-Threshold-Intake
+   (PARK-S084-032 / System 1 in master plan). How should the in-session loop run on our OWN work?
+2. **PARK-S087-001 seed (B_TWO_PARTY_SEAL):** mechanization format choice:
+   (a) extend green-receipt.json with `director_countersign` field, or
+   (b) separate director-receipt.json
+3. **AQ confirmation:** Is the restricted-tool Haiku spawn (PARK-S088-001/039 unblock)
+   something Sonnet should experiment with this session?
+
+---
+
+CADENCE-AUDIT:
+- DRIFT: none — strictly followed PROTO-S088-SEQUENCE order; no side quests
+- CAUGHT: CRLF line ending in core-spine-registry.yaml caused validate-journey-conformance to fail on first run
+  (marker `\n  - id: journeys\n` not found); fixed by normalizing CRLF→LF in validator
+- CAUGHT: JOURNEY-CORE-SPINE.md missing `impl_status` field → validate-universal-alignment FAIL → added impl_status: sealed-zf
+- STRUCTURAL FIXES: both caught early (pre-commit); exit_code=0 on first push attempt for each PROTO
+▶ OPTIMAL NEXT STEP: Opus provides Phase-0.2 seed (threshold→PE→CIE Enforced-Universal-Intake) | B_CONTEXT_CHECKPOINT_GATE: window still healthy | context ~60K remaining
+
+═══════════════════════════════════════════════════════════════════
+## SROF-S087-003 (PRESERVED — session receipt, see below for full content)
+═══════════════════════════════════════════════════════════════════
+
 I AM:    Sonnet S087 (builder, HARVEST-COMPACT)
 YOU ARE: Sonnet S088 (builder, post-compact)
 THIS IS: HARVEST — PROTO-S088-SEQUENCE queued; B_CONTEXT_CHECKPOINT_GATE fired (90K left)

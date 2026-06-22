@@ -134,9 +134,13 @@ const KNOWN_GAP_IDS = loadGapIDs();
 const KNOWN_SEED_IDS = loadSeedIDs();
 
 // ── Pattern definitions ───────────────────────────────────────────────────────
+// rotating: true = register is a per-session channel (opus-turn.md, sonnet-turn.md).
+// PROTOs legitimately roll off rotating channels when sessions end. References in
+// any HANDOFF (even "current-session") to rotating-channel IDs are capped at ADVISORY.
+// Only permanent registers (park, gap, moat, imp, seed) can escalate to BLOCKING.
 const PATTERNS = [
   { name: 'PARK', regex: /\bPARK-S\d{3}-\d{3}\b/g, known: KNOWN_PARK_IDS, register: 'tools/data/park-register.yaml' },
-  { name: 'PROTO', regex: /\bPROTO-S\d{3}-[A-Z0-9][A-Z0-9-]*\b/g, known: KNOWN_PROTO_IDS, register: 'tools/council/opus-turn.md' },
+  { name: 'PROTO', regex: /\bPROTO-S\d{3}-[A-Z0-9][A-Z0-9-]*\b/g, known: KNOWN_PROTO_IDS, register: 'tools/council/opus-turn.md', rotating: true },
   { name: 'MOAT', regex: /\bM-\d{2}\b/g, known: KNOWN_MOAT_IDS, register: 'docs/plan/pillar-0-governance/moat-registry.md' },
   { name: 'IMP', regex: /\bimp_[A-Za-z_]+\b/g, known: KNOWN_IMP_IDS, register: 'tools/data/improvement-register.yaml' },
   { name: 'GAP', regex: /\bgap_[A-Za-z0-9_]+\b/g, known: KNOWN_GAP_IDS, register: 'tools/data/gap-recurrence-register.yaml' },
@@ -191,9 +195,13 @@ for (const scanDir of SCAN_DIRS) {
           // Phase 2 (S085 Opus #24-D): BLOCKING for current-session HANDOFF ghost-refs.
           // Historical HANDOFFs stay ADVISORY (PROTOs rolled off opus-turn.md after S062).
           // S067 ladder: first current-session incident = BLOCKING (not K=2 graduated).
-          const severity = isCurrentHandoff ? 'BLOCKING' : 'ADVISORY';
+          // STRUCTURAL FIX (S086 Opus #25): rotating-channel registers (opus-turn.md) are
+          // capped at ADVISORY even for current-session files. PROTOs legitimately roll off
+          // when a session ends — this is expected behavior, not a structural failure.
+          // Only PERMANENT register refs (park/gap/moat/imp/seed) can escalate to BLOCKING.
+          const severity = (isCurrentHandoff && !pattern.rotating) ? 'BLOCKING' : 'ADVISORY';
           findings.push({ severity, ref, type: pattern.name, file: relPath, register: pattern.register });
-          if (isCurrentHandoff) blocking++;
+          if (severity === 'BLOCKING') blocking++;
           else advisory++;
         }
       }

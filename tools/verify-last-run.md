@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-22T02:29:35.316Z
-- finished_at: 2026-06-22T02:30:03.789Z
+- ran_at: 2026-06-22T02:36:10.057Z
+- finished_at: 2026-06-22T02:36:38.813Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-22T02:29:35.316Z",
-    "finished_at": "2026-06-22T02:30:03.789Z",
+    "ran_at": "2026-06-22T02:36:10.057Z",
+    "finished_at": "2026-06-22T02:36:38.813Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 0.8,
         "principles_loaded": 78,
         "findings_total": 32
       },
@@ -421,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 2
       },
@@ -793,7 +793,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 0
       },
       {
@@ -1875,7 +1875,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 901,
+        "total_entries": 908,
         "sessions": 11,
         "advisory": true
       },
@@ -2186,7 +2186,7 @@
         "exit_code": 0,
         "duration_seconds": 0.2,
         "files_checked": 773,
-        "advisory": 193,
+        "advisory": 189,
         "blocking": 0
       },
       {
@@ -2223,7 +2223,7 @@
         "command": "node tools/validators/validate-hook-activation-smoke.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3.9,
+        "duration_seconds": 4,
         "hooks_tested": 9,
         "blocking": 0,
         "advisory": 4

@@ -3,7 +3,7 @@
 # Detects task-class from user prompt; suggests context-loading template artifacts.
 #
 # Per token-optimization §9.10 Phase 9: makes context-loading templates mechanical.
-# Reads user prompt from $CLAUDE_USER_PROMPT (set by Claude Code UserPromptSubmit hook).
+# AMENDMENT-1 S086: reads user prompt via tools/lib/hook-read-prompt.sh (canonical reader).
 # Emits loading suggestions to stderr (advisory; does not inject — Phase 10 activation).
 #
 # Architecture: ADVISORY → ACTIVE

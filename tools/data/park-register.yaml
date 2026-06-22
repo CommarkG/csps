@@ -1090,3 +1090,18 @@ entries:
     source_session: S084
     created_session: S084
     closed_session: null
+
+  - id: "PARK-S086-048"
+    lane: obligation
+    content: "INLINE/MODAL/POPUP vs DEDICATED-PAGE DNA AXIS (Governor S086, PROTO-S086-CLOSE Opus #25). Presentation mode for content/actions is a PLATFORM-LEVEL ARCHITECTURAL AXIS, not a per-feature UX decision. Options: inline (contextual, no navigation cost), modal/popup (interruption OK, focused action), dedicated page (complex forms, full focus required, back-navigation expected). This axis must be DECIDED + JUSTIFIED at the DNA level for every new feature area, NOT discovered during implementation. Currently absent from: the journey orchestrator UX decisions (PARK-043 builds), the platform DNA template (docs/plan/pillar-0-governance/csps-platform-dna.md), and the UX/UI planning template. BUILD: (1) add 'presentation_mode: inline|modal|dedicated' + 'presentation_mode_rationale' fields to the DNA §6 element checklist; (2) add a 'presentation-mode decision' question to the UX/UI planning template and the journey PEG review template; (3) update validate-dna-evidence.mjs to check presentation_mode is declared for new app-facing elements. Resurface alongside PARK-043 (journey containers define UX) + M-47 (front-end completeness moat)."
+    retrieve_when: "PARK-043 (journey-as-operational-container build, post-2026-06-27) OR any new app-facing feature area that involves user decisions. Add presentation_mode declaration to DNA template FIRST, then the specific journey/feature design. Connects M-47 (front-end completeness) + PARK-043 (journey UX) + csps-platform-dna.md §6."
+    never_drop: true
+    context_preserved: >
+      The recurring anti-pattern: Sonnet builds a modal because it seems simpler; Governor later asks 'why not a page?';
+      the answer is feature-specific, not principled. This axis must be pre-decided at the DNA level (same as the
+      'platform offers default+variety' doctrine) so the reasoning is platform-level and inherited, not per-feature
+      improvisation. Connects B_PLATFORM_ATTITUDE (default+variety), M-47, PARK-043 journey UX, validate-dna-evidence.
+    decision_back_ref: "PROTO-S086-CLOSE (Opus #25 S086 close directive): 'add a decide+justify this axis line to the journey + UX/UI planning AND audit/review templates (DNA, not just a parked note). Resurface w/ PARK-043 + M-47'"
+    source_session: S086
+    created_session: S086
+    closed_session: null

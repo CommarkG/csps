@@ -1,11 +1,23 @@
 {
-  "findings": 427,
-  "advisory": 427,
+  "findings": 431,
+  "advisory": 431,
   "blocking": 0,
   "all_findings": [
     {
       "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
       "line": 5,
+      "content": "[HARDWIRE-008] Any executor: State-claim \"YOU ARE: Opus-N (director) + Governor (relay)\" has no this-turn tool evidence. Any ACCEPT/SEAL/DONE must cite exit_code/verify output. Advisory + promotion-path.",
+      "level": "advisory"
+    },
+    {
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
+      "line": 63,
+      "content": "[HARDWIRE-008] Any executor: State-claim \"YOU ARE: Opus-N (director) + Governor (relay)\" has no this-turn tool evidence. Any ACCEPT/SEAL/DONE must cite exit_code/verify output. Advisory + promotion-path.",
+      "level": "advisory"
+    },
+    {
+      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md",
+      "line": 111,
       "content": "[HARDWIRE-008] Any executor: State-claim \"YOU ARE: Opus-N (director) + Governor (relay)\" has no this-turn tool evidence. Any ACCEPT/SEAL/DONE must cite exit_code/verify output. Advisory + promotion-path.",
       "level": "advisory"
     },
@@ -110,19 +122,7 @@
       "line": 6178,
       "content": "Cycle 2: 0 new findings.",
       "level": "advisory"
-    },
-    {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 7359,
-      "content": "**Cycle 2:** 0 new findings.",
-      "level": "advisory"
-    },
-    {
-      "file": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\opus-turn.md",
-      "line": 7691,
-      "content": "Cycle 3: 0 new findings.",
-      "level": "advisory"
     }
   ],
-  "ran_at": "2026-06-22T02:36:26.689Z"
+  "ran_at": "2026-06-22T03:25:53.938Z"
 }

@@ -15057,3 +15057,59 @@ Built as part of S084 verify hardening: `validate-hash-cache.mjs` (PASS, entry i
 SHA256 input manifest cache. `--no-cache` flag wired in `post-stop-pnpm-verify.sh`.
 `always_rerun: true` on push_status + git_pushed_state validators.
 Registered here to resolve HANDOFF-S085-to-S086.md ghost-ref (S086 repair).
+
+---
+
+# S086 — PROTO-S086-AMENDMENT-1 (canonical hook library, RATIFIED)
+
+═══════════════════════════════════════════════════════════════════
+I AM: Opus-N (director)
+YOU ARE: Sonnet S086 (builder) + Governor (relay)
+THIS IS: PROTO-S086-AMENDMENT-1 — prevent-by-construction canonical hook library
+RATIFIED: S086 (Opus #25 FOLLOWUP-2 + Governor)
+═══════════════════════════════════════════════════════════════════
+
+**Core mandate (prevent-by-construction):** All user-prompt-submit hooks that read the user prompt MUST source `tools/lib/hook-read-prompt.sh`. No hand-rolled STDIN readers anywhere in the hook layer. `tools/lib/emit-governed-md.mjs` is the only sanctioned creator of governed .md files.
+
+**Components:**
+- `tools/lib/hook-read-prompt.sh` — canonical 3-source reader (stdin JSON → arg → CLAUDE_USER_PROMPT fallback)
+- `tools/lib/emit-governed-md.mjs` — canonical governed .md creator (Windows CLI bug fixed via fileURLToPath + resolve)
+- `tools/validators/validate-hook-prompt-source.mjs` v2.0.0 — BLOCKING backstop (READS_PROMPT → CANONICAL_SOURCE)
+
+**Scope:** 6 prompt-reading user-prompt-submit hooks migrated. Zero hand-rolled STDIN reads. Zero inline .md header writers.
+
+**Proven:** B1 RED→GREEN (ai-profiler fix). B2: 3-source fallback chain. C4 RED→GREEN (S000→S086 session fix with frontmatter). verify exit_code=0 HEAD 70a7779b.
+
+*PROTO-S086-AMENDMENT-1 — Opus #25 — 2026-06-21*
+
+---
+
+# S086 — PROTO-S086-CLOSE (B_DETERMINISTIC_GATE, RATIFIED)
+
+═══════════════════════════════════════════════════════════════════
+I AM: Opus-N (director)
+YOU ARE: Sonnet S086 (builder) + Governor (relay)
+THIS IS: PROTO-S086-CLOSE — B_DETERMINISTIC_GATE engrave (session close directive)
+RATIFIED: S086 (Opus #25 + Governor: B_DETERMINISTIC_GATE + multi-way + cross-agent)
+═══════════════════════════════════════════════════════════════════
+
+**Core principle:** Gating validators must be time-invariant. `Date.now()` and `fs.mtime` in a blocking path = structural failure. "Current session" must be an explicit committed marker (session ID / commit range), never a wall-clock window.
+
+## 7 Hardwires (B_DETERMINISTIC_GATE)
+
+1. **Validator partition in verify.mjs:** GATING (time-invariant, may set blocking exit) vs SCHEDULED/ADVISORY (cadence + wall-clock-mtime: run, report, NEVER set blocking exit)
+2. **Explicit session marker:** "current session" = session ID in session-state.json `current_session`; replace mtime<24h blocking logic in all validators
+3. **Green-receipt:** verify.mjs writes `{HEAD, exit_code, blocking_set_hash, ts}` → `tools/data/green-receipt.json` when exit_code=0; `validate-green-receipt.mjs` FAILS if handoff/green-claim cites HEAD ≠ receipt HEAD
+4. **BACKSTOP (construct-determinism):** `validate-blocking-determinism.mjs` scans all blocking validators for `Date.now()`/`fs.mtime`/`statSync` in their blocking decision path → FAIL
+5. **Single canonical prevention/contract set:** loaded at EVERY agent entry point — Opus SessionStart · Sonnet SessionStart · Haiku `tools/templates/haiku-spawn-template.md`
+6. **`validate-agent-inheritance-parity.mjs` (BLOCKING):** a prevention/contract present for one agent entry point MUST be referenced by all three
+7. **3-party receipts:** Opus + Sonnet + Haiku-return each carry WHO/WARRANT/ACTION + "derived from committed files; 0 from tab/temp memory"
+
+## PARK-S086-048
+Inline/modal/popup vs dedicated-page = DNA axis (registered in park-register.yaml). Resurface with PARK-043 + M-47.
+
+## Quality bars (Governor ratified)
+- Every prevention hardwired ≥2 ways
+- Every prevention applies to Opus + Sonnet + Haiku (not Opus-only)
+
+*PROTO-S086-CLOSE — Opus #25 — 2026-06-21/22*

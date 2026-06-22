@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-22T02:36:10.057Z
-- finished_at: 2026-06-22T02:36:38.813Z
+- ran_at: 2026-06-22T03:25:37.916Z
+- finished_at: 2026-06-22T03:26:05.808Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-22T02:36:10.057Z",
-    "finished_at": "2026-06-22T02:36:38.813Z",
+    "ran_at": "2026-06-22T03:25:37.916Z",
+    "finished_at": "2026-06-22T03:26:05.808Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.6,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 78,
         "findings_total": 32
       },
@@ -49,9 +49,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "scanned": 800,
+        "scanned": 802,
         "errors": 0,
-        "warnings": 221,
+        "warnings": 222,
         "exempt": 356
       },
       {
@@ -191,7 +191,7 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files": 200,
         "links": 875,
         "broken": 71
@@ -221,7 +221,7 @@
         "command": "node tools/validators/validate-participant-declared.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.7,
         "checked": 167,
         "advisories": 156
       },
@@ -261,7 +261,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 7
+        "advisories": 2
       },
       {
         "name": "agreement_without_evidence",
@@ -270,7 +270,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "checked": 2,
-        "advisories": 1
+        "advisories": 3
       },
       {
         "name": "crystallization_bypass",
@@ -307,7 +307,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 25,
-        "validators": 242,
+        "validators": 245,
         "models": 0,
         "advisories": 0
       },
@@ -356,10 +356,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 720,
-        "clean": 720,
+        "checked": 722,
+        "clean": 722,
         "blocking": 0,
-        "registry": 70
+        "registry": 71
       },
       {
         "name": "generated_artifact_freshness",
@@ -421,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 2
       },
@@ -440,7 +440,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 1511,
+        "scanned": 1515,
         "advisory": 132,
         "code_advisory": 9
       },
@@ -549,7 +549,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "extended_advisory": 137
+        "extended_advisory": 139
       },
       {
         "name": "active_protocol_compliance",
@@ -565,8 +565,8 @@
         "command": "node tools/validators/validate-core-contamination.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
-        "checked": 327,
+        "duration_seconds": 0.2,
+        "checked": 330,
         "blocking": 0,
         "advisories": 0
       },
@@ -623,7 +623,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -702,7 +702,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "with_cq": 247,
-        "total": 615,
+        "total": 617,
         "pct": 40
       },
       {
@@ -712,8 +712,8 @@
         "exit_code": 1,
         "duration_seconds": 0.1,
         "session": "S086",
-        "validators": 243,
-        "tail": "  RECOMMENDED ACTIONS:\n  1. SAP Sweep 6 (Synergy Audit) — walk platform for cross-enhancement opportunities\n  2. CEC walk — iterate until 0 new opportunities found\n  3. Create session extraction: docs/plan/_handoff/VAULT/session-S<NNN>-extraction.md\n  4. Register positive patterns in inner-AI-defaults/continuous-drift-log.md\n\n  Per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION: significant sessions deserve extraction.\n\n[validate-session-harvest-readiness] session=S086 validators=243 extraction=MISSING status=HARVEST_READY\n"
+        "validators": 246,
+        "tail": "  RECOMMENDED ACTIONS:\n  1. SAP Sweep 6 (Synergy Audit) — walk platform for cross-enhancement opportunities\n  2. CEC walk — iterate until 0 new opportunities found\n  3. Create session extraction: docs/plan/_handoff/VAULT/session-S<NNN>-extraction.md\n  4. Register positive patterns in inner-AI-defaults/continuous-drift-log.md\n\n  Per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION: significant sessions deserve extraction.\n\n[validate-session-harvest-readiness] session=S086 validators=246 extraction=MISSING status=HARVEST_READY\n"
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -793,7 +793,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -1095,9 +1095,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 243,
+        "validators_checked": 246,
         "orphans": 0,
-        "registered": 243
+        "registered": 246
       },
       {
         "name": "token_budget_validate",
@@ -1500,9 +1500,9 @@
         "command": "node tools/validators/validate-hardwire-dna-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "new_permanent_files": 0,
-        "advisory": 0,
+        "duration_seconds": 0.1,
+        "new_permanent_files": 3,
+        "advisory": 3,
         "blocking": 0
       },
       {
@@ -1592,9 +1592,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 752,
-        "findings": 9486,
-        "advisory": 9486
+        "files_checked": 753,
+        "findings": 9493,
+        "advisory": 9493
       },
       {
         "name": "nominal_rzf_detector",
@@ -1602,8 +1602,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 427,
-        "advisory": 427,
+        "findings": 431,
+        "advisory": 431,
         "blocking": 0
       },
       {
@@ -1806,8 +1806,8 @@
         "state_session": "S57",
         "council_session": "S87",
         "gap": 30,
-        "session_spread": 3,
-        "advisory": 1,
+        "session_spread": 6,
+        "advisory": 2,
         "blocking": 0
       },
       {
@@ -1851,10 +1851,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 238,
+        "total": 241,
         "deferred": 11,
-        "empty_output": 20,
-        "zero_numeric": 25,
+        "empty_output": 21,
+        "zero_numeric": 23,
         "advisory": 3,
         "blocking": 0
       },
@@ -1875,7 +1875,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 908,
+        "total_entries": 926,
         "sessions": 11,
         "advisory": true
       },
@@ -2068,9 +2068,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 0,
-        "potential_duplicates": 0,
-        "advisory": 0,
+        "files_scanned": 5,
+        "potential_duplicates": 1,
+        "advisory": 1,
         "blocking": 0
       },
       {
@@ -2080,10 +2080,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocks_checked": 0,
-        "proto_citations": 183,
+        "proto_citations": 190,
         "valid": 8,
-        "missing": 175,
-        "advisory": 175,
+        "missing": 182,
+        "advisory": 182,
         "blocking": 0
       },
       {
@@ -2173,10 +2173,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 68,
-        "missing_headers": 4,
-        "missing_attestation": 53,
-        "advisory": 60,
+        "entries_checked": 72,
+        "missing_headers": 6,
+        "missing_attestation": 57,
+        "advisory": 67,
         "blocking": 0
       },
       {
@@ -2184,8 +2184,8 @@
         "command": "node tools/validators/validate-register-reference-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "files_checked": 773,
+        "duration_seconds": 0.1,
+        "files_checked": 774,
         "advisory": 189,
         "blocking": 0
       },
@@ -2196,10 +2196,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "session": "S086",
-        "handoff_exists": false,
+        "handoff_exists": true,
         "sonnet_fresh": true,
         "blocking": 0,
-        "advisory": 2
+        "advisory": 1
       },
       {
         "name": "inheritance_integrity",
@@ -2223,10 +2223,37 @@
         "command": "node tools/validators/validate-hook-activation-smoke.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 4,
+        "duration_seconds": 3.8,
         "hooks_tested": 9,
         "blocking": 0,
         "advisory": 4
+      },
+      {
+        "name": "blocking_determinism",
+        "command": "node tools/validators/validate-blocking-determinism.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "validators_scanned": 245,
+        "blocking": 43,
+        "advisory": 12
+      },
+      {
+        "name": "green_receipt",
+        "command": "node tools/validators/validate-green-receipt.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1
+      },
+      {
+        "name": "agent_inheritance_parity",
+        "command": "node tools/validators/validate-agent-inheritance-parity.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "items_tracked": 5,
+        "blocking": 0,
+        "advisory": 5
       },
       {
         "name": "page_completeness",

@@ -16,7 +16,11 @@
  *     SEED-N        -> docs/plan/pillar-0-governance/JOURNEY-SEEDS-S084.md (## SEED-N)
  *
  *   ADVISORY: unresolved reference in any tracked file
- *   BLOCKING: unresolved reference in a HANDOFF-*.md file (handoff gate)
+ *   BLOCKING: unresolved reference in a HANDOFF-S{current_session}-to-*.md file (handoff gate)
+ *     "current session" = explicit session ID from tools/session-state.json (NOT mtime<24h)
+ *     B_DETERMINISTIC_GATE item 2: time-invariant blocking path. (S086 Opus #25 structural fix)
+ *   ROTATING-CHANNEL FIX (S086 Opus #25): PROTO refs in any HANDOFF always ADVISORY
+ *     (PROTOs legitimately roll off opus-turn.md when sessions end — expected behavior).
  *   run_tier: EXTENDED (expensive corpus scan)
  *
  * @csps-version 1.0.0
@@ -31,7 +35,7 @@
  * justification: EXTENDED corpus scan, not per-turn
  */
 
-import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve, join, relative, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -164,13 +168,28 @@ let blocking = 0; // Phase 2 (S085 Opus #24-D): BLOCKING for current-session HAN
 let files_checked = 0;
 const findings = [];
 
-// Phase 2: current-session = HANDOFF file modified within last 24h (proxy for this session)
-// Historical HANDOFFs (S051-S084) stay ADVISORY — PROTOs rolled off opus-turn.md legitimately.
-const NOW = Date.now();
-const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
+// B_DETERMINISTIC_GATE item 2 (PROTO-S086-CLOSE): "current session" = explicit committed marker.
+// Replace mtime<24h gate (wall-clock-dependent, non-deterministic) with explicit session ID check.
+// A HANDOFF is "current session" if its filename contains HANDOFF-S{current_session}-to-*.
+// current_session is read from tools/session-state.json (committed artifact, not wall-clock).
+// @determinism-exempt: The isCurrentSession() function below is TIME-INVARIANT:
+//   it reads session-state.json (a committed file) to get the current session ID,
+//   then checks if the HANDOFF filename matches that session ID. No Date.now() / mtime involved.
+function loadCurrentSession() {
+  try {
+    const ssPath = join(ROOT, 'tools/session-state.json');
+    if (!existsSync(ssPath)) return null;
+    const ss = JSON.parse(readFileSync(ssPath, 'utf-8'));
+    return ss.current_session || null; // e.g. "S086"
+  } catch { return null; }
+}
+const CURRENT_SESSION = loadCurrentSession(); // e.g. "S086" or null
+
 function isCurrentSession(filePath) {
-  try { return (NOW - statSync(filePath).mtimeMs) < TWENTY_FOUR_HOURS_MS; }
-  catch { return false; }
+  if (!CURRENT_SESSION) return false;
+  // Match: HANDOFF-S{CURRENT_SESSION}-to-* in filename
+  const fileName = filePath.split(/[/\\]/).pop() || '';
+  return new RegExp(`HANDOFF-${CURRENT_SESSION}-to-`).test(fileName);
 }
 
 for (const scanDir of SCAN_DIRS) {

@@ -1,0 +1,8 @@
+{
+  "HEAD": "70a7779b09654ae2b735b79ea3b00e84df2ccbbd",
+  "exit_code": 0,
+  "blocking_set_hash": "74ffbee0bd66b77f",
+  "validators_run": 224,
+  "ts": "2026-06-22T03:26:05.808Z",
+  "note": "B_DETERMINISTIC_GATE: cite this HEAD in handoff/green-claims. validate-green-receipt.mjs verifies HEAD matches."
+}

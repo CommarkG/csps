@@ -487,6 +487,13 @@ schema_anchors:
     l2_domain: AMENDMENT_DISCIPLINE
     description: Individual topic-plan instance artifact (specific plan file)
 
+  tools_lib_meta:
+    type: governance-section
+    resolves_to: tools/lib/
+    spine: GVRN
+    l2_domain: COMPOSITION
+    description: Canonical shared libraries in tools/lib/ (AMENDMENT-1 S086 — hook-read-prompt.sh + emit-governed-md.mjs + hook-test-env.sh)
+
   tools_templates_meta:
     type: governance-section
     resolves_to: tools/templates/

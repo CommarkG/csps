@@ -2319,6 +2319,50 @@ const CYCLES = [
     },
   },
   {
+    // B_DETERMINISTIC_GATE item 4 (PROTO-S086-CLOSE): backstop validator (Phase 1 advisory).
+    // Scans all validators for Date.now()/mtime in blocking paths — time-dependent blocking = structural failure.
+    // Phase 1: ADVISORY-only (exit 0 always) — 43 pre-existing validators detected; measurement pass.
+    // Phase 2 (post-S086 cleanup): BLOCKING for new validators with this pattern.
+    // Exempt: validators with @determinism-exempt: annotation (justify in comment).
+    // Source: PROTO-S086-CLOSE. Prevention class: TEMPORAL-BLOCKING-PATH.
+    advisory_exit_ok: true, // Phase 1: validator exits 0 always
+    name: 'blocking_determinism',
+    command: 'node tools/validators/validate-blocking-determinism.mjs',
+    parse_output: (out) => {
+      const m = out.match(/validators_scanned=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { validators_scanned: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // B_DETERMINISTIC_GATE item 3 (PROTO-S086-CLOSE): green-receipt HEAD match.
+    // verify.mjs writes {HEAD, exit_code, blocking_set_hash, ts} when exit_code=0.
+    // This validator FAILS if receipt HEAD ≠ current HEAD (stale green claim).
+    // always_rerun: true (git HEAD state changes outside file content).
+    // Source: PROTO-S086-CLOSE. Prevention class: STALE-GREEN-CLAIM.
+    always_rerun: true,
+    name: 'green_receipt',
+    command: 'node tools/validators/validate-green-receipt.mjs',
+    advisory_exit_ok: false, // HEAD mismatch = BLOCKING (not advisory)
+    parse_output: (out) => {
+      const head = out.match(/HEAD=([a-f0-9]+)/)?.[1];
+      const ts = out.match(/receipt_ts=(\S+)/)?.[1];
+      return { head_prefix: head?.slice(0, 8), receipt_ts: ts };
+    },
+  },
+  {
+    // B_DETERMINISTIC_GATE item 6 (PROTO-S086-CLOSE): agent inheritance parity.
+    // Checks that preventions/contracts in any one agent entry point exist in all three
+    // (Opus context, Sonnet context, Haiku spawn template). Advisory initially.
+    // Source: PROTO-S086-CLOSE. Prevention class: AGENT-INHERITANCE-GAP.
+    run_tier: 'EXTENDED',
+    name: 'agent_inheritance_parity',
+    command: 'node tools/validators/validate-agent-inheritance-parity.mjs',
+    parse_output: (out) => {
+      const m = out.match(/items_tracked=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { items_tracked: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // S086 MOAT-M47 — Page completeness machine: enumerates every interactive element per
     // platform page, verifies each is wired and non-dead. BLOCKING on any dead element.
     // Checks: onClick={undefined/null}, dead Link href, missing API route, infinite spinner.
@@ -2571,6 +2615,45 @@ async function main() {
   const md = `# verify last run\n\n- ran_at: ${startedAt}\n- finished_at: ${finishedAt}\n- exit_code: ${exit_code}\n\n\`\`\`yaml\n${JSON.stringify(evidence, null, 2)}\n\`\`\`\n`;
   writeFileSync(reportPath, md);
   process.stderr.write(`[verify] report: ${reportPath}\n`);
+
+  // B_DETERMINISTIC_GATE item 3 (PROTO-S086-CLOSE): GREEN RECEIPT
+  // When exit_code=0, write a deterministic receipt: {HEAD, exit_code, blocking_set_hash, ts}.
+  // validate-green-receipt.mjs checks that any handoff/green-claim citing a HEAD matches this receipt.
+  // This prevents "stale green" — claiming exit_code=0 from a HEAD that never actually passed verify.
+  if (exit_code === 0) {
+    try {
+      // Derive HEAD commit (git rev-parse HEAD)
+      const gitResult = await runCommand('git rev-parse HEAD', ROOT);
+      const HEAD = (gitResult.stdout || '').trim();
+
+      // Compute blocking_set_hash: hash of all validator names that CAN set blocking exit
+      // (time-invariant — same validators = same hash regardless of when verify runs)
+      const blockingSetNames = results
+        .filter(r => r.exit_code !== undefined && r.status !== 'DEFERRED-WITH-REASON' && r.status !== 'CACHED')
+        .map(r => r.name)
+        .sort();
+      const blockingSetHash = createHash('sha256')
+        .update(blockingSetNames.join(','))
+        .digest('hex')
+        .slice(0, 16);
+
+      const receipt = {
+        HEAD,
+        exit_code: 0,
+        blocking_set_hash: blockingSetHash,
+        validators_run: blockingSetNames.length,
+        ts: finishedAt,
+        note: 'B_DETERMINISTIC_GATE: cite this HEAD in handoff/green-claims. validate-green-receipt.mjs verifies HEAD matches.',
+      };
+
+      const receiptPath = resolve(ROOT, 'tools/data/green-receipt.json');
+      writeFileSync(receiptPath, JSON.stringify(receipt, null, 2) + '\n');
+      process.stderr.write(`[verify] green-receipt: ${receiptPath} HEAD=${HEAD.slice(0, 8)}\n`);
+    } catch (receiptErr) {
+      // Non-fatal: receipt write failure should not block the verify run
+      process.stderr.write(`[verify] green-receipt: WARN — could not write receipt: ${receiptErr.message}\n`);
+    }
+  }
 
   process.exit(exit_code);
 }

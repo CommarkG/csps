@@ -32,14 +32,14 @@
       "cached_at": "2026-06-22T04:02:28.964Z"
     },
     "threshold_intake": {
-      "input_hash": "cef98cd46f903cf3ced74ccfa3fa503157357ee0cdb1bbfb791e2c4dd1de5d6b",
+      "input_hash": "a8919b6a4d1055479c3a2e14a58a42cfe2698e6d724a3efdf857f33d45db9553",
       "exit_code": 0,
       "parsed": {
-        "total_entries": 1163,
+        "total_entries": 1164,
         "sessions": 12,
         "advisory": true
       },
-      "cached_at": "2026-06-22T22:38:36.781Z"
+      "cached_at": "2026-06-22T22:41:16.261Z"
     },
     "journey_gate": {
       "input_hash": "e82a975724b8f25d85c8449fe7444bb8cf5a0caefa76a2bbde42d314993e1748",
@@ -86,7 +86,7 @@
       "cached_at": "2026-06-22T10:18:59.195Z"
     },
     "ratification_propagation": {
-      "input_hash": "35eb65bcbfafb496fb4ce0fd93890f67172a3f7177616309ab221a7d1183b358",
+      "input_hash": "dc54ff596960ce6fa4835d49b8925832c4eed434e7a65ff18674780f5447dc77",
       "exit_code": 0,
       "parsed": {
         "blocking": 0,
@@ -94,7 +94,7 @@
         "passes": 30,
         "standards_checked": 10
       },
-      "cached_at": "2026-06-22T17:46:47.634Z"
+      "cached_at": "2026-06-22T22:41:29.697Z"
     },
     "threshold_chain": {
       "input_hash": "196afce713def47a4d4533d856a45e39498bd071ef2fcfe443e35abb6f88b07e",

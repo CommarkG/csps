@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-22T22:38:13.346Z
-- finished_at: 2026-06-22T22:38:50.234Z
-- exit_code: 1
+- ran_at: 2026-06-22T22:40:50.347Z
+- finished_at: 2026-06-22T22:41:29.866Z
+- exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-22T22:38:13.346Z",
-    "finished_at": "2026-06-22T22:38:50.234Z",
+    "ran_at": "2026-06-22T22:40:50.347Z",
+    "finished_at": "2026-06-22T22:41:29.866Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1,
+        "duration_seconds": 0.8,
         "principles_loaded": 78,
         "findings_total": 32
       },
@@ -69,7 +69,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.4,
         "stale_count_files": 0
       },
       {
@@ -119,10 +119,9 @@
       {
         "name": "audit_health",
         "command": "node tools/validators/validate-audit-health.mjs",
-        "status": "FAIL",
-        "exit_code": 1,
-        "duration_seconds": 0.1,
-        "tail": "\n1 warning(s) — audit mechanism health issues:\n  ⚠ [CHECK B FRESHNESS] 2 validator(s) newer than audit-runner.md — descriptions may be stale:\n  → validate-threshold-chain.mjs\n  → validate-two-party-seal.mjs\n"
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.2
       },
       {
         "name": "model_tier_currency",
@@ -541,7 +540,7 @@
         "command": "node tools/validators/validate-communication-protocol.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "advisory": 1
       },
       {
@@ -576,7 +575,7 @@
         "command": "node tools/validators/validate-laptop-patterns.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "checked": 43,
         "blocking": 0,
         "advisories": 7
@@ -668,7 +667,7 @@
         "command": "node tools/validators/validate-hook-lifecycle-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "total": 84,
         "active": 71,
         "stub": 3,
@@ -750,7 +749,7 @@
         "command": "node tools/validators/validate-subagent-spawn-preamble.mjs",
         "status": "ADVISORY",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "checks": 3,
         "passing": 2,
         "advisory_gaps": 1
@@ -760,7 +759,7 @@
         "command": "node tools/validators/validate-layer-boundary.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "files_scanned": 325,
         "violations": 0
       },
@@ -879,12 +878,11 @@
       {
         "name": "slice_freshness",
         "command": "node tools/validators/validate-slice-freshness.mjs",
-        "status": "FAIL",
-        "exit_code": 1,
+        "status": "PASS",
+        "exit_code": 0,
         "duration_seconds": 0.1,
         "pairs_checked": 4,
-        "stale": 1,
-        "tail": "\n1 warning(s) — stale slices detected:\n  ⚠ audit-runner: monolith modified 2026-06-22T17:31:54.719Z but newest slice is 2026-06-22T11:27:58.408Z\n  → Run `pnpm audit-runner:split` to sync slices\n"
+        "stale": 0
       },
       {
         "name": "plan_know_how",
@@ -1069,8 +1067,8 @@
         "command": "node tools/validators/validate-git-pushed-state.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "warnings": 2,
+        "duration_seconds": 0.3,
+        "warnings": 1,
         "advisory": true
       },
       {
@@ -1193,7 +1191,7 @@
         "command": "node tools/validators/validate-ui-completeness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 33,
         "advisories": 1
       },
@@ -1287,7 +1285,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "advisories": 1
+        "advisories": 0
       },
       {
         "name": "agent_calls_compliance",
@@ -1483,7 +1481,7 @@
         "command": "node tools/validators/validate-default-shape.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "entries": 20,
         "blocking": 0,
         "advisory": 9
@@ -1503,8 +1501,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "new_permanent_files": 2,
-        "advisory": 2,
+        "new_permanent_files": 0,
+        "advisory": 0,
         "blocking": 0
       },
       {
@@ -1603,7 +1601,7 @@
         "command": "node tools/validators/validate-nominal-rzf-detector.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "findings": 430,
         "advisory": 430,
         "blocking": 0
@@ -1613,7 +1611,7 @@
         "command": "node tools/validators/validate-layer-split.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 0
       },
@@ -1622,7 +1620,7 @@
         "command": "node tools/validators/validate-agent-deletion-test.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.3,
         "passing": 6,
         "failing": 0,
         "decoupled": true
@@ -1662,7 +1660,7 @@
         "command": "node tools/validators/validate-tenant-quota-policy.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 0
       },
@@ -1681,7 +1679,7 @@
         "command": "node tools/validators/validate-rls-perf-budget.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "models_checked": 23,
         "models_with_rls": 12,
         "blocking": 0,
@@ -1877,7 +1875,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 1163,
+        "total_entries": 1164,
         "sessions": 12,
         "advisory": true
       },
@@ -1956,7 +1954,7 @@
         "command": "node tools/validators/validate-ai-honesty.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.5,
+        "duration_seconds": 2.6,
         "files_checked": 29,
         "blocking": 0,
         "advisory": 0
@@ -2070,7 +2068,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 2,
+        "files_scanned": 0,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0
@@ -2165,7 +2163,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "unpushed_count": 1,
+        "unpushed_count": 2,
         "advisory": 0,
         "blocking": 0
       },
@@ -2276,8 +2274,8 @@
         "command": "node tools/validators/validate-green-receipt.mjs",
         "status": "FAIL",
         "exit_code": 1,
-        "duration_seconds": 0.3,
-        "tail": "[validate-green-receipt] FAIL\n  blocking=1 advisory=0\n  BLOCKING: tree_hash mismatch — tracked content changed since last verify\n    receipt tree_hash: 988f0e6cbd7ef3d6\n    current tree_hash: 5063ae32d74b9755\n    Code or config changed after the last successful verify run.\n    FIX: run `node tools/verify.mjs --skip-install` to refresh the receipt.\n"
+        "duration_seconds": 0.2,
+        "tail": "[validate-green-receipt] FAIL\n  blocking=1 advisory=0\n  BLOCKING: tree_hash mismatch — tracked content changed since last verify\n    receipt tree_hash: 988f0e6cbd7ef3d6\n    current tree_hash: afd3efd5c3cca190\n    Code or config changed after the last successful verify run.\n    FIX: run `node tools/verify.mjs --skip-install` to refresh the receipt.\n"
       },
       {
         "name": "agent_inheritance_parity",
@@ -2314,7 +2312,7 @@
         "command": "node tools/validators/validate-classification-accuracy.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.5,
+        "duration_seconds": 0.4,
         "entries_tested": 5,
         "correct": 5,
         "accuracy_pct": 100,
@@ -2406,10 +2404,9 @@
       {
         "name": "ratification_propagation",
         "command": "node tools/validators/validate-ratification-propagation.mjs",
-        "status": "CACHED",
+        "status": "PASS",
         "exit_code": 0,
-        "cached_at": "2026-06-22T17:46:47.634Z",
-        "input_hash_prefix": "35eb65bc",
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 0,
         "passes": 30,
@@ -2453,7 +2450,7 @@
         "passes": 0
       }
     ],
-    "exit_code": 1,
+    "exit_code": 0,
     "strict_mode": false
   }
 }

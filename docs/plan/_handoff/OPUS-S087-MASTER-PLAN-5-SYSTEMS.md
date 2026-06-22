@@ -103,6 +103,15 @@ Governor ratified (S088 mid-session). PROTO-S088-PHASE-0.2 directive: Opus #25 r
 **Phase-0.2 STATUS (S088):**
 - ✅ PROTO-S088-PHASE-0.2 COMPLETE — HEAD=3b8e3e0b; threshold-chain.mjs + threshold-decompose.mjs built; validate-threshold-chain.mjs PASS blocking=0 advisory=0 passes=11; CIE cie-chain-insights.yaml (entries+learnings); dogfood trace pasted in SROF-S088-002; ratified-standards.yaml 8th entry (threshold-intake-chain); audit-runner threshold-chain entry; enforcement point: user-prompt-submit-intake.sh Phase-0.2 section
 
+#### Phase 0.3 — Journey Mutual-Core Pro-Interface (S088, no DB gate)
+Governor ratified (S088, Opus #25 directive). PROTO-S088-PHASE-0.3.
+| # | PROTO | DoD |
+|---|-------|-----|
+| 0.3 | **PROTO-S088-PHASE-0.3** — /platform/journey-core-spine pro page: schema-driven render of sealed JOURNEY-CORE-SPINE (reads YAML, never hardcodes); L0 definition → 5 mandatory parts → mandatory connections → trunk invariants (C1-C5) → phases (P1-P5) → 5 fork points → developer + external branches → sub-branches; MUTUAL=indigo | FORKED=amber | B_PAGE_COMPLETE (useData hook: loading/error/empty); route-manifest registered; TopNav wired | validate-route-manifest + validate-fetch-resilience + validate-internal-links + validate-journey-conformance ALL PASS + verify exit_code=0 + ZF |
+
+**Phase-0.3 STATUS (S088):**
+- ✅ PROTO-S088-PHASE-0.3 BUILD-COMPLETE — HEAD=a12e73c3; /platform/journey-core-spine page + /api/journey-spine route built; validate-route-manifest PASS blocking=0 (31 pages 0 orphans); validate-fetch-resilience PASS blocking=0; validate-internal-links PASS blocking=0; validate-journey-conformance PASS blocking=0; validate-page-completeness PASS blocking=0; verify exit_code=0 validators_run=228; tree_hash=a8ff31c6c3a4771c; SROF-S088-003 in tools/council/sonnet-turn.md
+
 #### Phase 2.1 — Journey Orchestrator (post-DB)
 - **PARK-043** journey orchestrator hardwires (risk-classed gate_mode): journey-gate · @csps-journey-phase DNA ·
   journey-event write-path · handoff journey-phase · dual-coverage. Deep-dive the mutual journey with REAL data.

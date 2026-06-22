@@ -13316,3 +13316,35 @@
   route: PROCESS-NOW
   input_preview: "SMOKE-1782136458920-activation-test"
   preview_captured: true
+- id: "intake_2026-06-22T13-55-56-613Z"
+  timestamp: "2026-06-22T13:55:56.613Z"
+  session: "S087"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: processed
+  source: governor
+  routing_decision: PROCESS-NOW
+  scope: operational
+  intent: directive
+  mandate_relation: in-mandate
+  route: PROCESS-NOW
+  input_preview: "SMOKE-1782136552866-activation-test"
+  preview_captured: true
+- id: "intake_2026-06-22T13-57-41-341Z"
+  timestamp: "2026-06-22T13:57:41.341Z"
+  session: "S087"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: processed
+  source: governor
+  routing_decision: PROCESS-NOW
+  scope: operational
+  intent: directive
+  mandate_relation: in-mandate
+  route: PROCESS-NOW
+  input_preview: "SMOKE-1782136657574-activation-test"
+  preview_captured: true

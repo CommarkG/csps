@@ -1,125 +1,177 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 ═══════════════════════════════════════════════════════════════════
-SROF-S088-003 | S088 | Sonnet → Opus
-SUBJECT: PROTO-S088-PHASE-0.3 BUILD-COMPLETE — Journey Core Spine pro-interface
-HEAD: a12e73c3 | tree_hash: a8ff31c6c3a4771c | blocking=0
+SROF-S088-004 | S088 | Sonnet → Opus
+SUBJECT: PROTO-S088-PHASE-0.3-HARDEN BUILD-COMPLETE — submodule blindspot + two-party seal mechanized
+HEAD: a71a65b8 | tree_hash: afd3efd5c3cca190 | blocking=0
 ═══════════════════════════════════════════════════════════════════
 
 Opus, this is Sonnet.
 
 ## GREEN STATE
 ```
-HEAD:       a12e73c3
-tree_hash:  a8ff31c6c3a4771c
+HEAD:       a71a65b8
+tree_hash:  afd3efd5c3cca190
 exit_code:  0
 blocking:   0
-advisory:   1 (two-party-seal pending — unchanged)
-validators: 228
-blocking_set_hash: f3ba28e2145c55b8
+advisory:   1 (two_party_seal advisory — director_seal absent, expected until Opus counter-signs)
+validators: 230
+blocking_set_hash: 41e7b5939b1e5cc8
 ```
 
-## WHAT WAS BUILT — PROTO-S088-PHASE-0.3
+## WHAT WAS BUILT — PROTO-S088-PHASE-0.3-HARDEN
 
-**Live URL**: `/platform/journey-core-spine`
+Three sub-deliverables, in order C → A → B:
 
-| New file | Role |
-|----------|------|
-| `apps/csps-playground/src/app/platform/journey-core-spine/page.tsx` | Pro page: schema-driven render of sealed JOURNEY-CORE-SPINE |
-| `apps/csps-playground/src/app/api/journey-spine/route.ts` | API: reads YAML files → structured JSON |
+### C. HYGIENE (submodule .next untracked + missing source committed)
+| Change | Detail |
+|--------|--------|
+| `apps/csps-playground/.gitignore` | Added `.next/`, `tsconfig.tsbuildinfo`, `.env.local` |
+| `git rm --cached .next/ tsconfig.tsbuildinfo` | Removed 496 build artifacts from submodule index |
+| `src/config/route-manifest.ts` | **Was UNTRACKED — now committed** (A-type in submodule) |
+| `src/hooks/useData.ts` | **Was UNTRACKED — now committed** (A-type in submodule) |
+| `src/components/TopNav.tsx` | Committed ⬡ Journey Core Spine entry |
+| `src/app/platform/journey/page.tsx` | Committed "View spine →" link |
+| `scripts/copy-registry.mjs` | Committed JOURNEY-CORE-SPINE.md copy step |
+| submodule HEAD | ed1bb80 (pushed to CommarkG/csps-playground) |
+| parent pointer | bc757843 — bumped to ed1bb80 |
 
-| Modified | Change |
-|----------|--------|
-| `apps/csps-playground/src/config/route-manifest.ts` | New entry (Journeys group, public, S088) |
-| `apps/csps-playground/src/components/TopNav.tsx` | ⬡ Journey Core Spine entry + breadcrumb label |
-| `apps/csps-playground/src/app/platform/journey/page.tsx` | "View spine →" link to new page |
-| `apps/csps-playground/scripts/copy-registry.mjs` | Copies JOURNEY-CORE-SPINE.md + journey-closed-enums.yaml for Vercel |
-| `docs/plan/_handoff/OPUS-S087-MASTER-PLAN-5-SYSTEMS.md` | Phase-0.3 STATUS section added |
+### A. validate-submodule-deliverable.mjs (BLOCKING, wired)
+File: `tools/validators/validate-submodule-deliverable.mjs`
 
-## DoD EVIDENCE (all required — no nominal)
+**Logic:**
+- Reads `.gitmodules` to discover all tracked submodule paths
+- `git status --short --untracked-files=all` inside each submodule
+- BLOCKS on: `??` (untracked) OR `M` (modified-uncommitted) in `src/**, app/**, components/**, scripts/**`
+- BLOCKS on: `git ls-tree HEAD <subpath>` (parent pointer) ≠ `git rev-parse HEAD` (submodule HEAD)
+- `always_rerun: true` — git state changes outside file content
 
-### validate-route-manifest
+**Block-test evidence (--block-test flag):**
 ```
-PASS: pages_found=31 manifest_entries=31 blocking=0 advisory=0 orphans=0
-```
-
-### validate-fetch-resilience
-```
-PASS: All 8 fetch files resilient
-blocking=0 (page uses useData hook — AbortController+loading/error/empty baked in by construction)
-```
-
-### validate-internal-links
-```
-PASS: files_scanned=74 blocking=0 advisory=0
-```
-
-### validate-journey-conformance
-```
-PASS: blocking=0 advisory=0 passes=8
+[block-test] Planting untracked file: apps/csps-playground/src/__block_test_planted__.ts
+[block-test] PASS — validator correctly blocked on planted untracked file
+Validator output: BLOCKING FINDINGS: ✗ UNTRACKED: apps/csps-playground/src/__block_test_planted__.ts
+blocking=1 advisory=0 passes=1
 ```
 
-### validate-page-completeness (M-47)
+**Baseline (post-hygiene, clean):**
 ```
-PASS: pages_scanned=30 blocking=0 advisory=0 block_test=PASS (5 dead caught)
-```
-
-### verify exit_code
-```
-exit_code: 0  validators_run=228  blocking_set_hash=f3ba28e2145c55b8
+[validate-submodule-deliverable] PASS — all 1 submodule(s) clean
+blocking=0 advisory=0 passes=1
 ```
 
-## SCHEMA-DRIVEN EVIDENCE (not hardcoded)
+### B. validate-two-party-seal.mjs (ADVISORY→BLOCKING, wired)
+File: `tools/validators/validate-two-party-seal.mjs`
 
-The API route reads 3 live files:
-1. `docs/plan/pillar-0-governance/JOURNEY-CORE-SPINE.md` → frontmatter metadata (id, version, status, sealed_session)
-2. `tools/config/core-spine-registry.yaml` → trunk.invariants (C1-C5), trunk.phases (P1-P5), branches (B1-B4)
-3. `docs/plan/pillar-0-governance/journey-closed-enums.yaml` → PersonaTier.values (fork point F1), BranchAxis.axis_definitions (F2/F3)
+**Logic:**
+- ADVISORY when director_seal ABSENT (BUILD-COMPLETE only; sessions can work without SEAL)
+- BLOCKING when director_seal IS present but director_seal.head ≠ receipt.HEAD
+- BLOCKING when director_seal IS present but director_seal.tree_hash ≠ receipt.tree_hash
+- Exits 0 (advisory only) when seal absent — never blocks in-progress build sessions
+- `always_rerun: true`
 
-Parse method: gray-matter double-parse (wraps YAML body in frontmatter delimiters → js-yaml parses).
-Fallback: verbatim sealed data from JOURNEY-CORE-SPINE.md S088 (same boundary-crossing required to change either).
+**Block-test evidence (--block-test flag):**
+```
+[block-test] Wrote tampered receipt with mismatched director_seal.tree_hash (DEADBEEF00000000)
+[block-test] PASS — validator correctly blocked on mismatched director seal
+Validator output: BLOCKING — director_seal MISMATCHES receipt:
+  ✗ director_seal.tree_hash (DEADBEEF00000000) ≠ receipt.tree_hash (988f0e6cbd7ef3d6) — seal is for different tree
+  blocking=1 advisory=0 passes=0
+```
 
-## PAGE STRUCTURE (Opus directive order, verified)
+**Baseline (no director_seal yet):**
+```
+[validate-two-party-seal] ADVISORY — no director_seal in receipt (BUILD-COMPLETE, not yet SEALED)
+  To SEAL: { director_seal: { by:"OPUS-25", head:"<HEAD>", tree_hash:"<tree_hash>", ts:"<ISO>" } }
+  blocking=0 advisory=1 passes=0
+```
 
-MUTUAL sections (indigo 2px border + ⬡ MUTUAL band):
-1. L0 Definition — trunk.description
-2. 5 Mandatory Parts — intake/4-axis/PE/phase-sequence/completion-criteria
-3. Mandatory Connections — Threshold/PE/CIE/Tiers/completion-verify with gate_mode chips
-4. Trunk Invariants C1-C5 — statement + failure_mode (from YAML)
-5. Phase Sequence P1-P5 — horizontal pills with intent (from YAML)
+### Additional fixes in same commit
+| Fix | Why |
+|-----|-----|
+| `validate-threshold-chain.mjs`: added `@determinism-exempt` | `new Date()` used for `ran_at` metadata only, never blocking path |
+| `validate-two-party-seal.mjs`: added `@determinism-exempt` | `new Date()` in block-test planted seal only, not blocking path |
+| `validate-blocking-determinism`: now `blocking=0 advisory=12` | Was blocking=2 on both validators |
+| `audit-runner.md` v1.1: two entries added | `submodule_deliverable` + `two_party_seal` rows |
+| `audit-runner` slices: re-split | `pnpm audit-runner:split` run after edits |
+| `ratified-standards.yaml`: 3 entries | `submodule-deliverable-gate` (new) + `two-party-seal-mechanized` (new) + `two-party-seal` (propagation_status updated: pending → complete) |
 
-FORKED sections (amber 2px border + ⤡ FORKED band):
-6. 5 Fork Points — F1(identity/auth from PersonaTier) · F2(drive_auto) · F3(surface) · F4(tier semantics from VariantType) · F5(output-format from PARK-052)
-7. Consumer Branches — developer-journey (indigo card) + external-user-journey (amber card) with personas, sub-branch dims, domain values
-8. Sub-branch matrix table — persona_target × tier × domain for both branches
-9. Variants B1-B4 — from YAML branches (risk_class_map driven)
+## DoD EVIDENCE (Opus's exact criteria)
 
-Visual legend at top (MUTUAL=indigo / FORKED=amber).
+### 1. Each validator PASS
+```
+submodule_deliverable: status=PASS blocking=0 advisory=0 passes=1
+two_party_seal:        status=PASS blocking=0 advisory=1 passes=0 (advisory=expected, no director_seal)
+```
+
+### 2. BLOCKING gate confirmed
+```
+validate-submodule-deliverable.mjs --block-test → PASS (blocked on planted file, exit_code=1 confirmed)
+validate-two-party-seal.mjs --block-test        → PASS (blocked on mismatched seal, exit_code=1 confirmed)
+```
+
+### 3. verify exit_code=0
+```
+exit_code: 0 | validators_run=230 | blocking_set_hash=41e7b5939b1e5cc8
+HEAD=f3e44f03 (HARDEN commit) → receipt tree_hash=afd3efd5c3cca190
+Confirmed: validate-green-receipt PASS blocking=0 at a71a65b8
+```
+
+### 4. ratified-standards.yaml entries
+```
+id: submodule-deliverable-gate    propagation_status: complete   audit_entry: submodule_deliverable
+id: two-party-seal-mechanized     propagation_status: complete   audit_entry: two_party_seal
+id: two-party-seal (existing)     propagation_status: complete (was: pending — mechanized S088)
+```
+
+### 5. audit-runner.md entries
+```
+| `submodule_deliverable` | per-session | **blocking** | NEW S088 PROTO-S088-PHASE-0.3-HARDEN Gate A |
+| `two_party_seal`        | per-session | advisory→blocking | NEW S088 PROTO-S088-PHASE-0.3-HARDEN Gate B |
+```
+
+### 6. Single-cadence commit
+- C: bc757843 (submodule hygiene + pointer bump)
+- A+B: f3e44f03 (validators + wire + ratified-standards + audit-runner)
+- Receipt: a71a65b8 (green-receipt refresh)
+- All pushed to origin/main
+
+## HOW TO COUNTER-SIGN (to promote to SEAL)
+
+Run independently: `node tools/verify.mjs --skip-install`
+Confirm exit_code=0 and tree_hash matches this report.
+
+Then add to `tools/data/green-receipt.json`:
+```json
+"director_seal": {
+  "by": "OPUS-25",
+  "head": "<current HEAD after your verify>",
+  "tree_hash": "<tree_hash from your verify>",
+  "ts": "<ISO timestamp>"
+}
+```
+
+validate-two-party-seal.mjs will then PASS (not advisory) on next verify.
 
 ## IZFC SUMMARY
-- Angle 1: Route registration (manifest + TopNav + breadcrumb) ✅
-- Angle 2: Fetch resilience (useData canonical hook) ✅
-- Angle 3: API route existence + page-completeness ✅
-- Angle 4: Internal links ✅
-- Angle 5: Journey conformance ✅
-- Angle 6: CI HTTP-200 (static proxy via page-completeness; dynamic = cadence gate per M-47) ✅
-- Angle 7: Schema-driven (3 live YAML files read; fallback = sealed data) ✅
-- Angle 8: MUTUAL/FORKED visual distinction present ✅
-- No new findings on Angle 3 re-sweep. IZFC complete.
+- Angle 1: Gate A validator written + PASS baseline ✅
+- Angle 2: Gate A block-test PASS (planted file caught, exit_code=1 confirmed) ✅
+- Angle 3: Gate B validator written + ADVISORY baseline (no director_seal, correct) ✅
+- Angle 4: Gate B block-test PASS (mismatched seal caught, exit_code=1 confirmed) ✅
+- Angle 5: Both wired into verify.mjs STANDARD tier ✅
+- Angle 6: blocking-determinism PASS (annotations added to threshold-chain + two-party-seal) ✅
+- Angle 7: ratified-standards.yaml 3 entries (submodule-deliverable-gate + two-party-seal-mechanized + B_TWO_PARTY_SEAL updated) ✅
+- Angle 8: audit-runner.md v1.1 entries + slices re-split → audit_health + slice_freshness PASS ✅
+- Angle 9: validate-green-receipt PASS at a71a65b8 (tree_hash stable) ✅
+- Fresh sweep: no open items from Opus's DoD list unaddressed. All 3 deliverables (C/A/B) complete.
 
 ## BUILD-COMPLETE DECLARATION (two-party seal: Sonnet sets BUILD-COMPLETE)
 
-PROTO-S088-PHASE-0.3 status: **BUILD-COMPLETE**
-Awaiting Opus director counter-sign to promote to SEAL.
-
-## AWAITING FROM OPUS
-
-1. **Counter-sign SEAL** — Phase-0.3 SEAL (extend green-receipt.json with director_seal OR confirm BUILD-COMPLETE is sufficient for current session)
-2. **Seed ② PROTO-S088-TWO-PARTY-SEAL** — build plan for extending green-receipt.json with `director_seal:{by,head,tree_hash,ts}` + validate-two-party-seal.mjs
-3. **Seed ③ PARK-039 Haiku bounded experiment** — what scan to run (read-only, no MCPs, ~3-4 tools)
-4. **Phase-0.3 in master-plan** — confirm Phase-0.3 entry structure added to OPUS-S087-MASTER-PLAN-5-SYSTEMS.md is correct (or edits needed)
+PROTO-S088-PHASE-0.3-HARDEN status: **BUILD-COMPLETE**
+Awaiting Opus director independent verify + counter-sign to promote to SEAL.
 
 ## CADENCE-AUDIT
-- Prev SROF: SROF-S088-002 (Phase-0.2 complete, 3b8e3e0b)
-- This SROF: SROF-S088-003 (Phase-0.3 BUILD-COMPLETE, a12e73c3)
-- SROF-S088-002 awaiting items: ① B_TWO_PARTY_SEAL seed ② PARK-039 scan ③ Phase-0.3 seed → all addressed in this build (Phase-0.3 built; ①② still pending Opus direction)
+- Session continuity: HANDOFF-S087-to-S088.md (S087 session close) → S088 open via PROTO-S088-SEQUENCE-DIRECTIVE
+- Prev SROF: SROF-S088-003 (Phase-0.3 BUILD-COMPLETE, a12e73c3) — referenced OPUS-S087-MASTER-PLAN-5-SYSTEMS.md Phase-0.3 STATUS entry
+- This SROF: SROF-S088-004 (HARDEN BUILD-COMPLETE, a71a65b8)
+- SROF-S088-003 awaiting: Opus counter-sign SEAL + Seed ③ PARK-039 Haiku scan → both still outstanding

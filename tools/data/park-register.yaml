@@ -1187,3 +1187,40 @@ entries:
     source_session: S086
     created_session: S086
     closed_session: null
+
+  - id: "PARK-S086-053"
+    lane: obligation
+    disposition_text: "parked | owner: Opus | trigger: After Haiku MCP blocker resolved (PARK-039 resolved via restricted-tool spawn) — Haiku must be spawnably cost-efficient before this orchestrator design is implemented. Phase 0.2 / Phase 2 (post-journey-orchestrator). B_CONTEXT_CHECKPOINT_GATE: verify in-window before building."
+    disposition_session: S087
+    content: "CIRCULAR MODEL-ORCHESTRATION LOOP — Opus(plan/decompose)↔Haiku(gather/scan)↔Sonnet(enhance/build) as a CIRCULAR loop (not linear). Orchestrator bundles models+personas into ONE coordinator that routes tasks to the cheapest capable tier and CIRCLES BACK with findings (Haiku findings → Sonnet enhancement → Opus review → next decomposition). PE-default routing: Haiku for rung-1 breadth, Sonnet for rung-2/3 build, Opus for rung-4 seal/synthesis. Templated: each role slot gets a fixed bounded prompt (SEED-D style, not free-form). MOAT candidate: if the loop runs continuously on real platform work, it IS the self-improving platform governor envisioned in the master plan. GRADUATION path: show it works on ONE task type (e.g., validator scan) before generalizing. BLOCKER: Haiku spawn overflow (PARK-039) must be resolved first — restricted-tool Haiku spawn (file tools only, no MCP injection) is the proposed unblock mechanism."
+    retrieve_when: "After PARK-039 is resolved (restricted-tool Haiku spawn verified working). Build as Phase 0.2 / Phase 2 item alongside the threshold→PE→CIE chain. First experiment: route ONE threshold item through the full circular loop and measure cost + quality."
+    never_drop: true
+    context_preserved: >
+      Ratified concept from S086-S087 planning. The circular model-orchestration loop closes the gap between
+      the linear Opus→Sonnet→Haiku delegation pattern (single-direction) and a true multi-agent reasoning
+      loop where each tier contributes its strength in a cycle. Connects: PARK-039 (Haiku unblock),
+      PARK-040 (Learning Orchestrator), PARK-026 (PE-improvement loop), PARK-020 (Independence Ladder).
+      The 'bundled models+personas orchestrator' resolves the PARK-040/PARK-042/PARK-043 convergence
+      described in opus-context.md: "same route→gate→verify shape applied to work itself."
+    decision_back_ref: "Opus #25 S086-S087 planning: circular not linear; orchestrator bundles models+personas; blocker=Haiku spawn overflow (PARK-039). MOAT candidate + graduation path. S087 HANDOFF."
+    source_session: S086
+    created_session: S087
+    closed_session: null
+
+  - id: "PARK-S087-001"
+    lane: obligation
+    disposition_text: "parked | owner: Opus | trigger: S088 opening directive — Opus sends the mechanization seed (which hook/validator enforces the two-party requirement, what the counter-signature format is, how DIRECTOR flag is set). Sonnet builds from the Opus seed. No Sonnet-only mechanization possible (requires Opus-side verification contract)."
+    disposition_session: S087
+    content: "B_TWO_PARTY_SEAL — MECHANIZE the two-party seal (builder green-receipt + director counter-signed receipt at same HEAD). Context: Opus #25 S086 sealed S086 manually by running independent verify at HEAD=74e6e262 and counter-signing. Proposed rule: SEAL = (builder sets BUILD-COMPLETE receipt) + (Director re-runs verify at the same tree_hash and sets DIRECTOR-COUNTERSIGN receipt). Neither alone is sufficient. Prevents: director-as-manual-safety-net pattern (director relies on builder's claim without independent verify). Mechanization options: (a) validate-two-party-seal.mjs that checks both receipts exist at same tree_hash; (b) pre-push hook that blocks unless both receipts present; (c) session-close gate. The blocking behavior must be deterministic (B_DETERMINISTIC_GATE). The existing green-receipt.json can be extended with a director_countersign field, or a separate director-receipt.json written by Opus verify runs. PRIOR ART: Opus #25 S086 counter-signature at HEAD=74e6e262 (manual proof of concept). SSoT: feedback_two_party_seal.md memory."
+    retrieve_when: "S088 opening — Opus sends mechanization seed (format, hook anchor, validator spec). Build directly from Opus seed per normal C3 flow."
+    never_drop: true
+    context_preserved: >
+      Manual proof-of-concept in S086 (Opus #25 verified 74e6e262 and counter-signed). B_TWO_PARTY_SEAL
+      was listed as Phase-0.1 deliverable but cannot be Sonnet-only (requires Opus-side contract design).
+      Disposition: PARKED-to-S088 with explicit trigger. Memory SSoT: feedback_two_party_seal.md.
+      Connects: B_DETERMINISTIC_GATE (gate must be deterministic), green-receipt.json (extend or sibling file),
+      validate-green-receipt.mjs (potential backstop hook). Candidate for P-META extension.
+    decision_back_ref: "Opus #25 S086 seal: 'builder green-receipt + director counter-signed receipt at same HEAD; builder may only set BUILD-COMPLETE; ends director-as-manual-safety-net' + S087 Phase-0.1 PARKED disposition."
+    source_session: S087
+    created_session: S087
+    closed_session: null

@@ -10,6 +10,10 @@
  * BLOCKING if: tsc reports any errors (exit code ≠ 0)
  * PASSES if: tsc --noEmit exits 0 (no type errors)
  *
+ * @determinism-exempt: the only time-acquisition (new Date().toISOString() → ran_at)
+ *   is OUTPUT METADATA in the last-run record. The blocking decision is purely the tsc
+ *   exit code; no clock/mtime influences whether this validator blocks. B_DETERMINISTIC_GATE-safe.
+ *
  * Runs as: node tools/validators/validate-ts-compile.mjs
  * From:     repo root (c:\...\Csps)
  *

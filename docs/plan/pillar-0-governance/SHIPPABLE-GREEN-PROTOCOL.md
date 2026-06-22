@@ -12,7 +12,7 @@ owner: group:finky
 authored_by: OPUS-25
 core_spine: VALD
 diataxis_type: reference
-schema_anchor: protocol_files
+schema_anchor: pillar_0_governance_leaves
 lifecycle: production
 lifecycle_state: active
 status: active

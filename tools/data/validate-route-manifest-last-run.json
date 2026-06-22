@@ -1,0 +1,11 @@
+{
+  "ran_at": "2026-06-22T06:30:25.090Z",
+  "status": "PASS",
+  "pages_found": 30,
+  "manifest_entries": 30,
+  "blocking": 0,
+  "advisory": 0,
+  "orphans": [],
+  "planned": [],
+  "internal_registered": 7
+}

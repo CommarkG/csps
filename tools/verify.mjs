@@ -2319,6 +2319,42 @@ const CYCLES = [
     },
   },
   {
+    // B_PAGE_COMPLETE (PROTO-S087-PAGE-COMPLETE) — Route manifest gate (BLOCKING):
+    // Every page.tsx in csps-playground must be in route-manifest.ts.
+    // Orphan = page.tsx with no manifest entry = cannot ship. Prevent-by-construction.
+    run_tier: 'STANDARD',
+    name: 'route_manifest',
+    command: 'node tools/validators/validate-route-manifest.mjs',
+    parse_output: (out) => {
+      const m = out.match(/pages_found=(\d+)\s+manifest_entries=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { pages_found: Number(m[1]), manifest_entries: Number(m[2]), blocking: Number(m[3]), advisory: Number(m[4]) } : {};
+    },
+  },
+  {
+    // B_PAGE_COMPLETE (PROTO-S087-PAGE-COMPLETE) — Internal links gate (BLOCKING):
+    // All internal hrefs across ALL source files (not just pages) must resolve to existing pages.
+    // Broader than M-47 — covers components/, hooks/, lib/ etc.
+    run_tier: 'STANDARD',
+    name: 'internal_links',
+    command: 'node tools/validators/validate-internal-links.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_scanned=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { files_scanned: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
+    // B_PAGE_COMPLETE (PROTO-S087-PAGE-COMPLETE) — Fetch resilience gate (BLOCKING on bare):
+    // Platform pages with setLoading(true) + bare fetch() (no catch/finally) = BLOCKING.
+    // Advisory: partial resilience or background fetch. Prevention: useData() hook.
+    run_tier: 'STANDARD',
+    name: 'fetch_resilience',
+    command: 'node tools/validators/validate-fetch-resilience.mjs',
+    parse_output: (out) => {
+      const m = out.match(/files_with_fetch=(\d+)\s+blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { files_with_fetch: Number(m[1]), blocking: Number(m[2]), advisory: Number(m[3]) } : {};
+    },
+  },
+  {
     // B_DETERMINISTIC_GATE item 4 (PROTO-S086-CLOSE): backstop validator (Phase 1 advisory).
     // Scans all validators for Date.now()/mtime in blocking paths — time-dependent blocking = structural failure.
     // Phase 1: ADVISORY-only (exit 0 always) — 43 pre-existing validators detected; measurement pass.

@@ -1,0 +1,95 @@
+# B_PAGE_COMPLETE — HTTP-200 render smoke (PROTO-S087-PAGE-COMPLETE Item 4)
+#
+# Starts the csps-playground Next.js dev server and hits all 29 static /platform/* routes.
+# Fails if any route returns non-200 (broken page, missing dependency, uncaught error).
+#
+# This is the CI RESIDUAL — what static validators (M-47, route-manifest) cannot cover:
+#   - Runtime JS errors during hydration
+#   - Missing env vars that crash the page on load
+#   - API routes that fail to initialize
+#
+# Run: on push to main + weekly cron (Sunday 03:00 UTC)
+# Duration: ~3-4 minutes (next dev startup ~60s + 29 route checks)
+#
+# Local alternative (requires running dev server):
+#   node tools/scripts/http-smoke-check.mjs
+#   (exits 1 if any route returns non-200)
+#
+# Ref: B_PAGE_COMPLETE §5, PROTO-S087-PAGE-COMPLETE, moat-registry.md M-47
+
+name: HTTP Smoke — Page Render Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/csps-playground/src/app/**'
+      - 'apps/csps-playground/src/components/**'
+      - 'apps/csps-playground/src/config/**'
+  schedule:
+    # Weekly smoke — Sunday 03:00 UTC (low-traffic window)
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+    inputs:
+      routes:
+        description: 'Comma-separated routes to test (blank = all static routes)'
+        required: false
+        default: ''
+
+jobs:
+  http-smoke:
+    name: HTTP-200 Render Smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    defaults:
+      run:
+        working-directory: apps/csps-playground
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/csps-playground/package-lock.json
+
+      - name: Install dependencies
+        run: npm install --frozen-lockfile 2>/dev/null || npm install
+
+      - name: Start dev server (background)
+        run: |
+          npm run dev &
+          echo "DEV_PID=$!" >> $GITHUB_ENV
+        env:
+          PORT: 3002
+          NODE_ENV: development
+
+      - name: Wait for server to be ready
+        run: |
+          echo "Waiting for dev server on port 3002..."
+          for i in $(seq 1 60); do
+            if curl -s http://localhost:3002/ > /dev/null 2>&1; then
+              echo "Server ready after ${i}s"
+              break
+            fi
+            if [ "$i" -eq 60 ]; then
+              echo "Server did not start within 60s"
+              exit 1
+            fi
+            sleep 1
+          done
+
+      - name: Run HTTP smoke check
+        working-directory: .
+        run: node tools/scripts/http-smoke-check.mjs
+        env:
+          SMOKE_BASE_URL: http://localhost:3002
+          SMOKE_ROUTES_OVERRIDE: ${{ github.event.inputs.routes }}
+
+      - name: Stop dev server
+        if: always()
+        run: kill $DEV_PID 2>/dev/null || true

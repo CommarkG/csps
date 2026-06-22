@@ -1,0 +1,61 @@
+{
+  "ran_at": "2026-06-22T06:30:25.236Z",
+  "status": "PASS",
+  "files_with_fetch": 8,
+  "blocking": 0,
+  "advisory": 7,
+  "canonical": 0,
+  "resilient": 1,
+  "partial": 4,
+  "bare": 0,
+  "results": [
+    {
+      "file": "apps/csps-playground/src/app/platform/accountability/page.tsx",
+      "level": "partial",
+      "verdict": "ADVISORY",
+      "reason": "fetch-call has error handling but no AbortController — spinner-risk if server hangs. Add AbortController with timeout or migrate to useData() hook."
+    },
+    {
+      "file": "apps/csps-playground/src/app/platform/architecture/node-templates/page.tsx",
+      "level": "background",
+      "verdict": "ADVISORY",
+      "reason": "background/enhancement fetch-call with no loading state — user sees no feedback if slow/failed. Consider useData() for primary data or add empty/error UI feedback."
+    },
+    {
+      "file": "apps/csps-playground/src/app/platform/classification-training/page.tsx",
+      "level": "resilient",
+      "verdict": "PASS",
+      "reason": "manual AbortController + error + loading resolution pattern (fully resilient)"
+    },
+    {
+      "file": "apps/csps-playground/src/app/platform/consult/page.tsx",
+      "level": "partial",
+      "verdict": "ADVISORY",
+      "reason": "fetch-call has error handling but no AbortController — spinner-risk if server hangs. Add AbortController with timeout or migrate to useData() hook."
+    },
+    {
+      "file": "apps/csps-playground/src/app/platform/core-spine-creator/page.tsx",
+      "level": "background",
+      "verdict": "ADVISORY",
+      "reason": "background/enhancement fetch-call with no loading state — user sees no feedback if slow/failed. Consider useData() for primary data or add empty/error UI feedback."
+    },
+    {
+      "file": "apps/csps-playground/src/app/platform/journey-admin/page.tsx",
+      "level": "partial",
+      "verdict": "ADVISORY",
+      "reason": "fetch-call has error handling but no AbortController — spinner-risk if server hangs. Add AbortController with timeout or migrate to useData() hook."
+    },
+    {
+      "file": "apps/csps-playground/src/app/platform/voice-profiles/VoiceProfilesClient.tsx",
+      "level": "background",
+      "verdict": "ADVISORY",
+      "reason": "background/enhancement fetch-call with no loading state — user sees no feedback if slow/failed. Consider useData() for primary data or add empty/error UI feedback."
+    },
+    {
+      "file": "apps/csps-playground/src/app/platform/wizard/WizardClient.tsx",
+      "level": "partial",
+      "verdict": "ADVISORY",
+      "reason": "fetch-call has error handling but no AbortController — spinner-risk if server hangs. Add AbortController with timeout or migrate to useData() hook."
+    }
+  ]
+}

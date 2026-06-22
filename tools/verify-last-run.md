@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-22T04:09:33.841Z
-- finished_at: 2026-06-22T04:10:02.631Z
+- ran_at: 2026-06-22T06:29:57.292Z
+- finished_at: 2026-06-22T06:30:26.207Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-22T04:09:33.841Z",
-    "finished_at": "2026-06-22T04:10:02.631Z",
+    "ran_at": "2026-06-22T06:29:57.292Z",
+    "finished_at": "2026-06-22T06:30:26.207Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.5,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -30,7 +30,7 @@
         "command": "pnpm -r --filter \"./apps/**\" typecheck 2>/dev/null || echo \"[apps_typecheck] no apps with typecheck script or all clean\"",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0,
+        "duration_seconds": 0.1,
         "ts_errors": 0,
         "skipped": true
       },
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 1,
         "principles_loaded": 78,
         "findings_total": 32
       },
@@ -48,10 +48,10 @@
         "command": "node tools/validators/validate-frontmatter.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "scanned": 802,
+        "duration_seconds": 0.3,
+        "scanned": 803,
         "errors": 0,
-        "warnings": 222,
+        "warnings": 223,
         "exempt": 356
       },
       {
@@ -307,7 +307,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 25,
-        "validators": 246,
+        "validators": 249,
         "models": 0,
         "advisories": 0
       },
@@ -356,8 +356,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 722,
-        "clean": 722,
+        "checked": 723,
+        "clean": 723,
         "blocking": 0,
         "registry": 71
       },
@@ -432,7 +432,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocking": 0,
-        "advisory": 2
+        "advisory": 3
       },
       {
         "name": "file_complexity_validate",
@@ -440,7 +440,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 1516,
+        "scanned": 1523,
         "advisory": 133,
         "code_advisory": 9
       },
@@ -566,7 +566,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 331,
+        "checked": 334,
         "blocking": 0,
         "advisories": 0
       },
@@ -623,7 +623,7 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "issues": 0,
         "advisory": 0,
         "duplicates": 0
@@ -702,7 +702,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "with_cq": 247,
-        "total": 617,
+        "total": 618,
         "pct": 40
       },
       {
@@ -712,8 +712,8 @@
         "exit_code": 1,
         "duration_seconds": 0.1,
         "session": "S086",
-        "validators": 247,
-        "tail": "  RECOMMENDED ACTIONS:\n  1. SAP Sweep 6 (Synergy Audit) — walk platform for cross-enhancement opportunities\n  2. CEC walk — iterate until 0 new opportunities found\n  3. Create session extraction: docs/plan/_handoff/VAULT/session-S<NNN>-extraction.md\n  4. Register positive patterns in inner-AI-defaults/continuous-drift-log.md\n\n  Per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION: significant sessions deserve extraction.\n\n[validate-session-harvest-readiness] session=S086 validators=247 extraction=MISSING status=HARVEST_READY\n"
+        "validators": 250,
+        "tail": "  RECOMMENDED ACTIONS:\n  1. SAP Sweep 6 (Synergy Audit) — walk platform for cross-enhancement opportunities\n  2. CEC walk — iterate until 0 new opportunities found\n  3. Create session extraction: docs/plan/_handoff/VAULT/session-S<NNN>-extraction.md\n  4. Register positive patterns in inner-AI-defaults/continuous-drift-log.md\n\n  Per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION: significant sessions deserve extraction.\n\n[validate-session-harvest-readiness] session=S086 validators=250 extraction=MISSING status=HARVEST_READY\n"
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -793,7 +793,7 @@
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "files": 0
       },
       {
@@ -1095,9 +1095,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 247,
+        "validators_checked": 250,
         "orphans": 0,
-        "registered": 247
+        "registered": 250
       },
       {
         "name": "token_budget_validate",
@@ -1207,7 +1207,7 @@
         "command": "node tools/validators/validate-new-file-dna.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 0,
         "dna_ok": 0,
         "advisory": 0,
@@ -1500,9 +1500,9 @@
         "command": "node tools/validators/validate-hardwire-dna-coverage.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "new_permanent_files": 0,
-        "advisory": 0,
+        "duration_seconds": 0.1,
+        "new_permanent_files": 3,
+        "advisory": 3,
         "blocking": 0
       },
       {
@@ -1592,9 +1592,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 753,
-        "findings": 9494,
-        "advisory": 9494
+        "files_checked": 754,
+        "findings": 9502,
+        "advisory": 9502
       },
       {
         "name": "nominal_rzf_detector",
@@ -1602,8 +1602,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 431,
-        "advisory": 431,
+        "findings": 432,
+        "advisory": 432,
         "blocking": 0
       },
       {
@@ -1829,7 +1829,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 171,
         "blocking": 0,
         "advisory": 26
@@ -1851,7 +1851,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 242,
+        "total": 245,
         "deferred": 11,
         "empty_output": 20,
         "zero_numeric": 23,
@@ -1875,7 +1875,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 943,
+        "total_entries": 979,
         "sessions": 11,
         "advisory": true
       },
@@ -2068,7 +2068,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 0,
+        "files_scanned": 3,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0
@@ -2080,10 +2080,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocks_checked": 0,
-        "proto_citations": 190,
+        "proto_citations": 195,
         "valid": 8,
-        "missing": 182,
-        "advisory": 182,
+        "missing": 187,
+        "advisory": 187,
         "blocking": 0
       },
       {
@@ -2162,8 +2162,8 @@
         "command": "node tools/validators/validate-push-status.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "unpushed_count": 1,
+        "duration_seconds": 0.1,
+        "unpushed_count": 0,
         "advisory": 0,
         "blocking": 0
       },
@@ -2173,10 +2173,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 72,
-        "missing_headers": 6,
-        "missing_attestation": 57,
-        "advisory": 67,
+        "entries_checked": 73,
+        "missing_headers": 7,
+        "missing_attestation": 58,
+        "advisory": 69,
         "blocking": 0
       },
       {
@@ -2184,8 +2184,8 @@
         "command": "node tools/validators/validate-register-reference-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "files_checked": 774,
+        "duration_seconds": 0.1,
+        "files_checked": 775,
         "advisory": 191,
         "blocking": 0
       },
@@ -2223,10 +2223,41 @@
         "command": "node tools/validators/validate-hook-activation-smoke.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 3.9,
+        "duration_seconds": 4,
         "hooks_tested": 9,
         "blocking": 0,
         "advisory": 4
+      },
+      {
+        "name": "route_manifest",
+        "command": "node tools/validators/validate-route-manifest.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "pages_found": 30,
+        "manifest_entries": 30,
+        "blocking": 0,
+        "advisory": 0
+      },
+      {
+        "name": "internal_links",
+        "command": "node tools/validators/validate-internal-links.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files_scanned": 72,
+        "blocking": 0,
+        "advisory": 0
+      },
+      {
+        "name": "fetch_resilience",
+        "command": "node tools/validators/validate-fetch-resilience.mjs",
+        "status": "PASS",
+        "exit_code": 0,
+        "duration_seconds": 0.1,
+        "files_with_fetch": 8,
+        "blocking": 0,
+        "advisory": 7
       },
       {
         "name": "blocking_determinism",
@@ -2234,17 +2265,18 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_scanned": 246,
+        "validators_scanned": 249,
         "blocking": 0,
         "advisory": 12
       },
       {
         "name": "green_receipt",
         "command": "node tools/validators/validate-green-receipt.mjs",
-        "status": "FAIL",
-        "exit_code": 1,
+        "status": "PASS",
+        "exit_code": 0,
         "duration_seconds": 0.1,
-        "tail": "[validate-green-receipt] FAIL\n  blocking=1 advisory=0\n  BLOCKING: HEAD mismatch\n    receipt HEAD: 8a4d89ee1d8d\n    current HEAD: 955fe7af5ad0\n    The green receipt was written for a different commit.\n    FIX: run `node tools/verify.mjs --skip-install` to refresh the receipt for the current HEAD.\n"
+        "head_prefix": "8082a11c",
+        "receipt_ts": "2026-06-22T05:23:57.276Z"
       },
       {
         "name": "agent_inheritance_parity",

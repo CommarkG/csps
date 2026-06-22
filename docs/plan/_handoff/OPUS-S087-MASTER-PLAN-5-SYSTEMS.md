@@ -94,6 +94,15 @@ Governor ratified (S087 close). PROTO-S088-SEQUENCE directive at: `docs/plan/_ha
 
 **Standing rule (Governor ratified S087):** ratified ⇒ platform standard + audit. Every ratification triggers: (a) creation-path update, (b) audit-runner entry, (c) registry row in ratified-standards.yaml.
 
+#### Phase 0.2 — Enforced Universal Threshold Intake (S088, no DB gate)
+Governor ratified (S088 mid-session). PROTO-S088-PHASE-0.2 directive: Opus #25 relay.
+| # | PROTO | DoD |
+|---|-------|-----|
+| 0.2 | **PROTO-S088-PHASE-0.2** — enforced chain: input→classify(4-axis)→modular-decompose(core+layers+branches)→PE-significance→route→CIE-write; capability_proposal type added; enforcement point: intake hook; dogfood on real S088 item | chain runs E2E + dogfood trace + CIE entry + ratified-standards entry + audit-runner entry + ZF |
+
+**Phase-0.2 STATUS (S088):**
+- ✅ PROTO-S088-PHASE-0.2 COMPLETE — HEAD=3b8e3e0b; threshold-chain.mjs + threshold-decompose.mjs built; validate-threshold-chain.mjs PASS blocking=0 advisory=0 passes=11; CIE cie-chain-insights.yaml (entries+learnings); dogfood trace pasted in SROF-S088-002; ratified-standards.yaml 8th entry (threshold-intake-chain); audit-runner threshold-chain entry; enforcement point: user-prompt-submit-intake.sh Phase-0.2 section
+
 #### Phase 2.1 — Journey Orchestrator (post-DB)
 - **PARK-043** journey orchestrator hardwires (risk-classed gate_mode): journey-gate · @csps-journey-phase DNA ·
   journey-event write-path · handoff journey-phase · dual-coverage. Deep-dive the mutual journey with REAL data.

@@ -74,3 +74,45 @@ entries:
   pe_final: 4.75
   route: "PROCESS-NOW"
   content_preview: "SMOKE-1782127835264-activation-test"
+- id: "chain-S087-1782130767043"
+  session: "S087"
+  timestamp: "2026-06-22T12:19:27.044Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 4.75
+  route: "PROCESS-NOW"
+  content_preview: "SMOKE-1782130763289-activation-test"
+- id: "chain-S087-1782130839606"
+  session: "S087"
+  timestamp: "2026-06-22T12:20:39.607Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 4.75
+  route: "PROCESS-NOW"
+  content_preview: "SMOKE-1782130836007-activation-test"
+- id: "chain-S088-1782130858101"
+  session: "S088"
+  timestamp: "2026-06-22T12:20:58.102Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 6.15
+  route: "PROCESS-NOW"
+  content_preview: "PROTO-S088-PHASE-0.2: build enforced universal threshold intake chain. input→classify(4-axis)→modula"
+- id: "dogfood-S088-PHASE-0.2"
+  session: "S088"
+  timestamp: "2026-06-22T12:21:00.000Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 6.15
+  route: "PROCESS-NOW"
+  content_preview: "DOGFOOD: PROTO-S088-PHASE-0.2 real directive run through chain"
+  learnings:
+    - "PE-significance.route_recommendation is PRIORITIZATION not routing override — classify.route IS the decision"
+    - "scope=operational (not constitutional) for S2 build directives — correct; constitutional reserved for platform-wide changes"
+    - "GVRN directive correctly produces ARCH+VALD cross-domain branches (chain build → code + validator)"
+    - "Chain runs end-to-end: classify(4-axis) → decompose(governance layer active, 2 branches) → PE(B=9,D=5,Bn=3,PAS=8,final=6.15,MEDIUM) → route(PROCESS-NOW) → CIE-write(true)"
+    - "EXISTS≠ACTIVE proof: chain was CALLED on a real directive, not just present in the codebase"

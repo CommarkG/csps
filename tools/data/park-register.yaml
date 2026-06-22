@@ -1207,6 +1207,25 @@ entries:
     created_session: S087
     closed_session: null
 
+  - id: "PARK-S088-001"
+    lane: obligation
+    disposition_text: "parked | owner: Opus | trigger: AFTER journey-core-spine sealed (✅ S088) + daily/weekly/monthly improvement loop built + Haiku restricted-tool spawn proven (PARK-039 resolved). Sequence: 1. journey-spine (done) → 2. daily-loop → 3. Haiku enabler → 4. Council Engine build."
+    disposition_session: S088
+    content: "COMMUNICATION HARVESTING + COUNCIL ENGINE (Pipeline B — capstone moat). Pipeline: tab comms (WHO/WARRANT/ACTION) → harvest/analyze (CEC+CIE) → park → extract cross-domain enhancement → ratify → Pipeline A (ratification-propagation) → standard+audit → conform. Council tiers: T0 solo · T1 core (Opus+Sonnet) · T2 expert-persona · T3 full · T4 full+external. Routing: scope×criticality routed by Threshold to appropriate council tier. NOTE: selectPersonas already seeds tiering infrastructure. Connects: PARK-S086-053 (circular orchestration loop = the HOW of this engine) + PARK-040 (Learning Orchestrator = the WHAT/LEARN component) + PROTO-S088-RATIFICATION-PROPAGATION (Pipeline A = the destination of ratified insights). This is the INTEGRATING engine: comms → insights → standards → platform DNA. GRADUATION: register first, build after daily-loop + Haiku enabler (same Haiku blocker as PARK-053). MOAT candidate: if this loop runs continuously on real platform work, it IS the self-harvesting platform that improves from every session."
+    retrieve_when: "After (1) daily/weekly/monthly improvement loop is built and (2) restricted-tool Haiku spawn is verified working (resolves PARK-039). At that point, Opus seeds the Pipeline B design. Build: Sonnet implements from seed."
+    never_drop: true
+    context_preserved: >
+      PROTO-S088-SEQUENCE (Opus #25) directive item ③: register now, build after prerequisites.
+      Pipeline A (PROTO-S088-RATIFICATION-PROPAGATION = ratified-standards.yaml + validate-ratification-propagation.mjs)
+      is built and ACTIVE as of S088. Pipeline B is the CAPSTONE that feeds Pipeline A from raw communication.
+      The comm-harvesting concept (CEC: Communication Excellence Cycle + CIE signals from comms) was the
+      S073 B_CADENCE_AUDIT vision expanded to full pipeline. Council tiers T0-T4 match the CSPS council
+      design (JOURNEY-CONNECTIVITY-AND-COUNCIL-S084.md). selectPersonas in tools/ already seeds T2-T4.
+    decision_back_ref: "Opus #25 PROTO-S088-SEQUENCE directive (S087 close, saved at docs/plan/_handoff/PROTO-S088-SEQUENCE-DIRECTIVE.md) § ③ REGISTER"
+    source_session: S088
+    created_session: S088
+    closed_session: null
+
   - id: "PARK-S087-001"
     lane: obligation
     disposition_text: "parked | owner: Opus | trigger: S088 opening directive — Opus sends the mechanization seed (which hook/validator enforces the two-party requirement, what the counter-signature format is, how DIRECTOR flag is set). Sonnet builds from the Opus seed. No Sonnet-only mechanization possible (requires Opus-side verification contract)."

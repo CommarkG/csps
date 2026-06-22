@@ -87,6 +87,11 @@ Governor ratified (S087 close). PROTO-S088-SEQUENCE directive at: `docs/plan/_ha
 | 2.0-② | **PROTO-S088-RATIFICATION-PROPAGATION** — Pipeline A: ratify→engrave→creation-path→audit; ratified-standards.yaml; validate-ratification-propagation.mjs; backfill 7 this-session ratifications | pipeline live + registry + validator PASS + backfill done + ZF |
 | 2.0-③ | **REGISTER: Comm-Harvesting + Council Engine** — Pipeline B (capstone moat); park only; council tiers T0-T4; sequence after journey-spine + daily-loop + Haiku enabler | PARK entry + master-plan entry only |
 
+**Phase-2.0 STATUS (S088):**
+- ✅ 2.0-①: PROTO-S088-JOURNEY-CORE-SPINE COMPLETE — HEAD=d1bb9b6d; JOURNEY-CORE-SPINE.md sealed; validate-journey-conformance.mjs PASS blocking=0; core-spine-registry journeys entry status=sealed
+- ✅ 2.0-②: PROTO-S088-RATIFICATION-PROPAGATION COMPLETE — HEAD=c48d0f35; ratified-standards.yaml (7 backfills); validate-ratification-propagation.mjs PASS blocking=0 advisory=1 (two-party-seal pending expected); Pipeline A LIVE
+- ✅ 2.0-③: REGISTER: Comm-Harvesting + Council Engine — PARK-S088-001 registered in park-register.yaml; owner=Opus; trigger=daily-loop+Haiku-enabler|
+
 **Standing rule (Governor ratified S087):** ratified ⇒ platform standard + audit. Every ratification triggers: (a) creation-path update, (b) audit-runner entry, (c) registry row in ratified-standards.yaml.
 
 #### Phase 2.1 — Journey Orchestrator (post-DB)

@@ -1,16 +1,10 @@
 {
   "blocking": 0,
-  "advisory": 1,
-  "passes": 21,
-  "standards_checked": 8,
-  "standards_complete": 7,
-  "standards_pending": 1,
-  "findings": [
-    {
-      "level": "ADVISORY",
-      "id": "two-party-seal",
-      "msg": "propagation_status=pending — creation-standard and audit not yet wired"
-    }
-  ],
-  "ran_at": "2026-06-22T13:43:27.723Z"
+  "advisory": 0,
+  "passes": 30,
+  "standards_checked": 10,
+  "standards_complete": 10,
+  "standards_pending": 0,
+  "findings": [],
+  "ran_at": "2026-06-22T17:46:47.488Z"
 }

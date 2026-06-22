@@ -2618,6 +2618,31 @@ const CYCLES = [
     skip_reason: 'audit-runner ships week-4 (planned per build-order.md week 4)',
     parse_output: () => ({}),
   },
+  // S088-HARDEN Gate A: submodule deliverable blindspot prevention
+  {
+    name: 'submodule_deliverable',
+    command: 'node tools/validators/validate-submodule-deliverable.mjs',
+    input_files: ['.gitmodules', 'tools/validators/validate-submodule-deliverable.mjs'],
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
+  // S088-HARDEN Gate B: two-party seal validation
+  {
+    name: 'two_party_seal',
+    command: 'node tools/validators/validate-two-party-seal.mjs',
+    input_files: ['tools/data/green-receipt.json', 'tools/validators/validate-two-party-seal.mjs'],
+    always_rerun: true,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -68,19 +68,22 @@ standards:
       SEAL = builder green-receipt + DIRECTOR counter-signed receipt at same HEAD.
       Builder may only set BUILD-COMPLETE. Director runs independent verify and counter-signs.
       Ends director-as-manual-safety-net pattern.
-    propagation_status: pending
-    pending_reason: >
-      PARK-S087-001: mechanization seed needed from Opus at S088 open.
-      Pending choice: (a) extend green-receipt.json with director_countersign field,
-      or (b) separate director-receipt.json. Until resolved, two-party seal is manual.
+    propagation_status: complete
+    mechanized_session: S088
+    mechanized_by: "PROTO-S088-PHASE-0.3-HARDEN Gate B — see two-party-seal-mechanized entry"
     creation_standard:
-      type: pending
-      path: null
-      requirement: "pending mechanization (PARK-S087-001)"
+      type: json-schema-extension
+      path: tools/data/green-receipt.json
+      requirement: >
+        green-receipt.json MAY contain director_seal:{by,head,tree_hash,ts}.
+        When present, director_seal.head MUST == receipt.HEAD and
+        director_seal.tree_hash MUST == receipt.tree_hash.
+        Opus director adds the field after independent verify.
+        validate-two-party-seal.mjs BLOCKING on mismatch.
     audit_entry:
-      validator: null
-      cadence: null
-      audit_runner_key: null
+      validator: validate-two-party-seal.mjs
+      cadence: per-session + pre-seal
+      audit_runner_key: two_party_seal
 
   - id: insist-on-completion
     name: B_INSIST_ON_COMPLETION
@@ -167,6 +170,53 @@ standards:
       validator: validate-frontmatter.mjs
       cadence: per-session
       audit_runner_key: frontmatter-completeness
+
+  - id: submodule-deliverable-gate
+    name: Submodule Deliverable Gate (PROTO-S088-HARDEN-A)
+    ratified_session: S088
+    ratified_by: "PROTO-S088-PHASE-0.3-HARDEN Gate A (Opus #25 directive)"
+    ratified_at: "2026-06-22"
+    description: >
+      Green must be impossible to reach while a shippable deliverable is uncommitted inside
+      a tracked git submodule. BLOCKS when any submodule has: (a) untracked source files
+      under src/**, app/**, components/**, scripts/**, or (b) parent pointer behind submodule HEAD.
+      Block-test: plants untracked file in src/ → confirms validator exits 1 → removes file.
+    propagation_status: complete
+    creation_standard:
+      type: gitignore-policy
+      path: apps/csps-playground/.gitignore
+      requirement: >
+        Any build-output directory (.next/, tsconfig.tsbuildinfo) in any submodule MUST be
+        in that submodule's .gitignore. validate-submodule-deliverable.mjs enforces that
+        source files are committed; .gitignore prevents build artifacts masking real dirty signal.
+    audit_entry:
+      validator: validate-submodule-deliverable.mjs
+      cadence: per-session
+      audit_runner_key: submodule_deliverable
+
+  - id: two-party-seal-mechanized
+    name: B_TWO_PARTY_SEAL — mechanized (PROTO-S088-HARDEN-B)
+    ratified_session: S088
+    ratified_by: "PROTO-S088-PHASE-0.3-HARDEN Gate B (Opus #25 directive; extends B_TWO_PARTY_SEAL S086)"
+    ratified_at: "2026-06-22"
+    description: >
+      Mechanizes the B_TWO_PARTY_SEAL ratified S086. SEAL = builder green-receipt at HEAD
+      + DIRECTOR counter-sign at SAME HEAD and SAME tree_hash. Schema: green-receipt.json
+      extended with director_seal:{by,head,tree_hash,ts}. Validator ADVISORY when no seal
+      (BUILD-COMPLETE only), BLOCKING when seal present but head/tree_hash MISMATCHES.
+      Block-test: injects mismatched director_seal.tree_hash → confirms exit 1 → restores.
+    propagation_status: complete
+    creation_standard:
+      type: json-schema-extension
+      path: tools/data/green-receipt.json
+      requirement: >
+        green-receipt.json MAY contain director_seal:{by,head,tree_hash,ts}. When present,
+        director_seal.head MUST == receipt.HEAD and director_seal.tree_hash MUST == receipt.tree_hash.
+        Opus director adds the field after independent verify. validate-two-party-seal.mjs enforces.
+    audit_entry:
+      validator: validate-two-party-seal.mjs
+      cadence: per-session + pre-seal
+      audit_runner_key: two_party_seal
 
   - id: threshold-intake-chain
     name: Enforced Universal Threshold Intake Chain (Phase-0.2)

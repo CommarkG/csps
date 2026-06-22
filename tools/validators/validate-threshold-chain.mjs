@@ -9,6 +9,12 @@
  * BLOCKING if any structural check fails. ADVISORY for non-structural gaps.
  * Writes last-run JSON to tools/data/validate-threshold-chain-last-run.json.
  *
+ * @determinism-exempt: new Date().toISOString() is used ONLY to record ran_at metadata
+ *   in the last-run JSON output file. The blocking decision (script exists / chain runs /
+ *   required fields present / CIE entry exists) is purely deterministic — no clock value
+ *   influences whether the validator exits 0 or 1. The timestamp is stored for audit trail
+ *   only and never read back in the blocking path.
+ *
  * @csps-dna core_spine: VALD
  * @csps-id csps.validators.validate-threshold-chain
  */

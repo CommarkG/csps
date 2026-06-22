@@ -15121,3 +15121,9 @@ Inline/modal/popup vs dedicated-page = DNA axis (registered in park-register.yam
 - Obligations re-derived from committed registers, not chat/tab memory.
 RESIDUALS (NOT sealed — carried to completion sweep): blocking-determinism backstop in ADVISORY (43 pre-existing time-dependent blocking validators not yet migrated → B_DETERMINISTIC_GATE not fully ENFORCING); agent-inheritance-parity scan incomplete; green-receipt advisory-ordering limitation; D-fold (audit pre-commit) unbuilt; AQ PARK-042/045/insights pending disposition.
 WHO=Opus#25 · WARRANT=independent HEAD-isolation verify of 8a4d89ee · ACTION=receipt written + completion sweep insisted.
+
+## S086 — DIRECTOR SEAL (Opus #25 counter-signature) — HEAD 74e6e262
+[MEASURED] Independent HEAD-isolation verify reproduces exit_code=0 at 74e6e262; green-receipt HEAD == current HEAD; completion-gate this_session_undisposed=0; C6 receipt present; HANDOFF-S086-to-S087 = 9/9 opens dispositioned (owner+trigger); blocking-determinism ENFORCING (43->0).
+SEAL CONFERRED: S086 sealed under the two-party rule (builder green-receipt + director counter-signature at the same HEAD).
+NOTE: this counter-signature was performed MANUALLY this once — to be mechanized as B_TWO_PARTY_SEAL (S087) so seal never again depends on the director remembering to re-verify.
+WHO=Opus#25 | WARRANT=independent verify of 74e6e262 | ACTION=seal conferred + B_TWO_PARTY_SEAL proposed for S087.

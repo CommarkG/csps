@@ -1,64 +1,8 @@
 {
-  "total_scanned": 3,
+  "total_scanned": 1,
   "total_exempted": 0,
-  "total_findings": 9,
+  "total_findings": 1,
   "findings": [
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "i am",
-      "count": 3,
-      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    },
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "you are",
-      "count": 3,
-      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    },
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "this is",
-      "count": 3,
-      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    },
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "do now",
-      "count": 3,
-      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    },
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "date",
-      "count": 3,
-      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    },
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "warrant",
-      "count": 3,
-      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    },
-    {
-      "pattern": "C",
-      "type": "definition",
-      "item": "action",
-      "count": 3,
-      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    },
-    {
-      "pattern": "D",
-      "type": "example",
-      "item": "4 code blocks",
-      "count": 4,
-      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
-    },
     {
       "pattern": "G",
       "type": "structural-id-collision",
@@ -67,5 +11,5 @@
       "file": "D1-humble-consolidation-default.md"
     }
   ],
-  "ran_at": "2026-06-22T10:51:11.347Z"
+  "ran_at": "2026-06-22T13:42:55.443Z"
 }

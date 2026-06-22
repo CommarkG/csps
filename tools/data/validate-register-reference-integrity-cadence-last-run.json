@@ -1,8 +1,8 @@
 [validate-register-reference-integrity] PASS
-  files_checked=779 advisory=200 blocking=0
-  known_ids: PARK=66 PROTO=70 MOAT=44 IMP=30 GAP=20 SEED=13
+  files_checked=781 advisory=224 blocking=0
+  known_ids: PARK=66 PROTO=64 MOAT=44 IMP=30 GAP=20 SEED=13
 
-[validate-register-reference-integrity] findings (top 20 of 200):
+[validate-register-reference-integrity] findings (top 20 of 224):
   ADVISORY: PROTO-S051-2 (PROTO) in docs\plan\_handoff\HANDOFF-S051-to-S052.md -> register: tools/council/opus-turn.md
   ADVISORY: PROTO-S052-A (PROTO) in docs\plan\_handoff\HANDOFF-S051-to-S052.md -> register: tools/council/opus-turn.md
   ADVISORY: imp_FROM_TO (IMP) in docs\plan\_handoff\HANDOFF-S054-to-S055.md -> register: tools/data/improvement-register.yaml
@@ -23,4 +23,4 @@
   ADVISORY: PROTO-S063-GRADUAL-BUILD-ENFORCEMENT (PROTO) in docs\plan\_handoff\HANDOFF-S062-C4-to-S062-C5.md -> register: tools/council/opus-turn.md
   ADVISORY: PROTO-S063-TEMPLATE-CITATION-VALIDATOR (PROTO) in docs\plan\_handoff\HANDOFF-S062-C4-to-S062-C5.md -> register: tools/council/opus-turn.md
   ADVISORY: PROTO-S063-TEMPLATE-ENV-EXAMPLE (PROTO) in docs\plan\_handoff\HANDOFF-S062-C4-to-S062-C5.md -> register: tools/council/opus-turn.md
-  ... and 180 more
+  ... and 204 more

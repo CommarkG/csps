@@ -15,7 +15,9 @@ diataxis_type: reference
 schema_anchor: vault_files
 lifecycle: production
 lifecycle_state: active
-status: draft
+status: sealed
+sealed_session: S088
+sealed_by: "PROTO-S088-JOURNEY-CORE-SPINE (Opus #25 directive)"
 impl_status: audit-1-complete
 precedent_checked: true
 links:

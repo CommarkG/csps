@@ -1,21 +1,21 @@
 {
-  "total_scanned": 4,
+  "total_scanned": 5,
   "total_exempted": 0,
   "total_findings": 3,
   "findings": [
     {
       "pattern": "C",
       "type": "definition",
-      "item": "expected",
+      "item": "mandate",
       "count": 3,
-      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\HANDOFF-S087-to-S088.md"
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\PROTO-S088-SEQUENCE-DIRECTIVE.md"
     },
     {
       "pattern": "D",
       "type": "example",
       "item": "4 code blocks",
       "count": 4,
-      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
+      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
     },
     {
       "pattern": "G",
@@ -25,5 +25,5 @@
       "file": "D1-humble-consolidation-default.md"
     }
   ],
-  "ran_at": "2026-06-22T09:38:37.895Z"
+  "ran_at": "2026-06-22T09:56:50.789Z"
 }

@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-22T09:40:36.876Z
-- finished_at: 2026-06-22T09:41:05.897Z
-- exit_code: 0
+- ran_at: 2026-06-22T10:17:29.225Z
+- finished_at: 2026-06-22T10:17:58.606Z
+- exit_code: 1
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-22T09:40:36.876Z",
-    "finished_at": "2026-06-22T09:41:05.897Z",
+    "ran_at": "2026-06-22T10:17:29.225Z",
+    "finished_at": "2026-06-22T10:17:58.606Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -22,7 +22,7 @@
         "command": "pnpm -r --filter \"./packages/**\" typecheck",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.6,
+        "duration_seconds": 1.7,
         "ts_errors": 0
       },
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.9,
+        "duration_seconds": 1,
         "principles_loaded": 78,
         "findings_total": 32
       },
@@ -49,9 +49,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "scanned": 805,
+        "scanned": 807,
         "errors": 0,
-        "warnings": 224,
+        "warnings": 225,
         "exempt": 356
       },
       {
@@ -191,9 +191,9 @@
         "command": "node tools/validators/validate-dead-links.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "files": 201,
-        "links": 880,
+        "duration_seconds": 0.1,
+        "files": 202,
+        "links": 886,
         "broken": 71
       },
       {
@@ -222,8 +222,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.7,
-        "checked": 167,
-        "advisories": 156
+        "checked": 168,
+        "advisories": 157
       },
       {
         "name": "completeness_coverage",
@@ -296,7 +296,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 142,
+        "checked": 143,
         "blocking": 0,
         "advisories": 0
       },
@@ -307,7 +307,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "routes": 25,
-        "validators": 249,
+        "validators": 250,
         "models": 0,
         "advisories": 0
       },
@@ -356,8 +356,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 725,
-        "clean": 725,
+        "checked": 727,
+        "clean": 727,
         "blocking": 0,
         "registry": 71
       },
@@ -440,7 +440,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "scanned": 1525,
+        "scanned": 1528,
         "advisory": 133,
         "code_advisory": 9
       },
@@ -481,8 +481,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 309,
-        "missing": 185,
+        "checked": 310,
+        "missing": 186,
         "invalid": 0,
         "exempt": 2
       },
@@ -566,7 +566,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 334,
+        "checked": 335,
         "blocking": 0,
         "advisories": 0
       },
@@ -623,9 +623,9 @@
         "command": "node tools/validators/validate-naming-convention.mjs --scan-new",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "issues": 0,
-        "advisory": 0,
+        "duration_seconds": 0.1,
+        "issues": 1,
+        "advisory": 1,
         "duplicates": 0
       },
       {
@@ -702,7 +702,7 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "with_cq": 247,
-        "total": 620,
+        "total": 622,
         "pct": 40
       },
       {
@@ -712,8 +712,8 @@
         "exit_code": 1,
         "duration_seconds": 0.1,
         "session": "S087",
-        "validators": 250,
-        "tail": "  RECOMMENDED ACTIONS:\n  1. SAP Sweep 6 (Synergy Audit) — walk platform for cross-enhancement opportunities\n  2. CEC walk — iterate until 0 new opportunities found\n  3. Create session extraction: docs/plan/_handoff/VAULT/session-S<NNN>-extraction.md\n  4. Register positive patterns in inner-AI-defaults/continuous-drift-log.md\n\n  Per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION: significant sessions deserve extraction.\n\n[validate-session-harvest-readiness] session=S087 validators=250 extraction=MISSING status=HARVEST_READY\n"
+        "validators": 251,
+        "tail": "  RECOMMENDED ACTIONS:\n  1. SAP Sweep 6 (Synergy Audit) — walk platform for cross-enhancement opportunities\n  2. CEC walk — iterate until 0 new opportunities found\n  3. Create session extraction: docs/plan/_handoff/VAULT/session-S<NNN>-extraction.md\n  4. Register positive patterns in inner-AI-defaults/continuous-drift-log.md\n\n  Per P-META-006 CEC + B_POSITIVE_VALUE_EXTRACTION: significant sessions deserve extraction.\n\n[validate-session-harvest-readiness] session=S087 validators=251 extraction=MISSING status=HARVEST_READY\n"
       },
       {
         "name": "prose_no_confirmation_seeking",
@@ -791,10 +791,11 @@
       {
         "name": "universal_alignment",
         "command": "node tools/validators/validate-universal-alignment.mjs --scan-new",
-        "status": "PASS",
-        "exit_code": 0,
+        "status": "FAIL",
+        "exit_code": 1,
         "duration_seconds": 0.2,
-        "files": 0
+        "files": 0,
+        "tail": "\n⚠ docs/plan/pillar-0-governance/JOURNEY-CORE-SPINE.md (1 alignment gap(s)):\n  → Missing impl_status — add swift-implemented|audit-1-complete|sealed-zf per frontmatter-closed-enums.md\n"
       },
       {
         "name": "import_quarantine",
@@ -826,7 +827,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "checked": 158,
+        "checked": 159,
         "with_status": 97,
         "warnings": 0
       },
@@ -1068,7 +1069,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 1,
+        "warnings": 2,
         "advisory": true
       },
       {
@@ -1095,9 +1096,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_checked": 250,
+        "validators_checked": 251,
         "orphans": 0,
-        "registered": 250
+        "registered": 251
       },
       {
         "name": "token_budget_validate",
@@ -1208,8 +1209,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_checked": 0,
-        "dna_ok": 0,
+        "files_checked": 1,
+        "dna_ok": 1,
         "advisory": 0,
         "blocking": 0
       },
@@ -1348,9 +1349,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "scanned": 344,
+        "scanned": 345,
         "with_reminder": 1,
-        "without_reminder": 272,
+        "without_reminder": 273,
         "stale_refs": 0,
         "advisory": true
       },
@@ -1501,8 +1502,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "new_permanent_files": 0,
-        "advisory": 0,
+        "new_permanent_files": 2,
+        "advisory": 1,
         "blocking": 0
       },
       {
@@ -1592,9 +1593,9 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.3,
-        "files_checked": 756,
-        "findings": 9507,
-        "advisory": 9507
+        "files_checked": 758,
+        "findings": 9518,
+        "advisory": 9518
       },
       {
         "name": "nominal_rzf_detector",
@@ -1829,8 +1830,8 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
-        "files_checked": 172,
+        "duration_seconds": 0.1,
+        "files_checked": 173,
         "blocking": 0,
         "advisory": 26
       },
@@ -1851,10 +1852,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total": 245,
+        "total": 246,
         "deferred": 11,
-        "empty_output": 20,
-        "zero_numeric": 26,
+        "empty_output": 21,
+        "zero_numeric": 22,
         "advisory": 3,
         "blocking": 0
       },
@@ -1875,7 +1876,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 1067,
+        "total_entries": 1080,
         "sessions": 12,
         "advisory": true
       },
@@ -2068,7 +2069,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 0,
+        "files_scanned": 1,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0
@@ -2080,10 +2081,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocks_checked": 0,
-        "proto_citations": 195,
+        "proto_citations": 204,
         "valid": 6,
-        "missing": 189,
-        "advisory": 189,
+        "missing": 198,
+        "advisory": 198,
         "blocking": 0
       },
       {
@@ -2173,10 +2174,10 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.6,
-        "entries_checked": 70,
+        "entries_checked": 71,
         "missing_headers": 6,
-        "missing_attestation": 55,
-        "advisory": 66,
+        "missing_attestation": 56,
+        "advisory": 67,
         "blocking": 0
       },
       {
@@ -2185,8 +2186,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "files_checked": 777,
-        "advisory": 200,
+        "files_checked": 779,
+        "advisory": 202,
         "blocking": 0
       },
       {
@@ -2223,7 +2224,7 @@
         "command": "node tools/validators/validate-hook-activation-smoke.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 4.1,
+        "duration_seconds": 4,
         "hooks_tested": 9,
         "blocking": 0,
         "advisory": 4
@@ -2265,18 +2266,17 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "validators_scanned": 249,
+        "validators_scanned": 250,
         "blocking": 0,
         "advisory": 12
       },
       {
         "name": "green_receipt",
         "command": "node tools/validators/validate-green-receipt.mjs",
-        "status": "PASS",
-        "exit_code": 0,
-        "duration_seconds": 0.2,
-        "head_prefix": "f3b120d8",
-        "receipt_ts": "2026-06-22T09:40:36.523Z"
+        "status": "FAIL",
+        "exit_code": 1,
+        "duration_seconds": 0.1,
+        "tail": "[validate-green-receipt] FAIL\n  blocking=1 advisory=0\n  BLOCKING: tree_hash mismatch — tracked content changed since last verify\n    receipt tree_hash: 7f0429431cd0a3c4\n    current tree_hash: 468711b48ad8b9f5\n    Code or config changed after the last successful verify run.\n    FIX: run `node tools/verify.mjs --skip-install` to refresh the receipt.\n"
       },
       {
         "name": "agent_inheritance_parity",
@@ -2361,8 +2361,8 @@
         "command": "node tools/validators/validate-trunk-matches-seed.mjs",
         "status": "CACHED",
         "exit_code": 0,
-        "cached_at": "2026-06-20T03:32:00.071Z",
-        "input_hash_prefix": "5ed3b1cb",
+        "cached_at": "2026-06-22T10:16:15.864Z",
+        "input_hash_prefix": "4cf2a7fa",
         "checked": 12,
         "invariants": 5,
         "phases": 5,
@@ -2381,6 +2381,17 @@
         "advisory": 1
       },
       {
+        "name": "journey_conformance",
+        "command": "node tools/validators/validate-journey-conformance.mjs",
+        "status": "CACHED",
+        "exit_code": 0,
+        "cached_at": "2026-06-22T10:16:15.929Z",
+        "input_hash_prefix": "c1f7d8be",
+        "blocking": 0,
+        "advisory": 0,
+        "passes": 8
+      },
+      {
         "name": "hash_cache",
         "command": "node tools/validators/validate-hash-cache.mjs",
         "status": "PASS",
@@ -2388,7 +2399,7 @@
         "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 0,
-        "cache_entries": 7
+        "cache_entries": 8
       },
       {
         "name": "audit_runner_full_pass",
@@ -2397,7 +2408,7 @@
         "skip_reason": "audit-runner ships week-4 (planned per build-order.md week 4)"
       }
     ],
-    "exit_code": 0,
+    "exit_code": 1,
     "strict_mode": false
   }
 }

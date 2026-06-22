@@ -1,0 +1,14 @@
+{
+  "blocking": 0,
+  "advisory": 0,
+  "passes": 8,
+  "findings": [],
+  "checks_run": 4,
+  "files_checked": [
+    "docs/plan/pillar-0-governance/JOURNEY-CORE-SPINE.md",
+    "tools/config/core-spine-registry.yaml (journeys entry)",
+    "docs/plan/pillar-0-governance/journey-closed-enums.yaml",
+    "tools/data/seed2-gate-mode-matrix.json"
+  ],
+  "ran_at": "2026-06-22T10:16:15.917Z"
+}

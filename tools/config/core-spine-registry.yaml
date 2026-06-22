@@ -530,12 +530,12 @@ spines:
 
   - id: journeys
     spine: GVRN
-    status: sandbox
+    status: sealed
     authored_session: S084
     authored_by: "OPUS-22 (seed) + Sonnet S084 (build)"
-    ratified_session: null  # Governor seals the trunk at B1 exit gate (OPIA)
-    ratified_by: null
-    ratified_date: null
+    ratified_session: S088
+    ratified_by: "PROTO-S088-JOURNEY-CORE-SPINE (Opus #25 Governor-ratified directive)"
+    ratified_date: "2026-06-22"
     # ── 1. trunk — THE SEALED CORE: invariants C1-C5 + phases P1-P5 ──────────
     # Verbatim from JOURNEY-SEEDS-S084.md SEED-1 (OPUS-22 authored).
     # SEALED — changing any C-invariant or P-phase requires boundary-crossing protocol.
@@ -585,25 +585,25 @@ spines:
         variant: fast
         risk_class_map: "low -> fast"
         description: "Lightweight journey variant for low-risk intents. ZF/PE advisory at P2/P3."
-        status: sandbox
+        status: sealed
       - id: B2
         name: standard
         variant: standard
         risk_class_map: "standard -> standard"
         description: "Default journey variant. Blocking gates at PEG-3 (PE) and PEG-4/5 (ZF). Inner council."
-        status: sandbox
+        status: sealed
       - id: B3
         name: governed
         variant: governed
         risk_class_map: "elevated|critical -> governed"
         description: "Full PEG enforcement. Expert council at P3; cross-actor ratify-ZF at P4. External council on critical."
-        status: sandbox
+        status: sealed
       - id: B4
         name: exploratory
         variant: exploratory
         activation: "Explicit opt-in only (F1). Permission floor: core_dev+. Non-empty justification required. Override + justification logged (SEED-8). Rejected override falls back to risk_class variant."
         description: "Research/experimental variant. Gates relaxed where matrix allows; never below trunk floors."
-        status: sandbox
+        status: sealed
     # ── 3. alignment_map ─────────────────────────────────────────────────────
     alignment_map:
       schema_anchor: vault_files
@@ -621,6 +621,9 @@ spines:
         status: ACTIVE
       - file: tools/verify.mjs
         role: "P4: ZF evidence gate — live re-run required at PEG-4/5 for elevated/critical (SEED-5 high-stakes tier)"
+        status: ACTIVE
+      - file: docs/plan/pillar-0-governance/JOURNEY-CORE-SPINE.md
+        role: "Sealed L0 definition — journey = governed goal→verified-completion; mandatory parts + fork points + branches; validate-journey-conformance.mjs anchor (S088)"
         status: ACTIVE
       - file: docs/plan/pillar-0-governance/JOURNEY-ORCHESTRATOR-PLAN.md
         role: "Orchestrator build plan §2 B1-B5; lifecycle DRAFT→SANDBOX→SIMULATED→RATIFIED→IMPLEMENTING"

@@ -2532,6 +2532,27 @@ const CYCLES = [
     },
   },
   {
+    // S088 PROTO-S088-JOURNEY-CORE-SPINE — Journey Core Spine structural conformance.
+    // Validates: (1) JOURNEY-CORE-SPINE.md exists+sealed; (2) journeys entry has C1-C5+P1-P5+4 branches;
+    // (3) journey-closed-enums.yaml has all 9 enum keys; (4) seed2-gate-mode-matrix.json exists.
+    // BLOCKING on structural violations; ADVISORY on non-structural gaps.
+    name: 'journey_conformance',
+    command: 'node tools/validators/validate-journey-conformance.mjs',
+    input_files: [
+      'docs/plan/pillar-0-governance/JOURNEY-CORE-SPINE.md',
+      'tools/config/core-spine-registry.yaml',
+      'docs/plan/pillar-0-governance/journey-closed-enums.yaml',
+      'tools/data/seed2-gate-mode-matrix.json',
+      'tools/validators/validate-journey-conformance.mjs',
+    ],
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
+  {
     // PROTO-S084-HASH-CACHE block-test: proves anti-nominal DONE guard is structurally wired.
     // Checks: cache structure valid + always_rerun validators not cached + --no-cache in push-gate hook.
     // BLOCKING if any HIGH-STAKES validator found in cache (would mean guard is broken).

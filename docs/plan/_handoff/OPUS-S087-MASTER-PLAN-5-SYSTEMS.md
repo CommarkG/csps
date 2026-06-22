@@ -78,6 +78,18 @@ gating every actor action and **branching** the journey by consumer (developer v
 - **PARK-009:** rotate Supabase pw → `prisma db push`. Unlocks journey-event persistence + system 5 schema.
 
 ### PHASE 2 — post-db — "mutual journey core, persistent"
+
+#### Phase 2.0 — Pre-DB Pipelines + Core-Spines (S088, no DB gate)
+Governor ratified (S087 close). PROTO-S088-SEQUENCE directive at: `docs/plan/_handoff/PROTO-S088-SEQUENCE-DIRECTIVE.md`.
+| # | PROTO | DoD |
+|---|-------|-----|
+| 2.0-① | **PROTO-S088-JOURNEY-CORE-SPINE** — seal Journey as ratified core-spine entry; L0 definition + mandatory parts + fork-points + branches; validate-journey-conformance.mjs BLOCKING | spine doc + schema committed + validator PASS + ZF C1/C2/C3 |
+| 2.0-② | **PROTO-S088-RATIFICATION-PROPAGATION** — Pipeline A: ratify→engrave→creation-path→audit; ratified-standards.yaml; validate-ratification-propagation.mjs; backfill 7 this-session ratifications | pipeline live + registry + validator PASS + backfill done + ZF |
+| 2.0-③ | **REGISTER: Comm-Harvesting + Council Engine** — Pipeline B (capstone moat); park only; council tiers T0-T4; sequence after journey-spine + daily-loop + Haiku enabler | PARK entry + master-plan entry only |
+
+**Standing rule (Governor ratified S087):** ratified ⇒ platform standard + audit. Every ratification triggers: (a) creation-path update, (b) audit-runner entry, (c) registry row in ratified-standards.yaml.
+
+#### Phase 2.1 — Journey Orchestrator (post-DB)
 - **PARK-043** journey orchestrator hardwires (risk-classed gate_mode): journey-gate · @csps-journey-phase DNA ·
   journey-event write-path · handoff journey-phase · dual-coverage. Deep-dive the mutual journey with REAL data.
 - Re-run the dogfood loop persistently; CIE now learns across sessions.
@@ -120,6 +132,11 @@ Each system is "done" only when: (a) wired end-to-end (not a stub), (b) dogfoode
 - Each phase close runs the completion session (insist-on-completion): every open → disposition.
 - CIE insights from dogfooding feed back here as plan refinements (the plan improves from real usage).
 - Obligations-ledger remains the enumerable open-items view; this plan maps each to a phase.
+- **STANDING RULE (Governor ratified S087):** ratified ⇒ platform standard + audit.
+  Every ratification must trigger within the same session: (a) creation-path update (template/generator/DNA tag),
+  (b) audit-runner entry with cadence, (c) row in `tools/data/ratified-standards.yaml`.
+  Enforced by: validate-ratification-propagation.mjs (BLOCKING, PROTO-S088-②).
+  No ratify-without-propagation.
 
 ## 8. CARRIED OBLIGATIONS + PARKS MAPPED TO PHASES
 - PARK-009 (db-push) → Phase 1. PARK-043 (journey hardwires) → Phase 2. PARK-042 (dispatch arm) → Phase 2.

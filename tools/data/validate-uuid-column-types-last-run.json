@@ -19,5 +19,5 @@
       "msg": "FK field 'axisId': missing @db.Uuid — apply after Base/AppendOnlyBase migration"
     }
   ],
-  "ran_at": "2026-06-22T09:07:52.150Z"
+  "ran_at": "2026-06-22T09:40:53.662Z"
 }

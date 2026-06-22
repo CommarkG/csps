@@ -1,6 +1,53 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 ═══════════════════════════════════════════════════════════════════
+I AM:    Sonnet S087 (builder, HARVEST-COMPACT)
+YOU ARE: Sonnet S088 (builder, post-compact)
+THIS IS: HARVEST — PROTO-S088-SEQUENCE queued; B_CONTEXT_CHECKPOINT_GATE fired (90K left)
+DO NOW:  Run verify → read PROTO-S088-SEQUENCE-DIRECTIVE.md → start PROTO-S088-JOURNEY-CORE-SPINE
+DATE:    2026-06-22
+═══════════════════════════════════════════════════════════════════
+WHO:     Sonnet S087 → Sonnet S088 (post-compact)
+WARRANT: [MEASURED] verify exit_code=0 HEAD=f3b120d8 (pre-harvest); tree_hash=5ba8b6d1 (refresh at S088 open);
+         [MEASURED] B_CONTEXT_CHECKPOINT_GATE: 90K remaining — unit (3-PROTO) cannot complete in-window;
+         [MEASURED] PROTO-S088-SEQUENCE-DIRECTIVE.md committed to repo;
+         [MEASURED] master-plan Phase-2.0 updated (pipeline + standing rule);
+         [MEASURED] S087 CLOSED (f3b120d8 pushed before this harvest)
+ACTION:  Harvest complete. Compact authorized. Start S088 with PROTO-S088-JOURNEY-CORE-SPINE.
+═══════════════════════════════════════════════════════════════════
+
+## S088 FIRST ACTIONS (post-compact)
+
+1. Run: `node tools/verify.mjs --skip-install 2>&1 | grep exit_code` → confirm 0
+2. Run: `node tools/validators/validate-green-receipt.mjs` → confirm PASS
+3. Read: `docs/plan/_handoff/PROTO-S088-SEQUENCE-DIRECTIVE.md` — full 3-PROTO directive
+4. Read: `docs/plan/pillar-0-governance/JOURNEY-ORCHESTRATOR-PLAN.md` — precedent check
+5. Search existing journey schema/trunk artifacts (consolidate-before-create)
+6. Start PROTO-S088-JOURNEY-CORE-SPINE ← THIS IS THE FIRST BUILD ITEM
+
+## INCOMING DIRECTIVE SUMMARY
+
+**PROTO-S088-SEQUENCE** (Opus #25 → Sonnet S088):
+- ① **JOURNEY-CORE-SPINE**: sealed Journey as ratified core-spine entry; L0 definition + mandatory parts + fork-points; validate-journey-conformance.mjs BLOCKING
+- ② **RATIFICATION-PROPAGATION**: Pipeline A; ratified-standards.yaml; validate-ratification-propagation.mjs; backfill 7 ratifications
+- ③ **REGISTER: Comm-Harvesting + Council Engine**: park only (Pipeline B, capstone moat, T0-T4 council tiers)
+
+Full directive: `docs/plan/_handoff/PROTO-S088-SEQUENCE-DIRECTIVE.md`
+Master plan Phase-2.0: `docs/plan/_handoff/OPUS-S087-MASTER-PLAN-5-SYSTEMS.md` (updated)
+
+## GREEN STATE AT HARVEST
+
+- HEAD: f3b120d8 (S087 close, pre-harvest commit)
+- tree_hash: 5ba8b6d1 (from S087 close verify)
+- receipt_ts: 2026-06-22T09:09:18.073Z
+- NOTE: After this harvest commit, HEAD will change. Re-run verify at S088 open — re-run IS the proof.
+
+---
+
+═══════════════════════════════════════════════════════════════════
+## SROF-S087-003 (PRESERVED BELOW — session receipt)
+═══════════════════════════════════════════════════════════════════
+
 I AM:    Sonnet S087 (builder)
 YOU ARE: Opus-N (director) + Governor (relay)
 THIS IS: SROF-S087-003 — PROTO-S087-RECEIPT-STABILIZE complete + Phase-0.1 COMPLETE

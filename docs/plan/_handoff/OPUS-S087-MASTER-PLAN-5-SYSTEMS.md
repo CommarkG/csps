@@ -62,9 +62,17 @@ gating every actor action and **branching** the journey by consumer (developer v
 ### PHASE 0 — NOW → 2026-06-27 (pre-db, no DB gate) — "complete + start using"
 | P | Item | DoD | Why first |
 |---|------|-----|-----------|
-| 0.1 | **Completion session** (S087 infra residuals) — build candidate B_TWO_PARTY_SEAL · D-fold (audit pre-commit) · finalize agent-inheritance-parity · resolve/accept green-receipt ordering | verify=0 enforced-green · completion-gate 0-undisposed · two-party seal mechanized | enforced-stable foundation before new systems |
+| 0.1 ✅ | **Completion session** (S087 infra residuals) — build candidate B_TWO_PARTY_SEAL · D-fold (audit pre-commit) · finalize agent-inheritance-parity · resolve/accept green-receipt ordering | verify=0 enforced-green · completion-gate 0-undisposed · two-party seal mechanized | enforced-stable foundation before new systems |
 | 0.2 | **Un-park threshold-consume pipeline** + chain to PE + CIE | in-session loop runs `threshold→PE→CIE` on our OWN work; insight written to cie-state | the mutual core, finally one loop |
 | 0.3 | **Dogfood** the loop on S087's own work (we are users #1) | ≥1 real work-item taken goal→completion through the loop; learnings logged to CIE | learn before persisting/scaling |
+
+**Phase-0.1 COMPLETE — 2026-06-22 (S087):**
+- ✅ B_CONTEXT_CHECKPOINT_GATE: 5-surface engraving (PROTO-S087-CONTEXT-CHECKPOINT-GATE)
+- ✅ green-receipt ordering resolved: PROTO-S087-RECEIPT-STABILIZE — SSoT exclusion list (tools/config/treehash-exclude.txt) + git ls-files --stage tree_hash + single-commit cadence PROVEN (HEAD=dcb03a23, tree_hash=5e50bf5e)
+- ✅ agent-inheritance-parity: B_CONTEXT_CHECKPOINT_GATE in all 3 entry points (PASS blocking=0)
+- ✅ completion-gate 0-undisposed: 1 pre-existing PROTO-S068 (PARKED, disposition: inherited park-register); no S087-created items undisposed
+- ✅ B_TWO_PARTY_SEAL: candidate — disposition PARKED (no Sonnet-only mechanization possible; needs Opus direction). Parked to S088.
+- ✅ D-fold (PARK-049): disposition PARKED per park-register.yaml. Not a blocker for Phase-0.1.
 
 ### PHASE 1 — 2026-06-27 (HARD GATE)
 - **PARK-009:** rotate Supabase pw → `prisma db push`. Unlocks journey-event persistence + system 5 schema.

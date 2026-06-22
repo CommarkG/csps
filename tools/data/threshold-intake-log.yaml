@@ -10916,3 +10916,19 @@
   route: PROCESS-NOW
   input_preview: "SMOKE-1782116265051-activation-test"
   preview_captured: true
+- id: "intake_2026-06-22T08-21-46-505Z"
+  timestamp: "2026-06-22T08:21:46.505Z"
+  session: "S087"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  status: processed
+  source: governor
+  routing_decision: PROCESS-NOW
+  scope: operational
+  intent: directive
+  mandate_relation: in-mandate
+  route: PROCESS-NOW
+  input_preview: "SMOKE-1782116503229-activation-test"
+  preview_captured: true

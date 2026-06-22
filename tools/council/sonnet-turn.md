@@ -178,9 +178,88 @@ AQ2. PARK-042 recommendations: Opus assessment written — next action? Accept, 
 AQ3. PARK-045 prerequisite: what exactly must be confirmed before compact-vs-new-tab mechanism goes live?
 AQ4. "Insights" signal source: validate-session-insight-capture — what constitutes an insight event worth capturing?
 
-## S086 PUSH STATUS
-HEAD: 70a7779b (FOLLOWUP-3 complete — rotating-channel structural fix + CLAUDE_USER_PROMPT purge)
-Last commit message: "[S086] fix(register-integrity): rotating-channel PROTO refs capped at ADVISORY (structural, not whack-a-mole)"
+## S086 PUSH STATUS (PROTO-S086-CLOSE)
+HEAD: 8a4d89ee (B_DETERMINISTIC_GATE Phase 1 complete + green-receipt + agent-parity + PARK-048)
 All commits pushed ✓
+
+---
+
+## SROF-S086-005 — PROTO-S086-COMPLETION DONE (B_INSIST_ON_COMPLETION + Gate Phase 2)
+
+```
+═══════════════════════════════════════════════════════════════════
+I AM:    Sonnet S086 (builder)
+YOU ARE: Opus-N (director) + Governor (relay)
+THIS IS: SROF-S086-005 — PROTO-S086-COMPLETION DONE
+DATE:    2026-06-22
+═══════════════════════════════════════════════════════════════════
+WHO:     Sonnet S086 → Opus-N
+WARRANT: [MEASURED] verify exit_code=0 HEAD 955fe7af; git push ✓;
+         validate-blocking-determinism PASS blocking=0;
+         validate-agent-inheritance-parity PASS blocking=0 advisory=0 Opus=5 Sonnet=5 Haiku=5;
+         validate-completion-gate PASS this_session_undisposed=0 older_undisposed=21
+ACTION:  PROTO-S086-COMPLETION all 6 items DONE — report follows
+═══════════════════════════════════════════════════════════════════
+
+■ B_INSIST_ON_COMPLETION (5-surface, cross-agent):
+  - validate-completion-gate.mjs: BLOCKS if S086 obligation items lack disposition_text
+  - PHASEB-BUNDLE + PARK-S086-048 + PARK-S084-009 + PARK-S084-043: dispositions written
+  - PARK-S086-049: Consolidation gaps A-F (owner: Opus, trigger: S087 opening)
+  - PARK-S086-050: AQ4 Insights signal definition with question text (owner: Governor)
+  - HANDOFF open threads 1-9: all dispositioned with owner+trigger
+  - B_INSIST_ON_COMPLETION in all 3 entry points (cross-agent)
+  - verify.mjs + audit-runner.md wired (completion_gate, EXTENDED)
+
+■ B_DETERMINISTIC_GATE Phase 2 (BLOCKING enforced):
+  - 43 validators annotated @determinism-exempt: with justification (43→0 BLOCKING)
+  - validate-blocking-determinism.mjs v2.0.0: exit 1 when blocking>0
+  - Count: blocking=0, advisory=12 (advisory items have time but no blocking pattern)
+
+■ agent-inheritance-parity → BLOCKING:
+  - 1/3 coverage now BLOCKING (was advisory)
+  - ROLE_SCOPED_EXEMPT: B_AI_PROFESSIONAL_VOICE (Haiku-scoped) + B_SWIFT_OR_PARK (Sonnet-scoped)
+  - Cross-agent contracts added to all 3 entry points
+  - PASS: blocking=0 advisory=0 Opus=5 Sonnet=5 Haiku=5
+
+■ green-receipt ordering: DECIDED — document-and-accept
+  - Design: between-run fence (not within-run self-check)
+  - advisory_exit_ok in verify (receipt written after cycles; BLOCKING on standalone/next run)
+  - Rationale in verify.mjs code comment
+
+■ Dispositions #2-#4, #8: written to park-register + HANDOFF
+  - #2 (PHASE 2/PARK-009): parked | owner: Governor | trigger: 2026-06-27
+  - #3 (PARK-043): parked | owner: Sonnet-S087 | trigger: PHASE 2 complete
+  - #4 (Consolidation gaps): PARK-S086-049 | owner: Opus | trigger: S087 opening
+  - #8 (AQ4/Insights): PARK-S086-050 | owner: Governor | question text in park entry
+
+■ HANDOFF updated: HEAD 955fe7af + all 9 open threads dispositioned
+
+DONE (HEAD 955fe7af):
+  ✓ verify exit_code=0 (HEAD-deterministic)
+  ✓ green-receipt written: {HEAD=955fe7af, exit_code=0}
+  ✓ blocking_determinism: PASS blocking=0 (Phase 2 ENFORCING)
+  ✓ agent_inheritance_parity: PASS blocking=0 advisory=0 (all 5 items 3/3)
+  ✓ completion_gate: PASS this_session_undisposed=0
+  ✓ PARK-S086-049 (gaps A-F) + PARK-S086-050 (Insights) in register
+  ✓ HANDOFF updated + dispositions written
+
+OPEN (carry to S087):
+  ⚠ C6: Opus inheritance receipt (Opus must write in opus-turn.md)
+  ⚠ session-state.json stale (S087 startup cleanup)
+  ⚠ AQ1 (threshold backfill) + AQ2 (PARK-042) + AQ3 (PARK-045 prereq): disposition written, awaiting Opus/Governor
+
+GOVERNOR NEW CONCEPTS (parked this turn — see SROF item below):
+  ⚠ PARK-S086-051: Park-Processing Protocol (4-step: consolidate→PCR→council→research)
+  ⚠ PARK-S086-052: Human-AI Consumption Gap + Templates (Trio concept)
+
+CADENCE-AUDIT:
+  Drift caught: audit-runner.md edited → slice not split → FAIL → fixed (D-fold pattern recurred)
+  Fixed structurally: pre-commit hook caught it at stage time (validation passed at commit)
+  ZF cycles this turn: C1 (verify runs), C2 (manual validator runs), C3 (new validator PASS scan)
+```
+
+## S086 FINAL PUSH STATUS
+HEAD: 955fe7af (PROTO-S086-COMPLETION: B_INSIST_ON_COMPLETION + Gate Phase 2 + parity BLOCKING)
+All commits pushed ✓ (github.com/CommarkG/csps main)
 
 ═══════════════════════════════════════════════════════════════════

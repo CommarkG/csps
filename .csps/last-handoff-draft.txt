@@ -24,9 +24,10 @@ THIS IS: the no-drop inheritance of S086 — PROTO-S086-INHERITANCE-LOOP + AMEND
 DO NOW: read this fully → run verify → confirm HEAD → read consolidation gaps A-F → await Governor directive
 ═══════════════════════════════════════════════════════════════════
 
-## ZONE A — STATE (S086 CLOSE)
+## ZONE A — STATE (S086 CLOSE — FINAL)
 
-- **verify exit_code=0 · HEAD 70a7779b** (Re-run to confirm; re-run IS the proof.)
+- **verify exit_code=0 · HEAD 955fe7af** (Re-run to confirm; re-run IS the proof.)
+- **Previous HEAD 8a4d89ee** (PROTO-S086-CLOSE), **HEAD 955fe7af** (PROTO-S086-COMPLETION — this is FINAL)
 - **PROTO-S086-INHERITANCE-LOOP**: all phases A/B/C/D complete (SROF-S086-002 in sonnet-turn.md)
 - **AMENDMENT-1**: all 6 prompt-reading user-prompt-submit hooks source `tools/lib/hook-read-prompt.sh`.
   Zero hand-rolled STDIN readers. Zero inline .md header writers. `emit-governed-md.mjs` is the only sanctioned governed-.md creator.

@@ -805,3 +805,11 @@ entries:
   spine: "GVRN"
   scope: "operational"
   personas: "none"
+- id: route-2026-06-22T04-10-00-967Z
+  timestamp: "2026-06-22T04:10:00.967Z"
+  session: "S086"
+  route: "PROCESS-NOW"
+  rationale: "Governor directive → PROCESS-NOW in active mandate. CRITICAL_PLUS."
+  spine: "GVRN"
+  scope: "operational"
+  personas: "none"

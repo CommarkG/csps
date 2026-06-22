@@ -1148,3 +1148,42 @@ entries:
     source_session: S086
     created_session: S086
     closed_session: null
+
+  - id: "PARK-S086-051"
+    lane: obligation
+    disposition_text: "parked | owner: Sonnet-S087 | trigger: BEFORE next PARK item is processed; build the 4-step protocol as a retrieval standard in tools/lib/ or docs/plan/pillar-0-governance/. Must be built before PHASEB-BUNDLE processing begins."
+    disposition_session: S086
+    content: "PARK-PROCESSING PROTOCOL — 4-STEP STANDARD (Governor S086-COMPLETION). When a parked item enters active processing, FOUR things must happen in sequence: (0-PRE) Consolidation pass: go over pending plans + parked items + what exists → consolidate live awareness before starting (prevents re-inventing, finds existing solutions, surfaces conflicts). Then: (1) ASK USER: present 1-5 questions as PCR format [immediately only if context is vague or the item is complex/ambiguous; for simple items ask only if needed]. (2) INTERNAL MULTI-PERSONA AUDIT: mini core council — Opus (architecture/strategy), Sonnet (implementation/build), Haiku (scan/check), Governor (priorities/risk) each weigh in internally before committing to a direction. (3) EXTERNAL RESEARCH PROMPT: after scope is understood, present a formatted prompt for external research (to be brought in by Governor or run via WebSearch) — covering: existing art, prior CSPS solutions, platform implications, risk class. GOVERNOR'S STATED 4TH ITEM implied in '4 things': the consolidation pass (0) = implicit 4th. NOTE: the Governor wants automatic B_SWIFT_OR_PARK triage BEFORE deciding to park: the AI must evaluate in real-time whether to park NOW or swift/act immediately based on DPR score and context."
+    retrieve_when: "Before ANY parked item enters active processing. Build the protocol as a retrieval wrapper — a standard opening sequence every PARK retrieval follows. Connects: B_SWIFT_OR_PARK (triage decision), B_INSIST_ON_COMPLETION (no drift), P-META-029 (humble-consolidation), external research discipline."
+    never_drop: true
+    context_preserved: >
+      The Governor observed that parked items are being processed reactively without structured preparation.
+      The 4-step standard creates a repeatable opening ritual: (0) know the landscape, (1) clarify with user,
+      (2) council internally, (3) research externally. This prevents the 'reinvent-not-search' and
+      'build-before-understand' failure modes. The 'automatically trigger' requirement = B_SWIFT_OR_PARK
+      must fire at PARK retrieval time, not just at item intake time.
+      The Governor said 'practice it on this content' — see SROF-S086-005 for the demonstration.
+    decision_back_ref: "Governor S086-COMPLETION: 'i want you to add to the parking system that four things must happen when the parked issue is processed'"
+    source_session: S086
+    created_session: S086
+    closed_session: null
+
+  - id: "PARK-S086-052"
+    lane: obligation
+    disposition_text: "parked | owner: Opus | trigger: After PARK-043 journey orchestrator is operational + PARK-048 presentation-mode axis is decided. This connects directly to PARK-048 (inline vs dedicated) and PARK-043 (journey UX containers). Research prompt in content below for Governor to bring in first."
+    disposition_session: S086
+    content: "HUMAN-AI CONSUMPTION GAP + TEMPLATES ('TRIO' CONCEPT) — Governor S086-COMPLETION. PROBLEM IDENTIFIED: There is an unspoken gap between what AI produces (long, abundant, technical) and what humans can consume and digest. AI responses are optimized for completeness, humans are optimized for comprehension. The Governor described a 'Trio' approach similar to ChatGPT /short or /professional commands: a systematic mechanism connecting AI output to a set of consumption instructions. SOLUTION DIRECTION: (1) TRIO RESPONSE MODES: define 3+ named consumption formats (e.g., Essence / Professional / Deep) that the AI switches between on demand or context — each a different density, structure, heading-depth, example-count trade-off. (2) TEMPLATE-FIRST UX: instead of exhausting users with questions (like a landing page questionnaire), offer 3-5 pre-built templates they can explore, react to ('yes/no/change this'), and iterate. 'It's easier to react to a draft than to answer open questions' — the Governor stated this as a core human characteristic. (3) CUSTOMER JOURNEY TEMPLATE LIBRARY: for platform journeys (website, landing page, etc.), offer pre-built journey templates as starting points for users to select + modify. (4) PLATFORM CONNECTION: this connects to the presentation-mode axis (PARK-048), the journey orchestrator (PARK-043 UX container decisions), and M-47 (front-end completeness moat). (5) THRESHOLD INTEGRATION: the consumption format could be a threshold-classifiable dimension (intent: explore-template / configure / build) — template-browsing is a distinct user intent class. EXTERNAL RESEARCH NEEDED: (a) How does ChatGPT /short work internally? (b) What research exists on human-AI interaction fidelity vs consumption format? (c) Prior art in template-driven UX for AI outputs. RELATES TO: PARK-048 (presentation mode), PARK-043 (journey UX), threshold (intent classification), B_PLATFORM_ATTITUDE (default+variety), feedback_ux_ui_discipline."
+    retrieve_when: "After PARK-043 journey orchestrator build + PARK-048 presentation-mode decision. ALSO: immediately relevant to any new feature where the user interaction design is being planned. The 'template-first' UX pattern should be considered for any user-facing journey. Research prompt in content = bring in before design starts."
+    never_drop: true
+    context_preserved: >
+      The Governor described this in a voice-memo style, covering: (a) the fundamental problem (AI abundant,
+      humans finite), (b) the ChatGPT /short analogy, (c) the 'Trio' name for 3 output modes,
+      (d) the specific application to landing page / website building where multiple questions exhaust users,
+      (e) the template-browser approach (react to draft > answer questions), (f) the platform-level
+      systematic solution. This is a significant UX philosophy shift with platform-wide implications.
+      Connects: PARK-048 (presentation mode DNA axis), PARK-043 (journey UX), M-47 (completeness moat),
+      threshold (consumption intent class), B_PLATFORM_ATTITUDE (default+variety).
+    decision_back_ref: "Governor S086-COMPLETION: 'there is an unspoken gap between what the AI is producing and the ability of humans to consume it... Trio... template-based UX'"
+    source_session: S086
+    created_session: S086
+    closed_session: null

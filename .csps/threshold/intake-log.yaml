@@ -8091,3 +8091,14 @@ entries:
   status: processed
   raw: "SMOKE-1782101304080-activation-test"
   preview_file_used: true
+- id: "thr-S086-1782101400774"
+  session: "S086"
+  timestamp: "2026-06-22T04:10:00.773Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: processed
+  raw: "SMOKE-1782101397749-activation-test"
+  preview_file_used: true

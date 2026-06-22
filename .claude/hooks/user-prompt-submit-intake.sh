@@ -233,4 +233,35 @@ process.stdin.on('end',()=>{
   fi
 } 2>/dev/null || true
 
+
+# ─── PHASE-0.2 CHAIN — PROTO-S088-PHASE-0.2 (classify→decompose→PE→route→CIE) ─
+# SACRED-EDIT-APPROVED: Phase-0.2 enforced universal intake chain per Opus #25 directive.
+# ADD-not-REPLACE: all existing sections above (R1.4.1 / classify / M6 route) stay untouched.
+# Enforcement: EVERY input traverses classify→decompose→PE-significance→route→CIE-write.
+# No input bypasses. CIE insight written per pass to .csps/intelligence/cie-chain-insights.yaml.
+# Non-blocking: wrapped in || true — never blocks a Governor message.
+{
+  _CHAIN="${REPO_ROOT}/tools/scripts/threshold-chain.mjs"
+  _SN_CHAIN=$(node "${REPO_ROOT}/tools/lib/session-source.mjs" 2>/dev/null || echo "S000")
+  if [ -f "$_CHAIN" ] && [ -n "$USER_MESSAGE" ] && [ "${#USER_MESSAGE}" -gt 5 ]; then
+    CHAIN_CONTENT="$(printf '%s' "$USER_MESSAGE" | head -c 300)" \
+    CHAIN_SESSION="$_SN_CHAIN" \
+    node "$_CHAIN" 2>/dev/null | node -e "
+let d='';
+process.stdin.on('data',c=>d+=c);
+process.stdin.on('end',()=>{
+  try{
+    const j=JSON.parse(d||'{}');
+    const layers=j.active_layers||0;
+    const branches=j.branches||0;
+    const band=j.pe_band||'?';
+    const route=j.route||'?';
+    const cie=j.cie_written?'cie-ok':'cie-err';
+    process.stdout.write('[chain] type='+j.type+' layers='+layers+' branches='+branches+' pe='+band+' route='+route+' '+cie+'\n');
+  }catch(e){}
+});
+" 2>/dev/null || true
+  fi
+} 2>/dev/null || true
+
 exit 0

@@ -44,6 +44,10 @@ tools/data/threshold-intake-log.yaml
 .csps/last-sonnet-relay.txt
 .csps/threshold/intake-log.yaml
 
+# ── CIE chain insights (written per-hook-call, not per-commit) ───────────────
+# S088 PROTO-S088-PHASE-0.2: threshold-chain.mjs appends one entry per Governor message.
+.csps/intelligence/cie-chain-insights.yaml
+
 # ── Auto-generated per-session artifacts ─────────────────────────────────────
 SESSION-BRIEF.md
 docs/plan/_handoff/VAULT/governor-comments/

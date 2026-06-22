@@ -68,7 +68,10 @@ function fallbackClassify(raw, session) {
   let urgency = 'medium';
 
   // Type detection (first match wins)
-  if (/upload|paste|ext-id|external.research/i.test(raw)) {
+  // S088 PROTO-S088-PHASE-0.2: capability_proposal detects feature proposals / doc-dumps / proposals
+  if (/propose|capability.add|add.feature|feature.proposal|could we add|what if we built|new (feature|capability|module)/i.test(raw)) {
+    type = 'capability_proposal'; spine = 'ARCH'; urgency = 'medium';
+  } else if (/upload|paste|ext-id|external.research/i.test(raw)) {
     type = 'external_research'; spine = 'AI'; urgency = 'low';
   } else if (/exit_code=1|blocking|build fail|verify fail|\berror\b.*\bfix\b|\bfix\b.*\berror\b/i.test(raw)) {
     type = 'error'; spine = 'VALD'; urgency = 'high';

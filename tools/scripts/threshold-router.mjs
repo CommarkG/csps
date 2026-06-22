@@ -168,6 +168,7 @@ export function routeInput({ type, spine, urgency, scope, content = '', shapeTie
   const intentMap = {
     'governor_directive': 'directive',
     'proposal': 'proposal',
+    'capability_proposal': 'proposal', // S088: capability proposals → CIP staging
     'question': 'question',
     'maintenance': 'maintenance',
     'governor': 'directive',

@@ -1,0 +1,238 @@
+#!/usr/bin/env node
+/**
+ * threshold-chain.mjs — Phase-0.2 enforced universal intake chain
+ *
+ * PROTO-S088-PHASE-0.2 | S088
+ * Implements: input → classify (4-axis) → decompose (core+layers+branches) →
+ *             PE-significance → route (SWIFT-now / park-with-context) → CIE-write
+ *
+ * ENFORCEMENT CONTRACT:
+ *   - Every input traverses ALL steps. No input bypasses.
+ *   - Called by user-prompt-submit-intake.sh hook for every Governor input.
+ *     The hook IS the enforcement point; this module is the chain logic.
+ *   - Stateless except for CIE-write (append-only side effect).
+ *   - Always exits 0 — never blocks a Governor message.
+ *
+ * REUSE PRINCIPLE (Opus S088 peer contract):
+ *   - classify: reuses routeInput() from threshold-router.mjs (M-42, 4-axis)
+ *   - PE: applies the 5-dim formula constants from pe-compute.mjs (inlined for import safety)
+ *   - route: taken from routeInput() result (no separate routing step)
+ *   - decompose: new logic in threshold-decompose.mjs
+ *   - CIE-write: appends to .csps/intelligence/cie-chain-insights.yaml
+ *
+ * Usage (CLI):
+ *   node tools/scripts/threshold-chain.mjs --content "..." --session S088
+ *   node tools/scripts/threshold-chain.mjs --content "..." --session S088 --trace
+ * Or (import):
+ *   import { runChain } from './threshold-chain.mjs'
+ *   const result = await runChain({ content, session })
+ *
+ * @csps-dna core_spine: ARCH
+ * @csps-id csps.scripts.threshold-chain
+ */
+
+import { routeInput }  from './threshold-router.mjs';
+import { decompose }   from './threshold-decompose.mjs';
+import { appendFileSync, existsSync, mkdirSync } from 'node:fs';
+import { resolve, dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(__dirname, '../..');
+const CIE_DIR  = join(ROOT, '.csps', 'intelligence');
+const CIE_LOG  = join(CIE_DIR, 'cie-chain-insights.yaml');
+
+// ─── PE-SIGNIFICANCE ─────────────────────────────────────────────────────────
+// 5-dim formula from pe-compute.mjs (PLATFORM weights, inlined for import safety).
+// Maps 4-axis classification → B/D/I/Bn/PAS → final score + band.
+// Inlined because pe-compute.mjs has a runaway main() — no safe named exports.
+// Single source of formula: pe-compute.mjs §A (this is a consumer, not a duplicate).
+
+const PE_WEIGHTS = { B: 0.35, D: 0.30, I: 0.10, Bn: 0.10, PAS: 0.15 }; // PLATFORM context
+
+function computePeSignificance(classify_result, type) {
+  const { axis_classification = {}, criticality = '' } = classify_result;
+  const scope    = axis_classification.scope    || 'operational';
+  const spine    = axis_classification.spine    || 'GVRN';
+  const urgency  = classify_result.urgency_inferred || 'medium';
+
+  // B — Blocking value (urgency × spine weight)
+  const B = urgency === 'high' && spine === 'GVRN' ? 9
+          : urgency === 'high' ? 8
+          : urgency === 'medium' && (spine === 'ARCH' || spine === 'VALD') ? 6
+          : urgency === 'medium' ? 5
+          : 3; // low
+
+  // D — Discovery/Depth value (scope class)
+  const D = scope === 'constitutional' ? 9
+          : scope === 'architectural'  ? 7
+          : scope === 'operational'    ? 5
+          :                              3; // tactical
+
+  // I — Idle time (always 0 for new inputs entering the chain)
+  const I = 0;
+
+  // Bn — Blocking-others value (per type × urgency)
+  const Bn = (type === 'error' && urgency === 'high') ? 9
+           : (type === 'governor_directive' && scope === 'constitutional') ? 8
+           : type === 'core_seed' ? 7
+           : type === 'architectural_insight' ? 6
+           : type === 'capability_proposal' ? 5
+           : 3;
+
+  // PAS — Platform Alignment Score (per spine)
+  const PAS = spine === 'GVRN' ? 8
+            : spine === 'ARCH' ? 7
+            : spine === 'VALD' ? 7
+            : spine === 'AI'   ? 6
+            :                    5; // OPER
+
+  const base  = B * PE_WEIGHTS.B + D * PE_WEIGHTS.D + I * PE_WEIGHTS.I
+              + Bn * PE_WEIGHTS.Bn + PAS * PE_WEIGHTS.PAS;
+  const final = +base.toFixed(2);
+
+  const band = final >= 8.0 ? 'BLOCKING'
+             : final >= 7.0 ? 'HIGH'
+             : final >= 4.0 ? 'MEDIUM'
+             :                 'VAULTED';
+
+  const route_recommendation = band === 'BLOCKING' || band === 'HIGH'
+    ? 'SWIFT-now'
+    : 'park-with-context';
+
+  return { B, D, I, Bn, PAS, base: final, band, route_recommendation };
+}
+
+// ─── CIE-WRITE ───────────────────────────────────────────────────────────────
+// Appends one insight per chain run to .csps/intelligence/cie-chain-insights.yaml.
+// Append-only; never rewrites existing entries. Non-blocking — wrapped in try/catch.
+function writeCieInsight({ input_id, type, spine_tag, pe_significance, route, content_preview, session }) {
+  try {
+    mkdirSync(CIE_DIR, { recursive: true });
+    if (!existsSync(CIE_LOG)) {
+      appendFileSync(CIE_LOG, [
+        '# CIE Chain Insights — append-only',
+        '# Generated by tools/scripts/threshold-chain.mjs (PROTO-S088-PHASE-0.2)',
+        '# One entry per chain run. Read by validate-threshold-chain.mjs.',
+        'entries:',
+        '',
+      ].join('\n'));
+    }
+    const entry = [
+      `- id: ${JSON.stringify(input_id)}`,
+      `  session: ${JSON.stringify(session)}`,
+      `  timestamp: ${JSON.stringify(new Date().toISOString())}`,
+      `  type: ${type}`,
+      `  spine_tag: ${spine_tag}`,
+      `  pe_band: ${pe_significance.band}`,
+      `  pe_final: ${pe_significance.base}`,
+      `  route: ${JSON.stringify(route)}`,
+      `  content_preview: ${JSON.stringify((content_preview || '').slice(0, 100))}`,
+      '',
+    ].join('\n');
+    appendFileSync(CIE_LOG, entry);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// ─── runChain ─────────────────────────────────────────────────────────────────
+/**
+ * Run the full Phase-0.2 intake chain for one input.
+ * @param {{ content?: string, session?: string, type?: string, spine?: string, urgency?: string }} opts
+ * @returns {{ input_id, classify, decompose, pe_significance, route, cie_written, chain_at }}
+ */
+export function runChain({
+  content  = '',
+  session  = 'unknown',
+  type     = 'governor_directive',
+  spine    = 'GVRN',
+  urgency  = 'medium',
+} = {}) {
+  const input_id = `chain-${session}-${Date.now()}`;
+
+  // ── STEP 1: classify (4-axis) — reuse existing routeInput() M-42 ──────────
+  const classify_result = routeInput({ type, spine, urgency, content, shapeTier: false });
+
+  // Attach inferred urgency for PE-significance (not in routeInput output)
+  classify_result.type_inferred      = type;
+  classify_result.spine_inferred     = spine;
+  classify_result.urgency_inferred   = urgency;
+
+  // ── STEP 2: decompose (core+layers+branches) — genuinely new ─────────────
+  const spine_tag = classify_result.axis_classification?.spine || spine;
+  const scope_tag = classify_result.axis_classification?.scope === 'constitutional' ? 'S3'
+                  : classify_result.axis_classification?.scope === 'architectural'  ? 'S3'
+                  : classify_result.axis_classification?.scope === 'operational'    ? 'S2'
+                  :                                                                    'S1';
+
+  const decompose_result = decompose({ type, spine_tag, scope_tag, urgency });
+
+  // ── STEP 3: PE-significance — 5-dim formula (constants from pe-compute.mjs) ─
+  const pe_significance = computePeSignificance(classify_result, type);
+
+  // ── STEP 4: route — taken from classify result (no separate routing) ───────
+  const route = classify_result.route || 'PROCESS-NOW';
+
+  // ── STEP 5: CIE-write — one insight per pass ─────────────────────────────
+  const cie_written = writeCieInsight({
+    input_id,
+    type,
+    spine_tag,
+    pe_significance,
+    route,
+    content_preview: content,
+    session,
+  });
+
+  return {
+    input_id,
+    classify:       classify_result,
+    decompose:      decompose_result,
+    pe_significance,
+    route,
+    cie_written,
+    chain_at:       new Date().toISOString(),
+  };
+}
+
+// ─── CLI ─────────────────────────────────────────────────────────────────────
+if (process.argv[1]?.endsWith('threshold-chain.mjs')) {
+  const args = Object.fromEntries(
+    process.argv.slice(2)
+      .filter(a => a.startsWith('--'))
+      .map(a => {
+        const [k, ...v] = a.slice(2).split('=');
+        return [k, v.join('=')];
+      })
+  );
+
+  const content = args.content || process.env.CHAIN_CONTENT || '';
+  const session = args.session || process.env.CHAIN_SESSION || 'unknown';
+  const type    = args.type    || 'governor_directive';
+  const spine   = args.spine   || 'GVRN';
+  const urgency = args.urgency || 'medium';
+
+  const result = runChain({ content, session, type, spine, urgency });
+
+  if (args.trace) {
+    console.log(JSON.stringify(result, null, 2));
+  } else {
+    // Compact one-line summary for hook consumption
+    const active_layers = (result.decompose.layers || []).filter(l => l.active).length;
+    const branches      = (result.decompose.cross_domain_branches || []).length;
+    console.log(JSON.stringify({
+      input_id:      result.input_id,
+      type:          result.classify.type_inferred,
+      active_layers,
+      branches,
+      pe_band:       result.pe_significance.band,
+      pe_score:      result.pe_significance.base,
+      route:         result.route,
+      cie_written:   result.cie_written,
+    }));
+  }
+
+  process.exit(0);
+}

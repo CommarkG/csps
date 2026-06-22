@@ -5,10 +5,12 @@
  * Plan item: THRESHOLD-CODE | S056 | Layer 1 R1 Schema
  */
 
-/** 10-item closed enum — all input types CSPS processes */
+/** 11-item closed enum — all input types CSPS processes */
+// S088 PROTO-S088-PHASE-0.2: added capability_proposal (doc-dumps / feature-proposals now route, not bypass)
 export type ThresholdInputType =
   | 'governor_directive'
   | 'architectural_insight'
+  | 'capability_proposal'
   | 'error'
   | 'solution'
   | 'external_research'

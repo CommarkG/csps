@@ -1,21 +1,63 @@
 {
-  "total_scanned": 5,
+  "total_scanned": 3,
   "total_exempted": 0,
-  "total_findings": 3,
+  "total_findings": 9,
   "findings": [
     {
       "pattern": "C",
       "type": "definition",
-      "item": "mandate",
+      "item": "i am",
       "count": 3,
-      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\docs\\plan\\_handoff\\PROTO-S088-SEQUENCE-DIRECTIVE.md"
+      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "you are",
+      "count": 3,
+      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "this is",
+      "count": 3,
+      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "do now",
+      "count": 3,
+      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "date",
+      "count": 3,
+      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "warrant",
+      "count": 3,
+      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
+    },
+    {
+      "pattern": "C",
+      "type": "definition",
+      "item": "action",
+      "count": 3,
+      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
     },
     {
       "pattern": "D",
       "type": "example",
       "item": "4 code blocks",
       "count": 4,
-      "filePath": "C:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
+      "filePath": "c:\\Users\\finky\\Desktop\\Claude Code\\Csps\\tools\\council\\sonnet-turn.md"
     },
     {
       "pattern": "G",
@@ -25,5 +67,5 @@
       "file": "D1-humble-consolidation-default.md"
     }
   ],
-  "ran_at": "2026-06-22T09:56:50.789Z"
+  "ran_at": "2026-06-22T10:51:11.347Z"
 }

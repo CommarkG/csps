@@ -34,6 +34,7 @@ function inferSpineTag(type: ThresholdInputType): SpineTag {
   switch (type) {
     case 'governor_directive': return 'GVRN';
     case 'architectural_insight': return 'ARCH';
+    case 'capability_proposal': return 'ARCH'; // S088: proposing new capability = ARCH decision
     case 'error': return 'VALD';
     case 'solution': return 'VALD';
     case 'external_research': return 'AI';
@@ -50,6 +51,7 @@ function inferScopeTag(type: ThresholdInputType): ScopeTag {
   switch (type) {
     case 'governor_directive': return 'S1';
     case 'architectural_insight': return 'S3';
+    case 'capability_proposal': return 'S2'; // S088: session-structural until assessed
     case 'error': return 'S1';
     case 'solution': return 'S1';
     case 'external_research': return 'S2';
@@ -68,6 +70,7 @@ function inferUrgency(type: ThresholdInputType): Urgency {
     case 'error': return 'high';
     case 'correction': return 'medium';
     case 'architectural_insight': return 'medium';
+    case 'capability_proposal': return 'medium'; // S088: assess before committing
     case 'core_seed': return 'medium';
     case 'solution': return 'medium';
     case 'session_harvest': return 'low';

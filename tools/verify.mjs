@@ -2532,6 +2532,27 @@ const CYCLES = [
     },
   },
   {
+    // S088 PROTO-S088-PHASE-0.2 — Phase-0.2 enforced universal intake chain structural validation.
+    // Validates: (1) chain + decompose scripts exist; (2) chain runs end-to-end (exit 0 + valid JSON);
+    // (3) output has: classify.type + decompose.layers + pe_significance.band + route + cie_written=true;
+    // (4) CIE insights file has ≥1 entry. BLOCKING on structural violations.
+    // Enforcement: every input must traverse classify→decompose→PE-significance→route→CIE (no bypass).
+    name: 'threshold_chain',
+    command: 'node tools/validators/validate-threshold-chain.mjs',
+    input_files: [
+      'tools/scripts/threshold-chain.mjs',
+      'tools/scripts/threshold-decompose.mjs',
+      '.claude/hooks/user-prompt-submit-intake.sh',
+      'tools/validators/validate-threshold-chain.mjs',
+    ],
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
+  {
     // S088 PROTO-S088-JOURNEY-CORE-SPINE — Journey Core Spine structural conformance.
     // Validates: (1) JOURNEY-CORE-SPINE.md exists+sealed; (2) journeys entry has C1-C5+P1-P5+4 branches;
     // (3) journey-closed-enums.yaml has all 9 enum keys; (4) seed2-gate-mode-matrix.json exists.

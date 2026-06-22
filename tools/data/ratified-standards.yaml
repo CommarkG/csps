@@ -167,3 +167,27 @@ standards:
       validator: validate-frontmatter.mjs
       cadence: per-session
       audit_runner_key: frontmatter-completeness
+
+  - id: threshold-intake-chain
+    name: Enforced Universal Threshold Intake Chain (Phase-0.2)
+    ratified_session: S088
+    ratified_by: "PROTO-S088-PHASE-0.2 (Opus #25 Governor-ratified directive)"
+    ratified_at: "2026-06-22"
+    description: >
+      Enforced universal intake chain: every input traverses classify (4-axis) → modular-decompose
+      (core+layers+cross-domain branches, per uniform-DNA) → PE-significance (5-dim formula) →
+      route (SWIFT-now / park-with-context) → CIE-write (insight per pass). No input bypasses.
+      Enforcement: user-prompt-submit-intake.sh hook calls threshold-chain.mjs for every Governor
+      message. Consolidates PARK-054 + PARK-055e + threshold-consume + CIE pipeline.
+    propagation_status: complete
+    creation_standard:
+      type: chain-script
+      path: tools/scripts/threshold-chain.mjs
+      requirement: >
+        New intake types must be added to threshold-decompose.mjs ACTION_MAP and layer activation
+        logic. New chain steps must appear in the runChain() function. Hook wiring must use
+        CHAIN_CONTENT + CHAIN_SESSION env vars (not CLI args) to avoid quoting issues.
+    audit_entry:
+      validator: validate-threshold-chain.mjs
+      cadence: per-session
+      audit_runner_key: threshold-chain

@@ -2337,12 +2337,17 @@ const CYCLES = [
     // B_DETERMINISTIC_GATE item 3 (PROTO-S086-CLOSE): green-receipt HEAD match.
     // verify.mjs writes {HEAD, exit_code, blocking_set_hash, ts} when exit_code=0.
     // This validator FAILS if receipt HEAD ≠ current HEAD (stale green claim).
+    // Ordering note: receipt is written AFTER all cycles complete, so this validator
+    //   reads the PREVIOUS run's receipt during this verify run. On the NEXT run after
+    //   a commit, the receipt HEAD will match. This is the intended use-case:
+    //   validate BETWEEN verify runs (green claim at HEAD X → new commits → HEAD mismatch).
+    //   Within a single verify run, the previous receipt HEAD is 1 commit behind — advisory.
     // always_rerun: true (git HEAD state changes outside file content).
     // Source: PROTO-S086-CLOSE. Prevention class: STALE-GREEN-CLAIM.
     always_rerun: true,
+    advisory_exit_ok: true, // Advisory in verify (receipt updates after cycles; BLOCKING on standalone call)
     name: 'green_receipt',
     command: 'node tools/validators/validate-green-receipt.mjs',
-    advisory_exit_ok: false, // HEAD mismatch = BLOCKING (not advisory)
     parse_output: (out) => {
       const head = out.match(/HEAD=([a-f0-9]+)/)?.[1];
       const ts = out.match(/receipt_ts=(\S+)/)?.[1];

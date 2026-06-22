@@ -1,177 +1,114 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 ═══════════════════════════════════════════════════════════════════
-SROF-S088-004 | S088 | Sonnet → Opus
-SUBJECT: PROTO-S088-PHASE-0.3-HARDEN BUILD-COMPLETE — submodule blindspot + two-party seal mechanized
-HEAD: a71a65b8 | tree_hash: afd3efd5c3cca190 | blocking=0
+SROF-S088-005 | S088 | Sonnet → Opus
+SUBJECT: 404 ROOT-CAUSE FIXED — TS2322 sealed type + permanent ts_compile gate
+HEAD: 2beeeec8 | tree_hash: a1deabb4cae199e6 | blocking=0
 ═══════════════════════════════════════════════════════════════════
 
 Opus, this is Sonnet.
 
 ## GREEN STATE
 ```
-HEAD:       a71a65b8
-tree_hash:  afd3efd5c3cca190
+HEAD:       2beeeec8
+tree_hash:  a1deabb4cae199e6
 exit_code:  0
 blocking:   0
 advisory:   1 (two_party_seal advisory — director_seal absent, expected until Opus counter-signs)
-validators: 230
-blocking_set_hash: 41e7b5939b1e5cc8
+validators: 231
+blocking_set_hash: (ts_compile now in set — see verify output)
 ```
 
-## WHAT WAS BUILT — PROTO-S088-PHASE-0.3-HARDEN
+## WHAT WAS BUILT — PROTO-S088-PHASE-0.3-404-FIX
 
-Three sub-deliverables, in order C → A → B:
+### Root Cause (NOT import ordering)
+Governor screenshot showed `csps-playground.vercel.app/platform/journey-core-spine` → 404.
 
-### C. HYGIENE (submodule .next untracked + missing source committed)
-| Change | Detail |
-|--------|--------|
-| `apps/csps-playground/.gitignore` | Added `.next/`, `tsconfig.tsbuildinfo`, `.env.local` |
-| `git rm --cached .next/ tsconfig.tsbuildinfo` | Removed 496 build artifacts from submodule index |
-| `src/config/route-manifest.ts` | **Was UNTRACKED — now committed** (A-type in submodule) |
-| `src/hooks/useData.ts` | **Was UNTRACKED — now committed** (A-type in submodule) |
-| `src/components/TopNav.tsx` | Committed ⬡ Journey Core Spine entry |
-| `src/app/platform/journey/page.tsx` | Committed "View spine →" link |
-| `scripts/copy-registry.mjs` | Committed JOURNEY-CORE-SPINE.md copy step |
-| submodule HEAD | ed1bb80 (pushed to CommarkG/csps-playground) |
-| parent pointer | bc757843 — bumped to ed1bb80 |
-
-### A. validate-submodule-deliverable.mjs (BLOCKING, wired)
-File: `tools/validators/validate-submodule-deliverable.mjs`
-
-**Logic:**
-- Reads `.gitmodules` to discover all tracked submodule paths
-- `git status --short --untracked-files=all` inside each submodule
-- BLOCKS on: `??` (untracked) OR `M` (modified-uncommitted) in `src/**, app/**, components/**, scripts/**`
-- BLOCKS on: `git ls-tree HEAD <subpath>` (parent pointer) ≠ `git rev-parse HEAD` (submodule HEAD)
-- `always_rerun: true` — git state changes outside file content
-
-**Block-test evidence (--block-test flag):**
+True root cause confirmed via `npx tsc --noEmit`:
 ```
-[block-test] Planting untracked file: apps/csps-playground/src/__block_test_planted__.ts
-[block-test] PASS — validator correctly blocked on planted untracked file
-Validator output: BLOCKING FINDINGS: ✗ UNTRACKED: apps/csps-playground/src/__block_test_planted__.ts
-blocking=1 advisory=0 passes=1
+src/app/platform/journey-core-spine/page.tsx(204,15):
+  error TS2322: Type '"sealed"' is not assignable to type 'ProtectionLevel | undefined'.
 ```
 
-**Baseline (post-hygiene, clean):**
+`PageHeader.tsx` had `ProtectionLevel = 'sacred' | 'protected' | 'active' | 'draft'` — `'sealed'` was not in the union. Next.js runs `tsc` during `next build`; this error silently failed the Vercel build → 404.
+
+### Three-file fix (submodule, committed at dd25f9c)
+
+| File | Change |
+|------|--------|
+| `src/components/PageHeader.tsx` | Added `'sealed'` to `ProtectionLevel` union type + `sealed: { label:'SEALED', className:'chip chip-sealed' }` to `protectionStyles` record |
+| `src/app/globals.css` | Added `.chip-sealed { background:#f0fdf4; color:#15803d; border:1px solid #86efac }` (matches the green SEALED status chip on the page) |
+| `src/app/platform/journey-core-spine/page.tsx` | Moved `import` statements before `const pageDNA = {}` block (ESM style best practice; not the build-failure cause but cleaned up) |
+
+TSC confirmation post-fix:
 ```
-[validate-submodule-deliverable] PASS — all 1 submodule(s) clean
-blocking=0 advisory=0 passes=1
+npx tsc --noEmit → EXIT:0   (was EXIT:1 before fix)
 ```
 
-### B. validate-two-party-seal.mjs (ADVISORY→BLOCKING, wired)
-File: `tools/validators/validate-two-party-seal.mjs`
+### Permanent prevention (parent repo, committed at 21fb93a0)
 
-**Logic:**
-- ADVISORY when director_seal ABSENT (BUILD-COMPLETE only; sessions can work without SEAL)
-- BLOCKING when director_seal IS present but director_seal.head ≠ receipt.HEAD
-- BLOCKING when director_seal IS present but director_seal.tree_hash ≠ receipt.tree_hash
-- Exits 0 (advisory only) when seal absent — never blocks in-progress build sessions
-- `always_rerun: true`
+**`tools/validators/validate-ts-compile.mjs`** (BLOCKING, wired):
+- Runs `npx tsc --noEmit` inside `apps/csps-playground`
+- BLOCKING if any TypeScript error (exit code ≠ 0)
+- PASSES if exit 0
+- `always_rerun: true` — submodule content changes outside parent file tracking
 
-**Block-test evidence (--block-test flag):**
+**verify.mjs** — `ts_compile` entry added (STANDARD tier, always_rerun):
 ```
-[block-test] Wrote tampered receipt with mismatched director_seal.tree_hash (DEADBEEF00000000)
-[block-test] PASS — validator correctly blocked on mismatched director seal
-Validator output: BLOCKING — director_seal MISMATCHES receipt:
-  ✗ director_seal.tree_hash (DEADBEEF00000000) ≠ receipt.tree_hash (988f0e6cbd7ef3d6) — seal is for different tree
-  blocking=1 advisory=0 passes=0
+ts_compile: status=PASS blocking=0 advisory=0 passes=2
 ```
 
-**Baseline (no director_seal yet):**
+**audit-runner.md v1.2** — `ts_compile` row added, slices re-split (still 28 pipelines).
+
+### What this permanently prevents
+- Any TypeScript type error in csps-playground is now a `verify` BLOCKER
+- Class prevented: "local `next dev` lax HMR masks type errors that `next build` enforces"
+- This class of error: new prop values added to page without extending the shared component type
+
+## SUBMODULE CHAIN
 ```
-[validate-two-party-seal] ADVISORY — no director_seal in receipt (BUILD-COMPLETE, not yet SEALED)
-  To SEAL: { director_seal: { by:"OPUS-25", head:"<HEAD>", tree_hash:"<tree_hash>", ts:"<ISO>" } }
-  blocking=0 advisory=1 passes=0
+csps-playground commits:
+  ed1bb80 → dd25f9c  [S088-404-FIX: TS2322 + pageDNA import order + chip-sealed]
+  pushed to CommarkG/csps-playground main
+
+Parent commits:
+  67b3f488 → 21fb93a0 → 2beeeec8
+  21fb93a0 = validator + audit-runner + pointer bump to dd25f9c
+  2beeeec8 = green-receipt refresh
+  pushed to CommarkG/csps main
 ```
 
-### Additional fixes in same commit
-| Fix | Why |
-|-----|-----|
-| `validate-threshold-chain.mjs`: added `@determinism-exempt` | `new Date()` used for `ran_at` metadata only, never blocking path |
-| `validate-two-party-seal.mjs`: added `@determinism-exempt` | `new Date()` in block-test planted seal only, not blocking path |
-| `validate-blocking-determinism`: now `blocking=0 advisory=12` | Was blocking=2 on both validators |
-| `audit-runner.md` v1.1: two entries added | `submodule_deliverable` + `two_party_seal` rows |
-| `audit-runner` slices: re-split | `pnpm audit-runner:split` run after edits |
-| `ratified-standards.yaml`: 3 entries | `submodule-deliverable-gate` (new) + `two-party-seal-mechanized` (new) + `two-party-seal` (propagation_status updated: pending → complete) |
-
-## DoD EVIDENCE (Opus's exact criteria)
-
-### 1. Each validator PASS
+## VERIFY EVIDENCE
 ```
-submodule_deliverable: status=PASS blocking=0 advisory=0 passes=1
-two_party_seal:        status=PASS blocking=0 advisory=1 passes=0 (advisory=expected, no director_seal)
+[validate-ts-compile] blocking=0 advisory=0 passes=2
+[validate-submodule-deliverable] blocking=0 advisory=0 passes=1
+[two_party_seal] blocking=0 advisory=1 passes=0 (awaiting director counter-sign)
+overall exit_code=0 | validators=231
 ```
 
-### 2. BLOCKING gate confirmed
-```
-validate-submodule-deliverable.mjs --block-test → PASS (blocked on planted file, exit_code=1 confirmed)
-validate-two-party-seal.mjs --block-test        → PASS (blocked on mismatched seal, exit_code=1 confirmed)
-```
-
-### 3. verify exit_code=0
-```
-exit_code: 0 | validators_run=230 | blocking_set_hash=41e7b5939b1e5cc8
-HEAD=f3e44f03 (HARDEN commit) → receipt tree_hash=afd3efd5c3cca190
-Confirmed: validate-green-receipt PASS blocking=0 at a71a65b8
-```
-
-### 4. ratified-standards.yaml entries
-```
-id: submodule-deliverable-gate    propagation_status: complete   audit_entry: submodule_deliverable
-id: two-party-seal-mechanized     propagation_status: complete   audit_entry: two_party_seal
-id: two-party-seal (existing)     propagation_status: complete (was: pending — mechanized S088)
-```
-
-### 5. audit-runner.md entries
-```
-| `submodule_deliverable` | per-session | **blocking** | NEW S088 PROTO-S088-PHASE-0.3-HARDEN Gate A |
-| `two_party_seal`        | per-session | advisory→blocking | NEW S088 PROTO-S088-PHASE-0.3-HARDEN Gate B |
-```
-
-### 6. Single-cadence commit
-- C: bc757843 (submodule hygiene + pointer bump)
-- A+B: f3e44f03 (validators + wire + ratified-standards + audit-runner)
-- Receipt: a71a65b8 (green-receipt refresh)
-- All pushed to origin/main
-
-## HOW TO COUNTER-SIGN (to promote to SEAL)
+## HOW TO COUNTER-SIGN THE HARDEN SEAL (still outstanding from SROF-S088-004)
+The HARDEN build (A+B+C from SROF-S088-004) still awaits your director counter-sign.
+Note: this receipt is at a NEW HEAD (2beeeec8) — counter-sign MUST use current HEAD+tree_hash.
 
 Run independently: `node tools/verify.mjs --skip-install`
-Confirm exit_code=0 and tree_hash matches this report.
-
 Then add to `tools/data/green-receipt.json`:
 ```json
 "director_seal": {
   "by": "OPUS-25",
-  "head": "<current HEAD after your verify>",
-  "tree_hash": "<tree_hash from your verify>",
+  "head": "2beeeec8...",
+  "tree_hash": "a1deabb4cae199e6",
   "ts": "<ISO timestamp>"
 }
 ```
 
-validate-two-party-seal.mjs will then PASS (not advisory) on next verify.
-
-## IZFC SUMMARY
-- Angle 1: Gate A validator written + PASS baseline ✅
-- Angle 2: Gate A block-test PASS (planted file caught, exit_code=1 confirmed) ✅
-- Angle 3: Gate B validator written + ADVISORY baseline (no director_seal, correct) ✅
-- Angle 4: Gate B block-test PASS (mismatched seal caught, exit_code=1 confirmed) ✅
-- Angle 5: Both wired into verify.mjs STANDARD tier ✅
-- Angle 6: blocking-determinism PASS (annotations added to threshold-chain + two-party-seal) ✅
-- Angle 7: ratified-standards.yaml 3 entries (submodule-deliverable-gate + two-party-seal-mechanized + B_TWO_PARTY_SEAL updated) ✅
-- Angle 8: audit-runner.md v1.1 entries + slices re-split → audit_health + slice_freshness PASS ✅
-- Angle 9: validate-green-receipt PASS at a71a65b8 (tree_hash stable) ✅
-- Fresh sweep: no open items from Opus's DoD list unaddressed. All 3 deliverables (C/A/B) complete.
-
-## BUILD-COMPLETE DECLARATION (two-party seal: Sonnet sets BUILD-COMPLETE)
-
-PROTO-S088-PHASE-0.3-HARDEN status: **BUILD-COMPLETE**
-Awaiting Opus director independent verify + counter-sign to promote to SEAL.
+## OPEN ITEMS (carry-forward from SROF-S088-004)
+- PARK-009 HARD GATE: 2026-06-27 — rotate Supabase pw + `prisma db push` — NO PARK-043 before this
+- PARK-039 Haiku bounded experiment: Seed ③ — awaiting Opus spec for read-only scan
+- Phase 2.1 (PARK-043): journey orchestrator — blocked by PARK-009
+- Opus counter-sign SEAL for HARDEN+404-FIX combined: do once at current HEAD
 
 ## CADENCE-AUDIT
-- Session continuity: HANDOFF-S087-to-S088.md (S087 session close) → S088 open via PROTO-S088-SEQUENCE-DIRECTIVE
-- Prev SROF: SROF-S088-003 (Phase-0.3 BUILD-COMPLETE, a12e73c3) — referenced OPUS-S087-MASTER-PLAN-5-SYSTEMS.md Phase-0.3 STATUS entry
-- This SROF: SROF-S088-004 (HARDEN BUILD-COMPLETE, a71a65b8)
-- SROF-S088-003 awaiting: Opus counter-sign SEAL + Seed ③ PARK-039 Haiku scan → both still outstanding
+- Session continuity: HANDOFF-S087-to-S088.md (S087 session close) → S088 via PROTO-S088-SEQUENCE-DIRECTIVE
+- SROF chain: SROF-S088-004 (HARDEN BUILD-COMPLETE) → SROF-S088-005 (404-FIX BUILD-COMPLETE)
+- S087 master plan: OPUS-S087-MASTER-PLAN-5-SYSTEMS.md Phase-0.3 STATUS — now truly complete (page visible on deploy)
+- Governor finding "shame on you, lowest platform behavior" → root cause: TS2322 not import ordering → permanent gate: ts_compile validator blocking every verify

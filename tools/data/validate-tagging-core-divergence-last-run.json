@@ -1,0 +1,14 @@
+{
+  "ran_at": "2026-06-23T09:02:50.972Z",
+  "blocking": 0,
+  "advisory": 3,
+  "passes": 7,
+  "findings": [
+    "[ADVISORY] No IMPL_STATUS_VALUES in validate-frontmatter.mjs — dimension \"impl_status\" not enforced (add to validator or mark as advisory-only in SSoT)",
+    "[ADVISORY] No DIATAXIS_TYPE_VALUES in validate-frontmatter.mjs — dimension \"diataxis_type\" not enforced (add to validator or mark as advisory-only in SSoT)",
+    "[ADVISORY] No CORE_SPINE_VALUES in validate-frontmatter.mjs — dimension \"core_spine\" not enforced (add to validator or mark as advisory-only in SSoT)"
+  ],
+  "ssot_dimensions": 10,
+  "code_consts": 6,
+  "mappings_checked": 8
+}

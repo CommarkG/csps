@@ -1,0 +1,150 @@
+---
+id: csps.config.tagging-core-enums
+name: tagging-core-enums
+description: >
+  SINGLE SOURCE OF TRUTH for all closed-enum values across CSPS frontmatter,
+  validators, harvest entries, and threshold intake records. Validators MUST
+  import from here; never re-define enums inline. Divergence from this file =
+  BLOCKING (validate-tagging-core-divergence.mjs).
+  See TAGGING-CORE-INDEX.md for the full schema + SSoT mapping + S049/S050 ratification.
+version: "1.0"
+session: S088
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: tools_templates_meta
+
+# ─── DIMENSION 1: ARTIFACT LIFECYCLE STATE ────────────────────────────────────
+# SSoT for lifecycle_state on ALL governed artifacts (frontmatter required field).
+# S049/S050 RATIFICATION (S088): lifecycle_state IS the SSoT for artifact lifecycle.
+# stage and quality_state are OPTIONAL OVERLAYS for specific artifact types.
+# No cutover to stage-replaces-lifecycle_state (S050 hard cutover DEFERRED, never activated).
+lifecycle_state:
+  ssot: frontmatter  # validate-frontmatter.mjs reads this
+  values:
+    - active          # default operational state
+    - pending-review  # awaiting human/Opus review
+    - pending-protocol # awaiting protocol definition
+    - promoted        # elevated to platform standard
+    - resolved        # closed with resolution evidence
+    - deprecated      # no longer canonical
+    - validated       # validation evidence exists
+    - closed          # fully terminated
+    - sandbox         # experimental/isolated
+    - simulated       # simulation context only
+    - ratified        # Governor-ratified (highest authority)
+    - implementing    # in active implementation
+    - implemented     # implementation complete, pending ZF
+  terminal_states:
+    - resolved
+    - deprecated
+    - closed
+
+# ─── DIMENSION 2: DOCUMENT STAGE (S049 overlay — optional) ────────────────────
+# stage replaces lifecycle_state ONLY for PROCESS/WORKSTREAM artifacts (topic-plans,
+# milestones, element-reviews). NOT a replacement for lifecycle_state universally.
+# S049/S050 RATIFICATION (S088): stage is an OPTIONAL overlay, not a replacement.
+stage:
+  ssot: frontmatter
+  applies_to: [topic-plan, milestone, element-review, sprint-artifact]
+  values:
+    - intake
+    - planning
+    - active
+    - archived
+
+# ─── DIMENSION 3: QUALITY STATE (S049 overlay — optional) ────────────────────
+# quality_state tracks EVIDENCE QUALITY, not artifact lifecycle.
+# Applies to: principles, validators, behavioral-contracts (evidence-bearing artifacts).
+quality_state:
+  ssot: frontmatter
+  applies_to: [principle, validator, behavioral-contract, protocol]
+  values:
+    - draft
+    - validated
+    - activated
+    - certified
+
+# ─── DIMENSION 4: CDP STATUS (Content Development Pipeline — optional) ─────────
+# cdp_status tracks CONTENT PIPELINE state for research/external-input artifacts.
+cdp_status:
+  ssot: frontmatter
+  applies_to: [extraction-note, external-research, research-registry-entry]
+  values:
+    - raw
+    - pipeline-intake
+    - pending-ratification
+    - ratified
+    - implementing
+    - implemented
+    - zf-achieved
+    - measured
+    - sealed
+
+# ─── DIMENSION 5: ENFORCEMENT STAGE (implementation enforcement tier) ──────────
+enforcement_stage:
+  ssot: frontmatter
+  applies_to: [validator, hook, behavioral-contract]
+  values:
+    - stub
+    - planned
+    - week-4
+    - active
+    - human-judgment
+
+# ─── DIMENSION 6: WISDOM CLASS (council harvest + research registry) ────────────
+# Closed enum for the knowledge TYPE of a harvested insight.
+wisdom_class:
+  ssot: frontmatter
+  applies_to: [extraction-note, council-harvest-entry, research-registry-entry]
+  values:
+    - insight
+    - reference
+    - workflow
+    - tool
+    - benchmark
+    - story
+    - pattern
+    - lesson
+
+# ─── DIMENSION 7: CORE SPINE (platform taxonomy spine) ─────────────────────────
+core_spine:
+  ssot: frontmatter
+  values:
+    - GVRN
+    - ARCH
+    - AI
+    - OPER
+    - VALD
+  precedence: [GVRN, VALD, ARCH, AI, OPER]
+
+# ─── DIMENSION 8: DIATAXIS TYPE (documentation taxonomy) ────────────────────────
+diataxis_type:
+  ssot: frontmatter
+  values:
+    - tutorial
+    - how-to
+    - explanation
+    - reference
+    - plan
+    - decision
+
+# ─── DIMENSION 9: IMPL STATUS ─────────────────────────────────────────────────
+impl_status:
+  ssot: frontmatter
+  values:
+    - swift-implemented
+    - audit-1-complete
+    - sealed-zf
+
+# ─── DIMENSION 10: HARVEST DISPOSITION ────────────────────────────────────────
+# Closed enum for council-harvest.yaml disposition field.
+harvest_disposition:
+  ssot: council-harvest
+  values:
+    - SWIFT-absorb
+    - park
+    - ratify-candidate
+    - discard-with-reason
+    - findings-actuator

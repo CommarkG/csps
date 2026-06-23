@@ -2677,6 +2677,45 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // S088-HARVEST-GATE BUILD 1: council/research/external-review mandatory harvest gate.
+  // Design: docs/plan/_handoff/COUNCIL-WISDOM-HARVEST-DESIGN.md §5
+  // BLOCKS: invocation with personas≠none + no harvest entry; closed harvest with null disposition.
+  // Ensures council deliberation output is captured and routed — prevents insight graveyard.
+  {
+    name: 'council_harvest',
+    command: 'node tools/validators/validate-council-harvest.mjs',
+    input_files: [
+      'tools/data/council-invocation-log.yaml',
+      'tools/data/council-harvest.yaml',
+      'tools/data/ratified-standards.yaml',
+      'tools/validators/validate-council-harvest.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
+  // S088-HARVEST-GATE BUILD 2 (i): tagging-core enum SSoT divergence gate.
+  // Blocks when validator code hardcodes enum values that differ from tagging-core-enums.yaml.
+  {
+    name: 'tagging_core_divergence',
+    command: 'node tools/validators/validate-tagging-core-divergence.mjs',
+    input_files: [
+      'tools/config/tagging-core-enums.yaml',
+      'tools/validators/validate-frontmatter.mjs',
+      'tools/validators/validate-tagging-core-divergence.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
   // S088-A2 CS3: Deploy-root self-containment gate — BLOCKS if governed src/data/ copies
   // are missing or diverge from canonical parent-repo sources.
   // Root cause: /api/journey-spine returned "fallback" in prod because journey-core-spine.md

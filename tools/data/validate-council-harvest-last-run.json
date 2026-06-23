@@ -1,0 +1,11 @@
+{
+  "ran_at": "2026-06-23T09:02:50.879Z",
+  "blocking": 0,
+  "advisory": 0,
+  "passes": 5,
+  "findings": [],
+  "deliberations_checked": 0,
+  "harvest_entries": 1,
+  "closed_entries": 0,
+  "ratify_candidates": 0
+}

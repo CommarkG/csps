@@ -1672,3 +1672,19 @@ entries:
     new indexOf returns 1488 (correct), 5 links now properly parsed.
     Baseline shift: broken links 71→70 (one CRLF false-positive eliminated). exit=0.
     ZF-MEASURED: files=180 links=784 broken=70 new_breaks=0 [validate-dead-links.mjs S083].
+
+  - id: imp_TAGGING_CORE_IMPORT_REFACTOR
+    finding: "Validators hardcode closed-enum arrays inline (LIFECYCLE_STATE_VALUES etc. in validate-frontmatter.mjs) instead of importing from the SSoT (tools/config/tagging-core-enums.yaml). Divergence is now gated by validate-tagging-core-divergence.mjs, but the source remains dual — every enum change requires updating both the SSoT and the validator code."
+    first_found: S088
+    k_count: 1
+    sessions: [S088]
+    status: structural_fix_proposed
+    prevention_class: ssot-fragmentation
+    structural_fix_plan_session: null
+    prevention_design_pending: true
+    must_address_by_session: "S092"
+    age_escalation_status: on-time
+    explicit_defer_reason: "S088-HARVEST-GATE BUILD 2 shipped the divergence gate (validate-tagging-core-divergence.mjs) as the immediate fix. The import refactoring (validators read from YAML, not hardcoded arrays) is a multi-validator change scheduled for S092 consolidation pass."
+    fix_commit_sha: null
+    proposed_fix: "Refactor validate-frontmatter.mjs to import LIFECYCLE_STATE_VALUES etc. from tools/config/tagging-core-enums.yaml (YAML.parse at startup). Apply same pattern to all validators using closed enums. Remove hardcoded arrays."
+    note: "K=1 open. Part of the §10 coherence consolidation in COUNCIL-WISDOM-HARVEST-DESIGN.md."

@@ -1,23 +1,16 @@
-# B_PAGE_COMPLETE — HTTP-200 render smoke (PROTO-S087-PAGE-COMPLETE Item 4)
+# B_PAGE_COMPLETE + CS6 RENDERS-IN-PRODUCTION (S088-A3)
 #
-# Starts the csps-playground Next.js dev server and hits all 29 static /platform/* routes.
-# Fails if any route returns non-200 (broken page, missing dependency, uncaught error).
-#
-# This is the CI RESIDUAL — what static validators (M-47, route-manifest) cannot cover:
-#   - Runtime JS errors during hydration
-#   - Missing env vars that crash the page on load
-#   - API routes that fail to initialize
+# CS6 upgrade: extends HTTP-200 check with:
+#   - DOM anchor check: HTML responses must contain <main> (not hollow 200s)
+#   - Provenance check: /api/journey-spine, /api/core-spine-registry must NOT return "fallback"
+#     (confirms CS3 src/data/ copies are being served, not static fallbacks)
 #
 # Run: on push to main + weekly cron (Sunday 03:00 UTC)
-# Duration: ~3-4 minutes (next dev startup ~60s + 29 route checks)
+# Duration: ~3-4 minutes (next dev startup ~60s + route checks + provenance checks)
 #
-# Local alternative (requires running dev server):
-#   node tools/scripts/http-smoke-check.mjs
-#   (exits 1 if any route returns non-200)
-#
-# Ref: B_PAGE_COMPLETE §5, PROTO-S087-PAGE-COMPLETE, moat-registry.md M-47
+# Ref: B_PAGE_COMPLETE §5, PROTO-S087-PAGE-COMPLETE, PROTO-S088-A3-CS6
 
-name: HTTP Smoke — Page Render Check
+name: HTTP Smoke — CS6 Renders-In-Production
 
 on:
   push:
@@ -26,6 +19,10 @@ on:
       - 'apps/csps-playground/src/app/**'
       - 'apps/csps-playground/src/components/**'
       - 'apps/csps-playground/src/config/**'
+      - 'apps/csps-playground/src/data/**'
+      - 'docs/plan/pillar-0-governance/JOURNEY-CORE-SPINE.md'
+      - 'tools/config/core-spine-registry.yaml'
+      - 'tools/scripts/http-smoke-check.mjs'
   schedule:
     # Weekly smoke — Sunday 03:00 UTC (low-traffic window)
     - cron: '0 3 * * 0'
@@ -35,20 +32,30 @@ on:
         description: 'Comma-separated routes to test (blank = all static routes)'
         required: false
         default: ''
+      skip_dom:
+        description: 'Skip DOM anchor check (set to 1 to skip)'
+        required: false
+        default: '0'
+      skip_provenance:
+        description: 'Skip provenance check (set to 1 to skip)'
+        required: false
+        default: '0'
 
 jobs:
   http-smoke:
-    name: HTTP-200 Render Smoke
+    name: CS6 HTTP-200 + DOM anchor + provenance
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
 
     defaults:
       run:
         working-directory: apps/csps-playground
 
     steps:
-      - name: Checkout
+      - name: Checkout (with submodules)
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -59,6 +66,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install --frozen-lockfile 2>/dev/null || npm install
+
+      - name: Run prebuild (copy-registry.mjs — CS3 src/data/ copies)
+        run: node scripts/copy-registry.mjs
+        continue-on-error: false
 
       - name: Start dev server (background)
         run: |
@@ -83,12 +94,14 @@ jobs:
             sleep 1
           done
 
-      - name: Run HTTP smoke check
+      - name: CS6 smoke check (HTTP-200 + DOM anchor + provenance)
         working-directory: .
         run: node tools/scripts/http-smoke-check.mjs
         env:
           SMOKE_BASE_URL: http://localhost:3002
           SMOKE_ROUTES_OVERRIDE: ${{ github.event.inputs.routes }}
+          SMOKE_SKIP_DOM: ${{ github.event.inputs.skip_dom || '0' }}
+          SMOKE_SKIP_PROVENANCE: ${{ github.event.inputs.skip_provenance || '0' }}
 
       - name: Stop dev server
         if: always()

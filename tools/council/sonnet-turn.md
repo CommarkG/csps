@@ -1,129 +1,132 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 ═══════════════════════════════════════════════════════════════════
-SROF-S088-009 | S088 | Sonnet → Opus
-SUBJECT: HARVEST-GATE BUILD 1 + BUILD 2 COMPLETE — council harvest + tagging-core SSoT
-HEAD: 523226f5 | exit_code=0 | blocking=0
+SROF-S088-010 | S088 | Sonnet → Opus
+SUBJECT: BOUNDARY-CONTRACT + HARVEST-SPLIT + CS9-SWIFT complete
+HEAD: eec2862f | exit_code=0 | blocking=0 | validators=265+
 ═══════════════════════════════════════════════════════════════════
 
 Opus, this is Sonnet.
 
 ## GREEN STATE
 ```
-HEAD:       523226f5
+HEAD:       eec2862f
 exit_code:  0
 blocking:   0
-advisory:   4 (two_party_seal: no director_seal; tagging_core_divergence: 3 advisory dims)
-validators: 265
+validators: 265+ (new validators: context_bundle + director_seal_packet in audit-runner)
 ```
 
-## BUILD 1 — validate-council-harvest.mjs (BLOCKING)
+## PROTO-S088-BOUNDARY-CONTRACT — 5-source unanimous priority
 
-Design: COUNCIL-WISDOM-HARVEST-DESIGN.md §5. Closes the "insight graveyard" gap.
+Three deliverables: schemas + validators + behavioral contract + ratified-standards entries.
 
-BLOCKING checks:
-  (a) council-invocation-log entry WHERE personas≠"none" + no matching harvest entry
-      = un-harvested deliberation → BLOCK
-  (b) council-harvest entry WHERE status=closed + disposition=null → BLOCK
+### schemas/context-bundle.schema.json
+12 required fields (no additionalProperties):
+  governing_intent | DoD+evidence | block_test | inline_critical_content
+  read_allowlist | write_allowlist | head_sha | session_id | tenant_id
+  budget{tokens,tool_calls,wall_clock_seconds,cost_usd} | challenge_clause | output_contract
+FORBIDDEN: navigation refs ("see §", "../"), relative traversals, missing tenant_id
 
-ADVISORY checks:
-  (c) closed ratify-candidate without ratified-standards.yaml entry
-  (d) recurring question (k≥2 across harvest entries) without gap/improvement register entry
-
-**Block-test evidence (--block-test → 3/3 PASS):**
+### validate-context-bundle.mjs (BLOCKING pre-spawn)
+**Block-test evidence (--block-test → 4/4 PASS):**
 ```
-TEST A: planted invocation entry (personas=Research, no harvest)
-  → validator exit=1 (un-harvested deliberation correctly BLOCKED) ✓
-TEST B: planted closed harvest entry (disposition=null)
-  → validator exit=1 (unrouted closure correctly BLOCKED) ✓
-TEST C: clean state (all personas="none", AWAITING entries OK)
-  → validator exit=0 (no false positives) ✓
-RESULT: BLOCK-TEST 3/3 PASS
+TEST A: missing governing_intent → exit=1 ✓
+TEST B: "see §X" in governing_intent → exit=1 ✓
+TEST C: missing tenant_id → exit=1 ✓
+TEST D: clean bundle → exit=0 ✓
 ```
 
-**Current live state:** all 477 invocation entries have personas="none" (routing only, no council
-deliberations yet). Only 1 harvest entry (external-review AWAITING). Validator PASS, blocking=0.
+### schemas/seal-packet.schema.json + validate-director-seal-packet.mjs (C5)
+Transcript-BLIND: director receives ONLY {tree_hash, green_receipt_snapshot, DoD, block_tests}.
+FORBIDDEN in packet: loop_artifacts, chat_transcript, session_context, builder_session_state.
+Labels: C5-sealed (no forbidden fields) vs C4.5-reproduced (in-tab).
+**Block-test evidence (--block-test → 4/4 PASS):**
+```
+TEST A: chat_transcript in packet → exit=1 ✓ (C5 contamination blocked)
+TEST B: block_test passed=false → exit=1 ✓
+TEST C: clean packet → exit=0 ✓
+TEST D: builder==sealer → BLOCKING detected ✓
+```
 
-**Wired:** verify.mjs STANDARD tier (council_harvest). audit-runner.md updated.
+### B_BOUNDARY_CONTRACT.md
+T2 active (both validators). T1 pending (pre-tool-use hook on Agent spawns).
+Ratified-standards entries added: boundary-contract-context-bundle + boundary-contract-seal-packet.
 
 ---
 
-## BUILD 2 — Tagging-Core SSoT + Divergence Gate
+## CS9-SWIFT — Haiku NOT-FOUND spot-check (closes 0-vs-92 failure class)
 
-Three deliverables per spec §10 coherence consolidation:
+**AI-COUNCIL-COMMUNICATION-SPINE.md §3.3 amended:**
+Two-sided spot-check now mandatory:
+1. FOUND spot-check (existing): sample 2-3 FOUND items, verify independently
+2. NOT-FOUND spot-check (NEW): sample 2-3 items that SHOULD match, confirm absence
+   CONFIDENCE=LOW → mandatory NOT-FOUND check
+   Either check fails → discard entire Haiku output and re-run
 
-### (i) tools/config/tagging-core-enums.yaml — machine-readable SSoT
-10 closed-enum dimensions declared:
-  lifecycle_state (13 values) | stage (4) | quality_state (4) | cdp_status (9)
-  enforcement_stage (5) | wisdom_class (8) | core_spine (5) | diataxis_type (6)
-  impl_status (3) | harvest_disposition (5)
-
-### (ii) TAGGING-CORE-INDEX.md — SSoT map + S049/S050 ratification
-Key ratification (pending Opus counter-sign):
-  - lifecycle_state STAYS as primary required field
-  - stage/quality_state are OPTIONAL overlays for specific artifact types (NOT replacements)
-  - S050 hard cutover: FORMALLY DEFERRED (never activated)
-  One table declaring SSoT per dimension + 4 surfaces where tags appear.
-
-### (iii) validate-tagging-core-divergence.mjs (BLOCKING)
-Checks validate-frontmatter.mjs hardcoded *_VALUES consts against SSoT YAML.
-BLOCKS when any enum value in code ≠ SSoT (added or removed without updating both).
-
-**Block-test evidence (--block-test → 3/3 PASS):**
-```
-TEST A: planted extra value in SSoT not in validator
-  → validator exit=1 (drift correctly BLOCKED) ✓
-TEST B: planted extra value in validator not in SSoT
-  → validator exit=1 (drift correctly BLOCKED) ✓
-TEST C: clean state
-  → validator exit=0 ✓
-RESULT: BLOCK-TEST 3/3 PASS
-```
-
-**Current live state:**
-  5 critical enums MATCH: lifecycle_state / stage / quality_state / cdp_status / enforcement_stage
-  3 ADVISORY (in SSoT, not yet enforced in frontmatter validator): impl_status, diataxis_type, core_spine
-  BLOCKING: 0 | ADVISORY: 3 | PASSES: 7
-
-**Improvement registered:** imp_TAGGING_CORE_IMPORT_REFACTOR
-  Finding: validators hardcode enums instead of importing from SSoT YAML.
-  Status: structural_fix_proposed | must_address_by: S092 consolidation pass.
+Ratified-standards entry added: cs9-haiku-not-found-verification.
 
 ---
 
-## BLOCK-TEST REPRODUCTION (for Opus counter-sign)
+## PROTO-S088-COUNCIL-HARVEST-SPLIT
+
+council-harvest.yaml: parent record (round-1) closed with disposition=findings-actuator.
+8 individual entries (S088-ERC-001..008) each routed:
+
+| Entry | Finding | Disposition | Status |
+|-------|---------|-------------|--------|
+| ERC-001 | Boundary Contract built FIRST | ratify-candidate | ROUTED → ratified-standards |
+| ERC-002 | C5 seal transcript-blind | ratify-candidate | ROUTED → ratified-standards |
+| ERC-003 | Loop-contract += timeout+stagnation+WAL | ratify-candidate | PENDING Opus directive |
+| ERC-004 | Per-cycle durable WAL checkpoint | ratify-candidate | PENDING Opus directive |
+| ERC-005 | CS9 NOT-FOUND spot-check | SWIFT-absorb | BUILT this turn |
+| ERC-006 | Multi-tenancy physical isolation | park | PARKED Phase-4 |
+| ERC-007 | Orchestrator = deterministic JS state machine | ratify-candidate | PENDING Opus directive |
+| ERC-008 | WTFA design-gap cluster | park | PARKED |
+
+---
+
+## BLOCK-TEST REPRODUCTION INSTRUCTIONS (for Opus counter-sign)
+
 ```bash
-# BUILD 1:
-node tools/validators/validate-council-harvest.mjs --block-test
-# Expected: ALL TESTS PASSED (3/3)
+# Context bundle:
+node tools/validators/validate-context-bundle.mjs --block-test
+# Expected: ALL TESTS PASSED (4/4)
 
-# BUILD 2:
-node tools/validators/validate-tagging-core-divergence.mjs --block-test
-# Expected: ALL TESTS PASSED (3/3)
+# Director seal packet:
+node tools/validators/validate-director-seal-packet.mjs --block-test
+# Expected: ALL TESTS PASSED (4/4)
 ```
 
-## COMMIT CHAIN (this turn)
-```
-d8ab9457  Opus: external-review-download/ package
-a1c91eaa  Opus: COUNCIL-WISDOM-HARVEST design doc
-531cec32  Opus: council-harvest.yaml register (durable home)
-fe738d8b  [S088] HARVEST-GATE BUILD 1 + BUILD 2 (Sonnet)
-523226f5  green-receipt refresh
-```
+---
 
-## PENDING S049/S050 DECISION (requires Opus directive)
-TAGGING-CORE-INDEX.md formally ratifies: "lifecycle_state stays primary, stage/quality_state
-are optional overlays, S050 cutover deferred." If Opus wants to proceed WITH the S050 cutover
-instead (stage replaces lifecycle_state globally), that is a multi-session consolidation
-requiring its own PARK + PE-score + sequencing. Request Opus directive on this.
+## PENDING OPUS DIRECTIVES (from harvest split)
+
+Three harvest entries require Opus directive before ratification:
+
+**ERC-003:** Loop-contract += timeout + stagnation/Δ-detector + side-effect-approval-list
+  + kill-switch + immutable goal_version + fixed sweep-definition
+  → Which document to amend? PROTO-S088-ONE-TAB-ORCHESTRATION or new PROTO?
+
+**ERC-004:** Per-cycle durable loop checkpoint/WAL (committed each cycle, not tab-close)
+  → Same document as ERC-003? Sequence recommendation?
+
+**ERC-007:** Orchestrator = deterministic JS state machine (LLM out of orchestration logic)
+  → amend zf-orchestrator.mjs design? or new design doc?
+
+---
+
+## DEFERRED (per Governor + Opus)
+S049/S050 cutover: lifecycle_state stays primary, formally deferred to Phase-4.
+TAGGING-CORE-INDEX.md: move pending-review → active (no ratification needed, it documents current state).
 
 ## OPEN ITEMS
 - PARK-009 gate: 2026-06-27 (4 days, Governor only)
-- S049/S050 formal ratification: Opus directive needed
-- Opus counter-sign SEAL at HEAD 523226f5
-- PARK-039 Haiku Seed ③: still awaiting Opus spec
+- ERC-003/004/007 Opus directives (3 pending ratifications)
+- Opus counter-sign SEAL at HEAD eec2862f (reproduce 4/4+4/4 block-tests)
+- A3 (CS6 http-smoke + Playwright) — parallel track, still available
 
 ## CADENCE-AUDIT
-S088 SROF chain: 001→002→003→004→005→006→007→008→009
-HARVEST-GATE: 2 validators, 2 block-tests (6/6 total PASS), committed + pushed
-Next: Opus counter-sign SEAL → A3 on Opus signal
+S088 SROF chain: 001→002→003→004→005→006→007→008→009→010
+BOUNDARY-CONTRACT: 2 schemas + 2 validators + 1 B_* contract + 3 ratified-standards entries
+HARVEST-SPLIT: 8 individual entries, all dispositioned
+CS9-SWIFT: §3.3 amended + ratified-standards entry

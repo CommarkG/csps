@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-23T10:07:32.341Z
-- finished_at: 2026-06-23T10:08:09.424Z
+- ran_at: 2026-06-23T10:09:53.922Z
+- finished_at: 2026-06-23T10:10:31.076Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-23T10:07:32.341Z",
-    "finished_at": "2026-06-23T10:08:09.424Z",
+    "ran_at": "2026-06-23T10:09:53.922Z",
+    "finished_at": "2026-06-23T10:10:31.076Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 0.8,
         "principles_loaded": 78,
         "findings_total": 32
       },
@@ -135,7 +135,7 @@
         "command": "node tools/validators/validate-inner-ai-defaults-freshness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "ai_defaults_enforcement_rate",
@@ -211,7 +211,7 @@
         "command": "node tools/validators/validate-open-questions.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "plans": 3,
         "total": 4,
         "open": 0
@@ -517,7 +517,7 @@
         "command": "node tools/validators/validate-nodefile-compliance.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_scanned": 36,
         "cached": 36,
         "scanned": 0,
@@ -689,7 +689,7 @@
         "command": "node tools/validators/validate-gap-routing.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "findings": 1,
         "significant": 0,
         "advisory": 1,
@@ -1068,7 +1068,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 1,
+        "warnings": 2,
         "advisory": true
       },
       {
@@ -1499,8 +1499,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "new_permanent_files": 3,
-        "advisory": 2,
+        "new_permanent_files": 0,
+        "advisory": 0,
         "blocking": 0
       },
       {
@@ -1599,8 +1599,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 428,
-        "advisory": 428,
+        "findings": 429,
+        "advisory": 429,
         "blocking": 0
       },
       {
@@ -1666,7 +1666,7 @@
         "command": "node tools/validators/validate-load-test-harness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 0,
         "scenarios": 4
@@ -1801,9 +1801,9 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "state_session": "S57",
-        "council_session": "S92",
-        "gap": 35,
-        "session_spread": 4,
+        "council_session": "S88",
+        "gap": 31,
+        "session_spread": 3,
         "advisory": 1,
         "blocking": 0
       },
@@ -1872,7 +1872,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 1347,
+        "total_entries": 1348,
         "sessions": 13,
         "advisory": true
       },
@@ -1951,7 +1951,7 @@
         "command": "node tools/validators/validate-ai-honesty.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 2.5,
+        "duration_seconds": 2.4,
         "files_checked": 29,
         "blocking": 0,
         "advisory": 0
@@ -2024,7 +2024,7 @@
         "command": "node tools/validators/validate-finding-scheduling.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1
+        "duration_seconds": 0.2
       },
       {
         "name": "session_source_usage",
@@ -2065,7 +2065,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "files_scanned": 3,
+        "files_scanned": 1,
         "potential_duplicates": 0,
         "advisory": 0,
         "blocking": 0
@@ -2077,10 +2077,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocks_checked": 0,
-        "proto_citations": 187,
+        "proto_citations": 190,
         "valid": 6,
-        "missing": 181,
-        "advisory": 181,
+        "missing": 184,
+        "advisory": 184,
         "blocking": 0
       },
       {
@@ -2183,7 +2183,7 @@
         "exit_code": 0,
         "duration_seconds": 0.2,
         "files_checked": 792,
-        "advisory": 234,
+        "advisory": 233,
         "blocking": 0
       },
       {
@@ -2220,7 +2220,7 @@
         "command": "node tools/validators/validate-hook-activation-smoke.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 4.7,
+        "duration_seconds": 4.8,
         "hooks_tested": 9,
         "blocking": 0,
         "advisory": 4
@@ -2269,11 +2269,10 @@
       {
         "name": "green_receipt",
         "command": "node tools/validators/validate-green-receipt.mjs",
-        "status": "PASS",
-        "exit_code": 0,
+        "status": "FAIL",
+        "exit_code": 1,
         "duration_seconds": 0.2,
-        "head_prefix": "6072cfb7",
-        "receipt_ts": "2026-06-23T09:56:31.759Z"
+        "tail": "[validate-green-receipt] FAIL\n  blocking=1 advisory=0\n  BLOCKING: tree_hash mismatch — tracked content changed since last verify\n    receipt tree_hash: eefc2056fe872bbf\n    current tree_hash: 15e4cb3e242dd8ce\n    Code or config changed after the last successful verify run.\n    FIX: run `node tools/verify.mjs --skip-install` to refresh the receipt.\n"
       },
       {
         "name": "agent_inheritance_parity",
@@ -2379,7 +2378,7 @@
         "command": "node tools/validators/validate-threshold-chain.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 0,
         "passes": 11
@@ -2410,7 +2409,7 @@
         "command": "node tools/validators/validate-hash-cache.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 0,
         "cache_entries": 15
@@ -2486,7 +2485,7 @@
         "command": "node tools/validators/validate-deploy-root-selfcontained.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 0,
         "passes": 5

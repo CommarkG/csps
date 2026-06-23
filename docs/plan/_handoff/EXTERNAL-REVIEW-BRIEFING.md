@@ -38,13 +38,14 @@ full, un-summarized content. Read both. Then answer the questions in §F and do 
 
 | # | Simple name (what it is) | Save-as | Canonical file |
 |---|---|---|---|
-| **01** | This briefing — read FIRST (vocabulary §C) | `01-cssp-external-review-briefing.md` | EXTERNAL-REVIEW-BRIEFING.md |
-| **02** | The architecture under review | `02-one-tab-orchestration-design.md` | OPUS-S088-ONE-TAB-ORCHESTRATION-DESIGN.md |
-| **03** | How the AI models communicate | `03-ai-council-communication-spine.md` | AI-COUNCIL-COMMUNICATION-SPINE.md |
-| **04** | Compaction / new-tab / agent-lifecycle rules | `04-ai-council-edge-case-protocols.md` | AI-COUNCIL-EDGE-CASE-PROTOCOLS.md |
-| **05** | The completion standard ("green") | `05-shippable-green-protocol.md` | SHIPPABLE-GREEN-PROTOCOL.md |
+| **01** | This briefing — read FIRST (vocabulary §C) | `01-csps-external-review-briefing.md` | EXTERNAL-REVIEW-BRIEFING.md |
+| **02** | Platform core concept & pillars — deep background | `02-csps-platform-core-concept.md` | CSPS-PLATFORM-CORE-CONCEPT.md |
+| **03** | The architecture under review | `03-one-tab-orchestration-design.md` | OPUS-S088-ONE-TAB-ORCHESTRATION-DESIGN.md |
+| **04** | How the AI models communicate | `04-ai-council-communication-spine.md` | AI-COUNCIL-COMMUNICATION-SPINE.md |
+| **05** | Compaction / new-tab / agent-lifecycle rules | `05-ai-council-edge-case-protocols.md` | AI-COUNCIL-EDGE-CASE-PROTOCOLS.md |
+| **06** | The completion standard ("green") | `06-shippable-green-protocol.md` | SHIPPABLE-GREEN-PROTOCOL.md |
 
-Read 01 → 05 in order; nothing here substitutes for the full files. *(If your tool can't take attachments, paste each file's content in numbered order; do not skip any.)*
+Read 01 → 06 in order; nothing here substitutes for the full files. **02 is the deep background — read it before the design (03).** *(If your tool can't take attachments, paste each file's content in numbered order; do not skip any.)*
 
 ## §B — WHAT CSPS IS (one paragraph, then the vocabulary)
 CSPS (Core Sights Platform) is a **governance-first software platform** built and operated by a human ("the

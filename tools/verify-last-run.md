@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-23T00:31:04.889Z
-- finished_at: 2026-06-23T00:31:35.213Z
+- ran_at: 2026-06-23T01:04:23.397Z
+- finished_at: 2026-06-23T01:04:53.600Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-23T00:31:04.889Z",
-    "finished_at": "2026-06-23T00:31:35.213Z",
+    "ran_at": "2026-06-23T01:04:23.397Z",
+    "finished_at": "2026-06-23T01:04:53.600Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -30,7 +30,7 @@
         "command": "pnpm -r --filter \"./apps/**\" typecheck 2>/dev/null || echo \"[apps_typecheck] no apps with typecheck script or all clean\"",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0,
         "ts_errors": 0,
         "skipped": true
       },
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.8,
+        "duration_seconds": 0.9,
         "principles_loaded": 78,
         "findings_total": 32
       },
@@ -359,7 +359,7 @@
         "checked": 730,
         "clean": 730,
         "blocking": 0,
-        "registry": 71
+        "registry": 72
       },
       {
         "name": "generated_artifact_freshness",
@@ -421,7 +421,7 @@
         "command": "node tools/validators/validate-mini-tree-integrity.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "blocking": 0,
         "advisory": 2
       },
@@ -1829,7 +1829,7 @@
         "command": "node tools/validators/validate-contextual-locality.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 174,
         "blocking": 0,
         "advisory": 26
@@ -1853,7 +1853,7 @@
         "duration_seconds": 0.1,
         "total": 252,
         "deferred": 11,
-        "empty_output": 20,
+        "empty_output": 21,
         "zero_numeric": 24,
         "advisory": 3,
         "blocking": 0
@@ -1875,7 +1875,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 1192,
+        "total_entries": 1197,
         "sessions": 12,
         "advisory": true
       },
@@ -2223,7 +2223,7 @@
         "command": "node tools/validators/validate-hook-activation-smoke.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 4.1,
+        "duration_seconds": 3.9,
         "hooks_tested": 9,
         "blocking": 0,
         "advisory": 4
@@ -2274,8 +2274,8 @@
         "command": "node tools/validators/validate-green-receipt.mjs",
         "status": "FAIL",
         "exit_code": 1,
-        "duration_seconds": 0.2,
-        "tail": "[validate-green-receipt] FAIL\n  blocking=1 advisory=0\n  BLOCKING: tree_hash mismatch — tracked content changed since last verify\n    receipt tree_hash: a9c121c18f666474\n    current tree_hash: 5a0913b9806ca915\n    Code or config changed after the last successful verify run.\n    FIX: run `node tools/verify.mjs --skip-install` to refresh the receipt.\n"
+        "duration_seconds": 0.1,
+        "tail": "[validate-green-receipt] FAIL\n  blocking=1 advisory=0\n  BLOCKING: tree_hash mismatch — tracked content changed since last verify\n    receipt tree_hash: 5a0913b9806ca915\n    current tree_hash: eb857e5e37c12fd5\n    Code or config changed after the last successful verify run.\n    FIX: run `node tools/verify.mjs --skip-install` to refresh the receipt.\n"
       },
       {
         "name": "agent_inheritance_parity",

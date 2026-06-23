@@ -515,6 +515,13 @@ schema_anchors:
     l2_domain: AGENT_BEHAVIOR
     description: CSPS skill template artifacts — SKILL-BASE parent template with 6 mandatory sections (Identity/AAP/Input/Output/ZF/Enforcement)
 
+  claude_agent:
+    type: agent-definition
+    resolves_to: .claude/agents/*.md
+    spine: AI
+    l2_domain: AGENT_BEHAVIOR
+    description: Claude Code sub-agent definitions in .claude/agents/ (e.g. haiku-scout, dna-guardian) — governed under AAP
+
   behavioral_contracts:
     type: governance-section
     resolves_to: docs/plan/pillar-0-governance/behavioral-contracts/

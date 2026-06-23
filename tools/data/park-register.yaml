@@ -1226,6 +1226,25 @@ entries:
     created_session: S088
     closed_session: null
 
+  - id: "PARK-S088-DNA-GUARDIAN"
+    lane: obligation
+    disposition_text: "parked | owner: Opus(design)+Sonnet(build) | trigger: after Track A2 (build-reality gates) ships, OR Governor asks to harden external-capability governance. Swift kernel DONE S088; deep dive parked to keep completion focus on Track A."
+    disposition_session: S088
+    content: "DNA-GUARDIAN DEEP DIVE — the platform's DNA immune system for external capabilities. SWIFT KERNEL DONE (S088 cf3d7df5): .claude/agents/dna-guardian.md + tools/data/external-capability-alignment.yaml registry + claude_agent schema anchor; playwright/haiku-scout/otosan-wp = QUARANTINE. DEEP DIVE: (1) validate-external-capability-alignment.mjs — every external MCP/agent/skill in .mcp.json + .claude/agents must have a registry record; ADVISORY first (low blast) then BLOCKING. (2) Automated translation layer: vocabulary→CSPS canon, defaults→completion/verify discipline, priorities→PE, naming→Naming Policy; neutralize alien defaults (auto-publish, upsell, language overrides, persistent profiles). (3) Migration-hardening research: how large platforms keep their core intact/unpolluted when adopting foreign capabilities → execute into CSPS, cover all bases. (4) Review every QUARANTINE capability → ALIGNED verdict. Extends agent-alignment-protocol.md + validate-capability-registry.mjs. Class proven live S088: otosan-wp MCP injecting Hebrew+menu, haiku-scout false data, raw Playwright add."
+    retrieve_when: "After Track A2 build-reality gates ship, OR Governor asks to harden external-capability governance. Low-blast items (advisory validator) first."
+    never_drop: true
+    context_preserved: >
+      Governor directive S088: a dedicated 'fierce god of the platform DNA' keeping MCP/agents/skills
+      from injecting alien DNA patterns/principles/priorities. First gate examines each external thing
+      with thorough alignment + vocabulary/principle/pattern/default translation so it behaves per CSPS
+      architecture, not its vendor ways. Swift-implement + low-blast basics now; deep dive + migration
+      research parked. Connects: PARK-S086-053 (orchestration loop uses aligned capabilities),
+      agent-alignment-protocol.md (AAP base), CS9 scout-verification (untrusted output = claim).
+    decision_back_ref: "Governor directive S088: dedicated DNA-guardian agent + first alignment gate + migration-hardening research; swift-implement + park deep dive"
+    source_session: S088
+    created_session: S088
+    closed_session: null
+
   - id: "PARK-S087-001"
     lane: obligation
     disposition_text: "parked | owner: Opus | trigger: S088 opening directive — Opus sends the mechanization seed (which hook/validator enforces the two-party requirement, what the counter-signature format is, how DIRECTOR flag is set). Sonnet builds from the Opus seed. No Sonnet-only mechanization possible (requires Opus-side verification contract)."

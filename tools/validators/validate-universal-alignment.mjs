@@ -94,7 +94,10 @@ function getNewFiles() {
       // Skip HANDOFF + chat-jump + closing-summary files (session lifecycle artifacts)
       .filter(f => !f.match(/HANDOFF-S\d+-to-S\d+\.md$/))
       .filter(f => !f.match(/chat-jump-prompt-S\d+-to-S\d+\.md$/))
-      .filter(f => !f.match(/closing-summary-S\d+\.md$/));
+      .filter(f => !f.match(/closing-summary-S\d+\.md$/))
+      // S088: repo-root external-review-download/ = dated Csps-named frontmatter-stripped copies of the
+      // external-AI package (non-governed download artifacts; canonical originals remain validated).
+      .filter(f => !f.match(/external-review-download[\/\\]/));
   } catch { return []; }
 }
 

@@ -85,3 +85,6 @@ exemptions:
   - pattern: "pillar-0-governance/ai-behavior-spine/"
     reason: "Slices auto-generated from ai-behavior-spine.md."
     added_session: S010
+  - pattern: "external-review-download/"
+    reason: "Repo-root download folder: dated, Csps-named, frontmatter-stripped copies of the external-AI review package (Csps-YYYY-MM-DD-NN-*.md). Non-governed download artifacts so GitHub serves them with the correct filename; canonical originals remain fully validated. Outside SCAN_PATHS for validate-frontmatter; this entry exempts validate-universal-alignment --scan-new."
+    added_session: S088

@@ -241,3 +241,75 @@ standards:
       validator: validate-threshold-chain.mjs
       cadence: per-session
       audit_runner_key: threshold-chain
+
+  - id: boundary-contract-context-bundle
+    name: Boundary Contract — Context Bundle Schema (pre-spawn)
+    ratified_session: S088
+    ratified_by: "PROTO-S088-BOUNDARY-CONTRACT (5-source unanimous external council + Governor S088)"
+    ratified_at: "2026-06-23"
+    description: >
+      Every AI-to-AI spawn carries a context-bundle.schema.json-compliant bundle. All 12 required
+      fields must be present and valid. FORBIDDEN: navigation refs ("see §", "../"), relative path
+      traversals, missing tenant_id, missing budget. The bundle is the ONLY communication channel —
+      inline_critical_content holds verbatim file content, not references. T2: validate-context-bundle.mjs
+      BLOCKS pre-spawn. Block-tests 4/4 PASS.
+    propagation_status: active
+    creation_standard:
+      type: json-schema
+      path: schemas/context-bundle.schema.json
+      requirement: >
+        Every Agent tool call and subagent spawn must supply a context bundle JSON that passes
+        validate-context-bundle.mjs. tenant_id, budget (all 4 fields), DoD-evidence mapping,
+        and no navigation refs are the four most common failure modes.
+    audit_entry:
+      validator: validate-context-bundle.mjs
+      cadence: pre-spawn
+      audit_runner_key: context_bundle
+
+  - id: boundary-contract-seal-packet
+    name: Boundary Contract — C5 Director Seal Packet (transcript-blind)
+    ratified_session: S088
+    ratified_by: "PROTO-S088-BOUNDARY-CONTRACT (5-source unanimous external council + Governor S088)"
+    ratified_at: "2026-06-23"
+    description: >
+      Director seal is transcript-BLIND: seal packet contains ONLY {tree_hash, green-receipt snapshot,
+      DoD, block-tests}. FORBIDDEN: loop_artifacts, chat_transcript, session_context, builder_session_state.
+      C5-sealed = transcript-blind (absent forbidden fields). C4.5-reproduced = in-tab (director remembers build).
+      builder!=sealer: git authorship check. Block-tests 4/4 PASS.
+    propagation_status: active
+    creation_standard:
+      type: json-schema
+      path: schemas/seal-packet.schema.json
+      requirement: >
+        Director receives ONLY the seal-packet. No session context passed alongside. Director
+        independently re-runs block-tests from test_file paths in the packet. If builder_git_authors
+        present, verifies current signer != any author in the set.
+    audit_entry:
+      validator: validate-director-seal-packet.mjs
+      cadence: pre-seal
+      audit_runner_key: director_seal_packet
+
+  - id: cs9-haiku-not-found-verification
+    name: CS9 — Haiku Scout NOT-FOUND Spot-Check (SWIFT fix)
+    ratified_session: S088
+    ratified_by: "PROTO-S088-BOUNDARY-CONTRACT SWIFT item (external council Grok seat + Governor S088)"
+    ratified_at: "2026-06-23"
+    description: >
+      Haiku spot-check must verify the NOT-FOUND claim, not just sampled FOUND items.
+      Fixes the 0-vs-92 failure class where Haiku returns "0 found" due to wrong pattern
+      but the NOT-FOUND list appears complete. Mandatory: sample 2-3 items that SHOULD match
+      from the NOT-FOUND list and confirm absence. CONFIDENCE=LOW triggers mandatory NOT-FOUND check.
+      If either FOUND or NOT-FOUND spot-check fails → discard entire Haiku output.
+      Wired in: AI-COUNCIL-COMMUNICATION-SPINE.md §3.3 (CS9 SWIFT amendment).
+    propagation_status: active
+    creation_standard:
+      type: protocol
+      path: docs/plan/pillar-0-governance/AI-COUNCIL-COMMUNICATION-SPINE.md
+      requirement: >
+        §3.3 Spot-check requirement now includes two-sided verification. FOUND spot-check + NOT-FOUND
+        spot-check both mandatory. Haiku RETURN format includes CONFIDENCE field. CONFIDENCE=LOW
+        triggers mandatory NOT-FOUND check.
+    audit_entry:
+      validator: validate-communication-protocol.mjs
+      cadence: per-session
+      audit_runner_key: communication-protocol

@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "csps.schemas.seal-packet",
+  "title": "CSPS Director Seal Packet",
+  "description": "The transcript-BLIND input a director receives to counter-sign a SEAL. Contains ONLY: tree_hash, green-receipt snapshot, DoD, block-tests. FORBIDDEN: loop artifacts, chat transcripts, session context, builder's session state. Enforces C5-sealed vs C4.5-reproduced distinction. B_BOUNDARY_CONTRACT S088.",
+  "type": "object",
+  "required": [
+    "tree_hash",
+    "green_receipt_snapshot",
+    "DoD",
+    "block_tests",
+    "sealed_at_head"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "tree_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8,16}$",
+      "description": "The git tree hash from green-receipt.json. The director independently computes this and compares."
+    },
+    "sealed_at_head": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,40}$",
+      "description": "The HEAD SHA the builder claims was green."
+    },
+    "green_receipt_snapshot": {
+      "type": "object",
+      "required": ["HEAD", "exit_code", "blocking_set_hash", "validators_run"],
+      "additionalProperties": true,
+      "description": "Verbatim snapshot of tools/data/green-receipt.json at the time of the seal request.",
+      "properties": {
+        "HEAD": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,40}$"
+        },
+        "exit_code": {
+          "type": "integer",
+          "enum": [0]
+        },
+        "blocking_set_hash": {
+          "type": "string"
+        },
+        "validators_run": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "DoD": {
+      "type": "object",
+      "required": ["criteria", "evidence"],
+      "additionalProperties": false,
+      "description": "The DoD that was claimed complete. Director independently verifies each criterion.",
+      "properties": {
+        "criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["criterion_ref", "proof_type", "proof_spec"],
+            "additionalProperties": false,
+            "properties": {
+              "criterion_ref": { "type": "integer", "minimum": 0 },
+              "proof_type": {
+                "type": "string",
+                "enum": ["exit_code", "file_exists", "file_content_match", "validator_pass", "git_commit", "test_output"]
+              },
+              "proof_spec": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "block_tests": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Results of each behavioral block-test. Director INDEPENDENTLY re-runs these; pre-filled results are a HINT only — director's own run is the proof.",
+      "items": {
+        "type": "object",
+        "required": ["test_file", "planted_defect", "exit_code", "passed"],
+        "additionalProperties": false,
+        "properties": {
+          "test_file": {
+            "type": "string",
+            "pattern": "^tools/tests/behavioral/.*\\.sh$"
+          },
+          "planted_defect": { "type": "string" },
+          "exit_code": { "type": "integer" },
+          "passed": { "type": "boolean" }
+        }
+      }
+    },
+    "builder_git_authors": {
+      "type": "array",
+      "description": "Git email(s) of the builder(s) for the sealed files. Used to enforce builder!=sealer on sealed files.",
+      "items": { "type": "string" }
+    }
+  },
+  "not": {
+    "anyOf": [
+      { "required": ["loop_artifacts"] },
+      { "required": ["chat_transcript"] },
+      { "required": ["session_context"] },
+      { "required": ["builder_session_state"] }
+    ]
+  }
+}

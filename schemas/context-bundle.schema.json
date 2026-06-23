@@ -1,0 +1,226 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "csps.schemas.context-bundle",
+  "title": "CSPS Context Bundle",
+  "description": "The typed contract every AI-to-AI spawn must satisfy. All fields are load-bearing: missing any REQUIRED field = BLOCKING pre-spawn. FORBIDDEN: navigation refs ('see §', '../'), relative paths in inline_critical_content. B_BOUNDARY_CONTRACT S088.",
+  "type": "object",
+  "required": [
+    "governing_intent",
+    "DoD",
+    "block_test",
+    "inline_critical_content",
+    "read_allowlist",
+    "write_allowlist",
+    "head_sha",
+    "session_id",
+    "tenant_id",
+    "budget",
+    "challenge_clause",
+    "output_contract"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "governing_intent": {
+      "type": "string",
+      "minLength": 10,
+      "description": "WHY this spawn exists — one precise sentence. Must NOT contain 'see §', '../', or 'refer to'. Must be self-contained."
+    },
+    "DoD": {
+      "type": "object",
+      "required": ["criteria", "evidence"],
+      "additionalProperties": false,
+      "description": "Definition of Done — measurable, verifiable criteria and the evidence that proves each one.",
+      "properties": {
+        "criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 5,
+            "description": "One verifiable done criterion. Must be testable (exit_code=0, file exists, validator PASS, etc.)."
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["criterion_ref", "proof_type", "proof_spec"],
+            "additionalProperties": false,
+            "properties": {
+              "criterion_ref": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "0-based index into DoD.criteria this evidence satisfies."
+              },
+              "proof_type": {
+                "type": "string",
+                "enum": ["exit_code", "file_exists", "file_content_match", "validator_pass", "git_commit", "test_output"],
+                "description": "Category of proof."
+              },
+              "proof_spec": {
+                "type": "string",
+                "description": "The specific check. e.g. 'node tools/validators/validate-X.mjs → blocking=0', 'git log --oneline -1 | grep [sha]'."
+              }
+            }
+          }
+        }
+      }
+    },
+    "block_test": {
+      "type": "object",
+      "required": ["planted_defect", "expected_exit", "test_file"],
+      "additionalProperties": false,
+      "description": "Behavioral block-test spec: the gate MUST go RED on a planted defect.",
+      "properties": {
+        "planted_defect": {
+          "type": "string",
+          "minLength": 5,
+          "description": "What is planted to trigger the gate (e.g. 'remove tenant_id field')."
+        },
+        "expected_exit": {
+          "type": "integer",
+          "enum": [1],
+          "description": "Expected exit code when defect is planted. Must be 1 (blocking)."
+        },
+        "test_file": {
+          "type": "string",
+          "pattern": "^tools/tests/behavioral/.*\\.sh$",
+          "description": "Absolute path from repo root to the behavioral test script."
+        }
+      }
+    },
+    "inline_critical_content": {
+      "type": "object",
+      "required": ["files", "key_decisions"],
+      "additionalProperties": false,
+      "description": "Content that MUST be pasted inline (no navigation refs). Zero-Context-Assumption: receiver starts with nothing.",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "content"],
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^[^.]{2}",
+                "description": "Absolute repo path to the file. FORBIDDEN: relative paths ('../../', '../'). Must start without '..'."
+              },
+              "content": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The file content, verbatim. Never a reference — the content itself."
+              }
+            }
+          }
+        },
+        "key_decisions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 5,
+            "description": "A key decision the receiver needs. No 'see §' — the decision, inline."
+          }
+        }
+      }
+    },
+    "read_allowlist": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Absolute paths the spawned agent is allowed to READ. Must be explicit — no wildcards unless scoped.",
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "description": "Absolute path or path prefix (e.g. 'tools/data/', 'docs/plan/'). Must NOT start with '../../'."
+      }
+    },
+    "write_allowlist": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Absolute paths the spawned agent is allowed to WRITE/EDIT. Minimal — only what the task requires.",
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "description": "Absolute path or narrow path prefix."
+      }
+    },
+    "head_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,40}$",
+      "description": "Git HEAD SHA at the moment of spawn. Ensures the agent works on the correct tree."
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^S[0-9]{3}",
+      "description": "Current CSPS session ID (e.g. S088). Used for audit trail and rate-limiting."
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Tenant identifier. Required for multi-tenant isolation. Use 'platform' for platform-level work."
+    },
+    "budget": {
+      "type": "object",
+      "required": ["tokens", "tool_calls", "wall_clock_seconds", "cost_usd"],
+      "additionalProperties": false,
+      "description": "Resource limits for the spawned agent. All four fields required — no implicit inheritance.",
+      "properties": {
+        "tokens": {
+          "type": "integer",
+          "minimum": 1000,
+          "description": "Maximum input+output token budget."
+        },
+        "tool_calls": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum number of tool calls allowed."
+        },
+        "wall_clock_seconds": {
+          "type": "integer",
+          "minimum": 30,
+          "description": "Wall-clock timeout in seconds. Agent must complete within this window."
+        },
+        "cost_usd": {
+          "type": "number",
+          "minimum": 0.001,
+          "description": "Maximum estimated cost in USD. Spawn aborted if projected cost exceeds this."
+        }
+      }
+    },
+    "challenge_clause": {
+      "type": "string",
+      "minLength": 10,
+      "description": "What the spawned agent should actively verify or push back on (Grok's 'understanding test'). Forces confirmation the agent understood the intent, not just the instructions."
+    },
+    "output_contract": {
+      "type": "object",
+      "required": ["format", "required_fields", "forbidden_patterns"],
+      "additionalProperties": false,
+      "description": "What the spawned agent MUST return. Used by the receiver to validate the output before use.",
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": ["HAIKU-RETURN", "json", "markdown-report", "code-diff", "verification-block"],
+          "description": "Output format. The receiver validates against this."
+        },
+        "required_fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "description": "Field or section that MUST appear in the output."
+          }
+        },
+        "forbidden_patterns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Patterns that MUST NOT appear in the output (e.g. 'see §', 'as I mentioned', relative paths)."
+          }
+        }
+      }
+    }
+  }
+}

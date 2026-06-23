@@ -227,8 +227,20 @@ CONFIDENCE: <HIGH|MEDIUM|LOW>
 [If LOW: explain why — ambiguous pattern? File not found? Tool error?]
 ```
 
-**Spot-check requirement (mandatory before using Haiku findings):**
-Pick 2–3 items from FOUND and verify independently (Grep or Read tool). If ANY mismatch → discard Haiku output and re-run with corrected pattern. Never use unchecked Haiku output for build decisions.
+**Spot-check requirement (mandatory before using Haiku findings) — S088 SWIFT CS9 amendment:**
+
+Two-sided verification (closes the 0-vs-92 failure class where Haiku claims "0 found" when 92 exist):
+
+1. **FOUND spot-check:** Pick 2–3 items from FOUND and verify independently (Grep or Read). If ANY mismatch → discard entire Haiku output.
+
+2. **NOT-FOUND spot-check (NEW — CS9 SWIFT fix):** Pick 2–3 items that the TASK DESCRIPTION implies SHOULD have matched, and verify they do NOT exist. If any item that should NOT match actually DOES match → the Haiku pattern was wrong, discard entire output.
+   - Example: Haiku scans for `.gitattributes` files and returns FOUND=[] NOT-FOUND=[entire-repo]. Sample 3 paths from the NOT-FOUND list that SHOULD have `.gitattributes` if any existed. Confirm absence.
+   - Failure mode: Haiku used a wrong pattern (found 0 instead of 92) → NOT-FOUND list appears complete but is actually wrong.
+
+3. **CONFIDENCE=LOW rule:** If Haiku reports CONFIDENCE=LOW for ANY reason → mandatory NOT-FOUND spot-check.
+
+If EITHER check fails → discard the full Haiku result and re-run with corrected scope/pattern.
+Never use unchecked Haiku output for build decisions.
 
 **Current wiring:** QUARANTINE status per DNA-Guardian. dna-guardian agent assesses alignment.
 

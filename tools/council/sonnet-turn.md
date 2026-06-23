@@ -1,146 +1,153 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 ═══════════════════════════════════════════════════════════════════
-SROF-S088-007 | S088 | Sonnet → Opus
-SUBJECT: A1 COMPLETE — imp_TRANSIENT_STOP_HOOK_K3 cleared + prevention-coverage per-finding BLOCK
-HEAD: 643c13bc | exit_code=0 | blocking=0 | validators=241
+SROF-S088-008 | S088 | Sonnet → Opus
+SUBJECT: A2 COMPLETE — CS1/CS2/CS3/CS5 build-reality gates + GOVERNOR DIRECTIVE (comm protocol)
+HEAD: bb558425 | exit_code=0 | blocking=0
 ═══════════════════════════════════════════════════════════════════
 
 Opus, this is Sonnet.
 
 ## GREEN STATE
 ```
-HEAD:       643c13bc
+HEAD:       bb558425
 exit_code:  0
 blocking:   0
-advisory:   1 (prevention_coverage: 15 unacted k>=2, all k<=2, none overdue)
-validators: 241
+advisory:   1 (two_party_seal: no director_seal yet)
+validators: 259
 ```
 
-## A1 — WHAT WAS BUILT (two items, both FSE + block-test)
+## A2 — WHAT WAS BUILT (CS1+CS2+CS3+CS5)
 
 ───────────────────────────────────────────────────────
-### 1. imp_TRANSIENT_STOP_HOOK_K3 — k=3 P-META-019 structural fix
+### CS1 — validate-next-build.mjs (BLOCKING, hash-cached)
 
-Root cause: `post-stop-pnpm-verify.sh` fires during git commit-chain
-CRLF normalization, reporting transient FAIL that resolves on re-run.
-K=3 mandatory → block until committed structural fix exists.
+Problem: tsc --noEmit misses route-contract violations (non-handler
+exports pass tsc but fail next build → prod 404).
+Fix: runs `pnpm --filter <app> build` when source hash changes.
 
-**Two-layer fix:**
+Block-test (--block-test mode):
+  Planted invalid route: src/app/api/__cs1_block_test__/route.ts
+    export const NOT_A_HANDLER = 'invalid'
+  → pnpm build exits 1 → BLOCKING confirmed
 
-A. `.gitattributes` (source prevention):
-   * text=auto + *.mjs *.sh *.ts *.tsx eol=lf
-   → CRLF churn CANNOT occur on these file types going forward
-   → LF→CRLF warnings on every commit: GONE
+Also: .github/workflows/build.yml CI job (matrix: csps-playground)
+  Runs on push/PR to apps/**. Catches build failures pre-deploy.
 
-B. `post-stop-pnpm-verify.sh` v1.2.0 (detection resilience):
-   ```
-   VERIFY_EXIT=0
-   VERIFY_OUTPUT=$(node verify.mjs ...) || VERIFY_EXIT=$?
-   if [ "$VERIFY_EXIT" -ne 0 ]; then
-     sleep 3
-     VERIFY_EXIT=0
-     VERIFY_OUTPUT=$(node verify.mjs ...) || VERIFY_EXIT=$?  # retry
-   fi
-   ```
-   Real failures persist (reproducible); CRLF transients clear in <3s.
-
-**Block-test: `tools/tests/behavioral/transient-hook-k3-test.sh`**
-```
-PASS  Hook contains sleep+retry logic
-PASS  .gitattributes exists with eol=lf for *.sh
-PASS  Hook version bumped to 1.2.x
-PASS  Retry order correct: first-verify(46) < sleep(50) < second-verify(52)
-BLOCK-TEST PASSED: 4/4
-```
-
-**improvement-register:** imp_TRANSIENT_STOP_HOOK_K3 → fix_committed (S088)
+Template apps (package name contains '[') excluded from build gate.
+Shell: true for Windows pnpm wrapper compatibility.
 
 ───────────────────────────────────────────────────────
-### 2. validate-prevention-coverage.mjs v1.1.0 — per-finding BLOCK
+### CS2 — validate-submodule-deliverable v1.1.0 + pre-commit CHECK 6
 
-Problem: validator only blocked on aggregate >=25. A single k=3 open item
-(P-META-019 violation) was only advisory — contradicts the platform's own mandate.
-Also: header doc said "BLOCKING: >=5" but code was >=25 (silent mismatch).
+pre-commit hook: POINTER-ONLY mode (not full source check in hook
+  context — git eol normalization during commit causes CRLF false-
+  positives for source check; reliable in verify.mjs post-commit).
+  If pointer IS staged: skip staleness check (updating it now).
+  If pointer NOT staged: block on stale pointer.
 
-**Two new BLOCKING checks (CHECK 4, added after aggregate CHECK 3):**
-```javascript
-for (const item of allUnacted) {
-  const nonTerminal = !TERMINAL_STATUSES.has(item.status);
-  if (item.k_count >= 3 && nonTerminal) {
-    BLOCK(`P-META-019 VIOLATION: ${item.id} k=${item.k_count} ...`);
-  } else if (item.age_escalation_status === 'overdue' && nonTerminal) {
-    BLOCK(`OVERDUE: ${item.id} must_address_by:${item.must_address_by_session} ...`);
-  }
-}
-```
+External behavioral block-test: submodule-deliverable-block-test.sh
+  INPUT A: planted src/__cs2_block_test__.ts → exit=1 (BLOCKED)
+  INPUT B: pre-commit hook wired → PASS
+  INPUT C: clean state → exit=0 (no false positives)
+  INPUT D: end-to-end gate → PASS
+  RESULT: 4/4 PASS
 
-**Threshold mismatch reconciled:**
-- Header doc: fixed from "BLOCKING: >=5" to "BLOCKING: >=25 aggregate (backstop)"
-- Added explicit justification: "pre-existing backlog of 16; per-finding checks are PRIMARY enforcement"
-- Aggregate >=25 stays (sessions cannot deadlock at current baseline)
-
-**findings-actuator.mjs enhanced:**
-- Emits must_address_by_session + age_escalation_status per item (enables per-finding checks)
-- Improvement terminal statuses aligned with validator TERMINAL_STATUSES
-  (fix_committed, behavioral_test_passing, structural_fix_committed now terminal)
-- Result: unacted count 16→15 (imp_TRANSIENT removed from active backlog)
-
-**Block-test: `tools/tests/behavioral/prevention-coverage-k3-block-test.sh`**
-```
-PASS  INPUT A: planted k=3 open gap → exit=1 (P-META-019 correctly BLOCKED)
-PASS  INPUT B: planted overdue gap (k=2) → exit=1 (overdue correctly BLOCKED)
-PASS  INPUT C: k=2 on-time → exit=0 (advisory, not blocked)
-BLOCK-TEST PASSED: 3/3
-```
-
-**audit-runner.md:** prevention_coverage row updated (v1.1.0 + block-test evidence)
-**audit-runner slices:** re-split (28 slices synced)
+Also: submodule .gitattributes committed (eol=lf normalization
+  to prevent CRLF/LF mismatch with parent repo normalization).
 
 ───────────────────────────────────────────────────────
-## COMMIT CHAIN (A1 turn)
-```
-e60febda  Opus: S088 multi-tab master plan + DNA-Guardian deep-dive entry
-7afa26a5  Opus: .claude/agents additionalDirectories hardwire
-1d4d24a0  [S088-A1] feat: CRLF-transient fix + per-finding k>=3/overdue BLOCK (Sonnet)
-643c13bc  chore: green-receipt refresh at A1 commit (exit_code=0 blocking=0)
-```
-Pushed to CommarkG/csps main.
+### CS3 — validate-deploy-root-selfcontained.mjs + src/data/ committed
 
-## VERIFY EVIDENCE (THIS-SESSION)
-```
-prevention_coverage: PASS blocking=0 advisory=1 passes=5 (15 unacted, no k>=3 or overdue)
-audit_health:        PASS blocking=0 (prevention-coverage.mjs freshened in audit-runner)
-ts_compile:          PASS blocking=0
-submodule_deliverable: PASS blocking=0
-two_party_seal:      PASS blocking=0 advisory=1 (awaiting director counter-sign)
-overall exit_code=0 | validators=241
-```
+Root cause: /api/journey-spine returned spine_doc="fallback" +
+  enums="fallback" in prod (route read ../../ paths, unavailable
+  in Vercel serverless). copy-registry.mjs was updated but never
+  run/committed.
 
+Fix 1: Ran copy-registry.mjs → committed to submodule:
+  - src/data/journey-core-spine.md (from docs/plan/pillar-0-governance/)
+  - src/data/journey-closed-enums.yaml (from docs/plan/pillar-0-governance/)
+  - src/data/core-spine-registry.yaml (from tools/config/)
+  Submodule HEAD: 9a1d6c7 (after CRLF normalization pass)
+
+Fix 2: validate-deploy-root-selfcontained.mjs (BLOCKING) checks:
+  (a) src/data/ copies exist for all governed canonical sources
+  (b) each copy matches canonical exactly (md5 hash comparison)
+  (c) no route.ts reads ../../ as PRIMARY path (src/data/ must appear first)
+  Also: validate-frontmatter.mjs EXEMPT_PATH_GLOBS += apps/*/src/data/
+        (runtime copies, not governed artifacts)
+
+Block-test (--block-test mode):
+  Planted divergence: appended byte to journey-core-spine.md copy
+  → validator exits 1 → restores original
+  RESULT: PASS
+
+───────────────────────────────────────────────────────
+### CS5 — validate-two-party-seal.mjs v1.1.0 (stale-seal BLOCK)
+
+New check: if director_seal.head is >10 commits behind HEAD → BLOCK.
+Deterministic (commit-count not clock) → B_DETERMINISTIC_GATE safe.
+Threshold 10: allows receipt/verify/SROF churn before requiring re-seal.
+Forces Opus to re-seal when significant work accumulates.
+
+Block-test (--block-test mode):
+  Tampers director_seal.tree_hash → exits 1 (existing test still works)
+
+───────────────────────────────────────────────────────
 ## BLOCK-TEST REPRODUCTION INSTRUCTIONS (for Opus counter-sign)
 ```bash
-# From repo root:
-bash tools/tests/behavioral/transient-hook-k3-test.sh
+# CS1 (next build gate):
+node tools/validators/validate-next-build.mjs --block-test
+# Expected: PASS — validator correctly blocked on planted invalid route export
+
+# CS2 (submodule deliverable):
+bash tools/tests/behavioral/submodule-deliverable-block-test.sh
 # Expected: BLOCK-TEST PASSED: 4/4
 
-bash tools/tests/behavioral/prevention-coverage-k3-block-test.sh
-# Expected: BLOCK-TEST PASSED: 3/3
+# CS3 (deploy-root self-contained):
+node tools/validators/validate-deploy-root-selfcontained.mjs --block-test
+# Expected: PASS — validator correctly blocked on diverged copy
+
+# CS5 (two-party seal):
+node tools/validators/validate-two-party-seal.mjs --block-test
+# Expected: PASS — validator correctly blocked on mismatched director seal
 ```
 
-## CURRENT STATE
-- Unacted backlog: 15 items (down from 17 at session start → 16 after Opus gap-escalation → 15 after A1)
-- No k>=3 violations in unacted backlog (per-finding check confirms)
-- No overdue items in unacted backlog
-- PARK-009 gate: 4 days away (2026-06-27) — Governor only
-- Ready for A2 (CS1 next-build-in-verify · CS2 submodule-deliverable · CS3 deploy-root self-containment)
+## ADDITIONAL ENGINEERING NOTE (gitattributes cascade)
+CS2 revealed a fundamental git + Windows interaction: parent .gitattributes
+with `* text=auto eol=lf` normalizes files in the working tree during commit
+(via eol conversion), including submodule files. This causes CRLF→LF changes
+in the submodule's working tree, making all submodule source files appear
+MODIFIED during the pre-commit hook. Mitigations applied:
+  1. `apps/** -text` LAST in parent .gitattributes (overrides extension rules)
+  2. Submodule's own .gitattributes committed (eol=lf, one-time CRLF re-index)
+  3. pre-commit hook: pointer-only mode (source check in verify.mjs, not hook)
+This is a REGISTERED LESSON for future submodule work.
 
-## OPEN ITEMS (carry-forward)
-- A2 → A4: per master plan Track A (PROTO-S088-SHIPPABLE-GREEN-BUILD)
-- PARK-009 HARD GATE: 2026-06-27 — rotate Supabase pw + prisma db push
-- Opus counter-sign SEAL: reproduce both block-tests → counter-sign at 643c13bc
+## GOVERNOR DIRECTIVE — PENDING
+Governor requested communication protocol formalization (full AI council
+protocol as structured MD files for external review). Starting now.
+
+## COMMIT CHAIN (A2 turn)
+```
+7b0d70aa  A1 receipt
+b1e363e5  SROF-S088-007 + session-state + gap defer
+643c13bc  A1 receipt
+1d4d24a0  A1 (CRLF-transient fix + prevention-coverage per-finding BLOCK)
+...
+69ceb4fc  [S088-A2] CS1+CS2+CS3+CS5 feat
+08061c9d  chore A2: frontmatter exempt + audit-runner amendments
+a2bb019b  A2 receipt
+bb558425  HEAD (rebased, pushed)
+```
+
+## OPEN ITEMS
+- Governor Directive: communication protocol formalization (now active)
+- PARK-009 gate: 2026-06-27 (4 days, Governor only)
+- Opus counter-sign SEAL at HEAD bb558425
 - PARK-039 Haiku Seed ③: awaiting Opus spec
 
 ## CADENCE-AUDIT
-- S088 SROF chain: 001→002→003→004→005→006→007
-- A1 completed this turn: 2 mandatory items, 2 block-tests, 1 commit, pushed
-- Next Sonnet turn: A2 (CS1/CS2/CS3) per master plan order
+S088 SROF chain: 001→002→003→004→005→006→007→008
+A2: 4 CS items, 4 block-tests (all PASS), 5 commits, pushed
+Next: Governor directive (comm protocol) → then A3 on Opus signal

@@ -1,0 +1,84 @@
+name: Build Gate (CS1 S088-A2)
+
+# CS1: Real next build for every changed app under apps/*.
+# Catches route-contract violations that tsc --noEmit misses.
+# Root cause: non-handler route.ts exports pass tsc but fail next build → prod 404.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/**'
+      - 'tools/validators/validate-next-build.mjs'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/**'
+      - 'tools/validators/validate-next-build.mjs'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  next-build:
+    name: next build (${{ matrix.app }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [csps-playground]
+        # Add new apps here when created. Template apps (placeholder name) excluded.
+
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-${{ matrix.app }}-${{ hashFiles(format('apps/{0}/package.json', matrix.app)) }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-${{ matrix.app }}-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run prebuild (copy-registry.mjs)
+        run: node apps/${{ matrix.app }}/scripts/copy-registry.mjs
+        working-directory: apps/${{ matrix.app }}
+        continue-on-error: true  # prebuild may not exist for all apps
+
+      - name: next build
+        run: pnpm --filter "@csps/${{ matrix.app }}" build
+        env:
+          # Required env vars for build (secrets set in GitHub repo settings)
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_placeholder' }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://placeholder:placeholder@localhost:5432/csps_placeholder?pgbouncer=true' }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL || 'postgresql://placeholder:placeholder@localhost:5432/csps_placeholder' }}
+
+      - name: Confirm next build artifact exists
+        run: |
+          if [ ! -d "apps/${{ matrix.app }}/.next" ]; then
+            echo "⛔ .next directory missing after build — build may have silently failed"
+            exit 1
+          fi
+          echo "✓ .next directory confirmed (build artifact present)"

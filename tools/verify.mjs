@@ -2657,6 +2657,48 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // S088-A2 CS1: Real next build gate — hash-cached, runs when app source changes.
+  // Problem: tsc --noEmit misses route-contract violations (non-handler exports pass tsc
+  // but fail next build → prod 404). CS1 runs the real next build so gate catches it.
+  {
+    name: 'next_build',
+    command: 'node tools/validators/validate-next-build.mjs',
+    input_files: [
+      'apps/',
+      'tools/validators/validate-next-build.mjs',
+      'tools/data/validate-next-build-last-run.json',
+    ],
+    always_rerun: false,  // hash-cached internally; runs when app source content changes
+    advisory_exit_ok: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
+  // S088-A2 CS3: Deploy-root self-containment gate — BLOCKS if governed src/data/ copies
+  // are missing or diverge from canonical parent-repo sources.
+  // Root cause: /api/journey-spine returned "fallback" in prod because journey-core-spine.md
+  // and journey-closed-enums.yaml were not in src/data/ (copy-registry.mjs not run/committed).
+  {
+    name: 'deploy_root_selfcontained',
+    command: 'node tools/validators/validate-deploy-root-selfcontained.mjs',
+    input_files: [
+      'apps/csps-playground/src/data/',
+      'docs/plan/pillar-0-governance/JOURNEY-CORE-SPINE.md',
+      'docs/plan/pillar-0-governance/journey-closed-enums.yaml',
+      'tools/config/core-spine-registry.yaml',
+      'tools/validators/validate-deploy-root-selfcontained.mjs',
+    ],
+    always_rerun: false,  // hash-cached: input_files changes trigger rerun
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
   // S088-404-FIX: TypeScript compilation gate — BLOCKS if any TS error in csps-playground
   // Root cause: TS2322 type mismatch silently fails Vercel build → 404 (no lint config, no local build check)
   {

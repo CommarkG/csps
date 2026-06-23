@@ -119,4 +119,43 @@ if [ -n "$STAGED_UNIFIED_PLAN" ]; then
   fi
 fi
 
+# ── CHECK 6: Submodule deliverable gate (CS2 S088-A2 — BLOCKING) ───────────────
+# Runs on every commit: untracked submodule source files are silent until deploy.
+# Root cause: PHASE-0.3 page committed in parent but untracked in submodule → Vercel
+# deployed wrong tree → 404. B_SUBMODULE_DELIVERABLE.
+#
+# POINTER STALENESS: validate-submodule-deliverable.mjs checks against committed HEAD.
+# In pre-commit context: if apps/csps-playground IS staged, the pointer bump is part
+# of THIS commit → skip stale-pointer BLOCK (use verify.mjs post-commit instead).
+# Untracked source files are ALWAYS blocked.
+VALIDATOR_SUB="${REPO_ROOT}/tools/validators/validate-submodule-deliverable.mjs"
+if [ -f "$VALIDATOR_SUB" ]; then
+  # Pre-commit SCOPE: only check pointer staleness (not untracked source files).
+  # Reason: git eol normalization during commit temporarily makes submodule working-tree
+  # files appear MODIFIED (CRLF->LF applied by parent .gitattributes eol=lf rules)
+  # even when the submodule is genuinely clean. This produces false-positives in the
+  # pre-commit hook that cannot be eliminated without removing eol normalization.
+  # Resolution: untracked-source check runs in verify.mjs post-commit (reliable).
+  # Pre-commit only blocks stale-pointer (parent committing wrong submodule SHA).
+  #
+  # POINTER CHECK: skip when pointer IS staged (we're updating it right now)
+  STAGED_SUB_PTR=$(git diff --cached --name-only 2>/dev/null | grep -E '^apps/' || true)
+  if [ -z "$STAGED_SUB_PTR" ]; then
+    # No pointer staged — check pointer staleness (parent may have wrong SHA)
+    sub_output=$(node "$VALIDATOR_SUB" --pointer-only 2>&1) && sub_exit=0 || sub_exit=$?
+    if [ "$sub_exit" -ne 0 ]; then
+      echo ""
+      echo "⛔ COMMIT BLOCKED — Submodule pointer stale (CS2 pre-commit):"
+      echo "$sub_output"
+      echo ""
+      echo "Fix: update the submodule SHA — git add apps/<submodule-name>"
+      echo "B_SUBMODULE_DELIVERABLE | PROTO-S088-A2 | validate-submodule-deliverable.mjs"
+      exit 1
+    fi
+    echo "[pre-commit] ✓ Submodule deliverable check passed (pointer fresh)"
+  else
+    echo "[pre-commit] ✓ Submodule pointer staged (pointer update in this commit — skipping staleness check)"
+  fi
+fi
+
 exit 0

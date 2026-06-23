@@ -1,9 +1,10 @@
-# Line-ending normalization — CSPS
-# Eliminates CRLF churn on Windows that triggers post-stop-pnpm-verify.sh false-positives
-# (imp_TRANSIENT_STOP_HOOK_K3 structural fix — committed S088-A1)
-# P-META-019: k=3 mandatory structural fix. Source-level prevention beats detection.
+# Line-ending normalization — CSPS parent repo
+# Eliminates CRLF churn on Windows (imp_TRANSIENT_STOP_HOOK_K3 k=3 fix, S088-A1)
+# P-META-019: k=3 mandatory structural fix. Source-level prevention > detection.
+#
+# RULE ORDER: git uses LAST MATCHING RULE. Submodule exclusion (apps/**) must be LAST.
 
-# Default: git auto-detects text vs binary; text files normalized to LF
+# Default for all text files: auto-detect + normalize to LF
 * text=auto
 
 # Scripts + code: always LF (shebang breakage on deploy without this)
@@ -37,3 +38,9 @@
 *.pdf    binary
 *.webp   binary
 *.svg    text eol=lf
+
+# SUBMODULES: -text (binary/no normalization) — MUST BE LAST (overrides all above rules).
+# apps/** managed by submodule git repos with their own .gitattributes.
+# Without this, parent's eol=lf normalization passes CRLF->LF during commit,
+# causing validate-submodule-deliverable.mjs to fire false-positives in pre-commit.
+apps/**  -text

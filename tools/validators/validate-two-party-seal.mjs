@@ -23,7 +23,8 @@
  *   runs itself, confirms exit_code=1 (BLOCKING), then restores original receipt.
  *   Activated by: node validate-two-party-seal.mjs --block-test
  *
- * @csps-version 1.0.0
+ * @csps-version 1.1.0
+ * @csps-changelog 1.1.0 S088-A2 CS5: add stale-seal BLOCK (director_seal.head >10 commits behind HEAD)
  * @csps-owner group:finky
  * @csps-lifecycle production
  * @csps-lifecycle-state active
@@ -181,8 +182,38 @@ if (blockingFindings.length > 0) {
   process.exit(1);
 }
 
+// CS5 S088-A2: stale-seal check — BLOCK if director_seal is >10 commits behind HEAD
+// Rationale: a seal for an old commit provides no guarantee for current code.
+// This check is DETERMINISTIC: uses commit-count (not clock-based), compatible with B_DETERMINISTIC_GATE.
+// Threshold 10 allows a few commits for receipt/verify/SROF churn before requiring re-seal.
+const STALE_SEAL_COMMIT_THRESHOLD = 10;
+const sealHeadForStaleness = director_seal.head; // sealHead already declared above for mismatch check
+if (sealHeadForStaleness) {
+  let commitsBehind = 0;
+  try {
+    const countOut = execSync(`git rev-list --count "${sealHeadForStaleness}..HEAD"`, {
+      cwd: ROOT,
+      encoding: 'utf8',
+      stdio: ['pipe', 'pipe', 'pipe'],
+    }).trim();
+    commitsBehind = parseInt(countOut, 10) || 0;
+  } catch {
+    // git unavailable or seal SHA not in history — treat as advisory
+    console.log(`  [ADVISORY] could not compute commits since seal SHA ${sealHeadForStaleness.slice(0,8)}`);
+  }
+  if (commitsBehind > STALE_SEAL_COMMIT_THRESHOLD) {
+    console.log(`[validate-two-party-seal] BLOCKING — director_seal is STALE:`);
+    console.log(`  ✗ seal SHA ${sealHeadForStaleness.slice(0,8)} is ${commitsBehind} commits behind HEAD (threshold ${STALE_SEAL_COMMIT_THRESHOLD})`);
+    console.log(`  Opus must re-run independent verify and counter-sign at current HEAD to refresh the seal.`);
+    console.log(`blocking=1 advisory=0 passes=0`);
+    process.exit(1);
+  } else if (commitsBehind > 0) {
+    console.log(`  [PASS] seal freshness: ${commitsBehind} commit(s) since seal SHA ${sealHeadForStaleness.slice(0,8)} (within ${STALE_SEAL_COMMIT_THRESHOLD}-commit threshold)`);
+  }
+}
+
 // All checks pass
-console.log('[validate-two-party-seal] PASS — director_seal present and matches receipt');
+console.log('[validate-two-party-seal] PASS — director_seal present, matches receipt, and is fresh');
 console.log(`  by=${director_seal.by} | head=${director_seal.head.slice(0,8)} | tree_hash=${director_seal.tree_hash}`);
 console.log('blocking=0 advisory=0 passes=1');
 process.exit(0);

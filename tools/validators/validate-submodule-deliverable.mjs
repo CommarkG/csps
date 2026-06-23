@@ -211,11 +211,17 @@ if (process.argv.includes('--block-test')) {
   await runBlockTest();
 }
 
+// --pointer-only mode: ONLY check pointer staleness (skip untracked source files).
+// Used by pre-commit hook: git eol normalization temporarily makes submodule working-tree
+// files appear MODIFIED during commit, causing false-positives for the source check.
+// The source check is reliable in verify.mjs (post-commit, stable working tree).
+const POINTER_ONLY_MODE = process.argv.includes('--pointer-only');
+
 const submodules = getSubmodules();
 const allFindings = [];
 
 for (const sub of submodules) {
-  const sourceFindings = checkSubmoduleSource(sub);
+  const sourceFindings = POINTER_ONLY_MODE ? [] : checkSubmoduleSource(sub);
   const pointerFindings = checkPointerStaleness(sub);
   allFindings.push(...sourceFindings, ...pointerFindings);
 }

@@ -1,0 +1,181 @@
+---
+id: csps.handoff.opus-S088-one-tab-orchestration-design
+name: OPUS-S088-ONE-TAB-ORCHESTRATION-DESIGN
+description: >
+  Major-shift design spec (S088): collapse the multi-tab manual relay (Opus tab ↔ Sonnet tab ↔ Haiku,
+  Governor copy-pasting between them) into ONE Opus-director tab that orchestrates Sonnet/Haiku as
+  spawned agents in recurring loops until a goal is reached — with harvesting, internal core council,
+  threshold-routed evolve/park, context-inheritance, skills/agents arrangement, and the orchestrator
+  wired directly to CIE + PE. Document-first; awaits Governor ratification + external-AI review before
+  any implementation. Multi-topic, PCR per section, multi-persona, IZFC-swept.
+version: "0.1-draft"
+session: S088
+owner: group:finky
+authored_by: OPUS-25
+core_spine: GVRN
+diataxis_type: explanation
+schema_anchor: handoff_files
+lifecycle: production
+lifecycle_state: active
+status: draft-awaits-ratification-and-external-review
+precedent_checked: true
+links:
+  - { rel: parks, href: ../../../tools/data/park-register.yaml }
+  - { rel: circular-loop-park, href: ../../../tools/data/park-register.yaml }
+  - { rel: dna-guardian, href: ../../../.claude/agents/dna-guardian.md }
+  - { rel: shippable-green, href: ../pillar-0-governance/SHIPPABLE-GREEN-PROTOCOL.md }
+  - { rel: master-plan, href: ./OPUS-S088-MULTI-TAB-MASTER-PLAN.md }
+---
+
+# One-Tab Orchestration — major-shift design (document-first)
+
+> **Status: DRAFT.** Nothing here is implemented. This is the consultation artifact. Reads as: what
+> exists → what's missing → the target architecture → edge cases → inheritance impact → external-review
+> questions. PCR = **Premise · Concern · Recommendation** per section. Personas (§0) speak where they add signal.
+
+## §0 — THE EXPERT COUNCIL (personas consulted throughout)
+- **ARCH** — Distributed-Systems Architect (loops, idempotency, failure, convergence).
+- **GOV** — Governance/Safety Officer (two-party seal, DNA-Guardian, independence, no-nominal).
+- **ECON** — Cost/Efficiency Economist (token budget, model-tier routing, when NOT to spawn).
+- **CCA** — Cognitive-Context Architect (context completion + inheritance bundles, compaction).
+- **PROD** — SaaS/Product Strategist (apps creation, external users/developers, productization).
+
+## §1 — THE SHIFT (premise of the whole document)
+**P:** Today the loop is *human-driven*: Opus plans in tab 1, Governor copy-pastes a relay to Sonnet tab 2,
+Sonnet builds, Governor pastes back, Opus seals. The Governor is the message bus + the clock. This is slow,
+error-prone (relays get stale), and burns the Governor's time.
+**C (GOV):** the manual relay is *also* where two-party independence currently lives — collapsing it must not
+collapse the independent-verification that caught every false "green" this session.
+**R:** one Opus-director tab runs an **orchestrated loop**: Opus decomposes → (Haiku scouts) → Sonnet builds
+(spawned agent) → Opus independently reproduces + seals → repeat until ZF/goal. The Governor sets the goal
+and ratifies; the tab runs the cycles. Independence is preserved because spawned agents have **isolated
+context** (a genuinely separate reasoning instance) and Opus still reproduces every claim (CS9).
+
+## §2 — THE THREE MODELS (analysis + optimization)
+| Model | Comparative advantage | Loop role | Cost posture |
+|---|---|---|---|
+| **Opus** | judgment, decomposition, verification, synthesis, sealing | rung-4 director: own the goal, decompose, reproduce, seal | most expensive — spend on judgment, not breadth |
+| **Sonnet** | full build-out, FSE, behavioral tests | rung-2/3 builder: spawned per work-unit with a self-contained spec | mid — spend on build |
+| **Haiku** | cheap bulk breadth, pattern/presence scans, **pre-build checks** | rung-1 scout: inventories, "what matches X", pre-flight checks before Sonnet builds | cheapest — spend on breadth, NEVER on judgment |
+- **PCR:** **P** each model has a distinct comparative advantage. **C (ECON)** the default failure is using an
+  expensive model for cheap breadth (Opus grepping) or a cheap model for judgment (Haiku deciding — it returned
+  false data S088). **R** the orchestrator routes by **PE rung**: breadth→Haiku, build→Sonnet, judgment/seal→Opus;
+  Haiku output is always a *claim* reproduced before use (DNA-Guardian QUARANTINE rule).
+- **Optimization (ECON):** Haiku **pre-build check** is new leverage — before Sonnet builds, a Haiku scout
+  inventories the blast radius (files touched, existing patterns, naming) so Sonnet builds aligned the first time.
+  Cheap insurance against expensive rework.
+
+## §3 — THE ORCHESTRATOR CORE (the loop engine) — wire to CIE + PE
+Extends `tools/zf-orchestrator.mjs` + `tools/scripts/threshold-*` + `tools/pe-compute.mjs` + `cie-pe-adapter.mjs`.
+**Loop:** `goal → decompose(Opus) → [PE prioritizes units] → for each unit: (Haiku pre-check?) → Sonnet build →
+Opus reproduce+seal → CIE captures cycle insight → threshold routes any new input(evolve/park) → next unit →
+until ZF(goal met, no new findings)`.
+- **PE wiring:** orchestrator asks `pe-compute` which unit is next (priority ordering), and which model-rung the
+  unit warrants. PE score gates spawn-vs-inline (ECON: ≤3 checks = inline, never spawn).
+- **CIE wiring:** every cycle writes an insight to `cie-state.yaml`/`cie-chain-insights.yaml`; recurring patterns
+  promote to the findings-actuator + park-register (the self-learning loop, now act-forcing).
+- **Convergence (ARCH):** every loop has a **max-cycles guard** + a **goal predicate** (ZF: a fresh sweep finds
+  nothing). No goal predicate = no loop (prevents infinite spend).
+- **PCR:** **P** the orchestrator is the single coordinator. **C (ARCH)** a loop without a convergence predicate
+  and a budget ceiling is a runaway. **R** every loop declares {goal-predicate, max-cycles, budget-ceiling} up front;
+  the orchestrator halts + reports at any ceiling and asks the Governor.
+
+## §4 — CONTEXT COMPLETION + INHERITANCE (the crux the Governor flagged)
+**P:** A spawned agent sees ONLY the prompt passed to it — not the tab's accumulated context. So one-tab
+orchestration REQUIRES that the deep context be assembled once and *packaged* for inheritance.
+**Design — the Context Bundle:** the Opus tab does an **initial comprehensive deep context completion** (governing
+intent + relevant spine + relevant memory + active plan + DoD), then a **bundle builder** distills the
+*minimal-but-complete* slice each agent needs and passes it as the spawn prompt. Each Sonnet/Haiku agent
+**inherits the bundle**, not the whole tab.
+- **CCA:** the bundle is the one-tab analog of the tab→tab HANDOFF. Same discipline (nothing-left-behind), new
+  granularity (per-spawn, not per-tab). It must be *self-contained* (the agent can't ask follow-ups mid-run).
+- **Two-level inheritance:** (1) Governor → Opus tab (deep completion, once). (2) Opus tab → each spawned agent
+  (distilled bundle, per unit). Tab→tab inheritance (§9) is a third level when the tab itself ends.
+- **PCR:** **P** isolated agent context. **C (CCA)** an under-specified bundle = the agent guesses (D-defaults) =
+  alien output. **R** bundle builder is **prevent-by-construction**: a spawn without {governing_intent, DoD,
+  block-test, relevant-context-refs} is un-authorable; the DNA-Guardian/CS9 treats any bundle-less output as QUARANTINE.
+
+## §5 — INTERNAL CORE COUNCIL (Opus ↔ Sonnet ↔ Haiku in one tab)
+**P:** Council today is cross-tab (opus-turn.md / sonnet-turn.md relays). In one tab it becomes an **in-process
+council**: Opus poses, a Sonnet agent critiques/builds, a Haiku agent pre-checks, Opus synthesizes + seals.
+- Council tiers T0–T4 (existing) map onto loop intensity: T0 solo Opus · T1 Opus+Sonnet (default build) ·
+  T2 +expert-persona · T3 full · T4 full+external-AI. Threshold routes scope×criticality → tier.
+- **GOV:** the council's *peer contract* (mutual challenge) must survive in-process — the Sonnet agent must be
+  prompted to *challenge*, not just comply, and Opus must reproduce, not trust. Independence = isolated context +
+  reproduction, not physical tab separation.
+- **PCR:** **P** richer, faster council in one tab. **C (GOV)** in-process council risks groupthink (one tab, one
+  trajectory). **R** preserve dissent structurally: spawn the builder with an explicit "challenge the spec" clause;
+  keep T4 external-AI review for high-criticality (this very doc).
+
+## §6 — EVOLVE + PARK THROUGH THE THRESHOLD (mid-loop inputs)
+**P:** During a loop, new ideas/inputs arrive (Governor messages, agent-surfaced findings). They must not derail
+the active goal (completion focus) nor be lost.
+**R:** every mid-loop input passes the **threshold chain** (classify→decompose→PE-significance→route): SWIFT
+(do now, in-loop) / park-completion (finish loop, then) / park-all (defer) / evolve (amend the goal — requires
+Governor). Park writes to park-register; evolve amends the loop goal-predicate. This is B_SWIFT_OR_PARK made mechanical.
+- **PCR:** **P** inputs are continuous. **C** silent auto-absorb = scope drift (the disease of prior sessions).
+  **R** threshold is the *only* door; nothing enters the loop un-routed.
+
+## §7 — SKILLS & AGENTS ARRANGEMENT (single dispatch point)
+**P:** Skills (CSPS-built) + agents (Claude Code subagents) + external MCP are dispatched ad-hoc today.
+**R:** the orchestrator is the **single dispatch point**. It selects skill vs agent vs inline by PE rung; every
+EXTERNAL capability clears the **DNA-Guardian** (registry verdict) before it acts; every spawned agent inherits a
+bundle (§4). The capability registry + DNA-Guardian + agent defs become the orchestrator's routing table.
+- **PROD:** this makes the platform's capability surface *governed and composable* — a precondition for exposing
+  it to external users/developers (§8).
+
+## §8 — APPS / SaaS / EXTERNAL USERS + DEVELOPERS (same loop engine, outward)
+**P:** The Governor wants this to serve not just internal builds but **app/SaaS creation** and **responding to
+external users/developers**.
+**R:** the SAME loop engine runs outward. An external request enters via the threshold (intent classify:
+explore/configure/build/ask) → orchestrator decomposes → loop produces the answer/build → two-party seal → deliver.
+- Internal build and external service share the engine; only the *intake* (Governor vs external user) and the
+  *trust boundary* differ (external input is QUARANTINE until classified; never trusted as platform truth).
+- **PROD:** this is the productization path — the orchestrator IS the SaaS backend reasoning loop; developer
+  requests get the same governed treatment (DNA-Guardian on their submitted capabilities, threshold on their asks).
+- **PCR:** **P** one engine, two audiences. **C (GOV)** external input must never inherit insider trust. **R**
+  trust-tier on intake: Governor = author; external user/developer = QUARANTINE → classified → bounded.
+
+## §9 — INHERITANCE BETWEEN TABS (does one-tab eliminate it? No.)
+**P:** Tabs still end (context fills). One-tab orchestration changes WHAT inherits, not whether.
+**R:** the inherited unit becomes **{loop-state + context-bundle + harvested-insights + open-parks}** — checkpoint
+under B_CONTEXT_CHECKPOINT_GATE. A new tab resumes the *loop*, not just the conversation. Harvest-before-compact
+per cycle means the loop is always resumable.
+- **CCA:** three inheritance levels now exist: Governor→tab (deep completion), tab→agent (bundle), tab→tab
+  (loop-state checkpoint). Each is a boundary with a UNDERSTANDING-BLOCK (mutual-understanding-validation).
+
+## §10 — EDGE CASES (IZFC sweep — fresh angles)
+1. **Agent returns false data** (happened S088, Haiku "0 vs 92") → CS9: every agent output reproduced; QUARANTINE default.
+2. **Context-budget overflow** (build output floods the tab) → ECON: PE gates spawn; large builds spill to a
+   dedicated tab (the two-tab path stays valid for heavy work). One-tab is default, not dogma.
+3. **Depth cap (=1)** → orchestrator runs legs sequentially from the top tab; no self-nesting agents.
+4. **Loop won't converge** → max-cycles guard halts + escalates to Governor (no silent spin).
+5. **Parallel edit collision** (two agents same file) → orchestrator serializes writes per file; or single-builder per unit.
+6. **External capability injects alien DNA mid-loop** → DNA-Guardian gate; QUARANTINE blocks platform-truth use.
+7. **Stale bundle** (context changed after bundle built) → bundle carries the HEAD it was built at; reproduced against current.
+8. **Seal independence erosion** → GOV: builder spawned with isolated context + challenge clause; Opus reproduces; CS5 director_seal mechanizes.
+9. **Governor input mid-loop** → §6 threshold; SWIFT/park/evolve, never silent.
+10. **Cost runaway** → budget-ceiling per loop; halt+report.
+
+## §11 — WHAT EXISTS vs WHAT'S MISSING (reconnection map)
+- **Exists:** zf-orchestrator, threshold chain, pe-compute, cie-pe-adapter, council architecture, model-tier
+  validators, haiku-scout + dna-guardian agents, handoff inheritance, findings-actuator (act-forcing).
+- **Missing (to build, post-ratification):** (a) loop engine wrapping decompose→spawn→reproduce→seal with
+  goal-predicate + budget-ceiling; (b) context-bundle builder (§4); (c) orchestrator↔PE spawn-routing; (d)
+  orchestrator↔CIE per-cycle capture; (e) in-process council prompts with challenge clause; (f) trust-tier on
+  intake (§8); (g) CS5 director_seal for in-loop sealing. Each = FSE + behavioral block-test (no patches).
+
+## §12 — EXTERNAL-AI REVIEW PACKAGE (questions to ask external systems)
+1. Does the loop's convergence predicate + budget-ceiling adequately prevent runaway autonomous spend?
+2. Is "isolated agent context + director reproduction" a sufficient substitute for physical tab separation to
+   preserve independent verification, or does it introduce a correlated-failure blind spot?
+3. Is the context-bundle the right inheritance primitive, or should agents pull from a shared store instead of push?
+4. For external users/developers, is the QUARANTINE-on-intake trust model sufficient, or is a stronger sandbox needed?
+5. Where does this architecture's cost/latency curve break vs the multi-tab baseline?
+
+## §13 — PCR SUMMARY (the recommendation in one breath)
+**P:** the Governor's time is the bottleneck; the manual relay is the cost. **C:** collapsing tabs must not
+collapse independence, context-completeness, or completion-focus. **R:** build the loop engine + context-bundle +
+threshold-gated evolve/park + orchestrator↔CIE/PE wiring, with isolated-context agents reproduced by Opus and
+DNA-Guardian on every external capability — defaulting to one-tab, spilling to multi-tab only for heavy/parallel
+work. **Pilot first** (one CS gate via spawned Sonnet) before committing the whole build flow. Park: PARK-S086-053.

@@ -179,3 +179,43 @@ collapse independence, context-completeness, or completion-focus. **R:** build t
 threshold-gated evolve/park + orchestrator↔CIE/PE wiring, with isolated-context agents reproduced by Opus and
 DNA-Guardian on every external capability — defaulting to one-tab, spilling to multi-tab only for heavy/parallel
 work. **Pilot first** (one CS gate via spawned Sonnet) before committing the whole build flow. Park: PARK-S086-053.
+
+## §14 — COMPACTING & CONTINUITY POLICY (consolidated; all three models)
+Detailed protocol home = `AI-COUNCIL-EDGE-CASE-PROTOCOLS.md` §5.1–5.8 (Opus-reviewed S088, ratified).
+This section consolidates the Governor's four asks + the **one-tab deltas** so nothing is model-specific drift.
+
+**(a) WHEN the system should ask the human for exact context** — the AI cannot read its own true remaining
+window, so asking is hardwired-legitimate (B_CONTEXT_CHECKPOINT_GATE). Trigger to ASK: context >80% used AND
+the current unit is **borderline** (can't be certainly reached green+committed in the remaining window). Applies
+to **all three**: Opus (director tab), Sonnet (builder tab/agent), Haiku (scout agent → its *caller* asks before
+spawning if the caller is borderline). Never guess the window; ASK = the sanctioned action (edge §5.1 line 76).
+
+**(b) HOW to prepare before compacting** — the pre-compact checklist (edge §5.2): all work committed (zero
+uncommitted files), verify green, receipt fresh, SROF written (partial OK, marked pre-compact), active agents
+resolved (edge §5.4 — never compact with an agent still running). NEVER compact on uncommitted/red/open-agent state.
+
+**(c) WHERE to save before compacting** — durable, not chat: SROF → `tools/council/sonnet-turn.md` (or
+`opus-turn.md`); state + resume-instruction → the HANDOFF file; loop-state (one-tab) → the checkpoint doc
+(`{loop-state + context-bundle + harvest + open-parks}`, §9). Harvest-before-compact is the rule; chat-only = lost (G5).
+
+**(d) COMMUNICATION PROTOCOL — the lifecycle of an agent/tab (one-tab + multi-tab):**
+| Event | Protocol | Source |
+|---|---|---|
+| **New tab activation** | startup block (HEAD + open items + resume instruction) → new tab emits INTENT-ABSORBED, verifies HEAD matches git before any work | edge §5.3, §5.5 |
+| **Activating an agent** | spawn with a **context-bundle** (governing_intent + DoD + block-test + context-refs + challenge clause); bundle-less spawn = un-authorable; output = QUARANTINE until reproduced | design §4, §7 |
+| **Stopping an agent** | resolve before tab close: capture partial findings to AGENT-HARVEST block; never assume an agent continues across a tab boundary | edge §5.4 |
+| **Continuing an agent's work across tabs** | the agent's bundle + partial-result harvest is inherited by the next tab, which re-spawns from the harvested state (agents don't persist; their *state* does) | edge §5.4 + design §9 |
+| **Compacting a tab + preserving agent continuity** | run pre-compact checklist (b) → resolve/harvest all agents (edge §5.4) → write loop-state checkpoint → compact → post-compact INTENT-ABSORBED re-aligns before resuming the loop | edge §5.2–5.4 + design §9 |
+
+**One-tab delta:** in one-tab orchestration the "tab→tab" boundary becomes rarer (the loop runs longer in-tab),
+but the **agent boundary** (spawn/stop/continue) becomes per-cycle and frequent — so the bundle (§4) and the
+agent-harvest (edge §5.4) are the load-bearing protocols, not the tab-handoff. The director tab still checkpoints
+loop-state for the eventual tab→tab compaction.
+
+**PCR:** **P** compaction + agent lifecycle is where continuity silently breaks. **C** chat-only state + guessed
+windows + unharvested agents = lost work and phantom-state resumes. **R** ASK when borderline, harvest-before-compact
+to durable homes, and treat every agent spawn/stop/continue as a bounded boundary with a bundle in and a harvest out.
+
+> **Review note (Opus S088):** AI-COUNCIL-COMMUNICATION-SPINE.md + AI-COUNCIL-EDGE-CASE-PROTOCOLS.md reviewed +
+> ratified; they are the detailed protocol home, this §14 is the consolidated index + one-tab deltas. External-AI
+> review (§12) should assess §14(d) for one-tab agent-lifecycle completeness.

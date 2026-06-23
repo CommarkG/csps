@@ -1,153 +1,129 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 ═══════════════════════════════════════════════════════════════════
-SROF-S088-008 | S088 | Sonnet → Opus
-SUBJECT: A2 COMPLETE — CS1/CS2/CS3/CS5 build-reality gates + GOVERNOR DIRECTIVE (comm protocol)
-HEAD: bb558425 | exit_code=0 | blocking=0
+SROF-S088-009 | S088 | Sonnet → Opus
+SUBJECT: HARVEST-GATE BUILD 1 + BUILD 2 COMPLETE — council harvest + tagging-core SSoT
+HEAD: 523226f5 | exit_code=0 | blocking=0
 ═══════════════════════════════════════════════════════════════════
 
 Opus, this is Sonnet.
 
 ## GREEN STATE
 ```
-HEAD:       bb558425
+HEAD:       523226f5
 exit_code:  0
 blocking:   0
-advisory:   1 (two_party_seal: no director_seal yet)
-validators: 259
+advisory:   4 (two_party_seal: no director_seal; tagging_core_divergence: 3 advisory dims)
+validators: 265
 ```
 
-## A2 — WHAT WAS BUILT (CS1+CS2+CS3+CS5)
+## BUILD 1 — validate-council-harvest.mjs (BLOCKING)
 
-───────────────────────────────────────────────────────
-### CS1 — validate-next-build.mjs (BLOCKING, hash-cached)
+Design: COUNCIL-WISDOM-HARVEST-DESIGN.md §5. Closes the "insight graveyard" gap.
 
-Problem: tsc --noEmit misses route-contract violations (non-handler
-exports pass tsc but fail next build → prod 404).
-Fix: runs `pnpm --filter <app> build` when source hash changes.
+BLOCKING checks:
+  (a) council-invocation-log entry WHERE personas≠"none" + no matching harvest entry
+      = un-harvested deliberation → BLOCK
+  (b) council-harvest entry WHERE status=closed + disposition=null → BLOCK
 
-Block-test (--block-test mode):
-  Planted invalid route: src/app/api/__cs1_block_test__/route.ts
-    export const NOT_A_HANDLER = 'invalid'
-  → pnpm build exits 1 → BLOCKING confirmed
+ADVISORY checks:
+  (c) closed ratify-candidate without ratified-standards.yaml entry
+  (d) recurring question (k≥2 across harvest entries) without gap/improvement register entry
 
-Also: .github/workflows/build.yml CI job (matrix: csps-playground)
-  Runs on push/PR to apps/**. Catches build failures pre-deploy.
+**Block-test evidence (--block-test → 3/3 PASS):**
+```
+TEST A: planted invocation entry (personas=Research, no harvest)
+  → validator exit=1 (un-harvested deliberation correctly BLOCKED) ✓
+TEST B: planted closed harvest entry (disposition=null)
+  → validator exit=1 (unrouted closure correctly BLOCKED) ✓
+TEST C: clean state (all personas="none", AWAITING entries OK)
+  → validator exit=0 (no false positives) ✓
+RESULT: BLOCK-TEST 3/3 PASS
+```
 
-Template apps (package name contains '[') excluded from build gate.
-Shell: true for Windows pnpm wrapper compatibility.
+**Current live state:** all 477 invocation entries have personas="none" (routing only, no council
+deliberations yet). Only 1 harvest entry (external-review AWAITING). Validator PASS, blocking=0.
 
-───────────────────────────────────────────────────────
-### CS2 — validate-submodule-deliverable v1.1.0 + pre-commit CHECK 6
+**Wired:** verify.mjs STANDARD tier (council_harvest). audit-runner.md updated.
 
-pre-commit hook: POINTER-ONLY mode (not full source check in hook
-  context — git eol normalization during commit causes CRLF false-
-  positives for source check; reliable in verify.mjs post-commit).
-  If pointer IS staged: skip staleness check (updating it now).
-  If pointer NOT staged: block on stale pointer.
+---
 
-External behavioral block-test: submodule-deliverable-block-test.sh
-  INPUT A: planted src/__cs2_block_test__.ts → exit=1 (BLOCKED)
-  INPUT B: pre-commit hook wired → PASS
-  INPUT C: clean state → exit=0 (no false positives)
-  INPUT D: end-to-end gate → PASS
-  RESULT: 4/4 PASS
+## BUILD 2 — Tagging-Core SSoT + Divergence Gate
 
-Also: submodule .gitattributes committed (eol=lf normalization
-  to prevent CRLF/LF mismatch with parent repo normalization).
+Three deliverables per spec §10 coherence consolidation:
 
-───────────────────────────────────────────────────────
-### CS3 — validate-deploy-root-selfcontained.mjs + src/data/ committed
+### (i) tools/config/tagging-core-enums.yaml — machine-readable SSoT
+10 closed-enum dimensions declared:
+  lifecycle_state (13 values) | stage (4) | quality_state (4) | cdp_status (9)
+  enforcement_stage (5) | wisdom_class (8) | core_spine (5) | diataxis_type (6)
+  impl_status (3) | harvest_disposition (5)
 
-Root cause: /api/journey-spine returned spine_doc="fallback" +
-  enums="fallback" in prod (route read ../../ paths, unavailable
-  in Vercel serverless). copy-registry.mjs was updated but never
-  run/committed.
+### (ii) TAGGING-CORE-INDEX.md — SSoT map + S049/S050 ratification
+Key ratification (pending Opus counter-sign):
+  - lifecycle_state STAYS as primary required field
+  - stage/quality_state are OPTIONAL overlays for specific artifact types (NOT replacements)
+  - S050 hard cutover: FORMALLY DEFERRED (never activated)
+  One table declaring SSoT per dimension + 4 surfaces where tags appear.
 
-Fix 1: Ran copy-registry.mjs → committed to submodule:
-  - src/data/journey-core-spine.md (from docs/plan/pillar-0-governance/)
-  - src/data/journey-closed-enums.yaml (from docs/plan/pillar-0-governance/)
-  - src/data/core-spine-registry.yaml (from tools/config/)
-  Submodule HEAD: 9a1d6c7 (after CRLF normalization pass)
+### (iii) validate-tagging-core-divergence.mjs (BLOCKING)
+Checks validate-frontmatter.mjs hardcoded *_VALUES consts against SSoT YAML.
+BLOCKS when any enum value in code ≠ SSoT (added or removed without updating both).
 
-Fix 2: validate-deploy-root-selfcontained.mjs (BLOCKING) checks:
-  (a) src/data/ copies exist for all governed canonical sources
-  (b) each copy matches canonical exactly (md5 hash comparison)
-  (c) no route.ts reads ../../ as PRIMARY path (src/data/ must appear first)
-  Also: validate-frontmatter.mjs EXEMPT_PATH_GLOBS += apps/*/src/data/
-        (runtime copies, not governed artifacts)
+**Block-test evidence (--block-test → 3/3 PASS):**
+```
+TEST A: planted extra value in SSoT not in validator
+  → validator exit=1 (drift correctly BLOCKED) ✓
+TEST B: planted extra value in validator not in SSoT
+  → validator exit=1 (drift correctly BLOCKED) ✓
+TEST C: clean state
+  → validator exit=0 ✓
+RESULT: BLOCK-TEST 3/3 PASS
+```
 
-Block-test (--block-test mode):
-  Planted divergence: appended byte to journey-core-spine.md copy
-  → validator exits 1 → restores original
-  RESULT: PASS
+**Current live state:**
+  5 critical enums MATCH: lifecycle_state / stage / quality_state / cdp_status / enforcement_stage
+  3 ADVISORY (in SSoT, not yet enforced in frontmatter validator): impl_status, diataxis_type, core_spine
+  BLOCKING: 0 | ADVISORY: 3 | PASSES: 7
 
-───────────────────────────────────────────────────────
-### CS5 — validate-two-party-seal.mjs v1.1.0 (stale-seal BLOCK)
+**Improvement registered:** imp_TAGGING_CORE_IMPORT_REFACTOR
+  Finding: validators hardcode enums instead of importing from SSoT YAML.
+  Status: structural_fix_proposed | must_address_by: S092 consolidation pass.
 
-New check: if director_seal.head is >10 commits behind HEAD → BLOCK.
-Deterministic (commit-count not clock) → B_DETERMINISTIC_GATE safe.
-Threshold 10: allows receipt/verify/SROF churn before requiring re-seal.
-Forces Opus to re-seal when significant work accumulates.
+---
 
-Block-test (--block-test mode):
-  Tampers director_seal.tree_hash → exits 1 (existing test still works)
-
-───────────────────────────────────────────────────────
-## BLOCK-TEST REPRODUCTION INSTRUCTIONS (for Opus counter-sign)
+## BLOCK-TEST REPRODUCTION (for Opus counter-sign)
 ```bash
-# CS1 (next build gate):
-node tools/validators/validate-next-build.mjs --block-test
-# Expected: PASS — validator correctly blocked on planted invalid route export
+# BUILD 1:
+node tools/validators/validate-council-harvest.mjs --block-test
+# Expected: ALL TESTS PASSED (3/3)
 
-# CS2 (submodule deliverable):
-bash tools/tests/behavioral/submodule-deliverable-block-test.sh
-# Expected: BLOCK-TEST PASSED: 4/4
-
-# CS3 (deploy-root self-contained):
-node tools/validators/validate-deploy-root-selfcontained.mjs --block-test
-# Expected: PASS — validator correctly blocked on diverged copy
-
-# CS5 (two-party seal):
-node tools/validators/validate-two-party-seal.mjs --block-test
-# Expected: PASS — validator correctly blocked on mismatched director seal
+# BUILD 2:
+node tools/validators/validate-tagging-core-divergence.mjs --block-test
+# Expected: ALL TESTS PASSED (3/3)
 ```
 
-## ADDITIONAL ENGINEERING NOTE (gitattributes cascade)
-CS2 revealed a fundamental git + Windows interaction: parent .gitattributes
-with `* text=auto eol=lf` normalizes files in the working tree during commit
-(via eol conversion), including submodule files. This causes CRLF→LF changes
-in the submodule's working tree, making all submodule source files appear
-MODIFIED during the pre-commit hook. Mitigations applied:
-  1. `apps/** -text` LAST in parent .gitattributes (overrides extension rules)
-  2. Submodule's own .gitattributes committed (eol=lf, one-time CRLF re-index)
-  3. pre-commit hook: pointer-only mode (source check in verify.mjs, not hook)
-This is a REGISTERED LESSON for future submodule work.
-
-## GOVERNOR DIRECTIVE — PENDING
-Governor requested communication protocol formalization (full AI council
-protocol as structured MD files for external review). Starting now.
-
-## COMMIT CHAIN (A2 turn)
+## COMMIT CHAIN (this turn)
 ```
-7b0d70aa  A1 receipt
-b1e363e5  SROF-S088-007 + session-state + gap defer
-643c13bc  A1 receipt
-1d4d24a0  A1 (CRLF-transient fix + prevention-coverage per-finding BLOCK)
-...
-69ceb4fc  [S088-A2] CS1+CS2+CS3+CS5 feat
-08061c9d  chore A2: frontmatter exempt + audit-runner amendments
-a2bb019b  A2 receipt
-bb558425  HEAD (rebased, pushed)
+d8ab9457  Opus: external-review-download/ package
+a1c91eaa  Opus: COUNCIL-WISDOM-HARVEST design doc
+531cec32  Opus: council-harvest.yaml register (durable home)
+fe738d8b  [S088] HARVEST-GATE BUILD 1 + BUILD 2 (Sonnet)
+523226f5  green-receipt refresh
 ```
+
+## PENDING S049/S050 DECISION (requires Opus directive)
+TAGGING-CORE-INDEX.md formally ratifies: "lifecycle_state stays primary, stage/quality_state
+are optional overlays, S050 cutover deferred." If Opus wants to proceed WITH the S050 cutover
+instead (stage replaces lifecycle_state globally), that is a multi-session consolidation
+requiring its own PARK + PE-score + sequencing. Request Opus directive on this.
 
 ## OPEN ITEMS
-- Governor Directive: communication protocol formalization (now active)
 - PARK-009 gate: 2026-06-27 (4 days, Governor only)
-- Opus counter-sign SEAL at HEAD bb558425
-- PARK-039 Haiku Seed ③: awaiting Opus spec
+- S049/S050 formal ratification: Opus directive needed
+- Opus counter-sign SEAL at HEAD 523226f5
+- PARK-039 Haiku Seed ③: still awaiting Opus spec
 
 ## CADENCE-AUDIT
-S088 SROF chain: 001→002→003→004→005→006→007→008
-A2: 4 CS items, 4 block-tests (all PASS), 5 commits, pushed
-Next: Governor directive (comm protocol) → then A3 on Opus signal
+S088 SROF chain: 001→002→003→004→005→006→007→008→009
+HARVEST-GATE: 2 validators, 2 block-tests (6/6 total PASS), committed + pushed
+Next: Opus counter-sign SEAL → A3 on Opus signal

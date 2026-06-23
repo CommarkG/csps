@@ -1,14 +1,14 @@
 # verify last run
 
-- ran_at: 2026-06-23T12:59:29.523Z
-- finished_at: 2026-06-23T13:00:09.456Z
+- ran_at: 2026-06-23T13:01:08.599Z
+- finished_at: 2026-06-23T13:01:48.333Z
 - exit_code: 0
 
 ```yaml
 {
   "pre_close_verification": {
-    "ran_at": "2026-06-23T12:59:29.523Z",
-    "finished_at": "2026-06-23T13:00:09.456Z",
+    "ran_at": "2026-06-23T13:01:08.599Z",
+    "finished_at": "2026-06-23T13:01:48.333Z",
     "orchestrator": "tools/verify.mjs",
     "cycles": [
       {
@@ -39,7 +39,7 @@
         "command": "pnpm --filter @csps/principles validate:all",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.1,
+        "duration_seconds": 0.9,
         "principles_loaded": 78,
         "findings_total": 32
       },
@@ -69,7 +69,7 @@
         "command": "node tools/validators/validate-principle-count-staleness.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.5,
+        "duration_seconds": 0.4,
         "stale_count_files": 0
       },
       {
@@ -759,7 +759,7 @@
         "command": "node tools/validators/validate-layer-boundary.mjs",
         "status": "CLEAN",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.2,
         "files_scanned": 325,
         "violations": 0
       },
@@ -1068,7 +1068,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "warnings": 2,
+        "warnings": 1,
         "advisory": true
       },
       {
@@ -1207,7 +1207,7 @@
         "command": "node tools/validators/validate-new-file-dna.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "files_checked": 0,
         "dna_ok": 0,
         "advisory": 0,
@@ -1284,7 +1284,7 @@
         "command": "node tools/validators/validate-implementation-gate.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "advisories": 0
       },
       {
@@ -1410,7 +1410,7 @@
         "command": "node tools/validators/validate-apps-are-trials.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.1,
+        "duration_seconds": 0.2,
         "apps_checked": 3,
         "libs_packages": 13,
         "blocking": 0,
@@ -1588,7 +1588,7 @@
         "command": "node tools/validators/validate-context-wrapped-numbers.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.3,
+        "duration_seconds": 0.4,
         "files_checked": 771,
         "findings": 9597,
         "advisory": 9597
@@ -1599,8 +1599,8 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "findings": 429,
-        "advisory": 429,
+        "findings": 428,
+        "advisory": 428,
         "blocking": 0
       },
       {
@@ -1803,7 +1803,7 @@
         "state_session": "S57",
         "council_session": "S88",
         "gap": 31,
-        "session_spread": 3,
+        "session_spread": 1,
         "advisory": 1,
         "blocking": 0
       },
@@ -1850,7 +1850,7 @@
         "duration_seconds": 0.1,
         "total": 256,
         "deferred": 11,
-        "empty_output": 20,
+        "empty_output": 21,
         "zero_numeric": 23,
         "advisory": 3,
         "blocking": 0
@@ -1872,7 +1872,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.1,
-        "total_entries": 1368,
+        "total_entries": 1369,
         "sessions": 13,
         "advisory": true
       },
@@ -2077,10 +2077,10 @@
         "exit_code": 0,
         "duration_seconds": 0.1,
         "blocks_checked": 0,
-        "proto_citations": 190,
+        "proto_citations": 187,
         "valid": 6,
-        "missing": 184,
-        "advisory": 184,
+        "missing": 181,
+        "advisory": 181,
         "blocking": 0
       },
       {
@@ -2160,7 +2160,7 @@
         "status": "PASS",
         "exit_code": 0,
         "duration_seconds": 0.2,
-        "unpushed_count": 1,
+        "unpushed_count": 0,
         "advisory": 0,
         "blocking": 0
       },
@@ -2183,7 +2183,7 @@
         "exit_code": 0,
         "duration_seconds": 0.2,
         "files_checked": 793,
-        "advisory": 233,
+        "advisory": 234,
         "blocking": 0
       },
       {
@@ -2220,7 +2220,7 @@
         "command": "node tools/validators/validate-hook-activation-smoke.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 5.1,
+        "duration_seconds": 5.2,
         "hooks_tested": 9,
         "blocking": 0,
         "advisory": 4
@@ -2270,10 +2270,11 @@
       {
         "name": "green_receipt",
         "command": "node tools/validators/validate-green-receipt.mjs",
-        "status": "FAIL",
-        "exit_code": 1,
+        "status": "PASS",
+        "exit_code": 0,
         "duration_seconds": 0.2,
-        "tail": "[validate-green-receipt] FAIL\n  blocking=1 advisory=0\n  BLOCKING: tree_hash mismatch — tracked content changed since last verify\n    receipt tree_hash: 1d7fbf37c6111bd1\n    current tree_hash: c2a3b8f8c4d8be67\n    Code or config changed after the last successful verify run.\n    FIX: run `node tools/verify.mjs --skip-install` to refresh the receipt.\n"
+        "head_prefix": "f59c4977",
+        "receipt_ts": "2026-06-23T13:00:09.456Z"
       },
       {
         "name": "agent_inheritance_parity",
@@ -2310,7 +2311,7 @@
         "command": "node tools/validators/validate-classification-accuracy.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.4,
+        "duration_seconds": 0.5,
         "entries_tested": 5,
         "correct": 5,
         "accuracy_pct": 100,
@@ -2486,7 +2487,7 @@
         "command": "node tools/validators/validate-deploy-root-selfcontained.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 0.2,
+        "duration_seconds": 0.1,
         "blocking": 0,
         "advisory": 0,
         "passes": 5
@@ -2496,7 +2497,7 @@
         "command": "node tools/validators/validate-ts-compile.mjs",
         "status": "PASS",
         "exit_code": 0,
-        "duration_seconds": 1.9,
+        "duration_seconds": 1.8,
         "blocking": 0,
         "advisory": 0,
         "passes": 2

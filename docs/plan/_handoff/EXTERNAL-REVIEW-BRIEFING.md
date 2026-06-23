@@ -31,13 +31,20 @@ You are a senior platform architect asked to review and improve a specific archi
 knowledge** of this system. This document gives you the background; the **attached files (§A)** give you the
 full, un-summarized content. Read both. Then answer the questions in §F and do the research in §G.
 
-## §A — THE ATTACHMENT SET (full content travels with this brief; nothing here is a substitute for them)
-Attach these files alongside this brief (they are the real content — do not infer, read them):
-1. `OPUS-S088-ONE-TAB-ORCHESTRATION-DESIGN.md` — **the architecture under review** (§14 = compacting/continuity).
-2. `AI-COUNCIL-COMMUNICATION-SPINE.md` — the L1–L4 inter-model communication contracts.
-3. `AI-COUNCIL-EDGE-CASE-PROTOCOLS.md` — §5.1–5.8 compact / new-tab / agent-lifecycle protocols.
-4. `SHIPPABLE-GREEN-PROTOCOL.md` — the completion standard ("green" = a 6-link chain, C1–C6).
-*(If your tool can't take attachments, paste each file's content in order; do not skip any.)*
+## §A — THE PACKAGE (numbered reading order + plain-content name + canonical file)
+> Naming standard (CSPS): a document GROUP is always presented numbered + simply named. Save each download
+> with its number prefix so order + content are unambiguous. (The number+name is presentation; the canonical
+> repo filename — last column — is the file itself.)
+
+| # | Simple name (what it is) | Save-as | Canonical file |
+|---|---|---|---|
+| **01** | This briefing — read FIRST (vocabulary §C) | `01-cssp-external-review-briefing.md` | EXTERNAL-REVIEW-BRIEFING.md |
+| **02** | The architecture under review | `02-one-tab-orchestration-design.md` | OPUS-S088-ONE-TAB-ORCHESTRATION-DESIGN.md |
+| **03** | How the AI models communicate | `03-ai-council-communication-spine.md` | AI-COUNCIL-COMMUNICATION-SPINE.md |
+| **04** | Compaction / new-tab / agent-lifecycle rules | `04-ai-council-edge-case-protocols.md` | AI-COUNCIL-EDGE-CASE-PROTOCOLS.md |
+| **05** | The completion standard ("green") | `05-shippable-green-protocol.md` | SHIPPABLE-GREEN-PROTOCOL.md |
+
+Read 01 → 05 in order; nothing here substitutes for the full files. *(If your tool can't take attachments, paste each file's content in numbered order; do not skip any.)*
 
 ## §B — WHAT CSPS IS (one paragraph, then the vocabulary)
 CSPS (Core Sights Platform) is a **governance-first software platform** built and operated by a human ("the
@@ -115,6 +122,11 @@ and for end users); the one-tab loop is an added option, not a replacement.
 5. For external users/developers calling the platform, is "QUARANTINE-on-intake" a sufficient trust model, or is
    a stronger sandbox needed?
 6. Where does this architecture's cost/latency curve break versus the multi-tab baseline?
+7. **Multi-tenancy & scale (primary platform goal):** the core architecture must be consistent, stable, and
+   scalable to many tenants and many concurrent users. Does an orchestrated-loop core (one director coordinating
+   model-workers) generalize to per-tenant isolated loops at scale? What breaks first — state isolation, the
+   shared gates (SHIPPABLE-GREEN / two-party seal), the findings/CIE register, or cost? What is the right
+   tenancy boundary (per-tenant orchestrator? shared orchestrator + per-tenant context-bundles + RLS data isolation?).
 
 ## §G — RESEARCH WE ASK YOU TO DO (cite sources)
 1. **Multi-agent orchestration in one context/process** — current best practices and known failure modes for an

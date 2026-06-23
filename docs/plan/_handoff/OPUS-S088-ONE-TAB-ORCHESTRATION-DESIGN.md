@@ -219,3 +219,39 @@ to durable homes, and treat every agent spawn/stop/continue as a bounded boundar
 > **Review note (Opus S088):** AI-COUNCIL-COMMUNICATION-SPINE.md + AI-COUNCIL-EDGE-CASE-PROTOCOLS.md reviewed +
 > ratified; they are the detailed protocol home, this §14 is the consolidated index + one-tab deltas. External-AI
 > review (§12) should assess §14(d) for one-tab agent-lifecycle completeness.
+
+## §15 — INTERNAL CORE-COUNCIL FINDINGS (S088: 5 personas + a Sonnet design-critic agent)
+Before external review, an internal council pass (the Sonnet critic dogfooded the one-tab loop) surfaced these —
+each folds into §11's missing-to-build list with a concrete mechanism (no patches):
+1. **Gate loop-start on PARK-039.** Loop-init reads `park-register.yaml`; if PARK-S084-039 (Haiku unblock) is
+   open, halt with "Haiku not activatable — run inline or unblock first." Prevents wrong-tier cost assumptions.
+2. **Typed context-bundle + validator (highest-frequency breakage).** `context-bundle.schema.json`
+   {governing_intent, DoD, block-test, inline-critical-content, absolute-paths, HEAD, session-id} +
+   `validate-context-bundle.mjs` BLOCKING pre-spawn. A schema-invalid bundle cannot spawn.
+3. **Externalize the director_seal (C5).** Seal is a discrete phase where Opus reads ONLY the committed artifact
+   at HEAD (not tab memory) and compares to DoD — this manufactures the independence one-tab otherwise erodes.
+4. **Per-cycle SWIFT-absorption audit.** Orchestrator emits `[SWIFT-CYCLE-N: absorbed/parked/escalated]`; if
+   SWIFT count > cap, pause and surface to Governor. Prevents silent goal mutation (§6 risk).
+5. **`loop-contract.yaml` at loop-init.** {goal-predicate, sweep-definition, max-cycles, budget-ceiling,
+   ZF-operator}, Governor-visible before the loop runs. ZF is true only when the sweep-definition is satisfied.
+6. **C6 in the loop.** The loop must cross C6 (renders-in-production) before declaring ZF on deployable units —
+   the loop owns the full chain, not just build+verify.
+
+## §16 — AGENT-FILE-ACCESS RULE (Governor S088 — close the agent↔system-files gap)
+Spawned agents have isolated context and cannot navigate. Therefore a context-bundle MUST carry **inline-pasted
+critical content + absolute file paths for supplementary reads** — a "see §X" / "per the protocol" navigation
+reference is **forbidden** and must FAIL bundle validation exactly like a missing governing_intent. Confirmed by
+the S088 Sonnet critic: absolute paths + parallel reads worked; navigation refs would have violated contextual
+locality. The bundle validator (§15.2) enforces inline-content-not-navigation.
+
+## §17 — MULTI-TAB PRESERVED AS AN OPTION (Governor S088 — add, do not replace)
+The multi-tab system and its communication protocols (AI-COUNCIL-COMMUNICATION-SPINE + EDGE-CASE-PROTOCOLS) are
+**retained as a first-class selectable mode**, not deprecated. Two modes coexist:
+- **Multi-tab mode** — separate Opus/Sonnet/Haiku tabs with human-relayed protocols; strongest independence +
+  live human steering; available to the super-admin AND exposed to end users/developers who want manual control.
+- **One-tab orchestration mode** — the loop engine of this doc; fastest, least human-switching; default for
+  bounded well-specified goals.
+The orchestrator exposes a **mode selector** (per goal); both modes honor the same SHIPPABLE-GREEN gates,
+two-party seal, DNA-Guardian, and threshold. PCR: **P** one size does not fit all work or all users. **C**
+replacing multi-tab would remove the strongest-independence path + a control surface users may need. **R** keep
+both; choose per goal/criticality/user-tier; never let mode choice weaken the shared gates.

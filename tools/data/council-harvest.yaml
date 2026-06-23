@@ -1,0 +1,34 @@
+id: csps.data.council-harvest
+name: council-harvest
+description: >
+  Harvest register for council + research + external-AI-review OUTPUT (the VALUE, not just the invocation log).
+  Every council deliberation, research effort, persona-consult, and external-review response MUST land a harvest
+  entry here. Each entry's disposition routes into a LIVE loop so the insight compounds permanently, not once:
+  recurring → findings-actuator (act-forcing → prevention); ratify-candidate → ratified-standards.yaml
+  (Pipeline A → platform standard + audit). Spec: docs/plan/_handoff/COUNCIL-WISDOM-HARVEST-DESIGN.md (PARK-S088-001).
+  ENFORCEMENT (Sonnet build, pending): validate-council-harvest.mjs BLOCKS a council-invocation-log entry with no
+  matching harvest entry, AND a harvest entry whose disposition is un-routed. Until that gate ships, harvest is
+  discipline-not-enforced — do NOT treat this register as the permanence guarantee yet.
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: tools_templates_meta
+
+# Each entry — tags are CLOSED-ENUM from the tagging core (tag-status-contract.md), never free-text (§9 design).
+# disposition ∈ { SWIFT-absorb | park | ratify-candidate | discard-with-reason }
+# Route on close: recurring→findings-actuator | ratify-candidate→ratified-standards (Pipeline A)
+entries:
+  - id: harvest-S088-external-review-PENDING
+    trigger: external-review
+    invocation_ref: "external-AI council T4 — package external-review-download/ 01-06 (Csps-2026-06-23)"
+    status: AWAITING-FEEDBACK
+    question: "One-tab multi-model orchestration + context-bundle + tagging/coherence — is it sound, scalable, multi-tenant? What did we fail to ask?"
+    conclusion: null            # filled when external feedback returns
+    provenance: "external AIs (ChatGPT/Gemini/Grok) — QUARANTINE: each finding is a CLAIM, independently reproduced before adoption (CS9/DNA-Guardian)"
+    disposition: null           # set on harvest close → routes to findings/Pipeline-A
+    spine: GVRN
+    domain: governance
+    wisdom_class: insight
+    note: "Reserved slot so returning external feedback has a durable home + a routing obligation. On return: split feedback into N harvest entries, each with its own disposition; recurring-prevention items → findings-actuator, standard-worthy → ratified-standards."

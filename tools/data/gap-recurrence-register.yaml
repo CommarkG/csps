@@ -151,19 +151,19 @@ entries:
   - id: gap_CONCEPTUAL_CLOSURE_NO_TEST
     observation: "Solutions are designed and described (cognitive match) without being tested against known violations. The model of the solution is treated as the solution."
     first_seen: S053
-    k_count: 2
-    sessions: [S053]
-    status: open
-    prevention_class: unclassified
-    structural_fix_plan_session: null
-    prevention_design_pending: true
+    k_count: 3
+    sessions: [S053, S088]
+    status: fix_committed
+    prevention_class: B_SHIPPABLE_GREEN
+    structural_fix_plan_session: S088
+    prevention_design_pending: false
     must_address_by_session: "S076"
-    age_escalation_status: on-time
+    age_escalation_status: overdue
     explicit_defer_reason: "Subsumed by PREVENTION arc S084 (PROTO-S084-PREVENTION PREV-2): behavioral test written for validate-principle-count-staleness.mjs (longest-stale family). Re-assess coverage breadth post-Phase-B."
     fix_commit_sha: null
-    structural_fix_triggered: false
+    structural_fix_triggered: true
     behavioral_test_exists: false
-    note: "K=1. This is the root cause behind gaps 1-6. Structural fix: behavioral test suite (tools/tests/behavioral/) + Gap Recurrence Register validator. This register IS the first step of that fix. S084: first behavioral test written under PREVENTION arc — principle-count-staleness-test.sh."
+    note: "K=1. This is the root cause behind gaps 1-6. Structural fix: behavioral test suite (tools/tests/behavioral/) + Gap Recurrence Register validator. This register IS the first step of that fix. S084: first behavioral test written under PREVENTION arc — principle-count-staleness-test.sh. S088 RE-DISCOVERY (k→3, OVERDUE since S076): green certified a proxy not the shippable artifact — next-build never run, deliverable untracked in submodule, deploy-root not self-contained, prod 404, Haiku scout false-negative. ALL are 'designed/described not tested against known violations.' STRUCTURAL FIX (committed): docs/plan/pillar-0-governance/SHIPPABLE-GREEN-PROTOCOL.md — 6 auto-gated links. RESOLUTION pending: 9 core seeds CS1-CS9 (each FSE + a block-test proving it FAILS on a planted defect — this directly drains gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE). Relay: PROTO-S088-SHIPPABLE-GREEN-BUILD."
 
   - id: gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS
     observation: "Sonnet declares STEP/SESSION COMPLETE/SEALED/DONE in commit message with exit_code=0 claim, but the close validator (validate-handoff-completeness / validate-permanence-coverage / validate-zf-cycle-format / validate-frontmatter) only confirms AFTER the close-commit lands. Each instance required Opus course-correct."

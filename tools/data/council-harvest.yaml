@@ -20,15 +20,47 @@ schema_anchor: tools_templates_meta
 # disposition ∈ { SWIFT-absorb | park | ratify-candidate | discard-with-reason }
 # Route on close: recurring→findings-actuator | ratify-candidate→ratified-standards (Pipeline A)
 entries:
-  - id: harvest-S088-external-review-PENDING
+  - id: harvest-S088-external-council-round1
     trigger: external-review
-    invocation_ref: "external-AI council T4 — package external-review-download/ 01-06 (Csps-2026-06-23)"
-    status: AWAITING-FEEDBACK
-    question: "One-tab multi-model orchestration + context-bundle + tagging/coherence — is it sound, scalable, multi-tenant? What did we fail to ask?"
-    conclusion: null            # filled when external feedback returns
-    provenance: "external AIs (ChatGPT/Gemini/Grok) — QUARANTINE: each finding is a CLAIM, independently reproduced before adoption (CS9/DNA-Guardian)"
-    disposition: null           # set on harvest close → routes to findings/Pipeline-A
+    invocation_ref: "external-AI council T4 round 1 — package external-review-download/ 01-06 (Csps-2026-06-23)"
+    status: ROUND-1-COMPLETE
+    seats_responded: [claude-anthropic, gpt-openai, gemini-google, grok-xai]   # 4/4 external seats in
+    seats_pending: []
+    unanimity: "4/4 external + internal §15.2 = build the context-bundle + seal-packet boundary contract FIRST. Maximum-confidence adopt signal."
+    grok_unique_adds: "bundle validator runs a dry 'understanding test' (sub-agent paraphrases DoD back, <95% match = block); orchestrator itself must be governed (its own FSE + two-party seal on loop-engine changes); guard bundle-validator false-positive blocking legit spawns under tight context."
+    question: "One-tab multi-model orchestration + context-bundle + tagging/coherence — sound, scalable, multi-tenant? What did we fail to ask?"
+    provenance: "3 independent external models — QUARANTINE base, but TRIANGULATED: where all 3 agree, confidence is high (independent convergence). Per-finding verify-before-adopt still applies."
     spine: GVRN
     domain: governance
     wisdom_class: insight
-    note: "Reserved slot so returning external feedback has a durable home + a routing obligation. On return: split feedback into N harvest entries, each with its own disposition; recurring-prevention items → findings-actuator, standard-worthy → ratified-standards."
+    conclusion: >
+      STRONG CONVERGENCE across all 3 seats: (1) the architecture direction is sound but NOT build-ready;
+      (2) the single highest-leverage change is to build the CONTEXT-BUNDLE + SEAL-PACKET "boundary contract"
+      FIRST (typed schema + blocking validator) — it is the load-bearing primitive every other mechanism needs
+      (matches our own §15.2); (3) C5 seal must be a transcript-BLIND, stateless fresh-verifier (not "Opus
+      re-reads HEAD while remembering the build") — same-instance seal = correlated-failure blind spot; (4) the
+      convergence triple {goal-predicate,max-cycles,budget} is insufficient — add timeout + stagnation/Δ-detector
+      + side-effect approval list + kill-switch + fixed sweep-definition; (5) loop needs per-cycle durable
+      checkpoint/WAL (chat disposable); (6) Haiku spot-check must verify the NOT-FOUND claim, not just sampled
+      FOUND items (the S088 "0 vs 92" class); (7) QUARANTINE is a trust LABEL not a sandbox — multi-tenant needs
+      physical isolation (container/worktree) + per-tenant CIE + RLS + tiered silo/pool/bridge; (8) keep the LLM
+      OUT of orchestration logic — orchestrator = deterministic state machine.
+    dispositions:
+      - finding: "Boundary Contract (context-bundle + seal-packet) built FIRST, blocking pre-spawn"
+        disposition: ratify-candidate     # → Pipeline A + becomes the next build (replaces/expands §15.2)
+        confidence: high-triangulated
+      - finding: "C5 seal = transcript-blind stateless fresh-verifier; builder!=director on sealed files (git authorship check); else label C4.5-reproduced not C5-sealed"
+        disposition: ratify-candidate     # amend SHIPPABLE-GREEN C5
+      - finding: "loop-contract += timeout + stagnation/ΔΔ + side-effect-approval-list + kill-switch + immutable goal_version + fixed sweep-definition"
+        disposition: ratify-candidate     # amend one-tab design §3/§10 edge cases
+      - finding: "per-cycle durable loop checkpoint/WAL committed each cycle (not tab-close)"
+        disposition: ratify-candidate
+      - finding: "Haiku spot-check verifies NOT-FOUND claim (sample items that SHOULD match) — fixes S088 0-vs-92 class"
+        disposition: SWIFT                 # small, high-value, fixes a live failure class → amend CS9/spot-check now
+      - finding: "Multi-tenancy: tiered silo/pool/bridge isolation + per-tenant CIE register + RLS + physical sandbox for external; global CIE gets sanitized pattern-classes only"
+        disposition: park                  # Phase-4 tenancy work unit (major); fold into design §8/§F7
+      - finding: "Orchestrator = deterministic JS state machine (JSON-RPC); LLM out of orchestration logic (meta-prompt exhaustion vector)"
+        disposition: ratify-candidate      # architecture principle for zf-orchestrator
+      - finding: "WHAT-WE-FAILED-TO-ASK: director-level failure detection; platform observability/event stream; post-deploy→CIE feedback path; B_* contract versioning + propagation across bundles/tenants; formal claim/evidence/receipt/seal/truth data model"
+        disposition: park                  # design-gap cluster → fold into one-tab design as open items
+    note: "Full per-seat text retained in chat transcript + to be split into individual harvest entries by Sonnet (PROTO-S088-COUNCIL-HARVEST-SPLIT) each routed: ratify-candidate→ratified-standards (Pipeline A); SWIFT→build now; park→park-register. Grok seat pending → round-1 stays open until all seats in or Governor closes."

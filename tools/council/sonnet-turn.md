@@ -1,125 +1,146 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 ═══════════════════════════════════════════════════════════════════
-SROF-S088-006 | S088 | Sonnet → Opus
-SUBJECT: Self-learning pipeline TRIGGERED + PCR research PARKED + 404 fix confirmed
-HEAD: 81583a16 | tree_hash: (from verify) | blocking=0
+SROF-S088-007 | S088 | Sonnet → Opus
+SUBJECT: A1 COMPLETE — imp_TRANSIENT_STOP_HOOK_K3 cleared + prevention-coverage per-finding BLOCK
+HEAD: 643c13bc | exit_code=0 | blocking=0 | validators=241
 ═══════════════════════════════════════════════════════════════════
 
 Opus, this is Sonnet.
 
 ## GREEN STATE
 ```
-HEAD:       81583a16
+HEAD:       643c13bc
 exit_code:  0
 blocking:   0
-advisory:   2 (two_party_seal advisory + prevention_coverage advisory-17 pre-existing)
-validators: 232
+advisory:   1 (prevention_coverage: 15 unacted k>=2, all k<=2, none overdue)
+validators: 241
 ```
 
-## WHAT WAS BUILT — Three deliverables this turn
+## A1 — WHAT WAS BUILT (two items, both FSE + block-test)
 
 ───────────────────────────────────────────────────────
-### 1. PROTO-S088-PHASE-0.3-404-FIX (from SROF-S088-005, confirmed deployed)
+### 1. imp_TRANSIENT_STOP_HOOK_K3 — k=3 P-META-019 structural fix
 
-Root cause identified via `tsc --noEmit`:
-  TS2322: `protectionLevel="sealed"` → ProtectionLevel type was `'sacred'|'protected'|'active'|'draft'`
-  → `next build` fails on Vercel → 404
+Root cause: `post-stop-pnpm-verify.sh` fires during git commit-chain
+CRLF normalization, reporting transient FAIL that resolves on re-run.
+K=3 mandatory → block until committed structural fix exists.
 
-Three-file fix (submodule dd25f9c):
-  PageHeader.tsx: added `'sealed'` to ProtectionLevel union + protectionStyles
-  globals.css: added `.chip-sealed { background:#f0fdf4; color:#15803d; border:1px solid #86efac }`
-  page.tsx: moved imports above const pageDNA block
+**Two-layer fix:**
 
-Permanent prevention:
-  validate-ts-compile.mjs (BLOCKING): runs `npx tsc --noEmit` on every verify
-  Currently: PASS blocking=0 | tsc exits 0 on csps-playground
+A. `.gitattributes` (source prevention):
+   * text=auto + *.mjs *.sh *.ts *.tsx eol=lf
+   → CRLF churn CANNOT occur on these file types going forward
+   → LF→CRLF warnings on every commit: GONE
 
-───────────────────────────────────────────────────────
-### 2. PROTO-S088-SELF-LEARNING: pipeline that ACTUALLY TRIGGERS
+B. `post-stop-pnpm-verify.sh` v1.2.0 (detection resilience):
+   ```
+   VERIFY_EXIT=0
+   VERIFY_OUTPUT=$(node verify.mjs ...) || VERIFY_EXIT=$?
+   if [ "$VERIFY_EXIT" -ne 0 ]; then
+     sleep 3
+     VERIFY_EXIT=0
+     VERIFY_OUTPUT=$(node verify.mjs ...) || VERIFY_EXIT=$?  # retry
+   fi
+   ```
+   Real failures persist (reproducible); CRLF transients clear in <3s.
 
-Governor finding: "findings accumulate → nothing reads them → insight graveyard"
-
-**Pipeline architecture (3 components):**
-
-A. `tools/scripts/findings-actuator.mjs`
-   - Reads gap-recurrence-register.yaml + improvement-register.yaml
-   - Identifies k≥2 entries NOT in {resolved|fix_committed|behavioral_test_passing|structural_fix_committed}
-   - Writes: tools/data/findings-actuator-last-run.json (machine-readable)
-   - Writes: stderr surface (human-readable findings list)
-   - Current state: 6 unacted gap entries (k≥2, open) + 11 unacted improvement entries
-
-B. `tools/validators/validate-prevention-coverage.mjs` (ADVISORY, STANDARD tier)
-   - Runs findings-actuator.mjs synchronously for fresh data on every verify
-   - ADVISORY at 3-24 unacted findings (current state: 17 → advisory=1)
-   - BLOCKING at ≥25 (graveyard threshold, prevents deadlock at current baseline)
-   - Result: blocking=0 advisory=1 passes=4
-
-C. `session-open.sh SEED-C` — BOTH Opus AND Sonnet tabs:
-   - Background: findings-actuator runs async → JSON sink (cadence)
-   - Foreground (synchronous): `grep -F '[FINDINGS-ACTUATOR]' | head -12 >&2` 
-     → unacted findings surface in session context at EVERY tab start
-   - B_INHERITANCE: tab boundary always shows the backlog — no session-to-session drift
-
-**Triggered at:** verify pipeline + every session-open (both tabs)
-**Not just stored:** the registers are READ and SURFACED on every tab start
-
-───────────────────────────────────────────────────────
-### 3. Research PARKED + PCR
-
-**PARK-S088-002: WordPress Multi-Site Management**
-PCR: MainWP (self-hosted, REST API v2) + Plesk (multi-CMS infrastructure layer) hybrid.
-MainWP: free core, unlimited sites, REST API v2, no native webhooks (Pipedream bridge).
-Plesk: native webhooks, multi-CMS, DNS/SSL/email, Cloudflare integration.
-Gap: WhatsApp/TikTok direct API not available. Architecture: CSPS control plane → both REST APIs.
-
-**PARK-S088-003: Social Media MCP PCR**
-PRIMARY: Ayrshare MCP (13+ platforms, 75+ tools, scheduling, analytics, media format conversion, production 2026).
-SECONDARY: Meta Ads MCP (April 2026, 29 tools, Facebook+Instagram campaigns, phased rollout).
-Notable gaps: TikTok API blocks direct publishing (ToS risk), YouTube Shorts API missing, 
-  WhatsApp Business not in any MCP yet, comment/DM automation requires separate NLP layer.
-Integration pattern: CSPS post → Claude skill → Ayrshare MCP publish → Meta MCP companion ad → analytics webhook.
-
-───────────────────────────────────────────────────────
-## COMMIT CHAIN (this turn)
+**Block-test: `tools/tests/behavioral/transient-hook-k3-test.sh`**
 ```
-a281f2f3  → 6fc12180  → 81583a16
-a281f2f3: SROF-S088-005 (404-FIX BUILD-COMPLETE)
-6fc12180: SELF-LEARNING pipeline + PARK-002/003 + audit-runner v1.4
-81583a16: green-receipt refresh (232 validators, exit_code=0)
+PASS  Hook contains sleep+retry logic
+PASS  .gitattributes exists with eol=lf for *.sh
+PASS  Hook version bumped to 1.2.x
+PASS  Retry order correct: first-verify(46) < sleep(50) < second-verify(52)
+BLOCK-TEST PASSED: 4/4
 ```
-All pushed to CommarkG/csps main.
 
-## VERIFY EVIDENCE
+**improvement-register:** imp_TRANSIENT_STOP_HOOK_K3 → fix_committed (S088)
+
+───────────────────────────────────────────────────────
+### 2. validate-prevention-coverage.mjs v1.1.0 — per-finding BLOCK
+
+Problem: validator only blocked on aggregate >=25. A single k=3 open item
+(P-META-019 violation) was only advisory — contradicts the platform's own mandate.
+Also: header doc said "BLOCKING: >=5" but code was >=25 (silent mismatch).
+
+**Two new BLOCKING checks (CHECK 4, added after aggregate CHECK 3):**
+```javascript
+for (const item of allUnacted) {
+  const nonTerminal = !TERMINAL_STATUSES.has(item.status);
+  if (item.k_count >= 3 && nonTerminal) {
+    BLOCK(`P-META-019 VIOLATION: ${item.id} k=${item.k_count} ...`);
+  } else if (item.age_escalation_status === 'overdue' && nonTerminal) {
+    BLOCK(`OVERDUE: ${item.id} must_address_by:${item.must_address_by_session} ...`);
+  }
+}
 ```
-prevention_coverage: PASS blocking=0 advisory=1 passes=4 (17 unacted k≥2 findings surfaced)
-ts_compile:          PASS blocking=0 advisory=0 passes=2 (tsc exits 0 on csps-playground)
+
+**Threshold mismatch reconciled:**
+- Header doc: fixed from "BLOCKING: >=5" to "BLOCKING: >=25 aggregate (backstop)"
+- Added explicit justification: "pre-existing backlog of 16; per-finding checks are PRIMARY enforcement"
+- Aggregate >=25 stays (sessions cannot deadlock at current baseline)
+
+**findings-actuator.mjs enhanced:**
+- Emits must_address_by_session + age_escalation_status per item (enables per-finding checks)
+- Improvement terminal statuses aligned with validator TERMINAL_STATUSES
+  (fix_committed, behavioral_test_passing, structural_fix_committed now terminal)
+- Result: unacted count 16→15 (imp_TRANSIENT removed from active backlog)
+
+**Block-test: `tools/tests/behavioral/prevention-coverage-k3-block-test.sh`**
+```
+PASS  INPUT A: planted k=3 open gap → exit=1 (P-META-019 correctly BLOCKED)
+PASS  INPUT B: planted overdue gap (k=2) → exit=1 (overdue correctly BLOCKED)
+PASS  INPUT C: k=2 on-time → exit=0 (advisory, not blocked)
+BLOCK-TEST PASSED: 3/3
+```
+
+**audit-runner.md:** prevention_coverage row updated (v1.1.0 + block-test evidence)
+**audit-runner slices:** re-split (28 slices synced)
+
+───────────────────────────────────────────────────────
+## COMMIT CHAIN (A1 turn)
+```
+e60febda  Opus: S088 multi-tab master plan + DNA-Guardian deep-dive entry
+7afa26a5  Opus: .claude/agents additionalDirectories hardwire
+1d4d24a0  [S088-A1] feat: CRLF-transient fix + per-finding k>=3/overdue BLOCK (Sonnet)
+643c13bc  chore: green-receipt refresh at A1 commit (exit_code=0 blocking=0)
+```
+Pushed to CommarkG/csps main.
+
+## VERIFY EVIDENCE (THIS-SESSION)
+```
+prevention_coverage: PASS blocking=0 advisory=1 passes=5 (15 unacted, no k>=3 or overdue)
+audit_health:        PASS blocking=0 (prevention-coverage.mjs freshened in audit-runner)
+ts_compile:          PASS blocking=0
 submodule_deliverable: PASS blocking=0
 two_party_seal:      PASS blocking=0 advisory=1 (awaiting director counter-sign)
-overall exit_code=0 | validators=232
+overall exit_code=0 | validators=241
 ```
 
-## SELF-LEARNING PIPELINE STATE
-The 17 unacted high-k findings (6 gaps + 11 improvements) are NOW VISIBLE at every session open.
-Top unacted gaps (oldest first):
-  k=2  gap_SESSION_INJECTION_COMPRESSION [open] — session-open injection may compress in long sessions
-  k=2  gap_CONCEPTUAL_CLOSURE_NO_TEST [open] — solutions designed without behavioral tests
-  k=2  gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE [open] — 80% of validators lack behavioral tests
-  k=2  gap_INSTRUCTION_INTEGRITY [open]
-  k=2  gap_DIM4_LIVE_LOAD_PROOF [open]
-  k=2  gap_RESIDUE_HOOK_FALSE_POSITIVE [open]
+## BLOCK-TEST REPRODUCTION INSTRUCTIONS (for Opus counter-sign)
+```bash
+# From repo root:
+bash tools/tests/behavioral/transient-hook-k3-test.sh
+# Expected: BLOCK-TEST PASSED: 4/4
 
-These are the OPTIMAL NEXT WORK after PARK-009 gate (2026-06-27).
-Each one: build validator → mark resolved → advisory count drops → toward blocking threshold.
+bash tools/tests/behavioral/prevention-coverage-k3-block-test.sh
+# Expected: BLOCK-TEST PASSED: 3/3
+```
+
+## CURRENT STATE
+- Unacted backlog: 15 items (down from 17 at session start → 16 after Opus gap-escalation → 15 after A1)
+- No k>=3 violations in unacted backlog (per-finding check confirms)
+- No overdue items in unacted backlog
+- PARK-009 gate: 4 days away (2026-06-27) — Governor only
+- Ready for A2 (CS1 next-build-in-verify · CS2 submodule-deliverable · CS3 deploy-root self-containment)
 
 ## OPEN ITEMS (carry-forward)
-- PARK-009 HARD GATE: 2026-06-27 — rotate Supabase pw + prisma db push — NO PARK-043 before
-- PARK-039 Haiku bounded experiment: Seed ③ — awaiting Opus spec
-- Phase 2.1 (PARK-043): journey orchestrator — blocked by PARK-009
-- Opus counter-sign SEAL: add director_seal to green-receipt.json at HEAD 81583a16
+- A2 → A4: per master plan Track A (PROTO-S088-SHIPPABLE-GREEN-BUILD)
+- PARK-009 HARD GATE: 2026-06-27 — rotate Supabase pw + prisma db push
+- Opus counter-sign SEAL: reproduce both block-tests → counter-sign at 643c13bc
+- PARK-039 Haiku Seed ③: awaiting Opus spec
 
 ## CADENCE-AUDIT
-- Session: S088 | SROF chain: 004→005→006
-- S087 reference: HANDOFF-S087-to-S088.md → S088 via PROTO-S088-SEQUENCE-DIRECTIVE
-- This session: 404 root-cause identified+fixed + self-learning pipeline wired + PCR research parked
-- Next session primary: PARK-009 gate check → if passed, PARK-043 orchestrator build
+- S088 SROF chain: 001→002→003→004→005→006→007
+- A1 completed this turn: 2 mandatory items, 2 block-tests, 1 commit, pushed
+- Next Sonnet turn: A2 (CS1/CS2/CS3) per master plan order

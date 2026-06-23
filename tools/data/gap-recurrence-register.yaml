@@ -512,7 +512,7 @@ entries:
       RESULT: Any reference to "D1 (eager helpfulness)", "D10 (completion pressure)",
       or "D13 (anti-conflict)" in platform docs is false. The vault is the ground truth.
     first_seen: S078
-    k_count: 1
+    k_count: 2
     sessions: [S078]
     status: open
     prevention_class: governance-terminology
@@ -521,6 +521,7 @@ entries:
     must_address_by_date: null
     must_address_by_session: "S085"
     age_escalation_status: on-time
+    explicit_defer_reason: "S088: terminology-only gap (no runtime impact). Not in Track A or Track B master-plan scope. Vault ground truth is correct; memory file conflict affects documentation readability only. No principle, validator, or enforcement references the stale D-names. Defer to next consolidation-pass session (PARK-register or D-register dedicated pass). Triaged as P3: low urgency, no blocking dependency."
     fix_commit_sha: null
     behavioral_test_exists: false
     target_dimension: "ai-default-registry"

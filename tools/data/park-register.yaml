@@ -1333,3 +1333,33 @@ entries:
     source_session: S088
     created_session: S088
     closed_session: null
+
+  - id: "PARK-S088-CLARITYFLOW-FRICTIONLESS-ONBOARDING"
+    lane: exploration
+    disposition_text: "parked | owner: Governor | trigger: when CSPS builds a public onboarding/discovery surface OR demos a frictionless entry flow. The DNA was EXTRACTED now (feedback_ux_core_dna_frictionless_onboarding + to be engraved in B_UX); the demo build itself is parked."
+    disposition_session: S088
+    content: >
+      ClarityFlow — frictionless onboarding demo brief (GPT research, 2026-06-23, file
+      2026-06-23__GPT-Research__Frictionless_Onboarding_for_Lovable_06-2026__V1.md). A small Lovable MVP proving
+      a frictionless communication/context-capture flow for SMB owners: free-text intent → optional domain chip →
+      instant first value → editable 'Current Understanding' panel → ≤2 reasoned clarifying questions → mini-plan
+      → 'Saved for Later' → next-best-step CTA. Data model: UserSession / WorkingUnderstanding / ClarifyingAnswer /
+      MiniPlan / SavedFinding. THRESHOLD ROUTING (this input): external research → classify AI L2 → disposition
+      PARK (demo) + EXTRACT-DNA (the durable value). The DNA — the five UX laws (value-before-extraction /
+      progressive-refinement / ask-only-what-improves / save-and-continue / no-dark-patterns) across MULTIPLE
+      FLOWS — is now CSPS UX CORE DNA, not a one-off feature.
+      ENGRAVING (Sonnet build, registered): consolidate into B_UX_UI_DISCIPLINE + extend validate-ux-audit.mjs to
+      check the 5 laws on any new user-facing surface; both developer-journey and external-user-journey branches of
+      the journey-core-spine open with a frictionless flow.
+    retrieve_when: "When building any CSPS user-facing onboarding/discovery flow, OR when engraving the UX-DNA laws into B_UX + validate-ux-audit, OR if Governor wants the ClarityFlow demo built on Lovable."
+    never_drop: true
+    context_preserved: >
+      Governor S088: 'read and park and core seed where relevant; pay attention to multiple flows it is relevant
+      and make it part of the ux core dna of csps.' The brief is exercise/reference material; the platform value is
+      the frictionless pattern as universal UX DNA. Connects: feedback_ux_ui_discipline, journey-core-spine
+      (dev+external branches), PARK-S086-048 (consolidate-vs-dedicated presentation axis), template-first/'Trio'
+      consumption park, threshold park discipline (save-and-continue is its UX mirror), M-47 page-completeness.
+    decision_back_ref: "Governor directive S088: park ClarityFlow brief + core-seed the frictionless UX pattern as CSPS UX core DNA across multiple flows"
+    source_session: S088
+    created_session: S088
+    closed_session: null

@@ -255,3 +255,32 @@ The orchestrator exposes a **mode selector** (per goal); both modes honor the sa
 two-party seal, DNA-Guardian, and threshold. PCR: **P** one size does not fit all work or all users. **C**
 replacing multi-tab would remove the strongest-independence path + a control surface users may need. **R** keep
 both; choose per goal/criticality/user-tier; never let mode choice weaken the shared gates.
+
+## §18 — COUNCIL ROUND-1 RATIFIED AMENDMENTS (Opus directives for ERC-003/004/007)
+Boundary contract is built + sealed (context-bundle + seal-packet validators, 4/4 ×2). The remaining ratify-
+candidates from the 4/4-unanimous council round 1 are amended HERE (this doc is the designated target), to be
+implemented by Sonnet when the loop engine is built (no loose hand-patching of zf-orchestrator before then).
+
+**ERC-003 — loop-contract is insufficient {goal-predicate, max-cycles, budget}.** RATIFIED. The loop engine
+must consume a `loop-contract.yaml` (typed, validated at loop-init) with: `goal_predicate`, **immutable
+`goal_version`**, **fixed `sweep_definition`** (ZF applies only to this sweep), `max_cycles`, `budget_ceiling`
+(in real cost units, not tokens), **`max_duration` (timeout)**, **`stagnation_rule`** (no-progress / repeated
+finding-fingerprint → halt), **`side_effects.require_human_approval_for[]`** (deploy/delete/publish/email/billing),
+and a **`kill_switch`**. Target: `schemas/loop-contract.schema.json` + `validate-loop-contract.mjs`, built WITH
+the loop engine (not before). Source: ERC-003 (4/4).
+
+**ERC-004 — per-cycle durable checkpoint (not tab-close).** RATIFIED. The orchestrator writes a committed
+loop-state checkpoint at the END OF EVERY CYCLE (`loop-state-S<NNN>-cycle-<N>.yaml`), before the next cycle
+starts — chat is disposable. Post-compact/new-tab resumes from the last committed checkpoint (extends §9).
+Target: same loop-engine build. Source: ERC-004 (4/4).
+
+**ERC-007 — orchestrator = deterministic state machine; LLM OUT of orchestration logic.** RATIFIED as an
+architecture principle for `tools/zf-orchestrator.mjs`: the orchestrator is a deterministic JS state machine that
+dispatches agents via structured calls and enforces the loop-contract; the LLM is invoked AS a step, never AS the
+control loop (prevents the meta-prompt-exhaustion vector where governance contracts decay as the session grows).
+The orchestrator itself is governed (its own FSE + two-party seal on loop-engine changes — Grok add). Target:
+zf-orchestrator design + this principle. Source: ERC-007 (4/4) + Gemini/Grok.
+
+**Sequencing:** these three are the LOOP-ENGINE spec; they are built together when the one-tab loop is built
+(after the boundary contract, which is done). Until then they are ratified-design, not code. ERC-006
+(multi-tenancy) + ERC-008 (failed-to-ask cluster) remain parked (Phase 4 / design-gap fold-in).

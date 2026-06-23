@@ -1243,3 +1243,74 @@ entries:
     source_session: S087
     created_session: S087
     closed_session: null
+
+  - id: "PARK-S088-002"
+    lane: exploration
+    disposition_text: "parked | owner: Governor | trigger: when CSPS begins offering website management services to customers — Governor decides tooling stack and integration approach"
+    disposition_session: S088
+    content: >
+      MULTI-WEBSITE MANAGEMENT PLATFORM OPTION — Research findings (S088).
+      Use case: CSPS customers need to manage multiple WordPress + other CMS websites centrally.
+      PCR RECOMMENDATION: MainWP (self-hosted) + Plesk (infrastructure) hybrid.
+      MainWP: free core, unlimited sites, REST API v2 (/wp-json/mainwp/v2/), Postman collections,
+        consumer_key/secret auth, no native webhooks (use Pipedream/Zapier for event-driven).
+        Best for: WordPress site lifecycle (updates, backups, security monitoring, plugin management).
+      Plesk: full REST API + native webhooks, multi-CMS support at infrastructure level (hosting level),
+        DNS/SSL/email coordination, Cloudflare integration native.
+        Best for: hosting operations, multi-CMS sites beyond WordPress.
+      Architecture: MainWP self-hosted on CSPS infra handles WordPress ops; Plesk handles infrastructure.
+        CSPS control plane orchestrates both via REST APIs.
+      GAPS: MainWP no native webhooks; WP Umbrella EU-only; ManageWP cloud lock-in.
+      NOT for immediate build: CSPS does not yet have website management as a service offering.
+      Sources: MainWP docs (docs.mainwp.com/api-reference), WP Umbrella, ManageWP, Plesk API docs.
+    retrieve_when: "CSPS adds website management service tier OR Governor decides to integrate MainWP/Plesk"
+    never_drop: true
+    context_preserved: >
+      Research conducted S088 per Governor request. MainWP REST API v2 is the most CSPS-compatible
+      option (programmatic access, self-hosted, unlimited sites). Plesk adds multi-CMS + hosting layer.
+      Hybrid = best architecture for CSPS platform pattern. Webhook gap = Pipedream bridge.
+      Related: PARK-S088-003 (social media MCP) — both are platform capability expansions.
+    decision_back_ref: "Governor directive S088: research and park build option to manage multiple websites WordPress and others"
+    source_session: S088
+    created_session: S088
+    closed_session: null
+
+  - id: "PARK-S088-003"
+    lane: exploration
+    disposition_text: "parked | owner: Governor | trigger: when CSPS adds social media management to service offering — PCR recommendation ready (Ayrshare MCP primary)"
+    disposition_session: S088
+    content: >
+      MULTICHANNEL SOCIAL MEDIA AUTOMATION — MCP + Skill PCR (S088).
+      Use case: AI-assisted cross-platform social posting for CSPS customers.
+      PCR RECOMMENDATION: Ayrshare MCP (primary) + Meta Ads MCP (paid ads layer).
+      Ayrshare MCP: 13+ platforms (X/Twitter, Instagram, Facebook, LinkedIn, TikTok, YouTube,
+        Pinterest, Reddit, Snapchat, Telegram, Google My Business + more), 75+ MCP tools,
+        auto-converts media formats (HEIC/AVIF/WebP → JPEG per platform), scheduling 1yr+ ahead,
+        complete analytics, multi-user/brand management, RSS automation, hashtag recommendations.
+        Production stable (relaunched 2026). Best overall choice for organic cross-platform posting.
+      Meta Ads MCP (April 2026): 29 tools, Facebook + Instagram + Audience Network campaigns,
+        real-time budget editing, catalog management, tracking diagnostics. 40% of Meta Business
+        accounts active (phased rollout). Companion to Ayrshare for paid amplification.
+      Others evaluated: Socialync (closed beta, pulled mid-2026), Buffer MCP (community-maintained),
+        TryPost (open-source, 8 platforms), RobinReach (13 platforms, Claude-native).
+      GAPS (platform-specific limits):
+        WhatsApp Business: not in any public MCP yet (requires separate Meta Business API).
+        TikTok: API blocks direct third-party publishing; browser automation workarounds fragile+ToS risk.
+        YouTube Shorts: YouTube API does not expose Shorts upload (browser automation only).
+        Comment/DM automation: not in any MCP (requires custom NLP layer or Mentioned/Sprout).
+        Analytics real-time sync: all MCPs pull on-demand; CSPS must implement polling + time-series storage.
+      API keys needed: Ayrshare API key ($29-199/mo), Meta Business account with Ads access.
+      Integration pattern: CSPS customer post → Claude skill → generate variations → Ayrshare MCP publish
+        → Meta MCP companion ad → analytics webhook → CSPS DB.
+    retrieve_when: "CSPS adds social media management tier OR Governor asks to build Ayrshare integration"
+    never_drop: true
+    context_preserved: >
+      Research conducted S088 per Governor request. Ayrshare is the clear leader for production
+      multi-platform MCP coverage. Meta Ads MCP is the April 2026 official Meta release for
+      paid ads automation. TikTok and YouTube Shorts have hard API limits not solvable by MCP alone.
+      WhatsApp Business requires separate integration. Related: PARK-S088-002 (website management).
+      Cost model: Ayrshare subscription per customer account; Meta Ads MCP is free but needs Ads access.
+    decision_back_ref: "Governor directive S088: most recommended skill and MCP for multichannel social media automatic handling + PCR best choice for CSP"
+    source_session: S088
+    created_session: S088
+    closed_session: null

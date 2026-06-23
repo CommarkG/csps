@@ -2643,6 +2643,20 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // S088-SELF-LEARNING: prevention coverage gate — BLOCKS if insight graveyard (≥5 unacted high-k findings)
+  // Makes something out of saved findings: gap-recurrence-register + improvement-register → action items
+  {
+    name: 'prevention_coverage',
+    command: 'node tools/validators/validate-prevention-coverage.mjs',
+    input_files: ['tools/data/gap-recurrence-register.yaml', 'tools/data/improvement-register.yaml', 'tools/validators/validate-prevention-coverage.mjs'],
+    always_rerun: true,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
   // S088-404-FIX: TypeScript compilation gate — BLOCKS if any TS error in csps-playground
   // Root cause: TS2322 type mismatch silently fails Vercel build → 404 (no lint config, no local build check)
   {

@@ -1,0 +1,136 @@
+{
+  "ran_at": "2026-06-23T00:03:54.720Z",
+  "unacted_high_k": [
+    {
+      "id": "gap_SESSION_INJECTION_COMPRESSION",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S051",
+      "observation": "Session-open injection may be compressed in long sessions — critical templates not present in AI context",
+      "has_matching_standard": false
+    },
+    {
+      "id": "gap_CONCEPTUAL_CLOSURE_NO_TEST",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S053",
+      "observation": "Solutions are designed and described (cognitive match) without being tested against known violations. The model of the s",
+      "has_matching_standard": false
+    },
+    {
+      "id": "gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S065",
+      "observation": "134 of 167 validators (80%) have no behavioral test proving they catch known violations. Only BLOCKING validators were t",
+      "has_matching_standard": false
+    },
+    {
+      "id": "gap_INSTRUCTION_INTEGRITY",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S076",
+      "observation": ">",
+      "has_matching_standard": false
+    },
+    {
+      "id": "gap_DIM4_LIVE_LOAD_PROOF",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S077",
+      "observation": ">",
+      "has_matching_standard": false
+    },
+    {
+      "id": "gap_RESIDUE_HOOK_FALSE_POSITIVE",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S078",
+      "observation": ">",
+      "has_matching_standard": false
+    }
+  ],
+  "unacted_improvement": [
+    {
+      "id": "imp_CEC_SPECIFICITY",
+      "k_count": 2,
+      "status": "structural_fix_proposed",
+      "first_seen": "S055",
+      "observation": "CEC hook keyword matching too broad — fires on template/behavioral/vault paths regardless of relevance. 9+ fires per ses"
+    },
+    {
+      "id": "imp_TRANSIENT_STOP_HOOK_K3",
+      "k_count": 3,
+      "status": "open",
+      "first_seen": "S062",
+      "observation": "post-stop-pnpm-verify.sh fires during git commit-chain CRLF normalization, reporting transient FAIL that resolves on nex"
+    },
+    {
+      "id": "imp_TOOL_OUTPUT_SCALE",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S062",
+      "observation": "Per-N tool output (verify.mjs, migrator) burns context 3× faster. Tools emit one line per file without --brief mode."
+    },
+    {
+      "id": "imp_FIVE_SURFACE_SURFACE5_CRITERION",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S063",
+      "observation": "validate-five-surface.mjs Surface 5 (schema_anchor) never counts for B_*.md slice files — they don't have schema_anchor"
+    },
+    {
+      "id": "imp_BEHAVIORAL_TEST_GAP_ADVISORY",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S065",
+      "observation": "134 of 167 validators in verify.mjs have no behavioral test. Only BLOCKING validators have tests; all advisory validator"
+    },
+    {
+      "id": "imp_HOOKS_NOT_IN_SETTINGS",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S065",
+      "observation": "14 hook files exist in .claude/hooks/ but are not registered in settings.json and will never fire. AP-001 violation (EXI"
+    },
+    {
+      "id": "imp_HOOKS_NOT_IN_VHF",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S065",
+      "observation": "20 hooks registered in settings.json are not in verify-hooks-functional.sh DECLARED_HOOKS — cannot be verified as presen"
+    },
+    {
+      "id": "INPUT-S066-MULTI-LEVEL-MINITREE-INHERITANCE",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S065",
+      "observation": "Governor S065: 'feels like multiple levels of minitrees' — inheritance graph needs scoping for 1→10 / 10→100 / 30→300 ar"
+    },
+    {
+      "id": "INPUT-S066-THREE-EXPERT-META-REVIEW",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S065",
+      "observation": "Governor S065 meta-directive: analyze instruction-writing (Opus→Sonnet) + implementation patterns + recurring failures."
+    },
+    {
+      "id": "INPUT-S066-PAP-PER-SESSION-CADENCE",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S065",
+      "observation": "PAP currently planned quarterly. Three honesty corrections in one S062-S065 arc argues for per-session cadence until ali"
+    },
+    {
+      "id": "INPUT-S066-CAI-RATIFICATION-FOLLOWUP",
+      "k_count": 2,
+      "status": "open",
+      "first_seen": "S065",
+      "observation": "CAI-DEFINITION.md authored S065, lifecycle_state=pending-review, ratification_status=governor-pending. Governor 'CAI-RAT"
+    }
+  ],
+  "acted_this_session": [],
+  "total_gap_entries": 20,
+  "total_imp_entries": 25,
+  "summary": "17 unacted findings (6 recurring gaps k≥2, 11 unpropagated improvements k≥2)"
+}

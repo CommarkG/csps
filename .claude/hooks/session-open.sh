@@ -203,5 +203,18 @@ CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.
   # register_ref_integrity: register IDs resolve to canonical registers (SEED-A)
   node "${REPO_ROOT}/tools/validators/validate-register-reference-integrity.mjs" \
     > "${CADENCE_SINK_DIR}/validate-register-reference-integrity-cadence-last-run.json" 2>/dev/null &
+  # findings_actuator: PROTO-S088-SELF-LEARNING
+  # Background: writes last-run JSON. Part of SEED-C cadence.
+  node "${REPO_ROOT}/tools/scripts/findings-actuator.mjs" \
+    > "${CADENCE_SINK_DIR}/findings-actuator-last-run.json" 2>/dev/null &
 } 2>/dev/null || true
+
+# --- FINDINGS ACTUATOR SURFACE (foreground: Opus AND Sonnet tabs) ---
+# Fires synchronously; unacted high-k findings appear in session-open context every tab.
+# B_INHERITANCE: both Opus and Sonnet tabs see this. PROTO-S088-SELF-LEARNING wired.
+{
+  node "${REPO_ROOT}/tools/scripts/findings-actuator.mjs" 2>&1 | \
+    grep -F '[FINDINGS-ACTUATOR]' | head -12 >&2 || true
+} 2>/dev/null || true
+
 exit 0

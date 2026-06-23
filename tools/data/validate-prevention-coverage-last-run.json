@@ -1,10 +1,10 @@
 {
-  "ran_at": "2026-06-23T00:03:54.734Z",
+  "ran_at": "2026-06-23T01:34:45.985Z",
   "blocking": 0,
   "advisory": 1,
-  "passes": 4,
+  "passes": 5,
   "findings": [
-    "[ADVISORY] 17 unacted high-k findings (6 gaps k≥2, 11 improvements k≥2) — act on oldest before adding new work"
+    "[ADVISORY] 15 unacted high-k findings (5 gaps k≥2, 10 improvements k≥2) — act on oldest before adding new work"
   ],
-  "actuator_summary": "17 unacted findings (6 recurring gaps k≥2, 11 unpropagated improvements k≥2)"
+  "actuator_summary": "15 unacted findings (5 recurring gaps k≥2, 10 unpropagated improvements k≥2)"
 }

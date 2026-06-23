@@ -463,10 +463,10 @@ entries:
     first_found: S062
     k_count: 3
     sessions: [S062, S063]
-    status: open
-    prevention_class: unclassified
-    structural_fix_plan_session: null
-    prevention_design_pending: true
+    status: fix_committed
+    prevention_class: crlf-transient
+    structural_fix_plan_session: S088
+    prevention_design_pending: false
     must_address_by_session: "S076"
     age_escalation_status: on-time
     explicit_defer_reason: "Plan item PROTO-S064-TRANSIENT-STOP-HOOK-FIX filed (pe=80, BATCH-L). Build deferred to S067 after WAVE 1+2 prevention infrastructure ships."
@@ -474,7 +474,10 @@ entries:
     carry_forward_to_session: S064
     plan_item: PROTO-S064-TRANSIENT-STOP-HOOK-FIX
     proposed_fix: "Add sleep 3 + retry before emitting FAIL in post-stop-pnpm-verify.sh"
-    note: "K=3 = P-META-019 MANDATORY structural fix. Migrated from INPUT-S063-002."
+    behavioral_test_file: "tools/tests/behavioral/transient-hook-k3-test.sh"
+    behavioral_test_result: "4/4 PASS: hook has sleep+retry, .gitattributes has eol=lf, version bumped, retry order correct"
+    resolution_session: S088
+    note: "K=3 P-META-019 MANDATORY. FIXED S088-A1: (1) sleep 3 + retry added to post-stop-pnpm-verify.sh v1.2.0 — CRLF transients clear in retry window; real failures persist and surface. (2) .gitattributes added (* text=auto, *.sh *.mjs eol=lf) — eliminates CRLF churn at source so transient cannot recur. (3) behavioral block-test transient-hook-k3-test.sh 4/4 PASS. Migrated from INPUT-S063-002."
 
   - id: imp_TOOL_OUTPUT_SCALE
     finding: "Per-N tool output (verify.mjs, migrator) burns context 3× faster. Tools emit one line per file without --brief mode."

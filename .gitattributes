@@ -1,0 +1,39 @@
+# Line-ending normalization — CSPS
+# Eliminates CRLF churn on Windows that triggers post-stop-pnpm-verify.sh false-positives
+# (imp_TRANSIENT_STOP_HOOK_K3 structural fix — committed S088-A1)
+# P-META-019: k=3 mandatory structural fix. Source-level prevention beats detection.
+
+# Default: git auto-detects text vs binary; text files normalized to LF
+* text=auto
+
+# Scripts + code: always LF (shebang breakage on deploy without this)
+*.mjs  text eol=lf
+*.sh   text eol=lf
+*.ts   text eol=lf
+*.tsx  text eol=lf
+*.css  text eol=lf
+*.html text eol=lf
+
+# Data / config: LF for consistent YAML/JSON parsing
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+*.env  text eol=lf
+*.toml text eol=lf
+
+# Binary — never alter
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.ico    binary
+*.woff   binary
+*.woff2  binary
+*.eot    binary
+*.ttf    binary
+*.zip    binary
+*.pdf    binary
+*.webp   binary
+*.svg    text eol=lf

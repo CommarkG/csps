@@ -7,7 +7,8 @@
 #   If open items > 0: injects iteration count + ZF reasoning.
 #   Per P-META-006 (RZF) + P-META-008 + P-META-020 + P-META-021 (Triad — the iteration
 #   count is MEASUREMENT of work richness; hiding it = nominal ZF).
-# @csps-version 1.1.0
+# @csps-version 1.2.0
+# @csps-changelog 1.2.0 S088-A1: sleep+retry for CRLF transient fix (imp_TRANSIENT_STOP_HOOK_K3 k=3)
 # @csps-owner group:finky
 # @csps-lifecycle production
 # @csps-lifecycle-state active
@@ -36,8 +37,20 @@ try {
 " 2>/dev/null || echo "?")
 
 # ─── Run pnpm verify ───────────────────────────────────────────────────────
+# imp_TRANSIENT_STOP_HOOK_K3 structural fix (k=3 P-META-019 mandatory, S088-A1):
+# Root cause: git CRLF normalization during commit-chain triggers this hook with files
+# in transitional line-ending state → transient verify FAIL resolves on next run.
+# Fix: sleep 3 + retry once. Real failures persist (reproducible); CRLF transients
+# clear in <3s. .gitattributes prevents recurrence at source (eol=lf on *.mjs/*.sh).
 VERIFY_EXIT=0
 VERIFY_OUTPUT=$(node "${REPO_ROOT}/tools/verify.mjs" --skip-install --no-cache 2>&1) || VERIFY_EXIT=$?
+
+if [ "$VERIFY_EXIT" -ne 0 ]; then
+  # Potential CRLF transient — sleep and retry once before raising gate
+  sleep 3
+  VERIFY_EXIT=0
+  VERIFY_OUTPUT=$(node "${REPO_ROOT}/tools/verify.mjs" --skip-install --no-cache 2>&1) || VERIFY_EXIT=$?
+fi
 
 PASS_COUNT=$(echo "$VERIFY_OUTPUT" | grep -c '"status": "PASS"' || echo "0")
 FAIL_COUNT=$(echo "$VERIFY_OUTPUT" | grep -c '"status": "FAIL"' || echo "0")

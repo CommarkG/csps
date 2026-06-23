@@ -7,15 +7,21 @@
  * high-k findings are not accumulating without corresponding validators.
  *
  * ADVISORY: findings-actuator-last-run.json is stale (>24h without rerun)
- * ADVISORY: 1-4 unacted high-k findings (k≥2, not resolved)
- * BLOCKING: ≥5 unacted high-k findings (persistent graveyard)
+ * ADVISORY: 3–24 unacted high-k findings (k≥2, not resolved) [aggregate threshold]
+ * BLOCKING: any single finding with k≥3 AND non-terminal status (P-META-019 mandatory structural fix)
+ * BLOCKING: any single finding with age_escalation_status:overdue AND non-terminal status
+ * BLOCKING: ≥25 unacted high-k findings (aggregate graveyard threshold — 8× baseline)
+ *   Justification for 25 vs lower: pre-existing backlog of 16 unacted findings at S088 start.
+ *   BLOCKING at aggregate fires only when count GROWS from baseline (prevents session deadlock).
+ *   Per-finding checks (k≥3 + overdue) are the PRIMARY enforcement; aggregate is backstop.
  * BLOCKING: findings-actuator script itself is missing (pipeline broken)
  *
  * Called by: verify.mjs STANDARD tier (always_rerun: true)
  * Also called by: session-open.sh (background cadence, sink to last-run JSON)
  *
  * @csps-id csps.validators.validate-prevention-coverage
- * @csps-version 1.0.0
+ * @csps-version 1.1.0
+ * @csps-changelog 1.1.0 S088-A1: per-finding k≥3 BLOCK + overdue BLOCK + header doc fix
  * @csps-lifecycle production
  * @csps-lifecycle-state active
  * @csps-tags type:validator domain:self-learning audience:ai-agent
@@ -120,6 +126,36 @@ if (actuatorData) {
     for (const g of (actuatorData.unacted_high_k || []).slice(0, 5)) {
       console.log(`    [gap k=${g.k_count}] ${g.id}: ${g.observation?.slice(0, 80) || '(no description)'}`);
     }
+  }
+
+  // ─── CHECK 4: per-finding k≥3 BLOCK (P-META-019 mandatory structural fix) ──────
+  // A1 S088: any single finding with k≥3 AND non-terminal status is a session-level violation.
+  // P-META-019: k≥3 without committed structural fix = BLOCK until fix exists.
+  const TERMINAL_STATUSES = new Set([
+    'resolved', 'fix_committed', 'behavioral_test_passing',
+    'structural_fix_committed', 'sealed', 'closed', 'propagated',
+  ]);
+  const allUnacted = [
+    ...(actuatorData.unacted_high_k || []),
+    ...(actuatorData.unacted_improvement || []),
+  ];
+
+  let k3Blocks = 0;
+  let overdueBlocks = 0;
+  for (const item of allUnacted) {
+    const nonTerminal = !TERMINAL_STATUSES.has(item.status);
+    if (item.k_count >= 3 && nonTerminal) {
+      BLOCK(`P-META-019 VIOLATION: ${item.id} k=${item.k_count} status:${item.status} — k≥3 with no committed structural fix. Fix before new work.`);
+      k3Blocks++;
+    } else if (item.age_escalation_status === 'overdue' && nonTerminal) {
+      BLOCK(`OVERDUE: ${item.id} must_address_by:${item.must_address_by_session || 'unknown'} status:${item.status} — past deadline with no committed fix.`);
+      overdueBlocks++;
+    }
+  }
+  if (k3Blocks === 0 && overdueBlocks === 0 && allUnacted.length > 0) {
+    PASS(`per-finding checks: no k≥3 violations and no overdue items (${allUnacted.length} unacted, all k≤2 and on-time)`);
+  } else if (k3Blocks === 0 && overdueBlocks === 0) {
+    PASS('per-finding checks: 0 unacted findings to check');
   }
 
   // Also check gap register total exists (prove it's not empty)

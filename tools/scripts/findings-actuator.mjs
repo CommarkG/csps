@@ -52,7 +52,10 @@ function parseRegisterEntries(raw) {
     const status    = (block.match(/\n    status:\s*([^\n]+)/) || [])[1]?.trim() || 'unknown';
     const firstSeen = (block.match(/\n    first_(?:seen|found):\s*([^\n]+)/) || [])[1]?.trim() || '';
     const observation = (block.match(/\n    (?:observation|finding):\s*"?([^"\n]{0,120})/) || [])[1]?.trim() || '';
-    if (id) entries.push({ id, kCount, status, firstSeen, observation });
+    // A1 S088: richer output for per-finding BLOCK checks in validate-prevention-coverage.mjs
+    const mustAddressBySession = (block.match(/\n    must_address_by_session:\s*"?([^"\n"]+)"?/) || [])[1]?.trim() || '';
+    const ageEscalation = (block.match(/\n    age_escalation_status:\s*([^\n]+)/) || [])[1]?.trim() || '';
+    if (id) entries.push({ id, kCount, status, firstSeen, observation, mustAddressBySession, ageEscalation });
   }
   return entries;
 }
@@ -104,6 +107,8 @@ if (existsSync(GAP_REGISTER)) {
         first_seen: e.firstSeen,
         observation: e.observation,
         has_matching_standard: hasValidator,
+        must_address_by_session: e.mustAddressBySession,
+        age_escalation_status: e.ageEscalation,
       });
     }
   }
@@ -117,7 +122,9 @@ if (existsSync(IMP_REGISTER)) {
 
   for (const e of entries) {
     if (e.kCount < 2) continue;  // only propagate multi-session findings
-    const isComplete = ['closed', 'propagated'].includes(e.status);
+    // Terminal statuses for improvements — aligned with validate-prevention-coverage.mjs TERMINAL_STATUSES
+    const isComplete = ['closed', 'propagated', 'fix_committed', 'behavioral_test_passing',
+                        'structural_fix_committed', 'resolved', 'sealed'].includes(e.status);
     if (!isComplete) {
       result.unacted_improvement.push({
         id: e.id,
@@ -125,6 +132,8 @@ if (existsSync(IMP_REGISTER)) {
         status: e.status,
         first_seen: e.firstSeen,
         observation: e.observation,
+        must_address_by_session: e.mustAddressBySession,
+        age_escalation_status: e.ageEscalation,
       });
     }
   }

@@ -1667,3 +1667,59 @@ entries:
     source_session: S088
     created_session: S088
     closed_session: null
+
+  - id: "PARK-S088-HAIKU-AUDIT-BATTERY"
+    lane: obligation
+    disposition_text: "parked | owner: Opus(design)+Sonnet(build) | trigger: with the Daily/Weekly/Monthly Improvement Loop build + restricted-tool Haiku spawn (PARK-039). Refined per Opus push-back — NOT adopted raw."
+    disposition_session: S088
+    content: >
+      Governor S088 idea: Haiku is cheap → run focused audit topics constantly, at every Opus/Sonnet tab start,
+      to enhance the starting point; reciprocally Sonnet pre-digests for Opus. OPUS PUSH-BACK (refined, not
+      rejected): (1) RELIABILITY GATE — Haiku output is a CLAIM (this run: 26 floaters CORRECT but 51-vs-56 debris
+      WRONG). Constant UNVERIFIED audits inject subtly-wrong numbers into every tab's starting context → tabs
+      begin from false premises; "constant" amplifies error. Only safe if every output is CS9-verified, which
+      re-adds cost. (2) WRONG TRIGGER — "every tab start" is event-spam: a 2-min hotfix tab does not need a
+      26-floater sweep. Cadence must be STATE-DRIVEN (floater-count > threshold, debris > N, days-since-audit)
+      not tab-open. (3) OVERLAP — "enhance the starting point" already largely exists: findings-actuator surfaces
+      overdue findings at session-open (live, act-forcing); the context-bundle/HANDOFF IS the Sonnet→Opus
+      pre-digest. Do NOT build a parallel constant system.
+      REFINED DESIGN (the right shape): a BOUNDED, CS9-VERIFIED, STATE-TRIGGERED Haiku scout battery (a list of
+      focused single-topic scans) that FEEDS the existing session-open surface + the harvest/findings act-forcing
+      loop — not a constant tab-open parallel. Each topic = one bounded scan; output spot-checked (incl. NOT-FOUND);
+      results route as harvest entries with dispositions. This IS the Daily/Weekly/Monthly Improvement Loop with
+      Haiku as the gather-arm (PARK-S086-053 circular loop) — consolidate, do not invent.
+    retrieve_when: "When building the Daily/Weekly/Monthly Improvement Loop, after restricted-tool Haiku spawn is proven (PARK-039). Design the focused-topic list + state-triggers + CS9 verification + harvest routing then."
+    never_drop: true
+    context_preserved: >
+      Governor S088 + a real Haiku audit run (26 floaters confirmed, debris confirmed, counts imprecise). The
+      enhancement is sound IN A REFINED FORM. Connects: PARK-S088-001 (comm-harvest engine), PARK-S086-053
+      (circular orchestration loop), the Daily/Weekly/Monthly improvement loop, findings-actuator (act-forcing),
+      CS9 (Haiku NOT-FOUND verification), context-bundle (the pre-digest primitive).
+    decision_back_ref: "Governor S088 'use Haiku constantly to enhance tab starting points; do not avoid pushing back' → Opus refined: verified + state-triggered + feeds-existing-loop, not constant tab-open parallel"
+    source_session: S088
+    created_session: S088
+    closed_session: null
+
+  - id: "PARK-S088-FLOATER-ACT-FORCING"
+    lane: obligation
+    disposition_text: "parked | owner: Sonnet(build) + Governor(terminal decisions) | trigger: next focused session — 26 floaters confirmed overdue (S046-S072). TWO parts: (a) Governor batch-review terminal decisions; (b) Sonnet builds act-forcing escalation."
+    disposition_session: S088
+    content: >
+      26 overdue floaters CONFIRMED in floating-artifacts-register.yaml (S046-S072, 20+ sessions, only 1 TERMINAL).
+      SAME CLASS as the 17-findings backlog we made act-forcing this session: accumulate-without-resolution /
+      defer-without-escalation. STRUCTURAL FIX (not another log): validate-floater-escalation.mjs — a floater
+      overdue > N sessions BLOCKS (mirrors validate-prevention-coverage k≥3 act-forcing); surfaces the overdue
+      list at session-open. PLUS the terminal decisions themselves are GOVERNOR's (RATIFY/SUPERSEDE/ARCHIVE) —
+      batch-review (~30 min; likely most = SUPERSEDED). DEBRIS hygiene (Haiku Priority 4, valid): *-last-run.json
+      are tracked-not-ignored → 56 show modified every session; either gitignore them or move to an explicit-
+      cadence tracked dir (they are already excluded from tree_hash via treehash-exclude.txt, so gitignoring is safe).
+    retrieve_when: "Next focused session: Sonnet builds validate-floater-escalation + the last-run.json hygiene fix; Governor batch-decides the 26 floaters."
+    never_drop: true
+    context_preserved: >
+      From a Haiku audit run (verified by Opus). The floater backlog is the findings-backlog class applied to
+      governance decisions. Connects: validate-prevention-coverage (the act-forcing precedent), findings-actuator,
+      treehash-exclude.txt (last-run already tree_hash-excluded), CS7 (determinism).
+    decision_back_ref: "Haiku audit 2026-06-24 (Opus-verified: 26 floaters real, debris real); Governor S088 'park all enhancements'"
+    source_session: S088
+    created_session: S088
+    closed_session: null

@@ -1363,3 +1363,34 @@ entries:
     source_session: S088
     created_session: S088
     closed_session: null
+
+  - id: "PARK-S088-MEMORY-INDEX-CONSOLIDATION"
+    lane: obligation
+    disposition_text: "parked | owner: Opus | trigger: a focused, reviewable consolidation pass next session (NOT a wrap-up one-shot). High-blast/judgment-heavy: editing the accumulated feedback corpus index. Show before/after counts, no silent drops."
+    disposition_session: S088
+    content: >
+      From CSP (sibling platform) — the real MEMORY.md over-budget fix is NOT line-trimming, it is
+      CLUSTER CONSOLIDATION: ~230 index entries contain near-duplicate clusters that should each collapse to
+      1 strong entry. CSP found clusters: PCR/don't-ask-naked-questions (~15 → ~2), Zero-Findings (~9 → ~2),
+      Harvest (~5), Handoff/Close (~8), Context-timing (~8), Completion-priority (~6) — ~50 entries → ~15,
+      under the load limit with ZERO DNA loss (detail stays in topic files; only the index LINES merge).
+      USEFULNESS FOR CSPS (the Governor's ask): this is B_CONSOLIDATION_PASS applied to the memory INDEX layer.
+      Our MEMORY.md was flagged >24.4KB at S088 open and grew further this session (~6 new entries added:
+      ux-core-dna, ideas-not-insistence, document-group-naming, builder-persona, submodule-blindspot,
+      context-checkpoint-gate). The SAME clusters likely exist in ours (PCR/no-confirmation-seeking, ZF/IZFC,
+      handoff, completion). FIX: a focused cluster-merge pass — merge near-duplicate index lines into one
+      canonical line each, keep the strongest wording, drop nothing meaningful, show before/after counts.
+      TECHNIQUE (reusable): applies not only to MEMORY.md but to any growing register/index (park-register
+      ~1265 lines, gap-recurrence-register, ratified-standards) — consolidate-without-loss at the index layer.
+    retrieve_when: "Next session as a dedicated focused task (Governor 'go'), OR whenever MEMORY.md / a register index recall degrades from over-budget. Run cluster-by-cluster with before/after counts; reviewable, not destructive one-shot."
+    never_drop: true
+    context_preserved: >
+      Governor S088: 'park this from csp and see how to make it useful for us.' CSP's analysis of its own
+      MEMORY.md consolidation. The discipline already exists in CSPS (B_CONSOLIDATION_PASS, consolidation-expert
+      skill, P-META-029 humble-consolidation) — this PARK is the application of it to the memory/register INDEX
+      layer, which has been silently growing. Connects: feedback_consolidation_pass, feedback_humble_consolidation,
+      consolidation-expert skill, the weekly tag-status deep audit.
+    decision_back_ref: "Governor directive S088: park CSP memory-index consolidation insight + extract its usefulness for CSPS (B_CONSOLIDATION_PASS applied to the index layer; our MEMORY.md is over-budget)"
+    source_session: S088
+    created_session: S088
+    closed_session: null

@@ -167,3 +167,18 @@ entries:
     domain: governance
     wisdom_class: pattern
     note: "ROUTE: ratify-candidate → ratified-standards (block-test portability standard). Convention note added to docs/plan/pillar-0-governance/BLOCK-TEST-CONVENTION.md. Fix committed S088."
+
+  # ─── CLARITYFLOW / LOVABLE DEMO BRIEF ───────────────────────────────────────
+  - id: harvest-S088-clarityflow-ux-dna-convergence
+    trigger: research
+    invocation_ref: ext-2026-06-23-01
+    status: closed
+    question: "Does the ClarityFlow/Lovable frictionless onboarding brief align with B_UX_UI_DISCIPLINE?"
+    conclusion: "CONVERGENCE CONFIRMED: ClarityFlow's 5 principles are identical to B_UX_UI_DISCIPLINE 5 UX-DNA laws. (1) value-before-extraction = LAW 1; (2) editable 'current understanding' = LAW 2; (3) ≤2 clarifying questions with stated reason = LAW 3; (4) save-for-later = LAW 4; (5) no dark patterns = LAW 5. Both arrived independently at the same framework. This is strong triangulation: the 5 UX laws are validated by an independent product design brief aimed at the same user problem."
+    provenance: "Governor GPT research S088 — external product brief independently derived same framework"
+    disposition: ratify-candidate
+    ratified_standards_ref: null
+    spine: AI
+    domain: ux
+    wisdom_class: pattern
+    note: "ROUTE: ratify-candidate → ratified-standards. The ClarityFlow data model (UserSession/WorkingUnderstanding/etc) is preserved for app build time. PARK-S088-CLARITYFLOW handles the full demo build."

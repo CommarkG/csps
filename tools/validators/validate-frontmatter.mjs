@@ -146,6 +146,10 @@ const EXEMPT_PATH_GLOBS = [
   // Verbatim external content — no CSPS frontmatter wraps them. S071 PHASE 0 VAULT_DEFER.
   // INDEX.md companion (has CSPS frontmatter) is checked separately — excluded from this pattern.
   /_handoff[\/\\]VAULT[\/\\]external-input[\/\\][^\/\\]+[\/\\](?!INDEX\.md)/,
+  // External research intake: docs/plan/_intake/external-research/YYYY-MM-DD/ files.
+  // These are parked external files (GPT research, external reviews, product briefs).
+  // README.md and pipeline registry have frontmatter; the individual intake docs are raw content.
+  /_intake[\/\\]external-research[\/\\]\d{4}-\d{2}-\d{2}[\/\\]/,
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

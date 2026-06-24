@@ -1394,3 +1394,101 @@ entries:
     source_session: S088
     created_session: S088
     closed_session: null
+
+  - id: "PARK-S088-CLARITYFLOW"
+    lane: queue
+    priority: P1-high
+    content: >
+      ClarityFlow — Frictionless Onboarding Demo for Lovable.
+      Source: docs/plan/_intake/external-research/2026-06-23/01-GPT-research-clarityflow-frictionless-onboarding.md
+      Build: 8-step user flow (Intent → Domain → First Value → Current Understanding → 1-2 Qs → Mini Plan → Saved-for-Later → CTA).
+      Data model: UserSession / WorkingUnderstanding / ClarifyingAnswer / MiniPlan / SavedFinding.
+      UX-DNA alignment: ALL 5 B_UX_UI_DISCIPLINE laws already cover the core requirements.
+      Success criteria: "This did not feel like a form" + "gave value quickly" + "could correct what it understood".
+      Demo name: ClarityFlow. Target audience: SMB owners, consultants, agencies.
+    retrieve_when: "Governor greenlights Lovable demo build. Pre-req: schema slice for UserSession/WorkingUnderstanding in core schema."
+    never_drop: true
+    governing_intent: >
+      Prove the platform's frictionless communication thesis via a small, self-contained demo.
+      The 5 UX-DNA laws (B_UX_UI_DISCIPLINE) are the implementation target. This demo is the
+      external validator that the platform's own UX discipline works end-to-end for SMB users.
+    research_ref: ext-2026-06-23-01
+    council_harvest_ref: harvest-S088-clarityflow-ux-dna-convergence
+    source_session: S088
+    created_session: S088
+    closed_session: null
+    tags:
+      - domain:product
+      - domain:ux
+      - topic:lovable-demo
+      - topic:frictionless-onboarding
+      - priority:P1-high
+
+  - id: "PARK-S088-LOOP-ENGINE"
+    lane: queue
+    priority: P0-critical
+    content: >
+      One-Tab Orchestration Loop Engine.
+      Source: docs/plan/_intake/external-research/2026-06-23/04-csps-one-tab-orchestration-design.md
+      Canonical design: docs/plan/_handoff/OPUS-S088-ONE-TAB-ORCHESTRATION-DESIGN.md
+      Build: loop engine wrapping decompose→spawn→reproduce→seal with:
+        - goal-predicate (ZF true only when sweep-definition satisfied)
+        - max-cycles guard (halt+report at ceiling, escalate to Governor)
+        - budget-ceiling per loop (tokens + cost_usd + wall_clock)
+        - stagnation/Δ-detector (if ΔΔ=0 for N cycles, pause+surface)
+        - side-effect-approval-list (what the loop CAN and CANNOT change)
+        - kill-switch (immediate halt, no auto-resume)
+        - immutable goal_version (goal may only change via Governor evolve directive)
+        - fixed sweep-definition (ZF predicate operates on a defined set, not ad-hoc)
+        - per-cycle durable WAL checkpoint (committed each cycle, not tab-close)
+        - loop-contract.yaml at init (Governor-visible, Governor-ratified before loop runs)
+        - §15.1 gate: check PARK-039 (Haiku unblock) before loop-start; halt if open
+        - §15.4 per-cycle SWIFT-absorption audit cap
+      Context-bundle and director-seal already built (BOUNDARY-CONTRACT S088).
+      C6 renders-in-production already built (CS6 S088).
+    retrieve_when: "Governor greenlights one-tab pilot. Start with ONE CS gate via spawned Sonnet (§13 PCR: pilot first)."
+    never_drop: true
+    governing_intent: >
+      Replace the human-relayed multi-tab message bus with a self-directing orchestrated loop.
+      Governor sets the goal, the loop runs cycles until ZF, Opus seals each cycle.
+      The multi-tab system is NOT removed — both modes coexist (§17).
+    research_ref: ext-2026-06-23-04
+    council_harvest_ref: harvest-S088-external-council-round1
+    erc_refs: [ERC-003, ERC-004, ERC-007]
+    one_tab_design_ref: docs/plan/_handoff/OPUS-S088-ONE-TAB-ORCHESTRATION-DESIGN.md
+    source_session: S088
+    created_session: S088
+    closed_session: null
+    tags:
+      - domain:governance
+      - domain:architecture
+      - topic:loop-engine
+      - topic:orchestration
+      - topic:one-tab
+      - priority:P0-critical
+
+  - id: "PARK-S088-EXTERNAL-RESEARCH-INTAKE-SYSTEM"
+    lane: queue
+    priority: P1-high
+    content: >
+      External Research Intake System — formalize and validate the pipeline.
+      What was built S088: external-research-pipeline.yaml + docs/plan/_intake/external-research/ home.
+      What remains: (a) validate-external-research-pipeline.mjs T2 validator (blocks if entry has no swift_items
+      or disposition within N days); (b) auto-update pipeline_stage when council-harvest/park-register are
+      updated (cross-register sync); (c) threshold wiring: classify_external_research() function in
+      threshold-chain.mjs to auto-assign priority/source_type from the file content; (d) dashboard view
+      (csps-playground /platform page showing pipeline progress).
+    retrieve_when: "After PARK-009 db-push (Phase 2 opens). Low blast-radius T2 validator can ship earlier."
+    never_drop: false
+    governing_intent: >
+      Every external file entering the platform goes through the same intake gate as internal work.
+      The pipeline registry is the source of truth for what's been extracted and what remains.
+    source_session: S088
+    created_session: S088
+    closed_session: null
+    tags:
+      - domain:governance
+      - domain:vald
+      - topic:research-intake
+      - topic:pipeline-tracking
+      - priority:P1-high

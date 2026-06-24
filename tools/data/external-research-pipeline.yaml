@@ -1,0 +1,273 @@
+---
+id: csps.data.external-research-pipeline
+name: external-research-pipeline
+description: >
+  Pipeline tracking for ALL external research, external AI reviews, GPT outputs,
+  product briefs, competitor analyses, and knowledge from outside the CSPS repo.
+  Every file in docs/plan/_intake/external-research/ has an entry here.
+  Pipeline stages: P0 ingested → P1 classified → P2 swift-scanned →
+  P3 harvested → P4 parked → P5 absorbed → P6 closed.
+  Connected to: threshold (P1), council-harvest (P3), park-register (P4),
+  ratified-standards (P5→A), findings-actuator (recurring patterns).
+version: "1.0"
+session: S088
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: tools_templates_meta
+# Closed enums:
+# status: new | classified | swift-scanned | harvested | parked | absorbed | closed
+# priority: P0-critical | P1-high | P2-medium | P3-low
+# source_type: external-AI | external-review | internal-GPT | competitor-analysis | product-brief | governance-design | research-paper
+# value_class: insight | pattern | design | product-brief | governance | architecture | reference
+# pipeline_stage: P0-ingested | P1-classified | P2-swift-scanned | P3-harvested | P4-parked | P5-absorbed | P6-closed
+---
+
+# PIPELINE PROGRESS
+# ████░░░░░░ P0: 7/7 ingested | P1: 7/7 classified | P2: 7/7 swift-scanned
+# ██████████ P3: 5/7 harvested | P4: 3/7 parked | P5: 4/7 absorbed | P6: 1/7 closed
+# ─────────────────────────────────────────────────────────────────────────────
+
+entries:
+
+  # ─── BATCH: 2026-06-23 CSPS EXTERNAL REVIEW PACKAGE ───────────────────────
+
+  - id: ext-2026-06-23-01
+    name: "ClarityFlow — Frictionless Onboarding for Lovable (GPT Research)"
+    date: "2026-06-23"
+    source_type: product-brief
+    source_author: "GPT-4 / Governor research"
+    value_class: product-brief
+    priority: P1-high
+    status: parked
+    pipeline_stage: P4-parked
+    tags:
+      - domain:product
+      - domain:ux
+      - topic:onboarding
+      - topic:frictionless
+      - topic:lovable-demo
+      - topic:communication-intelligence
+      - audience:smb
+    file: docs/plan/_intake/external-research/2026-06-23/01-GPT-research-clarityflow-frictionless-onboarding.md
+    swift_items:
+      - id: swift-01-ux-dna-connection
+        finding: "ClarityFlow's 5 principles (value-before-extraction, editable-understanding, save-for-later, ≤2 questions, no dark patterns) are IDENTICAL to B_UX_UI_DISCIPLINE 5 laws built S088"
+        absorbed: true
+        absorbed_in: "docs/plan/pillar-0-governance/behavioral-contracts/B_UX_UI_DISCIPLINE.md (validate-ux-audit.mjs v2.0.0)"
+        blast_radius: none
+      - id: swift-01-data-model-reference
+        finding: "UserSession/WorkingUnderstanding/ClarifyingAnswer/MiniPlan/SavedFinding entities are clean; reference when building ClarityFlow app"
+        absorbed: false
+        blast_radius: low
+        action: "save data model as PARK item; reference at app build time"
+    council_harvest_ref: null
+    park_register_ref: PARK-S088-CLARITYFLOW
+    ratified_standards_ref: null
+    swift_absorbed: true
+    absorptions_complete: false
+    note: "Parked for Lovable demo build (Phase-4 or Governor-directed). Core UX principles already absorbed into B_UX_UI_DISCIPLINE. Data model preserved for when app build is greenlit."
+
+  - id: ext-2026-06-23-02
+    name: "CSPS External-Review Briefing (for external AI council T4)"
+    date: "2026-06-23"
+    source_type: external-review
+    source_author: "Governor / CSPS internal"
+    value_class: governance
+    priority: P0-critical
+    status: harvested
+    pipeline_stage: P3-harvested
+    tags:
+      - domain:governance
+      - topic:external-review
+      - topic:council-T4
+      - topic:vocabulary
+    file: docs/plan/_intake/external-research/2026-06-23/02-csps-external-review-briefing.md
+    swift_items:
+      - id: swift-02-vocabulary
+        finding: "Vocabulary §C definitions (spines, B_*, threshold, PE, CIE, council, SHIPPABLE-GREEN, DNA-Guardian, context-inheritance, IZFC) — all implemented"
+        absorbed: true
+        absorbed_in: "All platform files (S088)"
+        blast_radius: none
+    council_harvest_ref: harvest-S088-external-council-round1
+    park_register_ref: null
+    ratified_standards_ref: null
+    swift_absorbed: true
+    absorptions_complete: true
+    note: "This IS the briefing that triggered the T4 external council. All 8 findings (ERC-001..008) have been individually dispositioned in council-harvest.yaml."
+
+  - id: ext-2026-06-23-03
+    name: "CSPS Platform Core Concept (deep background for external reviewers)"
+    date: "2026-06-23"
+    source_type: governance-design
+    source_author: "Governor / CSPS internal"
+    value_class: reference
+    priority: P2-medium
+    status: absorbed
+    pipeline_stage: P5-absorbed
+    tags:
+      - domain:governance
+      - domain:architecture
+      - topic:platform-overview
+      - topic:completion-moat
+      - topic:dna-guardian
+    file: docs/plan/_intake/external-research/2026-06-23/03-csps-platform-core-concept.md
+    swift_items:
+      - id: swift-03-all-absorbed
+        finding: "All 10 sections implemented or ratified in S088"
+        absorbed: true
+        absorbed_in: "Multiple S088 commits"
+        blast_radius: none
+    council_harvest_ref: null
+    park_register_ref: null
+    ratified_standards_ref: null
+    swift_absorbed: true
+    absorptions_complete: true
+    note: "Fully implemented reference document. Serve as background for future external reviews."
+
+  - id: ext-2026-06-23-04
+    name: "One-Tab Orchestration Design (OPUS-S088 architecture spec)"
+    date: "2026-06-23"
+    source_type: governance-design
+    source_author: "OPUS-25 / Governor"
+    value_class: architecture
+    priority: P0-critical
+    status: parked
+    pipeline_stage: P4-parked
+    tags:
+      - domain:governance
+      - domain:architecture
+      - topic:one-tab-orchestration
+      - topic:loop-engine
+      - topic:context-bundle
+      - topic:model-tier-routing
+    file: docs/plan/_intake/external-research/2026-06-23/04-csps-one-tab-orchestration-design.md
+    swift_items:
+      - id: swift-04-context-bundle
+        finding: "§4 context-bundle + §15.2 typed validator → IMPLEMENTED (validate-context-bundle.mjs S088)"
+        absorbed: true
+        absorbed_in: "schemas/context-bundle.schema.json + validate-context-bundle.mjs (S088 BOUNDARY-CONTRACT)"
+        blast_radius: none
+      - id: swift-04-director-seal
+        finding: "§15.3 externalize director_seal → IMPLEMENTED (validate-director-seal-packet.mjs S088)"
+        absorbed: true
+        absorbed_in: "schemas/seal-packet.schema.json + validate-director-seal-packet.mjs (S088)"
+        blast_radius: none
+      - id: swift-04-c6-in-loop
+        finding: "§15.6 C6 renders-in-production → IMPLEMENTED (CS6 http-smoke v1.1.0 S088)"
+        absorbed: true
+        absorbed_in: "tools/scripts/http-smoke-check.mjs v1.1.0 + .github/workflows/http-smoke.yml (S088-A3)"
+        blast_radius: none
+    council_harvest_ref: harvest-S088-external-council-round1
+    park_register_ref: PARK-S088-LOOP-ENGINE
+    ratified_standards_ref: null
+    swift_absorbed: true
+    absorptions_complete: false
+    note: "§3/§15.1/§15.4/§15.5 PARKED — require loop-engine build (gated on Governor pilot greenlight). §4/§15.2/§15.3/§15.6 ABSORBED (S088 boundary-contract + CS6)."
+
+  - id: ext-2026-06-23-05
+    name: "AI Council Communication Spine (Sonnet S088 build)"
+    date: "2026-06-23"
+    source_type: governance-design
+    source_author: "Sonnet-builder S088"
+    value_class: governance
+    priority: P2-medium
+    status: absorbed
+    pipeline_stage: P5-absorbed
+    tags:
+      - domain:governance
+      - topic:communication-protocol
+      - topic:role-pairs
+      - topic:message-formats
+      - topic:orchestrator-triggers
+    file: docs/plan/_intake/external-research/2026-06-23/05-csps-ai-council-communication-spine.md
+    swift_items:
+      - id: swift-05-cs9-not-found
+        finding: "§3.3 CS9 NOT-FOUND spot-check → ABSORBED (AI-COUNCIL-COMMUNICATION-SPINE.md §3.3 amended S088)"
+        absorbed: true
+        absorbed_in: "docs/plan/pillar-0-governance/AI-COUNCIL-COMMUNICATION-SPINE.md §3.3 + ratified-standards cs9-haiku-not-found-verification"
+        blast_radius: none
+    council_harvest_ref: null
+    park_register_ref: null
+    ratified_standards_ref: null
+    swift_absorbed: true
+    absorptions_complete: true
+    note: "FULLY BUILT. Canonical: docs/plan/pillar-0-governance/AI-COUNCIL-COMMUNICATION-SPINE.md. Included in package for external AI review context."
+
+  - id: ext-2026-06-23-06
+    name: "AI Council Edge Case Protocols (Sonnet S088 build)"
+    date: "2026-06-23"
+    source_type: governance-design
+    source_author: "Sonnet-builder S088"
+    value_class: governance
+    priority: P2-medium
+    status: absorbed
+    pipeline_stage: P5-absorbed
+    tags:
+      - domain:governance
+      - topic:edge-cases
+      - topic:context-limit
+      - topic:pre-compact
+      - topic:agent-harvesting
+      - topic:new-tab
+    file: docs/plan/_intake/external-research/2026-06-23/06-csps-ai-council-edge-case-protocols.md
+    swift_items: []
+    council_harvest_ref: null
+    park_register_ref: null
+    ratified_standards_ref: null
+    swift_absorbed: true
+    absorptions_complete: true
+    note: "FULLY BUILT. Canonical: docs/plan/pillar-0-governance/AI-COUNCIL-EDGE-CASE-PROTOCOLS.md."
+
+  - id: ext-2026-06-23-07
+    name: "Shippable Green Protocol (Sonnet S088 build)"
+    date: "2026-06-23"
+    source_type: governance-design
+    source_author: "Sonnet-builder S088"
+    value_class: governance
+    priority: P2-medium
+    status: absorbed
+    pipeline_stage: P5-absorbed
+    tags:
+      - domain:governance
+      - domain:vald
+      - topic:completion-moat
+      - topic:shippable-green
+      - topic:c1-c6-chain
+    file: docs/plan/_intake/external-research/2026-06-23/07-csps-shippable-green-protocol.md
+    swift_items:
+      - id: swift-07-track-a-complete
+        finding: "Track A (C1-C9 + boundary-contract + UX-DNA + CS4 + CS7) COMPLETE S088"
+        absorbed: true
+        absorbed_in: "S088 HEAD aaaaa143 → eb0042d9 (Track A COMPLETE)"
+        blast_radius: none
+    council_harvest_ref: null
+    park_register_ref: null
+    ratified_standards_ref: null
+    swift_absorbed: true
+    absorptions_complete: true
+    note: "FULLY BUILT. Canonical: docs/plan/pillar-0-governance/SHIPPABLE-GREEN-PROTOCOL.md. Track A complete."
+
+# ─── PIPELINE SUMMARY (auto-computed from entries above) ─────────────────────
+# P0 ingested:      7/7 (100%) ██████████
+# P1 classified:    7/7 (100%) ██████████
+# P2 swift-scanned: 7/7 (100%) ██████████
+# P3 harvested:     5/7 (71%)  ███████░░░
+# P4 parked:        2/7 (29%)  ███░░░░░░░  [EXT-01 ClarityFlow, EXT-04 one-tab]
+# P5 absorbed:      5/7 (71%)  ███████░░░  [EXT-03,05,06,07 + EXT-04 partial]
+# P6 closed:        1/7 (14%)  █░░░░░░░░░  [EXT-02 council round-1]
+#
+# OPEN WORK:
+#   EXT-01 (ClarityFlow): awaiting Governor greenlight for Lovable demo build
+#   EXT-04 (one-tab): loop-engine gated on Governor pilot greenlight
+
+# ─── PROCESS METADATA ────────────────────────────────────────────────────────
+meta:
+  total_entries: 7
+  last_updated: S088
+  intake_canonical_home: docs/plan/_intake/external-research/
+  registry_validator: validate-council-harvest.mjs (for dispositioned items)
+  threshold_connection: tools/scripts/threshold-chain.mjs (P1 classification)
+  accepts_more_files: true
+  note: "Governor: drop new files in YYYY-MM-DD/, add entry here. The pipeline tracker will show progress."

@@ -85,7 +85,15 @@ try{
   if [ "${#USER_MESSAGE}" -gt 10 ] && [ -f "$_TR" ]; then # S086: gate on non-empty prompt
     # Type classification (first match wins)
     _TY="governor_directive"; _SP="GVRN"; _UR="medium"
-    if   echo "$USER_MESSAGE" | grep -Eqi 'upload|paste|EXT-ID|external.research'; then _TY="external_research"; _SP="AI"; _UR="low"
+    # HARDWIRE S088: external AI handbacks MUST be classified as external_research BEFORE
+    # any other type. Pattern covers cross-project AI outputs (SONNET→OPUS handbacks from
+    # other sessions/repos), HANDSHAKE files, DISPATCH artifacts, GATE VERDICT outputs.
+    # FAILURE MODE PREVENTED: without this, handbacks fall through as governor_directive
+    # → processed natively by AI → never routed through threshold → pipeline entry not created.
+    # Applies to BOTH Sonnet tab AND Opus tab (same hook fires on both).
+    if   echo "$USER_MESSAGE" | grep -Eqi 'SONNET[[:space:]]*[→>-][[:space:]]*OPUS|HANDBACK|GATE.VERDICT|_DISPATCH_|CSP S[0-9][0-9][0-9]|HANDSHAKE.*session|session.*HANDSHAKE'; then _TY="external_research"; _SP="AI"; _UR="medium"
+    # Also catch documents pasted from external sources (GPT research, external reviews, product briefs)
+    elif echo "$USER_MESSAGE" | grep -Eqi 'upload|paste|EXT-ID|external.research|external.review|briefing.*Â§A|park these files|GPT.Research'; then _TY="external_research"; _SP="AI"; _UR="low"
     elif echo "$USER_MESSAGE" | grep -Eq  'exit_code=1|BLOCKING'; then _TY="error"; _SP="VALD"; _UR="high"
     elif echo "$USER_MESSAGE" | grep -Eqi 'fixed|resolved|exit_code=0'; then _TY="solution"; _SP="VALD"; _UR="medium"
     elif echo "$USER_MESSAGE" | grep -Eqi 'correction|wrong|should be|instead of|not like that'; then _TY="correction"; _SP="AI"; _UR="medium"
@@ -263,5 +271,34 @@ process.stdin.on('end',()=>{
 " 2>/dev/null || true
   fi
 } 2>/dev/null || true
+
+# ─── HARDWIRE S088: external_research MANDATORY PIPELINE ENTRY ADVISORY ──────
+# When external AI handbacks or research documents are detected (type=external_research),
+# inject a mandatory advisory reminding Sonnet AND Opus to:
+#   1. NOT process natively — route through external-research-pipeline.yaml
+#   2. Create pipeline entry (P0 ingested) in tools/data/external-research-pipeline.yaml
+#   3. Run SWIFT scan before responding substantively
+# This is the T3 enforcement for the threshold hardwire of external AI content.
+if [ "$_TY" = "external_research" ] && [ -n "$USER_MESSAGE" ]; then
+  cat << 'EXTERNAL_RESEARCH_ADVISORY'
+[THRESHOLD-HARDWIRE] TYPE=external_research DETECTED
+  This input contains external AI content (handback/research/review/brief).
+  MANDATORY PROCESSING PROTOCOL (B_BOUNDARY_CONTRACT + threshold hardwire S088):
+  1. DO NOT process natively — park first, SWIFT-scan second, respond third.
+  2. PARK the artifact: add entry to tools/data/external-research-pipeline.yaml (P0 ingested)
+  3. SAVE the file to docs/plan/_intake/external-research/YYYY-MM-DD/ if it contains a document
+  4. SWIFT-SCAN: identify items with value ≤ 2h + blast-radius ≤ LOW → absorb immediately
+  5. PARK remaining work in park-register.yaml with governing_intent + retrieve_when
+  6. Add council-harvest entry if the content contains insights (disposition required)
+  7. Only after steps 1-6: respond to the Governor
+
+  If this is a SONNET→OPUS handback from another project:
+  - Source: cross-project AI output (QUARANTINE until spot-checked per CS9)
+  - Route: external_research → VAULT_DEFER → threshold-classified
+  - Action: park + SWIFT + pipeline entry (same as any external research)
+
+  APPLIES TO: Sonnet tab AND Opus tab. No native processing of external AI content.
+EXTERNAL_RESEARCH_ADVISORY
+fi 2>/dev/null || true
 
 exit 0

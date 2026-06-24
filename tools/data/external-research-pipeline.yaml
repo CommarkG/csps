@@ -271,3 +271,42 @@ meta:
   threshold_connection: tools/scripts/threshold-chain.mjs (P1 classification)
   accepts_more_files: true
   note: "Governor: drop new files in YYYY-MM-DD/, add entry here. The pipeline tracker will show progress."
+
+  - id: ext-2026-06-23-08
+    name: "CSP S344 — UX Consistency Audit Handback (Sonnet→Opus cross-project)"
+    date: "2026-06-23"
+    source_type: external-AI
+    source_author: "Sonnet CSP S344 / cross-project handback"
+    value_class: design
+    priority: P1-high
+    status: parked
+    pipeline_stage: P2-swift-scanned
+    quarantine: true
+    quarantine_note: "Cross-project AI output — spot-check before adopting any finding in CSPS"
+    tags:
+      - domain:ux
+      - domain:product
+      - topic:ux-audit
+      - topic:consistency
+      - topic:navigation
+      - topic:cross-project
+      - project:csp
+      - audience:governor
+    file: docs/plan/_intake/external-research/2026-06-23/08-csps-ux-consistency-audit-S344.md
+    swift_items:
+      - id: swift-08-ux-dna-triangulation
+        finding: "CSP UX audit's 12 fixes map directly onto CSPS B_UX_UI_DISCIPLINE laws — triangulation that UX-DNA laws are critical (F1=LAW1, F3/F9=LAW4, F4=LAW5 clarity)"
+        absorbed: true
+        absorbed_in: "council-harvest entry + note in external-research pipeline"
+        blast_radius: none
+      - id: swift-08-p0p1p2p3-framework
+        finding: "P0/P1/P2/P3 prioritization framework for UX fixes matches CSPS PE scoring approach"
+        absorbed: false
+        blast_radius: low
+        action: "reference this framework when building CSP fix batch"
+    council_harvest_ref: null
+    park_register_ref: PARK-S088-CSP-UX-AUDIT
+    ratified_standards_ref: null
+    swift_absorbed: true
+    absorptions_complete: false
+    note: "Cross-project (CSP not CSPS). 12 fixes require CSP Governor ratification and must be applied to CommarkG/core-sights-platform. CSPS role: park + track + validate UX-DNA connection."

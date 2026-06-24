@@ -97,7 +97,12 @@ function getNewFiles() {
       .filter(f => !f.match(/closing-summary-S\d+\.md$/))
       // S088: repo-root external-review-download/ = dated Csps-named frontmatter-stripped copies of the
       // external-AI package (non-governed download artifacts; canonical originals remain validated).
-      .filter(f => !f.match(/external-review-download[\/\\]/));
+      .filter(f => !f.match(/external-review-download[\/\\]/))
+      // S088: docs/plan/_intake/external-research/YYYY-MM-DD/ = parked raw external files.
+      // These are intake artifacts (GPT research, cross-project handbacks, product briefs).
+      // Pipeline registry (tools/data/external-research-pipeline.yaml) is the governed artifact;
+      // the raw intake files are verbatim external content, no CSPS alignment required.
+      .filter(f => !f.match(/_intake[\/\\]external-research[\/\\]\d{4}-\d{2}-\d{2}[\/\\]/));
   } catch { return []; }
 }
 

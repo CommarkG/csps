@@ -1492,3 +1492,55 @@ entries:
       - topic:research-intake
       - topic:pipeline-tracking
       - priority:P1-high
+
+  - id: "PARK-S088-CSP-UX-AUDIT"
+    lane: queue
+    priority: P1-high
+    content: >
+      CSP S344 UX Consistency Audit — 12 prioritized fixes for CommarkG/core-sights-platform.
+      Source: docs/plan/_intake/external-research/2026-06-23/08-csps-ux-consistency-audit-S344.md
+      Repo: github.com/CommarkG/core-sights-platform → marketing-and-sales-engine/
+
+      P0 MUST FIX (3):
+        F1: Home has NO topbar, NO progress bar → add pipeline orientation + topbar
+        F2: /studio has topbar but ORPHANED from nav → add Studio to nav
+        F3: /review ORPHANED from nav + overlaps /confirm-products → add to Pipeline nav + clarify boundary
+
+      P1 HIGH (3):
+        F4: /governor-console title = "TGVI" (retired acronym) → update to current name
+        F5: /corespines orphaned from nav → add to nav
+        F6: /visual-baseline-compare no topbar → Governor decides if dev tool is acceptable
+
+      P2 MEDIUM (4):
+        F7: Browser title format inconsistent 13 pages → standardize format
+        F8: product-definitions back-href = "/batch-review" (stale) → update route name
+        F9: Progress bar "Enrich" step has no destination → create page or remove step
+        F10: /dropdown-dashboard URL opaque → rename to domain-meaningful URL
+
+      P3 LOW (2):
+        F11: "Image Prep" unnumbered in Pipeline → add number
+        F12: Export page no empty-state at export_count=0 → add empty-state
+
+      OVERLAP RESOLUTIONS:
+        /confirm-products vs /review → different units (set vs single), both needed; add /review to Pipeline nav
+        /image-prep vs /studio → different automation levels; add Studio to nav with clear labels
+
+      PIPELINE VERDICT: PARTIAL YES — 3 gaps (G1: no home orientation, G2: orphaned pages, G3: Enrich no destination)
+
+    retrieve_when: "Governor ratifies CSP fix batch. Apply in CommarkG/core-sights-platform. Start with P0 (F1/F2/F3)."
+    never_drop: false
+    governing_intent: >
+      The CSP UX audit found 12 specific issues affecting the marketing-and-sales-engine.
+      The critical path: fix home page orientation (F1) + add orphaned pages to nav (F2/F3).
+      The P0 items affect first impression and page reachability — highest impact/lowest risk.
+    research_ref: ext-2026-06-23-08
+    source_session: S088
+    created_session: S088
+    closed_session: null
+    tags:
+      - domain:ux
+      - domain:product
+      - topic:ux-audit
+      - topic:navigation
+      - project:csp
+      - priority:P1-high

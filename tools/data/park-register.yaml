@@ -1544,3 +1544,78 @@ entries:
       - topic:navigation
       - project:csp
       - priority:P1-high
+
+  - id: "PARK-S088-UX-VERSION-HISTORY"
+    lane: queue
+    priority: P1-high
+    content: >
+      UX Version History + Rollback + 60-Day Consolidation System.
+      Governor directive S088: permanent, mandatory UI/UX snapshot system for all platform pages.
+
+      WHAT IS NEEDED:
+      1. PERMANENT SNAPSHOTS: versioned MD file per page (e.g. docs/plan/_ux-snapshots/{page-slug}.md)
+         Each snapshot entry includes: version, date, screenshot path, description, who changed it, why.
+         Mandatory for ALL pages — platform and external apps.
+
+      2. ROLLBACK MECHANISM: core-seed (if simple enough) allowing the system to restore a previous
+         UI/UX state from any snapshot. Could be: (a) a restore script that re-applies a committed
+         snapshot; (b) a git-tag-based approach (tag each deploy with ux-snapshot-v{N}).
+
+      3. 60-DAY CONSOLIDATION: items older than 60 days are auto-consolidated into weekly-change-summary
+         format (1 MD file per week, with full detail including reasoning + detailed solutions).
+         Minimal snapshots kept; detail preserved in consolidated form.
+
+      4. MANDATORY FOR EVERYTHING: a pre-commit hook (T1) that blocks if a page change has no
+         corresponding snapshot entry. Applies to platform + external applications.
+
+      DATA MODEL per snapshot entry:
+        page_slug: /platform/journeys
+        version: 3
+        date: 2026-06-23
+        changed_by: Sonnet S088
+        change_type: layout | content | navigation | new-page | deprecation
+        screenshot: ux_snapshots/2026-06-23-platform-journeys-v3.png
+        description: Added journey-admin tab to sidebar
+        reasoning: Governor directive S088 — journey orchestration phase
+        ux_dna_compliance: [LAW1, LAW2, LAW3, LAW4, LAW5]  ← which UX-DNA laws are satisfied
+        previous_version_ref: 2 | 2026-05-10
+        rollback_sha: abc1234  ← git SHA where this version was current
+
+      60-DAY CONSOLIDATION FORMAT per weekly summary:
+        week: 2026-W15
+        pages_changed: [/platform/journeys, /platform/journey-admin]
+        net_new_pages: [/platform/journey-trunk]
+        net_deprecated: []
+        full_details: [{page, version, change_type, reasoning, solution}...]
+        snapshot_file: docs/plan/_ux-snapshots/weekly/2026-W15-ux-changes.md
+
+      CONNECTION TO EXISTING SYSTEMS:
+        - validate-route-manifest.mjs (B_PAGE_COMPLETE): extend to also check snapshot entry
+        - validate-internal-links.mjs: extend to check screenshots exist
+        - external-research-pipeline.yaml model: same versioned-entry approach
+        - B_UX_UI_DISCIPLINE (validate-ux-audit.mjs): check snapshot includes ux_dna_compliance
+        - SHIPPABLE-GREEN: C2 (committed-everywhere) extended to include snapshot entry
+
+      SWIFT ITEM (possibly buildable in 1 session):
+        Core-seed: just the snapshot schema (YAML/MD file format) + the registry entry per page.
+        No automation yet. Add automation (pre-commit, consolidation) in follow-up sessions.
+
+    retrieve_when: "Governor greenlights UX snapshot system. Start with: (1) snapshot schema doc, (2) registry file tools/data/ux-snapshot-registry.yaml, (3) T1 pre-commit check for page changes."
+    never_drop: true
+    governing_intent: >
+      The platform must be able to restore any UI/UX state from history without losing reasoning.
+      Every UI/UX change is permanent knowledge: what changed, why, how it improved things.
+      60-day consolidation keeps the system lean without losing the learning.
+      Mandatory for all platform pages + external apps = the same governance that applies to code
+      applies to UI/UX state.
+    source_session: S088
+    created_session: S088
+    closed_session: null
+    tags:
+      - domain:ux
+      - domain:governance
+      - topic:ux-versioning
+      - topic:rollback
+      - topic:snapshots
+      - topic:page-history
+      - priority:P1-high

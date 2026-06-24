@@ -1619,3 +1619,51 @@ entries:
       - topic:snapshots
       - topic:page-history
       - priority:P1-high
+
+  - id: "PARK-S088-MULTI-TENANT-ISOLATION"
+    lane: obligation
+    disposition_text: "parked | owner: Opus+Sonnet | trigger: Phase-4 multi-tenancy planning (also the hard trigger to revisit the S049/S050 status cutover). Council round-1 ERC-006 — referenced as 'to be created'; created now so it is not lost."
+    disposition_session: S088
+    content: >
+      Multi-tenant isolation (council round-1 ERC-006, 4/4 external seats). QUARANTINE is a trust LABEL, not a
+      sandbox. A multi-tenant CSPS core needs: tiered silo/pool/bridge isolation (AWS SaaS lens); per-tenant CIE
+      register (the shared cie-state.yaml breaks at N=2 writers); RLS on all data + tenant_id in every bundle/
+      receipt/loop-contract; physical sandbox (container/worktree) for external-developer agents; shared-but-
+      STATELESS gate services (SHIPPABLE-GREEN validators consume artifact hashes + tenant policy, not tenant
+      memory); global CIE receives only sanitized pattern-classes (no tenant content). Two-tier Governor authority
+      (per-tenant decisions vs super-admin platform decisions). What breaks first if shared: CIE register → seal
+      HEAD-scope → state isolation → cost/noisy-neighbor.
+    retrieve_when: "Phase-4 multi-tenancy planning. Fold into one-tab design §8/§F7. This park is also the trigger to do the S049/S050 status-enum cutover (status coherence is a multi-tenant prerequisite)."
+    never_drop: true
+    context_preserved: >
+      4/4 external council seats (Claude/GPT/Gemini/Grok) converged. Cited prior art: AWS SaaS silo/pool/bridge,
+      AWS Prescriptive Guidance RLS for pooled Postgres, Kubernetes/Azure noisy-neighbor. Connects: schema-expert
+      skill (RLS, tenant_id), one-tab design §F7, S049/S050 status cutover (PARK via TAGGING-CORE-INDEX).
+    decision_back_ref: "Council round-1 ERC-006: multi-tenancy needs physical isolation beyond QUARANTINE; Governor S088 'park all the enhancements'"
+    source_session: S088
+    created_session: S088
+    closed_session: null
+
+  - id: "PARK-S088-COUNCIL-FAILED-TO-ASK"
+    lane: obligation
+    disposition_text: "parked | owner: Opus | trigger: one-tab loop-engine design (these are the design-gaps to close BEFORE the loop runs in production) OR Phase-2 planning. Council round-1 ERC-008 cluster — created now so it is not lost."
+    disposition_session: S088
+    content: >
+      The 5 design-gap questions all four external seats said we FAILED TO ASK (council round-1 ERC-008):
+      (1) ORCHESTRATOR SELF-GOVERNANCE + failure detection — how does the Opus director itself get caught when it
+      produces a bad decomposition/goal-predicate? (its own FSE + two-party seal on loop-engine changes; a
+      director-output validation gate). (2) PLATFORM OBSERVABILITY — a structured event stream (spawn/complete/
+      fail/ZF/cost) to a central sink; without it, production debugging is archaeology. (3) POST-DEPLOY → CIE
+      FEEDBACK PATH — when a tenant ships green and a real user finds a defect, there is no path back into CIE
+      (the most expensive failure class). (4) B_* CONTRACT VERSIONING + propagation — updating a contract leaves
+      existing bundles/tenants stale; needs versioning + update propagation. (5) FORMAL DATA MODEL distinguishing
+      claim / evidence / receipt / seal / truth.
+    retrieve_when: "When designing the one-tab loop engine (close these before production) OR Phase-2 orchestrator persistence planning. Fold into one-tab design as open items."
+    never_drop: true
+    context_preserved: >
+      4/4 external council seats independently surfaced these as the highest-value un-asked questions. These are
+      the difference between a loop that works in a demo and one that survives production + multi-tenant scale.
+    decision_back_ref: "Council round-1 ERC-008 (what-we-failed-to-ask cluster); Governor S088 'park all the enhancements'"
+    source_session: S088
+    created_session: S088
+    closed_session: null

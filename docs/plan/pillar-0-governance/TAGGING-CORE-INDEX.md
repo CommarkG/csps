@@ -12,8 +12,9 @@ authored_by: Sonnet-builder S088 | Opus directive PROTO-S088-HARVEST-GATE BUILD 
 status: draft-awaits-ratification
 owner: group:finky
 lifecycle: production
-lifecycle_state: pending-review
-next_review_at: "2026-07-07"
+lifecycle_state: active
+ratified_session: S088
+ratified_by: "Governor S088 — blanket ratification of pending PCRs"
 core_spine: GVRN
 impl_status: swift-implemented
 schema_anchor: pillar_0_governance_leaves

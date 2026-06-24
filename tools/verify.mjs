@@ -2677,6 +2677,40 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // S088: UX version history integrity gate — tracks all page changes in ux-snapshot-registry.
+  {
+    name: 'ux_snapshot_registry',
+    command: 'node tools/validators/validate-ux-snapshot-registry.mjs',
+    input_files: [
+      'tools/data/ux-snapshot-registry.yaml',
+      'apps/csps-playground/src/config/route-manifest.ts',
+      'tools/validators/validate-ux-snapshot-registry.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
+  // S088: external research pipeline integrity gate — blocks untracked intake files.
+  {
+    name: 'external_research_pipeline',
+    command: 'node tools/validators/validate-external-research-pipeline.mjs',
+    input_files: [
+      'tools/data/external-research-pipeline.yaml',
+      'docs/plan/_intake/external-research/',
+      'tools/validators/validate-external-research-pipeline.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
   // S088-HARVEST-GATE BUILD 1: council/research/external-review mandatory harvest gate.
   // Design: docs/plan/_handoff/COUNCIL-WISDOM-HARVEST-DESIGN.md §5
   // BLOCKS: invocation with personas≠none + no harvest entry; closed harvest with null disposition.

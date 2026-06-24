@@ -13,8 +13,9 @@ authored_by: Sonnet-builder S088 | Governor directive S088
 status: DRAFT — pending Opus review
 owner: group:finky
 lifecycle: production
-lifecycle_state: pending-review
-next_review_at: "2026-07-07"
+lifecycle_state: active
+ratified_session: S088
+ratified_by: "Opus S088 review + Governor S088 blanket ratification"
 core_spine: GVRN
 schema_anchor: pillar_0_governance_leaves
 diataxis_type: reference

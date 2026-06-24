@@ -1,0 +1,81 @@
+---
+id: csps.data.ux-snapshot-registry
+name: ux-snapshot-registry
+description: >
+  Permanent, mandatory UI/UX snapshot registry for all platform pages and external apps.
+  Every page change MUST have an entry here before the commit is allowed (enforced by pre-commit).
+  Governor directive S088: "permanent and mandatory for anything created by the platform including
+  external applications."
+  L1: schema + registry (this file).
+  L2 (next): 60-day consolidation script (weekly summaries).
+  L3 (later): rollback mechanism + dashboard view.
+version: "1.0"
+session: S088
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: VALD
+schema_anchor: tools_templates_meta
+links:
+  - { rel: intake, href: ../docs/plan/_intake/external-research/README.md }
+  - { rel: ux-discipline, href: ../docs/plan/pillar-0-governance/behavioral-contracts/B_UX_UI_DISCIPLINE.md }
+  - { rel: shippable-green, href: ../docs/plan/pillar-0-governance/SHIPPABLE-GREEN-PROTOCOL.md }
+
+# SCHEMA (per entry):
+# page_slug:        URL path (/platform/journeys, /, /studio, etc.)
+# project:          platform | csps-playground | external-app-name
+# version:          integer, monotonically increasing per page
+# date:             YYYY-MM-DD
+# changed_by:       Sonnet S088 | Opus S088 | Governor | external
+# change_type:      layout | content | navigation | new-page | deprecation | ux-dna | fix
+# description:      what changed (1-3 sentences)
+# reasoning:        WHY it changed (Governor directive / UX-DNA law / user finding / etc.)
+# ux_dna_compliance: [LAW1, LAW2, LAW3, LAW4, LAW5] — which UX-DNA laws are satisfied
+# screenshot:       relative path to screenshot (ux_snapshots/YYYY-MM-DD-{slug}-v{N}.png)
+#                   or null if no visual change
+# rollback_sha:     git SHA where this version was current (optional — fill on tag)
+# previous_version_ref: version number + date of prior state
+
+# 60-DAY CONSOLIDATION:
+# Items older than 60 days are consolidated into weekly summaries.
+# Format: docs/plan/_ux-snapshots/weekly/YYYY-W{NN}-ux-changes.md
+# The entry below is replaced with: consolidated_ref: YYYY-W{NN}-ux-changes.md
+
+snapshots:
+
+  # ── csps-playground platform pages (S088 Track A baseline) ─────────────────
+  - page_slug: /platform/journey-core-spine
+    project: csps-playground
+    version: 1
+    date: "2026-06-22"
+    changed_by: "Sonnet S088"
+    change_type: new-page
+    description: "Journey Core Spine pro-interface — schema-driven, B_PAGE_COMPLETE compliant. First page with full UX-DNA wiring."
+    reasoning: "PROTO-S088-PHASE-0.3: Journey Core Spine sealed L0 definition needed a readable pro-interface."
+    ux_dna_compliance: [LAW1, LAW2, LAW3, LAW4, LAW5]
+    screenshot: null
+    rollback_sha: "616c7767"
+    previous_version_ref: null
+
+  # ── Platform baseline: all existing pages as of S088 close ──────────────────
+  # (Added as version:1 for each — future changes will increment versions)
+  - page_slug: /
+    project: csps-playground
+    version: 1
+    date: "2026-05-01"
+    changed_by: "pre-S088"
+    change_type: new-page
+    description: "Platform home — quick links to SIA, Consult, Profiles."
+    reasoning: "Initial platform scaffolding."
+    ux_dna_compliance: []
+    screenshot: null
+    rollback_sha: null
+    previous_version_ref: null
+
+# ─── PLACEHOLDER FOR FUTURE ENTRIES ──────────────────────────────────────────
+# When adding a new entry:
+# 1. Increment version for the page (or start at 1 for new pages)
+# 2. Fill ALL required fields (page_slug, project, version, date, changed_by, change_type, description, reasoning)
+# 3. List ux_dna_compliance laws satisfied
+# 4. Add screenshot path if visual change
+# Pre-commit hook (T1) will BLOCK if page.tsx changes without a matching snapshot entry

@@ -22,6 +22,9 @@
  *
  * @csps-version 2.0.0
  * @csps-changelog 2.0.0 S088-UX-DNA: added 5 UX-DNA law checks + behavioral block-test mode
+ * @determinism-exempt: new Date().toISOString() used ONLY in last-run JSON metadata write.
+ *   All blocking decisions are purely file-content based (regex pattern matching on page.tsx files).
+ *   No clock-based threshold or timing condition influences blocking exit. B_DETERMINISTIC_GATE safe.
  * @csps-owner group:finky
  * @csps-lifecycle production
  * @csps-lifecycle-state active

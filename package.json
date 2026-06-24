@@ -36,6 +36,7 @@
     "lint:frontmatter": "node tools/validators/validate-frontmatter.mjs",
     "health": "node tools/health-check.mjs",
     "verify": "node tools/verify.mjs",
+    "verify:gate": "node tools/scripts/verify-gate.mjs",
     "verify:strict": "node tools/verify.mjs --strict",
     "verify:fast": "node tools/verify.mjs --skip-install",
     "zf": "node tools/zf-orchestrator.mjs --level 1",

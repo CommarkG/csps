@@ -1,0 +1,9 @@
+{
+  "_comment": "CS7: monolith content hashes for slice freshness. Updated by split generators. Read by validate-slice-freshness.mjs. Stale = current hash != stored hash (not mtime). B_DETERMINISTIC_GATE compliant.",
+  "hashes": {
+    "behavioral-contracts": "466c938d87e78d3d",
+    "audit-runner": "e9ad594c4cb23be8",
+    "principles": "79bab0f15b525aa3",
+    "ai-behavior-spine": "44dd262382a3108d"
+  }
+}

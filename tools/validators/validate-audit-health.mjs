@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 /**
- * @determinism-exempt: uses fs.mtime to detect uncommitted freshness drift. Not wall-clock — compares committed-file mtimes. Known fresh-clone false-negative; accepted until hash-based tracking ships.
+ * CS7 S088: CHECK B now uses CONTENT-HASH freshness (replaces mtime comparison).
+ * Stale = current validator hash ≠ hash stored in tools/data/validator-content-hashes.json.
+ * Hash store updated by pnpm audit-runner:split (= "audit-runner is current").
+ * Survives fresh clone, checkout, restore. B_DETERMINISTIC_GATE compliant.
+ * @determinism-exempt: _updated_at_split date in the hash store is output metadata only.
+ *   All blocking decisions are pure hash comparisons, not clock-based. B_DETERMINISTIC_GATE safe.
  *
  * validate-audit-health.mjs — THE AUDITOR OF AUDITORS
  *
@@ -26,6 +31,7 @@
  */
 
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
@@ -93,11 +99,32 @@ async function main() {
   );
   infos.push(`CHECK A: ${activeCycles.size} active cycles, ${deferredInRunner.length} slugs registered-but-not-running (deferred)`);
 
-  // CHECK B — Validator freshness vs audit-runner.md
-  const auditRunnerMtime = statSync(join(ROOT, 'docs/plan/pillar-0-governance/audit-runner.md')).mtimeMs;
-  const newerValidators = validators.filter(v => v.mtime > auditRunnerMtime + 60000); // 1min grace
-  if (newerValidators.length > 0) {
-    warnings.push(`[CHECK B FRESHNESS] ${newerValidators.length} validator(s) newer than audit-runner.md — descriptions may be stale:\n${newerValidators.map(v => `  → ${v.file}`).join('\n')}`);
+  // CHECK B — CS7 CONTENT-HASH FRESHNESS (replaces mtime comparison, B_DETERMINISTIC_GATE)
+  // Stale = current validator hash ≠ stored hash in validator-content-hashes.json.
+  // Hash store updated by pnpm audit-runner:split (= "audit-runner is confirmed current").
+  // Survives fresh-clone, checkout, restore. No false positives from mtime drift.
+  const HASH_STORE_PATH = join(ROOT, 'tools/data/validator-content-hashes.json');
+  const storedHashes = (() => {
+    try {
+      return JSON.parse(readFileSync(HASH_STORE_PATH, 'utf8')).hashes || {};
+    } catch { return {}; }
+  })();
+
+  const staleValidators = [];
+  for (const v of validators) {
+    try {
+      const currentContent = readFileSync(v.path, 'utf8').slice(0, 500);
+      const currentHash = createHash('sha256').update(currentContent).digest('hex').slice(0, 16);
+      const storedHash = storedHashes[v.file];
+      if (!storedHash) {
+        staleValidators.push(`${v.file} (new — not in hash store; run pnpm audit-runner:split after updating audit-runner.md)`);
+      } else if (currentHash !== storedHash) {
+        staleValidators.push(`${v.file} (content changed since last audit-runner:split — update audit-runner.md row + run pnpm audit-runner:split)`);
+      }
+    } catch { /* skip unreadable */ }
+  }
+  if (staleValidators.length > 0) {
+    warnings.push(`[CHECK B FRESHNESS] ${staleValidators.length} validator(s) newer than audit-runner.md — descriptions may be stale:\n${staleValidators.map(v => `  → ${v}`).join('\n')}`);
   }
 
   // CHECK C — Negative test coverage

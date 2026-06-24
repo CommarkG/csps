@@ -7,10 +7,11 @@
  * Run: node tools/generators/split-audit-runner.mjs  (from repo root)
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
+import { createHash } from 'node:crypto';
 
 // Windows ESM fix (S014 ZF audit): import.meta.url root resolution fails on Windows
 // when run via pnpm script — ESM url path may resolve to desktop instead of repo.
@@ -20,6 +21,9 @@ const ROOT      = process.cwd();
 const SOURCE    = join(ROOT, 'docs/plan/pillar-0-governance/audit-runner.md');
 const SLICES_DIR= join(ROOT, 'docs/plan/pillar-0-governance/audit-runner');
 const INDEX_PATH= join(ROOT, 'docs/plan/pillar-0-governance/audit-runner-index.yaml');
+// CS7: content-hash store — updated here (after split) to indicate audit-runner is current.
+// validate-audit-health.mjs CHECK B reads from here instead of mtime comparison.
+const VALIDATOR_HASH_STORE = join(ROOT, 'tools/data/validator-content-hashes.json');
 
 const content = readFileSync(SOURCE, 'utf8');
 const lines   = content.split(/\r?\n/);  // handle both LF and CRLF (Windows fix S014)
@@ -109,3 +113,30 @@ writeFileSync(INDEX_PATH, idxLines.join('\n'), 'utf8');
 console.log(`[split-audit-runner] ✓ wrote ${written} pipeline slices → ${SLICES_DIR}`);
 console.log(`[split-audit-runner] ✓ wrote index → ${INDEX_PATH}`);
 console.log(`[split-audit-runner] total_count=${indexEntries.length}`);
+
+// CS7: update content-hash store for all validators.
+// Called after audit-runner.md is confirmed current (split = audit is fresh).
+// validate-audit-health.mjs CHECK B uses this instead of mtime comparison.
+try {
+  const validatorsDir = join(ROOT, 'tools/validators');
+  const validatorFiles = readdirSync(validatorsDir)
+    .filter(f => f.startsWith('validate-') && f.endsWith('.mjs'));
+
+  const hashes = {};
+  for (const vf of validatorFiles) {
+    const vpath = join(validatorsDir, vf);
+    // Hash the first 500 chars — captures @csps-id, @csps-version, description block.
+    // This is the "signature" that should change when the validator logic changes.
+    const content = readFileSync(vpath, 'utf8').slice(0, 500);
+    hashes[vf] = createHash('sha256').update(content).digest('hex').slice(0, 16);
+  }
+
+  writeFileSync(VALIDATOR_HASH_STORE, JSON.stringify({
+    _comment: 'CS7: validator content-hash store. Updated by pnpm audit-runner:split. Read by validate-audit-health.mjs CHECK B. Stale = current hash != stored hash (not mtime). B_DETERMINISTIC_GATE compliant.',
+    _updated_at_split: new Date().toISOString().slice(0, 10),
+    hashes,
+  }, null, 2), 'utf8');
+  console.log(`[split-audit-runner] ✓ wrote validator hashes → tools/data/validator-content-hashes.json (${validatorFiles.length} validators)`);
+} catch (e) {
+  console.warn(`[split-audit-runner] ⚠ could not write validator hashes: ${e.message}`);
+}

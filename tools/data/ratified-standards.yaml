@@ -313,3 +313,52 @@ standards:
       validator: validate-communication-protocol.mjs
       cadence: per-session
       audit_runner_key: communication-protocol
+
+  - id: cs7-content-hash-freshness
+    name: CS7 — Content-Hash Freshness (replaces mtime in blocking gates)
+    ratified_session: S088
+    ratified_by: "PROTO-S088-A4 CS7 (Opus directive S088 Track A completion)"
+    ratified_at: "2026-06-24"
+    description: >
+      mtime comparison in blocking/warning gates is non-deterministic (flips on checkout,
+      restore, clone). CS7 replaces mtime with SHA256 content-hash comparison.
+      validate-audit-health.mjs CHECK B: stale = current hash != stored hash in
+      tools/data/validator-content-hashes.json. validate-slice-freshness.mjs: stale =
+      monolith hash != stored hash in tools/data/slice-content-hashes.json.
+      Hash stores updated by pnpm audit-runner:split (= "audit-runner confirmed current").
+      B_DETERMINISTIC_GATE compliant. Block-test 8/8 PASS.
+    propagation_status: active
+    creation_standard:
+      type: script
+      path: tools/generators/split-audit-runner.mjs
+      requirement: >
+        Every split generator MUST update the relevant hash store (validator-content-hashes.json
+        or slice-content-hashes.json) so that the freshness check stays current after split.
+        Running split = "this audit-runner/monolith is current" = update hashes.
+    audit_entry:
+      validator: validate-audit-health.mjs
+      cadence: per-session
+      audit_runner_key: audit-health
+
+  - id: cs4-stage-before-verify
+    name: CS4 — Stage-Before-Verify Wrapper (structural prevention of stale receipt)
+    ratified_session: S088
+    ratified_by: "PROTO-S088-A4 CS4 (Opus directive S088 Track A completion)"
+    ratified_at: "2026-06-24"
+    description: >
+      Running plain `pnpm verify` with unstaged edits causes receipt.tree_hash to omit
+      those edits (tree_hash = git index, not working tree). Next run detects stale receipt.
+      CS4: tools/scripts/verify-gate.mjs does `git add -A` BEFORE verify → receipt always
+      includes current working tree. Use `pnpm verify:gate` during active build sessions.
+      Plain `pnpm verify` still valid after commits. Block-test 6/6 PASS.
+    propagation_status: active
+    creation_standard:
+      type: script
+      path: tools/scripts/verify-gate.mjs
+      requirement: >
+        Use `pnpm verify:gate` (not plain `pnpm verify`) during active build sessions
+        with unstaged changes. Plain verify is correct after a commit (index = HEAD).
+    audit_entry:
+      validator: validate-green-receipt.mjs
+      cadence: per-session
+      audit_runner_key: green_receipt

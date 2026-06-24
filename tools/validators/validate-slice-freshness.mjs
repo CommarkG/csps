@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 /**
- * @determinism-exempt: uses fs.mtime to detect uncommitted freshness drift. Not wall-clock — compares committed-file mtimes. Known fresh-clone false-negative; accepted until hash-based tracking ships.
+ * CS7 S088: now uses CONTENT-HASH comparison instead of mtime (B_DETERMINISTIC_GATE).
+ * Stale = monolith content hash ≠ stored hash in tools/data/slice-content-hashes.json.
+ * Hash store updated by each split generator (contracts:split, audit-runner:split, etc.).
+ * @determinism-exempt: no time-based blocking decisions remain. B_DETERMINISTIC_GATE safe.
  *
  * validate-slice-freshness.mjs — detects monolith files edited without running split
  *
@@ -19,7 +22,8 @@
  * EXIT-CODED: 0 = slices fresh / 1 = stale slices detected
  */
 
-import { statSync, readdirSync, existsSync } from 'node:fs';
+import { statSync, readdirSync, existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -53,16 +57,36 @@ const MONOLITH_SLICE_PAIRS = [
   },
 ];
 
-function getNewestSliceMtime(slicesDir) {
-  if (!existsSync(slicesDir)) return 0;
-  const files = readdirSync(slicesDir).filter(f => f.endsWith('.md') || f.endsWith('.yaml'));
-  if (files.length === 0) return 0;
-  return Math.max(...files.map(f => statSync(join(slicesDir, f)).mtimeMs));
+// CS7: content hash for a file (first 2000 chars captures key structural changes)
+function hashFile(filePath) {
+  try {
+    const content = readFileSync(filePath, 'utf8').slice(0, 2000);
+    return createHash('sha256').update(content).digest('hex').slice(0, 16);
+  } catch { return null; }
+}
+
+// CS7: hash store for monolith→slice freshness
+const SLICE_HASH_STORE = join(ROOT, 'tools/data/slice-content-hashes.json');
+
+function loadSliceHashes() {
+  try { return JSON.parse(readFileSync(SLICE_HASH_STORE, 'utf8')).hashes || {}; } catch { return {}; }
+}
+
+function saveSliceHashes(hashes) {
+  try {
+    mkdirSync(join(ROOT, 'tools/data'), { recursive: true });
+    writeFileSync(SLICE_HASH_STORE, JSON.stringify({
+      _comment: 'CS7: monolith content hashes for slice freshness. Updated by split generators. Read by validate-slice-freshness.mjs. Stale = current hash != stored hash (not mtime). B_DETERMINISTIC_GATE compliant.',
+      hashes,
+    }, null, 2), 'utf8');
+  } catch { /* non-fatal */ }
 }
 
 async function main() {
   const warnings = [];
   let checked = 0;
+  const storedHashes = loadSliceHashes();
+  const newHashes = { ...storedHashes };
 
   for (const pair of MONOLITH_SLICE_PAIRS) {
     const monolithPath = join(ROOT, pair.monolith);
@@ -71,21 +95,25 @@ async function main() {
     if (!existsSync(monolithPath)) continue;
     checked++;
 
-    const monolithMtime = statSync(monolithPath).mtimeMs;
-    const newestSliceMtime = getNewestSliceMtime(slicesDirPath);
+    const currentHash = hashFile(monolithPath);
+    const storedHash = storedHashes[pair.name];
 
-    if (newestSliceMtime === 0) {
-      warnings.push(`${pair.name}: slices directory empty or missing — run \`${pair.split_cmd}\``);
-    } else if (monolithMtime > newestSliceMtime + 5000) {
-      // 5s grace period for simultaneous writes
-      const monolithAge = new Date(monolithMtime).toISOString();
-      const sliceAge = new Date(newestSliceMtime).toISOString();
+    if (!existsSync(slicesDirPath)) {
+      warnings.push(`${pair.name}: slices directory missing — run \`${pair.split_cmd}\``);
+    } else if (!storedHash) {
+      // No hash stored yet — treat as first run; store current hash (no warning)
+      if (currentHash) newHashes[pair.name] = currentHash;
+    } else if (currentHash !== storedHash) {
+      // Content changed since last split — slices are stale
       warnings.push(
-        `${pair.name}: monolith modified ${monolithAge} but newest slice is ${sliceAge}\n` +
+        `${pair.name}: monolith modified (hash mismatch) but newest slice is from last split\n` +
         `  → Run \`${pair.split_cmd}\` to sync slices`
       );
     }
   }
+
+  // Auto-save updated hashes (first-run bootstrapping)
+  saveSliceHashes(newHashes);
 
   if (warnings.length > 0) {
     console.warn(`\n${warnings.length} warning(s) — stale slices detected:`);

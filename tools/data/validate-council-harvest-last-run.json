@@ -1,17 +1,19 @@
 {
-  "ran_at": "2026-06-23T10:08:07.637Z",
+  "ran_at": "2026-06-24T16:45:37.396Z",
   "blocking": 0,
-  "advisory": 5,
-  "passes": 13,
+  "advisory": 7,
+  "passes": 15,
   "findings": [
     "[ADVISORY] harvest harvest-S088-ERC-001: disposition=ratify-candidate but no matching ratified-standards.yaml entry — promote or record skip-reason",
     "[ADVISORY] harvest harvest-S088-ERC-002: disposition=ratify-candidate but no matching ratified-standards.yaml entry — promote or record skip-reason",
     "[ADVISORY] harvest harvest-S088-ERC-003: disposition=ratify-candidate but no matching ratified-standards.yaml entry — promote or record skip-reason",
     "[ADVISORY] harvest harvest-S088-ERC-004: disposition=ratify-candidate but no matching ratified-standards.yaml entry — promote or record skip-reason",
-    "[ADVISORY] harvest harvest-S088-ERC-007: disposition=ratify-candidate but no matching ratified-standards.yaml entry — promote or record skip-reason"
+    "[ADVISORY] harvest harvest-S088-ERC-007: disposition=ratify-candidate but no matching ratified-standards.yaml entry — promote or record skip-reason",
+    "[ADVISORY] harvest harvest-S088-block-test-portability: disposition=ratify-candidate but no matching ratified-standards.yaml entry — promote or record skip-reason",
+    "[ADVISORY] harvest harvest-S088-clarityflow-ux-dna-convergence: disposition=ratify-candidate but no matching ratified-standards.yaml entry — promote or record skip-reason"
   ],
   "deliberations_checked": 0,
-  "harvest_entries": 9,
-  "closed_entries": 9,
-  "ratify_candidates": 5
+  "harvest_entries": 11,
+  "closed_entries": 11,
+  "ratify_candidates": 7
 }

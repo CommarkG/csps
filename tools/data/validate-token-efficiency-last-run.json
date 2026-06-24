@@ -233,7 +233,7 @@
     {
       "name": "post-stop-pnpm-verify.sh",
       "load_mode": "undeclared",
-      "size_bytes": 9568
+      "size_bytes": 10332
     },
     {
       "name": "post-stop-rzf-reminder.sh",
@@ -528,7 +528,7 @@
     {
       "name": "session-open.sh",
       "load_mode": "undeclared",
-      "size_bytes": 14621
+      "size_bytes": 15273
     },
     {
       "name": "user-prompt-submit-ai-profiler.sh",
@@ -553,7 +553,7 @@
     {
       "name": "user-prompt-submit-intake.sh",
       "load_mode": "undeclared",
-      "size_bytes": 14985
+      "size_bytes": 17825
     },
     {
       "name": "user-prompt-submit-next-step-reminder.sh",
@@ -908,8 +908,8 @@
     {
       "name": "settings.json",
       "load_mode": "eager",
-      "size_bytes": 11872
+      "size_bytes": 11943
     }
   ],
-  "ran_at": "2026-06-22T22:38:33.433Z"
+  "ran_at": "2026-06-24T16:45:16.089Z"
 }

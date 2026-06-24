@@ -1,10 +1,10 @@
 {
   "blocking": 0,
   "advisory": 0,
-  "passes": 30,
-  "standards_checked": 10,
-  "standards_complete": 10,
+  "passes": 48,
+  "standards_checked": 16,
+  "standards_complete": 16,
   "standards_pending": 0,
   "findings": [],
-  "ran_at": "2026-06-22T17:46:47.488Z"
+  "ran_at": "2026-06-24T16:45:35.471Z"
 }

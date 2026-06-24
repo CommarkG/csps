@@ -1,0 +1,10 @@
+{
+  "ran_at": "2026-06-24T16:45:19.685Z",
+  "pages_scanned": 30,
+  "full_context": 25,
+  "partial": 2,
+  "no_context": 3,
+  "coverage_pct": 83,
+  "advisory": 14,
+  "blocking": 0
+}

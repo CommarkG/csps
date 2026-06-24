@@ -3,7 +3,7 @@
   "advisory": 3,
   "deadline": "2026-06-16",
   "blocking_date": "2026-06-30",
-  "today": "2026-06-22",
+  "today": "2026-06-24",
   "status": "past-deadline",
   "all_findings": [
     {
@@ -19,5 +19,5 @@
       "msg": "FK field 'axisId': missing @db.Uuid — apply after Base/AppendOnlyBase migration"
     }
   ],
-  "ran_at": "2026-06-22T22:38:35.155Z"
+  "ran_at": "2026-06-24T16:45:17.842Z"
 }

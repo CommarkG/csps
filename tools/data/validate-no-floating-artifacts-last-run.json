@@ -1,9 +1,9 @@
 {
-  "files_checked": 864,
-  "floaters_found": 28,
-  "missing_obligation": 27,
-  "overdue_count": 26,
-  "advisory": 53,
+  "files_checked": 996,
+  "floaters_found": 47,
+  "missing_obligation": 46,
+  "overdue_count": 5,
+  "advisory": 51,
   "blocking": 0,
   "findings": [
     {
@@ -12,15 +12,7 @@
     },
     {
       "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/csps-dual-focal-plan.yaml\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
-    },
-    {
-      "level": "advisory",
       "msg": "Floating artifact: \"docs/plan/INTAKE-ORCHESTRATOR-DESIGN.md\" has status:awaiting-governor-ratification but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
-    },
-    {
-      "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/INTAKE-ORCHESTRATOR-DESIGN.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
     },
     {
       "level": "advisory",
@@ -28,7 +20,7 @@
     },
     {
       "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/pillar-0-governance/AI-PROFILING-TO-COMMUNICATION-FEEDBACK.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/catch-pipeline-spec.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
@@ -36,15 +28,47 @@
     },
     {
       "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/pillar-0-governance/communication-spine/README.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/CONSOLIDATION-AUDIT-S082.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
-      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/JOURNEY-CONSOLIDATION-DRAFT-S072.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/DEVELOPER-JOURNEY-SPEC.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/pillar-0-governance/JOURNEY-CONSOLIDATION-DRAFT-S072.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/ESSENCE-EXTRACTION-DEFAULT.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+    },
+    {
+      "level": "advisory",
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/FRONT-END-COMPLETENESS-MOAT-S086.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+    },
+    {
+      "level": "advisory",
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/HAIKU-OPTIMAL-USAGE-DRAFT-S084.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+    },
+    {
+      "level": "advisory",
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/HANDOFF-INTEGRITY-SEEDS-S084.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+    },
+    {
+      "level": "advisory",
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/JOURNEY-CONNECTIVITY-AND-COUNCIL-S084.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+    },
+    {
+      "level": "advisory",
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/JOURNEY-MOAT-MAP-S084.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+    },
+    {
+      "level": "advisory",
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/JOURNEY-PERSONA-AUDIT-S084.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+    },
+    {
+      "level": "advisory",
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/JOURNEY-RIPPLE-AND-LOOPS-S084.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+    },
+    {
+      "level": "advisory",
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/JOURNEY-SEEDS-S084.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
@@ -52,15 +76,11 @@
     },
     {
       "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/pillar-0-governance/NAIVE-PERSONAS-DOCTRINE.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
-    },
-    {
-      "level": "advisory",
       "msg": "Floating artifact: \"docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/pillar-0-governance/ONE-SOURCE-OF-DOCTRINE.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/P-ARCH-TRUNK-BRANCH-PATTERN.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
@@ -68,7 +88,11 @@
     },
     {
       "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/pillar-0-governance/PLATFORM-OBSERVATION-DOCTRINE.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/TEAM-LEARNING-LOOP-S084.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+    },
+    {
+      "level": "advisory",
+      "msg": "Floating artifact: \"docs/plan/pillar-0-governance/USER-JOURNEY-SPEC.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
@@ -76,15 +100,7 @@
     },
     {
       "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/pillar-0-governance/vercel-mirror-rule.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
-    },
-    {
-      "level": "advisory",
-      "msg": "Floating artifact: \"docs/plan/_handoff/VAULT/chat-jump-prompt-S072-to-S073-SONNET-v1.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
-    },
-    {
-      "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/_handoff/VAULT/chat-jump-prompt-S072-to-S073-SONNET-v1.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
+      "msg": "Floating artifact: \"docs/plan/_handoff/VAULT/archive/chat-jump-prompt-S072-to-S073-SONNET-v1.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
@@ -92,41 +108,25 @@
     },
     {
       "level": "advisory",
-      "msg": "ESCALATED: \"docs/plan/_handoff/VAULT/opus-review-prompt-ux-ui-S072.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
+      "msg": "Floating artifact: \"docs/plan/_handoff/VAULT/research/S084-journey-external-comments-claude.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
-      "msg": "Floating artifact: \"docs/plan/_handoff/VAULT/ux-ui-doctrine-S072.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+      "msg": "Floating artifact: \"docs/plan/_handoff/VAULT/research/S084-journey-external-comments-gemini-gpt.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
-      "msg": "Floating artifact: \"docs/SIA/00-INDEX.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+      "msg": "Floating artifact: \"docs/plan/_handoff/VAULT/research/S084-journey-external-consolidation.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
-      "msg": "ESCALATED: \"docs/SIA/00-INDEX.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
+      "msg": "Floating artifact: \"docs/plan/_handoff/VAULT/research/S084-journey-external-research-prompt.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     },
     {
       "level": "advisory",
-      "msg": "Floating artifact: \"docs/SIA/01-MASTER-CONTEXT.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
-    },
-    {
-      "level": "advisory",
-      "msg": "ESCALATED: \"docs/SIA/01-MASTER-CONTEXT.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
-    },
-    {
-      "level": "advisory",
-      "msg": "Floating artifact: \"docs/SIA/CONSULTATION-PROMPT.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
-    },
-    {
-      "level": "advisory",
-      "msg": "ESCALATED: \"docs/SIA/CONSULTATION-PROMPT.md\" is in register with escalation_state:overdue — needs terminal decision (RATIFIED|REJECTED|VAULTED|SUPERSEDED)"
-    },
-    {
-      "level": "advisory",
-      "msg": "Floating artifact: \"docs/SIA/FRONTEND-METHODOLOGY.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
+      "msg": "Floating artifact: \"docs/plan/_handoff/VAULT/research/S084-journey-revised-external-comments.md\" has status:draft but lacks closure obligation (missing closure_owner/closure_decision/closure_by)"
     }
   ],
-  "ran_at": "2026-05-31T18:36:26.028Z",
+  "ran_at": "2026-06-24T16:44:35.176Z",
   "note": "STATUS: advisory — promotes to blocking after S073 backfill clears. Prevention class: FLOATING-ARTIFACT-NEVER-REACHES-TERMINAL"
 }

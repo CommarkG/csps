@@ -1,18 +1,10 @@
 {
   "findings_checked": 28,
-  "on_time": 27,
-  "overdue_advisory": 1,
+  "on_time": 28,
+  "overdue_advisory": 0,
   "overdue_blocking": 0,
   "auto_promoted": 0,
-  "current_session": "S087",
-  "ran_at": "2026-06-22T22:38:40.630Z",
-  "findings_report": [
-    {
-      "id": "gap_D_DEFAULT_SCHEME_CONSOLIDATION",
-      "register": "gap-recurrence-register",
-      "severity": "ADVISORY",
-      "sessions_overdue": 2,
-      "days_overdue": 0
-    }
-  ]
+  "current_session": "S088",
+  "ran_at": "2026-06-24T16:45:24.048Z",
+  "findings_report": []
 }

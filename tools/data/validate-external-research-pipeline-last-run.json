@@ -1,0 +1,14 @@
+{
+  "ran_at": "2026-06-24T16:45:37.295Z",
+  "blocking": 0,
+  "advisory": 1,
+  "passes": 5,
+  "findings": [
+    "[ADVISORY] QUARANTINE: ext-2026-06-23-08 — external AI content; spot-check before using any finding (CS9 rule)"
+  ],
+  "pipeline_entries": 8,
+  "intake_files": 8,
+  "untracked": 0,
+  "stuck": 0,
+  "stale_intake": 0
+}

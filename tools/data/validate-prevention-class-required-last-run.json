@@ -1,9 +1,9 @@
 {
   "checked": 28,
-  "with_class": 7,
-  "unclassified": 14,
+  "with_class": 9,
+  "unclassified": 12,
   "missing_field": 7,
-  "advisory": 21,
+  "advisory": 19,
   "blocking": 0,
   "findings": [
     {
@@ -13,10 +13,6 @@
     {
       "id": "FINDING-S062-PERMANENCE-DRIFT",
       "issue": "missing prevention_class field"
-    },
-    {
-      "id": "imp_TRANSIENT_STOP_HOOK_K3",
-      "issue": "prevention_class: unclassified — needs classification"
     },
     {
       "id": "imp_TOOL_OUTPUT_SCALE",
@@ -75,17 +71,17 @@
       "issue": "missing prevention_class field"
     },
     {
-      "id": "gap_CONCEPTUAL_CLOSURE_NO_TEST",
-      "issue": "prevention_class: unclassified — needs classification"
-    },
-    {
       "id": "gap_DONE_CLAIM_BEFORE_VALIDATOR_CONFIRMS",
       "issue": "missing prevention_class field"
     },
     {
       "id": "gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE",
       "issue": "prevention_class: unclassified — needs classification"
+    },
+    {
+      "id": "gap_PREVENTION_COVERAGE_GAP",
+      "issue": "prevention_class: unclassified — needs classification"
     }
   ],
-  "ran_at": "2026-06-22T22:38:40.917Z"
+  "ran_at": "2026-06-24T16:45:24.593Z"
 }

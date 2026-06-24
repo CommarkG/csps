@@ -95,9 +95,12 @@ else
 fi
 
 # ─── TEST E: validator-content-hashes.json exists and has entries ─────────────
+# FIX: use relative path + cwd=REPO_ROOT (not $HASH_STORE MSYS absolute path).
+# MSYS /c/Users/... is NOT translated by Windows node.exe → ENOENT on Director's run.
+# Pattern: cd "$REPO_ROOT" first, then use repo-relative path in readFileSync.
 echo "[TEST E] validator-content-hashes.json exists with validator hashes..."
 if [ -f "$HASH_STORE" ]; then
-  HASH_COUNT=$(node -e "const d=JSON.parse(require('fs').readFileSync('$HASH_STORE','utf8')); console.log(Object.keys(d.hashes||{}).length);" 2>&1)
+  HASH_COUNT=$(cd "$REPO_ROOT" && node -e "const d=JSON.parse(require('fs').readFileSync('tools/data/validator-content-hashes.json','utf8')); console.log(Object.keys(d.hashes||{}).length);" 2>&1)
   if [ "$HASH_COUNT" -gt 50 ]; then
     pass "TEST E: validator-content-hashes.json exists ($HASH_COUNT validator hashes)"
   else
@@ -108,9 +111,10 @@ else
 fi
 
 # ─── TEST F: slice-content-hashes.json exists and has monolith entries ────────
+# FIX: same portability fix — relative path + cwd=REPO_ROOT.
 echo "[TEST F] slice-content-hashes.json exists with monolith hashes..."
 if [ -f "$SLICE_HASH_STORE" ]; then
-  SLICE_COUNT=$(node -e "const d=JSON.parse(require('fs').readFileSync('$SLICE_HASH_STORE','utf8')); console.log(Object.keys(d.hashes||{}).length);" 2>&1)
+  SLICE_COUNT=$(cd "$REPO_ROOT" && node -e "const d=JSON.parse(require('fs').readFileSync('tools/data/slice-content-hashes.json','utf8')); console.log(Object.keys(d.hashes||{}).length);" 2>&1)
   if [ "$SLICE_COUNT" -ge 1 ]; then
     pass "TEST F: slice-content-hashes.json exists ($SLICE_COUNT monolith hashes)"
   else

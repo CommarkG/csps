@@ -152,3 +152,18 @@ entries:
     domain: governance
     wisdom_class: insight
     note: "PARKED: design-gap cluster. Will fold into one-tab design as open items at next Opus planning pass."
+
+  # ─── META FINDING: block-test portability standard ──────────────────────────
+  - id: harvest-S088-block-test-portability
+    trigger: internal-review
+    invocation_ref: "SROF-S088-012 director-verify — CS7 block-test MSYS path bug"
+    status: closed
+    question: "Block-tests passing on builder (Git Bash MSYS path translation) but failing on director (Windows node.exe) — is this a structural gap?"
+    conclusion: "YES — recurring class. CS7 block-test used MSYS absolute paths in 'node -e readFileSync(...)'. MSYS translates /c/Users/... → C:\Users\... in bash but Windows node.exe does not → ENOENT. Same pattern (CRLF in agent names) bit us earlier. Root cause: block-tests were not tested with --no-MSYS-translation (i.e. director's environment). Fix: all 'node -e readFileSync(...)' in bash block-tests MUST use (a) relative paths from process.cwd OR (b) cd ROOT first. Portability rule: never pass MSYS-absolute paths ($VARIABLE with /c/...) into inline node -e scripts."
+    provenance: "Opus director S088 — independent reproduction of cs7-block-test revealed ENOENT on HASH_STORE path (line 100, 113)"
+    disposition: ratify-candidate
+    ratified_standards_ref: null
+    spine: VALD
+    domain: governance
+    wisdom_class: pattern
+    note: "ROUTE: ratify-candidate → ratified-standards (block-test portability standard). Convention note added to docs/plan/pillar-0-governance/BLOCK-TEST-CONVENTION.md. Fix committed S088."

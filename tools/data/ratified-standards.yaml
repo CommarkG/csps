@@ -362,3 +362,28 @@ standards:
       validator: validate-green-receipt.mjs
       cadence: per-session
       audit_runner_key: green_receipt
+
+  - id: block-test-portability-standard
+    name: Block-Test Environment Portability Standard
+    ratified_session: S088
+    ratified_by: "harvest-S088-block-test-portability (Opus director S088 independent reproduce)"
+    ratified_at: "2026-06-24"
+    description: >
+      Block-tests MUST be environment-portable — builder-pass/director-fail is a test defect,
+      not a platform defect. Two anti-patterns are banned: (1) MSYS absolute paths in
+      'node -e readFileSync($VAR)' — Windows node does not translate /c/Users/... paths;
+      fix: cd "$REPO_ROOT" + relative path. (2) /dev/stdin in node -e — doesn't exist on Windows.
+      All .sh block-tests must have LF line endings (enforced by .gitattributes).
+      Convention doc: docs/plan/pillar-0-governance/BLOCK-TEST-CONVENTION.md.
+    propagation_status: active
+    creation_standard:
+      type: convention-doc
+      path: docs/plan/pillar-0-governance/BLOCK-TEST-CONVENTION.md
+      requirement: >
+        Every new behavioral block-test MUST follow RULE 2 (environment portability) from
+        BLOCK-TEST-CONVENTION.md. Reviewer checklist: "Would this node -e call work if
+        MSYS did NOT translate the path?" Portable-relative or cd-first patterns only.
+    audit_entry:
+      validator: validate-communication-protocol.mjs
+      cadence: per-session
+      audit_runner_key: communication-protocol

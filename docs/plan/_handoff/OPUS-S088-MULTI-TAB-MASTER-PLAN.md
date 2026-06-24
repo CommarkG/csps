@@ -89,3 +89,30 @@ Haiku-audit-battery + Daily/Weekly/Monthly improvement loop (needs PARK-039 + db
 **PE SEQUENCING RECOMMENDATION (the optimized path):**
 `db-push (T1) → governance-debt+hygiene session (T2, one focused pass) → Phase-2 build (T3) → gated/later (T4)`.
 Debt-first: do NOT start T3 before T2 (20+ sessions of floater debt + over-budget memory degrade every later decision). Confirm PARK-039 (Haiku) before scheduling the loop pilot. Multi-tenant + S049/S050 stay deferred to Phase 4 by ratified decision.
+
+## ENTERPRISE OPTIMIZATIONS (S088 close) — quality-first, token-second
+**Organizing principle (RF massively activated):** every review-finding source — Haiku scan, external council,
+floater, audit, code-review — is **SCAN/CLAIM-only → independently VERIFIED → routed into ONE act-forcing RF loop
+(findings-actuator) → IZFC-sealed.** No cheap/external output enters platform truth unverified. This is the
+permanent fix for the "the scout/tool said so" class (Haiku scored 57% fact-accuracy this session).
+
+1. **HAIKU SCAN-ONLY CONTRACT (ratify-candidate, engrave as B_HAIKU_SCAN_ONLY).** Haiku does FACT-SCANS only —
+   `git status --short | wc -l`, `grep -c` overdue, `jq .validators_run` — and NEVER recommendations, priorities,
+   or "issue"/evaluative framing. Output is a CLAIM: the calling tab (Sonnet) spot-checks (incl. NOT-FOUND, CS9)
+   and verifies HEAD SHA before any fact enters Opus context. Cadence = state-triggered / pre-new-tab brief, not
+   "constant." The pre-session-brief cascade (Haiku→Sonnet→Opus) is sound ONLY because each level verifies before
+   passing up. (Refines PARK-S088-HAIKU-AUDIT-BATTERY with Sonnet's tighter SCAN-ONLY design.)
+2. **CODE-REVIEW CI GATES — Phase 1 = $0 (ratify-candidate, T2 session).** GitHub Actions PR gates:
+   `pnpm lint --max-warnings 0` + `pnpm type-check` required-to-merge + branch protection + CODEOWNERS (15-min add).
+   Scale-ready, zero cost. PARK SonarQube ($200/mo) until external contributors join; REJECT Reviewpad (routes to
+   human specialists CSPS doesn't have). Wrong-scale tools are not "enterprise" — fit-to-scale is.
+3. **AUTO-COMPACT — GATED (park/design, do NOT cron raw).** Haiku proposed a weekly /schedule cron to compact+
+   vault. Adopt the intent but GATE it: auto-compact may run ONLY when green + committed + no active agent
+   (B_CONTEXT_CHECKPOINT_GATE); never on red/uncommitted state. Wire as the Daily/Weekly/Monthly improvement loop,
+   not a blind Sunday cron. (Folds into PARK-S088-HAIKU-AUDIT-BATTERY + improvement-loop.)
+4. **IZFC AT EVERY GATE (quality-first).** Each build unit: IZFC sweep (fresh angle, name what's found) → two-party
+   seal → only then advance. Token-efficiency is the SECOND priority to quality+stability — model-tier routing
+   (Opus=judgment, Sonnet=build, Haiku=scan-only) IS the efficiency, never at the cost of verification.
+
+**Floater debt UPDATE:** Sonnet resolved 23/26 (16 SUPERSEDED + 5 RATIFIED + 2 fixes). 3 SIA docs remain
+(Governor decision). `validate-floater-escalation` (act-forcing) still to build so this can't re-accumulate.

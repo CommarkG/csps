@@ -224,7 +224,7 @@ entries:
     closure_owner: group:finky
     closure_decision: "Ratify or SUPERSEDE — core-spine content now in SPINE-PILLAR-MAP.md + registry"
     closure_by: "S074"
-    escalation_state: overdue
+    escalation_state: terminal
     terminal_state: SUPERSEDED
     terminal_reason: "Superseded by current spine registry + SPINE-PILLAR-MAP.md + behavioral-contracts.md"
     terminal_session: S088
@@ -306,7 +306,7 @@ entries:
     closure_owner: group:finky
     closure_decision: "Ratify or SUPERSEDE — profiling now in communication-schema.yaml + AI behavior spine"
     closure_by: "S074"
-    escalation_state: overdue
+    escalation_state: terminal
     terminal_state: SUPERSEDED
     terminal_reason: "Profiling now in communication-schema.yaml + AI behavior spine (D1-D13 inner-defaults)"
     terminal_session: S088

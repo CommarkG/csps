@@ -56,3 +56,36 @@ Highest-k first: imp_TRANSIENT_STOP_HOOK_K3 (k3, in A1) · gap_SESSION_INJECTION
 - **Tab 1 (this — Opus):** ratify, counter-sign SEALs, plan/decompose, DNA-Guardian design.
 - **Tab 2 (Sonnet):** Track A in batch order (A1→A4), then Track B deep build.
 - **Haiku:** spawned bounded by whichever tab needs a scan; output always verified.
+
+## PE-RANKED EXECUTION QUEUE (S088 close → Phase 2) — optimized plan
+> Built on the verified S088-close state (Track A SEALED; HEAD post-f1a57101; all enhancements parked).
+> PE = urgency × impact ÷ effort (each 1–5; higher PE = do first). Absorbs Sonnet's final close-summary delta.
+
+**TIER 1 — IMMEDIATE / GATING**
+| Unit | u | i | e | PE | Owner |
+|---|---|---|---|---|---|
+| **PARK-009 db-push** (rotate pw → `?pgbouncer=true` → `prisma db push` → verify) — 2026-06-27 | 5 | 5 | 1 | **25** | Governor-only |
+*Unblocks everything in Phase 2. Nothing else proceeds in parallel with higher value.*
+
+**TIER 2 — GOVERNANCE-DEBT + HYGIENE (one focused session, post-db — the "accumulate-don't-resolve" cleanup cluster)**
+| Unit | u | i | e | PE | Owner |
+|---|---|---|---|---|---|
+| Debris gitignore `*-last-run.json` (tree_hash-excluded already → safe) | 3 | 3 | 1 | **9** | Sonnet |
+| `validate-floater-escalation.mjs` (overdue floater BLOCKS — mirrors prevention-coverage k≥3) | 4 | 4 | 2 | **8** | Sonnet |
+| 26-floater batch terminal decisions (RATIFY/SUPERSEDE/ARCHIVE; ~30 min, likely most SUPERSEDED) | 4 | 4 | 2 | **8** | Governor |
+| MEMORY.md cluster-consolidation (over-budget; before/after counts, no DNA loss) | 3 | 4 | 3 | **4** | Opus (fresh budget) |
+*These four are the SAME class (defer-without-resolution) → run them as ONE session. Highest ROI: low-med effort, clears 20+ sessions of debt + restores recall.*
+
+**TIER 3 — PHASE 2 BUILD (post-db)**
+| Unit | u | i | e | PE | Owner |
+|---|---|---|---|---|---|
+| Journey orchestrator PARK-043 (B5/B6) — the Phase-2 headline | 4 | 5 | 4 | **5** | Sonnet |
+| One-tab loop-engine PILOT (one gate): loop-contract (ERC-003) + per-cycle WAL (ERC-004) + deterministic orchestrator (ERC-007) | 3 | 5 | 4 | **3.75** | Opus seed → Sonnet |
+*Loop pilot is GATED on PARK-039 (Haiku activation) — confirm Haiku spawns reliably FIRST, else it degrades to Sonnet-only (cost collapse, per council).*
+
+**TIER 4 — GATED / LATER**
+Haiku-audit-battery + Daily/Weekly/Monthly improvement loop (needs PARK-039 + db) · council-failed-to-ask 5-gap cluster (fold into loop-engine design) · multi-tenant isolation (Phase 4 — also triggers S049/S050 cutover) · explorations ClarityFlow/WordPress/social-MCP/CSP-UX-audit (trigger-gated) · UX-version-history.
+
+**PE SEQUENCING RECOMMENDATION (the optimized path):**
+`db-push (T1) → governance-debt+hygiene session (T2, one focused pass) → Phase-2 build (T3) → gated/later (T4)`.
+Debt-first: do NOT start T3 before T2 (20+ sessions of floater debt + over-budget memory degrade every later decision). Confirm PARK-039 (Haiku) before scheduling the loop pilot. Multi-tenant + S049/S050 stay deferred to Phase 4 by ratified decision.

@@ -36,7 +36,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '../..');
 const REGISTER = join(ROOT, 'tools/data/floating-artifacts-register.yaml');
-const SESSION_STATE = join(ROOT, 'tools/data/session-state.json');
+const SESSION_STATE = join(ROOT, 'tools/session-state.json');
 const LAST_RUN = join(ROOT, 'tools/data/validate-floater-escalation-last-run.json');
 
 const SESSION_BLOCK_THRESHOLD = 3; // sessions overdue before BLOCKING (k≥3 parallel)

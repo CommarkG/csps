@@ -12,9 +12,9 @@ core_spine: ARCH
 schema_anchor: external_integrations
 diataxis_type: reference
 session: S028
-last_verified: 2026-05-13
-next_review: 2026-08-13
-content_hash: S028-gate3-supabase
+last_verified: 2026-06-25
+next_review: 2026-09-25
+content_hash: S089-rotation-runbook
 breaking_changes: https://supabase.com/changelog
 credential_location: Vercel env vars — DATABASE_URL, DIRECT_URL
 tags:
@@ -112,6 +112,48 @@ Supabase Dashboard (supabase.com/dashboard)
 - [ ] schema.zmodel has no custom `output` in generator block
 - [ ] Migrations run via DIRECT_URL: `prisma migrate deploy`
 
+## Credential Rotation Runbook (S089 / 2026-06-25 — live-verified on csps-playground)
+
+> **READ THE PITFALLS BELOW BEFORE STARTING.** This exact sequence was verified
+> end-to-end 2026-06-25 (PARK-S084-009). The 6 pitfalls cost ~6 redeploy cycles —
+> they are the *conclusions* this runbook exists to surface.
+
+### Sequence (do in one sitting — the live site is DOWN between reset and redeploy)
+1. **Confirm blast radius FIRST.** Find every place the password lives: each Vercel project's env vars (`DATABASE_URL`/`DIRECT_URL`) **and** local `.env.local`. Watch for **duplicate Vercel projects** — only the one serving the live domain matters; a duplicate with no env vars is a dead clone (delete candidate).
+2. **Supabase** → Settings → Database → Database password → **Reset** → use **auto-generate** (URL-safe). Copy it **once** (shown once only; **never paste it into a chat/transcript** — that is the original leak vector, PARK-S084-009).
+3. **Supabase** → Connect → **ORMs/Prisma** tab → copy `DATABASE_URL` (6543) + `DIRECT_URL` (5432); substitute the new password.
+4. **Vercel** (the LIVE project) → Settings → Environment Variables → **Edit** `DATABASE_URL` + `DIRECT_URL` → paste the **bare value only**.
+5. **`.env.local`** → update both (quotes OK *here*, never in Vercel).
+6. **Redeploy** (Deployments → ⋯ → Redeploy, uncheck build cache). Wait for **Ready**.
+7. **Verify** — `GET /api/db-health` → expect `{status:ok, db:connected}`. Do NOT trust "Ready" alone.
+
+### PITFALLS — the conclusions (read FIRST)
+| # | Trap | Symptom | Fix |
+|---|---|---|---|
+| 1 | Vercel value includes the **key prefix** (`DATABASE_URL = …`) | Prisma: *"URL must start with `postgresql://`"* (fails ~20ms) | Vercel value = bare connection string; first char must be `p` |
+| 2 | **Quotes** wrap the value in Vercel | same protocol error | NO quotes in the Vercel field (quotes belong only in `.env.local`) |
+| 3 | **Placeholder `PASSWORD`** left in the value | *"credentials … not valid"* (auth) after a ~1.5s round-trip | real password goes between `:` and `@` |
+| 4 | Password has **special chars**, unencoded | auth fail / URL parse error | use an **auto-generated** (URL-safe) password — nothing to encode |
+| 5 | **Forgot to redeploy** after an env change | old (dead) password stays live | env changes require a redeploy to take effect |
+| 6 | Edited the **wrong/duplicate** Vercel project | fix has no effect | confirm the project serves the live domain; delete dead duplicates |
+
+### `db-health` 503 — read the BODY, not just the status
+| error body contains | meaning | action |
+|---|---|---|
+| `must start with the protocol postgresql://` | value malformed (pitfalls 1/2) | clean the Vercel value |
+| `credentials … are not valid` (after ~1.5–2s) | format OK, password wrong (pitfalls 3/4) | reset + re-paste the real password |
+| `does not exist` / `P2021` / `relation` | **connected** — table/schema just missing | push schema via `DIRECT_URL` |
+| `Can't reach` / `timeout` | DB paused (usage limit) | restore the project first |
+
+### Latency tells you the failure layer
+- **~20ms** fail → URL never validated (format error). **~1.5–2s** fail → reached the server, auth rejected. **Success** → real query latency (e.g. ~1.5s cold).
+
+### ⚠️ R4 tension — `.env.local` (Governor to reconcile)
+R4 above says "no `.env.local`; credentials only in Vercel." In practice `.env.local` **is** used for
+local dev and local `prisma db push`. The real rule (PL6 / PARK-S084-009): `.env.local` may exist, but
+**no hook / auto-context-loader may READ its contents** — reading it was the original leak vector.
+*Flag: R4's wording contradicts practice; reconcile in a future review.*
+
 ## Screenshot Archive
 
 Screenshots saved at: `docs/plan/pillar-0-governance/external-integrations/screenshots/supabase/`
@@ -122,3 +164,4 @@ Next review: 2026-08-13
 | Date | Session | Finding |
 |---|---|---|
 | 2026-05-13 | S028 | Gate 3 verified. R1-R8 documented from production deployment. |
+| 2026-06-25 | S089 | Credential Rotation Runbook added (live-verified, PARK-S084-009). 6 pitfalls + db-health 503 interpretation + latency-layer diagnosis. Flagged R4 `.env.local` tension. |

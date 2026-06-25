@@ -116,16 +116,29 @@ Registration-staleness-without-verification is the EXTERNAL-INTEGRATION-REGISTRA
   fi
 fi
 
-# ADVISORY: all other integration file edits (S067 spec)
-exit 0
-
+# Non-integration files: nothing to do.
+# (BUGFIX S089: prior version had an unconditional `exit 0` here that made the
+#  IS_INTEGRATION advisory below dead code — it never fired. Now reachable.)
 [ "$IS_INTEGRATION" = false ] && exit 0
 
-# ADVISORY: emit warning
+# Integration files — surface the canonical doc + CONCLUSIONS to present BEFORE
+# re-running a known process (S089 Governor directive: "present the conclusions
+# each time we're about to do the same process").
 CANONICAL_DOCS="docs/plan/pillar-0-governance/external-integrations/"
-echo "[C5-external-integration-gate] ADVISORY: Editing integration file: $(basename "$FILE_PATH")" >&2
-echo "[C5-external-integration-gate] Before modifying integration config, read canonical doc at: ${CANONICAL_DOCS}" >&2
-echo "[C5-external-integration-gate] Key docs: vercel.md (10 rules) / supabase.md / clerk.md / resend.md" >&2
+echo "[C5-external-integration-gate] ADVISORY: integration file: $(basename "$FILE_PATH")" >&2
+echo "[C5-external-integration-gate] Read canonical doc FIRST: ${CANONICAL_DOCS} (vercel.md / supabase.md / clerk.md)" >&2
 echo "[C5-external-integration-gate] Prevents C5 RE_DERIVATION_KNOWN — re-deriving known integration decisions." >&2
-echo "[C5-external-integration-gate] ADVISORY S067 — proceeding (BLOCKING from S068 after behavioral validation)" >&2
+
+# Credential / DB-URL context → PRESENT the Credential Rotation Runbook conclusions
+# (supabase.md → Credential Rotation Runbook; source PARK-S084-009, S089).
+if echo "$FILE_PATH_NORM" | grep -qiE "\.env|supabase|database_url|direct_url"; then
+  echo "[C5] >>> CREDENTIAL ROTATION — CONCLUSIONS (supabase.md → Credential Rotation Runbook):" >&2
+  echo "[C5]   1. Vercel value is BARE — no quotes, no KEY= prefix (else Prisma: 'must start with postgresql://')." >&2
+  echo "[C5]   2. Real password between : and @ — never the literal word PASSWORD; use an AUTO-GENERATED (URL-safe) one." >&2
+  echo "[C5]   3. Env change needs a REDEPLOY; verify /api/db-health = {status:ok}, NOT the 'Ready' badge alone." >&2
+  echo "[C5]   4. One live Vercel project (delete dead duplicates). NEVER paste a live secret into chat/transcript." >&2
+  echo "[C5]   5. db-health 503: read the BODY — '~20ms+postgresql://'=format, '~1.5s+credentials'=password, 'P2021'=schema." >&2
+fi
+
+exit 0
 

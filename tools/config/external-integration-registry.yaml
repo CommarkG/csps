@@ -30,9 +30,9 @@ entries:
       include_outside_root: true
     health_check_command: node tools/scripts/vercel-health-check.mjs 2>/dev/null
     verify_mechanically: node tools/scripts/vercel-health-check.mjs 2>/dev/null && echo ok
-    last_verified: '2026-06-01'
-    verified_at: S075
-    note: 'HARDWIRE-006 (S075): csps-budget-planner project removed (root_dir missing). csps-playground READY.'
+    last_verified: '2026-06-25'
+    verified_at: S089
+    note: 'HARDWIRE-006 (S075): csps-budget-planner project removed (root_dir missing). csps-playground READY. S089: env rotation verified live; DUPLICATE project csps-playground-p2i2 (no env vars, dead) = delete candidate. Bare-value env rule + redeploy-to-apply: vercel.md R11-R13.'
   - service: supabase
     type: database
     status: active
@@ -45,9 +45,9 @@ entries:
       schema: public
     health_check_command: 'echo ''DB health check requires live connection — run: npx prisma db execute --stdin <<< SELECT 1'''
     verify_mechanically: node -e "require('dotenv').config({path:'.env.local'});console.log('DIRECT_URL set:',!!process.env.DIRECT_URL);"
-    last_verified: '2026-06-01'
-    verified_at: S075
-    note: pgbouncer=true required on port 6543 or 42P05 error. DIRECT_URL (port 5432) required for migrations.
+    last_verified: '2026-06-25'
+    verified_at: S089
+    note: 'pgbouncer=true required on port 6543 or 42P05 error. DIRECT_URL (port 5432) required for migrations. S089 (PARK-S084-009): password rotated + leak vector closed; live db-health=status:ok db:connected. Rotation runbook + 6 pitfalls in supabase.md.'
     weekly_audit_skip: session-contextual — DB connectivity check requires live connection
   - service: clerk
     type: auth

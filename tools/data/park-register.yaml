@@ -456,7 +456,8 @@ entries:
     disposition_session: S086
     content: "P0 SECURITY — DB password surfaced into a transcript (prior session) via a hook reading .env.local. Rotation scheduled cloud-agent 2026-06-17 but OPEN. PL6 structural fix: NO hook/auto-context-loader may READ .env files; only Sonnet on explicit Governor direction with a LEAK-WARNING."
     retrieve_when: "DEFERRED 1 WEEK by Governor 2026-06-20 → revisit 2026-06-27. Then rotate password + db push the B2 schema. Exposure is in Governor's own transcript (dev/playground DB), so a 1-week defer is Governor-accepted risk. B3 validators do NOT need the db push and proceed now; only the B2 schema migration waits."
-    status: DEFERRED-to-2026-06-27
+    status: "PARTIAL-DONE-2026-06-25 — password ROTATED (auto-generated) + leak vector confirmed closed (no hook reads .env contents); Vercel csps-playground DATABASE_URL/DIRECT_URL + local .env.local updated; redeployed; verified live db-health = status:ok db:connected via independent WebFetch. REMAINING: confirm/push full B2 schema (journeyStage table exists, count=0 — DIRECT_URL/migrations path not yet exercised) before unblocking PARK-043."
+    rotation_evidence_2026_06_25: "GET https://csps-playground.vercel.app/api/db-health → {status:ok, db:connected, journey_stage_count:0, env_check:{has_database_url:true,has_direct_url:true,vercel:true}}. Earlier failures isolated+fixed: (1) URL had key-prefix+placeholder, (2) password mismatch — fixed via fresh auto-generated reset. csps-playground-p2i2 = dead duplicate (no env vars) → delete candidate. Supabase EXCEEDING USAGE LIMITS warning open (Vercel usage healthy)."
     never_drop: true
     decision_back_ref: "S084 deploy harvest Issue 7 + PL6; leaked-secrets-rotation discipline"
     context_preserved: >

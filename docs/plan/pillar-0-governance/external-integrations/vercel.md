@@ -137,6 +137,22 @@ that page. Requires:
 - `src/app/sign-in/[[...sign-in]]/page.tsx` with `<SignIn />`
 - `src/app/sign-up/[[...sign-up]]/page.tsx` with `<SignUp />`
 
+### R11: Env-var VALUES are bare — no quotes, no key prefix (S089)
+In the Vercel Environment Variables field, paste **only the value** — never `KEY=…`, never wrapping
+quotes. `DATABASE_URL="postgresql://…"` or `DATABASE_URL = postgresql://…` stored as a *value* makes
+Prisma throw *"URL must start with `postgresql://`"*. Quotes belong in `.env.local` (dotenv strips them),
+**never** in Vercel. The value's first character must be the start of the actual value.
+
+### R12: Env-var changes require a REDEPLOY; verify at runtime (S089)
+Editing an env var does **not** affect the running deployment — serverless functions read env at deploy
+time. After any env change: **Redeploy** (uncheck build cache) → then verify the live endpoint
+(`/api/db-health`), not just the "Ready" badge. "Ready" means the build compiled, not that the DB connects.
+
+### R13: One live project per app — delete duplicate Vercel projects (S089)
+Duplicate projects from the same repo (e.g. `csps-playground` + `csps-playground-p2i2`) split attention
+and create stray credential surfaces. Keep the one serving the canonical domain; delete dead clones
+(a clone with **no env vars** can't even connect — it's dead). New-over-active / parallel-creation pattern.
+
 ## Required Environment Variables (per app in Vercel dashboard)
 
 | Variable | Where to get |
@@ -211,3 +227,4 @@ Next review: 2026-08-13 (3 months)
 | Date | Session | Finding |
 |---|---|---|
 | 2026-05-13 | S028 | Gate 3 complete. All R1-R10 rules discovered. |
+| 2026-06-25 | S089 | R11 (bare env values) + R12 (redeploy + runtime-verify env changes) + R13 (one live project, delete duplicates). From live credential rotation, PARK-S084-009. See supabase.md Rotation Runbook. |

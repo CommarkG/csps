@@ -1723,3 +1723,31 @@ entries:
     source_session: S088
     created_session: S088
     closed_session: null
+
+  - id: "PARK-S088-SYSTEM-HEALTH-TOOL"
+    lane: obligation
+    disposition_text: "parked | owner: Opus(design)+Sonnet(build) | trigger: with the Daily/Weekly/Monthly improvement loop + PARK-039 (Haiku spawn). Productizes PARK-S088-HAIKU-AUDIT-BATTERY into a cheap recurring multi-persona health tool."
+    disposition_session: S088
+    content: >
+      Governor S088 idea: a CHEAP SYSTEM-HEALTH TOOL — run Haiku scans through VARIOUS PERSONAS and reach RZF on
+      each. OPUS DESIGN (Scope-3, resolves the persona-vs-scan-only tension): PERSONAS define WHICH facts to scan
+      (a fixed verifiable-metric checklist per lens), NOT the evaluation. Lenses: VALD (validator count / blocking
+      / last-run staleness), ARCH (orphans / schema-anchor gaps / route-manifest), GVRN (overdue floaters /
+      unacted findings k≥3), ECON (token-budget / context size), SEC (secret-scan / permission drift). HAIKU runs
+      the fact-scans ONLY (B_HAIKU_SCAN_ONLY — raw counts + exact command + HEAD, no judgment). DETERMINISTIC
+      thresholds (a validator, not Haiku) evaluate health per persona; RZF-PER-PERSONA = a fresh-angle re-scan of
+      that lens finds nothing new (all metrics within healthy thresholds). Unhealthy metrics route into the
+      act-forcing RF loop (findings-actuator). Result: cheap (Haiku scans) + reliable (deterministic eval, never
+      Haiku judgment) + multi-lens + RZF-iterated. This is the productized, recurring form of the audit battery.
+    retrieve_when: "When building the Daily/Weekly/Monthly improvement loop, after PARK-039 (Haiku spawn) confirmed. Design the per-persona metric checklists + threshold validator + RZF-per-persona loop + RF routing then."
+    never_drop: true
+    context_preserved: >
+      Governor S088: 'enhance Haiku usage using RZF, expand via various personas, reach RZF on each — a cheap
+      system health tool.' Resolves the tension (personas imply evaluation, but Haiku must be scan-only) by
+      splitting: personas = fixed scan-checklists; evaluation = deterministic thresholds; Haiku = facts only.
+      Connects: PARK-S088-HAIKU-AUDIT-BATTERY (this is its productized form), B_HAIKU_SCAN_ONLY, findings-actuator
+      (RF loop), the improvement loop, CS9 (verify scout output), the 5 council spines as persona lenses.
+    decision_back_ref: "Governor S088 'cheap system health tool via Haiku + personas + RZF-per-persona'; Opus Scope-3: personas=scan-checklists, eval=deterministic-thresholds, Haiku=facts-only"
+    source_session: S088
+    created_session: S088
+    closed_session: null

@@ -154,22 +154,22 @@ These govern every build decision in Phase 2:
 
 ---
 
-## ZONE D — ALIGNMENT QUESTIONS (S089 opener must address)
+## ALIGNMENT QUESTIONS — ZONE D (S089 opener must address)
 
-1. **PARK-009 status**: Has the Supabase password rotation been done? If YES, Phase-2 is unblocked.
+**Q1. PARK-009 status**: Has the Supabase password rotation been done? If YES, Phase-2 is unblocked.
    If NO, S089 = T2 only (hygiene pass — no Phase-2 build).
 
-2. **MEMORY.md overflow**: `MEMORY.md` is 25.2KB (over 24.4KB limit) — entries are being truncated.
+**Q2. MEMORY.md overflow**: `MEMORY.md` is 25.2KB (over 24.4KB limit) — entries are being truncated.
    Opus S089: consolidate the index (1 line / ≤200 chars per entry, move detail to topic files) before context
    degrades further. This is Opus-tier work (fresh budget required).
 
-3. **PARK-039 / Haiku spawn status**: Is Haiku spawnable reliably in this environment yet?
+**Q3. PARK-039 / Haiku spawn status**: Is Haiku spawnable reliably in this environment yet?
    YES → loop-engine pilot can use Haiku. NO → Sonnet-only fallback for ERC-003/004/007 pilot.
    Decision affects loop-engine scheduling in T3.
 
 ---
 
-## ZONE E — S089 STARTUP BLOCK
+## SONNET STARTUP BLOCK — ZONE E (S089)
 
 ```
 ═══════════════════════════════════════════════════════════════════

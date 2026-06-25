@@ -194,8 +194,10 @@ entries:
     closure_owner: group:finky
     closure_decision: "Governor ratifies as current master context OR supersedes with updated version"
     closure_by: "S074"
-    escalation_state: overdue
-    terminal_state: null
+    escalation_state: terminal
+    terminal_state: SUPERSEDED
+    terminal_reason: "S050 master-context absorbed into CSPS-DNA-MANIFESTO + AI-COUNCIL-COMMUNICATION-SPINE + session-state.json; validator count (140→247+), relay model, governance overview all current in platform docs"
+    terminal_session: S088
 
   - id: af-unknown-consultation-prompt
     artifact_path: docs/SIA/CONSULTATION-PROMPT.md
@@ -204,8 +206,10 @@ entries:
     closure_owner: group:finky
     closure_decision: "Governor reviews: ratify if active, mark SUPERSEDED if replaced"
     closure_by: "S074"
-    escalation_state: overdue
-    terminal_state: null
+    escalation_state: terminal
+    terminal_state: SUPERSEDED
+    terminal_reason: "One-time S050 external AI consultation briefing for SIA review; replaced by threshold intake + external-research pipeline + council harvest (validate-council-harvest.mjs)"
+    terminal_session: S088
 
   - id: af-S053-frontend-methodology
     artifact_path: docs/SIA/FRONTEND-METHODOLOGY.md
@@ -214,8 +218,10 @@ entries:
     closure_owner: group:finky
     closure_decision: "Governor ratifies if still relevant; SUPERSEDE if replaced by newer frontend approach"
     closure_by: "S074"
-    escalation_state: overdue
-    terminal_state: null
+    escalation_state: terminal
+    terminal_state: SUPERSEDED
+    terminal_reason: "Frontend pageDNA + 3-tier architecture absorbed into ARCH spine + validate-ux-audit.mjs pageDNA checks; timing references (S054/S055) are 35+ sessions stale"
+    terminal_session: S088
 
   - id: af-S050-meta-01-core-spines
     artifact_path: docs/SIA/META-01-CORE-SPINES.md

@@ -82,3 +82,10 @@ libs/policies/generated/
 # S086: preview temp files (hook artifact, not governed content)
 .csps/_preview_tmp.txt
 .csps/_preview_*.txt
+
+# === CSPS transient run data (S088 debris hygiene) ===
+# These files are regenerated on every verify run — not governance artifacts.
+# KEEP: green-receipt.json (B_DETERMINISTIC_GATE), validator-content-hashes.json (CS7),
+#        slice-content-hashes.json (CS7), gap-recurrence-register.yaml, improvement-register.yaml
+tools/data/*-last-run.json
+tools/verify-last-run.md

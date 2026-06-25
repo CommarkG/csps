@@ -1,0 +1,127 @@
+name: CI — PR Gate (TypeScript + CSPS Validators)
+
+# Phase-1 CI gate (S088 Haiku advisory — enterprise optimizations)
+# Runs on every PR to main. Required-to-merge (configure in GitHub branch protection).
+# Catches: TypeScript errors + CSPS structural violations that bypass pre-commit.
+# Cost: $0 (GitHub Actions free tier)
+#
+# WHAT THIS CATCHES THAT PRE-COMMIT DOESN'T:
+#   - PRs opened from machines without pre-commit hooks installed
+#   - Direct branch pushes bypassing local hooks
+#   - Merge commits that introduce regressions
+#   - External contributor PRs (future: when team grows)
+#
+# RATIFIED STANDARD: ci-pr-gate (ratified-standards.yaml)
+# NEXT PHASE: SonarQube when external contributors join (parked until then)
+
+on:
+  pull_request:
+    branches: [main]
+  # Also run on pushes to feature branches (advisory — not required-to-merge)
+  push:
+    branches-ignore: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typecheck:
+    name: TypeScript Type Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-root-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-root-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript type check (tsc --noEmit)
+        run: pnpm typecheck
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## TypeScript Type Check" >> $GITHUB_STEP_SUMMARY
+          echo "Ran: \`pnpm typecheck\` (tsc --noEmit)" >> $GITHUB_STEP_SUMMARY
+
+  csps-validators:
+    name: CSPS Structural Validators
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-root-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-root-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run CSPS STANDARD validators
+        run: node tools/verify.mjs --skip-install --no-cache
+        env:
+          # CI environment — no live DB, no Clerk, validators handle gracefully
+          CI: true
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## CSPS Structural Validators" >> $GITHUB_STEP_SUMMARY
+          echo "Ran: \`node tools/verify.mjs --skip-install --no-cache\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Covers all STANDARD-tier validators: governance, AI contracts, boundary," >> $GITHUB_STEP_SUMMARY
+          echo "floater escalation, context-bundle, seal-packet, UX-DNA, and more." >> $GITHUB_STEP_SUMMARY

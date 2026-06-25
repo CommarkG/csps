@@ -1,0 +1,26 @@
+# CODEOWNERS — Auto-request reviewers for protected paths
+# Governor (@yariv-fink or @CommarkG) is required reviewer for all governance artifacts.
+# Phase-1: single developer, so this mainly serves as documentation + CI gate audit trail.
+# Phase-2 (when team grows): add individual path owners per specialty.
+
+# === All files — Governor owns everything ===
+* @CommarkG
+
+# === Core governance (highest sensitivity — Governor must review ALL changes) ===
+.claude/hooks/             @CommarkG
+.claude/settings.json      @CommarkG
+tools/validators/          @CommarkG
+tools/scripts/             @CommarkG
+schemas/                   @CommarkG
+docs/plan/pillar-0-governance/ @CommarkG
+tools/data/ratified-standards.yaml @CommarkG
+tools/data/session-state.json @CommarkG
+tools/data/green-receipt.json @CommarkG
+
+# === Platform core ===
+packages/                  @CommarkG
+apps/template/             @CommarkG
+libs/                      @CommarkG
+
+# === CI/CD workflows ===
+.github/                   @CommarkG

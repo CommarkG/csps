@@ -126,3 +126,7 @@ exemptions:
   - id: B_COUNCIL_PEER
     reason: "T3 active (ai-collaboration-charter §2.5 + session-open.sh injection). T1 via shared hook (user-prompt-submit-next-step-reminder.sh fires per-turn colleague-layer awareness). Dedicated T1 (post-stop-catch-3scope-gate.sh) + T2 (validate-catch-3scope-coverage.mjs) planned PHASEB (gated on cycle-counter reconciliation). S082 build is concept+engraving grade; mechanical activation is PHASEB."
     target_session: S083
+
+  - id: B_HAIKU_SCAN_ONLY
+    reason: "T4 active (haiku-scout.md agent contract + B_HAIKU_SCAN_ONLY.md §2 verbatim). T3 active (ratified-standards.yaml entry surfaces at session-start via findings-actuator + council harvest). No T1 hook possible: Haiku is invoked via Agent tool, not via file writes or prompt submit. T2 (validate-council-harvest.mjs) blocks unverified Haiku output entering harvest. S088."
+    target_session: S090

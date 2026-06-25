@@ -387,3 +387,51 @@ standards:
       validator: validate-communication-protocol.mjs
       cadence: per-session
       audit_runner_key: communication-protocol
+
+  - id: B_HAIKU_SCAN_ONLY
+    name: Haiku Scout — Scan-Only Behavioral Contract
+    ratified_session: S088
+    ratified_by: "Opus directive S088 — 57% fact-accuracy in free-form mode triggers structural ban"
+    ratified_at: "2026-06-24"
+    description: >
+      Haiku = SCAN mechanism ONLY. Never evaluates, synthesizes, recommends, or reports numbers from memory.
+      Every claim cites: <fact> = <raw value> | cmd: <exact command> | HEAD: <sha>.
+      Prohibitions: no OPTIMAL NEXT STEP, no priority ordering, no auto-compact/cron activation,
+      no NOT-FOUND/0 claims without showing exact pattern + file.
+      57% fact-accuracy in free-form mode is the ratification trigger — that mode is banned permanently.
+    propagation_status: active
+    creation_standard:
+      type: behavioral-contract
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_HAIKU_SCAN_ONLY.md
+      requirement: >
+        Every Haiku invocation in CSPS context MUST start with the §2 contract prompt verbatim
+        (or reference it). Output must be spot-checked by Sonnet before entering Opus relay.
+        CS9 scout-verification applies to ALL Haiku output.
+    audit_entry:
+      validator: validate-context-bundle.mjs
+      cadence: per-session
+      audit_runner_key: context_bundle
+
+  - id: ci-pr-gate
+    name: CI PR Gate (TypeScript + CSPS Validators)
+    ratified_session: S088
+    ratified_by: "Opus directive S088 — Haiku advisory Phase-1 enterprise optimizations; $0 cost"
+    ratified_at: "2026-06-25"
+    description: >
+      GitHub Actions CI gate runs on every PR to main. Required-to-merge (configure in branch protection).
+      Phase-1: pnpm typecheck (tsc --noEmit) + node tools/verify.mjs --skip-install --no-cache.
+      Catches: TS errors + CSPS structural violations that bypass pre-commit (direct branch pushes,
+      machines without hooks, external contributors). CODEOWNERS added for auto-review-request.
+      Phase-2 (when external contributors join): evaluate SonarQube Cloud.
+      Reviewpad/PullApprove rejected — wrong scale for 1-developer AI-builder platform.
+    propagation_status: active
+    creation_standard:
+      type: workflow
+      path: .github/workflows/ci.yml
+      requirement: >
+        PR gate must run both typecheck + csps-validators jobs. Both must pass before merge.
+        Branch protection must list both as required status checks (GitHub UI step — manual).
+    audit_entry:
+      validator: validate-internal-links.mjs
+      cadence: per-session
+      audit_runner_key: internal_links

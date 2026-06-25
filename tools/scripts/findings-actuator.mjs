@@ -5,8 +5,13 @@
  * PROTO-S088-SELF-LEARNING | S088
  * Problem: gap-recurrence-register.yaml + improvement-register.yaml accumulate findings
  *   but NOTHING reads them and converts them to action. Graveyard of insights.
- * Fix: this script reads both registers, identifies unacted high-k findings,
- *   checks if a validator exists in ratified-standards.yaml, surfaces gaps.
+ * Fix: this script reads all finding sources, identifies unacted items, surfaces them.
+ *
+ * RF-EVERYWHERE (S088 Opus directive): Single act-forcing loop for ALL sources:
+ *   1. gap-recurrence-register.yaml (recurring gaps k≥2)
+ *   2. improvement-register.yaml (unpropagated improvements k≥2)
+ *   3. floating-artifacts-register.yaml (overdue floaters — escalation BLOCK is T2 gate)
+ *   4. council-harvest.yaml (disposition:findings-actuator entries not yet closed)
  *
  * TRIGGERED BY:
  *   1. session-open.sh (SEED-C cadence, background) — surfaces at every session start
@@ -18,12 +23,12 @@
  *   - stderr: human-readable summary for session-open injection
  *
  * @csps-id csps.scripts.findings-actuator
- * @csps-version 1.0.0
+ * @csps-version 1.1.0
  * @csps-lifecycle production
  * @csps-lifecycle-state active
  * @csps-tags type:script domain:self-learning audience:ai-agent governance:VALD
  * @csps-dna core_spine: VALD
- * @csps-enforces B_PAGE_COMPLETE gap-recurrence-register improvement-register
+ * @csps-enforces B_PAGE_COMPLETE gap-recurrence-register improvement-register floating-artifacts-register council-harvest
  * @determinism-exempt: new Date() used ONLY for ran_at metadata in output JSON. No clock in decisions.
  */
 
@@ -37,6 +42,8 @@ const ROOT = resolve(__dirname, '../..');
 const GAP_REGISTER     = join(ROOT, 'tools/data/gap-recurrence-register.yaml');
 const IMP_REGISTER     = join(ROOT, 'tools/data/improvement-register.yaml');
 const STANDARDS        = join(ROOT, 'tools/data/ratified-standards.yaml');
+const FLOATER_REGISTER = join(ROOT, 'tools/data/floating-artifacts-register.yaml');
+const HARVEST_REGISTER = join(ROOT, 'tools/data/council-harvest.yaml');
 const LAST_RUN         = join(ROOT, 'tools/data/findings-actuator-last-run.json');
 
 // ─── Simple YAML entry parser ──────────────────────────────────────────────────
@@ -71,11 +78,58 @@ function getRatifiedAuditEntries(raw) {
   return entries;
 }
 
+// ─── Parse overdue floaters from floating-artifacts-register.yaml ─────────────
+function parseOverdueFloaters(raw) {
+  const entries = [];
+  const blocks = raw.split(/\n  - id: /);
+  for (const block of blocks.slice(1)) {
+    const lines = block.split('\n');
+    const id = lines[0].trim();
+    const get = (key) => {
+      const l = lines.find(x => x.trim().startsWith(key + ':'));
+      return l ? l.split(':').slice(1).join(':').trim().replace(/^"(.*)"$/, '$1') : null;
+    };
+    const escalation = get('escalation_state');
+    const terminal = get('terminal_state');
+    if (escalation === 'overdue' && (!terminal || terminal === 'null')) {
+      entries.push({
+        id, artifact_path: get('artifact_path'), closure_by: get('closure_by'),
+      });
+    }
+  }
+  return entries;
+}
+
+// ─── Parse unrouted council harvest entries ────────────────────────────────────
+// Surfaces harvest entries with disposition:findings-actuator that are NOT yet closed.
+// "Closed" = status:closed → routing obligation fulfilled.
+function parseUnroutedHarvest(raw) {
+  const entries = [];
+  const blocks = raw.split(/\n  - id: /);
+  for (const block of blocks.slice(1)) {
+    const lines = block.split('\n');
+    const id = lines[0].trim();
+    const get = (key) => {
+      const l = lines.find(x => x.trim().startsWith(key + ':'));
+      return l ? l.split(':').slice(1).join(':').trim().replace(/^"(.*)"$/, '$1') : null;
+    };
+    const disposition = get('disposition');
+    const status = get('status');
+    const question = (block.match(/\n    question:\s*"?([^"\n]{0,100})/) || [])[1]?.trim() || '';
+    if (disposition === 'findings-actuator' && status !== 'closed') {
+      entries.push({ id, status, question });
+    }
+  }
+  return entries;
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 const result = {
   ran_at: new Date().toISOString(),
   unacted_high_k: [],    // k>=2, not resolved, no matching validator
   unacted_improvement: [],  // status open/cec_run not complete, k>=2
+  unacted_floaters: [],    // overdue floaters with terminal_state:null (RF-everywhere)
+  unrouted_harvest: [],    // council-harvest disposition:findings-actuator not yet closed
   acted_this_session: [], // items with fix_commit or propagated_to
   total_gap_entries: 0,
   total_imp_entries: 0,
@@ -139,12 +193,32 @@ if (existsSync(IMP_REGISTER)) {
   }
 }
 
+// ─── Source 3: floating-artifacts-register.yaml (RF-everywhere) ───────────────
+if (existsSync(FLOATER_REGISTER)) {
+  const raw = readFileSync(FLOATER_REGISTER, 'utf8');
+  result.unacted_floaters = parseOverdueFloaters(raw);
+}
+
+// ─── Source 4: council-harvest.yaml (unrouted findings-actuator entries) ──────
+if (existsSync(HARVEST_REGISTER)) {
+  const raw = readFileSync(HARVEST_REGISTER, 'utf8');
+  result.unrouted_harvest = parseUnroutedHarvest(raw);
+}
+
 // ─── Summary ──────────────────────────────────────────────────────────────────
 const highKGaps     = result.unacted_high_k.length;
 const highKImprove  = result.unacted_improvement.length;
-const totalUnacted  = highKGaps + highKImprove;
+const overdueFloat  = result.unacted_floaters.length;
+const unroutedHarv  = result.unrouted_harvest.length;
+const totalUnacted  = highKGaps + highKImprove + overdueFloat + unroutedHarv;
 
-result.summary = `${totalUnacted} unacted findings (${highKGaps} recurring gaps k≥2, ${highKImprove} unpropagated improvements k≥2)`;
+result.summary = [
+  `${totalUnacted} unacted findings`,
+  `${highKGaps} recurring gaps k≥2`,
+  `${highKImprove} unpropagated improvements k≥2`,
+  overdueFloat > 0 ? `${overdueFloat} overdue floaters` : null,
+  unroutedHarv > 0 ? `${unroutedHarv} unrouted harvest entries` : null,
+].filter(Boolean).join(', ');
 
 // Write machine-readable output
 try {
@@ -154,7 +228,7 @@ try {
 
 // ─── Stderr injection (session-open readable) ─────────────────────────────────
 if (totalUnacted === 0) {
-  process.stderr.write(`\n[FINDINGS-ACTUATOR] ✓ All high-k findings acted (${result.total_gap_entries} gap entries, ${result.total_imp_entries} improvement entries)\n`);
+  process.stderr.write(`\n[FINDINGS-ACTUATOR] ✓ All finding sources clear (gaps=${result.total_gap_entries}, impr=${result.total_imp_entries}, floaters=0, harvest-unrouted=0)\n`);
 } else {
   process.stderr.write(`\n[FINDINGS-ACTUATOR] ⚠ ${result.summary}\n`);
   if (highKGaps > 0) {
@@ -170,8 +244,22 @@ if (totalUnacted === 0) {
       process.stderr.write(`[FINDINGS-ACTUATOR]   k=${i.k_count} ${i.id} [${i.status}] — ${i.observation.slice(0, 80)}\n`);
     }
   }
-  process.stderr.write(`[FINDINGS-ACTUATOR] Act: pick highest-k item → build validator OR mark resolved with evidence\n`);
-  process.stderr.write(`[FINDINGS-ACTUATOR] SSoT: tools/data/gap-recurrence-register.yaml + tools/data/improvement-register.yaml\n`);
+  if (overdueFloat > 0) {
+    process.stderr.write(`[FINDINGS-ACTUATOR] FLOATERS OVERDUE (terminal decision required):\n`);
+    for (const f of result.unacted_floaters) {
+      process.stderr.write(`[FINDINGS-ACTUATOR]   ${f.id} → ${f.artifact_path} (closure_by: ${f.closure_by})\n`);
+    }
+    process.stderr.write(`[FINDINGS-ACTUATOR]   → validate-floater-escalation.mjs BLOCKS if gap > 3 sessions\n`);
+  }
+  if (unroutedHarv > 0) {
+    process.stderr.write(`[FINDINGS-ACTUATOR] COUNCIL-HARVEST unrouted (disposition:findings-actuator, not closed):\n`);
+    for (const h of result.unrouted_harvest.slice(0, 3)) {
+      process.stderr.write(`[FINDINGS-ACTUATOR]   ${h.id} [${h.status}] — ${h.question.slice(0, 80)}\n`);
+    }
+    process.stderr.write(`[FINDINGS-ACTUATOR]   → route to gap-recurrence-register.yaml OR mark status:closed\n`);
+  }
+  process.stderr.write(`[FINDINGS-ACTUATOR] Act: pick highest-priority item → build validator OR mark resolved with evidence\n`);
+  process.stderr.write(`[FINDINGS-ACTUATOR] SSoT: gap-register + improvement-register + floater-register + council-harvest\n`);
 }
 
 process.exit(0); // findings-actuator never blocks by itself — validator does

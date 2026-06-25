@@ -2750,6 +2750,25 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // S088 RF-EVERYWHERE: Floater overdue escalation gate — BLOCKS when any floater has
+  // escalation_state:overdue + terminal_state:null AND session gap > 3 sessions (k≥3 parallel).
+  // Prevents floater accumulation to 26-session debt. Complements validate-no-floating-artifacts advisory.
+  {
+    name: 'floater_escalation',
+    command: 'node tools/validators/validate-floater-escalation.mjs',
+    input_files: [
+      'tools/data/floating-artifacts-register.yaml',
+      'tools/data/session-state.json',
+      'tools/validators/validate-floater-escalation.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
   // S088-A2 CS3: Deploy-root self-containment gate — BLOCKS if governed src/data/ copies
   // are missing or diverge from canonical parent-repo sources.
   // Root cause: /api/journey-spine returned "fallback" in prod because journey-core-spine.md

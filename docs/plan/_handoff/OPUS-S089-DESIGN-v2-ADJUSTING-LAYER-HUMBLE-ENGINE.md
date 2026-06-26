@@ -132,3 +132,33 @@ intent-crystallization-first.)
 3. schema.org-core + CSPS-extensions merge — agree, or go full one way?
 4. Routing orchestrator as a deterministic pure function over (spine,scope,intent,trust) — robust?
 5. How do other platforms stop external insight from overwhelming their core? (prior art for §2)
+
+## 9. Opus baseline positions (pre-council) — evaluate external feedback AGAINST these
+*Recorded so incoming council feedback is judged as a peer claim on merit, not adopted blindly
+(council-peer-contract + demonstrated-truth). The 3 MindMePA PE/Orchestrator feedbacks already
+converge on the layered-PE-at-junctions pattern, pre-validating Q2/Q4.*
+
+- **Q1 (Adjusting Layer):** RIGHT abstraction, but **ship minimal** — it is not new machinery, it NAMES
+  existing gates (threshold + DNA-Guardian + humble-consolidation + frictionless-comm). Minimal = threshold
+  front door (inward) + egress alignment check (outward). Over-build risk = a heavy new subsystem; reject that.
+  Prior art to expect: API gateways, content-moderation pipelines, RAG ingestion with trust-tiering, immune systems.
+- **Q2 (Humble Engine):** Sound; independently validated by the 3 MindMePA feedbacks (PE stays universal,
+  consumed at explicit junctions). Failure modes: (a) gates every creation → friction (fix: SWIFT path; gate
+  only significant creations); (b) CIE blind spot → false "nothing exists" → wrongful create (fix: precedent
+  confidence + human fallback); (c) over-triggering (fix: explicit minimal junctions + debounce); (d) PE score
+  gaming (fix: deterministic weights + audit).
+- **Q3 (schema.org vs CSPS):** **MERGE** — schema.org SoftwareApplication core (interop) + CSPS extensions
+  (EvidenceDoc/UserNeed/trust_level/Bundle), all bound to tagging-core. Unchanged from §6.
+- **Q4 (deterministic dispatcher):** Robust IFF truly pure (no clock/mtime — B_DETERMINISTIC_GATE) + explicit
+  versioned routing table. Breakers: intent ambiguity (fix: classifier confidence + fallback route), trust_level
+  miscalibration, table drift. MindMePA feedbacks reinforce: deterministic > LLM scoring; re-evaluate only at junctions.
+- **Q5 (bundling orchestrator):** hard-constraints = knockout filters; nice-to-have = MCDA weights (SAW/TOPSIS);
+  slot-filling dialogue w/ completeness gate (≤2 Qs w/ reasons); ranked bundles + per-item explanation + coverage
+  map + provenance; swing-weighting over raw sliders; show inferred weights back (editable-understanding).
+- **Q6 (missing / over-building) — my honest self-critique:**
+  - **Missing (load-bearing): the SIGNIFICANCE-THRESHOLD function is undefined** — what counts as "significant
+    enough to gate creation" vs SWIFT-through. Without it the Humble Engine gates everything (friction) or nothing
+    (no value). This is the highest-priority gap to close before build.
+  - **Missing:** the `trust_level` taxonomy for the dispatcher isn't enumerated yet.
+  - **Missing:** how the Humble Engine avoids becoming a per-creation bottleneck (perf + UX latency).
+  - **Over-building watch:** the Adjusting Layer must stay a thin membrane over existing gates, not ceremony.

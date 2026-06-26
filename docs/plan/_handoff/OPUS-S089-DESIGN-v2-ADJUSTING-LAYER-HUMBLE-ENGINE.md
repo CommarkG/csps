@@ -31,6 +31,36 @@ links:
 > design the inward/outward adjusting layer → external-AI feedback BEFORE build. Hardwire
 > "all is core universal wisdom + alignment-to-existing + optimization" into HOW this is built.
 
+## 0. NORTH STAR — the platform builds itself with its own tools (governing principle)
+CSPS's core goal: a platform that uses **its own tools to build itself**, creating every solution from the
+platform's **core DNA + tools** — not beside them. Every S089 stream is built BY the platform:
+
+> A new solution enters via the **Threshold** (universal entry) → the **Humble Engine** decides
+> create-vs-enhance using **CIE** (what exists) + **PE** (rank) → the **Journey** runs the build →
+> **Tagging-core** binds its vocabulary → **Validators + IZFC + two-party seal** gate it → the
+> **Adjusting Layer** governs what it absorbs (inward) and emits (outward).
+
+**Recursive dogfood:** the Synergy/comparison engine, once built, becomes *another platform tool* used to
+compare and select future solutions (internal + external). The Humble Engine is both a thing-we-build **and**
+the tool we build it WITH. If a stream can't be built by composing existing platform tools, that's a signal —
+either a missing universal tool (promote it) or scope creep (cut it).
+
+### Universal core (reused every time) vs Specific (one domain/element)
+| UNIVERSAL CORE TOOLS — platform DNA, reused multiply | SPECIFIC — one domain/element |
+|---|---|
+| Threshold (entry) · Adjusting Layer (in/out membrane) · Humble Engine + CIE + PE triangle · Tagging-core / schema-registry / canonical-concepts (vocabulary) · Journey core (work-running) · Validators / verify / IZFC / two-party seal (QC) · UX/UI DNA (5 laws + UI principles) | App-comparison schema (schema.org merge) · synergy dashboard UI surface · bundling slot-dialogue · domain enums + domain-specific validators · MindMePA PE/orchestrator schema (stays in MindMePA's track) |
+
+**Rule:** build SPECIFIC only by COMPOSING UNIVERSAL. The plan documents universal tools in full (they pay
+off many times) and specific elements only to the depth their single use requires.
+
+### Plan shape: minimal-now, full-detail-later
+- **NEAR (minimal, concrete):** S2 UX/UI principles page — smallest surface, pure composition of UX/UI DNA;
+  proves the self-build loop end-to-end on a low-risk artifact.
+- **LATER (full detail):** S3 synergy + S4 Humble Engine — the reusable platform tools; full design once the
+  council feedback + the **significance-threshold function** (§9 load-bearing gap) are resolved.
+
+---
+
 ## 1. The unifying insight
 The **Humble Engine** (inward-facing) and the **Adjusting Layer** (outward-facing) are **one membrane**:
 - **Inward** — nothing new enters the core without being compared to what exists, consolidated, and

@@ -258,3 +258,51 @@ decoupled. My synthesis stands — **ONE engine core + TWO policy-profiles** (BL
 but Governor should confirm, since two independent architects recommend a harder split.
 **Convergence verdict:** #1 + #2 agree v1 = a CONTROLLED ADMISSION PIPELINE, not a universal engine — aligns
 with §0 (compose universal tools, minimal-now).
+
+### Feedback #3 — Gemini & #4 — Grok (2026-06-26) — close the council (4/4)
+**Convergent with the field (adopt):**
+- ACL / admission-control / inward-first (outward = Presenter/template, not automation) — **4/4**.
+- Merge schema.org + CSPS extensions (+ PROV-O provenance) — **4/4**.
+- Hard-constraints-first bundling + MCDA — **4/4**.
+- Dispatcher needs a non-decision safe output — **4/4** (Gemini: hierarchical **wildcard fallback** `(*,*,intent,*)`; Grok: validators+defaults+immutable trust snapshots).
+- Humble-Engine significance threshold + **default to enhance/consolidate on low confidence, never auto-create** — Gemini+Grok explicit (reinforces consolidation-over-creation DNA).
+
+**NEW (adopt):**
+- **Semantic-distance thresholds + semantic hashing** (Gemini) — guards CIE false-consolidation (semantic-drift trap).
+- **Throttle external ingestion** — DLQ / rate-limit / token-bucket (Gemini); throttle deep provenance to high-significance only (Grok).
+- **Ranking under uncertainty** — minimax-regret / Choquet integral + user-feedback weight refinement (Grok).
+- **Conflicting-truths reconciliation** (Grok) — converges with GPT's conflict-model.
+- **Perf/cost guards on frequent CIE/PE calls** (Grok) — NEW operational guard.
+
+**MERIT CHALLENGE worth surfacing (Grok):** a governance-first platform that "blocks on violations" everywhere
+risks becoming **bureaucratic and slowing app-builder velocity**. → Mitigation already in our design: the
+significance-threshold gates only *significant* creations; everything else SWIFTs through (§0 minimal-now). This
+is exactly why the threshold function is load-bearing. Keep velocity as a first-class constraint.
+
+### COUNCIL CONVERGENCE TALLY (4/4)
+| Decision | Vote | Status |
+|---|---|---|
+| ACL / admission-control, inward-first | 4/4 | **RATIFY-CANDIDATE** |
+| Merge schema.org + CSPS ext + PROV-O | 4/4 | **RATIFY-CANDIDATE** |
+| Significance threshold; default enhance/consolidate, never auto-create | 4/4 | **RATIFY-CANDIDATE** |
+| Hard-constraints-first bundling + MCDA + explainable | 4/4 | **RATIFY-CANDIDATE** |
+| Dispatcher with safe non-decision fallback ("needs-review"/wildcard) | 4/4 | **RATIFY-CANDIDATE** |
+| Outward = presenter/formatter, NOT bidirectional automation (v1) | 4/4 | **RATIFY-CANDIDATE** (trims my original bidirectional membrane) |
+| **Decouple Humble Engine from synergy dashboard** | **3/4** (Grok dissents: "powers it elegantly") | **GOVERNOR DECISION** — my synthesis: one engine core + two policy-profiles |
+
+## 11. CORE-SEEDS (Opus plants; Sonnet builds out) — v1 = controlled admission pipeline
+*Minimal authoritative seeds. Each is composed from universal tools (§0); Sonnet expands to full FSE builds.*
+- **CS-A — Admission pipeline (ACL):** `External → Quarantine → Normalize(Translator) → CIE-compare(similarity) →
+  Humble-decision(thresholds) → PE-rank → Gate{commit | needs-review | reject-with-reason} → Provenance-log`.
+  Inward-first; outward = Presenter. Throttle ingestion (DLQ/rate-limit).
+- **CS-B — Humble decision:** in(option candidates + CIE similarity + PE rank) → out{create|enhance|consolidate|
+  reuse|needs-review}; config thresholds ≥85 enhance / 50–84 PCR / <50 create; **low-confidence → default
+  enhance/consolidate, never auto-create**; CIE snapshot per call; exit-condition (timeout→do-nothing); effort=TCO.
+- **CS-C — Dispatcher:** pure fn `(spine,scope,intent,trust_level,confidence,existing_match_strength,…)` → route;
+  precedence trust>scope>intent>spine; versioned table; **hierarchical wildcard fallback + "needs-review" valid output**.
+- **CS-D — App entity:** schema.org SoftwareApplication core + CSPS ext (EvidenceDoc[PROV-O], UserNeed, trust_level,
+  ComparisonResult[own table], Bundle) + SHACL-style shapes + evidence-lifecycle + conflict-model.
+- **CS-E — Bundling (v2):** hard-constraints filter → MCDA weighted → coverage-matrix + provenance-per-slot. Deferred.
+- **CS-F — Vocabulary registry (FOUNDATION, build FIRST):** versioned + governed tagging-core / canonical-concepts.
+- **CS-G — Challenge-on-merit enforcers:** B_CHALLENGE_ON_MERIT hook+validator+session-open (HARDWIRE-queued).
+**Velocity constraint (Grok):** gate only significant creations; SWIFT the rest — bureaucracy is a failure mode.

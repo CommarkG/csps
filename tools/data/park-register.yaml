@@ -1752,3 +1752,37 @@ entries:
     source_session: S088
     created_session: S088
     closed_session: null
+
+  - id: "PARK-S089-APP-COMPARISON-SYNERGY-CONSOLIDATION"
+    lane: queue
+    content: >
+      Consolidate ALL S089 app-comparison + synergetic-sharing work into ONE coherent design before build.
+      Scattered across: OPUS-S089-PLATFORM-SYNTHESIS-REPORT.md (Part B comparison schema), OPUS-S089-DESIGN-v2
+      (synergy dashboard + humble engine + adjusting layer), OPUS-S089-SYNERGY-UX-REPORT-MASTER-PLAN.md, the
+      existing synergy-master SKILL (.claude/skills/synergy-master) + cross-synergy-enhancement-plan template,
+      and the 4 external MindMePA PE/orchestrator feedbacks (threshold-routed, aligned-not-copied — convergent
+      verdict: layered PE + explicit junctions/checkpoints + audit, never merge).
+    retrieve_when: "After feedback #4 received + external council round harvested. One consolidated design pass: dedupe, bind to tagging-core (no duplicate vocab), reconcile with existing synergy-master skill."
+    status: queued-awaiting-inputs
+    never_drop: true
+    decision_back_ref: "Governor S089 'see what you have on app comparison and synergetic sharing and park a consolidation plan'"
+    source_session: S089
+    created_session: S089
+    closed_session: null
+
+  - id: "PARK-S089-THRESHOLD-FIRST-HARDWIRE"
+    lane: obligation
+    content: >
+      STRUCTURAL FIX (CAQ Scope-3). CLASS: content (external + internal) gets processed by native-AI
+      eager-absorb instead of entering through the CSPS threshold front door FIRST. Training default: D1
+      eager-helpfulness + D3 surface-completion. Satisfaction point: an impressive analysis FEELS like success
+      but bypassed classify/significance/route. FIX: hardwire the threshold as the MANDATORY first step for ALL
+      content population so CSPS always processes as CSPS. REJECT the behavioral fix ('remember to route' = the
+      mechanism that already fails) — must be a gate.
+    retrieve_when: "Governor ratification of approach, THEN implement. Builds on existing: user-prompt-submit-intake.sh, docs/plan/INTAKE-ORCHESTRATOR-DESIGN.md, docs/plan/_intake/, external-research-pipeline. Proposed gate: every content-population path routes through threshold (classify->significance->route) FIRST; a validator BLOCKS content with no intake-log entry."
+    status: PROPOSED-awaiting-ratification
+    never_drop: true
+    decision_back_ref: "Governor S089 'populate content as pipeline starting always from threshold; threshold enforced as hardwired starting point — crucial so CSPS works as CSPS not native AI defaults'"
+    source_session: S089
+    created_session: S089
+    closed_session: null

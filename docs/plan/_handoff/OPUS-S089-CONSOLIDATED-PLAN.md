@@ -98,3 +98,16 @@ Each stream: built from core-seeds · FSE + block-test · two-party seal · sche
 - ✅ "Approve all suggested" → **HARDWIRE batch for B_CHALLENGE_ON_MERIT enforcers AUTHORIZED** (validator +
   2 prompt-injections + block-tests) — build-ready, next build phase.
 - ✅ Consolidated plan = this doc (SSoT).
+
+## 8. UNIVERSAL mechanism — B_DECISION_LEDGER (generalize §4 to every build)
+The §4 Decision Ledger is the FIRST INSTANCE of a now-constitutional universal mechanism:
+**[B_DECISION_LEDGER](../pillar-0-governance/behavioral-contracts/B_DECISION_LEDGER.md)** — every consequential
+decision, in **platform self-build AND SaaS/app solution builds**, records chosen + rejected-options-with-
+reasoning + minority views, so research is captured once and **never re-run**.
+- It is the **CIE's memory of rejected options** → the fuel that lets the Humble Engine consolidate-over-create
+  (you can't avoid recreating what you didn't record). Ledger → CIE → Humble Engine → fewer re-dives.
+- Wired into the universal tools: plan-creation-protocol (every plan has a Ledger section) · Humble Engine
+  core-seed CS-B (auto-emits ledger entries) · CIE (ingests → blocks re-research) · validate-decision-ledger
+  (structural check, HARDWIRE-queued with block-test, batched with validate-challenge-on-merit).
+- **Self-build + solution-build parity:** when CSPS generates a SaaS/app, that solution inherits its own ledger
+  so its builders/tenants start mature too — the platform's reasoning-preservation DNA propagates into what it builds.

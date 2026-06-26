@@ -192,3 +192,41 @@ converge on the layered-PE-at-junctions pattern, pre-validating Q2/Q4.*
   - **Missing:** the `trust_level` taxonomy for the dispatcher isn't enumerated yet.
   - **Missing:** how the Humble Engine avoids becoming a per-creation bottleneck (perf + UX latency).
   - **Over-building watch:** the Adjusting Layer must stay a thin membrane over existing gates, not ceremony.
+
+## 10. Council feedback integration (running disposition log)
+*External = claim, evaluated against §9 baseline + §0 north star. adopt / adapt / reject-with-reason.*
+
+### Feedback #1 — Claude.ai (2026-06-26) — HIGH VALUE
+**ADOPTED:**
+- **Significance-threshold RESOLVED (§9 Q6 load-bearing gap).** CIE returns a NUMERIC similarity score;
+  thresholds in PLATFORM CONFIG (not engine logic): **≥85% → enhance · 50–84% → present both via PCR · <50% →
+  create permitted.** PE uses **total-cost-of-ownership** for effort when `consolidate` is an option, with a
+  per-`option_type{create,enhance,consolidate,reuse}` effort multiplier (config). Fixes the "always build new"
+  bias — directly serves consolidation-over-creation DNA.
+- **Name with established patterns:** inward Adjusting Layer = DDD **Anti-Corruption Layer**; minimal = the
+  **Translator** fn `(ext_concept,ext_vocab)→(platform_concept,vocab)` + quarantine (Facade/Adapter only at a 2nd differing source).
+- **CIE snapshot per Humble-Engine invocation** (frozen for the decision cycle; commit update AFTER) → determinism.
+- **Dispatcher:** intent resolved to a CLOSED ENUM by the Translator BEFORE dispatch; explicit precedence
+  `trust_level > scope > intent > spine`; versioned immutable routing table.
+- **Bundling:** elicit hard-constraints FIRST (knockout) then soft (weights); present a COVERAGE MATRIX (✓/◑/✗);
+  translate scores to coverage language (no raw scores to users); provenance-per-slot.
+- **M1 Humble-Engine EXIT CONDITION:** timeout + default = do-nothing-until-decided (no orphaned states).
+- **M2 VERSIONED VOCABULARY REGISTRY = the foundational dependency — confirm/build BEFORE the engines**
+  (verify tagging-core-enums + canonical-concepts-registry + schema-registry are versioned + governed).
+- **M3 ingest pipeline = 3 separate stages:** parse → validate → classify (isolate failures).
+- **O3 ComparisonResult = a relation, not a property** → own `comparison_run` table (already separate in §B.1).
+
+**ADAPTED (peer pushback — not blind-adopt):**
+- **O1 outward "Published Language":** agree it's largely a RENDERING concern, not a heavy symmetric membrane —
+  but keep a thin outward **vocab-binding check** (emit only registered vocab). inward=ACL (architectural),
+  outward=Published Language (presentation + governance check).
+- **Provenance:** adopt 3-layer entity (schema.org root + SPDX + CSPS-native). BUT SPDX = software identity/
+  licensing provenance; it does NOT cover CLAIM/EVIDENCE provenance ("which doc substantiates this capability").
+  Keep a **PROV-O-aligned EvidenceDoc** for source-substantiation. Don't fully cut it.
+- **O2 + closing block-vs-warn:** Governor mandated ONE engine; Claude says split (coupling risk). **SYNTHESIS:
+  ONE engine CORE + TWO POLICY-PROFILES** — internal create-governance = **BLOCK**; external-app discovery =
+  **WARN** (recommend, not enforce). Shares CIE + machinery; independent governance config. ⚠️ **FLAG TO
+  GOVERNOR** — touches the explicit "one engine" directive; confirm the policy-profile split is acceptable.
+
+**Net:** load-bearing significance-threshold gap now closed in mechanism; ACL/Published-Language naming adopted;
+versioned vocabulary registry confirmed as the build-first foundation.

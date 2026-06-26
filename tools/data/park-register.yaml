@@ -1786,3 +1786,20 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+
+  - id: "PARK-S089-SELF-BUILDING-DEEP-DIVE"
+    lane: queue
+    content: >
+      DEEP DIVE: how CSPS builds ITSELF — not by native-AI defaults but by CSPS DNA, using native AI as a
+      COLLABORATOR — with milestones + periodic "resets" that REFRESH the self-build goal at every planning
+      AND implementation step, HARDWIRED as a mandatory section in plans AND verifications. Must treat the main
+      parts as ONE WHOLE: Threshold · Core-spines · pipelines · IZFC(RZF) · PE · CIE · Humble-batching ·
+      Vocabulary+naming. Deliverable: the integrated self-build loop + orchestrable CHECKLISTS usable as a
+      MINI-TREE (each checklist node = a gate that composes the universal tools).
+    retrieve_when: "Next focused Opus design session (or fold into S089 consolidation). Extends design-v2 §0 north star."
+    status: queued
+    never_drop: true
+    decision_back_ref: "Governor S089 'park a deep dive on how csps builds itself by csps dna using native ai in collaboration; milestones+resets; hardwired mandatory in plans+verifications; main parts as a whole; checklists as mini-tree'"
+    source_session: S089
+    created_session: S089
+    closed_session: null

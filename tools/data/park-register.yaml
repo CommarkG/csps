@@ -1780,9 +1780,9 @@ entries:
       content population so CSPS always processes as CSPS. REJECT the behavioral fix ('remember to route' = the
       mechanism that already fails) — must be a gate.
     retrieve_when: "Governor ratification of approach, THEN implement. Builds on existing: user-prompt-submit-intake.sh, docs/plan/INTAKE-ORCHESTRATOR-DESIGN.md, docs/plan/_intake/, external-research-pipeline. Proposed gate: every content-population path routes through threshold (classify->significance->route) FIRST; a validator BLOCKS content with no intake-log entry."
-    status: PROPOSED-awaiting-ratification
+    status: RATIFIED-2026-06-26 — implement next (gate + validator)
     never_drop: true
-    decision_back_ref: "Governor S089 'populate content as pipeline starting always from threshold; threshold enforced as hardwired starting point — crucial so CSPS works as CSPS not native AI defaults'"
+    decision_back_ref: "Governor S089 'populate content as pipeline starting always from threshold; threshold enforced as hardwired starting point — crucial so CSPS works as CSPS not native AI defaults'. RATIFIED 2026-06-26: YES from Governor."
     source_session: S089
     created_session: S089
     closed_session: null

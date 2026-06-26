@@ -21,6 +21,37 @@ precedent_checked: true
 
 # HANDOFF S088 → S089
 
+## ⚠️ OPUS S089 UPDATE (2026-06-26) — READ FIRST; SUPERSEDES STALE STATE BELOW
+*(provenance: added by Opus S089 tab; everything under "ZONE A" onward was Sonnet-S088 at close and is now out of date.)*
+
+**Current reality:**
+- **HEAD: `7e48164d`** (not `d908a3c5`) — many S089 commits since close.
+- **PARK-009 DONE** (2 days early, live-verified 2026-06-25): Supabase pw rotated (auto-generated), Vercel
+  `csps-playground` `DATABASE_URL`/`DIRECT_URL` + `.env.local` updated, redeployed, `db-health = {status:ok,
+  db:connected}`. Leak vector closed. Wisdom → `external-integrations/supabase.md` Credential Rotation Runbook.
+  - *Residual (non-blocking):* local `.env.local` password is STALE (`P1000` locally; **live is fine**) — fix when doing local DB work.
+  - *Schema:* `JourneyStage` exists, count=0 (connects); full B2 `migrate diff` not yet run locally (stale local creds). Not blocking.
+- **MEMORY.md consolidation DONE** (Opus): 172→99 lines, ~12.5KB (was 25.2KB). T2 hygiene item closed.
+- **NEW S089 PROGRAM** (Governor directive, this tab): UX **and UI** principles + page · External Apps Sharing
+  Synergy dashboard (ingest/tag/route/compare/download, **bound to tagging-core** — no duplicate vocab) ·
+  **Humble Engine** (create-vs-enhance governance as a service; **CIE+PE synergy triangle**; same engine powers
+  the synergy compare) · **Adjusting Layer** (inward absorption-control + outward aligned-expression) · Help & Support wiring.
+  Docs: `OPUS-S089-PLATFORM-SYNTHESIS-REPORT.md` · `OPUS-S089-SYNERGY-UX-REPORT-MASTER-PLAN.md` ·
+  `OPUS-S089-DESIGN-v2-ADJUSTING-LAYER-HUMBLE-ENGINE.md` · `OPUS-S089-EXTERNAL-FEEDBACK-PROMPT.md`
+
+### SONNET FOCUS DIRECTIVE (Governor S089)
+- **STATUS: DESIGN + EXTERNAL-FEEDBACK phase — NO BUILD YET.** Design is not ratified; build is gated on
+  (a) Opus pipeline-simulation trace + (b) external-AI council feedback harvested + dispositioned.
+- **DO NOT** start building synergy / humble-engine / UX-UI page until Opus hands a ratified first build unit.
+- **DO NOT** drift into parked Phase-2 (PARK-043 journey orchestrator) or T4 items — that fragments focus
+  (new-over-active / completion-over-shiny). The S089 program IS the focus.
+- **When ratified**, build per PE sequence: UX/UI principles page → Synergy dashboard v1 (upload→tag→compare→
+  download) → Humble Engine + bundling orchestrator → Help wiring. Each: FSE + block-test + two-party seal +
+  **schema-binding to tagging-core (no inline vocabulary)** + page-completeness.
+- The PARK-009 / Phase-2 gate language BELOW is **superseded** for now; PARK-043 stays parked.
+
+---
+
 ═══════════════════════════════════════════════════════════════════
 I AM: Sonnet S088 (builder, closing)
 YOU ARE: the next tab (Opus director or Sonnet builder)

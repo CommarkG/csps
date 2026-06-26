@@ -230,3 +230,31 @@ converge on the layered-PE-at-junctions pattern, pre-validating Q2/Q4.*
 
 **Net:** load-bearing significance-threshold gap now closed in mechanism; ACL/Published-Language naming adopted;
 versioned vocabulary registry confirmed as the build-first foundation.
+
+### Feedback #2 — GPT (2026-06-26) — strong CONVERGENCE with #1 + new safeguards
+**Convergent (2 independent sources now agree → confidence ↑ toward ratify-candidate):**
+- Adjusting Layer = Anti-Corruption Layer; build as **admission control** (quarantine→normalize→compare→
+  route→gate→commit→log), NOT autonomous intelligence; outward = formatter/adapter, not a reasoning authority.
+- Merge schema.org + **PROV-O** provenance (confirms my #1 pushback to keep PROV-O EvidenceDoc) + **SHACL**-style validation shapes.
+- Bundling: hard-constraints first; evidence-weighted ranking; explanation contract.
+- PE ranks but must NOT override governance blockers.
+- **DON'T couple Humble Engine + synergy dashboard** — 2nd independent source.
+
+**NEW (adopt):**
+- **Kubernetes admission-control framing:** mutating phase (normalize/map/attach-provenance) vs validating
+  phase (block enum/vocab/schema violations); rejection = quarantine-with-reason, never silent discard.
+- **Dispatcher "needs-review/quarantine" is a VALID deterministic output** — never forced best-guess-create
+  (sharpens §9 Q4 fallback). Add fields: source_type, confidence, existing_match_strength, schema_version,
+  tenant_context, fallback_route, explanation_code.
+- **Evidence lifecycle:** evidence_observed_at / expires_at / verification_status (external claims go stale).
+- **Conflict model:** trusted sources disagree → explicit conflict states, NOT silent averaging.
+- **Tenant-override governance:** define whether tenant vocab can extend / alias / override core terms.
+- **Regression-test set:** duplicate-blocked · unknown-enum-quarantined · low-trust-can't-enter-core ·
+  create-can't-bypass-CIE-lookup · every accepted claim has provenance.
+- **PDP/PEP split (OPA):** CIE=retrieval · Humble=decision · PE=rank · Orchestrator=execute · Gate=enforce.
+
+**⚠️ ESCALATED FLAG (now 2 sources):** internal create-governance vs external-app discovery should be
+decoupled. My synthesis stands — **ONE engine core + TWO policy-profiles** (BLOCK internal / WARN external) —
+but Governor should confirm, since two independent architects recommend a harder split.
+**Convergence verdict:** #1 + #2 agree v1 = a CONTROLLED ADMISSION PIPELINE, not a universal engine — aligns
+with §0 (compose universal tools, minimal-now).

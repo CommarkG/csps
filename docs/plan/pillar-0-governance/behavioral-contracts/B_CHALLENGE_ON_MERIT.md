@@ -12,9 +12,9 @@ enforcement_trio:
     note: "STRUCTURAL detection only (NOT judgment): flags banned validating-filler phrases (you're right/great point/per your insistence/absolutely) without adjacent merit-reasoning in council comms (BLOCKING). exits-1 + 3/3 block-test PASS (S089)."
   t3:
     tier: session
-    path: "session-open injection + AGENTS.md hard rule"
-    status: queued
-    note: "Startup block reminds challenge-on-merit; AGENTS.md hard rule. Queued."
+    path: "session-open.sh (active) + AGENTS.md hard rule (queued)"
+    status: partial
+    note: "session-open.sh reminder ACTIVE (S089, hardwire batch). AGENTS.md hard rule: PARKED (PARK-S089-AGENTS-HARD-RULES) — edit via principles.yaml + codegen, not directly."
   exempt_reason: "none — full trio intended; mechanical surfaces queued under HARDWIRE (writing enforcement blind would violate the rigor requested)."
 ---
 
@@ -55,17 +55,18 @@ decisions), **never** "policing whether the AI agreed." This refinement is manda
 | 1 | This contract (B_CHALLENGE_ON_MERIT) | contract | ✅ done |
 | 2 | Memory `feedback_challenge_on_merit` | memory | ✅ done |
 | 3 | `feedback_ideas_not_insistence_no_pleasing` (extended/linked) | memory | ✅ linked |
-| 4 | ratified-standards.yaml entry (Pipeline A) | standard | ⏳ queued |
-| 5 | AGENTS.md hard rule | doc-rule | ⏳ queued |
-| 6 | session-open injection (T3) | prompt-injection | ⏳ HARDWIRE-queued |
-| 7 | turn-discipline injection #7 (T1 hook) | prompt-injection | ⏳ HARDWIRE-queued |
-| 8 | `validate-challenge-on-merit.mjs` (T2, structural) + block-test | validator | ⏳ HARDWIRE-queued |
+| 4 | ratified-standards.yaml entry (Pipeline A) | standard | ✅ S089 |
+| 5 | AGENTS.md hard rule | doc-rule | PARKED → PARK-S089-AGENTS-HARD-RULES |
+| 6 | session-open injection (T3) | prompt-injection | ✅ S089 — session-open.sh active |
+| 7 | turn-discipline injection #7 (T1 hook) | prompt-injection | ✅ S089 — v1.3.0 active |
+| 8 | `validate-challenge-on-merit.mjs` (T2, structural) + block-test | validator | ✅ S089 — 3/3 PASS |
 | 9 | AI-COUNCIL peer-contract (peers challenge on merit) | contract | ✅ exists (reference) |
 | 10 | PE-Alignment-Guardian (challenge misaligned priority) | mechanism | ✅ exists (reference) |
 
-**Ways covered:** contract · memory · standard · doc-rule · prompt-injection · validator · peer-contract — >1 way ✓. Surfaces ≥8 ✓.
+**Ways covered:** contract · memory · standard · prompt-injection · validator · peer-contract — >1 way ✓. Surfaces ≥8 ✓.
+**HARDWIRE batch S089 COMPLETE:** surfaces 4, 6, 7, 8 shipped. Surface 5 (AGENTS.md) parked pending codegen.
 
-## HARDWIRE queue note
-Surfaces 4–8 (esp. the validator + the two prompt-injections) ship under the **HARDWIRE protocol** — each with
-a **block-test** proving it FAILS on a planted violation. Writing five enforcement mechanisms blind in one pass
-would violate the very rigor requested; they are implemented next, deterministically, with block-tests.
+## HARDWIRE complete (S089)
+Surfaces 4, 6, 7, 8 implemented S089 — validator + both prompt-injections + Pipeline A registration.
+Surface 5 (AGENTS.md hard rule) parked: AGENTS.md generated from principles.yaml + codegen.ts; 
+direct edit is forbidden per AGENTS.md header. Register via principles.yaml + PARK-S089-AGENTS-HARD-RULES.

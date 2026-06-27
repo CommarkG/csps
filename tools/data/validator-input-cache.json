@@ -32,14 +32,14 @@
       "cached_at": "2026-06-22T04:02:28.964Z"
     },
     "threshold_intake": {
-      "input_hash": "6ea463d8d2d83f232e38894e3e092519d862c05d52490f33bd05857a813d8670",
+      "input_hash": "55261fd049d560235a31403db8609fdf2b0da81049aaf574bc3848d97cf5ac66",
       "exit_code": 0,
       "parsed": {
-        "total_entries": 1728,
+        "total_entries": 1738,
         "sessions": 13,
         "advisory": true
       },
-      "cached_at": "2026-06-27T04:28:06.204Z"
+      "cached_at": "2026-06-27T04:40:59.376Z"
     },
     "journey_gate": {
       "input_hash": "e82a975724b8f25d85c8449fe7444bb8cf5a0caefa76a2bbde42d314993e1748",
@@ -117,14 +117,14 @@
       "cached_at": "2026-06-23T03:40:26.226Z"
     },
     "next_build": {
-      "input_hash": "8b8f23fbdcb2f49cc74ecf5dbeb117afb2f64b6d75cb6fcbbe722a0de99d08cd",
+      "input_hash": "353546f033c50d5226e411f2cb1f45d9f7c080407f241d69b00a140c8621cbfa",
       "exit_code": 0,
       "parsed": {
         "blocking": 0,
         "advisory": 0,
         "passes": 2
       },
-      "cached_at": "2026-06-27T04:16:05.399Z"
+      "cached_at": "2026-06-27T04:41:08.736Z"
     },
     "deploy_root_selfcontained": {
       "input_hash": "d66783d9cc562ae5e9006526272e0930de9d51f616b63fbfc341636a9866e0c7",
@@ -137,14 +137,14 @@
       "cached_at": "2026-06-23T03:40:27.151Z"
     },
     "council_harvest": {
-      "input_hash": "f6a37481b738efa4bef8b01eace271a931f011de6ff41bc327661f2a3d8f4a3c",
+      "input_hash": "0776db1d6b3297e72c092daaf8a462349610c57bf8cd4bfd8d98244583d0fbc8",
       "exit_code": 0,
       "parsed": {
         "blocking": 0,
         "advisory": 7,
         "passes": 15
       },
-      "cached_at": "2026-06-27T04:28:24.476Z"
+      "cached_at": "2026-06-27T04:41:08.828Z"
     },
     "tagging_core_divergence": {
       "input_hash": "cdfa04b9b7d536c6deea7b9575ede8acb9cf4a4c4774aac7b5619e305114264f",

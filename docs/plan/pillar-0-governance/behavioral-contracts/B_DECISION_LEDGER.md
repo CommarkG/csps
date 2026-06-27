@@ -12,10 +12,10 @@ enforcement_trio:
     note: "STRUCTURAL: BLOCKING when Decision Ledger section exists but has NO rejected options (malformed = reasoning amnesia). ADVISORY when Opus plan files lack section entirely (grace). exits-1 + 3/3 block-test PASS (S089)."
   t3:
     tier: session
-    path: "session-open injection + AGENTS.md + plan-creation-protocol amendment"
-    status: queued
-    note: "Plan-creation-protocol: every CSPS plan includes a Decision Ledger section. Queued."
-  exempt_reason: "none — full trio intended; validator queued under HARDWIRE with block-test."
+    path: "session-open injection (active) + plan-creation-protocol amendment (active) + AGENTS.md (parked)"
+    status: partial
+    note: "session-open.sh: ACTIVE S089. plan-creation-protocol Step 7: ACTIVE S089. AGENTS.md hard rule: PARKED (PARK-S089-AGENTS-HARD-RULES) — generated from principles.yaml+codegen.ts; direct edit forbidden."
+  exempt_reason: "none — full trio intended; AGENTS.md surface parked pending codegen implementation."
 ---
 
 ## B_DECISION_LEDGER — preserve the reasoning, including roads not taken (S089 Governor directive — CONSTITUTIONAL, UNIVERSAL)
@@ -68,13 +68,15 @@ AND prevents the opposite failure (ignoring prior work) by making "what we have"
 | 3 | Consolidated plan §4 (first instance) + §8 wiring | plan-instance | ✅ |
 | 4 | Humble Engine core-seed CS-B emits ledger | core-seed | ✅ (spec) |
 | 5 | CIE ingest of ledger (anti-re-research) | mechanism-spec | ✅ (spec) |
-| 6 | plan-creation-protocol amendment | doc-rule | ⏳ queued |
-| 7 | session-open + AGENTS.md hard rule | prompt/doc-rule | ⏳ queued |
-| 8 | `validate-decision-ledger.mjs` + block-test | validator | ⏳ HARDWIRE-queued (batch) |
+| 6 | plan-creation-protocol amendment (Step 7) | doc-rule | ✅ S089 — Step 7 added |
+| 7 | session-open reminder (active) + AGENTS.md hard rule | prompt/doc-rule | ✅ session-open S089 / PARKED AGENTS.md → PARK-S089-AGENTS-HARD-RULES |
+| 8 | `validate-decision-ledger.mjs` + block-test | validator | ✅ S089 — 3/3 PASS |
 
 **Ways:** contract · memory · plan-instance · core-seed · mechanism · doc-rule · validator — >1 way ✓. ≥8 surfaces ✓.
+**HARDWIRE batch S089 COMPLETE:** surfaces 6, 7 (session-open), 8 shipped. AGENTS.md surface parked.
 
-## HARDWIRE queue
-The validator (surface 8) ships in the same HARDWIRE batch as `validate-challenge-on-merit`, each with a
-block-test proving it FAILS when a consequential decision is recorded with no rejected-options/reasoning.
+## HARDWIRE complete (S089)
+Surfaces 6, 7 (session-open), 8 implemented S089 — validator + plan-creation-protocol Step 7 + session-open reminder.
+AGENTS.md hard rule: parked (AGENTS.md is generated from principles.yaml + codegen.ts; direct edit forbidden).
+Park: PARK-S089-AGENTS-HARD-RULES — add B_CHALLENGE_ON_MERIT + B_DECISION_LEDGER rules to principles.yaml when codegen full implementation lands.
 Writing enforcement blind would violate the rigor; built next, deterministically.

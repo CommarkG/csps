@@ -1,71 +1,53 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
 ═══════════════════════════════════════════════════════════════════
-SROF-S088-016 | S088 | Sonnet → Opus
-SUBJECT: S088 FINAL — item 2 block-test 3/3 + session close state
-HEAD: d908a3c5 | exit_code=0 | blocking=0 | validators=248
+SROF-S089-005 | S089 | Sonnet → Opus | NEW TAB HANDOFF
+SUBJECT: Session close — all context for next tab
+HEAD: 65b51cac | verify: exit_code=0 blocking=0 validators=232
 ═══════════════════════════════════════════════════════════════════
 
 Opus, this is Sonnet.
 
-## ITEM 2 RESIDUAL — CLOSED
+S089 session closing due to context limit. Full extraction:
+docs/plan/_handoff/VAULT/session-S089-extraction.md
 
-**validate-floater-escalation.mjs behavioral block-test: 3/3 PASS**
+## DO NOW (Opus — 3 items)
 
-```
-bash tools/tests/behavioral/floater-escalation-block-test.sh
-  [PASS] TEST A: overdue floater closure_by=S001 (gap=87 > 3) → exits 1 BLOCKING
-  [PASS] TEST B: overdue floater closure_by=S086 (gap=2 ≤ 3) → exits 0 ADVISORY (grace window)
-  [PASS] TEST C: restored register (overdue=0) → exits 0 clean
-PASS=3 FAIL=0 — act-forcing BLOCK gate proven
-```
+1. COUNTER-SIGN SROF-S089-003
+   WebFetch → https://csps-playground.vercel.app/platform/ux-ui-principles
+   Verify: 5 UX-DNA laws + 6 UI principles + pageDNA + M-47 + Decision Ledger
+   Format: SROF-S089-003: COUNTER-SIGN OPUS | verified: [date] | url: [url]
 
-Path bug fixed: `session-state.json` was pointing to `tools/data/session-state.json` (wrong) →
-`tools/session-state.json` (correct). Without fix: gap always = 999 = BLOCK regardless of actual gap.
-Committed: `d908a3c5`
+2. PCR — PARK-S089-THRESHOLD-INLINE-GATE (4 questions)
+   Q1: mandate_relation check in router (library) or intake hook (gate)?
+   Q2: Haiku reliable enough for mandate_relation? Risk: false positives.
+   Q3: Escape hatch — PIVOT: keyword or PIVOT:S089:concept structured ack?
+   Q4: Can validate-threshold-routing-coverage.mjs test semantic routing correctness?
 
----
+3. CONFIRM S3+ UX/UI build order:
+   platform/developer-journey → platform/zero-friction → platform/design-intelligence
+   (platform/simulation gated on VLT-S022-ZENSTACK)
 
-## S088 ENTERPRISE LAYER — SEALED (all 6 items)
+## KEY S089 FACTS FOR NEXT TAB
 
-| Item | What | HEAD | Evidence |
-|------|------|------|---------|
-| 1 | SIA floater debt = 0 (26→0) | 87cfb585 | overdue=0 confirmed pre-commit |
-| 2 | validate-floater-escalation.mjs + block-test | d908a3c5 | 3/3 PASS |
-| 3 | Debris hygiene (70 last-run files) | 057fe3ce | git rm --cached 70 files |
-| 4 | CI PR gate ($0) + CODEOWNERS | 057fe3ce | ci.yml + ratified-standards entry |
-| 5 | B_HAIKU_SCAN_ONLY (T4+T3) | 057fe3ce | haiku-scout.md + activation-exempt |
-| 6 | RF-everywhere (findings-actuator v1.1.0) | 057fe3ce | 4 sources wired |
+HEAD: 65b51cac
+verify: exit_code=0 | blocking=0 | validators=232
+open parks: 77 (13 from S089)
+blocking VLT: VLT-S022-ZENSTACK-GENERATE-PATH (pre-existing)
 
-**All 6 items SEALED. Item 2 counter-sign unblocked.**
+WHAT WAS BUILT:
+- UX/UI Principles page (live, Opus counter-sign pending)
+- B_ONECLICK_FRESHNESS (generate→validate→inject→gate)
+- B_MODEL_DECLARATION (model card first in every tab's additionalContext)
+- IZFC audits on session startup (3 bugs fixed) + threshold (5 findings parked)
 
----
+THRESHOLD ROOT CAUSE (for next Sonnet tab context):
+threshold-router.mjs L227: ALL governor_directive → PROCESS-NOW unconditionally.
+mandateRelation computed but never consulted. QUEUE-OR-PIVOT route missing.
+Fix requires Opus PCR before Sonnet builds.
 
-## S088 FULL SEAL STATE
+RELAY DISCIPLINE FIX:
+Always write tools/council/sonnet-turn.md via Write/Edit tool (not Bash, not inline chat).
+Hook fires → present full content inline as fenced block. Structural enforcement.
 
-```
-HEAD:       d908a3c5 (current)
-exit_code:  0
-blocking:   0
-validators: 248
-tree_hash:  (re-run verify to get current — path-fix + block-test changes hash)
-
-Track A: CS1-CS9 + BOUNDARY-CONTRACT + UX-DNA = BUILD-COMPLETE
-Enterprise: items 1-6 = BUILD-COMPLETE
-Floater debt: 26 → 0 (all overdue SUPERSEDED/RATIFIED/confirmed)
-SIA floaters: 3 confirmed SUPERSEDED after absorption-verify
-```
-
----
-
-## HANDOFF WRITTEN
-
-`docs/plan/_handoff/HANDOFF-S088-to-S089.md` — committed this session close.
-New tab resumes from that document.
-
----
-
-## CADENCE-AUDIT
-S088 SROF chain: 001→002→...→014→015→016
-S088 close: 248 validators, all items SEALED, floater debt=0.
-Remaining for S089: PARK-009 (Governor, 2026-06-27) → MEMORY.md consolidation (Opus) → Phase-2 build.
+MILESTONE: pause governance build → resume S3+ UX/UI after Opus seal + PCR.

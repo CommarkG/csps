@@ -33,6 +33,13 @@ challenge-on-merit-mandatory · decision-ledger-universal (context-driven) · ba
 
 ### >> REGISTER THESE 2 NEW PARKS in park-register.yaml (fresh-tab FIRST task):
 **PARK-S089-SSOT-CONSOLIDATION** (queue, Opus): consolidate ONE source of truth across tabs + sessions + models (Opus/Sonnet/Haiku). dedup_checked: composes .csps/oneclick.md (B_ONECLICK_FRESHNESS) + threshold harvest-pipeline (PARK-S084) + handoff machinery + this close-harvest — ENHANCE not fork. Goal: every tab/model resumes from the SAME committed SSoT, auto-injected, no human paste.
+  ADDITIONAL CONSOLIDATION CANDIDATES (decrease branching where the SAME truth is duplicated — generate views, don't fork):
+   1. SESSION-STATE: oneclick + HANDOFF-* + SROF + session-state.json + close-harvest + green-receipt → ONE canonical session-state SSoT; oneclick = its auto-rendered head; per-session handoff docs become generated VIEWS, not hand-authored variants.
+   2. FORWARD-WORK REGISTERS: park-register + the 8 legacy defer-verb registers (PHASEB merge already planned) + gap-recurrence-register + improvement-register + floater-queue → ONE forward-work register (finish PHASEB).
+   3. HARVEST: council-harvest + external-research intake + EED (PARK-024) + close-harvest + continuous-drift-log → ONE threshold-routed harvest pipeline (nothing learned unrouted).
+   4. STANDING PRINCIPLES: the 7 turn-discipline injections + session-open + AGENTS.md + B_* contracts → ONE generated source (principles.yaml → codegen; AGENTS path already noted) so all surfaces render from one definition.
+   5. DEBRIS: green-receipt.json + cie-chain + intake-log (tracked, churn the tree_hash) → treehash-exclude/gitignore (kills the recurring false green-receipt mismatch).
+  GUARD (quality not compromised): consolidate only DUPLICATE/PARALLEL sources of the SAME truth. Do NOT over-merge legitimately-separate domains (code vs governance vs memory keep distinct SSoTs). Prefer generated VIEWS from one source over copies. Each merge passes IZFC + Decision Ledger (what was merged, what stayed separate + why).
 
 **PARK-S089-HARVEST-TRIGGER-HARDWIRE** (obligation, Opus/Sonnet): harvest+extract must fire BEFORE irreversible auto-compact (currently SessionStart:compact fires AFTER = too late). Hardwire >1 trigger: (a) context-limit/“new” threshold pre-compact harvest gate; (b) validate-session-harvest-readiness → BLOCKING (currently advisory); (c) per-turn high-significance auto-harvest. Make "nothing learned is lost" mechanical. dedup_checked: enhances existing validate-session-harvest-readiness + EED (PARK-024) + threshold-pipeline — do NOT fork.
 

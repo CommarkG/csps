@@ -10,7 +10,7 @@
 #   in OPTIMAL NEXT STEP instead of a one-click block; advisory memory (feedback_one_click_only) drifted.
 #   WHY BLOCKING not advisory: advisory (T3) drifted. AP-001 EXISTS != ACTIVE.
 #   node-based (python3 absent on this host). Fail-open on parse error (never wedge the session).
-# @csps-version 1.1.0-imperative-relay
+# @csps-version 1.2.0-relay-content-gate
 # @csps-owner group:finky
 # @csps-lifecycle production
 # @csps-lifecycle-state active
@@ -42,8 +42,19 @@ const fs=require("fs");
   if(!text||text.length<40){ console.log("PASS"); return; }
   const relay=/(paste this|paste the box|paste block|paste ?[①②③]|paste into|copy this into|copy the block|relay this|relay the block|relay it to|relay (to|this to) (sonnet|haiku|opus)|direct (sonnet|haiku|opus)|have (sonnet|haiku|opus) [a-z]|tell (sonnet|haiku|opus)|ask (sonnet|haiku|opus) to|into a (fresh |new |sonnet |opus |builder )?tab|to a (sonnet|builder|opus|fresh|new) tab|send (this|it) to sonnet|hand ?off (this|to)|open a (fresh|new) .{0,12}tab)/i.test(text);
   if(!relay){ console.log("PASS"); return; }
-  const hasFence=/```/.test(text);
-  console.log(hasFence ? "PASS" : "BLOCK");
+  // v1.2 — tighter fence detection (root cause: inline backticks false-pass)
+  // Problem v1.1: relay_intent + any_backtick → PASS. But inline code (e.g. `sha`) in response body
+  // satisfied the fence check while the actual relay used ═══ delimiters (not a fenced block).
+  // Fix 1: ═══ PASTE/RELAY markers without a relay-content fenced block → BLOCK
+  // Fix 2: require relay-content keywords (HEAD:|verify:|DONE:|RELAY:|TAB|S0NN) INSIDE a fenced block
+  const hasEqMarker=/═{3,}/.test(text);
+  // Extract all ``` fenced blocks and check if any contain relay-relevant content
+  const fenceBlocks=[];
+  let fm;const fr=/```[\s\S]*?```/g;
+  while((fm=fr.exec(text))!==null)fenceBlocks.push(fm[0]);
+  const hasRelayBlock=fenceBlocks.some(b=>/HEAD:|verify:|DONE:|RELAY:|SONNET TAB|OPUS TAB|S0\d\d|Await (Opus|Sonnet|Governor)/i.test(b));
+  if(hasEqMarker&&!hasRelayBlock){console.log("BLOCK");return;}// ═══ used without proper fenced relay block
+  console.log(hasRelayBlock?"PASS":"BLOCK");// require relay-content inside the fence
 })();
 ' "$TRANSCRIPT_PATH" 2>/dev/null || echo "PASS")
 

@@ -2220,3 +2220,154 @@ entries:
       reasoning: Nominal-active is the dominant silent failure; only a live per-mechanism activation probe catches it.
     decision_back_ref: 'Governor S089: "add a test drive sonnet should do with your instructions ... expose where hardwired parts does not really work and fix and iterate ... mandatory way of working ... scaled RZF ... wire it all around".'
     retrieve_when: Active NOW — first instance issued in opus-turn.md; formalize the wiring (BUILD-COMPLETE gate) in the recurrence-stopper batch.
+
+  # ─────────────────────────────────────────────
+  # S089 CSP-DERIVED PARKS (from external CSP platform session analysis)
+  # Source: CSP session debrief (different platform). Vocab translated to CSPS.
+  # Original CSP terms → CSPS equivalents noted in each entry.
+  # ─────────────────────────────────────────────
+
+  - id: PARK-S089-COLD-CONTEXT-RECOVERY-TEST
+    lane: queue
+    title: Explicit cold-context recovery validation experiment
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    csps_source: 'CSP session debrief (different platform) — translated: CSP "close all tabs, read ONLY next_tab_state.md" → CSPS "close all tabs, read ONLY .csps/oneclick.md"'
+    problem: >
+      CSPS claims .csps/oneclick.md enables cold-context recovery (new tab, no prior context, correct next action).
+      This claim has never been explicitly validated. If oneclick.md is insufficient, the promise of
+      "paste and resume" is false — the most fundamental session-continuity guarantee.
+    proposed_build: >
+      Run the experiment deliberately: close ALL open tabs. Open fresh Claude Code. Read ONLY
+      .csps/oneclick.md (no other files, no HANDOFF, no session-state). Can the model produce the
+      correct next action without any other context? Time it. Document gaps in oneclick.md that required
+      navigation. Fix oneclick.md gaps. Re-run until passing in one read. This is the acceptance test
+      for PARK-S089-STARTUP-AUTO-PROCEED and B_ONECLICK_FRESHNESS.
+    dedup_checked: >
+      ENHANCE not fork. PARK-S089-STARTUP-AUTO-PROCEED covers "fold card into oneclick / auto-proceed" but
+      NOT the explicit cold-context recovery experiment. B_ONECLICK_FRESHNESS validates freshness but not
+      sufficiency. This is the sufficiency test. Composes: PARK-S089-STARTUP-AUTO-PROCEED + B_ONECLICK_FRESHNESS
+      + PARK-S089-SSOT-CONSOLIDATION.
+    decision_ledger:
+      chosen: Explicit timed experiment as acceptance test for oneclick.md sufficiency
+      rejected: Assume oneclick.md works (no evidence; claim inherited not measured)
+      reasoning: CSP's honest assessment — "cold-context recovery works" was ASSERTED not proven. CSPS has the same gap.
+    retrieve_when: After PARK-S089-STARTUP-AUTO-PROCEED is built (oneclick.md folded in); then run the test.
+
+  - id: PARK-S089-COMPLETION-DISCIPLINE-METRICS
+    lane: queue
+    title: Instrument CSPS completion-discipline claims with measurable evidence
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    csps_source: 'CSP session debrief — CSP honest gap: "Claimed advantages not measured — completion is better is asserted, not proven with data. We do not have a control group."'
+    problem: >
+      CSPS claims superior completion reliability over Claude Code defaults and Lovable. These claims
+      are asserted, not measured. The three key claims: (1) "PE prevents shiny-object drift",
+      (2) "IZFC makes DONE mean something", (3) "B_CHALLENGE_ON_MERIT fires and changes outcomes."
+      None have a measurement instrument.
+    proposed_build: >
+      Three lightweight metrics instruments:
+      (1) Completion rate: plan items reaching lifecycle_state=done / total ratified per session.
+        Wire: extend validate-pe-dashboard.mjs to emit a completion-rate metric. Track in session-state.json.
+      (2) Regression catch rate: count of "DONE" items caught as broken by validators in next session.
+        Wire: validate-completion-gate.mjs → log catches → gap-recurrence K-counter.
+      (3) Challenge-on-merit fire rate: times validate-challenge-on-merit.mjs fires (ADVISORY/BLOCKING)
+        vs Governor reverses position after pushback. Log to tools/data/challenge-metrics.yaml.
+      These three numbers make CSPS advantages MEASURABLE, not just claimed.
+    dedup_checked: >
+      New instrument — not in PARK-S084-026 (PE-improvement-loop covers PE calibration but not
+      completion-rate tracking), not in PARK-S082-011 (cognition-orchestration, not metrics).
+      Composes: validate-pe-dashboard.mjs + validate-completion-gate.mjs + validate-challenge-on-merit.mjs
+      (all exist; this adds metric EMISSION to each). ENHANCE existing validators, do not fork.
+    decision_ledger:
+      chosen: 3 lightweight metric emissions wired into existing validators
+      rejected: Separate metrics platform (overkill; adds complexity without platform generalizability)
+      reasoning: CSP identified the gap (claims without data); CSPS has the validators to emit the data cheaply.
+    retrieve_when: After PREVENTION-PERSIST-PE-AUTOPLAN-LOOP is built (PE infrastructure stabilized); wire metrics then.
+
+  - id: PARK-S089-SAVE-READBACK-INFLUENCE-3CHAIN
+    lane: vault
+    title: 3-field declaration for every governed data field (save + readback + influence)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    csps_source: >
+      CSP platform FC-11 "floater prevention": every field declares (a) where it saves,
+      (b) where read back, (c) how it influences the system. CSP claims this prevents the #1 silent
+      UX defect class. CSPS has B_SAVINGS_AND_SSOT_UNIFIED / nothing-stands-alone but NOT this
+      specific 3-field chain format.
+    problem: >
+      CSPS nothing-stands-alone (feedback_nothing_stands_alone_expanded.md) mandates that artifacts
+      are wired + called + verified. But it does not require declaring the INFLUENCE CHAIN for data fields:
+      where is the data written? where is it read back? what decision does it affect downstream?
+      Silent-dead-influence is the floater pattern: a field is written, never read, never influences anything —
+      and the writing validator says PASS because the file exists. EXISTS != ACTIVE at the data-field level.
+    proposed_build: >
+      Extend B_SAVINGS_AND_SSOT_UNIFIED to require for EVERY governed data field in a new artifact:
+        save_location: "file:field_path"  # where it writes
+        readback_location: "file:line or hook:name"  # where it's consumed
+        influences: "what decision or behavior downstream"  # the actual effect
+      Enforce: extend validate-aap-frontmatter.mjs (or create validate-field-influence-chain.mjs)
+      to check governed fields in yaml artifacts for these three fields. ADVISORY first, BLOCKING after backfill.
+      This is a MORE SPECIFIC implementation of nothing-stands-alone at the field level.
+    dedup_checked: >
+      ENHANCE not fork. B_SAVINGS_AND_SSOT_UNIFIED exists (feedback file). nothing-stands-alone-expanded
+      exists. This adds the 3-field chain FORMAT to those contracts — making the abstract "wired+called+verified"
+      concrete with specific field declarations. Composes: validate-aap-frontmatter.mjs + B_SAVINGS_AND_SSOT_UNIFIED
+      + feedback_nothing_stands_alone_expanded.md.
+    decision_ledger:
+      chosen: 3-field chain as extension of B_SAVINGS_AND_SSOT_UNIFIED
+      rejected: New FC-11 contract (CSP vocabulary; violates B_NO_INVENTION_WITHOUT_PRECEDENT_CHECK — extend existing)
+      reasoning: CSPS already has the concept; the 3-field format makes it mechanical and checkable. No new contract needed.
+    retrieve_when: When building the next hardwire sweep (PREV-1 extension) or when PARK-S082-010 PREVENTION build starts.
+
+  - id: PARK-S089-PLATFORM-COMPETITIVE-GROUNDING
+    lane: queue
+    title: Honest competitive grounding page — where CSPS leads and where it lags (with validation metrics)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    csps_source: >
+      CSP session debrief: "Competitive gap analysis with validation metrics — a formalized artifact
+      with validation metrics ... claimed advantages not measured ... biggest improvement: relay protocol
+      is the most expensive human-in-the-loop step and where format discipline fails most."
+      Translates to: CSPS /platform/competitive-grounding page.
+    problem: >
+      CSPS has no honest external-facing comparison of where it genuinely leads vs where it lags
+      versus Claude Code defaults or Lovable. The claims exist in memory files and verbal discussion,
+      never as a structured, measurable, honest artifact. An honest grounding page serves both as
+      a reality check (prevents overconfidence) and as a moat documentation (what is genuinely different).
+    proposed_build: >
+      New platform page: /platform/competitive-grounding
+      3 sections:
+      (1) WHERE CSPS LEADS (honest moat candidates with measurement criteria):
+        - Completion-as-architecture (PE ACTIVE_WORK +1.5x, validate-completion-gate.mjs)
+        - Evidence-gated DONE (IZFC + 233+ validators; DONE = clean re-run, not trust)
+        - Anti-sycophancy as contract (B_CHALLENGE_ON_MERIT, validate-challenge-on-merit.mjs)
+        - Durable system-of-record (oneclick.md + council files; cold-context recovery)
+      (2) WHERE CSPS LAGS (honest gaps):
+        - Setup friction (30+ governance files; zero-setup for Claude Code or Lovable)
+        - Human relay bottleneck (OPUS↔Sonnet manual copy-paste; PARK-S089-AUTO-COUNCIL-CYCLE)
+        - No visual real-time feedback loop (Lovable shows results instantly; CSPS deploys to Vercel)
+        - Claimed advantages not yet measured (PARK-S089-COMPLETION-DISCIPLINE-METRICS)
+      (3) VALIDATION CHECKLIST — how to prove each claimed advantage:
+        - Run cold-context recovery test (PARK-S089-COLD-CONTEXT-RECOVERY-TEST)
+        - Track completion-rate metrics (PARK-S089-COMPLETION-DISCIPLINE-METRICS)
+        - Count B_CHALLENGE_ON_MERIT fire+reversal rate
+      Includes pageDNA + UX Law 1 + core-seeds + decision-ledger (standard S089 page build).
+    dedup_checked: >
+      New page — no existing /platform/ page covers this. /platform/developer-journey covers build pipeline;
+      /platform/ux-ui-principles covers UX laws; none covers external positioning or honest gap analysis.
+      Composes: PARK-S089-COMPLETION-DISCIPLINE-METRICS + PARK-S089-COLD-CONTEXT-RECOVERY-TEST
+      + P1 page build pattern (DNA Law + core-seeds + checklist + decision-ledger).
+    decision_ledger:
+      chosen: Dedicated platform page with 3-section honest structure (leads / lags / validation checklist)
+      rejected: Memory file only (ephemeral; the honest-grounding insight itself needs to survive compaction)
+      reasoning: This insight has value beyond one session; a platform page = durable, visible, verifiable.
+    retrieve_when: After P1 UX/UI build batch completes (zero-friction + design-intelligence + simulation); P2 platform pages.

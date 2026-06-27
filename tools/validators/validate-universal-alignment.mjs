@@ -106,7 +106,10 @@ function getNewFiles() {
       // S089: .csps/oneclick.md — auto-generated session resume file (tools/generate-oneclick.mjs).
       // Machine output written after every clean verify pass. Not a governed artifact.
       // Excluded from tree_hash via treehash-exclude.txt; exempted here to prevent false positive.
-      .filter(f => !f.match(/^\.csps[\/\\]oneclick\.md$/));
+      .filter(f => !f.match(/^\.csps[\/\\]oneclick\.md$/))
+      // S089: .csps/session-startup-architecture.md — architecture reference doc for Opus review.
+      // Utility doc, not a governed platform artifact. Uses custom structure, not universal frontmatter.
+      .filter(f => !f.match(/^\.csps[\/\\]session-startup-architecture\.md$/));
   } catch { return []; }
 }
 

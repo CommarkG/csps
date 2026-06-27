@@ -93,3 +93,6 @@ exemptions:
   - pattern: "^\\.csps/oneclick\\.md$"
     reason: "Auto-generated session resume file by tools/generate-oneclick.mjs after every clean verify pass. Contains git HEAD + verify state — machine output, not a governed artifact. Excluded from tree_hash via treehash-exclude.txt; exempted here to prevent universal-alignment false positive."
     added_session: S089
+  - pattern: "^\\.csps/session-startup-architecture\\.md$"
+    reason: "Architecture reference doc for the session startup system (B_MODEL_DECLARATION + B_ONECLICK_FRESHNESS). Utility doc for Opus review — not a governed platform artifact. Uses a custom structure, not universal CSPS frontmatter."
+    added_session: S089

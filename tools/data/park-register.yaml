@@ -1760,6 +1760,9 @@ entries:
     closed_session: null
 
   - id: "PARK-S089-APP-COMPARISON-SYNERGY-CONSOLIDATION"
+    opus_s089_consolidation_map: 'Opus S089 (4 Haiku scouts) — material is 3 layers, ALL design-only (no prod build): (1) APPS-COMPARISON+SYNERGY: OPUS-S089-PLATFORM-SYNTHESIS-REPORT.md (canonical 13-entity comparison schema + bundling orchestrator) + OPUS-S089-SYNERGY-UX-REPORT-MASTER-PLAN.md (7-stream S1-S7) + synergy-master skill (ACTIVE) + CSEP template. (2) ENGINE: OPUS-S089-DESIGN-v2-ADJUSTING-LAYER-HUMBLE-ENGINE.md + OPUS-S089-CONSOLIDATED-PLAN.md (SSoT, has Decision Ledger; Humble Engine + Synergy Dashboard DECOUPLED sharing CIE core; thresholds 85/50-84/<50; core-seeds CS-A..CS-G). (3) ADVANCED-CSPS/SELF-BUILD: PARK BUILD-WIZARD-PLAYBOOK (UMBRELLA, composes 8 parks) + PLATFORM-EMBEDDEDNESS-DEEP-DIVE (subsumes SELF-BUILDING) + PLATFORM-GENOME.md + EED. CONNECTION: build-wizard = the engine; apps-comparison/synergy = its FIRST real application.'
+    opus_s089_consolidate_targets: 'CONSOLIDATED-PLAN.md = SSoT (has Decision Ledger); fold SYNERGY-UX-MASTER-PLAN in as its Execution-Sequence section; archive DESIGN-v2 to VAULT once integrated. Advanced-CSPS parks: BUILD-WIZARD-PLAYBOOK is the single umbrella; PLATFORM-EMBEDDEDNESS subsumes SELF-BUILDING.'
+    opus_s089_recommended_sequence: 'CORE-BEFORE-APPLICATION + build-one-real-thing-then-generalize: (1) run THIS consolidation pass (3 docs -> 1 SSoT); (2) build CS-F vocabulary registry foundation FIRST; (3) build apps-comparison schema + Synergy Dashboard (S3) as the FIRST real app exercising Humble Engine create-vs-enhance; (4) generalize BUILD-WIZARD + platform-embeddedness AFTER the first instance proves the pattern. Do NOT build abstract advanced-CSPS first.'
     lane: queue
     content: >
       Consolidate ALL S089 app-comparison + synergetic-sharing work into ONE coherent design before build.

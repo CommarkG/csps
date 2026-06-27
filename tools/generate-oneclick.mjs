@@ -148,6 +148,22 @@ ROLES: Sonnet = builder. Opus = director. Haiku = sub-agent scout (never a UI ta
   Sonnet → Opus council comms start: "Opus, this is Sonnet."
   Opus → Sonnet council comms start: "Sonnet, this is Opus."
   Model default: claude-sonnet-4-6[1m] (set in .claude/settings.json — no /model needed per tab).
+
+STARTUP AUDIT (permanent — Governor S089 directive — check before first build each session):
+  ONE-SOURCE MANDATE: NO protocol, rule, or config duplicated across multiple files.
+  CHECK: model/tab config → SSoT = .claude/settings.json ONLY (never re-declared in oneclick/HANDOFF/chat)
+  CHECK: live relay+assignment → SSoT = tools/council/opus-turn.md ONLY (never restated in startup)
+  CHECK: operating doctrine → SSoT = OPUS-S089-NORTH-STAR-SPINE.md ONLY (never copied inline)
+  CHECK: B_* contracts → SSoT = docs/behavioral-contracts/ ONLY (not inline in HANDOFF or memory)
+  CHECK: AI defaults/overrides → SSoT = .claude/session-startup-architecture.md (not in multiple injections)
+  CONSOLIDATION SCAN: flag ANY element defined in >1 location before starting build work:
+    → parallel protocol files (same workflow in 2+ docs) → merge to canonical
+    → parallel instruction sets (same rule in AGENTS.md + memory file + hook) → keep T1+T2 only
+    → scattered B_* declarations (informal rule + formal contract existing together) → delete informal
+    → parallel tab/model instructions (settings + oneclick + HANDOFF all saying same thing) → collapse
+  IF SCATTERED FOUND: propose consolidation via sonnet-turn.md with PCR (chosen/rejected/reasoning).
+    Opus grants before SSoT change. B_CONSOLIDATION_PASS: never build ON TOP of a scattered element.
+    Never delete the wrong copy — identify canonical, then delete duplicates.
 Await Governor relay of next directive. Stand by.`;
 
 // Full file content

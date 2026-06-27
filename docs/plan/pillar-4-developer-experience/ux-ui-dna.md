@@ -249,6 +249,42 @@ The Threshold IS the first UX interaction. Every app built on CSPS inherits this
 
 ---
 
-*CSPS UX/UI DNA v1.0 | S023 | 2026-05-11*
+---
+
+## §5 — LOVABILITY Rubric (S089 Opus §9 — BUILD-AUDIT dimension e)
+
+**Source:** Ratified by Opus #25 S089. Extends BUILD-AUDIT (a/b/c/d) with a felt-experience dimension that machine validators cannot replace.
+
+**Purpose:** Lovability is a property of the FLOW, not the page. Page-by-page principle compliance produces correct pages that do not add up to a loved journey.
+
+**Method:** Sonnet self-scores (1-6) on each dimension after building. Governor confirms by test-driving the journey-coherent slice. Governor test-drive is the ACCEPTANCE TEST — machine score is preliminary only.
+
+**6 Lovability Dimensions:**
+
+| # | Dimension | What it means | PASS signal | Common GAP |
+|---|-----------|---------------|-------------|------------|
+| 1 | First-screen value | Value visible before any input (UX Law 1) | Purpose + concrete example above the fold | Page opens with blank form, no context |
+| 2 | Zero-friction | Fewest steps to core action; no dead-ends; ≤2 clarifying questions | Single primary action; voice/file options | 5-field form on first touch |
+| 3 | Honest state | Empty/loading/error/success all present + truthful (M-47) | All 4 states explicit; no silent blank | Submit → nothing visible; error = blank |
+| 4 | Flow-coherence | Connects to page before/after in journey; no orphan | Bidirectional RelatedPages; journey declared in pageDNA | Page stands alone, no entry/exit |
+| 5 | Delight | One intentional delight moment (micro-copy/motion/smart default) | Specific named delight mechanism | Generic placeholder text; no personality |
+| 6 | Trust/reversibility | User can undo/edit; no dark patterns | "Start over" / undo always visible; costs disclosed early | Submit is one-way; no escape |
+
+**Scoring:** Each dimension scored 1-5 or PASS/GAP. Total /30. Governor confirms felt score after test-drive.
+
+**Engraving (how this becomes DNA, not a one-off):**
+- This rubric is part of every BUILD-AUDIT for UX pages (alongside mechanical checks a-d)
+- validate-ux-audit.mjs should be extended to assert lovability self-score present in the page (ADVISORY)
+- Journey position + felt outcome declared in pageDNA BEFORE building (not after)
+
+**JOURNEY-POSITION discipline (per pageDNA):**
+Every UX page must declare in its `pageDNA` object:
+- `journeyPosition`: where in the flow this page sits (e.g., "ENTRY — before wizard")
+- `feltOutcome`: the single felt outcome the user should leave with
+
+---
+
+*CSPS UX/UI DNA v1.1 | S089 | 2026-06-27 — §5 Lovability Rubric added (Opus #25 ratified)*
+*v1.0: S023 | 2026-05-11*
 *"Strong focus on customers" — Governor directive*
 *This document is constitutional: changes require ADR.*

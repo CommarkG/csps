@@ -2021,3 +2021,77 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+
+- id: PARK-S089-THRESHOLD-INLINE-GATE
+  parked_session: S089
+  closed_session: null
+  title: "UserPromptSubmit threshold gate for mid-plan inline injections"
+  problem: |
+    Mid-plan Governor concept injections bypass threshold entirely. The gate exists
+    for tool-writes but not for incoming chat ideas. Every session build from inline
+    Governor input (including all S089 oneclick/model-declaration work) was built
+    without threshold routing. S076 memory documents the same pattern.
+  proposed_build: |
+    UserPromptSubmit hook detects: active plan mandate exists + new consequential concept
+    not in active plan manifest -> inject 'ACTIVE PLAN = X. NEW CONCEPT DETECTED.
+    Route: QUEUE (threshold) or EXPLICIT-PIVOT (ack)?'
+    Haiku classifies: new-concept vs active-plan-continuation vs clarification-of-active
+    (60-token classification, not Sonnet/Opus budget).
+  decision_ledger:
+    chosen: PARK for Opus architectural review
+    rejected: build inline now (same mistake it is meant to prevent)
+    reasoning: Building a governance gate without threshold review is self-contradictory.
+  opus_questions:
+    - Is UserPromptSubmit the right event, or should it be a CIE layer check?
+    - Should Haiku classify ALL inputs or only when active-plan is set in session-state.json?
+    - What is the escape hatch when Governor explicitly says 'pivot now'?
+
+- id: PARK-S089-AUTO-COUNCIL-CYCLE
+  parked_session: S089
+  closed_session: null
+  title: "Automated Sonnet-Opus council cycle via Agent tool (no Governor manual relay)"
+  problem: |
+    Governor manually relays every Sonnet→Opus and Opus→Sonnet communication.
+    This is high-friction, error-prone, and creates Governor as a protocol bottleneck.
+    Agent tool already supports spawning Opus sub-agents (model:'opus') with results
+    returned to Sonnet automatically.
+  proposed_build: |
+    council-cycle.mjs: Sonnet calls Agent(model:opus, prompt: council-brief + task).
+    Opus reads relevant files, writes verdict to tools/council/opus-turn.md.
+    Sonnet reads verdict, continues build. Governor sees summary only.
+    SessionStart hook context passed explicitly in spawn prompt (no hook firing for sub-agents).
+    Haiku: pre-classify what requires Opus review vs what Sonnet can decide alone
+    (cost gate: Opus only when architectural/consequential).
+  decision_ledger:
+    chosen: PARK for Opus design review
+    rejected: build inline (needs Opus input on its own sub-agent context limits)
+    reasoning: Opus must validate that Opus-as-sub-agent has sufficient context fidelity
+               for real council work vs being a thin advisory layer.
+  opus_questions:
+    - Does Opus-as-Agent-sub-agent have enough context for genuine architectural review?
+    - Is the council file protocol (tools/council/opus-turn.md) sufficient handoff, or
+      does it need a richer context bundle?
+    - What decisions should NEVER be delegated to Opus-sub-agent (require UI-tab Opus)?
+
+- id: PARK-S089-PRE-BUILD-IZFC
+  parked_session: S089
+  closed_session: null
+  title: "B_PRE_BUILD_IZFC — mandatory pre-build impact enumeration before first file write"
+  problem: |
+    CSPS IZFC runs post-build (validators catch errors after writing). Pre-build IZFC
+    does not exist. S089 self-audit found 3 bugs that were predictable before writing
+    (wrong receipt key, stale paste text, role-specific content). Each fix required a
+    new commit, which required a new verify pass, creating cascading correction loops.
+  proposed_build: |
+    B_PRE_BUILD_IZFC behavioral contract + 5-question pre-flight checklist:
+    1. Does this file timestamp-change on every run? -> treehash-exclude.txt
+    2. Does this file lack CSPS frontmatter? -> frontmatter-exempt-paths.yaml + hardcoded filter
+    3. Does this validator change need audit-runner.md update? -> stage together
+    4. Does this content reference a specific role/model? -> will other models read it?
+    5. Does the key/field I read actually exist? -> read target file first
+    Haiku runs the checklist against the proposed file set and flags gaps before Sonnet writes.
+  decision_ledger:
+    chosen: PARK for Opus review
+    rejected: build inline (this itself requires pre-build thinking first)
+    reasoning: The checklist needs Opus to validate completeness — else it has the same
+               problem (a governance tool built without governance).

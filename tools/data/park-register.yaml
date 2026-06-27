@@ -2446,3 +2446,95 @@ entries:
       rejected: Extend shell now (premature without full inventory; risk of forking what exists)
       reasoning: Swift first pass done; deep audit needs fresh context + Haiku parallel scan of all 30+ platform pages.
     retrieve_when: After P1 UX/UI batch (developer-journey + zero-friction + design-intelligence + simulation) completes.
+
+  # ─────────────────────────────────────────────
+  # S089 LEARNING LOOP IMPROVEMENT PLAN
+  # Governor approved: session S089 (honest self-assessment turn)
+  # ─────────────────────────────────────────────
+
+  - id: PARK-S089-LEARNING-LOOP-ACCUMULATION-GATE
+    lane: obligation
+    priority: HIGH
+    title: K-accumulation threshold before UX principle engraving (no more K=1 engraving)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_text: "parked | owner: Sonnet | trigger: before next UX principle is marked constitutional; build ux-gap-register.yaml + T1 hook + T2 validator"
+    disposition_session: S089
+    problem: >
+      S089 honest self-assessment: UX/UI principles engraved at K=1 (single session, no Governor test-drive).
+      LOVABILITY rubric was marked constitutional after 1 session with 0 external validation.
+      No accumulation gate exists for UX decisions -- only code decisions have K-escalation.
+    proposed_build: >
+      4-tier UX finding lifecycle:
+        K=1: register in ux-gap-register.yaml status=candidate. Do NOT engrave.
+        K=2: advisory to propose engraving. Show in completion page.
+        K=3 + Governor test-drive: ALLOWED to engrave as principle.
+        K=5 + two-party-seal: CONSTITUTIONAL status claimable.
+      T1: hook detects writes to ux-ui-dna.md, checks ux-gap-register for K>=3.
+      T2: validate-ux-principle-age.mjs checks each principle for K-count evidence.
+      New file: tools/data/ux-gap-register.yaml (mirrors gap-recurrence-register schema).
+    dedup_checked: ENHANCE not fork. Mirrors gap-recurrence-register.yaml pattern extended to UX domain.
+    decision_ledger:
+      chosen: K-accumulation gate before UX engraving (same discipline as code gaps)
+      rejected: Continue K=1 engraving (proven path to unvalidated constitutional claims)
+      reasoning: Governor confirmed first-conclusion jumping is active. Code has K-escalation. UX needs same.
+    retrieve_when: PRIORITY -- build before any further UX principles are marked constitutional.
+
+  - id: PARK-S089-LOVABILITY-CONFIRMED-FLAG
+    lane: obligation
+    priority: HIGH
+    title: lovability_confirmed field in pageDNA -- self-score vs Governor-validated distinction
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_text: "parked | owner: Sonnet | trigger: next build turn after Governor test-drive; add fields to pageDNA + extend validate-ux-audit.mjs"
+    disposition_session: S089
+    problem: >
+      Self-scored LOVABILITY (26/30 zero-friction, 28/30 homepage) treated as measured data.
+      It is an estimate. No field distinguishes self-scored from Governor-confirmed.
+      A page could claim 5/5 on every dimension with zero external validation.
+    proposed_build: >
+      Add to pageDNA standard:
+        lovability_self_score: number (0-30)
+        lovability_confirmed: boolean (false until Governor test-drive)
+        lovability_confirmed_by: string (session/turn of confirmation)
+        lovability_confirmed_score: number (Governor felt score, may differ from self)
+      Update developer-journey, zero-friction, homepage pageDNA with these fields.
+      Extend validate-ux-audit.mjs: warn if confirmed=false for pages >2 sessions old.
+    dedup_checked: ENHANCE pageDNA (existing standard) and validate-ux-audit.mjs (existing validator).
+    decision_ledger:
+      chosen: Two-field flag (self_score + confirmed boolean) -- lightweight, backwards-compatible
+      rejected: Wait for test-drive before building flag (circular -- test-drive cannot confirm what is not tracked)
+      reasoning: Flag needed now before more pages are built without it.
+    retrieve_when: NEXT BUILD TURN -- execute alongside first post-test-drive page update.
+
+  - id: PARK-S089-LEARNING-LOOP-DASHBOARD
+    lane: queue
+    priority: MEDIUM
+    title: Learning loop health section in /platform/completion
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    problem: >
+      Learning loop data (gap-recurrence, ux-gap-register when built) is invisible unless
+      reading YAML directly. No surface shows which gaps are growing vs shrinking,
+      K-counts for UX issues, or which LOVABILITY scores are self-only vs confirmed.
+    proposed_build: >
+      New section in /platform/completion (enhance existing page):
+        (1) Gap accumulation: top 5 open gaps from gap-recurrence-register with K-count + trend
+        (2) UX gap candidates: top 5 from ux-gap-register (K=1 to K=2 to K=3 status)
+        (3) LOVABILITY scores: table per page -- self_score / confirmed / delta
+        (4) Principle age: per ux-ui-dna.md principle -- K-count evidence and session age
+        (5) Accumulation parameters displayed: K=1 candidate, K=2 advisory, K=3+external allowed, K=5 constitutional
+    dedup_checked: ENHANCE /platform/completion. No new page. Needs ux-gap-register built first.
+    decision_ledger:
+      chosen: Section in /platform/completion (enhance, reuse existing page)
+      rejected: New /platform/learning-loop page (K=1 data point -- premature for dedicated page)
+      reasoning: Governor asked about dashboard. Honest answer is K=1 for concept -- enhance completion page.
+    retrieve_when: After PARK-S089-LEARNING-LOOP-ACCUMULATION-GATE is built.

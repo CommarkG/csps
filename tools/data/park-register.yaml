@@ -2022,102 +2022,162 @@ entries:
     created_session: S089
     closed_session: null
 
-- id: PARK-S089-THRESHOLD-INLINE-GATE
-  parked_session: S089
-  closed_session: null
-  title: "UserPromptSubmit threshold gate for mid-plan inline injections"
-  izfc_audit: S089
-  izfc_summary: |
-    6-angle sweep on actual code. Key findings:
-    ROOT CAUSE: threshold-router.mjs L227 routes ALL governor_directive to PROCESS-NOW
-    unconditionally. mandateRelation IS computed (L191-193) but never consulted before
-    the governor_directive branch. Missing check: is this NEW concept or in-mandate?
-    CLASSIFIER NOT GATE: threshold runs, CIE writes, log writes — then exit 0.
-    PROCESS-NOW is a pass-through. No downstream block exists for any route.
-    VALIDATORS BLIND: validate-threshold-chain passes 0/0 because it tests technical
-    function not routing correctness. Semantic routing = un-validatable by machine.
-    MISSING ROUTE: QUEUE-OR-PIVOT does not exist in the router enum. Must be added.
-    EVIDENCE: S089 oneclick input pe_score=4.75 MEDIUM, routed PROCESS-NOW.
-    Correct route with active mandate: QUEUE-OR-PIVOT (route did not exist).
-  problem: |
-    Mid-plan Governor concept injections bypass the mandate check entirely.
-    threshold-router.mjs routes ALL governor_directive to PROCESS-NOW without
-    checking whether the directive is in the active mandate or a NEW concept injection.
-    S076 memory documents same pattern. S089 confirmed recurrence: 5 correction
-    commits on a build triggered by unqueued mid-mandate concept injection.
-    The threshold is a classifier not a gate. PROCESS-NOW = approved, proceed.
-  proposed_build: |
-    STEP 1: Add QUEUE-OR-PIVOT to threshold-router.mjs ROUTES enum.
-    STEP 2: Before governor_directive->PROCESS-NOW branch, add:
-      if (mandateRelation === new-concept AND active mandate in session-state.json):
-        route = QUEUE-OR-PIVOT
-        rationale = ACTIVE MANDATE: X. NEW CONCEPT: Y. Queue or pivot?
-    STEP 3: user-prompt-submit-intake.sh handles QUEUE-OR-PIVOT:
-      outputs advisory (non-blocking). Governor replies QUEUE or PIVOT.
-    STEP 4: Haiku classifies mandate_relation (in-mandate|adjacent|new-concept|orthogonal).
-      60-token input type + content -> mandate_relation output. Replaces keyword-only.
-    ESCAPE: Governor writes PIVOT:[concept] to bypass queue gate explicitly.
-  decision_ledger:
-    chosen: PARK for Opus architectural review
-    rejected: build inline now (self-contradictory — same mistake the gate prevents)
-    reasoning: Router change affects ALL governor inputs. Consequential. Needs Opus PCR.
-  opus_questions:
-    - ROUTING: Should mandate_relation check live in threshold-router.mjs (library)
-      or intake hook BEFORE calling router (gate)? Tradeoff: router purity vs hook complexity.
-    - HAIKU RELIABILITY: Is Haiku classification reliable enough for mandate_relation,
-      or does it risk false positives blocking Governor directives mid-session?
-    - ESCAPE HATCH FORMAT: Is PIVOT keyword sufficient or require ack format
-      (e.g., PIVOT:S089:oneclick-permanence) for audit trail?
-    - VALIDATOR COVERAGE: Can validate-threshold-routing-coverage.mjs be extended
-      to test new-concept-when-mandate-active -> QUEUE-OR-PIVOT correctness?
-      Or is semantic routing correctness fundamentally un-validatable by machine?
-
-- id: PARK-S089-AUTO-COUNCIL-CYCLE
-  parked_session: S089
-  closed_session: null
-  title: "Automated Sonnet-Opus council cycle via Agent tool (no Governor manual relay)"
-  problem: |
-    Governor manually relays every Sonnet→Opus and Opus→Sonnet communication.
-    This is high-friction, error-prone, and creates Governor as a protocol bottleneck.
-    Agent tool already supports spawning Opus sub-agents (model:'opus') with results
-    returned to Sonnet automatically.
-  proposed_build: |
-    council-cycle.mjs: Sonnet calls Agent(model:opus, prompt: council-brief + task).
-    Opus reads relevant files, writes verdict to tools/council/opus-turn.md.
-    Sonnet reads verdict, continues build. Governor sees summary only.
-    SessionStart hook context passed explicitly in spawn prompt (no hook firing for sub-agents).
-    Haiku: pre-classify what requires Opus review vs what Sonnet can decide alone
-    (cost gate: Opus only when architectural/consequential).
-  decision_ledger:
-    chosen: PARK for Opus design review
-    rejected: build inline (needs Opus input on its own sub-agent context limits)
-    reasoning: Opus must validate that Opus-as-sub-agent has sufficient context fidelity
-               for real council work vs being a thin advisory layer.
-  opus_questions:
-    - Does Opus-as-Agent-sub-agent have enough context for genuine architectural review?
-    - Is the council file protocol (tools/council/opus-turn.md) sufficient handoff, or
-      does it need a richer context bundle?
-    - What decisions should NEVER be delegated to Opus-sub-agent (require UI-tab Opus)?
-
-- id: PARK-S089-PRE-BUILD-IZFC
-  parked_session: S089
-  closed_session: null
-  title: "B_PRE_BUILD_IZFC — mandatory pre-build impact enumeration before first file write"
-  problem: |
-    CSPS IZFC runs post-build (validators catch errors after writing). Pre-build IZFC
-    does not exist. S089 self-audit found 3 bugs that were predictable before writing
-    (wrong receipt key, stale paste text, role-specific content). Each fix required a
-    new commit, which required a new verify pass, creating cascading correction loops.
-  proposed_build: |
-    B_PRE_BUILD_IZFC behavioral contract + 5-question pre-flight checklist:
-    1. Does this file timestamp-change on every run? -> treehash-exclude.txt
-    2. Does this file lack CSPS frontmatter? -> frontmatter-exempt-paths.yaml + hardcoded filter
-    3. Does this validator change need audit-runner.md update? -> stage together
-    4. Does this content reference a specific role/model? -> will other models read it?
-    5. Does the key/field I read actually exist? -> read target file first
-    Haiku runs the checklist against the proposed file set and flags gaps before Sonnet writes.
-  decision_ledger:
-    chosen: PARK for Opus review
-    rejected: build inline (this itself requires pre-build thinking first)
-    reasoning: The checklist needs Opus to validate completeness — else it has the same
-               problem (a governance tool built without governance).
+  # ─────────────────────────────────────────────
+  # S089 close-harvest registrations (Opus) — 3 Sonnet parks reformatted into
+  # entries (were broken YAML @93b79ee5) + 4 directed parks + register-integrity.
+  # ─────────────────────────────────────────────
+  - id: PARK-S089-THRESHOLD-INLINE-GATE
+    lane: obligation
+    title: UserPromptSubmit threshold gate for mid-plan inline injections
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    izfc_audit: S089
+    consolidated_under: PARK-S089-PREVENTION-PERSIST-PE-AUTOPLAN-LOOP
+    izfc_summary: '6-angle sweep on actual code. ROOT CAUSE: threshold-router.mjs L227 routes ALL governor_directive to PROCESS-NOW unconditionally. mandateRelation IS computed (L191-193) but never consulted before the governor_directive branch. CLASSIFIER NOT GATE: threshold runs, CIE writes, log writes, then exit 0; PROCESS-NOW is pass-through, no downstream block exists for any route. VALIDATORS BLIND: validate-threshold-chain passes 0/0 (tests technical function not routing correctness). MISSING ROUTE: QUEUE-OR-PIVOT does not exist in router enum. EVIDENCE: S089 oneclick input pe_score=4.75 MEDIUM routed PROCESS-NOW; correct route with active mandate = QUEUE-OR-PIVOT.'
+    problem: Mid-plan Governor concept injections bypass the mandate check entirely. threshold-router.mjs routes ALL governor_directive to PROCESS-NOW without checking whether the directive is in the active mandate or a NEW concept injection. S076 memory documents same pattern; S089 confirmed recurrence (5 correction commits on a build triggered by unqueued mid-mandate concept injection). The threshold is a classifier not a gate.
+    proposed_build: 'STEP 1: Add QUEUE-OR-PIVOT to threshold-router.mjs ROUTES enum. STEP 2: before governor_directive->PROCESS-NOW branch, if mandateRelation==new-concept AND active mandate in session-state.json -> route=QUEUE-OR-PIVOT with rationale. STEP 3: user-prompt-submit-intake.sh handles QUEUE-OR-PIVOT (advisory, non-blocking; Governor replies QUEUE or PIVOT). STEP 4: Haiku classifies mandate_relation (in-mandate|adjacent|new-concept|orthogonal). ESCAPE: Governor writes PIVOT:[concept] to bypass explicitly.'
+    decision_ledger:
+      chosen: PARK for Opus architectural review
+      rejected: 'build inline now (self-contradictory: same mistake the gate prevents)'
+      reasoning: Router change affects ALL governor inputs. Consequential. Needs Opus PCR.
+    opus_questions:
+      - 'ROUTING: should mandate_relation check live in threshold-router.mjs (library) or in the intake hook BEFORE calling router (gate)? Tradeoff router-purity vs hook-complexity.'
+      - 'HAIKU RELIABILITY: is Haiku classification reliable enough for mandate_relation, or does it risk false positives blocking Governor directives mid-session?'
+      - 'ESCAPE HATCH FORMAT: is PIVOT keyword sufficient or require an ack format (e.g. PIVOT:S089:oneclick-permanence) for audit trail?'
+      - 'VALIDATOR COVERAGE: can validate-threshold-routing-coverage.mjs test new-concept-when-mandate-active -> QUEUE-OR-PIVOT, or is semantic routing correctness fundamentally un-validatable by machine?'
+  - id: PARK-S089-AUTO-COUNCIL-CYCLE
+    lane: queue
+    title: Automated Sonnet-Opus council cycle via Agent tool (no Governor manual relay)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    consolidated_under: PARK-S089-PREVENTION-PERSIST-PE-AUTOPLAN-LOOP
+    problem: 'Governor manually relays every Sonnet->Opus and Opus->Sonnet communication: high-friction, error-prone, makes Governor a protocol bottleneck. Agent tool already supports spawning Opus sub-agents (model:opus) with results returned automatically.'
+    proposed_build: 'council-cycle.mjs: Sonnet calls Agent(model:opus, prompt: council-brief + task). Opus reads relevant files, writes verdict to tools/council/opus-turn.md. Sonnet reads verdict, continues build; Governor sees summary only. SessionStart context passed explicitly in spawn prompt (no hook fires for sub-agents). Haiku pre-classifies what requires Opus vs Sonnet-alone (cost gate).'
+    decision_ledger:
+      chosen: PARK for Opus design review
+      rejected: build inline (needs Opus input on its own sub-agent context limits)
+      reasoning: Opus must validate that Opus-as-sub-agent has sufficient context fidelity for real council work vs a thin advisory layer.
+    opus_questions:
+      - Does Opus-as-Agent-sub-agent have enough context for genuine architectural review?
+      - Is the council file protocol (tools/council/opus-turn.md) sufficient handoff, or does it need a richer context bundle?
+      - What decisions should NEVER be delegated to an Opus sub-agent (require UI-tab Opus)?
+  - id: PARK-S089-PRE-BUILD-IZFC
+    lane: obligation
+    title: 'B_PRE_BUILD_IZFC: mandatory pre-build impact enumeration before first file write'
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    consolidated_under: PARK-S089-PREVENTION-PERSIST-PE-AUTOPLAN-LOOP
+    note: This IS P5/P6 absorbed by PREVENTION-PERSIST (builder 5-Q pre-flight). Kept as the detailed sub-entry.
+    problem: CSPS IZFC runs post-build (validators catch errors after writing). Pre-build IZFC does not exist. S089 self-audit found 3 bugs predictable before writing (wrong receipt key, stale paste text, role-specific content); each fix required a new commit + verify pass = cascading correction loops.
+    proposed_build: 'B_PRE_BUILD_IZFC contract + 5-question pre-flight: (1) does this file timestamp-change every run? -> treehash-exclude.txt; (2) does it lack CSPS frontmatter? -> frontmatter-exempt-paths.yaml; (3) does this validator change need audit-runner.md update? -> stage together; (4) does content reference a specific role/model? -> will other models read it?; (5) does the key/field I read actually exist? -> read target first. Haiku runs the checklist against the proposed file set, flags gaps before Sonnet writes.'
+    decision_ledger:
+      chosen: PARK for Opus review
+      rejected: build inline (this itself requires pre-build thinking first)
+      reasoning: The checklist needs Opus to validate completeness, else it has the same problem (a governance tool built without governance).
+  - id: PARK-S089-PREVENTION-PERSIST-PE-AUTOPLAN-LOOP
+    lane: obligation
+    priority: TOP
+    title: Make permanent-prevention UN-IGNORABLE per issue (the meta-mechanism)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    problem: 'CAQ Scope-3 CLASS: issues get SWIFT-fixed but the prevention is optional/forgotten -> recurrence (the most expensive CSPS cost). SATISFACTION-POINT: "fixed it" feels done; the structural prevention is not persisted.'
+    proposed_build: 'Un-ignorable, hardwired >=2 ways. Every catch/issue -> (1) SWIFT-fix-now ALLOWED + (2) MANDATORY: register the prevention to a defined store SORTED BY SCHEMA TOPIC; a gate BLOCKS closing/resolving the issue without a schema-tagged prevention entry; (3) PE ENGINE accumulates per topic; (4) at k-threshold PE auto-INJECTS into an active plan OR auto-CREATES a plan. SWIFT improvement is immediate AND nothing prevention-worthy is lost.'
+    consolidates:
+      - PARK-S089-PRE-BUILD-IZFC (= P5 builder pre-flight + P6)
+      - PARK-S089-THRESHOLD-INLINE-GATE (inline injections bypass threshold)
+      - PARK-S089-AUTO-COUNCIL-CYCLE (cross-tab automation arm)
+      - P7 verify fix-loop-depth metric
+    haiku_role: '60-token classifier/cost-gate: new-concept-vs-continuation, should-this-reach-Opus, pre-build file-impact enumeration, schema-topic tagging of preventions.'
+    dedup_checked: 'ENHANCE not fork: composes findings-actuator (RF loop) + gap-recurrence-register + EED (PARK-S084-024) + PE-improvement-loop (PARK-S084-026). NEW piece = the un-ignorable close-gate + schema-topic sort + PE auto-plan-injection.'
+    decision_ledger:
+      chosen: PARK (TOP) for Opus build-first; recurrence-stopper makes every other fix stick
+      rejected: leave prevention optional per-issue (status quo)
+      reasoning: Status quo = the recurrence engine itself; SWIFT-fix without persisted prevention is the documented top CSPS cost.
+    decision_back_ref: 'Governor S089: prevention as platform-level un-ignorable mandate; SWIFT-fix-now + mandatory schema-sorted prevention + PE auto-plan injection.'
+    retrieve_when: FRESH OPUS TAB after churn settled; BUILD FIRST (highest PE) with THRESHOLD-INLINE-GATE + STARTUP-AUTO-PROCEED.
+  - id: PARK-S089-STARTUP-AUTO-PROCEED
+    lane: obligation
+    priority: PRIORITY
+    title: Fresh-tab startup delivers crystal next-instruction and AUTO-PROCEEDS from resumed SSoT
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    problem: 'A fresh tab startup must deliver a CRYSTAL next-instruction and AUTO-PROCEED from the resumed SSoT, NOT halt asking the human "awaiting confirmation". Evidence: new Opus tab correctly declared model (card caught configured-Sonnet vs runtime-Opus) but then asked the Governor instead of acting. asking-instead-of-acting is the bug.'
+    proposed_build: 'Auto-resolve the auto-resolvable (model-mismatch -> declare + proceed, do not ask); halt ONLY on genuine ambiguity; startup ends with the crystal next-action read from oneclick/close-harvest. ABSORB the model-declaration card (good for identity-ground-truth) but remove the "Awaiting confirmation" step. Fold the card INTO .csps/oneclick.md (one startup source, SSoT-consolidation #4) - do NOT keep a parallel card.'
+    dedup_checked: 'ENHANCE not fork: composes B_ONECLICK_FRESHNESS + feedback_no_confirmation_seeking + PARK-S089-PLAN-INSTRUCTION-INTERPRETATION-MOAT + feedback_identity_ground_truth.'
+    decision_ledger:
+      chosen: 'PARK (PRIORITY): auto-resolve + halt-only-on-genuine-ambiguity; fold card into oneclick'
+      rejected: keep model-declaration card as a separate "awaiting confirmation" gate
+      reasoning: 'Parallel card violates no-confirmation-seeking + auto-inheritance + SSoT-consolidation #4 (one startup source).'
+    decision_back_ref: 'Governor S089 live application: PARK-S089-STARTUP-AUTO-PROCEED (this tab executed it).'
+    retrieve_when: Build alongside PREVENTION-PERSIST + THRESHOLD-INLINE-GATE (recurrence-stopper batch).
+  - id: PARK-S089-SSOT-CONSOLIDATION
+    lane: queue
+    title: ONE source of truth across tabs + sessions + models (auto-injected, no human paste)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    content: Consolidate ONE source of truth across tabs + sessions + models (Opus/Sonnet/Haiku). Every tab/model resumes from the SAME committed SSoT, auto-injected, no human paste. ENHANCE not fork.
+    dedup_checked: 'ENHANCE not fork: composes .csps/oneclick.md (B_ONECLICK_FRESHNESS) + threshold harvest-pipeline (PARK-S084) + handoff machinery + OPUS-S089-CLOSE-HARVEST.'
+    consolidation_candidates:
+      - '1 SESSION-STATE: oneclick + HANDOFF-* + SROF + session-state.json + close-harvest + green-receipt -> ONE canonical session-state SSoT; oneclick = auto-rendered head; per-session handoff docs become generated VIEWS.'
+      - '2 FORWARD-WORK REGISTERS: park-register + 8 legacy defer-verb registers (PHASEB) + gap-recurrence-register + improvement-register + floater-queue -> ONE forward-work register (finish PHASEB).'
+      - '3 HARVEST: council-harvest + external-research intake + EED (PARK-S084-024) + close-harvest + continuous-drift-log -> ONE threshold-routed harvest pipeline.'
+      - '4 STANDING PRINCIPLES: 7 turn-discipline injections + session-open + AGENTS.md + B_* contracts -> ONE generated source (principles.yaml -> codegen).'
+      - '5 DEBRIS: green-receipt.json + cie-chain + intake-log churn -> treehash-exclude/gitignore. STATUS: PARTIALLY DONE S089 (this tab) - treehash-exclude already covers all; 4 pure machine-state files now gitignored (commit 26cfe187). REMAINING: tracked record/log files still churn (inherent).'
+      - '6 (S089 FINDING): classification-golden-set.yaml appends accuracy_history every verify but is NOT treehash-excluded -> recurring tree_hash mover (does not break receipt because tree_hash uses staged files, but keeps the file perpetually dirty). FIX: split accuracy_history into a dedicated treehash-excluded file (do NOT blanket-exclude the authored golden cases, per exclude-list "when in doubt INCLUDE").'
+    guard: Consolidate only DUPLICATE/PARALLEL sources of the SAME truth. Do NOT over-merge legitimately-separate domains (code vs governance vs memory keep distinct SSoTs). Prefer generated VIEWS over copies. Each merge passes IZFC + Decision Ledger (what merged, what stayed separate + why).
+    decision_ledger:
+      chosen: 'PARK (queue): consolidate duplicate/parallel SSoT sources; generate views not copies'
+      rejected: fork per-tab/per-model state (status quo) OR aggressively merge all stores including separate domains
+      reasoning: Forking causes paste-dependence + drift; over-merging destroys legitimate domain separation. Generated-views-from-one-source is the balanced path.
+    decision_back_ref: 'Governor S089: SSoT consolidation across tabs/sessions/models; decrease branching where the same truth is duplicated.'
+    retrieve_when: After recurrence-stopper batch is green.
+  - id: PARK-S089-HARVEST-TRIGGER-HARDWIRE
+    lane: obligation
+    title: Harvest+extract must fire BEFORE irreversible auto-compact (currently fires after = too late)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    problem: harvest+extract must fire BEFORE irreversible auto-compact. Currently SessionStart:compact fires AFTER compaction = too late; learned context can be lost before it is harvested.
+    proposed_build: 'Hardwire >1 trigger: (a) context-limit / "new" threshold pre-compact harvest gate; (b) validate-session-harvest-readiness -> BLOCKING (currently advisory); (c) per-turn high-significance auto-harvest. Make "nothing learned is lost" mechanical.'
+    dedup_checked: 'ENHANCE not fork: enhances existing validate-session-harvest-readiness + EED (PARK-S084-024) + threshold-pipeline.'
+    decision_ledger:
+      chosen: 'PARK (obligation): >=2 pre-compact harvest triggers, promote readiness validator to BLOCKING'
+      rejected: rely on post-compact SessionStart harvest (status quo)
+      reasoning: Post-compact harvest cannot recover context already discarded by the compaction it follows.
+    decision_back_ref: 'Governor S089: make "nothing learned is lost" mechanical via pre-compact harvest triggers.'
+    retrieve_when: Bundle with PREVENTION-PERSIST (both are loss-prevention mechanisms).
+  - id: PARK-S089-PARK-REGISTER-INTEGRITY
+    lane: obligation
+    title: 'validate-park-register.mjs: guard YAML-parse + schema + dedup of park-register.yaml'
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    problem: 'S089 FINDING: park-register.yaml was committed BROKEN (invalid YAML, parse error) at 93b79ee5 and stayed unparseable across 3 commits with NO validator detecting it (the 3 Sonnet parks appended at column-0 + opus_questions colon-in-wrapped-line). No tool could read the register during that window. The header already notes validate-park-dedup is only HARDWIRE-queued.'
+    proposed_build: 'validate-park-register.mjs (BLOCKING): (1) js-yaml parse must succeed; (2) every entry has required schema fields (id, lane, source/created/closed_session, dedup_checked for new); (3) no duplicate ids; (4) lane in {schedule,queue,vault,obligation}; (5) dedup_checked present on new entries (the queued validate-park-dedup arm). Register in verify.mjs + audit-runner.'
+    dedup_checked: 'ENHANCE not fork: this IS the HARDWIRE-queued validate-park-dedup (header line 22), extended to parse+schema integrity after S089 found the file broken-unparsed.'
+    decision_ledger:
+      chosen: 'PARK (obligation): build validate-park-register.mjs covering parse+schema+dedup'
+      rejected: rely on manual review (status quo that allowed 3-commit broken window)
+      reasoning: A governance SSoT with no parse/schema guard silently rots; manual review already failed for 3 commits.
+    decision_back_ref: 'S089 Opus close-harvest execution: discovered the register unparseable while registering directed parks.'
+    retrieve_when: 'Build with PREVENTION-PERSIST (it is a concrete instance: a structural artifact with no prevention-guard).'

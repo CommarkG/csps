@@ -305,6 +305,41 @@ Every UX page must declare in its `pageDNA` object:
 
 ---
 
+---
+
+## §7 — Templates and Wizards MUST Be Corespines (Governor S089 — CONSTITUTIONAL)
+
+**"Every template and wizard is a corespine first, an app-specific tool second."**
+
+**What this means:**
+- A **corespine** = a universal core (platform-level, inherited by ALL) + external-specific elements (app-type-specific, optional arms)
+- Every app template (`apps/template/`) must have a universal core (Foundation Bundles: Auth, Deploy, Governance, Tenancy, Audit, UI) PLUS specific arms per app type
+- Every wizard (the 7-section planning wizard) must have a universal core (problem, persona, market, core loop, AI behavior, metrics, phase plan) PLUS specific arms per use case
+- Creating a NEW template or wizard without first checking for an existing corespine = violation of B_CONSOLIDATION_PASS
+
+**Why:**
+- Forking without inheritance = platform drift (each fork diverges; no shared improvements)
+- The corespine pattern ensures universal platform improvements reach every app automatically
+- External-specific elements remain isolated so they can be changed without breaking the universal core
+
+**The test:**
+- If you remove the app-specific elements, does the core still work as a valid platform artifact? If yes = correctly structured corespine.
+- If removing app-specific elements breaks the core = mixed-concern violation.
+
+**Before creating a new template or wizard:**
+1. Search for existing corespines at `/platform/journey-core-spine`
+2. If one fits — inherit from it
+3. If one is close — extend it (add an arm), do not fork
+4. If none fit — create the universal core FIRST, then add one specific arm as proof-of-concept
+5. Register the new corespine in `tools/config/core-spine-registry.yaml`
+
+**Enforcement:** B_CONSOLIDATION_PASS (BLOCKING on fork without corespine check) + validate-core-seeds.mjs extension (P2)
+
+**Park:** PARK-S089-JOURNEY-SHELL-DEEP-AUDIT covers the full corespine inventory and template rationalization.
+
+---
+
+*CSPS UX/UI DNA v1.2 | S089 | 2026-06-27 — §7 Corespine mandate for templates+wizards added (Governor S089)*
 *CSPS UX/UI DNA v1.1 | S089 | 2026-06-27 — §5 Lovability Rubric added (Opus #25 ratified)*
 *v1.0: S023 | 2026-05-11*
 *"Strong focus on customers" — Governor directive*

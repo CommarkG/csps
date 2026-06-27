@@ -7244,3 +7244,30 @@ entries:
   pe_final: 4.75
   route: "PROCESS-NOW"
   content_preview: ""
+- id: "chain-S088-1782535574339"
+  session: "S088"
+  timestamp: "2026-06-27T04:46:14.341Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 4.75
+  route: "PROCESS-NOW"
+  content_preview: "SMOKE-1782535569883-activation-test"
+- id: "chain-S088-1782535575339"
+  session: "S088"
+  timestamp: "2026-06-27T04:46:15.341Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 4.75
+  route: "PROCESS-NOW"
+  content_preview: "SMOKE-1782535570647-activation-test"
+- id: "chain-unknown-1782535579230"
+  session: "unknown"
+  timestamp: "2026-06-27T04:46:19.232Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 4.75
+  route: "PROCESS-NOW"
+  content_preview: ""

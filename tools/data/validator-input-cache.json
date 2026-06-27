@@ -32,14 +32,14 @@
       "cached_at": "2026-06-22T04:02:28.964Z"
     },
     "threshold_intake": {
-      "input_hash": "55261fd049d560235a31403db8609fdf2b0da81049aaf574bc3848d97cf5ac66",
+      "input_hash": "2c33456a67a701f66ea78ef9e99b441b25e904b165a02b14299278e91f409f44",
       "exit_code": 0,
       "parsed": {
-        "total_entries": 1738,
+        "total_entries": 1741,
         "sessions": 13,
         "advisory": true
       },
-      "cached_at": "2026-06-27T04:40:59.376Z"
+      "cached_at": "2026-06-27T06:20:55.687Z"
     },
     "journey_gate": {
       "input_hash": "e82a975724b8f25d85c8449fe7444bb8cf5a0caefa76a2bbde42d314993e1748",
@@ -117,14 +117,14 @@
       "cached_at": "2026-06-23T03:40:26.226Z"
     },
     "next_build": {
-      "input_hash": "353546f033c50d5226e411f2cb1f45d9f7c080407f241d69b00a140c8621cbfa",
+      "input_hash": "33edf0068ae979eeab60f6424904dd6a2dce20f5291747f700ab3aab439cc2da",
       "exit_code": 0,
       "parsed": {
         "blocking": 0,
         "advisory": 0,
         "passes": 2
       },
-      "cached_at": "2026-06-27T04:41:08.736Z"
+      "cached_at": "2026-06-27T06:21:03.002Z"
     },
     "deploy_root_selfcontained": {
       "input_hash": "d66783d9cc562ae5e9006526272e0930de9d51f616b63fbfc341636a9866e0c7",
@@ -137,14 +137,14 @@
       "cached_at": "2026-06-23T03:40:27.151Z"
     },
     "council_harvest": {
-      "input_hash": "0776db1d6b3297e72c092daaf8a462349610c57bf8cd4bfd8d98244583d0fbc8",
+      "input_hash": "1d329768f816f4a701824de364e5b6a075d02c85a7b28c8724f8687c29c6beaa",
       "exit_code": 0,
       "parsed": {
         "blocking": 0,
         "advisory": 7,
         "passes": 15
       },
-      "cached_at": "2026-06-27T04:41:08.828Z"
+      "cached_at": "2026-06-27T06:21:03.070Z"
     },
     "tagging_core_divergence": {
       "input_hash": "cdfa04b9b7d536c6deea7b9575ede8acb9cf4a4c4774aac7b5619e305114264f",
@@ -157,14 +157,14 @@
       "cached_at": "2026-06-24T09:58:22.675Z"
     },
     "ux_snapshot_registry": {
-      "input_hash": "5422be18ddb7f81204de6c21399039fde82936f5c1ed1669fcc18fdde7479b4a",
+      "input_hash": "0e7d09796e1cdf0fcbecf27a1e92b7d736dbd83a7dd4a16403fb3d116a77a415",
       "exit_code": 0,
       "parsed": {
         "blocking": 0,
-        "advisory": 29,
+        "advisory": 30,
         "passes": 1
       },
-      "cached_at": "2026-06-24T09:58:22.457Z"
+      "cached_at": "2026-06-27T06:30:34.759Z"
     },
     "external_research_pipeline": {
       "input_hash": "073781991b2baf8cd908a2a8c20a5de2a2ff0d63e8f75f5b80c199036c1f8ad2",

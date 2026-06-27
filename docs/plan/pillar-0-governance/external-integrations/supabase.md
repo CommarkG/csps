@@ -148,6 +148,13 @@ Supabase Dashboard (supabase.com/dashboard)
 ### Latency tells you the failure layer
 - **~20ms** fail → URL never validated (format error). **~1.5–2s** fail → reached the server, auth rejected. **Success** → real query latency (e.g. ~1.5s cold).
 
+### Local CLI env — Prisma does NOT load `.env.local` (S089 — verified)
+Local `prisma` / `npm run db:push` fails even when Vercel works:
+- **`Environment variable not found: DIRECT_URL`** — the Prisma CLI loads `.env`, **not** `.env.local` (Next.js loads `.env.local`; Prisma doesn't). Load the URL lines into the shell first, or use a dotenv wrapper.
+- **`Cannot find module 'dotenv'`** — `node -e "require('dotenv')"` only works where `dotenv` is installed; don't assume it for ad-hoc scripts. PowerShell/bash can read `.env.local` directly instead.
+- **`P1000 auth failed` locally while the live site is fine** — `.env.local`'s password **drifted** from the rotated one in Vercel. After a rotation, set the **same** final password in `.env.local` as in Vercel, or local CLI/dev breaks silently.
+- **Structural fix (TODO):** make the app's `db:push` script auto-load `.env.local` so local migrations don't depend on remembering this.
+
 ### ⚠️ R4 tension — `.env.local` (Governor to reconcile)
 R4 above says "no `.env.local`; credentials only in Vercel." In practice `.env.local` **is** used for
 local dev and local `prisma db push`. The real rule (PL6 / PARK-S084-009): `.env.local` may exist, but

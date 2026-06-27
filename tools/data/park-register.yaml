@@ -1856,3 +1856,29 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+
+  - id: "PARK-S089-HYBRID-AI-ORCHESTRATION"
+    lane: queue
+    content: >
+      RESEARCH → external-circulation → personas → consolidated PLAN: hybrid LOCAL + EXTERNAL AI orchestration to
+      achieve (1) BEST QUALITY by merging the best each model offers (extends the Opus/Sonnet/Haiku council
+      pattern), and (2) optimized TOKEN + RESOURCE consumption — for CSPS itself AND for customers/tenants.
+      NEW angle vs existing: add LOCAL / self-hosted / on-device models alongside external engines (current work
+      is all external Anthropic).
+      CONSULT-FIRST baseline (B_DECISION_LEDGER — do NOT re-research these; build on them): B_TOKEN_BUDGET
+      (model tiering + cost) · B_HAIKU_SCAN_ONLY · ai-personas.md (7 personas + tiers) · HAIKU-OPTIMAL-USAGE-DRAFT
+      · context-orchestrator · PARK-S086-053 circular model-orchestration · OPUS-S088-ONE-TAB-ORCHESTRATION-DESIGN
+      · three-axis-orchestration-S021 · EFFICIENCY-PATTERNS-FOR-OTHER-APPS · the live Opus/Sonnet/Haiku practice.
+    tasks: >
+      (1) gather what exists (baseline above) + research by Sonnet AND Haiku (when free — Sonnet on HARDWIRE now);
+      (2) external-circulation prompt MD — CREATED: docs/plan/_handoff/OPUS-S089-HYBRID-AI-EXTERNAL-PROMPT.md →
+          4-member council (Claude/GPT/Gemini/Grok); (3) internal virtual personas (ARCH/ECON/AI/VALD/SEC) go over
+          findings → extract more value; (4) consolidated detailed PLAN: model routing/merging policy + cost
+          optimization + local+external mix, for CSPS + customers, with a Decision Ledger (chosen/rejected + reasoning).
+    retrieve_when: "After S089 HARDWIRE batch; when Sonnet/Haiku free for research. External circulation can start in parallel now (prompt ready)."
+    status: queued-research
+    never_drop: true
+    decision_back_ref: "Governor S089 'hybrid local + external AI: best-quality-merge (like opus/sonnet/haiku) + token/resource optimization for us AND customers; check what exists + Sonnet/Haiku research + external prompt + internal personas + optimal plan'"
+    source_session: S089
+    created_session: S089
+    closed_session: null

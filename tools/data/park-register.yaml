@@ -947,6 +947,7 @@ entries:
       correct; the harness + global MCP surface prevent it. Connects PARK-020 (ladder), PARK-029 (AI-profiling),
       feedback_subagent_spawn_context_budget (the CONTEXT-BUDGET gate), and the S084 prompt-caching research.
     decision_back_ref: "Governor S084 'haiku is not to be a human developer or user manual tool!! should be a tool in our platform level token efficiency' + Opus #22 two-test proof of the MCP-surface block"
+    s089_update: 'BLOCKER LIFTED (S089, proven): 4 parallel Agent(subagent_type:"haiku-scout", model:"haiku") spawns returned valid templated findings (~38-59k tokens each, NO overflow) — Tool Search now defers the global MCP surface for sub-agents too, so blocker (b) is effectively resolved in this harness. Haiku IS activatable now. GOVERNOR S089 ADDITION: support MULTIPLE parallel Haiku tabs/scouts as large-scope parallel checks over the system, each ZF-sweeping ONE aspect, returning a TEMPLATED findings format (reuse haiku_scout_return schema in tools/templates/haiku-spawn-template.md §4), then Opus/Sonnet CONSOLIDATES. Discipline: each spawn obeys CONTEXT-BUDGET gate (spawn-warranted | tools-restricted | pointers-only; never pass file contents). REMAINING (keep open): wire delegation-to-Haiku as the DEFAULT for bulk mechanical scans + build haiku-return-format.schema.yaml + validate-haiku-return-compliance (UPDATE-021) + a parallel fan-out/consolidate helper.'
     source_session: S084
     created_session: S084
     closed_session: null
@@ -2371,3 +2372,25 @@ entries:
       rejected: Memory file only (ephemeral; the honest-grounding insight itself needs to survive compaction)
       reasoning: This insight has value beyond one session; a platform page = durable, visible, verifiable.
     retrieve_when: After P1 UX/UI build batch completes (zero-friction + design-intelligence + simulation); P2 platform pages.
+  - id: PARK-S089-DEPTH-SPIRAL-BATCH-DECOMPOSITION
+    lane: obligation
+    priority: HIGH
+    title: Unified depth + spiral + humble-batch decomposition protocol (3-level hardwired) for overloaded starting-files
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: 'PARKED-WITH-ASSESSMENT (4 Haiku scouts S089). Owner: Opus-seed -> Sonnet. Trigger: after UX/UI P1 batch; complete-the-partials is the build unit. Grounded, not speculative.'
+    problem: 'Governor S089: depth-levels + core-spiral-cycles + humble-batching feel like the right solution for overloaded "starting files" (AGENTS.md, oneclick, big plans) AND many situations — but it must be a WELL-DEFINED approach hardwired into platform DNA, with every element planned+built+tagged at >=3 levels. Assessment (4 parallel Haiku scouts) shows it is ~80% built but PARTIAL: pieces exist scattered + several are advisory/stub.'
+    assessment_what_exists: depth-discipline.md (5 depth semantics, canonical) · gradual-build-plan.template.md (Grade A, depth_chosen 3/4/5) · swift-build skill (ACTIVE) · validate-gradual-build.mjs (WIRED but ADVISORY) · B_GRADUAL_BUILD_BY_FOUNDATIONS · P-OP-004 batched-execution (skill /batched-plan + hook) · P-META-029 humble-consolidation (platform-inventory-scan.mjs + hook + validator, BUILT) · file_depth_markers L1/L2/L3 read-protocol scoping.
+    gaps_to_complete: validate-gradual-build is ADVISORY not BLOCKING · humble-batching-required.ts referenced 3x but FILE DOES NOT EXIST · priority-engine-depth-respected + foundation-stability-before-layer-N referenced but not built · core-spiral-cycle ORCHESTRATOR missing (no T1/T2) · only 3 of 5 depth semantics actively wired · file_depth_markers (3-level tagging) only partial.
+    proposed_build: 'A unified, DNA-placed protocol: EVERY element planned + built + TAGGED at >=3 levels (L1 essence / L2 detail / L3 composition — extend the existing file_depth_markers pattern). Hardwire: (T1) creation gate requires depth_markers on new governed files; (T2) build the 2 missing validators + promote validate-gradual-build to BLOCKING after backfill; (T3) memory + contract. SPECIAL APPLICATION (Governor): decompose OVERLOADED starting-files (AGENTS.md / oneclick / large plans) into L1/L2/L3 with read-protocol scoping so a cold tab loads L1 first. Spiral cycles + humble-batching (max 25/batch) govern the build cadence per level.'
+    dedup_checked: 'ENHANCE not fork (4 Haiku scouts confirmed): composes depth-discipline.md + gradual-build-plan.template + B_GRADUAL_BUILD_BY_FOUNDATIONS + P-OP-004 + P-META-029 + file_depth_markers. NEW = the UNIFIED 3-level decomposition protocol for overloaded files + completing the 3 partial/stub pieces. Do NOT create parallel depth/batch systems.'
+    decision_ledger:
+      chosen: complete + unify + promote the existing depth/spiral/batch pieces into one 3-level hardwired protocol; apply to overloaded starting-files
+      rejected: build a fresh depth/spiral/batch system (would fork 5 existing mechanisms — the new-over-active disease)
+      reasoning: Assessment shows 80% exists; the win is completing the partials + unifying, not re-building. Forking would multiply the very overload this is meant to cure.
+    decision_back_ref: 'Governor S089: "depth levels / core spiral cycles / humble batching ... find what exists ... well defined approach ... place it hardly into platform DNA ... hardwired protocol on all elements planned+built+tagged at >=3 levels ... great for overloaded starting files".'
+    retrieve_when: After UX/UI P1 batch. Build unit = complete-the-partials (2 missing validators + promote gradual-build to BLOCKING + 3-level decomposition of AGENTS.md/oneclick).

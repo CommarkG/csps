@@ -7821,3 +7821,11 @@ entries:
   spine: "GVRN"
   scope: "operational"
   personas: "none"
+- id: route-2026-06-27T08-02-14-651Z
+  timestamp: "2026-06-27T08:02:14.651Z"
+  session: "S088"
+  route: "PROCESS-NOW"
+  rationale: "Governor directive → PROCESS-NOW in active mandate. CRITICAL_PLUS."
+  spine: "GVRN"
+  scope: "operational"
+  personas: "none"

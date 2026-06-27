@@ -1833,7 +1833,22 @@ entries:
       convert every advisory/absent cell into mechanical enforcement (the platform-vs-app MOAT). Test against
       anti-patterns: AP-001 EXISTS≠ACTIVE (advisory ≠ enforced); rigid-definition-drift (numbers mistaken for law);
       new-over-active / bloated-app (features bolted, not composed from DNA).
-    refined_by: "3 personas — (1) Platform Architect: embedded/composable vs app-bolt-on; (2) Enforcement Auditor (VALD): mechanical-enforcement-per-phase + simulation-verified-before-next-step + closed loops, not advisory (AP-001); (3) AI-Behavior Steward: triggers/reaction-patterns/vocabulary profiling + numbers-as-reference-samples + context-over-rigid."
+    prevention_focus: >
+      SPECIAL FOCUS — PREVENTION as a platform-level mandate (Governor S089). Eliminate two waste-failures:
+      (1) INSIGHT-INHERITANCE GAP — every hard-earned insight MUST auto-inherit into EVERYTHING the platform
+      does: self-build (C1), developer-use (C2), AND every app/saas solution (C3). An insight applied ONCE
+      (not inherited everywhere) is huge waste and leaves things at "native-AI-default level" forever. Test per
+      insight/contract: mechanically propagated to ALL 3 cases, or applied-once?
+      (2) CATCH→PREVENTION LOOP not closed — identifying a gap/problem, solving it, but NOT creating a prevention
+      that is HARDWIRED + MECHANICALLY ENFORCED in MULTIPLE places, AND updating (a) the creation process,
+      (b) the implementation phases, (c) the outcome-verification (real outcome == or BETTER THAN defined intent)
+      — is wasteful + low-level. "Fix-once-without-prevention" is BANNED. Audit whether the prevention-moat
+      itself (structural-prevention-discipline · catch-to-engraving · five-surface-engraving · IZFC) is platform-
+      EMBEDDED across all 3 cases, or only practiced ad-hoc in self-build (the likely gap).
+      ADD TO THE GAP MATRIX two columns: [prevention-loop-closed? = catch→multi-place-hardwire→update(create+
+      impl+outcome-verify)] and [insight-inherited-to-all-3-cases?]. GOAL: when these hold, energy goes to
+      IMPROVING — not an endless loop of re-correcting the same things.
+    refined_by: "3 personas — (1) Platform Architect: embedded/composable vs app-bolt-on; (2) Enforcement Auditor (VALD): mechanical-enforcement-per-phase + simulation-verified-before-next-step + closed loops, not advisory (AP-001); (3) AI-Behavior Steward: triggers/reaction-patterns/vocabulary profiling + numbers-as-reference-samples + context-over-rigid. + Prevention lens: insight-inheritance-to-all-3-cases + catch→prevention-loop-closed."
     retrieve_when: "After the S089 consolidated-plan build streams reach a stable green point. FRESH OPUS TAB, first task."
     status: queued-for-fresh-opus-tab
     never_drop: true

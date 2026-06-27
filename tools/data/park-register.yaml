@@ -1803,3 +1803,41 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+
+  - id: "PARK-S089-PLATFORM-EMBEDDEDNESS-DEEP-DIVE"
+    lane: queue
+    owner: "Opus (FRESH TAB — first task)"
+    content: >
+      DEEP DIVE (fresh Opus tab): is CSPS a PLATFORM (un-bypassable, composable DNA) or a bloated app
+      (bolted-on features)? SINGLE FOCUS = platform attitude. Gather EVERY unique mechanism we created
+      (threshold · adjusting-layer[ACL+published-language] · humble-engine · decision-ledger · challenge-on-
+      merit · CIE · PE · IZFC · tagging-core/vocabulary · journey-core · two-party-seal · core-seeds ·
+      self-build-north-star · admission-control · significance-threshold) and answer for EACH:
+      is it PLATFORM-LEVEL EMBEDDED so NOTHING can be created in CSPS without it being HARDWIRED + MECHANICALLY
+      ENFORCED across all 3 phases —
+        P1 PLANNING: specific links to actual CHECKLISTS + LOCAL SIMULATION that MUST be verified before next step;
+        P2 IMPLEMENTATION: local audits confirming things ACTUALLY WORK before next step;
+        P3 QC: audits/sanity/verification/validation double-checking everything + final SIMULATIONS for confirmation
+      — across all 3 BUILD-CASES:
+        C1 platform creating things for ITSELF; C2 platform used by DEVELOPERS to create;
+        C3 platform thinking/planning/implementing/verifying APPS + SAAS solutions.
+      MUST include AI-BEHAVIOR: profiling internal + external AI triggers, reaction-patterns, and vocabulary;
+      instructions written WITH CONTEXT where rigid NUMBERS are ONLY reference samples, and EVERY word
+      interpretable-as-rigid is explicitly flagged as a sample (rigid-definition-drift guard). MUST make
+      research/insights/what-to-avoid wisdom MANDATORY in each process (B_DECISION_LEDGER consult-first,
+      context-driven). MUST wire COMPLETE LOOPS (no dangling phase). Subsumes PARK-S089-SELF-BUILDING-DEEP-DIVE
+      (the self-build loop = C1's mechanism).
+    deliverable: >
+      A GAP MATRIX: mechanism × build-case(C1/C2/C3) × phase(P1/P2/P3) → {mechanically-enforced | advisory-only
+      | absent} + loop-closed? + AI-behavior-covered? + numbers-as-samples? PLUS a prioritized remediation plan to
+      convert every advisory/absent cell into mechanical enforcement (the platform-vs-app MOAT). Test against
+      anti-patterns: AP-001 EXISTS≠ACTIVE (advisory ≠ enforced); rigid-definition-drift (numbers mistaken for law);
+      new-over-active / bloated-app (features bolted, not composed from DNA).
+    refined_by: "3 personas — (1) Platform Architect: embedded/composable vs app-bolt-on; (2) Enforcement Auditor (VALD): mechanical-enforcement-per-phase + simulation-verified-before-next-step + closed loops, not advisory (AP-001); (3) AI-Behavior Steward: triggers/reaction-patterns/vocabulary profiling + numbers-as-reference-samples + context-over-rigid."
+    retrieve_when: "After the S089 consolidated-plan build streams reach a stable green point. FRESH OPUS TAB, first task."
+    status: queued-for-fresh-opus-tab
+    never_drop: true
+    decision_back_ref: "Governor S089 'fresh opus tab; platform-not-bloated-app; unique mechanisms platform-level embedded + mechanically enforced into planning[checklists+local-sim-verified]+implementation[local-audits]+QC across 3 build-cases + AI-behavior profiling + numbers-as-samples + wisdom-mandatory + complete loops'; refined 3x via 3 personas"
+    source_session: S089
+    created_session: S089
+    closed_session: null

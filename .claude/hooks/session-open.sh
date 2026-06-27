@@ -227,4 +227,20 @@ printf '\n  DECISION LEDGER: every consequential plan must include chosen + >=1 
 printf '\n    validate-decision-ledger.mjs guards structural integrity (malformed ledger = BLOCKING).' >&2
 printf '\n    Fuel of the Humble Engine — CIE cannot consolidate/enhance without knowing what was rejected.\n' >&2
 
+
+# --- ONECLICK SESSION RESUME (S089 B_ONECLICK_FRESHNESS) ---
+# .csps/oneclick.md is auto-generated after every clean verify pass (tools/generate-oneclick.mjs).
+# G5 permanence fix: oneclick was chat-only (ephemeral) = lost at compaction.
+# Now: machine-generated from git state, committed file, injected at EVERY session-open.
+# Inheritance: fires automatically in every new tab. Never hand-written again.
+{
+  printf '
+[ONECLICK] Paste this into a new tab after compaction:' >&2
+  CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/generate-oneclick.mjs" --emit-startup 2>/dev/null >&2     || printf '[oneclick] run: cat .csps/oneclick.md
+' >&2
+  printf '[ONECLICK] Source: .csps/oneclick.md (auto-updated on each clean verify)
+' >&2
+} 2>/dev/null || true
+
+
 exit 0

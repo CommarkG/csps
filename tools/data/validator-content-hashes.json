@@ -151,6 +151,7 @@
     "validate-nominal-rzf-detector.mjs": "4069f7e5f079ab50",
     "validate-north-star-gate.mjs": "d012cfd2b4308b76",
     "validate-nothing-stands-alone.mjs": "5de78ee82597ab16",
+    "validate-oneclick-freshness.mjs": "a1afaaee0fed9b66",
     "validate-open-plan-levels.mjs": "a73b431aa56bc6c6",
     "validate-open-questions.mjs": "1c0443c241ea4963",
     "validate-opia-audit-completeness.mjs": "fc437bfad51ed738",

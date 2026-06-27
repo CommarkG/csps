@@ -1,6 +1,6 @@
 {
   "validator": "validate-token-budget",
-  "ran_at": "2026-06-27T06:31:02.945Z",
+  "ran_at": "2026-06-27T07:00:30.878Z",
   "advisory_window": true,
   "ratchet_eligible": false,
   "ratchet_criteria": "≥10 sessions with ≥50% measured savings vs Phase 1 baseline",

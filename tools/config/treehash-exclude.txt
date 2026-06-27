@@ -51,3 +51,10 @@ tools/data/threshold-intake-log.yaml
 # ── Auto-generated per-session artifacts ─────────────────────────────────────
 SESSION-BRIEF.md
 docs/plan/_handoff/VAULT/governor-comments/
+
+# ── OneClick session resume (S089 B_ONECLICK_FRESHNESS) ──────────────────────
+# Written by tools/generate-oneclick.mjs after every clean verify pass.
+# Contains a timestamp (generatedAt) that changes on every run.
+# Excluded to prevent tree_hash churn — the file's HEAD hash is tracked by
+# validate-oneclick-freshness.mjs separately (advisory when stale).
+.csps/oneclick.md

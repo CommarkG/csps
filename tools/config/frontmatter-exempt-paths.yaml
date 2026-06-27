@@ -88,3 +88,8 @@ exemptions:
   - pattern: "external-review-download/"
     reason: "Repo-root download folder: dated, Csps-named, frontmatter-stripped copies of the external-AI review package (Csps-YYYY-MM-DD-NN-*.md). Non-governed download artifacts so GitHub serves them with the correct filename; canonical originals remain fully validated. Outside SCAN_PATHS for validate-frontmatter; this entry exempts validate-universal-alignment --scan-new."
     added_session: S088
+
+  # .csps/ runtime / auto-generated utility files (S089)
+  - pattern: "^\\.csps/oneclick\\.md$"
+    reason: "Auto-generated session resume file by tools/generate-oneclick.mjs after every clean verify pass. Contains git HEAD + verify state — machine output, not a governed artifact. Excluded from tree_hash via treehash-exclude.txt; exempted here to prevent universal-alignment false positive."
+    added_session: S089

@@ -2807,6 +2807,24 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // B_ONECLICK_FRESHNESS (S089): .csps/oneclick.md must exist and be current.
+  // G5 permanence fix: oneclick was chat-only (ephemeral) → now machine-generated + committed.
+  // BLOCKING: .csps/oneclick.md does not exist. ADVISORY: file HEAD ≠ current HEAD.
+  {
+    name: 'oneclick_freshness',
+    command: 'node tools/validators/validate-oneclick-freshness.mjs',
+    input_files: [
+      '.csps/oneclick.md',
+      'tools/validators/validate-oneclick-freshness.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
   // S088-A2 CS3: Deploy-root self-containment gate — BLOCKS if governed src/data/ copies
   // are missing or diverge from canonical parent-repo sources.
   // Root cause: /api/journey-spine returned "fallback" in prod because journey-core-spine.md
@@ -3045,6 +3063,26 @@ async function main() {
       const receiptPath = resolve(ROOT, 'tools/data/green-receipt.json');
       writeFileSync(receiptPath, JSON.stringify(receipt, null, 2) + '\n');
       process.stderr.write(`[verify] green-receipt: ${receiptPath} HEAD=${HEAD.slice(0, 8)} tree=${treeHash?.slice(0, 8) ?? 'n/a'}\n`);
+
+      // ── AUTO-REGENERATE ONECLICK after every clean verify pass ──────────────
+      // B_ONECLICK_FRESHNESS (S089): oneclick.md must never be stale.
+      // generate-oneclick.mjs reads git HEAD + verify state + floater queue →
+      // writes .csps/oneclick.md → committed → session-open.sh displays it.
+      // This is the structural fix for G5 permanence failure (oneclick in chat = ephemeral).
+      try {
+        const { spawnSync: _spawnSync } = await import('node:child_process');
+        const oneclickResult = _spawnSync(
+          process.execPath,
+          [resolve(ROOT, 'tools/generate-oneclick.mjs')],
+          { cwd: ROOT, encoding: 'utf8', stdio: 'pipe' }
+        );
+        if (oneclickResult.stdout) process.stderr.write(`[verify] ${oneclickResult.stdout.trim()}\n`);
+        if (oneclickResult.status !== 0) {
+          process.stderr.write(`[verify] oneclick-generate: WARN — exit ${oneclickResult.status} (non-fatal)\n`);
+        }
+      } catch (oneclickErr) {
+        process.stderr.write(`[verify] oneclick-generate: WARN — ${oneclickErr.message} (non-fatal)\n`);
+      }
     } catch (receiptErr) {
       // Non-fatal: receipt write failure should not block the verify run
       process.stderr.write(`[verify] green-receipt: WARN — could not write receipt: ${receiptErr.message}\n`);

@@ -102,7 +102,11 @@ function getNewFiles() {
       // These are intake artifacts (GPT research, cross-project handbacks, product briefs).
       // Pipeline registry (tools/data/external-research-pipeline.yaml) is the governed artifact;
       // the raw intake files are verbatim external content, no CSPS alignment required.
-      .filter(f => !f.match(/_intake[\/\\]external-research[\/\\]\d{4}-\d{2}-\d{2}[\/\\]/));
+      .filter(f => !f.match(/_intake[\/\\]external-research[\/\\]\d{4}-\d{2}-\d{2}[\/\\]/))
+      // S089: .csps/oneclick.md — auto-generated session resume file (tools/generate-oneclick.mjs).
+      // Machine output written after every clean verify pass. Not a governed artifact.
+      // Excluded from tree_hash via treehash-exclude.txt; exempted here to prevent false positive.
+      .filter(f => !f.match(/^\.csps[\/\\]oneclick\.md$/));
   } catch { return []; }
 }
 

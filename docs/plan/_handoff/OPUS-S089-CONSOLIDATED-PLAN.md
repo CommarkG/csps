@@ -103,9 +103,11 @@ Each stream: built from core-seeds · FSE + block-test · two-party seal · sche
 The §4 Decision Ledger is the FIRST INSTANCE of a now-constitutional universal mechanism:
 **[B_DECISION_LEDGER](../pillar-0-governance/behavioral-contracts/B_DECISION_LEDGER.md)** — every consequential
 decision, in **platform self-build AND SaaS/app solution builds**, records chosen + rejected-options-with-
-reasoning + minority views, so research is captured once and **never re-run**.
+reasoning + minority views. Its USE is **context-driven, not rigid**: consult what we have FIRST, then
+reuse / refine / extend / or run **informed new research from the baseline** (naming the gap) — *not* a "never
+re-research" block. Guards both re-research-waste AND stale-reuse.
 - It is the **CIE's memory of rejected options** → the fuel that lets the Humble Engine consolidate-over-create
-  (you can't avoid recreating what you didn't record). Ledger → CIE → Humble Engine → fewer re-dives.
+  (you can't avoid recreating what you didn't record). Ledger → CIE → Humble Engine → informed, context-driven decisions.
 - Wired into the universal tools: plan-creation-protocol (every plan has a Ledger section) · Humble Engine
   core-seed CS-B (auto-emits ledger entries) · CIE (ingests → blocks re-research) · validate-decision-ledger
   (structural check, HARDWIRE-queued with block-test, batched with validate-challenge-on-merit).

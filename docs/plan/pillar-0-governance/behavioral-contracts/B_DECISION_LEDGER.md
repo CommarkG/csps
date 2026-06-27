@@ -9,7 +9,7 @@ enforcement_trio:
     tier: validator
     path: "tools/validators/validate-decision-ledger.mjs"
     status: queued
-    note: "STRUCTURAL: a plan/design doc recording a consequential decision MUST carry a Decision Ledger (chosen + >=1 rejected-option-with-reasoning). Flags decisions with no recorded alternatives. exits-1 + block-test. HARDWIRE-queued (batch w/ validate-challenge-on-merit)."
+    note: "STRUCTURAL: a consequential decision/plan MUST (a) carry a Decision Ledger (chosen + >=1 rejected-option-with-reasoning) AND (b) cite the existing research/ledger it consulted (or explicitly 'searched X, none found'). Does NOT block NEW research — it ensures prior-art was reviewed FIRST so the decision is informed/context-driven. exits-1 + block-test. HARDWIRE-queued (batch w/ validate-challenge-on-merit)."
   t3:
     tier: session
     path: "session-open injection + AGENTS.md + plan-creation-protocol amendment"
@@ -22,8 +22,19 @@ enforcement_trio:
 
 **Canonical:** Every consequential decision — when the platform builds **ITSELF** and when it builds **SaaS/app
 solutions** for users/tenants/developers — records a **Decision Ledger**: the chosen option, the **rejected
-options each with their reasoning**, minority/dissenting views, and source/vote. Research is captured once and
-reused; **no one re-runs a deep dive that was already done.**
+options each with their reasoning**, minority/dissenting views, and source/vote. **The ledger exists to be
+CONSULTED and BUILT ON.** Before any research or decision, review what we already have — then decide on
+**context**: reuse · refine · extend · or run **new research that starts from the existing baseline and names
+the specific gap it fills.** This is *"know and use what we have to make better decisions,"* **not** a rigid
+*"never re-research"* rule.
+
+### Context-driven, not rigid (Governor refinement S089)
+The principle guards **two opposite failures equally**:
+- **Re-research waste** — redoing a deep dive already done (ignoring the ledger).
+- **Stale-reuse** — blindly reusing old findings when context genuinely changed (ignoring that fresh research is warranted).
+New research is welcome when it's the meritful move — the requirement is only that it be **informed**: written
+knowing what exists, starting from that mature baseline, and stating the gap/staleness/new-angle it addresses.
+The choice (reuse / refine / extend / research-anew) is on **merit + context**, and is itself recorded in the ledger.
 
 **Scope — both cases, universal:**
 - **Platform self-build:** every CSPS plan / design / protocol carries a Decision Ledger.
@@ -37,14 +48,16 @@ reused; **no one re-runs a deep dive that was already done.**
 **Why it is load-bearing (self-build north star):** the Decision Ledger IS the CIE's memory of what was
 considered and rejected. You cannot "consolidate/enhance over create-new" if you don't remember what already
 exists AND what was already rejected-and-why. Preserving reasoning is therefore not documentation overhead — it
-is the **fuel of the Humble Engine** and the **anti-re-research mechanism**: Ledger → CIE → Humble Engine →
-fewer re-dives, faster mature builds.
+is the **fuel of the Humble Engine** and an **existing-research-aware decision mechanism**: Ledger → CIE →
+Humble Engine → context-driven choice (reuse / refine / extend / new-from-baseline). It cuts wasteful re-dives
+AND prevents the opposite failure (ignoring prior work) by making "what we have" the mandatory starting context.
 
 **Wiring (universal tools — reused every build):**
 - **Plan-creation-protocol:** every plan includes a Decision Ledger section.
 - **Humble Engine (core-seed CS-B):** every create/enhance/consolidate/reuse decision auto-emits a ledger
   entry (options + reasoning + provenance).
-- **CIE:** ingests ledger entries → "what exists + what was rejected + why" is queryable → blocks re-research.
+- **CIE:** ingests ledger entries → "what exists + what was rejected + why" is queryable → every research/
+  decision starts INFORMED (consult-first); new research builds from this baseline rather than from scratch.
 - **Verification:** `validate-decision-ledger` checks consequential decisions carry a ledger (structural).
 
 ## FSE — engraving across surfaces, >1 way

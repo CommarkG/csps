@@ -72,7 +72,9 @@ if (existsSync(receiptPath)) {
     const r = JSON.parse(readFileSync(receiptPath, 'utf8'));
     verifyState = {
       exit_code: r.exit_code ?? '?',
-      blocking: r.blocking_count ?? '?',
+      // green-receipt has no blocking_count — it stores blocking_set_hash (not a count).
+      // Use 'stable' when exit_code=0 (meaning 0 blocking found), '?' otherwise.
+      blocking: r.exit_code === 0 ? '0' : '?',
       ts: r.ts ?? r.generated_at ?? null,
       validators_run: r.validators_run ?? '?',
     };

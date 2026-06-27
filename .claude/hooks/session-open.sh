@@ -235,7 +235,7 @@ printf '\n    Fuel of the Humble Engine — CIE cannot consolidate/enhance witho
 # Inheritance: fires automatically in every new tab. Never hand-written again.
 {
   printf '
-[ONECLICK] Paste this into a new tab after compaction:' >&2
+[ONECLICK] Session resume state (auto-injected into Claude context via session-open-context.mjs):' >&2
   CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/generate-oneclick.mjs" --emit-startup 2>/dev/null >&2     || printf '[oneclick] run: cat .csps/oneclick.md
 ' >&2
   printf '[ONECLICK] Source: .csps/oneclick.md (auto-updated on each clean verify)

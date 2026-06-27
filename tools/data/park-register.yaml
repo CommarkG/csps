@@ -2101,7 +2101,9 @@ entries:
     never_drop: true
     problem: 'CAQ Scope-3 CLASS: issues get SWIFT-fixed but the prevention is optional/forgotten -> recurrence (the most expensive CSPS cost). SATISFACTION-POINT: "fixed it" feels done; the structural prevention is not persisted.'
     proposed_build: 'Un-ignorable, hardwired >=2 ways. Every catch/issue -> (1) SWIFT-fix-now ALLOWED + (2) MANDATORY: register the prevention to a defined store SORTED BY SCHEMA TOPIC; a gate BLOCKS closing/resolving the issue without a schema-tagged prevention entry; (3) PE ENGINE accumulates per topic; (4) at k-threshold PE auto-INJECTS into an active plan OR auto-CREATES a plan. SWIFT improvement is immediate AND nothing prevention-worthy is lost.'
+    absorbs_srof_006: 'SROF-S089-006 prevention-architecture (T1 Prevention Vault PREV-NNN / T2 hook-inject / T3 validate-pcr-on-options + validate-prev-registration / per-turn PCR template) is CONSOLIDATED here, NOT a parallel VAULT/prevention dir: the prevention STORE = gap-recurrence-register (enhance, schema_topic), the per-turn PCR/OPTIMAL-NEXT-STEP already exist as B_CHALLENGE_ON_MERIT + B_OPTIMAL_NEXT_STEP. NEW valuable piece kept = validate-pcr-on-options (menu-instead-of-PE-recommendation catch).'
     consolidates:
+      - SROF-S089-006 prevention-architecture (folded; store=gap-recurrence-register not new Vault)
       - PARK-S089-PRE-BUILD-IZFC (= P5 builder pre-flight + P6)
       - PARK-S089-THRESHOLD-INLINE-GATE (inline injections bypass threshold)
       - PARK-S089-AUTO-COUNCIL-CYCLE (cross-tab automation arm)
@@ -2194,3 +2196,27 @@ entries:
       reasoning: A governance SSoT with no parse/schema guard silently rots; manual review already failed for 3 commits.
     decision_back_ref: 'S089 Opus close-harvest execution: discovered the register unparseable while registering directed parks.'
     retrieve_when: 'Build with PREVENTION-PERSIST (it is a concrete instance: a structural artifact with no prevention-guard).'
+  - id: PARK-S089-TEST-DRIVE-BUILD-AUDIT-LOOP
+    lane: obligation
+    priority: HIGH
+    title: Mandatory test-drive + build-audit iterate loop (scaled RZF for build quality)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: 'RATIFIED-IN-PRINCIPLE by Opus S089; first instance issued to Sonnet via opus-turn.md. Owner: Opus(issue+audit) + Sonnet(build). Trigger: every build unit going forward.'
+    problem: 'Governor S089: "hardwired" parts are claimed-active but often EXISTS != ACTIVE (proven this session: validate-completion-gate was silently dead for 3+ commits behind broken-register YAML; UX page Decision-Ledger claimed but absent). Instance fixes never reach class level. We need a loop that mechanically EXPOSES where hardwiring does not actually fire, then fixes + iterates.'
+    proposed_build: 'The mandatory build cadence: (1) OPUS issues a build unit with explicit instructions + the exact hardwired mechanisms it must exercise; (2) SONNET test-drives the build (actually runs/uses it, not just writes it); (3) BUILD-AUDIT: a test of HOW Sonnet built it that probes each claimed-hardwired part for real activation (does the hook fire? does the validator block on a planted violation? does the gate read the artifact?) = block-test per mechanism; (4) EXPOSE the gaps where hardwiring is nominal; (5) FIX + ITERATE until the audit finds 0 nominal-active parts (scaled RZF). Make it the mandatory way of working; wire it: a build unit cannot be marked BUILD-COMPLETE without an attached build-audit showing each hardwired part block-tested live.'
+    consolidates:
+      - B_PRE_BUILD_IZFC (pre-flight) + this is the POST-build activation audit
+      - EXISTS!=ACTIVE (AP-001) made mechanical per build
+      - re-run-is-the-proof / activation-steady-state-verify
+    dedup_checked: 'ENHANCE not fork: composes existing block-test discipline (validators already ship --block-test) + AP-001 EXISTS!=ACTIVE + activation-coverage + re-run-is-proof. NEW piece = the mandatory per-build-unit activation audit gate + iterate-until-0-nominal.'
+    decision_ledger:
+      chosen: mandatory test-drive + per-mechanism activation block-test + iterate-to-0-nominal, gating BUILD-COMPLETE
+      rejected: trust BUILD-COMPLETE claims + post-hoc verify only (status quo that let a dead gate hide 3 commits)
+      reasoning: Nominal-active is the dominant silent failure; only a live per-mechanism activation probe catches it.
+    decision_back_ref: 'Governor S089: "add a test drive sonnet should do with your instructions ... expose where hardwired parts does not really work and fix and iterate ... mandatory way of working ... scaled RZF ... wire it all around".'
+    retrieve_when: Active NOW — first instance issued in opus-turn.md; formalize the wiring (BUILD-COMPLETE gate) in the recurrence-stopper batch.

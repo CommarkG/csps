@@ -1928,6 +1928,38 @@ entries:
     created_session: S089
     closed_session: null
 
+  - id: "PARK-S089-PLAN-INSTRUCTION-INTERPRETATION-MOAT"
+    lane: queue
+    owner: "Opus (FRESH TAB)"
+    content: >
+      DEEP DIVE + MOAT (fresh Opus tab). THE GAP (Scope-3): plans + DNA are written as PRINCIPLE-level
+      instructions, but the native AI still re-decides BY ITSELF every single time it acts → misalignment, even
+      though the plan AND the DNA definitions exist. This is the hidden gap across "AI vibe coding."
+      SATISFACTION-POINT to kill: "the plan exists + DNA is defined" FEELS like alignment is guaranteed — it is
+      not; the AI re-interprets each instance. TRAINING-DEFAULT: AI fills under-specified instructions by
+      self-interpretation rather than surfacing + confirming its decision-rule. STRUCTURAL FIX (reject "write
+      better principles" — same failing mechanism):
+      (1) Plans must carry the EXACT instructions + definitions + vocabulary + reasoning PER PART — not just
+          principles — so they are reviewable.
+      (2) Mandatory ITERATIVE PLANNING PIPELINE step: before a plan is finalized, the native AI WRITES
+          SPECIFICALLY how it will define/interpret the instructions, vocabulary, and reasoning for each and
+          every part (surfaces its own decision-rules).
+      (3) An AI-BEHAVIOR-EXPERT agent reviews + refines that — REVIEW-UNTIL-ZF — with special attention to the
+          RIGID vs CONTEXT tension (numbers/words that read as rigid must be flagged as reference-samples).
+      (4) Hardwired enforcement: no plan finalizes without this instruction-interpretation review at ZF.
+      SIMULATION FOCUS: go over what exists on SIMULATION, especially simulating while CREATING plans — out-of-
+      the-box, across all scopes + depths; planning becomes an iterative mandatory pipeline with simulation.
+      Register CSPS's solution as a MOAT.
+    research: "Prior-art research SPAWNED S089 (background agent): spec-vs-improvisation gap in LLM agents · making interpretation explicit before acting (plan-then-act, self-explanation, decision-rule surfacing, constitutional grounding) · rigid-vs-context calibration · simulation-in-planning. Save+tag findings to docs/plan/_intake/external-research/ when returned."
+    deliverable: "Hardwired plan-finalization gate: instruction-interpretation review-until-ZF + AI-behavior-expert refinement (rigid/context tension) + plans carrying exact instructions/vocab/reasoning per part + a simulation-in-planning iterative pipeline. Cross-links: feedback_rigid_definition_drift · P-META-025 C&I (operate-from-intent) · definition-before-enforcement · intent-crystallization · numbers-as-samples · simulation-spine-entry · PARK-S089-PLATFORM-EMBEDDEDNESS (AI-behavior steward lens)."
+    retrieve_when: "Fresh Opus tab (with the other parked deep-dives). Research gathers now in background."
+    status: queued-for-fresh-opus-tab
+    never_drop: true
+    decision_back_ref: "Governor S089 'principle-instructions leave native AI to decide itself each time = huge alignment gap across AI vibe coding; plan must carry exact instructions+definitions+vocab+reasoning; native AI writes specifically how it defines each part; AI-behavior-expert reviews until ZF (rigid vs context tension); hardwire as planning pipeline; explore simulation-in-planning out-of-box; register as moat; add research'"
+    source_session: S089
+    created_session: S089
+    closed_session: null
+
   - id: "PARK-S089-AGENTS-HARD-RULES"
     lane: queue
     content: >

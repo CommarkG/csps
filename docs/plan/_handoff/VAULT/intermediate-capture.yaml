@@ -1,0 +1,60 @@
+# intermediate-capture.yaml — PERSISTENT holding pen for in-flight / deferred items.
+#
+# WHY THIS EXISTS (Governor S089): "capture must include actual saving even as temp in a
+# vault but not just in temp memory." A deferral asserted only in chat is temp-memory — it
+# vanishes on compaction. This file is the COMMITTED intermediate tier:
+#   chat/temp-memory  →  [THIS FILE: intermediate-capture]  →  park-register (full forward-work)
+#
+# RULE (capture-must-persist): the moment work is deferred/parked/"captured", it is WRITTEN
+# here (or to park-register) BEFORE the turn ends. "Captured" in prose without a saved entry
+# = nominal capture = the failure this file prevents.
+#
+# UPDATE DISCIPLINE: updated every substantive turn. Items graduate to park-register when they
+# become full forward-work (status: graduated + graduated_to). Closed when done (status: closed).
+# Guarded by tools/validators/validate-intermediate-capture.mjs (ADVISORY: surfaces open items so
+# they cannot be silently lost; enforces each open item has what + resume_pointer + saved_at).
+
+meta:
+  purpose: persistent intermediate-capture tier (anti nominal-capture)
+  created_session: S089
+  updated_session: S089
+  updated_at: "2026-06-27"
+  graduates_to: tools/data/park-register.yaml
+
+items:
+  - id: ICAP-S089-001
+    captured_session: S089
+    saved_at: "2026-06-27"
+    what: "Platform loop-gap zoom-out — find recurring cycles aimed at a defined MEASURABLE goal; identify broken/open loops in the platform."
+    why_deferred: "Governor directed it AFTER the first test-drive returns real audit data (that data is the highest-signal input). Deferring at quality, not dropping."
+    resume_pointer: "After Sonnet returns the developer-journey BUILD-AUDIT (PARK-S089-TEST-DRIVE-BUILD-AUDIT-LOOP first instance). Use audit GAP findings as the loop-gap seed list."
+    status: open
+    graduated_to: null
+    note: "This entry is the literal fix for my nominal 'captured, not forgotten' claim last turn — now actually persisted."
+
+  - id: ICAP-S089-002
+    captured_session: S089
+    saved_at: "2026-06-27"
+    what: "Build validate-pcr-on-options.mjs — the 'menu instead of PE-ranked recommendation' catch (kept piece from SROF-006 prevention-arch consolidation)."
+    why_deferred: "Sonnet on UX/UI pivot; this is governance-tier, scheduled after recurrence-stopper batch. PCR'd (ratified-with-consolidation in opus-turn.md §5)."
+    resume_pointer: "Recurrence-stopper batch; ADVISORY->BLOCKING on repeat miss. Folded under PREVENTION-PERSIST (gap-recurrence-register store)."
+    status: open
+    graduated_to: PARK-S089-PREVENTION-PERSIST-PE-AUTOPLAN-LOOP
+
+  - id: ICAP-S089-003
+    captured_session: S089
+    saved_at: "2026-06-27"
+    what: "Simulation de-gate spike — VLT-S022-ZENSTACK 'always generate from root' (<1 session)."
+    why_deferred: "Sequenced before the simulation page (P1 #4); cheap, high-value."
+    resume_pointer: "Before platform/simulation build; if spike flips, de-gate. North star §4."
+    status: open
+    graduated_to: VLT-S022-ZENSTACK-GENERATE-PATH
+
+  - id: ICAP-S089-004
+    captured_session: S089
+    saved_at: "2026-06-27"
+    what: "Core-seeds / DNA-law / checklist hardwiring (P2) — make presence mechanical across plan + page + verify (extend validate-core-seeds to assert page-level + plan-level presence; BLOCKING after backfill)."
+    why_deferred: "P2 after the UX/UI pivot batch (P1); needs FSE 5-surface treatment."
+    resume_pointer: "North star §3; extend validate-core-seeds.mjs; embed blocks per page during P1 builds so backfill is incremental."
+    status: open
+    graduated_to: null

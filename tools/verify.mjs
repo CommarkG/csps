@@ -2410,6 +2410,19 @@ const CYCLES = [
     },
   },
   {
+    // S089: intermediate-capture tier (capture-must-persist, Governor S089). DIFFERENT
+    // enforcement target — surfaces deferred/captured work that has been PERSISTED to a
+    // committed file (anti nominal-capture-in-temp-memory). ADVISORY: never blocks; surfacing
+    // IS the enforcement. Prevention class: NOMINAL-CAPTURE-IN-TEMP-MEMORY.
+    advisory_exit_ok: true,
+    name: 'intermediate_capture',
+    command: 'node tools/validators/validate-intermediate-capture.mjs',
+    parse_output: (out) => {
+      const m = out.match(/items=(\d+)\s+open=(\d+)/);
+      return m ? { items: Number(m[1]), open: Number(m[2]) } : {};
+    },
+  },
+  {
     // S089: park-register integrity. Born from the broken-register finding (93b79ee5
     // committed unparseable YAML, undetected for 3 commits). BLOCKING on parse-failure /
     // missing-id / duplicate-id; ADVISORY on lane-enum + dedup_checked drift.

@@ -8225,3 +8225,12 @@ entries:
   pe_final: 4.75
   route: "PROCESS-NOW"
   content_preview: "SMOKE-1782547330606-activation-test"
+- id: "chain-S088-1782547810456"
+  session: "S088"
+  timestamp: "2026-06-27T08:10:10.457Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 4.75
+  route: "PROCESS-NOW"
+  content_preview: "SMOKE-1782547807090-activation-test"

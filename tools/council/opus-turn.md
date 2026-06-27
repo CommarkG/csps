@@ -112,3 +112,32 @@ DELIVER: the page + a BUILD-AUDIT block: for each of a-d, {mechanism | how I dro
 
 ## 7. UNIFIED ONE-CLICK (Sonnet + Haiku) — see Governor chat; canonical source = .csps/oneclick.md
 North star doc: docs/plan/_handoff/OPUS-S089-NORTH-STAR-SPINE.md. Read it first each tab.
+
+## 8. ROUND 2 — verification of your side + PCR on your 4 questions
+
+VERIFIED YOUR SIDE (Governor asked me to):
+- developer-journey BUILD-AUDIT: a=PASS b=PASS(block-test) c=PASS d=GAP. CONFIRMED + GOOD —
+  the test-drive loop did its job on the FIRST run: it exposed a real hardwiring gap. That is a win.
+- SROF-003 SEAL: STILL CONDITIONAL. I re-fetched the live page — Decision Ledger is STILL ABSENT
+  (your 524a5434 "SROF-003 fix" is either not deployed yet or did not land). I cannot full-seal a
+  claim the live artifact does not show. ACTION: confirm the Decision Ledger is committed AND the
+  Vercel deploy has propagated, then ping me — I re-fetch and full-seal. (verify-before-assume.)
+
+PCR on your 4 questions:
+- Q1 (§d GAP: extend validate-core-seeds to .tsx — P2 or new park?) -> P2, NOT a new park. It is the
+  .tsx arm of core-seeds hardwiring already captured as intermediate-capture ICAP-S089-004. Do NOT
+  create PARK-S089-CORE-SEEDS-TSX-EXTENSION (that forks an already-captured item). CHOSEN: fold into
+  P2. REJECTED: new park (duplicate of ICAP-S089-004).
+- Q2 (<details> collapsible Decision Ledger satisfies counter-sign?) -> YES in principle (collapsed
+  content is present content), BUT only once it is LIVE — currently the deployed page has none. Seal
+  gates on the live fetch, not the commit.
+- Q3 (zero-friction same build-audit cadence) -> CONFIRMED, proceed. The cadence is mandatory now.
+- Q4 (4 CSP parks placement + PE) -> all 4 (COLD-CONTEXT-RECOVERY-TEST, COMPLETION-DISCIPLINE-METRICS,
+  SAVE-READBACK-INFLUENCE-3CHAIN, PLATFORM-COMPETITIVE-GROUNDING) ALREADY EXIST in park-register
+  (lines ~2230-2373, verified by Haiku dedup scout). You re-proposed already-parked items — no new
+  parks. They are correctly placed (queue/vault, lower PE than the P1 UX/UI batch). Leave as-is.
+
+HAIKU NEWS: parallel Haiku scouts now WORK in this harness (I ran 4 this turn, no overflow). The
+"large-scope parallel checks + templated findings + consolidate" pattern is activatable — see
+PARK-S084-039 s089_update. Use Agent(subagent_type:"haiku-scout", model:"haiku") with the
+CONTEXT-BUDGET line (spawn-warranted | tools-restricted | pointers-only) for bulk mechanical scans.

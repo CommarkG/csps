@@ -2410,6 +2410,19 @@ const CYCLES = [
     },
   },
   {
+    // S089: park-register integrity. Born from the broken-register finding (93b79ee5
+    // committed unparseable YAML, undetected for 3 commits). BLOCKING on parse-failure /
+    // missing-id / duplicate-id; ADVISORY on lane-enum + dedup_checked drift.
+    // Closes PARK-S089-PARK-REGISTER-INTEGRITY. Prevention class: BROKEN-GOVERNANCE-SSOT-UNGUARDED.
+    name: 'park_register_integrity',
+    command: 'node tools/validators/validate-park-register.mjs',
+    parse_output: (out) => {
+      const m = out.match(/entries=(\d+)\s+open=(\d+)\s+duplicates=(\d+)/);
+      const b = out.match(/blocking=(\d+)\s+advisory=(\d+)/);
+      return m ? { entries: Number(m[1]), open: Number(m[2]), duplicates: Number(m[3]), blocking: b ? Number(b[1]) : 0 } : {};
+    },
+  },
+  {
     // B_DETERMINISTIC_GATE item 6 (PROTO-S086-CLOSE): agent inheritance parity.
     // Checks that preventions/contracts in any one agent entry point exist in all three
     // (Opus context, Sonnet context, Haiku spawn template). BLOCKING (exit 1) for 1/3 coverage.

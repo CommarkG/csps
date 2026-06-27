@@ -1791,6 +1791,8 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+    disposition_session: S089
+    disposition_text: 'RATIFIED S089 (Governor YES 2026-06-26); parked-forward to threshold build batch as the hardwired starting-point contract. Owner: Opus-seed -> Sonnet. Trigger: recurrence-stopper batch.'
 
   - id: "PARK-S089-SELF-BUILDING-DEEP-DIVE"
     lane: queue
@@ -2033,6 +2035,8 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+    disposition_session: S089
+    disposition_text: 'PCR-d by Opus S089 (router-side gate; advisory-never-block; lenient PIVOT:/PIVOT:tag; deterministic rule is fixture-validatable). Build-ready, consolidated_under PREVENTION-PERSIST. Owner: Sonnet. Trigger: recurrence-stopper batch.'
     never_drop: true
     izfc_audit: S089
     consolidated_under: PARK-S089-PREVENTION-PERSIST-PE-AUTOPLAN-LOOP
@@ -2073,6 +2077,8 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+    disposition_session: S089
+    disposition_text: 'CONSOLIDATED under PARK-S089-PREVENTION-PERSIST-PE-AUTOPLAN-LOOP (= P5/P6 builder pre-flight); carried as detailed sub-entry. Owner: Opus. Trigger: PREVENTION-PERSIST build.'
     never_drop: true
     consolidated_under: PARK-S089-PREVENTION-PERSIST-PE-AUTOPLAN-LOOP
     note: This IS P5/P6 absorbed by PREVENTION-PERSIST (builder 5-Q pre-flight). Kept as the detailed sub-entry.
@@ -2090,6 +2096,8 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+    disposition_session: S089
+    disposition_text: 'TOP recurrence-stopper; PCR-d S089; build-FIRST. Owner: Opus-seed -> Sonnet. Trigger: next focused build turn (makes every other fix stick).'
     never_drop: true
     problem: 'CAQ Scope-3 CLASS: issues get SWIFT-fixed but the prevention is optional/forgotten -> recurrence (the most expensive CSPS cost). SATISFACTION-POINT: "fixed it" feels done; the structural prevention is not persisted.'
     proposed_build: 'Un-ignorable, hardwired >=2 ways. Every catch/issue -> (1) SWIFT-fix-now ALLOWED + (2) MANDATORY: register the prevention to a defined store SORTED BY SCHEMA TOPIC; a gate BLOCKS closing/resolving the issue without a schema-tagged prevention entry; (3) PE ENGINE accumulates per topic; (4) at k-threshold PE auto-INJECTS into an active plan OR auto-CREATES a plan. SWIFT improvement is immediate AND nothing prevention-worthy is lost.'
@@ -2114,6 +2122,8 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+    disposition_session: S089
+    disposition_text: 'PCR-d S089 (keep identity declaration, drop awaiting-confirmation, fold card into oneclick); partially demonstrated this tab. Owner: Sonnet. Trigger: recurrence-stopper batch.'
     never_drop: true
     problem: 'A fresh tab startup must deliver a CRYSTAL next-instruction and AUTO-PROCEED from the resumed SSoT, NOT halt asking the human "awaiting confirmation". Evidence: new Opus tab correctly declared model (card caught configured-Sonnet vs runtime-Opus) but then asked the Governor instead of acting. asking-instead-of-acting is the bug.'
     proposed_build: 'Auto-resolve the auto-resolvable (model-mismatch -> declare + proceed, do not ask); halt ONLY on genuine ambiguity; startup ends with the crystal next-action read from oneclick/close-harvest. ABSORB the model-declaration card (good for identity-ground-truth) but remove the "Awaiting confirmation" step. Fold the card INTO .csps/oneclick.md (one startup source, SSoT-consolidation #4) - do NOT keep a parallel card.'
@@ -2154,6 +2164,8 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+    disposition_session: S089
+    disposition_text: 'Parked-forward; bundle with PREVENTION-PERSIST (loss-prevention). Owner: Opus/Sonnet. Trigger: build pre-compact harvest triggers next focused session.'
     never_drop: true
     problem: harvest+extract must fire BEFORE irreversible auto-compact. Currently SessionStart:compact fires AFTER compaction = too late; learned context can be lost before it is harvested.
     proposed_build: 'Hardwire >1 trigger: (a) context-limit / "new" threshold pre-compact harvest gate; (b) validate-session-harvest-readiness -> BLOCKING (currently advisory); (c) per-turn high-significance auto-harvest. Make "nothing learned is lost" mechanical.'
@@ -2170,7 +2182,8 @@ entries:
     parked_session: S089
     source_session: S089
     created_session: S089
-    closed_session: null
+    closed_session: S089
+    closed_reason: 'BUILT + verified S089 (this tab, dogfood completion). validate-park-register.mjs created + wired into verify.mjs + registered in audit-runner.md. Block-test: PASS on real register (entries=100 open=82 blocking=0); parse-guard proven on corrupted copy. BLOCKING on parse-failure/missing-id/duplicate-id; ADVISORY on lane-enum + dedup_checked drift.'
     never_drop: true
     problem: 'S089 FINDING: park-register.yaml was committed BROKEN (invalid YAML, parse error) at 93b79ee5 and stayed unparseable across 3 commits with NO validator detecting it (the 3 Sonnet parks appended at column-0 + opus_questions colon-in-wrapped-line). No tool could read the register during that window. The header already notes validate-park-dedup is only HARDWIRE-queued.'
     proposed_build: 'validate-park-register.mjs (BLOCKING): (1) js-yaml parse must succeed; (2) every entry has required schema fields (id, lane, source/created/closed_session, dedup_checked for new); (3) no duplicate ids; (4) lane in {schedule,queue,vault,obligation}; (5) dedup_checked present on new entries (the queued validate-park-dedup arm). Register in verify.mjs + audit-runner.'

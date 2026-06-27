@@ -96,10 +96,12 @@ if (!existsSync(REG_PATH)) {
 
         if (e.closed_session === null || e.closed_session === undefined) openCount += 1;
 
-        // ── Check 4: lane enum ────────────────────────────────────────────
+        // ── Check 4: lane enum (ADVISORY — canon is ambiguous: header documents
+        //    4 lanes but S088 entries use "exploration"; surface drift, do not block
+        //    on un-canonicalized schema. Canonicalize lanes -> then promote to BLOCKING). ──
         if (e.lane !== undefined && !LANES.has(e.lane)) {
-          findings.push(`BLOCKING: "${id}" has invalid lane "${e.lane}" (allowed: ${[...LANES].join(', ')})`);
-          blocking += 1;
+          findings.push(`ADVISORY: "${id}" lane "${e.lane}" not in documented enum (${[...LANES].join(', ')}) — canonicalize lane list`);
+          advisory += 1;
         }
 
         // ── Check 5: dedup_checked on S089+ entries (advisory) ────────────

@@ -1,3 +1,22 @@
+---
+id: csps.handoff.vault.session-s089-extraction
+name: session-S089-extraction
+description: >
+  High-value harvest of session S089 — UX/UI Principles page (5 UX-DNA laws + 6 UI principles),
+  B_ONECLICK_FRESHNESS, B_MODEL_DECLARATION, IZFC self-audit (3 bugs fixed), threshold-system
+  IZFC (5 findings → PARK-S089-THRESHOLD-INLINE-GATE), and 3 governance parks. HARVEST_READY.
+version: "1.0"
+owner: group:finky
+lifecycle: production
+lifecycle_state: active
+core_spine: GVRN
+schema_anchor: vault_files
+session: S089
+authored_by: Sonnet S089
+extracted_at: 2026-06-27
+head: 65b51cac
+---
+
 # S089 Session Extraction
 
 session: S089

@@ -164,6 +164,7 @@
     "validate-page-completeness.mjs": "3b145164cf52949b",
     "validate-page-dna.mjs": "6436fd7d99d1d3e4",
     "validate-page-schema-consistency.mjs": "5129015380dd813d",
+    "validate-park-register.mjs": "eac4cc82208e91bb",
     "validate-partial-processes.mjs": "f8882b1343024ffe",
     "validate-participant-declared.mjs": "efbaafa8636ee603",
     "validate-pe-connectivity.mjs": "af39888729f919ab",

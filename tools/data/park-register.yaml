@@ -15,6 +15,11 @@
 #         source_session, created_session, closed_session (null=open)
 #
 # Canonical gate: docs/plan/pillar-0-governance/threshold-gate-v2.md §4
+#
+# HARDWIRE (Governor S089): BEFORE adding any new park, GO OVER existing parks first —
+# Humble-Engine create-vs-enhance applied to parks: dedup + ENHANCE-EXISTING-IF-SCOPE-ALLOWS.
+# Record the check in a `dedup_checked:` field on the new entry. Parks obey consolidation-over-creation
+# like everything else. (validate-park-dedup = HARDWIRE-queued; instance of consult-first / B_DECISION_LEDGER.)
 
 meta:
   schema_version: "1.0"
@@ -1982,6 +1987,37 @@ entries:
       AGENTS.md is the only unimplemented surface. References: B_CHALLENGE_ON_MERIT.md FSE
       row 5, B_DECISION_LEDGER.md FSE row 7 (T3 partial).
     decision_back_ref: "S089 HARDWIRE batch — FSE surface 5 (AGENTS.md hard rule) discovered ungated during self-audit. AGENTS.md is auto-generated from principles.yaml + codegen.ts per AGENTS.md header. Parked to avoid forbidden direct-edit."
+    source_session: S089
+    created_session: S089
+    closed_session: null
+
+  - id: "PARK-S089-BUILD-WIZARD-PLAYBOOK"
+    lane: queue
+    owner: "Opus (FRESH TAB)"
+    dedup_checked: >
+      S089 — scanned existing parks (per the new consult-parks-before-new-park hardwire). NOT a duplicate but
+      heavy overlap → this is the UMBRELLA that COMPOSES (enhance, do NOT fork): PARK-S084-024 EED essence-harvest
+      · PARK-S084-026 PE-improvement/self-learning loop · PARK-S084 threshold harvest->route pipeline ·
+      internal-audit-schema park · PARK-S089-SELF-BUILDING-DEEP-DIVE + core-seeds CS-A..G · B_DECISION_LEDGER ·
+      synergy-master/CSEP skill · gradual-build · PARK-S089-PLATFORM-EMBEDDEDNESS.
+      DECISION LEDGER — chosen: umbrella-composing-existing. rejected: (a) from-scratch element [reasoning: forks
+      EED/PE-loop/self-build — violates enhance-existing]; (b) fold into self-building-deep-dive [reasoning: too
+      narrow — Governor wants a dedicated, productized, scale-adaptive artifact].
+    content: >
+      EVER-IMPROVING CSPS BUILD WIZARD + software-creation PLAYBOOK. Goal: the complete, ultimate, optimal-ORDER
+      way to approach a software project — driven by the HUMBLE CORE SPIRAL CYCLES (IZFC) + ALL CSPS mechanisms —
+      SCALE-ADAPTIVE in the RIGHT PROPORTIONS from a local quick solution up to a platform-enterprise build
+      (depth/scope-adaptive; ties to depth-discipline + B_CDAB + gradual-build). Born from the app-comparison/
+      sharing/synergy aim, generalized to ALL software creation.
+      DEDICATED INSIGHT-ABSORPTION element (ever-improving), CSPS-SCHEMA-ALIGNED so it all syncs — absorbs from
+      what-exists + this communication + internal sources: chat turns · wisdom/insights · errors+solutions ·
+      DNA (how it is applied + weaved into the platform) · ALL QC issues · self-learning/evolving elements · +
+      any aspect found. Feeds the wizard so each build starts more mature than the last.
+    deliverable: "A scale-adaptive Build Wizard (quick-local → enterprise) composing the existing build DNA, + a CSPS-schema-aligned insight-absorption element (chat/wisdom/errors/DNA/QC/self-learning). ENHANCE not fork the elements in dedup_checked. Order-optimal, humble-spiral-driven. Build the insight-absorption schema FIRST (it is the fuel)."
+    retrieve_when: "Fresh Opus tab (with the other parked deep-dives)."
+    status: queued-for-fresh-opus-tab
+    never_drop: true
+    decision_back_ref: "Governor S089 'ever-improving playbook for building the app-comparison/synergy element from scratch; dedicated insight-absorption element (chat turns/wisdom/errors+solutions/DNA-application/QC/self-learning) CSPS-schema-aligned; a CSPS playbook on software creation in optimal order, humble core spiral cycles + all CSPS; a magnificent BUILD WIZARD handling right proportions from local-quick to platform-enterprise'"
     source_session: S089
     created_session: S089
     closed_session: null

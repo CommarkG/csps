@@ -251,7 +251,28 @@ The Threshold IS the first UX interaction. Every app built on CSPS inherits this
 
 ---
 
-## §5 — LOVABILITY Rubric (S089 Opus §9 — BUILD-AUDIT dimension e)
+## §5 — P-UX-001: Internal Tools = External UX Standard (Governor S089 — CONSTITUTIONAL)
+
+**"There is no lower UX bar for internal-facing surfaces."**
+
+Every tool built for core developers — governance platform, playground pages, admin interfaces, session tooling — must comply with the same UX/UI standards as external-facing SaaS products built on CSPS.
+
+**Why:** A developer using an internal tool IS a user. Treating internal tooling as exempt from UX discipline produces exactly the thing we claim to prevent: interfaces that require you to remember which page is what and why, with no journey coherence, no felt experience, no lovability.
+
+**What this means in practice:**
+- Every internal platform page must have `pageDNA` with `purpose`, `journeyPosition`, `feltOutcome`
+- Every internal page must pass the same LOVABILITY rubric (§5 below) — self-score + test-drive
+- Every internal tool must declare its journey position (where it sits in the developer flow)
+- The Journey Shell pattern (see: `/` homepage shell) is the standard: one coherent flow, module pages as back-end, embedded module links for deep-dive
+- BUILD-AUDIT for internal pages includes lovability dimension (e) — not just a/b/c/d mechanical checks
+
+**Escape hatch:** Trivially-reversible scratch/debug pages exempt. Any page linked from the TopNav or the Journey Shell is NOT exempt.
+
+**Enforcement:** validate-ux-audit.mjs (T2) · BUILD-AUDIT §e · LOVABILITY self-score + Governor test-drive
+
+---
+
+## §6 — LOVABILITY Rubric (S089 Opus §9 — BUILD-AUDIT dimension e)
 
 **Source:** Ratified by Opus #25 S089. Extends BUILD-AUDIT (a/b/c/d) with a felt-experience dimension that machine validators cannot replace.
 

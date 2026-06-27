@@ -2407,3 +2407,42 @@ entries:
       reasoning: Assessment shows 80% exists; the win is completing the partials + unifying, not re-building. Forking would multiply the very overload this is meant to cure.
     decision_back_ref: 'Governor S089: "depth levels / core spiral cycles / humble batching ... find what exists ... well defined approach ... place it hardly into platform DNA ... hardwired protocol on all elements planned+built+tagged at >=3 levels ... great for overloaded starting files".'
     retrieve_when: After UX/UI P1 batch. Build unit = complete-the-partials (2 missing validators + promote gradual-build to BLOCKING + 3-level decomposition of AGENTS.md/oneclick).
+
+  # ─────────────────────────────────────────────
+  # S089 JOURNEY SHELL ARCHITECTURE (Governor directive — treat developer as SaaS customer)
+  # ─────────────────────────────────────────────
+
+  - id: PARK-S089-JOURNEY-SHELL-DEEP-AUDIT
+    lane: queue
+    title: Deep audit of Journey Shell architecture — what connects, what extends, what consolidates
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    priority: MEDIUM
+    csps_source: Governor S089 directive — "treat developer as SaaS customer; build journey shell; embed module links; connect everything; emphasize reuse"
+    problem: >
+      The Journey Shell (homepage /) was built swiftly (S089) as a first pass. A deep audit is needed to:
+      (1) Map ALL existing platform pages to their journey positions (shell step, module, reference, admin)
+      (2) Identify which pages should be steps in the shell vs standalone modules vs deprecated redirects
+      (3) Find pages that violate P-UX-001 (internal=external UX bar) and need alignment
+      (4) Identify scattered navigation: TopNav entries that should be in-shell module links instead
+      (5) Audit RelatedPages across all platform pages — are they complete and bidirectional?
+      (6) Check: does /platform/journey (Platform Attitude page) conflict with the shell name?
+      (7) Identify which module pages should feed into the shell as steps (voice-profiles, design-intelligence)
+    proposed_build: >
+      Haiku scan: inventory all platform/* pages → classify each as SHELL-STEP | MODULE | REFERENCE | ADMIN | REDIRECT.
+      For each SHELL-STEP: design the step slot in the shell (what it shows, its position, its module link).
+      For each MODULE: confirm pageDNA.journeyPosition is declared + linked from shell.
+      For each page violating P-UX-001: add journeyPosition + feltOutcome + LOVABILITY score.
+      Output: a CONNECTION MAP (which page links to which, bidirectionally) + a SHELL EXTENSION PLAN
+      (which future steps to add to the shell as the platform grows).
+    dedup_checked: >
+      New item — composes PARK-S089-PLATFORM-COMPETITIVE-GROUNDING (adds positioning page as shell step 5) +
+      PARK-S089-COMPLETION-DISCIPLINE-METRICS (completion metrics as shell step 4 widget) +
+      B_CONSOLIDATION_PASS (TopNav rationalization = consolidation pass on nav entries).
+    decision_ledger:
+      chosen: Park for Haiku-led deep audit + connection map + shell extension plan
+      rejected: Extend shell now (premature without full inventory; risk of forking what exists)
+      reasoning: Swift first pass done; deep audit needs fresh context + Haiku parallel scan of all 30+ platform pages.
+    retrieve_when: After P1 UX/UI batch (developer-journey + zero-friction + design-intelligence + simulation) completes.

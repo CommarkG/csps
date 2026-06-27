@@ -196,3 +196,18 @@ PERMISSION FLOW (hardwired protocol is review-then-grant):
 - Opus GRANTS or declines (two-party-seal). Only after a grant does the SSoT change.
 - Sonnet does NOT self-edit hardwired protocol/definitions without an Opus grant.
 - This invites improvement (Sonnet sees build-reality Opus doesn't) without unilateral drift.
+
+## 11. ISSUE #1 — Governor Drive UX feedback (fold into the next journey iterate)
+
+Real test-drive input from Governor (Drive doc 2026-06-24, captured ICAP-S089-005):
+- WIDE-SCREEN layout broken: the central "מה לשפר היום / מצב האונבורדינג שלי" strip renders
+  too small + pushed to the sides on wide screens = not actually relevant/visible.
+- Asks (UX): single continuous row for big screens; shorten to "מה נקדם עכשיו?" with a mic +
+  camera icon pair (text field stays below; camera opens device cam -> photo/video -> "התייעצות").
+- Also: auto-reminders · improve consultation-question phrasing · a COUNCIL admin screen ·
+  measure default-match accuracy · "add closing X + remind me tomorrow" (the banner is annoying).
+SONNET: fold these into the developer/user-journey lovability iterate. They map to rubric (e):
+  e2 zero-friction (single-row, shorter prompt), e3 honest-state + e?-wide-screen state-completeness,
+  e1 first-screen-value (the strip must be prominent, not sidelined). Test-drive on a WIDE screen.
+The 3 parked issues' Drive context is registered in their park entries (external_context_drive);
+issue #3's full design is the CSEO/CSEP 12-doc set in Drive — import + consolidate when #3 opens.

@@ -89,3 +89,11 @@ libs/policies/generated/
 #        slice-content-hashes.json (CS7), gap-recurrence-register.yaml, improvement-register.yaml
 tools/data/*-last-run.json
 tools/verify-last-run.md
+# S089 (SSoT-consolidation #5): pure machine-state outputs/caches that churn every
+# turn with ZERO record value — already in treehash-exclude.txt; untracked here so
+# they stop dirtying the working tree. Each is write-only or existsSync-guarded
+# (regenerated on next verify): no validator depends on tracked presence.
+tools/context-orchestrator-last-run.json
+tools/validate-token-budget-last-run.json
+tools/data/validator-input-cache.json
+tools/zf-session-tracker.json

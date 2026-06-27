@@ -182,3 +182,17 @@ HAIKU ACTIVATION CARD (simple, when/how — it WORKS now):
     (pass file PATHS + line ranges, never file contents). Then CONSOLIDATE the returns.
   POLISH (parked, non-blocking, PARK-S084-039): haiku-return-format.schema.yaml +
     validate-haiku-return-compliance + a fan-out/consolidate helper.
+
+## 10. PROTOCOL SSoT + permission flow (Governor S089: "one source of protocol")
+
+ONE SOURCE (do not duplicate protocol elsewhere):
+- OPERATING PROTOCOL SSoT = docs/plan/_handoff/OPUS-S089-NORTH-STAR-SPINE.md (doctrine + method + sequence).
+- LIVE RELAY / ASSIGNMENT SSoT = THIS file (tools/council/opus-turn.md).
+- The one-click is a LAUNCHER that points here — it never restates protocol.
+
+PERMISSION FLOW (hardwired protocol is review-then-grant):
+- Sonnet MAY review the protocol SSoT and PROPOSE deltas (improvements, gaps, simplifications)
+  via tools/council/sonnet-turn.md, with PCR (chosen/rejected/reasoning).
+- Opus GRANTS or declines (two-party-seal). Only after a grant does the SSoT change.
+- Sonnet does NOT self-edit hardwired protocol/definitions without an Opus grant.
+- This invites improvement (Sonnet sees build-reality Opus doesn't) without unilateral drift.

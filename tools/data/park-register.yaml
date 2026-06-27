@@ -1882,3 +1882,27 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+
+  - id: "PARK-S089-QC-OVERLOAD-PERMANENCE-DEEP-DIVE"
+    lane: queue
+    owner: "Opus (FRESH TAB)"
+    content: >
+      DEEP DIVE (fresh Opus tab): platform-level QC + measures to AVOID and IDENTIFY overloads & bottlenecks —
+      present PERMANENTLY and INHERENTLY across (C1) platform building itself, (C2) developer-built things,
+      (C3) app/saas solutions. SPECIAL ATTENTION:
+      (a) INHERITANCE — QC + overload/bottleneck guards auto-inherit to ALL 3 cases, never re-added per-case;
+      (b) NON-DEPENDENCY ON TEMP/EPHEMERAL MEMORY — nothing load-bearing lives in chat/context/working-memory;
+      all QC state + thresholds + guards persist in PERMANENT files (G5 permanence: chat-only = ephemeral = fails;
+      survives compaction / new tab / fresh agent).
+      Identify overload/bottleneck CLASSES (context overflow · token blowup · CIE/PE call storms · validator
+      runtime · queue backpressure · human-attention overload · agent-spawn overflow) and the PERMANENT,
+      MECHANICALLY-ENFORCED guards for each (throttle / backpressure / budgets / circuit-breakers / debounce) —
+      not advisory.
+    deliverable: "Overload/bottleneck CLASS catalog × build-case(C1/C2/C3) × {detect | avoid | recover} → permanent mechanical guard + inheritance-proof + temp-memory-independence-proof. Cross-links PARK-S089-PLATFORM-EMBEDDEDNESS-DEEP-DIVE (this is its QC + resilience lens)."
+    retrieve_when: "Fresh Opus tab (executed with the other parked deep-dives)."
+    status: queued-for-fresh-opus-tab
+    never_drop: true
+    decision_back_ref: "Governor S089 'park deep dive on platform-level QC + avoid/identify overloads+bottlenecks, present permanently+inherently in self-build + app/saas; special attention to inheritance + non-dependency in temp memory'"
+    source_session: S089
+    created_session: S089
+    closed_session: null

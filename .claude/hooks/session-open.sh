@@ -217,4 +217,14 @@ CSPS_REPO_ROOT="$REPO_ROOT" node "$REPO_ROOT/tools/scripts/session-open-context.
     grep -F '[FINDINGS-ACTUATOR]' | head -12 >&2 || true
 } 2>/dev/null || true
 
+# --- B_CHALLENGE_ON_MERIT + B_DECISION_LEDGER SESSION REMINDER (T3 — S089 CONSTITUTIONAL) ---
+# Fires every session open. Reminds ALL roles (Governor / Opus / Sonnet) of constitutional contracts.
+printf '\n[B_CHALLENGE_ON_MERIT + B_DECISION_LEDGER — S089 CONSTITUTIONAL]' >&2
+printf '\n  CHALLENGE-ON-MERIT: PCR on any consequential issue, incl. Governor directives.' >&2
+printf '\n    Banned: "you'\''re right"/"great point"/"per your insistence" without adjacent merit-reasoning.' >&2
+printf '\n    validate-challenge-on-merit.mjs guards council comms (BLOCKING on bare filler).' >&2
+printf '\n  DECISION LEDGER: every consequential plan must include chosen + >=1 rejected-with-reasoning.' >&2
+printf '\n    validate-decision-ledger.mjs guards structural integrity (malformed ledger = BLOCKING).' >&2
+printf '\n    Fuel of the Humble Engine — CIE cannot consolidate/enhance without knowing what was rejected.\n' >&2
+
 exit 0

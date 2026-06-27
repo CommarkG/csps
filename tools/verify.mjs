@@ -2769,6 +2769,44 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // S089 HARDWIRE-A: Decision Ledger structural gate — BLOCKS if a consequential plan has a
+  // Decision Ledger section with NO rejected options (malformed ledger = reasoning amnesia).
+  // B_DECISION_LEDGER (CONSTITUTIONAL, S089): preserves reasoning including roads-not-taken.
+  {
+    name: 'decision_ledger',
+    command: 'node tools/validators/validate-decision-ledger.mjs',
+    input_files: [
+      'docs/plan/_handoff/',
+      'tools/validators/validate-decision-ledger.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
+  // S089 HARDWIRE-B: Challenge-on-merit structural gate — BLOCKS if council communications
+  // contain banned validating-filler phrases (you're right/great point/etc.) with NO adjacent
+  // merit-reasoning. Detects structural markers ONLY — never polices whether AI agreed.
+  // B_CHALLENGE_ON_MERIT (CONSTITUTIONAL, S089): PCR on any consequential issue.
+  {
+    name: 'challenge_on_merit',
+    command: 'node tools/validators/validate-challenge-on-merit.mjs',
+    input_files: [
+      'tools/council/',
+      'docs/plan/_handoff/',
+      'tools/validators/validate-challenge-on-merit.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
   // S088-A2 CS3: Deploy-root self-containment gate — BLOCKS if governed src/data/ copies
   // are missing or diverge from canonical parent-repo sources.
   // Root cause: /api/journey-spine returned "fallback" in prod because journey-core-spine.md

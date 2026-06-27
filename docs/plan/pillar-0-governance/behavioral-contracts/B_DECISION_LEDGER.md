@@ -8,8 +8,8 @@ enforcement_trio:
   t2:
     tier: validator
     path: "tools/validators/validate-decision-ledger.mjs"
-    status: queued
-    note: "STRUCTURAL: a consequential decision/plan MUST (a) carry a Decision Ledger (chosen + >=1 rejected-option-with-reasoning) AND (b) cite the existing research/ledger it consulted (or explicitly 'searched X, none found'). Does NOT block NEW research — it ensures prior-art was reviewed FIRST so the decision is informed/context-driven. exits-1 + block-test. HARDWIRE-queued (batch w/ validate-challenge-on-merit)."
+    status: active
+    note: "STRUCTURAL: BLOCKING when Decision Ledger section exists but has NO rejected options (malformed = reasoning amnesia). ADVISORY when Opus plan files lack section entirely (grace). exits-1 + 3/3 block-test PASS (S089)."
   t3:
     tier: session
     path: "session-open injection + AGENTS.md + plan-creation-protocol amendment"

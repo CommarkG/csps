@@ -435,3 +435,60 @@ standards:
       validator: validate-internal-links.mjs
       cadence: per-session
       audit_runner_key: internal_links
+
+  - id: B_CHALLENGE_ON_MERIT
+    name: Challenge-on-Merit — PCR on any consequential issue (CONSTITUTIONAL)
+    ratified_session: S089
+    ratified_by: "Governor S089 — constitutional hardwire; meritful challenge mandatory incl. on Governor directives"
+    ratified_at: "2026-06-27"
+    description: >
+      Every AI in CSPS presents PCR and challenges on MERIT on any consequential issue — including
+      Governor directives. Agreement allowed ONLY when it is the meritful conclusion.
+      Banned structural markers: bare agreement-filler (great point / per your insistence / agreement
+      without evidence) with NO adjacent merit-reasoning in council communications.
+      Structural detection ONLY — never polices whether AI agreed (not contrarianism).
+      Extends B_AI_PROFESSIONAL_VOICE + ideas-not-insistence DNA.
+    trigger: "Governor directive S089 — hardwire >=8 surfaces, >1 way, be rigid"
+    enforcement:
+      T1_hook: ".claude/hooks/user-prompt-submit-next-step-reminder.sh (#7) + session-open.sh"
+      T2_validator: "tools/validators/validate-challenge-on-merit.mjs (BLOCKING on bare filler in council comms)"
+      T3_session: "session-open.sh reminder + AGENTS.md hard rule (queued)"
+      block_test: "tools/tests/behavioral/challenge-on-merit-block-test.sh (3/3 PASS)"
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_CHALLENGE_ON_MERIT.md
+      requirement: >
+        All CSPS AI roles (Opus/Sonnet/Haiku) must produce PCR on consequential issues.
+        validate-challenge-on-merit.mjs scans council comms for undefended filler (BLOCKING).
+        Structural markers only — not agreement policing.
+    audit_entry:
+      validator: validate-challenge-on-merit.mjs
+      cadence: per-session
+      audit_runner_key: challenge_on_merit
+
+  - id: B_DECISION_LEDGER
+    name: Decision Ledger — preserve reasoning including roads not taken (CONSTITUTIONAL)
+    ratified_session: S089
+    ratified_by: "Governor S089 — constitutional hardwire; reasoning-amnesia is a platform failure mode"
+    ratified_at: "2026-06-27"
+    description: >
+      Every consequential CSPS plan/decision must carry a Decision Ledger: chosen option +
+      >=1 rejected option WITH reasoning. Fuel of the Humble Engine (CIE memory of what was rejected
+      and why). Context-driven: new research is welcome when meritful — the requirement is only that
+      it be informed (starting from the mature baseline, naming the specific gap it fills).
+      Both platform self-build AND SaaS/app solution builds must carry ledgers.
+      Universal scope: plan-creation-protocol Step 7 + Humble Engine CS-B auto-emits ledger entries.
+    trigger: "Governor S089 — consolidation-over-creation requires knowing what was rejected"
+    enforcement:
+      T1_hook: ".claude/hooks/user-prompt-submit-next-step-reminder.sh (#7) + session-open.sh"
+      T2_validator: "tools/validators/validate-decision-ledger.mjs (BLOCKING on malformed ledger — section exists with no rejected entries)"
+      T3_session: "plan-creation-protocol Step 7 + session-open.sh reminder"
+      block_test: "tools/tests/behavioral/decision-ledger-block-test.sh (3/3 PASS)"
+      path: docs/plan/pillar-0-governance/behavioral-contracts/B_DECISION_LEDGER.md
+      requirement: >
+        All consequential CSPS plans include Decision Ledger section (chosen + >=1 rejected-with-reasoning).
+        validate-decision-ledger.mjs: BLOCKING if section exists with no rejected entries (malformed).
+        ADVISORY if plan file entirely lacks section (grace for pre-S089 plans).
+        plan-creation-protocol Step 7 is the authoring trigger.
+    audit_entry:
+      validator: validate-decision-ledger.mjs
+      cadence: per-session
+      audit_runner_key: decision_ledger

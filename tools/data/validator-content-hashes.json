@@ -1,6 +1,6 @@
 {
   "_comment": "CS7: validator content-hash store. Updated by pnpm audit-runner:split. Read by validate-audit-health.mjs CHECK B. Stale = current hash != stored hash (not mtime). B_DETERMINISTIC_GATE compliant.",
-  "_updated_at_split": "2026-06-25",
+  "_updated_at_split": "2026-06-27",
   "hashes": {
     "validate-aap-frontmatter.mjs": "fbe0398a031c888c",
     "validate-activation-coverage.mjs": "c61be99f06e92e7d",
@@ -30,6 +30,7 @@
     "validate-bypass-settings.mjs": "5b15a98c6af8b38c",
     "validate-capability-registry.mjs": "fdf5b4a6674e5cbf",
     "validate-catch-completeness.mjs": "ddc4904e75e5b89b",
+    "validate-challenge-on-merit.mjs": "4f15686649cbea0a",
     "validate-checkpoint-categories.mjs": "5d03d8053f7e63b3",
     "validate-claimed-mechanical-presence.mjs": "2fd3c18847da5308",
     "validate-classification-accuracy.mjs": "d4052a8f9020b579",
@@ -64,6 +65,7 @@
     "validate-crystallization-bypass.mjs": "e7caa5ddf6cbf528",
     "validate-dead-links.mjs": "8bc4422970a25bd5",
     "validate-decision-frame-citation.mjs": "898daa6dbcae6cfc",
+    "validate-decision-ledger.mjs": "ef2d03dbbd0ed17a",
     "validate-declared-never-finished.mjs": "5a57e030133057bb",
     "validate-default-shape.mjs": "a45d6fa4c22bccd2",
     "validate-deferred-target-session.mjs": "5896cd5c9a65d5ed",

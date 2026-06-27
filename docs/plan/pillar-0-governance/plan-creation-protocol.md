@@ -230,6 +230,38 @@ Every plan MUST include a `## §KH Know-How Consultation` section in the plan bo
 
 **Mechanical enforcement:** `validate-plan-know-how.mjs` (in pnpm verify) — plans authored session ≥ S011 without §KH section or `know_how_consulted: true` = FAIL.
 
+### Step 7 — Decision Ledger (per [B_DECISION_LEDGER](./behavioral-contracts/B_DECISION_LEDGER.md) — CONSTITUTIONAL, S089)
+
+**Added S089 after ratification of B_DECISION_LEDGER (CONSTITUTIONAL, RIGID).**
+
+Every consequential CSPS plan MUST include a `## Decision Ledger` section with:
+- **CHOSEN**: the selected option + one-line rationale
+- **REJECTED** (≥1 entry): each rejected alternative WITH its reasoning (not just the option name)
+- **Source/vote**: who decided (Governor/Opus/council/block-test) + date if relevant
+
+**Why load-bearing:** the Decision Ledger IS the CIE's memory of what was considered and rejected.
+"Consolidation/enhancement over creation" is impossible without knowing what already exists AND
+what was already rejected-and-why. Preserving reasoning is not overhead — it is the fuel of the Humble Engine.
+
+**Context-driven, not rigid:** the ledger guards two opposite failures equally:
+- *Re-research waste* — redoing a deep dive already done (ignoring the ledger).
+- *Stale-reuse* — blindly reusing old findings when context genuinely changed.
+New research is welcome when it's the meritful move — the requirement is only that it be INFORMED:
+starting from the mature existing baseline and naming the specific gap/staleness/new-angle it addresses.
+
+**Template addition (Decision Ledger section):**
+```markdown
+## Decision Ledger (B_DECISION_LEDGER — S089 constitutional requirement)
+
+| Decision | CHOSEN | REJECTED (+ why) | Source / vote |
+|---|---|---|---|
+| [decision name] | [chosen option] | **REJECTED: [option]** — [reasoning, ≥1 sentence] | [Governor / Opus / council / date] |
+```
+
+**Skip condition:** single-turn trivial operational plans (e.g., bug fix, typo). Any plan that introduces architectural decisions, new behavioral contracts, new validators, or new platform primitives MUST have a Decision Ledger.
+
+**Mechanical enforcement:** `validate-decision-ledger.mjs` (in pnpm verify, STANDARD tier) — a file with a Decision Ledger section that has NO rejected options = BLOCKING.
+
 ## §4 — Multi-session plan specifics (extends gradual-build-plan template)
 
 When authoring a multi-session plan (Trigger #1 from §1), additionally:

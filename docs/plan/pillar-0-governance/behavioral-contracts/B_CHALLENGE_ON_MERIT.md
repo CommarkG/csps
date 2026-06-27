@@ -2,14 +2,14 @@
 enforcement_trio:
   t1:
     tier: hook
-    path: null
-    status: queued
-    note: "Add as turn-discipline injection #7 (UserPromptSubmit) — reminds: PCR/challenge on merit on any consequential input, incl. Governor's. HARDWIRE-queued with block-test."
+    path: ".claude/hooks/user-prompt-submit-next-step-reminder.sh (item #7)"
+    status: active
+    note: "Turn-discipline injection #7 (UserPromptSubmit v1.3.0) + session-open.sh reminder. Hardwired S089."
   t2:
     tier: validator
     path: "tools/validators/validate-challenge-on-merit.mjs"
-    status: queued
-    note: "STRUCTURAL detection only (NOT judgment): flag banned validating-filler phrases lacking merit reasoning + consequential decisions emitted with no PCR. exits-1 + block-test. HARDWIRE-queued."
+    status: active
+    note: "STRUCTURAL detection only (NOT judgment): flags banned validating-filler phrases (you're right/great point/per your insistence/absolutely) without adjacent merit-reasoning in council comms (BLOCKING). exits-1 + 3/3 block-test PASS (S089)."
   t3:
     tier: session
     path: "session-open injection + AGENTS.md hard rule"

@@ -1,10 +1,10 @@
 {
   "session": "S089",
-  "captured_at": "2026-06-27T08:43:50.934Z",
+  "captured_at": "2026-06-27T08:45:45.618Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 270,
-    "ran_at": "2026-06-27T08:43:19.605Z"
+    "ran_at": "2026-06-27T08:45:14.129Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
@@ -24,5 +24,5 @@
     "gap_RESIDUE_HOOK_FALSE_POSITIVE K=2 (open)",
     "gap_RELAY_LAYER_DRIFT K=2 (structural_fix_committed)"
   ],
-  "sonnet_summary": "═══════════════════════════════════════════════════════════════════ | SROF-S089-005 | S089 | Sonnet → Opus | NEW TAB HANDOFF | SUBJECT: Session close — all context for next tab"
+  "sonnet_summary": "═══════════════════════════════════════════════════════════════════ | SROF-S089-006 | S089 | Sonnet → Opus | PREVENTION ARCHITECTURE | SUBJECT: Per-turn PCR enforcement + Prevention Vault — awaiting r"
 }

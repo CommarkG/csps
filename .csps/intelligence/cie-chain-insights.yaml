@@ -7676,3 +7676,39 @@ entries:
   pe_final: 4.75
   route: "PROCESS-NOW"
   content_preview: "SMOKE-1782545091353-activation-test"
+- id: "chain-S088-1782545140515"
+  session: "S088"
+  timestamp: "2026-06-27T07:25:40.517Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 4.75
+  route: "PROCESS-NOW"
+  content_preview: "SMOKE-1782545136944-activation-test"
+- id: "chain-S088-1782545140746"
+  session: "S088"
+  timestamp: "2026-06-27T07:25:40.748Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 4.75
+  route: "PROCESS-NOW"
+  content_preview: "SMOKE-1782545137175-activation-test"
+- id: "chain-unknown-1782545142920"
+  session: "unknown"
+  timestamp: "2026-06-27T07:25:42.922Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 4.75
+  route: "PROCESS-NOW"
+  content_preview: ""
+- id: "chain-S088-1782545308277"
+  session: "S088"
+  timestamp: "2026-06-27T07:28:28.278Z"
+  type: governor_directive
+  spine_tag: GVRN
+  pe_band: MEDIUM
+  pe_final: 4.75
+  route: "PROCESS-NOW"
+  content_preview: "SMOKE-1782545304908-activation-test"

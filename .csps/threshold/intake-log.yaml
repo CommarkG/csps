@@ -17265,3 +17265,36 @@ entries:
   status: processed
   raw: "SMOKE-1782545091353-activation-test"
   preview_file_used: true
+- id: "thr-S088-1782545140136"
+  session: "S088"
+  timestamp: "2026-06-27T07:25:40.136Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: processed
+  raw: "SMOKE-1782545136944-activation-test"
+  preview_file_used: true
+- id: "thr-S088-1782545140351"
+  session: "S088"
+  timestamp: "2026-06-27T07:25:40.351Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: processed
+  raw: "SMOKE-1782545137175-activation-test"
+  preview_file_used: true
+- id: "thr-S088-1782545307924"
+  session: "S088"
+  timestamp: "2026-06-27T07:28:27.923Z"
+  type: governor_directive
+  spine_tag: GVRN
+  scope_tag: S2
+  urgency: medium
+  source: governor_directive
+  status: processed
+  raw: "SMOKE-1782545304908-activation-test"
+  preview_file_used: true

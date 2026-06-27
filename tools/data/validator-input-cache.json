@@ -32,14 +32,14 @@
       "cached_at": "2026-06-22T04:02:28.964Z"
     },
     "threshold_intake": {
-      "input_hash": "c193233d0f97e2be13da0a744c0ebac7fbba0bd8f97b3a254c1c5a599839d7d1",
+      "input_hash": "f1d59e0402bc1b9d39867b76aed43e07f37ac871446484dfef19c3536cb8c800",
       "exit_code": 0,
       "parsed": {
-        "total_entries": 1776,
+        "total_entries": 1779,
         "sessions": 13,
         "advisory": true
       },
-      "cached_at": "2026-06-27T07:24:45.768Z"
+      "cached_at": "2026-06-27T07:28:19.429Z"
     },
     "journey_gate": {
       "input_hash": "e82a975724b8f25d85c8449fe7444bb8cf5a0caefa76a2bbde42d314993e1748",
@@ -117,14 +117,14 @@
       "cached_at": "2026-06-23T03:40:26.226Z"
     },
     "next_build": {
-      "input_hash": "8cf8cd08e47f883793042d65bcbe06e5bcbe5a0ffc0050596faed7affc322813",
+      "input_hash": "ecb2080dd7e6a9c4ee935483f0d6fa7400354e24c0880ed0b10e3c1d1982322b",
       "exit_code": 0,
       "parsed": {
         "blocking": 0,
         "advisory": 0,
         "passes": 2
       },
-      "cached_at": "2026-06-27T07:24:57.321Z"
+      "cached_at": "2026-06-27T07:28:30.913Z"
     },
     "deploy_root_selfcontained": {
       "input_hash": "d66783d9cc562ae5e9006526272e0930de9d51f616b63fbfc341636a9866e0c7",
@@ -137,14 +137,14 @@
       "cached_at": "2026-06-23T03:40:27.151Z"
     },
     "council_harvest": {
-      "input_hash": "46b5f8a27ae04ac4a0b08b9c1453e5c02876a9fa103219191c23d07c53767ebf",
+      "input_hash": "1b4d7caac38fa06a007fb0e37f36f1430c4d5e39515c82216221abaeb7dfae3f",
       "exit_code": 0,
       "parsed": {
         "blocking": 0,
         "advisory": 7,
         "passes": 15
       },
-      "cached_at": "2026-06-27T07:24:57.392Z"
+      "cached_at": "2026-06-27T07:28:30.987Z"
     },
     "tagging_core_divergence": {
       "input_hash": "cdfa04b9b7d536c6deea7b9575ede8acb9cf4a4c4774aac7b5619e305114264f",
@@ -207,14 +207,14 @@
       "cached_at": "2026-06-27T04:18:29.865Z"
     },
     "oneclick_freshness": {
-      "input_hash": "4b49df3006727d564e6f12c7e0047f5201213b091b5352bba7820ab5753a5484",
+      "input_hash": "f634da2867045ef2877b0c900d968fe6fc9d1b16dd6fc54d208d5658eb533fb6",
       "exit_code": 0,
       "parsed": {
         "blocking": 0,
         "advisory": 0,
         "passes": 3
       },
-      "cached_at": "2026-06-27T07:24:57.494Z"
+      "cached_at": "2026-06-27T07:28:31.098Z"
     }
   }
 }

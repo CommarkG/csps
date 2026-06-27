@@ -2026,25 +2026,51 @@ entries:
   parked_session: S089
   closed_session: null
   title: "UserPromptSubmit threshold gate for mid-plan inline injections"
+  izfc_audit: S089
+  izfc_summary: |
+    6-angle sweep on actual code. Key findings:
+    ROOT CAUSE: threshold-router.mjs L227 routes ALL governor_directive to PROCESS-NOW
+    unconditionally. mandateRelation IS computed (L191-193) but never consulted before
+    the governor_directive branch. Missing check: is this NEW concept or in-mandate?
+    CLASSIFIER NOT GATE: threshold runs, CIE writes, log writes — then exit 0.
+    PROCESS-NOW is a pass-through. No downstream block exists for any route.
+    VALIDATORS BLIND: validate-threshold-chain passes 0/0 because it tests technical
+    function not routing correctness. Semantic routing = un-validatable by machine.
+    MISSING ROUTE: QUEUE-OR-PIVOT does not exist in the router enum. Must be added.
+    EVIDENCE: S089 oneclick input pe_score=4.75 MEDIUM, routed PROCESS-NOW.
+    Correct route with active mandate: QUEUE-OR-PIVOT (route did not exist).
   problem: |
-    Mid-plan Governor concept injections bypass threshold entirely. The gate exists
-    for tool-writes but not for incoming chat ideas. Every session build from inline
-    Governor input (including all S089 oneclick/model-declaration work) was built
-    without threshold routing. S076 memory documents the same pattern.
+    Mid-plan Governor concept injections bypass the mandate check entirely.
+    threshold-router.mjs routes ALL governor_directive to PROCESS-NOW without
+    checking whether the directive is in the active mandate or a NEW concept injection.
+    S076 memory documents same pattern. S089 confirmed recurrence: 5 correction
+    commits on a build triggered by unqueued mid-mandate concept injection.
+    The threshold is a classifier not a gate. PROCESS-NOW = approved, proceed.
   proposed_build: |
-    UserPromptSubmit hook detects: active plan mandate exists + new consequential concept
-    not in active plan manifest -> inject 'ACTIVE PLAN = X. NEW CONCEPT DETECTED.
-    Route: QUEUE (threshold) or EXPLICIT-PIVOT (ack)?'
-    Haiku classifies: new-concept vs active-plan-continuation vs clarification-of-active
-    (60-token classification, not Sonnet/Opus budget).
+    STEP 1: Add QUEUE-OR-PIVOT to threshold-router.mjs ROUTES enum.
+    STEP 2: Before governor_directive->PROCESS-NOW branch, add:
+      if (mandateRelation === new-concept AND active mandate in session-state.json):
+        route = QUEUE-OR-PIVOT
+        rationale = ACTIVE MANDATE: X. NEW CONCEPT: Y. Queue or pivot?
+    STEP 3: user-prompt-submit-intake.sh handles QUEUE-OR-PIVOT:
+      outputs advisory (non-blocking). Governor replies QUEUE or PIVOT.
+    STEP 4: Haiku classifies mandate_relation (in-mandate|adjacent|new-concept|orthogonal).
+      60-token input type + content -> mandate_relation output. Replaces keyword-only.
+    ESCAPE: Governor writes PIVOT:[concept] to bypass queue gate explicitly.
   decision_ledger:
     chosen: PARK for Opus architectural review
-    rejected: build inline now (same mistake it is meant to prevent)
-    reasoning: Building a governance gate without threshold review is self-contradictory.
+    rejected: build inline now (self-contradictory — same mistake the gate prevents)
+    reasoning: Router change affects ALL governor inputs. Consequential. Needs Opus PCR.
   opus_questions:
-    - Is UserPromptSubmit the right event, or should it be a CIE layer check?
-    - Should Haiku classify ALL inputs or only when active-plan is set in session-state.json?
-    - What is the escape hatch when Governor explicitly says 'pivot now'?
+    - ROUTING: Should mandate_relation check live in threshold-router.mjs (library)
+      or intake hook BEFORE calling router (gate)? Tradeoff: router purity vs hook complexity.
+    - HAIKU RELIABILITY: Is Haiku classification reliable enough for mandate_relation,
+      or does it risk false positives blocking Governor directives mid-session?
+    - ESCAPE HATCH FORMAT: Is PIVOT keyword sufficient or require ack format
+      (e.g., PIVOT:S089:oneclick-permanence) for audit trail?
+    - VALIDATOR COVERAGE: Can validate-threshold-routing-coverage.mjs be extended
+      to test new-concept-when-mandate-active -> QUEUE-OR-PIVOT correctness?
+      Or is semantic routing correctness fundamentally un-validatable by machine?
 
 - id: PARK-S089-AUTO-COUNCIL-CYCLE
   parked_session: S089

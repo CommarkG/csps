@@ -1906,3 +1906,50 @@ entries:
     source_session: S089
     created_session: S089
     closed_session: null
+
+  - id: "PARK-S089-SUSPICIOUS-REPETITIVE-ACTIVATION-VERIFY"
+    lane: queue
+    owner: "Opus (FRESH TAB)"
+    content: >
+      DEEP DIVE (fresh Opus tab): ZF-ITERATE on INHERITANCE — verify (iterations until ZERO-FINDING) that ALL
+      we built is inherited into ANY new change/creation: engines, elements, functions, internal processes.
+      Hardwire inheritance EXTENSIVELY into all 4 phases: thinking · planning · implementation · checking.
+      CORE INSIGHT (AP-001 EXISTS != ACTIVE, proven repeatedly by context limits): NEVER assume "exists in the
+      system" = "triggered / activated when required." Context limits drop it from working memory every time.
+      DEVELOP + HARDWIRE a SUSPICIOUS, REPETITIVE activation-verification mechanism: assume-NOT-active-until-
+      re-verified; verify activation by MASSIVE REPETITION across the process (repetition as a VIRTUE of
+      supporting processes, not waste) — distrust any single check; re-confirm at every phase boundary.
+    deliverable: "A mechanically-enforced suspicious-repetitive activation-verification mechanism + an inheritance-ZF protocol for every new engine/element/function/process, wired into thinking/planning/implementation/checking. Cross-links PARK-S089-PLATFORM-EMBEDDEDNESS-DEEP-DIVE (inheritance + EXISTS!=ACTIVE) + its prevention focus + PARK-S089-QC-OVERLOAD-PERMANENCE (temp-memory independence)."
+    retrieve_when: "Fresh Opus tab (executed with the other parked deep-dives)."
+    status: queued-for-fresh-opus-tab
+    never_drop: true
+    decision_back_ref: "Governor S089 'ZF until inheritance of all into any new change/creation [engines/elements/functions/processes]; hardwire into thinking/planning/impl/checking; never assume exists=activated (context limits disprove); suspicious+repetitive verification, massive repetition as a virtue of supporting processes'"
+    source_session: S089
+    created_session: S089
+    closed_session: null
+
+  - id: "PARK-S089-AGENTS-HARD-RULES"
+    lane: queue
+    content: >
+      Add B_CHALLENGE_ON_MERIT + B_DECISION_LEDGER hard rules to AGENTS.md via the correct
+      generation path: principles.yaml + codegen.ts (NOT direct AGENTS.md edit — file is
+      auto-generated; direct edits are overwritten and forbidden per AGENTS.md header).
+      Hard rule text (both contracts):
+        B_CHALLENGE_ON_MERIT: "PCR on any consequential issue, including Governor directives.
+          Banned: bare agreement-filler (you're right / great point / per your insistence)
+          without adjacent merit-reasoning. Agreement ONLY when meritful conclusion."
+        B_DECISION_LEDGER: "Every consequential plan must include a Decision Ledger:
+          chosen option + >=1 rejected option WITH reasoning. Fuel of the Humble Engine."
+    retrieve_when: "When codegen.ts + principles.yaml pipeline is being actively maintained (or when AGENTS.md auto-gen is re-implemented). Not blocking S089 — surface is engraved via FSE surfaces 1-8; AGENTS.md is additive."
+    status: queued
+    never_drop: true
+    context_preserved: >
+      FSE surfaces for both contracts are COMPLETE (8+ surfaces each). AGENTS.md is FSE
+      surface 5 for B_CHALLENGE_ON_MERIT and one surface for B_DECISION_LEDGER. Session-open,
+      turn-discipline hook, validator, plan-creation-protocol, and contract files all active.
+      AGENTS.md is the only unimplemented surface. References: B_CHALLENGE_ON_MERIT.md FSE
+      row 5, B_DECISION_LEDGER.md FSE row 7 (T3 partial).
+    decision_back_ref: "S089 HARDWIRE batch — FSE surface 5 (AGENTS.md hard rule) discovered ungated during self-audit. AGENTS.md is auto-generated from principles.yaml + codegen.ts per AGENTS.md header. Parked to avoid forbidden direct-edit."
+    source_session: S089
+    created_session: S089
+    closed_session: null

@@ -141,3 +141,44 @@ HAIKU NEWS: parallel Haiku scouts now WORK in this harness (I ran 4 this turn, n
 "large-scope parallel checks + templated findings + consolidate" pattern is activatable — see
 PARK-S084-039 s089_update. Use Agent(subagent_type:"haiku-scout", model:"haiku") with the
 CONTEXT-BUDGET line (spawn-warranted | tools-restricted | pointers-only) for bulk mechanical scans.
+
+## 9. ROUND 3 — UX/UI: optimal path + improved build/plan/verify method (Governor S089)
+
+OPTIMAL PATH (PCR): JOURNEY-FIRST + felt-experience + Governor test-drive iterate.
+- CHOSEN: build the end-to-end USER JOURNEY as a coherent felt flow; apply the 5 laws + 6 UI
+  principles WITHIN it; after each journey-COHERENT SLICE (not each page) the Governor test-drives
+  the real flow and reports felt friction; iterate to "I'd love this."
+- REJECTED page-by-page principle-compliance only: produces correct pages that don't add up to a
+  loved journey — lovability is a property of the FLOW, not the page.
+- REJECTED big-design-then-build: no early felt feedback, high rework.
+
+IMPROVED METHOD — add dimension (e) to the BUILD-AUDIT for UX pages (extends a/b/c/d):
+  e. LOVABILITY (felt-experience) — Sonnet self-scores, GOVERNOR confirms by test-drive:
+     1 FIRST-SCREEN VALUE: value visible before any input (Law 1)
+     2 ZERO-FRICTION: fewest steps to core action; no dead-ends; <=2 clarifying Qs
+     3 HONEST STATE: empty/loading/error/success all present + truthful (M-47, no silent blank)
+     4 FLOW-COHERENCE: connects to the page before/after in the journey (no orphan)
+     5 DELIGHT: one intentional delight moment (micro-copy / motion / smart default)
+     6 TRUST/REVERSIBILITY: user can undo/edit; no dark patterns
+PLAN delta: each UX unit declares its JOURNEY POSITION + the felt outcome ("user should FEEL X")
+  BEFORE building. VERIFY delta: a-d stay machine-validated; (e) is verified by GOVERNOR TEST-DRIVE
+  of a journey-coherent slice (the human-in-loop the machine cannot replace).
+
+SONNET — DO NOW (P1 #2 zero-friction, with the new method):
+ 1. Before building: declare zero-friction's JOURNEY POSITION + "user should FEEL ___".
+ 2. Build it; run BUILD-AUDIT a-d (block-test each) AND self-score (e) 1-6.
+ 3. ENGRAVE the (e) lovability rubric into docs/plan/pillar-4-developer-experience/ux-ui-dna.md
+    (enhance, do not fork B_UX_UI_DISCIPLINE) so it is DNA, not a one-off.
+ 4. When developer-journey + zero-friction together form a usable ENTRY FLOW, STOP and emit:
+    "TEST-DRIVE READY: <url> | flow: <steps to try> | feel-for: <the felt outcome>"
+    -> that is the Governor's signal to test-drive. Do NOT ask the Governor to test single pages.
+
+HAIKU ACTIVATION CARD (simple, when/how — it WORKS now):
+  WHEN: a bulk mechanical scan with >=4 INDEPENDENT checks (inventory, grep-sweeps, presence/
+    format checks, classify-many-files). For <=3 checks: run INLINE, do not spawn.
+  HOW: spawn N parallel Agent(subagent_type:"haiku-scout", model:"haiku"), ONE aspect each,
+    each prompt ends with the shared findings template + this exact line:
+    "CONTEXT-BUDGET: spawn-warranted | tools-restricted | pointers-only"
+    (pass file PATHS + line ranges, never file contents). Then CONSOLIDATE the returns.
+  POLISH (parked, non-blocking, PARK-S084-039): haiku-return-format.schema.yaml +
+    validate-haiku-return-compliance + a fan-out/consolidate helper.

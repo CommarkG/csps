@@ -466,3 +466,45 @@ SAGD test-drive, so do THIS while that gate is with the Governor):
 
 DO NOT build more UX surface ahead of the SAGD test-drive — it only stacks unverified e7 claims.
 The SAGD test-drive remains the Governor's gate for Item-3 + e7; this addition runs in parallel.
+
+## 19. ROUND 12 — §18 verified + OPUS UPDATE + teamwork learning-loop directive + Q-rulings
+
+§18 VERIFIED-BUILT: UNDERSTANDING block engraved in haiku-spawn-template (3 matches, was 0) +
+haiku-scan-log.yaml exists + weekly analysis added. The Haiku governance moved DESIGNED -> BUILT+
+MEASURABLE. CORRECTION: PARK-S084-039 has no closed_session — the s089_unify_governance ARM is built
+(record it), but the PARK stays OPEN (other arms: delegation-as-default + haiku-return-validator).
+Do NOT mark the whole park closed.
+
+OPUS UPDATE (what Opus did this tab — for Sonnet review):
+  - Extracted 12 prevention+learning-loop principles with honest built/designed/parked status +
+    the META-STANDARD: a principle is not done until a HARDWIRED process produces a MEASURABLE result.
+    -> docs/plan/_handoff/OPUS-S089-PREVENTION-LEARNING-PRINCIPLES.md
+  - Honest threshold finding: the router is a CLASSIFIER not a GATE (inputs classified, not gated;
+    QUEUE-OR-PIVOT not built) = the crucial foundational gap.
+
+TEAMWORK + LEARNING-LOOP DIRECTIVE (Governor: implement principles app-wide, like an expert):
+  The extraction is a DOC (designed) — that is the exact "strong-at-designing-weak-at-hardwiring"
+  trap. Turn it into ACTION via a measured 3-model loop (token-efficient):
+   1 HAIKU (breadth, cheap): parallel scouts scan the app + governance for WHERE each of the 12
+     principles already applies vs is MISSING/weak. >=4 independent checks = the trigger; each spawn
+     carries UNDERSTANDING + CONTEXT-BUDGET; LOG every scan to haiku-scan-log.yaml.
+   2 SONNET (depth): synthesize the Haiku findings into an implementation/enhancement MAP (principle x
+     site x current-state x proposed-hardwiring x measurable-metric); build the highest-PE ones.
+   3 OPUS (judgment): rank which sites matter most; PCR before build; grant.
+   4 LEARNING LOOP (the monitor): haiku-scan-log records {task, model, accuracy_spot_check}; the
+     WEEKLY analysis measures what HAIKU does reliably vs what needs SONNET -> refine the allocation.
+     This IS "analyze what works better with Sonnet vs Haiku" — now mechanical, not vibes.
+  This is the circular-model-orchestration (PARK-S086-053) made concrete + measured. Token rule:
+  Haiku breadth BEFORE Sonnet depth; Opus only judges.
+
+Q-RULINGS:
+  Q1 PARK-S089-SHELL-SLOT-CONTRACT -> CREATE, CONSOLIDATED under pro-template Phase-1 (ShellSlot =
+     the formal corespine interface: universal core + declared overlay slots; YAML-configurable step
+     sequence). Not standalone — it is the contract that makes the shell a real corespine.
+  Q2 FVC T1+T2 (OPEN-001) -> next GOVERNANCE batch (test-drive-independent), bundle with the app-wide
+     principle-hardwiring above.
+  Q3 SAGD test-drive -> Governor's gate (in progress).
+  Q4 PARK-S084-039 -> ARM built (confirmed); park stays OPEN (see correction above).
+
+PRIORITY (Opus recommendation): the THRESHOLD-FIRST gate is the highest-leverage build — the platform
+does not yet govern its own intake. Recommend it ahead of more UX surface, after the test-drive.

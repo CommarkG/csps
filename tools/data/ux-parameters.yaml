@@ -1,0 +1,207 @@
+# tools/data/ux-parameters.yaml
+# UX Parameters — SSoT for all adjustable UX/UI thresholds and rules
+#
+# PURPOSE: Single source of truth for UX parameters used by:
+#   - FVC validators (validate-fvc-*.mjs)
+#   - BUILD-AUDIT dimension (f)
+#   - AI override injection in oneclick.md STARTUP AUDIT
+#   - /platform/ux-parameters dashboard (read + display)
+#
+# HOW TO ADJUST: Edit this file → commit → validators pick up new values automatically
+# DO NOT hardcode thresholds in validators — read from this file
+#
+# Reference: docs/plan/pillar-4-developer-experience/FIRST-VIEWPORT-CONTRACT.md
+# Dashboard: https://csps-playground.vercel.app/platform/ux-parameters
+#
+# Governor S089 — ratified as hard_gate governing ALL platform + app first screens
+
+meta:
+  schema_version: "1.0"
+  created: "2026-06-28"
+  session: S089
+  last_updated_by: Sonnet S089
+  applies_to:
+    - all platform routes
+    - all customer journey shell steps
+    - all SaaS app first screens
+    - all responsive breakpoints
+
+# ─────────────────────────────────────────────
+# COGNITIVE PARAMETERS (human working memory baselines)
+# ─────────────────────────────────────────────
+cognitive:
+  # Miller's Law: 4±1 items competing for primary attention (not total elements)
+  chunks_max_primary: 4
+  # Total interactive elements — warning at 9, hard block at 12
+  elements_warn: 9
+  elements_block: 12
+  # Competing data points (Gemini) — advisory flag, not hard block
+  competing_data_points_advisory: 3
+
+# ─────────────────────────────────────────────
+# TIME THRESHOLDS (orientation and value clarity)
+# ─────────────────────────────────────────────
+time:
+  # User resolves "where am I" — must happen within this many seconds
+  orientation_window_seconds: 3
+  # User decides "is this for me" — bounce if clarity fails by 20s (NN/g)
+  value_clarity_window_seconds: 20
+  # Time-to-first-interaction — 70%+ of users should interact within 5s
+  first_interaction_target_seconds: 5
+  # Orientation elements must render in first 100ms
+  orientation_render_ms: 100
+  # Largest Contentful Paint — Core Web Vitals threshold
+  lcp_ms: 2500
+
+# ─────────────────────────────────────────────
+# CTA PARAMETERS (call-to-action limits)
+# ─────────────────────────────────────────────
+cta:
+  # One primary CTA per viewport — hard rule
+  primary_max: 1
+  # Secondary CTAs — visible but subordinate
+  secondary_max: 3
+  # Primary must have N× visual weight vs secondary (Hick's Law)
+  primary_visual_weight_multiplier: 2
+  # Primary CTA must use verb-first label
+  verb_first_required: true
+  # Thumb zone on mobile — primary in bottom ⅔ of viewport
+  mobile_thumb_zone_pct: 67
+
+# ─────────────────────────────────────────────
+# BOUNCE + ENGAGEMENT METRICS (runtime monitoring)
+# ─────────────────────────────────────────────
+metrics:
+  # Alert if first-screen bounce exceeds this rate
+  bounce_rate_alert: 0.40
+  # Upward scroll rate indicating critical content was missed
+  scroll_recovery_signal: 0.10
+  # No single input modality should account for >80% of completions
+  modality_dominance_max: 0.80
+  # Conversion variance across breakpoints must not exceed ±15%
+  conversion_variance_max: 0.15
+  # Help access rate < 15% signals screen is self-sufficient
+  help_access_self_service_target: 0.15
+
+# ─────────────────────────────────────────────
+# HEADLINE + COPY PARAMETERS
+# ─────────────────────────────────────────────
+copy:
+  # Headline word limit for primary h1/h2
+  headline_word_max: 10
+  # Value proposition must be one sentence
+  value_prop_sentences_max: 1
+  # Must use benefit verb (not feature noun)
+  benefit_verb_required: true
+  # Examples of blocked feature-noun patterns
+  blocked_patterns:
+    - "Dashboard"
+    - "Overview"
+    - "Management"
+    - "System"
+    - "Configuration"
+    - "Analytics View"
+
+# ─────────────────────────────────────────────
+# RESPONSIVE BREAKPOINTS
+# ─────────────────────────────────────────────
+responsive:
+  # All FVC must be verified separately on these breakpoints
+  breakpoints: [320, 480, 768, 1024, 1440]
+  # Minimum tap target size in px
+  tap_target_min_px: 44
+  # Minimum readable font size in px
+  font_size_min_px: 14
+  # Maximum viewport height for hero section (proportion of vh)
+  hero_max_vh_mobile: 0.60
+  hero_max_vh_desktop: 1.00
+
+# ─────────────────────────────────────────────
+# CONTENT CARRIERS — active FVC questions
+# ─────────────────────────────────────────────
+content_carriers:
+  # Toggle individual FVC questions on/off
+  active:
+    FVC-01: true   # Screen name in user language
+    FVC-02: true   # User location
+    FVC-03: true   # Current user need
+    FVC-04: true   # Primary task
+    FVC-05: true   # Secondary options
+    FVC-06: true   # Recommendation + reason
+    FVC-07: true   # Why this serves the user
+    FVC-08: true   # Back/forward/control
+    FVC-09: true   # Help/ask affordance
+    FVC-10: true   # Multi-modal input
+    FVC-11: true   # State/progress indicator
+    FVC-12: true   # Error prevention
+    FVC-13: true   # Trust/evidence carrier
+    FVC-14: true   # Responsive priority
+    FVC-15: true   # Scroll continuity
+    FVC-16: true   # Empty/loading/error states
+    FVC-17: true   # Accessibility
+    FVC-18: true   # Completion proof (test scenario)
+
+  # Custom content carriers (Governor-added, session + description)
+  custom: []
+
+# ─────────────────────────────────────────────
+# AI OVERRIDE INJECTION (fires in STARTUP AUDIT and per-build)
+# ─────────────────────────────────────────────
+ai_override:
+  # Pre-build gate — answer before writing any UI
+  pre_build_injection: |
+    FIRST VIEWPORT CONTRACT — MANDATORY PRE-BUILD GATE
+
+    Before writing any UI code, answer:
+      1. WHERE AM I? (≤10 words — the headline)
+      2. WHAT IS IN IT FOR THE USER? (one benefit sentence)
+      3. WHAT IS THE ONE THING THEY DO NEXT? (single primary CTA)
+
+    If you cannot answer all 3 cleanly → STOP. Clarify design first.
+
+    COUNTER-ENGINEER-DEFAULTS:
+      ✗ Do not show all features on the first screen
+      ✗ Do not lead with AI recommendations before user orients
+      ✗ Do not assume context from prior screens
+      ✗ Do not use text-only when voice/image applies
+      ✗ Do not show content for routes the user has not yet chosen (Decision-Tree-First)
+      ✓ ONE primary action, benefit-labeled
+      ✓ Location anchor visible in first 100ms
+      ✓ Ask route choice BEFORE showing route-specific content
+      ✓ Re-establish context explicitly on every screen
+      ✓ Treat every scroll viewport as a mini first screen
+
+  # The human cognitive model — embed in AI context
+  cognitive_model: |
+    HUMAN USER MODEL (not engineer model):
+      - Narrow, focused context (ONE task at a time)
+      - Working memory: 4±1 chunks competing for attention
+      - Interrupted frequently — first screen = anchor
+      - Operates by recognition, not recall (show, don't ask them to remember)
+      - Leaves in 3 seconds if orientation fails; in 20 seconds if value is unclear
+      - Processes left-to-right, top-to-bottom (single column on mobile)
+      - Has ONE goal right now — not a full system map
+
+# ─────────────────────────────────────────────
+# VALIDATORS — which FVC validators run in verify.mjs
+# ─────────────────────────────────────────────
+validators:
+  active:
+    validate_fvc_orientation: true
+    validate_fvc_cta: true
+    validate_fvc_cognitive_load: true
+    validate_fvc_help: true
+    validate_fvc_states: true
+  run_tier: STANDARD
+  blocking_level: advisory  # Promote to blocking after initial pages pass
+  note: "Validators reference this file for thresholds — adjust here, validators update automatically"
+
+# ─────────────────────────────────────────────
+# PHASE 2 PARAMETERS (planned, not yet active)
+# ─────────────────────────────────────────────
+phase2_planned:
+  - automated_responsive_screenshot_test
+  - dom_interaction_timing_check
+  - ai_semantic_fvc_review_in_build_audit
+  - bounce_rate_monitoring_integration
+  - modality_adoption_parity_check

@@ -23,6 +23,12 @@ context_quote: "Listing what is missing is like a mirror of the gaps. If you go 
 > Status progression: open → structural_fix_proposed → fix_committed → behavioral_test_passing → resolved
 > A gap is RESOLVED only when a behavioral test case exists that PROVES the fix catches violations.
 > A gap with k_count >= 2 that is only "documented" is NOT improving — it is accumulating.
+>
+> OPTIONAL FIELD (S089 USE-NOW — Opus §17): research_backing:
+>   For DEEP/MEDIUM depth gaps: add research_backing: with ≥1 external source before structural fix.
+>   Trivial-reversible gaps EXEMPT. Format: { source: "...", finding: "...", confidence: high|medium|low }
+>   Rationale: "Build without research = deliberate ignorance." Known solutions should be found first.
+>   Gate: not yet enforced (PARK-S089-MANDATORY-RESEARCH-PIPELINE); informational for now.
 
 entries:
 

@@ -46,3 +46,11 @@ items:
     resume_pointer: 'Feed into the next #1 test-drive iterate list + the lovability rubric (e: wide-screen state-completeness + first-screen-value). Relay to Sonnet for the journey UX.'
     status: open
     graduated_to: null
+  - id: ICAP-S089-006
+    captured_session: S089
+    saved_at: '2026-06-27'
+    what: 'Governor test-drive: wizard goes too fast to save; NO depth — no challenge, no root-cause, no ripples/connected-elements, no horizon-broadening before goal is saved. The wizard is a FORM not a THINKING PARTNER.'
+    why_deferred: 'Issue #1 live test-drive finding -> next iterate. Fix = e7 Guided-Depth dimension + a user-paced depth-pass (challenge/root-cause/ripples/broaden) reusing CSPS DNA, built into Step-3 of the shell.'
+    resume_pointer: opus-turn.md §13 (depth-pass design + e7 rubric). Sonnet builds depth-pass into Step-3 Quick Plan; engrave e7 into ux-ui-dna.md; re-emit TEST-DRIVE READY.
+    status: open
+    graduated_to: null

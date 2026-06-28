@@ -271,3 +271,37 @@ I. 3 learning-loop parks (accumulation gate, lovability flag, dashboard) -> regi
 BUILD ORDER (PE): (1) C now [live fix, on current shell] (2) B route-map -> Opus ratify
 (3) H verify [cheap, prevents nominal] (4) D+E wire into build-audit loop (5) F pro-template Phase-1
 under trunk (6) G Haiku scans. Each unit: BUILD-AUDIT a-e + activation block-test, no nominal DONE.
+
+## 13. ROUND 6 — Governor test-drive: wizard has no DEPTH (the most important UX finding)
+
+Governor test-drove the wizard: "goes too fast to saving the plan ... no feeling that the process
+CHALLENGED me, broadened my horizon, had me look deeper at ROOT CAUSES, or explored the RIPPLES /
+connected elements influencing the goal definition." This is the test-drive loop WORKING — a real
+lovability gap a validator could never catch.
+
+DIAGNOSIS (scope-3): the wizard is a FORM (collect -> save) not a THINKING PARTNER (challenge ->
+root-cause -> ripples -> broaden -> then save). Product-level twin of our own persona-gap (junior:
+capture+declare-done; senior: challenge+find-root-cause+explore-connections).
+
+NEW LOVABILITY DIMENSION — e7 GUIDED DEPTH (engrave into ux-ui-dna.md rubric):
+  Does the process ELEVATE the user's thinking before completion? challenge >=1 assumption +
+  surface the root cause (symptom vs cause) + explore ripples/connected elements (nothing-stands-
+  alone) + offer one horizon-broadener. User-PACED (offered, not forced). "Saved fast with zero
+  challenge" = FAIL. Resolves the depth-vs-friction tension: short BUT provoking, not long.
+
+DEPTH-PASS design (Sonnet builds; REUSE CSPS DNA, do NOT reinvent):
+  After the user answers, BEFORE "Save plan item", run a brief adaptive pass:
+   1 CHALLENGE: reflect the goal back + ask the sharpest why/what-if ("is this the root cause or a
+     symptom?"). 2 RIPPLES: surface 2-3 likely connected elements ("goals like this usually touch
+     X,Y — which actually influence yours?"). 3 BROADEN: one reframe ("could this serve a bigger
+     outcome?"). 4 USER-PACED: "Go deeper down-arrow" vs "This is enough -> Save". 5 SAVE captures the
+     DEEPENED goal (root cause + ripples + desired_outcome), not the raw answer.
+  REUSE: intent-crystallization-first · nothing-stands-alone (ripples) · B_CHALLENGE_ON_MERIT ·
+  the consult/council mechanism (/platform/consult) · 5-whys root-cause. The wizard INVOKES the
+  platform's own thinking on the USER's goal = dogfooding our DNA into the product.
+  MERGES with §12-B Governor ADD (every element declares desired_outcome + how-tested/measured +
+  lifecycle): the depth-pass is HOW a real desired_outcome gets produced, not a separate step.
+
+PRIORITY: this becomes part of build-order item 1 (the Journey Frame Consistency / Step-3 build) —
+Step-3 Quick Plan must include the depth-pass, else it ships shallow. PCR before building if you
+see a lighter path; otherwise build the depth-pass into Step-3 and re-emit TEST-DRIVE READY.

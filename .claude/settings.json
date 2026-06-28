@@ -1,5 +1,8 @@
 {
   "permissions": {
+    "deny": [
+      "mcp__claude_ai_Otosan_wordpress_Claude__*"
+    ],
     "allow": [
       "Bash",
       "Edit",

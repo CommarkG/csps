@@ -307,7 +307,48 @@ Every UX page must declare in its `pageDNA` object:
 
 ---
 
-## §6 — Two Journey Principles (Governor S089 test-drive — candidate K=1, not yet constitutional)
+## §6 — Three Journey Principles (Governor S089 test-drives — K=1/K=2 candidates)
+
+> ⚠️ Engraving status: K=1–K=2. Do NOT mark constitutional until K≥3 + external validation.
+> Accumulated via Governor real test-drives (the only evidence that counts for UX principles).
+
+### e7 — Guided Depth (K=2: confirmed by Governor test-drive + Opus §13 ratification)
+*Source: Governor test-drove wizard, felt no depth. Opus §13 ratified as NEW LOVABILITY DIMENSION.*
+
+**"Does the process elevate the user's thinking BEFORE completion?"**
+
+A process that lets you save the first thing you typed has failed you. A good thinking-partner surfaces the root cause (is this a symptom?), explores ripples (what else is connected?), and broadens the horizon (could this serve something bigger?) — in that order. Then saves a DEEPENED goal, not the raw answer.
+
+**SAGD — Scope-Adaptive Goal Depth (the implementation):**
+- CLASSIFY scope: depth 1-2 (LIGHT) = quick win or meaningful goal; depth 3-5 (DEEP) = major undertaking
+- ASK (mandatory, never assume): "This reads like [scope]. Straight path or go deeper together?"
+- ROUTE: Quick path (1 sanity challenge → save) | Light dive (challenge + root cause + ripples + broadener) | Deep dive (/platform/consult)
+- SAVE: captures root_cause + ripples + WHY + desired_outcome + how_tested/measured + lifecycle
+
+**The 4 depth moves:**
+1. Root cause: "Is this the root cause, or a symptom of something deeper?"
+2. Ripples: "What else is connected? What changes — for better or worse — if this is solved?"
+3. Horizon-broadener: "Could this serve a bigger outcome?"
+4. User-paced: offer depth, never force it. Friction is the feature at depth; speed is the feature at surface.
+
+**Tested by:** After completing the wizard/shell, did you feel *challenged*? Did something you didn't expect come up?
+
+**REUSE DNA:** intent-crystallization-first · nothing-stands-alone (ripples) · B_CHALLENGE_ON_MERIT · /platform/consult · depth-discipline 1-2/3-5 bands
+
+### Ask-Don't-Assume (K=1: candidate — first observed in SAGD design)
+*Source: Opus §14 ratification. Same principle as SAGD's step 2.*
+
+**"Never infer the user's preferred depth — ask."**
+
+A tool that assumes "you want the quick path" and a tool that assumes "you want to go deep" are equally wrong. The correct behavior: classify what you see, state it, offer both, let the user choose.
+
+*"This reads like a [meaningful goal]. Straight path or go deeper together?"*
+
+Applies everywhere, not just the wizard: any surface that must choose between fast/shallow and slow/deep MUST ask. The AI's inference is a starting point, never a final routing decision.
+
+**Tested by:** Is there a moment in the flow where the user sees both options and picks?
+
+### Journey Frame Consistency
 
 > ⚠️ K=1 — observed in one Governor test-drive session. Engrave as principle after K≥3 confirmations across different contexts. Currently: CANDIDATE status.
 

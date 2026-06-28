@@ -348,3 +348,40 @@ SCOPE-ADAPTIVE GOAL DEPTH (SAGD) — the wizard's depth engine (Sonnet builds in
 
 PERSONA-WIN noted: the dead AP-001 hook + dead mechanical-presence validator are the exact EXISTS!=
 ACTIVE pattern — caught by the Haiku scans. The scan loop is paying off; capture + bundle, don't chase.
+
+## 15. ROUND 8 — Haiku governance unified (Governor) + SAGD 3-Q rulings
+
+GOVERNOR: "Opus + Sonnet use the SAME file; Haiku when/how under the SAME governance; Haiku results
+SAVED + analyzed WEEKLY to improve prompting." The activation card was scattered (lived in this
+relay = Sonnet-facing only). FIX = ONE governed source both read.
+
+HAIKU-USAGE SSoT (Sonnet engrave; permission-flow already granted by Governor here):
+  CANONICAL HOME = B_HAIKU_SCAN_ONLY.md (contract) + tools/templates/haiku-spawn-template.md
+  (mechanics). Reference both from AGENTS.md so Opus + Sonnet + the agent-context cards all point to
+  the SAME source. opus-turn keeps only a POINTER, not a copy.
+  WHEN (trigger): >=4 INDEPENDENT mechanical checks -> spawn Haiku. Covers inventory / grep-sweeps /
+    presence-checks / classify-many-files AND (Q1 RATIFIED) "find/remove/search for X across N>=4
+    locations". <=3 checks -> inline, no spawn.
+  HOW: N parallel haiku-scouts, one aspect each, shared haiku_scout_return template; EVERY spawn
+    carries UNDERSTANDING block (Type-B boundary) + CONTEXT-BUDGET line (spawn-warranted | tools-
+    restricted | pointers-only; paths+lines not contents). Consolidate returns.
+  SAVE: every scan result -> tools/data/haiku-scan-log.yaml {date, task, scope, model, tokens,
+    findings_count, accuracy_spot_check}.
+  WEEKLY ANALYSIS (the learning loop — Governor): a weekly review reads haiku-scan-log -> measures
+    where Haiku was accurate vs wrong -> refines the spawn prompts + haiku-pattern-library. CONSOLIDATE
+    with the existing weekly tag-and-status deep audit (do NOT fork a new weekly cadence). Output:
+    improved prompt patterns (compounding). Persisted under PARK-S084-039 (Haiku activation).
+  BUILD (Sonnet, after test-drive): engrave WHEN/HOW into the canonical home + AGENTS reference;
+    create haiku-scan-log.yaml + a logging step in the spawn flow; add the weekly-analysis step to
+    the weekly audit. FSE surfaces (T2 validator: scan-log freshness/schema). dedup vs learning-loop parks.
+
+SAGD 3-Q RULINGS:
+  Q1 -> YES, add "find X across N>=4 locations" to the Haiku WHEN-trigger (now in the SSoT above).
+  Q2 -> CURATED-3 inline (competing-commitment/root-cause · ecology-ripple · Golden-Circle WHY) +
+        "escalate to /platform/consult" escape. NOT all-5 inline (over-build); NOT consult-only
+        (loses in-flow excavation). Reuse consult as the deeper escape.
+  Q3 -> WAIT for Governor test-drive before any SAGD SROF/seal. BUILD-COMPLETE now; e7 verified by
+        test-drive (lovability_confirmed false->true); seal AFTER. (no nominal DONE.)
+
+UX-GAP-005 (Sonnet's Otosan-search-should-have-been-Haiku) -> valid; folds into the WHEN-trigger
+engraving above (the find-X-across-N rule prevents recurrence). Good self-catch.

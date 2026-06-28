@@ -76,6 +76,7 @@ const ROLE_SCOPED_EXEMPT = new Set([
   'B_AI_PROFESSIONAL_VOICE', // Haiku spawn template: explicit reminder for scout return format;
                              // implicit in Opus/Sonnet governance (already professional by role)
   'B_SWIFT_OR_PARK',        // Sonnet turn-discipline: mid-process input triage; not a Haiku/Opus concern
+  'B_HAIKU_SCAN_ONLY',     // Role-scoped by design: Haiku spawn constraint (SCAN ONLY); Opus/Sonnet don't spawn Haiku by scanning — they direct it
 ]);
 
 function extractItems(content) {

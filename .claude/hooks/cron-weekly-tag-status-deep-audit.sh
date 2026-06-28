@@ -122,6 +122,25 @@ fi
 echo "[weekly-health] next_run=Monday_08:03_local"
 echo "[weekly-health] PARTIAL-ACTIVE (S011 §24+++++); week-4 promotes to full tag/status state-machine validation"
 
+# ── Haiku Scan Log Analysis (S089 ENGRAVE — learning loop for spawn quality) ────
+echo ""
+echo "[weekly-health] §HAIKU-SCAN-LOG — Weekly Haiku accuracy analysis"
+SCAN_LOG="${REPO_ROOT}/tools/data/haiku-scan-log.yaml"
+if [ -f "${SCAN_LOG}" ]; then
+  SCAN_COUNT=$(grep -c "^  - date:" "${SCAN_LOG}" 2>/dev/null || echo 0)
+  NO_UNDERSTANDING=$(grep -c "understanding_block_present: false" "${SCAN_LOG}" 2>/dev/null || echo 0)
+  echo "[weekly-health] scans_logged=${SCAN_COUNT} missing_understanding_block=${NO_UNDERSTANDING}"
+  if [ "${NO_UNDERSTANDING}" -gt 0 ]; then
+    WARNINGS+=("${NO_UNDERSTANDING} Haiku spawn(s) logged without UNDERSTANDING block (B_BOUNDARY_ALIGNMENT_PROTOCOL). Review haiku-spawn-template.md §0.5")
+    FINDINGS=$((FINDINGS + 1))
+  fi
+  echo "[weekly-health] → Read tools/data/haiku-scan-log.yaml to refine haiku-pattern-library.yaml + spawn prompts"
+else
+  echo "[weekly-health] ⚠ haiku-scan-log.yaml not found — create it: tools/data/haiku-scan-log.yaml"
+  WARNINGS+=("haiku-scan-log.yaml missing — Haiku scan quality not tracked")
+  FINDINGS=$((FINDINGS + 1))
+fi
+
 # ── AI Behavior Deep-Dive (S069 — non-urgent enhancement pipeline) ─────────────
 echo ""
 echo "[weekly-health] §AI-BEHAVIOR — Weekly AI behavior deep-dive (D-default compounding analysis)"

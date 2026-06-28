@@ -40,6 +40,43 @@ scope_level: S1
 
 ---
 
+## §0 — WHEN to spawn Haiku (WHEN-trigger — S089 engraved)
+
+**Spawn Haiku when:** ≥4 INDEPENDENT mechanical checks are needed. This includes:
+- Inventory / grep sweeps / presence checks / classify-many-files
+- **"find / search / remove X across N≥4 locations"** ← ratified S089 §15 addition
+
+**Run INLINE (no spawn) when:** ≤3 checks. Spawning has a fixed context-inheritance cost that exceeds small tasks.
+
+**Reference:** B_HAIKU_SCAN_ONLY.md + AGENTS.md (canonical source — both updated S089).
+
+---
+
+## §0.5 — BOUNDARY CROSSING UNDERSTANDING BLOCK (REQUIRED — S089 BLOCKING)
+
+**Every Haiku spawn prompt MUST start with this block.** Without it, `pre-tool-use-agent-alignment.sh` BLOCKS the spawn (exit 2). This is a Type-B boundary crossing (AI → subagent).
+
+```
+BOUNDARY CROSSING — Type B (AI→subagent):
+I understand the request as: [Layer 3 intent — what the scan is for]
+I will produce: [specific output — table/list/JSON of file:line pointers]
+This serves: [platform goal — e.g., FVC compliance check, hook wiring audit]
+```
+
+**Place this block at the START of the agent prompt** (before CONTEXT-BUDGET line or any task description).
+
+Example:
+```
+BOUNDARY CROSSING — Type B (AI→subagent):
+I understand the request as: checking FVC compliance fields on 7 platform pages
+I will produce: table with columns {page, journeyPosition Y/N, feltOutcome Y/N}
+This serves: FVC Gate enforcement — 10/10 pages must have required fields
+
+CONTEXT-BUDGET: spawn-warranted | tools-restricted | pointers-only
+```
+
+---
+
 ## §1 — When to use this template
 
 Use for ANY Agent() call with `model: "haiku"` that performs:
@@ -157,6 +194,27 @@ Then the JSON:
 
 **If no findings:** return findings: [] with findings_count: 0.
 **If scan error:** set status: "ERROR", explain in next_action.
+
+---
+
+## LOGGING STEP (mandatory — S089 engrave; feeds weekly analysis)
+
+After consolidating Haiku returns, Sonnet MUST log the scan to `tools/data/haiku-scan-log.yaml`:
+
+```yaml
+- date: "YYYY-MM-DD"
+  session: "S0NN"
+  task: "one-line scan description"
+  scope: "files/dirs scanned"
+  model: haiku
+  spawns: N   # number of parallel Haiku agents
+  tokens_per_spawn: approx
+  findings_count: N
+  accuracy_spot_check: "N/M verified correct"
+  notes: "any accuracy issues or missed findings"
+```
+
+This feeds the weekly analysis (see cron-weekly-tag-status-deep-audit.sh) which tracks Haiku accuracy over time and refines spawn prompts.
 
 ---
 

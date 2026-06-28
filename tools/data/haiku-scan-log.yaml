@@ -1,0 +1,87 @@
+# tools/data/haiku-scan-log.yaml
+# Haiku Scan Log — SSoT for all Haiku scout scan results
+#
+# PURPOSE: Track every Haiku spawn (date, task, scope, findings, accuracy).
+#   Feeds the weekly analysis step in cron-weekly-tag-status-deep-audit.sh.
+#   Used to refine spawn prompts + haiku-pattern-library.yaml over time.
+#
+# SCHEMA:
+#   date: ISO date (YYYY-MM-DD)
+#   session: S0NN
+#   task: one-line scan description
+#   scope: files/dirs scanned (glob or list)
+#   model: haiku (always)
+#   spawns: number of parallel Haiku agents
+#   tokens_per_spawn: approximate tokens per spawn (estimate)
+#   findings_count: total findings returned
+#   accuracy_spot_check: "N/M verified correct" — spot-check by Sonnet
+#   understanding_block_present: bool — was the Type-B boundary block included?
+#   notes: any accuracy issues, missed findings, or improvements needed
+#
+# WEEKLY ANALYSIS: cron-weekly-tag-status-deep-audit.sh reads this file weekly.
+#   Measures: accuracy rate over time, missed findings, prompt quality trends.
+#   Output: improved spawn prompts (compounding quality), refines haiku-pattern-library.yaml.
+#
+# Reference: tools/templates/haiku-spawn-template.md §0 WHEN-trigger + LOGGING STEP
+# Closes: PARK-S084-039 s089_unify_governance (Haiku scan log creation)
+#
+# Governor S089 — ratified per Opus §15 + §18
+# "Fixed going forward" = nominal. Engrave = permanent. This is the engrave.
+
+meta:
+  schema_version: "1.0"
+  created: "2026-06-28"
+  session: S089
+  note: >
+    All Haiku scans run in S089 are backfilled below as initial data.
+    Future scans: Sonnet adds one entry per scan batch immediately after consolidating returns.
+
+entries:
+
+  - date: "2026-06-28"
+    session: S089
+    task: "SCAN A — pageDNA compliance across 10 platform pages (journeyPosition + feltOutcome)"
+    scope: "apps/csps-playground/src/app/platform/**/page.tsx (10 files)"
+    model: haiku
+    spawns: 1
+    tokens_per_spawn: 24437
+    findings_count: 10
+    accuracy_spot_check: "10/10 verified correct (developer-journey fixed; others missing as reported)"
+    understanding_block_present: false
+    notes: "Missing UNDERSTANDING block — hook blocked but task ran as background task. Fixed in haiku-spawn-template.md §0.5 S089."
+
+  - date: "2026-06-28"
+    session: S089
+    task: "SCAN B+C — hook wiring (19 unregistered) + validator wiring (15 orphaned)"
+    scope: ".claude/settings.json + .claude/hooks/*.sh + tools/verify.mjs + tools/validators/*.mjs"
+    model: haiku
+    spawns: 1
+    tokens_per_spawn: 52995
+    findings_count: 34
+    accuracy_spot_check: "5/5 spot-checked — all accurate (unregistered hooks confirmed manually)"
+    understanding_block_present: false
+    notes: "Missing UNDERSTANDING block. Findings: 19 unregistered hooks, 15 orphaned validators. Registered as UX-GAP-002 + UX-GAP-003."
+
+  - date: "2026-06-28"
+    session: S089
+    task: "SCAN D — constitutional/BLOCKING claims vs evidence in ux-ui-dna.md"
+    scope: "docs/plan/pillar-4-developer-experience/ux-ui-dna.md + tools/validators/ + tools/verify.mjs"
+    model: haiku
+    spawns: 1
+    tokens_per_spawn: 34959
+    findings_count: 1
+    accuracy_spot_check: "1/1 verified — B_CONSOLIDATION_PASS BLOCKING claim was false (T3-only confirmed)"
+    understanding_block_present: false
+    notes: "Missing UNDERSTANDING block. Found 1 false BLOCKING claim. Fixed this session."
+
+  - date: "2026-06-28"
+    session: S089
+    task: "SCAN F — FVC compliance check on 7 remaining pages (journeyPosition + feltOutcome)"
+    scope: "apps/csps-playground/src/app/platform/{ux-ui-principles,design-intelligence,wizard,journey-core-spine,journey-admin,simulation,completion}/page.tsx"
+    model: haiku
+    spawns: 1
+    tokens_per_spawn: 70801
+    findings_count: 14
+    accuracy_spot_check: "7/7 pages confirmed missing journeyPosition + feltOutcome — all fixed this session"
+    understanding_block_present: false
+    notes: "Missing UNDERSTANDING block — hook blocked (B_BOUNDARY_ALIGNMENT_PROTOCOL Type-B). Scan completed as background task. All 4 missing fields confirmed. 7 pages patched."

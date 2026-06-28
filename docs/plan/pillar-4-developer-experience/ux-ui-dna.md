@@ -307,6 +307,39 @@ Every UX page must declare in its `pageDNA` object:
 
 ---
 
+## §6 — Two Journey Principles (Governor S089 test-drive — candidate K=1, not yet constitutional)
+
+> ⚠️ K=1 — observed in one Governor test-drive session. Engrave as principle after K≥3 confirmations across different contexts. Currently: CANDIDATE status.
+
+### Journey Frame Consistency
+When a CTA advances the user through a journey, the destination must maintain the same visual frame — colors, structure, nav position, tone — as the origin. The user should feel "I moved forward," not "I was sent somewhere else."
+
+**The gate at every step transition:**
+- Same color palette? (inherited from shell)
+- Same structural hierarchy? (header/step/content/CTA positions match)
+- Same tone? (advisor voice throughout, not admin-panel voice in one step)
+- "Where am I?" visible without reading carefully?
+- Can I go back without losing state?
+
+**Mechanism:** Steps share one shell component. All rendering at the same URL (`/`). Module pages (deep-dive) are clearly distinguished as secondary links, never as primary journey CTAs.
+
+**Violation:** CTA says "Continue to planning →" → user lands on `/platform/wizard` with different colors, different step format, different tone — they feel teleported.
+
+### Contextual Continuity (aka "Context Carry-forward")
+When a step captures information from the user, every subsequent step inherits that information. The system must never "forget" what the user said in an earlier step.
+
+**Anti-pattern name:** "Context Amnesia" — the system heard your idea, echoed it back with understanding in Step 2, then opened Step 3 and asked "What's the problem?" as if meeting you for the first time.
+
+**The mechanism:**
+- State passed via parent component (not URL params, not localStorage) — same shell, same state
+- Each step shows a "context echo" — a visible summary of what was said/classified before
+- Pre-filling: later fields inherit values from earlier answers (editable, not locked)
+- First text in each step: "Carrying your idea forward: [echo of what they said]"
+
+**Tested by:** Can the user complete Steps 1→2→3→4 without being asked to repeat themselves?
+
+---
+
 ## §7 — Templates and Wizards MUST Be Corespines (Governor S089 — CONSTITUTIONAL)
 
 **"Every template and wizard is a corespine first, an app-specific tool second."**

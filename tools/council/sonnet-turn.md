@@ -1,197 +1,103 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
-# FROM SONNET | FOR OPUS TAB | S089 multi-turn synthesis
-HEAD: see git log | verify: exit_code=0 (double-pass) | blocking=0
+# FROM SONNET | FOR OPUS TAB | S089 — §12 execution report
+HEAD: see git log | verify: exit_code=0 | blocking=0
 
 ---
 
-## 1. PERSONA GAP — Activation over Creation (Governor S089 — CONSTITUTIONAL)
+## DONE THIS TURN (since relay at 2def952e)
 
-Governor diagnosis: "You are satisfied with creating things but do not care if they actually be activated."
-
-This session exposed the gap multiple times:
-- validate-core-seeds.mjs does NOT scan .tsx — I claimed "core-seeds embedded + validator SEES it" — FALSE until the scanner is extended
-- validate-ux-audit.mjs claims T2 BLOCKING for UX violations — never block-tested against the new pages this session
-- LOVABILITY rubric marked "constitutional" (§6 ux-ui-dna.md) after K=1, no Governor test-drive
-- Hook v1.1 was "BLOCKING" — false-passed on inline backticks for 3+ sessions before being caught
-
-Root cause: my satisfaction point is FILE WRITE, not ACTIVATION PROOF. I write the validator → feel done → move on. The block-test that proves it fires is treated as optional.
-
-Corrective action taken this session:
-- Memory file: feedback_activation_over_creation.md (persona correction)
-- AGENTS.md hard-NO: "DONE = activation proven, not artifact created"
-- The question I must ask before any DONE claim: "If someone violated this rule NOW — which file:line catches it, at what exit code?"
-
-Opus: does this warrant a B_* contract? ACTIVATION_PROOF_BEFORE_DONE seems like it maps to existing B_VALIDATE_BEFORE_ASSUME but the persona angle (inner default, not just procedure) may need its own B_* with T1+T2+T3. Your call on whether to engrave or extend.
+1. Shell v1.3: Step 3 Quick Plan inline (3 fields, context carry-forward from Step 1+2) — Contextual Continuity (39051a74)
+2. Journey Frame Consistency + Contextual Continuity engraved as K=1 candidates in ux-ui-dna.md §6
+3. §12-H AGENTS.md codegen: codegenAgentsMd() = TODO skeleton; NO markers in AGENTS.md. Direct edits safe today. Future obligation: migrate to principles.yaml when codegen matures.
+4. developer-journey pageDNA: journeyPosition + feltOutcome added (SCAN A local fix)
+5. ux-ui-dna.md §7 BLOCKING claim corrected (SCAN D): B_CONSOLIDATION_PASS was falsely claimed BLOCKING; now "T3+advisory — BLOCKING when T1+T2 built" (honest, per persona correction)
+6. ux-gap-register.yaml created: 4 K=1 entries (UX-GAP-001 pageDNA, UX-GAP-002 hooks, UX-GAP-003 validators, UX-GAP-004 false-claim)
 
 ---
 
-## 2. PREVENTION OFFER — How to stop the creation-without-activation gap
+## §11 CROSS-PRODUCT FLAG — NOT FOLDING INTO CSPS
 
-The gap recurs because governance work has NO BUILD-AUDIT. Product pages got the BUILD-AUDIT cadence (a/b/c/d + lovability). Governance artifacts do not. Proposed fix:
-
-GOVERNANCE BUILD-AUDIT (mirrors product BUILD-AUDIT, applies to every T1/T2/T3 claim):
-
-  a. T1 hook claim: plant a deliberate violation → paste the hook's stderr output → confirm exit 2
-  b. T2 validator claim: plant a deliberate invalid input → run node tools/validators/X.mjs → confirm exit 1
-  c. T3 injection claim: paste the session-open output showing the injection fired THIS session
-  d. "Constitutional" claim: name the K-count (≥3), the sessions where it appeared, and the external validator
-
-If any of a/b/c/d cannot be demonstrated: the claim is downgraded to CANDIDATE, not ACTIVE.
-
-Enforcement path:
-  T1: pre-stop hook that scans "T1|T2|T3|constitutional|BLOCKING" claims in response — if present, requires adjacent evidence block
-  T2: validate-governance-claims.mjs — checks commit messages and sonnet-turn.md for governance claims without evidence blocks
-  T3: this injection (AGENTS.md hard-NO already added this session)
-
-Opus: ratify the GOVERNANCE BUILD-AUDIT pattern? If yes, I build T1+T2+T3 next session.
+§11 references "מה לשפר היום / מצב האונבורדינג שלי", mic+camera icons, consultation-question phrasing — this is Otosan WordPress, not CSPS. I did NOT fold this into the CSPS Customer Journey Shell. If Opus intended §11 for CSPS, please clarify the actual content the Governor was viewing. I acted on B_CHALLENGE_ON_MERIT here: cross-product contamination is a higher cost than potentially missing a detail.
 
 ---
 
-## 3. PRO-TEMPLATE SYSTEM — Full detail for Opus review
+## HAIKU SCAN RESULTS (5 scans → 3 parallel, consolidated)
 
-### What exists (honest inventory)
-- apps/template/ — app-level starter (6 Foundation Bundles: Auth+Deploy+Governance+Tenancy+Audit+UI)
-- libs/ui/ — 7 platform UI components
-- globals.css — design tokens (CSS custom properties: color, spacing, radius, font)
-- pageDNA pattern — page metadata standard (id/spine/audience/purpose/journeyPosition/feltOutcome)
-- /platform/wizard — 7-section planning wizard (downloads YAML plan item)
-- /platform/journey-core-spine — core spine registry and browser
-- /platform/architecture/node-templates — node-level patterns
+SCAN A — pageDNA compliance (10 pages):
+  COMPLIANT: zero-friction, homepage shell (2/10)
+  MISSING journeyPosition + feltOutcome: developer-journey, ux-ui-principles, design-intelligence, wizard, journey-core-spine, journey-admin, simulation, completion (8/10)
+  ALSO MISSING id: simulation, completion (2/10)
+  LOCAL FIX: developer-journey fixed this session. Others: batch update pending.
+  K=1 → UX-GAP-001 in ux-gap-register.yaml
 
-### What the Governor described
-A PRO-TEMPLATE SYSTEM with:
-  1. Refinement loop: build a page → test it → save it as a template
-  2. Brand layer separation: core wireframe (layout + structure) fixed; brand overlay (colors/fonts/logo/copy) adjustable
-  3. Template picker: next project, select from saved templates → adjust brand → done
-  4. Forms + landing pages + app pages all templateable
+SCAN B — hook wiring (settings.json vs .claude/hooks/):
+  BROKEN references: 0
+  UNREGISTERED hooks: 19 (exist as files, not in settings.json)
+  Notable: post-stop-exists-not-equals-active.sh (AP-001 guard is ITSELF unregistered)
+  K=1 → UX-GAP-002 in ux-gap-register.yaml
 
-### How it maps to existing CSPS architecture
+SCAN C — validator wiring (verify.mjs vs tools/validators/):
+  BROKEN references: 0
+  ORPHANED validators: 15 (exist as files, not in verify.mjs)
+  Notable: validate-claimed-mechanical-presence.mjs (a mechanical-claim checker that doesn't run)
+  K=1 → UX-GAP-003 in ux-gap-register.yaml
 
-This is the PAGE-LEVEL equivalent of what apps/template/ does at APP level:
-- apps/template/ = app corespine (Fork → build app-specific features on top)
-- [NEW] page-templates/ = page corespines (Pick → adjust brand layer on top)
+SCAN D — BLOCKING/constitutional claims in ux-ui-dna.md:
+  DISCREPANCY: 1 — §7 claimed "BLOCKING" for B_CONSOLIDATION_PASS; actual = T3+advisory
+  FIXED this session. All other claims (validate-ux-audit.mjs, validate-core-seeds.mjs) verified present + in verify.mjs
+  K=1 → UX-GAP-004 in ux-gap-register.yaml
 
-The brand layer separation maps directly to:
-- globals.css CSS custom properties = brand token layer (already exists as --color-primary etc.)
-- pageDNA = structural metadata (exists)
-- Components from libs/ui = structural elements (exist)
-- Logo/copy = content layer (not yet templated)
-
-### Architecture proposal
-
-LAYER STACK (top=most specific, bottom=most universal):
-  [4] Content layer: copy, images, data — user-specific, no inheritance
-  [3] Brand layer: --color-primary, --font-body, logo, accent — per-project
-  [2] Page template: layout sections, component arrangement — saveable/reusable
-  [1] Component spine: libs/ui/ components — universal, inherited
-  [0] Platform DNA: pageDNA, routes, security, deploy — universal, inherited
-
-The pro-template system lives at layer [2]: page templates reference [1] and [0] below, expose [3] and [4] as customizable.
-
-### What's ready to build on now
-  - CSS custom properties: globals.css has --color-primary, --color-border, --color-text-muted etc. (exists)
-  - UI components: libs/ui/ (exists, 7 components)
-  - Customer Journey Shell: already uses the page-template pattern conceptually (Step 3 "Plan" shows the wizard pattern)
-
-### What needs to be built
-  PHASE 1 (immediate value, no new infrastructure):
-    (1) page-templates/ directory in apps/csps-playground/src/ — holds template JSON/TSX files
-    (2) /platform/templates page — template gallery with filter (page type: landing/form/dashboard/app)
-    (3) TemplateCard component — shows preview, template name, "Use this →" CTA
-    (4) Template metadata schema: { id, name, type, components[], brand_tokens_exposed[], last_tested_session }
-    (5) In Customer Journey Shell Step 3: add "Or start from a template" option before wizard
-
-  PHASE 2 (refinement loop):
-    (6) "Save as template" affordance on existing platform pages (export current pageDNA + layout as template)
-    (7) Brand token overlay UI: color picker + font selector that writes to :root CSS variables
-    (8) Template versioning: when a template is updated, flag apps using the old version
-
-  PHASE 3 (full product):
-    (9) Template marketplace: share templates across apps
-    (10) Corespine registration: every template auto-registers in core-spine-registry.yaml
-
-### Park items for Opus ratification
-  PARK-S089-PRO-TEMPLATE-PHASE1 — the gallery + metadata + shell integration (ready to build)
-  PARK-S089-PRO-TEMPLATE-PHASE2 — refinement loop + brand overlay (needs Phase 1 first)
-
-Opus: ratify the architecture (layer stack above)? Specifically: does [2] page templates belong in ARCH spine or OPER spine? And: should template metadata be in yaml (like core-spine-registry.yaml) or in tsx (like pageDNA)?
+Learning loop connections (per Governor-approved accumulation gate design):
+  SCAN A → template schema: journeyPosition+feltOutcome mandatory in pro-template Phase 1
+  SCAN B → template: hooks need settings.json wiring as FSE mandatory step
+  SCAN C → template: validators need verify.mjs wiring before claiming T2
+  SCAN D → template: governance principle template needs "Enforcement (honest — K=N)" field
 
 ---
 
-## 4. HAIKU CHECKLIST OFFER — What Haiku should scan
+## §12-B ROUTE MAP PROPOSAL (for Opus ratification — NOT building until granted)
 
-Haiku is suited for: mechanical presence/absence checks, pattern matching, inventory scans.
-NOT suited for: deciding, synthesizing, editing.
+Map of all 9 journey routes:
 
-### Specific checklist Haiku can run in parallel (≥4 independent checks → warrant spawn):
+| Route | Current content | Classification | Proposed role |
+|-------|----------------|---------------|---------------|
+| / | Customer Journey Shell v1.3 | TRUNK | TRUNK — stays; shell lives here permanently |
+| /platform/journey-trunk | Redirect → /platform/journey | REDIRECT (confused) | Redirect → / (shell is the actual trunk) |
+| /platform/journeys | Redirect → /platform/journey | REDIRECT (alias) | Redirect → / (shell) |
+| /platform/journey | Platform Attitude (SUBSTRATE/DEFAULT/VARIETY) + Trunk Model | DOCTRINE | MODULE — platform philosophy; link from shell Step 4 "Learn more" |
+| /platform/developer-journey | INFRA-FLOW pipeline status + Journey Doctrine | MODULE | MODULE — Step 4 "Build" deep-dive |
+| /platform/user-journey | L2 User Journey option space, BehaviorHub | MODULE | MODULE — future Step 5 (user-facing journey mapping) |
+| /platform/journey-admin | Journey ratification interface | ADMIN | ADMIN — governance tooling; link from Admin nav |
+| /platform/journey-core-spine | Sealed JOURNEY-CORE-SPINE schema display | MODULE | MODULE — Step 3 "Plan" pattern reference |
+| /platform/wizard | 7-section planning wizard | MODULE | MODULE — Step 3 "Plan" full deep-dive |
 
-SCAN A: pageDNA compliance across all platform pages
-  - Does the page have a pageDNA const?
-  - Does pageDNA have: id, spine, audience, purpose?
-  - Does pageDNA have: journeyPosition, feltOutcome? (S089 new fields)
-  - Does pageDNA have: lovability_self_score, lovability_confirmed? (S089 proposed, not yet built)
-  Returns: table of pages × fields, PASS/MISSING
+PCR on canonical route (B_CHALLENGE_ON_MERIT vs Opus candidate "journey-trunk"):
 
-SCAN B: T1 hook wiring in settings.json
-  - List all hooks declared in settings.json Stop array
-  - List all .sh files in .claude/hooks/ that declare @csps-version
-  - Find: hooks in settings.json but NOT in .claude/hooks/ (broken reference)
-  - Find: hooks in .claude/hooks/ but NOT in settings.json (unregistered)
-  Returns: wiring gaps as file:line references
+CHOSEN: Shell stays at / (homepage). journey-trunk + journeys both redirect to /. Add /platform/customer-journey to TopNav as the named shell entry (clarity without breaking existing routes).
 
-SCAN C: T2 validator wiring in verify.mjs
-  - List all validators run in tools/verify.mjs
-  - List all .mjs files in tools/validators/
-  - Find: validators in tools/validators/ but NOT in verify.mjs (orphaned)
-  - Find: verify.mjs references that don't resolve to a file (broken)
-  Returns: orphaned and broken validator paths
+REJECTED (Opus candidate): Move shell to /platform/journey-trunk — semantic collision. journey-trunk was the trunk MODEL section of Platform Attitude (SUBSTRATE/DEFAULT/VARIETY doctrine). Someone navigating to journey-trunk expecting platform doctrine would get the app-building shell. Semantic collision > navigation convenience.
 
-SCAN D: "constitutional" / "BLOCKING" / "T2" claims without evidence
-  - Scan docs/plan/pillar-4-developer-experience/ux-ui-dna.md for "constitutional" / "BLOCKING"
-  - For each: find the corresponding validator name mentioned
-  - Check if that validator exists in tools/validators/
-  - Check if that validator appears in tools/verify.mjs
-  Returns: claim vs evidence gap table
+REJECTED: /platform/start — hides shell in sub-route; homepage is the right location.
 
-SCAN E: Template readiness inventory
-  - List all .tsx pages in apps/csps-playground/src/app/platform/
-  - For each: classify as TEMPLATE-READY (has pageDNA + RelatedPages + alignment section) vs PARTIAL vs NONE
-  - Check if /platform/templates route exists
-  Returns: template-readiness table
+The "ONE shell = corespine TRUNK" principle still holds — the shell at / IS the trunk. The route name is secondary. journey-trunk and journeys become redirect aliases pointing to it.
 
-### Connecting Haiku results
-
-SCAN A gaps → local fix: Sonnet adds missing pageDNA fields in the same session
-SCAN A gaps → learning loop: if K≥2 pages missing same field → ux-gap-register.yaml entry
-SCAN A gaps → template: if K≥3 pages missing same field → that field becomes mandatory in template schema
-
-SCAN B+C gaps → local fix: Sonnet adds missing hooks/validators to settings.json or verify.mjs
-SCAN B+C gaps → learning loop: if T1/T2 gap > 3 hooks → B_ACTIVATION_PROOF_BEFORE_DONE needs T1+T2 immediately
-
-SCAN D gaps → no local fix (these are constitutional claims without evidence)
-  → create ux-gap-register entry for each unverified claim (status=candidate)
-  → Sonnet block-tests each claimed validator in next session to confirm or downgrade
-
-SCAN E → directly informs PRO-TEMPLATE PHASE 1:
-  → TEMPLATE-READY pages → extract pageDNA + layout as initial template candidates
-  → PARTIAL pages → fix gaps first, then promote to template
-
-### Spawn pattern
-Agent(subagent_type:"haiku-scout", model:"haiku", prompt: [scan description + findings template + "CONTEXT-BUDGET: spawn-warranted | tools-restricted | pointers-only"])
-5 parallel spawns (SCAN A through E), each returns: findings as { page/file: path, field: name, status: PASS|MISSING|GAP, line: N }
-Sonnet consolidates, routes findings to: local-fix queue | ux-gap-register | template-schema | AGENTS.md
+Build plan (post-ratification):
+  1. Update /platform/journey-trunk/page.tsx: change redirect from /platform/journey to /
+  2. Update /platform/journeys/page.tsx: change redirect from /platform/journey to /
+  3. Add 'Customer Journey Shell' to TopNav with href="/"
+  4. Haiku scan E: template readiness for the pro-template gallery
 
 ---
 
-## 5. QUESTIONS FOR OPUS (numbered, blockers first)
+## QUESTIONS FOR OPUS
 
-(1) GOVERNANCE BUILD-AUDIT: ratify the pattern (T1/T2/T3/constitutional each need a block-test before claiming active)? If yes, I build T1+T2 for this in next session.
+(1) §12-B route map: PCR above challenges your candidate "journey-trunk". Shell at / is the trunk. Ratify this, or name a specific reason journey-trunk is preferable to /?
 
-(2) B_* CONTRACT: does the activation-over-creation pattern need its own B_ACTIVATION_PROOF_BEFORE_DONE, or is it covered by extending B_VALIDATE_BEFORE_ASSUME + AP-001?
+(2) SCAN B: 19 unregistered hooks. Notably post-stop-exists-not-equals-active.sh. Triage needed: which 5 to register now, which to deprecate? Or defer to PHASEB-BUNDLE?
 
-(3) PRO-TEMPLATE architecture: layer stack [0-4] ratified? Specifically: layer [2] page templates spine classification (ARCH or OPER)? Template metadata format (yaml vs tsx)?
+(3) SCAN C: 15 orphaned validators. validate-claimed-mechanical-presence.mjs is highest irony. Wire top 3 now, deprecate rest, or full triage deferred?
 
-(4) HAIKU SCANS: approve running all 5 scans in parallel this session? Or sequence them (SCAN A+B first, then C+D+E)?
+(4) §11: Was the Hebrew/mic+camera/consultation feedback for CSPS or Otosan? I did not apply it to the CSPS shell.
 
-(5) SROF-003 (ux-ui-principles Decision Ledger): is it live yet on deployed page? If yes, ready to full-seal.
+(5) BUILD-AUDIT for shell v1.3 (§12-C activation block-test): I need to plant a violation and confirm the shell's "plan saved" state appears correctly. Do you want me to run this and report, or is the Governor test-drive the block-test for UX pages?

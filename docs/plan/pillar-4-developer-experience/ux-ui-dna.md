@@ -366,7 +366,7 @@ When a step captures information from the user, every subsequent step inherits t
 4. If none fit — create the universal core FIRST, then add one specific arm as proof-of-concept
 5. Register the new corespine in `tools/config/core-spine-registry.yaml`
 
-**Enforcement:** B_CONSOLIDATION_PASS (BLOCKING on fork without corespine check) + validate-core-seeds.mjs extension (P2)
+**Enforcement (honest — S089 SCAN D correction):** B_CONSOLIDATION_PASS (T3 session-injection + advisory validator; BLOCKING when T1 hook + T2 validator are built — not yet). validate-consolidation-pass.mjs exists but exits 0 unconditionally (advisory-only). validate-core-seeds.mjs extension (P2). This is a CANDIDATE enforcement, not yet BLOCKING. Claim upgraded to BLOCKING after T1+T2 are built and block-tested.
 
 **Park:** PARK-S089-JOURNEY-SHELL-DEEP-AUDIT covers the full corespine inventory and template rationalization.
 

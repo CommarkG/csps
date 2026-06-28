@@ -1,0 +1,175 @@
+# tools/data/ux-gap-register.yaml
+# UX Gap Register — SSoT for UX/governance finding accumulation
+#
+# PURPOSE: Implements K-accumulation threshold (PARK-S089-LEARNING-LOOP-ACCUMULATION-GATE)
+#   K=1 (candidate): do NOT engrave. Register here.
+#   K=2 (confirmed): advisory to propose engraving.
+#   K=3 + external validation: ALLOWED to engrave as principle.
+#   K=5 + two-party-seal: CONSTITUTIONAL status claimable.
+#
+# POPULATES FROM: Haiku scans, Governor test-drive feedback, BUILD-AUDIT gaps
+# CONNECTS TO: learning-loop dashboard (/platform/completion — PARK-S089-LEARNING-LOOP-DASHBOARD)
+#              template schema (patterns found K>=3 times become template mandatories)
+#
+# Schema: id, gap_class, description, k_count, first_session, last_session,
+#         status (candidate|confirmed|allowed-to-engrave|constitutional),
+#         local_fix (immediate action taken), learning_loop_action, template_action
+
+meta:
+  schema_version: "1.0"
+  created: "2026-06-28"
+  session: S089
+  note: >
+    Created from S089 Haiku scans (SCAN A: pageDNA compliance, SCAN B: hook wiring,
+    SCAN C: validator wiring, SCAN D: BLOCKING claim discrepancy). All entries K=1 on creation.
+
+entries:
+
+  # ─────────────────────────────────────────────
+  # SCAN A: pageDNA field compliance gaps
+  # 8/10 platform pages missing journeyPosition + feltOutcome
+  # ─────────────────────────────────────────────
+
+  - id: UX-GAP-001
+    gap_class: pageDNA-incomplete
+    description: >
+      8 of 10 platform pages are missing journeyPosition + feltOutcome fields in pageDNA.
+      Only zero-friction and homepage shell are fully compliant (S089 mandate).
+      Pages affected: developer-journey, ux-ui-principles, design-intelligence, wizard,
+      journey-core-spine, journey-admin, simulation, completion.
+    k_count: 1
+    first_session: S089
+    last_session: S089
+    status: candidate
+    affected_pages:
+      - apps/csps-playground/src/app/platform/developer-journey/page.tsx
+      - apps/csps-playground/src/app/platform/ux-ui-principles/page.tsx
+      - apps/csps-playground/src/app/platform/design-intelligence/page.tsx
+      - apps/csps-playground/src/app/platform/wizard/page.tsx
+      - apps/csps-playground/src/app/platform/journey-core-spine/page.tsx
+      - apps/csps-playground/src/app/platform/journey-admin/page.tsx
+      - apps/csps-playground/src/app/platform/simulation/page.tsx
+      - apps/csps-playground/src/app/platform/completion/page.tsx
+    also_missing_id:
+      - apps/csps-playground/src/app/platform/simulation/page.tsx
+      - apps/csps-playground/src/app/platform/completion/page.tsx
+    local_fix: developer-journey pageDNA updated this session (S089). Others deferred to batch update.
+    learning_loop_action: >
+      K=1 registered. If K=2 (next session same pattern found) -> advisory to batch-fix all pages.
+      If K=3 + validate-ux-audit.mjs extended to check these fields -> allowed to make BLOCKING.
+    template_action: >
+      journeyPosition + feltOutcome are now MANDATORY in the page template metadata schema
+      (PARK-S089-PRO-TEMPLATE-PHASE1). Any new template must include these fields.
+
+  # ─────────────────────────────────────────────
+  # SCAN B: Unregistered hooks (EXISTS≠ACTIVE for hooks)
+  # 19 hooks in .claude/hooks/ not registered in settings.json
+  # ─────────────────────────────────────────────
+
+  - id: UX-GAP-002
+    gap_class: governance-hook-unregistered
+    description: >
+      19 hooks exist as .sh files in .claude/hooks/ but are NOT wired into settings.json hook arrays.
+      Includes: post-stop-exists-not-equals-active.sh (the AP-001 guard is itself unregistered — ironic),
+      pre-tool-use-check-existing.sh, pre-tool-use-false-assumption-gate.sh, and 16 others.
+      This is EXISTS!=ACTIVE at the hook-infrastructure level.
+    k_count: 1
+    first_session: S089
+    last_session: S089
+    status: candidate
+    affected_files:
+      - .claude/hooks/cron-weekly-tag-status-deep-audit.sh
+      - .claude/hooks/post-stop-error-harvest.sh
+      - .claude/hooks/post-stop-exists-not-equals-active.sh
+      - .claude/hooks/pre-commit-delete-guard.sh
+      - .claude/hooks/pre-commit-knowledge-writeback-required.sh
+      - .claude/hooks/pre-tool-use-check-existing.sh
+      - .claude/hooks/pre-tool-use-context-question-gate.sh
+      - .claude/hooks/pre-tool-use-external-integration-gate.sh
+      - .claude/hooks/pre-tool-use-false-assumption-gate.sh
+      - .claude/hooks/pre-tool-use-inventory-scan-required.sh
+      - .claude/hooks/pre-tool-use-nodefile-required.sh
+      - .claude/hooks/pre-tool-use-nominal-stop-detector.sh
+      - .claude/hooks/pre-tool-use-permanence-gate.sh
+      - .claude/hooks/pre-tool-use-playground-link-reminder.sh
+      - .claude/hooks/pre-tool-use-sacred-file-guard.sh
+      - .claude/hooks/pre-tool-use-schema-registration-gate.sh
+      - .claude/hooks/pre-tool-use-skill-aap-required.sh
+      - .claude/hooks/pre-tool-use-text-input-standard-gate.sh
+      - .claude/hooks/pre-tool-use-vault-write-gate.sh
+    local_fix: Flagged this session. Not fixed inline — 19 hooks warrant Opus review before mass-registration.
+    learning_loop_action: >
+      K=1. If confirmed next session (hooks still unregistered) -> K=2 advisory to register top-priority
+      ones (post-stop-exists-not-equals-active.sh is highest — AP-001 guard unregistered is structural irony).
+    template_action: >
+      All new hooks created from a template must have a mandatory settings.json registration step
+      in the FSE (Five-Surface Engraving) cycle. Template requirement.
+
+  # ─────────────────────────────────────────────
+  # SCAN C: Orphaned validators (EXISTS≠ACTIVE for validators)
+  # 15 validators in tools/validators/ not referenced in verify.mjs
+  # ─────────────────────────────────────────────
+
+  - id: UX-GAP-003
+    gap_class: governance-validator-orphaned
+    description: >
+      15 validators exist in tools/validators/ but are NOT referenced in tools/verify.mjs.
+      Includes: validate-claimed-mechanical-presence.mjs (a validator for mechanical claims, itself not wired),
+      validate-humble-first-step.mjs, validate-state-claims.mjs, and 12 others.
+      These validators provide zero enforcement — they exist but never run.
+    k_count: 1
+    first_session: S089
+    last_session: S089
+    status: candidate
+    affected_files:
+      - tools/validators/validate-bstar-trio-coverage-strict.mjs
+      - tools/validators/validate-claimed-mechanical-presence.mjs
+      - tools/validators/validate-context-bundle.mjs
+      - tools/validators/validate-cross-finding-cluster.mjs
+      - tools/validators/validate-director-seal-packet.mjs
+      - tools/validators/validate-humble-first-step.mjs
+      - tools/validators/validate-opia-audit-completeness.mjs
+      - tools/validators/validate-partial-processes.mjs
+      - tools/validators/validate-per-step-gate-tier.mjs
+      - tools/validators/validate-session-receipt.mjs
+      - tools/validators/validate-snapshot-continuity.mjs
+      - tools/validators/validate-sonnet-checkpoint-relay.mjs
+      - tools/validators/validate-state-claims.mjs
+      - tools/validators/validate-tab-transfer-completeness.mjs
+      - tools/validators/validate-template-compliance.mjs
+    local_fix: Flagged. Not wired inline — 15 orphans warrant Opus review of which to wire vs which to deprecate.
+    learning_loop_action: >
+      K=1. Each orphaned validator represents a governance intent that never executes.
+      At K=2 (confirmed orphaned next session): propose triage — wire the top 3 by PE score,
+      deprecate any that duplicate wired validators.
+    template_action: >
+      New validators created from template must include verify.mjs wiring as a mandatory step.
+      Template checklist: write validator → add to verify.mjs → run block-test → THEN claim T2.
+
+  # ─────────────────────────────────────────────
+  # SCAN D: BLOCKING claim without mechanical enforcement
+  # ux-ui-dna.md §7 claimed BLOCKING for B_CONSOLIDATION_PASS — actually T3+advisory
+  # ─────────────────────────────────────────────
+
+  - id: UX-GAP-004
+    gap_class: false-enforcement-claim
+    description: >
+      ux-ui-dna.md §7 claimed "B_CONSOLIDATION_PASS (BLOCKING on fork without corespine check)".
+      Haiku scan (SCAN D) found: B_CONSOLIDATION_PASS is T3-only enforcement (session injection),
+      and validate-consolidation-pass.mjs exits 0 unconditionally (advisory, never blocks).
+      This is a false BLOCKING claim — the exact pattern the persona correction addresses.
+    k_count: 1
+    first_session: S089
+    last_session: S089
+    status: candidate
+    affected_file: docs/plan/pillar-4-developer-experience/ux-ui-dna.md
+    local_fix: >
+      Corrected this session — ux-ui-dna.md §7 now says "T3 session-injection + advisory validator;
+      BLOCKING when T1 hook + T2 validator are built — not yet." Honest claim replacing false claim.
+    learning_loop_action: >
+      K=1. Track: how many other governance docs have similar false BLOCKING claims?
+      At K=2 (another doc with same pattern): propose a dedicated scan of all governance docs for
+      "BLOCKING" + "T2" claims, cross-checked against verify.mjs and settings.json.
+    template_action: >
+      Template for governance principles: must include "Enforcement (honest — K=N):" field with
+      current status (T3-only | advisory | blocking) and "Upgrade path:" field naming what T1+T2 to build.

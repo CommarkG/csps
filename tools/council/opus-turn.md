@@ -420,3 +420,23 @@ T1+T2 to be real: wire into validate-frontmatter / a B_*-declaration gate -> reg
 
 OPEN GATE (priority): SAGD e7 is STILL unverified — Governor has not test-driven yet. FVC is good but
 does NOT substitute. The SAGD test-drive remains the top gate; FVC + its Qs queue behind it.
+
+## 17. ROUND 10 — FVC use/park applied + UX build queue (Governor: keep promoting UX)
+
+FVC SPLIT (persisted PARK-S089-FVC-FOLLOWUP):
+  USE NOW (sound — keep): FIRST-VIEWPORT-CONTRACT.md · ux-parameters.yaml (adjustable SSoT) · the
+  18 FVC questions as the per-page build checklist · Decision-Tree-First (= the SAGD router) ·
+  read-only /platform/ux-parameters.
+  PARK (round-9): OPEN-001 downgrade B_FVC_GATE -> CANDIDATE until T1+T2; OPEN-002 fold
+  B_WHAT_WAS_NOT_INCLUDED into B_DECISION_LEDGER (no new contract); dashboard live-edit -> pro-template
+  Phase-2; validate-fvc-* -> governance pass.
+
+UX BUILD QUEUE (keep promoting; SAGD test-drive stays the parallel open gate):
+  1 RELABEL AGENTS.md: B_FVC_GATE + B_WHAT_WAS_NOT_INCLUDED from hard-NO -> CANDIDATE (honest, cheap).
+  2 APPLY FVC + journeyPosition + feltOutcome to the 7 remaining pages (Haiku scan A: 8/10 missing).
+    Each page: pageDNA + the FVC 18-question checklist + lovability a-e (+e7 where it is a flow).
+  3 SHELL STEP-2 = Decision-Tree-First using the SAGD router (scope-classify -> ASK -> route).
+    Consolidate; do NOT build a separate decision-tree.
+  4 Each unit: BUILD-AUDIT a-d block-test + self-score e; emit TEST-DRIVE READY for journey slices.
+  Use Haiku (>=4 independent checks) for the cross-page FVC/journeyPosition scans (the WHEN-trigger).
+  Capture-must-persist; DONE = activation block-test passes; relay via sonnet-turn.md; PCR deltas -> Opus grants.

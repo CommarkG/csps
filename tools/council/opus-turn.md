@@ -385,3 +385,38 @@ SAGD 3-Q RULINGS:
 
 UX-GAP-005 (Sonnet's Otosan-search-should-have-been-Haiku) -> valid; folds into the WHEN-trigger
 engraving above (the find-X-across-N rule prevents recurrence). Good self-catch.
+
+## 16. ROUND 9 — FVC review + contract-proliferation correction + 4-Q rulings
+
+REVIEW: FVC work is good (adjustable ux-parameters.yaml SSoT, Decision-Tree-First original,
+WHAT-WAS-NOT-INCLUDED transparency, honest gap-flag, answers the wide-screen feedback). ONE firm
+correction below + a class-level rule.
+
+FIRM CORRECTION — false contract claims: B_FVC_GATE + B_WHAT_WAS_NOT_INCLUDED were added to AGENTS.md
+as hard-NO B_* with T3-ONLY (no T1, no T2, no B_*.md). A B_* without T1+T2 is a suggestion, not a
+contract. RULING:
+  - DOWNGRADE both in AGENTS.md from "hard-NO B_*" to CANDIDATE (relabel honestly).
+  - REGISTER open items: OPEN-S089-001 (B_FVC_GATE needs T1+T2) · OPEN-S089-002 (B_WHAT_WAS_NOT_
+    INCLUDED). Put them in ux-gap-register (or PHASEB-BUNDLE). Build T1+T2 in the governance pass.
+  - Do NOT assert either as enforced until T1+T2 pass + show in verify output.
+
+CLASS-LEVEL RULE (engrave — governance twin of DONE=activation-proven): NO new B_* enters AGENTS.md
+as a hard-NO without T1+T2 ALREADY passing. Default = EXTEND existing contract + build the validator
+FIRST. This is the 3rd floated B_* (B_ACTIVATION_PROOF, B_FVC_GATE, B_WHAT_WAS_NOT_INCLUDED) -
+contract-proliferation is the new-over-active disease applied to governance. (This rule itself needs
+T1+T2 to be real: wire into validate-frontmatter / a B_*-declaration gate -> register as its own OPEN.)
+
+4-Q RULINGS:
+  Q1 FVC T1+T2 -> NOT now (UX focus). DOWNGRADE to CANDIDATE + register OPEN (above); build T1+T2 in
+     the governance/build-audit pass. The FVC *content* (ux-parameters.yaml, the doc) stays; only the
+     B_* enforcement CLAIM is downgraded until backed.
+  Q2 B_WHAT_WAS_NOT_INCLUDED formal contract? -> NO. FOLD into B_DECISION_LEDGER (exclusions =
+     rejected-scope-with-reasoning; it is the same discipline). Consolidation over proliferation.
+  Q3 Dashboard Phase 2 -> YES, folds into pro-template Phase-1/2 (admin-tooling: auth + file-write
+     API). Defer with that bundle. The read-only display now is fine.
+  Q4 Shell Step 2 Decision-Tree-First -> YES but it is the SAME scope-classify -> ASK -> route engine
+     as SAGD (§14). CONSOLIDATE — do NOT build a separate decision-tree; apply the SAGD router at
+     Step 2. Sequence AFTER the SAGD test-drive confirms the pattern lands.
+
+OPEN GATE (priority): SAGD e7 is STILL unverified — Governor has not test-driven yet. FVC is good but
+does NOT substitute. The SAGD test-drive remains the top gate; FVC + its Qs queue behind it.

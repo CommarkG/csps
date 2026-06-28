@@ -1,87 +1,100 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
-# FROM SONNET | FOR OPUS TAB | S089 — First Viewport Contract (FVC) synthesis complete
-HEAD: 62077e8a | verify: exit_code=0 (double-pass) | blocking=0
+# FROM SONNET | FOR OPUS TAB | S089 §18 complete + CSP frontend architecture feedback
+HEAD: 704714b1 | verify: exit_code=0 (double-pass) | blocking=0
 
 ---
 
-## DONE THIS TURN
+## DONE THIS TURN (§18 + §16-17 tidy)
 
-1. FIRST-VIEWPORT-CONTRACT.md — synthesis of 5 external sources + CSPS-original
-   docs/plan/pillar-4-developer-experience/FIRST-VIEWPORT-CONTRACT.md
-   Contains: FVC Gate law · 7 Pillars · 18 FVC questions (Priority Stack organized)
-   Cognitive baselines · AI counter-default rules · CSPS 3-level integration
-   WHAT-WAS-NOT-INCLUDED section (see §8 of document)
+1. haiku-spawn-template.md ENGRAVED (704714b1):
+   §0 WHEN-trigger: >=4 checks INCL "find/search/remove X across N>=4 locations"
+   §0.5 BOUNDARY-CROSSING Type-B UNDERSTANDING block (was missing — caused hook block)
+   LOGGING STEP added to §2 (feeds haiku-scan-log.yaml)
 
-2. tools/data/ux-parameters.yaml — SSoT for all adjustable UX thresholds
-   All thresholds, FVC question toggles, AI override injection text in one file
-   Validators + dashboard read from here; edit here, not in multiple places
+2. tools/data/haiku-scan-log.yaml CREATED (704714b1):
+   Schema + 4 S089 scans backfilled (SCAN A/B/C/D/F — all noted missing UNDERSTANDING block)
 
-3. /platform/ux-parameters dashboard — UX Parameters Hub (cd1b6be submodule)
-   Live at: https://csps-playground.vercel.app/platform/ux-parameters
-   Shows all parameters, FVC questions organized by Priority Stack layer, edit instructions
+3. cron-weekly-tag-status-deep-audit.sh: HAIKU-SCAN-LOG section added (consolidated, no new cadence)
+   PARK-S084-039 s089_unify_governance: CLOSED
 
-4. AGENTS.md hard-NOs added (SACRED-EDIT-APPROVED):
-   B_FVC_GATE: "No screen is shippable until first_viewport_contract is declared + FVC gate passes"
-   B_WHAT_WAS_NOT_INCLUDED: "Every summary, plan, and Opus report MUST include what was rejected + why"
+4. validate-agent-inheritance-parity.mjs: B_HAIKU_SCAN_ONLY added to ROLE_SCOPED_EXEMPT (role-scoped by design)
+
+ADVISORY NOTED: audit-runner.md not updated for validate-agent-inheritance-parity.mjs change (EP-ERR-011 advisory, non-blocking). Adding to relay for Opus awareness.
 
 ---
 
-## SOURCES SYNTHESIZED (5 external + CSPS-original)
+## CSP FRONTEND ARCHITECTURE — EXPERT FEEDBACK FOR OPUS
 
-| Source | Key unique contribution | Status |
-|--------|------------------------|--------|
-| Grok | Engineer anti-patterns, bounce/impression physics, 5-10s first impression | Absorbed + critiqued |
-| Haiku | 16 content carriers, R7 no-recommendations, ≤9/12 element thresholds | Absorbed + 2 challenges |
-| Kimi | 4±1 chunks (Miller's Law), micro-first-screens, 3s mandate, thumb zone, LCP | Absorbed — highest rigor |
-| Gemini | 7 pillars (best categorization), Context Continuity naming, schema placement | Absorbed |
-| GPT | "First Viewport Contract" naming (ADOPTED), 18 FVC questions, 3-layer verification, trust/evidence carrier | Absorbed — best framework |
-| CSPS-original | Decision-Tree-First, Contextual Continuity (K=2), Priority Stack, SAGD integration | Kept — not in any external source |
+Governor provided a CSP (different platform) concept: "shell of direct interface + second layer of pages/elements — enables replanning journey without million adjustments when consolidating."
+
+### What CSPS already has (exact match)
+
+The Customer Journey Shell architecture we built in S089 IS this pattern:
+- Customer Journey Shell (`/`) = the "direct interface shell"
+- Module pages (`/platform/developer-journey`, `/platform/zero-friction`, etc.) = the "second layer"
+- pageDNA.journeyPosition = the interface contract between layers
+- Shell contains journey logic (Steps 1-4, routing, SAGD); module pages are standalone
+
+The CSP input validates our architecture retroactively. We built the right thing.
+
+### What CSPS could improve (what CSP's framing adds)
+
+**Gap 1: No formal "slot contract"**
+CSP implies pages expose a mini-version of their content (headline + primary CTA) that the shell renders in-flow. CSPS currently does this ad-hoc (shell hardcodes what it shows for each step). A formal `ShellSlot` type would let ANY page declare what the shell renders for its step, without the shell knowing each page's internals.
+
+Proposed interface (minimal):
+```typescript
+interface ShellSlot {
+  stepHeadline: string        // ≤10 words (FVC F1)
+  stepSubtext: string         // one benefit sentence (FVC F2)
+  primaryCTA: { label: string; href?: string; onClick?: () => void }  // exactly 1 (FVC F3)
+  contextEcho?: string        // what user brought from prior steps
+}
+// Each page exports: export const shellSlot: ShellSlot = { ... }
+// Shell imports: import { shellSlot } from './platform/wizard/page'
+```
+
+**Gap 2: No formal "layer" naming in CSPS vocabulary**
+We call them "shell" and "module pages." Formalizing as "Journey Shell Layer" + "Functional Element Layer" (or "module layer") would make the architecture explicit in governance docs.
+
+**Gap 3: Journey replanning requires shell code changes**
+Currently, adding a step to the shell = editing `src/app/page.tsx`. The CSP concept implies the shell should be configurable (which steps exist, in what order) without code changes. This maps to our ux-parameters.yaml idea — if step sequence was stored in YAML, replanning = YAML edit, not code edit.
+
+### Recommendations for Opus
+
+CHOSEN: Retain current shell+module architecture. Formally name the layers. Add ShellSlot contract when building new module pages. Keep ux-parameters.yaml as the step configuration SSoT.
+
+REJECTED: Rebuild with explicit slot system immediately — over-engineering at current scale (4 shell steps).
+
+REJECTED: Store step rendering logic in YAML (too complex; React components can't be YAML-serialized easily). Instead: step sequence in YAML, step rendering in code.
+
+PARK: PARK-S089-SHELL-SLOT-CONTRACT — formalizing the ShellSlot interface when pro-template Phase 1 lands (they share the same abstraction: a page declaring what it exposes).
+
+**Connection to existing CSPS concepts:**
+- ShellSlot = pageDNA (already exists, just not typed as an interface)
+- Layer naming = already in pageDNA.journeyPosition (SHELL vs MODULE vs ADMIN)
+- Step config in YAML = ux-parameters.yaml (add steps: section in Phase 2)
 
 ---
 
-## WHAT WAS NOT INCLUDED AND WHY (Governor S089 governance directive)
+## WHAT WAS NOT INCLUDED AND WHY (B_DECISION_LEDGER governance)
 
-Highlights (full list in FIRST-VIEWPORT-CONTRACT.md §8):
-
-| Rejected | Source | Why |
-|----------|--------|-----|
-| "Above the fold" / "hero section" terminology | All 5 sources | Too marketing/shallow; "FVC" is a contract = CSPS DNA alignment |
-| Haiku's ≤9 as PRIMARY threshold | Haiku | Replaced with Kimi's 4±1 (cognitive science basis stronger); ≤9 kept as secondary |
-| Gemini's ≤3 competing data points as hard block | Gemini | Too aggressive for complex admin/governance screens |
-| Grok's 5-10s window | Grok | Replaced with 3s orientation (Kimi) + 20s value clarity (GPT/NN/g) — different things |
-| Leading with recommendations on first screen | All sources implied | Rejected via R7: recommendations AFTER first orienting action |
-| Full CRUD dashboard (real-time YAML edit) | Governor direction | Phase 2; Phase 1 is read-only display; building live YAML editing requires auth+API |
-| Decision-Tree-First | NOT in any external source | CSPS-original; addresses the actual Governor test-drive failure (content before choice) |
+| Rejected | Why |
+|----------|-----|
+| FVC T1+T2 (OPEN-S089-001) | Item 3 §18 — no capacity after haiku governance + CSP feedback; deferred to next session |
+| validate-core-seeds .tsx extension (ICAP-004) | Same; deferred |
+| audit-runner.md update | EP-ERR-011 advisory — noted; not blocking; fix in next governance pass |
+| Full ShellSlot implementation | Over-engineering at 4-step shell; park until pro-template Phase 1 |
 
 ---
 
-## TWO NEW GOVERNANCE RULES (Governor S089 — CONSTITUTIONAL)
+## OPEN ITEMS FOR OPUS
 
-B_FVC_GATE: No screen ships without `first_viewport_contract:` declared in plan/pageDNA.
-  Pre-build: answer 3 questions before writing JSX.
-  BUILD-AUDIT dimension (f): f1-f8 all ✓ for BUILD-COMPLETE claim.
+(1) CSP ShellSlot concept: PARK-S089-SHELL-SLOT-CONTRACT — create as a park item with disposition?
 
-B_WHAT_WAS_NOT_INCLUDED: Every summary, plan, Opus report MUST have a "What was NOT included and why" section.
-  Minimum: 3 rejected alternatives per consequential decision.
-  Applies to: sonnet-turn.md, HANDOFF Zone docs, principle proposals, park items, Opus relays.
+(2) FVC T1+T2 (OPEN-S089-001): capacity reached this turn. Include in next build batch?
 
----
+(3) SAGD test-drive remains open (Governor's gate). Once confirmed, Item-3 Shell Step-2 Decision-Tree-First can be built. Still awaiting.
 
-## QUESTIONS FOR OPUS
-
-(1) FVC Gate enforcement tier: currently AGENTS.md hard-NO (T3) + ux-parameters.yaml (SSoT). 
-    Do we build T1 (pre-tool-use hook checking for fvc questions in plan before JSX write) 
-    and T2 (validate-fvc-*.mjs suite) NOW, or park for P2 build?
-
-(2) B_WHAT_WAS_NOT_INCLUDED: this is a new constitutional governance rule. Does it need
-    a formal B_*.md contract + T1+T2, or is AGENTS.md hard-NO + this sonnet-turn.md entry sufficient?
-
-(3) Dashboard Phase 2 (PARK-S089-LEARNING-LOOP-DASHBOARD extension): the ux-parameters
-    page is read-only Phase 1. Ratify Phase 2 (live parameter editing via API + compliance
-    heatmap per page) as part of the pro-template work? Or separate build unit?
-
-(4) The Customer Journey Shell Step 2 still shows "This is something original — we'll design
-    it from a clean slate" before routing choice. Per Decision-Tree-First (FVC Priority Stack
-    Layer 2): routing choice should come BEFORE content. Should I fix Step 2 flow now
-    (routing gate appears immediately after echo, before "what we found") per FVC?
+(4) PARK-S084-039 s089_unify_governance is CLOSED. Confirm closure in the register?

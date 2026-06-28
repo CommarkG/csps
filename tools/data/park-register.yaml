@@ -19,6 +19,7 @@
 # HARDWIRE (Governor S089): BEFORE adding any new park, GO OVER existing parks first —
 # Humble-Engine create-vs-enhance applied to parks: dedup + ENHANCE-EXISTING-IF-SCOPE-ALLOWS.
 # Record the check in a `dedup_checked:` field on the new entry. Parks obey consolidation-over-creation
+# S089: research_notes (optional) — populate for DEEP/MEDIUM items before status:ratified-build-pending
 # like everything else. (validate-park-dedup = HARDWIRE-queued; instance of consult-first / B_DECISION_LEDGER.)
 
 meta:
@@ -2563,3 +2564,59 @@ entries:
       reasoning: content is sound and usable; only the enforcement CLAIM lacked T1+T2 — separate the two.
     decision_back_ref: Governor S089 "park what should be parked, use what is right now"; Opus round-9 FVC review (opus-turn §16).
     retrieve_when: Governance pass after UX/SAGD batch; build validate-fvc T1+T2 + relabel AGENTS.md.
+  - id: PARK-S089-SHELL-SYNERGY-SHARE
+    lane: queue
+    title: Share Customer Journey Shell to CSP + deepen the synergy (shared-core library, bi-directional sync)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    artifact: docs/plan/_handoff/synergy/CSEP-S089-001-SHELL-TO-CSP.md (the CSP-instantiable prompt + CSEP, DONE this turn).
+    specific_plan: '(1) DONE: CSP-instantiable shell prompt saved as CSEP-S089-001. (2) PARK improvements: extract shell CORE into a shared library both CSPS+CSP consume (one-source, not copied prompt); bi-directional sync (CSP improvements flow back = "mini-sensors alert mothership"); validate SAGD deep-tier frameworks with CSP user base -> research-register. (3) library-ify only when CSPS shell is stable (post test-drive).'
+    dedup_checked: 'ENHANCE: composes synergy-master skill + CSEP template + PARK-S089-APP-COMPARISON-SYNERGY-CONSOLIDATION (this is a concrete CSEP instance under that element). No fork.'
+    decision_ledger:
+      chosen: share proven pattern as prompt+CSEP now; park shared-library extraction
+      rejected: extract shared library now (premature — shell still iterating, sharing a moving target drifts)
+      reasoning: share what is proven; library-ify when stable.
+    decision_back_ref: Governor S089 "prepare a prompt for csp on the SHELL solution, save in synergy element, park improvements".
+    retrieve_when: After CSPS shell stabilizes (post SAGD test-drive); when CSP build session opens.
+  - id: PARK-S089-PE-FREQUENCY-VALUE
+    lane: obligation
+    title: 'PE boost: prioritize value to the MOST-REPEATED actions (internal + external-solution PE)'
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: 'PARKED with spec. Owner: Sonnet (PE build). Trigger: PE-improvement pass. Hardwire across schema+dashboard+protocols.'
+    problem: 'Governor S089: when deciding "what is next", PE should prioritize completing/creating things that add value to the MOST REPEATING actions we perform (automate our own toil first). Must apply to the PE engines that score EXTERNAL solutions too, and be in dashboards + protocols + HARDWIRED (not advice).'
+    specific_plan: '(1) Add a REPETITION-VALUE boost to tools/templates/priority-engine.schema.yaml: items that improve/automate a high-FREQUENCY recurring action get +boost (frequency x leverage). Source frequency from action/turn logs (which actions recur most). (2) Same boost in the CUSTOMER/USER pe_context (external-solution PE), not just PLATFORM. (3) Surface in pe-dashboard.md (a "repetition leverage" column). (4) HARDWIRE: validator (T2) checks PE items with a recurring-action target carry repetition_value; protocol note in priority-engine.md. FSE surfaces.'
+    dedup_checked: 'ENHANCE: extends priority-engine 5-dim (B/D/I/Bn/PAS) + boosts (MOAT/completion/spine/model-tier) in priority-engine.schema.yaml. NEW = repetition-value boost. No new PE engine.'
+    decision_ledger:
+      chosen: frequency-weighted repetition-value boost in PE (internal + external), hardwired schema+dashboard+protocol+validator
+      rejected: 'flat PE scoring (status quo — misses the highest-leverage target: automating our own most-repeated toil)'
+      reasoning: the most-repeated actions are where small improvements compound most; PE should see that.
+    decision_back_ref: 'Governor S089 "add to PE: prioritize completing/creating things that add value to the most repeating actions; relevant to external-solution PE; in dashboards+protocols+hardwired".'
+    retrieve_when: PE-improvement pass (with PARK-S084 PE-config interface).
+  - id: PARK-S089-MANDATORY-RESEARCH-PIPELINE
+    lane: obligation
+    title: Research-before-build pipeline (research-register SSoT + routing) — enhance check-existing-first
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: 'PARKED (Sonnet design, Opus-trimmed). Owner: Sonnet. Trigger: governance pass. USE-NOW items are not parked (see use_now).'
+    use_now: (a) research_notes (optional) field on park-register entries [header noted this turn]; (b) research_backing (optional) on gap-recurrence-register — Sonnet adds. Both OPTIONAL + DEEP/MEDIUM-only (SURFACE/trivial exempt). Non-blocking.
+    problem: 'Governor S089: research should be mandatory before building ("build without research = deliberate ignorance"). Threshold/PE/CIE/Moats all need the same 5 fields from a research input.'
+    specific_plan: 'PARK (next-session): research-register.yaml SSoT (question/finding/sources/confidence/classification/routing_targets/status) feeding Threshold+PE+CIE+Moats via routing_target. Haiku research-trigger (cheap classify). Start with the 3 HIGHEST-VALUE gates only: before a new B_* contract · before a constitutional principle (FVC proved this) · before park->BUILDING. Defer the other ~15 placement points (do NOT hardwire 18 gates = over-governance). External research -> dna-guardian align before influencing architecture.'
+    opus_trim: 'Sonnet proposed 18 placement points — TRIMMED to 3 highest-value first (balance-expert: 18 hardwired gates is maximalist; add gates as they prove value, not upfront). Agreed with Sonnet 4 rejections (escape-hatch for trivial; no separate DB - feed existing registers; minimum-not-total research; dna-guardian on external).'
+    dedup_checked: 'ENHANCE not fork: research-before-build IS feedback_check_existing_decisions_first + feedback_no_invention_without_precedent made mechanical; feeds EXISTING registers (gap-recurrence/ux-gap/CIE/moat/park) via routing_target, NOT a parallel store. No new principle.'
+    decision_ledger:
+      chosen: 2 optional fields now + research-register SSoT + 3 highest-value gates parked; enhance existing principles
+      rejected: hardwire all 18 gates now (over-governance) / mandatory for trivial items (no escape hatch) / separate research DB (the fragmentation we fight)
+      reasoning: research-before-build is high-merit but must be lightweight + escape-hatched + feed existing stores; mandate the few highest-value gates, grow by proven value.
+    decision_back_ref: Governor S089 "research should become mandatory"; Sonnet research-pipeline relay (sonnet-turn.md); Opus trim.
+    retrieve_when: Governance pass; build research-register + the 3 gates + Haiku research-trigger.

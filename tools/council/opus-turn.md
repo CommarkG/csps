@@ -440,3 +440,29 @@ UX BUILD QUEUE (keep promoting; SAGD test-drive stays the parallel open gate):
   4 Each unit: BUILD-AUDIT a-d block-test + self-score e; emit TEST-DRIVE READY for journey slices.
   Use Haiku (>=4 independent checks) for the cross-page FVC/journeyPosition scans (the WHEN-trigger).
   Capture-must-persist; DONE = activation block-test passes; relay via sonnet-turn.md; PCR deltas -> Opus grants.
+
+## 18. ROUND 11 — ADDITION: engrave Haiku governance (your miss proves it; "going forward" = nominal)
+
+REVIEW: §16-17 batch clean (a/b/c PASS, 10/10 pages, B_WHAT_WAS_NOT_INCLUDED folded, honest
+Haiku-miss catch). One scope-3 correction:
+
+CLASS CATCH: you missed the Haiku UNDERSTANDING block, then wrote "fixed going forward". VERIFIED
+this turn: the UNDERSTANDING/BOUNDARY block is NOT in tools/templates/haiku-spawn-template.md (0
+matches), the WHEN-trigger (find-X-across-N>=4) is NOT engraved, haiku-scan-log.yaml is MISSING.
+"Going forward" = chat-memory = fades by next session = you WILL miss it again. The fix is ENGRAVE,
+not remember. (This is the round-8 directive §15, still unbuilt.)
+
+ADDITION — ACTIVE NOW (test-drive-INDEPENDENT; the UX surface queue is done, Item-3 blocks on the
+SAGD test-drive, so do THIS while that gate is with the Governor):
+  1 ENGRAVE the Haiku spawn discipline INTO tools/templates/haiku-spawn-template.md (the file every
+    spawn reads): the BOUNDARY-CROSSING Type-B UNDERSTANDING block + the CONTEXT-BUDGET line + the
+    WHEN-trigger (>=4 independent checks INCL find/search/remove X across N>=4). Reference from
+    B_HAIKU_SCAN_ONLY.md + AGENTS.md. -> mechanical, not memory.
+  2 CREATE tools/data/haiku-scan-log.yaml + a logging step in the spawn flow (date/task/scope/model/
+    findings_count). Add the WEEKLY-ANALYSIS step to the existing weekly audit (consolidate, no new
+    cadence). Closes PARK-S084-039 s089_unify_governance.
+  3 IF capacity: FVC T1+T2 (OPEN-S089-001) + validate-core-seeds .tsx extension (d=GAP / ICAP-004).
+  Each: T2 validator wired + shown in verify output (DONE = activation block-test, not "added").
+
+DO NOT build more UX surface ahead of the SAGD test-drive — it only stacks unverified e7 claims.
+The SAGD test-drive remains the Governor's gate for Item-3 + e7; this addition runs in parallel.

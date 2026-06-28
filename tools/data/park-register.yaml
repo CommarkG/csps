@@ -2544,3 +2544,22 @@ entries:
       rejected: New /platform/learning-loop page (K=1 data point -- premature for dedicated page)
       reasoning: Governor asked about dashboard. Honest answer is K=1 for concept -- enhance completion page.
     retrieve_when: After PARK-S089-LEARNING-LOOP-ACCUMULATION-GATE is built.
+  - id: PARK-S089-FVC-FOLLOWUP
+    lane: obligation
+    title: 'FVC follow-up: T1+T2 for downgraded contracts + fold-ins (from round-9 review)'
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: 'PARKED with specific items (round-9 rulings). Owner: Sonnet (governance pass). Trigger: after UX/SAGD batch. USE-NOW items are NOT parked (see use_now).'
+    use_now: FIRST-VIEWPORT-CONTRACT.md (doc) + tools/data/ux-parameters.yaml (adjustable SSoT) + the 18 FVC questions/Priority-Stack (as the per-page build checklist) + Decision-Tree-First (= the SAGD scope->ask->route engine, apply at shell Step-2) + read-only /platform/ux-parameters dashboard. These are sound; keep using.
+    park_items: '(1) OPEN-S089-001: B_FVC_GATE needs T1+T2 before it is an enforced hard-NO — DOWNGRADE to CANDIDATE in AGENTS.md until built. (2) OPEN-S089-002: B_WHAT_WAS_NOT_INCLUDED — do NOT mint; FOLD into B_DECISION_LEDGER (exclusions arm). (3) ux-parameters live-edit (auth+file-write API) = Phase-2, folds into pro-template. (4) FVC T1+T2 validators (validate-fvc-*.mjs) = governance pass.'
+    dedup_checked: 'ENHANCE not fork: composes round-9 rulings (opus-turn §16) + B_DECISION_LEDGER + pro-template park + the contract-proliferation/T1+T2 rule. No new contracts.'
+    decision_ledger:
+      chosen: use the FVC content now; park only the unbacked B_* enforcement + Phase-2 dashboard
+      rejected: keep B_FVC_GATE/B_WHAT_WAS_NOT_INCLUDED as enforced hard-NOs (T3-only = false claim)
+      reasoning: content is sound and usable; only the enforcement CLAIM lacked T1+T2 — separate the two.
+    decision_back_ref: Governor S089 "park what should be parked, use what is right now"; Opus round-9 FVC review (opus-turn §16).
+    retrieve_when: Governance pass after UX/SAGD batch; build validate-fvc T1+T2 + relabel AGENTS.md.

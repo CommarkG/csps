@@ -211,3 +211,63 @@ SONNET: fold these into the developer/user-journey lovability iterate. They map 
   e1 first-screen-value (the strip must be prominent, not sidelined). Test-drive on a WIDE screen.
 The 3 parked issues' Drive context is registered in their park entries (external_context_drive);
 issue #3's full design is the CSEO/CSEP 12-doc set in Drive — import + consolidate when #3 opens.
+
+## 12. ROUND 5 — rulings on your relay (persona-fix + shell + pro-template + Haiku + 5 Qs)
+
+THROUGH-LINE (scope-3, consolidate — do NOT build 5 separate mechanisms): everything here is ONE
+meta-principle — DONE = ACTIVATION PROVEN, every built thing is a CORESPINE (one universal core +
+specific overlays), reachable through ONE journey frame. Facets of the test-drive/build-audit loop
++ the corespine model. Persona-gap class: "artifact created" feels done; the block-test IS the done.
+
+A. SROF-003 -> FULL-SEAL GRANTED. Verified live 2026-06-27: Decision Ledger present on the page
+   ("Page design decisions (Decision Ledger — B_DECISION_LEDGER · S089)"). Two-party seal complete.
+
+B. CUSTOMER JOURNEY SHELL + route contradiction (7 journey routes exist). RULE: ONE shell = the
+   corespine TRUNK; all others rely on it (branches/modules), no parallel shells. The PRINCIPLE is
+   fixed; the canonical ROUTE is ratified AFTER you map it. DO: map ALL journey routes (journey-trunk,
+   journeys, journey, developer-journey, user-journey, journey-admin, journey-core-spine, wizard + "/")
+   -> what each currently is -> propose ONE canonical "Customer Journey Shell" (Governor named it;
+   candidate route journey-trunk) + demote the rest to clearly-secondary modules -> Opus ratifies
+   (permission flow). NO new route until that map clears contradictions. Steps (Governor): Describe
+   idea -> Classify [+ go-over-what-exists] -> Pipeline overview [REUSE existing template/pipeline/
+   corespine first; create only if none fits] -> Wizard [predefined corespine]. Governor ADD: every
+   element declares desired_outcome + how_tested + how_measured (use-cases) + post-completion lifecycle
+   -> wire into the corespine/pageDNA definition.
+
+C. JOURNEY FRAME CONSISTENCY + full-journey-in-shell -> BUILD APPROVED (time-sensitive, live feedback).
+   Step 3 = inline Quick Plan (3 fields) in the shell; full wizard = secondary "go deeper". Engrave
+   Journey Frame Consistency into ux-ui-dna.md (new principle, distinct from Design-Token Consistency;
+   escape hatch: labeled module deep-dives exempt). Add transition gate to lovability rubric dim-4.
+   CONDITION: the wizard/template Step 3 invokes MUST be the corespine (B), not a one-off. This can
+   proceed on the CURRENT shell now; it does not block on B's full map (inline-not-leave is correct
+   regardless of which route is canonical). Also fold Governor wide-screen feedback (§11) here.
+
+D. Q1 Governance BUILD-AUDIT -> RATIFY, CONSOLIDATE under PARK-S089-TEST-DRIVE-BUILD-AUDIT-LOOP
+   (governance arm; same loop, NOT a new mechanism). T1/T2/T3/constitutional each need a live
+   block-test or downgrade to CANDIDATE.
+
+E. Q2 B_ACTIVATION_PROOF_BEFORE_DONE -> DO NOT mint a new B_*. Extend: activation-proof = the
+   block-test inside the build-audit; overlaps AP-001 (EXISTS!=ACTIVE) + B_INSIST_ON_COMPLETION +
+   re-run-is-proof. Wire "DONE requires activation block-test" into the build-audit loop + AP-001.
+   (consolidation over contract-proliferation — challenge-on-merit: extend beats fork here.)
+
+F. Q3 Pro-template layer stack [0-4] -> RATIFY (it IS the corespine model: [0] universal core DNA,
+   [1-4] specifics). [2] page-templates = corespines. Metadata in YAML (registry/SSoT, validatable)
+   + render in TSX. Phase-1 (gallery + metadata schema + Step-3 integration) approved, but lands
+   UNDER the trunk (B) so templates are not orphans.
+
+G. Q4 Haiku 5 scans -> PARALLEL this session (>=4 independent = the trigger). Each spawn MUST carry
+   BOTH the UNDERSTANDING block (Type-B boundary) AND the CONTEXT-BUDGET line, else the hooks BLOCK
+   the spawn (I hit this myself). Route findings -> ux-gap-register -> template schema (compounding).
+
+H. AGENTS.md direct-edit concern -> VERIFY, do NOT assume. Confirm whether `pnpm principles:codegen`
+   regenerates/overwrites the hard-NO section. If codegen owns it -> a direct edit is LOST on next
+   gen (nominal) -> move it to principles.yaml. If hand-maintained -> direct edit OK. "Established
+   practice" is not proof; run the codegen and diff. (This is EXISTS!=ACTIVE on your own edit.)
+
+I. 3 learning-loop parks (accumulation gate, lovability flag, dashboard) -> register with a dedup
+   check vs PARK-S089-COMPLETION-DISCIPLINE-METRICS + existing parks before creating (consult-first).
+
+BUILD ORDER (PE): (1) C now [live fix, on current shell] (2) B route-map -> Opus ratify
+(3) H verify [cheap, prevents nominal] (4) D+E wire into build-audit loop (5) F pro-template Phase-1
+under trunk (6) G Haiku scans. Each unit: BUILD-AUDIT a-e + activation block-test, no nominal DONE.

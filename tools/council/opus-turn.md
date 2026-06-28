@@ -305,3 +305,46 @@ DEPTH-PASS design (Sonnet builds; REUSE CSPS DNA, do NOT reinvent):
 PRIORITY: this becomes part of build-order item 1 (the Journey Frame Consistency / Step-3 build) —
 Step-3 Quick Plan must include the depth-pass, else it ships shallow. PCR before building if you
 see a lighter path; otherwise build the depth-pass into Step-3 and re-emit TEST-DRIVE READY.
+
+## 14. ROUND 7 — scope-adaptive depth (Governor + Kimi research) + 5-Q rulings + route grant
+
+CORE UPGRADE to e7 (Governor): depth must be SCOPE-ADAPTIVE + ASK-not-assume. Small scope = small
+dive; big scope = deep dive; ALWAYS ask, never force. ~2 dive tiers to keep the evaluating AI simple.
+
+SCOPE-ADAPTIVE GOAL DEPTH (SAGD) — the wizard's depth engine (Sonnet builds into Step-3):
+  1 CLASSIFY scope into a band (REUSE depth-discipline: depth 1-2 = LIGHT, depth 3-5 = DEEP — do NOT
+    invent a new scale). Cheap call (Haiku-tier eligible) so it is easy on the evaluating AI.
+  2 ASK (hardwired, never assume): "This reads like a [quick win / meaningful goal / major
+    undertaking]. Want the straight path, or go deeper together?" User decides the route.
+  3 ROUTE (3 outcomes, 2 actual dives):
+    - QUICK PATH (no dive): 1 sanity challenge -> save. Default for small scope / user-in-a-hurry.
+    - LIGHT DIVE (tier 1): challenge 1 assumption + root cause (symptom vs cause) + ripples
+      (nothing-stands-alone) + 1 horizon-broadener. (the round-6 depth-pass)
+    - DEEP DIVE (tier 2): validated frameworks, CSPS-translated (from Kimi research, ABSORB not
+      raw-import): Immunity-to-Change (competing commitment + Big Assumption) · SDT/ACT (intrinsic
+      vs extrinsic; values-as-compass vs goal-as-waypoint) · NLP ecology/ripple check ("what will/
+      won't happen if you do/don't") · Golden-Circle WHY. "The friction is the feature" — slow the
+      save until >=1 obstacle-revelation + 1 ecology-check; echo the user's exact words.
+  4 SAVE the DEEPENED goal: per tier, capture root_cause + ripples + WHY + desired_outcome +
+    how_tested/measured (use-cases) + post-completion lifecycle (merges §12-B Governor ADD).
+  REUSE CSPS DNA throughout: intent-crystallization · nothing-stands-alone · B_CHALLENGE_ON_MERIT ·
+  consult/council (/platform/consult) · depth-discipline. ASK-not-assume = engrave as a UX law too.
+
+5-Q RULINGS:
+  Q1 ROUTE -> GRANTED on merit: shell = "/"; journey-trunk + journeys REDIRECT to "/"; modules =
+     developer-journey/user-journey/wizard/journey-core-spine/journey-admin; /platform/journey stays
+     doctrine (Platform Attitude, out of flow). Your collision reasoning is sound. Build the redirects.
+  Q2 19 unregistered hooks -> PHASEB-BUNDLE (capture in ux-gap-register, done). PRIORITY-within-bundle:
+     post-stop-exists-not-equals-active.sh (the dead AP-001 hook — ironic + load-bearing). Do NOT
+     triage all 19 now (stay on UX); the bundle runs in the governance pass.
+  Q3 15 orphaned validators -> PHASEB-BUNDLE. PRIORITY-within-bundle: validate-claimed-mechanical-
+     presence.mjs (the dead meta-enforcer). Defer full triage; stay on UX.
+  Q4 Hebrew/Otosan boundary -> CONFIRMED: Otosan (otosan.co.il WordPress) = SEPARATE product, keep
+     OUT of the CSPS shell. BUT the Governor's Hebrew UX feedback (ICAP-005) is valid CSPS input —
+     apply the layout fixes; shell language stays per CSPS design (English primary for SMB market).
+  Q5 BUILD-AUDIT -> BOTH, distinct layers: Sonnet RUNS a-d structural block-tests himself (that is
+     your activation proof — not skippable); Governor test-drive verifies (e) lovability incl e7.
+     Governor test-drive is NOT a substitute for the a-d block-tests (persona-fix).
+
+PERSONA-WIN noted: the dead AP-001 hook + dead mechanical-presence validator are the exact EXISTS!=
+ACTIVE pattern — caught by the Haiku scans. The scan loop is paying off; capture + bundle, don't chase.

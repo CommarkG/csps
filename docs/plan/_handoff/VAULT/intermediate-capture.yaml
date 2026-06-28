@@ -54,3 +54,11 @@ items:
     resume_pointer: opus-turn.md §13 (depth-pass design + e7 rubric). Sonnet builds depth-pass into Step-3 Quick Plan; engrave e7 into ux-ui-dna.md; re-emit TEST-DRIVE READY.
     status: open
     graduated_to: null
+  - id: ICAP-S089-007
+    captured_session: S089
+    saved_at: '2026-06-27'
+    what: 'Kimi-AI deep-goal-extraction research (validated frameworks): Immunity-to-Change (Kegan/Lahey: competing commitment + Big Assumption), Self-Determination-Theory (intrinsic vs extrinsic), Clean Language/Emergent-Knowledge (metaphor/spatial), NLP Well-Formed-Outcomes (ecology+evidence check), ACT (values-compass vs goals), Golden-Circle (WHY). 5-phase deep arch: surface-deconstruction -> intrinsic-filter -> metaphor/spatial -> ecology/ripple -> commitment-architecture.'
+    why_deferred: Absorbed as the DEEP-tier (tier-2) content of SAGD (scope-adaptive goal depth) for the wizard. External research -> CSPS-translated, not raw import. Condensed essence persisted in opus-turn.md §14.
+    resume_pointer: 'opus-turn.md §14 SAGD deep-dive tier. On #2/#3 build or when deep-tier built: optionally save full Kimi text to docs/plan/_intake/external-research/. dna-guardian align external frameworks before wiring.'
+    status: open
+    graduated_to: null

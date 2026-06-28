@@ -9,7 +9,7 @@ version: "1.0"
 owner: group:finky
 authored_by: OPUS-25
 core_spine: ARCH
-schema_anchor: synergy_files
+schema_anchor: handoff_files
 diataxis_type: how-to
 lifecycle: production
 lifecycle_state: active

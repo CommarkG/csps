@@ -606,3 +606,20 @@ SONNET — REVIEW, do NOT build:
  4 PCR deltas (chosen/rejected/reasoning) for any change you'd make to the process or task order.
 REPORT back via sonnet-turn.md: reviewed / status corrections / gaps / T9-capability / PCR deltas.
 DONE = the review report, NOT a build. Opus refines -> issues the build one-click.
+
+## 24. ROUND 17 — BUILD one-click (review accepted; goal-first, ONE clean thing)
+
+Review accepted (all corrections + PCR deltas). NOW BUILD, in this order, then STOP and show Governor:
+ B1 goal_id + goal-record schema (from CDS CS-GOAL-001 §7 JSON: goal_id, goal_statement, felt_need_
+    confirmed, resolution_signal, scope, ratification_state, governor_signature, closure_record).
+    Store as tools/data or app data; this is the invariant everything traces to.
+ B2 BUILD the GOAL-DEFINITION STEP — the FIRST journey stage, CLEAN + SINGLE-PAGE, replacing the
+    scattered entry. CDS rigor: felt-need 5-Q (need vs disguised solution) -> single sentence (no
+    "and") -> observable resolution signal (third-party verifiable). Output = a goal record (B1) the
+    Governor signs. INCLUDE UX-LAW-7: state persists on back-nav (localStorage) — no re-typing.
+    Apply UX-LAW-8 (upload available) + UX-LAW-9 (ack + next) on this one screen.
+ B3 T9-lite SEE-IT: WebFetch text-check as BUILD-AUDIT(g) + deploy so the Governor can screenshot it.
+ B4 STOP. Emit TEST-DRIVE READY for THIS ONE screen only. Do NOT build the rest of the pipeline.
+PARKED: T9-proper (Playwright — first run dna-guardian for an ALIGNED verdict) · T10 pipeline hardwire
+ · later stages (T3/4/5/7/8). BUILD-AUDIT a-e + activation block-test; DONE = Governor sees it + clean.
+This is the "ONE clean thing, shown" the Governor demanded — and it is the compass (goal) at once.

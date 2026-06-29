@@ -91,6 +91,31 @@ TASK (Governor rule: undefined pipeline = task; missing checklist = task).
 - T5 [P2] Connectivity map + per-part corespine-mapping step (extend core-spine-creator).
 - T6 [done] per-part corespine assignment mechanism exists; wire into the step.
 
+## 5b. POST-SONNET-REVIEW (corrected statuses + build order — ratified)
+Sonnet reviewed against the real codebase (sonnet-turn.md @ abfa0900). Corrections accepted:
+- T1: PARTIAL-EARLY (~30%, not 50%) — SAGD + root-cause exist; CDS 5-Q, resolution signal, goal_id MISSING.
+- T2: ADVISORY only (validate-consolidation-pass exits 0 unconditionally) — not blocking.
+- T6: OVER-CLAIMED — corespine mechanism exists but NOT wired into build flow.
+- T7/T8: ~25% each — 4 scattered sources, no single runnable checklist.
+- T9: MISSING (confirmed) — no Playwright/Puppeteer; WebFetch=text-only; Playwright MCP QUARANTINED
+  (needs dna-guardian ALIGNED verdict). Governor manual screenshots = current see-it path.
+- T10: MISSING as pipeline (doc only; no hooks/validators enforce).
+- GAPS: UX-LAW-7 state-persistence (shell loses Step-3 data on back-nav, no localStorage) ·
+  goal_id backpack slot documented-not-enforced · Stage-9 closure has no trigger.
+
+ACCEPTED PCR DELTAS: T1=30% · T9 SPLIT into T9-lite (WebFetch-text + Governor-screenshot, NOW) +
+T9-proper (Playwright, AFTER dna-guardian) · Stage-3.5 supported · goal_id built FIRST (cheap, key
+invariant) · UX-LAW-7 folded into the shell/T7 build (localStorage).
+
+REFINED BUILD ORDER (goal-first, one-clean-thing, see-it, ratify-before-advance):
+  B1 goal_id + goal-record schema (from CDS CS-GOAL §7 JSON) — the invariant, foundational.
+  B2 T1 GOAL-DEFINITION STEP = the FIRST journey stage, built CLEAN + single-page, CDS rigor
+     (felt-need 5-Q · single sentence · observable resolution signal) + UX-LAW-7 state-persistence.
+     This is the ONE clean thing to SHOW the Governor (compass + first product screen, converged).
+  B3 T9-lite see-it: Governor screenshot + WebFetch text-check as BUILD-AUDIT(g).
+  B4 STOP. Show Governor. Ratify. THEN the next stage.
+  PARKED: T9-proper (Playwright + dna-guardian) · T10 (pipeline hardwire) · T3/4/5/7/8 (later stages).
+
 ## 6. DECISION LEDGER
 - CHOSEN: declare ONE canonical goal-first process (build=product, create=prevent-mirror) + an
   ordered task list; build T1 (goal) + T10 (pipeline) first; T9 (see-it) before any UX/UI canvas.

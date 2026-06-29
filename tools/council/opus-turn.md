@@ -623,3 +623,23 @@ Review accepted (all corrections + PCR deltas). NOW BUILD, in this order, then S
 PARKED: T9-proper (Playwright — first run dna-guardian for an ALIGNED verdict) · T10 pipeline hardwire
  · later stages (T3/4/5/7/8). BUILD-AUDIT a-e + activation block-test; DONE = Governor sees it + clean.
 This is the "ONE clean thing, shown" the Governor demanded — and it is the compass (goal) at once.
+
+## 25. ROUND 18 — B1 ADDENDUM: field-wiring gate now governs the goal-record schema
+
+A new BLOCKING gate landed (validate-field-wiring, c4f2a2cc) — borrowed + reproduced from the CSP
+S346 package ("floater rule", FIELD level), the one genuine delta vs what we already have. It enforces
+that every consequential data field declares save -> read -> influence; a field saved+read but
+influencing NO output is a DEAD FIELD (EXISTS!=ACTIVE for data). It closes the canonical-build gap
+"goal_id backpack slot documented-not-enforced".
+
+B1 REQUIREMENT (added): the goal-record schema you build MUST carry a top-level `field_wiring:` map —
+one entry per consequential field (goal_id, resolution_signal, governor_signature, closure_record),
+each declaring:
+  save:      where the value is persisted        (e.g. "POST /api/goal -> goal-record.json")
+  read:      where it is read back               (e.g. "GoalStep.tsx loads from localStorage")
+  influence: what output/behavior it changes      (e.g. "goal_id tags every pipeline part")
+Then add the schema's path to tools/data/field-wiring-targets.txt — the gate flips from armed
+(vacuous PASS) to ENFORCING on your schema. If any field has no influence, the build BLOCKS until
+you either wire it or drop the field. This makes UX-LAW-7 state-persistence provable, not asserted:
+a saved field that nothing reads/renders will fail the gate. Proof the gate works: field-wiring-
+block-test.sh 3/3 (dead-field -> exit 1; wired -> exit 0). Reference: feedback_field_wiring_save_read_influence.

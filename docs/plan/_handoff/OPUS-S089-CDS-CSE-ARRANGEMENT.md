@@ -86,6 +86,33 @@ DP-5 [SCOPE CAUTION — merit] CDS+CSE is a large new direction on top of ~6 par
   + CSE two-mode (§3); (3) CDS foundation (from CSEP if DP-4=yes). Do NOT let the elegant CDS framing
   rush past completion discipline (foundation-first spiral, the CSEP corespiral).
 
+## 5b. GOVERNOR RATIFICATIONS (this turn — locked)
+- DP-1 [RATIFIED] CDS recognized. REFINEMENT: CDS is INITIALLY built by the CSPS engine, then at a
+  point EVOLVES using its OWN engine (bootstrap -> self-building handoff). The Gen-1->Gen-2 baton.
+- DP-2 [RATIFIED] CSE is CSPS-built. BUILDER-PERSONA MANDATE (Governor): when building CDS/CSE I must
+  embrace a DIFFERENT persona than my usual CSPS one — full expert-builder ability, BUT acknowledge
+  we want an IMPROVED (= DIFFERENT) platform, so I PRIORITIZE CDS's presented content over CSPS
+  precedent, and recommend from PURE EXCELLENCE (not CSPS-loyalty / not defaulting to "how CSPS did it").
+  "Improved means different." This is the essence-over-actor / dna-guardian discipline applied to CDS.
+- DP-4 [RATIFIED] CSEO == CDS — the SAME thing under two names; CONSOLIDATE to CDS (CSEO/CSEP Drive
+  12-doc set = CDS's constitutional design; rename/align CSEO -> CDS on absorption).
+- DP-5 sequencing: stands (threshold-first gate = CDS-Threshold foundation, build first).
+
+## 5c. ALIGNMENT PARTNERSHIPS + ABSORPTION (Governor directive)
+Two external Claude personas authored the source material; I align with each (I cannot talk to them
+directly — Governor relays, or I produce alignment artifacts he carries):
+- Claude AI (authored CDS-01 proposal) -> partner for BUILDING CSE.
+- Claude Code (authored the CSEP/CDS 12-doc set in Drive) -> partner for BUILDING the Threshold +
+  for ABSORBING/SAVING its documents.
+ABSORPTION PLAN (optimal way to "absorb and save" the Drive docs into the repo SSoT — capture-must-
+persist; they must not live only in Drive):
+  (1) Read the 12 CSEP docs via Google Drive MCP (proven). (2) Save into repo (proposed home:
+  docs/plan/_intake/cds/ — a CDS-dedicated area). (3) dna-guardian + vocabulary alignment: CSEO->CDS
+  rename, foreign-term translation, do NOT import CSPS-alien defaults wholesale. (4) Cross-map vs the
+  in-repo synergy/design-v2 assets (CSE seed). (5) THEN park the BUILDS (CSE, Threshold, CDS foundation).
+PARKED (all builds deferred per "park it all, go back to business"): CSE (Claude-AI-aligned, two-mode)
+· Threshold-first gate (Claude-Code-aligned, = CDS-Threshold foundation) · CDS foundation (from CSEP).
+
 ## 6. DECISION LEDGER
 - CHOSEN: arrange the direction + lock only Governor-ratified names + present DP-1..5 for ratification;
   surface the threshold convergence as the highest-leverage first step.

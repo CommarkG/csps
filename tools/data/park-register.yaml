@@ -2620,3 +2620,26 @@ entries:
       reasoning: research-before-build is high-merit but must be lightweight + escape-hatched + feed existing stores; mandate the few highest-value gates, grow by proven value.
     decision_back_ref: Governor S089 "research should become mandatory"; Sonnet research-pipeline relay (sonnet-turn.md); Opus trim.
     retrieve_when: Governance pass; build research-register + the 3 gates + Haiku research-trigger.
+  - id: PARK-S089-CDS-CSE-DIRECTION
+    lane: obligation
+    title: CDS (Gen-2 platform) + CSE (Core Symbiosis Engine) direction — the consolidated treasure
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: 'PARKED per Governor "absorb + park, go back to business". Owner: Opus(arrange/align) + Sonnet/Claude-Code(build) + Claude-AI(CSE co-design). Trigger: after current UX/SAGD + threshold-first work, OR when Governor opens the CDS arc.'
+    the_treasure: '(1) the CONSOLIDATED IMPROVED setting of everything built this session (the prevention/learning principles, FVC, SAGD, shell, threshold-first, synergy) + (2) an interesting suggestion for building a NEW CLEAN platform (CDS) leveraging it all. Full arrangement: docs/plan/_handoff/OPUS-S089-CDS-CSE-ARRANGEMENT.md.'
+    ratified: 'CDS=Core Driven Solutions (Gen-2, built by CSPS engine then evolves on its OWN engine). CSE=Core Symbiosis Engine (compare/share/mutual-co-evolve bridge, CSPS-built, 2-mode: episodic Playground + CONTINUOUS mutual-evolution). The-CDS-Threshold=boundary gate. CSEO==CDS (consolidate to CDS).'
+    builder_persona_mandate: 'When building CDS/CSE, embrace a DIFFERENT persona than the usual CSPS one: full expert-builder ability, but PRIORITIZE CDS presented content over CSPS precedent; recommend from PURE EXCELLENCE not CSPS-loyalty. "Improved means different." (essence-over-actor / dna-guardian applied to CDS.)'
+    alignment_partnerships: Claude AI (authored CDS-01) -> co-build CSE. Claude Code (authored CSEP/CDS 12-doc Drive set) -> co-build the Threshold + absorb its documents. Opus cannot talk to them directly; Governor relays or Opus produces alignment artifacts.
+    absorption_plan: 'Read 12 CSEP docs via Google Drive MCP (folder 1JB4YNGculYYeE8xJ-myecwHb7J0etFWl) -> save into repo docs/plan/_intake/cds/ -> dna-guardian + vocab align (CSEO->CDS rename, no CSPS-alien defaults) -> cross-map vs in-repo synergy/design-v2 assets -> then build. CAPTURE-MUST-PERSIST: the docs are the treasure; they must not live only in Drive.'
+    sequencing: '(1) threshold-first gate = CDS-Threshold foundation (one build, triple payoff: CSPS intake + CSE boundary + CDS); (2) CSE Orchestrator joint-define + 2-mode; (3) CDS foundation from CSEP.'
+    dedup_checked: 'ENHANCE not fork: CSE composes existing sandbox+council+CIE+threshold+synergy assets (PARK-S089-APP-COMPARISON-SYNERGY-CONSOLIDATION, DESIGN-v2, SHELL-SYNERGY-SHARE, BUILD-WIZARD, SELF-BUILDING, PLATFORM-EMBEDDEDNESS). CDS = the BUILD-WIZARD/self-building direction made concrete. No parallel system.'
+    decision_ledger:
+      chosen: arrange + lock ratified names + park the whole direction with alignment-partnerships + absorption plan; build nothing now
+      rejected: start building CSE/Threshold/CDS now (Governor said park + go back to business; UX/threshold work is in flight)
+      reasoning: the treasure is captured + cold-resume-ready; building belongs to a dedicated arc with the alignment partners, after current work.
+    decision_back_ref: Governor S089 ratified DP-1..5 + "absorb all + park it, go back to business; build CSE w/ Claude-AI, Threshold w/ Claude-Code, absorb the docs w/ Claude-Code".
+    retrieve_when: 'After current UX/SAGD + threshold-first; or when Governor opens the CDS arc. First step: absorb the CSEP docs (absorption_plan).'

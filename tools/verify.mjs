@@ -2478,6 +2478,21 @@ const CYCLES = [
     },
   },
   {
+    // S089 §20 THRESHOLD-FIRST Gate — fixture validator for the deterministic mandate gate rule
+    // "new-concept + active-mandate → QUEUE-OR-PIVOT" (advisory, not blocking at runtime)
+    // The fixture VALIDATOR itself is BLOCKING (if gate logic is broken, platform has no mandate gate)
+    // DONE = fixture_pass_rate=100% AND QUEUE-OR-PIVOT route present in router
+    run_tier: 'STANDARD',
+    name: 'threshold_mandate_gate',
+    command: 'node tools/validators/validate-threshold-mandate-gate.mjs',
+    parse_output: (out) => {
+      const m = out.match(/pass=(\d+)\s+fail=(\d+)\s+fixtures=(\d+)/);
+      const r = out.match(/fixture_pass_rate=(\d+)%\s+status=(\S+)/);
+      const blocking = (r && r[2] === 'FIXTURE_FAILURE') ? 1 : 0;
+      return { ...(m ? { pass: Number(m[1]), fail: Number(m[2]), fixtures: Number(m[3]) } : {}), ...(r ? { fixture_pass_rate: Number(r[1]), status: r[2] } : {}), blocking, advisory: 0 };
+    },
+  },
+  {
     // S086 PARK-040 — Classifier accuracy: runs threshold-router over golden-set entries,
     // reports accuracy % per axis. BLOCKING if < 50% on any axis (systematic mis-rule).
     // ADVISORY if < 80% or any misclassification. EXTENDED: on-demand + --extended.

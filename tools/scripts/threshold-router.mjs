@@ -79,6 +79,7 @@ const ROUTES = {
   PLACE_NOT_FOUND: 'PLACE-NOT-FOUND:pending-node', // class 10 — explicit catch-all (never silent)
   VAULT_DEFER: 'VAULT:defer',  // class 6 — external content/research
   CIP_STAGING: 'CIP:staging',  // class 5 — proposal/consequential
+  QUEUE_OR_PIVOT: 'QUEUE-OR-PIVOT', // class 1-advisory — new concept during active mandate (S089 §20 THRESHOLD-FIRST gate)
 };
 
 // Criticality tiers per PROTO-S068-PART-2 + SRE-class severity model
@@ -110,7 +111,7 @@ const CRITICALITY = {
  * CRITICALITY at ingress: CRITICAL_PLUS → CRITICAL → SHEDDABLE_PLUS → SHEDDABLE
  *   drives PE ordering + load-shedding (brownout sheds below CRITICAL).
  */
-export function routeInput({ type, spine, urgency, scope, content = '', shapeTier = false, brownout = false }) {
+export function routeInput({ type, spine, urgency, scope, content = '', shapeTier = false, brownout = false, mandate_active = false, mandate_relation = null }) {
   // ─── FAST PATH — D1 (in-memory, no deep routing) ──────────────────────────
   // Case 1: SHAPE-TIER fast-path: conversational inputs bypass full classification (Class 8)
   if (shapeTier) {
@@ -187,10 +188,15 @@ export function routeInput({ type, spine, urgency, scope, content = '', shapeTie
   };
   const intent = intentMap[type] || 'unknown'; // 'unknown' → place-not-found (not 'directive')
 
-  // Axis 4: mandate-relation (simplified heuristic)
-  let mandateRelation = 'in-mandate';
-  if (/governor.*#3|ux.*journey|threshold.*core|app.*#2/i.test(content)) mandateRelation = 'orthogonal';
-  else if (/adjacent|carry-forward|optional/i.test(content)) mandateRelation = 'adjacent';
+  // Axis 4: mandate-relation
+  // mandate_relation param overrides heuristic — used when Haiku pre-classifies (S089 §20)
+  // or when fixture tests need to test the routing logic directly.
+  // Heuristic is a fallback; Haiku classification is the production path.
+  let mandateRelation = mandate_relation ?? 'in-mandate';
+  if (!mandate_relation) {
+    if (/governor.*#3|ux.*journey|threshold.*core|app.*#2/i.test(content)) mandateRelation = 'orthogonal';
+    else if (/adjacent|carry-forward|optional/i.test(content)) mandateRelation = 'adjacent';
+  }
 
   // ─── ROUTING DECISIONS — 10-class exhaustive (M7 S071, expandable) ─────────
   // Order matters: more specific checks first.
@@ -224,11 +230,29 @@ export function routeInput({ type, spine, urgency, scope, content = '', shapeTie
     rationale = 'Governor directive + constitutional scope → opus-turn/council (C12/C13 gate). CRITICAL_PLUS.';
   }
   // CLASS 1: Governor directive (non-constitutional)
+  // THRESHOLD-FIRST GATE (S089 §20 / round-5 PCR / PARK-S089-THRESHOLD-INLINE-GATE):
+  // mandateRelation is computed above (L191-193) but was previously IGNORED here — that was the bug.
+  // Now: if mandate is active AND directive appears orthogonal → ADVISORY QUEUE-OR-PIVOT.
+  // Escape hatch: "PIVOT" or "PIVOT:<tag>" in content → user explicitly overrides → PROCESS-NOW.
+  // Haiku classifies the semantic "is this new?" — the deterministic rule below handles the gate.
   else if (type === 'governor_directive' || intent === 'directive') {
-    route = ROUTES.PROCESS_NOW;
-    criticality = CRITICALITY.CRITICAL_PLUS;
-    input_class = 'governor_directive';
-    rationale = 'Governor directive → PROCESS-NOW in active mandate. CRITICAL_PLUS.';
+    const hasPivotEscape = /\bPIVOT\b/i.test(content);
+    const isOrthogonal = (mandateRelation === 'orthogonal' || mandateRelation === 'new-request');
+    // Deterministic rule: new-concept + active-mandate → QUEUE-OR-PIVOT (advisory, not blocking)
+    if (mandate_active && isOrthogonal && !hasPivotEscape) {
+      route = ROUTES.QUEUE_OR_PIVOT;
+      criticality = CRITICALITY.CRITICAL;
+      input_class = 'governor_directive';
+      rationale = 'THRESHOLD-FIRST GATE: directive appears orthogonal to active mandate → advisory QUEUE-OR-PIVOT. ' +
+        'AI should flag: is this in-mandate, or should we queue/pivot? Escape: include "PIVOT" to proceed immediately.';
+    } else {
+      route = ROUTES.PROCESS_NOW;
+      criticality = CRITICALITY.CRITICAL_PLUS;
+      input_class = 'governor_directive';
+      rationale = hasPivotEscape
+        ? 'Governor directive with PIVOT escape hatch → PROCESS-NOW (mandate gate bypassed intentionally). CRITICAL_PLUS.'
+        : 'Governor directive → PROCESS-NOW (in-mandate or no active mandate). CRITICAL_PLUS.';
+    }
   }
   // CLASS 6: External content / research (VAULT_DEFER)
   else if (type === 'external_research' || /EXT-ID|uploaded|external.research|paste below/i.test(content)) {

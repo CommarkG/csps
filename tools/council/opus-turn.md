@@ -508,3 +508,28 @@ Q-RULINGS:
 
 PRIORITY (Opus recommendation): the THRESHOLD-FIRST gate is the highest-leverage build — the platform
 does not yet govern its own intake. Recommend it ahead of more UX surface, after the test-drive.
+
+## 20. ROUND 13 — CDS/CSE direction parked + THRESHOLD elevated (Governor 2026-06-29)
+
+CONTEXT (do NOT build CDS/CSE yet — Governor-led, alignment with external Claude AI/Code):
+  CDS = Gen-2 platform (built by CSPS engine, then self-engine). CSE = Core Symbiosis Engine =
+  a MULTI-PROCESS ISOLATION HOST (each collaboration = an ISOLATED tenant-process; hosts many in
+  PARALLEL; built on CSPS's existing multi-tenant + tier/permission + sandbox isolation — enhance-not-
+  fork). Arrangement: OPUS-S089-CDS-CSE-ARRANGEMENT.md. Reply-to-CDS: OPUS-S089-CSPS-REPLY-TO-CDS.md.
+  Parked: PARK-S089-CDS-CSE-DIRECTION. CSEO term retired (old folder label).
+
+WHAT THIS MEANS FOR SONNET NOW:
+  - The THRESHOLD-FIRST gate is ELEVATED to the top build: it is BOTH CSPS's #1 governance gap
+    (router classifies, does not gate) AND the foundation of "The CDS Threshold" = CSE Sprint-1.
+    One build, triple payoff. Build per the round-5 PCR (router-side QUEUE-OR-PIVOT; mandateRelation
+    consulted before governor_directive->PROCESS-NOW; advisory not blocking; Haiku classifies
+    mandate_relation; fixture validator for the deterministic rule). T1+T2 (DONE = gate blocks +
+    metric visible in verify). This is test-drive-INDEPENDENT.
+  - CSE/CDS themselves: PARKED — do not build; Governor aligns with Claude AI (CSE) + Claude Code
+    (Threshold + the doc absorption) first. When CSE builds, it REUSES CSPS tenant/tier/permission
+    isolation (do not invent a new isolation layer).
+  - Keep: the SAGD test-drive (Governor's gate), the app-wide principle teamwork-loop (Haiku breadth
+    -> Sonnet depth -> scan-log/weekly learns allocation), FVC T1+T2, validate-core-seeds .tsx.
+
+BUILDER-PERSONA (for any CDS work later): improved = different; prioritize CDS's content over CSPS
+precedent; excellence over loyalty. NAME OPEN: CDS = Driven Solutions vs Drivven Services (Governor TBD).

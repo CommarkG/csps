@@ -73,13 +73,13 @@ build, triple payoff. Recommend it as the first concrete step regardless of the 
 
 ## 5. DECISION POINTS FOR THE GOVERNOR (PCR — your ratification)
 DP-1 [DRAFT] CDS recognized as the Gen-2 platform built by the CSPS engine (CDS-01 Consensus-1).
-  Opus PCR: MERIT-yes — this is the parked self-building / build-wizard / CSEO direction made concrete.
+  Opus PCR: MERIT-yes — this is the parked self-building / build-wizard / the CDS design direction made concrete.
 DP-2 [DRAFT] CSE is a CSPS-built solution (CDS-01 Consensus-2). Opus PCR: MERIT-yes WITH honesty —
   CSE composes existing CSPS mechanisms (§3); "compose+extend" is still a real build, not free.
 DP-3 [RATIFIED] Vocabulary locked (CDS/CSE/CDS-Threshold) — done (§1).
-DP-4 [AMBIGUITY — needs your call] Is CDS's constitution = the CSEO/CSEP 12-doc Drive design
+DP-4 [AMBIGUITY — needs your call] Is CDS's constitution = the the CDS design docs (CSEP files) 12-doc Drive design
   (Core Self-Evolving Platform: 00-background..12-pipelines incl 06-corespiral, 08-depth-modularity)?
-  If YES, CDS's foundation is already designed — import + align. If NO, clarify how CSEO relates to CDS.
+  If YES, CDS's foundation is already designed — import + align. If NO, clarify how the CDS design relates to CDS.
 DP-5 [SCOPE CAUTION — merit] CDS+CSE is a large new direction on top of ~6 parked threads + the open
   UX work + the threshold gap. Recommend SEQUENCING: (1) build the threshold-first gate (= CDS
   Threshold foundation, §4) — it pays off immediately; (2) define CSE Orchestrator jointly (CDS-01 §4)
@@ -94,8 +94,8 @@ DP-5 [SCOPE CAUTION — merit] CDS+CSE is a large new direction on top of ~6 par
   we want an IMPROVED (= DIFFERENT) platform, so I PRIORITIZE CDS's presented content over CSPS
   precedent, and recommend from PURE EXCELLENCE (not CSPS-loyalty / not defaulting to "how CSPS did it").
   "Improved means different." This is the essence-over-actor / dna-guardian discipline applied to CDS.
-- DP-4 [RATIFIED] CSEO == CDS — the SAME thing under two names; CONSOLIDATE to CDS (CSEO/CSEP Drive
-  12-doc set = CDS's constitutional design; rename/align CSEO -> CDS on absorption).
+- DP-4 [RATIFIED] the CDS design == CDS — the SAME thing under two names; CONSOLIDATE to CDS (the CDS design docs (CSEP files) Drive
+  12-doc set = CDS's constitutional design; rename/align the CDS design -> CDS on absorption).
 - DP-5 sequencing: stands (threshold-first gate = CDS-Threshold foundation, build first).
 
 ## 5c. ALIGNMENT PARTNERSHIPS + ABSORPTION (Governor directive)
@@ -107,11 +107,22 @@ directly — Governor relays, or I produce alignment artifacts he carries):
 ABSORPTION PLAN (optimal way to "absorb and save" the Drive docs into the repo SSoT — capture-must-
 persist; they must not live only in Drive):
   (1) Read the 12 CSEP docs via Google Drive MCP (proven). (2) Save into repo (proposed home:
-  docs/plan/_intake/cds/ — a CDS-dedicated area). (3) dna-guardian + vocabulary alignment: CSEO->CDS
+  docs/plan/_intake/cds/ — a CDS-dedicated area). (3) dna-guardian + vocabulary alignment: the CDS design->CDS
   rename, foreign-term translation, do NOT import CSPS-alien defaults wholesale. (4) Cross-map vs the
   in-repo synergy/design-v2 assets (CSE seed). (5) THEN park the BUILDS (CSE, Threshold, CDS foundation).
 PARKED (all builds deferred per "park it all, go back to business"): CSE (Claude-AI-aligned, two-mode)
 · Threshold-first gate (Claude-Code-aligned, = CDS-Threshold foundation) · CDS foundation (from CSEP).
+
+## 5d. FOLDER RENAME + CSE ISOLATION ARCHITECTURE (Governor 2026-06-29)
+- Drive folder renamed: "CSE - Core Symbiosis Engine - developed with Claude Code" + "CDS - new
+  platform". "CSEO" is RETIRED (was only the old folder label).
+- NAME OPEN: CDS expansion = "Core Driven Solutions" (CDS-01) vs "Core Drivven Services" (latest) —
+  Governor to confirm; acronym CDS stable.
+- OLD docs subfolder (reference only, NOT canonical): 1S7HYxXdYK0mV7GxdaBtlSNZ8IuhA1EKo.
+- NEW Claude-AI docs (to absorb when placed): 1wdQJKRCctG_1WkSmh2GPTVbRknaa2cio.
+- CSE ARCHITECTURE (Governor): CSE handles each collaboration as an ISOLATED process AND hosts other
+  processes IN PARALLEL — built on CSPS tier + permission + tenant-isolation (RLS). Multi-tenant
+  isolation reused, not bespoke. Detail: OPUS-S089-CSPS-REPLY-TO-CDS.md §3.
 
 ## 6. DECISION LEDGER
 - CHOSEN: arrange the direction + lock only Governor-ratified names + present DP-1..5 for ratification;

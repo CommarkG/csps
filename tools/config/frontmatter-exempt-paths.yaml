@@ -74,6 +74,9 @@ exemptions:
   - pattern: "_intake/contexts/.*EXT-[^/]+\\.md$"
     reason: "Routed-context files inherit via reference; canonical frontmatter on the processed/ folder."
     added_session: S023
+  - pattern: "_intake/cds/"
+    reason: "External CDS (Core Driven Solutions) source set authored by Claude AI/Code — absorbed verbatim for review/extraction; CSPS frontmatter + vocab-alignment applied only on promotion out of _intake. VAULT_DEFER (external content)."
+    added_session: S089
 
   # Generated slice directories
   - pattern: "pillar-0-governance/behavioral-contracts/"

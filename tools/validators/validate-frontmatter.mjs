@@ -118,6 +118,10 @@ const EXEMPT_PATH_GLOBS = [
   // folder; routed-context files inherit via reference. Match any depth under _intake/contexts/
   // with EXT- prefix on the file. Per _intake/manual-protocol.md.
   /_intake[\/\\]contexts[\/\\].*EXT-[^\/\\]+\.md$/,
+  // S089: external CDS (Core Driven Solutions) source set — verbatim intake for review/extraction;
+  // CSPS frontmatter applies only on promotion out of _intake. VAULT_DEFER. (README.md has its own
+  // frontmatter; exemption is harmless for it.) Mirror in tools/config/frontmatter-exempt-paths.yaml.
+  /_intake[\/\\]cds[\/\\]/,
   // Governor prompts vault — per-session logs use custom frontmatter (session_date / chat_session_id /
   // total_substantive_prompts) per B_GOVERNOR_PROMPTS schema; not the universal CSPS frontmatter shape.
   /_handoff[\/\\]VAULT[\/\\]governor-prompts[\/\\]/,

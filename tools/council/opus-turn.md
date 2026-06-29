@@ -532,4 +532,23 @@ WHAT THIS MEANS FOR SONNET NOW:
     -> Sonnet depth -> scan-log/weekly learns allocation), FVC T1+T2, validate-core-seeds .tsx.
 
 BUILDER-PERSONA (for any CDS work later): improved = different; prioritize CDS's content over CSPS
-precedent; excellence over loyalty. NAME OPEN: CDS = Driven Solutions vs Drivven Services (Governor TBD).
+precedent; excellence over loyalty. NAME LOCKED: CDS = Core Driven Solutions.
+
+## 21. ROUND 14 — TOP UX PRIORITY: COLLAPSE THE SCATTER (Governor confused by 5 pages)
+
+Governor is confused by the journey scattered across ~5 pages — and he is RIGHT: the route
+consolidation (round-12 §14-B) was RATIFIED but NEVER BUILT. The 7 journey routes still exist as
+separate pages. We have been building richness INTO the scatter (FVC/pageDNA across 7 pages) instead
+of collapsing it first — that made it worse.
+
+DO THIS FIRST (test-drive-INDEPENDENT — it is routing/structure, not felt-depth):
+  1 `/` = the ONLY journey frame; the 4 steps render INLINE (Describe -> Classify -> Pipeline -> Wizard).
+  2 REDIRECT journey-trunk + journeys + journey -> `/`.
+  3 DEMOTE developer-journey + user-journey + wizard + journey-core-spine to clearly-secondary
+    "go deeper" modules (chip links, not primary flow).
+  4 Verify: opening `/` walks ONE continuous flow; the "5 pages" are gone as separate destinations.
+  BUILD-AUDIT a-d + activation block-test (redirects actually redirect; modules reachable only as
+  secondary). This OUTRANKS more FVC surface — it removes the Governor's actual confusion.
+SAGD test-drive (felt-depth e7) stays parallel; the scatter-collapse does NOT need it.
+ALSO note: validate-threshold-mandate-gate.mjs (your THRESHOLD-FIRST gate) is built but NOT wired —
+finish it: wire into verify.mjs + the router-side QUEUE-OR-PIVOT enforcement (round-13 elevated build).

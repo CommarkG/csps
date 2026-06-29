@@ -1,0 +1,67 @@
+# tools/data/goal-record-schema.yaml
+# Goal Record Schema — from CDS CS-GOAL-001 §7
+# The invariant that EVERY pipeline part, plan, and build step traces to.
+#
+# CSPS builds: this schema is declared here; implemented in Shell Step 1 (Goal-Definition stage)
+# Goal records are stored: localStorage (client) + downloaded as YAML when signed
+# Future: persist to API/DB when backend is ready
+#
+# Governor S089 / Opus §24 — "B1: the invariant everything traces to"
+
+meta:
+  schema_version: "1.0"
+  created: "2026-06-29"
+  session: S089
+  source: "CDS CS-GOAL-001 §7 (adopted + CSPS-translated)"
+
+goal_record:
+  # Identity
+  goal_id: string          # "goal-{timestamp}" — unique, generated at creation
+  created_at: date         # ISO string
+
+  # The goal itself
+  goal_statement: string   # ONE SENTENCE, no "and" joining two goals
+                           # Must describe a CHANGE FOR A PERSON, not a feature
+                           # BAD: "Build an app that tracks invoices"
+                           # GOOD: "Yariv sends one reminder and gets paid without awkward follow-ups"
+
+  # Felt-need confirmation (from CDS 5-Q test)
+  felt_need:
+    who_feels_it: string   # ONE real type of person — not "users" or "customers"
+    what_they_feel: string # The unmet experience — not features, not solutions
+    is_confirmable: boolean # Can you confirm this is real WITHOUT building? (interview/survey/observe)
+    survives_alternatives: boolean # If a completely different solution appeared, is the goal still valid?
+    is_free_of_solutions: boolean  # Goal statement has NO tech/feature language ("app", "system", "AI", etc.)
+
+  # Resolution signal (observable by a third party)
+  resolution_signal: string
+    # "The goal is met when ___" — something a third person outside the team can observe and confirm
+    # BAD: "When the app is launched"
+    # GOOD: "When Yariv reports he hasn't had an awkward follow-up conversation in 30 days"
+
+  # Scope (maps to SAGD depth / CDS scope tiers)
+  scope: platform | pipeline | session
+    # platform = changes how the whole platform works
+    # pipeline = one build cycle (weeks-months)
+    # session = achievable in 1-2 sessions (days)
+
+  # Ratification state
+  ratification_state: draft | ratified | closed
+    # draft: created, not yet signed
+    # ratified: Governor signed ("I confirm this is the right goal")
+    # closed: resolution_signal confirmed MET — goal achieved and verified
+
+  # Governance
+  governor_signature: string | null   # Name/session of who signed it
+  ratified_at: date | null
+
+  # Closure (filled when ratification_state = closed)
+  closure_record:
+    met: boolean
+    evidence: string       # What was observed that proves the resolution_signal was met
+    closed_at: date
+    notes: string          # What else changed; what we learned
+
+  # Traceability (everything that traces back to this goal)
+  builds_tracing_here: list  # [commit_sha, plan_item_id, park_item_id, ...]
+  drift_notes: list           # Observations where the build drifted from the goal

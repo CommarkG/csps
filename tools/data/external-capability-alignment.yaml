@@ -17,14 +17,53 @@ schema_anchor: tools_templates_meta
 capabilities:
   - id: playwright-mcp
     kind: mcp
+    name: "Playwright MCP (headless browser automation)"
     source: "@playwright/mcp"
-    version: "@latest (HARDENING: pin a version — npm cert blocked verify-pin S088)"
-    native_defaults: ["full browser control", "can navigate/click/type", "persistent profile by default"]
+    version: "@latest (HARDENING: pin a concrete version — npm cert blocked verify-pin S088; @latest lets the reviewed-at-HEAD verdict drift)"
+    verdict: ALIGNED-WITH-TRANSLATION
+    csps_role: "C6 RENDERS-IN-PRODUCTION evidence — load OUR live routes, capture screenshot + DOM/a11y tree as build-audit CLAIMS (CS9), feed VALD. Ends 'building blind'."
+    native_defaults:
+      - "unbounded navigation — can load ANY domain (auth-walled, intranet, vendor consoles)"
+      - "state mutation — click/type/fill/form-submit can WRITE to the loaded page"
+      - "arbitrary JS execution via browser_evaluate (unsandboxed, page context)"
+      - "screenshot/DOM framed as 'the result' (truth), not as evidence"
+      - "persistent browser profile by default (shared cookies/auth/storage across runs)"
+    translations:
+      - from: "browser session / page render"
+        to: "build-audit evidence-gathering run (OPER); output is a CLAIM feeding VALD"
+      - from: "screenshot / DOM snapshot = the result"
+        to: "evidence artifact under verify-before-assume; never a completion proof alone (CS9)"
+      - from: "navigate to any URL"
+        to: "navigate-to-own-deploy-only; domain allow-list = CSPS Vercel deploys"
+      - from: "click / type / evaluate (interact)"
+        to: "SUPPRESSED — maps to nothing; read-only is the entire contract"
+      - from: "the page rendered = done"
+        to: "DONE = route 200 AND DOM/a11y asserts expected provenance AND assertion independently checked; pixel is dim-e input, not the seal"
     neutralizations: ["--headless", "--isolated (no persistent profile)", "restrict to read-only nav+screenshot+DOM via a verification-only wrapper agent"]
-    csps_role: "C6 RENDERS-IN-PRODUCTION gate — load live routes, assert 200 + DOM + provenance"
-    verdict: pending-review
-    reviewer: null
-    reviewed_at_head: null
+    guardrails:
+      - "domain allow-list: ONLY CSPS-owned deploys (e.g. https://csps-playground.vercel.app/*); reject any other host"
+      - "read-only: navigate + screenshot + read DOM/accessibility-tree ONLY"
+      - "wrapper/verification-only agent exposes nav+capture+read tools; withholds click/type/fill/evaluate"
+      - "keep --headless --isolated hardwired in .mcp.json (removing --isolated re-imports persistent-profile default)"
+      - "screenshots are EVIDENCE: a green render does NOT close a build; still subject to verify-before-assume"
+      - "HARDENING: pin a concrete @playwright/mcp version; re-review at the pinned HEAD"
+    allowed_use:
+      - "navigate to CSPS-owned deploy URLs"
+      - "capture screenshot of own rendered route (build-audit / dim-e visual evidence)"
+      - "read DOM and accessibility tree of own route to assert content/provenance"
+      - "assert HTTP 200 on own routes"
+    forbidden_use:
+      - "navigate to any non-CSPS-owned domain"
+      - "click / type / fill / submit forms (any state-mutating interaction)"
+      - "browser_evaluate / arbitrary JS execution"
+      - "auth / login flows or anything writing external state"
+      - "treating a screenshot or DOM snapshot as platform TRUTH or as a completion seal"
+    isolation_note: "--headless --isolated SATISFIES CSPS isolation DNA: ephemeral profile, no shared cookies/auth, no cross-run state leak. Correct posture; both flags load-bearing — keep hardwired."
+    blast_assessment: "RAW = write + execute + outward-facing (high blast). TRANSLATED = read-only on own deploys (bounded, low blast)."
+    reviewer: DNA-GUARDIAN (PARK-S088-DNA-GUARDIAN swift kernel)
+    date: 2026-06-29
+    reviewed_at_head: "bc996916"
+    note: "Verdict holds ONLY through the read-only + own-domain-only wrapper. Raw Playwright is QUARANTINE-class (full browser control = write/execute surface). Pin gap is carry-forward HARDENING, non-blocking because runtime guardrails bound blast regardless of version. Activation NOT yet proven — EXISTS≠ACTIVE: planted-violation test (wrapper must REFUSE a click/evaluate) is the open proof."
 
   - id: haiku-scout
     kind: agent

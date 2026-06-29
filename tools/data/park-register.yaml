@@ -2621,6 +2621,9 @@ entries:
     decision_back_ref: Governor S089 "research should become mandatory"; Sonnet research-pipeline relay (sonnet-turn.md); Opus trim.
     retrieve_when: Governance pass; build research-register + the 3 gates + Haiku research-trigger.
   - id: PARK-S089-CDS-CSE-DIRECTION
+    cds_name_locked: 'CDS = Core Driven Solutions (Governor-approved 2026-06-29). Name-open RESOLVED.'
+    cds_sources: 'NEW canonical CDS doc set (Claude AI + Yariv, 57 files / 6 sections: 01 Foundation+Completion 0000-0090 · 02 Constitutional 0100-0220 · 03 Protocol Stack 1000-1090 · 04 Wizard 2000-2060 · 05 Orchestrator 3000-3030 · 06 CDS+Collaboration). LOCAL (directly readable): C:/Users/finky/Desktop/Claude Code/Cds - Core Driven Solutions. DRIVE copies: https://drive.google.com/drive/folders/1wdQJKRCctG_1WkSmh2GPTVbRknaa2cio. OLD version (review/extraction ONLY, do NOT canonize): https://drive.google.com/drive/folders/1S7HYxXdYK0mV7GxdaBtlSNZ8IuhA1EKo. Opus confirmed it can see BOTH local + Drive (2026-06-29).'
+    claude_code_chat: 'Origin chat where the CDS doc set was authored: https://claude.ai/chat/8374929f-4ea7-4048-8147-38218fcd6f4d'
     drive_folders: 'Renamed root: "CSE - developed with Claude Code + CDS new platform". OLD docs (reference, not canonical): 1S7HYxXdYK0mV7GxdaBtlSNZ8IuhA1EKo. NEW Claude-AI docs (absorb when placed): 1wdQJKRCctG_1WkSmh2GPTVbRknaa2cio.'
     cse_architecture: 'CSE = MULTI-PROCESS ISOLATION HOST: each collaboration runs as an ISOLATED process (tenant_id + RLS + tier_permission); hosts MANY in PARALLEL; built on CSPS existing multi-tenant + tier/permission/sandbox isolation (enhance-not-fork, not bespoke). 2 modes per process: episodic Playground + continuous mutual-evolution. Sovereignty by isolation. Detail: OPUS-S089-CSPS-REPLY-TO-CDS.md.'
     name_open: 'CDS expansion unresolved: Core Driven Solutions (CDS-01) vs Core Drivven Services (Governor 06-29). Acronym CDS stable; Governor to confirm.'

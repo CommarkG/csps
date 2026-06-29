@@ -2650,3 +2650,26 @@ entries:
       reasoning: the treasure is captured + cold-resume-ready; building belongs to a dedicated arc with the alignment partners, after current work.
     decision_back_ref: Governor S089 ratified DP-1..5 + "absorb all + park it, go back to business; build CSE w/ Claude-AI, Threshold w/ Claude-Code, absorb the docs w/ Claude-Code".
     retrieve_when: 'After current UX/SAGD + threshold-first; or when Governor opens the CDS arc. First step: absorb the CSEP docs (absorption_plan).'
+  - id: PARK-S089-CANONICAL-BUILD-PROCESS
+    lane: obligation
+    priority: TOP
+    title: The canonical goal-first build process (hardwire + inherit) — the compass
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: 'RATIFIED by Governor S089 (approved all). Owner: Sonnet (build) + Opus (gates). Trigger: NEXT — this supersedes scattered UX work. Doc = docs/plan/_handoff/OPUS-S089-CANONICAL-BUILD-PROCESS.md.'
+    problem: 'Root cause of the scatter/poor-UX: we improvised surface with NO goal, NO defined pipeline, NO ability to SEE the result, NO hardwired process. Building blind + governance-over-product.'
+    the_process: '9-stage goal-first spine (goal -> exists -> journey -> shape-sanity -> back-office -> connectivity+corespine -> reuse -> UX canvas -> UI canvas -> test-drive -> goal-closure), ratified at every gate. ONE spine used twice (our build = the product journey). CREATE=PREVENT mirror (build forward = audit backward). Full: the doc.'
+    tasks: T1 goal-definition (CDS model) [P0] · T10 the pipeline itself / hardwire+inherit [P0] · T9 render-and-view so UX/UI is not blind [P1] · T3 pipeline format [P1] · T7 UX checklist [P1] · T8 UI checklist [P1] · T2 present-exists · T4 back-office · T5 connectivity+corespine · T5b reuse-per-part.
+    hardwire_inherit: 'HARDWIRE: a T1+T2 gate per stage (goal-before-build BLOCK, corespine-assigned, checklist-run, render-seen, goal-closure). INHERIT: goal_id mandatory backpack slot in every part; process referenced from north-star spine + session-open + AGENTS so no build starts off-spine. "make sure it does" = T10.'
+    create_prevent: 'ENHANCED: prevention is the build process AUDITED IN REVERSE (the mirror, CDS Audit-Mirror Principle 7). Every create-gate has a prevent audit-question. Not a bolt-on.'
+    dedup_checked: 'ENHANCE not fork: composes SAGD + CDS CS-GOAL model + core-spine-registry + gradual-build + the test-drive loop + the prevention-learning principles. Supersedes scattered per-page UX work.'
+    decision_ledger:
+      chosen: one canonical goal-first process (build=product, create=prevent), ordered tasks, build T1+T10 first
+      rejected: keep improvising screens with no goal/pipeline (the disaster)
+      reasoning: no compass = scatter; the process IS the fix.
+    decision_back_ref: 'Governor S089: "process must begin with goal definition... draft journey... back-office... corespine mapping... UX then UI then test-drive... extract assumptions into tasks... hardwire + inherit... extract+enhance create and prevent." Approved all.'
+    retrieve_when: NEXT build turn. Start T1 (goal) + T9 (see-it) before any UX/UI canvas.

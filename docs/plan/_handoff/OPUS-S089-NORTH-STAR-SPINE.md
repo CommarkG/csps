@@ -27,6 +27,9 @@ precedent_checked: true
 - `pnpm verify` exit 0; `validate-green-receipt` PASS (tree=c203ec6c @ 2f774045); tree clean.
 - park-register: 100 entries / 82 open / parses OK / guarded by validate-park-register.
 
+## 0b. CANONICAL BUILD PROCESS (read before any build)
+No build starts off-spine. The goal-first build process = docs/plan/_handoff/OPUS-S089-CANONICAL-BUILD-PROCESS.md (goal -> exists -> journey -> back-office -> corespine -> UX -> UI -> test-drive -> closure; ratified at every gate; create=prevent mirror). Ratified Governor S089.
+
 ## 1. OPERATING DOCTRINE — completion-as-ledger (answers the Governor's tension)
 **Completion IS a hidden key to fast progress — but the unit of completion is the LEDGER, not the work.**
 

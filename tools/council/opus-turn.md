@@ -552,3 +552,41 @@ DO THIS FIRST (test-drive-INDEPENDENT — it is routing/structure, not felt-dept
 SAGD test-drive (felt-depth e7) stays parallel; the scatter-collapse does NOT need it.
 ALSO note: validate-threshold-mandate-gate.mjs (your THRESHOLD-FIRST gate) is built but NOT wired —
 finish it: wire into verify.mjs + the router-side QUEUE-OR-PIVOT enforcement (round-13 elevated build).
+
+## 22. ROUND 15 — threshold DONE + 3 new UX laws + scatter sequence + CDS goal insights
+
+THRESHOLD-FIRST GATE: VERIFIED DONE (threshold_mandate_gate wired in verify, QUEUE-OR-PIVOT in router,
+6/6 fixtures, exit 0). The foundational intake-governance gap is CLOSED. (Runtime note: Haiku should
+pre-classify mandate_relation in production — deferred to the Haiku-teamwork loop.) Good work.
+
+NEW UX-DNA LAWS (Governor — engrave into ux-ui-dna.md + add to the lovability rubric):
+  UX-LAW-7 STATE-PERSISTENCE: navigating BACK/forward NEVER loses entered data — the loop remembers.
+    (Governor: "loop has no memory if I go back" — fix it. No re-typing on back.)
+  UX-LAW-8 UNIVERSAL-UPLOAD: file (+camera) upload available in EVERY stage, not just some.
+  UX-LAW-9 ACK + NEXT: every action ALWAYS (1) acknowledges something happened + (2) points to the
+    next step. No silent action; no dead-end. (rubric: fold into e3 honest-state + e4 flow-coherence.)
+
+SCATTER FIX — adopt the Governor's sequence (supersedes round-14 "collapse now"; it is safer):
+  1 WRAP: shell at "/" calls the EXISTING page functions as inline steps/modules — do NOT rebuild.
+  2 REFINE: make the unified flow good (apply UX-LAW-7/8/9 + lovability a-e/e7).
+  3 CONSOLIDATE: once the shell PROVES coverage, redirect old routes (journey-trunk/journeys/journey
+    -> "/") + demote the rest to secondary modules. Do NOT delete a page until the shell wraps it.
+  Early redirects only for pure-duplicate routes; keep module pages until covered.
+
+CDS GOAL-SETTING ENHANCEMENTS (from CDS CS-GOAL-001 — fold into SAGD; "improved = different", CDS's
+goal model is more rigorous than ours, ADOPT it):
+  - FELT-NEED TEST (5 diagnostic Qs) before save: is it a NEED or a disguised SOLUTION? (who feels it /
+    what they feel unmet / no tech-feature in the statement / confirmable WITHOUT building / would a
+    DIFFERENT solution still satisfy). This is SAGD's depth-challenge made concrete.
+  - SINGLE SENTENCE (one need, no "and" joining two). OBSERVABLE RESOLUTION SIGNAL (third-party can
+    confirm met). GOAL TYPES = scope tiers (platform/pipeline/session = SAGD scope bands).
+  - DRIFT + CLOSURE: monitor the resolution signal; CLOSE only when met (the "what happens when
+    finished" we flagged). A pipeline declared done without goal-closure = self-declared done.
+
+CDS DEVELOPER-JOURNEY INSIGHT: CDS makes a RATIFIED GOAL the PREREQUISITE before ANY build ("nothing
+activates without a traceable ratified goal"). Our journey should make goal-ratification (SAGD depth)
+the GATE before the build steps, not just step-3 content. The CDS legs are ordered: Threshold -> Node
+Placement -> Vocab+Wiring -> PE -> Schema -> UX — a clean spine our journey can mirror.
+
+PREVENTION CONCLUSIONS (what went wrong here): OPUS-S089-PREVENTION-LEARNING-PRINCIPLES.md (P-A..P-F) —
+UNIFY-BEFORE-ENRICH, ratified-but-unbuilt limbo, human-gate accumulation, scope-sprawl, loop-no-memory.

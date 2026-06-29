@@ -55,6 +55,32 @@ This standard is itself the highest-value principle; everything below is measure
   result. The meta-standard above + PARK-COMPLETION-DISCIPLINE-METRICS is the fix: no principle is
   "done" until its metric moves.
 
+## PREVENTION CONCLUSIONS — what went wrong HERE (S089 UX scatter), structurally
+Honest, self-included (Opus shares blame — I kept ruling+relaying instead of forcing the build, and
+did not push back hard enough on opening new arcs while the foundation was unfinished).
+- P-A UNIFY-BEFORE-ENRICH: we enriched ~7 scattered journey pages (FVC, pageDNA, SAGD) instead of
+  unifying the FRAME first -> deepened the scatter = the Governor's confusion. PREVENT: a shell/frame
+  must wrap the surfaces BEFORE per-surface enrichment. Hardwire: a scatter-check — if N>1 pages serve
+  ONE journey with no unifying shell, flag/block further per-page enrichment. METRIC: journey-pages-
+  without-shell.
+- P-B RATIFIED-BUT-UNBUILT limbo: the route consolidation was RATIFIED (round-12) then sat UNBUILT for
+  rounds, silently, behind a gate. PREVENT: every ratified STRUCTURAL decision gets a build-or-
+  explicit-defer disposition (completion-as-ledger applied to DECISIONS, not only parks). METRIC:
+  ratified-decisions-without-build-status.
+- P-C HUMAN-GATE BOTTLENECK ACCUMULATION: the SAGD test-drive gated Item-3 for ~6 rounds; we kept
+  building AROUND it. PREVENT: when a human gate blocks a dependency >2 turns, escalate it OR
+  explicitly re-sequence the dependent work — do not silently accumulate behind it. METRIC: turns-
+  blocked-on-human-gate.
+- P-D SCOPE SPRAWL / no WIP limit: new arcs (CDS, CSE, refresh, research, PE-freq) opened while the UX
+  foundation was unfinished. PREVENT: WIP limit + foundation-first; the DIRECTOR must push back on
+  new-arc-opening when the foundation is incomplete (challenge-on-merit on pace, even the Governor's).
+  METRIC: open-arcs vs finished-foundations.
+- P-E LOOP-HAS-NO-MEMORY: going BACK loses entered state. PREVENT: state-persistence across navigation
+  (UX-LAW-7). METRIC: back-nav state-loss.
+- P-F ENGRAVE-NOT-REMEMBER: "fixed going forward" fades. PREVENT: engrave into the file every run reads.
+DEEPEST: the scatter is the symptom of P-A + P-B. The cure is the Governor's own sequence: WRAP a
+shell over existing functions -> REFINE -> CONSOLIDATE (do not enrich or delete until the shell wraps).
+
 ## DECISION LEDGER
 - CHOSEN: extract + persist the principles with HONEST built/designed/parked status + name the
   meta-standard (hardwired+measurable = the completion bar for a principle).

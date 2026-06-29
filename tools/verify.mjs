@@ -2810,6 +2810,28 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // S089: Field-level wiring gate (save -> read -> influence). Borrowed + reproduced from the
+  // CSP S346 collaboration package ("floater rule", FIELD level) — evaluated on merit, rebuilt in
+  // CSPS idiom (external content = claim reproduced, not imported). DISTINCT from floater_escalation
+  // (artifact level). BLOCKS any registered schema whose declared field is saved+read but does NOT
+  // influence output (DEAD FIELD = EXISTS!=ACTIVE for data). Armed; targets seeded empty until the
+  // goal-record schema lands at B1. Prevention class: DEAD-FIELD. Proof: field-wiring-block-test.sh 3/3.
+  {
+    name: 'field_wiring',
+    command: 'node tools/validators/validate-field-wiring.mjs',
+    input_files: [
+      'tools/data/field-wiring-targets.txt',
+      'tools/validators/validate-field-wiring.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const p = out.match(/passes=(\d+)/);
+      const d = out.match(/dead=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0, dead: d ? Number(d[1]) : 0 };
+    },
+  },
   // S089 HARDWIRE-A: Decision Ledger structural gate — BLOCKS if a consequential plan has a
   // Decision Ledger section with NO rejected options (malformed ledger = reasoning amnesia).
   // B_DECISION_LEDGER (CONSTITUTIONAL, S089): preserves reasoning including roads-not-taken.

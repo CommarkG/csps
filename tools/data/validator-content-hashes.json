@@ -86,6 +86,7 @@
     "validate-external-integration-health.mjs": "630f56ee39efcd33",
     "validate-external-research-pipeline.mjs": "0e3069ada9711378",
     "validate-fetch-resilience.mjs": "a910098d8e2c3018",
+    "validate-field-wiring.mjs": "a32dbcae4178a13d",
     "validate-file-complexity.mjs": "ec5b4cf68b37a621",
     "validate-file-naming.mjs": "0aa696618d3a01fa",
     "validate-finding-scheduling.mjs": "894a4ff2a14c349a",

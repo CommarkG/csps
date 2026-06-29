@@ -1,0 +1,10 @@
+# FIELD-WIRING TARGETS — schemas that MUST declare field_wiring (save -> read -> influence)
+# One path per line (relative to repo root). # comments ok. Empty = gate armed, no targets yet.
+# Enforced by tools/validators/validate-field-wiring.mjs (prevention class: DEAD-FIELD).
+# Borrowed + reproduced from CSP S346 "floater rule" (field level), rebuilt in CSPS idiom.
+#
+# EXPANSION: when Sonnet builds the goal-record schema (B1), add its path below — the gate then
+# enforces that goal_id / resolution_signal / governor_signature / closure_record each declare
+# where they are SAVED, READ back, and what output they INFLUENCE. No dead fields in the spine.
+#
+# (none registered yet — goal-record lands at B1)

@@ -590,3 +590,19 @@ Placement -> Vocab+Wiring -> PE -> Schema -> UX — a clean spine our journey ca
 
 PREVENTION CONCLUSIONS (what went wrong here): OPUS-S089-PREVENTION-LEARNING-PRINCIPLES.md (P-A..P-F) —
 UNIFY-BEFORE-ENRICH, ratified-but-unbuilt limbo, human-gate accumulation, scope-sprawl, loop-no-memory.
+
+## 23. ROUND 16 — REVIEW the canonical build process (do NOT build yet)
+
+Governor ratified the canonical goal-first build process (OPUS-S089-CANONICAL-BUILD-PROCESS.md). Per
+the process itself (present-what-exists + ratify before build), REVIEW it first, then Opus refines.
+SONNET — REVIEW, do NOT build:
+ 1 VERIFY the T1-T10 exists/partial/missing statuses against the ACTUAL codebase (you have build-
+   reality Opus lacks). Correct any wrong status with evidence (path:line).
+ 2 GAPS: does the 9-stage spine miss a stage? Is the create=prevent mirror sound? Is the hardwire/
+   inherit map realistic (which T1+T2 are feasible vs need design)?
+ 3 T9 RENDER-AND-VIEW (critical): IS there a screenshot/preview capability available right now
+   (playwright MCP? Vercel preview API? a local headless shot)? This unblocks UX/UI canvas + ends
+   building blind. Report exactly what is available.
+ 4 PCR deltas (chosen/rejected/reasoning) for any change you'd make to the process or task order.
+REPORT back via sonnet-turn.md: reviewed / status corrections / gaps / T9-capability / PCR deltas.
+DONE = the review report, NOT a build. Opus refines -> issues the build one-click.

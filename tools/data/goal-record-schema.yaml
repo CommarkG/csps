@@ -9,10 +9,54 @@
 # Governor S089 / Opus §24 — "B1: the invariant everything traces to"
 
 meta:
-  schema_version: "1.0"
+  schema_version: "1.1"
   created: "2026-06-29"
+  updated: "2026-06-30"
   session: S089
   source: "CDS CS-GOAL-001 §7 (adopted + CSPS-translated)"
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD_WIRING MAP (C1 — Opus §26 — save → read → influence per field)
+# Gate: tools/validators/validate-field-wiring.mjs
+# Prevention class: DEAD-FIELD (saved-but-never-read | read-but-never-influences-output)
+# ─────────────────────────────────────────────────────────────────
+field_wiring:
+
+  goal_id:
+    save: "localStorage key 'csps_goal_v1' → goal_id generated at signAndProceed() in apps/csps-playground/src/app/page.tsx"
+    read: "signAndProceed() reads generated id → writes to downloaded goal-record-{timestamp}.yaml + pageDNA.goal_id field"
+    influence: "Tags every pipeline part (pageDNA.goal_id); appears in downloaded YAML filename; future: traces builds back to ratified goal"
+
+  goal_statement:
+    save: "localStorage key 'csps_goal_v1'.idea (or deepenedIdea if refined in Phase 4) — set in setIdea/setDeepenedIdea, apps/csps-playground/src/app/page.tsx"
+    read: "Loaded from localStorage on mount (useEffect line ~160); displayed as goal anchor in Steps 2-4; passed to classify(); used in planProblem pre-fill"
+    influence: "Appears as echo in Steps 2/3/4 goal-anchor bar; pre-fills Q1 in Step 3 Quick Plan; included in downloaded goal-record.yaml; drives Threshold classification"
+
+  felt_need:
+    save: "localStorage key 'csps_goal_v1'.{goalWho, goalWhat, goalIsNeed} — set by setGoalWho/setGoalWhat/setGoalIsNeed in Phase 2/3/4 handlers"
+    read: "goalWho read in Phase 3 acknowledgment + Phase 6 sign summary; goalWhat read in Phase 6 summary; goalIsNeed gates Phase 5 continuation"
+    influence: "goalWho shown in Phase 3 ack header ('For: {goalWho}'); goalIsNeed gates whether user can proceed past Phase 4 (false → 'rethink'); all included in downloaded YAML"
+
+  resolution_signal:
+    save: "localStorage key 'csps_goal_v1'.goalResolution — set by setGoalResolution in Phase 5 textarea onChange"
+    read: "Read in Phase 6 summary card; included in downloaded goal-record.yaml"
+    influence: "Shown in Phase 6 sign summary card before Governor signs; included in YAML as the observable closure criterion; future: used by Stage 9 closure check"
+
+  ratification_state:
+    save: "Hardcoded to 'ratified' in signAndProceed() YAML generation — not stored in localStorage (intent: ratification = the sign action itself)"
+    read: "Read by downstream pipeline to gate 'builds_tracing_here' (future); included in downloaded YAML"
+    influence: "Appears as 'ratification_state: ratified' in downloaded YAML; the Governor download IS the ratification proof (physical file = the record)"
+
+  governor_signature:
+    save: "Generated at sign time: 'Governor — {ISO-date}' in signAndProceed() in page.tsx; included in downloaded YAML"
+    read: "Read by any pipeline part checking goal ratification (future — via goal_id backpack lookup)"
+    influence: "Appears in downloaded goal-record.yaml; future: validate-goal-ratified.mjs reads this to confirm a ratified goal exists before build"
+
+  closure_record:
+    save: "NOT YET SAVED — closure requires Stage 9 implementation (currently MISSING per canonical build process review)"
+    read: "NOT YET READ — no Stage 9 exists"
+    influence: "DEAD FIELD in current implementation. Declared here for future Stage 9 closure. When built: will gate 'did the resolution_signal get confirmed?' before a goal can be marked closed"
+    note: "This is an HONEST dead field — intentionally declared as future work, not a hidden gap"
 
 goal_record:
   # Identity

@@ -7,4 +7,5 @@
 # enforces that goal_id / resolution_signal / governor_signature / closure_record each declare
 # where they are SAVED, READ back, and what output they INFLUENCE. No dead fields in the spine.
 #
-# (none registered yet — goal-record lands at B1)
+# C3 — Opus §26: goal-record schema registered — gate now ENFORCING on real schema
+tools/data/goal-record-schema.yaml

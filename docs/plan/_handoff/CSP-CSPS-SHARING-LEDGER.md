@@ -31,6 +31,7 @@ absorption decision + what we send back.** Pairs with the intake pipeline (`_int
 | CSP-TO-CSPS-20260609-002 | 2026-06-09 | Haiku vision via Agent tool fails silently → Anthropic SDK direct | **NOTE-ONLY → memory** (landmine recorded) | memory `feedback_haiku_vision_sdk_not_agent_tool` |
 | S342 presentation package | S342 | 3 UX patterns + 5 bugs + 5 questions back | **PARKED** (UX patterns) + obligation (answer 5 Qs) | triage #13-15, #17 |
 | EXT-20260630-001 | 2026-06-30 | S344+S346 package (8 docs) | **TRIAGED** — 6 already-have · 4 swift · 7 parked | `_intake/processed/EXT-20260630-001-csp-share-s344-s346/provenance.md` |
+| CDS-VERIFIER-anti-agreeableness | 2026-06-30 | Anti-agreeableness line for Verifier spawns | **ADOPTED + WIRED** — first CDS→CSPS contribution (prior flows were CSPS→CDS) | `tools/templates/haiku-spawn-template.md` §0.6 + §2 copy block |
 
 ## Absorption responses (the formal comms CSP asked us to confirm)
 

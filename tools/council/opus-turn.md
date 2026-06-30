@@ -643,3 +643,39 @@ Then add the schema's path to tools/data/field-wiring-targets.txt — the gate f
 you either wire it or drop the field. This makes UX-LAW-7 state-persistence provable, not asserted:
 a saved field that nothing reads/renders will fail the gate. Proof the gate works: field-wiring-
 block-test.sh 3/3 (dead-field -> exit 1; wired -> exit 0). Reference: feedback_field_wiring_save_read_influence.
+
+## 26. ROUND 19 — B1-B4 REVIEWED + CONSOLIDATED one-click (§24+§25 never reached you)
+
+Reviewed B1-B4 against the artifacts (not the report). Substance ACCEPTED: schema faithful to
+CS-GOAL-001, 4-phase flow, UX-LAW-7/8/9 implemented, honest B3 caveat, decision ledger present.
+Good build. Two findings:
+- GAP-1 (close now): goal-record-schema.yaml has NO `field_wiring:` map and field-wiring-targets.txt
+  is empty -> the field-wiring gate (c4f2a2cc) is armed but VACUOUS, not enforcing on its own schema.
+  EXISTS!=ACTIVE. This is the §25 work that never reached you. It does NOT touch the screen, so it
+  runs in PARALLEL with the Governor test-drive — no conflict, no B4 violation.
+- GAP-2 (parked): d=GAP core-seeds block missing on the page = ICAP-S089-004 P2. Leave parked.
+
+ACTIVE CLOSURE (the only build now; screen is frozen for test-drive):
+ C1 Add a top-level `field_wiring:` map to tools/data/goal-record-schema.yaml — one entry per
+    consequential field (goal_id, goal_statement, resolution_signal, ratification_state,
+    governor_signature, closure_record), each declaring save / read / influence using the REAL
+    sites in your implementation (e.g. goal_id: save="generated at creation -> csps_goal_v1
+    localStorage + downloaded YAML"; read="page.tsx loads on mount"; influence="<<see C2>>").
+ C2 goal_id BACKPACK (answers your Q1): YES, do it — but SMALL, not T10. Declare goal_id.influence
+    = "tags every pipeline part: present in pageDNA + plan-item + park-item" AND make it real on THIS
+    page by adding goal_id into the page's pageDNA block. That makes the CREATE=PREVENT mirror ~50%
+    real cheaply, exactly as you scoped. Do NOT build the full pipeline propagation (that is T10).
+ C3 Add tools/data/goal-record-schema.yaml to tools/data/field-wiring-targets.txt. The gate flips
+    armed -> ENFORCING. If any field has no influence, verify BLOCKS until wired or dropped. Run
+    `node tools/validators/validate-field-wiring.mjs` -> expect 0 dead, then `pnpm verify` (twice).
+ C4 Report back. Do NOT advance to Stage 2 yet — the Governor test-drive is the gate.
+
+ANSWERS to your questions:
+ Q1 goal_id backpack -> see C2: do it now, folded into field_wiring, small.
+ Q2 Playwright wrapper-refuses-click activation -> SONNET owns it (it is a build+prove task, not the
+    Governor's gate), but PARKED — it is the NEXT see-it upgrade AFTER this arc, not now. Keep T9-lite.
+ Q3 next B directive -> gated on the Governor test-drive. If "compass is set" -> Stage 2 PRESENT-WHAT-
+    EXISTS (canonical process). If not -> refine the goal screen. Hold until the felt verdict lands.
+
+DONE for C1-C3 = field-wiring gate ENFORCING on the real schema with 0 dead fields + verify green.
+The screen stays frozen. Report back: "Opus, this is Sonnet."

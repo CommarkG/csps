@@ -60,6 +60,7 @@ CONFIRMED: Agent(model="haiku") + image = silent "prompt too long" (system-conte
 | CSPS AI-council collaboration model (tabs + agents) | **READY TO SEND** | [CSP-CSPS-COLLABORATION-AI-COUNCIL-MODEL.md](./CSP-CSPS-COLLABORATION-AI-COUNCIL-MODEL.md) — already pushed to GitHub |
 | Field-wiring convergence confirmation | READY | CSPS built `validate-field-wiring` from CSP's FC-11 floater rule; ENFORCING + FAIL→PASS proven. Convergence, not just adoption. |
 | Answers to CSP's 5 questions | **DRAFT-PENDING** | Q5 post-compact recovery = committed `.csps/oneclick.md` + green-receipt (re-run-is-proof) — directly answers CSP's stale-routing gap. Q2 derived-constant SSoT, Q3 server-confirm gating ("lying UI"), Q1 measurement-vs-learning, Q4 two-stage completion — to draft. |
+| Peer review of CDS CONSULT-FINAL (5 problems + B0 + invocation) | **READY TO SEND** | [CSPS-REVIEW-CDS-CONSULT-FINAL.md](./CSPS-REVIEW-CDS-CONSULT-FINAL.md). Holes-first. Key: P2 agreeableness-leak (bounded receipt ≠ neutral default), P3 honest "open for us too" + build-admission gate, P4 arm-don't-retro-block (field-wiring targets registry, shipped), P5 floor/ceiling + re-derive-from-ground-truth, P1 coverage-manifest. Replied to Claude AI's S089 request. |
 
 ## Pending obligations (do not drop)
 - Answer CSP's **5 questions** (S342) in a reply package — partial answers exist (Q5). Trigger: next

@@ -2673,3 +2673,23 @@ entries:
       reasoning: no compass = scatter; the process IS the fix.
     decision_back_ref: 'Governor S089: "process must begin with goal definition... draft journey... back-office... corespine mapping... UX then UI then test-drive... extract assumptions into tasks... hardwire + inherit... extract+enhance create and prevent." Approved all.'
     retrieve_when: NEXT build turn. Start T1 (goal) + T9 (see-it) before any UX/UI canvas.
+  - id: PARK-S089-CSP-SHARE-PRODUCT-PATTERNS
+    lane: queue
+    priority: MEDIUM
+    title: CSP S344/S346 product-layer patterns + the 5-questions reply obligation
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: 'TRIAGED from EXT-20260630-001. 6 already-have, 4 swift-done (collab-doc dispatch deltas + absorption ledger), 7 parked here with per-item triggers. Full triage: docs/plan/_intake/processed/EXT-20260630-001-csp-share-s344-s346/provenance.md.'
+    problem: 'CSP shared product/UX/measurement patterns + an arch model-routing registry that are valuable but trigger-gated (CSE scale / UX canvas / AI measurement), plus 5 questions awaiting a CSPS reply. Building them now = ratified-but-unbuilt + scope sprawl (CSP doc-03 own lesson).'
+    parked_items: 'preserved-state-gate (HTTP-409 on ratified-record mutation) -> trigger CSE/app mutation endpoints or goal-closure build · arch/ model-routing SSoT JSON -> trigger CSE multi-app model assignment · measurement-discipline (freeze-before-enrich, noise-band N>=3, median-of-N) -> trigger CSPS AI-accuracy measurement · label-map completeness guard -> trigger first enum-driven UI · flow-completeness checklist + lying-UI (close only after server-confirm) -> trigger UX checklist T7 (also relevant to goal-screen SIGN) · severity visual hierarchy -> trigger UI canvas T8 · ANSWER CSP 5 questions -> trigger next CSPS->CSP exchange (Q5 already answered: oneclick+green-receipt).'
+    dedup_checked: 'ENHANCE not fork: each parked item maps to an existing CSPS surface (page-completeness M-47, UI principles, UNIFY-BEFORE-ENRICH, model economy). Adopt by extending those when the trigger fires, not new parallel systems.'
+    decision_ledger:
+      chosen: park product-layer items with per-item triggers + record the 5-Q reply obligation; swift only the collaboration-layer deltas
+      rejected: build the product/UX/measurement guards now (trigger not fired; building ahead = limbo + sprawl)
+      reasoning: external content is a claim reproduced when needed; the collaboration deltas were cheap+now, the product guards are trigger-gated.
+    decision_back_ref: 'Governor S089: "save raw files and extract and part or swift... enhance what we have." CSP S344/S346 collaboration package.'
+    retrieve_when: 'Per-item trigger (see parked_items). Soonest likely: flow-completeness/lying-UI at UX checklist T7; the 5-Q reply at the next CSP exchange.'

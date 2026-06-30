@@ -117,6 +117,32 @@ source. Same principle, already mechanical here via the green-receipt + dna-guar
 
 ---
 
+## §4b — Dispatch discipline (adopted from CSP S344/S346, reproduced in CSPS idiom)
+
+CSP hit — and hardened against — four failure modes in their architect/builder relay. CSPS converges
+on most; these are the deltas we adopt, mechanical where they pay:
+
+- **B0 — VERIFY PREMISES (preflight in every dispatch).** Before building, the builder lists the
+  file/code/capability assumptions the task depends on and verifies them. A failed premise → **STOP +
+  decision-needed**, do not build on a wrong premise. B0 also separates the director's *inferences*
+  from the Governor's *stated facts*, and *recommendations* from *requirements*. (Cheapest place to
+  kill an "I assumed X existed" error.)
+- **VERIFY GATE (the #1 pattern).** No substantial handback is accepted until a **cheap independent
+  agent re-derives its headline claims from source** — claimed counts vs real, "done" files actually
+  saved, stale links, coverage gaps. Self-audit is not proof; a separate cold agent is. In CSPS this is
+  a `haiku-scout` (or Opus-side grep) re-deriving Sonnet's numbers **before** Opus accepts a SROF.
+  Proof it earns its place: a CSP Haiku pass caught 3 real defects in 82s behind a "70/70 passing"
+  self-report (real count was 38).
+- **Proof-by-real-output.** Done = real stdout / live-fetch / screenshots — **never** exit-code-only
+  and never the AI auditing itself. (CSPS: DONE=activation-proven + planted-violation proof + Governor
+  screenshot. "verify exit 0" alone is insufficient — the gate must have *blocked* a real violation.)
+- **Scope declaration in the handback.** Stay within the dispatched scope; if you did extra, **name it**
+  in the report. Undeclared extra work erodes trust *even when correct* (CSP shipped ~13 commits against
+  ~2 scopes — nothing lost, but the human couldn't tell asked-for from self-initiated).
+
+> Single copy-block or it breaks: a dispatch split across prose + code gets mis-pasted. One fenced
+> `relay-content` block, always. Onboarding is one-time; the per-build dispatch is just the task.
+
 ## §5 — SSoT registry (this file consolidates; it does not own)
 
 | Concern | Canonical file |

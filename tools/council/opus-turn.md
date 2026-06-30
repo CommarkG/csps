@@ -679,3 +679,35 @@ ANSWERS to your questions:
 
 DONE for C1-C3 = field-wiring gate ENFORCING on the real schema with 0 dead fields + verify green.
 The screen stays frozen. Report back: "Opus, this is Sonnet."
+
+## 27. ROUND 20 — SWIFT improvements harvested from the CDS exchange (Sonnet + Haiku)
+
+Source: docs/plan/_handoff/OPUS-S089-CDS-EXCHANGE-ROOT-INSIGHTS.md (the deep dive). These are the
+cheap, buildable improvements only — the real builds are PARKED (PARK-S089-CDS-EXCHANGE-DEEPER-BUILDS).
+Do these AFTER the Governor's goal-screen test-drive (that gate stays first); they do not touch the screen.
+
+HAIKU (template edits — tools/templates/haiku-spawn-template.md):
+ H1  Add `coverage_gap` to the haiku_scout_return schema (§4 + the JSON in §2): a list of scopes the
+     scout could NOT cover + why. Turns a silent partial-view into a declared known-unknown. `status:
+     PARTIAL` without a coverage_gap is now incomplete.
+ H2  Add the CANNOT-CONFIRM escalation rule (new short subsection): when a VERIFIER scout returns
+     CANNOT-CONFIRM on the MAJORITY of claims = FAILED verification (not silent acceptance) -> ONE tighter
+     re-spawn with a narrower package -> still majority CANNOT-CONFIRM -> escalate to human. Not a count
+     to chase; a floor so "couldn't confirm" never reads as "confirmed".
+ (DONE this session: the anti-agreeableness VERIFIER-MODE line, §0.6 + §2 — no action needed.)
+
+SONNET (handback/protocol — the highest-value one):
+ S1  VERIFY-GATE handback field. Every SROF/build-report that makes a NUMERIC / COVERAGE / headline claim
+     ("7/7 pass", "6 fixtures", "38 routes") carries a `verify_gate:` line stating how that number was
+     INDEPENDENTLY re-derived from GROUND TRUTH (a grep/command/scout against the repo), NOT re-read from
+     your own report. If not yet re-derived, write `verify_gate: PENDING — Opus to re-derive`. HIGH-blast
+     claims (counts others build on, outward-facing) Opus re-derives before accepting. (Root Insight 3 —
+     this is the biggest lever; CSP caught "38 not 70" in 82s exactly here.)
+ S2  B0 premise line in the build report: list the premises the build depended on + how each was verified
+     BEFORE building (file:line / command / UNVERIFIABLE-PRE-DISPATCH). A failed premise = STOP, not build-on.
+ S3  Extend the anti-agreeableness framing (Insight 4) beyond scouts: when you SELF-REVIEW before a SROF,
+     state it in find-FALSE mode ("what would make this claim false?"), not confirm mode. Pairs with
+     validate-challenge-on-merit (the negative form); this is the positive form.
+
+DONE = the two template edits (H1,H2) committed + the three protocol fields (S1-S3) present in your next
+SROF. Keep each cheap; do NOT build the parked validators. Report back: "Opus, this is Sonnet."

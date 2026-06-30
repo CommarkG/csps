@@ -2693,3 +2693,24 @@ entries:
       reasoning: external content is a claim reproduced when needed; the collaboration deltas were cheap+now, the product guards are trigger-gated.
     decision_back_ref: 'Governor S089: "save raw files and extract and part or swift... enhance what we have." CSP S344/S346 collaboration package.'
     retrieve_when: 'Per-item trigger (see parked_items). Soonest likely: flow-completeness/lying-UI at UX checklist T7; the 5-Q reply at the next CSP exchange.'
+  - id: PARK-S089-CDS-EXCHANGE-DEEPER-BUILDS
+    lane: queue
+    priority: HIGH
+    title: Deeper builds harvested from the CDS exchange (verify-gate mechanical + status-honesty + coverage-manifest + inherits_dna)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: 'Deep dive: docs/plan/_handoff/OPUS-S089-CDS-EXCHANGE-ROOT-INSIGHTS.md. The SWIFT improvements went to Sonnet/Haiku (opus-turn §27). These are the real builds behind the root insights — trigger-gated, NOT now (goal-screen test-drive is the open spine).'
+    problem: 'The CDS exchange (external audit) exposed CSPS gaps where governance is doctrine not mechanism. The cheap fixes are swift; these are the structural builds that close the root failure class (named != active) mechanically.'
+    builds: 'B-A VERIFY-GATE blocking validator: SROF numeric/headline claims must carry verify_gate re-derivation; BLOCK on HIGH-blast claim w/o independent ground-truth re-derivation (Root Insight 3, biggest lever). · B-B mechanism-status tag {SHIPPED|PARTIAL|SPEC|CONCEPT} required on mechanism claims; SHIPPED must cite file+test (Insight 2). · B-C field-wiring SITE-RESOLUTION second pass: resolve each cited save/read/influence site exists (closes the named R4 stale-reader limitation). · B-D coverage-manifest feedback loop: scout/handoff coverage_gap feeds next-package curation (Insight 5). · B-E inherits_dna build-admission validator: every new agent/skill declares inherited DNA or not-buildable (R2, open for us too; CDS building their version — cross-check). · B-F typed dispatch contract w/ B0 premise sub-schema (R7). · B-G VERIFY-GATE risk-tier model T-LOW/MED/HIGH formalized (R8). · B-H convergence evidence field in decision-ledger schema (Insight 6).'
+    dedup_checked: 'ENHANCE not fork: B-A/B-G extend green-receipt + challenge-on-merit; B-C extends validate-field-wiring; B-E extends dna-guardian + validate-agent-inheritance-parity; B-B/B-D/B-H extend existing schemas. No parallel systems.'
+    decision_ledger:
+      chosen: park the structural builds with per-build triggers; swift only the protocol/template fixes; deep-dive the two generative roots
+      rejected: build all now (scope sprawl; goal-screen test-drive is the open gate; trigger-gated)
+      rejected: treat the exchange as replied-and-done (discards the external-audit value)
+      reasoning: the exchange's value is what it revealed about CSPS; capture as buildable parks so it is not lost, build when the trigger fires.
+    decision_back_ref: 'Governor S089: "go over all you did with CDS - extract swift improvements for sonnet and haiku - park additional topics - deep dive into root core insights on prevention and improvements."'
+    retrieve_when: 'B-A + B-C soonest (after goal-screen ships, fold into the build-audit/handback). B-E when next agent/skill authored or CDS shares their inherits_dna impl. B-B at next governance-doc batch.'

@@ -260,7 +260,12 @@ async function main() {
 
   if (reds.length > 0) process.exit(2);
   if (yellows.length > 0 && STRICT) process.exit(2);
-  if (yellows.length > 0) process.exit(1);
+  // PRE-RATCHET: yellow findings are ADVISORY (non-blocking), matching this validator's own
+  // documented design (header lines 24-29: "Pre-ratchet: all findings are ADVISORY (YELLOW/INFO)").
+  // The prior `exit(1)` on yellow contradicted that spec and made a soft budget warning a hard
+  // block (surfaced S089 when AGENTS.md drifted to 203 lines). Yellow now surfaces as advisory;
+  // --strict still upgrades to exit 2; RED still blocks. Ratchet promotion (Mode 1+2+3 -> RED) is
+  // the mechanism that makes budget a hard gate — not an off-by-spec exit code.
   process.exit(0);
 }
 

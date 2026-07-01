@@ -119,3 +119,39 @@ Route: **`/platform/model-economy`** (admin-gated). What it shows + lets an admi
   validate-model-routing + the local-llm adapter + dna-guardian on the local LLM + the /platform/
   model-economy dashboard. Opus SEEDS (this doc); Sonnet BUILDS; Opus GATES the corespine/schema pieces.
 - **Opus does NOT build these** (the correction this session): director plans + seeds + gates only.
+
+## REVIEW OUTCOMES — Sonnet 4-persona review (Balance · Reliability · Security · Platform-Dev), ACCEPTED
+A spawned Sonnet reviewer holed this seed on merit. Accepted findings + revised plan:
+
+- **TOP FIX (self-caught): the Opus-spawn trigger is doctrine, not a gate.** Part-A Condition 1 says
+  "Sonnet MUST spawn Opus-agent" but names no hook/validator that fires when Sonnet skips it — the same
+  named≠active failure the seed claims to fix. REVISION: the spawn-trigger must be a MECHANICAL gate
+  (pre-tool-use or a validator that BLOCKS a dispatch touching constitutional/corespine/cross-cutting/
+  depth≥4 without a recorded Opus-agent verdict). Direction ratifiable; not buildable until this exists.
+- **FIRST BUILD (highest-value): `opus-agent-spawn-template.md`** (parallel to haiku-spawn-template) —
+  BEFORE any Part B/C/D work. Defines: boundary-crossing block · curated-package REQUIRED-pointer list
+  (Reliability: a minimum-coverage checklist, not just the exclusion manifest) · coverage-manifest schema
+  · Opus return format. Everything else depends on Opus-agent spawns being defined.
+- **Sealing-write conflict RESOLVED (my addition):** a read-only spawned Opus-agent cannot write the
+  SEAL to plan frontmatter (council-architecture §5). Resolution: the Opus-agent RETURNS the verdict +
+  exact seal-content; the persistent Sonnet tab (write access) applies it after Governor ratifies. Agent
+  proposes, driver writes — preserves the read-only boundary AND the two-party seal.
+- **Part C (local LLM) → NO-GO now, PARK.** K=1, CONCEPT (not labeled as such = the failure class),
+  and its VERIFY-GATE is doctrine: the local LLM would be its OWN re-deriver = not independent. Trust≠cost.
+  PARK trigger: ≥3 tasks/session exceed ~$0.50 Haiku cost AND a stable Ollama env is confirmed. The
+  3-tier economy (Haiku/Sonnet/Opus) already captures ~80% of the value.
+- **Part D (dashboard) → Phase-1 only.** Phase 1 = config viewer/editor for model-routing.yaml +
+  token-budget.yaml (buildable now). Phase 2 (per-tier cost, what-if) is BLOCKED on a routing-log that
+  does not exist — deferred until the routing layer logs dispatches.
+- **Security locks (Part B):** model-routing.yaml MUST split GOVERNANCE-LOCKED fields (spawn-triggers,
+  tier assignments for constitutional/ratification/destructive tasks — changeable only by council
+  amendment) from ADMIN-EDITABLE fields (advisory budgets, cost display). Plus a non-editable
+  NEVER-ROUTE-LOCAL/HAIKU list: ratification verdicts, sealed-gate checks, destructive-action auth,
+  final secret/PII pass. An admin dashboard must not be able to remove the Opus gate via a YAML edit.
+- **Part B validator:** `validate-model-routing` must re-derive routing from ground truth, not accept a
+  self-cited "authorized by rule X" (citation-compliance passes a wrong route). Schema-first: write the
+  model-routing.yaml schema + one worked example BEFORE the validator.
+
+REVISED VERDICTS: A GO-WITH-CHANGES · B GO-WITH-CHANGES (schema-first + locks) · C NO-GO/PARK ·
+D Phase-1-only. BUILD ORDER: opus-agent-spawn-template + spawn-trigger gate → model-routing.yaml schema
+→ validate-model-routing → token-budget.yaml externalize → dashboard Phase-1. Local LLM parked.

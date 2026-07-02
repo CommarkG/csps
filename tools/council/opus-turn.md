@@ -711,3 +711,26 @@ SONNET (handback/protocol — the highest-value one):
 
 DONE = the two template edits (H1,H2) committed + the three protocol fields (S1-S3) present in your next
 SROF. Keep each cheap; do NOT build the parked validators. Report back: "Opus, this is Sonnet."
+
+## 28. ROUND 21 — BUILD: live-deploy blessed path + permanent upload interface (Governor directive)
+
+Full seed: docs/plan/_handoff/OPUS-S089-LIVE-DEPLOY-HARDWIRE-AND-INTERFACE-SEED.md. Governor wants live-
+page deploys hardwired for both agents + a permanent upload->deploy front end ("Vercel + AI in the back").
+Opus seeded + gates security; YOU build (operating-model correction: Sonnet is the builder).
+
+ D1  `deploy-live-page` skill (the blessed path). Bakes in: cert fix (NODE_OPTIONS=--use-system-ca) +
+     token-from-secret ($VERCEL_TOKEN, never in repo) + folder-with-index.html -> `vercel deploy --prod
+     --yes --token` + target an ISOLATED throwaway Vercel project (NOT csps-playground). Prove FAIL->PASS
+     on a tiny fixture page (deploy returns a live URL; missing-token -> clean error, not a crash).
+ D2  Engrave the recipe: reference the seed from opus-context.md + sonnet-context.md + AGENTS.md so BOTH
+     agents load it; the reference memory already exists. RULE: live deploys route through D1, not raw vercel.
+ D3  `/platform/deploy` ADMIN interface: upload file OR paste HTML/code (+optional "AI-fix": charset/RTL/
+     encoding repair before deploy) -> Deploy button -> server action reuses D1 -> returns live URL +
+     a past-deploys list (name·URL·created·DELETE). SECURITY (Opus GATES — spawn Opus-agent for review):
+     admin-only route · Vercel token SERVER-SIDE only (never client) · deploy to the ISOLATED project+
+     domain (arbitrary uploaded JS on the platform origin = stored-XSS against tenants) · secret-scan
+     uploads (advisory) · every deploy deletable/ephemeral.
+
+CHALLENGE-ON-MERIT welcome: if the Vercel REST API is cleaner than shelling the CLI for D3, PCR it.
+DONE = D1 skill FAIL->PASS proven + D2 engraved + D3 renders and deploys to the isolated project, verify
+green. SPAWN Opus-agent for the D3 security review before shipping. Report: "Opus, this is Sonnet."

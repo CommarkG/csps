@@ -2713,3 +2713,25 @@ entries:
       reasoning: the exchange's value is what it revealed about CSPS; capture as buildable parks so it is not lost, build when the trigger fires.
     decision_back_ref: 'Governor S089: "go over all you did with CDS - extract swift improvements for sonnet and haiku - park additional topics - deep dive into root core insights on prevention and improvements."'
     retrieve_when: 'B-A + B-C soonest (after goal-screen ships, fold into the build-audit/handback). B-E when next agent/skill authored or CDS shares their inherits_dna impl. B-B at next governance-doc batch.'
+  - id: PARK-S089-CDS-TEMPLATE-HUB-EXTRACTIONS
+    lane: queue
+    priority: MEDIUM
+    title: 8 CSPS enhancements extracted from the CDS Template Hub architecture review (E1-E8)
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: 'From the CDS Template Hub review (docs/plan/_handoff/VAULT/cds-template-hub-review-draft.md §2). Section 1 signed + relayed to CDS; these 8 are CSPS-side gaps the review surfaced. Owner: Opus (seed) + Sonnet (build). Trigger: after canonical build process stages T3-T5.'
+    problem: 'Reviewing the CDS 4-layer inheritance design exposed 8 CSPS gaps: no runtime-projection separation for corespines, informal B_* removal, no formal ratification phase machine, no cross-contract satisfiability check, no live-artifact drift detection, no rollback semantics, unmeasured governance claims, no L1 self-amendment procedure.'
+    items: 'E1 RTM separation for core-spine-registry (governance record + generated runtime-projection) · E2 additive-only B_* + validate-bstar-deprecation (no silent removal/downgrade) · E3 ratification phase machine Phase0-4 in CANONICAL-BUILD-PROCESS §6 (maps to §5 T1/T3/T4 - build together) · E4 validate-bstar-satisfiability (cross-contract conflicts across ~12 B_* + ~70 hard-NOs) · E5 drift detection extending validate-live-page-check (page content vs pageDNA.purpose) · E6 rollback semantics (rollback_record + deprecated_versions in B_* schema) · E7 publish ONE real measurement (LOVABILITY K=1->K=3, or Haiku token savings) · E8 L1 CORE self-amendment procedure documented in PLATFORM-GENOME.'
+    bundles: 'governance-contract bundle = E2+E4+E6 · observability bundle = E1+E5 · standalone docs = E7+E8 · E3 builds WITH canonical-build-process §5.'
+    dedup_checked: 'ENHANCE not fork: E3->CANONICAL-BUILD-PROCESS, E4->validate-field-wiring sibling, E5->validate-live-page-check, E1->core-spine-registry, E2/E6->B_* engraving schema, E8->PLATFORM-GENOME. No parallel systems.'
+    decision_ledger:
+      chosen: park all 8 as one bundle with sub-bundles + per-trigger; Section 1 signed and sent separately
+      rejected: leave E1-E8 as a document (a doc is not an obligation; park = un-droppable)
+      rejected: build any now (trigger not fired; canonical build stages T3-T5 come first; scope discipline)
+      reasoning: the review artifact exists; the park is what converts E1-E8 from notes into scheduled obligations.
+    decision_back_ref: 'Sonnet SROF S089 (CDS Template Hub review) + Governor relay: "Park E1-E8 as PARK-S089-CDS-TEMPLATE-HUB-EXTRACTIONS, then validate Section 1 and return it to CDS."'
+    retrieve_when: 'After canonical build process T3-T5. E3 with §5. E7 (measurement) can go anytime - cheapest + highest-credibility. E8 (self-amendment doc) at next L1/genome touch.'

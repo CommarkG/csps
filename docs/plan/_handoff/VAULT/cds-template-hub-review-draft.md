@@ -4,13 +4,14 @@ name: cds-template-hub-review-draft
 description: >
   Expert architecture review for CDS Template Hub (4-layer inheritance system).
   Two sections: (1) Expert feedback Opus should provide to CDS, (2) CSPS enhancement
-  recommendations extracted from the CDS design. Synthesized from Haiku analysis + CSPS
-  operational experience. For Opus: review, enrich with GVRN perspective, park section 2.
+  recommendations extracted from the CDS design. Synthesized from a prior AI-assisted architecture
+  review (provided by Governor; source header indicated a Sonnet-context Claude, not Haiku) + CSPS
+  operational experience (S001-S089). For Opus: review, enrich with GVRN perspective, park section 2.
 version: "1.0"
 session: S089
 created: "2026-07-04"
-status: draft-for-opus-review
-action_required: "Opus: validate section 1 before sending to CDS; park section 2 items"
+status: opus-validated-ready-to-send
+action_required: "DONE: Opus validated + signed section 1 (ready to relay to CDS); E1-E8 parked as PARK-S089-CDS-TEMPLATE-HUB-EXTRACTIONS"
 ---
 
 # CDS Template Hub — Expert Review Draft
@@ -116,6 +117,27 @@ This is a sophisticated architecture that has correctly identified the hard prob
 **The primary risk is not the design; it is implementation drift.** R1–R3 are load-bearing and non-negotiable. It is very easy to ship with R4–R7 (the "nice to have" recommendations) while deferring R1–R3 as "complexity we'll add in phase 2." This is the failure mode. Make R1 the first implementation deliverable. Make R2's solver design doc a prerequisite for Phase 1 build ratification. Don't ship Phase 1 without both.
 
 **Recommendation for your Governor ratification:** Approve R1–R7 as a package, explicitly non-piecemeal. Require: (a) satisfiability solver design doc before Phase 1 build; (b) bootstrap/self-amendment procedure for CS-TEMPLATE before corespine ratification; (c) published 80% measurement from a concrete case study before go-live. Add R8: cross-RTM joint satisfiability check at instance materialization (structure RTM + data RTM must be jointly satisfiable at the moment of instance creation).
+
+---
+
+### OPUS RATIFICATION (signed — ready to relay to CDS)
+
+Validated on merit, not rubber-stamped. Section 1 is sound and sends as-is. Two emphases I want landed
+hardest with CDS, because they are the load-bearing ones and the easiest to defer to death:
+
+1. **R1-first is the whole review.** If CDS takes one thing: build atomic watermark promotion as the
+   FIRST line of code, not a phase-2 optimization. We lived the exact failure class this very session —
+   a field-wiring gate that existed but enforced nothing because its target registry was empty. "The
+   mechanism exists, the guarantee doesn't" is not hypothetical; it is the default outcome of deferring R1.
+2. **The conflicting-LOCK gap (Q2) is a real hole, not a nitpick.** Additive-only forbids *removal*, not
+   two layers LOCKing the same field to *different* values. Their soundness argument rests on R2 catching
+   this, and their spec does not yet say it does. This is the single most concrete correction we give them.
+
+R8 (cross-RTM joint satisfiability at instance materialization) stands — add it to their R-list. The
+package-not-piecemeal ratification recommendation is correct: R1–R3 are non-negotiable; shipping R4–R7
+while deferring R1–R3 is the failure mode.
+
+**Signed:** OPUS-25, CSPS Director — S089. Relay Section 1 to CDS as the CSPS expert review.
 
 ---
 

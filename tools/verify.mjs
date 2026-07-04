@@ -2493,6 +2493,24 @@ const CYCLES = [
     },
   },
   {
+    // S089 G5 COVERAGE-DIFF — Live page check (Part 1 + G5 pattern from CSP S346)
+    // Enumerates target set (public routes in route-manifest.ts since S089) vs coverage
+    // (live-check-register.yaml entries). ADVISORY if stale (>7d). BLOCKING if >14d.
+    // G5: "all/complete/every/fully-covered claims need enumerated set + diff" (CSP S346).
+    // DONE = 100% coverage of public routes confirmed live within TTL.
+    run_tier: 'STANDARD',
+    name: 'live_page_coverage',
+    command: 'node tools/validators/validate-live-page-check.mjs',
+    parse_output: (out) => {
+      const m = out.match(/target_routes=(\d+)\s+covered=(\d+)\s+advisory=(\d+)\s+missing=(\d+)\s+blocking=(\d+)/);
+      const c = out.match(/coverage=(\d+)%/);
+      if (!m) return { blocking: 0, advisory: 0 };
+      const blocking = Number(m[5]);
+      const advisory = Number(m[3]) + Number(m[4]); // advisory + missing = both surface as advisory
+      return { target_routes: Number(m[1]), covered: Number(m[2]), coverage_pct: c ? Number(c[1]) : 0, blocking, advisory };
+    },
+  },
+  {
     // S086 PARK-040 — Classifier accuracy: runs threshold-router over golden-set entries,
     // reports accuracy % per axis. BLOCKING if < 50% on any axis (systematic mis-rule).
     // ADVISORY if < 80% or any misclassification. EXTENDED: on-demand + --extended.

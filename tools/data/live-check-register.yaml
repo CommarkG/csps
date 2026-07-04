@@ -1,0 +1,78 @@
+# tools/data/live-check-register.yaml
+# Live Page Check Register — records every confirmed live-page verification
+#
+# PURPOSE: Every page deployed to Vercel must have a live-check entry within 7 days.
+#   Enforced by: tools/validators/validate-live-page-check.mjs (T2, wired in verify.mjs)
+#   Advisory T1: .claude/hooks/post-stop-live-check-advisory.sh
+#
+# G5 PATTERN (adopted from CSP S346 — "all/complete/every/fully-covered claims need
+#   an enumerated set + a diff"):
+#   The TARGET SET is tools/config/route-manifest.ts (all nav_access: public routes).
+#   This register is the COVERAGE LOG.
+#   validate-live-page-check.mjs diffs target vs coverage → reports the gap.
+#
+# SCHEMA:
+#   url: full deployed URL
+#   route: the Next.js route path (matches route-manifest.ts path)
+#   checked_at: ISO date of last check
+#   method: WebFetch | screenshot | manual
+#   result: HTTP_200 | content_confirmed | error
+#   content_signal: brief description of what was confirmed visible
+#   checked_by: Sonnet | Opus | Governor
+#   session: S0NN
+#   notes: any caveats (e.g., "WebFetch cached, deploy still propagating")
+#
+# Field wiring (G5 + field-wiring-targets.txt candidate):
+#   save: Sonnet writes entry after each deployment verification
+#   read: validate-live-page-check.mjs reads this register to diff against route-manifest
+#   influence: gates "page is live" claim; advisory/blocking if route not checked within 7 days
+#
+# Governor S089 / Opus §26 — "every deployed page must be confirmed live, not assumed live"
+
+meta:
+  schema_version: "1.0"
+  created: "2026-07-02"
+  session: S089
+  ttl_days: 7          # check expires after 7 days → page must be re-checked
+  blocking_after_days: 14  # becomes BLOCKING after 14 days without check
+
+entries:
+
+  - url: "https://csps-playground.vercel.app/"
+    route: "/"
+    checked_at: "2026-06-29"
+    method: WebFetch
+    result: content_confirmed
+    content_signal: "CSPS Customer Journey Shell headline + 4-step indicator visible"
+    checked_by: Sonnet
+    session: S089
+    notes: "Goal-definition flow added; WebFetch confirmed 'What outcome are you trying to create?' headline live"
+
+  - url: "https://csps-playground.vercel.app/platform/ux-parameters"
+    route: "/platform/ux-parameters"
+    checked_at: "2026-06-28"
+    method: WebFetch
+    result: content_confirmed
+    content_signal: "UX Parameters Hub headline + parameter table visible"
+    checked_by: Sonnet
+    session: S089
+
+  - url: "https://csps-playground.vercel.app/platform/classification-training"
+    route: "/platform/classification-training"
+    checked_at: "2026-06-29"
+    method: WebFetch
+    result: content_confirmed
+    content_signal: "Classification Training page loads + Live Threshold Classifier section present (confirmed post-fix)"
+    checked_by: Sonnet
+    session: S089
+    notes: "Fixed: golden-set 404 was blocking live classifier; now separate rendering"
+
+  - url: "https://csps-playground.vercel.app/platform/ux-ui-principles"
+    route: "/platform/ux-ui-principles"
+    checked_at: "2026-07-02"
+    method: WebFetch
+    result: content_confirmed
+    content_signal: "UX/UI Principles headline + 5 UX-DNA laws + 6 UI principles visible"
+    checked_by: Sonnet
+    session: S089
+    notes: "G5 gap found by validate-live-page-check.mjs block-test — confirmed live immediately"

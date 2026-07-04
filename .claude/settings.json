@@ -394,6 +394,11 @@
           },
           {
             "type": "command",
+            "command": ".claude/hooks/post-stop-live-check-advisory.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/post-stop-savings-ssot-coverage.sh"
           },
           {

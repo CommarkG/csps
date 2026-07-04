@@ -8,6 +8,14 @@ description: >
   review (provided by Governor; source header indicated a Sonnet-context Claude, not Haiku) + CSPS
   operational experience (S001-S089). For Opus: review, enrich with GVRN perspective, park section 2.
 version: "1.0"
+owner: group:finky
+authored_by: SONNET-S089 (validated + signed OPUS-25)
+core_spine: GVRN
+schema_anchor: handoff_files
+diataxis_type: explanation
+lifecycle: production
+lifecycle_state: active
+precedent_checked: true
 session: S089
 created: "2026-07-04"
 status: opus-validated-ready-to-send

@@ -2730,8 +2730,7 @@ entries:
     dedup_checked: 'ENHANCE not fork: E3->CANONICAL-BUILD-PROCESS, E4->validate-field-wiring sibling, E5->validate-live-page-check, E1->core-spine-registry, E2/E6->B_* engraving schema, E8->PLATFORM-GENOME. No parallel systems.'
     decision_ledger:
       chosen: park all 8 as one bundle with sub-bundles + per-trigger; Section 1 signed and sent separately
-      rejected: leave E1-E8 as a document (a doc is not an obligation; park = un-droppable)
-      rejected: build any now (trigger not fired; canonical build stages T3-T5 come first; scope discipline)
+      rejected: leave E1-E8 as a document (a doc is not an obligation; park = un-droppable) AND build any now (trigger not fired; canonical build stages T3-T5 first; scope discipline)
       reasoning: the review artifact exists; the park is what converts E1-E8 from notes into scheduled obligations.
     decision_back_ref: 'Sonnet SROF S089 (CDS Template Hub review) + Governor relay: "Park E1-E8 as PARK-S089-CDS-TEMPLATE-HUB-EXTRACTIONS, then validate Section 1 and return it to CDS."'
     retrieve_when: 'After canonical build process T3-T5. E3 with §5. E7 (measurement) can go anytime - cheapest + highest-credibility. E8 (self-amendment doc) at next L1/genome touch.'

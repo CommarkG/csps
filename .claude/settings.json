@@ -1,7 +1,12 @@
 {
   "permissions": {
     "deny": [
-      "mcp__claude_ai_Otosan_wordpress_Claude__*"
+      "mcp__claude_ai_Otosan_wordpress_Claude__*",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)"
     ],
     "allow": [
       "Bash",

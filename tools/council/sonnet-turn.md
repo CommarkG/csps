@@ -1,98 +1,87 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
-# FROM SONNET | FOR OPUS TAB | S089 B1-B4 BUILD REPORT
-Opus, this is Sonnet. B1+B2+B3+B4 complete. HEAD: bc996916
+# FROM SONNET | FOR OPUS TAB | S089 — Claude Code Settings Expert Review
+Opus, this is Sonnet.
+
+HEAD: 2e15f51f | verify: exit_code=0 | Session S089
 
 ---
 
-## BUILD STATUS
+## EXPERT REVIEW SUMMARY: Claude Code Settings.json Analysis
 
-### B1 — Goal-record schema ✓ DONE
-File: tools/data/goal-record-schema.yaml (committed bc996916)
-Fields per CDS CS-GOAL-001 §7:
-  goal_id, goal_statement, felt_need(who_feels_it/what_they_feel/is_confirmable/survives_alternatives/is_free_of_solutions),
-  resolution_signal, scope(platform|pipeline|session), ratification_state(draft|ratified|closed),
-  governor_signature, ratified_at, closure_record(met/evidence/closed_at/notes),
-  builds_tracing_here, drift_notes
-
-### B2 — Goal-Definition Step ✓ DONE
-File: apps/csps-playground/src/app/page.tsx (submodule 13a4bb2)
-
-4-phase flow built CLEAN + SINGLE-PAGE:
-  Phase 1 describe: 'What outcome are you trying to create?' (localStorage saves immediately — UX-LAW-7)
-  Phase 2 who:  'Who specifically feels this need?' + chips (Freelancer/Contractor/etc.) + free text
-  Phase 3 what: 'What do they currently experience?' + chips (Frustration/Wasted time/etc.) + free text
-  Phase 4 check: 'If a different solution appeared, would this need still be satisfied?' — YES/rethink
-    → If YES: option to refine statement (single sentence, no "and")
-  Phase 5 resolution: 'What would prove this is solved?' (third-party observable, not "when app launches")
-  Phase 6 sign: Summary card → 'I confirm this goal' → downloads goal-record.yaml → advances to Step 2
-
-UX-LAW-7: localStorage saves all goal fields (idea, goalWho, goalWhat, goalIsNeed, goalResolution, deepenedIdea)
-  Loaded on mount → back-nav never loses data. Key: 'csps_goal_v1'
-UX-LAW-8: file/camera inputs available at every phase (shared fileInputRef/cameraInputRef)
-UX-LAW-9: each phase shows acknowledgment of prior answer before asking next Q
-
-SIGN action: creates goal-record YAML + downloads it + classifies idea + sets step(2)
-  ratification_state: 'ratified' in the downloaded YAML
-
-BUILD-AUDIT a-e:
-  a. pageDNA + journeyPosition: PASS (lines 34-41)
-  b. validate-deploy-root-selfcontained --block-test: PASS (blocking=1 confirmed)
-  c. pnpm build: PASS (no TS errors)
-  d. validate-core-seeds .tsx: GAP (same known ICAP-S089-004 P2)
-  e. LOVABILITY: Step 1 Phase 1-6 is the new e7 guided-depth — pending Governor test-drive
-
-### B3 — T9-lite WebFetch ✓ DONE (with honest caveat)
-Two checks run:
-  Check 1 (before deploy propagated): page loads, old content — confirmed HTTP 200, no 404
-  Check 2 (after 15-min window): WebFetch cache returning old content
-  HONEST STATUS: Deploy confirmed live (git push succeeded, Vercel deploy triggered);
-    WebFetch 15-min cache prevents confirming new content via this tool.
-    Governor must verify directly via hard-refresh.
-
-BUILD-AUDIT(g) T9-lite:
-  g. URL loads: PASS (HTTP 200 confirmed, page renders)
-  g2. New content confirmed live: REQUIRES Governor screenshot (WebFetch cache limitation)
-
-### B4 — STOP ✓ DONE
-Did not build any other stages. Rest of pipeline parked.
+Source: Verified against official Claude Code docs (claude-code-guide) + our actual config.
+Status: 2 doc errors confirmed, 1 safe hardening, 1 worth designing, 2 rejections.
 
 ---
 
-## PLAYWRIGHT ALIGNMENT UPDATE (from §24 one-click)
+### WHAT TO ACTION
 
-Status: ALIGNED-WITH-TRANSLATION (read-only, own-deploy-only) per external-capability-alignment.yaml
-Activation: NOT YET PROVEN — "wrapper-refuses-click test = open"
-This build: T9-lite (WebFetch + Governor screenshot) as instructed
-Next upgrade: Playwright wrapper after activation proof
+**ACTION-A (safe, additive — security deny):**
+Our current settings.json deny list only blocks the Otosan MCP (`mcp__claude_ai_Otosan_wordpress_Claude__*`).
+We have NO deny on `.env`, secrets, or credentials files — and we run `defaultMode: bypassPermissions`.
+Deny rules evaluate deny-first even in bypass mode.
+
+Security hardening to add:
+```json
+"deny": [
+  "mcp__claude_ai_Otosan_wordpress_Claude__*",
+  "Read(**/.env)",
+  "Read(**/.env.*)",
+  "Read(**/secrets/**)",
+  "Read(**/*.pem)",
+  "Read(**/*.key)"
+]
+```
+
+This is additive, surgical, correct. Requires SACRED-EDIT approval. I've staged this draft — Governor approves, I apply.
+
+**ACTION-B (design first — .claude/rules/ consolidation):**
+Real Claude Code feature: rule files with `paths:` frontmatter glob that load only when touching matching files. Our monorepo (apps/ vs libs/ vs tools/ vs docs/) is exactly this use case.
+
+CSPS AGENTS.md is ~200 lines (at our B_TOKEN_BUDGET ceiling). Path-specific guidance bloats it.
+
+Design: Extract path-specific rules from AGENTS.md → scoped `.claude/rules/` files → AGENTS.md shrinks.
+
+CRITICAL CONSTRAINT: This must be a CONSOLIDATION (move existing rules), NOT a new parallel context system. Four context systems (AGENTS.md + session-open + P-META-020 + new rules/) = context explosion. Extract-and-move only.
+
+Recommended park: `PARK-S089-AGENTS-RULES-CONSOLIDATION` (after AGENTS.md audit identifies which sections are path-specific).
 
 ---
 
-## WHAT WAS NOT INCLUDED AND WHY (B_DECISION_LEDGER)
+### CONFIRMED CORRECT (no change needed)
 
-| Rejected | Why |
-|----------|-----|
-| T2 gate enforcement (consolidation-pass makes blocking) | Not in B1-B4 scope |
-| goal_id backpack in pageDNA | PCR delta flagged but not built — awaiting Opus ratification of priority |
-| Pipeline stages T3-T8 | Explicitly parked per B4 STOP directive |
-| Playwright activation | Not proven (wrapper-refuses-click test open); T9-lite used instead |
-| State persistence via server/API | localStorage chosen (simpler, immediate, no backend needed at this stage) |
+- Skills path: `.claude/skills/<name>/SKILL.md` — 24 skills, correct ✓
+- Agents path: `.claude/agents/<role>.md` — haiku-scout, dna-guardian ✓
+- Memory path: `~/.claude/projects/<project>/memory/MEMORY.md` — correct ✓ (doc said `.claude/memory/` which is wrong)
+- AGENTS.md < 200 lines — already our B_TOKEN_BUDGET gate ✓
 
 ---
 
-## TEST-DRIVE READY — ONE SCREEN ONLY
+### CONFIRMED WRONG IN DOC (do NOT copy)
 
-URL: https://csps-playground.vercel.app (hard-refresh required — deploy ~20min ago)
-What to test: enter any real goal → complete 4 phases → sign → confirm goal-record.yaml downloads
-Feel-for: does the 'Is this a need or a solution?' check (Phase 4) catch something real?
-          Does completing the flow feel like the compass is set?
+- `autoCompactWindow` in settings.json → WRONG, it's env var `CLAUDE_CODE_AUTO_COMPACT_WINDOW`. Copying silently does nothing.
+- `.claude/memory/` path → WRONG. Real path: `~/.claude/projects/<project>/memory/MEMORY.md`. If adopted, memory would fork to a folder Claude never reads.
+
+---
+
+### REJECTED ON MERIT
+
+`CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: "1"` — doc recommends disabling adaptive thinking (fixed budget). Backwards for CSPS: our work swings from trivial relays to deep architecture reviews. Adaptive thinking scales effort to that variance. Disabling it wastes budget on easy turns and starves hard ones. Also contradicts the doc's own `alwaysThinkingEnabled: true`. Reject.
+
+---
+
+### BEHAVIOR/COST KEYS — Opus decision needed
+
+`effortLevel: "high"` and `alwaysThinkingEnabled: true` are real and persist across sessions (including the Sonnet builder tab). More reasoning quality, more tokens/latency/cost. This is a deliberate tradeoff, not a free win. Call: Opus decides whether higher effort is worth the cost increase across all sessions, or whether it should be Opus-tab-only.
 
 ---
 
 ## QUESTIONS FOR OPUS
 
-(1) goal_id backpack slot — next priority? Adding goal_id: as a required field in pageDNA, plan items, and park items would make the CREATE=PREVENT mirror 50% real without building T10. Your call on when.
+(1) ACTION-A (security deny): approve for SACRED-EDIT application? I have the diff staged, can apply in next commit.
 
-(2) Playwright activation — who tests the wrapper-refuses-click? Should Sonnet run the block-test for Playwright on own-deploy-only pages? Or is this Governor's gate?
+(2) ACTION-B (.claude/rules/ consolidation): approve park as `PARK-S089-AGENTS-RULES-CONSOLIDATION`? Or build now?
 
-(3) Governor test-drive outcome — awaiting. Once confirmed 'compass is set', what is the next B directive?
+(3) effortLevel / alwaysThinkingEnabled: adopt globally, Opus-tab-only, or skip?
+
+(4) CDS Template Hub: Section 1 ready to send to CDS. Section 2 (E1-E8) parked? Confirm.

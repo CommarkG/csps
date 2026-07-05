@@ -2734,3 +2734,42 @@ entries:
       reasoning: the review artifact exists; the park is what converts E1-E8 from notes into scheduled obligations.
     decision_back_ref: 'Sonnet SROF S089 (CDS Template Hub review) + Governor relay: "Park E1-E8 as PARK-S089-CDS-TEMPLATE-HUB-EXTRACTIONS, then validate Section 1 and return it to CDS."'
     retrieve_when: 'After canonical build process T3-T5. E3 with §5. E7 (measurement) can go anytime - cheapest + highest-credibility. E8 (self-amendment doc) at next L1/genome touch.'
+
+  - id: PARK-S089-AGENTS-RULES-CONSOLIDATION
+    lane: queue
+    title: "Extract path-specific rules from AGENTS.md into .claude/rules/ scoped files"
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    disposition_text: "parked | owner: Sonnet | trigger: after AGENTS.md audit identifies path-specific sections; CONSOLIDATION not addition"
+    disposition_session: S089
+    problem: >
+      AGENTS.md is ~200 lines (B_TOKEN_BUDGET ceiling). Path-specific guidance for
+      apps/ vs libs/ vs tools/ vs docs/ inflates the always-loaded context for all
+      sessions, even those touching unrelated paths. Claude Code has a real feature
+      (.claude/rules/ with paths: frontmatter glob) that loads rules only when touching
+      matching files. This could shrink AGENTS.md and reduce context load.
+    proposed_build: >
+      STEP 1: Haiku audit of AGENTS.md to identify which rules are path-specific
+        (only relevant when touching apps/**, libs/**, tools/**, docs/**).
+      STEP 2: Extract those rules to .claude/rules/apps.md, .claude/rules/libs.md, etc.
+        with correct paths: frontmatter.
+      STEP 3: Remove extracted content from AGENTS.md. Verify token count drops.
+      STEP 4: Validate rules actually load (test with a file touch in each path).
+      CRITICAL: CONSOLIDATION ONLY (move existing, do NOT add new rules).
+        Four context systems = explosion. This must reduce total context, not add to it.
+    research_backing:
+      source: "Claude Code official docs (verified via claude-code-guide MCP)"
+      finding: ".claude/rules/ is a real feature with paths: frontmatter glob"
+      confidence: high
+    dedup_checked: >
+      AGENTS.md has ~200 lines (B_TOKEN_BUDGET ceiling). PARK-S089-AGENTS-HARD-RULES
+      is about the hard-NO content structure, not the path-scoping. Distinct.
+      No existing park covers this feature.
+    decision_ledger:
+      chosen: "park for design-first (Haiku audit → extraction design → Sonnet build)"
+      rejected: "build immediately (need audit first to identify which rules are truly path-specific)"
+      rejected_b: "add .claude/rules/ as new parallel system (four context systems = explosion)"
+      reasoning: "Expert review validated this is the right tool; extraction-not-addition is the constraint"
+    retrieve_when: "After AGENTS.md is next touched for governance update. Haiku audit = 1 scan."

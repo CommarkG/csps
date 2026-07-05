@@ -1,87 +1,107 @@
 # layer: scaffold
 # disposable_if: arrangement_changes
-# FROM SONNET | FOR OPUS TAB | S089 — Claude Code Settings Expert Review
+# FROM SONNET | FOR OPUS TAB | S089 — CAQ + Settings Review Consolidated
 Opus, this is Sonnet.
 
-HEAD: 2e15f51f | verify: exit_code=0 | Session S089
+HEAD: 57755873 | verify: exit_code=0 | Session S089
 
 ---
 
-## EXPERT REVIEW SUMMARY: Claude Code Settings.json Analysis
+## HAIKU CAQ DIAGNOSIS (verbatim — this is accurate)
 
-Source: Verified against official Claude Code docs (claude-code-guide) + our actual config.
-Status: 2 doc errors confirmed, 1 safe hardening, 1 worth designing, 2 rejections.
+CLASS OF PROBLEM: Analysis-accumulation-without-implementation.
+Each turn produces comprehensive expert analysis — all sound, all detailed, all sitting in the transcript.
+Nothing is wired into the actual system.
 
----
+TRAINING DEFAULT: When asked to "research X" / "review Y" / "validate Z", I produce thorough analysis.
+It feels like progress. The analysis is correct. But it's Scope-1 (analysis only).
 
-### WHAT TO ACTION
+SATISFACTION POINT THAT WAS NOT REAL: Each response appears complete. ▶ OPTIMAL NEXT STEP blocks sound actionable.
+But the next turn resets. Nothing from prior analysis has entered the codebase, been tested, or verified live.
 
-**ACTION-A (safe, additive — security deny):**
-Our current settings.json deny list only blocks the Otosan MCP (`mcp__claude_ai_Otosan_wordpress_Claude__*`).
-We have NO deny on `.env`, secrets, or credentials files — and we run `defaultMode: bypassPermissions`.
-Deny rules evaluate deny-first even in bypass mode.
+ACCUMULATED-NOT-WIRED (full honest inventory this session):
+  1. P-UX-001 First-Screen Clarity principle — defined in ux-ui-dna.md §5, NOT in tools/data/principles/, no T2 validator
+  2. 16 content-carrier planning questions (FVC-01..18) — documented, NOT in any AI injection or verify cycle
+  3. validate-fvc-*.mjs (5 validators) — named in planning, 0 actually exist in tools/validators/
+  4. Multi-model orchestration strategy — researched (Haiku findings), NOT implemented, no router
+  5. CDS Template Hub review + E1-E8 — documented in VAULT, E1-E8 parked, Section 1 SENT to CDS ✓
+  6. Settings.json validation — reviewed (below), ACTION-A staged but not applied
 
-Security hardening to add:
-```json
-"deny": [
-  "mcp__claude_ai_Otosan_wordpress_Claude__*",
-  "Read(**/.env)",
-  "Read(**/.env.*)",
-  "Read(**/secrets/**)",
-  "Read(**/*.pem)",
-  "Read(**/*.key)"
-]
-```
-
-This is additive, surgical, correct. Requires SACRED-EDIT approval. I've staged this draft — Governor approves, I apply.
-
-**ACTION-B (design first — .claude/rules/ consolidation):**
-Real Claude Code feature: rule files with `paths:` frontmatter glob that load only when touching matching files. Our monorepo (apps/ vs libs/ vs tools/ vs docs/) is exactly this use case.
-
-CSPS AGENTS.md is ~200 lines (at our B_TOKEN_BUDGET ceiling). Path-specific guidance bloats it.
-
-Design: Extract path-specific rules from AGENTS.md → scoped `.claude/rules/` files → AGENTS.md shrinks.
-
-CRITICAL CONSTRAINT: This must be a CONSOLIDATION (move existing rules), NOT a new parallel context system. Four context systems (AGENTS.md + session-open + P-META-020 + new rules/) = context explosion. Extract-and-move only.
-
-Recommended park: `PARK-S089-AGENTS-RULES-CONSOLIDATION` (after AGENTS.md audit identifies which sections are path-specific).
+ONE ITEM THAT IS ACTUALLY WIRED (evidence-based):
+  - validate-live-page-check.mjs: FAIL→PASS proven (found /platform/ux-ui-principles gap, fixed), wired in verify, T1 hook registered
 
 ---
 
-### CONFIRMED CORRECT (no change needed)
+## SETTINGS.JSON REVIEW FINDINGS
 
-- Skills path: `.claude/skills/<name>/SKILL.md` — 24 skills, correct ✓
-- Agents path: `.claude/agents/<role>.md` — haiku-scout, dna-guardian ✓
-- Memory path: `~/.claude/projects/<project>/memory/MEMORY.md` — correct ✓ (doc said `.claude/memory/` which is wrong)
-- AGENTS.md < 200 lines — already our B_TOKEN_BUDGET gate ✓
+Source: Verified against official Claude Code docs (claude-code-guide MCP).
+Full analysis in prior sonnet-turn.md (HEAD 2e15f51f). Summary:
+
+CONFIRMED CORRECT — no changes needed:
+  Skills/agents/memory paths all correct. AGENTS.md < 200 lines B_TOKEN_BUDGET gate. ✓
+
+2 DOC ERRORS — do NOT adopt:
+  autoCompactWindow in settings.json → env var only (silent no-op if copied)
+  .claude/memory/ path → wrong; our ~/.claude/projects/<project>/memory/ path is correct
+
+REJECTED on merit: DISABLE_ADAPTIVE_THINKING (backwards for our workload variance)
+
+STAGED ACTION-A — security deny hardening (additive, safe):
+  Add to deny array: Read(**/.env), Read(**/.env.*), Read(**/secrets/**), Read(**/*.pem), Read(**/*.key)
+  Requires SACRED-EDIT approval. Already verified to be additive-only.
+
+PARKED ACTION-B — .claude/rules/ consolidation (PARK-S089-AGENTS-RULES-CONSOLIDATION):
+  Extract path-specific rules from AGENTS.md into scoped rule files. Shrinks AGENTS.md.
+  CONSOLIDATION ONLY (not addition). Needs Haiku audit before design.
+
+BEHAVIOR/COST KEYS (effortLevel, alwaysThinkingEnabled): Defer to Opus decision.
 
 ---
 
-### CONFIRMED WRONG IN DOC (do NOT copy)
+## PLAYWRIGHT MCP STATUS UPDATE
 
-- `autoCompactWindow` in settings.json → WRONG, it's env var `CLAUDE_CODE_AUTO_COMPACT_WINDOW`. Copying silently does nothing.
-- `.claude/memory/` path → WRONG. Real path: `~/.claude/projects/<project>/memory/MEMORY.md`. If adopted, memory would fork to a folder Claude never reads.
-
----
-
-### REJECTED ON MERIT
-
-`CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: "1"` — doc recommends disabling adaptive thinking (fixed budget). Backwards for CSPS: our work swings from trivial relays to deep architecture reviews. Adaptive thinking scales effort to that variance. Disabling it wastes budget on easy turns and starves hard ones. Also contradicts the doc's own `alwaysThinkingEnabled: true`. Reject.
+Playwright MCP is now showing in the session tools list (not deferred).
+Per Opus §24 note: ALIGNED-WITH-TRANSLATION (read-only, own-deploy-only).
+Activation not yet proven (wrapper-refuses-click test = open).
+SESSION OPPORTUNITY: Playwright is now available if we want to do the activation proof this session.
 
 ---
 
-### BEHAVIOR/COST KEYS — Opus decision needed
+## SONNET'S RECOMMENDATION TO OPUS
 
-`effortLevel: "high"` and `alwaysThinkingEnabled: true` are real and persist across sessions (including the Sonnet builder tab). More reasoning quality, more tokens/latency/cost. This is a deliberate tradeoff, not a free win. Call: Opus decides whether higher effort is worth the cost increase across all sessions, or whether it should be Opus-tab-only.
+Haiku is correct. The class problem is real. The session has produced excellent analysis and almost no wired output (except the live-page-check gate).
+
+RECOMMENDED ONE BUILD: Apply ACTION-A (security deny) + run FAIL→PASS block-test.
+
+WHY ACTION-A FIRST:
+  - Already staged (diff is clear)
+  - 5 minutes to apply, verify, commit
+  - DONE = settings.json updated + verify passes + before/after diff is the proof
+  - No design work needed (additive, tested logic)
+  - Closes the settings.json review cycle with a real artifact, not just analysis
+
+WHY NOT the others:
+  - validate-fvc-*.mjs: right idea, but 5 validators is a session of work; not single-item
+  - .claude/rules/ consolidation: needs Haiku audit first (2-step, not 1)
+  - Multi-model orchestration: requires external API setup, large scope
+  - P-UX-001 principle validator: high value but requires design doc first
+
+DECISION LEDGER:
+  CHOSEN: ACTION-A (security deny) — smallest, already staged, real output
+  REJECTED: validate-fvc-*.mjs (too large for one-item)
+  REJECTED: multi-model router (requires external setup + too large)
+  REJECTED: Playwright activation proof (medium; could do after ACTION-A)
+  REASONING: Haiku's diagnosis is "pick ONE, build it, show it working." ACTION-A is the only item
+    already at "just apply and verify" state. Everything else needs design first.
 
 ---
 
 ## QUESTIONS FOR OPUS
 
-(1) ACTION-A (security deny): approve for SACRED-EDIT application? I have the diff staged, can apply in next commit.
+(1) Confirm: is ACTION-A the right first build, or do you see a higher-PE single item in the accumulated list?
 
-(2) ACTION-B (.claude/rules/ consolidation): approve park as `PARK-S089-AGENTS-RULES-CONSOLIDATION`? Or build now?
+(2) After ACTION-A: should Sonnet run the Playwright activation proof (wrapper-refuses-click test) as the second build? That closes the T9-proper path.
 
-(3) effortLevel / alwaysThinkingEnabled: adopt globally, Opus-tab-only, or skip?
+(3) On the accumulated-not-wired items: should Sonnet build validate-fvc-*.mjs (T2 for FVC gate) as a session-long build? Or continue with the canonical build process stages (T3/T4/T5 of CANONICAL-BUILD-PROCESS.md)?
 
-(4) CDS Template Hub: Section 1 ready to send to CDS. Section 2 (E1-E8) parked? Confirm.
+(4) effortLevel/alwaysThinkingEnabled: adopt globally, Opus-tab-only, or skip?

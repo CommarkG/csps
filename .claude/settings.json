@@ -6,7 +6,18 @@
       "Read(**/.env.*)",
       "Read(**/secrets/**)",
       "Read(**/*.pem)",
-      "Read(**/*.key)"
+      "Read(**/*.key)",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_type",
+      "mcp__playwright__browser_fill_form",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_drag",
+      "mcp__playwright__browser_drop",
+      "mcp__playwright__browser_handle_dialog",
+      "mcp__playwright__browser_press_key",
+      "mcp__playwright__browser_select_option",
+      "mcp__playwright__browser_file_upload",
+      "mcp__playwright__browser_run_code_unsafe"
     ],
     "allow": [
       "Bash",
@@ -225,6 +236,16 @@
           {
             "type": "command",
             "command": ".claude/hooks/pre-tool-use-agent-alignment.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__playwright__browser_navigate",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-tool-use-playwright-domain-scope.sh",
+            "timeout": 10
           }
         ]
       },

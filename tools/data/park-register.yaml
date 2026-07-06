@@ -2773,3 +2773,25 @@ entries:
       rejected_b: "add .claude/rules/ as new parallel system (four context systems = explosion)"
       reasoning: "Expert review validated this is the right tool; extraction-not-addition is the constraint"
     retrieve_when: "After AGENTS.md is next touched for governance update. Haiku audit = 1 scan."
+  - id: PARK-S089-PLAN-PIPELINE-SPINE
+    lane: obligation
+    priority: TOP
+    title: Enhance PARK into a stateful plan-pipeline spine + flip no-implementation-without-plan to BLOCKING
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: "Governor directive S089: create a structural situation where NOTHING consequential is implemented without a ratified plan. Enhance the park element into a full schema that parks AND processes items through a predefined pipeline carrying all planning + virtual-simulation wisdom. AWAITING RATIFICATION of the concept before Sonnet builds (models EXPLORE-RATIFY-EXECUTE)."
+    problem: "This session drifted into input-driven freestyling: 6+ side-cycles executed, the ratified canonical-build mandate untouched, session-state.json stale. Discipline held but was not mechanically enforced. Root: no mechanical gate makes a ratified plan a PRECONDITION of implementation; park is a flat capture list, not a stateful pipeline."
+    concept: "PARK becomes the universal WORK-ITEM SPINE with pipeline_state: intake -> triaged -> planned -> simulated -> ratified -> authorized -> implementing -> done. Consequential builds may commit only when they cite a park-item in ratified/authorized state. Scope-tiered (like threshold-first): trivial-reversible EXEMPT/swift-track; consequential (new validator/hook/feature/schema) MUST be an authorized park-item."
+    existing_assets_to_compose: "INTAKE=threshold-router.mjs · PARK=park-register+validate-park-register · PLAN=canonical-build-process(9 stages)+gradual-build-plan.template+decision-ledger · SIMULATE=validate-simulation-before-implementation.mjs+scenarios · RATIFY=council-architecture(two-party seal)+validate-decision-ledger · PRIORITIZE=PE/pe-agent · GATE=validate-no-implementation-without-plan.mjs (EXISTS, currently ADVISORY -> flip BLOCKING + check park state) · RESURFACE=validate-floater-escalation · TRACK=session-state.json (refresh; currently stale)."
+    first_tasks: "T0 re-anchor (the items Opus mentioned this turn): (a) refresh session-state.json to hold the S089 mandate (canonical build -> goal-screen -> Stage 2) so the tracker stops being stale; (b) resume the ratified sequence = Governor goal-screen test-drive (now unblocked by Playwright see-it). T1 enhance park schema with pipeline_state + valid-transition enforcement in validate-park-register. T2 flip validate-no-implementation-without-plan to BLOCKING + scope tiers + park-state check. T3 wire the transition gates (plan/simulate/ratify) to the existing validators."
+    dedup_checked: "ENHANCE not fork: composes ~10 existing mechanisms into one spine; builds NO new pipeline system. The park IS the connective tissue. validate-no-implementation-without-plan already exists (advisory) — flip, do not recreate."
+    decision_ledger:
+      chosen: compose the 10 existing mechanisms into one stateful park-spine + flip the existing no-impl gate to BLOCKING (scope-tiered); ratify concept before build
+      rejected: build a new pipeline system from scratch (parts already exist = parallel-system disease + over-build) OR keep park flat and rely on discipline (exactly what freestyled this session; discipline without a mechanical gate does not hold)
+      reasoning: the whole session proved discipline-without-a-gate drifts; the parts exist; the enhancement is connective + a single advisory->blocking flip with an escape hatch.
+    decision_back_ref: "Governor S089: 'you must create a situation that nothing is implemented without a ratified plan... enhance the park element into a full schema enabling to park things and process them in a predefined pipeline with all the wisdom of planning and virtual simulating we have... what do we have that exists and can be connected and enhanced... and park what you mentioned now.'"
+    retrieve_when: "IMMEDIATE next: Governor ratifies the concept (or amends). Then Sonnet builds T0->T3 in order. T0(a) session-state refresh can proceed on ratification; T0(b) goal-screen test-drive is the Governor's gate."

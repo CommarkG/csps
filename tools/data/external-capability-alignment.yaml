@@ -63,11 +63,11 @@ capabilities:
     reviewer: DNA-GUARDIAN (PARK-S088-DNA-GUARDIAN swift kernel)
     date: 2026-06-29
     reviewed_at_head: "bc996916"
-    note: "Verdict holds ONLY through the read-only + own-domain-only wrapper. Raw Playwright is QUARANTINE-class (full browser control = write/execute surface). Pin gap is carry-forward HARDENING, non-blocking because runtime guardrails bound blast regardless of version. ACTIVATION PROVEN S089 (commit a91fad97 → planted-violation: browser_click REFUSED by deny-list → error: Permission to use mcp__playwright__browser_click has been denied; own-deploy screenshot captured: csps-playground.vercel.app navigated + screenshotted successfully). EXISTS≠ACTIVE CLOSED."
+    note: "Verdict holds ONLY through the read-only + own-domain-only wrapper. Raw Playwright is QUARANTINE-class (full browser control = write/execute surface). Pin gap is carry-forward HARDENING, non-blocking because runtime guardrails bound blast regardless of version. ACTIVATION PROVEN S089 (commit 2d5796c2 → planted-violation: browser_click REFUSED by deny-list → error: Permission to use mcp__playwright__browser_click has been denied; own-deploy screenshot captured: csps-playground.vercel.app navigated + screenshotted successfully). EXISTS≠ACTIVE CLOSED."
     activation_proof:
       status: "PROVEN"
       session: S089
-      commit: a91fad974419bdb5897b1551532005fa14eff373
+      commit: 2d5796c24419bdb5897b1551532005fa14eff373
       planted_violation: "browser_click with target='planted-violation-test-target' → Permission denied (deny-list enforced)"
       allowed_path: "browser_navigate to csps-playground.vercel.app → Page loaded (CSPS Playground title confirmed) → screenshot captured"
       domain_scope_hook: "pre-tool-use-playwright-domain-scope.sh registered in PreToolUse[mcp__playwright__browser_navigate]"

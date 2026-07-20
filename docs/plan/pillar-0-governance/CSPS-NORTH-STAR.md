@@ -8,8 +8,10 @@ protection_level: sacred
 status: ratified
 core_spine: GVRN
 schema_anchor: vault_files
-version: "1.0"
+version: "1.1"
+ratified_revision: "Version D (S089) — outward-outcome + human-AI-collaboration synthesis (CISEM convergence); retains Version C precision+balance core verbatim; supersedes Version C (S060). Six Qualities + context_question unchanged."
 session: S060
+revised_session: S089
 owner: group:finky
 lifecycle: production
 lifecycle_state: active
@@ -27,9 +29,11 @@ inherits_from: "CSP PLTF-NS-01 (predecessor platform, inter-session 2026-05-14)"
 
 ---
 
-## Version C — The Ratified Statement
+## Version D (S089) — The Ratified Statement
 
-> *"CSPS exists to turn intention into reality — not approximately, but precisely.*
+> *"CSPS exists to turn intention into reality — not approximately, but precisely: to create the most*
+> *intuitive, stable, scalable, and effective digital solutions — systems, apps, and SaaS — for both the*
+> *developers who build them and the people who use them, by having human and AI think together.*
 > *It sees the core of what matters, holds it as the governing reference,*
 > *and builds outward from it through AI-optimized architecture*
 > *that is governed without rigidity, stable without slowness,*
@@ -37,6 +41,17 @@ inherits_from: "CSP PLTF-NS-01 (predecessor platform, inter-session 2026-05-14)"
 
 **Foundation Sentence (companion):**
 "Context is the palace. Alignment is the King. Timing is the Queen."
+
+**Revision — Version D supersedes Version C (Governor-ratified S089).** Version C (S060) was the
+precision + balance core: *"turn intention into reality — not approximately, but precisely… governed
+without rigidity, stable without slowness, detailed without losing the whole."* Version D **retains that
+core verbatim** and **adds the outward outcome** (intuitive/stable/scalable/effective solutions for
+developers AND end users) + **human-AI collaboration** — a synthesis adopting the CISEM convergence,
+made our own (expressed through CSPS architecture: spines · Threshold · Priority Engine · the plan-
+pipeline-spine · ZF — not CISEM's Shell/Pockets). **Ripple bounded:** the Six North Star Qualities and
+the context_question below are UNCHANGED; only the statement's orientation widened. Rationale: the inward/
+architectural framing of Version C was a plausible root of the governance-over-product drift; naming
+"solutions for developers and end users" as the goal resists it.
 
 **The three pairs embedded in Version C:**
 - Governed without rigidity — rules hold AND creative judgment remains possible within them

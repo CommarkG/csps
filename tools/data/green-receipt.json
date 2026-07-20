@@ -1,9 +1,9 @@
 {
-  "HEAD": "f8b3a547075ce9e3cbc4a6731661fafe7d58d43a",
-  "tree_hash": "8093b18dd0b347ca",
+  "HEAD": "8c96f8a67f637afdada9c97c6a5edb7498a1756a",
+  "tree_hash": "5a61edcbea7e8739",
   "exit_code": 0,
   "blocking_set_hash": "c12c2fc1c236a592",
   "validators_run": 237,
-  "ts": "2026-07-06T12:52:41.048Z",
+  "ts": "2026-07-12T10:39:50.150Z",
   "note": "B_DETERMINISTIC_GATE+B_CONTEXT_CHECKPOINT_GATE: tree_hash is the validation key (stable across receipt commit). HEAD is metadata. validate-green-receipt.mjs verifies tree_hash matches."
 }

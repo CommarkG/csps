@@ -2795,3 +2795,24 @@ entries:
       reasoning: the whole session proved discipline-without-a-gate drifts; the parts exist; the enhancement is connective + a single advisory->blocking flip with an escape hatch.
     decision_back_ref: "Governor S089: 'you must create a situation that nothing is implemented without a ratified plan... enhance the park element into a full schema enabling to park things and process them in a predefined pipeline with all the wisdom of planning and virtual simulating we have... what do we have that exists and can be connected and enhanced... and park what you mentioned now.'"
     retrieve_when: "IMMEDIATE next: Governor ratifies the concept (or amends). Then Sonnet builds T0->T3 in order. T0(a) session-state refresh can proceed on ratification; T0(b) goal-screen test-drive is the Governor's gate."
+  - id: PARK-S089-CONSEQUENCE-ESCALATION-LINE
+    lane: queue
+    priority: MEDIUM
+    title: Consequence-based (blast-radius) escalation orthogonal to spine precedence — the missing axis
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: "Opus ruling on Sonnet's open question (sonnet-turn.md): CONFIRMED real gap, not false. Spine precedence (GVRN>VALD>ARCH>AI>OPER) is CATEGORICAL (which domain wins); blast-radius is MAGNITUDE (how many break if this artifact changes). Orthogonal — precedence cannot tell you a low-spine leaf with 40 dependents is more dangerous than a high-spine leaf with 1. Do NOT build now (K=0 realized failures in CSPS; no-K=1-engraving)."
+    problem: "CSPS escalates by spine precedence only; nothing escalates a low-precedence-but-high-blast change to human review. We told CISEM to 'fail-UP on blast' (CISEM critique) while CSPS itself doesn't practice it = mild EXISTS!=ACTIVE on us. Origin: CSP CC-042 Pillar Protection Line (>=3 dependents = escalate, depth-orthogonal)."
+    existing_coverage: "PARTIAL raw materials, NOT the mechanism: nothing-stands-alone-audit gives the dependency GRAPH but computes no blast + escalates nothing; PE ripple (P1) weights WORK-prioritization by impact (estimate, not a mechanical escalation gate on a change/conflict). Prioritization != escalation."
+    disposition: "FOLD INTO PARK-S089-PLAN-PIPELINE-SPINE scope-tier, do not fork. The pipeline gate needs a definition of 'consequential'; define it as high-blast (dependent-count from nothing-stands-alone) OR sensitive-type. The Pillar-Protection-Line IS the blast half of 'consequential'. Compose nothing-stands-alone (graph) + PE ripple (weight); no new escalation engine."
+    dedup_checked: "ENHANCE not fork: composes nothing-stands-alone-audit + PE ripple into the pipeline-spine scope-tier. No parallel system."
+    decision_ledger:
+      chosen: park the confirmed gap and fold it into the pipeline-spine 'consequential' definition (blast = dependent-count); build with the pipeline gate, not before
+      rejected: build a standalone consequence-escalation validator now (K=0 realized failures; no-K=1-engraving; pipeline-spine not yet built to hang it on) OR dismiss it as covered (nothing-stands-alone = graph not rule; PE = prioritization not escalation)
+      reasoning: the axis is genuinely orthogonal and we preach it externally, so capture it; but it is unrealized-in-practice, so it rides the pipeline-spine build rather than a rushed parallel gate.
+    decision_back_ref: "Sonnet S089 open question (sonnet-turn.md 'OPEN QUESTION FOR YOU'); origin CSP CC-042 Pillar Protection Line; ties to OPUS25-CSPS_to_CISEM_Corespiral-Approach-Critique (fail-UP on blast)."
+    retrieve_when: "When PARK-S089-PLAN-PIPELINE-SPINE scope-tier is built (define 'consequential' = high-blast OR sensitive-type there), OR on first blast-related incident (K>=1), OR when CISEM's Pillar-Protection-Line proves it out (convergence evidence)."

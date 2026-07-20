@@ -50,12 +50,13 @@ entries:
 
   - url: "https://csps-playground.vercel.app/platform/ux-parameters"
     route: "/platform/ux-parameters"
-    checked_at: "2026-06-28"
-    method: WebFetch
+    checked_at: "2026-07-20"
+    method: Playwright
     result: content_confirmed
-    content_signal: "UX Parameters Hub headline + parameter table visible"
-    checked_by: Sonnet
+    content_signal: "Cognitive Parameters + Time Thresholds + CTA Parameters + Runtime Metrics + 18 Content Carrier Questions (FVC-01..18) all rendered"
+    checked_by: Opus
     session: S089
+    notes: "Real live-check via Playwright (T9-proper active). Route 200, content present. Minor: 2 console errors on page (renders OK) — flag for a follow-up quality pass."
 
   - url: "https://csps-playground.vercel.app/platform/classification-training"
     route: "/platform/classification-training"
@@ -69,10 +70,11 @@ entries:
 
   - url: "https://csps-playground.vercel.app/platform/ux-ui-principles"
     route: "/platform/ux-ui-principles"
-    checked_at: "2026-07-02"
-    method: WebFetch
+    checked_at: "2026-07-20"
+    method: Playwright
     result: content_confirmed
-    content_signal: "UX/UI Principles headline + 5 UX-DNA laws + 6 UI principles visible"
-    checked_by: Sonnet
+    content_signal: "UX/UI Principles page: laws-application section ('Applying these laws to a new surface') + Decision Ledger (B_DECISION_LEDGER) rendered"
+    checked_by: Opus
     session: S089
+    notes: "Real live-check via Playwright (T9-proper active). Route 200, content present. Minor: 1 console error on page (renders OK) — flag for a follow-up quality pass."
     notes: "G5 gap found by validate-live-page-check.mjs block-test — confirmed live immediately"

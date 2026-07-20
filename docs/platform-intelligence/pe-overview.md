@@ -16,9 +16,8 @@ tags:
   - domain:governance
   - domain:platform
   - type:reference
-  - audience:governor
+  - audience:admin
   - audience:developer
-  - audience:external-reviewer
   - maturity:stable
 links:
   - { rel: domain-card, href: ../platform-audit/platform-services/priority-engine.md }

@@ -1,10 +1,10 @@
 {
   "session": "S089",
-  "captured_at": "2026-07-02T18:03:01.866Z",
+  "captured_at": "2026-07-12T10:39:51.253Z",
   "verify": {
     "exit_code": 0,
-    "validators_checked": 273,
-    "ran_at": "2026-07-02T18:02:23.246Z"
+    "validators_checked": 274,
+    "ran_at": "2026-07-12T10:39:15.798Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
@@ -24,5 +24,5 @@
     "gap_RESIDUE_HOOK_FALSE_POSITIVE K=2 (open)",
     "gap_RELAY_LAYER_DRIFT K=2 (structural_fix_committed)"
   ],
-  "sonnet_summary": "Opus, this is Sonnet. B1+B2+B3+B4 complete. HEAD: bc996916 | --- | File: tools/data/goal-record-schema.yaml (committed bc996916)"
+  "sonnet_summary": "Opus, this is Sonnet. | HEAD: 57755873 | verify: exit_code=0 | Session S089 | ---"
 }

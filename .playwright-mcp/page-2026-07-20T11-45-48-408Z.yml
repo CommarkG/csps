@@ -1,0 +1,355 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "CSPS" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - button "Platform ▾" [ref=e5] [cursor=pointer]:
+      - text: Platform
+      - generic [ref=e6]: ▾
+    - button "Architecture ▾" [ref=e8] [cursor=pointer]:
+      - text: Architecture
+      - generic [ref=e9]: ▾
+    - button "Journeys ▾" [ref=e11] [cursor=pointer]:
+      - text: Journeys
+      - generic [ref=e12]: ▾
+    - button "Create ▾" [ref=e14] [cursor=pointer]:
+      - text: Create
+      - generic [ref=e15]: ▾
+    - button "Docs ▾" [ref=e17] [cursor=pointer]:
+      - text: Docs
+      - generic [ref=e18]: ▾
+    - textbox "Search pages..." [ref=e19]
+    - link "?" [ref=e20] [cursor=pointer]:
+      - /url: /platform/consult
+    - link "Start building →" [ref=e21] [cursor=pointer]:
+      - /url: /platform/journey
+  - generic [ref=e22]:
+    - link "Home" [ref=e23] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e24]:
+      - generic [ref=e25]: ›
+      - link "Platform" [ref=e26] [cursor=pointer]:
+        - /url: /platform
+    - generic [ref=e27]:
+      - generic [ref=e28]: ›
+      - generic [ref=e29]: Ux parameters
+  - main [ref=e30]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - heading "UX Parameters Hub" [level=1] [ref=e35]
+            - paragraph [ref=e36]: All adjustable UX/UI thresholds and rules in one place — the First Viewport Contract parameters.
+            - paragraph [ref=e37]: “No screen is shippable until its first viewport proves orientation, action, recommendation, help, navigation, input fitness, and responsive continuity.”
+          - generic [ref=e38]:
+            - button "?" [ref=e40] [cursor=pointer]
+            - generic [ref=e42]:
+              - generic [ref=e43]: ACTIVE — S089
+              - generic [ref=e44]: FVC Gate enforced · 18 content carriers · 5 validator groups
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: RECOMMENDED
+            - generic [ref=e48]:
+              - text: Cognitive parameters
+              - generic [ref=e49]: — Working memory limits + element thresholds
+            - link "Jump ↓" [ref=e50] [cursor=pointer]:
+              - /url: "#cognitive"
+          - generic [ref=e51]:
+            - generic [ref=e52]:
+              - text: 18 Content Carriers
+              - generic [ref=e53]: — FVC-01 to FVC-18 — creation planning questions
+            - link "→ Go" [ref=e54] [cursor=pointer]:
+              - /url: "#fvc-questions"
+          - generic [ref=e55]:
+            - generic [ref=e56]:
+              - text: Edit parameters
+              - generic [ref=e57]: — Adjust via tools/data/ux-parameters.yaml → commit
+            - link "→ Go" [ref=e58] [cursor=pointer]:
+              - /url: "#edit"
+        - generic [ref=e59]:
+          - generic [ref=e60]: "Next:"
+          - link "View First Viewport Contract (full document) →" [ref=e61] [cursor=pointer]:
+            - /url: /platform/ux-ui-principles
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - generic [ref=e65]: 🏛 First Viewport Contract (FVC) Gate — Hard Gate
+          - generic [ref=e66]:
+            - text: "Every screen must answer:"
+            - strong [ref=e67]: Where am I? What can I do? What's recommended? Why does this serve me? How can I ask? How do I move? How do I complete my task?
+          - generic [ref=e68]: "Synthesized from: Grok + Haiku + Kimi + Gemini + GPT + CSPS-original · Governor S089"
+        - generic [ref=e69]: Cognitive Parameters
+        - generic [ref=e70]:
+          - generic [ref=e71]: Based on Miller's Law (4±1 chunks) + cognitive science. Adjustable in tools/data/ux-parameters.yaml.
+          - generic [ref=e72]:
+            - generic [ref=e73]:
+              - generic [ref=e74]: Primary attention chunks (max)
+              - generic [ref=e75]: Items competing for primary attention. NOT total elements.
+            - generic [ref=e76]:
+              - text: 4chunks
+              - generic [ref=e77]: "src: Kimi (cognitive science)"
+          - generic [ref=e78]:
+            - generic [ref=e79]:
+              - generic [ref=e80]: Total interactive elements (warn)
+              - generic [ref=e81]: Warning — not yet blocking.
+            - generic [ref=e82]:
+              - text: 9elements
+              - generic [ref=e83]: "src: Haiku"
+          - generic [ref=e84]:
+            - generic [ref=e85]:
+              - generic [ref=e86]: Total interactive elements (block)
+              - generic [ref=e87]: BUILD-AUDIT f fails above this.
+            - generic [ref=e88]:
+              - text: 12elements
+              - generic [ref=e89]: "src: Haiku"
+        - generic [ref=e90]: Time Thresholds
+        - generic [ref=e91]:
+          - generic [ref=e92]:
+            - generic [ref=e93]:
+              - generic [ref=e94]: Orientation window
+              - generic [ref=e95]: "\"Where am I\" must resolve in 3s."
+            - generic [ref=e96]:
+              - text: 3seconds
+              - generic [ref=e97]: "src: Kimi"
+          - generic [ref=e98]:
+            - generic [ref=e99]:
+              - generic [ref=e100]: Value clarity window
+              - generic [ref=e101]: "\"Is this for me\" must resolve before bounce."
+            - generic [ref=e102]:
+              - text: 20seconds
+              - generic [ref=e103]: "src: GPT"
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - generic [ref=e106]: Time-to-first-interaction target
+              - generic [ref=e107]: 70%+ of users must interact within 5s.
+            - generic [ref=e108]:
+              - text: 5seconds
+              - generic [ref=e109]: "src: Kimi"
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - generic [ref=e112]: Largest Contentful Paint (LCP)
+              - generic [ref=e113]: Performance as a UX requirement.
+            - generic [ref=e114]:
+              - text: 2500ms
+              - generic [ref=e115]: "src: Kimi"
+          - generic [ref=e116]:
+            - generic [ref=e117]:
+              - generic [ref=e118]: Orientation elements render time
+              - generic [ref=e119]: Location anchor visible in first 100ms.
+            - generic [ref=e120]:
+              - text: 100ms
+              - generic [ref=e121]: "src: Kimi"
+        - generic [ref=e122]: CTA Parameters
+        - generic [ref=e123]:
+          - generic [ref=e124]:
+            - generic [ref=e125]:
+              - generic [ref=e126]: Primary CTAs per viewport (max)
+              - generic [ref=e127]: Hard rule. One primary action per viewport.
+            - generic [ref=e128]:
+              - text: 1CTA
+              - generic [ref=e129]: "src: Grok/Haiku/Kimi/Gemini/GPT"
+          - generic [ref=e130]:
+            - generic [ref=e131]:
+              - generic [ref=e132]: Secondary CTAs (max)
+              - generic [ref=e133]: Visible but subordinate.
+            - generic [ref=e134]:
+              - text: 3CTAs
+              - generic [ref=e135]: "src: GPT FVC-05"
+          - generic [ref=e136]:
+            - generic [ref=e137]:
+              - generic [ref=e138]: Primary CTA visual weight (vs secondary)
+              - generic [ref=e139]: 2× size or contrast vs secondary options.
+            - generic [ref=e140]:
+              - text: 2×
+              - generic [ref=e141]: "src: Kimi"
+          - generic [ref=e142]:
+            - generic [ref=e143]:
+              - generic [ref=e144]: Mobile thumb zone — primary CTA position
+              - generic [ref=e145]: Primary action in bottom ⅔ on mobile.
+            - generic [ref=e146]:
+              - text: 67% of viewport height (bottom)
+              - generic [ref=e147]: "src: Kimi"
+        - generic [ref=e148]: Runtime Metrics (Monitoring Targets)
+        - generic [ref=e149]:
+          - generic [ref=e150]: "Phase 2: wire to real monitoring. Phase 1: reference thresholds for manual review."
+          - generic [ref=e151]:
+            - generic [ref=e152]:
+              - generic [ref=e153]: Bounce rate alert threshold
+              - generic [ref=e154]: Alert fires if first-screen bounce > 40%.
+            - generic [ref=e155]:
+              - text: 40%
+              - generic [ref=e156]: "src: Kimi"
+          - generic [ref=e157]:
+            - generic [ref=e158]:
+              - generic [ref=e159]: Scroll recovery signal
+              - generic [ref=e160]: ">10% upward scroll = critical content missed."
+            - generic [ref=e161]:
+              - text: 10%upward scroll rate
+              - generic [ref=e162]: "src: Kimi"
+        - generic [ref=e163]: 18 Content Carrier Questions (FVC-01 to FVC-18)
+        - generic [ref=e164]: Answer these BEFORE writing any UI code. Organized by Priority Stack layer. Adjustable (toggle on/off) in tools/data/ux-parameters.yaml → content_carriers.active.
+        - generic [ref=e165]:
+          - generic [ref=e166]: "Layer 1: Orientation"
+          - generic [ref=e167]:
+            - generic [ref=e168]:
+              - generic [ref=e169]: FVC-01
+              - generic [ref=e170]:
+                - generic [ref=e171]: Screen name in user language (not developer name)
+                - generic [ref=e172]: → Clear title / heading — benefit-focused
+              - generic [ref=e173]: ACTIVE
+            - generic [ref=e174]:
+              - generic [ref=e175]: FVC-02
+              - generic [ref=e176]:
+                - generic [ref=e177]: Can the user know where they are?
+                - generic [ref=e178]: → Breadcrumb, step label, section marker
+              - generic [ref=e179]: ACTIVE
+            - generic [ref=e180]:
+              - generic [ref=e181]: FVC-03
+              - generic [ref=e182]:
+                - generic [ref=e183]: What is the user's current need — one sentence?
+                - generic [ref=e184]: → One-sentence need statement
+              - generic [ref=e185]: ACTIVE
+            - generic [ref=e186]:
+              - generic [ref=e187]: FVC-11
+              - generic [ref=e188]:
+                - generic [ref=e189]: Does the user know draft / active / incomplete / done?
+                - generic [ref=e190]: → Status/progress indicator
+              - generic [ref=e191]: ACTIVE
+        - generic [ref=e192]:
+          - generic [ref=e193]: "Layer 2: Decision Gate"
+          - generic [ref=e194]:
+            - generic [ref=e195]:
+              - generic [ref=e196]: FVC-04
+              - generic [ref=e197]:
+                - generic [ref=e198]: What is the ONE primary task the user does here?
+                - generic [ref=e199]: → Primary action — verb-labeled
+              - generic [ref=e200]: ACTIVE
+            - generic [ref=e201]:
+              - generic [ref=e202]: FVC-06
+              - generic [ref=e203]:
+                - generic [ref=e204]: What does the system recommend next, and WHY?
+                - generic [ref=e205]: → Recommended action + explicit reason
+              - generic [ref=e206]: ACTIVE
+        - generic [ref=e207]:
+          - generic [ref=e208]: "Layer 3: Route Content"
+          - generic [ref=e209]:
+            - generic [ref=e210]:
+              - generic [ref=e211]: FVC-05
+              - generic [ref=e212]:
+                - generic [ref=e213]: What 2–5 secondary options should be visible?
+                - generic [ref=e214]: → Secondary options, ranked and subordinate
+              - generic [ref=e215]: ACTIVE
+            - generic [ref=e216]:
+              - generic [ref=e217]: FVC-07
+              - generic [ref=e218]:
+                - generic [ref=e219]: Why does this screen advance the user's goal?
+                - generic [ref=e220]: → Benefit or relevance statement
+              - generic [ref=e221]: ACTIVE
+            - generic [ref=e222]:
+              - generic [ref=e223]: FVC-13
+              - generic [ref=e224]:
+                - generic [ref=e225]: What proof or confidence signal does the user need?
+                - generic [ref=e226]: → Trust/evidence carrier
+              - generic [ref=e227]: ACTIVE
+            - generic [ref=e228]:
+              - generic [ref=e229]: FVC-16
+              - generic [ref=e230]:
+                - generic [ref=e231]: What shows when no data / loading / failure?
+                - generic [ref=e232]: → Empty / loading / error first-screen variants
+              - generic [ref=e233]: ACTIVE
+        - generic [ref=e234]:
+          - generic [ref=e235]: "Layer 4: Depth Options"
+          - generic [ref=e236]:
+            - generic [ref=e237]:
+              - generic [ref=e238]: FVC-14
+              - generic [ref=e239]:
+                - generic [ref=e240]: What must remain visible on mobile / tablet / desktop?
+                - generic [ref=e241]: → Breakpoint-specific priority map
+              - generic [ref=e242]: ACTIVE
+            - generic [ref=e243]:
+              - generic [ref=e244]: FVC-15
+              - generic [ref=e245]:
+                - generic [ref=e246]: When the user scrolls, how does continuity persist?
+                - generic [ref=e247]: → Sticky nav / repeated CTA / section headings
+              - generic [ref=e248]: ACTIVE
+        - generic [ref=e249]:
+          - generic [ref=e250]: "Layer 5: Escape + Help"
+          - generic [ref=e251]:
+            - generic [ref=e252]:
+              - generic [ref=e253]: FVC-08
+              - generic [ref=e254]:
+                - generic [ref=e255]: Can the user go back, edit, skip, or choose another path?
+                - generic [ref=e256]: → Back / edit / alternative route
+              - generic [ref=e257]: ACTIVE
+            - generic [ref=e258]:
+              - generic [ref=e259]: FVC-09
+              - generic [ref=e260]:
+                - generic [ref=e261]: Can the user ask a question or request help?
+                - generic [ref=e262]: → Help/ask affordance visible
+              - generic [ref=e263]: ACTIVE
+            - generic [ref=e264]:
+              - generic [ref=e265]: FVC-10
+              - generic [ref=e266]:
+                - generic [ref=e267]: Can the task be done via ≥2 input modalities?
+                - generic [ref=e268]: → Input-mode decision (text/voice/file/camera)
+              - generic [ref=e269]: ACTIVE
+            - generic [ref=e270]:
+              - generic [ref=e271]: FVC-12
+              - generic [ref=e272]:
+                - generic [ref=e273]: What mistake is likely? How does the screen prevent it?
+                - generic [ref=e274]: → Warning, validation, smart default
+              - generic [ref=e275]: ACTIVE
+            - generic [ref=e276]:
+              - generic [ref=e277]: FVC-17
+              - generic [ref=e278]:
+                - generic [ref=e279]: Can the screen be used with keyboard, pointer, screen reader, voice?
+                - generic [ref=e280]: → Accessibility acceptance checks
+              - generic [ref=e281]: ACTIVE
+            - generic [ref=e282]:
+              - generic [ref=e283]: FVC-18
+              - generic [ref=e284]:
+                - generic [ref=e285]: How will we VERIFY the user can start or complete the task?
+                - generic [ref=e286]: → Test scenario (DONE = activation proven)
+              - generic [ref=e287]: ACTIVE
+        - generic [ref=e288]:
+          - generic [ref=e289]: ✏ How to adjust parameters
+          - list [ref=e290]:
+            - listitem [ref=e291]:
+              - text: Edit
+              - code [ref=e292]: tools/data/ux-parameters.yaml
+              - text: (the SSoT)
+            - listitem [ref=e293]: Commit + push → validators pick up new thresholds automatically
+            - listitem [ref=e294]: "This dashboard page is Phase 1 (read-only). Phase 2: live edit with API write-back."
+          - generic [ref=e295]: "Phase 2 (PARK-S089-LEARNING-LOOP-DASHBOARD): live parameter editing, compliance heatmap per page, K-count trends."
+      - generic [ref=e296]:
+        - generic [ref=e297]: Related Pages
+        - generic [ref=e298]:
+          - link "🎨 Design Intelligence Voice profiles + UX audit + design tokens" [ref=e299] [cursor=pointer]:
+            - /url: /platform/design-intelligence
+            - generic [ref=e300]:
+              - generic [ref=e301]: 🎨
+              - generic [ref=e302]: Design Intelligence
+              - generic [ref=e303]: Voice profiles + UX audit + design tokens
+          - link "📐 UX/UI Principles 5 UX laws + 6 UI principles" [ref=e304] [cursor=pointer]:
+            - /url: /platform/ux-ui-principles
+            - generic [ref=e305]:
+              - generic [ref=e306]: 📐
+              - generic [ref=e307]: UX/UI Principles
+              - generic [ref=e308]: 5 UX laws + 6 UI principles
+          - link "🗺 Customer Journey Shell The main entry flow — FVC applied in practice" [ref=e309] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e310]:
+              - generic [ref=e311]: 🗺
+              - generic [ref=e312]: Customer Journey Shell
+              - generic [ref=e313]: The main entry flow — FVC applied in practice
+          - link "🚀 Developer Journey INFRA-FLOW pipeline — all steps FVC-gated" [ref=e314] [cursor=pointer]:
+            - /url: /platform/developer-journey
+            - generic [ref=e315]:
+              - generic [ref=e316]: 🚀
+              - generic [ref=e317]: Developer Journey
+              - generic [ref=e318]: INFRA-FLOW pipeline — all steps FVC-gated
+  - navigation [ref=e319]:
+    - generic [ref=e320]:
+      - link "?" [ref=e321] [cursor=pointer]:
+        - /url: /platform/consult
+      - link "All pages" [ref=e322] [cursor=pointer]:
+        - /url: /
+  - alert [ref=e323]

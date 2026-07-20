@@ -1,0 +1,78 @@
+- generic [ref=e1]:
+  - navigation [ref=e2]:
+    - link "CSPS" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - button "Platform ▾" [ref=e5] [cursor=pointer]:
+      - text: Platform
+      - generic [ref=e6]: ▾
+    - button "Architecture ▾" [ref=e8] [cursor=pointer]:
+      - text: Architecture
+      - generic [ref=e9]: ▾
+    - button "Journeys ▾" [ref=e11] [cursor=pointer]:
+      - text: Journeys
+      - generic [ref=e12]: ▾
+    - button "Create ▾" [ref=e14] [cursor=pointer]:
+      - text: Create
+      - generic [ref=e15]: ▾
+    - button "Docs ▾" [ref=e17] [cursor=pointer]:
+      - text: Docs
+      - generic [ref=e18]: ▾
+    - textbox "Search pages..." [ref=e19]
+    - link "?" [ref=e20] [cursor=pointer]:
+      - /url: /platform/consult
+    - link "Start building →" [ref=e21] [cursor=pointer]:
+      - /url: /platform/journey
+  - main [ref=e22]:
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]: CSPS Customer Journey Shell
+        - heading "The customer journey — from raw idea to deployed app, guided step by step." [level=1] [ref=e26]
+        - paragraph [ref=e27]: I know where I am, what to do next, and feel like a customer — not a developer fighting their own tools.
+      - generic [ref=e28]:
+        - button "1 💡 Describe ›" [ref=e29]:
+          - generic [ref=e30]: "1"
+          - text: 💡 Describe
+          - generic [ref=e31]: ›
+        - button "2 🎯 Classify ›" [ref=e32]:
+          - generic [ref=e33]: "2"
+          - text: 🎯 Classify
+          - generic [ref=e34]: ›
+        - button "3 🗺 Plan ›" [ref=e35]:
+          - generic [ref=e36]: "3"
+          - text: 🗺 Plan
+          - generic [ref=e37]: ›
+        - button "4 🚀 Build" [ref=e38]:
+          - generic [ref=e39]: "4"
+          - text: 🚀 Build
+      - generic [ref=e41]:
+        - heading "What outcome are you trying to create?" [level=2] [ref=e42]
+        - paragraph [ref=e43]: Describe what you want to be different — your goal, problem, or aspiration. We'll help you reach the best version of it, not just what you first said.
+        - generic [ref=e44]:
+          - textbox "e.g. I need something that helps me track which clients owe me money, without the awkward 'hey, you forgot to pay me' conversation..." [active] [ref=e45]
+          - button "🎙" [ref=e46] [cursor=pointer]
+        - generic [ref=e47]:
+          - button "📎 Attach" [ref=e48] [cursor=pointer]
+          - button "📷 Camera" [ref=e49] [cursor=pointer]
+        - generic [ref=e50]:
+          - button "Start →" [disabled] [ref=e51]
+          - generic [ref=e52]: ⌘↩ · 🎙 voice · 📎 files · 📷 camera
+        - generic [ref=e53]:
+          - generic [ref=e54]: Skip ahead or go deeper
+          - generic [ref=e55]:
+            - link "Structured Wizard →" [ref=e56] [cursor=pointer]:
+              - /url: /platform/wizard
+              - generic [ref=e57]: Structured Wizard
+              - generic [ref=e58]: →
+            - link "Pipeline Status →" [ref=e59] [cursor=pointer]:
+              - /url: /platform/developer-journey
+              - generic [ref=e60]: Pipeline Status
+              - generic [ref=e61]: →
+            - link "UX/UI Laws →" [ref=e62] [cursor=pointer]:
+              - /url: /platform/ux-ui-principles
+              - generic [ref=e63]: UX/UI Laws
+              - generic [ref=e64]: →
+            - link "Intake Module →" [ref=e65] [cursor=pointer]:
+              - /url: /platform/zero-friction
+              - generic [ref=e66]: Intake Module
+              - generic [ref=e67]: →
+  - alert [ref=e68]

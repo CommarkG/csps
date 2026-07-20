@@ -1,0 +1,311 @@
+- generic [active] [ref=f1e1]:
+  - navigation [ref=f1e2]:
+    - link "CSPS" [ref=f1e3] [cursor=pointer]:
+      - /url: /
+    - button "Platform ▾" [ref=f1e5] [cursor=pointer]:
+      - text: Platform
+      - generic [ref=f1e6]: ▾
+    - button "Architecture ▾" [ref=f1e8] [cursor=pointer]:
+      - text: Architecture
+      - generic [ref=f1e9]: ▾
+    - button "Journeys ▾" [ref=f1e11] [cursor=pointer]:
+      - text: Journeys
+      - generic [ref=f1e12]: ▾
+    - button "Create ▾" [ref=f1e14] [cursor=pointer]:
+      - text: Create
+      - generic [ref=f1e15]: ▾
+    - button "Docs ▾" [ref=f1e17] [cursor=pointer]:
+      - text: Docs
+      - generic [ref=f1e18]: ▾
+    - textbox "Search pages..." [ref=f1e19]
+    - link "?" [ref=f1e20] [cursor=pointer]:
+      - /url: /platform/consult
+    - link "Start building →" [ref=f1e21] [cursor=pointer]:
+      - /url: /platform/journey
+  - generic [ref=f1e22]:
+    - link "Home" [ref=f1e23] [cursor=pointer]:
+      - /url: /
+    - generic [ref=f1e24]:
+      - generic [ref=f1e25]: ›
+      - link "Platform" [ref=f1e26] [cursor=pointer]:
+        - /url: /platform
+    - generic [ref=f1e27]:
+      - generic [ref=f1e28]: ›
+      - generic [ref=f1e29]: UX/UI Principles
+  - main [ref=f1e30]:
+    - generic [ref=f1e31]:
+      - generic [ref=f1e32]:
+        - generic [ref=f1e33]:
+          - generic [ref=f1e34]:
+            - heading "UX/UI Principles" [level=1] [ref=f1e35]
+            - paragraph [ref=f1e36]: The platform communication laws — 5 UX-DNA laws governing every experience, and 6 UI principles governing every interface.
+            - paragraph [ref=f1e37]: “A platform that builds sophisticated governance but requires users to fight its interface has failed its purpose.”
+          - generic [ref=f1e38]:
+            - button "?" [ref=f1e40] [cursor=pointer]
+            - generic [ref=f1e42]:
+              - generic [ref=f1e43]: LIVE — S089
+              - generic [ref=f1e44]: 5 UX laws + 6 UI principles active
+        - generic [ref=f1e45]:
+          - generic [ref=f1e46]:
+            - generic [ref=f1e47]: RECOMMENDED
+            - generic [ref=f1e48]:
+              - text: UX-DNA Laws (experience)
+              - generic [ref=f1e49]: — 5 constitutional laws governing every interaction — from B_UX_UI_DISCIPLINE
+            - link "Jump ↓" [ref=f1e50] [cursor=pointer]:
+              - /url: "#ux-laws"
+          - generic [ref=f1e51]:
+            - generic [ref=f1e52]:
+              - text: UI Principles (interface)
+              - generic [ref=f1e53]: — 6 design rules governing every rendered surface — from design-v2 §5
+            - link "→ Go" [ref=f1e54] [cursor=pointer]:
+              - /url: "#ui-principles"
+          - generic [ref=f1e55]:
+            - generic [ref=f1e56]:
+              - text: UX Audit
+              - generic [ref=f1e57]: — Check which pages comply — validate-ux-audit.mjs
+            - link "→ Go" [ref=f1e58] [cursor=pointer]:
+              - /url: /platform/design-intelligence?tab=audit
+        - generic [ref=f1e59]:
+          - generic [ref=f1e60]: "Next:"
+          - link "Run UX audit across all pages →" [ref=f1e61] [cursor=pointer]:
+            - /url: /platform/design-intelligence?tab=audit
+      - generic [ref=f1e63]:
+        - generic [ref=f1e64]:
+          - generic [ref=f1e65]:
+            - heading "UX-DNA Laws — Experience" [level=2] [ref=f1e66]
+            - generic [ref=f1e67]: B_UX_UI_DISCIPLINE · S088 CONSTITUTIONAL
+          - paragraph [ref=f1e68]:
+            - text: These govern
+            - strong [ref=f1e69]: experience
+            - text: — how the platform communicates with every user. Frictionless is not a design preference; it is a platform communication law.
+            - strong [ref=f1e70]: T2 enforcement
+            - text: ": validate-ux-audit.mjs is BLOCKING for new surfaces."
+        - generic [ref=f1e71]:
+          - generic [ref=f1e72]:
+            - generic [ref=f1e73]:
+              - generic [ref=f1e74]: "1"
+              - generic [ref=f1e75]:
+                - generic [ref=f1e76]: LAW 1 — Value Before Extraction
+                - generic [ref=f1e77]: The user sees value BEFORE being asked to give anything — time, data, commitment, sign-up.
+              - generic [ref=f1e78]: T2
+            - generic [ref=f1e79]:
+              - generic [ref=f1e80]:
+                - generic [ref=f1e81]: ✓ STRUCTURAL SIGNALS (compliant)
+                - list [ref=f1e82]:
+                  - listitem [ref=f1e83]: Purpose or description visible above the first form input
+                  - listitem [ref=f1e84]: Landing surfaces show concrete examples, not just feature lists
+                  - listitem [ref=f1e85]: Login/API gate appears AFTER the user has seen what they gain
+              - generic [ref=f1e86]:
+                - generic [ref=f1e87]: ✗ VIOLATIONS (will block new surfaces)
+                - list [ref=f1e88]:
+                  - listitem [ref=f1e89]: Page opens with a blank form and no explanation
+                  - listitem [ref=f1e90]: "\"Sign up to see results\" without showing any results"
+                  - listitem [ref=f1e91]: Empty state that says "No items yet" with no example
+          - generic [ref=f1e92]:
+            - generic [ref=f1e93]:
+              - generic [ref=f1e94]: "2"
+              - generic [ref=f1e95]:
+                - generic [ref=f1e96]: LAW 2 — Editable Current Understanding
+                - generic [ref=f1e97]: Whatever the system infers about the user or their state can be EDITED or CORRECTED inline. No lock-in from system inference.
+              - generic [ref=f1e98]: T2
+            - generic [ref=f1e99]:
+              - generic [ref=f1e100]:
+                - generic [ref=f1e101]: ✓ STRUCTURAL SIGNALS (compliant)
+                - list [ref=f1e102]:
+                  - listitem [ref=f1e103]: Auto-classified content shows classification AND an Edit/Override affordance
+                  - listitem [ref=f1e104]: Profile data inferred by the system shows source + edit path
+                  - listitem [ref=f1e105]: Journey state inferences surface with "Does this look right? [Edit]"
+              - generic [ref=f1e106]:
+                - generic [ref=f1e107]: ✗ VIOLATIONS (will block new surfaces)
+                - list [ref=f1e108]:
+                  - listitem [ref=f1e109]: System classifies an intent and presents only the result (no correction path)
+                  - listitem [ref=f1e110]: Onboarding responses stored but not editable in settings
+                  - listitem [ref=f1e111]: AI-generated summary shown without "Edit this" or "This is wrong" option
+          - generic [ref=f1e112]:
+            - generic [ref=f1e113]:
+              - generic [ref=f1e114]: "3"
+              - generic [ref=f1e115]:
+                - generic [ref=f1e116]: LAW 3 — Clarifying Questions ≤2 with Stated Reason
+                - generic [ref=f1e117]: Any surface that asks clarifying questions asks AT MOST 2 at a time. Every question states WHY it is being asked.
+              - generic [ref=f1e118]: T2
+            - generic [ref=f1e119]:
+              - generic [ref=f1e120]:
+                - generic [ref=f1e121]: ✓ STRUCTURAL SIGNALS (compliant)
+                - list [ref=f1e122]:
+                  - listitem [ref=f1e123]: Forms with more than 2 required fields provide grouping + explained purpose
+                  - listitem [ref=f1e124]: Wizard/multi-step flows never show more than 2 questions per step
+                  - listitem [ref=f1e125]: "Each question has an associated reason: \"We ask this because...\""
+              - generic [ref=f1e126]:
+                - generic [ref=f1e127]: ✗ VIOLATIONS (will block new surfaces)
+                - list [ref=f1e128]:
+                  - listitem [ref=f1e129]: 5-question onboarding form with no explanations
+                  - listitem [ref=f1e130]: Clarifying questions without "Why we ask:" context
+                  - listitem [ref=f1e131]: Multi-step flows that show all steps at once
+          - generic [ref=f1e132]:
+            - generic [ref=f1e133]:
+              - generic [ref=f1e134]: "4"
+              - generic [ref=f1e135]:
+                - generic [ref=f1e136]: LAW 4 — Saved-For-Later
+                - generic [ref=f1e137]: Every flow that requires multi-step input has a mechanism to save current state and continue later. No progress is lost.
+              - generic [ref=f1e138]: T2
+            - generic [ref=f1e139]:
+              - generic [ref=f1e140]:
+                - generic [ref=f1e141]: ✓ STRUCTURAL SIGNALS (compliant)
+                - list [ref=f1e142]:
+                  - listitem [ref=f1e143]: Multi-step wizards have "Save draft" or "Continue later" affordance
+                  - listitem [ref=f1e144]: Forms auto-save to localStorage or backend on change
+                  - listitem [ref=f1e145]: Session timeout shows "Your progress has been saved — Continue where you left off"
+              - generic [ref=f1e146]:
+                - generic [ref=f1e147]: ✗ VIOLATIONS (will block new surfaces)
+                - list [ref=f1e148]:
+                  - listitem [ref=f1e149]: Wizard that loses all data on browser close
+                  - listitem [ref=f1e150]: Form with no auto-save and no manual save
+                  - listitem [ref=f1e151]: No indicator that progress is being preserved
+          - generic [ref=f1e152]:
+            - generic [ref=f1e153]:
+              - generic [ref=f1e154]: "5"
+              - generic [ref=f1e155]:
+                - generic [ref=f1e156]: LAW 5 — No Dark Patterns
+                - generic [ref=f1e157]: No deceptive design that manipulates user behavior against their interest.
+              - generic [ref=f1e158]: T2
+            - generic [ref=f1e159]:
+              - generic [ref=f1e160]:
+                - generic [ref=f1e161]: ✓ STRUCTURAL SIGNALS (compliant)
+                - list [ref=f1e162]:
+                  - listitem [ref=f1e163]: All CTAs do what they say they do
+                  - listitem [ref=f1e164]: Costs disclosed at the earliest reasonable moment
+                  - listitem [ref=f1e165]: Cancel/leave path is as easy as sign-up/enter
+              - generic [ref=f1e166]:
+                - generic [ref=f1e167]: ✗ VIOLATIONS (will block new surfaces)
+                - list [ref=f1e168]:
+                  - listitem [ref=f1e169]: Disguised subscriptions — CTA that silently enrolls without clear consent
+                  - listitem [ref=f1e170]: Hidden costs — pricing revealed only at the final confirmation step
+                  - listitem [ref=f1e171]: Confirm-shaming — opt-out framed as an admission of self-harm
+                  - listitem [ref=f1e172]: Roach motel — easy to enter, deliberately obstructed to exit
+                  - listitem [ref=f1e173]: Privacy zuckering — default to maximum data sharing without explicit opt-in
+      - generic [ref=f1e174]:
+        - generic [ref=f1e175]:
+          - generic [ref=f1e176]:
+            - heading "UI Principles — Interface" [level=2] [ref=f1e177]
+            - generic [ref=f1e178]: design-v2 §5 · S089
+          - paragraph [ref=f1e179]:
+            - text: These govern
+            - strong [ref=f1e180]: interface
+            - text: — how every rendered surface is structured and behaves. The UX laws govern experience; these govern the visual and structural contract of every component.
+        - generic [ref=f1e181]:
+          - generic [ref=f1e182]:
+            - generic [ref=f1e183]:
+              - generic [ref=f1e184]: "1"
+              - generic [ref=f1e185]: Visual Hierarchy
+            - paragraph [ref=f1e186]: Primary action above the fold. One clear next action per surface.
+            - paragraph [ref=f1e187]: Users should never have to search for what to do next.
+          - generic [ref=f1e188]:
+            - generic [ref=f1e189]:
+              - generic [ref=f1e190]: "2"
+              - generic [ref=f1e191]: Cause-Effect Colocation
+            - paragraph [ref=f1e192]: Control and its effect/result are rendered together — not separated by scroll or navigation.
+            - paragraph [ref=f1e193]: If clicking a button changes something, the change is visible immediately adjacent.
+          - generic [ref=f1e194]:
+            - generic [ref=f1e195]:
+              - generic [ref=f1e196]: "3"
+              - generic [ref=f1e197]: Progressive Disclosure
+            - paragraph [ref=f1e198]: Depth on demand. Never wall-of-content. Start with the essential; expand on request.
+            - paragraph [ref=f1e199]: Accordion, "Show more", and tabs are the mechanism. The default view is the most common case.
+          - generic [ref=f1e200]:
+            - generic [ref=f1e201]:
+              - generic [ref=f1e202]: "4"
+              - generic [ref=f1e203]: Design-Token Consistency
+            - paragraph [ref=f1e204]: All surfaces use the platform design tokens (styles.css). No ad-hoc inline color or spacing.
+            - paragraph [ref=f1e205]: See Design Intelligence → Design Tokens for the canonical token registry.
+          - generic [ref=f1e206]:
+            - generic [ref=f1e207]:
+              - generic [ref=f1e208]: "5"
+              - generic [ref=f1e209]: State Completeness
+            - paragraph [ref=f1e210]: Every data surface has explicit loading, error, empty, and success states. No blank screens.
+            - paragraph [ref=f1e211]: M-47 requirement. Silent failure (blank) is worse than an honest error message.
+          - generic [ref=f1e212]:
+            - generic [ref=f1e213]:
+              - generic [ref=f1e214]: "6"
+              - generic [ref=f1e215]: Accessibility & Responsive
+            - paragraph [ref=f1e216]: Keyboard navigable, sufficient contrast, semantic HTML, mobile-first layout.
+            - paragraph [ref=f1e217]: WCAG AA minimum. Test at 375px width. Every interactive element has a visible focus state.
+      - generic [ref=f1e219]:
+        - generic [ref=f1e220]: Applying these laws to a new surface
+        - generic [ref=f1e221]:
+          - generic [ref=f1e222]:
+            - generic [ref=f1e223]: Automatic enforcement
+            - generic [ref=f1e224]:
+              - strong [ref=f1e225]: validate-ux-audit.mjs
+              - text: (T2 BLOCKING) runs on every
+              - code [ref=f1e226]: pnpm run verify
+              - text: and gates new surfaces that violate the 5 UX laws or lack pageDNA declaration.
+          - generic [ref=f1e227]:
+            - generic [ref=f1e228]: Manual checklist
+            - list [ref=f1e229]:
+              - listitem [ref=f1e230]:
+                - text: Declare
+                - code [ref=f1e231]: pageDNA
+                - text: with
+                - code [ref=f1e232]: purpose
+                - text: field
+              - listitem [ref=f1e233]:
+                - text: Add
+                - code [ref=f1e234]: PageContext
+                - text: or
+                - code [ref=f1e235]: PageHeader
+              - listitem [ref=f1e236]: Check all 5 UX laws + 6 UI principles against the surface
+              - listitem [ref=f1e237]:
+                - text: Run
+                - code [ref=f1e238]: node tools/verify.mjs
+                - text: — green before merge
+          - generic [ref=f1e239]:
+            - generic [ref=f1e240]: Source contracts
+            - list [ref=f1e241]:
+              - listitem [ref=f1e242]:
+                - strong [ref=f1e243]: B_UX_UI_DISCIPLINE.md
+                - text: — 5 UX laws (S088)
+              - listitem [ref=f1e244]:
+                - strong [ref=f1e245]: OPUS-S089-DESIGN-v2
+                - text: §5 — 6 UI principles (S089)
+              - listitem [ref=f1e246]:
+                - strong [ref=f1e247]: B_UX.md
+                - text: — legacy UX contracts (still valid)
+              - listitem [ref=f1e248]:
+                - strong [ref=f1e249]: tools/validators/validate-ux-audit.mjs
+                - text: — T2 gate
+      - group [ref=f1e251]:
+        - generic "Page design decisions (Decision Ledger — B_DECISION_LEDGER · S089 CONSTITUTIONAL)" [ref=f1e252] [cursor=pointer]
+      - generic [ref=f1e253]:
+        - generic [ref=f1e254]: Related Pages
+        - generic [ref=f1e255]:
+          - link "🎨 Design Intelligence Voice profiles + UX audit + design tokens dashboard" [ref=f1e256] [cursor=pointer]:
+            - /url: /platform/design-intelligence
+            - generic [ref=f1e257]:
+              - generic [ref=f1e258]: 🎨
+              - generic [ref=f1e259]: Design Intelligence
+              - generic [ref=f1e260]: Voice profiles + UX audit + design tokens dashboard
+          - link "🗺 Developer Journey 7-step build pipeline — each step applies these laws" [ref=f1e261] [cursor=pointer]:
+            - /url: /platform/developer-journey
+            - generic [ref=f1e262]:
+              - generic [ref=f1e263]: 🗺
+              - generic [ref=f1e264]: Developer Journey
+              - generic [ref=f1e265]: 7-step build pipeline — each step applies these laws
+          - link "⚡ Zero Friction UX law 1 in action — value before extraction" [ref=f1e266] [cursor=pointer]:
+            - /url: /platform/zero-friction
+            - generic [ref=f1e267]:
+              - generic [ref=f1e268]: ⚡
+              - generic [ref=f1e269]: Zero Friction
+              - generic [ref=f1e270]: UX law 1 in action — value before extraction
+          - link "🔬 Simulation Hub Platform pipeline simulation + state completeness" [ref=f1e271] [cursor=pointer]:
+            - /url: /platform/simulation
+            - generic [ref=f1e272]:
+              - generic [ref=f1e273]: 🔬
+              - generic [ref=f1e274]: Simulation Hub
+              - generic [ref=f1e275]: Platform pipeline simulation + state completeness
+  - navigation [ref=f1e276]:
+    - generic [ref=f1e277]:
+      - link "?" [ref=f1e278] [cursor=pointer]:
+        - /url: /platform/consult
+      - link "All pages" [ref=f1e279] [cursor=pointer]:
+        - /url: /
+  - alert [ref=f1e280]

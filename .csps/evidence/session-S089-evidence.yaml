@@ -1,10 +1,10 @@
 {
   "session": "S089",
-  "captured_at": "2026-07-12T10:39:51.253Z",
+  "captured_at": "2026-07-20T15:17:58.824Z",
   "verify": {
     "exit_code": 0,
     "validators_checked": 274,
-    "ran_at": "2026-07-12T10:39:15.798Z"
+    "ran_at": "2026-07-20T15:16:59.869Z"
   },
   "layer_progress": "Layer 1: 4/4, Layer 2: 3/3, Layer 3: 4/4, Layer 4: 4/4",
   "gap_snapshot_k2": [
@@ -24,5 +24,5 @@
     "gap_RESIDUE_HOOK_FALSE_POSITIVE K=2 (open)",
     "gap_RELAY_LAYER_DRIFT K=2 (structural_fix_committed)"
   ],
-  "sonnet_summary": "Opus, this is Sonnet. | HEAD: 57755873 | verify: exit_code=0 | Session S089 | ---"
+  "sonnet_summary": "Opus, this is Sonnet. | HEAD: ffdd6520 | verify: exit_code=0 | blocking=0 | validators=237 | Session S089 | ---"
 }

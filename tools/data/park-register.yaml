@@ -2816,3 +2816,22 @@ entries:
       reasoning: the axis is genuinely orthogonal and we preach it externally, so capture it; but it is unrealized-in-practice, so it rides the pipeline-spine build rather than a rushed parallel gate.
     decision_back_ref: "Sonnet S089 open question (sonnet-turn.md 'OPEN QUESTION FOR YOU'); origin CSP CC-042 Pillar Protection Line; ties to OPUS25-CSPS_to_CISEM_Corespiral-Approach-Critique (fail-UP on blast)."
     retrieve_when: "When PARK-S089-PLAN-PIPELINE-SPINE scope-tier is built (define 'consequential' = high-blast OR sensitive-type there), OR on first blast-related incident (K>=1), OR when CISEM's Pillar-Protection-Line proves it out (convergence evidence)."
+  - id: PARK-S089-NORTHSTAR-7TH-QUALITY-OUTCOME-SERVING
+    lane: queue
+    priority: MEDIUM
+    title: North Star 7th quality 'Outcome-Serving' — give the Version-D product/user orientation mechanical teeth
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: "Opus decision (Governor delegated 'make the best decision'): PARK, do not add now. North Star Version D (S089) STATES the outward outcome (solutions for developers+end users); a 7th ns_quality 'Outcome-Serving' would ENFORCE it (every artifact declares whether it serves a developer/end-user outcome, not just internal correctness). Deferred: adding it ripples through the ns_quality closed enum + EVERY artifact's declaration, we just changed the sacred North Star (do not pile a second sacred/enum change), and it is K=0-unproven."
+    problem: "Version D changed the North Star's ORIENTATION (product/user) but the six Qualities (the mechanical gate via ns_quality) are unchanged — so the new orientation is stated, not yet enforced. The governance-over-product drift is addressed at the statement level, not yet the gate level."
+    dedup_checked: "ENHANCE not fork: extends the existing ns_quality closed enum + validate-frontmatter/universal-alignment machinery. No new system."
+    decision_ledger:
+      chosen: park the 7th quality; add it in a deliberate future ns_quality review, not bundled with the North Star statement change
+      rejected: add 'Outcome-Serving' now (ripples through ns_quality enum + every artifact; second sacred/enum change back-to-back; K=0 unproven) OR drop the idea (it is the teeth for the Version-D orientation — worth keeping)
+      reasoning: statement first (done, low ripple), teeth later (deliberate, higher ripple) — the disciplined sequencing for a sacred change.
+    decision_back_ref: "Governor S089 'i approve it all' (North Star Version D) + 'i trust you to make the best decision and reach completion' (delegated the 7th-quality call to Opus)."
+    retrieve_when: "Next deliberate ns_quality / North Star Qualities review, OR when a validate-ns-quality-coverage gate is built (fold 'Outcome-Serving' in then). Ties to PARK-S089-PLAN-PIPELINE-SPINE (goal-always-involved)."

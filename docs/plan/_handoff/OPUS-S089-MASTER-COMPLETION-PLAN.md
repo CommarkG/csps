@@ -26,14 +26,23 @@ links:
 
 # S089 Master Completion Plan — the Navigator
 
-> **North Star (sacred, S060):** *"CSPS exists to turn intention into reality — not approximately, but
-> precisely."* Every item below declares which goal it serves; **no answer = no mandate** (the context
-> question). This plan is the single ratified reference the PLAN-PIPELINE-SPINE gate checks against.
+> **North Star (sacred, Version D — ratified S089):** *"CSPS exists to turn intention into reality — not
+> approximately, but precisely: to create the most intuitive, stable, scalable, and effective digital
+> solutions — systems, apps, and SaaS — for both the developers who build them and the people who use
+> them, by having human and AI think together…"* Every item below declares which goal it serves; **no
+> answer = no mandate** (the context question). This plan is the single ratified reference the
+> PLAN-PIPELINE-SPINE gate checks against.
 
 **Why this exists:** S089 drifted into input-driven freestyling — work executed without a ratified plan
 governing it, the mandate untracked. This plan + the ratified PLAN-PIPELINE-SPINE is the structural fix:
-one navigator, goal-attached, gate-enforced. Full open-item source = park-register.yaml (102 open).
+one navigator, goal-attached, gate-enforced. Full open-item source = park-register.yaml (open items).
 This plan surfaces the ACTIVE + high-priority + this-session threads and orders them.
+
+**RATIFIED THIS ARC (S089 close):** North Star **Version D** (outward-outcome + human-AI synthesis,
+CISEM convergence — 359d5505, sacred-edit) · **PLAN-PIPELINE-SPINE** concept (goal-mandatory gate,
+scope-tiered) — ratified, awaiting Sonnet build · consequence-escalation axis + North-Star 7th-quality
+(Outcome-Serving) — **parked** (blast-fold-into-pipeline; deliberate future ns_quality review). The one
+human gate still open: the **goal-screen test-drive** (Governor's felt verdict → releases Stage 2).
 
 ---
 

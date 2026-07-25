@@ -141,6 +141,37 @@ rows:
     status: hardwire-done
     session_sealed: S075
 
+  - id: hardwire-010
+    layer: scaffold
+    thing: "Graphify structural code-graph extraction — mandatory for every app/SaaS forked in apps/"
+    governor_invocation: "S089: 'make graphify part of any external system app or saas we will create here. hardwire it now so it will be mechanically enforced and used.'"
+    decision_ledger:
+      chosen: "Structural enforcement (T1 = fork-app.mjs always runs extraction, no human opt-in) + BLOCKING validator (T2 = validate-app-deploy-readiness.mjs CHECK 4b) that only fires on a regression (deleted/broken graph), not on unproven manual habit."
+      rejected_1: "Full BLOCKING gate against a human decision to run graphify manually — rejected: K=0 real apps built with graphify so far (only template/csps-playground exist, neither forked post-hardwire); blocking human discretion with zero track record repeats the no-K=1-engraving mistake just avoided on PARK-S089-CONSEQUENCE-ESCALATION-LINE."
+      rejected_2: "Advisory-only (mirroring validate-app-deploy-readiness.mjs's own stated convention of starting new checks advisory then promoting) — rejected: Governor's directive was explicit ('mechanically enforced', not 'advisory'); structural-enforcement design (fork always extracts) resolves the K=0 concern differently, so advisory-first wasn't necessary to be safe."
+      reasoning: "Because enforcement is BUILT INTO the one code path that creates apps (fork-app.mjs), nobody's legitimate manual workflow is ever blocked — the validator only trips if the structural step itself regressed or its output was deleted after the fact. That makes BLOCKING safe and honest even at K=0, unlike a bolt-on gate against human discipline would be."
+    surfaces:
+      t1_hook: "tools/scripts/fork-app.mjs — structurally runs `node tools/scripts/graphify-wrapper.mjs extract <app-dir>` for every forked app (Step 6 of app-pipeline.md); non-blocking on the fork itself (matches existing build-step try/catch pattern) but always attempted, no opt-out flag"
+      t2_validator: "tools/validators/validate-app-deploy-readiness.mjs CHECK 4b (BLOCKING): any app with app.config.yaml graphify_required:true missing graphify-out/graph.json fails the deploy-readiness gate"
+      t3_session: "session-open.sh HARDWIRE-010 reminder block (appended via Bash per ZERO-DIALOG-RULE) + app-pipeline.md Step 6 updated"
+      sp_registry_entry: graphify-extracted-per-app
+      audit_runner_row: "app_deploy_readiness (existing CRITICAL tier in tools/verify.mjs — extended with CHECK 4b, no new registration needed)"
+    wall_boundary: "tools/scripts/graphify-wrapper.mjs is the ONLY call site — hardcodes --code-only, refuses install/hook install/--mcp/serve and all N platform-integration subcommands (install/hook/claude/codex/opencode/etc.) with exit 1. Never bare `graphify` anywhere in this hardwire."
+    block_test_command: "mkdir apps/_hardwire-010-blocktest && app.config.yaml with graphify_required:true, no graphify-out/ → node tools/validators/validate-app-deploy-readiness.mjs"
+    block_test_output: |
+      NEGATIVE (missing graph): ✗ BLOCKING: _hardwire-010-blocktest/app.config.yaml declares graphify_required:true
+      but _hardwire-010-blocktest/graphify-out/graph.json is missing
+      [validate-app-deploy-readiness] apps_checked=2 ... blocking=1 EXIT:1 ✓
+      WALL-BREACH REFUSAL: node tools/scripts/graphify-wrapper.mjs install --platform claude
+      → [graphify-wrapper] REFUSED: "install" is a wall-breach subcommand ... EXIT:1 ✓
+      node tools/scripts/graphify-wrapper.mjs hook install → REFUSED ... EXIT:1 ✓
+      POSITIVE (real fork, end-to-end): node tools/scripts/fork-app.mjs --slug=hardwire010test --skip-build
+      → [fork-app] Graphify extraction: ok | app.config.yaml: graphify_status: ok
+      → graph.json: 139 nodes | validate-app-deploy-readiness: blocking=0 ✓
+      (test app apps/hardwire010test/ removed after verification — not committed)
+    status: hardwire-done
+    session_sealed: S089
+
   - id: hardwire-009
     layer: system
     thing: "Executor relay format — fenced block + paste-ready header after every relay-channel write (any executor)"

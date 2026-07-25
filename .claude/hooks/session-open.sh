@@ -243,4 +243,15 @@ printf '\n    Fuel of the Humble Engine — CIE cannot consolidate/enhance witho
 } 2>/dev/null || true
 
 
+
+# --- HARDWIRE-010: Graphify structural extraction (S089) ---
+# fork-app.mjs runs graphify extraction automatically for every new app (Step 6, app-pipeline.md).
+# validate-app-deploy-readiness.mjs BLOCKS if a graphify_required app is missing graphify-out/graph.json.
+# Never call graphify bare -- always via tools/scripts/graphify-wrapper.mjs (--code-only structural).
+printf '
+[HARDWIRE-010] Graphify: structural per-app extraction, wrapper-only, --code-only enforced.
+' >&2
+printf '  Registry: tools/data/external-capability-alignment.yaml id=graphify | hardwire-register.yaml id=hardwire-010
+' >&2
+
 exit 0

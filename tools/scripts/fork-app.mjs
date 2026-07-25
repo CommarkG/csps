@@ -63,8 +63,29 @@ if (existsSync(pkgPath)) {
 
 // Create app.config.yaml
 const configPath = join(targetDir, 'app.config.yaml');
-writeFileSync(configPath, `id: csps.apps.${slug}\nname: ${slug}\nslug: ${slug}\ncreated_at: ${new Date().toISOString()}\nstatus: forked\ntemplate_version: "1.0"\n`, 'utf-8');
-console.log(`[fork-app] app.config.yaml created`);
+const createdAt = new Date().toISOString();
+writeFileSync(configPath, `id: csps.apps.${slug}\nname: ${slug}\nslug: ${slug}\ncreated_at: ${createdAt}\nstatus: forked\ntemplate_version: "1.0"\ngraphify_required: true\n`, 'utf-8');
+console.log(`[fork-app] app.config.yaml created (graphify_required: true)`);
+
+// Graphify structural extraction — HARDWIRE-010 (tools/data/hardwire-register.yaml).
+// Every forked app gets a graph built automatically. Never bare `graphify`; always through
+// the CSPS-owned wrapper (tools/scripts/graphify-wrapper.mjs), which hardcodes --code-only
+// and refuses install/hook/MCP subcommands. Best-effort: a failure here does not block the
+// fork itself (matches the existing non-blocking build step below) — but
+// validate-app-deploy-readiness.mjs BLOCKS at deploy-readiness time if graphify-out/graph.json
+// is still missing for a graphify_required app, since this step is the one guaranteed path
+// that creates it.
+let graphifyStatus = 'skipped';
+try {
+  console.log(`[fork-app] Running Graphify structural extraction for apps/${slug}...`);
+  execSync(`node "${join(ROOT, 'tools/scripts/graphify-wrapper.mjs')}" extract "${targetDir}"`, { cwd: ROOT, stdio: 'pipe' });
+  graphifyStatus = existsSync(join(targetDir, 'graphify-out', 'graph.json')) ? 'ok' : 'failed';
+  console.log(`[fork-app] Graphify extraction: ${graphifyStatus}`);
+} catch (e) {
+  graphifyStatus = 'failed';
+  console.warn(`[fork-app] Graphify extraction failed (non-blocking): ${String(e).slice(0, 120)}`);
+}
+writeFileSync(configPath, `id: csps.apps.${slug}\nname: ${slug}\nslug: ${slug}\ncreated_at: ${createdAt}\nstatus: forked\ntemplate_version: "1.0"\ngraphify_required: true\ngraphify_extracted_at: ${new Date().toISOString()}\ngraphify_status: ${graphifyStatus}\n`, 'utf-8');
 
 // Run pnpm install for new app
 if (!skipBuild) {

@@ -109,7 +109,7 @@ capabilities:
     source: "PyPI: graphifyy (CLI: graphify)"
     version: "0.9.26 (PIN EXACTLY: graphifyy==0.9.26 in the install command; NOT @latest/unpinned — re-review + re-quarantine on any bump)"
     verdict: ALIGNED-WITH-TRANSLATION
-    csps_role: "Token-cheap STRUCTURAL navigation of OUR repo (what-calls-what, symbol/dependency lookup) — collapses broad grep/read sweeps into compact graph queries. Structural ONLY; explicitly NOT meaning/decisions/governance."
+    csps_role: "Token-cheap STRUCTURAL navigation of OUR repo (what-calls-what, symbol/dependency lookup) — collapses broad grep/read sweeps into compact graph queries. Structural ONLY; explicitly NOT meaning/decisions/governance. HARDWIRED S089 (tools/data/hardwire-register.yaml id=hardwire-010): every app forked via tools/scripts/fork-app.mjs gets structural extraction automatically, enforced via tools/scripts/graphify-wrapper.mjs (sole call site) + validate-app-deploy-readiness.mjs CHECK 4b (BLOCKING on regression)."
     native_defaults:
       - "graphify install / install --project WRITES its own rules into CLAUDE.md by DEFAULT (sealed L1 GVRN governance root)"
       - "installs its own git hooks by DEFAULT (auto-executing trusted-path insertion); graphify hook install does the same"

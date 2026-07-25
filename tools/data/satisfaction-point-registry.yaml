@@ -41,6 +41,11 @@ entries:
     channel: Edit/Write tool on tools/council/opus-turn.md — never Bash
     notes: Core of FORMAL-PROTO-CHANNEL discipline. Broken on win32 via env var approach; fixed BATCH 3.
     weekly_audit_skip: session-contextual — mtime checks only valid during active session
+  - thing: graphify-extracted-per-app
+    satisfaction_point: apps/<slug>/graphify-out/graph.json exists for every app with graphify_required:true in app.config.yaml
+    verify_mechanically: node tools/validators/validate-app-deploy-readiness.mjs | grep -q 'blocking=0'
+    channel: tools/scripts/fork-app.mjs (structural, Step 6 of app-pipeline.md) via tools/scripts/graphify-wrapper.mjs — never bare graphify
+    notes: 'HARDWIRE-010 (S089). Enforcement is structural (fork always extracts) + BLOCKING validator (regression/deletion), not a bolt-on gate against human discipline — safe to block at K=0 real apps built.'
   - thing: advisory-validator-not-theater
     satisfaction_point: validator has promotion_trigger OR death_date declared
     verify_mechanically: node tools/validators/validate-advisory-has-promotion-path.mjs | grep -q 'blocking=0'

@@ -142,6 +142,33 @@ for (const app of appDirs) {
   }
 }
 
+// CHECK 4b: graphify_required apps must have a built graph (BLOCKING) — HARDWIRE-010
+// fork-app.mjs (Step 6, tools/scripts/fork-app.mjs) structurally runs graphify extraction on
+// every forked app and stamps app.config.yaml with graphify_required: true. Since that is the
+// ONE path that creates apps, a missing graphify-out/graph.json here means either the structural
+// step regressed or the output was deleted after the fact — both worth blocking on, not asking
+// a human to remember. Apps without graphify_required (pre-hardwire apps: template,
+// csps-playground) are exempt — no retroactive breakage.
+for (const app of appDirs) {
+  const appPath = join(APPS_DIR, app);
+  const cfgPath = join(appPath, 'app.config.yaml');
+  if (!existsSync(cfgPath)) continue;
+  let cfgText = '';
+  try { cfgText = readFileSync(cfgPath, 'utf-8'); } catch (e) { continue; }
+  if (!/graphify_required:\s*true/.test(cfgText)) continue;
+  const graphPath = join(appPath, 'graphify-out', 'graph.json');
+  if (!existsSync(graphPath)) {
+    blocking++;
+    findings.push({
+      severity: 'BLOCKING',
+      app,
+      check: 'graphify_graph_present',
+      message: `BLOCKING: ${app}/app.config.yaml declares graphify_required:true but ${app}/graphify-out/graph.json is missing`,
+      remediation: `node tools/scripts/graphify-wrapper.mjs extract apps/${app} (never call graphify bare — see tools/data/external-capability-alignment.yaml id=graphify)`
+    });
+  }
+}
+
 // CHECK 5: root_dir-exists (BLOCKING) — kills the budget-planner failure class
 // Loads tools/config/deploy-targets.yaml; for each registered target, verifies root_dir
 // directory exists on disk. Missing = Vercel would build from wrong dir → silent 404s.

@@ -57,6 +57,9 @@ Step 5: RATIFY
 
 Step 6: BUILD IN SANDBOX
   └─ pnpm create:app [name] → 18-file scaffold
+  └─ Graphify structural extraction runs automatically (HARDWIRE-010, S089): fork-app.mjs
+     always calls tools/scripts/graphify-wrapper.mjs extract <app-dir> — never bare graphify.
+     app.config.yaml stamped graphify_required: true.
   └─ Implementation matches plan — no wildcards
   └─ Verify exit_code=0 per commit
 

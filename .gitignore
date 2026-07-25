@@ -97,3 +97,7 @@ tools/context-orchestrator-last-run.json
 tools/validate-token-budget-last-run.json
 tools/data/validator-input-cache.json
 tools/zf-session-tracker.json
+
+# === Graphify (DNA-Guardian ALIGNED-WITH-TRANSLATION, tools/data/external-capability-alignment.yaml) ===
+# Quarantined structural-graph output — a CLAIM (CS9), never platform truth. Never committed.
+graphify-out/

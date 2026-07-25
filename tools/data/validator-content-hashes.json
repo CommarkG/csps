@@ -275,6 +275,7 @@
     "validate-voice-profile.mjs": "94a2dc003ee0ed1f",
     "validate-webhook-idempotency.mjs": "8a35e6ef1c06f6dd",
     "validate-wiring-completeness.mjs": "f4db742267f44285",
+    "validate-wiring-sweep-coverage.mjs": "bd63f1c1f1166d08",
     "validate-zf-cycle-format.mjs": "3cc2751a5d867b35"
   }
 }

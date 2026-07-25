@@ -1,0 +1,74 @@
+id: csps.data.wiring-sweep-log
+name: wiring-sweep-log
+description: >
+  Registry of post-implementation wiring-update sweeps. B_IMPLEMENTATION_WIRING_CYCLE (S089 CONSTITUTIONAL):
+  "New implementation without a wiring-update cycle is a crippled one — wiring related elements is as
+  essential as the implementation itself." Every substantive implementation records the angles swept,
+  elements updated, and elements identified-but-deferred (with reasoning). "0 elements need updating" is
+  valid only when the swept angles are named — an empty entry with no angles named is theater.
+  validate-wiring-sweep-coverage.mjs checks presence (not quality) of an entry per session with
+  implementation-shaped commits.
+version: '1.0'
+session: S089
+authored_by: Sonnet S089
+core_spine: GVRN
+schema_anchor: vault_files
+closure_owner: group:finky
+closure_decision: Living registry — add an entry per substantive implementation
+closure_by: ongoing
+entries:
+  - session: S089
+    implementation: "Graphify DNA-Guardian intake + activation-proof + HARDWIRE-010 (mandatory per-app extraction)"
+    angles_swept:
+      - "Graphify's own dependency graph (god-nodes, affected queries) — LOW signal on this repo: config-heavy/shell-invoked-script architecture, not import-graph shaped. Genuine tool limitation, not a search failure."
+      - "haiku-scout.md — HIGH-VALUE finding: haiku-scout is BLOCKED in this harness (custom agents not loaded; MCP-surface overflow). Graphify CLI is a currently-usable substitute for bulk mechanical grep/inventory scans since it runs as a plain subprocess, not an Agent() spawn — no MCP overflow risk."
+      - "consolidation-expert skill (allowed_tools already includes Bash) — can call graphify-wrapper.mjs today with zero permission change; description doesn't mention it yet."
+      - "platform-inventory-scan.mjs (P-META-029 ECA mechanism) — manual readdirSync walk; graphify query could optionally assist existence-checks, but its core job (proposal-language detection in Write calls) doesn't need it. Lower priority."
+      - "app-pipeline.md Step 8 (Graduate — deletion test 'if deleted, would platform miss it?') — graphify affected <file> directly computes reverse-impact; currently done manually/by memory. Real optimization candidate."
+      - "AGENTS.md — 0 finding: no tool-inventory section exists there to update. Confirms honest scope boundary rather than forcing an edit."
+      - "Explore agent description — clarified as COMPLEMENTARY not replaced: Explore reads content/excerpts (semantic), Graphify answers structural what-calls-what cheaply. Different questions, not overlapping."
+    elements_updated:
+      - "tools/scripts/fork-app.mjs (structural extraction, HARDWIRE-010)"
+      - "tools/validators/validate-app-deploy-readiness.mjs (CHECK 4b)"
+      - "docs/plan/pillar-0-governance/meta-platform/app-pipeline.md (Step 6)"
+      - "tools/data/external-capability-alignment.yaml (graphify entry, hardwire cross-ref)"
+      - "docs/plan/pillar-0-governance/audit-runner.md + split (app_deploy_readiness catalog registration — was orphaned since S062, fixed same session per EP-ERR-011)"
+    elements_deferred:
+      - element: "haiku-scout.md UNBLOCK section"
+        reasoning: "Worth adding a line pointing to Graphify CLI as a partial mitigation for the 'cheap mechanical scans run inline' limitation — deferred to next-touch of that file rather than editing it opportunistically outside its own review cycle."
+      - element: "consolidation-expert SKILL.md description"
+        reasoning: "Worth mentioning graphify query as a faster first-pass before Grep sweeps — deferred to next-touch; not blocking, no permission change needed since Bash is already allowed."
+      - element: "app-pipeline.md Step 8 deletion-test tooling"
+        reasoning: "graphify affected <file> could formalize the deletion-test question — deferred; Step 8 (Graduate) has not fired for any real app yet (K=0), same no-K=1-engraving reasoning as PARK-S089-CONSEQUENCE-ESCALATION-LINE."
+    zf_cycles: 7
+    zf_note: "7 independent angles swept; stopped when the 7th (Explore-agent-boundary) sweep produced a clarification rather than a new actionable element — count is measurement, not target."
+  - session: S089
+    implementation: "B_IMPLEMENTATION_WIRING_CYCLE contract itself + backfill of B_CHALLENGE_ON_MERIT/B_DECISION_LEDGER into their own SSoT shard"
+    angles_swept:
+      - "Precedent check (P-META-029 ECA) before proposing a new contract: found P-ARCH-031 (code-level wired+called+verified), B_CONSOLIDATION_PASS (content dedup), validate-wiring-completeness.mjs (libs->apps import wiring only) — confirmed genuine gap (cross-artifact conceptual ripple), not duplication."
+      - "Generator/SSoT chain check for the two contracts being cited as precedent — DISCOVERED B_CHALLENGE_ON_MERIT.md + B_DECISION_LEDGER.md existed ONLY as standalone split files, absent from all 5 behavioral-contracts-*.md shards that split-behavioral-contracts.mjs actually reads. Backfilled both into behavioral-contracts-GVRN.md; converted their enforcement_trio YAML frontmatter to body prose (the generator only preserves body content between ## B_ headings, never a frontmatter block ahead of one — the YAML form was silently unregenerable from day one)."
+    elements_updated:
+      - "docs/plan/pillar-0-governance/behavioral-contracts-GVRN.md (3 contracts: backfilled 2 + added 1 new)"
+      - "docs/plan/pillar-0-governance/behavioral-contracts/B_CHALLENGE_ON_MERIT.md, B_DECISION_LEDGER.md, B_IMPLEMENTATION_WIRING_CYCLE.md (regenerated)"
+      - "docs/plan/pillar-0-governance/behavioral-contracts-index.yaml (regenerated, 67 slices)"
+    elements_deferred:
+      - element: "contract-harmonization validator re-run to confirm no NEW orphans/duplicates introduced"
+        reasoning: "Deferred to the pnpm verify pass already required before commit — same-session evidence, not a separate deferred task."
+    zf_cycles: 2
+    zf_note: "2 angles: precedent-check (found real gap) + generator/SSoT-chain check (found real drift). Both actionable — stopped because both produced concrete fixes, not because of a target count."
+  - session: S089
+    implementation: "Consequence of regenerating split-behavioral-contracts.mjs (previous entry) — discovered it silently regresses migrate-enforcement-trio.mjs's output platform-wide, live during this same turn"
+    angles_swept:
+      - "Ran validate-permanence-coverage.mjs after regen per B_PRE_CLOSE_VERIFICATION — caught BLOCKING: full_trio dropped 38->35 (later found actually more files affected before restoration), enforcement_trio frontmatter dropped 66->8 platform-wide. split-behavioral-contracts.mjs writes only a generic notice + body; it has zero knowledge of the enforcement_trio YAML frontmatter that migrate-enforcement-trio.mjs injects as a separate pass — the two tools were never chained, so ANY regen of the first silently destroys the second's output."
+      - "git diff line-count audit across all touched behavioral-contracts/*.md to find files with disproportionate changes — found B_NAMING_POLICY.md lost a whole body section (S088 amendment) that existed ONLY in the slice file, never in its source shard (behavioral-contracts-ARCH.md) — a second, independent instance of the exact orphan-content class found in the previous entry."
+    elements_updated:
+      - "5 contracts hand-restored to correct enforcement_trio values after migrate-enforcement-trio.mjs's auto-parser failed on their specific body-prose phrasing: B_AGENT_ALIGNMENT_PROTOCOL, B_HANDOFF_PRE_FLIGHT_AUDIT, B_INHERITANCE_POLICY, B_NAMING_POLICY, B_COUNCIL_PEER"
+      - "docs/plan/pillar-0-governance/behavioral-contracts-ARCH.md — restored the lost S088 amendment section (recovered verbatim via git show HEAD) into the actual shard, closing the orphan gap at its root rather than just re-patching the slice"
+      - "package.json contracts:split script — CHAINED split-behavioral-contracts.mjs && migrate-enforcement-trio.mjs --apply so this exact regression class cannot recur silently on the next regen"
+    elements_deferred:
+      - element: "migrate-enforcement-trio.mjs's regex parser cannot extract every body-prose phrasing (parenthetical asides, multi-clause sentences) — will likely mis-extract these same 5 contracts again on a future regen even with scripts chained"
+        reasoning: "Improving the extraction regex to handle arbitrary prose robustly is a meaningfully larger task than this session's scope; the chained script + validate-permanence-coverage.mjs's regression-detection BLOCKING gate together ensure any future mis-extraction is caught immediately (not silently), which is the load-bearing guarantee — perfect extraction is not required for that guarantee to hold."
+      - element: "Full audit of all 76 behavioral contracts for orphan body-content (content in the slice but not the shard) — only 2 instances found and fixed (B_NAMING_POLICY here; B_CHALLENGE_ON_MERIT/B_DECISION_LEDGER in the previous entry) via targeted diff review, not an exhaustive sweep"
+        reasoning: "An exhaustive per-contract diff audit of all 76 files is out of proportion to what was asked this turn; the 2 found were surfaced by mechanical evidence (validator regression + line-count outlier), not exhaustive search. Worth a dedicated pass later — parked, not silently dropped."
+    zf_cycles: 3
+    zf_note: "3 angles: validator-output-diff (found the regression), line-count-outlier-scan (found the second orphan), and root-cause-fix-verification (chained the scripts + confirmed 2x clean pnpm verify passes with stable tree_hash). Stopped because the 3rd angle produced a structural fix rather than another finding — the natural close for this thread."

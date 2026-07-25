@@ -16,7 +16,7 @@
   "scripts": {
     "principles:codegen": "node packages/principles/codegen.ts",
     "principles:split": "pnpm --filter @csps/principles split",
-    "contracts:split": "node tools/generators/split-behavioral-contracts.mjs",
+    "contracts:split": "node tools/generators/split-behavioral-contracts.mjs && node tools/scripts/migrate-enforcement-trio.mjs --apply",
     "audit-runner:split": "node tools/generators/split-audit-runner.mjs",
     "ai-behavior-spine:split": "node tools/generators/split-ai-behavior-spine.mjs",
     "instances:refresh": "node tools/scripts/instance-registry-populator.mjs",

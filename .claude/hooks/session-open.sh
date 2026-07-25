@@ -254,4 +254,15 @@ printf '
 printf '  Registry: tools/data/external-capability-alignment.yaml id=graphify | hardwire-register.yaml id=hardwire-010
 ' >&2
 
+
+
+
+# --- HARDWIRE-011: B_IMPLEMENTATION_WIRING_CYCLE (S089 CONSTITUTIONAL) T3 ---
+# "New implementation without a wiring-update cycle is a crippled one -- wiring related elements
+# is as essential as the implementation itself." Surfaces whether the prior session closed with
+# implementation-shaped commits missing a wiring-sweep-log.yaml entry.
+_WSC_RESULT="$(node "${REPO_ROOT}/tools/validators/validate-wiring-sweep-coverage.mjs" 2>/dev/null)"
+printf '\n[HARDWIRE-011] B_IMPLEMENTATION_WIRING_CYCLE: %s\n' "$_WSC_RESULT" >&2
+printf '  Registry: tools/data/wiring-sweep-log.yaml | validator: validate-wiring-sweep-coverage.mjs | hardwire-register.yaml id=hardwire-011\n' >&2
+
 exit 0

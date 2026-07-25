@@ -222,6 +222,20 @@ context_question: "Before relying on this governance document: is it current wit
 
 ---
 
+### S088 amendment — document-GROUP numbered + simple-named presentation (Governor S088)
+- **Rule (mandatory):** whenever a GROUP of ≥2 documents is presented together (download package, attachment
+  manifest, handoff bundle, multi-file relay), each MUST be **(1) numbered in reading order (01, 02, …)** and
+  **(2) given a simple plain-language content name** (what it IS), shown alongside its canonical filename/path.
+- **Scope:** presentation/manifests/bundles. **Escape hatch:** a single document presented alone is exempt.
+- **Counterweight:** this is a PRESENTATION layer — canonical filenames are NOT renamed (always-current rule #1
+  still holds; renaming breaks inbound refs). The number+simple-name accompanies, never replaces, the canonical name.
+- **Why:** numbered+named groups cut recipient cognitive load + fix reading order — critical for external-AI
+  packages and tab-to-tab handoffs. Composes with [naming-policy.md](./naming-policy.md) + B_ZERO_NAVIGATION_FOR_GOVERNOR.
+- **enforcement_tier:** `{ tier: T3+T4, T4 contract: this amendment, T3 memory: feedback_document_group_numbered_naming.md, no clean T1/T2 (chat-presentation rule — file-level validator does not apply), permanence: medium }`. Honest: not T1/T2-enforceable; backstop is a future post-stop presentation check if built.
+- **Source:** Governor S088 verbatim — "make mandatory that each time a group of documents is presented they must be numbered as well as simply named to present content ... make it hardwired for naming."
+
+---
+
 ## B_CONSOLIDATION_PASS — single canonical home + cross-reference protocol
 
 **Canonical wording:**

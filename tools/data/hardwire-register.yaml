@@ -141,6 +141,40 @@ rows:
     status: hardwire-done
     session_sealed: S075
 
+  - id: hardwire-011
+    layer: system
+    thing: "B_IMPLEMENTATION_WIRING_CYCLE — every substantive implementation records a wiring-update sweep of related elements"
+    governor_invocation: "S089: 'add a hardwired mechanically enforced rule to update all related elements after each implementation. New implementation without zf updating cycles is a crippled one. wiring is essential as the implementation itself. add to system wisdom. cover pre compacting and new tab or session and any other.'"
+    decision_ledger:
+      chosen: "Presence-of-attempt BLOCKING validator (same shape as validate-challenge-on-merit.mjs / validate-decision-ledger.mjs) checking that implementation-shaped commits this session have >=1 matching tools/data/wiring-sweep-log.yaml entry — plus advisory reminders at PreCompact (T1) and SessionStart (T3), never blocking at those two boundaries since blocking a compact/session-open risks losing work."
+      rejected_1: "A validator that judges sweep QUALITY (did it really find everything) — rejected: no mechanical process can verify semantic thoroughness, only presence; judging quality would be theater dressed as rigor (same PCR-refinement logic already applied to B_CHALLENGE_ON_MERIT's own validator design)."
+      rejected_2: "A brand new parallel contract unrelated to P-ARCH-031/B_CONSOLIDATION_PASS — rejected after P-META-029 ECA precedent check found those compose with, but do not cover, cross-artifact conceptual ripple (P-ARCH-031 = code-level wired+called+verified; B_CONSOLIDATION_PASS = content dedup). This contract fills the specific gap between them."
+      rejected_3: "Blocking AT PreCompact — rejected: a hard PreCompact failure could prevent the user from saving/compacting state at all, which is worse than the problem being solved. The real gate belongs at commit time (pnpm verify), where fixing forward is natural."
+      reasoning: "Mirrors the two most recent S089 constitutional contracts exactly (B_CHALLENGE_ON_MERIT, B_DECISION_LEDGER) in mechanism shape, which is itself evidence the design is sound rather than novel invention. Discovered en route that those two contracts were themselves not wired into their own generator's SSoT — fixed same-session as live proof-of-need for this exact contract."
+    surfaces:
+      t1_hook: ".claude/hooks/pre-compact-wiring-sweep-check.sh (PreCompact event, registered in .claude/settings.json) — advisory reminder, never blocks compact"
+      t2_validator: "tools/validators/validate-wiring-sweep-coverage.mjs (BLOCKING at commit time via pnpm verify — registered in tools/verify.mjs as wiring_sweep_coverage, always_rerun:true)"
+      t3_session: "session-open.sh HARDWIRE-011 block (SessionStart/new-tab) — same advisory reminder"
+      sp_registry_entry: wiring-sweep-recorded-per-implementation
+      audit_runner_row: "wiring_sweep_coverage (to be added to audit-runner.md catalog — same EP-ERR-011 lesson applied proactively this time)"
+    wall_boundary: "Contract composes with, never duplicates: P-ARCH-031 (code-level wired+called+verified) + B_CONSOLIDATION_PASS (content dedup) + B_DECISION_LEDGER (chosen/rejected reasoning shape reused for elements_deferred)."
+    block_test_command: "printf 'id: csps.data.wiring-sweep-log\\nname: wiring-sweep-log\\nentries: []\\n' > tools/data/wiring-sweep-log.yaml && node tools/validators/validate-wiring-sweep-coverage.mjs; bash .claude/hooks/pre-compact-wiring-sweep-check.sh"
+    block_test_output: |
+      T2 (empty log): [validate-wiring-sweep-coverage] implementation_commits=62 sweep_entries=0 blocking=1 advisory=0
+      ✗ BLOCKING: session S089 has 62 implementation-shaped commit(s) (e.g. 69fba193) but 0 wiring-sweep-log entries. EXIT:1 ✓
+      T1 (PreCompact hook, empty log): [PRE-COMPACT-WIRING-SWEEP] WARNING: 62 implementation-shaped commit(s) this session,
+      0 wiring-sweep-log entries. (printed to stderr, non-blocking, exit 0) ✓
+      BUG CAUGHT + FIXED live: first hook draft wrapped its own printf in `{ ... } 2>/dev/null || true`,
+      which silences ALL stderr from the group unconditionally (not just on failure) — same class of bug
+      independently discovered in BOTH the PreCompact hook draft AND the session-open.sh T3 draft; fixed in
+      both by removing the outer group redirect (bare printf >&2, matching the working HARDWIRE-010 pattern).
+      T3 (session-open.sh, live run): bash .claude/hooks/session-open.sh → stderr tail:
+      "[HARDWIRE-011] B_IMPLEMENTATION_WIRING_CYCLE: [validate-wiring-sweep-coverage] implementation_commits=62
+      sweep_entries=2 blocking=0 advisory=0" ✓ (real data after restore, not the block-test's empty state)
+      RESTORE: real wiring-sweep-log.yaml content restored from scratchpad backup after each block-test.
+    status: hardwire-done
+    session_sealed: S089
+
   - id: hardwire-010
     layer: scaffold
     thing: "Graphify structural code-graph extraction — mandatory for every app/SaaS forked in apps/"

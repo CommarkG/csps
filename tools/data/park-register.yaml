@@ -2816,6 +2816,27 @@ entries:
       reasoning: the axis is genuinely orthogonal and we preach it externally, so capture it; but it is unrealized-in-practice, so it rides the pipeline-spine build rather than a rushed parallel gate.
     decision_back_ref: "Sonnet S089 open question (sonnet-turn.md 'OPEN QUESTION FOR YOU'); origin CSP CC-042 Pillar Protection Line; ties to OPUS25-CSPS_to_CISEM_Corespiral-Approach-Critique (fail-UP on blast)."
     retrieve_when: "When PARK-S089-PLAN-PIPELINE-SPINE scope-tier is built (define 'consequential' = high-blast OR sensitive-type there), OR on first blast-related incident (K>=1), OR when CISEM's Pillar-Protection-Line proves it out (convergence evidence)."
+  - id: PARK-S089-BEHAVIORAL-CONTRACTS-ORPHAN-AUDIT
+    lane: queue
+    priority: MEDIUM
+    title: Full orphan-content audit of all 76 behavioral-contracts slice files vs their shard SSoT
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: false
+    disposition_session: S089
+    disposition_text: "2 confirmed instances found and fixed THIS session via targeted evidence (not exhaustive search): (1) B_CHALLENGE_ON_MERIT.md + B_DECISION_LEDGER.md existed only as standalone slices, absent from any of the 5 behavioral-contracts-*.md shards their own generator reads — backfilled into behavioral-contracts-GVRN.md. (2) B_NAMING_POLICY.md's S088 amendment section existed only in the slice, absent from behavioral-contracts-ARCH.md — recovered via git show and re-added to the shard. Both found via mechanical evidence (validator regression output + git diff line-count outlier scan), not exhaustive review."
+    problem: "Slice files under docs/plan/pillar-0-governance/behavioral-contracts/ can silently accumulate content (hand-edits, or historical additions from before the current split/migrate pipeline existed) that was never written back into the shard SSoT. Any regen of split-behavioral-contracts.mjs silently discards that content since the generator only knows the shard, never the slice. Unknown how many of the remaining 74 contracts carry orphan content beyond the 2 found."
+    existing_coverage: "validate-permanence-coverage.mjs catches enforcement_trio frontmatter regression (count-based, BLOCKING) but does NOT diff body content for orphan sections — it would not have caught the B_NAMING_POLICY loss on its own; that was found via manual git-diff line-count review, not a validator."
+    disposition: "Defer a full per-contract diff (shard vs slice, looking for slice-only body sections) to a dedicated pass — out of proportion to fold into this session's Graphify/wiring-cycle work. Retrieve on next legitimate touch of split-behavioral-contracts.mjs or migrate-enforcement-trio.mjs, or if a third orphan instance surfaces."
+    dedup_checked: "Not a duplicate of B_IMPLEMENTATION_WIRING_CYCLE (which governs FUTURE implementations going forward) or the two already-fixed instances (which are closed) — this is specifically the backward-looking sweep of the remaining 74 contracts."
+    decision_ledger:
+      chosen: "Fix the 2 instances found by mechanical evidence this session; park the exhaustive sweep of the remaining 74 rather than do it now."
+      rejected: "Do the full 76-contract diff audit in this same turn — rejected as disproportionate scope creep relative to what was actually asked (Graphify hardwire + wiring-cycle contract), even though it's a legitimate and related finding."
+      reasoning: "Both found instances surfaced from following actual evidence (a validator regression, a line-count outlier) — that is a sound, bounded way to have found them without a dedicated audit. An exhaustive audit is real work worth scheduling, not avoiding, hence parked rather than dismissed."
+    decision_back_ref: "tools/data/wiring-sweep-log.yaml session S089 entry 3 (elements_deferred)."
+    retrieve_when: "Next legitimate touch of split-behavioral-contracts.mjs / migrate-enforcement-trio.mjs, or if a third orphan-content instance is discovered."
   - id: PARK-S089-NORTHSTAR-7TH-QUALITY-OUTCOME-SERVING
     lane: queue
     priority: MEDIUM

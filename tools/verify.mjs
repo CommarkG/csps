@@ -2888,6 +2888,28 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // S089 HARDWIRE-011: Wiring-sweep coverage gate — BLOCKS if this session recorded an
+  // implementation-shaped commit with zero matching entry in wiring-sweep-log.yaml.
+  // B_IMPLEMENTATION_WIRING_CYCLE (CONSTITUTIONAL, S089): "New implementation without a
+  // wiring-update cycle is a crippled one — wiring related elements is as essential as the
+  // implementation itself." Presence-of-attempt check ONLY, same shape as decision_ledger/
+  // challenge_on_merit — never judges sweep quality.
+  {
+    name: 'wiring_sweep_coverage',
+    command: 'node tools/validators/validate-wiring-sweep-coverage.mjs',
+    input_files: [
+      'tools/data/wiring-sweep-log.yaml',
+      'tools/validators/validate-wiring-sweep-coverage.mjs',
+    ],
+    always_rerun: true,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const ic = out.match(/implementation_commits=(\d+)/);
+      const se = out.match(/sweep_entries=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, implementation_commits: ic ? Number(ic[1]) : 0, sweep_entries: se ? Number(se[1]) : 0 };
+    },
+  },
   // B_ONECLICK_FRESHNESS (S089): .csps/oneclick.md must exist and be current.
   // G5 permanence fix: oneclick was chat-only (ephemeral) → now machine-generated + committed.
   // BLOCKING: .csps/oneclick.md does not exist. ADVISORY: file HEAD ≠ current HEAD.

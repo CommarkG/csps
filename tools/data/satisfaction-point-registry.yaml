@@ -46,6 +46,11 @@ entries:
     verify_mechanically: node tools/validators/validate-app-deploy-readiness.mjs | grep -q 'blocking=0'
     channel: tools/scripts/fork-app.mjs (structural, Step 6 of app-pipeline.md) via tools/scripts/graphify-wrapper.mjs — never bare graphify
     notes: 'HARDWIRE-010 (S089). Enforcement is structural (fork always extracts) + BLOCKING validator (regression/deletion), not a bolt-on gate against human discipline — safe to block at K=0 real apps built.'
+  - thing: wiring-sweep-recorded-per-implementation
+    satisfaction_point: every session with an implementation-shaped commit (tools/validators, tools/scripts, .claude/skills, tools/data/*-register.yaml, docs/plan/pillar-*/behavioral-contracts, docs/adr) has >=1 matching entry in tools/data/wiring-sweep-log.yaml
+    verify_mechanically: node tools/validators/validate-wiring-sweep-coverage.mjs | grep -q 'blocking=0'
+    channel: manual — AI/Governor writes the entry (angles_swept + elements_updated + elements_deferred); no script can judge sweep quality, only presence
+    notes: 'HARDWIRE-011 (S089), B_IMPLEMENTATION_WIRING_CYCLE. Presence-of-attempt check only (same shape as challenge-on-merit/decision-ledger) — does not verify the sweep was thorough, only that one was recorded. PreCompact hook (T1) + session-open (T3) both surface the same check advisory-first; the BLOCKING gate is at commit time via pnpm verify.'
   - thing: advisory-validator-not-theater
     satisfaction_point: validator has promotion_trigger OR death_date declared
     verify_mechanically: node tools/validators/validate-advisory-has-promotion-path.mjs | grep -q 'blocking=0'

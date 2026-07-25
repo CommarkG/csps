@@ -102,3 +102,59 @@ capabilities:
     verdict: pending-review
     reviewer: null
     reviewed_at_head: null
+
+  - id: graphify
+    kind: library
+    name: "Graphify (local structural code-knowledge graph; tree-sitter CLI)"
+    source: "PyPI: graphifyy (CLI: graphify)"
+    version: "0.9.26 (PIN EXACTLY: graphifyy==0.9.26 in the install command; NOT @latest/unpinned — re-review + re-quarantine on any bump)"
+    verdict: ALIGNED-WITH-TRANSLATION
+    csps_role: "Token-cheap STRUCTURAL navigation of OUR repo (what-calls-what, symbol/dependency lookup) — collapses broad grep/read sweeps into compact graph queries. Structural ONLY; explicitly NOT meaning/decisions/governance."
+    native_defaults:
+      - "graphify install / install --project WRITES its own rules into CLAUDE.md by DEFAULT (sealed L1 GVRN governance root)"
+      - "installs its own git hooks by DEFAULT (auto-executing trusted-path insertion); graphify hook install does the same"
+      - "MCP server mode (graphifyy[mcp], python -m graphify.serve, --mcp) stands up a persistent external service surface"
+      - "extract makes network/LLM calls unless --code-only is passed"
+      - "installs as a global on-PATH tool, invokable bare (flags droppable per-run)"
+      - "assumes it belongs in trusted governance territory (self-embedding / convenience-adoption priority)"
+    translations:
+      - from: "graphify install (writes rules into CLAUDE.md)"
+        to: "SUPPRESSED — maps to nothing; CSPS governance root is sealed L1, no external write ever"
+      - from: "graphify git hooks / hook install"
+        to: "SUPPRESSED — re-extraction is a CSPS-OWNED script/hook only; no Graphify-installed hook in the trusted path"
+      - from: "MCP / serve / --mcp service mode"
+        to: "SUPPRESSED — no external service surface; CLI single-shot only"
+      - from: "graph query/explain result"
+        to: "STRUCTURAL CLAIM (CS9) for navigation only; re-derived from ground truth before load-bearing use; never governance/decision/meaning truth"
+      - from: "'the graph is the answer' / tool works = done"
+        to: "graph is a token-cheap index into OUR files; DONE still = wired+called+verified against source"
+    neutralizations:
+      - "install CLI-only via isolated venv (uv tool install graphifyy==0.9.26 OR pipx) — NEVER graphify install / install --project / hook install"
+      - "STRUCTURAL --code-only: wrap in a CSPS-owned script that always passes --code-only at the pinned version; never invoke bare graphify (mirrors Playwright --isolated — dropping the flag re-imports the network default)"
+      - "output quarantined to graphify-out/ added to .gitignore; graphify-out/ is never platform truth"
+      - "no MCP/serve/--mcp mode; no Graphify-installed git hooks"
+    guardrails:
+      - "install command pins graphifyy==0.9.26 exactly; confirm publisher (package is 'graphifyy', double-y — rule out typosquat) before first install"
+      - "first extract runs under a NETWORK-DENIED sandbox; verify (re-run-is-proof) nothing written outside graphify-out/ — diff CLAUDE.md/AGENTS.md/.claude/.cursor/git-hooks before+after"
+      - "graphify-out/ in .gitignore; query output cited for STRUCTURE only, re-derived before load-bearing use"
+      - "any version upgrade → auto re-QUARANTINE until re-reviewed at the new HEAD"
+      - "re-extraction only via CSPS-owned script, never a Graphify hook"
+    allowed_use:
+      - "uv tool install graphifyy==0.9.26 (or pipx) — CLI only, isolated venv"
+      - "graphify extract . --code-only (local tree-sitter parse, no network) → graphify-out/"
+      - "graphify query / graphify explain for structural navigation of OUR repo"
+    forbidden_use:
+      - "graphify install / graphify install --project (writes to CLAUDE.md — sealed L1 GVRN root)"
+      - "graphify hook install / any Graphify-installed git hook (trusted-path insertion)"
+      - "any MCP/serve/--mcp mode (external service surface)"
+      - "extract WITHOUT --code-only (re-enables network/LLM calls)"
+      - "treating query/explain output as governance/decision/meaning truth or as a completion seal"
+    isolation_note: "Isolated venv + --code-only (structural, via wrapper) + graphify-out/ gitignored + no installers/hooks/MCP SATISFIES CSPS WALL DNA (used-never-trusted, max-usage + max-isolation). Residual blast = local code execution + full-repo READ, network-suppressed, zero trusted-path writes. Bounded/low — hence ALIGNED-WITH-TRANSLATION, not ALIGNED."
+    blast_assessment: "RAW = writes to CLAUDE.md + installs git hooks + optional MCP service (HIGH blast, QUARANTINE-class). TRANSLATED = CLI-only, network-denied, read-only on own repo, output quarantined (bounded, low blast)."
+    reviewer: DNA-GUARDIAN (PARK-S088-DNA-GUARDIAN swift kernel)
+    date: 2026-07-25
+    reviewed_at_head: "8c4b8eb4"
+    note: "First intake — no prior Graphify evaluation existed (repo-wide grep: 0 hits). Guide is already WALL-aligned and names Graphify's own dangerous defaults as breaches (raises confidence) but is a CLAIM until isolation proven at pinned HEAD. Verdict holds ONLY through CLI-only + structural --code-only wrapper + quarantined graphify-out/ + no installers/hooks/MCP. Raw Graphify (install/install --project/hook install/MCP) is QUARANTINE — writes to sealed L1 GVRN governance root. Guide's safe path is correct in direction but missed: (1) exact version pin in install cmd, (2) --code-only made structural not per-run, (3) adversarial network-denied verification, (4) explicit CS9 on query output, (5) supply-chain/typosquat check + upgrade re-quarantine."
+    activation_proof:
+      status: "PENDING"
+      requirement: "Install graphifyy==0.9.26 CLI-only in isolated venv; run graphify extract . --code-only under a network-denied sandbox; PROVE (a) no file written outside graphify-out/ (diff CLAUDE.md/AGENTS.md/.claude/.cursor/git-hooks before+after), (b) zero network calls, (c) planted-violation: attempting graphify install / hook install / --mcp is refused or is demonstrably never invoked by the CSPS wrapper. Until PROVEN, all Graphify output is a CLAIM (CS9), never platform truth."

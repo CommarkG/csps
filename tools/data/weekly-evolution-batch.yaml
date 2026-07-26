@@ -1,0 +1,77 @@
+id: csps.data.weekly-evolution-batch
+name: weekly-evolution-batch
+description: >
+  Layer 3 of the Weekly Evolution Engine. Rate-limited (max 3 items) selection
+  of the highest-priority unacted findings from gap-recurrence-register.yaml +
+  improvement-register.yaml. Process root-cause -> solution -> apply -> propagation-sweep ->
+  propagation-verify for each selected item this session, using ZF iteration (fresh angle per
+  cycle until nothing new). Then mark propagation_required + propagation_verified in the
+  source register (validate-propagation-verified-gate.mjs BLOCKS a false claim).
+  Deferred items are NOT dropped -- they remain queued and re-selected next run by priority.
+generated_session: S089
+total_queue_size: 16
+batch_size: 3
+selected_count: 3
+deferred_count: 13
+selected:
+  - id: gap_SESSION_INJECTION_COMPRESSION
+    source: gap-recurrence-register
+    k_count: 2
+    status: open
+    observation: "Session-open injection may be compressed in long sessions — critical templates not present in AI context"
+    age_escalation_status: on-time
+    action: "root-cause -> solution -> apply -> propagation-sweep -> propagation-verify (ZF iteration)"
+  - id: gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE
+    source: gap-recurrence-register
+    k_count: 2
+    status: open
+    observation: "134 of 167 validators (80%) have no behavioral test proving they catch known violations. Only BLOCKING validators were t"
+    age_escalation_status: on-time
+    action: "root-cause -> solution -> apply -> propagation-sweep -> propagation-verify (ZF iteration)"
+  - id: gap_INSTRUCTION_INTEGRITY
+    source: gap-recurrence-register
+    k_count: 2
+    status: open
+    observation: ">"
+    age_escalation_status: unknown
+    action: "root-cause -> solution -> apply -> propagation-sweep -> propagation-verify (ZF iteration)"
+deferred_to_next_run:
+  - id: gap_DIM4_LIVE_LOAD_PROOF
+    source: gap-recurrence-register
+    k_count: 2
+  - id: gap_D_DEFAULT_SCHEME_CONSOLIDATION
+    source: gap-recurrence-register
+    k_count: 2
+  - id: gap_RESIDUE_HOOK_FALSE_POSITIVE
+    source: gap-recurrence-register
+    k_count: 2
+  - id: imp_CEC_SPECIFICITY
+    source: improvement-register
+    k_count: 2
+  - id: imp_TOOL_OUTPUT_SCALE
+    source: improvement-register
+    k_count: 2
+  - id: imp_FIVE_SURFACE_SURFACE5_CRITERION
+    source: improvement-register
+    k_count: 2
+  - id: imp_BEHAVIORAL_TEST_GAP_ADVISORY
+    source: improvement-register
+    k_count: 2
+  - id: imp_HOOKS_NOT_IN_SETTINGS
+    source: improvement-register
+    k_count: 2
+  - id: imp_HOOKS_NOT_IN_VHF
+    source: improvement-register
+    k_count: 2
+  - id: INPUT-S066-MULTI-LEVEL-MINITREE-INHERITANCE
+    source: improvement-register
+    k_count: 2
+  - id: INPUT-S066-THREE-EXPERT-META-REVIEW
+    source: improvement-register
+    k_count: 2
+  - id: INPUT-S066-PAP-PER-SESSION-CADENCE
+    source: improvement-register
+    k_count: 2
+  - id: INPUT-S066-CAI-RATIFICATION-FOLLOWUP
+    source: improvement-register
+    k_count: 2

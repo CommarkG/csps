@@ -29,6 +29,19 @@ context_quote: "Listing what is missing is like a mirror of the gaps. If you go 
 >   Trivial-reversible gaps EXEMPT. Format: { source: "...", finding: "...", confidence: high|medium|low }
 >   Rationale: "Build without research = deliberate ignorance." Known solutions should be found first.
 >   Gate: not yet enforced (PARK-S089-MANDATORY-RESEARCH-PIPELINE); informational for now.
+>
+> OPTIONAL FIELDS (S089 — Weekly Evolution Engine, GOVERNANCE-SELF-IMPROVEMENT-PLAYBOOK-from-CDS):
+>   propagation_required: true|false — does closing this gap require applying the fix everywhere
+>     it applies (not just the one spot first found)? Declare explicitly to opt into the gate.
+>   propagation_verified: true|false — has that platform-wide application been independently
+>     confirmed (re-run is proof, not memory)? A terminal status (resolved/fix_committed/etc.)
+>     with propagation_required:true and propagation_verified missing/false is BLOCKING
+>     (validate-propagation-verified-gate.mjs). Entries WITHOUT propagation_required at all are
+>     grandfathered — this is a new gate, never retroactively punitive against historical entries.
+>   propagation_not_required_reason: "..." — required alongside propagation_required:false
+>     (advisory if missing) — states why this specific gap is genuinely single-spot.
+>   weekly_batch_eligible: true|false — surfaced to the rate-limited weekly batch selector
+>     (tools/scripts/weekly-evolution-batch.mjs) when k_count>=2 and status is non-terminal.
 
 entries:
 

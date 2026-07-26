@@ -2816,6 +2816,28 @@ entries:
       reasoning: the axis is genuinely orthogonal and we preach it externally, so capture it; but it is unrealized-in-practice, so it rides the pipeline-spine build rather than a rushed parallel gate.
     decision_back_ref: "Sonnet S089 open question (sonnet-turn.md 'OPEN QUESTION FOR YOU'); origin CSP CC-042 Pillar Protection Line; ties to OPUS25-CSPS_to_CISEM_Corespiral-Approach-Critique (fail-UP on blast)."
     retrieve_when: "When PARK-S089-PLAN-PIPELINE-SPINE scope-tier is built (define 'consequential' = high-blast OR sensitive-type there), OR on first blast-related incident (K>=1), OR when CISEM's Pillar-Protection-Line proves it out (convergence evidence)."
+  - id: PARK-S089-EVOLUTION-ENGINE-AUTONOMOUS-REASONING
+    lane: queue
+    priority: HIGH
+    title: Weekly Evolution Engine — the last mile from mechanical batch-selection to autonomous root-cause/fix/propagate reasoning
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: "Layers 1-4 (scan/queue/rate-limited-batch/propagation-gate) are built and permanent (GitHub Actions cron, session-independent). Layer 5's semantic half — root-cause analysis, solution design, applying the fix, propagation sweep — genuinely requires AI reasoning that a bash/node script in a GitHub Action cannot do. Two real paths forward, neither built yet."
+    problem: "tools/data/weekly-evolution-batch.yaml is now selected + committed automatically, forever, unattended. But NOTHING currently reads that file and does the actual fix work unattended — it waits for the next human-opened Claude Code session to notice and process it. That is real progress (queue management is now permanent) but is NOT the playbook's full Layer 5 ('a scheduled, isolated agent... reads the repo, processes the queue, applies + propagates, commits, and reports... with no human present')."
+    existing_coverage: "session-open.sh already surfaces pending-auto-parks.yaml and could be extended to surface weekly-evolution-batch.yaml the same way (session-triggered, not schedule-triggered — still needs a human to open a tab). This is a real, immediate, low-cost improvement to make in the NEXT touch, distinct from full autonomy."
+    disposition: "Option A (session-bridge, cheap, do soon): extend session-open.sh to prominently surface an unprocessed weekly-evolution-batch.yaml, same pattern as pending-auto-parks.yaml — closes the gap for anyone who opens a session, still not truly unattended. Option B (full autonomy, requires user action): add an ANTHROPIC_API_KEY GitHub secret + a step that invokes Claude (headless/print mode or direct API call) against the batch file to do root-cause->fix->propagate->verify->commit end to end, with a single-writer lock and a committed report per playbook Part 5. Option B needs the user to provision the credential — not something to add unilaterally to their GitHub repo secrets."
+    dedup_checked: "Not a duplicate of hardwire-012 (which built the permanent mechanical core) — this is specifically the remaining semantic-reasoning gap on top of it."
+    decision_ledger:
+      chosen: "Park both options with a clear decision fork rather than silently picking one or claiming full autonomy already exists."
+      rejected: "Silently building Option B without asking — rejected: requires the user to add a live API credential to their GitHub repo, a security-sensitive action outside what I should do unilaterally."
+      rejected_2: "Claiming Layers 1-5 are ALL fully done — rejected: would be exactly the declaration-drift / nominal-completion failure the pasted playbook names as CSPS's and CDS's shared #1 weakness."
+      reasoning: "Being honest about the one genuinely unresolved fork (needs a human credential decision) is more valuable than a comfortable overclaim."
+    decision_back_ref: "tools/data/hardwire-register.yaml id=hardwire-012; tools/data/wiring-sweep-log.yaml session S089 entry for this implementation."
+    retrieve_when: "Governor decides Option A (session-bridge) vs Option B (API-key autonomy) vs both — or on first observed real GitHub Actions run of the new workflow step (activation proof for hardwire-012)."
   - id: PARK-S089-BEHAVIORAL-CONTRACTS-ORPHAN-AUDIT
     lane: queue
     priority: MEDIUM

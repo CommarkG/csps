@@ -141,6 +141,43 @@ rows:
     status: hardwire-done
     session_sealed: S075
 
+  - id: hardwire-012
+    layer: system
+    thing: "Weekly Evolution Engine — Layers 1-4 mechanical (scan/queue/rate-limited-batch/propagation-gate), Layer 5 permanent trigger via existing GitHub Actions cron"
+    governor_invocation: "S089: pasted GOVERNANCE-SELF-IMPROVEMENT-PLAYBOOK-from-CDS-2026-07-26.md, 'i approve all + use all that is in the attached file' + detailed directive to build a mechanically-enforced platform-wide scan->queue->weekly-batch->propagation->permanent-auto-trigger loop, rate-limited and calm, triggered automatically forever."
+    decision_ledger:
+      chosen: "EXTEND existing infrastructure rather than fork: gap-recurrence-register.yaml + improvement-register.yaml ARE the findings queue (already 20+26 real historical entries — seed condition already satisfied); findings-actuator.mjs IS the queue-reader; the EXISTING .github/workflows/session-progress.yml (real, weekly, Monday 07:23, already commits autonomously with contents:write) IS the permanent Layer-5 trigger. Built NEW: propagation_required/propagation_verified fields + validate-propagation-verified-gate.mjs (Layer 4, the genuinely missing blocking gate) + weekly-evolution-batch.mjs (Layer 3 rate-limited selector, max 3/run) + wired both into the GitHub Actions workflow as new steps."
+      rejected_1: "Use CronCreate for the permanent auto-trigger — REJECTED on evidence, not preference: CronCreate's own tool spec states jobs are session-only (deleted when this Claude session ends) and recurring jobs auto-expire after 7 days regardless. Building Layer 5 on it and calling it 'permanent, forever' would be exactly the nominal-completion/declaration-drift failure the pasted playbook itself names as the #1 platform weakness. Named this to the Governor before building around it."
+      rejected_2: "Build a new parallel findings-queue.yaml schema — REJECTED: gap-recurrence-register.yaml + improvement-register.yaml already have k_count/status/propagated_to and 46 real historical entries; forking would repeat the exact orphan-registry mistake fixed in hardwire-011 the same session."
+      rejected_3: "Claim Layer 5 is fully autonomous end-to-end (root-cause -> fix -> propagate with zero human/AI-session involvement) — REJECTED as honest scope: a GitHub Actions bash step cannot do semantic reasoning. What's genuinely unattended-forever: queue refresh + rate-limited batch selection + propagation-verified gating. What still needs an AI session: the actual root-cause/solution/propagation work for each selected item. Full autonomy requires an ANTHROPIC_API_KEY GitHub secret the user must provision (security-sensitive credential grant — not mine to add unilaterally). Parked: PARK-S089-EVOLUTION-ENGINE-AUTONOMOUS-REASONING."
+      reasoning: "Honesty about what a mechanical script can and cannot do IS the load-bearing lesson of the pasted playbook (architecture racing ahead of enforcement). Better to ship a smaller, real, permanently-running mechanical core than a bigger claim resting on a session-scoped tool that silently isn't permanent."
+    surfaces:
+      t1_hook: "None new — reuses .github/workflows/session-progress.yml's existing schedule trigger (cron: '23 7 * * 1', permanent, GitHub-infrastructure-hosted, independent of any Claude Code session)"
+      t2_validator: "tools/validators/validate-propagation-verified-gate.mjs (BLOCKING, registered in tools/verify.mjs as propagation_verified_gate) + tools/scripts/weekly-evolution-batch.mjs (rate-limited selector, not a validator but wired into the same workflow step)"
+      t3_session: "tools/data/weekly-evolution-batch.yaml is the durable, committed, human-readable record (per playbook Part 5.2: prefer a committed report over email/MCP) — surfaced at every session-open the same way pending-auto-parks.yaml already is"
+      sp_registry_entry: propagation-verified-per-terminal-finding
+      audit_runner_row: "propagation_verified_gate (to be added to audit-runner.md catalog — applying the EP-ERR-011 lesson proactively)"
+    wall_boundary: "GitHub Actions job already scoped to contents:write + pull-requests:write only, single job (single-writer, no race with a live human session per playbook Part 5.1 caveat), checks git diff --staged --quiet before committing (no-op safe)."
+    block_test_command: "append a synthetic gap-recurrence entry with status:resolved, propagation_required:true, propagation_verified:false -> node tools/validators/validate-propagation-verified-gate.mjs; then node tools/scripts/weekly-evolution-batch.mjs --batch-size 3"
+    block_test_output: |
+      GATE (synthetic unpropagated resolved entry): ✗ [gap-recurrence-register] gap_BLOCKTEST_PROPAGATION_GATE:
+      status=resolved but propagation_required:true and propagation_verified is not true
+      [validate-propagation-verified-gate] gap_checked=21 imp_checked=26 blocking=1 advisory=0 EXIT:1 ✓
+      RESTORE: real register content restored from scratchpad backup; re-run confirms blocking=0 ✓
+      BATCH SELECTOR (real run, real data — not synthetic): queue=16 selected=3 deferred=13 batch_size=3.
+      Selected: gap_SESSION_INJECTION_COMPRESSION (k=2), gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE (k=2),
+      gap_INSTRUCTION_INTEGRITY (k=2). tools/data/weekly-evolution-batch.yaml written correctly.
+      WORKFLOW YAML: node -e "require('js-yaml').load(...)" caught a real bug (colon inside an
+      unquoted step name broke mapping parse) before push — fixed, re-validated OK.
+      ACTIVATION STATUS: PENDING, not PROVEN — no `gh` CLI in this environment to trigger/observe
+      a live GitHub Actions run. Next real activation: the existing Monday 07:23 cron fire, or
+      manual workflow_dispatch via the GitHub UI. Do not claim PROVEN until that run is observed.
+    status: hardwire-done
+    activation_proof:
+      status: "PENDING"
+      requirement: "Observe one real GitHub Actions run (scheduled Monday 07:23 or manual workflow_dispatch) execute the new 'Weekly Evolution Engine' step and the commit step, producing an updated tools/data/weekly-evolution-batch.yaml with a real commit from 'CSPS Session Bot'."
+    session_sealed: S089
+
   - id: hardwire-011
     layer: system
     thing: "B_IMPLEMENTATION_WIRING_CYCLE — every substantive implementation records a wiring-update sweep of related elements"

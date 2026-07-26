@@ -265,4 +265,25 @@ _WSC_RESULT="$(node "${REPO_ROOT}/tools/validators/validate-wiring-sweep-coverag
 printf '\n[HARDWIRE-011] B_IMPLEMENTATION_WIRING_CYCLE: %s\n' "$_WSC_RESULT" >&2
 printf '  Registry: tools/data/wiring-sweep-log.yaml | validator: validate-wiring-sweep-coverage.mjs | hardwire-register.yaml id=hardwire-011\n' >&2
 
+
+
+
+# --- HARDWIRE-012: Weekly Evolution Engine batch surfacing (S089) ---
+# tools/data/weekly-evolution-batch.yaml is selected + committed automatically (permanent,
+# GitHub Actions cron, session-independent). This bridges the remaining gap: surface it to
+# whichever human/AI session opens next, same pattern as pending-auto-parks.yaml.
+# NOTE: individual commands guarded with `|| true`/`|| echo` (set -euo pipefail is active) --
+# printf itself stays UNREDIRECTED so its stderr output is never accidentally swallowed
+# (this exact self-silencing bug was caught and fixed 3x already this session).
+_WEB_FILE="${REPO_ROOT}/tools/data/weekly-evolution-batch.yaml"
+if [ -f "$_WEB_FILE" ]; then
+  _WEB_SELECTED="$(sed -n '/^selected:/,/^deferred_to_next_run:/p' "$_WEB_FILE" | grep -c '^  - id:' || true)"
+  _WEB_SELECTED="${_WEB_SELECTED:-0}"
+  _WEB_SESSION="$(grep '^generated_session:' "$_WEB_FILE" | head -1 | sed 's/generated_session: //' || true)"
+  if [ "$_WEB_SELECTED" -gt 0 ] 2>/dev/null; then
+    printf '\n[WEEKLY-EVOLUTION-BATCH] %s item(s) selected (generated %s) -- process this turn: root-cause -> solution -> apply -> propagation-sweep -> propagation-verify (ZF iteration).\n' "$_WEB_SELECTED" "$_WEB_SESSION" >&2
+    printf '[WEEKLY-EVOLUTION-BATCH] File: tools/data/weekly-evolution-batch.yaml | Gate: validate-propagation-verified-gate.mjs\n' >&2
+  fi
+fi
+
 exit 0

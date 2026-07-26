@@ -55,6 +55,20 @@ jobs:
           echo "=== Construction gate ==="
           node tools/validators/validate-no-implementation-without-plan.mjs || echo "WARN: unplanned code"
 
+      - name: Weekly Evolution Engine — Layers 1-4 (mechanical; no AI reasoning here)
+        # GOVERNANCE-SELF-IMPROVEMENT-PLAYBOOK-from-CDS-2026-07-26.md. This step is PERMANENT
+        # and runs with no human present (GitHub Actions cron, independent of any Claude Code
+        # session) — unlike CronCreate (session-scoped, 7-day auto-expire, unsuitable for
+        # "forever"). It does the parts a script CAN do unattended: refresh the findings queue,
+        # rate-limit-select this week's batch, and gate false "propagated" claims. It does NOT
+        # do root-cause/solution/apply/propagate reasoning — that requires an AI session (see
+        # PARK-S089-EVOLUTION-ENGINE-AUTONOMOUS-REASONING for the API-key-gated next step).
+        run: |
+          echo "=== Findings queue refresh + rate-limited weekly batch selection ==="
+          node tools/scripts/weekly-evolution-batch.mjs --batch-size 3 || echo "WARN: batch selector failed"
+          echo "=== Propagation-verified gate (Layer 4) ==="
+          node tools/validators/validate-propagation-verified-gate.mjs || echo "WARN: unpropagated terminal claims found"
+
       - name: Read session state
         id: session
         run: |
@@ -65,12 +79,12 @@ jobs:
           echo "mandate=$MANDATE" >> $GITHUB_OUTPUT
           echo "blocking=$BLOCKING" >> $GITHUB_OUTPUT
 
-      - name: Commit SESSION-BRIEF.md
+      - name: Commit SESSION-BRIEF.md + weekly evolution batch (single-writer job)
         run: |
           git config user.email "ci@csps.platform"
           git config user.name "CSPS Session Bot"
-          git add SESSION-BRIEF.md
-          git diff --staged --quiet || git commit -m "auto: SESSION-BRIEF.md updated for ${{ steps.session.outputs.current_session }}"
+          git add SESSION-BRIEF.md tools/data/weekly-evolution-batch.yaml tools/data/findings-actuator-last-run.json
+          git diff --staged --quiet || git commit -m "auto: SESSION-BRIEF.md + weekly evolution batch updated for ${{ steps.session.outputs.current_session }}"
           git push || echo "Nothing to push"
 
       - name: Summary

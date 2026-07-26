@@ -51,6 +51,16 @@ entries:
     verify_mechanically: node tools/validators/validate-wiring-sweep-coverage.mjs | grep -q 'blocking=0'
     channel: manual — AI/Governor writes the entry (angles_swept + elements_updated + elements_deferred); no script can judge sweep quality, only presence
     notes: 'HARDWIRE-011 (S089), B_IMPLEMENTATION_WIRING_CYCLE. Presence-of-attempt check only (same shape as challenge-on-merit/decision-ledger) — does not verify the sweep was thorough, only that one was recorded. PreCompact hook (T1) + session-open (T3) both surface the same check advisory-first; the BLOCKING gate is at commit time via pnpm verify.'
+  - thing: propagation-verified-per-terminal-finding
+    satisfaction_point: every gap-recurrence/improvement-register entry with propagation_required:true has propagation_verified:true before its status is terminal (resolved/closed/propagated/fix_committed/etc.)
+    verify_mechanically: node tools/validators/validate-propagation-verified-gate.mjs | grep -q 'blocking=0'
+    channel: manual — AI/human sets propagation_verified:true only after re-confirming the fix was actually applied everywhere relevant (re-run is proof, not memory)
+    notes: 'HARDWIRE-012 (S089), Weekly Evolution Engine Layer 4 (GOVERNANCE-SELF-IMPROVEMENT-PLAYBOOK-from-CDS). Grandfathered: entries without propagation_required at all (the entire pre-existing 46-entry corpus) are exempt — new gate, never retroactive. Only entries that explicitly opt in are checked.'
+  - thing: weekly-evolution-batch-selected
+    satisfaction_point: tools/data/weekly-evolution-batch.yaml exists and its generated_session matches a real GitHub Actions run (not hand-run only)
+    verify_mechanically: node tools/scripts/weekly-evolution-batch.mjs --batch-size 3 && test -f tools/data/weekly-evolution-batch.yaml
+    channel: .github/workflows/session-progress.yml "Weekly Evolution Engine" step, permanent GitHub Actions cron (23 7 * * 1), independent of any Claude Code session
+    notes: 'HARDWIRE-012 (S089). Rate-limited to 3 items/run — playbook Part 2 Layer 3 "done calmly." Activation PENDING: no gh CLI available to trigger/observe a live run this session; next real fire is the scheduled Monday cron or manual workflow_dispatch.'
   - thing: advisory-validator-not-theater
     satisfaction_point: validator has promotion_trigger OR death_date declared
     verify_mechanically: node tools/validators/validate-advisory-has-promotion-path.mjs | grep -q 'blocking=0'

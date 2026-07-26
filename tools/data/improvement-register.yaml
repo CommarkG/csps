@@ -26,6 +26,18 @@ links:
 > SCHEMA v1.1 (S064): Optional field carry_forward_to_session: S<NNN> marks entries
 >   migrated from inputs-from-S*.yaml. inputs-from-S*.yaml files are DEPRECATED — use
 >   this register directly for all carry-forward inputs going forward.
+>
+> SCHEMA v1.2 (S089 — Weekly Evolution Engine, GOVERNANCE-SELF-IMPROVEMENT-PLAYBOOK-from-CDS):
+>   propagation_required: true|false — does this positive finding need to be applied everywhere
+>     it's relevant (not just where first noticed)? Declare explicitly to opt into the gate.
+>   propagation_verified: true|false — has that platform-wide application been independently
+>     re-confirmed? A terminal status (closed/propagated/etc.) with propagation_required:true and
+>     propagation_verified missing/false is BLOCKING (validate-propagation-verified-gate.mjs).
+>     Entries WITHOUT propagation_required at all are grandfathered — new gate, not retroactive.
+>   propagation_not_required_reason: "..." — required alongside propagation_required:false
+>     (advisory if missing).
+>   weekly_batch_eligible: true|false — surfaced to the rate-limited weekly batch selector
+>     (tools/scripts/weekly-evolution-batch.mjs) when k_count>=2 and status is non-terminal.
 
 entries:
 

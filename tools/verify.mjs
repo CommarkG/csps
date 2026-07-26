@@ -2888,6 +2888,28 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
     },
   },
+  // S089 HARDWIRE-012: Propagation-verified gate — Layer 4 of the Weekly Evolution Engine
+  // (GOVERNANCE-SELF-IMPROVEMENT-PLAYBOOK-from-CDS). BLOCKS a gap-recurrence/improvement-register
+  // entry from being marked terminal if it explicitly declares propagation_required:true but
+  // propagation_verified is not true. Grandfathered: entries with no propagation_required field
+  // at all are exempt (new gate, never retroactive).
+  {
+    name: 'propagation_verified_gate',
+    command: 'node tools/validators/validate-propagation-verified-gate.mjs',
+    input_files: [
+      'tools/data/gap-recurrence-register.yaml',
+      'tools/data/improvement-register.yaml',
+      'tools/validators/validate-propagation-verified-gate.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const gc = out.match(/gap_checked=(\d+)/);
+      const ic = out.match(/imp_checked=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, gap_checked: gc ? Number(gc[1]) : 0, imp_checked: ic ? Number(ic[1]) : 0 };
+    },
+  },
   // S089 HARDWIRE-011: Wiring-sweep coverage gate — BLOCKS if this session recorded an
   // implementation-shaped commit with zero matching entry in wiring-sweep-log.yaml.
   // B_IMPLEMENTATION_WIRING_CYCLE (CONSTITUTIONAL, S089): "New implementation without a

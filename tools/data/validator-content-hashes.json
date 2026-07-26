@@ -1,6 +1,6 @@
 {
   "_comment": "CS7: validator content-hash store. Updated by pnpm audit-runner:split. Read by validate-audit-health.mjs CHECK B. Stale = current hash != stored hash (not mtime). B_DETERMINISTIC_GATE compliant.",
-  "_updated_at_split": "2026-07-25",
+  "_updated_at_split": "2026-07-26",
   "hashes": {
     "validate-aap-frontmatter.mjs": "fbe0398a031c888c",
     "validate-activation-coverage.mjs": "c61be99f06e92e7d",
@@ -195,6 +195,7 @@
     "validate-principle-count-staleness.mjs": "6c5860a82071a724",
     "validate-principle-slices.mjs": "9e004ab5295bbfd9",
     "validate-prior-plan-conflict.mjs": "1a15c778dad42384",
+    "validate-propagation-verified-gate.mjs": "e3820c11b57a059b",
     "validate-prose-no-confirmation-seeking.mjs": "d6ba663a5ad82aff",
     "validate-proto-completeness.mjs": "1cf77fe9a811b265",
     "validate-proto-core-seed.mjs": "53e0e895cf5740b3",

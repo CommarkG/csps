@@ -107,6 +107,13 @@ schema_anchors:
     l2_domain: ACCOUNTABILITY_TRACEABILITY
     description: Raw governance intake (unprocessed inputs)
 
+  external_research:
+    type: governance-section
+    resolves_to: docs/plan/_intake/external-research/
+    spine: ARCH
+    l2_domain: ACCOUNTABILITY_TRACEABILITY
+    description: External research/spec material pasted by Governor, preserved verbatim as source input for a future app-pipeline INTAKE (harvest-before-boundary; not yet formally entered)
+
   # ─── GVRN — handoff and session artifacts ──────────────────────────────────
 
   handoffs:

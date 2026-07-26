@@ -1,0 +1,32 @@
+id: csps.data.consensus-queue
+name: consensus-queue
+description: >
+  B_CONSENSUS_BEFORE_CODE (S089 CONSTITUTIONAL — Governor directive). "All starts with
+  conversation. No automatic coding ever. Consolidate and offer when significant enough
+  coding is accumulated and makes sense to launch together." Every proposed implementation
+  is discussed first and recorded here as proposed -> confirmed (consensus reached, NOT yet
+  built) -> queued_for_batch -> launched (actually implemented, commit_sha recorded). Nothing
+  moves to launched without an explicit Governor go-ahead for that batch.
+version: '1.0'
+session: S089
+authored_by: Sonnet S089
+core_spine: GVRN
+schema_anchor: vault_files
+closure_owner: group:finky
+closure_decision: Living queue — add an entry per discussed proposal, launch in batches
+closure_by: ongoing
+entries:
+  - id: cq_SHADCN_UI_ADOPTION
+    proposed_summary: "Adopt shadcn/ui (Radix + Tailwind, unstyled-by-default) as the platform's default UI template for all app pages/interfaces, consuming the existing tools/config/design-tokens.yaml token registry rather than replacing it."
+    proposed_date: S089
+    status: confirmed
+    confirmed_date: S089
+    confirmed_quote: "I confirm confirm shadcn/ui"
+    rejected_alternatives:
+      - option: "Material UI / Chakra"
+        reasoning: "Opinionated pre-styled look, fights minimalism, harder to strip down to plain/functional-first."
+      - option: "Bare hand-rolled Tailwind-only (no component library)"
+        reasoning: "No consistency guardrails across 30 planned apps — every app reinvents buttons/cards/forms independently."
+    batch_id: null
+    launch_commit_sha: null
+    note: "QUEUED, NOT LAUNCHED. Per the new consensus-before-code rule, confirming the CHOICE does not authorize building it yet — waits for a batch launch decision (this item alone, or accumulated with more)."

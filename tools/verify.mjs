@@ -2940,6 +2940,27 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, gap_checked: gc ? Number(gc[1]) : 0, imp_checked: ic ? Number(ic[1]) : 0 };
     },
   },
+  // S089 HARDWIRE-013: Consensus-before-code gate — B_CONSENSUS_BEFORE_CODE (CONSTITUTIONAL).
+  // Governor: "all starts with conversation. no automatic coding ever. consolidate and offer
+  // when significant enough coding is accumulated and makes sense to launch together."
+  // Presence-of-attempt check ONLY — cannot verify a specific diff was genuinely pre-discussed,
+  // only that tools/data/consensus-queue.yaml was used this session.
+  {
+    name: 'consensus_before_code',
+    command: 'node tools/validators/validate-consensus-before-code.mjs',
+    input_files: [
+      'tools/data/consensus-queue.yaml',
+      'tools/validators/validate-consensus-before-code.mjs',
+    ],
+    always_rerun: true,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const ic = out.match(/implementation_commits=(\d+)/);
+      const qe = out.match(/queue_entries_this_session=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, implementation_commits: ic ? Number(ic[1]) : 0, queue_entries_this_session: qe ? Number(qe[1]) : 0 };
+    },
+  },
   // S089 HARDWIRE-011: Wiring-sweep coverage gate — BLOCKS if this session recorded an
   // implementation-shaped commit with zero matching entry in wiring-sweep-log.yaml.
   // B_IMPLEMENTATION_WIRING_CYCLE (CONSTITUTIONAL, S089): "New implementation without a

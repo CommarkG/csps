@@ -1,0 +1,8 @@
+{
+  "_comment": "B_CONSENSUS_BEFORE_CODE state file. launch_open must be explicitly set true by the Governor's go-ahead before any queued consensus-queue.yaml item may be implemented. Defaults closed.",
+  "launch_open": false,
+  "opened_by": null,
+  "opened_at_session": null,
+  "batch_items": [],
+  "last_launch_commit_sha": null
+}

@@ -61,6 +61,11 @@ entries:
     verify_mechanically: node tools/scripts/weekly-evolution-batch.mjs --batch-size 3 && test -f tools/data/weekly-evolution-batch.yaml
     channel: .github/workflows/session-progress.yml "Weekly Evolution Engine" step, permanent GitHub Actions cron (23 7 * * 1), independent of any Claude Code session
     notes: 'HARDWIRE-012 (S089). Rate-limited to 3 items/run — playbook Part 2 Layer 3 "done calmly." Activation PENDING: no gh CLI available to trigger/observe a live run this session; next real fire is the scheduled Monday cron or manual workflow_dispatch.'
+  - thing: consensus-queue-touched-per-implementation-session
+    satisfaction_point: any session with implementation-shaped commits (apps/, libs/, tools/validators/, tools/scripts/, .claude/skills/, .claude/hooks/) has >=1 matching entry in tools/data/consensus-queue.yaml
+    verify_mechanically: node tools/validators/validate-consensus-before-code.mjs | grep -q 'blocking=0'
+    channel: conversational discussion -> Sonnet records in consensus-queue.yaml (proposed/confirmed) -> Governor opens batch-launch-state.json -> implementation proceeds
+    notes: 'HARDWIRE-013 (S089), B_CONSENSUS_BEFORE_CODE. Presence-of-attempt check only (same shape as challenge-on-merit/decision-ledger/wiring-sweep-coverage) — cannot verify a SPECIFIC diff was genuinely pre-discussed, only that the queue mechanism was used this session. A stricter PreToolUse hard-block was considered and explicitly deferred (bootstrapping self-lock risk) — named as a future escalation, not built.'
   - thing: advisory-validator-not-theater
     satisfaction_point: validator has promotion_trigger OR death_date declared
     verify_mechanically: node tools/validators/validate-advisory-has-promotion-path.mjs | grep -q 'blocking=0'

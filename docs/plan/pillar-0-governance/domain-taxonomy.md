@@ -105,6 +105,38 @@ context_question: "Before relying on this governance document: is it current wit
 
 ---
 
+## Tier 3+ — Deep product-category placeholders (proposed, pending Governor ratification)
+
+> **Scope note:** Tiers 1-2 above classify CSPS *artifacts* (which broad life/business domain
+> does this governance doc or app serve). This section is a documented EXCEPTION for a
+> narrower, deeper use: cataloging a specific SaaS *product idea* within `business.marketing`,
+> down to the exact tool concept. It extends the same field (not a parallel taxonomy — see
+> B_CONSOLIDATION_PASS) past the 3-tier cap shown in frontmatter-closed-enums.md, because a
+> product-idea catalog is legitimately finer-grained than an artifact-classification field.
+> **PLACEHOLDER STATUS:** every value below is proposed, not yet Governor-ratified per this
+> file's own §"How Tier 2/3 values are ratified" — do not treat as closed enum until ratified.
+
+### business.marketing.design.* (product-category breadcrumb — placeholder chain)
+
+| Value | Meaning | Status |
+|---|---|---|
+| `business.marketing.design` | Visual design tooling & creative production for marketing | placeholder |
+| `business.marketing.design.pictures` | Photo/image asset creation & editing | placeholder |
+| `business.marketing.design.pictures.image-processing` | Automated image manipulation (crop/resize/filter/background/etc.) | placeholder |
+| `business.marketing.design.pictures.image-processing.background-removal` | AI-powered background removal — first concrete app idea in this chain | placeholder, no app yet |
+
+**Usage once ratified:**
+```yaml
+domain_path: "business.marketing.design.pictures.image-processing.background-removal"
+```
+
+**Not yet done (deliberately, out of this turn's scope):** no `apps/` directory, no app-pipeline
+Intake/Crystallize/PE-Assess entry, no PARK/queue item. This section is schema placeholders
+only, per the literal request — starting the actual build pipeline is a separate, explicit step
+(see app-pipeline.md Step 1: INTAKE).
+
+---
+
 ## Usage examples
 
 ```yaml

@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * validate-cqs-coverage.mjs
+ * @determinism-exempt: new Date() used ONLY for ran_at metadata in output JSON. No clock in decisions
+ *   (blocking is computed from positive_pole/negative_pole/dna_map/enforcement section presence only).
  * @csps-dna
  * core_spine: GVRN
  * @csps-enforces PROTO-S076-CQS-ALIGNMENT-LAYER (validate-cqs-coverage = mechanical coverage gate)

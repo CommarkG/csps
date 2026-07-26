@@ -15,6 +15,33 @@ closure_owner: group:finky
 closure_decision: Living register — add rows per HARDWIRE invocation
 closure_by: ongoing
 rows:
+  - id: hardwire-013
+    layer: system
+    thing: "B_CONSENSUS_BEFORE_CODE — discuss first, no automatic coding, launch in confirmed batches"
+    governor_invocation: "S089: 'i want yout to permanently engrave... default a simple conversesional dialogue between us and not code nothing until reaching consensus and getting my permission. hardwire it now.' Follow-up: 'your understanding is aprooved. all starts with conversation. no automatic coding ever. consolidate and offer when signicant enough coding is accumulated and makes sense to launch together. I confirm shadcn/ui.'"
+    decision_ledger:
+      chosen: "Commit-time presence gate (validate-consensus-before-code.mjs, same shape as challenge_on_merit/decision_ledger/wiring_sweep_coverage): BLOCKS if implementation-shaped commits exist this session with zero tools/data/consensus-queue.yaml activity. Registry (consensus-queue.yaml + batch-launch-state.json) is the accumulator; shadcn/ui recorded as first CONFIRMED-not-LAUNCHED entry, per the explicit instruction not to build it yet."
+      rejected_1: "A hard PreToolUse block on Edit/Write — considered and explicitly rejected: it would also block writes to the queue/state files themselves (bootstrapping self-lock — I could not even build or maintain the mechanism that enforces the rule), and risks becoming either too blunt (locks up legitimate governance work) or full of exemption-holes (defeats the point). Named as a deliberate future escalation, not an oversight, and surfaced to the Governor rather than silently built or silently skipped."
+      rejected_2: "Treating 'I confirm shadcn/ui' as authorization to build it now — explicitly rejected per the Governor's own stated model: confirming a CHOICE is not confirming a BUILD. Recorded as queued, not launched."
+      reasoning: "Mirrors every other S089 constitutional gate in shape (presence-of-attempt, not judgment-of-quality) for consistency and because that shape is proven to actually hold across a full session of real use, unlike a stricter mechanism untested under real conditions."
+    surfaces:
+      t1_hook: "None yet (deliberately) — the stricter PreToolUse hard-block is a named future escalation, not built this pass, per the bootstrapping-risk reasoning above."
+      t2_validator: "tools/validators/validate-consensus-before-code.mjs (BLOCKING, registered in tools/verify.mjs as consensus_before_code, always_rerun:true)"
+      t3_session: "queued for a future session-open.sh reminder (not added this pass — kept the surface list honest rather than padding it before it's built)"
+      sp_registry_entry: consensus-queue-touched-per-implementation-session
+      audit_runner_row: "consensus_before_code (to be added to audit-runner.md catalog next touch)"
+    wall_boundary: "consensus-queue.yaml + batch-launch-state.json + the validator itself are bootstrap-exempt from requiring their own prior queue entry — they ARE the mechanism, not implementation requiring it."
+    block_test_command: "printf 'entries: []\\n' > tools/data/consensus-queue.yaml && node tools/validators/validate-consensus-before-code.mjs; then restore real queue content"
+    block_test_output: |
+      EMPTY QUEUE (real implementation commits present): ✗ BLOCKING: session S089 has 40
+      implementation commit(s) (e.g. 5b4d4919: tools/validators/validate-cqs-coverage.mjs) but 0
+      consensus-queue.yaml activity this session. [validate-consensus-before-code]
+      implementation_commits=40 queue_entries_this_session=0 blocking=1 advisory=0 EXIT:1 ✓
+      RESTORED (shadcn/ui confirmed entry present): implementation_commits=40
+      queue_entries_this_session=1 blocking=0 advisory=0 EXIT:0 ✓
+    status: hardwire-done
+    session_sealed: S089
+
   - id: hardwire-001
     layer: system
     thing: HARDWIRE protocol itself (meta — the protocol governs its own engraving)

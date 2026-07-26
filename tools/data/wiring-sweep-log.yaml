@@ -113,3 +113,22 @@ entries:
         reasoning: "Explicitly deferred per the validator's own header ('deferred to S077 — advisory at S076') — a genuinely separate, smaller scope than gap_INSTRUCTION_INTEGRITY itself, which only required Phase 1 to be real and active."
     zf_cycles: 3
     zf_note: "3 angles, one per selected finding, each independently verified against real evidence rather than taken at face value. Stopped because all 3 batch items reached an honest, evidence-based disposition (2 real partial fixes + 1 corrected false-positive) — the batch's defined scope, not an arbitrary count."
+  - session: S089
+    implementation: "HARDWIRE-013: B_CONSENSUS_BEFORE_CODE — Governor directive to default to discussion, no automatic coding, launch confirmed items in batches"
+    angles_swept:
+      - "Precedent check before building: no existing consensus-queue/batch-launch mechanism found (grep across tools/data + docs/plan/pillar-0-governance — genuinely new, not a duplicate)."
+      - "Shape check against existing S089 gates: deliberately mirrored challenge_on_merit/decision_ledger/wiring_sweep_coverage's presence-of-attempt pattern rather than inventing a new validator shape, for consistency and because that shape is proven to hold under a full session of real use."
+      - "Bootstrapping risk check on the stricter PreToolUse hard-block option: reasoned through it explicitly (would block writes to the queue mechanism's own files) and surfaced the tension to the Governor rather than either silently building something that would self-lock, or silently skipping the stricter option without saying so."
+      - "Re-ran pnpm contracts:split (the chained command from HARDWIRE-011) to regenerate the shard with the new B_CONSENSUS_BEFORE_CODE contract — the SAME 5-contract enforcement_trio frontmatter regression predicted in that earlier entry recurred exactly as predicted; re-applied the known-correct hand-fixes rather than re-diagnosing from scratch, and reconfirmed the S088 amendment content (now in the real shard, not just the slice) survived this regen correctly."
+    elements_updated:
+      - "tools/data/consensus-queue.yaml (new registry) + tools/data/batch-launch-state.json (new gate state, defaults closed)"
+      - "tools/validators/validate-consensus-before-code.mjs (new, BLOCKING, registered in tools/verify.mjs as consensus_before_code)"
+      - "docs/plan/pillar-0-governance/behavioral-contracts-GVRN.md (new B_CONSENSUS_BEFORE_CODE contract) + regenerated split (67->68 slices, 5 known enforcement_trio extractions re-fixed)"
+      - "tools/data/hardwire-register.yaml id=hardwire-013, satisfaction-point-registry.yaml entry, audit-runner.md catalog row"
+    elements_deferred:
+      - element: "session-open.sh T3 reminder for this rule"
+        reasoning: "Kept the surfaces list honest rather than padding it — T1 (hard block) and T3 (session reminder) are both real future work, not built this pass, explicitly disclosed as such in the hardwire-register entry rather than silently omitted."
+      - element: "Stricter PreToolUse hard-block on Edit/Write"
+        reasoning: "Named, reasoned through, and explicitly NOT built due to a genuine bootstrapping self-lock risk — surfaced to the Governor as a deliberate escalation choice, not silently deferred."
+    zf_cycles: 2
+    zf_note: "2 angles: precedent+shape-consistency check before building, and a live re-encounter of the already-documented enforcement_trio extraction fragility (predicted, then confirmed, then fixed using the known values rather than re-deriving). Stopped because both were resolved with concrete evidence, not an arbitrary count."

@@ -857,3 +857,48 @@ essential as the implementation itself."* Ratified same turn as the Graphify HAR
 contract's first live application (see the Graphify IZFC impact-sweep report, same turn).
 
 ---
+
+## B_CONSENSUS_BEFORE_CODE — discuss first, no automatic coding, launch in confirmed batches (S089 Governor directive — CONSTITUTIONAL)
+
+**Canonical:** Default mode of collaboration is **conversation before code**. On any proposal that could be
+built, present understanding + options + a recommendation and **stop** — no Edit/Write/Bash-that-changes-
+anything until explicit consensus is reached. Confirming a CHOICE (e.g. "I confirm shadcn/ui") is not the same
+as authorizing its BUILD — confirmed items accumulate in a queue and launch together once there is "enough
+accumulated and it makes sense to launch together," not one at a time as each is discussed.
+
+**Governor verbatim:** *"your understanding is aprooved. all starts with conversation. no automatic coding
+ever. consolidate and offer when signicant enough coding is accumulated and makes sense to launch together."*
+Preceded by: *"i want yout to permanently engrave... default a 'simple conversesional dialogue' between us
+and not code nothing until reaching consensus and getting my permission. hardwire it now."*
+
+**Scope:** Investigation (Read/Grep/Glob — finding out what exists) is NOT gated; there is nothing to reach
+consensus about until the current state is known. The gate is on WRITES that implement something: Edit/Write/
+Bash commands that create or modify apps/, libs/, or new platform tooling.
+
+**The three-state flow:**
+1. **proposed/confirmed** — discussed in chat, recorded in `tools/data/consensus-queue.yaml` with
+   `rejected_alternatives` (composes with B_DECISION_LEDGER's chosen/rejected shape). NOT built yet.
+2. **queued_for_batch** — Governor decides enough has accumulated (or a single item is significant enough
+   alone) to launch.
+3. **launched** — `tools/data/batch-launch-state.json` `launch_open` flips true for that batch, implementation
+   proceeds, `launch_commit_sha` recorded, flips back to closed.
+
+**Honest limitation (do not oversell):** the mechanical gate (`validate-consensus-before-code.mjs`) is a
+PRESENCE check — it confirms the consensus-queue was touched this session, not that a SPECIFIC diff was
+genuinely pre-discussed. A hard `PreToolUse` block was considered and explicitly NOT built yet: it would also
+block writes to the queue mechanism itself (bootstrapping self-lock) and risks becoming either too blunt or
+full of exemption-holes. That stricter layer is a deliberate future escalation, not an oversight.
+
+**Mechanical surfaces:**
+- **registry:** `tools/data/consensus-queue.yaml` (proposed/confirmed items + rejected alternatives) +
+  `tools/data/batch-launch-state.json` (launch_open gate, defaults closed)
+- **validator (T2):** `tools/validators/validate-consensus-before-code.mjs` — BLOCKING if implementation-shaped
+  commits exist this session with zero consensus-queue activity (registered in `tools/verify.mjs` as
+  `consensus_before_code`)
+- **contract:** this entry + composes with B_DECISION_LEDGER (rejected-alternatives shape) +
+  B_IMPLEMENTATION_WIRING_CYCLE (sibling presence-check gate, same session)
+
+**Source:** Governor S089, immediately following a live demonstration of the problem this contract fixes —
+extensive unprompted building earlier the same session prompted the direct correction.
+
+---

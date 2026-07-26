@@ -336,7 +336,13 @@ business | personal | social | knowledge | platform | crosscut
 | `platform` | CSPS infrastructure and governance (internal) |
 | `crosscut` | Cross-domain concerns (accountability, goals, decisions, reflection) |
 
-**Tier 2/3:** Defined in `docs/plan/pillar-0-governance/domain-taxonomy.md` (to be created in Schema Phase A).
+**Tier 2/3:** Defined in `docs/plan/pillar-0-governance/domain-taxonomy.md` (Schema Phase A).
+
+**Tier 4+ (documented exception, S089):** `domain-taxonomy.md` §"Tier 3+ — Deep product-category
+placeholders" extends this field past 3 tiers for product-idea cataloging under
+`business.marketing.*` (e.g. `business.marketing.design.pictures.image-processing.background-
+removal`). Same field, not a parallel one — see that file for the scope note and placeholder
+status (proposed, pending ratification, not yet closed enum).
 
 ---
 

@@ -1772,9 +1772,21 @@ const CYCLES = [
       return m ? { boundaries_checked: Number(m[1]), crossings_checked: Number(m[2]), blocking: Number(m[3]), advisory: Number(m[4]) } : {};
     },
   },
-  // S076 NOTE: validate-cqs-coverage.mjs moved to tools/wip/validate-cqs-coverage-S077.mjs
-  // (Governor "close now" directive — CQS build is S077 work; spec + cqs-sets.yaml remain)
-  // Re-register in S077 when the full validator is built and block-tested.
+  // S089 Weekly Evolution Engine batch #1: real structural fix for gap_INSTRUCTION_INTEGRITY
+  // K=3 (P-META-019 mandate fired). Was sitting unregistered in tools/wip/ since S076 ("close
+  // now" deferred the BUILD, not registration of the already-working Phase-1 advisory check).
+  // Tested clean against real cqs-sets.yaml (3 sets, 0 blocking) before registering.
+  {
+    run_tier: 'STANDARD',
+    name: 'cqs_coverage',
+    command: 'node tools/validators/validate-cqs-coverage.mjs',
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const sc = out.match(/sets_checked=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, sets_checked: sc ? Number(sc[1]) : 0 };
+    },
+  },
   {
     // M2 S071 Facet C: Dev↔User vocabulary coverage — advisory validator
     // Flags user-facing content that uses dev_terms without paired user_term translation
@@ -2886,6 +2898,24 @@ const CYCLES = [
       const a = out.match(/advisory=(\d+)/);
       const p = out.match(/passes=(\d+)/);
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, passes: p ? Number(p[1]) : 0 };
+    },
+  },
+  // S089 Weekly Evolution Engine batch #1: gap_SESSION_INJECTION_COMPRESSION partial fix.
+  // ADVISORY measurement (not a survival proof — see validator header for honest limitation).
+  // Converts "no measurement exists" (K=2, open since S051) into a real, trend-tracked number.
+  {
+    name: 'session_injection_size',
+    command: 'node tools/validators/validate-session-injection-size.mjs',
+    input_files: [
+      '.claude/hooks/session-open.sh',
+      'tools/validators/validate-session-injection-size.mjs',
+    ],
+    always_rerun: true,
+    parse_output: (out) => {
+      const b = out.match(/bytes=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const s = out.match(/status=(\S+)/);
+      return { bytes: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, status: s ? s[1] : 'unknown' };
     },
   },
   // S089 HARDWIRE-012: Propagation-verified gate — Layer 4 of the Weekly Evolution Engine

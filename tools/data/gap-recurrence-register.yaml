@@ -139,10 +139,10 @@ entries:
     observation: "Session-open injection may be compressed in long sessions — critical templates not present in AI context"
     first_seen: S051
     k_count: 2
-    sessions: [S051, S053]
-    status: open
+    sessions: [S051, S053, S089-weekly-batch]
+    status: fix_committed
     prevention_class: unclassified
-    structural_fix_plan_session: null
+    structural_fix_plan_session: S089
     prevention_design_pending: true
     must_address_by_session: "S076"
     age_escalation_status: on-time
@@ -150,7 +150,11 @@ entries:
     fix_commit_sha: null
     structural_fix_triggered: true
     behavioral_test_exists: false
-    note: "K=2. No measurement exists for whether injection content survives context compression. Structural fix: behavioral test that verifies injection content is present in fresh tab first response."
+    structural_fix_file: "tools/validators/validate-session-injection-size.mjs"
+    propagation_required: false
+    propagation_not_required_reason: "Single self-contained validator, registered once in verify.mjs — nothing to propagate elsewhere."
+    note: "K=2. WEEKLY EVOLUTION ENGINE BATCH #1 (S089) — PARTIAL fix, honestly labeled: built validate-session-injection-size.mjs, which measures the REAL byte-size of session-open.sh's injection (31,969 bytes as of S089 — first real number this gap ever had) and trend-tracks it in tools/data/session-injection-size-history.json, flagging growth >15% or size >40KB. This is a compression-RISK PROXY (size correlates with risk), NOT a proof of actual multi-turn survival — that still requires live LLM behavior observation across real long sessions, which is the genuinely hard part explicitly deferred 3 prior sessions running. status=fix_committed reflects the proxy measurement shipping, not full closure — do not read this as 'solved.' Re-queue if 40KB proves too coarse or if a real survival-test method becomes tractable."
+    behavioral_test_note: "Partial: validate-session-injection-size.mjs itself was smoke-tested (2 consecutive runs, correct history tracking, correct threshold math) but has no dedicated tools/tests/behavioral/ file yet — contributes to gap_VALIDATOR_BEHAVIORAL_TEST_COVERAGE, not a fix for it."
 
   - id: gap_STARTUP_BLOCK_NOT_SURFACED
     observation: "Session close response does not paste the SONNET STARTUP BLOCK inline — Governor has to navigate to HANDOFF to find it"
@@ -247,7 +251,7 @@ entries:
     observation: "134 of 167 validators (80%) have no behavioral test proving they catch known violations. Only BLOCKING validators were tested; ADVISORY validators uniformly untested. Validators 'exist' but their catching-power is unverified."
     first_seen: S065
     k_count: 2
-    sessions: [S065]
+    sessions: [S065, S089-weekly-batch]
     status: open
     prevention_class: unclassified
     structural_fix_plan_session: null
@@ -274,6 +278,7 @@ entries:
       - session-open T3 lists K>=2 as MUST-FIX
       - PAP Part 1A YAML documents the 134 specific validators
     note: "Largest single structural gap surfaced by PAP. Same severity-class as gap_DONE_CLAIM K=4. Platform had perceived quality (179 validators) but mechanical quality is 3.6% of perceived. Same pattern as PERMANENCE-DRIFT 100%→58%. Honest framing: advisory validators are aspirational, not mechanical."
+    weekly_batch_reprocessed_S089: "Weekly Evolution Engine batch #1 (S089): explicitly NOT force-closed — this is a genuinely multi-session item per its own proposed_fix (~3-5 sessions), and fabricating progress against the 134-item legacy count would itself be a nominal-completion violation. REAL bounded action taken instead: this session's 2 NEW BLOCKING validators (validate-propagation-verified-gate.mjs, validate-wiring-sweep-coverage.mjs) got real behavioral tests (tools/tests/behavioral/propagation-verified-gate-test.sh 4/4 PASS, wiring-sweep-coverage-test.sh 3/3 PASS) BEFORE this batch closed — preventing them from silently adding to this exact backlog, per this gap's own standard (BLOCKING validators MUST have tests). Does NOT reduce the 134 count (these are net-new validators, not legacy ones) — status correctly stays open. Re-selected for a future batch: pick from the actual PAP Part 1A top-30 ADVISORY list, not just new work."
 
   - id: gap_PREVENTION_COVERAGE_GAP
     observation: "Prevention coverage (moat elements with active T1+T2+output_signature / total moat elements) at 5% per PAP Part 5 (S065). Platform has 41 moat elements but only ~2 have fully wired T1+T2+output evidence. Third measurement-honesty correction: PAP keeps surfacing real mechanical gaps."
@@ -366,8 +371,16 @@ entries:
     fix_commit_sha: null
     explicit_defer_reason: "Absorbed into the CQS Alignment Layer (PROTO-S076-CQS, RATIFIED) — it is a FACET (Face A anti-rogue / Face B anti-rigidity), not a standalone fix. The journey-as-operational-container (PARK-043, B5/B6) is its natural home: instruction-intent wrapping belongs at the T1 journey-gate. Defer to S088 / post-B5. Not skipped — re-homed."
     behavioral_test_exists: false
+    structural_fix_triggered: true
+    structural_fix_file: "tools/validators/validate-cqs-coverage.mjs"
+    propagation_required: true
+    propagation_verified: true
     source: "Governor S076 — 'resolved = amazing; unresolved = suffer like other AI systems.' PROTO-S076-INSTRUCTION-INTEGRITY (Opus-17 directive). Both faces: anti-rogue (ambient injection) + anti-rigidity (bare-text misfiring) share ONE root."
-    note: "S076 CQS-ABSORBED: gap_INSTRUCTION_INTEGRITY is now a FACET of the CQS Alignment Layer (PROTO-S076-CQS-ALIGNMENT-LAYER OPIA ✅ RATIFIED). Face A (anti-rogue) = CQS incoming-instruction set. Face B (anti-rigidity) = CQS rule set. Canonical home: SANDBOX-cqs-alignment-layer-S076.md + tools/config/cqs-sets.yaml. No standalone PROTO-S076-INSTRUCTION-INTEGRITY needed — absorbed."
+    note: "S076 CQS-ABSORBED (spec-level only): gap_INSTRUCTION_INTEGRITY is a FACET of the CQS Alignment Layer (PROTO-S076-CQS-ALIGNMENT-LAYER OPIA — RATIFIED AS DESIGN). Face A (anti-rogue) = CQS incoming-instruction set. Face B (anti-rigidity) = CQS rule set. Spec: SANDBOX-cqs-alignment-layer-S076.md (450 lines) + tools/config/cqs-sets.yaml (222 lines, real content, both present)."
+    k_count: 3
+    sessions: [S076, S089-weekly-batch]
+    weekly_batch_reprocessed_S089: "ROOT-CAUSE FOUND then FIXED, same batch (S089 Weekly Evolution Engine batch #1): validate-cqs-coverage.mjs was sitting unregistered in tools/wip/, moved there by an explicit Governor 'close now' directive that deferred BUILDING the full validator, not registering the already-working Phase-1 advisory check. The prior note's 'absorbed / RATIFIED' language had oversold spec-completion as mechanical resolution — a live instance of the exact architecture-ahead-of-enforcement pattern this gap is about. THEN: tested it clean against the real cqs-sets.yaml (3 sets, 0 blocking, 25 dna_elements referenced) — moved tools/wip/validate-cqs-coverage-S077.mjs -> tools/validators/validate-cqs-coverage.mjs, registered as STANDARD tier in tools/verify.mjs (slug cqs_coverage). This closes the K>=3 P-META-019 mandate for real, not by deferring again. Phase 2 (full dna-registry.yaml Q4 validation) remains explicitly deferred per the validator's own header — that is a genuinely separate, smaller scope, not this gap."
+    status: fix_committed
 
   - id: gap_NO_LAPTOP_HARDWIRE_GAP
     observation: >

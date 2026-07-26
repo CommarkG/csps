@@ -143,6 +143,7 @@
     "validate-load-test-harness.mjs": "211ae399d3b77e73",
     "validate-mini-tree-integrity.mjs": "968f3a541e7722cd",
     "validate-moat-coverage.mjs": "000dec09194cfe3a",
+    "validate-model-role-division.mjs": "45709820e1e0262c",
     "validate-model-tier-currency.mjs": "a9a5fceba48be1ec",
     "validate-multi-topic-decomposition.mjs": "438345af8bb8034d",
     "validate-naming-convention.mjs": "d86c039ae969ded0",

@@ -2982,6 +2982,28 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, high_scope_dispatches: hsd ? Number(hsd[1]) : 0, dispatch_entries_this_session: de ? Number(de[1]) : 0 };
     },
   },
+  // S089 B_MODEL_ROLE_DIVISION: Opus core-seeds and delegates to Sonnet/Haiku unless the
+  // complexity/sensitivity test applies. BLOCKS only when active_model=opus AND a director
+  // session built volume implementation commits with zero opus-dispatch-log.yaml delegations
+  // (unambiguous signal); ADVISORY when active_model is unrecorded/unknown — same
+  // presence-of-attempt shape as consensus_before_code / spawn_trigger.
+  {
+    name: 'model_role_division',
+    command: 'node tools/validators/validate-model-role-division.mjs',
+    input_files: [
+      'tools/data/opus-dispatch-log.yaml',
+      'tools/validators/validate-model-role-division.mjs',
+      'tools/session-state.json',
+    ],
+    always_rerun: true,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const ic = out.match(/impl_commits=(\d+)/);
+      const de = out.match(/delegations_this_session=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, impl_commits: ic ? Number(ic[1]) : 0, delegations_this_session: de ? Number(de[1]) : 0 };
+    },
+  },
   // S089 HARDWIRE-011: Wiring-sweep coverage gate — BLOCKS if this session recorded an
   // implementation-shaped commit with zero matching entry in wiring-sweep-log.yaml.
   // B_IMPLEMENTATION_WIRING_CYCLE (CONSTITUTIONAL, S089): "New implementation without a

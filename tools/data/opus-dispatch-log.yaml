@@ -42,3 +42,9 @@ dispatches:
     # session-scoped and looks forward. This recorded verdict is the first genuine dispatch entry
     # of S089 and clears the zero-activity block; from here every HIGH-SCOPE dispatch must carry
     # its own recorded verdict.
+  - session: S089
+    dispatch_id: model-role-division-build
+    scope_tier: corespine
+    task: "Build B_MODEL_ROLE_DIVISION: contract + validate-model-role-division.mjs + FSE 5-surface + wiring"
+    verdict_recorded: true
+    opus_verdict_ref: "opus verify-gate S089 (this turn): validator runs advisory blocking=0 (active_model=unknown), node -c clean on verify.mjs, contract+validator files present, wired in verify.mjs + audit-runner. HONEST CAVEAT recorded to Governor: the validator is ADVISORY-ONLY until session-state.json records active_model — git has no per-commit model identity, so today the gate documents+flags but cannot block. Delegated build (Sonnet), Opus-sealed."

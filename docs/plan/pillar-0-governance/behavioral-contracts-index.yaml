@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 69
+  total_count: 70
   generated_at: '2026-07-26'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -68,6 +68,9 @@ contracts:
   - id: B_SPAWN_TRIGGER_GATE
     desc: "B_SPAWN_TRIGGER_GATE"
     path: ./behavioral-contracts/B_SPAWN_TRIGGER_GATE.md
+  - id: B_MODEL_ROLE_DIVISION
+    desc: "B_MODEL_ROLE_DIVISION"
+    path: ./behavioral-contracts/B_MODEL_ROLE_DIVISION.md
   - id: B_AI_PROFESSIONAL_VOICE
     desc: "B_AI_PROFESSIONAL_VOICE"
     path: ./behavioral-contracts/B_AI_PROFESSIONAL_VOICE.md

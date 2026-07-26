@@ -181,6 +181,16 @@ Two escalation cases keep a full on-demand Opus **tab session** (not agent) per 
 Opus strategy sessions, and full-system deep audits (5-mental-models) that exceed a bounded package.
 Default is Sonnet/Haiku-agent; escalate to a fresh Opus tab only for those two.
 
+**S089 update — no longer discipline-only:** this list is now mechanically enforced by
+[B_MODEL_ROLE_DIVISION](./behavioral-contracts/B_MODEL_ROLE_DIVISION.md) (`validate-model-role-
+division.mjs`, registered in `tools/verify.mjs` as `model_role_division`). The validator flags a
+director session that produced volume implementation commits with zero delegation entries in
+`tools/data/opus-dispatch-log.yaml` — BLOCKING once `tools/session-state.json` records an
+authoritative `active_model` field (not yet present — currently ADVISORY-only, an honest gap this
+contract surfaces rather than hides). Prior to this contract, §6 was prose the Opus tab was trusted
+to follow; it is now a checked signature, same enforcement upgrade §5's spawn-trigger gate already
+gave the sealing step.
+
 ---
 
 ## §7 — Cost levers

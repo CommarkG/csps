@@ -209,6 +209,38 @@ Before calling `Agent()`, confirm all of:
 
 ---
 
+## §9 — Parallel research lane (Governor directive, S089)
+
+The one-persistent-Opus-tab model does NOT mean work serializes on Opus. A **second tab (Sonnet-
+tier) may run a parallel RESEARCH + DRAFT-PLAN lane** so the Governor can promote research and
+suggestions without waiting on Opus's review cycle.
+
+**Allowed in the parallel lane (no gate wait):** research, investigation, drafting PROTOs / plans /
+option-analyses, harvesting external inputs, writing draft decision-ledgers. All of it is
+*proposal-grade* — routed to Opus via `tools/council/sonnet-turn.md` → reviewed in
+`tools/council/opus-turn.md`.
+
+**NOT allowed in the parallel lane:** implementation. No `apps/`, `libs/`, validators, hooks, or
+skills land from the research lane. This is not a courtesy — it is **mechanically enforced** by
+three existing gates, so the lane cannot silently cross into building:
+- `validate-consensus-before-code.mjs` (B_CONSENSUS_BEFORE_CODE) — implementation commits with zero
+  consensus-queue activity BLOCK.
+- `validate-spawn-trigger.mjs` (B_SPAWN_TRIGGER_GATE) — HIGH-SCOPE governance changes without a
+  recorded Opus verdict BLOCK.
+- `validate-no-implementation-without-plan.mjs` — implementation without a ratified plan (advisory
+  now; flips BLOCKING under PLAN-PIPELINE-SPINE).
+
+**The Governor's lever:** promote/prioritize any draft in parallel at any time. Implementation still
+waits for the **two-party seal** (Opus review + Governor go) — the seal is what the gates above
+protect, and it is unchanged. What changed: drafting no longer blocks on Opus; only *building* does.
+
+**Producer≠auditor:** the tab that drafts a plan is not the sole party that approves it before
+build. This is why the research lane's output is proposal-grade until Opus (a second party) reviews
+it — the exact discipline the 3 S089 PROTOs (shadcn-ui, graphify-portability, background-removal-
+schema) already followed.
+
+---
+
 ## Decision ledger
 
 **CHOSEN:** One persistent Opus tab + spawned Sonnet-agents (build) + spawned Haiku-agents (scan/
@@ -231,6 +263,26 @@ reconciliation keeps CDS's speed benefit for genuinely small extracts without re
 **REJECTED — pure Sonnet-drives-all with Opus fully on-demand and no mechanical spawn-trigger.**
 Reasoning (from the seed's Sonnet 4-persona review): without a mechanical gate, Sonnet under-spawns
 Opus to move faster — the token saving would be bought by skipping architecture review, not by
-genuine efficiency. This document keeps the judgment-check as the FIRST checklist item (§8) and
-defers the still-unbuilt mechanical Opus-spawn-trigger gate (named in the seed's REVIEW OUTCOMES as
-the TOP FIX, not yet built) rather than pretending discipline alone closes the gap.
+genuine efficiency. This document keeps the judgment-check as the FIRST checklist item (§8).
+The mechanical Opus-spawn-trigger gate (named in the seed's REVIEW OUTCOMES as the TOP FIX) is now
+BUILT and sealed: `validate-spawn-trigger.mjs` + `B_SPAWN_TRIGGER_GATE` + `opus-agent-spawn-
+template.md`, wired into verify.mjs + audit-runner (S089). Discipline no longer stands alone.
+
+---
+
+**CHOSEN (§9 — S089 Governor directive): a parallel Sonnet-tier RESEARCH + DRAFT-PLAN lane**, so
+the Governor can promote research/suggestions without serializing on Opus's review — proposal-grade
+output only, routed via the council relay, with implementation held behind the two-party seal that
+the consensus/spawn-trigger/no-impl-without-plan gates already enforce.
+
+**REJECTED — let the parallel tab also implement once the Governor ratifies a batch.** Reasoning:
+producer≠auditor — a tab that drafts a plan should not be the sole approver before building it;
+Governor ratification of a batch is a go-signal for the *seal*, not a substitute for the independent
+(Opus) technical review the seal exists to capture. Sonnet itself argued this exact point when it
+declined to build shadcn/ui despite ratification. Keeping build behind the seal costs a review
+round-trip but preserves the second set of eyes on every consequential diff.
+
+**REJECTED — keep everything serial (no parallel lane), Opus reviews before any research proceeds.**
+Reasoning: research and drafting are reversible, proposal-grade, and mechanically fenced from
+implementation — gating them on Opus wastes the Governor's parallel bandwidth for no safety gain.
+The gates protect *building*, not *thinking*.

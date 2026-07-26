@@ -239,6 +239,7 @@
     "validate-sonnet-checkpoint-relay.mjs": "d843effd5e7bc98a",
     "validate-sonnet-report.mjs": "1be03330ebc56216",
     "validate-source-class-coverage.mjs": "ab10a0dd6d0a4c91",
+    "validate-spawn-trigger.mjs": "bf6a66187b98ee96",
     "validate-spine-hierarchy.mjs": "57e7f29fbd7fdea2",
     "validate-state-claims.mjs": "eef1669dee1adc54",
     "validate-structural-fix.mjs": "769040c8c1f96cf7",

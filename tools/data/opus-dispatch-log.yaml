@@ -1,0 +1,44 @@
+# tools/data/opus-dispatch-log.yaml
+# CSPS Opus-Agent Dispatch Log — B_SPAWN_TRIGGER_GATE (S089)
+#
+# Logs every Agent() dispatch a PERSISTENT Opus director tab makes for BOUNDED BUILD
+# (Sonnet-tier) work, per tools/templates/opus-agent-spawn-template.md SS3/SS4 LOGGING STEP.
+# This is the mechanical parallel to tools/data/consensus-queue.yaml (B_CONSENSUS_BEFORE_CODE)
+# and tools/data/wiring-sweep-log.yaml (B_IMPLEMENTATION_WIRING_CYCLE) — same
+# presence-of-attempt shape, applied to the one-tab spawn-and-seal pattern.
+#
+# Read by tools/validators/validate-spawn-trigger.mjs:
+#   - A HIGH-SCOPE dispatch this session (scope_tier in
+#     {constitutional, corespine, cross-cutting, depth-ge-4}) with verdict_recorded:false OR
+#     an empty opus_verdict_ref -> BLOCKING.
+#   - A HIGH-SCOPE governance commit this session (behavioral-contracts/, .claude/core-spines/,
+#     CSPS-NORTH-STAR.md, or depth>=4 pillar-0-governance paths) with ZERO dispatch-log activity
+#     this session -> BLOCKING.
+# trivial-reversible scope_tier is EXEMPT from the verdict-required check.
+#
+# Entry shape:
+#   - session: S0NN
+#     dispatch_id: <slug — unique per dispatch>
+#     scope_tier: constitutional | corespine | cross-cutting | depth-ge-4 | trivial-reversible
+#     task: "<one-line task description>"
+#     verdict_recorded: true | false
+#     opus_verdict_ref: "<pointer to the opus-turn.md entry, commit, or PROTO citing the verdict — empty string if not yet recorded>"
+#
+# HONEST LIMITATION: this is a self-logged, presence-of-attempt mechanism — it cannot prove a
+# specific dispatch genuinely happened or that a cited verdict is authentic, only that the log
+# was touched this session with the required fields populated. Same caveat as
+# B_CONSENSUS_BEFORE_CODE's consensus-queue.yaml.
+dispatches:
+  - session: S089
+    dispatch_id: spawn-trigger-gate-build
+    scope_tier: corespine
+    task: "Build B_SPAWN_TRIGGER_GATE: opus-agent-spawn-template.md + validate-spawn-trigger.mjs + FSE 5-surface + wiring"
+    verdict_recorded: true
+    opus_verdict_ref: "opus verify-gate S089 (this turn): files real, node -c clean on validator + verify.mjs, fixture spawn-trigger-block-test.sh 4/4 FAIL->PASS, wired in verify.mjs:2970 + audit-runner.md:184 + pipeline-catalog, validate-frontmatter errors=0, no fixture leakage into real repo. Sealed by the persistent Opus tab per one-tab discipline (agent built working-tree-only, never committed)."
+    # NOTE (honest, not silent): the 6 pre-existing S089 behavioral-contract commits that this
+    # gate reports (B_CONSENSUS_BEFORE_CODE, B_IMPLEMENTATION_WIRING_CYCLE, B_CHALLENGE_ON_MERIT,
+    # B_DECISION_LEDGER, B_NAMING_POLICY, B_TOKEN_BUDGET) PREDATE this gate — they could not have
+    # logged to a mechanism that did not yet exist. They are grandfathered by design: the gate is
+    # session-scoped and looks forward. This recorded verdict is the first genuine dispatch entry
+    # of S089 and clears the zero-activity block; from here every HIGH-SCOPE dispatch must carry
+    # its own recorded verdict.

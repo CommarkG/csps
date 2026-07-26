@@ -2961,6 +2961,27 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, implementation_commits: ic ? Number(ic[1]) : 0, queue_entries_this_session: qe ? Number(qe[1]) : 0 };
     },
   },
+  // S089 B_SPAWN_TRIGGER_GATE: Opus-agent dispatch trigger gate — mechanical enforcement of
+  // one-tab operating discipline (opus-agent-spawn-template.md). BLOCKS if this session has a
+  // HIGH-SCOPE Opus-agent dispatch (opus-dispatch-log.yaml) with no recorded verdict, or a
+  // HIGH-SCOPE governance commit this session with zero dispatch-log activity. Same
+  // presence-of-attempt shape as consensus_before_code / wiring_sweep_coverage.
+  {
+    name: 'spawn_trigger',
+    command: 'node tools/validators/validate-spawn-trigger.mjs',
+    input_files: [
+      'tools/data/opus-dispatch-log.yaml',
+      'tools/validators/validate-spawn-trigger.mjs',
+    ],
+    always_rerun: true,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const hsd = out.match(/high_scope_dispatches=(\d+)/);
+      const de = out.match(/dispatch_entries_this_session=(\d+)/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, high_scope_dispatches: hsd ? Number(hsd[1]) : 0, dispatch_entries_this_session: de ? Number(de[1]) : 0 };
+    },
+  },
   // S089 HARDWIRE-011: Wiring-sweep coverage gate — BLOCKS if this session recorded an
   // implementation-shaped commit with zero matching entry in wiring-sweep-log.yaml.
   // B_IMPLEMENTATION_WIRING_CYCLE (CONSTITUTIONAL, S089): "New implementation without a

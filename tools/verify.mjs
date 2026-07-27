@@ -2961,6 +2961,36 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, implementation_commits: ic ? Number(ic[1]) : 0, queue_entries_this_session: qe ? Number(qe[1]) : 0 };
     },
   },
+  // S089 RVV (Real Value Verificator): structural + freshness gate for the value-ledger.yaml
+  // portfolio ledger — the PER-ELEMENT/portfolio complement to cic-auditor's PER-FLOW judgment.
+  // BLOCKING on schema violations only (missing field / bad enum / active not a real boolean).
+  // ADVISORY (never blocking) for DECLARED-ONLY tags and staleness — those are surfaced for the
+  // weekly-evolution-batch ledger sweep, not gated here. See validate-value-ledger.mjs header
+  // for the explicit HONEST BOUNDARY: this proves ledger STRUCTURE, never the TRUTH of a
+  // delivers_value claim.
+  {
+    name: 'value_ledger',
+    command: 'node tools/validators/validate-value-ledger.mjs',
+    input_files: [
+      'tools/data/value-ledger.yaml',
+      'tools/validators/validate-value-ledger.mjs',
+    ],
+    always_rerun: false,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const en = out.match(/entries=(\d+)/);
+      const dOnly = out.match(/declared_only=(\d+)/);
+      const st = out.match(/stale=(\d+)/);
+      return {
+        blocking: b ? Number(b[1]) : 0,
+        advisory: a ? Number(a[1]) : 0,
+        entries: en ? Number(en[1]) : 0,
+        declared_only: dOnly ? Number(dOnly[1]) : 0,
+        stale: st ? Number(st[1]) : 0,
+      };
+    },
+  },
   // S089 B_DEEP_ROOT_TRIGGER: PROBLEM/INSIGHT auto-activation of the existing deep-root
   // machinery (inner-ai-defaults registry, engraving, Weekly Evolution Engine). BLOCKS if this
   // session has a problem/insight-shaped commit (inner-ai-defaults/**, behavioral-contracts/**,

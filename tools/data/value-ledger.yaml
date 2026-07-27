@@ -1,0 +1,195 @@
+id: csps.data.value-ledger
+name: value-ledger
+description: >
+  Real Value Verificator (RVV) — the bottom-line PORTFOLIO ledger that unifies CSPS's
+  scattered activation signals (flow-activity-monitor.yaml element-existence,
+  activation-coverage-exempt.yaml contract-activation, per-registry activation_proof
+  fields, cic-auditor per-flow judgment) into one PER-ELEMENT "is this actually active
+  AND delivering the good it was built for?" view. RVV is the ELEMENT/PORTFOLIO
+  complement to cic-auditor's PER-FLOW judgment audit — RVV composes/reads CIC verdicts
+  as evidence for delivers_value, it never replaces or re-derives them.
+version: '1.0'
+session: S089
+authored_by: Sonnet S089 (RVV build, Opus-dispatched)
+core_spine: VALD
+schema_anchor: vault_files
+owner: group:finky
+closure_owner: group:finky
+closure_decision: Living ledger — grown by the weekly-evolution-batch ledger sweep, never bulk-backfilled
+closure_by: ongoing
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE 4 TAGS
+# ─────────────────────────────────────────────────────────────────────────────
+#   VERIFIED-ACTIVE — active:true AND delivers_value has REAL evidence re-derived
+#                      from ground truth this review (a real command run, a real
+#                      log/register line, a real behavior change witnessed).
+#   DECLARED-ONLY    — the element claims active/value in its own docs/comments but
+#                      no independent ground-truth check has confirmed it THIS ledger
+#                      review. Not accused of being fake — just not yet checked.
+#   DORMANT           — was VERIFIED-ACTIVE at some point but has produced zero
+#                      observable output across its expected cadence since
+#                      (mirrors flow-activity-monitor.yaml's dormancy definition).
+#   DEAD              — checked and found NOT wired, NOT firing, or firing but
+#                      provably producing no effect (dead code / orphaned register).
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# THE HONEST BOUNDARY (read before trusting this file or its validator)
+# ─────────────────────────────────────────────────────────────────────────────
+#   `active` (wired AND firing) is MECHANICALLY VERIFIABLE — a command ran, exit
+#   code observed, a log line matched. validate-value-ledger.mjs can and does check
+#   the STRUCTURE of this claim (is last_activation_proof present, is it recent).
+#
+#   `delivers_value` (did it do the GOOD it was built for, not just execute) is
+#   SOMETIMES A JUDGMENT CALL that no grep or exit code can settle by itself —
+#   e.g. "did this validator prevent a real regression" often needs the weekly
+#   human/AI expert reading the evidence, not a mechanical pass/fail. This ledger
+#   TAGS what is mechanically provable (active, last_activation_proof, schema
+#   conformance) separately from what still needs expert judgment (the prose in
+#   delivers_value + the tag itself). NO FILE IN THIS REPO CAN MEASURE "VALUE" —
+#   this ledger structures the question and rate-limits it into the Weekly
+#   Evolution Engine; it does not automate the answer.
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# SCOPE (explicit — do not assume completeness)
+# ─────────────────────────────────────────────────────────────────────────────
+#   This is a SEED, not an inventory. CSPS has ~280 validators, ~70 hooks, ~90
+#   behavioral contracts, and a growing agent roster. This ledger does NOT attempt
+#   to enumerate them all in one pass (that would be exactly the "bulk-backfill"
+#   anti-pattern B_CONSOLIDATION_PASS already prohibits). It is seeded here with
+#   5 real S089 elements, each tagged FROM GROUND TRUTH (validator actually run,
+#   or log actually grepped, this session — see last_activation_proof per entry).
+#   Growth happens ONE rate-limited batch per week via the weekly-evolution-batch
+#   ledger sweep (see tools/scripts/weekly-evolution-batch.mjs) — never a bulk pass.
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# SCHEMA (required fields — validate-value-ledger.mjs enforces PRESENCE + enum
+# validity of every field below; it does NOT and cannot verify the TRUTH of
+# intended_value / delivers_value prose — see HONEST BOUNDARY above)
+# ─────────────────────────────────────────────────────────────────────────────
+#   element_id:            <slug>                          # matches the real file/id
+#   type:                  validator | hook | contract | agent | mechanism
+#   intended_value:        <string>                          # the good it was built to do
+#   active:                true | false                      # wired AND firing? (mechanical)
+#   last_activation_proof: <string>                          # ground-truth citation, this review
+#   delivers_value:        <string>                          # evidence of real good done, OR
+#                                                             # explicit "NOT YET VERIFIED" for
+#                                                             # DECLARED-ONLY entries (honest, not omitted)
+#   tag:                   VERIFIED-ACTIVE | DECLARED-ONLY | DORMANT | DEAD
+#   last_reviewed:         <YYYY-Www | S0NN>                 # session or ISO-week of last ground-truth check
+
+entries:
+
+  - element_id: validate-spawn-trigger
+    type: validator
+    intended_value: >
+      Mechanically enforce B_SPAWN_TRIGGER_GATE (one-tab operating discipline): every
+      HIGH-SCOPE Opus-agent dispatch this session must carry a recorded verdict in
+      opus-dispatch-log.yaml before it counts as sealed — prevents an unsealed
+      high-scope dispatch from silently passing as done.
+    active: true
+    last_activation_proof: >
+      S089 real run this review: `node tools/validators/validate-spawn-trigger.mjs` ->
+      "[validate-spawn-trigger] high_scope_dispatches=6 unverified=0 high_scope_commits=10
+      dispatch_entries_this_session=6 blocking=0 advisory=0" exit=0. Registered in
+      tools/verify.mjs (S089 HARDWIRE gate) and audit-runner.md.
+    delivers_value: >
+      Real: 6 HIGH-SCOPE dispatches this session, all 6 carry a non-empty
+      opus_verdict_ref in tools/data/opus-dispatch-log.yaml (0 unverified) — the gate's
+      own presence-of-attempt claim is corroborated by the actual register content,
+      not just a green exit code.
+    tag: VERIFIED-ACTIVE
+    last_reviewed: S089
+
+  - element_id: validate-model-role-division
+    type: validator
+    intended_value: >
+      Enforce B_MODEL_ROLE_DIVISION (Opus directs/core-seeds, Sonnet/Haiku build):
+      BLOCKS when active_model=opus has volume implementation commits with zero
+      delegation-log activity this session. Companion capture:
+      post-stop-active-model-capture.sh populates active_model from transcript
+      self-declaration ("Opus here." / "Sonnet here.").
+    active: true
+    last_activation_proof: >
+      S089 real run this review: `node tools/validators/validate-model-role-division.mjs`
+      -> "[validate-model-role-division] impl_commits=1 delegations_this_session=6
+      active_model=opus blocking=0 advisory=0" exit=0.
+    delivers_value: >
+      Real: active_model correctly captured as 'opus' this session (persistent director
+      tab) and 6 delegations are on record — the division the contract mandates is
+      the actual observed pattern this session, not an assumed default.
+    tag: VERIFIED-ACTIVE
+    last_reviewed: S089
+
+  - element_id: validate-deep-root-report
+    type: validator
+    intended_value: >
+      Mechanically enforce B_DEEP_ROOT_TRIGGER (the 8th always-loaded turn-discipline
+      enforcement): a problem/insight-shaped commit this session must carry all 7
+      REPORT SCHEMA field labels (TRIGGER / DEFAULT REACTION / SATISFACTION POINT /
+      FALSE ASSUMPTION / DEEP ROOT / PREVENTION / PRESERVATION) in council comms —
+      prevents stopping at the surface symptom instead of naming the deep root.
+    active: true
+    last_activation_proof: >
+      S089 real run this review: `node tools/validators/validate-deep-root-report.mjs`
+      -> "[validate-deep-root-report] trigger_commits=13 schema_fields_present=7/7
+      blocking=0 advisory=0" exit=0. Wiring confirmed by direct grep of
+      .claude/hooks/user-prompt-submit-next-step-reminder.sh: item "8. B_DEEP_ROOT_TRIGGER"
+      is the 8th of 8 always-injected enforcements, and settings.json registers the hook
+      on UserPromptSubmit.
+    delivers_value: >
+      Real: all 7/7 schema fields present across 13 trigger-shaped commits this
+      session (not a partial/nominal pass) — the 8-question deep-root discipline is
+      the actual content of council comms, independently confirmed by grep, not
+      merely claimed.
+    tag: VERIFIED-ACTIVE
+    last_reviewed: S089
+
+  - element_id: cic-auditor
+    type: agent
+    intended_value: >
+      Judgment-tier flow-integrity auditor (Core Inheritance Chain): walks a named
+      CSPS flow from its REAL entry point and renders a 4-check verdict (defined goal /
+      inheritance / real end-value / value mechanically enforced) — catches EXISTS
+      != ACTIVE at FLOW scale, complementing validate-field-wiring (FIELD scale) and
+      validate-nothing-stands-alone (session-boundary scale).
+    active: true
+    last_activation_proof: >
+      S089 real dogfood run (not a fixture, a real audit of the threshold-intake
+      chain): per tools/data/opus-dispatch-log.yaml dispatch_id=cic-auditor-build,
+      cic-auditor independently RE-DERIVED (grepped .csps/intelligence/cie-chain-insights.yaml
+      = 1489 entries, 0 QUEUE-OR-PIVOT ever fired, type=governor_directive 100%
+      uniform) and confirmed the exact gap named in [[feedback_threshold_classifier_not_gate]]
+      — a mandate-gate that was fixture-green but dead in production.
+    delivers_value: >
+      Real, causal chain traceable: cic-auditor's finding directly triggered
+      dispatch_id=threshold-queue-or-pivot-wiring-fix (same session), which wired the
+      hook's real classification through threshold-chain.mjs -> routeInput(). Ground
+      truth this review: `grep QUEUE-OR-PIVOT tools/data/threshold-intake-log.yaml`
+      now returns 2 real entries (was 0 before the fix) — the audit did not just
+      report, its finding changed live platform behavior.
+    tag: VERIFIED-ACTIVE
+    last_reviewed: S089
+
+  - element_id: threshold-mandate-gate-queue-or-pivot-fix
+    type: mechanism
+    intended_value: >
+      Make the deterministic routing rule "new-concept + active-mandate ->
+      QUEUE-OR-PIVOT (advisory)" actually fire in production threshold-routing
+      (tools/scripts/threshold-router.mjs routeInput()), not just pass in an
+      isolated validator fixture — the gap cic-auditor found (0/1489 real firings).
+    active: true
+    last_activation_proof: >
+      S089 real run this review: `node tools/validators/validate-threshold-mandate-gate.mjs`
+      -> "fixture_pass_rate=100% status=ALL_PASS", "QUEUE-OR-PIVOT route: present",
+      exit=0. Cross-checked against REAL source (not just the fixture's own claim):
+      tools/scripts/threshold-router.mjs:234-254 contains the live mandate_active +
+      isOrthogonal branch that sets route=QUEUE-OR-PIVOT — this is production code,
+      not test-only scaffolding. Also confirmed threshold_mandate_gate is registered
+      in tools/verify.mjs (line ~2498), so it runs every verify pass, not on-demand only.
+    delivers_value: >
+      Real: `grep QUEUE-OR-PIVOT tools/data/threshold-intake-log.yaml` returns 2 live
+      routing_decision/route entries — the rule has now fired for real intake events,
+      closing the exact dead-gate gap cic-auditor identified in the same session.
+    tag: VERIFIED-ACTIVE
+    last_reviewed: S089

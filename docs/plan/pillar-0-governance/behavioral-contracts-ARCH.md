@@ -272,6 +272,19 @@ context_question: "Before relying on this governance document: is it current wit
 
 > When duplication is intentional (rigid-vs-flex per [EXT-20260505-002-F](../_handoff/VAULT/contexts/governance/operational-discipline/EXT-20260505-002-F-4-batch-close-file-depth-rigid-flex-5-prevention-10-scenario.md)) — e.g., glossary terms restated for accessibility / governing principles re-cited at batch boundaries / safety-critical instructions repeated for redundancy — declare `consolidation_exempt: true` in frontmatter with reason. Counter-cases per [EXT-20260505-003-D](../_handoff/VAULT/contexts/governance/anti-duplication/EXT-20260505-003-D-when-NOT-to-consolidate-counter-cases.md) override the single-canonical-home rule.
 
+**ENHANCE-vs-FORK NUANCE (S089 — Opus-defined, Governor-ratified correction):**
+
+> PREFER enhance/compose — consult-first is the DEFAULT. FORK (create a new element instead of extending an existing one) when ANY of the following holds:
+>
+> 1. **DNA MISALIGNMENT** — grafting the new concern onto the existing element would corrupt the host's single responsibility.
+> 2. **COHERENCE OVERLOAD** — the host would become too multi-purpose to stay clear if it absorbed the new concern.
+> 3. **DIFFERENT ALTITUDE** — the new concern lives at a different level (e.g. portfolio vs. per-element, or per-flow vs. per-field) — compose-by-reference, do not merge into the existing element.
+> 4. **GENUINELY NEW, NO PRECEDENT** — after a real existing-first search, nothing covers it.
+>
+> In EVERY case (enhance OR fork), record the decision + reasoning in the decision ledger (per [B_DECISION_LEDGER](#b_decision_ledger)) — chosen option, rejected alternative(s), and why. The failure this nuance prevents is BLIND forking (the "new-over-active" disease — creating a parallel element without checking what exists first), NOT forking itself. A bare "never fork" reading of B_CONSOLIDATION_PASS is rigid-definition-drift; this nuance replaces that rigid reading with the 4-condition test above.
+>
+> **S089 proof (both were correct, justified forks, not enhancements):** `cic-auditor` (a new agent, not an extension of `validate-field-wiring.mjs` or `validate-nothing-stands-alone.mjs`) — justified by condition 3, DIFFERENT ALTITUDE: those validators check FIELD-scale and session-boundary-scale wiring; cic-auditor judges FLOW-scale end-to-end integrity, a level neither existing validator operates at. `B_DEEP_ROOT_TRIGGER` (a new contract, not an extension of an existing one) — justified by condition 4, GENUINELY NEW: no existing contract covered the PROBLEM/INSIGHT dual-trigger deep-root discipline. The value-ledger.yaml + validate-value-ledger.mjs pair built the same session is a third instance of condition 3: a PORTFOLIO-scale ledger is a different altitude than `flow-activity-monitor.yaml`'s per-element existence check, so it was forked rather than grafted on.
+
 **Source:** EXT-20260505-003-A (CSP file #3 §2 single rule + §3 6 patterns + §4 5-step protocol). Q2=B confirmed S009 — CSPS-native shape (cross-references EXT source rather than copies CSP phrasing verbatim). Engraved S009 L1.3 atomic per FSE.
 
 **Anti-patterns:**

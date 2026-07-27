@@ -21,16 +21,31 @@
  *
  * Usage: node tools/scripts/weekly-evolution-batch.mjs [--batch-size N]
  * Output: tools/data/weekly-evolution-batch.yaml (committed — the durable, readable record)
+ *
+ * S089 RVV WIRING: also runs a small, separately rate-limited (LEDGER_BATCH_SIZE, default 2)
+ * sweep of tools/data/value-ledger.yaml — surfaces DECLARED-ONLY/DORMANT/DEAD entries and
+ * stale entries (last_reviewed >4 sessions behind current) as `ledger_review_this_week` in the
+ * SAME output file. This is minimal composition, not a fork: it reuses this script's existing
+ * rate-limit/select/defer pattern and its existing output file — it does NOT duplicate
+ * validate-value-ledger.mjs's schema/freshness logic (reads the ledger, does not re-validate it)
+ * and does NOT build a second weekly-batch mechanism. The actual root-cause/re-verify work on a
+ * flagged entry still needs AI reasoning, same as the gap/improvement batch above.
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import { resolve } from 'node:path';
+import { load } from 'js-yaml';
 
 const ROOT = process.cwd();
 const args = process.argv.slice(2);
 const bsIdx = args.indexOf('--batch-size');
 const BATCH_SIZE = bsIdx >= 0 ? parseInt(args[bsIdx + 1], 10) : 3;
+const lbsIdx = args.indexOf('--ledger-batch-size');
+const LEDGER_BATCH_SIZE = lbsIdx >= 0 ? parseInt(args[lbsIdx + 1], 10) : 2;
+// Mirrors validate-value-ledger.mjs's STALE_THRESHOLD_SESSIONS (kept as a local constant here
+// too, same rationale: the VALUE is shared, not the code — see that validator's header comment).
+const LEDGER_STALE_THRESHOLD_SESSIONS = 4;
 
 // Refresh findings-actuator's view first — never trust a stale last-run.
 execSync(`node "${resolve(ROOT, 'tools/scripts/findings-actuator.mjs')}"`, { cwd: ROOT, stdio: 'ignore' });
@@ -99,11 +114,67 @@ for (const d of deferred) {
 }
 if (deferred.length === 0) yamlLines.push('  []  # nothing deferred');
 
+// ── S089 RVV ledger sweep — minimal wiring, reads value-ledger.yaml, does not re-validate it ──
+const LEDGER_PATH = resolve(ROOT, 'tools/data/value-ledger.yaml');
+let ledgerEntries = [];
+if (existsSync(LEDGER_PATH)) {
+  try {
+    const doc = load(readFileSync(LEDGER_PATH, 'utf-8'));
+    ledgerEntries = (doc && doc.entries) || [];
+  } catch (e) {
+    // Malformed ledger is validate-value-ledger.mjs's job to BLOCK on — this sweep just skips.
+    ledgerEntries = [];
+  }
+}
+
+let ledgerCurrentSessionNum = null;
+{
+  const m = /^S0*(\d+)$/.exec(currentSession || '');
+  if (m) ledgerCurrentSessionNum = Number(m[1]);
+}
+
+function ledgerFlagReason(e) {
+  if (['DECLARED-ONLY', 'DORMANT', 'DEAD'].includes(e.tag)) return `tag=${e.tag}`;
+  if (ledgerCurrentSessionNum !== null) {
+    const m = /^S0*(\d+)$/.exec(e.last_reviewed || '');
+    if (m && (ledgerCurrentSessionNum - Number(m[1])) > LEDGER_STALE_THRESHOLD_SESSIONS) {
+      return `stale (last_reviewed=${e.last_reviewed}, ${ledgerCurrentSessionNum - Number(m[1])} sessions behind)`;
+    }
+  }
+  return null;
+}
+
+const ledgerCandidates = ledgerEntries
+  .map(e => ({ e, reason: ledgerFlagReason(e) }))
+  .filter(x => x.reason !== null);
+const ledgerSelected = ledgerCandidates.slice(0, LEDGER_BATCH_SIZE);
+const ledgerDeferred = ledgerCandidates.slice(LEDGER_BATCH_SIZE);
+
+yamlLines.push(`ledger_review_this_week:`);
+for (const { e, reason } of ledgerSelected) {
+  yamlLines.push(`  - element_id: ${e.element_id}`);
+  yamlLines.push(`    reason: "${reason}"`);
+  yamlLines.push(`    action: "re-verify from ground truth this session; update tag/last_reviewed/last_activation_proof in value-ledger.yaml"`);
+}
+if (ledgerSelected.length === 0) yamlLines.push('  []  # nothing flagged this run');
+
+yamlLines.push(`ledger_deferred_to_next_run:`);
+for (const { e, reason } of ledgerDeferred) {
+  yamlLines.push(`  - element_id: ${e.element_id}`);
+  yamlLines.push(`    reason: "${reason}"`);
+}
+if (ledgerDeferred.length === 0) yamlLines.push('  []  # nothing deferred');
+
 writeFileSync(OUT, yamlLines.join('\n') + '\n', 'utf-8');
 
 console.log(`[weekly-evolution-batch] queue=${allCandidates.length} selected=${selected.length} deferred=${deferred.length} batch_size=${BATCH_SIZE}`);
 if (selected.length > 0) {
   console.log(`[weekly-evolution-batch] THIS WEEK'S BATCH (process these ${selected.length}, ZF iteration, propagation-verify before closing):`);
   for (const s of selected) console.log(`  - [${s.source}] k=${s.k_count} ${s.id}: ${(s.observation || '').slice(0, 70)}`);
+}
+console.log(`[weekly-evolution-batch] ledger_entries=${ledgerEntries.length} ledger_flagged=${ledgerCandidates.length} ledger_selected=${ledgerSelected.length} ledger_deferred=${ledgerDeferred.length} ledger_batch_size=${LEDGER_BATCH_SIZE}`);
+if (ledgerSelected.length > 0) {
+  console.log(`[weekly-evolution-batch] LEDGER REVIEW THIS WEEK (re-verify from ground truth):`);
+  for (const { e, reason } of ledgerSelected) console.log(`  - ${e.element_id}: ${reason}`);
 }
 process.exit(0);

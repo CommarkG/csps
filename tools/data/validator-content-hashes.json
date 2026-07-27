@@ -276,6 +276,7 @@
     "validate-ux-principles-declared.mjs": "0507490877269faf",
     "validate-ux-snapshot-registry.mjs": "b2407be830a9f3df",
     "validate-validators.mjs": "3b40ba0a06285a87",
+    "validate-value-ledger.mjs": "315f7799bd4658da",
     "validate-vercel-projects.mjs": "137afd19ea900a96",
     "validate-vlt-blocking.mjs": "7324039f0c0b0a16",
     "validate-vocabulary-coverage.mjs": "d27788d6f48004a5",

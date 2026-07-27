@@ -2878,3 +2878,23 @@ entries:
       reasoning: statement first (done, low ripple), teeth later (deliberate, higher ripple) — the disciplined sequencing for a sacred change.
     decision_back_ref: "Governor S089 'i approve it all' (North Star Version D) + 'i trust you to make the best decision and reach completion' (delegated the 7th-quality call to Opus)."
     retrieve_when: "Next deliberate ns_quality / North Star Qualities review, OR when a validate-ns-quality-coverage gate is built (fold 'Outcome-Serving' in then). Ties to PARK-S089-PLAN-PIPELINE-SPINE (goal-always-involved)."
+  - id: PARK-S089-SPLIT-GENERATOR-FRONTMATTER-STRIP
+    lane: queue
+    priority: HIGH
+    title: split-behavioral-contracts.mjs is not frontmatter-aware — silently strips enforcement_trio on every run
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: "Surfaced during the active_model-capture dispatch (S089): a spawned Sonnet agent ran split-behavioral-contracts.mjs and it stripped the enforcement_trio frontmatter block from the ~5 contracts that carry it (B_AGENT_ALIGNMENT_PROTOCOL, B_COUNCIL_PEER, B_HANDOFF_PRE_FLIGHT_AUDIT, B_INHERITANCE_POLICY, B_NAMING_POLICY). Agent caught it via git diff --stat and reverted to HEAD; Opus verify-gated from ground truth — enforcement_trio is intact at HEAD (5/6 retain it; B_IMPLEMENTATION_WIRING_CYCLE never had it, git log -S empty), validate-agent-inheritance-parity green, no committed loss. But the generator will re-strip on the NEXT split+commit."
+    problem: "The generator regenerates all 70 shard files from the GVRN SSoT but does not preserve per-shard frontmatter blocks (enforcement_trio) that live only in the shard, not the SSoT. Any innocent split run + broad commit silently destroys enforcement_trio platform-wide. It is a latent integrity landmine, currently disarmed only by luck (nobody committed the stripped shards)."
+    dedup_checked: "Related to the existing split-behavioral-contracts orphan-content park (retrieve_when: next touch of split-behavioral-contracts.mjs / migrate-enforcement-trio.mjs) but DISTINCT: that park is about trailing orphan content bleed; THIS is about the generator destroying a legitimate frontmatter block. ENHANCE the generator, do not fork it."
+    fix_direction: "Make split-behavioral-contracts.mjs frontmatter-preserving: either (a) round-trip enforcement_trio from existing shard before overwrite, or (b) hoist enforcement_trio into the GVRN SSoT so it regenerates. Delegate to Sonnet per B_MODEL_ROLE_DIVISION; add a validator that BLOCKS if a split run would drop enforcement_trio."
+    decision_ledger:
+      chosen: "PARK with HIGH priority + explicit fix_direction; do not fix inline this turn (mid-report, and B_MODEL_ROLE_DIVISION says delegate the generator fix to Sonnet, not Opus-inline)."
+      rejected: "Fix the generator now inline (rejected: Opus doing builder work the policy just enforced against + scope-creep away from the Governor's graphify/bg-removal report) OR leave it un-parked as a chat-only mention (rejected: no-lost-threads — a latent frontmatter-destroyer must be durably tracked, not remembered)."
+      reasoning: "The risk is real but currently disarmed (HEAD intact, verified). Parking HIGH with a concrete fix_direction captures it durably and routes the fix to the right builder, without derailing the current mandate or violating the role-division policy sealed this same turn."
+    decision_back_ref: "opus-dispatch-log.yaml S089 active-model-capture-wiring verdict (incident investigated from ground truth); agent incident disclosure item 6."
+    retrieve_when: "BEFORE the next intentional split-behavioral-contracts.mjs run, OR when a spare Sonnet build slot opens — whichever first. Pairs with the existing split-generator orphan-content park."

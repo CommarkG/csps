@@ -2961,6 +2961,30 @@ const CYCLES = [
       return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, implementation_commits: ic ? Number(ic[1]) : 0, queue_entries_this_session: qe ? Number(qe[1]) : 0 };
     },
   },
+  // S089 B_DEEP_ROOT_TRIGGER: PROBLEM/INSIGHT auto-activation of the existing deep-root
+  // machinery (inner-ai-defaults registry, engraving, Weekly Evolution Engine). BLOCKS if this
+  // session has a problem/insight-shaped commit (inner-ai-defaults/**, behavioral-contracts/**,
+  // gap-recurrence-register.yaml, improvement-register.yaml, default-correction-registry.yaml)
+  // with the 7 REPORT SCHEMA field labels absent from council comms this session. Presence of
+  // the field LABELS only — cannot verify reasoning depth. Same presence-of-attempt shape as
+  // consensus_before_code / spawn_trigger.
+  {
+    name: 'deep_root_report',
+    command: 'node tools/validators/validate-deep-root-report.mjs',
+    input_files: [
+      'tools/council/sonnet-turn.md',
+      'tools/council/opus-turn.md',
+      'tools/validators/validate-deep-root-report.mjs',
+    ],
+    always_rerun: true,
+    parse_output: (out) => {
+      const b = out.match(/blocking=(\d+)/);
+      const a = out.match(/advisory=(\d+)/);
+      const tc = out.match(/trigger_commits=(\d+)/);
+      const sf = out.match(/schema_fields_present=(\d+)\/7/);
+      return { blocking: b ? Number(b[1]) : 0, advisory: a ? Number(a[1]) : 0, trigger_commits: tc ? Number(tc[1]) : 0, schema_fields_present: sf ? Number(sf[1]) : 0 };
+    },
+  },
   // S089 B_SPAWN_TRIGGER_GATE: Opus-agent dispatch trigger gate — mechanical enforcement of
   // one-tab operating discipline (opus-agent-spawn-template.md). BLOCKS if this session has a
   // HIGH-SCOPE Opus-agent dispatch (opus-dispatch-log.yaml) with no recorded verdict, or a

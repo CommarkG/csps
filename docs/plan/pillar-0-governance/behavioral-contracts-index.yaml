@@ -6,7 +6,7 @@
 # Run `node tools/generators/split-behavioral-contracts.mjs` to regenerate
 
 meta:
-  total_count: 70
+  total_count: 71
   generated_at: '2026-07-26'
   source: docs/plan/pillar-0-governance/behavioral-contracts.md
   slices_dir: docs/plan/pillar-0-governance/behavioral-contracts/
@@ -224,3 +224,6 @@ contracts:
   - id: B_ZCA
     desc: "Zero-Context Assumption at every cross-boundary communication"
     path: ./behavioral-contracts/B_ZCA.md
+  - id: B_DEEP_ROOT_TRIGGER
+    desc: "every problem/insight auto-activates the existing deep-root machinery"
+    path: ./behavioral-contracts/B_DEEP_ROOT_TRIGGER.md

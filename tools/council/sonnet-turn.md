@@ -52,3 +52,64 @@ REASONING: this mirrors the exact principle from the CDS Governance playbook ado
   independent party.
 
 Standing by. Awaiting your review on all three before I implement anything.
+
+---
+
+## DEEP-ROOT REPORT — B_DEEP_ROOT_TRIGGER build (this dispatch, S089)
+
+Per B_DEEP_ROOT_TRIGGER (just built this same turn), applying the 8-question pass to the build
+itself — the mechanism reporting on its own construction, not just future use.
+
+TRIGGER: Governor observed a recurring failure class across sessions — "stop at the surface,
+never name the deep root" — even though the deep-root machinery (inner-ai-defaults/ registry,
+B_CATCH_TO_ENGRAVING, the Weekly Evolution Engine) already existed. The class: EXISTS ≠ ACTIVE —
+machinery present on disk but never mechanically triggered into use every turn.
+
+DEFAULT REACTION: the reflex on a dispatch like this is to build something NEW (a fresh
+deep-root-report registry, a fresh engine) because building feels more like progress than
+composing with what already exists. Caught before acting on it — deliberately routed to the
+existing registries (default-correction-registry.yaml / gap-recurrence-register.yaml /
+improvement-register.yaml / weekly-evolution-batch.yaml) instead of forking a parallel one.
+
+SATISFACTION POINT: the false-finish line here would have been "wrote the hook text and the
+contract markdown" (D13 — creating a doc feels like completing the mechanism). Checked against
+satisfaction-point-registry.yaml discipline by NOT stopping there: also built the T2 validator,
+ran it against real session data (not a synthetic fixture) and got a genuine BLOCKING result
+(trigger_commits=12 schema_fields_present=2/7 before this report existed), wrote a 4-case
+FAIL→PASS block-test in an isolated tmp repo, wired it into tools/verify.mjs and audit-runner.md,
+and re-ran the split generators to confirm no regression. Real completion = the gate ran on real
+data and changed state when this report was added, not just "files exist."
+
+FALSE ASSUMPTION: initially assumed re-running `split-behavioral-contracts.mjs` was the correct
+path for Deliverable 2 (the task text offered it as the preferred SSoT+regenerate route). Checked
+before acting: the working tree already had 6+ behavioral-contract slice files modified from a
+prior uncommitted HARDWIRE-013 pass, and inspecting the generator confirmed it silently DROPS any
+enforcement_trio frontmatter block that lives only in a slice file and not in the shard source —
+exactly the known PARK-S089-SPLIT-GENERATOR-FRONTMATTER-STRIP bug. Running it now would have risked
+clobbering that unrelated in-flight uncommitted work. Composes with D20
+(context-pressure-false-assumptions / CONTEXT-IS-NOT-TRUTH): the instruction offering a path as
+"preferred" was not verified against the live repo state before treating it as safe to take.
+
+DEEP ROOT: D13 (creating-a-doc-feels-like-completing-the-mechanism-default) — the primary pull on
+this task type. Secondary: D7 (action-bias — writing content ≠ mechanism activated) via
+satisfaction-point-registry.yaml. Tertiary: D20 surfaced mid-task on the generator-regeneration
+question above.
+
+PREVENTION: regular check — this validator (validate-deep-root-report.mjs) now mechanically
+requires the 7-field report on any future session that touches inner-ai-defaults/,
+behavioral-contracts/, or the gap/improvement/default-correction registries. Deep-core default —
+the 8th always-loaded hook injection means the WAKE-THE-EXPERT pass is provoked on every turn
+regardless of whether the AI remembers B_DEEP_ROOT_TRIGGER exists, closing the "have to remember to
+invoke it" gap that made the pre-existing machinery inactive despite existing.
+
+IMPROVED DEFAULT: "a written artifact is progress" should sharpen to "a written artifact is
+progress only once something downstream can mechanically fail because of it" — i.e., prefer
+building the thing that can go RED before writing the thing that describes it, wherever both are
+in scope the same session (validator-before-final-doc-polish, not doc-then-maybe-validator-later).
+
+PRESERVATION: routed to `docs/plan/pillar-0-governance/behavioral-contracts/B_DEEP_ROOT_TRIGGER.md`
++ `docs/plan/pillar-0-governance/behavioral-contracts-VALD.md` (SSoT shard) + AGENTS.md hard-NO +
+`tools/validators/validate-deep-root-report.mjs` (registered in tools/verify.mjs +
+audit-runner.md) + `tools/tests/behavioral/deep-root-report-block-test.sh`. T3 session-memory
+surface remains an explicit STUB this session (not yet a dedicated session-open injection line) —
+flagged as a self-declared gap, not claimed done.

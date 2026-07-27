@@ -27,12 +27,17 @@
  * volume against delegation activity in the SAME registry B_SPAWN_TRIGGER_GATE already uses
  * (tools/data/opus-dispatch-log.yaml) — no new registry invented.
  *
- * CURRENT GAP (as of authoring): tools/session-state.json has NO active_model/model field today
- * (only session_role: opus-advisor | sonnet-builder, which names the TAB's intended purpose, not
- * which model is literally responding). Until that field exists, active_model reads "unknown"
- * and this validator can NEVER go BLOCKING — it stays ADVISORY-ONLY, honestly reporting the
- * volume-without-delegation signal as a risk indicator, not a violation. Recording active_model
- * at session-open is a real, separate follow-up this validator's gap makes visible.
+ * GAP RESOLVED (S089 follow-up): tools/session-state.json now carries an active_model field,
+ * populated by .claude/hooks/post-stop-active-model-capture.sh from a tab's own Step-0
+ * self-declaration ("Opus here." / "Sonnet here." — see generate-startup-block.mjs). This
+ * validator can now go BLOCKING for real sessions where active_model=opus, impl volume exceeds
+ * IMPL_COMMIT_THRESHOLD, and zero delegations were logged this session — see
+ * tools/tests/behavioral/model-role-division-block-test.sh TEST A (BLOCKING) + TESTS E-H (the
+ * capture hook itself, isolated tmp-repo). The ADVISORY-only path (active_model unknown/absent)
+ * remains for sessions/tabs that have not yet made a Step-0 declaration this hook can see — e.g.
+ * a tab mid-session before its next Stop event, or a tab that skipped Step 0 — so the field can
+ * still legitimately read "unknown" on a given check; that path is not a defect, it is the
+ * honest floor of a self-declared (not independently verified) signal.
  *
  * BOOTSTRAP EXEMPTION: this mechanism's own files (this validator, the dispatch log, verify.mjs,
  * audit-runner.md, the B_MODEL_ROLE_DIVISION contract + its shard source + the index, the

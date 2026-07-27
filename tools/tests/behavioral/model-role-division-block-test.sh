@@ -1,13 +1,20 @@
 #!/usr/bin/env bash
-# Behavioral test: validate-model-role-division.mjs
+# Behavioral test: validate-model-role-division.mjs + post-stop-active-model-capture.sh
 # Tests: A=active_model=opus+volume-no-delegation→BLOCKING · B=same+delegation recorded→PASS ·
 #        C=active_model unknown+volume-no-delegation→ADVISORY(not blocking) ·
 #        D=no volume (<=threshold commits)+empty log→PASS (clean baseline)
+#        E=capture hook: transcript has "Opus here." → active_model written to session-state.json
+#        F=capture hook: re-run same transcript → idempotent no-op (already set)
+#        G=capture hook: transcript has "Sonnet here." → active_model=sonnet written
+#        H=capture hook: no declaration in transcript → session-state.json untouched
 # S089 — B_MODEL_ROLE_DIVISION (Opus directs/core-seeds; Sonnet/Haiku build; token-economy spine)
 #
 # Runs entirely inside an isolated tmp git repo (BLOCK-TEST-CONVENTION.md RULE 2 — cd-first +
 # relative paths only). The real repo's tools/data/opus-dispatch-log.yaml and
-# tools/session-state.json are NEVER touched by this script.
+# tools/session-state.json are NEVER touched by this script. TESTS E-H copy the real hook
+# script into the tmp repo's own .claude/hooks/ so its dirname(BASH_SOURCE)-based REPO_ROOT
+# resolution naturally lands inside the isolated repo (same convention as every sibling
+# post-stop-*.sh hook — see BLOCK-TEST-CONVENTION.md RULE 2).
 set -uo pipefail
 PASS=0; FAIL=0
 
@@ -111,6 +118,77 @@ if echo "$OUT" | grep -q "blocking=0" && echo "$OUT" | grep -q "impl_commits=0";
   PASS=$((PASS+1))
 else
   echo "  ✗ TEST D: expected blocking=0 impl_commits=0, got: $OUT"
+  FAIL=$((FAIL+1))
+fi
+
+# ── TESTS E-H: post-stop-active-model-capture.sh (the field population mechanism) ──
+HOOK_SRC="$ROOT/.claude/hooks/post-stop-active-model-capture.sh"
+
+setup_hook_repo() {
+  rm -rf "$TMP"/.git "$TMP"/tools "$TMP"/.claude
+  mkdir -p "$TMP/tools" "$TMP/.claude/hooks"
+  cp "$HOOK_SRC" "$TMP/.claude/hooks/post-stop-active-model-capture.sh"
+  chmod +x "$TMP/.claude/hooks/post-stop-active-model-capture.sh"
+}
+
+write_transcript() {
+  # $1 = declaration line to embed in an assistant message (or "" for none)
+  local decl="$1"
+  cat > "$TMP/fake-transcript.jsonl" << JSONL
+{"type":"user","message":{"role":"user","content":"hello"}}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"${decl}Some other response text follows here."}]}}
+JSONL
+}
+
+# ── TEST E: transcript has "Opus here." declaration → active_model written ──
+setup_hook_repo
+echo '{"current_session":"TESTSESS","session_role":"opus-advisor"}' > tools/session-state.json
+write_transcript 'Opus here. Session TESTSESS. Direct-open tab.\n'
+OUT=$(cd "$TMP" && CLAUDE_TRANSCRIPT_PATH="$TMP/fake-transcript.jsonl" bash .claude/hooks/post-stop-active-model-capture.sh 2>&1) || true
+RESULT_MODEL=$(cd "$TMP" && node -e "console.log(JSON.parse(require('fs').readFileSync('tools/session-state.json','utf8')).active_model)" 2>/dev/null || echo "MISSING")
+if [ "$RESULT_MODEL" = "opus" ] && echo "$OUT" | grep -q "active_model set to 'opus'"; then
+  echo "  ✓ TEST E: transcript declares 'Opus here.' → active_model=opus written"
+  PASS=$((PASS+1))
+else
+  echo "  ✗ TEST E: expected active_model=opus, got model='$RESULT_MODEL' output: $OUT"
+  FAIL=$((FAIL+1))
+fi
+
+# ── TEST F: re-run same transcript against already-updated state → idempotent no-op ──
+OUT=$(cd "$TMP" && CLAUDE_TRANSCRIPT_PATH="$TMP/fake-transcript.jsonl" bash .claude/hooks/post-stop-active-model-capture.sh 2>&1) || true
+if echo "$OUT" | grep -q "already 'opus' -- no change"; then
+  echo "  ✓ TEST F: re-running same declaration → idempotent no-op"
+  PASS=$((PASS+1))
+else
+  echo "  ✗ TEST F: expected idempotent no-op message, got: $OUT"
+  FAIL=$((FAIL+1))
+fi
+
+# ── TEST G: transcript has "Sonnet here." declaration → active_model=sonnet written ──
+setup_hook_repo
+echo '{"current_session":"TESTSESS","session_role":"sonnet-builder"}' > tools/session-state.json
+write_transcript 'Sonnet here. Session TESTSESS. Direct-open tab.\n'
+OUT=$(cd "$TMP" && CLAUDE_TRANSCRIPT_PATH="$TMP/fake-transcript.jsonl" bash .claude/hooks/post-stop-active-model-capture.sh 2>&1) || true
+RESULT_MODEL=$(cd "$TMP" && node -e "console.log(JSON.parse(require('fs').readFileSync('tools/session-state.json','utf8')).active_model)" 2>/dev/null || echo "MISSING")
+if [ "$RESULT_MODEL" = "sonnet" ]; then
+  echo "  ✓ TEST G: transcript declares 'Sonnet here.' → active_model=sonnet written"
+  PASS=$((PASS+1))
+else
+  echo "  ✗ TEST G: expected active_model=sonnet, got model='$RESULT_MODEL' output: $OUT"
+  FAIL=$((FAIL+1))
+fi
+
+# ── TEST H: no declaration anywhere in transcript → session-state.json untouched ──
+setup_hook_repo
+echo '{"current_session":"TESTSESS"}' > tools/session-state.json
+write_transcript ''
+OUT=$(cd "$TMP" && CLAUDE_TRANSCRIPT_PATH="$TMP/fake-transcript.jsonl" bash .claude/hooks/post-stop-active-model-capture.sh 2>&1) || true
+HAS_FIELD=$(cd "$TMP" && node -e "console.log('active_model' in JSON.parse(require('fs').readFileSync('tools/session-state.json','utf8')))" 2>/dev/null || echo "ERROR")
+if [ "$HAS_FIELD" = "false" ] && [ -z "$OUT" ]; then
+  echo "  ✓ TEST H: no declaration in transcript → session-state.json untouched, silent no-op"
+  PASS=$((PASS+1))
+else
+  echo "  ✗ TEST H: expected untouched file + silent exit, got has_field=$HAS_FIELD output: $OUT"
   FAIL=$((FAIL+1))
 fi
 

@@ -441,6 +441,11 @@
             "type": "command",
             "command": ".claude/hooks/post-stop-oneclick-regenerate.sh",
             "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-stop-active-model-capture.sh",
+            "timeout": 10
           }
         ]
       },

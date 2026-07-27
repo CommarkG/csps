@@ -48,3 +48,9 @@ dispatches:
     task: "Build B_MODEL_ROLE_DIVISION: contract + validate-model-role-division.mjs + FSE 5-surface + wiring"
     verdict_recorded: true
     opus_verdict_ref: "opus verify-gate S089 (this turn): validator runs advisory blocking=0 (active_model=unknown), node -c clean on verify.mjs, contract+validator files present, wired in verify.mjs + audit-runner. HONEST CAVEAT recorded to Governor: the validator is ADVISORY-ONLY until session-state.json records active_model — git has no per-commit model identity, so today the gate documents+flags but cannot block. Delegated build (Sonnet), Opus-sealed."
+  - session: S089
+    dispatch_id: active-model-capture-wiring
+    scope_tier: corespine
+    task: "Wire active_model into session-state.json via Stop-hook transcript capture so validate-model-role-division.mjs can flip ADVISORY->BLOCKING"
+    verdict_recorded: true
+    opus_verdict_ref: "opus verify-gate S089 (this turn): settings.json valid JSON (mid-session Stop-hook registration did not break session), post-stop-active-model-capture.sh bash -n clean + idempotent tests E-H 8/8, validator now live-reads active_model=opus (blocking=0 only because 2 genuine delegations logged this session), parity green. Also verify-gated the agent's honest INCIDENT disclosure (split-behavioral-contracts.mjs strip regression): investigated from ground truth — 5/6 files retain enforcement_trio, B_IMPLEMENTATION_WIRING_CYCLE never had it (git log -S empty), parity validator green → no recoverable substantive loss. Latent generator bug PARKED. Delegated build (Sonnet), Opus-sealed."

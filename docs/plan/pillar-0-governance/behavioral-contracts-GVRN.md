@@ -997,14 +997,21 @@ mechanical way to prove "Opus personally typed this diff." The gate (`validate-m
 PRESENCE-OF-ATTEMPT signature check, same shape as `validate-consensus-before-code.mjs` /
 `validate-spawn-trigger.mjs`: it flags the detectable anti-pattern (a director-role session with volume
 implementation commits and zero delegation entries in `opus-dispatch-log.yaml`), not a verified fact about
-which model wrote which line. Until `tools/session-state.json` records an authoritative `active_model` field,
-the check is ADVISORY whenever the active model is unknown, and BLOCKING only in the unambiguous case
-(`session_role`/`active_model` reads opus-director AND commit volume exceeds the threshold AND zero
-delegations this session).
+which model wrote which line. `tools/session-state.json` now carries an `active_model` field, populated by
+`.claude/hooks/post-stop-active-model-capture.sh` from a tab's own Step-0 self-declaration ("Opus here." /
+"Sonnet here." in `generate-startup-block.mjs`) — this is a SELF-DECLARED signal, not an independently
+verified one: a tab that skips or misstates Step 0 leaves `active_model` stale or absent. The check is
+BLOCKING in the unambiguous case (`active_model` reads `opus` AND commit volume exceeds the threshold AND
+zero delegations this session) and stays ADVISORY whenever `active_model` is unknown/absent (e.g. before the
+capturing tab's first Stop event fires).
 
 **Mechanical surfaces:**
 - **registry:** `tools/data/opus-dispatch-log.yaml` (the same delegation log B_SPAWN_TRIGGER_GATE writes to —
-  no new registry invented) + `tools/session-state.json` (`session_role` / future `active_model` field)
+  no new registry invented) + `tools/session-state.json` (`session_role` + `active_model` field)
+- **capture hook (T3):** `.claude/hooks/post-stop-active-model-capture.sh` — Stop hook, scans
+  `CLAUDE_TRANSCRIPT_PATH` for the Step-0 self-declaration and writes `active_model` into
+  `tools/session-state.json`; the only hook stage where the literally-responding model's own text is
+  observable (SessionStart/UserPromptSubmit fire before the model responds)
 - **validator (T2):** `tools/validators/validate-model-role-division.mjs` — BLOCKING only where the signal is
   unambiguous; ADVISORY where the active model is unknown (registered in `tools/verify.mjs` as
   `model_role_division`)

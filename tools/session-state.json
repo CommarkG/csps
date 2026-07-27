@@ -5,6 +5,8 @@
   "previous_session": "S088",
   "session_updated_at": "2026-06-27T00:00:00.000Z",
   "session_role": "sonnet-builder",
+  "active_model": "opus",
+  "_active_model_note": "Which model is literally responding in the Claude Code session tracked here -- distinct from session_role (the TAB's intended build purpose). Captured mechanically by .claude/hooks/post-stop-active-model-capture.sh from the Step-0 self-declaration (Opus here. / Sonnet here.) defined in tools/scripts/generate-startup-block.mjs. Consumed by tools/validators/validate-model-role-division.mjs (B_MODEL_ROLE_DIVISION) so it can go BLOCKING once active_model is unambiguous. S089 seed value: opus -- this session's git-commit authority (CONSTRAINTS: shared git index, Opus seals) is the persistent Opus director tab even though session_role=sonnet-builder names the purpose of the spawned builder tab that authored the diff. Future sessions self-populate this field via the hook once a tab's Step-0 declaration lands in its transcript -- no manual edit required after this seed.",
   "active_hardwire_items": [],
   "_active_hardwire_note": "Items currently in-progress via HARDWIRE protocol. Update at session close. hardwire-002 = council-write relay channel (BATCH 3 done, block-test recorded).",
   "_session_role_note": "opus-advisor = Opus Advisor tab (strategic, no implementation). sonnet-builder = Sonnet Builder tab (implementation). Set by Governor when opening the tab.",

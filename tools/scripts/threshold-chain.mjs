@@ -140,7 +140,8 @@ function writeCieInsight({ input_id, type, spine_tag, pe_significance, route, co
 // ─── runChain ─────────────────────────────────────────────────────────────────
 /**
  * Run the full Phase-0.2 intake chain for one input.
- * @param {{ content?: string, session?: string, type?: string, spine?: string, urgency?: string }} opts
+ * @param {{ content?: string, session?: string, type?: string, spine?: string, urgency?: string,
+ *           mandate_active?: boolean, mandate_relation?: string|null }} opts
  * @returns {{ input_id, classify, decompose, pe_significance, route, cie_written, chain_at }}
  */
 export function runChain({
@@ -149,11 +150,13 @@ export function runChain({
   type     = 'governor_directive',
   spine    = 'GVRN',
   urgency  = 'medium',
+  mandate_active   = false, // CIC-auditor fix (S089): previously never reached routeInput()
+  mandate_relation = null,  // here → QUEUE-OR-PIVOT dead code. See PROTO-S089-CIC-THRESHOLD-WIRING.
 } = {}) {
   const input_id = `chain-${session}-${Date.now()}`;
 
   // ── STEP 1: classify (4-axis) — reuse existing routeInput() M-42 ──────────
-  const classify_result = routeInput({ type, spine, urgency, content, shapeTier: false });
+  const classify_result = routeInput({ type, spine, urgency, content, shapeTier: false, mandate_active, mandate_relation });
 
   // Attach inferred urgency for PE-significance (not in routeInput output)
   classify_result.type_inferred      = type;
@@ -210,11 +213,19 @@ if (process.argv[1]?.endsWith('threshold-chain.mjs')) {
 
   const content = args.content || process.env.CHAIN_CONTENT || '';
   const session = args.session || process.env.CHAIN_SESSION || 'unknown';
-  const type    = args.type    || 'governor_directive';
-  const spine   = args.spine   || 'GVRN';
-  const urgency = args.urgency || 'medium';
+  // CIC-auditor fix (S089): read the hook's already-computed classification + mandate
+  // signal from env (CHAIN_TYPE/CHAIN_SPINE/CHAIN_URGENCY/CHAIN_MANDATE_ACTIVE) instead
+  // of silently re-defaulting to governor_directive/GVRN/medium/false every single run.
+  // --flags still take precedence for direct CLI/test invocation.
+  const type    = args.type    || process.env.CHAIN_TYPE    || 'governor_directive';
+  const spine   = args.spine   || process.env.CHAIN_SPINE   || 'GVRN';
+  const urgency = args.urgency || process.env.CHAIN_URGENCY || 'medium';
+  const mandate_active = args.mandate_active !== undefined
+    ? args.mandate_active === 'true'
+    : process.env.CHAIN_MANDATE_ACTIVE === 'true';
+  const mandate_relation = args.mandate_relation || process.env.CHAIN_MANDATE_RELATION || null;
 
-  const result = runChain({ content, session, type, spine, urgency });
+  const result = runChain({ content, session, type, spine, urgency, mandate_active, mandate_relation });
 
   if (args.trace) {
     console.log(JSON.stringify(result, null, 2));

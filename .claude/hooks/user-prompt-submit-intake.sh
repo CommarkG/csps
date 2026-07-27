@@ -36,13 +36,20 @@ fi
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 STATE_FILE="${REPO_ROOT}/tools/session-state.json"
 
+# MANDATE_ACTIVE: threshold-router QUEUE-OR-PIVOT input signal (CIC-auditor fix).
+# Presence-only check (a live session_mandate.primary exists) — NOT a freshness check.
+# Freshness (session_mandate text may be stale vs current_session) is a data-quality
+# call for Governor/Opus, out of scope here. Always defined before use (set -u safe).
+MANDATE_ACTIVE="false"
+
 if [ -f "$STATE_FILE" ]; then
   # Extract key info using grep (no python/node dependency)
   SESSION=$(grep -o '"current_session": "[^"]*"' "$STATE_FILE" | grep -o '"[^"]*"$' | tr -d '"' 2>/dev/null || echo "?")
   MANDATE=$(grep -o '"primary": "[^"]*"' "$STATE_FILE" | head -1 | grep -o '"[^"]*"$' | tr -d '"' 2>/dev/null || echo "")
+  [ -n "$MANDATE" ] && MANDATE_ACTIVE="true"
   # Only show UNRESOLVED blocking decisions (skip status:RESOLVED entries)
   BLOCK1=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('$STATE_FILE','utf8'));const b=(d.blocking_decisions||[]).filter(x=>x.status!=='RESOLVED').map(x=>x.id);if(b.length)console.log(b.join(', '));}catch(e){}" 2>/dev/null || echo "")
-  
+
   if [ -n "$MANDATE" ]; then
     echo "[session-state] ${SESSION}: ${MANDATE}"
     [ -n "$BLOCK1" ] && echo "[session-state] BLOCKING: ${BLOCK1} — read tools/session-state.json"
@@ -116,7 +123,14 @@ try{
     _WRAPPER2="${REPO_ROOT}/tools/scripts/route-input-wrapper.mjs"
     _4A_RAW='{}'
     if [ -f "$_WRAPPER2" ] && [ "${#USER_MESSAGE}" -gt 5 ]; then
-      _4A_RAW=$(ROUTE_CONTENT="$(printf '%s' "$USER_MESSAGE" | head -c 200)"         ROUTE_SESSION="$_SN"         node "$_WRAPPER2" 2>/dev/null || echo '{}')
+      # CIC-auditor fix: forward the R1.4.1 classification (_TY/_SP/_UR) computed above +
+      # MANDATE_ACTIVE, instead of letting route-input-wrapper.mjs silently re-default
+      # to governor_directive/GVRN/medium + mandate_active=false every run (0/1489 QUEUE-OR-PIVOT).
+      _4A_RAW=$(ROUTE_CONTENT="$(printf '%s' "$USER_MESSAGE" | head -c 200)" \
+        ROUTE_SESSION="$_SN" \
+        ROUTE_TYPE="$_TY" ROUTE_SPINE="$_SP" ROUTE_URGENCY="$_UR" \
+        ROUTE_MANDATE_ACTIVE="$MANDATE_ACTIVE" \
+        node "$_WRAPPER2" 2>/dev/null || echo '{}')
     fi
     THRESHOLD_SCOPE4=$(R4A="$_4A_RAW" node -e "try{const j=JSON.parse(process.env.R4A||'{}');process.stdout.write((j.axis_classification||{}).scope||'operational');}catch(e){process.stdout.write('operational');}" 2>/dev/null || echo 'operational')
     THRESHOLD_INTENT=$(R4A="$_4A_RAW" node -e "try{const j=JSON.parse(process.env.R4A||'{}');process.stdout.write((j.axis_classification||{}).intent||'directive');}catch(e){process.stdout.write('directive');}" 2>/dev/null || echo 'directive')
@@ -206,9 +220,13 @@ try{
   _SN_M6=$(node "${REPO_ROOT}/tools/lib/session-source.mjs" 2>/dev/null || echo "S000")
 
   # Call route-input-wrapper.mjs via env vars (avoids bash quoting issues with content)
+  # CIC-auditor fix: forward real classification + MANDATE_ACTIVE (same signal as R1.4.1
+  # section above) so this feed matches the same routing decision, not a re-defaulted one.
   if [ -f "$_WRAPPER" ] && [ -n "$USER_MESSAGE" ] && [ "${#USER_MESSAGE}" -gt 5 ]; then
     ROUTE_CONTENT=$(printf '%s' "$USER_MESSAGE" | head -c 200) \
     ROUTE_SESSION="$_SN_M6" \
+    ROUTE_TYPE="${_TY:-governor_directive}" ROUTE_SPINE="${_SP:-GVRN}" ROUTE_URGENCY="${_UR:-medium}" \
+    ROUTE_MANDATE_ACTIVE="${MANDATE_ACTIVE:-false}" \
     node "$_WRAPPER" 2>/dev/null | \
     ROUTE_SESSION="$_SN_M6" ROUTE_CIL="$_CIL" node -e "
 let d='';
@@ -252,8 +270,13 @@ process.stdin.on('end',()=>{
   _CHAIN="${REPO_ROOT}/tools/scripts/threshold-chain.mjs"
   _SN_CHAIN=$(node "${REPO_ROOT}/tools/lib/session-source.mjs" 2>/dev/null || echo "S000")
   if [ -f "$_CHAIN" ] && [ -n "$USER_MESSAGE" ] && [ "${#USER_MESSAGE}" -gt 5 ]; then
+    # CIC-auditor fix: forward the R1.4.1 classification (_TY/_SP/_UR) + MANDATE_ACTIVE
+    # instead of discarding them — threshold-chain.mjs CLI previously always re-defaulted
+    # to governor_directive/GVRN/medium/mandate_active=false (0/1489 QUEUE-OR-PIVOT).
     CHAIN_CONTENT="$(printf '%s' "$USER_MESSAGE" | head -c 300)" \
     CHAIN_SESSION="$_SN_CHAIN" \
+    CHAIN_TYPE="${_TY:-governor_directive}" CHAIN_SPINE="${_SP:-GVRN}" CHAIN_URGENCY="${_UR:-medium}" \
+    CHAIN_MANDATE_ACTIVE="${MANDATE_ACTIVE:-false}" \
     node "$_CHAIN" 2>/dev/null | node -e "
 let d='';
 process.stdin.on('data',c=>d+=c);

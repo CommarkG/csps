@@ -62,3 +62,9 @@ dispatches:
     opus_verdict_ref: "opus verify-gate S089 (this turn): CRITICAL hook check — bash -n clean AND runtime emits valid JSON (len 5398) carrying 'EIGHT ACTIVE ENFORCEMENTS' + a complete '8. B_DEEP_ROOT_TRIGGER' block (2 triggers, 8 questions, 7-field schema, honest depth-boundary) — re-derived from ground truth after an initial false-negative grep, NOT trusted from self-report. validate-deep-root-report blocking=0 7/7, block-test 4/4 FAIL->PASS, node -c verify.mjs clean, enforcement_trio intact on all 5 checked contracts (agent correctly refused to run the strip-bug generator). Producer!=auditor honored: agent left this unsealed; persistent Opus tab reviewed + sealed."
     # NOTE: agent respected PARK-S089-SPLIT-GENERATOR-FRONTMATTER-STRIP — hand-wrote the VALD shard
     # instead of running split-behavioral-contracts.mjs, avoiding collateral enforcement_trio loss.
+  - session: S089
+    dispatch_id: cic-auditor-build
+    scope_tier: corespine
+    task: "Build cic-auditor agent (4-check flow-integrity/inheritance auditor, distinct from CIE) + dogfood on real threshold intake chain"
+    verdict_recorded: true
+    opus_verdict_ref: "opus verify-gate S089 (this turn): .claude/agents/cic-auditor.md present, registered via schema-registry.md claude_agent example (existing convention, no separate registry), validate-agent-inheritance-parity green (unaffected), validate-frontmatter excludes .claude/. Dogfood finding RE-DERIVED from ground truth (not trusted): grep cie-chain-insights.yaml = 1489 entries, 0 QUEUE-OR-PIVOT ever, type=governor_directive 100% uniform → CONFIRMED. The auditor independently quantified the known [[feedback_threshold_classifier_not_gate]] gap. ESCALATED to Governor as a real flow-integrity failure (mandate-gate fixture-green but never fires in production; hook classification discarded before Phase-0.2 chain). Composes existing validators, forks nothing. Delegated (Sonnet), Opus-sealed."

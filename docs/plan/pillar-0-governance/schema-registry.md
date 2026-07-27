@@ -527,7 +527,7 @@ schema_anchors:
     resolves_to: .claude/agents/*.md
     spine: AI
     l2_domain: AGENT_BEHAVIOR
-    description: Claude Code sub-agent definitions in .claude/agents/ (e.g. haiku-scout, dna-guardian) — governed under AAP
+    description: Claude Code sub-agent definitions in .claude/agents/ (e.g. haiku-scout, dna-guardian, cic-auditor) — governed under AAP
 
   behavioral_contracts:
     type: governance-section

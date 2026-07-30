@@ -230,6 +230,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/hooks/pre-tool-use-scope-fence-bash.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/pre-tool-use-rzf-evidence-gate.sh"
           }
         ]

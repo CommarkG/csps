@@ -38,7 +38,7 @@ jobs:
         run: npm install -g pnpm@9.15.1
 
       - name: Install dependencies (frozen)
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile || (echo "cold-install retry" && pnpm install --frozen-lockfile)  # cold-postinstall retry — PARK-S089-CI-COLD-POSTINSTALL-FRAGILITY
 
       - name: Run EXTENDED structural validators
         run: |

@@ -2898,3 +2898,22 @@ entries:
       reasoning: "The risk is real but currently disarmed (HEAD intact, verified). Parking HIGH with a concrete fix_direction captures it durably and routes the fix to the right builder, without derailing the current mandate or violating the role-division policy sealed this same turn."
     decision_back_ref: "opus-dispatch-log.yaml S089 active-model-capture-wiring verdict (incident investigated from ground truth); agent incident disclosure item 6."
     retrieve_when: "BEFORE the next intentional split-behavioral-contracts.mjs run, OR when a spare Sonnet build slot opens — whichever first. Pairs with the existing split-generator orphan-content park."
+  - id: PARK-S089-CI-COLD-POSTINSTALL-FRAGILITY
+    lane: queue
+    priority: MEDIUM
+    title: CI pnpm install --frozen-lockfile is cold-install-fragile (postinstall prisma+zenstack generate) — mitigated by retry, root-cause deferred
+    parked_session: S089
+    source_session: S089
+    created_session: S089
+    closed_session: null
+    never_drop: true
+    disposition_session: S089
+    disposition_text: "The 'CSPS Session Progress' workflow (+ build/ci/verify-extended) failed on the pnpm install step. Reproduced locally from ground truth: NOT a lockfile drift ('Lockfile is up to date') and NOT any S089 governance content — it is the postinstall generate step (apps/csps-playground `prisma generate` running in parallel with root `zenstack generate && copy-zenstack-output.mjs`). Intermittent/cold-sensitive: run1=exit1, run2=exit0 (idempotent-clean on retry). Symptom line: zenstack 'Failed to format Prisma schema file' (a non-fatal warning, present on the exit-0 run too — a red herring). MITIGATED this turn: all 4 workflows retry the install once (the deterministically-clean warm run carries the job)."
+    problem: "Cold install (fresh CI checkout, no prior generation) can exit 1, most likely a parallel-generate race between the app's prisma generate and root zenstack generate writing/formatting the same generated prisma schema. The retry masks it; the underlying cold-race is unfixed."
+    fix_direction: "Get the actual failed-run CI log to confirm the exact failing sub-step, THEN either serialize the postinstall (root zenstack generate BEFORE app prisma generate) or make the zenstack format step provably non-fatal. Delegate to Sonnet per B_MODEL_ROLE_DIVISION once the log pins the line."
+    decision_ledger:
+      chosen: "MITIGATE now via install-retry across all 4 workflows (matches ground-truth: warm re-run is deterministically clean) + PARK the root-cause with fix_direction."
+      rejected: "Blind-patch the postinstall internals without the CI log (rejected: cannot watch it fail in CI → risk fixing the wrong thing, the 'wild implementation' the platform guards against) OR wait for self-clear (rejected: the re-triggered run after 730304e3 stayed RED — it does not self-clear) OR leave CI red (rejected: Governor 'resolve it all')."
+      reasoning: "The retry is not a blind band-aid — it is calibrated to the observed idempotent-clean-on-retry behavior, makes CI green now with a reversible low-risk change, and the root-cause is preserved (not dismissed) for a targeted fix when the log is available."
+    decision_back_ref: "opus-dispatch-log.yaml S089 + this turn's local reproduction (pnpm install --frozen-lockfile run1=1/run2=0)."
+    retrieve_when: "When the CI log for a failed cold run is available, OR the next time CI goes red on the install step (retry no longer sufficient)."

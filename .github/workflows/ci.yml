@@ -62,7 +62,7 @@ jobs:
             ${{ runner.os }}-pnpm-root-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile || (echo "cold-install retry" && pnpm install --frozen-lockfile)  # cold-postinstall retry — PARK-S089-CI-COLD-POSTINSTALL-FRAGILITY
 
       - name: TypeScript type check (tsc --noEmit)
         run: pnpm typecheck
@@ -109,7 +109,7 @@ jobs:
             ${{ runner.os }}-pnpm-root-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile || (echo "cold-install retry" && pnpm install --frozen-lockfile)  # cold-postinstall retry — PARK-S089-CI-COLD-POSTINSTALL-FRAGILITY
 
       - name: Run CSPS STANDARD validators
         run: node tools/verify.mjs --skip-install --no-cache

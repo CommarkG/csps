@@ -40,7 +40,12 @@ jobs:
         run: npm install -g pnpm@9.15.1
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        # Postinstall (prisma + zenstack generate) is COLD-INSTALL-fragile: a fresh checkout can
+        # exit 1 on first generation. Reproduced locally: run1=exit1, run2=exit0 — idempotent-clean
+        # on retry (warm artifacts present). Retry once so the deterministically-clean second run
+        # carries the job. Root-cause (cold parallel-generate race) parked:
+        # PARK-S089-CI-COLD-POSTINSTALL-FRAGILITY (proper fix needs the CI log / serialized postinstall).
+        run: pnpm install --frozen-lockfile || (echo "cold-install retry" && pnpm install --frozen-lockfile)
 
       - name: Generate SESSION-BRIEF.md
         run: node tools/generate-session-brief.mjs

@@ -9,7 +9,7 @@
 | **Current session** | S089 |
 | **Previous session** | S088 |
 | **Last updated** | 37 day(s) ago |
-| **Last commit** | 1352c4bc [S089] Bash scope-fence companion: close the Write/Edit-only perimeter gap |
+| **Last commit** | 730304e3 [S089] Refresh session_mandate.primary: S086-stale -> current S089 (goal-freshness) |
 | **Foundation slices** | ✅ BUILT (committed) |
 | **Apps in production** | 1 |
 

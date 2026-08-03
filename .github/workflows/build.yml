@@ -60,7 +60,7 @@ jobs:
             ${{ runner.os }}-pnpm-${{ matrix.app }}-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile || (echo "cold-install retry" && pnpm install --frozen-lockfile)  # cold-postinstall retry — PARK-S089-CI-COLD-POSTINSTALL-FRAGILITY
 
       - name: Run prebuild (copy-registry.mjs)
         run: node apps/${{ matrix.app }}/scripts/copy-registry.mjs
